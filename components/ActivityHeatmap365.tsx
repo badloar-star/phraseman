@@ -367,7 +367,7 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
     <Modal visible transparent animationType="fade" onRequestClose={onClose}>
       <TouchableOpacity activeOpacity={1} onPress={onClose} style={styles.modalBackdrop}>
         <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
-        <TouchableOpacity testID="activity-365-day-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: 'transparent', borderColor: rewardModalPanelBorder(themeMode, t), shadowColor: modalAccent }]}>
+        <TouchableOpacity testID="activity-365-day-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: rewardModalPanelColors(themeMode, t)[1], borderColor: rewardModalPanelBorder(themeMode, t), shadowColor: modalAccent }]}>
           <LinearGradient colors={rewardModalPanelColors(themeMode, t)} style={styles.modalGlow}>
             <View style={styles.modalHeader}>
               <View>
@@ -435,7 +435,7 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
     <Modal visible={!!analytics} transparent animationType="fade" onRequestClose={onClose}>
       <TouchableOpacity activeOpacity={1} onPress={onClose} style={styles.modalBackdrop}>
         <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
-        <TouchableOpacity testID="activity-365-monthly-report-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: 'transparent', borderColor: rewardModalPanelBorder(themeMode, t), shadowColor: modalAccent }]}>
+        <TouchableOpacity testID="activity-365-monthly-report-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: rewardModalPanelColors(themeMode, t)[1], borderColor: rewardModalPanelBorder(themeMode, t), shadowColor: modalAccent }]}>
           <LinearGradient colors={rewardModalPanelColors(themeMode, t)} style={styles.modalGlow}>
             <View style={styles.modalHeader}>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>

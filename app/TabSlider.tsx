@@ -33,8 +33,7 @@ export default function TabSlider({
   children,
   swipeEnabled = true,
 }: Props) {
-  const { width: screenW, contentMaxW } = useScreen();
-  const W = Math.min(screenW, contentMaxW);
+  const { width: W } = useScreen();
 
   // All shared values run on the UI thread — no JS overhead during gesture
   const translateX  = useSharedValue(-activeIndex * W);

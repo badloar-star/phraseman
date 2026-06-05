@@ -26,7 +26,6 @@ import { storageStudyTarget, type RuntimeStudyTarget } from '../app/target_stora
 import type { ThemeMode } from '../constants/theme';
 
 const AUTO_DISMISS_MS = 12_000;
-const CLAIM_DISMISS_MS = 360;
 const MAX_QUEUE = 3;
 
 type DailyTaskRewardToastItem = {
@@ -61,8 +60,6 @@ type DailyTaskRewardToastThemeStyle = {
   claimBg: string;
   claimText: string;
   claimBorderColor: string;
-  claimingBg: string;
-  claimingText: string;
   buttonIconName: IoniconName;
 };
 
@@ -86,8 +83,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBg: '#47C870',
     claimText: '#042010',
     claimBorderColor: 'rgba(213,255,219,0.52)',
-    claimingBg: '#203429',
-    claimingText: '#A9D9B7',
     buttonIconName: 'gift-outline',
   },
   neon: {
@@ -109,8 +104,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBg: '#C8FF00',
     claimText: '#162000',
     claimBorderColor: '#F1FFC1',
-    claimingBg: '#2C321F',
-    claimingText: '#C9D79A',
     buttonIconName: 'flash-outline',
   },
   gold: {
@@ -132,8 +125,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBg: '#D8B45F',
     claimText: '#0A0702',
     claimBorderColor: '#FFE8A6',
-    claimingBg: '#302715',
-    claimingText: '#DCC895',
     buttonIconName: 'diamond-outline',
   },
   coral: {
@@ -155,8 +146,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBg: '#FF6464',
     claimText: '#FFFFFF',
     claimBorderColor: 'rgba(255,218,210,0.62)',
-    claimingBg: '#38262A',
-    claimingText: '#E0BBC1',
     buttonIconName: 'flame-outline',
   },
   minimalLight: {
@@ -178,8 +167,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBg: '#343842',
     claimText: '#FFFFFF',
     claimBorderColor: '#565C6B',
-    claimingBg: '#DED4C0',
-    claimingText: '#48443C',
     buttonIconName: 'arrow-down-circle-outline',
   },
   minimalDark: {
@@ -201,8 +188,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBg: '#6EA8FF',
     claimText: '#07101F',
     claimBorderColor: '#D7E7FF',
-    claimingBg: '#1B2330',
-    claimingText: '#A7ABB3',
     buttonIconName: 'gift-outline',
   },
   compass: {
@@ -224,8 +209,6 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBg: '#E7B13F',
     claimText: '#151008',
     claimBorderColor: '#FFD58A',
-    claimingBg: '#171208',
-    claimingText: '#D8D2C8',
     buttonIconName: 'navigate-outline',
   },
 };
@@ -275,12 +258,12 @@ export default function DailyTaskRewardToast() {
   const opacity = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.96)).current;
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const claimDismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafRef = useRef<number | null>(null);
   const activeRef = useRef<DailyTaskRewardToastItem | null>(null);
   const activeKeyRef = useRef<string | null>(null);
   const queueRef = useRef<DailyTaskRewardToastItem[]>([]);
   const claimingRef = useRef(false);
+  const inFlightClaimKeysRef = useRef<Set<string>>(new Set());
 
   const finishCurrent = useCallback(() => {
     const next = queueRef.current.shift() ?? null;
@@ -305,10 +288,6 @@ export default function DailyTaskRewardToast() {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
-    }
-    if (claimDismissTimerRef.current) {
-      clearTimeout(claimDismissTimerRef.current);
-      claimDismissTimerRef.current = null;
     }
     if (rafRef.current != null) {
       cancelAnimationFrame(rafRef.current);
@@ -341,6 +320,7 @@ export default function DailyTaskRewardToast() {
 
   const enqueue = useCallback((item: DailyTaskRewardToastItem) => {
     const key = itemKey(item);
+    if (inFlightClaimKeysRef.current.has(key)) return;
     if (activeKeyRef.current === key) return;
     if (queueRef.current.some((queued) => itemKey(queued) === key)) return;
 
@@ -484,26 +464,28 @@ export default function DailyTaskRewardToast() {
 
   useEffect(() => () => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    if (claimDismissTimerRef.current) clearTimeout(claimDismissTimerRef.current);
     if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
   }, []);
 
   const handleClaim = useCallback(async () => {
     const current = activeRef.current;
-    if (!current || claiming) return;
+    if (!current) return;
+    const claimKey = itemKey(current);
+    if (claimingRef.current || inFlightClaimKeysRef.current.has(claimKey)) return;
 
     hapticTap();
     claimingRef.current = true;
+    inFlightClaimKeysRef.current.add(claimKey);
     setClaiming(true);
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
+    dismissCurrent();
 
     try {
       if (current.previewOnly) {
         hapticSuccess();
-        claimDismissTimerRef.current = setTimeout(() => dismissCurrent(), CLAIM_DISMISS_MS);
         return;
       }
 
@@ -522,15 +504,12 @@ export default function DailyTaskRewardToast() {
       }, { tasksForClaim, studyTarget: current.studyTarget });
 
       if (!claimed) {
-        claimingRef.current = false;
-        setClaiming(false);
         emitAppEvent('action_toast', {
           type: 'info',
           messageRu: 'Награда уже получена или задание обновилось.',
           messageUk: 'Нагороду вже отримано або завдання оновилося.',
           messageEs: 'La recompensa ya está reclamada o la tarea cambió.',
         });
-        dismissCurrent();
         return;
       }
 
@@ -542,20 +521,18 @@ export default function DailyTaskRewardToast() {
         messageUk: `+${awardedXp} XP отримано`,
         messageEs: `+${awardedXp} XP recibido`,
       });
-      claimDismissTimerRef.current = setTimeout(() => dismissCurrent(), CLAIM_DISMISS_MS);
     } catch {
       hapticError();
-      claimingRef.current = false;
-      setClaiming(false);
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Не удалось забрать награду. Попробуйте ещё раз.',
         messageUk: 'Не вдалося забрати нагороду. Спробуйте ще раз.',
         messageEs: 'No se pudo reclamar la recompensa. Inténtalo de nuevo.',
       });
-      timerRef.current = setTimeout(() => dismissCurrent(), AUTO_DISMISS_MS);
+    } finally {
+      inFlightClaimKeysRef.current.delete(claimKey);
     }
-  }, [claiming, dismissCurrent, lang]);
+  }, [dismissCurrent, lang]);
 
   if (!toast || !overlayVisible) return null;
 
@@ -568,16 +545,6 @@ export default function DailyTaskRewardToast() {
     id: 'Ambil',
     tr: 'Al',
     pl: 'Odbierz',
-  });
-  const claimingLabel = triLang(lang, {
-    ru: 'Забираем',
-    uk: 'Забираємо',
-    es: 'Reclamando',
-    'pt-BR': 'Resgatando',
-    vi: 'Đang nhận',
-    id: 'Mengambil',
-    tr: 'Alınıyor',
-    pl: 'Odbieranie',
   });
   const title = triLang(lang, {
     ru: 'Задание дня выполнено',
@@ -601,9 +568,9 @@ export default function DailyTaskRewardToast() {
   });
   const visualThemeMode = toast.previewThemeMode ?? themeMode;
   const themeStyle = DAILY_TASK_REWARD_TOAST_THEME_STYLES[visualThemeMode];
-  const claimBg = claiming ? themeStyle.claimingBg : themeStyle.claimBg;
-  const claimFg = claiming ? themeStyle.claimingText : themeStyle.claimText;
-  const claimIcon = claiming ? 'hourglass-outline' : themeStyle.buttonIconName;
+  const claimBg = themeStyle.claimBg;
+  const claimFg = themeStyle.claimText;
+  const claimIcon = themeStyle.buttonIconName;
 
   return (
     <Animated.View
@@ -718,7 +685,7 @@ export default function DailyTaskRewardToast() {
               { color: claimFg, fontSize: f.caption },
             ]}
           >
-            {claiming ? claimingLabel : claimLabel}
+            {claimLabel}
           </Text>
         </TouchableOpacity>
       </LinearGradient>

@@ -475,7 +475,7 @@ export default function NoEnergyModal({
                 {
                   transform: [
                     { scale: boltScale },
-                    { rotate: boltShake.interpolate({ inputRange: [-1, 1], outputRange: ['-12deg', '12deg'] }) },
+                    { translateX: boltShake.interpolate({ inputRange: [-1, 1], outputRange: [-3, 3] }) },
                   ],
                 },
               ]}

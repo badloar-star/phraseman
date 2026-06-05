@@ -4,6 +4,7 @@
  */
 
 import type { Lang } from '../constants/i18n';
+import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { storageStudyTarget } from './target_storage_keys';
@@ -37,6 +38,7 @@ export type HomeScreenHydration = {
     leaderName: string;
     leaderPoints: number;
   } | null;
+  personalPlanSnapshot?: PersonalPlanHomeSnapshot | null;
 };
 
 let snapshotByTarget: Partial<Record<string, HomeScreenHydration>> = {};

@@ -22,6 +22,7 @@ const {
   formatRoutesForChat,
   formatTelegramMessageWithHeader,
   getNextQueuedPromptItem,
+  getPromptQueueDeliveryPlan,
   getPromptQueue,
   getSessionInboxRoutes,
   getSessionTitle,
@@ -357,7 +358,6 @@ function startDesktopPromptSender(config, route) {
     String(config.desktopQueueInputClickXRatio || 0.52),
     '-InputClickBottomOffset',
     String(config.desktopQueueInputClickBottomOffset || 155),
-    '-SendImmediately',
     '-AllowRepeatedTokenPrompt',
   ], {
     cwd: config.projectRoot || process.cwd(),
@@ -393,15 +393,18 @@ async function enqueueRoutePrompts(config, state, chatId, route, count, sourceTe
     await sendCommandText(config, chatId, `Queue limit reached for this session: ${activeCount}/${MAX_PENDING_QUEUE_ITEMS_PER_SESSION}. Send /stop to clear or wait for items to finish.`);
     return;
   }
-  const result = addPromptQueueItems(state, route, prompt, allowedCount, { sourceTelegramMessageId });
-  const desktopQueue = appendDesktopPromptQueue(config, route, prompt, allowedCount);
-  const senderPid = config.desktopQueueUnsafePaste ? startDesktopPromptSender(config, route) : null;
+  addPromptQueueItems(state, route, prompt, allowedCount, { sourceTelegramMessageId });
+  const deliveryPlan = getPromptQueueDeliveryPlan(config);
+  const desktopQueue = deliveryPlan.appendDesktopQueue
+    ? appendDesktopPromptQueue(config, route, prompt, allowedCount)
+    : { ...buildVisibleQueuePaths(config, route), count: allowedCount };
+  const senderPid = deliveryPlan.startDesktopSender ? startDesktopPromptSender(config, route) : null;
   saveState(config.statePath, state);
   writeControlCenter(config, state);
-  processRoutePromptQueue(config, chatId, route).catch((error) => {
-    console.log(`[telegram-bridge] exact session queue failed: ${error.message}`);
-  });
-  if (!config.desktopQueueUnsafePaste) {
+  if (deliveryPlan.processViaCodexExec) {
+    processRoutePromptQueue(config, chatId, route).catch((error) => {
+      console.log(`[telegram-bridge] exact session queue failed: ${error.message}`);
+    });
     await sendCommandText(
       config,
       chatId,
@@ -415,13 +418,28 @@ async function enqueueRoutePrompts(config, state, chatId, route, count, sourceTe
     );
     return;
   }
+  if (!deliveryPlan.startDesktopSender) {
+    await sendCommandText(
+      config,
+      chatId,
+      [
+        `Queued for this Codex session: Next x${desktopQueue.count}.`,
+        `Session: ${route.sessionId || 'latest'}.`,
+        `Mode: ${mode}.`,
+        'No execution backend is enabled, so items stay queued instead of being marked error immediately.',
+        'Enable allowCodexExec=true for automatic exact-session execution.',
+        `Control Center: ${buildVisibleQueuePaths(config, route).controlCenterPath}`,
+      ].join('\n')
+    );
+    return;
+  }
   await sendCommandText(
     config,
     chatId,
     [
       `Отправляю в VS Code: Дальше x${desktopQueue.count}.`,
       `Режим: ${mode}.`,
-      senderPid ? 'Первый prompt вставляется в окно Codex сейчас, остальные идут через видимую desktop-очередь.' : 'Sender не запущен: не найден стартовый скрипт.',
+      senderPid ? 'Sender started. It waits for the configured interval before pasting, so it will not instantly overwrite manual input.' : 'Sender не запущен: не найден стартовый скрипт.',
       `Control Center: ${buildVisibleQueuePaths(config, route).controlCenterPath}`,
     ].join('\n')
   );
@@ -493,6 +511,7 @@ function clearQueues(config, state, route = null) {
     fs.rmSync(paths.queuePath, { force: true });
     fs.rmSync(paths.statusPath, { force: true });
     state.promptQueues[key].items = [];
+    state.promptQueues[key].replaceItems = true;
     state.promptQueues[key].updatedAt = new Date().toISOString();
   }
   saveState(config.statePath, state);

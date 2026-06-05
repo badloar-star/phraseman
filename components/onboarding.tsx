@@ -146,7 +146,8 @@ const PLAN_LOADING_METER_KEYFRAMES = {
   outputRange: [0.06, 0.42, 0.76, 1],
 };
 const PLAN_LOADING_BUTTON_REVEAL = { delay: 3350, duration: 350 };
-const PLAN_DAYS_COUNT_DURATION_MS = 2800;
+const PLAN_DAYS_COUNT_DURATION_MS = 950;
+const PLAN_DAYS_COUNT_TICK_MS = 24;
 const PLAN_LOADING_BUILD_ITEMS: Array<{
   title: string;
   iconAsset: PlanIconSource;
@@ -159,9 +160,22 @@ const PLAN_LOADING_BUILD_ITEMS: Array<{
 const PLAN_PHRASE_TOKENS = ['need', 'I', 'more', 'time'] as const;
 const PLAN_PHRASE_TARGET = ['I', 'need', 'more', 'time'] as const;
 
+function resolveOnboardingBundledImageSource(source: ImageSourcePropType) {
+  const resolver = (RNImage as typeof RNImage & {
+    resolveAssetSource?: (source: ImageSourcePropType) => unknown;
+  }).resolveAssetSource;
+
+  if (typeof resolver !== 'function') return null;
+  try {
+    return resolver(source);
+  } catch {
+    return null;
+  }
+}
+
 function warmOnboardingBundledImages() {
   ONBOARDING_PRELOADED_ICON_ASSETS.forEach((source) => {
-    RNImage.resolveAssetSource(source);
+    resolveOnboardingBundledImageSource(source);
   });
 }
 
@@ -581,8 +595,6 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
   const [showPlanFreeConfirm, setShowPlanFreeConfirm] = useState(false);
   const [planLoadingCtaReady, setPlanLoadingCtaReady] = useState(false);
   const [animatedPlanDays, setAnimatedPlanDays] = useState(0);
-  const [planLoadingRailWidth, setPlanLoadingRailWidth] = useState(0);
-  const [planDaysRailWidth, setPlanDaysRailWidth] = useState(0);
   const planLoadingMeter = useRef(new Animated.Value(0)).current;
   const planLoadingBuildAnims = useRef(PLAN_LOADING_BUILD_ITEMS.map(() => new Animated.Value(0))).current;
   const planLoadingButtonAnim = useRef(new Animated.Value(0)).current;
@@ -720,15 +732,19 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
   useEffect(() => {
     if (step !== 'planResult' && step !== 'planDetails') return;
     const total = selectedPlan.days;
-    let visibleDays = 0;
+    let countTimer: ReturnType<typeof setInterval> | null = null;
+    const countStartedAt = Date.now();
     setAnimatedPlanDays(0);
     planDaysProgress.setValue(0);
-    const dayTickMs = Math.max(16, Math.floor(PLAN_DAYS_COUNT_DURATION_MS / total));
-    const dayCounter = setInterval(() => {
-      visibleDays += 1;
-      setAnimatedPlanDays(visibleDays);
-      if (visibleDays >= total) clearInterval(dayCounter);
-    }, dayTickMs);
+    countTimer = setInterval(() => {
+      const rawProgress = Math.min(1, (Date.now() - countStartedAt) / PLAN_DAYS_COUNT_DURATION_MS);
+      const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
+      setAnimatedPlanDays(Math.min(total, Math.round(total * easedProgress)));
+      if (rawProgress >= 1 && countTimer) {
+        clearInterval(countTimer);
+        countTimer = null;
+      }
+    }, PLAN_DAYS_COUNT_TICK_MS);
     Animated.timing(planDaysProgress, {
       toValue: 1,
       duration: PLAN_DAYS_COUNT_DURATION_MS,
@@ -738,7 +754,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
       if (finished) setAnimatedPlanDays(total);
     });
     return () => {
-      clearInterval(dayCounter);
+      if (countTimer) clearInterval(countTimer);
       planDaysProgress.stopAnimation();
     };
   }, [planDaysProgress, selectedPlan.days, selectedPlanId, step]);
@@ -1159,29 +1175,27 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
 
   const renderPlanDaysProgressBlock = (days: number) => {
     const visibleDays = Math.max(0, Math.min(days, animatedPlanDays));
-    const daysFillTranslateX = planDaysProgress.interpolate({
+    const daysFillScale = planDaysProgress.interpolate({
       inputRange: [0, 1],
-      outputRange: [-(planDaysRailWidth || 1), 0],
+      outputRange: [0.001, 1],
     });
     return (
       <View style={styles.planMockupDaysCard}>
         <View style={styles.planMockupDaysTop}>
           <Text style={styles.planMockupDaysLabel}>Дней занятий</Text>
-          <Text style={styles.planMockupDaysValue}>
-            {visibleDays}
-            {' '}
-            <Text style={styles.planMockupDaysWord}>{dayWord(visibleDays || days)}</Text>
-          </Text>
+          <View style={styles.planMockupDaysValueWrap}>
+            <Text style={styles.planMockupDaysValue}>
+              {visibleDays}
+            </Text>
+            <Text style={styles.planMockupDaysWord}>{dayWord(days)}</Text>
+          </View>
         </View>
-        <View
-          style={styles.planMockupDaysTrack}
-          onLayout={(event) => setPlanDaysRailWidth(event.nativeEvent.layout.width)}
-        >
+        <View style={styles.planMockupDaysTrack}>
           <AnimatedLinearGradient
             colors={['#FFD66B', '#FFF1B6', '#F2B84B']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            style={[styles.planMockupDaysFill, { transform: [{ translateX: daysFillTranslateX }] }]}
+            style={[styles.planMockupDaysFill, { transform: [{ scaleX: daysFillScale }] }]}
           />
         </View>
       </View>
@@ -1491,9 +1505,9 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
   }
 
   if (step === 'planLoading') {
-    const meterTranslateX = planLoadingMeter.interpolate({
+    const meterScaleX = planLoadingMeter.interpolate({
       inputRange: PLAN_LOADING_METER_KEYFRAMES.inputRange,
-      outputRange: PLAN_LOADING_METER_KEYFRAMES.outputRange.map((value) => -((1 - value) * (planLoadingRailWidth || 1))),
+      outputRange: PLAN_LOADING_METER_KEYFRAMES.outputRange,
     });
     return renderPlanFlowScreen(
       'onboarding-plan-loading-screen',
@@ -1501,15 +1515,12 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
       'Собираем твой план',
       '',
       <View style={styles.planFlowStack}>
-        <View
-          style={styles.planProgressRail}
-          onLayout={(event) => setPlanLoadingRailWidth(event.nativeEvent.layout.width)}
-        >
+        <View style={styles.planProgressRail}>
           <AnimatedLinearGradient
             colors={['#F2B84B', '#63E6D2']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            style={[styles.planProgressFill, { transform: [{ translateX: meterTranslateX }] }]}
+            style={[styles.planProgressFill, { transform: [{ scaleX: meterScaleX }] }]}
           />
         </View>
         {PLAN_LOADING_BUILD_ITEMS.map((item, index) => (
@@ -1570,7 +1581,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
         <TouchableOpacity style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]} activeOpacity={0.82} onPress={() => goToStep('planPicker')}>
           <Text style={styles.planMockupSecondaryButtonText}>Посмотреть другие планы</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep('welcome')}>
+        <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep('name')}>
           <Text style={styles.freeBtnText}>Продолжить без плана</Text>
         </TouchableOpacity>
         </>
@@ -1686,10 +1697,10 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
                 </Text>
                 <View style={styles.planFreeConfirmActions}>
                   <TouchableOpacity style={styles.eliteWelcomeCta} activeOpacity={0.88} onPress={() => setShowPlanFreeConfirm(false)}>
-                    <Text style={styles.eliteWelcomeCtaText}>Остаться с планом</Text>
+                    <Text style={styles.eliteWelcomeCtaText}>Хочу свой план</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.eliteWelcomeSecondaryCta} activeOpacity={0.82} onPress={() => goToStep('welcome')}>
-                    <Text style={styles.eliteWelcomeSecondaryCtaText}>Да, продолжить без плана</Text>
+                  <TouchableOpacity style={styles.eliteWelcomeSecondaryCta} activeOpacity={0.82} onPress={() => goToStep('name')}>
+                    <Text style={styles.eliteWelcomeSecondaryCtaText}>Продолжить без плана</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -3831,18 +3842,29 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 0.8,
   },
+  planMockupDaysValueWrap: {
+    width: 122,
+    minHeight: 26,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
   planMockupDaysValue: {
-    width: 108,
+    minWidth: 58,
     textAlign: 'right',
     color: ONBOARDING_GOLD_2,
     fontSize: 24,
     lineHeight: 24,
     fontWeight: '900',
+    fontVariant: ['tabular-nums'],
     textShadowColor: 'rgba(255,212,114,0.42)',
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 18,
   },
   planMockupDaysWord: {
+    marginLeft: 4,
+    paddingBottom: 1,
+    width: 30,
     color: '#FFE4A3',
     fontSize: 11,
     lineHeight: 12,
@@ -3859,6 +3881,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 999,
+    transformOrigin: 'left center',
     shadowColor: ONBOARDING_ACCENT,
     shadowOpacity: 0.52,
     shadowRadius: 16,
@@ -4106,6 +4129,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingTop: 12,
     paddingBottom: 24,
+    paddingHorizontal: 0,
     gap: 8,
   },
   planPaywallTop: {
@@ -4138,9 +4162,11 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   planPaywallPanel: {
-    width: '100%',
+    width: '106%',
+    alignSelf: 'center',
     gap: 5,
-    padding: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
     borderRadius: 8,
     backgroundColor: 'rgba(12,16,22,0.72)',
     borderWidth: 1,
@@ -4170,7 +4196,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     paddingVertical: 5,
-    paddingHorizontal: 8,
+    paddingHorizontal: 12,
     borderRadius: 8,
     backgroundColor: 'rgba(255,255,255,0.07)',
     borderWidth: 1,
@@ -4341,6 +4367,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 999,
+    transformOrigin: 'left center',
   },
   planLoadingBuildIcon: {
     width: 38,

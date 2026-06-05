@@ -201,12 +201,13 @@ const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'compass', 'dark', 'n
 /** Темы только с Premium; бесплатные: `minimalDark`, `minimalLight` и `compass`. */
 const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'coral'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
+const DEFAULT_THEME_MODE: ThemeMode = 'compass';
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
   const uiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
-  const [themeMode, setThemeModeState] = useState<ThemeMode>('minimalDark');
+  const [themeMode, setThemeModeState] = useState<ThemeMode>(DEFAULT_THEME_MODE);
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
   setOskolokThemeMode(themeMode);
@@ -240,15 +241,14 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
         if ((!isPremium && !DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(t)) || goldLocked) {
-          setThemeModeState('minimalDark');
-          void AsyncStorage.setItem('app_theme', 'minimalDark');
+          setThemeModeState(DEFAULT_THEME_MODE);
+          void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
         } else {
           setThemeModeState(t);
         }
       } else {
-        const defaultThemeMode: ThemeMode = 'minimalDark';
-        setThemeModeState(defaultThemeMode);
-        void AsyncStorage.setItem('app_theme', defaultThemeMode);
+        setThemeModeState(DEFAULT_THEME_MODE);
+        void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
       }
       if (fontStr && fontStr in FONT_SCALE) setFontSizeState(fontStr as FontSize);
     })();
@@ -279,7 +279,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const toggle = useCallback(() => {
     setThemeModeState(m => {
       const cycle = CYCLE.filter(mode => mode !== 'gold' || goldThemeUnlocked || DEV_THEME_UNLOCKS);
-      const next = cycle[(cycle.indexOf(m) + 1) % cycle.length] ?? 'minimalDark';
+      const next = cycle[(cycle.indexOf(m) + 1) % cycle.length] ?? DEFAULT_THEME_MODE;
       void AsyncStorage.setItem('app_theme', next);
       return next;
     });

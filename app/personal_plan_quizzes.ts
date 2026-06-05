@@ -1,5 +1,6 @@
 import type { QuizPhrase } from './quiz_data';
 import type { Lang } from '../constants/i18n';
+import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
 
 export type PersonalPlanQuizInputMode = 'choice' | 'typing';
 
@@ -157,6 +158,58 @@ const PLAN_QUIZ_TASK_COPY: Record<string, Record<Lang, Record<PersonalPlanQuizIn
   }),
 };
 
+const GENERATED_PLAN_QUIZ_RE = /^(voyazh|mitap|gavan|impuls|echo)_day_(\d+)_quiz$/;
+
+function generatedQuizLessonId(quizId: string): string | null {
+  const match = GENERATED_PLAN_QUIZ_RE.exec(quizId);
+  if (!match) return null;
+  return `${match[1]}_d${String(Number(match[2])).padStart(3, '0')}_content_unit`;
+}
+
+function generatedQuizChoices(allAnswers: string[], correctAnswer: string): string[] {
+  const distractors = allAnswers.filter((answer) => answer !== correctAnswer);
+  return [correctAnswer, ...distractors].slice(0, 4);
+}
+
+function buildGeneratedQuiz(quizId: string): QuizPhrase[] | null {
+  const lessonId = generatedQuizLessonId(quizId);
+  if (!lessonId) return null;
+  const lesson = getPersonalPlanPhraseLesson(lessonId);
+  if (!lesson || lesson.phrases.length < 4) return null;
+
+  const allAnswers = lesson.phrases.map((phrase) => phrase.english);
+  return Array.from({ length: 10 }, (_, index) => {
+    const phrase = lesson.phrases[index % lesson.phrases.length];
+    return q(
+      `${quizId}_q${index + 1}`,
+      phrase.russian,
+      phrase.ukrainian,
+      generatedQuizChoices(allAnswers, phrase.english),
+      0,
+      generatedQuizChoices(allAnswers, phrase.english).map((choice) =>
+        choice === phrase.english
+          ? `${choice} matches the day phrase.`
+          : `${choice} is another phrase from this plan day.`,
+      ),
+    );
+  });
+}
+
+function buildGeneratedQuizCoverage(quizId: string): PersonalPlanQuizCoverage | null {
+  const lessonId = generatedQuizLessonId(quizId);
+  if (!lessonId) return null;
+  const lesson = getPersonalPlanPhraseLesson(lessonId);
+  if (!lesson) return null;
+
+  return Object.fromEntries(Array.from({ length: 10 }, (_, index) => {
+    const phrase = lesson.phrases[index % lesson.phrases.length];
+    return [
+      `${quizId}_q${index + 1}`,
+      [{ type: 'plan_phrase' as const, lessonId: lesson.id, phraseId: String(phrase.id) }],
+    ];
+  }));
+}
+
 export function getPersonalPlanQuizTaskCopy(
   quizId: string | string[] | undefined,
   lang: Lang,
@@ -166,7 +219,7 @@ export function getPersonalPlanQuizTaskCopy(
   if (!id) return null;
   if (id === 'gavan_day1_identity' || id === 'gavan_day2_address') return null;
   const copy = PLAN_QUIZ_TASK_COPY[id];
-  if (!copy) return null;
+  if (!copy) return generatedQuizLessonId(id) ? planQuizChoiceCopy : null;
   return copy[lang]?.[inputMode] ?? copy.ru[inputMode];
 }
 
@@ -174,7 +227,7 @@ export function getPersonalPlanQuizCoverage(quizId: string | string[] | undefine
   const id = Array.isArray(quizId) ? quizId[0] : quizId;
   if (!id) return null;
   if (id === 'gavan_day1_identity' || id === 'gavan_day2_address') return null;
-  return PLAN_QUIZ_COVERAGE[id] ?? null;
+  return PLAN_QUIZ_COVERAGE[id] ?? buildGeneratedQuizCoverage(id);
 }
 
 export function getPersonalPlanQuizPhrases(quizId: string | string[] | undefined, userName: string): QuizPhrase[] | null {
@@ -182,7 +235,7 @@ export function getPersonalPlanQuizPhrases(quizId: string | string[] | undefined
   if (!id) return null;
   if (id === 'gavan_day1_identity' || id === 'gavan_day2_address') return null;
   const safeName = userName.trim().replace(/\s+/g, ' ') || 'Phraseman';
-  const quiz = PLAN_QUIZZES[id];
+  const quiz = PLAN_QUIZZES[id] ?? buildGeneratedQuiz(id);
   if (!quiz) return null;
   return quiz.map((item) => ({
     ...item,

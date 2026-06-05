@@ -1,6 +1,7 @@
 import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
+import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 
 /** Анти-бурст для `action_toast` внутри ~400 мс (мульти-тап); дальше фильтрует ActionToast. */
@@ -56,7 +57,7 @@ export type AppEventMap = {
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
   daily_task_completed: { taskId: string; studyTarget?: RuntimeStudyTarget };
-  personal_plan_updated: { planId?: string; taskId?: string } | undefined;
+  personal_plan_updated: { planId?: string; taskId?: string; snapshot?: PersonalPlanHomeSnapshot } | undefined;
   personal_plan_onboarding_nickname_ready: undefined;
   /** Тост или экран забрал награду — обновить список на daily_tasks / главной. */
   daily_task_reward_claimed: { taskId: string; studyTarget?: RuntimeStudyTarget };

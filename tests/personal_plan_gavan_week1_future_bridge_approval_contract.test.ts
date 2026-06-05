@@ -9,6 +9,7 @@ import {
   writeGavanWeek1FutureBridgeApprovalContract,
   type GavanWeek1FutureBridgeApprovalRecord,
 } from '../tools/personal_plan_gavan_week1_future_bridge_approval_contract';
+import { ensureGavanWeek1RoutePrerequisiteArtifacts } from '../tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh';
 
 const GENERATED_AT = '2026-06-03T03:15:00.000Z';
 const APPROVED_AT = '2026-06-03T03:20:00.000Z';
@@ -57,6 +58,10 @@ function fullApprovals(): GavanWeek1FutureBridgeApprovalRecord[] {
 }
 
 describe('Gavan week 1 future live bridge approval contract', () => {
+  beforeAll(() => {
+    ensureGavanWeek1RoutePrerequisiteArtifacts({ generatedAt: GENERATED_AT });
+  });
+
   beforeEach(() => {
     if (existsSync(GAVAN_WEEK1_FUTURE_BRIDGE_APPROVAL_CONTRACT_PATH)) {
       rmSync(GAVAN_WEEK1_FUTURE_BRIDGE_APPROVAL_CONTRACT_PATH, { force: true });

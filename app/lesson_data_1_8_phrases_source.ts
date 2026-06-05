@@ -2677,8 +2677,8 @@ export const LESSON_5_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson5_phrase_7',
     english: 'Does it cost much?',
-    russian: 'Это стоит дорого?',
-    ukrainian: 'Це коштує дорого?',
+    russian: 'Это стоит много?',
+    ukrainian: 'Це коштує багато?',
     spanish: '¿Cuesta mucho?',
     words: [
       { text: 'Does', correct: 'Does', distractors: ['do', 'did', 'dose', 'done', 'dot'], category: 'verb' },

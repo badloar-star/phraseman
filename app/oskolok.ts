@@ -44,10 +44,10 @@ const THEMED_OSKOLOK_IMAGES: Record<OskolokThemeMode, Record<OskolokTier, ImageS
     '420': require('../assets/images/shards/minimalDark-420.webp'),
   },
   compass: {
-    single: require('../assets/images/shards/compass-premium-single.webp'),
-    '80': require('../assets/images/shards/compass-premium-80.webp'),
-    '180': require('../assets/images/shards/compass-premium-180.webp'),
-    '420': require('../assets/images/shards/compass-premium-420.webp'),
+    single: require('../assets/images/shards/compass-premium-single-session.webp'),
+    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
+    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
+    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
   },
 };
 

@@ -3887,8 +3887,8 @@ export const LESSON_5_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson5_phrase_7',
     english: 'Does it cost much?',
-    russian: 'Это стоит дорого?',
-    ukrainian: 'Це коштує дорого?',
+    russian: 'Это стоит много?',
+    ukrainian: 'Це коштує багато?',
     spanish: '¿Cuesta mucho?',
     words: [
       { text: '¿', correct: '¿', distractors: ['Cuesta', 'mucho', 'muchas', 'muchos', 'tan'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (cuesta).; D2: marca de enunciación (¿?¡!) típica de calco inglés (mucho).; D3: marca de enunciación (¿?¡!) típica de calco inglés (muchas).; D4: marca de enunciación (¿?¡!) típica de calco inglés (muchos).; D5: marca de enunciación (¿?¡!) típica de calco inglés (tan).

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Plans Progress</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1c2329;
+      --muted: #5f6b75;
+      --line: #d9dee3;
+      --paper: #f6f7f9;
+      --panel: #ffffff;
+      --accent: #28705f;
+      --warn: #a14d18;
+      --block: #9b2d30;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1, h2, p { margin: 0; }
+    h1 { font-size: 28px; line-height: 1.1; }
+    h2 { font-size: 16px; margin-bottom: 12px; }
+    .subtle { color: var(--muted); margin-top: 8px; }
+    .badge {
+      border: 1px solid var(--block);
+      color: var(--block);
+      background: #fff5f3;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .overall {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+      padding: 24px 0;
+    }
+    .meter {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--accent) 77%, #dfe5e8 0);
+    }
+    .meter span {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--panel);
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .layer, section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .layer__head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      min-height: 38px;
+    }
+    .bar {
+      height: 10px;
+      background: #e4e8eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .bar__fill {
+      height: 100%;
+      background: var(--accent);
+    }
+    .layer p { color: var(--muted); font-size: 13px; }
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    li { margin: 7px 0; }
+    .blocker { color: var(--block); }
+    .check { color: var(--accent); }
+    .verify { color: var(--warn); }
+    footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 860px) {
+      header, .overall, .columns { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .badge { white-space: normal; }
+    }
+    @media (max-width: 520px) {
+      main { padding: 20px 12px 28px; }
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Personal Plans Progress</h1>
+        <p class="subtle">P3.109 Browser progress report</p>
+      </div>
+      <div class="badge">Not production-ready yet</div>
+    </header>
+
+    <section class="overall" aria-label="Overall progress">
+      <div class="meter" aria-label="Overall 77%"><span>77%</span></div>
+      <div>
+        <h2>Overall 77%</h2>
+        <p>Progress is based on verified non-live implementation layers. Scaffold, draft, candidate, dry-run, preflight, handoff, and generated evidence do not count as production-ready.</p>
+      </div>
+    </section>
+
+    <div class="grid" aria-label="Progress layers">
+      
+      <article class="layer" data-layer="content">
+        <div class="layer__head">
+          <strong>Content/reviewer packets</strong>
+          <span>95%</span>
+        </div>
+        <div class="bar" aria-label="Content/reviewer packets 95%">
+          <div class="bar__fill" style="width: 95%"></div>
+        </div>
+        <p>blocked by live approval</p>
+      </article>
+
+      <article class="layer" data-layer="audio">
+        <div class="layer__head">
+          <strong>Audio approval</strong>
+          <span>58%</span>
+        </div>
+        <div class="bar" aria-label="Audio approval 58%">
+          <div class="bar__fill" style="width: 58%"></div>
+        </div>
+        <p>blocked by missing MP3 assets</p>
+      </article>
+
+      <article class="layer" data-layer="pronunciation">
+        <div class="layer__head">
+          <strong>Pronunciation scoring</strong>
+          <span>62%</span>
+        </div>
+        <div class="bar" aria-label="Pronunciation scoring 62%">
+          <div class="bar__fill" style="width: 62%"></div>
+        </div>
+        <p>blocked by missing real scorer evidence</p>
+      </article>
+
+      <article class="layer" data-layer="verification">
+        <div class="layer__head">
+          <strong>Verification</strong>
+          <span>99%</span>
+        </div>
+        <div class="bar" aria-label="Verification 99%">
+          <div class="bar__fill" style="width: 99%"></div>
+        </div>
+        <p>broad gate green</p>
+      </article>
+
+      <article class="layer" data-layer="route">
+        <div class="layer__head">
+          <strong>Live route/UI</strong>
+          <span>59%</span>
+        </div>
+        <div class="bar" aria-label="Live route/UI 59%">
+          <div class="bar__fill" style="width: 59%"></div>
+        </div>
+        <p>blocked by explicit signed approval</p>
+      </article>
+    </div>
+
+    <div class="columns">
+      <section>
+        <h2>Completed Passes</h2>
+        <ul>
+          <li class="check">P3.105 Audio generation handoff packet</li>
+<li class="check">P3.106 Generated audio intake/validation report</li>
+<li class="check">P3.107 Route prerequisite artifact refresh</li>
+<li class="check">P3.108 Pronunciation scoring provider contract</li>
+<li class="check">P3.109 Browser progress report</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Open Blockers</h2>
+        <ul>
+          <li class="blocker">10 real MP3 assets are still missing.</li>
+<li class="blocker">Explicit audio approval records are still missing.</li>
+<li class="blocker">Real pronunciation recording/scorer evidence is still missing.</li>
+<li class="blocker">Live route approval cannot be inferred from dry-run artifacts.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Verification</h2>
+        <ul>
+          <li class="verify">Focused browser report Jest: pending in red phase</li>
+<li class="verify">Broad Personal Plans Jest must pass before completion</li>
+<li class="verify">TypeScript must pass before completion</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      Generated at 2026-06-04T00:00:00.000Z from docs/reports/personal-plans-handover-2026-06-04-after-p3104.md.
+    </footer>
+  </main>
+</body>
+</html>

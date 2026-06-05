@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,7 +8,14 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { getPlanById, type PersonalPlanDefinition, type PlanDailyTask } from './personal_plan_catalog';
+import {
+  allTasksForDay,
+  getPlanById,
+  nextTaskAfterVisibleSlice,
+  tasksForMinutes,
+  type PersonalPlanDefinition,
+  type PlanDailyTask,
+} from './personal_plan_catalog';
 import { planTaskCompletionKey, readCompletedPlanTasks, type PersonalPlanCompletedTask } from './personal_plan_progress';
 import {
   buildPersonalPlanSnapshot,
@@ -35,26 +42,51 @@ type LoadedPlan = {
   completedTasks: Record<string, PersonalPlanCompletedTask | unknown>;
 };
 
+const DAY_CARD_WIDTH = 106;
+const DAY_CARD_GAP = 16;
+const DAY_CARD_STRIDE = DAY_CARD_WIDTH + DAY_CARD_GAP;
+const INSTANT_PLAN_DUE_COUNT = 999;
+
 export default function PersonalPlanScreen() {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const { studyTarget } = useStudyTarget();
   const [loaded, setLoaded] = useState<LoadedPlan | null>(null);
+  const [extraVisibleTaskCount, setExtraVisibleTaskCount] = useState(0);
+  const dayRailRef = useRef<ScrollView | null>(null);
   const isGold = themeMode === 'gold';
   const actionAccent = isGold ? '#FFE8A8' : t.accent;
-  const actionText = isGold ? '#1B1205' : '#08110C';
   const cardBorder = isGold ? 'rgba(255,232,168,0.30)' : t.border;
   const screenBg = isGold ? '#090704' : t.bgPrimary;
 
   const load = useCallback(async () => {
     const state = await readPersonalPlanState();
     if (!state) {
+      router.replace('/personal_plan_setup' as any);
       setLoaded(null);
       return;
     }
     const plan = getPlanById(state.planId);
-    const [completedTasks, duePracticeCount, trainerCounts, duePlanTrainerWeakSpotCount, dueFlashcardsCount] = await Promise.all([
-      readCompletedPlanTasks(),
+    const completedTasks = await readCompletedPlanTasks();
+    const instantInput = {
+      plan,
+      state,
+      completedTasks,
+      duePracticeCount: INSTANT_PLAN_DUE_COUNT,
+      duePracticeWordCount: INSTANT_PLAN_DUE_COUNT,
+      dueTrainerCount: INSTANT_PLAN_DUE_COUNT,
+      duePlanTrainerWeakSpotCount: INSTANT_PLAN_DUE_COUNT,
+      dueFlashcardsCount: INSTANT_PLAN_DUE_COUNT,
+    };
+    setLoaded({
+      plan,
+      state,
+      runtime: buildTodayPlanRuntime(instantInput),
+      snapshot: buildPersonalPlanSnapshot(instantInput),
+      completedTasks,
+    });
+
+    const [duePracticeCount, trainerCounts, duePlanTrainerWeakSpotCount, dueFlashcardsCount] = await Promise.all([
       countDueItemsToday(studyTarget).catch(() => 0),
       getTrainerCounts(studyTarget).catch(() => ({ words: 0, phrases: 0, arena: 0 })),
       resolvePersonalPlanTrainerWeakSpotDueCount({
@@ -95,7 +127,7 @@ export default function PersonalPlanScreen() {
       snapshot: buildPersonalPlanSnapshot(input),
       completedTasks,
     });
-  }, [studyTarget]);
+  }, [router, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -111,8 +143,50 @@ export default function PersonalPlanScreen() {
 
   const totalMinutes = useMemo(() => {
     if (!loaded) return 0;
-    return loaded.runtime.tasks.reduce((sum, task) => sum + task.minutes, 0);
+    const baseTasks = tasksForMinutes(loaded.runtime.visibleDay, loaded.state.minutesPerDay);
+    const visibleTasks = allTasksForDay(loaded.runtime.visibleDay).slice(0, baseTasks.length + extraVisibleTaskCount);
+    return visibleTasks.reduce((sum, task) => sum + task.minutes, 0);
+  }, [extraVisibleTaskCount, loaded]);
+
+  const dayRailItems = useMemo(() => {
+    if (!loaded) return [];
+    const currentDayIndex = loaded.runtime.visibleDay.dayIndex;
+    const currentTasks = tasksForMinutes(loaded.runtime.visibleDay, loaded.state.minutesPerDay);
+    const currentDone = currentTasks.filter((task) =>
+      Boolean(loaded.completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
+    ).length;
+    const currentProgressPct = currentTasks.length > 0 ? Math.round((currentDone / currentTasks.length) * 100) : 0;
+
+    return loaded.plan.days.map((planDay) => {
+      const tasks = tasksForMinutes(planDay, loaded.state.minutesPerDay);
+      const completedCount = tasks.filter((task) =>
+        Boolean(loaded.completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
+      ).length;
+      const progressPct = tasks.length > 0 ? Math.round((completedCount / tasks.length) * 100) : 0;
+      const isCurrent = planDay.dayIndex === currentDayIndex;
+      const isUnlocked = planDay.dayIndex <= currentDayIndex
+        || (planDay.dayIndex === currentDayIndex + 1 && currentProgressPct >= 50);
+      return {
+        dayIndex: planDay.dayIndex,
+        progressPct,
+        isCurrent,
+        isUnlocked,
+        isCompleted: tasks.length > 0 && completedCount >= tasks.length,
+      };
+    });
   }, [loaded]);
+
+  useEffect(() => {
+    if (!loaded) return;
+    setExtraVisibleTaskCount(0);
+    const currentIndex = Math.max(0, loaded.runtime.visibleDay.dayIndex - 1);
+    const viewportWidth = Dimensions.get('window').width;
+    const centeredOffset = (currentIndex * DAY_CARD_STRIDE) - ((viewportWidth - DAY_CARD_WIDTH) / 2) + 16;
+    const timer = setTimeout(() => {
+      dayRailRef.current?.scrollTo({ x: Math.max(0, centeredOffset), animated: true });
+    }, 60);
+    return () => clearTimeout(timer);
+  }, [loaded?.runtime.visibleDay.dayIndex]);
 
   const openTask = (task: PlanDailyTask) => {
     if (!loaded) return;
@@ -123,50 +197,24 @@ export default function PersonalPlanScreen() {
   if (!loaded) {
     return (
       <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
-        <LinearGradient colors={isGold ? ['#171008', '#090704'] : t.bgGradient} style={styles.fill}>
-          <View style={styles.header}>
-            <TouchableOpacity
-              activeOpacity={0.78}
-              onPress={() => router.back()}
-              accessibilityRole="button"
-              accessibilityLabel="Назад"
-              style={[styles.back, { backgroundColor: t.bgSurface2, borderColor: cardBorder }]}
-            >
-              <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
-            </TouchableOpacity>
-            <View style={styles.headerCopy}>
-              <Text style={[styles.kicker, { color: t.textMuted }]}>Мой план</Text>
-              <Text style={[styles.h1, { color: t.textPrimary }]}>План пока не выбран</Text>
-            </View>
-          </View>
-          <View style={styles.emptyWrap}>
-            <Text style={[styles.emptyTitle, { color: t.textPrimary }]}>Здесь появятся задания на день.</Text>
-            <Text style={[styles.emptyText, { color: t.textMuted }]}>
-              В DEV-календаре можно включить любой из пяти планов и проверить, как собирается день.
-            </Text>
-            {__DEV__ ? (
-              <TouchableOpacity
-                activeOpacity={0.82}
-                onPress={() => {
-                  hapticTap();
-                  router.push('/personal_plan_dev' as any);
-                }}
-                accessibilityRole="button"
-                accessibilityLabel="Открыть DEV-календарь планов"
-                style={[styles.primaryButton, { backgroundColor: actionAccent }]}
-              >
-                <Text style={[styles.primaryButtonText, { color: actionText }]}>Открыть DEV-календарь</Text>
-                <Ionicons name="construct-outline" size={16} color={actionText} />
-              </TouchableOpacity>
-            ) : null}
-          </View>
-        </LinearGradient>
+        <LinearGradient colors={isGold ? ['#171008', '#090704'] : t.bgGradient} style={styles.fill} />
       </SafeAreaView>
     );
   }
 
   const { plan, runtime, snapshot, completedTasks } = loaded;
   const day = runtime.visibleDay;
+  const baseVisibleTasks = tasksForMinutes(day, loaded.state.minutesPerDay);
+  const visibleTasks = allTasksForDay(day).slice(0, baseVisibleTasks.length + extraVisibleTaskCount);
+  const addMoreTask = nextTaskAfterVisibleSlice(day, loaded.state.minutesPerDay, extraVisibleTaskCount);
+  const visibleTasksDone = visibleTasks.length > 0 && visibleTasks.every((task) =>
+    Boolean(completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
+  );
+  const canAddMoreTasks = Boolean(addMoreTask);
+  const nextTask = visibleTasks.find((task) => !completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
+    ?? (visibleTasksDone && addMoreTask ? addMoreTask : visibleTasks[0])
+    ?? null;
+  const nextTaskVisual = nextTask ? getPersonalPlanTaskVisual(nextTask, plan.id) : null;
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
@@ -188,6 +236,45 @@ export default function PersonalPlanScreen() {
           <Text style={[styles.headerPct, { color: actionAccent }]}>{snapshot.dayProgressPct}%</Text>
         </View>
 
+        <View style={styles.dayRailBlock}>
+          <View style={styles.dayRailMeta}>
+            <Text style={styles.dayRailLabel}>ОБЩИЙ ПРОГРЕСС</Text>
+          </View>
+          <ScrollView
+            ref={dayRailRef}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.dayRailContent}
+          >
+            {dayRailItems.map((item) => (
+              <TouchableOpacity
+                key={`plan-day-${item.dayIndex}`}
+                activeOpacity={item.isUnlocked ? 0.82 : 1}
+                disabled={!item.isUnlocked}
+                accessibilityRole="button"
+                accessibilityState={{ disabled: !item.isUnlocked, selected: item.isCurrent }}
+                accessibilityLabel={`День ${item.dayIndex}, выполнено ${item.progressPct}%`}
+                style={[
+                  styles.dayCard,
+                  {
+                    borderColor: item.isCurrent ? '#F2C48D' : 'rgba(255,255,255,0.055)',
+                    backgroundColor: item.isCurrent ? 'rgba(83,70,58,0.62)' : 'rgba(48,48,51,0.74)',
+                    opacity: item.isUnlocked ? 1 : 0.88,
+                  },
+                ]}
+              >
+                <Text style={[styles.dayCardNumber, { color: item.isCurrent ? '#F2C48D' : '#9B9790' }]}>
+                  {item.dayIndex}
+                </Text>
+                <Text style={[styles.dayCardLabel, { color: item.isCurrent ? '#F2C48D' : '#8E8A84' }]}>ДЕНЬ</Text>
+                <Text style={[styles.dayCardPct, { color: item.isCompleted ? '#F2C48D' : '#8E8A84' }]}>
+                  {item.progressPct}%
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
           {runtime.todayDone ? (
             <View style={[styles.donePanel, { borderColor: actionAccent + '66', backgroundColor: actionAccent + '14' }]}>
@@ -203,102 +290,72 @@ export default function PersonalPlanScreen() {
 
           <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>Задания дня</Text>
           <View style={styles.tasks}>
-            {runtime.tasks.map((task, index) => {
+            {visibleTasks.map((task) => {
               const completed = Boolean(completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)]);
               const visual = getPersonalPlanTaskVisual(task, plan.id);
-              const isLast = index === runtime.tasks.length - 1;
               return (
-                <View key={task.id} style={styles.taskTimelineRow}>
-                  <View style={styles.timelineRail}>
-                    <View style={[styles.timelineLine, { backgroundColor: index === 0 ? 'transparent' : actionAccent + '55' }]} />
-                    <View style={[styles.timelineDot, { borderColor: actionAccent, backgroundColor: completed ? actionAccent : t.bgCard, shadowColor: actionAccent }]}>
-                      <Text style={[styles.timelineDotText, { color: completed ? actionText : actionAccent }]}>
-                        {completed ? '✓' : index + 1}
+                <TouchableOpacity
+                  key={task.id}
+                  activeOpacity={0.82}
+                  onPress={() => openTask(task)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${completed ? '\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c' : '\u041e\u0442\u043a\u0440\u044b\u0442\u044c'} \u0437\u0430\u0434\u0430\u043d\u0438\u0435 ${task.title}`}
+                  style={styles.taskListRow}
+                >
+                  <View style={styles.taskWorkoutRow}>
+                    <View
+                      testID={`task-art-${visual.artStyle}`}
+                      style={[
+                        styles.taskIconRing,
+                        {
+                          borderColor: completed ? '#F8F7F3' : 'rgba(255,255,255,0.24)',
+                          backgroundColor: completed ? '#F8F7F3' : 'rgba(255,255,255,0.08)',
+                        },
+                      ]}
+                    >
+                      {completed ? (
+                        <Ionicons name="checkmark" size={27} color="#101014" />
+                      ) : (
+                        <>
+                          <Image source={visual.asset} style={styles.taskSmallIconImage} contentFit="cover" transition={120} />
+                          <View style={styles.taskIconScrim} />
+                        </>
+                      )}
+                    </View>
+                    <View style={styles.taskWorkoutCopy}>
+                      <Text style={[styles.taskWorkoutTitle, { color: t.textPrimary }]}>
+                        {task.title}
+                      </Text>
+                      <Text style={[styles.taskWorkoutSub, { color: t.textMuted }]}>
+                        {completed ? '\u0413\u043e\u0442\u043e\u0432\u043e' : task.subtitle}
                       </Text>
                     </View>
-                    <View style={[styles.timelineLine, { backgroundColor: isLast ? 'transparent' : actionAccent + '55' }]} />
-                  </View>
-
-                  <View
-                    style={[
-                      styles.taskCard,
-                      { borderColor: completed ? actionAccent + 'AA' : actionAccent + '44', backgroundColor: t.bgCard, shadowColor: actionAccent },
-                    ]}
-                  >
-                    <LinearGradient
-                      pointerEvents="none"
-                      colors={[actionAccent + (completed ? '26' : '16'), 'rgba(0,0,0,0.00)']}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      style={StyleSheet.absoluteFill}
-                    />
-                    <LinearGradient
-                      pointerEvents="none"
-                      colors={['rgba(255,255,255,0.18)', 'rgba(255,255,255,0.03)', 'rgba(255,255,255,0.00)']}
-                      locations={[0, 0.42, 1]}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      style={styles.glassTopSheen}
-                    />
-                    <LinearGradient
-                      pointerEvents="none"
-                      colors={['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.34)']}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 0, y: 1 }}
-                      style={styles.glassBottomShade}
-                    />
-                    <View style={[styles.taskGlow, { backgroundColor: completed ? actionAccent : actionAccent + '66' }]} />
-                    <View style={styles.taskTop}>
-                      <View
-                        testID={`task-art-${visual.artStyle}`}
-                        style={[styles.taskArtPanel, { borderColor: actionAccent + '88', backgroundColor: actionAccent + '10', shadowColor: actionAccent }]}
-                      >
-                        <Image source={visual.asset} style={styles.taskArtImage} contentFit="cover" transition={120} />
-                        <LinearGradient
-                          pointerEvents="none"
-                          colors={['rgba(255,255,255,0.30)', 'rgba(255,255,255,0.03)', 'rgba(255,255,255,0.00)']}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          style={styles.artGlassSheen}
-                        />
-                      </View>
-                      <View style={styles.taskText}>
-                        <Text style={[styles.taskTitle, { color: t.textPrimary }]}>{task.title}</Text>
-                        <Text style={[styles.taskSub, { color: t.textMuted }]}>{task.subtitle}</Text>
-                      </View>
-                    </View>
-                    <View style={styles.taskBottom}>
-                      <Text style={[styles.dest, { color: t.textMuted }]}>
-                        {task.minutes} мин
-                      </Text>
-                      <TouchableOpacity
-                        hitSlop={8}
-                        activeOpacity={0.82}
-                        onPress={() => openTask(task)}
-                        accessibilityRole="button"
-                        accessibilityLabel={`${completed ? 'Повторить' : 'Открыть'} задание ${task.title}`}
-                        style={[styles.openButton, { backgroundColor: completed ? t.bgSurface2 : actionAccent, borderColor: completed ? cardBorder : actionAccent, shadowColor: completed ? '#000000' : actionAccent }]}
-                      >
-                        <LinearGradient
-                          pointerEvents="none"
-                          colors={completed
-                            ? ['rgba(255,255,255,0.12)', 'rgba(255,255,255,0.02)', 'rgba(0,0,0,0.18)']
-                            : ['rgba(255,255,255,0.38)', 'rgba(255,255,255,0.07)', 'rgba(0,0,0,0.18)']}
-                          locations={[0, 0.48, 1]}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          style={styles.buttonGlassSheen}
-                        />
-                        <Text style={[styles.openText, { color: completed ? t.textPrimary : actionText }]}>
-                          {completed ? 'Повторить' : 'Открыть'}
-                        </Text>
-                      </TouchableOpacity>
+                    <View style={styles.taskWorkoutActions}>
+                      <Ionicons name="ellipsis-horizontal" size={24} color={t.textPrimary} />
+                      <Ionicons name="chevron-forward" size={22} color="rgba(255,255,255,0.28)" />
                     </View>
                   </View>
-                </View>
+                </TouchableOpacity>
               );
             })}
           </View>
+
+          {canAddMoreTasks ? (
+            <TouchableOpacity
+              testID="personal-plan-add-more-task"
+              activeOpacity={0.86}
+              onPress={() => {
+                hapticTap();
+                setExtraVisibleTaskCount((count) => count + 1);
+              }}
+              accessibilityRole="button"
+              accessibilityLabel="Добавить еще задание"
+              style={[styles.addMoreButton, { borderColor: actionAccent + '77', backgroundColor: actionAccent + '16' }]}
+            >
+              <Ionicons name="add-circle-outline" size={22} color={actionAccent} />
+              <Text style={[styles.addMoreText, { color: t.textPrimary }]}>Добавить еще задание</Text>
+            </TouchableOpacity>
+          ) : null}
 
           {__DEV__ ? (
             <TouchableOpacity
@@ -317,6 +374,39 @@ export default function PersonalPlanScreen() {
             </TouchableOpacity>
           ) : null}
         </ScrollView>
+
+        {nextTask ? (
+          <View style={styles.nextDockWrap} pointerEvents="box-none">
+            <TouchableOpacity
+              hitSlop={8}
+              activeOpacity={0.86}
+              onPress={() => openTask(nextTask)}
+              accessibilityRole="button"
+              accessibilityLabel={`Следующее задание: ${nextTask.title}`}
+              style={[
+                styles.nextDock,
+                { borderColor: 'rgba(255,255,255,0.12)', backgroundColor: 'rgba(42,42,48,0.94)', shadowColor: '#000000' },
+              ]}
+            >
+              <View style={styles.nextDockInfo}>
+                <View style={[styles.nextDockIcon, { borderColor: 'rgba(255,255,255,0.20)' }]}>
+                  {nextTaskVisual ? (
+                    <Image source={nextTaskVisual.asset} style={styles.nextDockImage} contentFit="cover" transition={120} />
+                  ) : null}
+                  <View style={styles.taskIconScrim} />
+                </View>
+                <View style={styles.nextDockCopy}>
+                  <Text style={[styles.nextDockTitle, { color: t.textPrimary }]} numberOfLines={1}>{nextTask.title}</Text>
+                  <Text style={[styles.nextDockSub, { color: t.textMuted }]} numberOfLines={1}>Up next</Text>
+                </View>
+              </View>
+              <View style={styles.nextDockButton}>
+                <Ionicons name="arrow-forward" size={22} color="#FFFFFF" />
+                <Text style={styles.nextDockButtonText}>Следующее</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ) : null}
       </LinearGradient>
     </SafeAreaView>
   );
@@ -355,10 +445,59 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   headerPct: { fontSize: 21, lineHeight: 26, fontWeight: '900' },
+  dayRailBlock: {
+    paddingTop: 4,
+    paddingBottom: 24,
+  },
+  dayRailMeta: {
+    paddingHorizontal: 0,
+    marginBottom: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  dayRailLabel: {
+    color: '#C8C4BC',
+    fontSize: 12,
+    lineHeight: 15,
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    letterSpacing: 0,
+  },
+  dayRailContent: {
+    paddingHorizontal: 0,
+    gap: DAY_CARD_GAP,
+  },
+  dayCard: {
+    width: DAY_CARD_WIDTH,
+    height: 150,
+    borderRadius: 15,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 18,
+    paddingBottom: 20,
+  },
+  dayCardNumber: {
+    fontSize: 44,
+    lineHeight: 50,
+    fontWeight: '900',
+  },
+  dayCardLabel: {
+    marginTop: 14,
+    fontSize: 12,
+    lineHeight: 15,
+    fontWeight: '900',
+  },
+  dayCardPct: {
+    marginTop: 17,
+    fontSize: 13,
+    lineHeight: 16,
+    fontWeight: '900',
+  },
   scroll: {
     paddingHorizontal: 16,
     paddingTop: 8,
-    paddingBottom: 30,
+    paddingBottom: 112,
   },
   donePanel: {
     borderRadius: 18,
@@ -373,151 +512,117 @@ const styles = StyleSheet.create({
   doneTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
   doneText: { marginTop: 2, fontSize: 12, lineHeight: 18, fontWeight: '700' },
   sectionTitle: { fontSize: 21, lineHeight: 27, fontWeight: '900', marginBottom: 9 },
-  tasks: { gap: 0 },
-  taskTimelineRow: {
+  tasks: { gap: 6 },
+  taskListRow: {
+    minHeight: 64,
+    justifyContent: 'center',
+  },
+  taskWorkoutRow: {
+    minHeight: 64,
     flexDirection: 'row',
-    alignItems: 'stretch',
-    gap: 10,
-  },
-  timelineRail: {
-    width: 34,
-    alignItems: 'center',
-  },
-  timelineLine: {
-    width: 2,
-    flex: 1,
-    minHeight: 11,
-    borderRadius: 999,
-  },
-  timelineDot: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 8,
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.28,
-    shadowRadius: 10,
-  },
-  timelineDotText: { fontSize: 12, lineHeight: 16, fontWeight: '900' },
-  taskCard: {
-    flex: 1,
-    borderRadius: 20,
-    borderWidth: 1,
-    padding: 13,
-    marginBottom: 12,
-    overflow: 'hidden',
-    elevation: 8,
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.22,
-    shadowRadius: 18,
-  },
-  glassTopSheen: {
-    position: 'absolute',
-    left: 1,
-    right: 1,
-    top: 1,
-    height: '48%',
-    borderTopLeftRadius: 19,
-    borderTopRightRadius: 19,
-  },
-  glassBottomShade: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: '58%',
-  },
-  taskGlow: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    bottom: 0,
-    width: 3,
-  },
-  taskTop: { flexDirection: 'row', gap: 12, alignItems: 'flex-start' },
-  taskNum: {
-    width: 40,
-    height: 40,
-    borderRadius: 14,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-  },
-  taskNumText: { fontSize: 16, lineHeight: 20, fontWeight: '900' },
-  taskIcon: {
-    width: 34,
-    height: 40,
-    borderRadius: 13,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-  },
-  taskArtPanel: {
-    width: 104,
-    height: 104,
-    borderRadius: 22,
-    borderWidth: 1,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    elevation: 10,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.34,
-    shadowRadius: 14,
-  },
-  taskArtImage: { width: '100%', height: '100%' },
-  artGlassSheen: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: '55%',
-  },
-  taskText: { flex: 1, minWidth: 0, paddingTop: 1 },
-  taskTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
-  taskSub: { marginTop: 2, fontSize: 12, lineHeight: 17, fontWeight: '700' },
-  taskBottom: {
-    marginTop: 14,
-    flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    paddingVertical: 5,
     gap: 8,
   },
-  dest: {
-    alignSelf: 'flex-start',
-    fontSize: 11,
-    lineHeight: 15,
-    fontWeight: '900',
-  },
-  openButton: {
-    alignSelf: 'stretch',
-    minHeight: 62,
-    borderRadius: 20,
+  taskIconRing: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     borderWidth: 1,
-    paddingHorizontal: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 5,
+    flexShrink: 0,
     overflow: 'hidden',
-    elevation: 9,
-    shadowOffset: { width: 0, height: 7 },
-    shadowOpacity: 0.32,
-    shadowRadius: 13,
   },
-  buttonGlassSheen: {
+  taskSmallIconImage: { width: '100%', height: '100%' },
+  taskIconScrim: {
     position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    borderRadius: 20,
+    backgroundColor: 'rgba(0,0,0,0.22)',
   },
-  openText: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
+  taskWorkoutCopy: { flex: 1, minWidth: 0, paddingRight: 6, paddingTop: 3 },
+  taskWorkoutTitle: { fontSize: 17, lineHeight: 22, fontWeight: '900' },
+  taskWorkoutSub: { marginTop: 1, fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  taskWorkoutActions: {
+    width: 76,
+    minHeight: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 13,
+    paddingTop: 8,
+    flexShrink: 0,
+  },
+  addMoreButton: {
+    minHeight: 56,
+    borderRadius: 18,
+    borderWidth: 1,
+    marginTop: 14,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  addMoreText: {
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '900',
+  },
+  nextDockWrap: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 8,
+  },
+  nextDock: {
+    minHeight: 78,
+    borderRadius: 25,
+    borderWidth: 1,
+    paddingLeft: 12,
+    paddingRight: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    elevation: 14,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.34,
+    shadowRadius: 18,
+  },
+  nextDockInfo: {
+    flex: 1,
+    minWidth: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  nextDockIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    borderWidth: 1,
+    overflow: 'hidden',
+    flexShrink: 0,
+  },
+  nextDockImage: { width: '100%', height: '100%' },
+  nextDockCopy: { flex: 1, minWidth: 0 },
+  nextDockTitle: { fontSize: 18, lineHeight: 23, fontWeight: '900' },
+  nextDockSub: { marginTop: 1, fontSize: 12, lineHeight: 16, fontWeight: '800' },
+  nextDockButton: {
+    minHeight: 48,
+    borderRadius: 24,
+    paddingHorizontal: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    backgroundColor: 'rgba(255,255,255,0.18)',
+  },
+  nextDockButtonText: { color: '#FFFFFF', fontSize: 14, lineHeight: 18, fontWeight: '900' },
   devLink: {
     minHeight: 42,
     borderRadius: 15,
@@ -530,18 +635,4 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   devLinkText: { fontSize: 12, lineHeight: 16, fontWeight: '900' },
-  emptyWrap: { flex: 1, padding: 20, justifyContent: 'center' },
-  emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '900' },
-  emptyText: { marginTop: 8, fontSize: 14, lineHeight: 21, fontWeight: '700' },
-  primaryButton: {
-    alignSelf: 'flex-start',
-    marginTop: 18,
-    minHeight: 44,
-    borderRadius: 14,
-    paddingHorizontal: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  primaryButtonText: { fontSize: 13, lineHeight: 17, fontWeight: '900' },
 });

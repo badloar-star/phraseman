@@ -67,7 +67,7 @@ const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   coral: require('../assets/images/shards/coral-80.webp'),
   minimalLight: require('../assets/images/shards/minimalLight-80.webp'),
   minimalDark: require('../assets/images/shards/minimalDark-80.webp'),
-  compass: require('../assets/images/shards/compass-premium-80.webp'),
+  compass: require('../assets/images/shards/compass-premium-80-session.webp'),
 };
 
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {

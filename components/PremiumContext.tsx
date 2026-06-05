@@ -2,7 +2,12 @@ import React, { createContext, useCallback, useContext, useEffect, useRef, useSt
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, InteractionManager } from 'react-native';
 import Purchases from 'react-native-purchases';
-import { getVerifiedRealPremiumStatus, getVerifiedVipStatus, invalidatePremiumCache } from '../app/premium_guard';
+import {
+  getVerifiedPremiumAccessStatus,
+  getVerifiedRealPremiumStatus,
+  getVerifiedVipStatus,
+  invalidatePremiumCache,
+} from '../app/premium_guard';
 import { CLOUD_SYNC_ENABLED, DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from '../app/config';
 import { emitAppEvent, onAppEvent } from '../app/events';
 import { syncPublicProfileSnapshot } from '../app/public_profile_snapshot';
@@ -95,10 +100,19 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setTrialEligible(false);
       return;
     }
-    const [realPremium, vip] = await Promise.all([
+    let [realPremium, vip] = await Promise.all([
       getVerifiedRealPremiumStatus(),
       getVerifiedVipStatus(),
     ]);
+    if (!realPremium && !vip) {
+      const accessAfterCloud = await getVerifiedPremiumAccessStatus().catch(() => false);
+      if (accessAfterCloud) {
+        [realPremium, vip] = await Promise.all([
+          getVerifiedRealPremiumStatus().catch(() => false),
+          getVerifiedVipStatus().catch(() => false),
+        ]);
+      }
+    }
     setIsPremium(realPremium);
     setIsVip(vip);
     setHasPremiumAccess(realPremium || vip);

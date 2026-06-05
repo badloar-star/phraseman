@@ -12,13 +12,13 @@ import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
 import type { ThemeMode } from '../constants/theme';
 
 const YOUTUBE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/header_glyphs/youtube-glyph-forest-dalle-v1.png'),
-  neon: require('../assets/images/header_glyphs/youtube-glyph-neon-dalle-v1.png'),
-  gold: require('../assets/images/header_glyphs/youtube-glyph-gold-dalle-v1.png'),
-  coral: require('../assets/images/header_glyphs/youtube-glyph-coral-dalle-v1.png'),
-  minimalLight: require('../assets/images/header_glyphs/youtube-glyph-minimal-light-dalle-v1.png'),
-  minimalDark: require('../assets/images/header_glyphs/youtube-glyph-minimal-dark-dalle-v1.png'),
-  compass: require('../assets/images/header_glyphs/compass-premium/youtube-glyph-compass-premium.webp'),
+  dark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-dark-dalle-v1.webp'),
+  neon: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-neon-dalle-v1.webp'),
+  gold: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-gold-dalle-v1.webp'),
+  coral: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-coral-dalle-v1.webp'),
+  minimalLight: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalLight-dalle-v1.webp'),
+  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalDark-dalle-v1.webp'),
+  compass: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
 };
 
 export default function LingmanVideosButton() {
@@ -103,19 +103,20 @@ export default function LingmanVideosButton() {
 
 const styles = StyleSheet.create({
   button: {
-    width: 56,
-    height: 44,
+    width: 66,
+    height: 54,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'visible',
   },
   image: {
-    width: 52,
-    height: 36,
+    width: 56,
+    height: 40,
   },
   badge: {
     position: 'absolute',
-    top: -3,
-    right: -4,
+    top: 0,
+    right: 0,
     minWidth: 18,
     height: 18,
     paddingHorizontal: 4,
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   },
   glow: {
     position: 'absolute',
-    top: 2,
+    top: 3,
     right: 1,
     width: 8,
     height: 8,

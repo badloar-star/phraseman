@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Dimensions, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View, type KeyboardEvent } from 'react-native';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import AvatarView from './AvatarView';
@@ -72,6 +73,7 @@ export default function LeagueChatPanel({
 }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const insets = useSafeAreaInsets();
   const initialRoomRef = useRef<LeagueChatRoom | null | undefined>(undefined);
   if (initialRoomRef.current === undefined) {
     initialRoomRef.current = initialRoom ?? getCachedLeagueChatRoomSync();
@@ -262,6 +264,7 @@ export default function LeagueChatPanel({
     draft,
     draftBlocked,
   });
+  const composerBottomPadding = keyboardBottomInset > 0 ? 8 : Math.max(14, insets.bottom + 10);
 
   useEffect(() => {
     if (!room) {
@@ -790,7 +793,7 @@ export default function LeagueChatPanel({
             justifyContent: visibleMessages.length === 0 ? 'center' : 'flex-start',
             paddingHorizontal: 14,
             paddingTop: 8,
-            paddingBottom: 12,
+            paddingBottom: 16,
             gap: 10,
           }}
           onContentSizeChange={() => scrollRef.current?.scrollToEnd({ animated: true })}
@@ -967,7 +970,7 @@ export default function LeagueChatPanel({
 
         <View
           testID="league-chat-composer"
-          style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: 8, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: 'rgba(0,0,0,0.10)' }}
+          style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: composerBottomPadding, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: 'rgba(0,0,0,0.10)' }}
         >
           {draftBlocked && (
             <Text style={{ color: '#E05252', fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>
@@ -1005,7 +1008,7 @@ export default function LeagueChatPanel({
               maxLength={420}
               style={{
                 flex: 1,
-                minHeight: 42,
+                minHeight: 44,
                 maxHeight: 110,
                 borderRadius: 20,
                 borderWidth: 0.5,
@@ -1023,9 +1026,9 @@ export default function LeagueChatPanel({
               disabled={!connectionUi.canSendDraft}
               onPress={submit}
               style={{
-                width: 42,
-                height: 42,
-                borderRadius: 21,
+                width: 44,
+                height: 44,
+                borderRadius: 22,
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: connectionUi.canSendDraft ? t.accent : t.bgSurface,

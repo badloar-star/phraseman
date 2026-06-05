@@ -5,6 +5,10 @@ import type {
   PlanDay,
   PlanTaskDestination,
 } from './personal_plan_catalog';
+import {
+  getPersonalPlanPhraseLesson,
+  getGeneratedPersonalPlanPhraseLessonContentUnitIds,
+} from './personal_plan_phrase_lessons';
 
 export function planTaskDestinationLabel(destination: PlanTaskDestination): string {
   const phraseLabel = (count: number): string => {
@@ -41,6 +45,17 @@ export function planTaskDestinationLabel(destination: PlanTaskDestination): stri
   return 'Повтор из памяти';
 }
 
+function generatedDayPhraseLessonId(plan: PersonalPlanDefinition, day: PlanDay): string {
+  return `${plan.id}_d${String(day.dayIndex).padStart(3, '0')}_content_unit`;
+}
+
+function phraseLessonContentUnitIds(lessonId: string, count: number): string[] {
+  const generatedIds = getGeneratedPersonalPlanPhraseLessonContentUnitIds(lessonId, count);
+  if (generatedIds.length > 0) return generatedIds;
+  const lesson = getPersonalPlanPhraseLesson(lessonId);
+  return lesson?.phrases.slice(0, count).map((phrase) => String(phrase.id)) ?? [];
+}
+
 export function openPersonalPlanTask(
   router: Router,
   plan: PersonalPlanDefinition,
@@ -50,43 +65,53 @@ export function openPersonalPlanTask(
 ): void {
   const { destination } = task;
   if (destination.type === 'lesson') {
-    router.push({
-      pathname: '/lesson_menu',
-      params: {
-        id: destination.lessonId ?? 1,
-        planTask: '1',
-        lessonShellMode: 'linked_lesson_slice',
-        planPracticeMode: 'linked_lesson',
-        requiredPhrases: destination.requiredPhrases,
-        ...(destination.requiredPhraseIds?.length ? { requiredPhraseIds: destination.requiredPhraseIds.join(',') } : {}),
-        planTaskId: task.id,
-        ...(planInstanceId ? { planInstanceId } : {}),
-        planId: plan.id,
-        planDayIndex: String(day.dayIndex),
-      },
-    } as any);
     return;
   }
   if (destination.type === 'plan_phrase_lesson') {
     router.push({
-      pathname: '/lesson1',
+      pathname: '/personal_plan_exercise',
       params: {
-        id: String(destination.afterLessonId || 1),
-        planTask: '1',
-        lessonShellMode: 'plan_phrase_build',
-        planPracticeMode: 'build',
-        allowCorrectWordHighlighting: '0',
-        requiredPhrases: destination.requiredPhrases,
-        planPhraseLessonId: destination.lessonId,
+        rendererType: 'plan_phrase_build',
         planId: plan.id,
         planDayIndex: String(day.dayIndex),
         planTaskId: task.id,
         ...(planInstanceId ? { planInstanceId } : {}),
+        lessonId: destination.lessonId,
+        contentUnitIds: phraseLessonContentUnitIds(destination.lessonId, destination.requiredPhrases).join(','),
+        requiredCorrect: String(destination.requiredPhrases),
+      },
+    } as any);
+    return;
+  }
+  if (destination.type === 'recall') {
+    const lessonId = generatedDayPhraseLessonId(plan, day);
+    const destinationContentUnitIds = destination.phraseIds.filter((phraseId) => phraseId.startsWith(`${lessonId}_phrase_`));
+    const fallbackContentUnitIds = getGeneratedPersonalPlanPhraseLessonContentUnitIds(lessonId, 4);
+    const contentUnitIds = destinationContentUnitIds.length > 0 ? destinationContentUnitIds : fallbackContentUnitIds;
+
+    router.push({
+      pathname: '/personal_plan_exercise',
+      params: {
+        rendererType: 'plan_phrase_recall',
+        planId: plan.id,
+        planDayIndex: String(day.dayIndex),
+        planTaskId: task.id,
+        ...(planInstanceId ? { planInstanceId } : {}),
+        lessonId,
+        contentUnitIds: contentUnitIds.join(','),
+        requiredCorrect: String(Math.max(1, Math.min(4, contentUnitIds.length))),
       },
     } as any);
     return;
   }
   if (destination.type === 'plan_phrase_recall') {
+    const scheduledContentUnitIds = day.recallSchedule
+      ?.filter((item) => item.phraseLessonId === destination.lessonId)
+      .flatMap((item) => item.phraseIds) ?? [];
+    const contentUnitIds = scheduledContentUnitIds.length > 0
+      ? scheduledContentUnitIds
+      : phraseLessonContentUnitIds(destination.lessonId, destination.requiredPhrases);
+
     router.push({
       pathname: '/personal_plan_exercise',
       params: {
@@ -96,10 +121,7 @@ export function openPersonalPlanTask(
         planTaskId: task.id,
         ...(planInstanceId ? { planInstanceId } : {}),
         lessonId: destination.lessonId,
-        contentUnitIds: day.recallSchedule
-          ?.filter((item) => item.phraseLessonId === destination.lessonId)
-          .flatMap((item) => item.phraseIds)
-          .join(',') ?? '',
+        contentUnitIds: contentUnitIds.join(','),
         requiredCorrect: String(destination.requiredPhrases),
       },
     } as any);

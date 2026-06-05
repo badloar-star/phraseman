@@ -13,7 +13,9 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import ReportErrorButton from '../components/ReportErrorButton';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import { hapticTap } from '../hooks/use-haptics';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import {
   NotifSettings,
   loadNotifSettings, saveNotifSettings, scheduleNotifications,
@@ -50,7 +52,8 @@ const pad     = (n: number) => String(n).padStart(2, '0');
 function SimplePicker({ values, value, onChange }: {
   values: number[]; value: number; onChange: (v: number) => void;
 }) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const ref   = useRef<ScrollView>(null);
   const yRef  = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -70,8 +73,8 @@ function SimplePicker({ values, value, onChange }: {
   return (
     <View style={{ width: 88, height: ITEM_H * VISIBLE, overflow: 'hidden' }}>
       <View pointerEvents="none" style={{ position:'absolute', zIndex:3, top:PAD, left:6, right:6, height:ITEM_H, borderTopWidth:1.5, borderBottomWidth:1.5, borderColor:t.textSecond }}/>
-      <View pointerEvents="none" style={{ position:'absolute', zIndex:2, top:0, left:0, right:0, height:PAD, backgroundColor:t.bgSurface, opacity:0.65 }}/>
-      <View pointerEvents="none" style={{ position:'absolute', zIndex:2, bottom:0, left:0, right:0, height:PAD, backgroundColor:t.bgSurface, opacity:0.65 }}/>
+      <View pointerEvents="none" style={{ position:'absolute', zIndex:2, top:0, left:0, right:0, height:PAD, backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface, opacity:0.65 }}/>
+      <View pointerEvents="none" style={{ position:'absolute', zIndex:2, bottom:0, left:0, right:0, height:PAD, backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface, opacity:0.65 }}/>
       <ScrollView
         ref={ref}
         showsVerticalScrollIndicator={false}
@@ -99,7 +102,8 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
   onConfirm: (h: number, m: number) => void;
   onCancel: () => void;
 }) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const [h, setH] = useState(hour);
   const [m, setM] = useState(minute);
   useEffect(() => { if (visible) { setH(hour); setM(minute); } }, [hour, minute, visible]);
@@ -107,11 +111,25 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onCancel}>
       <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center' }}>
-        <View style={{ width:'88%', maxWidth:280, backgroundColor:t.bgCard, borderRadius:18, overflow:'hidden', borderWidth:0.5, borderColor:t.border }}>
+        <View
+          style={[
+            {
+              width:'88%',
+              maxWidth:280,
+              backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+              borderRadius:isCompassTheme ? 10 : 18,
+              overflow:'hidden',
+              borderWidth:0.5,
+              borderColor:isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+            },
+            isCompassTheme && compassShadow(3),
+          ]}
+        >
+          {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
           <View style={{ padding:16, borderBottomWidth:0.5, borderBottomColor:t.border, alignItems:'center' }}>
             <Text style={{ color:t.textPrimary, fontSize:16, fontWeight:'600' }}>{timeTitle}</Text>
           </View>
-          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', paddingVertical:6, backgroundColor:t.bgSurface }}>
+          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', paddingVertical:6, backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface }}>
             <SimplePicker values={HOURS}   value={h} onChange={setH}/>
             <Text style={{ color:t.textPrimary, fontSize:30, fontWeight:'200', marginHorizontal:2 }}>:</Text>
             <SimplePicker values={MINUTES} value={m} onChange={setM}/>
@@ -132,7 +150,8 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
 
 export default function SettingsNotifications() {
   const router = useRouter();
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
 
@@ -213,10 +232,25 @@ export default function SettingsNotifications() {
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity
+          onPress={() => {
           hapticTap();
           safeRouterBack(router, '/(tabs)/home' as any);
-        }}>
+        }}
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: isCompassTheme ? 8 : 19,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+            borderWidth: isCompassTheme ? 0.5 : 0,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+            overflow: 'hidden',
+            ...(isCompassTheme ? compassShadow(1) : {}),
+          }}
+        >
+          {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
         </TouchableOpacity>
         <Text style={{ color:t.textPrimary, fontSize:18, fontWeight:'700', marginLeft:8, flex:1 }} numberOfLines={1}>
@@ -234,7 +268,15 @@ export default function SettingsNotifications() {
           dataText={screenTitle}
           variant="icon-flag"
           accessibilityLabel="Сообщить о баге на экране уведомлений"
-          style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: isCompassTheme ? 8 : 19,
+            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+            borderWidth: 0.5,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+            ...(isCompassTheme ? compassShadow(1) : {}),
+          }}
         />
       </View>
 
@@ -243,8 +285,31 @@ export default function SettingsNotifications() {
           const day = s.schedule[d];
           if (!day) return null;
           return (
-            <View key={d} style={{ flexDirection:'row', alignItems:'center', paddingHorizontal:20, paddingVertical:16, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-              <View style={{ width:40, height:40, borderRadius:20, backgroundColor:day.enabled ? t.bgSurface : t.bgCard, borderWidth:0.5, borderColor:day.enabled ? t.textSecond : t.border, justifyContent:'center', alignItems:'center', marginRight:14 }}>
+            <View
+              key={d}
+              style={[
+                {
+                  flexDirection:'row',
+                  alignItems:'center',
+                  paddingHorizontal:20,
+                  paddingVertical:16,
+                  borderBottomWidth:isCompassTheme ? 0 : 0.5,
+                  borderBottomColor:t.border,
+                },
+                isCompassTheme && {
+                  marginHorizontal: 16,
+                  marginVertical: 4,
+                  borderRadius: 8,
+                  borderWidth: 0.5,
+                  borderColor: day.enabled ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet,
+                  backgroundColor: COMPASS_RICH.charcoalRaised,
+                  overflow: 'hidden',
+                },
+                isCompassTheme && compassShadow(1),
+              ]}
+            >
+              {isCompassTheme ? <CompassDepthSurface radius={8} selected={day.enabled} quiet={!day.enabled} /> : null}
+              <View style={{ width:40, height:40, borderRadius:isCompassTheme ? 8 : 20, backgroundColor:day.enabled ? (isCompassTheme ? COMPASS_RICH.washStrong : t.bgSurface) : (isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard), borderWidth:0.5, borderColor:day.enabled ? (isCompassTheme ? COMPASS_RICH.hairlineStrong : t.textSecond) : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border), justifyContent:'center', alignItems:'center', marginRight:14 }}>
                 <Ionicons name="alarm-outline" size={20} color={day.enabled ? t.textSecond : t.textGhost}/>
               </View>
               <View style={{ flex:1 }}>
@@ -268,7 +333,24 @@ export default function SettingsNotifications() {
             </View>
           );
         })}
-        <View style={{ flexDirection:'row', alignItems:'flex-start', gap:10, margin:16, padding:14, backgroundColor:t.bgCard, borderRadius:12, borderWidth:0.5, borderColor:t.border }}>
+        <View
+          style={[
+            {
+              flexDirection:'row',
+              alignItems:'flex-start',
+              gap:10,
+              margin:16,
+              padding:14,
+              backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+              borderRadius:isCompassTheme ? 8 : 12,
+              borderWidth:0.5,
+              borderColor:isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+              overflow: 'hidden',
+            },
+            isCompassTheme && compassShadow(1),
+          ]}
+        >
+          {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
           <Ionicons name="information-circle-outline" size={18} color={t.textMuted} style={{ marginTop:1 }}/>
           <Text style={{ color:t.textMuted, fontSize:12, flex:1, lineHeight:18 }}>
             {footerHint}

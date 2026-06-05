@@ -16,6 +16,7 @@ const doctorCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-compass-premium.webp'),
 };
 
 const doctorLogos: ThemeAssetMap = {
@@ -27,6 +28,7 @@ const doctorLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-compass-premium.webp'),
 };
 
 const bodyCardBackgrounds: ThemeAssetMap = {
@@ -38,6 +40,7 @@ const bodyCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-compass-premium.webp'),
 };
 
 const bodyLogos: ThemeAssetMap = {
@@ -49,6 +52,7 @@ const bodyLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-compass-premium.webp'),
 };
 
 const shoppingCardBackgrounds: ThemeAssetMap = {
@@ -60,6 +64,7 @@ const shoppingCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-compass-premium.webp'),
 };
 
 const shoppingLogos: ThemeAssetMap = {
@@ -71,6 +76,7 @@ const shoppingLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-compass-premium.webp'),
 };
 
 const AT_THE_DOCTOR_CATEGORY: ThematicQuizCategory = {

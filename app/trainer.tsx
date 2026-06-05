@@ -871,14 +871,14 @@ export default function TrainerScreen() {
                     <Ionicons name="sparkles-outline" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
                     <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
                       {triLang(lang, {
-                    ru: 'Сделай квиз или тренировку с ошибками - здесь появятся темы и фразы для разбора.',
-                    uk: 'Зроби квіз або тренування з помилками - тут зʼявляться теми й фрази для розбору.',
-                    es: 'Haz un quiz o una práctica con errores y aquí aparecerán temas y frases para analizar.',
-                    'pt-BR': "Faça um quiz ou treino com erros: aqui aparecerão temas e frases para analisar.",
-                    vi: "Làm quiz hoặc bài luyện có lỗi: các chủ đề và cụm câu cần phân tích sẽ xuất hiện ở đây.",
-                    id: "Kerjakan kuis atau latihan dengan kesalahan: topik dan frasa untuk dibahas akan muncul di sini.",
-                    tr: "Hatalı bir quiz ya da antrenman yap: analiz için konular ve ifadeler burada görünecek.",
-                    pl: "Zrób quiz albo trening z błędami: tu pojawią się tematy i frazy do analizy.",
+                    ru: 'Пройди квиз или тренировку - если будут ошибки, здесь появятся темы и фразы для разбора.',
+                    uk: 'Пройди квіз або тренування - якщо будуть помилки, тут зʼявляться теми й фрази для розбору.',
+                    es: 'Haz un quiz o una práctica: si hay errores, aquí aparecerán temas y frases para analizar.',
+                    'pt-BR': "Faça um quiz ou treino: se houver erros, aqui aparecerão temas e frases para analisar.",
+                    vi: "Làm quiz hoặc bài luyện: nếu có lỗi, các chủ đề và cụm câu cần phân tích sẽ xuất hiện ở đây.",
+                    id: "Kerjakan kuis atau latihan: jika ada kesalahan, topik dan frasa untuk dibahas akan muncul di sini.",
+                    tr: "Bir quiz ya da antrenman yap: hata olursa analiz için konular ve ifadeler burada görünecek.",
+                    pl: "Zrób quiz albo trening: jeśli pojawią się błędy, tu zobaczysz tematy i frazy do analizy.",
                 })}
                     </Text>
                     <Ionicons name="chevron-forward" size={18} color={t.textMuted}/>
@@ -1069,8 +1069,10 @@ const styles = StyleSheet.create({
     cardIcon: {
         width: 56,
         height: 56,
+        flexShrink: 0,
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'visible',
     },
     cardTitle: { fontWeight: '900' },
     cardSub: { lineHeight: 18, marginTop: 3 },

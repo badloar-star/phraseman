@@ -249,6 +249,64 @@ function loadState(statePath = DEFAULT_STATE_PATH) {
   };
 }
 
+function mergePromptQueueItems(existingItems, stateItems) {
+  const mergedById = new Map();
+  for (const item of Array.isArray(existingItems) ? existingItems : []) {
+    if (!item?.id) continue;
+    mergedById.set(item.id, item);
+  }
+
+  for (const item of Array.isArray(stateItems) ? stateItems : []) {
+    if (!item?.id) continue;
+    const previous = mergedById.get(item.id);
+    if (!previous) {
+      mergedById.set(item.id, item);
+      continue;
+    }
+
+    const previousTime = Date.parse(previous.updatedAt || previous.finishedAt || previous.startedAt || previous.createdAt || '');
+    const nextTime = Date.parse(item.updatedAt || item.finishedAt || item.startedAt || item.createdAt || '');
+    mergedById.set(
+      item.id,
+      Number.isFinite(previousTime) && Number.isFinite(nextTime) && previousTime > nextTime
+        ? previous
+        : { ...previous, ...item }
+    );
+  }
+
+  return Array.from(mergedById.values())
+    .sort((a, b) => {
+      const aPosition = Number(a.position || 0);
+      const bPosition = Number(b.position || 0);
+      if (aPosition !== bPosition) return aPosition - bPosition;
+      return String(a.createdAt || '').localeCompare(String(b.createdAt || ''));
+    })
+    .map((item, index) => ({ ...item, position: index + 1 }));
+}
+
+function mergePromptQueues(existingQueues, stateQueues) {
+  const existing = existingQueues && typeof existingQueues === 'object' ? existingQueues : {};
+  const incoming = stateQueues && typeof stateQueues === 'object' ? stateQueues : {};
+  const merged = { ...existing };
+
+  for (const [key, queue] of Object.entries(incoming)) {
+    if (!queue || typeof queue !== 'object') continue;
+    const previous = existing[key];
+    if (queue.replaceItems === true || (Array.isArray(queue.items) && queue.items.length === 0)) {
+      const { replaceItems, ...queueWithoutMergeFlag } = queue;
+      merged[key] = { ...(previous || {}), ...queueWithoutMergeFlag, items: Array.isArray(queue.items) ? queue.items : [] };
+      continue;
+    }
+    merged[key] = {
+      ...(previous && typeof previous === 'object' ? previous : {}),
+      ...queue,
+      items: mergePromptQueueItems(previous?.items, queue.items),
+    };
+  }
+
+  return merged;
+}
+
 function saveState(statePath, state) {
   const existing = readJsonFile(statePath || DEFAULT_STATE_PATH, {});
   writeJsonFile(statePath || DEFAULT_STATE_PATH, {
@@ -262,10 +320,7 @@ function saveState(statePath, state) {
       ...(existing.relayedAgentMessages && typeof existing.relayedAgentMessages === 'object' ? existing.relayedAgentMessages : {}),
       ...(state.relayedAgentMessages && typeof state.relayedAgentMessages === 'object' ? state.relayedAgentMessages : {}),
     },
-    promptQueues: {
-      ...(existing.promptQueues && typeof existing.promptQueues === 'object' ? existing.promptQueues : {}),
-      ...(state.promptQueues && typeof state.promptQueues === 'object' ? state.promptQueues : {}),
-    },
+    promptQueues: mergePromptQueues(existing.promptQueues, state.promptQueues),
     control: {
       ...(existing.control && typeof existing.control === 'object' ? existing.control : {}),
       ...(state.control && typeof state.control === 'object' ? state.control : {}),
@@ -360,6 +415,33 @@ function getNextQueuedPromptItem(state, routeOrSessionId) {
   const queue = getPromptQueue(state, routeOrSessionId);
   if (!queue || !Array.isArray(queue.items)) return null;
   return queue.items.find((item) => item.status === 'queued') || null;
+}
+
+function getPromptQueueDeliveryPlan(config = {}) {
+  if (config.allowCodexExec === true) {
+    return {
+      mode: 'codex-exec',
+      appendDesktopQueue: false,
+      startDesktopSender: false,
+      processViaCodexExec: true,
+    };
+  }
+
+  if (config.desktopQueueUnsafePaste === true) {
+    return {
+      mode: 'desktop-paste',
+      appendDesktopQueue: true,
+      startDesktopSender: true,
+      processViaCodexExec: false,
+    };
+  }
+
+  return {
+    mode: 'visible-hold',
+    appendDesktopQueue: true,
+    startDesktopSender: false,
+    processViaCodexExec: false,
+  };
 }
 
 function updatePromptQueueItem(state, routeOrSessionId, itemId, patch) {
@@ -1355,6 +1437,7 @@ module.exports = {
   getSessionInboxRoutes,
   getSessionTitle,
   getNextQueuedPromptItem,
+  getPromptQueueDeliveryPlan,
   getPromptQueue,
   getTelegramCallback,
   getTelegramMessage,

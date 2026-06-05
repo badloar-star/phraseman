@@ -11,6 +11,7 @@ const THEMES = [
   'coral',
   'minimal-light',
   'minimal-dark',
+  'compass-premium',
 ] as const;
 
 const LEVELS = ['easy', 'medium', 'hard'] as const;
@@ -26,7 +27,7 @@ describe('quiz level theme assets', () => {
       })),
     );
 
-    expect(expectedPairs).toHaveLength(18);
+    expect(expectedPairs).toHaveLength(21);
 
     for (const pair of expectedPairs) {
       expect(fs.existsSync(pair.card)).toBe(true);
@@ -108,6 +109,47 @@ describe('quiz level theme assets', () => {
 
         expect(opaquePixels).toBeGreaterThan(1200);
       }
+    }
+  });
+
+  it('ships Compass premium thematic quiz cards and logos for every active thematic pack', async () => {
+    const thematicSlugs = [
+      'kitchen-and-cooking',
+      'home-and-rooms',
+      'at-the-doctor',
+      'body-and-health',
+      'shopping-and-money',
+    ] as const;
+
+    for (const slug of thematicSlugs) {
+      const cardPath = path.join(
+        ROOT,
+        'assets',
+        'images',
+        'quizzes',
+        'theme_cards',
+        `quiz-theme-${slug}-compass-premium.webp`,
+      );
+      const logoPath = path.join(
+        ROOT,
+        'assets',
+        'images',
+        'quizzes',
+        'theme_logos',
+        `quiz-theme-${slug}-compass-premium.webp`,
+      );
+
+      expect(fs.existsSync(cardPath)).toBe(true);
+      expect(fs.existsSync(logoPath)).toBe(true);
+
+      const card = await sharp(cardPath).metadata();
+      const logo = await sharp(logoPath).metadata();
+
+      expect(card.width).toBe(640);
+      expect(card.height).toBe(236);
+      expect(logo.width).toBe(260);
+      expect(logo.height).toBe(260);
+      expect(logo.hasAlpha).toBe(true);
     }
   });
 });

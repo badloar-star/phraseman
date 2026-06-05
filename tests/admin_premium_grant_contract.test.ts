@@ -45,4 +45,12 @@ describe('admin premium grant contract', () => {
     expect(html).toContain("where('progress.premium_plan', '==', 'admin_grant')");
     expect(html).toContain("'progress.vip_migrated_from_admin_grant_at'");
   });
+
+  it('can find an exact user nickname from Firestore when the loaded users list misses it', () => {
+    expect(html).toContain('function findUserByExactNameToCache');
+    expect(html).toContain("where('progress.user_name', '==', cleanName)");
+    expect(html).toContain('findCachedUserByUidOrExactName');
+    expect(html).toContain('window._usersNameLookupInFlight');
+    expect(html).toContain('findUserByExactNameToCache(qRaw)');
+  });
 });

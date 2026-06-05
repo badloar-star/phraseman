@@ -25,7 +25,7 @@ export type ShardSpendReason =
   | 'avatar_aura'
   | 'custom_avatar_restyle'
   | 'profile_card_upgrade'
-  | 'lesson_replay';     // −(BASE+5*n) Перепройти урок (Mastery; premium = бесплатно)
+  | 'lesson_replay';     // legacy reason; lesson replay no longer spends shards
 
 export type ShardSource =
   | 'lesson_first'          // +1 Первое прохождение урока

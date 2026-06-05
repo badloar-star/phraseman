@@ -78,6 +78,7 @@ import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { useAdaptiveBackgroundSource } from '../components/adaptiveBackgroundAssets';
 import { trackActivity } from './app_activity';
 import { rememberNavigationPath } from './navigation_back';
 import {
@@ -91,6 +92,7 @@ import {
   RewardModalPanelBackdrop,
   rewardModalAccentColor,
   rewardModalPanelBorder,
+  rewardModalPanelColors,
   rewardModalSoftSurface,
 } from '../components/RewardModalBackdrop';
 import {
@@ -100,7 +102,7 @@ import {
 } from './services/league_chest_rewards';
 import { FIRST_LESSON_SHEET_BACKGROUNDS } from '../components/firstLessonSheetAssets';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
-import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS } from '../constants/devRoutes';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
 import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
 
 LogBox.ignoreLogs([
@@ -266,6 +268,11 @@ function isDevUtilityRoutePath(path: string | null | undefined): boolean {
   return DEV_UTILITY_ROUTE_PATHS.some((prefix) => path.startsWith(prefix));
 }
 
+function isDevOnlyRuntimeRoutePath(path: string | null | undefined): boolean {
+  if (!__DEV__ || !path) return false;
+  return path.startsWith(PERSONAL_PLAN_RUNTIME_DEV_ROUTE);
+}
+
 function isTabsGroupRoutePath(path: string): boolean {
   const cleanPath = path.split(/[?#]/)[0]?.replace(/\/$/, '') || '';
   return cleanPath === '/(tabs)' || cleanPath.startsWith('/(tabs)/');
@@ -353,6 +360,7 @@ const LEVELUP_CONGRATS_ES = [
   'Te lo has ganado con la práctica.',
   '¡El progreso se nota a simple vista! 💪',
 ];
+const LEVELUP_BTN_ES = ['¡Genial!', '¡Vamos!', '¡Continuamos!', '¡Listo!', '¡Entendido, gracias!', '¡Hurra! 🎉'];
 
 async function preloadVectorIconFonts() {
   await Promise.all([
@@ -360,7 +368,6 @@ async function preloadVectorIconFonts() {
     MaterialIcons.loadFont(),
   ]);
 }
-const LEVELUP_BTN_ES = ['¡Genial!', '¡Vamos!', '¡Continuamos!', '¡Listo!', '¡Entendido, gracias!', '¡Hurra! 🎉'];
 
 // RevenueCat API keys must be set via environment variables.
 // See revenuecat_init.ts for singleton initialization pattern.
@@ -494,6 +501,7 @@ function GlobalLevelUpHandler() {
   const { theme: t, isDark, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const globalParams = useGlobalSearchParams();
   const isGoldTheme = themeMode === 'gold';
 
   const [showLevelUp, setShowLevelUp] = useState(false);
@@ -510,6 +518,7 @@ function GlobalLevelUpHandler() {
   const isShowingRef = useRef(false);
   const dismissingLevelUpRef = useRef(false);
   const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previewLevelUpParamRef = useRef<string | null>(null);
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
   const flushQueueBusyRef = useRef(false);
@@ -577,6 +586,18 @@ function GlobalLevelUpHandler() {
     };
   }, [flushQueue]);
 
+  useEffect(() => {
+    if (!__DEV__) return;
+    const raw = globalParams.levelUpPreview;
+    const rawValue = Array.isArray(raw) ? raw[0] : raw;
+    if (!rawValue || previewLevelUpParamRef.current === rawValue) return;
+    const level = Math.max(1, Math.min(60, Number.parseInt(rawValue, 10) || 5));
+    previewLevelUpParamRef.current = rawValue;
+    AsyncStorage.setItem('pending_level_up_queue', JSON.stringify([level]))
+      .then(flushQueue)
+      .catch(() => {});
+  }, [flushQueue, globalParams.levelUpPreview]);
+
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
   }, []);
@@ -638,7 +659,7 @@ function GlobalLevelUpHandler() {
 
   return (
     <>
-      {/* Level-up congratulation — wrapped in Modal so it renders above ALL screens */}
+      {/* Level-up congratulation - wrapped in Modal so it renders above ALL screens */}
       <Modal
         transparent
         visible={levelUpOverlayVisible && showLevelUp}
@@ -663,17 +684,17 @@ function GlobalLevelUpHandler() {
             ...(USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? goldShadow(3) : {}),
           }}>
             <LinearGradient
-              colors={USE_ELITE_LEVEL_UP_MODAL ? ['transparent', 'transparent', 'transparent'] : t.cardGradient}
+              colors={USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelColors(themeMode, t) : t.cardGradient}
               locations={undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{
-              borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
-              padding: USE_ELITE_LEVEL_UP_MODAL ? 26 : 28,
-              alignItems: 'center',
-              borderWidth: 1,
-              borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : t.textSecond + '44',
-            }}>
+                borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
+                padding: USE_ELITE_LEVEL_UP_MODAL ? 26 : 28,
+                alignItems: 'center',
+                borderWidth: 1,
+                borderColor: USE_ELITE_LEVEL_UP_MODAL ? rewardModalPanelBorder(themeMode, t) : t.textSecond + '44',
+              }}>
               {USE_ELITE_LEVEL_UP_MODAL && <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && <GoldBevel radius={32} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && (
@@ -885,7 +906,7 @@ function AppContent() {
   const pathname = usePathname();
   const globalSearchParams = useGlobalSearchParams();
   const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
-  const currentDevUtilityRoute = ENABLE_DEV_TOOLS && isDevUtilityRoutePath(pathname);
+  const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
   const isRootIndexRoute = !pathname || pathname === '/';
   const insets = useSafeAreaInsets();
@@ -910,7 +931,7 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    const targetIsDevUtilityRoute = ENABLE_DEV_TOOLS && isDevUtilityRoutePath(pendingWarmDeepLink);
+    const targetIsDevUtilityRoute = isDevUtilityRoutePath(pendingWarmDeepLink) || isDevOnlyRuntimeRoutePath(pendingWarmDeepLink);
     if (!pendingWarmDeepLink || !ready || !rootNavigationReady || isBanned || (showOnboarding && !targetIsDevUtilityRoute)) return;
     const target = pendingWarmDeepLink;
     setPendingWarmDeepLink(null);
@@ -1672,7 +1693,7 @@ function AppContent() {
       firstLessonSheetAnim.stopAnimation();
     };
   }, [firstLessonSheetAnim, firstLessonSheetVisible]);
-  const firstLessonSheetBackground = FIRST_LESSON_SHEET_BACKGROUNDS[themeMode] ?? FIRST_LESSON_SHEET_BACKGROUNDS.minimalDark;
+  const firstLessonSheetBackground = useAdaptiveBackgroundSource(FIRST_LESSON_SHEET_BACKGROUNDS[themeMode] ?? FIRST_LESSON_SHEET_BACKGROUNDS.minimalDark);
   const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode] ?? FIRST_LESSON_SHEET_PANEL_SCRIMS.minimalDark;
   const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode] ?? '#FFFFFF';
   const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode] ?? '#C5CAD0';

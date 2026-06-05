@@ -192,9 +192,24 @@ export default function PersonalPlanRuntimeDevScreen() {
   const phraseBuildTiles = current?.tileInputExpected
     ? [...current.wordTiles, ...current.distractorTiles]
     : [];
+  const selectedBuildTiles = selectedAnswer.trim().split(/\s+/).filter(Boolean);
+  const isChoiceMode = current?.exerciseType === 'plan_choose_natural_phrase';
+  const isMissingWordMode = current?.exerciseType === 'plan_missing_word';
+  const isPhraseRecallMode = current?.exerciseType === 'plan_phrase_recall';
   const appendTile = (tile: string) => {
     hapticTap();
     setSelectedAnswer((previous) => [previous.trim(), tile].filter(Boolean).join(' '));
+  };
+  const removeSelectedTile = (indexToRemove: number) => {
+    hapticTap();
+    setSelectedAnswer((previous) =>
+      previous
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .filter((_, index) => index !== indexToRemove)
+        .join(' '),
+    );
   };
 
   return (
@@ -347,16 +362,62 @@ export default function PersonalPlanRuntimeDevScreen() {
                 <View testID="plan-runtime-active-exercise" style={[styles.exercisePanel, { borderColor: accent + '66', backgroundColor: t.bgCard, shadowColor: accent }]}>
                   <Text style={[styles.kicker, { color: t.textMuted }]}>{activeExercise.eyebrow}</Text>
                   <Text style={[styles.exerciseTitle, { color: t.textPrimary }]}>{activeExercise.title}</Text>
-                  <Text style={[styles.prompt, { color: t.textPrimary }]}>{current.targetRu}</Text>
-                  <Text style={[styles.instruction, { color: t.textMuted }]}>{activeExercise.instruction}</Text>
+
+                  {isMissingWordMode ? (
+                    <View style={styles.modeSurface}>
+                      <Text style={[styles.modeLabel, { color: accent }]}>СЛОВО В ФРАЗЕ</Text>
+                      <Text style={[styles.blankSentence, { color: t.textPrimary }]}>{current.displayEnglish}</Text>
+                      <Text style={[styles.meaningText, { color: t.textMuted }]}>Смысл: {current.targetRu}</Text>
+                      <Text style={[styles.modeHint, { color: t.textMuted }]}>Нажми слово, которое закрывает пропуск.</Text>
+                    </View>
+                  ) : isChoiceMode ? (
+                    <View style={styles.modeSurface}>
+                      <Text style={[styles.modeLabel, { color: accent }]}>ВЫБЕРИ ЖИВУЮ ФРАЗУ</Text>
+                      <Text style={[styles.meaningHeadline, { color: t.textPrimary }]}>{current.targetRu}</Text>
+                      <Text style={[styles.modeHint, { color: t.textMuted }]}>Ищи вариант, который нормально звучит в разговоре.</Text>
+                    </View>
+                  ) : current.tileInputExpected ? (
+                    <View style={styles.modeSurface}>
+                      <Text style={[styles.modeLabel, { color: accent }]}>СОБЕРИ ФРАЗУ</Text>
+                      <Text style={[styles.meaningHeadline, { color: t.textPrimary }]}>{current.targetRu}</Text>
+                      <Text style={[styles.modeHint, { color: t.textMuted }]}>Выбирай слова снизу: они появятся в поле ответа.</Text>
+                    </View>
+                  ) : isPhraseRecallMode ? (
+                    <View style={styles.modeSurface}>
+                      <Text style={[styles.modeLabel, { color: accent }]}>ВСПОМНИ БЕЗ ВАРИАНТОВ</Text>
+                      <Text style={[styles.meaningHeadline, { color: t.textPrimary }]}>{current.targetRu}</Text>
+                      <Text style={[styles.modeHint, { color: t.textMuted }]}>Напиши английскую фразу сам.</Text>
+                    </View>
+                  ) : (
+                    <>
+                      <Text style={[styles.prompt, { color: t.textPrimary }]}>{current.targetRu}</Text>
+                      <Text style={[styles.instruction, { color: t.textMuted }]}>{activeExercise.instruction}</Text>
+                    </>
+                  )}
 
                   {current.tileInputExpected ? (
                     <View style={styles.tileBuilder}>
                       <View style={[styles.assembledAnswer, { borderColor: cardBorder, backgroundColor: t.bgSurface2 }]}>
-                        <Text style={[styles.assembledText, { color: selectedAnswer.trim() ? t.textPrimary : t.textMuted }]}>
-                          {selectedAnswer.trim() || current.displayEnglish}
-                        </Text>
+                        {selectedBuildTiles.length > 0 ? (
+                          <View style={styles.selectedTileRow}>
+                            {selectedBuildTiles.map((tile, index) => (
+                              <TouchableOpacity
+                                key={`${tile}:selected:${index}`}
+                                activeOpacity={0.82}
+                                onPress={() => removeSelectedTile(index)}
+                                accessibilityRole="button"
+                                testID={`plan-runtime-selected-tile-${index + 1}`}
+                                style={[styles.selectedTile, { borderColor: accent + '77', backgroundColor: accent + '18' }]}
+                              >
+                                <Text style={[styles.selectedTileText, { color: t.textPrimary }]}>{tile}</Text>
+                              </TouchableOpacity>
+                            ))}
+                          </View>
+                        ) : (
+                          <Text style={[styles.answerPlaceholder, { color: t.textMuted }]}>Слова появятся здесь</Text>
+                        )}
                       </View>
+                      <Text style={[styles.modeHint, { color: t.textMuted }]}>Банк слов</Text>
                       <View style={styles.tileGrid}>
                         {phraseBuildTiles.map((tile, index) => (
                           <TouchableOpacity
@@ -387,7 +448,7 @@ export default function PersonalPlanRuntimeDevScreen() {
                       onChangeText={setSelectedAnswer}
                       autoCapitalize="none"
                       autoCorrect={false}
-                      placeholder="Введите фразу"
+                      placeholder="Введите английскую фразу"
                       placeholderTextColor={t.textMuted}
                       testID="plan-runtime-free-input"
                       style={[
@@ -400,7 +461,7 @@ export default function PersonalPlanRuntimeDevScreen() {
                       ]}
                     />
                   ) : (
-                    <View style={styles.choiceList}>
+                    <View style={isMissingWordMode ? styles.choiceChipGrid : styles.choiceList}>
                       {current.choices.map((choice, index) => {
                         const selected = selectedAnswer === choice.text;
                         return (
@@ -415,14 +476,14 @@ export default function PersonalPlanRuntimeDevScreen() {
                             accessibilityState={{ selected }}
                             testID={`plan-runtime-choice-${index + 1}`}
                             style={[
-                              styles.choiceButton,
+                              isMissingWordMode ? styles.choiceChip : styles.choiceButton,
                               {
                                 borderColor: selected ? accent : cardBorder,
                                 backgroundColor: selected ? accent + '22' : t.bgSurface2,
                               },
                             ]}
                           >
-                            <Text style={[styles.choiceText, { color: selected ? accent : t.textPrimary }]}>{choice.text}</Text>
+                            <Text style={[isMissingWordMode ? styles.choiceChipText : styles.choiceText, { color: selected ? accent : t.textPrimary }]}>{choice.text}</Text>
                           </TouchableOpacity>
                         );
                       })}
@@ -651,6 +712,50 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 16,
   },
+  modeSurface: {
+    borderRadius: 20,
+    paddingTop: 18,
+    paddingBottom: 18,
+    marginTop: 18,
+    marginBottom: 14,
+    alignItems: 'center',
+  },
+  modeLabel: {
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '900',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    letterSpacing: 0,
+    marginBottom: 10,
+  },
+  meaningHeadline: {
+    fontSize: 30,
+    lineHeight: 38,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  blankSentence: {
+    fontSize: 29,
+    lineHeight: 37,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  meaningText: {
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: '800',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  modeHint: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
   choiceList: {
     gap: 10,
   },
@@ -666,6 +771,27 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     fontWeight: '900',
   },
+  choiceChipGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    justifyContent: 'center',
+  },
+  choiceChip: {
+    minHeight: 54,
+    minWidth: '30%',
+    borderRadius: 18,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  choiceChipText: {
+    fontSize: 18,
+    lineHeight: 23,
+    fontWeight: '900',
+    textAlign: 'center',
+  },
   tileBuilder: {
     gap: 12,
   },
@@ -676,6 +802,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     justifyContent: 'center',
+  },
+  selectedTileRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    alignItems: 'center',
+  },
+  selectedTile: {
+    minHeight: 42,
+    borderRadius: 14,
+    borderWidth: 1,
+    paddingHorizontal: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  selectedTileText: {
+    fontSize: 17,
+    lineHeight: 22,
+    fontWeight: '900',
+  },
+  answerPlaceholder: {
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: '900',
+    textAlign: 'center',
   },
   assembledText: {
     fontSize: 22,

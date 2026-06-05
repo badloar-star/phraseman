@@ -32,6 +32,7 @@ import {
   RewardModalPanelBackdrop,
   rewardModalAccentColor,
   rewardModalPanelBorder,
+  rewardModalPanelColors,
   rewardModalPrimaryButtonColors,
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
@@ -397,7 +398,7 @@ export default function LevelGiftModal({
     <Modal transparent visible animationType="fade" onRequestClose={handleSkip}>
       <View style={{ flex: 1, backgroundColor: screenDim, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
         <Animated.View testID="level-gift-modal" style={{
-          backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'transparent' : t.bgCard,
+          backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? rewardModalPanelColors(themeMode, t)[1] : t.bgCard,
           borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 30 : 28,
           padding: USE_ELITE_LEVEL_GIFT_MODAL ? 26 : 32,
           width: USE_ELITE_LEVEL_GIFT_MODAL ? 326 : 300,

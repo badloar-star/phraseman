@@ -7,6 +7,7 @@ import {
   GAVAN_WEEK1_ROUTE_APPROVAL_GUARD_PATH,
   writeGavanWeek1RouteApprovalGuard,
 } from '../tools/personal_plan_gavan_week1_route_approval_guard';
+import { ensureGavanWeek1RoutePrerequisiteArtifacts } from '../tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh';
 
 const GENERATED_AT = '2026-06-03T10:25:00.000Z';
 const BROKEN_ENCODING_RE = /[\u00d0\u00c2\u00e2\ufffd]/;
@@ -24,6 +25,10 @@ function requestPacket(): GavanWeek1RouteSignatureRequestPacket {
 }
 
 describe('Gavan week 1 route approval guard', () => {
+  beforeAll(() => {
+    ensureGavanWeek1RoutePrerequisiteArtifacts({ generatedAt: GENERATED_AT });
+  });
+
   it('builds a blocked unsigned approval guard from the route signature request', () => {
     const result = buildGavanWeek1RouteApprovalGuard(requestPacket(), {
       generatedAt: GENERATED_AT,

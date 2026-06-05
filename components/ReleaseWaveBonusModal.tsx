@@ -226,7 +226,7 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
           style={[
             styles.card,
             {
-              backgroundColor: 'transparent',
+              backgroundColor: rewardModalPanelColors(themeMode, t)[1],
               borderColor: rewardModalPanelBorder(themeMode, t),
               shadowColor: modalAccent,
             },

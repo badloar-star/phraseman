@@ -1,0 +1,70 @@
+{
+  "themeBackdrops": [
+    "dark",
+    "neon",
+    "gold",
+    "coral",
+    "minimal-light",
+    "minimal-dark",
+    "compass-premium"
+  ],
+  "compassRouteBackdrops": 19,
+  "quizLevelCards": {
+    "themes": [
+      "dark",
+      "neon",
+      "gold",
+      "coral",
+      "minimal-light",
+      "minimal-dark",
+      "compass-premium"
+    ],
+    "levels": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "count": 21
+  },
+  "firstLessonSheet": [
+    "dark",
+    "neon",
+    "gold",
+    "coral",
+    "minimal-light",
+    "minimal-dark",
+    "compass-premium"
+  ],
+  "premiumHero": [
+    "dark",
+    "neon",
+    "gold",
+    "coral",
+    "minimal-light",
+    "minimal-dark",
+    "compass-premium"
+  ],
+  "quizThemeCards": {
+    "completedCategories": [
+      "kitchen-and-cooking"
+    ],
+    "remainingCategories": [
+      "home-and-rooms",
+      "at-the-doctor",
+      "body-and-health",
+      "shopping-and-money"
+    ],
+    "themes": [
+      "forest",
+      "dark",
+      "neon",
+      "neon-green",
+      "gold",
+      "coral",
+      "minimal-light",
+      "minimal-dark",
+      "compass-premium"
+    ],
+    "next": "home-and-rooms/forest"
+  }
+}

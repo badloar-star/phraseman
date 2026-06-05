@@ -36,6 +36,8 @@ import { logEvent } from '../app/firebase';
 import { emitAppEvent } from '../app/events';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 import { triLang } from '../constants/i18n';
+import CompassDepthSurface from './CompassDepthSurface';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 const AUTH_QUICK_START_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
 
@@ -60,8 +62,9 @@ export default function RegistrationPromptModal({
   onClose,
   onSignedIn,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const isCompassTheme = themeMode === 'compass';
 
   const [appleAvail, setAppleAvail] = useState(false);
   const [googleAvail, setGoogleAvail] = useState(false);
@@ -362,9 +365,16 @@ export default function RegistrationPromptModal({
           onPress={() => {}}
           style={[
             styles.card,
-            { backgroundColor: t.bgCard, borderColor: t.border },
+            {
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+              borderRadius: isCompassTheme ? 14 : 24,
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(3) : null),
+            },
           ]}
         >
+          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           {context === 'onboarding' ? (
             <ExpoImage
               source={AUTH_QUICK_START_ICON}
@@ -426,8 +436,20 @@ export default function RegistrationPromptModal({
             <Pressable
               onPress={handleResetAndRetry}
               disabled={loadingProvider !== null}
-              style={[styles.laterButton, { borderWidth: 1, borderColor: t.border, borderRadius: 12, marginTop: 6 }]}
+              style={[
+                styles.laterButton,
+                {
+                  borderWidth: 1,
+                  borderColor: isCompassTheme ? COMPASS_RICH.copper : t.border,
+                  borderRadius: isCompassTheme ? 9 : 12,
+                  marginTop: 6,
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : 'transparent',
+                  overflow: 'hidden',
+                  ...(isCompassTheme ? compassShadow(1) : null),
+                },
+              ]}
             >
+              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               <Text style={[styles.laterText, { color: t.wrong, fontSize: f.caption }]}>
                 DEBUG: Сбросить identity и войти заново
               </Text>
@@ -437,9 +459,20 @@ export default function RegistrationPromptModal({
           <Pressable
             onPress={handleLater}
             disabled={loadingProvider !== null}
-            style={styles.laterButton}
+            style={[
+              styles.laterButton,
+              isCompassTheme && {
+                borderRadius: 9,
+                borderWidth: 1,
+                borderColor: COMPASS_RICH.hairlineQuiet,
+                backgroundColor: COMPASS_RICH.charcoal,
+                overflow: 'hidden',
+                ...compassShadow(1),
+              },
+            ]}
             testID="auth-prompt-later"
           >
+            {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
             <Text style={[styles.laterText, { color: t.textMuted, fontSize: f.body }]}>
               {labelLater}
             </Text>

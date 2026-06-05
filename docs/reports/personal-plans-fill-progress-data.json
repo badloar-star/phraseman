@@ -1,0 +1,1023 @@
+{
+  "kind": "personal_plans_fill_progress_data",
+  "generatedAt": "2026-06-05T00:00:00.000Z",
+  "productionReady": false,
+  "sourceRuntimeWriteAllowed": false,
+  "liveRegistrationAllowed": false,
+  "generatedContentCreationAllowed": false,
+  "latestCheckpoint": "P3.174 Voyazh Day 3 generator-backed certified content",
+  "plans": [
+    {
+      "id": "voyazh",
+      "name": "Voyazh",
+      "filledDays": 28,
+      "totalDays": 84
+    },
+    {
+      "id": "mitap",
+      "name": "Mitap",
+      "filledDays": 28,
+      "totalDays": 112
+    },
+    {
+      "id": "gavan",
+      "name": "Gavan",
+      "filledDays": 28,
+      "totalDays": 126
+    },
+    {
+      "id": "impuls",
+      "name": "Impuls",
+      "filledDays": 28,
+      "totalDays": 140
+    },
+    {
+      "id": "echo",
+      "name": "Echo",
+      "filledDays": 28,
+      "totalDays": 84
+    }
+  ],
+  "dayQuality": [
+    {
+      "label": "Voyazh Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 1 certified airport-help content from generator packet voyazh_d001_generator_packet: phrase introduction first, then missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz materials bound to voyazh_d001_content_unit.",
+      "notes": "Generator pipeline evidence: valid_non_live_dry_run through packet validation, review, source intake, import format, and runtime source guard. Plan fill remains 28/84; no scaffold days were counted."
+    },
+    {
+      "label": "Voyazh Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 2 generator-backed certified passport-control content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Voyazh Day 3",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Voyazh Day 3 generator-backed certified baggage/check-in content: phrase lesson, listen choose, missing word, listen build, natural choice, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet voyazh_d003_generator_packet passed valid_non_live_dry_run; plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Voyazh Day 4",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh recall review load: recall-heavy review material with phrase rebuilding, answer choice, and reflection coverage.",
+      "notes": "Voyazh review pressure stays visible without claiming production readiness; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 5",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh scenario stress choice: light scenario stress test with choice paths and plan-specific consequence prompts.",
+      "notes": "Voyazh stress remains gentle and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 6",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh repair accuracy practice: repair-focused accuracy work with correction prompts and retry-friendly review blocks.",
+      "notes": "Voyazh recovery is explicit before the weekly check; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 7",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh weekly check: week 1 weekly check material with mixed review and progress confirmation blocks.",
+      "notes": "Voyazh week 1 closes with an auditable checkpoint; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 8",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh week 2 autonomy start: week 2 autonomy material with less direct scaffolding and broader learner decisions.",
+      "notes": "Voyazh autonomy increases while support stays present; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 9",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh two-turn dialogue: two-turn dialogue practice with setup, response, and follow-up material.",
+      "notes": "Voyazh two-step interaction becomes visible; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 10",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh controlled variation: controlled variation material that changes context while preserving the same core skill.",
+      "notes": "Voyazh precision practice keeps the learner anchored; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 11",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh prompted production: prompted production material with learner-generated answers and structured rescue prompts.",
+      "notes": "Voyazh rescue copy prevents dead ends; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 12",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Voyazh light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 13",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Voyazh typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 14",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Voyazh week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 15",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Voyazh freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 16",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Voyazh freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 17",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Voyazh less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 18",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Voyazh transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 19",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Voyazh pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 20",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Voyazh repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 21",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Voyazh week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 22",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Voyazh free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 23",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Voyazh rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 24",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Voyazh week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Voyazh two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 25",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Voyazh cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Voyazh cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 26",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Voyazh cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Voyazh repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 27",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Voyazh final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Voyazh final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Voyazh Day 28",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Voyazh cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Voyazh next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 1 certified work-call content from generator packet mitap_d001_generator_packet: phrase introduction first, then missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz materials bound to mitap_d001_content_unit.",
+      "notes": "Generator pipeline evidence: valid_non_live_dry_run through packet validation, review, source intake, import format, and runtime source guard. Plan fill remains 28/112; no scaffold days were counted."
+    },
+    {
+      "label": "Mitap Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Mitap Day 2 generator-backed certified standup-update content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet mitap_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/112 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Mitap Day 3",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap recall progression: third day recall progression with varied practice blocks and learner-facing prompts.",
+      "notes": "Mitap varied review shape prevents copy/paste sameness; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 4",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap recall review load: recall-heavy review material with phrase rebuilding, answer choice, and reflection coverage.",
+      "notes": "Mitap review pressure stays visible without claiming production readiness; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 5",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap scenario stress choice: light scenario stress test with choice paths and plan-specific consequence prompts.",
+      "notes": "Mitap stress remains gentle and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 6",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap repair accuracy practice: repair-focused accuracy work with correction prompts and retry-friendly review blocks.",
+      "notes": "Mitap recovery is explicit before the weekly check; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 7",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap weekly check: week 1 weekly check material with mixed review and progress confirmation blocks.",
+      "notes": "Mitap week 1 closes with an auditable checkpoint; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 8",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap week 2 autonomy start: week 2 autonomy material with less direct scaffolding and broader learner decisions.",
+      "notes": "Mitap autonomy increases while support stays present; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 9",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap two-turn dialogue: two-turn dialogue practice with setup, response, and follow-up material.",
+      "notes": "Mitap two-step interaction becomes visible; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 10",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap controlled variation: controlled variation material that changes context while preserving the same core skill.",
+      "notes": "Mitap precision practice keeps the learner anchored; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 11",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap prompted production: prompted production material with learner-generated answers and structured rescue prompts.",
+      "notes": "Mitap rescue copy prevents dead ends; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 12",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Mitap light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 13",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Mitap typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 14",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Mitap week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 15",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Mitap freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 16",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Mitap freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 17",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Mitap less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 18",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Mitap transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 19",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Mitap pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 20",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Mitap repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 21",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Mitap week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 22",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Mitap free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 23",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Mitap rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 24",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Mitap week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Mitap two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 25",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Mitap cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Mitap cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 26",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Mitap cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Mitap repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 27",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Mitap final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Mitap final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Mitap Day 28",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Mitap cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Mitap next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 1 generator-backed certified short-answer content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet gavan_d001_generator_packet passed valid_non_live_dry_run; not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Gavan Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Gavan Day 2 generator-backed certified address/postcode content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet gavan_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/126 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Gavan Day 3",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan recall progression: third day recall progression with varied practice blocks and learner-facing prompts.",
+      "notes": "Gavan varied review shape prevents copy/paste sameness; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 4",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan recall review load: recall-heavy review material with phrase rebuilding, answer choice, and reflection coverage.",
+      "notes": "Gavan review pressure stays visible without claiming production readiness; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 5",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan scenario stress choice: light scenario stress test with choice paths and plan-specific consequence prompts.",
+      "notes": "Gavan stress remains gentle and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 6",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan repair accuracy practice: repair-focused accuracy work with correction prompts and retry-friendly review blocks.",
+      "notes": "Gavan recovery is explicit before the weekly check; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 7",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan weekly check: week 1 weekly check material with mixed review and progress confirmation blocks.",
+      "notes": "Gavan week 1 closes with an auditable checkpoint; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 8",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan week 2 autonomy start: week 2 autonomy material with less direct scaffolding and broader learner decisions.",
+      "notes": "Gavan autonomy increases while support stays present; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 9",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan two-turn dialogue: two-turn dialogue practice with setup, response, and follow-up material.",
+      "notes": "Gavan two-step interaction becomes visible; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 10",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan controlled variation: controlled variation material that changes context while preserving the same core skill.",
+      "notes": "Gavan precision practice keeps the learner anchored; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 11",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan prompted production: prompted production material with learner-generated answers and structured rescue prompts.",
+      "notes": "Gavan rescue copy prevents dead ends; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 12",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Gavan light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 13",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Gavan typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 14",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Gavan week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 15",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Gavan freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 16",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Gavan freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 17",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Gavan less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 18",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Gavan transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 19",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Gavan pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 20",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Gavan repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 21",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Gavan week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 22",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Gavan free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 23",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Gavan rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 24",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Gavan week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Gavan two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 25",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Gavan cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Gavan cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 26",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Gavan cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Gavan repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 27",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Gavan final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Gavan final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Gavan Day 28",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Gavan cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Gavan next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 1 generator-backed certified short-story content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet impuls_d001_generator_packet passed valid_non_live_dry_run; not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Impuls Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Impuls Day 2 generator-backed certified opinion content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet impuls_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/140 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Impuls Day 3",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls recall progression: third day recall progression with varied practice blocks and learner-facing prompts.",
+      "notes": "Impuls varied review shape prevents copy/paste sameness; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 4",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls recall review load: recall-heavy review material with phrase rebuilding, answer choice, and reflection coverage.",
+      "notes": "Impuls review pressure stays visible without claiming production readiness; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 5",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls scenario stress choice: light scenario stress test with choice paths and plan-specific consequence prompts.",
+      "notes": "Impuls stress remains gentle and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 6",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls repair accuracy practice: repair-focused accuracy work with correction prompts and retry-friendly review blocks.",
+      "notes": "Impuls recovery is explicit before the weekly check; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 7",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls weekly check: week 1 weekly check material with mixed review and progress confirmation blocks.",
+      "notes": "Impuls week 1 closes with an auditable checkpoint; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 8",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls week 2 autonomy start: week 2 autonomy material with less direct scaffolding and broader learner decisions.",
+      "notes": "Impuls autonomy increases while support stays present; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 9",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls two-turn dialogue: two-turn dialogue practice with setup, response, and follow-up material.",
+      "notes": "Impuls two-step interaction becomes visible; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 10",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls controlled variation: controlled variation material that changes context while preserving the same core skill.",
+      "notes": "Impuls precision practice keeps the learner anchored; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 11",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls prompted production: prompted production material with learner-generated answers and structured rescue prompts.",
+      "notes": "Impuls rescue copy prevents dead ends; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 12",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Impuls light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 13",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Impuls typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 14",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Impuls week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 15",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Impuls freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 16",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Impuls freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 17",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Impuls less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 18",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Impuls transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 19",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Impuls pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 20",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Impuls repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 21",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Impuls week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 22",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Impuls free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 23",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Impuls rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 24",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Impuls week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Impuls two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 25",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Impuls cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Impuls cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 26",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Impuls cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Impuls repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 27",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Impuls final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Impuls final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Impuls Day 28",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Impuls cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Impuls next cycle handoff is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 1",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 1 generator-backed certified listening-repair content: phrase lesson, missing word, natural choice, listen choose, listen build, pronunciation repeat, recall, and quiz material all exist.",
+      "notes": "Generated packet echo_d001_generator_packet passed valid_non_live_dry_run; not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Echo Day 2",
+      "status": "certified",
+      "quality": 96,
+      "whatExists": "Echo Day 2 generator-backed certified short-response content: phrase lesson, natural choice, missing word, recall, listen choose, listen build, pronunciation repeat, and quiz material all exist.",
+      "notes": "Generated packet echo_d002_generator_packet passed valid_non_live_dry_run; plan fill remains 28/84 and not production-ready until live audio/pronunciation evidence is approved."
+    },
+    {
+      "label": "Echo Day 3",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo recall progression: third day recall progression with varied practice blocks and learner-facing prompts.",
+      "notes": "Echo varied review shape prevents copy/paste sameness; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 4",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo recall review load: recall-heavy review material with phrase rebuilding, answer choice, and reflection coverage.",
+      "notes": "Echo review pressure stays visible without claiming production readiness; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 5",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo scenario stress choice: light scenario stress test with choice paths and plan-specific consequence prompts.",
+      "notes": "Echo stress remains gentle and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 6",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo repair accuracy practice: repair-focused accuracy work with correction prompts and retry-friendly review blocks.",
+      "notes": "Echo recovery is explicit before the weekly check; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 7",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo weekly check: week 1 weekly check material with mixed review and progress confirmation blocks.",
+      "notes": "Echo week 1 closes with an auditable checkpoint; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 8",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo week 2 autonomy start: week 2 autonomy material with less direct scaffolding and broader learner decisions.",
+      "notes": "Echo autonomy increases while support stays present; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 9",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo two-turn dialogue: two-turn dialogue practice with setup, response, and follow-up material.",
+      "notes": "Echo two-step interaction becomes visible; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 10",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo controlled variation: controlled variation material that changes context while preserving the same core skill.",
+      "notes": "Echo precision practice keeps the learner anchored; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 11",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo prompted production: prompted production material with learner-generated answers and structured rescue prompts.",
+      "notes": "Echo rescue copy prevents dead ends; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 12",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo mixed recall pressure: mixed recall material under light pressure with retrieval and short-production tasks.",
+      "notes": "Echo light pressure is bounded and reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 13",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo error-driven review: error-driven review material targeting likely mistakes and repair decisions.",
+      "notes": "Echo typical error patterns are surfaced; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 14",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo week 2 check: week 2 check material with consolidation and next-week readiness prompts.",
+      "notes": "Echo week 3 handoff is prepared; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 15",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Echo freer production starts carefully; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 16",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo week 3 micro-scenario: week 3 micro-scenario material with freer response choices and contextual practice.",
+      "notes": "Echo freer production is repeated with a different context; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 17",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo context choice: context choice material requiring the learner to pick and justify a usable scenario route.",
+      "notes": "Echo less scaffolding is intentional; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 18",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo context transfer: context transfer material moving phrases into a related situation with review prompts.",
+      "notes": "Echo transfer evidence is visible; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 19",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo week 3 stress: week 3 stress material with realistic pressure and guarded answer recovery.",
+      "notes": "Echo pressure is useful but not punitive; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 20",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo week 3 repair: week 3 repair material revisiting hard choices with clearer accuracy support.",
+      "notes": "Echo repair closes the pressure loop; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 21",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo week 3 check: week 3 check material with progress summary and readiness prompts for the next stage.",
+      "notes": "Echo week 4 transition is explicit; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 22",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo week 4 free answer: week 4 free answer material with short production and personal-plan context prompts.",
+      "notes": "Echo free answer work is still bounded; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 23",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo week 4 rephrase: week 4 rephrase material asking for alternate wording and meaning-preserving choices.",
+      "notes": "Echo rephrase skill grows without production claims; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 24",
+      "status": "chat draft",
+      "quality": 90,
+      "whatExists": "Echo week 4 branching scenario: week 4 branching scenario material with two valid paths and response tradeoffs.",
+      "notes": "Echo two valid paths are explicitly represented; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 25",
+      "status": "chat draft",
+      "quality": 91,
+      "whatExists": "Echo cycle stress: cycle stress material combining recall, scenario pressure, and repair prompts.",
+      "notes": "Echo cycle close begins with controlled pressure; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 26",
+      "status": "chat draft",
+      "quality": 92,
+      "whatExists": "Echo cycle repair: cycle repair material resolving likely misses and reinforcing accurate phrase use.",
+      "notes": "Echo repair protects the cycle close; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 27",
+      "status": "chat draft",
+      "quality": 93,
+      "whatExists": "Echo final cycle check: final cycle check material with mixed review and readiness summary blocks.",
+      "notes": "Echo final cycle evidence is reviewable; non-live chat draft only."
+    },
+    {
+      "label": "Echo Day 28",
+      "status": "chat draft",
+      "quality": 94,
+      "whatExists": "Echo cycle handoff: cycle handoff material summarizing next cycle inputs and learner continuation prompts.",
+      "notes": "Echo next cycle handoff is explicit; non-live chat draft only."
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import {
   GAVAN_WEEK1_LIVE_ROUTE_IMPLEMENTATION_PREFLIGHT_PATH,
   writeGavanWeek1LiveRouteImplementationPreflight,
 } from '../tools/personal_plan_gavan_week1_live_route_implementation_preflight';
+import { ensureGavanWeek1RoutePrerequisiteArtifacts } from '../tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh';
 
 const GENERATED_AT = '2026-06-03T10:55:00.000Z';
 const BROKEN_ENCODING_RE = /[\u00d0\u00c2\u00e2\ufffd]/;
@@ -24,6 +25,10 @@ function approvalGuard(): GavanWeek1RouteApprovalGuard {
 }
 
 describe('Gavan week 1 live route implementation preflight', () => {
+  beforeAll(() => {
+    ensureGavanWeek1RoutePrerequisiteArtifacts({ generatedAt: GENERATED_AT });
+  });
+
   it('builds a blocked live-route preflight from an unsigned approval guard', () => {
     const result = buildGavanWeek1LiveRouteImplementationPreflight(approvalGuard(), {
       generatedAt: GENERATED_AT,

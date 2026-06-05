@@ -288,7 +288,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived, 
               style={[
                 styles.card,
                 {
-                  backgroundColor: 'transparent',
+                  backgroundColor: rewardModalPanelColors(themeMode, t)[1],
                   borderColor: rewardModalPanelBorder(themeMode, t),
                   borderWidth: 1,
                   shadowColor: modalAccent,

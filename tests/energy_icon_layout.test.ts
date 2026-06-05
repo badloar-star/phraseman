@@ -41,4 +41,18 @@ describe('adaptive energy icon layout', () => {
     expect(layout.iconSize).toBeGreaterThanOrEqual(18);
     expect(layout.width).toBeLessThanOrEqual(112);
   });
+
+  it('treats min icon size as preferred when many slots would overflow', () => {
+    const layout = getAdaptiveEnergyIconLayout({
+      slotCount: 20,
+      iconSize: 38,
+      maxWidth: 112,
+      minIconSize: 22,
+    });
+    const renderedWidth = layout.iconSize + 19 * (layout.iconSize + layout.marginLeft);
+
+    expect(layout.iconSize).toBeLessThan(22);
+    expect(layout.width).toBeLessThanOrEqual(112);
+    expect(renderedWidth).toBeLessThanOrEqual(112);
+  });
 });

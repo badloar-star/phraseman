@@ -163,7 +163,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
               end={{ x: 1, y: 1 }}
               style={[styles.frameOuter, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteFrameOuter]}
             >
-              <View style={[styles.innerCard, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteInnerCard, { backgroundColor: 'transparent', borderColor: rewardModalPanelBorder(themeMode, t) }]}>
+              <View style={[styles.innerCard, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteInnerCard, { backgroundColor: rewardModalPanelColors(themeMode, t)[1], borderColor: rewardModalPanelBorder(themeMode, t) }]}>
                 <LinearGradient
                   colors={rewardModalPanelColors(themeMode, t)}
                   start={{ x: 0, y: 0 }}

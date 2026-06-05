@@ -353,7 +353,7 @@ export default function AchievementToast() {
                 style={[
                   s.modalCard,
                   {
-                    backgroundColor: 'transparent',
+                    backgroundColor: rewardModalPanelColors(themeMode, t)[1],
                     borderColor: rewardModalPanelBorder(themeMode, t, achievementBorderColor),
                     shadowColor: color,
                   },

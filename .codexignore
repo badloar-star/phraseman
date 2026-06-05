@@ -1,0 +1,59 @@
+# Heavy dependency and build output
+node_modules/
+dist/
+build/
+web-build/
+.next/
+.turbo/
+.cache/
+coverage/
+
+# Native build state
+android/.gradle/
+android/app/build/
+android/app/.cxx/
+ios/Pods/
+
+# Runtime, reports, and temporary agent output
+.codex-tmp/
+.artifacts/
+.logs/
+tmp/
+maestro-results/
+qa-artifacts/
+docs/reports/
+
+# Generated media and archives
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.zip
+*.7z
+*.tar
+*.gz
+
+# Local logs and large package-manager metadata
+*.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Local tool/plugin/session state
+.git/
+.claude*/
+.codex*/
+.superpowers/
+.agents/
+graphify-out/
+
+# Project-specific heavy pipelines
+lingman-*/
+subscription-recovery/
+admin/avatars/
+assets/images/

@@ -19,41 +19,48 @@ describe('live Personal Plans vertical slice', () => {
     expect(day1.status).toBe('certified');
     expect(day1.title).toBe('Короткие ответы');
     expect(day1.tasks.map((task) => task.kind)).toEqual([
-      'linked_lesson_slice',
       'plan_phrase_lesson',
       'plan_missing_word',
+      'plan_choose_natural_phrase',
+      'plan_listen_choose',
+      'plan_listen_build',
+      'plan_pronunciation_repeat',
+      'plan_phrase_recall',
       'plan_quiz',
     ]);
-    expect(day1.tasks[0].destination).toEqual(expect.objectContaining({
-      type: 'lesson',
-      lessonId: 1,
-      requiredPhrases: 5,
-      requiredPhraseIds: [
-        'lesson1_phrase_1',
-        'lesson1_phrase_7',
-        'lesson1_phrase_8',
-        'lesson1_phrase_9',
-        'lesson1_phrase_10',
-      ],
-    }));
+    expect(day1.tasks.some((task) => task.destination.type === 'lesson')).toBe(false);
   });
 
-  it('respects the four onboarding time choices with growing load', () => {
-    expect(tasksForMinutes(day1, 5).map((task) => task.kind)).toEqual(['linked_lesson_slice']);
-    expect(tasksForMinutes(day1, 10).map((task) => task.kind)).toEqual([
-      'linked_lesson_slice',
-      'plan_phrase_lesson',
-    ]);
-    expect(tasksForMinutes(day1, 15).map((task) => task.kind)).toEqual([
-      'linked_lesson_slice',
+  it('keeps the full plan task pool independent while selected daily time controls the initial visible slice', () => {
+    const expectedKinds = [
       'plan_phrase_lesson',
       'plan_missing_word',
-    ]);
-    expect(tasksForMinutes(day1, 20).map((task) => task.kind)).toEqual([
-      'linked_lesson_slice',
-      'plan_phrase_lesson',
-      'plan_missing_word',
+      'plan_choose_natural_phrase',
+      'plan_listen_choose',
+      'plan_listen_build',
+      'plan_pronunciation_repeat',
+      'plan_phrase_recall',
       'plan_quiz',
+    ];
+
+    expect(day1.tasks.map((task) => task.kind)).toEqual(expectedKinds);
+    expect(tasksForMinutes(day1, 5).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 3));
+    expect(tasksForMinutes(day1, 10).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 4));
+    expect(tasksForMinutes(day1, 15).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 5));
+    expect(tasksForMinutes(day1, 20).map((task) => task.kind)).toEqual(expectedKinds.slice(0, 6));
+  });
+
+  it('exposes every Day 1 live exercise destination as a visible task, not hidden scaffolding', () => {
+    const exerciseDestinations = day1.tasks
+      .filter((task) => task.destination.type === 'plan_exercise')
+      .map((task) => task.destination.type === 'plan_exercise' ? task.destination.exerciseType : null);
+
+    expect(exerciseDestinations).toEqual([
+      'plan_missing_word',
+      'plan_choose_natural_phrase',
+      'plan_listen_choose',
+      'plan_listen_build',
+      'plan_pronunciation_repeat',
     ]);
   });
 
@@ -103,7 +110,9 @@ describe('live Personal Plans vertical slice', () => {
     expect(passport.issues).toEqual([]);
     expect(passport.ready).toBe(true);
     expect(passport.coverage.quizQuestionSources).toHaveLength(10);
-    expect(passport.load.byMinutes[5].taskCount).toBe(1);
-    expect(passport.load.byMinutes[20].taskCount).toBe(4);
+    expect(day1.tasks).toHaveLength(8);
+    expect(passport.load.byMinutes[5].taskCount).toBe(3);
+    expect(passport.load.byMinutes[15].taskCount).toBe(5);
+    expect(passport.load.byMinutes[20].taskCount).toBe(6);
   });
 });

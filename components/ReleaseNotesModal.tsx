@@ -17,6 +17,8 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
+import CompassDepthSurface from './CompassDepthSurface';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 const TEXT = {
   title: {
@@ -122,9 +124,10 @@ type Props = {
 };
 
 export default function ReleaseNotesModal({ visible, onClose }: Props) {
-  const { f } = useTheme();
+  const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
+  const isCompassTheme = themeMode === 'compass';
   const cardAnim = useRef(new Animated.Value(0)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
   const shineAnim = useRef(new Animated.Value(0)).current;
@@ -309,13 +312,14 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
             pl: 'Zamknij',
           })}
         />
-        <Animated.View style={[styles.card, cardAnimatedStyle]}>
+        <Animated.View style={[styles.card, isCompassTheme && compassShadow(3), isCompassTheme && { borderRadius: 14, borderColor: COMPASS_RICH.hairlineStrong }, cardAnimatedStyle]}>
           <LinearGradient
-            colors={['#111722', '#171A24', '#241F13']}
+            colors={isCompassTheme ? ['#2C2B2C', '#181819', '#050506'] : ['#111722', '#171A24', '#241F13']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={StyleSheet.absoluteFill}
           />
+          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]} />
 
           <ScrollView
@@ -324,15 +328,17 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
             showsVerticalScrollIndicator
             bounces
           >
-          <View style={styles.hero}>
+          <View style={[styles.hero, isCompassTheme && { borderRadius: 10, borderColor: COMPASS_RICH.hairline, backgroundColor: COMPASS_RICH.charcoalRaised, overflow: 'hidden' }]}>
+            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
             <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>
-              <LinearGradient colors={['#FFF1B8', '#F7C75F', '#D68A2E']} style={styles.iconBadge}>
-                <Ionicons name="sparkles" size={25} color="#172033" />
+              <LinearGradient colors={isCompassTheme ? ['#FFE6B5', '#F4B978', '#B4774E'] : ['#FFF1B8', '#F7C75F', '#D68A2E']} style={[styles.iconBadge, isCompassTheme && { borderRadius: 9 }]}>
+                <Ionicons name="sparkles" size={25} color={isCompassTheme ? COMPASS_RICH.textDark : '#172033'} />
               </LinearGradient>
             </Animated.View>
-            <View style={styles.releasePill}>
-              <Ionicons name="rocket-outline" size={14} color="#F9D77A" />
-              <Text style={[styles.releasePillText, { fontSize: captionSize }]}>
+            <View style={[styles.releasePill, isCompassTheme && { borderRadius: 8, borderColor: COMPASS_RICH.hairlineQuiet, backgroundColor: COMPASS_RICH.charcoalWarm, overflow: 'hidden' }]}>
+              {isCompassTheme && <CompassDepthSurface radius={8} quiet />}
+              <Ionicons name="rocket-outline" size={14} color={isCompassTheme ? COMPASS_RICH.champagne : '#F9D77A'} />
+              <Text style={[styles.releasePillText, { fontSize: captionSize, color: isCompassTheme ? COMPASS_RICH.champagne : '#F9D77A' }]}>
                 {versionLabel}
               </Text>
             </View>
@@ -342,8 +348,9 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
 
           <View style={styles.chipsWrap}>
             {chips.map((chip, index) => (
-              <View key={chip} style={styles.chip}>
-                <View style={styles.chipIcon}>
+              <View key={chip} style={[styles.chip, isCompassTheme && { borderRadius: 9, borderColor: COMPASS_RICH.hairlineQuiet, backgroundColor: COMPASS_RICH.charcoalRaised, overflow: 'hidden' }]}>
+                {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
+                <View style={[styles.chipIcon, isCompassTheme && { borderRadius: 7, backgroundColor: COMPASS_RICH.champagne }]}>
                   <Ionicons
                     name={
                       index === 0
@@ -355,7 +362,7 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
                             : 'analytics-outline'
                     }
                     size={13}
-                    color="#1B2330"
+                    color={isCompassTheme ? COMPASS_RICH.textDark : '#1B2330'}
                   />
                 </View>
                 <Text style={[styles.chipText, { fontSize: captionSize }]} numberOfLines={2}>
@@ -368,9 +375,10 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
             {paragraphs.map((paragraph, index) => {
               const featureBlock = index === 1;
               return featureBlock ? (
-                <View key={paragraph} style={styles.premiumBlock}>
-                  <View style={styles.premiumBlockIcon}>
-                    <Ionicons name="volume-high-outline" size={15} color="#1B2330" />
+                <View key={paragraph} style={[styles.premiumBlock, isCompassTheme && { borderRadius: 10, borderColor: COMPASS_RICH.hairlineStrong, backgroundColor: COMPASS_RICH.washStrong, overflow: 'hidden' }]}>
+                  {isCompassTheme && <CompassDepthSurface radius={10} selected />}
+                  <View style={[styles.premiumBlockIcon, isCompassTheme && { borderRadius: 7, backgroundColor: COMPASS_RICH.champagne }]}>
+                    <Ionicons name="volume-high-outline" size={15} color={isCompassTheme ? COMPASS_RICH.textDark : '#1B2330'} />
                   </View>
                   <Text style={[styles.premiumBlockText, { fontSize: bodySize }]}>{paragraph}</Text>
                 </View>
@@ -389,7 +397,8 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
               { opacity: pressed ? 0.9 : 1 },
             ]}
           >
-            <LinearGradient colors={['#FFE08A', '#F7BE4F', '#E99D35']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.btnGradient}>
+            <LinearGradient colors={isCompassTheme ? ['#FFE6B5', '#F4B978', '#B4774E'] : ['#FFE08A', '#F7BE4F', '#E99D35']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[styles.btnGradient, isCompassTheme && { borderRadius: 9, overflow: 'hidden' }]}>
+              {isCompassTheme && <CompassDepthSurface radius={9} cream />}
               <Text style={[styles.btnText, { fontSize: buttonSize }]}>
                 {triLang(lang, {
                   ru: TEXT.cta.ru,

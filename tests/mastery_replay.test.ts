@@ -5,8 +5,6 @@ import {
   isLessonFinishedOnce,
   markLessonFinishedOnce,
   executeReplay,
-  MASTERY_REPLAY_BASE_SHARDS,
-  MASTERY_REPLAY_PRICE_STEP_SHARDS,
   computeMasteryReplayPriceFromCount,
 } from '../app/mastery';
 import { emitAppEvent } from '../app/events';
@@ -61,8 +59,6 @@ describe('mastery — finished_once flag', () => {
   });
 
   it('keeps French finished/replay flags outside legacy English mastery keys', async () => {
-    mockStorage.shards_balance = '500';
-
     await expect(markLessonFinishedOnce(3, 'fr')).resolves.toEqual({ firstTime: true });
     expect(mockStorage[masteryFinishedOnceKey(3, 'fr')]).toBe('1');
     expect(mockStorage.lesson_finished_once_v1_3).toBeUndefined();
@@ -77,7 +73,7 @@ describe('mastery — finished_once flag', () => {
     expect(mockStorage.lesson_replay_count_v1_3).toBeUndefined();
     expect(emitAppEvent).toHaveBeenCalledWith('lesson_replay_started', {
       lessonId: 3,
-      spent: MASTERY_REPLAY_BASE_SHARDS,
+      spent: 0,
       studyTarget: 'fr',
     });
   });
@@ -91,7 +87,7 @@ describe('mastery — executeReplay', () => {
     if (!r.ok) expect(r.reason).toBe('not_finished_yet');
   });
 
-  it('non-premium with sufficient balance: spends replay price, keeps lesson progress, returns ok', async () => {
+  it('non-premium replay is free, keeps lesson progress, returns ok', async () => {
     const savedProg = JSON.stringify(['correct', 'wrong', 'correct']);
     mockStorage.shards_balance = '500';
     mockStorage.lesson_finished_once_v1_3 = '1';
@@ -102,8 +98,8 @@ describe('mastery — executeReplay', () => {
 
     const r = await executeReplay(3, false);
     expect(r.ok).toBe(true);
-    if (r.ok) expect(r.spent).toBe(MASTERY_REPLAY_BASE_SHARDS);
-    expect(mockStorage.shards_balance).toBe(String(500 - MASTERY_REPLAY_BASE_SHARDS));
+    if (r.ok) expect(r.spent).toBe(0);
+    expect(mockStorage.shards_balance).toBe('500');
     expect(mockStorage.lesson3_progress).toBe(savedProg);
     expect(mockStorage.lesson3_cellIndex).toBe('12');
     expect(mockStorage.lesson3_phraseOrder).toBe(JSON.stringify([1, 0, 2]));
@@ -111,30 +107,30 @@ describe('mastery — executeReplay', () => {
     expect(mockStorage.lesson_replay_count_v1_3).toBe('1');
   });
 
-  it('second non-premium replay uses base + step and increments count', async () => {
+  it('second non-premium replay stays free and increments count', async () => {
     mockStorage.shards_balance = '500';
     mockStorage.lesson_finished_once_v1_3 = '1';
     mockStorage.lesson_replay_count_v1_3 = '1';
     mockStorage.lesson3_progress = JSON.stringify(['correct']);
     const expected = computeMasteryReplayPriceFromCount(1);
-    expect(expected).toBe(MASTERY_REPLAY_BASE_SHARDS + MASTERY_REPLAY_PRICE_STEP_SHARDS);
+    expect(expected).toBe(0);
     const r = await executeReplay(3, false);
     expect(r.ok).toBe(true);
     if (r.ok) expect(r.spent).toBe(expected);
-    expect(mockStorage.shards_balance).toBe(String(500 - expected));
+    expect(mockStorage.shards_balance).toBe('500');
     expect(mockStorage.lesson_replay_count_v1_3).toBe('2');
   });
 
-  it('non-premium with insufficient balance: returns insufficient_shards, no progress reset', async () => {
+  it('non-premium replay works even when shard balance is empty', async () => {
     mockStorage.shards_balance = '3';
     mockStorage.lesson_finished_once_v1_3 = '1';
     mockStorage.lesson3_progress = JSON.stringify(['correct']);
     const r = await executeReplay(3, false);
-    expect(r.ok).toBe(false);
-    if (!r.ok) expect(r.reason).toBe('insufficient_shards');
+    expect(r.ok).toBe(true);
+    if (r.ok) expect(r.spent).toBe(0);
     expect(mockStorage.shards_balance).toBe('3');
     expect(mockStorage.lesson3_progress).toBe(JSON.stringify(['correct']));
-    expect(mockStorage.lesson_replay_count_v1_3).toBeUndefined();
+    expect(mockStorage.lesson_replay_count_v1_3).toBe('1');
   });
 
   it('premium: free replay (no spend), keeps lesson progress, returns ok with spent=0', async () => {
@@ -163,7 +159,20 @@ describe('mastery — executeReplay', () => {
 
     expect(eventsSource).toContain('lesson_finished_once: { lessonId: number; studyTarget?: string }');
     expect(eventsSource).toContain('lesson_replay_started: { lessonId: number; spent: number; studyTarget?: string }');
-    expect(lessonMenuSource).toContain("if ((payload.studyTarget ?? 'en') !== storageStudyTarget(studyTarget)) return");
     expect(lessonMenuSource).toContain("if ((payload?.studyTarget ?? 'en') !== storageStudyTarget(studyTarget)) return");
+  });
+
+  it('keeps lesson replay out of shard paywalls and confirmation modals', () => {
+    const masterySource = fs.readFileSync(path.join(ROOT, 'app', 'mastery.ts'), 'utf8');
+    const lessonMenuSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
+    const lessonCompleteSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_complete.tsx'), 'utf8');
+
+    expect(masterySource).not.toContain("spendShards(price, 'lesson_replay')");
+    expect(masterySource).toContain('spent: 0');
+    expect(lessonMenuSource).not.toContain('MasteryReplayModal');
+    expect(lessonMenuSource).not.toContain('cornerShardPrice');
+    expect(lessonMenuSource).not.toContain('getMasteryReplayPriceShards');
+    expect(lessonCompleteSource).not.toContain('MasteryReplayModal');
+    expect(lessonCompleteSource).not.toContain('getMasteryReplayPriceShards');
   });
 });

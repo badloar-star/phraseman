@@ -1,5 +1,5 @@
 import type { LessonPhrase, LessonTeachingNote, LessonWord } from './lesson_data_types';
-import type { PersonalPlanId } from './personal_plan_catalog';
+import { getPlanById, type PersonalPlanId } from './personal_plan_catalog';
 import {
   buildGavanWeek1CanonicalPlan,
   type GavanCanonicalDay,
@@ -120,6 +120,146 @@ export const PERSONAL_PLAN_PHRASE_LESSONS: Record<string, PersonalPlanPhraseLess
 };
 
 const GAVAN_WEEK1_CANONICAL_MEDIA_LESSON_RE = /^gavan_week1_day([1-7])_canonical_media$/;
+const GENERATED_PLAN_PHRASE_LESSON_RE = /^(voyazh|mitap|gavan|impuls|echo)_d(\d{3})_content_unit$/;
+
+type GeneratedPhraseTemplate = {
+  english: string;
+  russian: string;
+};
+
+const GENERATED_PLAN_PHRASE_TEMPLATES: Record<PersonalPlanId, GeneratedPhraseTemplate[]> = {
+  voyazh: [
+    { english: 'I need some help.', russian: 'Мне нужна помощь.' },
+    { english: 'Where is the entrance?', russian: 'Где вход?' },
+    { english: 'Can you show me?', russian: 'Можете показать?' },
+    { english: 'I have a booking.', russian: 'У меня есть бронь.' },
+    { english: 'How much is it?', russian: 'Сколько это стоит?' },
+    { english: 'I need a receipt.', russian: 'Мне нужен чек.' },
+  ],
+  mitap: [
+    { english: 'The next step is clear.', russian: 'Следующий шаг понятен.' },
+    { english: 'I will send the summary.', russian: 'Я отправлю краткое резюме.' },
+    { english: 'We need one owner.', russian: 'Нам нужен один ответственный.' },
+    { english: 'Can we confirm the deadline?', russian: 'Можем подтвердить срок?' },
+    { english: 'I will follow up today.', russian: 'Я вернусь с ответом сегодня.' },
+    { english: 'Let us keep this short.', russian: 'Давайте коротко.' },
+  ],
+  gavan: [
+    { english: 'I am here.', russian: 'Я здесь.' },
+    { english: 'It is not clear.', russian: 'Пока непонятно.' },
+    { english: 'I need this form.', russian: 'Мне нужна эта форма.' },
+    { english: 'Can you check it?', russian: 'Можете проверить?' },
+    { english: 'The address is correct.', russian: 'Адрес верный.' },
+    { english: 'I will bring it tomorrow.', russian: 'Я принесу это завтра.' },
+  ],
+  impuls: [
+    { english: 'I think it works.', russian: 'Думаю, это работает.' },
+    { english: 'I need a moment.', russian: 'Мне нужна минутка.' },
+    { english: 'That makes sense.', russian: 'Это логично.' },
+    { english: 'Let me say it again.', russian: 'Скажу еще раз.' },
+    { english: 'Because it is faster.', russian: 'Потому что так быстрее.' },
+    { english: 'I can explain briefly.', russian: 'Я могу коротко объяснить.' },
+  ],
+  echo: [
+    { english: 'I heard the main word.', russian: 'Я услышал главное слово.' },
+    { english: 'Can you repeat that?', russian: 'Можете повторить?' },
+    { english: 'I missed the time.', russian: 'Я пропустил время.' },
+    { english: 'The place is clear.', russian: 'Место понятно.' },
+    { english: 'Please say it slower.', russian: 'Скажите медленнее, пожалуйста.' },
+    { english: 'I can answer now.', russian: 'Я могу ответить сейчас.' },
+  ],
+};
+
+const GENERATED_DAY1_PHRASE_TEMPLATES: Partial<Record<string, GeneratedPhraseTemplate[]>> = {
+  mitap_d001_content_unit: [
+    { english: 'The next steps are clear.', russian: 'Следующие шаги понятны.' },
+    { english: 'I will send the next steps.', russian: 'Я отправлю следующие шаги.' },
+    { english: 'We need one owner.', russian: 'Нам нужен один ответственный.' },
+    { english: 'The deadline is today.', russian: 'Срок сегодня.' },
+    { english: 'I will follow up after the call.', russian: 'Я вернусь с ответом после звонка.' },
+    { english: 'Let us keep the summary short.', russian: 'Давайте оставим резюме коротким.' },
+  ],
+  mitap_d002_content_unit: [
+    { english: 'My update is short.', russian: 'Мой апдейт короткий.' },
+    { english: 'The first task is done.', russian: 'Первая задача готова.' },
+    { english: 'I am working on the next part.', russian: 'Я работаю над следующей частью.' },
+    { english: 'I have one small blocker.', russian: 'У меня есть один небольшой блокер.' },
+    { english: 'I need ten more minutes.', russian: 'Мне нужно еще десять минут.' },
+    { english: 'I will share the result today.', russian: 'Я поделюсь результатом сегодня.' },
+  ],
+  voyazh_d001_content_unit: [
+    { english: 'I need help now.', russian: 'Мне нужна помощь сейчас.' },
+    { english: 'Can you help me, please?', russian: 'Можете мне помочь, пожалуйста?' },
+    { english: 'I lost my bag.', russian: 'Я потерял сумку.' },
+    { english: 'I need the information desk.', russian: 'Мне нужна информационная стойка.' },
+    { english: 'Please call airport staff.', russian: 'Пожалуйста, позовите сотрудников аэропорта.' },
+    { english: 'I can wait here.', russian: 'Я могу подождать здесь.' },
+  ],
+  voyazh_d002_content_unit: [
+    { english: 'Here is my passport.', russian: 'Вот мой паспорт.' },
+    { english: 'I am here for vacation.', russian: 'Я здесь в отпуске.' },
+    { english: 'I have a return ticket.', russian: 'У меня есть обратный билет.' },
+    { english: 'I will stay for one week.', russian: 'Я останусь на одну неделю.' },
+    { english: 'This is my hotel booking.', russian: 'Это моя бронь отеля.' },
+    { english: 'Can I go now?', russian: 'Могу я идти сейчас?' },
+  ],
+  voyazh_d003_content_unit: [
+    { english: 'I need to check this bag.', russian: 'Мне нужно сдать эту сумку.' },
+    { english: 'Here is my boarding pass.', russian: 'Вот мой посадочный талон.' },
+    { english: 'The bag is not heavy.', russian: 'Сумка не тяжелая.' },
+    { english: 'There is one fragile item.', russian: 'Там есть одна хрупкая вещь.' },
+    { english: 'Can I get a baggage receipt?', russian: 'Могу я получить багажную квитанцию?' },
+    { english: 'Which gate should I use?', russian: 'Каким выходом мне пользоваться?' },
+  ],
+  gavan_d001_content_unit: [
+    { english: "I'm here.", russian: 'Я здесь.' },
+    { english: "I'm okay.", russian: 'Я в порядке.' },
+    { english: "It's okay.", russian: 'Все нормально.' },
+    { english: "It's not clear.", russian: 'Пока непонятно.' },
+    { english: "You're right.", russian: 'Вы правы.' },
+    { english: "I'm ready.", russian: 'Я готов.' },
+  ],
+  gavan_d002_content_unit: [
+    { english: 'This is my full address.', russian: 'Это мой полный адрес.' },
+    { english: 'The postcode is correct.', russian: 'Почтовый индекс верный.' },
+    { english: 'My flat number is five.', russian: 'Номер моей квартиры пять.' },
+    { english: 'Can you spell the street name?', russian: 'Можете произнести название улицы по буквам?' },
+    { english: 'The address is on this form.', russian: 'Адрес указан в этой форме.' },
+    { english: 'I can send proof of address.', russian: 'Я могу отправить подтверждение адреса.' },
+  ],
+  impuls_d001_content_unit: [
+    { english: 'I can tell a short story.', russian: 'Я могу рассказать короткую историю.' },
+    { english: 'First, I missed the bus.', russian: 'Сначала я пропустил автобус.' },
+    { english: 'Then I called my friend.', russian: 'Потом я позвонил другу.' },
+    { english: 'After that, I found another way.', russian: 'После этого я нашел другой путь.' },
+    { english: 'The story ends well.', russian: 'История заканчивается хорошо.' },
+    { english: 'That is why I was late.', russian: 'Вот почему я опоздал.' },
+  ],
+  impuls_d002_content_unit: [
+    { english: 'I think this is useful.', russian: 'Я думаю, это полезно.' },
+    { english: 'My opinion is simple.', russian: 'Мое мнение простое.' },
+    { english: 'I like this idea.', russian: 'Мне нравится эта идея.' },
+    { english: 'I do not agree yet.', russian: 'Я пока не согласен.' },
+    { english: 'The reason is clear.', russian: 'Причина понятна.' },
+    { english: 'I can explain it briefly.', russian: 'Я могу коротко это объяснить.' },
+  ],
+  echo_d001_content_unit: [
+    { english: 'Can you repeat that?', russian: 'Можете повторить это?' },
+    { english: 'Please repeat the last word.', russian: 'Пожалуйста, повторите последнее слово.' },
+    { english: 'I heard the time.', russian: 'Я услышал время.' },
+    { english: 'I missed the place.', russian: 'Я пропустил место.' },
+    { english: 'Did you say today?', russian: 'Вы сказали сегодня?' },
+    { english: 'Now I can answer.', russian: 'Теперь я могу ответить.' },
+  ],
+  echo_d002_content_unit: [
+    { english: 'Yes, I understand.', russian: 'Да, я понимаю.' },
+    { english: 'No, not yet.', russian: 'Нет, пока нет.' },
+    { english: 'I can answer now.', russian: 'Я могу ответить сейчас.' },
+    { english: 'Please say it again.', russian: 'Пожалуйста, скажите это еще раз.' },
+    { english: 'The answer is short.', russian: 'Ответ короткий.' },
+    { english: 'I need one more second.', russian: 'Мне нужна еще одна секунда.' },
+  ],
+};
 
 function compactUnique(values: string[]): string[] {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))];
@@ -186,6 +326,69 @@ function canonicalWordsForPhrase(day: GavanCanonicalDay, phrase: GavanCanonicalP
     category: canonicalWordCategory(phrase, word),
     ...(index === words.length - 1 ? { teachingNote: note } : {}),
   }));
+}
+
+export function isGeneratedPersonalPlanPhraseLessonId(id: string | undefined): boolean {
+  return Boolean(id && GENERATED_PLAN_PHRASE_LESSON_RE.test(id));
+}
+
+export function getGeneratedPersonalPlanPhraseLessonContentUnitIds(
+  lessonId: string,
+  count = 6,
+): string[] {
+  if (!isGeneratedPersonalPlanPhraseLessonId(lessonId)) return [];
+  return Array.from({ length: Math.max(0, count) }, (_, index) => `${lessonId}_phrase_${index + 1}`);
+}
+
+function generatedWordsForPhrase(phrase: GeneratedPhraseTemplate, noteId: string): LessonWord[] {
+  const targetWords = phrase.english
+    .replace(/[.!?]+$/g, '')
+    .split(/\s+/)
+    .map((word) => word.trim())
+    .filter(Boolean);
+  const fallbackDistractors = ['now', 'today', 'please', 'clear', 'short', 'next', 'again', 'here'];
+  const teachingNote = note(
+    noteId,
+    'Phrase meaning',
+    `${phrase.english} is a short practical phrase. Focus on the whole message first, then the separate words.`,
+    'First match the whole situation. Then rebuild the phrase slowly and keep the answer short.',
+  );
+
+  return targetWords.map((word, index) => ({
+    text: word,
+    correct: word,
+    distractors: compactUnique([...targetWords, ...fallbackDistractors].filter((item) => item !== word)).slice(0, 5),
+    category: index === 0 ? 'grammar' : 'phrase',
+    ...(index === targetWords.length - 1 ? { teachingNote } : {}),
+  }));
+}
+
+function buildGeneratedPlanPhraseLesson(id: string): PersonalPlanPhraseLesson | null {
+  const match = GENERATED_PLAN_PHRASE_LESSON_RE.exec(id);
+  if (!match) return null;
+
+  const planId = match[1] as PersonalPlanId;
+  const dayIndex = Number(match[2]);
+  const plan = getPlanById(planId);
+  const day = plan.days.find((item) => item.dayIndex === dayIndex);
+  const templates = GENERATED_DAY1_PHRASE_TEMPLATES[id] ?? GENERATED_PLAN_PHRASE_TEMPLATES[planId];
+
+  return {
+    id,
+    planId,
+    title: day?.title ?? `Personal plan day ${dayIndex}`,
+    subtitle: day?.phraseGoal ?? 'Personal plan phrase practice.',
+    afterLessonId: 1,
+    rationale: day?.theory ?? 'This day builds short phrases for the selected real-life scenario.',
+    phrases: templates.map((template, index) => ({
+      id: `${id}_phrase_${index + 1}`,
+      english: template.english,
+      russian: template.russian,
+      ukrainian: template.russian,
+      spanish: template.russian,
+      words: generatedWordsForPhrase(template, `${id}_phrase_${index + 1}_note`),
+    })),
+  };
 }
 
 function buildGavanCanonicalMediaPhraseLesson(day: GavanCanonicalDay): PersonalPlanPhraseLesson {
@@ -255,5 +458,7 @@ export function personalizePlanPhraseLesson(
 export function getPersonalPlanPhraseLesson(id: string | string[] | undefined): PersonalPlanPhraseLesson | null {
   const lessonId = Array.isArray(id) ? id[0] : id;
   if (!lessonId) return null;
-  return PERSONAL_PLAN_PHRASE_LESSONS[lessonId] ?? getGavanCanonicalMediaPhraseLesson(lessonId);
+  return PERSONAL_PLAN_PHRASE_LESSONS[lessonId]
+    ?? getGavanCanonicalMediaPhraseLesson(lessonId)
+    ?? buildGeneratedPlanPhraseLesson(lessonId);
 }

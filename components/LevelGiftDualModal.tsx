@@ -110,6 +110,26 @@ const MINI_REWARD_STAGE_SIZE = 116;
 const MINI_REWARD_ICON_SIZE = 94;
 const DETAIL_REWARD_ICON_SIZE = 58;
 
+const dualGiftModalPanelBackground = (themeMode: ThemeMode, t: Theme): string => {
+  switch (themeMode) {
+    case 'minimalLight':
+      return '#FFFDF6';
+    case 'gold':
+      return '#140E06';
+    case 'neon':
+      return '#050A06';
+    case 'coral':
+      return '#1E0C10';
+    case 'compass':
+      return '#111318';
+    case 'minimalDark':
+      return '#070B11';
+    case 'dark':
+    default:
+      return t.bgCard || '#07100B';
+  }
+};
+
 const isCosmeticGiftId = (id?: string): boolean =>
   id === 'cosmetic_avatar_common' ||
   id === 'premium_cosmetic_avatar' ||
@@ -500,6 +520,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
   const revealY = fadeReveal.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
   const ctaShineX = ctaShine.interpolate({ inputRange: [0, 1], outputRange: [-180, 220] });
   const modalAccent = rewardModalAccentColor(themeMode, t);
+  const modalPanelBackground = dualGiftModalPanelBackground(themeMode, t);
   const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
   const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
   const canCloseWithIcon = !opening && (opened.size === 0 || opened.size === 2);
@@ -519,7 +540,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
     <Modal transparent visible animationType="fade" onRequestClose={onRequestCloseModal}>
       <View style={{ flex: 1, backgroundColor: screenDim, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
         <Animated.View testID="level-gift-dual-modal" style={{
-          backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'transparent' : t.bgCard,
+          backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? modalPanelBackground : t.bgCard,
           borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 30 : 28,
           padding: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 22 : 24,
           width: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 334 : 320,

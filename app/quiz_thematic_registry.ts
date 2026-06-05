@@ -50,6 +50,7 @@ const kitchenCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-compass-premium.webp'),
 };
 
 const kitchenLogos: ThemeAssetMap = {
@@ -61,6 +62,7 @@ const kitchenLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-compass-premium.webp'),
 };
 
 const homeCardBackgrounds: ThemeAssetMap = {
@@ -72,6 +74,7 @@ const homeCardBackgrounds: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-compass-premium.webp'),
 };
 
 const homeLogos: ThemeAssetMap = {
@@ -83,6 +86,7 @@ const homeLogos: ThemeAssetMap = {
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-coral.webp'),
   minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-dark.webp'),
+  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-compass-premium.webp'),
 };
 
 const KITCHEN_AND_COOKING_CATEGORY: ThematicQuizCategory = {

@@ -136,9 +136,14 @@ describe('personal plan engine contracts', () => {
       'linked_lesson_slice',
       'plan_phrase_build',
       'plan_missing_word',
+      'plan_choose_natural_phrase',
+      'plan_listen_choose',
+      'plan_listen_build',
+      'plan_pronunciation_repeat',
       'plan_quiz',
     ]);
-    expect(blocks.every((block) => block.progressPolicy === 'correct_only')).toBe(true);
+    expect(blocks.filter((block) => block.type !== 'plan_pronunciation_repeat').every((block) => block.progressPolicy === 'correct_only')).toBe(true);
+    expect(blocks.find((block) => block.type === 'plan_pronunciation_repeat')?.progressPolicy).toBe('completion_only');
     expect(blocks.every((block) => validatePlanExerciseBlockContract(block).length === 0)).toBe(true);
     expect(blocks.find((block) => block.type === 'plan_missing_word')?.recoveryPolicy).not.toBe('none');
 

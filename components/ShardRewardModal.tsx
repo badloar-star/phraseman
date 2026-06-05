@@ -261,7 +261,7 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
             end={{ x: 1, y: 0.5 }}
             style={[styles.sheetFrame, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetFrame]}
           >
-            <View style={[styles.sheetInner, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetInner, { backgroundColor: 'transparent' }]}>
+            <View style={[styles.sheetInner, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetInner, { backgroundColor: rewardModalPanelColors(themeMode, t)[1] }]}>
               <LinearGradient
                 colors={rewardModalPanelColors(themeMode, t)}
                 start={{ x: 0, y: 0 }}

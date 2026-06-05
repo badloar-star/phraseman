@@ -8,11 +8,13 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import CustomSwitch from '../components/CustomSwitch';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useAudio } from '../hooks/use-audio';
 import { hapticTap } from '../hooks/use-haptics';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import {
   applyUserSettingsNow,
   getUserSettingsSnapshot,
@@ -69,7 +71,8 @@ function formatVoiceLabel(voice: Voice): string {
 
 export default function SettingsEdu() {
   const router = useRouter();
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const { lang, s: loc } = useLang();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [s, setS] = useState<UserSettings>(() => getUserSettingsSnapshot());
@@ -172,7 +175,20 @@ export default function SettingsEdu() {
                 if (router.canGoBack()) router.back();
                 else router.replace('/(tabs)/home' as any);
               }}
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: isCompassTheme ? 8 : 19,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+                borderWidth: isCompassTheme ? 0.5 : 0,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                overflow: 'hidden',
+                ...(isCompassTheme ? compassShadow(1) : {}),
+              }}
             >
+              {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '600' }}>
@@ -185,7 +201,30 @@ export default function SettingsEdu() {
             {rows.map(row => {
               const isOn = !!s[row.key];
               return (
-                <View key={row.key} style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+                <View
+                  key={row.key}
+                  style={[
+                    {
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      paddingHorizontal: 20,
+                      paddingVertical: 16,
+                      borderBottomWidth: isCompassTheme ? 0 : 0.5,
+                      borderBottomColor: t.border,
+                    },
+                    isCompassTheme && {
+                      marginHorizontal: 16,
+                      marginVertical: 4,
+                      borderRadius: 8,
+                      borderWidth: 0.5,
+                      borderColor: COMPASS_RICH.hairlineQuiet,
+                      backgroundColor: COMPASS_RICH.charcoalRaised,
+                      overflow: 'hidden',
+                    },
+                    isCompassTheme && compassShadow(1),
+                  ]}
+                >
+                  {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                   <View style={{ flex: 1, marginRight: 12 }}>
                     <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
                       {row.label}
@@ -200,7 +239,27 @@ export default function SettingsEdu() {
             })}
 
             {s.voiceOut ? (
-              <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+              <View
+                style={[
+                  {
+                    paddingHorizontal: 20,
+                    paddingVertical: 16,
+                    borderBottomWidth: isCompassTheme ? 0 : 0.5,
+                    borderBottomColor: t.border,
+                  },
+                  isCompassTheme && {
+                    marginHorizontal: 16,
+                    marginVertical: 4,
+                    borderRadius: 8,
+                    borderWidth: 0.5,
+                    borderColor: COMPASS_RICH.hairlineQuiet,
+                    backgroundColor: COMPASS_RICH.charcoalRaised,
+                    overflow: 'hidden',
+                  },
+                  isCompassTheme && compassShadow(1),
+                ]}
+              >
+                {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
                   <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
                     {loc.edu.speed}
@@ -242,14 +301,17 @@ export default function SettingsEdu() {
                         flexDirection: 'row',
                         alignItems: 'center',
                         gap: 4,
-                        backgroundColor: t.bgCard,
+                        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard,
                         borderWidth: 1,
-                        borderColor: t.border,
-                        borderRadius: 10,
+                        borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                        borderRadius: isCompassTheme ? 8 : 10,
                         paddingHorizontal: 12,
                         paddingVertical: 7,
+                        overflow: 'hidden',
+                        ...(isCompassTheme ? compassShadow(1) : {}),
                       }}
                     >
+                      {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                       <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
                         {currentVoiceName}
                       </Text>
@@ -264,14 +326,17 @@ export default function SettingsEdu() {
                         onPress={() => { updateVoice(''); setVoicePickerOpen(false); }}
                         style={{
                           borderWidth: 1,
-                          borderColor: !s.speechVoiceId ? t.accent : t.border,
-                          backgroundColor: !s.speechVoiceId ? `${t.accent}22` : t.bgCard,
-                          borderRadius: 10,
+                          borderColor: isCompassTheme ? (!s.speechVoiceId ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : !s.speechVoiceId ? t.accent : t.border,
+                          backgroundColor: isCompassTheme ? (!s.speechVoiceId ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised) : !s.speechVoiceId ? `${t.accent}22` : t.bgCard,
+                          borderRadius: isCompassTheme ? 8 : 10,
                           paddingHorizontal: 12,
                           paddingVertical: 9,
+                          overflow: 'hidden',
+                          ...(isCompassTheme && !s.speechVoiceId ? compassShadow(1) : {}),
                         }}
                       >
-                        <Text style={{ color: !s.speechVoiceId ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }}>
+                        {isCompassTheme ? <CompassDepthSurface radius={8} quiet={!!s.speechVoiceId} cream={!s.speechVoiceId} /> : null}
+                        <Text style={{ color: isCompassTheme ? (!s.speechVoiceId ? COMPASS_RICH.textDark : t.textPrimary) : !s.speechVoiceId ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }}>
                           {L('Системный', 'Системний', 'System')}
                         </Text>
                       </TouchableOpacity>
@@ -283,14 +348,17 @@ export default function SettingsEdu() {
                             onPress={() => { updateVoice(voice.identifier); setVoicePickerOpen(false); }}
                             style={{
                               borderWidth: 1,
-                              borderColor: selected ? t.accent : t.border,
-                              backgroundColor: selected ? `${t.accent}22` : t.bgCard,
-                              borderRadius: 10,
+                              borderColor: isCompassTheme ? (selected ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : selected ? t.accent : t.border,
+                              backgroundColor: isCompassTheme ? (selected ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised) : selected ? `${t.accent}22` : t.bgCard,
+                              borderRadius: isCompassTheme ? 8 : 10,
                               paddingHorizontal: 12,
                               paddingVertical: 9,
+                              overflow: 'hidden',
+                              ...(isCompassTheme && selected ? compassShadow(1) : {}),
                             }}
                           >
-                            <Text style={{ color: selected ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
+                            {isCompassTheme ? <CompassDepthSurface radius={8} quiet={!selected} cream={selected} /> : null}
+                            <Text style={{ color: isCompassTheme ? (selected ? COMPASS_RICH.textDark : t.textPrimary) : selected ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
                               {formatVoiceLabel(voice)}
                             </Text>
                           </TouchableOpacity>
@@ -305,7 +373,21 @@ export default function SettingsEdu() {
                   ) : null}
 
                   {/* Fun disclaimer */}
-                  <View style={{ marginTop: 4, backgroundColor: `${t.accent}12`, borderRadius: 12, padding: 14 }}>
+                  <View
+                    style={[
+                      {
+                        marginTop: 4,
+                        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : `${t.accent}12`,
+                        borderRadius: isCompassTheme ? 8 : 12,
+                        padding: 14,
+                        borderWidth: isCompassTheme ? 0.5 : 0,
+                        borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                        overflow: 'hidden',
+                      },
+                      isCompassTheme && compassShadow(1),
+                    ]}
+                  >
+                    {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                     <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700', marginBottom: 6 }}>
                       {L('🎙️ Почему голос звучит странно?', '🎙️ Чому голос звучить дивно?', '🎙️ Why does the voice sound odd?')}
                     </Text>

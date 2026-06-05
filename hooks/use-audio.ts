@@ -20,6 +20,29 @@ const UK_MARKERS = /[іїєґІЇЄҐ]/;
 const CYRILLIC_RE = /[\u0400-\u04FF]/;
 const LATIN_LETTER_RE = /[a-zA-ZÀ-ÖØ-öø-ÿĀ-ž]/;
 const STOP_SETTLE_MS = Platform.OS === 'android' ? 80 : 20;
+type SpeechOptions = NonNullable<Parameters<typeof Speech.speak>[1]>;
+
+function safeSpeechStop() {
+  try {
+    Speech.stop();
+  } catch {}
+}
+
+function retrySpeechWithoutVoice(
+  text: string,
+  options: SpeechOptions,
+  onError?: (e: Error) => void,
+) {
+  try {
+    Speech.speak(text, {
+      ...options,
+      voice: undefined,
+      onError,
+    });
+  } catch (e) {
+    onError?.(e instanceof Error ? e : new Error(String(e)));
+  }
+}
 
 export function inferExpoSpeechLanguage(
   text: string,
@@ -57,7 +80,7 @@ export function useAudio() {
     return () => {
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = null;
-      Speech.stop();
+      safeSpeechStop();
     };
   }, []);
 
@@ -66,7 +89,7 @@ export function useAudio() {
     pendingTimerRef.current = null;
     lastTextRef.current = '';
     lastSpeakAtRef.current = 0;
-    Speech.stop();
+    safeSpeechStop();
   }, []);
 
   const speak = useCallback((text: string, rate?: number, opts?: SpeakOpts) => {
@@ -78,7 +101,7 @@ export function useAudio() {
 
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
     pendingTimerRef.current = null;
-    Speech.stop();
+    safeSpeechStop();
 
     lastTextRef.current = normalized;
     lastSpeakAtRef.current = now;
@@ -93,7 +116,7 @@ export function useAudio() {
 
     pendingTimerRef.current = setTimeout(() => {
       pendingTimerRef.current = null;
-      Speech.speak(normalized, {
+      const speechOptions: SpeechOptions = {
         language,
         ...(requestedVoice ? { voice: requestedVoice } : {}),
         rate: safeRate,
@@ -102,9 +125,20 @@ export function useAudio() {
         onStart: opts?.onStart,
         onDone: opts?.onDone,
         onStopped: opts?.onStopped,
-        onError: opts?.onError,
+        onError: requestedVoice
+          ? (e: Error) => retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError)
+          : opts?.onError,
         ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
-      });
+      };
+      try {
+        Speech.speak(normalized, speechOptions);
+      } catch (e) {
+        if (requestedVoice) {
+          retrySpeechWithoutVoice(normalized, speechOptions, opts?.onError);
+        } else {
+          opts?.onError?.(e instanceof Error ? e : new Error(String(e)));
+        }
+      }
     }, STOP_SETTLE_MS);
   }, []);
 

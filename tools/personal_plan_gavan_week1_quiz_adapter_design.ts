@@ -243,10 +243,62 @@ function legacyExceptionIsolation(): GavanWeek1QuizLegacyExceptionIsolation {
   };
 }
 
+type LegacyQuizSourceInventory = GavanWeek1QuizSourceInventory & {
+  sourceFindings?: {
+    proposedQuizIds?: string[];
+  };
+};
+
+function dayIdFromProposedQuizId(quizId: string): string {
+  if (quizId.endsWith(':final-quiz')) {
+    return quizId.slice(0, -':final-quiz'.length);
+  }
+
+  if (quizId.endsWith('-quiz')) {
+    return quizId.slice(0, -'-quiz'.length);
+  }
+
+  return quizId;
+}
+
+function dayIndexFromDayId(dayId: string): number {
+  const match = dayId.match(/day(\d+)$/);
+
+  return match ? Number(match[1]) : 0;
+}
+
+function routeDesignSeedFromInventory(
+  inventory: GavanWeek1QuizSourceInventory,
+): Array<Pick<GavanWeek1PerDayQuizRouteDesign, 'quizId' | 'dayId' | 'dayIndex'>> {
+  if (Array.isArray(inventory.proposedQuizRoutes)) {
+    return inventory.proposedQuizRoutes.map((route) => ({
+      quizId: route.quizId,
+      dayId: route.dayId,
+      dayIndex: route.dayIndex,
+    }));
+  }
+
+  const legacyInventory = inventory as LegacyQuizSourceInventory;
+  const proposedQuizIds =
+    legacyInventory.quizFindings?.proposedQuizIds ??
+    legacyInventory.sourceFindings?.proposedQuizIds ??
+    [];
+
+  return proposedQuizIds.map((proposedQuizId) => {
+    const dayId = dayIdFromProposedQuizId(proposedQuizId);
+
+    return {
+      quizId: `${dayId}-quiz`,
+      dayId,
+      dayIndex: dayIndexFromDayId(dayId),
+    };
+  });
+}
+
 function perDayQuizRouteDesigns(
   inventory: GavanWeek1QuizSourceInventory,
 ): GavanWeek1PerDayQuizRouteDesign[] {
-  return inventory.proposedQuizRoutes.map((route) => ({
+  return routeDesignSeedFromInventory(inventory).map((route) => ({
     quizId: route.quizId,
     dayId: route.dayId,
     dayIndex: route.dayIndex,

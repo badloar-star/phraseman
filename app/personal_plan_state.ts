@@ -296,7 +296,17 @@ export async function activatePersonalPlan(input: {
 }): Promise<PersonalPlanState> {
   const state = createDefaultPersonalPlanState(input);
   await savePersonalPlanState(state);
-  emitAppEvent('personal_plan_updated', { planId: state.planId });
+  const snapshot = buildPersonalPlanSnapshot({
+    plan: getPlanById(state.planId),
+    state,
+    completedTasks: {},
+    duePracticeCount: 0,
+    duePracticeWordCount: 0,
+    dueTrainerCount: 0,
+    duePlanTrainerWeakSpotCount: 0,
+    dueFlashcardsCount: 0,
+  });
+  emitAppEvent('personal_plan_updated', { planId: state.planId, snapshot });
   return state;
 }
 

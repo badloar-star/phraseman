@@ -165,7 +165,7 @@ function PlanListenChooseAudioButton({
   mutedText: string;
 }) {
   const playback = useMemo(() => buildPlanListeningPlaybackSource(item), [item]);
-  const source = playback.source === 'in_app_audio' ? { uri: playback.uri } : null;
+  const source = playback.source === 'in_app_audio' ? playback.playerSource : null;
   const player = useAudioPlayer(source, playback.source === 'in_app_audio' ? playback.options : undefined);
   const status = useAudioPlayerStatus(player);
   const disabled = playback.source !== 'in_app_audio';
@@ -536,6 +536,7 @@ export default function PersonalPlanExerciseScreen() {
   const isListenBuildMode = rendererType === 'plan_listen_build';
   const isPronunciationMode = rendererType === 'plan_pronunciation_repeat';
   const isRecallMode = rendererType === 'plan_phrase_recall';
+  const isPhraseBuildMode = rendererType === 'plan_phrase_build';
   const currentExerciseType = (
     isRecallMode
       ? 'plan_phrase_recall'
@@ -547,7 +548,7 @@ export default function PersonalPlanExerciseScreen() {
             ? 'plan_listen_choose'
             : isChoiceMode
               ? 'plan_choose_natural_phrase'
-              : rendererType === 'plan_phrase_build'
+              : isPhraseBuildMode
                 ? 'plan_phrase_build'
                 : 'plan_missing_word'
   ) as PlanExerciseType;
@@ -618,7 +619,7 @@ export default function PersonalPlanExerciseScreen() {
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
   const done = completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult);
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
-  const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode) && Boolean(session) && !listeningBlocked;
+  const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode || isPhraseBuildMode) && Boolean(session) && !listeningBlocked;
   const explanation = planExerciseExplanation(item);
   const resultModalTitle = lastResult === 'correct'
     ? (explanation?.titleRu ?? 'Почему так')
@@ -869,16 +870,38 @@ export default function PersonalPlanExerciseScreen() {
                 <PlanExerciseModeStrip chrome={chrome} accent={accent} mutedText={t.textMuted} />
                 <View style={[styles.liquidRail, { backgroundColor: accent + '55' }]} />
                 <Text style={[styles.prompt, { color: t.textMuted }]}>Сначала слушай, потом собирай фразу по порядку.</Text>
-                <Text style={[styles.english, { color: t.textPrimary }]}>{buildWords.length ? buildWords.join(' ') : '...'}</Text>
                 <PlanListenChooseAudioButton
                   item={item}
                   accent={accent}
                   actionText={actionText}
                   mutedText={t.textMuted}
                 />
+                <View
+                  accessibilityLabel="Поле собранной фразы"
+                  style={[styles.listenBuildAnswerBox, { borderColor: accent + '55', backgroundColor: t.bgSurface2 }]}
+                >
+                  {buildWords.length > 0 ? buildWords.map((word, wordIndex) => (
+                    <TouchableOpacity
+                      key={`built-${word}-${wordIndex}`}
+                      activeOpacity={0.78}
+                      accessibilityRole="button"
+                      accessibilityLabel={`Убрать слово: ${word}`}
+                      disabled={Boolean(lastResult) || saving}
+                      onPress={() => {
+                        hapticTap();
+                        setBuildWords((current) => current.filter((_, index) => index !== wordIndex));
+                      }}
+                      style={[styles.listenBuildAnswerChip, { borderColor: accent + '66', backgroundColor: accent + '18' }]}
+                    >
+                      <Text style={[styles.listenBuildAnswerText, { color: t.textPrimary }]}>{word}</Text>
+                    </TouchableOpacity>
+                  )) : (
+                    <Text style={[styles.listenBuildPlaceholder, { color: t.textMuted }]}>Слова появятся здесь</Text>
+                  )}
+                </View>
               </View>
 
-              <View style={styles.options}>
+              <View style={[styles.wordBank, { borderColor: accent + '28', backgroundColor: t.bgCard }]}>
                 {item.wordOptions.map((word: string, wordIndex: number) => {
                   const usedCount = buildWords.filter((value) => value === word).length;
                   const availableCount = item.wordOptions.filter((value) => value === word).length;
@@ -894,9 +917,9 @@ export default function PersonalPlanExerciseScreen() {
                         hapticTap();
                         setBuildWords((current) => [...current, word]);
                       }}
-                      style={[styles.option, { backgroundColor: t.bgSurface2, borderColor: disabled ? t.border : accent + '77', opacity: disabled ? 0.48 : 1 }]}
+                      style={[styles.wordTile, { backgroundColor: t.bgSurface2, borderColor: disabled ? t.border : accent + '77', opacity: disabled ? 0.42 : 1 }]}
                     >
-                      <Text style={[styles.optionText, { color: t.textPrimary }]}>{word}</Text>
+                      <Text style={[styles.wordTileText, { color: t.textPrimary }]}>{word}</Text>
                     </TouchableOpacity>
                   );
                 })}
@@ -971,10 +994,10 @@ export default function PersonalPlanExerciseScreen() {
                 <PlanExerciseModeStrip chrome={chrome} accent={accent} mutedText={t.textMuted} />
                 <View style={[styles.liquidRail, { backgroundColor: accent + '55' }]} />
                 <Text style={[styles.prompt, { color: t.textMuted }]}>
-                  {isListeningMode ? 'Сначала послушай фразу, потом выбери смысл.' : item.promptRu}
+                  {isListeningMode ? 'Сначала послушай фразу, потом выбери смысл.' : isChoiceMode ? `Смысл: ${item.promptRu}` : item.promptRu}
                 </Text>
-                <Text style={[styles.english, { color: t.textPrimary }]}>
-                  {isListeningMode ? 'На слух' : 'displayEnglish' in item ? String(item.displayEnglish) : 'Выбери подходящую фразу'}
+                <Text style={[styles.english, isChoiceMode ? styles.choiceInstruction : null, { color: t.textPrimary }]}>
+                  {isListeningMode ? 'На слух' : isChoiceMode ? 'Нажми лучший вариант ниже' : 'displayEnglish' in item ? String(item.displayEnglish) : 'Выбери подходящую фразу'}
                 </Text>
                 {isListeningMode && isPersonalPlanListenChooseItem(item) ? (
                   <PlanListenChooseAudioButton
@@ -1087,6 +1110,14 @@ type PersonalPlanExerciseStyles = {
   liquidRail: ViewStyle;
   prompt: TextStyle;
   english: TextStyle;
+  choiceInstruction: TextStyle;
+  listenBuildAnswerBox: ViewStyle;
+  listenBuildAnswerChip: ViewStyle;
+  listenBuildAnswerText: TextStyle;
+  listenBuildPlaceholder: TextStyle;
+  wordBank: ViewStyle;
+  wordTile: ViewStyle;
+  wordTileText: TextStyle;
   options: ViewStyle;
   option: ViewStyle;
   optionText: TextStyle;
@@ -1218,6 +1249,47 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   liquidRail: { height: 2, borderRadius: 2, opacity: 0.72 },
   prompt: { fontSize: 21, lineHeight: 28, fontWeight: '800', textAlign: 'center' },
   english: { fontSize: 36, lineHeight: 44, fontWeight: '900', textAlign: 'center' },
+  choiceInstruction: { fontSize: 28, lineHeight: 34 },
+  listenBuildAnswerBox: {
+    minHeight: 92,
+    borderRadius: 22,
+    borderWidth: 1.5,
+    padding: 12,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  listenBuildAnswerChip: {
+    minHeight: 42,
+    borderRadius: 16,
+    borderWidth: 1,
+    paddingHorizontal: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  listenBuildAnswerText: { fontSize: 18, lineHeight: 23, fontWeight: '900' },
+  listenBuildPlaceholder: { fontSize: 16, lineHeight: 22, fontWeight: '800', textAlign: 'center' },
+  wordBank: {
+    marginTop: 18,
+    borderRadius: 24,
+    borderWidth: 1,
+    padding: 12,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  wordTile: {
+    minHeight: 50,
+    borderRadius: 17,
+    borderWidth: 1.5,
+    paddingHorizontal: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  wordTileText: { fontSize: 18, lineHeight: 23, fontWeight: '900' },
   options: { marginTop: 18, gap: 12 },
   option: {
     minHeight: 70,

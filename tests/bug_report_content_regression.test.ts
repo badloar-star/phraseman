@@ -39,6 +39,19 @@ describe('reported content regressions', () => {
     expect(isCorrectAnswer('Put the documents into the bag', phraseCanonicalAnswer(phrase!, 'en'), phraseAnswerAlternatives(phrase!, 'en'))).toBe(true);
   });
 
+  it('uses much-focused translations for lesson 5 phrase 7 cost much', () => {
+    const phrase = LESSON_DATA[5].phrases.find((row) => row.id === 'lesson5_phrase_7');
+    const introSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_intro_screens_lesson5_v2.ts'), 'utf8');
+
+    expect(phrase?.english).toBe('Does it cost much?');
+    expect(phrase?.russian).toBe('Это стоит много?');
+    expect(phrase?.ukrainian).toBe('Це коштує багато?');
+    expect(introSource).toContain("ru: 'Это стоит много?'");
+    expect(introSource).toContain("uk: 'Це коштує багато?'");
+    expect(introSource).not.toContain("ru: 'Это стоит дорого?'");
+    expect(introSource).not.toContain("uk: 'Це коштує дорого?'");
+  });
+
   it('uses a comparative Russian translation for lesson 14 phrase 45 better plan', () => {
     const phrase = LESSON_DATA[14].phrases.find((row) => row.id === 'lesson14_phrase_45');
     const lessonHelpSource = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');

@@ -1,22 +1,15 @@
 // ════════════════════════════════════════════════════════════════════════════
-// mastery.ts — повторное прохождение завершённых уроков за осколки
+// mastery.ts — служебные флаги повторного прохождения завершённых уроков
 //
 // Логика:
 //  1. Юзер впервые доходит до lesson_complete для урока N → markLessonFinishedOnce(N)
 //     выставляет lesson_finished_once_v1_${N} = '1'.
-//  2. На карточке урока (lessons.tsx) и в меню урока (lesson_menu.tsx) —
-//     если finished_once && !premium → бейдж с ценой в осколках и «Перепройти».
-//  3. Цена следующего платного перепрохождения урока N: BASE + STEP * (число уже успешных оплат/бесплатных перепроходов N).
-//     Счётчик lesson_replay_count_v1_${N} растёт после каждого успешного executeReplay (в т.ч. Premium).
-//  4. executeReplay:
-//     - premium → бесплатно, только +1 к счётчику (прогресс по фразам не трогаем).
-//     - !premium → spendShards(price, 'lesson_replay'), затем +1 к счётчику.
+//  2. Повторные прохождения для всех пользователей бесплатны и не требуют отдельного подтверждения.
+//  3. Счётчик lesson_replay_count_v1_${N} может расти после executeReplay для аналитики/синхронизации.
 //
-// Сам урок НЕ блокируется — теория, словарь, irregular verbs, флэшкарды
-// продолжают работать. Заблокирована ТОЛЬКО кнопка "Начать урок" (отработка фраз).
+// Сам урок не блокируется: повтор можно запускать сколько угодно раз.
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { spendShards } from './shards_system';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import {
@@ -26,13 +19,13 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 
-/** Стартовая цена первого платного перепрохождения (при счётчике 0). */
-export const MASTERY_REPLAY_BASE_SHARDS = 5;
+/** @deprecated Повтор уроков больше не стоит осколков; оставлено для совместимости старых импортов. */
+export const MASTERY_REPLAY_BASE_SHARDS = 0;
 
-/** На сколько осколков дороже каждое следующее перепрохождение этого же урока. */
-export const MASTERY_REPLAY_PRICE_STEP_SHARDS = 5;
+/** @deprecated Повтор уроков больше не дорожает; оставлено для совместимости старых импортов. */
+export const MASTERY_REPLAY_PRICE_STEP_SHARDS = 0;
 
-/** @deprecated Используйте BASE / getMasteryReplayPriceShards; оставлено для совместимости (= база первого раза). */
+/** @deprecated Повтор уроков бесплатный. */
 export const MASTERY_REPLAY_COST_SHARDS = MASTERY_REPLAY_BASE_SHARDS;
 
 /** Сколько раз уже оформляли перепрохождение урока через mastery (после каждого успешного executeReplay +1). */
@@ -48,18 +41,19 @@ export async function getLessonReplayCount(lessonId: number, studyTarget?: Runti
   }
 }
 
-/** Цена в осколках за следующее платное перепрохождение урока (с учётом счётчика перепроходов). */
+/** @deprecated Повтор уроков бесплатный; функция возвращает 0 для совместимости. */
 export function computeMasteryReplayPriceFromCount(replayCount: number): number {
-  const n = Math.max(0, Math.floor(replayCount));
-  return MASTERY_REPLAY_BASE_SHARDS + MASTERY_REPLAY_PRICE_STEP_SHARDS * n;
+  void replayCount;
+  return 0;
 }
 
 export async function getMasteryReplayPriceShards(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<number> {
-  const c = await getLessonReplayCount(lessonId, studyTarget);
-  return computeMasteryReplayPriceFromCount(c);
+  void lessonId;
+  void studyTarget;
+  return 0;
 }
 
 async function bumpLessonReplayCount(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<void> {
@@ -102,30 +96,23 @@ export async function markLessonFinishedOnce(
 
 export type ExecuteReplayResult =
   | { ok: true; spent: number }
-  | { ok: false; reason: 'insufficient_shards' | 'not_finished_yet' };
+  | { ok: false; reason: 'not_finished_yet' };
 
 /**
- * Оформить перепрохождение урока (списание или бесплатно для Premium).
- * Прогресс по фразам и позиция в уроке не изменяются — только счётчик и осколки.
+ * Оформить перепрохождение урока.
+ * Прогресс по фразам и позиция в уроке не изменяются — только служебный счётчик.
  */
 export async function executeReplay(
   lessonId: number,
   isPremium: boolean,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<ExecuteReplayResult> {
+  void isPremium;
   if (!Number.isFinite(lessonId) || lessonId <= 0) {
     return { ok: false, reason: 'not_finished_yet' };
   }
   const finished = await isLessonFinishedOnce(lessonId, studyTarget);
   if (!finished) return { ok: false, reason: 'not_finished_yet' };
-
-  let spent = 0;
-  if (!isPremium) {
-    const price = await getMasteryReplayPriceShards(lessonId, studyTarget);
-    const ok = await spendShards(price, 'lesson_replay');
-    if (!ok) return { ok: false, reason: 'insufficient_shards' };
-    spent = price;
-  }
 
   try {
     await bumpLessonReplayCount(lessonId, studyTarget);
@@ -133,8 +120,8 @@ export async function executeReplay(
     DebugLogger.error('mastery:executeReplay:bumpCount', error, 'critical');
   }
 
-  emitAppEvent('lesson_replay_started', { lessonId, spent, studyTarget: storageStudyTarget(studyTarget) });
-  return { ok: true, spent };
+  emitAppEvent('lesson_replay_started', { lessonId, spent: 0, studyTarget: storageStudyTarget(studyTarget) });
+  return { ok: true, spent: 0 };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

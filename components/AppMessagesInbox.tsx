@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  type ImageSourcePropType,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { Image } from 'expo-image';
@@ -38,15 +39,16 @@ import VipCelebrationModal from './VipCelebrationModal';
 import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import type { ThemeMode } from '../constants/theme';
 
-const MESSAGE_ICON_IMAGES = {
-  dark: require('../assets/images/header_glyphs/message-glyph-forest-dalle-v1.png'),
-  neon: require('../assets/images/header_glyphs/message-glyph-neon-dalle-v1.png'),
-  gold: require('../assets/images/header_glyphs/message-glyph-gold-dalle-v1.png'),
-  coral: require('../assets/images/header_glyphs/message-glyph-coral-dalle-v1.png'),
-  minimalLight: require('../assets/images/header_glyphs/message-glyph-minimal-light-dalle-v1.png'),
-  minimalDark: require('../assets/images/header_glyphs/message-glyph-minimal-dark-dalle-v1.png'),
-  compass: require('../assets/images/header_glyphs/compass-premium/message-glyph-compass-premium.webp'),
+const MESSAGE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
+  dark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-dark-dalle-v1.webp'),
+  neon: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-neon-dalle-v1.webp'),
+  gold: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-gold-dalle-v1.webp'),
+  coral: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-coral-dalle-v1.webp'),
+  minimalLight: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-minimalLight-dalle-v1.webp'),
+  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-minimalDark-dalle-v1.webp'),
+  compass: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-compass-dalle-v1.webp'),
 };
 
 function inboxText(lang: Lang) {
@@ -313,11 +315,11 @@ export default function AppMessagesInbox() {
       soft: '#8791A2',
       panelGradient: ['#FFFFFF', '#F4F6FA'] as const,
     };
-  const headerIcon = MESSAGE_ICON_IMAGES[themeMode] ?? MESSAGE_ICON_IMAGES.minimalDark;
   const vipSurveyAccent = isCompassTheme ? '#F2C48D' : '#64748B';
   const vipSurveyAccentText = isCompassTheme ? '#151008' : '#FFFFFF';
   const vipSurveyTint = isCompassTheme ? 'rgba(242,196,141,0.12)' : 'rgba(100,116,139,0.10)';
   const vipSurveyBorder = isCompassTheme ? 'rgba(242,196,141,0.24)' : 'rgba(100,116,139,0.32)';
+  const headerIcon = MESSAGE_ICON_IMAGES[themeMode] ?? MESSAGE_ICON_IMAGES.minimalDark;
 
   const renderList = () => (
     <>
@@ -672,19 +674,19 @@ export default function AppMessagesInbox() {
 
 const styles = StyleSheet.create({
   headerButton: {
-    width: 56,
-    height: 44,
+    width: 66,
+    height: 54,
     alignItems: 'center',
     justifyContent: 'center',
   },
   headerIcon: {
-    width: 52,
-    height: 36,
+    width: 56,
+    height: 40,
   },
   badge: {
     position: 'absolute',
-    top: -2,
-    right: -4,
+    top: 0,
+    right: 0,
     minWidth: 18,
     height: 18,
     paddingHorizontal: 4,

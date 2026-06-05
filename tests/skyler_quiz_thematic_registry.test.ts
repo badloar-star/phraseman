@@ -102,13 +102,13 @@ describe('Skyler thematic quiz registry', () => {
         expect(devCategory!.badge).toMatch(/^DEV\b/);
         expect(devCategory!.pack.items.length).toBeGreaterThan(0);
         expect(thematicQuizCategoryHasAllActiveLocaleCopy(devCategory!)).toBe(true);
-        for (const themeMode of ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark']) {
+        for (const themeMode of ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark', 'compass']) {
           expect(themedQuizAsset(devCategory!.cardBackgrounds, themeMode)).toBeTruthy();
           expect(themedQuizAsset(devCategory!.logos, themeMode)).toBeTruthy();
         }
       }
 
-      for (const themeMode of ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark']) {
+      for (const themeMode of ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark', 'compass']) {
         expect(themedQuizAsset(home!.cardBackgrounds, themeMode)).toBeTruthy();
         expect(themedQuizAsset(home!.logos, themeMode)).toBeTruthy();
       }

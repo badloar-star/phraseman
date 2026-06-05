@@ -30,6 +30,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import type { ThemeMode } from '../constants/theme';
+import { COMPASS_RICH } from '../constants/compassTheme';
 
 const TEXTS = {
   ru: {
@@ -137,8 +138,29 @@ const GOLD_PALETTE: UpdateModalPalette = {
   primaryShadow: '#E2AD4E',
 };
 
+const COMPASS_PALETTE: UpdateModalPalette = {
+  ...DEFAULT_PALETTE,
+  frame: ['rgba(255,230,181,0.58)', 'rgba(180,119,78,0.34)', 'rgba(0,0,0,0.54)'],
+  panel: ['#2C2B2C', '#181819', '#050506'],
+  wash: ['rgba(242,196,141,0.14)', 'rgba(180,119,78,0.08)', 'rgba(0,0,0,0)'],
+  topSheen: ['rgba(255,230,181,0.38)', 'rgba(255,255,255,0)'],
+  stroke: COMPASS_RICH.hairlineStrong,
+  texture: 'rgba(242,196,141,0.12)',
+  orbit: 'rgba(242,196,141,0.24)',
+  star: 'rgba(255,230,181,0.82)',
+  title: '#FFF0D0',
+  body: 'rgba(216,210,200,0.84)',
+  primary: ['#FFE6B5', '#F4B978', '#B4774E'],
+  primaryPressed: ['#F7D7A2', '#E3A869', '#8F5434'],
+  primaryText: COMPASS_RICH.textDark,
+  primaryShadow: '#B4774E',
+  secondaryBg: COMPASS_RICH.charcoalRaised,
+  secondaryBorder: COMPASS_RICH.hairlineQuiet,
+  secondaryText: COMPASS_RICH.textMuted,
+};
+
 const getUpdateModalPalette = (themeMode: ThemeMode): UpdateModalPalette =>
-  themeMode === 'gold' ? GOLD_PALETTE : DEFAULT_PALETTE;
+  themeMode === 'gold' ? GOLD_PALETTE : themeMode === 'compass' ? COMPASS_PALETTE : DEFAULT_PALETTE;
 
 function UpdateModalBackground({ palette }: { palette: UpdateModalPalette }) {
   return (

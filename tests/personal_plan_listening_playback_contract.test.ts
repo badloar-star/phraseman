@@ -55,6 +55,7 @@ describe('personal plan listening playback contract', () => {
     expect(buildPlanListeningPlaybackSource(item())).toEqual({
       source: 'in_app_audio',
       uri: 'https://cdn.example.test/gavan/d1/p1.mp3',
+      playerSource: 'https://cdn.example.test/gavan/d1/p1.mp3',
       options: {
         downloadFirst: true,
         updateInterval: 250,
@@ -93,6 +94,7 @@ describe('personal plan listening playback contract', () => {
     expect(buildPlanListeningPlaybackSource(buildItem())).toEqual(expect.objectContaining({
       source: 'in_app_audio',
       uri: 'https://cdn.example.test/gavan/d1/p1.mp3',
+      playerSource: 'https://cdn.example.test/gavan/d1/p1.mp3',
       issues: [],
     }));
 
@@ -112,5 +114,16 @@ describe('personal plan listening playback contract', () => {
       source: 'blocked',
       issues: ['missing_audio_uri'],
     });
+  });
+
+  it('resolves bundled personal plan runtime mp3 paths to Expo asset modules', () => {
+    expect(buildPlanListeningPlaybackSource(item({
+      audioUri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-1.mp3',
+    }))).toEqual(expect.objectContaining({
+      source: 'in_app_audio',
+      uri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-1.mp3',
+      playerSource: { assetId: expect.anything() },
+      issues: [],
+    }));
   });
 });

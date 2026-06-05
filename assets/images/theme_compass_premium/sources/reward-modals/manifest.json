@@ -1,0 +1,33 @@
+{
+  "group": "reward_modals/compass-premium",
+  "createdAt": "2026-06-04T12:44:24.383Z",
+  "reference": {
+    "background": [
+      "#333335",
+      "#303032",
+      "#2D2D2F"
+    ],
+    "materials": [
+      "cream",
+      "champagne",
+      "copper"
+    ],
+    "rule": "Backdrop stays low-contrast graphite; reward volume is subdued and sits behind modal content."
+  },
+  "registry": "components/RewardModalBackdrop.tsx",
+  "sourceFiles": [
+    "assets/images/theme_compass_premium/sources/reward-modals/reward-modals-compass-premium-dalle-source-2026-06-04.png"
+  ],
+  "productionSnapshot": "assets/images/theme_compass_premium/sources/reward-modals/current-production-snapshot",
+  "productionFiles": [
+    {
+      "file": "assets/images/reward_modals/reward-modal-compass-premium-v2.webp",
+      "exists": true,
+      "bytes": 38862
+    }
+  ],
+  "qa": {
+    "contactSheet": "qa-artifacts/compass-reward-modals/reward-modals-compass-premium-contact-sheet.webp",
+    "normalization": "Generated graphite v2 full-bleed backdrop; average luminance reduced from 48.42 to 20.53 and Compass opacity/scrim added."
+  }
+}

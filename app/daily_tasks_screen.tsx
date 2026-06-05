@@ -1,29 +1,26 @@
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
+import { Animated, Easing, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
-import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldTaskAccent, goldShadow } from '../constants/goldTheme';
+import { GOLD_RICH, goldTaskAccent, goldShadow } from '../constants/goldTheme';
 import { localizedDailyTaskStrings } from './daily_tasks_es_locale';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { safeRouterBack } from './navigation_back';
-import GoldBevel from '../components/GoldBevel';
 import { checkAchievements } from './achievements';
-import { getDailyTaskBonusCardBackdrop, getDailyTaskCardBackdrop, type DailyTaskCardBackdropState } from './daily_task_card_backdrops';
 import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
-import { getCurrentMultiplier, registerXP } from './xp_manager';
+import { registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsReward, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
 import { Image } from 'expo-image';
 import { oskolokImageForPackShards } from './oskolok';
@@ -34,8 +31,8 @@ import { lastOpenedLessonKey, quizNavLevelKey } from './target_storage_keys';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
+import { getDailyTaskCardPressIntent } from './daily_task_card_press_intent';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
-const DAILY_TASK_CARD_BACKDROP_OVERSCAN = 22;
 type DailyTaskUiMeta = {
     stage: string;
     label: string;
@@ -44,16 +41,6 @@ type DailyTaskUiMeta = {
     minutes: string;
     icon: keyof typeof Ionicons.glyphMap;
     tone: string;
-};
-
-const dailyTaskCardBackdropScrim = (state: DailyTaskCardBackdropState): [string, string, string] => {
-    if (state === 'claimed') {
-        return ['rgba(2,8,10,0.56)', 'rgba(2,8,10,0.34)', 'rgba(2,8,10,0.42)'];
-    }
-    if (state === 'completed') {
-        return ['rgba(0,14,12,0.32)', 'rgba(0,12,10,0.10)', 'rgba(0,10,12,0.16)'];
-    }
-    return ['rgba(2,8,14,0.50)', 'rgba(2,8,14,0.22)', 'rgba(2,8,14,0.32)'];
 };
 
 function slavicPlural(count: number, one: string, few: string, many: string): string {
@@ -1654,9 +1641,6 @@ export default function DailyTasksScreen() {
     const goldBright = GOLD_RICH.champagne;
     const goldHairline = GOLD_RICH.hairline;
     const goldSoftBg = GOLD_RICH.wash;
-    const goldQuietGradient = goldCardGradient('quiet');
-    const goldCompleteGradient = goldCardGradient('completed');
-    const goldClaimedGradient = goldCardGradient('claimed');
     const goldDivider = GOLD_RICH.hairlineQuiet;
     const rewardActionBg = isGoldTheme ? GOLD_RICH.paleGold : t.correct;
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
@@ -1668,7 +1652,6 @@ export default function DailyTasksScreen() {
     const [progress, setProgress] = useState<TaskProgress[]>([]);
     const [userName, setUserName] = useState('');
     const [claimedXP, setClaimedXP] = useState<number | null>(null);
-    const [xpMultiplier, setXpMultiplier] = useState(1);
     /** Награда «3 осколка за тройку дня» уже забрана сегодня (AsyncStorage / облако). */
     const [trioShardsClaimed, setTrioShardsClaimed] = useState(false);
     /** Сколько замен ещё доступно сегодня (max DAILY_TASK_REROLL_MAX_PER_DAY). */
@@ -1681,6 +1664,10 @@ export default function DailyTasksScreen() {
     const [rerollBusyId, setRerollBusyId] = useState<string | null>(null);
     /** Антидребезг клейма: свежий getTodayTasksSafe + registerXP не дают второго тапа «в никуда». */
     const [claimBusyId, setClaimBusyId] = useState<string | null>(null);
+    const [expandedTaskId, setExpandedTaskId] = useState<string | null>(null);
+    const [readyToNavigateTaskId, setReadyToNavigateTaskId] = useState<string | null>(null);
+    const expandedTaskAnim = useRef(new Animated.Value(0)).current;
+    const taskConfirmAnim = useRef(new Animated.Value(0)).current;
     const xpAnim = useRef(new Animated.Value(0)).current;
     const claimAnims = useRef<Record<string, Animated.Value>>({});
     // Анимации для премиум-плашки
@@ -1699,6 +1686,19 @@ export default function DailyTasksScreen() {
         sparkle.start();
         return () => { pulse.stop(); sparkle.stop(); };
     }, [premiumPulse, premiumSparkle]);
+    useEffect(() => {
+        setReadyToNavigateTaskId(null);
+        taskConfirmAnim.setValue(0);
+        Animated.timing(expandedTaskAnim, {
+            toValue: expandedTaskId ? 1 : 0,
+            duration: expandedTaskId ? 240 : 170,
+            useNativeDriver: false,
+        }).start(({ finished }) => {
+            if (finished && expandedTaskId) {
+                setReadyToNavigateTaskId(expandedTaskId);
+            }
+        });
+    }, [expandedTaskAnim, expandedTaskId, taskConfirmAnim]);
     // Инициализируем анимации при изменении tasks (useEffect, не в теле рендера)
     useEffect(() => {
         (tasks ?? []).forEach(task => {
@@ -1710,7 +1710,6 @@ export default function DailyTasksScreen() {
     useEffect(() => {
         AsyncStorage.getItem('user_name').then(n => { if (n)
             setUserName(n); });
-        getCurrentMultiplier().then(setXpMultiplier).catch(() => { });
     }, []);
     // Список заданий и прогресс с экрана должны ссылаться на один и тот же набор task id
     // (после смены уровня/премиума/подмен заданий), и прогресс в storage — быть с ним согласован.
@@ -1847,7 +1846,13 @@ export default function DailyTasksScreen() {
             setRerollBusyId(null);
         }
     }, [rerollConfirm, rerollBusyId, refreshTasksAndProgress, router, studyTarget]);
-    useFocusEffect(useCallback(() => { refreshTasksAndProgress(); }, [refreshTasksAndProgress]));
+    useFocusEffect(useCallback(() => {
+        setExpandedTaskId(null);
+        setReadyToNavigateTaskId(null);
+        expandedTaskAnim.setValue(0);
+        taskConfirmAnim.setValue(0);
+        refreshTasksAndProgress();
+    }, [expandedTaskAnim, refreshTasksAndProgress, taskConfirmAnim]));
     useEffect(() => {
         const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(); });
         return () => sub.remove();
@@ -1966,12 +1971,10 @@ export default function DailyTasksScreen() {
         });
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed;
-    const bonusBackdropState: DailyTaskCardBackdropState = trioShardsClaimed ? 'claimed' : trioClaimButtonEnabled ? 'completed' : 'active';
-    const bonusBackdrop = getDailyTaskBonusCardBackdrop(bonusBackdropState !== 'active');
     const bonusAccent = isGoldTheme
         ? (trioClaimButtonEnabled ? GOLD_RICH.champagne : GOLD_RICH.paleGold)
         :
-            trioShardsClaimed ? '#9CA3AF' : bonusBackdrop.accent;
+            trioShardsClaimed ? '#9CA3AF' : '#63D98F';
     const taskProgressById = new Map(progress.map((row) => [row.taskId, row]));
     const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length;
     const handleTaskNav = async (task: DailyTask) => {
@@ -2130,6 +2133,26 @@ export default function DailyTasksScreen() {
         }
     };
     // Сортировка: готово к награде → в процессе → завершено
+    const handleTaskCardPress = (task: DailyTask) => {
+        const intent = getDailyTaskCardPressIntent(readyToNavigateTaskId, task.id);
+        if (intent === 'expand') {
+            hapticTap();
+            expandedTaskAnim.setValue(0);
+            taskConfirmAnim.setValue(0);
+            setReadyToNavigateTaskId(null);
+            setExpandedTaskId(task.id);
+            return;
+        }
+        hapticTap();
+        Animated.timing(taskConfirmAnim, {
+            toValue: 1,
+            duration: 260,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+        }).start(() => {
+            void handleTaskNav(task);
+        });
+    };
     const sortedTasks = [...tasks].sort((a, b) => {
         const pa = progress.find(p => p.taskId === a.id);
         const pb = progress.find(p => p.taskId === b.id);
@@ -2199,14 +2222,7 @@ export default function DailyTasksScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
 
         {/* Прогресс */}
-        <LinearGradient colors={isGoldTheme
-            ? (trioShardsClaimed ? goldClaimedGradient : trioClaimButtonEnabled ? goldCompleteGradient : goldQuietGradient)
-            :
-                trioShardsClaimed
-                    ? ['#111820', '#141E18', '#111820']
-                    : trioClaimButtonEnabled
-                        ? ['#0f1f18', '#122018', '#0f1f18']
-                        : ['#101820', '#17251E', '#102033']} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[
+        {(trioClaimButtonEnabled || trioShardsClaimed) && (<View style={[
             dailyTaskStyles.taskCard,
             dailyTaskStyles.bonusCard,
             {
@@ -2220,13 +2236,6 @@ export default function DailyTasksScreen() {
             isGoldTheme ? goldShadow(trioClaimButtonEnabled ? 2 : 1) : null,
             null,
         ]}>
-          {isGoldTheme && <GoldBevel radius={16} intensity={trioClaimButtonEnabled ? 'strong' : trioShardsClaimed ? 'quiet' : 'normal'}/>}
-          {!isGoldTheme && (
-            <View pointerEvents="none" style={[dailyTaskStyles.taskBackdropClip, { borderRadius: 18 }]}>
-              <Image pointerEvents="none" source={bonusBackdrop.source} style={[dailyTaskStyles.taskBackdropImage, bonusBackdropState === 'claimed' ? dailyTaskStyles.taskBackdropImageClaimed : null]} contentFit="cover" contentPosition="center" cachePolicy="memory-disk"/>
-              <LinearGradient pointerEvents="none" colors={dailyTaskCardBackdropScrim(bonusBackdropState)} locations={[0, 0.58, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={dailyTaskStyles.taskBackdropScrim}/>
-            </View>
-          )}
           <View style={dailyTaskStyles.taskMainRow}>
             <View style={[dailyTaskStyles.taskIconFrame, { backgroundColor: isGoldTheme ? goldSoftBg : bonusAccent + '22' }]}>
               <Image source={oskolokImageForPackShards(trioRewardCount)} style={[{
@@ -2237,7 +2246,7 @@ export default function DailyTasksScreen() {
             </View>
 
             <View style={dailyTaskStyles.taskTextBlock}>
-              <Text style={{ color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.body, fontWeight: '800', marginBottom: 1 }}>
+              <Text numberOfLines={1} style={{ color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.body, fontWeight: '800', marginBottom: 1 }}>
                 {triLang(lang, {
             ru: 'Бонус за день',
             uk: 'Бонус за день',
@@ -2249,7 +2258,7 @@ export default function DailyTasksScreen() {
             pl: "Bonus dnia",
         })}
               </Text>
-              <Text style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.50)', fontSize: f.caption, lineHeight: f.caption * 1.4 }}>
+              <Text numberOfLines={1} style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.62)', fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
                 {triLang(lang, {
             ru: `Выполни все задания и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
             uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}.`,
@@ -2263,36 +2272,38 @@ export default function DailyTasksScreen() {
               </Text>
             </View>
 
-            <View style={[dailyTaskStyles.xpBadge, {
-                backgroundColor: isGoldTheme ? goldSoftBg : bonusAccent + '1A',
-                borderColor: isGoldTheme ? goldHairline : bonusAccent + '60',
-            }]}>
-              <Text style={{ color: trioShardsClaimed ? t.textMuted : bonusAccent, fontSize: f.body, fontWeight: '900' }}>
-                {objectivesDoneCount}/{tasks.length || 0}
-              </Text>
+            <View style={dailyTaskStyles.taskRightColumn}>
+              {trioShardsClaimed ? (<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
+                <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
+              </View>) : (<TouchableOpacity onPress={handleClaimTrioShards} activeOpacity={0.85} style={[dailyTaskStyles.compactClaimButton, { backgroundColor: rewardActionBg }]}>
+                <Text numberOfLines={1} adjustsFontSizeToFit style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800' }}>
+                  {triLang(lang, {
+                    ru: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ',
+                    uk: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚Ð¸',
+                    es: 'Reclamar',
+                    'pt-BR': "Coletar",
+                    vi: "Nháº­n",
+                    id: "Klaim",
+                    tr: "Al",
+                    pl: "Odbierz",
+                  })}
+                </Text>
+              </TouchableOpacity>)}
             </View>
           </View>
 
           <View style={dailyTaskStyles.taskProgressBlock}>
             <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
-              {isGoldTheme && !trioShardsClaimed ? (<LinearGradient colors={GOLD_GRADIENTS.progressMetal} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
-                height: '100%',
-                width: `${tasks.length ? Math.min((objectivesDoneCount / tasks.length) * 100, 100) : 0}%` as any,
-                borderRadius: 999,
-                overflow: 'hidden',
-            }}>
-                  <LinearGradient colors={['rgba(255,255,255,0.38)', 'rgba(255,255,255,0.06)', 'rgba(0,0,0,0.12)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill}/>
-                </LinearGradient>) :
-            (<View style={{
+              <View style={{
                     height: '100%',
                     width: `${tasks.length ? Math.min((objectivesDoneCount / tasks.length) * 100, 100) : 0}%` as any,
                     backgroundColor: trioShardsClaimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : bonusAccent,
                     borderRadius: 999,
-                }}/>)}
+                }}/>
             </View>
           </View>
 
-          {(trioClaimButtonEnabled || trioShardsClaimed) && (<>
+          {false && (<>
               <View style={[dailyTaskStyles.taskDivider, isGoldTheme ? { backgroundColor: goldDivider } : null]}/>
               <View style={dailyTaskStyles.taskFooter}>
                 <View />
@@ -2316,7 +2327,7 @@ export default function DailyTasksScreen() {
                 </View>
               </View>
             </>)}
-        </LinearGradient>
+        </View>)}
 
         {sortedTasks.map((task) => {
             const p = progress.find(pr => pr.taskId === task.id);
@@ -2329,57 +2340,69 @@ export default function DailyTasksScreen() {
                 ? Math.min(comboReq.minPlays, p?.comboPlays ?? current)
                 : 0;
             const comboWinsDisp = isArenaCombo && comboReq ? (p?.comboWins ?? 0) : 0;
-            const hasMultiStepProgress = isArenaCombo || task.target > 1;
             const pct = isArenaCombo && comboReq
                 ? Math.min(100, (comboPlaysDisp / comboReq.minPlays) * 50 + (comboWinsDisp >= comboReq.minWins ? 50 : 0))
                 : Math.min((current / task.target) * 100, 100);
-            const progressLine = isArenaCombo && comboReq
-                ? triLang(lang, {
-                    ru: `Матчи ${comboPlaysDisp}/${comboReq.minPlays} · побед ${comboWinsDisp}/${comboReq.minWins}`,
-                    uk: `Матчі ${comboPlaysDisp}/${comboReq.minPlays} · перемог ${comboWinsDisp}/${comboReq.minWins}`,
-                    es: `Partidas ${comboPlaysDisp}/${comboReq.minPlays} · victorias ${comboWinsDisp}/${comboReq.minWins}`,
-                    'pt-BR': `Partidas ${comboPlaysDisp}/${comboReq.minPlays} · vitórias ${comboWinsDisp}/${comboReq.minWins}`,
-                    vi: `Trận ${comboPlaysDisp}/${comboReq.minPlays} · thắng ${comboWinsDisp}/${comboReq.minWins}`,
-                    id: `Pertandingan ${comboPlaysDisp}/${comboReq.minPlays} · menang ${comboWinsDisp}/${comboReq.minWins}`,
-                    tr: `Maç ${comboPlaysDisp}/${comboReq.minPlays} · galibiyet ${comboWinsDisp}/${comboReq.minWins}`,
-                    pl: `Mecze ${comboPlaysDisp}/${comboReq.minPlays} · zwycięstwa ${comboWinsDisp}/${comboReq.minWins}`,
-                })
-                : `${current} / ${task.target}`;
             const anim = claimAnims.current[task.id] ?? new Animated.Value(1);
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const meta = getDailyTaskUiMeta(task.type, lang);
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
-            const taskBackdropState: DailyTaskCardBackdropState = claimed ? 'claimed' : completed ? 'completed' : 'active';
-            const taskBackdrop = getDailyTaskCardBackdrop(task.type, taskBackdropState);
             const taskAccent = isGoldTheme
                 ? goldTaskAccent(task.type, { completed, claimed })
                 :
-                    claimed ? t.textMuted : taskBackdrop.accent || meta.tone;
+                    meta.tone;
+            const progressLabel = isArenaCombo && comboReq
+                ? `${Math.round(pct)}%`
+                : `${Math.min(current, task.target)}/${task.target}`;
+            const taskFillPct = Math.max(0, Math.min(pct, 100));
+            const taskFillSizeStyle = completed || claimed
+                ? { right: 0 }
+                : { width: `${taskFillPct}%` as any };
+            const taskFillColor = isGoldTheme
+                ? taskAccent
+                : `${taskAccent}${completed || claimed ? '38' : '1C'}`;
+            const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : 'rgba(18,16,20,0.92)';
+            const isExpanded = expandedTaskId === task.id && !completed && !claimed;
+            const expandedDescriptionLineHeight = f.body * 1.28;
+            const expandedDescriptionLines = Math.min(3, Math.max(1, Math.ceil(taskDesc.length / 32)));
+            const expandedDescriptionBlockHeight = Math.ceil(expandedDescriptionLineHeight * expandedDescriptionLines + 14);
+            const expandedCardTargetHeight = 92 + expandedDescriptionBlockHeight + 46;
+            const expandedCardHeight = isExpanded
+                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [92, expandedCardTargetHeight] })
+                : 92;
+            const expandedPanelHeight = isExpanded
+                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [0, expandedDescriptionBlockHeight] })
+                : 0;
+            const expandedPanelTranslateY = isExpanded
+                ? expandedTaskAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] })
+                : 0;
+            const confirmFillTranslateX = isExpanded
+                ? taskConfirmAnim.interpolate({ inputRange: [0, 1], outputRange: [-520, 0] })
+                : -520;
             return (<Animated.View key={task.id} style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null, null]}>
-            <TouchableOpacity activeOpacity={completed && !claimed ? 1 : (claimed ? 1 : 0.88)} onPress={completed && !claimed ? undefined : (claimed ? undefined : () => handleTaskNav(task))}>
-            <LinearGradient colors={isGoldTheme
-                    ? (claimed ? goldClaimedGradient : completed ? goldCompleteGradient : goldQuietGradient)
-                    :
-                        claimed
-                            ? ['#111820', '#141E18', '#111820']
-                            : completed
-                                ? ['#0f1f18', '#122018', '#0f1f18']
-                                : ['#101820', '#17251E', '#102033']} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[dailyTaskStyles.taskCard, {
+            <TouchableOpacity activeOpacity={completed && !claimed ? 1 : (claimed ? 1 : 0.88)} onPress={completed && !claimed ? undefined : (claimed ? undefined : () => handleTaskCardPress(task))}>
+            <Animated.View style={[
+                    dailyTaskStyles.taskCard,
+                    dailyTaskStyles.taskCapsuleCard,
+                    {
+                        height: expandedCardHeight as any,
                         borderColor: claimed
-                            ? (t.border)
+                            ? (isGoldTheme ? goldHairline : taskAccent + 'A0')
                             : completed
-                                ? (isGoldTheme ? goldHairline : taskAccent + '80')
-                                : (isGoldTheme ? goldHairline : taskAccent + '44'),
-                        borderRadius: isGoldTheme ? 16 : 18,
-                    }]}>
-                {isGoldTheme && <GoldBevel radius={16} intensity={completed && !claimed ? 'strong' : claimed ? 'quiet' : 'normal'}/>}
-                {!isGoldTheme && (
-                  <View pointerEvents="none" style={[dailyTaskStyles.taskBackdropClip, { borderRadius: 18 }]}>
-                    <Image pointerEvents="none" source={taskBackdrop.source} style={[dailyTaskStyles.taskBackdropImage, taskBackdropState === 'claimed' ? dailyTaskStyles.taskBackdropImageClaimed : null]} contentFit="cover" contentPosition="center" cachePolicy="memory-disk"/>
-                    <LinearGradient pointerEvents="none" colors={dailyTaskCardBackdropScrim(taskBackdropState)} locations={[0, 0.58, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={dailyTaskStyles.taskBackdropScrim}/>
-                  </View>
-                )}
+                                ? (isGoldTheme ? goldHairline : taskAccent + 'A0')
+                                : (isGoldTheme ? goldHairline : taskAccent + '72'),
+                        backgroundColor: taskTrackColor,
+                    }]}
+                >
+                <View pointerEvents="none" style={[
+                    dailyTaskStyles.taskCapsuleFill,
+                    {
+                        ...taskFillSizeStyle,
+                        backgroundColor: taskFillColor,
+                        opacity: 1,
+                    },
+                ]}/>
                 {/* Плашка Premium */}
                 {isPremiumTask && (<Animated.View pointerEvents="box-none" style={{
                         position: 'absolute', bottom: -1, right: -1, zIndex: 10,
@@ -2401,58 +2424,115 @@ export default function DailyTasksScreen() {
                   </Animated.View>)}
 
                 {/* Верхняя строка: иконка + текст + XP */}
-                <View style={[dailyTaskStyles.taskMainRow, dailyTaskStyles.taskArtworkRow]}>
-                  <View style={dailyTaskStyles.taskArtworkFrame}>
-                    <Image source={achievementIcon} style={[dailyTaskStyles.taskArtworkIcon, { opacity: claimed ? 0.55 : 1 }]} contentFit="contain"/>
-                  </View>
-
-                  <View style={dailyTaskStyles.taskTextBlock}>
-                    <Text style={{ color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.body, fontWeight: '800', marginBottom: 1 }}>
+                <View style={[dailyTaskStyles.taskMainRow, dailyTaskStyles.taskCapsuleRow]}>
+                  <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain"/>
+                  <View style={dailyTaskStyles.taskCapsuleTextBlock}>
+                    <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.86} style={[dailyTaskStyles.taskCapsuleTitle, { color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.h2 }]}>
                       {taskTitle}
                     </Text>
-                    <Text style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.50)', fontSize: f.caption, lineHeight: f.caption * 1.4 }}>
-                      {taskDesc}
-                    </Text>
                   </View>
 
-                  <View style={[dailyTaskStyles.xpBadge, {
-                        backgroundColor: isGoldTheme ? goldSoftBg : taskAccent + '1A',
-                        borderColor: isGoldTheme ? goldHairline : taskAccent + '60',
-                    }]}>
-                    <Text style={{ color: taskAccent, fontSize: f.body, fontWeight: '900' }}>+{Math.round(task.xp * xpMultiplier)}</Text>
-                    <Text style={{ color: isGoldTheme ? t.textMuted : taskAccent + '99', fontSize: f.caption, fontWeight: '800', letterSpacing: 0.3 }}>XP</Text>
+                  <View style={dailyTaskStyles.taskCapsuleRight}>
+                    {completed && !claimed ? (<TouchableOpacity onPress={() => { void handleClaim(task.id, task.xp); }} disabled={claimBusyId === task.id} activeOpacity={0.85} style={[dailyTaskStyles.compactClaimButton, { backgroundColor: rewardActionBg }]}>
+                      <Text numberOfLines={1} adjustsFontSizeToFit style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800' }}>
+                        {triLang(lang, {
+                          ru: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ',
+                          uk: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚Ð¸',
+                          es: 'Reclamar',
+                          'pt-BR': "Coletar",
+                          vi: "Nháº­n",
+                          id: "Klaim",
+                          tr: "Al",
+                          pl: "Odbierz",
+                        })}
+                      </Text>
+                    </TouchableOpacity>) : claimed ? (<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
+                      <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
+                    </View>) : (<View style={[dailyTaskStyles.taskProgressValuePill, {
+                          backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.18)' : 'rgba(255,255,255,0.06)',
+                          borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.10)',
+                      }]}>
+                      <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.86} style={{ color: isGoldTheme ? t.textPrimary : 'rgba(255,255,255,0.78)', fontSize: f.body, fontWeight: '900' }}>{progressLabel}</Text>
+                    </View>)}
+                    {!completed && !claimed && rerollsLeft > 0 && (<TouchableOpacity onPress={(e) => {
+                        e.stopPropagation();
+                        hapticTap();
+                        setRerollConfirm({ task });
+                    }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
+                        ru: 'Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð·Ð°Ð´Ð°Ð½Ð¸Ðµ Ð·Ð° Ð¾ÑÐºÐ¾Ð»ÐºÐ¸',
+                        uk: 'Ð—Ð°Ð¼Ñ–Ð½Ð¸Ñ‚Ð¸ Ð·Ð°Ð²Ð´Ð°Ð½Ð½Ñ Ð·Ð° Ð¾ÑÐºÐ¾Ð»ÐºÐ¸',
+                        es: 'Reemplazar tarea por fragmentos',
+                        'pt-BR': "Substituir tarefa por fragmentos",
+                        vi: "Äá»•i nhiá»‡m vá»¥ báº±ng máº£nh",
+                        id: "Ganti tugas dengan fragmen",
+                        tr: "GÃ¶revi parÃ§alarla deÄŸiÅŸtir",
+                        pl: "ZamieÅ„ zadanie za odÅ‚amki",
+                    })} style={[dailyTaskStyles.compactIconButton, dailyTaskStyles.taskCapsuleRefreshButton, { backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.08)', borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.15)' }]}>
+                      <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.55)'}/>
+                    </TouchableOpacity>)}
                   </View>
                 </View>
 
                 {/* Прогресс-бар */}
-                <View style={dailyTaskStyles.taskProgressBlock}>
+                {isExpanded && (<Animated.View style={[
+                    dailyTaskStyles.taskExpandedPanel,
+                    {
+                        height: expandedPanelHeight as any,
+                        opacity: expandedTaskAnim,
+                        transform: [{ translateY: expandedPanelTranslateY as any }],
+                    },
+                ]}>
+                  <Text numberOfLines={expandedDescriptionLines} style={[dailyTaskStyles.taskExpandedDescription, { color: isGoldTheme ? t.textSecond : 'rgba(255,255,255,0.78)', fontSize: f.body, lineHeight: expandedDescriptionLineHeight }]}>
+                    {taskDesc}
+                  </Text>
+                </Animated.View>)}
+                {isExpanded && (<Animated.View style={[
+                    dailyTaskStyles.taskConfirmTrack,
+                    {
+                        opacity: expandedTaskAnim,
+                        backgroundColor: isGoldTheme ? GOLD_RICH.washStrong : `${taskAccent}22`,
+                        borderColor: isGoldTheme ? goldHairline : taskAccent,
+                    },
+                  ]}>
+                    <Animated.View
+                        pointerEvents="none"
+                        style={[
+                            dailyTaskStyles.taskConfirmFill,
+                            {
+                                width: '100%',
+                                backgroundColor: isGoldTheme ? GOLD_RICH.champagne : taskAccent,
+                                transform: [{ translateX: confirmFillTranslateX as any }],
+                            },
+                        ]}
+                    />
+                    <Text numberOfLines={1} style={[dailyTaskStyles.taskExpandedHint, { color: isGoldTheme ? GOLD_RICH.champagne : taskAccent, fontSize: f.body }]}>
+                    {triLang(lang, {
+                      ru: 'Нажми ещё раз, чтобы перейти',
+                      uk: 'Натисни ще раз, щоб перейти',
+                      es: 'Toca otra vez para ir',
+                      'pt-BR': 'Toque de novo para abrir',
+                      vi: 'Nhấn lần nữa để mở',
+                      id: 'Ketuk lagi untuk membuka',
+                      tr: 'Açmak için tekrar dokun',
+                      pl: 'Stuknij ponownie, aby przejść',
+                    })}
+                    </Text>
+                </Animated.View>)}
+
+                {false && (<View style={dailyTaskStyles.taskProgressBlock}>
                   <View style={[dailyTaskStyles.taskProgressTrack, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)', borderWidth: StyleSheet.hairlineWidth, borderColor: GOLD_RICH.hairlineQuiet } : null]}>
-                    {isGoldTheme && !claimed ? (<LinearGradient colors={completed ? GOLD_GRADIENTS.progressMetal : [GOLD_RICH.bronze, taskAccent, GOLD_RICH.champagne] as [
-                    string,
-                    string,
-                    string
-                ]} locations={[0, 0.50, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{
+                    <View style={{
                         height: '100%',
                         width: `${pct}%` as any,
                         borderRadius: 999,
-                        overflow: 'hidden',
+                        backgroundColor: claimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : taskAccent,
                     }}>
-                        <LinearGradient colors={['rgba(255,255,255,0.36)', 'rgba(255,255,255,0.06)', 'rgba(0,0,0,0.14)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill}/>
-                      </LinearGradient>) :
-                    (<View style={{
-                            height: '100%',
-                            width: `${pct}%` as any,
-                            backgroundColor: claimed ? (isGoldTheme ? 'rgba(159,122,45,0.30)' : 'rgba(255,255,255,0.25)') : taskAccent,
-                            borderRadius: 999,
-                        }}/>)}
+                    </View>
                   </View>
-                  {hasMultiStepProgress && (<Text style={{ color: isGoldTheme ? t.textGhost : 'rgba(255,255,255,0.35)', fontSize: f.caption, fontWeight: '700' }}>
-                      {progressLine}
-                    </Text>)}
-                </View>
+                </View>)}
 
                 {/* Footer — только если есть действие */}
-                {((!completed && !claimed && rerollsLeft > 0) || completed || claimed) && (<>
+                {false && (<>
                 <View style={[dailyTaskStyles.taskDivider, isGoldTheme ? { backgroundColor: goldDivider } : null]}/>
                 <View style={dailyTaskStyles.taskFooter}>
                   <View />
@@ -2502,7 +2582,7 @@ export default function DailyTasksScreen() {
                   </View>
                 </View>
                 </>)}
-            </LinearGradient>
+            </Animated.View>
             </TouchableOpacity>
             </Animated.View>);
         })}
@@ -2668,29 +2748,30 @@ const dailyTaskStyles = StyleSheet.create({
     },
     taskCard: {
         borderRadius: 18,
-        padding: 12,
+        minHeight: 72,
+        paddingHorizontal: 12,
+        paddingVertical: 9,
         borderWidth: 1,
         overflow: 'hidden',
         position: 'relative',
+        backgroundColor: 'rgba(13,32,36,0.82)',
     },
-    taskBackdropClip: {
-        ...StyleSheet.absoluteFillObject,
-        overflow: 'hidden',
-        zIndex: 0,
+    taskCapsuleCard: {
+        minHeight: 92,
+        borderRadius: 24,
+        paddingHorizontal: 26,
+        paddingVertical: 0,
+        justifyContent: 'flex-start',
     },
-    taskBackdropImage: {
+    taskCapsuleFill: {
         position: 'absolute',
-        top: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
-        right: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
-        bottom: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
-        left: -DAILY_TASK_CARD_BACKDROP_OVERSCAN,
-        opacity: 0.94,
-    },
-    taskBackdropImageClaimed: {
-        opacity: 0.74,
-    },
-    taskBackdropScrim: {
-        ...StyleSheet.absoluteFillObject,
+        left: 0,
+        top: 0,
+        bottom: 0,
+        borderTopLeftRadius: 24,
+        borderBottomLeftRadius: 24,
+        borderTopRightRadius: 24,
+        borderBottomRightRadius: 24,
     },
     taskMainRow: {
         flexDirection: 'row',
@@ -2699,9 +2780,88 @@ const dailyTaskStyles = StyleSheet.create({
         position: 'relative',
         zIndex: 1,
     },
-    taskArtworkRow: {
-        alignItems: 'flex-start',
+    taskCapsuleRow: {
+        minHeight: 92,
+        gap: 12,
+    },
+    taskCapsuleTextBlock: {
+        flex: 1,
+        minWidth: 0,
+    },
+    taskCapsuleTitle: {
+        fontWeight: '900',
+        lineHeight: 30,
+    },
+    taskCapsuleHeroIcon: {
+        width: 48,
+        height: 48,
+        flexShrink: 0,
+    },
+    taskCapsuleRight: {
+        minWidth: 118,
+        minHeight: 48,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
         gap: 8,
+        flexShrink: 0,
+    },
+    taskExpandedPanel: {
+        overflow: 'hidden',
+        paddingTop: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        gap: 14,
+        zIndex: 1,
+    },
+    taskExpandedDescription: {
+        fontWeight: '800',
+        marginLeft: 24,
+        marginRight: 18,
+    },
+    taskConfirmTrack: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 46,
+        borderWidth: 2,
+        borderTopWidth: 0,
+        borderBottomLeftRadius: 24,
+        borderBottomRightRadius: 24,
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    taskConfirmFill: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    },
+    taskExpandedHint: {
+        fontWeight: '800',
+        zIndex: 1,
+    },
+    taskProgressValuePill: {
+        width: 66,
+        height: 44,
+        borderRadius: 22,
+        borderWidth: 1,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    taskCapsuleRefreshButton: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+    },
+    taskArtworkRow: {
+        alignItems: 'center',
+        gap: 10,
     },
     taskIconFrame: {
         width: 38,
@@ -2712,29 +2872,54 @@ const dailyTaskStyles = StyleSheet.create({
         flexShrink: 0,
     },
     taskArtworkFrame: {
-        width: 58,
-        height: 58,
+        width: 40,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
     },
     taskArtworkIcon: {
-        width: 58,
-        height: 58,
+        width: 40,
+        height: 40,
     },
     taskTextBlock: {
         flex: 1,
         minWidth: 0,
     },
     xpBadge: {
-        width: 58,
+        width: 54,
+        height: 30,
         borderRadius: 11,
         borderWidth: 1,
-        paddingHorizontal: 5,
-        paddingVertical: 5,
+        paddingHorizontal: 4,
+        paddingVertical: 2,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
+    },
+    taskRightColumn: {
+        width: 58,
+        minHeight: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 4,
+        flexShrink: 0,
+    },
+    compactClaimButton: {
+        width: 58,
+        height: 30,
+        borderRadius: 10,
+        paddingHorizontal: 6,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    compactIconButton: {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     taskProgressBlock: {
         gap: 4,

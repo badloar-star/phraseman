@@ -50,6 +50,8 @@ import { hapticTap } from '../hooks/use-haptics';
 import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
 import ProfileCardUpgradeModal from './ProfileCardUpgradeModal';
+import CompassDepthSurface from './CompassDepthSurface';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import {
@@ -233,6 +235,7 @@ function PlayerProfileModalBody({
 }: BodyProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const isCompassTheme = themeMode === 'compass';
   const profileUpgradeAccent = '#FACC15';
   const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
   const insets = useSafeAreaInsets();
@@ -315,9 +318,12 @@ function PlayerProfileModalBody({
   const prestigeParticleY = shimmerAnim.interpolate({ inputRange: [0, 1], outputRange: [8, -10] });
   const prestigeParticleOpacity = shimmerAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.18, 0.78, 0.18] });
   const prestigeActive = profileCardLevel > 0;
+  const compassProfileSurface = isCompassTheme && !prestigeActive;
   const prestigeSurfaceStyle = prestigeActive
     ? { backgroundColor: cardVisual.surface, borderWidth: 1, borderColor: cardVisual.surfaceBorder }
-    : { backgroundColor: t.bgSurface, borderWidth: 0, borderColor: 'transparent' };
+    : compassProfileSurface
+      ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderWidth: 1, borderColor: COMPASS_RICH.hairlineQuiet, overflow: 'hidden' as const }
+      : { backgroundColor: t.bgSurface, borderWidth: 0, borderColor: 'transparent' };
   const friendRequestTargetUid = player.friendUid !== undefined ? player.friendUid : player.uid;
 
   const showAddFriend =
@@ -682,21 +688,22 @@ function PlayerProfileModalBody({
     >
       <Pressable style={{ flex: 1 }} onPress={onBackdropPress} />
       <Animated.View testID="player-profile-modal-sheet" style={{
-        backgroundColor: t.bgCard,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        backgroundColor: compassProfileSurface ? COMPASS_RICH.charcoalRaised : t.bgCard,
+        borderTopLeftRadius: compassProfileSurface ? 14 : 30,
+        borderTopRightRadius: compassProfileSurface ? 14 : 30,
         maxHeight: '90%',
         overflow: 'hidden',
         transform: [{ translateY: slideAnim }],
         borderTopWidth: prestigeActive ? 1 : 0.5,
         borderLeftWidth: prestigeActive ? 1 : 0,
         borderRightWidth: prestigeActive ? 1 : 0,
-        borderColor: prestigeActive ? cardVisual.accentStrong : t.border,
+        borderColor: prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairlineStrong : t.border,
         shadowColor: prestigeActive ? cardVisual.shadowColor : '#000',
-        shadowOpacity: prestigeActive ? 0.34 : 0.18,
-        shadowRadius: prestigeActive ? 22 : 12,
-        elevation: prestigeActive ? 12 : 6,
+        shadowOpacity: prestigeActive ? 0.34 : compassProfileSurface ? 0.58 : 0.18,
+        shadowRadius: prestigeActive ? 22 : compassProfileSurface ? 24 : 12,
+        elevation: prestigeActive ? 12 : compassProfileSurface ? 14 : 6,
       }}>
+        {compassProfileSurface && <CompassDepthSurface radius={14} selected />}
         <TouchableOpacity
           testID="player-profile-close"
           accessibilityRole="button"
@@ -722,15 +729,18 @@ function PlayerProfileModalBody({
             zIndex: 30,
             width: PROFILE_HEADER_ACTION_SIZE,
             height: PROFILE_HEADER_ACTION_SIZE,
-            borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
+            borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : 'rgba(255,255,255,0.10)',
+            backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)',
             borderWidth: 1,
-            borderColor: prestigeActive ? cardVisual.accentStrong : 'rgba(255,255,255,0.14)',
+            borderColor: prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairline : 'rgba(255,255,255,0.14)',
+            overflow: compassProfileSurface ? 'hidden' : 'visible',
+            ...(compassProfileSurface ? compassShadow(1) : null),
           }}
         >
-          <Ionicons name="close" size={22} color={prestigeActive ? '#FFFFFF' : t.textPrimary} />
+          {compassProfileSurface && <CompassDepthSurface radius={9} quiet />}
+          <Ionicons name="close" size={22} color={prestigeActive ? '#FFFFFF' : compassProfileSurface ? COMPASS_RICH.champagne : t.textPrimary} />
         </TouchableOpacity>
         {showAddFriend ? (
           <Pressable
@@ -744,14 +754,16 @@ function PlayerProfileModalBody({
               zIndex: 30,
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
-              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
-              backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : 'rgba(255,255,255,0.10)',
+              borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
+              backgroundColor: prestigeActive ? 'rgba(0,0,0,0.28)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)',
               alignItems: 'center',
               justifyContent: 'center',
               borderWidth: 1,
               borderColor: isAlreadyFriend
-                ? (t.wrong ?? t.border)
-                : (prestigeActive ? cardVisual.accentStrong : 'rgba(255,255,255,0.14)'),
+                ? (compassProfileSurface ? COMPASS_RICH.copper : (t.wrong ?? t.border))
+                : (prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairline : 'rgba(255,255,255,0.14)'),
+              overflow: compassProfileSurface ? 'hidden' : 'visible',
+              ...(compassProfileSurface ? compassShadow(1) : null),
               opacity: friendRequestBusy ? 0.55 : 1,
             }}
             accessibilityRole="button"
@@ -766,10 +778,11 @@ function PlayerProfileModalBody({
               pl: "Dodaj znajomego",
             })}
           >
+            {compassProfileSurface && <CompassDepthSurface radius={9} quiet />}
             <Ionicons
               name={isAlreadyFriend ? 'person-remove-outline' : 'person-add-outline'}
               size={22}
-              color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
+              color={isAlreadyFriend ? (compassProfileSurface ? COMPASS_RICH.peach : (t.wrong ?? t.accent)) : compassProfileSurface ? COMPASS_RICH.champagne : t.accent}
             />
           </Pressable>
         ) : null}
@@ -992,6 +1005,7 @@ function PlayerProfileModalBody({
           </View>
           {streak !== null && (
             <View style={[{ flex: 1, borderRadius: 14, padding: 14, alignItems: 'center' }, prestigeSurfaceStyle]}>
+              {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
               <Text style={{ fontSize: f.numMd, fontWeight: '700', color: t.textPrimary }}>🔥{streak}</Text>
               <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
                 {triLang(lang as Lang, {
@@ -1045,6 +1059,7 @@ function PlayerProfileModalBody({
             marginBottom: 10,
           }, prestigeSurfaceStyle]}
         >
+          {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
           <View style={{
             width: 34,
             height: 34,
@@ -1074,6 +1089,7 @@ function PlayerProfileModalBody({
           </View>
         </Pressable>
         <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
+          {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
           {club.imageUri
             ? <Image source={club.imageUri} style={{ width: 32, height: 32, borderRadius: 6 }} resizeMode="contain" />
             : <Ionicons name={club.ionIcon as any} size={28} color={club.color} />
@@ -1366,20 +1382,23 @@ function PlayerProfileModalBody({
             }}
             style={{
               marginTop: 2,
-              borderRadius: 16,
+              borderRadius: compassProfileSurface ? 9 : 16,
               borderWidth: 1,
-              borderColor: prestigeActive ? cardVisual.accentStrong : 'rgba(250,204,21,0.38)',
-              backgroundColor: prestigeActive ? cardVisual.accentSoft : 'rgba(250,204,21,0.10)',
+              borderColor: prestigeActive ? cardVisual.accentStrong : compassProfileSurface ? COMPASS_RICH.hairlineStrong : 'rgba(250,204,21,0.38)',
+              backgroundColor: prestigeActive ? cardVisual.accentSoft : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(250,204,21,0.10)',
               paddingVertical: 13,
               paddingHorizontal: 14,
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
               gap: 8,
+              overflow: compassProfileSurface ? 'hidden' : 'visible',
+              ...(compassProfileSurface ? compassShadow(1) : null),
             }}
           >
-            <Ionicons name={profileCardLevel >= PROFILE_CARD_MAX_LEVEL ? 'sparkles' : 'color-wand-outline'} size={18} color={prestigeActive ? cardVisual.accent : profileUpgradeAccent} />
-            <Text style={{ color: prestigeActive ? cardVisual.accent : profileUpgradeAccent, fontSize: f.body, fontWeight: '900' }}>
+            {compassProfileSurface && <CompassDepthSurface radius={9} selected />}
+            <Ionicons name={profileCardLevel >= PROFILE_CARD_MAX_LEVEL ? 'sparkles' : 'color-wand-outline'} size={18} color={prestigeActive ? cardVisual.accent : compassProfileSurface ? COMPASS_RICH.champagne : profileUpgradeAccent} />
+            <Text style={{ color: prestigeActive ? cardVisual.accent : compassProfileSurface ? COMPASS_RICH.champagne : profileUpgradeAccent, fontSize: f.body, fontWeight: '900' }}>
               {profileCardLevel >= PROFILE_CARD_MAX_LEVEL
                 ? triLang(lang as Lang, {
                   ru: 'Карточка максимального уровня',

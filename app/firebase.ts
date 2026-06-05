@@ -25,6 +25,35 @@ export function logEvent(name: string, params?: Record<string, string | number>)
     .catch(() => {});
 }
 
+function paywallSourceForContext(context: string): 'settings' | 'onboarding' | 'automatic' {
+  const c = String(context || '').toLowerCase();
+  if (c === 'settings' || c === 'manage') return 'settings';
+  if (c.includes('onboarding') || c === 'personal_plan') return 'onboarding';
+  return 'automatic';
+}
+
+function trackRevenueActivity(
+  action: string,
+  context: string,
+  tags: Record<string, string | number | boolean | null> = {},
+) {
+  void import('./app_activity')
+    .then(({ trackActivity }) =>
+      trackActivity(action, {
+        feature: 'revenue',
+        screen: 'premium_modal',
+        result: 'info',
+        writeToFirestore: true,
+        tags: {
+          context,
+          source: paywallSourceForContext(context),
+          ...tags,
+        },
+      }),
+    )
+    .catch(() => {});
+}
+
 export function setUserId(userId: string) {
   getAnalytics()?.setUserId(userId).catch(() => {});
   getCrashlytics()?.setUserId(userId).catch(() => {});
@@ -75,8 +104,9 @@ export function logPremiumModalOpened(context: string) {
   logEvent('premium_modal_opened', { context });
 }
 
-export function logPremiumPurchased(productId: string) {
+export function logPremiumPurchased(productId: string, context = 'generic') {
   logEvent('premium_purchased', { product_id: productId });
+  trackRevenueActivity('paywall:purchase_success', context, { productId });
 }
 
 export function logShardsPurchased(productId: string, shards: number) {
@@ -89,14 +119,17 @@ export function logCardPackPurchasedShards(packId: string, priceShards: number) 
 
 export function logPaywallView(context: string) {
   logEvent('paywall_view', { context });
+  trackRevenueActivity('paywall:view', context);
 }
 
 export function logPaywallPlanSelect(context: string, plan: string) {
   logEvent('paywall_plan_select', { context, plan });
+  trackRevenueActivity('paywall:plan_select', context, { plan });
 }
 
 export function logPaywallCtaClick(context: string, plan: string) {
   logEvent('paywall_cta_click', { context, plan });
+  trackRevenueActivity('paywall:cta_click', context, { plan });
 }
 
 export function logPaywallContinueFree(context: string) {
@@ -117,6 +150,7 @@ export function logExitTrialOfferShown(context: string, plan: string) {
 
 export function logExitTrialOfferAccepted(context: string, plan: string) {
   logEvent('exit_trial_offer_accepted', { context, plan });
+  trackRevenueActivity('paywall:trial_offer_accepted', context, { plan });
 }
 
 export function logExitTrialOfferDeclined(context: string, plan: string) {

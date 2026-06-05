@@ -1,8 +1,10 @@
 import React from 'react';
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { hapticTap, hapticWarning } from '../hooks/use-haptics';
 import type { Lang } from '../constants/i18n';
+import CompassDepthSurface from './CompassDepthSurface';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 interface Props {
   visible: boolean;
@@ -13,6 +15,7 @@ interface Props {
 
 export default function UserWarningModal({ visible, message, lang, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const title =
     lang === 'uk'
       ? 'Важливе повідомлення'
@@ -36,16 +39,19 @@ export default function UserWarningModal({ visible, message, lang, onClose }: Pr
         }}
       >
         <View style={{
-          backgroundColor: t.bgCard,
-          borderRadius: 16,
+          backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+          borderRadius: isCompassTheme ? 14 : 16,
           padding: 24,
           width: '100%',
           maxWidth: 340,
           borderWidth: 1,
-          borderColor: t.wrong,
+          borderColor: isCompassTheme ? COMPASS_RICH.copper : t.wrong,
+          overflow: 'hidden',
+          ...(isCompassTheme ? compassShadow(3) : null),
         }}>
+          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <Text style={{ fontSize: 36, textAlign: 'center', marginBottom: 12 }}>⚠️</Text>
-          <Text style={{ color: t.wrong, fontSize: f.h2, fontWeight: '700', textAlign: 'center', marginBottom: 12 }}>
+          <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : t.wrong, fontSize: f.h2, fontWeight: '700', textAlign: 'center', marginBottom: 12 }}>
             {title}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.6, textAlign: 'center', marginBottom: 20 }}>
@@ -57,12 +63,17 @@ export default function UserWarningModal({ visible, message, lang, onClose }: Pr
               onClose();
             }}
             style={{
-              backgroundColor: t.wrong,
-              borderRadius: 10,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.wrong,
+              borderRadius: isCompassTheme ? 9 : 10,
               paddingVertical: 12,
+              borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+              overflow: isCompassTheme ? 'hidden' : 'visible',
+              ...(isCompassTheme ? compassShadow(1) : null),
             }}
           >
-            <Text style={{ color: t.correctText, fontWeight: '700', textAlign: 'center', fontSize: f.body }}>
+            {isCompassTheme && <CompassDepthSurface radius={9} cream />}
+            <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '700', textAlign: 'center', fontSize: f.body }}>
               {okLabel}
             </Text>
           </TouchableOpacity>

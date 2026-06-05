@@ -202,7 +202,7 @@ function renderTabChromeLayer(layer: TabChromeLayer, keyPrefix: string, backgrou
 function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const { lang } = useLang();
   const { theme: t, f, ds, themeMode, statusBarLight } = useTheme();
-  const { contentMaxW, tabBarHeight, bottomInset: PB } = useScreen();
+  const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const isUK = lang === 'uk';
@@ -322,7 +322,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
         onLayout={notifyFirstContentReady}
         style={{ flex: 1, paddingTop: insets.top }}
       >
-        <View style={{ flex: 1, maxWidth: contentMaxW, width: '100%', alignSelf: 'center', flexDirection: 'column' }}>
+        <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
           {/* flex-колонка вместо absolute: таб-бар всегда снизу в дереве, его не перекрывает ScrollView/elevation */}
           <View style={s.tabContent}>
             <GestureHandlerRootView style={{ flex: 1 }}>
@@ -397,8 +397,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
 }
 
 export default function TabLayout() {
-  const { width: screenW, contentMaxW } = useScreen();
-  const tabPaneWidth = Math.min(screenW, contentMaxW);
+  const { width: tabPaneWidth } = useScreen();
   const pathname = usePathname();
   const segments = useSegments();
   const [activeIdx, setActiveIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);

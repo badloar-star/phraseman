@@ -1927,6 +1927,13 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
         shadowOffset: { width: 0, height: 2 },
         elevation: 5,
     };
+    const freezeChainIconFrameStyle = {
+        width: freezeActionIconBoxSize,
+        height: freezeActionIconBoxSize,
+        alignItems: 'center' as const,
+        justifyContent: 'center' as const,
+        flexShrink: 0,
+    };
     const streakIconGlowStyle = streakIconInactive
         ? null
         : {
@@ -2126,7 +2133,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
             </View>
           </TouchableOpacity>)}
         {freezeActive ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: isGoldTheme ? goldSoftBg : statsSoftBg(themeMode, 'freeze', 'quiet'), borderRadius: 12, padding: 12 }}>
-            <View style={freezeActionIconFrameStyle}>
+            <View style={freezeChainIconFrameStyle}>
               <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={freezeActionIconSize}/>
             </View>
             <Text style={{ color: freezeAccent, fontSize: f.body, fontWeight: '600', flex: 1 }}>
@@ -2142,7 +2149,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
             })}
             </Text>
           </View>) : (<TouchableOpacity onPress={onFreezePress} disabled={chainShieldDays > 0} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: streakAccent, paddingVertical: 11, paddingHorizontal: 16, opacity: chainShieldDays > 0 ? 0.4 : 1 }}>
-            <View style={freezeActionIconFrameStyle}>
+            <View style={freezeChainIconFrameStyle}>
               <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={freezeActionIconSize}/>
             </View>
             <View style={{ flex: 1 }}>
@@ -3492,19 +3499,19 @@ export default function StreakStats() {
             </StatsCardArtSurface>);
         })()}
 
-        <StatsPremiumBlur isPremium={isPremium} context="stats" devUnlock={statsDevUnlock}>
+        <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="learningCoach" devUnlock={statsDevUnlock}>
           <LearningCoachCard t={t} f={f} lang={lang} metrics={coachMetrics} isGoldTheme={isGoldTheme} themeMode={themeMode} showAction={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE} onAction={() => {
             hapticTap();
             router.push('/trainer' as any);
         }}/>
         </StatsPremiumBlur>
 
-        <StatsPremiumBlur isPremium={isPremium} context="stats" devUnlock={statsDevUnlock}>
+        <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="weekRhythm" devUnlock={statsDevUnlock}>
           <RhythmWeekCard t={t} f={f} lang={lang} metrics={coachMetrics} isGoldTheme={isGoldTheme} themeMode={themeMode}/>
         </StatsPremiumBlur>
 
         {/* Годовая карта активности (~365 дней); премиум — без блюра. */}
-        <StatsPremiumBlur isPremium={isPremium} context="heatmap" devUnlock={statsDevUnlock}>
+        <StatsPremiumBlur isPremium={isPremium} context="heatmap" snapshotKey="heatmap" devUnlock={statsDevUnlock}>
         <View testID="stats-activity-365" onLayout={(event) => {
             activity365YRef.current = event.nativeEvent.layout.y;
         }}>
@@ -3570,7 +3577,7 @@ export default function StreakStats() {
                     }) });
             if (pItems.length === 0)
                 return null;
-            return (<StatsPremiumBlur isPremium={isPremium} context="percentiles" devUnlock={statsDevUnlock}>
+            return (<StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
               <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
                 <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
                   {triLang(lang, {
@@ -3627,7 +3634,7 @@ export default function StreakStats() {
 
         {detailsOpen && (<View testID="stats-details-expanded" style={{ gap: 12 }}>
         {/* График по дням: переключатель «Опыт» / «Время» — для !premium закрыт blur\'ом + lock CTA. */}
-        <StatsPremiumBlur isPremium={isPremium} context="stats" devUnlock={statsDevUnlock}>
+        <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="pathChart" devUnlock={statsDevUnlock}>
         {(() => {
                 const chartDays = allDays.length > 0 ? allDays : days;
                 const maxAllPts = Math.max(...chartDays.map(d => d.points), 1);
@@ -3786,7 +3793,7 @@ export default function StreakStats() {
             })()}
         </StatsPremiumBlur>
 
-        {lifetimeStats != null && (<StatsPremiumBlur isPremium={isPremium} context="stats" devUnlock={statsDevUnlock}>
+        {lifetimeStats != null && (<StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="lifetimeTotals" devUnlock={statsDevUnlock}>
             <LifetimeTotalsBlock t={{
                     bgCard: t.bgCard,
                     bgSurface: t.bgSurface,

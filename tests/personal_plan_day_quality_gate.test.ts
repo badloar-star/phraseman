@@ -21,9 +21,13 @@ describe('personal plan day quality gate', () => {
     expect(passport.ready).toBe(true);
     expect(passport.issues).toEqual([]);
     expect(passport.taskKinds).toEqual([
-      'linked_lesson_slice',
       'plan_phrase_lesson',
       'plan_missing_word',
+      'plan_choose_natural_phrase',
+      'plan_listen_choose',
+      'plan_listen_build',
+      'plan_pronunciation_repeat',
+      'plan_phrase_recall',
       'plan_quiz',
     ]);
   });
@@ -60,7 +64,7 @@ describe('personal plan day quality gate', () => {
   it('reports missing phrase lesson content', () => {
     const brokenDay = {
       ...day1,
-      tasks: day1.tasks.map((task, index) => index === 1
+      tasks: day1.tasks.map((task, index) => index === 0
         ? {
           ...task,
           destination: { type: 'plan_phrase_lesson', lessonId: 'missing_phrase_lesson', requiredPhrases: 5, afterLessonId: 1 },

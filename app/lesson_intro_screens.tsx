@@ -19,8 +19,10 @@ import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_SCALE } from '../constants/motion';
+import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
@@ -679,6 +681,7 @@ function IntroBlockCard({
   const km = KIND_MAP[kind];
   const accent = km.color(t);
   const isLight = themeMode === 'minimalLight';
+  const isCompassTheme = themeMode === 'compass';
 
   const defaultTitle = defaultKindTitle(km, lang, studyTarget);
   const localizedTitle = richTitle(data, lang, studyTarget);
@@ -759,9 +762,10 @@ function IntroBlockCard({
   // Цветовая полупрозрачная подложка под иконкой
   const iconBg = `${accent}28`;
   const iconBorder = `${accent}55`;
-  const titleColor = accent;
-  const cardBg = themeMode === 'minimalLight' ? '#FFFFFF' : t.bgCard;
-  const stripeBg = `${accent}99`;
+  const titleColor = isCompassTheme ? COMPASS_RICH.champagne : accent;
+  const cardBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : themeMode === 'minimalLight' ? '#FFFFFF' : t.bgCard;
+  const stripeBg = isCompassTheme ? COMPASS_RICH.champagne : `${accent}99`;
+  const cardRadius = isCompassTheme ? 10 : 18;
 
   return (
     <Animated.View
@@ -778,11 +782,13 @@ function IntroBlockCard({
           styles.card,
           {
             backgroundColor: cardBg,
-            borderColor: t.borderHighlight,
-            ...getVolumetricShadow(themeMode, t, 2),
+            borderRadius: cardRadius,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
+            ...(isCompassTheme ? compassShadow(2) : getVolumetricShadow(themeMode, t, 2)),
           },
         ]}
       >
+        {isCompassTheme && <CompassDepthSurface radius={cardRadius} />}
         {/* Цветная вертикальная полоса слева */}
         <View style={[styles.stripe, { backgroundColor: stripeBg }]} />
 
@@ -793,14 +799,17 @@ function IntroBlockCard({
               style={[
                 styles.iconCircle,
                 {
-                  backgroundColor: iconBg,
-                  borderColor: iconBorder,
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : iconBg,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : iconBorder,
+                  borderRadius: isCompassTheme ? 9 : 18,
                   transform: [{ scale: iconScale }],
-                  shadowColor: accent,
+                  shadowColor: isCompassTheme ? '#000000' : accent,
+                  ...(isCompassTheme ? compassShadow(1) : null),
                 },
               ]}
             >
-              <Ionicons name={km.icon} size={20} color={accent} />
+              {isCompassTheme && <CompassDepthSurface radius={9} selected />}
+              <Ionicons name={km.icon} size={20} color={isCompassTheme ? COMPASS_RICH.cream : accent} />
             </Animated.View>
             <Text
               style={[
@@ -851,7 +860,17 @@ function IntroBlockCard({
 
           {/* Опциональные примеры */}
           {!!data.examples?.length && (
-            <View style={[styles.exampleBox, { borderColor: `${accent}33`, backgroundColor: isLight ? '#FFFFFF80' : '#00000022' }]}>
+            <View
+              style={[
+                styles.exampleBox,
+                {
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : `${accent}33`,
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : isLight ? '#FFFFFF80' : '#00000022',
+                  borderRadius: isCompassTheme ? 9 : 12,
+                },
+              ]}
+            >
+              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               {data.examples.map((ex, i) => {
                 const richExample = isRichExample(ex);
                 const { primary, secondary } = richExample
@@ -933,6 +952,7 @@ export default function LessonIntroScreens({
   const insets = useSafeAreaInsets();
   const { height: screenH } = useWindowDimensions();
   const isLight = themeMode === 'minimalLight';
+  const isCompassTheme = themeMode === 'compass';
 
   const totalBlocks = introScreens.length;
   const [revealedCount, setRevealedCount] = useState(1); // первый блок виден сразу
@@ -1155,22 +1175,26 @@ export default function LessonIntroScreens({
       <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
         <TouchableOpacity testID="lesson-intro-start" accessibilityRole="button" accessibilityLabel={startLabel} activeOpacity={0.88} onPress={handleStart}>
           <LinearGradient
-            colors={[`${t.accent}`, `${t.correct}`]}
+            colors={isCompassTheme ? COMPASS_GRADIENTS.primaryButton : [`${t.accent}`, `${t.correct}`]}
+            locations={isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={[
               styles.ctaBtn,
               {
-                borderColor: t.borderHighlight,
-                shadowColor: t.accent,
+                borderRadius: isCompassTheme ? 9 : 18,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.borderHighlight,
+                shadowColor: isCompassTheme ? '#000000' : t.accent,
+                ...(isCompassTheme ? compassShadow(2) : null),
               },
             ]}
           >
-            <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>
+            {isCompassTheme && <CompassDepthSurface radius={9} cream />}
+            <Text style={[styles.ctaText, { color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.bodyLg }]}>
               {startLabel}
             </Text>
-            <View style={styles.ctaIconWrap}>
-              <Ionicons name="arrow-forward" size={18} color={t.correctText} />
+            <View style={[styles.ctaIconWrap, isCompassTheme && { backgroundColor: 'rgba(21,16,8,0.12)', borderRadius: 8 }]}>
+              <Ionicons name="arrow-forward" size={18} color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
             </View>
           </LinearGradient>
         </TouchableOpacity>
@@ -1208,21 +1232,34 @@ export default function LessonIntroScreens({
             })}
             onPress={handleBack}
             hitSlop={{ top: 14, right: 14, bottom: 14, left: 14 }}
-            style={[styles.skipBtn, { backgroundColor: t.bgCard, borderColor: t.borderHighlight }]}
+            style={[
+              styles.skipBtn,
+              {
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
+                borderRadius: isCompassTheme ? 9 : 18,
+                overflow: isCompassTheme ? 'hidden' : 'visible',
+                ...(isCompassTheme ? compassShadow(1) : null),
+              },
+            ]}
           >
-            <Ionicons name="chevron-back" size={20} color={t.textMuted} />
+            {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
+            <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textMuted} />
           </TouchableOpacity>
 
           <View
             style={[
               styles.headerPill,
               {
-                backgroundColor: t.bgCard,
-                borderColor: t.borderHighlight,
-                ...getVolumetricShadow(themeMode, t, 1),
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
+                borderRadius: isCompassTheme ? 10 : 20,
+                overflow: isCompassTheme ? 'hidden' : 'visible',
+                ...(isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)),
               },
             ]}
           >
+            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
             <Text style={[styles.headerText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
               {headerLabel}
             </Text>
@@ -1285,8 +1322,21 @@ export default function LessonIntroScreens({
                 <Animated.View
                   testID="lesson-intro-hint"
                   pointerEvents="none"
-                  style={[styles.tapHintRow, { opacity: hintFade, alignSelf: 'center' }]}
+                  style={[
+                    styles.tapHintRow,
+                    {
+                      opacity: hintFade,
+                      alignSelf: 'center',
+                      backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : undefined,
+                      borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : undefined,
+                      borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                      borderRadius: isCompassTheme ? 9 : 0,
+                      overflow: isCompassTheme ? 'hidden' : 'visible',
+                      ...(isCompassTheme ? compassShadow(1) : null),
+                    },
+                  ]}
                 >
+                  {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
                   <Animated.View
                     style={{
                       marginRight: 8,
@@ -1300,9 +1350,9 @@ export default function LessonIntroScreens({
                       ],
                     }}
                   >
-                    <Ionicons name="finger-print-outline" size={16} color={t.textGhost} />
+                    <Ionicons name="finger-print-outline" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.textGhost} />
                   </Animated.View>
-                  <Text style={[styles.tapHint, { color: t.textGhost, fontSize: f.caption }]}>
+                  <Text style={[styles.tapHint, { color: isCompassTheme ? COMPASS_RICH.textMuted : t.textGhost, fontSize: f.caption }]}>
                     {tapHintLabel}
                   </Text>
                 </Animated.View>
@@ -1334,6 +1384,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   headerPill: {
+    position: 'relative',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
@@ -1392,12 +1443,14 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   iconCircle: {
+    position: 'relative',
     width: 36,
     height: 36,
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
+    overflow: 'hidden',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.35,
     shadowRadius: 10,
@@ -1436,10 +1489,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   exampleBox: {
+    position: 'relative',
     marginTop: 14,
     borderRadius: 12,
     borderWidth: 0.5,
     padding: 12,
+    overflow: 'hidden',
   },
   exampleRow: {
     flexDirection: 'column',
@@ -1476,6 +1531,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   ctaBtn: {
+    position: 'relative',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1484,6 +1540,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 22,
     borderRadius: 18,
     borderWidth: 0.5,
+    overflow: 'hidden',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.45,
     shadowRadius: 16,

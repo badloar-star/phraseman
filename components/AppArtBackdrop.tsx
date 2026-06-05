@@ -10,6 +10,7 @@ import {
   resolveAppArtBackdropName,
   type AppArtBackdropName,
 } from './appArtBackdropRegistry';
+import { useAdaptiveBackgroundSource } from './adaptiveBackgroundAssets';
 
 type ThreeStop = [string, string, string];
 type FourStop = [string, string, string, string];
@@ -21,7 +22,7 @@ const IMAGE_OPACITY: Record<ThemeMode, number> = {
   coral: 0.46,
   minimalLight: 0.62,
   minimalDark: 0.52,
-  compass: 0.48,
+  compass: 0.18,
 };
 
 const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
@@ -31,7 +32,7 @@ const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
   coral: ['rgba(0,0,0,0.38)', 'rgba(0,0,0,0.24)', 'rgba(0,0,0,0.68)'],
   minimalLight: ['rgba(34,28,18,0.16)', 'rgba(34,28,18,0.06)', 'rgba(34,28,18,0.28)'],
   minimalDark: ['rgba(8,10,14,0.30)', 'rgba(12,14,20,0.16)', 'rgba(6,7,10,0.56)'],
-  compass: ['rgba(2,3,4,0.42)', 'rgba(17,16,12,0.22)', 'rgba(2,3,4,0.70)'],
+  compass: ['rgba(51,51,53,0.46)', 'rgba(48,48,50,0.34)', 'rgba(29,29,31,0.74)'],
 };
 
 const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
@@ -41,17 +42,18 @@ const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
   coral: ['rgba(0,0,0,0.40)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.12)', 'rgba(0,0,0,0.34)'],
   minimalLight: ['rgba(34,28,18,0.18)', 'rgba(34,28,18,0.04)', 'rgba(34,28,18,0.04)', 'rgba(34,28,18,0.16)'],
   minimalDark: ['rgba(8,10,14,0.36)', 'rgba(110,168,255,0.04)', 'rgba(110,168,255,0.03)', 'rgba(6,7,10,0.34)'],
-  compass: ['rgba(2,3,4,0.48)', 'rgba(242,196,141,0.06)', 'rgba(242,196,141,0.025)', 'rgba(2,3,4,0.42)'],
+  compass: ['rgba(29,29,31,0.50)', 'rgba(48,48,50,0.10)', 'rgba(48,48,50,0.08)', 'rgba(29,29,31,0.46)'],
 };
 
 function AppArtBackdrop({ name }: { name: AppArtBackdropName }) {
   const { themeMode } = useTheme();
   const source = getAppArtBackdropSource(name, themeMode);
+  const adaptiveSource = useAdaptiveBackgroundSource(source);
 
   return (
     <View pointerEvents="none" style={styles.root}>
       <Image
-        source={source}
+        source={adaptiveSource}
         contentFit="cover"
         cachePolicy="memory-disk"
         style={[styles.image, { opacity: IMAGE_OPACITY[themeMode] }]}

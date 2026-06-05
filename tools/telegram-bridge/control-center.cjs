@@ -5,6 +5,7 @@ const path = require('path');
 const {
   buildVisibleQueuePaths,
   escapeTelegramHtml,
+  getPromptQueueDeliveryPlan,
   loadConfig,
   loadState,
   promptQueueCounts,
@@ -43,7 +44,8 @@ function readDesktopQueueStatus(config, queue, counts = {}) {
   const queueFileCount = countQueueFileLines(paths.queuePath);
   const stateQueued = Number(counts.queued || 0);
   const drift = stateQueued - queueFileCount;
-  const warning = drift === 0
+  const shouldCompareDesktopFile = getPromptQueueDeliveryPlan(config).appendDesktopQueue;
+  const warning = !shouldCompareDesktopFile || drift === 0
     ? ''
     : `State/file drift: state queued ${stateQueued}, queue file ${queueFileCount}.`;
   return {
@@ -354,6 +356,7 @@ function clearQueues(config, state, queueKey = '') {
     fs.rmSync(paths.queuePath, { force: true });
     fs.rmSync(paths.statusPath, { force: true });
     queue.items = [];
+    queue.replaceItems = true;
     queue.updatedAt = new Date().toISOString();
     cleared += 1;
   }
@@ -374,6 +377,7 @@ function pruneQueueItems(config, state, queueKey = '', statuses = []) {
       ...item,
       position: index + 1,
     }));
+    queue.replaceItems = true;
     queue.updatedAt = new Date().toISOString();
 
     const paths = buildVisibleQueuePaths(config, queue);

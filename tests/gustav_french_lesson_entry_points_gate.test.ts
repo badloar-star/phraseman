@@ -15,7 +15,7 @@ describe('Gustav French lesson entry point gate', () => {
     expect(frenchLessonRuntimeAvailableForTarget('fr', 1)).toBe(false);
   });
 
-  it('blocks lesson_menu primary, continue, intro replay, and mastery replay before opening /lesson1 for French', () => {
+  it('blocks lesson_menu primary, continue, and intro replay before opening /lesson1 for French', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_menu.tsx'), 'utf8');
 
     expect(source).toContain("import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate'");
@@ -63,15 +63,6 @@ describe('Gustav French lesson entry point gate', () => {
     expect(replayIntroSlice).toContain('if (frenchLessonSourceGated)');
     expect(replayIntroSlice.indexOf("setSoonOpen('frenchLesson')")).toBeLessThan(
       replayIntroSlice.indexOf('primeLessonScreenFromStorage(lessonId, studyTarget)'),
-    );
-
-    const masteryReplaySlice = source.slice(
-      source.indexOf('onReplayed={(id) => {'),
-      source.indexOf("router.replace({ pathname: '/lesson1'", source.indexOf('onReplayed={(id) => {')) + 90,
-    );
-    expect(masteryReplaySlice).toContain('!frenchLessonRuntimeAvailableForTarget(studyTarget, id)');
-    expect(masteryReplaySlice.indexOf("setSoonOpen('frenchLesson')")).toBeLessThan(
-      masteryReplaySlice.indexOf("router.replace({ pathname: '/lesson1'"),
     );
   });
 

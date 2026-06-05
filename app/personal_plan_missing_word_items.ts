@@ -83,10 +83,11 @@ function chooseMissingWordTarget(
   words: Array<{ text?: string; correct?: string; category?: string; distractors?: string[]; teachingNote?: LessonTeachingNote }> | undefined,
 ) {
   const safeWords = (words ?? []).filter((word) => !isUnsafeMissingWord(word));
-  const withDistractors = safeWords.find((word) =>
+  const nonInitialSafeWords = safeWords.length > 1 ? safeWords.slice(1) : safeWords;
+  const withDistractors = nonInitialSafeWords.find((word) =>
     compactUnique(word.distractors ?? []).filter((item) => !UNSAFE_MISSING_WORDS.has(item.toLowerCase())).length >= 2,
   );
-  return withDistractors ?? safeWords[0] ?? words?.[0];
+  return withDistractors ?? nonInitialSafeWords[0] ?? words?.[0];
 }
 
 function blankTargetToken(fullAnswer: string, correctAnswer: string): string {

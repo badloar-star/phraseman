@@ -557,10 +557,10 @@ export default function SettingsMain() {
                       paddingVertical: 10,
                       borderRadius: isCompassTheme ? 8 : 12,
                       borderWidth: active ? (isCompassTheme ? 1 : 2) : 0.5,
-                      borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineCream : COMPASS_RICH.hairlineQuiet) : active ? (isGradientLight ? chipSurfaceOn : t.accent) : chipBorderOff,
+                      borderColor: isCompassTheme ? (active ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : active ? (isGradientLight ? chipSurfaceOn : t.accent) : chipBorderOff,
                       backgroundColor: isCompassTheme ? (active ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised) : active ? chipSurfaceOn : chipSurfaceOff,
                       overflow: 'hidden',
-                      ...(isCompassTheme ? compassShadow(active ? 1 : 0) : {}),
+                      ...(isCompassTheme && active ? compassShadow(1) : {}),
                     }}
                   >
                     {isCompassTheme ? <CompassDepthSurface radius={8} quiet={!active} cream={active} /> : null}
@@ -639,7 +639,7 @@ export default function SettingsMain() {
               flexDirection: 'row', alignItems: 'center', gap: 10,
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface,
               borderRadius: isCompassTheme ? 8 : 12, padding: 12,
-              borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineCream : t.accent + '55',
+              borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.accent + '55',
               overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(1) : {}),
             }}
@@ -709,18 +709,25 @@ export default function SettingsMain() {
                   flex: 1,
                   alignItems: 'center',
                   paddingVertical: 10,
-                  borderRadius: 10,
-                  borderWidth: fontSize === sz ? 2 : 0.5,
-                  borderColor: fontSize === sz ? chipBorderOn : (isGradientLight ? chipBorderOff : t.border),
-                  backgroundColor: fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
+                  borderRadius: isCompassTheme ? 8 : 10,
+                  borderWidth: fontSize === sz ? (isCompassTheme ? 1 : 2) : 0.5,
+                  borderColor: isCompassTheme
+                    ? (fontSize === sz ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
+                    : fontSize === sz ? chipBorderOn : (isGradientLight ? chipBorderOff : t.border),
+                  backgroundColor: isCompassTheme
+                    ? (fontSize === sz ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised)
+                    : fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
+                  overflow: 'hidden',
+                  ...(isCompassTheme && fontSize === sz ? compassShadow(1) : {}),
                 }}
               >
+                {isCompassTheme ? <CompassDepthSurface radius={8} quiet={fontSize !== sz} cream={fontSize === sz} /> : null}
                 <Text style={{
                   fontSize: sz === 'small' ? 12 : sz === 'medium' ? 14 : sz === 'large' ? 17 : 20,
                   fontWeight: '700',
-                  color: fontSize === sz ? chipTextOn : t.textSecond,
+                  color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenSecond) : fontSize === sz ? chipTextOn : t.textSecond,
                 }}>A</Text>
-                <Text numberOfLines={1} style={{ fontSize: f.label, color: fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
+                <Text numberOfLines={1} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
                   {L(
                     sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                     sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
@@ -789,21 +796,24 @@ export default function SettingsMain() {
             marginHorizontal: 20,
             marginTop: 20,
             marginBottom: -4,
-            backgroundColor: vipActiveSurface,
-            borderRadius: 14,
+            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : vipActiveSurface,
+            borderRadius: isCompassTheme ? 8 : 14,
             padding: 14,
             borderWidth: 1,
-            borderColor: vipActiveBorder,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : vipActiveBorder,
+            overflow: 'hidden',
+            ...(isCompassTheme ? compassShadow(2) : {}),
           }}>
-            <Ionicons name="shield-checkmark-outline" size={24} color={vipActiveTitle} style={{ marginRight: 12 }} />
+            {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
+            <Ionicons name="shield-checkmark-outline" size={24} color={isCompassTheme ? COMPASS_RICH.champagne : vipActiveTitle} style={{ marginRight: 12 }} />
             <View style={{ flex: 1 }}>
-              <Text style={{ color: vipActiveTitle, fontSize: f.body, fontWeight: '900' }}>VIP</Text>
-              <Text testID="settings-vip-subtitle" style={{ color: vipActiveSub, fontSize: f.caption, marginTop: 2 }}>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : vipActiveTitle, fontSize: f.body, fontWeight: '900' }}>VIP</Text>
+              <Text testID="settings-vip-subtitle" style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub, fontSize: f.caption, marginTop: 2 }}>
                 {L('VIP аккаунт', 'VIP акаунт', 'Cuenta VIP', 'Conta VIP', 'Tài khoản VIP', 'Akun VIP', 'VIP hesap', 'Konto VIP')}
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 6 }}>
-                <Ionicons name="time-outline" size={13} color={vipActiveSub} />
-                <Text testID="settings-vip-expiry" style={{ color: vipActiveSub, fontSize: f.caption, fontWeight: '800', flex: 1 }}>
+                <Ionicons name="time-outline" size={13} color={isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub} />
+                <Text testID="settings-vip-expiry" style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : vipActiveSub, fontSize: f.caption, fontWeight: '800', flex: 1 }}>
                   {vipExpiryText}
                 </Text>
               </View>
@@ -821,7 +831,7 @@ export default function SettingsMain() {
               borderRadius: isCompassTheme ? 8 : 14,
               padding: 16,
               borderWidth: 1,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineCream : t.correct,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct,
               overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(2) : {}),
             }}
@@ -831,7 +841,7 @@ export default function SettingsMain() {
             {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
             <Ionicons name="diamond" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.text : premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
                 Premium {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
               </Text>
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
@@ -963,7 +973,22 @@ export default function SettingsMain() {
 
       <Modal visible={accountModalVisible} transparent animationType="fade" onRequestClose={() => setAccountModalVisible(false)}>
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <View style={{ width: '100%', maxWidth: 380, backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 1, borderColor: t.border }}>
+          <View
+            style={[
+              {
+                width: '100%',
+                maxWidth: 380,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: isCompassTheme ? 10 : 16,
+                padding: 20,
+                borderWidth: 1,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(3),
+            ]}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
               {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
@@ -1030,7 +1055,22 @@ export default function SettingsMain() {
         onRequestClose={() => setSwitchAccountStage('idle')}
       >
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <View style={{ width: '100%', maxWidth: 380, backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 1, borderColor: t.border }}>
+          <View
+            style={[
+              {
+                width: '100%',
+                maxWidth: 380,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: isCompassTheme ? 10 : 16,
+                padding: 20,
+                borderWidth: 1,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(3),
+            ]}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
               {L('Сменить аккаунт?', 'Змінити акаунт?', '¿Cambiar de cuenta?', 'Trocar de conta?', 'Đổi tài khoản?', 'Ganti akun?', 'Hesap değiştirilsin mi?', 'Zmienić konto?')}
             </Text>
@@ -1112,7 +1152,23 @@ export default function SettingsMain() {
       {/* ── Лоадер во время forced sync + signOut + wipe ── */}
       <Modal visible={switchAccountStage === 'wiping'} transparent animationType="fade">
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
-          <View style={{ width: '100%', maxWidth: 280, backgroundColor: t.bgCard, borderRadius: 16, padding: 28, borderWidth: 1, borderColor: t.border, alignItems: 'center' }}>
+          <View
+            style={[
+              {
+                width: '100%',
+                maxWidth: 280,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: isCompassTheme ? 10 : 16,
+                padding: 28,
+                borderWidth: 1,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                alignItems: 'center',
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(3),
+            ]}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Ionicons name="shield-checkmark" size={28} color={t.correct} />
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
               {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
@@ -1136,12 +1192,36 @@ export default function SettingsMain() {
           onPress={closeNameModal}
         >
           <Pressable onPress={(e) => e.stopPropagation()}>
-            <View style={{ width: '80%', minWidth: 280, backgroundColor: t.bgCard, borderRadius: 16, padding: 24 }}>
+            <View
+              style={[
+                {
+                  width: '80%',
+                  minWidth: 280,
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                  borderRadius: isCompassTheme ? 10 : 16,
+                  padding: 24,
+                  borderWidth: isCompassTheme ? 1 : 0,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+                  overflow: 'hidden',
+                },
+                isCompassTheme && compassShadow(3),
+              ]}
+            >
+            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
               {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
             <TextInput
-              style={{ backgroundColor: t.bgPrimary, color: t.textPrimary, fontSize: f.h2, padding: 14, borderRadius: 10, borderWidth: 1, borderColor: t.border, marginBottom: 20 }}
+              style={{
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgPrimary,
+                color: t.textPrimary,
+                fontSize: f.h2,
+                padding: 14,
+                borderRadius: isCompassTheme ? 8 : 10,
+                borderWidth: 1,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                marginBottom: 20,
+              }}
               value={newName}
               onChangeText={setNewName}
               placeholder={L('Введите имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
@@ -1152,11 +1232,45 @@ export default function SettingsMain() {
               blurOnSubmit
             />
             <View style={{ flexDirection: 'row', gap: 12 }}>
-              <TouchableOpacity activeOpacity={0.7} style={{ flex: 1, padding: 12, borderRadius: 10, borderWidth: 1, borderColor: t.border, alignItems: 'center' }} onPress={() => { doHaptic(); closeNameModal(); }}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={[
+                  {
+                    flex: 1,
+                    padding: 12,
+                    borderRadius: isCompassTheme ? 8 : 10,
+                    borderWidth: 1,
+                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                    alignItems: 'center',
+                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+                    overflow: 'hidden',
+                  },
+                  isCompassTheme && compassShadow(1),
+                ]}
+                onPress={() => { doHaptic(); closeNameModal(); }}
+              >
+                {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
                 <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1} adjustsFontSizeToFit>{L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.8} style={{ flex: 1, padding: 12, borderRadius: 10, backgroundColor: t.accent, borderWidth: 1, borderColor: t.accent, alignItems: 'center' }} onPress={() => { doHaptic(); void saveName(); }}>
-                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>{L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}</Text>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={[
+                  {
+                    flex: 1,
+                    padding: 12,
+                    borderRadius: isCompassTheme ? 8 : 10,
+                    backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent,
+                    borderWidth: 1,
+                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.accent,
+                    alignItems: 'center',
+                    overflow: 'hidden',
+                  },
+                  isCompassTheme && compassShadow(1),
+                ]}
+                onPress={() => { doHaptic(); void saveName(); }}
+              >
+                {isCompassTheme ? <CompassDepthSurface radius={8} cream /> : null}
+                <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>{L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}</Text>
               </TouchableOpacity>
             </View>
             </View>

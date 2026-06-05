@@ -38,6 +38,18 @@ describe('admin premium delivery contract', () => {
     expect(listenerBody).toContain('2_500');
   });
 
+  it('lets PremiumProvider use the cloud-backed access guard before showing no-access state', () => {
+    const reloadStart = premiumContext.indexOf('const runReload = useCallback');
+    const reloadBody = premiumContext.slice(reloadStart, premiumContext.indexOf('const reload = useCallback', reloadStart));
+
+    expect(premiumContext).toContain('getVerifiedPremiumAccessStatus');
+    expect(reloadBody).toContain('if (!realPremium && !vip)');
+    expect(reloadBody).toContain('getVerifiedPremiumAccessStatus().catch');
+    expect(reloadBody).toContain('if (accessAfterCloud)');
+    expect(reloadBody).toContain('getVerifiedRealPremiumStatus().catch');
+    expect(reloadBody).toContain('getVerifiedVipStatus().catch');
+  });
+
   it('restarts the VIP listener after provider login or stable-id merge', () => {
     expect(premiumContext).toContain("onAppEvent('auth_provider_linked'");
     expect(premiumContext).toContain('setPremiumListenerRevision');

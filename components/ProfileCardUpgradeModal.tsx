@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
+import CompassDepthSurface from './CompassDepthSurface';
 import { emitAppEvent } from '../app/events';
 import { syncToCloud } from '../app/cloud_sync';
 import { ENABLE_DEV_TOOLS } from '../app/config';
@@ -33,6 +34,7 @@ import {
   setProfileCardTheme,
   upgradeProfileCardLevel,
 } from '../app/profile_card_system';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { triLang, type Lang } from '../constants/i18n';
 
 type Props = {
@@ -221,7 +223,8 @@ const PUBLIC_FOCUS_DESCRIPTION_PLANNED: Record<ProfileCardPublicFocus, PlannedPr
 export default function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded, onChanged }: Props) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const profilePrimaryAccent = '#FACC15';
   const profileSuccessAccent = '#22C55E';
   const { lang } = useLang();
@@ -366,14 +369,36 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
     flexDirection: 'row' as const,
     alignItems: 'center' as const,
     gap: 9,
-    borderRadius: 14,
-    borderWidth: selected ? 1.5 : 1,
-    borderColor: selected ? accent : locked ? 'rgba(148,163,184,0.22)' : t.border,
-    backgroundColor: selected ? `${accent}1A` : locked ? 'rgba(148,163,184,0.06)' : t.bgSurface,
+    borderRadius: isCompassTheme ? 10 : 14,
+    borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : selected ? 1.5 : 1,
+    borderColor: isCompassTheme
+      ? selected
+        ? COMPASS_RICH.hairlineStrong
+        : locked
+          ? 'rgba(242,196,141,0.10)'
+          : COMPASS_RICH.hairlineQuiet
+      : selected
+        ? accent
+        : locked
+          ? 'rgba(148,163,184,0.22)'
+          : t.border,
+    backgroundColor: isCompassTheme
+      ? selected
+        ? COMPASS_RICH.wash
+        : locked
+          ? 'rgba(148,163,184,0.05)'
+          : 'transparent'
+      : selected
+        ? `${accent}1A`
+        : locked
+          ? 'rgba(148,163,184,0.06)'
+          : t.bgSurface,
     paddingHorizontal: 11,
     paddingVertical: 10,
     marginBottom: 8,
     opacity: locked ? 0.55 : 1,
+    overflow: 'hidden' as const,
+    ...(isCompassTheme ? compassShadow(selected ? 2 : 1) : null),
   });
 
   return (
@@ -385,16 +410,19 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
         <Pressable
           testID="profile-card-upgrade-modal"
           style={{
-            backgroundColor: t.bgCard,
+            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
             borderTopLeftRadius: 28,
             borderTopRightRadius: 28,
             padding: 18,
             paddingBottom: insets.bottom + 18,
             borderTopWidth: 1,
-            borderColor: t.border,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+            overflow: 'hidden',
+            ...(isCompassTheme ? compassShadow(3) : null),
           }}
         >
-          <View style={{ width: 42, height: 4, borderRadius: 2, backgroundColor: t.border, alignSelf: 'center', marginBottom: 16 }} />
+          {isCompassTheme && <CompassDepthSurface radius={28} selected />}
+          <View style={{ width: 42, height: 4, borderRadius: 2, backgroundColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, alignSelf: 'center', marginBottom: 16 }} />
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
             <View style={{ flex: 1 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
@@ -422,13 +450,15 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
                 })}
               </Text>
             </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 10, paddingVertical: 7 }}>
-              <Text style={{ color: profilePrimaryAccent, fontSize: f.body, fontWeight: '900' }}>{shards}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface, borderRadius: isCompassTheme ? 10 : 14, paddingHorizontal: 10, paddingVertical: 7, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', overflow: 'hidden' }}>
+              {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : profilePrimaryAccent, fontSize: f.body, fontWeight: '900' }}>{shards}</Text>
               <Image source={oskolokImageForPackShards(shards)} style={{ width: 18, height: 18 }} resizeMode="contain" />
             </View>
           </View>
 
-          <View style={{ borderRadius: 18, borderWidth: 1, borderColor: 'rgba(250,204,21,0.36)', backgroundColor: 'rgba(250,204,21,0.08)', padding: 14, marginBottom: 14 }}>
+          <View style={{ borderRadius: isCompassTheme ? 14 : 18, borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'rgba(250,204,21,0.36)', backgroundColor: isCompassTheme ? 'transparent' : 'rgba(250,204,21,0.08)', padding: 14, marginBottom: 14, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : null) }}>
+            {isCompassTheme && <CompassDepthSurface radius={14} selected />}
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
               <View>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
@@ -447,7 +477,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
                   {currentDef.name} {currentLevel > 0 ? profileCardLevelRoman(currentLevel) : ''}
                 </Text>
               </View>
-              <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: '#111827', borderWidth: 1, borderColor: profilePrimaryAccent, alignItems: 'center', justifyContent: 'center' }}>
+              <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : '#111827', borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.champagne : profilePrimaryAccent, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ color: profilePrimaryAccent, fontSize: f.body, fontWeight: '900' }}>
                   {currentLevel > 0 ? profileCardLevelRoman(currentLevel) : '0'}
                 </Text>
@@ -482,6 +512,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
                   onPress={() => applyTheme(item.id)}
                   style={choiceCardStyle(selected, locked, accent)}
                 >
+                  {isCompassTheme && <CompassDepthSurface radius={10} selected={selected} quiet={!selected} />}
                   <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: `${accent}26`, borderWidth: 1, borderColor: accent, alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name={locked ? 'lock-closed' : selected ? 'checkmark' : 'sparkles'} size={13} color={accent} />
                   </View>
@@ -527,6 +558,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
                   onPress={() => applyMotion(item.id)}
                   style={choiceCardStyle(selected, locked, accent)}
                 >
+                  {isCompassTheme && <CompassDepthSurface radius={10} selected={selected} quiet={!selected} />}
                   <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: `${accent}26`, borderWidth: 1, borderColor: accent, alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name={locked ? 'lock-closed' : selected ? 'checkmark' : 'radio-button-on'} size={13} color={accent} />
                   </View>
@@ -572,6 +604,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
                   onPress={() => applyPublicFocus(item.id)}
                   style={choiceCardStyle(selected, locked, accent)}
                 >
+                  {isCompassTheme && <CompassDepthSurface radius={10} selected={selected} quiet={!selected} />}
                   <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: `${accent}26`, borderWidth: 1, borderColor: accent, alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name={locked ? 'lock-closed' : selected ? 'checkmark' : 'eye'} size={13} color={accent} />
                   </View>
@@ -613,16 +646,20 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
                   style={{
                     flexDirection: 'row',
                     gap: 10,
-                    borderRadius: 16,
-                    borderWidth: target ? 1.5 : 1,
-                    borderColor: target ? profilePrimaryAccent : t.border,
-                    backgroundColor: unlocked ? 'rgba(34,197,94,0.08)' : target ? 'rgba(250,204,21,0.08)' : t.bgSurface,
+                    borderRadius: isCompassTheme ? 10 : 16,
+                    borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : target ? 1.5 : 1,
+                    borderColor: isCompassTheme ? (target ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : target ? profilePrimaryAccent : t.border,
+                    backgroundColor: isCompassTheme ? (target ? COMPASS_RICH.wash : 'transparent') : unlocked ? 'rgba(34,197,94,0.08)' : target ? 'rgba(250,204,21,0.08)' : t.bgSurface,
                     padding: 12,
                     marginBottom: 8,
+                    overflow: 'hidden',
+                    ...(isCompassTheme ? compassShadow(target ? 2 : 1) : null),
                   }}
                 >
-                  <View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: unlocked ? 'rgba(34,197,94,0.20)' : 'rgba(255,255,255,0.07)' }}>
-                    <Ionicons name={unlocked ? 'checkmark' : target ? 'sparkles' : 'lock-closed'} size={18} color={unlocked ? profileSuccessAccent : target ? profilePrimaryAccent : t.textMuted} />
+                  {isCompassTheme && <CompassDepthSurface radius={10} selected={target} quiet={!target} />}
+                  <View style={{ width: 38, height: 38, borderRadius: isCompassTheme ? 8 : 19, alignItems: 'center', justifyContent: 'center', backgroundColor: unlocked ? 'rgba(34,197,94,0.20)' : isCompassTheme ? COMPASS_RICH.charcoalWarm : 'rgba(255,255,255,0.07)', borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', overflow: 'hidden' }}>
+                    {isCompassTheme && <CompassDepthSurface radius={8} selected={target} quiet={!target} />}
+                    <Ionicons name={unlocked ? 'checkmark' : target ? 'sparkles' : 'lock-closed'} size={18} color={unlocked ? profileSuccessAccent : target ? (isCompassTheme ? COMPASS_RICH.champagne : profilePrimaryAccent) : t.textMuted} />
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
@@ -661,14 +698,19 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
             onPress={handleUpgrade}
             style={{
               marginTop: 14,
-              borderRadius: 16,
+              borderRadius: isCompassTheme ? 11 : 16,
               paddingVertical: 14,
               alignItems: 'center',
-              backgroundColor: !nextDef ? t.textGhost : profilePrimaryAccent,
+              backgroundColor: isCompassTheme ? 'transparent' : !nextDef ? t.textGhost : profilePrimaryAccent,
               opacity: busy ? 0.68 : 1,
+              borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(nextDef ? 2 : 1) : null),
             }}
           >
-            <Text style={{ color: '#111827', fontSize: f.bodyLg, fontWeight: '900' }}>
+            {isCompassTheme && <CompassDepthSurface radius={11} cream={!!nextDef} quiet={!nextDef} />}
+            <Text style={{ color: isCompassTheme ? (nextDef ? COMPASS_RICH.textDark : COMPASS_RICH.champagne) : '#111827', fontSize: f.bodyLg, fontWeight: '900' }}>
               {nextDef
                 ? triLang(lang as Lang, {
                     ru: `Улучшить за ${nextDef.cost}`,

@@ -9,9 +9,11 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { checkAchievements } from '../app/achievements';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
+import type { ThemeMode } from '../constants/theme';
 import {
   dailyPhraseCopyForLang,
   getTodayPhraseForTarget,
@@ -38,6 +40,110 @@ const DAILY_PHRASE_IMAGES: Record<string, any> = {
 };
 
 const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;
+
+type DailyPhraseChrome = {
+  colors: [string, string, string];
+  border: string;
+  glow: string;
+  title: string;
+  phrase: string;
+  sub: string;
+  iconBg: string;
+  iconBorder: string;
+  ornament: string;
+  shadow: string;
+};
+
+const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
+  dark: {
+    colors: ['#193025', '#13241C', '#09110D'],
+    border: 'rgba(116,232,156,0.28)',
+    glow: 'rgba(71,200,112,0.22)',
+    title: '#D9FFE5',
+    phrase: '#FFFFFF',
+    sub: '#B8D9C2',
+    iconBg: 'rgba(116,232,156,0.13)',
+    iconBorder: 'rgba(116,232,156,0.22)',
+    ornament: '#58CC89',
+    shadow: '#47C870',
+  },
+  neon: {
+    colors: ['#202713', '#151914', '#080909'],
+    border: 'rgba(200,255,0,0.34)',
+    glow: 'rgba(200,255,0,0.26)',
+    title: '#F1FFC2',
+    phrase: '#FFFFFF',
+    sub: '#CDD7A1',
+    iconBg: 'rgba(200,255,0,0.13)',
+    iconBorder: 'rgba(200,255,0,0.25)',
+    ornament: '#C8FF00',
+    shadow: '#C8FF00',
+  },
+  gold: {
+    colors: ['#242424', '#151515', '#070707'],
+    border: 'rgba(230,190,103,0.42)',
+    glow: 'rgba(214,179,90,0.15)',
+    title: '#FFF0BF',
+    phrase: '#FFF8E8',
+    sub: '#D2BE91',
+    iconBg: 'rgba(230,190,103,0.14)',
+    iconBorder: 'rgba(230,190,103,0.34)',
+    ornament: '#D6B35A',
+    shadow: '#D6B35A',
+  },
+  coral: {
+    colors: ['#302026', '#1D171A', '#0D0A0B'],
+    border: 'rgba(255,128,128,0.34)',
+    glow: 'rgba(255,100,100,0.24)',
+    title: '#FFE0E0',
+    phrase: '#FFFFFF',
+    sub: '#E5B9C2',
+    iconBg: 'rgba(255,128,128,0.14)',
+    iconBorder: 'rgba(255,128,128,0.25)',
+    ornament: '#FF6464',
+    shadow: '#FF6464',
+  },
+  minimalLight: {
+    colors: ['#FFFDF7', '#F5EDDE', '#E8DCC7'],
+    border: 'rgba(45,39,30,0.28)',
+    glow: 'rgba(118,83,31,0.18)',
+    title: '#343842',
+    phrase: '#171615',
+    sub: '#514B42',
+    iconBg: 'rgba(52,56,66,0.10)',
+    iconBorder: 'rgba(45,39,30,0.18)',
+    ornament: '#343842',
+    shadow: 'rgba(34,28,18,0.28)',
+  },
+  minimalDark: {
+    colors: ['#26303E', '#20242C', '#121419'],
+    border: 'rgba(110,168,255,0.34)',
+    glow: 'rgba(110,168,255,0.22)',
+    title: '#DCEAFF',
+    phrase: '#FFFFFF',
+    sub: '#B8C1CF',
+    iconBg: 'rgba(110,168,255,0.13)',
+    iconBorder: 'rgba(110,168,255,0.24)',
+    ornament: '#6EA8FF',
+    shadow: '#6EA8FF',
+  },
+  compass: {
+    colors: ['#25221D', '#141311', '#060605'],
+    border: 'rgba(242,196,141,0.42)',
+    glow: 'rgba(242,196,141,0.15)',
+    title: '#FFE7B6',
+    phrase: '#FFF8E8',
+    sub: '#D8C7AA',
+    iconBg: 'rgba(242,196,141,0.15)',
+    iconBorder: 'rgba(242,196,141,0.31)',
+    ornament: '#F2C48D',
+    shadow: '#F2C48D',
+  },
+};
+
+function dailyPhraseChromeFor(mode: ThemeMode): DailyPhraseChrome {
+  return DAILY_PHRASE_CHROME[mode] ?? DAILY_PHRASE_CHROME.minimalDark;
+}
 
 interface Props {
   userLevel?: number;
@@ -115,6 +221,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
   const dailyPhraseImage = DAILY_PHRASE_IMAGES[themeMode] ?? DAILY_PHRASE_FALLBACK_IMAGE;
   const homeAdditional = variant === 'homeAdditional';
   const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;
+  const chrome = dailyPhraseChromeFor(themeMode);
 
   const openDetails = () => {
     setDetailsVisible(true);
@@ -133,34 +240,56 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
         style={({ pressed }) => [
           homeAdditional ? styles.homeAdditionalPlaque : styles.plaque,
           {
-            backgroundColor: t.bgCard,
-            borderColor: t.border,
-            shadowColor: t.accent,
+            backgroundColor: chrome.colors[1] || t.bgCard,
+            borderColor: chrome.border,
+            shadowColor: chrome.shadow,
           },
           pressed && styles.pressed,
         ]}
       >
-        {!homeAdditional && (
-          <View style={[styles.plaqueIcon, { backgroundColor: t.bgSurface2 }]}>
-            {dailyPhraseImage ? (
-              <Image source={dailyPhraseImage} style={styles.iconImage} resizeMode="contain" />
-            ) : (
-              <Ionicons name="chatbubble-ellipses-outline" size={22} color={t.textMuted} />
+        <LinearGradient
+          pointerEvents="none"
+          colors={chrome.colors}
+          locations={[0, 0.56, 1]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFillObject}
+        />
+        <View pointerEvents="none" style={[styles.plaqueGlow, { backgroundColor: chrome.glow }]} />
+        {homeAdditional && dailyPhraseImage ? (
+          <View pointerEvents="none" style={styles.homeAdditionalGhostWrap}>
+            <Image
+              source={dailyPhraseImage}
+              style={styles.homeAdditionalGhostImage}
+              resizeMode="contain"
+            />
+          </View>
+        ) : null}
+        <View style={homeAdditional ? styles.homeAdditionalContent : styles.plaqueContent}>
+          {!homeAdditional && (
+            <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
+              {dailyPhraseImage ? (
+                <Image source={dailyPhraseImage} style={styles.iconImage} resizeMode="contain" />
+              ) : (
+                <Ionicons name="chatbubble-ellipses-outline" size={22} color={chrome.title} />
+              )}
+            </View>
+          )}
+          <View style={styles.plaqueCopy}>
+            <View style={styles.titleRow}>
+              <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: chrome.title, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={1}>
+                {title}
+              </Text>
+            </View>
+            <Text style={[homeAdditional ? styles.homeAdditionalPhrase : styles.plaquePhrase, { color: chrome.phrase, fontSize: homeAdditional ? Math.max(25, f.h2) : f.body }]} numberOfLines={homeAdditional ? 1 : 2} adjustsFontSizeToFit={homeAdditional} minimumFontScale={0.82}>
+              {phrase.english}
+            </Text>
+            {homeAdditional && (
+              <Text style={[styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}>
+                {homeAdditionalMeaning}
+              </Text>
             )}
           </View>
-        )}
-        <View style={styles.plaqueCopy}>
-          <Text style={[homeAdditional ? styles.homeAdditionalTitle : styles.plaqueTitle, { color: homeAdditional ? t.textPrimary : t.textMuted, fontSize: homeAdditional ? Math.max(20, f.bodyLg) : f.caption }]} numberOfLines={1}>
-            {title}
-          </Text>
-          <Text style={[homeAdditional ? styles.homeAdditionalPhrase : styles.plaquePhrase, { color: t.textPrimary, fontSize: homeAdditional ? Math.max(25, f.h2) : f.body }]} numberOfLines={homeAdditional ? 1 : 2} adjustsFontSizeToFit={homeAdditional} minimumFontScale={0.82}>
-            {phrase.english}
-          </Text>
-          {homeAdditional && (
-            <Text style={[styles.homeAdditionalSub, { color: t.textMuted, fontSize: Math.max(14, f.label) }]} numberOfLines={1}>
-              {homeAdditionalMeaning}
-            </Text>
-          )}
         </View>
       </Pressable>
 
@@ -287,13 +416,11 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     borderWidth: 1,
     padding: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    shadowOpacity: 0.08,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 2,
+    overflow: 'hidden',
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 4,
   },
   homeAdditionalPlaque: {
     minHeight: 134,
@@ -304,10 +431,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 20,
     paddingVertical: 17,
-    shadowOpacity: 0.08,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 2,
+    overflow: 'hidden',
+    shadowOpacity: 0.14,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 9 },
+    elevation: 4,
   },
   pressed: {
     opacity: 0.78,
@@ -316,6 +444,7 @@ const styles = StyleSheet.create({
     width: 54,
     height: 54,
     borderRadius: 16,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -327,10 +456,49 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
   },
+  plaqueContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    zIndex: 2,
+  },
+  homeAdditionalContent: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingRight: 78,
+    zIndex: 2,
+  },
+  plaqueGlow: {
+    position: 'absolute',
+    right: -52,
+    top: -44,
+    width: 132,
+    height: 132,
+    borderRadius: 66,
+    opacity: 0.62,
+  },
+  homeAdditionalGhostWrap: {
+    position: 'absolute',
+    right: 16,
+    top: 24,
+    width: 82,
+    height: 82,
+    opacity: 0.34,
+  },
+  homeAdditionalGhostImage: {
+    width: 82,
+    height: 82,
+  },
+  titleRow: {
+    minHeight: 28,
+    marginBottom: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
   plaqueTitle: {
     fontWeight: '800',
     letterSpacing: 0.6,
-    marginBottom: 5,
     textTransform: 'uppercase',
   },
   plaquePhrase: {
@@ -340,7 +508,7 @@ const styles = StyleSheet.create({
   homeAdditionalTitle: {
     fontWeight: '900',
     lineHeight: 26,
-    marginBottom: 8,
+    flexShrink: 1,
   },
   homeAdditionalPhrase: {
     fontWeight: '900',
@@ -350,6 +518,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 19,
     marginTop: 5,
+    minHeight: 38,
   },
   modalRoot: {
     flex: 1,

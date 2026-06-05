@@ -17,6 +17,7 @@ export interface AdaptiveEnergyIconLayout {
 const DEFAULT_STEP_RATIO = 0.55;
 const MIN_STEP_RATIO = 0.26;
 const MIN_ICON_SIZE = 18;
+const ABSOLUTE_MIN_ICON_SIZE = 1;
 
 export function getAdaptiveEnergyIconLayout({
   slotCount,
@@ -32,7 +33,7 @@ export function getAdaptiveEnergyIconLayout({
   const baseIconSize = Math.max(safeMinIconSize, Math.floor(iconSize));
   const compactWidthFactor = 1 + Math.max(0, safeSlots - 1) * minStepRatio;
   const fittedIconSize = Math.max(
-    safeMinIconSize,
+    ABSOLUTE_MIN_ICON_SIZE,
     Math.min(baseIconSize, Math.floor(safeMaxWidth / compactWidthFactor)),
   );
 

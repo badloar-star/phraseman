@@ -9,17 +9,21 @@ describe('personal plan task visuals', () => {
   const gavan = PERSONAL_PLAN_CATALOG.find((plan) => plan.id === 'gavan')!;
   const day1Tasks = gavan.days[0].tasks;
 
-  it('gives each day 1 task type a distinct visual source', () => {
+  it('gives each day 1 task type a mode-specific visual source', () => {
     const visuals = day1Tasks.map((task) => getPersonalPlanTaskVisual(task, gavan.id));
 
     expect(visuals.map((visual) => visual.source)).toEqual([
       'core_lesson',
       'route_phrase',
       'practice',
+      'choice',
+      'listening',
+      'sentence_build',
+      'speaking',
       'quiz',
     ]);
-    expect(new Set(visuals.map((visual) => visual.icon)).size).toBe(4);
-    expect(new Set(visuals.map((visual) => visual.artStyle)).size).toBe(4);
+    expect(new Set(visuals.map((visual) => visual.icon)).size).toBe(8);
+    expect(new Set(visuals.map((visual) => visual.assetKey)).size).toBe(8);
   });
 
   it('keeps task visual copy short, user-facing, and non-technical', () => {

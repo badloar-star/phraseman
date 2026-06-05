@@ -26,7 +26,7 @@ import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebration
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
 import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
-import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel } from '../../constants/theme';
+import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { getLeagueBonusPalette } from '../../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../../constants/leagueBonusGiftImages';
@@ -100,43 +100,9 @@ const HOME_STATUS_DENSE_PROGRESS_EXPERIMENT = true;
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = false;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
-const STREAK_WEEK_MARKER_ICONS = {
-    dark: {
-        freeze: require('../../assets/images/streak_week_markers/dark/streak-week-dark-freeze.png'),
-        revive: require('../../assets/images/streak_week_markers/dark/streak-week-dark-revive.png'),
-        repair: require('../../assets/images/streak_week_markers/dark/streak-week-dark-repair.png'),
-    },
-    neon: {
-        freeze: require('../../assets/images/streak_week_markers/neon/streak-week-neon-freeze.png'),
-        revive: require('../../assets/images/streak_week_markers/neon/streak-week-neon-revive.png'),
-        repair: require('../../assets/images/streak_week_markers/neon/streak-week-neon-repair.png'),
-    },
-    gold: {
-        freeze: require('../../assets/images/streak_week_markers/gold/streak-week-gold-freeze.png'),
-        revive: require('../../assets/images/streak_week_markers/gold/streak-week-gold-revive.png'),
-        repair: require('../../assets/images/streak_week_markers/gold/streak-week-gold-repair.png'),
-    },
-    coral: {
-        freeze: require('../../assets/images/streak_week_markers/coral/streak-week-coral-freeze.png'),
-        revive: require('../../assets/images/streak_week_markers/coral/streak-week-coral-revive.png'),
-        repair: require('../../assets/images/streak_week_markers/coral/streak-week-coral-repair.png'),
-    },
-    minimalLight: {
-        freeze: require('../../assets/images/streak_week_markers/minimalLight/streak-week-minimalLight-freeze.png'),
-        revive: require('../../assets/images/streak_week_markers/minimalLight/streak-week-minimalLight-revive.png'),
-        repair: require('../../assets/images/streak_week_markers/minimalLight/streak-week-minimalLight-repair.png'),
-    },
-    minimalDark: {
-        freeze: require('../../assets/images/streak_week_markers/minimalDark/streak-week-minimalDark-freeze.png'),
-        revive: require('../../assets/images/streak_week_markers/minimalDark/streak-week-minimalDark-revive.png'),
-        repair: require('../../assets/images/streak_week_markers/minimalDark/streak-week-minimalDark-repair.png'),
-    },
-    compass: {
-        freeze: require('../../assets/images/streak_week_markers/compass-premium/streak-week-compass-premium-freeze.png'),
-        revive: require('../../assets/images/streak_week_markers/compass-premium/streak-week-compass-premium-revive.png'),
-        repair: require('../../assets/images/streak_week_markers/compass-premium/streak-week-compass-premium-repair.png'),
-    },
-} as const;
+const FREE_HOME_PLAN_CTA_MODE_KEY = 'free_home_plan_cta_mode_v1';
+type FreeHomePlanCtaMode = 'choosePlan' | 'continueLesson';
+const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.png');
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
 const GREETINGS_RU = [
@@ -306,12 +272,27 @@ function parseStoredStreak(raw: string | null): number {
         return 0;
     }
 }
-/** Sketch keeps the hand-drawn art, but adds a faint ink wash so pale assets stay readable. */
-const SKETCH_MENU_ICON_INK_WASH = 'rgba(54, 48, 40, 0.045)';
+type HomeMenuIconAlign = {
+    x: number;
+    y: number;
+};
+type HomeMenuIconAlignKey = 'lesson' | 'quizes' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice';
+const HOME_MENU_ICON_ALIGNMENT: Partial<Record<ThemeMode, Partial<Record<HomeMenuIconAlignKey, HomeMenuIconAlign>>>> = {
+    compass: {
+        lesson: { x: -8.5 / 256, y: -8.5 / 256 },
+        quizes: { x: 1.5 / 256, y: -6 / 256 },
+        cards: { x: 9 / 256, y: -11.5 / 256 },
+        dayTasks: { x: -0.5 / 256, y: 4 / 256 },
+        league: { x: -0.5 / 256, y: -1.5 / 256 },
+        test: { x: 0, y: 0.5 / 256 },
+        practice: { x: 0, y: 3.5 / 256 },
+    },
+};
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
     width: number;
     height: number;
     lighten: boolean;
+    align?: HomeMenuIconAlign;
 };
 type StableTouchableOpacityProps = Omit<PressableProps, 'style'> & {
     activeOpacity?: number;
@@ -326,15 +307,16 @@ function TouchableOpacity({ activeOpacity = 0.2, disabled, style, ...props }: St
           state.pressed && !disabled ? { opacity: activeOpacity } : null,
       ]}/>);
 }
-function LightSketchMenuImage({ width, height, lighten, ...props }: LightSketchMenuImageProps) {
+function getHomeMenuIconAlignment(themeMode: ThemeMode, key: HomeMenuIconAlignKey): HomeMenuIconAlign | undefined {
+    return HOME_MENU_ICON_ALIGNMENT[themeMode]?.[key];
+}
+function LightSketchMenuImage({ width, height, lighten, align, ...props }: LightSketchMenuImageProps) {
     const boxStyle = { width, height };
-    if (!lighten) {
-        return <Image {...props} style={boxStyle}/>;
-    }
-    return (<View style={boxStyle}>
-      <Image {...props} style={boxStyle}/>
-      <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: SKETCH_MENU_ICON_INK_WASH }]}/>
-    </View>);
+    const imageStyle = align
+        ? [boxStyle, { transform: [{ translateX: width * align.x }, { translateY: height * align.y }] }]
+        : boxStyle;
+    void lighten;
+    return <Image {...props} style={imageStyle as any}/>;
 }
 function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number): {
     leagueName: string;
@@ -435,6 +417,10 @@ export default function HomeScreen() {
         progress: number;
         score: string;
     } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
+    const [freeHomePlanCtaMode, setFreeHomePlanCtaMode] = useState<FreeHomePlanCtaMode>('choosePlan');
+    const freeHomePlanCtaStartXRef = useRef<number | null>(null);
+    const freeHomePlanCtaDxRef = useRef(0);
+    const freeHomePlanCtaSwipedRef = useRef(false);
     // Початкове значення підбираємо за поточною мовою інтерфейсу,
     // щоб юзер з UK не бачив миготливе російське «Привет,» до завантаження `loadData`.
     const [greeting, setGreeting] = useState(() => triLang(lang, {
@@ -530,10 +516,38 @@ export default function HomeScreen() {
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
     const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
     const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
+    const isPaperHomeTheme = themeMode === 'minimalLight';
     const lightPanelBg = isSketchLightTheme ? 'rgba(255,252,246,0.94)' : 'rgba(255,255,255,0.50)';
     const lightPanelBorder = isSketchLightTheme ? 'rgba(52,45,35,0.28)' : 'rgba(255,255,255,0.48)';
     const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,55,44,0.13)' : 'rgba(255,255,255,0.28)';
     const lightPanelChevronBg = isSketchLightTheme ? 'rgba(63,55,44,0.14)' : 'rgba(255,255,255,0.58)';
+    const sketchHomePanelGradient = ['rgba(255,253,246,0.98)', 'rgba(237,227,210,0.94)'] as [string, string];
+    const homeThemePanelGradient = isGoldTheme
+        ? goldPremiumPanel
+        : isCompassTheme
+            ? compassPanel
+            : isPaperHomeTheme
+                ? sketchHomePanelGradient
+                : t.cardGradient;
+    const homeThemePanelBorder = isGoldTheme
+        ? GOLD_RICH.hairlineStrong
+        : isCompassTheme
+            ? compassHairlineStrong
+            : isPaperHomeTheme
+                ? lightPanelBorder
+                : 'rgba(103,153,229,0.26)';
+    const homeThemePanelText = isPaperHomeTheme ? '#171615' : t.textPrimary;
+    const homeThemePanelMuted = isPaperHomeTheme ? '#48443C' : t.textMuted;
+    const homeThemePanelAccent = isPaperHomeTheme ? t.accent : (isLightTheme ? t.textSecond : t.gold);
+    const homeThemeIconPlateBg = isGoldTheme
+        ? 'rgba(18,14,8,0.92)'
+        : isCompassTheme
+            ? '#10100C'
+            : isPaperHomeTheme
+                ? lightPanelIconBg
+                : 'rgba(40,47,58,0.96)';
+    const homeThemeChevronBg = isGoldTheme ? goldSoftBg : isPaperHomeTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)';
+    const homeThemeTrackBg = isPaperHomeTheme ? 'rgba(56,52,44,0.18)' : 'rgba(83,96,116,0.72)';
     const energyEmptyTint = isSketchLightTheme
         ? 'rgba(47,49,59,0.42)'
         : 'rgba(255,245,252,0.38)';
@@ -579,8 +593,8 @@ export default function HomeScreen() {
     const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const energyIconRef = useRef<View>(null);
     const mountedRef = useRef(true);
-    const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(null);
-    const [hasActivePersonalPlanState, setHasActivePersonalPlanState] = useState(false);
+    const [personalPlanSnapshot, setPersonalPlanSnapshot] = useState<PersonalPlanHomeSnapshot | null>(() => hh?.personalPlanSnapshot ?? null);
+    const [hasActivePersonalPlanState, setHasActivePersonalPlanState] = useState(() => !!hh?.personalPlanSnapshot);
     const refreshDailyTaskSummary = useCallback(async () => {
         try {
             const taskList = await getTodayTasksSafe(studyTarget);
@@ -748,7 +762,16 @@ export default function HomeScreen() {
         const dailyTaskCompletedSub = onAppEvent('daily_task_completed', () => { void refreshDailyTaskSummary(); });
         const dailyTaskClaimedSub = onAppEvent('daily_task_reward_claimed', () => { void refreshDailyTaskSummary(); });
         const dailyTaskRerolledSub = onAppEvent('daily_task_rerolled', () => { void refreshDailyTaskSummary(); });
-        const personalPlanSub = onAppEvent('personal_plan_updated', () => { loadData(); });
+        const personalPlanSub = onAppEvent('personal_plan_updated', (payload) => {
+            if (payload?.snapshot) {
+                setHasActivePersonalPlanState(true);
+                setPersonalPlanSnapshot(payload.snapshot);
+            }
+            else if (payload?.planId) {
+                setHasActivePersonalPlanState(true);
+            }
+            loadData();
+        });
         const leagueStateSub = onAppEvent('league_local_state_updated', () => { loadData(); });
         const crownSub = onAppEvent('league_crown_updated', ({ expiresAt }) => {
             setHomeLeagueCrownExpiresAt(expiresAt);
@@ -826,6 +849,66 @@ export default function HomeScreen() {
     // Debounce-флаг: если loadData уже выполняется — не запускаем повторно.
     // Устраняет 3 одновременных вызова (focusTick + activeIdx + AppState) при возврате на главную.
     // needsReloadRef: если вызов был пропущен во время загрузки — повторим после завершения.
+    useEffect(() => {
+        let cancelled = false;
+        AsyncStorage.getItem(FREE_HOME_PLAN_CTA_MODE_KEY)
+            .then((value) => {
+                if (cancelled) return;
+                setFreeHomePlanCtaMode(value === 'continueLesson' ? 'continueLesson' : 'choosePlan');
+            })
+            .catch(() => {});
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+    const setFreeHomePlanCtaModePersisted = useCallback((mode: FreeHomePlanCtaMode) => {
+        setFreeHomePlanCtaMode(mode);
+        AsyncStorage.setItem(FREE_HOME_PLAN_CTA_MODE_KEY, mode).catch(() => {});
+    }, []);
+    const handleFreeHomePlanCtaTouchStart = useCallback((event: any) => {
+        if (hasPremiumAccess) return;
+        freeHomePlanCtaStartXRef.current = event?.nativeEvent?.touches?.[0]?.pageX ?? null;
+        freeHomePlanCtaDxRef.current = 0;
+        freeHomePlanCtaSwipedRef.current = false;
+    }, [hasPremiumAccess]);
+    const handleFreeHomePlanCtaTouchMove = useCallback((event: any) => {
+        if (hasPremiumAccess || freeHomePlanCtaStartXRef.current == null) return;
+        const pageX = event?.nativeEvent?.touches?.[0]?.pageX;
+        if (typeof pageX !== 'number') return;
+        freeHomePlanCtaDxRef.current = pageX - freeHomePlanCtaStartXRef.current;
+    }, [hasPremiumAccess]);
+    const handleFreeHomePlanCtaTouchEnd = useCallback(() => {
+        if (hasPremiumAccess) return;
+        const dx = freeHomePlanCtaDxRef.current;
+        freeHomePlanCtaStartXRef.current = null;
+        freeHomePlanCtaDxRef.current = 0;
+        if (Math.abs(dx) < 44) return;
+        if (dx < 0 && lastLesson != null) {
+            freeHomePlanCtaSwipedRef.current = true;
+            setFreeHomePlanCtaModePersisted('continueLesson');
+            hapticTap();
+        }
+        else if (dx > 0) {
+            freeHomePlanCtaSwipedRef.current = true;
+            setFreeHomePlanCtaModePersisted('choosePlan');
+            hapticTap();
+        }
+        if (freeHomePlanCtaSwipedRef.current) {
+            setTimeout(() => {
+                freeHomePlanCtaSwipedRef.current = false;
+            }, 220);
+        }
+    }, [hasPremiumAccess, lastLesson, setFreeHomePlanCtaModePersisted]);
+    const handleFreeHomeChoosePlanPress = useCallback(() => {
+        if (freeHomePlanCtaSwipedRef.current) return;
+        hapticTap();
+        router.push('/personal_plan_setup' as any);
+    }, [router]);
+    const handleFreeHomeContinueLessonPress = useCallback(() => {
+        if (freeHomePlanCtaSwipedRef.current || lastLesson == null) return;
+        hapticTap();
+        router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } });
+    }, [lastLesson, router]);
     const loadingRef = useRef(false);
     const needsReloadRef = useRef(false);
     const deferredReloadTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -966,8 +1049,9 @@ export default function HomeScreen() {
             setWeekMarkers(currentWeekMarkers);
             setShardsBalance(shardsBal);
             if (mountedRef.current) {
-                setHasActivePersonalPlanState(activePlanState != null || planSnapshot != null);
-                setPersonalPlanSnapshot(planSnapshot);
+                const nextHasActivePersonalPlan = activePlanState != null || planSnapshot != null;
+                setHasActivePersonalPlanState(nextHasActivePersonalPlan);
+                setPersonalPlanSnapshot((previous) => planSnapshot ?? (nextHasActivePersonalPlan ? previous : null));
             }
             if (!selectedTitleHydratedRef.current) {
                 selectedTitleHydratedRef.current = true;
@@ -1132,6 +1216,7 @@ export default function HomeScreen() {
                 homeLeagueRaceVisible,
                 homeLeagueCrownExpiresAt,
                 homeLeagueChest,
+                personalPlanSnapshot: planSnapshot ?? (activePlanState ? personalPlanSnapshot : null),
             }, studyTarget);
             if (mountedRef.current)
                 markHomeStatsReady();
@@ -1404,14 +1489,31 @@ export default function HomeScreen() {
     const dayLblColor = t.textMuted;
     const markerForWeekDay = (index: number): StreakWeekDayMarkerKind | null => weekMarkers[index] ?? null;
     const isWeekDayMarked = (index: number): boolean => weekDone[index] || markerForWeekDay(index) !== null;
-    const weekMarkerAccent = (marker: StreakWeekDayMarkerKind | null) => {
-        if (marker === 'freeze') return isGoldTheme ? '#9AE7FF' : '#7FE7FF';
-        if (marker === 'revive') return isGoldTheme ? GOLD_RICH.champagne : t.gold;
-        if (marker === 'repair') return isGoldTheme ? '#D9C7FF' : '#BFA4FF';
-        return t.correct;
+    const weekDotFill = (index: number, marker: StreakWeekDayMarkerKind | null, fallback: string) => {
+        if (marker === 'freeze') return 'rgba(196,239,255,0.24)';
+        if (marker === 'revive' || marker === 'repair' || weekDone[index]) return t.correct;
+        return fallback;
     };
-    const weekMarkerImage = (marker: StreakWeekDayMarkerKind) =>
-        (STREAK_WEEK_MARKER_ICONS[themeMode] ?? STREAK_WEEK_MARKER_ICONS.minimalDark)[marker];
+    const weekDotBorder = (index: number, marker: StreakWeekDayMarkerKind | null, fallback: string) => {
+        if (marker === 'freeze') return 'rgba(190,240,255,0.78)';
+        if (marker === 'revive' || marker === 'repair' || weekDone[index]) return t.correct;
+        return fallback;
+    };
+    const renderWeekMarkerContent = (
+        marker: StreakWeekDayMarkerKind | null,
+        size: number,
+        checkSize: number,
+        checkColor: string,
+    ) => {
+        if (marker === 'freeze') {
+            const iceSize = Math.round(size * 1.34);
+            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain"/>;
+        }
+        if (marker === 'revive' || marker === 'repair') {
+            return <Ionicons name="checkmark" size={checkSize} color={checkColor}/>;
+        }
+        return null;
+    };
     if (!diagChecked)
         return <ScreenGradient><View /></ScreenGradient>;
     // ── Общие баннеры (используются в обоих стилях) ──────────────────────────
@@ -1513,13 +1615,19 @@ export default function HomeScreen() {
     const renderNewHome = () => {
         const { level, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
-        const homeQuickIconPlateSize = 88;
-        const homeQuickIconImageSize = 82;
-        const homeQuickIconLegacySize = 84;
-        const homeQuickIconRadius = isGoldTheme ? 18 : 22;
+        const homeQuickRowPad = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16;
+        const homeQuickRowGap = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 14 : 10;
+        const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
+        const homeQuickIconPlateSize = isCompassTheme ? 88 : Math.min(118, Math.max(88, homeQuickTileWidth - 20));
+        const homeQuickIconImageSize = isCompassTheme ? 160 : Math.max(96, homeQuickIconPlateSize + 18);
+        const homeQuickIconLegacySize = isCompassTheme ? 152 : Math.max(96, homeQuickIconPlateSize + 14);
+        const homeQuickIconRadius = isGoldTheme ? 26 : 30;
         const homePracticeIconSize = 64;
+        const homePracticeIconImageSize = isCompassTheme ? 96 : homePracticeIconSize;
+        const homeTodayIconSize = 96;
+        const homeTodayIconImageSize = isCompassTheme ? 118 : homeTodayIconSize;
         const quickItems = [
-            { key: 'lessons', testID: 'home-quick-lessons', img: menuImages.lesson, label: s.tabs.lessons, sub: triLang(lang, {
+            { key: 'lessons', iconKey: 'lesson' as const, testID: 'home-quick-lessons', img: menuImages.lesson, label: s.tabs.lessons, sub: triLang(lang, {
                     ru: '32 урока',
                     uk: '32 уроки',
                     es: '32 lecciones',
@@ -1529,7 +1637,7 @@ export default function HomeScreen() {
                     tr: "32 ders",
                     pl: "32 lekcje",
                 }), path: 'lessons' },
-            { key: 'quizzes', testID: 'home-quick-quizzes', img: menuImages.quizes, label: s.tabs.quizzes, sub: triLang(lang, {
+            { key: 'quizzes', iconKey: 'quizes' as const, testID: 'home-quick-quizzes', img: menuImages.quizes, label: s.tabs.quizzes, sub: triLang(lang, {
                     ru: '3 уровня',
                     uk: '3 рівні',
                     es: '3 niveles de dificultad',
@@ -1539,7 +1647,7 @@ export default function HomeScreen() {
                     tr: "3 zorluk seviyesi",
                     pl: "3 poziomy trudności",
                 }), path: '/quizzes_screen' },
-            { key: 'flashcards', testID: 'home-quick-flashcards', img: menuImages.cards, label: s.tabs.flashcards, sub: triLang(lang, {
+            { key: 'flashcards', iconKey: 'cards' as const, testID: 'home-quick-flashcards', img: menuImages.cards, label: s.tabs.flashcards, sub: triLang(lang, {
                     ru: 'Свои фразы',
                     uk: 'Свої фрази',
                     es: 'Tus tarjetas',
@@ -1559,6 +1667,7 @@ export default function HomeScreen() {
             {
                 key: 'daily',
                 kind: 'tasks' as const,
+                iconKey: 'dayTasks' as const,
                 label: triLang(lang, {
                     ru: 'Задания дня',
                     uk: 'Завдання дня',
@@ -1575,6 +1684,7 @@ export default function HomeScreen() {
             {
                 key: 'league',
                 kind: 'league' as const,
+                iconKey: 'league' as const,
                 label: triLang(lang, {
                     ru: 'Лига недели',
                     uk: 'Ліга тижня',
@@ -1590,6 +1700,7 @@ export default function HomeScreen() {
             {
                 key: 'attest',
                 kind: 'image' as const,
+                iconKey: 'test' as const,
                 label: s.home.attestTile,
                 path: '/diagnostic_test' as const,
                 img: menuImages.test,
@@ -1626,8 +1737,9 @@ export default function HomeScreen() {
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
-        const homeHeaderShardIconSource = oskolokImageForPackShards(Math.max(1, shardsBalance));
+        const homeHeaderShardIconSource = oskolokImageForPackShards(Math.max(1, shardsBalance), themeMode);
         const homeHeaderShardIconSize = 38;
+        const homeHeaderShardIconWidth = isCompassTheme ? 48 : homeHeaderShardIconSize;
         const homeHeaderAccessLayout = !showHomeEnergy;
         const homeHeaderAccessTitleShiftY = homeHeaderAccessLayout ? 46 : 0;
         const homeHeaderAccessTitleRightReserve = homeHeaderAccessLayout ? 132 : 0;
@@ -1684,11 +1796,11 @@ export default function HomeScreen() {
                     borderRadius: 999,
                     paddingHorizontal: 10,
                     paddingVertical: 4,
-                    backgroundColor: isLightTheme ? 'rgba(64,102,190,0.12)' : 'rgba(125,174,255,0.16)',
+                    backgroundColor: isPaperHomeTheme ? 'rgba(64,102,190,0.12)' : 'rgba(125,174,255,0.16)',
                     borderWidth: 1,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(64,102,190,0.22)' : 'rgba(125,174,255,0.26)'),
+                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : (isPaperHomeTheme ? 'rgba(64,102,190,0.22)' : 'rgba(125,174,255,0.26)'),
                 }}>
-                      <Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
+                      <Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
                         {experimentalStatusLevelLabel} {level}
                       </Text>
                     </View>
@@ -1723,17 +1835,17 @@ export default function HomeScreen() {
                     shadowOffset: { width: 0, height: 2 },
                     elevation: 2,
                 }}>
-                      <Text allowFontScaling={false} style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
+                      <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
                         {experimentalStatusTitleLabel}
                       </Text>
                     </TouchableOpacity>
                   </View>
 
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 10 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: eliteStatsCompact ? 14 : 16, fontWeight: '900', lineHeight: eliteStatsCompact ? 18 : 20 }} numberOfLines={1}>
+                    <Text style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 14 : 16, fontWeight: '900', lineHeight: eliteStatsCompact ? 18 : 20 }} numberOfLines={1}>
                       {xpInLevel} / {xpNeeded} XP
                     </Text>
-                    <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
+                    <Text style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
                       {xpPct}%
                     </Text>
                   </View>
@@ -1742,11 +1854,11 @@ export default function HomeScreen() {
                     height: 12,
                     borderRadius: 999,
                     overflow: 'hidden',
-                    backgroundColor: isSketchLightTheme ? 'rgba(56,52,44,0.56)' : isLightTheme ? 'rgba(255,255,255,0.38)' : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
+                    backgroundColor: isPaperHomeTheme ? homeThemeTrackBg : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
                     borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
                     borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent',
                 }}>
-                    <LinearGradient colors={isSketchLightTheme ? [t.accent, t.correct] : isLightTheme ? [t.accent, '#FFFFFFAA'] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
+                    <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.correct] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
                       <Animated.View style={{ width: 72, height: '100%', transform: [{ translateX: eliteShimmerX }] }}>
                         <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.72)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}/>
                       </Animated.View>
@@ -1766,22 +1878,21 @@ export default function HomeScreen() {
                     flexShrink: 0,
                     borderRadius: 18,
                 }}>
-                  <Animated.Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteStatsCompact ? 34 : 42, fontWeight: '900', lineHeight: eliteStatsCompact ? 38 : 46, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }} numberOfLines={1}>
+                  <Animated.Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 34 : 42, fontWeight: '900', lineHeight: eliteStatsCompact ? 38 : 46, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }} numberOfLines={1}>
                     {displayStreak}
                   </Animated.Text>
-                  <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                  <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
                     {homeStreakDaysLabel}
                   </Text>
                 </TouchableOpacity>
               </View>
 
-              <View style={{ height: 1, backgroundColor: isLightTheme ? 'rgba(50,72,110,0.12)' : 'rgba(255,255,255,0.10)', marginTop: 19, marginBottom: 18 }}/>
+              <View style={{ height: 1, backgroundColor: isPaperHomeTheme ? 'rgba(50,72,110,0.12)' : 'rgba(255,255,255,0.10)', marginTop: 19, marginBottom: 18 }}/>
 
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: eliteStatsCompact ? 2 : 5 }}>
                 {weekDays.map((d, i) => {
                   const marker = markerForWeekDay(i);
                   const marked = isWeekDayMarked(i);
-                  const markerAccent = weekMarkerAccent(marker);
                   return (<View key={i} style={{ alignItems: 'center', gap: 6, width: experimentalStatusWeekDotSize + 5 }}>
                     <View style={{
                     width: experimentalStatusWeekDotSize,
@@ -1790,15 +1901,15 @@ export default function HomeScreen() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     overflow: 'hidden',
-                    backgroundColor: marker ? 'transparent' : weekDone[i] ? t.correct : (isLightTheme
+                    backgroundColor: weekDotFill(i, marker, isPaperHomeTheme
                         ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
                         : (i === todayIdx ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)')),
-                    borderWidth: marked ? 0 : 1,
-                    borderColor: marker ? markerAccent : i === todayIdx ? (isLightTheme ? t.textSecond : t.gold) : (isLightTheme ? 'rgba(60,54,44,0.30)' : 'rgba(255,255,255,0.11)'),
+                    borderWidth: marker === 'freeze' ? 1 : marked ? 0 : 1,
+                    borderColor: weekDotBorder(i, marker, i === todayIdx ? homeThemePanelAccent : (isPaperHomeTheme ? 'rgba(60,54,44,0.30)' : 'rgba(255,255,255,0.11)')),
                 }}>
-                      {marker ? <Image source={weekMarkerImage(marker)} style={{ width: experimentalStatusWeekDotSize, height: experimentalStatusWeekDotSize }} contentFit="contain"/> : weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={isSketchLightTheme ? t.correctText : '#101214'}/>}
+                      {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 16 : 18, isSketchLightTheme ? t.correctText : '#101214') ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={isSketchLightTheme ? t.correctText : '#101214'}/>)}
                     </View>
-                    <Text style={{ color: marked || i === todayIdx ? t.textPrimary : t.textMuted, fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16 }} numberOfLines={1}>
+                    <Text style={{ color: marked || i === todayIdx ? homeThemePanelText : homeThemePanelMuted, fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16 }} numberOfLines={1}>
                       {d}
                     </Text>
                   </View>);
@@ -1870,7 +1981,7 @@ export default function HomeScreen() {
                 router.push('/shards_shop');
             }} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                      <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconSize, height: homeHeaderShardIconSize }} resizeMode="contain"/>
+                      <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center"/>
                       <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
                     </Animated.View>
                   </TouchableOpacity>
@@ -1888,7 +1999,7 @@ export default function HomeScreen() {
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
           <Animated.View style={sectionStyle(1)}>
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); router.push('/streak_stats'); }} style={[{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
-            <LinearGradient colors={isGoldTheme ? goldPremiumPanel : isCompassTheme ? compassPanel : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 1 : (isGoldTheme ? 1 : 0.5), borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : (HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 'rgba(103,153,229,0.42)' : t.border), padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 1 : (isGoldTheme ? 1 : 0.5), borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : t.border, padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
               {/* Декоративные круги — в отдельном контейнере чтобы не обрезать текст */}
@@ -2050,26 +2161,25 @@ export default function HomeScreen() {
                     {weekDays.map((d, i) => {
                       const marker = markerForWeekDay(i);
                       const marked = isWeekDayMarked(i);
-                      const markerAccent = weekMarkerAccent(marker);
                       return (<View key={i} style={{ alignItems: 'center', gap: 6, width: 34 }}>
                         <View style={{
                         width: eliteWeekDotSize, height: eliteWeekDotSize, borderRadius: eliteWeekDotSize / 2,
                         alignItems: 'center',
                         justifyContent: 'center',
                         overflow: 'hidden',
-                        backgroundColor: marker ? 'transparent' : isGoldTheme ? 'transparent' : weekDone[i] ? t.correct : (isLightTheme
+                        backgroundColor: marker === 'freeze' ? weekDotFill(i, marker, 'rgba(196,239,255,0.24)') : isGoldTheme && !marker ? 'transparent' : weekDotFill(i, marker, isLightTheme
                             ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
                             : (i === todayIdx ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)')),
-                        borderWidth: marked && !isGoldTheme ? 0 : 1,
+                        borderWidth: marker === 'freeze' ? 1 : marked && !isGoldTheme ? 0 : 1,
                         borderColor: isGoldTheme
-                            ? (marker ? markerAccent : i === todayIdx ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
-                            : i === todayIdx ? (isLightTheme ? t.textSecond : t.gold) : (isLightTheme ? 'rgba(60,54,44,0.30)' : 'rgba(255,255,255,0.10)'),
+                            ? weekDotBorder(i, marker, i === todayIdx ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
+                            : weekDotBorder(i, marker, i === todayIdx ? (isLightTheme ? t.textSecond : t.gold) : (isLightTheme ? 'rgba(60,54,44,0.30)' : 'rgba(255,255,255,0.10)')),
                     }}>
                           {isGoldTheme && !marker && (<>
-                              <LinearGradient colors={marker ? [markerAccent, 'rgba(255,255,255,0.82)', markerAccent] : weekDone[i] ? GOLD_GRADIENTS.metallicFill : ['rgba(23,23,23,0.66)', 'rgba(10,10,10,0.58)', 'rgba(7,7,7,0.50)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
+                              <LinearGradient colors={weekDone[i] ? GOLD_GRADIENTS.metallicFill : ['rgba(23,23,23,0.66)', 'rgba(10,10,10,0.58)', 'rgba(7,7,7,0.50)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
                               <GoldBevel radius={eliteWeekDotSize / 2} intensity={marked ? 'normal' : 'quiet'}/>
                             </>)}
-                          {marker ? <Image source={weekMarkerImage(marker)} style={{ width: eliteWeekDotSize, height: eliteWeekDotSize }} contentFit="contain"/> : weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={isGoldTheme ? t.textOnGold : isSketchLightTheme ? t.correctText : t.textPrimary}/>}
+                          {renderWeekMarkerContent(marker, eliteWeekDotSize, eliteStatsCompact ? 15 : 16, isGoldTheme ? t.textOnGold : isSketchLightTheme ? t.correctText : t.textPrimary) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={isGoldTheme ? t.textOnGold : isSketchLightTheme ? t.correctText : t.textPrimary}/>)}
                         </View>
                         <Text style={{ color: marked || i === todayIdx ? t.textPrimary : t.textMuted, fontSize: eliteWeekDayFontSize, fontWeight: '800' }}>{d}</Text>
                       </View>);
@@ -2216,19 +2326,18 @@ export default function HomeScreen() {
                 {weekDays.map((d, i) => {
                   const marker = markerForWeekDay(i);
                   const marked = isWeekDayMarked(i);
-                  const markerAccent = weekMarkerAccent(marker);
                   return (<View key={i} style={{ alignItems: 'center', gap: 6 }}>
                     <View style={{
                         width: 22, height: 22, borderRadius: 11,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: marker ? 'transparent' : weekDone[i] ? t.correct : (isLightTheme
+                        backgroundColor: weekDotFill(i, marker, isLightTheme
                             ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
                             : (i === todayIdx ? t.textPrimary + '66' : t.bgSurface2)),
-                        borderWidth: marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),
-                        borderColor: marker ? markerAccent : isGoldTheme ? goldHairline : isLightTheme ? t.textMuted : t.textPrimary,
+                        borderWidth: marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),
+                        borderColor: weekDotBorder(i, marker, isGoldTheme ? goldHairline : isLightTheme ? t.textMuted : t.textPrimary),
                     }}>
-                      {marker ? <Image source={weekMarkerImage(marker)} style={{ width: 22, height: 22 }} contentFit="contain"/> : weekDone[i] && <Ionicons name="checkmark" size={14} color={isSketchLightTheme ? t.correctText : '#101214'}/>}
+                      {renderWeekMarkerContent(marker, 22, 14, isSketchLightTheme ? t.correctText : '#101214') ?? (weekDone[i] && <Ionicons name="checkmark" size={14} color={isSketchLightTheme ? t.correctText : '#101214'}/>)}
                     </View>
                     <Text style={{ color: marked ? t.textPrimary : t.textMuted, fontSize: 12, fontWeight: '600' }}>{d}</Text>
                   </View>);
@@ -2350,11 +2459,11 @@ export default function HomeScreen() {
                         overflow: 'hidden',
                         ...({}),
                     }}>
-                <LinearGradient colors={isGoldTheme ? goldPremiumPanel : isCompassTheme ? compassPanel : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
+                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
                         minHeight: 124,
                         borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
                         borderWidth: 1,
-                        borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : (HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 'rgba(103,153,229,0.42)' : isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
+                        borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
                         paddingHorizontal: 20,
                         paddingVertical: 18,
                         overflow: 'hidden',
@@ -2363,14 +2472,14 @@ export default function HomeScreen() {
                   {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
                   <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.16 : 0.12, backgroundColor: isGoldTheme ? GOLD_RICH.champagne : t.accent }]} pointerEvents="none"/>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-                    <View style={{ width: 70, height: 70, borderRadius: isCompassTheme ? compassHomeRadius : 35, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: isGoldTheme ? 'rgba(18,14,8,0.92)' : isCompassTheme ? '#10100C' : 'rgba(40,47,58,0.96)', borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairline : 'rgba(255,255,255,0.10)' }}>
+                    <View style={{ width: 70, height: 70, borderRadius: isCompassTheme ? compassHomeRadius : 35, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeIconPlateBg, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairline : lightPanelBorder }}>
                       <Ionicons name="map-outline" size={32} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
-                      <Text style={{ color: t.textMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.7, lineHeight: 15 }} numberOfLines={1}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.7, lineHeight: 15 }} numberOfLines={1}>
                         {s.home.continueBtn}
                       </Text>
-                      <Text style={{ color: t.textPrimary, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
                         {triLang(lang, {
                         ru: 'Твой персональный план',
                         uk: 'Твій персональний план',
@@ -2382,7 +2491,7 @@ export default function HomeScreen() {
                         pl: "Twój osobisty plan",
                     })}
                       </Text>
-                      <Text style={{ color: t.textMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
                         {triLang(lang, {
                         ru: 'Открыть маршрут на сегодня',
                         uk: 'Відкрити маршрут на сьогодні',
@@ -2431,18 +2540,128 @@ export default function HomeScreen() {
                   </Text>
                 </View>
               </PremiumCard>))
-          : lastLesson != null ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-continue-lesson" activeOpacity={0.88} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } }); }} style={{
+          : (hasPremiumAccess || freeHomePlanCtaMode === 'choosePlan' || lastLesson == null) ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-choose-personal-plan" activeOpacity={0.88} onPress={hasPremiumAccess ? () => { hapticTap(); router.push('/personal_plan_setup' as any); } : handleFreeHomeChoosePlanPress} onTouchStart={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchStart} onTouchMove={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchMove} onTouchEnd={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchEnd} onTouchCancel={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchEnd} style={{
+                        marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
+                        marginBottom: 12,
+                        borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                        overflow: 'hidden',
+                        ...({}),
+                    }}>
+                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
+                        minHeight: 124,
+                        borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
+                        borderWidth: 1,
+                        borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
+                        paddingHorizontal: 20,
+                        paddingVertical: 18,
+                        overflow: 'hidden',
+                    }}>
+                  {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
+                  {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
+                  <View style={[StyleSheet.absoluteFillObject, { opacity: isGoldTheme ? 0.14 : 0.11, backgroundColor: isGoldTheme ? GOLD_RICH.champagne : t.accent }]} pointerEvents="none"/>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
+                    <View style={{ width: 70, height: 70, borderRadius: isCompassTheme ? compassHomeRadius : 35, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeIconPlateBg, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairline : lightPanelBorder }}>
+                      <Ionicons name="sparkles-outline" size={32} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
+                    </View>
+                    <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0, lineHeight: 15 }} numberOfLines={1}>
+                        {hasPremiumAccess ? 'Premium' : triLang(lang, {
+                        ru: 'Мой план',
+                        uk: 'Мій план',
+                        es: 'Mi plan',
+                        'pt-BR': "Meu plano",
+                        vi: "Kế hoạch của tôi",
+                        id: "Rencanaku",
+                        tr: "Planım",
+                        pl: "Mój plan",
+                    })}
+                      </Text>
+                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.78}>
+                        {triLang(lang, {
+                        ru: 'Выбрать свой план обучения',
+                        uk: 'Вибрати свій план навчання',
+                        es: 'Elegir mi plan de estudio',
+                        'pt-BR': "Escolher meu plano de estudo",
+                        vi: "Chọn kế hoạch học của tôi",
+                        id: "Pilih rencana belajarku",
+                        tr: "Kendi öğrenme planımı seç",
+                        pl: "Wybierz mój plan nauki",
+                    })}
+                      </Text>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                        {triLang(lang, {
+                        ru: '3 вопроса — и маршрут готов',
+                        uk: '3 питання — і маршрут готовий',
+                        es: '3 preguntas y la ruta está lista',
+                        'pt-BR': "3 perguntas e a rota fica pronta",
+                        vi: "3 câu hỏi là có lộ trình",
+                        id: "3 pertanyaan, rute siap",
+                        tr: "3 soru, rota hazır",
+                        pl: "3 pytania i trasa gotowa",
+                    })}
+                      </Text>
+                    </View>
+                    <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeChevronBg }}>
+                      <Ionicons name="chevron-forward" size={24} color={homeThemePanelAccent}/>
+                    </View>
+                  </View>
+                </LinearGradient>
+              </TouchableOpacity>) : (<PremiumCard testID="home-choose-personal-plan" level={3} onPress={hasPremiumAccess ? () => { hapticTap(); router.push('/personal_plan_setup' as any); } : handleFreeHomeChoosePlanPress} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+                <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(18,14,8,0.92)' : t.bgSurface2, borderWidth: 1, borderColor: t.border }}>
+                  <Ionicons name="sparkles-outline" size={25} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0 }}>
+                    {hasPremiumAccess ? 'Premium' : triLang(lang, {
+                        ru: 'Мой план',
+                        uk: 'Мій план',
+                        es: 'Mi plan',
+                        'pt-BR': "Meu plano",
+                        vi: "Kế hoạch của tôi",
+                        id: "Rencanaku",
+                        tr: "Planım",
+                        pl: "Mój plan",
+                    })}
+                  </Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }}>
+                    {triLang(lang, {
+                        ru: 'Выбрать свой план обучения',
+                        uk: 'Вибрати свій план навчання',
+                        es: 'Elegir mi plan de estudio',
+                        'pt-BR': "Escolher meu plano de estudo",
+                        vi: "Chọn kế hoạch học của tôi",
+                        id: "Pilih rencana belajarku",
+                        tr: "Kendi öğrenme planımı seç",
+                        pl: "Wybierz mój plan nauki",
+                    })}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
+                    {triLang(lang, {
+                        ru: '3 вопроса — и маршрут готов',
+                        uk: '3 питання — і маршрут готовий',
+                        es: '3 preguntas y la ruta está lista',
+                        'pt-BR': "3 perguntas e a rota fica pronta",
+                        vi: "3 câu hỏi là có lộ trình",
+                        id: "3 pertanyaan, rute siap",
+                        tr: "3 soru, rota hazır",
+                        pl: "3 pytania i trasa gotowa",
+                    })}
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={20} color={t.textGhost}/>
+              </PremiumCard>))
+          : lastLesson != null ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-continue-lesson" activeOpacity={0.88} onPress={handleFreeHomeContinueLessonPress} onTouchStart={handleFreeHomePlanCtaTouchStart} onTouchMove={handleFreeHomePlanCtaTouchMove} onTouchEnd={handleFreeHomePlanCtaTouchEnd} onTouchCancel={handleFreeHomePlanCtaTouchEnd} style={{
                         marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
                         marginBottom: 12,
                         borderRadius: isGoldTheme ? 18 : 24,
                         overflow: 'hidden',
                         ...({}),
                     }}>
-                <LinearGradient colors={isGoldTheme ? goldPremiumPanel : isCompassTheme ? compassPanel : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
+                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
                         minHeight: 124,
                         borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
                         borderWidth: 1,
-                        borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : (HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 'rgba(103,153,229,0.42)' : isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
+                        borderColor: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? homeThemePanelBorder : (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)'),
                         paddingHorizontal: 20,
                         paddingVertical: 18,
                         overflow: 'hidden',
@@ -2452,13 +2671,13 @@ export default function HomeScreen() {
                   <Image source={menuImages.lesson} style={{ position: 'absolute', right: 72, bottom: -20, width: 132, height: 132, opacity: isLightTheme ? 0.08 : 0.12 }} resizeMode="contain" pointerEvents="none"/>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
                     <View style={{ width: 70, height: 70, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={70} sw={8} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isSketchLightTheme ? 'rgba(56,52,44,0.56)' : isCompassTheme ? compassSubtleTrack : 'rgba(83,96,116,0.72)'} innerBg={isGoldTheme ? 'rgba(18,14,8,0.92)' : isCompassTheme ? '#10100C' : 'rgba(40,47,58,0.96)'} textColor={isLightTheme ? t.textPrimary : '#FFFFFF'} fontSize={12}/>
+                      <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={70} sw={8} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isCompassTheme ? compassSubtleTrack : homeThemeTrackBg} innerBg={homeThemeIconPlateBg} textColor={isPaperHomeTheme ? homeThemePanelText : '#FFFFFF'} fontSize={12}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
-                      <Text style={{ color: t.textMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.7, lineHeight: 15 }} numberOfLines={1}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.7, lineHeight: 15 }} numberOfLines={1}>
                         {s.home.continueBtn}
                       </Text>
-                      <Text style={{ color: t.textPrimary, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={1}>
+                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={1}>
                         {`${triLang(lang, {
                         ru: 'Урок',
                         uk: 'Урок',
@@ -2470,7 +2689,7 @@ export default function HomeScreen() {
                         pl: "Lekcja",
                     })} ${lastLesson.id}`}
                       </Text>
-                      <Text style={{ color: t.textMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
                         {lessonNameForStudyTarget(lang, studyTarget, lastLesson.id) ?? lastLesson.name}
                       </Text>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 9 }}>
@@ -2479,12 +2698,12 @@ export default function HomeScreen() {
                         <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: 14, fontWeight: '900', lineHeight: 18 }}>{lastLesson.progress}/50</Text>
                       </View>
                     </View>
-                    <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: isGoldTheme ? goldSoftBg : isLightTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)' }}>
-                      <Ionicons name="chevron-forward" size={24} color={isLightTheme ? t.textSecond : t.gold}/>
+                    <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeChevronBg }}>
+                      <Ionicons name="chevron-forward" size={24} color={homeThemePanelAccent}/>
                     </View>
                   </View>
                 </LinearGradient>
-              </TouchableOpacity>) : (<PremiumCard testID="home-continue-lesson" level={3} onPress={() => router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } })} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+              </TouchableOpacity>) : (<PremiumCard testID="home-continue-lesson" level={3} onPress={handleFreeHomeContinueLessonPress} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
                 <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={52} sw={5} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isSketchLightTheme ? 'rgba(56,52,44,0.56)' : t.bgSurface} textColor={t.textPrimary} fontSize={10}/>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6 }}>
@@ -2535,8 +2754,9 @@ export default function HomeScreen() {
               {visibleQuickItems.map((item, index) => {
                 const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
                 const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-                const tileBorderColor = isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
-                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isLightTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
+                const tileBorderColor = isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isPaperHomeTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
+                const tilePanelBg = isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
+                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
                 return (<Animated.View key={item.label} style={{
                         flex: 1,
                         opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
@@ -2550,13 +2770,11 @@ export default function HomeScreen() {
                         borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
                         borderColor: USE_ELITE_HOME_STATUS ? tileBorderColor : t.border,
                         overflow: 'hidden',
-                        backgroundColor: USE_ELITE_HOME_STATUS
-                            ? (isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
-                            : 'transparent',
+                        backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
                         ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
                         ...({}),
                     }}>
-              {USE_ELITE_HOME_STATUS ? (<View style={{ flex: 1, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
+              {USE_ELITE_HOME_STATUS ? (<View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
                       {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
                       {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
                       <View style={{
@@ -2568,15 +2786,15 @@ export default function HomeScreen() {
                             backgroundColor: tileIconBg,
                         }}>
                         {item.img
-                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>)
+                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
                             : <View style={{ width: homeQuickIconImageSize, height: homeQuickIconImageSize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>...</Text></View>}
                       </View>
-                      <Text style={{ color: t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
-                    </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
+                      <Text style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
+                    </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
                   {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
                   <View style={{ position: 'relative' }}>
                     {item.img
-                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>)
+                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
                             : <View style={{ width: homeQuickIconLegacySize, height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>}
                   </View>
                   <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
@@ -2607,14 +2825,14 @@ export default function HomeScreen() {
           </View>
           <View style={{ marginHorizontal: 8, marginBottom: 12, gap: 10 }}>
             <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); router.push('/trainer'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={isGoldTheme ? goldPremiumPanel : isCompassTheme ? compassPanel : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 108, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : 'rgba(103,153,229,0.26)', paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 16, overflow: 'hidden' }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
-                <View style={{ width: 70, height: 70, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.practice} width={70} height={70} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>
+                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <LightSketchMenuImage source={menuImages.practice} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
+                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
                     {triLang(lang, {
                     ru: 'Моя практика',
                     uk: 'Моя практика',
@@ -2626,7 +2844,7 @@ export default function HomeScreen() {
                     pl: "Moje ćwiczenie",
                 })}
                   </Text>
-                  <Text style={{ color: t.textSecond, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
+                  <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
                     {dueCount > 0
                         ? triLang(lang, {
                             ru: `${dueCount} ждут сегодня`,
@@ -2657,14 +2875,14 @@ export default function HomeScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.85} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={isGoldTheme ? goldPremiumPanel : isCompassTheme ? compassPanel : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 108, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : 'rgba(103,153,229,0.26)', paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 16, overflow: 'hidden' }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
-                <View style={{ width: 70, height: 70, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.dayTasks} width={70} height={70} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>
+                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
+                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
                     {triLang(lang, {
                     ru: 'Задания дня',
                     uk: 'Завдання дня',
@@ -2753,8 +2971,8 @@ export default function HomeScreen() {
               <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 132, borderRadius: 24, borderWidth: 1, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: 18, paddingVertical: 16, overflow: 'hidden' }}>
                 <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -18, width: 142, height: 142, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain"/>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13, marginBottom: 14 }}>
-                  <View style={{ width: 70, height: 70, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Image source={leagueBonusGiftImage} style={{ width: 74, height: 74, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
+                  <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
@@ -2803,7 +3021,7 @@ export default function HomeScreen() {
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: isGoldTheme ? 14 : 16, padding: 14 }}>
               {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
               <View style={{ width: homePracticeIconSize, height: homePracticeIconSize, borderRadius: 12, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }}>
-                <LightSketchMenuImage source={menuImages.practice} width={homePracticeIconSize} height={homePracticeIconSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>
+                <LightSketchMenuImage source={menuImages.practice} width={homePracticeIconImageSize} height={homePracticeIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
@@ -2890,8 +3108,9 @@ export default function HomeScreen() {
               {visibleActivityQuickItems.map((item, index) => {
                 const tileOpacity = eliteActivityTileEntrance[index] ?? eliteStatusEntrance;
                 const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-                const tileBorderColor = isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
-                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isLightTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
+                const tileBorderColor = isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isPaperHomeTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
+                const tilePanelBg = isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
+                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
                 return (<Animated.View key={item.key} style={{
                         flex: 1,
                         opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
@@ -2903,9 +3122,7 @@ export default function HomeScreen() {
                         borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
                         borderColor: USE_ELITE_HOME_STATUS ? tileBorderColor : t.border,
                         overflow: 'hidden',
-                        backgroundColor: USE_ELITE_HOME_STATUS
-                            ? (isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
-                            : 'transparent',
+                        backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
                         ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
                         ...({}),
                     }}>
@@ -2921,7 +3138,7 @@ export default function HomeScreen() {
                             alignItems: 'center',
                             backgroundColor: tileIconBg,
                         }}>
-                      {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>)}
+                      {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
                       {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
                         testID="home-league-chat-unread-badge"
                         style={{
@@ -2956,10 +3173,10 @@ export default function HomeScreen() {
                             })}
                         </View>
                       </View>) : null}
-                    </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
+                  </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
                       {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
                       <View style={{ position: 'relative', height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}>
-                        {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} contentFit="contain" cachePolicy="memory-disk"/>)}
+                        {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
                         {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
                           testID="home-league-chat-unread-badge"
                           style={{
@@ -3031,8 +3248,8 @@ export default function HomeScreen() {
                 />
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
-                    <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>
-                      <Image source={leagueBonusGiftImage} style={{ width: 66, height: 66, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
+                    <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, borderRadius: isCompassTheme ? compassHomeRadius : Math.round(homeTodayIconSize / 2), backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>
+                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
@@ -3186,13 +3403,13 @@ export default function HomeScreen() {
     ];
     const visibleTitles = titleModalTab === 'earned' ? earnedTitles : allTitles;
     const currentHomeTitle = allTitles.find((title) => title.current) ?? allTitles[0];
-    const selectHomeTitle = useCallback((item: TitleModalRow) => {
+    const selectHomeTitle = (item: TitleModalRow) => {
         if (!item.unlocked)
             return;
         hapticTap();
         setSelectedTitleKey(item.key);
         void AsyncStorage.setItem(HOME_SELECTED_TITLE_KEY, item.key);
-    }, []);
+    };
     const titleModalHeading = triLang(lang, {
         ru: 'Титулы',
         uk: 'Титули',

@@ -34,6 +34,7 @@ const {
   getSessionInboxRoutes,
   getSessionTitle,
   getNextQueuedPromptItem,
+  getPromptQueueDeliveryPlan,
   getPromptQueue,
   isGenericReportSummary,
   isAuthorizedTelegramUser,
@@ -348,6 +349,35 @@ describe('telegram bridge core', () => {
     expect(formatPromptQueueForTelegram(restored, route)).toContain('next visible prompt');
   });
 
+  test('keeps prompt queue items waiting when no execution backend is configured', () => {
+    expect(getPromptQueueDeliveryPlan({ allowCodexExec: false, desktopQueueUnsafePaste: false })).toMatchObject({
+      appendDesktopQueue: true,
+      processViaCodexExec: false,
+      startDesktopSender: false,
+      mode: 'visible-hold',
+    });
+  });
+
+  test('uses a single prompt queue execution backend when execution is enabled', () => {
+    expect(getPromptQueueDeliveryPlan({ allowCodexExec: true, desktopQueueUnsafePaste: true })).toMatchObject({
+      appendDesktopQueue: false,
+      processViaCodexExec: true,
+      startDesktopSender: false,
+      mode: 'codex-exec',
+    });
+    expect(getPromptQueueDeliveryPlan({ allowCodexExec: false, desktopQueueUnsafePaste: true })).toMatchObject({
+      appendDesktopQueue: true,
+      processViaCodexExec: false,
+      startDesktopSender: true,
+      mode: 'desktop-paste',
+    });
+  });
+
+  test('desktop sender is not launched with immediate paste from the bridge', () => {
+    const bridgeSource = fs.readFileSync(path.join(__dirname, '..', 'tools', 'telegram-bridge', 'bridge.cjs'), 'utf8');
+    expect(bridgeSource).not.toContain("'-SendImmediately'");
+  });
+
   test('persists state without writing outside requested file', () => {
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'telegram-bridge-'));
     const statePath = path.join(tempDir, 'state.json');
@@ -440,6 +470,42 @@ describe('telegram bridge core', () => {
       existingHash: '2026-05-31T20:00:00.000Z',
       newHash: '2026-05-31T20:01:00.000Z',
     });
+  });
+
+  test('merges prompt queue items instead of dropping concurrently added prompts', () => {
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'telegram-queue-merge-'));
+    const statePath = path.join(tempDir, 'state.json');
+    const route = { sessionId: 'session-queue-merge', chatTitle: 'Queue Merge' };
+    const existing = loadState(null);
+    const first = addPromptQueueItems(existing, route, 'first prompt', 1).items[0];
+    saveState(statePath, existing);
+
+    const runnerState = loadState(statePath);
+    updatePromptQueueItem(runnerState, route, first.id, { status: 'running', startedAt: '2026-06-04T10:00:00.000Z' });
+
+    const enqueueState = loadState(statePath);
+    addPromptQueueItems(enqueueState, route, 'second prompt', 1);
+    saveState(statePath, enqueueState);
+    saveState(statePath, runnerState);
+
+    const queue = getPromptQueue(loadState(statePath), route);
+    expect(queue.items.map((item: any) => item.prompt)).toEqual(['first prompt', 'second prompt']);
+    expect(queue.items.map((item: any) => item.status)).toEqual(['running', 'queued']);
+  });
+
+  test('explicit prompt queue clear is not undone by state merging', () => {
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'telegram-queue-clear-'));
+    const statePath = path.join(tempDir, 'state.json');
+    const route = { sessionId: 'session-queue-clear', chatTitle: 'Queue Clear' };
+    const state = loadState(null);
+    addPromptQueueItems(state, route, 'first prompt', 2);
+    saveState(statePath, state);
+
+    const clearState = loadState(statePath);
+    getPromptQueue(clearState, route).items = [];
+    saveState(statePath, clearState);
+
+    expect(getPromptQueue(loadState(statePath), route).items).toEqual([]);
   });
 
   test('clears selected sessions instead of resurrecting stale selections', () => {
@@ -1153,6 +1219,22 @@ describe('telegram bridge core', () => {
     expect(renderControlCenterHtml(model)).toContain('State/file drift: state queued 5, queue file 2.');
   });
 
+  test('does not warn about missing desktop queue file for codex exec queues', () => {
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'control-center-codex-exec-'));
+    const config = {
+      projectRoot: tempDir,
+      desktopQueueDir: '.queues',
+      allowCodexExec: true,
+    };
+    const state = loadState(null);
+
+    addPromptQueueItems(state, { sessionId: 'session-a', chatTitle: 'Telegram bridge' }, 'next prompt', 2);
+
+    const model = buildControlCenterModel(state, config);
+    expect(model.queues[0].desktop.queueFileCount).toBe(0);
+    expect(model.queues[0].desktop.warning).toBe('');
+  });
+
   test('control center shows and clears failed telegram updates', () => {
     const state = loadState(null);
     state.failedUpdates = {
@@ -1277,6 +1359,27 @@ describe('telegram bridge core', () => {
     result = applyControlAction(config, state, { action: 'clear-finished', queueKey: 'session-a' });
     expect(result).toEqual({ ok: true, message: 'cleared 1 finished items' });
     expect(getPromptQueue(state, { sessionId: 'session-a' }).items.map((item: any) => item.status)).toEqual(['running', 'queued']);
+  });
+
+  test('persisted control center prune does not resurrect removed queue items', () => {
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'control-center-prune-persist-'));
+    const config = {
+      projectRoot: tempDir,
+      statePath: path.join(tempDir, 'state.json'),
+      desktopQueueDir: '.queues',
+    };
+    const state = loadState(null);
+    addPromptQueueItems(state, { sessionId: 'session-a', chatTitle: 'Telegram bridge' }, 'next prompt', 3);
+    const queue = getPromptQueue(state, { sessionId: 'session-a' });
+    updatePromptQueueItem(state, { sessionId: 'session-a' }, queue.items[0].id, { status: 'error', error: 'wrong window' });
+    updatePromptQueueItem(state, { sessionId: 'session-a' }, queue.items[1].id, { status: 'done' });
+    saveState(config.statePath, state);
+
+    const prunedState = loadState(config.statePath);
+    applyControlAction(config, prunedState, { action: 'clear-errors', queueKey: 'session-a' });
+    saveState(config.statePath, prunedState);
+
+    expect(getPromptQueue(loadState(config.statePath), { sessionId: 'session-a' }).items.map((item: any) => item.status)).toEqual(['done', 'queued']);
   });
 
   test('builds queued prompts for hidden queue modes', () => {

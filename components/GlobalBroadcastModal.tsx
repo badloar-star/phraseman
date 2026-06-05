@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
+import CompassDepthSurface from './CompassDepthSurface';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import {
@@ -13,6 +14,7 @@ import {
   GlobalBroadcastModalPayload,
   recordReviewPromoClick,
 } from '../app/global_broadcast_modal';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { triLang } from '../constants/i18n';
 
 type Props = {
@@ -62,6 +64,7 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
   const shardsAmount = payload?.rewardType === 'shards'
     ? Math.max(0, Math.floor(Number(payload.rewardAmount ?? 0)))
     : 0;
+  const isCompassTheme = themeMode === 'compass';
   const dimColor = 'rgba(0,0,0,0.62)';
 
   const closeOnce = async () => {
@@ -124,19 +127,42 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
             pl: 'Zamknij wiadomość',
           })}
         />
-        <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
+        <View style={[
+          styles.card,
+          isCompassTheme && compassShadow(3),
+          {
+            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.accent,
+            borderRadius: isCompassTheme ? 14 : 20,
+            overflow: isCompassTheme ? 'hidden' : 'visible',
+          },
+        ]}>
+          {isCompassTheme && <CompassDepthSurface radius={14} selected />}
           <Text style={styles.emoji}>{'📣'}</Text>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
           <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
 
           {reward && (
-            <View style={styles.rewardBlock}>
+            <View style={[
+              styles.rewardBlock,
+              isCompassTheme && compassShadow(1),
+              isCompassTheme && {
+                borderRadius: 10,
+                borderWidth: StyleSheet.hairlineWidth,
+                borderColor: COMPASS_RICH.hairlineQuiet,
+                backgroundColor: COMPASS_RICH.charcoal,
+                overflow: 'hidden',
+                paddingHorizontal: 14,
+                paddingVertical: 12,
+              },
+            ]}>
+              {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
               {shardsAmount > 0 ? (
                 <Image source={oskolokImageForPackShards(shardsAmount)} style={styles.oskolokImg} resizeMode="contain" />
               ) : (
                 <Text style={styles.rewardEmoji}>{reward.icon}</Text>
               )}
-              <Text style={[styles.rewardLine, { color: t.accent, fontSize: f.bodyLg }]}>
+              <Text style={[styles.rewardLine, { color: isCompassTheme ? COMPASS_RICH.champagne : t.accent, fontSize: f.bodyLg }]}>
                 {triLang(lang, {
                   ru: reward.labelRu,
                   uk: reward.labelUk,
@@ -152,7 +178,16 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
           )}
 
           {isReviewPromo && (
-            <View style={styles.reviewNote}>
+            <View style={[
+              styles.reviewNote,
+              isCompassTheme && {
+                borderRadius: 9,
+                borderWidth: StyleSheet.hairlineWidth,
+                borderColor: COMPASS_RICH.hairlineQuiet,
+                backgroundColor: COMPASS_RICH.mist,
+                paddingVertical: 8,
+              },
+            ]}>
               <Text style={[styles.reviewNoteText, { color: t.textMuted, fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Откроется страница приложения в магазине.',
@@ -173,13 +208,22 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
             onPress={() => { void (isReviewPromo ? openReview() : closeOnce()); }}
             style={({ pressed }) => [
               styles.btn,
-              { backgroundColor: t.accent, opacity: pressed || busy ? 0.85 : 1 },
+              isCompassTheme && compassShadow(2),
+              {
+                backgroundColor: isCompassTheme ? 'transparent' : t.accent,
+                borderRadius: isCompassTheme ? 10 : 14,
+                borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+                overflow: isCompassTheme ? 'hidden' : 'visible',
+                opacity: pressed || busy ? 0.85 : 1,
+              },
             ]}
           >
+            {isCompassTheme && <CompassDepthSurface radius={10} cream />}
             {false && busy ? (
               <View />
             ) : (
-              <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
+              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
                 {isReviewPromo && payload
                   ? triLang(lang, {
                     ru: payload.reviewCtaRu,
@@ -205,7 +249,22 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
             )}
           </Pressable>
           {isReviewPromo && (
-            <Pressable disabled={busy} onPress={() => { void closeOnce(); }} style={styles.secondaryBtn}>
+            <Pressable
+              disabled={busy}
+              onPress={() => { void closeOnce(); }}
+              style={[
+                styles.secondaryBtn,
+                isCompassTheme && compassShadow(1),
+                isCompassTheme && {
+                  borderRadius: 9,
+                  borderWidth: StyleSheet.hairlineWidth,
+                  borderColor: COMPASS_RICH.hairlineQuiet,
+                  backgroundColor: COMPASS_RICH.charcoal,
+                  overflow: 'hidden',
+                },
+              ]}
+            >
+              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.body }}>
                 {triLang(lang, {
                   ru: 'Позже',

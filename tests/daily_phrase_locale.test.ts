@@ -136,6 +136,14 @@ describe('DailyPhraseCard runtime locale wiring', () => {
     expect(source).toContain('{homeAdditionalMeaning}');
     expect(source).not.toContain('rememberLabel');
   });
+
+  it('allows compact home plaque meaning text to wrap instead of truncating to ellipsis', () => {
+    const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
+    const source = fs.readFileSync(componentPath, 'utf8');
+
+    expect(source).toContain('styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}');
+    expect(source).toContain('minHeight: 38');
+  });
 });
 
 describe('Spanish Daily Phrase content coverage', () => {

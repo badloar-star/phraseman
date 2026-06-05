@@ -8,10 +8,17 @@ import {
   GAVAN_WEEK1_QUIZ_ADAPTER_DESIGN_PATH,
   writeGavanWeek1QuizAdapterDesign,
 } from '../tools/personal_plan_gavan_week1_quiz_adapter_design';
+import {
+  ensureGavanWeek1RoutePrerequisiteArtifacts,
+} from '../tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh';
 
 const GENERATED_AT = '2026-06-03T07:35:00.000Z';
 
 function inventory(): GavanWeek1QuizSourceInventory {
+  ensureGavanWeek1RoutePrerequisiteArtifacts({
+    generatedAt: GENERATED_AT,
+  });
+
   return JSON.parse(readFileSync(
     path.join(
       process.cwd(),

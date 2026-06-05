@@ -163,8 +163,9 @@ describe('personal plan onboarding mockup contract', () => {
     [
       'Image as RNImage',
       'ONBOARDING_PRELOADED_ICON_ASSETS',
+      'function resolveOnboardingBundledImageSource',
       'function warmOnboardingBundledImages()',
-      'RNImage.resolveAssetSource(source)',
+      'resolveOnboardingBundledImageSource(source)',
       'function OnboardingBundledImage',
       'fadeDuration={0}',
       '<OnboardingBundledImage',
@@ -178,6 +179,7 @@ describe('personal plan onboarding mockup contract', () => {
       '<ExpoImage',
       'contentFit="contain"',
       'cachePolicy="memory-disk"',
+      'RNImage.resolveAssetSource(source);',
     ].forEach((text) => {
       expect(source).not.toContain(text);
     });
@@ -223,11 +225,17 @@ describe('personal plan onboarding mockup contract', () => {
       "'#63E6D2'",
       "['#F2B84B', '#63E6D2']",
       'useNativeDriver: true',
-      'transform: [{ translateX: meterTranslateX }]',
-      'transform: [{ translateX: daysFillTranslateX }]',
+      'transform: [{ scaleX: meterScaleX }]',
+      'transform: [{ scaleX: daysFillScale }]',
+      "transformOrigin: 'left center'",
     ].forEach((text) => {
       expect(source).toContain(text);
     });
+
+    expect(source).not.toContain('planLoadingRailWidth');
+    expect(source).not.toContain('setPlanLoadingRailWidth');
+    expect(source).not.toContain('planDaysRailWidth');
+    expect(source).not.toContain('setPlanDaysRailWidth');
   });
 
   it('keeps plan choice cards arrowless and allows phrase mistakes after input', () => {
@@ -245,8 +253,11 @@ describe('personal plan onboarding mockup contract', () => {
       "onPress={() => setSelectedPlanBilling('monthly')}",
       "onPress={() => setSelectedPlanBilling('annual')}",
       'PLAN_DAYS_COUNT_DURATION_MS',
-      'const dayCounter = setInterval',
-      'Остаться с планом',
+      'PLAN_DAYS_COUNT_TICK_MS',
+      'let countTimer: ReturnType<typeof setInterval> | null = null',
+      'Math.round(total * easedProgress)',
+      'Хочу свой план',
+      'Продолжить без плана',
     ].forEach((text) => {
       expect(source).toContain(text);
     });
@@ -258,6 +269,8 @@ describe('personal plan onboarding mockup contract', () => {
     expect(source).not.toContain('Вернуться к Premium');
     expect(source).not.toContain('planDaysProgress.addListener');
     expect(source).not.toContain('Math.round(total * value)');
+    expect(source).toContain('planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep(\'name\')}');
+    expect(source).toContain('style={styles.eliteWelcomeSecondaryCta} activeOpacity={0.82} onPress={() => goToStep(\'name\')}');
   });
 });
 

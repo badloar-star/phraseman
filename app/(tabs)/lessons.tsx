@@ -20,7 +20,7 @@ import { prefetchLessonMenuCache } from '../lesson_menu';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import EnergyBar from '../../components/EnergyBar';
-import { getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
+import { COURSE_LEVEL_RANGES, getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
 import {
@@ -84,8 +84,8 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
     compass: {
         A1: '#F2C48D',
         A2: '#F2C48D',
-        B1: '#8FEFE1',
-        B2: '#B4774E',
+        B1: '#F2C48D',
+        B2: '#F2C48D',
     },
 };
 const EXAM_META_SKETCH: Record<string, {
@@ -145,9 +145,22 @@ function cefrKey(num: number): string {
         return 'B1';
     return 'B2';
 }
+const LESSON_TONE_STEPS = [0.94, 1, 0.97, 1.04, 0.92, 0.99, 1.06, 0.95, 1.02, 0.98];
+function scaleHex(hex: string, factor = 1): string {
+    const r = Math.max(0, Math.min(255, Math.round(parseInt(hex.slice(1, 3), 16) * factor)));
+    const g = Math.max(0, Math.min(255, Math.round(parseInt(hex.slice(3, 5), 16) * factor)));
+    const b = Math.max(0, Math.min(255, Math.round(parseInt(hex.slice(5, 7), 16) * factor)));
+    return `#${[r, g, b].map((value) => value.toString(16).padStart(2, '0')).join('')}`;
+}
+function lessonToneFactor(num: number): number {
+    const level = getCourseLevelForLesson(num);
+    const [firstLesson] = COURSE_LEVEL_RANGES[level];
+    return LESSON_TONE_STEPS[(num - firstLesson) % LESSON_TONE_STEPS.length] ?? 1;
+}
 function bookPalette(num: number, themeMode = 'minimalLight'): string {
     const palette = LESSON_LEVEL_PALETTES[themeMode] ?? PALETTE_SKETCH;
-    return palette[cefrKey(num)] ?? PALETTE_SKETCH[cefrKey(num)];
+    const base = palette[cefrKey(num)] ?? PALETTE_SKETCH[cefrKey(num)];
+    return scaleHex(base, lessonToneFactor(num));
 }
 function darkenHex(hex: string, factor = 0.45): string {
     const r = parseInt(hex.slice(1, 3), 16);
@@ -653,68 +666,67 @@ export default function LessonsTab() {
             if (item.kind === 'attestation') {
                 const attestationAccent = isGoldTheme
                     ? goldBright
-                    : themeMode === 'neon'
-                        ? '#B7FF00'
-                        : isCoralTheme
-                            ? '#FFB2A1'
-                            : themeMode === 'minimalLight'
-                                ? '#DDE8F0'
-                                : '#80B8FF';
+                    : t.accent;
                 const attestationColors = isGoldTheme
                     ? goldCardGradient('selected')
-                    : isCoralTheme
-                        ? ['#2A1519', '#3A2025', '#1B0F12']
-                        : themeMode === 'neon'
-                            ? ['#101608', '#17200B', '#080B06']
-                            : themeMode === 'minimalLight'
-                                ? ['#29313A', '#3A4652', '#20262E']
-                                : ['#101722', '#1B2636', '#0B1018'];
+                    : [t.bgSurface2, t.bgSurface, t.bgCard];
                 const attestationBorder = isGoldTheme
                     ? GOLD_RICH.hairlineStrong
-                    : themeMode === 'neon'
-                        ? 'rgba(183,255,0,0.36)'
-                        : isCoralTheme
-                            ? 'rgba(255,178,161,0.36)'
-                            : 'rgba(128,184,255,0.34)';
-                return (<Animated.View key="attestation-after-32" style={{ marginTop: 12, marginHorizontal: 14, borderRadius: 24, transform: [{ scale: scaleAnim ?? 1 }], ...(isGoldTheme ? goldShadow(2) : {}) }}>
+                    : t.borderHighlight;
+                const attestationText = isGoldTheme ? t.textPrimary : t.textOnCard;
+                const attestationMuted = isGoldTheme ? t.textMuted : t.textMuted;
+                return (<Animated.View key="attestation-after-32" style={{
+                    marginTop: 12,
+                    marginHorizontal: 14,
+                    borderRadius: 18,
+                    transform: [{ scale: scaleAnim ?? 1 }],
+                    shadowColor: isGoldTheme ? '#000' : t.cardShadow,
+                    shadowOffset: { width: 0, height: 6 },
+                    shadowOpacity: isGoldTheme ? 0 : 0.16,
+                    shadowRadius: 14,
+                    elevation: 5,
+                    ...(isGoldTheme ? goldShadow(2) : {}),
+                    ...({}),
+                }}>
                 <TouchableOpacity activeOpacity={0.82} onPress={() => {
                         hapticTap();
                         router.push('/diagnostic_test');
                     }} style={{
                         height: 126,
-                        borderRadius: 24,
+                        borderRadius: 18,
                         borderWidth: 1,
                         borderColor: attestationBorder,
                         overflow: 'hidden',
-                        backgroundColor: isGoldTheme ? goldSurface : '#111820',
+                        backgroundColor: isGoldTheme ? goldSurface : t.bgCard,
                     }}>
                   <LinearGradient colors={attestationColors as any} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>
-                  <Image source={menuImages.test} style={{ position: 'absolute', right: -8, top: 8, width: 128, height: 128, opacity: isGoldTheme ? 0.18 : 0.16 }} resizeMode="contain"/>
-                  <View style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 1.5, backgroundColor: attestationAccent, opacity: 0.42 }}/>
-                  {isGoldTheme && <GoldBevel radius={24} intensity="normal"/>}
-                  <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 18, gap: 16 }}>
+                  <Image source={menuImages.test} style={{ position: 'absolute', right: -16, top: 7, width: 128, height: 128, opacity: isGoldTheme ? 0.16 : 0.08 }} resizeMode="contain"/>
+                  <View style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 6, backgroundColor: attestationAccent, opacity: 0.88 }}/>
+                  <View style={{ position: 'absolute', left: 6, right: 0, top: 0, height: 1, backgroundColor: attestationAccent, opacity: 0.24 }}/>
+                  {isGoldTheme && <GoldBevel radius={18} intensity="normal"/>}
+                  <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 20, paddingRight: 14, gap: 14 }}>
                     <View style={{
-                        width: 82,
-                        height: 82,
-                        borderRadius: 24,
+                        width: 72,
+                        height: 72,
+                        borderRadius: 36,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.10)' : 'rgba(255,255,255,0.075)',
+                        backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.10)' : t.accentBg,
                         borderWidth: 1,
                         borderColor: attestationBorder,
                     }}>
-                      <Image source={menuImages.test} style={{ width: 70, height: 70 }} resizeMode="contain"/>
+                      <Image source={menuImages.test} style={{ width: 58, height: 58, opacity: 0.96 }} resizeMode="contain"/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
-                      <Text style={{ color: attestationAccent, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase', opacity: 0.82 }} numberOfLines={1}>
-                        B2
+                      <Text style={{ color: attestationMuted, fontSize: Math.max(12, f.label), fontWeight: '800', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
+                        B2 / CEFR
                       </Text>
-                      <Text style={{ color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: Math.max(28, f.h1), lineHeight: Math.max(33, f.h1 + 5), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.76}>
+                      <Text style={{ color: attestationText, fontSize: Math.max(27, f.h1), lineHeight: Math.max(32, f.h1 + 4), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
                         {s.home.attestTile}
                       </Text>
                     </View>
-                    <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.12)' : 'rgba(255,255,255,0.09)' }}>
-                      <Ionicons name="chevron-forward" size={30} color={attestationAccent}/>
+                    <View style={{ width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(255,235,180,0.12)' : t.accentBg, borderWidth: 1, borderColor: attestationBorder }}>
+                      <Ionicons name="chevron-forward" size={26} color={attestationAccent}/>
                     </View>
                   </View>
                 </TouchableOpacity>

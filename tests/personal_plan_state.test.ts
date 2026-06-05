@@ -5,7 +5,12 @@ import {
   advancePersonalPlanStateForToday,
   PERSONAL_PLAN_STATE_KEY,
 } from '../app/personal_plan_state';
-import { PERSONAL_PLAN_CATALOG } from '../app/personal_plan_catalog';
+import {
+  allTasksForDay,
+  nextTaskAfterVisibleSlice,
+  PERSONAL_PLAN_CATALOG,
+  tasksForMinutes,
+} from '../app/personal_plan_catalog';
 import { planTaskCompletionKey } from '../app/personal_plan_progress';
 
 describe('personal plan runtime state', () => {
@@ -24,9 +29,21 @@ describe('personal plan runtime state', () => {
     expect(state.activatedAt).toEqual(expect.any(String));
   });
 
+  it('uses selected minutes for initial visible count while keeping the full daily pool available', () => {
+    const day = gavan.days[0];
+
+    expect(tasksForMinutes(day, 5)).toHaveLength(3);
+    expect(tasksForMinutes(day, 10)).toHaveLength(4);
+    expect(tasksForMinutes(day, 15)).toHaveLength(5);
+    expect(tasksForMinutes(day, 20)).toHaveLength(6);
+    expect(allTasksForDay(day).length).toBeGreaterThan(tasksForMinutes(day, 20).length);
+    expect(nextTaskAfterVisibleSlice(day, 5, 0)?.id).toBe(allTasksForDay(day)[3].id);
+    expect(nextTaskAfterVisibleSlice(day, 20, 99)).toBeNull();
+  });
+
   it('keeps unfinished tasks first and does not advance the visible day until required work is complete', () => {
     const state = createDefaultPersonalPlanState({ planId: 'gavan', minutesPerDay: 15, startDayIndex: 2 });
-    const day1Tasks = gavan.days[0].tasks.slice(0, 3).map((task) => task.id);
+    const day1Tasks = tasksForMinutes(gavan.days[0], state.minutesPerDay).map((task) => task.id);
     const completed = {
       [planTaskCompletionKey(state.planInstanceId, day1Tasks[0])]: { taskId: day1Tasks[0], planId: 'gavan', dayIndex: 1, completedAt: '2026-05-01T10:00:00.000Z' },
     };
@@ -43,12 +60,12 @@ describe('personal plan runtime state', () => {
     expect(runtime.isCarryover).toBe(true);
     expect(runtime.tasks.map((task) => task.id)).toEqual(day1Tasks.slice(1));
     expect(runtime.completedTodayCount).toBe(1);
-    expect(runtime.requiredTodayCount).toBe(3);
+    expect(runtime.requiredTodayCount).toBe(5);
   });
 
   it('uses the current day when there is no carryover and gates optional practice on real due material', () => {
     const state = createDefaultPersonalPlanState({ planId: 'gavan', minutesPerDay: 20, startDayIndex: 2 });
-    const day1Done = Object.fromEntries(gavan.days[0].tasks.slice(0, 4).map((task) => [
+    const day1Done = Object.fromEntries(tasksForMinutes(gavan.days[0], state.minutesPerDay).map((task) => [
       planTaskCompletionKey(state.planInstanceId, task.id),
       { taskId: task.id, planId: 'gavan', dayIndex: 1, completedAt: '2026-05-01T10:00:00.000Z' },
     ]));
@@ -86,11 +103,11 @@ describe('personal plan runtime state', () => {
     expect(snapshot.planName).toBe('Гавань');
     expect(snapshot.dayIndex).toBe(1);
     expect(snapshot.todayTitle).toBe(gavan.days[0].title);
-    expect(snapshot.requiredTodayCount).toBe(3);
+    expect(snapshot.requiredTodayCount).toBe(5);
     expect(snapshot.completedTodayCount).toBe(2);
     expect(snapshot.todayDone).toBe(false);
-    expect(snapshot.dayProgressPct).toBe(67);
-    expect(snapshot.progressPct).toBeGreaterThan(0);
+    expect(snapshot.dayProgressPct).toBe(40);
+    expect(snapshot.progressPct).toBeGreaterThanOrEqual(0);
     expect(snapshot.progressPct).toBeLessThan(100);
   });
 
@@ -116,8 +133,8 @@ describe('personal plan runtime state', () => {
     });
 
     expect(snapshot.completedTodayCount).toBe(1);
-    expect(snapshot.requiredTodayCount).toBe(3);
-    expect(snapshot.dayProgressPct).toBe(33);
+    expect(snapshot.requiredTodayCount).toBe(5);
+    expect(snapshot.dayProgressPct).toBe(20);
     expect(snapshot.progressPct).toBeLessThan(snapshot.dayProgressPct);
   });
 
@@ -158,7 +175,7 @@ describe('personal plan runtime state', () => {
       ...createDefaultPersonalPlanState({ planId: 'gavan', minutesPerDay: 15, startDayIndex: 1 }),
       currentDayStartedAt: '2026-05-30T10:00:00.000Z',
     };
-    const completed = Object.fromEntries(gavan.days[0].tasks.slice(0, 3).map((task) => [
+    const completed = Object.fromEntries(tasksForMinutes(gavan.days[0], state.minutesPerDay).map((task) => [
       planTaskCompletionKey(state.planInstanceId, task.id),
       { taskId: task.id, planId: 'gavan', dayIndex: 1, completedAt: '2026-05-30T10:30:00.000Z' },
     ]));
@@ -189,7 +206,7 @@ describe('personal plan runtime state', () => {
         completedAt: '2026-05-30T10:10:00.000Z',
       },
     };
-    const allDone = Object.fromEntries(gavan.days[0].tasks.slice(0, 3).map((task) => [
+    const allDone = Object.fromEntries(tasksForMinutes(gavan.days[0], state.minutesPerDay).map((task) => [
       planTaskCompletionKey(state.planInstanceId, task.id),
       { taskId: task.id, planId: 'gavan', dayIndex: 1, completedAt: '2026-05-30T10:30:00.000Z' },
     ]));

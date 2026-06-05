@@ -8,6 +8,7 @@ import {
   GAVAN_WEEK1_FUTURE_BRIDGE_GUARD_REPORT_PATH,
   writeGavanWeek1FutureBridgeGuardReport,
 } from '../tools/personal_plan_gavan_week1_future_bridge_guard_report';
+import { ensureGavanWeek1RoutePrerequisiteArtifacts } from '../tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh';
 
 const GENERATED_AT = '2026-06-03T03:45:00.000Z';
 const BROKEN_ENCODING_RE = /[\u00d0\u00c2\u00e2\ufffd]/;
@@ -25,6 +26,10 @@ function contract(): GavanWeek1FutureBridgeApprovalContract {
 }
 
 describe('Gavan week 1 future bridge guard report', () => {
+  beforeAll(() => {
+    ensureGavanWeek1RoutePrerequisiteArtifacts({ generatedAt: GENERATED_AT });
+  });
+
   beforeEach(() => {
     if (existsSync(GAVAN_WEEK1_FUTURE_BRIDGE_GUARD_REPORT_PATH)) {
       rmSync(GAVAN_WEEK1_FUTURE_BRIDGE_GUARD_REPORT_PATH, { force: true });

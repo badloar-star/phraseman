@@ -12,8 +12,10 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap } from '../hooks/use-haptics';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { STORE_URL } from './config';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { useEffectivePlatformOS } from './platform_ui_preview';
@@ -274,7 +276,8 @@ const OFFLINE_SHARE_BODIES_BY_LANG: Record<Lang, readonly string[]> = {
 export default function SettingsInviteFriend() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
 
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -327,8 +330,21 @@ export default function SettingsInviteFriend() {
               hapticTap();
               safeRouterBack(router, '/(tabs)/settings' as any);
             }}
-            style={{ marginRight: 12, padding: 4 }}
+            style={{
+              marginRight: 12,
+              width: 38,
+              height: 38,
+              borderRadius: isCompassTheme ? 8 : 19,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+              borderWidth: isCompassTheme ? 0.5 : 0,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(1) : {}),
+            }}
           >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
           <Text
@@ -348,16 +364,19 @@ export default function SettingsInviteFriend() {
               style={{
                 width: 88,
                 height: 88,
-                borderRadius: 44,
-                backgroundColor: t.correctBg,
+                borderRadius: isCompassTheme ? 12 : 44,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.correctBg,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderWidth: 1.5,
-                borderColor: t.correct,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct,
                 marginBottom: 14,
+                overflow: 'hidden',
+                ...(isCompassTheme ? compassShadow(2) : {}),
               }}
             >
-              <Ionicons name="gift" size={46} color={t.correct} />
+              {isCompassTheme ? <CompassDepthSurface radius={12} selected /> : null}
+              <Ionicons name="gift" size={46} color={isCompassTheme ? COMPASS_RICH.champagne : t.correct} />
             </View>
             <Text
               style={{
@@ -399,15 +418,20 @@ export default function SettingsInviteFriend() {
           </Text>
 
           <View
-            style={{
-              backgroundColor: t.bgCard,
-              borderRadius: 16,
-              padding: 4,
-              borderWidth: 1,
-              borderColor: t.border,
-              marginBottom: 18,
-            }}
+            style={[
+              {
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: isCompassTheme ? 10 : 16,
+                padding: 4,
+                borderWidth: 1,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                marginBottom: 18,
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(2),
+            ]}
           >
+            {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
             <Step
               n={1}
               title={tx.step1Title}
@@ -415,6 +439,7 @@ export default function SettingsInviteFriend() {
               icon="paper-plane-outline"
               t={t}
               f={f}
+              isCompassTheme={isCompassTheme}
             />
             <Divider color={t.border} />
             <Step
@@ -424,6 +449,7 @@ export default function SettingsInviteFriend() {
               icon="school-outline"
               t={t}
               f={f}
+              isCompassTheme={isCompassTheme}
             />
             <Divider color={t.border} />
             <Step
@@ -433,21 +459,27 @@ export default function SettingsInviteFriend() {
               icon="diamond-outline"
               t={t}
               f={f}
+              isCompassTheme={isCompassTheme}
               accent
             />
           </View>
 
           <View
-            style={{
-              backgroundColor: t.bgCard,
-              borderRadius: 14,
-              padding: 14,
-              borderWidth: 1,
-              borderColor: t.border,
-              flexDirection: 'row',
-              gap: 10,
-            }}
+            style={[
+              {
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: isCompassTheme ? 8 : 14,
+                padding: 14,
+                borderWidth: 1,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                flexDirection: 'row',
+                gap: 10,
+                overflow: 'hidden',
+              },
+              isCompassTheme && compassShadow(1),
+            ]}
           >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons
               name="information-circle-outline"
               size={20}
@@ -487,17 +519,22 @@ export default function SettingsInviteFriend() {
             disabled={busy}
             activeOpacity={0.85}
             style={{
-              backgroundColor: busy ? t.textGhost : t.correct,
-              borderRadius: 16,
+              backgroundColor: isCompassTheme ? (busy ? COMPASS_RICH.charcoalSoft : COMPASS_RICH.champagne) : busy ? t.textGhost : t.correct,
+              borderRadius: isCompassTheme ? 9 : 16,
               paddingVertical: 16,
               alignItems: 'center',
               flexDirection: 'row',
               justifyContent: 'center',
               gap: 10,
+              borderWidth: isCompassTheme ? 1 : 0,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(2) : {}),
             }}
           >
-            <Ionicons name="share-social" size={20} color={t.correctText} />
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
+            {isCompassTheme ? <CompassDepthSurface radius={9} cream={!busy} quiet={busy} /> : null}
+            <Ionicons name="share-social" size={20} color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
+            <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
               {tx.cta}
             </Text>
           </TouchableOpacity>
@@ -514,6 +551,7 @@ function Step({
   icon,
   t,
   f,
+  isCompassTheme,
   accent,
 }: {
   n: number;
@@ -522,23 +560,27 @@ function Step({
   icon: React.ComponentProps<typeof Ionicons>['name'];
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
+  isCompassTheme?: boolean;
   accent?: boolean;
 }) {
-  const accentColor = accent ? t.correct : t.textPrimary;
+  const accentColor = isCompassTheme ? (accent ? COMPASS_RICH.textDark : COMPASS_RICH.champagne) : accent ? t.correct : t.textPrimary;
   return (
     <View style={{ flexDirection: 'row', padding: 14, gap: 14 }}>
       <View
         style={{
           width: 40,
           height: 40,
-          borderRadius: 20,
-          backgroundColor: accent ? t.correctBg : t.bgPrimary,
+          borderRadius: isCompassTheme ? 8 : 20,
+          backgroundColor: isCompassTheme ? (accent ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalSoft) : accent ? t.correctBg : t.bgPrimary,
           alignItems: 'center',
           justifyContent: 'center',
           borderWidth: 1,
-          borderColor: accent ? t.correct : t.border,
+          borderColor: isCompassTheme ? (accent ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : accent ? t.correct : t.border,
+          overflow: 'hidden',
+          ...(isCompassTheme ? compassShadow(1) : {}),
         }}
       >
+        {isCompassTheme ? <CompassDepthSurface radius={8} cream={accent} quiet={!accent} /> : null}
         <Ionicons name={icon} size={20} color={accentColor} />
       </View>
       <View style={{ flex: 1 }}>

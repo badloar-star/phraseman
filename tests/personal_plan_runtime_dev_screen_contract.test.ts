@@ -11,11 +11,22 @@ describe('personal plan runtime dev screen contract', () => {
   const runtimeSource = readAppFile('personal_plan_runtime_dev.tsx');
   const devSource = readAppFile('personal_plan_dev.tsx');
   const layoutSource = readAppFile('_layout.tsx');
+  const devRoutesSource = fs.readFileSync(path.join(ROOT, 'constants', 'devRoutes.ts'), 'utf8');
 
   it('registers the runtime dev route without replacing existing plan routes', () => {
     expect(layoutSource).toContain('<Stack.Screen name="personal_plan" options={{ headerShown: false }} />');
     expect(layoutSource).toContain('<Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />');
     expect(layoutSource).toContain('<Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />');
+  });
+
+  it('allows Maestro warm deep links into runtime dev without duplicating Stack registration', () => {
+    expect(layoutSource).toContain('PERSONAL_PLAN_RUNTIME_DEV_ROUTE');
+    expect(layoutSource).toContain('function isDevOnlyRuntimeRoutePath');
+    expect(layoutSource).toContain('path.startsWith(PERSONAL_PLAN_RUNTIME_DEV_ROUTE)');
+    expect(devRoutesSource).toContain('PERSONAL_PLAN_RUNTIME_DEV_ROUTE_NAME');
+    expect(devRoutesSource).toContain('PERSONAL_PLAN_RUNTIME_DEV_ROUTE');
+    expect(devRoutesSource).toContain('PERSONAL_PLAN_RUNTIME_DEV_ROUTE,');
+    expect(devRoutesSource).not.toContain('PERSONAL_PLAN_RUNTIME_DEV_ROUTE_NAME,');
   });
 
   it('exposes the runtime screen from the existing dev calendar only', () => {
@@ -55,6 +66,22 @@ describe('personal plan runtime dev screen contract', () => {
     expect(runtimeSource).toContain('testID="plan-runtime-reset"');
     expect(runtimeSource).toContain('minHeight: 62');
     expect(runtimeSource).toContain('minHeight: 56');
+  });
+
+  it('keeps the runtime section shell intact while giving each exercise mode its own card interface', () => {
+    expect(runtimeSource).toContain('testID="plan-runtime-active-exercise"');
+    expect(runtimeSource).toContain("current?.exerciseType === 'plan_choose_natural_phrase'");
+    expect(runtimeSource).toContain("current?.exerciseType === 'plan_missing_word'");
+    expect(runtimeSource).toContain("current?.exerciseType === 'plan_phrase_recall'");
+    expect(runtimeSource).toContain('styles.modeSurface');
+    expect(runtimeSource).toContain('styles.meaningHeadline');
+    expect(runtimeSource).toContain('styles.blankSentence');
+    expect(runtimeSource).toContain('isMissingWordMode ? styles.choiceChipGrid : styles.choiceList');
+    expect(runtimeSource).toContain('selectedBuildTiles.map');
+    expect(runtimeSource).toContain('testID={`plan-runtime-selected-tile-${index + 1}`}');
+    expect(runtimeSource).toContain('removeSelectedTile(index)');
+    expect(runtimeSource).toContain('Слова появятся здесь');
+    expect(runtimeSource).toContain('Введите английскую фразу');
   });
 
   it('keeps screen copy clean for the new runtime route', () => {

@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import CompassBevel from '../components/CompassBevel';
+import CompassDepthSurface from '../components/CompassDepthSurface';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -15,7 +15,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from './config';
 import { triLang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
-import { COMPASS_GRADIENTS, COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { safeRouterBack } from './navigation_back';
 
 type ThemeOption = {
@@ -50,9 +50,64 @@ const THEME_OPTIONS: ThemeOption[] = [
 ];
 
 function themeSwatches(item: ThemeOption): [string, string, string] {
-  if (item.mode === 'gold') return ['#030303', '#171717', '#D6B35A'];
-  if (item.mode === 'compass') return [COMPASS_RICH.charcoalSoft, COMPASS_RICH.copper, COMPASS_RICH.champagne];
-  return [item.bg, item.preview3, item.preview2];
+  switch (item.mode) {
+    case 'minimalDark':
+      return [item.accent, item.preview2, '#E9B949'];
+    case 'compass':
+      return [COMPASS_RICH.champagne, COMPASS_RICH.copper, COMPASS_RICH.charcoalWarm];
+    case 'minimalLight':
+      return [item.accent, item.preview2, '#76531F'];
+    case 'dark':
+      return [item.accent, '#8AB49A', '#FFC800'];
+    case 'neon':
+      return [item.accent, '#FFE600', '#FF4444'];
+    case 'coral':
+      return [item.accent, '#4A90FF', '#FFD060'];
+    case 'gold':
+      return [item.accent, item.preview2, '#8A5A20'];
+    default:
+      return [item.accent, item.preview2, item.preview3];
+  }
+}
+
+function rgba(hex: string, alpha: number): string {
+  const clean = hex.replace('#', '');
+  const r = parseInt(clean.slice(0, 2), 16);
+  const g = parseInt(clean.slice(2, 4), 16);
+  const b = parseInt(clean.slice(4, 6), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function themeRowColors(item: ThemeOption, active: boolean) {
+  const swatches = themeSwatches(item);
+  const cardText = '#F5F5F5';
+  const accentWash = rgba(item.accent, active ? 0.14 : 0.06);
+  const topGlow = 'rgba(255,255,255,0.12)';
+  const borderColor = active ? item.accent : rgba(item.accent, 0.30);
+
+  if (item.mode === 'minimalLight') {
+    return {
+      gradient: ['#3A3D43', '#282B31', '#1A1C21'] as const,
+      shine: [topGlow, 'rgba(255,255,255,0.03)', 'rgba(255,255,255,0)'] as const,
+      borderColor,
+      textColor: cardText,
+      mutedColor: rgba(cardText, 0.56),
+      activeIconColor: item.accent,
+      shadowColor: '#101114',
+      swatches,
+    };
+  }
+
+  return {
+    gradient: ['#3A3D43', '#282B31', '#1A1C21'] as const,
+    shine: [topGlow, accentWash, 'rgba(255,255,255,0)'] as const,
+    borderColor,
+    textColor: cardText,
+    mutedColor: rgba(cardText, 0.56),
+    activeIconColor: item.accent,
+    shadowColor: '#101114',
+    swatches,
+  };
 }
 
 export default function SettingsThemes() {
@@ -60,16 +115,34 @@ export default function SettingsThemes() {
   const { theme: t, themeMode, setThemeMode, isGoldThemeUnlocked } = useTheme();
   const { lang } = useLang();
   const { hasPremiumAccess: isPremium } = usePremium();
+  const isCompassTheme = themeMode === 'compass';
+  const themeRowRadius = 10;
+  const themeRowHeight = 58;
 
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={() => {
-              hapticTap();
-              safeRouterBack(router, '/(tabs)/settings' as any);
-            }}>
+            <TouchableOpacity
+              onPress={() => {
+                hapticTap();
+                safeRouterBack(router, '/(tabs)/settings' as any);
+              }}
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: isCompassTheme ? 8 : 19,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
+                borderWidth: isCompassTheme ? 0.5 : 0,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                overflow: 'hidden',
+                ...(isCompassTheme ? compassShadow(1) : {}),
+              }}
+            >
+              {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700', marginLeft: 8 }}>
@@ -100,7 +173,15 @@ export default function SettingsThemes() {
               })}
               variant="icon-flag"
               accessibilityLabel="Сообщить о баге на экране темы"
-              style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: isCompassTheme ? 8 : 19,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderWidth: 0.5,
+                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                ...(isCompassTheme ? compassShadow(1) : {}),
+              }}
             />
           </View>
 
@@ -108,8 +189,7 @@ export default function SettingsThemes() {
             {THEME_OPTIONS.filter(item => !item.rewardOnly || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map((item) => {
               const active = themeMode === item.mode;
               const locked = !!item.premiumOnly && !isPremium && !DEV_THEME_UNLOCKS;
-              const isCompassOption = item.mode === 'compass';
-              const rowRadius = isCompassOption ? 10 : 14;
+              const row = themeRowColors(item, active);
               return (
                 <TouchableOpacity
                   key={item.mode}
@@ -128,30 +208,42 @@ export default function SettingsThemes() {
                   }}
                   style={[
                     {
-                      borderRadius: rowRadius,
-                      marginBottom: 10,
-                      ...(isCompassOption ? compassShadow(active ? 2 : 1) : null),
+                      borderRadius: themeRowRadius,
+                      height: themeRowHeight,
+                      marginBottom: 8,
+                      overflow: 'hidden',
+                      ...compassShadow(active ? 2 : 1),
+                      shadowColor: row.shadowColor,
                     },
                   ]}
                 >
                   <LinearGradient
-                    colors={(isCompassOption ? COMPASS_GRADIENTS.raisedTile : [t.bgCard, t.bgCard]) as any}
+                    colors={row.gradient as any}
+                    locations={[0, 0.58, 1]}
                     start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
+                    end={{ x: 0, y: 1 }}
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
                       paddingHorizontal: 14,
-                      paddingVertical: 14,
-                      backgroundColor: t.bgCard,
-                      borderRadius: rowRadius,
+                      paddingVertical: 0,
+                      height: themeRowHeight,
+                      backgroundColor: '#282B31',
+                      borderRadius: themeRowRadius,
                       borderWidth: active ? 2 : StyleSheet.hairlineWidth,
-                      borderColor: active ? (isCompassOption ? COMPASS_RICH.champagne : t.accent) : (isCompassOption ? COMPASS_RICH.hairlineQuiet : t.border),
+                      borderColor: row.borderColor,
                       overflow: 'hidden',
                     }}
                   >
-                    {isCompassOption ? <CompassBevel radius={rowRadius} intensity={active ? 'strong' : 'normal'} /> : null}
-                    <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: active ? '900' : '700' }} numberOfLines={1}>
+                    <LinearGradient
+                      pointerEvents="none"
+                      colors={row.shine as any}
+                      locations={[0, 0.36, 1]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0, y: 1 }}
+                      style={[StyleSheet.absoluteFillObject, { borderRadius: themeRowRadius }]}
+                    />
+                    <Text style={{ color: row.textColor, fontSize: 15, fontWeight: active ? '900' : '800' }} numberOfLines={1}>
                       {triLang(lang, {
                         ru: item.labelRU,
                         uk: item.labelUK,
@@ -167,21 +259,21 @@ export default function SettingsThemes() {
                       pointerEvents="none"
                       style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginLeft: 12 }}
                     >
-                      {themeSwatches(item).map((color, idx) => (
+                      {row.swatches.map((color, idx) => (
                         <View
                           key={`${item.mode}-${idx}`}
                           style={{
-                            width: isCompassOption ? 18 : 15,
-                            height: isCompassOption ? 18 : 15,
-                            borderRadius: isCompassOption ? 5 : 8,
+                            width: 22,
+                            height: 22,
+                            borderRadius: 6,
                             backgroundColor: color,
-                            borderWidth: isCompassOption ? 1 : StyleSheet.hairlineWidth,
-                            borderColor: isCompassOption ? COMPASS_RICH.edgeSoft : (active && idx === 2 ? t.textPrimary : 'rgba(255,255,255,0.20)'),
+                            borderWidth: StyleSheet.hairlineWidth,
+                            borderColor: active ? row.textColor : rgba(item.text, 0.24),
                             shadowColor: '#000',
-                            shadowOffset: { width: 0, height: isCompassOption ? 3 : 1 },
-                            shadowOpacity: isCompassOption ? 0.28 : 0,
-                            shadowRadius: isCompassOption ? 4 : 2,
-                            elevation: isCompassOption ? 2 : 0,
+                            shadowOffset: { width: 0, height: 1 },
+                            shadowOpacity: 0,
+                            shadowRadius: 2,
+                            elevation: 0,
                           }}
                         />
                       ))}
@@ -189,11 +281,11 @@ export default function SettingsThemes() {
                     <View style={{ flex: 1 }} />
 
                     {locked ? (
-                      <Ionicons name="lock-closed" size={14} color={t.textMuted} style={{ opacity: 0.8 }} />
+                      <Ionicons name="lock-closed" size={14} color={row.mutedColor} style={{ opacity: 0.8 }} />
                     ) : active ? (
-                      <Ionicons name="checkmark-circle" size={18} color={isCompassOption ? COMPASS_RICH.champagne : t.accent} />
+                      <Ionicons name="checkmark-circle" size={18} color={row.activeIconColor} />
                     ) : (
-                      <Ionicons name="chevron-forward" size={16} color={t.textMuted} style={{ opacity: 0.7 }} />
+                      <Ionicons name="chevron-forward" size={16} color={row.mutedColor} style={{ opacity: 0.72 }} />
                     )}
                   </LinearGradient>
                 </TouchableOpacity>

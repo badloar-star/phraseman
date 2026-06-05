@@ -60,7 +60,7 @@ describe('personal plan phrase-recall live route', () => {
         planTaskId: 'gavan_d004_recall',
         planInstanceId: 'instance_recall_1',
         lessonId: 'gavan_day1_short_replies',
-        contentUnitIds: '',
+        contentUnitIds: 'gavan_d1_phrase_1,gavan_d1_phrase_2',
         requiredCorrect: '2',
       },
     });

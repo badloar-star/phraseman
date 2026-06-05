@@ -48,16 +48,22 @@ export default function PersonalPlanHomeRouteCard({ compactMargin = true, snapsh
   const { theme: t, themeMode } = useTheme();
   const isGold = themeMode === 'gold';
   const isCompass = themeMode === 'compass';
+  const isPaperHomeTheme = themeMode === 'minimalLight';
   const copy = cardCopy(snapshot);
   const art = getPersonalPlanArt(snapshot.planId);
   const heroAsset = getPersonalPlanTaskVisualAsset('route_phrase', snapshot.planId);
   const actionAccent = isGold ? '#FFE8A8' : isCompass ? '#F2C48D' : t.accent;
-  const cardGradient = isGold ? ['#211808', '#0A0702'] as const : isCompass ? ['#1F1F21', '#171719'] as const : t.cardGradient;
-  const cardBorder = isGold ? 'rgba(255,232,168,0.34)' : isCompass ? 'rgba(242,196,141,0.20)' : t.border;
+  const cardGradient = isGold ? ['#211808', '#0A0702'] as const : isCompass ? ['#1F1F21', '#171719'] as const : isPaperHomeTheme ? ['rgba(255,253,246,0.98)', 'rgba(237,227,210,0.94)'] as const : t.cardGradient;
+  const cardBorder = isGold ? 'rgba(255,232,168,0.34)' : isCompass ? 'rgba(242,196,141,0.20)' : isPaperHomeTheme ? 'rgba(52,45,35,0.28)' : t.border;
+  const cardText = isPaperHomeTheme ? '#171615' : t.textPrimary;
+  const cardMuted = isPaperHomeTheme ? '#48443C' : t.textMuted;
   const cardRadius = isCompass ? 8 : 20;
-  const progressBg = isCompass ? '#2F2F31' : t.bgSurface2;
-  const progressInnerBg = isGold ? '#120E08' : isCompass ? '#171719' : t.bgSurface;
+  const progressBg = isCompass ? '#2F2F31' : isPaperHomeTheme ? 'rgba(56,52,44,0.18)' : t.bgSurface2;
+  const progressInnerBg = isGold ? '#120E08' : isCompass ? '#171719' : isPaperHomeTheme ? 'rgba(255,252,246,0.94)' : t.bgSurface;
   const ambientAccent = withAlpha(actionAccent, '16');
+  const imageScrimColors = isPaperHomeTheme
+    ? ['rgba(255,253,246,0.68)', 'rgba(255,253,246,0.24)', 'rgba(64,56,43,0.16)'] as const
+    : ['rgba(0,0,0,0.56)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.72)'] as const;
 
   const openPlan = () => {
     hapticTap();
@@ -94,7 +100,7 @@ export default function PersonalPlanHomeRouteCard({ compactMargin = true, snapsh
           <Image source={heroAsset} style={styles.heroImage} contentFit="cover" transition={120} />
           <LinearGradient
             pointerEvents="none"
-            colors={['rgba(0,0,0,0.56)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.72)']}
+            colors={imageScrimColors}
             locations={[0, 0.44, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
@@ -111,16 +117,16 @@ export default function PersonalPlanHomeRouteCard({ compactMargin = true, snapsh
               color={actionAccent}
               bg={progressBg}
               innerBg={progressInnerBg}
-              textColor={t.textPrimary}
+              textColor={cardText}
               fontSize={11}
             />
           </View>
           <View style={styles.copy}>
-            <Text style={[styles.kicker, { color: t.textMuted }]} numberOfLines={1}>{copy.kicker}</Text>
-            <Text style={[styles.title, { color: t.textPrimary }]}>
+            <Text style={[styles.kicker, { color: cardMuted }]} numberOfLines={1}>{copy.kicker}</Text>
+            <Text style={[styles.title, { color: cardText }]}>
               {snapshot.planName}{'\n'}день {snapshot.dayIndex}
             </Text>
-            <Text style={[styles.subtitle, { color: t.textMuted }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
+            <Text style={[styles.subtitle, { color: cardMuted }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
               {copy.subtitle}
             </Text>
             {__DEV__ ? (

@@ -265,27 +265,27 @@ function validateTaskOrder(
 
   const firstTask = day.tasks[0];
   const isWeeklyReviewDay = day.dayIndex % 7 === 0;
-  if (!isWeeklyReviewDay && firstTask.kind !== 'linked_lesson_slice') {
+  if (!isWeeklyReviewDay && firstTask.kind !== 'plan_phrase_lesson') {
     addIssue(
       issues,
       plan,
       day,
       'invalid_task_order',
-      'Every content day must start with a normal lesson task before plan phrases.',
+      'Every content day must start with a personal plan phrase task.',
       firstTask,
     );
   }
 
-  const linkedLessonIndex = day.tasks.findIndex((task) => task.kind === 'linked_lesson_slice');
   const planPhraseIndex = day.tasks.findIndex((task) => task.kind === 'plan_phrase_lesson');
-  if (planPhraseIndex >= 0 && linkedLessonIndex >= 0 && planPhraseIndex < linkedLessonIndex) {
+  const lessonTask = day.tasks.find((task) => task.destination.type === 'lesson' || task.kind === 'linked_lesson_slice');
+  if (lessonTask) {
     addIssue(
       issues,
       plan,
       day,
       'invalid_task_order',
-      'Plan phrase practice must come after the linked lesson that explains the construction.',
-      day.tasks[planPhraseIndex],
+      'Personal plan days must not open normal lesson tasks.',
+      lessonTask,
     );
   }
 }

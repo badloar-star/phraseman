@@ -17,10 +17,10 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
 import EnergyIcon from '../components/EnergyIcon';
-import CompassBevel from '../components/CompassBevel';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { useAdaptiveBackgroundSource } from '../components/adaptiveBackgroundAssets';
 import { paywallGlassColor } from '../components/paywallGlass';
 import MatchFoundToast from '../components/MatchFoundToast';
 import { DEV_IAP_BYPASS, IS_EXPO_GO, IS_STORE_RELEASE, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
@@ -66,7 +66,7 @@ import { MOTION_SPRING } from '../constants/motion';
 import { triLang, type Lang } from '../constants/i18n';
 import { getPremiumCourseLevel } from './lesson_lock_system';
 import type { ThemeMode } from '../constants/theme';
-import { COMPASS_GRADIENTS, COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { COMPASS_GRADIENTS, COMPASS_RICH } from '../constants/compassTheme';
 import { oskolokImageForPackShards } from './oskolok';
 import {
   activatePendingPersonalPlanAfterPremium,
@@ -1504,6 +1504,9 @@ export default function PremiumModal() {
   const mockMonthlyPrice = allowMockStorePricePreview ? routeParamString(params._mock_monthly_price) : '';
 
   const ctx = normalizePremiumContext(params.context);
+  const sourceParam = routeParamString(params.source);
+  const paywallOpenOrigin = sourceParam || 'direct';
+  const revenueContext = paywallOpenOrigin !== 'direct' ? paywallOpenOrigin : (openManageFromSettings ? 'settings' : ctx);
   const streakDays   = parseInt(params.streak       ?? '0') || 0;
   const lessonsDone  = parseInt(params.lessons_done ?? '0') || 0;
   const savedCards   = parseInt(params.saved        ?? '0') || 0;
@@ -1512,17 +1515,17 @@ export default function PremiumModal() {
   const logPaywallPlanSelectDeduped = useCallback((plan: Plan) => {
     if (lastPaywallPlanSelectLoggedRef.current === plan) return;
     lastPaywallPlanSelectLoggedRef.current = plan;
-    logPaywallPlanSelect(ctx, plan);
-  }, [ctx]);
+    logPaywallPlanSelect(revenueContext, plan);
+  }, [revenueContext]);
 
   useEffect(() => {
     lastPaywallPlanSelectLoggedRef.current = null;
     logPremiumModalOpened(ctx);
-    logPaywallView(ctx);
+    logPaywallView(revenueContext);
     if (ctx === 'course_after_lesson3') {
       logCoursePaywallAfterLesson3(lessonsDone);
     }
-  }, [ctx, lessonsDone]);
+  }, [ctx, lessonsDone, revenueContext]);
   const { theme: t, themeMode, f } = useTheme();
   const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const paywallSurfaceBg = paywallGlassColor(t.bgSurface, themeMode, 'surface');
@@ -1541,12 +1544,6 @@ export default function PremiumModal() {
   const compassPanelColors = isCompassPaywall
     ? COMPASS_GRADIENTS.premiumPanel
     : [paywallSurfaceBg, paywallCardBg, paywallSurface2Bg];
-  const compassCardColors = isCompassPaywall
-    ? COMPASS_GRADIENTS.recessedPanel
-    : [paywallCardBg, paywallSurfaceBg, paywallCardBg];
-  const compassButtonColors = isCompassPaywall
-    ? COMPASS_GRADIENTS.primaryButton
-    : [t.textSecond, t.gold];
   const { lang } = useLang();
   const { reload: reloadEnergy } = useEnergy();
   const LP = (ru: string, uk: string, es: string, planned: PremiumPlannedCopy) => triLang(lang as Lang, {
@@ -1813,7 +1810,7 @@ export default function PremiumModal() {
   const hero = getHero(ctx, streakDays, lessonsDone, savedCards);
   const heroPlanned = getHeroPlannedCopy(ctx, savedCards);
   const benefits = CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic;
-  const heroBackdrop = PREMIUM_HERO_BACKDROPS[themeMode];
+  const heroBackdrop = useAdaptiveBackgroundSource(PREMIUM_HERO_BACKDROPS[themeMode]);
   const heroArt = PREMIUM_HERO_ART[ctx];
   const heroScrim = premiumHeroScrim(themeMode);
   const paywallComparisonPremiumColor =
@@ -1871,12 +1868,12 @@ export default function PremiumModal() {
 
   const closePaywallAfterDecline = useCallback((reason: PaywallCloseReason) => {
     if (exitTrialOfferVisible) {
-      logExitTrialOfferDeclined(ctx, exitTrialPlan);
+      logExitTrialOfferDeclined(revenueContext, exitTrialPlan);
     }
-    if (reason === 'close') logPaywallClose(ctx);
-    else logPaywallContinueFree(ctx);
+    if (reason === 'close') logPaywallClose(revenueContext);
+    else logPaywallContinueFree(revenueContext);
     goBack();
-  }, [ctx, exitTrialOfferVisible, exitTrialPlan, goBack]);
+  }, [exitTrialOfferVisible, exitTrialPlan, goBack, revenueContext]);
 
   const requestPaywallClose = useCallback((reason: PaywallCloseReason) => {
     if (shouldShowExitTrialOffer({
@@ -1891,19 +1888,19 @@ export default function PremiumModal() {
       forceTrialUI,
     })) {
       exitTrialOfferSeenRef.current = true;
-      logExitTrialOfferShown(ctx, exitTrialPlan);
+      logExitTrialOfferShown(revenueContext, exitTrialPlan);
       setExitTrialOfferVisible(true);
       return;
     }
     closePaywallAfterDecline(reason);
   }, [
     closePaywallAfterDecline,
-    ctx,
     exitTrialPlan,
     forceTrialUI,
     hasStoreTrial,
     openManageFromSettings,
     purchasing,
+    revenueContext,
     restoring,
     viewMode,
   ]);
@@ -2135,7 +2132,7 @@ export default function PremiumModal() {
       // Активируем сразу, не дожидаясь синхронизации RC (sandbox может запаздывать).
       // RC-статус используем как дополнительную проверку, но не как условие активации.
       await savePremiumLocally(plan, revenueCatPremiumMetadata(customerInfo, pkg.product.identifier));
-      logPremiumPurchased(pkg.product.identifier);
+      logPremiumPurchased(pkg.product.identifier, revenueContext);
       // Локальная отметка: 90 д. без копии «3 дня» (магазин отдельно решает про intro).
       await markSubscriptionOrTrialFlowConsumedNow();
       await activateFreezeIfNeeded();
@@ -2496,14 +2493,14 @@ export default function PremiumModal() {
     const premiumHairline = compassHairline;
     const premiumShadow = {
       shadowColor: '#000000',
-      shadowOffset: { width: 0, height: isCompassPaywall ? 8 : 10 },
-      shadowOpacity: isCompassPaywall ? 0.34 : 0.24,
-      shadowRadius: isCompassPaywall ? 18 : 24,
-      elevation: isCompassPaywall ? 12 : 10,
+      shadowOffset: { width: 0, height: isCompassPaywall ? 2 : 10 },
+      shadowOpacity: isCompassPaywall ? 0.10 : 0.24,
+      shadowRadius: isCompassPaywall ? 4 : 24,
+      elevation: isCompassPaywall ? 1 : 10,
     };
     const refinedCard = {
       borderRadius: compassPanelRadius,
-      ...(isCompassPaywall ? compassShadow(2) : premiumShadow),
+      ...(isCompassPaywall ? {} : premiumShadow),
     };
     const refinedCardInner = {
       borderRadius: compassPanelRadius,
@@ -2551,8 +2548,7 @@ export default function PremiumModal() {
                     end={{ x: 1, y: 1 }}
                     style={StyleSheet.absoluteFill}
                   />
-                  {isCompassPaywall ? <CompassBevel radius={compassPanelRadius} intensity="strong" /> : null}
-                  <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 18, right: 18, height: 1, backgroundColor: premiumGold + '88' }} />
+                  <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 18, right: 18, height: 1, backgroundColor: isCompassPaywall ? 'rgba(255,231,182,0.16)' : premiumGold + '88' }} />
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
                     <LinearGradient
                       colors={[premiumGold, '#FFF1A8', premiumGold]}
@@ -2741,7 +2737,7 @@ export default function PremiumModal() {
                   onPress={() => { hapticTap(); setChangePlanConfirmVisible(true); }}
                   activeOpacity={0.86}
                   disabled={purchasing}
-                  style={{ borderRadius: compassPanelRadius, opacity: purchasing ? 0.62 : 1, ...(isCompassPaywall ? compassShadow(2) : premiumShadow) }}
+                  style={{ borderRadius: compassPanelRadius, opacity: purchasing ? 0.62 : 1, ...(isCompassPaywall ? {} : premiumShadow) }}
                 >
                   <LinearGradient
                     colors={(isCompassPaywall ? COMPASS_GRADIENTS.raisedTile : [paywallSurfaceBg, paywallCardBg]) as any}
@@ -2749,7 +2745,6 @@ export default function PremiumModal() {
                     end={{ x: 1, y: 1 }}
                     style={{ padding: 18, borderWidth: 1, borderColor: premiumHairline, borderRadius: compassPanelRadius, gap: 10, overflow: 'hidden' }}
                   >
-                    {isCompassPaywall ? <CompassBevel radius={compassPanelRadius} /> : null}
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, flex: 1, minWidth: 0 }}>
                         <View style={{ width: 34, height: 34, borderRadius: isCompassPaywall ? 7 : 17, backgroundColor: premiumGoldSoft, alignItems: 'center', justifyContent: 'center' }}>
@@ -3321,7 +3316,7 @@ export default function PremiumModal() {
                     setExitTrialOfferVisible(false);
                     setSelected(exitTrialPlan);
                     logPaywallPlanSelectDeduped(exitTrialPlan);
-                    logExitTrialOfferAccepted(ctx, exitTrialPlan);
+                    logExitTrialOfferAccepted(revenueContext, exitTrialPlan);
                     void handlePurchase(exitTrialPlan);
                   }}
                 >
@@ -3452,7 +3447,7 @@ export default function PremiumModal() {
                     setExitTrialOfferVisible(false);
                     setSelected(exitTrialPlan);
                     logPaywallPlanSelectDeduped(exitTrialPlan);
-                    logExitTrialOfferAccepted(ctx, exitTrialPlan);
+                    logExitTrialOfferAccepted(revenueContext, exitTrialPlan);
                     void handlePurchase(exitTrialPlan);
                   }}
                 >
@@ -3617,11 +3612,11 @@ export default function PremiumModal() {
             {/* БЛОК 1: Герой */}
             <Animated.View style={{ width: '100%', alignSelf: 'stretch', alignItems: 'center', marginBottom: 24, transform: [{ translateY: heroFloat }] }}>
               <View
-                style={{ width: '100%', alignSelf: 'stretch', borderRadius: isCompassPaywall ? 10 : 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: isCompassPaywall ? COMPASS_RICH.hairlineStrong : heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden', ...(isCompassPaywall ? compassShadow(2) : null) }}
+                style={{ width: '100%', alignSelf: 'stretch', borderRadius: isCompassPaywall ? 10 : 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: isCompassPaywall ? 'rgba(255,231,182,0.16)' : heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden' }}
               >
                 <Image
                   source={heroBackdrop}
-                  resizeMode="stretch"
+                  resizeMode="cover"
                   style={StyleSheet.absoluteFillObject}
                 />
                 <LinearGradient
@@ -3631,7 +3626,6 @@ export default function PremiumModal() {
                   end={{ x: 0.5, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
-                {isCompassPaywall ? <CompassBevel radius={10} intensity="strong" /> : null}
                 <Animated.View
                   pointerEvents="none"
                   style={{
@@ -3700,11 +3694,11 @@ export default function PremiumModal() {
                     flexDirection: 'row',
                     alignItems: 'center',
                     gap: 8,
-                    shadowColor: i === 0 ? t.correct : '#000',
+                    shadowColor: isCompassPaywall ? 'transparent' : i === 0 ? t.correct : '#000',
                     shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: i === 0 ? 0.22 : 0.1,
-                    shadowRadius: 6,
-                    elevation: i === 0 ? 4 : 1,
+                    shadowOpacity: isCompassPaywall ? 0 : i === 0 ? 0.22 : 0.1,
+                    shadowRadius: isCompassPaywall ? 0 : 6,
+                    elevation: isCompassPaywall ? 0 : i === 0 ? 4 : 1,
                   }}
                 >
                   <Ionicons name="checkmark-circle" size={18} color={t.correct} />
@@ -3716,8 +3710,7 @@ export default function PremiumModal() {
             </View>
 
             {/* БЛОК 3: Персональная ценность */}
-            <View style={{ marginBottom: 16, backgroundColor: isCompassPaywall ? COMPASS_RICH.charcoalRaised : paywallCardBg, borderRadius: isCompassPaywall ? 9 : 14, borderWidth: 1, borderColor: t.textSecond + '55', padding: 14, overflow: 'hidden', ...(isCompassPaywall ? compassShadow(1) : null) }}>
-              {isCompassPaywall ? <CompassBevel radius={9} /> : null}
+            <View style={{ marginBottom: 16, backgroundColor: isCompassPaywall ? COMPASS_RICH.charcoalRaised : paywallCardBg, borderRadius: isCompassPaywall ? 9 : 14, borderWidth: 1, borderColor: isCompassPaywall ? 'rgba(255,231,182,0.16)' : t.textSecond + '55', padding: 14, overflow: 'hidden' }}>
               <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
                 {LP('Для тебя сейчас', 'Для тебе зараз', 'Para ti ahora', {
                   'pt-BR': 'Para você agora',
@@ -3848,15 +3841,15 @@ export default function PremiumModal() {
             <TouchableOpacity
               style={{
                 borderRadius: compassRadius, padding: 18, marginBottom: 10,
-                borderWidth: selected === 'yearly' ? 2 : 1,
-                borderColor: selected === 'yearly' ? t.textSecond : t.border,
-                backgroundColor: isCompassPaywall ? (selected === 'yearly' ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalRaised) : (selected === 'yearly' ? paywallSurfaceBg : paywallCardBg),
+                borderWidth: 1,
+                borderColor: isCompassPaywall ? (selected === 'yearly' ? 'rgba(255,231,182,0.46)' : 'rgba(255,255,255,0.08)') : selected === 'yearly' ? t.textSecond : t.border,
+                backgroundColor: isCompassPaywall ? (selected === 'yearly' ? COMPASS_RICH.creamSoft : '#74726E') : (selected === 'yearly' ? paywallSurfaceBg : paywallCardBg),
                 opacity: purchasing && selected !== 'yearly' ? 0.5 : 1,
-                shadowColor: selected === 'yearly' ? t.textSecond : '#000',
-                shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: selected === 'yearly' ? (isCompassPaywall ? 0.38 : 0.32) : 0.08,
-                shadowRadius: selected === 'yearly' ? (isCompassPaywall ? 14 : 10) : 4,
-                elevation: selected === 'yearly' ? 8 : 1,
+                shadowColor: isCompassPaywall ? 'transparent' : selected === 'yearly' ? t.textSecond : '#000',
+                shadowOffset: { width: 0, height: isCompassPaywall ? 0 : 4 },
+                shadowOpacity: isCompassPaywall ? 0 : selected === 'yearly' ? 0.32 : 0.08,
+                shadowRadius: isCompassPaywall ? 0 : selected === 'yearly' ? 10 : 4,
+                elevation: isCompassPaywall ? 0 : selected === 'yearly' ? 8 : 1,
               }}
               onPress={() => {
                 hapticTap();
@@ -3866,7 +3859,6 @@ export default function PremiumModal() {
               activeOpacity={0.85}
               disabled={purchasing}
             >
-              {isCompassPaywall ? <CompassBevel radius={compassRadius} /> : null}
               {(() => {
                 const priceStr = yearlyPrice;
                 const trialReady = primaryYearlyHasTrial && !!priceStr;
@@ -3880,7 +3872,7 @@ export default function PremiumModal() {
                 return (
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
                     <View style={{ flex: 1, minWidth: 0, paddingRight: 4 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={2}>
+                      <Text style={{ color: isCompassPaywall && selected === 'yearly' ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={2}>
                         {LP('Годовая подписка', 'Річна підписка', 'Suscripción anual', {
                           'pt-BR': 'Assinatura anual',
                           vi: 'Gói đăng ký hằng năm',
@@ -3889,7 +3881,7 @@ export default function PremiumModal() {
                           pl: 'Subskrypcja roczna',
                         })}
                       </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }} numberOfLines={3}>
+                      <Text style={{ color: isCompassPaywall && selected === 'yearly' ? 'rgba(33,23,14,0.72)' : t.textMuted, fontSize: f.caption, marginTop: 3 }} numberOfLines={3}>
                         {LP(
                           'Годовой доступ ко всем возможностям Premium',
                           'Річний доступ до всіх можливостей Premium',
@@ -3949,10 +3941,10 @@ export default function PremiumModal() {
                         </>
                       ) : priceStr ? (
                         <>
-                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
+                          <Text style={{ color: isCompassPaywall && selected === 'yearly' ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
                             {priceStr}
                           </Text>
-                          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>
+                          <Text style={{ color: isCompassPaywall && selected === 'yearly' ? 'rgba(33,23,14,0.72)' : t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>
                             {periodLabel}
                           </Text>
                           {!!monthlyEquivalentLabel && (
@@ -3977,8 +3969,8 @@ export default function PremiumModal() {
               })()}
               {selected === 'yearly' && (
                 <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <Ionicons name="checkmark-circle" size={16} color={t.correct} />
-                  <Text style={{ flex: 1, minWidth: 0, color: t.correct, fontSize: f.caption, fontWeight: '700' }} numberOfLines={2}>
+                  <Ionicons name="checkmark-circle" size={16} color={isCompassPaywall ? COMPASS_RICH.textDark : t.correct} />
+                  <Text style={{ flex: 1, minWidth: 0, color: isCompassPaywall ? COMPASS_RICH.textDark : t.correct, fontSize: f.caption, fontWeight: '700' }} numberOfLines={2}>
                     {LP('Выбран самый выгодный план', 'Обрано найвигідніший план', 'Plan más rentable seleccionado', {
                       'pt-BR': 'Plano mais vantajoso selecionado',
                       vi: 'Đã chọn gói lợi nhất',
@@ -3995,15 +3987,15 @@ export default function PremiumModal() {
             <TouchableOpacity
               style={{
                 borderRadius: compassRadius, padding: 18, marginBottom: 20,
-                borderWidth: selected === 'monthly' ? 2 : 1,
-                borderColor: selected === 'monthly' ? t.textSecond : t.border,
-                backgroundColor: isCompassPaywall ? (selected === 'monthly' ? COMPASS_RICH.washStrong : COMPASS_RICH.charcoalRaised) : (selected === 'monthly' ? paywallSurfaceBg : paywallCardBg),
+                borderWidth: 1,
+                borderColor: isCompassPaywall ? (selected === 'monthly' ? 'rgba(255,231,182,0.46)' : 'rgba(255,255,255,0.08)') : selected === 'monthly' ? t.textSecond : t.border,
+                backgroundColor: isCompassPaywall ? (selected === 'monthly' ? COMPASS_RICH.creamSoft : '#74726E') : (selected === 'monthly' ? paywallSurfaceBg : paywallCardBg),
                 opacity: purchasing && selected !== 'monthly' ? 0.5 : 1,
-                shadowColor: selected === 'monthly' ? t.textSecond : '#000',
-                shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: selected === 'monthly' ? (isCompassPaywall ? 0.30 : 0.24) : 0.06,
-                shadowRadius: selected === 'monthly' ? (isCompassPaywall ? 12 : 8) : 4,
-                elevation: selected === 'monthly' ? 6 : 1,
+                shadowColor: isCompassPaywall ? 'transparent' : selected === 'monthly' ? t.textSecond : '#000',
+                shadowOffset: { width: 0, height: isCompassPaywall ? 0 : 4 },
+                shadowOpacity: isCompassPaywall ? 0 : selected === 'monthly' ? 0.24 : 0.06,
+                shadowRadius: isCompassPaywall ? 0 : selected === 'monthly' ? 8 : 4,
+                elevation: isCompassPaywall ? 0 : selected === 'monthly' ? 6 : 1,
               }}
               onPress={() => {
                 hapticTap();
@@ -4013,7 +4005,6 @@ export default function PremiumModal() {
               activeOpacity={0.85}
               disabled={purchasing}
             >
-              {isCompassPaywall ? <CompassBevel radius={compassRadius} /> : null}
               {(() => {
                 const priceStr = monthlyPrice;
                 const trialReady = primaryMonthlyHasTrial && !!priceStr;
@@ -4027,7 +4018,7 @@ export default function PremiumModal() {
                 return (
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
                     <View style={{ flex: 1, minWidth: 0, paddingRight: 4 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={2}>
+                      <Text style={{ color: isCompassPaywall && selected === 'monthly' ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={2}>
                         {LP('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', {
                           'pt-BR': 'Assinatura mensal',
                           vi: 'Gói đăng ký hằng tháng',
@@ -4036,7 +4027,7 @@ export default function PremiumModal() {
                           pl: 'Subskrypcja miesięczna',
                         })}
                       </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3 }} numberOfLines={3}>
+                      <Text style={{ color: isCompassPaywall && selected === 'monthly' ? 'rgba(33,23,14,0.72)' : t.textMuted, fontSize: f.sub, marginTop: 3 }} numberOfLines={3}>
                         {LP(
                           'Месячный доступ ко всем возможностям Premium',
                           'Місячний доступ до всіх можливостей Premium',
@@ -4084,10 +4075,10 @@ export default function PremiumModal() {
                         </>
                       ) : priceStr ? (
                         <>
-                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
+                          <Text style={{ color: isCompassPaywall && selected === 'monthly' ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
                             {priceStr}
                           </Text>
-                          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>{periodLabel}</Text>
+                          <Text style={{ color: isCompassPaywall && selected === 'monthly' ? 'rgba(33,23,14,0.72)' : t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>{periodLabel}</Text>
                         </>
                       ) : (
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'right' }} numberOfLines={2}>
@@ -4100,8 +4091,8 @@ export default function PremiumModal() {
               })()}
               {selected === 'monthly' && (
                 <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <Ionicons name="checkmark-circle" size={16} color={t.correct} />
-                  <Text style={{ flex: 1, minWidth: 0, color: t.correct, fontSize: f.caption, fontWeight: '700' }} numberOfLines={2}>
+                  <Ionicons name="checkmark-circle" size={16} color={isCompassPaywall ? COMPASS_RICH.textDark : t.correct} />
+                  <Text style={{ flex: 1, minWidth: 0, color: isCompassPaywall ? COMPASS_RICH.textDark : t.correct, fontSize: f.caption, fontWeight: '700' }} numberOfLines={2}>
                     {LP('Выбран гибкий ежемесячный план', 'Обрано гнучкий щомісячний план', 'Plan mensual flexible', {
                       'pt-BR': 'Plano mensal flexível selecionado',
                       vi: 'Đã chọn gói tháng linh hoạt',
@@ -4183,22 +4174,22 @@ export default function PremiumModal() {
                 <Animated.View style={{ transform: [{ scale: purchasing ? 1 : ctaPulse }] }}>
                 <TouchableOpacity
                   style={{
-                    backgroundColor: isCompassPaywall ? COMPASS_RICH.champagne : t.textSecond, borderRadius: isCompassPaywall ? 10 : 16, padding: 18,
+                    backgroundColor: isCompassPaywall ? COMPASS_RICH.creamSoft : t.textSecond, borderRadius: isCompassPaywall ? 10 : 16, padding: 18,
                     alignItems: 'center', marginBottom: 10,
-                    borderWidth: isCompassPaywall ? 1 : 0,
-                    borderColor: isCompassPaywall ? COMPASS_RICH.edgeLight : 'transparent',
+                    borderWidth: 0,
+                    borderColor: 'transparent',
                     overflow: 'hidden',
                     opacity: purchasing || loadingPackages ? 0.7 : 1,
-                    shadowColor: isCompassPaywall ? COMPASS_RICH.copper : t.textSecond,
-                    shadowOffset: { width: 0, height: isCompassPaywall ? 7 : 4 },
-                    shadowOpacity: isCompassPaywall ? 0.32 : 0.5,
-                    shadowRadius: isCompassPaywall ? 16 : 12,
-                    elevation: isCompassPaywall ? 12 : 8,
+                    shadowColor: isCompassPaywall ? 'transparent' : t.textSecond,
+                    shadowOffset: { width: 0, height: isCompassPaywall ? 0 : 4 },
+                    shadowOpacity: isCompassPaywall ? 0 : 0.5,
+                    shadowRadius: isCompassPaywall ? 0 : 12,
+                    elevation: isCompassPaywall ? 0 : 8,
                   }}
                   onPress={() => {
                     hapticTap();
                     logPaywallPlanSelectDeduped(selected);
-                    logPaywallCtaClick(ctx, selected);
+                    logPaywallCtaClick(revenueContext, selected);
                     if (!canPurchaseSelectedPlan) {
                       void loadPremiumPackages().then((nextPackages) => {
                         const nextPkg = selected === 'yearly' ? nextPackages.yearly : nextPackages.monthly;
@@ -4218,7 +4209,6 @@ export default function PremiumModal() {
                   activeOpacity={0.85}
                   disabled={purchasing || loadingPackages}
                 >
-                  {isCompassPaywall ? <CompassBevel radius={10} intensity="strong" /> : null}
                   <Text style={{ color: isCompassPaywall ? COMPASS_RICH.textDark : t.correctText, fontSize: f.h2, fontWeight: '800' }} adjustsFontSizeToFit numberOfLines={1}>
                     {ctaLabel}
                   </Text>

@@ -8,6 +8,10 @@ export type PersonalPlanTaskVisualSource =
   | 'recall'
   | 'quiz'
   | 'practice'
+  | 'choice'
+  | 'listening'
+  | 'sentence_build'
+  | 'speaking'
   | 'trainer'
   | 'flashcards';
 
@@ -17,6 +21,10 @@ export const PERSONAL_PLAN_TASK_VISUAL_SOURCES: PersonalPlanTaskVisualSource[] =
   'recall',
   'quiz',
   'practice',
+  'choice',
+  'listening',
+  'sentence_build',
+  'speaking',
   'trainer',
   'flashcards',
 ];
@@ -68,6 +76,14 @@ export function getPersonalPlanTaskVisualAsset(
       return TASK_ASSETS.quiz;
     case 'practice':
       return TASK_ASSETS.practice;
+    case 'choice':
+      return TASK_ASSETS.flashcards;
+    case 'listening':
+      return TASK_ASSETS.trainer;
+    case 'sentence_build':
+      return TASK_ASSETS.routePhraseGavan;
+    case 'speaking':
+      return TASK_ASSETS.recall;
     case 'trainer':
       return TASK_ASSETS.trainer;
     case 'flashcards':
@@ -127,15 +143,48 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
           artStyle: 'practiceGrid',
         };
       }
+      if (task.destination.exerciseType === 'plan_choose_natural_phrase') {
+        return {
+          source: 'choice',
+          label: 'Выбор',
+          intent: 'Выбери самый естественный короткий ответ',
+          icon: 'checkmark-circle-outline',
+          assetKey: getPersonalPlanTaskVisualAssetKey('choice', planId),
+          asset: getPersonalPlanTaskVisualAsset('choice', planId),
+          artStyle: 'cardStack',
+        };
+      }
       if (task.destination.exerciseType === 'plan_listen_choose') {
         return {
-          source: 'trainer',
+          source: 'listening',
           label: 'На слух',
           intent: 'Слушаем фразу и выбираем смысл без спешки',
           icon: 'volume-high-outline',
-          assetKey: getPersonalPlanTaskVisualAssetKey('trainer', planId),
-          asset: getPersonalPlanTaskVisualAsset('trainer', planId),
+          assetKey: getPersonalPlanTaskVisualAssetKey('listening', planId),
+          asset: getPersonalPlanTaskVisualAsset('listening', planId),
           artStyle: 'coachSignal',
+        };
+      }
+      if (task.destination.exerciseType === 'plan_listen_build') {
+        return {
+          source: 'sentence_build',
+          label: 'Собрать',
+          intent: 'Послушай и собери короткую фразу',
+          icon: 'reorder-four-outline',
+          assetKey: getPersonalPlanTaskVisualAssetKey('sentence_build', planId),
+          asset: getPersonalPlanTaskVisualAsset('sentence_build', planId),
+          artStyle: 'routeKey',
+        };
+      }
+      if (task.destination.exerciseType === 'plan_pronunciation_repeat') {
+        return {
+          source: 'speaking',
+          label: 'Вслух',
+          intent: 'Повтори без финальной оценки',
+          icon: 'mic-outline',
+          assetKey: getPersonalPlanTaskVisualAssetKey('speaking', planId),
+          asset: getPersonalPlanTaskVisualAsset('speaking', planId),
+          artStyle: 'memoryLoop',
         };
       }
       return {

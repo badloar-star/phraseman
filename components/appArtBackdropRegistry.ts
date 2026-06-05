@@ -42,7 +42,7 @@ const THEME_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   coral: require('../assets/images/theme_backdrops/theme-backdrop-coral.webp'),
   minimalLight: require('../assets/images/theme_backdrops/theme-backdrop-minimal-light.webp'),
   minimalDark: require('../assets/images/theme_backdrops/theme-backdrop-minimal-dark.webp'),
-  compass: require('../assets/images/app_backdrops/compass-premium/home-compass-premium.webp'),
+  compass: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
 };
 
 function withOnboardingGraphite(
@@ -52,25 +52,25 @@ function withOnboardingGraphite(
   return { ...base, compass };
 }
 
-const HOME_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/home-compass-premium.webp'));
-const LESSON_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessons-compass-premium.webp'));
-const LESSON_INTRO_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessonIntro-compass-premium.webp'));
-const LESSON_PRACTICE_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessonPractice-compass-premium.webp'));
-const ARENA_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arena-compass-premium.webp'));
-const ARENA_READY_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arenaReady-compass-premium.webp'));
-const ARENA_MATCH_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arenaMatch-compass-premium.webp'));
-const FRIENDS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/friends-compass-premium.webp'));
-const SETTINGS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/settings-compass-premium.webp'));
-const ACHIEVEMENTS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/achievements-compass-premium.webp'));
-const DAILY_TASKS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/dailyTasks-compass-premium.webp'));
-const QUIZZES_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/quizzes-compass-premium.webp'));
-const DIAGNOSTIC_TEST_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/diagnosticTest-compass-premium.webp'));
-const EXAM_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/exam-compass-premium.webp'));
-const FLASHCARDS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/flashcards-compass-premium.webp'));
-const PROGRESS_MAP_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/progressMap-compass-premium.webp'));
-const SHARDS_SHOP_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/shardsShop-compass-premium.webp'));
-const LEVEL_GIFTS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/levelGifts-compass-premium.webp'));
-const STATISTICS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/statistics-compass-premium.webp'));
+const HOME_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'));
+const LESSON_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessons-compass-premium-session.webp'));
+const LESSON_INTRO_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessonIntro-compass-premium-session.webp'));
+const LESSON_PRACTICE_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessonPractice-compass-premium-session.webp'));
+const ARENA_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arena-compass-premium-session.webp'));
+const ARENA_READY_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arenaReady-compass-premium-session.webp'));
+const ARENA_MATCH_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arenaMatch-compass-premium-session.webp'));
+const FRIENDS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/friends-compass-premium-session.webp'));
+const SETTINGS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/settings-compass-premium-session.webp'));
+const ACHIEVEMENTS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/achievements-compass-premium-session.webp'));
+const DAILY_TASKS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/dailyTasks-compass-premium-session.webp'));
+const QUIZZES_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/quizzes-compass-premium-session.webp'));
+const DIAGNOSTIC_TEST_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/diagnosticTest-compass-premium-session.webp'));
+const EXAM_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/exam-compass-premium-session.webp'));
+const FLASHCARDS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/flashcards-compass-premium-session.webp'));
+const PROGRESS_MAP_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/progressMap-compass-premium-session.webp'));
+const SHARDS_SHOP_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/shardsShop-compass-premium-session.webp'));
+const LEVEL_GIFTS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/levelGifts-compass-premium-session.webp'));
+const STATISTICS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/statistics-compass-premium-session.webp'));
 
 export const APP_ART_BACKDROP_SOURCES: Record<AppArtBackdropName, Record<ThemeMode, ImageSourcePropType>> = {
   home: HOME_BACKDROPS,

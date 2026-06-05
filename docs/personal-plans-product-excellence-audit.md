@@ -3392,3 +3392,926 @@ P3.104 improves review readiness, not end-user audio quality yet. It turns the a
 - This is not audio production and not audio approval.
 - Real MP3 assets still need to be generated or supplied and then explicitly approved.
 - Pronunciation scoring/recording readiness remains separate; it cannot be inferred from generated listening audio.
+
+## Audit update 2026-06-04 - P3.105 Audio generation handoff packet
+
+### Product logic score
+
+P3.105 is the right next audio step because it turns "generate audio" into a concrete production input packet. It still does not make audio live, but it removes ambiguity for the next large pass.
+
+### What improved
+
+- The week now has a generation handoff packet with 10 exact MP3 requests.
+- Each request includes the target text, expected asset id, output path, provider, voice id, split policy, and required generated-file metadata.
+- The packet explicitly keeps approval, production readiness, live edits, asset registration, and pronunciation inference disabled.
+- Broken or incomplete generation plans fail closed instead of producing vague handoff work.
+- Writes remain dry-run only under `.codex-tmp` or `docs/reports`.
+
+### What to watch next
+
+- The next large pass should either generate/provide the 10 MP3 files or build a generated-file intake report from real files.
+- Generated files still need validation and explicit approval records before any asset can become final.
+- Pronunciation readiness remains a separate evidence chain, especially because listening audio alone does not prove recording/scoring quality.
+
+## Audit update 2026-06-04 - P3.106 Generated audio intake/validation report
+
+### Product logic score
+
+P3.106 is a useful production-readiness step because it creates the missing intake gate between exact MP3 requests and explicit approval. Since no real MP3 files are currently present and generation was not explicitly allowed, this pass correctly improves the evidence chain without pretending audio exists.
+
+### What improved
+
+- The system now has an intake report for the 10 expected Gavan week 1 MP3 paths.
+- Each expected file is classified as missing, invalid, or valid generated audio.
+- The report carries generated-asset validation evidence, so future real files can move directly into the same approval chain.
+- Even when all files validate, the report only reaches `ready_for_explicit_audio_approval`; it does not approve audio or register final assets.
+- Fake approved/final-ready claims are rejected at intake.
+- Runtime, UI, navigation, storage, scoring, and asset files remain untouched.
+
+### What to watch next
+
+- Real MP3 files are still missing.
+- Once files exist, the next large pass should validate all 10 through P3.106 and create explicit approval records.
+- If audio remains unavailable, the next useful pass is restoring the missing route/signature temp prerequisites so the broad Personal Plans gate can run cleanly.
+
+## Audit update 2026-06-04 - P3.107 Route prerequisite artifact refresh
+
+### Product logic score
+
+P3.107 is a verification-quality improvement. It does not make the product more live, but it removes a dangerous source of false red gates: missing temporary route/signature artifacts. A premium feature cannot move safely if the broad gate fails because prerequisite evidence evaporated between sessions.
+
+### What improved
+
+- The route/signature/bridge prerequisite bundle can now be refreshed in one reproducible non-live pass.
+- The refresh covers the artifacts that broad Personal Plans tests expect before route preflight, future bridge approval, catalog route preflight, future bridge guard, and route approval guard tests.
+- The pass preserves all release discipline: no live edits, no source writes, no route approval inference, no audio approval inference.
+- The refresh keeps historical contract values that route-chain tests expect, including approved reviewer export paths and 98 total approved rows.
+- Broad Personal Plans verification is green again.
+
+### What to watch next
+
+- Refreshed `.codex-tmp` artifacts are not production approval.
+- Live catalog/quiz/UI registration remains blocked until explicit signed approval exists.
+- Audio and pronunciation remain separate blockers: real MP3 files, explicit approval records, and real scoring/recording evidence are still missing.
+
+## Audit update 2026-06-04 - P3.108 Pronunciation scoring provider contract
+
+### Product logic score
+
+P3.108 improves pronunciation readiness without overstating it. It turns "we need a scorer" into a concrete provider contract and intake gate, but still blocks production until real scored-attempt evidence and explicit approvals exist.
+
+### What improved
+
+- Gavan week 1 now has a pronunciation scoring provider contract artifact.
+- The contract consumes the existing pronunciation reference/readiness packet and maps all 4 pronunciation references to scorer contract status.
+- With no real provider metadata, every reference remains `missing_scorer_contract`.
+- Complete provider metadata can become ready for scored-attempt validation, but not live scoring or production readiness.
+- Fake production, final-scoring, and live-edit claims are rejected.
+- Writes remain dry-run only under `.codex-tmp` or `docs/reports`.
+
+### What to watch next
+
+- This is not real pronunciation scoring.
+- Real recorded attempts, scorer outputs, confidence/score evidence, and explicit approval records are still missing.
+- Audio approval remains independent: the 10 MP3 assets still need real files, generated-asset validation, and explicit approvals.
+
+## Audit update 2026-06-04 - P3.109 Browser progress report
+
+### Product logic score
+
+P3.109 improves operating clarity. It gives every future prompt a browser-visible progress dashboard, which should reduce confusion about whether the feature is actually production-ready. It does not itself improve end-user runtime quality.
+
+### What improved
+
+- A deterministic browser progress report now exists at `docs/reports/personal-plans-progress-browser-report.html`.
+- The report shows overall progress and layer progress in a scannable browser page.
+- It includes completed coherent passes, blockers, and verification notes.
+- It makes non-readiness visible with a "Not production-ready yet" badge.
+- Fake 100% progress claims are rejected while blockers remain.
+- Writes are confined to `.codex-tmp` or `docs/reports`.
+
+### What to watch next
+
+- The report is not production evidence.
+- It must be refreshed after each future coherent pass so the browser view stays accurate.
+- The same hard blockers remain: real MP3 files, explicit audio approvals, real pronunciation scoring evidence, and signed live route approval.
+
+## Audit update 2026-06-04 - P3.110 Audio explicit approval intake report
+
+### Product logic score
+
+P3.110 improves the audio release chain. It does not create audio, but it removes the next ambiguity: how explicit approval records will be checked once generated files exist.
+
+### What improved
+
+- Gavan week 1 now has an explicit audio approval intake report.
+- The report consumes the generated-audio intake report and maps every expected MP3 row to approval readiness.
+- Current status is honestly blocked by missing generated audio: 10 expected MP3 files, 10 missing files, 0 approval records, 0 production-ready audio files.
+- Future generated files and approval records are validated through the existing `validatePlanAudioApprovalGate`.
+- Complete approval records only create review readiness; final audio promotion and live asset registration remain separate guarded work.
+- Unknown approval records are rejected instead of being inferred as approval.
+
+### What to watch next
+
+- This is not generated audio and not approved audio.
+- Real MP3 files are still required before approval records can count.
+- Final audio registration, live route integration, and pronunciation scoring remain blocked by separate evidence and approval requirements.
+
+## Audit update 2026-06-04 - P3.111 Pronunciation scored-attempt evidence intake report
+
+### Product logic score
+
+P3.111 improves the pronunciation release chain. It does not create real scoring evidence, but it defines how future recorded/scored attempts must map back to the exact Gavan week 1 pronunciation references.
+
+### What improved
+
+- Gavan week 1 now has a scored-attempt evidence intake report.
+- The report consumes the pronunciation scoring provider contract and maps all 4 pronunciation references to attempt evidence status.
+- Current status is honestly blocked by missing scorer contract and missing real attempts: 0 provided attempts, 0 valid scored attempts, 0 production-ready references.
+- Future scored attempts are validated with the existing pronunciation attempt contract.
+- Complete future attempts only create approval-review readiness; live scoring, progress penalties, and production readiness remain separate guarded work.
+- Low-confidence progress-penalty attempts are rejected.
+
+### What to watch next
+
+- This is not real pronunciation scoring evidence.
+- A real scorer contract, real recorded/scored attempts, and explicit pronunciation approval records are still required.
+- Audio approval remains independent: listening MP3 files and approval records still have their own blocker chain.
+
+## Audit update 2026-06-04 - P3.112 Gavan day 1 visible live modes
+
+### Product logic score
+
+P3.112 improves the learner-facing product surface: the default Gavan day 1 screen now exposes the intended practice variety instead of stopping at the first three cards.
+
+### What improved
+
+- Day 1 now includes 8 visible tasks: linked lesson, phrase lesson, missing word, choose natural phrase, listen choose, listen build, pronunciation repeat, and quiz.
+- The 15-minute default plan now shows 7 tasks; the 20-minute plan shows all 8.
+- Runtime completion and carryover now follow the selected `tasksForMinutes(...)` load.
+- New modes have distinct visual source/icon/asset keys.
+
+### What to watch next
+
+- Pronunciation repeat is still practice-only, not scored production readiness.
+- Audio files and explicit approval records are still missing.
+- Broad Personal Plans Jest remains blocked by temp prerequisite artifact lifecycle/order in older route/signature/bridge suites.
+
+## Audit update 2026-06-04 - P3.113 Route prerequisite bootstrap and broad gate recovery
+
+### Product logic score
+
+P3.113 improves release reliability. It does not make Personal Plans more live, but it removes a false-red verification failure caused by temp prerequisite artifacts being unavailable when route-chain suites run in isolation.
+
+### What improved
+
+- Route/signature/bridge prerequisites can now be bootstrapped by the consuming suites themselves.
+- The bootstrap writes only non-live `.codex-tmp` artifacts and keeps live registration blocked.
+- Broad Personal Plans Jest now passes fully: 194 suites and 1222 tests.
+- TypeScript also passes.
+
+### What to watch next
+
+- This is not signed route approval.
+- Real MP3 files and explicit audio approval records are still missing.
+- Real pronunciation scoring evidence and explicit pronunciation approval records are still missing.
+
+## Audit update 2026-06-04 - P3.114 Audio evidence chain bootstrap
+
+### Product logic score
+
+P3.114 improves the audio production pipeline without overstating readiness. It gives the team one report that rebuilds the handoff, generated-file intake, and explicit approval intake state from the exact expected MP3 paths.
+
+### What improved
+
+- The audio chain now has a single bootstrap artifact for reviewer/debug visibility.
+- The current state is explicit: 10 expected MP3 files, 0 discovered files, 10 missing generated-file blockers, 0 approval records, and 0 production-ready assets.
+- The report records the next required actions instead of pretending generated or approved audio exists.
+- Writes stay confined to `.codex-tmp` or `docs/reports`; no asset, runtime, UI, storage, navigation, or scoring files are touched.
+- The broad Personal Plans gate is green again after this pass: 195 suites / 1226 tests, plus TypeScript.
+
+### What to watch next
+
+- This is not generated audio, not approved audio, and not live asset registration.
+- The next audio pass still needs real MP3 files at the exact output paths or explicit permission to generate them.
+- Pronunciation readiness remains separate and still needs real recording/scoring evidence plus explicit approval.
+
+## Audit update 2026-06-04 - P3.115 Final audio registration preflight
+
+### Product logic score
+
+P3.115 improves release discipline for listening modes. The app already has live listening routes, so the dangerous next failure would be accidentally registering generated or unapproved audio. This preflight makes that impossible to miss in review.
+
+### What improved
+
+- The system now has a dedicated final audio registration blocker report.
+- Every expected Gavan week 1 audio asset maps to a registry status before any runtime registry write can be considered.
+- Current state is explicit: 10 expected MP3 files, 0 discovered files, 0 approval records, and 0 registry-ready assets.
+- The report keeps live registry writes, source writes, audio file writes, and pronunciation inference disabled.
+
+### What to watch next
+
+- This is not live asset registration.
+- Real MP3 files and explicit approval records are still required before final audio promotion can be reviewed.
+- Listening route quality can improve only after approved final audio exists; pronunciation still needs its own scorer/recording evidence.
+
+## Audit update 2026-06-04 - P3.116 Audio approval-record packet
+
+### Product logic score
+
+P3.116 improves reviewer safety. The product cannot trust an approval flow if reviewers can sign records before there is a real generated file and checksum. This packet makes the missing evidence visible per asset.
+
+### What improved
+
+- The week now has a reviewer-facing approval-record packet for the 10 expected audio assets.
+- Every row shows whether an approval record can be prepared and whether a checksum is available.
+- Current state is explicit: no rows are eligible because no generated MP3 file has validated.
+- The packet lists required future fields without creating approval records or inferring approval.
+
+### What to watch next
+
+- This is not approval and not checksum evidence.
+- Real generated files must validate before any approval record can count.
+- Live audio registration remains blocked until explicit records, final promotion, and registry preflight all pass.
+
+## Audit update 2026-06-04 - P3.117 Audio production readiness gate
+
+### Product logic score
+
+P3.117 improves release discipline. The audio chain now has one explicit production-readiness decision instead of several separate reports that a reviewer could misread as enough evidence for release.
+
+### What improved
+
+- The week now has a single audio production readiness gate for Gavan week 1.
+- Current state is explicit: release decision `hold`, 10 expected MP3 files, 0 discovered files, 0 checksums, 0 approval records, 0 final audio assets, and 0 registry-ready assets.
+- The gate names the five blocking classes required before live audio can be reviewed: generated files, checksums, explicit approval records, final promotion, and live registry readiness.
+- All production/live flags stay false, and writes remain confined to `.codex-tmp` or `docs/reports`.
+
+### What to watch next
+
+- This is not production readiness and not live audio registration.
+- The next audio pass still needs real MP3 files or explicit generation authorization before checksum validation can move.
+- Pronunciation readiness remains separate and still needs real scoring/recording evidence plus explicit approval.
+
+## Audit update 2026-06-04 - P3.118 Pronunciation production readiness gate
+
+### Product logic score
+
+P3.118 improves pronunciation release safety. Pronunciation now has the same kind of single hold decision that audio received in P3.117, which prevents scorer contracts, scored attempts, approval records, and live adapter readiness from being blurred together.
+
+### What improved
+
+- The week now has a single pronunciation production readiness gate for Gavan week 1.
+- Current state is explicit: release decision `hold`, 4 pronunciation references, 0 scorer-contract-ready rows, 0 valid scored attempts, 0 approval records, 0 final scorer rows, and 0 live adapter rows.
+- The gate names the six blocking classes required before live pronunciation can be reviewed: scorer provider, real scored attempts, explicit approval records, final scorer promotion, live adapter readiness, and progress-penalty readiness.
+- All production/live/progress-penalty flags stay false, and writes remain confined to `.codex-tmp` or `docs/reports`.
+
+### What to watch next
+
+- This is not pronunciation production readiness and not a live scorer.
+- A real scorer provider contract, real recorded/scored attempts, and explicit pronunciation approval records are still required.
+- Listening audio readiness remains separate and still needs real MP3/checksum/approval/final/registry evidence.
+
+## Audit update 2026-06-04 - P3.119 Final audio approval workflow audit
+
+### Product logic score
+
+P3.119 improves reviewer workflow clarity. Audio already had a production-readiness hold gate, but reviewers also need a per-row approval workflow showing why signoff is blocked and what evidence must come first.
+
+### What improved
+
+- Gavan week 1 now has a final audio approval workflow audit for all 10 expected MP3 assets.
+- Every row is mapped through generated-file validation, checksum evidence, reviewer signoff, final promotion, and live registry review.
+- Current state is explicit: 0 validated generated files, 0 checksum-ready rows, 0 reviewer-signoff-ready rows, 0 approval records, 0 final-promotion-ready rows, and 0 registry-ready rows.
+- Reviewer signoff, approval record creation, final promotion, live registry writes, and production readiness all stay false.
+
+### What to watch next
+
+- This is not reviewer approval and not a signed approval record.
+- Real MP3 files and checksum evidence are still the first audio blocker.
+- Live audio registration remains blocked until validated generated assets, explicit approval records, final promotion, and a separate guarded registry pass exist.
+
+## Audit update 2026-06-04 - P3.120 Pronunciation approval workflow audit
+
+### Product logic score
+
+P3.120 improves reviewer workflow clarity for pronunciation. The feature now distinguishes scorer provider readiness, real recording evidence, scored-attempt evidence, reviewer signoff, final scorer promotion, live adapter readiness, and progress-penalty readiness.
+
+### What improved
+
+- Gavan week 1 now has a pronunciation approval workflow audit for all 4 pronunciation references.
+- Every reference is mapped through scorer provider, recording evidence, scored attempt evidence, reviewer signoff, final scorer promotion, live adapter review, and progress penalty review.
+- Current state is explicit: 0 scorer-provider-ready rows, 0 recording-evidence-ready rows, 0 scored-attempt-ready rows, 0 reviewer-signoff-ready rows, 0 approval records, 0 final-scorer-ready rows, and 0 live-adapter-ready rows.
+- Reviewer signoff, approval record creation, final scorer promotion, live adapter enablement, progress penalties, and production readiness all stay false.
+
+### What to watch next
+
+- This is not reviewer approval and not real pronunciation scoring evidence.
+- A real scorer provider contract and real recordings/scored attempts are still the first pronunciation blockers.
+- Live pronunciation scoring and progress penalties remain blocked until explicit approval records and final scorer promotion exist.
+
+## Audit update 2026-06-04 - P3.121 Route live-release workflow audit
+
+### Product logic score
+
+P3.121 improves route release clarity. Route/UI now has one final workflow audit that explains why the visible modes and route-chain artifacts still cannot be treated as a live release.
+
+### What improved
+
+- Gavan week 1 now has a route live-release workflow audit covering 8 release stages.
+- The audit confirms all 17 prerequisite artifacts are non-live and none are production artifacts.
+- Current state is explicit: product-copy signature missing, route request unsigned, approval guard unsigned, catalog/quiz/UI routes not registered, live regression not run, and device route opening not verified.
+- Source writes, route registration, live edits, live implementation, regression readiness, device verification, and production readiness all stay false.
+
+### What to watch next
+
+- This is not signed route approval and not route registration.
+- Live route work still needs explicit signed approval plus a separate source-editing implementation pass.
+- Audio and pronunciation evidence blockers remain independent and still block full Personal Plans production readiness.
+
+## Audit update 2026-06-04 - P3.122 Master production readiness matrix
+
+### Product logic score
+
+P3.122 improves final release discipline. Personal Plans now has one master go/no-go artifact that keeps audio, pronunciation, and route readiness in the same reviewer view instead of letting separate hold gates look complete in isolation.
+
+### What improved
+
+- Gavan week 1 now has a master production readiness matrix over the final audio approval workflow, pronunciation approval workflow, and route live-release workflow.
+- The current state is explicit: 3 layers, 3 hold layers, 0 production-ready layers, and 20 total blockers.
+- The matrix keeps the concrete product expectations visible: 10 expected MP3 assets, 4 pronunciation references, and 8 route workflow stages.
+- All production, live registration, live runtime change, source write, and live edit flags stay false.
+
+### What to watch next
+
+- This is not approval, not generated audio validation, not pronunciation evidence, and not live route registration.
+- The next release movement must come from real MP3/checksum evidence, real pronunciation scorer/recording/scored-attempt evidence, or signed route approval.
+- Until those inputs exist, the master matrix should remain a hold artifact, not a readiness claim.
+
+## Audit update 2026-06-04 - P3.123 Signed route approval intake report
+
+### Product logic score
+
+P3.123 improves the route approval workflow. The product now has a real intake surface for the signed approval payload instead of leaving reviewers to infer which fields and evidence paths must be supplied after the handoff.
+
+### What improved
+
+- Gavan week 1 now has a signed route approval intake report over the unsigned handoff packet.
+- The report checks seven required approval fields and all 13 required evidence paths.
+- Missing signed payload is explicit: 7 missing fields, 13 unaccepted evidence paths, and 8 blockers.
+- A complete payload can only move to separate approval-artifact review; it still cannot register routes or mark the week production-ready.
+
+### What to watch next
+
+- This is not signed route approval and not route registration.
+- A real signed payload plus a separate approval artifact still has to exist before route source work.
+- Audio MP3/checksum/approval evidence and pronunciation scorer/recording/scored-attempt evidence remain independent production blockers.
+
+## Audit update 2026-06-04 - P3.124 Signed route approval artifact gate
+
+### Product logic score
+
+P3.124 improves release governance by separating signed payload intake from signed approval artifact creation. That keeps route approval from becoming a vague reviewer checkbox and prevents a valid-looking payload from opening live routes too early.
+
+### What improved
+
+- Gavan week 1 now has a signed route approval artifact gate over the P3.123 intake report.
+- The canonical gate remains blocked because the signed payload has not been accepted.
+- Future accepted payloads can only become non-live approval artifact candidates; route registration, live regression, and device verification remain separate blockers.
+- Source writes and live edits stay false.
+
+### What to watch next
+
+- This is not the signed approval artifact itself.
+- The next route movement requires a real accepted signed payload, then a separate approval artifact creation pass.
+- Audio and pronunciation still block full production readiness independently.
+
+## Audit update 2026-06-04 - P3.125 Route registration implementation preflight v2
+
+### Product logic score
+
+P3.125 improves the route release path by turning route registration into a named future implementation pass instead of a vague follow-up after approval. The product can now see exactly which route families are waiting and why they are still blocked.
+
+### What improved
+
+- Gavan week 1 now has a v2 route registration implementation preflight over the signed approval artifact gate.
+- The preflight maps three route families: catalog routes, quiz routes, and UI opening contracts.
+- The canonical state remains blocked: the signed approval artifact candidate is not ready, the source-registration plan is not ready, and all route families remain blocked.
+- Source writes, live route registration, live regression, device verification, and live edits stay false.
+
+### What to watch next
+
+- This is not route registration and not source editing.
+- A real signed payload and separate approval artifact are still required before a source-registration pass can happen.
+- Audio and pronunciation remain independent production blockers.
+
+## Audit update 2026-06-04 - P3.126 Live route regression evidence preflight
+
+### Product logic score
+
+P3.126 improves release confidence by making regression and device verification explicit future evidence, not a checkbox hidden behind route registration. This matters because visible Personal Plan routes can only feel production-quality if every opening path is proven after source registration.
+
+### What improved
+
+- Gavan week 1 now has a live route regression evidence preflight over route registration implementation preflight v2.
+- The preflight maps 7 regression suites and 5 device opening checks.
+- The canonical state remains blocked before source-registration planning is ready.
+- Regression evidence, device evidence, ready-for-live, production-ready, source writes, and live edits all stay false.
+
+### What to watch next
+
+- This is not regression evidence and not device verification evidence.
+- Source registration must happen first, and only then can live regression/device evidence be produced.
+- Audio and pronunciation still block full production readiness independently.
+
+## Audit update 2026-06-04 - P3.127 Master final release readiness v2
+
+### Product logic score
+
+P3.127 improves final release clarity. The master gate now includes the newer route regression/device evidence layer, so the final release view cannot accidentally stop at route approval or route registration readiness.
+
+### What improved
+
+- Gavan week 1 now has a master final release readiness v2 artifact.
+- The gate aggregates the original master matrix plus live route regression evidence preflight.
+- The current state remains blocked with 26 total blockers: audio, pronunciation, route approval/registration, regression, and device verification all remain visible.
+- Final release, production-ready, ready-for-live, source writes, and live edits all stay false.
+
+### What to watch next
+
+- This is not a production-ready claim.
+- Real MP3/audio approval, real pronunciation evidence, signed route approval, source registration, regression evidence, and device verification are still required.
+- This gate should be the final go/no-go view until those real inputs exist.
+
+## Audit update 2026-06-04 - P3.128 Production evidence acquisition packet
+
+### Product logic score
+
+P3.128 improves execution clarity. The final release gate now has a concrete external-evidence packet, so the remaining work is not abstract "readiness" but exact evidence that humans or production systems must supply.
+
+### What improved
+
+- Gavan week 1 now has a production evidence acquisition packet over master final release readiness v2.
+- The packet lists 28 missing evidence requests across audio, pronunciation, and route streams.
+- The audio stream includes the exact 10 MP3 output paths.
+- Production readiness, ready-for-live, source writes, and live edits all stay false.
+
+### What to watch next
+
+- This is not the evidence itself.
+- The next real progress requires supplying one evidence stream: real MP3/checksum/approval, real pronunciation scorer/recording/scored attempts, or signed route approval/source registration/regression/device evidence.
+- Without those inputs, the system should continue reporting hold rather than inventing readiness.
+
+## Audit update 2026-06-04 - P3.129 Production evidence intake validation report
+
+### Product logic score
+
+P3.129 improves operational readiness for the final external-evidence handoff. The product now has a deterministic intake report that can tell missing evidence apart from invalid evidence and present-but-not-yet-approved evidence.
+
+### What improved
+
+- Gavan week 1 now has a production evidence intake validation report over the P3.128 acquisition packet.
+- The report checks all 28 expected evidence requests and currently reports 0 present, 28 missing, 0 invalid, and 28 blocked.
+- Future MP3 files must pass header/size checks, and future JSON evidence must parse without unsafe live or production-ready claims.
+- Present evidence stays `present_pending_review`, so the report does not blur intake with approval.
+
+### What to watch next
+
+- This is not audio approval, pronunciation scoring, signed route approval, source registration, regression evidence, device verification, or production readiness.
+- The next meaningful production movement still requires real external inputs.
+- Once any evidence file appears, this intake report should be refreshed before downstream gates consume it.
+
+## Audit update 2026-06-05 - P3.130 OpenAI audio generation execution and audio gate refresh
+
+### Product logic score
+
+P3.130 removes the biggest audio-material blocker. Gavan week 1 now has the actual generated MP3 files and checksum evidence, so the next product decision is no longer "make audio exist" but "listen, approve, and promote it safely."
+
+### What improved
+
+- 10/10 OpenAI MP3 files were generated at the P3.105 output paths.
+- Generated audio validation now reports 10 valid assets and 0 blockers.
+- Checksum evidence exists for all generated MP3 files.
+- Audio production readiness moved from missing generated audio to missing explicit approval records.
+- The final audio workflow now shows 10 generated-file validated rows and 10 checksum-ready rows.
+
+### What to watch next
+
+- Generated audio is still not approved audio.
+- Human/reviewer signoff is required before final promotion or live registry work.
+- Pronunciation remains separate: generated listening audio does not prove scorer, recording, or pronunciation readiness.
+- Route/source registration and live route regression are still separate release blockers.
+
+## Audit update 2026-06-05 - P3.131 Explicit audio approval records and final promotion packet
+
+### Product logic score
+
+P3.131 closes the human audio-review step for Gavan week 1 listening assets. The generated MP3 files now have explicit checksum-bound approval records and a final promotion packet, so the remaining audio blocker is live registry/source registration, not audio quality signoff.
+
+### What improved
+
+- The user's explicit approval is captured as 10 approval records with reviewer id, timestamp, and checksum-bound asset ids.
+- The final audio promotion report has 10 promoted final audio assets.
+- Explicit approval intake now reports `ready_for_final_audio_approval_gate_review`.
+- The browser progress report now reflects audio approval/registration/readiness at 92% instead of 84%.
+
+### What to watch next
+
+- Final promoted audio is still not live registered audio.
+- The next audio step must be a guarded live registry/source-registration pass with focused tests.
+- Pronunciation remains separate and still needs real scorer, recordings, scored attempts, and explicit pronunciation approval.
+- Full Personal Plans production readiness remains blocked until route and pronunciation evidence are also complete.
+
+## Audit update 2026-06-05 - P3.132 Universal generation matrix and Day 1 content start
+
+### Product logic score
+
+P3.132 moves Personal Plans from disconnected placeholder days toward a real generator. The important product correction is now explicit: Personal Plans are separate tasks, not lesson launchers, and the daily-time setting cannot decide what tasks the learner gets.
+
+### What improved
+
+- A 4-week / 28-day generation matrix now defines how days progress from first phrases to review and final rehearsal.
+- Mitap, Voyazh, Impuls, and Echo now have their own progression logic instead of sharing vague fallback behavior.
+- Day 1 generation has started with concrete phrase packets for all four non-Gavan plans.
+- Generated user-facing notes no longer expose internal language like placeholder, scaffold, generated shell, normal lesson shell, or exercise mode.
+- The browser progress report is restored and now reflects live route/UI/generation at 82%.
+
+### What to watch next
+
+- The matrix is a contract and first content batch, not the full generated month.
+- Day 2-28 content packets still need generation and review.
+- Audio live registration and pronunciation readiness remain separate blockers.
+- Production readiness must stay below 100% until real content review, live registry/source work, route checks, and pronunciation evidence are complete.
+
+## Audit update 2026-06-05 - P3.142 Time-tier setup and add-more workload guard
+
+### Product logic score
+
+P3.142 resolves the workload rule cleanly: selected daily time now controls how many tasks are visible at the start of a day, while the generated day still keeps the full maximum pool. This gives short-session learners a lighter first screen without losing the deeper day content.
+
+### What improved
+
+- Plan setup now asks for 5/10/15/20 minutes before activating a plan.
+- Initial visible workload follows the selected time: 5 minutes = 2-4 tasks, 10 minutes = 3-5, 15 minutes = 4-5, 20 minutes = 5-6.
+- Every day still owns the maximum mode pool, one task per plan-native mode where content exists.
+- The day screen can reveal one extra unrevealed task after all currently visible tasks are complete.
+- The add-more button now checks the full visible slice, not only the original base day slice.
+
+### What to watch next
+
+- This is workload/UI readiness, not source import readiness.
+- The 140 queued chat-draft candidate days still need internal quality gating before any runtime/source import can be considered.
+- Audio live registration and pronunciation evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.143 Internal quality gate over 140 chat-draft candidate days
+
+### Product logic score
+
+P3.143 turns the full 28-day chat-draft cycle from "filled" into a reviewed queue with clear next actions. This is a useful production step because it separates strong candidate days from days that need rewriting before any source-intake conversation starts.
+
+### What improved
+
+- All 140 chat-draft candidate days were checked by a deterministic internal quality gate.
+- 134 days are accepted as non-live source-intake candidates.
+- 6 days require rewrite/rework before source-intake: Voyazh Day 2, Gavan Day 1, Gavan Day 2, Echo Day 2, Gavan Day 3, Echo Day 3.
+- 0 days are hard blocked.
+- The gate keeps source/runtime writes, live registration, generated-content creation, and production readiness false.
+- The machine-readable evidence is stored at `.codex-tmp/personal-plans/internal-quality-gate.json`.
+
+### What to watch next
+
+- Rework rows must be improved and the gate rerun before source-intake preflight.
+- Accepted candidate days are still not live content.
+- Human review remains an end-of-corpus step, not the current blocker.
+- Audio live registration and pronunciation scoring evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.144 Rework resolution for all internal quality rows
+
+### Product logic score
+
+P3.144 closes the content-quality rework loop for the generated 28-day base cycle. The product now has a clean non-live candidate set for source-intake preflight without pretending that generated text is already production content.
+
+### What improved
+
+- The six lower-quality candidate days were rewritten with clearer scenario progression and recall purpose.
+- Internal quality now reports 140 accepted days, 0 rework rows, and 0 blocked rows.
+- The fill-progress JSON and browser fallback now show the reworked quality scores.
+- The internal quality artifact was refreshed at `.codex-tmp/personal-plans/internal-quality-gate.json`.
+- Production readiness, source/runtime writes, live registration, and generated-content creation remain false.
+
+### What to watch next
+
+- Source-intake preflight can now run across the 140 accepted non-live candidates.
+- Accepted candidates are still chat-draft content, not runtime/source content.
+- Audio live registration and pronunciation scoring evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.145 Accepted-candidate source-intake preflight
+
+### Product logic score
+
+P3.145 moves the clean internal-quality candidate set into the next non-live boundary. This matters because content can now be shaped for import-format design without silently becoming app runtime content.
+
+### What improved
+
+- Source-intake preflight now accepts all 140 internal-quality candidates.
+- 0 rows are blocked at this boundary.
+- Each accepted row gets a deterministic checksum and a clear next step: `content_packet_import_format`.
+- The preflight explicitly keeps production readiness, source/runtime writes, live registration, and generated-content creation false.
+- Browser progress now shows P3.145 and the source-intake evidence artifact.
+- The 140-row fill-progress JSON was restored as a reproducible non-live input for bulk queue and internal quality gates.
+- Adjacent generation-review/import/runtime-write-guard tests now use the current contract: full maximum mode pool and selected time as initial visible workload only.
+- Related pre-generation Jest is green: 11 suites, 33 tests.
+
+### What to watch next
+
+- Content packet import format must be built from the accepted rows.
+- Import format is still non-live; it must pass runtime/source write guard before any integration discussion.
+- TypeScript is currently blocked outside this pass by `app/club_screen.tsx(1547,28): Cannot find name 'setLeaderboardTopY'`.
+- Audio live registration and pronunciation evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.146 Accepted-candidate content packet import format
+
+### Product logic score
+
+P3.146 moves the accepted non-live candidate set one boundary closer to implementation without crossing into runtime/source content. The product now has a single import-format artifact for all 140 plan/day candidates.
+
+### What improved
+
+- 140 accepted source-intake rows were converted into content packet import days.
+- 0 rows are blocked at the import-format boundary.
+- The import format validates coverage, duplicate plan/day rows, checksums, rejected rows, and fake readiness flags.
+- The machine-readable artifact is `.codex-tmp/personal-plans/accepted-candidate-content-packet-import-format.json`.
+- Source/runtime writes, live registration, generated-content creation, and production readiness remain false.
+
+### What to watch next
+
+- Runtime/source write guard must be built for the 140-row import format before any integration discussion.
+- The import format is still non-live draft content, not app content.
+- TypeScript is still blocked outside this pass by `app/club_screen.tsx(1547,28): Cannot find name 'setLeaderboardTopY'`.
+- Audio live registration and pronunciation evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.148 Accepted-candidate explicit integration plan
+
+### Product logic score
+
+P3.148 turns the release hold into an implementation map without taking the dangerous step of writing source. The 140-day corpus now has a controlled route from artifact to future implementation.
+
+### What improved
+
+- The explicit integration plan defines 6 planned-only stages: catalog mapping, route mapping, UI surface binding, storage compatibility, asset registry hold, and test fixture planning.
+- The plan requires 6 verification gates before an implementation pass.
+- The machine-readable artifact is `.codex-tmp/personal-plans/accepted-candidate-explicit-integration-plan.json`.
+- The plan validates as `valid_non_live_explicit_integration_plan`.
+- Related integration-plan Jest is green: 11 suites, 29 tests.
+- TypeScript is green: `npx tsc --noEmit --pretty false`.
+- Source/runtime writes, live registration, generated-content creation, and production readiness remain false.
+
+### What to watch next
+
+- The next safe step is integration implementation preflight, not source import.
+- The plan is not app content and not production readiness.
+- Audio live registration and pronunciation evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.147 Accepted-candidate runtime/source write guard
+
+### Product logic score
+
+P3.147 gives the 140-day import format a proper release hold. This prevents a valid-looking import artifact from silently becoming app source or live runtime content.
+
+### What improved
+
+- The 140-row accepted-candidate import format now has a dedicated runtime/source write guard.
+- Six write families are explicitly blocked: catalog source, route source, UI surface, storage contract, asset registry, and test fixture source.
+- The guard validates the import format before holding it.
+- The machine-readable artifact is `.codex-tmp/personal-plans/accepted-candidate-runtime-source-write-guard.json`.
+- Source/runtime writes, live registration, generated-content creation, and production readiness remain false.
+
+### What to watch next
+
+- The next safe step is an explicit integration plan for the 140-row corpus.
+- The guard is not source import and not production readiness.
+- TypeScript is still blocked outside this pass by `app/club_screen.tsx(1547,28): Cannot find name 'setLeaderboardTopY'`.
+- Audio live registration and pronunciation evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.149 Accepted-candidate integration implementation preflight
+
+### Product logic score
+
+P3.149 turns the explicit integration plan into a concrete preflight for implementation. The product direction is now ready for a guarded implementation pass, but the corpus is still not live app content.
+
+### What improved
+
+- The preflight has 6 guarded implementation requests: catalog source, route source, UI surface, storage contract, asset registry, and test fixture source.
+- Every request remains `not_applied`.
+- The preflight blocks invalid explicit plans, missing requests, already-applied requests, missing verification, and fake source/live/generated/production claims.
+- The machine-readable artifact is `.codex-tmp/personal-plans/accepted-candidate-integration-implementation-preflight.json`.
+- Source/runtime writes, live registration, generated-content creation, and production readiness remain false.
+
+### What to watch next
+
+- The next large pass can start guarded source/runtime implementation.
+- It must prove catalog, route, UI surface, storage, asset hold, and fixtures with narrow regression tests.
+- Audio live registration and pronunciation evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.150 Accepted-candidate guarded runtime/source binding
+
+### Product logic score
+
+P3.150 is the first guarded source/runtime binding step. The accepted 28-day cycle for every plan is now visible to the runtime catalog as accepted-candidate-backed content, while the app still refuses to call it production-ready.
+
+### What improved
+
+- 140 accepted candidate days are bound into runtime catalog metadata.
+- The binding covers 28 days for Voyazh, Mitap, Gavan, Impuls, and Echo.
+- The runtime catalog now distinguishes accepted candidate days from scaffold-generated days.
+- The selected daily time still controls only the initial visible task slice; the full day task pool stays available for add-more behavior.
+- The machine-readable artifact is `.codex-tmp/personal-plans/accepted-candidate-guarded-runtime-source.json`.
+- Live registration, generated-content creation, audio readiness, pronunciation readiness, and production readiness remain false.
+
+### What to watch next
+
+- The next pass must prove the bound days through day surface, route opening, storage/progress, and add-more regressions.
+- Accepted candidate binding is not human-reviewed final production readiness.
+- Audio live registration and pronunciation evidence remain separate production blockers.
+
+## Audit update 2026-06-05 - P3.151 Day surface / route / storage regression gate
+
+### Product logic score
+
+P3.151 proves that the guarded runtime binding is not just metadata. The bound Personal Plan days now pass a regression gate for visible day surface, task route destinations, storage scoping, and add-more behavior.
+
+### What improved
+
+- 140 bound accepted candidate days were checked.
+- 1139 route destinations were checked.
+- 0 normal lesson route destinations were found inside Personal Plan tasks.
+- 0 day surface failures, 0 storage scope failures, and 0 add-more failures were found.
+- The machine-readable artifact is `.codex-tmp/personal-plans/personal-plan-day-surface-route-storage-regression-gate.json`.
+- Live registration, generated-content creation, pronunciation readiness, and production readiness remain false.
+
+### What to watch next
+
+- The next pass should consolidate the remaining audio, pronunciation, and final human-review readiness blockers.
+- This gate proves route/storage/day behavior, not final production approval.
+
+## Audit update 2026-06-05 - P3.152 Audio / pronunciation / final review readiness consolidation
+
+### Product logic score
+
+P3.152 makes the remaining gap explicit after the route/UI/storage work is green. The app-side Personal Plans path is no longer blocked by route or storage behavior; the remaining work is final evidence and approval.
+
+### What improved
+
+- Audio, pronunciation, and final user review are now summarized in one readiness artifact.
+- Generated/promoted audio is not counted as approved live registered audio.
+- Pronunciation is blocked until real scorer, recording, and scored-attempt evidence exists.
+- Final human review is pending but not treated as an engineering blocker.
+- The machine-readable artifact is `.codex-tmp/personal-plans/personal-plan-audio-pronunciation-human-review-readiness.json`.
+- Production readiness remains false.
+
+## Audit update 2026-06-05 - P3.153 Audio live registration evidence gate
+
+### Product logic score
+
+P3.153 improves the final audio path by separating "audio exists or was promoted" from "audio is approved, final, and live registered." This protects the user experience from silent listening-task breakage.
+
+### What improved
+
+- Live audio evidence now has its own gate.
+- Current state is explicit: 10 promoted audio assets, 0 approved/final live registered assets.
+- Generated runtime audio does not count as live registered audio.
+- Approved/final runtime audio can be recognized without marking the whole product production-ready.
+- The machine-readable artifact is `.codex-tmp/personal-plans/personal-plan-audio-live-registration-evidence-gate.json`.
+
+### What to watch next
+
+- Audio remains blocked until approved/final assets are actually registered.
+- Pronunciation still needs real scorer, recording, and scored-attempt evidence.
+- Final user review remains a final acceptance step after technical readiness, not a current engineering blocker.
+
+### What to watch next
+
+- The next pass should resolve audio live registration evidence or pronunciation real-evidence, depending on which evidence is available.
+- Do not convert this blocked readiness into a production-ready claim.
+
+## Audit update 2026-06-05 - P3.154 Runtime catalog OpenAI audio generation pass
+
+### Product logic score
+
+P3.154 closes the material-audio gap for the current bound runtime catalog without pretending that generated audio is already approved. The important correction is that audio is now generated from the actual Personal Plans catalog, not only from the older Gavan week 1 canonical packet.
+
+### What improved
+
+- The runtime audio generation plan covers all 5 plans and 5,460 listening task references.
+- Repeated spoken phrases are deduplicated by plan and target text, reducing the needed MP3 set from 2,730 content-unit clips to 48 generated clips.
+- OpenAI TTS execution completed: 38 new runtime MP3 files generated, 10 existing files skipped, 0 failed, 0 blocked.
+- Generated runtime assets validate cleanly: 48 jobs, 48 assets, 0 blockers.
+- Machine-readable evidence is stored at `.codex-tmp/personal-plans/runtime-openai-audio-generation-execute.json` and `.codex-tmp/personal-plans/runtime-generated-audio-assets.json`.
+
+### What to watch next
+
+- Generated runtime MP3 files are still not explicit approval records.
+- Listening can only be treated as live-ready after guarded approved-final registry source registration.
+- Pronunciation still needs real scorer, recording, scored-attempt evidence, and approval.
+
+## Audit update 2026-06-05 - P3.155 Runtime audio approval intake and registry source preflight
+
+### Product logic score
+
+P3.155 turns the newly generated runtime audio into a strict approval workflow. This is the correct next product step because the app should not start playing generated MP3 files as final learning content until they have explicit approval records and a guarded registry source pass.
+
+### What improved
+
+- Runtime audio approval intake now consumes the 48 generated assets through checksum-bound approval validation.
+- Current state is explicit: 48 generated runtime assets, 0 approval records, 48 missing approval records.
+- Runtime registry source registration preflight now exists and remains blocked until approval intake is ready.
+- The registry preflight can map approved/final assets into source-write candidates, but it does not write runtime source by itself.
+- Machine-readable evidence is stored at `.codex-tmp/personal-plans/runtime-audio-approval-intake.json` and `.codex-tmp/personal-plans/runtime-audio-registry-source-registration.json`.
+
+### What to watch next
+
+- The next audio step requires explicit approval records for all 48 generated runtime assets.
+- After approval, run the guarded source-write pass for `app/personal_plan_audio_asset_registry.ts`.
+- Pronunciation evidence remains independent and still blocks final production readiness.
+
+## Audit update 2026-06-05 - P3.156 Runtime audio review packet and OpenAI pronunciation scorer contract
+
+### Product logic score
+
+P3.156 improves the remaining blockers without overclaiming readiness. Audio now has a reviewer-ready packet with exact checksum rows, and pronunciation now has a concrete OpenAI scorer contract instead of a missing-provider blocker.
+
+### What improved
+
+- Runtime audio review packet is ready for human review: 48 generated assets, 48 review rows, 0 invalid rows.
+- The review packet carries asset ids, playable URIs, durations, voice/provider metadata, target text, and checksum evidence.
+- Gavan week 1 pronunciation scorer contract is now `pronunciation_scorer_contract_ready_for_scored_attempt_validation`.
+- Pronunciation provider readiness improved from 0/4 to 4/4 scorer-contract-ready references.
+- Pronunciation production gate now blocks on missing scored-attempt evidence, not missing scorer provider.
+
+### What to watch next
+
+- Audio still needs 48 explicit approval records before source registry can be written.
+- Pronunciation still needs 4 real recorded and scored attempts.
+- Generated audio and scorer contracts are not final production readiness.
+
+## Audit update 2026-06-05 - P3.157 Full daily task pool completion for every plan
+
+### Product logic score
+
+P3.157 closes the daily task-pool gap across the Personal Plans catalog. The product contract is now consistent: each day has the same 8 plan-native task modes, while the user's selected time controls only the initial visible slice and the add-more button reveals the remaining tasks.
+
+### What improved
+
+- All 546 plan days now expose the full 8-mode task pool: phrase build, missing word, natural phrase choice, listen choose, listen build, pronunciation repeat, phrase recall, and quiz.
+- Certified Gavan day 1 was raised from 7 to 8 plan-native tasks by adding `plan_phrase_recall`.
+- Generated days no longer use the legacy `active_recall` card as the Personal Plans recall mode.
+- `plan_phrase_recall` routes now pass real content-unit ids, so recall opens with usable material instead of an empty phrase list.
+- Focused Personal Plans verification passed: 8 Jest suites / 38 tests plus TypeScript.
+
+### What to watch next
+
+- This fixes task coverage and routing; it does not approve generated audio.
+- Audio still needs 48 explicit approval records before guarded live registry source registration.
+- Pronunciation still needs 4 real recordings/scored attempts and explicit approval.
+
+## Audit update 2026-06-05 - P3.158 Full catalog task-material completion
+
+### Product logic score
+
+P3.158 closes the deeper content gap: every visible Personal Plans task now has launchable material behind it. This matters because a day with 8 cards is still broken if one card opens with no questions, no phrase items, or no quiz bank.
+
+### What improved
+
+- Full-catalog material coverage is now guarded by test: 546 days and 4,368 tasks checked.
+- Missing-word tasks now select safe in-phrase blanks instead of sentence-opening words.
+- Generated missing-word tasks use five phrase candidates so quality filtering still leaves enough exercises.
+- Generated day quizzes now produce 10 questions from the same day's phrase lesson instead of returning null.
+- Generated quiz coverage and generic task copy exist for generated plan-day quiz ids.
+- Focused/related Personal Plans verification passed: 9 Jest suites / 37 tests plus TypeScript.
+
+### What to watch next
+
+- This closes launchable task materials, but generated audio still remains unapproved.
+- Audio still needs 48 explicit approval records before guarded live registry source registration.
+- Pronunciation still needs 4 real recordings/scored attempts and explicit approval.
+
+## Audit update 2026-06-05 - P3.159 Runtime audio approval and source registry registration
+
+### Product logic score
+
+P3.159 converts the generated runtime audio from "files exist" into usable approved listening assets. The critical difference is that approval is explicit: the user reviewed the audio folder and confirmed the sounds are clear, then the system created checksum-bound approval records and registered only those approved assets.
+
+### What improved
+
+- 48/48 runtime MP3 assets now have explicit approval records.
+- Runtime audio approval intake is `ready_for_guarded_runtime_audio_registry`.
+- 48/48 approved final audio assets are registered through `app/personal_plan_runtime_audio_assets.generated.ts`.
+- `getPlanAudioAssetsForRuntime()` now loads approved runtime audio by default, while test-only registration remains an override.
+- Listening tasks can now resolve playable approved audio without a test hook.
+- Focused audio/listening verification passed: 7 Jest suites / 23 tests plus TypeScript.
+
+### What to watch next
+
+- Audio is no longer the current Personal Plans readiness blocker.
+- Pronunciation still needs 4 real recordings/scored attempts, explicit approval, and final promotion.
+- Production readiness remains false until pronunciation and final acceptance are complete.

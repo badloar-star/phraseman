@@ -1,5 +1,5 @@
 import type { PersonalPlanDefinition, PlanDay } from '../app/personal_plan_catalog';
-import { PERSONAL_PLAN_CATALOG, tasksForMinutes } from '../app/personal_plan_catalog';
+import { PERSONAL_PLAN_CATALOG, allTasksForDay, tasksForMinutes } from '../app/personal_plan_catalog';
 import { openPersonalPlanTask } from '../app/personal_plan_navigation';
 import {
   buildPersonalPlanDayPassport,
@@ -18,14 +18,17 @@ describe('personal plan hard gates contract', () => {
     expect(passport.issues.map((issue) => issue.code)).not.toContain('scaffold_day');
   });
 
-  it('keeps the four onboarding time choices as the only plan load slots', () => {
-    expect(tasksForMinutes(day1, 5)).toHaveLength(1);
-    expect(tasksForMinutes(day1, 10)).toHaveLength(2);
-    expect(tasksForMinutes(day1, 15)).toHaveLength(3);
-    expect(tasksForMinutes(day1, 20)).toHaveLength(4);
+  it('keeps selected daily time as the initial slice while the full plan task list stays available', () => {
+    const expectedTaskIds = allTasksForDay(day1).map((task) => task.id);
+
+    expect(expectedTaskIds).toHaveLength(8);
+    expect(tasksForMinutes(day1, 5).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 3));
+    expect(tasksForMinutes(day1, 10).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 4));
+    expect(tasksForMinutes(day1, 15).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 5));
+    expect(tasksForMinutes(day1, 20).map((task) => task.id)).toEqual(expectedTaskIds.slice(0, 6));
   });
 
-  it('still passes exact required phrase ids into lesson routes when a day provides them', () => {
+  it('does not open normal lesson routes from personal plan tasks', () => {
     const router = { push: jest.fn() } as any;
     const task = {
       ...day1.tasks[0],
@@ -39,17 +42,7 @@ describe('personal plan hard gates contract', () => {
 
     openPersonalPlanTask(router, gavan, day1, task, 'plan-instance-1');
 
-    expect(router.push).toHaveBeenCalledWith(expect.objectContaining({
-      pathname: '/lesson_menu',
-      params: expect.objectContaining({
-        planTask: '1',
-        lessonShellMode: 'linked_lesson_slice',
-        planPracticeMode: 'linked_lesson',
-        planTaskId: task.id,
-        planInstanceId: 'plan-instance-1',
-        requiredPhraseIds: 'lesson1_phrase_1,lesson1_phrase_7',
-      }),
-    }));
+    expect(router.push).not.toHaveBeenCalled();
   });
 
   it('opens plan quizzes through the dedicated quiz route with plan context', () => {

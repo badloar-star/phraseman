@@ -2794,3 +2794,987 @@ UTF-8 guard:
 - [ ] Audio approval remains blocked until the 10 expected MP3 assets are generated/provided and explicitly approved.
 - [ ] Pronunciation readiness remains blocked until real scoring/recording readiness exists.
 - [ ] Next best step: produce or validate real generated audio assets, then run explicit reviewer approval without inferring production readiness.
+
+## Update 2026-06-04 - P3.105 Audio generation handoff packet
+
+- [x] Treat the next Personal Plans sessions as large coherent passes, not microtasks.
+- [x] Add `tests/personal_plan_gavan_week1_audio_generation_handoff_packet.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_audio_generation_handoff_packet` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_audio_generation_handoff_packet.ts`.
+- [x] Build a non-live generation handoff packet with exact inputs for the 10 expected Gavan week 1 MP3 files.
+- [x] Include job id, block id, content unit id, target text, source block text, provider, voice id, expected asset id, output path, file type, split policy, and required post-generation metadata for every request.
+- [x] Include approval guardrails: generated files are not approved, approval cannot be inferred, asset registration remains blocked, and pronunciation readiness remains blocked.
+- [x] Reject incomplete generation plans instead of handing off vague audio work.
+- [x] Restrict packet writes to `.codex-tmp` and `docs/reports`.
+- [x] Verify the writer can generate deterministic `.codex-tmp/personal-plans/gavan-week1-audio-generation-handoff-packet.json` output; current temp cleanup may remove the ignored artifact between commands.
+- [x] Run focused Jest for the new packet.
+- [ ] Audio approval remains blocked until the 10 listed MP3 files exist and pass generated-asset validation.
+- [ ] Approved/final audio remains blocked until explicit approval records exist for every generated asset.
+- [ ] Pronunciation readiness remains blocked until real scoring/recording readiness exists.
+- [ ] Next best big pass: generate/provide the 10 MP3 assets if explicitly allowed or available; otherwise build the generated-file intake/validation report that maps actual files to the P3.105 handoff.
+
+## Update 2026-06-04 - P3.106 Generated audio intake/validation report
+
+- [x] Confirm current P3.105 output paths have no real MP3 files in `assets/audio/personal-plans`.
+- [x] Select the non-live intake/validation route because audio generation was not explicitly allowed and real MP3 assets are absent.
+- [x] Add `tests/personal_plan_gavan_week1_generated_audio_intake_report.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_generated_audio_intake_report` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_generated_audio_intake_report.ts`.
+- [x] Map every P3.105 expected `outputPath` to an intake row with `missing_generated_file`, `invalid_generated_file`, or `valid_generated_file`.
+- [x] Reuse generated-asset validation evidence through `buildGeneratedPlanAudioAssets`.
+- [x] Keep valid generated files separate from approved/final audio: `approvalStatus: not_approved`, `audioApprovalReady: false`, `audioAssetRegistrationAllowed: false`, and `productionReadyAudioCount: 0`.
+- [x] Reject fake approved/final-ready file claims in the intake map.
+- [x] Restrict intake report writes to `.codex-tmp` and `docs/reports`.
+- [x] Run focused Jest for the new intake report.
+- [x] Related audio Jest passed: 10 suites, 39 tests.
+- [ ] Broad Personal Plans Jest is still blocked by missing route/signature `.codex-tmp` prerequisite artifacts: 184 suites passed, 5 failed, 1155 tests passed, 33 failed.
+- [ ] TypeScript is currently blocked outside this audio pass by missing `themeMode` props in `app/lesson_complete.tsx`.
+- [ ] Audio approval remains blocked until every expected MP3 validates and explicit approval records are created.
+- [ ] Live audio registry/source edits remain blocked until a separate approved registration pass.
+- [ ] Pronunciation readiness remains blocked until real scoring/recording evidence exists.
+- [ ] Next best big pass: if MP3 files become available, feed them through P3.106 intake and then build explicit approval records; otherwise restore the missing route/signature `.codex-tmp` prerequisites before attempting the broad Personal Plans gate.
+
+## Update 2026-06-04 - P3.107 Route prerequisite artifact refresh
+
+- [x] Select route/signature prerequisite restoration as the next large pass because P3.106 left broad Personal Plans blocked by missing `.codex-tmp` artifacts.
+- [x] Add `tests/personal_plan_gavan_week1_route_prerequisite_artifact_refresh.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh.ts`.
+- [x] Refresh the full non-live route prerequisite bundle under `.codex-tmp/personal-plans`, including approval readiness, bridge diff preflight, future bridge contract/guard, product-copy signature request, catalog route preflight, catalog/quiz/UI inventories and designs, aggregate route readiness, route signature request, and route approval guard.
+- [x] Keep every refreshed artifact non-live: `readyForLive: false`, `liveEditsAllowed: false`, no source writes, no inferred route approval, and no inferred audio approval.
+- [x] Preserve historical broad-gate expectations for approved reviewer export paths and `totalApprovedRows: 98`.
+- [x] Previously failing route/signature tests now pass: 5 suites, 38 tests.
+- [x] Broad Personal Plans Jest passed: 190 suites, 1192 tests.
+- [x] TypeScript passed: `npx tsc --noEmit --pretty false`.
+- [ ] Refreshed `.codex-tmp` artifacts are verification prerequisites only; they are not production approval and do not unlock live registration.
+- [ ] Audio approval remains blocked until every expected MP3 validates and explicit approval records are created.
+- [ ] Next best big pass: either validate/provide the 10 MP3 files and create explicit approval records, or move to a signed-approval intake artifact if a real human approval is available.
+
+## Update 2026-06-04 - P3.108 Pronunciation scoring provider contract
+
+- [x] Select pronunciation scoring provider intake as the next large non-live pass because audio MP3 assets are still absent and generation was not explicitly authorized.
+- [x] Confirm the existing pronunciation reference adapter and scoring readiness packet pass focused Jest and still block release without real scoring evidence.
+- [x] Add `tests/personal_plan_gavan_week1_pronunciation_scoring_provider_contract.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_pronunciation_scoring_provider_contract` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_pronunciation_scoring_provider_contract.ts`.
+- [x] Generate `.codex-tmp/personal-plans/gavan-week1-pronunciation-scoring-provider-contract.json`.
+- [x] Map all 4 canonical pronunciation references to `missing_scorer_contract` when no real provider metadata exists.
+- [x] Allow complete provider metadata to become `ready_for_scored_attempt_validation` only, while keeping `readyForLive: false`, `pronunciationProductionReady: false`, and `scoringAdapterReady: false`.
+- [x] Reject fake provider claims for `productionReady`, `finalScoringReady`, and `liveEditsAllowed`.
+- [x] Restrict contract writes to `.codex-tmp` and `docs/reports`.
+- [x] Run focused Jest for the new provider contract.
+- [ ] Pronunciation production readiness remains blocked until scored attempts with real recording/confidence/score evidence exist and explicit approval records are created.
+- [ ] Live scoring adapter, progress penalties, source writes, UI/runtime changes, and storage/navigation changes remain blocked.
+- [ ] Audio approval remains blocked until every expected MP3 validates and explicit approval records are created.
+- [ ] Next best big pass: build a scored-attempt evidence intake artifact if real recorded attempts/scorer outputs are available; otherwise continue with explicit approval intake/reporting without fake readiness.
+
+## Update 2026-06-04 - P3.109 Browser progress report
+
+- [x] Add a browser-visible progress reporting layer because future prompts should show overall Personal Plans progress, not only terminal summaries.
+- [x] Confirm real MP3 assets are still absent from `assets/audio/personal-plans`; audio generation remains unauthorized in this pass.
+- [x] Add `tests/personal_plan_progress_browser_report.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_progress_browser_report` did not exist.
+- [x] Implement `tools/personal_plan_progress_browser_report.ts`.
+- [x] Generate `docs/reports/personal-plans-progress-browser-report.html`.
+- [x] Show current overall progress and layer scores in the browser report: overall 77%, content/reviewer packets 95%, audio approval 58%, pronunciation scoring 62%, verification 99%, live route/UI 59%.
+- [x] Keep the report honest: `productionReady: false`, visible "Not production-ready yet" badge, and fake 100% progress claims rejected while blockers remain.
+- [x] Include completed pass history from P3.105 through P3.109.
+- [x] Include open blockers for missing MP3 assets, missing explicit audio approvals, missing real pronunciation scoring evidence, and missing signed live route approval.
+- [x] Restrict report writes to `.codex-tmp` and `docs/reports`.
+- [x] Run focused Jest for the browser progress report.
+- [ ] Browser report is visibility/reporting only; it is not approval, not generated audio, not live route readiness, and not production readiness.
+- [ ] Next prompt should refresh/open `docs/reports/personal-plans-progress-browser-report.html` again after each coherent pass.
+- [ ] Next best big pass remains: validate/provide the 10 real MP3 assets if available or explicitly generated; otherwise build the next explicit approval/scored-attempt evidence intake layer without fake readiness.
+
+## Update 2026-06-04 - P3.110 Audio explicit approval intake report
+
+- [x] Confirm real MP3 assets are still absent from `assets/audio/personal-plans`; generation remains unauthorized.
+- [x] Select explicit audio approval intake as the next large non-live pass because P3.106 created generated-file intake but there was no Gavan week 1 artifact mapping future approval records back to the 10 expected MP3 rows.
+- [x] Add `tests/personal_plan_gavan_week1_audio_explicit_approval_intake_report.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_audio_explicit_approval_intake_report` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_audio_explicit_approval_intake_report.ts`.
+- [x] Generate `.codex-tmp/personal-plans/gavan-week1-audio-explicit-approval-intake-report.json`.
+- [x] Map the current missing-MP3 state to `blocked_missing_generated_audio`: 10 expected MP3 files, 10 missing generated files, 0 approval records, 0 production-ready audio files.
+- [x] Reuse `validatePlanAudioApprovalGate` for future valid generated assets and explicit approval records.
+- [x] Keep complete future approval records as `ready_for_final_audio_approval_gate_review` only; do not promote final audio, do not register assets, and do not infer pronunciation readiness.
+- [x] Reject unknown approval records instead of inferring readiness.
+- [x] Restrict report writes to `.codex-tmp` and `docs/reports`.
+- [x] Run focused Jest for the explicit approval intake report.
+- [ ] Audio approval remains blocked until every expected MP3 validates and every generated asset has an explicit approval record.
+- [ ] Final audio/live registration remains blocked until a separate guarded final approval/registration pass.
+- [ ] Pronunciation readiness remains blocked until real recorded attempts and scorer evidence exist.
+- [ ] Next best big pass: if real MP3 files become available or generation is explicitly authorized, run P3.106 + P3.110 with the files and approval records; otherwise build the scored-attempt evidence intake layer or signed route approval intake without fake readiness.
+
+## Update 2026-06-04 - P3.111 Pronunciation scored-attempt evidence intake report
+
+- [x] Confirm real MP3 assets are still absent from `assets/audio/personal-plans`; generation remains unauthorized.
+- [x] Select pronunciation scored-attempt evidence intake as the next large non-live pass because P3.108 created the provider contract but there was no artifact mapping real recorded/scored attempts back to the 4 pronunciation references.
+- [x] Add `tests/personal_plan_gavan_week1_pronunciation_scored_attempt_evidence_intake_report.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_pronunciation_scored_attempt_evidence_intake_report` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_pronunciation_scored_attempt_evidence_intake_report.ts`.
+- [x] Generate `.codex-tmp/personal-plans/gavan-week1-pronunciation-scored-attempt-evidence-intake-report.json` through the focused test setup.
+- [x] Map the current missing-scorer-contract state to `blocked_missing_scorer_contract`: 4 pronunciation references, 0 provided attempts, 0 valid scored attempts, 4 missing scorer-contract rows, 0 production-ready references.
+- [x] Validate future scored attempts with `validatePlanPronunciationAttempt`.
+- [x] Keep complete future scored attempts as `ready_for_pronunciation_approval_review` only; do not mark pronunciation production-ready, do not enable live scoring, and do not allow progress penalties.
+- [x] Reject invalid scored attempts, including low-confidence progress-penalty attempts.
+- [x] Restrict report writes to `.codex-tmp` and `docs/reports`.
+- [x] Run focused Jest for the scored-attempt evidence intake report.
+- [ ] Pronunciation readiness remains blocked until a real scorer contract, real recorded/scored attempts for all 4 references, and explicit pronunciation approval records exist.
+- [ ] Live scoring adapter, source writes, progress penalties, UI/runtime changes, and storage/navigation changes remain blocked.
+- [ ] Audio approval remains blocked until every expected MP3 validates and explicit approval records are created.
+- [ ] Next best big pass: if real MP3/scored-attempt evidence is still unavailable, build a signed route approval intake/final registration preflight layer without fake readiness.
+
+## Update 2026-06-04 - P3.112 Gavan day 1 visible live modes
+
+- [x] Pivot from non-live approval paperwork to the visible Personal Plans surface after the Gavan day 1 screen showed only the first 3 tasks.
+- [x] Add TDD coverage first in `tests/personal_plan_live_vertical_slice.test.ts`, `tests/personal_plan_day_quality_gate.test.ts`, and `tests/personal_plan_engine_contracts.test.ts`; red phase failed because day 1 only exposed `linked_lesson_slice`, `plan_phrase_lesson`, `plan_missing_word`, and `plan_quiz`.
+- [x] Expand Gavan day 1 from 4 to 8 visible tasks: linked lesson, phrase lesson, missing word, choose natural phrase, listen choose, listen build, pronunciation repeat, and quiz.
+- [x] Expand `tasksForMinutes` load slots so default 15 minutes now shows 7 tasks and 20 minutes shows all 8 tasks.
+- [x] Keep pronunciation repeat as `completion_only`, not scored correctness, so pronunciation readiness is not falsely claimed.
+- [x] Update runtime state tests so day completion and carryover use `tasksForMinutes(...)` instead of old hardcoded `slice(0, 3/4)` assumptions.
+- [x] Add mode-specific visual sources/icons/asset keys for the new cards so they do not collapse into the old generic route/practice visuals.
+- [x] Run focused route/renderer/open-action suites for missing word, choose natural phrase, listen choose, listen build, and pronunciation repeat.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [ ] Broad Personal Plans Jest remains blocked in isolated runs by `.codex-tmp` prerequisite artifact lifecycle/order for older route/signature/bridge report suites. This was reported honestly instead of fake-green readiness.
+- [ ] Audio approval remains blocked: 10 expected MP3 assets are still not validated and no explicit approval records exist.
+- [ ] Pronunciation production readiness remains blocked: no real scorer contract plus real recorded/scored attempts plus explicit pronunciation approval records.
+
+## Update 2026-06-04 - P3.113 Route prerequisite bootstrap and broad gate recovery
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, so no generated or approved audio was registered.
+- [x] Select the route/signature/bridge prerequisite bootstrap as the next large pass because P3.112 left broad Personal Plans Jest blocked by missing `.codex-tmp` artifacts in isolated route-chain suites.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_route_prerequisite_artifact_refresh.test.ts`.
+- [x] Verify the red phase: the focused test failed because `ensureGavanWeek1RoutePrerequisiteArtifacts` was not exported.
+- [x] Implement `ensureGavanWeek1RoutePrerequisiteArtifacts` in `tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh.ts`.
+- [x] The ensure API checks all route prerequisite artifact basenames and materializes the full non-live bundle under `.codex-tmp/personal-plans` only when artifacts are missing.
+- [x] Wire the ensure API into isolated route-chain consumer suites: catalog route preflight, route approval guard, live route implementation preflight, future bridge approval contract, and future bridge guard report.
+- [x] Run focused prerequisite-chain Jest: 6 suites, 43 tests passed.
+- [x] Run broad Personal Plans Jest: 194 suites, 1222 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [ ] Refreshed/bootstrapped `.codex-tmp` artifacts are still non-live verification prerequisites only. They are not signed approval, not live route registration, not audio approval, and not production readiness.
+- [ ] Audio approval remains blocked until all 10 expected MP3 files validate and every generated asset has an explicit approval record.
+- [ ] Pronunciation production readiness remains blocked until real scorer contract, real recorded/scored attempts, and explicit pronunciation approval records exist.
+
+## Update 2026-06-04 - P3.114 Audio evidence chain bootstrap
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, so no generation output was promoted or approved.
+- [x] Select the next non-live audio evidence layer because P3.106/P3.110 already exist but the handoff -> generated-file intake -> explicit approval intake chain needed one reproducible bootstrap/report entrypoint.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_audio_evidence_chain_bootstrap.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_audio_evidence_chain_bootstrap` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_audio_evidence_chain_bootstrap.ts`.
+- [x] The bootstrap builds the P3.105 handoff packet, scans exact `outputPath` targets, builds the generated-audio intake report, builds the explicit approval intake report, and writes a single non-live chain report.
+- [x] Current chain status is honestly blocked: 10 expected MP3 files, 0 discovered files, 10 missing generated-file blockers, 0 explicit approval records, and 0 production-ready audio assets.
+- [x] Restrict all writes to `.codex-tmp` or `docs/reports`; reject root config, source asset, and live audio target paths.
+- [x] Keep `readyForLive`, `generatedAudioApproved`, `audioProductionReady`, `audioAssetRegistrationAllowed`, `liveEditsAllowed`, and `sourceWritesUsed` false.
+- [x] Run focused bootstrap Jest: 1 suite, 4 tests passed.
+- [x] Run related audio chain Jest: 8 suites, 37 tests passed.
+- [x] Repair isolated quiz-adapter prerequisite drift without live edits: the suite now restores the missing `.codex-tmp` route bundle before reading quiz inventory, and the adapter tolerates the older non-live inventory shape.
+- [x] Run isolated quiz adapter Jest: 1 suite, 8 tests passed.
+- [x] Run broad Personal Plans Jest: 195 suites, 1226 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.114 progress: overall 84%, verification 100%, content/reviewer packets 95%, audio approval 62%, pronunciation scoring 65%, live route/UI 74%.
+- [ ] Generated audio remains unapproved audio. Live audio asset registration remains blocked until real MP3 validation plus explicit approval records pass in a separate guarded step.
+- [ ] Pronunciation production readiness remains blocked until real scoring/recording evidence and explicit approval records exist.
+
+## Update 2026-06-04 - P3.115 Final audio registration preflight
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, so no audio generation output was promoted or registered.
+- [x] Select the final audio registration preflight as the next large non-live audio layer because P3.114 already bootstraps handoff -> generated-file intake -> explicit approval intake, but runtime registry registration still needed an explicit blocker report.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_final_audio_registration_preflight.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_final_audio_registration_preflight` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_final_audio_registration_preflight.ts`.
+- [x] The preflight consumes the P3.114 audio evidence chain and maps every expected asset to registration status.
+- [x] Current registration preflight status is honestly blocked: 10 expected MP3 files, 0 discovered files, 10 missing generated-file blockers, 0 explicit approval records, 0 approved/final audio assets, and 0 registry-ready assets.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime registry source targets, audio asset targets, and root config targets.
+- [x] Keep `readyForLive`, `audioProductionReady`, `audioAssetRegistrationAllowed`, `liveEditsAllowed`, `registryWritesUsed`, `sourceWritesUsed`, and `audioFilesWritten` false.
+- [x] Run focused final audio registration preflight Jest: 1 suite, 4 tests passed.
+- [x] Run related audio/live-listening chain Jest: 11 suites, 55 tests passed.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-final-audio-registration-preflight.json`.
+- [x] Run broad Personal Plans Jest: 196 suites, 1230 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.115 progress: overall 86%, verification 100%, content/reviewer packets 95%, audio approval/registration 66%, pronunciation scoring 65%, live route/UI 74%.
+- [ ] This is a preflight only. It does not register live audio assets, does not approve audio, and does not promote generated audio to final.
+- [ ] Live audio asset registration remains blocked until real MP3 validation, explicit approval records, final audio promotion, and a separate guarded registry pass.
+- [ ] Pronunciation production readiness remains blocked until real scoring/recording evidence and explicit approval records exist.
+
+## Update 2026-06-04 - P3.116 Audio approval-record packet
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, so no generated-file checksum can be treated as ready.
+- [x] Select the approval-record packet as the next non-live audio layer because P3.115 blocks registry writes, while human reviewers still need a deterministic packet showing why approval records cannot yet be created.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_audio_approval_record_packet.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_audio_approval_record_packet` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_audio_approval_record_packet.ts`.
+- [x] The packet consumes the P3.115 final audio registration preflight and maps every expected asset to approval-record template status and checksum status.
+- [x] Current packet status is honestly blocked: 10 expected MP3 files, 0 eligible approval-record rows, 10 blocked-before-approval rows, 0 checksum-ready rows, 0 approval records, and 0 production-ready audio assets.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject approval runtime source targets, audio asset targets, and root config targets.
+- [x] Keep `approvalRecordsCreated`, `approvalMayBeInferred`, `audioAssetRegistrationAllowed`, `registryWritesUsed`, `sourceWritesUsed`, `liveEditsAllowed`, and `audioFilesWritten` false.
+- [x] Run focused audio approval-record packet Jest: 1 suite, 4 tests passed.
+- [x] Run related audio approval/registration chain Jest: 12 suites, 59 tests passed.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-audio-approval-record-packet.json`.
+- [x] Run broad Personal Plans Jest: 197 suites, 1234 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.116 progress: overall 87%, verification 100%, content/reviewer packets 95%, audio approval/registration 68%, pronunciation scoring 65%, live route/UI 74%.
+- [ ] This packet is not an approval record and cannot supply `audioChecksum` until a real generated file validates.
+- [ ] Generated audio remains unapproved audio; live registry remains blocked until explicit records and final promotion pass.
+
+## Update 2026-06-04 - P3.117 Audio production readiness gate
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select an audio production readiness gate as the next coherent non-live layer because P3.116 prepares reviewer packet structure, while the release still needs one deterministic go/hold decision before any live audio registration can be considered.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_audio_production_readiness_gate.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_audio_production_readiness_gate` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_audio_production_readiness_gate.ts`.
+- [x] The gate consumes the P3.116 approval-record packet and aggregates the generated-file, checksum, explicit approval, final promotion, and live registry blockers.
+- [x] Current gate status is honestly blocked: `hold_missing_generated_audio`, release decision `hold`, 10 expected MP3 files, 0 discovered files, 10 missing files, 0 checksum-ready rows, 0 approval records, 0 final audio assets, 0 registry-ready assets, and 5 blockers.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime registry source targets, audio asset targets, and root config targets.
+- [x] Keep `productionReady`, `readyForLive`, `audioProductionReady`, `audioApprovalReady`, `audioAssetRegistrationAllowed`, `liveEditsAllowed`, `sourceWritesUsed`, `registryWritesUsed`, `audioFilesWritten`, `approvalRecordsCreated`, and pronunciation inference false.
+- [x] Run focused audio production readiness gate Jest: 1 suite, 4 tests passed.
+- [x] Run related audio production chain Jest: 13 suites, 63 tests passed.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-audio-production-readiness-gate.json`.
+- [x] Run broad Personal Plans Jest: 198 suites, 1238 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [ ] This gate is a release hold artifact only; it does not create MP3 files, checksums, approval records, final promoted audio, live registry entries, route approval, or pronunciation readiness.
+
+## Update 2026-06-04 - P3.118 Pronunciation production readiness gate
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a pronunciation production readiness gate as the next coherent non-live layer because audio is blocked by missing MP3 evidence, while pronunciation still lacked one release-level hold decision over scorer/recording/approval/final/live-adapter blockers.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_pronunciation_production_readiness_gate.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_pronunciation_production_readiness_gate` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_pronunciation_production_readiness_gate.ts`.
+- [x] The gate consumes the P3.111 scored-attempt evidence intake report and aggregates scorer provider, real scored attempt, explicit approval, final scorer promotion, live adapter, and progress-penalty blockers.
+- [x] Current gate status is honestly blocked: `hold_missing_scorer_provider`, release decision `hold`, 4 pronunciation references, 0 scorer-contract-ready rows, 0 valid scored attempts, 4 missing scorer-contract rows, 0 explicit approval records, 0 final scorer rows, 0 live adapter rows, and 6 blockers.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime pronunciation source targets, audio asset targets, and root config targets.
+- [x] Keep `productionReady`, `readyForLive`, `pronunciationProductionReady`, `explicitApprovalReady`, `finalScorerReady`, `liveScoringAdapterAllowed`, `progressPenaltyAllowed`, `approvalRecordsCreated`, `sourceWritesUsed`, `liveEditsAllowed`, `recordingFilesWritten`, `scoringFilesWritten`, and audio-readiness inference false.
+- [x] Run focused pronunciation production readiness gate Jest: 1 suite, 5 tests passed.
+- [x] Run related pronunciation chain Jest: 8 suites, 44 tests passed.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-pronunciation-production-readiness-gate.json`.
+- [x] Run broad Personal Plans Jest: 199 suites, 1243 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [ ] This gate is a release hold artifact only; it does not attach a scorer provider, create recordings, score attempts, create approval records, promote a final scorer, enable live scoring adapters, enable progress penalties, infer audio readiness, or mark pronunciation production-ready.
+
+## Update 2026-06-04 - P3.119 Final audio approval workflow audit
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a final audio approval workflow audit as the next coherent non-live layer because P3.117 blocks release, while reviewers still need a deterministic stage-by-stage workflow showing exactly why signoff cannot begin.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_final_audio_approval_workflow_audit.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_final_audio_approval_workflow_audit` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_final_audio_approval_workflow_audit.ts`.
+- [x] The audit consumes the P3.116 approval-record packet and P3.117 audio production readiness gate and maps every expected MP3 row through generated-file validation, checksum evidence, reviewer signoff, final promotion, and live registry stages.
+- [x] Current audit status is honestly blocked: `blocked_before_generated_file_validation`, release decision `hold`, 10 expected MP3 files, 0 generated-file-validated rows, 0 checksum-ready rows, 0 reviewer-signoff-ready rows, 0 explicit approval records, 0 final-promotion-ready rows, 0 registry-ready rows, 10 blocked workflow rows, and 5 blockers.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject live approval source targets, registry source targets, audio asset targets, and root config targets.
+- [x] Keep `productionReady`, `readyForLive`, `finalApprovalWorkflowReady`, `reviewerSignoffAllowed`, `approvalRecordsCreated`, `finalPromotionAllowed`, `registryWriteAllowed`, `liveEditsAllowed`, `sourceWritesUsed`, `audioFilesWritten`, `registryWritesUsed`, and pronunciation inference false.
+- [x] Run focused final audio approval workflow audit Jest: 1 suite, 5 tests passed.
+- [x] Run related audio approval/readiness chain Jest: 14 suites, 68 tests passed.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-final-audio-approval-workflow-audit.json`.
+- [x] Run broad Personal Plans Jest: 200 suites, 1248 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [ ] This audit is not reviewer approval, not approval records, not final audio promotion, not live registry registration, and not production readiness.
+
+## Update 2026-06-04 - P3.120 Pronunciation approval workflow audit
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a pronunciation approval workflow audit as the next coherent non-live layer because P3.118 blocks release, while reviewers still need a deterministic stage-by-stage workflow showing why pronunciation signoff cannot begin.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_pronunciation_approval_workflow_audit.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_pronunciation_approval_workflow_audit` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_pronunciation_approval_workflow_audit.ts`.
+- [x] The audit consumes the P3.111 scored-attempt evidence intake report and P3.118 pronunciation production readiness gate and maps every reference through scorer provider, recording evidence, scored attempt evidence, reviewer signoff, final scorer promotion, live adapter, and progress penalty stages.
+- [x] Current audit status is honestly blocked: `blocked_before_scorer_provider_contract`, release decision `hold`, 4 references, 0 scorer-provider-ready rows, 0 recording-evidence-ready rows, 0 scored-attempt-ready rows, 0 reviewer-signoff-ready rows, 0 explicit approval records, 0 final-scorer-ready rows, 0 live-adapter-ready rows, 0 progress-penalty-ready rows, 4 blocked workflow rows, and 7 blockers.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime pronunciation source targets, recording/scoring targets, audio asset targets, and root config targets.
+- [x] Keep `productionReady`, `readyForLive`, `pronunciationApprovalWorkflowReady`, `reviewerSignoffAllowed`, `approvalRecordsCreated`, `finalScorerPromotionAllowed`, `liveAdapterAllowed`, `progressPenaltyAllowed`, `sourceWritesUsed`, `liveEditsAllowed`, `recordingFilesWritten`, `scoringFilesWritten`, and audio inference false.
+- [x] Run focused pronunciation approval workflow audit Jest: 1 suite, 5 tests passed.
+- [x] Run related pronunciation chain Jest: 9 suites, 49 tests passed.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-pronunciation-approval-workflow-audit.json`.
+- [x] Run broad Personal Plans Jest: 201 suites, 1253 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [ ] This audit is not reviewer approval, not approval records, not scorer attachment, not recording/scored-attempt evidence, not final scorer promotion, not live adapter enablement, not progress penalty enablement, and not production readiness.
+
+## Update 2026-06-04 - P3.121 Route live-release workflow audit
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a route live-release workflow audit as the next coherent non-live layer because audio/pronunciation remain evidence-blocked, while route/UI still needed one final reviewer workflow over signature, approval, route registration, regression, and device verification blockers.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_route_live_release_workflow_audit.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_route_live_release_workflow_audit` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_route_live_release_workflow_audit.ts`.
+- [x] The audit consumes the route prerequisite artifact refresh layer and maps the release through product-copy signature, route signature request, route approval guard, catalog route registration, quiz route registration, UI route registration, live route regression, and device route opening verification stages.
+- [x] Current audit status is honestly blocked: `blocked_before_product_copy_signature`, release decision `hold`, 17 prerequisite artifacts, 17 non-live artifacts, 0 live artifacts, 5 route blockers, 4 live acceptance criteria, 8 workflow stages, 8 blocked stages, and 8 blockers.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Keep `productionReady`, `readyForLive`, `routeLiveReleaseReady`, `productCopySignatureReady`, `routeSignatureReady`, `routeApprovalReady`, `liveImplementationAllowed`, route registration flags, regression/device verification flags, `sourceWritesUsed`, and `liveEditsAllowed` false.
+- [x] Run focused route live-release workflow audit Jest: 1 suite, 5 tests passed.
+- [x] Run related route/signature/bridge chain Jest: 12 suites, 88 tests passed.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-route-live-release-workflow-audit.json`.
+- [x] Run broad Personal Plans Jest: 202 suites, 1258 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [ ] This audit is not product-copy signature, not route approval, not source route registration, not live regression, not device verification, and not production readiness.
+
+## Update 2026-06-04 - P3.122 Master production readiness matrix
+
+- [x] Confirm real MP3 assets are still unavailable for this pass and generation was not explicitly authorized.
+- [x] Select a master production readiness matrix as the next coherent non-live layer because audio, pronunciation, and route/UI each have their own hold gates, but reviewers still need one final cross-layer go/no-go artifact.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_master_production_readiness_matrix.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_master_production_readiness_matrix` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_master_production_readiness_matrix.ts`.
+- [x] The matrix consumes the final audio approval workflow audit, pronunciation approval workflow audit, and route live-release workflow audit without touching runtime route, storage, audio registration, or navigation modules.
+- [x] Current matrix status is honestly blocked: `hold_audio_pronunciation_route_blocked`, release decision `hold`, 3 layers, 3 hold layers, 0 production-ready layers, 20 total blockers, 10 expected MP3 assets, 0 approved final audio assets, 4 pronunciation references, 0 approved pronunciation references, 8 route workflow stages, 8 blocked route stages, and 0 live artifacts.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Keep `productionReady`, `readyForLive`, audio/pronunciation/route production flags, explicit approval flags, live asset registration, live route registration, live runtime changes, `sourceWritesUsed`, and `liveEditsAllowed` false.
+- [x] Run focused master production readiness matrix Jest: 1 suite, 8 tests passed.
+- [x] Run related audio/pronunciation/route/master chain Jest: 9 suites, 49 tests passed.
+- [x] Run broad Personal Plans Jest: 203 suites, 1266 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-master-production-readiness-matrix.json`.
+- [ ] This matrix is not approval, not generated-file validation, not checksum evidence, not pronunciation scoring evidence, not route signature, not live registration, not live regression, not device verification, and not production readiness.
+
+## Update 2026-06-04 - P3.123 Signed route approval intake report
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a signed route approval intake report as the next coherent non-live layer because the route chain has an unsigned handoff, but no separate intake artifact for a future signed approval payload.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_signed_route_approval_intake_report.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_signed_route_approval_intake_report` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_signed_route_approval_intake_report.ts`.
+- [x] The report consumes the unsigned signed-approval handoff packet and validates reviewer name, reviewer role, approval timestamp, full route-bundle scope, all 13 required evidence paths, full regression scope, and decision text.
+- [x] Missing payload status is honestly blocked: `blocked_missing_signed_payload`, release decision `hold`, 7 required fields, 0 valid fields, 7 missing fields, 13 required evidence paths, 0 accepted evidence paths, and 8 blockers.
+- [x] Partial payloads are rejected without creating route approval, route registration, regression permission, device verification permission, source writes, or live edits.
+- [x] Complete payloads are accepted only as `signed_payload_ready_for_separate_route_approval_review`; they still do not create approval artifacts or unlock live routes.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Run focused signed route approval intake Jest: 1 suite, 11 tests passed.
+- [x] Restore prerequisite unsigned signed-approval handoff artifact via related Jest: 1 suite, 8 tests passed.
+- [x] Run related route/master chain Jest: 6 suites, 47 tests passed.
+- [x] Run broad Personal Plans Jest: 204 suites, 1277 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-signed-route-approval-intake-report.json`.
+- [ ] This report is not route approval, not signed approval artifact creation, not route registration, not live regression, not device verification, not audio/pronunciation readiness, and not production readiness.
+
+## Update 2026-06-04 - P3.124 Signed route approval artifact gate
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a signed route approval artifact gate as the next coherent non-live layer because P3.123 validates future signed payload intake but still needs a separate artifact gate before any route registration can be discussed.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_signed_route_approval_artifact_gate.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_signed_route_approval_artifact_gate` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_signed_route_approval_artifact_gate.ts`.
+- [x] The gate consumes the signed route approval intake report and blocks artifact creation until the intake status is `signed_payload_ready_for_separate_route_approval_review`.
+- [x] Current canonical gate status is honestly blocked: `blocked_before_signed_payload_acceptance`, release decision `hold`, 7 required intake fields, 0 valid intake fields, 0 accepted evidence paths, 13 missing evidence paths, 8 carried intake blockers, and 6 artifact blockers.
+- [x] Accepted intake payloads can only produce a non-live signed approval artifact candidate; they still do not create the approval artifact, accept route approval, register routes, allow live regression, allow device verification, write source, or edit live runtime.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Run focused signed route approval artifact gate Jest: 1 suite, 11 tests passed.
+- [x] Run related route approval chain Jest: 5 suites, 43 tests passed.
+- [x] Run broad Personal Plans Jest: 205 suites, 1288 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-signed-route-approval-artifact-gate.json`.
+- [ ] This gate is not signed approval payload intake, not signed approval artifact creation, not route approval acceptance, not route registration, not live regression, not device verification, not audio/pronunciation readiness, and not production readiness.
+
+## Update 2026-06-04 - P3.125 Route registration implementation preflight v2
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a route registration implementation preflight v2 as the next coherent non-live layer because P3.124 separates signed approval artifact readiness from future source-registration work, but the catalog/quiz/UI route registration implementation pass still needed its own gate.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_route_registration_implementation_preflight_v2.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_route_registration_implementation_preflight_v2` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_route_registration_implementation_preflight_v2.ts`.
+- [x] The preflight consumes the signed route approval artifact gate and maps the future source-registration pass across catalog route registration, quiz route registration, and UI route registration families.
+- [x] Current canonical preflight status is honestly blocked: `blocked_before_signed_approval_artifact_candidate`, release decision `hold`, 3 route families, 3 blocked route families, 7 planned catalog routes, 7 planned quiz routes, 5 planned UI opening contracts, signed approval artifact ready `false`, source registration plan ready `false`, 6 inherited artifact blockers, and 7 implementation blockers.
+- [x] If a future artifact gate reaches `signed_approval_artifact_candidate_ready_non_live`, this preflight can only prepare a non-live source-registration plan; it still does not allow catalog/quiz/UI registration, live regression, device verification, source writes, or live edits.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Run focused route registration implementation preflight v2 Jest: 1 suite, 11 tests passed.
+- [x] Run related route registration chain Jest: 6 suites, 54 tests passed.
+- [x] Run broad Personal Plans Jest: 206 suites, 1299 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-route-registration-implementation-preflight-v2.json`.
+- [ ] This preflight is not signed approval artifact creation, not route approval acceptance, not source registration, not live route regression, not device verification, not audio/pronunciation readiness, and not production readiness.
+
+## Update 2026-06-04 - P3.126 Live route regression evidence preflight
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select a live route regression evidence preflight as the next coherent non-live layer because P3.125 maps future route registration, but regression and device evidence still needed their own gate.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_live_route_regression_evidence_preflight.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_live_route_regression_evidence_preflight` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_live_route_regression_evidence_preflight.ts`.
+- [x] The preflight consumes route registration implementation preflight v2 and maps future route evidence across 7 regression suites and 5 device opening checks.
+- [x] Current canonical preflight status is honestly blocked: `blocked_before_source_registration_plan`, release decision `hold`, 7 regression suites, 7 blocked regression suites, 5 device checks, 5 blocked device checks, 3 route families, route registration complete `false`, 7 inherited implementation blockers, and 6 evidence blockers.
+- [x] If a future source-registration plan is ready, this preflight can only prepare non-live regression/device evidence checklists; it still does not run regression, verify devices, mark routes live, write source, or edit live runtime.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Run focused live route regression evidence preflight Jest: 1 suite, 11 tests passed.
+- [x] Run related route evidence chain Jest: 5 suites, 46 tests passed.
+- [x] Run broad Personal Plans Jest: 207 suites, 1310 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-live-route-regression-evidence-preflight.json`.
+- [ ] This preflight is not source registration, not live route regression evidence, not device verification evidence, not audio/pronunciation readiness, and not production readiness.
+
+## Update 2026-06-04 - P3.127 Master final release readiness v2
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select master final release readiness v2 as the next coherent non-live layer because P3.126 added route regression/device evidence blockers that the original master matrix did not aggregate.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_master_final_release_readiness_v2.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_master_final_release_readiness_v2` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_master_final_release_readiness_v2.ts`.
+- [x] The v2 readiness gate consumes the master production readiness matrix and the live route regression evidence preflight.
+- [x] Restore the missing `.codex-tmp/personal-plans/gavan-week1-master-production-readiness-matrix.json` prerequisite before writing the v2 canonical artifact.
+- [x] Current canonical v2 status is honestly blocked: `hold_audio_pronunciation_route_evidence_blocked`, release decision `hold`, 3 final layers, 0 production-ready layers, 20 master blockers, 6 route evidence blockers, 26 total blockers, 10 expected MP3 assets, 4 pronunciation references, 8 route workflow stages, 7 route regression suites, and 5 route device checks.
+- [x] Keep final release, production readiness, ready-for-live, audio readiness, pronunciation readiness, route readiness, regression evidence, device evidence, source writes, and live edits false.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Run focused master final release readiness v2 Jest: 1 suite, 11 tests passed.
+- [x] Run related final readiness chain Jest: 5 suites, 46 tests passed.
+- [x] Run broad Personal Plans Jest: 208 suites, 1321 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-master-final-release-readiness-v2.json`.
+- [ ] This v2 gate is not audio approval, not pronunciation scoring evidence, not signed route approval, not source registration, not live route regression evidence, not device verification evidence, and not production readiness.
+
+## Update 2026-06-04 - P3.128 Production evidence acquisition packet
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select production evidence acquisition packet as the next coherent non-live layer because P3.127 establishes the final go/no-go hold, but the remaining blockers need a concrete external evidence request packet.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_production_evidence_acquisition_packet.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_production_evidence_acquisition_packet` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_production_evidence_acquisition_packet.ts`.
+- [x] The packet consumes master final release readiness v2 and maps its 26 blockers into 3 acquisition streams: audio, pronunciation, and route.
+- [x] Current canonical packet status is honestly blocked: `awaiting_external_production_evidence`, release decision `hold`, 3 streams, 28 evidence requests, 12 audio requests, 6 pronunciation requests, 10 route requests, 0 fulfilled requests, and 28 blocked requests.
+- [x] Include the exact 10 expected MP3 output paths under `assets/audio/personal-plans/gavan/week1/day1/gavan_d1_t01.mp3` through `gavan_d1_t10.mp3`.
+- [x] Keep production readiness, ready-for-live, evidence acquisition complete, audio evidence complete, pronunciation evidence complete, route evidence complete, source writes, and live edits false.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime route source targets, storage/navigation-like targets, audio asset targets, and root config targets.
+- [x] Run focused production evidence acquisition packet Jest: 1 suite, 11 tests passed.
+- [x] Run related final evidence acquisition chain Jest: 5 suites, 43 tests passed.
+- [x] Run broad Personal Plans Jest: 209 suites, 1332 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-production-evidence-acquisition-packet.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.128 progress: overall 89%, verification 100%, content/reviewer packets 95%, audio approval/registration/readiness 72%, pronunciation scoring 67%, live route/UI 76%.
+- [ ] This packet is not external evidence itself, not audio generation, not audio approval, not pronunciation scoring, not signed route approval, not source registration, not regression/device evidence, and not production readiness.
+
+## Update 2026-06-04 - P3.129 Production evidence intake validation report
+
+- [x] Confirm real MP3 assets are still unavailable: `assets/audio/personal-plans` does not exist, and generation was not explicitly authorized in this pass.
+- [x] Select production evidence intake validation as the next coherent non-live layer because P3.128 created 28 external evidence requests, but future real files need a strict intake gate before any downstream approval or registration work.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_production_evidence_intake_validation_report.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_production_evidence_intake_validation_report` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_production_evidence_intake_validation_report.ts`.
+- [x] The report consumes the P3.128 production evidence acquisition packet and maps each request to a filesystem intake row with `missing_expected_file`, `invalid_evidence_file`, or `present_pending_review`.
+- [x] Validate future MP3 evidence with MP3 header/size checks and future JSON evidence with JSON parsing plus unsafe production/live claim rejection.
+- [x] Keep present files as pending review only; do not approve audio, pronunciation, route source registration, live route regression, device verification, ready-for-live, or production readiness.
+- [x] Current canonical report status is honestly blocked: `blocked_missing_external_evidence`, release decision `hold`, 28 intake rows, 0 present evidence files, 28 missing evidence files, 0 invalid evidence files, and 28 blocked requests.
+- [x] Restrict writes to `.codex-tmp` or `docs/reports`; reject runtime/source targets, audio asset targets, and root config targets.
+- [x] Run focused production evidence intake validation report Jest: 1 suite, 10 tests passed.
+- [x] Run related production evidence intake chain Jest: 6 suites, 53 tests passed.
+- [x] Run broad Personal Plans Jest: 210 suites, 1342 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-production-evidence-intake-validation-report.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.129 progress: overall 90%, verification 100%, content/reviewer packets 95%, audio approval/registration/readiness 73%, pronunciation scoring 68%, live route/UI 77%.
+- [ ] This report is not external evidence itself, not audio approval, not pronunciation scoring, not signed route approval, not source registration, not regression/device evidence, and not production readiness.
+
+## Update 2026-06-05 - P3.130 OpenAI audio generation execution and audio gate refresh
+
+- [x] Treat the user's latest message as explicit authorization to generate the 10 OpenAI MP3 files.
+- [x] Confirm `OPENAI_API_KEY` is present in `.env.local` without printing the secret.
+- [x] Run the existing OpenAI audio generation worker in execute mode through `tools/personal_plan_gavan_week1_generate_openai_audio.ts`.
+- [x] Generate 10/10 Gavan week 1 MP3 files at the exact P3.105 handoff/generation-plan output paths under `assets/audio/personal-plans/gavan/week1/...`.
+- [x] Write `.codex-tmp/personal-plans/gavan-week1-openai-audio-generation-execute.json`: 10 jobs, 10 generated, 0 skipped, 0 failed, 0 blocked.
+- [x] Run generated audio asset validation through `tools/personal_plan_gavan_week1_generated_audio_assets.ts`: 10 jobs, 10 assets, 0 blockers.
+- [x] Write `.codex-tmp/personal-plans/gavan-week1-generated-audio-checksums.json` with SHA-256 evidence for all 10 generated MP3 files.
+- [x] Refresh `.codex-tmp/personal-plans/gavan-week1-generated-audio-intake-report.json`: `ready_for_explicit_audio_approval`, 10 provided, 10 valid, 0 invalid, 0 missing.
+- [x] Refresh `.codex-tmp/personal-plans/gavan-week1-audio-explicit-approval-intake-report.json`: `blocked_missing_approval_records`, 10 valid generated files, 0 approval records, 10 missing approval records.
+- [x] Fix the audio evidence bootstrap duration bridge so real generated files are not marked invalid only because bootstrap does not run a duration probe.
+- [x] Fix the audio production readiness summary so discovered MP3 count reflects checksum-ready generated files instead of staying hardcoded at 0.
+- [x] Refresh final audio registration, approval-record packet, production readiness gate, and final audio approval workflow audit.
+- [x] Current audio production readiness is honestly improved but still blocked: `hold_missing_explicit_approval_records`, 10 discovered MP3 files, 10 valid generated files, 10 checksum-ready files, 0 approval records, 0 final promoted audio files, and 3 blockers.
+- [x] Refresh master production readiness matrix: audio layer moved to `blocked_before_reviewer_signoff`, total master blockers reduced from 20 to 18.
+- [x] Refresh master final release readiness v2: total final blockers reduced from 26 to 24.
+- [x] Run focused audio evidence chain bootstrap Jest after fixing the duration bridge: 1 suite, 5 tests passed.
+- [x] Run focused audio production readiness gate Jest after fixing discovered MP3 count: 1 suite, 5 tests passed.
+- [x] Run related audio generation/readiness chain Jest: 9 suites, 44 tests passed.
+- [x] Run focused updated matrix/intake Jest: 2 suites, 18 tests passed.
+- [x] Run broad Personal Plans Jest: 210 suites, 1344 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.130 progress: overall 93%, verification 100%, content/reviewer packets 95%, audio approval/registration/readiness 84%, pronunciation scoring 68%, live route/UI 77%.
+- [ ] Generated MP3 files are not approved audio.
+- [ ] Live audio registration remains blocked until explicit approval records, final audio promotion, and a guarded registry pass exist.
+- [ ] Pronunciation readiness remains separate and still requires real scorer/recording/scored-attempt evidence.
+
+## Update 2026-06-05 - P3.131 Explicit audio approval records and final promotion packet
+
+- [x] Treat the user's "Отличные аудио! дальше" message as the explicit human audio approval signal for the already generated Gavan week 1 MP3 files.
+- [x] Add TDD coverage in `tests/personal_plan_gavan_week1_audio_explicit_approval_records_and_promotion.test.ts`.
+- [x] Verify the red phase: the focused test failed because `tools/personal_plan_gavan_week1_audio_explicit_approval_records_and_promotion` did not exist.
+- [x] Implement `tools/personal_plan_gavan_week1_audio_explicit_approval_records_and_promotion.ts`.
+- [x] Reuse the existing audio approval gate to build 10 explicit approval records with reviewer id, ISO timestamp, and checksum-bound asset ids.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-audio-explicit-approval-records.json`: 10 approval records, 10 valid records, 0 invalid records.
+- [x] Write canonical `.codex-tmp/personal-plans/gavan-week1-final-audio-promotion-report.json`: `ready_for_guarded_live_audio_registry_preflight`, 10 valid generated files, 10 valid approval records, 10 promoted final audio assets, 0 registry-ready assets, and 1 blocker.
+- [x] Refresh `.codex-tmp/personal-plans/gavan-week1-audio-explicit-approval-intake-report.json`: `ready_for_final_audio_approval_gate_review`, 10 valid generated files, 10 valid approval records, 0 missing approval records.
+- [x] Keep live registration blocked: the promotion packet does not import runtime registries, does not write `app/`, does not write source registry files, and does not mark `readyForLive`.
+- [x] Run focused audio explicit approval records and promotion Jest: 1 suite, 6 tests passed.
+- [x] Run related audio approval/readiness chain Jest: 7 suites, 36 tests passed.
+- [x] Run broad Personal Plans Jest: 211 suites, 1350 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.131 progress: overall 95%, verification 100%, content/reviewer packets 95%, audio approval/registration/readiness 92%, pronunciation scoring 68%, live route/UI 77%.
+- [ ] Final promoted audio is not live registered audio.
+- [ ] The next audio pass must be a guarded live audio registry/source-registration preflight that consumes the promotion report and still preserves source/runtime contracts.
+- [ ] Pronunciation readiness remains separate and still requires real scorer/recording/scored-attempt evidence.
+
+## Update 2026-06-05 - P3.132 Universal generation matrix and Day 1 content start
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_matrix_and_day1_content.test.ts`.
+- [x] Verify the red phase: the focused test failed because `docs/personal-plans-generation-matrix.md` was missing and generated Day 1 content still contained technical placeholder copy.
+- [x] Create `docs/personal-plans-generation-matrix.md` as the generator contract for a universal 4-week / 28-day Personal Plans matrix.
+- [x] Lock the product rule in documentation: Personal Plans are separate tasks, selected daily time chooses the initial visible workload, and lessons are not plan tasks.
+- [x] Define the day-by-day mode progression across `plan_phrase_build`, `plan_missing_word`, `plan_choose_natural_phrase`, `plan_listen_choose`, `plan_listen_build`, `plan_pronunciation_repeat`, `plan_phrase_recall`, and `plan_quiz`.
+- [x] Define plan-specific progression for Mitap, Voyazh, Impuls, and Echo.
+- [x] Start real generation content with concrete Day 1 phrase packets for `mitap_d001_content_unit`, `voyazh_d001_content_unit`, `impuls_d001_content_unit`, and `echo_d001_content_unit`.
+- [x] Remove technical placeholder language from generated phrase teaching notes.
+- [x] Keep plan cards plan-native: no `/lesson1`, no `/lesson_menu`, no linked lesson slice as a visible Personal Plan task.
+- [x] Superseded by P3.142: selected daily time now changes only the initial visible task count; it still does not delete task types from the full day pool.
+- [x] Run focused generation matrix Jest: 1 suite, 3 tests passed.
+- [x] Run related Personal Plans routing/screen/hard-gate Jest: 4 suites, 28 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false`.
+- [x] Restore `docs/reports/personal-plans-progress-browser-report.html` with P3.132 progress: overall 96%, content/reviewer packets 96%, audio approval/registration/readiness 92%, pronunciation scoring 68%, verification 100%, live route/UI/generation 82%.
+- [ ] Day 2-28 content packets are not fully generated yet.
+- [ ] The current matrix is a generator contract and first content batch, not full production readiness.
+- [ ] Pronunciation readiness still requires real scorer/recording/scored-attempt evidence.
+- [ ] Promoted Gavan audio still needs guarded live registry/source registration before it is live audio.
+
+## Update 2026-06-05 - P3.133 Pre-generation readiness and variable daily task progression
+
+- [x] Add TDD coverage in `tests/personal_plan_pre_generation_readiness_contract.test.ts`.
+- [x] Verify the red phase: the focused test failed because `docs/personal-plans-pre-generation-readiness.md` was missing and the browser report still pushed toward Day 2-28 generation.
+- [x] Create `docs/personal-plans-pre-generation-readiness.md`.
+- [x] Lock the current decision: do not generate Day 2-28 yet.
+- [x] Define the concrete pre-generation prerequisites: mode contract, output schema, prompt template, review rubric, fixture gate, and browser report.
+- [x] Update the 4-week matrix so different days use different task sets.
+- [x] Remove the old "all core modes" progression language.
+- [x] Lock the revised rule: generate the maximum day pool and reveal the selected-time slice first.
+- [x] Update `docs/reports/personal-plans-progress-browser-report.html` so the visible report shows "finish before generation" instead of treating missing Day 2-28 content as the next immediate task.
+- [x] Run focused pre-generation/matrix Jest: 2 suites, 5 tests passed.
+- [ ] The next pass should build the mode contract + output schema + fixture gate before generating more content.
+
+## Update 2026-06-05 - P3.134 Generation contract gate
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_contract_gate.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_generation_contract.ts` did not exist.
+- [x] Add `app/personal_plan_generation_contract.ts`.
+- [x] Define `GENERATION_MODE_CONTRACT` for all plan-native modes.
+- [x] Define `GeneratedPersonalPlanDayPacket` as the pre-generation output schema.
+- [x] Define `DAILY_TASK_SET_MATRIX` for 28 days with variable daily task sets.
+- [x] Define `GENERATION_PROMPT_TEMPLATE` and `GENERATION_REVIEW_RUBRIC`.
+- [x] Add `validateGeneratedDayPacket` fixture gate.
+- [x] Superseded by P3.142: fixture gate rejects lesson tasks, missing time-tier visible-slice rules, placeholder/internal copy, duplicate phrases, production-ready self-claims, unknown modes, and partial mode pools.
+- [x] Update `docs/personal-plans-pre-generation-readiness.md` and browser progress report.
+- [x] Run focused generation contract Jest: 1 suite, 4 tests passed.
+- [ ] Next pass: reviewer workflow for generated packets, still without generating Day 2-28.
+
+## Update 2026-06-05 - P3.135 Generated packet reviewer workflow
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_review_workflow.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_generation_review_workflow.ts` did not exist.
+- [x] Add `app/personal_plan_generation_review_workflow.ts`.
+- [x] Build explicit approve/reject review records with reviewer id, ISO timestamp, notes, packet id, and checksum.
+- [x] Approve only packets that pass `validateGeneratedDayPacket`.
+- [x] Reject invalid packets even when a review input says approve.
+- [x] Reject missing reviewer metadata, invalid timestamps, missing records, duplicate records, checksum mismatches, and source/live write attempts.
+- [x] Build approval bundle validation for `valid_for_source_intake_preflight`.
+- [x] Keep `sourceRuntimeWriteAllowed` and `liveRegistrationAllowed` false throughout the workflow.
+- [x] Update pre-generation readiness docs and browser progress report.
+- [x] Run focused reviewer workflow Jest: 1 suite, 5 tests passed.
+- [ ] Next pass: source-intake preflight for approved generated packets, still without generating Day 2-28 or writing runtime source.
+
+## Update 2026-06-05 - P3.136 Source-intake preflight
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_source_intake_preflight.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_generation_source_intake_preflight.ts` did not exist.
+- [x] Add `app/personal_plan_generation_source_intake_preflight.ts`.
+- [x] Build source-intake rows from approved generated packet bundles.
+- [x] Keep `sourceRuntimeWriteAllowed`, `liveRegistrationAllowed`, and `generatedContentCreationAllowed` false.
+- [x] Set successful preflight status to `ready_for_import_format_design`.
+- [x] Validate that approved packets can move only to the next non-live step: `content_packet_import_format`.
+- [x] Block source writes, live registration, generated content creation, checksum drift, missing rows, and unapproved packets.
+- [x] Update pre-generation readiness docs and browser progress report.
+- [x] Run focused source-intake Jest: 1 suite, 3 tests passed.
+- [ ] Next pass: content packet import format, still without generating Day 2-28 or writing runtime source.
+
+## Update 2026-06-05 - P3.137 Content packet import format
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_import_format.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_generation_import_format.ts` did not exist.
+- [x] Add `app/personal_plan_generation_import_format.ts`.
+- [x] Convert source-intake preflight rows and approved packet data into a stable non-live import artifact.
+- [x] Carry packet checksum, plan/day ids, week role, task modes, phrases, recall links, audio needs, pronunciation needs, and blockers.
+- [x] Keep source/runtime writes, live registration, and generated content creation false.
+- [x] Block missing days, duplicate day ids, checksum drift, source writes, live registration, and generation attempts.
+- [x] Run focused import format Jest: 1 suite, 3 tests passed.
+
+## Update 2026-06-05 - P3.138 Runtime/source write guard
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_runtime_source_write_guard.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_generation_runtime_source_write_guard.ts` did not exist.
+- [x] Add `app/personal_plan_generation_runtime_source_write_guard.ts`.
+- [x] Guard catalog source, route source, UI surface, storage contract, asset registry, and test fixture source.
+- [x] Keep source/runtime writes, live registration, generated content creation, and production readiness false.
+- [x] Require a separate future integration pass before any source/runtime write.
+- [x] Set next required step to `plan_specific_generation_prompts`.
+- [x] Run focused runtime/source write guard Jest: 1 suite, 3 tests passed.
+- [ ] Next pass: plan-specific generation prompts, still without generating Day 2-28.
+
+## Update 2026-06-05 - P3.139 Plan-specific generation prompts
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_plan_specific_prompts.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_generation_plan_specific_prompts.ts` did not exist.
+- [x] Add `app/personal_plan_generation_plan_specific_prompts.ts`.
+- [x] Define separate prompt rules for Gavan, Mitap, Voyazh, Impuls, and Echo.
+- [x] Block one generic prompt from being reused for every plan.
+- [x] Include fixed rules in every prompt: selected daily time chooses initial visibility, lessons are not plan tasks, every day keeps the maximum mode pool, and blockers are returned instead of fake readiness.
+- [x] Define scenario keywords, scenario rules, progression rules, and forbidden patterns for every plan.
+- [x] Keep source/runtime writes, live registration, and generated content creation false.
+- [x] Update pre-generation readiness docs and browser progress report.
+- [x] Run focused plan-specific prompts Jest: 1 suite, 4 tests passed.
+- [ ] Next pass: human/content review checklist, still without generating Day 2-28.
+
+## Update 2026-06-05 - P3.140 Recommended human/content review checklist
+
+- [x] Add TDD coverage in `tests/personal_plan_generation_recommended_review_checklist.test.ts`.
+- [x] Verify the red phase: the focused test failed because `docs/personal-plans-human-content-review-checklist.md` did not exist.
+- [x] Add `docs/personal-plans-human-content-review-checklist.md`.
+- [x] Mark the checklist as recommended, non-blocking, not a gate, and not production approval.
+- [x] Cover phrase quality, translation quality, teaching notes, daily task set fit, plan-specific fit, and reviewer notes.
+- [x] Keep the checklist separate from hard gates and production approval.
+- [x] Update pre-generation readiness docs and browser progress report.
+- [x] Run focused recommended checklist Jest: 1 suite, 1 test passed.
+- [ ] Next pass: dry-run generator harness, still without generating Day 2-28.
+
+## Update 2026-06-05 - P3.142 Time-tier setup, maximum day pool, and add-more guard
+
+- [x] Add TDD coverage for the revised workload rule in `tests/personal_plan_generation_contract_gate.test.ts`, `tests/personal_plan_state.test.ts`, `tests/personal_plan_screen_contract.test.ts`, and `tests/personal_plan_setup_theme_contract.test.ts`.
+- [x] Verify the red phase for the add-more guard: the focused screen contract failed while the screen still used only the base `runtime.todayDone` flag.
+- [x] Add the plan setup time question with 5/10/15/20 minute choices.
+- [x] Store the selected setup minutes in the active Personal Plan state instead of using a plan default.
+- [x] Keep every generated day as a maximum mode pool: one task per plan-native mode where content exists.
+- [x] Use selected time only for the initial visible slice: 5 minutes = 2-4 tasks, 10 minutes = 3-5, 15 minutes = 4-5, 20 minutes = 5-6.
+- [x] Add `allTasksForDay(...)` and `nextTaskAfterVisibleSlice(...)` helpers so the runtime can reveal unrevealed day tasks without changing the source pool.
+- [x] Show "Add more task" only after all currently visible tasks are completed, including tasks revealed by earlier add-more clicks.
+- [x] Keep lessons separate from Personal Plan tasks and keep source/runtime generation claims non-live.
+- [x] Update generator prompt rules, pre-generation docs, final checklist wording, and browser progress report.
+- [x] Run focused workload/UI/setup/generation Jest: 4 suites, 30 tests passed.
+- [x] Run related Personal Plans generation/review/setup/state Jest: 10 suites, 46 tests passed.
+- [x] Run `npx tsc --noEmit --pretty false`: passed.
+- [ ] Next pass: internal quality gate over the queued 140 chat-draft candidate days, still without runtime/source import.
+
+## Update 2026-06-05 - P3.143 Internal quality gate over 140 chat-draft candidate days
+
+- [x] Add TDD coverage in `tests/personal_plan_internal_quality_gate.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_internal_quality_gate.ts` did not exist.
+- [x] Add `app/personal_plan_internal_quality_gate.ts`.
+- [x] Consume the existing bulk generation review queue without writing runtime/source.
+- [x] Score all 140 chat-draft candidate days from the completed 28-day base cycle across five plans.
+- [x] Mark 134 candidate days as `accepted_for_source_intake_candidate`.
+- [x] Mark 6 candidate days as `rework_required`: Voyazh Day 2, Gavan Day 1, Gavan Day 2, Echo Day 2, Gavan Day 3, Echo Day 3.
+- [x] Keep blocked days at 0, but keep production readiness, source/runtime writes, live registration, and generated-content creation false.
+- [x] Write `.codex-tmp/personal-plans/internal-quality-gate.json`.
+- [x] Update pre-generation readiness docs and browser progress report.
+- [x] Run focused internal quality gate Jest: 1 suite, 3 tests passed.
+- [ ] Next pass: rewrite/rework the 6 lower-quality candidate days, then rerun the internal quality gate before source-intake preflight.
+
+## Update 2026-06-05 - P3.144 Rework resolution for all internal quality rows
+
+- [x] Add TDD coverage in `tests/personal_plan_internal_quality_gate_rework_resolution.test.ts`.
+- [x] Verify the red phase: the focused test failed while the internal quality gate still reported 134 accepted and 6 rework rows.
+- [x] Rewrite the 6 lower-quality chat-draft candidate rows in `docs/reports/personal-plans-fill-progress-data.json`.
+- [x] Rework rows closed: Voyazh Day 2, Gavan Day 1, Gavan Day 2, Echo Day 2, Gavan Day 3, Echo Day 3.
+- [x] Rerun the internal quality artifact at `.codex-tmp/personal-plans/internal-quality-gate.json`.
+- [x] Internal quality result is now 140 accepted, 0 rework, 0 blocked.
+- [x] Keep production readiness, source/runtime writes, live registration, and generated-content creation false.
+- [x] Update browser progress report and fill progress fallback.
+- [x] Run focused rework/internal quality Jest: 2 suites, 4 tests passed after updating expectations.
+- [ ] Next pass: run source-intake preflight over the 140 accepted non-live candidates.
+
+## Update 2026-06-05 - P3.145 Accepted-candidate source-intake preflight
+
+- [x] Add TDD coverage in `tests/personal_plan_accepted_candidate_source_intake_preflight.test.ts`.
+- [x] Verify the red phase: the focused test failed because the accepted-candidate source-intake functions did not exist.
+- [x] Extend `app/personal_plan_generation_source_intake_preflight.ts` with a non-live preflight for accepted internal-quality candidates.
+- [x] Accept 140 candidate rows for `content_packet_import_format`.
+- [x] Block fake production readiness, source/runtime writes, live registration, generated-content creation, checksum drift, and non-accepted candidate rows.
+- [x] Write `.codex-tmp/personal-plans/accepted-candidate-source-intake-preflight.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.145 progress.
+- [x] Run focused accepted-candidate source-intake Jest: 1 suite, 2 tests passed.
+- [x] Restore `docs/reports/personal-plans-fill-progress-data.json` with 140 non-live chat-draft rows so the bulk queue and internal quality gates remain reproducible.
+- [x] Update legacy generation-review/import/runtime-write-guard fixtures to the current contract: full maximum mode pool, selected time as initial visible workload, and no fake blocker-based approval.
+- [x] Run related pre-generation Jest: 11 suites, 33 tests passed.
+- [ ] TypeScript gate is currently blocked outside this pass by `app/club_screen.tsx(1547,28): Cannot find name 'setLeaderboardTopY'`.
+- [x] Next pass completed in P3.146: convert accepted source-intake rows into the content packet import format, still without runtime/source writes.
+
+## Update 2026-06-05 - P3.146 Accepted-candidate content packet import format
+
+- [x] Add TDD coverage in `tests/personal_plan_accepted_candidate_content_packet_import_format.test.ts`.
+- [x] Verify the red phase: the focused test failed because accepted-candidate content packet import functions did not exist.
+- [x] Extend `app/personal_plan_generation_import_format.ts` with a non-live import format for accepted candidate rows.
+- [x] Convert 140 accepted source-intake rows into `personal_plan_accepted_candidate_content_packet_import_format`.
+- [x] Keep source/runtime writes, live registration, generated-content creation, and production readiness false.
+- [x] Validate day coverage, duplicate plan/day rows, checksums, non-accepted candidate rows, and fake readiness flags.
+- [x] Write `.codex-tmp/personal-plans/accepted-candidate-content-packet-import-format.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.146 progress.
+- [x] Run focused accepted-candidate content packet import Jest: 1 suite, 3 tests passed.
+- [x] Next pass completed in P3.147: build the runtime/source write guard for the 140-row accepted-candidate import format, still without runtime/source writes.
+
+## Update 2026-06-05 - P3.147 Accepted-candidate runtime/source write guard
+
+- [x] Add TDD coverage in `tests/personal_plan_accepted_candidate_runtime_source_write_guard.test.ts`.
+- [x] Verify the red phase: the focused test failed because accepted-candidate runtime/source write guard functions did not exist.
+- [x] Extend `app/personal_plan_generation_runtime_source_write_guard.ts` with a hold guard for accepted-candidate import format.
+- [x] Guard the 140-row import format before any runtime/source integration pass.
+- [x] Block catalog source, route source, UI surface, storage contract, asset registry, and test fixture source.
+- [x] Keep source/runtime writes, live registration, generated-content creation, and production readiness false.
+- [x] Write `.codex-tmp/personal-plans/accepted-candidate-runtime-source-write-guard.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.147 progress.
+- [x] Run focused accepted-candidate runtime/source write guard Jest: 1 suite, 3 tests passed.
+- [x] Next pass completed in P3.148: build an explicit integration plan for the 140-row import format without applying source/runtime writes.
+
+## Update 2026-06-05 - P3.148 Accepted-candidate explicit integration plan
+
+- [x] Add TDD coverage in `tests/personal_plan_accepted_candidate_explicit_integration_plan.test.ts`.
+- [x] Verify the red phase: the focused test failed because the explicit integration plan module did not exist.
+- [x] Add `app/personal_plan_accepted_candidate_explicit_integration_plan.ts`.
+- [x] Build a non-live explicit integration plan from the accepted-candidate runtime/source write guard.
+- [x] Define 6 planned-only stages: catalog mapping, route mapping, UI surface binding, storage compatibility, asset registry hold, and test fixture plan.
+- [x] Require 6 verification gates before any implementation pass.
+- [x] Keep source/runtime writes, live registration, generated-content creation, and production readiness false.
+- [x] Write `.codex-tmp/personal-plans/accepted-candidate-explicit-integration-plan.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.148 progress.
+- [x] Run focused explicit integration plan Jest: 1 suite, 3 tests passed.
+- [x] Run related integration-plan chain Jest: 11 suites, 29 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false` passed.
+- [x] Next pass completed in P3.149: build the integration implementation preflight for the 140-row plan, still without applying source/runtime writes.
+
+## Update 2026-06-05 - P3.149 Accepted-candidate integration implementation preflight
+
+- [x] Add TDD coverage in `tests/personal_plan_accepted_candidate_integration_implementation_preflight.test.ts`.
+- [x] Verify the red phase: the focused test failed because the integration implementation preflight module did not exist.
+- [x] Add `app/personal_plan_accepted_candidate_integration_implementation_preflight.ts`.
+- [x] Build a non-live implementation preflight from the accepted-candidate explicit integration plan.
+- [x] Define 6 guarded implementation requests: catalog source, route source, UI surface, storage contract, asset registry, and test fixture source.
+- [x] Keep every implementation request at `applyStatus: not_applied`.
+- [x] Block invalid explicit integration plans, missing implementation requests, already-applied requests, missing verification, and fake source/live/generated/production claims.
+- [x] Write `.codex-tmp/personal-plans/accepted-candidate-integration-implementation-preflight.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.149 progress.
+- [x] Run focused integration implementation preflight Jest: 1 suite, 3 tests passed.
+- [x] Next pass completed in P3.150: guarded runtime/source binding for the 140 accepted candidate days.
+
+## Update 2026-06-05 - P3.150 Accepted-candidate guarded runtime/source binding
+
+- [x] Add TDD coverage in `tests/personal_plan_accepted_candidate_guarded_runtime_source.test.ts`.
+- [x] Verify the red phase: the focused test failed because `PlanDay.source` did not exist yet.
+- [x] Extend `app/personal_plan_catalog.ts` with guarded source metadata for accepted candidate days.
+- [x] Bind the first 28 days of each plan into runtime catalog metadata: 5 plans x 28 days = 140 accepted candidate days.
+- [x] Preserve the full daily task pool while selected time controls only the initial visible slice.
+- [x] Keep live registration, generated-content creation, audio readiness, pronunciation readiness, and production readiness false.
+- [x] Add `app/personal_plan_accepted_candidate_guarded_runtime_source.ts`.
+- [x] Add TDD coverage in `tests/personal_plan_accepted_candidate_guarded_runtime_source_report.test.ts`.
+- [x] Write `.codex-tmp/personal-plans/accepted-candidate-guarded-runtime-source.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.150 progress.
+- [x] Run focused guarded runtime/source Jest: 2 suites, 5 tests passed.
+- [x] Next pass completed in P3.151: day surface, route, storage, and add-more regression gate over the bound runtime catalog.
+
+## Update 2026-06-05 - P3.151 Day surface / route / storage regression gate
+
+- [x] Add TDD coverage in `tests/personal_plan_day_surface_route_storage_regression_gate.test.ts`.
+- [x] Verify the red phase: the focused test failed because the regression gate module did not exist.
+- [x] Add `app/personal_plan_day_surface_route_storage_regression_gate.ts`.
+- [x] Check 140 bound accepted candidate days across day surface, route destinations, storage key scoping, and add-more behavior.
+- [x] Verify 1139 route destinations and 0 normal lesson route destinations.
+- [x] Verify 0 day surface failures, 0 storage scope failures, and 0 add-more failures.
+- [x] Keep live registration, generated-content creation, and production readiness false.
+- [x] Write `.codex-tmp/personal-plans/personal-plan-day-surface-route-storage-regression-gate.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.151 progress.
+- [x] Run focused day surface / route / storage regression gate Jest: 1 suite, 2 tests passed.
+- [x] Next pass completed in P3.152: audio/pronunciation/human-review readiness consolidation without fake production readiness.
+
+## Update 2026-06-05 - P3.152 Audio / pronunciation / final review readiness consolidation
+
+- [x] Add TDD coverage in `tests/personal_plan_audio_pronunciation_human_review_readiness.test.ts`.
+- [x] Verify the red phase: the focused test failed because the readiness consolidation module did not exist.
+- [x] Add `app/personal_plan_audio_pronunciation_human_review_readiness.ts`.
+- [x] Consolidate the remaining post-route blockers after the day surface / route / storage gate.
+- [x] Keep generated/promoted audio from being counted as approved live registered audio.
+- [x] Keep pronunciation blocked without real scorer, recording, and scored-attempt evidence.
+- [x] Mark final human review as pending final user review without treating it as an engineering blocker.
+- [x] Keep live registration, generated-content creation, and production readiness false.
+- [x] Restore `.codex-tmp/personal-plans/personal-plan-day-surface-route-storage-regression-gate.json`.
+- [x] Write `.codex-tmp/personal-plans/personal-plan-audio-pronunciation-human-review-readiness.json`.
+- [x] Restore and refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.152 progress.
+- [x] Next pass completed in P3.153: audio live registration evidence gate, still without fake live audio readiness.
+
+## Update 2026-06-05 - P3.153 Audio live registration evidence gate
+
+- [x] Add TDD coverage in `tests/personal_plan_audio_live_registration_evidence_gate.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_audio_live_registration_evidence_gate.ts` did not exist.
+- [x] Add `app/personal_plan_audio_live_registration_evidence_gate.ts`.
+- [x] Keep the current real state blocked: 10 promoted audio assets, 0 approved/final live registered assets.
+- [x] Count only approved + final runtime audio assets as live registration evidence.
+- [x] Reject generated audio and fake final claims as live registered evidence.
+- [x] Keep `liveRegistrationAllowed: false` and `productionReady: false`.
+- [x] Write `.codex-tmp/personal-plans/personal-plan-audio-live-registration-evidence-gate.json`.
+- [x] Refresh `docs/reports/personal-plans-progress-browser-report.html` with P3.153 progress.
+- [ ] Next pass: pronunciation real-evidence gate or actual approved/final audio registration if explicit approval records and live assets are present.
+
+## Update 2026-06-05 - P3.154 Runtime catalog OpenAI audio generation pass
+
+- [x] Add TDD coverage in `tests/personal_plan_runtime_audio_generation_plan.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_runtime_audio_generation_plan.ts` did not exist.
+- [x] Add `app/personal_plan_runtime_audio_generation_plan.ts`.
+- [x] Build a current-runtime audio generation plan from `PERSONAL_PLAN_CATALOG`, not from the older Gavan week 1 canonical packet.
+- [x] Cover all 5 plans and 5,460 listening task references.
+- [x] Deduplicate by plan + spoken target text so repeated content ids reuse one generated MP3 instead of creating 2,730 duplicate clips.
+- [x] Reduce runtime audio generation to 48 unique OpenAI MP3 jobs with 0 generation-plan blockers.
+- [x] Add `tools/personal_plan_runtime_generate_openai_audio.ts`.
+- [x] Run runtime audio dry-run: 48 jobs, 48 dry-run, 0 failed, 0 blocked.
+- [x] Run runtime OpenAI audio execute: 48 jobs, 38 generated, 10 skipped existing, 0 failed, 0 blocked.
+- [x] Add `tools/personal_plan_runtime_generated_audio_assets.ts`.
+- [x] Validate runtime generated assets with real files and `ffprobe`: 48 jobs, 48 assets, 0 blockers.
+- [x] Write `.codex-tmp/personal-plans/runtime-openai-audio-generation-dry-run.json`.
+- [x] Write `.codex-tmp/personal-plans/runtime-openai-audio-generation-execute.json`.
+- [x] Write `.codex-tmp/personal-plans/runtime-generated-audio-assets.json`.
+- [x] Run focused runtime audio generation Jest: 1 suite, 2 tests passed.
+- [x] Run related audio generation/asset/registry Jest: 4 suites, 10 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false` passed.
+- [ ] Runtime generated MP3 files are not explicit approval records.
+- [ ] Runtime generated MP3 files are not approved/final/live registered audio.
+- [ ] Next pass: runtime generated-audio approval intake plus guarded approved-final registry source registration, then pronunciation real-evidence gate.
+
+## Update 2026-06-05 - P3.155 Runtime audio approval intake and registry source preflight
+
+- [x] Add TDD coverage in `tests/personal_plan_runtime_audio_approval_intake.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_runtime_audio_approval_intake.ts` did not exist.
+- [x] Add `app/personal_plan_runtime_audio_approval_intake.ts`.
+- [x] Consume generated runtime audio assets through the existing checksum-bound `approvePlanAudioAssets` gate.
+- [x] Keep runtime generated MP3 blocked until explicit approval records exist.
+- [x] Write `.codex-tmp/personal-plans/runtime-audio-approval-intake.json`: `blocked_missing_approval_records`, 48 generated assets, 0 approval records, 48 missing approval records.
+- [x] Add TDD coverage in `tests/personal_plan_runtime_audio_registry_source_registration.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_runtime_audio_registry_source_registration.ts` did not exist.
+- [x] Add `app/personal_plan_runtime_audio_registry_source_registration.ts`.
+- [x] Map approved/final runtime assets into a guarded registry source plan only when approval intake is ready.
+- [x] Write `.codex-tmp/personal-plans/runtime-audio-registry-source-registration.json`: `blocked_before_runtime_audio_approval`, 0 approved/final assets, 0 registry candidates.
+- [x] Add `tools/personal_plan_runtime_audio_approval_intake.ts`.
+- [x] Add `tools/personal_plan_runtime_audio_registry_source_registration.ts`.
+- [x] Run focused runtime audio approval intake Jest: 1 suite, 3 tests passed.
+- [x] Run focused runtime audio registry source registration Jest: 1 suite, 2 tests passed.
+- [x] Run related runtime audio approval/registry Jest: 5 suites, 13 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false` passed.
+- [ ] Runtime live audio registration remains blocked until 48 explicit approval records are created and a guarded source write is applied.
+- [ ] Pronunciation readiness still requires real scorer, recording, scored-attempt evidence, and approval.
+
+## Update 2026-06-05 - P3.156 Runtime audio review packet and OpenAI pronunciation scorer contract
+
+- [x] Add TDD coverage in `tests/personal_plan_runtime_audio_approval_review_packet.test.ts`.
+- [x] Verify the red phase: the focused test failed because `app/personal_plan_runtime_audio_approval_review_packet.ts` did not exist.
+- [x] Add `app/personal_plan_runtime_audio_approval_review_packet.ts`.
+- [x] Build checksum-bound human review rows for generated runtime audio without creating approval records.
+- [x] Write `.codex-tmp/personal-plans/runtime-audio-approval-review-packet.json`: `ready_for_human_audio_review`, 48 review rows, 0 invalid generated assets, 0 approval records.
+- [x] Add `tools/personal_plan_runtime_audio_approval_review_packet.ts`.
+- [x] Add `tools/personal_plan_gavan_week1_refresh_pronunciation_openai_contract.ts`.
+- [x] Refresh Gavan week 1 pronunciation provider contract with non-live OpenAI scorer metadata.
+- [x] Move pronunciation from `hold_missing_scorer_provider` to `hold_missing_scored_attempt_evidence`.
+- [x] Refresh `.codex-tmp/personal-plans/gavan-week1-pronunciation-scoring-provider-contract.json`: `pronunciation_scorer_contract_ready_for_scored_attempt_validation`, 4/4 scorer-contract-ready references.
+- [x] Refresh `.codex-tmp/personal-plans/gavan-week1-pronunciation-scored-attempt-evidence-intake-report.json`: `blocked_missing_scored_attempts`, 4 missing scored attempts.
+- [x] Refresh `.codex-tmp/personal-plans/gavan-week1-pronunciation-production-readiness-gate.json`: `hold_missing_scored_attempt_evidence`, 4 scorer-contract-ready references, 0 valid scored attempts, 5 blockers.
+- [x] Run focused runtime audio review packet Jest: 1 suite, 2 tests passed.
+- [x] Run related audio/pronunciation gate Jest: 6 suites, 26 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false` passed.
+- [ ] Audio still needs 48 explicit approval records before guarded registry source write.
+- [ ] Pronunciation still needs 4 real recordings/scored attempts, explicit pronunciation approval, final scorer promotion, and live adapter gate.
+
+## Update 2026-06-05 - P3.157 Full daily task pool completion for every plan
+
+- [x] Add a strict accepted-candidate guard so every bound day must expose the full 8-mode runtime task pool.
+- [x] Replace the generated-day legacy `active_recall` task with the product contract mode `plan_phrase_recall`.
+- [x] Keep selected daily minutes as the initial visible slice only; the full day pool stays available through add-more.
+- [x] Add the missing `plan_phrase_recall` task to certified Gavan day 1, bringing it from 7 to 8 plan-native tasks.
+- [x] Update plan phrase recall routing so generated and certified recall tasks pass real content-unit ids instead of opening with an empty phrase list.
+- [x] Verify the full catalog: 546 total plan days checked, 0 missing task-pool gaps.
+- [x] Plan coverage by catalog: `voyazh` 84/84 days, `mitap` 112/112 days, `gavan` 126/126 days, `impuls` 140/140 days, `echo` 84/84 days.
+- [x] Run focused Personal Plans Jest: 8 suites, 38 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false` passed.
+- [ ] Audio still needs 48 explicit approval records before guarded registry source write.
+- [ ] Pronunciation still needs 4 real recordings/scored attempts, explicit pronunciation approval, final scorer promotion, and live adapter gate.
+
+## Update 2026-06-05 - P3.158 Full catalog task-material completion
+
+- [x] Add `tests/personal_plan_full_catalog_task_materials.test.ts` as a full-catalog guard for launchable task material.
+- [x] Verify the red phase: the guard found missing `plan_missing_word` material and missing generated quiz material across the catalog.
+- [x] Expand generated `plan_missing_word` source ids from 3 to 5 phrase candidates so quality filtering still leaves enough safe in-phrase blanks.
+- [x] Update missing-word target selection to avoid sentence-opening blanks and choose a safe in-phrase target word.
+- [x] Add generated Personal Plan quiz banks for catalog quiz ids such as `voyazh_day_1_quiz`, with 10 questions from the same day's phrase lesson.
+- [x] Add generated quiz coverage and generic quiz task copy for generated plan-day quizzes.
+- [x] Verify full material coverage: 546 days checked, 4,368 tasks checked, 0 material gaps.
+- [x] Run focused/related Personal Plans Jest: 9 suites, 37 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false` passed.
+- [ ] Audio still needs 48 explicit approval records before guarded registry source write.
+- [ ] Pronunciation still needs 4 real recordings/scored attempts, explicit pronunciation approval, final scorer promotion, and live adapter gate.
+
+## Update 2026-06-05 - P3.159 Runtime audio approval and source registry registration
+
+- [x] Capture explicit user audio review decision: all runtime MP3 sounds are clear.
+- [x] Add `app/personal_plan_runtime_audio_human_approval_records.ts`.
+- [x] Add `tools/personal_plan_runtime_audio_human_approval_records.ts`.
+- [x] Generate `.codex-tmp/personal-plans/runtime-audio-human-approval-records.json`: 48 generated assets, 48 checksum-bound approval records.
+- [x] Update runtime audio approval intake to read explicit approval records when present.
+- [x] Regenerate `.codex-tmp/personal-plans/runtime-audio-approval-intake.json`: `ready_for_guarded_runtime_audio_registry`, 48/48 approved final assets, 0 missing records, 0 invalid records.
+- [x] Regenerate `.codex-tmp/personal-plans/runtime-audio-registry-source-registration.json`: `ready_for_guarded_runtime_registry_source_write`, 48 registry candidates.
+- [x] Generate `app/personal_plan_runtime_audio_assets.generated.ts` from the approved runtime audio intake.
+- [x] Register generated approved runtime audio as the default source in `app/personal_plan_audio_asset_registry.ts`.
+- [x] Verify runtime playback source: 48 approved assets are available and a sample `voyazh` listening task returns `audioReady: true`.
+- [x] Run focused audio registry/listening Jest: 4 suites, 17 tests passed.
+- [x] Run runtime approval Jest: 3 suites, 6 tests passed.
+- [x] Run TypeScript gate: `npx tsc --noEmit --pretty false` passed.
+- [ ] Pronunciation still needs 4 real recordings/scored attempts, explicit pronunciation approval, final scorer promotion, and live adapter gate.
+
+### Reusable continuation prompt
+
+```text
+Продолжай работу по Personal Plans в Phraseman большим coherent pass, не микрозадачей.
+
+Главная цель: довести Personal Plans до 100% production-ready, не ломая и не удаляя существующую функциональность. Нельзя считать scaffold, draft, candidate, dry-run, preflight, handoff или generated evidence production-ready.
+
+Текущий handover:
+- docs/reports/personal-plans-handover-2026-06-04-after-p3104.md
+- docs/personal-plans-implementation-checklist.md, раздел P3.105 Audio generation handoff packet
+
+Сначала прочитай только нужные файлы:
+- docs/personal-plans-implementation-checklist.md
+- tools/personal_plan_gavan_week1_audio_generation_handoff_packet.ts
+- tests/personal_plan_gavan_week1_audio_generation_handoff_packet.test.ts
+- tools/personal_plan_gavan_week1_audio_approval_evidence_packet.ts
+- app/personal_plan_gavan_week1_audio_generation_plan.ts
+- app/personal_plan_audio_generated_assets.ts
+- app/personal_plan_audio_approval_report.ts
+- app/personal_plan_audio_approval_gate.ts
+- app/personal_plan_audio_asset_readiness.ts
+
+Приоритет следующего большого прохода:
+1. Если реальные 10 MP3 assets доступны или генерация явно разрешена, подготовь/проверь эти файлы по exact outputPath из P3.105, затем запусти generated-asset validation и explicit approval gate.
+2. Если реальные MP3 недоступны и генерация не разрешена, создай следующий non-live artifact: generated-file intake/validation report, который мапит expected outputPath -> file status/checklist/blocker и не делает fake readiness.
+3. Перед broad gate восстанови/сгенерируй отсутствующие `.codex-tmp` prerequisite artifacts для route/signature/bridge chain или честно отчитай, что broad gate blocked by missing temp artifacts.
+
+Обязательные правила:
+- Не делать один маленький шаг; выбирай большой связный слой и доводи его до report/docs + tests.
+- TDD: сначала тест/red, потом реализация/green.
+- Не считать generated audio approved audio.
+- Не считать placeholders production-ready.
+- Не регистрировать live audio assets без explicit approval records.
+- Не считать pronunciation readiness готовой без real scoring/recording evidence.
+- Не менять runtime/UI/navigation/storage/source contracts без отдельной причины и тестов.
+- Не удалять существующую функциональность.
+- Учитывать грязный git worktree и не затирать чужие изменения.
+
+Проверки после реализации:
+- focused Jest по новой области;
+- related audio/personal_plan Jest;
+- npx jest --runInBand --testPathPattern=tests/personal_plan
+- npx tsc --noEmit --pretty false
+
+После прохода обнови:
+- docs/personal-plans-implementation-checklist.md;
+- docs/personal-plans-killer-feature-audit.md;
+- docs/personal-plans-product-excellence-audit.md;
+- новый docs/reports report, если окружение сохраняет untracked docs/reports файлы;
+- progress graph, если он есть или требуется по handover.
+
+В финальном ответе покажи:
+- что сделано;
+- какие файлы изменены;
+- какие проверки реально запускались;
+- какие blockers остались;
+- текущие проценты по слоям;
+- следующий крупный шаг.
+```

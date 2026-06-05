@@ -11,6 +11,7 @@ import {
   GAVAN_WEEK1_CATALOG_ROUTE_PREFLIGHT_PATH,
   writeGavanWeek1CatalogRoutePreflight,
 } from '../tools/personal_plan_gavan_week1_catalog_route_preflight';
+import { ensureGavanWeek1RoutePrerequisiteArtifacts } from '../tools/personal_plan_gavan_week1_route_prerequisite_artifact_refresh';
 
 const GENERATED_AT = '2026-06-03T05:35:00.000Z';
 const BROKEN_ENCODING_RE = /[\u00d0\u00c2\u00e2\ufffd]/;
@@ -40,6 +41,10 @@ function manifest(): GavanWeek1ApprovalReadinessManifest {
 }
 
 describe('Gavan week 1 catalog route preflight', () => {
+  beforeAll(() => {
+    ensureGavanWeek1RoutePrerequisiteArtifacts({ generatedAt: GENERATED_AT });
+  });
+
   beforeEach(() => {
     if (existsSync(GAVAN_WEEK1_CATALOG_ROUTE_PREFLIGHT_PATH)) {
       rmSync(GAVAN_WEEK1_CATALOG_ROUTE_PREFLIGHT_PATH, { force: true });

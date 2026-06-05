@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Keyboard, KeyboardAvoidingView, Modal, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
+import CompassDepthSurface from './CompassDepthSurface';
+import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 interface Props {
   visible: boolean;
@@ -17,6 +19,7 @@ interface Props {
 
 export default function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, previewOnly = false }: Props) {
   const { theme: t, themeMode, f } = useTheme();
+  const isCompassTheme = themeMode === 'compass';
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -124,14 +127,17 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
       >
         <TouchableOpacity activeOpacity={1} onPress={() => {}}>
           <View style={{
-            backgroundColor: t.bgCard,
-            borderRadius: 16,
+            backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+            borderRadius: isCompassTheme ? 14 : 16,
             padding: 24,
             width: 280,
             borderWidth: 1,
-            borderColor: t.border,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
             alignItems: 'center',
+            overflow: 'hidden',
+            ...(isCompassTheme ? compassShadow(3) : null),
           }}>
+            {isCompassTheme && <CompassDepthSurface radius={14} selected />}
             <Text style={{ fontSize: 32, marginBottom: 12 }}>🚩</Text>
 
             {done ? (
@@ -168,9 +174,14 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
                     }}
                     style={{
                       flex: 1, paddingVertical: 11, borderRadius: 10,
-                      backgroundColor: t.bgPrimary, borderWidth: 1, borderColor: t.border,
+                      backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgPrimary,
+                      borderWidth: 1,
+                      borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                      overflow: 'hidden',
+                      ...(isCompassTheme ? compassShadow(1) : null),
                     }}
                   >
+                    {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
                     <Text style={{ color: t.textSecond, textAlign: 'center', fontSize: f.body }}>
                       {tx.cancel}
                     </Text>
@@ -178,10 +189,11 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
                   <TouchableOpacity
                     onPress={handleSend}
                     disabled={loading}
-                    style={{ flex: 1, paddingVertical: 11, borderRadius: 10, backgroundColor: t.accent }}
+                    style={{ flex: 1, paddingVertical: 11, borderRadius: isCompassTheme ? 9 : 10, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}
                   >
+                    {isCompassTheme && <CompassDepthSurface radius={9} cream />}
                     {false && loading ? <View />
-                      : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
+                      : <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
                           {tx.send}
                         </Text>
                     }

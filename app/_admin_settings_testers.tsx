@@ -100,7 +100,6 @@ import type { GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { seedLocalVipSurveyTestMessage } from './app_messages';
 import PremiumCelebrationModal from '../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../components/VipCelebrationModal';
-import MasteryReplayModal from '../components/MasteryReplayModal';
 import StreakReviveModal from '../components/StreakReviveModal';
 import { markCelebrationPending } from './premium_celebration_state';
 import { consumeVipCelebration, markVipCelebrationPending } from './vip_celebration_state';
@@ -425,11 +424,6 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     label: '💎 Базовый (generic)',
     sub: 'Старт без context — дефолт',
     params: { context: 'generic' },
-  },
-  {
-    label: '🔁 Mastery — повтор урока',
-    sub: 'Премиум за безлимит повторов',
-    params: { context: 'mastery', lesson: '7' },
   },
   {
     label: '🏋 Тренер — Premium режимы',
@@ -783,7 +777,7 @@ export default function SettingsTestersFunctions() {
 
   // Preview-флаги для активных soft-monetization сценариев.
   const [softMonetizationPreview, setSoftMonetizationPreview] = useState<
-    null | 'celebration' | 'vip_celebration' | 'mastery' | 'streak_revive'
+    null | 'celebration' | 'vip_celebration' | 'streak_revive'
   >(null);
   const [activatedVipPreviewMarker, setActivatedVipPreviewMarker] = useState<string | null>(null);
   const [previewReviveOffer, setPreviewReviveOffer] = useState<StreakReviveOffer | null>(null);
@@ -2643,7 +2637,7 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="refresh-circle-outline"
               label="Mastery: уроки «завершены» (Перепройти)"
-              sub="Ставит target-aware lesson_finished_once для 1–32. Перепройти видно только без премиума — выключи «Без ограничений» или включи «Снять премиум»"
+              sub="Ставит target-aware lesson_finished_once для 1–32, чтобы проверить подпись «Перепройти» в меню урока."
               t={t} f={f} doHaptic={doHaptic}
               onPress={async () => {
                 doHaptic();
@@ -2659,9 +2653,7 @@ export default function SettingsTestersFunctions() {
                 AppInfoDialog.alert(
                   'OK',
                   'Флаги lesson_finished_once выставлены для уроков 1–32.\n\n'
-                    + 'Кнопка «Перепройти» не показывается, если приложение считает тебя премиумом '
-                    + '(режим «Без ограничений», dev-сборка без «Снять премиум»). '
-                    + 'Для проверки: Снять премиум или выключить Без ограничений, затем открыть меню урока.',
+                    + 'Для проверки открой меню урока и проверь подпись «Перепройти».',
                 );
               }}
             />
@@ -3148,15 +3140,6 @@ export default function SettingsTestersFunctions() {
               label="💚 VIP celebration (зелёная анимация)"
               sub="Тот же unlock-экран, но VIP: зелёный стиль, без золотого Premium-статуса."
               onPress={() => setSoftMonetizationPreview('vip_celebration')}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="refresh-circle-outline"
-              label="🔁 Mastery replay confirm"
-              sub="Перепройти за осколки / Premium / Отмена (цена: база +5 за каждый повтор)"
-              onPress={() => setSoftMonetizationPreview('mastery')}
               t={t}
               f={f}
               doHaptic={doHaptic}
@@ -4919,12 +4902,6 @@ export default function SettingsTestersFunctions() {
           setActivatedVipPreviewMarker(null);
           if (marker) void consumeVipCelebration(marker);
         }}
-      />
-      <MasteryReplayModal
-        visible={softMonetizationPreview === 'mastery'}
-        lessonId={7}
-        isPremium={false}
-        onClose={() => setSoftMonetizationPreview(null)}
       />
       <StreakReviveModal
         visible={softMonetizationPreview === 'streak_revive'}

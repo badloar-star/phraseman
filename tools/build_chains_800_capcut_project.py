@@ -2,8 +2,8 @@
 """Build an editable CapCut project for 800 Chains timeline phrases.
 
 Source template: the user's working DIRECT_BG Chains draft.
-Content source: first 200 generated chains from chains_800_20260603, expanded
-to 800 timeline phrase rows.
+Content source: 800 unique generated chains from chains_800_20260603.
+Do not expand a smaller phrase set by repeating rows.
 """
 
 from __future__ import annotations

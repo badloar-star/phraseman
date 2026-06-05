@@ -5,7 +5,15 @@ import sharp from 'sharp';
 const ASSET_DIR = path.join(process.cwd(), 'assets', 'images', 'arena_actions');
 
 const ACTIONS = ['match', 'friend', 'throne'] as const;
-const THEMES = ['dark', 'neon', 'gold', 'coral', 'minimalLight', 'minimalDark'] as const;
+const THEMES = [
+  'dark',
+  'neon',
+  'gold',
+  'coral',
+  'minimalLight',
+  'minimalDark',
+  'compass-premium',
+] as const;
 
 function alphaAt(data: Buffer, width: number, x: number, y: number): number {
   return data[(y * width + x) * 4 + 3] ?? 255;
@@ -19,8 +27,9 @@ describe('arena action icon assets', () => {
         expect(fs.existsSync(filePath)).toBe(true);
 
         const meta = await sharp(filePath).metadata();
-        expect(meta.width).toBe(160);
-        expect(meta.height).toBe(160);
+        const expectedSize = theme === 'compass-premium' ? 256 : 160;
+        expect(meta.width).toBe(expectedSize);
+        expect(meta.height).toBe(expectedSize);
         expect(meta.hasAlpha).toBe(true);
 
         const { data, info } = await sharp(filePath)

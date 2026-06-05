@@ -32,15 +32,15 @@ import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import { emitAppEvent, onAppEvent } from './events';
-import { isLessonFinishedOnce, getMasteryReplayPriceShards, MASTERY_REPLAY_BASE_SHARDS } from './mastery';
-import MasteryReplayModal from '../components/MasteryReplayModal';
+import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus } from './premium_guard';
-import { oskolokImageForPackShards } from './oskolok';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import GoldBevel from '../components/GoldBevel';
+import CompassDepthSurface from '../components/CompassDepthSurface';
+import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
@@ -211,6 +211,7 @@ export default function LessonMenu() {
   const { theme:t, f, themeMode } = useTheme();
   const isLightTheme = false;
   const isGoldTheme = themeMode === 'gold';
+  const isCompassTheme = themeMode === 'compass';
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
@@ -299,14 +300,11 @@ export default function LessonMenu() {
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   const [showLockModal, setShowLockModal] = useState(false);
 
-  // Mastery: первый проход урока был → следующий запуск платный (или premium бесплатно)
+  // Служебный флаг первого завершения: после него основной CTA подписывается как replay.
   const [finishedOnce, setFinishedOnce] = useState(false);
-  const [isPremium, setIsPremium] = useState(false);
-  const [showMasteryModal, setShowMasteryModal] = useState(false);
-  const [masteryReplayPrice, setMasteryReplayPrice] = useState(MASTERY_REPLAY_BASE_SHARDS);
   const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(false);
 
-  const showMasteryPaywall = finishedOnce && !isPremium && !isLessonLocked;
+  const showReplayCta = finishedOnce && !isLessonLocked;
   const canShowLessonPrepHint = !hideEnglishOnlyAuxiliary && !frenchTheorySourceGated;
   const lessonPrepHintText = triLang(lang, {
     ru: 'Перед уроком можно заглянуть в «Словарь» и потренировать новые слова. А в разделе «Теория» подробно разобраны правила и конструкции. К этим материалам можно вернуться в любой момент.',
@@ -321,13 +319,9 @@ export default function LessonMenu() {
 
   useEffect(() => {
     let cancelled = false;
-    void Promise.all([
-      isLessonFinishedOnce(lessonId, studyTarget),
-      getVerifiedPremiumStatus(),
-    ]).then(([fin, prem]) => {
+    void isLessonFinishedOnce(lessonId, studyTarget).then((fin) => {
       if (cancelled) return;
       setFinishedOnce(fin);
-      setIsPremium(prem);
     });
     return () => { cancelled = true; };
   }, [lessonId, studyTarget]);
@@ -356,24 +350,6 @@ export default function LessonMenu() {
     return () => clearTimeout(timer);
   }, [canShowLessonPrepHint, isLessonLocked, lessonPrepHintVisible, lockStateLoaded]);
 
-  useEffect(() => {
-    if (!showMasteryPaywall) return;
-    let cancelled = false;
-    void getMasteryReplayPriceShards(lessonId, studyTarget).then((p) => {
-      if (!cancelled) setMasteryReplayPrice(p);
-    });
-    return () => { cancelled = true; };
-  }, [lessonId, showMasteryPaywall, finishedOnce, isPremium, studyTarget]);
-
-  useEffect(() => {
-    const sub = onAppEvent('lesson_replay_started', (payload) => {
-      if (payload?.lessonId !== lessonId) return;
-      if ((payload.studyTarget ?? 'en') !== storageStudyTarget(studyTarget)) return;
-      void getMasteryReplayPriceShards(lessonId, studyTarget).then(setMasteryReplayPrice);
-    });
-    return () => sub.remove();
-  }, [lessonId, studyTarget]);
-
   // Подписка на event «урок впервые завершён» — на случай если юзер вернулся
   // на lesson_menu сразу из lesson_complete без перезагрузки экрана.
   useEffect(() => {
@@ -398,7 +374,6 @@ export default function LessonMenu() {
         }
 
         const premiumNow = await getVerifiedPremiumStatus();
-        setIsPremium(premiumNow);
 
         if (!premiumNow && requiresPremiumForLesson(lessonId)) {
           setIsLessonLocked(true);
@@ -565,7 +540,7 @@ export default function LessonMenu() {
   const handleContinueLesson = openLessonFromMenu;
 
   const handleReplayIntroAndContinue = useCallback(() => {
-    if (isLessonLocked || showMasteryPaywall) return;
+    if (isLessonLocked) return;
     if (frenchLessonSourceGated) {
       setSoonOpen('frenchLesson');
       return;
@@ -577,7 +552,7 @@ export default function LessonMenu() {
         params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },
       });
     })();
-  }, [frenchLessonSourceGated, isLessonLocked, lessonId, router, showMasteryPaywall, studyTarget]);
+  }, [frenchLessonSourceGated, isLessonLocked, lessonId, router, studyTarget]);
 
   const handleLockedLessonPress = useCallback(() => {
     hapticTap();
@@ -601,8 +576,6 @@ export default function LessonMenu() {
     disabled?: boolean;
     unavailable?: boolean;
     hidden?: boolean;
-    /** Бейдж «цена в осколках» в правом нижнем углу карточки (перепрохождение). */
-    cornerShardPrice?: number;
   }[] = [
     {
       testID: 'lesson-menu-primary',
@@ -617,7 +590,7 @@ export default function LessonMenu() {
   tr: 'Materyal inceleniyor',
   pl: 'Materiał weryfikowany',
 })
-        : showMasteryPaywall
+        : showReplayCta
         ? triLang(lang, {
   ru: 'Перепройти',
   uk: 'Перепройти',
@@ -640,19 +613,8 @@ export default function LessonMenu() {
   tr: 'French source gate sonrası açılacak.',
   pl: 'French otworzy się po source gate.',
 })
-        : showMasteryPaywall
-        ? (isStarted
-            ? `${progress} / 50  ★ ${score.toFixed(1)}`
-            : triLang(lang, {
-  ru: 'Условия повтора — в окне ниже',
-  uk: 'Умови повтору — у вікні нижче',
-  es: 'Condiciones de repetición — en el diálogo',
-  "pt-BR": 'Condições de repetição — na janela abaixo',
-  vi: 'Điều kiện học lại nằm trong cửa sổ bên dưới',
-  id: 'Syarat pengulangan ada di jendela bawah',
-  tr: 'Tekrar koşulları aşağıdaki pencerede',
-  pl: 'Warunki powtórki są w oknie poniżej',
-}))
+        : showReplayCta
+        ? `${progress} / 50  ★ ${score.toFixed(1)}`
         : (isStarted
             ? `${progress} / 50  ★ ${score.toFixed(1)}`
             : s.lessonMenu.fromScratch),
@@ -660,21 +622,20 @@ export default function LessonMenu() {
         ? 'shield-checkmark-outline'
         : isLessonLocked
         ? 'lock-closed'
-        : showMasteryPaywall
+        : showReplayCta
           ? 'refresh-circle-outline'
           : (isStarted ? 'play-circle-outline' : 'rocket-outline'),
-      pct: frenchLessonSourceGated || showMasteryPaywall ? undefined : Math.round(progress / 50 * 100),
-      cornerShardPrice: showMasteryPaywall ? masteryReplayPrice : undefined,
+      pct: frenchLessonSourceGated || showReplayCta ? undefined : Math.round(progress / 50 * 100),
       onPress: isLessonLocked
         ? handleLockedLessonPress
         : frenchLessonSourceGated
           ? () => setSoonOpen('frenchLesson')
-        : showMasteryPaywall
-          ? () => { hapticTap(); setShowMasteryModal(true); }
+        : showReplayCta
+          ? handleStartLesson
           : (isStarted
               ? handleContinueLesson
               : handleStartLesson),
-      onLongPress: isStarted && !frenchLessonSourceGated && !isLessonLocked && !showMasteryPaywall ? handleReplayIntroAndContinue : undefined,
+      onLongPress: isStarted && !frenchLessonSourceGated && !isLessonLocked && !showReplayCta ? handleReplayIntroAndContinue : undefined,
       disabled: isLessonLocked,
       unavailable: frenchLessonSourceGated,
     },
@@ -1029,22 +990,23 @@ export default function LessonMenu() {
         {/* Заглушка */}
         <View style={{flex:1,justifyContent:'center',alignItems:'center',paddingHorizontal:32}}>
           <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-            width:90,height:90,borderRadius:45,
-            backgroundColor:t.bgCard,
-            borderWidth:1,borderColor:isGoldTheme ? GOLD_RICH.hairline : t.border,
+            width:90,height:90,borderRadius:isCompassTheme ? 16 : 45,
+            backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+            borderWidth:1,borderColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
             justifyContent:'center',alignItems:'center',
             marginBottom:24,
             shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6,
             overflow:'hidden',
-            ...(isGoldTheme ? goldShadow(2) : {}),
+            ...(isGoldTheme ? goldShadow(2) : isCompassTheme ? compassShadow(2) : {}),
           }}>
             {isGoldTheme && <GoldBevel radius={45} intensity="normal" />}
-            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted}/>
+            {isCompassTheme && <CompassDepthSurface radius={16} selected />}
+            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textMuted}/>
           </LinearGradient>
           <Text style={{color:t.heroTextPrimary,fontSize:f.h2,fontWeight:'700',textAlign:'center',marginBottom:12}}>
             {lockedTitle}
@@ -1192,9 +1154,6 @@ export default function LessonMenu() {
               alignItems: 'center',
               gap: 14,
               opacity: (item.disabled || item.unavailable) ? 0.5 : 1,
-              ...(item.cornerShardPrice != null
-                ? { position: 'relative' as const, minHeight: 86, paddingBottom: 22 }
-                : {}),
             }}
           >
             {item.pct !== undefined && dataLoaded ? (
@@ -1209,38 +1168,42 @@ export default function LessonMenu() {
               />
             ) : item.pct !== undefined ? (
               <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCompassTheme ? COMPASS_GRADIENTS.recessedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                width:44,height:44,borderRadius:22,
-                backgroundColor:t.bgSurface,
-                borderWidth:StyleSheet.hairlineWidth,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
+                width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
+                backgroundColor:isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface,
+                borderWidth:StyleSheet.hairlineWidth,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
                 overflow:'hidden',
               }}>
                 {isGoldTheme && <GoldBevel radius={22} intensity="quiet" />}
+                {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
               </LinearGradient>
             ) : (
               <LinearGradient
                 colors={isGoldTheme
                   ? (item.disabled || item.unavailable ? GOLD_GRADIENTS.mutedPanel : GOLD_GRADIENTS.raisedTile)
+                  : isCompassTheme
+                    ? ((item.disabled || item.unavailable) ? COMPASS_GRADIENTS.recessedPanel : COMPASS_GRADIENTS.raisedTile)
                   : [((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface)]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                width:44,height:44,borderRadius:22,
-                backgroundColor: (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
+                width:44,height:44,borderRadius:isCompassTheme ? 9 : 22,
+                backgroundColor: isCompassTheme ? ((item.disabled || item.unavailable) ? COMPASS_RICH.charcoal : COMPASS_RICH.charcoalRaised) : (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
                 borderTopWidth:0.5, borderLeftWidth:0.5,
                 borderRightWidth:0.5, borderBottomWidth:0.5,
-                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : t.borderHighlight,
-                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : t.border,
+                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.edgeLight : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairline : t.borderHighlight,
+                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : isCompassTheme ? COMPASS_RICH.edgeShade : t.border,
                 justifyContent:'center', alignItems:'center',
                 overflow:'hidden',
               }}>
                 {isGoldTheme && <GoldBevel radius={22} intensity={(item.disabled || item.unavailable) ? 'quiet' : 'normal'} />}
-                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : t.textSecond}/>
+                {isCompassTheme && <CompassDepthSurface radius={9} quiet={item.disabled || item.unavailable} />}
+                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textSecond}/>
               </LinearGradient>
             )}
             <View style={{flex:1}}>
@@ -1248,40 +1211,6 @@ export default function LessonMenu() {
               <Text style={{color:t.textMuted,fontSize: f.sub,marginTop:3}}>{item.sub}</Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={item.disabled ? t.textGhost : t.textGhost}/>
-            {item.cornerShardPrice != null ? (
-              <LinearGradient
-                pointerEvents="none"
-                colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ['rgba(0,0,0,0.28)', 'rgba(0,0,0,0.28)', 'rgba(0,0,0,0.28)']}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{
-                  position: 'absolute',
-                  right: 14,
-                  bottom: 10,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 4,
-                  paddingHorizontal: 7,
-                  paddingVertical: 3,
-                  borderRadius: 8,
-                  backgroundColor: 'rgba(0,0,0,0.28)',
-                  borderWidth: 1,
-                  borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : 'rgba(255,215,0,0.5)',
-                  overflow: 'hidden',
-                }}
-              >
-                {isGoldTheme && <GoldBevel radius={8} intensity="normal" />}
-                <Image
-                  source={oskolokImageForPackShards(item.cornerShardPrice ?? MASTERY_REPLAY_BASE_SHARDS)}
-                  style={[{ width: 14, height: 14 }, isGoldTheme ? { tintColor: GOLD_RICH.champagne } : null]}
-                  resizeMode="contain"
-                />
-                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : '#FFD700', fontSize: 11, fontWeight: '900' }} maxFontSizeMultiplier={1}>
-                  {item.cornerShardPrice}
-                </Text>
-              </LinearGradient>
-            ) : null}
           </PremiumCard>
         ))}
       </View>
@@ -1289,14 +1218,14 @@ export default function LessonMenu() {
       {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked && lockStateLoaded ? (
         <View testID="lesson-menu-prep-hint" style={{ paddingHorizontal: 16, marginTop: 12 }}>
           <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCompassTheme ? COMPASS_GRADIENTS.recessedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              borderRadius: 18,
+              borderRadius: isCompassTheme ? 10 : 18,
               borderWidth: 1,
-              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
+              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
               paddingHorizontal: 16,
               paddingVertical: 14,
               flexDirection: 'row',
@@ -1306,22 +1235,23 @@ export default function LessonMenu() {
             }}
           >
             {isGoldTheme && <GoldBevel radius={18} intensity="quiet" />}
+            {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
             <View
               style={{
                 width: 34,
                 height: 34,
-                borderRadius: 17,
+                borderRadius: isCompassTheme ? 8 : 17,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
+                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
                 borderWidth: 1,
-                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
+                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
               }}
             >
               <Ionicons
                 name="information-circle-outline"
                 size={20}
-                color={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+                color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.accent}
               />
             </View>
             <Text style={{ flex: 1, color: t.heroTextMuted, fontSize: f.sub, lineHeight: 20 }}>
@@ -1338,20 +1268,43 @@ export default function LessonMenu() {
           <View style={{flex:1, justifyContent:'flex-end'}}>
             <Pressable onPress={(e) => e.stopPropagation()}>
               <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : isCompassTheme ? COMPASS_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
-                backgroundColor:t.bgCard,
-                borderTopLeftRadius:24, borderTopRightRadius:24,
+                backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderTopLeftRadius:isCompassTheme ? 14 : 24, borderTopRightRadius:isCompassTheme ? 14 : 24,
                 padding:28, paddingBottom:40,
-                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
+                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
                 alignItems:'center',
                 overflow:'hidden',
+                ...(isCompassTheme ? compassShadow(3) : {}),
               }}>
                 {isGoldTheme && <GoldBevel radius={24} intensity="strong" />}
-                <Text style={{fontSize:56, marginBottom:16}}>🔐</Text>
+                {isCompassTheme && <CompassDepthSurface radius={14} selected />}
+                <LinearGradient
+                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : isCompassTheme ? COMPASS_GRADIENTS.raisedTile : [t.bgSurface, t.bgSurface, t.bgSurface]}
+                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: isCompassTheme ? 12 : 32,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: 16,
+                    borderWidth: StyleSheet.hairlineWidth,
+                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
+                    overflow: 'hidden',
+                    ...(isCompassTheme ? compassShadow(1) : {}),
+                  }}
+                >
+                  {isGoldTheme && <GoldBevel radius={32} intensity="normal" />}
+                  {isCompassTheme && <CompassDepthSurface radius={12} />}
+                  <Ionicons name="lock-closed" size={30} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.textMuted} />
+                </LinearGradient>
                 <Text style={{color:t.textPrimary, fontSize:f.h2, fontWeight:'700', textAlign:'center', marginBottom:12}}>
                   {triLang(lang, {
   ru: 'Урок заблокирован',
@@ -1369,9 +1322,12 @@ export default function LessonMenu() {
                 </Text>
                 <TouchableOpacity
                   style={{
-                    backgroundColor:t.accent,
-                    borderRadius:14, padding:16, width:'100%', alignItems:'center',
+                    backgroundColor:isCompassTheme ? COMPASS_RICH.champagne : t.accent,
+                    borderRadius:isCompassTheme ? 9 : 14, padding:16, width:'100%', alignItems:'center',
                     overflow:'hidden',
+                    borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
+                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
+                    ...(isCompassTheme ? compassShadow(1) : {}),
                   }}
                   onPress={() => {
                     hapticTap();
@@ -1384,7 +1340,8 @@ export default function LessonMenu() {
                       <GoldBevel radius={14} intensity="strong" />
                     </>
                   )}
-                  <Text style={{color:t.correctText, fontSize:f.body, fontWeight:'700'}}>
+                  {isCompassTheme && <CompassDepthSurface radius={9} cream />}
+                  <Text style={{color:isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize:f.body, fontWeight:'700'}}>
                     {triLang(lang, {
   ru: 'Понимаю',
   uk: 'Розумію',
@@ -1483,24 +1440,6 @@ export default function LessonMenu() {
   pl: 'Rozumiem',
 }), onPress: () => {} }]}
         onRequestClose={() => setSoonOpen(null)}
-      />
-
-      {/* Mastery: перепрохождение за осколки (Premium = бесплатно) */}
-      <MasteryReplayModal
-        visible={showMasteryModal}
-        lessonId={lessonId}
-        isPremium={isPremium}
-        studyTarget={studyTarget}
-        onClose={() => setShowMasteryModal(false)}
-        onReplayed={(id) => {
-          delete lessonMenuCacheById[lessonMenuCacheKey(id, studyTarget)];
-          loadProgress();
-          if (!frenchLessonRuntimeAvailableForTarget(studyTarget, id)) {
-            setSoonOpen('frenchLesson');
-            return;
-          }
-          router.replace({ pathname: '/lesson1', params: { id, from: 'lesson_menu' } });
-        }}
       />
       </ContentWrap>
     </SafeAreaView>

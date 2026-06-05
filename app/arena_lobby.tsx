@@ -10,6 +10,7 @@ import { useEnergy } from '../components/EnergyContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { SessionSize } from './types/arena';
 import { ensureArenaAuthUid } from './user_id_policy';
+import { ensureAnonUser } from './cloud_sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { ARENA_MATCHMAKING_SEARCH_MS, useMatchmakingContext } from '../contexts/MatchmakingContext';
@@ -35,7 +36,8 @@ import { getShardsBalance } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { subscribeToFriends, type FriendEntry } from './firestore_friend_requests';
 import { peekProfilesCache, startFriendsTabSwrPrime } from './friends_tab_swr_warm';
-import { sendArenaInvite, subscribeArenaInviteStatus } from './services/arena_invites';
+import { sendArenaInvite, setArenaInviteStatus, subscribeArenaInviteStatus, subscribeIncomingArenaInvites, type ArenaInviteRow } from './services/arena_invites';
+import { joinArenaFriendRoomAsGuest } from './arena_friend_room_guest';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -69,7 +71,7 @@ const ARENA_STAGE_BACKDROPS = {
     coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
     minimalLight: require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
-    compass: require('../assets/images/arena/knowledge-arena-compass-premium.webp'),
+    compass: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
 } as const;
 const ARENA_TICKET_ICONS = {
     dark: require('../assets/images/arena_tickets/ticket-dark.webp'),
@@ -78,7 +80,7 @@ const ARENA_TICKET_ICONS = {
     coral: require('../assets/images/arena_tickets/ticket-coral.webp'),
     minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.webp'),
     minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
-    compass: require('../assets/images/arena_tickets/ticket-compass-premium.webp'),
+    compass: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
 } as const;
 function alphaColor(color: string, alpha: number, defaultRgb = '255,255,255'): string {
     if (/^#[0-9a-f]{6}$/i.test(color)) {
@@ -164,6 +166,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const { spendOne, isUnlimited, energy, bonusEnergy } = useEnergy();
     const size: SessionSize = 2;
     const [userId, setUserId] = useState<string>('');
+    const [stableUserId, setStableUserId] = useState<string>('');
     const [phase, setPhase] = useState<LobbyPhase>('idle');
     const myRank = useArenaRank();
     const { status, sessionId, elapsedMs, searchStartedAt, startSearching, cancelSearching, stopSearchTimer, updateQueueWithPushToken, setLobbyActive, markMatchHandled, clearFoundMatch, resumeSearchAfterLobbyAbort, forgetSearchResumeSnapshot, } = useMatchmakingContext();
@@ -185,6 +188,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const [rankedWagerUiReady, setRankedWagerUiReady] = useState(true);
     const [shardsBalanceUi, setShardsBalanceUi] = useState<number | null>(null);
     const [arenaFriends, setArenaFriends] = useState<FriendEntry[]>([]);
+    const [incomingArenaInvites, setIncomingArenaInvites] = useState<ArenaInviteRow[]>([]);
+    const [incomingArenaInviteBusyId, setIncomingArenaInviteBusyId] = useState<string | null>(null);
     const [arenaFriendProfiles, setArenaFriendProfiles] = useState<Record<string, {
         name: string;
         totalXp: number;
@@ -445,11 +450,26 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     void handleFindMatch(uid, { playAgain: true });
             }
         });
+        ensureAnonUser().then((uid) => {
+            if (uid)
+                setStableUserId(uid);
+        }).catch(() => { });
         (async () => {
             setDailyCount(await getDailyArenaCount());
             setDailyMax(await getDailyArenaMaxToday());
         })();
     }, [autoSearch, playAgainTs, handleFindMatch]);
+    useEffect(() => {
+        if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED || !stableUserId) {
+            setIncomingArenaInvites([]);
+            return;
+        }
+        return subscribeIncomingArenaInvites(
+            stableUserId,
+            setIncomingArenaInvites,
+            () => setIncomingArenaInvites([]),
+        );
+    }, [stableUserId]);
     useEffect(() => {
         void refreshRankedWagerUi();
     }, [refreshRankedWagerUi]);
@@ -1054,6 +1074,60 @@ export default function DuelLobbyScreen({ isTab = false }: {
             setArenaInviteSendingUid(null);
         }
     };
+    const handleIncomingArenaInviteAccept = useCallback(async (invite: ArenaInviteRow) => {
+        hapticTap();
+        if (!invite?.id || !invite.roomId || incomingArenaInviteBusyId)
+            return;
+        const access = await canStartArenaMatch({
+            isUnlimited,
+            availableEnergy: energy + bonusEnergy,
+            countDaily: false,
+        });
+        if (!access.ok) {
+            setNoEnergyModal(true);
+            return;
+        }
+        setIncomingArenaInviteBusyId(invite.id);
+        try {
+            const res = await joinArenaFriendRoomAsGuest(invite.roomId, {
+                defaultPlayerName,
+                spendOne,
+                isUnlimited,
+            });
+            if (!res.ok) {
+                emitAppEvent('action_toast', actionToastTri('error', {
+                    ru: 'Не удалось принять вызов. Попроси друга отправить его ещё раз.',
+                    uk: 'Не вдалося прийняти виклик. Попроси друга надіслати його ще раз.',
+                    es: 'No se pudo aceptar el reto. Pide a tu amigo que lo envíe de nuevo.',
+                    'pt-BR': 'Não foi possível aceitar o desafio. Peça ao seu amigo para enviar novamente.',
+                    vi: 'Không thể chấp nhận lời thách đấu. Hãy nhờ bạn gửi lại.',
+                    id: 'Tidak dapat menerima tantangan. Minta temanmu mengirim ulang.',
+                    tr: 'Meydan okuma kabul edilemedi. Arkadaşından tekrar göndermesini iste.',
+                    pl: 'Nie udało się przyjąć wyzwania. Poproś znajomego o ponowne wysłanie.',
+                }));
+                return;
+            }
+            await setArenaInviteStatus(invite.id, 'accepted');
+            setIncomingArenaInvites((items) => items.filter((item) => item.id !== invite.id));
+            router.replace({ pathname: '/arena_game' as any, params: { sessionId: res.sessionId, userId: res.uid } });
+        }
+        finally {
+            setIncomingArenaInviteBusyId(null);
+        }
+    }, [bonusEnergy, defaultPlayerName, energy, incomingArenaInviteBusyId, isUnlimited, router, spendOne]);
+    const handleIncomingArenaInviteDecline = useCallback(async (invite: ArenaInviteRow) => {
+        hapticTap();
+        if (!invite?.id || incomingArenaInviteBusyId)
+            return;
+        setIncomingArenaInviteBusyId(invite.id);
+        try {
+            await setArenaInviteStatus(invite.id, 'declined');
+            setIncomingArenaInvites((items) => items.filter((item) => item.id !== invite.id));
+        }
+        finally {
+            setIncomingArenaInviteBusyId(null);
+        }
+    }, [incomingArenaInviteBusyId]);
     const handleCancelSearch = async () => {
         hapticTap();
         forgetSearchResumeSnapshot();
@@ -1095,6 +1169,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const showMatchFound = status === 'found' && !!sessionId;
     const showQueuePanel = (status === 'searching' && (phase === 'searching' || phase === 'idle'))
         || (showMatchFound && (phase === 'searching' || phase === 'match_found'));
+    const incomingArenaInvite = incomingArenaInvites[0] ?? null;
+    const incomingArenaInviteBusy = incomingArenaInviteBusyId != null;
     /** Ширина ряда кнопок очереди: как у `body` (padding 20+20). На планшете таб обёрнут в `min(width, contentMaxW)` — иначе слот «Отмена» был шире колонки и зрительно «уезжал». */
     const layoutW = Math.max(1, (isTab ? Math.min(windowW, contentMaxW) : windowW) - 40);
     const slotHalf = (layoutW - 10) / 2;
@@ -1434,25 +1510,28 @@ export default function DuelLobbyScreen({ isTab = false }: {
         const light = themeMode === 'minimalLight';
         const neon = themeMode === 'neon';
         const gold = themeMode === 'gold';
+        const compass = themeMode === 'compass';
         const accent = t.accent;
-        const warm = gold || light ? '#B98925' : '#F5D97A';
+        const warm = compass ? '#F2C48D' : gold || light ? '#B98925' : '#F5D97A';
         const ctaBase = gold ? t.textSecond : light ? '#3B4A6B' : t.accent;
         return {
             cardColors: light
                 ? ['rgba(255,252,246,0.78)', 'rgba(239,232,219,0.56)', 'rgba(223,211,191,0.36)']
                 : gold
                     ? GOLD_GRADIENTS.premiumPanel
+                    : compass
+                        ? ['rgba(17,16,13,0.96)', 'rgba(9,8,7,0.96)', 'rgba(3,3,4,0.98)']
                     :
                         [
                             alphaColor(t.bgSurface, 0.58, '255,255,255'),
                             alphaColor(t.bgCard, 0.42, '255,255,255'),
                             'rgba(255,255,255,0.055)',
                         ],
-            cardBorder: gold ? GOLD_RICH.hairlineStrong : light ? 'rgba(52,45,35,0.28)' : alphaColor(accent, 0.24),
-            cardHighlight: gold ? GOLD_RICH.edgeLight : light ? 'rgba(255,252,246,0.70)' : 'rgba(255,255,255,0.14)',
-            innerBg: gold ? GOLD_RICH.bronzeWash : light ? 'rgba(255,252,246,0.48)' : 'rgba(255,255,255,0.07)',
-            innerBgSoft: gold ? GOLD_RICH.wash : light ? 'rgba(63,55,44,0.10)' : 'rgba(255,255,255,0.045)',
-            innerBorder: gold ? GOLD_RICH.hairline : light ? 'rgba(52,45,35,0.24)' : alphaColor(accent, 0.18),
+            cardBorder: gold ? GOLD_RICH.hairlineStrong : compass ? 'rgba(242,196,141,0.42)' : light ? 'rgba(52,45,35,0.28)' : alphaColor(accent, 0.24),
+            cardHighlight: gold ? GOLD_RICH.edgeLight : compass ? 'rgba(255,230,181,0.20)' : light ? 'rgba(255,252,246,0.70)' : 'rgba(255,255,255,0.14)',
+            innerBg: gold ? GOLD_RICH.bronzeWash : compass ? 'rgba(10,9,8,0.76)' : light ? 'rgba(255,252,246,0.48)' : 'rgba(255,255,255,0.07)',
+            innerBgSoft: gold ? GOLD_RICH.wash : compass ? 'rgba(8,7,6,0.68)' : light ? 'rgba(63,55,44,0.10)' : 'rgba(255,255,255,0.045)',
+            innerBorder: gold ? GOLD_RICH.hairline : compass ? 'rgba(242,196,141,0.24)' : light ? 'rgba(52,45,35,0.24)' : alphaColor(accent, 0.18),
             accent: accent,
             accentSoft: alphaColor(accent, light ? 0.10 : 0.15),
             solidAccent: accent,
@@ -1461,8 +1540,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
             liveBg: light ? 'rgba(46,158,98,0.10)' : 'rgba(88,229,139,0.11)',
             liveBorder: light ? 'rgba(46,158,98,0.22)' : 'rgba(88,229,139,0.28)',
             warm,
-            warmBg: alphaColor(warm, light ? 0.10 : 0.14, '245,217,122'),
-            warmBorder: alphaColor(warm, light ? 0.20 : 0.28, '245,217,122'),
+            warmBg: alphaColor(warm, compass ? 0.12 : light ? 0.10 : 0.14, '245,217,122'),
+            warmBorder: alphaColor(warm, compass ? 0.34 : light ? 0.20 : 0.28, '245,217,122'),
             ctaColors: gold ? GOLD_GRADIENTS.primaryButton : [alphaColor(ctaBase, 0.95), alphaColor(ctaBase, 0.78), alphaColor(ctaBase, 0.62)],
             ctaText: t.correctText,
             ctaSubText: alphaColor(t.correctText, 0.66, '7,17,31'),
@@ -1470,11 +1549,13 @@ export default function DuelLobbyScreen({ isTab = false }: {
             ctaIconBg: alphaColor(t.correctText, 0.12, '7,17,31'),
             ctaBorder: 'transparent',
             ctaBorderWidth: 0,
-            heroOpacity: light ? 0.15 : gold ? 0.42 : neon ? 0.26 : 0.32,
+            heroOpacity: light ? 0.15 : gold ? 0.42 : compass ? 0.22 : neon ? 0.26 : 0.32,
             heroScrimColors: light
                 ? ['rgba(255,255,255,0.38)', 'rgba(255,255,255,0.46)', 'rgba(255,255,255,0.74)']
                 : gold
                     ? ['rgba(0,0,0,0.18)', 'rgba(3,3,3,0.16)', 'rgba(0,0,0,0.74)']
+                    : compass
+                        ? ['rgba(2,3,4,0.54)', 'rgba(2,3,4,0.68)', 'rgba(0,0,0,0.88)']
                     : ['rgba(0,0,0,0.16)', 'rgba(0,0,0,0.24)', 'rgba(0,0,0,0.72)'],
         };
     }, [t, themeMode]);
@@ -1950,6 +2031,58 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 })}
                         </Text>
                       </View>
+                </View>) : null}
+
+                {incomingArenaInvite ? (<View testID="arena-incoming-invite" style={[styles.arenaIncomingInviteCard, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
+                  <View style={[styles.arenaIncomingInviteIcon, { backgroundColor: arenaGlass.accentSoft }]}>
+                    <Ionicons name="mail-unread" size={18} color={arenaGlass.accent}/>
+                  </View>
+                  <View style={styles.arenaIncomingInviteCopy}>
+                    <Text style={[styles.arenaIncomingInviteTitle, { color: screenTitleColor, fontSize: f.sub }]}>
+                      {triLang(lang, {
+                ru: `${incomingArenaInvite.fromName || 'Друг'} вызывает на арену`,
+                uk: `${incomingArenaInvite.fromName || 'Друг'} викликає на арену`,
+                es: `${incomingArenaInvite.fromName || 'Un amigo'} te reta`,
+                'pt-BR': `${incomingArenaInvite.fromName || 'Um amigo'} te desafiou`,
+                vi: `${incomingArenaInvite.fromName || 'Bạn bè'} thách đấu bạn`,
+                id: `${incomingArenaInvite.fromName || 'Teman'} menantangmu`,
+                tr: `${incomingArenaInvite.fromName || 'Arkadaşın'} meydan okuyor`,
+                pl: `${incomingArenaInvite.fromName || 'Znajomy'} rzuca wyzwanie`,
+            })}
+                    </Text>
+                    <View style={styles.arenaIncomingInviteActions}>
+                      <TouchableOpacity testID="arena-incoming-invite-accept" accessibilityLabel="qa-arena-incoming-invite-accept" accessibilityRole="button" accessibilityState={{ disabled: incomingArenaInviteBusy, busy: incomingArenaInviteBusy }} disabled={incomingArenaInviteBusy} activeOpacity={0.86} onPress={() => void handleIncomingArenaInviteAccept(incomingArenaInvite)} style={[styles.arenaIncomingInviteButton, { backgroundColor: arenaGlass.solidAccent, opacity: incomingArenaInviteBusy ? 0.58 : 1 }]}>
+                        <Ionicons name="checkmark" size={17} color={t.correctText}/>
+                        <Text style={[styles.arenaIncomingInviteButtonText, { color: t.correctText, fontSize: f.caption }]}>
+                          {triLang(lang, {
+                    ru: 'Принять',
+                    uk: 'Прийняти',
+                    es: 'Aceptar',
+                    'pt-BR': 'Aceitar',
+                    vi: 'Chấp nhận',
+                    id: 'Terima',
+                    tr: 'Kabul et',
+                    pl: 'Przyjmij',
+                })}
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity testID="arena-incoming-invite-decline" accessibilityLabel="qa-arena-incoming-invite-decline" accessibilityRole="button" accessibilityState={{ disabled: incomingArenaInviteBusy }} disabled={incomingArenaInviteBusy} activeOpacity={0.78} onPress={() => void handleIncomingArenaInviteDecline(incomingArenaInvite)} style={[styles.arenaIncomingInviteButton, styles.arenaIncomingInviteDecline, { borderColor: arenaGlass.innerBorder, opacity: incomingArenaInviteBusy ? 0.58 : 1 }]}>
+                        <Ionicons name="close" size={17} color={screenMuted}/>
+                        <Text style={[styles.arenaIncomingInviteButtonText, { color: screenMuted, fontSize: f.caption }]}>
+                          {triLang(lang, {
+                    ru: 'Отклонить',
+                    uk: 'Відхилити',
+                    es: 'Rechazar',
+                    'pt-BR': 'Recusar',
+                    vi: 'Từ chối',
+                    id: 'Tolak',
+                    tr: 'Reddet',
+                    pl: 'Odrzuć',
+                })}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 </View>) : null}
 
                 <View style={styles.arenaActionList}>
@@ -2682,6 +2815,55 @@ const styles = StyleSheet.create({
     },
     arenaInviteButtonText: {
         fontWeight: '900',
+    },
+    arenaIncomingInviteCard: {
+        minHeight: 92,
+        borderRadius: 18,
+        borderWidth: 1,
+        padding: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    arenaIncomingInviteIcon: {
+        width: 38,
+        height: 38,
+        borderRadius: 14,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+    },
+    arenaIncomingInviteCopy: {
+        flex: 1,
+        minWidth: 0,
+        gap: 9,
+    },
+    arenaIncomingInviteTitle: {
+        fontWeight: '900',
+        letterSpacing: 0,
+    },
+    arenaIncomingInviteActions: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
+    arenaIncomingInviteButton: {
+        minHeight: 36,
+        borderRadius: 14,
+        paddingHorizontal: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 5,
+        flexShrink: 1,
+    },
+    arenaIncomingInviteDecline: {
+        borderWidth: 1,
+        backgroundColor: 'rgba(255,255,255,0.03)',
+    },
+    arenaIncomingInviteButtonText: {
+        fontWeight: '900',
+        letterSpacing: 0,
     },
     arenaEventStrip: {
         minHeight: 88,

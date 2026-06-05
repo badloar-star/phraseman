@@ -52,10 +52,10 @@ const LEVEL_GIFT_IMAGES: Record<
     premium: require('../assets/images/level_gifts_v2/minimalDark-premium.webp'),
   },
   compass: {
-    common: require('../assets/images/level_gifts_v2/compass-premium-common.webp'),
-    rare: require('../assets/images/level_gifts_v2/compass-premium-rare.webp'),
-    epic: require('../assets/images/level_gifts_v2/compass-premium-epic.webp'),
-    premium: require('../assets/images/level_gifts_v2/compass-premium-premium.webp'),
+    common: require('../assets/images/level_gifts_v2/compass-premium-common-session.webp'),
+    rare: require('../assets/images/level_gifts_v2/compass-premium-rare-session.webp'),
+    epic: require('../assets/images/level_gifts_v2/compass-premium-epic-session.webp'),
+    premium: require('../assets/images/level_gifts_v2/compass-premium-premium-session.webp'),
   },
   minimalLight: {
     common: require('../assets/images/level_gifts_v2/minimalLight-common.webp'),

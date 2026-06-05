@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import CompassBevel from './CompassBevel';
 import { LinearGradient } from './SafeLinearGradient';
 import { COMPASS_GRADIENTS, COMPASS_SURFACE_LOCATIONS } from '../constants/compassTheme';
 
@@ -17,6 +16,10 @@ export default function CompassDepthSurface({
   quiet = false,
   cream = false,
 }: CompassDepthSurfaceProps) {
+  if (!cream) {
+    return null;
+  }
+
   const baseColors = cream
     ? COMPASS_GRADIENTS.primaryButton
     : selected
@@ -32,26 +35,12 @@ export default function CompassDepthSurface({
         style={StyleSheet.absoluteFillObject}
       />
       <LinearGradient
-        colors={cream
-          ? ['rgba(255,255,255,0.42)', 'rgba(255,230,181,0.12)', 'rgba(255,255,255,0)']
-          : ['rgba(255,245,222,0.34)', 'rgba(255,230,181,0.10)', 'rgba(255,255,255,0)']}
+        colors={['rgba(255,255,255,0.18)', 'rgba(255,230,181,0.05)', 'rgba(255,255,255,0)']}
         locations={[0, 0.34, 1]}
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
         style={[styles.topShelf, { borderTopLeftRadius: radius, borderTopRightRadius: radius }]}
       />
-      <View style={[styles.leftRail, { backgroundColor: cream ? 'rgba(255,255,255,0.28)' : 'rgba(255,230,181,0.22)' }]} />
-      <View style={[styles.rightRail, { backgroundColor: cream ? 'rgba(111,63,37,0.34)' : 'rgba(0,0,0,0.50)' }]} />
-      <LinearGradient
-        colors={cream
-          ? ['rgba(111,63,37,0.04)', 'rgba(111,63,37,0.50)']
-          : ['rgba(0,0,0,0.05)', 'rgba(0,0,0,0.62)']}
-        locations={[0, 1]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={[styles.bottomShelf, { borderBottomLeftRadius: radius, borderBottomRightRadius: radius }]}
-      />
-      <CompassBevel radius={radius} intensity={selected || cream ? 'strong' : quiet ? 'quiet' : 'normal'} />
     </View>
   );
 }
@@ -63,26 +52,5 @@ const styles = StyleSheet.create({
     right: 2,
     top: 2,
     height: 12,
-  },
-  bottomShelf: {
-    position: 'absolute',
-    left: 2,
-    right: 2,
-    bottom: 2,
-    height: 14,
-  },
-  leftRail: {
-    position: 'absolute',
-    left: 1,
-    top: 5,
-    bottom: 8,
-    width: 2,
-  },
-  rightRail: {
-    position: 'absolute',
-    right: 1,
-    top: 6,
-    bottom: 4,
-    width: 2,
   },
 });

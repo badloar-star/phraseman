@@ -36,6 +36,7 @@ import PremiumCard from '../../components/PremiumCard';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTheme } from '../../components/ThemeContext';
+import { useAdaptiveBackgroundSource } from '../../components/adaptiveBackgroundAssets';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../../constants/i18n';
 import XpGainBadge from '../../components/XpGainBadge';
 import { isCorrectAnswer } from '../../constants/contractions';
@@ -315,10 +316,11 @@ function QuizCardBackgroundImageWithFallback({
   showFallbackDecor?: boolean;
 }) {
   const [loaded, setLoaded] = useState(false);
+  const adaptiveSource = useAdaptiveBackgroundSource(source);
 
   useEffect(() => {
     setLoaded(false);
-  }, [source]);
+  }, [adaptiveSource]);
 
   const light = themeMode === 'minimalLight';
   const fallbackOpacity = loaded ? (locked ? 0.08 : 0.18) : (locked ? 0.18 : 0.72);
@@ -363,7 +365,7 @@ function QuizCardBackgroundImageWithFallback({
       )}
       <Image
         pointerEvents="none"
-        source={source}
+        source={adaptiveSource}
         style={[StyleSheet.absoluteFillObject, { opacity }]}
         contentFit="cover"
         cachePolicy="memory-disk"

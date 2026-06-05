@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
+import { useAdaptiveBackgroundSource } from './adaptiveBackgroundAssets';
 import type { ThemeMode } from '../constants/theme';
 
 export const STATS_CARD_ART = {
@@ -175,11 +176,12 @@ export default function StatsCardArtSurface({
   testID,
 }: StatsCardArtSurfaceProps) {
   const { themeMode } = useTheme();
+  const backgroundSource = useAdaptiveBackgroundSource(resolveStatsCardArt(name, themeMode));
 
   return (
     <ImageBackground
       testID={testID}
-      source={resolveStatsCardArt(name, themeMode)}
+      source={backgroundSource}
       resizeMode="cover"
       imageStyle={[{ borderRadius: radius }, imageStyle]}
       style={[{ backgroundColor: theme?.bgCard, overflow: 'hidden' }, style]}

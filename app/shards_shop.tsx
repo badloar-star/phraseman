@@ -32,7 +32,6 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useScreen } from '../hooks/use-screen';
 import { bundleLang, triLang } from '../constants/i18n';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
-import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
@@ -66,6 +65,7 @@ import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
 import { initRevenueCat } from './revenuecat_init';
+import { trackActivity } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { emitAppEvent, onAppEvent } from './events';
 import { logShardsPurchased } from './firebase';
@@ -380,31 +380,6 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
   );
 }
 
-function savingsVsStarterFromStore(
-  pack: ShardsPack,
-  map: Record<string, PurchasesPackage>,
-): number | null {
-  const starter = SHARDS_PACKS[0];
-  if (pack.productId === starter.productId) return null;
-  const baseP = map[starter.productId]?.product;
-  const curP = map[pack.productId]?.product;
-  const basePrice = baseP?.price;
-  const curPrice = curP?.price;
-  if (
-    basePrice == null ||
-    curPrice == null ||
-    !Number.isFinite(basePrice) ||
-    !Number.isFinite(curPrice) ||
-    basePrice <= 0
-  ) {
-    return null;
-  }
-  const basePerShard = basePrice / totalShardsFromPack(starter);
-  const curPerShard = curPrice / totalShardsFromPack(pack);
-  if (!Number.isFinite(basePerShard) || !Number.isFinite(curPerShard) || curPerShard <= 0) return null;
-  return Math.max(0, Math.round((1 - curPerShard / basePerShard) * 100));
-}
-
 export default function ShardsShopScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, themeMode, statusBarLight } = useTheme();
@@ -701,6 +676,13 @@ export default function ShardsShopScreen() {
   useFocusEffect(
     useCallback(() => {
       void trackShardsShopOpen().catch(() => {});
+      void trackActivity('shards_shop:open', {
+        feature: 'revenue',
+        screen: 'shards_shop',
+        result: 'info',
+        writeToFirestore: true,
+        tags: { tab: shopTab },
+      }).catch(() => {});
       void refreshPackTrial();
       let cancelled = false;
       void (async () => {
@@ -884,6 +866,13 @@ export default function ShardsShopScreen() {
         if (isDevStoreBypass) {
           await addShardsRaw(shards, 'shards_store_purchase', { skipServerAwait: true });
           void trackShardPackPurchase(packId).catch(() => {});
+          void trackActivity('shards_shop:purchase_success', {
+            feature: 'revenue',
+            screen: 'shards_shop',
+            result: 'success',
+            writeToFirestore: true,
+            tags: { packId, productId, shards, devBypass: true },
+          }).catch(() => {});
           await refreshBalance();
           void loadCardMarket({ background: true, force: true }).catch(() => {});
           emitAppEvent('action_toast', {
@@ -934,6 +923,13 @@ export default function ShardsShopScreen() {
         await Purchases.purchasePackage(pkg);
         logShardsPurchased(productId, shards);
         void trackShardPackPurchase(packId).catch(() => {});
+        void trackActivity('shards_shop:purchase_success', {
+          feature: 'revenue',
+          screen: 'shards_shop',
+          result: 'success',
+          writeToFirestore: true,
+          tags: { packId, productId, shards, devBypass: false },
+        }).catch(() => {});
         emitAppEvent('action_toast', {
           type: 'info',
           messageRu: 'Покупка подтверждена.',
@@ -1008,57 +1004,28 @@ export default function ShardsShopScreen() {
   );
 
   const renderPackCard = (pack: ShardsPack, cardW: number) => {
-    const iconBox = 46;
-    const iconRadius = 14;
     const totalShards = totalShardsFromPack(pack);
-    const packShardImg = oskolokImageForShardIapRow(pack);
-    const packPileDisplay = pack.shards >= 180 ? 36 : pack.shards >= 80 ? 34 : 30;
     const pkg = packagesByProductId[pack.productId];
     const priceHint = pricesFromDisk[pack.productId];
-    const loadingPrices = !isDevStoreBypass && !pkg && !priceHint?.priceString && !storeChecked;
     const priceLabel =
       pkg?.product.priceString ??
       priceHint?.priceString ??
-      '—';
-    const savings = savingsVsStarterFromStore(pack, packagesByProductId);
+      '--';
     const isPopular = pack.badge === 'popular';
     const isBest = pack.badge === 'best_value';
     const busy = processingPackId === pack.id;
     const anotherBusy = processingPackId != null && processingPackId !== pack.id;
     const canPurchase = isDevStoreBypass || !!pkg;
     const disabled = busy || anotherBusy || !canPurchase;
-
     const shardsLabel = shardTerm;
-    /** Короткие строки + фиксированная высота блока — без «прыгающих» карточек из‑за переносов. */
-    const subtitle =
-      pack.id === 'starter'
-        ? triLang(lang, {
-          ru: 'Стартовый набор',
-          uk: 'Стартовий набір',
-          es: 'Paquete inicial',
-          'pt-BR': 'Pacote inicial',
-          vi: 'Gói khởi đầu',
-          id: 'Paket awal',
-          tr: 'Başlangıç paketi',
-          pl: 'Pakiet startowy',
-        })
-        : savings != null
-          ? triLang(lang, {
-            ru: `Выгоднее ${totalShardsFromPack(SHARDS_PACKS[0])} шт. на ${savings}%`,
-            uk: `Вигідніше ${totalShardsFromPack(SHARDS_PACKS[0])} шт. на ${savings}%`,
-            es: `-${savings}% frente al pack de ${totalShardsFromPack(SHARDS_PACKS[0])} uds.`,
-            'pt-BR': `-${savings}% em relação ao pacote de ${totalShardsFromPack(SHARDS_PACKS[0])} un.`,
-            vi: `Tiết kiệm hơn gói ${totalShardsFromPack(SHARDS_PACKS[0])} mảnh ${savings}%`,
-            id: `Lebih hemat ${savings}% dibanding paket ${totalShardsFromPack(SHARDS_PACKS[0])} shard`,
-            tr: `${totalShardsFromPack(SHARDS_PACKS[0])} parçalık pakete göre %${savings} daha avantajlı`,
-            pl: `O ${savings}% korzystniej niż pakiet ${totalShardsFromPack(SHARDS_PACKS[0])} szt.`,
-          })
-          : '';
-
-    const hasSubtitle = subtitle.trim().length > 0;
-
     const paywallMood = isPaywallAtmosphereMode(themeMode);
-    const shardVisualAccent = isCompassTheme ? COMPASS_RICH.champagne : paywallMood ? SHARD_TEAL : t.accent;
+    const rowHeight = 54;
+    const rowRadius = isCompassTheme ? 8 : 12;
+    const rowBg = isGoldTheme || isCompassTheme
+      ? 'transparent'
+      : paywallMood
+        ? 'rgba(12, 16, 18, 0.78)'
+        : t.bgCard;
     const borderColor = isBest
       ? (isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? COMPASS_RICH.hairlineStrong : `${t.gold}55`)
       : isPopular
@@ -1066,53 +1033,26 @@ export default function ShardsShopScreen() {
         : paywallMood
           ? (isGoldTheme ? GOLD_RICH.hairlineQuiet : `${t.accent}22`)
           : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
-
-    const hasRevenuePackage = !!pkg;
-    const hasStorePrice = !!(pkg?.product?.priceString || priceHint?.priceString);
-    const ctaLabel = isDevStoreBypass
-        ? triLang(lang, {
-          ru: 'Купить (DEV)',
-          uk: 'Купити (DEV)',
-          es: 'Comprar (DEV)',
-          'pt-BR': 'Comprar (DEV)',
-          vi: 'Mua (DEV)',
-          id: 'Beli (DEV)',
-          tr: 'Satın al (DEV)',
-          pl: 'Kup (DEV)',
-        })
-        : hasRevenuePackage || hasStorePrice
-          ? triLang(lang, {
-            ru: `Купить за ${priceLabel}`,
-            uk: `Купити за ${priceLabel}`,
-            es: `Comprar por ${priceLabel}`,
-            'pt-BR': `Comprar por ${priceLabel}`,
-            vi: `Mua với ${priceLabel}`,
-            id: `Beli seharga ${priceLabel}`,
-            tr: `${priceLabel} ile satın al`,
-            pl: `Kup za ${priceLabel}`,
-          })
-          : triLang(lang, {
-            ru: 'Недоступно',
-            uk: 'Недоступно',
-            es: 'No disponible',
-            'pt-BR': 'Indisponível',
-            vi: 'Không khả dụng',
-            id: 'Tidak tersedia',
-            tr: 'Kullanılamıyor',
-            pl: 'Niedostępne',
-          });
-
-    const ctaOnAccent = isCompassTheme ? COMPASS_RICH.textDark : t.correctText;
-    const accentSoft =
-      isCompassTheme ? COMPASS_RICH.cream : themeMode === 'neon' ? '#DFFF4A' : themeMode === 'dark' ? '#5DDC80' : `${t.accent}EB`;
-    const useLockIcon = isDevStoreBypass && !hasStorePrice;
+    const leftColor = isPopular || isBest
+      ? (isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.champagne : t.textPrimary)
+      : t.textPrimary;
+    const rightColor = canPurchase ? t.textPrimary : t.textMuted;
+    const rowIconSize = pack.id === 'starter' ? 30 : pack.id === 'pro' ? 38 : 34;
 
     return (
       <PressableScale
         style={{ width: cardW }}
         disabled={disabled}
+        scaleTo={0.985}
         onPress={() => {
           void trackShardPackClick(pack.id).catch(() => {});
+          void trackActivity('shards_shop:pack_click', {
+            feature: 'revenue',
+            screen: 'shards_shop',
+            result: 'info',
+            writeToFirestore: true,
+            tags: { packId: pack.id, productId: pack.productId, shards: totalShards },
+          }).catch(() => {});
           void buyPack(pack.id, pack.productId, totalShards);
         }}
       >
@@ -1125,189 +1065,99 @@ export default function ShardsShopScreen() {
           <View
             style={{
               width: cardW,
-              borderRadius: shopRadius,
+              minHeight: rowHeight,
+              borderRadius: rowRadius,
               borderWidth: 1,
               borderColor,
               overflow: 'hidden',
-              backgroundColor: isGoldTheme || isCompassTheme ? 'transparent' : t.bgCard,
-              ...(isGoldTheme ? goldShadow(isBest ? 2 : 1) : cardShadow),
+              backgroundColor: rowBg,
+              ...(isGoldTheme ? goldShadow(1) : cardShadow),
             }}
           >
             {isGoldTheme && (
               <>
                 <LinearGradient
                   pointerEvents="none"
-                  colors={isBest ? GOLD_GRADIENTS.selectedTile : GOLD_GRADIENTS.raisedTile}
+                  colors={isBest || isPopular ? GOLD_GRADIENTS.selectedTile : GOLD_GRADIENTS.raisedTile}
                   locations={GOLD_SURFACE_LOCATIONS}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
-                <GoldBevel radius={16} intensity={isBest ? 'strong' : 'normal'} />
+                <GoldBevel radius={rowRadius} intensity={isBest || isPopular ? 'strong' : 'normal'} />
               </>
             )}
             {isCompassTheme && (
               <>
                 <LinearGradient
                   pointerEvents="none"
-                  colors={isBest ? COMPASS_GRADIENTS.selectedTile : COMPASS_GRADIENTS.raisedTile}
+                  colors={isBest || isPopular ? COMPASS_GRADIENTS.selectedTile : COMPASS_GRADIENTS.raisedTile}
                   locations={COMPASS_SURFACE_LOCATIONS}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={StyleSheet.absoluteFill}
                 />
-                <CompassBevel radius={shopRadius} intensity={isBest ? 'strong' : 'normal'} />
+                <CompassBevel radius={rowRadius} intensity={isBest || isPopular ? 'strong' : 'normal'} />
               </>
             )}
-            {(isPopular || isBest) && (
-              <View style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
-                <HitBadgeShell
-                  style={{
-                    borderRadius: isCompassTheme ? 7 : 999,
-                    paddingHorizontal: 9,
-                    paddingVertical: 3,
-                    backgroundColor: isBest ? (isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? COMPASS_RICH.champagne : t.gold) : shopAccent,
-                  }}
-                >
-                  <Text style={{ color: isBest || isCompassTheme ? COMPASS_RICH.textDark : ctaOnAccent, fontSize: 9, fontWeight: '900', letterSpacing: 0.4 }}>
-                    {isBest
-                      ? triLang(lang, {
-                        ru: 'ВЫГОДНО',
-                        uk: 'ВИГІДНО',
-                        es: 'OFERTA',
-                        'pt-BR': 'OFERTA',
-                        vi: 'HỜI',
-                        id: 'HEMAT',
-                        tr: 'AVANTAJLI',
-                        pl: 'OKAZJA',
-                      })
-                      : triLang(lang, {
-                        ru: 'ХИТ',
-                        uk: 'ХІТ',
-                        es: 'TOP',
-                        'pt-BR': 'TOP',
-                        vi: 'NỔI BẬT',
-                        id: 'TOP',
-                        tr: 'POPÜLER',
-                        pl: 'TOP',
-                      })}
-                  </Text>
-                </HitBadgeShell>
-              </View>
-            )}
-
-            <View style={{ width: '100%', paddingHorizontal: 12, paddingVertical: 11 }}>
+            <View
+              style={{
+                minHeight: rowHeight,
+                width: '100%',
+                paddingHorizontal: 16,
+                paddingVertical: 9,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 12,
+              }}
+            >
               <View
                 style={{
+                  flex: 1,
+                  minWidth: 0,
                   flexDirection: 'row',
-                  alignItems: 'flex-start',
+                  alignItems: 'center',
                   gap: 10,
-                  paddingRight: isPopular || isBest ? 72 : 0,
                 }}
               >
-                <PulsingShardFrame width={iconBox} height={iconBox} borderRadius={iconRadius}>
-                  <View
-                    style={{
-                      width: iconBox,
-                      height: iconBox,
-                      borderRadius: isCompassTheme ? shopIconRadius : iconRadius,
-                      backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : paywallMood ? `${SHARD_TEAL}18` : `${t.accent}14`,
-                      borderWidth: 1,
-                      borderColor: isCompassTheme ? COMPASS_RICH.hairline : paywallMood ? `${SHARD_TEAL}40` : `${t.accent}35`,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <ShopIconImageWithFallback
-                      recyclingKey={pack.productId}
-                      source={packShardImg}
-                      size={packPileDisplay}
-                      fallbackName="diamond"
-                      fallbackColor={shardVisualAccent}
-                    />
-                  </View>
-                </PulsingShardFrame>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text
-                    style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900', lineHeight: Math.round((f.numMd || 22) * 1.08) }}
-                    numberOfLines={1}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.82}
-                  >
-                    {pack.shards} {shardsLabel}
-                  </Text>
-                  {pack.bonusShards > 0 ? (
-                    <Text
-                      style={{
-                        color: shardVisualAccent,
-                        fontSize: f.caption,
-                        fontWeight: '800',
-                        marginTop: 2,
-                      }}
-                      numberOfLines={1}
-                    >
-                      {triLang(lang, {
-                        ru: `+${pack.bonusShards} в подарок`,
-                        uk: `+${pack.bonusShards} у подарунок`,
-                        es: `+${pack.bonusShards} de regalo`,
-                        'pt-BR': `+${pack.bonusShards} de presente`,
-                        vi: `Tặng +${pack.bonusShards}`,
-                        id: `Bonus +${pack.bonusShards}`,
-                        tr: `+${pack.bonusShards} hediye`,
-                        pl: `+${pack.bonusShards} w prezencie`,
-                      })}
-                    </Text>
-                  ) : null}
-                  {hasSubtitle ? (
-                    <View style={{ marginTop: pack.bonusShards > 0 ? 4 : 3, justifyContent: 'flex-start' }}>
-                      <Text
-                        style={{
-                          color: loadingPrices && pack.id !== 'starter' ? t.textMuted : t.textSecond,
-                          fontSize: f.caption,
-                          lineHeight: 17,
-                        }}
-                        numberOfLines={2}
-                        ellipsizeMode="tail"
-                      >
-                        {subtitle}
-                      </Text>
-                    </View>
-                  ) : null}
+                <View style={{ width: 42, height: 34, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Image
+                    source={oskolokImageForShardIapRow(pack, themeMode)}
+                    style={{ width: rowIconSize, height: rowIconSize }}
+                    contentFit="contain"
+                  />
                 </View>
-              </View>
-
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: hasSubtitle ? 8 : 6, gap: 8 }}>
-                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
-                  {triLang(lang, {
-                    ru: 'В магазине',
-                    uk: 'У магазині',
-                    es: 'En la tienda',
-                    'pt-BR': 'Na loja',
-                    vi: 'Trong cửa hàng',
-                    id: 'Di toko',
-                    tr: 'Mağazada',
-                    pl: 'W sklepie',
-                  })}
+                <Text
+                  style={{
+                    color: leftColor,
+                    fontSize: f.body,
+                    fontWeight: '900',
+                    flex: 1,
+                    minWidth: 0,
+                  }}
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.82}
+                >
+                  {pack.shards} {shardsLabel}
                 </Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.numMd, fontWeight: '500', letterSpacing: 1 }}>—</Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{priceLabel}</Text>
-                </View>
               </View>
-
-              <View style={{ marginTop: 8, alignSelf: 'stretch', width: '100%' }}>
-                <ShopNeonCta
-                  accent={isCompassTheme ? COMPASS_RICH.champagne : t.accent}
-                  accentSoft={accentSoft}
-                  correctText={ctaOnAccent}
-                  busy={busy}
-                  label={ctaLabel}
-                  useLockIcon={useLockIcon}
-                  shadow={isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)}
-                  fontSize={f.body}
-                  dense
-                />
-              </View>
+              <Text
+                style={{
+                  color: rightColor,
+                  fontSize: f.body,
+                  fontWeight: canPurchase ? '900' : '800',
+                  textAlign: 'right',
+                  flexShrink: 0,
+                  maxWidth: Math.max(96, Math.round(cardW * 0.38)),
+                }}
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.78}
+              >
+                {busy ? '...' : priceLabel}
+              </Text>
             </View>
           </View>
         </View>
@@ -1877,22 +1727,6 @@ export default function ShardsShopScreen() {
             </View>
 
               </>
-            </View>
-            <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-              <ReportErrorButton
-                screen="shards_shop"
-                dataId="shards_shop_main"
-                dataText={triLang(lang, {
-                  ru: 'Магазин осколков',
-                  uk: 'Крамниця уламків',
-                  es: 'Tienda de fragmentos',
-                  'pt-BR': 'Loja de fragmentos',
-                  vi: 'Cửa hàng mảnh',
-                  id: 'Toko shard',
-                  tr: 'Parça mağazası',
-                  pl: 'Sklep z odłamkami',
-                })}
-              />
             </View>
           </ScrollView>
         </ContentWrap>

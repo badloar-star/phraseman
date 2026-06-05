@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, Pressable, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, Pressable, Image, PanResponder } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -43,9 +43,10 @@ import { getTitleString } from '../constants/titles';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { ensureAnonUser } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
-import { getXPProgress, getLevelFromXP, screenTextOnGradient } from '../constants/theme';
+import { getXPProgress, getLevelFromXP, screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
+import { getLeagueGuardianImage } from '../constants/leagueGuardianAssets';
 import {
   loadPrevRank, savePrevRank, computeRankDelta,
   KEY_CLUB_PREV_RANK, RankDelta,
@@ -73,6 +74,8 @@ import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
 import { oskolokImageForPackShards } from './oskolok';
+import { tabSwipeLock } from './tabSwipeLock';
+import { getLeagueSwipePreviewState, swipeLeaguePreview } from './league_swipe_preview';
 import { getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
 import {
   LEAGUE_GROUP_BOOST_COST_SHARDS,
@@ -94,6 +97,7 @@ const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
 const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
 const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
 const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
+const CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD = 54;
 
 /** Локальный календарный день — для «первый заход в лигу за день». */
 const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
@@ -166,28 +170,53 @@ function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
 }
 
 // ── League icon renderer ──────────────────────────────────────────────────────
+const LEAGUE_ICON_SOURCE_SIZE = 384;
+const LEAGUE_ICON_CONTENT_OFFSETS: Record<number, { x: number; y: number }> = {
+  0: { x: -13, y: -14 },
+  1: { x: 1, y: -20 },
+  2: { x: 14.5, y: -12.5 },
+  3: { x: 21.5, y: -19 },
+  4: { x: -12.5, y: -1.5 },
+  5: { x: -1, y: -1 },
+  6: { x: 13, y: -1.5 },
+  7: { x: 17.5, y: -0.5 },
+  8: { x: -14.5, y: 16.5 },
+  9: { x: 2.5, y: 11.5 },
+  10: { x: 11.5, y: 13.5 },
+  11: { x: 16.5, y: 13 },
+};
+
+function getLeagueIconContentOffset(leagueId: number, size: number): { x: number; y: number } {
+  const offset = LEAGUE_ICON_CONTENT_OFFSETS[leagueId];
+  if (!offset) return { x: 0, y: 0 };
+  const scale = size / LEAGUE_ICON_SOURCE_SIZE;
+  return { x: offset.x * scale, y: offset.y * scale };
+}
+
 function LeagueIconImageWithFallback({
   source,
   iconName,
   color,
   size,
   opacity,
+  contentOffset = { x: 0, y: 0 },
 }: {
   source?: any;
   iconName: string;
   color: string;
   size: number;
   opacity: number;
+  contentOffset?: { x: number; y: number };
 }) {
-  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    setLoaded(false);
+    setFailed(false);
   }, [source]);
 
   return (
     <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-      {!loaded || !source ? (
+      {(!source || failed) ? (
         <Ionicons
           name={iconName as any}
           size={Math.max(14, Math.round(size * 0.8))}
@@ -202,10 +231,14 @@ function LeagueIconImageWithFallback({
             width: size,
             height: size,
             opacity,
+            transform: [
+              { translateX: contentOffset.x },
+              { translateY: contentOffset.y },
+            ],
           }}
           resizeMode="contain"
-          onLoad={() => setLoaded(true)}
-          onError={() => setLoaded(false)}
+          onLoad={() => setFailed(false)}
+          onError={() => setFailed(true)}
         />
       ) : null}
     </View>
@@ -260,12 +293,14 @@ function LeagueIcon({
   pulse = false,
   active = false,
   locked = false,
+  alignContent = true,
 }: {
   league: any;
   size?: number;
   pulse?: boolean;
   active?: boolean;
   locked?: boolean;
+  alignContent?: boolean;
 }) {
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
@@ -288,6 +323,7 @@ function LeagueIcon({
 
   const iconName = (league as any).ionIcon ?? 'trophy';
   const imageUri = (league as any).imageUri;
+  const contentOffset = alignContent ? getLeagueIconContentOffset(Number(league?.id), size) : { x: 0, y: 0 };
   const icon = imageUri ? (
     <LeagueIconImageWithFallback
       source={imageUri}
@@ -295,6 +331,7 @@ function LeagueIcon({
       color={locked ? '#7A7A7A' : (active ? league.color : '#7F8793')}
       size={size}
       opacity={locked ? 0.55 : (active ? 1 : 0.65)}
+      contentOffset={contentOffset}
     />
   ) : (
     <Ionicons
@@ -309,8 +346,180 @@ function LeagueIcon({
   ) : <>{icon}</>;
 }
 
-// ── NPC profile generation (seeded by name) ──────────────────────────────────
+type LeaguePersona = {
+  titleRU: string;
+  titleUK: string;
+  titleES: string;
+  icon: string;
+};
 
+const LEAGUE_PERSONAS: LeaguePersona[] = [
+  { titleRU: 'Хранитель старта', titleUK: 'Хранитель старту', titleES: 'Guardian of the Start', icon: 'shield-outline' },
+  { titleRU: 'Мастер привычки', titleUK: 'Майстер звички', titleES: 'Master of Habit', icon: 'flame-outline' },
+  { titleRU: 'Искатель смысла', titleUK: 'Шукач сенсу', titleES: 'Seeker of Meaning', icon: 'compass-outline' },
+  { titleRU: 'Кузнец практики', titleUK: 'Коваль практики', titleES: 'Practice Forger', icon: 'hammer-outline' },
+  { titleRU: 'Архитектор правил', titleUK: 'Архітектор правил', titleES: 'Rules Architect', icon: 'analytics-outline' },
+  { titleRU: 'Мудрец памяти', titleUK: 'Мудрець памʼяті', titleES: 'Memory Sage', icon: 'library-outline' },
+  { titleRU: 'Синий наставник', titleUK: 'Синій наставник', titleES: 'Blue Mentor', icon: 'diamond-outline' },
+  { titleRU: 'Страж огня', titleUK: 'Страж вогню', titleES: 'Fire Warden', icon: 'flame' },
+  { titleRU: 'Магистр ясности', titleUK: 'Магістр ясності', titleES: 'Clarity Magister', icon: 'school-outline' },
+  { titleRU: 'Теневой мыслитель', titleUK: 'Тіньовий мислитель', titleES: 'Shadow Thinker', icon: 'sparkles-outline' },
+  { titleRU: 'Эфирный мастер', titleUK: 'Ефірний майстер', titleES: 'Ether Master', icon: 'planet-outline' },
+  { titleRU: 'Верховный учитель', titleUK: 'Верховний учитель', titleES: 'Supreme Teacher', icon: 'trophy-outline' },
+];
+
+function leagueNameForLang(league: (typeof LEAGUES)[number], lang: Lang): string {
+  return triLang(lang, {
+    ru: league.nameRU,
+    uk: league.nameUK,
+    es: league.nameES,
+    'pt-BR': clubNamePlanned(league.id, 'pt-BR'),
+    vi: clubNamePlanned(league.id, 'vi'),
+    id: clubNamePlanned(league.id, 'id'),
+    tr: clubNamePlanned(league.id, 'tr'),
+    pl: clubNamePlanned(league.id, 'pl'),
+  });
+}
+
+function personaTitleForLang(persona: LeaguePersona, lang: Lang): string {
+  return triLang(lang, {
+    ru: persona.titleRU,
+    uk: persona.titleUK,
+    es: persona.titleES,
+    'pt-BR': persona.titleES,
+    vi: persona.titleES,
+    id: persona.titleES,
+    tr: persona.titleES,
+    pl: persona.titleES,
+  });
+}
+
+function alphaColor(hex: string, alpha: string): string {
+  return /^#[0-9a-f]{6}$/i.test(hex) ? `${hex}${alpha}` : hex;
+}
+
+function LeaguePersonaArt({
+  league,
+  palette,
+  size = 280,
+}: {
+  league: (typeof LEAGUES)[number];
+  palette: ReturnType<typeof getLeagueBonusPalette>;
+  size?: number;
+}) {
+  const persona = LEAGUE_PERSONAS[league.id] ?? LEAGUE_PERSONAS[0];
+  const accent = palette.accent;
+  const ready = palette.readyAccent;
+  const leagueColor = league.color;
+  const darkBase = palette.modal.card[2];
+  const robe = [alphaColor(leagueColor, 'EE'), alphaColor(accent, 'F2'), alphaColor(ready, 'E6')] as [string, string, string];
+
+  return (
+    <LinearGradient
+      colors={[darkBase, palette.modal.card[1], palette.modal.card[0]]}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+      style={{
+        width: size,
+        height: Math.round(size * 1.5),
+        borderRadius: 26,
+        overflow: 'hidden',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        borderWidth: 1,
+        borderColor: palette.modal.rail,
+      }}
+    >
+      <View style={{ position:'absolute', top:42, width:size * 0.56, height:size * 0.56, borderRadius:size, borderWidth:2, borderColor:accent, shadowColor:accent, shadowOpacity:0.75, shadowRadius:22 }} />
+      <View style={{ position:'absolute', top:0, left:0, right:0, height:'100%', opacity:0.55 }}>
+        <LinearGradient colors={palette.modal.wash} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ flex:1 }} />
+      </View>
+      {[0, 1, 2, 3].map((i) => (
+        <View
+          key={i}
+          style={{
+            position:'absolute',
+            top: 76 + i * 54,
+            left: i % 2 === 0 ? -18 : undefined,
+            right: i % 2 === 1 ? -18 : undefined,
+            width: 46,
+            height: 46,
+            borderRadius: 23,
+            borderWidth: 1,
+            borderColor: alphaColor(accent, '99'),
+            opacity: 0.42,
+          }}
+        />
+      ))}
+      <View style={{ alignItems:'center', marginBottom:34 }}>
+        <View style={{ width:142, height:142, borderRadius:71, backgroundColor:alphaColor(leagueColor, '33'), borderWidth:1, borderColor:palette.modal.haloBorder, alignItems:'center', justifyContent:'center' }}>
+          <View style={{ width:104, height:114, borderRadius:28, backgroundColor:alphaColor(darkBase, 'F2'), borderWidth:2, borderColor:accent, alignItems:'center', justifyContent:'center', overflow:'hidden' }}>
+            <LinearGradient colors={[alphaColor(accent, '99'), alphaColor(leagueColor, 'DD'), alphaColor(darkBase, 'F2')]} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ position:'absolute', top:0, right:0, bottom:0, left:0 }} />
+            <View style={{ position:'absolute', top:14, width:72, height:34, borderRadius:18, backgroundColor:alphaColor(ready, 'A8'), opacity:0.82 }} />
+            <Ionicons name={persona.icon as any} size={54} color={palette.modal.primaryText} />
+          </View>
+        </View>
+        <LinearGradient colors={robe} start={{ x:0.15, y:0 }} end={{ x:0.85, y:1 }} style={{ marginTop:-16, width:198, height:158, borderTopLeftRadius:54, borderTopRightRadius:54, borderBottomLeftRadius:32, borderBottomRightRadius:32, borderWidth:1, borderColor:palette.modal.rail, alignItems:'center', justifyContent:'center' }}>
+          <View style={{ position:'absolute', top:24, width:112, height:112, borderRadius:56, borderWidth:1, borderColor:palette.modal.shine }} />
+          <View style={{ flexDirection:'row', gap:8, marginBottom:12 }}>
+            {[0, 1, 2].map((i) => (
+              <View key={i} style={{ width:14, height:14, borderRadius:7, backgroundColor:i === 1 ? ready : accent, borderWidth:1, borderColor:palette.modal.shine }} />
+            ))}
+          </View>
+          <View style={{ width:118, height:2, borderRadius:2, backgroundColor:palette.modal.shine }} />
+        </LinearGradient>
+        <View style={{ marginTop:-4, width:12, height:112, borderRadius:6, backgroundColor:accent, borderWidth:1, borderColor:palette.modal.shine }} />
+      </View>
+    </LinearGradient>
+  );
+}
+
+// ── NPC profile generation (seeded by name) ──────────────────────────────────
+function LeagueGuardianCard({
+  league,
+  palette,
+  themeMode,
+  size = 260,
+}: {
+  league: (typeof LEAGUES)[number];
+  palette: ReturnType<typeof getLeagueBonusPalette>;
+  themeMode: ThemeMode;
+  size?: number;
+}) {
+  const guardianImage = getLeagueGuardianImage(league.id, themeMode);
+
+  if (!guardianImage) {
+    return <LeaguePersonaArt league={league} palette={palette} size={size} />;
+  }
+
+  return (
+    <View
+      style={{
+        width: size,
+        height: Math.round(size * 1.5),
+        borderRadius: 26,
+        overflow: 'hidden',
+        borderWidth: 1,
+        borderColor: palette.modal.rail,
+        backgroundColor: palette.modal.card[2],
+        shadowColor: palette.accent,
+        shadowOpacity: 0.28,
+        shadowRadius: 18,
+        shadowOffset: { width: 0, height: 10 },
+        elevation: 8,
+      }}
+    >
+      <Image source={guardianImage} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
+      <LinearGradient
+        colors={['rgba(255,255,255,0.18)', 'rgba(255,255,255,0)', 'rgba(0,0,0,0.28)']}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={{ position:'absolute', top:0, right:0, bottom:0, left:0 }}
+      />
+      <View style={{ position:'absolute', top:8, right:8, bottom:8, left:8, borderRadius:20, borderWidth:1, borderColor:palette.modal.shine, opacity:0.55 }} />
+    </View>
+  );
+}
 
 export default function ClubScreen() {
   const router = useRouter();
@@ -330,7 +539,7 @@ export default function ClubScreen() {
   const initialLeagueState = initialLeagueStateRef.current;
 
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
-  const [selectedLeagueId, setSelectedLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
+  const [previewLeagueId, setPreviewLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => initialLeagueState?.group ?? []);
   const [descModal, setDescModal]       = useState<(typeof LEAGUES)[number] | null>(null);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
@@ -340,27 +549,11 @@ export default function ClubScreen() {
   const [userName, setUserName]         = useState('');
   const [playerXP, setPlayerXP]         = useState(0);
   const [localLeagueHydrated, setLocalLeagueHydrated] = useState(initialLeagueState != null);
-  const [clubTab, setClubTab] = useState<'rank' | 'chat'>('rank');
+  const [chatModalVisible, setChatModalVisible] = useState(false);
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
-  const railScrollX = useRef(new Animated.Value(0)).current;
-  const [leagueRailWidth, setLeagueRailWidth] = useState(0);
-  const LEAGUE_ITEM_SIZE = 104;
-  const LEAGUE_ITEM_GAP = 14;
-  const LEAGUE_ITEM_FULL = LEAGUE_ITEM_SIZE + LEAGUE_ITEM_GAP;
-  const LEAGUE_RAIL_ICON_SIZE = 78;
-  const LEAGUE_RAIL_ICON_BOX_SIZE = 108;
-  const leagueRailRef = useRef<ScrollView | null>(null);
   const contentScrollRef = useRef<ScrollView | null>(null);
-  const didAutoScrollToMyRowRef = useRef<string | null>(null);
-  const [contentViewportHeight, setContentViewportHeight] = useState(0);
-  const [leaderboardTopY, setLeaderboardTopY] = useState<number | null>(null);
-  const lastSnapLeagueRef = useRef<number | null>(null);
-  const [leagueRailPositioned, setLeagueRailPositioned] = useState(false);
-  const railSideInset = leagueRailWidth > 0
-    ? Math.max(12, Math.round((leagueRailWidth - LEAGUE_ITEM_SIZE) / 2))
-    : 12;
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
   const CLUB_LEADERBOARD_AVATAR_SIZE = 56;
   const ROW_HEIGHT_CLUB = 84;
@@ -395,7 +588,7 @@ export default function ClubScreen() {
   const leagueChatUnreadCount = useLeagueChatUnread({
     initialRoom: leagueGroupMeta,
     myUid: arenaClubStableUid,
-    active: clubTab === 'chat',
+    active: chatModalVisible,
   });
 
   useEffect(() => {
@@ -531,7 +724,6 @@ export default function ClubScreen() {
     ) => {
       if (!isMountedRef.current) return;
       setMyLeagueId(state.leagueId);
-      setSelectedLeagueId(state.leagueId);
       if (result?.promoted) {
         const promotedLeague = LEAGUES.find(l => l.id === state.leagueId);
         if (promotedLeague) logLeaguePromoted(promotedLeague.nameRU);
@@ -700,7 +892,7 @@ export default function ClubScreen() {
   }, [activeGroupBoost?.expiresAt]);
 
   useEffect(() => {
-    if (clubTab !== 'chat') return;
+    if (!chatModalVisible) return;
     const now = Date.now();
     if (now - chatMetaRefreshAtRef.current < 15_000) return;
     chatMetaRefreshAtRef.current = now;
@@ -720,27 +912,41 @@ export default function ClubScreen() {
       .catch(() => {
         void loadData({ forceRemote: true });
       });
-  }, [clubTab, leagueGroupMeta, loadData]);
+  }, [chatModalVisible, leagueGroupMeta, loadData]);
+
+  const myLeague = LEAGUES[myLeagueId] ?? LEAGUES[0];
+  const leaguePreviewState = getLeagueSwipePreviewState(myLeagueId, previewLeagueId);
+  const previewLeague = LEAGUES[leaguePreviewState.previewLeagueId] ?? myLeague;
 
   useEffect(() => {
-    if (clubTab === 'chat') {
-      setLeagueRailPositioned(false);
-      return;
-    }
-    if (!leagueRailRef.current || leagueRailWidth <= 0) return;
-    const idx = Math.max(0, LEAGUES.findIndex((l) => l.id === myLeagueId));
-    const targetX = idx * LEAGUE_ITEM_FULL;
-    setLeagueRailPositioned(false);
-    const frame = requestAnimationFrame(() => {
-      railScrollX.setValue(targetX);
-      lastSnapLeagueRef.current = LEAGUES[idx]?.id ?? 0;
-      leagueRailRef.current?.scrollTo({ x: targetX, y: 0, animated: false });
-      if (isMountedRef.current) setLeagueRailPositioned(true);
-    });
-    return () => cancelAnimationFrame(frame);
-  }, [LEAGUE_ITEM_FULL, clubTab, leagueRailWidth, myLeagueId, railScrollX]);
+    setPreviewLeagueId(myLeagueId);
+  }, [myLeagueId]);
 
-  const myLeague = LEAGUES[myLeagueId];
+  const animateLeaguePreviewSwipe = useCallback((direction: number) => {
+    setPreviewLeagueId((current) => swipeLeaguePreview(current, direction, LEAGUES.length));
+    void Haptics.selectionAsync().catch(() => {});
+  }, []);
+
+  const leaguePreviewPanResponder = useMemo(() => PanResponder.create({
+    onMoveShouldSetPanResponder: (_, gestureState) => (
+      Math.abs(gestureState.dx) > 18 &&
+      Math.abs(gestureState.dx) > Math.abs(gestureState.dy) * 1.25
+    ),
+    onPanResponderGrant: () => {
+      tabSwipeLock.blocked = true;
+    },
+    onPanResponderRelease: (_, gestureState) => {
+      tabSwipeLock.blocked = false;
+      const shouldSwipe = Math.abs(gestureState.dx) > CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD || Math.abs(gestureState.vx) > 0.45;
+      if (shouldSwipe) {
+        animateLeaguePreviewSwipe(gestureState.dx < 0 ? 1 : -1);
+        return;
+      }
+    },
+    onPanResponderTerminate: () => {
+      tabSwipeLock.blocked = false;
+    },
+  }), [animateLeaguePreviewSwipe]);
 
   const sortedGroup = [...group].sort((a, b) => b.points - a.points);
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
@@ -750,9 +956,6 @@ export default function ClubScreen() {
   const zoneSize = getLeagueResultZoneSize(sortedGroup.length);
   const promotionCutoff = sortedGroup.length >= 2 && myLeagueId < LEAGUES.length - 1 ? zoneSize : 0;
   const relegationStartIndex = sortedGroup.length >= 2 ? Math.max(0, sortedGroup.length - zoneSize) : sortedGroup.length;
-  const myRank      = sortedGroup.findIndex(m => m.isMe) + 1;
-  const total       = sortedGroup.length;
-  const myRowIndex = myRank > 0 ? myRank - 1 : -1;
   const leagueBonusAdminActive = !!leagueBonusAdminPreview && Date.now() < leagueBonusAdminPreview.expiresAt;
   const leagueRaceVisible = localLeagueHydrated && (
     leagueBonusAdminActive || shouldShowLeagueRace(sortedGroup.length, userName)
@@ -1033,33 +1236,6 @@ export default function ClubScreen() {
     }
   }, [activeGroupBoost, arenaClubStableUid, groupBoostLikeBusy, groupBoostLikeTotal, groupBoostLikedToday, showLeagueToast, userName]);
 
-  const onSnapToLeague = useCallback((x: number) => {
-    const raw = Math.round(x / LEAGUE_ITEM_FULL);
-    const idx = Math.max(0, Math.min(LEAGUES.length - 1, raw));
-    const leagueId = LEAGUES[idx]?.id ?? 0;
-    setSelectedLeagueId(leagueId);
-    if (lastSnapLeagueRef.current !== leagueId) {
-      lastSnapLeagueRef.current = leagueId;
-      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
-    }
-  }, [LEAGUE_ITEM_FULL]);
-
-  const snapOffsets = LEAGUES.map((_, idx) => idx * LEAGUE_ITEM_FULL);
-
-  useEffect(() => {
-    if (!contentScrollRef.current || leaderboardTopY == null || contentViewportHeight <= 0 || myRowIndex < 0) return;
-    const scrollKey = `${getWeekId()}-${myLeagueId}-${group.length}-${myRowIndex}`;
-    if (didAutoScrollToMyRowRef.current === scrollKey) return;
-    didAutoScrollToMyRowRef.current = scrollKey;
-
-    const rowCenterY = leaderboardTopY + myRowIndex * ROW_HEIGHT_CLUB + ROW_HEIGHT_CLUB / 2;
-    const targetY = Math.max(0, rowCenterY - contentViewportHeight * 0.45);
-    const id = setTimeout(() => {
-      contentScrollRef.current?.scrollTo({ y: targetY, animated: false });
-    }, 80);
-    return () => clearTimeout(id);
-  }, [ROW_HEIGHT_CLUB, contentViewportHeight, group.length, leaderboardTopY, myLeagueId, myRowIndex]);
-
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex:1 }}>
@@ -1105,19 +1281,18 @@ export default function ClubScreen() {
 
       <ScrollView
         ref={contentScrollRef}
-        onLayout={(e) => setContentViewportHeight(e.nativeEvent.layout.height)}
-        scrollEnabled={clubTab !== 'chat'}
+        scrollEnabled
         keyboardShouldPersistTaps="handled"
-        style={clubTab === 'chat' ? { flexGrow: 0, flexShrink: 0 } : { flex: 1 }}
+        style={{ flex: 1 }}
         contentContainerStyle={{
           paddingHorizontal: 16,
           paddingTop: 16,
-          paddingBottom: clubTab === 'chat' ? 8 : 16,
+          paddingBottom: 16,
           gap: 12,
         }}
       >
 
-        {clubTab === 'rank' && rankDelta && (
+        {rankDelta && (
           <RankChangeBanner
             delta={rankDelta.delta}
             passedName={rankDelta.passedName}
@@ -1127,248 +1302,95 @@ export default function ClubScreen() {
           />
         )}
 
-        <View style={{ flexDirection:'row', backgroundColor:t.bgCard, borderRadius:14, borderWidth:0.5, borderColor:t.border, padding:4, gap:4, marginHorizontal: clubTab === 'chat' ? 16 : 0 }}>
-          {([
-            ['rank', triLang(lang, {
-              ru: 'Рейтинг',
-              uk: 'Рейтинг',
-              es: 'Ranking',
-              'pt-BR': "Ranking",
-              vi: "Xếp hạng",
-              id: "Peringkat",
-              tr: "Sıralama",
-              pl: "Ranking",
-            }), 'podium-outline'],
-            ['chat', triLang(lang, {
-              ru: 'Чат',
-              uk: 'Чат',
-              es: 'Chat',
-              'pt-BR': "Chat",
-              vi: "Trò chuyện",
-              id: "Chat",
-              tr: "Sohbet",
-              pl: "Czat",
-            }), 'chatbubbles-outline'],
-          ] as const).map(([key, label, icon]) => {
-            const active = clubTab === key;
-            return (
-              <TouchableOpacity
-                key={key}
-                testID={`club-tab-${key}`}
-                activeOpacity={0.86}
-                onPress={() => {
-                  setClubTab(key);
-                  void Haptics.selectionAsync().catch(() => {});
-                }}
-                style={{
-                  flex:1,
-                  minHeight:42,
-                  borderRadius:10,
-                  alignItems:'center',
-                  justifyContent:'center',
-                  flexDirection:'row',
-                  gap:7,
-                  position:'relative',
-                  overflow:'visible',
-                  backgroundColor: active ? t.accent : 'transparent',
-                }}
-              >
-                <Ionicons name={icon as any} size={17} color={active ? t.correctText : t.textMuted} />
-                <Text style={{ color:active ? t.correctText : t.textMuted, fontSize:f.sub, fontWeight:'900' }}>{label}</Text>
-                {key === 'chat' && leagueChatUnreadCount > 0 && (
-                  <View
-                    testID="club-chat-unread-badge"
-                    style={{
-                      position:'absolute',
-                      top:-6,
-                      right:8,
-                      minWidth:20,
-                      height:20,
-                      paddingHorizontal:6,
-                      borderRadius:10,
-                      alignItems:'center',
-                      justifyContent:'center',
-                      backgroundColor:'#E9505F',
-                      borderWidth:1.5,
-                      borderColor:t.bgCard,
-                    }}
-                  >
-                    <Text style={{ color:'#FFFFFF', fontSize:10, fontWeight:'900' }}>
-                      {formatLeagueChatUnreadBadge(leagueChatUnreadCount)}
-                    </Text>
-                  </View>
-                )}
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-
-        {clubTab !== 'chat' && (
-        <>
-        {/* ── Горизонтальная лента лиг ── */}
         <View
-          pointerEvents={leagueRailPositioned ? 'auto' : 'none'}
-          onLayout={(e) => setLeagueRailWidth(e.nativeEvent.layout.width)}
-          style={{ paddingVertical: 12, overflow: 'visible' }}
+          {...leaguePreviewPanResponder.panHandlers}
         >
-          <Animated.ScrollView
-            ref={leagueRailRef}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            snapToOffsets={snapOffsets}
-            snapToAlignment="start"
-            decelerationRate={0.94}
-            disableIntervalMomentum
-            bounces={false}
-            overScrollMode="never"
-            onMomentumScrollEnd={(e) => onSnapToLeague(e.nativeEvent.contentOffset.x)}
-            onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { x: railScrollX } } }],
-              // Native driver: scroll-linked scale/opacity run on UI thread (smooth).
-              // If you see disconnectAnimatedNodeFromView on fast back navigation, switch to useNativeDriver: false + throttle 1.
-              { useNativeDriver: true }
-            )}
-            scrollEventThrottle={16}
-            style={{ overflow: 'visible', opacity: leagueRailPositioned ? 1 : 0 }}
-            contentContainerStyle={{ paddingHorizontal: railSideInset, paddingVertical: 6, gap: LEAGUE_ITEM_GAP }}
+        <LinearGradient
+          colors={[leagueBonusPalette.modal.card[0], leagueBonusPalette.modal.card[1], leagueBonusPalette.modal.card[2]]}
+          locations={leagueBonusPalette.modal.cardLocations}
+          start={{ x:0, y:0 }}
+          end={{ x:1, y:1 }}
+          style={{ borderRadius:20, borderWidth:0.5, borderColor:leagueBonusPalette.border, paddingHorizontal:16, paddingTop:18, paddingBottom:18, overflow:'hidden', minHeight:204 }}
+        >
+          <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
+          <View style={{ position:'absolute', left:-32, bottom:-52, width:150, height:150, borderRadius:75, backgroundColor:leagueBonusPalette.modal.ribbon, opacity:0.9 }} />
+          <TouchableOpacity
+            testID="league-current-icon"
+            accessibilityRole="button"
+            accessibilityLabel={leagueNameForLang(previewLeague, lang)}
+            activeOpacity={0.86}
+            onPress={() => {
+              setDescModal(previewLeague);
+              void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
+            }}
+            style={{ width:'100%', alignItems:'center', justifyContent:'center', gap:11, paddingHorizontal:0, paddingTop:2 }}
           >
-            {LEAGUES.map((league, idx) => {
-              const isSelectedLeague = league.id === selectedLeagueId;
-              const isLockedLeague = league.id > myLeagueId;
-              const tagText = leagueTag(lang, league.tagRU, league.tagUK);
-              // 5-точечный inputRange — даёт более «крутилочный» эффект:
-              // boczne иконки почти исчезают, центральная сильно укрупняется.
-              const center = idx * LEAGUE_ITEM_FULL;
-              const inputRange = [
-                center - LEAGUE_ITEM_FULL * 1.5,
-                center - LEAGUE_ITEM_FULL,
-                center,
-                center + LEAGUE_ITEM_FULL,
-                center + LEAGUE_ITEM_FULL * 1.5,
-              ];
-              const iconScale = railScrollX.interpolate({
-                inputRange,
-                outputRange: [0.72, 0.88, 1.24, 0.88, 0.72],
-                extrapolate: 'clamp',
-              });
-              const iconOpacity = railScrollX.interpolate({
-                inputRange,
-                outputRange: [0.25, 0.5, 1, 0.5, 0.25],
-                extrapolate: 'clamp',
-              });
-              const iconTranslateY = railScrollX.interpolate({
-                inputRange,
-                outputRange: [4, 2, 0, 2, 4],
-                extrapolate: 'clamp',
-              });
-              const labelOpacity = railScrollX.interpolate({
-                inputRange,
-                outputRange: [0.2, 0.45, 1, 0.45, 0.2],
-                extrapolate: 'clamp',
-              });
-              return (
-                <TouchableOpacity
-                  key={league.id}
-                  activeOpacity={isLockedLeague ? 1 : 0.9}
-                  disabled={isLockedLeague}
-                  onPress={() => {
-                    if (isLockedLeague) return;
-                    const targetX = idx * LEAGUE_ITEM_FULL;
-                    leagueRailRef.current?.scrollTo({ x: targetX, y: 0, animated: true });
-                    setSelectedLeagueId(league.id);
-                    setDescModal(league);
-                    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
-                  }}
-                  style={{
-                    width: LEAGUE_ITEM_SIZE,
-                    paddingVertical: 10,
-                    paddingHorizontal: 8,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 4,
-                    overflow: 'visible',
-                  }}
-                >
-                  <Animated.View style={{
-                    transform: [{ scale: iconScale }, { translateY: iconTranslateY }],
-                    opacity: iconOpacity,
-                    width: LEAGUE_RAIL_ICON_BOX_SIZE,
-                    height: LEAGUE_RAIL_ICON_BOX_SIZE,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    overflow: 'visible',
-                  }}>
-                    <LeagueIcon
-                      league={league}
-                      size={LEAGUE_RAIL_ICON_SIZE}
-                      pulse={false}
-                      active={isSelectedLeague && !isLockedLeague}
-                      locked={isLockedLeague}
-                    />
-                  </Animated.View>
-                  <Animated.Text
-                    numberOfLines={2}
-                    style={{
-                      color: isLockedLeague ? sx.ghost : (isSelectedLeague ? sx.primary : sx.muted),
-                      textAlign: 'center',
-                      fontSize: 11,
-                      lineHeight: 14,
-                      fontWeight: isSelectedLeague ? '700' : '600',
-                      opacity: labelOpacity,
-                      width: '100%',
-                      paddingHorizontal: 4,
-                    }}
-                  >
-                    {triLang(lang, {
-                      ru: (() => {
-                        const n = league.nameRU;
-                        if (/^лига\s+/i.test(n)) {
-                          // "Лига Черного Алмаза" → "Черного\nАлмаза"
-                          return n.replace(/^лига\s+/i, '').replace(/\s+/, '\n');
-                        }
-                        // "Золотая лига" → "Золотая\nлига"
-                        return n.replace(/\s+лига$/i, '\nлига');
-                      })(),
-                      uk: league.nameUK,
-                      es: league.nameES,
-                      'pt-BR': clubNamePlanned(league.id, 'pt-BR'),
-                      vi: clubNamePlanned(league.id, 'vi'),
-                      id: clubNamePlanned(league.id, 'id'),
-                      tr: clubNamePlanned(league.id, 'tr'),
-                      pl: clubNamePlanned(league.id, 'pl'),
-                    })}
-                  </Animated.Text>
-                  {tagText ? (
-                    <Animated.Text
-                      numberOfLines={1}
-                      adjustsFontSizeToFit
-                      minimumFontScale={0.75}
-                      style={{
-                        color: isLockedLeague ? sx.ghost : (isSelectedLeague ? '#D4A017' : sx.ghost),
-                        textAlign: 'center',
-                        fontSize: 11,
-                        lineHeight: 14,
-                        fontWeight: '700',
-                        opacity: labelOpacity,
-                        width: '100%',
-                      }}
-                    >
-                      {tagText}
-                    </Animated.Text>
-                  ) : (
-                    <View style={{ height: 14 }} />
-                  )}
-                  {isSelectedLeague && !isLockedLeague && (
-                    <View style={{ width:24, height:2, borderRadius:2, backgroundColor:league.color, marginTop:2 }} />
-                  )}
-                </TouchableOpacity>
-              );
+            <View style={{ width:122, height:122, borderRadius:61, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.crestBg, borderWidth:1, borderColor:leagueBonusPalette.modal.crestBorder, shadowColor:leagueBonusPalette.accent, shadowOpacity:0.36, shadowRadius:18, shadowOffset:{ width:0, height:8 }, elevation:8 }}>
+              <LeagueIcon league={previewLeague} size={92} active alignContent={false} />
+            </View>
+            <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'900', textAlign:'center', width:'100%', paddingHorizontal:56 }} numberOfLines={2}>
+              {leagueNameForLang(previewLeague, lang)}
+            </Text>
+            {!!leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK) && (
+              <View style={{ paddingHorizontal:10, paddingVertical:5, borderRadius:999, backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:leagueBonusPalette.modal.metaBorder }}>
+                <Text style={{ color:leagueBonusPalette.modal.eyebrow, fontSize:f.caption, fontWeight:'900' }} numberOfLines={1}>
+                  {leagueTag(lang, previewLeague.tagRU, previewLeague.tagUK)}
+                </Text>
+              </View>
+            )}
+          </TouchableOpacity>
+          {leaguePreviewState.isPreviewingMyLeague && (
+          <TouchableOpacity
+            testID="league-chat-icon"
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Чат лиги',
+              uk: 'Чат ліги',
+              es: 'Chat de liga',
+              'pt-BR': 'Chat da liga',
+              vi: 'Chat liga',
+              id: 'Chat liga',
+              tr: 'Lig sohbeti',
+              pl: 'Czat ligi',
             })}
-          </Animated.ScrollView>
+            activeOpacity={0.86}
+            onPress={() => {
+              setChatModalVisible(true);
+              void Haptics.selectionAsync().catch(() => {});
+            }}
+            style={{ position:'absolute', top:14, right:14, width:46, height:46, borderRadius:23, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:1, borderColor:leagueBonusPalette.modal.metaBorder }}
+          >
+            <Ionicons name="chatbubbles-outline" size={22} color={leagueBonusPalette.accent} />
+            {leagueChatUnreadCount > 0 && (
+              <View testID="club-chat-unread-badge" style={{ position:'absolute', top:-4, right:-4, minWidth:20, height:20, paddingHorizontal:5, borderRadius:10, alignItems:'center', justifyContent:'center', backgroundColor:'#E9505F', borderWidth:1.5, borderColor:t.bgCard }}>
+                <Text style={{ color:'#FFFFFF', fontSize:10, fontWeight:'900' }}>
+                  {formatLeagueChatUnreadBadge(leagueChatUnreadCount)}
+                </Text>
+              </View>
+            )}
+          </TouchableOpacity>
+          )}
+        </LinearGradient>
+        <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', gap:5, marginTop:8, minHeight:10 }}>
+          {LEAGUES.map((league) => (
+            <View
+              key={league.id}
+              style={{
+                width: league.id === previewLeague.id ? 18 : 5,
+                height: 5,
+                borderRadius: 999,
+                backgroundColor: league.id === previewLeague.id ? leagueBonusPalette.accent : 'rgba(255,255,255,0.22)',
+                opacity: league.id === myLeague.id ? 1 : 0.72,
+              }}
+            />
+          ))}
+        </View>
         </View>
 
+        {leaguePreviewState.shouldShowLiveContent && (
+        <View>
         {leagueRaceVisible && (
-        <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:16, borderWidth:0.5, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden' }}>
+        <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ borderRadius:18, borderWidth:0.5, borderColor:leagueBonusPalette.border, padding:14, gap:12, overflow:'hidden', shadowColor:leagueChestVisualAccent, shadowOpacity:0.12, shadowRadius:18, shadowOffset:{ width:0, height:8 }, elevation:4 }}>
           <LeagueBonusGiftImageWithFallback
             source={leagueBonusGiftImage}
             color={leagueChestVisualAccent}
@@ -1376,10 +1398,10 @@ export default function ClubScreen() {
             opacity={leagueChestReady ? 0.20 : 0.12}
             style={{ position:'absolute', right:-24, top:-22, transform:[{ rotate:'-8deg' }] }}
           />
-          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12 }}>
+          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12, minHeight:58 }}>
             <View style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}>
-              <View style={{ width:56, height:56, borderRadius:28, backgroundColor:leagueBonusPalette.iconBg, borderWidth:0.5, borderColor:leagueBonusPalette.iconBorder, alignItems:'center', justifyContent:'center', shadowColor:leagueChestVisualAccent, shadowOpacity:leagueChestReady ? 0.42 : 0.24, shadowRadius:14, shadowOffset:{ width:0, height:6 }, elevation:7 }}>
-                <LeagueBonusGiftImageWithFallback source={leagueBonusGiftImage} color={leagueChestVisualAccent} size={66} opacity={leagueChestReady ? 1 : 0.94} />
+              <View style={{ width:58, height:58, borderRadius:29, backgroundColor:leagueBonusPalette.iconBg, borderWidth:0.5, borderColor:leagueBonusPalette.iconBorder, alignItems:'center', justifyContent:'center', shadowColor:leagueChestVisualAccent, shadowOpacity:leagueChestReady ? 0.42 : 0.24, shadowRadius:14, shadowOffset:{ width:0, height:6 }, elevation:7 }}>
+                <LeagueBonusGiftImageWithFallback source={leagueBonusGiftImage} color={leagueChestVisualAccent} size={68} opacity={leagueChestReady ? 1 : 0.94} />
               </View>
               <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900', flex:1 }} numberOfLines={1}>
                 {triLang(lang, {
@@ -1394,12 +1416,14 @@ export default function ClubScreen() {
                 })}
               </Text>
             </View>
+            <View style={{ minWidth:44, minHeight:32, borderRadius:999, paddingHorizontal:10, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.metaBg, borderWidth:0.5, borderColor:leagueBonusPalette.modal.metaBorder }}>
             <Text style={{ color: leagueChestVisualAccent, fontSize:f.body, fontWeight:'900' }}>
               {leagueChestPct}%
             </Text>
+            </View>
           </View>
-          <View style={{ height:10, borderRadius:6, overflow:'hidden', backgroundColor:leagueBonusPalette.track, borderWidth:0.5, borderColor:leagueBonusPalette.trackBorder }}>
-            <LinearGradient colors={leagueChestVisualFill} start={{ x:0, y:0 }} end={{ x:1, y:0 }} style={{ height:'100%', width:`${leagueChestPct}%` as any, borderRadius:6 }} />
+          <View style={{ height:12, borderRadius:7, overflow:'hidden', backgroundColor:leagueBonusPalette.track, borderWidth:0.5, borderColor:leagueBonusPalette.trackBorder }}>
+            <LinearGradient colors={leagueChestVisualFill} start={{ x:0, y:0 }} end={{ x:1, y:0 }} style={{ height:'100%', width:`${leagueChestPct}%` as any, borderRadius:7 }} />
           </View>
           <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
             <Text style={{ color:leagueBonusPalette.textMuted, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
@@ -1411,7 +1435,7 @@ export default function ClubScreen() {
             colors={activeGroupBoost ? ['rgba(255,91,108,0.24)', 'rgba(255,212,59,0.12)'] : ['rgba(255,255,255,0.055)', 'rgba(255,255,255,0.025)']}
             start={{ x:0, y:0 }}
             end={{ x:1, y:1 }}
-            style={{ borderRadius:13, borderWidth:0.5, borderColor:activeGroupBoost ? 'rgba(255,212,59,0.34)' : leagueBonusPalette.innerBorder, padding:10, gap:10 }}
+            style={{ borderRadius:14, borderWidth:0.5, borderColor:activeGroupBoost ? 'rgba(255,212,59,0.34)' : leagueBonusPalette.innerBorder, padding:10, gap:10 }}
           >
             <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
               <View style={{ width:36, height:36, borderRadius:18, backgroundColor:'rgba(255,91,108,0.18)', borderWidth:0.5, borderColor:'rgba(255,91,108,0.34)', alignItems:'center', justifyContent:'center' }}>
@@ -1432,9 +1456,9 @@ export default function ClubScreen() {
               disabled={!!activeGroupBoost || groupBoostBuying}
               onPress={() => { handleBuyGroupBoost(); }}
               style={{
-                minHeight: 44,
+                minHeight: 46,
                 width: '100%',
-                borderRadius: 12,
+                borderRadius: 13,
                 paddingHorizontal: 12,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -1656,10 +1680,7 @@ export default function ClubScreen() {
         </LinearGradient>
         )}
 
-        <View
-          onLayout={(e) => setLeaderboardTopY(e.nativeEvent.layout.y)}
-          style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden', marginTop:8 }}
-        >
+        <View style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden', marginTop:8 }}>
           {showEmptyParticipants ? (
             <Text style={{ color:t.textGhost, fontSize: f.sub, padding:16, textAlign:'center' }}>
               {triLang(lang, {
@@ -1825,24 +1846,57 @@ export default function ClubScreen() {
             })
           ) : null}
         </View>
-        </>
+        </View>
         )}
 
       </ScrollView>
 
-      {clubTab === 'chat' && (
-        <View style={{ flex: 1, minHeight: 0 }}>
-          <LeagueChatPanel
-            initialRoom={leagueGroupMeta}
-            myUid={arenaClubStableUid}
-            myAvatar={myAvatarEmoji}
-            myAuraId={myAuraId}
-            myTotalXP={playerXP}
-            onToast={showLeagueToast}
-          />
-        </View>
-      )}
       </ContentWrap>
+
+      <Modal
+        visible={chatModalVisible}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setChatModalVisible(false)}
+      >
+        <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.56)', justifyContent:'flex-end' }}>
+          <View style={{ height:'86%', borderTopLeftRadius:22, borderTopRightRadius:22, overflow:'hidden', backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border }}>
+            <View style={{ minHeight:54, paddingHorizontal:14, flexDirection:'row', alignItems:'center', justifyContent:'space-between', borderBottomWidth:0.5, borderBottomColor:t.border }}>
+              <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
+                {triLang(lang, {
+                  ru: 'Чат лиги',
+                  uk: 'Чат ліги',
+                  es: 'Chat de liga',
+                  'pt-BR': 'Chat da liga',
+                  vi: 'Chat liga',
+                  id: 'Chat liga',
+                  tr: 'Lig sohbeti',
+                  pl: 'Czat ligi',
+                })}
+              </Text>
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+                activeOpacity={0.82}
+                onPress={() => setChatModalVisible(false)}
+                style={{ width:40, height:40, borderRadius:20, alignItems:'center', justifyContent:'center', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}
+              >
+                <Ionicons name="close" size={22} color={t.textPrimary} />
+              </TouchableOpacity>
+            </View>
+            <View style={{ flex:1, minHeight:0 }}>
+              <LeagueChatPanel
+                initialRoom={leagueGroupMeta}
+                myUid={arenaClubStableUid}
+                myAvatar={myAvatarEmoji}
+                myAuraId={myAuraId}
+                myTotalXP={playerXP}
+                onToast={showLeagueToast}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
 
       <UnifiedPlayerModal
         player={profilePlayer}
@@ -1866,30 +1920,29 @@ export default function ClubScreen() {
       >
         <Pressable style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', padding:24 }} onPress={() => setDescModal(null)}>
           <Pressable onPress={() => {}}>
-            <View style={{ backgroundColor:t.bgCard, borderRadius:20, padding:24, maxWidth:360, borderWidth:0.5, borderColor:t.border }}>
+            <View style={{ backgroundColor:leagueBonusPalette.modal.card[1], borderRadius:28, padding:14, maxWidth:360, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, overflow:'hidden', alignItems:'center' }}>
+              {descModal ? (
+                <LeagueGuardianCard league={descModal} palette={leagueBonusPalette} themeMode={themeMode} size={260} />
+              ) : null}
               <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'800', marginBottom:12, textAlign:'center' }}>
-                {descModal ? triLang(lang, {
-                  ru: descModal.nameRU,
-                  uk: descModal.nameUK,
-                  es: descModal.nameES,
-                  'pt-BR': descModal ? clubNamePlanned(descModal.id, 'pt-BR') : '',
-                  vi: descModal ? clubNamePlanned(descModal.id, 'vi') : '',
-                  id: descModal ? clubNamePlanned(descModal.id, 'id') : '',
-                  tr: descModal ? clubNamePlanned(descModal.id, 'tr') : '',
-                  pl: descModal ? clubNamePlanned(descModal.id, 'pl') : '',
-                }) : ''}
+                {descModal ? leagueNameForLang(descModal, lang) : ''}
               </Text>
+              {descModal ? (
+                <Text style={{ color:leagueBonusPalette.modal.eyebrow, fontSize:f.body, fontWeight:'900', marginTop:-6, marginBottom:10, textAlign:'center' }}>
+                  {personaTitleForLang(LEAGUE_PERSONAS[descModal.id] ?? LEAGUE_PERSONAS[0], lang)}
+                </Text>
+              ) : null}
               <Text style={{ color:t.textSecond, fontSize:f.body, lineHeight:22, textAlign:'center' }}>
                 {descModal ? clubDescForLang(descModal, lang) : ''}
               </Text>
               {!!descModal && !!leagueTag(lang, descModal.tagRU, descModal.tagUK) && (
                 <Text style={{ color:'#D4A017', fontSize:f.body, fontWeight:'700', textAlign:'center', marginTop:12 }}>
-                  ⭐ {leagueTag(lang, descModal.tagRU, descModal.tagUK)}
+                  {leagueTag(lang, descModal.tagRU, descModal.tagUK)}
                 </Text>
               )}
               <TouchableOpacity
                 onPress={() => setDescModal(null)}
-                style={{ marginTop:20, backgroundColor:t.accent, borderRadius:12, paddingVertical:12, alignItems:'center' }}
+                style={{ width:'100%', marginTop:20, backgroundColor:t.accent, borderRadius:12, paddingVertical:12, alignItems:'center' }}
               >
                 <Text style={{ color:t.correctText, fontWeight:'700', fontSize:f.body }}>OK</Text>
               </TouchableOpacity>

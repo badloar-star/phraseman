@@ -1,0 +1,41 @@
+{
+  "group": "arena_lobby/compass-premium",
+  "updatedAt": "2026-06-04T00:00:00.000Z",
+  "reference": {
+    "background": [
+      "#333335",
+      "#303032",
+      "#2D2D2F"
+    ],
+    "materials": [
+      "cream",
+      "champagne",
+      "copper"
+    ],
+    "rule": "Lobby panels remain flat/recessed; 3D volume only in the arena stage backdrop art and ticket icon."
+  },
+  "registries": [
+    "app/arena_lobby.tsx"
+  ],
+  "sourceFiles": [
+    "assets/images/theme_compass_premium/sources/arena-lobby/arena-lobby-compass-premium-dalle-source-sheet-2026-06-04.png"
+  ],
+  "productionFiles": [
+    {
+      "file": "assets/images/arena/knowledge-arena-compass-premium-session.webp",
+      "exists": true,
+      "bytes": 47902
+    },
+    {
+      "file": "assets/images/arena_tickets/ticket-compass-premium-session.webp",
+      "exists": true,
+      "bytes": 39018
+    }
+  ],
+  "qa": {
+    "contactSheet": "qa-artifacts/compass-runtime-session/arena-lobby-session-contact-sheet.webp",
+    "normalization": "Arena stage rebuilt as a clean graphite backdrop crop; ticket rebuilt from source without black stripe artifacts."
+  },
+  "removedRuntimeFileCount": 4,
+  "removedRuntimeFileNamesOmitted": true
+}

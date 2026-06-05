@@ -68,6 +68,7 @@ Every video must give the viewer one of these feelings:
 17. For multilingual versions of the same lesson, background videos must be unique per language. If the phrases stay the same but the target language changes, do not reuse the previous language's background footage, source IDs, or rendered background assets. Generate or select a new non-repeating background set and verify the source IDs differ before delivery.
 18. Thumbnail packages require a visible gate before completion: inspect the contact sheet, reject cropped/broken text, extra Latin/French/English words, local-overlay artifacts, and any non-DALL-E final thumbnail. Do not say "готово" until the gate report passes.
 19. For every future thumbnail pack, the mandatory inspiration source is `C:\Users\badlo\OneDrive\Desktop\preview examples`, mirrored into `lingman-scenarist-pipeline\thumbnail_reference_bank\every_pack_9_styles_20260531\source_screenshots`. Inspect those examples before generation and make the 9 variants cover the five reference families 1-2 times each. Do not copy English text from references into Russian-channel thumbnails.
+20. Every YouTube description must include Phraseman download links near the top. Required block: App Store `https://apps.apple.com/app/id6764800879`, Google Play `https://play.google.com/store/apps/details?id=app.phraseman`, and site `https://knowlyapps.com/`. A YouTube package is not complete if `description.txt` omits these links.
 
 ## 3. Required User Intake
 

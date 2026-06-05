@@ -11,7 +11,7 @@ const ARENA_ACTION_ICONS: Record<ArenaActionIconKind, Record<ThemeMode, ImageSou
     coral: require('../assets/images/arena_actions/arena-action-match-coral.webp'),
     minimalLight: require('../assets/images/arena_actions/arena-action-match-minimalLight.webp'),
     minimalDark: require('../assets/images/arena_actions/arena-action-match-minimalDark.webp'),
-    compass: require('../assets/images/arena_actions/arena-action-match-compass-premium.webp'),
+    compass: require('../assets/images/arena_actions/arena-action-match-compass-premium-session.webp'),
   },
   friend: {
     dark: require('../assets/images/arena_actions/arena-action-friend-dark.webp'),
@@ -20,7 +20,7 @@ const ARENA_ACTION_ICONS: Record<ArenaActionIconKind, Record<ThemeMode, ImageSou
     coral: require('../assets/images/arena_actions/arena-action-friend-coral.webp'),
     minimalLight: require('../assets/images/arena_actions/arena-action-friend-minimalLight.webp'),
     minimalDark: require('../assets/images/arena_actions/arena-action-friend-minimalDark.webp'),
-    compass: require('../assets/images/arena_actions/arena-action-friend-compass-premium.webp'),
+    compass: require('../assets/images/arena_actions/arena-action-friend-compass-premium-session.webp'),
   },
   throne: {
     dark: require('../assets/images/arena_actions/arena-action-throne-dark.webp'),
@@ -29,7 +29,7 @@ const ARENA_ACTION_ICONS: Record<ArenaActionIconKind, Record<ThemeMode, ImageSou
     coral: require('../assets/images/arena_actions/arena-action-throne-coral.webp'),
     minimalLight: require('../assets/images/arena_actions/arena-action-throne-minimalLight.webp'),
     minimalDark: require('../assets/images/arena_actions/arena-action-throne-minimalDark.webp'),
-    compass: require('../assets/images/arena_actions/arena-action-throne-compass-premium.webp'),
+    compass: require('../assets/images/arena_actions/arena-action-throne-compass-premium-session.webp'),
   },
 };
 

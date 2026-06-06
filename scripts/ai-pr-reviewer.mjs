@@ -155,32 +155,88 @@ async function setCommitStatus(sha, state, description) {
 
 function buildDiffDigest(files, maxChars) {
   let truncated = false;
+  const truncationReasons = [];
+  const missingPatchFiles = [];
   const sections = [];
+  let currentLength = 0;
 
   for (const file of files.slice(0, MAX_FILES)) {
-    const patch = file.patch || '[No textual patch available. The file may be binary, renamed, or too large for GitHub patch output.]';
+    const hasTextualPatch = typeof file.patch === 'string' && file.patch.trim().length > 0;
+    if (!hasTextualPatch) {
+      missingPatchFiles.push(file.filename);
+    }
+
+    const patch = hasTextualPatch
+      ? file.patch
+      : '[No textual patch available. The file may be binary, renamed, or too large for GitHub patch output.]';
     const section = [
       `diff -- ${file.filename}`,
       `status: ${file.status}; additions: ${file.additions}; deletions: ${file.deletions}`,
       patch,
     ].join('\n');
 
-    const nextLength = sections.join('\n\n').length + section.length + 2;
+    const nextLength = currentLength + section.length + (sections.length ? 2 : 0);
     if (nextLength > maxChars) {
       truncated = true;
+      truncationReasons.push(`diff exceeded AI_REVIEW_MAX_CHARS=${maxChars}`);
       break;
     }
 
     sections.push(section);
+    currentLength = nextLength;
   }
 
   if (files.length > MAX_FILES) {
     truncated = true;
+    truncationReasons.push(`file count exceeded MAX_FILES=${MAX_FILES}`);
   }
 
   return {
     text: sections.join('\n\n'),
     truncated,
+    truncationReasons,
+    missingPatchFiles,
+    reviewedFileCount: sections.length,
+  };
+}
+
+function buildIncompleteCoverageReview({ files, diffDigest, sensitiveFiles }) {
+  const findings = [];
+  if (diffDigest.truncated) {
+    findings.push({
+      severity: 'critical',
+      title: 'AI review coverage is truncated',
+      file: 'pull request',
+      evidence: [
+        `Reviewed textual patches: ${diffDigest.reviewedFileCount}/${files.length}.`,
+        ...diffDigest.truncationReasons,
+      ].join(' '),
+      production_impact: 'A required merge gate cannot prove production safety when part of the PR diff was omitted from review.',
+      recommended_action: 'Split the PR or reduce the diff until the AI reviewer can inspect every changed file before merge.',
+    });
+  }
+
+  if (diffDigest.missingPatchFiles.length) {
+    findings.push({
+      severity: 'critical',
+      title: 'AI review coverage is missing textual patches',
+      file: 'pull request',
+      evidence: `GitHub did not provide textual patches for: ${diffDigest.missingPatchFiles.join(', ')}`,
+      production_impact: 'The reviewer cannot assess hidden or binary changes for production risk, including generated config, lockfile, asset, or data-contract regressions.',
+      recommended_action: 'Provide a reviewable textual diff, split the files into a separately approved PR, or get explicit owner approval before changing the gate configuration.',
+    });
+  }
+
+  return {
+    summary: 'AI reviewer blocked this PR because the review coverage is incomplete.',
+    sensitive_touches: sensitiveFiles,
+    findings,
+    tests_to_run: [
+      'Reduce or split the PR until every changed file has a complete textual patch available to the AI reviewer.',
+      'Re-run the AI reviewer gate after the diff is fully reviewable.',
+    ],
+    canary_guidance: 'Do not use canary rollout to compensate for incomplete pre-merge review coverage.',
+    merge_decision: 'fail',
   };
 }
 
@@ -399,9 +455,16 @@ async function main() {
     const files = await pagedGithubRequest(`/pulls/${pr.number}/files`, 30);
     const sensitiveFiles = detectSensitiveTouches(files);
     const maxChars = clampPositiveInt(env('AI_REVIEW_MAX_CHARS'), DEFAULT_MAX_CHARS);
-    const { text: diff, truncated } = buildDiffDigest(files, maxChars);
-    const prompt = buildPrompt({ pr, files, diff, truncated, sensitiveFiles });
-    const review = await requestOpenAiReview(prompt);
+    const diffDigest = buildDiffDigest(files, maxChars);
+    const review = diffDigest.truncated || diffDigest.missingPatchFiles.length
+      ? buildIncompleteCoverageReview({ files, diffDigest, sensitiveFiles })
+      : await requestOpenAiReview(buildPrompt({
+        pr,
+        files,
+        diff: diffDigest.text,
+        truncated: diffDigest.truncated,
+        sensitiveFiles,
+      }));
     const blockingSeverities = parseBlockingSeverities();
     const blocked = review.merge_decision === 'fail' || reviewHasBlockingFinding(review, blockingSeverities);
     const body = buildCommentBody({

@@ -1,0 +1,40 @@
+name: AI Pull Request Review
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+  statuses: write
+
+concurrency:
+  group: ai-pr-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  ai-review:
+    name: AI reviewer gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout trusted base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Review pull request
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.AI_REVIEW_MODEL || 'gpt-5-mini' }}
+          AI_REVIEW_MAX_CHARS: ${{ vars.AI_REVIEW_MAX_CHARS || '120000' }}
+          AI_REVIEW_BLOCKING_SEVERITIES: ${{ vars.AI_REVIEW_BLOCKING_SEVERITIES || 'critical' }}
+        run: node scripts/ai-pr-reviewer.mjs

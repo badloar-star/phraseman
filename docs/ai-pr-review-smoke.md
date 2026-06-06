@@ -8,3 +8,5 @@ Expected gate behavior:
 - i-pr-review/pass becomes success.
 
 Second update: trigger a fresh workflow run after enabling GitHub Actions write permissions.
+
+Third update: trigger a fresh workflow run after allowing PR feedback writes.

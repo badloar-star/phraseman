@@ -149,6 +149,8 @@ export async function saveBuiltMarketplaceCardsCache(
     ownedKey: marketOwnedIdsCacheKey(ownedIds),
     cards,
   };
+  // Defer serialization to avoid blocking the JS thread during frame renders.
+  await new Promise<void>(resolve => setTimeout(resolve, 0));
   try {
     await AsyncStorage.setItem(key, JSON.stringify(payload));
   } catch {

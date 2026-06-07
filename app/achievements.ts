@@ -1124,42 +1124,42 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'streak_3', icon:'🔥', category:'streak', xp:30,
     nameRu:'Первые три',        nameUk:'Перші три',
-    descRu:'Три дня подряд получай опыт в приложении (цепочка активности).',     descUk:'Три дні поспіль отримуй досвід у додатку (серія активності).',
+    descRu:'Три дня подряд с опытом — первый шаг к настоящей серии.',     descUk:'Три дні поспіль отримуй досвід у додатку (серія активності).',
   },
   {
     id:'streak_7', icon:'🥇', category:'streak', xp:75,
     nameRu:'Неделя подряд',       nameUk:'Тиждень поспіль',
-    descRu:'7 дней подряд с начислением опыта; заморозка, починка или щит могут сохранить серию.',    descUk:'7 днів поспіль з нарахуванням досвіду; заморозка, відновлення або щит можуть зберегти серію.',
+    descRu:'7 дней подряд с опытом — первая настоящая серия.',    descUk:'7 днів поспіль з нарахуванням досвіду; заморозка, відновлення або щит можуть зберегти серію.',
   },
   {
     id:'streak_14', icon:'🥈', category:'streak', xp:120,
     nameRu:'Две недели',        nameUk:'Два тижні',
-    descRu:'14 дней подряд с опытом; это не то же самое, что ежедневный вход.',   descUk:'14 днів поспіль з досвідом; це не те саме, що щоденний вхід.',
+    descRu:'14 дней без перерыва. Привычка уже формируется.',   descUk:'14 днів поспіль з досвідом; це не те саме, що щоденний вхід.',
   },
   {
     id:'streak_30', icon:'📅', category:'streak', xp:200,
     nameRu:'Месяц в строю',     nameUk:'Місяць у строю',
-    descRu:'30 дней подряд получай хотя бы раз опыт за день.',   descUk:'30 днів поспіль отримуй хоча б раз досвід за день.',
+    descRu:'30 дней подряд. Это уже не эксперимент — это режим.',   descUk:'30 днів поспіль отримуй хоча б раз досвід за день.',
   },
   {
     id:'streak_60', icon:'📆', category:'streak', xp:350,
     nameRu:'Два месяца',        nameUk:'Два місяці',
-    descRu:'60 дней подряд поддерживай цепочку активности.',   descUk:'60 днів поспіль тримай серію активності.',
+    descRu:'60 дней без пропуска. Половина пути к сотне.',   descUk:'60 днів поспіль тримай серію активності.',
   },
   {
     id:'streak_100', icon:'💯', category:'streak', xp:500,
     nameRu:'Сто дней',          nameUk:'Сто днів',
-    descRu:'100 дней подряд без «пустых» дней для цепочки.',  descUk:'100 днів поспіль без «пустих» днів для серії.',
+    descRu:'100 дней подряд. Сотня — это уже характер.',  descUk:'100 днів поспіль без «пустих» днів для серії.',
   },
   {
     id:'streak_200', icon:'⭐', category:'streak', xp:750,
     nameRu:'Двести дней',       nameUk:'Двісті днів',
-    descRu:'200 дней подряд с ежедневным опытом.',  descUk:'200 днів поспіль із щоденним досвідом.',
+    descRu:'200 дней без перерыва. Это уже образ жизни.',  descUk:'200 днів поспіль із щоденним досвідом.',
   },
   {
     id:'streak_365', icon:'🎉', category:'streak', xp:1200,
     nameRu:'Целый год',         nameUk:'Цілий рік',
-    descRu:'365 дней подряд поддерживай серию как в счётчике цепочки.',  descUk:'365 днів поспіль тримай серію як у лічильнику стріка.',
+    descRu:'Целый год подряд. Это не просто серия — это часть тебя.',  descUk:'365 днів поспіль тримай серію як у лічильнику стріка.',
   },
   {
     id:'streak_500', icon:'👑', category:'streak', xp:2000,
@@ -1170,64 +1170,64 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'streak_repair', icon:'🔁', category:'streak', xp:100,
     nameRu:'Феникс',            nameUk:'Фенікс',
-    descRu:'Успей воспользоваться починкой после ровно одного пропущенного дня и завершить урок в тот же день.', descUk:'Встигни скористатися відновленням після рівно одного пропущеного дня й завершити урок того ж дня.',
+    descRu:'Пропустил день — и тут же вернулся. Феникс возрождается.', descUk:'Встигни скористатися відновленням після рівно одного пропущеного дня й завершити урок того ж дня.',
   },
   {
     id:'perfect_week', icon:'✨', category:'streak', xp:150,
     nameRu:'Идеальная неделя',  nameUk:'Ідеальний тиждень',
-    descRu:'Получай опыт каждый день с понедельника по воскресенье одной календарной недели.', descUk:'Отримуй досвід кожен день із понеділка по неділю одного календарного тижня.',
+    descRu:'Каждый день с понедельника по воскресенье — ни одного пропуска.', descUk:'Отримуй досвід кожен день із понеділка по неділю одного календарного тижня.',
   },
 
   // Уроки — «завершён» = ≥45 верных в прогрессе урока
   {
     id:'lesson_1', icon:'📘', category:'lessons', xp:25,
     nameRu:'Первый шаг',        nameUk:'Перший крок',
-    descRu:'Заверши один урок: зачёт при ≥45 верных ответов.',       descUk:'Заверши один урок: зарахунок при ≥45 правильних відповідей.',
+    descRu:'Пройди первый урок до конца и получи зачёт.',       descUk:'Заверши один урок: зарахунок при ≥45 правильних відповідей.',
   },
   {
     id:'lesson_3', icon:'📗', category:'lessons', xp:50,
     nameRu:'Три урока',         nameUk:'Три уроки',
-    descRu:'Итого три разных урока с полным зачётом.',  descUk:'Усього три різні уроки з повним зарахунком.',
+    descRu:'Три урока пройдено. Ритм набирается.',  descUk:'Усього три різні уроки з повним зарахунком.',
   },
   {
     id:'lesson_5', icon:'📙', category:'lessons', xp:75,
     nameRu:'Пять уроков',       nameUk:'П\'ять уроків',
-    descRu:'Пять уроков доведено до зачёта.',          descUk:'П\'ять уроків доведено до зарахунку.',
+    descRu:'Пять уроков позади. Уже знаешь, как это работает.',          descUk:'П\'ять уроків доведено до зарахунку.',
   },
   {
     id:'lesson_10', icon:'🎓', category:'lessons', xp:150,
     nameRu:'Десять уроков',     nameUk:'Десять уроків',
-    descRu:'Десять уроков с зачётом в активе.',         descUk:'Десять уроків із зарахунком у активі.',
+    descRu:'Десять уроков. Ты уже не новичок.',         descUk:'Десять уроків із зарахунком у активі.',
   },
   {
     id:'lesson_15', icon:'📚', category:'lessons', xp:225,
     nameRu:'Пятнадцать',        nameUk:'П\'ятнадцять',
-    descRu:'15 уроков завершено по правилам зачёта.',         descUk:'15 уроків завершено за правилами зарахунку.',
+    descRu:'15 уроков пройдено. Половина курса близко.',         descUk:'15 уроків завершено за правилами зарахунку.',
   },
   {
     id:'lesson_20', icon:'🏫', category:'lessons', xp:300,
     nameRu:'Двадцать уроков',   nameUk:'Двадцять уроків',
-    descRu:'20 уроков с полным зачётом.',         descUk:'20 уроків із повним зарахунком.',
+    descRu:'20 уроков. До финала рукой подать.',         descUk:'20 уроків із повним зарахунком.',
   },
   {
     id:'lesson_all', icon:'🏆', category:'lessons', xp:600,
     nameRu:'Полный курс',       nameUk:'Повний курс',
-    descRu:'Все 32 урока хотя бы раз с зачётом.',      descUk:'Усі 32 уроки хоча б раз із зарахунком.',
+    descRu:'Все 32 урока пройдены. Курс завершён.',      descUk:'Усі 32 уроки хоча б раз із зарахунком.',
   },
   {
     id:'lesson_perfect', icon:'✅', category:'lessons', xp:100,
     nameRu:'Ни одной ошибки',   nameUk:'Жодної помилки',
-    descRu:'Пройди урок без ответов «ошибка» и с зачётом (≥45 верных).',   descUk:'Пройди урок без відповідей «помилка» й із зарахунком (≥45 правильних).',
+    descRu:'Урок пройден идеально — ни одного промаха.',   descUk:'Пройди урок без відповідей «помилка» й із зарахунком (≥45 правильних).',
   },
   {
     id:'lesson_perfect3', icon:'💯', category:'lessons', xp:200,
     nameRu:'Три идеальных',    nameUk:'Три ідеальних',
-    descRu:'Три разных урока без ни одной ошибки в прогрессе.', descUk:'Три різні уроки без жодної помилки в прогресі.',
+    descRu:'Три урока — и ни одной ошибки в каждом.', descUk:'Три різні уроки без жодної помилки в прогресі.',
   },
   {
     id:'lesson_all_perfect', icon:'🌟', category:'lessons', xp:1500,
     nameRu:'Абсолют',           nameUk:'Абсолют',
-    descRu:'Все 32 урока идеально: без «ошибка» в каждом.', descUk:'Усі 32 уроки ідеально: без «помилка» в кожному.',
+    descRu:'Все 32 урока — без единой ошибки. Чище некуда.', descUk:'Усі 32 уроки ідеально: без «помилка» в кожному.',
     secret: true,
   },
 
@@ -1235,59 +1235,59 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'xp_100', icon:'⚡', category:'xp', xp:20,
     nameRu:'Первая сотня',      nameUk:'Перша сотня',
-    descRu:'Накопи 100 XP в счётчике «всего опыта».',            descUk:'Накопич 100 XP у лічильнику «всього досвіду».',
+    descRu:'Первые 100 XP. Начало положено.',            descUk:'Накопич 100 XP у лічильнику «всього досвіду».',
   },
   {
     id:'xp_250', icon:'✨', category:'xp', xp:30,
     nameRu:'250 опыта',         nameUk:'250 досвіду',
-    descRu:'250 XP суммарно (без учёта того, как ты их заработал).',            descUk:'250 XP загалом (незалежно від джерела).',
+    descRu:'250 XP — и это только начало.',            descUk:'250 XP загалом (незалежно від джерела).',
   },
   {
     id:'xp_500', icon:'💫', category:'xp', xp:50,
     nameRu:'Пятьсот',           nameUk:'П\'ятсот',
-    descRu:'500 XP на общем счётчике.',            descUk:'500 XP на загальному лічильнику.',
+    descRu:'500 XP. Темп взят — не останавливайся.',            descUk:'500 XP на загальному лічильнику.',
   },
   {
     id:'xp_1000', icon:'⭐', category:'xp', xp:75,
     nameRu:'Тысячник',          nameUk:'Тисячник',
-    descRu:'1 000 XP всего.',          descUk:'1 000 XP загалом.',
+    descRu:'Первая тысяча опыта. Дальше — больше.',          descUk:'1 000 XP загалом.',
   },
   {
     id:'xp_2500', icon:'🌟', category:'xp', xp:100,
     nameRu:'2 500 опыта',       nameUk:'2 500 досвіду',
-    descRu:'2 500 XP всего.',          descUk:'2 500 XP загалом.',
+    descRu:'2 500 XP — и ни одной причины останавливаться.',          descUk:'2 500 XP загалом.',
   },
   {
     id:'xp_5000', icon:'💎', category:'xp', xp:150,
     nameRu:'Пять тысяч',        nameUk:'П\'ять тисяч',
-    descRu:'5 000 XP всего.',          descUk:'5 000 XP загалом.',
+    descRu:'5 000 XP. Ты уже далеко ушёл от старта.',          descUk:'5 000 XP загалом.',
   },
   {
     id:'xp_10000', icon:'🏅', category:'xp', xp:200,
     nameRu:'Десять тысяч',      nameUk:'Десять тисяч',
-    descRu:'10 000 XP всего.',         descUk:'10 000 XP загалом.',
+    descRu:'10 000 XP. Это уже серьёзный результат.',         descUk:'10 000 XP загалом.',
   },
   {
     id:'xp_20000', icon:'🎖️', category:'xp', xp:300,
     nameRu:'Двадцать тысяч',    nameUk:'Двадцять тисяч',
-    descRu:'20 000 XP всего.',         descUk:'20 000 XP загалом.',
+    descRu:'20 000 XP. Английский уже не тот, что был.',         descUk:'20 000 XP загалом.',
   },
   {
     id:'xp_50000', icon:'🏆', category:'xp', xp:500,
     nameRu:'Пятьдесят тысяч',    nameUk:'П\'ятдесят тисяч',
-    descRu:'50 000 XP всего.',         descUk:'50 000 XP загалом.',
+    descRu:'50 000 XP. Полпути к легенде.',         descUk:'50 000 XP загалом.',
     secret: true,
   },
   {
     id:'xp_100000', icon:'👑', category:'xp', xp:1000,
     nameRu:'Легенда',           nameUk:'Легенда',
-    descRu:'100 000 XP всего.',        descUk:'100 000 XP загалом.',
+    descRu:'100 000 XP. Это не просто число — это путь.',        descUk:'100 000 XP загалом.',
     secret: true,
   },
   {
     id:'wager_win', icon:'🎲', category:'xp', xp:150,
     nameRu:'Рискнул — победил', nameUk:'Ризикнув — переміг',
-    descRu:'Выиграй пари на цепочку: удерживай серию до конца срока, не опускаясь ниже уровня на момент ставки.', descUk:'Виграй парі на стрік: тримай серію до кінця терміну, не падаючи нижче рівня на момент ставки.',
+    descRu:'Поставил на свою серию — и удержал её до конца. Слово не разошлось с делом.', descUk:'Виграй парі на стрік: тримай серію до кінця терміну, не падаючи нижче рівня на момент ставки.',
   },
   {
     id:'personal_best', icon:'📈', category:'xp', xp:100,
@@ -1298,48 +1298,48 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   // Квизы
   {
     id:'quiz_first', icon:'📝', category:'quiz', xp:30,
-    nameRu:'Первый квиз',       nameUk:'Перший квіз',
-    descRu:'Заверши любой квиз один раз (любая сложность).', descUk:'Заверши будь-який квіз один раз (будь-яка складність).',
+    nameRu:'Первый вызов',       nameUk:'Перший виклик',
+    descRu:'Первый вызов завершён — на любом уровне.', descUk:'Заверши будь-який квіз один раз (будь-яка складність).',
   },
   {
     id:'quiz_medium', icon:'📊', category:'quiz', xp:60,
     nameRu:'Средний уровень',   nameUk:'Середній рівень',
-    descRu:'Доведи до конца квиз с уровнем Medium.', descUk:'Доведи до кінця квіз із рівнем Medium.',
+    descRu:'Пройди вызов уровня Medium до конца.', descUk:'Доведи до кінця квіз із рівнем Medium.',
   },
   {
     id:'quiz_hard', icon:'⚔️', category:'quiz', xp:100,
     nameRu:'Принял вызов',      nameUk:'Прийняв виклик',
-    descRu:'Полностью пройди квиз уровня Hard.',  descUk:'Повністю пройди квіз рівня Hard.',
+    descRu:'Пройди вызов на Hard до конца.',  descUk:'Повністю пройди квіз рівня Hard.',
   },
   {
     id:'quiz_all_levels', icon:'🎯', category:'quiz', xp:150,
     nameRu:'Полный набор',      nameUk:'Повний набір',
-    descRu:'Хотя бы раз пройди Easy, Medium и Hard (три отдельные сессии).', descUk:'Хоча б раз пройди Easy, Medium і Hard (три окремі сесії).',
+    descRu:'Попробовал Easy, Medium и Hard. Теперь выбирай свой.', descUk:'Хоча б раз пройди Easy, Medium і Hard (три окремі сесії).',
   },
   {
     id:'quiz_perfect_easy', icon:'🌿', category:'quiz', xp:75,
     nameRu:'Лёгкий идеал',      nameUk:'Легкий ідеал',
-    descRu:'Квиз Easy: все ответы за этот заход верны.', descUk:'Квіз Easy: усі відповіді за цей захід вірні.',
+    descRu:'Лёгкий уровень — и ни одной ошибки.', descUk:'Квіз Easy: усі відповіді за цей захід вірні.',
   },
   {
     id:'quiz_perfect', icon:'🛡️', category:'quiz', xp:250,
     nameRu:'Железные нервы',    nameUk:'Залізні нерви',
-    descRu:'Квиз Hard без единой ошибки за прохождение.', descUk:'Квіз Hard без жодної помилки за проходження.',
+    descRu:'Самый сложный уровень — и полная чистота.', descUk:'Квіз Hard без жодної помилки за проходження.',
   },
   {
     id:'quiz_perfect_medium', icon:'🎪', category:'quiz', xp:150,
     nameRu:'Меткий стрелок',    nameUk:'Влучний стрілець',
-    descRu:'Квиз Medium без ошибок: все ответы за заход верны.', descUk:'Квіз Medium без помилок: усі відповіді за захід вірні.',
+    descRu:'Средний уровень — пройден без единого промаха.', descUk:'Квіз Medium без помилок: усі відповіді за захід вірні.',
   },
   {
     id:'quiz_triple_perfect', icon:'🌈', category:'quiz', secret: true, xp:500,
     nameRu:'Трижды идеал',      nameUk:'Тричі ідеал',
-    descRu:'Идеальный Easy, Medium и Hard: по отдельному квизу на каждый уровень.', descUk:'Ідеальні Easy, Medium і Hard: окремі квізи на кожен рівень.',
+    descRu:'Идеально на Easy, Medium и Hard — три уровня, ни одной ошибки.', descUk:'Ідеальні Easy, Medium і Hard: окремі квізи на кожен рівень.',
   },
   {
     id:'quiz_speed_demon', icon:'💨', category:'quiz', secret: true, xp:300,
     nameRu:'На скорости',       nameUk:'На швидкості',
-    descRu:'Пять раз полностью заверши квиз Hard (счётчик хранится в приложении).', descUk:'П\'ять раз повністю заверш квіз Hard (лічильник зберігається в додатку).',
+    descRu:'Пять раз прошёл Hard до конца. Это уже система.', descUk:'П\'ять раз повністю заверш квіз Hard (лічильник зберігається в додатку).',
   },
 
   // Комбо и ежедневки (combo — подряд верных в уроке lesson1.tsx)
@@ -1410,7 +1410,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'login_7', icon:'🎒', category:'special', xp:75,
     nameRu:'Верный ученик',     nameUk:'Вірний учень',
-    descRu:'7 дней подряд заходи в приложение (цепочка входа).',     descUk:'7 днів поспіль заходь у додаток (ланцюжок входу).',
+    descRu:'7 дней подряд открывал приложение. Привычка складывается.',     descUk:'7 днів поспіль заходь у додаток (ланцюжок входу).',
   },
   {
     id:'login_14', icon:'📆', category:'special', xp:120,
@@ -1420,7 +1420,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'login_30', icon:'🗓️', category:'special', xp:200,
     nameRu:'Месяц в приложении', nameUk:'Місяць у додатку',
-    descRu:'30 дней подряд с хотя бы одним входом в день.',    descUk:'30 днів поспіль хоча б з одним входом на день.',
+    descRu:'30 дней подряд — Phraseman уже часть дня.',    descUk:'30 днів поспіль хоча б з одним входом на день.',
   },
   {
     id:'login_60', icon:'📌', category:'special', xp:350,
@@ -1436,7 +1436,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'comeback', icon:'👋', category:'special', secret: true, xp:100,
     nameRu:'Возвращение', nameUk:'Повернення',
-    descRu:'Вернись после ~7 и более дней без активности: сработает приветственный бонус возвращения.', descUk:'Повернись після ~7 і більше днів без активності: спрацює вітальний бонус повернення.',
+    descRu:'Вернулся после долгого перерыва — и сразу взял себя в руки.', descUk:'Повернись після ~7 і більше днів без активності: спрацює вітальний бонус повернення.',
   },
   {
     id:'diagnosis', icon:'🔬', category:'special', xp:50,
@@ -1455,18 +1455,18 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   },
 
   // Медали CEFR: ruby/emerald/diamond по минимальному числу проходов среди уроков блока (pass_count)
-  { id:'gem_a1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A1 рубин',      nameUk:'A1 рубін',      descRu:'Уроки 1–8: каждый завершён минимум 2 раза (зачёт урока).',    descUk:'Уроки 1–8: кожен завершено мінімум 2 рази (зарахування уроку).' },
-  { id:'gem_a1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A1 изумруд',    nameUk:'A1 смарагд',    descRu:'Уроки 1–8: минимум 3 прохода у каждого.',    descUk:'Уроки 1–8: мінімум 3 проходи в кожного.' },
-  { id:'gem_a1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A1 бриллиант',  nameUk:'A1 діамант',    descRu:'Уроки 1–8: минимум 4 прохода у каждого.',    descUk:'Уроки 1–8: мінімум 4 проходи в кожного.', secret:true },
-  { id:'gem_a2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A2 рубин',      nameUk:'A2 рубін',      descRu:'Уроки 9–18: каждый минимум 2 полных прохода.',    descUk:'Уроки 9–18: кожен мінімум 2 повних проходи.' },
-  { id:'gem_a2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A2 изумруд',    nameUk:'A2 смарагд',    descRu:'Уроки 9–18: минимум 3 прохода на каждый.',    descUk:'Уроки 9–18: мінімум 3 проходи на кожен.' },
-  { id:'gem_a2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A2 бриллиант',  nameUk:'A2 діамант',    descRu:'Уроки 9–18: минимум 4 прохода на каждый.',    descUk:'Уроки 9–18: мінімум 4 проходи на кожен.', secret:true },
-  { id:'gem_b1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B1 рубин',      nameUk:'B1 рубін',      descRu:'Уроки 19–28: каждый урок блока ≥2 проходов.',    descUk:'Уроки 19–28: кожен урок блоку ≥2 проходів.' },
-  { id:'gem_b1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B1 изумруд',    nameUk:'B1 смарагд',    descRu:'Уроки 19–28: по ≥3 прохода на урок.',    descUk:'Уроки 19–28: по ≥3 проходи на урок.' },
-  { id:'gem_b1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B1 бриллиант',  nameUk:'B1 діамант',    descRu:'Уроки 19–28: по ≥4 прохода на урок.',    descUk:'Уроки 19–28: по ≥4 проходи на урок.', secret:true },
-  { id:'gem_b2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B2 рубин',      nameUk:'B2 рубін',      descRu:'Уроки 29–32: каждый урок ≥2 полных зачётов.',    descUk:'Уроки 29–32: кожен урок ≥2 повних зарахунків.' },
-  { id:'gem_b2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B2 изумруд',    nameUk:'B2 смарагд',    descRu:'Уроки 29–32: по ≥3 прохода каждый.',    descUk:'Уроки 29–32: по ≥3 проходи кожен.' },
-  { id:'gem_b2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B2 бриллиант',  nameUk:'B2 діамант',    descRu:'Уроки 29–32: по ≥4 прохода на каждый урок.',    descUk:'Уроки 29–32: по ≥4 проходи на кожен урок.', secret:true },
+  { id:'gem_a1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A1 рубин',      nameUk:'A1 рубін',      descRu:'Уроки 1–8 пройдены дважды. Фундамент заложен.',    descUk:'Уроки 1–8: кожен завершено мінімум 2 рази (зарахування уроку).' },
+  { id:'gem_a1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A1 изумруд',    nameUk:'A1 смарагд',    descRu:'Уроки 1–8 пройдены трижды. Материал уже в крови.',    descUk:'Уроки 1–8: мінімум 3 проходи в кожного.' },
+  { id:'gem_a1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A1 бриллиант',  nameUk:'A1 діамант',    descRu:'Уроки 1–8 пройдены четыре раза. Это уже автоматизм.',    descUk:'Уроки 1–8: мінімум 4 проходи в кожного.', secret:true },
+  { id:'gem_a2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'A2 рубин',      nameUk:'A2 рубін',      descRu:'Уроки 9–18 пройдены дважды. A2 закрепляется.',    descUk:'Уроки 9–18: кожен мінімум 2 повних проходи.' },
+  { id:'gem_a2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'A2 изумруд',    nameUk:'A2 смарагд',    descRu:'Уроки 9–18 пройдены трижды. Уверенность растёт.',    descUk:'Уроки 9–18: мінімум 3 проходи на кожен.' },
+  { id:'gem_a2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'A2 бриллиант',  nameUk:'A2 діамант',    descRu:'Уроки 9–18 пройдены четыре раза. A2 — твой уровень.',    descUk:'Уроки 9–18: мінімум 4 проходи на кожен.', secret:true },
+  { id:'gem_b1_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B1 рубин',      nameUk:'B1 рубін',      descRu:'Уроки 19–28 пройдены дважды. B1 в работе.',    descUk:'Уроки 19–28: кожен урок блоку ≥2 проходів.' },
+  { id:'gem_b1_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B1 изумруд',    nameUk:'B1 смарагд',    descRu:'Уроки 19–28 пройдены трижды. Грамматика становится инстинктом.',    descUk:'Уроки 19–28: по ≥3 проходи на урок.' },
+  { id:'gem_b1_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B1 бриллиант',  nameUk:'B1 діамант',    descRu:'Уроки 19–28 пройдены четыре раза. B1 — твой фундамент.',    descUk:'Уроки 19–28: по ≥4 проходи на урок.', secret:true },
+  { id:'gem_b2_ruby',    icon:'💎', category:'medal', xp:150, nameRu:'B2 рубин',      nameUk:'B2 рубін',      descRu:'Уроки 29–32 пройдены дважды. Финальный блок освоен.',    descUk:'Уроки 29–32: кожен урок ≥2 повних зарахунків.' },
+  { id:'gem_b2_emerald', icon:'💎', category:'medal', xp:250, nameRu:'B2 изумруд',    nameUk:'B2 смарагд',    descRu:'Уроки 29–32 пройдены трижды. Уровень B2 реальный.',    descUk:'Уроки 29–32: по ≥3 проходи кожен.' },
+  { id:'gem_b2_diamond', icon:'💎', category:'medal', xp:400, nameRu:'B2 бриллиант',  nameUk:'B2 діамант',    descRu:'Уроки 29–32 пройдены четыре раза. Это вершина курса.',    descUk:'Уроки 29–32: по ≥4 проходи на кожен урок.', secret:true },
 
   // Экзамены урока
   {
@@ -1511,7 +1511,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'flashcards_sources_4', icon:'🧩', category:'special', xp:180,
     nameRu:'Четыре источника', nameUk:'Чотири джерела',
-    descRu:'Сохрани карточки из урока или квиза, слов, глаголов и фразы дня.', descUk:'Збережи картки з уроку або квізу, слів, дієслів і фрази дня.',
+    descRu:'Сохрани карточки из урока, вызовов, слов, глаголов и фразы дня.', descUk:'Збережи картки з уроку або квізу, слів, дієслів і фрази дня.',
   },
   {
     id:'recall_first', icon:'🧠', category:'special', xp:40,
@@ -1557,7 +1557,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'league_result_first', icon:'🏁', category:'special', xp:70,
     nameRu:'Итоги недели', nameUk:'Підсумки тижня',
-    descRu:'Получи первый недельный результат в лиге.', descUk:'Отримай перший тижневий результат у лізі.',
+    descRu:'Первая неделя в лиге позади. Посмотрим, куда выведет следующая.', descUk:'Отримай перший тижневий результат у лізі.',
   },
   {
     id:'league_top3', icon:'🥉', category:'special', xp:180,
@@ -1625,7 +1625,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'social_gift_send', icon:'🎁', category:'special', xp:40,
     nameRu:'Дед Мороз',  nameUk:'Дід Мороз',
-    descRu:'Отправь подарок другу — щит, ускорение опыта или жетон арены.', descUk:'Відправ подарунок другу — щит, прискорення досвіду або жетон арени.',
+    descRu:'Отправь другу подарок — просто потому что можешь.', descUk:'Відправ подарунок другу — щит, прискорення досвіду або жетон арени.',
   },
   {
     id:'social_gift_5', icon:'🎀', category:'special', xp:150,
@@ -1726,14 +1726,14 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'profile_themed', icon:'🖼️', category:'special', xp:35,
     nameRu:'Интерьер готов',  nameUk:'Інтер\'єр готовий',
-    descRu:'Установи стиль оформления для профиль-карточки.', descUk:'Встанови стиль оформлення для картки профілю.',
+    descRu:'Установи стиль оформления профильной карточки.', descUk:'Встанови стиль оформлення для картки профілю.',
   },
 
   // ── Карточки / Паки ───────────────────────────────────────────────────────
   {
     id:'pack_purchased', icon:'📦', category:'special', xp:60,
     nameRu:'Коллекционер',  nameUk:'Колекціонер',
-    descRu:'Получи первый набор карточек: покупка, community-пак или ваучер.', descUk:'Отримай перший набір карток: покупка, community-пак або ваучер.',
+    descRu:'Первый набор карточек в коллекции — начало большой библиотеки.', descUk:'Отримай перший набір карток: покупка, community-пак або ваучер.',
   },
   {
     id:'pack_5_purchased', icon:'📚', category:'special', xp:180,
@@ -1765,7 +1765,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   {
     id:'quiz_10_completed', icon:'🎯', category:'quiz', xp:100,
     nameRu:'Первые десять',  nameUk:'Перші десять',
-    descRu:'10 квизовых сессий завершено. Только вперёд.', descUk:'10 квізових сесій завершено. Тільки вперед.',
+    descRu:'10 вызовов позади. Только вперёд.', descUk:'10 квізових сесій завершено. Тільки вперед.',
   },
   {
     id:'arena_streak_freeze', icon:'🛡️', category:'special', xp:50,
@@ -1780,41 +1780,41 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   },
 
   // ── Medium / Hardcore layer ───────────────────────────────────────────────
-  { id:'streak_150', icon:'🔥', category:'streak', xp:650, nameRu:'Полторы сотни', nameUk:'Півтори сотні', descRu:'150 дней подряд получай опыт без пустого дня.', descUk:'150 днів поспіль отримуй досвід без порожнього дня.' },
-  { id:'streak_250', icon:'🏔️', category:'streak', xp:900, nameRu:'Четверть тысячи', nameUk:'Чверть тисячі', descRu:'250 дней подряд держи цепочку активности.', descUk:'250 днів поспіль тримай серію активності.', secret:true },
-  { id:'streak_750', icon:'🗿', category:'streak', xp:3000, nameRu:'750 дней', nameUk:'750 днів', descRu:'750 дней подряд с ежедневным опытом.', descUk:'750 днів поспіль із щоденним досвідом.', secret:true },
-  { id:'streak_1000', icon:'👑', category:'streak', xp:5000, nameRu:'Тысяча дней', nameUk:'Тисяча днів', descRu:'1000 дней подряд поддерживай цепочку активности.', descUk:'1000 днів поспіль тримай серію активності.', secret:true },
-  { id:'streak_clean_365', icon:'🛡️', category:'streak', xp:1800, nameRu:'Чистый год', nameUk:'Чистий рік', descRu:'365 дней цепочки без починки или заморозки за этот отрезок.', descUk:'365 днів серії без відновлення чи заморозки за цей відрізок.', secret:true },
-  { id:'perfect_month', icon:'📅', category:'streak', xp:800, nameRu:'Месяц без пустоты', nameUk:'Місяць без порожнечі', descRu:'Получай опыт каждый день одного календарного месяца.', descUk:'Отримуй досвід щодня одного календарного місяця.', secret:true },
+  { id:'streak_150', icon:'🔥', category:'streak', xp:650, nameRu:'Полторы сотни', nameUk:'Півтори сотні', descRu:'150 дней без перерыва. Здесь уже не воля, а характер.', descUk:'150 днів поспіль отримуй досвід без порожнього дня.' },
+  { id:'streak_250', icon:'🏔️', category:'streak', xp:900, nameRu:'Четверть тысячи', nameUk:'Чверть тисячі', descRu:'250 дней подряд. Четверть тысячи — это отдельная категория людей.', descUk:'250 днів поспіль тримай серію активності.', secret:true },
+  { id:'streak_750', icon:'🗿', category:'streak', xp:3000, nameRu:'750 дней', nameUk:'750 днів', descRu:'750 дней. Это уже монументально.', descUk:'750 днів поспіль із щоденним досвідом.', secret:true },
+  { id:'streak_1000', icon:'👑', category:'streak', xp:5000, nameRu:'Тысяча дней', nameUk:'Тисяча днів', descRu:'1000 дней без пропуска. Тысяча. Этого не описать словами.', descUk:'1000 днів поспіль тримай серію активності.', secret:true },
+  { id:'streak_clean_365', icon:'🛡️', category:'streak', xp:1800, nameRu:'Чистый год', nameUk:'Чистий рік', descRu:'Год без единой починки или заморозки. Только ты и дисциплина.', descUk:'365 днів серії без відновлення чи заморозки за цей відрізок.', secret:true },
+  { id:'perfect_month', icon:'📅', category:'streak', xp:800, nameRu:'Месяц без пустоты', nameUk:'Місяць без порожнечі', descRu:'Каждый день целого месяца — ни одного пропуска.', descUk:'Отримуй досвід щодня одного календарного місяця.', secret:true },
   { id:'night_week', icon:'🌙', category:'streak', xp:350, nameRu:'Ночная смена', nameUk:'Нічна зміна', descRu:'7 дней подряд получай опыт ночью: с 23:00 до 5:00.', descUk:'7 днів поспіль отримуй досвід уночі: з 23:00 до 5:00.', secret:true },
   { id:'early_week', icon:'🌅', category:'streak', xp:300, nameRu:'Ранний режим', nameUk:'Ранній режим', descRu:'7 дней подряд получай опыт утром: с 5:00 до 7:00.', descUk:'7 днів поспіль отримуй досвід уранці: з 5:00 до 7:00.', secret:true },
 
   { id:'lesson_all_2x', icon:'🔁', category:'lessons', xp:700, nameRu:'Второй круг', nameUk:'Друге коло', descRu:'Все 32 урока завершены минимум по 2 раза.', descUk:'Усі 32 уроки завершено мінімум по 2 рази.' },
   { id:'lesson_all_3x', icon:'🔂', category:'lessons', xp:1000, nameRu:'Тройной курс', nameUk:'Потрійний курс', descRu:'Все 32 урока завершены минимум по 3 раза.', descUk:'Усі 32 уроки завершено мінімум по 3 рази.', secret:true },
   { id:'lesson_all_5x', icon:'♾️', category:'lessons', xp:1800, nameRu:'Пятый круг', nameUk:'П’яте коло', descRu:'Все 32 урока завершены минимум по 5 раз.', descUk:'Усі 32 уроки завершено мінімум по 5 разів.', secret:true },
-  { id:'lesson_perfect10', icon:'💯', category:'lessons', xp:400, nameRu:'Десять идеальных', nameUk:'Десять ідеальних', descRu:'10 разных уроков без единой ошибки в прогрессе.', descUk:'10 різних уроків без жодної помилки в прогресі.' },
-  { id:'lesson_b2_perfect', icon:'🎓', category:'lessons', xp:500, nameRu:'B2 без ошибок', nameUk:'B2 без помилок', descRu:'Уроки 29–32 идеально: без «ошибка» в каждом.', descUk:'Уроки 29–32 ідеально: без «помилка» в кожному.', secret:true },
+  { id:'lesson_perfect10', icon:'💯', category:'lessons', xp:400, nameRu:'Десять идеальных', nameUk:'Десять ідеальних', descRu:'10 разных уроков — и ни одной ошибки в каждом.', descUk:'10 різних уроків без жодної помилки в прогресі.' },
+  { id:'lesson_b2_perfect', icon:'🎓', category:'lessons', xp:500, nameRu:'B2 без ошибок', nameUk:'B2 без помилок', descRu:'Уроки 29–32 пройдены идеально — ни единой ошибки.', descUk:'Уроки 29–32 ідеально: без «помилка» в кожному.', secret:true },
   { id:'lesson_marathon_day', icon:'🏁', category:'lessons', xp:700, nameRu:'Учебный марафон', nameUk:'Навчальний марафон', descRu:'За один день заверши 10 разных уроков с зачётом.', descUk:'За один день заверши 10 різних уроків із зарахунком.', secret:true },
   { id:'lesson_all_perfect_2x', icon:'🌟', category:'lessons', xp:2500, nameRu:'Абсолют II', nameUk:'Абсолют II', descRu:'Все 32 урока пройдены идеально минимум по 2 раза.', descUk:'Усі 32 уроки пройдено ідеально мінімум по 2 рази.', secret:true },
 
-  { id:'xp_150000', icon:'⚡', category:'xp', xp:1200, nameRu:'150К опыта', nameUk:'150К досвіду', descRu:'Накопи 150 000 XP суммарно.', descUk:'Накопич 150 000 XP загалом.', secret:true },
-  { id:'xp_250000', icon:'🚀', category:'xp', xp:1800, nameRu:'Четверть миллиона', nameUk:'Чверть мільйона', descRu:'Накопи 250 000 XP суммарно.', descUk:'Накопич 250 000 XP загалом.', secret:true },
-  { id:'xp_500000', icon:'💎', category:'xp', xp:3000, nameRu:'Полмиллиона', nameUk:'Пів мільйона', descRu:'Накопи 500 000 XP суммарно.', descUk:'Накопич 500 000 XP загалом.', secret:true },
-  { id:'xp_750000', icon:'🏆', category:'xp', xp:4200, nameRu:'Три четверти', nameUk:'Три чверті', descRu:'Накопи 750 000 XP суммарно.', descUk:'Накопич 750 000 XP загалом.', secret:true },
-  { id:'xp_1000000', icon:'👑', category:'xp', xp:6000, nameRu:'Миллионер опыта', nameUk:'Мільйонер досвіду', descRu:'Накопи 1 000 000 XP суммарно.', descUk:'Накопич 1 000 000 XP загалом.', secret:true },
-  { id:'xp_2000000', icon:'♾️', category:'xp', xp:9000, nameRu:'Два миллиона', nameUk:'Два мільйони', descRu:'Накопи 2 000 000 XP суммарно.', descUk:'Накопич 2 000 000 XP загалом.', secret:true },
+  { id:'xp_150000', icon:'⚡', category:'xp', xp:1200, nameRu:'150К опыта', nameUk:'150К досвіду', descRu:'150 000 XP. Ты в топе тех, кто не бросил.', descUk:'Накопич 150 000 XP загалом.', secret:true },
+  { id:'xp_250000', icon:'🚀', category:'xp', xp:1800, nameRu:'Четверть миллиона', nameUk:'Чверть мільйона', descRu:'250 000 XP. Четверть миллиона — это редкость.', descUk:'Накопич 250 000 XP загалом.', secret:true },
+  { id:'xp_500000', icon:'💎', category:'xp', xp:3000, nameRu:'Полмиллиона', nameUk:'Пів мільйона', descRu:'500 000 XP. Полмиллиона — и ты всё ещё здесь.', descUk:'Накопич 500 000 XP загалом.', secret:true },
+  { id:'xp_750000', icon:'🏆', category:'xp', xp:4200, nameRu:'Три четверти', nameUk:'Три чверті', descRu:'750 000 XP. Три четверти пути к миллиону.', descUk:'Накопич 750 000 XP загалом.', secret:true },
+  { id:'xp_1000000', icon:'👑', category:'xp', xp:6000, nameRu:'Миллионер опыта', nameUk:'Мільйонер досвіду', descRu:'Миллион XP. Это не просто цифра — это история.', descUk:'Накопич 1 000 000 XP загалом.', secret:true },
+  { id:'xp_2000000', icon:'♾️', category:'xp', xp:9000, nameRu:'Два миллиона', nameUk:'Два мільйони', descRu:'Два миллиона XP. Слов нет — только уважение.', descUk:'Накопич 2 000 000 XP загалом.', secret:true },
   { id:'weekly_xp_5000', icon:'📈', category:'xp', xp:400, nameRu:'Неделя на 5К', nameUk:'Тиждень на 5К', descRu:'Набери 5 000 XP за одну календарную неделю.', descUk:'Набери 5 000 XP за один календарний тиждень.', secret:true },
   { id:'weekly_xp_10000', icon:'🔥', category:'xp', xp:900, nameRu:'Неделя мясорубки', nameUk:'Тиждень м’ясорубки', descRu:'Набери 10 000 XP за одну календарную неделю.', descUk:'Набери 10 000 XP за один календарний тиждень.', secret:true },
   { id:'wager_win_10', icon:'🎲', category:'xp', xp:600, nameRu:'Холодная рука', nameUk:'Холодна рука', descRu:'Выиграй 10 ставок в Арене суммарно.', descUk:'Виграй 10 ставок в Арені загалом.', secret:true },
 
-  { id:'quiz_25_completed', icon:'🎯', category:'quiz', xp:220, nameRu:'25 квизов', nameUk:'25 квізів', descRu:'25 квизовых сессий завершено.', descUk:'25 квізових сесій завершено.' },
-  { id:'quiz_50_completed', icon:'🏅', category:'quiz', xp:400, nameRu:'50 квизов', nameUk:'50 квізів', descRu:'50 квизовых сессий завершено.', descUk:'50 квізових сесій завершено.', secret:true },
-  { id:'quiz_100_completed', icon:'🏆', category:'quiz', xp:800, nameRu:'Сто квизов', nameUk:'Сто квізів', descRu:'100 квизовых сессий завершено.', descUk:'100 квізових сесій завершено.', secret:true },
-  { id:'quiz_hard_10', icon:'⚔️', category:'quiz', xp:350, nameRu:'Hard-десятка', nameUk:'Hard-десятка', descRu:'10 раз заверши квиз уровня Hard.', descUk:'10 разів заверши квіз рівня Hard.', secret:true },
-  { id:'quiz_hard_25', icon:'🛡️', category:'quiz', xp:700, nameRu:'Hard-житель', nameUk:'Hard-житель', descRu:'25 раз заверши квиз уровня Hard.', descUk:'25 разів заверши квіз рівня Hard.', secret:true },
-  { id:'quiz_hard_perfect_3', icon:'💯', category:'quiz', xp:400, nameRu:'Три Hard без ошибки', nameUk:'Три Hard без помилки', descRu:'3 раза пройди Hard-квиз без единой ошибки.', descUk:'3 рази пройди Hard-квіз без жодної помилки.', secret:true },
-  { id:'quiz_hard_perfect_10', icon:'👑', category:'quiz', xp:1000, nameRu:'Десять без промаха', nameUk:'Десять без промаху', descRu:'10 раз пройди Hard-квиз без единой ошибки.', descUk:'10 разів пройди Hard-квіз без жодної помилки.', secret:true },
-  { id:'quiz_perfect_7_days', icon:'📆', category:'quiz', xp:550, nameRu:'Идеальная неделя квизов', nameUk:'Ідеальний тиждень квізів', descRu:'7 дней подряд заверши хотя бы один квиз без ошибки.', descUk:'7 днів поспіль заверши хоча б один квіз без помилки.', secret:true },
+  { id:'quiz_25_completed', icon:'🎯', category:'quiz', xp:220, nameRu:'25 вызовов', nameUk:'25 квізів', descRu:'25 вызовов завершено. Ты в теме.', descUk:'25 квізових сесій завершено.' },
+  { id:'quiz_50_completed', icon:'🏅', category:'quiz', xp:400, nameRu:'50 вызовов', nameUk:'50 квізів', descRu:'50 вызовов позади. Это уже серьёзно.', descUk:'50 квізових сесій завершено.', secret:true },
+  { id:'quiz_100_completed', icon:'🏆', category:'quiz', xp:800, nameRu:'Сто вызовов', nameUk:'Сто квізів', descRu:'100 вызовов. Ты сделал это сотню раз.', descUk:'100 квізових сесій завершено.', secret:true },
+  { id:'quiz_hard_10', icon:'⚔️', category:'quiz', xp:350, nameRu:'Hard-десятка', nameUk:'Hard-десятка', descRu:'10 раз прошёл вызов на Hard. Сложное стало привычным.', descUk:'10 разів заверши квіз рівня Hard.', secret:true },
+  { id:'quiz_hard_25', icon:'🛡️', category:'quiz', xp:700, nameRu:'Hard-житель', nameUk:'Hard-житель', descRu:'25 вызовов на Hard. Ты здесь живёшь.', descUk:'25 разів заверши квіз рівня Hard.', secret:true },
+  { id:'quiz_hard_perfect_3', icon:'💯', category:'quiz', xp:400, nameRu:'Три Hard без ошибки', nameUk:'Три Hard без помилки', descRu:'Три раза прошёл Hard без единой ошибки.', descUk:'3 рази пройди Hard-квіз без жодної помилки.', secret:true },
+  { id:'quiz_hard_perfect_10', icon:'👑', category:'quiz', xp:1000, nameRu:'Десять без промаха', nameUk:'Десять без промаху', descRu:'10 раз прошёл Hard без единой ошибки. Это уже мастерство.', descUk:'10 разів пройди Hard-квіз без жодної помилки.', secret:true },
+  { id:'quiz_perfect_7_days', icon:'📆', category:'quiz', xp:550, nameRu:'Идеальная неделя вызовов', nameUk:'Ідеальний тиждень квізів', descRu:'7 дней подряд — вызов без единой ошибки.', descUk:'7 днів поспіль заверши хоча б один квіз без помилки.', secret:true },
   { id:'quiz_all_levels_perfect_same_day', icon:'🌈', category:'quiz', xp:900, nameRu:'Три короны за день', nameUk:'Три корони за день', descRu:'За один день пройди Easy, Medium и Hard без ошибок.', descUk:'За один день пройди Easy, Medium і Hard без помилок.', secret:true },
 
   { id:'combo_150', icon:'⚡', category:'combo', xp:800, nameRu:'150 подряд', nameUk:'150 поспіль', descRu:'150 верных ответов подряд в одной серии.', descUk:'150 правильних відповідей поспіль в одній серії.', secret:true },
@@ -1856,17 +1856,17 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   { id:'league_champion_5', icon:'👑', category:'special', xp:850, nameRu:'Пять чемпионств', nameUk:'П’ять чемпіонств', descRu:'5 раз заверши неделю первым в группе лиги.', descUk:'5 разів заверши тиждень першим у групі ліги.', secret:true },
   { id:'league_champion_10', icon:'🏆', category:'special', xp:1600, nameRu:'Десять чемпионств', nameUk:'Десять чемпіонств', descRu:'10 раз заверши неделю первым в группе лиги.', descUk:'10 разів заверши тиждень першим у групі ліги.', secret:true },
   { id:'league_diamond_4_weeks', icon:'💎', category:'special', xp:1000, nameRu:'Месяц в Алмазе', nameUk:'Місяць у Діаманті', descRu:'4 недельных результата подряд получи в Алмазной лиге или выше.', descUk:'4 тижневі результати поспіль отримай у Діамантовій лізі або вище.', secret:true },
-  { id:'social_friends_25', icon:'🌐', category:'special', xp:450, nameRu:'25 друзей', nameUk:'25 друзів', descRu:'25 друзей в списке.', descUk:'25 друзів у списку.', secret:true },
-  { id:'social_friends_50', icon:'🌍', category:'special', xp:900, nameRu:'50 друзей', nameUk:'50 друзів', descRu:'50 друзей в списке.', descUk:'50 друзів у списку.', secret:true },
+  { id:'social_friends_25', icon:'🌐', category:'special', xp:450, nameRu:'25 друзей', nameUk:'25 друзів', descRu:'25 друзей. Phraseman стал общим делом.', descUk:'25 друзів у списку.', secret:true },
+  { id:'social_friends_50', icon:'🌍', category:'special', xp:900, nameRu:'50 друзей', nameUk:'50 друзів', descRu:'50 друзей. Ты строишь настоящее сообщество.', descUk:'50 друзів у списку.', secret:true },
   { id:'social_gift_25', icon:'🎁', category:'special', xp:550, nameRu:'25 подарков', nameUk:'25 подарунків', descRu:'Отправь 25 подарков друзьям.', descUk:'Надішли 25 подарунків друзям.', secret:true },
   { id:'social_gift_100', icon:'💝', category:'special', xp:1500, nameRu:'100 подарков', nameUk:'100 подарунків', descRu:'Отправь 100 подарков друзьям.', descUk:'Надішли 100 подарунків друзям.', secret:true },
   { id:'social_likes_25', icon:'❤️', category:'special', xp:450, nameRu:'25 лайков', nameUk:'25 лайків', descRu:'Получи 25 лайков от друзей на свои достижения.', descUk:'Отримай 25 лайків від друзів на свої досягнення.', secret:true },
   { id:'social_likes_100', icon:'💗', category:'special', xp:1200, nameRu:'100 лайков', nameUk:'100 лайків', descRu:'Получи 100 лайков от друзей на свои достижения.', descUk:'Отримай 100 лайків від друзів на свої досягнення.', secret:true },
   { id:'league_chat_50', icon:'💬', category:'special', xp:450, nameRu:'50 сообщений в лиге', nameUk:'50 повідомлень у лізі', descRu:'Отправь 50 сообщений в чате лиги.', descUk:'Надішли 50 повідомлень у чаті ліги.', secret:true },
   { id:'league_chat_100', icon:'🗨️', category:'special', xp:850, nameRu:'100 сообщений в лиге', nameUk:'100 повідомлень у лізі', descRu:'Отправь 100 сообщений в чате лиги.', descUk:'Надішли 100 повідомлень у чаті ліги.', secret:true },
-  { id:'trainer_1000_correct', icon:'🧠', category:'special', xp:1000, nameRu:'1000 точных', nameUk:'1000 точних', descRu:'1000 правильных ответов суммарно в тренировках.', descUk:'1000 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id:'trainer_2500_correct', icon:'🏋️', category:'special', xp:1800, nameRu:'2500 точных', nameUk:'2500 точних', descRu:'2500 правильных ответов суммарно в тренировках.', descUk:'2500 правильних відповідей загалом у тренуваннях.', secret:true },
-  { id:'trainer_10000_correct', icon:'👑', category:'special', xp:4500, nameRu:'10000 точных', nameUk:'10000 точних', descRu:'10000 правильных ответов суммарно в тренировках.', descUk:'10000 правильних відповідей загалом у тренуваннях.', secret:true },
+  { id:'trainer_1000_correct', icon:'🧠', category:'special', xp:1000, nameRu:'1000 точных', nameUk:'1000 точних', descRu:'1000 правильных ответов в тренировках. Память уже не та — она лучше.', descUk:'1000 правильних відповідей загалом у тренуваннях.', secret:true },
+  { id:'trainer_2500_correct', icon:'🏋️', category:'special', xp:1800, nameRu:'2500 точных', nameUk:'2500 точних', descRu:'2500 правильных ответов. Эти слова уже часть тебя.', descUk:'2500 правильних відповідей загалом у тренуваннях.', secret:true },
+  { id:'trainer_10000_correct', icon:'👑', category:'special', xp:4500, nameRu:'10000 точных', nameUk:'10000 точних', descRu:'10 000 правильных ответов в тренировках. Это уже энциклопедия.', descUk:'10000 правильних відповідей загалом у тренуваннях.', secret:true },
   { id:'trainer_perfect_10_sessions', icon:'💯', category:'special', xp:600, nameRu:'10 чистых тренировок', nameUk:'10 чистих тренувань', descRu:'10 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'10 разів заверши тренування з 5+ питань без помилки.', secret:true },
   { id:'trainer_perfect_50_sessions', icon:'🏆', category:'special', xp:1600, nameRu:'50 чистых тренировок', nameUk:'50 чистих тренувань', descRu:'50 раз заверши тренировку из 5+ вопросов без ошибки.', descUk:'50 разів заверши тренування з 5+ питань без помилки.', secret:true },
   { id:'pack_10_purchased', icon:'📚', category:'special', xp:450, nameRu:'10 наборов', nameUk:'10 наборів', descRu:'10 наборов карточек в коллекции.', descUk:'10 наборів карток у колекції.', secret:true },
@@ -1931,7 +1931,12 @@ const loadAchievementStatesFromKey = async (
     const raw = await AsyncStorage.getItem(key);
     if (raw) {
       const parsed: AchievementState[] = JSON.parse(raw);
-      const normalized = parsed.map(normalizeAchievementState);
+      let normalizedDirty = false;
+      const normalized = parsed.map(s => {
+        const n = normalizeAchievementState(s);
+        if (n.notified !== s.notified || n.shardClaimed !== s.shardClaimed) normalizedDirty = true;
+        return n;
+      });
       let next = normalized.filter(s => ids.has(s.id));
       const hadObsolete = next.length !== normalized.length;
       const knownIds = new Set(next.map(s => s.id));
@@ -1944,7 +1949,7 @@ const loadAchievementStatesFromKey = async (
           addedNew = true;
         }
       }
-      let shouldWrite = hadObsolete || addedNew || JSON.stringify(next) !== raw;
+      let shouldWrite = hadObsolete || addedNew || normalizedDirty;
       const integrity = await AsyncStorage.getItem(`${SHARD_REOPEN_INTEGRITY_KEY}:${key}`);
       if (integrity !== '1') {
         for (const s of next) {
@@ -2019,10 +2024,12 @@ const saveStates = async (states: AchievementState[], studyTarget?: RuntimeStudy
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(globalRows));
       await AsyncStorage.setItem(achievementStateKey('fr'), JSON.stringify(targetRows));
-    } catch {}
+    } catch (e) {
+      if (__DEV__) console.warn('[achievements]', e);
+    }
     return;
   }
-  try { await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(states)); } catch {}
+  try { await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(states)); } catch (e) { if (__DEV__) console.warn('[achievements]', e); }
 };
 
 const unlockOne = (states: AchievementState[], id: string): boolean => {
@@ -2650,7 +2657,9 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
             const parsed = raw ? JSON.parse(raw) : null;
             const n = Math.floor(Number(parsed?.streak));
             if (Number.isFinite(n) && n > 0) lastSafetyStreak = n;
-          } catch {}
+          } catch (e) {
+            if (__DEV__) console.warn('[achievements]', e);
+          }
           if (lastSafetyStreak === null || s - lastSafetyStreak >= 365) u('streak_clean_365');
         }
         {
@@ -3181,7 +3190,9 @@ export const claimAchievementShardReward = async (achievementId: string): Promis
     try {
       const balance = await getShardsBalance();
       emitAppEvent('shards_balance_updated', { balance });
-    } catch {}
+    } catch (e) {
+      if (__DEV__) console.warn('[achievements]', e);
+    }
     return true;
   }
 
@@ -3207,7 +3218,9 @@ export const markAchievementsNotified = async (ids: string[]) => {
       if (s) s.notified = true;
     });
     await saveStates(states);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[achievements]', e);
+  }
 };
 
 export const getPendingNotifications = async (): Promise<Achievement[]> => {
@@ -3241,7 +3254,9 @@ export const unlockAllAchievements = async (): Promise<void> => {
     });
 
     await saveStates(states);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[achievements]', e);
+  }
 };
 
 export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unlocked: number; missing: string[] }> => {

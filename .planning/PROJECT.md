@@ -67,22 +67,34 @@ Phraseman — мобильное приложение (iOS + Android) для и�
 - ✓ Onboarding flow — существует
 - ✓ Tab UI (Home / Quizzes / Hall of Fame / Settings) — существует
 
-## Current Milestone: Friends MVP (v1.0 — социальные функции)
+## Shipped Milestones
 
-**Goal:** Добавить базовую социальную сеть друзей для повышения retention и мотивации.
+- **v1.0 — Friends MVP** (complete 2026-05-05): friend codes, friend requests, friends list, friends-only Hall of Fame (all-time/weekly toggle), arena friends list. 3 phases, 7 plans.
+
+## Current Milestone: v1.1 — Apple Watch Micro-Repetition
+
+**Goal:** Вынести SRS-карточки «к повторению» на Apple Watch для 5-секундных микро-повторений (свайп вправо = знаю / влево = не знаю), повышая retention за счёт десятков микро-сессий в день вместо 1–2 на телефоне.
+
+**Target features:**
+- Expo config plugin, чтобы `prebuild` не стирал watchOS-таргет; App Group + entitlements setup.
+- Нативный iOS-модуль WatchConnectivity (двусторонний): телефон шлёт пачку due-`RecallItem`, часы возвращают `{phrase, gotCorrect, reviewedAt}`.
+- watchOS SwiftUI приложение: стек карточек, свайп право/лево, офлайн-кэш вне зоны iPhone.
+- WatchKit Complication: счётчик `countDueItemsToday()` на циферблате через App Group.
+- RN sync-слой над `active_recall.ts`: приём свайпов, last-write-wins merge по `reviewedAt`, вызов `markReviewed` на элемент.
 
 ### Active Requirements (в работе)
 
-- [ ] User can find another user by 6-character friend code
-- [ ] User can send/accept/decline friend requests
-- [ ] User can view their friends list (sorted by XP, no limit)
-- [ ] User can view friends-only Hall of Fame with all-time / weekly XP toggle
-- [ ] User can copy own friend code and share via deeplink
-- [ ] User can see friends list under "Invite to Arena" button (share invite link to specific friend)
-- [ ] User can remove a friend
-- [ ] Banned users do not appear in friend lookup or friends list
+- [ ] (defined in REQUIREMENTS.md for v1.1 — see roadmap)
 
-### Out of Scope (для этого milestone)
+### v1.1 Key Constraints
+
+- **SRS-движок не переписывать:** опора на готовый `app/active_recall.ts` — `getDueItems()`, `markReviewed(phrase, gotCorrect)`, `countDueItemsToday()`.
+- **Native-bridge паттерн:** RN — единственный писатель, нативный код только читает; App Group shared storage; `schemaVersion` версионирование. Зеркалит `app/widget_bridge.ts` (`modules/phrase-widget`).
+- **КРИТИЧЕСКИЙ ИНВАРИАНТ:** ключ `phrase` из `RecallItem` обязан round-trip'нуть phone→watch→phone **неизменным** (opaque-id). `markReviewed(phrase,...)` делает точный lookup (`if (!item) return`); часы НЕ нормализуют ключ.
+- **Мультилокаль:** `correctAnswer` / `correctAnswerUK` / `correctAnswerES` уже в `RecallItem` — оборот карточки локаль-aware.
+- **Платформа:** watchOS собирается только на Mac+Xcode (доступен). Android Wear — out of scope этого milestone.
+
+### v1.0 Out of Scope (для прошлого milestone — сохранено)
 
 - Push-челлендж в арену (нажать "Вызвать на арену" → push другу) — **отложено в фазу 2**, требует FCM token storage + presence system + invite states.
 - In-app toast invite если друг онлайн — **отложено**, требует presence system (Firestore last_active или RTDB onDisconnect).
@@ -161,4 +173,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-03 after initialization*
+*Last updated: 2026-06-07 — milestone v1.1 Apple Watch Micro-Repetition started*

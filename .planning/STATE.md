@@ -1,25 +1,33 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: Friends MVP
-status: Complete
-last_updated: "2026-05-05T09:15:00.000Z"
+milestone: v1.1
+milestone_name: Apple Watch Micro-Repetition
+status: Defining requirements
+last_updated: "2026-06-07T00:00:00.000Z"
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 7
-  completed_plans: 7
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
 ---
 
 # Phraseman State
 
-**Last updated:** 2026-05-05
+**Last updated:** 2026-06-07
+
+## Current Position
+
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-06-07 — Milestone v1.1 Apple Watch Micro-Repetition started
 
 ## Current Status
 
-- **Milestone:** v1.0 — Friends MVP — **COMPLETE**
-- **All 3 phases done, all 7 plans executed**
-- **Next action:** Deploy / QA pass on device
+- **Milestone:** v1.1 — Apple Watch Micro-Repetition — **defining requirements**
+- **Previous:** v1.0 — Friends MVP — COMPLETE (3 phases, 7 plans)
+- **Phase numbering:** continues from v1.0 → v1.1 phases start at **Phase 5**
+- **Next action:** research → requirements → roadmap
 
 ## Project Snapshot
 

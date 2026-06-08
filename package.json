@@ -166,6 +166,7 @@
     "expo-updates": "~29.0.17",
     "expo-web-browser": "~15.0.11",
     "fast-xml-parser": "^5.8.0",
+    "posthog-react-native": "^4.46.19",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",

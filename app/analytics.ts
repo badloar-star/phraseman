@@ -49,11 +49,80 @@ interface EventRecord {
 const STORAGE_KEY = 'analytics_queue';
 const MAX_QUEUE = 200; // не накапливать бесконечно
 
+// ── PostHog bridge ──────────────────────────────────────────────────────────
+// Активируется ТОЛЬКО при наличии EXPO_PUBLIC_POSTHOG_KEY. Без ключа — no-op,
+// события продолжают копиться в локальной очереди (offline-first). Ключ НЕ
+// хардкодим: задаётся через env. SDK грузится лениво, чтобы отсутствие пакета
+// (Expo Go / web) не ломало приложение.
+const POSTHOG_KEY = process.env.EXPO_PUBLIC_POSTHOG_KEY;
+const POSTHOG_HOST = process.env.EXPO_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
+
+type PosthogLike = {
+  capture: (event: string, props?: Record<string, any>) => void;
+  identify: (id: string, props?: Record<string, any>) => void;
+  reset: () => void;
+};
+
+let _posthog: PosthogLike | null = null;
+let _posthogInitPromise: Promise<PosthogLike | null> | null = null;
+
+export function isPosthogEnabled(): boolean {
+  return typeof POSTHOG_KEY === 'string' && POSTHOG_KEY.length > 0;
+}
+
+async function getPosthog(): Promise<PosthogLike | null> {
+  if (!isPosthogEnabled()) return null;
+  if (_posthog) return _posthog;
+  if (_posthogInitPromise) return _posthogInitPromise;
+  _posthogInitPromise = (async () => {
+    try {
+      const mod = await import('posthog-react-native');
+      const PostHog = (mod as any).default ?? (mod as any).PostHog;
+      const client = new PostHog(POSTHOG_KEY as string, { host: POSTHOG_HOST });
+      _posthog = client as PosthogLike;
+      return _posthog;
+    } catch {
+      return null;
+    }
+  })();
+  return _posthogInitPromise;
+}
+
+/** Привязать события к пользователю (вызывать после логина/восстановления). */
+export const identifyUser = async (userId: string, props: Record<string, any> = {}): Promise<void> => {
+  try {
+    const ph = await getPosthog();
+    ph?.identify(userId, props);
+  } catch {
+    // analytics must never crash the app
+  }
+};
+
+/** Сбросить идентификацию (вызывать при выходе). */
+export const resetAnalyticsIdentity = async (): Promise<void> => {
+  try {
+    const ph = await getPosthog();
+    ph?.reset();
+  } catch {
+    // ignore
+  }
+};
+
 // ── Запись события ────────────────────────────────────────────────────────────
 export const trackEvent = async (
   event: AnalyticsEvent,
   props: Record<string, any> = {}
 ): Promise<void> => {
+  // Forward to PostHog when enabled (fire-and-forget; never blocks).
+  if (isPosthogEnabled()) {
+    void getPosthog().then((ph) => {
+      try {
+        ph?.capture(event, props);
+      } catch {
+        // ignore
+      }
+    });
+  }
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     const queue: EventRecord[] = raw ? JSON.parse(raw) : [];
@@ -95,14 +164,21 @@ export const flushAnalytics = async (): Promise<void> => {
     const queue = await getEventQueue();
     if (queue.length === 0) return;
 
-    // TODO: заменить на реальный SDK когда выберете платформу
-    // Пример с Amplitude:
-    //   for (const e of queue) await amplitude.track(e.event, e.props);
-    // Пример с PostHog:
-    //   for (const e of queue) posthog.capture(e.event, e.props);
+    // PostHog (когда включён) получает события в реальном времени через
+    // trackEvent → capture. Локальная очередь — резерв/отладка; чистим её,
+    // чтобы не копить дубли. Если PostHog выключен — очередь просто очищается
+    // (события всё равно записаны локально до этого вызова).
+    if (isPosthogEnabled()) {
+      const ph = await getPosthog();
+      if (ph) {
+        for (const e of queue) {
+          try { ph.capture(e.event, e.props); } catch { /* ignore */ }
+        }
+      }
+    }
 
     if (__DEV__) {
-      console.log(`[Analytics] ${queue.length} events in queue:`, queue.map(e => e.event));
+      console.log(`[Analytics] flushed ${queue.length} events (posthog=${isPosthogEnabled()})`);
     }
 
     await clearEventQueue();

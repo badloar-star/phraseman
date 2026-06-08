@@ -1398,6 +1398,9 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
  */
 export async function signOutCurrentProvider(): Promise<void> {
   if (__DEV__) console.log('[auth_provider] signOutCurrentProvider: start');
+  // Drop analytics identity so post-logout events aren't attributed to the
+  // previous user (no-op unless PostHog is enabled).
+  void import('./analytics').then((m) => m.resetAnalyticsIdentity()).catch(() => {});
   if (!CLOUD_SYNC_ENABLED) return;
   // Google: revoke session чтобы при следующем signIn показался picker аккаунтов
   try {

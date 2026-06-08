@@ -1309,6 +1309,19 @@ function AppContent() {
           m.subscribeRemoteConfig();
         })
         .catch(() => {});
+      // PostHog identify (no-op unless EXPO_PUBLIC_POSTHOG_KEY is set).
+      void (async () => {
+        try {
+          const [{ getCanonicalUserId }, analytics] = await Promise.all([
+            import('./user_id_policy'),
+            import('./analytics'),
+          ]);
+          const uid = await getCanonicalUserId().catch(() => '');
+          if (uid) void analytics.identifyUser(uid).catch(() => {});
+        } catch {
+          // ignore
+        }
+      })();
       void startFriendsTabSwrPrime().catch(() => {});
       const startShopWarm = async () => {
         await initFirebaseAppCheckIfAvailable().catch(() => {});

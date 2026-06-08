@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ActivityIndicator, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -114,17 +115,14 @@ export default function LingmanVideoPlayerScreen() {
     <ScreenGradient artBackdrop="home">
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <View style={styles.header}>
-          <TouchableOpacity
+          <TapScale
             accessibilityRole="button"
             accessibilityLabel="Back"
-            onPress={() => {
-              hapticTap();
-              safeRouterBack(router, '/lingman_videos' as any);
-            }}
+            onPress={() => safeRouterBack(router, '/lingman_videos' as any)}
             style={[styles.roundButton, { backgroundColor: chrome.quietButtonBg, borderColor: chrome.quietButtonBorder }]}
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(15, f.bodyLg) }]} numberOfLines={2}>
             {title || 'Professor Lingman'}
           </Text>

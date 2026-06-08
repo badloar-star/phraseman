@@ -33,7 +33,15 @@ const isValidDateStr = (s: string | null | undefined): s is string =>
 export const loadRepairState = async (): Promise<RepairState> => {
   try {
     const raw = await AsyncStorage.getItem(KEY);
-    if (raw) return JSON.parse(raw);
+    if (!raw) return { eligibleDate: null, repairDate: null, lessonsToday: 0, repaired: false };
+    const state: RepairState = JSON.parse(raw);
+    // Если repairDate не сегодня — сбрасываем счётчики урока и флаг починки,
+    // чтобы устаревший state не конфликтовал при следующем eligible событии.
+    const t = today();
+    if (state.repairDate && state.repairDate !== t) {
+      return { ...state, lessonsToday: 0, repaired: false, repairDate: null };
+    }
+    return state;
   } catch {}
   return { eligibleDate: null, repairDate: null, lessonsToday: 0, repaired: false };
 };

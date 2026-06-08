@@ -18,6 +18,7 @@ import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
 import { recordMissedStreakWeekMarkersEndingYesterday } from './streak_week_markers';
+import { invalidateWagerAfterRevive } from './streak_wager';
 
 const STORAGE_KEY = 'streak_revive_v1';
 /** Окно показа модалки после потери цепочки. После — оффер сгорает. */
@@ -187,6 +188,8 @@ export async function reviveStreak(): Promise<ReviveResult> {
         }
       });
       await recordMissedStreakWeekMarkersEndingYesterday('revive', offer.missedDays).catch(() => {});
+      // Цепочка была прервана — активное пари аннулируется (последовательность нарушена)
+      await invalidateWagerAfterRevive().catch(() => {});
     } catch (persistErr) {
       DebugLogger.error('streak_revive:reviveStreak:persist', persistErr, 'critical');
       return { ok: false, reason: 'persist_failed' };

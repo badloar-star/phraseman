@@ -356,6 +356,7 @@ export default function SettingsInviteFriend() {
         </View>
 
         <ScrollView
+          decelerationRate="normal"
           contentContainerStyle={{ padding: 20, paddingBottom: scrollBottomPad }}
           showsVerticalScrollIndicator={false}
         >

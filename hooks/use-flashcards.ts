@@ -111,9 +111,14 @@ export const loadFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<
       try {
         const raw = await AsyncStorage.getItem(flashcardsSavedKey(target));
         const parsed = parseStored(raw);
-        const repaired = parsed.map(repairSavedFlashcardContent);
+        let dirty = false;
+        const repaired = parsed.map(card => {
+          const fixed = repairSavedFlashcardContent(card);
+          if (fixed !== card) dirty = true;
+          return fixed;
+        });
         cardsInMemoryByTarget[target] = repaired;
-        if (JSON.stringify(parsed) !== JSON.stringify(repaired)) {
+        if (dirty) {
           await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(repaired));
         }
         return cardsInMemoryByTarget[target] ?? [];

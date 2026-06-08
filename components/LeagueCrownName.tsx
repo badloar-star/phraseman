@@ -1,5 +1,6 @@
-import React from 'react';
-import { Image, Text, View } from 'react-native';
+import React, { memo } from 'react';
+import { Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { LEAGUE_CROWN_NICK_COLOR } from '../app/services/league_chest_rewards';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { useTheme } from './ThemeContext';
@@ -10,16 +11,18 @@ type Props = {
   active?: boolean;
   fontWeight?: '700' | '800' | '900';
   iconScale?: number;
+  count?: number;
 };
 
 const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
 
-export default function LeagueCrownName({
+function LeagueCrownName({
   text,
   fontSize,
   active = true,
   fontWeight = '900',
   iconScale = 1.25,
+  count,
 }: Props) {
   const { themeMode } = useTheme();
   const crownColor = themeMode === 'gold'
@@ -35,12 +38,13 @@ export default function LeagueCrownName({
   }
 
   const iconSize = Math.max(18, Math.round(fontSize * iconScale));
+  const safeCount = Math.max(0, Math.floor(Number(count) || 0));
 
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
       <Image
         source={LEAGUE_CROWN_ICON}
-        resizeMode="contain"
+        contentFit="contain"
         style={{
           width: iconSize,
           height: iconSize,
@@ -57,7 +61,22 @@ export default function LeagueCrownName({
       >
         {text}
       </Text>
+      {safeCount > 0 ? (
+        <Text
+          numberOfLines={1}
+          style={{
+            fontSize: Math.max(11, Math.round(fontSize * 0.74)),
+            color: crownColor,
+            fontWeight: '900',
+            flexShrink: 0,
+          }}
+        >
+          x{safeCount}
+        </Text>
+      ) : null}
     </View>
   );
 }
+
+export default memo(LeagueCrownName);
 

@@ -10,19 +10,31 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     expect(SOURCE).not.toMatch(MOJIBAKE_RE);
     expect(SOURCE).toContain("accessibilityRole=\"button\"");
     expect(SOURCE).toContain("accessibilityLabel={disabled ? 'Аудио готовится' : 'Слушать фразу'}");
-    expect(SOURCE).toContain("opacity: disabled ? 0.7 : 1");
     expect(SOURCE).toContain("shadowColor: disabled ? '#000000' : accent");
     expect(SOURCE).toContain("label = disabled ? 'Аудио готовится' : isBuffering ? 'Загрузка' : isPlaying ? 'Слушаю' : 'Слушать'");
   });
 
-  it('wraps pronunciation recording in a premium calm recorder panel', () => {
+  // The old record-and-playback self-check UI was replaced by a real on-device
+  // recognition flow (listen to the phrase, speak it, score the transcript, pass at
+  // PLAN_PRONUNCIATION_PASS_THRESHOLD). These assertions track the current honest flow.
+  it('drives pronunciation through real on-device recognition, not a fake recording', () => {
     expect(SOURCE).toContain('recorderHintPill');
-    expect(SOURCE).toContain('Запись до 12 секунд');
     expect(SOURCE).toContain('recorderStack: {');
-    expect(SOURCE).toContain('borderRadius: 26');
-    expect(SOURCE).toContain('padding: 16');
-    expect(SOURCE).toContain('borderWidth: 1.5');
-    expect(SOURCE).toContain("backgroundColor: 'rgba(255,255,255,0.055)'");
-    expect(SOURCE).toContain("shadowOpacity: 0.22");
+
+    // Real on-device recognition + local scoring (no paid service, no server).
+    expect(SOURCE).toContain('speechModule.start({');
+    expect(SOURCE).toContain("speechModule.addListener('result', applyResult)");
+    expect(SOURCE).toContain('scorePlanPronunciationTranscript({');
+    expect(SOURCE).toContain('listenPronunciationTarget');
+    expect(SOURCE).toContain('speakAudio(targetText, 0.86');
+
+    // Completion is gated on a real passing score, not on "I recorded something".
+    expect(SOURCE).toContain('enabled={pronunciationHeardTarget && !pronunciationSpeakingTarget}');
+    expect(SOURCE).toContain('disabled={saving || pronunciationScoring || !pronunciationScore?.passed}');
+    expect(SOURCE).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');
+
+    // The fake "record 12 seconds + listen to yourself = pass" path must be gone.
+    expect(SOURCE).not.toContain('Запись до 12 секунд');
+    expect(SOURCE).not.toContain('userPlayedRecording: true,\n      });');
   });
 });

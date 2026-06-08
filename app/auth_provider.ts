@@ -1398,6 +1398,8 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
  */
 export async function signOutCurrentProvider(): Promise<void> {
   if (__DEV__) console.log('[auth_provider] signOutCurrentProvider: start');
+  // Сбрасываем PostHog-идентичность, чтобы события следующего юзера не приписались прошлому.
+  void import('./posthog_client').then(({ resetPostHog }) => resetPostHog()).catch(() => {});
   if (!CLOUD_SYNC_ENABLED) return;
   // Google: revoke session чтобы при следующем signIn показался picker аккаунтов
   try {

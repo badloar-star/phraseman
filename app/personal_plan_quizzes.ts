@@ -1,6 +1,7 @@
 import type { QuizPhrase } from './quiz_data';
 import type { Lang } from '../constants/i18n';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
+import { stableShuffleAwayFromFirst } from './personal_plan_option_ordering';
 
 export type PersonalPlanQuizInputMode = 'choice' | 'typing';
 
@@ -26,13 +27,14 @@ function q(
   choices: string[],
   correct: number,
   explanations: string[],
+  es?: string,
 ): QuizPhrase {
   const answer = choices[correct] ?? choices[0] ?? '';
   return {
     questionId: id,
     ru,
     uk,
-    es: ru,
+    es: es ?? ru,
     choices,
     correct,
     answer,
@@ -58,17 +60,41 @@ const planQuizTypingCopy: PersonalPlanQuizTaskCopy = {
     'Вспомни короткую фразу дня и введи ее без подсказок. Проверяем спокойный ответ, а не скорость ради скорости.',
 };
 
-function sameCopyForAllLocales(copy: Record<PersonalPlanQuizInputMode, PersonalPlanQuizTaskCopy>) {
+const planQuizChoiceCopyUk: PersonalPlanQuizTaskCopy = {
+  title: 'Перевірка дня',
+  body: 'Обери фразу, яка найкраще передає зміст. Варіанти схожі, але правильний лише один.',
+};
+
+const planQuizTypingCopyUk: PersonalPlanQuizTaskCopy = {
+  title: 'Збери відповідь',
+  body: 'Згадай коротку фразу дня та введи її без підказок.',
+};
+
+const planQuizChoiceCopyEs: PersonalPlanQuizTaskCopy = {
+  title: 'Prueba del día',
+  body: 'Elige la frase que mejor exprese el significado. Las opciones son similares, pero solo una es correcta.',
+};
+
+const planQuizTypingCopyEs: PersonalPlanQuizTaskCopy = {
+  title: 'Construye la respuesta',
+  body: 'Recuerda la frase corta del día e introdúcela sin pistas.',
+};
+
+function buildPlanQuizCopyByLocale(
+  ru: Record<PersonalPlanQuizInputMode, PersonalPlanQuizTaskCopy>,
+  uk: Record<PersonalPlanQuizInputMode, PersonalPlanQuizTaskCopy>,
+  es: Record<PersonalPlanQuizInputMode, PersonalPlanQuizTaskCopy>,
+): Record<Lang, Record<PersonalPlanQuizInputMode, PersonalPlanQuizTaskCopy>> {
   return {
-    ru: copy,
-    uk: copy,
-    es: copy,
-    'pt-BR': copy,
-    vi: copy,
-    id: copy,
-    tr: copy,
-    pl: copy,
-  } as Record<Lang, Record<PersonalPlanQuizInputMode, PersonalPlanQuizTaskCopy>>;
+    ru,
+    uk,
+    es,
+    'pt-BR': ru,
+    vi: ru,
+    id: ru,
+    tr: ru,
+    pl: ru,
+  };
 }
 
 const PLAN_QUIZZES: Record<string, QuizPhrase[]> = {
@@ -152,10 +178,11 @@ const PLAN_QUIZ_COVERAGE: Record<string, PersonalPlanQuizCoverage> = {
 };
 
 const PLAN_QUIZ_TASK_COPY: Record<string, Record<Lang, Record<PersonalPlanQuizInputMode, PersonalPlanQuizTaskCopy>>> = {
-  gavan_day1_short_replies_quiz: sameCopyForAllLocales({
-    choice: planQuizChoiceCopy,
-    typing: planQuizTypingCopy,
-  }),
+  gavan_day1_short_replies_quiz: buildPlanQuizCopyByLocale(
+    { choice: planQuizChoiceCopy, typing: planQuizTypingCopy },
+    { choice: planQuizChoiceCopyUk, typing: planQuizTypingCopyUk },
+    { choice: planQuizChoiceCopyEs, typing: planQuizTypingCopyEs },
+  ),
 };
 
 const GENERATED_PLAN_QUIZ_RE = /^(voyazh|mitap|gavan|impuls|echo)_day_(\d+)_quiz$/;
@@ -166,9 +193,26 @@ function generatedQuizLessonId(quizId: string): string | null {
   return `${match[1]}_d${String(Number(match[2])).padStart(3, '0')}_content_unit`;
 }
 
-function generatedQuizChoices(allAnswers: string[], correctAnswer: string): string[] {
+function generatedQuizChoices(allAnswers: string[], correctAnswer: string, seed: string): string[] {
   const distractors = allAnswers.filter((answer) => answer !== correctAnswer);
-  return [correctAnswer, ...distractors].slice(0, 4);
+  return stableShuffleAwayFromFirst(
+    [correctAnswer, ...distractors].slice(0, 4),
+    seed,
+    (option) => option === correctAnswer,
+  );
+}
+
+function generatedQuizExplanation(choice: string, correctAnswer: string, promptRu: string, choiceIndex: number): string {
+  const correctOpeners = ['Бинго.', 'Да, попали в смысл.', 'Точно.', 'Вот это живой вариант.'];
+  const wrongOpeners = ['Ой, ловушка.', 'Похоже, но мимо.', 'Хитрый момент.', 'Не ведемся на знакомые слова.'];
+
+  if (choice === correctAnswer) {
+    const opener = correctOpeners[choiceIndex % correctOpeners.length];
+    return `${opener} ${choice} закрывает смысл «${promptRu}»: коротко, спокойно и без лишней тяжести.`;
+  }
+
+  const opener = wrongOpeners[choiceIndex % wrongOpeners.length];
+  return `${opener} ${choice} может быть полезной фразой, но здесь уводит в другую ситуацию. В этом вопросе держим весь русский смысл целиком: «${promptRu}».`;
 }
 
 function buildGeneratedQuiz(quizId: string): QuizPhrase[] | null {
@@ -180,16 +224,16 @@ function buildGeneratedQuiz(quizId: string): QuizPhrase[] | null {
   const allAnswers = lesson.phrases.map((phrase) => phrase.english);
   return Array.from({ length: 10 }, (_, index) => {
     const phrase = lesson.phrases[index % lesson.phrases.length];
+    const choices = generatedQuizChoices(allAnswers, phrase.english, `${quizId}:q${index + 1}`);
+    const correct = choices.findIndex((choice) => choice === phrase.english);
     return q(
       `${quizId}_q${index + 1}`,
       phrase.russian,
       phrase.ukrainian,
-      generatedQuizChoices(allAnswers, phrase.english),
-      0,
-      generatedQuizChoices(allAnswers, phrase.english).map((choice) =>
-        choice === phrase.english
-          ? `${choice} matches the day phrase.`
-          : `${choice} is another phrase from this plan day.`,
+      choices,
+      correct >= 0 ? correct : 0,
+      choices.map((choice, choiceIndex) =>
+        generatedQuizExplanation(choice, phrase.english, phrase.russian, choiceIndex),
       ),
     );
   });

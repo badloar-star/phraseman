@@ -3,7 +3,7 @@
  * Отображает прогресс активного буста с оставшимся временем
  */
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -20,7 +20,7 @@ interface ActiveBoostBarProps {
   containerStyle?: any;
 }
 
-export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) {
+function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
 
@@ -158,6 +158,8 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
     </View>
   );
 }
+
+export default memo(ActiveBoostBar);
 
 const styles = StyleSheet.create({
   container: {

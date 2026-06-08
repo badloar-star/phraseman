@@ -1,8 +1,9 @@
 // Модалка разового бонуса осколков за волну релиза (см. config RELEASE_WAVE_BONUS_VERSION).
 // Без анимации opacity на оверлее; у осколка — только transform (useNativeDriver), без сбоев на Fabric.
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
-import { Animated, Easing, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -131,7 +132,7 @@ type Props = {
   previewMode?: boolean;
 };
 
-export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = false }: Props) {
+function ReleaseWaveBonusModal({ visible, onClose, previewMode = false }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
@@ -281,7 +282,7 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
               <Image
                 source={oskolokImage}
                 style={styles.oskolokImg}
-                resizeMode="contain"
+                contentFit="contain"
               />
             </Animated.View>
             <Text
@@ -341,6 +342,8 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
     </Modal>
   );
 }
+
+export default memo(ReleaseWaveBonusModal);
 
 const styles = StyleSheet.create({
   root: {

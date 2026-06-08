@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Image, View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
+import TapScale from '../components/TapScale';
+import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
@@ -307,7 +309,7 @@ export default function LessonMenu() {
   const showReplayCta = finishedOnce && !isLessonLocked;
   const canShowLessonPrepHint = !hideEnglishOnlyAuxiliary && !frenchTheorySourceGated;
   const lessonPrepHintText = triLang(lang, {
-    ru: 'Перед уроком можно заглянуть в «Словарь» и потренировать новые слова. А в разделе «Теория» подробно разобраны правила и конструкции. К этим материалам можно вернуться в любой момент.',
+    ru: 'Загляни в «Словарь» и «Теорию» — там правила, конструкции и новые слова урока. Вернуться можно в любой момент.',
     uk: 'Перед уроком можна зазирнути до «Словника» і потренувати нові слова. А в розділі «Теорія» докладно розібрані правила й конструкції. До цих матеріалів можна повернутися будь-коли.',
     es: 'Antes de la lección puedes abrir «Vocabulario» y practicar palabras nuevas. En «Teoría» encontrarás reglas y estructuras explicadas en detalle. Puedes volver a estos materiales en cualquier momento.',
     'pt-BR': 'Antes da lição, você pode abrir o «Vocabulário» e treinar palavras novas. Em «Teoria», as regras e estruturas estão explicadas em detalhe. Você pode voltar a esses materiais quando quiser.',
@@ -495,24 +497,27 @@ export default function LessonMenu() {
   }, [lessonId, studyTarget]);
 
   useEffect(() => {
-    void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
-    loadLockState();
-    // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
-    // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
-    const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
-    if (warm) {
-      setScore(warm.score);
-      setProgress(warm.progress);
-      setProgressArr(warm.progressArr);
-      setWordsLearned(warm.wordsLearned);
-      setIrregularLearned(warm.irregularLearned);
-      setPrepositionAnswered(warm.prepositionAnswered);
-      setPrepositionTotal(warm.prepositionTotal);
-      setPassCount(warm.passCount);
-      setDataLoaded(true);
-    } else {
-      setDataLoaded(false);
-    }
+    const task = InteractionManager.runAfterInteractions(() => {
+      void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
+      loadLockState();
+      // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
+      // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
+      const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
+      if (warm) {
+        setScore(warm.score);
+        setProgress(warm.progress);
+        setProgressArr(warm.progressArr);
+        setWordsLearned(warm.wordsLearned);
+        setIrregularLearned(warm.irregularLearned);
+        setPrepositionAnswered(warm.prepositionAnswered);
+        setPrepositionTotal(warm.prepositionTotal);
+        setPassCount(warm.passCount);
+        setDataLoaded(true);
+      } else {
+        setDataLoaded(false);
+      }
+    });
+    return () => task.cancel();
   }, [lessonId, loadLockState, studyTarget]);
 
   const openLessonFromMenu = useCallback(() => {
@@ -789,7 +794,7 @@ export default function LessonMenu() {
           if (menuEnergyReady && !menuEnergyUnlimited && energy + bonusEnergy <= 0) {
             emitAppEvent('action_toast', {
               type: 'error',
-              messageRu: 'Недостаточно энергии. Дождитесь восстановления или используйте бонусную энергию.',
+              messageRu: 'Не хватает энергии. Подожди восстановления или используй бонусную.',
               messageUk: 'Недостатньо енергії. Дочекайтесь відновлення або використайте бонусну енергію.',
               messageEs: 'No tienes suficiente energía. Espera a que se recargue o usa energía bonus.',
             });
@@ -872,7 +877,7 @@ export default function LessonMenu() {
 })
       : lockReason === 'level'
         ? triLang(lang, {
-  ru: 'Уровень пока закрыт',
+  ru: 'Уровень ещё не открыт',
   uk: 'Рівень поки закритий',
   es: 'Nivel bloqueado',
   "pt-BR": 'Nível bloqueado',
@@ -893,7 +898,7 @@ export default function LessonMenu() {
 });
     const lockedMessage = lockReason === 'premium'
       ? triLang(lang, {
-  ru: 'Этот урок входит в Premium.',
+  ru: 'Этот урок доступен в Premium.',
   uk: 'Цей урок входить до Premium.',
   es: 'Esta lección forma parte de Premium.',
   "pt-BR": 'Esta lição faz parte do Premium.',
@@ -904,7 +909,7 @@ export default function LessonMenu() {
 })
       : lockReason === 'level' && prevLevel
         ? triLang(lang, {
-  ru: `Чтобы открыть уровень ${lessonLevel}, сначала сдайте зачёт ${prevLevel}.`,
+  ru: `Чтобы открыть уровень ${lessonLevel}, сначала сдай зачёт ${prevLevel}.`,
   uk: `Щоб відкрити рівень ${lessonLevel}, спочатку складіть залік ${prevLevel}.`,
   es: `Para abrir el nivel ${lessonLevel}, primero supera el examen de ${prevLevel}.`,
   "pt-BR": `Para abrir o nível ${lessonLevel}, primeiro passe no teste ${prevLevel}.`,
@@ -925,7 +930,7 @@ export default function LessonMenu() {
 });
     const lockedButtonLabel = lockReason === 'premium'
       ? triLang(lang, {
-  ru: 'Получить Premium',
+  ru: 'Открыть Premium',
   uk: 'Отримати Premium',
   es: 'Obtener Premium',
   "pt-BR": 'Obter Premium',
@@ -1095,7 +1100,7 @@ export default function LessonMenu() {
         </PremiumCard>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }}>
+      <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}
@@ -1123,7 +1128,7 @@ export default function LessonMenu() {
                     <Image
                       source={MEDAL_IMAGES[dot]}
                       style={{ width: medalSize, height: medalSize }}
-                      resizeMode="contain"
+                      contentFit="contain"
                     />
                   </View>
                 ))}
@@ -1320,7 +1325,7 @@ export default function LessonMenu() {
                 <Text style={{color:t.textMuted, fontSize:f.body, textAlign:'center', marginBottom:28, lineHeight:22}}>
                   {lockInfo ? getLockMessageText(lockInfo, lang) : ''}
                 </Text>
-                <TouchableOpacity
+                <TapScale scaleTo={0.96}
                   style={{
                     backgroundColor:isCompassTheme ? COMPASS_RICH.champagne : t.accent,
                     borderRadius:isCompassTheme ? 9 : 14, padding:16, width:'100%', alignItems:'center',
@@ -1353,7 +1358,7 @@ export default function LessonMenu() {
   pl: 'Rozumiem',
 })}
                   </Text>
-                </TouchableOpacity>
+                </TapScale>
               </LinearGradient>
             </Pressable>
           </View>
@@ -1396,7 +1401,7 @@ export default function LessonMenu() {
 })
             : soonOpen === 'vocab'
             ? triLang(lang, {
-  ru: 'Словарь для этого урока ещё готовится',
+  ru: 'Словарь для этого урока скоро появится',
   uk: 'Словник для цього урока ще готується',
   es: 'El vocabulario de esta lección aún está en preparación.',
   "pt-BR": 'O vocabulário desta lição ainda está sendo preparado.',

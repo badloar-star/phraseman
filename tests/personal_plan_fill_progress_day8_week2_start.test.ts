@@ -4,7 +4,7 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 
 describe('personal plan fill progress day 8 week 2 start', () => {
-  it('tracks Day 8 chat drafts for every plan as a Week 2 autonomy step', () => {
+  it('tracks every Day 8 as generator-backed certified week 2 content', () => {
     const data = JSON.parse(fs.readFileSync(
       path.join(ROOT, 'docs', 'reports', 'personal-plans-fill-progress-data.json'),
       'utf8',
@@ -20,13 +20,39 @@ describe('personal plan fill progress day 8 week 2 start', () => {
     const day8Rows = data.dayQuality.filter((row: { label: string }) => row.label.endsWith('Day 8'));
     expect(day8Rows).toHaveLength(5);
     expect(day8Rows).toEqual(expect.arrayContaining([
-      expect.objectContaining({ label: 'Mitap Day 8', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Voyazh Day 8', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Gavan Day 8', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Impuls Day 8', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Echo Day 8', status: 'chat draft' }),
+      expect.objectContaining({
+        label: 'Mitap Day 8',
+        status: 'certified',
+        quality: 96,
+        notes: expect.stringContaining('mitap_d008_generator_packet'),
+      }),
+      expect.objectContaining({
+        label: 'Voyazh Day 8',
+        status: 'certified',
+        quality: 96,
+        notes: expect.stringContaining('voyazh_d008_generator_packet'),
+      }),
+      expect.objectContaining({
+        label: 'Gavan Day 8',
+        status: 'certified',
+        quality: 96,
+        notes: expect.stringContaining('gavan_d008_generator_packet'),
+      }),
+      expect.objectContaining({
+        label: 'Impuls Day 8',
+        status: 'certified',
+        quality: 96,
+        notes: expect.stringContaining('impuls_d008_generator_packet'),
+      }),
+      expect.objectContaining({
+        label: 'Echo Day 8',
+        status: 'certified',
+        quality: 96,
+        notes: expect.stringContaining('echo_d008_generator_packet'),
+      }),
     ]));
     expect(day8Rows.every((row: { whatExists: string }) => row.whatExists.toLowerCase().includes('week 2'))).toBe(true);
     expect(day8Rows.every((row: { notes: string }) => row.notes.toLowerCase().includes('autonomy'))).toBe(true);
+    expect(day8Rows.filter((row: { status: string }) => row.status === 'certified')).toHaveLength(5);
   });
 });

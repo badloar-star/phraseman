@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View } from 'react-native';
 import { Image } from 'expo-image';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
@@ -79,7 +79,7 @@ interface Props {
   centeredNumber?: boolean;
 }
 
-export default function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true, centeredNumber = false }: Props) {
+function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true, centeredNumber = false }: Props) {
   const clamped = Math.max(1, Math.min(60, level));
   const source = GIFS[clamped];
   const fallbackSource = source ?? GIFS[1];
@@ -142,3 +142,5 @@ export default function LevelBadge({ level, size = 40, height, autoplay: autopla
     </View>
   );
 }
+
+export default memo(LevelBadge);

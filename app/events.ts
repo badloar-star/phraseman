@@ -24,6 +24,7 @@ export type AppEventMap = {
   vip_activated: undefined;
   vip_deactivated: undefined;
   premium_access_changed: { active: boolean; source: 'premium' | 'vip' | 'none' };
+  intro_full_access_changed: undefined;
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   account_deleted: undefined;
@@ -31,7 +32,7 @@ export type AppEventMap = {
   cloud_profile_hydrated: undefined;
   /** После первого сохранения league_state_v3 из облака — перечитать карточку клуба на главной. */
   league_local_state_updated: undefined;
-  league_crown_updated: { uid: string; expiresAt: number };
+  league_crown_updated: { uid: string; expiresAt: number; crownCount?: number };
   /** Непрочитанные сообщения чата лиги изменились — обновить badge на главной/в клубе. */
   league_chat_unread_changed: { roomKey: string; unreadCount: number };
   /** Локальное dev/admin inbox-сообщение изменилось — перечитать inbox без Firestore. */
@@ -70,6 +71,8 @@ export type AppEventMap = {
   streak_revive_offer: { lostStreak: number; missedDays?: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
   streak_revived: { restoredStreak: number; spent: number };
+  /** Активное пари аннулировано (например, после revive или потери цепочки). */
+  wager_lost: { reason: 'revive' | 'streak_broken' };
   streak_freeze_updated: { active: boolean };
   /** Урок впервые завершён (lesson_complete впервые). Используется mastery UI. */
   lesson_finished_once: { lessonId: number; studyTarget?: string };

@@ -158,7 +158,11 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
     profileCardMotion?: unknown;
     profileCardPublicFocus?: unknown;
     leagueCrownExpiresAt?: number | null;
+    leagueCrownActive?: boolean | null;
+    leagueCrownCount?: number | null;
   };
+  const leagueCrownCount = Math.max(0, Math.floor(Number(d.leagueCrownCount) || 0));
+  const hasLeagueCrown = leagueCrownCount > 0 || d.leagueCrownActive === true || Number(d.leagueCrownExpiresAt) > Date.now();
   return {
     points: typeof d.points === 'number' ? d.points : 0,
     frame: typeof d.frame === 'string' && d.frame.trim() ? d.frame : undefined,
@@ -170,7 +174,7 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
     profileCardTheme: normalizeProfileCardTheme(d.profileCardTheme),
     profileCardMotion: normalizeProfileCardMotion(d.profileCardMotion),
     profileCardPublicFocus: normalizeProfileCardPublicFocus(d.profileCardPublicFocus),
-    leagueCrown: Number(d.leagueCrownExpiresAt) > Date.now()
+    leagueCrown: hasLeagueCrown
       ? {
           uid: '',
           name: '',
@@ -178,6 +182,7 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
           groupId: '',
           leagueId: 0,
           expiresAt: Number(d.leagueCrownExpiresAt),
+          crownCount: Math.max(1, leagueCrownCount),
           aura: 'league_chest_crown',
         }
       : undefined,
@@ -392,8 +397,9 @@ function coerceSnapshotRow(raw: unknown, index: number): ArenaLbRow | null {
     level: typeof d.levelRoman === 'string' ? d.levelRoman : undefined,
   });
   const leagueCrownRaw = d.leagueCrown as LeagueCrown | undefined;
-  const leagueCrown = leagueCrownRaw && Number(leagueCrownRaw.expiresAt) > Date.now()
-    ? leagueCrownRaw
+  const leagueCrownCount = Math.max(0, Math.floor(Number(leagueCrownRaw?.crownCount) || 0));
+  const leagueCrown = leagueCrownRaw && (leagueCrownCount > 0 || Number(leagueCrownRaw.expiresAt) > Date.now())
+    ? { ...leagueCrownRaw, crownCount: Math.max(1, leagueCrownCount) }
     : undefined;
   return {
     uid,

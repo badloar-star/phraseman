@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -14,7 +14,7 @@ interface Props {
   isPremium?: boolean;
 }
 
-export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false }: Props) {
+function DailyTreasureChest({ onBonusXPEarned, isPremium = false }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isUK = lang === 'uk';
@@ -117,7 +117,7 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
       // Already opened or invalid attempt
       emitAppEvent('action_toast', {
         type: 'info',
-        messageRu: `Сундук закрыт. ${isPremium ? 'Вы уже открыли максимум сундуков сегодня' : 'Возвращайтесь завтра для нового сундука'}`,
+        messageRu: `Сундук закрыт. ${isPremium ? 'Ты уже открыл максимум сундуков сегодня' : 'Возвращайся завтра за новым сундуком'}`,
         messageUk: `Сундук закритий. ${isPremium ? 'Ви вже відкрили максимум сундуків сьогодні' : 'Повертайтеся завтра для нового сундука'}`,
         messageEs: `Cofre cerrado. ${isPremium ? 'Ya has abierto todos los cofres permitidos hoy' : 'Vuelve mañana por otro cofre'}`,
       });
@@ -237,13 +237,15 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
               ? 'Натисніть щоб отримати бонус XP'
               : isES
                 ? 'Toca para ganar XP extra'
-                : 'Нажмите чтобы получить бонус XP'}
+                : 'Нажми, чтобы получить бонус XP'}
           </Text>
         </View>
       )}
     </View>
   );
 }
+
+export default memo(DailyTreasureChest);
 
 const styles = StyleSheet.create({
   container: {

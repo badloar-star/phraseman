@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import type { StudyTargetLang } from '../app/study_target_lang_dev';
 
 export interface MasteryReplayModalProps {
@@ -10,7 +10,7 @@ export interface MasteryReplayModalProps {
   onReplayed?: (lessonId: number) => void;
 }
 
-export default function MasteryReplayModal({
+function MasteryReplayModal({
   visible,
   lessonId,
   onClose,
@@ -24,3 +24,5 @@ export default function MasteryReplayModal({
 
   return null;
 }
+
+export default memo(MasteryReplayModal);

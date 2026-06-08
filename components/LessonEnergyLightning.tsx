@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { View, StyleSheet, Text, Pressable, useWindowDimensions } from 'react-native';
 import { useTheme } from './ThemeContext';
-import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
 import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
 import { useEnergy } from './EnergyContext';
 import { usePremium } from './PremiumContext';
 import { getTimeUntilNextRecovery, formatTimeUntilRecovery } from '../app/energy_system';
-import EnergyRefillShardModal from './EnergyRefillShardModal';
-import { triLang } from '../constants/i18n';
-import { BRAND_SHARDS_ES } from '../constants/terms_es';
-import { hapticTap } from '../hooks/use-haptics';
 
 const ENERGY_ICON_SIZE = 30;
 
@@ -25,23 +20,12 @@ interface Props {
  * Displays 5 stacked energy icons representing energy units
  * Icons overlap for compact layout (50% offset)
  */
-export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
+function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
   const { theme: t, themeMode } = useTheme();
-  const { lang } = useLang();
   const { isUnlimited } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const { width: windowWidth } = useWindowDimensions();
-  const energyLongPressHint = triLang(lang, {
-    ru: 'Долгое нажатие — восстановить энергию за осколки',
-    uk: 'Довге натискання — відновити енергію за осколки',
-    es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,
-    'pt-BR': 'Mantenha pressionado para recuperar energia com fragmentos',
-    vi: 'Nhấn giữ để hồi năng lượng bằng mảnh',
-    id: 'Tahan untuk memulihkan energi dengan shard',
-    tr: 'Parçalarla enerji yenilemek için basılı tut',
-    pl: 'Przytrzymaj, aby odzyskać energię za odłamki',
-  });
-  const [refillModal, setRefillModal] = useState(false);
+
   const filledColor = t.gold;
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
   const energyLayout = getAdaptiveEnergyIconLayout({
@@ -76,12 +60,6 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
     <View style={styles.container}>
       {/* Horizontal energy icons with slight overlap */}
       <Pressable
-        onLongPress={() => {
-          hapticTap();
-          setRefillModal(true);
-        }}
-        delayLongPress={480}
-        accessibilityHint={energyLongPressHint}
       >
       <View style={[styles.stackContainer, { width: energyLayout.width, maxWidth: energyLayout.maxWidth }]}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
@@ -107,10 +85,11 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
           </Text>
         </View>
       )}
-      <EnergyRefillShardModal visible={refillModal} onClose={() => setRefillModal(false)} />
     </View>
   );
 }
+
+export default memo(LessonEnergyLightning);
 
 const styles = StyleSheet.create({
   container: {

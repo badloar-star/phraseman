@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity,
-  TextInput, Modal, ScrollView, DeviceEventEmitter,
+  TextInput, Modal, ScrollView, Animated, DeviceEventEmitter,
   Linking,
   Platform,
   Keyboard,
   InteractionManager,
   Pressable,
+  StyleSheet,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import TapScale from '../../components/TapScale';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTabNav } from '../TabContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,6 +20,7 @@ import { useTheme, FontSize, FONT_SIZE_LABELS, FONT_SCALE } from '../../componen
 import ReportErrorButton from '../../components/ReportErrorButton';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
+import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
 import CompassDepthSurface from '../../components/CompassDepthSurface';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
@@ -45,7 +50,7 @@ import {
   studyTargetsForSourceLocale,
 } from '../study_target';
 import { triLang, type Lang } from '../../constants/i18n';
-import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
+import { SETTINGS_TESTERS_ROUTE, ADMIN_CELEBRATION_LAB_ROUTE } from '../../constants/devRoutes';
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { reserveName } from '../firestore_leaderboard';
@@ -115,10 +120,13 @@ export default function SettingsMain() {
   const [notifHour,    setNotifHour]    = React.useState(19);
 
   React.useEffect(() => {
-    loadNotificationSettings().then(s => {
-      setNotifEnabled(s.enabled);
-      setNotifHour(s.hour);
+    const task = InteractionManager.runAfterInteractions(() => {
+      loadNotificationSettings().then(s => {
+        setNotifEnabled(s.enabled);
+        setNotifHour(s.hour);
+      });
     });
+    return () => task.cancel();
   }, []);
 
   const { lang, s } = useLang();
@@ -175,6 +183,9 @@ export default function SettingsMain() {
     }
   };
   const scrollRef = useRef<any>(null);
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const insets = useSafeAreaInsets();
+  const topFadeScroll = useTopFadeScroll();
   const { activeIdx, focusTick, goHome } = useTabNav();
   const SETTINGS_TAB_IDX = 4;
 
@@ -387,7 +398,7 @@ export default function SettingsMain() {
 
   const saveName = async () => {
     const trimmed = newName.trim();
-    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
+    if (!trimmed) { showInfoAlert('', L('Введи имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
     if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
     if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
     if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
@@ -406,7 +417,7 @@ export default function SettingsMain() {
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:localApply', error, 'warning');
       showInfoAlert('', L(
-        'Не удалось сохранить имя локально. Попробуйте ещё раз.',
+        'Имя не сохранилось локально. Попробуй ещё раз.',
         'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
         'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',
         'Não foi possível salvar o nome localmente. Tente novamente.',
@@ -426,7 +437,7 @@ export default function SettingsMain() {
           else await AsyncStorage.removeItem('user_name');
           setUserName(oldName);
           await updateLocalNameReferences(trimmed, oldName);
-          showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+          showInfoAlert('', L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
           return;
         }
         if (reservation !== 'ok') {
@@ -493,36 +504,96 @@ export default function SettingsMain() {
 
   return (
     <ScreenGradient>
-      <ScrollView testID="screen-settings" ref={scrollRef} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }} keyboardShouldPersistTaps="handled">
+      <Animated.ScrollView
+        testID="screen-settings"
+        ref={scrollRef}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 40, paddingTop: insets.top }}
+        keyboardShouldPersistTaps="handled"
+        decelerationRate="normal"
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false, listener: topFadeScroll?.onScroll },
+        )}
+      >
 
-        <View style={{ paddingHorizontal:20, paddingTop:14, paddingBottom:4, flexDirection:'row', alignItems:'center' }}>
+        {/* Хедер */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8 }}>
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chính', 'Beranda', 'Ana sayfa', 'Strona główna')}
-            activeOpacity={0.85}
-            onPress={() => { doHaptic(); goHome(); }}
+            onPressIn={() => doHaptic()}
+            onPress={() => goHome()}
             style={{
-              width: 36,
-              height: 36,
+              width: 36, height: 36,
               borderRadius: isCompassTheme ? 8 : 18,
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
               borderWidth: 0.5,
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : screenBorder,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginRight: 12,
-              flexShrink: 0,
-              overflow: 'hidden',
+              justifyContent: 'center', alignItems: 'center',
+              marginRight: 12, flexShrink: 0, overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(1) : {}),
             }}
           >
             {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="chevron-back" size={20} color={chipTextOff} />
           </TouchableOpacity>
-          <Text style={{ color: screenPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex:1 }}>
+          <Text style={{ color: screenPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex: 1 }}>
             {L('Настройки', 'Налаштування', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
           </Text>
         </View>
+
+        {/* ── DEV: Превью празднований (самый верх, только для разработчика) ──────── */}
+        {ENABLE_DEV_TOOLS && (
+          <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: 4 }}>
+            <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
+              {L('Дизайн-лаборатория (DEV)', 'Дизайн-лабораторія (DEV)', 'Laboratorio de diseño (DEV)', 'Laboratório de design (DEV)', 'Phòng thiết kế (DEV)', 'Lab desain (DEV)', 'Tasarım laboratuvarı (DEV)', 'Laboratorium projektowe (DEV)')}
+            </Text>
+            <TouchableOpacity
+              testID="settings-open-celebration-lab"
+              activeOpacity={0.85}
+              onPressIn={() => doHaptic()}
+              onPress={() => router.push(ADMIN_CELEBRATION_LAB_ROUTE as any)}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 16,
+                paddingVertical: 16,
+                borderRadius: 16,
+                overflow: 'hidden',
+                borderWidth: 1,
+                borderColor: 'rgba(255,215,128,0.45)',
+                backgroundColor: 'rgba(255,196,77,0.10)',
+              }}
+            >
+              <LinearGradient
+                colors={['rgba(255,213,128,0.16)', 'rgba(255,170,60,0.06)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <View style={{
+                width: 42, height: 42, borderRadius: 21,
+                alignItems: 'center', justifyContent: 'center',
+                marginRight: 14,
+                backgroundColor: 'rgba(255,196,77,0.18)',
+                borderWidth: 1, borderColor: 'rgba(255,215,128,0.4)',
+              }}>
+                <Text style={{ fontSize: 22 }}>🎉</Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ color: screenPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
+                  {L('Празднование победы', 'Святкування перемоги', 'Celebración de victoria', 'Celebração de vitória', 'Ăn mừng chiến thắng', 'Perayaan kemenangan', 'Zafer kutlaması', 'Świętowanie zwycięstwa')}
+                </Text>
+                <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 3, lineHeight: 17 }}>
+                  {L('Превью нового экрана завершения урока', 'Прев’ю нового екрана завершення уроку', 'Vista previa de la nueva pantalla de fin de lección', 'Prévia da nova tela de fim de lição', 'Xem trước màn hình hoàn thành bài học mới', 'Pratinjau layar penyelesaian pelajaran baru', 'Yeni ders bitiş ekranının önizlemesi', 'Podgląd nowego ekranu ukończenia lekcji')}
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color="rgba(255,215,128,0.9)" />
+            </TouchableOpacity>
+          </View>
+        )}
 
         {isStudyTargetSourceUiLang(lang) && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
@@ -907,26 +978,28 @@ export default function SettingsMain() {
         {/* Подвал */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
           <View style={{ flexDirection:'row', gap:16, marginBottom:20 }}>
-            <TouchableOpacity
+            <TapScale
               onPress={() => {
                 doHaptic();
                 void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL);
               }}
+              withHaptic={false}
             >
               <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
                 Privacy Policy
               </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </TapScale>
+            <TapScale
               onPress={() => {
                 doHaptic();
                 void Linking.openURL(KNOWLY_LEGAL_TERMS_URL);
               }}
+              withHaptic={false}
             >
               <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
                 Terms of Use
               </Text>
-            </TouchableOpacity>
+            </TapScale>
           </View>
           <TouchableOpacity activeOpacity={1}>
             <Text style={{ color:screenMuted, fontSize:f.caption, fontWeight:'600', letterSpacing:0.5, textAlign:'center' }}>
@@ -954,7 +1027,8 @@ export default function SettingsMain() {
           </View>
         </View>
 
-      </ScrollView>
+      </Animated.ScrollView>
+
 
       <RegistrationPromptModal
         visible={authPromptVisible}
@@ -1119,7 +1193,7 @@ export default function SettingsMain() {
                   setSwitchAccountStage('idle');
                   if (!res.ok) {
                     showInfoAlert(
-                      L('Не удалось выйти', 'Не вдалося вийти', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
+                      L('Выход не прошёл. Попробуй снова.', 'Не вдалося вийти', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
                       res.reason === 'sync_failed'
                         ? L(
                             'Нет связи с сервером. Прогресс не сохранён в облако — попробуй позже, когда появится интернет.',
@@ -1212,6 +1286,7 @@ export default function SettingsMain() {
               {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
             <TextInput
+              accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
               style={{
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgPrimary,
                 color: t.textPrimary,
@@ -1224,7 +1299,7 @@ export default function SettingsMain() {
               }}
               value={newName}
               onChangeText={setNewName}
-              placeholder={L('Введите имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
+              placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
               placeholderTextColor={t.textGhost}
               autoFocus maxLength={20}
               returnKeyType="done"

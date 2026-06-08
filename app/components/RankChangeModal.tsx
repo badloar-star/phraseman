@@ -7,9 +7,10 @@
 
 import React, { memo, useEffect, useRef } from 'react';
 import {
-  Animated, Dimensions, Easing, Image, Modal, Pressable,
+  Animated, Dimensions, Easing, Modal, Pressable,
   StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useModalBackdropFade } from '../../hooks/useModalBackdropFade';
 import { getRankImage, getRankImageDisplayScale } from '../../hooks/use-arena-rank';
@@ -476,7 +477,7 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
                                 transform: [{ scale: getRankImageDisplayScale(tier as RankTier, level) }],
                               },
                             ]}
-                            resizeMode="contain"
+                            contentFit="contain"
                           />
                         </View>
                       ) : (

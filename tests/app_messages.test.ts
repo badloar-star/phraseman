@@ -52,6 +52,25 @@ describe('app_messages', () => {
     expect(snapshot.messages.find((m) => m.id === 'm2')?.reaction).toBe('like');
   });
 
+  it('keeps regular dismissed messages visible until admin expiry or deactivation', () => {
+    const dismissed = normalizeAppMessage('m1', {
+      active: true,
+      createdAtMs: now,
+      expiresAtMs: now + 60_000,
+      messageRu: 'A',
+    }, now);
+
+    const snapshot = mergeAppMessagesWithStates(
+      [dismissed],
+      [{ messageId: 'm1', readAtMs: now - 1, dismissedAtMs: now, reaction: null, updatedAtMs: now }],
+      now,
+    );
+
+    expect(snapshot.messages.map((m) => m.id)).toEqual(['m1']);
+    expect(snapshot.messages[0].unread).toBe(false);
+    expect(snapshot.unreadCount).toBe(0);
+  });
+
   it('picks localized text with legacy backup and makes compact previews', () => {
     const message = normalizeAppMessage('m1', {
       titleRu: 'RU title',
@@ -184,7 +203,7 @@ describe('app_messages', () => {
         questionTr: 'Sırada ne ekleyelim?',
         questionPl: 'Co dodać jako następne?',
         options: [
-          { id: 'opt_1', textRu: 'Квизы', textUk: 'Квізи', textPtBr: 'Quizzes', textVi: 'Câu đố', textId: 'Kuis', textTr: 'Quizler', textPl: 'Quizy' },
+          { id: 'opt_1', textRu: 'Вызовы', textUk: 'Квізи', textPtBr: 'Quizzes', textVi: 'Câu đố', textId: 'Kuis', textTr: 'Quizler', textPl: 'Quizy' },
           { id: 'opt_2', textRu: 'Карточки', textUk: 'Картки', textPtBr: 'Cartões', textVi: 'Thẻ học', textId: 'Kartu', textTr: 'Kartlar', textPl: 'Fiszki' },
         ],
       },

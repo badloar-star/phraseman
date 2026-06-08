@@ -175,7 +175,7 @@ function simpleLemma(value: string): string {
   if (key.endsWith('ing') && key.length > 5) {
     const stem = key.slice(0, -3);
     if (stem.endsWith(stem.at(-2) ?? '')) return stem.slice(0, -1);
-    return stem.endsWith('e') ? stem : stem;
+    return stem;
   }
   if (key.endsWith('ed') && key.length > 4) {
     const stem = key.slice(0, -2);

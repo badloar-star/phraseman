@@ -24,11 +24,14 @@ import { resolvePremiumPackages } from '../app/revenuecat_init';
 import { processVipGrantForCelebration } from '../app/vip_celebration_state';
 import { getVipProgressState } from '../app/premium_progress';
 import { ensureAnonUser, ensureStableAuthLinkForStableId, restoreFromCloud } from '../app/cloud_sync';
+import { getIntroFullAccessState } from '../app/intro_full_access';
 
 interface PremiumContextValue {
   isPremium: boolean;
   isVip: boolean;
   hasPremiumAccess: boolean;
+  isIntroFullAccess: boolean;
+  introFullAccessEndsAt: number | null;
   /**
    * `true`, если магазин реально отдаёт intro free phase:
    *  - локальный кулдаун 90 д. не активен И
@@ -43,6 +46,8 @@ const PremiumContext = createContext<PremiumContextValue>({
   isPremium: false,
   isVip: false,
   hasPremiumAccess: false,
+  isIntroFullAccess: false,
+  introFullAccessEndsAt: null,
   trialEligible: false,
   reload: async () => {},
 });
@@ -79,6 +84,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [isPremium, setIsPremium] = useState(FORCE_PREMIUM);
   const [isVip, setIsVip] = useState(false);
   const [hasPremiumAccess, setHasPremiumAccess] = useState(FORCE_PREMIUM);
+  const [isIntroFullAccess, setIsIntroFullAccess] = useState(false);
+  const [introFullAccessEndsAt, setIntroFullAccessEndsAt] = useState<number | null>(null);
   const [trialEligible, setTrialEligible] = useState(false);
   const backgroundedAtRef = useRef<number | null>(null);
   const vipSnapshotStateRef = useRef<boolean | null>(null);
@@ -96,6 +103,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setIsPremium(true);
       setIsVip(false);
       setHasPremiumAccess(true);
+      setIsIntroFullAccess(false);
+      setIntroFullAccessEndsAt(null);
       // Активный премиум — копия про триал нерелевантна
       setTrialEligible(false);
       return;
@@ -113,9 +122,12 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         ]);
       }
     }
+    const introState = await getIntroFullAccessState();
     setIsPremium(realPremium);
     setIsVip(vip);
-    setHasPremiumAccess(realPremium || vip);
+    setIsIntroFullAccess(introState.active);
+    setIntroFullAccessEndsAt(introState.endsAt);
+    setHasPremiumAccess(realPremium || vip || introState.active);
     if (realPremium) {
       setTrialEligible(false);
     } else {
@@ -367,6 +379,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     };
   }, [isPremium, reload, reloadTrialEligible]);
 
+  useEffect(() => {
+    const sub = onAppEvent('intro_full_access_changed', () => {
+      invalidatePremiumCache();
+      void reload();
+    });
+    return () => sub.remove();
+  }, [reload]);
+
   // Instant update on cancellation/expiry / тестер «Снять премиум»
   useEffect(() => {
     const sub = onAppEvent('premium_deactivated', () => {
@@ -384,7 +404,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   }, [isVip, reload]);
 
   return (
-    <PremiumContext.Provider value={{ isPremium, isVip, hasPremiumAccess, trialEligible, reload }}>
+    <PremiumContext.Provider value={{ isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }}>
       {children}
     </PremiumContext.Provider>
   );

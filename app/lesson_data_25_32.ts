@@ -7923,7 +7923,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'at', correct: 'at', distractors: ['in', 'on', 'by', 'to', 'for'] },
       { text: 'night', correct: 'night', distractors: ['morning', 'evening', 'day', 'afternoon', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_2',
@@ -7940,7 +7939,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'up', correct: 'up', distractors: ['on', 'in', 'at', 'out', 'I'] },
       { text: 'early', correct: 'early', distractors: ['earlier', 'earliest', 'earl', 'late', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_3',
@@ -7958,7 +7956,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'every', correct: 'every', distractors: ['all', 'any', 'some', 'each', 'I'] },
       { text: 'day', correct: 'day', distractors: ['days', 'daily', 'week', 'night', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_4',
@@ -7974,7 +7971,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'waiting', correct: 'waiting', distractors: ['wait', 'waited', 'waits', 'to wait', 'working'] },
       { text: 'here', correct: 'here', distractors: ['hear', 'there', 'where', 'near', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_5',
@@ -7993,7 +7989,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'these', 'that'] },
       { text: 'city', correct: 'city', distractors: ['cities', 'town', 'village', 'country', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_6',
@@ -8011,7 +8006,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'so', correct: 'so', distractors: ['such', 'very', 'too', 'quite', 'I'] },
       { text: 'late', correct: 'late', distractors: ['later', 'latest', 'early', 'lately', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_7',
@@ -8028,7 +8022,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'every', correct: 'every', distractors: ['all', 'any', 'some', 'each', 'I'] },
       { text: 'day', correct: 'day', distractors: ['days', 'daily', 'week', 'night', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_8',
@@ -8044,7 +8037,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'living', correct: 'living', distractors: ['live', 'lived', 'lives', 'to live', 'working'] },
       { text: 'here', correct: 'here', distractors: ['hear', 'there', 'where', 'near', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_9',
@@ -8061,7 +8053,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'helped', correct: 'helped', distractors: ['help', 'helps', 'helping', 'to help', 'do'] },
       { text: 'me', correct: 'me', distractors: ['I', 'my', 'mine', 'myself', 'you'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_10',
@@ -8079,7 +8070,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'we', correct: 'we', distractors: ['us', 'our', 'ours', 'ourselves', 'I'] },
       { text: 'found', correct: 'found', distractors: ['find', 'finds', 'finding', 'to find', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_11',
@@ -8097,7 +8087,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'me', correct: 'me', distractors: ['I', 'my', 'mine', 'myself', 'you'] },
       { text: 'learn', correct: 'learn', distractors: ['learns', 'learned', 'learning', 'to learn', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_12',
@@ -8114,7 +8103,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'we', correct: 'we', distractors: ['us', 'our', 'ours', 'ourselves', 'I'] },
       { text: 'met', correct: 'met', distractors: ['meet', 'meets', 'meeting', 'to meet', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_13',
@@ -8132,7 +8120,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'these', 'that'] },
       { text: 'message', correct: 'message', distractors: ['messages', 'email', 'letter', 'call', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_14',
@@ -8149,7 +8136,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'she', correct: 'she', distractors: ['her', 'hers', 'herself', 'he', 'I'] },
       { text: 'lost', correct: 'lost', distractors: ['lose', 'loses', 'losing', 'to lose', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_15',
@@ -8166,7 +8152,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'we', correct: 'we', distractors: ['us', 'our', 'ours', 'ourselves', 'I'] },
       { text: 'waited', correct: 'waited', distractors: ['wait', 'waits', 'waiting', 'to wait', 'do'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_16',
@@ -8184,7 +8169,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'helped', correct: 'helped', distractors: ['help', 'helps', 'helping', 'to help', 'do'] },
       { text: 'me', correct: 'me', distractors: ['I', 'my', 'mine', 'myself', 'you'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_17',
@@ -8200,7 +8184,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'was', correct: 'was', distractors: ['were', 'is', 'be', 'being', 'am'] },
       { text: 'tired', correct: 'tired', distractors: ['tire', 'tires', 'tiring', 'bored', 'a'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_18',
@@ -8217,7 +8200,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'call', correct: 'call', distractors: ['calls', 'called', 'calling', 'to call', 'I'] },
       { text: 'later', correct: 'later', distractors: ['late', 'latest', 'early', 'soon', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_19',
@@ -8235,7 +8217,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'these', 'that'] },
       { text: 'documents', correct: 'documents', distractors: ['document', 'files', 'papers', 'letters', 'documenting'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_20',
@@ -8253,7 +8234,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'was', correct: 'was', distractors: ['were', 'is', 'be', 'being', 'am'] },
       { text: 'cleaned', correct: 'cleaned', distractors: ['clean', 'cleans', 'cleaning', 'to clean', 'do'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_21',
@@ -8271,7 +8251,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'was', correct: 'was', distractors: ['were', 'is', 'be', 'being', 'am'] },
       { text: 'fixed', correct: 'fixed', distractors: ['fix', 'fixes', 'fixing', 'to fix', 'a'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_22',
@@ -8289,7 +8268,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'were', correct: 'were', distractors: ['was', 'is', 'be', 'being', 'am'] },
       { text: 'sold', correct: 'sold', distractors: ['sell', 'sells', 'selling', 'to sell', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_23',
@@ -8307,7 +8285,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'was', correct: 'was', distractors: ['were', 'is', 'be', 'being', 'am'] },
       { text: 'solved', correct: 'solved', distractors: ['solve', 'solves', 'solving', 'to solve', 'a'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_24',
@@ -8323,7 +8300,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'was', correct: 'was', distractors: ['were', 'is', 'be', 'being', 'am'] },
       { text: 'okay', correct: 'okay', distractors: ['good', 'bad', 'wrong', 'fine', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_25',
@@ -8340,7 +8316,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'will', correct: 'will', distractors: ['would', 'should', 'could', 'might', 'I'] },
       { text: 'answer', correct: 'answer', distractors: ['answers', 'answered', 'answering', 'to answer', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_26',
@@ -8358,7 +8333,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'help', correct: 'help', distractors: ['helps', 'helped', 'helping', 'to help', 'I'] },
       { text: 'us', correct: 'us', distractors: ['we', 'our', 'ours', 'ourselves', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_27',
@@ -8376,7 +8350,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'finish', correct: 'finish', distractors: ['finishes', 'finished', 'finishing', 'to finish', 'I'] },
       { text: 'today', correct: 'today', distractors: ['tomorrow', 'yesterday', 'tonight', 'soon', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_28',
@@ -8396,7 +8369,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'without', correct: 'without', distractors: ['with', 'after', 'before', 'near', 'I'] },
       { text: 'them', correct: 'them', distractors: ['they', 'their', 'theirs', 'themselves', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_29',
@@ -8414,7 +8386,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'having', 'to have', 'I'] },
       { text: 'helped', correct: 'helped', distractors: ['help', 'helps', 'helping', 'to help', 'do'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_30',
@@ -8433,7 +8404,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'having', 'to have', 'I'] },
       { text: 'answered', correct: 'answered', distractors: ['answer', 'answers', 'answering', 'to answer', 'do'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_31',
@@ -8452,7 +8422,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'having', 'to have', 'I'] },
       { text: 'finished', correct: 'finished', distractors: ['finish', 'finishes', 'finishing', 'to finish', 'a'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_32',
@@ -8474,7 +8443,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'these', 'that'] },
       { text: 'keys', correct: 'keys', distractors: ['key', 'bag', 'phone', 'wallet', 'keying'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_33',
@@ -8488,7 +8456,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'him', correct: 'him', distractors: ['he', 'his', 'himself', 'them', 'I'] },
       { text: 'leave', correct: 'leave', distractors: ['leaves', 'left', 'leaving', 'to leave', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_34',
@@ -8503,7 +8470,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'call', correct: 'call', distractors: ['calls', 'called', 'calling', 'to call', 'I'] },
       { text: 'her', correct: 'her', distractors: ['she', 'hers', 'herself', 'him', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_35',
@@ -8518,7 +8484,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'phone', correct: 'phone', distractors: ['phones', 'tablet', 'watch', 'bag', 'I'] },
       { text: 'vibrate', correct: 'vibrate', distractors: ['vibrates', 'vibrated', 'vibrating', 'to vibrate', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_36',
@@ -8533,7 +8498,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'wait', correct: 'wait', distractors: ['waits', 'waited', 'waiting', 'to wait', 'I'] },
       { text: 'outside', correct: 'outside', distractors: ['inside', 'upstairs', 'downstairs', 'nearby', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_37',
@@ -8549,7 +8513,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'his', correct: 'his', distractors: ['he', 'him', 'himself', 'her', 'I'] },
       { text: 'phone', correct: 'phone', distractors: ['phones', 'tablet', 'watch', 'bag', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_38',
@@ -8566,7 +8529,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'English', correct: 'English', distractors: ['French', 'German', 'a', 'an', 'I'] },
       { text: 'better', correct: 'better', distractors: ['good', 'best', 'worse', 'well', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_39',
@@ -8583,7 +8545,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'an', correct: 'an', distractors: ['a', 'the', 'one', 'some', 'this'] },
       { text: 'hour', correct: 'hour', distractors: ['hours', 'day', 'minute', 'week', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_40',
@@ -8599,7 +8560,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'all', correct: 'all', distractors: ['every', 'each', 'whole', 'some', 'I'] },
       { text: 'morning', correct: 'morning', distractors: ['mornings', 'evening', 'night', 'afternoon', 'morn'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_41',
@@ -8615,7 +8575,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'since', correct: 'since', distractors: ['for', 'at', 'on', 'from', 'I'] },
       { text: 'eight', correct: 'eight', distractors: ['nine', 'seven', 'ten', 'six', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_42',
@@ -8632,7 +8591,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'these', 'that'] },
       { text: 'keys', correct: 'keys', distractors: ['key', 'bag', 'phone', 'wallet', 'keying'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_43',
@@ -8648,7 +8606,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'cleaned', correct: 'cleaned', distractors: ['clean', 'cleans', 'cleaning', 'to clean', 'do'] },
       { text: 'now', correct: 'now', distractors: ['then', 'later', 'soon', 'here', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_44',
@@ -8664,7 +8621,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'checked', correct: 'checked', distractors: ['check', 'checks', 'checking', 'to check', 'do'] },
       { text: 'now', correct: 'now', distractors: ['then', 'later', 'soon', 'here', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_45',
@@ -8680,7 +8636,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'stayed', correct: 'stayed', distractors: ['stay', 'stays', 'staying', 'to stay', 'do'] },
       { text: 'here', correct: 'here', distractors: ['hear', 'there', 'where', 'near', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_46',
@@ -8698,7 +8653,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'call', correct: 'call', distractors: ['calls', 'called', 'calling', 'to call', 'I'] },
       { text: 'him', correct: 'him', distractors: ['he', 'his', 'himself', 'them', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_47',
@@ -8714,7 +8668,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'started', correct: 'started', distractors: ['start', 'starts', 'starting', 'to start', 'do'] },
       { text: 'later', correct: 'later', distractors: ['late', 'latest', 'early', 'soon', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_48',
@@ -8730,7 +8683,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'checked', correct: 'checked', distractors: ['check', 'checks', 'checking', 'to check', 'do'] },
       { text: 'today', correct: 'today', distractors: ['tomorrow', 'yesterday', 'tonight', 'soon', 'I'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_49',
@@ -8747,7 +8699,6 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'before', correct: 'before', distractors: ['after', 'during', 'until', 'near', 'I'] },
       { text: 'evening', correct: 'evening', distractors: ['morning', 'night', 'afternoon', 'noon', 'even'] },
     ],
-    wordsEn: [],
   },
   {
     id: 'lesson32_phrase_50',
@@ -8763,6 +8714,5 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
       { text: 'solved', correct: 'solved', distractors: ['solve', 'solves', 'solving', 'to solve', 'a'] },
       { text: 'quickly', correct: 'quickly', distractors: ['quick', 'quicker', 'slowly', 'well', 'I'] },
     ],
-    wordsEn: [],
   },
 ];

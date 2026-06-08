@@ -141,38 +141,44 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
   const db = getFirestore();
   if (!db) return [];
   try {
-    const mapDoc = (doc: any): RemoteLeaderEntry => ({
-      uid: doc.id,
-      name: doc.data().name ?? '',
-      points: doc.data().points ?? 0,
-      lang: doc.data().lang ?? 'ru',
-      avatar: doc.data().avatar ?? undefined,
-      frame: doc.data().frame ?? undefined,
-      aura: normalizeAvatarAuraId(doc.data().aura) ?? undefined,
-      weekPoints: doc.data().weekPoints ?? 0,
-      weekKey: doc.data().weekKey ?? '',
-      streak: doc.data().streak ?? undefined,
-      leagueId: doc.data().leagueId ?? undefined,
-      isPremium: doc.data().isPremium ?? false,
-      isVip: doc.data().isVip ?? false,
-      profileCardLevel: normalizeProfileCardLevel(doc.data().profileCardLevel),
-      profileCardTheme: normalizeProfileCardTheme(doc.data().profileCardTheme),
-      profileCardMotion: normalizeProfileCardMotion(doc.data().profileCardMotion),
-      profileCardPublicFocus: normalizeProfileCardPublicFocus(doc.data().profileCardPublicFocus),
-      leagueCrown: Number(doc.data().leagueCrownExpiresAt) > Date.now()
-        ? {
-            uid: doc.id,
-            name: doc.data().name ?? '',
-            weekId: String(doc.data().leagueCrownWeekId ?? ''),
-            groupId: String(doc.data().leagueCrownGroupId ?? ''),
-            leagueId: Math.max(0, Math.floor(Number(doc.data().leagueId) || 0)),
-            expiresAt: Number(doc.data().leagueCrownExpiresAt),
-            aura: 'league_chest_crown',
-          }
-        : undefined,
-      daily7xp: typeof doc.data().daily7xp === 'number' ? doc.data().daily7xp : undefined,
-      daily7time_ms: typeof doc.data().daily7time_ms === 'number' ? doc.data().daily7time_ms : undefined,
-    });
+    const mapDoc = (doc: any): RemoteLeaderEntry => {
+      const data = doc.data();
+      const leagueCrownCount = Math.max(0, Math.floor(Number(data.leagueCrownCount) || 0));
+      const hasLeagueCrown = leagueCrownCount > 0 || data.leagueCrownActive === true || Number(data.leagueCrownExpiresAt) > Date.now();
+      return {
+        uid: doc.id,
+        name: data.name ?? '',
+        points: data.points ?? 0,
+        lang: data.lang ?? 'ru',
+        avatar: data.avatar ?? undefined,
+        frame: data.frame ?? undefined,
+        aura: normalizeAvatarAuraId(data.aura) ?? undefined,
+        weekPoints: data.weekPoints ?? 0,
+        weekKey: data.weekKey ?? '',
+        streak: data.streak ?? undefined,
+        leagueId: data.leagueId ?? undefined,
+        isPremium: data.isPremium ?? false,
+        isVip: data.isVip ?? false,
+        profileCardLevel: normalizeProfileCardLevel(data.profileCardLevel),
+        profileCardTheme: normalizeProfileCardTheme(data.profileCardTheme),
+        profileCardMotion: normalizeProfileCardMotion(data.profileCardMotion),
+        profileCardPublicFocus: normalizeProfileCardPublicFocus(data.profileCardPublicFocus),
+        leagueCrown: hasLeagueCrown
+          ? {
+              uid: doc.id,
+              name: data.name ?? '',
+              weekId: String(data.leagueCrownWeekId ?? ''),
+              groupId: String(data.leagueCrownGroupId ?? ''),
+              leagueId: Math.max(0, Math.floor(Number(data.leagueId) || 0)),
+              expiresAt: Number(data.leagueCrownExpiresAt),
+              crownCount: Math.max(1, leagueCrownCount),
+              aura: 'league_chest_crown',
+            }
+          : undefined,
+        daily7xp: typeof data.daily7xp === 'number' ? data.daily7xp : undefined,
+        daily7time_ms: typeof data.daily7time_ms === 'number' ? data.daily7time_ms : undefined,
+      };
+    };
 
     const passesFilter = (doc: any, e: RemoteLeaderEntry) =>
       doc.data()?.identityHidden !== true &&

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import TapScale from '../components/TapScale';
 import {
   ActivityIndicator,
-  FlatList,
   Linking,
   RefreshControl,
   StyleSheet,
@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -249,7 +250,7 @@ export default function LingmanVideosScreen() {
     <ScreenGradient artBackdrop="home">
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <View style={styles.header}>
-          <TouchableOpacity
+          <TapScale
             accessibilityRole="button"
             accessibilityLabel="Back"
             onPress={() => {
@@ -259,7 +260,7 @@ export default function LingmanVideosScreen() {
             style={[styles.back, { backgroundColor: chrome.quietButtonBg, borderColor: chrome.quietButtonBorder }]}
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <View style={styles.headerText}>
             <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h1) }]} numberOfLines={1}>
               {copy.title}
@@ -307,11 +308,12 @@ export default function LingmanVideosScreen() {
             <ActivityIndicator color={chrome.accent} />
           </View>
         ) : (
-          <FlatList
+          <FlashList
             testID="lingman-videos-list"
             data={videos}
             keyExtractor={(item) => item.id}
             renderItem={renderVideo}
+            estimatedItemSize={96}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.list}
             ListEmptyComponent={(

@@ -26,9 +26,24 @@ export const INTERFACE_LANGUAGE_OPTIONS = [
   { code: 'pl', native: 'Polski' },
 ] as const satisfies readonly { code: InterfaceLanguageOptionCode; native: string }[];
 
+/**
+ * Языки интерфейса, реально готовые к показу пользователю (полностью
+ * переведены, не падают в русский фолбэк).
+ *
+ * Это ОТДЕЛЬНЫЙ от контентного охвата гейт: source-локали могут быть
+ * "active" для квизов/паков, но интерфейс на них ещё не готов. Добавлять
+ * сюда язык только когда его UI-перевод завершён.
+ *
+ * es управляется отдельным флагом SPANISH_UI_LOCALE_ENABLED (см. ниже).
+ */
+export const INTERFACE_LANG_READY_FOR_PROD: readonly InterfaceLanguageOptionCode[] = [
+  'ru',
+  'uk',
+];
+
 export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
   if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED;
-  return (INTERFACE_LANGS as readonly string[]).includes(lang);
+  return INTERFACE_LANG_READY_FOR_PROD.includes(lang);
 }
 
 export function coerceInterfaceLang(value: unknown): Lang | null {
@@ -38,116 +53,135 @@ export function coerceInterfaceLang(value: unknown): Lang | null {
   return isInterfaceLangEnabled(normalized as InterfaceLanguageOptionCode) ? (normalized as Lang) : null;
 }
 
+export type InterfaceLanguageOption = (typeof INTERFACE_LANGUAGE_OPTIONS)[number];
+
+/**
+ * Опции языка интерфейса для экрана настроек.
+ *
+ * В store-сборке (`storeRelease = true`) недоступные/недопереведённые языки
+ * полностью скрыты — пользователь видит только готовые (ru/uk). В dev-сборке
+ * показываем все, неготовые останутся заблокированными (с замком) — чтобы
+ * тестировщики видели роадмап языков.
+ */
+export function getVisibleInterfaceLanguageOptions(
+  storeRelease: boolean,
+): readonly InterfaceLanguageOption[] {
+  if (!storeRelease) return INTERFACE_LANGUAGE_OPTIONS;
+  return INTERFACE_LANGUAGE_OPTIONS.filter((item) =>
+    isInterfaceLangEnabled(item.code),
+  );
+}
+
 export const T = {
   ru: {
     // Табы
-    tabLessons:   'Уроки',
-    tabQuizzes:   'Квизы',
+    tabLessons:   'Учёба',
+    tabQuizzes:   'Вызовы',
     tabSettings:  'Настройки',
 
     // Список уроков
     lessonN:      (n: number) => `Урок ${n}`,
-    locked:       'Недоступно',
+    locked:       'Ещё не открыто',
 
     // Меню урока
-    continueLesson:   'Продолжить урок',
-    learnWords:       'Учить новые слова',
-    learnVerbs:       'Учить формы глаголов',
-    lessonDescription:'Описание урока',
+    continueLesson:   'Продолжить',
+    learnWords:       'Новые слова',
+    learnVerbs:       'Формы глаголов',
+    lessonDescription:'О чём этот урок',
 
     // Урок
     noArticle:  'без артикля',
 
-    oops:       'Ой, ошибся',
+    oops:       'Почти!',
     hint:       'Подсказка',
     help:       'Помощь',
-    oral:       'Устно',
-    next:       'Далее',
-    typeAnswer: 'Введите ответ...',
+    oral:       'Вслух',
+    next:       'Продолжить',
+    typeAnswer: 'Напиши ответ...',
 
     // Квизы
-    selectLevel:  'Выберите уровень',
-    easy:         'Легко',
-    medium:       'Средне',
-    hard:         'Сложно',
-    quizDone:     'Квиз завершён!',
-    playAgain:    'Пройти снова',
-    selectLevel2: 'Выбрать уровень',
-    fixErrors:    'Исправь ошибки',
-    correct:      'правильно',
-    reviewDone:   'Все ошибки исправлены!',
+    selectLevel:  'Выбери уровень',
+    easy:         'Лёгкий',
+    medium:       'Средний',
+    hard:         'Сложный',
+    quizDone:     'Готово!',
+    playAgain:    'Ещё раз',
+    selectLevel2: 'Сменить уровень',
+    fixErrors:    'Разбери ошибки',
+    correct:      'верно',
+    reviewDone:   'Все разобрано. Молодец.',
 
     // Новые слова
-    training:     'Тренировка',
-    wordList:     'Список слов',
-    allLearned:   'Все слова выучены!',
-    wordsInLesson:(n: number) => `${n} слов в этом уроке`,
+    training:     'Повторение',
+    wordList:     'Все слова урока',
+    allLearned:   'Все слова — твои. Урок закрыт.',
+    wordsInLesson:(n: number) => `${n} слов — изучаем`,
 
     // Настройки
     settings:       'Настройки',
-    learningSettings:'Настройки обучения',
+    learningSettings:'Как ты учишь',
     autoCheck:      'Автопроверка',
-    autoCheckSub:   'Проверять при наборе последнего слова',
-    voiceOut:       'Озвучить ответ',
-    voiceOutSub:    'Произносить фразу после ответа',
-    autoAdvance:    'Автопереход',
-    autoAdvanceSub: 'Переход к следующему тесту при правильном ответе',
-    hardMode:       'Сложный режим',
-    hardModeSub:    'Ввод предложения вручную с клавиатуры',
-    speed:          'Скорость произношения',
-    speedHint:      'Отпусти ползунок — прозвучит пример',
-    slow:           'Медленно',
-    fast:           'Быстро',
+    autoCheckSub:   'Проверяет ответ, когда введёшь последнее слово',
+    voiceOut:       'Произносить вслух',
+    voiceOutSub:    'Приложение прочитает фразу после ответа',
+    autoAdvance:    'Переход без паузы',
+    autoAdvanceSub: 'Автоматически переходит к следующему при верном ответе',
+    hardMode:       'Только клавиатура',
+    hardModeSub:    'Пишешь всё сам — без подсказок',
+    speed:          'Скорость речи',
+    speedHint:      'Отпусти — услышишь пример',
+    slow:           'Медленнее',
+    fast:           'Быстрее',
     helpMenu:       'Помощь',
 
     // Онбординг
-    chooseLanguage: 'Выберите язык',
-    enterName:      'Введите ваше имя или никнейм',
-    namePlaceholder:'Ваше имя...',
+    chooseLanguage: 'Выбери язык',
+    enterName:      'Как тебя зовут?',
+    namePlaceholder:'Имя или никнейм...',
     continueBtn:    'Продолжить',
-    nameRequired:   'Введите имя чтобы продолжить',
+    nameRequired:   'Напиши своё имя — и продолжим',
 
     // Онбординг: цель
-    whyLearnEnglish: 'Зачем ты учишь английский?',
-    goalTourism:     'Туризм',
-    goalWork:        'Работа',
-    goalEmigration:  'Эмиграция',
-    goalHobby:       'Хобби',
+    whyLearnEnglish: 'Зачем тебе английский?',
+    goalTourism:     'Путешествия',
+    goalWork:        'Карьера и работа',
+    goalEmigration:  'Переезд за рубеж',
+    goalHobby:       'Для себя',
 
     // Онбординг: интенсивность
-    hoursPerDay:     'Сколько времени в день?',
-    min5:            '5 минут',
-    min15:           '15 минут',
-    min30:           '30 минут',
-    min60:           '60+ минут',
+    hoursPerDay:     'Сколько времени в день готов тратить?',
+    min5:            '5 минут — лёгкий старт',
+    min15:           '15 минут — хороший темп',
+    min30:           '30 минут — быстрый прогресс',
+    min60:           '60+ минут — полное погружение',
 
     // Онбординг: уровень
-    currentLevel:    'Твой текущий уровень?',
-    levelA1:         'Начинающий (никогда не учил)',
-    levelA2:         'Основы (знаю алфавит)',
-    levelB1:         'Среднее (могу разговаривать)',
-    levelB2:         'Хорошо (понимаю фильмы)',
+    currentLevel:    'Как ты сейчас говоришь по-английски?',
+    levelA1:         'Начинаю с нуля',
+    levelA2:         'Знаю базу',
+    levelB1:         'Могу разговаривать',
+    levelB2:         'Понимаю фильмы и подкасты',
 
     // Онбординг: персональный план
-    personalPlan:    'Твой персональный план',
-    planForGoal:     (goal: string) => `Цель: Научиться английскому для ${goal}`,
+    personalPlan:    'Твой план',
+    planForGoal:     (goal: string) => `Цель: английский для ${goal}`,
     planIntensity:   (min: number) => `Интенсивность: ${min} минут в день`,
-    yourForecast:    'ТВОЙ ПРОГНОЗ:',
+    yourForecast:    'Твой план:',
     currentLevelLabel: 'Текущий уровень:',
     targetLevelLabel: 'Целевой уровень:',
-    timeTillGoal:    'Время до цели:',
+    timeTillGoal:    'Когда достигнешь цели:',
     daysEstimate:    (days: number) => `~${days} дней`,
-    lessonsCount:    (count: number) => `${count} уроков в твоём темпе`,
+    lessonsCount:    (count: number) => `${count} сессий по твоему расписанию`,
     hoursPerWeek:    (hours: number) => `~${hours} часов в неделю обучения`,
     reachTargetBy:   (date: string) => `Ты достигнешь целевого уровня к ${date}`,
 
     // Онбординг: напоминания
-    preferredTime:   'Когда обычно свободен?',
-    setNotifications: 'Напоминать мне в {time} каждый день',
+    preferredTime:   'В какое время тебе удобнее учить?',
+    setNotifications: 'Напоминай мне в {time}',
 
     // Онбординг: завершение
-    congratulations: 'Поздравляем!',
-    onboardingComplete: 'Ты завершил онбординг',
+    congratulations: 'Готово!',
+    onboardingComplete: 'Начнём прямо сейчас.',
     step:            (n: number, total: number) => `${n} из ${total} шагов`,
   },
   uk: {

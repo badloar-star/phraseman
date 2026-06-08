@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -24,7 +24,7 @@ type Props = {
   onSkip: () => void;
 };
 
-export default function CertificateNameModal({ visible, initialName = '', onSave, onSkip }: Props) {
+function CertificateNameModal({ visible, initialName = '', onSave, onSkip }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const [value, setValue] = useState(initialName);
@@ -169,6 +169,8 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
     </Modal>
   );
 }
+
+export default memo(CertificateNameModal);
 
 const styles = StyleSheet.create({
   backdrop: {

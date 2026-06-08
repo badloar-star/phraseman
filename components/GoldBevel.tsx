@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { GOLD_RICH } from '../constants/goldTheme';
@@ -14,7 +14,7 @@ const INTENSITY = {
   strong: { top: 0.18, side: 0.15, bottom: 0.31, shade: 0.26, wash: 0.026, glint: 0.064 },
 } as const;
 
-export default function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
+function GoldBevel({ radius, intensity = 'normal' }: GoldBevelProps) {
   const v = INTENSITY[intensity];
   const innerRadius = Math.max(0, radius - 2);
   return (
@@ -141,3 +141,5 @@ const styles = StyleSheet.create({
     height: '46%',
   },
 });
+
+export default memo(GoldBevel);

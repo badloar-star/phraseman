@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { StyleSheet, Text, type TextProps } from 'react-native';
 
 import { useThemeColor } from '@/hooks/use-theme-color';
@@ -8,7 +9,7 @@ export type ThemedTextProps = TextProps & {
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
 };
 
-export function ThemedText({
+function ThemedTextBase({
   style,
   lightColor,
   darkColor,
@@ -33,6 +34,8 @@ export function ThemedText({
     />
   );
 }
+
+export const ThemedText = memo(ThemedTextBase);
 
 const styles = StyleSheet.create({
   default: {

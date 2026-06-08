@@ -15,7 +15,7 @@
  *   innerStyle   — стиль LinearGradient (padding и т.п.)
  *   borderRadius — радиус скругления (по умолчанию 16)
  */
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, View, TouchableOpacity, ViewStyle } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
@@ -42,7 +42,7 @@ interface PremiumCardProps {
   accessible?: boolean;
 }
 
-export default function PremiumCard({
+function PremiumCard({
   children,
   onPress,
   onLongPress,
@@ -153,3 +153,5 @@ export default function PremiumCard({
 
   return <View style={outerStyle}>{content}</View>;
 }
+
+export default memo(PremiumCard);

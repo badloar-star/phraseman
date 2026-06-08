@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
 import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
@@ -22,7 +22,7 @@ type Props = {
   onRequestClose: () => void;
 };
 
-export default function ThemedChoiceModal({
+function ThemedChoiceModal({
   visible,
   title,
   message,
@@ -143,3 +143,5 @@ export default function ThemedChoiceModal({
     </Modal>
   );
 }
+
+export default memo(ThemedChoiceModal);

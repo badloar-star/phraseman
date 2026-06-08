@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import {
   Dimensions,
   KeyboardAvoidingView,
@@ -120,7 +120,7 @@ export function reportErrorCategoriesForLang(screen: string, lang: string): Repo
   }));
 }
 
-export default function ReportErrorButton({
+function ReportErrorButton({
   screen,
   dataId,
   dataText,
@@ -282,7 +282,7 @@ export default function ReportErrorButton({
                 <View style={styles.successBox}>
                   <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
                     {triLang(lang, {
-                      ru: 'Не удалось отправить',
+                      ru: 'Не отправилось',
                       uk: 'Не вдалося надіслати',
                       es: 'No se pudo enviar',
                       'pt-BR': 'Não foi possível enviar',
@@ -320,7 +320,7 @@ export default function ReportErrorButton({
                 <View style={styles.successBox}>
                   <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
                     {triLang(lang, {
-                      ru: 'Подождите минуту',
+                      ru: 'Подожди минуту',
                       uk: 'Зачекайте хвилину',
                       es: 'Espera un minuto',
                       'pt-BR': 'Espere um minuto',
@@ -332,7 +332,7 @@ export default function ReportErrorButton({
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Вы уже отправили репорт меньше минуты назад. Попробуйте через минуту.',
+                      ru: 'Ты уже отправил репорт меньше минуты назад. Попробуй через минуту.',
                       uk: 'Ви вже надіслали репорт менше хвилини тому. Спробуйте за хвилину.',
                       es: 'Enviaste un informe hace menos de un minuto. Espera un momento antes de volver a intentarlo.',
                       'pt-BR': 'Você enviou um relatório há menos de um minuto. Tente novamente daqui a pouco.',
@@ -477,6 +477,8 @@ export default function ReportErrorButton({
     </>
   );
 }
+
+export default memo(ReportErrorButton);
 
 const styles = StyleSheet.create({
   trigger: { paddingVertical: 4, paddingHorizontal: 8, opacity: 0.7 },

@@ -110,7 +110,7 @@ describe('personal plan onboarding mockup contract', () => {
       'placeholder=""',
       'autoFocus={false}',
       "PREV_STEP[step] ?? 'planEntry'",
-    ].filter((text) => !text.includes('onboarding ') && !text.includes('Ð›Ð¸')).forEach((text) => {
+    ].filter((text) => !text.includes('onboarding ') && !text.includes('Ли')).forEach((text) => {
       expect(source).toContain(text);
     });
 

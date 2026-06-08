@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useRef } from 'react';
-import { Animated, Easing, Image, Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
+import { Animated, Easing, Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from './ThemeContext';
 import RankChangeBanner from './RankChangeBanner';
@@ -75,7 +76,7 @@ function buildSorted(lang: Lang): { rows: FakeRow[]; myRank: number } {
   return { rows, myRank };
 }
 
-export default function RankChangeTestModal({ visible, mode, delta, onClose, lang }: Props) {
+function RankChangeTestModal({ visible, mode, delta, onClose, lang }: Props) {
   const { theme: t, f } = useTheme();
   const myAnim = useRef(new Animated.Value(0)).current;
   const bannerKeyRef = useRef(0);
@@ -221,7 +222,7 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
                 flexDirection: 'row', alignItems: 'center', gap: 12,
               }}>
                 {sampleLeague.imageUri && (
-                  <Image source={sampleLeague.imageUri} style={{ width: 56, height: 56 }} resizeMode="contain" />
+                  <Image source={sampleLeague.imageUri} style={{ width: 56, height: 56 }} contentFit="contain" />
                 )}
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textMuted, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8 }}>
@@ -308,3 +309,5 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
     </Modal>
   );
 }
+
+export default memo(RankChangeTestModal);

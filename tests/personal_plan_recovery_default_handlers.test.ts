@@ -5,6 +5,7 @@ import { flushMistakeLog, loadMistakeLog } from '../app/mistake_log';
 import { createPlanRecoveryDefaultHandlers } from '../app/personal_plan_recovery_default_handlers';
 import { buildPlanRecoveryActions } from '../app/personal_plan_recovery_actions';
 import { clearAppliedPlanRecoveryActionIds, writePlanRecoveryActionsWithRegistry } from '../app/personal_plan_recovery_applied_registry';
+import { resolvePersonalPlanTrainerWeakSpotDueCount } from '../app/personal_plan_trainer_weak_spot_gate';
 import {
   createPlanAttemptEvent,
   type PlanExerciseBlock,
@@ -85,6 +86,11 @@ describe('personal plan recovery default handlers', () => {
       planDayIndex: 1,
       planPhraseLessonId: 'gavan-w1-d1-p1',
     }));
+    await expect(resolvePersonalPlanTrainerWeakSpotDueCount({
+      planInstanceId: 'gavan_123',
+      mode: 'weak',
+      studyTarget: 'en',
+    })).resolves.toBe(1);
 
     const mistakes = await loadMistakeLog('en');
     expect(mistakes).toHaveLength(1);
@@ -102,6 +108,52 @@ describe('personal plan recovery default handlers', () => {
       planDayIndex: 1,
       planPhraseLessonId: 'gavan-w1-d1-p1',
     }));
+  });
+
+  it('does not fabricate a POS from a non-POS grammar tag', async () => {
+    // "present_perfect" is a grammar tag, not a part of speech. Previously it was fed
+    // into normalizeWordCategory's rawCategory slot, whose regex matched "perfect"
+    // and coerced the category to a fake "verb", discarding the real error word.
+    const block2: PlanExerciseBlock = {
+      ...block,
+      id: 'gavan_day1_missing_word',
+      contentUnitIds: ['gavan-w1-d1-p2'],
+    };
+    const event = createPlanAttemptEvent(block2, {
+      id: 'attempt_wrong_present_perfect',
+      planInstanceId: 'gavan_123',
+      result: 'wrong',
+      contentUnitId: 'gavan-w1-d1-p2',
+      expectedAnswer: 'the keys',
+      selectedAnswer: 'a keys',
+      grammarTags: ['present_perfect'],
+      vocabularyTags: ['objects'],
+      mistakeTags: ['wrong-article'],
+      occurredAt: '2026-06-03T10:05:00.000Z',
+    });
+    const actions = buildPlanRecoveryActions(block2, event, {
+      currentPlanInstanceId: 'gavan_123',
+    });
+
+    await writePlanRecoveryActionsWithRegistry('gavan_123', actions, {
+      mode: 'apply',
+      handlers: createPlanRecoveryDefaultHandlers({ studyTarget: 'en' }),
+    });
+    await flushMistakeLog();
+
+    const trainerItems = await getTrainerPremiumItemsForPlan('gavan_123', 'weak', 5, 'en');
+    expect(trainerItems).toHaveLength(1);
+    // The POS category must NOT be the fabricated "verb" coerced from the grammar tag.
+    // ("present_perfect" used to regex-match "perfect"/"present" -> "verb".)
+    expect(trainerItems[0].category).not.toBe('verb');
+
+    const mistakes = await loadMistakeLog('en');
+    expect(mistakes).toHaveLength(1);
+    // The grammar dimension is preserved on the mistake log...
+    expect(mistakes[0].grammarTag).toBe('present_perfect');
+    // ...but the POS slot (rawCategory) must not carry the grammar tag.
+    expect(mistakes[0].rawCategory).not.toBe('present_perfect');
+    expect(mistakes[0].rawCategory).toBeUndefined();
   });
 
   it('uses the registry to keep default handler writes idempotent', async () => {

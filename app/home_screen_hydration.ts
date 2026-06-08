@@ -30,6 +30,7 @@ export type HomeScreenHydration = {
   lastLessonScore: string;
   homeLeagueRaceVisible?: boolean;
   homeLeagueCrownExpiresAt?: number;
+  homeLeagueCrownCount?: number;
   homeLeagueChest?: {
     leagueName: string;
     progress: number;

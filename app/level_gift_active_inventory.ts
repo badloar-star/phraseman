@@ -298,8 +298,15 @@ export const loadActiveLevelGiftInventory = async (
 
   const chainShield = parseJson<ChainShieldStorage>(chainShieldRaw);
   const totalShieldDays = parsePositiveInt(chainShield?.daysLeft);
-  const grantedAt = chainShield?.grantedAt ? new Date(chainShield.grantedAt) : null;
-  const daysPassed = grantedAt ? Math.floor((nowMs - grantedAt.getTime()) / 86400000) : 0;
+  // Считаем дни через дату-строки в локальном времени устройства, а не через мс,
+  // чтобы пользователи в UTC-N не теряли день щита из-за смещения UTC vs local.
+  const grantedAtStr = chainShield?.grantedAt ?? null;
+  // Локальная дата устройства в формате YYYY-MM-DD — без toLocaleDateString (ненадёжен на Hermes без ICU)
+  const d = new Date(nowMs);
+  const todayLocalStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const daysPassed = (grantedAtStr && /^\d{4}-\d{2}-\d{2}$/.test(grantedAtStr))
+    ? Math.max(0, Math.floor((new Date(todayLocalStr).getTime() - new Date(grantedAtStr).getTime()) / 86400000))
+    : 0;
   const remainingShieldDays = Math.max(0, totalShieldDays - daysPassed);
   if (remainingShieldDays > 0) {
     active.push({

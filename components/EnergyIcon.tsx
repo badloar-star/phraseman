@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { Animated, Easing, Image } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Animated, Easing } from 'react-native';
+import { Image } from 'expo-image';
 import type { ThemeMode } from '../constants/theme';
 
 const ENERGY_IMAGES: Record<ThemeMode, any> = {
@@ -22,7 +23,7 @@ interface EnergyIconProps {
   tintColor?: string;
 }
 
-export default function EnergyIcon({
+function EnergyIcon({
   filled,
   size = 30,
   animateChange = true,
@@ -75,8 +76,10 @@ export default function EnergyIcon({
           height: size,
           ...(tintColor ? { tintColor } : {}),
         }}
-        resizeMode="contain"
+        contentFit="contain"
       />
     </Animated.View>
   );
 }
+
+export default memo(EnergyIcon);

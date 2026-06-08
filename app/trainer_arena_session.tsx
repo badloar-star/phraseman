@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,6 +23,7 @@ import CompassDepthSurface from '../components/CompassDepthSurface';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import {
   getCachedDueItems,
   getDueItems,
@@ -58,6 +60,7 @@ export default function TrainerArenaSession() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
+  const { playCorrect } = useCorrectSound();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const instantItems = useMemo(
     () => hasReservedTrainerSessionEntrySync('/trainer_arena_session', studyTarget)
@@ -125,6 +128,7 @@ export default function TrainerArenaSession() {
 
     if (isOk) {
       hapticSuccess();
+      playCorrect();
       setCorrect(c => c + 1);
     } else {
       hapticError();
@@ -225,9 +229,9 @@ export default function TrainerArenaSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: sx.muted, fontSize: f.caption }}>
               {current + 1} / {items.length}
             </Text>

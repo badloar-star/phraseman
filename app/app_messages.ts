@@ -407,7 +407,8 @@ export function mergeAppMessagesWithStates(
   const merged = messages
     .filter((message) => {
       const state = stateByMessage.get(message.id);
-      return !state?.dismissedAtMs && isAppMessageVisible(message, nowMs);
+      const hiddenByUserState = message.kind === 'vip_survey' && !!state?.dismissedAtMs;
+      return !hiddenByUserState && isAppMessageVisible(message, nowMs);
     })
     .sort((a, b) => (b.priority - a.priority) || (b.createdAtMs - a.createdAtMs))
     .map((message) => {

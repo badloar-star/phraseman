@@ -173,7 +173,7 @@ export const arenaToasts = {
     messagePl: 'Odpowiedź nie została wysłana. Sprawdź połączenie i spróbuj ponownie.',
   },
   matchFinishFail: {
-    messageRu: 'Не удалось корректно завершить матч.',
+    messageRu: 'Матч не завершился корректно.',
     messageUk: 'Не вдалося коректно завершити матч.',
     messageEs: 'No se ha podido finalizar el duelo correctamente.',
     messagePtBr: 'Não foi possível finalizar a partida corretamente.',
@@ -193,7 +193,7 @@ export const arenaToasts = {
     messagePl: 'Nie udało się wysłać. Spróbuj ponownie.',
   },
   queueJoinFailAuth: {
-    messageRu: 'Не удалось войти в очередь. Войдите в аккаунт или проверьте сеть.',
+    messageRu: 'Вход в очередь не прошёл. Войди в аккаунт или проверь сеть.',
     messageUk: 'Не вдалося увійти в чергу. Увійдіть у обліковий запис або перевірте мережу.',
     messageEs:
       'No hemos podido añadirte a la cola. Inicia sesión o comprueba la conexión.',
@@ -214,7 +214,7 @@ export const arenaToasts = {
     messagePl: 'Czas wyszukiwania minął. Spróbuj ponownie.',
   },
   queueJoinFailRetry: {
-    messageRu: 'Не удалось войти в очередь. Попробуй ещё раз.',
+    messageRu: 'Вход в очередь не прошёл. Попробуй ещё раз.',
     messageUk: 'Не вдалося увійти в чергу. Спробуй ще раз.',
     messageEs: 'No se ha podido entrar en la cola. Inténtalo de nuevo.',
     messagePtBr: 'Não foi possível entrar na fila. Tente novamente.',
@@ -224,7 +224,7 @@ export const arenaToasts = {
     messagePl: 'Nie udało się wejść do kolejki. Spróbuj ponownie.',
   },
   duelReactSendFail: {
-    messageRu: 'Не удалось отправить реакцию. Проверь сеть.',
+    messageRu: 'Реакция не отправилась. Проверь сеть.',
     messageUk: 'Не вдалося надіслати реакцію. Перевір мережу.',
     messageEs: 'No se ha podido enviar la reacción. Comprueba la conexión.',
     messagePtBr: 'Não foi possível enviar a reação. Verifique a conexão.',

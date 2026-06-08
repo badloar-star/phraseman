@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Image, View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
+import { Image } from 'expo-image';
+import TapScale from '../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -328,7 +330,7 @@ export default function DuelResultsScreen() {
     try { return mockReviewData ? JSON.parse(mockReviewData) : []; } catch {
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось загрузить разбор вопросов.',
+        messageRu: 'Разбор не загрузился. Попробуй позже.',
         messageUk: 'Не вдалося завантажити розбір питань.',
         messageEs: 'No se ha podido cargar la revisión de las preguntas.',
       });
@@ -338,6 +340,7 @@ export default function DuelResultsScreen() {
 
   const scaleAnim = useRef(new Animated.Value(0.7)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
+  const topFadeScrollY = useRef(new Animated.Value(0)).current;
   const flyX = useRef(new Animated.Value(0)).current;
   const flyY = useRef(new Animated.Value(0)).current;
   const flyScale = useRef(new Animated.Value(0.2)).current;
@@ -508,7 +511,7 @@ export default function DuelResultsScreen() {
     } catch {
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось отправить реванш',
+        messageRu: 'Реванш не отправился. Попробуй ещё раз.',
         messageUk: 'Не вдалося надіслати реванш',
         messageEs: 'No se ha podido enviar la revancha.',
       });
@@ -523,7 +526,7 @@ export default function DuelResultsScreen() {
     } catch {
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось принять реванш',
+        messageRu: 'Реванш не принялся. Попробуй снова.',
         messageUk: 'Не вдалося прийняти реванш',
         messageEs: 'No se ha podido aceptar la solicitud de revancha.',
       });
@@ -689,7 +692,7 @@ export default function DuelResultsScreen() {
       } catch {
         emitAppEvent('action_toast', {
           type: 'error',
-          messageRu: 'Не удалось загрузить результат матча.',
+          messageRu: 'Результат матча не загрузился. Попробуй открыть снова.',
           messageUk: 'Не вдалося завантажити результат матчу.',
           messageEs: 'No se ha podido cargar el resultado del duelo.',
         });
@@ -1375,9 +1378,15 @@ export default function DuelResultsScreen() {
   }, [cancelMyPendingIfAny, router]);
 
   return (
-    <ScreenGradient>
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <TouchableOpacity
+    <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
+      <ScrollView
+        decelerationRate="normal"
+        contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 16 }]}
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
+      >
+        <TapScale
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
             ru: 'Назад',
@@ -1389,12 +1398,11 @@ export default function DuelResultsScreen() {
             tr: "Geri dön",
             pl: "Wróć",
           })}
-          activeOpacity={0.85}
           onPress={() => { void goBackFromResults(); }}
           style={[styles.topBackBtn, { backgroundColor: t.bgCard, borderColor: t.border }]}
         >
           <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-        </TouchableOpacity>
+        </TapScale>
         <Animated.View style={{ transform: [{ scale: scaleAnim }], opacity: opacityAnim }}>
           <LinearGradient
             colors={isWinner ? [t.correctBg, t.bgCard] : [t.bgSurface, t.bgCard]}
@@ -1552,7 +1560,7 @@ export default function DuelResultsScreen() {
                     });
                   }}
                 >
-                  <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 22, height: 22 }} resizeMode="contain" />
+                  <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 22, height: 22 }} contentFit="contain" />
                   <Text style={[{ color: arenaShardAccent, fontSize: f.body, fontWeight: '700' }]}>
                     +{shardsEarned}{' '}
                     {lang === 'es'
@@ -1574,7 +1582,7 @@ export default function DuelResultsScreen() {
                     });
                   }}
                 >
-                  <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 22, height: 22 }} resizeMode="contain" />
+                  <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 22, height: 22 }} contentFit="contain" />
                   <Text style={[{ color: arenaLossAccent, fontSize: f.body, fontWeight: '700' }]}>
                     −{shardsLostWager}{' '}
                     {lang === 'es'
@@ -1634,11 +1642,11 @@ export default function DuelResultsScreen() {
                     </View>
                   ) : flyKind === 'shard_loss' ? (
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                      <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 76, height: 76 }} resizeMode="contain" />
+                      <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 76, height: 76 }} contentFit="contain" />
                       <Text style={{ color: arenaLossAccent, fontWeight: '900', fontSize: 22, marginTop: 6 }}>−{shardsLostWager}</Text>
                     </View>
                   ) : (
-                    <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 76, height: 76 }} resizeMode="contain" />
+                    <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 76, height: 76 }} contentFit="contain" />
                   )}
                 </Animated.View>
               </Animated.View>
@@ -1654,7 +1662,7 @@ export default function DuelResultsScreen() {
                       transform: [{ scale: getRankImageDisplayScale((starInfo.newTier as RankTier), starInfo.newLevel) }],
                     },
                   ]}
-                  resizeMode="contain"
+                  contentFit="contain"
                 />
               </View>
             )}
@@ -2214,7 +2222,7 @@ export default function DuelResultsScreen() {
       >
         <ScreenGradient forceFullBleed style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: insets.top + 12, paddingBottom: 12, gap: 12 }}>
-            <TouchableOpacity onPress={() => setShowReview(false)}>
+            <TouchableOpacity activeOpacity={0.75} onPress={() => setShowReview(false)}>
               <Ionicons name="close" size={24} color={sx.primary} />
             </TouchableOpacity>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
@@ -2230,7 +2238,7 @@ export default function DuelResultsScreen() {
               })}
             </Text>
           </View>
-          <ScrollView contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 40 + insets.bottom }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 40 + insets.bottom }} showsVerticalScrollIndicator={false}>
             {reviewItems.map((item, idx) => {
               const isRight = item.myAnswer === item.correct;
               return (
@@ -2333,7 +2341,7 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
       onClose();
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось открыть окно оценки.',
+        messageRu: 'Окно оценки не открывается. Попробуй снова.',
         messageUk: 'Не вдалося відкрити вікно оцінки.',
         messageEs: 'No se ha podido abrir la valoración.',
       });

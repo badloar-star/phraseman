@@ -7,7 +7,7 @@
  * - Исчезает через 2 сек или при тапе
  */
 
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { hapticMediumImpact } from '../hooks/use-haptics';
 import { useTheme } from './ThemeContext';
@@ -20,7 +20,7 @@ export interface BonusXPCardProps {
   duration?: number;
 }
 
-export default function BonusXPCard({
+function BonusXPCard({
   bonusXP,
   onDismiss,
   position = 'bottom',
@@ -151,6 +151,8 @@ export default function BonusXPCard({
     </Animated.View>
   );
 }
+
+export default memo(BonusXPCard);
 
 const styles = StyleSheet.create({
   container: {

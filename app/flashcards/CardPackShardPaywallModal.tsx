@@ -30,7 +30,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getVolumetricShadow, useTheme } from '../../components/ThemeContext';
-import { paywallGlassColor } from '../../components/paywallGlass';
 import type { Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
 import { oskolokImageForPackShards } from '../oskolok';
@@ -213,9 +212,9 @@ export default function CardPackShardPaywallModal({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const isLightTheme = false;
-  const sheetCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
-  const sheetSurfaceBg = paywallGlassColor(t.bgSurface, themeMode, 'surface');
-  const sheetPrimaryBg = paywallGlassColor(t.bgPrimary, themeMode, 'primary');
+  const sheetCardBg = t.bgCard;
+  const sheetSurfaceBg = t.bgSurface;
+  const sheetPrimaryBg = t.bgPrimary;
   const bodyTextColor = t.textMuted;
   const subLabelColor = t.textMuted;
   const insets = useSafeAreaInsets();
@@ -409,6 +408,7 @@ export default function CardPackShardPaywallModal({
 
                     <ScrollView
                       style={{ maxHeight: maxSheetH - 120 }}
+                      decelerationRate="normal"
                       contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 16 }}
                       showsVerticalScrollIndicator
                       bounces

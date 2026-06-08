@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import {
   Modal, View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions,
-  Easing, Image,
+  Easing,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
@@ -17,11 +18,10 @@ import {
 import { getShardsBalance, spendShards } from '../app/shards_system';
 import { emitAppEvent } from '../app/events';
 import { hapticTap, hapticWarning, hapticSuccess } from '../hooks/use-haptics';
-import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
+import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { oskolokImageForPackShards } from '../app/oskolok';
-import { paywallGlassColor } from './paywallGlass';
 import { triLang } from '../constants/i18n';
 
 export type ArenaLimitMode = 'matchmaking' | 'invite';
@@ -41,7 +41,15 @@ interface Props {
 
 const { height: SCREEN_H } = Dimensions.get('window');
 
-export default function ArenaLimitModal({
+function opaqueArenaLimitSurface(color: string): string {
+  const trimmed = color.trim();
+  if (/^#[\da-fA-F]{8}$/.test(trimmed)) return trimmed.slice(0, 7);
+  const rgba = trimmed.match(/^rgba\((.+),\s*[\d.]+\)$/);
+  if (rgba) return `rgb(${rgba[1]})`;
+  return trimmed || '#202020';
+}
+
+function ArenaLimitModal({
   visible,
   mode,
   playsUsed,
@@ -53,7 +61,7 @@ export default function ArenaLimitModal({
   const router = useRouter();
   const dailyMax = dailyMaxProp ?? ARENA_DAILY_MAX;
   const { theme: t, themeMode, f } = useTheme();
-  const paywallSheetBg = paywallGlassColor(t.bgCard, themeMode, 'card');
+  const paywallSheetBg = opaqueArenaLimitSurface(t.bgCard);
   const { lang } = useLang();
   const slideY = useRef(new Animated.Value(SCREEN_H)).current;
   const bgOpacity = useRef(new Animated.Value(0)).current;
@@ -153,7 +161,7 @@ export default function ArenaLimitModal({
       if (!spent) {
         emitAppEvent('action_toast', {
           type: 'info',
-          messageRu: 'Не удалось списать осколки. Попробуй ещё раз.',
+          messageRu: 'Осколки не списались. Попробуй ещё раз.',
           messageUk: 'Не вдалося списати осколки. Спробуй ще раз.',
           messageEs: 'No se pudieron usar los fragmentos. Inténtalo de nuevo.',
           messagePtBr: 'Não foi possível usar os fragmentos. Tente novamente.',
@@ -198,6 +206,11 @@ export default function ArenaLimitModal({
         style={[styles.sheet, { backgroundColor: paywallSheetBg, transform: [{ translateY: slideY }] }]}
         pointerEvents="box-none"
       >
+        <View
+          pointerEvents="none"
+          style={[styles.sheetOpaqueFill, { backgroundColor: paywallSheetBg }]}
+        />
+
         {/* Внутренний радиальный отблеск сверху листа */}
         <LinearGradient
           colors={[t.wrong + '22', 'transparent']}
@@ -236,7 +249,7 @@ export default function ArenaLimitModal({
         >
           {mode === 'matchmaking'
             ? triLang(lang, {
-                ru: 'Матчи на сегодня исчерпаны',
+                ru: 'На сегодня матчи закончились',
                 uk: 'Матчі на сьогодні вичерпано',
                 es: 'No quedan duelos en la Arena hoy',
                 'pt-BR': 'Duelos da Arena esgotados por hoje',
@@ -246,7 +259,7 @@ export default function ArenaLimitModal({
                 pl: 'Dzisiejsze pojedynki Areny wyczerpane',
               })
             : triLang(lang, {
-                ru: 'Приглашения на сегодня исчерпаны',
+                ru: 'На сегодня приглашения закончились',
                 uk: 'Запрошення на сьогодні вичерпано',
                 es: 'No quedan invitaciones en la Arena hoy',
                 'pt-BR': 'Convites da Arena esgotados por hoje',
@@ -265,7 +278,7 @@ export default function ArenaLimitModal({
         >
           {mode === 'matchmaking'
             ? triLang(lang, {
-                ru: `Ты использовал все ${dailyMax} матчей арены на сегодня.\nЛимит обновится в полночь.`,
+                ru: `Ты сыграл все ${dailyMax} матчей на сегодня.\nЗавтра лимит обновится — возвращайся.`,
                 uk: `Ти використав усі ${dailyMax} матчів арени на сьогодні.\nЛіміт оновиться опівночі.`,
                 es: `Has usado los ${dailyMax} duelos de la Arena de hoy.\nEl límite se renueva a medianoche.`,
                 'pt-BR': `Você usou todos os ${dailyMax} duelos da Arena de hoje.\nO limite renova à meia-noite.`,
@@ -275,7 +288,7 @@ export default function ArenaLimitModal({
                 pl: `Wykorzystano dziś wszystkie ${dailyMax} pojedynków Areny.\nLimit odnowi się o północy.`,
               })
             : triLang(lang, {
-                ru: `Ты использовал все ${dailyMax} приглашений арены на сегодня.\nЛимит обновится в полночь.`,
+                ru: `Ты отправил все ${dailyMax} приглашений на сегодня.\nЗавтра лимит обновится — возвращайся.`,
                 uk: `Ти використав усі ${dailyMax} запрошень арени на сьогодні.\nЛіміт оновиться опівночі.`,
                 es: `Has usado las ${dailyMax} invitaciones en la Arena de hoy.\nEl límite se renueva a medianoche.`,
                 'pt-BR': `Você usou todos os ${dailyMax} convites da Arena de hoje.\nO limite renova à meia-noite.`,
@@ -367,7 +380,7 @@ export default function ArenaLimitModal({
                 <Image
                   source={oskolokImageForPackShards(ARENA_MATCHES_SHARD_REFILL_COST)}
                   style={{ width: 26, height: 26 }}
-                  resizeMode="contain"
+                  contentFit="contain"
                 />
               </View>
             )}
@@ -400,6 +413,8 @@ export default function ArenaLimitModal({
   );
 }
 
+export default memo(ArenaLimitModal);
+
 const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -417,6 +432,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
     overflow: 'hidden',
+  },
+  sheetOpaqueFill: {
+    ...StyleSheet.absoluteFillObject,
   },
   sheetGlow: {
     position: 'absolute',

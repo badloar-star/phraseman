@@ -1,8 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Image, Modal, Pressable, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Modal, Pressable, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
 import ContentWrap from '../components/ContentWrap';
@@ -146,23 +148,33 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                     backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.correct,
                     borderRadius: buttonRadius,
                     paddingVertical: 14,
-                    paddingHorizontal: 12,
+                    paddingHorizontal: 36,
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
                     borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent',
                     overflow: 'hidden',
+                    position: 'relative',
                     ...(isCompassTheme ? compassShadow(1) : null),
                   }}
                   onPress={handleYes}
                 >
                   {isCompassTheme && <CompassDepthSurface radius={buttonRadius} cream />}
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                    <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.body, fontWeight: '700', flexShrink: 1 }} numberOfLines={2}>
+                  <View style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                    <Text
+                      style={{
+                        color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText,
+                        fontSize: f.body,
+                        fontWeight: '700',
+                        lineHeight: f.body * 1.15,
+                        textAlign: 'center',
+                      }}
+                      numberOfLines={2}
+                    >
                       {variant.btnYes}
                     </Text>
-                    <Text style={{ fontSize: 16, lineHeight: 20 }}>⭐</Text>
                   </View>
+                  <Text style={{ position: 'absolute', right: 16, fontSize: 16, lineHeight: 20 }}>⭐</Text>
                 </TouchableOpacity>
               </View>
             </>
@@ -342,7 +354,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
         {isCompassTheme && <CompassDepthSurface radius={14} selected />}
         {/* Icon / Image */}
         {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
-          <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} resizeMode="contain" />
+          <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} contentFit="contain" />
         )}
         {notif.kind === 'lesson_unlock' && (
           <View style={{ width: 80, height: 80, borderRadius: isCompassTheme ? 12 : 40, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }}>
@@ -467,6 +479,9 @@ export default function LessonComplete() {
   const [medalImproved, setMedalImproved] = useState(false);
   const [showBonus, setShowBonus] = useState(false);
   const [bonusXP, setBonusXP] = useState(0);
+  const [showPremiumBanner, setShowPremiumBanner] = useState(false);
+  const premiumBannerAnim = useRef(new Animated.Value(0)).current;
+  const premiumBannerNextLesson = useRef(0);
 
   // Notification queue
   const [, setNotifQueue] = useState<Notif[]>([]);
@@ -798,19 +813,26 @@ export default function LessonComplete() {
     };
   }, [lessonId]);
 
+  const openPremiumBanner = useCallback((nextLesson: number) => {
+    premiumBannerNextLesson.current = nextLesson;
+    setShowPremiumBanner(true);
+    Animated.spring(premiumBannerAnim, {
+      toValue: 1,
+      friction: 8,
+      tension: 60,
+      useNativeDriver: true,
+    }).start();
+  }, [premiumBannerAnim]);
+
   const goNext = () => {
     const next = lessonId + 1;
     if (next <= 32) {
       void (async () => {
         const premium = await getVerifiedPremiumStatus().catch(() => false);
         if (requiresPremiumForLesson(next) && !premium) {
-          router.replace({
-            pathname: '/premium_modal',
-            params: {
-              context: lessonPaywallContext(next),
-              lessons_done: String(lessonId),
-            },
-          } as any);
+          // Показываем inline-баннер прямо на этом экране вместо немедленного replace.
+          // Пользователь видит свой результат, потом плавно получает предложение Premium.
+          openPremiumBanner(next);
           return;
         }
         await prefetchLessonMenuCache(next, studyTarget);
@@ -829,10 +851,9 @@ export default function LessonComplete() {
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
-      <TouchableOpacity
+      <TapScale
         accessibilityRole="button"
         accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-        activeOpacity={0.85}
         onPress={goBackFromComplete}
         style={{
           position: 'absolute',
@@ -853,9 +874,9 @@ export default function LessonComplete() {
       >
         {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
         <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary} />
-      </TouchableOpacity>
+      </TapScale>
       <ContentWrap>
-      <ScrollView testID="lesson-complete-screen" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+      <ScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{
@@ -867,7 +888,7 @@ export default function LessonComplete() {
             <Image
               source={MEDAL_IMAGES_COMPLETE[medalTier]}
               style={{ width: 110, height: 110 }}
-              resizeMode="contain"
+              contentFit="contain"
             />
           ) : (
             <View style={{ width: 110, height: 110, borderRadius: 55, backgroundColor: '#3A3A3A', justifyContent: 'center', alignItems: 'center' }}>
@@ -925,7 +946,7 @@ export default function LessonComplete() {
           </View>
 
           {/* Следующий урок */}
-          {lessonId < 32 && (
+          {lessonId < 32 && !showPremiumBanner && (
             <TouchableOpacity
               testID="lesson-complete-next-lesson"
               style={{
@@ -942,6 +963,64 @@ export default function LessonComplete() {
                 {c.nextLesson} {lessonId + 1} →
               </Text>
             </TouchableOpacity>
+          )}
+
+          {/* Premium-баннер: появляется вместо перехода на пейвол — пользователь уже видел результат */}
+          {showPremiumBanner && (
+            <Animated.View
+              style={{
+                width: '100%',
+                marginBottom: 12,
+                opacity: premiumBannerAnim,
+                transform: [{ scale: premiumBannerAnim.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] }) }],
+              }}
+            >
+              <TouchableOpacity
+                activeOpacity={0.88}
+                style={{
+                  width: '100%',
+                  borderRadius: isCompassTheme ? 10 : 16,
+                  padding: 18,
+                  alignItems: 'center',
+                  backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalWarm : t.textSecond,
+                  borderWidth: 1,
+                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.gold + '55',
+                  overflow: 'hidden',
+                  ...(isCompassTheme ? compassShadow(2) : null),
+                }}
+                onPress={() => {
+                  hapticTap();
+                  router.replace({
+                    pathname: '/premium_modal',
+                    params: {
+                      context: lessonPaywallContext(premiumBannerNextLesson.current),
+                      lessons_done: String(lessonId),
+                    },
+                  } as any);
+                }}
+              >
+                {isCompassTheme && <CompassDepthSurface radius={10} selected />}
+                <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
+                  {triLang(lang, { ru: '🔓 Следующий урок закрыт', uk: '🔓 Наступний урок закрито', es: '🔓 La siguiente lección está bloqueada', 'pt-BR': '🔓 Próxima lição bloqueada', vi: '🔓 Bài tiếp theo đã bị khóa', id: '🔓 Pelajaran berikutnya terkunci', tr: '🔓 Sonraki ders kilitli', pl: '🔓 Następna lekcja jest zablokowana' })}
+                </Text>
+                <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
+                  {triLang(lang, { ru: 'Открыть Premium — продолжить →', uk: 'Відкрити Premium — продовжити →', es: 'Abrir Premium — continuar →', 'pt-BR': 'Abrir Premium — continuar →', vi: 'Mở Premium — tiếp tục →', id: 'Buka Premium — lanjutkan →', tr: 'Premium aç — devam et →', pl: 'Otwórz Premium — kontynuuj →' })}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={{ paddingVertical: 8, alignItems: 'center' }}
+                onPress={() => {
+                  hapticTap();
+                  setShowPremiumBanner(false);
+                  premiumBannerAnim.setValue(0);
+                }}
+              >
+                <Text style={{ color: t.textGhost, fontSize: f.caption, textDecorationLine: 'underline' }}>
+                  {triLang(lang, { ru: 'Остаться на бесплатном', uk: 'Залишитись на безкоштовному', es: 'Quedarme con la versión gratuita', 'pt-BR': 'Ficar no gratuito', vi: 'Tiếp tục miễn phí', id: 'Tetap di gratis', tr: 'Ücretsiz kalmak istiyorum', pl: 'Zostań w darmowej wersji' })}
+                </Text>
+              </TouchableOpacity>
+            </Animated.View>
           )}
 
           {/* Повторить урок */}

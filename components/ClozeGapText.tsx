@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Text, type TextProps, type TextStyle } from 'react-native';
 import { useTheme } from './ThemeContext';
 
@@ -19,7 +19,7 @@ type Props = {
 /**
  * Текст вопроса с пропуском: подчёркивания окрашиваются цветом темы (акцент).
  */
-export default function ClozeGapText({ text, style, gapColor: gapColorProp, ...rest }: Props) {
+function ClozeGapText({ text, style, gapColor: gapColorProp, ...rest }: Props) {
   const { theme: t } = useTheme();
   const gapColor = gapColorProp ?? t.accent;
 
@@ -46,3 +46,5 @@ export default function ClozeGapText({ text, style, gapColor: gapColorProp, ...r
     </Text>
   );
 }
+
+export default memo(ClozeGapText);

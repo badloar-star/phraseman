@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -40,8 +41,8 @@ type ThemeOption = {
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 
 const THEME_OPTIONS: ThemeOption[] = [
-  { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937' },
   { mode: 'compass', labelRU: 'Компас', labelUK: 'Компас', labelES: 'Brújula', labelPtBr: 'Bússola', labelVi: 'La bàn', labelId: 'Kompas', labelTr: 'Pusula', labelPl: 'Kompas', bg: '#171719', accent: '#F2C48D', text: '#FFF8E8', preview2: '#FFE6B5', preview3: '#B4774E' },
+  { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937' },
   { mode: 'minimalLight', labelRU: 'Скетч', labelUK: 'Скетч', labelES: 'Sketch', labelPtBr: 'Sketch', labelVi: 'Phác thảo', labelId: 'Sketsa', labelTr: 'Eskiz', labelPl: 'Szkic', bg: '#F3ECDC', accent: '#343842', text: '#171615', preview2: '#BCA98E', preview3: '#DED4C0' },
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
   { mode: 'neon', labelRU: 'Неон', labelUK: 'Неон', labelES: 'Neón', labelPtBr: 'Neon', labelVi: 'Neon', labelId: 'Neon', labelTr: 'Neon', labelPl: 'Neon', bg: '#202020', accent: '#C8FF00', text: '#F0F0F0', preview2: '#C8FF00', preview3: '#343434', premiumOnly: true },
@@ -52,19 +53,19 @@ const THEME_OPTIONS: ThemeOption[] = [
 function themeSwatches(item: ThemeOption): [string, string, string] {
   switch (item.mode) {
     case 'minimalDark':
-      return [item.accent, item.preview2, '#E9B949'];
+      return ['#A8CBFF', item.accent, '#2F5C9B'];
     case 'compass':
-      return [COMPASS_RICH.champagne, COMPASS_RICH.copper, COMPASS_RICH.charcoalWarm];
+      return [COMPASS_RICH.cream, COMPASS_RICH.champagne, COMPASS_RICH.copperDark];
     case 'minimalLight':
-      return [item.accent, item.preview2, '#76531F'];
+      return ['#FFFDF6', item.bg, item.preview3];
     case 'dark':
-      return [item.accent, '#8AB49A', '#FFC800'];
+      return ['#8AB49A', item.accent, '#1E6B3A'];
     case 'neon':
-      return [item.accent, '#FFE600', '#FF4444'];
+      return ['#E5FF66', item.accent, '#6C8A00'];
     case 'coral':
-      return [item.accent, '#4A90FF', '#FFD060'];
+      return ['#FF9A9A', item.accent, '#8A2E3D'];
     case 'gold':
-      return [item.accent, item.preview2, '#8A5A20'];
+      return ['#F6E3A1', item.accent, '#6E4B14'];
     default:
       return [item.accent, item.preview2, item.preview3];
   }
@@ -124,11 +125,8 @@ export default function SettingsThemes() {
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity
-              onPress={() => {
-                hapticTap();
-                safeRouterBack(router, '/(tabs)/settings' as any);
-              }}
+            <TapScale
+              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
               style={{
                 width: 38,
                 height: 38,
@@ -144,7 +142,7 @@ export default function SettingsThemes() {
             >
               {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700', marginLeft: 8 }}>
               {triLang(lang, {
                 ru: 'Темы',
@@ -185,7 +183,7 @@ export default function SettingsThemes() {
             />
           </View>
 
-          <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>
             {THEME_OPTIONS.filter(item => !item.rewardOnly || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map((item) => {
               const active = themeMode === item.mode;
               const locked = !!item.premiumOnly && !isPremium && !DEV_THEME_UNLOCKS;

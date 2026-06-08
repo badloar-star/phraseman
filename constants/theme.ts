@@ -414,7 +414,7 @@ export const STRINGS = {
   tabs: {
     home:      'Главная',
     lessons:   'Уроки',
-    quizzes:   'Квизы',
+    quizzes:   'Вызовы',
     settings:  'Настройки',
   },
   home: {
@@ -440,16 +440,16 @@ export const STRINGS = {
     theory:  'Теория',
     oral:    'Устно',
     next:    'Далее',
-    typeHere: 'Введите ответ...',
+    typeHere: 'Введи ответ...',
   },
   quizzes: {
-    selectLevel: 'Выберите уровень',
+    selectLevel: 'Выбери уровень',
     easy:        'Легко',
     medium:      'Средне',
     hard:        'Сложно',
-    done:        'Квиз завершён!',
+    done:        'Вызов завершён!',
     again:       'Пройти снова',
-    back:        'Выбрать уровень',
+    back:        'Выбери уровень',
     fixErrors:   'Исправь ошибки',
     timeUp:      'Время вышло',
   },
@@ -500,17 +500,17 @@ export const STRINGS = {
     freeCont: 'Продолжить бесплатно (Урок 1)',
     features: [
       'Уроки после A1',
-      'Квизы без дневного лимита',
+      'Вызовы без дневного лимита',
       'Голосовой ввод',
       'Подробная статистика',
     ],
   },
   onboarding: {
-    chooseLang:  'Выберите язык',
-    enterName:   'Введите ваше имя или никнейм',
-    placeholder: 'Ваше имя...',
+    chooseLang:  'Выбери язык',
+    enterName:   'Введи своё имя или никнейм',
+    placeholder: 'Твоё имя...',
     next:        'Продолжить',
-    nameError:   'Введите имя чтобы продолжить',
+    nameError:   'Введи имя, чтобы продолжить',
   },
 };
 

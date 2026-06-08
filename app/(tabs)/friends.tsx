@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useFocusEffect, useRouter } from 'expo-router';
 import {
-  View, Text, Image, TouchableOpacity, TextInput, ScrollView,
-  Share, Keyboard, StyleSheet, Modal,
+  View, Text, TouchableOpacity, TextInput, ScrollView, Animated,
+  Share, Keyboard, StyleSheet, Modal, InteractionManager,
 } from 'react-native';
-import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from 'react-native-safe-area-context';
+import { Image } from 'expo-image';
+import TapScale from '../../components/TapScale';
+import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
+import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
@@ -110,6 +113,7 @@ interface FriendProfile {
   profileCardMotion?: string;
   profileCardPublicFocus?: string;
   leagueCrownExpiresAt?: number;
+  leagueCrownCount?: number;
 }
 
 const PROFILE_TTL_MS = 30 * 1000;
@@ -239,6 +243,10 @@ function mergePublicFriendProfiles(
     profileCardMotion: primary.profileCardMotion ?? secondary.profileCardMotion,
     profileCardPublicFocus: primary.profileCardPublicFocus ?? secondary.profileCardPublicFocus,
     leagueCrownExpiresAt: primary.leagueCrownExpiresAt ?? secondary.leagueCrownExpiresAt,
+    leagueCrownCount: Math.max(
+      Math.floor(Number(primary.leagueCrownCount) || 0),
+      Math.floor(Number(secondary.leagueCrownCount) || 0),
+    ),
   });
 }
 
@@ -369,7 +377,12 @@ async function loadProfiles(
     for (let i = 0; i < toFetch.length; i++) {
       const profile = fetched[i];
       if (profile) {
-        const crowned = { ...profile, leagueCrownExpiresAt: crownMap[profile.uid]?.expiresAt };
+        const crown = crownMap[profile.uid];
+        const crowned = {
+          ...profile,
+          leagueCrownExpiresAt: crown?.expiresAt,
+          leagueCrownCount: Math.max(0, Math.floor(Number(crown?.crownCount) || 0)),
+        };
         result[toFetch[i]] = crowned;
         const entry: ProfileCacheEntry = { profile: crowned, fetchedAt: now };
         updatedCache[toFetch[i]] = entry;
@@ -441,7 +454,9 @@ function FriendRow({
   chrome: FriendsChrome;
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
-  const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
+  const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
+  const hasLeagueCrown = leagueCrownCount > 0 || Number(profile.leagueCrownExpiresAt) > Date.now();
+  const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
   const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium, profile.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
@@ -466,7 +481,7 @@ function FriendRow({
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
         {hasLeagueCrown
-          ? <LeagueCrownName text={profile.name} fontSize={f.body} />
+          ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
           : profile.isPremium
           ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
           : profile.isVip
@@ -483,32 +498,20 @@ function FriendRow({
           </View>
         )}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-          <TouchableOpacity
-            testID={`friend-gift-rank-${rank}`}
-            accessible
-            accessibilityRole="button"
-            accessibilityLabel={`${triLang(lang as any, {
-              ru: 'Подарить',
-              uk: 'Подарувати',
-              es: 'Regalar',
-              'pt-BR': 'Presentear',
-              vi: 'Tặng quà',
-              id: 'Beri hadiah',
-              tr: 'Hediye gönder',
-              pl: 'Podaruj',
-            })} friend-gift-rank-${rank} friend-gift-${profile.uid}`}
+          <TapScale
             onPress={onGift}
-            hitSlop={{ top: 8, bottom: 8, left: 10, right: 10 }}
+            hitSlop={10}
+            style={{ padding: 4 }}
           >
             <Ionicons name="gift-outline" size={18} color={t.accent} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            testID={`friend-delete-${profile.uid}`}
+          </TapScale>
+          <TapScale
             onPress={onDelete}
-            hitSlop={{ top: 8, bottom: 8, left: 10, right: 10 }}
+            hitSlop={10}
+            style={{ padding: 4 }}
           >
             <Ionicons name="person-remove-outline" size={16} color={t.textMuted} />
-          </TouchableOpacity>
+          </TapScale>
         </View>
       </View>
     </TouchableOpacity>
@@ -526,7 +529,9 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
   f: any;
   chrome: FriendsChrome;
 }) {
-  const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
+  const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
+  const hasLeagueCrown = leagueCrownCount > 0 || Number(profile.leagueCrownExpiresAt) > Date.now();
+  const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
   const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium, profile.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
@@ -540,7 +545,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
         {hasLeagueCrown
-          ? <LeagueCrownName text={profile.name} fontSize={f.body} />
+          ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
           : profile.isPremium
           ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
           : profile.isVip
@@ -556,9 +561,10 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
         )}
       </View>
       <View style={{ gap: 8, alignSelf: 'center' }}>
-        <TouchableOpacity
+        <TapScale
           testID={`friend-request-accept-${profile.uid}`}
           onPress={onAccept}
+          scaleTo={0.96}
           style={{ backgroundColor: t.accent, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, minWidth: 96, alignItems: 'center' }}
         >
           <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>
@@ -573,10 +579,11 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
               pl: 'Przyjmij',
             })}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TapScale>
+        <TapScale
           testID={`friend-request-decline-${profile.uid}`}
           onPress={onDecline}
+          scaleTo={0.96}
           style={{
             backgroundColor: chrome.button,
             borderRadius: 10,
@@ -600,7 +607,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
               pl: 'Odrzuć',
             })}
           </Text>
-        </TouchableOpacity>
+        </TapScale>
       </View>
     </View>
   );
@@ -614,7 +621,9 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
   chrome: FriendsChrome;
 }) {
   const level = getLevelFromXP(profile.totalXp);
-  const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
+  const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
+  const hasLeagueCrown = leagueCrownCount > 0 || Number(profile.leagueCrownExpiresAt) > Date.now();
+  const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
   const effectiveAura = getEffectiveAvatarAuraId(profile.aura, profile.isPremium, profile.isVip);
   const usesPremiumAura = effectiveAura === PREMIUM_AVATAR_AURA_ID;
   return (
@@ -629,7 +638,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
         </PremiumAvatarHalo>
         <View style={{ flex: 1 }}>
           {hasLeagueCrown
-            ? <LeagueCrownName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
+            ? <LeagueCrownName text={profile.name} fontSize={f.h3 ?? f.body + 2} count={displayLeagueCrownCount} />
             : profile.isPremium
             ? <PremiumGoldUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
             : profile.isVip
@@ -654,14 +663,15 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
             </Text>
           )}
         </View>
-        <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        <TapScale onPress={onClose} hitSlop={8}>
           <Ionicons name="close-circle" size={22} color={t.textMuted} />
-        </TouchableOpacity>
+        </TapScale>
       </View>
-      <TouchableOpacity
+      <TapScale
         testID="friends-add-found"
         onPress={onAdd}
         disabled={isAdding}
+        scaleTo={0.96}
         style={{
           backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14,
           alignItems: 'center', opacity: isAdding ? 0.6 : 1,
@@ -681,7 +691,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
             pl: 'Dodaj znajomego',
           })}
         </Text>
-      </TouchableOpacity>
+      </TapScale>
     </View>
   );
 }
@@ -748,9 +758,10 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
             {code}
           </Text>
           <View style={{ flexDirection: 'row', gap: 10 }}>
-            <TouchableOpacity
+            <TapScale
               testID="friends-copy-code"
               onPress={onCopy}
+              scaleTo={0.96}
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: copied ? '#34C759' : chrome.button,
@@ -782,10 +793,11 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
                     pl: 'Kopiuj',
                   })}
               </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </TapScale>
+            <TapScale
               testID="friends-share-code"
               onPress={onShare}
+              scaleTo={0.96}
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: chrome.button, borderRadius: 12, paddingVertical: 12, gap: 6,
@@ -805,14 +817,14 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
                   pl: 'Udostępnij',
                 })}
               </Text>
-            </TouchableOpacity>
+            </TapScale>
           </View>
         </>
       ) : loadError ? (
         <View style={{ alignItems: 'center', gap: 10, alignSelf: 'stretch' }}>
           <Text style={{ color: '#FF9F0A', fontSize: f.sub, textAlign: 'center', fontWeight: '600' }}>
             {triLang(lang as any, {
-              ru: 'Не удалось получить код. Проверьте сеть и попробуйте снова.',
+              ru: 'Код не загрузился. Проверь сеть и попробуй снова.',
               uk: 'Не вдалося отримати код. Перевірте мережу й спробуйте ще.',
               es: 'No se pudo obtener el código. Comprueba la red e inténtalo de nuevo.',
               'pt-BR': 'Não foi possível obter o código. Verifique a rede e tente de novo.',
@@ -823,9 +835,10 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
             })}
           </Text>
           {onRetryLoad && (
-            <TouchableOpacity
+            <TapScale
               testID="friends-retry-code"
               onPress={onRetryLoad}
+              scaleTo={0.96}
               style={{
                 backgroundColor: t.accent,
                 borderRadius: 12,
@@ -845,7 +858,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
                   pl: 'Spróbuj ponownie',
                 })}
               </Text>
-            </TouchableOpacity>
+            </TapScale>
           )}
         </View>
       ) : (
@@ -1154,17 +1167,16 @@ function ActivityTab({
 
   return (
     <View testID="friends-activity-list">
-      <TouchableOpacity
+      <TapScale
         testID="friends-activity-refresh"
-        onPress={() => { hapticTap(); void load(true); }}
+        onPress={() => { void load(true); }}
         style={{ flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-end', marginBottom: 12 }}
-        activeOpacity={0.7}
       >
         <Ionicons name="refresh-outline" size={16} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.sub }}>
           {L('Обновить', 'Оновити', 'Actualizar', 'Atualizar', 'Làm mới', 'Perbarui', 'Yenile', 'Odśwież')}
         </Text>
-      </TouchableOpacity>
+      </TapScale>
       {events.map(event => {
         const profile = profiles[event.uid];
         const name = profile?.name ?? L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn bè', 'Teman', 'Arkadaş', 'Znajomy');
@@ -1197,9 +1209,8 @@ function ActivityTab({
                 {formatEventTime(event.ts, lang)}
               </Text>
             </View>
-            <TouchableOpacity
+            <TapScale
               testID={`friends-activity-like-${event.uid}-${event.id}`}
-              activeOpacity={0.78}
               onPress={() => { void handleActivityLike(event); }}
               accessibilityRole="button"
               accessibilityLabel={L('Лайк за активность', 'Лайк за активність', 'Like de actividad', 'Like de atividade', 'Thích hoạt động', 'Like aktivitas', 'Etkinlik beğenisi', 'Polubienie aktywności')}
@@ -1220,7 +1231,7 @@ function ActivityTab({
               <Text style={{ color: likedToday ? likeColor : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
                 {likeCount}
               </Text>
-            </TouchableOpacity>
+            </TapScale>
           </View>
         );
       })}
@@ -1266,13 +1277,14 @@ function AddFriendModal({
             <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
               {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
             </Text>
-            <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <TapScale onPress={onClose} hitSlop={8}>
               <Ionicons name="close" size={26} color={t.textMuted} />
-            </TouchableOpacity>
+            </TapScale>
           </View>
 
           <ScrollView
             keyboardShouldPersistTaps="handled"
+            decelerationRate="normal"
             contentContainerStyle={{ padding: 20, gap: 16 }}
           >
             <CodeCard
@@ -1283,11 +1295,12 @@ function AddFriendModal({
               onRetryLoad={onRetryLoad}
             />
             <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-              {L('Введите код друга', 'Введіть код друга', 'Ingresa el código del amigo', 'Digite o código do amigo', 'Nhập mã bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
+              {L('Введи код друга', 'Введіть код друга', 'Ingresa el código del amigo', 'Digite o código do amigo', 'Nhập mã bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
             </Text>
             <View style={{ flexDirection: 'row', gap: 10 }}>
             <TextInput
                 testID="friends-code-input"
+                accessibilityLabel="Friend code input"
                 style={{
                   flex: 1, backgroundColor: chrome.surface, borderRadius: 12,
                   paddingHorizontal: 16, paddingVertical: 13,
@@ -1306,7 +1319,7 @@ function AddFriendModal({
                 }}
                 onSubmitEditing={onSearch}
               />
-              <TouchableOpacity
+              <TapScale
                 testID="friends-search"
                 onPress={onSearch}
                 disabled={codeInput.length !== 6 || isSearching}
@@ -1318,7 +1331,7 @@ function AddFriendModal({
                 }}
               >
                 <Ionicons name="search" size={22} color={codeInput.length === 6 ? t.correctText : t.textMuted} />
-              </TouchableOpacity>
+              </TapScale>
             </View>
 
             {searchError && (
@@ -1357,6 +1370,9 @@ export default function FriendsTabScreen() {
   const { lang } = useLang();
   const router = useRouter();
   const { goHome } = useTabNav();
+  const insets = useSafeAreaInsets();
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const topFadeScroll = useTopFadeScroll();
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
   const sentGiftChrome = themeMode === 'compass'
     ? {
@@ -1492,32 +1508,35 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     mountedRef.current = true;
-    // Show cached code immediately (no loading state), then verify/refresh in background.
-    void readCachedMyInviteCodeForFriends().then(cached => {
-      if (mountedRef.current && cached) setMyCode(cached);
-    });
-    void syncMyInviteCode();
-    void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
-    // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
-    void startFriendsTabSwrPrime().then(() => {
-      if (!mountedRef.current) return;
-      const fresh = peekProfilesCache();
-      profilesCacheRef.current = { ...fresh };
-      setProfiles(prev => {
-        const next = { ...prev };
-        for (const [uid, e] of Object.entries(fresh)) {
-          if (!next[uid]) next[uid] = e.profile as FriendProfile;
-        }
-        return next;
+    const task = InteractionManager.runAfterInteractions(() => {
+      // Show cached code immediately (no loading state), then verify/refresh in background.
+      void readCachedMyInviteCodeForFriends().then(cached => {
+        if (mountedRef.current && cached) setMyCode(cached);
       });
+      void syncMyInviteCode();
+      void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
+      // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
+      void startFriendsTabSwrPrime().then(() => {
+        if (!mountedRef.current) return;
+        const fresh = peekProfilesCache();
+        profilesCacheRef.current = { ...fresh };
+        setProfiles(prev => {
+          const next = { ...prev };
+          for (const [uid, e] of Object.entries(fresh)) {
+            if (!next[uid]) next[uid] = e.profile as FriendProfile;
+          }
+          return next;
+        });
+      });
+      void cleanupStaleFriendData();
     });
-    void cleanupStaleFriendData();
-    return () => { mountedRef.current = false; };
+    return () => { mountedRef.current = false; task.cancel(); };
   }, [syncMyInviteCode]);
 
-  const pollIncomingFriendGifts = useCallback(async () => {
+  const pollIncomingFriendGifts = useCallback(async (cancelled: { current: boolean }) => {
     try {
       const gifts = await claimUnseenFriendGifts();
+      if (cancelled.current) return;
       if (gifts.length === 0) return;
       const first = gifts[0];
       const from = first.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
@@ -1543,8 +1562,10 @@ export default function FriendsTabScreen() {
 
   useFocusEffect(
     useCallback(() => {
+      const cancelled = { current: false };
       void ensureFriendRequestViewerAuthLink();
-      void pollIncomingFriendGifts();
+      void pollIncomingFriendGifts(cancelled);
+      return () => { cancelled.current = true; };
     }, [pollIncomingFriendGifts]),
   );
 
@@ -1676,13 +1697,13 @@ export default function FriendsTabScreen() {
 
   // ── Handlers ──────────────────────────────────────────────────────────────
 
-  const showFeedback = (msg: string) => {
+  const showFeedback = useCallback((msg: string) => {
     setAddFeedback(msg);
     if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
     feedbackTimerRef.current = setTimeout(() => setAddFeedback(null), 2500);
-  };
+  }, []);
 
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async () => {
     if (codeInput.length !== 6 || isSearching) return;
     hapticTap();
     Keyboard.dismiss();
@@ -1731,7 +1752,7 @@ export default function FriendsTabScreen() {
           tags: { reason: 'profile_unavailable', targetUid: result.uid },
         });
         setSearchError(L(
-          'Профиль найден, но еще не синхронизирован. Откройте профиль на втором устройстве и попробуйте снова.',
+          'Профиль найден, но ещё не синхронизирован. Открой профиль на втором устройстве и попробуй снова.',
           'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
           'Perfil encontrado, pero aun no esta sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
           'Perfil encontrado, mas ainda não está sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
@@ -1766,13 +1787,13 @@ export default function FriendsTabScreen() {
         result: 'error',
         tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
-      setSearchError(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+      setSearchError(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
       setIsSearching(false);
     }
-  };
+  }, [L, codeInput, isSearching, myCode]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleAddFound = async () => {
+  const handleAddFound = useCallback(async () => {
     if (!foundUser || isAdding) return;
     hapticTap();
     setIsAdding(true);
@@ -1805,7 +1826,7 @@ export default function FriendsTabScreen() {
         setFoundUser(null);
         showFeedback(randomSelfFriendCodeMessage(L));
       } else {
-        showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+        showFeedback(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
       }
     } catch (e) {
       void import('../app_health')
@@ -1824,11 +1845,11 @@ export default function FriendsTabScreen() {
         result: 'error',
         tags: { targetUid: foundUser.uid, error: e instanceof Error ? e.message : String(e) },
       });
-      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+      showFeedback(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
       setIsAdding(false);
     }
-  };
+  }, [L, foundUser, isAdding, showFeedback]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleCopy = useCallback(() => {
     if (!myCode) return;
@@ -1847,16 +1868,16 @@ export default function FriendsTabScreen() {
     });
   }, [myCode]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleDeleteConfirm = (uid: string, name: string) => {
+  const handleDeleteConfirm = useCallback((uid: string, name: string) => {
     hapticTap();
     setDeleteTarget({ uid, name });
-  };
+  }, []);
 
-  const openGiftPicker = (profile: FriendProfile) => {
+  const openGiftPicker = useCallback((profile: FriendProfile) => {
     hapticTap();
     setGiftTarget(profile);
     void getShardsBalance().then(setGiftBalance).catch(() => setGiftBalance(0));
-  };
+  }, []);
 
   const giftLabel = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
     triLang(lang, {
@@ -1946,7 +1967,7 @@ export default function FriendsTabScreen() {
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
           ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Pecahan tidak cukup atau pertemanan sudah tidak aktif', 'Parça yetersiz veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
-          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
+          : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
       await trackActivity('friends:send_gift', {
         feature: 'friends',
@@ -1972,7 +1993,7 @@ export default function FriendsTabScreen() {
     setGiftConfirm({ target: giftTarget, giftId });
   };
 
-  const openProfile = (profile: FriendProfile) => {
+  const openProfile = useCallback((profile: FriendProfile) => {
     hapticTap();
     setSelectedPlayer({
       name: profile.name,
@@ -1988,12 +2009,13 @@ export default function FriendsTabScreen() {
       streak: profile.streak,
       friendUid: profile.uid,
       leagueCrownExpiresAt: profile.leagueCrownExpiresAt,
+      leagueCrownCount: profile.leagueCrownCount,
       profileCardLevel: profile.profileCardLevel,
       profileCardTheme: profile.profileCardTheme,
       profileCardMotion: profile.profileCardMotion,
       profileCardPublicFocus: profile.profileCardPublicFocus,
     });
-  };
+  }, []);
 
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'friends' | 'activity'>('friends');
@@ -2017,13 +2039,20 @@ export default function FriendsTabScreen() {
   return (
     <ScreenGradient artBackdrop="friends">
       <View testID="screen-friends" style={{ flex: 1 }}>
-      <ScrollView
+      <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX }}
+        contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX, paddingTop: insets.top }}
+        decelerationRate="normal"
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false, listener: topFadeScroll?.onScroll },
+        )}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 6, marginBottom: 14 }}>
-          <TouchableOpacity
+        {/* Хедер */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 8, marginHorizontal: -PX, paddingHorizontal: PX }}>
+          <TapScale
             accessibilityRole="button"
             accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chủ', 'Beranda', 'Ana sayfa', 'Strona główna')}
             style={{
@@ -2031,34 +2060,24 @@ export default function FriendsTabScreen() {
               backgroundColor: chrome.button, borderWidth: 0.5, borderColor: chrome.border,
               justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0,
             }}
-            onPress={() => { hapticTap(); goHome(); }}
-            activeOpacity={0.85}
+            onPress={() => goHome()}
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5, flex: 1 }}>
             {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
           </Text>
           <TouchableOpacity
             testID="friends-open-add"
-            onPress={() => {
-              hapticTap();
-              setAddModalOpen(true);
-              setFoundUser(null);
-              setSearchError(null);
-              setCodeInput('');
-            }}
+            onPressIn={() => hapticTap()}
+            onPress={() => { setAddModalOpen(true); setFoundUser(null); setSearchError(null); setCodeInput(''); }}
             activeOpacity={0.8}
-            style={{
-              width: 40, height: 40, borderRadius: 20,
-              backgroundColor: t.accent,
-              justifyContent: 'center', alignItems: 'center',
-              flexShrink: 0,
-            }}
+            style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: t.accent, justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}
           >
             <Ionicons name="person-add" size={18} color={t.correctText} />
           </TouchableOpacity>
         </View>
+
         <View style={{
           flexDirection: 'row', backgroundColor: chrome.card,
           borderRadius: 14, padding: 3, marginBottom: 20,
@@ -2117,7 +2136,7 @@ export default function FriendsTabScreen() {
                       acceptFriendRequest(req.fromUid)
                         .then(() => { void invalidateFriendsActivityCache(); })
                         .catch(() => {
-                          showFeedback(L('Ошибка при принятии. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar', 'Erro ao aceitar', 'Lỗi khi chấp nhận', 'Gagal menerima', 'Kabul ederken hata', 'Błąd przy akceptacji'));
+                          showFeedback(L('Ошибка при принятии. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar', 'Erro ao aceitar', 'Lỗi khi chấp nhận', 'Gagal menerima', 'Kabul ederken hata', 'Błąd przy akceptacji'));
                         });
                     }}
                     onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
@@ -2137,7 +2156,55 @@ export default function FriendsTabScreen() {
               )}
             </View>
 
-            {sortedFriends.map((profile, i) => (
+            {sortedFriends.length === 0 ? (
+              <View testID="friends-list-empty" style={{ alignItems: 'center', paddingTop: 28, paddingBottom: 8, paddingHorizontal: 12, gap: 10 }}>
+                <View style={{
+                  width: 72, height: 72, borderRadius: 36,
+                  alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: t.accent + '22',
+                  borderWidth: 1, borderColor: t.accent + '55',
+                }}>
+                  <Ionicons name="people" size={34} color={t.accent} />
+                </View>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
+                  {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
+                  {L(
+                    'Друзья видят твой прогресс, соревнуются с тобой и шлют подарки. Пригласи первого — вместе держать цепочку проще.',
+                    'Друзі бачать твій прогрес, змагаються з тобою та надсилають подарунки. Запроси першого — разом тримати серію простіше.',
+                    'Tus amigos ven tu progreso, compiten contigo y envían regalos. Invita al primero: juntos es más fácil mantener la racha.',
+                    'Seus amigos veem seu progresso, competem com você e enviam presentes. Convide o primeiro: juntos é mais fácil manter a sequência.',
+                    'Bạn bè thấy tiến độ của bạn, thi đua và gửi quà. Mời người đầu tiên — cùng nhau giữ chuỗi dễ hơn.',
+                    'Teman melihat progresmu, bersaing denganmu, dan mengirim hadiah. Undang yang pertama — bersama lebih mudah menjaga streak.',
+                    'Arkadaşların ilerlemeni görür, seninle yarışır ve hediye gönderir. İlkini davet et — seriyi birlikte korumak daha kolay.',
+                    'Znajomi widzą twój postęp, rywalizują z tobą i wysyłają prezenty. Zaproś pierwszego — razem łatwiej utrzymać serię.',
+                  )}
+                </Text>
+                <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
+                  <TapScale
+                    testID="friends-empty-invite"
+                    onPress={() => { void handleShare(); }}
+                    style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: t.accent, borderRadius: 14, paddingVertical: 13 }}
+                  >
+                    <Ionicons name="share-social" size={17} color={t.correctText} />
+                    <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>
+                      {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
+                    </Text>
+                  </TapScale>
+                  <TapScale
+                    testID="friends-empty-addcode"
+                    onPress={() => { hapticTap(); setAddModalOpen(true); }}
+                    style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: 'transparent', borderRadius: 14, paddingVertical: 13, borderWidth: 1, borderColor: t.border }}
+                  >
+                    <Ionicons name="person-add" size={17} color={t.textPrimary} />
+                    <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
+                      {L('По коду', 'За кодом', 'Por código', 'Por código', 'Bằng mã', 'Pakai kode', 'Kodla', 'Kodem')}
+                    </Text>
+                  </TapScale>
+                </View>
+              </View>
+            ) : sortedFriends.map((profile, i) => (
                 <FriendRow
                   key={profile.uid}
                   profile={profile}
@@ -2174,7 +2241,9 @@ export default function FriendsTabScreen() {
           />
         </View>
 
-      </ScrollView>
+      </Animated.ScrollView>
+
+
       <AddFriendModal
         visible={addModalOpen}
         onClose={() => setAddModalOpen(false)}
@@ -2266,7 +2335,8 @@ export default function FriendsTabScreen() {
               <Image
                 source={oskolokImageForPackShards(giftBalance)}
                 style={{ width: 20, height: 20 }}
-                resizeMode="contain"
+                contentFit="contain"
+                accessibilityLabel="Осколки"
               />
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
             </View>
@@ -2342,7 +2412,8 @@ export default function FriendsTabScreen() {
                     <Image
                       source={oskolokImageForPackShards(displayCost)}
                       style={{ width: 22, height: 22 }}
-                      resizeMode="contain"
+                      contentFit="contain"
+                      accessibilityLabel="Осколки"
                     />
                   </View>
                 </TouchableOpacity>
@@ -2421,7 +2492,7 @@ export default function FriendsTabScreen() {
                           {L('Списано', 'Списано', 'Spent', 'Gasto', 'Đã trừ', 'Terpakai', 'Harcanan', 'Pobrano')}
                         </Text>
                         <Text style={{ color: '#F3C45E', fontSize: f.sub, fontWeight: '900' }}>{sentGiftReceipt.costShards}</Text>
-                        <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} resizeMode="contain" />
+                        <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} contentFit="contain" accessibilityLabel="Осколки" />
                       </View>
                       <View style={{ width: 1, height: 14, backgroundColor: 'rgba(255,255,255,0.16)' }} />
                       <Text style={{ color: sentGiftChrome.mutedColor, fontSize: f.sub, fontWeight: '800' }}>
@@ -2503,7 +2574,7 @@ export default function FriendsTabScreen() {
                       style={{ width: 76, height: 76, borderRadius: 26, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(109,76,24,0.24)' }}
                     >
                       {iconGiftId ? (
-                        <Image source={getLevelGiftRewardIcon(iconGiftId, themeMode)} style={{ width: 56, height: 56 }} resizeMode="contain" />
+                        <Image source={getLevelGiftRewardIcon(iconGiftId, themeMode)} style={{ width: 56, height: 56 }} contentFit="contain" accessibilityLabel="Иконка подарка" />
                       ) : (
                         <Ionicons name="gift-outline" size={34} color="#4C3412" />
                       )}
@@ -2620,7 +2691,7 @@ export default function FriendsTabScreen() {
             deleteFriend(target.uid)
               .then(() => { void invalidateFriendsActivityCache(); })
               .catch(() => {
-                showFeedback(L('Ошибка удаления. Попробуйте ещё раз', 'Помилка видалення. Спробуйте ще раз', 'Error al eliminar. Inténtalo de nuevo', 'Erro ao remover. Tente novamente', 'Không xóa được. Hãy thử lại', 'Gagal menghapus. Coba lagi', 'Silme hatası. Tekrar dene', 'Błąd usuwania. Spróbuj ponownie'));
+                showFeedback(L('Ошибка удаления. Попробуй ещё раз', 'Помилка видалення. Спробуйте ще раз', 'Error al eliminar. Inténtalo de nuevo', 'Erro ao remover. Tente novamente', 'Không xóa được. Hãy thử lại', 'Gagal menghapus. Coba lagi', 'Silme hatası. Tekrar dene', 'Błąd usuwania. Spróbuj ponownie'));
               });
           }
         }}

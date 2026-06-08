@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, View, ViewStyle } from 'react-native';
 import { LinearGradient as ExpoLinearGradient } from './SafeLinearGradient';
 import Svg, { Circle, Polygon, Polyline } from 'react-native-svg';
@@ -11,7 +11,7 @@ type Props = {
   style?: ViewStyle;
 };
 
-export default function AvatarAura({ auraId, size, children, style }: Props) {
+function AvatarAura({ auraId, size, children, style }: Props) {
   const aura = getAvatarAuraById(auraId);
   const auraPhase = useRef(new Animated.Value(0)).current;
   const isPremiumAura = aura?.id === PREMIUM_AVATAR_AURA_ID;
@@ -597,3 +597,5 @@ export default function AvatarAura({ auraId, size, children, style }: Props) {
     </View>
   );
 }
+
+export default memo(AvatarAura);

@@ -58,6 +58,17 @@ export function redirectSystemPath({
     return `/arena_join?roomId=${encodeURIComponent(duelMatch[1])}`;
   }
 
+  // "Phrase of the day" widget taps:
+  // - phraseman://phrase/<id>          -> open home, focus the daily phrase card
+  // - phraseman://phrase/<id>?play=1   -> ...and auto-play its audio
+  // The daily phrase lives in <DailyPhraseCard> on the home tab, so we route to
+  // /home and pass openPhrase/play flags the card reacts to.
+  const phraseMatch = raw.match(/(?:^|\/)phrase\/([A-Za-z0-9_-]+)/i);
+  if (phraseMatch?.[1]) {
+    const play = /[?&]play=1\b/i.test(raw) ? '&play=1' : '';
+    return `/home?openPhrase=${encodeURIComponent(phraseMatch[1])}${play}`;
+  }
+
   return raw.startsWith('/') ? raw : `/${raw}`;
 }
 

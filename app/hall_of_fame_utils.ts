@@ -65,11 +65,14 @@ export const loadLeaderboard = async (): Promise<LeaderEntry[]> => {
       }
     }
     return Array.from(seen.values()).sort((a, b) => b.points - a.points);
-  } catch { return []; }
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    return [];
+  }
 };
 
 export const saveLeaderboard = async (entries: LeaderEntry[]) => {
-  try { await AsyncStorage.setItem(LEADERBOARD_KEY, JSON.stringify(entries)); } catch {}
+  try { await AsyncStorage.setItem(LEADERBOARD_KEY, JSON.stringify(entries)); } catch (e) { if (__DEV__) console.warn('[hall_of_fame_utils]', e); }
 };
 
 // ── Week leaderboard (только за текущую неделю) ──────────────────────────────
@@ -82,7 +85,10 @@ export const loadWeekLeaderboard = async (): Promise<WeekEntry[]> => {
     if (!s) return [];
     const parsed = JSON.parse(s);
     return Array.isArray(parsed) ? parsed : [];
-  } catch { return []; }
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    return [];
+  }
 };
 
 export function parseWeekPointsForWeek(raw: string | null | undefined, weekKey: string = getWeekKey(new Date())): number {
@@ -92,7 +98,8 @@ export function parseWeekPointsForWeek(raw: string | null | undefined, weekKey: 
     if (data.weekKey !== weekKey) return 0;
     const points = Number(data.points ?? 0);
     return Number.isFinite(points) ? points : 0;
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
     return 0;
   }
 }
@@ -109,11 +116,13 @@ export const resetWeekPointsIfStale = async (): Promise<void> => {
         ['week_points', '0'],
       ]);
     }
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+  }
 };
 
 const saveWeekLeaderboard = async (entries: WeekEntry[]) => {
-  try { await AsyncStorage.setItem(WEEK_BOARD_KEY, JSON.stringify(entries)); } catch {}
+  try { await AsyncStorage.setItem(WEEK_BOARD_KEY, JSON.stringify(entries)); } catch (e) { if (__DEV__) console.warn('[hall_of_fame_utils]', e); }
 };
 
 // ── ISO номер недели ──────────────────────────────────────────────────────────
@@ -132,7 +141,10 @@ export const getMyWeekPoints = async (): Promise<number> => {
     const currentWeekKey = getWeekKey(new Date());
     const raw = await AsyncStorage.getItem('week_points_v2');
     return parseWeekPointsForWeek(raw, currentWeekKey);
-  } catch { return 0; }
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    return 0;
+  }
 };
 
 // Одноразовая миграция: сбрасывает week_points_v2 если там накопленный total XP
@@ -153,7 +165,9 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
       }
     }
     await AsyncStorage.setItem('week_points_migrated_v1', '1');
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+  }
 };
 
 // ── Обновить цепочку (дней подряд) и week_days_done при активности ───────────────────────────
@@ -208,15 +222,19 @@ export const updateStreakOnActivity = async (): Promise<number> => {
         const csRaw = await AsyncStorage.getItem('chain_shield');
         if (csRaw) {
           const cs = JSON.parse(csRaw) as { daysLeft: number; grantedAt: string };
-          if (cs.daysLeft > 0) {
-            const newDaysLeft = cs.daysLeft - 1;
+          const daysLeft = Math.max(0, Math.floor(Number(cs.daysLeft) || 0));
+          if (daysLeft > 0) {
+            const newDaysLeft = daysLeft - 1;
             if (newDaysLeft <= 0) {
+              // Щит исчерпан — удаляем, не храним нулевое состояние
               await AsyncStorage.removeItem('chain_shield');
             } else {
               await AsyncStorage.setItem('chain_shield', JSON.stringify({ ...cs, daysLeft: newDaysLeft }));
             }
             // streak не меняем — щит спас
           } else {
+            // daysLeft === 0: испорченное состояние — чистим и теряем цепочку
+            await AsyncStorage.removeItem('chain_shield');
             const prevStreak = streak;
             logStreakLost(prevStreak);
             AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
@@ -277,7 +295,10 @@ export const updateStreakOnActivity = async (): Promise<number> => {
     }
 
     return streak;
-  } catch { return 0; }
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    return 0;
+  }
 };
 
 /**
@@ -310,7 +331,9 @@ export const addOrUpdateScore = async (
       console.log(
         `[addOrUpdateScore] +${delta} XP for "${name}" (lang=${lang}, weekKey=${getWeekKey(new Date())})\n${stack}`,
       );
-    } catch {}
+    } catch (e) {
+      if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    }
   }
 
   // ── 1. Leaderboard (накопительный) ──────────────────────────────────────
@@ -322,7 +345,9 @@ export const addOrUpdateScore = async (
     if (storedAvatar && !/^\d+$/.test(storedAvatar) && (!resolvedAvatar || /^\d+$/.test(resolvedAvatar))) {
       resolvedAvatar = storedAvatar;
     }
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+  }
   if (!resolvedAvatar || /^\d+$/.test(resolvedAvatar)) resolvedAvatar = computedLevelAvatar;
 
   const canonicalName = name.trim();
@@ -376,7 +401,9 @@ export const addOrUpdateScore = async (
         checkAchievements({ type: 'personal_best' }).catch(() => {});
       }
     }
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+  }
 
   // ── 3. week_leaderboard ──────────────────────────────────────────────────
   try {
@@ -399,7 +426,9 @@ export const addOrUpdateScore = async (
     }
     weekBoard.sort((a, b) => b.points - a.points);
     await saveWeekLeaderboard(weekBoard);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+  }
 
   // ── 4. daily_stats ────────────────────────────────────────────────────────
   try {
@@ -415,7 +444,9 @@ export const addOrUpdateScore = async (
     const streakVal = parseInt(await AsyncStorage.getItem('streak_count') || '0');
     stats[today] = { points: currentPts + delta, streak: streakVal };
     await AsyncStorage.setItem('daily_stats', JSON.stringify(stats));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+  }
 
   // ── 5. Цепочка и week_days_done — только при положительном начислении ────────
   if (delta > 0) {
@@ -471,7 +502,10 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
     if (isStreakFreezeActiveToday(freeze, todayStr)) return { willLose: false, streakBefore: streak };
 
     return { willLose: true, streakBefore: streak };
-  } catch { return { willLose: false, streakBefore: 0 }; }
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    return { willLose: false, streakBefore: 0 };
+  }
 };
 
 // ── Сбросить всю статистику (для отладки / по запросу) ───────────────────────
@@ -484,7 +518,7 @@ export const resetAllStats = async () => {
     'week_days_done', 'week_days_week_key', STREAK_WEEK_MARKERS_KEY,
   ];
   for (const key of keys) {
-    try { await AsyncStorage.removeItem(key); } catch {}
+    try { await AsyncStorage.removeItem(key); } catch (e) { if (__DEV__) console.warn('[hall_of_fame_utils]', e); }
   }
 };
 

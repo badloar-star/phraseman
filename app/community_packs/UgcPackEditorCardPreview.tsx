@@ -153,7 +153,7 @@ export default function UgcPackEditorCardPreview({
     <View style={{ marginTop: 14 }}>
       <View style={{ height: cardH, position: 'relative', borderRadius: 20 }}>
         <TouchableOpacity
-          activeOpacity={1}
+          activeOpacity={0.7}
           onPress={toggleFlip}
           style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: 20, overflow: 'hidden' }}
         >
@@ -167,6 +167,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollFront ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                decelerationRate="normal"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,
@@ -230,6 +231,7 @@ export default function UgcPackEditorCardPreview({
             {canScrollBack ? (
               <ScrollView
                 style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                decelerationRate="normal"
                 contentContainerStyle={{
                   paddingHorizontal: 12,
                   paddingTop: textInsetTop,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -16,7 +16,7 @@ type Props = {
   onClose: () => void;
 };
 
-export default function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
+function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
   const { lang } = useLang();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const insets = useSafeAreaInsets();
@@ -99,6 +99,8 @@ export default function VipSurveyReviewPromptModal({ visible, onClose }: Props) 
     </Modal>
   );
 }
+
+export default memo(VipSurveyReviewPromptModal);
 
 const styles = StyleSheet.create({
   root: {

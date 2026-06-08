@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState, useLayoutEffect } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useRouter } from 'expo-router';
 import {
   View,
@@ -6,13 +6,13 @@ import {
   TouchableOpacity,
   Modal,
   StyleSheet,
-  Image,
   Animated,
   Easing,
   Platform,
   InteractionManager,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
+import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { lessonEnergyMessages } from '../app/lesson_locale_utils';
 import { useTheme } from './ThemeContext';
 import { useEnergy } from './EnergyContext';
@@ -20,19 +20,11 @@ import { usePremium } from './PremiumContext';
 import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
 import { hapticTap, hapticWarning } from '../hooks/use-haptics';
-import { getShardsBalance } from '../app/shards_system';
-import {
-  energyRefillShardCost,
-  refillEnergyWithShards,
-  toastEnergyRefilledWithShards,
-} from '../app/energy_shard_refill';
-import { oskolokImageForPackShards } from '../app/oskolok';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import PremiumGoldButton from './PremiumGoldButton';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
-import { paywallGlassColor } from './paywallGlass';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
@@ -107,6 +99,8 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
   },
 };
 
+const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;
+
 type EnergyGateArgs = { required: string; have: string };
 const ENERGY_GATE_MESSAGES_PT_BR: ((r: EnergyGateArgs) => string)[] = [
   ({ required, have }) => `Para começar agora, você precisa de ${required} ⚡. Disponível: ${have}. Premium remove esse limite.`,
@@ -130,8 +124,8 @@ const ENERGY_GATE_MESSAGES_PL: ((r: EnergyGateArgs) => string)[] = [
 ];
 const ENERGY_GATE_MESSAGES_BY_LANG = {
   ru: [
-    ({ required, have }) => `Для экзамена нужно ${required} ⚡ сразу. У вас: ${have}. С Premium — без ограничений.`,
-    ({ required, have }) => `Чтобы начать сейчас, нужно ${required} ⚡. Доступно: ${have}. Premium снимает лимит.`,
+    ({ required, have }) => `Экзамен требует ${required} ⚡ сразу. Сейчас у тебя: ${have}. С Premium — без лимитов.`,
+    ({ required, have }) => `Чтобы начать, нужно ${required} ⚡. У тебя: ${have}. Premium открывает безлимит.`,
   ],
   uk: [
     ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Premium — без обмежень.`,
@@ -173,7 +167,7 @@ interface Props {
   qaIgnorePremiumAccess?: boolean;
 }
 
-export default function NoEnergyModal({
+function NoEnergyModal({
   visible,
   onClose,
   onGotIt,
@@ -191,7 +185,7 @@ export default function NoEnergyModal({
   const isCompassTheme = themeMode === 'compass';
   const modalRadius = isCompassTheme ? 10 : graphiteRadius ? 8 : 22;
   const buttonRadius = isCompassTheme ? 9 : graphiteRadius ? 6 : 14;
-  const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
+  const paywallCardBg = t.bgCard;
   const { formattedTime, energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
@@ -199,8 +193,6 @@ export default function NoEnergyModal({
   const isGate = minRequired != null && minRequired > 0;
   const modalVisible = shouldRenderNoEnergyModal(visible, hasPremiumAccess, qaIgnorePremiumAccess);
   const [lineText, setLineText] = useState('');
-  const [shardBusy, setShardBusy] = useState(false);
-
   /** «Енергія» → закрыть RN Modal → тут же открыть stack modal премиум: нужно не наслаивать окна, иначе на части прошивок «залипают» тачи под экраном. */
   const pendingPremiumContextRef = useRef<string | null>(null);
   const flushPremiumPushRef = useRef<() => void>(() => {});
@@ -242,13 +234,6 @@ export default function NoEnergyModal({
 
   const handleModalDismissIos = Platform.OS === 'ios' ? () => flushPremiumPush() : undefined;
 
-  const shardCost = energyRefillShardCost(maxEnergy);
-  /** Докупка базы за осколки: не скрываем при гейте экзамена (8⚡ при max базы < 8 — база + бонус всё равно могут дотянуть).
-   * В __DEV__ при открытой модалке всегда показываем CTA (превью с полной базой иначе выглядит как «пропала кнопка»). */
-  const showShardRestore =
-    !isUnlimited &&
-    (qaForceShardCta || energy < maxEnergy || (__DEV__ && visible));
-
   // ─── Анимации входа и pulse-glow на молнии ──────────────────────────────
   const cardScale  = useRef(new Animated.Value(0.85)).current;
   const cardOp     = useRef(new Animated.Value(0)).current;
@@ -274,11 +259,11 @@ export default function NoEnergyModal({
     const running: Animated.CompositeAnimation[] = [];
 
     const intro = Animated.parallel([
-      Animated.spring(cardScale, { toValue: 1, friction: 7, tension: 90, useNativeDriver: true }),
+      Animated.spring(cardScale, { toValue: 1, friction: MOTION_SPRING_LEGACY.ui.friction, tension: MOTION_SPRING_LEGACY.ui.tension, useNativeDriver: true }),
       Animated.timing(cardOp, { toValue: 1, duration: 220, useNativeDriver: true }),
       Animated.sequence([
         Animated.delay(120),
-        Animated.spring(boltScale, { toValue: 1, friction: 4, tension: 130, useNativeDriver: true }),
+        Animated.spring(boltScale, { toValue: 1, friction: MOTION_SPRING_LEGACY.micro.friction, tension: MOTION_SPRING_LEGACY.micro.tension, useNativeDriver: true }),
         Animated.sequence([
           Animated.timing(boltShake, { toValue: 1, duration: 70, useNativeDriver: true }),
           Animated.timing(boltShake, { toValue: -1, duration: 70, useNativeDriver: true }),
@@ -340,7 +325,7 @@ export default function NoEnergyModal({
     pl: 'kilka minut',
   });
   const defaultSubtitle = triLang(lang, {
-    ru: `+1 ⚡ восстановится через ${recoveryTimeText}. Хочешь безлимит? Тебе в Premium.`,
+    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. Хочешь учить без остановок — это Premium.`,
     uk: `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Premium.`,
     es: `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Premium.`,
     'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. Quer energia ilimitada? Experimente Premium.`,
@@ -353,58 +338,6 @@ export default function NoEnergyModal({
     ? ENERGY_GATE_MESSAGES_BY_LANG[lang][0]!({ required: String(minRequired), have: String(totalAvailable) })
     : '';
   const showBody = (isGate ? (lineText || gateFallback) : (lineText || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
-
-  const onRestoreWithShards = async () => {
-    if (shardBusy || !showShardRestore) return;
-    setShardBusy(true);
-    try {
-      const r = await refillEnergyWithShards({
-        maxEnergy,
-        baseEnergy: energy,
-        isUnlimited,
-      });
-      if (r.ok) {
-        toastEnergyRefilledWithShards();
-        await reload();
-        onClose();
-        return;
-      }
-      if (r.reason === 'insufficient_shards') {
-        const bal = await getShardsBalance();
-        navigateAfterModalClose(
-          onClose,
-          () => router.push({
-            pathname: '/shards_shop',
-            params: { need: String(Math.max(0, shardCost - bal)), source: 'no_energy_modal' },
-          } as any),
-        );
-        return;
-      }
-      if (r.reason === 'already_full' || r.reason === 'unlimited') {
-        emitAppEvent('action_toast', {
-          type: 'info',
-          messageRu:
-            'Базовая энергия уже на максимуме — потратьте ⚡ в уроке или квизе, затем снова откройте превью, чтобы проверить покупку за осколки.',
-          messageUk:
-            'Базова енергія вже на максимумі — витратьте ⚡ в уроці або квізі, потім знову відкрийте превʼю, щоб перевірити покупку за осколки.',
-          messageEs:
-            'La energía base ya está al máximo: gasta ⚡ en una lección o un cuestionario y vuelve a abrir la vista previa para probar la compra con fragmentos.',
-          messagePtBr:
-            'A energia base já está no máximo: gaste ⚡ em uma lição ou quiz e abra a prévia de novo para testar a compra com fragmentos.',
-          messageVi:
-            'Năng lượng cơ bản đã đầy: hãy dùng ⚡ trong bài học hoặc quiz rồi mở lại bản xem trước để thử mua bằng mảnh.',
-          messageId:
-            'Energi dasar sudah penuh: gunakan ⚡ di pelajaran atau kuis, lalu buka pratinjau lagi untuk menguji pembelian dengan shard.',
-          messageTr:
-            'Temel enerji zaten dolu: bir ders veya quizde ⚡ harca, sonra parçalarla satın almayı test etmek için önizlemeyi tekrar aç.',
-          messagePl:
-            'Podstawowa energia jest już pełna: zużyj ⚡ w lekcji albo quizie, a potem ponownie otwórz podgląd, by sprawdzić zakup za odłamki.',
-        });
-      }
-    } finally {
-      setShardBusy(false);
-    }
-  };
 
   return (
     <Modal
@@ -456,26 +389,25 @@ export default function NoEnergyModal({
           />
           {isCompassTheme ? <CompassDepthSurface radius={modalRadius} selected /> : null}
 
-          {/* Hero icon: молния со свечением */}
-          <View style={styles.boltWrap}>
-            <Animated.View
-              pointerEvents="none"
+          {/* Hero icon: молния с pulse-масштабом */}
+          <Animated.View
+            style={[
+              styles.boltIcon,
+              {
+                transform: [
+                  { scale: Animated.multiply(boltScale, haloPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.12] })) },
+                  { translateX: boltShake.interpolate({ inputRange: [-1, 1], outputRange: [-3, 3] }) },
+                ],
+              },
+            ]}
+          >
+            <View
               style={[
-                styles.boltHalo,
-                {
-                  backgroundColor: art.glow,
-                  opacity: haloPulse.interpolate({ inputRange: [0, 1], outputRange: [0.18, 0.45] }),
-                  transform: [{ scale: haloPulse.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1.18] }) }],
-                },
-              ]}
-            />
-            <Animated.View
-              style={[
-                styles.boltIcon,
+                styles.energyHeroIconContent,
                 {
                   transform: [
-                    { scale: boltScale },
-                    { translateX: boltShake.interpolate({ inputRange: [-1, 1], outputRange: [-3, 3] }) },
+                    { translateX: HERO_ENERGY_ICON_CONTENT_OFFSET.x },
+                    { translateY: HERO_ENERGY_ICON_CONTENT_OFFSET.y },
                   ],
                 },
               ]}
@@ -488,8 +420,8 @@ export default function NoEnergyModal({
                 shouldShake={false}
                 themeMode={themeMode}
               />
-            </Animated.View>
-          </View>
+            </View>
+          </Animated.View>
 
           <Text style={[styles.title, { color: art.titleColor, fontSize: f.h2 }]}>
             {isGate
@@ -517,47 +449,6 @@ export default function NoEnergyModal({
           <Text style={[styles.subtitle, { color: art.subtitleColor, fontSize: f.body }]}>
             {showBody}
           </Text>
-          {showShardRestore && (
-            <TouchableOpacity
-              onPress={() => {
-                hapticTap();
-                void onRestoreWithShards();
-              }}
-              activeOpacity={0.88}
-              disabled={shardBusy}
-              style={[
-                styles.shardBtn,
-                {
-                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : '#7C3AED88',
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#7C3AED22',
-                  borderRadius: buttonRadius,
-                  overflow: 'hidden',
-                },
-                isCompassTheme && compassShadow(1),
-              ]}
-            >
-              {isCompassTheme ? <CompassDepthSurface radius={buttonRadius} cream /> : null}
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Image
-                  source={oskolokImageForPackShards(shardCost)}
-                  style={{ width: 30, height: 30 }}
-                  resizeMode="contain"
-                />
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
-                  {triLang(lang, {
-                    ru: 'Восстановить энергию',
-                    uk: 'Відновити енергію',
-                    es: 'Recuperar energía',
-                    'pt-BR': 'Restaurar energia',
-                    vi: 'Khôi phục năng lượng',
-                    id: 'Pulihkan energi',
-                    tr: 'Enerjiyi yenile',
-                    pl: 'Odnów energię',
-                  })} · {shardCost}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
           <PremiumGoldButton
             f={f}
             paywallContext={paywallContext}
@@ -573,45 +464,40 @@ export default function NoEnergyModal({
               }
               (onBackHome ?? onClose)();
             }}
-            activeOpacity={0.88}
-            style={[styles.closeBtnWrap, { borderRadius: buttonRadius }, isCompassTheme && compassShadow(1)]}
+            activeOpacity={0.7}
+            style={{ paddingVertical: 10, alignItems: 'center', marginTop: 4 }}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={buttonRadius} cream /> : null}
-            <LinearGradient
-              colors={isCompassTheme ? [COMPASS_RICH.cream, COMPASS_RICH.champagne] : [t.accent, t.accent + 'BB']}
-              start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-              style={[styles.closeBtn, { borderRadius: buttonRadius }]}
-            >
-              <Text style={[styles.closeBtnText, { fontSize: f.body, color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText }]}>
-                {onBackHome
-                  ? triLang(lang, {
-                      ru: 'На главную',
-                      uk: 'На головну',
-                      es: 'Volver al inicio',
-                      'pt-BR': 'Voltar ao início',
-                      vi: 'Về trang chính',
-                      id: 'Kembali ke beranda',
-                      tr: 'Ana sayfaya dön',
-                      pl: 'Na stronę główną',
-                    })
-                  : triLang(lang, {
-                      ru: 'Понятно',
-                      uk: 'Зрозуміло',
-                      es: 'Entendido',
-                      'pt-BR': 'Entendi',
-                      vi: 'Đã hiểu',
-                      id: 'Mengerti',
-                      tr: 'Anladım',
-                      pl: 'Rozumiem',
-                    })}
-              </Text>
-            </LinearGradient>
+            <Text style={{ fontSize: f.body, color: t.textGhost, textDecorationLine: 'underline' }}>
+              {onBackHome
+                ? triLang(lang, {
+                    ru: 'На главную',
+                    uk: 'На головну',
+                    es: 'Volver al inicio',
+                    'pt-BR': 'Voltar ao início',
+                    vi: 'Về trang chính',
+                    id: 'Kembali ke beranda',
+                    tr: 'Ana sayfaya dön',
+                    pl: 'Na stronę główną',
+                  })
+                : triLang(lang, {
+                    ru: 'Понятно',
+                    uk: 'Зрозуміло',
+                    es: 'Entendido',
+                    'pt-BR': 'Entendi',
+                    vi: 'Đã hiểu',
+                    id: 'Mengerti',
+                    tr: 'Anladım',
+                    pl: 'Rozumiem',
+                  })}
+            </Text>
           </TouchableOpacity>
         </Animated.View>
       </View>
     </Modal>
   );
 }
+
+export default memo(NoEnergyModal);
 
 const styles = StyleSheet.create({
   overlay: {
@@ -640,33 +526,20 @@ const styles = StyleSheet.create({
     top: 0, left: 0, right: 0,
     height: 220,
   },
-  boltWrap: {
-    width: 88, height: 88,
-    alignItems: 'center', justifyContent: 'center',
-    marginTop: 4,
-  },
-  boltHalo: {
-    position: 'absolute',
-    width: 88, height: 88, borderRadius: 44,
-  },
   boltIcon: {
     width: 68,
     height: 68,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: { fontWeight: '700', textAlign: 'center' },
-  subtitle: { textAlign: 'center', lineHeight: 22 },
-  shardBtn: {
-    alignSelf: 'stretch',
-    borderRadius: 14,
-    borderWidth: 1,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    marginTop: 2,
-    minHeight: 52,
+  energyHeroIconContent: {
+    width: 64,
+    height: 64,
+    alignItems: 'center',
     justifyContent: 'center',
   },
+  title: { fontWeight: '700', textAlign: 'center' },
+  subtitle: { textAlign: 'center', lineHeight: 22 },
   closeBtnWrap: {
     alignSelf: 'stretch',
     width: '100%',

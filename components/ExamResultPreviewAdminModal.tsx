@@ -391,7 +391,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                 </View>
                 <Text style={{ color: '#FDE68A', fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.4 }}>
                   {triLang(lang, {
-                    ru: 'Укажите имя — и ваш сертификат появится здесь. Без имени награда не показывается.',
+                    ru: 'Укажи имя — и твой сертификат появится здесь. Без имени награда не показывается.',
                     uk: 'Вкажіть ім\u02BCя — і ваш сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
                     es: 'Indica tu nombre y tu diploma aparecerá aquí. Sin nombre no mostramos la recompensa.',
                     'pt-BR': 'Informe seu nome e o certificado aparecerá aqui. Sem nome, a recompensa não é exibida.',

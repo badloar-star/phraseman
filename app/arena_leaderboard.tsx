@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import TapScale from '../components/TapScale';
 import {
-  FlatList,
-  Image,
+  InteractionManager,
   Pressable,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
+import { FlashList } from '@shopify/flash-list';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -169,6 +171,7 @@ export default function ArenaLeaderboardScreen() {
 
   const [rows, setRows] = useState<ArenaLbRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [manualRefreshBusy, setManualRefreshBusy] = useState(false);
   const [manualRefreshCooldownUntil, setManualRefreshCooldownUntil] = useState(0);
   const [nowTs, setNowTs] = useState(() => Date.now());
@@ -183,20 +186,28 @@ export default function ArenaLeaderboardScreen() {
   const [arenaXpPercentile, setArenaXpPercentile] = useState<number | null>(null);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
   const [reportTarget, setReportTarget] = useState<{ uid: string; name: string } | null>(null);
-  const listRef = useRef<FlatList<ArenaLbRow> | null>(null);
+  const listRef = useRef<FlashList<ArenaLbRow> | null>(null);
   const didAutoScrollToMeRef = useRef<string | null>(null);
   const reloadSeqRef = useRef(0);
 
   const reloadBoard = useCallback(async (opts?: { forceRemote?: boolean }) => {
     const seq = ++reloadSeqRef.current;
-    const data = await loadArenaTop100({
-      ...opts,
-      onBackgroundRefresh: (freshRows) => {
-        if (seq === reloadSeqRef.current) setRows(freshRows);
-      },
-    });
-    if (seq !== reloadSeqRef.current) return;
-    setRows(data);
+    try {
+      const data = await loadArenaTop100({
+        ...opts,
+        onBackgroundRefresh: (freshRows) => {
+          if (seq === reloadSeqRef.current) setRows(freshRows);
+        },
+      });
+      if (seq !== reloadSeqRef.current) return;
+      setLoadError(false);
+      setRows(data);
+    } catch {
+      // Сбой загрузки рейтинга больше не маскируется под пустое состояние
+      // «Пока пусто» — показываем явную ошибку с retry.
+      if (seq !== reloadSeqRef.current) return;
+      setLoadError(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -278,12 +289,15 @@ export default function ArenaLeaderboardScreen() {
   }, [myArena]);
 
   useEffect(() => {
-    AsyncStorage.getItem(ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY)
-      .then((raw) => {
-        const ts = parseInt(raw || '0', 10) || 0;
-        setManualRefreshCooldownUntil(ts);
-      })
-      .catch(() => {});
+    const task = InteractionManager.runAfterInteractions(() => {
+      AsyncStorage.getItem(ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY)
+        .then((raw) => {
+          const ts = parseInt(raw || '0', 10) || 0;
+          setManualRefreshCooldownUntil(ts);
+        })
+        .catch(() => {});
+    });
+    return () => task.cancel();
   }, []);
 
   useEffect(() => {
@@ -392,11 +406,8 @@ export default function ArenaLeaderboardScreen() {
         <ContentWrap>
           <View style={{ flex: 1 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 8 }}>
-              <TouchableOpacity
-                onPress={() => {
-                  hapticTap();
-                  safeRouterBack(router, '/(tabs)/arena' as any);
-                }}
+              <TapScale
+                onPress={() => safeRouterBack(router, '/(tabs)/arena' as any)}
                 style={{
                   width: 44,
                   height: 44,
@@ -410,7 +421,7 @@ export default function ArenaLeaderboardScreen() {
                 }}
               >
                 <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-              </TouchableOpacity>
+              </TapScale>
               <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h2, fontWeight: '800' }}>
                 {triLang(lang, {
                   uk: 'Топ-100 арени',
@@ -467,17 +478,12 @@ export default function ArenaLeaderboardScreen() {
                 </Text>
               </View>
             ) : (
-              <FlatList
+              <FlashList
                 ref={listRef}
                 data={displayRows}
                 keyExtractor={(item) => item.uid}
-                removeClippedSubviews={false}
+                estimatedItemSize={ARENA_ROW_HEIGHT}
                 extraData={`${myUid ?? ''}|${myStableUid ?? ''}|${myArenaPlace ?? ''}|${myAvatar}|${myAura}|${myIsPremium ? 1 : 0}|${myIsVip ? 1 : 0}`}
-                getItemLayout={(_, index) => ({
-                  length: ARENA_ROW_HEIGHT,
-                  offset: ARENA_ROW_HEIGHT * index,
-                  index,
-                })}
                 onScrollToIndexFailed={(info) => {
                   setTimeout(() => {
                     listRef.current?.scrollToOffset({
@@ -492,7 +498,40 @@ export default function ArenaLeaderboardScreen() {
                     : 24 + insets.bottom,
                 }}
                 ListEmptyComponent={
-                  loading ? null : <View style={{ padding: 40, alignItems: 'center' }}>
+                  loading ? null : loadError ? (
+                    <View style={{ padding: 40, alignItems: 'center' }}>
+                      <Ionicons name="cloud-offline-outline" size={40} color={t.textSecond} />
+                      <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 12, textAlign: 'center' }}>
+                        {triLang(lang, {
+                          uk: 'Не вдалося завантажити рейтинг. Перевірте інтернет.',
+                          ru: 'Не удалось загрузить рейтинг. Проверьте интернет.',
+                          es: 'No se pudo cargar la clasificación. Comprueba tu conexión.',
+                          'pt-BR': 'Não foi possível carregar o ranking. Verifique a internet.',
+                          vi: 'Không thể tải bảng xếp hạng. Kiểm tra kết nối.',
+                          id: 'Gagal memuat peringkat. Periksa koneksi internet.',
+                          tr: 'Sıralama yüklenemedi. İnternet bağlantını kontrol et.',
+                          pl: 'Nie udało się załadować rankingu. Sprawdź internet.',
+                        })}
+                      </Text>
+                      <TouchableOpacity
+                        testID="arena-lb-retry"
+                        accessibilityRole="button"
+                        onPress={() => {
+                          hapticTap();
+                          setLoading(true);
+                          void reloadBoard({ forceRemote: true }).finally(() => setLoading(false));
+                        }}
+                        style={{ marginTop: 16, backgroundColor: t.accent, borderRadius: 12, paddingHorizontal: 24, paddingVertical: 10 }}
+                      >
+                        <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
+                          {triLang(lang, {
+                            uk: 'Повторити', ru: 'Повторить', es: 'Reintentar', 'pt-BR': 'Tentar de novo',
+                            vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+                          })}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  ) : <View style={{ padding: 40, alignItems: 'center' }}>
                     <Ionicons name="trophy-outline" size={40} color={t.textSecond} />
                     <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 12, textAlign: 'center' }}>
                       {triLang(lang, {
@@ -556,7 +595,9 @@ export default function ArenaLeaderboardScreen() {
                   const rowIsVip = isMe ? myIsVip : item.isVip;
                   const rowEffectiveAura = getEffectiveAvatarAuraId(rowAura, rowIsPremium, rowIsVip);
                   const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
-                  const hasLeagueCrown = !!item.leagueCrown && item.leagueCrown.expiresAt > Date.now();
+                  const leagueCrownCount = Math.max(0, Math.floor(Number(item.leagueCrown?.crownCount) || 0));
+                  const hasLeagueCrown = !!item.leagueCrown && (leagueCrownCount > 0 || item.leagueCrown.expiresAt > Date.now());
+                  const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
                   const duelLabel = rankLabelByLang(item.tier, item.levelRoman, lang);
                   const rankImg = getRankImage(item.tier, item.levelRoman);
 
@@ -577,6 +618,7 @@ export default function ArenaLeaderboardScreen() {
                           isPremium: rowIsPremium,
                           isVip: rowIsVip,
                           leagueCrownExpiresAt: item.leagueCrown?.expiresAt,
+                          leagueCrownCount: displayLeagueCrownCount,
                           profileCardLevel: item.profileCardLevel,
                           profileCardTheme: item.profileCardTheme,
                           profileCardMotion: item.profileCardMotion,
@@ -628,7 +670,7 @@ export default function ArenaLeaderboardScreen() {
                       </PremiumAvatarHalo>
                       <View style={{ flex: 1, minWidth: 0 }}>
                         {hasLeagueCrown ? (
-                          <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
+                          <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} count={displayLeagueCrownCount} />
                         ) : rowIsPremium ? (
                           <PremiumGoldUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
                         ) : rowIsVip ? (
@@ -652,7 +694,7 @@ export default function ArenaLeaderboardScreen() {
                       {isMe && (
                         <View style={{ marginHorizontal: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0.5, borderColor: t.accent + '55' }}>
                           <Text style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
-                            {triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
+                            {triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                           </Text>
                         </View>
                       )}
@@ -667,12 +709,13 @@ export default function ArenaLeaderboardScreen() {
                       >
                         <Image
                           source={rankImg}
-                          resizeMode="contain"
+                          contentFit="contain"
                           style={{
                             width: 44,
                             height: 44,
                             transform: [{ scale: getRankImageDisplayScale(item.tier, item.levelRoman) }],
                           }}
+                          accessibilityLabel={`Ранг: ${duelLabel}`}
                         />
                       </View>
                     </Pressable>
@@ -743,12 +786,12 @@ export default function ArenaLeaderboardScreen() {
                   <View style={{ flex: 1, justifyContent: 'center', minWidth: 0 }}>
                     {myIsPremium ? (
                       <PremiumGoldUserName
-                        text={myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
+                        text={myName.trim() || triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                         fontSize={15}
                       />
                     ) : myIsVip ? (
                       <VipGreenUserName
-                        text={myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
+                        text={myName.trim() || triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                         fontSize={15}
                       />
                     ) : (
@@ -756,7 +799,7 @@ export default function ArenaLeaderboardScreen() {
                         numberOfLines={1}
                         style={{ flex: 1, fontSize: 15, color: t.textPrimary, fontWeight: '700' }}
                       >
-                        {myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
+                        {myName.trim() || triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                       </Text>
                     )}
                     {myDuelLabel && (
@@ -794,12 +837,13 @@ export default function ArenaLeaderboardScreen() {
                     >
                       <Image
                         source={myRankImg}
-                        resizeMode="contain"
+                        contentFit="contain"
                         style={{
                           width: 40,
                           height: 40,
                           transform: [{ scale: getRankImageDisplayScale(myArena.tier, myArena.level) }],
                         }}
+                        accessibilityLabel={myDuelLabel ? `Мой ранг: ${myDuelLabel}` : 'Мой ранг'}
                       />
                     </View>
                   ) : null}

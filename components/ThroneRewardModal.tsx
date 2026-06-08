@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import {
   Animated,
-  Image,
   Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import Svg, { Path } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
@@ -94,7 +94,7 @@ function StarBurst({ size = 18, color = '#FFE566', opacity = 0.7 }: { size?: num
   );
 }
 
-export default function ThroneRewardModal({ visible, shards, wins, onClose }: ThroneRewardModalProps) {
+function ThroneRewardModal({ visible, shards, wins, onClose }: ThroneRewardModalProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const modalAccent = rewardModalAccentColor(themeMode, t);
@@ -347,7 +347,7 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
                   <Image
                     source={oskolokImageForPackShards(shards)}
                     style={styles.shardImage}
-                    resizeMode="contain"
+                    contentFit="contain"
                   />
                 </Animated.View>
 
@@ -416,6 +416,8 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
     </Modal>
   );
 }
+
+export default memo(ThroneRewardModal);
 
 const styles = StyleSheet.create({
   overlay: {

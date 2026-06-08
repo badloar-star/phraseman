@@ -88,7 +88,8 @@ export type XPSource =
   | 'daily_login_bonus'
   | 'exam_complete'
   | 'achievement_reward'
-  | 'level_up_bonus';
+  | 'level_up_bonus'
+  | 'plan_task_complete';   // Завершение задачи персонального плана
 
 interface XPResult {
   finalDelta: number;
@@ -146,7 +147,7 @@ export const registerXP = async (
 
     // 1. Множители применяются к заработку (уроки, квизы, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_task_reward'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_task_reward', 'plan_task_complete'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)
@@ -189,7 +190,9 @@ export const registerXP = async (
             multipliers: { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, total: totalMultiplier, updatedAt: Date.now() },
           }, { merge: true }).catch(() => {});
         }).catch(() => {});
-      } catch {}
+      } catch (e) {
+        if (__DEV__) console.warn('[xp_manager]', e);
+      }
     }
 
     // 2. Обновляем основные структуры данных через hall_of_fame_utils
@@ -225,7 +228,7 @@ export const registerXP = async (
         // Читаем текущую очередь и добавляем ВСЕ промежуточные уровни текущего начисления
         const queueRaw = await storageGetString('pending_level_up_queue');
         let queue: number[] = [];
-        try { if (queueRaw) { const parsed = JSON.parse(queueRaw); queue = Array.isArray(parsed) ? parsed : []; } } catch {}
+        try { if (queueRaw) { const parsed = JSON.parse(queueRaw); queue = Array.isArray(parsed) ? parsed : []; } } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
         for (let lvl = prevLvl + 1; lvl <= newLvl; lvl++) {
           if (!queue.includes(lvl)) queue.push(lvl);
         }
@@ -276,7 +279,7 @@ export const registerXP = async (
       const frameId = await storageGetString('user_frame');
       const lsRaw = await storageGetString('league_state_v3');
       let leagueId: number | undefined;
-      try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch {}
+      try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
       syncPublicProfileSnapshot({
         reason: 'daily_xp',
         name: resolvedName,
@@ -297,7 +300,7 @@ export const registerXP = async (
   } catch (error) {
     DebugLogger.error('xp_manager.ts:registerXP', error, 'critical');
     // Fallback: пишем как есть в случае критического сбоя
-    try { await addOrUpdateScore(resolvedName, amount, lang); } catch {}
+    try { await addOrUpdateScore(resolvedName, amount, lang); } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
     return { finalDelta: amount, multiplier: 1, isBonus: false };
   }
   });
@@ -352,7 +355,9 @@ export const migrateXPFormulaV2 = async (): Promise<void> => {
     emitAppEvent('xp_changed');
     emitAppEvent('xp_updated', { total: newXP, delta: 0 });
     syncToCloud({ forceNow: true }).catch(() => {});
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[xp_manager]', e);
+  }
 };
 
 /**

@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { BackHandler, InteractionManager, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -227,7 +228,7 @@ export default function FlashcardsHubScreen() {
       >
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <View style={[styles.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
-          <TouchableOpacity
+          <TapScale
             testID="flashcards-header-back"
             accessibilityLabel="qa-flashcards-header-back"
             accessible
@@ -236,7 +237,7 @@ export default function FlashcardsHubScreen() {
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
             <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <View style={{ flex: 1 }} />
           {isDevMarketEnabled ? (
             <TouchableOpacity
@@ -265,6 +266,7 @@ export default function FlashcardsHubScreen() {
         <View style={styles.scrollRegion}>
           <ScrollView
             style={styles.scrollView}
+            decelerationRate="normal"
             contentContainerStyle={[
               styles.scrollContent,
               { paddingBottom: scrollBottomPadding },

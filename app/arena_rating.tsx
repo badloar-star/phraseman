@@ -1,9 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import TapScale from '../components/TapScale';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, Image, ScrollView,
-  Modal, Pressable, Dimensions,
+  View, Text, TouchableOpacity, StyleSheet, ScrollView,
+  Modal, Pressable, Dimensions, InteractionManager,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -189,24 +191,26 @@ export default function DuelRatingScreen() {
 
   useEffect(() => {
     let cancelled = false;
-    (async () => {
-      try {
-        const raw = await AsyncStorage.getItem(ARENA_RATING_SCREEN_CACHE_KEY);
-        if (raw && !cancelled) {
-          const parsed = JSON.parse(raw) as { profile?: unknown; history?: unknown };
-          const profile = sanitizeArenaProfileForRating(parsed.profile ?? null);
-          const history = sanitizeArenaRatingHistory(parsed.history);
-          if (profile) {
-            rememberArenaLobbyProfile(profile);
-            setMyProfile(profile);
+    const task = InteractionManager.runAfterInteractions(() => {
+      (async () => {
+        try {
+          const raw = await AsyncStorage.getItem(ARENA_RATING_SCREEN_CACHE_KEY);
+          if (raw && !cancelled) {
+            const parsed = JSON.parse(raw) as { profile?: unknown; history?: unknown };
+            const profile = sanitizeArenaProfileForRating(parsed.profile ?? null);
+            const history = sanitizeArenaRatingHistory(parsed.history);
+            if (profile) {
+              rememberArenaLobbyProfile(profile);
+              setMyProfile(profile);
+            }
+            setMatchHistory(history);
+            setLoading(false);
           }
-          setMatchHistory(history);
-          setLoading(false);
-        }
-      } catch { /* use full load */ }
-      if (!cancelled) void loadData();
-    })();
-    return () => { cancelled = true; };
+        } catch { /* use full load */ }
+        if (!cancelled) void loadData();
+      })();
+    });
+    return () => { cancelled = true; task.cancel(); };
   }, []);
 
   const loadData = async () => {
@@ -224,7 +228,7 @@ export default function DuelRatingScreen() {
       setLoadError(true);
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось загрузить историю арены.',
+        messageRu: 'История арены не загрузилась. Попробуй позже.',
         messageUk: 'Не вдалося завантажити історію арени.',
         messageEs: 'No se ha podido cargar el historial de la Arena.',
       });
@@ -264,11 +268,11 @@ export default function DuelRatingScreen() {
   return (
     <ScreenGradient>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={styles.backBtn}>
+        <TapScale onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={styles.backBtn}>
           <Ionicons name="arrow-back" size={24} color={sx.primary} />
-        </TouchableOpacity>
+        </TapScale>
         <View style={{ flex: 1, alignItems: 'center', gap: 6 }}>
-          <Image source={require('../assets/images/levels/ARENA  ICON.webp')} style={{ width: 44, height: 44 }} resizeMode="contain" />
+          <Image source={require('../assets/images/levels/ARENA  ICON.webp')} style={{ width: 44, height: 44 }} contentFit="contain" />
           <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700' }}>
             {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Arena', id: 'Arena', tr: 'Arena', pl: 'Arena' })}
           </Text>
@@ -276,7 +280,7 @@ export default function DuelRatingScreen() {
         <View style={{ width: 32 }} />
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {/* Моя карточка */}
         <LinearGradient
           colors={t.cardGradient}
@@ -318,7 +322,7 @@ export default function DuelRatingScreen() {
                     height: 48,
                     transform: [{ scale: getRankImageDisplayScale(myRankTier, myRankLevel) }],
                   }}
-                  resizeMode="contain"
+                  contentFit="contain"
                 />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
@@ -391,6 +395,7 @@ export default function DuelRatingScreen() {
               </Text>
               <ScrollView
                 ref={rankListRef}
+                decelerationRate="normal"
                 nestedScrollEnabled
                 keyboardShouldPersistTaps="handled"
                 scrollIndicatorInsets={{ right: 4 }}
@@ -426,7 +431,7 @@ export default function DuelRatingScreen() {
                           height: 40,
                           transform: [{ scale: getRankImageDisplayScale(tier, level) }],
                         }}
-                        resizeMode="contain"
+                        contentFit="contain"
                       />
                     </View>
                       <Text
@@ -473,7 +478,7 @@ export default function DuelRatingScreen() {
               <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginBottom: loadError ? 14 : 0 }}>
                 {loadError
                   ? triLang(lang, {
-                      ru: 'Не удалось получить историю матчей',
+                      ru: 'История матчей не загрузилась. Попробуй ещё раз.',
                       uk: 'Не вдалося завантажити історію матчів',
                       es: 'No se ha podido cargar el historial de duelos.',
                       'pt-BR': 'Não foi possível carregar o histórico de duelos.',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from './ThemeContext';
@@ -19,7 +19,7 @@ type Props = {
   cancelLabel?: string;
 };
 
-export default function NotificationPermissionModal({
+function NotificationPermissionModal({
   visible,
   lang,
   onConfirm,
@@ -59,11 +59,16 @@ export default function NotificationPermissionModal({
     });
   const resolvedPoints =
     points ??
-    (lang === 'uk'
-      ? ['Без пропусків і зривів серії', 'Короткі корисні нагадування', 'Можна вимкнути в будь-який момент']
-      : lang === 'es'
-        ? ['Te ayuda a no saltarte días y a mantener la racha', 'Recordatorios breves y prácticos', 'Puedes desactivarlos cuando quieras']
-        : ['Без пропусков и срывов серии', 'Короткие полезные напоминания', 'Можно отключить в любой момент']);
+    triLang(lang, {
+      ru: ['Без пропусков и срывов серии', 'Короткие полезные напоминания', 'Можно отключить в любой момент'],
+      uk: ['Без пропусків і зривів серії', 'Короткі корисні нагадування', 'Можна вимкнути в будь-який момент'],
+      es: ['Te ayuda a no saltarte días y a mantener la racha', 'Recordatorios breves y prácticos', 'Puedes desactivarlos cuando quieras'],
+      'pt-BR': ['Sem faltas e sem quebrar a sequência', 'Lembretes curtos e práticos', 'Você pode desativar a qualquer momento'],
+      vi: ['Không bỏ lỡ ngày, không mất chuỗi', 'Nhắc nhở ngắn gọn và hữu ích', 'Có thể tắt bất cứ lúc nào'],
+      id: ['Tanpa absen dan putusnya streak', 'Pengingat singkat yang berguna', 'Bisa dimatikan kapan saja'],
+      tr: ['Günleri kaçırmadan seriyi koru', 'Kısa ve faydalı hatırlatmalar', 'İstediğin zaman kapatabilirsin'],
+      pl: ['Bez przerw i utraty serii', 'Krótkie przydatne przypomnienia', 'Możesz wyłączyć w dowolnym momencie'],
+    });
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
@@ -132,3 +137,5 @@ export default function NotificationPermissionModal({
     </Modal>
   );
 }
+
+export default memo(NotificationPermissionModal);

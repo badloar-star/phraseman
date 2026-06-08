@@ -5,6 +5,7 @@ import {
 } from './personal_plan_audio_asset_readiness';
 import { getPlanAudioAssetsForRuntime } from './personal_plan_audio_asset_registry';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
+import { stableShuffle } from './personal_plan_option_ordering';
 
 export type PersonalPlanListenBuildBlockedReason =
   | 'missing_approved_audio'
@@ -66,7 +67,7 @@ function buildWordOptions(targetWords: string[], distractors: string[], maxOptio
     if (options.length >= maxOptions) break;
   }
 
-  return options;
+  return stableShuffle(options, `${targetWords.join(' ')}:${distractors.join('|')}:listen-build`);
 }
 
 export type PersonalPlanListenBuildQualityIssueCode =

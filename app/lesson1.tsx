@@ -7,6 +7,7 @@ import {
   Animated,
   BackHandler,
   Easing,
+  InteractionManager,
   Keyboard,
   KeyboardAvoidingView,
   Modal,
@@ -43,8 +44,10 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 // Связь: home.tsx — countDueItemsToday() на бейдже.
 import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
+import TapScale from '../components/TapScale';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { recordMistake } from './active_recall';
 import { logMistake } from './mistake_log';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
@@ -390,14 +393,14 @@ function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onCl
               </Text>
             </View>
           )}
-          <TouchableOpacity
+          <TapScale
             testID="lesson-cycle-end-continue"
             onPress={onClose}
-            activeOpacity={0.8}
+            scaleTo={0.96}
             style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 40, width: '100%', alignItems: 'center' }}
           >
             <Text style={{ fontSize: f.bodyLg, fontWeight: '700', color: t.correctText }}>{btnLabel}</Text>
-          </TouchableOpacity>
+          </TapScale>
         </Animated.View>
       </View>
     </Modal>
@@ -480,6 +483,7 @@ interface LessonContentProps {
   from?: string;
   onHeaderBack: () => void;
   isPlanLessonTask: boolean;
+  isLinkedLessonSliceTask: boolean;
   isPlanPhraseRecallTask: boolean;
   planRequiredPhrases: number;
   planLessonAnswered: number;
@@ -558,6 +562,7 @@ const LessonContent = React.memo(function LessonContent({
   from,
   onHeaderBack,
   isPlanLessonTask,
+  isLinkedLessonSliceTask,
   isPlanPhraseRecallTask,
   planRequiredPhrases,
   planLessonAnswered,
@@ -569,6 +574,10 @@ const LessonContent = React.memo(function LessonContent({
   const { width: screenW, height: screenH } = useWindowDimensions();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const progressCellCount = Math.max(1, totalCells);
+  const linkedSliceCompact = isLinkedLessonSliceTask;
+  const lessonHorizontalPadding = linkedSliceCompact ? 14 : 20;
+  const linkedSlicePromptFont = Math.max(f.h2, f.h2 + (linkedSliceCompact ? 0 : 6));
+  const linkedSliceAnswerFont = Math.max(f.bodyLg, f.h1 - (linkedSliceCompact ? 4 : 0));
 
 
   // [ARROW] Анимированная стрелка над прогресс-баром
@@ -683,12 +692,14 @@ const LessonContent = React.memo(function LessonContent({
   useEffect(() => {
     if (!phraseEnterKey || status !== 'playing') return;
     questionEnterAnim.setValue(0);
-    Animated.timing(questionEnterAnim, {
+    const anim = Animated.timing(questionEnterAnim, {
       toValue: 1,
       duration: LESSON_ENTER_MS,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
-    }).start();
+    });
+    anim.start();
+    return () => anim.stop();
   }, [phraseEnterKey, displayCell, status, questionEnterAnim]);
 
   const questionEnterStyle = {
@@ -743,7 +754,7 @@ const LessonContent = React.memo(function LessonContent({
 
   return (
     <>
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
       {/* ХЕДЕР — flex + minWidth:0 + wrap, иначе на узких экранах правый блок вылезает за край */}
       <View
         style={{
@@ -751,7 +762,7 @@ const LessonContent = React.memo(function LessonContent({
           flexDirection: 'row',
           alignItems: 'center',
           paddingHorizontal: isSmallScreen ? 10 : 15,
-          paddingVertical: 12,
+          paddingVertical: linkedSliceCompact ? 7 : 12,
           gap: 6,
         }}
       >
@@ -768,8 +779,8 @@ const LessonContent = React.memo(function LessonContent({
             maxWidth: '44%',
             backgroundColor: t.bgCard,
             borderRadius: 20,
-            paddingHorizontal: isSmallScreen ? 8 : 12,
-            paddingVertical: 7,
+            paddingHorizontal: linkedSliceCompact ? 8 : (isSmallScreen ? 8 : 12),
+            paddingVertical: linkedSliceCompact ? 5 : 7,
             borderWidth: 0.5,
             borderColor: t.border,
           }}
@@ -807,7 +818,7 @@ const LessonContent = React.memo(function LessonContent({
           }}
         >
           {/* Energy icons at top */}
-          <View style={{ paddingVertical: 8 }}>
+          <View style={{ paddingVertical: linkedSliceCompact ? 3 : 8 }}>
             <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={currentMaxEnergy} shouldShake={shouldShake} />
           </View>
 
@@ -845,15 +856,31 @@ const LessonContent = React.memo(function LessonContent({
       <ScrollView
         testID="lesson1-scroll"
         style={{ flex: 1 }}
-        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: status === 'result' ? 100 : 8 }}
+        contentContainerStyle={{
+          paddingHorizontal: lessonHorizontalPadding,
+          paddingTop: linkedSliceCompact ? 2 : 10,
+          paddingBottom: linkedSliceCompact ? 4 : (status === 'result' ? 100 : 8),
+          flexGrow: linkedSliceCompact ? 0 : undefined,
+        }}
+        decelerationRate="normal"
         keyboardShouldPersistTaps="handled"
+        scrollEnabled={!linkedSliceCompact}
         showsVerticalScrollIndicator={false}
       >
         <Animated.View style={[questionEnterStyle, { width: '100%' }]}>
         <Pressable onPress={status === 'result' ? undefined : handleBgTap} style={{ width: '100%' }}>
           <Text
             testID="lesson1-source-prompt"
-            style={{ color: sx.primary, fontSize: f.h2 + 6, lineHeight: Math.round((f.h2 + 6) * 1.2), marginBottom: compact ? 12 : 20, textAlign: 'center', flexShrink: 1 }}
+            style={{
+              color: sx.primary,
+              fontSize: linkedSlicePromptFont,
+              lineHeight: Math.round(linkedSlicePromptFont * 1.16),
+              marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20),
+              textAlign: 'center',
+              flexShrink: 1,
+            }}
+            adjustsFontSizeToFit={linkedSliceCompact}
+            numberOfLines={linkedSliceCompact ? 2 : undefined}
             maxFontSizeMultiplier={1.2}
           >{(() => {
             if (!phrase) return '';
@@ -866,13 +893,13 @@ const LessonContent = React.memo(function LessonContent({
             return phrase.russian;
           })()}</Text>
 
-          <View style={{ minHeight: 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+          <View style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {settings.hardMode ? (
               /* Keep TextInput always mounted in hardMode — prevents keyboard slide animation between questions */
               <TextInput
                 testID="lesson1-typed-input"
                 ref={textInputRef}
-                style={{ color: sx.second, fontSize: f.h1, padding: 0, minHeight: 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
+                style={{ color: sx.second, fontSize: linkedSliceAnswerFont, padding: 0, minHeight: linkedSliceCompact ? 34 : 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
                 value={typedText}
                 onChangeText={setTypedText}
                 onSubmitEditing={handleTypedSubmit}
@@ -887,7 +914,11 @@ const LessonContent = React.memo(function LessonContent({
                 editable={status === 'playing'}
               />
             ) : (
-              <Text style={{ color: sx.second, fontSize: f.h1, width: '100%', textAlign: 'center' }}>
+              <Text
+                style={{ color: sx.second, fontSize: linkedSliceAnswerFont, width: '100%', textAlign: 'center' }}
+                adjustsFontSizeToFit={linkedSliceCompact}
+                numberOfLines={linkedSliceCompact ? 2 : undefined}
+              >
                 {selectedWords.length > 0
                   ? (() => {
                       const cleaned = selectedWords.map(w => stripMarkers(w)).filter(w => w.length > 0);
@@ -922,7 +953,7 @@ const LessonContent = React.memo(function LessonContent({
               }],
             }}>
               {wasWrong && (
-                <View style={{ backgroundColor: t.wrongBg, padding: 15, borderRadius: 10, marginBottom: 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
+                <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, marginBottom: linkedSliceCompact ? 6 : 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
                     {(() => {
                       const userAnswer = settings.hardMode ? typedText : selectedWords.join(' ');
@@ -938,7 +969,7 @@ const LessonContent = React.memo(function LessonContent({
                           <Text key={i} style={{
                             color: isWrong ? t.wrong : t.textPrimary,
                             fontWeight: isWrong ? '700' : '500',
-                            fontSize: f.h1,
+                            fontSize: linkedSliceAnswerFont,
                           }}>
                             {word}
                           </Text>
@@ -948,8 +979,12 @@ const LessonContent = React.memo(function LessonContent({
                   </View>
                 </View>
               )}
-              <View style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Text style={{ color: t.correct, fontSize: f.h1, flex: 1, textAlign: 'left' }}>
+              <View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                <Text
+                  style={{ color: t.correct, fontSize: linkedSliceAnswerFont, flex: 1, textAlign: 'left' }}
+                  adjustsFontSizeToFit={linkedSliceCompact}
+                  numberOfLines={linkedSliceCompact ? 2 : undefined}
+                >
                   {resultCorrectLine}
                 </Text>
                 <AddToFlashcard
@@ -965,9 +1000,9 @@ const LessonContent = React.memo(function LessonContent({
                   testID="lesson-teaching-note"
                   style={{
                     backgroundColor: lessonTeachingNote.tone === 'wrong' ? t.wrongBg : t.bgCard,
-                    padding: 14,
+                    padding: linkedSliceCompact ? 10 : 14,
                     borderRadius: 12,
-                    marginTop: 10,
+                    marginTop: linkedSliceCompact ? 6 : 10,
                     borderLeftWidth: 3,
                     borderLeftColor: lessonTeachingNote.tone === 'wrong' ? t.wrong : t.correct,
                   }}
@@ -975,7 +1010,10 @@ const LessonContent = React.memo(function LessonContent({
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', marginBottom: 5 }}>
                     {lessonTeachingNote.title}
                   </Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), fontWeight: '700' }}>
+                  <Text
+                    style={{ color: t.textSecond, fontSize: linkedSliceCompact ? f.small : f.body, lineHeight: Math.round((linkedSliceCompact ? f.small : f.body) * 1.35), fontWeight: '700' }}
+                    numberOfLines={linkedSliceCompact ? 2 : undefined}
+                  >
                     {lessonTeachingNote.body}
                   </Text>
                 </View>
@@ -991,7 +1029,7 @@ const LessonContent = React.memo(function LessonContent({
                   spanishSurfacesEnabled(lang, studyTarget) && phrase.spanish ? `ES: ${phrase.spanish}` : '',
                 ].filter(Boolean).join('\n')}
                 userAnswer={reportUserAnswer}
-                style={{ alignSelf: 'flex-end', marginTop: 4 }}
+                style={{ alignSelf: 'flex-end', marginTop: linkedSliceCompact ? 2 : 4 }}
                 textColor={sx.muted}
               />
 
@@ -1026,7 +1064,7 @@ const LessonContent = React.memo(function LessonContent({
               spanishSurfacesEnabled(lang, studyTarget) && phrase.spanish ? `ES: ${phrase.spanish}` : '',
             ].filter(Boolean).join('\n')}
             userAnswer={reportUserAnswer}
-            style={{ alignSelf: 'flex-end', marginHorizontal: 20, marginBottom: 6 }}
+            style={{ alignSelf: 'flex-end', marginHorizontal: lessonHorizontalPadding, marginBottom: linkedSliceCompact ? 2 : 6 }}
             textColor={sx.muted}
           />
         )}
@@ -1035,7 +1073,7 @@ const LessonContent = React.memo(function LessonContent({
         {status === 'playing' && !settings.hardMode && (
           <Pressable
             onPress={handleBgTap}
-            style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 4 }}
+            style={{ paddingHorizontal: lessonHorizontalPadding, paddingTop: linkedSliceCompact ? 2 : 4, paddingBottom: linkedSliceCompact ? 2 : 4 }}
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
               {wordOptionItems.map(({ word, index: i, isCorrectOption, shouldShowHint, isDimmed, displayText }) => {
@@ -1044,12 +1082,12 @@ const LessonContent = React.memo(function LessonContent({
                     key={`${phrase?.id ?? 'phrase'}-${phraseWordIdx}-${word}-${i}`}
                     style={{
                     width: '48%',
-                    marginBottom: compact ? 7 : 10,
+                    marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
                     opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
                     <LessonPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
-                      style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
+                      style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14), alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
                       suppressFeedback={isDimmed}
                       onPress={() => {
                         if (isDimmed) return;
@@ -1076,7 +1114,7 @@ const LessonContent = React.memo(function LessonContent({
         )}
 
         {/* ГОРИЗОНТАЛЬНЫЙ ПРОГРЕСС-БАР */}
-        <View style={{ paddingHorizontal: 14, paddingVertical: 6 }}>
+        <View style={{ paddingHorizontal: 14, paddingVertical: linkedSliceCompact ? 3 : 6 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <View
               style={{ flex: 1, flexDirection: 'column', gap: 2 }}
@@ -1117,7 +1155,7 @@ const LessonContent = React.memo(function LessonContent({
         </View>
 
         {/* ФУТЕР */}
-        <View style={{ flexDirection: 'row', paddingVertical: 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
+        <View style={{ flexDirection: 'row', paddingVertical: linkedSliceCompact ? 8 : 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
           {/* 50/50 Button — вместо Шпаргалки */}
           {!settings.hardMode && !isPlanPhraseRecallTask && (
             (() => {
@@ -1234,7 +1272,7 @@ const LessonContent = React.memo(function LessonContent({
         </View>
 
         {__DEV__ && (
-          <TouchableOpacity
+          <TapScale
             style={{ position: 'absolute', bottom: 90, right: 12, backgroundColor: 'rgba(40,40,40,0.85)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, zIndex: 999 }}
             onPress={() => {
               const hint = GRAMMAR_HINTS[0];
@@ -1250,7 +1288,7 @@ const LessonContent = React.memo(function LessonContent({
             }}
           >
             <Text style={{ color: '#fff', fontSize: 11, fontWeight: '600' }}>DEV: grammar hint</Text>
-          </TouchableOpacity>
+          </TapScale>
         )}
 
     </KeyboardAvoidingView>
@@ -1262,6 +1300,7 @@ const LessonContent = React.memo(function LessonContent({
 export default function LessonScreen() {
   const router = useRouter();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const { playCorrect } = useCorrectSound();
   const { height: windowH, width: windowW } = useWindowDimensions();
   const compact = windowH < 780;
   const isSmallScreen = windowW < 400; // compact header/spacing on narrow widths (lesson top bar used to clip past ~380)
@@ -1340,10 +1379,16 @@ export default function LessonScreen() {
   const planRequiredPhrases = isPlanLessonTask
     ? Math.max(1, Math.min(50, parseInt(requiredPhrasesRaw ?? '0', 10) || 0))
     : 0;
-  const planRequiredPhraseIds = isPlanLessonTask && requiredPhraseIdsRaw
-    ? requiredPhraseIdsRaw.split(',').map((item) => item.trim()).filter(Boolean)
-    : [];
-  const planRequiredPhraseIdSet = new Set(planRequiredPhraseIds);
+  const planRequiredPhraseIds = useMemo(
+    () => isPlanLessonTask && requiredPhraseIdsRaw
+      ? requiredPhraseIdsRaw.split(',').map((item) => item.trim()).filter(Boolean)
+      : [],
+    [isPlanLessonTask, requiredPhraseIdsRaw],
+  );
+  const planRequiredPhraseIdSet = useMemo(
+    () => new Set(planRequiredPhraseIds),
+    [planRequiredPhraseIds],
+  );
   const replayIntro = (Array.isArray(replayIntroParam) ? replayIntroParam[0] : replayIntroParam) === '1';
   const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
   const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
@@ -1359,11 +1404,14 @@ export default function LessonScreen() {
   const ERROR_REPLAY_OVERRIDE_KEY = lessonSessionKey(lessonStorageId, 'errorReplayOverride', studyTarget);
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
-  const LESSON_DATA = (planPhraseLesson?.phrases ?? getLessonData(lessonId)).filter(p => {
-    if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
-    if (isPlanLessonTask && planRequiredPhraseIdSet.size > 0 && !planRequiredPhraseIdSet.has(String(p.id))) return false;
-    return p.words && p.words.length > 0;
-  });
+  const LESSON_DATA = useMemo(
+    () => (planPhraseLesson?.phrases ?? getLessonData(lessonId)).filter(p => {
+      if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
+      if (isPlanLessonTask && planRequiredPhraseIdSet.size > 0 && !planRequiredPhraseIdSet.has(String(p.id))) return false;
+      return p.words && p.words.length > 0;
+    }),
+    [planPhraseLesson, lessonId, studyTarget, isPlanLessonTask, planRequiredPhraseIdSet],
+  );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
   const hasPlayableLessonRows = effectiveTotal > 0;
@@ -1541,16 +1589,19 @@ export default function LessonScreen() {
 
 
   useEffect(() => {
-    loadData();
-    // Кешируем имя один раз при монтировании — избегаем async lookup на каждый ответ
-    AsyncStorage.getItem('user_name')
-      .then(n => {
-        userNameRef.current = n;
-        setPlanUserName((n ?? '').trim() || 'Phraseman');
-        setPlanUserNameReady(true);
-      })
-      .catch(() => setPlanUserNameReady(true));
+    const task = InteractionManager.runAfterInteractions(() => {
+      void loadData();
+      // Кешируем имя один раз при монтировании — избегаем async lookup на каждый ответ
+      AsyncStorage.getItem('user_name')
+        .then(n => {
+          userNameRef.current = n;
+          setPlanUserName((n ?? '').trim() || 'Phraseman');
+          setPlanUserNameReady(true);
+        })
+        .catch(() => setPlanUserNameReady(true));
+    });
     return () => {
+      task.cancel();
       if (autoTimer.current) clearTimeout(autoTimer.current);
     };
   }, [lang, lessonId, lessonStorageId, studyTarget]);
@@ -1610,11 +1661,14 @@ export default function LessonScreen() {
   // Перечитываем настройки при возврате на экран (например из settings_edu)
   useFocusEffect(
     React.useCallback(() => {
+      let cancelled = false;
       AsyncStorage.getItem(SETTINGS_KEY).then(ss => {
+        if (cancelled) return;
         if (ss) {
           try { setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(ss) }); } catch {}
         }
       });
+      return () => { cancelled = true; };
     }, [])
   );
 
@@ -2290,7 +2344,9 @@ export default function LessonScreen() {
     setProgress(np);
     persistErrorReplayToStorage();
 
-    if (!isRight && settings.haptics) {
+    if (isRight) {
+      playCorrect();
+    } else if (settings.haptics) {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
     }
 
@@ -2307,7 +2363,7 @@ export default function LessonScreen() {
     }
     fadeAnim.stopAnimation(() => {
       fadeAnim.setValue(0);
-      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: false }).start();
+      Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start();
     });
 
     const nextCell = (cellIndex + 1) % effectiveTotal;
@@ -2773,15 +2829,16 @@ export default function LessonScreen() {
                 pl: 'Ta lekcja nie użyje angielskich fraz jako zamiennika.',
               })}
             </Text>
-            <TouchableOpacity
+            <TapScale
               accessibilityRole="button"
               onPress={() => router.replace('/(tabs)/lessons' as any)}
+              scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
                 {triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'A lecciones', 'pt-BR': 'Para aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' })}
               </Text>
-            </TouchableOpacity>
+            </TapScale>
           </SafeAreaView>
         </ScreenGradient>
       </TouchableWithoutFeedback>
@@ -2875,6 +2932,7 @@ export default function LessonScreen() {
             from={from}
                 onHeaderBack={handleLessonHeaderBack}
                 isPlanLessonTask={isPlanLessonTask}
+                isLinkedLessonSliceTask={isLinkedLessonSliceTask}
                 isPlanPhraseLessonTask={isPlanPhraseLessonTask}
                 isPlanPhraseRecallTask={isPlanPhraseRecallTask}
                 planRequiredPhrases={planRequiredPhrases}
@@ -2913,27 +2971,27 @@ export default function LessonScreen() {
                 : 'Фразы дня засчитаны. Можно вернуться к плану или потренироваться дальше, если есть силы.'}
             </Text>
             <View style={{ flexDirection: 'row', gap: 12, marginTop: 18 }}>
-              <TouchableOpacity
-                activeOpacity={0.82}
+              <TapScale
                 accessibilityRole="button"
                 accessibilityLabel="Вернуться к плану"
                 onPress={() => {
                   setPlanLessonDoneVisible(false);
                   router.push('/personal_plan' as any);
                 }}
+                scaleTo={0.96}
                 style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct, shadowColor: t.correct, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 }, elevation: 8 }}
               >
                 <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>К плану</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.82}
+              </TapScale>
+              <TapScale
                 accessibilityRole="button"
                 accessibilityLabel="Продолжить урок"
                 onPress={() => setPlanLessonDoneVisible(false)}
+                scaleTo={0.96}
                 style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, borderWidth: 1, borderColor: t.border, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 6 }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>Продолжить</Text>
-              </TouchableOpacity>
+              </TapScale>
             </View>
           </View>
         </View>

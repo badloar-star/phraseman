@@ -24,4 +24,12 @@ describe('PremiumContext VIP event contract', () => {
     expect(body).toContain('setHasPremiumAccess(isPremium)');
     expect(body).toContain("syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium })");
   });
+
+  it('exposes intro full access separately from real Premium and VIP', () => {
+    expect(source).toContain('isIntroFullAccess');
+    expect(source).toContain('introFullAccessEndsAt');
+    expect(source).toContain('getIntroFullAccessState');
+    expect(source).toContain('setHasPremiumAccess(realPremium || vip || introState.active)');
+    expect(source).toContain("onAppEvent('intro_full_access_changed'");
+  });
 });

@@ -3,7 +3,7 @@
  * async module load while rendering the first question.
  */
 import type { QuizDifficulty, QuizPhrase, QuizStudyTargetLang } from './quiz_data';
-import * as quizData from './quiz_data';
+import { getQuizPhrases } from './quiz_data';
 import type { Lang } from '../constants/i18n';
 
 /** @deprecated No-op; data is bundled. Kept for call-site compatibility. */
@@ -23,7 +23,7 @@ export function getQuizPhrasesLoaded(
   studyTarget: QuizStudyTargetLang = 'en',
 ): QuizPhrase[] {
   if (studyTarget === 'fr') return [];
-  return quizData.getQuizPhrases(difficulty, count, lang);
+  return getQuizPhrases(difficulty, count, lang);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

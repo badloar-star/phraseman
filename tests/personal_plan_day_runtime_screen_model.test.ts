@@ -12,6 +12,7 @@ import { buildGavanDay1RuntimeBlockBundles } from '../app/personal_plan_runtime_
 
 const content = buildGavanDay1ContentCandidate();
 const bundlesResult = buildGavanDay1RuntimeBlockBundles(content);
+const MOJIBAKE_TASKS_TITLE = 'Ð—Ð°Ð´Ð°Ð½Ð¸Ñ';
 
 function bundles() {
   expect(bundlesResult.status).toBe('ready');
@@ -168,7 +169,7 @@ describe('personal plan day runtime screen model', () => {
       ...model,
       header: {
         ...model.header,
-        title: 'Ð—Ð°Ð´Ð°Ð½Ð¸Ñ',
+        title: MOJIBAKE_TASKS_TITLE,
       },
     })).toContain('corrupted_copy');
 

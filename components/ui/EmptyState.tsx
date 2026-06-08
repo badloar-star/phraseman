@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../ThemeContext';
 import CompassDepthSurface from '../CompassDepthSurface';
@@ -11,7 +11,7 @@ type EmptyStateProps = {
   icon?: React.ComponentProps<typeof Ionicons>['name'];
 };
 
-export default function EmptyState({ title, subtitle, icon = 'sparkles-outline' }: EmptyStateProps) {
+function EmptyState({ title, subtitle, icon = 'sparkles-outline' }: EmptyStateProps) {
   const { theme: t, f, ds, themeMode } = useTheme();
   const isCompassTheme = themeMode === 'compass';
   const radius = isCompassTheme ? 10 : ds.radius.xl;
@@ -48,6 +48,8 @@ export default function EmptyState({ title, subtitle, icon = 'sparkles-outline' 
     </View>
   );
 }
+
+export default memo(EmptyState);
 
 const styles = StyleSheet.create({
   wrap: {

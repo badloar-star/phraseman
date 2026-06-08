@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { mergeSwitchAccessibilityState } from './a11y_state';
 
 // Точные размеры как у нативного iOS Switch
 const W   = 51;   // ширина трека
@@ -13,9 +14,20 @@ interface Props {
   value: boolean;
   onValueChange: (v: boolean) => void;
   disabled?: boolean;
+  /** Подпись для скринридера — что именно включает этот переключатель. */
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+  testID?: string;
 }
 
-export default function CustomSwitch({ value, onValueChange, disabled = false }: Props) {
+function CustomSwitch({
+  value,
+  onValueChange,
+  disabled = false,
+  accessibilityLabel,
+  accessibilityHint,
+  testID,
+}: Props) {
   const { theme: t } = useTheme();
 
   const thumbX  = useRef(new Animated.Value(value ? MAX_X : 0)).current;
@@ -50,6 +62,11 @@ export default function CustomSwitch({ value, onValueChange, disabled = false }:
       disabled={disabled}
       onPress={() => !disabled && onValueChange(!value)}
       style={{ opacity: disabled ? 0.4 : 1 }}
+      testID={testID}
+      accessibilityRole="switch"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      accessibilityState={mergeSwitchAccessibilityState(undefined, value, disabled)}
     >
       {/* Трек фиксированного размера */}
       <Animated.View style={[s.track, { backgroundColor: trackColor }]}>
@@ -90,4 +107,6 @@ const s = StyleSheet.create({
     elevation:       3,
   },
 });
+
+export default memo(CustomSwitch);
 

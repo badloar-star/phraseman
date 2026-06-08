@@ -99,8 +99,8 @@ const getNotifications = async () => {
           lightColor: '#06141B',
           enableVibrate: true,
         });
-      } catch {
-        /* no-op */
+      } catch (e) {
+        if (__DEV__) console.warn('[notifications]', e);
       }
     }
     return Notifications;
@@ -338,24 +338,32 @@ const STREAK_WARNING_NOTIF_ID_KEY = 'streak_warning_notif_id';
 const PHRASE_OF_DAY_NOTIF_ID_KEY = 'phrase_of_day_notif_id';
 const WEEKLY_RECAP_NOTIF_ID_KEY = 'weekly_recap_notif_id';
 const MONTHLY_RECAP_NOTIF_ID_KEY = 'monthly_recap_notif_id';
+const ENERGY_FULL_NOTIF_ID_KEY = 'energy_full_notif_id';
 const IMMEDIATE_NOTIFICATION_LAST_AT_KEY = 'notification_immediate_last_at';
 const IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX = 'notification_immediate_type_last_at:';
 
 type LocalNotificationType =
   | 'reminder'
   | 'streak_warning'
+  | 'energy_full'
   | 'phrase_of_day'
   | 'weekly_recap'
   | 'monthly_recap'
   | 'league_overtake'
   | 'arena_match'
   | 'd1_reminder'
-  | 'premium';
+  | 'premium'
+  | 'intro_expiring'
+  | 'upsell_d4'
+  | 'upsell_d7'
+  | 'upsell_d14'
+  | 'paywall_abandoned';
 
 const IMMEDIATE_NOTIFICATION_MIN_GAP_MS = 45 * 60 * 1000;
 const IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS: Partial<Record<LocalNotificationType, number>> = {
   streak_warning: 23 * 60 * 60 * 1000,
   league_overtake: 6 * 60 * 60 * 1000,
+  paywall_abandoned: 23 * 60 * 60 * 1000,
 };
 
 function parseStoredNumber(raw: string | null | undefined): number {
@@ -422,7 +430,9 @@ async function cancelScheduledNotificationsByType(
       if (!id || !types.includes(type)) return Promise.resolve();
       return N.cancelScheduledNotificationAsync(id).catch(() => {});
     }));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 }
 
 async function claimImmediateNotificationSlot(
@@ -477,7 +487,9 @@ export const scheduleDailyReminder = async (
       try {
         const ids: string[] = JSON.parse(prevPerDayRaw);
         await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(() => {})));
-      } catch {}
+      } catch (e) {
+        if (__DEV__) console.warn('[notifications]', e);
+      }
       await AsyncStorage.removeItem('per_day_notif_ids');
     }
 
@@ -499,8 +511,12 @@ export const scheduleDailyReminder = async (
     await AsyncStorage.setItem('notification_hour', String(hour));
     await AsyncStorage.setItem('notification_minute', String(minute));
     await AsyncStorage.setItem('notifications_enabled', 'true');
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
+
+const INTRO_EXPIRING_NOTIF_ID_KEY = 'notification_intro_expiring_id';
 
 /** Ключи метаданных планирования (не самих payload). Сохранённые в sync с cancelAllScheduledNotificationsAsync. */
 const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
@@ -518,15 +534,25 @@ const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
   'phrase_notif_scheduled',
   'weekly_recap_scheduled',
   'monthly_recap_scheduled',
+  // Upsell и intro_expiring — чистим вместе со всеми, иначе повторный вызов
+  // scheduleUpsellNotifications думает, что уведомления уже запланированы.
+  INTRO_EXPIRING_NOTIF_ID_KEY,
+  'notification_upsell_d4_scheduled_at',
+  'notification_upsell_d7_scheduled_at',
+  'notification_upsell_d14_scheduled_at',
 ] as const;
 
 async function cancelAllScheduledLocalNotifications(N: Awaited<ReturnType<typeof getNotifications>>): Promise<void> {
   try {
     if (N) await N.cancelAllScheduledNotificationsAsync().catch(() => {});
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
   try {
     await AsyncStorage.multiRemove([...NOTIFICATION_SCHEDULE_STORAGE_KEYS]);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
   await AsyncStorage.setItem('notifications_enabled', 'false');
 }
 
@@ -534,6 +560,11 @@ async function cancelAllScheduledLocalNotifications(N: Awaited<ReturnType<typeof
 export const cancelAllNotifications = async (): Promise<void> => {
   const N = await getNotifications();
   await cancelAllScheduledLocalNotifications(N);
+  // Удаляем токен из Firestore: сервер перестаёт слать re-engage пуши
+  // на пользователя, который явно отключил уведомления.
+  void import('./push_token_registration').then(({ clearPushTokenForServerPush }) => {
+    clearPushTokenForServerPush().catch(() => {});
+  });
 };
 
 // ── Уведомление о потере цепочки ───────────────────────────────────────────────
@@ -643,7 +674,9 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
       content: { title: _title, body: _body, sound: false, data: { type: 'streak_warning' } },
       trigger: triggerInterval(2),
     });
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 // ── D+1 персональное уведомление после первого урока ─────────────────────────
@@ -709,11 +742,17 @@ export const scheduleD1PersonalizedReminder = async (
       trigger: triggerInterval(secondsUntil),
     });
     await AsyncStorage.setItem(D1_PERSONALIZED_REMINDER_NOTIF_ID_KEY, d1Id);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 // ── Уведомление об активации Premium ─────────────────────────────────────────
 export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> => {
+  // Пользователь купил Premium — upsell и expiring-уведомления больше не нужны
+  cancelIntroExpiringNotification().catch(() => {});
+  cancelUpsellNotifications().catch(() => {});
+
   try {
     const N = await getNotifications();
     if (!N) return;
@@ -734,10 +773,10 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
     }));
     const _premBody = pickNotif(lang, notificationCopy({
       ru: _pp([
-        'Все 32 урока, квизы и диалоги теперь открыты для вас!',
+        'Все 32 урока, вызовы и диалоги теперь открыты для тебя!',
         'Никаких ограничений — учись сколько хочешь! 🔥',
         'Весь контент в твоём распоряжении. Время покорять English! 💪',
-        '32 урока, все квизы и диалоги — твои! Поехали! 🚀',
+        '32 урока, все вызовы и диалоги — твои! Поехали! 🚀',
       ]),
       uk: _pp([
         'Усі 32 уроки, квізи та діалоги відкриті для вас!',
@@ -786,7 +825,260 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
       content: { title: _premTitle, body: _premBody, sound: false, data: { type: 'premium' } },
       trigger: null,
     });
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+};
+
+// ── Уведомление: Intro Full Access истекает через 2 часа ─────────────────────
+// INTRO_EXPIRING_NOTIF_ID_KEY is declared near NOTIFICATION_SCHEDULE_STORAGE_KEYS
+// above, which references it at module load (avoids used-before-declaration).
+
+export const scheduleIntroExpiringNotification = async (
+  endsAtMs: number,
+  lang: Lang = 'ru',
+  opts: { minSeconds?: number } = {},
+): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    const hasPermission = await canUseNotifications(true);
+    if (!hasPermission) return;
+
+    const twoHoursBeforeMs = endsAtMs - 2 * 60 * 60 * 1000;
+    const secondsUntil = Math.floor((twoHoursBeforeMs - Date.now()) / 1000);
+    if (secondsUntil <= (opts.minSeconds ?? 60)) return;
+
+    const prev = await AsyncStorage.getItem(INTRO_EXPIRING_NOTIF_ID_KEY);
+    if (prev) await N.cancelScheduledNotificationAsync(prev).catch(() => {});
+
+    const title = pickNotif(lang, notificationCopy({
+      ru: 'Твой Premium истекает через 2 часа',
+      uk: 'Твій Premium закінчується через 2 години',
+      es: 'Tu Premium expira en 2 horas',
+      'pt-BR': 'Seu Premium expira em 2 horas',
+      vi: 'Premium của bạn hết hạn sau 2 giờ',
+      id: 'Premium kamu berakhir dalam 2 jam',
+      tr: 'Premiuminiz 2 saat sonra bitiyor',
+      pl: 'Twoje Premium wygasa za 2 godziny',
+    }));
+    const body = pickNotif(lang, notificationCopy({
+      ru: 'Ты выучил первые фразы — не останавливайся. Сохрани доступ к урокам и энергии навсегда.',
+      uk: 'Ти вивчив перші фрази — не зупиняйся. Збережи доступ до уроків і енергії назавжди.',
+      es: 'Ya aprendiste tus primeras frases. No pares ahora — conserva el acceso ilimitado.',
+      'pt-BR': 'Você aprendeu suas primeiras frases. Não pare agora — mantenha o acesso ilimitado.',
+      vi: 'Bạn đã học những cụm từ đầu tiên — đừng dừng lại. Giữ quyền truy cập không giới hạn.',
+      id: 'Kamu sudah belajar frasa pertama — jangan berhenti. Pertahankan akses tak terbatas.',
+      tr: 'İlk ifadelerini öğrendin — durma. Sınırsız erişimi koru.',
+      pl: 'Nauczyłeś się pierwszych zwrotów — nie zatrzymuj się. Zachowaj nieograniczony dostęp.',
+    }));
+
+    const id = await N.scheduleNotificationAsync({
+      content: { title, body, sound: false, data: { type: 'intro_expiring' } },
+      trigger: triggerInterval(secondsUntil),
+    });
+    await AsyncStorage.setItem(INTRO_EXPIRING_NOTIF_ID_KEY, id);
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+};
+
+export const cancelIntroExpiringNotification = async (): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    const id = await AsyncStorage.getItem(INTRO_EXPIRING_NOTIF_ID_KEY);
+    if (id) {
+      await N.cancelScheduledNotificationAsync(id).catch(() => {});
+      await AsyncStorage.removeItem(INTRO_EXPIRING_NOTIF_ID_KEY);
+    }
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+};
+
+// ── Upsell уведомления для не-Premium пользователей (D+4, D+7, D+14) ─────────
+const UPSELL_NOTIF_KEYS = {
+  d4: 'notification_upsell_d4_scheduled_at',
+  d7: 'notification_upsell_d7_scheduled_at',
+  d14: 'notification_upsell_d14_scheduled_at',
+};
+
+export const scheduleUpsellNotifications = async (
+  introEndedAtMs: number,
+  lang: Lang = 'ru',
+  opts: { minSeconds?: number } = {},
+): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    const hasPermission = await canUseNotifications(true);
+    if (!hasPermission) return;
+
+    const nowMs = Date.now();
+
+    const slots: Array<{
+      key: keyof typeof UPSELL_NOTIF_KEYS;
+      delayDays: number;
+      title: string;
+      body: string;
+      type: LocalNotificationType;
+    }> = [
+      {
+        key: 'd4',
+        delayDays: 4,
+        type: 'upsell_d4',
+        title: pickNotif(lang, notificationCopy({
+          ru: 'Твой прогресс продолжается 🔥',
+          uk: 'Твій прогрес продовжується 🔥',
+          es: 'Tu progreso continúa 🔥',
+          'pt-BR': 'Seu progresso continua 🔥',
+          vi: 'Tiến trình của bạn tiếp tục 🔥',
+          id: 'Progresmu terus berlanjut 🔥',
+          tr: 'İlerlemeniz devam ediyor 🔥',
+          pl: 'Twój postęp trwa 🔥',
+        })),
+        body: pickNotif(lang, notificationCopy({
+          ru: 'С Premium — энергия без лимита и все курсы открыты. Учись без остановок.',
+          uk: 'З Premium — енергія без ліміту і всі курси відкриті. Вчись без зупинок.',
+          es: 'Con Premium — energía ilimitada y todos los cursos abiertos. Sin parar.',
+          'pt-BR': 'Com Premium — energia ilimitada e todos os cursos abertos. Sem parar.',
+          vi: 'Với Premium — năng lượng vô hạn và tất cả khóa học mở. Học không ngừng.',
+          id: 'Dengan Premium — energi tak terbatas dan semua kursus terbuka. Belajar tanpa henti.',
+          tr: 'Premium ile — sınırsız enerji ve tüm kurslar açık. Durmadan öğren.',
+          pl: 'Z Premium — nieograniczona energia i wszystkie kursy otwarte. Ucz się bez przerwy.',
+        })),
+      },
+      {
+        key: 'd7',
+        delayDays: 7,
+        type: 'upsell_d7',
+        title: pickNotif(lang, notificationCopy({
+          ru: 'Энергия мешает учиться? ⚡',
+          uk: 'Енергія заважає вчитися? ⚡',
+          es: '¿La energía te frena? ⚡',
+          'pt-BR': 'A energia está te travando? ⚡',
+          vi: 'Năng lượng đang cản trở bạn? ⚡',
+          id: 'Energi menghambatmu belajar? ⚡',
+          tr: 'Enerji seni engelliyor mu? ⚡',
+          pl: 'Energia Cię blokuje? ⚡',
+        })),
+        body: pickNotif(lang, notificationCopy({
+          ru: 'С Premium энергия бесконечная. Никакой перезарядки — учись когда хочешь и сколько хочешь.',
+          uk: 'З Premium енергія безмежна. Ніякої перезарядки — вчись коли хочеш і скільки хочеш.',
+          es: 'Con Premium, energía infinita. Sin esperas — estudia cuando quieras y cuanto quieras.',
+          'pt-BR': 'Com Premium, energia infinita. Sem espera — estude quando e quanto quiser.',
+          vi: 'Với Premium, năng lượng vô hạn. Không cần chờ — học bất cứ lúc nào bạn muốn.',
+          id: 'Dengan Premium, energi tak terbatas. Tanpa menunggu — belajar kapan saja dan sebanyak yang kamu mau.',
+          tr: 'Premium ile sonsuz enerji. Bekleme yok — istediğin zaman, istediğin kadar çalış.',
+          pl: 'Z Premium masz nieskończoną energię. Bez czekania — ucz się kiedy chcesz i ile chcesz.',
+        })),
+      },
+      {
+        key: 'd14',
+        delayDays: 14,
+        type: 'upsell_d14',
+        title: pickNotif(lang, notificationCopy({
+          ru: '2 недели — и ты всё ещё здесь 💪',
+          uk: '2 тижні — і ти все ще тут 💪',
+          es: '2 semanas y sigues aquí 💪',
+          'pt-BR': '2 semanas e você ainda está aqui 💪',
+          vi: '2 tuần — và bạn vẫn còn đây 💪',
+          id: '2 minggu — dan kamu masih di sini 💪',
+          tr: '2 hafta — ve hâlâ buradasın 💪',
+          pl: '2 tygodnie — i nadal tu jesteś 💪',
+        })),
+        body: pickNotif(lang, notificationCopy({
+          ru: 'Это значит, что ты серьёзен. Разблокируй весь Phraseman — все уроки, бесконечная энергия, нет лимитов.',
+          uk: 'Це означає, що ти серйозний. Розблокуй весь Phraseman — всі уроки, безмежна енергія, без лімітів.',
+          es: 'Eso dice mucho. Desbloquea todo Phraseman — todas las lecciones, energía infinita, sin límites.',
+          'pt-BR': 'Isso diz muito sobre você. Desbloqueie todo o Phraseman — todas as lições, energia infinita, sem limites.',
+          vi: 'Điều này nói lên rất nhiều. Mở khóa toàn bộ Phraseman — tất cả bài học, năng lượng vô hạn, không giới hạn.',
+          id: 'Ini berarti kamu serius. Buka semua Phraseman — semua pelajaran, energi tak terbatas, tanpa batas.',
+          tr: 'Bu çok şey anlatıyor. Tüm Phraseman\'ı aç — tüm dersler, sonsuz enerji, sınır yok.',
+          pl: 'To wiele mówi. Odblokuj cały Phraseman — wszystkie lekcje, nieskończona energia, bez limitów.',
+        })),
+      },
+    ];
+
+    for (const slot of slots) {
+      const alreadyScheduled = await AsyncStorage.getItem(UPSELL_NOTIF_KEYS[slot.key]);
+      if (alreadyScheduled) continue;
+
+      const fireAtMs = introEndedAtMs + slot.delayDays * 24 * 60 * 60 * 1000;
+      const secondsUntil = Math.floor((fireAtMs - nowMs) / 1000);
+      if (secondsUntil <= (opts.minSeconds ?? 60)) continue;
+
+      await N.scheduleNotificationAsync({
+        content: { title: slot.title, body: slot.body, sound: false, data: { type: slot.type } },
+        trigger: triggerInterval(secondsUntil),
+      });
+      await AsyncStorage.setItem(UPSELL_NOTIF_KEYS[slot.key], String(nowMs));
+    }
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+};
+
+export const cancelUpsellNotifications = async (): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    await cancelScheduledNotificationsByType(N, ['upsell_d4', 'upsell_d7', 'upsell_d14']);
+    await AsyncStorage.multiRemove(Object.values(UPSELL_NOTIF_KEYS));
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+};
+
+/**
+ * План #7: abandoned-paywall push — мягкое напоминание через ~1 час после того,
+ * как пользователь открыл пейвол и закрыл без покупки. Targeted (упоминает прогресс) —
+ * 7× open rate vs generic (Airship). Один раз за окно (per-type кулдаун 23ч).
+ * Bible Стиль 1 Тренер, gain-framing, ≤10 слов.
+ */
+export const schedulePaywallAbandonedNotification = async (
+  lang: Lang = 'ru',
+  opts: { delaySeconds?: number } = {},
+): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    if (!(await canUseNotifications(true))) return;
+    // не спамим: общий слот + per-type кулдаун
+    if (!(await claimImmediateNotificationSlot('paywall_abandoned', Date.now()))) return;
+
+    const title = pickNotif(lang, notificationCopy({
+      ru: 'Ты почти открыл полный доступ',
+      uk: 'Ти майже відкрив повний доступ',
+      es: 'Casi abres el acceso completo',
+      'pt-BR': 'Você quase abriu o acesso completo',
+      vi: 'Bạn gần như đã mở toàn quyền',
+      id: 'Kamu hampir membuka akses penuh',
+      tr: 'Tam erişimi açmana az kaldı',
+      pl: 'Prawie odblokowałeś pełny dostęp',
+    }));
+    const body = pickNotif(lang, notificationCopy({
+      ru: 'Твой прогресс ждёт. Продолжим?',
+      uk: 'Твій прогрес чекає. Продовжимо?',
+      es: 'Tu progreso te espera. ¿Seguimos?',
+      'pt-BR': 'Seu progresso espera. Continuamos?',
+      vi: 'Tiến trình đang chờ bạn. Tiếp tục nhé?',
+      id: 'Progresmu menunggu. Lanjut?',
+      tr: 'İlerlemen seni bekliyor. Devam edelim mi?',
+      pl: 'Twój postęp czeka. Kontynuujemy?',
+    }));
+
+    await N.scheduleNotificationAsync({
+      content: { title, body, sound: false, data: { type: 'paywall_abandoned' as LocalNotificationType } },
+      trigger: triggerInterval(Math.max(60, opts.delaySeconds ?? 3600)),
+    });
+    // Воронка: пуш реально запланирован — фиксируем для baseline/atтрибуции re-engagement.
+    void import('./analytics').then(({ trackEvent }) => trackEvent('paywall_abandoned_push_sent', {})).catch(() => {});
+    void import('./firebase').then(({ logPaywallAbandonedPush }) => logPaywallAbandonedPush()).catch(() => {});
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 // ── Типы для расширенных настроек (совместимость с settings_notifications.tsx) ─
@@ -834,7 +1126,9 @@ export const saveNotifSettings = async (s: NotifSettings): Promise<void> => {
   notifMemory = cloneNotif(s);
   try {
     await AsyncStorage.setItem(NOTIF_KEY, JSON.stringify(s));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 // app day index 0=Mon..6=Sun → expo weekday 1=Sun,2=Mon..7=Sat
@@ -887,7 +1181,9 @@ export const scheduleNotifications = async (
         ),
       });
       newIds.push(id);
-    } catch {}
+    } catch (e) {
+      if (__DEV__) console.warn('[notifications]', e);
+    }
   }
 
   await AsyncStorage.setItem('per_day_notif_ids', JSON.stringify(newIds));
@@ -913,7 +1209,8 @@ export const scheduleStreakWarningIfNeeded = async (
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
 
-    const today = new Date().toISOString().split('T')[0];
+    const _d = new Date();
+    const today = `${_d.getFullYear()}-${String(_d.getMonth() + 1).padStart(2, '0')}-${String(_d.getDate()).padStart(2, '0')}`;
 
     // Проверяем: цепочка > 0 и урок сегодня ещё не выполнен
     const [streakRaw, lastActiveRaw, notifEnabledRaw] = await Promise.all([
@@ -1272,7 +1569,134 @@ export const scheduleStreakWarningIfNeeded = async (
 
     await AsyncStorage.setItem('streak_warning_scheduled', today);
     await AsyncStorage.setItem(STREAK_WARNING_NOTIF_ID_KEY, warningId);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+};
+
+// ── Energy Full уведомление ───────────────────────────────────────────────────
+// Привязано к СОБЫТИЮ траты энергии (EnergyContext.spendOne / spendAmount).
+// Когда энергия опускается ниже максимума — планируем локальный пуш на точный
+// момент полного восстановления. При следующей трате/премиуме/максимуме —
+// перепланируем или отменяем. Это закрывает самую прямую петлю возврата
+// во freemium: «энергия восстановилась — заходи продолжать».
+//
+// Тихие часы 23:00–08:00 (локально): если момент полного восстановления
+// попадает в ночь, сдвигаем пуш на ближайшее 08:00, чтобы не будить.
+
+const ENERGY_FULL_QUIET_START_HOUR = 23; // включительно
+const ENERGY_FULL_QUIET_END_HOUR = 8;    // до 08:00
+
+/** Возвращает momentMs, сдвинутый из тихих часов (23:00–08:00) на ближайшее 08:00. */
+export function shiftEnergyMomentOutOfQuietHours(momentMs: number): number {
+  const at = new Date(momentMs);
+  const hour = at.getHours();
+  const inQuiet = hour >= ENERGY_FULL_QUIET_START_HOUR || hour < ENERGY_FULL_QUIET_END_HOUR;
+  if (!inQuiet) return momentMs;
+
+  const wake = new Date(momentMs);
+  // Если уже после полуночи (0–7ч) — пробуждение сегодня в 08:00,
+  // если поздний вечер (23ч) — пробуждение завтра в 08:00.
+  if (hour >= ENERGY_FULL_QUIET_START_HOUR) {
+    wake.setDate(wake.getDate() + 1);
+  }
+  wake.setHours(ENERGY_FULL_QUIET_END_HOUR, 0, 0, 0);
+  return wake.getTime();
+}
+
+/**
+ * Отменить запланированный пуш о восстановлении энергии.
+ * Вызывается, когда энергия снова на максимуме (или включился премиум/безлимит).
+ */
+export const cancelEnergyFullNotification = async (): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    await cancelScheduledNotificationsByType(N, ['energy_full']);
+    const prevId = await AsyncStorage.getItem(ENERGY_FULL_NOTIF_ID_KEY);
+    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+    await AsyncStorage.removeItem(ENERGY_FULL_NOTIF_ID_KEY);
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+};
+
+/**
+ * Запланировать локальный пуш на момент полного восстановления энергии.
+ * @param secondsUntilFull — секунд до момента, когда энергия достигнет максимума.
+ *   Вычисляется вызывающей стороной (EnergyContext) по точному recovery interval.
+ * @param lang — язык интерфейса для локализованного текста.
+ *
+ * Идемпотентна: каждый вызов сначала отменяет предыдущий energy_full пуш,
+ * затем планирует новый. Безопасно дёргать на каждую трату энергии.
+ */
+export const scheduleEnergyFullNotification = async (
+  secondsUntilFull: number,
+  lang: Lang = 'ru',
+): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    // Не запрашиваем разрешение здесь (трата энергии — не место для prompt'а);
+    // планируем только если разрешение уже выдано.
+    const hasPermission = await canUseNotifications(false);
+    if (!hasPermission) {
+      // Разрешения нет — на всякий случай вычистим старый пуш и выйдем.
+      await cancelEnergyFullNotification();
+      return;
+    }
+
+    // Энергия уже полная или некорректный ввод — ничего не планируем.
+    if (!Number.isFinite(secondsUntilFull) || secondsUntilFull <= 0) {
+      await cancelEnergyFullNotification();
+      return;
+    }
+
+    const now = Date.now();
+    const rawMomentMs = now + secondsUntilFull * 1000;
+    const momentMs = shiftEnergyMomentOutOfQuietHours(rawMomentMs);
+    const secondsUntil = Math.max(1, Math.floor((momentMs - now) / 1000));
+
+    const _pe = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
+    const title = pickNotif(lang, notificationCopy({
+      ru: _pe(['⚡ Энергия восстановлена!', '⚡ Полный заряд!', '🔋 Энергия снова полная']),
+      uk: _pe(['⚡ Енергію відновлено!', '⚡ Повний заряд!', '🔋 Енергія знову повна']),
+      es: _pe(['⚡ ¡Energía recargada!', '⚡ ¡Carga completa!', '🔋 Tu energía está al máximo']),
+      'pt-BR': _pe(['⚡ Energia recarregada!', '⚡ Carga completa!', '🔋 Sua energia está cheia']),
+      vi: _pe(['⚡ Năng lượng đã hồi đầy!', '⚡ Đầy năng lượng!', '🔋 Năng lượng đã đầy lại']),
+      id: _pe(['⚡ Energi pulih penuh!', '⚡ Penuh lagi!', '🔋 Energimu sudah penuh']),
+      tr: _pe(['⚡ Enerji doldu!', '⚡ Tam şarj!', '🔋 Enerjin yeniden dolu']),
+      pl: _pe(['⚡ Energia odnowiona!', '⚡ Pełne naładowanie!', '🔋 Energia znów pełna']),
+    }));
+    const body = pickNotif(lang, notificationCopy({
+      ru: _pe(['Заходи и продолжи — самое время для урока 🎯', 'Заряд полон. Один урок — и день засчитан 🔥', 'Энергия ждёт. Продолжим практику? 💪']),
+      uk: _pe(['Заходь і продовжуй — саме час для уроку 🎯', 'Заряд повний. Один урок — і день зараховано 🔥', 'Енергія чекає. Продовжимо практику? 💪']),
+      es: _pe(['Entra y continúa: es buen momento para una clase 🎯', 'Carga completa. Una clase y cierras el día 🔥', 'Tu energía espera. ¿Seguimos practicando? 💪']),
+      'pt-BR': _pe(['Entre e continue: hora perfeita para uma lição 🎯', 'Carga cheia. Uma lição e o dia está fechado 🔥', 'Sua energia espera. Vamos praticar? 💪']),
+      vi: _pe(['Vào học tiếp nào — thời điểm hoàn hảo cho một bài 🎯', 'Đầy năng lượng. Một bài là xong ngày hôm nay 🔥', 'Năng lượng đang chờ. Luyện tập tiếp chứ? 💪']),
+      id: _pe(['Masuk dan lanjut — waktu pas untuk satu pelajaran 🎯', 'Energi penuh. Satu pelajaran, harimu beres 🔥', 'Energimu menunggu. Lanjut latihan? 💪']),
+      tr: _pe(['Gir ve devam et — bir ders için tam zamanı 🎯', 'Şarj dolu. Bir ders ve gün tamam 🔥', 'Enerjin hazır. Pratiğe devam? 💪']),
+      pl: _pe(['Wejdź i kontynuuj — idealny moment na lekcję 🎯', 'Pełna energia. Jedna lekcja i dzień zaliczony 🔥', 'Energia czeka. Ćwiczymy dalej? 💪']),
+    }));
+
+    await cancelScheduledNotificationsByType(N, ['energy_full']);
+    const prevId = await AsyncStorage.getItem(ENERGY_FULL_NOTIF_ID_KEY);
+    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+
+    const energyId = await N.scheduleNotificationAsync({
+      content: {
+        title,
+        body,
+        sound: false,
+        data: { type: 'energy_full' },
+      },
+      trigger: triggerInterval(secondsUntil),
+    });
+
+    await AsyncStorage.setItem(ENERGY_FULL_NOTIF_ID_KEY, energyId);
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 // ── Weekly Recap уведомление ──────────────────────────────────────────────────
@@ -1368,7 +1792,9 @@ const scheduleWeeklyRecapNotificationUnlocked = async (
 
     await AsyncStorage.setItem(WEEKLY_RECAP_NOTIF_ID_KEY, weeklyId);
     await AsyncStorage.setItem('weekly_recap_scheduled', nextSunday.toISOString().split('T')[0]);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 export const scheduleWeeklyRecapNotification = (
@@ -1454,7 +1880,9 @@ export const scheduleMonthlyRecapNotification = async (
 
     await AsyncStorage.setItem(MONTHLY_RECAP_NOTIF_ID_KEY, monthlyId);
     await AsyncStorage.setItem('monthly_recap_scheduled', firstNextMonth.toISOString().split('T')[0]);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 // ── «Соперник обогнал тебя в лиге» — локальное уведомление ──────────────────
@@ -1566,7 +1994,9 @@ export const checkLeagueOvertakeNotification = async (
       content: { title, body, sound: false, data: { type: 'league_overtake' } },
       trigger: null, // немедленное уведомление
     });
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
 };
 
 // ── Загрузка настроек ─────────────────────────────────────────────────────────
@@ -1593,7 +2023,7 @@ export const loadNotificationSettings = async (): Promise<{
 
 // ── Ежедневная фраза в 7:00 утра ───────────────────────────────────────────────
 // Планируется при старте приложения. Показывает случайную фразу на английском и русском.
-export const schedulePhrasOfDayNotification = async (
+export const schedulePhraseOfDayNotification = async (
   lang: Lang = 'ru',
   opts: NotificationTargetOpts = {}
 ): Promise<void> => {
@@ -1618,17 +2048,8 @@ export const schedulePhrasOfDayNotification = async (
     const phrase = await getTodayPhraseForTarget(studyTarget);
     if (!phrase) return;
 
-    // Планируем на 7:00 утра
-    const now = new Date();
-    const phraseTime = new Date(now);
-    phraseTime.setHours(7, 0, 0, 0);
-
-    // Если уже прошло 7:00 — планируем на завтра
-    let secondsUntil = Math.floor((phraseTime.getTime() - now.getTime()) / 1000);
-    if (secondsUntil <= 0) {
-      phraseTime.setDate(phraseTime.getDate() + 1);
-      secondsUntil = Math.floor((phraseTime.getTime() - now.getTime()) / 1000);
-    }
+    // Используем ежедневный повторяющийся триггер — не слетает после перезагрузки
+    // телефона и не требует, чтобы пользователь открывал приложение каждый день.
 
     const TEASERS_RU = [
       `"${phrase.english}" — знаешь что это значит? 👀`,
@@ -1720,12 +2141,13 @@ export const schedulePhrasOfDayNotification = async (
         sound: false,
         data: { type: 'phrase_of_day', phraseId: phrase.english },
       },
-      trigger: triggerInterval(secondsUntil),
+      trigger: triggerDaily(7, 0),
     });
 
     await AsyncStorage.setItem('phrase_notif_scheduled', today);
     await AsyncStorage.setItem(PHRASE_OF_DAY_NOTIF_ID_KEY, phraseId);
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
   }
 };
 
@@ -1766,11 +2188,24 @@ export const setupNotificationTapHandler = (
         case 'premium':
         case 'league_overtake':
         case 'phrase_of_day':
-          navTabHome();
-          break;
         case 'weekly_recap':
         case 'monthly_recap':
           navTabHome();
+          break;
+        case 'streak_at_risk':
+        case 'inactive_return':
+        case 'inactive_long':
+          if (typeof router.replace === 'function') {
+            router.replace('/(tabs)/lessons' as any);
+          } else {
+            router.push('/(tabs)/lessons' as any);
+          }
+          break;
+        case 'intro_expiring':
+        case 'upsell_d4':
+        case 'upsell_d7':
+        case 'upsell_d14':
+          router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell' } } as any);
           break;
         default:
           navTabHome();

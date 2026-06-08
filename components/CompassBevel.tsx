@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { COMPASS_RICH } from '../constants/compassTheme';
 
@@ -13,7 +13,7 @@ const INTENSITY = {
   strong: { top: 0.12, bottom: 0.24, border: 0.24 },
 } as const;
 
-export default function CompassBevel({ radius, intensity = 'normal' }: CompassBevelProps) {
+function CompassBevel({ radius, intensity = 'normal' }: CompassBevelProps) {
   const v = INTENSITY[intensity];
   return (
     <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { borderRadius: radius, overflow: 'hidden' }]}>
@@ -24,6 +24,8 @@ export default function CompassBevel({ radius, intensity = 'normal' }: CompassBe
     </View>
   );
 }
+
+export default memo(CompassBevel);
 
 const styles = StyleSheet.create({
   topEdge: {

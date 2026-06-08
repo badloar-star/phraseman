@@ -3,7 +3,9 @@ import path from 'path';
 import sharp from 'sharp';
 
 const ROOT = process.cwd();
-const OUTPUT_DIR = path.join(ROOT, 'assets', 'images', 'levels', 'generated-v5-dalle');
+const OUTPUT_DIR = process.env.LEVEL_AVATAR_OUTPUT_DIR
+  ? path.resolve(ROOT, process.env.LEVEL_AVATAR_OUTPUT_DIR)
+  : path.join(ROOT, 'assets', 'images', 'levels', 'generated-v5-dalle');
 const QA_DIR = path.join(ROOT, 'qa-artifacts');
 const CANVAS_SIZE = 512;
 
@@ -36,26 +38,107 @@ function mix(a, b, amount) {
   };
 }
 
+function eased(progress) {
+  return progress * progress * (3 - 2 * progress);
+}
+
+const LUXURY_GRADIENT_STOPS = [
+  {
+    at: 0.00,
+    name: 'graphite steel',
+    primary: { r: 92, g: 98, b: 106 },
+    secondary: { r: 39, g: 45, b: 54 },
+    accent: { r: 223, g: 228, b: 234 },
+  },
+  {
+    at: 0.18,
+    name: 'pewter moonstone',
+    primary: { r: 126, g: 130, b: 132 },
+    secondary: { r: 71, g: 78, b: 81 },
+    accent: { r: 238, g: 235, b: 224 },
+  },
+  {
+    at: 0.35,
+    name: 'champagne graphite',
+    primary: { r: 146, g: 125, b: 92 },
+    secondary: { r: 64, g: 58, b: 50 },
+    accent: { r: 246, g: 218, b: 158 },
+  },
+  {
+    at: 0.55,
+    name: 'champagne petrol',
+    primary: { r: 48, g: 102, b: 97 },
+    secondary: { r: 29, g: 58, b: 67 },
+    accent: { r: 230, g: 198, b: 128 },
+  },
+  {
+    at: 0.73,
+    name: 'sapphire petrol',
+    primary: { r: 42, g: 82, b: 126 },
+    secondary: { r: 28, g: 45, b: 84 },
+    accent: { r: 142, g: 191, b: 201 },
+  },
+  {
+    at: 0.88,
+    name: 'royal blue gold',
+    primary: { r: 47, g: 67, b: 116 },
+    secondary: { r: 26, g: 35, b: 68 },
+    accent: { r: 218, g: 180, b: 98 },
+  },
+  {
+    at: 1.00,
+    name: 'black gold diamond',
+    primary: { r: 204, g: 169, b: 89 },
+    secondary: { r: 31, g: 31, b: 38 },
+    accent: { r: 255, g: 239, b: 186 },
+  },
+];
+
+function luxuryStopAt(progress) {
+  const t = clamp(progress, 0, 1);
+  for (let index = 0; index < LUXURY_GRADIENT_STOPS.length - 1; index += 1) {
+    const a = LUXURY_GRADIENT_STOPS[index];
+    const b = LUXURY_GRADIENT_STOPS[index + 1];
+    if (t >= a.at && t <= b.at) {
+      const local = eased((t - a.at) / (b.at - a.at));
+      return {
+        name: `${a.name} to ${b.name}`,
+        primary: mix(a.primary, b.primary, local),
+        secondary: mix(a.secondary, b.secondary, local),
+        accent: mix(a.accent, b.accent, local),
+      };
+    }
+  }
+  return LUXURY_GRADIENT_STOPS[LUXURY_GRADIENT_STOPS.length - 1];
+}
+
 function colorForLevel(level) {
   const t = (level - 1) / 59;
-  const base = {
-    r: 232 + 21 * t,
-    g: 245 - 208 * t,
-    b: 242 - 213 * t,
-  };
+  const material = luxuryStopAt(t);
+  const accentPower = Math.pow(eased(t), 1.18);
+  const baseNeutral = { r: 94, g: 99, b: 107 };
+  const secondaryNeutral = { r: 38, g: 44, b: 52 };
+  const accentNeutral = { r: 224, g: 228, b: 234 };
+  const base = mix(baseNeutral, material.primary, accentPower);
+  const secondary = mix(secondaryNeutral, material.secondary, accentPower);
+  const accent = mix(accentNeutral, material.accent, accentPower);
   const white = { r: 255, g: 255, b: 255 };
-  const graphite = { r: 32, g: 36, b: 42 };
-  const deepRed = { r: 72, g: 10, b: 14 };
+  const deepShadow = mix(secondary, { r: 0, g: 0, b: 0 }, 0.34);
+  const edgeTone = mix(secondary, base, 0.22);
+  const satin = mix(accent, white, 0.16);
 
   return {
     base: rgb(base),
-    top: rgb(mix(base, white, 0.38)),
-    mid: rgb(mix(base, graphite, 0.08)),
-    bottom: rgb(mix(base, t > 0.68 ? deepRed : graphite, 0.34)),
-    edge: rgb(mix(base, graphite, 0.48)),
-    rim: rgb(mix(base, white, 0.66)),
-    rimDark: rgb(mix(base, graphite, 0.42)),
-    shine: rgb(mix(base, white, 0.56)),
+    top: rgb(mix(base, satin, 0.42)),
+    mid: rgb(mix(base, accent, 0.14 + accentPower * 0.1)),
+    accent: rgb(mix(base, accent, 0.36 + accentPower * 0.2)),
+    bottom: rgb(mix(secondary, deepShadow, 0.52)),
+    edge: rgb(mix(edgeTone, deepShadow, 0.42)),
+    rim: rgb(mix(base, accent, 0.62)),
+    rimDark: rgb(mix(secondary, edgeTone, 0.36)),
+    shine: rgb(mix(base, white, 0.52)),
+    facetOpacity: (0.08 + accentPower * 0.32).toFixed(2),
+    innerGlowOpacity: (0.06 + accentPower * 0.2).toFixed(2),
   };
 }
 
@@ -79,7 +162,8 @@ function svgForLevel(level) {
     </clipPath>
     <linearGradient id="body" x1="256" y1="18" x2="256" y2="494" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="${colors.top}"/>
-      <stop offset="0.52" stop-color="${colors.mid}"/>
+      <stop offset="0.38" stop-color="${colors.mid}"/>
+      <stop offset="0.68" stop-color="${colors.accent}"/>
       <stop offset="1" stop-color="${colors.bottom}"/>
     </linearGradient>
     <linearGradient id="rim" x1="90" y1="54" x2="422" y2="470" gradientUnits="userSpaceOnUse">
@@ -87,6 +171,11 @@ function svgForLevel(level) {
       <stop offset="0.32" stop-color="${colors.rim}"/>
       <stop offset="0.72" stop-color="${colors.rimDark}"/>
       <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="facet" x1="76" y1="78" x2="436" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="${colors.accent}"/>
+      <stop offset="0.46" stop-color="${colors.mid}"/>
+      <stop offset="1" stop-color="${colors.bottom}"/>
     </linearGradient>
     <linearGradient id="numberFill" x1="0" y1="158" x2="0" y2="346" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FFFFFF"/>
@@ -96,6 +185,8 @@ function svgForLevel(level) {
   </defs>
   <g clip-path="url(#hexClip)">
     <polygon points="${points}" fill="url(#body)"/>
+    <polygon points="${points}" fill="url(#facet)" opacity="${colors.facetOpacity}"/>
+    <path d="M78 140 L256 48 L434 140 L256 238 Z" fill="${colors.accent}" opacity="${colors.innerGlowOpacity}"/>
     <polygon points="${points}" fill="none" stroke="${colors.edge}" stroke-width="30" opacity="0.42"/>
     <polygon points="${points}" fill="none" stroke="url(#rim)" stroke-width="18" opacity="0.98"/>
     <polygon points="${points}" fill="none" stroke="#FFFFFF" stroke-width="6" opacity="0.34"/>
@@ -110,6 +201,7 @@ function svgForLevel(level) {
 async function writeLevel(level) {
   const svg = Buffer.from(svgForLevel(level));
   const outPath = path.join(OUTPUT_DIR, `${level}.webp`);
+  await fs.rm(outPath, { force: true });
   await sharp(svg)
     .resize(CANVAS_SIZE, CANVAS_SIZE, { fit: 'contain' })
     .webp({ quality: 94, effort: 0, smartSubsample: true })
@@ -194,7 +286,14 @@ async function main() {
   const manifest = {
     version: 'generated-v6-custom-avatar-hex',
     generatedAt: new Date().toISOString(),
-    intent: 'Level avatar hexes regenerated as the paid custom avatar card hex underlay only: no icon/logo, transparent corners, one centered number, and a smooth 60-step light-to-red progression.',
+    intent: 'Level avatar hexes regenerated as paid custom avatar card hex underlays only: no icon/logo, transparent corners, one centered number, and a smooth premium two-tone material progression: grey metal slowly gains unusual luxury color accents instead of stepping through a rainbow.',
+    continuousGradientStops: LUXURY_GRADIENT_STOPS.map((stop) => ({
+      at: stop.at,
+      name: stop.name,
+      primary: rgb(stop.primary),
+      secondary: rgb(stop.secondary),
+      accent: rgb(stop.accent),
+    })),
     finalCanvasSize: CANVAS_SIZE,
     referenceComponent: 'components/CustomAvatarBadge.tsx',
     referenceViewBoxPoints: CUSTOM_AVATAR_HEX_VIEWBOX_POINTS,

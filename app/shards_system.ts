@@ -47,6 +47,7 @@ export type ShardSource =
   | 'lessons_5_perfect'     // +3 5 уроков подряд без ошибок
   | 'level_gift'            // +1 из подарка за уровень (×3 = +3)
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
+  | 'plan_day_complete'     // +2 Завершён день персонального плана (разово на день плана)
   | 'bug_report';           // +1 Отправил репорт об ошибке
 
 export const SHARD_REWARDS: Record<ShardSource, number> = {
@@ -69,6 +70,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   lessons_5_perfect: 3,
   level_gift: 1,
   preposition_drill_perfect: 1,
+  plan_day_complete: 2,
   bug_report: 1,
 };
 
@@ -241,7 +243,9 @@ const logShardTransaction = async (
       balanceAfter,
       ts: new Date().toISOString(),
     });
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[shards_system]', e);
+  }
 };
 
 export type AddShardOpts = { suppressEarnEvent?: boolean };
@@ -645,7 +649,9 @@ const markOneTimeClaimInCloud = async (
         createdAt: firestore.FieldValue.serverTimestamp(),
       });
     });
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[shards_system]', e);
+  }
 };
 
 export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test'): Promise<number> => {
@@ -775,7 +781,9 @@ export const onArenaWin = async (opts?: OnArenaWinOpts): Promise<{ shards: numbe
       const bonus = await addShards('arena_10_wins', { suppressEarnEvent: true });
       return { shards: winShards, milestoneBonus: bonus };
     }
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[shards_system]', e);
+  }
   return { shards: winShards, milestoneBonus: 0 };
 };
 
@@ -816,7 +824,9 @@ const syncShardsToCloud = async (balance: number, meta?: ShardBalanceMeta | null
         shards_updated_reason: effectiveMeta.reason,
       }, { merge: true });
     });
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[shards_system]', e);
+  }
 };
 
 // ── Загрузить осколки из облака (при первом входе / смене устройства) ─────
@@ -876,7 +886,9 @@ export const loadShardsFromCloud = async (): Promise<void> => {
       const b = await getShardsBalance();
       await emitShardsBalanceUpdated(b, appliedMeta);
     }
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[shards_system]', e);
+  }
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

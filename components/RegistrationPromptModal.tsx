@@ -13,7 +13,7 @@
 //   • Эмитим событие auth_provider_linked (для обновления UI Settings).
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image as ExpoImage } from 'expo-image';
@@ -54,7 +54,7 @@ interface Props {
   onSignedIn?: (result: SignInResult) => void;
 }
 
-export default function RegistrationPromptModal({
+function RegistrationPromptModal({
   visible,
   context,
   title,
@@ -194,7 +194,7 @@ export default function RegistrationPromptModal({
   const labelApple = triLang(lang, { ru: 'Войти через Apple', uk: 'Війти з Apple', es: 'Entrar con Apple', 'pt-BR': 'Entrar com Apple', vi: 'Đăng nhập bằng Apple', id: 'Masuk dengan Apple', tr: 'Apple ile giriş yap', pl: 'Zaloguj przez Apple' });
   const labelLater = triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
   const labelPrivacy = triLang(lang, {
-    ru: 'Мы не публикуем ваш email и не отправляем спам.',
+    ru: 'Твой email остаётся у тебя — никакого спама.',
     uk: 'Ми не публікуємо ваш email і не надсилаємо спам.',
     es: 'No publicamos tu correo electrónico ni enviamos spam.',
     'pt-BR': 'Não publicamos seu email nem enviamos spam.',
@@ -495,6 +495,8 @@ export default function RegistrationPromptModal({
     </Modal>
   );
 }
+
+export default memo(RegistrationPromptModal);
 
 const styles = StyleSheet.create({
   backdrop: {

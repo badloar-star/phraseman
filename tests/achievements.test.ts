@@ -74,18 +74,19 @@ describe('achievements', () => {
     expect(missingImages).toEqual([]);
   });
 
-  it('keeps fallback achievement art visible until generated icons finish loading', () => {
+  it('renders generated achievement art immediately and keeps fallback only for image errors', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');
     const achievementImageComponent = source.match(/function AchievementImageWithFallback\([\s\S]*?\n}\n\nfunction CategoryIconImageWithFallback/)?.[0] ?? '';
     const categoryImageComponent = source.match(/function CategoryIconImageWithFallback\([\s\S]*?\n}\n\nfunction BadgeShieldInner/)?.[0] ?? '';
 
-    expect(achievementImageComponent).toContain('!loaded ?');
-    expect(achievementImageComponent).toContain('onLoad={() => setLoaded(true)}');
-    expect(achievementImageComponent).toContain('onError={() => setLoaded(false)}');
-    expect(categoryImageComponent).toContain('(!source || !loaded)');
-    expect(categoryImageComponent).toContain('onLoad={() => setLoaded(true)}');
-    expect(categoryImageComponent).toContain('onError={() => setLoaded(false)}');
+    expect(source).toContain("import { Image as ExpoImage } from 'expo-image';");
+    expect(achievementImageComponent).toContain('source && !imageFailed');
+    expect(achievementImageComponent).not.toContain('onLoad={() => setLoaded(true)}');
+    expect(achievementImageComponent).toContain('onError={() => setImageFailed(true)}');
+    expect(categoryImageComponent).toContain('source && !imageFailed');
+    expect(categoryImageComponent).not.toContain('onLoad={() => setLoaded(true)}');
+    expect(categoryImageComponent).toContain('onError={() => setImageFailed(true)}');
   });
 
   it('does not define level achievements above the real level cap', () => {

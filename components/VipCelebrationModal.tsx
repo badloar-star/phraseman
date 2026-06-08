@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PremiumCelebrationModal from './PremiumCelebrationModal';
 
-export default function VipCelebrationModal({
+function VipCelebrationModal({
   visible,
   onClose,
 }: {
@@ -10,3 +10,5 @@ export default function VipCelebrationModal({
 }) {
   return <PremiumCelebrationModal visible={visible} onClose={onClose} variant="vip" />;
 }
+
+export default memo(VipCelebrationModal);

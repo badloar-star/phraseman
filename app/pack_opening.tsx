@@ -7,13 +7,13 @@ import {
   BackHandler,
   Dimensions,
   Easing,
-  Image,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -316,7 +316,7 @@ function FlippableCard({
                 style={[StyleSheet.absoluteFillObject, { borderRadius: 16, opacity: 0.35 }]}
               />
               {packIcon ? (
-                <Image source={packIcon} style={styles.cardBackIcon} resizeMode="contain" />
+                <Image source={packIcon} style={styles.cardBackIcon} contentFit="contain" />
               ) : (
                 <Ionicons name="albums-outline" size={42} color={accent} />
               )}
@@ -599,6 +599,7 @@ export default function PackOpeningScreen() {
 
       {/* Сітка карточок */}
       <ScrollView
+        decelerationRate="normal"
         contentContainerStyle={{
           paddingHorizontal: H_PADDING,
           paddingTop: 12,

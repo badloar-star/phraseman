@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 
@@ -7,7 +7,7 @@ interface HexScoreProps {
   size?: number;
 }
 
-export default function HexScore({ score, size = 48 }: HexScoreProps) {
+function HexScore({ score, size = 48 }: HexScoreProps) {
   const { theme: t } = useTheme();
   return (
     <View style={[styles.hex, { width: size, height: size, backgroundColor: t.accent }]}>
@@ -17,6 +17,8 @@ export default function HexScore({ score, size = 48 }: HexScoreProps) {
     </View>
   );
 }
+
+export default memo(HexScore);
 
 const styles = StyleSheet.create({
   hex: { borderRadius: 8, justifyContent: 'center', alignItems: 'center' },

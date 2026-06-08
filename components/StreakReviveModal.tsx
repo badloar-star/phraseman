@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
-  Image,
   Modal,
   Platform,
   StyleSheet,
@@ -11,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from './SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -61,7 +61,7 @@ function formatStreakDays(count: number, lang: Lang): string {
   });
 }
 
-export default function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 'home' }: StreakReviveModalProps) {
+function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 'home' }: StreakReviveModalProps) {
   const router = useRouter();
   const { lang } = useLang();
   const { f, theme: t, themeMode } = useTheme();
@@ -121,7 +121,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived, 
   });
 
   const subtitle = triLang(lang, {
-    ru: `Вы потеряли серию из ${lostStreakText}. Хотите восстановить свой рекорд или начать новую цепочку?`,
+    ru: `Ты пропустил серию из ${lostStreakText}. Восстанови рекорд или начни новую цепочку.`,
     uk: `Ви втратили серію з ${lostStreakText}. Хочете відновити свій рекорд чи почати новий ланцюжок?`,
     es: `Perdiste una racha de ${lostStreakText}. ¿Quieres recuperar tu récord o empezar una nueva racha?`,
     'pt-BR': `Você perdeu uma sequência de ${lostStreakText}. Quer restaurar seu recorde ou começar uma nova sequência?`,
@@ -235,7 +235,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived, 
       }
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось восстановить цепочку. Попробуй ещё раз.',
+        messageRu: 'Цепочку восстановить не получилось. Попробуй ещё раз.',
         messageUk: 'Не вдалося відновити ланцюжок. Спробуй ще раз.',
         messageEs: 'No se pudo recuperar la racha. Inténtalo de nuevo.',
         messagePtBr: 'Não foi possível restaurar a sequência. Tente novamente.',
@@ -358,7 +358,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived, 
               <Image
                 source={oskolokImageForPackShards(cost)}
                 style={styles.priceIcon}
-                resizeMode="contain"
+                contentFit="contain"
               />
               <View style={styles.priceTextWrap}>
                 <Text style={[styles.priceValue, { color: modalAccent }]}>{cost}</Text>
@@ -384,7 +384,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived, 
                 ) : (
                   <>
                     <View style={styles.shardBtnIconSlot} pointerEvents="none">
-                      <Image source={oskolokImageForPackShards(cost)} style={{ width: 30, height: 30 }} resizeMode="contain" />
+                      <Image source={oskolokImageForPackShards(cost)} style={{ width: 30, height: 30 }} contentFit="contain" />
                     </View>
                     <Text
                       style={[
@@ -418,6 +418,8 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived, 
     </Modal>
   );
 }
+
+export default memo(StreakReviveModal);
 
 const styles = StyleSheet.create({
   overlayRoot: {

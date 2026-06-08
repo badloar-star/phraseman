@@ -64,10 +64,11 @@ describe('custom avatar assets', () => {
   it('renders badge images as absolute centered layers', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'CustomAvatarBadge.tsx'), 'utf8');
 
-    expect(source).toContain("left: '50%'");
-    expect(source).toContain("top: '50%'");
-    expect(source).toContain('marginLeft: -imageSize / 2');
-    expect(source).toContain('marginTop: -imageSize / 2');
+    expect(source).toContain("import { Image } from 'expo-image';");
+    expect(source).toContain("const centeredImageLayerStyle = {");
+    expect(source).toContain("alignItems: 'center' as const");
+    expect(source).toContain("justifyContent: 'center' as const");
+    expect(source).toContain('style={centeredImageLayerStyle}');
   });
 
   it('keeps generated badge artwork centered in its transparent canvas', async () => {
@@ -76,7 +77,7 @@ describe('custom avatar assets', () => {
       .filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file))
       .sort();
 
-    expect(files).toHaveLength(60);
+    expect(files).toHaveLength(124);
 
     const failures: string[] = [];
     for (const file of files) {
@@ -100,7 +101,7 @@ describe('custom avatar assets', () => {
       .filter((file) => CUSTOM_AVATAR_ASSET_RE.test(file))
       .sort();
 
-    expect(files).toHaveLength(60);
+    expect(files).toHaveLength(124);
 
     const failures: string[] = [];
     for (const file of files) {

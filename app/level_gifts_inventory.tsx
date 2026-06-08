@@ -1,9 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
-import { Image, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import LevelGiftArt from '../components/LevelGiftArt';
@@ -48,7 +50,7 @@ function GiftIcon({ gift, themeMode }: { gift: GiftDef; themeMode: Parameters<ty
     <Image
       source={getLevelGiftRewardIcon(gift.id, themeMode)}
       style={{ width: 38, height: 38 }}
-      resizeMode="contain"
+      contentFit="contain"
     />
   );
 }
@@ -93,7 +95,7 @@ const dualPartLabel = (
   lang: Parameters<typeof giftTitleForLang>[1],
 ): string => (
   part === 'f2p'
-    ? triLang(lang, { ru: 'ÐŸÐ¾Ð´Ð°Ñ€Ð¾Ðº Ð·Ð° ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ', uk: 'ÐŸÐ¾Ð´Ð°Ñ€ÑƒÐ½Ð¾Ðº Ð·Ð° Ñ€Ñ–Ð²ÐµÐ½ÑŒ', es: 'Regalo por nivel', 'pt-BR': 'Presente de n\u00edvel', vi: 'Qu\u00e0 c\u1ea5p \u0111\u1ed9', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' })
+    ? triLang(lang, { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente de n\u00edvel', vi: 'Qu\u00e0 c\u1ea5p \u0111\u1ed9', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' })
     : giftBonusLabel(lang)
 );
 
@@ -133,9 +135,9 @@ export default function LevelGiftsInventoryScreen() {
       <SafeAreaView testID="screen-level-gifts-inventory" style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={() => safeRouterBack(router)} hitSlop={12}>
+            <TapScale onPress={() => safeRouterBack(router)} hitSlop={12}>
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }} numberOfLines={1}>
               {triLang(lang, {
                 ru: 'Подарки',
@@ -150,7 +152,7 @@ export default function LevelGiftsInventoryScreen() {
             </Text>
           </View>
 
-          <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false}>
             {activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 2 }}>
@@ -183,7 +185,7 @@ export default function LevelGiftsInventoryScreen() {
                     }}
                   >
                     <View style={{ width: 44, height: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: `${gift.accent}22` }}>
-                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} resizeMode="contain" />
+                      <Image source={getLevelGiftRewardIcon(gift.iconGiftId, themeMode)} style={{ width: 38, height: 38 }} contentFit="contain" />
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '900' }}>
@@ -281,7 +283,7 @@ export default function LevelGiftsInventoryScreen() {
                           <Image
                             source={oskolokImageForPackShards(singleShardAmount, themeMode)}
                             style={{ width: rowArtSize, height: rowArtSize }}
-                            resizeMode="contain"
+                            contentFit="contain"
                           />
                         ) : (
                           <LevelGiftArt

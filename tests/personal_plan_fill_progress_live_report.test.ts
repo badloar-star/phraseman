@@ -34,6 +34,10 @@ describe('personal plan fill progress live report', () => {
       expect.objectContaining({ label: 'Impuls Day 2', status: 'certified', quality: 96 }),
       expect.objectContaining({ label: 'Echo Day 2', status: 'certified', quality: 96 }),
       expect.objectContaining({ label: 'Voyazh Day 3', status: 'certified', quality: 96 }),
+      expect.objectContaining({ label: 'Mitap Day 3', status: 'certified', quality: 96 }),
+      expect.objectContaining({ label: 'Gavan Day 3', status: 'certified', quality: 96 }),
+      expect.objectContaining({ label: 'Impuls Day 3', status: 'certified', quality: 96 }),
+      expect.objectContaining({ label: 'Echo Day 3', status: 'certified', quality: 96 }),
     ]));
   });
 

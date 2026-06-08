@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { UserProfile, TARGET_LEVEL_LABELS } from '../app/types/user_profile';
 import { Lang } from '../constants/i18n';
@@ -8,7 +8,7 @@ interface PersonalPlanCardProps {
   lang: Lang;
 }
 
-export function PersonalPlanCard({ profile, lang }: PersonalPlanCardProps) {
+function PersonalPlanCardBase({ profile, lang }: PersonalPlanCardProps) {
   if (!profile || !profile.estimatedTargetDate) {
     return null;
   }
@@ -96,6 +96,8 @@ export function PersonalPlanCard({ profile, lang }: PersonalPlanCardProps) {
     </View>
   );
 }
+
+export const PersonalPlanCard = memo(PersonalPlanCardBase);
 
 const styles = StyleSheet.create({
   container: {

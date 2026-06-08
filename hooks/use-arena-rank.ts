@@ -126,15 +126,20 @@ export function useArenaRank(): ArenaRankHookResult {
         }
         // eslint-disable-next-line @typescript-eslint/no-require-imports
         const db = require('@react-native-firebase/firestore').default();
-        unsub = db.collection('arena_profiles').doc(uid).onSnapshot((snap: { exists: boolean; data: () => ArenaProfile }) => {
-          if (!snap?.exists) {
-            if (!cancelled) setInfo(DEFAULT);
-            return;
+        unsub = db.collection('arena_profiles').doc(uid).onSnapshot(
+          (snap: { exists: boolean; data: () => ArenaProfile }) => {
+            if (!snap?.exists) {
+              if (!cancelled) setInfo(DEFAULT);
+              return;
+            }
+            const data = snap.data() as ArenaProfile;
+            rememberArenaLobbyProfile(data);
+            if (!cancelled) setInfo(duelRankInfoFromArenaProfile(data));
+          },
+          (error: unknown) => {
+            if (__DEV__) console.warn('[use-arena-rank] onSnapshot error:', error);
           }
-          const data = snap.data() as ArenaProfile;
-          rememberArenaLobbyProfile(data);
-          if (!cancelled) setInfo(duelRankInfoFromArenaProfile(data));
-        });
+        );
       } catch {
         if (!cancelled) setInfo((prev) => prev ?? DEFAULT);
       }

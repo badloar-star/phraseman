@@ -191,6 +191,26 @@ export async function getTimeUntilNextRecovery(): Promise<number> {
 }
 
 /**
+ * Секунд до момента, когда энергия достигнет максимума (чистая функция, для тестов и пушей).
+ * = (полных интервалов на недостающие единицы) − (уже прошедший остаток текущего интервала).
+ * Возвращает 0, если энергия уже на максимуме.
+ */
+export function secondsUntilEnergyFull(
+  current: number,
+  maxEnergy: number,
+  recoveryIntervalMs: number,
+  lastRecoveryTime: number,
+  now: number = Date.now(),
+): number {
+  if (current >= maxEnergy) return 0;
+  if (recoveryIntervalMs <= 0) return 0;
+  const missing = maxEnergy - current;
+  const elapsedInCurrent = Math.max(0, now - lastRecoveryTime) % recoveryIntervalMs;
+  const msUntilFull = missing * recoveryIntervalMs - elapsedInCurrent;
+  return Math.max(1, Math.ceil(msUntilFull / 1000));
+}
+
+/**
  * Форматировать время до восстановления в читаемый формат (e.g., "1ч 30м 0с", "45с").
  */
 export function formatTimeUntilRecovery(ms: number): string {

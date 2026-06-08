@@ -170,7 +170,10 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   if (!titleRu && !titleUk && !titleEs && !titlePtBr && !titleVi && !titleId && !titleTr && !titlePl) {
     throw new HttpsError('invalid-argument', 'title required');
   }
-  const n = raw.cards?.length ?? 0;
+  if (!Array.isArray(raw.cards)) {
+    throw new HttpsError('invalid-argument', 'cards must be an array');
+  }
+  const n = raw.cards.length;
   if (n < CARD_MIN || n > CARD_MAX) {
     throw new HttpsError('invalid-argument', `Cards must be ${CARD_MIN}–${CARD_MAX}`);
   }

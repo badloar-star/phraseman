@@ -478,7 +478,7 @@ export default function FlashcardsCategoryHub({
         emitAppEvent(
           'action_toast',
           actionToastTri('error', {
-            ru: 'Не удалось загрузить карточки набора.',
+            ru: 'Карточки набора не загрузились.',
             uk: 'Не вдалося завантажити картки набору.',
             es: 'No se pudieron cargar las tarjetas del pack.',
             'pt-BR': 'Não foi possível carregar os cartões do pack.',
@@ -757,7 +757,7 @@ export default function FlashcardsCategoryHub({
             {packTileLabel}
           </Text>
           {pack.isPendingUpdateReview ? (
-            <Text style={{ fontSize: 9, color: isGradientSurface ? hubLabelAccent : t.accent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
+            <Text style={{ fontSize: 10, color: isGradientSurface ? hubLabelAccent : t.accent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
               {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación', 'pt-BR': 'Em moderação', vi: 'Đang kiểm duyệt', id: 'Dalam moderasi', tr: 'İncelemede', pl: 'W moderacji' })}
             </Text>
           ) : null}
@@ -1026,7 +1026,7 @@ export default function FlashcardsCategoryHub({
               communityPacks.length === 0 ? (
                 <Text style={{ width: hubBarW, color: isGradientSurface ? hubLabelMuted : t.textMuted, fontSize: labelSize + 2, textAlign: 'center', marginBottom: 8 }}>
                   {triLang(lang, {
-                    ru: 'Вы можете создать свой собственный набор и опубликовать его для других пользователей. После модерации его смогут увидеть все пользователи.',
+                    ru: 'Создай свой набор и опубликуй его для других пользователей. После модерации его увидят все.',
                     uk: 'Ви можете створити власний набір і опублікувати його для інших користувачів. Після модерації його зможуть побачити всі користувачі.',
                     es: 'Puedes crear tu propio pack y publicarlo para otros usuarios. Tras la moderación, todos los usuarios podrán verlo.',
                     'pt-BR': 'Você pode criar seu próprio pacote e publicá-lo para outros usuários. Após a moderação, todos os usuários poderão vê-lo.',

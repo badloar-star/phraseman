@@ -4,7 +4,7 @@ import type { SkylerThematicPack, SkylerThematicPackItem } from './quiz_thematic
 type LocalizedClue = Record<SourceLocale, string>;
 
 const promptLabel: Record<SourceLocale, string> = {
-  ru: 'Выберите английский вариант',
+  ru: 'Выбери английский вариант',
   uk: 'Виберіть англійський варіант',
   es: 'Elige la opción en inglés',
   'pt-BR': 'Escolha a opção em inglês',

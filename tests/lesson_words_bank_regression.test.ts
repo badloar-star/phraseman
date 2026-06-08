@@ -77,4 +77,16 @@ describe('lesson words bank regressions from error reports', () => {
       expect(options).toContain(expected);
     }
   });
+
+  it('keeps lesson 22 learning selectable when its RU prompt asks for learning', () => {
+    const words = lessonWordBank(22);
+    const word = words.find((item) => item.en === 'learning');
+
+    expect(word).toBeDefined();
+    expect(word?.ru).toBe('Процесс обучения / изучения');
+    expect(word?.uk).toBe('Процес навчання / вивчення');
+
+    const options = buildLessonWordOptions(word!, words, words);
+    expect(options).toContain('learning');
+  });
 });

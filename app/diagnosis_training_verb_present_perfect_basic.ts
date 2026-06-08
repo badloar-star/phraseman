@@ -193,7 +193,7 @@ function perfectStep(input: {
 }
 
 const WRONG_MIXED_DID_CURLY = 'I have already did it, but she hasn’t seen the result already.';
-const WRONG_MIXED_DID_MOJIBAKE = 'I have already did it, but she hasnâ€™t seen the result already.';
+const WRONG_MIXED_DID_YET = "I have already did it, but she hasn't seen the result yet.";
 
 export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
   id: 'verb_present_perfect_basic',
@@ -741,7 +741,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
         "I have already done it, but she hasn't seen the result yet.",
         "I already did it, but she hasn't saw the result yet.",
         WRONG_MIXED_DID_CURLY,
-        WRONG_MIXED_DID_MOJIBAKE,
+        WRONG_MIXED_DID_YET,
         "I have done already it, but she haven't seen the result yet.",
       ],
       correctAnswer: "I have already done it, but she hasn't seen the result yet.",
@@ -749,7 +749,7 @@ export const VERB_PRESENT_PERFECT_BASIC_TRAINING: DiagnosisTraining = {
       wrong: {
         "I already did it, but she hasn't saw the result yet.": tri('Has not saw ломает вторую часть. После has not нужен seen.', 'Has not saw ламає другу частину. Після has not потрібен seen.', 'Has not saw breaks the second part. Use seen after has not.'),
         [WRONG_MIXED_DID_CURLY]: tri('Have already did неправильно. После have нужен done. И для "еще не" в конце нужен yet.', 'Have already did неправильно. Після have потрібен done. І для "ще не" в кінці потрібен yet.', 'Have already did is wrong. After have, use done. For not yet, end with yet.'),
-        [WRONG_MIXED_DID_MOJIBAKE]: tri('Have already did неправильно. После have нужен done. И для "еще не" в конце нужен yet.', 'Have already did неправильно. Після have потрібен done. І для "ще не" в кінці потрібен yet.', 'Have already did is wrong. After have, use done. For not yet, end with yet.'),
+        [WRONG_MIXED_DID_YET]: tri('Have already did неправильно. После have нужен done.', 'Have already did неправильно. Після have потрібен done.', 'Have already did is wrong. After have, use done.'),
         "I have done already it, but she haven't seen the result yet.": tri('Already лучше перед done. И с she нужно has not, не have not.', 'Already краще перед done. І з she потрібно has not, не have not.', 'Already is better before done. With she, use has not, not have not.'),
       },
       focusWords: ['already done', "hasn't seen", 'yet'],

@@ -7,6 +7,8 @@ const {
   relayRecord,
 } = require('../tools/telegram-bridge/relay-latest.cjs');
 
+const MOJIBAKE_SESSION_AUDIT_TITLE = 'ÐÑÐ¾Ð²ÐµÑÑÐ¸ Ð°ÑÐ´Ð¸Ñ';
+
 const {
   buildCodexResumeCommand,
   addPromptQueueItems,
@@ -120,7 +122,7 @@ describe('telegram bridge core', () => {
     const indexPath = path.join(tempDir, 'session_index.jsonl');
     fs.writeFileSync(indexPath, [
       JSON.stringify({ id: 'session-1', thread_name: 'Проверить Telegram bridge' }),
-      JSON.stringify({ id: 'session-2', thread_name: 'ÐÑÐ¾Ð²ÐµÑÑÐ¸ Ð°ÑÐ´Ð¸Ñ' }),
+      JSON.stringify({ id: 'session-2', thread_name: MOJIBAKE_SESSION_AUDIT_TITLE }),
     ].join('\n'), 'utf8');
 
     const titles = loadSessionTitles(indexPath);

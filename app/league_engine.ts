@@ -364,8 +364,10 @@ const RESULT_CONSUMED_SIG_KEY = 'league_result_consumed_sig';
 
 export const LEAGUE_RESULT_ZONE_RATIO = 0.15;
 
+// Math.round даёт меньший размер зон для большинства групп (например, 7 × 0.15 = 1.05 → round=1, ceil=2),
+// что снижает ротацию и делает её менее агрессивной по сравнению с ceil.
 export const getLeagueResultZoneSize = (total: number): number => (
-  total >= 2 ? Math.max(1, Math.ceil(total * LEAGUE_RESULT_ZONE_RATIO)) : 0
+  total >= 2 ? Math.max(1, Math.round(total * LEAGUE_RESULT_ZONE_RATIO)) : 0
 );
 
 const normalizeMemberName = (name?: string | null): string =>

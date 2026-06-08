@@ -155,7 +155,7 @@ const GENERIC_TAGS: PersonalizedTag[] = [
   {
     key: 'generic_quizhard',
     emoji: '🥇',
-    ru: 'Квизы без дневного лимита и расширенные задания',
+    ru: 'Вызовы без дневного лимита и расширенные задания',
     uk: 'Квізи без денного ліміту та розширені завдання',
     es: 'Cuestionarios sin límite diario y tareas avanzadas',
     'pt-BR': 'Quizzes sem limite diário e tarefas avançadas',
@@ -224,7 +224,7 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
     tags.push({
       key: 'hard_blocks',
       emoji: '💪',
-      ru: `Дневной лимит квизов срабатывал — ты возвращался ${n} ${ru_times(n)}`,
+      ru: `Дневной лимит вызовов срабатывал — ты возвращался ${n} ${ru_times(n)}`,
       uk: `Денний ліміт квізів спрацьовував — ти повертався ${n} ${uk_times(n)}`,
       es: `El límite diario de cuestionarios se activó ${n} ${es_times(n)}`,
       'pt-BR': `O limite diário de quizzes apareceu ${n}x`,

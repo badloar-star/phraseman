@@ -28,6 +28,44 @@ service cloud.firestore {
       return isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId);
     }
 
+    // Ключи внутри progress, которые клиент не имеет права записывать.
+    // Пишутся только Admin SDK (RevenueCat webhook, Telegram активация, admin grant)
+    // ИЛИ админом через admin-панель (custom claim admin==true).
+    // Админ исключён намеренно: ручная выдача/отзыв VIP в admin/index.html и
+    // admin/testers.html идёт через клиентский web SDK (updateDoc) и подчиняется
+    // этим правилам. До добавления этой функции админ уже имел полный update-доступ
+    // (userDocOwnerMatchesAuth → isAdmin), поэтому исключение не ослабляет защиту —
+    // оно лишь сохраняет существующее поведение. От обычных юзеров premium-поля
+    // по-прежнему закрыты.
+    function progressHasNoPremiumWrites() {
+      return isAdmin()
+        || !request.resource.data.get('progress', {})
+              .diff(resource.data.get('progress', {}))
+              .affectedKeys().hasAny([
+                'premium_plan',
+                'premium_expiry',
+                'premium_rc_product_id',
+                'premium_rc_period_type',
+                'premium_rc_store',
+                'premium_rc_environment',
+                'premium_rc_event_type',
+                'premium_rc_updated_at',
+                'premium_rc_expiry_ms',
+                'premium_rc_purchased_at_ms',
+                'premium_rc_cancelled_at',
+                'admin_premium_override',
+                'premium_admin_grant_at',
+                'had_premium_ever',
+                'vip_active',
+                'vip_plan',
+                'vip_from',
+                'vip_until',
+                'vip_admin_override',
+                'vip_admin_grant_at',
+                'vip_migrated_from_admin_grant_at'
+              ]);
+    }
+
     function newUserDocOwnerMatchesAuth(userId) {
       return isAdmin()
         || isOwner(userId)
@@ -59,7 +97,10 @@ service cloud.firestore {
     //  - stableId-Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ñ Ð¿Ð¾Ð»ÐµÐ¼ firebaseAuthUid == request.auth.uid
     // ÐœÐ¾Ð´ÐµÑ€Ð°Ñ†Ð¸Ñ/Ð±Ð°Ð½/Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ isAdmin() (ÑÐ¼. admin/index.html, email+claim).
     match /users/{userId} {
-      allow read, update, delete: if userDocOwnerMatchesAuth(userId);
+      allow read, delete: if userDocOwnerMatchesAuth(userId);
+      // Клиент может обновлять свой документ, но не может трогать premium/VIP поля.
+      // Их пишет только Admin SDK (RevenueCat webhook, Telegram bot, admin grant).
+      allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites();
       allow create: if newUserDocOwnerMatchesAuth(userId);
 
       match /community_seller_inbox/{eventId} {
@@ -103,7 +144,7 @@ service cloud.firestore {
 
     // â”€â”€ Leaderboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /leaderboard/{userId} {
-      allow read: if true;
+      allow read: if request.auth != null;
       allow create, update: if isAdmin();
       allow delete: if userDocOwnerMatchesAuth(userId);
     }
@@ -145,7 +186,7 @@ service cloud.firestore {
     }
 
     match /banned_users/{docId} {
-      allow read:  if request.auth != null;
+      allow read:  if isAdmin() || (request.auth != null && request.auth.uid == docId);
       allow write: if isAdmin();
     }
 
@@ -283,12 +324,17 @@ service cloud.firestore {
       allow update: if request.auth != null
         && resource.data.playerIds.hasAny([request.auth.uid])
         && request.resource.data.diff(resource.data).affectedKeys()
-           .hasOnly(['state', 'questionStartedAt', 'currentQuestionIndex', 'forfeitedBy', 'rematchOffer']);
+           .hasOnly(['state', 'questionStartedAt', 'currentQuestionIndex', 'forfeitedBy', 'rematchOffer'])
+        && (!request.resource.data.keys().hasAny(['forfeitedBy'])
+            || request.resource.data.forfeitedBy == request.auth.uid);
     }
 
     // â”€â”€ Session players â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /session_players/{docId} {
-      allow read:   if request.auth != null;
+      // docId = {sessionId}_{playerId} — разрешаем читать только участникам той же сессии.
+      allow read:   if request.auth != null
+                    && resource.data.sessionId != null
+                    && get(/databases/$(database)/documents/session_players/$(resource.data.sessionId + '_' + request.auth.uid)).data.sessionId == resource.data.sessionId;
       allow create: if false;
       allow update: if request.auth != null
         && resource.data.playerId == request.auth.uid
@@ -415,7 +461,7 @@ service cloud.firestore {
 
     // Friend activity feed: users/{stableUid}/my_events/{eventId}.
     match /users/{userId}/my_events/{eventId} {
-      allow read: if request.auth != null;
+      allow read: if canonicalUserMatchesAuth(userId) || isAdmin();
       allow create, update, delete: if isAdmin();
     }
 

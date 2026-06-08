@@ -38,6 +38,7 @@ export type PersonalPlanDayQualityCode =
   | 'blocked_grammar_tag'
   | 'missing_word_option_count'
   | 'missing_word_correct_option_count'
+  | 'missing_word_option_reuses_phrase_token'
   | 'unsafe_missing_word_slot'
   | 'unsafe_missing_word_option'
   | 'scaffold_day'

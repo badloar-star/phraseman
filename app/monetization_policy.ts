@@ -35,8 +35,8 @@ export function buildSequentialFreeLessonUnlocks(params: {
 
 export type CoursePaywallContext = 'course_after_lesson3';
 
-export function lessonPaywallContext(lessonId: number): CoursePaywallContext {
-  void lessonId;
+export function lessonPaywallContext(lessonId: number): CoursePaywallContext | null {
+  if (isFreeLesson(lessonId)) return null;
   return 'course_after_lesson3';
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Text } from 'react-native';
 
 type MedalType = 'bronze' | 'silver' | 'gold';
@@ -14,6 +14,8 @@ const MEDAL_EMOJI: Record<MedalType, string> = {
   gold:   '🥇',
 };
 
-export default function MedalIcon({ type, size = 24 }: MedalIconProps) {
+function MedalIcon({ type, size = 24 }: MedalIconProps) {
   return <Text style={{ fontSize: size }}>{MEDAL_EMOJI[type]}</Text>;
 }
+
+export default memo(MedalIcon);

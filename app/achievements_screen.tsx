@@ -7,10 +7,12 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { Image as ExpoImage } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
+import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -928,7 +930,7 @@ const CAT_ICON_IMAGE: Record<string, any> = {
 };
 const CAT_LABEL_RU: Record<string, string> = {
   streak: 'Цепочка', lessons: 'Уроки', xp: 'Опыт',
-  quiz: 'Квизы', combo: 'Серии', special: 'Особые', medal: 'Медали',
+  quiz: 'Вызовы', combo: 'Серии', special: 'Особые', medal: 'Медали',
 };
 const CAT_LABEL_UK: Record<string, string> = {
   streak: 'Ланцюжок', lessons: 'Уроки', xp: 'Досвід',
@@ -1125,7 +1127,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
               }}
             >
               <Ionicons name="diamond" size={9} color="#FDE68A" />
-              <Text style={{ fontSize: 9, fontWeight: '800', color: '#FEF3C7' }} maxFontSizeMultiplier={1.1}>
+              <Text style={{ fontSize: 10, fontWeight: '800', color: '#FEF3C7' }} maxFontSizeMultiplier={1.1}>
                 {triLang(lang, { ru: 'Премиум', uk: 'Преміум', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}
               </Text>
             </View>
@@ -1211,15 +1213,15 @@ function AchievementImageWithFallback({
   iconColor: string;
   opacity: number;
 }) {
-  const [loaded, setLoaded] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
 
   useEffect(() => {
-    setLoaded(false);
+    setImageFailed(false);
   }, [source]);
 
   return (
     <View style={{ width: size, height: bodyHeight, alignItems: 'center', justifyContent: 'center' }}>
-      {!loaded ? (
+      {(!source || imageFailed) ? (
         <View pointerEvents="none" style={{ width: size, height: bodyHeight, alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
           <Image
             source={require('../assets/images/levels/achivement.webp')}
@@ -1235,14 +1237,16 @@ function AchievementImageWithFallback({
           />
         </View>
       ) : null}
-      <Image
-        source={source}
-        style={{ width: size, height: bodyHeight, opacity }}
-        resizeMode="contain"
-        fadeDuration={0}
-        onLoad={() => setLoaded(true)}
-        onError={() => setLoaded(false)}
-      />
+      {source && !imageFailed ? (
+        <ExpoImage
+          source={source}
+          style={{ width: size, height: bodyHeight, opacity }}
+          contentFit="contain"
+          cachePolicy="memory-disk"
+          transition={0}
+          onError={() => setImageFailed(true)}
+        />
+      ) : null}
     </View>
   );
 }
@@ -1256,29 +1260,28 @@ function CategoryIconImageWithFallback({
   fallbackIconName: string;
   color: string;
 }) {
-  const [loaded, setLoaded] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
 
   useEffect(() => {
-    setLoaded(false);
+    setImageFailed(false);
   }, [source]);
 
   return (
     <View style={{ width: 46, height: 46, alignItems: 'center', justifyContent: 'center' }}>
-      {(!source || !loaded) ? (
+      {(!source || imageFailed) ? (
         <View pointerEvents="none" style={{ width: 32, height: 32, borderRadius: 10, backgroundColor: color + '22', alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
           <Ionicons name={fallbackIconName as any} size={17} color={color} />
         </View>
       ) : null}
-      {source ? (
-        <Image
+      {source && !imageFailed ? (
+        <ExpoImage
           source={source}
           style={{ width: 46, height: 46 }}
-          resizeMode="contain"
+          contentFit="contain"
+          cachePolicy="memory-disk"
           accessible={false}
-          accessibilityIgnoresInvertColors
-          fadeDuration={0}
-          onLoad={() => setLoaded(true)}
-          onError={() => setLoaded(false)}
+          transition={0}
+          onError={() => setImageFailed(true)}
         />
       ) : null}
     </View>
@@ -1414,6 +1417,7 @@ function AchievementModal({
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, width: '100%', maxHeight: modalMaxHeight, overflow: 'hidden', position: 'relative' }}>
             <ScrollView
               keyboardShouldPersistTaps="handled"
+              decelerationRate="normal"
               showsVerticalScrollIndicator
               contentContainerStyle={{ padding: modalPad, alignItems: 'center', gap: 12 }}
             >
@@ -1470,7 +1474,7 @@ function AchievementModal({
               }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                   {triLang(lang, {
-                    ru: 'Квизовые достижения считаются по обычным правилам. Открой квизы и продолжай серию.',
+                    ru: 'Достижения по вызовам считаются по обычным правилам. Открой вызовы и продолжай серию.',
                     uk: 'Квізові досягнення рахуються за звичайними правилами. Відкрий квізи й продовжуй серію.',
                     es: 'Los logros de cuestionarios cuentan con las reglas normales. Abre los cuestionarios y continúa la racha.',
                     'pt-BR': 'As conquistas de quizzes contam pelas regras normais. Abra os quizzes e continue a sequência.',
@@ -1480,7 +1484,7 @@ function AchievementModal({
                     pl: 'Osiągnięcia quizowe liczą się według zwykłych zasad. Otwórz quizy i kontynuuj serię.',
                   })}
                 </Text>
-                <TouchableOpacity
+                <TapScale
                   onPress={() => {
                     onClose();
                     router.push('/quizzes_screen' as any);
@@ -1493,9 +1497,9 @@ function AchievementModal({
                   }}
                 >
                   <Text style={{ color: '#FEF3C7', fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Открыть квизы', uk: 'Відкрити квізи', es: 'Abrir cuestionarios', 'pt-BR': 'Abrir quizzes', vi: 'Mở quiz', id: 'Buka kuis', tr: 'Quizleri aç', pl: 'Otwórz quizy' })}
+                    {triLang(lang, { ru: 'Открыть вызовы', uk: 'Відкрити квізи', es: 'Abrir cuestionarios', 'pt-BR': 'Abrir quizzes', vi: 'Mở quiz', id: 'Buka kuis', tr: 'Quizleri aç', pl: 'Otwórz quizy' })}
                   </Text>
-                </TouchableOpacity>
+                </TapScale>
               </View>
             )}
 
@@ -1525,7 +1529,7 @@ function AchievementModal({
                   {triLang(lang, { ru: '+1 осколок знаний', uk: '+1 осколок знань', es: '+1 fragmento de conocimiento', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 mảnh tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi parçası', pl: '+1 fragment wiedzy' })}
                 </Text>
                 {pendingShard ? (
-                  <TouchableOpacity
+                  <TapScale
                     disabled={claiming}
                     onPress={async () => {
                       if (claiming) return;
@@ -1551,7 +1555,7 @@ function AchievementModal({
                     <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
                       {triLang(lang, { ru: 'Получить', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
                     </Text>
-                  </TouchableOpacity>
+                  </TapScale>
                 ) : (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
                     {triLang(lang, { ru: 'Осколок получен', uk: 'Осколок отримано', es: 'Fragmento reclamado', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận mảnh', id: 'Fragmen diklaim', tr: 'Parça alındı', pl: 'Fragment odebrany' })}
@@ -1578,7 +1582,7 @@ function AchievementModal({
             {/* Share (only for unlocked) */}
             {unlocked && (
               <>
-              <TouchableOpacity
+              <TapScale
                 style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4 }}
                 onPress={async () => {
                   const msg = buildAchievementShareMessage(lang, name, STORE_URL);
@@ -1592,19 +1596,19 @@ function AchievementModal({
                 <Text style={{ color: t.textSecond, fontSize: f.sub }}>
                   {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
                 </Text>
-              </TouchableOpacity>
+              </TapScale>
               </>
             )}
 
             {/* Close */}
-            <TouchableOpacity
+            <TapScale
               onPress={onClose}
               style={{ backgroundColor: t.bgSurface2, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 32, marginTop: 4 }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
-            </TouchableOpacity>
+            </TapScale>
             </ScrollView>
           </View>
         </Pressable>
@@ -1824,9 +1828,9 @@ export default function AchievementsScreen() {
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
-          <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ flexShrink: 0 }}>
+          <TapScale onPress={() => safeRouterBack(router)} style={{ flexShrink: 0 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <View style={{ flex: 1, marginLeft: 8, minWidth: 0 }}>
             <Text
               numberOfLines={1}

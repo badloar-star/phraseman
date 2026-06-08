@@ -81,7 +81,7 @@ function resolveRevenueCatPublicApiKey(): string {
       Platform.OS === 'ios'
         ? 'Проверь Expo/EAS: переменная EXPO_PUBLIC_RC_IOS должна быть iOS public key (префикс appl_) из RevenueCat, не goog_.'
         : 'Проверь Expo/EAS: EXPO_PUBLIC_RC_ANDROID должен начинаться с goog_.';
-    console.error('[RevenueCat]', hint, 'Сейчас ключ не подходит платформе — инициализация пропущена.');
+    if (__DEV__) console.error('[RevenueCat]', hint, 'Сейчас ключ не подходит платформе — инициализация пропущена.');
     return '';
   }
   return key;

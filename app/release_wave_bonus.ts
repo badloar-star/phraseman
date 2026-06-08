@@ -42,7 +42,9 @@ async function setPersistedNativeBuildId(n: number): Promise<void> {
   try {
     if (!Number.isFinite(n) || n <= 0) return;
     await AsyncStorage.setItem(LAST_NATIVE_BUILD_KEY, String(n));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[release_wave_bonus]', e);
+  }
 }
 
 /**
@@ -65,7 +67,9 @@ export async function getEffectiveLastNativeBuild(
     if (xp > 0 || sh > 0) {
       return Math.max(0, targetWave - 1);
     }
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[release_wave_bonus]', e);
+  }
   return null;
 }
 
@@ -91,7 +95,9 @@ const logReleaseWaveToShardLog = async (amount: number, balanceAfter: number): P
       balanceAfter,
       ts: new Date().toISOString(),
     });
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[release_wave_bonus]', e);
+  }
 };
 
 /**
@@ -169,7 +175,9 @@ export async function persistNativeBuildIdAfterReleaseWaveFlow(): Promise<void> 
   if (w > 0) {
     try {
       await AsyncStorage.setItem(flowClosedKey(w), '1');
-    } catch {}
+    } catch (e) {
+      if (__DEV__) console.warn('[release_wave_bonus]', e);
+    }
   }
   const b = getAppReleaseBuildId();
   if (b > 0) {
@@ -293,13 +301,17 @@ export async function resetReleaseWaveBonusLocalClaimForTesting(wave: number): P
   if (wave <= 0) return;
   try {
     await AsyncStorage.multiRemove([claimKey(wave), flowClosedKey(wave)]);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[release_wave_bonus]', e);
+  }
 }
 
 export async function resetLastPersistedNativeBuildForTesting(): Promise<void> {
   try {
     await AsyncStorage.removeItem(APP_LAST_RECORDED_NATIVE_BUILD_ID_KEY);
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[release_wave_bonus]', e);
+  }
 }
 
 export function getReleaseWaveBonusLabelAmount(): number {

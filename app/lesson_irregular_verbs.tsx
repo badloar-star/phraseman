@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -24,6 +25,7 @@ import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
@@ -198,6 +200,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   studyTarget?: RuntimeStudyTarget;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const { playCorrect } = useCorrectSound();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, themeMode } = useTheme();
   const router = useRouter();
@@ -342,6 +345,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
 
     if (isCorrect) {
       void hapticSuccess();
+      playCorrect();
     } else {
       void hapticError();
       hadErrorThisVerb.current = true;
@@ -731,6 +735,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
       <ScrollView
         horizontal
+        decelerationRate="normal"
         nestedScrollEnabled
         showsHorizontalScrollIndicator={true}
         scrollEventThrottle={16}
@@ -830,7 +835,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const { theme: t, f } = useTheme();
   const pack = stringsForLang(lang);
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
+    <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
       <TouchableOpacity
         onPress={onStartLearn}
         style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 1, borderColor: t.border, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
@@ -950,9 +955,9 @@ export default function LessonIrregularVerbs() {
         <ContentWrap>
           {/* Header */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 13, borderBottomWidth: 0.5, borderBottomColor: sx.ghost }}>
-            <TouchableOpacity onPress={() => { hapticTap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
+            <TapScale onPress={() => { hapticTap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>{lessonId}. {title}</Text>
             <View style={{ width: 28 }} />
           </View>

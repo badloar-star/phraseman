@@ -30,6 +30,15 @@ export interface LeagueChatRoom {
   leagueId: number;
 }
 
+// Системная логика чата вынесена в отдельный лёгкий модуль (без firebase),
+// чтобы её можно было импортировать в тестах/UI без тяжёлых зависимостей.
+export {
+  isSystemLeagueChatMessage,
+  LEAGUE_CHAT_SYSTEM_UID,
+  type LeagueChatSystemType,
+} from './league_chat_system';
+import type { LeagueChatSystemType } from './league_chat_system';
+
 export interface LeagueChatMessage {
   id: string;
   groupId: string;
@@ -43,6 +52,10 @@ export interface LeagueChatMessage {
   status: 'visible' | 'review' | 'blocked' | 'deleted';
   reportCount?: number;
   createdAt: number;
+  /** 'system' — служебное событие лиги (рендерится по центру, мельче, с иконкой). По умолчанию 'user'. */
+  kind?: 'user' | 'system';
+  /** Тип системного события (только при kind === 'system'). Управляет иконкой в UI. */
+  systemType?: LeagueChatSystemType;
 }
 
 const getFirestore = () => {

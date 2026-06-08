@@ -1,15 +1,15 @@
 /**
- * Вирусный реферал (двусторонний VIP, экономия Firebase-лимитов).
- * Крючок: «позови друга — неделя полного доступа вам обоим».
+ * Вирусный реферал (односторонний VIP, экономия Firebase-лимитов).
+ * Крючок: «позови друга — неделя полного доступа тебе». Другу VIP не даём — у него и так
+ * свои 72ч intro-доступа (intro_full_access), а VIP — награда именно за приведение.
  *
  * Поток:
  *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
  *   2. referralApply — referee вводит код (deeplink/manual). Идемпотентно, антифрод по возрасту аккаунта.
  *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
  *   3. referee проходит урок 1 (>= бронзы ⇒ unlocked_lessons содержит 2). Его cloud_sync и так
- *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated:
- *        — сразу даёт REFEREE 7 дней VIP (бесплатно по записям: мы уже в его документе);
- *        — помечает attribution status='qualified' (referrer'у в фоне НИЧЕГО не пишем).
+ *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated помечает attribution
+ *      status='qualified' — БЕЗ начисления (никаких фоновых записей).
  *   4. referrer в /friends видит qualified-друга и сам жмёт «Открыть» → referralClaimVipReward:
  *      одна транзакция, +7 дней VIP (стак vip_until), attribution → 'rewarded'. 1 write на клик.
  *
@@ -27,9 +27,8 @@ const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_CODE_ATTEMPTS = 12;
 
-/** Двусторонний VIP: оба получают неделю доступа за прохождение урока 1. */
-const REFERRER_VIP_DAYS = 7; // referrer — по кнопке (pull), стакается
-const REFEREE_VIP_DAYS = 7; // referee — автоматически при qualify (мы уже в его документе)
+/** Односторонний VIP: 7 дней получает только referrer, по кнопке (pull), стакается. */
+const REFERRER_VIP_DAYS = 7;
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
 const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
@@ -120,14 +119,15 @@ function yyyymmNow(): string {
 }
 
 /**
- * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified' + сразу начисляем ему
- * 7 дней VIP. Это БЕСПЛАТНО по записям: триггер и так пишет в документ referee, мы лишь
- * добавляем vip_* поля в тот же merge-set. referrer'у в фоне НИЧЕГО не пишем — он обналичит
+ * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified'.
+ *
+ * referee'у НИЧЕГО не начисляем: у него и так свои 72ч intro-доступа (intro_full_access),
+ * VIP бережём как награду именно за приведение. referrer'у в фоне тоже не пишем — он обналичит
  * свои 7 дней по кнопке (pull), чтобы не делать запись в чужой документ на каждого друга.
  *
- * Двусторонний крючок: «позови друга — неделя доступа вам обоим».
+ * Односторонний VIP: 7 дней получает только referrer, по кнопке.
  */
-async function markRefereeQualifiedAndRewardReferee(
+async function markRefereeQualified(
   db: admin.firestore.Firestore,
   userId: string,
 ): Promise<void> {
@@ -150,35 +150,12 @@ async function markRefereeQualifiedAndRewardReferee(
     const row = attR.data() as { status?: string };
     if (row?.status && row.status !== 'pending') return;
 
-    const nowMs = Date.now();
-
-    // Сразу даём referee 7 дней VIP — теми же полями vip_*, что admin-grant (механику не трогаем).
-    const refeeData = refeeSnap.data() ?? {};
-    const refeeVipUntil = stackVipUntilMs(parseVipUntilMs(refeeData), nowMs, REFEREE_VIP_DAYS);
-    tx.set(
-      uref(userId),
-      {
-        progress: {
-          vip_active: 'true',
-          vip_plan: 'referral',
-          vip_from: String(Math.min(parseVipUntilMs(refeeData) || nowMs, nowMs)),
-          vip_until: String(refeeVipUntil),
-          vip_admin_override: 'true',
-          vip_admin_grant_at: String(nowMs),
-        },
-        updatedAt: nowMs,
-      },
-      { merge: true },
-    );
-
-    // Помечаем attribution: referee получил VIP, referrer ещё должен забрать (qualified).
+    // Помечаем attribution готовым к обналичиванию referrer'ом. referee ничего не пишем.
     tx.set(
       attRef,
       {
         status: 'qualified' as AttributionStatus,
         qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
-        refereeVipDays: REFEREE_VIP_DAYS,
-        refereeRewardedAt: admin.firestore.FieldValue.serverTimestamp(),
         qualifiedBy: 'unlocked_lesson_2',
       },
       { merge: true },
@@ -329,7 +306,7 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
     return { ok: true, already: false, referrerStableId: ownerStableId, refCode };
   });
   if (result?.ok) {
-    await markRefereeQualifiedAndRewardReferee(db, refereeStableId).catch((e) => {
+    await markRefereeQualified(db, refereeStableId).catch((e) => {
       console.warn('[referral] qualify after apply failed', e);
     });
   }
@@ -355,7 +332,7 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
     if (!hasLesson1DoneProgress(after)) return;
 
     const db = admin.firestore();
-    await markRefereeQualifiedAndRewardReferee(db, userId);
+    await markRefereeQualified(db, userId);
   },
 );
 

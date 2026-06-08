@@ -1,12 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getArenaDailyMax, getArenaShardRefillCost, getArenaShardRefillSlots } from './remote_flags';
 
 const KEY = 'arena_daily_limit_v1';
 /** Доп. попытки за подарок уровня (сбрасывается в полночь вместе с count) */
 const BONUS_KEY = 'arena_daily_gift_bonus_v1';
+/** Build-time defaults; runtime uses remote-tunable getters below. */
 export const ARENA_DAILY_MAX = 5;
 /** Покупка слотов рейтинг-матчей за осколки (модалка лимита арены). */
 export const ARENA_MATCHES_SHARD_REFILL_COST = 5;
 export const ARENA_MATCHES_SHARD_REFILL_SLOTS = 5;
+/** Remote-tunable accessors (use these at call sites, not the consts). */
+export const getArenaMatchesShardRefillCost = getArenaShardRefillCost;
+export const getArenaMatchesShardRefillSlots = getArenaShardRefillSlots;
 
 interface DailyRecord {
   date: string; // YYYY-MM-DD
@@ -51,7 +56,7 @@ async function readGiftExtra(): Promise<number> {
 
 /** Сегодняшний максимум рейтинг-матчей: база 5 + бонус из подарка (напр. +5) */
 export async function getDailyArenaMaxToday(): Promise<number> {
-  return ARENA_DAILY_MAX + (await readGiftExtra());
+  return getArenaDailyMax() + (await readGiftExtra());
 }
 
 /** +N рейтинг-игр до полуночи (суммируется с существующим бонусом за день) */

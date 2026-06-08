@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
+import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
 
 export interface EnergyState {
   current: number;
@@ -9,14 +10,19 @@ export interface EnergyState {
 }
 
 const ENERGY_STORAGE_KEY = 'energy_state';
-const MAX_ENERGY = 5;
 const ENERGY_PER_LESSON = 1;
+/** Build-time default; runtime uses remote-tunable getEnergyRecoveryIntervalMs(). */
 export const ENERGY_RECOVERY_INTERVAL_MS = 10 * 60 * 1000;
+
+/** Remote-tunable max energy (cap). Read at call time so admin changes apply live. */
+function MAX_ENERGY_VALUE(): number {
+  return getMaxEnergy();
+}
 
 // Время восстановления 1 единицы энергии фиксированное:
 // цепочка дней влияет на XP, но не ускоряет энергию.
 export function getRecoveryIntervalMs(_streakDays: number = 0): number {
-  return ENERGY_RECOVERY_INTERVAL_MS;
+  return getEnergyRecoveryIntervalMs();
 }
 
 async function getCurrentRecoveryIntervalMs(): Promise<number> {
@@ -25,12 +31,12 @@ async function getCurrentRecoveryIntervalMs(): Promise<number> {
     if (leagueChestMs) return leagueChestMs;
     return getRecoveryIntervalMs();
   } catch {
-    return ENERGY_RECOVERY_INTERVAL_MS;
+    return getEnergyRecoveryIntervalMs();
   }
 }
 
 const DEFAULT_STATE: EnergyState = {
-  current: MAX_ENERGY,
+  current: getMaxEnergy(),
   lastRecoveryTime: Date.now(),
 };
 
@@ -72,7 +78,7 @@ export async function checkAndRecover(): Promise<EnergyState> {
 
     if (timeSinceLastRecovery >= recoveryIntervalMs) {
       const recoveryCount = Math.floor(timeSinceLastRecovery / recoveryIntervalMs);
-      const newCurrent = Math.min(state.current + recoveryCount, MAX_ENERGY);
+      const newCurrent = Math.min(state.current + recoveryCount, MAX_ENERGY_VALUE());
 
       state = {
         ...state,
@@ -117,7 +123,7 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
       current: state.current - amount,
       // Сбрасываем таймер восстановления при первой трате с максимума,
       // чтобы countdown показывал корректное время (а не 0)
-      lastRecoveryTime: state.current >= MAX_ENERGY ? Date.now() : state.lastRecoveryTime,
+      lastRecoveryTime: state.current >= MAX_ENERGY_VALUE() ? Date.now() : state.lastRecoveryTime,
     };
 
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(newState));
@@ -134,7 +140,7 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
 export async function addEnergy(amount: number = 1): Promise<EnergyState> {
   try {
     let state = await getEnergyState();
-    const newCurrent = Math.min(state.current + amount, MAX_ENERGY);
+    const newCurrent = Math.min(state.current + amount, MAX_ENERGY_VALUE());
 
     state = {
       ...state,
@@ -155,7 +161,7 @@ export async function addEnergy(amount: number = 1): Promise<EnergyState> {
 export async function resetEnergyToMax(): Promise<EnergyState> {
   try {
     const state: EnergyState = {
-      current: MAX_ENERGY,
+      current: MAX_ENERGY_VALUE(),
       lastRecoveryTime: Date.now(),
     };
 
@@ -178,7 +184,7 @@ export async function getTimeUntilNextRecovery(): Promise<number> {
       getCurrentRecoveryIntervalMs(),
     ]);
 
-    if (state.current >= MAX_ENERGY) {
+    if (state.current >= MAX_ENERGY_VALUE()) {
       return 0;
     }
 

@@ -1302,6 +1302,13 @@ function AppContent() {
     };
 
     const runHeavyInit = () => {
+      // Remote Config: apply cached/live admin-tuned flags ASAP, then keep live.
+      void import('./remote_config_client')
+        .then((m) => {
+          void m.loadRemoteConfig().catch(() => {});
+          m.subscribeRemoteConfig();
+        })
+        .catch(() => {});
       void startFriendsTabSwrPrime().catch(() => {});
       const startShopWarm = async () => {
         await initFirebaseAppCheckIfAvailable().catch(() => {});

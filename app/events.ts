@@ -36,6 +36,8 @@ export type AppEventMap = {
   league_chat_unread_changed: { roomKey: string; unreadCount: number };
   /** Локальное dev/admin inbox-сообщение изменилось — перечитать inbox без Firestore. */
   app_messages_local_changed: undefined;
+  /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */
+  remote_config_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
   auth_provider_linked: undefined;
   /** Начисление осколков: анимация на главной + глобальная ShardsEarnedModal (если есть reason). */

@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getFreeDailyQuizLimit } from './remote_flags';
 
 const KEY = 'quiz_daily_free_limit_v1';
 
+/** Build-time default; runtime uses the remote-tunable getFreeDailyQuizLimit(). */
 export const FREE_DAILY_QUIZ_LIMIT = 3;
 
 export type QuizDailyLimitState = {
@@ -27,11 +29,12 @@ function normalize(raw: StoredQuizDailyLimit | null | undefined): QuizDailyLimit
     raw?.date === date && Number.isFinite(raw.count)
       ? Math.max(0, Math.floor(Number(raw.count)))
       : 0;
-  const left = Math.max(0, FREE_DAILY_QUIZ_LIMIT - count);
+  const limit = getFreeDailyQuizLimit();
+  const left = Math.max(0, limit - count);
   return {
     date,
     count,
-    limit: FREE_DAILY_QUIZ_LIMIT,
+    limit,
     left,
     exhausted: left <= 0,
   };

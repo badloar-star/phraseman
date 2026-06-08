@@ -1,3 +1,8 @@
+import { getFreeLessonLimit } from './remote_flags';
+
+/** Default free-lesson limit. Runtime checks use the remote-tunable value via
+ *  getFreeLessonLimit(); this constant is the build-time fallback for static
+ *  callers and is kept in sync with remote_flags' default. */
 export const FREE_LESSON_LIMIT = 8;
 export const BRONZE_UNLOCK_SCORE = 2.5;
 
@@ -7,11 +12,11 @@ export type LessonAccessState =
   | 'progress_required';
 
 export function isFreeLesson(lessonId: number): boolean {
-  return Number.isFinite(lessonId) && lessonId >= 1 && lessonId <= FREE_LESSON_LIMIT;
+  return Number.isFinite(lessonId) && lessonId >= 1 && lessonId <= getFreeLessonLimit();
 }
 
 export function requiresPremiumForLesson(lessonId: number): boolean {
-  return Number.isFinite(lessonId) && lessonId > FREE_LESSON_LIMIT;
+  return Number.isFinite(lessonId) && lessonId > getFreeLessonLimit();
 }
 
 export function buildSequentialFreeLessonUnlocks(params: {
@@ -21,7 +26,7 @@ export function buildSequentialFreeLessonUnlocks(params: {
   freeLessonLimit?: number;
 }): boolean[] {
   const lessonCount = params.lessonCount ?? 32;
-  const freeLessonLimit = Math.min(params.freeLessonLimit ?? FREE_LESSON_LIMIT, lessonCount);
+  const freeLessonLimit = Math.min(params.freeLessonLimit ?? getFreeLessonLimit(), lessonCount);
   const unlocked = new Array(Math.max(lessonCount, 0)).fill(false);
   if (lessonCount <= 0 || freeLessonLimit <= 0) return unlocked;
 

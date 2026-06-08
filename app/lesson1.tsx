@@ -45,6 +45,8 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
+import SpeakingPanel from '../components/SpeakingPanel';
+import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -578,6 +580,19 @@ const LessonContent = React.memo(function LessonContent({
   const lessonHorizontalPadding = linkedSliceCompact ? 14 : 20;
   const linkedSlicePromptFont = Math.max(f.h2, f.h2 + (linkedSliceCompact ? 0 : 6));
   const linkedSliceAnswerFont = Math.max(f.bodyLg, f.h1 - (linkedSliceCompact ? 4 : 0));
+
+  // [SPEAKING] Premium "say it out loud" mode. Free users hit the paywall;
+  // premium users get the SpeakingPanel (mic + waveform + 90% scoring).
+  const { hasPremiumAccess: speakingIsPremium } = usePremium();
+  const [speakingOpen, setSpeakingOpen] = useState(false);
+  const openSpeaking = useCallback(() => {
+    hapticTap();
+    if (!speakingIsPremium) {
+      router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
+      return;
+    }
+    setSpeakingOpen(true);
+  }, [speakingIsPremium, router]);
 
 
   // [ARROW] Анимированная стрелка над прогресс-баром
@@ -1189,6 +1204,47 @@ const LessonContent = React.memo(function LessonContent({
             <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
           </LessonPressable>
 
+          {/* [SPEAKING] "Устно" — premium: произнести фразу вслух (микрофон + эквалайзер) */}
+          {status === 'playing' && !!gradeTarget && (
+            <LessonPressable
+              testID="lesson1-speaking"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Сказать фразу вслух',
+                uk: 'Сказати фразу вголос',
+                es: 'Decir la frase en voz alta',
+                'pt-BR': 'Dizer a frase em voz alta',
+                vi: 'Nói câu này thành tiếng',
+                id: 'Ucapkan frasa dengan lantang',
+                tr: 'Cümleyi sesli söyle',
+                pl: 'Powiedz frazę na głos',
+              })}
+              style={{ flex: 1, alignItems: 'center' }}
+              onPress={openSpeaking}
+            >
+              <View style={{ position: 'relative' }}>
+                <Ionicons name="mic-outline" size={26} color={sx.second} />
+                {!speakingIsPremium && (
+                  <View style={{ position: 'absolute', top: -4, right: -8 }}>
+                    <Ionicons name="lock-closed" size={12} color={t.accent} />
+                  </View>
+                )}
+              </View>
+              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+                {triLang(lang, {
+                  ru: 'Устно',
+                  uk: 'Усно',
+                  es: 'Hablar',
+                  'pt-BR': 'Falar',
+                  vi: 'Nói',
+                  id: 'Ucap',
+                  tr: 'Sesli',
+                  pl: 'Mów',
+                })}
+              </Text>
+            </LessonPressable>
+          )}
+
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}
           {status === 'result' && (
             <LessonPressable
@@ -1289,6 +1345,26 @@ const LessonContent = React.memo(function LessonContent({
           >
             <Text style={{ color: '#fff', fontSize: 11, fontWeight: '600' }}>DEV: grammar hint</Text>
           </TapScale>
+        )}
+
+        {/* [SPEAKING] Premium speaking panel overlay */}
+        {speakingOpen && !!gradeTarget && (
+          <SpeakingPanel
+            targetText={cleanPhraseForDisplay(gradeTarget)}
+            lang={lang}
+            theme={{
+              bg: t.bgPrimary,
+              card: t.bgCard,
+              textPrimary: t.textPrimary,
+              textSecond: t.textSecond,
+              textMuted: t.textMuted,
+              accent: t.accent,
+              correct: t.correct,
+              wrong: t.wrong,
+              border: t.border,
+            }}
+            onClose={() => setSpeakingOpen(false)}
+          />
         )}
 
     </KeyboardAvoidingView>

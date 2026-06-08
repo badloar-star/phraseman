@@ -61,12 +61,12 @@ function CustomSwitch({
       activeOpacity={0.85}
       disabled={disabled}
       onPress={() => !disabled && onValueChange(!value)}
-      style={{ opacity: disabled ? 0.4 : 1 }}
-      testID={testID}
       accessibilityRole="switch"
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
       accessibilityState={mergeSwitchAccessibilityState(undefined, value, disabled)}
+      style={{ opacity: disabled ? 0.4 : 1 }}
+      testID={testID}
     >
       {/* Трек фиксированного размера */}
       <Animated.View style={[s.track, { backgroundColor: trackColor }]}>

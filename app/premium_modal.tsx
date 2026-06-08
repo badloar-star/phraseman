@@ -139,7 +139,8 @@ type Plan = 'monthly' | 'yearly';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage };
 // PremiumContext вынесен в ./premium_context, чтобы вспомогательные модули
 // (percentile-строка, зеркало прогресса) типизировались без импорта этого экрана.
-// 'dialog_limit' (AI-диалог) добавлен в ./premium_context при слиянии ветки ai-dialogue.
+// 'dialog_limit' (AI-диалог) и 'speaking' (Speaking mode) добавлены в
+// ./premium_context при слиянии веток ai-dialogue и speaking-mode.
 type PremiumContext = PremiumContextType;
 
 const PREMIUM_HERO_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
@@ -184,6 +185,7 @@ const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   intro_ended: { accent: '#FFB020', accent2: '#66A8FF', shardAmount: 420 },
   level_up: { accent: '#FACC15', accent2: '#A78BFA', shardAmount: 180 },
   smart_trainer: { accent: '#A78BFA', accent2: '#5EEAD4', shardAmount: 180 },
+  speaking: { accent: '#5EEAD4', accent2: '#A78BFA', shardAmount: 180 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
 
@@ -469,6 +471,16 @@ PAYWALL_COPY.smart_trainer = {
   subtitleRu: 'Сам подбирает, что подтянуть. Каждая сессия — по тебе.',
   subtitleUk: 'Сам добирає, що підтягнути. Кожна сесія — під тебе.',
   subtitleEs: 'Elige solo qué reforzar. Cada sesión es a tu medida.',
+};
+
+// Speaking mode — произнести фразу вслух (микрофон + распознавание).
+PAYWALL_COPY.speaking = {
+  titleRu: 'Начни говорить вслух',
+  titleUk: 'Почни говорити вголос',
+  titleEs: 'Empieza a hablar en voz alta',
+  subtitleRu: 'Premium открывает режим говорения: произноси фразы вслух, а приложение слушает и подсказывает. Самый быстрый путь заговорить уверенно.',
+  subtitleUk: 'Premium відкриває режим говоріння: вимовляй фрази вголос, а застосунок слухає й підказує. Найшвидший шлях заговорити впевнено.',
+  subtitleEs: 'Premium abre el modo de voz: di las frases en voz alta y la app te escucha y te guía. El camino más rápido para hablar con seguridad.',
 };
 
 const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
@@ -1284,6 +1296,12 @@ CONTEXT_BENEFITS.personal_plan = [
   { ru: 'Персональный план с заданиями на каждый день', uk: 'Персональний план із завданнями на кожен день', es: 'Plan personal con tareas diarias', 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
   { ru: 'Уроки, фразы, повторение и отдельные квизы плана', uk: 'Уроки, фрази, повторення й окремі квізи плану', es: 'Lecciones, frases, repaso y quizzes del plan', 'pt-BR': 'Lições, frases, revisão e quizzes do plano', vi: 'Bài học, câu, ôn tập và quiz của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan kuis rencana', tr: 'Dersler, ifadeler, tekrar ve plan quizleri', pl: 'Lekcje, frazy, powtórki i quizy planu' },
   { ru: 'Все нужные материалы открываются без лишних пауз', uk: 'Усі потрібні матеріали відкриваються без зайвих пауз', es: 'Materiales necesarios sin pausas extra', 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
+];
+
+CONTEXT_BENEFITS.speaking = [
+  { ru: 'Произноси фразы вслух — приложение слушает', uk: 'Вимовляй фрази вголос — застосунок слухає', es: 'Di las frases en voz alta: la app te escucha', 'pt-BR': 'Diga as frases em voz alta — o app escuta', vi: 'Nói câu thành tiếng — ứng dụng lắng nghe', id: 'Ucapkan frasa dengan lantang — aplikasi mendengarkan', tr: 'Cümleleri sesli söyle — uygulama dinler', pl: 'Mów frazy na głos — aplikacja słucha' },
+  { ru: 'Мгновенная подсказка по каждому слову', uk: 'Миттєва підказка щодо кожного слова', es: 'Pista instantánea en cada palabra', 'pt-BR': 'Dica instantânea em cada palavra', vi: 'Gợi ý tức thì cho từng từ', id: 'Petunjuk instan untuk tiap kata', tr: 'Her kelime için anında ipucu', pl: 'Natychmiastowa podpowiedź dla każdego słowa' },
+  { ru: 'Самый быстрый путь заговорить уверенно', uk: 'Найшвидший шлях заговорити впевнено', es: 'El camino más rápido para hablar con seguridad', 'pt-BR': 'O caminho mais rápido para falar com confiança', vi: 'Cách nhanh nhất để nói tự tin', id: 'Cara tercepat untuk bicara percaya diri', tr: 'Kendinden emin konuşmanın en hızlı yolu', pl: 'Najszybsza droga, by mówić pewnie' },
 ];
 
 const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPlannedCopy[]>> & { generic: PremiumPlannedCopy[] } = {

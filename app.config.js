@@ -160,6 +160,27 @@ module.exports = function buildExpoConfig({ config } = {}) {
     expoConfig.plugins.push(speechRecognitionPlugin);
   }
 
+  // Speaking mode (premium): on-device speech recognition for pronunciation practice.
+  // Plugin injects mic + speech-recognition usage descriptions; only added once.
+  const hasSpeechRecognitionPlugin = (expoConfig.plugins || []).some((p) =>
+    Array.isArray(p) ? p[0] === 'expo-speech-recognition' : p === 'expo-speech-recognition',
+  );
+  if (!hasSpeechRecognitionPlugin) {
+    expoConfig.plugins = [
+      ...(expoConfig.plugins || []),
+      [
+        'expo-speech-recognition',
+        {
+          microphonePermission:
+            'Phraseman слушает, пока ты произносишь фразу вслух.',
+          speechRecognitionPermission:
+            'Phraseman распознаёт твою речь, чтобы проверить произношение.',
+          androidSpeechServicePackages: ['com.google.android.googlequicksearchbox'],
+        },
+      ],
+    ];
+  }
+
   if (expoConfig.updates) {
     const assetPatternsToBeBundled = minimalOtaAssets
       ? expandAssetPatternsToExactFiles(__dirname, MINIMAL_OTA_ASSET_PATTERNS)

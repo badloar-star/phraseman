@@ -120,7 +120,7 @@ function StatsPremiumBlur({
   devUnlock = false,
 }: StatsPremiumBlurProps) {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const captureSourceRef = useRef<View>(null);
   const captureTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -129,7 +129,7 @@ function StatsPremiumBlur({
   const [cachedBlurUri, setCachedBlurUri] = useState<string | null>(null);
   const [captureSize, setCaptureSize] = useState({ width: 0, height: 0 });
 
-  const isLight = false;
+  const isLight = themeMode === 'minimalLight';
   const titleCopy = CONTEXT_TITLES[context];
   const title = overrideTitle ?? triLang(lang, titleCopy);
   const ctaLabel = triLang(lang, {

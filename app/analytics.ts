@@ -18,7 +18,12 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { logEvent as firebaseLogEvent } from './firebase';
-import { capturePostHog } from './posthog_client';
+import {
+  capturePostHog,
+  identifyPostHog,
+  resetPostHog,
+  isPostHogEnabled,
+} from './posthog_client';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
@@ -110,6 +115,34 @@ function firebaseSafeParams(props: Record<string, unknown>): Record<string, stri
   return out;
 }
 
+// ── Идентификация пользователя (фасад над posthog_client) ───────────────────────
+// Единая реализация PostHog живёт в ./posthog_client. Эти обёртки сохраняют
+// API, на который завязаны auth_provider.ts и _layout.tsx (identifyUser /
+// resetAnalyticsIdentity), не дублируя инициализацию SDK.
+
+/** Активна ли отправка в PostHog (ключ задан, пакет установлен). */
+export function isPosthogEnabled(): boolean {
+  return isPostHogEnabled();
+}
+
+/** Привязать события к пользователю (вызывать после логина/восстановления). */
+export const identifyUser = async (userId: string, props: Record<string, unknown> = {}): Promise<void> => {
+  try {
+    identifyPostHog(userId, props);
+  } catch {
+    // analytics must never crash the app
+  }
+};
+
+/** Сбросить идентификацию (вызывать при выходе). */
+export const resetAnalyticsIdentity = async (): Promise<void> => {
+  try {
+    resetPostHog();
+  } catch {
+    // ignore
+  }
+};
+
 // ── Запись события (фасад) ─────────────────────────────────────────────────────
 export const trackEvent = async (
   event: AnalyticsEvent,
@@ -161,7 +194,26 @@ export const clearEventQueue = async (): Promise<void> => {
 
 /** Сброс локальной очереди (события уже ушли в Firebase/PostHog в реальном времени). */
 export const flushAnalytics = async (): Promise<void> => {
-  await clearEventQueue();
+  try {
+    const queue = await getEventQueue();
+    if (queue.length === 0) return;
+
+    // PostHog (когда включён) получает события в реальном времени через
+    // trackEvent → capturePostHog. Локальная очередь — резерв/отладка; чистим её,
+    // чтобы не копить дубли. Если PostHog выключен — очередь просто очищается
+    // (события всё равно записаны локально до этого вызова).
+    if (isPostHogEnabled()) {
+      for (const e of queue) {
+        try { capturePostHog(e.event, e.props); } catch { /* ignore */ }
+      }
+    }
+
+    if (__DEV__) {
+      console.log(`[Analytics] flushed ${queue.length} events (posthog=${isPostHogEnabled()})`);
+    }
+
+    await clearEventQueue();
+  } catch {}
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -220,7 +220,16 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: false },
 
     const senderData = senderSnap.data() ?? {};
     const linkedAuthUid = typeof senderData.firebaseAuthUid === 'string' ? senderData.firebaseAuthUid : '';
-    if (linkedAuthUid && linkedAuthUid !== request.auth!.uid) {
+    // Sender must be the authenticated caller. Previously this only checked when
+    // linkedAuthUid was non-empty — so an UNLINKED sender doc let any authed
+    // user spend that account's shards by passing its senderStableId (IDOR).
+    // Now require the link to exist AND match the caller (admin SDK callers are
+    // not used here). Allow the legacy path where senderStableId == auth.uid
+    // directly (doc keyed by the Firebase uid itself).
+    const senderMatchesCaller =
+      (linkedAuthUid && linkedAuthUid === request.auth!.uid) ||
+      senderStableId === request.auth!.uid;
+    if (!senderMatchesCaller) {
       throw new HttpsError('permission-denied', 'Sender does not match auth user');
     }
 

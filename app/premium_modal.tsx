@@ -139,6 +139,8 @@ type PremiumContext =
   | 'patterns'
   | 'percentiles'
   | 'personal_plan'
+  /** Speaking mode — произнести фразу вслух (микрофон + распознавание). */
+  | 'speaking'
   | 'generic';
 
 const PREMIUM_CONTEXT_VALUES = [
@@ -163,6 +165,7 @@ const PREMIUM_CONTEXT_VALUES = [
   'patterns',
   'percentiles',
   'personal_plan',
+  'speaking',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 const PREMIUM_CONTEXT_SET = new Set<string>(PREMIUM_CONTEXT_VALUES);
@@ -205,6 +208,7 @@ const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   patterns: { accent: '#F87171', accent2: '#C084FC', shardAmount: 180 },
   percentiles: { accent: '#FACC15', accent2: '#38BDF8', shardAmount: 420 },
   personal_plan: { accent: '#72E6A9', accent2: '#66A8FF', shardAmount: 420 },
+  speaking: { accent: '#5EEAD4', accent2: '#A78BFA', shardAmount: 180 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
 
@@ -447,6 +451,15 @@ PAYWALL_COPY.personal_plan = {
   subtitleRu: 'Premium включает задания на каждый день: уроки, живые фразы, повторение и проверки под твою цель. План держит темп, а материалы открываются без лишних остановок.',
   subtitleUk: 'Premium вмикає завдання на кожен день: уроки, живі фрази, повторення й перевірки під твою ціль. План тримає темп, а матеріали відкриваються без зайвих пауз.',
   subtitleEs: 'Premium activa tareas diarias: lecciones, frases reales, repaso y pruebas según tu meta. El plan mantiene el ritmo y los materiales se abren sin pausas extra.',
+};
+
+PAYWALL_COPY.speaking = {
+  titleRu: 'Начни говорить вслух',
+  titleUk: 'Почни говорити вголос',
+  titleEs: 'Empieza a hablar en voz alta',
+  subtitleRu: 'Premium открывает режим говорения: произноси фразы вслух, а приложение слушает и подсказывает. Самый быстрый путь заговорить уверенно.',
+  subtitleUk: 'Premium відкриває режим говоріння: вимовляй фрази вголос, а застосунок слухає й підказує. Найшвидший шлях заговорити впевнено.',
+  subtitleEs: 'Premium abre el modo de voz: di las frases en voz alta y la app te escucha y te guía. El camino más rápido para hablar con seguridad.',
 };
 
 const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
@@ -1261,6 +1274,12 @@ CONTEXT_BENEFITS.personal_plan = [
   { ru: 'Персональный план с заданиями на каждый день', uk: 'Персональний план із завданнями на кожен день', es: 'Plan personal con tareas diarias', 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
   { ru: 'Уроки, фразы, повторение и отдельные квизы плана', uk: 'Уроки, фрази, повторення й окремі квізи плану', es: 'Lecciones, frases, repaso y quizzes del plan', 'pt-BR': 'Lições, frases, revisão e quizzes do plano', vi: 'Bài học, câu, ôn tập và quiz của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan kuis rencana', tr: 'Dersler, ifadeler, tekrar ve plan quizleri', pl: 'Lekcje, frazy, powtórki i quizy planu' },
   { ru: 'Все нужные материалы открываются без лишних пауз', uk: 'Усі потрібні матеріали відкриваються без зайвих пауз', es: 'Materiales necesarios sin pausas extra', 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
+];
+
+CONTEXT_BENEFITS.speaking = [
+  { ru: 'Произноси фразы вслух — приложение слушает', uk: 'Вимовляй фрази вголос — застосунок слухає', es: 'Di las frases en voz alta: la app te escucha', 'pt-BR': 'Diga as frases em voz alta — o app escuta', vi: 'Nói câu thành tiếng — ứng dụng lắng nghe', id: 'Ucapkan frasa dengan lantang — aplikasi mendengarkan', tr: 'Cümleleri sesli söyle — uygulama dinler', pl: 'Mów frazy na głos — aplikacja słucha' },
+  { ru: 'Мгновенная подсказка по каждому слову', uk: 'Миттєва підказка щодо кожного слова', es: 'Pista instantánea en cada palabra', 'pt-BR': 'Dica instantânea em cada palavra', vi: 'Gợi ý tức thì cho từng từ', id: 'Petunjuk instan untuk tiap kata', tr: 'Her kelime için anında ipucu', pl: 'Natychmiastowa podpowiedź dla każdego słowa' },
+  { ru: 'Самый быстрый путь заговорить уверенно', uk: 'Найшвидший шлях заговорити впевнено', es: 'El camino más rápido para hablar con seguridad', 'pt-BR': 'O caminho mais rápido para falar com confiança', vi: 'Cách nhanh nhất để nói tự tin', id: 'Cara tercepat untuk bicara percaya diri', tr: 'Kendinden emin konuşmanın en hızlı yolu', pl: 'Najszybsza droga, by mówić pewnie' },
 ];
 
 const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPlannedCopy[]>> & { generic: PremiumPlannedCopy[] } = {

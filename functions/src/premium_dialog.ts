@@ -1,8 +1,11 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { defineSecret } from 'firebase-functions/params';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+
+const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 /**
  * Premium AI dialogue — Phase 0 (scenario-only, text MVP).
@@ -173,10 +176,11 @@ export const premiumDialogSend = onCall({
   timeoutSeconds: 30,
   memory: '512MiB',
   maxInstances: 20,
+  secrets: [OPENAI_API_KEY],
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
-  const apiKey = text(process.env.OPENAI_API_KEY, 300);
+  const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
 
   const data = (request.data ?? {}) as PremiumDialogRequest;

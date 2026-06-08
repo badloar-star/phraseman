@@ -52,9 +52,34 @@ const col = {
   rooms: () => requireDb().collection('arena_rooms'),
   queue: () => requireDb().collection('matchmaking_queue'),
   questions: () => requireDb().collection('arena_questions'),
+  users: () => requireDb().collection('users'),
   /** Агрегат «сколько в поиске» — оновлює Cloud Function, див. functions/src/matchmaking.ts */
   matchmakingMeta: () => requireDb().doc('app_meta/matchmaking_searching'),
 };
+
+/**
+ * Сохраняет expoPushToken в профиль пользователя users/{userId}.
+ *
+ * Раньше токен жил только во временной записи matchmaking_queue (joinMatchmakingQueue),
+ * поэтому серверные функции (подарок от друга, завершение матча) не могли отправить
+ * push — слать было некуда. Эта функция кладёт токен в постоянный документ users/{id},
+ * откуда его читают friendSendGift и onArenaSessionFinished.
+ *
+ * Идемпотентна, merge — не затирает остальные поля. Тихо no-op без firestore.
+ */
+export async function saveExpoPushTokenToUser(userId: string, token: string): Promise<void> {
+  const uid = String(userId ?? '').trim();
+  const tok = String(token ?? '').trim();
+  if (!uid || !tok || !getDb()) return;
+  try {
+    await col.users().doc(uid).set(
+      { expoPushToken: tok, expoPushTokenUpdatedAt: Date.now() },
+      { merge: true },
+    );
+  } catch {
+    // Сохранение токена — не критичный путь; push просто не придёт в этой сессии.
+  }
+}
 
 // ─── Профиль ──────────────────────────────────────────────────────────────────
 

@@ -13,6 +13,10 @@ const { resetWeeklyXp } = require('./reset_weekly_xp');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { runReEngagePush } = require('./re_engage_push') as {
+  runReEngagePush: (now?: number) => Promise<{ scanned: number; candidates: number; sent: number; failedChunks: number; ticketCount: number }>;
+};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame') as {
@@ -57,6 +61,8 @@ const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 const { submitClientReport } = require('./client_reports');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('./telegram_premium_bot');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { scorePronunciationAttempt } = require('./pronunciation_scoring');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -90,6 +96,7 @@ exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 exports.submitClientReport = submitClientReport;
 exports.telegramPremiumWebhook = telegramPremiumWebhook;
 exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
+exports.scorePronunciationAttempt = scorePronunciationAttempt;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 
@@ -295,6 +302,30 @@ export const resetWeeklyXpCron = functions.scheduler.onSchedule(
 export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
   { schedule: '0 4 * * *', timeZone: 'UTC' },
   async () => { await cleanupExpiredAppMessages(); }
+);
+
+// ─── Re-engagement push cron ─────────────────────────────────────────────────
+// Runs daily at 10:00 UTC. Scans users/, finds players whose streak is about to
+// break or who have been away 3-14 days, and sends them a localized push via the
+// Expo Push API (delivers through FCM/APNs even to a closed app). Closes the
+// retention gap where local-only notifications never reach a lapsed user.
+export const reEngagePushCron = functions.scheduler.onSchedule(
+  { schedule: '0 10 * * *', timeZone: 'UTC' },
+  async () => {
+    const summary = await runReEngagePush();
+    console.log('reEngagePushCron', JSON.stringify(summary));
+    if (summary.failedChunks > 0) {
+      console.error(
+        `reEngagePushCron: ${summary.failedChunks} chunk(s) failed — ` +
+        `sent ${summary.sent}/${summary.candidates} candidates. Check Expo Push API or network.`,
+      );
+    }
+    if (summary.candidates > 0 && summary.sent === 0) {
+      console.error(
+        `reEngagePushCron: ${summary.candidates} candidates found but 0 pushes sent — all chunks failed.`,
+      );
+    }
+  }
 );
 
 // ─── Matchmaking: instant trigger on queue write ──────────────────────────────
@@ -597,6 +628,10 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
     const sessionRef = event.data!.after.ref;
     const DRAW_XP = 30;
 
+    // Исходы для push после commit (won/draw на игрока). Дружеские матчи не пушим
+    // как «ранговый результат» — там нет звёзд.
+    const outcomes: Array<{ uid: string; won: boolean; isDraw: boolean; xpDelta: number; isFriendDuel: boolean }> = [];
+
     await db.runTransaction(async (tx) => {
       const freshSession = await tx.get(sessionRef);
       const freshData = freshSession.data() as {
@@ -684,6 +719,7 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
           }
         }
         const xpDelta = isDraw ? DRAW_XP : (won ? 50 : 15);
+        outcomes.push({ uid, won, isDraw, xpDelta, isFriendDuel });
 
         const profileRef = profileRefByUid.get(uid) ?? db.collection('arena_profiles').doc(uid);
         const profileSnap = profileSnapByUid.get(uid);
@@ -876,6 +912,82 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
       }
     } catch (e) {
       console.warn('enrichArenaCourseDisplay', e);
+    }
+
+    // Push о результате матча — игрок в фоне иначе не узнаёт исход PvP и не возвращается.
+    // Токен читаем из users/{uid} (его сохраняет клиент при получении push-токена).
+    // Дружеские дуэли не пушим как ранговый результат. Best-effort.
+    try {
+      const rankedOutcomes = outcomes.filter((o) => o.uid && !o.isFriendDuel);
+      if (rankedOutcomes.length > 0) {
+        const userSnaps = await Promise.all(
+          rankedOutcomes.map((o) => db.collection('users').doc(o.uid).get()),
+        );
+        const messages: Array<Record<string, unknown>> = [];
+        rankedOutcomes.forEach((o, i) => {
+          const token = userSnaps[i]?.data()?.expoPushToken;
+          if (typeof token !== 'string' || !token.trim()) return;
+          const title = o.won ? '🏆 Победа в дуэли!' : o.isDraw ? '🤝 Ничья в дуэли' : '⚔️ Матч завершён';
+          const body = o.won
+            ? `Ты выиграл матч и получил +${o.xpDelta} XP!`
+            : o.isDraw
+              ? `Ничья — ты получил +${o.xpDelta} XP.`
+              : `Матч окончен. +${o.xpDelta} XP. Реванш?`;
+          messages.push({
+            to: token.trim(),
+            sound: 'default',
+            title,
+            body,
+            data: { type: 'arena_match_result', sessionId, won: o.won, isDraw: o.isDraw },
+          });
+        });
+        if (messages.length > 0) {
+          await fetch('https://exp.host/--/api/v2/push/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(messages),
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('arena_finish_push', e);
+    }
+  }
+);
+
+// ─── Arena: очистка orphan-данных при abort ──────────────────────────────────
+// onArenaSessionFinished НЕ срабатывает на state='aborted' (decline / accept_timeout /
+// stale_cleanup). Награды при abort не начисляются (откат не нужен), но session_players
+// и arena_session_results остаются висеть как «призрачные» документы: игрок видит
+// зависшие очки, а коллекции засоряются. Этот триггер удаляет orphan-доки при переходе
+// сессии в aborted. Идемпотентен: повторный вызов на уже очищенной сессии — no-op.
+export const onArenaSessionAborted = functions.firestore.onDocumentUpdated(
+  'arena_sessions/{sessionId}',
+  async (event) => {
+    const before = event.data?.before.data() as { state?: string } | undefined;
+    const after = event.data?.after.data() as { state?: string; playerIds?: string[] } | undefined;
+    if (!after) return;
+    if (after.state !== 'aborted') return;
+    // Только на переход в aborted, а не на каждое последующее обновление.
+    if (before?.state === 'aborted') return;
+
+    const db = admin.firestore();
+    const sessionId = event.params.sessionId as string;
+    const playerIds = Array.isArray(after.playerIds) ? after.playerIds.filter(Boolean) as string[] : [];
+    if (playerIds.length === 0) return;
+
+    const refs: FirebaseFirestore.DocumentReference[] = [];
+    for (const uid of playerIds) {
+      refs.push(db.collection('session_players').doc(`${sessionId}_${uid}`));
+      refs.push(db.collection('arena_session_results').doc(`${sessionId}_${uid}`));
+    }
+
+    try {
+      const batch = db.batch();
+      for (const ref of refs) batch.delete(ref);
+      await batch.commit();
+    } catch (e) {
+      console.error('onArenaSessionAborted: cleanup failed', sessionId, e);
     }
   }
 );

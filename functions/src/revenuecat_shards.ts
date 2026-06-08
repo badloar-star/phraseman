@@ -29,6 +29,9 @@ const PREMIUM_KEEP_ACTIVE_EVENTS = new Set([
 
 const PREMIUM_INACTIVE_EVENTS = new Set([
   'EXPIRATION',
+  // REFUND: пользователь вернул деньги — Premium нужно деактивировать,
+  // иначе сохраняется платный доступ без оплаты (прямая утечка дохода).
+  'REFUND',
 ]);
 
 type RevenueCatWebhookBody = {
@@ -187,7 +190,12 @@ async function handlePremiumSubscriptionEvent(
     event.id ||
     `${eventType}_${event.event_timestamp_ms || Date.now()}_${candidates[0]}`,
   );
-  const eventId = cleanId(event.id) || transactionId;
+  // При RENEWAL event.id уникален для каждого события; если отсутствует —
+  // добавляем timestamp чтобы разные RENEWAL одной подписки не коллизировали.
+  const eventId = cleanId(event.id)
+    || (eventType === 'RENEWAL' || eventType === 'INITIAL_PURCHASE'
+        ? `${eventType}_${transactionId}_${event.event_timestamp_ms || Date.now()}`
+        : transactionId);
   const expiryMs = eventMs(event.expiration_at_ms);
   const purchasedMs = eventMs(event.purchased_at_ms);
   const now = Date.now();
@@ -394,16 +402,16 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
     return;
   }
 
+  const expectedAuth = REVENUECAT_WEBHOOK_AUTH.value().trim();
+  if (!expectedAuth || !authMatches(req.headers.authorization, expectedAuth)) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+
   const pack = SHARD_PACKS_BY_PRODUCT_ID[productId];
   const premium = looksLikePremiumSubscription(event);
   if (!pack && !premium) {
     res.status(200).json({ ok: true, ignored: 'not_managed_product' });
-    return;
-  }
-
-  const expectedAuth = REVENUECAT_WEBHOOK_AUTH.value().trim();
-  if (!expectedAuth || !authMatches(req.headers.authorization, expectedAuth)) {
-    res.status(401).send('Unauthorized');
     return;
   }
 

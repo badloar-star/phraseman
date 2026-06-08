@@ -304,7 +304,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qh1', type:'quiz_hard', icon:'💪', target:3, xp:36, minPlayerLevel:15,
     titleRU:'Первый вызов', titleUK:'Перший виклик',
     titlePtBr:'Primeiro desafio', titleVi:'Thử thách đầu tiên', titleId:'Tantangan pertama', titleTr:'İlk meydan okuma', titlePl:'Pierwsze wyzwanie',
-    descRU:'Открой Квизы → Сложно и ответь правильно на 3 вопроса.',
+    descRU:'Открой Вызовы → Сложно и ответь правильно на 3 вопроса.',
     descPtBr:'Abra Quizzes → Difícil e responda corretamente a 3 perguntas.',
     descVi:'Mở Quiz → Khó và trả lời đúng 3 câu hỏi.',
     descId:'Buka Kuis → Sulit dan jawab 3 pertanyaan dengan benar.',
@@ -314,7 +314,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qh2', type:'quiz_hard', icon:'🗡️', target:5, xp:54, minPlayerLevel:15,
     titleRU:'Принял вызов', titleUK:'Прийняв виклик',
     titlePtBr:'Desafio aceito', titleVi:'Đã nhận thử thách', titleId:'Tantangan diterima', titleTr:'Meydan okumayı kabul ettin', titlePl:'Wyzwanie przyjęte',
-    descRU:'Открой Квизы → Сложно и ответь правильно на 5 вопросов.',
+    descRU:'Открой Вызовы → Сложно и ответь правильно на 5 вопросов.',
     descPtBr:'Abra Quizzes → Difícil e responda corretamente a 5 perguntas.',
     descVi:'Mở Quiz → Khó và trả lời đúng 5 câu hỏi.',
     descId:'Buka Kuis → Sulit dan jawab 5 pertanyaan dengan benar.',
@@ -324,7 +324,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qh3', type:'quiz_hard', icon:'🏆', target:10, xp:78, minPlayerLevel:15,
     titleRU:'Хардкорщик', titleUK:'Хардкорщик',
     titlePtBr:'Fã do modo difícil', titleVi:'Người chơi khó', titleId:'Pemain hardcore', titleTr:'Zor mod oyuncusu', titlePl:'Hardkorowiec',
-    descRU:'Открой Квизы → Сложно и ответь правильно на 10 вопросов.',
+    descRU:'Открой Вызовы → Сложно и ответь правильно на 10 вопросов.',
     descPtBr:'Abra Quizzes → Difícil e responda corretamente a 10 perguntas.',
     descVi:'Mở Quiz → Khó và trả lời đúng 10 câu hỏi.',
     descId:'Buka Kuis → Sulit dan jawab 10 pertanyaan dengan benar.',
@@ -334,7 +334,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qh4', type:'quiz_hard', icon:'👑', target:15, xp:102, minPlayerLevel:15,
     titleRU:'Легенда', titleUK:'Легенда',
     titlePtBr:'Lenda', titleVi:'Huyền thoại', titleId:'Legenda', titleTr:'Efsane', titlePl:'Legenda',
-    descRU:'Открой Квизы → Сложно и ответь правильно на 15 вопросов.',
+    descRU:'Открой Вызовы → Сложно и ответь правильно на 15 вопросов.',
     descPtBr:'Abra Quizzes → Difícil e responda corretamente a 15 perguntas.',
     descVi:'Mở Quiz → Khó và trả lời đúng 15 câu hỏi.',
     descId:'Buka Kuis → Sulit dan jawab 15 pertanyaan dengan benar.',
@@ -346,7 +346,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qs1', type:'quiz_score', icon:'⭐', target:10, xp:30,
     titleRU:'Первый опыт', titleUK:'Перший досвід',
     titlePtBr:'Primeira experiência', titleVi:'Trải nghiệm đầu tiên', titleId:'Pengalaman pertama', titleTr:'İlk deneyim', titlePl:'Pierwsze doświadczenie',
-    descRU:'Заработай 10 XP в Квизах за день.',
+    descRU:'Заработай 10 XP в Вызовах за день.',
     descPtBr:'Ganhe 10 XP em Quizzes durante o dia.',
     descVi:'Kiếm 10 XP trong Quiz trong ngày.',
     descId:'Dapatkan 10 XP di Kuis dalam sehari.',
@@ -356,7 +356,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qs2', type:'quiz_score', icon:'🌟', target:20, xp:48,
     titleRU:'Набираю обороты', titleUK:'Набираю оберти',
     titlePtBr:'Ganhando ritmo', titleVi:'Tăng nhịp', titleId:'Mulai cepat', titleTr:'Hız kazanıyorum', titlePl:'Nabieram tempa',
-    descRU:'Заработай 20 XP в Квизах за день.',
+    descRU:'Заработай 20 XP в Вызовах за день.',
     descPtBr:'Ganhe 20 XP em Quizzes durante o dia.',
     descVi:'Kiếm 20 XP trong Quiz trong ngày.',
     descId:'Dapatkan 20 XP di Kuis dalam sehari.',
@@ -364,9 +364,9 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Zdobądź 20 XP w Quizach w ciągu dnia.',
     descUK:'Зароби 20 XP у Квізах за день.' },
   { id:'qs3', type:'quiz_score', icon:'💫', target:30, xp:66,
-    titleRU:'Квиз-машина', titleUK:'Квіз-машина',
+    titleRU:'Вызов-машина', titleUK:'Квіз-машина',
     titlePtBr:'Máquina dos quizzes', titleVi:'Cỗ máy quiz', titleId:'Mesin kuis', titleTr:'Quiz makinesi', titlePl:'Maszyna quizowa',
-    descRU:'Заработай 30 XP в Квизах за день.',
+    descRU:'Заработай 30 XP в Вызовах за день.',
     descPtBr:'Ganhe 30 XP em Quizzes durante o dia.',
     descVi:'Kiếm 30 XP trong Quiz trong ngày.',
     descId:'Dapatkan 30 XP di Kuis dalam sehari.',
@@ -376,7 +376,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qs4', type:'quiz_score', icon:'💥', target:50, xp:90, minPlayerLevel:15,
     titleRU:'Неудержимый', titleUK:'Нестримний',
     titlePtBr:'Imparável', titleVi:'Không thể cản', titleId:'Tak terbendung', titleTr:'Durdurulamaz', titlePl:'Nie do zatrzymania',
-    descRU:'Заработай 50 XP в Квизах за день — играй на Сложно и держи серию.',
+    descRU:'Заработай 50 XP в Квизах за день — играй на Сложно, держи серию.',
     descPtBr:'Ganhe 50 XP em Quizzes durante o dia: jogue no Difícil e mantenha a sequência.',
     descVi:'Kiếm 50 XP trong Quiz trong ngày: chơi mức Khó và giữ chuỗi.',
     descId:'Dapatkan 50 XP di Kuis dalam sehari: mainkan mode Sulit dan pertahankan rangkaian.',
@@ -652,7 +652,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qe1', type:'quiz_easy', icon:'🌱', target:5, xp:18,
     titleRU:'Лёгкий старт', titleUK:'Легкий старт',
     titlePtBr:'Começo fácil', titleVi:'Khởi đầu dễ', titleId:'Awal mudah', titleTr:'Kolay başlangıç', titlePl:'Łatwy start',
-    descRU:'Ответь правильно на 5 вопросов в Квизах на уровне Легко.',
+    descRU:'Ответь правильно на 5 вопросов в Вызовах на уровне Легко.',
     descPtBr:'Responda corretamente a 5 perguntas em Quizzes no nível Fácil.',
     descVi:'Trả lời đúng 5 câu hỏi trong Quiz ở mức Dễ.',
     descId:'Jawab 5 pertanyaan dengan benar di Kuis pada level Mudah.',
@@ -660,9 +660,9 @@ const ALL_TASKS: DailyTask[] = [
     descPl:'Odpowiedz poprawnie na 5 pytań w Quizach na poziomie Łatwe.',
     descUK:'Дай правильну відповідь на 5 запитань у Квізах на рівні Легко.' },
   { id:'qe2', type:'quiz_easy', icon:'🌱', target:10, xp:30,
-    titleRU:'Разогрев в квизе', titleUK:'Розігрів у квізі',
+    titleRU:'Разогрев в вызове', titleUK:'Розігрів у квізі',
     titlePtBr:'Aquecimento no quiz', titleVi:'Khởi động trong quiz', titleId:'Pemanasan di kuis', titleTr:'Quiz ısınması', titlePl:'Rozgrzewka w quizie',
-    descRU:'Ответь правильно на 10 вопросов в Квизах на уровне Легко.',
+    descRU:'Ответь правильно на 10 вопросов в Вызовах на уровне Легко.',
     descPtBr:'Responda corretamente a 10 perguntas em Quizzes no nível Fácil.',
     descVi:'Trả lời đúng 10 câu hỏi trong Quiz ở mức Dễ.',
     descId:'Jawab 10 pertanyaan dengan benar di Kuis pada level Mudah.',
@@ -672,7 +672,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qe3', type:'quiz_easy', icon:'🌱', target:20, xp:48,
     titleRU:'Уверенный игрок', titleUK:'Впевнений гравець',
     titlePtBr:'Jogador confiante', titleVi:'Người chơi tự tin', titleId:'Pemain percaya diri', titleTr:'Kendinden emin oyuncu', titlePl:'Pewny gracz',
-    descRU:'Ответь правильно на 20 вопросов в Квизах на уровне Легко.',
+    descRU:'Ответь правильно на 20 вопросов в Вызовах на уровне Легко.',
     descPtBr:'Responda corretamente a 20 perguntas em Quizzes no nível Fácil.',
     descVi:'Trả lời đúng 20 câu hỏi trong Quiz ở mức Dễ.',
     descId:'Jawab 20 pertanyaan dengan benar di Kuis pada level Mudah.',
@@ -684,7 +684,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qm1', type:'quiz_medium', icon:'⚔️', target:5, xp:24, minPlayerLevel:8,
     titleRU:'Средний уровень', titleUK:'Середній рівень',
     titlePtBr:'Nível médio', titleVi:'Cấp độ trung bình', titleId:'Level menengah', titleTr:'Orta seviye', titlePl:'Średni poziom',
-    descRU:'Ответь правильно на 5 вопросов в Квизах на уровне Средне.',
+    descRU:'Ответь правильно на 5 вопросов в Вызовах на уровне Средне.',
     descPtBr:'Responda corretamente a 5 perguntas em Quizzes no nível Médio.',
     descVi:'Trả lời đúng 5 câu hỏi trong Quiz ở mức Trung bình.',
     descId:'Jawab 5 pertanyaan dengan benar di Kuis pada level Menengah.',
@@ -694,7 +694,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qm2', type:'quiz_medium', icon:'⚔️', target:10, xp:42, minPlayerLevel:8,
     titleRU:'Средний мастер', titleUK:'Середній майстер',
     titlePtBr:'Mestre do médio', titleVi:'Bậc thầy trung bình', titleId:'Ahli level menengah', titleTr:'Orta seviye ustası', titlePl:'Mistrz średniego poziomu',
-    descRU:'Ответь правильно на 10 вопросов в Квизах на уровне Средне.',
+    descRU:'Ответь правильно на 10 вопросов в Вызовах на уровне Средне.',
     descPtBr:'Responda corretamente a 10 perguntas em Quizzes no nível Médio.',
     descVi:'Trả lời đúng 10 câu hỏi trong Quiz ở mức Trung bình.',
     descId:'Jawab 10 pertanyaan dengan benar di Kuis pada level Menengah.',
@@ -706,7 +706,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qp1', type:'quiz_perfect', icon:'✨', target:1, xp:54, minPlayerLevel:8,
     titleRU:'Идеальный раунд', titleUK:'Ідеальний раунд',
     titlePtBr:'Rodada perfeita', titleVi:'Vòng hoàn hảo', titleId:'Ronde sempurna', titleTr:'Mükemmel tur', titlePl:'Idealna runda',
-    descRU:'Заверши раунд в Квизах без единой ошибки — любой уровень.',
+    descRU:'Заверши раунд в Вызовах без единой ошибки — любой уровень.',
     descPtBr:'Conclua uma rodada em Quizzes sem nenhum erro, em qualquer nível.',
     descVi:'Hoàn thành một vòng Quiz không mắc lỗi nào, ở bất kỳ mức nào.',
     descId:'Selesaikan ronde di Kuis tanpa satu pun kesalahan, di level apa pun.',
@@ -718,7 +718,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qhp1', type:'quiz_hard_perfect', icon:'👑', target:1, xp:84, minPlayerLevel:15,
     titleRU:'Хардкор без ошибок', titleUK:'Хардкор без помилок',
     titlePtBr:'Difícil sem erros', titleVi:'Khó mà không sai', titleId:'Sulit tanpa kesalahan', titleTr:'Hatasız zor mod', titlePl:'Trudny bez błędów',
-    descRU:'Заверши раунд Квизов на уровне Сложно без единой ошибки.',
+    descRU:'Заверши раунд Вызовов на уровне Сложно без единой ошибки.',
     descPtBr:'Conclua uma rodada de Quizzes no nível Difícil sem nenhum erro.',
     descVi:'Hoàn thành một vòng Quiz ở mức Khó mà không mắc lỗi nào.',
     descId:'Selesaikan ronde Kuis pada level Sulit tanpa satu pun kesalahan.',
@@ -954,9 +954,9 @@ const ALL_TASKS: DailyTask[] = [
 
   // Дополнительные quiz_easy
   { id:'qe4', type:'quiz_easy', icon:'🌿', target:7, xp:22,
-    titleRU:'Семёрка в квизе', titleUK:'Сімка в квізі',
+    titleRU:'Семёрка в вызове', titleUK:'Сімка в квізі',
     titlePtBr:'Sete no quiz', titleVi:'Bảy câu trong quiz', titleId:'Tujuh di kuis', titleTr:'Quizde yedili', titlePl:'Siódemka w quizie',
-    descRU:'Ответь правильно на 7 вопросов в Квизах на уровне Легко.',
+    descRU:'Ответь правильно на 7 вопросов в Вызовах на уровне Легко.',
     descPtBr:'Responda corretamente a 7 perguntas em Quizzes no nível Fácil.',
     descVi:'Trả lời đúng 7 câu hỏi trong Quiz ở mức Dễ.',
     descId:'Jawab 7 pertanyaan dengan benar di Kuis pada level Mudah.',
@@ -988,7 +988,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qm3', type:'quiz_medium', icon:'⚔️', target:3, xp:18, minPlayerLevel:8,
     titleRU:'Вход на средний', titleUK:'Вхід на середній',
     titlePtBr:'Entrada no médio', titleVi:'Vào mức trung bình', titleId:'Masuk level menengah', titleTr:'Orta seviyeye giriş', titlePl:'Wejście na średni',
-    descRU:'Открой Квизы → Средне и ответь правильно на 3 вопроса.',
+    descRU:'Открой Вызовы → Средне и ответь правильно на 3 вопроса.',
     descPtBr:'Abra Quizzes → Médio e responda corretamente a 3 perguntas.',
     descVi:'Mở Quiz → Trung bình và trả lời đúng 3 câu hỏi.',
     descId:'Buka Kuis → Menengah dan jawab 3 pertanyaan dengan benar.',
@@ -998,7 +998,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qm4', type:'quiz_medium', icon:'⚔️', target:15, xp:60, minPlayerLevel:8,
     titleRU:'Средний мастер плюс', titleUK:'Середній майстер плюс',
     titlePtBr:'Mestre médio plus', titleVi:'Bậc thầy trung bình plus', titleId:'Ahli menengah plus', titleTr:'Orta seviye ustası plus', titlePl:'Mistrz średniego plus',
-    descRU:'Ответь правильно на 15 вопросов в Квизах на уровне Средне.',
+    descRU:'Ответь правильно на 15 вопросов в Вызовах на уровне Средне.',
     descPtBr:'Responda corretamente a 15 perguntas em Quizzes no nível Médio.',
     descVi:'Trả lời đúng 15 câu hỏi trong Quiz ở mức Trung bình.',
     descId:'Jawab 15 pertanyaan dengan benar di Kuis pada level Menengah.',
@@ -1010,7 +1010,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qh5', type:'quiz_hard', icon:'💪', target:7, xp:66, minPlayerLevel:15,
     titleRU:'Семь на сложном', titleUK:'Сім на складному',
     titlePtBr:'Sete no difícil', titleVi:'Bảy câu mức khó', titleId:'Tujuh di level sulit', titleTr:'Zorda yedili', titlePl:'Siedem na trudnym',
-    descRU:'Открой Квизы → Сложно и ответь правильно на 7 вопросов.',
+    descRU:'Открой Вызовы → Сложно и ответь правильно на 7 вопросов.',
     descPtBr:'Abra Quizzes → Difícil e responda corretamente a 7 perguntas.',
     descVi:'Mở Quiz → Khó và trả lời đúng 7 câu hỏi.',
     descId:'Buka Kuis → Sulit dan jawab 7 pertanyaan dengan benar.',
@@ -1020,7 +1020,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qh6', type:'quiz_hard', icon:'👑', target:20, xp:108, minPlayerLevel:15,
     titleRU:'Двадцать на сложном', titleUK:'Двадцять на складному',
     titlePtBr:'Vinte no difícil', titleVi:'Hai mươi câu mức khó', titleId:'Dua puluh di level sulit', titleTr:'Zorda yirmi', titlePl:'Dwadzieścia na trudnym',
-    descRU:'Ответь правильно на 20 вопросов в Квизах на уровне Сложно.',
+    descRU:'Ответь правильно на 20 вопросов в Вызовах на уровне Сложно.',
     descPtBr:'Responda corretamente a 20 perguntas em Quizzes no nível Difícil.',
     descVi:'Trả lời đúng 20 câu hỏi trong Quiz ở mức Khó.',
     descId:'Jawab 20 pertanyaan dengan benar di Kuis pada level Sulit.',
@@ -1032,7 +1032,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qs5', type:'quiz_score', icon:'💥', target:70, xp:114, minPlayerLevel:15,
     titleRU:'Семь десятков', titleUK:'Сім десятків',
     titlePtBr:'Sete dezenas', titleVi:'Bảy chục', titleId:'Tujuh puluh', titleTr:'Yedi onluk', titlePl:'Siedem dziesiątek',
-    descRU:'Заработай 70 XP в Квизах за день — играй на Сложно и держи серию.',
+    descRU:'Заработай 70 XP в Квизах за день — играй на Сложно, держи серию.',
     descPtBr:'Ganhe 70 XP em Quizzes durante o dia: jogue no Difícil e mantenha a sequência.',
     descVi:'Kiếm 70 XP trong Quiz trong ngày: chơi mức Khó và giữ chuỗi.',
     descId:'Dapatkan 70 XP di Kuis dalam sehari: mainkan mode Sulit dan pertahankan rangkaian.',
@@ -1052,7 +1052,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qs7', type:'quiz_score', icon:'🌟', target:15, xp:36,
     titleRU:'Пятнашки', titleUK:'П\'ятнашки',
     titlePtBr:'Quinze pontos', titleVi:'Mười lăm điểm', titleId:'Lima belas poin', titleTr:'On beşlik', titlePl:'Piętnastka',
-    descRU:'Заработай 15 XP в Квизах за день.',
+    descRU:'Заработай 15 XP в Вызовах за день.',
     descPtBr:'Ganhe 15 XP em Quizzes durante o dia.',
     descVi:'Kiếm 15 XP trong Quiz trong ngày.',
     descId:'Dapatkan 15 XP di Kuis dalam sehari.',
@@ -1076,7 +1076,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qhp2', type:'quiz_hard_perfect', icon:'💥', target:1, xp:108, minPlayerLevel:15,
     titleRU:'Сложно и чисто', titleUK:'Складно і чисто',
     titlePtBr:'Difícil e limpo', titleVi:'Khó và sạch lỗi', titleId:'Sulit dan bersih', titleTr:'Zor ve temiz', titlePl:'Trudno i czysto',
-    descRU:'Пройди раунд Квизов на уровне Сложно без единой ошибки.',
+    descRU:'Пройди раунд Вызовов на уровне Сложно без единой ошибки.',
     descPtBr:'Conclua uma rodada de Quizzes no nível Difícil sem nenhum erro.',
     descVi:'Hoàn thành một vòng Quiz ở mức Khó mà không mắc lỗi nào.',
     descId:'Selesaikan ronde Kuis pada level Sulit tanpa satu pun kesalahan.',
@@ -1588,7 +1588,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'qe7', type:'quiz_easy', icon:'🍀', target:8, xp:24,
     titleRU:'Восемь лёгких', titleUK:'Вісім легких',
     titlePtBr:'Oito fáceis', titleVi:'Tám câu dễ', titleId:'Delapan mudah', titleTr:'Sekiz kolay', titlePl:'Osiem łatwych',
-    descRU:'Ответь правильно на 8 вопросов в Квизах на уровне Легко.',
+    descRU:'Ответь правильно на 8 вопросов в Вызовах на уровне Легко.',
     descPtBr:'Responda corretamente a 8 perguntas em Quizzes no nível Fácil.',
     descVi:'Trả lời đúng 8 câu hỏi trong Quiz ở mức Dễ.',
     descId:'Jawab 8 pertanyaan dengan benar di Kuis pada level Mudah.',
@@ -1682,7 +1682,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'es1', type:'energy_spend', icon:'⚡', target:3, xp:30, freeOnly:true,
     titleRU:'Трата энергии', titleUK:'Витрата енергії',
     titlePtBr:'Gasto de energia', titleVi:'Tiêu hao năng lượng', titleId:'Pemakaian energi', titleTr:'Enerji harcama', titlePl:'Zużycie energii',
-    descRU:'Потрать 3 единицы энергии — делай ошибки в уроках или играй в арены.',
+    descRU:'Потрать 3 единицы энергии в уроках или Арене.',
     descPtBr:'Gaste 3 unidades de energia: erre nas lições ou jogue nas Arenas.',
     descVi:'Tiêu 3 đơn vị năng lượng: mắc lỗi trong bài học hoặc chơi Arena.',
     descId:'Habiskan 3 unit energi: buat kesalahan di pelajaran atau mainkan Arena.',
@@ -1692,7 +1692,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'es2', type:'energy_spend', icon:'⚡', target:5, xp:48, freeOnly:true,
     titleRU:'Полная отдача', titleUK:'Повна віддача',
     titlePtBr:'Entrega total', titleVi:'Dốc toàn lực', titleId:'Usaha penuh', titleTr:'Tam verim', titlePl:'Pełne zaangażowanie',
-    descRU:'Потрать 5 единиц энергии — делай ошибки в уроках или играй в арены.',
+    descRU:'Потрать 5 единиц энергии — учись интенсивно.',
     descPtBr:'Gaste 5 unidades de energia: erre nas lições ou jogue nas Arenas.',
     descVi:'Tiêu 5 đơn vị năng lượng: mắc lỗi trong bài học hoặc chơi Arena.',
     descId:'Habiskan 5 unit energi: buat kesalahan di pelajaran atau mainkan Arena.',
@@ -1702,7 +1702,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'es3', type:'energy_spend', icon:'⚡', target:2, xp:22, freeOnly:true,
     titleRU:'Первые потери', titleUK:'Перші втрати',
     titlePtBr:'Primeiras perdas', titleVi:'Mất mát đầu tiên', titleId:'Kehilangan pertama', titleTr:'İlk kayıplar', titlePl:'Pierwsze straty',
-    descRU:'Потрать 2 единицы энергии — ошибайся в уроках и учись на ошибках.',
+    descRU:'Потрать 2 единицы энергии в уроках.',
     descPtBr:'Gaste 2 unidades de energia: erre nas lições e aprenda com os erros.',
     descVi:'Tiêu 2 đơn vị năng lượng: mắc lỗi trong bài học và học từ lỗi đó.',
     descId:'Habiskan 2 unit energi: buat kesalahan di pelajaran dan belajar dari kesalahan itu.',
@@ -1712,7 +1712,7 @@ const ALL_TASKS: DailyTask[] = [
   { id:'es4', type:'energy_spend', icon:'⚡', target:7, xp:66, freeOnly:true,
     titleRU:'Тяжёлый день', titleUK:'Важкий день',
     titlePtBr:'Dia pesado', titleVi:'Ngày nặng', titleId:'Hari berat', titleTr:'Zor gün', titlePl:'Ciężki dzień',
-    descRU:'Потрать 7 единиц энергии за день — интенсивные тренировки в уроках.',
+    descRU:'Потрать 7 единиц энергии за день — максимальная интенсивность.',
     descPtBr:'Gaste 7 unidades de energia no dia: treinos intensos nas lições.',
     descVi:'Tiêu 7 đơn vị năng lượng trong ngày: luyện tập cường độ cao trong bài học.',
     descId:'Habiskan 7 unit energi dalam sehari: latihan intensif di pelajaran.',
@@ -1981,9 +1981,14 @@ const getSetsForPlayerLevel = (playerLevel: number): string[][] => {
 };
 
 // ── Утилиты ───────────────────────────────────────────────────────────────
+// Ключ дня в UTC — единый источник истины с arena_daily_limit (todayStr) и
+// streak_safety (todayKey), которые тоже считают по UTC через toISOString.
+// Ранее здесь было локальное время (getFullYear/getMonth/getDate): около полуночи
+// у пользователей с UTC±N ключи расходились → двойной сбор дневных наград,
+// потеря прогресса задач (записано на один ключ, читается с другого) и
+// несправедливый сброс серии. Теперь все три модуля используют один формат.
 export const getTodayKey = (): string => {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  return new Date().toISOString().slice(0, 10);
 };
 
 // Синхронная версия — без уровня, используется только внутри getTodayTasksSafe
@@ -2185,7 +2190,9 @@ export const getUserPlayerLevel = async (): Promise<number> => {
     const { getLevelFromXP } = await import('../constants/theme');
     const raw = await AsyncStorage.getItem('user_total_xp');
     return getLevelFromXP(parseInt(raw || '0', 10));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[daily_tasks]', e);
+  }
   return 1;
 };
 
@@ -2193,7 +2200,9 @@ export const getUserPlayerLevel = async (): Promise<number> => {
 const getUserIsPremium = async (): Promise<boolean> => {
   try {
     return await getVerifiedPremiumStatus();
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[daily_tasks]', e);
+  }
   return false;
 };
 
@@ -2244,7 +2253,9 @@ const loadAdminTaskOverride = async (studyTarget?: RuntimeStudyTarget): Promise<
 export const clearDailyTasksAdminOverride = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
   try {
     await AsyncStorage.removeItem(dailyTasksAdminOverrideKey(studyTarget));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[daily_tasks]', e);
+  }
 };
 
 export const getDailyTaskAdminPacks = (packSize = 3): DailyTaskAdminPack[] => {
@@ -2324,7 +2335,9 @@ const saveRerollState = async (
 ): Promise<void> => {
   try {
     await AsyncStorage.setItem(dailyTasksRerollKey(studyTarget), JSON.stringify(state));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[daily_tasks]', e);
+  }
 };
 
 /** Сколько замен ещё доступно сегодня. */
@@ -2794,7 +2807,9 @@ export const saveTodayProgress = async (
   try {
     const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
     await AsyncStorage.setItem(key, JSON.stringify(progress));
-  } catch {}
+  } catch (e) {
+    if (__DEV__) console.warn('[daily_tasks]', e);
+  }
 };
 
 // ── Главная функция — обновить прогресс задания ───────────────────────────
@@ -3062,7 +3077,7 @@ export const updateMultipleTaskProgress = async (
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Не удалось сохранить прогресс заданий. Попробуй ещё раз.',
+          ru: 'Прогресс заданий не сохранился. Попробуй ещё раз.',
           uk: 'Не вдалося зберегти прогрес завдань. Спробуй ще раз.',
           es: 'No se pudo guardar el progreso. Inténtalo de nuevo.',
           'pt-BR': 'Não foi possível salvar o progresso das tarefas. Tente de novo.',

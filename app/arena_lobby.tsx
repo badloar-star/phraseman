@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Easing, ScrollView, Modal, } from 'react-native';
+import TapScale from '../components/TapScale';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, InteractionManager, } from 'react-native';
+import { Image } from 'expo-image';
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
@@ -30,7 +33,7 @@ import { arenaActionIconSource } from './arena_action_icons';
 import { ARENA_LOBBY_ACCEPT_MS, ARENA_PLAY_AGAIN_BOT_MAX_MS, ARENA_PLAY_AGAIN_BOT_MIN_MS, CLOUD_SYNC_ENABLED, ENABLE_ARENA_RANKED_WAGER, IS_EXPO_GO, } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { ArenaSession, LobbyChoice } from './types/arena';
-import { setSessionLobbyChoice, subscribeMatchmakingSearchingTotal, subscribeSession, subscribeSessionPlayers, } from './services/arena_db';
+import { saveExpoPushTokenToUser, setSessionLobbyChoice, subscribeMatchmakingSearchingTotal, subscribeSession, subscribeSessionPlayers, } from './services/arena_db';
 import { ARENA_RANKED_WAGER_STAKES, clearPendingArenaRankedWager, getPendingArenaRankedWager, setPendingArenaRankedWager, winPayoutForStake, type ArenaRankedPendingWager, type ArenaRankedWagerStake, } from './arena_match_wager';
 import { getShardsBalance } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
@@ -314,12 +317,17 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         };
                     } | undefined)?.eas?.projectId;
                     const tokenData = await getExpoPushTokenAsync(easProjectId ? { projectId: easProjectId } : undefined);
-                    if (tokenData.data)
+                    if (tokenData.data) {
                         await updateQueueWithPushToken(tokenData.data);
+                        // Дублируем токен в постоянный профиль users/{id}, чтобы серверные
+                        // функции (подарок от друга, завершение матча) могли слать push —
+                        // в очереди матчмейкинга токен живёт только во время поиска.
+                        if (userId) await saveExpoPushTokenToUser(userId, tokenData.data);
+                    }
                 }
                 catch {
                     emitAppEvent('action_toast', actionToastTri('info', {
-                        ru: 'Уведомления недоступны. Поиск матча работает без них.',
+                        ru: 'Уведомления не работают, но поиск матча идёт — всё ок.',
                         uk: 'Сповіщення недоступні. Пошук матчу працює без них.',
                         es: 'Las notificaciones no están disponibles. Puedes buscar partida sin ellas.',
                         'pt-BR': 'As notificações não estão disponíveis. Você ainda pode buscar uma partida.',
@@ -443,21 +451,24 @@ export default function DuelLobbyScreen({ isTab = false }: {
         return () => clearTimeout(timer);
     }, [isTab, autoSearch, playAgainTs, router]);
     useEffect(() => {
-        ensureArenaAuthUid().then((uid) => {
-            if (uid) {
-                setUserId(uid);
-                if (autoSearch === '1')
-                    void handleFindMatch(uid, { playAgain: true });
-            }
+        const task = InteractionManager.runAfterInteractions(() => {
+            ensureArenaAuthUid().then((uid) => {
+                if (uid) {
+                    setUserId(uid);
+                    if (autoSearch === '1')
+                        void handleFindMatch(uid, { playAgain: true });
+                }
+            });
+            ensureAnonUser().then((uid) => {
+                if (uid)
+                    setStableUserId(uid);
+            }).catch(() => { });
+            (async () => {
+                setDailyCount(await getDailyArenaCount());
+                setDailyMax(await getDailyArenaMaxToday());
+            })();
         });
-        ensureAnonUser().then((uid) => {
-            if (uid)
-                setStableUserId(uid);
-        }).catch(() => { });
-        (async () => {
-            setDailyCount(await getDailyArenaCount());
-            setDailyMax(await getDailyArenaMaxToday());
-        })();
+        return () => task.cancel();
     }, [autoSearch, playAgainTs, handleFindMatch]);
     useEffect(() => {
         if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED || !stableUserId) {
@@ -770,7 +781,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 }
                 catch {
                     emitAppEvent('action_toast', actionToastTri('error', {
-                        ru: 'Не удалось подтвердить матч. Проверь сеть и попробуй снова.',
+                        ru: 'Матч не загрузился. Проверь соединение и попробуй снова.',
                         uk: 'Не вдалося підтвердити матч. Перевір мережу і спробуй знову.',
                         es: 'No se ha podido confirmar la partida. Revisa la conexión e inténtalo de nuevo.',
                         'pt-BR': 'Não foi possível confirmar a partida. Verifique a conexão e tente novamente.',
@@ -843,7 +854,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     setArenaFriendPickUid(null);
                     friendMatchNavRef.current = false;
                     emitAppEvent('action_toast', actionToastTri('error', {
-                        ru: 'Облако недоступно (синхронизация выключена). Друг не сможет войти в комнату.',
+                        ru: 'Синхронизация выключена. Включи её — иначе друг не сможет зайти.',
                         uk: 'Хмара недоступна (синхронізація вимкнена). Друг не зможе зайти в кімнату.',
                         es: 'La nube no está disponible (sincronización desactivada). Tu amigo no podrá entrar en la sala.',
                         'pt-BR': 'A nuvem está indisponível (sincronização desligada). Seu amigo não poderá entrar na sala.',
@@ -915,7 +926,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 setArenaFriendPickUid(null);
                 friendMatchNavRef.current = false;
                 emitAppEvent('action_toast', actionToastTri('error', {
-                    ru: 'Не удалось создать комнату в облаке. Проверьте сеть — если друг не заходит, пригласите ещё раз.',
+                    ru: 'Комната не создалась в облаке. Проверь сеть — если друг не заходит, пригласи ещё раз.',
                     uk: 'Не вдалося створити кімнату в хмарі. Перевірте мережу — якщо друг не заходить, запросіть ще раз.',
                     es: 'No se pudo crear la sala en la nube. Revisa la conexión: si tu amigo no puede entrar, vuelve a invitarlo.',
                     'pt-BR': 'Não foi possível criar a sala na nuvem. Verifique a conexão; se seu amigo não entrar, envie outro convite.',
@@ -1096,7 +1107,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             });
             if (!res.ok) {
                 emitAppEvent('action_toast', actionToastTri('error', {
-                    ru: 'Не удалось принять вызов. Попроси друга отправить его ещё раз.',
+                    ru: 'Вызов не загрузился. Попроси друга отправить его снова.',
                     uk: 'Не вдалося прийняти виклик. Попроси друга надіслати його ще раз.',
                     es: 'No se pudo aceptar el reto. Pide a tu amigo que lo envíe de nuevo.',
                     'pt-BR': 'Não foi possível aceitar o desafio. Peça ao seu amigo para enviar novamente.',
@@ -1212,7 +1223,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         })}
           </Text>
           {shardsBalanceUi != null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-              <Image source={oskolokImageForPackShards(Math.min(99, shardsBalanceUi))} style={{ width: 18, height: 18 }} resizeMode="contain"/>
+              <Image source={oskolokImageForPackShards(Math.min(99, shardsBalanceUi))} style={{ width: 18, height: 18 }} contentFit="contain"/>
               <Text style={{ color: screenMuted, fontSize: f.caption, fontWeight: '700' }}>{shardsBalanceUi}</Text>
             </View>)}
         </View>
@@ -1239,7 +1250,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         },
                 ]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                  <Image source={oskolokImageForPackShards(st)} style={{ width: 20, height: 20, opacity: chipDisabled ? 0.7 : 1 }} resizeMode="contain"/>
+                  <Image source={oskolokImageForPackShards(st)} style={{ width: 20, height: 20, opacity: chipDisabled ? 0.7 : 1 }} contentFit="contain"/>
                   <Text style={{
                     color: chipDisabled ? screenMuted : screenTitleColor,
                     fontWeight: '800',
@@ -1586,7 +1597,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     edges={isTab ? [] : ['top', 'bottom']}>
       {/* Шапка */}
       <View style={styles.header}>
-        <TouchableOpacity testID="arena-header-back" accessibilityLabel="qa-arena-header-back" accessible onPress={() => {
+        <TapScale testID="arena-header-back" accessibilityLabel="qa-arena-header-back" accessible onPress={() => {
             hapticTap();
             if (isTab) {
                 goHome();
@@ -1596,7 +1607,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             }
         }} style={[styles.backBtn, { backgroundColor: 'rgba(255,255,255,0.075)', borderColor: 'rgba(255,255,255,0.14)' }]}>
           <Ionicons name="chevron-back" size={20} color={t.textPrimary}/>
-        </TouchableOpacity>
+        </TapScale>
         <View style={styles.titleWrap}>
           <Text testID="screen-arena-lobby" accessibilityLabel="qa-screen-arena-lobby" style={[styles.titleText, { color: screenTitleColor, fontSize: f.h2 + 5 }]} adjustsFontSizeToFit minimumFontScale={0.75}>
             {triLang(lang, {
@@ -1611,7 +1622,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         })}
           </Text>
           <TouchableOpacity testID="arena-rating-button" onPress={() => { hapticTap(); router.push('/arena_rating' as any); }} style={styles.headerRankLine} activeOpacity={0.78}>
-            {myRank.isHydrated ? (<Image source={myRank.image} style={styles.headerRankIcon} resizeMode="contain"/>) : (<Ionicons name="shield-outline" size={16} color={screenMuted} style={styles.headerRankIcon}/>)}
+            {myRank.isHydrated ? (<Image source={myRank.image} style={styles.headerRankIcon} contentFit="contain"/>) : (<Ionicons name="shield-outline" size={16} color={screenMuted} style={styles.headerRankIcon}/>)}
             <Text style={[styles.headerRankText, { color: screenMuted, fontSize: f.caption }]}>
               {myRank.isHydrated ? myRank.labelShort : '—'}
             </Text>
@@ -1648,7 +1659,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         ]}>
             <Image
               source={arenaTicketIconSource}
-              resizeMode="contain"
+              contentFit="contain"
               style={[
                 styles.arenaTicketIcon,
                 { opacity: !isUnlimited && arenaTicketsLeft <= 0 ? 0.72 : 1 },
@@ -1661,7 +1672,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         </View>
       </View>
 
-      <ScrollView style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled>
+      <ScrollView decelerationRate={0.998} style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled>
         {/* INFO-зона — фиксированная высота над actions. Любая поздняя
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
@@ -1880,7 +1891,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 null,
             ]}>
                 {arenaBackdropLayers.map(layer => (FABRIC_BACKGROUND_TRANSITIONS_ENABLED ? (<Animated.View key={`card-hero-${layer.id}`} pointerEvents="none" style={[styles.arenaHeroImage, { opacity: layer.opacity }]}>
-                  <Animated.Image source={layer.value as any} resizeMode="cover" fadeDuration={0} style={[
+                  <AnimatedImage source={layer.value as any} contentFit="cover" style={[
                       styles.arenaHeroImage,
                       {
                           opacity: arenaHeroOpacity,
@@ -1891,7 +1902,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                           ],
                       },
                   ]}/>
-                </Animated.View>) : (<Image key={`card-hero-${layer.id}`} source={layer.value as any} resizeMode="cover" fadeDuration={0} style={[
+                </Animated.View>) : (<Image key={`card-hero-${layer.id}`} source={layer.value as any} contentFit="cover" fadeDuration={0} style={[
                     styles.arenaHeroImage,
                     {
                         opacity: arenaGlass.heroOpacity,
@@ -1952,17 +1963,11 @@ export default function DuelLobbyScreen({ isTab = false }: {
             ]}>
                     {themeMode === 'gold' && <GoldBevel radius={20} intensity="strong"/>}
                     {false}
-                    <View style={[styles.arenaLaunchIconWrap, {
-                        backgroundColor: 'transparent',
-                        borderColor: 'transparent',
-                        shadowColor: arenaActionLogoChrome.match.shadow,
-                    }]}>
-                      <Image
-                        source={arenaMatchIconSource}
-                        resizeMode="contain"
-                        style={styles.arenaLaunchActionIcon}
-                      />
-                    </View>
+                    <Image
+                      source={arenaMatchIconSource}
+                      contentFit="contain"
+                      style={styles.arenaLaunchActionIcon}
+                    />
                     <View style={styles.arenaLaunchTextWrap}>
                       <Text style={[styles.arenaLaunchTitle, { color: arenaGlass.ctaText, fontSize: f.h2 + 3 }]}>
                         {triLang(lang, {
@@ -2012,7 +2017,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                       <View style={[styles.arenaCostChip, { backgroundColor: `${arenaTicketsColor}12`, borderColor: `${arenaTicketsColor}33` }]}>
                         <Image
                           source={arenaTicketIconSource}
-                          resizeMode="contain"
+                          contentFit="contain"
                           style={[
                             styles.arenaCostTicketIcon,
                             { opacity: arenaTicketsLeft <= 0 ? 0.72 : 1 },
@@ -2086,7 +2091,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 </View>) : null}
 
                 <View style={styles.arenaActionList}>
-                  <TouchableOpacity testID="arena-play-with-friend" accessibilityLabel="qa-arena-play-with-friend" accessible={true} accessibilityRole="button" accessibilityState={{ expanded: friendRoomId != null }} onPress={() => {
+                  <TouchableOpacity activeOpacity={0.75} testID="arena-play-with-friend" accessibilityLabel="qa-arena-play-with-friend" accessible={true} accessibilityRole="button" accessibilityState={{ expanded: friendRoomId != null }} onPress={() => {
                 if (friendRoomId) {
                     hapticTap();
                     friendUnsubRef.current?.();
@@ -2107,7 +2112,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     }]}>
                       <Image
                         source={arenaFriendIconSource}
-                        resizeMode="contain"
+                        contentFit="contain"
                         style={styles.arenaCommandActionIcon}
                       />
                     </View>
@@ -2142,7 +2147,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
 
                   {friendRoomId && (<View testID="arena-friend-panel" style={[styles.arenaFriendsPanel, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
                       {arenaFriends.length > 0 ? (<>
-                          <ScrollView testID="arena-friends-scroll" horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} contentContainerStyle={styles.arenaFriendsScrollContent}>
+                          <ScrollView testID="arena-friends-scroll" decelerationRate={0.998} horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} contentContainerStyle={styles.arenaFriendsScrollContent}>
                             {arenaFriends.map(friend => {
                         const profile = arenaFriendProfiles[friend.uid];
                         const totalXp = profile?.totalXp ?? 0;
@@ -2151,7 +2156,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         const name = profile?.name ?? '—';
                         const sending = arenaInviteSendingUid === friend.uid;
                         const selected = arenaFriendPickUid === friend.uid;
-                        return (<TouchableOpacity testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending }} key={friend.uid} onPress={() => {
+                        return (<TouchableOpacity activeOpacity={0.75} testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending }} key={friend.uid} onPress={() => {
                                 if (sending)
                                     return;
                                 hapticTap();
@@ -2259,7 +2264,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     }]}>
                       <Image
                         source={arenaThroneIconSource}
-                        resizeMode="contain"
+                        contentFit="contain"
                         style={styles.arenaCommandActionIcon}
                       />
                     </View>
@@ -2351,7 +2356,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         ]}>
             <View style={styles.throneModalHeader}>
               <View style={[styles.throneModalIcon, { backgroundColor: arenaGlass.warmBg, borderColor: arenaGlass.warmBorder }]}>
-                <Image source={arenaThroneIconSource} resizeMode="contain" style={styles.throneModalIconImage}/>
+                <Image source={arenaThroneIconSource} contentFit="contain" style={styles.throneModalIconImage}/>
               </View>
               <View style={styles.throneModalTitleWrap}>
                 <Text style={[styles.throneModalTitle, { color: screenTitleColor, fontSize: f.h2 }]}>
@@ -2379,7 +2384,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             })}
                 </Text>
               </View>
-              <TouchableOpacity accessibilityRole="button" accessibilityLabel="Close" onPress={() => {
+              <TouchableOpacity activeOpacity={0.75} accessibilityRole="button" accessibilityLabel="Close" onPress={() => {
             hapticTap();
             setThroneTopVisible(false);
         }} style={styles.throneModalClose} activeOpacity={0.76}>
@@ -2656,33 +2661,36 @@ const styles = StyleSheet.create({
     arenaLaunchTouch: {
         width: '100%',
         borderRadius: 22,
+        overflow: 'visible',
     },
     arenaLaunchGradient: {
         height: 76,
         borderRadius: 20,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 12,
+        paddingLeft: 8,
         paddingRight: 16,
-        gap: 11,
+        gap: 12,
+        overflow: 'visible',
     },
     arenaLaunchIconWrap: {
-        width: 60,
-        height: 60,
+        width: 52,
+        height: 52,
         borderRadius: 0,
         borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'transparent',
-        overflow: 'visible',
+        overflow: 'hidden',
         shadowOpacity: 0,
         shadowRadius: 0,
         shadowOffset: { width: 0, height: 0 },
         elevation: 0,
+        marginBottom: 8,
     },
     arenaLaunchActionIcon: {
-        width: 64,
-        height: 64,
+        width: 52,
+        height: 52,
     },
     arenaLaunchTextWrap: { flex: 1, minWidth: 0 },
     arenaLaunchTitle: { fontWeight: '900', letterSpacing: 0 },

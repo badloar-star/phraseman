@@ -91,6 +91,21 @@ import {
   type FriendGiftId,
 } from '../friend_gifts';
 import { checkAchievements } from '../achievements';
+import { ReferralExplainerCard } from '../referral_explainer_card';
+import { ReferralAccessActivatedModal } from '../referral_access_activated_modal';
+import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
+import {
+  getClaimableReferralState,
+  claimReferralVipDays,
+  type ReferralInvite,
+} from '../referral_vip';
+import { buildCloudReferralInviteShare } from '../referral_invite_share';
+import { isReferralCloudEnabled } from '../referral_flags';
+import {
+  shouldShowReferralAccessEnded,
+  markReferralAccessEndedSeen,
+  getTrackedReferralWindowEnd,
+} from '../referral_access_ended_tracker';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -446,12 +461,14 @@ function MiniXpBar({ xp, color }: { xp: number; color: string }) {
 const FRIEND_ROW_AVATAR_SIZE = 60;
 
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome,
+  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, referralStatus,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
+  /** Статус приглашения, если друг пришёл по твоему коду. */
+  referralStatus?: 'pending' | 'qualified' | 'rewarded';
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
@@ -489,6 +506,25 @@ function FriendRow({
           : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
         }
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
+        {referralStatus && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 3 }}>
+            <Ionicons
+              name={referralStatus === 'pending' ? 'hourglass-outline' : 'checkmark-circle'}
+              size={12}
+              color={referralStatus === 'pending' ? t.textMuted : t.accent}
+            />
+            <Text
+              style={{ fontSize: f.xs ?? 11, fontWeight: '700', color: referralStatus === 'pending' ? t.textMuted : t.accent }}
+              numberOfLines={1}
+            >
+              {referralStatus === 'pending'
+                ? triLang(lang as any, { ru: 'По твоему приглашению', uk: 'За твоїм запрошенням', es: 'Por tu invitación', 'pt-BR': 'Pelo seu convite', vi: 'Theo lời mời của bạn', id: 'Lewat undanganmu', tr: 'Senin davetinle', pl: 'Z twojego zaproszenia' })
+                : referralStatus === 'qualified'
+                ? triLang(lang as any, { ru: 'Готов открыть доступ', uk: 'Готовий відкрити доступ', es: 'Listo para abrir acceso', 'pt-BR': 'Pronto para abrir acesso', vi: 'Sẵn sàng mở quyền', id: 'Siap buka akses', tr: 'Erişim açmaya hazır', pl: 'Gotowy otworzyć dostęp' })
+                : triLang(lang as any, { ru: 'Доступ открыт', uk: 'Доступ відкрито', es: 'Acceso abierto', 'pt-BR': 'Acesso aberto', vi: 'Đã mở quyền', id: 'Akses dibuka', tr: 'Erişim açıldı', pl: 'Dostęp otwarty' })}
+            </Text>
+          </View>
+        )}
       </View>
       <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0 }}>
         {profile.streak > 0 && (
@@ -1431,6 +1467,91 @@ export default function FriendsTabScreen() {
     name: string; avatar: string; frame: string; aura?: string; totalXP: number; streak: number | null;
   } | null>(null);
 
+  // ── Реферал: накопленные дни доступа + модалки активации/окончания ──────────
+  const [referralInvites, setReferralInvites] = useState<ReferralInvite[]>([]);
+  const [claimableDays, setClaimableDays] = useState(0);
+  const [isClaiming, setIsClaiming] = useState(false);
+  const [activatedModal, setActivatedModal] = useState<{ days: number; friends: number } | null>(null);
+  const [accessEndedOpen, setAccessEndedOpen] = useState(false);
+
+  const refreshReferralState = useCallback(async () => {
+    if (!isReferralCloudEnabled()) return;
+    const state = await getClaimableReferralState();
+    setReferralInvites(state.invites);
+    setClaimableDays(state.claimableVipDays);
+
+    // Модал окончания: трекер сам определяет «реферальность» окна (стикки-маркер переживает
+    // зануление vip_plan при истечении). Гейт по текущему плану здесь НЕ нужен — это и был баг.
+    try {
+      const pairs = await AsyncStorage.multiGet(['vip_plan', 'vip_until']);
+      const plan = pairs.find(p => p[0] === 'vip_plan')?.[1] ?? '';
+      const until = Number(pairs.find(p => p[0] === 'vip_until')?.[1] ?? '0') || 0;
+      const show = await shouldShowReferralAccessEnded(plan, until);
+      if (show) setAccessEndedOpen(true);
+    } catch { /* нет данных — пропускаем */ }
+  }, []);
+
+  /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
+  const dismissReferralAccessEnded = useCallback(async () => {
+    const windowEnd = await getTrackedReferralWindowEnd();
+    await markReferralAccessEndedSeen(windowEnd);
+  }, []);
+
+  const handleReferralInvite = useCallback(async () => {
+    hapticTap();
+    const name = myProfile?.name ?? '';
+    const share = await buildCloudReferralInviteShare({ lang, userName: name }).catch(() => null);
+    if (share?.message) {
+      await Share.share({ message: share.message, url: share.url });
+    }
+  }, [lang, myProfile?.name]);
+
+  const showReferralFeedback = useCallback((msg: string) => {
+    setAddFeedback(msg);
+    if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
+    feedbackTimerRef.current = setTimeout(() => setAddFeedback(null), 2500);
+  }, []);
+
+  const handleReferralClaim = useCallback(async () => {
+    if (isClaiming) return;
+    hapticTap();
+    setIsClaiming(true);
+    try {
+      const outcome = await claimReferralVipDays();
+      if (outcome.ok && outcome.granted > 0) {
+        setActivatedModal({ days: outcome.granted, friends: outcome.friends });
+        if (outcome.cappedThisMonth) {
+          showReferralFeedback(L(
+            'Лимит на этот месяц достигнут — остальное откроется в следующем.',
+            'Ліміт на цей місяць досягнуто — решта відкриється наступного.',
+            'Límite del mes alcanzado — el resto se abrirá el próximo.',
+            'Limite do mês atingido — o resto abre no próximo.',
+            'Đã đạt giới hạn tháng này — phần còn lại mở tháng sau.',
+            'Batas bulan ini tercapai — sisanya buka bulan depan.',
+            'Bu ayki sınıra ulaşıldı — kalanı önümüzdeki ay açılır.',
+            'Limit na ten miesiąc osiągnięty — reszta otworzy się w następnym.',
+          ));
+        }
+      } else if (!outcome.ok && outcome.reason === 'error') {
+        // Сетевая/серверная ошибка — мягко по Библии (Стиль 5), без техкодов.
+        showReferralFeedback(L(
+          'Что-то пошло не так. Попробуй снова.',
+          'Щось пішло не так. Спробуй ще раз.',
+          'Algo salió mal. Inténtalo de nuevo.',
+          'Algo deu errado. Tente de novo.',
+          'Có gì đó không ổn. Thử lại nhé.',
+          'Ada yang salah. Coba lagi.',
+          'Bir şeyler ters gitti. Tekrar dene.',
+          'Coś poszło nie tak. Spróbuj jeszcze raz.',
+        ));
+      }
+    } finally {
+      setIsClaiming(false);
+      // Пере-синк состояния даже после ошибки/пустого результата — бейджи/счётчик актуальны.
+      await refreshReferralState();
+    }
+  }, [isClaiming, refreshReferralState, showReferralFeedback, L]);
+
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [foundUser, setFoundUser] = useState<FriendProfile | null>(null);
@@ -1565,8 +1686,9 @@ export default function FriendsTabScreen() {
       const cancelled = { current: false };
       void ensureFriendRequestViewerAuthLink();
       void pollIncomingFriendGifts(cancelled);
+      void refreshReferralState();
       return () => { cancelled.current = true; };
-    }, [pollIncomingFriendGifts]),
+    }, [pollIncomingFriendGifts, refreshReferralState]),
   );
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
@@ -2032,6 +2154,17 @@ export default function FriendsTabScreen() {
 
   const friendUids = useMemo(() => friends.map(f => f.uid), [friends]);
 
+  /** uid друга → статус его реферал-приглашения (для метки в строке). */
+  const referralStatusByUid = useMemo(() => {
+    const map = new Map<string, 'pending' | 'qualified' | 'rewarded'>();
+    for (const inv of referralInvites) {
+      if (inv.status === 'pending' || inv.status === 'qualified' || inv.status === 'rewarded') {
+        map.set(inv.refereeStableId, inv.status);
+      }
+    }
+    return map;
+  }, [referralInvites]);
+
   const PX = 16;
 
   // ── Render ─────────────────────────────────────────────────────────────────
@@ -2077,7 +2210,16 @@ export default function FriendsTabScreen() {
             <Ionicons name="person-add" size={18} color={t.correctText} />
           </TouchableOpacity>
         </View>
-
+        {isReferralCloudEnabled() && (
+          <ReferralExplainerCard
+            claimableDays={claimableDays}
+            onInvite={handleReferralInvite}
+            onClaim={handleReferralClaim}
+            claiming={isClaiming}
+            L={L}
+            t={t}
+          />
+        )}
         <View style={{
           flexDirection: 'row', backgroundColor: chrome.card,
           borderRadius: 14, padding: 3, marginBottom: 20,
@@ -2213,6 +2355,7 @@ export default function FriendsTabScreen() {
                   onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
                   onGift={() => openGiftPicker(profile)}
                   lang={lang} t={t} f={f} chrome={chrome}
+                  referralStatus={referralStatusByUid.get(profile.uid)}
                 />
             ))}
           </>
@@ -2634,6 +2777,28 @@ export default function FriendsTabScreen() {
           </LinearGradient>
         </View>
       </Modal>
+
+      <ReferralAccessActivatedModal
+        visible={activatedModal !== null}
+        grantedDays={activatedModal?.days ?? 0}
+        friendsCount={activatedModal?.friends ?? 0}
+        onClose={() => setActivatedModal(null)}
+        L={L}
+        t={t}
+      />
+
+      <ReferralAccessEndedModal
+        visible={accessEndedOpen}
+        onInviteFriend={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); void handleReferralInvite(); }}
+        onOpenFullAccess={() => {
+          setAccessEndedOpen(false);
+          void dismissReferralAccessEnded();
+          router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'referral_ended' } } as any);
+        }}
+        onClose={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); }}
+        L={L}
+        t={t}
+      />
 
       <UnifiedPlayerModal
         player={selectedPlayer}

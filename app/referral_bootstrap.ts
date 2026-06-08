@@ -122,6 +122,11 @@ export async function tryApplyPendingReferral(): Promise<void> {
       await AsyncStorage.removeItem(PENDING_REF_KEY);
       logEvent('referral_applied', { already: res.already ? 1 : 0 });
       await loadShardsFromCloud().catch(() => {});
+      // Авто-дружба: отправляем запрос пригласившему, чтобы он сразу появился в друзьях.
+      // Best-effort и только при первом apply (не already), чтобы не слать повторно.
+      if (!res.already && res.referrerStableId) {
+        await sendAutoFriendRequestToReferrer(res.referrerStableId).catch(() => {});
+      }
     }
   } catch (e: unknown) {
     const c = getReferralCallableErrorCode(e);
@@ -139,6 +144,22 @@ export async function tryApplyPendingReferral(): Promise<void> {
     if (blob.includes('SELF_REFERRAL')) {
       await AsyncStorage.removeItem(PENDING_REF_KEY);
     }
+  }
+}
+
+/**
+ * Отправляет пригласившему запрос в друзья (best-effort). Динамический импорт, чтобы
+ * не тянуть граф модулей друзей в bootstrap. Дублирование/self обрабатывает sendFriendRequest.
+ */
+async function sendAutoFriendRequestToReferrer(referrerStableId: string): Promise<void> {
+  const target = String(referrerStableId).trim();
+  if (!target) return;
+  try {
+    const { sendFriendRequest } = await import('./firestore_friend_requests');
+    const result = await sendFriendRequest(target);
+    logEvent('referral_auto_friend', { result: String(result) });
+  } catch {
+    /* друзья недоступны — пропускаем, реферал уже зафиксирован */
   }
 }
 

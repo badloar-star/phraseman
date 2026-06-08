@@ -25,6 +25,8 @@ export type PremiumContext =
   | 'trainer'
   /** Trainer daily session limit reached. */
   | 'trainer_limit'
+  /** AI dialogue daily free limit reached. */
+  | 'dialog_limit'
   /** Personalized diagnosis training after the one free try. */
   | 'diagnosis_training'
   /** Mastery — повторное прохождение урока за осколки либо безлимит на Premium. */
@@ -58,6 +60,7 @@ export const PREMIUM_CONTEXT_VALUES = [
   'club',
   'trainer',
   'trainer_limit',
+  'dialog_limit',
   'diagnosis_training',
   'mastery',
   'stats',

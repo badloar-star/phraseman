@@ -55,6 +55,8 @@ import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
+import { isAiDialogEnabled } from '../ai_dialog_flags';
+import { trackEvent as trackAiDialogEvent } from '../analytics';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
@@ -386,6 +388,12 @@ export default function HomeScreen() {
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
+    // ИИ-диалоги: impression карточки (CTR-знаменатель) — один раз при показе
+    useEffect(() => {
+        if (isAiDialogEnabled() && studyTarget === 'en') {
+            void trackAiDialogEvent('ai_dialog_card_shown');
+        }
+    }, [studyTarget]);
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const [userName, setUserName] = useState(() => hh?.userName ?? '');
     const [streak, setStreak] = useState(() => hh?.streak ?? 0);
@@ -2885,6 +2893,27 @@ export default function HomeScreen() {
                   </View>) : null}
               </LinearGradient>
             </TouchableOpacity>
+
+            {isAiDialogEnabled() && studyTarget === 'en' ? (
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); void trackAiDialogEvent('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
+                {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
+                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
+                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Ionicons name="chatbubbles-outline" size={Math.round(homeTodayIconImageSize * 0.6)} color={homeThemePanelAccent}/>
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
+                    Разговор с Филом
+                  </Text>
+                  <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
+                    Говори по-английски без страха
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={20} color={homeThemePanelAccent} style={{ marginRight: 2 }}/>
+              </LinearGradient>
+            </TouchableOpacity>
+            ) : null}
 
             <TouchableOpacity activeOpacity={0.85} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>

@@ -173,7 +173,7 @@ export const T = {
     daysEstimate:    (days: number) => `~${days} дней`,
     lessonsCount:    (count: number) => `${count} сессий по твоему расписанию`,
     hoursPerWeek:    (hours: number) => `~${hours} часов в неделю обучения`,
-    reachTargetBy:   (date: string) => `Ты достигнешь целевого уровня к ${date}`,
+    reachTargetBy:   (date: string) => `Ты достигнешь целевого уровня до ${date}`,
 
     // Онбординг: напоминания
     preferredTime:   'В какое время тебе удобнее учить?',
@@ -215,11 +215,11 @@ export const T = {
     selectLevel2: 'Обрати рівень',
     fixErrors:    'Виправ помилки',
     correct:      'правильно',
-    reviewDone:   'Всі помилки виправлено!',
+    reviewDone:   'Усі помилки виправлено!',
 
     training:     'Тренування',
     wordList:     'Список слів',
-    allLearned:   'Всі слова вивчено!',
+    allLearned:   'Усі слова вивчено!',
     wordsInLesson:(n: number) => `${n} слів у цьому уроці`,
 
     settings:       'Налаштування',
@@ -239,7 +239,7 @@ export const T = {
     helpMenu:       'Допомога',
 
     chooseLanguage: 'Оберіть мову',
-    enterName:      'Введіть ваше ім\'я або нікнейм',
+    enterName:      'Введіть своє ім\'я або нікнейм',
     namePlaceholder:'Ваше ім\'я...',
     continueBtn:    'Продовжити',
     nameRequired:   'Введіть ім\'я щоб продовжити',
@@ -280,7 +280,7 @@ export const T = {
 
     // Онбординг: нагадування
     preferredTime:   'Коли зазвичай вільний?',
-    setNotifications: 'Нагадувати мені в {time} кожен день',
+    setNotifications: 'Нагадувати мені о {time} щодня',
 
     // Онбординг: завершення
     congratulations: 'Вітаємо!',

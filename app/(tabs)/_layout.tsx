@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
 import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -168,6 +168,7 @@ const TABS: TabDef[] = [
   { key: 'friends', ru: 'Друзья', uk: 'Друзі', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi', icon: 'people-outline', active: 'people' },
   { key: 'settings', ru: 'Настройки', uk: 'Налаштування', es: 'Ajustes', 'pt-BR': 'Configurações', vi: 'Cài đặt', id: 'Pengaturan', tr: 'Ayarlar', pl: 'Ustawienia', icon: 'settings-outline', active: 'settings' },
 ];
+
 
 type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean };
 
@@ -376,11 +377,13 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                     activeOpacity={0.7}
                   >
                     {focused && <View style={[s.indicator, { backgroundColor: t.accent }]} />}
+
                     <Ionicons
                       name={focused ? tab.active : tab.icon}
                       size={22}
                       color={color}
                     />
+
                     <Text
                       style={[s.tabLabel, { color, fontWeight: focused ? '600' : '400', fontSize: f.label }]}
                       numberOfLines={1}
@@ -396,6 +399,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                 {tabChromeLayers.map(layer => renderTabChromeLayer(layer, 'safe', layer.safeBg))}
               </View>
             </View>
+
           </View>
         </View>
       </View>
@@ -540,6 +544,7 @@ export default function TabLayout() {
 }
 
 const s = StyleSheet.create({
+
   deferredTabPlaceholder: {
     flex: 1,
     backgroundColor: 'transparent',
@@ -555,4 +560,5 @@ const s = StyleSheet.create({
   indicator:  { position: 'absolute', top: -6, left: '25%', right: '25%', height: 2, borderRadius: 1 },
   /** alignSelf + textAlign: иначе на iOS подпись может схлопнуться в «узкую колонку» и рисоваться вертикально */
   tabLabel:   { fontSize: 10, letterSpacing: 0.1, textAlign: 'center', alignSelf: 'stretch' },
+
 });

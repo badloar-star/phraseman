@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity,
   TextInput, Modal, ScrollView, Animated, DeviceEventEmitter,
@@ -174,7 +174,9 @@ export default function SettingsMain() {
     try {
       if (val) {
         if (!lang) return;
+
         await scheduleDailyReminder(notifHour, 0, lang, { studyTarget });
+
       } else {
         await cancelAllNotifications();
       }
@@ -182,6 +184,8 @@ export default function SettingsMain() {
       DebugLogger.error('settings.tsx:toggleNotifications', error, 'warning');
     }
   };
+
+
   const scrollRef = useRef<any>(null);
   const scrollY = useRef(new Animated.Value(0)).current;
   const insets = useSafeAreaInsets();
@@ -218,6 +222,7 @@ export default function SettingsMain() {
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
 
   const [hapticTap,  setHapticTap]   = useState(true);
+
   const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
   const loadStudyTarget = useCallback(async () => {
     if (!isStudyTargetSourceUiLang(lang)) {
@@ -253,6 +258,7 @@ export default function SettingsMain() {
     const entry = names[themeMode] ?? names.minimalDark;
     return entry[lang];
   })();
+
 
   useEffect(() => {
     let cancelled = false;
@@ -733,6 +739,7 @@ export default function SettingsMain() {
           </TouchableOpacity>
         )}
 
+
         <Row
           testID="settings-language-row"
           icon="language-outline"
@@ -740,6 +747,7 @@ export default function SettingsMain() {
           sub={LANG_NATIVE[lang]}
           onPress={() => router.push('/settings_language' as any)}
         />
+
 
         <SectionTitle title={L('Внешний вид', 'Зовнішній вигляд', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')} />
         <Row
@@ -852,6 +860,7 @@ export default function SettingsMain() {
         {effectiveOs === 'android' && (
           <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta', 'Testadores beta', 'Người thử nghiệm beta', 'Penguji beta', 'Beta test kullanıcıları', 'Beta testerzy')} onPress={() => router.push('/beta_testers' as any)} />
         )}
+
         {ENABLE_DEV_TOOLS && (
           <Row
             icon="construct-outline"
@@ -893,6 +902,7 @@ export default function SettingsMain() {
         )}
         {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat / VIP */}
         {hasPremiumAccess ? (
+
           <TouchableOpacity
             style={{
               flexDirection: 'row',

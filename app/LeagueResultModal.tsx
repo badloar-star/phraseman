@@ -184,6 +184,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
+  const isUK = lang === 'uk';
 
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
   const newLeague  = LEAGUES[result.newLeagueId]  ?? LEAGUES[0];

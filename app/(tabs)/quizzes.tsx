@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+﻿import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticTap } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
@@ -59,10 +59,12 @@ import EnergyBar from '../../components/EnergyBar';
 import NoEnergyModal from '../../components/NoEnergyModal';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
+
 import { useAudio } from '../../hooks/use-audio';
 import type { QuizPhrase } from '../quiz_data';
 import { ensureQuizPhrasesLoaded, getQuizPhrasesLoaded, prefetchQuizPhrases } from '../quiz_phrases_loader';
 import { isQuizChoiceCorrect, quizPrimaryCorrectIndex } from '../quiz_utils';
+
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from '../settings_edu';
 import { useTabNav } from '../TabContext';
 import { tabSwipeLock } from '../tabSwipeLock';
@@ -738,8 +740,10 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
 // ── ВЫБОР УРОВНЯ ────────────────────────────────────────────────────────────
 function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>void }) {
   const { theme:t , f, themeMode } = useTheme();
+
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
+
   const router = useRouter();
   const { hasPremiumAccess: isPremium } = usePremium();
   const insets = useSafeAreaInsets();
@@ -1293,6 +1297,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
 }
 
 // ── КВИЗ ────────────────────────────────────────────────────────────────────
+
 function QuizGame({
   level,
   thematicCategoryId,
@@ -1319,6 +1324,7 @@ function QuizGame({
   const isCompassTheme = themeMode === 'compass';
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
+
   const { goHome, activeIdx } = useTabNav();
   const router = useRouter();
   const { hasPremiumAccess: isPremium } = usePremium();
@@ -1358,7 +1364,9 @@ function QuizGame({
   );
 
   const [retryCount, setRetryCount] = useState(0);
+
   const [planQuizUserName, setPlanQuizUserName] = useState('Phraseman');
+
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
 
   const phrases = useMemo((): Phrase[] => {
@@ -1640,9 +1648,11 @@ function QuizGame({
       setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(timerRef.current!);
+          timerRef.current = null;
           if (!answeredRef.current) {
             answeredRef.current = true;
-            setShowTimeoutAlert(true);
+            // setTimeout чтобы не вызывать setState внутри setState
+            setTimeout(() => setShowTimeoutAlert(true), 0);
           }
           return 0;
         }

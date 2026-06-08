@@ -1748,6 +1748,7 @@ export default function AchievementsScreen() {
   const gold            = t.gold;
   const premiumQuizHintDisabled = isPremium || DEV_MODE;
   const gridMetrics = useMemo(() => getAchievementGridMetrics(screenW), [screenW]);
+  const isUK = lang === 'uk';
 
   const [states, setStates]   = useState<AchievementState[]>([]);
   const [stats, setStats]     = useState<AchievementStats>(emptyAchievementStats());

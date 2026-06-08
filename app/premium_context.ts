@@ -41,6 +41,8 @@ export type PremiumContext =
   | 'level_up'
   /** Умный микс тренажёра — lock-preview вместо мгновенного редиректа (план #11). */
   | 'smart_trainer'
+  /** AI dialogue daily free limit reached. */
+  | 'dialog_limit'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
@@ -68,6 +70,7 @@ export const PREMIUM_CONTEXT_VALUES = [
   'intro_ended',
   'level_up',
   'smart_trainer',
+  'dialog_limit',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 

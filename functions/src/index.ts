@@ -64,6 +64,7 @@ const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { scorePronunciationAttempt } = require('./pronunciation_scoring');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { premiumDialogSend } = require('./premium_dialog');
 const {
   referralEnsureMyCode,
   referralApply,
@@ -105,11 +106,13 @@ exports.submitClientReport = submitClientReport;
 exports.telegramPremiumWebhook = telegramPremiumWebhook;
 exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
 exports.scorePronunciationAttempt = scorePronunciationAttempt;
+exports.premiumDialogSend = premiumDialogSend;
 exports.referralEnsureMyCode = referralEnsureMyCode;
 exports.referralApply = referralApply;
 exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
+
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

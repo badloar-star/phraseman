@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { onAppEvent } from '../app/events';
 import { useLang } from './LangContext';
 import { hapticError, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
-import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
+import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { useOverlayVisible } from './OverlayArbiter';
 import {
@@ -101,7 +101,7 @@ function toastKey(p: ToastPayload): string {
   return `${p.type}\u0001${ru}`;
 }
 
-export default function ActionToast() {
+function ActionToast() {
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const [toast, setToast] = useState<ToastPayload | null>(null);
@@ -299,6 +299,8 @@ export default function ActionToast() {
     </Animated.View>
   );
 }
+
+export default memo(ActionToast);
 
 const styles = StyleSheet.create({
   host: {

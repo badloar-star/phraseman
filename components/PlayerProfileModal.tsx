@@ -8,11 +8,10 @@
  *   myInfo      — current user's own data (to detect isMe)
  *   onClose     — called when modal should close (parent sets player to null immediately)
  */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
-  Image,
   InteractionManager,
   Modal,
   Pressable,
@@ -22,6 +21,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import firestore from '@react-native-firebase/firestore';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
@@ -84,6 +84,7 @@ export interface PlayerInfo {
   isPremium?: boolean;
   isVip?: boolean;
   leagueCrownExpiresAt?: number;
+  leagueCrownCount?: number;
   profileCardLevel?: number;
   profileCardTheme?: string;
   profileCardMotion?: string;
@@ -248,7 +249,7 @@ function PlayerProfileModalBody({
   const showProfileCardDevTools = ENABLE_DEV_TOOLS;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   const profileCardLevel = profileCardSnapshot.level;
-  const [remoteCrownExpiresAt, setRemoteCrownExpiresAt] = useState(0);
+  const [remoteCrown, setRemoteCrown] = useState<{ expiresAt: number; crownCount: number }>(() => ({ expiresAt: 0, crownCount: 0 }));
   const playerPoints = Number.isFinite(Number(player.points)) ? Math.max(0, Math.floor(Number(player.points))) : null;
   const totalXp = isMe ? myInfo.totalXP : (resolvedTotalXp ?? player.totalXp ?? playerPoints ?? null);
   const safeTotalXp = totalXp ?? 0;
@@ -271,7 +272,13 @@ function PlayerProfileModalBody({
   const cardDef = getProfileCardLevelDef(profileCardLevel);
   const cardVisual = getProfileCardVisual(profileCardSnapshot);
   const crownUid = player.friendUid || player.uid || '';
-  const hasLeagueCrown = Math.max(Number(player.leagueCrownExpiresAt) || 0, remoteCrownExpiresAt) > Date.now();
+  const leagueCrownCount = Math.max(
+    0,
+    Math.floor(Number(player.leagueCrownCount) || 0),
+    Math.floor(Number(remoteCrown.crownCount) || 0),
+  );
+  const hasLeagueCrown = leagueCrownCount > 0 || Math.max(Number(player.leagueCrownExpiresAt) || 0, remoteCrown.expiresAt) > Date.now();
+  const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
   const rawProfileCardLevel = player.profileCardLevel;
   const rawProfileCardTheme = player.profileCardTheme;
   const rawProfileCardMotion = player.profileCardMotion;
@@ -279,12 +286,18 @@ function PlayerProfileModalBody({
 
   useEffect(() => {
     if (!crownUid) {
-      setRemoteCrownExpiresAt(0);
+      setRemoteCrown({ expiresAt: 0, crownCount: 0 });
       return;
     }
     let cancelled = false;
     void fetchActiveLeagueCrowns([crownUid]).then((crowns) => {
-      if (!cancelled) setRemoteCrownExpiresAt(crowns[crownUid]?.expiresAt ?? 0);
+      const crown = crowns[crownUid];
+      if (!cancelled) {
+        setRemoteCrown({
+          expiresAt: crown?.expiresAt ?? 0,
+          crownCount: Math.max(0, Math.floor(Number(crown?.crownCount) || 0)),
+        });
+      }
     }).catch(() => {});
     return () => {
       cancelled = true;
@@ -447,7 +460,7 @@ function PlayerProfileModalBody({
       } else {
         onFriendRequestToast(
           triLang(lang as Lang, {
-            ru: 'Не удалось отправить. Попробуйте позже',
+            ru: 'Не отправилось. Попробуй позже',
             uk: 'Не вдалося надіслати. Спробуйте пізніше',
             es: 'No se pudo enviar. Inténtalo más tarde',
             'pt-BR': "Não foi possível enviar. Tente mais tarde",
@@ -503,7 +516,7 @@ function PlayerProfileModalBody({
       .catch(() => {
         onFriendRequestToast(
           triLang(lang as Lang, {
-            ru: 'Ошибка удаления. Попробуйте ещё раз',
+            ru: 'Ошибка удаления. Попробуй ещё раз',
             uk: 'Помилка видалення. Спробуйте ще раз',
             es: 'Error al eliminar. Inténtalo de nuevo',
             'pt-BR': "Erro ao remover. Tente de novo",
@@ -936,6 +949,7 @@ function PlayerProfileModalBody({
                     }) : ''}`}
                     fontSize={f.h2}
                     iconScale={1.8}
+                    count={displayLeagueCrownCount}
                   />
                 </View>
               )}
@@ -1091,7 +1105,7 @@ function PlayerProfileModalBody({
         <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
           {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
           {club.imageUri
-            ? <Image source={club.imageUri} style={{ width: 32, height: 32, borderRadius: 6 }} resizeMode="contain" />
+            ? <Image source={club.imageUri} style={{ width: 32, height: 32, borderRadius: 6 }} contentFit="contain" accessibilityLabel="Иконка лиги" />
             : <Ionicons name={club.ionIcon as any} size={28} color={club.color} />
           }
           <View>
@@ -1657,4 +1671,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlayerProfileModal;
+export default memo(PlayerProfileModal);

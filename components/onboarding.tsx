@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
   TextInput, KeyboardAvoidingView, ScrollView,
@@ -11,6 +11,8 @@ import {
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
+import { Image } from 'expo-image';
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -63,6 +65,7 @@ const AppInfoDialog = {
 interface Props {
   onDone: () => void;
   onLangSelect?: (lang: Lang) => void;
+  onIntroFullAccessStart?: () => Promise<boolean> | boolean;
   onPersonalPlanPaywallStart?: () => Promise<void> | void;
 }
 
@@ -388,10 +391,10 @@ const PLAN_LEVEL_CHOICES: Array<{
   title: string;
   subtitle: string;
 }> = [
-  { id: 'a0', iconAsset: ONBOARDING_PLAN_ICONS.beginner, title: 'A0: почти с нуля', subtitle: 'Нужны самые базовые фразы' },
-  { id: 'a1', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'A1: знаю базовые слова', subtitle: 'Хочу быстрее собирать фразы' },
-  { id: 'a2', iconAsset: ONBOARDING_PLAN_ICONS.speaking, title: 'A2: понимаю, но не говорю', subtitle: 'Нужна практика ответов' },
-  { id: 'b1', iconAsset: ONBOARDING_PLAN_ICONS.confidence, title: 'B1: хочу говорить увереннее', subtitle: 'Нужен ритм и сложнее задания' },
+  { id: 'a0', iconAsset: ONBOARDING_PLAN_ICONS.beginner, title: 'A0: начинаю с нуля', subtitle: 'Первые слова и простые фразы' },
+  { id: 'a1', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'A1: знаю базу', subtitle: 'Хочу быстрее собирать фразы' },
+  { id: 'a2', iconAsset: ONBOARDING_PLAN_ICONS.speaking, title: 'A2: понимаю, но молчу', subtitle: 'Хочу начать отвечать увереннее' },
+  { id: 'b1', iconAsset: ONBOARDING_PLAN_ICONS.confidence, title: 'B1: говорю, но хочу лучше', subtitle: 'Нужен ритм и более сложные задачи' },
 ];
 
 const PLAN_MINUTES_CHOICES: PlanMinutesChoice[] = [5, 10, 15, 20];
@@ -419,32 +422,32 @@ const PLAN_PAYWALL_BENEFITS: Array<{
     key: 'plan',
     iconAsset: ONBOARDING_PAYWALL_ICONS.plan,
     title: 'Персональный план',
-    subtitle: 'ежедневный маршрут под цель и ошибки',
+    subtitle: 'ежедневный маршрут под цель и слабые места',
     featured: true,
   },
   {
     key: 'lessons',
     iconAsset: ONBOARDING_PAYWALL_ICONS.lessons,
-    title: 'Все уроки разблокированы',
+    title: 'Все уроки открыты',
     subtitle: 'полный доступ ко всем урокам курса',
   },
   {
     key: 'quizzes',
     iconAsset: ONBOARDING_PAYWALL_ICONS.quizzes,
-    title: 'Все уровни квизов',
+    title: 'Все уровни вызовов',
     subtitle: 'без дневного лимита на практику',
   },
   {
     key: 'cards',
     iconAsset: ONBOARDING_PAYWALL_ICONS.cards,
-    title: 'Карточки без ограничений',
-    subtitle: 'сохраняй неограниченное количество фраз',
+    title: 'Карточки без потолка',
+    subtitle: 'сохраняй столько фраз, сколько нужно',
   },
   {
     key: 'energy',
     iconAsset: ONBOARDING_PAYWALL_ICONS.energy,
     title: 'Безлимит энергии',
-    subtitle: 'уроки, квизы и экзамены без ожидания',
+    subtitle: 'уроки, вызовы и экзамены без ожидания',
   },
   {
     key: 'arena',
@@ -455,7 +458,7 @@ const PLAN_PAYWALL_BENEFITS: Array<{
   {
     key: 'errors',
     iconAsset: ONBOARDING_PAYWALL_ICONS.errors,
-    title: 'Разборы твоих ошибок',
+    title: 'Разбор твоих слабых мест',
     subtitle: 'персональные занятия по слабым местам',
   },
   {
@@ -468,7 +471,7 @@ const PLAN_PAYWALL_BENEFITS: Array<{
     key: 'analytics',
     iconAsset: ONBOARDING_PAYWALL_ICONS.analytics,
     title: 'Аналитика прогресса',
-    subtitle: 'активность, ошибки и сравнение с другими',
+    subtitle: 'активность, слабые места и сравнение с другими',
   },
   {
     key: 'themes',
@@ -484,7 +487,7 @@ const PLAN_PAYWALL_BENEFITS: Array<{
   },
 ];
 
-export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart }: Props) {
+function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPlanPaywallStart }: Props) {
   const insets = useSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
   const { width: viewportW, height: viewportH, uiScale } = useScreen();
@@ -527,6 +530,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
     keyboardDismissMode: onboardingKeyboardDismissMode,
     showsVerticalScrollIndicator: true,
     nestedScrollEnabled: true,
+    decelerationRate: 0.998 as const,
   };
 
   useEffect(() => {
@@ -591,6 +595,14 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
   const [selectedPlanOverride, setSelectedPlanOverride] = useState<PersonalPlanId | null>(null);
   const [selectedPlanPhraseTokens, setSelectedPlanPhraseTokens] = useState<string[]>([]);
   const [selectedPlanBilling, setSelectedPlanBilling] = useState<OnboardingBillingChoice>('annual');
+  // Реальные цены и наличие триала из RevenueCat — НИКОГДА не хардкодим ($/валюта/триал
+  // решает магазин). Пустые строки = ещё грузится; UI тогда не обещает конкретную цену.
+  const [storePrices, setStorePrices] = useState<{
+    monthly: string;
+    yearly: string;
+    hasTrial: boolean;
+    loaded: boolean;
+  }>({ monthly: '', yearly: '', hasTrial: false, loaded: false });
   const [nicknameMode, setNicknameMode] = useState<OnboardingNicknameMode>('regular');
   const [planPhraseWasCorrect, setPlanPhraseWasCorrect] = useState(true);
   const [showPlanFreeConfirm, setShowPlanFreeConfirm] = useState(false);
@@ -683,7 +695,49 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
   // Fade-in экрана при каждой смене шага
   useEffect(() => {
     Animated.timing(screenFade, { toValue: 1, duration: 300, useNativeDriver: true }).start();
-  }, [step, screenFade]);
+    // Воронка онбординга: трекаем просмотр каждого шага — раньше онбординг был
+    // полностью невидим в аналитике (нельзя было увидеть drop-off по шагам).
+    void import('../app/analytics').then(({ trackEvent }) => {
+      void trackEvent('onboarding_step_view', { step });
+      if (step === 'planPaywall') void trackEvent('onboarding_plan_paywall_view', { plan: selectedPlanBilling });
+    });
+  }, [step, screenFade, selectedPlanBilling]);
+
+  // Реальные цены из RevenueCat для онбординг-пейвола. Грузим при входе на planResult,
+  // чтобы к planPaywall цены и сигнал триала уже были готовы. НЕТ хардкода цен/валюты/триала.
+  useEffect(() => {
+    if (step !== 'planResult' && step !== 'planPaywall') return;
+    if (storePrices.loaded) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const [Purchases, { initRevenueCat, resolvePremiumPackages }, { storeProductHasTrialIntro }, { IS_EXPO_GO }] =
+          await Promise.all([
+            import('react-native-purchases').then((m) => m.default),
+            import('../app/revenuecat_init'),
+            import('../app/premium_trial_signal'),
+            import('../app/config'),
+          ]);
+        if (IS_EXPO_GO) return; // в Expo Go стора нет — оставляем UI без конкретных цен
+        await initRevenueCat();
+        const offerings = await Purchases.getOfferings();
+        const { monthly, yearly } = resolvePremiumPackages(offerings.current?.availablePackages ?? []);
+        if (cancelled) return;
+        setStorePrices({
+          monthly: monthly?.product?.priceString ?? '',
+          yearly: yearly?.product?.priceString ?? '',
+          hasTrial:
+            storeProductHasTrialIntro(monthly?.product) || storeProductHasTrialIntro(yearly?.product),
+          loaded: true,
+        });
+      } catch {
+        if (!cancelled) setStorePrices((p) => ({ ...p, loaded: true }));
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [step, storePrices.loaded]);
 
   useEffect(() => {
     if (step !== 'planLoading') return;
@@ -878,7 +932,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
     setNameFieldError(null);
     const trimmed = name.trim();
     if (!trimmed) {
-      setNameFieldError(pick('Введите имя чтобы продолжить', 'Введіть ім\'я щоб продовжити', 'Escribe tu nombre para continuar'));
+      setNameFieldError(pick('Введи имя, чтобы продолжить', 'Введіть ім\'я щоб продовжити', 'Escribe tu nombre para continuar'));
       return;
     }
     if (trimmed.length < 2) {
@@ -915,7 +969,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
     if (result === 'error') {
       setNameBusy(false);
       setNameFieldError(pick(
-        'Не удалось проверить имя. Проверь интернет и попробуй ещё раз.',
+        'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
         'Не вдалося перевірити ім\'я. Перевір мережу й спробуй ще раз.',
         'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
       ));
@@ -1054,35 +1108,47 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
     if (finishingRef.current || closingRef.current) return;
     finishingRef.current = true;
     Keyboard.dismiss();
+    void import('../app/analytics').then(({ trackEvent }) =>
+      trackEvent('onboarding_plan_trial_cta', { plan: selectedPlanBilling, has_trial: storePrices.hasTrial }),
+    );
     try {
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
         ['onboarding_step', 'name'],
+        // Пробрасываем выбор плана (monthly/annual) в пейвол, чтобы он открылся
+        // с предвыбранной пользователем картой, а не дефолтом. Раньше выбор терялся.
+        ['onboarding_plan_billing', selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly'],
       ]);
       await queuePendingPersonalPlanActivation({
         planId: selectedPlanId,
         minutesPerDay: selectedPlanMinutes,
         source: 'onboarding',
       });
-      if (hasPremiumAccess) {
+      const introFullAccessStarted = await onIntroFullAccessStart?.().catch(() => false);
+      if (hasPremiumAccess || introFullAccessStarted) {
         await activatePendingPersonalPlanAfterPremium();
         setNicknameMode('personal_plan');
-        finishingRef.current = false;
         goToStep('name');
         return;
       }
-      await onPersonalPlanPaywallStart?.();
+      await Promise.race([
+        onPersonalPlanPaywallStart?.(),
+        new Promise<void>((_, reject) =>
+          setTimeout(() => reject(new Error('paywall_timeout')), 15000),
+        ),
+      ]);
     } catch {
-      finishingRef.current = false;
       AppInfoDialog.alert(
-        pick('Не удалось открыть план', 'Не вдалося відкрити план', 'No se pudo abrir el plan'),
+        pick('Не получилось открыть план', 'Не вдалося відкрити план', 'No se pudo abrir el plan'),
         pick(
           'Проверь интернет и попробуй ещё раз.',
           'Перевір інтернет і спробуй ще раз.',
           'Revisa Internet e inténtalo otra vez.',
         ),
       );
+    } finally {
+      finishingRef.current = false;
     }
   };
 
@@ -1147,6 +1213,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
         </View>
         <ScrollView
           style={styles.onboardingScroll}
+          decelerationRate="normal"
           contentContainerStyle={styles.planFlowScroll}
           showsVerticalScrollIndicator={false}
         >
@@ -1251,6 +1318,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
     (
       <ScrollView
         style={styles.onboardingScroll}
+        decelerationRate="normal"
         contentContainerStyle={styles.planMockupResultScroll}
         showsVerticalScrollIndicator={false}
       >
@@ -1304,11 +1372,11 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
               adjustsFontSizeToFit
               minimumFontScale={0.82}
             >
-              {triOb('Как хочешь начать?', 'Як хочеш почати?', '¿Cómo quieres empezar?')}
+              {triOb('Начнём с твоей цели', 'Почнемо з твоєї мети', '¿Por dónde empezamos?')}
             </Text>
             <Text style={[styles.eliteWelcomeSub, styles.planEntrySub]}>
               {triOb(
-                'Соберём короткий план под твою цель или сразу начнем знакомиться с приложением?',
+                'Составим план под твою цель — или сразу начнём знакомиться с приложением.',
                 'Зберемо короткий план під твою ціль або одразу почнемо знайомитися з застосунком?',
                 'Creamos un plan corto para tu objetivo o empezamos a conocer la app.',
               )}
@@ -1321,7 +1389,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
               activeOpacity={0.88}
             >
               <Text style={[styles.eliteWelcomeCtaText, styles.planEntryCtaText]}>
-                {triOb('Составить мой план', 'Скласти мій план', 'Crear mi plan')}
+                {triOb('Составить план под мою цель', 'Скласти план під мою ціль', 'Crear mi plan')}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -1335,7 +1403,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
               activeOpacity={0.82}
             >
               <Text style={[styles.eliteWelcomeSecondaryCtaText, styles.planEntrySecondaryCtaText]}>
-                {triOb('Продолжить самостоятельно', 'Продовжити самостійно', 'Continuar por mi cuenta')}
+                {triOb('Просто посмотреть приложение', 'Просто подивитися застосунок', 'Explorar la app')}
               </Text>
             </TouchableOpacity>
             </View>
@@ -1352,7 +1420,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
       'onboarding-plan-goal-screen',
       '',
       'Зачем тебе английский?',
-      'План подстроится под ситуации и фразы, которые пригодятся первыми.',
+      'Скажи — и план сразу подберёт нужные слова и ситуации.',
       <View style={styles.planFlowStack}>
         {PLAN_GOAL_CHOICES.map((choice) => {
           const selected = selectedPlanGoal === choice.id;
@@ -1383,7 +1451,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
     return renderPlanFlowScreen(
       'onboarding-plan-level-screen',
       '',
-      'Какой старт ближе?',
+      'С чего начнём?',
       '',
       <View style={styles.planFlowStack}>
         {PLAN_LEVEL_CHOICES.map((choice) => {
@@ -1437,12 +1505,12 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
                 <Text style={styles.planFlowOptionTitle}>{choice === 20 ? '20+ минут в день' : `${choice} минут в день`}</Text>
                 <Text style={styles.planFlowOptionSub}>
                   {choice <= 5
-                    ? 'Минимум, чтобы не выпадать'
+                    ? 'Лёгкий старт — главное не бросать'
                     : choice <= 10
-                      ? 'Хороший лёгкий ритм'
+                      ? 'Хороший ритм, заметный прогресс'
                       : choice <= 15
-                        ? 'Рекомендованный темп для прогресса'
-                        : 'Быстрее идти по плану'}
+                        ? 'Оптимально — рекомендуем'
+                        : 'Быстрый темп, быстрый результат'}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -1580,10 +1648,10 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
           activeOpacity={0.88}
           onPress={() => goToStep('planPaywall')}
         >
-          <Text style={styles.planMockupPrimaryButtonText}>Получить мой план</Text>
+          <Text style={styles.planMockupPrimaryButtonText}>Это мой план — вперёд</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]} activeOpacity={0.82} onPress={() => goToStep('planPicker')}>
-          <Text style={styles.planMockupSecondaryButtonText}>Посмотреть другие планы</Text>
+          <Text style={styles.planMockupSecondaryButtonText}>Другие планы</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep('name')}>
           <Text style={styles.freeBtnText}>Продолжить без плана</Text>
@@ -1601,6 +1669,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
         <>
           <ScrollView
             style={styles.onboardingScroll}
+            decelerationRate="normal"
             contentContainerStyle={styles.planPaywallScroll}
             showsVerticalScrollIndicator={false}
             nestedScrollEnabled
@@ -1657,7 +1726,9 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
                 onPress={() => setSelectedPlanBilling('monthly')}
               >
                 <Text style={styles.planPaywallBuyTitle}>Месячный план</Text>
-                <Text style={styles.planPaywallBuyPrice}>$4.99 / месяц</Text>
+                <Text style={styles.planPaywallBuyPrice}>
+                  {storePrices.monthly ? `${storePrices.monthly} / месяц` : 'Загружаем…'}
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[
@@ -1668,7 +1739,9 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
                 onPress={() => setSelectedPlanBilling('annual')}
               >
                 <Text style={styles.planPaywallBuyTitle}>Годовой план</Text>
-                <Text style={styles.planPaywallBuyPrice}>$39.99 / год</Text>
+                <Text style={styles.planPaywallBuyPrice}>
+                  {storePrices.yearly ? `${storePrices.yearly} / год` : 'Загружаем…'}
+                </Text>
               </TouchableOpacity>
             </View>
 
@@ -1678,7 +1751,9 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
               activeOpacity={0.88}
               onPress={handleStartPersonalPlanFromOnboarding}
             >
-              <Text style={styles.eliteWelcomeCtaText}>Попробовать 3 дня бесплатно</Text>
+              <Text style={styles.eliteWelcomeCtaText}>
+                {storePrices.hasTrial ? 'Попробовать 3 дня бесплатно' : 'Открыть полный доступ'}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.eliteWelcomeSecondaryCta}
@@ -1695,15 +1770,22 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
           {showPlanFreeConfirm ? (
             <View style={styles.planFreeConfirmOverlay}>
               <View style={styles.planFreeConfirmBox}>
-                <Text style={styles.planFreeConfirmTitle}>Продолжить без плана?</Text>
+                <Text style={styles.planFreeConfirmTitle}>Точно без плана?</Text>
                 <Text style={styles.planFreeConfirmText}>
-                  План персонального сопровождения не доступен в бесплатной версии приложения. Ты всё ещё получишь много доступных функций, но персональная аналитика ошибок и прогресса доступна только в Premium.
+                  Персональный план открыт в Premium. Остальное работает в полном доступе. Разбор слабых мест и маршрут под цель — с планом.
                 </Text>
                 <View style={styles.planFreeConfirmActions}>
                   <TouchableOpacity style={styles.eliteWelcomeCta} activeOpacity={0.88} onPress={() => setShowPlanFreeConfirm(false)}>
-                    <Text style={styles.eliteWelcomeCtaText}>Хочу свой план</Text>
+                    <Text style={styles.eliteWelcomeCtaText}>Оставить план</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.eliteWelcomeSecondaryCta} activeOpacity={0.82} onPress={() => goToStep('name')}>
+                  <TouchableOpacity
+                    style={styles.eliteWelcomeSecondaryCta}
+                    activeOpacity={0.82}
+                    onPress={() => {
+                      void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', {}));
+                      goToStep('name');
+                    }}
+                  >
                     <Text style={styles.eliteWelcomeSecondaryCtaText}>Продолжить без плана</Text>
                   </TouchableOpacity>
                 </View>
@@ -1721,8 +1803,8 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
     return renderPlanFlowScreen(
       'onboarding-plan-picker-screen',
       'Планы',
-      'Выбери план',
-      'Можно оставить рекомендованный маршрут или посмотреть другой сценарий под ближайшую цель.',
+      'Выбери свой маршрут',
+      'Оставь рекомендованный план или выбери другой — под ближайшую цель.',
       <View style={styles.planFlowStack}>
         {PLAN_ENTRIES.map((entry) => {
           const plan = PERSONAL_PLAN_ONBOARDING_PLANS[entry.key];
@@ -1938,7 +2020,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
                 </Text>
               </TouchableOpacity>
               <Text style={styles.eliteWelcomeFootnote}>
-                {triOb('Займет меньше минуты.', 'Займе менше хвилини.', 'Tarda menos de un minuto.')}
+                {triOb('Без регистрации. Сразу в дело.', 'Без реєстрації. Одразу до діла.', 'Sin registro. Al grano.')}
               </Text>
             </View>
           </>
@@ -2345,6 +2427,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
           </View>
           <ScrollView
             style={styles.onboardingScroll}
+            decelerationRate="normal"
             contentContainerStyle={[
               styles.regularNameScroll,
               {
@@ -2434,6 +2517,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
         >
           <ScrollView
             style={styles.onboardingScroll}
+            decelerationRate="normal"
             contentContainerStyle={{
               flexGrow: 1,
               justifyContent: keyboardVisible ? 'flex-start' : 'center',
@@ -2492,7 +2576,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
                 setName(t);
                 if (nameFieldError) setNameFieldError(null);
               }}
-              placeholder={pick('Ваше имя...', 'Ваше ім\'я...', 'Tu nombre...')}
+              placeholder={pick('Твоё имя...', 'Твоє ім\'я...', 'Tu nombre...')}
               placeholderTextColor={DARK.textGhost}
               autoFocus
               maxLength={20}
@@ -2591,7 +2675,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
             maxFontSizeMultiplier={1.08}
           >
             {pick(
-              'Английский любит регулярность',
+              'Каждый день — чуть лучше, чем вчера',
               'Щодня — і ти непереможний',
               'Cada día te hace invencible',
             )}
@@ -2607,7 +2691,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
             }}
           >
             {pick(
-              'Лучше понемногу каждый день, чем редко и тяжело.',
+              'Понемногу каждый день — и через месяц ты не узнаешь свой английский.',
               'Коротка практика щодня перетворюється на звичку.',
               'Una práctica corta cada día se convierte en hábito.',
             )}
@@ -2670,7 +2754,7 @@ export default function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywall
             activeOpacity={0.85}
           >
             <Text style={[styles.continueBtnText, onboardingPrimaryButtonTextStyle]} maxFontSizeMultiplier={1.05}>
-              {pick('Далее', 'Далі', 'Siguiente')}
+              {pick('Поехали', 'Погнали', 'Vamos')}
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -2777,7 +2861,7 @@ function AuthOnboardingStep({
             )
           : authPick('Попробуй ещё раз или пропусти шаг.', 'Спробуй ще раз або пропусти крок.', 'Inténtalo otra vez u omite el paso.');
         AppInfoDialog.alert(
-          authPick('Не удалось войти', 'Не вдалося увійти', 'No se pudo iniciar sesión'),
+          authPick('Вход не получился', 'Не вдалося увійти', 'No se pudo iniciar sesión'),
           body,
         );
         return;
@@ -2807,6 +2891,7 @@ function AuthOnboardingStep({
       {renderProgressBar()}
         <ScrollView
           style={styles.onboardingScroll}
+          decelerationRate="normal"
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
           showsVerticalScrollIndicator
@@ -2845,7 +2930,7 @@ function AuthOnboardingStep({
             ]}
             maxFontSizeMultiplier={1.08}
           >
-            {authPick('Быстрый старт', 'Швидкий старт', 'Inicio rápido')}
+            {authPick('Сохрани прогресс', 'Збережи прогрес', 'Guarda tu progreso')}
           </Text>
           <Text
             maxFontSizeMultiplier={1.08}
@@ -2859,7 +2944,7 @@ function AuthOnboardingStep({
             }}
           >
             {authPick(
-              'Вход можно пропустить. Но если сменить телефон или случайно удалить приложение, есть риск потерять прогресс.',
+              'Можно пропустить. Но если сменить телефон — прогресс останется только на этом устройстве.',
               'Можна продовжити без входу, але якщо видалити застосунок без привʼязки акаунта, прогрес може загубитися. Привʼязати акаунт можна пізніше в налаштуваннях.',
               'Puedes seguir sin iniciar sesión, pero si eliminas la app sin vincular tu cuenta, podrías perder el progreso. Puedes vincularla más tarde en Ajustes.',
             )}
@@ -2915,7 +3000,7 @@ function AuthOnboardingStep({
 
           <Text style={{ color: DARK.textGhost ?? '#666', fontSize: 11, textAlign: 'center', lineHeight: 16, marginTop: 12, paddingHorizontal: 12 }}>
             {authPick(
-              'Мы не публикуем ваш email и не отправляем спам.',
+              'Твой email остаётся у тебя — никакого спама.',
               'Ми не публікуємо ваш email і не надсилаємо спам.',
               'No publicamos tu correo ni enviamos spam.',
             )}
@@ -2991,6 +3076,8 @@ function OnboardingStreakIcon({
     </View>
   );
 }
+
+export default memo(Onboarding);
 
 const styles = StyleSheet.create({
   container:       { flex: 1, backgroundColor: '#020304', overflow: 'hidden' },
@@ -4472,10 +4559,10 @@ function OnboardingArtBackground({
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View pointerEvents="none" style={styles.onboardingBg}>
         <View pointerEvents="none" style={styles.onboardingBgImageStack}>
-          <Animated.Image
+          <AnimatedImage
             source={source}
             style={[styles.onboardingBgImage, { transform: [{ scale }] }]}
-            resizeMode="cover"
+            contentFit="cover"
             resizeMethod="resize"
           />
         </View>

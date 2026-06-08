@@ -1,18 +1,29 @@
 /**
- * analytics.ts — Простой event-трекинг для Phraseman.
+ * analytics.ts — единый фасад продуктовой аналитики Phraseman.
  *
- * Хранит события локально в AsyncStorage (offline-first).
- * Готов к интеграции с Amplitude/Mixpanel/PostHog — просто заменить flush().
+ * Раньше этот модуль был «мёртвым» (писал только в локальную очередь с TODO).
+ * Теперь каждый вызов trackEvent():
+ *   1. идёт в Firebase Analytics (logEvent) — работает в проде уже сейчас;
+ *   2. идёт в PostHog (capture), когда задан ключ EXPO_PUBLIC_POSTHOG_KEY —
+ *      даёт воронки/когорты/retention без доработок;
+ *   3. дублируется в offline-очередь AsyncStorage (для отладки / резерва).
+ *
+ * Цель: команда видит ВСЮ воронку конверсии (онбординг → intro → пейвол →
+ * trial_start → purchase), а не только разрозненные paywall-события.
  *
  * Использование:
- *   trackEvent('lesson_complete', { lessonId: 5, score: 8, total: 10 });
- *   trackEvent('quiz_start', { level: 'hard' });
+ *   trackEvent('paywall_shown', { context: 'streak', source: 'automatic' });
+ *   trackEvent('purchase_started', { context: 'quiz_limit', plan: 'yearly' });
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { logEvent as firebaseLogEvent } from './firebase';
+import { capturePostHog, identifyPostHog, resetPostHog, isPostHogEnabled } from './posthog_client';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
+// Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
+  // обучение
   | 'app_open'
   | 'lesson_start'
   | 'lesson_complete'
@@ -27,9 +38,6 @@ export type AnalyticsEvent =
   | 'exam_complete'
   | 'diagnostic_start'
   | 'diagnostic_complete'
-  | 'paywall_shown'
-  | 'subscription_started'
-  | 'subscription_restored'
   | 'streak_achieved'
   | 'streak_lost'
   | 'wager_placed'
@@ -38,107 +46,115 @@ export type AnalyticsEvent =
   | 'achievement_unlocked'
   | 'treasure_chest_opened'
   | 'login_bonus_received'
-  | 'onboarding_complete';
+  // ── ВОРОНКА КОНВЕРСИИ ──────────────────────────────────────────────────
+  | 'onboarding_step_view'        // показан шаг онбординга (props.step)
+  | 'onboarding_complete'
+  | 'onboarding_plan_paywall_view'
+  | 'onboarding_plan_trial_cta'   // нажата CTA триала/подписки в онбординге
+  | 'onboarding_continue_free'    // «Продолжить без плана»
+  | 'intro_full_access_started'   // активирован 72ч полный доступ
+  | 'intro_welcome_shown'
+  | 'intro_welcome_cta'
+  | 'intro_ended_shown'           // показана модалка «3 дня закончились»
+  | 'intro_ended_cta'             // нажата «Открыть полный доступ»
+  | 'intro_ended_dismiss'         // «Продолжить бесплатно»
+  | 'paywall_shown'
+  | 'paywall_plan_select'
+  | 'paywall_cta_click'
+  | 'paywall_close'
+  | 'paywall_continue_free'
+  | 'purchase_started'            // нажат CTA, открывается диалог стора
+  | 'purchase_completed'
+  | 'purchase_failed'
+  | 'purchase_cancelled'
+  | 'subscription_restored'
+  | 'trial_started'
+  // ── after-win апсейл / re-engagement (план #3, #7) ────────────────────────
+  | 'afterwin_upsell_shown'
+  | 'afterwin_upsell_cta'
+  | 'paywall_abandoned_push_sent'
+  | 'winback_shown';
 
 interface EventRecord {
   event: AnalyticsEvent;
-  props: Record<string, any>;
+  props: Record<string, unknown>;
   ts: number; // unix ms
 }
 
 const STORAGE_KEY = 'analytics_queue';
 const MAX_QUEUE = 200; // не накапливать бесконечно
 
-// ── PostHog bridge ──────────────────────────────────────────────────────────
-// Активируется ТОЛЬКО при наличии EXPO_PUBLIC_POSTHOG_KEY. Без ключа — no-op,
-// события продолжают копиться в локальной очереди (offline-first). Ключ НЕ
-// хардкодим: задаётся через env. SDK грузится лениво, чтобы отсутствие пакета
-// (Expo Go / web) не ломало приложение.
-const POSTHOG_KEY = process.env.EXPO_PUBLIC_POSTHOG_KEY;
-const POSTHOG_HOST = process.env.EXPO_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
-
-type PosthogLike = {
-  capture: (event: string, props?: Record<string, any>) => void;
-  identify: (id: string, props?: Record<string, any>) => void;
-  reset: () => void;
-};
-
-let _posthog: PosthogLike | null = null;
-let _posthogInitPromise: Promise<PosthogLike | null> | null = null;
-
-export function isPosthogEnabled(): boolean {
-  return typeof POSTHOG_KEY === 'string' && POSTHOG_KEY.length > 0;
+/** Firebase-имена событий допускают [a-zA-Z0-9_], начинаются с буквы, ≤40 симв. */
+function firebaseSafeName(event: string): string {
+  return event.replace(/[^a-zA-Z0-9_]/g, '_').slice(0, 40);
 }
 
-async function getPosthog(): Promise<PosthogLike | null> {
-  if (!isPosthogEnabled()) return null;
-  if (_posthog) return _posthog;
-  if (_posthogInitPromise) return _posthogInitPromise;
-  _posthogInitPromise = (async () => {
-    try {
-      const mod = await import('posthog-react-native');
-      const PostHog = (mod as any).default ?? (mod as any).PostHog;
-      const client = new PostHog(POSTHOG_KEY as string, { host: POSTHOG_HOST });
-      _posthog = client as PosthogLike;
-      return _posthog;
-    } catch {
-      return null;
-    }
-  })();
-  return _posthogInitPromise;
+/** В Firebase params значения должны быть string|number. Приводим безопасно. */
+function firebaseSafeParams(props: Record<string, unknown>): Record<string, string | number> {
+  const out: Record<string, string | number> = {};
+  for (const [k, v] of Object.entries(props)) {
+    if (v == null) continue;
+    out[k.slice(0, 40)] = typeof v === 'number' ? v : String(v).slice(0, 100);
+  }
+  return out;
+}
+
+// ── PostHog identity helpers ─────────────────────────────────────────────────
+
+export function isPosthogEnabled(): boolean {
+  return isPostHogEnabled();
 }
 
 /** Привязать события к пользователю (вызывать после логина/восстановления). */
-export const identifyUser = async (userId: string, props: Record<string, any> = {}): Promise<void> => {
+export async function identifyUser(userId: string, props: Record<string, unknown> = {}): Promise<void> {
   try {
-    const ph = await getPosthog();
-    ph?.identify(userId, props);
+    identifyPostHog(userId, props);
   } catch {
     // analytics must never crash the app
   }
-};
+}
 
 /** Сбросить идентификацию (вызывать при выходе). */
-export const resetAnalyticsIdentity = async (): Promise<void> => {
+export async function resetAnalyticsIdentity(): Promise<void> {
   try {
-    const ph = await getPosthog();
-    ph?.reset();
+    resetPostHog();
   } catch {
     // ignore
   }
-};
+}
 
-// ── Запись события ────────────────────────────────────────────────────────────
+// ── Запись события (фасад) ─────────────────────────────────────────────────────
 export const trackEvent = async (
   event: AnalyticsEvent,
-  props: Record<string, any> = {}
+  props: Record<string, unknown> = {},
 ): Promise<void> => {
-  // Forward to PostHog when enabled (fire-and-forget; never blocks).
-  if (isPosthogEnabled()) {
-    void getPosthog().then((ph) => {
-      try {
-        ph?.capture(event, props);
-      } catch {
-        // ignore
-      }
-    });
+  // 1) Firebase — синхронно, не блокирует
+  try {
+    firebaseLogEvent(firebaseSafeName(event), firebaseSafeParams(props));
+  } catch {
+    /* аналитика не должна ломать приложение */
   }
+
+  // 2) PostHog — no-op, если ключ не задан
+  try {
+    capturePostHog(event, props);
+  } catch {
+    /* no-op */
+  }
+
+  // 3) Offline-очередь (резерв/отладка)
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     const queue: EventRecord[] = raw ? JSON.parse(raw) : [];
-
     queue.push({ event, props, ts: Date.now() });
-
-    // Обрезаем если очередь переполнена
     if (queue.length > MAX_QUEUE) queue.splice(0, queue.length - MAX_QUEUE);
-
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(queue));
   } catch {
-    // Аналитика не должна ломать приложение
+    /* no-op */
   }
 };
 
-// ── Получить очередь (для отладки или отправки) ───────────────────────────────
+// ── Очередь (отладка / резерв) ─────────────────────────────────────────────────
 export const getEventQueue = async (): Promise<EventRecord[]> => {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
@@ -148,39 +164,29 @@ export const getEventQueue = async (): Promise<EventRecord[]> => {
   }
 };
 
-// ── Очистить очередь после отправки ──────────────────────────────────────────
 export const clearEventQueue = async (): Promise<void> => {
   try {
     await AsyncStorage.removeItem(STORAGE_KEY);
-  } catch {}
+  } catch {
+    /* no-op */
+  }
 };
 
-/**
- * flush() — точка интеграции с внешним сервисом.
- * Сейчас логирует в dev-режиме. Заменить тело на Amplitude.track() / Mixpanel.track().
- */
+/** Сброс локальной очереди (события уже ушли в Firebase/PostHog в реальном времени). */
 export const flushAnalytics = async (): Promise<void> => {
   try {
     const queue = await getEventQueue();
     if (queue.length === 0) return;
 
-    // PostHog (когда включён) получает события в реальном времени через
-    // trackEvent → capture. Локальная очередь — резерв/отладка; чистим её,
-    // чтобы не копить дубли. Если PostHog выключен — очередь просто очищается
-    // (события всё равно записаны локально до этого вызова).
-    if (isPosthogEnabled()) {
-      const ph = await getPosthog();
-      if (ph) {
-        for (const e of queue) {
-          try { ph.capture(e.event, e.props); } catch { /* ignore */ }
-        }
+    if (isPostHogEnabled()) {
+      for (const e of queue) {
+        try { capturePostHog(e.event, e.props); } catch { /* ignore */ }
       }
     }
 
     if (__DEV__) {
-      console.log(`[Analytics] flushed ${queue.length} events (posthog=${isPosthogEnabled()})`);
+      console.log(`[Analytics] flushed ${queue.length} events (posthog=${isPostHogEnabled()})`);
     }
-
     await clearEventQueue();
   } catch {}
 };

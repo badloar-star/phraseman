@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -220,7 +221,7 @@ const PUBLIC_FOCUS_DESCRIPTION_PLANNED: Record<ProfileCardPublicFocus, PlannedPr
   },
 };
 
-export default function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded, onChanged }: Props) {
+function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded, onChanged }: Props) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme: t, f, themeMode } = useTheme();
@@ -291,7 +292,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
         } as any);
         return;
       }
-      notify('error', 'Не удалось улучшить карточку');
+      notify('error', 'Карточка не улучшилась. Попробуй снова.');
     } finally {
       setBusy(false);
     }
@@ -453,7 +454,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : t.bgSurface, borderRadius: isCompassTheme ? 10 : 14, paddingHorizontal: 10, paddingVertical: 7, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', overflow: 'hidden' }}>
               {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : profilePrimaryAccent, fontSize: f.body, fontWeight: '900' }}>{shards}</Text>
-              <Image source={oskolokImageForPackShards(shards)} style={{ width: 18, height: 18 }} resizeMode="contain" />
+              <Image source={oskolokImageForPackShards(shards)} style={{ width: 18, height: 18 }} contentFit="contain" />
             </View>
           </View>
 
@@ -669,7 +670,7 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
                       {!unlocked && (
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                           <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{item.cost}</Text>
-                          <Image source={oskolokImageForPackShards(item.cost)} style={{ width: 14, height: 14 }} resizeMode="contain" />
+                          <Image source={oskolokImageForPackShards(item.cost)} style={{ width: 14, height: 14 }} contentFit="contain" />
                         </View>
                       )}
                     </View>
@@ -739,3 +740,5 @@ export default function ProfileCardUpgradeModal({ visible, level, snapshot, onCl
     </Modal>
   );
 }
+
+export default memo(ProfileCardUpgradeModal);

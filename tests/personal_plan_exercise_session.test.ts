@@ -124,8 +124,12 @@ describe('personal plan exercise session contracts', () => {
       payload: {
         recordingUri: 'file:///tmp/phrase.m4a',
         durationMs: 1800,
-        userPlayedRecording: true,
-        scoringAvailable: false,
+        userPlayedRecording: false,
+        scoringAvailable: true,
+        transcript: "I'm here",
+        score: 96,
+        passed: true,
+        threshold: 90,
       },
     });
 
@@ -133,8 +137,12 @@ describe('personal plan exercise session contracts', () => {
     expect(result.attempt.sanitizedPayload).toEqual({
       recordingUri: 'file:///tmp/phrase.m4a',
       durationMs: 1800,
-      userPlayedRecording: true,
-      scoringAvailable: false,
+      userPlayedRecording: false,
+      scoringAvailable: true,
+      transcript: "I'm here",
+      score: 96,
+      passed: true,
+      threshold: 90,
     });
   });
 });

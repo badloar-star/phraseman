@@ -1,10 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
+  InteractionManager,
   ScrollView,
   SectionList,
   Text,
@@ -25,6 +27,7 @@ import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CoachToast from '../components/CoachToast';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -731,7 +734,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'map', ru: 'Карта', uk: 'Карта', es: 'mapa', pos: 'nouns' },
     { en: 'guide', ru: 'Путеводитель', uk: 'Путівник', es: 'guía', pos: 'nouns' },
     { en: 'hotel', ru: 'Отель', uk: 'Готель', es: 'hotel', pos: 'nouns' },
-    { en: 'Wi-Fi', ru: 'Wi-Fi', uk: 'Wi-Fi', es: 'wifi', pos: 'nouns' },
+    { en: 'Wi-Fi', ru: 'Беспроводной интернет', uk: 'Бездротовий інтернет', es: 'wifi', pos: 'nouns' },
     { en: 'lunch', ru: 'Обед', uk: 'Обід', es: 'almuerzo', pos: 'nouns' },
     { en: 'break', ru: 'Перерыв', uk: 'Перерва', es: 'descanso', pos: 'nouns' },
     { en: 'spare', ru: 'Запасной', uk: 'Запасний', es: 'repuesto', pos: 'adjectives' },
@@ -1471,7 +1474,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'reading', ru: 'Чтение', uk: 'Читання', es: 'leer', pos: 'verbs' },
     { en: 'cooking', ru: 'Готовка; приготовление', uk: 'Готування', es: 'cocinar', pos: 'verbs' },
     { en: 'waiting', ru: 'Ожидание; ждать', uk: 'Очікування; чекати', es: 'esperar', pos: 'verbs' },
-    { en: 'learning', ru: 'Изучение; учеба', uk: 'Вивчення; навчання', es: 'aprender', pos: 'verbs' },
+    { en: 'learning', ru: 'Процесс обучения / изучения', uk: 'Процес навчання / вивчення', es: 'aprender', pos: 'verbs' },
     { en: 'driving', ru: 'Вождение; водить', uk: 'Водіння; водити', es: 'conducir', pos: 'verbs' },
     { en: 'walking', ru: 'Ходьба; гулять', uk: 'Ходьба; гуляти', es: 'caminar', pos: 'verbs' },
     { en: 'running', ru: 'Бег; бегать', uk: 'Біг; бігати', es: 'correr', pos: 'verbs' },
@@ -2094,6 +2097,7 @@ const IRREGULAR_SURFACE_TO_BASE: Record<string, string> = {
 
 const DICTIONARY_VERB_SURFACE_FORMS = new Set([
   'charged',
+  'learning',
   'mailed',
   'packed',
   'turned',
@@ -2642,6 +2646,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
 function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const { playCorrect } = useCorrectSound();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme:t, f, themeMode } = useTheme();
   const { s } = useLang();
@@ -2739,8 +2744,11 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   };
 
   useEffect(() => {
-    if (!userNameProp) AsyncStorage.getItem('user_name').then(n => { if(n) setUserName(n); });
-    loadSettings().then(s => { setHapticsOn(s.haptics); setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (!userNameProp) AsyncStorage.getItem('user_name').then(n => { if(n) setUserName(n); });
+      loadSettings().then(s => { setHapticsOn(s.haptics); setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
+    });
+    return () => task.cancel();
   }, [userNameProp]);
 
   useEffect(() => {
@@ -2781,7 +2789,9 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
     const wordEn = current.word.en;
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
-    if (!isRight && hapticsOn) {
+    if (isRight) {
+      playCorrect();
+    } else if (hapticsOn) {
       void hapticError();
     }
 
@@ -2949,7 +2959,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         <TouchableOpacity
           testID="lesson-words-complete-back"
           style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-          onPress={() => router.back()}
+          onPress={() => safeRouterBack(router, '/(tabs)/lessons')}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>{pickTriLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← A la lección', 'pt-BR': '← Para a lição', vi: '← Về bài học', id: '← Ke pelajaran', tr: '← Derse', pl: '← Do lekcji' })}</Text>
         </TouchableOpacity>
@@ -3082,7 +3092,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           <View style={{ alignItems:'center', gap:8 }}>
             <Text style={{ color:sx.muted, fontSize:f.sub, letterSpacing:0.5 }}>
               {pickTriLang(lang, {
-                ru: 'Выберите английский перевод:',
+                ru: 'Выбери английский перевод:',
                 uk: 'Оберіть англійський переклад:',
                 es: 'Elige la traducción en inglés:',
                 'pt-BR': 'Escolha a tradução em inglês:',
@@ -3216,6 +3226,7 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
             <View style={{ borderBottomWidth: 0.5, borderBottomColor: t.border }}>
               <ScrollView
                 horizontal
+                decelerationRate="normal"
                 nestedScrollEnabled
                 keyboardShouldPersistTaps="handled"
                 showsHorizontalScrollIndicator={false}
@@ -3386,9 +3397,9 @@ export default function LessonWords() {
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TouchableOpacity testID="lesson-words-header-back" onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}>
+        <TapScale testID="lesson-words-header-back" onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600', flex:1, textAlign:'center', marginHorizontal:8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>{ws.title(lessonId)}</Text>
         <View style={{ width:28 }} />
       </View>

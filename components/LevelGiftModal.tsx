@@ -9,10 +9,11 @@
 
 import { useRouter } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import {
-  Animated, Easing, Image, Modal, StyleSheet, Text, TouchableOpacity, View,
+  Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import {
   applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
   isEnergyBonusGiftId, rollF2pLevelGiftForUser,
@@ -130,7 +131,7 @@ function CosmeticGiftPreview({ result, level }: { result: ApplyGiftResult | null
   return null;
 }
 
-export default function LevelGiftModal({
+function LevelGiftModal({
   visible,
   level,
   userName,
@@ -487,7 +488,7 @@ export default function LevelGiftModal({
             {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_GIFT_MODAL ? f.numMd + 4 : f.numMd, fontWeight: '900', marginBottom: 24, textAlign: 'center' }}>
-            {triLang(lang, { ru: '🎁 Твой подарок!', uk: '🎁 Твій подарунок!', es: '🎁 ¡Tu regalo!', 'pt-BR': '🎁 Seu presente!', vi: '🎁 Quà của bạn!', id: '🎁 Hadiahmu!', tr: '🎁 Hediyen!', pl: '🎁 Twój prezent!' })}
+            {triLang(lang, { ru: '🎁 Подарок за уровень!', uk: '🎁 Твій подарунок!', es: '🎁 ¡Tu regalo!', 'pt-BR': '🎁 Seu presente!', vi: '🎁 Quà của bạn!', id: '🎁 Hadiahmu!', tr: '🎁 Hediyen!', pl: '🎁 Twój prezent!' })}
           </Text>
 
           {USE_ELITE_LEVEL_GIFT_MODAL && (
@@ -564,7 +565,7 @@ export default function LevelGiftModal({
                   <Image
                     source={getLevelGiftRewardIcon(gift.id, themeMode)}
                     style={{ width: 82, height: 82, marginBottom: 8 }}
-                    resizeMode="contain"
+                    contentFit="contain"
                   />
                   <Text style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '800', marginBottom: 8, textAlign: 'center' }}>
                     {giftDisplayTitleForLang(gift, lang)}
@@ -595,7 +596,7 @@ export default function LevelGiftModal({
                         <Image
                           source={getLevelGiftRewardIcon(choice.id, themeMode)}
                           style={{ width: 38, height: 38 }}
-                          resizeMode="contain"
+                          contentFit="contain"
                         />
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
@@ -640,7 +641,7 @@ export default function LevelGiftModal({
                   <Image
                     source={getLevelGiftRewardIcon(gift.id, themeMode)}
                     style={{ width: 106, height: 106, zIndex: 2 }}
-                    resizeMode="contain"
+                    contentFit="contain"
                   />
                 )}
               </View>
@@ -870,7 +871,7 @@ export default function LevelGiftModal({
                   }}>
                     {storesOnly
                       ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
-                      : triLang(lang, { ru: 'Получить!', uk: 'Отримати!', es: '¡Reclamar!', 'pt-BR': 'Receber!', vi: 'Nhận!', id: 'Klaim!', tr: 'Al!', pl: 'Odbierz!' })}
+                      : triLang(lang, { ru: 'Забрать!', uk: 'Забрати!', es: '¡Reclamar!', 'pt-BR': 'Receber!', vi: 'Nhận!', id: 'Klaim!', tr: 'Al!', pl: 'Odbierz!' })}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -883,3 +884,5 @@ export default function LevelGiftModal({
     </Modal>
   );
 }
+
+export default memo(LevelGiftModal);

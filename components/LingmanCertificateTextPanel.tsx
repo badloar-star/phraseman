@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Text, View } from 'react-native';
 import { formatCertDate, type CertLang } from '../app/exam_certificate';
 
@@ -13,7 +13,7 @@ type Props = {
   width?: number;
 };
 
-export default function LingmanCertificateTextPanel({
+function LingmanCertificateTextPanel({
   name,
   score,
   total,
@@ -61,3 +61,5 @@ export default function LingmanCertificateTextPanel({
     </View>
   );
 }
+
+export default memo(LingmanCertificateTextPanel);

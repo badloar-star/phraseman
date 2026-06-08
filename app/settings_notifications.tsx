@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import TapScale from '../components/TapScale';
 import {
   View, Text, TouchableOpacity,
   Modal, ScrollView,
@@ -135,12 +136,12 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
             <SimplePicker values={MINUTES} value={m} onChange={setM}/>
           </View>
           <View style={{ flexDirection:'row', borderTopWidth:0.5, borderTopColor:t.border }}>
-            <TouchableOpacity style={{ flex:1, padding:16, alignItems:'center', borderRightWidth:0.5, borderRightColor:t.border }} onPress={onCancel}>
+            <TapScale style={{ flex:1, padding:16, alignItems:'center', borderRightWidth:0.5, borderRightColor:t.border }} onPress={onCancel}>
               <Text style={{ color:t.textMuted, fontSize:16 }}>{cancelLabel}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ flex:1, padding:16, alignItems:'center' }} onPress={() => onConfirm(h, m)}>
+            </TapScale>
+            <TapScale style={{ flex:1, padding:16, alignItems:'center' }} onPress={() => onConfirm(h, m)}>
               <Text style={{ color:t.textSecond, fontSize:16, fontWeight:'700' }}>OK</Text>
-            </TouchableOpacity>
+            </TapScale>
           </View>
         </View>
       </View>
@@ -232,7 +233,7 @@ export default function SettingsNotifications() {
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TouchableOpacity
+        <TapScale
           onPress={() => {
           hapticTap();
           safeRouterBack(router, '/(tabs)/home' as any);
@@ -252,7 +253,7 @@ export default function SettingsNotifications() {
         >
           {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{ color:t.textPrimary, fontSize:18, fontWeight:'700', marginLeft:8, flex:1 }} numberOfLines={1}>
           {screenTitle}
         </Text>
@@ -280,7 +281,7 @@ export default function SettingsNotifications() {
         />
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingBottom:40 }}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom:40 }}>
         {days.map((dayName, d) => {
           const day = s.schedule[d];
           if (!day) return null;

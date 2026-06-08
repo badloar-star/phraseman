@@ -104,17 +104,16 @@ export const loadClaimedGiftRarities = async (): Promise<Record<number, string>>
 /** Save a gift as pending for the given level. */
 export const saveUnclaimedGift = async (level: number, gift: GiftDef): Promise<void> => {
   try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_GIFTS_KEY);
-    const map = parseJsonRecord<GiftDef>(raw);
+    const [singleRaw, dualRaw] = await AsyncStorage.multiGet([UNCLAIMED_GIFTS_KEY, UNCLAIMED_DUAL_GIFTS_KEY]);
+    const map = parseJsonRecord<GiftDef>(singleRaw[1]);
     map[level] = gift;
-    await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(map));
-
-    const dualRaw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    if (dualRaw) {
-      const dualMap = parseJsonRecord<PremPair>(dualRaw);
-      delete dualMap[level];
-      await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap));
-    }
+    const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
+    delete dualMap[level];
+    // Атомарно обновляем оба хранилища
+    await AsyncStorage.multiSet([
+      [UNCLAIMED_GIFTS_KEY, JSON.stringify(map)],
+      [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
+    ]);
     await refreshPendingGiftCountCache();
   } catch {
     // A missed cache write should not block the level-up flow.
@@ -147,17 +146,16 @@ export const loadUnclaimedGifts = async (): Promise<Record<number, GiftDef>> => 
 
 export const saveUnclaimedDualGift = async (level: number, pair: PremPair): Promise<void> => {
   try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    const map = parseJsonRecord<PremPair>(raw);
-    map[level] = pair;
-    await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
-
-    const singleRaw = await AsyncStorage.getItem(UNCLAIMED_GIFTS_KEY);
-    if (singleRaw) {
-      const singleMap = parseJsonRecord<GiftDef>(singleRaw);
-      delete singleMap[level];
-      await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap));
-    }
+    const [dualRaw, singleRaw] = await AsyncStorage.multiGet([UNCLAIMED_DUAL_GIFTS_KEY, UNCLAIMED_GIFTS_KEY]);
+    const dualMap = parseJsonRecord<PremPair>(dualRaw[1]);
+    dualMap[level] = pair;
+    const singleMap = parseJsonRecord<GiftDef>(singleRaw[1]);
+    delete singleMap[level];
+    // Атомарно обновляем оба хранилища, чтобы исключить рассинхрон при сбое
+    await AsyncStorage.multiSet([
+      [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(dualMap)],
+      [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
+    ]);
     await refreshPendingGiftCountCache();
   } catch {
     // Best effort cache write.
@@ -188,22 +186,23 @@ export const markDualGiftClaimed = async (level: number): Promise<void> => {
 
 export const markDualGiftPartClaimed = async (level: number, part: DualGiftPart): Promise<void> => {
   try {
-    const raw = await AsyncStorage.getItem(UNCLAIMED_DUAL_GIFTS_KEY);
-    if (!raw) return;
-    const map = parseJsonRecord<PremPair>(raw);
+    const [dualRaw, singleRaw] = await AsyncStorage.multiGet([UNCLAIMED_DUAL_GIFTS_KEY, UNCLAIMED_GIFTS_KEY]);
+    const map = parseJsonRecord<PremPair>(dualRaw[1]);
     const pair = map[level];
     if (!pair) return;
 
     const remainingGift = part === 'f2p' ? pair.prem : pair.f2p;
     delete map[level];
-    await AsyncStorage.setItem(UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map));
 
+    const singleMap = parseJsonRecord<GiftDef>(singleRaw[1]);
     if (remainingGift) {
-      const singleRaw = await AsyncStorage.getItem(UNCLAIMED_GIFTS_KEY);
-      const singleMap = parseJsonRecord<GiftDef>(singleRaw);
       singleMap[level] = remainingGift;
-      await AsyncStorage.setItem(UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap));
     }
+    // Атомарно записываем оба хранилища — исключаем потерю второго подарка при сбое
+    await AsyncStorage.multiSet([
+      [UNCLAIMED_DUAL_GIFTS_KEY, JSON.stringify(map)],
+      [UNCLAIMED_GIFTS_KEY, JSON.stringify(singleMap)],
+    ]);
     await refreshPendingGiftCountCache();
   } catch {
     // Best effort cleanup.

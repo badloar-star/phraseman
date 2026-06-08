@@ -6,9 +6,9 @@ import {
   type PlanRecoveryCandidate,
 } from './personal_plan_engine_contracts';
 import type {
-  GavanDay1QuizChoiceDraft,
-  GavanDay1QuizItemDraft,
-} from './personal_plan_gavan_day1_quiz_draft';
+  PlanQuizChoiceDraft,
+  PlanQuizItemDraft,
+} from './personal_plan_quiz_types';
 
 export type PlanAttemptEventAdapterIssueCode =
   | 'block_type_mismatch'
@@ -34,7 +34,7 @@ export type PlanAttemptEventAdapterResult =
 
 export type PlanQuizAttemptEventInput = {
   block: PlanExerciseBlock;
-  item: GavanDay1QuizItemDraft;
+  item: PlanQuizItemDraft;
   choiceId: string;
   planInstanceId: string;
   occurredAt?: string;
@@ -72,7 +72,7 @@ function compactTags(values: Array<string | undefined>): string[] {
   return [...new Set(values.map((value) => value?.trim()).filter((value): value is string => Boolean(value)))];
 }
 
-function correctChoiceFor(item: GavanDay1QuizItemDraft): GavanDay1QuizChoiceDraft | undefined {
+function correctChoiceFor(item: PlanQuizItemDraft): PlanQuizChoiceDraft | undefined {
   return item.choices.find((choice) => choice.isCorrect);
 }
 

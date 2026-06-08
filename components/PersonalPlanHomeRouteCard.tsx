@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, type ImageStyle, type TextStyle, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
@@ -43,7 +43,7 @@ function withAlpha(color: string, alphaHex: string): string {
   return 'rgba(255,255,255,0.10)';
 }
 
-export default function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
+function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const isGold = themeMode === 'gold';
@@ -147,6 +147,8 @@ export default function PersonalPlanHomeRouteCard({ compactMargin = true, snapsh
     </TouchableOpacity>
   );
 }
+
+export default memo(PersonalPlanHomeRouteCard);
 
 const styles = StyleSheet.create<{
   wrap: ViewStyle;

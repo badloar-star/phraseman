@@ -3,7 +3,7 @@ import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Stack, useGlobalSearchParams, usePathname, useRouter } from 'expo-router';
+import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
@@ -11,19 +11,21 @@ import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, Easing, Image, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Easing, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
 import { LangProvider, useLang } from '../components/LangContext';
+import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import Onboarding from '../components/onboarding';
 import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from './personal_plan_activation';
-import { PremiumProvider } from '../components/PremiumContext';
+import { PremiumProvider, usePremium } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
@@ -33,7 +35,7 @@ import NotificationPermissionModal from '../components/NotificationPermissionMod
 import { getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
 import type { Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
-import { ENABLE_DEV_TOOLS, IS_EXPO_GO } from './config';
+import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { ensureAnonUser, ensureStableAuthLink, restoreFromCloud, syncToCloud } from './cloud_sync';
@@ -43,7 +45,7 @@ import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadImages, preloadStartupImages } from './image_preload';
 import {
-  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
+  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
@@ -102,8 +104,21 @@ import {
 } from './services/league_chest_rewards';
 import { FIRST_LESSON_SHEET_BACKGROUNDS } from '../components/firstLessonSheetAssets';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { syncWidgetData } from './widget_bridge';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
 import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
+import { installInterFontPatch } from './font_family_patch';
+import {
+  getIntroFullAccessState,
+  markIntroFullAccessEndedSeen,
+  markIntroFullAccessWelcomeSeen,
+  shouldShowIntroFullAccessWelcome,
+  startIntroFullAccessAfterOnboarding,
+} from './intro_full_access';
+
+// Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
+// Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
+installInterFontPatch();
 
 LogBox.ignoreLogs([
   '[expo-notifications] Error reading persisted server registration info',
@@ -321,7 +336,7 @@ function StartupSplashHold({ visible }: { visible: boolean }) {
     >
       <Image
         source={require('../assets/images/splash-icon.png')}
-        resizeMode="contain"
+        contentFit="contain"
         style={{ width: 240, height: 240 }}
       />
     </View>
@@ -389,7 +404,9 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
           consecutiveDays: typeof parsed.consecutiveDays === 'number' ? parsed.consecutiveDays : 0,
         };
       }
-    } catch {}
+    } catch (e) {
+      if (__DEV__) console.warn('[_layout]', e);
+    }
 
     if (login.lastDate !== today) {
       const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
@@ -470,10 +487,17 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
 
     if (notifEnabled === 'true') {
       scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(() => {});
-      schedulePhrasOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
+      schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
 
       scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(() => {});
       scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
+
+      // Серверные пуши: регистрируем Expo push token в облаке, чтобы cron мог
+      // достучаться до пропавшего юзера (стрик под угрозой / давно не заходил),
+      // даже когда приложение закрыто. Best-effort, в фоне.
+      void import('./push_token_registration')
+        .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
+        .catch(() => {});
     }
 
     // ── 6. League Overtake Notification ─────────────────────────────────────
@@ -492,8 +516,12 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
           checkLeagueOvertakeNotification(myIdx + 1, leaderAbove.name, lang, { requestPermission: false }).catch(() => {});
         }
       }
-    } catch {}
-  } catch {}
+    } catch (e) {
+      if (__DEV__) console.warn('[_layout]', e);
+    }
+  } catch (e) {
+    if (__DEV__) console.warn('[_layout]', e);
+  }
 };
 
 // ── Глобальная очередь повышений уровня — показывает модалки независимо от экрана ──
@@ -550,7 +578,7 @@ function GlobalLevelUpHandler() {
       const raw = await AsyncStorage.getItem('pending_level_up_queue');
       if (!raw) return;
       let arr: number[] = [];
-      try { arr = JSON.parse(raw); } catch {}
+      try { arr = JSON.parse(raw); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
       if (arr.length === 0) return;
       await AsyncStorage.removeItem('pending_level_up_queue');
       const name = await AsyncStorage.getItem('user_name');
@@ -566,7 +594,9 @@ function GlobalLevelUpHandler() {
         isShowingRef.current = true;
         queueMicrotask(showNext);
       }
-    } catch {} finally {
+    } catch (e) {
+      if (__DEV__) console.warn('[_layout]', e);
+    } finally {
       flushQueueBusyRef.current = false;
       if (flushQueueRetryRef.current) {
         flushQueueRetryRef.current = false;
@@ -601,6 +631,14 @@ function GlobalLevelUpHandler() {
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
   }, []);
+
+  // Refresh the home/lock-screen "phrase of the day" widget on app start and
+  // whenever the theme, interface language, or study target changes — so the
+  // widget stays fresh and on-theme even if the user never opens the home tab.
+  // Best-effort; a native no-op off-device.
+  useEffect(() => {
+    void syncWidgetData({ studyTarget, lang, themeMode });
+  }, [studyTarget, lang, themeMode]);
 
   const dismissLevelUp = () => {
     if (dismissingLevelUpRef.current) return;
@@ -639,6 +677,26 @@ function GlobalLevelUpHandler() {
       queueMicrotask(showNext);
     } else {
       isShowingRef.current = false;
+      // План #3: after-win апсейл после ПОЛНОГО завершения празднования level-up.
+      // Гард не даёт спамить (кулдаун + не дублировать сегодняшний пейвол).
+      void (async () => {
+        try {
+          const prem = await getVerifiedPremiumStatus().catch(() => false);
+          // Не показываем поверх модалки конца интро — она важнее (главный момент конверсии).
+          const introState = await getIntroFullAccessState().catch(() => null);
+          if (introState?.expiredUnseen === true) return;
+          const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
+            import('./after_win_upsell_gate'),
+            import('./analytics'),
+          ]);
+          if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
+          // Сначала навигация: если push упадёт — гейт не «сгорит» впустую.
+          globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
+          await markAfterWinUpsellShown(Date.now());
+          await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
+          void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
+        } catch { /* no-op */ }
+      })();
     }
   };
 
@@ -841,6 +899,7 @@ function AppContent() {
   const [showOnboarding, setShow]   = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
   const [showFirstLessonSheet, setShowFirstLessonSheet] = useState(false);
+  const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
@@ -856,6 +915,7 @@ function AppContent() {
   const firstContentReadyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const runHeavyInitRef = useRef<(() => void) | null>(null);
   const heavyInitStartedRef = useRef(false);
+  const pendingFirstLessonSheetAfterIntroRef = useRef(false);
   /** Гард от повторного тапа «Поехали» в листе первого урока (router.replace + push не должны исполняться дважды). */
   const firstLessonStartHandledRef = useRef(false);
   const postOnboardingGoldBridgeAnim = useRef(new Animated.Value(0)).current;
@@ -900,6 +960,7 @@ function AppContent() {
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const { setLang, lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { isPremium, isVip } = usePremium();
   const { showAchievement } = useAchievement();
   const { theme: tTheme, themeMode } = useTheme();
   const router = useRouter();
@@ -1099,13 +1160,13 @@ function AppContent() {
     emitAppEvent('action_toast', {
       type: 'success',
       messageRu: availability.isCrownWinner
-        ? 'Цель лиги выполнена. Ты лидер недели, корона готова к выдаче.'
+        ? 'Цель лиги выполнена. Ты лидер, корона готова к выдаче.'
         : 'Цель лиги выполнена. Бонус лиги готов к получению.',
       messageUk: availability.isCrownWinner
-        ? 'Ціль ліги виконано. Ти лідер тижня, корона готова до видачі.'
+        ? 'Ціль ліги виконано. Ти лідер, корона готова до видачі.'
         : 'Ціль ліги виконано. Бонус ліги готовий до отримання.',
       messageEs: availability.isCrownWinner
-        ? 'Meta de liga completada. Lideras la semana y la corona está lista.'
+        ? 'Meta de liga completada. Lideras y la corona está lista.'
         : 'Meta de liga completada. El bono de liga está listo.',
     });
     if (source === 'startup' || pathname !== '/club_screen') {
@@ -1146,7 +1207,9 @@ function AppContent() {
         try {
           const offer = await shouldOfferReleaseNotesModal();
           if (!cancelled && offer) setReleaseNotesOffer(true);
-        } catch { /* */ }
+        } catch (e) {
+          if (__DEV__) console.warn('[_layout]', e);
+        }
       })();
     }, 400);
     return () => {
@@ -1229,7 +1292,9 @@ function AppContent() {
         await wordsCache.primeAllLessonWordsFromStorageOnAppLaunch(studyTarget);
         const tab = await import('./lessons_tab_state');
         await tab.loadLessonsTabStateFromStorage(studyTarget);
-      } catch { /* */ }
+      } catch (e) {
+        if (__DEV__) console.warn('[_layout]', e);
+      }
     })();
   }, [studyTarget]);
 
@@ -1272,7 +1337,7 @@ function AppContent() {
     let subRemove: (() => void) | undefined;
     void import('./referral_bootstrap')
       .then((m) => {
-        void Linking.getInitialURL().then((u) => m.captureReferralFromUrl(u));
+        void Linking.getInitialURL().then((u) => m.captureReferralFromUrl(u)).catch((e) => { if (__DEV__) console.warn('[_layout]', e); });
         subRemove = m.subscribeReferralUrl((u) => {
           void m.captureReferralFromUrl(u);
         }).remove;
@@ -1312,15 +1377,12 @@ function AppContent() {
       // PostHog identify (no-op unless EXPO_PUBLIC_POSTHOG_KEY is set).
       void (async () => {
         try {
-          const [{ getCanonicalUserId }, analytics] = await Promise.all([
-            import('./user_id_policy'),
-            import('./analytics'),
-          ]);
-          const uid = await getCanonicalUserId().catch(() => '');
-          if (uid) void analytics.identifyUser(uid).catch(() => {});
-        } catch {
-          // ignore
-        }
+          const uid = await getCanonicalUserId().catch(() => null);
+          if (uid) {
+            const { identifyPostHog } = await import('./posthog_client');
+            identifyPostHog(uid);
+          }
+        } catch { /* аналитика не должна ломать запуск */ }
       })();
       void startFriendsTabSwrPrime().catch(() => {});
       const startShopWarm = async () => {
@@ -1363,12 +1425,14 @@ function AppContent() {
         try {
           await ensureAnonUser();
           await restoreFromCloud();
-        } catch {}
+        } catch (e) {
+          if (__DEV__) console.warn('[_layout]', e);
+        }
       })();
 
       void hydrate.then(async () => {
         await runContentDeliveryMigration().catch(() => {});
-        try { emitAppEvent('cloud_profile_hydrated'); } catch {}
+        try { emitAppEvent('cloud_profile_hydrated'); } catch (e) { if (__DEV__) console.warn('[_layout]', e); }
         // Одноразовая починка после релиза, в котором (tabs)/index.tsx
         // перестал уважать persistedUnlocked: подтягиваем lesson{N-1}_best_score
         // до 2.5 для уроков, которые в облаке уже значатся как открытые.
@@ -1449,7 +1513,9 @@ function AppContent() {
           try {
             await ensureAnonUser();
             await restoreFromCloud();
-          } catch {}
+          } catch (e) {
+            if (__DEV__) console.warn('[_layout]', e);
+          }
         })();
         void runContentDeliveryMigration(cloudHydratePromise);
       }
@@ -1527,7 +1593,9 @@ function AppContent() {
         if (!handledByReferrer) {
           setShow(willShowOnboarding);
         }
-      } catch {}
+      } catch (e) {
+        if (__DEV__) console.warn('[_layout]', e);
+      }
 
       const iconFontsReady = preloadVectorIconFonts();
       void iconFontsReady.catch(() => {});
@@ -1603,11 +1671,128 @@ function AppContent() {
   }, [setLang]);
 
   // Навигация после онбординга — показываем bottomsheet первого урока
+  const showDeferredFirstLessonSheet = useCallback(() => {
+    pendingFirstLessonSheetAfterIntroRef.current = false;
+    setTimeout(() => setShowFirstLessonSheet(true), 240);
+  }, []);
+
+  const hasVerifiedRealPremiumOrVip = useCallback(async () => {
+    if (isPremium || isVip) return true;
+    const [realPremium, vip] = await Promise.all([
+      getVerifiedRealPremiumStatus().catch(() => false),
+      getVerifiedVipStatus().catch(() => false),
+    ]);
+    return realPremium || vip;
+  }, [isPremium, isVip]);
+
+  const closeIntroFullAccessModal = useCallback(async (action: 'primary' | 'secondary') => {
+    const variant = introFullAccessModal;
+    if (!variant) return;
+    if (variant === 'welcome') {
+      await markIntroFullAccessWelcomeSeen().catch(() => {});
+      setIntroFullAccessModal(null);
+      if (pendingFirstLessonSheetAfterIntroRef.current) {
+        showDeferredFirstLessonSheet();
+      }
+      return;
+    }
+
+    await markIntroFullAccessEndedSeen().catch(() => {});
+    setIntroFullAccessModal(null);
+    if (action === 'primary') {
+      // Воронка: пользователь решил продолжить в полном доступе — ведём на пейвол.
+      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_cta', {})).catch(() => {});
+      void import('./firebase').then(({ logIntroEndedCta }) => logIntroEndedCta()).catch(() => {});
+      // Прокидываем личные данные, чтобы пейвол показал персональную строку
+      // («уже твоё: серия N · …»). Без них пейвол даёт корректный gain-фоллбэк.
+      const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(() => null)) || '0', 10) || 0;
+      router.replace({
+        pathname: '/premium_modal',
+        params: { context: 'intro_ended', streak: String(streakCount) },
+      } as any);
+    } else {
+      // Воронка: закрыл модалку конца интро без перехода на пейвол.
+      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_dismiss', {})).catch(() => {});
+      void import('./firebase').then(({ logIntroEndedDismiss }) => logIntroEndedDismiss()).catch(() => {});
+    }
+  }, [introFullAccessModal, router, showDeferredFirstLessonSheet]);
+
+  const checkIntroFullAccessEndedModal = useCallback(async () => {
+    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    const state = await getIntroFullAccessState().catch(() => null);
+    if (!state?.expiredUnseen) return;
+    if (await hasVerifiedRealPremiumOrVip()) {
+      await markIntroFullAccessEndedSeen().catch(() => {});
+      return;
+    }
+    if (state?.expiredUnseen) {
+      setIntroFullAccessModal('ended');
+      // Воронка: показана модалка «72 часа закончились» — главный момент конверсии.
+      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_shown', {})).catch(() => {});
+      void import('./firebase').then(({ logIntroEndedShown }) => logIntroEndedShown()).catch(() => {});
+    }
+  }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
+
+  useEffect(() => {
+    void checkIntroFullAccessEndedModal();
+    const introSub = onAppEvent('intro_full_access_changed', () => {
+      void checkIntroFullAccessEndedModal();
+    });
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        void checkIntroFullAccessEndedModal();
+      }
+    });
+    return () => {
+      introSub.remove();
+      appSub.remove();
+    };
+  }, [checkIntroFullAccessEndedModal]);
+
+  // План #7: winback-оффер вернувшимся после 7+ дней неактивности.
+  // ВАЖНО: сначала ОЦЕНИВАЕМ по сохранённой активности, ПОТОМ записываем свежую —
+  // иначе разрыв всегда ~0. Не показываем одновременно с intro_ended (не два пейвола разом).
+  const checkWinbackOffer = useCallback(async () => {
+    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    try {
+      const { shouldShowWinback, markWinbackShown, recordLastActive } = await import('./winback_offer');
+      const isPremium = await hasVerifiedRealPremiumOrVip();
+      const nowMs = Date.now();
+      // intro ещё не закрыт → его модалка важнее, winback пропускаем (активность всё равно фиксируем)
+      const introState = await getIntroFullAccessState().catch(() => null);
+      const introPending = introState?.expiredUnseen === true;
+
+      const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
+      if (show) {
+        // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
+        globalRouter.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'winback' } } as any);
+        await markWinbackShown(nowMs);
+        await import('./analytics').then(({ trackEvent }) => trackEvent('winback_shown', {})).catch(() => {});
+        void import('./firebase').then(({ logWinbackShown }) => logWinbackShown()).catch(() => {});
+      }
+      // фиксируем активность ПОСЛЕ оценки
+      await recordLastActive(nowMs);
+    } catch { /* no-op */ }
+  }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
+
+  useEffect(() => {
+    void checkWinbackOffer();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') void checkWinbackOffer();
+    });
+    return () => { appSub.remove(); };
+  }, [checkWinbackOffer]);
+
   const handleOnboardingDone = useCallback(async () => {
     // Гард от повторного вызова: handleFinishOnboarding в Onboarding async, и при двойном тапе
     // «Позже»/«Войти» onDone() мог вызваться дважды → два setTimeout → модалка повторно открывалась.
     if (onboardingDoneHandledRef.current) return;
     onboardingDoneHandledRef.current = true;
+    const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip();
+    if (!hasPaidOrVipAfterOnboarding) {
+      await startIntroFullAccessAfterOnboarding(Date.now(), lang);
+      emitAppEvent('intro_full_access_changed');
+    }
     await AsyncStorage.setItem('xp_migration_v2', '1');
     armPostOnboardingGoldBridge();
     if (firstContentReadyTimerRef.current) {
@@ -1621,8 +1806,14 @@ function AppContent() {
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
     // Небольшая задержка чтобы анимация закрытия онбординга успела завершиться
+    const showWelcome = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
+    if (showWelcome) {
+      pendingFirstLessonSheetAfterIntroRef.current = true;
+      setTimeout(() => setIntroFullAccessModal('welcome'), 320);
+      return;
+    }
     setTimeout(() => setShowFirstLessonSheet(true), 400);
-  }, [armPostOnboardingGoldBridge, router]);
+  }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
 
   const handleOnboardingPersonalPlanPaywall = useCallback(async () => {
     await AsyncStorage.setItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1');
@@ -1638,10 +1829,24 @@ function AppContent() {
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
     setShow(false);
     router.replace('/(tabs)/home' as any);
+    const planBilling = await AsyncStorage.getItem('onboarding_plan_billing').catch(() => null);
     setTimeout(() => {
-      router.push({ pathname: '/premium_modal', params: { context: 'personal_plan', source: 'onboarding_plan' } } as any);
+      router.replace({
+        pathname: '/premium_modal',
+        params: {
+          context: 'personal_plan',
+          source: 'onboarding_plan',
+          ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
+        },
+      } as any);
     }, 120);
   }, [router]);
+
+  const handleOnboardingIntroFullAccessStart = useCallback(async () => {
+    await startIntroFullAccessAfterOnboarding(Date.now(), lang);
+    emitAppEvent('intro_full_access_changed');
+    return true;
+  }, [lang]);
 
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
@@ -1791,16 +1996,20 @@ function AppContent() {
         headerShown: false,
         contentStyle: { backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG },
         // Без native-stack transitions: Android/Fabric падал на открытии вложенных экранов и Back.
-        animation: 'none',
-        animationDuration: 0,
+        // ENABLE_SCREEN_TRANSITIONS (по умолчанию false) включает мягкое появление
+        // ТОЛЬКО после проверки на Android — иначе поведение идентично прежнему (none).
+        animation: ENABLE_SCREEN_TRANSITIONS ? 'slide_from_right' : 'none',
+        animationDuration: ENABLE_SCREEN_TRANSITIONS ? 220 : 0,
         freezeOnBlur: false,
         gestureEnabled: false,
         fullScreenGestureEnabled: false,
         headerBackButtonMenuEnabled: false,
       }}
     >
-      <Stack.Screen name="index" />
-      <Stack.Screen name="(tabs)" />
+      {/* Корневые экраны не «выезжают» даже при включённых переходах — иначе
+          возврат на табы/сплеш выглядит как съезжающий слой. Всегда мгновенно. */}
+      <Stack.Screen name="index" options={{ animation: 'none' }} />
+      <Stack.Screen name="(tabs)" options={{ animation: 'none' }} />
       <Stack.Screen name="lesson1" />
       <Stack.Screen name="lesson_menu" />
       <Stack.Screen name="lesson_words" />
@@ -1825,6 +2034,10 @@ function AppContent() {
       <Stack.Screen name="personal_plan_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_runtime_dev" options={{ headerShown: false }} />
       <Stack.Screen name="personal_plan_thank_you" options={{ headerShown: false }} />
+      <Stack.Screen name="personal_plan_task_done" options={{ headerShown: false, animation: 'slide_from_bottom', presentation: 'modal' }} />
+      <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, animation: 'slide_from_right' }} />
+      <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, animation: 'slide_from_right' }} />
+      <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
@@ -1964,7 +2177,14 @@ function AppContent() {
     />
 
     {/* Bottomsheet первого урока после онбординга */}
-    {appOverlaysEnabled && showFirstLessonSheet && (
+    <IntroFullAccessModal
+      visible={appOverlaysEnabled && introFullAccessModal !== null}
+      variant={introFullAccessModal ?? 'welcome'}
+      onPrimaryPress={() => { void closeIntroFullAccessModal('primary'); }}
+      onSecondaryPress={() => { void closeIntroFullAccessModal('secondary'); }}
+    />
+
+    {appOverlaysEnabled && !introFullAccessModal && showFirstLessonSheet && (
       <Modal
         transparent
         visible={firstLessonSheetVisible}
@@ -2005,7 +2225,7 @@ function AppContent() {
           >
             <Image
               source={firstLessonSheetBackground}
-              resizeMode="cover"
+              contentFit="cover"
               style={styles.firstLessonSheetBackgroundImage}
             />
             <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: firstLessonSheetScrim }]} />
@@ -2140,6 +2360,7 @@ function AppContent() {
         <Onboarding
           onDone={handleOnboardingDone}
           onLangSelect={handleLangSelect}
+          onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
           onPersonalPlanPaywallStart={handleOnboardingPersonalPlanPaywall}
         />
       </View>

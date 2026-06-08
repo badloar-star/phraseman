@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticTap } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import TapScale from '../../components/TapScale';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -10,6 +11,7 @@ import type { ImageSourcePropType } from 'react-native';
 import {
   Animated,
   Easing,
+  InteractionManager,
   KeyboardAvoidingView,
   Modal,
   Pressable,
@@ -43,7 +45,7 @@ import XpGainBadge from '../../components/XpGainBadge';
 import { isCorrectAnswer } from '../../constants/contractions';
 import { getXPProgress, type ThemeMode } from '../../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
-import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../../constants/motion';
+import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../../constants/motion';
 import { checkAchievements } from '../achievements';
 import { bumpQuizSessionCompleted } from '../lifetime_profile_stats';
 import { logQuizComplete, logQuizLevelSelected, logEnergyLimitHit } from '../firebase';
@@ -378,6 +380,28 @@ function QuizCardBackgroundImageWithFallback({
   );
 }
 
+function QuizCardTextScrim({ themeMode }: { themeMode: ThemeMode }) {
+  const isCompassTheme = themeMode === 'compass';
+  return (
+    <LinearGradient
+      pointerEvents="none"
+      colors={isCompassTheme
+        ? ['rgba(0,0,0,0.86)', 'rgba(0,0,0,0.72)', 'rgba(0,0,0,0.34)', 'rgba(0,0,0,0.00)']
+        : ['rgba(0,0,0,0.64)', 'rgba(0,0,0,0.44)', 'rgba(0,0,0,0.00)']}
+      locations={isCompassTheme ? [0, 0.34, 0.72, 1] : [0, 0.46, 1]}
+      start={{ x: 0, y: 0.5 }}
+      end={{ x: 1, y: 0.5 }}
+      style={[StyleSheet.absoluteFillObject, { zIndex: 1 }]}
+    />
+  );
+}
+
+const quizCardTextShadow = {
+  textShadowColor: 'rgba(0,0,0,0.88)',
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 4,
+} as const;
+
 function QuizCardLogoImageWithFallback({
   source,
   fallbackName,
@@ -503,14 +527,14 @@ function ThematicQuizLevelCard({
 
   return (
     <View collapsable={false} style={[{ borderRadius: isCompassTheme ? compassRadius : 20, overflow: 'hidden' }, isCompassTheme && compassShadow(visualSelected ? 2 : 1)]}>
-      <TouchableOpacity
+      <TapScale
         onPress={() => {
-          hapticTap();
           if (locked) { onLockedPress(); return; }
           if (isSelected) { onStart(category.id, fillAnim); return; }
           onPick();
         }}
-        activeOpacity={0.85}
+        scaleTo={0.97}
+        withHaptic={false}
       >
         <LinearGradient
           collapsable={false}
@@ -541,7 +565,8 @@ function ThematicQuizLevelCard({
             themeMode={themeMode}
             showFallbackDecor={false}
           />
-          <View collapsable={false} style={{ flex: 1, paddingTop: 24, paddingBottom: 14, paddingLeft: 16, paddingRight: 116, zIndex: 1 }}>
+          <QuizCardTextScrim themeMode={themeMode} />
+          <View collapsable={false} style={{ flex: 1, paddingTop: 24, paddingBottom: 14, paddingLeft: 16, paddingRight: 116, zIndex: 2 }}>
             <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
               <View style={{
                 backgroundColor: `${accent}25`,
@@ -565,8 +590,8 @@ function ThematicQuizLevelCard({
               )}
             </View>
             <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
-              <Text style={{ color: textCol, fontSize: f.h1, fontWeight:'900' }}>{title}</Text>
-              <Text style={{ color: textCol2, fontSize: f.sub, flexWrap:'wrap' }}>{subtitle}</Text>
+              <Text style={[quizCardTextShadow, { color: textCol, fontSize: f.h1, fontWeight:'900' }]}>{title}</Text>
+              <Text style={[quizCardTextShadow, { color: textCol2, fontSize: f.sub, flexWrap:'wrap' }]}>{subtitle}</Text>
             </View>
           </View>
 
@@ -581,7 +606,7 @@ function ThematicQuizLevelCard({
               width: 104,
               alignItems: 'center',
               justifyContent: 'center',
-              zIndex: 2,
+              zIndex: 3,
               transform: [{ scale: locked ? 1 : pulseAnim }],
             }}
           >
@@ -594,12 +619,13 @@ function ThematicQuizLevelCard({
             />
           </Animated.View>
         </LinearGradient>
-      </TouchableOpacity>
+      </TapScale>
 
       {visualSelected && (
-        <TouchableOpacity
-          onPress={() => { hapticTap(); onStart(category.id, fillAnim); }}
-          activeOpacity={1}
+        <TapScale
+          onPress={() => { onStart(category.id, fillAnim); }}
+          scaleTo={0.96}
+          withHaptic={false}
           style={{
             height: 46,
             backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
@@ -629,7 +655,7 @@ function ThematicQuizLevelCard({
           />
           <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
             {triLang(lang, {
-  ru: 'Начать квиз',
+  ru: 'Начать вызов',
   uk: 'Почати квіз',
   es: 'Empezar cuestionario',
   "pt-BR": 'Começar quiz',
@@ -639,7 +665,7 @@ function ThematicQuizLevelCard({
   pl: 'Rozpocznij quiz',
 })} · {title}
           </Text>
-        </TouchableOpacity>
+        </TapScale>
       )}
     </View>
   );
@@ -729,6 +755,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   });
   const startInFlightRef = useRef(false);
   const startInFlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [startLoading, setStartLoading] = useState(false);
   const screenTitleColor = t.textPrimary;
   const { width: windowWidth } = useWindowDimensions();
   /** Ширина трека полоски: translateX + native driver (без скачков interpolate от onLayout) */
@@ -748,31 +775,42 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       startInFlightTimeoutRef.current = null;
     }
     startInFlightRef.current = false;
+    setStartLoading(false);
   }, []);
 
   const armStartInFlightWatchdog = useCallback(() => {
+    setStartLoading(true);
     if (startInFlightTimeoutRef.current) clearTimeout(startInFlightTimeoutRef.current);
     startInFlightTimeoutRef.current = setTimeout(() => {
       startInFlightRef.current = false;
       startInFlightTimeoutRef.current = null;
+      setStartLoading(false);
     }, 2500);
   }, []);
 
   useEffect(() => releaseStartInFlight, [releaseStartInFlight]);
 
   // Fill animation per level
-  const fillAnims = useRef<Record<Level, Animated.Value>>({
-    easy:   new Animated.Value(0),
-    medium: new Animated.Value(0),
-    hard:   new Animated.Value(0),
-  }).current;
+  const fillAnimsRef = useRef<Record<Level, Animated.Value> | null>(null);
+  if (!fillAnimsRef.current) {
+    fillAnimsRef.current = {
+      easy:   new Animated.Value(0),
+      medium: new Animated.Value(0),
+      hard:   new Animated.Value(0),
+    };
+  }
+  const fillAnims = fillAnimsRef.current;
 
   // Pulse animation per level icon
-  const pulseAnims = useRef<Record<Level, Animated.Value>>({
-    easy:   new Animated.Value(1),
-    medium: new Animated.Value(1),
-    hard:   new Animated.Value(1),
-  }).current;
+  const pulseAnimsRef = useRef<Record<Level, Animated.Value> | null>(null);
+  if (!pulseAnimsRef.current) {
+    pulseAnimsRef.current = {
+      easy:   new Animated.Value(1),
+      medium: new Animated.Value(1),
+      hard:   new Animated.Value(1),
+    };
+  }
+  const pulseAnims = pulseAnimsRef.current;
 
   useEffect(() => {
     if (!QUIZ_ENTRY_REPEATING_MOTION_ENABLED) {
@@ -798,10 +836,12 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
 
   useEffect(() => {
     let cancelled = false;
-    void getFreeDailyQuizState().then((state) => {
-      if (!cancelled) setFreeQuizState(state);
+    const task = InteractionManager.runAfterInteractions(() => {
+      void getFreeDailyQuizState().then((state) => {
+        if (!cancelled) setFreeQuizState(state);
+      });
     });
-    return () => { cancelled = true; };
+    return () => { cancelled = true; task.cancel(); };
   }, []);
 
   const quizLimitLabel = triLang(lang, {
@@ -833,7 +873,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     return false;
   };
 
-  const handleStart = (lv: Level) => {
+  const handleStart = useCallback((lv: Level) => {
     if (startInFlightRef.current) return;
     if (!energyUnlimited && energy + bonusEnergy <= 0) {
       logEnergyLimitHit('quiz');
@@ -879,9 +919,9 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     }).catch(() => {
       releaseStartInFlight();
     });
-  };
+  }, [armStartInFlightWatchdog, bonusEnergy, energy, energyUnlimited, fillAnims, onSelect, releaseStartInFlight]);
 
-  const handleStartThematic = (categoryId: ThematicQuizCategoryId, anim: Animated.Value) => {
+  const handleStartThematic = useCallback((categoryId: ThematicQuizCategoryId, anim: Animated.Value) => {
     if (startInFlightRef.current) return;
     if (!energyUnlimited && energy + bonusEnergy <= 0) {
       logEnergyLimitHit('quiz');
@@ -925,25 +965,23 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     }).catch(() => {
       releaseStartInFlight();
     });
-  };
+  }, [armStartInFlightWatchdog, bonusEnergy, energy, energyUnlimited, onSelect, releaseStartInFlight]);
 
   return (
     <ScreenGradient forceFullBleed artBackdrop="quizzes">
     <View testID="quiz-game-screen" accessibilityLabel="qa-quiz-game-screen" style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, paddingTop: 16 + insets.top, borderBottomWidth:0.5, borderBottomColor: t.border }}>
-        <TouchableOpacity
-          testID="quiz-level-select-back"
-          accessibilityLabel="qa-quiz-level-select-back"
-          accessible
-          style={{ width:38, height:38, borderRadius:19, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border, justifyContent:'center', alignItems:'center' }}
+        <TapScale
           onPress={() => {
             hapticTap();
             safeRouterBack(router, '/(tabs)/home' as any);
           }}
+          withHaptic={false}
+          style={{ width:38, height:38, borderRadius:19, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border, justifyContent:'center', alignItems:'center' }}
         >
           <Ionicons name="chevron-back" size={22} color={t.textPrimary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight:'700', marginLeft:12, flex:1 }} adjustsFontSizeToFit numberOfLines={1}>
           {s.quizzes.selectLevel}
         </Text>
@@ -970,6 +1008,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
 
       <ScrollView
         style={{ flex: 1 }}
+        decelerationRate="normal"
         contentContainerStyle={{
           flexGrow: 1,
           justifyContent: 'center',
@@ -1023,11 +1062,10 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
           return (
             <View key={lv} style={[{ borderRadius: isCompassTheme ? compassRadius : 20, overflow: 'hidden' }, isCompassTheme && compassShadow(visualSelected ? 2 : 1)]}>
               {/* ── Карточка уровня ── */}
-              <TouchableOpacity
+              <TapScale
                 testID={`quiz-level-card-${lv}`}
                 accessibilityLabel={`qa-quiz-level-card-${lv}`}
                 onPress={() => {
-                  hapticTap();
                   if (locked) {
                     openQuizLimitPaywall();
                     return;
@@ -1036,7 +1074,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                   releaseStartInFlight();
                   setSelected(lv);
                 }}
-                activeOpacity={0.85}
+                scaleTo={0.97}
+                withHaptic={false}
               >
                 <LinearGradient
                   colors={[gradA, gradB]}
@@ -1066,7 +1105,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                     locked={locked}
                     themeMode={themeMode}
                   />
-                  <View style={{ flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: 116, zIndex: 1 }}>
+                  <QuizCardTextScrim themeMode={themeMode} />
+                  <View style={{ flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: 116, zIndex: 2 }}>
                     <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
                       <View style={{
                         backgroundColor: `${accent}25`, borderRadius: 6,
@@ -1098,8 +1138,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                       )}
                     </View>
                     <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
-                      <Text style={{ color: textCol, fontSize: f.h1, fontWeight:'900' }}>{lbl}</Text>
-                      <Text style={{ color: textCol2, fontSize: f.sub, flexWrap:'wrap' }}>{tag}</Text>
+                      <Text style={[quizCardTextShadow, { color: textCol, fontSize: f.h1, fontWeight:'900' }]}>{lbl}</Text>
+                      <Text style={[quizCardTextShadow, { color: textCol2, fontSize: f.sub, flexWrap:'wrap' }]}>{tag}</Text>
                     </View>
                   </View>
 
@@ -1114,7 +1154,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                       width: 104,
                       alignItems: 'center',
                       justifyContent: 'center',
-                      zIndex: 2,
+                      zIndex: 3,
                       transform: [{ scale: locked ? 1 : pulseAnims[lv] }],
                     }}
                   >
@@ -1126,7 +1166,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                     />
                   </Animated.View>
                 </LinearGradient>
-              </TouchableOpacity>
+              </TapScale>
 
               {/* ── Кнопка «Начать» прямо на карточке ── */}
               {visualSelected && (() => {
@@ -1135,13 +1175,16 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                   outputRange: [-startTrackW, 0],
                 });
                 return (
-                  <TouchableOpacity
+                  <TapScale
                     testID={`quiz-level-start-${lv}`}
                     accessibilityLabel={`qa-quiz-level-start-${lv}`}
-                    onPress={() => { hapticTap(); handleStart(lv); }}
-                    activeOpacity={1}
+                    onPress={() => { handleStart(lv); }}
+                    disabled={startLoading}
+                    scaleTo={0.96}
+                    withHaptic={false}
                     style={{
                       height: 46,
+                      opacity: startLoading ? 0.6 : 1,
                       backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
                       borderWidth: 2,
                       borderTopWidth: 0,
@@ -1165,7 +1208,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
                     {/* Text */}
                     <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
                       {triLang(lang, {
-  ru: 'Начать квиз',
+  ru: 'Начать вызов',
   uk: 'Почати квіз',
   es: 'Empezar cuestionario',
   "pt-BR": 'Começar quiz',
@@ -1175,7 +1218,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   pl: 'Rozpocznij quiz',
 })} · {lbl}
                     </Text>
-                  </TouchableOpacity>
+                  </TapScale>
                 );
               })()}
             </View>
@@ -1224,7 +1267,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             />
             <Text style={{ color: freeQuizState.exhausted ? t.textMuted : t.textSecond, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
               {triLang(lang, {
-  ru: `Бесплатные квизы сегодня: ${freeQuizState.left}/${freeQuizState.limit}`,
+  ru: `Осталось вызовов сегодня: ${freeQuizState.left} из ${freeQuizState.limit}`,
   uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
   es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
   "pt-BR": `Quizzes grátis hoje: ${freeQuizState.left}/${freeQuizState.limit}`,
@@ -1287,23 +1330,32 @@ function QuizGame({
   const onGradPrimary = isLightTheme ? quizGradTxt.primary : t.textPrimary;
   const onGradMuted = isLightTheme ? quizGradTxt.secondary : t.textMuted;
   const onGradSecondary = isLightTheme ? quizGradTxt.secondary : t.textSecond;
-  const thematicCategory = thematicCategoryId ? getThematicQuizCategory(thematicCategoryId, studyTarget) : undefined;
+  const thematicCategory = useMemo(
+    () => thematicCategoryId ? getThematicQuizCategory(thematicCategoryId, studyTarget) : undefined,
+    [thematicCategoryId, studyTarget],
+  );
   const cfg = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
   const quizLevel: Level = LEVEL_CONFIG[level] ? level : 'easy';
   const levelAccent = thematicCategory?.accent ?? cfg.color;
-  const label = thematicCategory
-    ? thematicCategory.title[lang]
-    : triLang(lang, {
-  ru: cfg.labelRU,
-  uk: cfg.labelUK,
-  es: cfg.labelES,
-  "pt-BR": cfg.labelPTBR,
-  vi: cfg.labelVI,
-  id: cfg.labelID,
-  tr: cfg.labelTR,
-  pl: cfg.labelPL,
-});
-  const quizBankAvailable = quizContentAvailableForTarget(studyTarget);
+  const label = useMemo(
+    () => thematicCategory
+      ? thematicCategory.title[lang]
+      : triLang(lang, {
+          ru: cfg.labelRU,
+          uk: cfg.labelUK,
+          es: cfg.labelES,
+          'pt-BR': cfg.labelPTBR,
+          vi: cfg.labelVI,
+          id: cfg.labelID,
+          tr: cfg.labelTR,
+          pl: cfg.labelPL,
+        }),
+    [thematicCategory, lang, cfg],
+  );
+  const quizBankAvailable = useMemo(
+    () => quizContentAvailableForTarget(studyTarget),
+    [studyTarget],
+  );
 
   const [retryCount, setRetryCount] = useState(0);
   const [planQuizUserName, setPlanQuizUserName] = useState('Phraseman');
@@ -1522,18 +1574,18 @@ function QuizGame({
   }, [done, score, totalXP, xpBarAnim, xpCountAnim, xpFlyOpacity, xpFlyY]);
 
   useEffect(() => {
-    loadSettings().then(setSettings);
+    loadSettings().then(setSettings).catch(() => {});
     AsyncStorage.getItem('hard_tip_dismissed').then(v => {
       if (v === '1') setHardTipDismissed(true);
-    });
+    }).catch(() => {});
     AsyncStorage.getItem('user_name').then(name => {
       const safeName = (name ?? '').trim() || 'Phraseman';
       userNameRef.current = safeName;
       setPlanQuizUserName(safeName);
-    });
+    }).catch(() => {});
     AsyncStorage.getItem('user_total_xp').then(v => {
       setTotalXP(parseInt(v || '0') || 0);
-    });
+    }).catch(() => {});
   }, []);
 
   // Синхронизируем streakRef с streak стейтом
@@ -1875,7 +1927,7 @@ function QuizGame({
       <ScreenGradient forceFullBleed artBackdrop="quizzes">
       <View style={{ flex:1 }}>
         <ContentWrap>
-        <ScrollView contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="normal" contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
           <Image
             source={completionMedalSource}
             contentFit="contain"
@@ -1998,9 +2050,9 @@ function QuizGame({
             {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : levelAccent, fontSize: f.bodyLg, fontWeight:'600' }}>{s.quizzes.again}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ padding:14 }} onPress={() => { hapticTap(); onBack(); }}>
+          <TapScale onPress={() => { hapticTap(); onBack(); }} withHaptic={false} style={{ padding:14 }}>
             <Text style={{ color:t.textMuted, fontSize: f.body }}>{s.quizzes.back}</Text>
-          </TouchableOpacity>
+          </TapScale>
           <TouchableOpacity
             style={{ flexDirection:'row', alignItems:'center', gap:8, padding:10, marginTop: 8 }}
             onPress={async () => {
@@ -2161,9 +2213,9 @@ function QuizGame({
 
         {/* ХЕДЕР */}
         <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, paddingTop: 15 + insets.top }}>
-          <TouchableOpacity onPress={() => { hapticTap(); onBack(); }}>
+          <TapScale onPress={() => onBack()}>
             <Ionicons name="chevron-back" size={28} color={onGradPrimary}/>
-          </TouchableOpacity>
+          </TapScale>
           <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : levelAccent, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1} adjustsFontSizeToFit>
             {reviewing ? s.quizzes.fixErrors : label}
           </Text>
@@ -2204,8 +2256,18 @@ function QuizGame({
 
         <View style={{ flex: 1 }}>
         <Animated.View style={{ flex:1, opacity:fadeAnim }}>
-          <ScrollView style={{ flex:1 }} contentContainerStyle={{ paddingHorizontal:20, paddingTop:20, paddingBottom:40 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={true} persistentScrollbar={true}>
-          <Text style={{ color:onGradMuted, fontSize: f.caption, marginBottom:14 }}>
+          <ScrollView
+            style={{ flex:1 }}
+            decelerationRate="normal"
+            contentContainerStyle={planQuizId
+              ? { flexGrow: 1, paddingHorizontal: 16, paddingTop: 10, paddingBottom: 14, justifyContent: 'space-between', overflow: 'hidden' }
+              : { paddingHorizontal:20, paddingTop:20, paddingBottom:40 }}
+            keyboardShouldPersistTaps="handled"
+            scrollEnabled={!planQuizId}
+            showsVerticalScrollIndicator={!planQuizId}
+            persistentScrollbar={!planQuizId}
+          >
+          <Text style={{ color:onGradMuted, fontSize: f.caption, marginBottom: planQuizId ? 8 : 14 }}>
             {(reviewing?rIdx:idx)+1} / {reviewing?reviewQ.length:phrases.length}
           </Text>
 
@@ -2217,23 +2279,30 @@ function QuizGame({
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : `${levelAccent}55`,
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : `${levelAccent}14`,
                 borderRadius: isCompassTheme ? 9 : 14,
-                padding: 14,
-                marginBottom: 16,
+                padding: planQuizId ? 10 : 14,
+                marginBottom: planQuizId ? 10 : 16,
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }}
             >
               {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
-              <Text style={{ color: levelAccent, fontSize: f.label, fontWeight: '900', marginBottom: 5 }}>
+              <Text style={{ color: levelAccent, fontSize: f.label, fontWeight: '900', marginBottom: planQuizId ? 3 : 5 }}>
                 {planQuizTaskCopy.title}
               </Text>
-              <Text style={{ color: onGradMuted, fontSize: f.sub, lineHeight: f.sub * 1.38, fontWeight: '700' }}>
+              <Text
+                numberOfLines={planQuizId ? 2 : undefined}
+                style={{ color: onGradMuted, fontSize: planQuizId ? f.caption : f.sub, lineHeight: (planQuizId ? f.caption : f.sub) * 1.35, fontWeight: '700' }}
+              >
                 {planQuizTaskCopy.body}
               </Text>
             </View>
           )}
 
           {/* ВОПРОС */}
-          <Text style={{ color:onGradPrimary, fontSize: f.h2 + 6, fontWeight:'500', marginBottom:12, lineHeight:32 }}>
+          <Text
+            numberOfLines={planQuizId ? 3 : undefined}
+            adjustsFontSizeToFit={Boolean(planQuizId)}
+            style={{ color:onGradPrimary, fontSize: planQuizId ? f.h2 + 2 : f.h2 + 6, fontWeight:'500', marginBottom: planQuizId ? 10 : 12, lineHeight: planQuizId ? 28 : 32 }}
+          >
             {triLang(lang, {
   ru: current.ru,
   uk: current.uk,
@@ -2253,8 +2322,8 @@ function QuizGame({
               transform: [{ scale: insertScale }],
               backgroundColor: isCompassTheme ? (isRight===true||typedOk===true ? COMPASS_RICH.washStrong : COMPASS_RICH.copperWash) : isRight===true||typedOk===true ? t.correctBg : t.wrongBg,
               borderRadius: isCompassTheme ? 9 : 14,
-              padding: 16,
-              marginBottom: 16,
+              padding: planQuizId ? 10 : 16,
+              marginBottom: planQuizId ? 10 : 16,
               borderLeftWidth: 3,
               borderLeftColor: isCompassTheme ? (isRight===true||typedOk===true ? COMPASS_RICH.champagne : COMPASS_RICH.peach) : isRight===true||typedOk===true ? t.correct : t.wrong,
               borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
@@ -2277,7 +2346,11 @@ function QuizGame({
                 </Text>
               )}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Text style={{ color: isLightTheme ? onGradPrimary : displayColor, fontSize: f.h2 + 2, fontWeight: '600', lineHeight: (f.h2 + 2) * 1.4, flex: 1 }}>
+                <Text
+                  numberOfLines={planQuizId ? 2 : undefined}
+                  adjustsFontSizeToFit={Boolean(planQuizId)}
+                  style={{ color: isLightTheme ? onGradPrimary : displayColor, fontSize: planQuizId ? f.bodyLg : f.h2 + 2, fontWeight: '600', lineHeight: (planQuizId ? f.bodyLg : f.h2 + 2) * 1.35, flex: 1 }}
+                >
                   {shownCorrectEnglish}
                 </Text>
                 <View onStartShouldSetResponder={() => true}>
@@ -2340,14 +2413,14 @@ function QuizGame({
               <Animated.View style={{
                 opacity: insertAnim,
                 transform: [{ scale: insertScale }],
-                backgroundColor: isCompassTheme
+              backgroundColor: isCompassTheme
                   ? COMPASS_RICH.charcoalRaised
                   : correct
                   ? (isLightTheme ? '#D6EAFF' : 'rgba(74,144,255,0.13)')
                   : (isLightTheme ? '#FFF3C4' : 'rgba(212,160,23,0.13)'),
                 borderRadius: isCompassTheme ? 9 : 14,
-                padding: 16,
-                marginBottom: 16,
+                padding: planQuizId ? 10 : 16,
+                marginBottom: planQuizId ? 10 : 16,
                 borderLeftWidth: 4,
                 borderLeftColor: isCompassTheme ? COMPASS_RICH.champagne : correct ? '#1565C0' : '#F59E0B',
                 borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0,
@@ -2367,7 +2440,10 @@ function QuizGame({
   pl: 'WYJAŚNIENIE',
 })}
                 </Text>
-                <Text style={{ color: isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }}>
+                <Text
+                  numberOfLines={planQuizId ? 2 : undefined}
+                  style={{ color: isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary, fontSize: planQuizId ? f.sub : f.body, lineHeight: (planQuizId ? f.sub : f.body) * 1.42 }}
+                >
                   {explanation}
                 </Text>
               </Animated.View>
@@ -2454,14 +2530,18 @@ function QuizGame({
             </View>
           ) : (
             chosen === null && (
-              <View style={{ gap:10 }}>
+              <View style={{ gap: planQuizId ? 8 : 10 }}>
                 {(current.choices || []).map((ch, ci) => (
                   <TouchableOpacity key={ci}
-                    style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth:1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 14, padding:18, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
+                    style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth:1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 14, padding: planQuizId ? 12 : 18, minHeight: planQuizId ? 52 : undefined, justifyContent: 'center', overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
                     onPress={() => { hapticTap(); handleChoice(ci); }} activeOpacity={0.8}
                   >
                     {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
-                    <Text style={{ color:t.textPrimary, fontSize: f.h2 + 2, fontWeight:'600' }}>{ch}</Text>
+                    <Text
+                      numberOfLines={planQuizId ? 2 : undefined}
+                      adjustsFontSizeToFit={Boolean(planQuizId)}
+                      style={{ color:t.textPrimary, fontSize: planQuizId ? f.bodyLg : f.h2 + 2, lineHeight: (planQuizId ? f.bodyLg : f.h2 + 2) * 1.22, fontWeight:'600' }}
+                    >{ch}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
@@ -2786,7 +2866,7 @@ export default function QuizzesScreen() {
               await AsyncStorage.removeItem(navKey);
               emitAppEvent('action_toast', {
                 type: 'error',
-                messageRu: 'Недостаточно энергии для квиза.',
+                messageRu: 'Недостаточно энергии для вызова.',
                 messageUk: 'Недостатньо енергії для квізу.',
                 messageEs: 'No tienes energía suficiente para el cuestionario.',
               });

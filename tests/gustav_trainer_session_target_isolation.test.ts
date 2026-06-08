@@ -39,11 +39,17 @@ describe('Gustav trainer session target isolation', () => {
   });
 
   it('keeps English trainer session limit on legacy keys for compatibility', async () => {
-    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(1);
+    // Дефолт = 2 бесплатные сессии/день (remote_flags). После каждого consume — на одну меньше.
+    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(2);
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'en')).resolves.toBe(true);
     expect(storage.trainer_session_entry_v1).toContain('/trainer_words_session');
     await expect(consumeTrainerSessionEntry('/trainer_words_session', 'en')).resolves.toBe(true);
     expect(storage.trainer_free_session_v1).toContain('"count":1');
+    await expect(getFreeSessionsLeftToday('en')).resolves.toBe(1);
+    // Вторая сессия — последняя бесплатная.
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false, 'en')).resolves.toBe(true);
+    await expect(consumeTrainerSessionEntry('/trainer_words_session', 'en')).resolves.toBe(true);
+    expect(storage.trainer_free_session_v1).toContain('"count":2');
     await expect(getFreeSessionsLeftToday('en')).resolves.toBe(0);
   });
 

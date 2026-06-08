@@ -93,7 +93,7 @@ export default function QuizResultView({
     <ScreenGradient artBackdrop="quizzes">
       <View style={{ flex: 1 }}>
         <ContentWrap>
-          <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
             <Image
               source={completionMedalSource}
               contentFit="contain"

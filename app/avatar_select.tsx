@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import TapScale from '../components/TapScale';
 import {
   Dimensions,
-  Image,
   Modal,
   Pressable,
   ScrollView,
@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -244,7 +245,7 @@ function ShardCost({ amount, color }: { amount: number; color: string }) {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
       <Text style={{ color, fontSize: 11, fontWeight: '900' }}>{amount}</Text>
-      <Image source={oskolokImageForPackShards(amount)} style={{ width: 14, height: 14 }} resizeMode="contain" />
+      <Image source={oskolokImageForPackShards(amount)} style={{ width: 14, height: 14 }} contentFit="contain" />
     </View>
   );
 }
@@ -612,7 +613,7 @@ export default function AvatarSelect() {
       if (cost > 0) {
         const ok = await spendShards(cost, wasOwned ? 'custom_avatar_restyle' : 'custom_avatar');
         if (!ok) {
-          showToast('error', 'Не удалось списать осколки');
+          showToast('error', 'Осколки не списались. Попробуй ещё раз.');
           return;
         }
       }
@@ -679,7 +680,7 @@ export default function AvatarSelect() {
         }
         const ok = await spendShards(AVATAR_AURA_BUY_COST, 'avatar_aura');
         if (!ok) {
-          showToast('error', 'Не удалось списать осколки');
+          showToast('error', 'Осколки не списались. Попробуй ещё раз.');
           return;
         }
         const nextOwnedAuras: OwnedAuras = { ...ownedAuras, [aura.id]: true };
@@ -766,17 +767,16 @@ export default function AvatarSelect() {
     <ScreenGradient>
       <View testID="screen-avatar-select" style={{ flex: 1 }}>
       <View style={{ paddingTop: insets.top + 8, paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
-        <TouchableOpacity
+        <TapScale
           style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12 }}
           onPress={() => { hapticTap(); safeRouterBack(router); }}
-          activeOpacity={0.7}
         >
           <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>Аватар</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
           <Text style={{ color: avatarAccent, fontSize: 16, fontWeight: '900' }}>{shards}</Text>
-          <Image source={oskolokImageForPackShards(shards)} style={{ width: 20, height: 20 }} resizeMode="contain" />
+          <Image source={oskolokImageForPackShards(shards)} style={{ width: 20, height: 20 }} contentFit="contain" />
         </View>
       </View>
 
@@ -797,7 +797,7 @@ export default function AvatarSelect() {
         </View>
       )}
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }}>
+      <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }}>
         {showProfileCardSection ? (
         <View style={{ marginBottom: 18 }}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 8 }}>
@@ -906,7 +906,7 @@ export default function AvatarSelect() {
                 {nextProfileCardDef ? (
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 2 }}>
                     <Text style={{ color: '#111827', fontSize: 10, fontWeight: '900' }}>{nextProfileCardDef.cost}</Text>
-                    <Image source={oskolokImageForPackShards(nextProfileCardDef.cost)} style={{ width: 12, height: 12 }} resizeMode="contain" />
+                    <Image source={oskolokImageForPackShards(nextProfileCardDef.cost)} style={{ width: 12, height: 12 }} contentFit="contain" />
                   </View>
                 ) : null}
               </TouchableOpacity>
@@ -1021,7 +1021,7 @@ export default function AvatarSelect() {
 
         <View style={{ marginTop: 18, marginBottom: 10 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginBottom: 8 }}>Аура</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingRight: 4 }}>
+          <ScrollView horizontal decelerationRate="normal" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingRight: 4 }}>
             <TouchableOpacity
               activeOpacity={0.78}
               onPress={() => { void applyAura(null); }}
@@ -1175,13 +1175,13 @@ export default function AvatarSelect() {
                     return (
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 3 }}>
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>{visibleCost}</Text>
-                        <Image source={oskolokImageForPackShards(visibleCost)} style={{ width: 18, height: 18 }} resizeMode="contain" />
+                        <Image source={oskolokImageForPackShards(visibleCost)} style={{ width: 18, height: 18 }} contentFit="contain" />
                       </View>
                     );
                   })()}
                 </View>
 
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingBottom: 4 }}>
+                <ScrollView horizontal decelerationRate="normal" showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 10, paddingBottom: 4 }}>
                   {CUSTOM_AVATAR_GRADIENTS.map((gradient) => {
                     const selected = gradient.id === draftGradientId;
                     const optionColors = customGradientOptionColors(gradient.colors, selected);

@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import auth from '@react-native-firebase/auth';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -216,7 +217,7 @@ function communityPackValidationToast(
       };
     default:
       return {
-        ru: 'Проверьте название, описание, цену и все карточки.',
+        ru: 'Проверь название, описание, цену и все карточки.',
         uk: 'Перевірте назву, опис, ціну та всі картки.',
         es: 'Revisa el título, la descripción, el precio y todas las tarjetas.',
         'pt-BR': 'Verifique o título, a descrição, o preço e todos os cartões.',
@@ -813,7 +814,7 @@ export default function CommunityPackCreateScreen() {
       <ScreenGradient artBackdrop="flashcards">
         <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
           <View style={styles.headerRow}>
-            <TouchableOpacity
+            <TapScale
               onPress={() => {
                 Keyboard.dismiss();
                 safeRouterBack(router, '/flashcards' as any);
@@ -822,7 +823,7 @@ export default function CommunityPackCreateScreen() {
               style={{ width: 40 }}
             >
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
           </View>
           <ContentWrap>
             <View style={styles.formHorizontalInset}>
@@ -843,7 +844,7 @@ export default function CommunityPackCreateScreen() {
       <ScreenGradient artBackdrop="flashcards">
         <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
           <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
-            <TouchableOpacity
+            <TapScale
               onPress={() => {
                 Keyboard.dismiss();
                 safeRouterBack(router, '/flashcards' as any);
@@ -852,7 +853,7 @@ export default function CommunityPackCreateScreen() {
               style={{ width: 40 }}
             >
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
               {L('Редактирование', 'Редагування', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja')}
             </Text>
@@ -873,11 +874,11 @@ export default function CommunityPackCreateScreen() {
       <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
-          behavior={effectiveOs === 'ios' ? 'padding' : undefined}
+          behavior={effectiveOs === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={64}
         >
           <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
-            <TouchableOpacity
+            <TapScale
               onPress={() => {
                 Keyboard.dismiss();
                 safeRouterBack(router, '/flashcards' as any);
@@ -886,7 +887,7 @@ export default function CommunityPackCreateScreen() {
               style={{ width: 40 }}
             >
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
               {isEditMode
                 ? L('Редактировать набор', 'Редагувати набір', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
@@ -897,6 +898,7 @@ export default function CommunityPackCreateScreen() {
           <ScrollView
             ref={scrollViewRef}
             style={{ flex: 1 }}
+            decelerationRate="normal"
             keyboardShouldPersistTaps="handled"
             keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
             onScroll={(e) => {
@@ -947,6 +949,7 @@ export default function CommunityPackCreateScreen() {
               <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
               <TextInput
                 ref={titleInputRef}
+                accessibilityLabel={L('Название набора', 'Назва набору', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
                 {...getTextInputSystemEditMenuProps()}
                 value={title}
                 onChangeText={setTitle}
@@ -958,6 +961,7 @@ export default function CommunityPackCreateScreen() {
               <Text style={labelStyle(t)}>{L('Описание', 'Опис', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} *</Text>
               <TextInput
                 ref={descriptionInputRef}
+                accessibilityLabel={L('Описание набора', 'Опис набору', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
                 {...getTextInputSystemEditMenuProps()}
                 value={description}
                 onChangeText={setDescription}
@@ -971,7 +975,7 @@ export default function CommunityPackCreateScreen() {
               <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Color de las tarjetas', 'Cor dos cartões', 'Màu thẻ', 'Warna kartu', 'Kart rengi', 'Kolor kart')}</Text>
               <View style={[styles.stepperPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
                 <View style={styles.stepperRow}>
-                  <TouchableOpacity
+                  <TapScale
                     onPress={() => {
                       Keyboard.dismiss();
                       bumpTheme(-1);
@@ -979,7 +983,7 @@ export default function CommunityPackCreateScreen() {
                     style={styles.stepperHit}
                   >
                     <Ionicons name="chevron-back" size={28} color={t.accent} />
-                  </TouchableOpacity>
+                  </TapScale>
                   <Text style={[styles.stepperVal, { color: t.textPrimary, fontSize: 15 }]} numberOfLines={1}>
                     {ugcCardThemeLabel(themeKey, lang)}
                   </Text>
@@ -998,7 +1002,7 @@ export default function CommunityPackCreateScreen() {
               <Text style={labelStyle(t)}>{L('Иконка набора', 'Іконка набору', 'Icono del pack', 'Icone do pack', 'Biểu tượng bộ thẻ', 'Ikon paket', 'Paket ikonu', 'Ikona pakietu')}</Text>
               <View style={[styles.cardBackPickerPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
                 <View style={styles.cardBackHeroRow}>
-                  <TouchableOpacity
+                  <TapScale
                     onPress={() => {
                       Keyboard.dismiss();
                       bumpCardBack(-1);
@@ -1007,7 +1011,7 @@ export default function CommunityPackCreateScreen() {
                     accessibilityRole="button"
                   >
                     <Ionicons name="chevron-back" size={28} color={t.accent} />
-                  </TouchableOpacity>
+                  </TapScale>
 
                   <View style={styles.cardBackHero}>
                     {selectedCardBackFan ? (
@@ -1035,6 +1039,7 @@ export default function CommunityPackCreateScreen() {
 
                 <ScrollView
                   horizontal
+                  decelerationRate="normal"
                   showsHorizontalScrollIndicator={false}
                   contentContainerStyle={styles.cardBackThumbRow}
                   keyboardShouldPersistTaps="handled"
@@ -1101,6 +1106,7 @@ export default function CommunityPackCreateScreen() {
                   </Text>
                   <TextInput
                     ref={draftEnInputRef}
+                    accessibilityLabel={L('Английская сторона карточки', 'Англійська сторона картки', 'Cara en inglés de la tarjeta', 'Face em inglês do cartão', 'Mặt tiếng Anh của thẻ', 'Sisi bahasa Inggris kartu', 'Kartın İngilizce tarafı', 'Angielska strona karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftEn}
                     onChangeText={setDraftEn}
@@ -1112,6 +1118,7 @@ export default function CommunityPackCreateScreen() {
                   <Text style={draftLabelStyle(t)}>{L('ПЕРЕВОД', 'ПЕРЕКЛАД', 'TRADUCCIÓN', 'TRADUÇÃO', 'BẢN DỊCH', 'TERJEMAHAN', 'ÇEVİRİ', 'TŁUMACZENIE')}</Text>
                   <TextInput
                     ref={draftTranslationInputRef}
+                    accessibilityLabel={L('Перевод карточки', 'Переклад картки', 'Traducción de la tarjeta', 'Tradução do cartão', 'Bản dịch thẻ', 'Terjemahan kartu', 'Kart çevirisi', 'Tłumaczenie karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftTranslation}
                     onChangeText={setDraftTranslation}
@@ -1125,6 +1132,7 @@ export default function CommunityPackCreateScreen() {
                   </Text>
                   <TextInput
                     ref={draftNoteInputRef}
+                    accessibilityLabel={L('Описание или заметка к карточке', 'Опис або замітка до картки', 'Descripción o nota de la tarjeta', 'Descrição ou nota do cartão', 'Mô tả hoặc ghi chú thẻ', 'Deskripsi atau catatan kartu', 'Kart açıklaması veya notu', 'Opis lub notatka do karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftNote}
                     onChangeText={setDraftNote}

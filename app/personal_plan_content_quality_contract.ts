@@ -7,7 +7,12 @@ export type PersonalPlanContentQualityIssueCode =
   | 'textbook_or_overformal_phrase'
   | 'explanation_mentions_unseen_option'
   | 'missing_new_word_explanation'
-  | 'missing_first_seen_construction_explanation';
+  | 'missing_first_seen_construction_explanation'
+  | 'phrase_too_long_for_spoken_use'
+  | 'duplicated_words_in_phrase'
+  | 'untranslated_english_in_russian'
+  | 'missing_sentence_punctuation'
+  | 'mojibake_or_replacement_char';
 
 export type PersonalPlanContentQualityIssue = {
   code: PersonalPlanContentQualityIssueCode;
@@ -88,8 +93,52 @@ const EXACT_PERSONAL_DATA_PATTERNS = [
   /@/,
 ];
 
+// A spoken practice phrase should stay short enough to say in one breath.
+// 14 words is a generous ceiling for conversational survival/work English.
+const MAX_SPOKEN_PHRASE_WORDS = 14;
+
+// Unicode replacement char or stray mojibake markers that slip past the
+// narrower CORRUPTED_COPY_PATTERN check.
+const REPLACEMENT_CHAR_PATTERN = /�/;
+
+// Cyrillic letters present in the English field = untranslated/garbled mix.
+const CYRILLIC_PATTERN = /[Ѐ-ӿ]/;
+
+// Latin letters present in the Russian field (beyond short ALL-CAPS acronyms
+// or quoted target words) usually means an untranslated English chunk.
+const LATIN_WORD_IN_RUSSIAN_PATTERN = /[A-Za-z]{4,}/;
+
 function hasText(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
+}
+
+function wordCount(value: string): number {
+  return value.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function hasConsecutiveDuplicateWord(value: string): boolean {
+  const words = value
+    .toLowerCase()
+    .replace(/[.,!?;:]/g, '')
+    .split(/\s+/)
+    .filter(Boolean);
+  for (let i = 1; i < words.length; i += 1) {
+    if (words[i] === words[i - 1] && words[i].length > 1) return true;
+  }
+  return false;
+}
+
+function endsWithSentencePunctuation(value: string): boolean {
+  return /[.!?…]"?$/.test(value.trim());
+}
+
+/**
+ * Russian translation should not carry a long Latin word (a sign the English
+ * leaked into the translation), with a carve-out for quoted English targets.
+ */
+function hasUntranslatedEnglish(russian: string): boolean {
+  const withoutQuoted = russian.replace(/[«"'][^»"']*[»"']/g, ' ');
+  return LATIN_WORD_IN_RUSSIAN_PATTERN.test(withoutQuoted);
 }
 
 function includesAnyPattern(value: string, patterns: RegExp[]): boolean {
@@ -175,6 +224,30 @@ export function validatePersonalPlanContentQuality(
 
   if (includesAnyPattern(phraseText, EXACT_PERSONAL_DATA_PATTERNS)) {
     pushIssue(issues, 'exact_personal_data', phrase.id);
+  }
+
+  if (hasText(phrase.english) && wordCount(phrase.english) > MAX_SPOKEN_PHRASE_WORDS) {
+    pushIssue(issues, 'phrase_too_long_for_spoken_use', phrase.id, phrase.english);
+  }
+
+  if (hasText(phrase.english) && hasConsecutiveDuplicateWord(phrase.english)) {
+    pushIssue(issues, 'duplicated_words_in_phrase', phrase.id, phrase.english);
+  }
+
+  if (hasText(phrase.english) && CYRILLIC_PATTERN.test(phrase.english)) {
+    pushIssue(issues, 'untranslated_english_in_russian', phrase.id, phrase.english);
+  }
+
+  if (hasText(phrase.russian) && hasUntranslatedEnglish(phrase.russian)) {
+    pushIssue(issues, 'untranslated_english_in_russian', phrase.id, phrase.russian);
+  }
+
+  if (hasText(phrase.english) && !endsWithSentencePunctuation(phrase.english)) {
+    pushIssue(issues, 'missing_sentence_punctuation', phrase.id, phrase.english);
+  }
+
+  if (REPLACEMENT_CHAR_PATTERN.test(fullPhraseText(phrase))) {
+    pushIssue(issues, 'mojibake_or_replacement_char', phrase.id);
   }
 
   if (

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Phrase-of-the-day widget metadata. Resizable, with a minimum that fits the
+  phrase + meaning, and a larger target size for the rich layout.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="180dp"
+    android:minHeight="80dp"
+    android:targetCellWidth="3"
+    android:targetCellHeight="1"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="0"
+    android:description="@string/phrase_widget_description"
+    android:previewLayout="@layout/phrase_widget_preview"
+    android:initialLayout="@layout/phrase_widget_preview" />

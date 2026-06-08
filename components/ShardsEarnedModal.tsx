@@ -1,7 +1,8 @@
 // ShardsEarnedModal — премиальная модалка при получении осколков
 import { LinearGradient } from './SafeLinearGradient';
-import React, { useEffect, useRef } from 'react';
-import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { triLang, type Lang } from '../constants/i18n';
 import {
@@ -48,7 +49,7 @@ function headline(lang: Lang): string {
 
 function tapHint(lang: Lang): string {
   return triLang(lang, {
-    ru: 'Коснись экрана, чтобы продолжить',
+    ru: 'Коснись, чтобы продолжить',
     uk: 'Торкнись екрана, щоб продовжити',
     es: 'Toca en cualquier sitio para seguir',
     'pt-BR': 'Toque na tela para continuar',
@@ -59,7 +60,7 @@ function tapHint(lang: Lang): string {
   });
 }
 
-export default function ShardsEarnedModal({ visible, amount, reason, onClose }: Props) {
+function ShardsEarnedModal({ visible, amount, reason, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
   const isES = lang === 'es';
@@ -220,7 +221,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                       <Image
                         source={oskolokImageForPackShards(amount)}
                         style={{ width: USE_ELITE_SHARDS_EARNED_MODAL ? 88 : 84, height: USE_ELITE_SHARDS_EARNED_MODAL ? 88 : 84 }}
-                        resizeMode="contain"
+                        contentFit="contain"
                       />
                     </View>
                   </Animated.View>
@@ -281,6 +282,8 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
     </Modal>
   );
 }
+
+export default memo(ShardsEarnedModal);
 
 const styles = StyleSheet.create({
   root: {

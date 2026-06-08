@@ -1,5 +1,6 @@
-import React from 'react';
-import { View, Text, Image } from 'react-native';
+import React, { memo } from 'react';
+import { View, Text } from 'react-native';
+import { Image } from 'expo-image';
 import LevelBadge from './LevelBadge';
 
 // Simple avatar display — frames removed
@@ -18,7 +19,7 @@ interface Props {
 export { useAnimCtx } from './AnimContext';
 export { AnimatedFrameProvider } from './AnimContext';
 
-export default function AnimatedFrame({
+function AnimatedFrame({
   emoji, image, size = 44, style, fontSize, noAvatar = false, bgColor,
 }: Props) {
   const [imageLoadFailed, setImageLoadFailed] = React.useState(false);
@@ -50,3 +51,5 @@ export default function AnimatedFrame({
     </View>
   );
 }
+
+export default memo(AnimatedFrame);

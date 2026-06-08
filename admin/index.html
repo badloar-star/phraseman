@@ -8210,6 +8210,7 @@
   <div class="tab" onclick="switchTab('review-promo')">VIP survey</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
+  <div class="tab" onclick="switchTab('onboarding-qa')">Onboarding QA</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('archive')" data-i18n-es="Archivo">Archive</div>
   <div class="tab" onclick="switchTab('audit')" data-i18n-es="Log de auditoría">Audit log</div>
@@ -8746,6 +8747,51 @@
     Источник: <code style="color:#a78bfa" data-i18n-es="banned_users">banned_users</code>. При бане также выставляется <code data-i18n-es="users.banned = true">users.banned = true</code> и удаляется запись из <code data-i18n-es="leaderboard">leaderboard</code>. <strong data-i18n-es="Botón «Desbanear»">Кнопка «Разбанить»</strong> снимает все три. Ручной бан доступен по любому UID — даже если юзера ещё нет в текущей выборке Users.
   </p>
   <div id="bl-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
+</div>
+
+<!-- ONBOARDING QA TAB -->
+<div id="tab-onboarding-qa" class="reports-tab">
+  <div style="padding:20px 24px 0;max-width:1040px">
+    <h2 class="tab-title">Onboarding QA</h2>
+    <p class="tab-desc">
+      Intro Full Access is a local post-onboarding gift. It unlocks premium-level app gates through
+      <code>hasPremiumAccess</code> for 72 hours, but it must not write <code>premium_active</code>,
+      <code>premium_plan</code>, or <code>vip_*</code>.
+    </p>
+  </div>
+  <div style="padding:14px 24px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;max-width:1040px">
+    <div class="report-card">
+      <div class="rc-left">
+        <div class="pr-title">In-app admin controls</div>
+        <div class="report-context" style="margin-top:8px;line-height:1.55">
+          Open dev build: Settings -> Testers/Admin -> Onboarding.
+          Use buttons: activate 3 days, expire now, reset, preview welcome modal, preview ended modal.
+        </div>
+      </div>
+    </div>
+    <div class="report-card">
+      <div class="rc-left">
+        <div class="pr-title">Storage keys</div>
+        <div class="report-context" style="margin-top:8px;line-height:1.55">
+          <code>intro_full_access_started_at_v1</code><br>
+          <code>intro_full_access_ends_at_v1</code><br>
+          <code>intro_full_access_welcome_seen_v1</code><br>
+          <code>intro_full_access_ended_seen_v1</code>
+        </div>
+      </div>
+    </div>
+    <div class="report-card">
+      <div class="rc-left">
+        <div class="pr-title">Acceptance checklist</div>
+        <div class="report-context" style="margin-top:8px;line-height:1.55">
+          Welcome modal appears after onboarding once.
+          Energy is unlimited while gift is active.
+          Expired modal appears after 72 hours only for non-Premium/non-VIP users.
+          CTA opens <code>/premium_modal?context=intro_ended</code>.
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- PREMIUM TAB -->
@@ -12832,7 +12878,7 @@
         <div class="drow"><span class="k">Платформа</span><span class="v">${platBadge(u.platform)}</span></div>
         <div class="drow"><span class="k">Тема</span><span class="v">${{minimalDark:'⚫ Графит',minimalLight:'✏️ Скетч',dark:'🌲 Форест',neon:'💚 Неон',gold:'🌟 Gold reward'}[u.theme]||u.theme||'⚫ Графит'}</span></div>
         <div class="drow"><span class="k">Уровень знаний (тест)</span><span class="v">${klvlBadge(u.placementLevel)}</span></div>
-        <div class="drow"><span class="k">Premium</span><span class="v">${premHtml}</span></div>
+        <div class="drow"><span class="k">Premium</span><span class="v">${premHtml}<div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap"><button data-action="premium-grant" data-uid="${u.uid}" style="background:#062a18;border:1px solid #166534;color:#4ade80;padding:2px 7px;font-size:10px;border-radius:4px;cursor:pointer;opacity:0.7">💚 VIP</button><button data-action="vip-revoke" data-uid="${u.uid}" style="background:#2a1111;border:1px solid #7f1d1d;color:#fca5a5;padding:2px 7px;font-size:10px;border-radius:4px;cursor:pointer;opacity:0.7">Снять VIP</button></div></span></div>
         <div class="drow"><span class="k">Онбординг</span><span class="v">${u.onboarding?'✅ Завершён':'❌ Нет'}</span></div>
       </div>
       <div class="dsec">
@@ -12916,8 +12962,6 @@
           <button data-action="edit-name" data-uid="${u.uid}">✏️ Имя</button>
           <button data-action="edit-xp"   data-uid="${u.uid}" style="background:#1a2a3a">✏️ XP</button>
           <button data-action="edit-streak" data-uid="${u.uid}" style="background:#2a1500">✏️ Streak</button>
-          <button data-action="premium-grant" data-uid="${u.uid}" style="background:#062a18;border:1px solid #166534;color:#4ade80">💚 VIP на срок</button>
-          <button data-action="vip-revoke" data-uid="${u.uid}" style="background:#2a1111;border:1px solid #7f1d1d;color:#fca5a5">💚 Снять VIP</button>
           <button data-action="edit-premium" data-uid="${u.uid}" style="background:#2a1f00">✏️ Premium RC/debug</button>
           <button data-action="edit-shards"  data-uid="${u.uid}" style="background:#0f2a1a;border:1px solid #14532d;color:#4ade80">✏️ Осколки</button>
           <button data-action="grant-reward" data-uid="${u.uid}" style="background:#1a2a3a;border:1px solid #14305c;color:#60a5fa">🎁 Выдать награду</button>
@@ -19024,6 +19068,11 @@
     const expected = [
       ['paywall:view', 'settings / automatic / onboarding'],
       ['paywall:purchase_success', 'purchase by paywall source'],
+      ['intro:ended_shown', 'конец 72ч intro показан'],
+      ['intro:ended_cta', 'нажал «Открыть доступ»'],
+      ['afterwin:shown', 'апсейл после level-up'],
+      ['winback:shown', 'оффер вернувшимся'],
+      ['paywall:abandoned_push', 'пуш брошенного пейвола'],
       ['shards_shop:open', 'shop visit'],
       ['shards_shop:pack_click', 'product interest'],
       ['shards_shop:purchase_success', 'completed shards purchase'],
@@ -19100,6 +19149,17 @@
       const shardOpens = activity.filter((r) => r.action === 'shards_shop:open');
       const shardClicks = activity.filter((r) => r.action === 'shards_shop:pack_click');
       const shardActivityPurchases = activity.filter((r) => r.action === 'shards_shop:purchase_success');
+      // Новые конверсионные механики (intro_ended / after-win / winback / abandoned-push)
+      const introEndedShown = activity.filter((r) => r.action === 'intro:ended_shown');
+      const introEndedCta = activity.filter((r) => r.action === 'intro:ended_cta');
+      const introEndedDismiss = activity.filter((r) => r.action === 'intro:ended_dismiss');
+      const afterWinShown = activity.filter((r) => r.action === 'afterwin:shown');
+      const afterWinCta = activity.filter((r) => r.action === 'afterwin:cta');
+      const winbackShown = activity.filter((r) => r.action === 'winback:shown');
+      const abandonedPush = activity.filter((r) => r.action === 'paywall:abandoned_push');
+      // покупки атрибутированные к контексту (для воронок after-win / winback)
+      const purchaseByContext = (ctxName) => paywallPurchases.filter((r) => String(revenueTags(r).context || '').toLowerCase() === ctxName);
+      const levelUpPurchases = purchaseByContext('level_up');
       const source = (name) => (r) => revenueSource(r) === name;
       const settingsViews = paywallViews.filter(source('settings'));
       const autoViews = paywallViews.filter(source('automatic'));
@@ -19182,6 +19242,35 @@
         revenueListCard('paywall_repeat_views_before_purchase', 'Repeat views before purchase', 'buyer average', [{ label: 'avg paywall views', value: repeatAvg }, { label: 'buyers', value: repeatCounts.length }]),
         revenueListCard('best_app_screen_before_purchase', 'Best app screen before purchase', 'top source/context', bestScreens),
         revenueListCard('cohort_onboarding_purchase', 'Onboarding cohort purchase', 'purchase within 1 / 7 / 28 days', cohortRows),
+        // ── Конец intro (72ч) — главный момент конверсии ──
+        revenueSeriesCard('intro_ended_shown', 'Intro ended shown', 'Модалка «72ч закончились», daily', revenueCountByDay(introEndedShown, days)),
+        revenueSeriesCard('intro_ended_cta', 'Intro ended → CTA', 'Нажал «Открыть полный доступ»', revenueCountByDay(introEndedCta, days)),
+        revenueListCard('intro_ended_funnel', 'Intro ended funnel', 'shown → cta → dismiss → purchase', [
+          { label: 'shown', value: introEndedShown.length },
+          { label: 'cta', value: introEndedCta.length },
+          { label: 'dismiss', value: introEndedDismiss.length },
+          { label: 'cta rate', value: revenuePct(introEndedCta.length, introEndedShown.length) + '%' },
+          { label: 'purchases (intro_ended)', value: purchaseByContext('intro_ended').length },
+          { label: 'shown→buy', value: revenuePct(purchaseByContext('intro_ended').length, introEndedShown.length) + '%' },
+        ]),
+        // ── After-win апсейл (level-up) ──
+        revenueSeriesCard('afterwin_shown', 'After-win shown', 'Апсейл после level-up, daily', revenueCountByDay(afterWinShown, days)),
+        revenueListCard('afterwin_funnel', 'After-win funnel', 'shown → cta → purchase', [
+          { label: 'shown', value: afterWinShown.length },
+          { label: 'cta', value: afterWinCta.length },
+          { label: 'cta rate', value: revenuePct(afterWinCta.length, afterWinShown.length) + '%' },
+          { label: 'purchases (level_up)', value: levelUpPurchases.length },
+          { label: 'shown→buy', value: revenuePct(levelUpPurchases.length, afterWinShown.length) + '%' },
+        ]),
+        // ── Re-engagement (winback + abandoned-push) ──
+        revenueSeriesCard('winback_shown', 'Winback shown', 'Оффер вернувшимся 7+ дней, daily', revenueCountByDay(winbackShown, days)),
+        revenueSeriesCard('abandoned_push', 'Abandoned-push sent', 'Пуш «ты почти открыл Premium»', revenueCountByDay(abandonedPush, days)),
+        revenueListCard('reengage_funnel', 'Re-engagement', 'winback / abandoned totals', [
+          { label: 'winback shown', value: winbackShown.length },
+          // winback-покупка идёт с context=streak, source=winback → матчим по source в tags
+          { label: 'winback→buy', value: paywallPurchases.filter((r) => String(revenueTags(r).source || '').toLowerCase() === 'winback').length },
+          { label: 'abandoned pushes', value: abandonedPush.length },
+        ]),
       ].join('');
     } catch (e) {
       console.warn('loadRevenueAnalytics', e);

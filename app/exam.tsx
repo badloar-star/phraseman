@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -378,9 +379,9 @@ function FrenchLingmanExamUnavailable({
     <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={onBack}>
+          <TapScale onPress={onBack}>
             <Ionicons name="chevron-back" size={28} color={sx.primary} />
-          </TouchableOpacity>
+          </TapScale>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
           <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
@@ -736,9 +737,9 @@ export default function ExamScreen() {
     <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-        <TouchableOpacity onPress={() => safeRouterBack(router)}>
+        <TapScale onPress={() => safeRouterBack(router)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
           {t3('Экзамен', 'Іспит', 'Examen', 'Exame', 'Bài kiểm tra', 'Ujian', 'Sınav', 'Egzamin')}
         </Text>
@@ -768,7 +769,7 @@ export default function ExamScreen() {
             {lessonsCompleted} {t3('из 32 уроков завершено', 'з 32 уроків завершено', 'de 32 lecciones completadas', 'de 32 lições concluídas', 'trong 32 bài học đã hoàn thành', 'dari 32 pelajaran selesai', '/ 32 ders tamamlandı', 'z 32 lekcji ukończono')}
           </Text>
         </View>
-        <TouchableOpacity style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/lessons' as any)}>
+        <TouchableOpacity activeOpacity={0.75} style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/lessons' as any)}>
           <Text style={{color:sx.second,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
             {t3('Перейти к урокам →', 'Перейти до уроків →', 'Ir a las lecciones →', 'Ir para as lições →', 'Đi tới bài học →', 'Ke pelajaran →', 'Derslere git →', 'Przejdź do lekcji →')}
           </Text>
@@ -786,20 +787,20 @@ export default function ExamScreen() {
     <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-        <TouchableOpacity onPress={() => certificate ? setPhase('cert') : safeRouterBack(router)}>
+        <TapScale onPress={() => certificate ? setPhase('cert') : safeRouterBack(router)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
           {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso', 'Teste final do curso', 'Bài kiểm tra tổng kết khóa học', 'Tes akhir kursus', 'Kurs final sınavı', 'Test końcowy kursu')}
         </Text>
       </View>
-      <ScrollView contentContainerStyle={{padding:20}}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
         {certificate && (
           <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:1,borderColor:'#d4a017',marginBottom:16}}>
             <Ionicons name="information-circle" size={18} color="#FFD700"/>
             <Text style={{color:'#FDE68A',fontSize:f.sub,flex:1}}>
               {t3(
-                `Текущий результат: ${certificate.pct}%. Новый пересчёт — только при ≥ 80% (награда в приложении).`,
+                `Текущий результат: ${certificate.pct}%. Новый пересчёт — только при 80% и выше (награда в приложении).`,
                 `Поточний результат: ${certificate.pct}%. Новий перерахунок — лише за ≥ 80% (нагорода в застосунку).`,
                 `Resultado actual: ${certificate.pct} %. Solo se actualizará el diploma en la app si sacas ≥ 80 %.`,
                 `Resultado atual: ${certificate.pct}%. A premiação no app só será atualizada com ≥ 80%.`,
@@ -866,7 +867,7 @@ export default function ExamScreen() {
               {'sub' in item && item.sub && (
                 <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:3}}>
                   {t3(
-                    'диплом в приложении при результате ≥ 80%',
+                    'диплом в приложении при результате 80% и выше',
                     'диплом у застосунку за результатом ≥ 80%',
                     'diploma en la app con resultado ≥ 80 %',
                     'diploma no app com resultado ≥ 80%',
@@ -936,12 +937,12 @@ export default function ExamScreen() {
     <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-        <TouchableOpacity
+        <TapScale
           style={{flexDirection:'row',alignItems:'center',gap:4}}
           onPress={()=>setPhase('quiz')}
         >
           <Ionicons name="chevron-back" size={24} color={t.textPrimary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8,flex:1}}>
           {t3('Проверка ответов', 'Перевірка відповідей', 'Revisión de respuestas', 'Revisão das respostas', 'Kiểm tra câu trả lời', 'Tinjau jawaban', 'Cevapları kontrol et', 'Sprawdzenie odpowiedzi')}
         </Text>
@@ -971,7 +972,7 @@ export default function ExamScreen() {
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={{paddingBottom:120}}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{paddingBottom:120}}>
         {questions.map((qItem, i) => {
           const isAnswered = choices[i] !== null;
           const isFlaggedItem = flagged[i];
@@ -1099,7 +1100,7 @@ export default function ExamScreen() {
           />
         </View>
       )}
-      <ScrollView contentContainerStyle={{padding:24,alignItems:'center'}}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{padding:24,alignItems:'center'}}>
         <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,borderWidth:1.5,borderColor:t.border,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
           <Ionicons name="ribbon" size={44} color={t.textSecond}/>
         </View>
@@ -1253,7 +1254,7 @@ export default function ExamScreen() {
             {t3('Поделиться результатом', 'Поділитися результатом', 'Compartir resultado', 'Compartilhar resultado', 'Chia sẻ kết quả', 'Bagikan hasil', 'Sonucu paylaş', 'Udostępnij wynik')}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{padding:14}} onPress={()=>router.replace('/(tabs)/home' as any)}>
+        <TouchableOpacity activeOpacity={0.75} style={{padding:14}} onPress={()=>router.replace('/(tabs)/home' as any)}>
           <Text style={{color:t.textSecond,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
             {t3('На главную', 'На головну', 'Volver al inicio', 'Voltar ao início', 'Về trang chủ', 'Kembali ke beranda', 'Ana sayfaya dön', 'Wróć na stronę główną')}
           </Text>
@@ -1298,16 +1299,16 @@ export default function ExamScreen() {
         </View>
       )}
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-        <TouchableOpacity onPress={() => {
+        <TapScale onPress={() => {
           safeRouterBack(router);
         }}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
           {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2', 'Meu diploma B2', 'Phần thưởng B2 của tôi', 'Diploma B2 saya', 'B2 diplomam', 'Mój dyplom B2')}
         </Text>
       </View>
-      <ScrollView contentContainerStyle={{padding:20,alignItems:'center'}}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{padding:20,alignItems:'center'}}>
         <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:8}}>
           <Ionicons name="ribbon" size={22} color="#FFD700"/>
           <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.4}}>
@@ -1445,7 +1446,7 @@ export default function ExamScreen() {
         </TouchableOpacity>
         <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:4,textAlign:'center'}}>
           {t3(
-            'Новый результат перезапишет награду только если наберёшь ≥ 80%',
+            'Новый результат перезапишет награду только если наберёшь 80% и выше',
             'Новий результат перезапише нагороду тільки якщо набереш ≥ 80%',
             'Un nuevo resultado sustituye el diploma solo si sacas ≥ 80%',
             'Um novo resultado só substituirá o diploma se você fizer ≥ 80%',
@@ -1501,6 +1502,7 @@ export default function ExamScreen() {
       </View>
 
       <ScrollView
+        decelerationRate="normal"
         contentContainerStyle={{paddingHorizontal:20,paddingTop:16,paddingBottom:160}}
         keyboardShouldPersistTaps="handled"
       >
@@ -1586,7 +1588,7 @@ export default function ExamScreen() {
         </View>
         {/* Row 2: Prev / Flag / Review */}
         <View style={{ flexDirection:'row', gap:8 }}>
-          <TouchableOpacity
+          <TapScale
             style={{
               flex:1, height:44, borderRadius:12, borderWidth:1, borderColor:t.border,
               backgroundColor:t.bgCard, justifyContent:'center', alignItems:'center',
@@ -1596,7 +1598,7 @@ export default function ExamScreen() {
             disabled={idx===0}
           >
             <Ionicons name="chevron-back" size={22} color={t.textPrimary}/>
-          </TouchableOpacity>
+          </TapScale>
           <TouchableOpacity
             style={{
               flex:1, height:44, borderRadius:12, borderWidth:1,

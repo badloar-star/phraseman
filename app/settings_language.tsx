@@ -1,4 +1,5 @@
 import React from 'react';
+import TapScale from '../components/TapScale';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -10,7 +11,8 @@ import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { coerceInterfaceLang, INTERFACE_LANGUAGE_OPTIONS } from '../constants/i18n';
+import { coerceInterfaceLang, getVisibleInterfaceLanguageOptions } from '../constants/i18n';
+import { IS_STORE_RELEASE } from './config';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { safeRouterBack } from './navigation_back';
 
@@ -25,7 +27,7 @@ export default function SettingsLanguage() {
       <SafeAreaView testID="settings-language-screen" style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity
+            <TapScale
               testID="settings-language-back"
               onPress={() => {
                 hapticTap();
@@ -46,7 +48,7 @@ export default function SettingsLanguage() {
             >
               {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700', marginLeft: 8 }}>
               {s.settings.lang}
             </Text>
@@ -69,8 +71,8 @@ export default function SettingsLanguage() {
             />
           </View>
 
-          <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>
-            {INTERFACE_LANGUAGE_OPTIONS.map((item) => {
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>
+            {getVisibleInterfaceLanguageOptions(IS_STORE_RELEASE).map((item) => {
               const interfaceCode = coerceInterfaceLang(item.code);
               const enabled = interfaceCode === item.code;
               const active = lang === item.code;

@@ -49,7 +49,7 @@ describe('personal plan destination labels', () => {
       contentUnitIds: ['p1'],
       requiredCorrect: 2,
     })).toBe('Произношение · 2');
-    expect(label({ type: 'quiz', quizId: 'quiz_1', questionCount: 10, level: 'easy' })).toBe('Квиз дня · 10 вопросов');
+    expect(label({ type: 'quiz', quizId: 'quiz_1', questionCount: 10, level: 'easy' })).toBe('Вызов дня · 10 вопросов');
     expect(label({ type: 'practice', trainingId: 'practice_1', requiredPhrases: 3 })).toBe('Моя практика · 3 фразы');
     expect(label({ type: 'trainer', mode: 'weak', requiredItems: 2 })).toBe('Тренер · слабое место');
     expect(label({ type: 'trainer', mode: 'hard', requiredItems: 2 })).toBe('Тренер · сложные фразы');

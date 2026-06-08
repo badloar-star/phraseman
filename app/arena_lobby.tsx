@@ -1672,7 +1672,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         </View>
       </View>
 
-      <ScrollView decelerationRate={0.998} style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled>
+      <ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled>
         {/* INFO-зона — фиксированная высота над actions. Любая поздняя
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
@@ -2147,7 +2147,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
 
                   {friendRoomId && (<View testID="arena-friend-panel" style={[styles.arenaFriendsPanel, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
                       {arenaFriends.length > 0 ? (<>
-                          <ScrollView testID="arena-friends-scroll" decelerationRate={0.998} horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} contentContainerStyle={styles.arenaFriendsScrollContent}>
+                          <ScrollView testID="arena-friends-scroll" decelerationRate="normal" horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} contentContainerStyle={styles.arenaFriendsScrollContent}>
                             {arenaFriends.map(friend => {
                         const profile = arenaFriendProfiles[friend.uid];
                         const totalXp = profile?.totalXp ?? 0;

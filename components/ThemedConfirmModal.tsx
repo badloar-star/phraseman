@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
 import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
@@ -23,7 +23,7 @@ type Props = {
   testIDPrefix?: string;
 };
 
-export default function ThemedConfirmModal({
+function ThemedConfirmModal({
   visible,
   title,
   message,
@@ -195,3 +195,5 @@ export default function ThemedConfirmModal({
     </Modal>
   );
 }
+
+export default memo(ThemedConfirmModal);

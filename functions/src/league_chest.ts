@@ -452,9 +452,24 @@ export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
     if (crown) {
       const existingExpiresAt = Math.max(0, readInt(eventSnap.data()?.expiresAt, 0));
       const finalExpiresAt = Math.max(existingExpiresAt, expiresAt);
+      const crownRef = db.collection('league_crowns').doc(crownDocId(crown.uid, weekId));
+      const leaderboardRef = db.collection('leaderboard').doc(crown.uid);
+      const [existingCrownSnap, leaderboardSnap] = await Promise.all([
+        tx.get(crownRef),
+        tx.get(leaderboardRef),
+      ]);
+      const existingCrownCount = Math.max(
+        0,
+        readInt(existingCrownSnap.data()?.crownCount, 0),
+        readInt(leaderboardSnap.data()?.leagueCrownCount, 0),
+      );
+      const finalCrownCount = existingCrownSnap.exists
+        ? Math.max(1, existingCrownCount)
+        : existingCrownCount + 1;
       tx.set(eventRef, {
         ...crown,
         expiresAt: finalExpiresAt,
+        crownCount: finalCrownCount,
         firstReachedAt,
         completedInMs,
         roomPoints: totalPoints,
@@ -464,13 +479,16 @@ export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
         arenaBonus,
         updatedAt: now,
       }, { merge: true });
-      tx.set(db.collection('league_crowns').doc(crownDocId(crown.uid, weekId)), {
+      tx.set(crownRef, {
         ...crown,
         expiresAt: finalExpiresAt,
+        crownCount: finalCrownCount,
         nickColor: CROWN_NICK_COLOR,
         updatedAt: now,
       }, { merge: true });
-      tx.set(db.collection('leaderboard').doc(crown.uid), {
+      tx.set(leaderboardRef, {
+        leagueCrownActive: true,
+        leagueCrownCount: finalCrownCount,
         leagueCrownExpiresAt: finalExpiresAt,
         leagueCrownWeekId: crown.weekId,
         leagueCrownGroupId: crown.groupId,

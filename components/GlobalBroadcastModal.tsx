@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { Image, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useMemo, useState } from 'react';
+import { Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -24,7 +25,7 @@ type Props = {
   previewOnly?: boolean;
 };
 
-export default function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }: Props) {
+function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -158,7 +159,7 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
             ]}>
               {isCompassTheme && <CompassDepthSurface radius={10} quiet />}
               {shardsAmount > 0 ? (
-                <Image source={oskolokImageForPackShards(shardsAmount)} style={styles.oskolokImg} resizeMode="contain" />
+                <Image source={oskolokImageForPackShards(shardsAmount)} style={styles.oskolokImg} contentFit="contain" />
               ) : (
                 <Text style={styles.rewardEmoji}>{reward.icon}</Text>
               )}
@@ -284,6 +285,8 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
     </Modal>
   );
 }
+
+export default memo(GlobalBroadcastModal);
 
 const styles = StyleSheet.create({
   root: {

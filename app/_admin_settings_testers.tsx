@@ -4,6 +4,7 @@ import { withStorageLock } from './storage_mutex';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  Alert,
   Animated,
   Modal,
   Platform,
@@ -85,6 +86,7 @@ import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import CertificatePreviewAdminModal from '../components/CertificatePreviewAdminModal';
+import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import MedalToast from '../components/MedalToast';
@@ -95,7 +97,13 @@ import { QUIZ_E2E_OPEN_RESULTS_KEY } from './quizzes/constants';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { seedAdminTestReviewSession } from './active_recall';
-import { requestNotificationPermissionWithFallback } from './notifications';
+import {
+  requestNotificationPermissionWithFallback,
+  scheduleIntroExpiringNotification,
+  scheduleUpsellNotifications,
+  cancelIntroExpiringNotification,
+  cancelUpsellNotifications,
+} from './notifications';
 import type { GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { seedLocalVipSurveyTestMessage } from './app_messages';
 import PremiumCelebrationModal from '../components/PremiumCelebrationModal';
@@ -156,6 +164,12 @@ import {
   personalPracticeCoachEnabledForTarget,
 } from './personal_practice_target_gate';
 import { safeRouterBack } from './navigation_back';
+import {
+  activateIntroFullAccessForAdmin,
+  expireIntroFullAccessForAdmin,
+  resetIntroFullAccessForAdmin,
+  getIntroFullAccessState,
+} from './intro_full_access';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -477,17 +491,29 @@ const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
   </View>
 );
 
-const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic, pressInStarts }: {
+const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic, pressInStarts, confirm }: {
   icon: string; label: string; sub?: string; onPress: () => void; danger?: boolean; testID?: string;
-  t: any; f: any; doHaptic: () => void; pressInStarts?: boolean;
-}) => (
+  t: any; f: any; doHaptic: () => void; pressInStarts?: boolean; confirm?: string;
+}) => {
+  const handlePress = () => {
+    if (confirm) {
+      Alert.alert('Подтверждение', confirm, [
+        { text: 'Отмена', style: 'cancel' },
+        { text: 'Выполнить', style: danger ? 'destructive' : 'default', onPress: () => { doHaptic(); onPress(); } },
+      ]);
+      return;
+    }
+    doHaptic();
+    onPress();
+  };
+  return (
   <TouchableOpacity
     testID={testID}
     accessibilityLabel={testID ? `qa-${testID}` : undefined}
     accessible={!!testID}
     style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: danger ? ADMIN_SURFACE_DANGER : ADMIN_SURFACE }}
-    onPressIn={pressInStarts ? () => { doHaptic(); onPress(); } : undefined}
-    onPress={() => { doHaptic(); onPress(); }}
+    onPressIn={pressInStarts ? handlePress : undefined}
+    onPress={pressInStarts ? undefined : handlePress}
     activeOpacity={0.6}
   >
     <Ionicons name={icon as any} size={22} color={danger ? '#FF4444' : RED} style={{ marginRight: 14 }} />
@@ -497,7 +523,8 @@ const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic, 
     </View>
     <Ionicons name="chevron-forward" size={18} color={RED_DIM} />
   </TouchableOpacity>
-);
+  );
+};
 
 function AdminCosmeticsPreview({ f }: { f: any }) {
   const renderCustomAvatarPreview = (
@@ -653,6 +680,7 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
   );
 }
 
+
 export default function SettingsTestersFunctions() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -734,6 +762,7 @@ export default function SettingsTestersFunctions() {
     withBackHome?: boolean;
   } | null>(null);
   const closeNoEnergyPreview = () => setNoEnergyPreview(null);
+  const [introFullAccessPreview, setIntroFullAccessPreview] = useState<'welcome' | 'ended' | null>(null);
   const [arenaLimitMode, setArenaLimitMode] = useState<'matchmaking' | 'invite' | null>(null);
   const [quizTimeoutHardMode, setQuizTimeoutHardMode] = useState<boolean | null>(null);
   const [userWarningVisible, setUserWarningVisible] = useState(false);
@@ -942,7 +971,7 @@ export default function SettingsTestersFunctions() {
     progress: LEAGUE_CHEST_BASE_GOAL + 3 * 20_000,
     goal: LEAGUE_CHEST_BASE_GOAL + 3 * 20_000,
     memberCount: 18,
-    crownName: isCrownWinner ? 'Ты - лидер недели' : 'Fable9521',
+    crownName: isCrownWinner ? 'Ты - лидер' : 'Fable9521',
     crownUid: isCrownWinner ? 'admin-current-user' : 'admin-weekly-top',
     isCrownWinner,
   }), []);
@@ -1041,6 +1070,7 @@ export default function SettingsTestersFunctions() {
       friendUid: uid,
       isPremium: false,
       leagueCrownExpiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      leagueCrownCount: 3,
       profileCardLevel: parseInt(map.get(PROFILE_CARD_LEVEL_KEY) || '0', 10) || 0,
       profileCardTheme: map.get(PROFILE_CARD_THEME_KEY) || 'classic',
       profileCardMotion: map.get(PROFILE_CARD_MOTION_KEY) || 'none',
@@ -1077,6 +1107,30 @@ export default function SettingsTestersFunctions() {
     emitAppEvent('vip_activated');
     emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
     await reloadEnergy().catch(() => {});
+  };
+
+  const refreshIntroFullAccessQaState = async () => {
+    invalidatePremiumCache();
+    emitAppEvent('intro_full_access_changed');
+    await reloadEnergy().catch(() => {});
+  };
+
+  const activateIntroFullAccessQa = async () => {
+    await activateIntroFullAccessForAdmin();
+    await refreshIntroFullAccessQaState();
+    AppInfoDialog.alert('Intro Full Access', 'Подарочный доступ включен на 3 дня. Premium/VIP не тронуты.');
+  };
+
+  const expireIntroFullAccessQa = async () => {
+    await expireIntroFullAccessForAdmin();
+    await refreshIntroFullAccessQaState();
+    AppInfoDialog.alert('Intro Full Access', 'Подарочный доступ истек. При следующем входе появится мягкая модалка окончания.');
+  };
+
+  const resetIntroFullAccessQa = async () => {
+    await resetIntroFullAccessForAdmin();
+    await refreshIntroFullAccessQaState();
+    AppInfoDialog.alert('Intro Full Access', 'Подарочный доступ и seen-флаги сброшены.');
   };
 
   const activateVipOnCurrentProfile = async () => {
@@ -2401,6 +2455,7 @@ export default function SettingsTestersFunctions() {
               t={t}
               f={f}
               doHaptic={doHaptic}
+              confirm="Активировать VIP на своём профиле?"
             />
             <ButtonRow
               testID="admin-preview-vip-celebration-top"
@@ -2411,6 +2466,7 @@ export default function SettingsTestersFunctions() {
               t={t}
               f={f}
               doHaptic={doHaptic}
+              confirm="Показать VIP-анимацию?"
             />
             <ButtonRow
               testID="admin-preview-vip-survey-notification"
@@ -2421,7 +2477,7 @@ export default function SettingsTestersFunctions() {
               t={t}
               f={f}
               doHaptic={doHaptic}
-              pressInStarts
+              confirm="Добавить VIP survey уведомление?"
             />
             <ButtonRow
               testID="trainer-quick-seed-weak-open"
@@ -2510,6 +2566,29 @@ export default function SettingsTestersFunctions() {
               <Ionicons name="chevron-forward" size={18} color={RED_DIM} />
             </TouchableOpacity>
           </View>
+
+          {/* ── NEW PAYWALL v2 preview ── */}
+          <AccordionSection
+            id="new_paywall_v2"
+            icon="card-outline"
+            title="🆕 Новый пейвол (макет v2)"
+            badge={1}
+            open={openSection === 'new_paywall_v2'}
+            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
+          >
+            <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12, gap: 10 }}>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 16 }}>
+                {'Новый дизайн пейвола: стиль референса, русский язык, urgency-таймер (22ч), маппинг по темам. Не заменяет текущие пейволы — только макет для ревью.'}
+              </Text>
+              <TouchableOpacity
+                onPress={() => { doHaptic(); router.push({ pathname: '/premium_modal_v2' } as any); }}
+                activeOpacity={0.8}
+                style={{ backgroundColor: RED_DARK, borderRadius: 10, paddingVertical: 12, paddingHorizontal: 14, alignItems: 'center' }}
+              >
+                <Text style={{ color: '#fff', fontSize: 13, fontWeight: '900' }}>🆕 Открыть новый пейвол</Text>
+              </TouchableOpacity>
+            </View>
+          </AccordionSection>
 
           {/* ── 0. Превью платформы (QA) ── */}
           <AccordionSection
@@ -2943,7 +3022,7 @@ export default function SettingsTestersFunctions() {
               label="Модалка: получение короны"
               sub="Вариант для игрока, который набрал больше всех"
               onPress={() => setLeagueChestPreview({
-                crownName: 'Ты - лидер недели',
+                crownName: 'Ты - лидер',
                 isCrownWinner: true,
                 rewards: buildLeagueChestRewardPreview(true),
               })}
@@ -4105,7 +4184,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 8. ОНБОРДИНГ ── */}
-          <AccordionSection id="onboarding" icon="play-circle-outline" title="Онбординг" badge={3}
+          <AccordionSection id="onboarding" icon="play-circle-outline" title="Онбординг" badge={8}
             open={openSection === 'onboarding'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow icon="play-circle-outline" label="👋 Онбординг — просмотреть повторно"
               onPress={async () => {
@@ -4126,9 +4205,152 @@ export default function SettingsTestersFunctions() {
               sub="Сетка всех уроков · открывает реальный экран онбординга без запуска урока"
               onPress={() => router.push('/admin_intro_preview' as any)}
               t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow
+              testID="admin-intro-full-access-activate"
+              icon="lock-open-outline"
+              label="Intro Full Access - включить 3 дня"
+              sub="Локальный подарок после onboarding: открывает hasPremiumAccess, но не трогает Premium/VIP."
+              onPress={() => { void activateIntroFullAccessQa(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-intro-full-access-expire"
+              icon="timer-outline"
+              label="Intro Full Access - завершить сейчас"
+              sub="Ставит истекший таймер и сбрасывает seen окончания, чтобы проверить мягкую модалку."
+              onPress={() => { void expireIntroFullAccessQa(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-intro-full-access-reset"
+              icon="refresh-circle-outline"
+              label="Intro Full Access - сбросить"
+              sub="Удаляет локальные ключи подарка и seen-флаги."
+              onPress={() => { void resetIntroFullAccessQa(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-intro-full-access-preview-welcome"
+              icon="sparkles-outline"
+              label="Превью модалки подарка"
+              sub="Показывает welcome-модалку без изменения storage."
+              onPress={() => setIntroFullAccessPreview('welcome')}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-intro-full-access-preview-ended"
+              icon="shield-checkmark-outline"
+              label="Превью модалки окончания"
+              sub="Показывает ended-модалку без изменения storage."
+              onPress={() => setIntroFullAccessPreview('ended')}
+              t={t} f={f} doHaptic={doHaptic}
+            />
           </AccordionSection>
 
-          {/* ── 9. ACTIVE CORE MODALS (QA) ── */}
+          {/* ── 9. КОНВЕРСИОННЫЕ ПУШИ (QA) ── */}
+          <AccordionSection id="conversion_push" icon="notifications-outline" title="Конверсионные пуши (QA)" badge={5}
+            open={openSection === 'conversion_push'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+
+            <ButtonRow
+              testID="admin-intro-expiring-notif-schedule"
+              icon="timer-outline"
+              label="🔔 Пуш «Premium истекает» — через 5 сек"
+              sub="Симулирует пуш за 2ч до конца intro. Придёт через 5 секунд для QA."
+              onPress={() => {
+                void (async () => {
+                  try {
+                    await cancelIntroExpiringNotification();
+                    // QA: fakeEndsAt = now + 2ч + 5сек → пуш через 5 сек
+                    const fakeEndsAt = Date.now() + 2 * 60 * 60 * 1000 + 5_000;
+                    await scheduleIntroExpiringNotification(fakeEndsAt, lang, { minSeconds: 0 });
+                    AppInfoDialog.alert('Пуш запланирован', 'Через ~5 сек придёт пуш «Premium истекает через 2 часа».\nУбедись что уведомления разрешены.');
+                  } catch (e) {
+                    AppInfoDialog.alert('Ошибка', String(e));
+                  }
+                })();
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+
+            <ButtonRow
+              testID="admin-upsell-d4-schedule"
+              icon="megaphone-outline"
+              label="🔔 Upsell D+4 — через 5 сек"
+              sub="«Твой прогресс продолжается» — придёт через 5 сек."
+              onPress={() => {
+                void (async () => {
+                  try {
+                    await cancelUpsellNotifications();
+                    // QA: introEndedAt = now - 4 дня + 5 сек → D+4 через 5 сек
+                    const fakeIntroEndedAt = Date.now() - 4 * 24 * 60 * 60 * 1000 + 5_000;
+                    await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
+                    AppInfoDialog.alert('D+4 запланирован', 'Через ~5 сек придёт upsell D+4.');
+                  } catch (e) {
+                    AppInfoDialog.alert('Ошибка', String(e));
+                  }
+                })();
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+
+            <ButtonRow
+              testID="admin-upsell-d7-schedule"
+              icon="megaphone-outline"
+              label="🔔 Upsell D+7 — через 5 сек"
+              sub="«Энергия мешает учиться?» — придёт через 5 сек."
+              onPress={() => {
+                void (async () => {
+                  try {
+                    await cancelUpsellNotifications();
+                    const fakeIntroEndedAt = Date.now() - 7 * 24 * 60 * 60 * 1000 + 5_000;
+                    await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
+                    AppInfoDialog.alert('D+7 запланирован', 'Через ~5 сек придёт upsell D+7.');
+                  } catch (e) {
+                    AppInfoDialog.alert('Ошибка', String(e));
+                  }
+                })();
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+
+            <ButtonRow
+              testID="admin-upsell-d14-schedule"
+              icon="megaphone-outline"
+              label="🔔 Upsell D+14 — через 5 сек"
+              sub="«2 недели — и ты всё ещё здесь» — придёт через 5 сек."
+              onPress={() => {
+                void (async () => {
+                  try {
+                    await cancelUpsellNotifications();
+                    const fakeIntroEndedAt = Date.now() - 14 * 24 * 60 * 60 * 1000 + 5_000;
+                    await scheduleUpsellNotifications(fakeIntroEndedAt, lang, { minSeconds: 0 });
+                    AppInfoDialog.alert('D+14 запланирован', 'Через ~5 сек придёт upsell D+14.');
+                  } catch (e) {
+                    AppInfoDialog.alert('Ошибка', String(e));
+                  }
+                })();
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+
+            <ButtonRow
+              testID="admin-upsell-notifs-cancel"
+              icon="notifications-off-outline"
+              label="❌ Отменить все конверсионные пуши"
+              sub="Удаляет expiring-пуш и D+4/D+7/D+14 из системы."
+              onPress={() => {
+                void (async () => {
+                  await cancelIntroExpiringNotification();
+                  await cancelUpsellNotifications();
+                  AppInfoDialog.alert('Отменено', 'Все конверсионные уведомления удалены из очереди.');
+                })();
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+
+          </AccordionSection>
+
+          {/* ── 10. ACTIVE CORE MODALS (QA) ── */}
           <AccordionSection id="core_modals" icon="construct-outline" title="Активные core-модалки (QA)" badge={19}
             open={openSection === 'core_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow icon="flash-outline" label="⚡ NoEnergy — обычная"
@@ -4916,6 +5138,17 @@ export default function SettingsTestersFunctions() {
         shards={10}
         wins={7}
         onClose={() => setThroneRewardPreview(false)}
+      />
+      <IntroFullAccessModal
+        visible={introFullAccessPreview !== null}
+        variant={introFullAccessPreview ?? 'welcome'}
+        onPrimaryPress={() => {
+          if (introFullAccessPreview === 'ended') {
+            router.push({ pathname: '/premium_modal', params: { context: 'intro_ended', source: 'admin_preview' } } as any);
+          }
+          setIntroFullAccessPreview(null);
+        }}
+        onSecondaryPress={() => setIntroFullAccessPreview(null)}
       />
 
       {/* ── Превью Diagnosis Toast ── */}

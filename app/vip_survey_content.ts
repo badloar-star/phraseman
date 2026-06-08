@@ -45,7 +45,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     ),
     options: [
       { id: 'lessons', text: loc('Уроки', 'Уроки', 'Lessons') },
-      { id: 'quizzes', text: loc('Квизы', 'Квізи', 'Quizzes') },
+      { id: 'quizzes', text: loc('Вызовы', 'Виклики', 'Quizzes') },
       { id: 'flashcards', text: loc('Карточки', 'Картки', 'Flashcards') },
       { id: 'nothing_yet', text: loc('Пока ничего', 'Поки нічого', 'Nothing yet') },
     ],
@@ -59,7 +59,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     ),
     options: [
       { id: 'lessons', text: loc('Уроки', 'Уроки', 'Lessons') },
-      { id: 'quizzes', text: loc('Квизы', 'Квізи', 'Quizzes') },
+      { id: 'quizzes', text: loc('Вызовы', 'Виклики', 'Quizzes') },
       { id: 'flashcards', text: loc('Карточки', 'Картки', 'Flashcards') },
       { id: 'mistake_practice', text: loc('Отработка ошибок', 'Відпрацювання помилок', 'Mistake practice') },
     ],
@@ -90,7 +90,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     options: [
       { id: 'what_next', text: loc('Что делать дальше', 'Що робити далі', 'What to do next') },
       { id: 'lessons', text: loc('Уроки', 'Уроки', 'Lessons') },
-      { id: 'quizzes', text: loc('Квизы', 'Квізи', 'Quizzes') },
+      { id: 'quizzes', text: loc('Вызовы', 'Виклики', 'Quizzes') },
       { id: 'flashcards', text: loc('Карточки', 'Картки', 'Flashcards') },
       { id: 'mistakes', text: loc('Ошибки', 'Помилки', 'Mistakes') },
       { id: 'all_clear', text: loc('Всё понятно', 'Усе зрозуміло', 'Everything is clear') },
@@ -123,7 +123,7 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
     options: [
       { id: 'home', text: loc('Главная', 'Головна', 'Home') },
       { id: 'lessons', text: loc('Уроки', 'Уроки', 'Lessons') },
-      { id: 'quizzes', text: loc('Квизы', 'Квізи', 'Quizzes') },
+      { id: 'quizzes', text: loc('Вызовы', 'Виклики', 'Quizzes') },
       { id: 'flashcards', text: loc('Карточки', 'Картки', 'Flashcards') },
       { id: 'leagues', text: loc('Лиги', 'Ліги', 'Leagues') },
       { id: 'profile', text: loc('Профиль', 'Профіль', 'Profile') },

@@ -1,5 +1,6 @@
 import type { LessonTeachingNote } from './lesson_data_types';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
+import { stableShuffleAwayFromFirst } from './personal_plan_option_ordering';
 
 export type PersonalPlanMissingWordItem = {
   id: string;
@@ -17,6 +18,7 @@ export type PersonalPlanMissingWordItem = {
 export type PersonalPlanMissingWordQualityCode =
   | 'missing_word_option_count'
   | 'missing_word_correct_option_count'
+  | 'missing_word_option_reuses_phrase_token'
   | 'unsafe_missing_word_slot'
   | 'unsafe_missing_word_option';
 
@@ -75,6 +77,15 @@ function normalizeOption(value: string): string {
   return value.trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
+function tokenizeAnswer(value: string): string[] {
+  return value
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}']+/gu, ' ')
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter(Boolean);
+}
+
 function isUnsafeMissingWordValue(value: string): boolean {
   return UNSAFE_MISSING_WORDS.has(normalizeOption(value));
 }
@@ -87,7 +98,11 @@ function chooseMissingWordTarget(
   const withDistractors = nonInitialSafeWords.find((word) =>
     compactUnique(word.distractors ?? []).filter((item) => !UNSAFE_MISSING_WORDS.has(item.toLowerCase())).length >= 2,
   );
-  return withDistractors ?? nonInitialSafeWords[0] ?? words?.[0];
+  const withTeachingNote = nonInitialSafeWords.find((word) =>
+    word.teachingNote
+    && compactUnique(word.distractors ?? []).filter((item) => !UNSAFE_MISSING_WORDS.has(item.toLowerCase())).length >= 2,
+  );
+  return withTeachingNote ?? withDistractors ?? nonInitialSafeWords[0] ?? words?.[0];
 }
 
 function blankTargetToken(fullAnswer: string, correctAnswer: string): string {
@@ -113,6 +128,7 @@ export function validatePersonalPlanMissingWordItemQuality(
     const options = compactUnique(item.options);
     const normalizedCorrect = normalizeOption(item.correctAnswer);
     const correctOptionCount = options.filter((option) => normalizeOption(option) === normalizedCorrect).length;
+    const answerTokens = new Set(tokenizeAnswer(item.fullAnswer));
 
     if (options.length < 3) {
       issues.push({
@@ -126,6 +142,19 @@ export function validatePersonalPlanMissingWordItemQuality(
         code: 'missing_word_correct_option_count',
         itemId: item.id,
         detail: 'Exactly one option must equal the correct answer.',
+      });
+    }
+    const copiedPhraseToken = options.find((option) => {
+      const normalizedOption = normalizeOption(option);
+      if (normalizedOption === normalizedCorrect) return false;
+      const optionTokens = tokenizeAnswer(option);
+      return optionTokens.length === 1 && answerTokens.has(optionTokens[0]);
+    });
+    if (copiedPhraseToken) {
+      issues.push({
+        code: 'missing_word_option_reuses_phrase_token',
+        itemId: item.id,
+        detail: `Distractor "${copiedPhraseToken}" is already visible in the phrase, so the answer can be found by elimination.`,
       });
     }
     if (/^___\b/.test(item.displayEnglish.trim()) || isUnsafeMissingWordValue(item.correctAnswer)) {
@@ -163,15 +192,21 @@ export function getPersonalPlanMissingWordItems(
       const correctAnswer = targetWord?.correct || targetWord?.text || phrase.english.split(/\s+/)[0] || '';
       const explanation = targetWord?.teachingNote ?? fallbackExplanation(correctAnswer);
 
+      const options = stableShuffleAwayFromFirst(
+        compactUnique([correctAnswer, ...(targetWord?.distractors ?? [])])
+          .filter((option) => !UNSAFE_MISSING_WORDS.has(option.toLowerCase()))
+          .slice(0, 8),
+        `${lesson.id}:${phrase.id}:missing-word`,
+        (option) => normalizeOption(option) === normalizeOption(correctAnswer),
+      );
+
       return {
         id: String(phrase.id),
         promptRu: phrase.russian,
         promptUk: phrase.ukrainian,
         displayEnglish: blankTargetToken(phrase.english, correctAnswer),
         correctAnswer,
-        options: compactUnique([correctAnswer, ...(targetWord?.distractors ?? [])])
-          .filter((option) => !UNSAFE_MISSING_WORDS.has(option.toLowerCase()))
-          .slice(0, 5),
+        options,
         fullAnswer: phrase.english,
         grammarTags: targetWord?.category ? [targetWord.category] : [],
         vocabularyTags: phrase.words.slice(1).map((word) => word.category).filter(Boolean) as string[],

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
@@ -8,7 +8,7 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
+import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
 import { onAppEvent, emitAppEvent } from '../app/events';
 import { checkAchievements } from '../app/achievements';
@@ -243,7 +243,7 @@ async function refreshDailyTaskAchievements(
   await checkAchievements({ type: 'daily_task', allDone, noReroll, studyTarget }).catch(() => {});
 }
 
-export default function DailyTaskRewardToast() {
+function DailyTaskRewardToast() {
   const { f, ds, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -525,7 +525,7 @@ export default function DailyTaskRewardToast() {
       hapticError();
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось забрать награду. Попробуйте ещё раз.',
+        messageRu: 'Награда не забралась. Попробуй ещё раз.',
         messageUk: 'Не вдалося забрати нагороду. Спробуйте ще раз.',
         messageEs: 'No se pudo reclamar la recompensa. Inténtalo de nuevo.',
       });
@@ -692,6 +692,8 @@ export default function DailyTaskRewardToast() {
     </Animated.View>
   );
 }
+
+export default memo(DailyTaskRewardToast);
 
 const styles = StyleSheet.create({
   host: {

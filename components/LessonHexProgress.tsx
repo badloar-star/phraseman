@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text } from 'react-native';
 import FlatTopHexFill from './FlatTopHexFill';
 
@@ -40,7 +40,7 @@ interface Props {
 
 const REPLAY_BLUE = '#4090FF';
 
-export default function LessonHexProgress({
+function LessonHexProgress({
   progress, cellIndex, score, total, t, f, size = 118,
 }: Props) {
   const OUTER = size;
@@ -107,3 +107,5 @@ export default function LessonHexProgress({
     </View>
   );
 }
+
+export default memo(LessonHexProgress);

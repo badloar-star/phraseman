@@ -28,7 +28,7 @@ export function logEvent(name: string, params?: Record<string, string | number>)
 function paywallSourceForContext(context: string): 'settings' | 'onboarding' | 'automatic' {
   const c = String(context || '').toLowerCase();
   if (c === 'settings' || c === 'manage') return 'settings';
-  if (c.includes('onboarding') || c === 'personal_plan') return 'onboarding';
+  if (c.includes('onboarding') || c === 'personal_plan' || c === 'intro_ended') return 'onboarding';
   return 'automatic';
 }
 
@@ -134,14 +134,41 @@ export function logPaywallCtaClick(context: string, plan: string) {
 
 export function logPaywallContinueFree(context: string) {
   logEvent('paywall_continue_free', { context });
+  // Унифицируем воронку: эти два закрытия раньше шли только в Firebase, теперь и в PostHog.
+  void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_continue_free', { context })).catch(() => {});
 }
 
 export function logPaywallClose(context: string) {
   logEvent('paywall_close', { context });
+  void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_close', { context })).catch(() => {});
 }
 
 export function logCoursePaywallAfterLesson3(lessonsDone: number) {
   logEvent('course_paywall_after_lesson3', { lessons_done: lessonsDone });
+}
+
+// ── Новые конверсионные механики → app_activity (видны в admin Paywall analytics) ──
+// Это ДУБЛЬ trackEvent-событий в Firestore-лог, который читает админка (baseline без PostHog).
+export function logIntroEndedShown() {
+  trackRevenueActivity('intro:ended_shown', 'intro_ended');
+}
+export function logIntroEndedCta() {
+  trackRevenueActivity('intro:ended_cta', 'intro_ended');
+}
+export function logIntroEndedDismiss() {
+  trackRevenueActivity('intro:ended_dismiss', 'intro_ended');
+}
+export function logAfterWinUpsellShown(source: string) {
+  trackRevenueActivity('afterwin:shown', 'level_up', { source });
+}
+export function logAfterWinUpsellCta(source: string, plan: string) {
+  trackRevenueActivity('afterwin:cta', 'level_up', { source, plan });
+}
+export function logWinbackShown() {
+  trackRevenueActivity('winback:shown', 'winback');
+}
+export function logPaywallAbandonedPush() {
+  trackRevenueActivity('paywall:abandoned_push', 'abandoned');
 }
 
 export function logExitTrialOfferShown(context: string, plan: string) {

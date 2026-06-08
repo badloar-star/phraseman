@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { Animated, View, Text, ScrollView, Modal, Pressable, TouchableOpacity, Image, Platform, Share, PanResponder, StyleSheet, } from 'react-native';
+import TapScale from '../components/TapScale';
+import { Animated, View, Text, ScrollView, Modal, Pressable, TouchableOpacity, Platform, Share, PanResponder, StyleSheet, } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
@@ -713,7 +715,7 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
             marginBottom: 4,
             paddingTop: 4,
         }}>
-      <ScrollView ref={scrollRef ?? undefined} horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
+      <ScrollView ref={scrollRef ?? undefined} decelerationRate="normal" horizontal showsHorizontalScrollIndicator onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}>
         <View>
           <Svg width={chartW} height={LIFETIME_LINE_PLOT_H}>
             {[0, 1, 2, 3, 4].map((g) => {
@@ -924,7 +926,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             pl: "Nauczone zwroty",
         }), String(data.phrasesLearned), 'phrases_learned')}
       {metricRow(triLang(lang, {
-            ru: 'Квизов пройдено',
+            ru: 'Вызовов пройдено',
             uk: 'Квізів пройдено',
             es: 'Cuestionarios hechos',
             'pt-BR': "Quizzes feitos",
@@ -1022,7 +1024,7 @@ function ShardsInline({ n, size = 14, textColor }: {
     const src = oskolokImageForPackShards(Number.isFinite(nNum) && nNum > 0 ? nNum : 0);
     return (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
       <Text style={{ color: textColor ?? '#E9D5FF', fontSize: size, fontWeight: '700', lineHeight: size * 1.35 }}>{n}</Text>
-      <Image source={src} style={{ width: size + 2, height: size + 2 }} resizeMode="contain"/>
+      <Image source={src} style={{ width: size + 2, height: size + 2 }} contentFit="contain"/>
     </View>);
 }
 function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
@@ -1072,10 +1074,14 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
         const subPremiumOff = onAppEvent('premium_deactivated', () => {
             void reload();
         });
+        const subWagerLost = onAppEvent('wager_lost', () => {
+            void reload();
+        });
         return () => {
             subShards.remove();
             subPremiumOn.remove();
             subPremiumOff.remove();
+            subWagerLost.remove();
         };
     }, [reload]);
     const clampTierIdx = (i: number) => Math.max(0, Math.min(i, WAGER_TIERS.length - 1));
@@ -1207,7 +1213,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             })}
           </Text>
         </View>
-        <TouchableOpacity testID="wager-result-new" onPress={() => setWager(null)} style={{ backgroundColor: t.bgSurface2, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 7 }}>
+        <TouchableOpacity activeOpacity={0.75} testID="wager-result-new" onPress={() => setWager(null)} style={{ backgroundColor: t.bgSurface2, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 7 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
             {triLang(lang, {
                 ru: 'Да',
@@ -1321,7 +1327,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>+{wager.rewardXP}</Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity activeOpacity={0.75} onPress={() => {
                 hapticTap();
                 setWagerInfoOpen(v => !v);
             }} activeOpacity={0.8} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 12, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 12, backgroundColor: statsSoftBg(themeMode, 'wager', 'quiet') }}>
@@ -1428,7 +1434,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                 <View style={{ width: 42, height: 5, backgroundColor: statsHairline(themeMode, 'wager'), borderRadius: 3 }}/>
               </View>
 
-              <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: insets.bottom + 36 }}>
+              <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: insets.bottom + 36 }}>
               {/* Header */}
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', flex: 1 }}>
@@ -1445,7 +1451,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
                 </Text>
                 {/* Shard balance chip */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: t.bgSurface, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 5, borderWidth: 1, borderColor: statsHairline(themeMode, 'wager') }}>
-                  <Image source={oskolokImageForPackShards(typeof shardsWager === 'number' ? shardsWager : 0)} style={{ width: 16, height: 16 }} resizeMode="contain"/>
+                  <Image source={oskolokImageForPackShards(typeof shardsWager === 'number' ? shardsWager : 0)} style={{ width: 16, height: 16 }} contentFit="contain"/>
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{shardsWager}</Text>
                 </View>
                 <TouchableOpacity
@@ -1981,7 +1987,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
             tr: "rekor",
             pl: "rekord",
         })}</Text>
-          {totalStreak >= 3 && (<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }} onPress={async () => {
+          {totalStreak >= 3 && (<TouchableOpacity activeOpacity={0.75} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }} onPress={async () => {
                 const _ru = [
                     `Моя цепочка в Phraseman — ${totalStreak} дней! 🔥 Я мощнее, чем утренняя доза кофеина. Кто догонит?`,
                     `${totalStreak} дней подряд в Phraseman! 🏆 Стабильность — моё второе имя. Английский уже как родной! 🔥`,
@@ -2071,7 +2077,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
           <StreakChainIcon themeMode={themeMode} frozen={false} streakDays={totalStreak} size={20}/>
           <Text style={{ color: t.textPrimary, fontSize: f.label, flex: 1, lineHeight: f.label * 1.4 }}>
             {triLang(lang, {
-                ru: `Ваша цепочка ${totalStreak} дн. обходит ${visibleStreakPercentile}% пользователей`,
+                ru: `Твоя цепочка ${totalStreak} дн. обходит ${visibleStreakPercentile}% пользователей`,
                 uk: `Ваш ланцюжок ${totalStreak} дн. обганяє ${visibleStreakPercentile}% користувачів`,
                 es: `Tu racha de ${totalStreak} días supera al ${visibleStreakPercentile}% de usuarios`,
                 'pt-BR': `Sua sequência de ${totalStreak} dias supera ${visibleStreakPercentile}% dos usuários`,
@@ -2148,7 +2154,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                 pl: "Seria zamrożona na dziś",
             })}
             </Text>
-          </View>) : (<TouchableOpacity onPress={onFreezePress} disabled={chainShieldDays > 0} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: streakAccent, paddingVertical: 11, paddingHorizontal: 16, opacity: chainShieldDays > 0 ? 0.4 : 1 }}>
+          </View>) : (<TouchableOpacity activeOpacity={0.75} onPress={onFreezePress} disabled={chainShieldDays > 0} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: streakAccent, paddingVertical: 11, paddingHorizontal: 16, opacity: chainShieldDays > 0 ? 0.4 : 1 }}>
             <View style={freezeChainIconFrameStyle}>
               <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={freezeActionIconSize}/>
             </View>
@@ -3172,7 +3178,7 @@ export default function StreakStats() {
               </View>
             </View>
             <View style={{ flexDirection: 'row', gap: 12, width: '100%' }}>
-              <TouchableOpacity onPress={() => setFreezeConfirmVisible(false)} style={{ flex: 1, borderRadius: 14, borderWidth: 1, borderColor: statsHairline(themeMode, 'freeze'), paddingVertical: 13, alignItems: 'center' }}>
+              <TouchableOpacity activeOpacity={0.75} onPress={() => setFreezeConfirmVisible(false)} style={{ flex: 1, borderRadius: 14, borderWidth: 1, borderColor: statsHairline(themeMode, 'freeze'), paddingVertical: 13, alignItems: 'center' }}>
                 <Text style={{ color: t.textMuted, fontWeight: '600', fontSize: f.body }}>
                   {triLang(lang, {
             ru: 'Отмена',
@@ -3186,7 +3192,7 @@ export default function StreakStats() {
         })}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => { setFreezeConfirmVisible(false); doFreezeStreak(false); }} style={{ flex: 1, borderRadius: 14, backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), paddingVertical: 13, alignItems: 'center' }}>
+              <TouchableOpacity activeOpacity={0.75} onPress={() => { setFreezeConfirmVisible(false); doFreezeStreak(false); }} style={{ flex: 1, borderRadius: 14, backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), paddingVertical: 13, alignItems: 'center' }}>
                 <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body }}>
                   {triLang(lang, {
             ru: 'Заморозить',
@@ -3208,14 +3214,14 @@ export default function StreakStats() {
       <ContentWrap>
       <View style={{ paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <TouchableOpacity
+        <TapScale
           onPress={() => {
             safeRouterBack(router, '/(tabs)/home' as any);
           }}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
-        </TouchableOpacity>
+        </TapScale>
         <Text
           style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }}
           numberOfLines={1}
@@ -3292,7 +3298,7 @@ export default function StreakStats() {
         </View>
       </View>
 
-      <ScrollView ref={scrollRef} pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollRef} decelerationRate="normal" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false}>
         <View style={{ gap: 12 }}>
         <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} reviveOffer={reviveOffer} onRevivePress={handleReviveStreak} percentilesStreak={percentiles.streak}/>
 
@@ -3533,7 +3539,7 @@ export default function StreakStats() {
             const visibleDaily7TimePercentile = visiblePercentile(percentiles.daily7timeMs, myTime7ms > 0);
             if (visibleXpPercentile !== null)
                 pItems.push({ icon: null, emoji: '🏆', color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'), text: triLang(lang, {
-                        ru: `По суммарному опыту вы обошли ${visibleXpPercentile}% пользователей`,
+                        ru: `По суммарному опыту ты обошёл ${visibleXpPercentile}% пользователей`,
                         uk: `За сумарним досвідом ви обігнали ${visibleXpPercentile}% користувачів`,
                         es: `En XP total superas al ${visibleXpPercentile}% de los usuarios`,
                         'pt-BR': `No XP total, você supera ${visibleXpPercentile}% dos usuários`,
@@ -3544,7 +3550,7 @@ export default function StreakStats() {
                     }) });
             if (visibleWeekXpPercentile !== null)
                 pItems.push({ icon: null, emoji: '📅', color: isGoldTheme ? GOLD_RICH.metalGold : statsAccent(themeMode, 'archiveMap'), text: triLang(lang, {
-                        ru: `На этой неделе вы обошли ${visibleWeekXpPercentile}% пользователей по опыту`,
+                        ru: `На этой неделе ты обошёл ${visibleWeekXpPercentile}% пользователей по опыту`,
                         uk: `Цього тижня ви обігнали ${visibleWeekXpPercentile}% користувачів за досвідом`,
                         es: `Esta semana superaste al ${visibleWeekXpPercentile}% de los usuarios en XP`,
                         'pt-BR': `Nesta semana, você superou ${visibleWeekXpPercentile}% dos usuários em XP`,
@@ -3566,7 +3572,7 @@ export default function StreakStats() {
                     }) });
             if (visibleDaily7TimePercentile !== null)
                 pItems.push({ icon: null, emoji: '⏱️', color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), text: triLang(lang, {
-                        ru: `За последние 7 дней вы обошли ${visibleDaily7TimePercentile}% пользователей по времени изучения`,
+                        ru: `За последние 7 дней ты обошёл ${visibleDaily7TimePercentile}% пользователей по времени изучения`,
                         uk: `За останні 7 днів ви обігнали ${visibleDaily7TimePercentile}% користувачів за часом навчання`,
                         es: `En los últimos 7 días superaste al ${visibleDaily7TimePercentile}% de los usuarios en tiempo de estudio`,
                         'pt-BR': `Nos últimos 7 dias, você superou ${visibleDaily7TimePercentile}% dos usuários em tempo de estudo`,
@@ -3581,7 +3587,7 @@ export default function StreakStats() {
               <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
                 <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
                   {triLang(lang, {
-                    ru: 'Ваш результат среди других',
+                    ru: 'Твой результат среди других',
                     uk: 'Ваш результат серед інших',
                     es: 'Tu resultado entre otros',
                     'pt-BR': "Seu resultado entre outros",
@@ -3720,7 +3726,7 @@ export default function StreakStats() {
                   </Text>
                 </TouchableOpacity>
               </View>
-              <ScrollView key={dailyChartTab} ref={chartScrollRef} horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
+              <ScrollView key={dailyChartTab} ref={chartScrollRef} decelerationRate="normal" horizontal showsHorizontalScrollIndicator indicatorStyle="white" onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })} contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}>
                 {dailyChartTab === 'xp'
                         ? chartDays.map((d, i) => {
                             const barH = d.points > 0 ? Math.max((d.points / maxAllPts) * CHART_H, 8) : 5;
@@ -3875,7 +3881,7 @@ export default function StreakStats() {
         <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'center', alignItems: 'center', padding: 24 }} onPress={() => setClubDescVisible(false)}>
           <Pressable onPress={() => { }}>
             <View style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 24, maxWidth: 360, borderWidth: 0.5, borderColor: t.border }}>
-              {engineLeague.imageUri && (<Image source={engineLeague.imageUri} style={{ width: 64, height: 64, alignSelf: 'center', marginBottom: 12 }} resizeMode="contain"/>)}
+              {engineLeague.imageUri && (<Image source={engineLeague.imageUri} style={{ width: 64, height: 64, alignSelf: 'center', marginBottom: 12 }} contentFit="contain"/>)}
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 12, textAlign: 'center' }}>
                 {triLang(lang, {
             ru: engineLeague.nameRU,
@@ -3952,7 +3958,7 @@ export default function StreakStats() {
                     ⭐ {hint}
                   </Text>) : null;
         })()}
-              <TouchableOpacity onPress={() => setClubDescVisible(false)} style={{ marginTop: 20, backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}>
+              <TouchableOpacity activeOpacity={0.75} onPress={() => setClubDescVisible(false)} style={{ marginTop: 20, backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}>
                 <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>OK</Text>
               </TouchableOpacity>
             </View>

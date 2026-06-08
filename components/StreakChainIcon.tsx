@@ -1,5 +1,6 @@
-import React from 'react';
-import { Image, type ImageStyle, type StyleProp } from 'react-native';
+import React, { memo } from 'react';
+import { type ImageStyle, type StyleProp } from 'react-native';
+import { Image } from 'expo-image';
 import type { ThemeMode } from '../constants/theme';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 
@@ -12,7 +13,7 @@ interface StreakChainIconProps {
   style?: StyleProp<ImageStyle>;
 }
 
-export function StreakChainIcon({
+function StreakChainIconBase({
   themeMode,
   streakDays,
   frozen = false,
@@ -27,7 +28,7 @@ export function StreakChainIcon({
   return (
     <Image
       source={variant.source}
-      resizeMode="contain"
+      contentFit="contain"
       accessibilityIgnoresInvertColors
       style={[
         { width: size, height: size, opacity: inactive && !frozen ? 0.42 : 1 },
@@ -36,3 +37,5 @@ export function StreakChainIcon({
     />
   );
 }
+
+export const StreakChainIcon = memo(StreakChainIconBase);

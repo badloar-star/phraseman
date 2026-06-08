@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { memo, useEffect, useState, useCallback, useRef } from 'react';
 import {
   Modal,
   View,
@@ -55,7 +55,7 @@ async function reloadAfterAccountDelete(): Promise<void> {
 /**
  * Единое окно подтверждения удаления аккаунта (Настройки, FAQ и т.д.).
  */
-export default function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
+function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const isCompassTheme = themeMode === 'compass';
@@ -138,7 +138,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
         pl: 'Usuwanie konta',
       }),
       L({
-        ru: 'Вы вышли из старого аккаунта. Серверная очистка продолжится в фоне.',
+        ru: 'Ты вышел из старого аккаунта. Серверная очистка продолжится в фоне.',
         uk: 'Ви вийшли зі старого акаунта. Серверне очищення продовжиться у фоні.',
         es: 'Saliste de la cuenta anterior. La limpieza del servidor continuará en segundo plano.',
         'pt-BR': 'Você saiu da conta antiga. A limpeza do servidor continuará em segundo plano.',
@@ -164,7 +164,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
             pl: 'Błąd',
           }),
           L({
-            ru: 'Не удалось удалить аккаунт на сервере. Проверьте интернет и попробуйте ещё раз.',
+            ru: 'Аккаунт не удалился на сервере. Проверь интернет и попробуй ещё раз.',
             uk: 'Не вдалося видалити акаунт на сервері. Перевірте інтернет і спробуйте ще раз.',
             es: 'No se pudo eliminar la cuenta en el servidor. Revisa Internet e inténtalo de nuevo.',
             'pt-BR': 'Não foi possível excluir a conta no servidor. Verifique a Internet e tente novamente.',
@@ -191,7 +191,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
           pl: 'Błąd',
         }),
         L({
-          ru: 'Удаление прервалось до подтверждения сервера. Проверьте интернет и попробуйте ещё раз.',
+          ru: 'Удаление прервалось до подтверждения сервера. Проверь интернет и попробуй ещё раз.',
           uk: 'Видалення перервалося до підтвердження сервера. Перевірте інтернет і спробуйте ще раз.',
           es: 'La eliminación se interrumpió antes de la confirmación del servidor. Revisa Internet e inténtalo de nuevo.',
           'pt-BR': 'A exclusão foi interrompida antes da confirmação do servidor. Verifique a Internet e tente novamente.',
@@ -351,7 +351,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 12, lineHeight: 19 }}>
             {L({
-              ru: 'После подтверждения приложение начнёт серверную очистку и сразу выведет вас из старого аккаунта.',
+              ru: 'После подтверждения приложение начнёт серверную очистку и сразу выведет тебя из старого аккаунта.',
               uk: 'Після підтвердження застосунок почне серверне очищення і одразу виведе вас зі старого акаунта.',
               es: 'Después de confirmar, la app iniciará la limpieza del servidor y saldrá de la cuenta anterior de inmediato.',
               'pt-BR': 'Depois de confirmar, o app iniciará a limpeza no servidor e sairá da conta antiga imediatamente.',
@@ -363,7 +363,7 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.caption, marginBottom: 8 }}>
             {L({
-              ru: 'Введите "УДАЛИТЬ" для подтверждения:',
+              ru: 'Введи "УДАЛИТЬ" для подтверждения:',
               uk: 'Введіть "ВИДАЛИТИ" для підтвердження:',
               es: 'Escribe «ELIMINAR» para confirmar:',
               'pt-BR': 'Digite "EXCLUIR" para confirmar:',
@@ -521,3 +521,5 @@ export default function DeleteAccountConfirmModal({ visible, onRequestClose }: P
     </Modal>
   );
 }
+
+export default memo(DeleteAccountConfirmModal);

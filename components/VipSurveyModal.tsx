@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Keyboard,
@@ -35,7 +35,7 @@ type Props = {
   onCompleted: (result: SubmitVipSurveyResponse) => void;
 };
 
-export default function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
+function VipSurveyModal({ visible, messageId, onClose, onCompleted }: Props) {
   const { lang } = useLang();
   const { f, isDark } = useTheme();
   const insets = useSafeAreaInsets();
@@ -128,7 +128,7 @@ export default function VipSurveyModal({ visible, messageId, onClose, onComplete
     textPlaceholder: triLang(lang, { ru: 'Напишите ответ', uk: 'Напишіть відповідь', es: 'Write your answer', 'pt-BR': 'Write your answer', vi: 'Write your answer', id: 'Write your answer', tr: 'Write your answer', pl: 'Write your answer' }),
     introTitle: triLang(lang, { ru: 'Что такое VIP?', uk: 'Що таке VIP?', es: 'What is VIP?', 'pt-BR': 'What is VIP?', vi: 'What is VIP?', id: 'What is VIP?', tr: 'What is VIP?', pl: 'What is VIP?' }),
     introBody: triLang(lang, {
-      ru: 'VIP — это как Premium: полный доступ ко всем функциям. После опроса вы получите зелёную ауру и зелёный ник.',
+      ru: 'VIP — это как Premium: полный доступ ко всем функциям. После опроса ты получишь зелёную ауру и зелёный ник.',
       uk: 'VIP — це як Premium: повний доступ до всіх функцій. Після опитування ви отримаєте зелену ауру й зелений нік.',
       es: 'VIP is like Premium: full access to every feature. After the survey, you get a green aura and green name.',
       'pt-BR': 'VIP is like Premium: full access to every feature. After the survey, you get a green aura and green name.',
@@ -139,7 +139,7 @@ export default function VipSurveyModal({ visible, messageId, onClose, onComplete
     }),
     completedTitle: triLang(lang, { ru: 'Спасибо за помощь!', uk: 'Дякуємо за допомогу!', es: 'Thank you for helping!', 'pt-BR': 'Thank you for helping!', vi: 'Thank you for helping!', id: 'Thank you for helping!', tr: 'Thank you for helping!', pl: 'Thank you for helping!' }),
     completedBody: triLang(lang, {
-      ru: 'Ваши ответы помогут сделать Phraseman понятнее и полезнее. Нажмите «Завершить опрос», чтобы отправить ответы и активировать VIP.',
+      ru: 'Твои ответы помогут сделать Phraseman лучше. Нажми «Завершить опрос» — и VIP активируется.',
       uk: 'Ваші відповіді допоможуть зробити Phraseman зрозумілішим і кориснішим. Натисніть «Завершити опитування», щоб надіслати відповіді й активувати VIP.',
       es: 'Your answers will help make Phraseman clearer and more useful. Tap Finish survey to send your answers and activate VIP.',
       'pt-BR': 'Your answers will help make Phraseman clearer and more useful. Tap Finish survey to send your answers and activate VIP.',
@@ -150,7 +150,7 @@ export default function VipSurveyModal({ visible, messageId, onClose, onComplete
     }),
     finish: triLang(lang, { ru: 'Завершить опрос', uk: 'Завершити опитування', es: 'Finish survey', 'pt-BR': 'Finish survey', vi: 'Finish survey', id: 'Finish survey', tr: 'Finish survey', pl: 'Finish survey' }),
     saving: triLang(lang, { ru: 'Активируем...', uk: 'Активуємо...', es: 'Activating...', 'pt-BR': 'Activating...', vi: 'Activating...', id: 'Activating...', tr: 'Activating...', pl: 'Activating...' }),
-    error: triLang(lang, { ru: 'Не удалось завершить опрос. Проверьте интернет и попробуйте ещё раз.', uk: 'Не вдалося завершити опитування. Перевірте інтернет і спробуйте ще раз.', es: 'Could not finish the survey. Check your connection and try again.', 'pt-BR': 'Could not finish the survey. Check your connection and try again.', vi: 'Could not finish the survey. Check your connection and try again.', id: 'Could not finish the survey. Check your connection and try again.', tr: 'Could not finish the survey. Check your connection and try again.', pl: 'Could not finish the survey. Check your connection and try again.' }),
+    error: triLang(lang, { ru: 'Не удалось завершить опрос. Проверь интернет и попробуй ещё раз.', uk: 'Не вдалося завершити опитування. Перевірте інтернет і спробуйте ще раз.', es: 'Could not finish the survey. Check your connection and try again.', 'pt-BR': 'Could not finish the survey. Check your connection and try again.', vi: 'Could not finish the survey. Check your connection and try again.', id: 'Could not finish the survey. Check your connection and try again.', tr: 'Could not finish the survey. Check your connection and try again.', pl: 'Could not finish the survey. Check your connection and try again.' }),
   }), [lang]);
 
   const isCompleteStep = step >= VIP_SURVEY_QUESTIONS.length;
@@ -423,6 +423,8 @@ export default function VipSurveyModal({ visible, messageId, onClose, onComplete
     </Modal>
   );
 }
+
+export default memo(VipSurveyModal);
 
 const styles = StyleSheet.create({
   root: {

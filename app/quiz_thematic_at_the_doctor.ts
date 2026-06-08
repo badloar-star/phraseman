@@ -310,9 +310,9 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Your throat hurts and talking feels rough. What do you say?",
       "localizedPrompts": {
-        "ru": "Ð“Ð¾Ñ€Ð»Ð¾ Ð±Ð¾Ð»Ð¸Ñ‚, Ð³Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ÑŒ Ð½ÐµÐ¿Ñ€Ð¸ÑÑ‚Ð½Ð¾. Ð§Ñ‚Ð¾ ÑÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð²Ñ€Ð°Ñ‡Ñƒ?",
-        "uk": "Ð‘Ð¾Ð»Ð¸Ñ‚ÑŒ Ð³Ð¾Ñ€Ð»Ð¾, Ð³Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚Ð¸ Ð²Ð°Ð¶ÐºÐ¾. Ð©Ð¾ ÑÐºÐ°Ð·Ð°Ñ‚Ð¸ Ð»Ñ–ÐºÐ°Ñ€ÑŽ?",
-        "es": "Te duele la garganta y hablar cuesta. Â¿QuÃ© dices al mÃ©dico?",
+        "ru": "Горло болит, говорить неприятно. Что сказать врачу?",
+        "uk": "Болить горло, говорити важко. Що сказати лікарю?",
+        "es": "Te duele la garganta y hablar cuesta. ¿Qué dices al médico?",
         "pt-BR": "Sua garganta doi e falar incomoda. O que voce diz ao medico?",
         "vi": "Co hong bi dau va noi rat kho. Ban noi gi voi bac si?",
         "id": "Tenggorokan sakit dan bicara terasa berat. Apa yang kamu katakan ke dokter?",
@@ -350,16 +350,16 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       },
       "explanations": {
         "ru": [
-          "Ð‘Ð¸Ð½Ð³Ð¾. I have a sore throat Ð¿Ñ€ÑÐ¼Ð¾ Ð½Ð°Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð±Ð¾Ð»ÑŒ Ð² Ð³Ð¾Ñ€Ð»Ðµ; ÐºÐ¾Ñ€Ð¾Ñ‚ÐºÐ°Ñ Ñ„Ñ€Ð°Ð·Ð° Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ ÑÐ¿Ð¾ÐºÐ¾Ð¹Ð½Ð¾ Ñƒ Ð²Ñ€Ð°Ñ‡Ð°.",
-          "I have a sore neck ÑƒÐ²Ð¾Ð´Ð¸Ñ‚ Ð±Ð¾Ð»ÑŒ Ð² ÑˆÐµÑŽ, Ð° Ð½Ðµ Ð² Ð³Ð¾Ñ€Ð»Ð¾. Ð”Ð»Ñ Ð³Ð¾Ñ€Ð»Ð° Ð½ÑƒÐ¶ÐµÐ½ ÐºÐ¾Ð½Ñ‚Ñ€Ð°ÑÑ‚ I have a sore throat.",
-          "I am throat pain Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ ÐºÐ°Ðº Ð½Ð°Ð±Ð¾Ñ€ ÑÐ»Ð¾Ð². Ð£ Ð²Ñ€Ð°Ñ‡Ð° Ð±ÐµÐ·Ð¾Ð¿Ð°ÑÐ½ÐµÐµ ÐºÐ¾Ñ€Ð¾Ñ‚ÐºÐ¾ ÑÐºÐ°Ð·Ð°Ñ‚ÑŒ I have a sore throat.",
-          "I have a painful voice Ð³Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ Ð¿Ñ€Ð¾ Ð³Ð¾Ð»Ð¾Ñ, Ð½Ð¾ Ð½Ðµ Ð½Ð°Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð³Ð¾Ñ€Ð»Ð¾. I have a sore throat Ñ‚Ð¾Ñ‡Ð½ÐµÐµ Ð¸ Ð¿Ð¾Ð½ÑÑ‚Ð½ÐµÐµ."
+          "Бинго. I have a sore throat прямо называет боль в горле; короткая фраза звучит спокойно у врача.",
+          "I have a sore neck уводит боль в шею, а не в горло. Для горла нужен контраст I have a sore throat.",
+          "I am throat pain звучит как набор слов. У врача безопаснее коротко сказать I have a sore throat.",
+          "I have a painful voice говорит про голос, но не называет горло. I have a sore throat точнее и понятнее."
         ],
         "uk": [
-          "Ð‘Ñ–Ð½Ð³Ð¾. I have a sore throat Ð¿Ñ€ÑÐ¼Ð¾ Ð½Ð°Ð·Ð¸Ð²Ð°Ñ” Ð±Ñ–Ð»ÑŒ Ñƒ Ð³Ð¾Ñ€Ð»Ñ–; Ñ‚Ð°ÐºÐ° ÐºÐ¾Ñ€Ð¾Ñ‚ÐºÐ° Ñ„Ñ€Ð°Ð·Ð° Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ÑŒ ÑÐ¿Ð¾ÐºÑ–Ð¹Ð½Ð¾ Ð² Ð»Ñ–ÐºÐ°Ñ€Ñ.",
-          "I have a sore neck Ð¿ÐµÑ€ÐµÐ½Ð¾ÑÐ¸Ñ‚ÑŒ Ð±Ñ–Ð»ÑŒ Ñƒ ÑˆÐ¸ÑŽ, Ð½Ðµ Ð² Ð³Ð¾Ñ€Ð»Ð¾. Ð”Ð»Ñ Ð³Ð¾Ñ€Ð»Ð° Ð¿Ð¾Ñ‚Ñ€Ñ–Ð±ÐµÐ½ Ð²Ð°Ñ€Ñ–Ð°Ð½Ñ‚ I have a sore throat.",
-          "I am throat pain Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ÑŒ ÑÐº Ð½Ð°Ð±Ñ–Ñ€ ÑÐ»Ñ–Ð². Ð£ Ð»Ñ–ÐºÐ°Ñ€Ñ ÐºÑ€Ð°Ñ‰Ðµ ÑÐºÐ°Ð·Ð°Ñ‚Ð¸ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ I have a sore throat.",
-          "I have a painful voice Ð³Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¾ Ð³Ð¾Ð»Ð¾Ñ, Ð° Ð½Ðµ Ð¿Ñ€Ð¾ Ð³Ð¾Ñ€Ð»Ð¾. I have a sore throat Ñ‚Ð¾Ñ‡Ð½Ñ–ÑˆÐµ Ð¾Ð¿Ð¸ÑÑƒÑ” Ð¿Ñ€Ð¾Ð±Ð»ÐµÐ¼Ñƒ."
+          "Бінго. I have a sore throat прямо називає біль у горлі; така коротка фраза звучить спокійно в лікаря.",
+          "I have a sore neck переносить біль у шию, не в горло. Для горла потрібен варіант I have a sore throat.",
+          "I am throat pain звучить як набір слів. У лікаря краще сказати просто I have a sore throat.",
+          "I have a painful voice говорить про голос, а не про горло. I have a sore throat точніше описує проблему."
         ],
         "es": [
           "I have a sore throat nombra directamente el dolor de garganta; es una frase corta y tranquila para el medico.",
@@ -404,9 +404,9 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "You need to see Dr. Evans tomorrow. What phrase books the time?",
       "localizedPrompts": {
-        "ru": "ÐÑƒÐ¶Ð½Ð¾ Ð¿Ð¾Ð¿Ð°ÑÑ‚ÑŒ Ðº Ð´Ð¾ÐºÑ‚Ð¾Ñ€Ñƒ Ð·Ð°Ð²Ñ‚Ñ€Ð°. ÐšÐ°ÐºÐ°Ñ Ñ„Ñ€Ð°Ð·Ð° Ð·Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑ‚ Ð²Ñ€ÐµÐ¼Ñ?",
-        "uk": "Ð¢Ñ€ÐµÐ±Ð° Ð¿Ð¾Ñ‚Ñ€Ð°Ð¿Ð¸Ñ‚Ð¸ Ð´Ð¾ Ð»Ñ–ÐºÐ°Ñ€Ñ Ð·Ð°Ð²Ñ‚Ñ€Ð°. Ð¯ÐºÐ° Ñ„Ñ€Ð°Ð·Ð° Ð´Ð¾Ð¼Ð¾Ð²Ð»ÑÑ”Ñ‚ÑŒÑÑ Ð¿Ñ€Ð¾ Ñ‡Ð°Ñ?",
-        "es": "Necesitas ver al doctor maÃ±ana. Â¿QuÃ© frase reserva la hora?",
+        "ru": "Нужно попасть к доктору завтра. Какая фраза записывает время?",
+        "uk": "Треба потрапити до лікаря завтра. Яка фраза домовляється про час?",
+        "es": "Necesitas ver al doctor mañana. ¿Qué frase reserva la hora?",
         "pt-BR": "Voce precisa ver o medico amanha. Que frase marca o horario?",
         "vi": "Ban can gap bac si ngay mai. Cum nao dung de hen gio?",
         "id": "Kamu perlu menemui dokter besok. Frasa mana untuk membuat jadwal?",
@@ -444,16 +444,16 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       },
       "explanations": {
         "ru": [
-          "I want to make an appointment Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ ÐµÑÑ‚ÐµÑÑ‚Ð²ÐµÐ½Ð½Ð¾: make an appointment Ð·Ð½Ð°Ñ‡Ð¸Ñ‚ Ð´Ð¾Ð³Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ÑŒÑÑ Ð¾ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸ Ð²Ð¸Ð·Ð¸Ñ‚Ð°.",
-          "I want to do an appointment ÑÐ¿Ð¾Ñ‚Ñ‹ÐºÐ°ÐµÑ‚ÑÑ Ð½Ð° Ð³Ð»Ð°Ð³Ð¾Ð»Ðµ do. Ð’ Ñ‚Ð°ÐºÐ¾Ð¹ ÑÐ¸Ñ‚ÑƒÐ°Ñ†Ð¸Ð¸ Ð½ÑƒÐ¶ÐµÐ½ make an appointment.",
-          "I want to make a recipe Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÑÐµÑ‚ Ð½Ð°Ñ Ð½Ð° ÐºÑƒÑ…Ð½ÑŽ, Ð½Ðµ Ðº Ð²Ñ€Ð°Ñ‡Ñƒ. Ð”Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð½ÑƒÐ¶ÐµÐ½ I want to make an appointment.",
-          "I want to meet a symptom Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ ÑÑ‚Ñ€Ð°Ð½Ð½Ð¾: symptom Ð½Ðµ Ñ‡ÐµÐ»Ð¾Ð²ÐµÐº. Ð—Ð°Ð¿Ð¸ÑÑŒ Ð¾Ñ„Ð¾Ñ€Ð¼Ð»ÑÐµÑ‚ I want to make an appointment."
+          "I want to make an appointment звучит естественно: make an appointment значит договориться о времени визита.",
+          "I want to do an appointment спотыкается на глаголе do. В такой ситуации нужен make an appointment.",
+          "I want to make a recipe отправляет нас на кухню, не к врачу. Для записи нужен I want to make an appointment.",
+          "I want to meet a symptom звучит странно: symptom не человек. Запись оформляет I want to make an appointment."
         ],
         "uk": [
-          "I want to make an appointment Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¸Ñ€Ð¾Ð´Ð½Ð¾: make an appointment Ð¾Ð·Ð½Ð°Ñ‡Ð°Ñ” Ð´Ð¾Ð¼Ð¾Ð²Ð¸Ñ‚Ð¸ÑÑ Ð¿Ñ€Ð¾ Ñ‡Ð°Ñ Ð²Ñ–Ð·Ð¸Ñ‚Ñƒ.",
-          "I want to do an appointment Ð·Ð±Ð¸Ð²Ð°Ñ”Ñ‚ÑŒÑÑ Ð½Ð° do. Ð”Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÑƒ Ð´Ð¾ Ð»Ñ–ÐºÐ°Ñ€Ñ Ð¿Ð¾Ñ‚Ñ€Ñ–Ð±Ð½Ðµ make an appointment.",
-          "I want to make a recipe Ð²ÐµÐ´Ðµ Ð½Ð° ÐºÑƒÑ…Ð½ÑŽ, Ð½Ðµ Ð´Ð¾ Ð»Ñ–ÐºÐ°Ñ€Ñ. Ð”Ð»Ñ Ñ‡Ð°ÑÑƒ Ð²Ñ–Ð·Ð¸Ñ‚Ñƒ ÐºÐ°Ð¶ÐµÐ¼Ð¾ I want to make an appointment.",
-          "I want to meet a symptom Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð¸Ð²Ð½Ð¾: symptom Ð½Ðµ Ð»ÑŽÐ´Ð¸Ð½Ð°. Ð—Ð°Ð¿Ð¸Ñ Ñ€Ð¾Ð±Ð¸Ñ‚ÑŒ I want to make an appointment."
+          "I want to make an appointment звучить природно: make an appointment означає домовитися про час візиту.",
+          "I want to do an appointment збивається на do. Для запису до лікаря потрібне make an appointment.",
+          "I want to make a recipe веде на кухню, не до лікаря. Для часу візиту кажемо I want to make an appointment.",
+          "I want to meet a symptom звучить дивно: symptom не людина. Запис робить I want to make an appointment."
         ],
         "es": [
           "I want to make an appointment usa la colocacion natural para pedir una hora con el medico.",
@@ -498,9 +498,9 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "The doctor gives you the paper for medicine. What is it called?",
       "localizedPrompts": {
-        "ru": "Ð’Ñ€Ð°Ñ‡ Ð´Ð°ÐµÑ‚ Ð±ÑƒÐ¼Ð°Ð³Ñƒ Ð´Ð»Ñ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð²Ð°. ÐšÐ°Ðº ÑÑ‚Ð¾ Ð½Ð°Ð·Ñ‹Ð²Ð°ÐµÑ‚ÑÑ?",
-        "uk": "Ð›Ñ–ÐºÐ°Ñ€ Ð´Ð°Ñ” Ð¿Ð°Ð¿Ñ–Ñ€ Ð´Ð»Ñ Ð»Ñ–ÐºÑ–Ð². Ð¯Ðº Ñ†Ðµ Ð½Ð°Ð·Ð¸Ð²Ð°Ñ”Ñ‚ÑŒÑÑ?",
-        "es": "El medico te da un papel para la medicina. Â¿Como se llama?",
+        "ru": "Врач дает бумагу для лекарства. Как это называется?",
+        "uk": "Лікар дає папір для ліків. Як це називається?",
+        "es": "El medico te da un papel para la medicina. ¿Como se llama?",
         "pt-BR": "O medico da um papel para o remedio. Como se chama?",
         "vi": "Bac si dua giay de lay thuoc. No goi la gi?",
         "id": "Dokter memberi kertas untuk obat. Itu disebut apa?",
@@ -538,16 +538,16 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       },
       "explanations": {
         "ru": [
-          "a prescription â€” ÑÑ‚Ð¾ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð»Ñ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð²Ð° Ð¾Ñ‚ Ð²Ñ€Ð°Ñ‡Ð°; Ð·Ð²ÑƒÑ‡Ð¸Ñ‚ Ð¿Ð¾Ñ‡Ñ‚Ð¸ Ð¾Ñ„Ð¸Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð¾, Ð½Ð¾ ÑÐ»Ð¾Ð²Ð¾ Ð¾Ñ‡ÐµÐ½ÑŒ Ð±Ñ‹Ñ‚Ð¾Ð²Ð¾Ðµ.",
-          "a reception Ð¿Ð¾Ñ…Ð¾Ð¶Ðµ Ð¿Ð¾ Ð±ÑƒÐºÐ²Ð°Ð¼, Ð½Ð¾ ÑÑ‚Ð¾ ÑÑ‚Ð¾Ð¹ÐºÐ° Ð¸Ð»Ð¸ Ð¿Ñ€Ð¸ÐµÐ¼. Ð‘ÑƒÐ¼Ð°Ð³Ð° Ð´Ð»Ñ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð²Ð° â€” a prescription.",
-          "a symptom â€” ÑÑ‚Ð¾ Ð¿Ñ€Ð¸Ð·Ð½Ð°Ðº Ð±Ð¾Ð»ÐµÐ·Ð½Ð¸, Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€ ÐºÐ°ÑˆÐµÐ»ÑŒ. Ð‘ÑƒÐ¼Ð°Ð³Ð° Ð¾Ñ‚ Ð²Ñ€Ð°Ñ‡Ð° Ð½Ð°Ð·Ñ‹Ð²Ð°ÐµÑ‚ÑÑ a prescription.",
-          "a recipe Ð¶Ð¸Ð²ÐµÑ‚ Ð½Ð° ÐºÑƒÑ…Ð½Ðµ Ñ ÑÑƒÐ¿Ð¾Ð¼ Ð¸ Ð¿Ð¸Ñ€Ð¾Ð³Ð¾Ð¼. Ð”Ð»Ñ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð²Ð° Ð¾Ñ‚ Ð²Ñ€Ð°Ñ‡Ð° Ð½ÑƒÐ¶Ð½Ð¾ a prescription."
+          "a prescription — это документ для лекарства от врача; звучит почти официально, но слово очень бытовое.",
+          "a reception похоже по буквам, но это стойка или прием. Бумага для лекарства — a prescription.",
+          "a symptom — это признак болезни, например кашель. Бумага от врача называется a prescription.",
+          "a recipe живет на кухне с супом и пирогом. Для лекарства от врача нужно a prescription."
         ],
         "uk": [
-          "a prescription â€” Ñ†Ðµ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð»Ñ Ð»Ñ–ÐºÑ–Ð² Ð²Ñ–Ð´ Ð»Ñ–ÐºÐ°Ñ€Ñ; ÑÐ»Ð¾Ð²Ð¾ Ð¾Ñ„Ñ–Ñ†Ñ–Ð¹Ð½Ðµ Ð½Ð° Ð²Ð¸Ð³Ð»ÑÐ´, Ð°Ð»Ðµ Ð´ÑƒÐ¶Ðµ Ñ‰Ð¾Ð´ÐµÐ½Ð½Ðµ.",
-          "a reception ÑÑ…Ð¾Ð¶Ðµ Ð»Ñ–Ñ‚ÐµÑ€Ð°Ð¼Ð¸, Ñ‚Ð° Ñ†Ðµ Ð¿Ñ€Ð¸Ð¹Ð¼Ð°Ð»ÑŒÐ½Ñ Ð°Ð±Ð¾ ÑÑ‚Ñ–Ð¹ÐºÐ°. ÐŸÐ°Ð¿Ñ–Ñ€ Ð´Ð»Ñ Ð»Ñ–ÐºÑ–Ð² â€” a prescription.",
-          "a symptom â€” Ñ†Ðµ Ð¾Ð·Ð½Ð°ÐºÐ° Ñ…Ð²Ð¾Ñ€Ð¾Ð±Ð¸, Ð½Ð°Ð¿Ñ€Ð¸ÐºÐ»Ð°Ð´ ÐºÐ°ÑˆÐµÐ»ÑŒ. Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð²Ñ–Ð´ Ð»Ñ–ÐºÐ°Ñ€Ñ â€” a prescription.",
-          "a recipe Ð¶Ð¸Ð²Ðµ Ð½Ð° ÐºÑƒÑ…Ð½Ñ– Ð±Ñ–Ð»Ñ ÑÑƒÐ¿Ñƒ. Ð”Ð»Ñ Ð»Ñ–ÐºÑ–Ð² Ð²Ñ–Ð´ Ð»Ñ–ÐºÐ°Ñ€Ñ Ð¿Ð¾Ñ‚Ñ€Ñ–Ð±Ð½Ðµ a prescription."
+          "a prescription — це документ для ліків від лікаря; слово офіційне на вигляд, але дуже щоденне.",
+          "a reception схоже літерами, та це приймальня або стійка. Папір для ліків — a prescription.",
+          "a symptom — це ознака хвороби, наприклад кашель. Документ від лікаря — a prescription.",
+          "a recipe живе на кухні біля супу. Для ліків від лікаря потрібне a prescription."
         ],
         "es": [
           "a prescription es el documento para conseguir medicina; suena formal, pero es palabra diaria en la consulta.",
@@ -592,8 +592,8 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Cough, fever, and pain are all your...",
       "localizedPrompts": {
-        "ru": "ÐšÐ°ÑˆÐµÐ»ÑŒ, Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ð° Ð¸ Ð±Ð¾Ð»ÑŒ â€” ÑÑ‚Ð¾ Ð²ÑÐµ Ñ‚Ð²Ð¾Ð¸...",
-        "uk": "ÐšÐ°ÑˆÐµÐ»ÑŒ, Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ð° Ñ– Ð±Ñ–Ð»ÑŒ â€” Ñ†Ðµ Ð²ÑÐµ Ñ‚Ð²Ð¾Ñ—...",
+        "ru": "Кашель, температура и боль — это все твои...",
+        "uk": "Кашель, температура і біль — це все твої...",
         "es": "Tos, fiebre y dolor son todos tus...",
         "pt-BR": "Tosse, febre e dor sao todos seus...",
         "vi": "Ho, sot va dau deu la...",
@@ -632,16 +632,16 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
       },
       "explanations": {
         "ru": [
-          "symptoms ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÑ‚ ÐºÐ°ÑˆÐµÐ»ÑŒ, Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ñƒ Ð¸ Ð±Ð¾Ð»ÑŒ Ð² Ð¾Ð´Ð½Ñƒ Ð¿Ð¾Ð½ÑÑ‚Ð½ÑƒÑŽ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ Ñ‚Ð¾Ð³Ð¾, Ñ‡Ñ‚Ð¾ Ñ‡ÑƒÐ²ÑÑ‚Ð²ÑƒÐµÑˆÑŒ.",
-          "appointments â€” ÑÑ‚Ð¾ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð½Ð° Ð¿Ñ€Ð¸ÐµÐ¼, Ð° Ð½Ðµ ÐºÐ°ÑˆÐµÐ»ÑŒ Ð¸Ð»Ð¸ Ð±Ð¾Ð»ÑŒ. Ð”Ð»Ñ Ñ‚Ð°ÐºÐ¸Ñ… Ð¿Ñ€Ð¸Ð·Ð½Ð°ÐºÐ¾Ð² Ð½ÑƒÐ¶Ð½Ð¾ symptoms.",
-          "prescriptions â€” ÑÑ‚Ð¾ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹ Ð´Ð»Ñ Ð»ÐµÐºÐ°Ñ€ÑÑ‚Ð². ÐšÐ°ÑˆÐµÐ»ÑŒ Ð¸ Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ð° Ð¾Ñ‚Ð½Ð¾ÑÑÑ‚ÑÑ Ðº symptoms.",
-          "injections â€” ÑÑ‚Ð¾ ÑƒÐºÐ¾Ð»Ñ‹, Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ð²Ñ€Ð°Ñ‡Ð°. Ð¢Ð¾, Ñ‡Ñ‚Ð¾ Ñ‚Ñ‹ Ð¾Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑˆÑŒ Ð´Ð¾ ÑƒÐºÐ¾Ð»Ð°, â€” symptoms."
+          "symptoms собирает кашель, температуру и боль в одну понятную группу того, что чувствуешь.",
+          "appointments — это записи на прием, а не кашель или боль. Для таких признаков нужно symptoms.",
+          "prescriptions — это документы для лекарств. Кашель и температура относятся к symptoms.",
+          "injections — это уколы, действие врача. То, что ты описываешь до укола, — symptoms."
         ],
         "uk": [
-          "symptoms Ð·Ð±Ð¸Ñ€Ð°Ñ” ÐºÐ°ÑˆÐµÐ»ÑŒ, Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ñƒ Ð¹ Ð±Ñ–Ð»ÑŒ Ð² Ð¾Ð´Ð½Ñƒ Ð·Ñ€Ð¾Ð·ÑƒÐ¼Ñ–Ð»Ñƒ Ð³Ñ€ÑƒÐ¿Ñƒ Ñ‚Ð¾Ð³Ð¾, Ñ‰Ð¾ Ð²Ñ–Ð´Ñ‡ÑƒÐ²Ð°Ñ”Ñˆ.",
-          "appointments â€” Ñ†Ðµ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð½Ð° Ð¿Ñ€Ð¸Ð¹Ð¾Ð¼, Ð½Ðµ ÐºÐ°ÑˆÐµÐ»ÑŒ Ñ– Ð±Ñ–Ð»ÑŒ. Ð”Ð»Ñ Ñ‚Ð°ÐºÐ¸Ñ… Ð¾Ð·Ð½Ð°Ðº Ð¿Ð¾Ñ‚Ñ€Ñ–Ð±Ð½Ðµ symptoms.",
-          "prescriptions â€” Ñ†Ðµ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð¸ Ð´Ð»Ñ Ð»Ñ–ÐºÑ–Ð². ÐšÐ°ÑˆÐµÐ»ÑŒ Ñ– Ñ‚ÐµÐ¼Ð¿ÐµÑ€Ð°Ñ‚ÑƒÑ€Ð° Ð½Ð°Ð»ÐµÐ¶Ð°Ñ‚ÑŒ Ð´Ð¾ symptoms.",
-          "injections â€” Ñ†Ðµ ÑƒÐºÐ¾Ð»Ð¸, Ð´Ñ–Ñ Ð»Ñ–ÐºÐ°Ñ€Ñ. Ð¢Ðµ, Ñ‰Ð¾ Ñ‚Ð¸ Ð¾Ð¿Ð¸ÑÑƒÑ”Ñˆ Ð¿ÐµÑ€ÐµÐ´ Ð»Ñ–ÐºÑƒÐ²Ð°Ð½Ð½ÑÐ¼, â€” symptoms."
+          "symptoms збирає кашель, температуру й біль в одну зрозумілу групу того, що відчуваєш.",
+          "appointments — це записи на прийом, не кашель і біль. Для таких ознак потрібне symptoms.",
+          "prescriptions — це документи для ліків. Кашель і температура належать до symptoms.",
+          "injections — це уколи, дія лікаря. Те, що ти описуєш перед лікуванням, — symptoms."
         ],
         "es": [
           "symptoms agrupa tos, fiebre y dolor como cosas que sientes cuando algo no va bien.",

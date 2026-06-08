@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import TapScale from '../components/TapScale';
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   TextInput,
   ScrollView,
@@ -11,7 +11,9 @@ import {
   Pressable,
   Share,
   StyleSheet,
+  InteractionManager,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -163,12 +165,15 @@ export default function FriendsScreen() {
 
   useEffect(() => {
     let cancelled = false;
-    void (async () => {
-      const code = await ensureMyInviteCodeForFriends('');
-      if (!cancelled && code) setMyCode(code);
-    })();
+    const task = InteractionManager.runAfterInteractions(() => {
+      void (async () => {
+        const code = await ensureMyInviteCodeForFriends('');
+        if (!cancelled && code) setMyCode(code);
+      })();
+    });
     return () => {
       cancelled = true;
+      task.cancel();
     };
   }, []);
 
@@ -341,7 +346,7 @@ export default function FriendsScreen() {
         result: 'error',
         tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
-      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
+      showFeedback(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
       setIsAdding(false);
     }
@@ -445,7 +450,7 @@ export default function FriendsScreen() {
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
           ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no está activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Fragmen kurang atau pertemanan tidak lagi aktif', 'Yeterli parça yok veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
-          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không thể gửi quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
+          : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không thể gửi quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
       await trackActivity('friends:send_gift', {
         feature: 'friends',
@@ -833,9 +838,9 @@ export default function FriendsScreen() {
       <ScreenGradient>
         <SafeAreaView style={styles.flex1}>
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => { doHaptic(); safeRouterBack(router, '/(tabs)/home' as any); }}>
+            <TapScale onPress={() => { doHaptic(); safeRouterBack(router, '/(tabs)/home' as any); }}>
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={styles.headerTitle}>
               {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
             </Text>
@@ -862,7 +867,7 @@ export default function FriendsScreen() {
           </Text>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false}>
           <ContentWrap>
 
             {/* ── Section 1: My Code ────────────────────────────────────── */}
@@ -902,6 +907,7 @@ export default function FriendsScreen() {
             <View style={styles.inputRow}>
               <TextInput
                 testID="friends-code-input"
+                accessibilityLabel={L('Код друга', 'Код друга', 'Código de amigo', 'Código do amigo', 'Mã bạn bè', 'Kode teman', 'Arkadaş kodu', 'Kod znajomego')}
                 style={styles.textInput}
                 placeholder={L(
                   'Код друга (6 символов)',
@@ -1011,7 +1017,7 @@ export default function FriendsScreen() {
                 <Image
                   source={oskolokImageForPackShards(giftBalance)}
                   style={styles.giftShardImg}
-                  resizeMode="contain"
+                  contentFit="contain"
                 />
                 <Text style={styles.giftBalanceText}>{giftBalance}</Text>
               </View>
@@ -1036,7 +1042,7 @@ export default function FriendsScreen() {
                       <Image
                         source={oskolokImageForPackShards(gift.costShards)}
                         style={styles.giftCostShardImg}
-                        resizeMode="contain"
+                        contentFit="contain"
                       />
                     </View>
                   </TouchableOpacity>

@@ -1,5 +1,6 @@
 import type { LessonTeachingNote } from './lesson_data_types';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
+import { stableShuffleAwayFromFirst } from './personal_plan_option_ordering';
 
 export type PersonalPlanChooseNaturalPhraseItem = {
   id: string;
@@ -41,13 +42,12 @@ function choiceExplanationForPhrase(phraseEnglish: string, note?: LessonTeaching
 }
 
 function optionDistractors(allAnswers: string[], correctAnswer: string): string[] {
-  const distractors = allAnswers.filter((answer) => answer !== correctAnswer);
-  if (distractors.length <= 3) return distractors;
-  return compactUnique([
-    distractors[0],
-    distractors[1],
-    distractors[distractors.length - 1],
-  ]);
+  const distractors = compactUnique(allAnswers.filter((answer) => answer !== correctAnswer));
+  if (distractors.length <= 7) return distractors;
+  // Детерминированно отбираем 7 дистракторов равномерно по списку (без рандома).
+  const last = distractors.length - 1;
+  const picks = [0, 1, 2, 3, Math.floor(last / 2), last - 1, last];
+  return compactUnique(picks.map((i) => distractors[i]));
 }
 
 export function getPersonalPlanChooseNaturalPhraseItems(
@@ -63,7 +63,11 @@ export function getPersonalPlanChooseNaturalPhraseItems(
     .filter((phrase) => requestedIds.has(String(phrase.id)))
     .map((phrase) => {
       const meaningNote = [...phrase.words].reverse().find((word) => word.teachingNote)?.teachingNote;
-      const options = compactUnique([phrase.english, ...optionDistractors(allAnswers, phrase.english)]).slice(0, 4);
+      const options = stableShuffleAwayFromFirst(
+        compactUnique([phrase.english, ...optionDistractors(allAnswers, phrase.english)]).slice(0, 8),
+        `${lesson.id}:${phrase.id}:choose-natural`,
+        (option) => option === phrase.english,
+      );
 
       return {
         id: String(phrase.id),

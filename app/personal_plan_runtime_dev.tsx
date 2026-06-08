@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { safeRouterBack } from './navigation_back';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
@@ -143,7 +144,7 @@ export default function PersonalPlanRuntimeDevScreen() {
     }
     const cleanAnswer = selectedAnswer.trim();
     if (!cleanAnswer) {
-      setMessage('Выберите ответ или введите фразу.');
+      setMessage('Выбери ответ или введи фразу.');
       return;
     }
 
@@ -218,7 +219,7 @@ export default function PersonalPlanRuntimeDevScreen() {
         <View style={styles.header}>
           <TouchableOpacity
             activeOpacity={0.78}
-            onPress={() => router.back()}
+            onPress={() => safeRouterBack(router, '/personal_plan')}
             accessibilityRole="button"
             accessibilityLabel="Назад"
             style={[styles.back, { backgroundColor: t.bgSurface2, borderColor: cardBorder }]}
@@ -233,7 +234,7 @@ export default function PersonalPlanRuntimeDevScreen() {
           </View>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
           <View style={styles.dayRow}>
             {dayChoices.map((choice) => {
               const active = choice === selectedDayIndex;
@@ -448,7 +449,7 @@ export default function PersonalPlanRuntimeDevScreen() {
                       onChangeText={setSelectedAnswer}
                       autoCapitalize="none"
                       autoCorrect={false}
-                      placeholder="Введите английскую фразу"
+                      placeholder="Введи английскую фразу"
                       placeholderTextColor={t.textMuted}
                       testID="plan-runtime-free-input"
                       style={[

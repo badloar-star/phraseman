@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import {
   AppState, View, Text, TouchableOpacity, StyleSheet, Animated, Pressable, useWindowDimensions,
+  InteractionManager,
 } from 'react-native';
 import Reanimated, {
   cancelAnimation,
@@ -17,6 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
+import TapScale from '../components/TapScale';
 import ScreenGradient from '../components/ScreenGradient';
 import ArenaMatchBackdrop from '../components/ArenaMatchBackdrop';
 import AvatarView from '../components/AvatarView';
@@ -87,7 +89,8 @@ export default function DuelGameScreen() {
   const useMock = useBotMock || useRoom;
   useEffect(() => {
     let cancelled = false;
-    void (async () => {
+    const task = InteractionManager.runAfterInteractions(() => {
+      void (async () => {
       if (legacyGhostLink) {
         emitAppEvent('action_toast', actionToastTri('info', {
           ru: 'Этот режим больше недоступен.',
@@ -120,8 +123,9 @@ export default function DuelGameScreen() {
         return;
       }
       setEntryAllowed(true);
-    })();
-    return () => { cancelled = true; };
+      })();
+    });
+    return () => { cancelled = true; task.cancel(); };
   }, [legacyGhostLink, router, sessionId]);
 
   useEffect(() => {
@@ -180,7 +184,13 @@ export default function DuelGameScreen() {
   useEffect(() => {
     if (phase !== 'acceptance') return;
     const id = setInterval(() => setAcceptTimeTick((n) => n + 1), 500);
-    return () => clearInterval(id);
+    const sub = AppState.addEventListener('change', (nextState) => {
+      if (nextState !== 'active') clearInterval(id);
+    });
+    return () => {
+      clearInterval(id);
+      sub.remove();
+    };
   }, [phase]);
 
   useEffect(() => {
@@ -237,6 +247,9 @@ export default function DuelGameScreen() {
   const xpPopupOpacity = useRef(new Animated.Value(0)).current;
 
   // Трекинг бонусов внутри матча
+  const prevQuestionIndexRef = useRef(currentQuestionIndex);
+  // Индекс вопроса, на который реально дали ответ (для отличия таймаута от нормального перехода)
+  const answeredQuestionIndexRef = useRef<number>(-1);
   const correctStreakRef = useRef(0);
   const firstCorrectDone = useRef(false);
   const myCorrectRef = useRef(0);
@@ -530,6 +543,7 @@ export default function DuelGameScreen() {
       : Math.max(0, to - questionTimeLeft);
 
     myTotalRef.current += 1;
+    answeredQuestionIndexRef.current = currentQuestionIndex;
     if (isCorrect) {
       correctStreakRef.current += 1;
       myCorrectRef.current += 1;
@@ -654,6 +668,16 @@ export default function DuelGameScreen() {
         is_mock: useMock ? 1 : 0,
       });
     }
+    // Если вопрос сменился, а на предыдущий вопрос ответа не было (таймаут) — сбрасываем streak.
+    // Сравниваем именно индекс отвеченного вопроса, а не hasAnswered (тот успевает сброситься
+    // в false к моменту смены индекса и при нормальном переходе обнулял бы серию ошибочно).
+    if (
+      currentQuestionIndex !== prevQuestionIndexRef.current &&
+      answeredQuestionIndexRef.current !== prevQuestionIndexRef.current
+    ) {
+      correctStreakRef.current = 0;
+    }
+    prevQuestionIndexRef.current = currentQuestionIndex;
     prevPhase.current = phase;
   }, [currentQuestionIndex, phase, totalQuestions, useMock]);
 
@@ -877,9 +901,9 @@ export default function DuelGameScreen() {
               pl: 'Zgłoś problem w pytaniu Areny',
             })}
           />
-          <TouchableOpacity onPress={() => setShowExitConfirm(true)} style={styles.exitBtn}>
+          <TapScale onPress={() => setShowExitConfirm(true)} style={styles.exitBtn}>
             <Ionicons name="close" size={22} color={t.textMuted} />
-          </TouchableOpacity>
+          </TapScale>
         </View>
         {effectivePlayers.slice(0, 2).map((p, idx) => {
           const isMe = p.playerId === userId;
@@ -936,7 +960,7 @@ export default function DuelGameScreen() {
               onPress={() => handleAnswer(option)}
               disabled={hasAnswered}
               activeOpacity={0.8}
-              style={[styles.optionBtn, { backgroundColor: bg, borderColor: border }]}
+              style={[styles.optionBtn, { backgroundColor: bg, borderColor: border }, hasAnswered && { opacity: 0.5 }]}
             >
               <View style={[styles.optionLetter, { backgroundColor: t.bgSurface2 }]}>
                 <Text style={[{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }]}>
@@ -1020,24 +1044,22 @@ export default function DuelGameScreen() {
             <Text style={[styles.confirmSub, { color: t.textMuted, fontSize: f.body }]}>
               {arenaGameStr(lang, 'forfeitSub')}
             </Text>
-            <TouchableOpacity
+            <TapScale
               onPress={confirmForfeit}
               style={[styles.confirmBtn, { backgroundColor: t.wrong }]}
-              activeOpacity={0.8}
             >
               <Text style={[styles.confirmBtnText, { color: '#fff', fontSize: f.body }]}>
                 {arenaGameStr(lang, 'forfeitConfirm')}
               </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
+            </TapScale>
+            <TapScale
               onPress={() => setShowExitConfirm(false)}
               style={[styles.confirmBtn, { backgroundColor: t.bgSurface2 }]}
-              activeOpacity={0.8}
             >
               <Text style={[styles.confirmBtnText, { color: t.textPrimary, fontSize: f.body }]}>
                 {arenaGameStr(lang, 'forfeitContinue')}
               </Text>
-            </TouchableOpacity>
+            </TapScale>
           </Pressable>
         </Pressable>
       )}

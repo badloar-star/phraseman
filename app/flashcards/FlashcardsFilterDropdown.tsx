@@ -51,7 +51,7 @@ export default function FlashcardsFilterDropdown({
           elevation: 50,
         }}
       >
-        <ScrollView bounces={false} showsVerticalScrollIndicator={false} style={{ borderRadius: 14, overflow: 'hidden' }}>
+        <ScrollView decelerationRate="normal" bounces={false} showsVerticalScrollIndicator={false} style={{ borderRadius: 14, overflow: 'hidden' }}>
           <TouchableOpacity
             onPress={() => onSelect('all')}
             style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 }}

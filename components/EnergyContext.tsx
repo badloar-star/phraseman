@@ -4,9 +4,11 @@ import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
-import { formatTimeUntilRecovery, getRecoveryIntervalMs } from '../app/energy_system';
+import { formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
 import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
+import { scheduleEnergyFullNotification, cancelEnergyFullNotification } from '../app/notifications';
+import type { Lang } from '../constants/i18n';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -117,6 +119,16 @@ async function readDynMax(): Promise<number> {
   }
 }
 
+/** Язык интерфейса для текста уведомления (тот же источник, что в _layout). */
+async function readNotificationLang(): Promise<Lang> {
+  try {
+    const raw = await AsyncStorage.getItem('app_lang');
+    return raw === 'uk' ? 'uk' : raw === 'es' ? 'es' : 'ru';
+  } catch {
+    return 'ru';
+  }
+}
+
 // ── Provider ─────────────────────────────────────────────────────────────────
 export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const [energy, setEnergy] = useState(MAX_ENERGY);
@@ -138,6 +150,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const isUnlimitedRef = useRef(false);
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const loadRunnerRef = useRef<(() => Promise<void>) | null>(null);
+  const syncEnergyPushRef = useRef<(() => Promise<void>) | null>(null);
 
   // ── Load and apply recovery ────────────────────────────────────────────────
   const runLoad = useCallback(async () => {
@@ -214,6 +227,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     } catch {
     } finally {
       setEnergyReady(true);
+      // Синхронизируем energy-full пуш с актуальным состоянием:
+      // полная/безлимит → отмена, неполная → (пере)планирование на точный момент.
+      void syncEnergyPushRef.current?.();
     }
   }, []);
   const load = useCallback(async () => {
@@ -320,6 +336,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
           }
         }
       } catch {}
+      // База могла быть неполной от прошлых трат — синхронизируем пуш.
+      void syncEnergyPushRef.current?.();
       return true;
     }
 
@@ -334,6 +352,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
     const state: StoredEnergy = { current: newEnergy, lastRecoveryTime: newLastRecovery };
     await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+
+    // Энергия упала ниже максимума → (пере)планируем пуш о восстановлении.
+    void syncEnergyPushRef.current?.();
 
     return true;
   }, []);
@@ -377,8 +398,38 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       try { await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state)); } catch { /* best-effort */ }
     }
 
+    // Энергия потрачена → (пере)планируем пуш о полном восстановлении.
+    void syncEnergyPushRef.current?.();
+
     return true;
   }, []);
+
+  // ── Sync energy-full push с текущим состоянием ──────────────────────────────
+  // Безлимит/полная энергия → отменяем пуш. Иначе планируем на момент полного
+  // восстановления. Best-effort: не должен ломать трату энергии при ошибке.
+  const syncEnergyFullNotification = useCallback(async () => {
+    try {
+      if (isUnlimitedRef.current) {
+        await cancelEnergyFullNotification();
+        return;
+      }
+      const current = energyRef.current;
+      const dynMax = dynMaxRef.current;
+      if (current >= dynMax) {
+        await cancelEnergyFullNotification();
+        return;
+      }
+      const secondsUntilFull = secondsUntilEnergyFull(
+        current,
+        dynMax,
+        recoveryMsRef.current,
+        lastRecoveryRef.current,
+      );
+      const lang = await readNotificationLang();
+      await scheduleEnergyFullNotification(secondsUntilFull, lang);
+    } catch { /* best-effort: пуш не критичен */ }
+  }, []);
+  syncEnergyPushRef.current = syncEnergyFullNotification;
 
   // ── Force reload (call after tester toggle in settings) ────────────────────
   const reload = useCallback(async () => { await load(); }, [load]);

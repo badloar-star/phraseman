@@ -51,7 +51,7 @@ describe('personal plan exercise runtime', () => {
     expect(item).toMatchObject({
       exerciseType: 'plan_choose_natural_phrase',
       phraseId: herePhrase.id,
-      promptRu: 'Выберите естественную фразу.',
+      promptRu: 'Выбери естественную фразу.',
       targetRu: 'Я здесь.',
       correctAnswer: "I'm here.",
       hintsEnabled: false,

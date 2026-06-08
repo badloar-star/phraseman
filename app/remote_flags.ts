@@ -14,6 +14,10 @@
 // app always works offline and on first launch.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export const FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT = 2;
+
 export type RemoteNumberKey =
   | 'free_lesson_limit'
   | 'free_daily_quiz_limit'
@@ -40,7 +44,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   arena_shard_refill_slots: 5,
   max_energy: 5,
   energy_recovery_interval_ms: 10 * 60 * 1000,
-  free_trainer_sessions_per_day: 2,
+  free_trainer_sessions_per_day: FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT,
   trainer_ab_a_pct: 0,
   trainer_ab_b_pct: 100,
   trainer_ab_c_pct: 0,
@@ -172,16 +176,26 @@ export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
  * config changes). djb2 hash of `${userId}:${salt}` → bucket by cumulative pct.
  * Groups: 'a' | 'b' | 'c'. Defaults to 'b' if all pcts are zero.
  */
-export function getTrainerAbGroup(userId: string): 'a' | 'b' | 'c' {
+export type TrainerAbGroup = 'A' | 'B' | 'C';
+
+export function getTrainerAbGroup(userId: string): TrainerAbGroup {
   const a = getRemoteNumber('trainer_ab_a_pct');
   const b = getRemoteNumber('trainer_ab_b_pct');
   const c = getRemoteNumber('trainer_ab_c_pct');
   const total = a + b + c;
-  if (total <= 0) return 'b';
+  if (total <= 0) return 'B';
   const bucket = hashToUnit(`${userId}:trainer_sessions_ab`) * total;
-  if (bucket < a) return 'a';
-  if (bucket < a + b) return 'b';
-  return 'c';
+  if (bucket < a) return 'A';
+  if (bucket < a + b) return 'B';
+  return 'C';
+}
+
+export function trainerSessionsForGroup(group: TrainerAbGroup): number {
+  switch (group) {
+    case 'A': return 1;
+    case 'B': return 2;
+    case 'C': return 3;
+  }
 }
 
 /** Deterministic paywall variant for a user: 'v1' | 'v2' by paywall_v2_pct. */
@@ -198,6 +212,40 @@ function hashToUnit(input: string): number {
     h = ((h << 5) + h + input.charCodeAt(i)) >>> 0;
   }
   return (h % 100000) / 100000;
+}
+
+// ── Trainer A/B cached session count ───────────────────────────────────────
+// Caches the assigned group per userId+config-sig so the group never jumps
+// between sessions when the split is live-updated via Firestore.
+const TRAINER_AB_CACHE_KEY = 'trainer_sessions_ab_group_v1';
+
+function trainerAbConfigSig(): string {
+  return `${getRemoteNumber('trainer_ab_a_pct')}-${getRemoteNumber('trainer_ab_b_pct')}-${getRemoteNumber('trainer_ab_c_pct')}`;
+}
+
+
+export async function getEffectiveFreeTrainerSessions(userId: string | null): Promise<number> {
+  const hasAbSplit =
+    getRemoteNumber('trainer_ab_a_pct') +
+    getRemoteNumber('trainer_ab_b_pct') +
+    getRemoteNumber('trainer_ab_c_pct') > 0;
+
+  if (!hasAbSplit || !userId) return getFreeTrainerSessionsPerDay();
+
+  const sig = trainerAbConfigSig();
+  let group: TrainerAbGroup | null = null;
+  const cached = await AsyncStorage.getItem(TRAINER_AB_CACHE_KEY).catch(() => null);
+  if (cached) {
+    const [cachedSig, cachedGroup] = cached.split('|');
+    if (cachedSig === sig && (cachedGroup === 'A' || cachedGroup === 'B' || cachedGroup === 'C')) {
+      group = cachedGroup as TrainerAbGroup;
+    }
+  }
+  if (!group) {
+    group = getTrainerAbGroup(userId);
+    await AsyncStorage.setItem(TRAINER_AB_CACHE_KEY, `${sig}|${group}`).catch(() => {});
+  }
+  return trainerSessionsForGroup(group);
 }
 
 /** Test-only reset. */

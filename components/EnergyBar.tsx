@@ -1,16 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, Text, useWindowDimensions, View } from 'react-native';
-import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../constants/motion';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { Animated, Text, useWindowDimensions, View } from 'react-native';
+import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { useEnergy } from './EnergyContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
-import { triLang } from '../constants/i18n';
 import EnergyIcon from './EnergyIcon';
 import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
-import EnergyRefillShardModal from './EnergyRefillShardModal';
-import { hapticTap } from '../hooks/use-haptics';
-import { BRAND_SHARDS_ES } from '../constants/terms_es';
 
 interface Props {
   size?: number; // icon size, default 30
@@ -23,23 +19,12 @@ interface Props {
  */
 const BONUS_COLOR = '#FFD700'; // gold for bonus slots
 
-export default function EnergyBar({ size = 30, maxWidth }: Props) {
+function EnergyBar({ size = 30, maxWidth }: Props) {
   const { energy, bonusEnergy, maxEnergy, formattedTime, isUnlimited } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
   const { width: windowWidth } = useWindowDimensions();
-  const [refillModal, setRefillModal] = useState(false);
-  const energyLongPressHint = triLang(lang, {
-    ru: 'Долгое нажатие — восстановить энергию за осколки',
-    uk: 'Довге натискання — відновити енергію за осколки',
-    es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,
-    'pt-BR': 'Mantenha pressionado para recuperar energia com fragmentos',
-    vi: 'Nhấn giữ để hồi năng lượng bằng mảnh',
-    id: 'Tahan untuk memulihkan energi dengan shard',
-    tr: 'Parçalarla enerji yenilemek için basılı tut',
-    pl: 'Przytrzymaj, aby odzyskać energię za odłamki',
-  });
 
   // Scale bounce when a new energy icon fills during restore
   // Initialize with 10 (max possible) to handle dynamic maxEnergy growth
@@ -127,14 +112,6 @@ export default function EnergyBar({ size = 30, maxWidth }: Props) {
 
   return (
     <View style={{ alignItems: 'center' }}>
-      <Pressable
-        onLongPress={() => {
-          hapticTap();
-          setRefillModal(true);
-        }}
-        delayLongPress={480}
-        accessibilityHint={energyLongPressHint}
-      >
       <View style={{ flexDirection: 'row', alignItems: 'center', width: energyLayout.width, maxWidth: energyLayout.maxWidth }}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
           <Animated.View key={i} style={{ marginLeft: i > 0 ? overlap : 0, transform: [{ scale: scaleAnims[i] }] }}>
@@ -165,13 +142,13 @@ export default function EnergyBar({ size = 30, maxWidth }: Props) {
           </Animated.View>
         ))}
       </View>
-      </Pressable>
       {!isUnlimited && energy < maxEnergy && !!formattedTime && (
         <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
           {formattedTime}
         </Text>
       )}
-      <EnergyRefillShardModal visible={refillModal} onClose={() => setRefillModal(false)} />
     </View>
   );
 }
+
+export default memo(EnergyBar);

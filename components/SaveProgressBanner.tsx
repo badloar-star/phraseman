@@ -22,7 +22,7 @@
 //   • После успешного логина (event 'auth_provider_linked') — мгновенно скрывается.
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -64,7 +64,7 @@ async function shouldShow(): Promise<boolean> {
   return true;
 }
 
-export default function SaveProgressBanner() {
+function SaveProgressBanner() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
 
@@ -246,3 +246,5 @@ export default function SaveProgressBanner() {
     </>
   );
 }
+
+export default memo(SaveProgressBanner);

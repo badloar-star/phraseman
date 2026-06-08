@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, ViewStyle } from 'react-native';
 
 import { PREMIUM_AVATAR_AURA_ID } from '../constants/avatar_auras';
@@ -13,7 +13,7 @@ type Props = {
   animateShimmer?: boolean;
 };
 
-export default function PremiumAvatarHalo({
+function PremiumAvatarHalo({
   enabled,
   avatarSize,
   children,
@@ -29,3 +29,5 @@ export default function PremiumAvatarHalo({
     </AvatarAura>
   );
 }
+
+export default memo(PremiumAvatarHalo);

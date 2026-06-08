@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -161,7 +161,7 @@ function resolveStatsCardArt(name: StatsCardArtName, themeMode: ThemeMode): Imag
   return STATS_CARD_ART_BY_THEME[themeMode]?.[name] ?? STATS_CARD_ART[name];
 }
 
-export default function StatsCardArtSurface({
+function StatsCardArtSurface({
   children,
   name,
   radius,
@@ -207,3 +207,5 @@ export default function StatsCardArtSurface({
     </ImageBackground>
   );
 }
+
+export default memo(StatsCardArtSurface);

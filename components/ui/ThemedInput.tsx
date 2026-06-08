@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { useTheme } from '../ThemeContext';
 
@@ -11,7 +11,7 @@ type ThemedInputProps = {
   secureTextEntry?: boolean;
 };
 
-export default function ThemedInput({
+function ThemedInput({
   label,
   value,
   onChangeText,
@@ -47,6 +47,8 @@ export default function ThemedInput({
     </View>
   );
 }
+
+export default memo(ThemedInput);
 
 const styles = StyleSheet.create({
   input: {

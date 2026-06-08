@@ -1,9 +1,10 @@
 export type PlanPronunciationRecordingContract = {
-  mode: 'record_and_self_check';
+  mode: 'device_listen_score_and_retry';
   requiresMicrophonePermission: true;
-  requiresUserPlaybackBeforeCompletion: true;
-  scoringAvailable: false;
-  completionPolicy: 'completion_only_after_recording';
+  requiresUserPlaybackBeforeCompletion: false;
+  scoringAvailable: true;
+  passThreshold: 90;
+  completionPolicy: 'device_transcript_score_at_least_90';
   audioMode: {
     allowsRecording: true;
     playsInSilentMode: true;
@@ -18,25 +19,35 @@ export type PlanPronunciationRecordingState = {
   recordingUri: string | null;
   durationMs?: number;
   userPlayedRecording: boolean;
+  score?: number;
+  passed?: boolean;
 };
 
 export type PlanPronunciationAttemptPayload = {
   recordingId: string;
   recordingUri: string;
   durationMs: number;
-  userPlayedRecording: true;
-  scoringAvailable: false;
-  mode: 'practice';
-  status: 'recorded';
+  userPlayedRecording: boolean;
+  scoringAvailable: true;
+  mode: 'scored';
+  status: 'scored';
+  transcript: string;
+  score: number;
+  passed: boolean;
+  threshold: 90;
+  provider: 'device_speech_recognition';
+  scoringVersion: string;
+  recognitionConfidence: number;
 };
 
 export function buildPlanPronunciationRecordingContract(): PlanPronunciationRecordingContract {
   return {
-    mode: 'record_and_self_check',
+    mode: 'device_listen_score_and_retry',
     requiresMicrophonePermission: true,
-    requiresUserPlaybackBeforeCompletion: true,
-    scoringAvailable: false,
-    completionPolicy: 'completion_only_after_recording',
+    requiresUserPlaybackBeforeCompletion: false,
+    scoringAvailable: true,
+    passThreshold: 90,
+    completionPolicy: 'device_transcript_score_at_least_90',
     audioMode: {
       allowsRecording: true,
       playsInSilentMode: true,
@@ -51,31 +62,47 @@ export function canCompletePlanPronunciationRecording(
   state: PlanPronunciationRecordingState,
 ): boolean {
   return state.hasPermission
-    && Boolean(state.recordingUri?.trim())
     && typeof state.durationMs === 'number'
     && Number.isFinite(state.durationMs)
     && state.durationMs > 0
-    && state.userPlayedRecording;
+    && typeof state.score === 'number'
+    && Number.isFinite(state.score)
+    && state.score >= 90
+    && state.passed === true;
 }
 
 function recordingIdFromUri(uri: string): string {
   const cleanUri = uri.trim();
   const lastSegment = cleanUri.split(/[\\/]/).filter(Boolean).pop() || cleanUri;
-  return lastSegment.replace(/[^a-zA-Z0-9._-]+/g, '_') || 'local_pronunciation_recording';
+  return lastSegment.replace(/[^a-zA-Z0-9._-]+/g, '_') || 'device_speech_attempt';
 }
 
 export function buildPlanPronunciationAttemptPayload(input: {
-  recordingUri: string;
+  recordingUri?: string | null;
   durationMs: number;
-  userPlayedRecording: true;
+  userPlayedRecording: boolean;
+  transcript: string;
+  score: number;
+  passed: boolean;
+  provider: 'device_speech_recognition';
+  scoringVersion: string;
+  recognitionConfidence: number;
 }): PlanPronunciationAttemptPayload {
+  const recordingUri = input.recordingUri?.trim() || 'local://device-speech-recognition';
   return {
-    recordingId: recordingIdFromUri(input.recordingUri),
-    recordingUri: input.recordingUri.trim(),
+    recordingId: recordingIdFromUri(recordingUri),
+    recordingUri,
     durationMs: Math.max(1, Math.round(input.durationMs)),
-    userPlayedRecording: true,
-    scoringAvailable: false,
-    mode: 'practice',
-    status: 'recorded',
+    userPlayedRecording: input.userPlayedRecording,
+    scoringAvailable: true,
+    mode: 'scored',
+    status: 'scored',
+    transcript: input.transcript.trim(),
+    score: Math.max(0, Math.min(100, Math.round(input.score))),
+    passed: input.passed,
+    threshold: 90,
+    provider: input.provider,
+    scoringVersion: input.scoringVersion.trim(),
+    recognitionConfidence: Math.max(0, Math.min(1, input.recognitionConfidence)),
   };
 }

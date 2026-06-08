@@ -1,7 +1,6 @@
 import { LinearGradient } from './SafeLinearGradient';
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import {
-  Image,
   Modal,
   Pressable,
   StyleSheet,
@@ -9,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useEnergy } from './EnergyContext';
 import { useLang } from './LangContext';
@@ -25,7 +25,6 @@ import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { SHARD_MODAL_FRAME_COLORS } from '../constants/shard_modal_chrome';
 import { triLang } from '../constants/i18n';
-import { paywallGlassColor } from './paywallGlass';
 
 type Props = {
   visible: boolean;
@@ -36,11 +35,11 @@ type Props = {
  * Долгое нажатие на индикатор энергии — полный заряд базы за осколки.
  * Одна схема UI: иконка осколков + цена + «Восстановить» (активна только когда есть смысл).
  */
-export default function EnergyRefillShardModal({ visible, onClose }: Props) {
+function EnergyRefillShardModal({ visible, onClose }: Props) {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, themeMode, f } = useTheme();
-  const shardModalCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
+  const shardModalCardBg = t.bgCard;
   const { energy, maxEnergy, isUnlimited, reload } = useEnergy();
   const [busy, setBusy] = useState(false);
 
@@ -125,7 +124,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
     pl: 'Masz energię bez limitu (Premium albo tryb testowy). Odłamki nie są wydawane na odnowienie.',
   });
   const hintFull = triLang(lang, {
-    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в уроке или квизе — тогда сможешь купить полное восстановление за осколки.`,
+    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в уроке или вызове — тогда сможешь купить полное восстановление за осколки.`,
     uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у уроці або квізі — тоді зможеш купити повне відновлення за осколки.`,
     es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de fragmentos.`,
     'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com fragmentos.`,
@@ -198,7 +197,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
 
             {!isUnlimited && (
               <View style={styles.priceRow}>
-                <Image source={oskolokImageForPackShards(cost)} style={{ width: 36, height: 36 }} resizeMode="contain" />
+                <Image source={oskolokImageForPackShards(cost)} style={{ width: 36, height: 36 }} contentFit="contain" />
                 <Text style={[styles.priceNum, { color: t.textPrimary }]}>{cost}</Text>
               </View>
             )}
@@ -210,7 +209,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
                   if (!canRefill) {
                     emitAppEvent('action_toast', {
                       type: 'info',
-                      messageRu: 'База уже полная — сначала потрать ⚡ в уроке или квизе.',
+                      messageRu: 'База уже полная — сначала потрать ⚡ в уроке или вызове.',
                       messageUk: 'База вже повна — спочатку витрать ⚡ в уроці або квізі.',
                       messageEs:
                         'Ya tienes la energía al máximo: primero gasta ⚡ en una lección o un cuestionario.',
@@ -231,7 +230,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
                 disabled={busy}
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                  <Image source={oskolokImageForPackShards(cost)} style={{ width: 22, height: 22 }} resizeMode="contain" />
+                  <Image source={oskolokImageForPackShards(cost)} style={{ width: 22, height: 22 }} contentFit="contain" />
                   <Text style={[styles.btnPrimaryText, { fontSize: f.body, color: t.correctText }]}>
                     {refillLabel} · {cost}
                   </Text>
@@ -256,6 +255,8 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
     </Modal>
   );
 }
+
+export default memo(EnergyRefillShardModal);
 
 const styles = StyleSheet.create({
   overlayRoot: {

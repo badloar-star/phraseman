@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "paywall-main",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3458", "C:/appsprojects/phraseman/.claude/paywall-preview"],
+      "port": 3458
+    },
+    {
+      "name": "paywall_preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3457", "C:/appsprojects/phraseman", "--no-clipboard"],
+      "port": 3457
+    }
+  ]
+}

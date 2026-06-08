@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import {
-  View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, Image, PanResponder, Share,
+  View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, PanResponder, Share,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
+import TapScale from './TapScale';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { Ionicons } from '@expo/vector-icons';
+import { Image as ExpoImage } from 'expo-image';
 import { useAchievement } from './AchievementContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -15,7 +17,7 @@ import { STORE_URL } from '../app/config';
 import { buildAchievementShareMessage } from '../app/achievement_share';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
+import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
 import { useOverlayVisible } from './OverlayArbiter';
 import {
@@ -42,7 +44,7 @@ const TOAST_VECTOR_ICON_SIZE = 38;
  * Монтируется один раз в корне приложения (_layout.tsx), поверх всего.
  * Работает с очередью из AchievementContext.
  */
-export default function AchievementToast() {
+function AchievementToast() {
   const { currentToast, dismissCurrent } = useAchievement();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang } = useLang();
@@ -66,12 +68,17 @@ export default function AchievementToast() {
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [displayedToast, setDisplayedToast] = useState<typeof currentToast>(null);
+  const [toastImageFailed, setToastImageFailed] = useState(false);
 
   const SWIPE_THRESHOLD = 30;
 
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
   }, []);
+
+  useEffect(() => {
+    setToastImageFailed(false);
+  }, [displayedToast?.id]);
 
   const panResponder = useRef(
     PanResponder.create({
@@ -286,6 +293,7 @@ export default function AchievementToast() {
   const color = CAT_COLOR[displayedToast.category] ?? '#888';
   const modalAccent = rewardModalAccentColor(themeMode, t);
   const achievementBorderColor = color.startsWith('#') && color.length === 7 ? `${color}88` : color;
+  const toastImageSource = ACHIEVEMENT_IMAGE[displayedToast.id];
 
   return (
     <>
@@ -318,8 +326,17 @@ export default function AchievementToast() {
         >
           {/* Иконка */}
           <View style={[s.iconWrap, { backgroundColor: color + '22', borderColor: color + '55' }]}>
-            {ACHIEVEMENT_IMAGE[displayedToast.id]
-              ? <Image source={ACHIEVEMENT_IMAGE[displayedToast.id]} style={s.toastAchievementImage} resizeMode="contain" />
+            {toastImageSource && !toastImageFailed
+              ? (
+                <ExpoImage
+                  source={toastImageSource}
+                  style={s.toastAchievementImage}
+                  contentFit="contain"
+                  cachePolicy="memory-disk"
+                  transition={0}
+                  onError={() => setToastImageFailed(true)}
+                />
+              )
               : <Ionicons name={iconName} size={TOAST_VECTOR_ICON_SIZE} color={color} />
             }
           </View>
@@ -384,7 +401,7 @@ export default function AchievementToast() {
                   {desc}
                 </Text>
 
-                <TouchableOpacity
+                <TapScale
                   style={s.shareRow}
                   onPress={async () => {
                     const msg = buildAchievementShareMessage(REPORT_SCREENS_RUSSIAN_ONLY ? 'ru' : lang, name, STORE_URL);
@@ -395,9 +412,9 @@ export default function AchievementToast() {
                   <Text style={{ color: modalAccent, fontSize: f.sub, fontWeight: '700' }}>
                     {shareLabel}
                   </Text>
-                </TouchableOpacity>
+                </TapScale>
 
-                <TouchableOpacity
+                <TapScale
                   onPress={handleModalClose}
                   style={[
                     s.closeBtn,
@@ -410,7 +427,7 @@ export default function AchievementToast() {
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                     {closeLabel}
                   </Text>
-                </TouchableOpacity>
+                </TapScale>
               </View>
             </Pressable>
           </Pressable>
@@ -419,6 +436,8 @@ export default function AchievementToast() {
     </>
   );
 }
+
+export default memo(AchievementToast);
 
 const s = StyleSheet.create({
   container: {

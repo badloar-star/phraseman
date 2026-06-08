@@ -3,6 +3,7 @@ import {
   Animated as RNAnim,
   BackHandler,
   type DimensionValue,
+  InteractionManager,
   LayoutChangeEvent,
   ScrollView,
   StatusBar,
@@ -744,15 +745,17 @@ export default function ShardsShopScreen() {
     if (isDevStoreBypass) return;
     // initial state уже взят из peekShardsPriceCacheSync — обновляемся в фоне без флэша.
     let m = true;
-    void loadShardsPriceCache().then((c) => {
-      if (!m) return;
-      // setState только если реально что-то изменилось (избегаем ре-рендера всего экрана).
-      const sameKeys =
-        Object.keys(c).length === Object.keys(pricesFromDisk).length &&
-        Object.keys(c).every((k) => pricesFromDisk[k]?.priceString === c[k]?.priceString);
-      if (!sameKeys) setPricesFromDisk(c);
+    const task = InteractionManager.runAfterInteractions(() => {
+      void loadShardsPriceCache().then((c) => {
+        if (!m) return;
+        // setState только если реально что-то изменилось (избегаем ре-рендера всего экрана).
+        const sameKeys =
+          Object.keys(c).length === Object.keys(pricesFromDisk).length &&
+          Object.keys(c).every((k) => pricesFromDisk[k]?.priceString === c[k]?.priceString);
+        if (!sameKeys) setPricesFromDisk(c);
+      });
     });
-    return () => { m = false; };
+    return () => { m = false; task.cancel(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -809,14 +812,14 @@ export default function ShardsShopScreen() {
     pl: 'Odłamki wiedzy',
   });
   const heroSub = triLang(lang, {
-    ru: 'Один пакет — больше действий: энергия, бонусы, клуб и быстрые покупки в приложении.',
-    uk: 'Один пакет — більше дій: енергія, бонуси, клуб і швидкі покупки в застосунку.',
-    es: 'Un paquete, más acciones: energía, bonificaciones, club y compras rápidas en la app.',
-    'pt-BR': 'Um pacote, mais ações: energia, bônus, clube e compras rápidas no app.',
-    vi: 'Một gói, thêm nhiều hành động: năng lượng, thưởng, câu lạc bộ và mua nhanh trong ứng dụng.',
-    id: 'Satu paket, lebih banyak aksi: energi, bonus, klub, dan pembelian cepat di aplikasi.',
-    tr: 'Tek paket, daha fazla aksiyon: enerji, bonuslar, kulüp ve uygulamada hızlı satın almalar.',
-    pl: 'Jeden pakiet, więcej akcji: energia, bonusy, klub i szybkie zakupy w aplikacji.',
+    ru: 'Трать осколки на вызовы, клуб и всё, что нужно прямо сейчас.',
+    uk: 'Один пакет — більше дій: бонуси, клуб і швидкі покупки в застосунку.',
+    es: 'Un paquete, más acciones: bonificaciones, club y compras rápidas en la app.',
+    'pt-BR': 'Um pacote, mais ações: bônus, clube e compras rápidas no app.',
+    vi: 'Một gói, thêm nhiều hành động: thưởng, câu lạc bộ và mua nhanh trong ứng dụng.',
+    id: 'Satu paket, lebih banyak aksi: bonus, klub, dan pembelian cepat di aplikasi.',
+    tr: 'Tek paket, daha fazla aksiyon: bonuslar, kulüp ve uygulamada hızlı satın almalar.',
+    pl: 'Jeden pakiet, więcej akcji: bonusy, klub i szybkie zakupy w aplikacji.',
   });
 
   const remainingNeed = useMemo(() => {
@@ -838,7 +841,7 @@ export default function ShardsShopScreen() {
   const needLine = useMemo(() => {
     if (remainingNeed <= 0) return null;
     return triLang(lang, {
-      ru: `Не хватает ещё ${remainingNeed} осколков — выбери пакет ниже.`,
+      ru: `Нужно ещё ${remainingNeed} осколков — выбери пакет ниже.`,
       uk: `Не вистачає ще ${remainingNeed} осколків — обери пакет нижче.`,
       es: `Te faltan ${remainingNeed} ${shardsEsLc} — elige un paquete abajo.`,
       'pt-BR': `Faltam mais ${remainingNeed} fragmentos — escolha um pacote abaixo.`,
@@ -892,7 +895,7 @@ export default function ShardsShopScreen() {
         if (!(await Purchases.isConfigured())) {
           emitAppEvent('action_toast', {
             type: 'error',
-            messageRu: 'Платежи временно недоступны. Подождите несколько секунд и попробуйте снова.',
+            messageRu: 'Платежи временно недоступны. Подожди несколько секунд и попробуй снова.',
             messageUk: 'Платежі тимчасово недоступні. Зачекайте кілька секунд і спробуйте знову.',
             messageEs: 'Pagos no disponibles. Espera unos segundos e inténtalo de nuevo.',
             messagePtBr: 'Pagamentos temporariamente indisponíveis. Aguarde alguns segundos e tente novamente.',
@@ -907,7 +910,7 @@ export default function ShardsShopScreen() {
         if (!pkg) {
           emitAppEvent('action_toast', {
             type: 'error',
-            messageRu: 'Магазин недоступен. Проверьте Offering «shards» в RevenueCat.',
+            messageRu: 'Магазин временно недоступен. Попробуй позже.',
             messageUk: 'Магазин недоступний. Перевірте Offering «shards» у RevenueCat.',
             messageEs:
               'Tienda no disponible. Revisa la oferta «shards» en RevenueCat.',
@@ -978,7 +981,7 @@ export default function ShardsShopScreen() {
         if (e?.userCancelled) return;
         emitAppEvent('action_toast', {
           type: 'error',
-          messageRu: e?.message || 'Ошибка покупки. Попробуйте еще раз.',
+          messageRu: e?.message || 'Ошибка покупки. Попробуй ещё раз.',
           messageUk: e?.message || 'Помилка покупки. Спробуйте ще раз.',
           messageEs: e?.message || 'Error en la compra. Inténtalo de nuevo.',
           messagePtBr: e?.message || 'Erro na compra. Tente novamente.',
@@ -1335,6 +1338,7 @@ export default function ShardsShopScreen() {
 
           <ScrollView
             style={{ zIndex: 0 }}
+            decelerationRate="normal"
             contentContainerStyle={{
               paddingHorizontal: 16,
               paddingBottom: 40,

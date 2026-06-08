@@ -99,6 +99,45 @@ describe('personal plan missing-word live route', () => {
     ]));
   });
 
+  it('rejects generated missing-word distractors copied from the same phrase', () => {
+    const issues = validatePersonalPlanMissingWordItemQuality([
+      {
+        id: 'copied-phrase-token',
+        promptRu: 'Bad fixture.',
+        promptUk: 'Bad fixture.',
+        displayEnglish: 'The next steps are ___.',
+        correctAnswer: 'clear',
+        options: ['clear', 'next', 'steps', 'today'],
+        fullAnswer: 'The next steps are clear.',
+        grammarTags: ['phrase'],
+        vocabularyTags: ['phrase'],
+        explanation: {
+          id: 'bad-copied-token-exp',
+          titleRu: 'Bad fixture.',
+          correctRu: 'Bad fixture.',
+          wrongRu: 'Bad fixture.',
+        },
+      },
+    ]);
+
+    expect(issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({ code: 'missing_word_option_reuses_phrase_token' }),
+    ]));
+  });
+
+  it('keeps generated personal-plan missing-word options from exposing the same phrase tokens', () => {
+    const items = getPersonalPlanMissingWordItems({
+      lessonId: 'mitap_d001_content_unit',
+      contentUnitIds: ['mitap_d001_content_unit_phrase_1'],
+    });
+
+    expect(items).toHaveLength(1);
+    expect(items[0].fullAnswer).toBe('The next steps are clear.');
+    expect(items[0].correctAnswer).toBe('clear');
+    expect(items[0].options).not.toEqual(expect.arrayContaining(['next', 'steps', 'are']));
+    expect(validatePersonalPlanMissingWordItemQuality(items)).toEqual([]);
+  });
+
   it('does not return runtime missing-word items that fail the strict quality gate', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_missing_word_items.ts'), 'utf8');
 

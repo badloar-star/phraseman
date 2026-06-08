@@ -1,6 +1,7 @@
 import { LinearGradient } from './SafeLinearGradient';
 import React from 'react';
-import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import { ImageSourcePropType, StyleSheet, View } from 'react-native';
+import { Image } from 'expo-image';
 import type { Theme, ThemeMode } from '../constants/theme';
 
 const REWARD_MODAL_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
@@ -27,7 +28,7 @@ export function RewardModalBackdrop({ themeMode, intensity = 'regular' }: Reward
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Image
         source={REWARD_MODAL_BACKDROPS[themeMode]}
-        resizeMode="cover"
+        contentFit="cover"
         style={[
           StyleSheet.absoluteFill,
           { opacity: rewardModalImageOpacity(themeMode) },
@@ -52,7 +53,7 @@ export function RewardModalPanelBackdrop({
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Image
         source={REWARD_MODAL_BACKDROPS[themeMode]}
-        resizeMode="cover"
+        contentFit="cover"
         style={[
           StyleSheet.absoluteFill,
           { opacity: opacity ?? rewardModalPanelImageOpacity(themeMode) },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { COMPASS_GRADIENTS, COMPASS_SURFACE_LOCATIONS } from '../constants/compassTheme';
@@ -10,7 +10,7 @@ type CompassDepthSurfaceProps = {
   cream?: boolean;
 };
 
-export default function CompassDepthSurface({
+function CompassDepthSurface({
   radius,
   selected = false,
   quiet = false,
@@ -44,6 +44,8 @@ export default function CompassDepthSurface({
     </View>
   );
 }
+
+export default memo(CompassDepthSurface);
 
 const styles = StyleSheet.create({
   topShelf: {

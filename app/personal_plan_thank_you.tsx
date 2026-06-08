@@ -115,14 +115,14 @@ const styles = StyleSheet.create({
   },
   card: {
     borderWidth: 1,
-    borderRadius: 26,
+    borderRadius: 14,
     padding: 22,
     alignItems: 'center',
   },
   iconWrap: {
     width: 76,
     height: 76,
-    borderRadius: 24,
+    borderRadius: 14,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   supportBox: {
     width: '100%',
     borderWidth: 1,
-    borderRadius: 18,
+    borderRadius: 14,
     padding: 14,
     flexDirection: 'row',
     gap: 10,
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   primary: {
     width: '100%',
     minHeight: 56,
-    borderRadius: 18,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',

@@ -8,7 +8,7 @@ import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../a
 export type { Lang };
 const RU = {
   tabs: {
-    home: 'Главная', lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки',
+    home: 'Главная', lessons: 'Уроки', quizzes: 'Вызовы', flashcards: 'Карточки',
     settings: 'Настройки',
   },
   home: {
@@ -41,7 +41,7 @@ const RU = {
   lesson: {
     undo: 'Отменить', cheat: 'Шпаргалка', theory: 'Теория',
     oral: 'Устно', next: 'Далее', check: 'Проверить',
-    typeHere: 'Введите ответ...', listenTitle: 'Слушаю...',
+    typeHere: 'Введи ответ...', listenTitle: 'Слушаю...',
     noArticle: 'без артикля',
     hintAfterWrong: 'Подсказка после ошибки',
   },
@@ -56,9 +56,9 @@ const RU = {
     backHome: 'На главную',
   },
   quizzes: {
-    selectLevel: 'Выберите уровень', easy: 'Легко', medium: 'Средне', hard: 'Сложно',
-    done: 'Квиз завершён!', again: 'Пройти снова',
-    back: 'Выбрать уровень', fixErrors: 'Исправь ошибки', timeUp: 'Время вышло',
+    selectLevel: 'Выбери уровень', easy: 'Легко', medium: 'Средне', hard: 'Сложно',
+    done: 'Вызов завершён!', again: 'Пройти снова',
+    back: 'Выбери уровень', fixErrors: 'Исправь ошибки', timeUp: 'Время вышло',
     perAnswer: 'балл/ответ',
   },
   leagues: [
@@ -78,7 +78,7 @@ const RU = {
     help: 'Помощь',
     premium: 'Premium', premiumSub: 'Уроки, лимиты и практика — по подписке',
     changeName: 'Изменить имя', cancel: 'Отмена', save: 'Сохранить',
-    nameError: 'Введите имя', namePlaceholder: 'Введите имя...',
+    nameError: 'Введи имя', namePlaceholder: 'Введи имя...',
   },
   edu: {
     title: 'Настройки обучения',
@@ -109,14 +109,14 @@ const RU = {
   },
   diagnostic: {
     title: 'Диагностика уровня',
-    prevResult: 'Ваш последний результат',
+    prevResult: 'Твой последний результат',
     examReadinessTitle: 'Готовность к экзамену',
     start: 'Тест уровня английского',
     startTest: 'Начать тест',
     yourLevel: 'Ориентир по уровню',
-    currentEnglishLevelTitle: 'Ваш текущий уровень английского',
+    currentEnglishLevelTitle: 'Твой текущий уровень английского',
     currentEnglishLevelHintBeforeTest:
-      'Пройдите тест, чтобы узнать ваш уровень.',
+      'Пройди тест, чтобы узнать свой уровень.',
     correct: 'Верных ответов',
     skipped: (n: number) => `Пропущено (таймер): ${n}`,
     again: 'Пройти ещё раз',
@@ -128,11 +128,11 @@ const RU = {
       'Тест показал примерный уровень. Начни с подходящих тем в курсе или повтори базу, если хочешь закрепить материал.',
   },
   onboarding: {
-    chooseLang: 'Выберите язык',
-    enterName: 'Введите ваше имя или никнейм',
-    placeholder: 'Ваше имя...',
+    chooseLang: 'Выбери язык',
+    enterName: 'Введи своё имя или никнейм',
+    placeholder: 'Твоё имя...',
     next: 'Продолжить',
-    nameError: 'Введите имя чтобы продолжить',
+    nameError: 'Введи имя, чтобы продолжить',
   },
   premium: {
     locked: 'Premium открывает уроки после A1\nи снимает дневные лимиты',
@@ -140,7 +140,7 @@ const RU = {
     cta: 'Получить Premium',
     ctaSub: 'Оформить подписку',
     legal: 'Отмена в любое время в настройках App Store / Google Play.',
-    features: ['Уроки после A1','Квизы без дневного лимита','Голосовой ввод','Подробная статистика'],
+    features: ['Уроки после A1','Вызовы без дневного лимита','Голосовой ввод','Подробная статистика'],
   },
 };
 

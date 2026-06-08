@@ -199,7 +199,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
     case 'quiz':
       return {
         source: 'quiz',
-        label: 'Квиз',
+        label: 'Вызов',
         intent: '10 коротких проверок по фразам дня',
         icon: 'help-circle-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('quiz', planId),

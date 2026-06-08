@@ -1,9 +1,11 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
+import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -97,22 +99,21 @@ export default function PersonalPlanDevScreen() {
     <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
       <LinearGradient colors={isGold ? ['#171008', '#090704'] : t.bgGradient} style={styles.fill}>
         <View style={styles.header}>
-          <TouchableOpacity
-            activeOpacity={0.78}
-            onPress={() => router.back()}
+          <TapScale
+            onPress={() => safeRouterBack(router, '/personal_plan')}
             accessibilityRole="button"
             accessibilityLabel="Назад"
             style={[styles.back, { backgroundColor: t.bgSurface2, borderColor: cardBorder }]}
           >
             <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <View style={styles.headerCopy}>
             <Text style={[styles.kicker, { color: t.textMuted }]}>DEV · персональные планы</Text>
             <Text style={[styles.h1, { color: t.textPrimary }]} numberOfLines={1}>Календарь планов</Text>
           </View>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+        <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
           <View style={styles.planTabs}>
             {PERSONAL_PLAN_CATALOG.map((plan) => {
               const active = plan.id === selectedPlan.id;

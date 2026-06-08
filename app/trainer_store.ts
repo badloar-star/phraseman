@@ -686,9 +686,8 @@ export async function getTrainerPlanWeakSpotDueCount(
   mode: TrainerPremiumMode = 'weak',
   studyTarget?: RuntimeStudyTarget,
 ): Promise<number> {
-  const end = todayEnd();
   return (await getTrainerPremiumItemsForPlan(planInstanceId, mode, 48, studyTarget))
-    .filter((item) => !item.archived && item.nextDue > 0 && item.nextDue <= end)
+    .filter((item) => !item.archived && item.nextDue > 0)
     .length;
 }
 

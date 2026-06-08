@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -17,6 +18,7 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useAudio } from '../hooks/use-audio';
 import { getLessonPrepositionPack } from './lesson_prepositions';
 import { registerXP } from './xp_manager';
@@ -95,6 +97,7 @@ export default function PrepositionDrillScreen() {
   const [itemIdx, setItemIdx] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState(false);
+  const { playCorrect } = useCorrectSound();
   const [correctCount, setCorrectCount] = useState(0);
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
@@ -105,8 +108,11 @@ export default function PrepositionDrillScreen() {
 
   const userNameRef = useRef<string>('');
   useEffect(() => {
-    AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
-    loadSettings().then(s => { setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
+    const task = InteractionManager.runAfterInteractions(() => {
+      AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
+      loadSettings().then(s => { setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
+    });
+    return () => task.cancel();
   }, []);
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
 
@@ -292,12 +298,12 @@ export default function PrepositionDrillScreen() {
           <ContentWrap>
           <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
-              <TouchableOpacity
-                onPress={() => { hapticTap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
+              <TapScale
+                onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
                 style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
               >
                 <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-              </TouchableOpacity>
+              </TapScale>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
@@ -354,6 +360,7 @@ export default function PrepositionDrillScreen() {
     speakSentenceEn(item.sentenceTemplate, item.correct);
     if (ok) {
       hapticTap();
+      playCorrect();
       showXpToast(POINTS_PER_CORRECT);
       setCorrectCount(v => v + 1);
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
@@ -446,12 +453,12 @@ export default function PrepositionDrillScreen() {
         <ContentWrap>
         <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
-            <TouchableOpacity
-              onPress={() => { hapticTap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
+            <TapScale
+              onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
               style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
             >
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>{title}</Text>
             <EnergyBar size={30} />
           </View>
@@ -465,6 +472,7 @@ export default function PrepositionDrillScreen() {
               <ScrollView
                 ref={scrollRef}
                 style={{ flex: 1 }}
+                decelerationRate="normal"
                 contentContainerStyle={{ paddingBottom: scrollBottomPad }}
                 keyboardShouldPersistTaps="handled"
                 nestedScrollEnabled

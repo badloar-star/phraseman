@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Modal,
@@ -51,6 +51,8 @@ const MESSAGE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
   compass: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-compass-dalle-v1.webp'),
 };
 
+const BLUR_RENDER_GRACE_MS = 450;
+
 function inboxText(lang: Lang) {
   return {
     title: triLang(lang, { ru: 'Сообщения', uk: 'Повідомлення', es: 'Mensajes', 'pt-BR': 'Mensagens', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesajlar', pl: 'Wiadomości' }),
@@ -89,7 +91,7 @@ function formatMessageDate(createdAtMs: number): string {
   return `${day}.${month}`;
 }
 
-export default function AppMessagesInbox() {
+function AppMessagesInbox() {
   const isScreenFocused = useIsFocused();
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
@@ -102,13 +104,29 @@ export default function AppMessagesInbox() {
   const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
   const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
   const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
+  const [renderButton, setRenderButton] = useState(isScreenFocused);
   const fade = useRef(new Animated.Value(0)).current;
   const panel = useRef(new Animated.Value(18)).current;
   const badgePulse = useRef(new Animated.Value(1)).current;
   const surveyOpenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const blurRenderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (isScreenFocused) return;
+    if (blurRenderTimer.current) {
+      clearTimeout(blurRenderTimer.current);
+      blurRenderTimer.current = null;
+    }
+
+    if (isScreenFocused) {
+      setRenderButton(true);
+      return;
+    }
+
+    blurRenderTimer.current = setTimeout(() => {
+      blurRenderTimer.current = null;
+      setRenderButton(false);
+    }, BLUR_RENDER_GRACE_MS);
+
     if (surveyOpenTimer.current) {
       clearTimeout(surveyOpenTimer.current);
       surveyOpenTimer.current = null;
@@ -118,6 +136,13 @@ export default function AppMessagesInbox() {
     setSurveyTarget(null);
     setVipCelebrationVisible(false);
     setVipSurveyReviewPromptVisible(false);
+
+    return () => {
+      if (blurRenderTimer.current) {
+        clearTimeout(blurRenderTimer.current);
+        blurRenderTimer.current = null;
+      }
+    };
   }, [isScreenFocused]);
 
   const selected = useMemo(
@@ -180,6 +205,7 @@ export default function AppMessagesInbox() {
 
   useEffect(() => () => {
     if (surveyOpenTimer.current) clearTimeout(surveyOpenTimer.current);
+    if (blurRenderTimer.current) clearTimeout(blurRenderTimer.current);
   }, []);
 
   const openInbox = () => {
@@ -233,8 +259,7 @@ export default function AppMessagesInbox() {
     void setAppMessagePollVote(selected.id, optionId);
   };
 
-  const hideMessage = (messageId: string) => {
-    hapticTap();
+  const dismissSurveyMessage = (messageId: string) => {
     setMessages((prev) => prev.filter((message) => message.id !== messageId));
     setUnreadCount((prev) => {
       const target = messages.find((message) => message.id === messageId);
@@ -248,7 +273,7 @@ export default function AppMessagesInbox() {
   const openSurvey = (message: AppMessageWithState) => {
     hapticTap();
     if (hasPremiumAccess) {
-      hideMessage(message.id);
+      dismissSurveyMessage(message.id);
       return;
     }
     if (message.unread) {
@@ -351,40 +376,45 @@ export default function AppMessagesInbox() {
       ) : (
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.listContent}>
           {messages.map((message) => {
+            const messageRead = !message.unread;
             const text = pickAppMessageText(message, lang);
             const preview = message.kind === 'vip_survey'
               ? copy.vipSurveyHint
               : message.poll
               ? pickAppMessagePollQuestion(message.poll, lang)
               : buildAppMessagePreview(text.body, 160);
+            const rowBackgroundColor = messageRead
+              ? isCompassTheme
+                ? 'rgba(94,98,106,0.34)'
+                : isDark
+                ? 'rgba(148,163,184,0.14)'
+                : '#E5E7EB'
+              : chrome.card;
+            const rowBorderColor = message.unread && isCompassTheme
+              ? COMPASS_RICH.hairlineStrong
+              : messageRead
+              ? isCompassTheme
+                ? 'rgba(242,196,141,0.12)'
+                : 'rgba(100,116,139,0.20)'
+              : chrome.border;
+            const rowTitleColor = messageRead ? chrome.muted : chrome.text;
+            const rowMutedColor = messageRead ? chrome.soft : chrome.muted;
             return (
               <TouchableOpacity
                 key={message.id}
                 activeOpacity={0.82}
                 onPress={() => selectMessage(message)}
                 testID={message.kind === 'vip_survey' ? 'vip-survey-inbox-row' : undefined}
-                style={[styles.messageRow, isCompassTheme && compassShadow(message.unread ? 2 : 1), { backgroundColor: chrome.card, borderColor: message.unread && isCompassTheme ? COMPASS_RICH.hairlineStrong : chrome.border, borderRadius: isCompassTheme ? 8 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                style={[styles.messageRow, messageRead && styles.messageRowRead, isCompassTheme && compassShadow(message.unread ? 2 : 1), { backgroundColor: rowBackgroundColor, borderColor: rowBorderColor, borderRadius: isCompassTheme ? 8 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
               >
                 {isCompassTheme ? <CompassDepthSurface radius={8} selected={message.unread} quiet={!message.unread} /> : null}
                 <View style={styles.messageRowTop}>
                   <View style={styles.messageTitleWrap}>
                     {message.unread ? <View style={styles.unreadDot} /> : <View style={styles.readDotSpace} />}
-                    <Text style={[styles.messageTitle, { color: chrome.text }]} numberOfLines={2}>
+                    <Text style={[styles.messageTitle, messageRead && styles.messageTitleRead, { color: rowTitleColor }]} numberOfLines={messageRead ? 1 : 2}>
                       {text.title}
                     </Text>
                   </View>
-                  <TouchableOpacity
-                    accessibilityRole="button"
-                    accessibilityLabel={copy.dismiss}
-                    activeOpacity={0.72}
-                    onPress={(event) => {
-                      event.stopPropagation?.();
-                      hideMessage(message.id);
-                    }}
-                    style={[styles.rowDismiss, { borderColor: chrome.border, borderRadius: isCompassTheme ? 6 : 12, backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : 'transparent' }]}
-                  >
-                    <Ionicons name="close" size={14} color={chrome.soft} />
-                  </TouchableOpacity>
                 </View>
                 <View style={styles.messageMetaRow}>
                   {message.kind === 'vip_survey' ? (
@@ -398,9 +428,9 @@ export default function AppMessagesInbox() {
                       <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.poll}</Text>
                     </View>
                   ) : null}
-                  <Text style={[styles.messageDate, { color: chrome.soft }]}>{formatMessageDate(message.createdAtMs)}</Text>
+                  <Text style={[styles.messageDate, { color: rowMutedColor }]}>{formatMessageDate(message.createdAtMs)}</Text>
                 </View>
-                <Text style={[styles.messagePreview, { color: chrome.muted }]} numberOfLines={2}>
+                <Text style={[styles.messagePreview, messageRead && styles.messagePreviewRead, { color: rowMutedColor }]} numberOfLines={messageRead ? 1 : 2}>
                   {preview}
                 </Text>
                 {message.kind === 'vip_survey' ? (
@@ -552,16 +582,6 @@ export default function AppMessagesInbox() {
             {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </TouchableOpacity>
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityLabel={copy.dismiss}
-            activeOpacity={0.75}
-            onPress={() => hideMessage(selected.id)}
-            style={[styles.roundIcon, isCompassTheme && compassShadow(1), { backgroundColor: chrome.card, borderColor: chrome.border, borderRadius: isCompassTheme ? 8 : 18, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Ionicons name="close-circle-outline" size={21} color={chrome.text} />
-          </TouchableOpacity>
         </View>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.detailContent}>
           <Text style={[styles.detailDate, { color: chrome.soft }]}>{formatMessageDate(selected.createdAtMs)}</Text>
@@ -613,7 +633,7 @@ export default function AppMessagesInbox() {
     );
   };
 
-  if (!isScreenFocused) return null;
+  if (!renderButton) return null;
 
   return (
     <>
@@ -627,7 +647,10 @@ export default function AppMessagesInbox() {
       >
         <Image source={headerIcon} style={styles.headerIcon} contentFit="contain" />
         {unreadCount > 0 && (
-          <Animated.View style={[styles.badge, { transform: [{ scale: badgePulse }] }]}>
+          <Animated.View
+            style={[styles.badge, { transform: [{ scale: badgePulse }] }]}
+            accessibilityLabel={`${unreadCount > 99 ? '99+' : unreadCount} ${copy.unread}`}
+          >
             <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
           </Animated.View>
         )}
@@ -671,6 +694,8 @@ export default function AppMessagesInbox() {
     </>
   );
 }
+
+export default memo(AppMessagesInbox);
 
 const styles = StyleSheet.create({
   headerButton: {
@@ -758,6 +783,10 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     padding: 13,
   },
+  messageRowRead: {
+    paddingHorizontal: 11,
+    paddingVertical: 9,
+  },
   messageRowTop: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -787,6 +816,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '900',
+  },
+  messageTitleRead: {
+    fontSize: 13,
+    lineHeight: 17,
+    fontWeight: '800',
   },
   messageMetaRow: {
     paddingLeft: 16,
@@ -828,18 +862,15 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '900',
   },
-  rowDismiss: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 0.5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   messagePreview: {
     paddingLeft: 16,
     fontSize: 13,
     lineHeight: 19,
+    fontWeight: '600',
+  },
+  messagePreviewRead: {
+    fontSize: 12,
+    lineHeight: 16,
     fontWeight: '600',
   },
   messageRowActions: {

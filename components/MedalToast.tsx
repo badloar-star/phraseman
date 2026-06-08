@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
-import { Animated, Image, Text, View, StyleSheet } from 'react-native';
+import React, { memo, useMemo } from 'react';
+import { Animated, Text, View, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from './SafeLinearGradient';
 import type { MedalTier } from '../app/medal_utils';
 import { triLang, type Lang } from '../constants/i18n';
@@ -197,7 +198,7 @@ function pickLabels(
   return promoted ? set[tier].up : set[tier].down;
 }
 
-export default function MedalToast({
+function MedalToast({
   tier,
   promoted,
   anim,
@@ -304,7 +305,7 @@ export default function MedalToast({
           <Image
             source={MEDAL_IMAGES[tier]}
             style={styles.medalImage}
-            resizeMode="contain"
+            contentFit="contain"
           />
         </View>
 
@@ -353,6 +354,8 @@ function tierBadgeText(
   });
   return promoted ? set.up : set.down;
 }
+
+export default memo(MedalToast);
 
 const styles = StyleSheet.create({
   wrap: {

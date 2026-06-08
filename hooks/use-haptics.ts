@@ -37,6 +37,12 @@ function canRunFeedbackHaptic(): boolean {
 /**
  * tap() — лёгкий тактильный отклик на каждое нажатие.
  * Вызывается напрямую без хука для использования вне компонентов.
+ *
+ * ВАЖНО: Вызывать в onPressIn, а не onPress — iOS Taptic Engine нужна
+ * фора в ~50ms для warm-up. Вызов в onPressIn даёт эту фору бесплатно.
+ *
+ * ✓ onPressIn={() => hapticTap()}  onPress={action}   ← правильно
+ * ✗ onPress={() => { hapticTap(); action(); }}         ← менее отзывчиво
  */
 export async function hapticTap() {
   try {

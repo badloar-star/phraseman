@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import AppArtBackdrop from './AppArtBackdrop';
 import type { AppArtBackdropName } from './appArtBackdropRegistry';
 
@@ -10,6 +10,8 @@ const VARIANT_TO_APP_ART: Record<LessonArtBackdropVariant, AppArtBackdropName> =
   practice: 'lessonPractice',
 };
 
-export default function LessonArtBackdrop({ variant = 'menu' }: { variant?: LessonArtBackdropVariant }) {
+function LessonArtBackdrop({ variant = 'menu' }: { variant?: LessonArtBackdropVariant }) {
   return <AppArtBackdrop name={VARIANT_TO_APP_ART[variant]} />;
 }
+
+export default memo(LessonArtBackdrop);

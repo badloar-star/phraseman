@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
 import { useTheme } from './ThemeContext';
@@ -31,7 +31,7 @@ const GOLD_STOPS_SKETCH: { offset: string; color: string }[] = [
 /** Имя на главной для Premium: золотой градиент по буквам (через SVG, без @react-native-masked-view).
  *  Ширина SVG = реально измеренной ширине RN <Text> с теми же параметрами,
  *  чтобы длинные/широкие ники (Gamma7816, заглавные, цифры) не обрезались. */
-export default function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
+function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
   const { themeMode, theme } = useTheme();
   const [measuredW, setMeasuredW] = useState(0);
   const display = text || 'Phraseman';
@@ -89,6 +89,8 @@ export default function PremiumGoldUserName({ text, fontSize, onGradient = false
     </View>
   );
 }
+
+export default memo(PremiumGoldUserName);
 
 const styles = StyleSheet.create({
   wrap: { alignSelf: 'flex-start', position: 'relative' },

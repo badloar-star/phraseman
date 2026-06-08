@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -24,6 +25,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards, peekFlashcardsCache, type Flashcard } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
   fetchCommunityPackCards,
@@ -784,6 +786,7 @@ export default function FlashcardsSwipeScreen() {
   const { theme: t, statusBarLight, f, ds } = useTheme();
   const { studyTarget } = useStudyTarget();
   const audio = useAudio();
+  const { playCorrect } = useCorrectSound();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
@@ -841,7 +844,9 @@ export default function FlashcardsSwipeScreen() {
   const draftRestoreAttemptedRef = useRef(false);
   const hasVisibleSourcesRef = useRef(initialSources.length > 0);
   const position = useRef(new Animated.ValueXY()).current;
+  const topFadeScrollY = useRef(new Animated.Value(0)).current;
   const planFlashcardsTaskId = routeParamString(params.planFlashcardsTask) === '1' ? routeParamString(params.planTaskId) : '';
+  const isPlanFlashcardsTask = Boolean(planFlashcardsTaskId);
   const planFlashcardsRequiredCards = Math.max(1, Math.min(50, parseInt(routeParamString(params.requiredCards) || '3', 10) || 3));
   const planFlashcardsDayIndex = Math.max(1, parseInt(routeParamString(params.planDayIndex) || '1', 10) || 1);
   // Normal training lands on setup; a plan task starts directly from the plan-selected source.
@@ -1483,7 +1488,7 @@ export default function FlashcardsSwipeScreen() {
     } catch {
       setLoadError(
         triLang(lang, {
-          ru: 'Не удалось загрузить наборы.',
+          ru: 'Наборы не загрузились.',
           uk: 'Не вдалося завантажити набори.',
           es: 'No se pudieron cargar los packs.',
           'pt-BR': "Não foi possível carregar os pacotes.",
@@ -1833,8 +1838,8 @@ export default function FlashcardsSwipeScreen() {
     (prompt: Prompt, saysMatch: boolean) => {
       const correct = saysMatch === prompt.isMatch;
       const key = prompt.card.trainingKey;
-      const cardProgress = progressRef.current[key] ?? emptyProgress();
-      cardProgress.attempts += 1;
+      const prev = progressRef.current[key] ?? emptyProgress();
+      const cardProgress = { ...prev, attempts: prev.attempts + 1 };
       progressRef.current[key] = cardProgress;
 
       if (!correct) {
@@ -1853,6 +1858,7 @@ export default function FlashcardsSwipeScreen() {
       }
 
       void hapticSuccess();
+      playCorrect();
       const needsRecovery = cardProgress.wrong > 0 || cardProgress.hints > 0;
       if (needsRecovery) cardProgress.recoveryCorrect += 1;
       const mastered = !needsRecovery || cardProgress.recoveryCorrect >= 2;
@@ -1890,6 +1896,7 @@ export default function FlashcardsSwipeScreen() {
   const answerCurrent = useCallback(
     (saysMatch: boolean) => {
       if (!currentPrompt || feedback || settling || settlingRef.current) return;
+      settlingRef.current = true;
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
     [applyAnswer, currentPrompt, feedback, settleCard, settling],
@@ -1935,6 +1942,7 @@ export default function FlashcardsSwipeScreen() {
     () =>
       PanResponder.create({
         onMoveShouldSetPanResponder: (_, gesture) =>
+          !isPlanFlashcardsTask &&
           !!currentPrompt &&
           !feedback &&
           !settling &&
@@ -1968,11 +1976,13 @@ export default function FlashcardsSwipeScreen() {
           }).start();
         },
       }),
-    [answerCurrent, currentPrompt, feedback, position, settling],
+    [answerCurrent, currentPrompt, feedback, isPlanFlashcardsTask, position, settling],
   );
 
-  const cardWidth = Math.min(width - 36, 430);
-  const cardHeight = Math.min(360, Math.max(250, height * 0.42));
+  const cardWidth = Math.min(width - (isPlanFlashcardsTask ? 32 : 36), 430);
+  const cardHeight = isPlanFlashcardsTask
+    ? Math.min(292, Math.max(218, height * 0.34))
+    : Math.min(360, Math.max(250, height * 0.42));
   const rotate = position.x.interpolate({
     inputRange: [-width / 2, 0, width / 2],
     outputRange: ['-7deg', '0deg', '7deg'],
@@ -2001,6 +2011,9 @@ export default function FlashcardsSwipeScreen() {
 
   const renderSelect = () => (
     <ScrollView
+      decelerationRate="normal"
+      scrollEventThrottle={16}
+      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
       contentContainerStyle={[
         styles.selectContent,
         {
@@ -2011,7 +2024,7 @@ export default function FlashcardsSwipeScreen() {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.topBar}>
-        <TouchableOpacity
+        <TapScale
           onPress={() => safeRouterBack(router, '/flashcards' as any)}
           style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
@@ -2027,7 +2040,7 @@ export default function FlashcardsSwipeScreen() {
           })}
         >
           <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-        </TouchableOpacity>
+        </TapScale>
       </View>
 
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{text.settingsTitle}</Text>
@@ -2137,10 +2150,10 @@ export default function FlashcardsSwipeScreen() {
   const renderDone = () => {
     const cleanSession = stats.wrong === 0 && stats.hints === 0;
     return (
-      <View style={[styles.playWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: Math.max(20, insets.bottom + 20) }]}>
-        <TouchableOpacity
+      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(10, insets.bottom + 8) : Math.max(20, insets.bottom + 20) }]}>
+        <TapScale
           onPress={exitTraining}
-          style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border, alignSelf: 'flex-start' }]}
+          style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, borderColor: t.border, alignSelf: 'flex-start' }]}
           accessibilityLabel={triLang(lang, {
             ru: 'Выйти из тренировки',
             uk: 'Вийти з тренування',
@@ -2152,52 +2165,52 @@ export default function FlashcardsSwipeScreen() {
             pl: "Wyjdź z treningu",
           })}
         >
-          <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-        </TouchableOpacity>
-        <View style={[styles.doneBox, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
-          <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={42} color={cleanSession ? t.gold : t.correct} />
-          <Text style={[styles.doneTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
+          <Ionicons name="chevron-back" size={isPlanFlashcardsTask ? 20 : 22} color={t.textPrimary} />
+        </TapScale>
+        <View style={[styles.doneBox, isPlanFlashcardsTask && styles.planDoneBox, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+          <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={isPlanFlashcardsTask ? 32 : 42} color={cleanSession ? t.gold : t.correct} />
+          <Text style={[styles.doneTitle, isPlanFlashcardsTask && styles.planDoneTitle, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.bodyLg : f.h2 }]}>
             {cleanSession ? text.cleanDone : text.done}
           </Text>
-          <Text style={[styles.doneSubtitle, { color: t.textMuted, fontSize: f.body }]}>
+          <Text style={[styles.doneSubtitle, isPlanFlashcardsTask && styles.planDoneSubtitle, { color: t.textMuted, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 2 : undefined}>
             {cleanSession ? text.cleanDoneSub : text.learnedDoneSub}
           </Text>
-          <View style={[styles.doneScorePill, { backgroundColor: `${t.accent}20`, borderColor: t.border }]}>
+          <View style={[styles.doneScorePill, isPlanFlashcardsTask && styles.planDoneScorePill, { backgroundColor: `${t.accent}20`, borderColor: t.border }]}>
             <Ionicons name="flash-outline" size={16} color={t.accent} />
             <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
               {text.scoreLabel}: {stats.score}
             </Text>
           </View>
-          <View style={styles.doneGrid}>
+          <View style={[styles.doneGrid, isPlanFlashcardsTask && styles.planDoneGrid]}>
             {[
               [text.mastered, stats.mastered],
               [text.mistakes, stats.wrong],
               [text.hints, stats.hints],
               [text.bestStreak, stats.bestStreak],
             ].map(([label, value]) => (
-              <View key={String(label)} style={[styles.doneStat, { backgroundColor: t.bgCard }]}>
+              <View key={String(label)} style={[styles.doneStat, isPlanFlashcardsTask && styles.planDoneStat, { backgroundColor: t.bgCard }]}>
                 <Text style={[styles.doneStatValue, { color: t.textPrimary, fontSize: f.numMd }]}>{value}</Text>
                 <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</Text>
               </View>
             ))}
           </View>
-          <View style={styles.doneButtons}>
+          <View style={[styles.doneButtons, isPlanFlashcardsTask && styles.planDoneButtons]}>
             <TouchableOpacity
               onPress={() => {
                 void startSession();
               }}
-              style={[styles.primaryDoneButton, { backgroundColor: t.accent }]}
+              style={[styles.primaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.accent }]}
               accessibilityLabel={text.nextRound}
             >
               <Ionicons name="play" size={18} color={t.correctText} />
-              <Text style={[styles.doneButtonText, { color: t.correctText, fontSize: f.body }]}>{text.nextRound}</Text>
+              <Text style={[styles.doneButtonText, { color: t.correctText, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.nextRound}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={openSettings}
-              style={[styles.secondaryDoneButton, { backgroundColor: t.bgCard, borderColor: t.border }]}
+              style={[styles.secondaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.bgCard, borderColor: t.border }]}
               accessibilityLabel={text.toSets}
             >
-              <Text style={[styles.doneButtonText, { color: t.textSecond, fontSize: f.body }]}>{text.toSets}</Text>
+              <Text style={[styles.doneButtonText, { color: t.textSecond, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.toSets}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -2211,11 +2224,11 @@ export default function FlashcardsSwipeScreen() {
     const note = detailNoteForCard(currentPrompt.card, cardContentLang);
     const transcription = s(currentPrompt.card.transcription);
     return (
-      <View style={[styles.playWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: Math.max(14, insets.bottom + 10) }]}>
-        <View style={styles.playHeader}>
-          <TouchableOpacity
+      <View style={[styles.playWrap, isPlanFlashcardsTask && styles.planPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isPlanFlashcardsTask ? Math.max(8, insets.bottom + 6) : Math.max(14, insets.bottom + 10) }]}>
+        <View style={[styles.playHeader, isPlanFlashcardsTask && styles.planPlayHeader]}>
+          <TapScale
             onPress={exitTraining}
-            style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
             accessibilityLabel={triLang(lang, {
               ru: 'Выйти из тренировки',
               uk: 'Вийти з тренування',
@@ -2227,15 +2240,17 @@ export default function FlashcardsSwipeScreen() {
               pl: "Wyjdź z treningu",
             })}
           >
-            <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-          </TouchableOpacity>
-          <View style={styles.headerStats}>
+            <Ionicons name="chevron-back" size={isPlanFlashcardsTask ? 20 : 22} color={t.textPrimary} />
+          </TapScale>
+          <View style={[styles.headerStats, isPlanFlashcardsTask && styles.planHeaderStats]}>
             <Text style={[styles.headerStatText, { color: t.textPrimary, fontSize: f.caption }]}>
-              {text.mastered}: {stats.mastered}/{stats.total}
+              {isPlanFlashcardsTask ? `${stats.mastered}/${stats.total}` : `${text.mastered}: ${stats.mastered}/${stats.total}`}
             </Text>
-            <Text style={[styles.headerStatText, { color: t.textMuted, fontSize: f.caption }]}>
-              {queue.length} {text.inQueue}
-            </Text>
+            {!isPlanFlashcardsTask && (
+              <Text style={[styles.headerStatText, { color: t.textMuted, fontSize: f.caption }]}>
+                {queue.length} {text.inQueue}
+              </Text>
+            )}
             {stats.streak >= 3 ? (
               <View style={[styles.headerStreakPill, { backgroundColor: `${t.gold}22`, borderColor: `${t.gold}66` }]}>
                 <Ionicons name="flame-outline" size={12} color={t.gold} />
@@ -2247,18 +2262,18 @@ export default function FlashcardsSwipeScreen() {
           </View>
           <TouchableOpacity
             onPress={openSettings}
-            style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+            style={[styles.iconButton, isPlanFlashcardsTask && styles.planIconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
             accessibilityLabel={text.settings}
           >
-            <Ionicons name="options-outline" size={21} color={t.textPrimary} />
+            <Ionicons name="options-outline" size={isPlanFlashcardsTask ? 19 : 21} color={t.textPrimary} />
           </TouchableOpacity>
         </View>
 
-        <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.progressTrack, isPlanFlashcardsTask && styles.planProgressTrack, { backgroundColor: t.bgSurface2 }]}>
           <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: t.accent }]} />
         </View>
 
-        <View style={styles.cardStage}>
+        <View style={[styles.cardStage, isPlanFlashcardsTask && styles.planCardStage]}>
           {queue[1] ? (
             <View
               style={[
@@ -2274,9 +2289,10 @@ export default function FlashcardsSwipeScreen() {
           ) : null}
           <Animated.View
             key={currentPrompt.id}
-            {...panResponder.panHandlers}
+            {...(isPlanFlashcardsTask ? {} : panResponder.panHandlers)}
             style={[
               styles.trainingCard,
+              isPlanFlashcardsTask && styles.planTrainingCard,
               {
                 width: cardWidth,
                 minHeight: cardHeight,
@@ -2296,7 +2312,7 @@ export default function FlashcardsSwipeScreen() {
               <Text style={[styles.swipeBadgeText, { color: t.correct }]}>{text.match}</Text>
             </Animated.View>
 
-            <View style={styles.cardTopLine}>
+            <View style={[styles.cardTopLine, isPlanFlashcardsTask && styles.planCardTopLine]}>
               <View
                 onStartShouldSetResponder={() => true}
                 onMoveShouldSetResponder={() => false}
@@ -2315,18 +2331,19 @@ export default function FlashcardsSwipeScreen() {
                   pl: 'Odsłuchaj fiszkę',
                 })}
               >
-                <View style={[styles.speakButton, { borderColor: t.border, backgroundColor: t.bgCard }]}>
-                  <Ionicons name="volume-high-outline" size={18} color={t.textSecond} />
+                <View style={[styles.speakButton, isPlanFlashcardsTask && styles.planSpeakButton, { borderColor: t.border, backgroundColor: t.bgCard }]}>
+                  <Ionicons name="volume-high-outline" size={isPlanFlashcardsTask ? 16 : 18} color={t.textSecond} />
                 </View>
               </View>
             </View>
 
-            <View style={styles.enBox}>
+            <View style={[styles.enBox, isPlanFlashcardsTask && styles.planEnBox]}>
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
               <Text
-                style={[styles.englishText, { color: t.textPrimary, fontSize: Math.min(26, f.h1 + 3) }]}
+                style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(22, f.h2 + 2) : Math.min(26, f.h1 + 3) }]}
                 adjustsFontSizeToFit
                 minimumFontScale={0.72}
+                numberOfLines={isPlanFlashcardsTask ? 3 : undefined}
               >
                 {currentPrompt.card.en}
               </Text>
@@ -2337,14 +2354,15 @@ export default function FlashcardsSwipeScreen() {
               ) : null}
             </View>
 
-            <View style={[styles.translationBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+            <View style={[styles.translationBox, isPlanFlashcardsTask && styles.planTranslationBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
               <Text style={[styles.translationLabel, { color: t.textMuted, fontSize: f.caption }]}>
                 {text.shownTranslation}
               </Text>
               <Text
-                style={[styles.translationText, { color: t.textSecond, fontSize: f.bodyLg }]}
+                style={[styles.translationText, isPlanFlashcardsTask && styles.planTranslationText, { color: t.textSecond, fontSize: isPlanFlashcardsTask ? f.body : f.bodyLg }]}
                 adjustsFontSizeToFit
                 minimumFontScale={0.76}
+                numberOfLines={isPlanFlashcardsTask ? 3 : undefined}
               >
                 {currentPrompt.shownTranslation}
               </Text>
@@ -2354,6 +2372,7 @@ export default function FlashcardsSwipeScreen() {
               <View
                 style={[
                   styles.feedbackBox,
+                  isPlanFlashcardsTask && styles.planFeedbackBox,
                   {
                     backgroundColor: feedback.kind === 'wrong' ? t.wrongBg : t.goldBg,
                     borderColor: feedback.kind === 'wrong' ? t.wrong : t.gold,
@@ -2363,7 +2382,7 @@ export default function FlashcardsSwipeScreen() {
                 <Text
                   style={[
                     styles.feedbackTitle,
-                    { color: feedback.kind === 'wrong' ? t.wrong : t.gold, fontSize: f.body },
+                    { color: feedback.kind === 'wrong' ? t.wrong : t.gold, fontSize: isPlanFlashcardsTask ? f.caption : f.body },
                   ]}
                 >
                   {feedback.kind === 'wrong' ? text.wrongTitle : text.hintTitle}
@@ -2371,17 +2390,17 @@ export default function FlashcardsSwipeScreen() {
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctChoice}
                 </Text>
-                <Text style={[styles.feedbackAnswer, { color: t.textPrimary, fontSize: f.body }]}>
+                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 1 : undefined}>
                   {feedback.prompt.isMatch ? `${text.match}: ${text.matchHint}` : `${text.mismatch}: ${text.mismatchHint}`}
                 </Text>
                 <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>
                   {text.correctTranslation}
                 </Text>
-                <Text style={[styles.feedbackAnswer, { color: t.textPrimary, fontSize: f.body }]}>
+                <Text style={[styles.feedbackAnswer, isPlanFlashcardsTask && styles.planFeedbackAnswer, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={isPlanFlashcardsTask ? 2 : undefined}>
                   {currentPrompt.trueTranslation}
                 </Text>
-                <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>
-                {note ? <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{note}</Text> : null}
+                {!isPlanFlashcardsTask && <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{text.recoveryNote}</Text>}
+                {note && !isPlanFlashcardsTask ? <Text style={[styles.feedbackNote, { color: t.textMuted, fontSize: f.caption }]}>{note}</Text> : null}
               </View>
             ) : null}
           </Animated.View>
@@ -2390,25 +2409,26 @@ export default function FlashcardsSwipeScreen() {
         {feedback ? (
           <TouchableOpacity
             onPress={continueAfterFeedback}
-            style={[styles.continueButton, { backgroundColor: t.accent }]}
+            style={[styles.continueButton, isPlanFlashcardsTask && styles.planContinueButton, { backgroundColor: t.accent }]}
           >
-            <Text style={[styles.continueText, { color: t.correctText, fontSize: f.body }]}>{text.continue}</Text>
+            <Text style={[styles.continueText, { color: t.correctText, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>{text.continue}</Text>
           </TouchableOpacity>
         ) : (
           <>
             <TouchableOpacity
               onPress={revealCurrent}
-              style={[styles.revealButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+              style={[styles.revealButton, isPlanFlashcardsTask && styles.planRevealButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
             >
               <Ionicons name="eye-outline" size={18} color={t.textSecond} />
               <Text style={[styles.revealText, { color: t.textSecond, fontSize: f.caption }]}>{text.reveal}</Text>
             </TouchableOpacity>
-            <View style={styles.answerButtons}>
+            <View style={[styles.answerButtons, isPlanFlashcardsTask && styles.planAnswerButtons]}>
               <TouchableOpacity
                 onPress={() => answerCurrent(false)}
                 disabled={settling}
                 style={[
                   styles.answerButton,
+                  isPlanFlashcardsTask && styles.planAnswerButton,
                   {
                     backgroundColor: t.wrongBg,
                     borderColor: t.wrong,
@@ -2419,7 +2439,7 @@ export default function FlashcardsSwipeScreen() {
               >
                 <Ionicons name="close" size={22} color={t.wrong} />
                 <View style={styles.answerCopy}>
-                  <Text style={[styles.answerText, { color: t.wrong, fontSize: f.body }]}>{text.mismatchAction}</Text>
+                  <Text style={[styles.answerText, { color: t.wrong, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.mismatchAction}</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -2427,6 +2447,7 @@ export default function FlashcardsSwipeScreen() {
                 disabled={settling}
                 style={[
                   styles.answerButton,
+                  isPlanFlashcardsTask && styles.planAnswerButton,
                   {
                     backgroundColor: t.correctBg,
                     borderColor: t.correct,
@@ -2436,7 +2457,7 @@ export default function FlashcardsSwipeScreen() {
                 accessibilityLabel={`${text.match}: ${text.matchHint}`}
               >
                 <View style={styles.answerCopy}>
-                  <Text style={[styles.answerText, { color: t.correct, fontSize: f.body }]}>{text.matchAction}</Text>
+                  <Text style={[styles.answerText, { color: t.correct, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.matchAction}</Text>
                 </View>
                 <Ionicons name="checkmark" size={22} color={t.correct} />
               </TouchableOpacity>
@@ -2459,7 +2480,7 @@ export default function FlashcardsSwipeScreen() {
 
   const renderNoCards = () => (
     <View style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
-      <TouchableOpacity
+      <TapScale
         onPress={() => safeRouterBack(router, '/flashcards' as any)}
         style={[styles.noCardsBack, styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}
         accessibilityLabel={triLang(lang, {
@@ -2474,7 +2495,7 @@ export default function FlashcardsSwipeScreen() {
         })}
       >
         <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-      </TouchableOpacity>
+      </TapScale>
       <View style={[styles.noCardsPanel, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
         <View style={[styles.quickStartIcon, { backgroundColor: `${t.accent}22`, borderColor: t.border }]}>
           <Ionicons name="albums-outline" size={30} color={t.accent} />
@@ -2516,7 +2537,7 @@ export default function FlashcardsSwipeScreen() {
   };
 
   return (
-    <ScreenGradient artBackdrop="flashcards">
+    <ScreenGradient artBackdrop="flashcards" topFade={{ scrollY: topFadeScrollY }}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
       <SafeAreaView style={[styles.safe, { paddingTop: topSafeInset }]} edges={['left', 'right', 'bottom']}>
         <ContentWrap>
@@ -2575,6 +2596,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  planIconButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 12,
   },
   title: {
     fontWeight: '900',
@@ -2748,10 +2774,16 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
   },
+  planPlayWrap: {
+    paddingTop: 6,
+  },
   playHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  planPlayHeader: {
+    minHeight: 38,
   },
   headerStats: {
     flex: 1,
@@ -2759,6 +2791,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 2,
     paddingHorizontal: 8,
+  },
+  planHeaderStats: {
+    gap: 0,
   },
   headerStatText: {
     fontWeight: '900',
@@ -2783,6 +2818,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 14,
   },
+  planProgressTrack: {
+    height: 4,
+    marginTop: 7,
+  },
   progressFill: {
     height: '100%',
     borderRadius: 999,
@@ -2792,6 +2831,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
+  },
+  planCardStage: {
+    paddingVertical: 6,
   },
   cardBack: {
     position: 'absolute',
@@ -2809,6 +2851,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 20,
     elevation: 7,
+  },
+  planTrainingCard: {
+    borderRadius: 18,
+    padding: 12,
+    shadowOpacity: 0.14,
+    shadowRadius: 12,
+    elevation: 4,
   },
   swipeBadge: {
     position: 'absolute',
@@ -2837,6 +2886,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     gap: 10,
   },
+  planCardTopLine: {
+    minHeight: 28,
+  },
   speakButtonHitbox: {
     width: 52,
     height: 52,
@@ -2854,11 +2906,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  planSpeakButton: {
+    width: 34,
+    height: 34,
+    borderRadius: 12,
+  },
   enBox: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 18,
+  },
+  planEnBox: {
+    paddingVertical: 8,
   },
   enLabel: {
     marginBottom: 8,
@@ -2870,6 +2930,9 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 31,
     letterSpacing: 0,
+  },
+  planEnglishText: {
+    lineHeight: 25,
   },
   transcriptionText: {
     marginTop: 8,
@@ -2884,6 +2947,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 14,
   },
+  planTranslationBox: {
+    minHeight: 66,
+    borderRadius: 14,
+    padding: 10,
+  },
   translationLabel: {
     marginBottom: 6,
     fontWeight: '900',
@@ -2894,11 +2962,19 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 24,
   },
+  planTranslationText: {
+    lineHeight: 20,
+  },
   feedbackBox: {
     marginTop: 12,
     borderWidth: 1,
     borderRadius: 16,
     padding: 12,
+  },
+  planFeedbackBox: {
+    marginTop: 8,
+    borderRadius: 12,
+    padding: 8,
   },
   feedbackTitle: {
     fontWeight: '900',
@@ -2911,6 +2987,10 @@ const styles = StyleSheet.create({
     marginTop: 3,
     fontWeight: '900',
     lineHeight: 22,
+  },
+  planFeedbackAnswer: {
+    marginTop: 2,
+    lineHeight: 18,
   },
   feedbackNote: {
     marginTop: 8,
@@ -2929,12 +3009,21 @@ const styles = StyleSheet.create({
     gap: 7,
     marginBottom: 12,
   },
+  planRevealButton: {
+    minHeight: 34,
+    borderRadius: 12,
+    marginBottom: 7,
+    paddingHorizontal: 12,
+  },
   revealText: {
     fontWeight: '900',
   },
   answerButtons: {
     flexDirection: 'row',
     gap: 12,
+  },
+  planAnswerButtons: {
+    gap: 8,
   },
   answerButton: {
     flex: 1,
@@ -2946,6 +3035,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
     paddingHorizontal: 10,
+  },
+  planAnswerButton: {
+    minHeight: 50,
+    borderRadius: 14,
+    paddingHorizontal: 8,
   },
   answerText: {
     fontWeight: '900',
@@ -2967,6 +3061,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  planContinueButton: {
+    minHeight: 44,
+    borderRadius: 14,
+  },
   continueText: {
     fontWeight: '900',
   },
@@ -2977,16 +3075,28 @@ const styles = StyleSheet.create({
     padding: 18,
     alignItems: 'center',
   },
+  planDoneBox: {
+    marginTop: 12,
+    borderRadius: 18,
+    padding: 12,
+  },
   doneTitle: {
     marginTop: 12,
     fontWeight: '900',
     textAlign: 'center',
+  },
+  planDoneTitle: {
+    marginTop: 8,
   },
   doneSubtitle: {
     marginTop: 7,
     lineHeight: 22,
     textAlign: 'center',
     fontWeight: '700',
+  },
+  planDoneSubtitle: {
+    marginTop: 4,
+    lineHeight: 18,
   },
   doneScorePill: {
     marginTop: 14,
@@ -2998,6 +3108,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
   },
+  planDoneScorePill: {
+    marginTop: 9,
+    paddingVertical: 5,
+  },
   doneScoreText: {
     fontWeight: '900',
   },
@@ -3008,12 +3122,20 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 10,
   },
+  planDoneGrid: {
+    marginTop: 10,
+    gap: 7,
+  },
   doneStat: {
     flexBasis: '47%',
     flexGrow: 1,
     borderRadius: 16,
     paddingVertical: 13,
     alignItems: 'center',
+  },
+  planDoneStat: {
+    paddingVertical: 8,
+    borderRadius: 13,
   },
   doneStatValue: {
     fontWeight: '900',
@@ -3027,6 +3149,10 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 18,
   },
+  planDoneButtons: {
+    marginTop: 10,
+    gap: 8,
+  },
   primaryDoneButton: {
     flex: 1,
     minHeight: 50,
@@ -3035,6 +3161,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 7,
+  },
+  planDoneButton: {
+    minHeight: 42,
+    borderRadius: 13,
   },
   secondaryDoneButton: {
     flex: 1,

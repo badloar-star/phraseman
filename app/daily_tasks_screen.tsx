@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -246,7 +247,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Test",
             }),
             label: triLang(lang, {
-                ru: 'Квиз',
+                ru: 'Вызов',
                 uk: 'Квіз',
                 es: 'Quiz',
                 'pt-BR': "Quiz",
@@ -266,7 +267,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Szybki test tego, co już pamiętasz.",
             }),
             cta: triLang(lang, {
-                ru: 'Открыть квизы',
+                ru: 'Открыть вызовы',
                 uk: 'Відкрити квізи',
                 es: 'Abrir quizzes',
                 'pt-BR': "Abrir quizzes",
@@ -291,7 +292,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Test",
             }),
             label: triLang(lang, {
-                ru: 'Квиз+',
+                ru: 'Вызов+',
                 uk: 'Квіз+',
                 es: 'Quiz+',
                 'pt-BR': "Quiz+",
@@ -311,7 +312,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Trochę trudniejsze: pokazuje, co warto powtórzyć.",
             }),
             cta: triLang(lang, {
-                ru: 'Пройти квиз',
+                ru: 'Принять вызов',
                 uk: 'Пройти квіз',
                 es: 'Hacer quiz',
                 'pt-BR': "Fazer quiz",
@@ -336,7 +337,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Wyzwanie",
             }),
             label: triLang(lang, {
-                ru: 'Сложный квиз',
+                ru: 'Сложный вызов',
                 uk: 'Складний квіз',
                 es: 'Quiz difícil',
                 'pt-BR': "Quiz difícil",
@@ -381,7 +382,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Test",
             }),
             label: triLang(lang, {
-                ru: 'XP в квизах',
+                ru: 'XP в вызовах',
                 uk: 'XP у квізах',
                 es: 'XP en quiz',
                 'pt-BR': "XP no quiz",
@@ -391,7 +392,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "XP w quizie",
             }),
             reason: triLang(lang, {
-                ru: 'Квизы тренируют скорость и точность одновременно.',
+                ru: 'Вызовы тренируют скорость и точность одновременно.',
                 uk: 'Квізи тренують швидкість і точність одночасно.',
                 es: 'Los quizzes entrenan velocidad y precisión a la vez.',
                 'pt-BR': "Os quizzes treinam velocidade e precisão ao mesmo tempo.",
@@ -426,7 +427,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Mistrzostwo",
             }),
             label: triLang(lang, {
-                ru: 'Идеальный квиз',
+                ru: 'Идеальный вызов',
                 uk: 'Ідеальний квіз',
                 es: 'Quiz perfecto',
                 'pt-BR': "Quiz perfeito",
@@ -526,7 +527,7 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
                 pl: "Słowa",
             }),
             reason: triLang(lang, {
-                ru: 'Расширяет базу слов, чтобы уроки и квизы становились легче.',
+                ru: 'Расширяет базу слов, чтобы уроки и вызовы становились легче.',
                 uk: 'Розширює базу слів, щоб уроки й квізи ставали легшими.',
                 es: 'Amplía tu base para que lecciones y quizzes sean más fáciles.',
                 'pt-BR': "Amplia sua base para que lições e quizzes fiquem mais fáceis.",
@@ -1814,7 +1815,7 @@ export default function DailyTasksScreen() {
                     pl: 'To zadanie jest już ukończone, nie ma czego wymieniać.',
                 },
                 no_candidates: {
-                    ru: 'Не нашлось подходящей замены — попробуй другое задание.',
+                    ru: 'Замены нет — выбери другое задание.',
                     uk: 'Не знайшлось гідної заміни — спробуй інше завдання.',
                     es: 'No hay reemplazo disponible. Prueba con otra tarea.',
                     'pt-BR': 'Não há uma troca adequada. Tente outra tarefa.',
@@ -1825,7 +1826,7 @@ export default function DailyTasksScreen() {
                 },
             };
             const msg = reasonMsg[r.reason] ?? {
-                ru: 'Не удалось заменить задание. Попробуй ещё раз.',
+                ru: 'Замена не прошла. Попробуй ещё раз.',
                 uk: 'Не вдалося замінити завдання. Спробуй ще раз.',
                 es: 'No se pudo reemplazar la tarea. Inténtalo de nuevo.',
                 'pt-BR': 'Não foi possível trocar a tarefa. Tente de novo.',
@@ -1883,7 +1884,7 @@ export default function DailyTasksScreen() {
                 refreshTasksAndProgress();
                 emitAppEvent('action_toast', {
                     type: 'info',
-                    messageRu: 'Награда уже получена или данные обновились. Проверьте список задач.',
+                    messageRu: 'Похоже, награду ты уже забрал. Обнови список задач.',
                     messageUk: 'Нагороду вже отримано або дані оновилися. Перевірте список завдань.',
                     messageEs: 'La recompensa ya está reclamada o los datos cambiaron. Revisa la lista de tareas.',
                 });
@@ -1917,7 +1918,7 @@ export default function DailyTasksScreen() {
         catch {
             emitAppEvent('action_toast', {
                 type: 'error',
-                messageRu: 'Не удалось забрать награду. Попробуйте снова.',
+                messageRu: 'Награду забрать не получилось. Попробуй ещё раз.',
                 messageUk: 'Не вдалося забрати нагороду. Спробуйте ще раз.',
                 messageEs: 'No se pudo reclamar la recompensa. Inténtalo de nuevo.',
             });
@@ -1948,7 +1949,7 @@ export default function DailyTasksScreen() {
             if (!synced) {
                 emitAppEvent('action_toast', {
                     type: 'info',
-                    messageRu: 'Не удалось получить осколки. Попробуйте снова.',
+                    messageRu: 'Осколки не загрузились. Попробуй ещё раз.',
                     messageUk: 'Не вдалося отримати уламки. Спробуйте ще раз.',
                     messageEs: 'No se pudieron obtener fragmentos. Inténtalo de nuevo.',
                 });
@@ -1957,7 +1958,7 @@ export default function DailyTasksScreen() {
         catch {
             emitAppEvent('action_toast', {
                 type: 'error',
-                messageRu: 'Ошибка при получении осколков.',
+                messageRu: 'Осколки не загрузились. Проверь соединение.',
                 messageUk: 'Помилка під час отримання уламків.',
                 messageEs: 'Error al obtener fragmentos.',
             });
@@ -2176,9 +2177,9 @@ export default function DailyTasksScreen() {
       <ContentWrap>
       <View style={{ flex: 1 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: sx.ghost }}>
-        <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ marginRight: 12, padding: 4 }}>
+        <TapScale onPress={() => safeRouterBack(router)} style={{ marginRight: 12, padding: 4 }}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
-        </TouchableOpacity>
+        </TapScale>
         <View style={{ flex: 1 }}>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
             {triLang(lang, {
@@ -2219,7 +2220,7 @@ export default function DailyTasksScreen() {
           <XpGainBadge amount={claimedXP} visible={claimedXP !== null} style={{ color: rewardActionText, fontSize: f.h1, fontWeight: '800' }}/>
         </Animated.View>)}
 
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
+      <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
 
         {/* Прогресс */}
         {(trioClaimButtonEnabled || trioShardsClaimed) && (<View style={[
@@ -2278,8 +2279,8 @@ export default function DailyTasksScreen() {
               </View>) : (<TouchableOpacity onPress={handleClaimTrioShards} activeOpacity={0.85} style={[dailyTaskStyles.compactClaimButton, { backgroundColor: rewardActionBg }]}>
                 <Text numberOfLines={1} adjustsFontSizeToFit style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800' }}>
                   {triLang(lang, {
-                    ru: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ',
-                    uk: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚Ð¸',
+                    ru: 'Забрать',
+                    uk: 'Забрати',
                     es: 'Reclamar',
                     'pt-BR': "Coletar",
                     vi: "Nháº­n",
@@ -2436,8 +2437,8 @@ export default function DailyTasksScreen() {
                     {completed && !claimed ? (<TouchableOpacity onPress={() => { void handleClaim(task.id, task.xp); }} disabled={claimBusyId === task.id} activeOpacity={0.85} style={[dailyTaskStyles.compactClaimButton, { backgroundColor: rewardActionBg }]}>
                       <Text numberOfLines={1} adjustsFontSizeToFit style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800' }}>
                         {triLang(lang, {
-                          ru: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚ÑŒ',
-                          uk: 'Ð—Ð°Ð±Ñ€Ð°Ñ‚Ð¸',
+                          ru: 'Забрать',
+                          uk: 'Забрати',
                           es: 'Reclamar',
                           'pt-BR': "Coletar",
                           vi: "Nháº­n",
@@ -2459,13 +2460,13 @@ export default function DailyTasksScreen() {
                         hapticTap();
                         setRerollConfirm({ task });
                     }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                        ru: 'Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð·Ð°Ð´Ð°Ð½Ð¸Ðµ Ð·Ð° Ð¾ÑÐºÐ¾Ð»ÐºÐ¸',
-                        uk: 'Ð—Ð°Ð¼Ñ–Ð½Ð¸Ñ‚Ð¸ Ð·Ð°Ð²Ð´Ð°Ð½Ð½Ñ Ð·Ð° Ð¾ÑÐºÐ¾Ð»ÐºÐ¸',
+                        ru: 'Заменить задание за осколки',
+                        uk: 'Замінити завдання за осколки',
                         es: 'Reemplazar tarea por fragmentos',
                         'pt-BR': "Substituir tarefa por fragmentos",
-                        vi: "Äá»•i nhiá»‡m vá»¥ báº±ng máº£nh",
+                        vi: "Đổi nhiệm vụ bằng mảnh",
                         id: "Ganti tugas dengan fragmen",
-                        tr: "GÃ¶revi parÃ§alarla deÄŸiÅŸtir",
+                        tr: "Görevi parçalarla değiştir",
                         pl: "ZamieÅ„ zadanie za odÅ‚amki",
                     })} style={[dailyTaskStyles.compactIconButton, dailyTaskStyles.taskCapsuleRefreshButton, { backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.08)', borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.15)' }]}>
                       <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.55)'}/>
@@ -2599,18 +2600,6 @@ export default function DailyTasksScreen() {
                 id: "Kamu telah menyelesaikan semua tugas!",
                 tr: "Tüm görevleri tamamladın!",
                 pl: "Wszystkie zadania ukończone!",
-            })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center' }}>
-              {triLang(lang, {
-                ru: 'Новые задания появятся завтра в 00:00',
-                uk: "Нові завдання з\'являться завтра о 00:00",
-                es: 'Las nuevas tareas aparecerán mañana a las 00:00',
-                'pt-BR': "Novas tarefas aparecerão amanhã às 00:00",
-                vi: "Nhiệm vụ mới sẽ xuất hiện vào ngày mai lúc 00:00",
-                id: "Tugas baru akan muncul besok pukul 00:00",
-                tr: "Yeni görevler yarın 00:00’da görünecek",
-                pl: "Nowe zadania pojawią się jutro o 00:00",
             })}
             </Text>
           </View>)}

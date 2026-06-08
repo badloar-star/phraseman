@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { registerXP } from './xp_manager';
 import { spendShards, addShardsRaw } from './shards_system';
 import { trackActivity } from './app_activity';
+import { emitAppEvent } from './events';
 
 function logWagerHealth(
   context: string,
@@ -319,6 +320,21 @@ export const checkWagerProgress = async (
     await saveWager({ ...wager, daysKept, lastChecked: t });
     return null;
   } catch { return null; }
+};
+
+/**
+ * Вызывать после восстановления цепочки через Revive или любого другого механизма,
+ * прерывающего последовательность дней. Цепочка была нарушена — пари проиграно.
+ */
+export const invalidateWagerAfterRevive = async (): Promise<void> => {
+  try {
+    const wager = await loadWager();
+    if (!wager?.active || wager.result !== 'pending') return;
+    await saveWager({ ...wager, active: false, result: 'lost' });
+    emitAppEvent('wager_lost', { reason: 'revive' });
+  } catch (e) {
+    logWagerHealth('streak_wager:invalidate_after_revive', e);
+  }
 };
 
 /** Дней до завершения пари (0 если не активно) */

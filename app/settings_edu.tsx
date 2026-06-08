@@ -197,7 +197,7 @@ export default function SettingsEdu() {
             <View style={{ width: 28 }} />
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false}>
             {rows.map(row => {
               const isOn = !!s[row.key];
               return (
@@ -366,7 +366,7 @@ export default function SettingsEdu() {
                       })}
                       {englishVoices.length === 0 ? (
                         <Text style={{ color: t.textMuted, fontSize: 12 }}>
-                          {L('Голосов не найдено. Попробуйте скачать английский язык в настройках телефона.', 'Голосів не знайдено. Спробуйте завантажити англійську мову в налаштуваннях телефону.', 'No voices found. Try downloading English in your phone settings.')}
+                          {L('Голосов не найдено. Попробуй скачать английский язык в настройках телефона.', 'Голосів не знайдено. Спробуйте завантажити англійську мову в налаштуваннях телефону.', 'No voices found. Try downloading English in your phone settings.')}
                         </Text>
                       ) : null}
                     </View>

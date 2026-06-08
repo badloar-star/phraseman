@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, Text, TextStyle } from 'react-native';
 import { useTheme } from './ThemeContext';
 
@@ -17,7 +17,7 @@ type Props = {
   noInnerAnimation?: boolean;
 };
 
-export default function XpGainBadge({ amount, visible, style, noInnerAnimation = false }: Props) {
+function XpGainBadge({ amount, visible, style, noInnerAnimation = false }: Props) {
   const { theme: t, f } = useTheme();
   const n = safeXpAmount(amount);
   const flyY = useRef(new Animated.Value(8)).current;
@@ -80,3 +80,5 @@ export default function XpGainBadge({ amount, visible, style, noInnerAnimation =
     </Animated.Text>
   );
 }
+
+export default memo(XpGainBadge);

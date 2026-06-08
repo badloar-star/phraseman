@@ -455,6 +455,14 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Душ');
   });
 
+  /** RU/UK: recognition prompt must not duplicate the English answer on borrowed tech words. */
+  it('Wi-Fi: RU/UK prompts explain the concept instead of repeating the answer', () => {
+    const row = rows.find((r) => r.en === 'Wi-Fi');
+    expect(row).toBeDefined();
+    expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Беспроводной интернет');
+    expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Бездротовий інтернет');
+  });
+
   /** visit(s) (глагол) ≠ views / «просмотры» — жалоба word_visits. */
   it('visit and visits: RU/UK clarify verb vs views', () => {
     const visitRow = rows.find((r) => r.en === 'visit');

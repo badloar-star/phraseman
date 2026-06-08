@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, type ViewStyle } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
@@ -20,7 +20,7 @@ type Props = {
 };
 
 /** Золотой градиент + медленный перелив (shine) для CTA Premium — один стиль с NoEnergyModal. */
-export default function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
+function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
   const router = useRouter();
   const { lang } = useLang();
   const shineX = useRef(new Animated.Value(0)).current;
@@ -125,6 +125,8 @@ export default function PremiumGoldButton({ f, paywallContext = 'no_energy', onP
     </View>
   );
 }
+
+export default memo(PremiumGoldButton);
 
 const styles = StyleSheet.create({
   premiumBtnShell: {

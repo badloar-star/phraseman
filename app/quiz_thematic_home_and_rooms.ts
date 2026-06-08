@@ -2630,7 +2630,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room where you sleep.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната, где спят».",
+        "ru": "Выбери английский вариант: «комната, где спят».",
         "uk": "Яке англійське слово або фраза означає «a room where you sleep»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room where you sleep»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room where you sleep”?",
@@ -2724,7 +2724,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room where you wash or use the toilet.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната, где моются или пользуются туалетом».",
+        "ru": "Выбери английский вариант: «комната, где моются или пользуются туалетом».",
         "uk": "Яке англійське слово або фраза означає «a room where you wash or use the toilet»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room where you wash or use the toilet»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room where you wash or use the toilet”?",
@@ -2818,7 +2818,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room where people relax or watch TV.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната, где отдыхают или смотрят телевизор».",
+        "ru": "Выбери английский вариант: «комната, где отдыхают или смотрят телевизор».",
         "uk": "Яке англійське слово або фраза означає «a room where people relax or watch TV»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room where people relax or watch TV»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room where people relax or watch TV”?",
@@ -2912,7 +2912,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the furniture you sleep on.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «мебель, на которой спят».",
+        "ru": "Выбери английский вариант: «мебель, на которой спят».",
         "uk": "Яке англійське слово або фраза означає «the furniture you sleep on»?",
         "es": "¿Qué palabra o expresión inglesa significa «the furniture you sleep on»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the furniture you sleep on”?",
@@ -3006,7 +3006,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a seat for one person.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «сиденье для одного человека».",
+        "ru": "Выбери английский вариант: «сиденье для одного человека».",
         "uk": "Яке англійське слово або фраза означає «a seat for one person»?",
         "es": "¿Qué palabra o expresión inglesa significa «a seat for one person»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a seat for one person”?",
@@ -3100,7 +3100,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a table for studying or working.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «стол для учебы или работы».",
+        "ru": "Выбери английский вариант: «стол для учебы или работы».",
         "uk": "Яке англійське слово або фраза означає «a table for studying or working»?",
         "es": "¿Qué palabra o expresión inglesa significa «a table for studying or working»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a table for studying or working”?",
@@ -3194,7 +3194,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the thing you open to enter a room.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «предмет, который открывают, чтобы войти в комнату».",
+        "ru": "Выбери английский вариант: «предмет, который открывают, чтобы войти в комнату».",
         "uk": "Яке англійське слово або фраза означає «the thing you open to enter a room»?",
         "es": "¿Qué palabra o expresión inglesa significa «the thing you open to enter a room»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the thing you open to enter a room”?",
@@ -3288,7 +3288,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the glass opening that lets light in.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «стеклянный проем, через который входит свет».",
+        "ru": "Выбери английский вариант: «стеклянный проем, через который входит свет».",
         "uk": "Яке англійське слово або фраза означає «the glass opening that lets light in»?",
         "es": "¿Qué palabra o expresión inglesa significa «the glass opening that lets light in»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the glass opening that lets light in”?",
@@ -3382,7 +3382,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the surface you walk on inside a room.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «поверхность, по которой ходят в комнате».",
+        "ru": "Выбери английский вариант: «поверхность, по которой ходят в комнате».",
         "uk": "Яке англійське слово або фраза означає «the surface you walk on inside a room»?",
         "es": "¿Qué palabra o expresión inglesa significa «the surface you walk on inside a room»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the surface you walk on inside a room”?",
@@ -3476,7 +3476,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the vertical side of a room.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «вертикальная сторона комнаты».",
+        "ru": "Выбери английский вариант: «вертикальная сторона комнаты».",
         "uk": "Яке англійське слово або фраза означає «the vertical side of a room»?",
         "es": "¿Qué palabra o expresión inglesa significa «the vertical side of a room»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the vertical side of a room”?",
@@ -3570,7 +3570,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: an object that gives light.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «предмет, который дает свет».",
+        "ru": "Выбери английский вариант: «предмет, который дает свет».",
         "uk": "Яке англійське слово або фраза означає «an object that gives light»?",
         "es": "¿Qué palabra o expresión inglesa significa «an object that gives light»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “an object that gives light”?",
@@ -3664,7 +3664,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: soft material that covers much of the floor.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «мягкое покрытие для большей части пола».",
+        "ru": "Выбери английский вариант: «мягкое покрытие для большей части пола».",
         "uk": "Яке англійське слово або фраза означає «soft material that covers much of the floor»?",
         "es": "¿Qué palabra o expresión inglesa significa «soft material that covers much of the floor»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “soft material that covers much of the floor”?",
@@ -3758,7 +3758,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the bowl where water runs for washing hands or dishes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «чаша с водой для мытья рук или посуды».",
+        "ru": "Выбери английский вариант: «чаша с водой для мытья рук или посуды».",
         "uk": "Яке англійське слово або фраза означає «the bowl where water runs for washing hands or dishes»?",
         "es": "¿Qué palabra o expresión inglesa significa «the bowl where water runs for washing hands or dishes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the bowl where water runs for washing hands or dishes”?",
@@ -3852,7 +3852,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the glass where you see yourself.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «стекло, в котором видишь себя».",
+        "ru": "Выбери английский вариант: «стекло, в котором видишь себя».",
         "uk": "Яке англійське слово або фраза означає «the glass where you see yourself»?",
         "es": "¿Qué palabra o expresión inglesa significa «the glass where you see yourself»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the glass where you see yourself”?",
@@ -3946,7 +3946,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a flat board for holding things on a wall or cabinet.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «плоская доска для хранения вещей на стене или в шкафу».",
+        "ru": "Выбери английский вариант: «плоская доска для хранения вещей на стене или в шкафу».",
         "uk": "Яке англійське слово або фраза означає «a flat board for holding things on a wall or cabinet»?",
         "es": "¿Qué palabra o expresión inglesa significa «a flat board for holding things on a wall or cabinet»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a flat board for holding things on a wall or cabinet”?",
@@ -4040,7 +4040,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the soft thing under your head in bed.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «мягкая вещь под голову в кровати».",
+        "ru": "Выбери английский вариант: «мягкая вещь под голову в кровати».",
         "uk": "Яке англійське слово або фраза означає «the soft thing under your head in bed»?",
         "es": "¿Qué palabra o expresión inglesa significa «the soft thing under your head in bed»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the soft thing under your head in bed”?",
@@ -4134,7 +4134,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the room where people cook food.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната, где готовят еду».",
+        "ru": "Выбери английский вариант: «комната, где готовят еду».",
         "uk": "Яке англійське слово або фраза означає «the room where people cook food»?",
         "es": "¿Qué palabra o expresión inglesa significa «the room where people cook food»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the room where people cook food”?",
@@ -4228,7 +4228,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: cloth pieces that cover a window.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «ткань, которой закрывают окно».",
+        "ru": "Выбери английский вариант: «ткань, которой закрывают окно».",
         "uk": "Яке англійське слово або фраза означає «cloth pieces that cover a window»?",
         "es": "¿Qué palabra o expresión inglesa significa «cloth pieces that cover a window»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “cloth pieces that cover a window”?",
@@ -4322,7 +4322,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a warm cover used on a bed.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «теплое покрывало для кровати».",
+        "ru": "Выбери английский вариант: «теплое покрывало для кровати».",
         "uk": "Яке англійське слово або фраза означає «a warm cover used on a bed»?",
         "es": "¿Qué palabra o expresión inglesa significa «a warm cover used on a bed»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a warm cover used on a bed”?",
@@ -4416,7 +4416,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a soft small pillow for a sofa or chair.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленькая мягкая подушка для дивана или кресла».",
+        "ru": "Выбери английский вариант: «маленькая мягкая подушка для дивана или кресла».",
         "uk": "Яке англійське слово або фраза означає «a soft small pillow for a sofa or chair»?",
         "es": "¿Qué palabra o expresión inglesa significa «a soft small pillow for a sofa or chair»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a soft small pillow for a sofa or chair”?",
@@ -4510,7 +4510,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a long soft seat for several people.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «длинное мягкое сиденье для нескольких человек».",
+        "ru": "Выбери английский вариант: «длинное мягкое сиденье для нескольких человек».",
         "uk": "Яке англійське слово або фраза означає «a long soft seat for several people»?",
         "es": "¿Qué palabra o expresión inglesa significa «a long soft seat for several people»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a long soft seat for several people”?",
@@ -4604,7 +4604,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a cabinet with doors for storing things.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «шкафчик с дверцами для хранения вещей».",
+        "ru": "Выбери английский вариант: «шкафчик с дверцами для хранения вещей».",
         "uk": "Яке англійське слово або фраза означає «a cabinet with doors for storing things»?",
         "es": "¿Qué palabra o expresión inglesa significa «a cabinet with doors for storing things»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a cabinet with doors for storing things”?",
@@ -4698,7 +4698,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: furniture with a flat top for eating or placing things.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «мебель с плоской поверхностью для еды или вещей».",
+        "ru": "Выбери английский вариант: «мебель с плоской поверхностью для еды или вещей».",
         "uk": "Яке англійське слово або фраза означає «furniture with a flat top for eating or placing things»?",
         "es": "¿Qué palabra o expresión inglesa significa «furniture with a flat top for eating or placing things»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “furniture with a flat top for eating or placing things”?",
@@ -4792,7 +4792,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a shelf or case for books.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «полка или шкаф для книг».",
+        "ru": "Выбери английский вариант: «полка или шкаф для книг».",
         "uk": "Яке англійське слово або фраза означає «a shelf or case for books»?",
         "es": "¿Qué palabra o expresión inglesa significa «a shelf or case for books»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a shelf or case for books”?",
@@ -4886,7 +4886,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the small control you press to turn a light on or off.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленькая кнопка для включения или выключения света».",
+        "ru": "Выбери английский вариант: «маленькая кнопка для включения или выключения света».",
         "uk": "Яке англійське слово або фраза означає «the small control you press to turn a light on or off»?",
         "es": "¿Qué palabra o expresión inglesa significa «the small control you press to turn a light on or off»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the small control you press to turn a light on or off”?",
@@ -4980,7 +4980,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: steps that connect one floor to another.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «ступени между этажами».",
+        "ru": "Выбери английский вариант: «ступени между этажами».",
         "uk": "Яке англійське слово або фраза означає «steps that connect one floor to another»?",
         "es": "¿Qué palabra o expresión inglesa significa «steps that connect one floor to another»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “steps that connect one floor to another”?",
@@ -5074,7 +5074,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small outside platform on an upper floor.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «небольшая открытая площадка на верхнем этаже».",
+        "ru": "Выбери английский вариант: «небольшая открытая площадка на верхнем этаже».",
         "uk": "Яке англійське слово або фраза означає «a small outside platform on an upper floor»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small outside platform on an upper floor»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small outside platform on an upper floor”?",
@@ -5168,7 +5168,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a low table usually placed near a sofa.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «низкий столик рядом с диваном».",
+        "ru": "Выбери английский вариант: «низкий столик рядом с диваном».",
         "uk": "Яке англійське слово або фраза означає «a low table usually placed near a sofa»?",
         "es": "¿Qué palabra o expresión inglesa significa «a low table usually placed near a sofa»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a low table usually placed near a sofa”?",
@@ -5262,7 +5262,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a television for watching shows or videos.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «устройство для просмотра передач и видео».",
+        "ru": "Выбери английский вариант: «устройство для просмотра передач и видео».",
         "uk": "Яке англійське слово або фраза означає «a television for watching shows or videos»?",
         "es": "¿Qué palabra o expresión inglesa significa «a television for watching shows or videos»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a television for watching shows or videos”?",
@@ -5356,7 +5356,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the part of a TV or device that shows the picture.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «часть телевизора или устройства, где видно изображение».",
+        "ru": "Выбери английский вариант: «часть телевизора или устройства, где видно изображение».",
         "uk": "Яке англійське слово або фраза означає «the part of a TV or device that shows the picture»?",
         "es": "¿Qué palabra o expresión inglesa significa «the part of a TV or device that shows the picture»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the part of a TV or device that shows the picture”?",
@@ -5450,7 +5450,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: an object that shows the time.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «предмет, который показывает время».",
+        "ru": "Выбери английский вариант: «предмет, который показывает время».",
         "uk": "Яке англійське слово або фраза означає «an object that shows the time»?",
         "es": "¿Qué palabra o expresión inglesa significa «an object that shows the time»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “an object that shows the time”?",
@@ -5544,7 +5544,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small metal object used to open a lock.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленький металлический предмет для открывания замка».",
+        "ru": "Выбери английский вариант: «маленький металлический предмет для открывания замка».",
         "uk": "Яке англійське слово або фраза означає «a small metal object used to open a lock»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small metal object used to open a lock»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small metal object used to open a lock”?",
@@ -5638,7 +5638,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the main door at the entrance of a home.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «главная дверь у входа в дом».",
+        "ru": "Выбери английский вариант: «главная дверь у входа в дом».",
         "uk": "Яке англійське слово або фраза означає «the main door at the entrance of a home»?",
         "es": "¿Qué palabra o expresión inglesa significa «the main door at the entrance of a home»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the main door at the entrance of a home”?",
@@ -5732,7 +5732,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a narrow passage between rooms.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «узкий проход между комнатами».",
+        "ru": "Выбери английский вариант: «узкий проход между комнатами».",
         "uk": "Яке англійське слово або фраза означає «a narrow passage between rooms»?",
         "es": "¿Qué palabra o expresión inglesa significa «a narrow passage between rooms»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a narrow passage between rooms”?",
@@ -5826,7 +5826,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a place at home for a car.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «место в доме для машины».",
+        "ru": "Выбери английский вариант: «место в доме для машины».",
         "uk": "Яке англійське слово або фраза означає «a place at home for a car»?",
         "es": "¿Qué palabra o expresión inglesa significa «a place at home for a car»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a place at home for a car”?",
@@ -5920,7 +5920,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a storage unit with doors or drawers.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «модуль для хранения с дверцами или ящиками».",
+        "ru": "Выбери английский вариант: «модуль для хранения с дверцами или ящиками».",
         "uk": "Яке англійське слово або фраза означає «a storage unit with doors or drawers»?",
         "es": "¿Qué palabra o expresión inglesa significa «a storage unit with doors or drawers»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a storage unit with doors or drawers”?",
@@ -6014,7 +6014,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the thing used with water to wash hands or body.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «средство для мытья рук или тела».",
+        "ru": "Выбери английский вариант: «средство для мытья рук или тела».",
         "uk": "Яке англійське слово або фраза означає «the thing used with water to wash hands or body»?",
         "es": "¿Qué palabra o expresión inglesa significa «the thing used with water to wash hands or body»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the thing used with water to wash hands or body”?",
@@ -6108,7 +6108,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small carpet for part of the floor.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «небольшой ковер на части пола».",
+        "ru": "Выбери английский вариант: «небольшой ковер на части пола».",
         "uk": "Яке англійське слово або фраза означає «a small carpet for part of the floor»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small carpet for part of the floor»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small carpet for part of the floor”?",
@@ -6202,7 +6202,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a box used to keep household items tidy.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «коробка для хранения домашних вещей».",
+        "ru": "Выбери английский вариант: «коробка для хранения домашних вещей».",
         "uk": "Яке англійське слово або фраза означає «a box used to keep household items tidy»?",
         "es": "¿Qué palabra o expresión inglesa significa «a box used to keep household items tidy»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a box used to keep household items tidy”?",
@@ -6296,7 +6296,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a piece of furniture with several drawers.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «мебель с несколькими выдвижными ящиками».",
+        "ru": "Выбери английский вариант: «мебель с несколькими выдвижными ящиками».",
         "uk": "Яке англійське слово або фраза означає «a piece of furniture with several drawers»?",
         "es": "¿Qué palabra o expresión inglesa significa «a piece of furniture with several drawers»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a piece of furniture with several drawers”?",
@@ -6390,7 +6390,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a tall cupboard for clothes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «высокий шкаф для одежды».",
+        "ru": "Выбери английский вариант: «высокий шкаф для одежды».",
         "uk": "Яке англійське слово або фраза означає «a tall cupboard for clothes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a tall cupboard for clothes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a tall cupboard for clothes”?",
@@ -6484,7 +6484,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small table beside a bed.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленький столик рядом с кроватью».",
+        "ru": "Выбери английский вариант: «маленький столик рядом с кроватью».",
         "uk": "Яке англійське слово або фраза означає «a small table beside a bed»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small table beside a bed»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small table beside a bed”?",
@@ -6578,7 +6578,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room where people eat meals.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната, где едят».",
+        "ru": "Выбери английский вариант: «комната, где едят».",
         "uk": "Яке англійське слово або фраза означає «a room where people eat meals»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room where people eat meals»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room where people eat meals”?",
@@ -6672,7 +6672,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room or area for working at home.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «место или комната для работы дома».",
+        "ru": "Выбери английский вариант: «место или комната для работы дома».",
         "uk": "Яке англійське слово або фраза означає «a room or area for working at home»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room or area for working at home»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room or area for working at home”?",
@@ -6766,7 +6766,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room for a child at home.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната для ребенка».",
+        "ru": "Выбери английский вариант: «комната для ребенка».",
         "uk": "Яке англійське слово або фраза означає «a room for a child at home»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room for a child at home»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room for a child at home”?",
@@ -6860,7 +6860,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the space or room under the roof.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «пространство или комната под крышей».",
+        "ru": "Выбери английский вариант: «пространство или комната под крышей».",
         "uk": "Яке англійське слово або фраза означає «the space or room under the roof»?",
         "es": "¿Qué palabra o expresión inglesa significa «the space or room under the roof»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the space or room under the roof”?",
@@ -6954,7 +6954,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the room or space below the ground floor.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «помещение ниже первого этажа».",
+        "ru": "Выбери английский вариант: «помещение ниже первого этажа».",
         "uk": "Яке англійське слово або фраза означає «the room or space below the ground floor»?",
         "es": "¿Qué palabra o expresión inglesa significa «the room or space below the ground floor»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the room or space below the ground floor”?",
@@ -7048,7 +7048,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a covered area at the entrance of a house.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «крытая площадка у входа в дом».",
+        "ru": "Выбери английский вариант: «крытая площадка у входа в дом».",
         "uk": "Яке англійське слово або фраза означає «a covered area at the entrance of a house»?",
         "es": "¿Qué palabra o expresión inglesa significa «a covered area at the entrance of a house»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a covered area at the entrance of a house”?",
@@ -7142,7 +7142,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the outside area with plants near a home.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «участок с растениями рядом с домом».",
+        "ru": "Выбери английский вариант: «участок с растениями рядом с домом».",
         "uk": "Яке англійське слово або фраза означає «the outside area with plants near a home»?",
         "es": "¿Qué palabra o expresión inglesa significa «the outside area with plants near a home»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the outside area with plants near a home”?",
@@ -7236,7 +7236,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a barrier around a garden or home area.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «ограждение вокруг участка или дома».",
+        "ru": "Выбери английский вариант: «ограждение вокруг участка или дома».",
         "uk": "Яке англійське слово або фраза означає «a barrier around a garden or home area»?",
         "es": "¿Qué palabra o expresión inglesa significa «a barrier around a garden or home area»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a barrier around a garden or home area”?",
@@ -7330,7 +7330,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a box where letters are delivered.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «ящик, куда доставляют письма».",
+        "ru": "Выбери английский вариант: «ящик, куда доставляют письма».",
         "uk": "Яке англійське слово або фраза означає «a box where letters are delivered»?",
         "es": "¿Qué palabra o expresión inglesa significa «a box where letters are delivered»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a box where letters are delivered”?",
@@ -7424,7 +7424,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small device used to control a TV.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленькое устройство для управления телевизором».",
+        "ru": "Выбери английский вариант: «маленькое устройство для управления телевизором».",
         "uk": "Яке англійське слово або фраза означає «a small device used to control a TV»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small device used to control a TV»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small device used to control a TV”?",
@@ -7518,7 +7518,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the end of a cable that goes into a socket.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «конец кабеля, который вставляют в розетку».",
+        "ru": "Выбери английский вариант: «конец кабеля, который вставляют в розетку».",
         "uk": "Яке англійське слово або фраза означає «the end of a cable that goes into a socket»?",
         "es": "¿Qué palabra o expresión inglesa significa «the end of a cable that goes into a socket»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the end of a cable that goes into a socket”?",
@@ -7612,7 +7612,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the place in a wall where you plug in a device.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «место в стене, куда вставляют вилку».",
+        "ru": "Выбери английский вариант: «место в стене, куда вставляют вилку».",
         "uk": "Яке англійське слово або фраза означає «the place in a wall where you plug in a device»?",
         "es": "¿Qué palabra o expresión inglesa significa «the place in a wall where you plug in a device»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the place in a wall where you plug in a device”?",
@@ -7706,7 +7706,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a cable that gives more reach for electricity.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «кабель, который удлиняет доступ к электричеству».",
+        "ru": "Выбери английский вариант: «кабель, который удлиняет доступ к электричеству».",
         "uk": "Яке англійське слово або фраза означає «a cable that gives more reach for electricity»?",
         "es": "¿Qué palabra o expresión inglesa significa «a cable that gives more reach for electricity»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a cable that gives more reach for electricity”?",
@@ -7800,7 +7800,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a device that warns you about smoke.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «устройство, которое предупреждает о дыме».",
+        "ru": "Выбери английский вариант: «устройство, которое предупреждает о дыме».",
         "uk": "Яке англійське слово або фраза означає «a device that warns you about smoke»?",
         "es": "¿Qué palabra o expresión inglesa significa «a device that warns you about smoke»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a device that warns you about smoke”?",
@@ -7894,7 +7894,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a control for heating or cooling a room.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «регулятор отопления или охлаждения комнаты».",
+        "ru": "Выбери английский вариант: «регулятор отопления или охлаждения комнаты».",
         "uk": "Яке англійське слово або фраза означає «a control for heating or cooling a room»?",
         "es": "¿Qué palabra o expresión inglesa significa «a control for heating or cooling a room»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a control for heating or cooling a room”?",
@@ -7988,7 +7988,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the bathroom fixture people use as a toilet.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «сантехника в ванной или туалете».",
+        "ru": "Выбери английский вариант: «сантехника в ванной или туалете».",
         "uk": "Яке англійське слово або фраза означає «the bathroom fixture people use as a toilet»?",
         "es": "¿Qué palabra o expresión inglesa significa «the bathroom fixture people use as a toilet»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the bathroom fixture people use as a toilet”?",
@@ -8082,7 +8082,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: paper used in the bathroom near the toilet.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «бумага рядом с туалетом».",
+        "ru": "Выбери английский вариант: «бумага рядом с туалетом».",
         "uk": "Яке англійське слово або фраза означає «paper used in the bathroom near the toilet»?",
         "es": "¿Qué palabra o expresión inglesa significa «paper used in the bathroom near the toilet»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “paper used in the bathroom near the toilet”?",
@@ -8176,7 +8176,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a brush used for cleaning a toilet.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «щетка для чистки унитаза».",
+        "ru": "Выбери английский вариант: «щетка для чистки унитаза».",
         "uk": "Яке англійське слово або фраза означає «a brush used for cleaning a toilet»?",
         "es": "¿Qué palabra o expresión inglesa significa «a brush used for cleaning a toilet»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a brush used for cleaning a toilet”?",
@@ -8270,7 +8270,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a loose robe worn after a bath or shower.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «свободный халат после ванны или душа».",
+        "ru": "Выбери английский вариант: «свободный халат после ванны или душа».",
         "uk": "Яке англійське слово або фраза означає «a loose robe worn after a bath or shower»?",
         "es": "¿Qué palabra o expresión inglesa significa «a loose robe worn after a bath or shower»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a loose robe worn after a bath or shower”?",
@@ -8364,7 +8364,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room for washing clothes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната для стирки одежды».",
+        "ru": "Выбери английский вариант: «комната для стирки одежды».",
         "uk": "Яке англійське слово або фраза означає «a room for washing clothes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room for washing clothes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room for washing clothes”?",
@@ -8458,7 +8458,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a room for keeping things you do not use every day.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «комната для хранения вещей не на каждый день».",
+        "ru": "Выбери английский вариант: «комната для хранения вещей не на каждый день».",
         "uk": "Яке англійське слово або фраза означає «a room for keeping things you do not use every day»?",
         "es": "¿Qué palabra o expresión inglesa significa «a room for keeping things you do not use every day»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a room for keeping things you do not use every day”?",
@@ -8552,7 +8552,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the top inside surface of a room.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «верхняя внутренняя поверхность комнаты».",
+        "ru": "Выбери английский вариант: «верхняя внутренняя поверхность комнаты».",
         "uk": "Яке англійське слово або фраза означає «the top inside surface of a room»?",
         "es": "¿Qué palabra o expresión inglesa significa «the top inside surface of a room»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the top inside surface of a room”?",
@@ -8646,7 +8646,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a clock that wakes you up.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «часы, которые будят утром».",
+        "ru": "Выбери английский вариант: «часы, которые будят утром».",
         "uk": "Яке англійське слово або фраза означає «a clock that wakes you up»?",
         "es": "¿Qué palabra o expresión inglesa significa «a clock that wakes you up»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a clock that wakes you up”?",
@@ -8740,7 +8740,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a box-shaped part of furniture that slides out.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «выдвижная часть мебели в форме коробки».",
+        "ru": "Выбери английский вариант: «выдвижная часть мебели в форме коробки».",
         "uk": "Яке англійське слово або фраза означає «a box-shaped part of furniture that slides out»?",
         "es": "¿Qué palabra o expresión inglesa significa «a box-shaped part of furniture that slides out»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a box-shaped part of furniture that slides out”?",
@@ -8834,7 +8834,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a basket for dirty or clean clothes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «корзина для грязной или чистой одежды».",
+        "ru": "Выбери английский вариант: «корзина для грязной или чистой одежды».",
         "uk": "Яке англійське слово або фраза означає «a basket for dirty or clean clothes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a basket for dirty or clean clothes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a basket for dirty or clean clothes”?",
@@ -8928,7 +8928,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: an object for hanging clothes in a closet.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «предмет, на который вешают одежду в шкафу».",
+        "ru": "Выбери английский вариант: «предмет, на который вешают одежду в шкафу».",
         "uk": "Яке англійське слово або фраза означає «an object for hanging clothes in a closet»?",
         "es": "¿Qué palabra o expresión inglesa significa «an object for hanging clothes in a closet»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “an object for hanging clothes in a closet”?",
@@ -9022,7 +9022,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small storage space for clothes or household items.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «небольшое место для хранения одежды или домашних вещей».",
+        "ru": "Выбери английский вариант: «небольшое место для хранения одежды или домашних вещей».",
         "uk": "Яке англійське слово або фраза означає «a small storage space for clothes or household items»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small storage space for clothes or household items»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small storage space for clothes or household items”?",
@@ -9116,7 +9116,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small shelf or stand for shoes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «полка или стойка для обуви».",
+        "ru": "Выбери английский вариант: «полка или стойка для обуви».",
         "uk": "Яке англійське слово або фраза означає «a small shelf or stand for shoes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small shelf or stand for shoes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small shelf or stand for shoes”?",
@@ -9210,7 +9210,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a machine that washes clothes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «машина, которая стирает одежду».",
+        "ru": "Выбери английский вариант: «машина, которая стирает одежду».",
         "uk": "Яке англійське слово або фраза означає «a machine that washes clothes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a machine that washes clothes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a machine that washes clothes”?",
@@ -9304,7 +9304,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a machine that dries clothes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «машина, которая сушит одежду».",
+        "ru": "Выбери английский вариант: «машина, которая сушит одежду».",
         "uk": "Яке англійське слово або фраза означає «a machine that dries clothes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a machine that dries clothes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a machine that dries clothes”?",
@@ -9398,7 +9398,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a hot tool used to smooth clothes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «горячий инструмент для разглаживания одежды».",
+        "ru": "Выбери английский вариант: «горячий инструмент для разглаживания одежды».",
         "uk": "Яке англійське слово або фраза означає «a hot tool used to smooth clothes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a hot tool used to smooth clothes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a hot tool used to smooth clothes”?",
@@ -9492,7 +9492,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a narrow board used when ironing clothes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «узкая доска для глажки одежды».",
+        "ru": "Выбери английский вариант: «узкая доска для глажки одежды».",
         "uk": "Яке англійське слово або фраза означає «a narrow board used when ironing clothes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a narrow board used when ironing clothes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a narrow board used when ironing clothes”?",
@@ -9586,7 +9586,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a line where clothes hang to dry.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «веревка или линия, на которой сушат одежду».",
+        "ru": "Выбери английский вариант: «веревка или линия, на которой сушат одежду».",
         "uk": "Яке англійське слово або фраза означає «a line where clothes hang to dry»?",
         "es": "¿Qué palabra o expresión inglesa significa «a line where clothes hang to dry»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a line where clothes hang to dry”?",
@@ -9680,7 +9680,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a stand or rail for coats.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «стойка или вешалка для пальто».",
+        "ru": "Выбери английский вариант: «стойка или вешалка для пальто».",
         "uk": "Яке англійське слово або фраза означає «a stand or rail for coats»?",
         "es": "¿Qué palabra o expresión inglesa significa «a stand or rail for coats»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a stand or rail for coats”?",
@@ -9774,7 +9774,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a mat outside or inside a door for wiping shoes.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «коврик у двери для вытирания обуви».",
+        "ru": "Выбери английский вариант: «коврик у двери для вытирания обуви».",
         "uk": "Яке англійське слово або фраза означає «a mat outside or inside a door for wiping shoes»?",
         "es": "¿Qué palabra o expresión inglesa significa «a mat outside or inside a door for wiping shoes»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a mat outside or inside a door for wiping shoes”?",
@@ -9868,7 +9868,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small hook where keys are kept.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленький крючок для ключей».",
+        "ru": "Выбери английский вариант: «маленький крючок для ключей».",
         "uk": "Яке англійське слово або фраза означає «a small hook where keys are kept»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small hook where keys are kept»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small hook where keys are kept”?",
@@ -9962,7 +9962,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small hole in a door for seeing who is outside.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленькое отверстие в двери, чтобы видеть, кто снаружи».",
+        "ru": "Выбери английский вариант: «маленькое отверстие в двери, чтобы видеть, кто снаружи».",
         "uk": "Яке англійське слово або фраза означає «a small hole in a door for seeing who is outside»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small hole in a door for seeing who is outside»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small hole in a door for seeing who is outside”?",
@@ -10056,7 +10056,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a button or device people use to announce they are at the door.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «кнопка или устройство у двери для звонка».",
+        "ru": "Выбери английский вариант: «кнопка или устройство у двери для звонка».",
         "uk": "Яке англійське слово або фраза означає «a button or device people use to announce they are at the door»?",
         "es": "¿Qué palabra o expresión inglesa significa «a button or device people use to announce they are at the door»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a button or device people use to announce they are at the door”?",
@@ -10150,7 +10150,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the part of a door you hold to open it.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «часть двери, за которую берутся, чтобы открыть ее».",
+        "ru": "Выбери английский вариант: «часть двери, за которую берутся, чтобы открыть ее».",
         "uk": "Яке англійське слово або фраза означає «the part of a door you hold to open it»?",
         "es": "¿Qué palabra o expresión inglesa significa «the part of a door you hold to open it»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the part of a door you hold to open it”?",
@@ -10244,7 +10244,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the part that keeps a door closed and secure.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «часть двери, которая закрывает ее на ключ».",
+        "ru": "Выбери английский вариант: «часть двери, которая закрывает ее на ключ».",
         "uk": "Яке англійське слово або фраза означає «the part that keeps a door closed and secure»?",
         "es": "¿Qué palabra o expresión inglesa significa «the part that keeps a door closed and secure»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the part that keeps a door closed and secure”?",
@@ -10338,7 +10338,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a cloth used for drying your hands or body.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «ткань для вытирания рук или тела».",
+        "ru": "Выбери английский вариант: «ткань для вытирания рук или тела».",
         "uk": "Яке англійське слово або фраза означає «a cloth used for drying your hands or body»?",
         "es": "¿Qué palabra o expresión inglesa significa «a cloth used for drying your hands or body»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a cloth used for drying your hands or body”?",
@@ -10432,7 +10432,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the part where water comes out.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «часть, откуда течет вода».",
+        "ru": "Выбери английский вариант: «часть, откуда течет вода».",
         "uk": "Яке англійське слово або фраза означає «the part where water comes out»?",
         "es": "¿Qué palabra o expresión inglesa significa «the part where water comes out»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the part where water comes out”?",
@@ -10526,7 +10526,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the hole where water goes away.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «отверстие, куда уходит вода».",
+        "ru": "Выбери английский вариант: «отверстие, куда уходит вода».",
         "uk": "Яке англійське слово або фраза означає «the hole where water goes away»?",
         "es": "¿Qué palabra o expresión inglesa significa «the hole where water goes away»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the hole where water goes away”?",
@@ -10620,7 +10620,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a place or device for washing while standing.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «место или устройство для мытья стоя».",
+        "ru": "Выбери английский вариант: «место или устройство для мытья стоя».",
         "uk": "Яке англійське слово або фраза означає «a place or device for washing while standing»?",
         "es": "¿Qué palabra o expresión inglesa significa «a place or device for washing while standing»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a place or device for washing while standing”?",
@@ -10714,7 +10714,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a large tub where you can sit and wash.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «большая ванна, где можно сидеть и мыться».",
+        "ru": "Выбери английский вариант: «большая ванна, где можно сидеть и мыться».",
         "uk": "Яке англійське слово або фраза означає «a large tub where you can sit and wash»?",
         "es": "¿Qué palabra o expresión inglesa significa «a large tub where you can sit and wash»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a large tub where you can sit and wash”?",
@@ -10808,7 +10808,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a small brush for cleaning teeth.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «маленькая щетка для чистки зубов».",
+        "ru": "Выбери английский вариант: «маленькая щетка для чистки зубов».",
         "uk": "Яке англійське слово або фраза означає «a small brush for cleaning teeth»?",
         "es": "¿Qué palabra o expresión inglesa significa «a small brush for cleaning teeth»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a small brush for cleaning teeth”?",
@@ -10902,7 +10902,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: the paste used with a toothbrush.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «паста, которую используют с зубной щеткой».",
+        "ru": "Выбери английский вариант: «паста, которую используют с зубной щеткой».",
         "uk": "Яке англійське слово або фраза означає «the paste used with a toothbrush»?",
         "es": "¿Qué palabra o expresión inglesa significa «the paste used with a toothbrush»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “the paste used with a toothbrush”?",
@@ -10996,7 +10996,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: an object used to tidy hair.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «предмет, которым приводят волосы в порядок».",
+        "ru": "Выбери английский вариант: «предмет, которым приводят волосы в порядок».",
         "uk": "Яке англійське слово або фраза означає «an object used to tidy hair»?",
         "es": "¿Qué palabra o expresión inglesa significa «an object used to tidy hair»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “an object used to tidy hair”?",
@@ -11090,7 +11090,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a device that blows warm air to dry hair.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «устройство с теплым воздухом для сушки волос».",
+        "ru": "Выбери английский вариант: «устройство с теплым воздухом для сушки волос».",
         "uk": "Яке англійське слово або фраза означає «a device that blows warm air to dry hair»?",
         "es": "¿Qué palabra o expresión inglesa significa «a device that blows warm air to dry hair»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a device that blows warm air to dry hair”?",
@@ -11184,7 +11184,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a machine used to clean floors by sucking up dust.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «машина, которая всасывает пыль с пола».",
+        "ru": "Выбери английский вариант: «машина, которая всасывает пыль с пола».",
         "uk": "Яке англійське слово або фраза означає «a machine used to clean floors by sucking up dust»?",
         "es": "¿Qué palabra o expresión inglesa significa «a machine used to clean floors by sucking up dust»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a machine used to clean floors by sucking up dust”?",
@@ -11278,7 +11278,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a tool used to sweep the floor.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «инструмент, которым подметают пол».",
+        "ru": "Выбери английский вариант: «инструмент, которым подметают пол».",
         "uk": "Яке англійське слово або фраза означає «a tool used to sweep the floor»?",
         "es": "¿Qué palabra o expresión inglesa significa «a tool used to sweep the floor»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a tool used to sweep the floor”?",
@@ -11372,7 +11372,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a tool used to wash the floor.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «инструмент, которым моют пол».",
+        "ru": "Выбери английский вариант: «инструмент, которым моют пол».",
         "uk": "Яке англійське слово або фраза означає «a tool used to wash the floor»?",
         "es": "¿Qué palabra o expresión inglesa significa «a tool used to wash the floor»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a tool used to wash the floor”?",
@@ -11466,7 +11466,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a container for rubbish.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «контейнер для мусора».",
+        "ru": "Выбери английский вариант: «контейнер для мусора».",
         "uk": "Яке англійське слово або фраза означає «a container for rubbish»?",
         "es": "¿Qué palabra o expresión inglesa significa «a container for rubbish»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a container for rubbish”?",
@@ -11560,7 +11560,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a piece of fabric used for cleaning or wiping.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «кусок ткани для уборки или вытирания».",
+        "ru": "Выбери английский вариант: «кусок ткани для уборки или вытирания».",
         "uk": "Яке англійське слово або фраза означає «a piece of fabric used for cleaning or wiping»?",
         "es": "¿Qué palabra o expresión inglesa significa «a piece of fabric used for cleaning or wiping»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a piece of fabric used for cleaning or wiping”?",
@@ -11654,7 +11654,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a cabinet in the bathroom for toiletries or small items.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «шкафчик в ванной для туалетных принадлежностей».",
+        "ru": "Выбери английский вариант: «шкафчик в ванной для туалетных принадлежностей».",
         "uk": "Яке англійське слово або фраза означає «a cabinet in the bathroom for toiletries or small items»?",
         "es": "¿Qué palabra o expresión inglesa significa «a cabinet in the bathroom for toiletries or small items»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a cabinet in the bathroom for toiletries or small items”?",
@@ -11748,7 +11748,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a bathroom or wall cabinet for medicines.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «шкафчик для лекарств».",
+        "ru": "Выбери английский вариант: «шкафчик для лекарств».",
         "uk": "Яке англійське слово або фраза означає «a bathroom or wall cabinet for medicines»?",
         "es": "¿Qué palabra o expresión inglesa significa «a bathroom or wall cabinet for medicines»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a bathroom or wall cabinet for medicines”?",
@@ -11842,7 +11842,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a curtain that keeps water inside the shower area.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «занавеска, которая удерживает воду в зоне душа».",
+        "ru": "Выбери английский вариант: «занавеска, которая удерживает воду в зоне душа».",
         "uk": "Яке англійське слово або фраза означає «a curtain that keeps water inside the shower area»?",
         "es": "¿Qué palabra o expresión inglesa significa «a curtain that keeps water inside the shower area»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a curtain that keeps water inside the shower area”?",
@@ -11936,7 +11936,7 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
       "type": "mcq",
       "prompt": "Choose the English word for: a mat on the bathroom floor.",
       "localizedPrompts": {
-        "ru": "Выберите английский вариант: «коврик на полу в ванной».",
+        "ru": "Выбери английский вариант: «коврик на полу в ванной».",
         "uk": "Яке англійське слово або фраза означає «a mat on the bathroom floor»?",
         "es": "¿Qué palabra o expresión inglesa significa «a mat on the bathroom floor»?",
         "pt-BR": "Qual palavra ou expressão em inglês significa “a mat on the bathroom floor”?",

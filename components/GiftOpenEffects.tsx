@@ -25,22 +25,18 @@ const pick = (arr: readonly string[], i: number) => arr[i % arr.length]!;
 
 export function GiftOpenBurst({ tier, size = 100 }: { tier: GiftAnimTier; size?: number }) {
   const n = tier === 'sparkle' ? 12 : tier === 'confetti' ? 32 : 44;
-  const partsRef = useRef<BurstParticle[] | null>(null);
-  const ringRef = useRef<Animated.Value | null>(null);
-  const flashRef = useRef<Animated.Value | null>(null);
-
-  if (!partsRef.current || partsRef.current.length !== n) {
-    partsRef.current = Array.from({ length: n }, () => ({
+  const partsRef = useRef<BurstParticle[]>(
+    Array.from({ length: 44 }, () => ({
       x: new Animated.Value(0),
       y: new Animated.Value(0),
       o: new Animated.Value(0),
       s: new Animated.Value(0.4),
-    }));
-  }
-  if (!ringRef.current) ringRef.current = new Animated.Value(0.2);
-  if (!flashRef.current) flashRef.current = new Animated.Value(0);
+    }))
+  );
+  const ringRef = useRef(new Animated.Value(0.2));
+  const flashRef = useRef(new Animated.Value(0));
 
-  const parts = partsRef.current;
+  const parts = partsRef.current.slice(0, n);
   const ring = ringRef.current;
   const flash = flashRef.current;
 

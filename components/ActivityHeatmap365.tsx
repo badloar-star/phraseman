@@ -2,7 +2,7 @@
  * Premium yearly activity analytics: compact "year pulse", expandable 365 grid,
  * day details, filters, goal forecast and monthly report.
  */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
@@ -211,7 +211,7 @@ function filterLabel(filter: Activity365Filter, lang: Lang): string {
   const labels: Record<Activity365Filter, PlannedCopy> = {
     all: { ru: 'Все', uk: 'Усе', es: 'Todo', 'pt-BR': 'Tudo', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystko' },
     lessons: { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' },
-    quizzes: { ru: 'Квизы', uk: 'Квізи', es: 'Tests', 'pt-BR': 'Quizzes', vi: 'Quiz', id: 'Kuis', tr: 'Quizler', pl: 'Quizy' },
+    quizzes: { ru: 'Вызовы', uk: 'Квізи', es: 'Tests', 'pt-BR': 'Quizzes', vi: 'Quiz', id: 'Kuis', tr: 'Quizler', pl: 'Quizy' },
     review: { ru: 'Повтор', uk: 'Повтор', es: 'Repaso', 'pt-BR': 'Revisão', vi: 'Ôn tập', id: 'Ulangan', tr: 'Tekrar', pl: 'Powtórka' },
     arena: { ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena' },
   };
@@ -313,7 +313,7 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
       pl: "Lekcje",
     }), value: day.metrics.lessons },
     { icon: 'help-circle-outline', label: triLang(lang, {
-      ru: 'Квизы',
+      ru: 'Вызовы',
       uk: 'Квізи',
       es: 'Tests',
       'pt-BR': "Testes",
@@ -511,7 +511,7 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
                 pl: "Lekcje",
               })} value={totals.lessons} t={t} f={f} />
               <StatPill label={triLang(lang, {
-                ru: 'Квизы',
+                ru: 'Вызовы',
                 uk: 'Квізи',
                 es: 'Tests',
                 'pt-BR': "Testes",
@@ -564,7 +564,7 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
   );
 }
 
-export default function ActivityHeatmap365() {
+function ActivityHeatmap365() {
   const { theme: t, f, themeMode } = useTheme();
   const isGoldTheme = themeMode === 'gold';
   const { lang } = useLang();
@@ -829,34 +829,37 @@ export default function ActivityHeatmap365() {
             alignSelf: 'center',
           }}
         >
-          {days.slice(0, WINDOW_DAYS).map((day, idx) => {
+          {(() => {
             const size = expanded ? cellSize : previewCell;
-            const level = expanded ? levelForFilter(days, day, filter) : day.level;
             const rounded = expanded ? Math.max(2, Math.min(3, size * 0.32)) : Math.max(0.75, size * 0.25);
-            const cellStyle = {
-              width: size,
-              height: size,
-              backgroundColor: levelColor(level, heatPalette),
-              borderColor: level <= 0 ? t.border : 'transparent',
-              borderWidth: expanded && level <= 0 ? StyleSheet.hairlineWidth : 0,
-              borderRadius: rounded,
-            };
-            if (!expanded) {
-              // Preview mode: plain View — avoids 365 touch responders on the JS thread
-              return <View key={`${day.date}-${idx}`} style={cellStyle} />;
-            }
-            return (
-              <TouchableOpacity
-                key={`${day.date}-${idx}`}
-                testID={`activity-365-day-${day.date}`}
-                activeOpacity={0.7}
-                onPress={() => setSelectedDay(day)}
-                style={cellStyle}
-                accessibilityRole="button"
-                accessibilityLabel={day.date}
-              />
-            );
-          })}
+            const cellBase = { width: size, height: size, borderRadius: rounded };
+            return days.slice(0, WINDOW_DAYS).map((day, idx) => {
+              const level = expanded ? levelForFilter(days, day, filter) : day.level;
+              const cellStyle = [
+                cellBase,
+                {
+                  backgroundColor: levelColor(level, heatPalette),
+                  borderColor: level <= 0 ? t.border : 'transparent',
+                  borderWidth: expanded && level <= 0 ? StyleSheet.hairlineWidth : 0,
+                },
+              ];
+              if (!expanded) {
+                // Preview mode: plain View — avoids 365 touch responders on the JS thread
+                return <View key={`${day.date}-${idx}`} style={cellStyle} />;
+              }
+              return (
+                <TouchableOpacity
+                  key={`${day.date}-${idx}`}
+                  testID={`activity-365-day-${day.date}`}
+                  activeOpacity={0.7}
+                  onPress={() => setSelectedDay(day)}
+                  style={cellStyle}
+                  accessibilityRole="button"
+                  accessibilityLabel={day.date}
+                />
+              );
+            });
+          })()}
         </View>
       </TouchableOpacity>
 
@@ -1041,6 +1044,8 @@ export default function ActivityHeatmap365() {
     </StatsCardArtSurface>
   );
 }
+
+export default memo(ActivityHeatmap365);
 
 const styles = StyleSheet.create({
   card: {

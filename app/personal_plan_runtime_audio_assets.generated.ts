@@ -1270,7 +1270,7 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "id": "audio:gavan:runtime:gavan-d001-listen-audio:gavan-d1-phrase-1",
     "blockId": "gavan_d001:listen-audio",
     "contentUnitIds": [
-      "gavan_d1_phrase_1"
+      "gavan_d001_content_unit_phrase_1"
     ],
     "targetText": "I'm here.",
     "locale": "en",
@@ -1286,7 +1286,7 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "id": "audio:gavan:runtime:gavan-d001-listen-audio:gavan-d1-phrase-2",
     "blockId": "gavan_d001:listen-audio",
     "contentUnitIds": [
-      "gavan_d1_phrase_2"
+      "gavan_d001_content_unit_phrase_2"
     ],
     "targetText": "I'm okay.",
     "locale": "en",
@@ -1302,7 +1302,7 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "id": "audio:gavan:runtime:gavan-d001-listen-audio:gavan-d1-phrase-3",
     "blockId": "gavan_d001:listen-audio",
     "contentUnitIds": [
-      "gavan_d1_phrase_3"
+      "gavan_d001_content_unit_phrase_3"
     ],
     "targetText": "It's okay.",
     "locale": "en",
@@ -1318,7 +1318,7 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "id": "audio:gavan:runtime:gavan-d001-listen-audio:gavan-d1-phrase-4",
     "blockId": "gavan_d001:listen-audio",
     "contentUnitIds": [
-      "gavan_d1_phrase_4"
+      "gavan_d001_content_unit_phrase_4"
     ],
     "targetText": "It's not clear.",
     "locale": "en",
@@ -1334,7 +1334,7 @@ export const GENERATED_RUNTIME_AUDIO_ASSETS: PlanAudioAsset[] = [
     "id": "audio:gavan:runtime:gavan-d001-listen-audio:gavan-d1-phrase-5",
     "blockId": "gavan_d001:listen-audio",
     "contentUnitIds": [
-      "gavan_d1_phrase_5"
+      "gavan_d001_content_unit_phrase_5"
     ],
     "targetText": "You're right.",
     "locale": "en",

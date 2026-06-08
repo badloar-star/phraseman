@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import {
   Modal,
   Pressable,
@@ -35,7 +35,7 @@ type Props = {
   onPick: (emoji: string) => Promise<void>;
 };
 
-export default function ArenaDuelEmojiReact({
+function ArenaDuelEmojiReact({
   sessionKey,
   pickerTitle,
   bottomOffset,
@@ -144,6 +144,8 @@ export default function ArenaDuelEmojiReact({
     </>
   );
 }
+
+export default memo(ArenaDuelEmojiReact);
 
 const styles = StyleSheet.create({
   fab: {

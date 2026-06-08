@@ -29,6 +29,24 @@ describe('adaptive energy icon layout', () => {
     expect(tenSlots.width).toBeLessThanOrEqual(120);
   });
 
+  it('increases overlap as unlocked slot count grows even before overflow', () => {
+    const sixSlots = getAdaptiveEnergyIconLayout({
+      slotCount: 6,
+      iconSize: 34,
+      maxWidth: 260,
+    });
+    const twelveSlots = getAdaptiveEnergyIconLayout({
+      slotCount: 12,
+      iconSize: 34,
+      maxWidth: 260,
+    });
+
+    expect(sixSlots.iconSize).toBe(34);
+    expect(twelveSlots.iconSize).toBe(34);
+    expect(twelveSlots.marginLeft).toBeLessThan(sixSlots.marginLeft);
+    expect(twelveSlots.width).toBeLessThanOrEqual(260);
+  });
+
   it('shrinks only after the minimum visible spacing cannot fit', () => {
     const layout = getAdaptiveEnergyIconLayout({
       slotCount: 14,

@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useMemo, useRef, memo } from 'react';
 import { View, Animated, StyleSheet, Dimensions, Easing, type ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from './ThemeContext';
-import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';
+import { GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';
+import { BG_GRADIENTS } from '../constants/screenBackground';
+import TopFadeMask, { type TopFadeMaskProps } from './TopFadeMask';
 import {
   FABRIC_BACKGROUND_TRANSITIONS_ENABLED,
   usePersistentBackgroundLayers,
@@ -101,31 +103,10 @@ const ORBS: Record<ThemeMode | keyof typeof LEGACY_UNSUPPORTED_ORBS, OrbSpec[]> 
   ...LEGACY_UNSUPPORTED_ORBS,
 };
 
-const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
-  dark:   ['#112318', '#09150E', '#030805'],
-  neon:   ['#181818', '#0F0F0F', '#070707'],
-  gold:   GOLD_GRADIENTS.appBackground,
-  coral:  ['#342027', '#1C1012', '#070405'],
-  // Sketch light paper tone
-  minimalLight: ['#F1E8D7', '#E0D0B7', '#CDB99C'],
-  // Graphite dark neutral tone
-  minimalDark: ['#191B1F', '#121316', '#0C0D0F'],
-  compass: ['#333335', '#303032', '#2D2D2F'],
-};
-
-const LEGACY_UNSUPPORTED_BG_GRADIENTS: Record<'ocean' | 'sakura', string[]> = {
-  // Глубина: яркий верх, книзу почти ночной синий
-  ocean:  ['#2088D0', '#0C4A78', '#020A14'],
-  // Тёмно-винный, насыщенно; верх чуть светлее — шапка/приветствие с тёмным текстом читаемы
-  sakura: ['#B03062', '#581830', '#14040C'],
-};
-
-const BG_GRADIENTS: Record<ThemeMode | keyof typeof LEGACY_UNSUPPORTED_BG_GRADIENTS, string[]> = {
-  ...THEME_BG_GRADIENTS,
-  ...LEGACY_UNSUPPORTED_BG_GRADIENTS,
-};
-/** Те же стопы, что у полного фона приложения — для интро-слоёв без дублирования палитры. */
-export const SCREEN_BG_GRADIENT_STOPS: Record<string, string[]> = BG_GRADIENTS;
+// Стопы фонового градиента вынесены в constants/screenBackground, чтобы fade-маска
+// (TopFadeMask) могла брать тот же цвет без циклического импорта.
+// Ре-экспорт сохраняет существующие импорты `SCREEN_BG_GRADIENT_STOPS` из этого модуля.
+export { SCREEN_BG_GRADIENT_STOPS } from '../constants/screenBackground';
 
 function Orb({ x, y, r, color, opacity, delay }: {
   x: number; y: number; r: number; color: string; opacity: number; delay: number;
@@ -526,9 +507,15 @@ interface Props {
    */
   forceFullBleed?: boolean;
   artBackdrop?: AppArtBackdropName | false;
+  /**
+   * Размытый верхний край (safe-зона): контент при скролле растворяется в фоне
+   * у статус-бара/выреза, а не уходит резко в «шторку». Включайте на скролл-экранах.
+   * Можно передать высоту хедера, чтобы маска покрыла и его.
+   */
+  topFade?: boolean | TopFadeMaskProps;
 }
 
-function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed, artBackdrop }: Props) {
+function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed, artBackdrop, topFade }: Props) {
   const { theme: t, themeMode } = useTheme();
   const isNested = useContext(GradientActiveCtx);
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
@@ -556,9 +543,16 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const childHasExplicitArtBackdrop = useMemo(() => hasExplicitArtBackdrop(children), [children]);
   const routeArtBackdropEnabled = (artBackdrop === undefined || artBackdrop === false) && !childHasExplicitArtBackdrop;
   const fixedArtBackdrop = typeof artBackdrop === 'string' ? artBackdrop : null;
+  const topFadeOpts = topFade === true ? {} : (topFade || null);
+  const topFadeNode = topFadeOpts ? <TopFadeMask {...topFadeOpts} /> : null;
   // Nested tab content lets the parent gradient show through.
   if (isNested && !forceFullBleed) {
-    return <View style={[{ flex: 1, backgroundColor: 'transparent' }, style]}>{children}</View>;
+    return (
+      <View style={[{ flex: 1, backgroundColor: 'transparent' }, style]}>
+        {children}
+        {topFadeNode}
+      </View>
+    );
   }
 
   const staticY = staticParallaxY;
@@ -594,6 +588,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
           </Animated.View>
         )}
         {children}
+        {topFadeNode}
       </View>
     </GradientActiveCtx.Provider>
   );

@@ -16,6 +16,7 @@ import type { PlanExerciseBlock } from '../app/personal_plan_engine_contracts';
 
 const phrases = buildGavanDay1ContentCandidate().phrases;
 const [herePhrase, minutePhrase] = phrases;
+const MOJIBAKE_CHOOSE_PHRASE_INSTRUCTION = 'Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ„Ñ€Ð°Ð·Ñƒ';
 
 const block: PlanExerciseBlock = {
   id: 'gavan-week1-day1:block-runtime-view',
@@ -64,7 +65,7 @@ describe('personal plan exercise runtime view model', () => {
       sessionId: 'session_runtime_view_1',
       title: 'Фразы дня',
       eyebrow: 'Гавань · день 1',
-      instruction: 'Выберите естественную фразу.',
+      instruction: 'Выбери естественную фразу.',
       primaryActionLabel: 'Проверить',
       canSubmit: false,
       completed: false,
@@ -206,7 +207,7 @@ describe('personal plan exercise runtime view model', () => {
     })).toContain('technical_copy');
     expect(validatePlanRuntimeExerciseViewModel({
       ...viewModel,
-      instruction: 'Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ„Ñ€Ð°Ð·Ñƒ',
+      instruction: MOJIBAKE_CHOOSE_PHRASE_INSTRUCTION,
     })).toContain('corrupted_copy');
   });
 });

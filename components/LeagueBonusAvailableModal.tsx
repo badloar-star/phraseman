@@ -1,11 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
-import React, { useEffect, useRef } from 'react';
-import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { triLang } from '../constants/i18n';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { hapticTap } from '../hooks/use-haptics';
+import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import type { LeagueBonusAvailability } from '../app/services/league_chest_rewards';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -19,7 +21,7 @@ type Props = {
 
 const LEAGUE_CROWN_ICON = require('../assets/images/league/league_crown.webp');
 
-export default function LeagueBonusAvailableModal({
+function LeagueBonusAvailableModal({
   visible,
   availability,
   onClose,
@@ -45,7 +47,7 @@ export default function LeagueBonusAvailableModal({
       ]),
     );
     Animated.parallel([
-      Animated.spring(scale, { toValue: 1, friction: 8, tension: 95, useNativeDriver: true }),
+      Animated.spring(scale, { toValue: 1, friction: MOTION_SPRING_LEGACY.ui.friction, tension: MOTION_SPRING_LEGACY.ui.tension, useNativeDriver: true }),
       Animated.timing(opacity, { toValue: 1, duration: 220, useNativeDriver: true }),
       glowLoop,
     ]).start();
@@ -54,7 +56,7 @@ export default function LeagueBonusAvailableModal({
 
   if (!visible || !availability) return null;
 
-  const crownName = availability.crownName || triLang(lang, { ru: 'лидер недели', uk: 'лідер тижня', es: 'líder semanal', 'pt-BR': 'líder da semana', vi: 'người dẫn đầu tuần', id: 'pemimpin minggu ini', tr: 'haftanın lideri', pl: 'lider tygodnia' });
+  const crownName = availability.crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
   const buttonLabel = availability.isCrownWinner
     ? triLang(lang, { ru: 'Забрать корону', uk: 'Забрати корону', es: 'Recoger la corona', 'pt-BR': 'Resgatar a coroa', vi: 'Nhận vương miện', id: 'Klaim mahkota', tr: 'Tacını al', pl: 'Odbierz koronę' })
     : triLang(lang, { ru: 'Забрать бонус лиги', uk: 'Забрати бонус ліги', es: 'Recoger bono de liga', 'pt-BR': 'Resgatar bônus da liga', vi: 'Nhận thưởng giải đấu', id: 'Klaim bonus liga', tr: 'Lig bonusunu al', pl: 'Odbierz bonus ligi' });
@@ -108,9 +110,9 @@ export default function LeagueBonusAvailableModal({
                 />
                 <View style={[styles.iconWrap, { backgroundColor: modalTheme.crestBg, borderColor: modalTheme.crestBorder }]}>
                   {availability.isCrownWinner ? (
-                    <Image source={LEAGUE_CROWN_ICON} resizeMode="contain" style={styles.crownImage} />
+                    <Image source={LEAGUE_CROWN_ICON} contentFit="contain" style={styles.crownImage} />
                   ) : (
-                    <Image source={leagueBonusGiftImage} resizeMode="contain" style={styles.leagueGiftImage} />
+                    <Image source={leagueBonusGiftImage} contentFit="contain" style={styles.leagueGiftImage} />
                   )}
                 </View>
                 <Text style={[styles.eyebrow, { color: modalTheme.eyebrow }]}>
@@ -147,7 +149,7 @@ export default function LeagueBonusAvailableModal({
                 <View style={[styles.meta, { borderColor: modalTheme.metaBorder, backgroundColor: modalTheme.metaBg }]}>
                   <Ionicons name="podium-outline" size={18} color={modalTheme.eyebrow} />
                   <Text style={[styles.metaText, { color: t.textSecond }]} numberOfLines={1}>
-                    {triLang(lang, { ru: `Корона недели: ${crownName}`, uk: `Корона тижня: ${crownName}`, es: `Corona semanal: ${crownName}`, 'pt-BR': `Coroa da semana: ${crownName}`, vi: `Vương miện tuần: ${crownName}`, id: `Mahkota minggu ini: ${crownName}`, tr: `Haftanın tacı: ${crownName}`, pl: `Korona tygodnia: ${crownName}` })}
+                    {triLang(lang, { ru: `Корона: ${crownName}`, uk: `Корона: ${crownName}`, es: `Corona: ${crownName}`, 'pt-BR': `Coroa: ${crownName}`, vi: `Vương miện: ${crownName}`, id: `Mahkota: ${crownName}`, tr: `Taç: ${crownName}`, pl: `Korona: ${crownName}` })}
                   </Text>
                 </View>
                 <TouchableOpacity
@@ -169,6 +171,8 @@ export default function LeagueBonusAvailableModal({
     </Modal>
   );
 }
+
+export default memo(LeagueBonusAvailableModal);
 
 const styles = StyleSheet.create({
   root: { flex: 1 },

@@ -22,6 +22,8 @@ export type GavanCanonicalPhrase = {
   id: string;
   english: string;
   ru: string;
+  uk?: string;
+  es?: string;
   newWords: string[];
   firstSeenConstructions: string[];
   explanationCards: GavanCanonicalExplanationCard[];

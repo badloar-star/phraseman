@@ -18,6 +18,11 @@ export type BaseSourceLocale = (typeof BASE_SOURCE_LOCALES)[number];
 export type HeisenbergSourceLocale = (typeof HEISENBERG_BATCH_SOURCE_LOCALES)[number];
 export type SourceLocale = (typeof SOURCE_LOCALES)[number];
 
+// ВНИМАНИЕ: это охват КОНТЕНТНЫХ source-локалей (квизы, тематические паки,
+// Heisenberg-пайплайн), а НЕ список языков интерфейса в настройках.
+// Готовность интерфейса к показу пользователю определяется отдельно —
+// см. INTERFACE_LANG_READY_FOR_PROD в constants/i18n.ts. Не сужать этот
+// список ради скрытия языков в UI — иначе ломается валидация контента.
 export const ACTIVE_INTERFACE_SOURCE_LOCALES = SOURCE_LOCALES;
 export const PLANNED_INTERFACE_SOURCE_LOCALES = [] as const satisfies readonly Exclude<HeisenbergSourceLocale, SourceLocale>[];
 export const REGISTERED_INTERFACE_SOURCE_LOCALES = [

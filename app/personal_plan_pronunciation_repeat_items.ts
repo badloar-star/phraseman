@@ -8,7 +8,7 @@ export type PersonalPlanPronunciationRepeatItem = {
   promptUk: string;
   targetText: string;
   completionLabel: string;
-  scoringAvailable: false;
+  scoringAvailable: true;
   grammarTags: string[];
   vocabularyTags: string[];
   explanation: LessonTeachingNote;
@@ -35,12 +35,13 @@ export type PersonalPlanPronunciationRepeatQualityIssue = {
 
 const MOJIBAKE_RE = /[\u00d0\u00d1\u00c2\u00e2]/u;
 
+// On-device recognition gives a real word-coverage score; pass threshold is 90%.
 function fallbackExplanation(targetText: string): LessonTeachingNote {
   return {
     id: `pronunciation_repeat_${targetText.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
-    titleRu: 'Произнеси спокойно',
-    correctRu: `Фраза записана: ${targetText}. Сейчас важен спокойный ритм: коротко, разборчиво, без гонки.`,
-    wrongRu: 'Скажи фразу ещё раз медленнее: маленькая пауза между словами помогает не проглатывать короткие куски речи.',
+    titleRu: 'Произнеси на 90%',
+    correctRu: `Фраза проверена: ${targetText}. Результат 90% или выше засчитывает упражнение.`,
+    wrongRu: 'Повтори фразу ещё раз медленнее: маленькая пауза между словами помогает распознать каждое слово.',
   };
 }
 
@@ -48,9 +49,9 @@ function explanationForPhrase(targetText: string, note?: LessonTeachingNote): Le
   if (!note) return fallbackExplanation(targetText);
   return {
     ...note,
-    titleRu: 'Произнеси спокойно',
-    correctRu: `Фраза записана: ${targetText}. Держи коротко и ровно: сначала смысл, потом скорость.`,
-    wrongRu: 'Повтори фразу медленнее и проверь, что короткие слова прозвучали отдельно, а не слиплись в один комок.',
+    titleRu: 'Произнеси на 90%',
+    correctRu: `Фраза проверена: ${targetText}. Держи коротко и ровно: сначала смысл, потом скорость.`,
+    wrongRu: 'Повтори фразу медленнее и проверь, что короткие слова прозвучали отдельно.',
   };
 }
 
@@ -134,8 +135,8 @@ export function getPersonalPlanPronunciationRepeatItems(
         promptRu: phrase.russian,
         promptUk: phrase.ukrainian,
         targetText: phrase.english,
-        completionLabel: 'Повторил',
-        scoringAvailable: false,
+        completionLabel: 'Продолжить',
+        scoringAvailable: true,
         grammarTags: phrase.words.map((word) => word.category).filter(Boolean) as string[],
         vocabularyTags: [],
         explanation: explanationForPhrase(phrase.english, meaningNote),

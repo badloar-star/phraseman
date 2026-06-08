@@ -618,24 +618,34 @@ const parseProgressFloat = (value: unknown): number => {
   return Number.isFinite(n) ? n : 0;
 };
 
+// ВАЖНО: этот набор должен быть ЗЕРКАЛОМ чёрного списка premium-ключей в
+// firestore.rules (функция progressHasNoPremiumWrites). Если ключ есть в правиле,
+// но отсутствует здесь — клиентский фильтр его не вырежет, он уйдёт в progressPatch,
+// правило отклонит весь set с PERMISSION_DENIED → цикл падающих синков у платящего
+// юзера (эти поля приходят в AsyncStorage из облака при restore). Держать списки в
+// синхроне. См. память phraseman_premium_write_paths.
 const PREMIUM_PROGRESS_KEYS = new Set([
   'premium_plan',
-  'admin_premium_override',
   'premium_expiry',
   'premium_rc_product_id',
   'premium_rc_period_type',
   'premium_rc_store',
+  'premium_rc_environment',
+  'premium_rc_event_type',
+  'premium_rc_updated_at',
   'premium_rc_expiry_ms',
   'premium_rc_purchased_at_ms',
-  'premium_rc_updated_at',
+  'premium_rc_cancelled_at',
+  'admin_premium_override',
   'premium_admin_grant_at',
+  'had_premium_ever',
   'vip_active',
   'vip_plan',
   'vip_from',
   'vip_until',
   'vip_admin_override',
   'vip_admin_grant_at',
-  'had_premium_ever',
+  'vip_migrated_from_admin_grant_at',
 ]);
 
 const premiumValuePresent = (value: unknown): boolean => {
@@ -1230,6 +1240,11 @@ async function doSyncToCloud(): Promise<void> {
     const progressPatch: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
       if (!shouldSyncPremiumProgressField(key, value, data)) continue;
+      // Premium/VIP-поля клиент НИКОГДА не пишет в облако: их авторитетный источник —
+      // RevenueCat webhook / Telegram / admin-панель (Admin SDK). Firestore rules
+      // (progressHasNoPremiumWrites) отклонят такую запись для обычного юзера и уронят
+      // весь set целиком (вместе с XP/streak). Поэтому вычищаем их из patch заранее.
+      if (PREMIUM_PROGRESS_KEYS.has(key)) continue;
       if (previousSnapshot[key] !== value) progressPatch[key] = value;
     }
 
@@ -1656,6 +1671,10 @@ export async function forceSyncToCloud(): Promise<boolean> {
     await addTodayDailyTaskSnapshots(data);
     for (const [key, value] of Object.entries({ ...data })) {
       if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
+      // Premium/VIP-поля клиент в облако не пишет (авторитет — RevenueCat/Admin SDK).
+      // Иначе Firestore rules отклонят force-sync целиком при смене устройства/аккаунта
+      // и юзер не сможет завершить миграцию прогресса. См. progressHasNoPremiumWrites.
+      else if (PREMIUM_PROGRESS_KEYS.has(key)) delete data[key];
     }
 
     const now = Date.now();

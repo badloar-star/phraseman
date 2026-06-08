@@ -15,6 +15,10 @@ import {
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
   scorePlanPronunciationTranscript,
 } from '../app/personal_plan_pronunciation_scoring_client';
+import {
+  speakingMatchedFlags,
+  speakingTargetTokens,
+} from '../app/speaking_word_match';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 
 /**
@@ -90,34 +94,6 @@ function loadSpeechModule(): SpeechModule | null {
 const L = (lang: string, map: Record<string, string>): string =>
   map[lang] ?? map.ru ?? Object.values(map)[0] ?? '';
 
-function normalizeWord(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/[’`]/g, "'")
-    .replace(/[^a-z0-9']+/g, '')
-    .trim();
-}
-
-/** Split the target into display tokens (keeps punctuation for display). */
-function targetTokens(target: string): string[] {
-  return target.split(/\s+/).filter((w) => w.length > 0);
-}
-
-/**
- * Mark which target words have been "heard" so far. A target word counts as
- * matched once it appears anywhere in the transcript word set — order-tolerant
- * so partial / out-of-order recognition still lights words up progressively.
- */
-function matchedFlags(target: string, transcript: string): boolean[] {
-  const heard = new Set(
-    transcript.split(/\s+/).map(normalizeWord).filter((w) => w.length > 0),
-  );
-  return targetTokens(target).map((tok) => {
-    const n = normalizeWord(tok);
-    return n.length === 0 ? true : heard.has(n);
-  });
-}
-
 export function SpeakingPanel({
   targetText,
   lang,
@@ -133,9 +109,9 @@ export function SpeakingPanel({
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const mountedRef = useRef(true);
 
-  const tokens = useMemo(() => targetTokens(targetText), [targetText]);
+  const tokens = useMemo(() => speakingTargetTokens(targetText), [targetText]);
   const matched = useMemo(
-    () => matchedFlags(targetText, transcript),
+    () => speakingMatchedFlags(targetText, transcript),
     [targetText, transcript],
   );
 

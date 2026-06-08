@@ -13,9 +13,11 @@ interface Props {
   value: boolean;
   onValueChange: (v: boolean) => void;
   disabled?: boolean;
+  /** Announced by screen readers (VoiceOver/TalkBack) so the toggle has a name. */
+  accessibilityLabel?: string;
 }
 
-export default function CustomSwitch({ value, onValueChange, disabled = false }: Props) {
+export default function CustomSwitch({ value, onValueChange, disabled = false, accessibilityLabel }: Props) {
   const { theme: t } = useTheme();
 
   const thumbX  = useRef(new Animated.Value(value ? MAX_X : 0)).current;
@@ -49,6 +51,9 @@ export default function CustomSwitch({ value, onValueChange, disabled = false }:
       activeOpacity={0.85}
       disabled={disabled}
       onPress={() => !disabled && onValueChange(!value)}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: value, disabled }}
+      accessibilityLabel={accessibilityLabel}
       style={{ opacity: disabled ? 0.4 : 1 }}
     >
       {/* Трек фиксированного размера */}

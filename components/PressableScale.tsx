@@ -1,9 +1,19 @@
 import React, { useRef, useCallback } from 'react';
-import { Animated, Pressable, StyleProp, ViewStyle } from 'react-native';
+import {
+  Animated,
+  Pressable,
+  type PressableProps,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_SPRING } from '../constants/motion';
 
-interface Props {
+// Forward every Pressable prop (accessibilityRole/Label/State, testID, hitSlop,
+// onFocus, etc.) so screen readers (VoiceOver / TalkBack) can announce the
+// control. Without this, every PressableScale button is invisible to assistive
+// tech — critical for the 50+ audience. We override style/onPress* ourselves.
+type Props = Omit<PressableProps, 'style' | 'onPress' | 'onPressIn' | 'onPressOut' | 'children'> & {
   onPress?: () => void;
   onLongPress?: () => void;
   style?: StyleProp<ViewStyle>;
@@ -11,7 +21,7 @@ interface Props {
   disabled?: boolean;
   scaleTo?: number; // default 0.94
   withHaptic?: boolean;
-}
+};
 
 export default function PressableScale({
   onPress,
@@ -21,6 +31,7 @@ export default function PressableScale({
   disabled,
   scaleTo = 0.94,
   withHaptic = true,
+  ...rest
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -49,6 +60,11 @@ export default function PressableScale({
 
   return (
     <Pressable
+      // Default to button role so assistive tech always has something to
+      // announce; callers can override anything via ...rest.
+      accessibilityRole="button"
+      {...rest}
+      accessibilityState={{ disabled: !!disabled, ...(rest.accessibilityState ?? {}) }}
       onPress={handlePress}
       onLongPress={onLongPress}
       onPressIn={pressIn}

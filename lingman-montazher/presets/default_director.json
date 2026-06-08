@@ -1,0 +1,22 @@
+{
+  "name": "lingman_director_default",
+  "pause_cut_seconds": 0.75,
+  "intentional_pause_max_seconds": 1.6,
+  "min_take_words": 5,
+  "min_take_duration_seconds": 1.2,
+  "max_duplicate_gap_seconds": 240.0,
+  "filler_words": ["ээ", "эм", "ну", "типа", "как бы", "uh", "um", "erm"],
+  "reset_markers": ["стоп", "заново", "еще раз", "перезапишу", "давай еще раз", "не то", "wrong take"],
+  "english_phrase_min_chars": 4,
+  "english_phrase_max_chars": 64,
+  "min_screen_text_duration": 1.2,
+  "max_screen_text_duration": 3.8,
+  "text_position": "lower_third",
+  "text_style": "high_contrast_phrase",
+  "text_animation": "kinetic_pop_220ms",
+  "sfx_volume": 0.18,
+  "zoom_scale": 1.035,
+  "output_width": 1920,
+  "output_height": 1080,
+  "fps": 30
+}

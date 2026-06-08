@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Animated, Dimensions, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
@@ -7,7 +7,7 @@ import { useTheme } from './ThemeContext';
 import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { useLang } from './LangContext';
 import { hapticSoftImpact, hapticTap } from '../hooks/use-haptics';
-import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
+import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { ARENA_LOBBY_ACCEPT_MS, CLOUD_SYNC_ENABLED } from '../app/config';
 import { setSessionLobbyChoice } from '../app/services/arena_db';
 import { reserveArenaGameEntry } from '../app/arena_access_gate';
@@ -58,7 +58,7 @@ function isMatchFoundToastPathAllowed(
   return !pathHasFragment(pathname, MATCH_FOUND_TOAST_PATH_BLOCKLIST);
 }
 
-export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
+function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
   const { status, sessionId, userId, isMatchHandled, isLobbyActive, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort } = useMatchmakingContext();
   const pathname = usePathname();
   const { theme: t, f } = useTheme();
@@ -401,6 +401,8 @@ export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundTo
     </Animated.View>
   );
 }
+
+export default memo(MatchFoundToast);
 
 const styles = StyleSheet.create({
   container: { position: 'absolute', left: 16, right: 16, zIndex: 9999 },

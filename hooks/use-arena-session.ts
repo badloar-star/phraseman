@@ -10,6 +10,15 @@ import {
 } from '../app/services/arena_db';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../app/config';
 
+function fisherYatesShuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export type GamePhase =
   | 'loading'
   | 'acceptance'
@@ -136,15 +145,21 @@ export function useArenaSession(
     const loadQuestions = async () => {
       const db = getDb();
       if (!db) return;
-      const docs = await Promise.all(
-        ids.map(id => db.collection('arena_questions').doc(id).get())
-      );
+      let docs;
+      try {
+        docs = await Promise.all(
+          ids.map(id => db.collection('arena_questions').doc(id).get())
+        );
+      } catch (e) {
+        if (__DEV__) console.warn('[use-arena-session] Failed to load questions:', e);
+        return;
+      }
       if (cancelled) return;
       const map: Record<string, ArenaQuestion> = {};
       docs.forEach(d => {
         if (!d.exists) return;
         const q = d.data() as ArenaQuestion;
-        const shuffled = [...q.options].sort(() => Math.random() - 0.5) as [string, string, string, string];
+        const shuffled = fisherYatesShuffle(q.options) as [string, string, string, string];
         map[d.id] = { ...q, options: shuffled };
       });
       setQuestions(map);

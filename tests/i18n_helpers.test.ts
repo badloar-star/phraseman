@@ -9,7 +9,6 @@ import {
   INTERFACE_LANGUAGE_OPTIONS,
   isInterfaceLangEnabled,
   legacyRuUk,
-  PLANNED_INTERFACE_LANGS,
   triLang,
 } from '../constants/i18n';
 
@@ -30,17 +29,19 @@ describe('i18n helpers', () => {
     });
   });
 
-  describe('production Spanish UI contract', () => {
-    it('treats es as an enabled interface/source language', () => {
+  describe('Spanish UI contract (когда флаг включён)', () => {
+    // Этот файл форсит SPANISH_UI_LOCALE_ENABLED: true, поэтому проверяет
+    // логику хелперов при включённом es. В проде флаг = false (см.
+    // interface_language_options_prod.test.ts).
+    it('treats es as enabled when the flag is on', () => {
       expect(isInterfaceLangEnabled('es')).toBe(true);
       expect(coerceInterfaceLang('es')).toBe('es');
       expect(coerceInterfaceLang('fr')).toBeNull();
     });
   });
 
-  describe('Heisenberg interface languages', () => {
-    it('keeps all Heisenberg interface languages visible and selectable', () => {
-      expect(PLANNED_INTERFACE_LANGS).toEqual([]);
+  describe('Heisenberg interface languages — не готовы к UI, не выбираемы', () => {
+    it('опции по-прежнему перечисляют все 8 кодов (фильтрация — на экране)', () => {
       expect(INTERFACE_LANGUAGE_OPTIONS.map((option) => option.code)).toEqual([
         'ru',
         'uk',
@@ -51,14 +52,16 @@ describe('i18n helpers', () => {
         'tr',
         'pl',
       ]);
+    });
 
+    it('pt-BR/vi/id/tr/pl выключены и не выбираемы (planned)', () => {
       for (const lang of ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
-        expect(isInterfaceLangEnabled(lang)).toBe(true);
-        expect(coerceInterfaceLang(lang)).toBe(lang);
+        expect(isInterfaceLangEnabled(lang)).toBe(false);
+        expect(coerceInterfaceLang(lang)).toBeNull();
       }
     });
 
-    it('returns active Heisenberg locale copy from triLang', () => {
+    it('returns Heisenberg locale copy from triLang (хелпер не фильтрует)', () => {
       const copy = {
         ru: 'RU',
         uk: 'UK',

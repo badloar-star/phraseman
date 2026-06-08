@@ -143,7 +143,22 @@ module.exports = function buildExpoConfig({ config } = {}) {
     ...appJsonExpo,
     ...(updates ? { updates } : {}),
   };
-  expoConfig.plugins = [...new Set([...(expoConfig.plugins || []), 'expo-audio'])];
+  const speechRecognitionPlugin = [
+    'expo-speech-recognition',
+    {
+      microphonePermission: 'Allow $(PRODUCT_NAME) to listen while you practice pronunciation.',
+      speechRecognitionPermission: 'Allow $(PRODUCT_NAME) to recognize your speech for pronunciation practice.',
+      androidSpeechServicePackages: ['com.google.android.googlequicksearchbox'],
+    },
+  ];
+  expoConfig.plugins = [...(expoConfig.plugins || []), 'expo-audio'];
+  if (!expoConfig.plugins.some((plugin) => (
+    Array.isArray(plugin)
+      ? plugin[0] === 'expo-speech-recognition'
+      : plugin === 'expo-speech-recognition'
+  ))) {
+    expoConfig.plugins.push(speechRecognitionPlugin);
+  }
 
   if (expoConfig.updates) {
     const assetPatternsToBeBundled = minimalOtaAssets

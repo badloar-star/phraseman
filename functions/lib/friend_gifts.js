@@ -37,6 +37,26 @@ exports.friendSendGift = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const REGION = 'us-central1';
+/**
+ * Отправляет один Expo push. Best-effort: ошибки глотаем — получатель всё равно
+ * увидит подарок при следующем открытии приложения (через my_events / badge).
+ * Тот же транспорт, что в matchmaking.ts (exp.host/--/api/v2/push/send).
+ */
+async function sendExpoPush(token, title, body, data) {
+    const to = String(token ?? '').trim();
+    if (!to)
+        return;
+    try {
+        await fetch('https://exp.host/--/api/v2/push/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify([{ to, sound: 'default', title, body, data }]),
+        });
+    }
+    catch {
+        // non-critical
+    }
+}
 const DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_DAILY_GIFTS_TOTAL = 3;
 const MAX_DAILY_GIFTS_PER_FRIEND = 1;
@@ -180,7 +200,7 @@ exports.friendSendGift = (0, https_1.onCall)({ region: REGION, enforceAppCheck: 
     const nowIso = new Date(now).toISOString();
     const today = todayStrUtc();
     const dailyLimitRef = senderRef.collection('friend_gift_daily_limits').doc(today);
-    return db.runTransaction(async (tx) => {
+    const result = await db.runTransaction(async (tx) => {
         const [senderSnap, recipientSnap, senderFriendSnap, recipientFriendSnap, dailyLimitSnap] = await Promise.all([
             tx.get(senderRef),
             tx.get(recipientRef),
@@ -354,13 +374,31 @@ exports.friendSendGift = (0, https_1.onCall)({ region: REGION, enforceAppCheck: 
             peerName: senderName,
             seen: false,
         });
+        const recipientPushToken = typeof recipientSnap.data()?.expoPushToken === 'string'
+            ? recipientSnap.data()?.expoPushToken
+            : '';
         return {
             ok: true,
             giftId: gift.id,
             costShards: gift.costShards,
             senderBalanceAfter,
             dailyRemaining: Math.max(0, MAX_DAILY_GIFTS_TOTAL - totalSentToday - 1),
+            // Для push после commit (не возвращаем клиенту-отправителю).
+            _recipientPushToken: recipientPushToken,
+            _giftLabelRu: gift.labelRu,
+            _senderName: senderName,
         };
     });
+    // Push получателю — только после успешного commit транзакции.
+    if (result._recipientPushToken) {
+        await sendExpoPush(result._recipientPushToken, '🎁 Подарок от друга!', `${result._senderName} прислал тебе подарок: ${result._giftLabelRu}`, { type: 'friend_gift_received', fromName: result._senderName, giftId: result.giftId });
+    }
+    return {
+        ok: result.ok,
+        giftId: result.giftId,
+        costShards: result.costShards,
+        senderBalanceAfter: result.senderBalanceAfter,
+        dailyRemaining: result.dailyRemaining,
+    };
 });
 //# sourceMappingURL=friend_gifts.js.map

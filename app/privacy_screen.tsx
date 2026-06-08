@@ -10,6 +10,7 @@ import { triLang } from '../constants/i18n';
 import { KNOWLY_LEGAL_PRIVACY_URL } from './config';
 import { hapticTap } from '../hooks/use-haptics';
 import PRIVACY_POLICY_EN from './legal/privacy_policy_en.json';
+import TapScale from '../components/TapScale';
 import PRIVACY_POLICY_EN_IOS from './legal/privacy_policy_en_ios.json';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { safeRouterBack } from './navigation_back';
@@ -34,9 +35,9 @@ export default function PrivacyScreen() {
           paddingHorizontal: 16, paddingVertical: 14,
           borderBottomWidth: 0.5, borderBottomColor: t.border,
         }}>
-          <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={{ marginRight: 12, padding: 4 }}>
+          <TapScale onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={{ marginRight: 12, padding: 4 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', flex: 1 }} numberOfLines={1}>
             Privacy Policy
           </Text>
@@ -61,7 +62,7 @@ export default function PrivacyScreen() {
             <Ionicons name="open-outline" size={24} color={t.textSecond} />
           </TouchableOpacity>
         </View>
-        <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
+        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
           {PRIVACY_EN.map((s, i) => (
             <View key={i} style={{ marginBottom: 20 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>

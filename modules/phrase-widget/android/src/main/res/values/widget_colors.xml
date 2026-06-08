@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Light-mode widget palette. Dark-mode overrides live in values-night/. -->
+<resources>
+    <color name="phrase_widget_bg">#FFF7F5FF</color>
+    <color name="phrase_widget_primary">#FF1A1726</color>
+    <color name="phrase_widget_secondary">#FF5B5570</color>
+    <color name="phrase_widget_accent">#FF7C5CFF</color>
+</resources>

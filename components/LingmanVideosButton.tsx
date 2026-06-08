@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { useIsFocused } from '@react-navigation/native';
@@ -21,7 +21,7 @@ const YOUTUBE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
   compass: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
 };
 
-export default function LingmanVideosButton() {
+function LingmanVideosButton() {
   const router = useRouter();
   const isFocused = useIsFocused();
   const { lang } = useLang();
@@ -100,6 +100,8 @@ export default function LingmanVideosButton() {
     </TouchableOpacity>
   );
 }
+
+export default memo(LingmanVideosButton);
 
 const styles = StyleSheet.create({
   button: {

@@ -15,6 +15,7 @@ import {
   View,
   Dimensions,
 } from 'react-native';
+import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -24,6 +25,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
+import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
@@ -40,6 +42,7 @@ import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import TrainerSessionReport from './trainer_session_report';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 
@@ -230,6 +233,7 @@ export default function TrainerWordsSession() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);
+  const { playCorrect } = useCorrectSound();
 
   const [deck, setDeck] = useState<CardData[]>([]);
   const [current, setCurrent] = useState(0);
@@ -238,48 +242,66 @@ export default function TrainerWordsSession() {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
   const [accessReady, setAccessReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
   const allItemsRef = useRef<TrainerItem[]>([]);
   const dailySessionTracked = useRef(false);
   // Ref к функции swipeOut текущей карточки — для кнопок
   const swipeOutRef = useRef<((dir: 'right' | 'left') => void) | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
+    setLoadError(false);
+    setLoading(true);
     void (async () => {
-      if (!trainerGateOpen) {
+      try {
+        if (!trainerGateOpen) {
+          if (cancelled) return;
+          setAccessReady(true);
+          setLoading(false);
+          return;
+        }
+        const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
+        if (cancelled) return;
+        if (!allowed) {
+          logTrainerDirectGateBlocked('/trainer_words_session');
+          router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+          return;
+        }
         setAccessReady(true);
-        setLoading(false);
-        return;
-      }
-      const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
-      if (!allowed) {
-        logTrainerDirectGateBlocked('/trainer_words_session');
-        router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
-        return;
-      }
-      setAccessReady(true);
-      const items = await getDueItems('words', 20, studyTarget);
-      allItemsRef.current = items;
-      if (items.length === 0) { setDone(true); setLoading(false); return; }
+        const items = await getDueItems('words', 20, studyTarget);
+        if (cancelled) return;
+        allItemsRef.current = items;
+        if (items.length === 0) { setDone(true); setLoading(false); return; }
 
-      // Строим колоду: каждая карточка имеет ~50% шанс ложного перевода
-      const cards: CardData[] = await Promise.all(
-        items.map(async (item) => {
-          const showCorrect = Math.random() > 0.5;
-          const correctTranslation = trainerTranslationForLang(item, lang);
-          const shownTranslation = showCorrect
-            ? correctTranslation
-            : await pickDecoyTranslation(correctTranslation, items, lang);
-          return {
-            item,
-            shownTranslation,
-            isCorrectTranslation: showCorrect || shownTranslation === correctTranslation,
-          };
-        }),
-      );
-      setDeck(cards);
-      setLoading(false);
+        // Строим колоду: каждая карточка имеет ~50% шанс ложного перевода
+        const cards: CardData[] = await Promise.all(
+          items.map(async (item) => {
+            const showCorrect = Math.random() > 0.5;
+            const correctTranslation = trainerTranslationForLang(item, lang);
+            const shownTranslation = showCorrect
+              ? correctTranslation
+              : await pickDecoyTranslation(correctTranslation, items, lang);
+            return {
+              item,
+              shownTranslation,
+              isCorrectTranslation: showCorrect || shownTranslation === correctTranslation,
+            };
+          }),
+        );
+        if (cancelled) return;
+        setDeck(cards);
+        setLoading(false);
+      } catch {
+        // Сбой загрузки колоды (сеть/Firestore) больше не оставляет вечный
+        // лоадер — показываем экран ошибки с retry и выходом.
+        if (cancelled) return;
+        setLoadError(true);
+        setLoading(false);
+      }
     })();
-  }, [lang, router, studyTarget, trainerGateOpen]);
+    return () => { cancelled = true; };
+  }, [lang, router, studyTarget, trainerGateOpen, reloadKey]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -297,6 +319,7 @@ export default function TrainerWordsSession() {
       updates.push({ type: 'recall_session', increment: 1 });
     }
     if (answeredCorrectly) {
+      playCorrect();
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_words', increment: 1 });
       checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
@@ -325,14 +348,18 @@ export default function TrainerWordsSession() {
     swipeOutRef.current?.(dir);
   }, []);
 
-  if (!accessReady || loading) {
+  if (loadError) {
     return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: '#888' }} />
-        </SafeAreaView>
-      </ScreenGradient>
+      <TrainerErrorView
+        lang={lang}
+        onRetry={() => { hapticTap(); setReloadKey(k => k + 1); }}
+        onExit={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+      />
     );
+  }
+
+  if (!accessReady || loading) {
+    return <TrainerLoadingView lang={lang} />;
   }
 
   if (!trainerGateOpen) {
@@ -381,9 +408,9 @@ export default function TrainerWordsSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={[{ color: sx.muted, fontSize: f.caption }]}>
               {current + 1} / {deck.length}
             </Text>

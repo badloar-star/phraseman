@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
 import {
   Animated,
   Easing,
@@ -57,7 +57,7 @@ const TEXT = {
       + 'В карточках появилось автопрослушивание — теперь можно спокойно тренировать слух без лишних нажатий.\n\n'
       + 'Статистика стала понятнее: проще следить за серией, ритмом занятий, заморозкой и прогрессом.\n\n'
       + 'Чат лиги тоже доработали: непрочитанные сообщения, жалобы, скрытие участников и более стабильное подключение.\n\n'
-      + 'Ещё поправили уроки, подсказки, квизы, Premium-доступ, синхронизацию и несколько ошибок, которые слишком уверенно мешали жить.',
+      + 'Ещё поправили уроки, подсказки, вызовы, Premium-доступ, синхронизацию и несколько ошибок, которые слишком уверенно мешали жить.',
     uk:
       'Ми трохи оновили PhraseMan: освіжили вигляд рівнів, ліг, подарунків, енергії та статистики.\n\n'
       + 'У картках з’явилося автопрослуховування — тепер можна спокійно тренувати слух без зайвих натискань.\n\n'
@@ -123,7 +123,7 @@ type Props = {
   onClose: () => void;
 };
 
-export default function ReleaseNotesModal({ visible, onClose }: Props) {
+function ReleaseNotesModal({ visible, onClose }: Props) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
@@ -418,6 +418,8 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
     </Modal>
   );
 }
+
+export default memo(ReleaseNotesModal);
 
 const styles = StyleSheet.create({
   root: {

@@ -1,18 +1,29 @@
 /**
- * analytics.ts — Простой event-трекинг для Phraseman.
+ * analytics.ts — единый фасад продуктовой аналитики Phraseman.
  *
- * Хранит события локально в AsyncStorage (offline-first).
- * Готов к интеграции с Amplitude/Mixpanel/PostHog — просто заменить flush().
+ * Раньше этот модуль был «мёртвым» (писал только в локальную очередь с TODO).
+ * Теперь каждый вызов trackEvent():
+ *   1. идёт в Firebase Analytics (logEvent) — работает в проде уже сейчас;
+ *   2. идёт в PostHog (capture), когда задан ключ EXPO_PUBLIC_POSTHOG_KEY —
+ *      даёт воронки/когорты/retention без доработок;
+ *   3. дублируется в offline-очередь AsyncStorage (для отладки / резерва).
+ *
+ * Цель: команда видит ВСЮ воронку конверсии (онбординг → intro → пейвол →
+ * trial_start → purchase), а не только разрозненные paywall-события.
  *
  * Использование:
- *   trackEvent('lesson_complete', { lessonId: 5, score: 8, total: 10 });
- *   trackEvent('quiz_start', { level: 'hard' });
+ *   trackEvent('paywall_shown', { context: 'streak', source: 'automatic' });
+ *   trackEvent('purchase_started', { context: 'quiz_limit', plan: 'yearly' });
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { logEvent as firebaseLogEvent } from './firebase';
+import { capturePostHog } from './posthog_client';
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
+// Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
+  // обучение
   | 'app_open'
   | 'lesson_start'
   | 'lesson_complete'
@@ -38,9 +49,6 @@ export type AnalyticsEvent =
   | 'exam_complete'
   | 'diagnostic_start'
   | 'diagnostic_complete'
-  | 'paywall_shown'
-  | 'subscription_started'
-  | 'subscription_restored'
   | 'streak_achieved'
   | 'streak_lost'
   | 'wager_placed'
@@ -49,38 +57,91 @@ export type AnalyticsEvent =
   | 'achievement_unlocked'
   | 'treasure_chest_opened'
   | 'login_bonus_received'
-  | 'onboarding_complete';
+  // ── ВОРОНКА КОНВЕРСИИ ──────────────────────────────────────────────────
+  | 'onboarding_step_view'        // показан шаг онбординга (props.step)
+  | 'onboarding_complete'
+  | 'onboarding_plan_paywall_view'
+  | 'onboarding_plan_trial_cta'   // нажата CTA триала/подписки в онбординге
+  | 'onboarding_continue_free'    // «Продолжить без плана»
+  | 'intro_full_access_started'   // активирован 72ч полный доступ
+  | 'intro_welcome_shown'
+  | 'intro_welcome_cta'
+  | 'intro_ended_shown'           // показана модалка «3 дня закончились»
+  | 'intro_ended_cta'             // нажата «Открыть полный доступ»
+  | 'intro_ended_dismiss'         // «Продолжить бесплатно»
+  | 'paywall_shown'
+  | 'paywall_plan_select'
+  | 'paywall_cta_click'
+  | 'paywall_close'
+  | 'paywall_continue_free'
+  | 'purchase_started'            // нажат CTA, открывается диалог стора
+  | 'purchase_completed'
+  | 'purchase_failed'
+  | 'purchase_cancelled'
+  | 'subscription_restored'
+  | 'trial_started'
+  // ── after-win апсейл / re-engagement (план #3, #7) ────────────────────────
+  | 'afterwin_upsell_shown'
+  | 'afterwin_upsell_cta'
+  | 'paywall_abandoned_push_sent'
+  | 'winback_shown';
 
 interface EventRecord {
   event: AnalyticsEvent;
-  props: Record<string, any>;
+  props: Record<string, unknown>;
   ts: number; // unix ms
 }
 
 const STORAGE_KEY = 'analytics_queue';
 const MAX_QUEUE = 200; // не накапливать бесконечно
 
-// ── Запись события ────────────────────────────────────────────────────────────
+/** Firebase-имена событий допускают [a-zA-Z0-9_], начинаются с буквы, ≤40 симв. */
+function firebaseSafeName(event: string): string {
+  return event.replace(/[^a-zA-Z0-9_]/g, '_').slice(0, 40);
+}
+
+/** В Firebase params значения должны быть string|number. Приводим безопасно. */
+function firebaseSafeParams(props: Record<string, unknown>): Record<string, string | number> {
+  const out: Record<string, string | number> = {};
+  for (const [k, v] of Object.entries(props)) {
+    if (v == null) continue;
+    out[k.slice(0, 40)] = typeof v === 'number' ? v : String(v).slice(0, 100);
+  }
+  return out;
+}
+
+// ── Запись события (фасад) ─────────────────────────────────────────────────────
 export const trackEvent = async (
   event: AnalyticsEvent,
-  props: Record<string, any> = {}
+  props: Record<string, unknown> = {},
 ): Promise<void> => {
+  // 1) Firebase — синхронно, не блокирует
+  try {
+    firebaseLogEvent(firebaseSafeName(event), firebaseSafeParams(props));
+  } catch {
+    /* аналитика не должна ломать приложение */
+  }
+
+  // 2) PostHog — no-op, если ключ не задан
+  try {
+    capturePostHog(event, props);
+  } catch {
+    /* no-op */
+  }
+
+  // 3) Offline-очередь (резерв/отладка)
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     const queue: EventRecord[] = raw ? JSON.parse(raw) : [];
-
     queue.push({ event, props, ts: Date.now() });
-
-    // Обрезаем если очередь переполнена
     if (queue.length > MAX_QUEUE) queue.splice(0, queue.length - MAX_QUEUE);
-
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(queue));
   } catch {
-    // Аналитика не должна ломать приложение
+    /* no-op */
   }
 };
 
-// ── Получить очередь (для отладки или отправки) ───────────────────────────────
+// ── Очередь (отладка / резерв) ─────────────────────────────────────────────────
 export const getEventQueue = async (): Promise<EventRecord[]> => {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
@@ -90,34 +151,17 @@ export const getEventQueue = async (): Promise<EventRecord[]> => {
   }
 };
 
-// ── Очистить очередь после отправки ──────────────────────────────────────────
 export const clearEventQueue = async (): Promise<void> => {
   try {
     await AsyncStorage.removeItem(STORAGE_KEY);
-  } catch {}
+  } catch {
+    /* no-op */
+  }
 };
 
-/**
- * flush() — точка интеграции с внешним сервисом.
- * Сейчас логирует в dev-режиме. Заменить тело на Amplitude.track() / Mixpanel.track().
- */
+/** Сброс локальной очереди (события уже ушли в Firebase/PostHog в реальном времени). */
 export const flushAnalytics = async (): Promise<void> => {
-  try {
-    const queue = await getEventQueue();
-    if (queue.length === 0) return;
-
-    // TODO: заменить на реальный SDK когда выберете платформу
-    // Пример с Amplitude:
-    //   for (const e of queue) await amplitude.track(e.event, e.props);
-    // Пример с PostHog:
-    //   for (const e of queue) posthog.capture(e.event, e.props);
-
-    if (__DEV__) {
-      console.log(`[Analytics] ${queue.length} events in queue:`, queue.map(e => e.event));
-    }
-
-    await clearEventQueue();
-  } catch {}
+  await clearEventQueue();
 };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -1,13 +1,16 @@
-import React, { ReactNode } from 'react';
-import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { memo, ReactNode, useEffect, useRef, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
+import { captureRef } from 'react-native-view-shot';
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { useAdaptiveBackgroundSource } from './adaptiveBackgroundAssets';
+import { selectStatsPremiumBlurPresentation } from './statsPremiumBlurCache';
 
 export type StatsPremiumBlurContext = 'stats' | 'heatmap' | 'patterns' | 'percentiles';
 export type StatsPremiumSnapshotKey =
@@ -27,15 +30,6 @@ export interface StatsPremiumBlurProps {
   /** Dev/QA: show content without the premium veil in dev builds only. */
   devUnlock?: boolean;
 }
-
-const SNAPSHOTS: Record<StatsPremiumSnapshotKey, number> = {
-  learningCoach: require('../assets/images/statistics/premium_snapshots/premium-learning-coach-snapshot-blurred.webp'),
-  weekRhythm: require('../assets/images/statistics/premium_snapshots/premium-week-rhythm-snapshot-blurred.webp'),
-  heatmap: require('../assets/images/statistics/premium_snapshots/premium-heatmap-snapshot-blurred.webp'),
-  percentiles: require('../assets/images/statistics/premium_snapshots/premium-learning-coach-snapshot-blurred.webp'),
-  pathChart: require('../assets/images/statistics/premium_snapshots/premium-week-rhythm-snapshot-blurred.webp'),
-  lifetimeTotals: require('../assets/images/statistics/premium_snapshots/premium-learning-coach-snapshot-blurred.webp'),
-};
 
 const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
   ru: string;
@@ -118,27 +112,26 @@ function PremiumSnapshotSheen() {
   );
 }
 
-export default function StatsPremiumBlur({
+function StatsPremiumBlur({
   children,
   isPremium,
   context,
-  snapshotKey,
   overrideTitle,
   devUnlock = false,
 }: StatsPremiumBlurProps) {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-
-  if (isPremium || devUnlock) return <>{children}</>;
+  const captureSourceRef = useRef<View>(null);
+  const captureTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const captureInFlightRef = useRef(false);
+  const captureDoneRef = useRef(false);
+  const [cachedBlurUri, setCachedBlurUri] = useState<string | null>(null);
+  const [captureSize, setCaptureSize] = useState({ width: 0, height: 0 });
 
   const isLight = false;
   const titleCopy = CONTEXT_TITLES[context];
   const title = overrideTitle ?? triLang(lang, titleCopy);
-  const resolvedSnapshotKey: StatsPremiumSnapshotKey =
-    snapshotKey ?? (context === 'heatmap' ? 'heatmap' : context === 'percentiles' ? 'percentiles' : 'learningCoach');
-  const snapshot = SNAPSHOTS[resolvedSnapshotKey];
-  const adaptiveSnapshot = useAdaptiveBackgroundSource(snapshot);
   const ctaLabel = triLang(lang, {
     ru: 'Открыть с Premium',
     uk: 'Відкрити з Premium',
@@ -149,12 +142,93 @@ export default function StatsPremiumBlur({
     tr: 'Premium ile aç',
     pl: 'Otwórz z Premium',
   });
+  const blurPresentation = selectStatsPremiumBlurPresentation({
+    cachedUri: cachedBlurUri,
+    width: captureSize.width,
+    height: captureSize.height,
+  });
+
+  useEffect(() => {
+    if (isPremium || devUnlock) return undefined;
+    if (captureSize.width <= 0 || captureSize.height <= 0) return undefined;
+    if (captureDoneRef.current) return undefined;
+    if (captureInFlightRef.current) return undefined;
+
+    if (captureTimerRef.current) clearTimeout(captureTimerRef.current);
+    captureTimerRef.current = setTimeout(() => {
+      const node = captureSourceRef.current;
+      if (!node || captureInFlightRef.current) return;
+
+      captureInFlightRef.current = true;
+      captureRef(node, {
+        format: 'jpg',
+        quality: 0.78,
+        result: 'tmpfile',
+      })
+        .then((uri) => {
+          if (uri) {
+            captureDoneRef.current = true;
+            setCachedBlurUri(uri);
+          }
+        })
+        .catch(() => {
+          setCachedBlurUri(null);
+        })
+        .finally(() => {
+          captureInFlightRef.current = false;
+        });
+    }, 120);
+
+    return () => {
+      if (captureTimerRef.current) clearTimeout(captureTimerRef.current);
+    };
+  }, [captureSize.height, captureSize.width, devUnlock, isPremium]);
+
+  if (isPremium || devUnlock) return <>{children}</>;
 
   return (
-    <View style={[styles.root, resolvedSnapshotKey === 'heatmap' ? styles.heatmapRoot : styles.statsRoot]} collapsable={false}>
-      <ImageBackground source={adaptiveSnapshot} resizeMode="cover" style={styles.snapshot} imageStyle={styles.snapshotImage}>
-        <View pointerEvents="none" style={styles.snapshotScrim} />
-      </ImageBackground>
+    <View style={[styles.root, context === 'heatmap' ? styles.heatmapRoot : styles.statsRoot]} collapsable={false}>
+      {blurPresentation === 'cached-image' ? (
+        <View
+          pointerEvents="none"
+          style={[styles.cachedContentSpacer, { height: captureSize.height }]}
+        />
+      ) : (
+        <View
+          ref={captureSourceRef}
+          pointerEvents="none"
+          collapsable={false}
+          style={styles.contentUnderVeil}
+          onLayout={(event) => {
+            const { width, height } = event.nativeEvent.layout;
+            setCaptureSize((prev) => (
+              Math.round(prev.width) === Math.round(width) && Math.round(prev.height) === Math.round(height)
+                ? prev
+                : { width, height }
+            ));
+          }}
+        >
+          {children}
+        </View>
+      )}
+      {blurPresentation === 'cached-image' ? (
+        <Image
+          source={{ uri: cachedBlurUri! }}
+          contentFit="fill"
+          blurRadius={6}
+          style={styles.cachedBlurImage}
+        />
+      ) : (
+        <BlurView
+          pointerEvents="none"
+          intensity={10}
+          tint="default"
+          blurReductionFactor={4}
+          experimentalBlurMethod="dimezisBlurView"
+          style={styles.blurVeil}
+        />
+      )}
+      <View pointerEvents="none" style={styles.snapshotScrim} />
       <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, styles.sheenLayer]}>
         <PremiumSnapshotSheen />
       </View>
@@ -193,6 +267,8 @@ export default function StatsPremiumBlur({
   );
 }
 
+export default memo(StatsPremiumBlur);
+
 const styles = StyleSheet.create({
   root: {
     position: 'relative',
@@ -205,19 +281,27 @@ const styles = StyleSheet.create({
   heatmapRoot: {
     minHeight: 252,
   },
-  snapshot: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 0,
+  contentUnderVeil: {
+    opacity: 1,
   },
-  snapshotImage: {
-    borderRadius: 16,
+  cachedContentSpacer: {
+    width: '100%',
+  },
+  blurVeil: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 1,
+  },
+  cachedBlurImage: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 1,
   },
   snapshotScrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.06)',
+    zIndex: 2,
+    backgroundColor: 'rgba(0,0,0,0.015)',
   },
   sheenLayer: {
-    zIndex: 1,
+    zIndex: 3,
     overflow: 'hidden',
     borderRadius: 16,
   },
@@ -231,26 +315,26 @@ const styles = StyleSheet.create({
   },
   veilBandTop: {
     top: '17%',
-    opacity: 0.82,
+    opacity: 0.08,
   },
   veilBandMiddle: {
     top: '46%',
-    opacity: 0.92,
+    opacity: 0.14,
   },
   veilBandBottom: {
     bottom: '7%',
-    opacity: 0.72,
+    opacity: 0.06,
   },
   veilVignette: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 16,
     borderWidth: 1,
     borderColor: 'rgba(255,215,0,0.10)',
-    backgroundColor: 'rgba(0,0,0,0.08)',
+    backgroundColor: 'rgba(0,0,0,0.00)',
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    zIndex: 2,
+    zIndex: 4,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,

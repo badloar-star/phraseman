@@ -4,10 +4,9 @@
 // Кнопка "Закрыть" → скрывает модальник.
 // ════════════════════════════════════════════════════════════════════════════
 
-import React from 'react';
+import React, { memo } from 'react';
 import {
   type GestureResponderEvent,
-  Image,
   Modal,
   View,
   Text,
@@ -16,6 +15,7 @@ import {
   Linking,
   useWindowDimensions,
 } from 'react-native';
+import { Image } from 'expo-image';
 import Svg, {
   Circle,
   Defs,
@@ -215,7 +215,7 @@ function UpdateModalBackground({ palette }: { palette: UpdateModalPalette }) {
 function PremiumUpdateArt({ compact }: { compact: boolean }) {
   return (
     <View style={[styles.artStage, compact && styles.artStageCompact]}>
-      <Image source={PREMIUM_UPDATE_EMBLEM} style={styles.artImage} resizeMode="cover" />
+      <Image source={PREMIUM_UPDATE_EMBLEM} style={styles.artImage} contentFit="cover" />
       <LinearGradient
         colors={['rgba(4,6,11,0)', 'rgba(4,6,11,0.62)', '#04060B']}
         locations={[0, 0.58, 1]}
@@ -238,7 +238,7 @@ interface UpdateModalProps {
   onExternalOpenFailed?: () => void;
 }
 
-export default function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUrl, onExternalOpenFailed }: UpdateModalProps) {
+function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUrl, onExternalOpenFailed }: UpdateModalProps) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const { height, width } = useWindowDimensions();
@@ -376,6 +376,8 @@ export default function UpdateModal({ visible, storeUrl, message, onClose, onWil
     </Modal>
   );
 }
+
+export default memo(UpdateModal);
 
 const styles = StyleSheet.create({
   overlay: {

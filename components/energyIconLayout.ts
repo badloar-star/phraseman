@@ -18,6 +18,13 @@ const DEFAULT_STEP_RATIO = 0.55;
 const MIN_STEP_RATIO = 0.26;
 const MIN_ICON_SIZE = 18;
 const ABSOLUTE_MIN_ICON_SIZE = 1;
+const DEFAULT_DENSITY_SLOT_COUNT = 6;
+const STEP_RATIO_COMPACTION_PER_SLOT = 0.035;
+
+function getDensityAwareStepRatio(slotCount: number, defaultStepRatio: number, minStepRatio: number): number {
+  const extraSlots = Math.max(0, slotCount - DEFAULT_DENSITY_SLOT_COUNT);
+  return Math.max(minStepRatio, defaultStepRatio - extraSlots * STEP_RATIO_COMPACTION_PER_SLOT);
+}
 
 export function getAdaptiveEnergyIconLayout({
   slotCount,
@@ -46,7 +53,8 @@ export function getAdaptiveEnergyIconLayout({
     };
   }
 
-  const defaultStep = fittedIconSize * defaultStepRatio;
+  const densityStepRatio = getDensityAwareStepRatio(safeSlots, defaultStepRatio, minStepRatio);
+  const defaultStep = fittedIconSize * densityStepRatio;
   const tightestStep = Math.max(1, fittedIconSize * minStepRatio);
   const availableStep = (safeMaxWidth - fittedIconSize) / (safeSlots - 1);
   const step = Math.max(tightestStep, Math.min(defaultStep, availableStep));

@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import TapScale from '../components/TapScale';
+import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -23,6 +24,7 @@ import {
 type Step = 'goal' | 'level' | 'focus' | 'minutes' | 'result' | 'all';
 
 const PLAN_IDS: PersonalPlanId[] = ['voyazh', 'mitap', 'gavan', 'impuls', 'echo'];
+const TOTAL_STEPS = 5;
 
 function stepIndex(step: Step): number {
   if (step === 'goal') return 1;
@@ -37,32 +39,222 @@ type PersonalPlanSetupMinuteChoice = {
   title: string;
   subtitle: string;
   icon: PersonalPlanSetupChoice['icon'];
+  emoji: string;
 };
 
 const PERSONAL_PLAN_SETUP_MINUTES: PersonalPlanSetupMinuteChoice[] = [
-  { id: 5, title: '5 минут в день', subtitle: 'Стартует с 2-4 заданий. Остальное можно добавить после выполнения.', icon: 'flash-outline' },
-  { id: 10, title: '10 минут в день', subtitle: 'Стартует с 3-5 заданий и сохраняет запас на кнопку еще.', icon: 'book-outline' },
-  { id: 15, title: '15 минут в день', subtitle: 'Стартует с 4-5 заданий для плотной ежедневной тренировки.', icon: 'mic-outline' },
-  { id: 20, title: '20 минут в день', subtitle: 'Стартует с 5-6 заданий и дает самый полный дневной блок.', icon: 'map-outline' },
+  {
+    id: 5,
+    title: '5 минут в день',
+    subtitle: '2–4 задания. Лёгкий старт, без давления. Хорошо, если часто пропускаешь.',
+    icon: 'flash-outline',
+    emoji: '⚡',
+  },
+  {
+    id: 10,
+    title: '10 минут в день',
+    subtitle: '3–5 заданий. Баланс между прогрессом и нагрузкой. Хороший выбор на старте.',
+    icon: 'book-outline',
+    emoji: '📖',
+  },
+  {
+    id: 15,
+    title: '15 минут в день',
+    subtitle: '4–5 заданий. Плотная ежедневная тренировка с ощутимым прогрессом.',
+    icon: 'mic-outline',
+    emoji: '🎯',
+  },
+  {
+    id: 20,
+    title: '20 минут в день',
+    subtitle: '5–6 заданий. Полный дневной блок для тех, кто хочет расти быстро.',
+    icon: 'map-outline',
+    emoji: '🚀',
+  },
 ];
 
 function planReason(planId: PersonalPlanId): string {
   switch (planId) {
-    case 'voyazh':
-      return 'Подходит, если ближайшая цель - поездки, кафе, отель и быстрые вопросы на месте.';
-    case 'mitap':
-      return 'Подходит, если важны рабочие созвоны, переписка и короткие объяснения без паники.';
-    case 'gavan':
-      return 'Подходит, если нужно увереннее решать бытовые вопросы после переезда.';
-    case 'impuls':
-      return 'Подходит, если ты понимаешь мысль, но хочешь быстрее отвечать вслух.';
-    case 'echo':
-      return 'Подходит, если хочется спокойнее слышать диалоги, переспрашивать и поддерживать разговор.';
-    default:
-      return 'Подходит под выбранный старт и ближайшую цель.';
+    case 'voyazh': return 'Фокус на путешествиях, кафе, отелях и быстрых бытовых ситуациях.';
+    case 'mitap': return 'Рабочие созвоны, переписка и объяснения без паники и "э-э-э".';
+    case 'gavan': return 'Бытовые вопросы после переезда — аренда, врач, магазин, соседи.';
+    case 'impuls': return 'Понимаешь, но хочешь быстрее отвечать вслух без промедления.';
+    case 'echo': return 'Спокойнее слышать диалоги, переспрашивать и поддерживать разговор.';
+    default: return 'Подходит под выбранный старт и ближайшую цель.';
   }
 }
 
+function planTagline(planId: PersonalPlanId): string {
+  switch (planId) {
+    case 'voyazh': return '✈️ Путешествия и поездки';
+    case 'mitap': return '💼 Работа и общение';
+    case 'gavan': return '🏠 Жизнь за рубежом';
+    case 'impuls': return '⚡ Беглость речи';
+    case 'echo': return '👂 Понимание на слух';
+    default: return '📚 Общее развитие';
+  }
+}
+
+// ─── Step progress bar ─────────────────────────────────────────────────────
+function StepProgress({ current, total, accent, trackBg }: {
+  current: number;
+  total: number;
+  accent: string;
+  trackBg: string;
+}) {
+  const progress = useRef(new Animated.Value(current / total)).current;
+
+  useEffect(() => {
+    Animated.timing(progress, {
+      toValue: current / total,
+      duration: 350,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: false,
+    }).start();
+  }, [current, total, progress]);
+
+  return (
+    <View style={[progressStyles.track, { backgroundColor: trackBg }]}>
+      <Animated.View
+        style={[
+          progressStyles.fill,
+          {
+            backgroundColor: accent,
+            width: progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: ['0%', '100%'],
+            }),
+          },
+        ]}
+      />
+    </View>
+  );
+}
+
+const progressStyles = StyleSheet.create({
+  track: { flex: 1, height: 5, borderRadius: 3, overflow: 'hidden' },
+  fill: { height: '100%', borderRadius: 3 },
+});
+
+// ─── Choice card ───────────────────────────────────────────────────────────
+function ChoiceCard<T extends string | number>({
+  item,
+  selected,
+  accent,
+  onAccent,
+  cardBg,
+  softBg,
+  border,
+  borderHighlight,
+  text,
+  muted,
+  onPress,
+}: {
+  item: { id: T; title: string; subtitle: string; icon: PersonalPlanSetupChoice['icon'] };
+  selected: boolean;
+  accent: string;
+  onAccent: string;
+  cardBg: string;
+  softBg: string;
+  border: string;
+  borderHighlight: string;
+  text: string;
+  muted: string;
+  onPress: () => void;
+}) {
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+
+  const handlePress = () => {
+    Animated.sequence([
+      Animated.timing(scaleAnim, { toValue: 0.97, duration: 80, useNativeDriver: true }),
+      Animated.spring(scaleAnim, { toValue: 1, tension: 120, friction: 8, useNativeDriver: true }),
+    ]).start();
+    onPress();
+  };
+
+  return (
+    <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
+      <TouchableOpacity
+        activeOpacity={0.9}
+        onPress={handlePress}
+        style={[
+          styles.choice,
+          { backgroundColor: selected ? accent + '14' : cardBg, borderColor: selected ? accent : border },
+        ]}
+      >
+        <View style={[styles.choiceIcon, { backgroundColor: selected ? accent : softBg, borderColor: selected ? accent : borderHighlight }]}>
+          <Ionicons name={item.icon} size={22} color={selected ? onAccent : accent} />
+        </View>
+        <View style={styles.choiceCopy}>
+          <Text style={[styles.choiceTitle, { color: text }]}>{item.title}</Text>
+          <Text style={[styles.choiceSub, { color: muted }]}>{item.subtitle}</Text>
+        </View>
+        {selected ? (
+          <View style={[styles.checkDot, { backgroundColor: accent }]}>
+            <Ionicons name="checkmark" size={14} color={onAccent} />
+          </View>
+        ) : (
+          <Ionicons name="chevron-forward" size={16} color={muted} />
+        )}
+      </TouchableOpacity>
+    </Animated.View>
+  );
+}
+
+// ─── Plan card (for "all plans" view) ─────────────────────────────────────
+function PlanCard({
+  planId,
+  recommended,
+  accent,
+  softBg,
+  cardBg,
+  border,
+  borderHighlight,
+  text,
+  muted,
+  onPress,
+}: {
+  planId: PersonalPlanId;
+  recommended: boolean;
+  accent: string;
+  softBg: string;
+  cardBg: string;
+  border: string;
+  borderHighlight: string;
+  text: string;
+  muted: string;
+  onPress: () => void;
+}) {
+  const plan = getPlanById(planId);
+  const art = getPersonalPlanArt(planId);
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.86}
+      onPress={onPress}
+      style={[styles.planCard, { backgroundColor: recommended ? accent + '10' : cardBg, borderColor: recommended ? accent : border }]}
+    >
+      <View style={[styles.planCardIcon, { backgroundColor: softBg, borderColor: borderHighlight }]}>
+        <Ionicons name={art.heroIcon} size={24} color={accent} />
+      </View>
+      <View style={styles.planCardCopy}>
+        <Text style={[styles.planCardName, { color: text }]}>{plan.name}</Text>
+        <Text style={[styles.planCardTagline, { color: accent }]}>{planTagline(planId)}</Text>
+        <Text style={[styles.planCardSub, { color: muted }]}>{plan.shortFocus}</Text>
+        <Text style={[styles.planCardMeta, { color: muted }]}>{plan.horizonWeeks} нед · {plan.recommendedLevel}</Text>
+      </View>
+      {recommended ? (
+        <View style={[styles.recommendedBadge, { backgroundColor: accent }]}>
+          <Text style={[styles.recommendedText, { color: '#fff' }]}>✓</Text>
+        </View>
+      ) : (
+        <Ionicons name="chevron-forward" size={18} color={muted} />
+      )}
+    </TouchableOpacity>
+  );
+}
+
+// ─── Main screen ───────────────────────────────────────────────────────────
 export default function PersonalPlanSetupScreen() {
   const router = useRouter();
   const { theme: t } = useTheme();
@@ -73,10 +265,14 @@ export default function PersonalPlanSetupScreen() {
   const [selectedMinutes, setSelectedMinutes] = useState<PlanMinutesChoice>(15);
   const [selectedPlanId, setSelectedPlanId] = useState<PersonalPlanId | null>(null);
 
+  const slideFade = useRef(new Animated.Value(1)).current;
+  const slideX = useRef(new Animated.Value(0)).current;
+
   const recommendedPlanId = useMemo(() => recommendPersonalPlan({ goal, level, focus }), [focus, goal, level]);
   const visiblePlanId = selectedPlanId ?? recommendedPlanId;
   const visiblePlan = getPlanById(visiblePlanId);
   const planArt = getPersonalPlanArt(visiblePlanId);
+
   const accent = t.accent;
   const onAccent = t.correctText;
   const screenBg = t.bgPrimary;
@@ -86,6 +282,20 @@ export default function PersonalPlanSetupScreen() {
   const border = t.border;
   const text = t.textPrimary;
   const muted = t.textMuted;
+
+  const animateStep = (fn: () => void) => {
+    Animated.parallel([
+      Animated.timing(slideFade, { toValue: 0, duration: 160, useNativeDriver: true }),
+      Animated.timing(slideX, { toValue: -30, duration: 160, useNativeDriver: true }),
+    ]).start(() => {
+      fn();
+      slideX.setValue(30);
+      Animated.parallel([
+        Animated.timing(slideFade, { toValue: 1, duration: 250, useNativeDriver: true }),
+        Animated.spring(slideX, { toValue: 0, tension: 80, friction: 12, useNativeDriver: true }),
+      ]).start();
+    });
+  };
 
   const activate = async (planId: PersonalPlanId) => {
     hapticTap();
@@ -97,192 +307,268 @@ export default function PersonalPlanSetupScreen() {
     router.replace('/personal_plan' as any);
   };
 
-  const renderProgress = () => (
-    <View style={styles.progressRow}>
-      {[1, 2, 3, 4, 5].map((index) => (
-        <View
-          key={index}
-          style={[
-            styles.progressPill,
-            { backgroundColor: index <= stepIndex(step) ? accent : inactiveProgressBg },
-          ]}
-        />
-      ))}
-    </View>
-  );
-
-  const renderChoice = <T extends string | number>(
-    item: {
-      id: T;
-      title: string;
-      subtitle: string;
-      icon: PersonalPlanSetupChoice['icon'];
-    },
-    selected: boolean,
-    onPress: () => void,
-  ) => (
-    <TouchableOpacity
-      key={item.id}
-      activeOpacity={0.84}
-      onPress={() => {
-        hapticTap();
-        onPress();
-      }}
-      style={[styles.choice, { backgroundColor: cardBg, borderColor: selected ? accent : border }]}
-    >
-      <View style={[styles.choiceIcon, { backgroundColor: selected ? accent : softBg, borderColor: selected ? accent : t.borderHighlight }]}>
-        <Ionicons name={item.icon} size={24} color={selected ? onAccent : accent} />
-      </View>
-      <View style={styles.choiceCopy}>
-        <Text style={[styles.choiceTitle, { color: text }]}>{item.title}</Text>
-        <Text style={[styles.choiceSub, { color: muted }]}>{item.subtitle}</Text>
-      </View>
-      <Ionicons name="chevron-forward" size={18} color={selected ? accent : muted} />
-    </TouchableOpacity>
-  );
-
   const renderQuestion = (
     title: string,
     subtitle: string,
     body: React.ReactNode,
   ) => (
-    <View style={styles.body}>
-      {renderProgress()}
-      <Text style={[styles.kicker, { color: accent }]}>Выбор плана</Text>
-      <Text style={[styles.title, { color: text }]}>{title}</Text>
-      <Text style={[styles.subtitle, { color: muted }]}>{subtitle}</Text>
+    <Animated.View style={{ opacity: slideFade, transform: [{ translateX: slideX }] }}>
+      <Text style={[styles.stepKicker, { color: accent }]}>Шаг {stepIndex(step)} из {TOTAL_STEPS}</Text>
+      <Text style={[styles.stepTitle, { color: text }]}>{title}</Text>
+      <Text style={[styles.stepSubtitle, { color: muted }]}>{subtitle}</Text>
       <View style={styles.stack}>{body}</View>
-    </View>
+    </Animated.View>
   );
-
-  const renderPlanCard = (planId: PersonalPlanId, recommended = false) => {
-    const plan = getPlanById(planId);
-    const art = getPersonalPlanArt(planId);
-    return (
-      <TouchableOpacity
-        key={planId}
-        activeOpacity={0.86}
-        onPress={() => {
-          hapticTap();
-          setSelectedPlanId(planId);
-          setStep('minutes');
-        }}
-        style={[styles.planCard, { backgroundColor: cardBg, borderColor: recommended ? accent : border }]}
-      >
-        <View style={[styles.choiceIcon, { backgroundColor: softBg, borderColor: t.borderHighlight }]}>
-          <Ionicons name={art.heroIcon} size={25} color={accent} />
-        </View>
-        <View style={styles.choiceCopy}>
-          <Text style={[styles.choiceTitle, { color: text }]}>{plan.name}</Text>
-          <Text style={[styles.choiceSub, { color: muted }]}>{plan.shortFocus}</Text>
-          <Text style={[styles.planMeta, { color: accent }]}>
-            {plan.horizonWeeks} недель · старт {plan.recommendedLevel}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
 
   const content = (() => {
     if (step === 'goal') {
       return renderQuestion(
         'Зачем тебе английский?',
-        'План подстроится под ситуации и фразы, которые пригодятся первыми.',
-        PERSONAL_PLAN_SETUP_GOALS.map((item) => renderChoice(item, goal === item.id, () => {
-          setGoal(item.id);
-          setStep('level');
-        })),
+        'Это определяет ситуации и фразы, которые пригодятся первыми.',
+        PERSONAL_PLAN_SETUP_GOALS.map((item) => (
+          <ChoiceCard
+            key={item.id}
+            item={item}
+            selected={goal === item.id}
+            accent={accent}
+            onAccent={onAccent}
+            cardBg={cardBg}
+            softBg={softBg}
+            border={border}
+            borderHighlight={t.borderHighlight}
+            text={text}
+            muted={muted}
+            onPress={() => {
+              hapticTap();
+              animateStep(() => {
+                setGoal(item.id);
+                setStep('level');
+              });
+            }}
+          />
+        )),
       );
     }
+
     if (step === 'level') {
       return renderQuestion(
-        'Какой старт ближе?',
-        'Выбери не идеальный уровень, а тот, с которого комфортно начать сегодня.',
-        PERSONAL_PLAN_SETUP_LEVELS.map((item) => renderChoice(item, level === item.id, () => {
-          setLevel(item.id);
-          setStep('focus');
-        })),
+        'С чего удобнее начать?',
+        'Не идеальный уровень, а тот, с которого комфортно стартовать сегодня.',
+        PERSONAL_PLAN_SETUP_LEVELS.map((item) => (
+          <ChoiceCard
+            key={item.id}
+            item={item}
+            selected={level === item.id}
+            accent={accent}
+            onAccent={onAccent}
+            cardBg={cardBg}
+            softBg={softBg}
+            border={border}
+            borderHighlight={t.borderHighlight}
+            text={text}
+            muted={muted}
+            onPress={() => {
+              hapticTap();
+              animateStep(() => {
+                setLevel(item.id);
+                setStep('focus');
+              });
+            }}
+          />
+        )),
       );
     }
+
     if (step === 'focus') {
       return renderQuestion(
-        'Что важнее в ближайшие недели?',
-        'Без выбора времени и лишнего упражнения: сразу подберем маршрут.',
-        PERSONAL_PLAN_SETUP_FOCUS.map((item) => renderChoice(item, focus === item.id, () => {
-          setFocus(item.id);
-          setSelectedPlanId(null);
-          setStep('minutes');
-        })),
+        'Что важнее сейчас?',
+        'Выбери подход — маршрут адаптируется под него.',
+        PERSONAL_PLAN_SETUP_FOCUS.map((item) => (
+          <ChoiceCard
+            key={item.id}
+            item={item}
+            selected={focus === item.id}
+            accent={accent}
+            onAccent={onAccent}
+            cardBg={cardBg}
+            softBg={softBg}
+            border={border}
+            borderHighlight={t.borderHighlight}
+            text={text}
+            muted={muted}
+            onPress={() => {
+              hapticTap();
+              animateStep(() => {
+                setFocus(item.id);
+                setSelectedPlanId(null);
+                setStep('minutes');
+              });
+            }}
+          />
+        )),
       );
     }
+
     if (step === 'minutes') {
       return renderQuestion(
         'Сколько времени в день?',
-        'Это не меняет сам план: каждый день создается полный набор заданий. Время выбирает, сколько открыть сразу.',
-        PERSONAL_PLAN_SETUP_MINUTES.map((item) => renderChoice(item, selectedMinutes === item.id, () => {
-          setSelectedMinutes(item.id);
-          setStep('result');
-        })),
+        'Это не меняет план — только сколько заданий открыть сразу.',
+        PERSONAL_PLAN_SETUP_MINUTES.map((item) => (
+          <ChoiceCard
+            key={item.id}
+            item={item}
+            selected={selectedMinutes === item.id}
+            accent={accent}
+            onAccent={onAccent}
+            cardBg={cardBg}
+            softBg={softBg}
+            border={border}
+            borderHighlight={t.borderHighlight}
+            text={text}
+            muted={muted}
+            onPress={() => {
+              hapticTap();
+              animateStep(() => {
+                setSelectedMinutes(item.id);
+                setStep('result');
+              });
+            }}
+          />
+        )),
       );
     }
+
     if (step === 'all') {
-      return renderQuestion(
-        'Все планы',
-        'Можно оставить рекомендацию или выбрать другой сценарий под ближайшую цель.',
-        PLAN_IDS.map((planId) => renderPlanCard(planId, planId === recommendedPlanId)),
+      return (
+        <Animated.View style={{ opacity: slideFade, transform: [{ translateX: slideX }] }}>
+          <Text style={[styles.stepKicker, { color: accent }]}>Все маршруты</Text>
+          <Text style={[styles.stepTitle, { color: text }]}>Выбери свой план</Text>
+          <Text style={[styles.stepSubtitle, { color: muted }]}>
+            Рекомендуется {PLAN_IDS.indexOf(recommendedPlanId) + 1}-й вариант, но можно выбрать любой.
+          </Text>
+          <View style={styles.stack}>
+            {PLAN_IDS.map((planId) => (
+              <PlanCard
+                key={planId}
+                planId={planId}
+                recommended={planId === recommendedPlanId}
+                accent={accent}
+                softBg={softBg}
+                cardBg={cardBg}
+                border={border}
+                borderHighlight={t.borderHighlight}
+                text={text}
+                muted={muted}
+                onPress={() => {
+                  hapticTap();
+                  setSelectedPlanId(planId);
+                  setStep('minutes');
+                }}
+              />
+            ))}
+          </View>
+        </Animated.View>
       );
     }
+
+    // Result step
     return (
-      <View style={styles.body}>
-        {renderProgress()}
-        <Text style={[styles.kicker, { color: accent }]}>Подходит тебе</Text>
+      <Animated.View style={{ opacity: slideFade, transform: [{ translateX: slideX }] }}>
+        <Text style={[styles.stepKicker, { color: accent }]}>Для тебя подходит</Text>
+        <Text style={[styles.stepTitle, { color: text }]}>Твой план</Text>
+
         <LinearGradient
           colors={t.cardGradient}
-          style={[styles.resultCard, { borderColor: border, backgroundColor: cardBg }]}
+          style={[styles.resultCard, { borderColor: border }]}
         >
-          <Ionicons name={planArt.heroIcon} size={72} color={accent} style={styles.resultIcon} />
+          <View style={[styles.resultIconWrap, { backgroundColor: accent + '18', borderColor: accent + '33' }]}>
+            <Ionicons name={planArt.heroIcon} size={52} color={accent} />
+          </View>
+          <View style={[styles.resultTagPill, { backgroundColor: accent + '14', borderColor: accent + '33' }]}>
+            <Text style={[styles.resultTagText, { color: accent }]}>{planTagline(visiblePlanId)}</Text>
+          </View>
           <Text style={[styles.resultName, { color: text }]}>{visiblePlan.name}</Text>
           <Text style={[styles.resultReason, { color: muted }]}>{planReason(visiblePlanId)}</Text>
+
           <View style={styles.resultFacts}>
-            <Text style={[styles.resultFact, { color: accent }]}>{visiblePlan.horizonWeeks} недель</Text>
-            <Text style={[styles.resultFact, { color: accent }]}>{visiblePlan.recommendedLevel}</Text>
-            <Text style={[styles.resultFact, { color: accent }]}>{selectedMinutes} мин/день</Text>
+            <View style={[styles.resultFact, { backgroundColor: cardBg, borderColor: border }]}>
+              <Text style={[styles.resultFactValue, { color: accent }]}>{visiblePlan.horizonWeeks}</Text>
+              <Text style={[styles.resultFactLabel, { color: muted }]}>недель</Text>
+            </View>
+            <View style={[styles.resultFact, { backgroundColor: cardBg, borderColor: border }]}>
+              <Text style={[styles.resultFactValue, { color: accent }]}>{visiblePlan.recommendedLevel}</Text>
+              <Text style={[styles.resultFactLabel, { color: muted }]}>уровень</Text>
+            </View>
+            <View style={[styles.resultFact, { backgroundColor: cardBg, borderColor: border }]}>
+              <Text style={[styles.resultFactValue, { color: accent }]}>{selectedMinutes}</Text>
+              <Text style={[styles.resultFactLabel, { color: muted }]}>мин/день</Text>
+            </View>
           </View>
         </LinearGradient>
+
         <TouchableOpacity
           testID="personal-plan-setup-choose-plan"
           activeOpacity={0.88}
-          onPress={() => activate(visiblePlanId)}
-          style={[styles.primary, { backgroundColor: accent }]}
+          onPress={() => void activate(visiblePlanId)}
+          style={[styles.primaryBtn, { backgroundColor: accent }]}
         >
-          <Text style={[styles.primaryText, { color: onAccent }]}>Выбрать этот план</Text>
+          <Text style={[styles.primaryBtnText, { color: onAccent }]}>Начать этот план</Text>
+          <Ionicons name="arrow-forward" size={20} color={onAccent} />
         </TouchableOpacity>
+
         <TouchableOpacity
           testID="personal-plan-setup-view-all"
           activeOpacity={0.82}
           onPress={() => {
             hapticTap();
-            setStep('all');
+            animateStep(() => setStep('all'));
           }}
-          style={[styles.secondary, { borderColor: border, backgroundColor: cardBg }]}
+          style={[styles.secondaryBtn, { borderColor: border, backgroundColor: cardBg }]}
         >
-          <Text style={[styles.secondaryText, { color: text }]}>Посмотреть все планы</Text>
+          <Text style={[styles.secondaryBtnText, { color: text }]}>Посмотреть все планы</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     );
   })();
+
+  const canGoBack = step !== 'goal';
+  const handleBack = () => {
+    hapticTap();
+    animateStep(() => {
+      if (step === 'level') setStep('goal');
+      else if (step === 'focus') setStep('level');
+      else if (step === 'minutes') setStep('focus');
+      else if (step === 'result') setStep('minutes');
+      else if (step === 'all') setStep('result');
+      else if (router.canGoBack()) router.back(); else router.replace('/personal_plan');
+    });
+  };
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
       <LinearGradient colors={t.bgGradient} style={styles.safe}>
-        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-          <View style={styles.topBar}>
-            <TouchableOpacity accessibilityRole="button" onPress={() => router.back()} style={styles.backButton}>
-              <Ionicons name="chevron-back" size={28} color={accent} />
-            </TouchableOpacity>
-            <Text style={[styles.brand, { color: accent }]}>PHRASEMAN</Text>
-            <View style={styles.backButton} />
+        {/* Top bar */}
+        <View style={styles.topBar}>
+          <TapScale
+            onPress={canGoBack ? handleBack : () => { if (router.canGoBack()) router.back(); else router.replace('/personal_plan'); }}
+            style={[styles.topBarBtn, { backgroundColor: t.bgCard, borderColor: border }]}
+          >
+            <Ionicons name="chevron-back" size={22} color={accent} />
+          </TapScale>
+
+          <StepProgress
+            current={stepIndex(step)}
+            total={TOTAL_STEPS}
+            accent={accent}
+            trackBg={inactiveProgressBg}
+          />
+
+          <View style={[styles.topBarStepPill, { backgroundColor: t.accentBg, borderColor: border }]}>
+            <Text style={[styles.topBarStepText, { color: accent }]}>{stepIndex(step)}/{TOTAL_STEPS}</Text>
           </View>
+        </View>
+
+        <ScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
           {content}
         </ScrollView>
       </LinearGradient>
@@ -292,57 +578,97 @@ export default function PersonalPlanSetupScreen() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1 },
-  scroll: { paddingHorizontal: 20, paddingBottom: 32 },
-  topBar: { minHeight: 54, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  backButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-  brand: { fontSize: 13, fontWeight: '900', letterSpacing: 0 },
-  body: { paddingTop: 8 },
-  progressRow: { flexDirection: 'row', gap: 10, marginBottom: 26, paddingHorizontal: 44 },
-  progressPill: { flex: 1, height: 7, borderRadius: 4 },
-  kicker: { fontSize: 13, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0, marginBottom: 8 },
-  title: { fontSize: 34, lineHeight: 39, fontWeight: '900' },
-  subtitle: { marginTop: 10, fontSize: 16, lineHeight: 23, fontWeight: '700' },
-  stack: { marginTop: 26, gap: 12 },
-  choice: {
-    minHeight: 86,
-    borderRadius: 14,
-    borderWidth: 1,
+  topBar: {
     paddingHorizontal: 14,
-    paddingVertical: 12,
+    paddingTop: 10,
+    paddingBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 13,
+    gap: 12,
+  },
+  topBarBtn: {
+    width: 44, height: 44, borderRadius: 14, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+  },
+  topBarStepPill: {
+    height: 34, paddingHorizontal: 12, borderRadius: 17, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+  },
+  topBarStepText: { fontSize: 13, fontWeight: '900' },
+  scroll: { paddingHorizontal: 20, paddingTop: 8, paddingBottom: 40 },
+
+  stepKicker: { fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.4, marginBottom: 10 },
+  stepTitle: { fontSize: 36, lineHeight: 42, fontWeight: '900' },
+  stepSubtitle: { marginTop: 10, fontSize: 16, lineHeight: 24, fontWeight: '700', marginBottom: 4 },
+  stack: { marginTop: 22, gap: 10 },
+
+  choice: {
+    minHeight: 80, borderRadius: 18, borderWidth: 1,
+    paddingHorizontal: 14, paddingVertical: 12,
+    flexDirection: 'row', alignItems: 'center', gap: 13,
   },
   choiceIcon: {
-    width: 52,
-    height: 52,
-    borderRadius: 14,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
+    width: 50, height: 50, borderRadius: 15, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
   choiceCopy: { flex: 1, minWidth: 0 },
-  choiceTitle: { fontSize: 17, lineHeight: 21, fontWeight: '900' },
+  choiceTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
   choiceSub: { marginTop: 3, fontSize: 13, lineHeight: 18, fontWeight: '700' },
-  planCard: {
-    minHeight: 106,
-    borderRadius: 14,
-    borderWidth: 1,
-    padding: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 13,
+  checkDot: {
+    width: 26, height: 26, borderRadius: 13,
+    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
-  planMeta: { marginTop: 6, fontSize: 12, lineHeight: 16, fontWeight: '900' },
-  resultCard: { marginTop: 20, borderRadius: 18, borderWidth: 1, padding: 22, overflow: 'hidden' },
-  resultIcon: { marginBottom: 14 },
-  resultName: { fontSize: 36, lineHeight: 40, fontWeight: '900' },
-  resultReason: { marginTop: 12, fontSize: 16, lineHeight: 24, fontWeight: '700' },
-  resultFacts: { marginTop: 18, flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  resultFact: { paddingHorizontal: 10, paddingVertical: 7, borderRadius: 999, backgroundColor: 'rgba(255,255,255,0.10)', fontSize: 12, fontWeight: '900' },
-  primary: { minHeight: 58, marginTop: 18, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  primaryText: { fontSize: 17, fontWeight: '900' },
-  secondary: { minHeight: 56, marginTop: 12, borderRadius: 14, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
-  secondaryText: { fontSize: 16, fontWeight: '900' },
+
+  planCard: {
+    minHeight: 100, borderRadius: 18, borderWidth: 1,
+    padding: 14, flexDirection: 'row', alignItems: 'center', gap: 13,
+  },
+  planCardIcon: {
+    width: 50, height: 50, borderRadius: 15, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+  },
+  planCardCopy: { flex: 1, minWidth: 0 },
+  planCardName: { fontSize: 17, lineHeight: 21, fontWeight: '900' },
+  planCardTagline: { marginTop: 2, fontSize: 12, lineHeight: 15, fontWeight: '900' },
+  planCardSub: { marginTop: 3, fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  planCardMeta: { marginTop: 4, fontSize: 11, lineHeight: 14, fontWeight: '800' },
+  recommendedBadge: {
+    width: 28, height: 28, borderRadius: 14,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  recommendedText: { fontSize: 14, fontWeight: '900' },
+
+  resultCard: {
+    marginTop: 20, borderRadius: 24, borderWidth: 1,
+    padding: 22, alignItems: 'center', overflow: 'hidden',
+  },
+  resultIconWrap: {
+    width: 100, height: 100, borderRadius: 50, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center', marginBottom: 14,
+  },
+  resultTagPill: {
+    paddingHorizontal: 14, paddingVertical: 6, borderRadius: 16, borderWidth: 1, marginBottom: 12,
+  },
+  resultTagText: { fontSize: 13, fontWeight: '900' },
+  resultName: { fontSize: 34, lineHeight: 40, fontWeight: '900', textAlign: 'center' },
+  resultReason: { marginTop: 12, fontSize: 15, lineHeight: 23, fontWeight: '700', textAlign: 'center' },
+  resultFacts: { flexDirection: 'row', gap: 10, marginTop: 20, width: '100%' },
+  resultFact: {
+    flex: 1, height: 72, borderRadius: 18, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center', gap: 3,
+  },
+  resultFactValue: { fontSize: 20, lineHeight: 24, fontWeight: '900' },
+  resultFactLabel: { fontSize: 11, lineHeight: 14, fontWeight: '800' },
+
+  primaryBtn: {
+    minHeight: 60, marginTop: 20, borderRadius: 18,
+    alignItems: 'center', justifyContent: 'center',
+    flexDirection: 'row', gap: 10,
+  },
+  primaryBtnText: { fontSize: 18, fontWeight: '900' },
+  secondaryBtn: {
+    minHeight: 56, marginTop: 12, borderRadius: 18, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  secondaryBtnText: { fontSize: 16, fontWeight: '900' },
 });

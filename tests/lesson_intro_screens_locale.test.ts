@@ -86,7 +86,18 @@ describe('lesson intro screens (es locale fields)', () => {
     expect(source).toContain('const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;');
     expect(source).toContain('edges={[\'bottom\']}');
     expect(source).toContain('top: introHeaderTop');
-    expect(source).toContain('paddingTop: introHeaderTop + INTRO_HEADER_SCROLL_OFFSET');
+    // Контент скролла начинается ниже измеренной высоты хедера (+ воздух до первой карточки),
+    // а не на основе магического INTRO_HEADER_SCROLL_OFFSET.
+    expect(source).toContain('const headerBottom = introHeaderTop + headerHeight;');
+    expect(source).toContain('paddingTop: scrollTopPadding');
+  });
+
+  it('masks scrolled intro content under the header instead of leaking into the status bar', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+
+    // Размытый верхний край через общий компонент TopFadeMask.
+    expect(source).toContain("import TopFadeMask from '../components/TopFadeMask'");
+    expect(source).toContain('<TopFadeMask');
   });
 
   it('keeps the intro back button before the lesson badge in the header', () => {

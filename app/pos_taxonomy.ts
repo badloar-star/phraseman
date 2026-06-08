@@ -18,6 +18,24 @@ export type WordCategory =
   | 'phrasal_particle'
   | 'other';
 
+export const WORD_CATEGORIES: readonly WordCategory[] = [
+  'verb', 'noun', 'pronoun', 'adjective', 'adverb', 'modifier', 'preposition',
+  'syntax', 'determiner', 'existential', 'article', 'to-be', 'conjunction',
+  'modal', 'phrasal_particle', 'other',
+];
+
+const WORD_CATEGORY_SET: ReadonlySet<string> = new Set(WORD_CATEGORIES);
+
+/**
+ * True when `value` is an actual part-of-speech category. Grammar tags such as
+ * `present_perfect` or `word_order` are NOT word categories and must not be fed
+ * into the rawCategory slot of normalizeWordCategory (they would be regex-coerced
+ * into a fabricated POS). Use this to keep grammar tags and POS separate.
+ */
+export function isWordCategory(value: unknown): value is WordCategory {
+  return typeof value === 'string' && WORD_CATEGORY_SET.has(value);
+}
+
 export type CategorySource = 'closed_class' | 'raw_category' | 'word_pool' | 'suffix' | 'unknown';
 
 export interface CategoryResolution {
@@ -78,6 +96,7 @@ const COMMON_VERBS = new Set([
   'hit', 'inspect', 'invite', 'judge', 'jump', 'keep', 'kept', 'paint', 'perform',
   'pierce', 'protect', 'push', 'ring', 'rang', 'remind', 'restart', 'rewrite',
   'shake', 'shout', 'strike', 'talk', 'thank', 'trust', 'wear', 'wore',
+  'know', 'knew', 'known', 'help', 'helped', 'call', 'called', 'vibrate',
 ]);
 
 const COMMON_NOUNS = new Set([

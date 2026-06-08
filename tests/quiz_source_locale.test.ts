@@ -13,7 +13,7 @@ import {
 const NEW_BATCH_LOCALES = ['pt-BR', 'vi', 'id', 'tr', 'pl'] as const satisfies readonly QuizSourceLocale[];
 const MEDIUM_111_231 = Array.from({ length: 121 }, (_, index) => index + 111);
 const HARD_1_100 = Array.from({ length: 100 }, (_, index) => index + 1);
-const BAD_SOURCE_RE = /[А-Яа-яЁёІіЇїЄєҐґ]|Ð|Ñ|�/u;
+const MOJIBAKE_OR_CYRILLIC_SOURCE_RE = /[А-Яа-яЁёІіЇїЄєҐґ]|Ð|Ñ|�/u;
 
 describe('multi-source quiz locale payloads', () => {
   it('keeps the Heisenberg batch locales registered separately', () => {
@@ -31,8 +31,8 @@ describe('multi-source quiz locale payloads', () => {
 
         expect(payload?.prompt.trim()).toBeTruthy();
         expect(payload?.explanations).toHaveLength(4);
-        expect(payload?.prompt).not.toMatch(BAD_SOURCE_RE);
-        expect(payload?.explanations.some((line) => BAD_SOURCE_RE.test(line))).toBe(false);
+        expect(payload?.prompt).not.toMatch(MOJIBAKE_OR_CYRILLIC_SOURCE_RE);
+        expect(payload?.explanations.some((line) => MOJIBAKE_OR_CYRILLIC_SOURCE_RE.test(line))).toBe(false);
         expect(prompts.has(payload!.prompt)).toBe(false);
         prompts.add(payload!.prompt);
       }
@@ -50,8 +50,8 @@ describe('multi-source quiz locale payloads', () => {
 
         expect(payload?.prompt.trim()).toBeTruthy();
         expect(payload?.explanations).toHaveLength(4);
-        expect(payload?.prompt).not.toMatch(BAD_SOURCE_RE);
-        expect(payload?.explanations.some((line) => BAD_SOURCE_RE.test(line))).toBe(false);
+        expect(payload?.prompt).not.toMatch(MOJIBAKE_OR_CYRILLIC_SOURCE_RE);
+        expect(payload?.explanations.some((line) => MOJIBAKE_OR_CYRILLIC_SOURCE_RE.test(line))).toBe(false);
         expect(prompts.has(payload!.prompt)).toBe(false);
         prompts.add(payload!.prompt);
       }

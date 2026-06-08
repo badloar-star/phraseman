@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { memo, useEffect, useReducer } from 'react';
 import ThemedChoiceModal from './ThemedChoiceModal';
 import {
   getThemedBlockingAlertHead,
@@ -10,7 +10,7 @@ import { useOverlayVisible } from './OverlayArbiter';
 /**
  * Рендерит очередь инфо-алертов из themed_blocking_alert_queue (модерация и т.п.).
  */
-export default function ThemedBlockingAlertHost() {
+function ThemedBlockingAlertHost() {
   const [, bump] = useReducer((n: number) => n + 1, 0);
   useEffect(() => subscribeThemedBlockingAlertQueue(() => bump()), []);
   const head = getThemedBlockingAlertHead();
@@ -31,3 +31,5 @@ export default function ThemedBlockingAlertHost() {
     />
   );
 }
+
+export default memo(ThemedBlockingAlertHost);

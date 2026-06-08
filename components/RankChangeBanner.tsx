@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Pressable, Text, View } from 'react-native';
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
@@ -14,7 +14,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function RankChangeBanner({
+function RankChangeBanner({
   delta,
   passedName,
   lostToName,
@@ -179,3 +179,5 @@ export default function RankChangeBanner({
     </Animated.View>
   );
 }
+
+export default memo(RankChangeBanner);

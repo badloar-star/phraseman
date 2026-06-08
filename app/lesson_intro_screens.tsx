@@ -13,11 +13,13 @@ import {
 } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
+import TopFadeMask from '../components/TopFadeMask';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { hapticTap } from '../hooks/use-haptics';
@@ -400,7 +402,11 @@ const SLIDE_DURATION_MS = 1500; // длинный «дрейф» снизу
 const SLIDE_DISTANCE_PX = 44; // путь slide-up — больше воздуха
 const AUTO_SCROLL_DELAY_MS = 520; // даём блоку доехать до конца, потом скроллим
 const INTRO_HEADER_TOP_GAP = 8;
-const INTRO_HEADER_SCROLL_OFFSET = 70;
+// Фолбэк, пока хедер не измерил свою реальную высоту через onLayout.
+// Честная высота = paddingTop(8) + высота pill/кнопки(~36) + paddingBottom(12) ≈ 56;
+// + воздух до первой карточки.
+const INTRO_HEADER_FALLBACK_HEIGHT = 56;
+const INTRO_FIRST_CARD_GAP = 16;
 const KIND_BY_INDEX: LessonIntroBlockKind[] = ['why', 'how', 'tip'];
 
 /**
@@ -972,6 +978,10 @@ export default function LessonIntroScreens({
   const scrollRef = useRef<ScrollView | null>(null);
   const blockYRef = useRef<Record<number, number>>({});
   const visibleHeightRef = useRef<number>(screenH);
+  // Реальная высота хедера (Back + pill), измеренная на лету — вместо магического числа.
+  const [headerHeight, setHeaderHeight] = useState(INTRO_HEADER_FALLBACK_HEIGHT);
+  // Зеркало низа хедера для auto-scroll — чтобы не тащить headerBottom в deps эффекта.
+  const headerBottomRef = useRef<number>(0);
 
   const handleBlockLayout = useCallback((index: number, y: number) => {
     blockYRef.current[index] = y;
@@ -1005,9 +1015,9 @@ export default function LessonIntroScreens({
     const timer = setTimeout(() => {
       const y = blockYRef.current[idx];
       if (y === undefined || !scrollRef.current) return;
-      // Ставим новый блок в верхнюю треть видимой области (комфортно для глаз):
-      // если блок целиком влез — exitскролл всё равно мягко подвинет его выше предыдущего.
-      const targetY = Math.max(0, y - 60);
+      // Ставим новый блок сразу ПОД хедером (а не под него): вычитаем низ хедера + воздух,
+      // иначе верх карточки прячется за fade-маской/шапкой.
+      const targetY = Math.max(0, y - (headerBottomRef.current + INTRO_FIRST_CARD_GAP));
       scrollRef.current.scrollTo({ y: targetY, animated: true });
     }, AUTO_SCROLL_DELAY_MS);
     return () => clearTimeout(timer);
@@ -1140,6 +1150,11 @@ export default function LessonIntroScreens({
   const lvlLabel = lessonLevelLabel(lessonId);
   const lvlColor = levelColor(lessonId, isLight);
   const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;
+  // Низ хедера = safe-area + зазор + измеренная высота. Контент скролла начинается ниже,
+  // плюс воздух до первой карточки.
+  const headerBottom = introHeaderTop + headerHeight;
+  headerBottomRef.current = headerBottom;
+  const scrollTopPadding = headerBottom + INTRO_FIRST_CARD_GAP;
   const startLabel = triLang(lang, {
     ru: 'Начать урок',
     uk: 'Почати урок',
@@ -1206,8 +1221,17 @@ export default function LessonIntroScreens({
     <ScreenGradient>
       <LessonArtBackdrop variant="intro" />
       <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+        {/* Затемняющий верхний край (общий компонент, Telegram-стиль): карточки
+            при скролле уходят в тень у статус-бара, а не обрезаются резко.
+            Высота = safe-area + хедер. */}
+        <TopFadeMask headerHeight={headerHeight + INTRO_HEADER_TOP_GAP} />
+
         {/* Шапка: Back + pill «Урок N · A1» */}
         <Animated.View
+          onLayout={(e) => {
+            const h = Math.round(e.nativeEvent.layout.height);
+            if (h > 0 && h !== headerHeight) setHeaderHeight(h);
+          }}
           style={[
             styles.header,
             {
@@ -1217,7 +1241,7 @@ export default function LessonIntroScreens({
             },
           ]}
         >
-          <TouchableOpacity
+          <TapScale
             testID="lesson-intro-back"
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, {
@@ -1245,7 +1269,7 @@ export default function LessonIntroScreens({
           >
             {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
             <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textMuted} />
-          </TouchableOpacity>
+          </TapScale>
 
           <View
             style={[
@@ -1281,7 +1305,8 @@ export default function LessonIntroScreens({
         >
           <ScrollView
             ref={scrollRef}
-            contentContainerStyle={[styles.scrollContent, { paddingTop: introHeaderTop + INTRO_HEADER_SCROLL_OFFSET }]}
+            decelerationRate="normal"
+            contentContainerStyle={[styles.scrollContent, { paddingTop: scrollTopPadding }]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
             nestedScrollEnabled

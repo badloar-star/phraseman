@@ -1,0 +1,24 @@
+# gitleaks config for phraseman — extends the default ruleset.
+# Authoritative secret scan run in CI (.github/workflows/secret-scan.yml).
+# The lightweight zero-dep pre-check lives in scripts/scan_secrets.mjs.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Files that legitimately contain key-SHAPED placeholders or redacted examples (reviewed in SECURITY_AUDIT_2026-06-07.md)."
+paths = [
+  '''\.env\.local\.template$''',
+  '''subscription-recovery/\.env\.example$''',
+  '''SECURITY_AUDIT_2026-06-07\.md$''',
+  '''scripts/scan_secrets\.mjs$''',
+  '''\.gitleaks\.toml$''',
+  '''GoogleService-Info\.plist$''',  # Firebase client config — public by design
+  '''google-services\.json$''',      # Firebase client config — public by design
+]
+regexTarget = "match"
+regexes = [
+  # EXPO_PUBLIC_* values are intentionally public client keys (RevenueCat public
+  # SDK keys, Google web client id) — not secrets.
+  '''EXPO_PUBLIC_[A-Z0-9_]+''',
+]

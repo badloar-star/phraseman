@@ -210,7 +210,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [themeMode, setThemeModeState] = useState<ThemeMode>(DEFAULT_THEME_MODE);
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
-  setOskolokThemeMode(themeMode);
+  const [premiumThemeAccess, setPremiumThemeAccess] = useState(false);
+
+  useEffect(() => {
+    setOskolokThemeMode(themeMode);
+  }, [themeMode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -224,6 +228,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         hasLeagueGoldThemeReward(),
       ]);
       if (cancelled) return;
+      setPremiumThemeAccess(isPremium);
       setGoldThemeUnlocked(hasGoldReward);
       // Миграция: ocean/sakura больше не поддерживаются → заменяем на dark
       let migrated = themeStr;
@@ -272,18 +277,36 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setThemeMode = useCallback((m: ThemeMode) => {
     if (m === 'gold' && !goldThemeUnlocked && !DEV_THEME_UNLOCKS) return;
+    if (!DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(m) && !premiumThemeAccess) {
+      void getVerifiedPremiumStatus()
+        .then((isPremium) => {
+          setPremiumThemeAccess(isPremium);
+          const next = isPremium ? m : DEFAULT_THEME_MODE;
+          setThemeModeState(next);
+          void AsyncStorage.setItem('app_theme', next);
+        })
+        .catch(() => {
+          setThemeModeState(DEFAULT_THEME_MODE);
+          void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
+        });
+      return;
+    }
     setThemeModeState(m);
     void AsyncStorage.setItem('app_theme', m);
-  }, [goldThemeUnlocked]);
+  }, [goldThemeUnlocked, premiumThemeAccess]);
 
   const toggle = useCallback(() => {
     setThemeModeState(m => {
-      const cycle = CYCLE.filter(mode => mode !== 'gold' || goldThemeUnlocked || DEV_THEME_UNLOCKS);
+      const cycle = CYCLE.filter((mode) => {
+        if (mode === 'gold') return goldThemeUnlocked || DEV_THEME_UNLOCKS;
+        if (PREMIUM_ONLY_THEMES.includes(mode)) return premiumThemeAccess || DEV_THEME_UNLOCKS;
+        return true;
+      });
       const next = cycle[(cycle.indexOf(m) + 1) % cycle.length] ?? DEFAULT_THEME_MODE;
       void AsyncStorage.setItem('app_theme', next);
       return next;
     });
-  }, [goldThemeUnlocked]);
+  }, [goldThemeUnlocked, premiumThemeAccess]);
 
   const setFontSize = useCallback((s: FontSize) => {
     setFontSizeState(s);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
@@ -15,7 +15,7 @@ type PrimaryButtonProps = {
   style?: ViewStyle;
 };
 
-export default function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButtonProps) {
+function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButtonProps) {
   const { theme: t, f, ds, themeMode } = useTheme();
   const isDisabled = !!disabled || !!loading;
   const isGoldTheme = themeMode === 'gold';
@@ -74,6 +74,8 @@ export default function PrimaryButton({ label, onPress, disabled, loading, style
     </TouchableOpacity>
   );
 }
+
+export default memo(PrimaryButton);
 
 const styles = StyleSheet.create({
   button: {

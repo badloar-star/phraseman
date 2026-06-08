@@ -19,8 +19,74 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('match /users/{userId} {');
     expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');
     expect(rules).toContain('function newUserDocOwnerMatchesAuth(userId) {');
-    expect(rules).toContain('allow read, update, delete: if userDocOwnerMatchesAuth(userId);');
+    // Read/delete stay owner/admin; update is owner/admin AND must not touch premium fields.
+    expect(rules).toContain('allow read, delete: if userDocOwnerMatchesAuth(userId);');
+    expect(rules).toContain('allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites();');
     expect(rules).toContain('allow create: if newUserDocOwnerMatchesAuth(userId);');
+  });
+
+  // ── Paywall-bypass guard (premium/VIP self-grant) ────────────────────────
+  // Entitlement flags live INSIDE the client-writable `progress` map
+  // (premium_plan, vip_active, …). Firestore map rules can't restrict
+  // individual keys with hasOnly, so the `users/{userId}` update rule must
+  // call progressHasNoPremiumWrites(), which denies any diff that touches a
+  // premium/VIP key (unless the writer is admin). If this regresses, a normal
+  // client can write progress.premium_plan='yearly' via the SDK and bypass the
+  // paywall (see app/cloud_sync.ts PREMIUM_PROGRESS_KEYS, app/premium_guard.ts).
+  // The 21 keys below MUST stay in sync with PREMIUM_PROGRESS_KEYS in cloud_sync.ts.
+  const PREMIUM_PROGRESS_KEYS = [
+    'premium_plan',
+    'premium_expiry',
+    'premium_rc_product_id',
+    'premium_rc_period_type',
+    'premium_rc_store',
+    'premium_rc_environment',
+    'premium_rc_event_type',
+    'premium_rc_updated_at',
+    'premium_rc_expiry_ms',
+    'premium_rc_purchased_at_ms',
+    'premium_rc_cancelled_at',
+    'admin_premium_override',
+    'premium_admin_grant_at',
+    'had_premium_ever',
+    'vip_active',
+    'vip_plan',
+    'vip_from',
+    'vip_until',
+    'vip_admin_override',
+    'vip_admin_grant_at',
+    'vip_migrated_from_admin_grant_at',
+  ] as const;
+
+  test('users update rule is gated on progressHasNoPremiumWrites() (paywall self-grant guard)', () => {
+    // The guard must be wired into the update rule, not merely defined.
+    expect(rules).toContain('function progressHasNoPremiumWrites() {');
+    expect(rules).toContain(
+      'allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites();',
+    );
+    // It must inspect the diff of the progress map's affected keys.
+    expect(rules).toMatch(
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\.get\('progress', \{\}\)[\s\S]*?\.diff\(resource\.data\.get\('progress', \{\}\)\)[\s\S]*?\.affectedKeys\(\)[\s\S]*?\.hasAny\(\[/,
+    );
+  });
+
+  test('progressHasNoPremiumWrites() blocks every premium/VIP entitlement key', () => {
+    const guardBlock = rules.match(
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\n    \}/,
+    );
+    expect(guardBlock).not.toBeNull();
+    for (const key of PREMIUM_PROGRESS_KEYS) {
+      // Each entitlement key must appear inside the denied-keys list so a
+      // client diff touching it is rejected.
+      expect(guardBlock![0]).toContain(`'${key}'`);
+    }
+  });
+
+  test('progressHasNoPremiumWrites() preserves the deliberate admin escape hatch', () => {
+    // Admin (custom claim) keeps manual VIP grant/revoke via the web SDK.
+    expect(rules).toMatch(
+      /function progressHasNoPremiumWrites\(\) \{\s*return isAdmin\(\)/,
+    );
   });
 
   test('users shard_log allows owner read and create only', () => {
@@ -32,7 +98,7 @@ describe('firestore.rules security baseline', () => {
   test('leaderboard writes are restricted to admin callables while owners can delete', () => {
     const leaderboardBlock = rules.match(/match \/leaderboard\/\{userId\} \{[\s\S]*?\n    \}/);
     expect(leaderboardBlock).not.toBeNull();
-    expect(leaderboardBlock![0]).toContain('allow read: if true;');
+    expect(leaderboardBlock![0]).toContain('allow read: if request.auth != null;');
     expect(leaderboardBlock![0]).toContain('allow create, update: if isAdmin();');
     expect(leaderboardBlock![0]).toContain('allow delete: if userDocOwnerMatchesAuth(userId);');
     expect(leaderboardBlock![0]).not.toContain('allow write: if request.auth != null;');
@@ -67,7 +133,8 @@ describe('firestore.rules security baseline', () => {
 
   test('league_groups write path is exported through callable functions', () => {
     const functionsIndex = readFileSync(path.join(process.cwd(), 'functions/src/index.ts'), 'utf8');
-    expect(functionsIndex).toContain("const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost } = require('./league_groups');");
+    expect(functionsIndex).toContain("require('./league_groups');");
+    expect(functionsIndex).toMatch(/leagueJoinOrUpdateGroup,\s*leagueUpdateMyMember,\s*leagueSyncMyBoost[\s\S]*?=\s*require\('\.\/league_groups'\);/);
     expect(functionsIndex).toContain('exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;');
     expect(functionsIndex).toContain('exports.leagueUpdateMyMember = leagueUpdateMyMember;');
     expect(functionsIndex).toContain('exports.leagueSyncMyBoost = leagueSyncMyBoost;');
@@ -78,9 +145,11 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('allow read, write: if false;');
   });
 
-  test('app diagnostics collections allow client create and admin read', () => {
-    expect(rules).toMatch(/match \/app_errors\/\{docId\} \{[\s\S]*?allow create: if request\.auth != null;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
-    expect(rules).toMatch(/match \/app_activity\/\{docId\} \{[\s\S]*?allow create: if request\.auth != null;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
+  test('app diagnostics collections are server/admin-write only with admin read', () => {
+    // Hardened: client create is now denied (was `request.auth != null`).
+    // Diagnostics docs are written by Cloud Functions (Admin SDK), read by admin.
+    expect(rules).toMatch(/match \/app_errors\/\{docId\} \{[\s\S]*?allow create: if false;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
+    expect(rules).toMatch(/match \/app_activity\/\{docId\} \{[\s\S]*?allow create: if false;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
   });
 
   test('arena_rooms updates are field-restricted', () => {

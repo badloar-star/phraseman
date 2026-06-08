@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { hapticTap, hapticWarning } from '../hooks/use-haptics';
@@ -13,7 +13,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function UserWarningModal({ visible, message, lang, onClose }: Props) {
+function UserWarningModal({ visible, message, lang, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const isCompassTheme = themeMode === 'compass';
   const title =
@@ -82,3 +82,5 @@ export default function UserWarningModal({ visible, message, lang, onClose }: Pr
     </Modal>
   );
 }
+
+export default memo(UserWarningModal);

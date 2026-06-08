@@ -25,6 +25,7 @@
  */
 
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -56,6 +57,7 @@ import { useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient } from '../constants/theme';
 import XpGainBadge from '../components/XpGainBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import {
   getDueItems, markReviewed, RecallItem, removeItem, SESSION_LIMIT,
   getTrainerItems, type TrainerMode,
@@ -188,7 +190,7 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
   if (s === 'quiz') {
     return item.lessonId > 0
       ? triLang(lang, {
-        ru: `Квиз · урок ${item.lessonId}`,
+        ru: `Вызов · урок ${item.lessonId}`,
         uk: `Квіз · урок ${item.lessonId}`,
         es: `Cuestionario · lección ${item.lessonId}`,
         'pt-BR': `Quiz · aula ${item.lessonId}`,
@@ -198,7 +200,7 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
         pl: `Quiz · lekcja ${item.lessonId}`,
       })
       : triLang(lang, {
-        ru: 'Квиз',
+        ru: 'Вызов',
         uk: 'Квіз',
         es: 'Cuestionario',
         'pt-BR': "Quiz",
@@ -267,7 +269,7 @@ function recallCueInstruction(mode: ReviewMode, lang: Lang, studyTarget: StudyTa
   }
   if (mode === 'meaning_match') {
     return triLang(lang, {
-      ru: 'Что это значит? Выберите перевод',
+      ru: 'Что это значит? Выбери перевод',
       uk: 'Що це значить? Оберіть переклад',
       es: '¿Qué significa? Elige la traducción',
       'pt-BR': "O que significa? Escolha a tradução",
@@ -622,6 +624,7 @@ export default function ReviewScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const srsReviewGateOpen = srsReviewContentAvailableForTarget(studyTarget);
+  const { playCorrect } = useCorrectSound();
   // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
   const params = useLocalSearchParams<{
     trainerMode?: string;
@@ -640,6 +643,7 @@ export default function ReviewScreen() {
   const trainerLessonId = params.lessonId ? parseInt(params.lessonId, 10) : undefined;
   const trainerCategory = params.category;
   const planPracticeTaskId = params.planPracticeTask === '1' ? params.planTaskId : undefined;
+  const isPlanPracticeTask = Boolean(planPracticeTaskId);
   const planPracticeDayIndex = parseInt(params.planDayIndex ?? '1', 10) || 1;
   const planPracticeRequiredPhrases = Math.max(
     1,
@@ -690,7 +694,7 @@ export default function ReviewScreen() {
   const [swipeCueHintVisible, setSwipeCueHintVisible] = useState(false);
 
   const swipeCueHintEligible =
-    !loading && items.length > 1 && status === 'playing' && !burning;
+    !isPlanPracticeTask && !loading && items.length > 1 && status === 'playing' && !burning;
 
   useEffect(() => {
     if (!swipeCueHintEligible) {
@@ -827,6 +831,7 @@ export default function ReviewScreen() {
 
   const onCuePagerMomentumEnd = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (isPlanPracticeTask) return;
       if (items.length <= 1) return;
       if (status !== 'playing' || burning) return;
       const page = Math.round(e.nativeEvent.contentOffset.x / CUE_PAGER_PAGE_W);
@@ -837,7 +842,7 @@ export default function ReviewScreen() {
       setIndex(clamped);
       loadCard(items[clamped]!, clamped, items);
     },
-    [items, index, status, burning, loadCard],
+    [isPlanPracticeTask, items, index, status, burning, loadCard],
   );
 
   const finishCard = useCallback((ok: boolean, userPick: string | null) => {
@@ -852,7 +857,7 @@ export default function ReviewScreen() {
     setWasCorrect(ok);
     setStatus('result');
 
-    if (ok) void hapticSuccess();
+    if (ok) { void hapticSuccess(); playCorrect(); }
     else void hapticError();
 
     Animated.spring(resultAnim, { toValue: 1, useNativeDriver: true, friction: 8 }).start();
@@ -1075,9 +1080,9 @@ export default function ReviewScreen() {
       <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}>
-          <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
+          <TapScale onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
             <Ionicons name="chevron-back" size={26} color={sx.primary} />
-          </TouchableOpacity>
+          </TapScale>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
             {triLang(lang, {
               ru: 'Повторение',
@@ -1287,7 +1292,7 @@ export default function ReviewScreen() {
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
             {triLang(lang, {
-              ru: 'Не удалось загрузить карточку. Нажми «Назад» и попробуй снова.',
+              ru: 'Карточка не загрузилась. Вернись и попробуй снова.',
               uk: 'Не вдалося завантажити картку. Натисни «Назад» і спробуй ще раз.',
               es: 'No se pudo cargar la tarjeta. Pulsa «Atrás» e inténtalo de nuevo.',
               'pt-BR': "Não foi possível carregar o cartão. Toque em \"Voltar\" e tente novamente.",
@@ -1339,22 +1344,33 @@ export default function ReviewScreen() {
     <SafeAreaView style={{ flex: 1, position: 'relative' }}>
 
       {/* Хедер: назад + заголовок + счётчик */}
-      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 12 }}>
-        <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: isPlanPracticeTask ? 8 : 12, gap: 12 }}>
+        <TapScale onPress={() => safeRouterBack(router)} style={{ padding: 4 }}>
           <Ionicons name="chevron-back" size={26} color={sx.primary} />
-        </TouchableOpacity>
+        </TapScale>
         <View style={{ flex: 1 }}>
-          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
-            {triLang(lang, {
-              ru: 'Повторение',
-              uk: 'Повторення',
-              es: 'Repaso',
-              'pt-BR': "Revisão",
-              vi: "Ôn tập",
-              id: "Ulangan",
-              tr: "Tekrar",
-              pl: "Powtórka",
-            })}
+          <Text style={{ color: sx.primary, fontSize: isPlanPracticeTask ? f.bodyLg : f.h2, fontWeight: '700' }} numberOfLines={1}>
+            {isPlanPracticeTask
+              ? triLang(lang, {
+                ru: 'Моя практика',
+                uk: 'Моя практика',
+                es: 'Mi práctica',
+                'pt-BR': "Minha prática",
+                vi: "Luyện tập của tôi",
+                id: "Latihan saya",
+                tr: "Pratiğim",
+                pl: "Moja praktyka",
+              })
+              : triLang(lang, {
+                ru: 'Повторение',
+                uk: 'Повторення',
+                es: 'Repaso',
+                'pt-BR': "Revisão",
+                vi: "Ôn tập",
+                id: "Ulangan",
+                tr: "Tekrar",
+                pl: "Powtórka",
+              })}
           </Text>
         </View>
         <Text style={{ color: sx.muted, fontSize: f.body, fontWeight: '600' }}>
@@ -1363,7 +1379,7 @@ export default function ReviewScreen() {
       </View>
 
       {/* Прогресс-бар */}
-      <View style={{ height: 4, backgroundColor: t.bgSurface, marginHorizontal: 16, borderRadius: 2, marginBottom: 20 }}>
+      <View style={{ height: 4, backgroundColor: t.bgSurface, marginHorizontal: 16, borderRadius: 2, marginBottom: isPlanPracticeTask ? 8 : 20 }}>
         <View style={{
           width: `${(Math.max(1, index + 1) / items.length) * 100}%` as any,
           height: '100%', borderRadius: 2, backgroundColor: t.accent,
@@ -1371,12 +1387,14 @@ export default function ReviewScreen() {
       </View>
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 32 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: isPlanPracticeTask ? 6 : 32 }}
+        decelerationRate="normal"
         keyboardShouldPersistTaps="handled"
+        scrollEnabled={!isPlanPracticeTask}
         showsVerticalScrollIndicator={false}
       >
         {/* Источник: урок / квиз / арена / … */}
-        <Text style={{ color: sx.muted, fontSize: f.caption, marginBottom: 12 }}>
+        <Text style={{ color: sx.muted, fontSize: f.caption, marginBottom: isPlanPracticeTask ? 6 : 12 }} numberOfLines={1}>
           {recallOriginCaption(item, lang)}
         </Text>
 
@@ -1385,14 +1403,14 @@ export default function ReviewScreen() {
 
 
           {/* Карточки подсказок: горизонтальный свайп = выбор фразы сессии (до ответа). */}
-          <View style={{ marginBottom: 20 }}>
+          <View style={{ marginBottom: isPlanPracticeTask ? 10 : 20 }}>
             <ScrollView
               ref={cuePagerRef}
               horizontal
               pagingEnabled
               nestedScrollEnabled
               showsHorizontalScrollIndicator={false}
-              scrollEnabled={status === 'playing' && !burning && items.length > 1}
+              scrollEnabled={!isPlanPracticeTask && status === 'playing' && !burning && items.length > 1}
               decelerationRate="fast"
               keyboardShouldPersistTaps="handled"
               onMomentumScrollEnd={onCuePagerMomentumEnd}
@@ -1416,9 +1434,9 @@ export default function ReviewScreen() {
                     }
                     style={{
                       backgroundColor: t.bgCard,
-                      borderRadius: 20,
-                      padding: 28,
-                      minHeight: 110,
+                      borderRadius: isPlanPracticeTask ? 16 : 20,
+                      padding: isPlanPracticeTask ? 16 : 28,
+                      minHeight: isPlanPracticeTask ? 88 : 110,
                       justifyContent: 'center',
                       alignItems: 'center',
                       borderWidth: 0.5,
@@ -1428,10 +1446,14 @@ export default function ReviewScreen() {
                     }}
                   >
                     <Animated.View style={{ opacity: i === index ? burnTextOp : 1, zIndex: 1, alignItems: 'center' }}>
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
+                      <Text style={{ color: t.textMuted, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: isPlanPracticeTask ? 6 : 10 }} numberOfLines={1}>
                         {recallCueInstruction(pageMode, lang, studyTarget)}
                       </Text>
-                      <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700', textAlign: 'center', lineHeight: 30 }}>
+                      <Text
+                        style={{ color: t.textPrimary, fontSize: isPlanPracticeTask ? f.h2 : f.h1, fontWeight: '700', textAlign: 'center', lineHeight: isPlanPracticeTask ? 25 : 30 }}
+                        adjustsFontSizeToFit={isPlanPracticeTask}
+                        numberOfLines={isPlanPracticeTask ? 2 : undefined}
+                      >
                         {pageMode === 'meaning_match'
                           ? englishRecallSurface(it.phrase)
                           : recallTranslationHint(it, lang, studyTarget)}
@@ -1463,7 +1485,7 @@ export default function ReviewScreen() {
 
           {/* Задание: банк слов / выбор перевода / ввод */}
           {mode === 'word_bank' && bankTiles.length > 0 && (
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 16, justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: isPlanPracticeTask ? 6 : 10, marginBottom: isPlanPracticeTask ? 8 : 16, justifyContent: 'center' }}>
               {bankTiles.map(tile => (
                 <TouchableOpacity
                   key={`wb-${tile.slot}`}
@@ -1473,14 +1495,14 @@ export default function ReviewScreen() {
                   style={{
                     backgroundColor: t.bgCard,
                     borderRadius: 14,
-                    paddingVertical: 12,
-                    paddingHorizontal: 16,
+                    paddingVertical: isPlanPracticeTask ? 8 : 12,
+                    paddingHorizontal: isPlanPracticeTask ? 12 : 16,
                     borderWidth: 1.5,
                     borderColor: t.border,
                     opacity: status === 'playing' ? 1 : 0.4,
                   }}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                  <Text style={{ color: t.textPrimary, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }} numberOfLines={1}>
                     {tile.text}
                   </Text>
                 </TouchableOpacity>
@@ -1489,7 +1511,7 @@ export default function ReviewScreen() {
           )}
 
           {mode === 'meaning_match' && meaningOptions.length > 0 && (
-            <View style={{ gap: 10, marginBottom: 16 }}>
+            <View style={{ gap: isPlanPracticeTask ? 7 : 10, marginBottom: isPlanPracticeTask ? 8 : 16 }}>
               {meaningOptions.map((opt, j) => {
                 const st = mcOptionStyle(opt);
                 return (
@@ -1501,14 +1523,18 @@ export default function ReviewScreen() {
                     style={{
                       backgroundColor: st.bg,
                       borderRadius: 14,
-                      paddingVertical: 12,
+                      paddingVertical: isPlanPracticeTask ? 8 : 12,
                       paddingHorizontal: 14,
                       borderWidth: 1.5,
                       borderColor: st.border,
                       opacity: st.opacity,
                     }}
                   >
-                    <Text style={{ color: st.color, fontSize: f.body, fontWeight: '600', textAlign: 'left', lineHeight: 22 }}>
+                    <Text
+                      style={{ color: st.color, fontSize: isPlanPracticeTask ? f.caption : f.body, fontWeight: '600', textAlign: 'left', lineHeight: isPlanPracticeTask ? 18 : 22 }}
+                      adjustsFontSizeToFit={isPlanPracticeTask}
+                      numberOfLines={isPlanPracticeTask ? 2 : undefined}
+                    >
                       {opt}
                     </Text>
                   </TouchableOpacity>
@@ -1518,13 +1544,13 @@ export default function ReviewScreen() {
           )}
 
           {mode === 'recall_type' && (
-            <View style={{ marginBottom: 16 }}>
+            <View style={{ marginBottom: isPlanPracticeTask ? 8 : 16 }}>
               <TextInput
                 value={typeText}
                 onChangeText={setTypeText}
                 editable={status === 'playing'}
                 placeholder={triLang(lang, {
-                  ru: 'Введите ответ…',
+                  ru: 'Введи ответ…',
                   uk: 'Введіть відповідь…',
                   es: 'Escribe la respuesta…',
                   'pt-BR': "Digite a resposta…",
@@ -1544,10 +1570,10 @@ export default function ReviewScreen() {
                   backgroundColor: typeBg,
                   borderRadius: 14,
                   paddingHorizontal: 16,
-                  paddingVertical: 14,
-                  fontSize: f.bodyLg,
+                  paddingVertical: isPlanPracticeTask ? 10 : 14,
+                  fontSize: isPlanPracticeTask ? f.body : f.bodyLg,
                   color: t.textPrimary,
-                  marginBottom: 12,
+                  marginBottom: isPlanPracticeTask ? 8 : 12,
                 }}
               />
               {status === 'playing' && (
@@ -1557,11 +1583,11 @@ export default function ReviewScreen() {
                   style={{
                     backgroundColor: t.accent,
                     borderRadius: 14,
-                    paddingVertical: 14,
+                    paddingVertical: isPlanPracticeTask ? 11 : 14,
                     alignItems: 'center',
                   }}
                 >
-                  <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
+                  <Text style={{ color: t.correctText, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }}>
                     {triLang(lang, {
                       ru: 'Проверить',
                       uk: 'Перевірити',
@@ -1591,7 +1617,7 @@ export default function ReviewScreen() {
                   : '',
                 `Урок: ${item.lessonId}`,
               ].filter(Boolean).join('\n')}
-              style={{ alignSelf: 'flex-end', marginBottom: 4 }}
+              style={{ alignSelf: 'flex-end', marginBottom: isPlanPracticeTask ? 2 : 4 }}
               textColor={sx.muted}
             />
           )}
@@ -1601,10 +1627,10 @@ export default function ReviewScreen() {
               opacity: resultAnim,
               backgroundColor: t.correctBg,
               borderRadius: 14,
-              padding: 14,
+              padding: isPlanPracticeTask ? 10 : 14,
               borderLeftWidth: 3,
               borderLeftColor: t.correct,
-              marginBottom: 16,
+              marginBottom: isPlanPracticeTask ? 8 : 16,
             }}>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 4 }}>
                 {triLang(lang, {
@@ -1618,7 +1644,7 @@ export default function ReviewScreen() {
                   pl: "Poprawna odpowiedź:",
                 })}
               </Text>
-              <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '600' }}>
+              <Text style={{ color: t.correct, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '600' }} numberOfLines={isPlanPracticeTask ? 2 : undefined}>
                 {englishRecallSurface(item.phrase)}
               </Text>
             </Animated.View>
@@ -1629,7 +1655,7 @@ export default function ReviewScreen() {
 
       {/* Кнопки "Далее" и "Сжечь" — появляются после ответа */}
       {status === 'result' && (
-        <View style={{ paddingHorizontal: 16, paddingBottom: 16, paddingTop: 8, gap: 10 }}>
+        <View style={{ paddingHorizontal: 16, paddingBottom: isPlanPracticeTask ? 10 : 16, paddingTop: isPlanPracticeTask ? 4 : 8, gap: isPlanPracticeTask ? 7 : 10 }}>
           {/* Кнопка "Сжечь" — только если правильно за 20 секунд */}
           {canBurn && (
             <>
@@ -1668,7 +1694,7 @@ export default function ReviewScreen() {
                 style={{
                   backgroundColor: '#1a0a00',
                   borderRadius: 16,
-                  paddingVertical: 14,
+                  paddingVertical: isPlanPracticeTask ? 10 : 14,
                   alignItems: 'center',
                   flexDirection: 'row',
                   justifyContent: 'center',
@@ -1678,7 +1704,7 @@ export default function ReviewScreen() {
                 }}
               >
                 <Text style={{ fontSize: f.bodyLg }}>🔥</Text>
-                <Text style={{ color: '#FF6B2B', fontSize: f.bodyLg, fontWeight: '700' }}>
+                <Text style={{ color: '#FF6B2B', fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }}>
                   {triLang(lang, {
                     ru: 'Сжечь карточку',
                     uk: 'Спалити картку',
@@ -1699,11 +1725,11 @@ export default function ReviewScreen() {
             style={{
               backgroundColor: wasCorrect ? t.correct : t.accent,
               borderRadius: 16,
-              paddingVertical: 16,
+              paddingVertical: isPlanPracticeTask ? 12 : 16,
               alignItems: 'center',
             }}
           >
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
+            <Text style={{ color: t.correctText, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'Далее →',
                 uk: 'Далі →',

@@ -8,6 +8,8 @@ import { useLang } from '../../components/LangContext';
 import { useTheme } from '../../components/ThemeContext';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
+import TopFadeMask from '../../components/TopFadeMask';
+import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -205,6 +207,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
+  const topFadeScroll = useTopFadeScroll();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
   const isMinimal = themeMode === 'minimalLight' || themeMode === 'minimalDark';
@@ -318,6 +321,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   return (
     <ScreenGradient artBackdrop="home" style={{ flex: 1 }} staticParallaxY={HOME_ENTRANCE.bgDriftPx}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
+      {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
+          (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
+      <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
       <View
         onLayout={notifyFirstContentReady}
         style={{ flex: 1, paddingTop: insets.top }}
@@ -365,7 +371,8 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                     accessibilityLabel={`qa-tab-${tab.key}`}
                     accessible={true}
                     style={s.tabBtn}
-                    onPress={() => { hapticTap(); goToTab(i); }}
+                    onPressIn={() => { hapticTap(); }}
+                    onPress={() => { goToTab(i); }}
                     activeOpacity={0.7}
                   >
                     {focused && <View style={[s.indicator, { backgroundColor: t.accent }]} />}
@@ -525,7 +532,9 @@ export default function TabLayout() {
 
   return (
     <TabProvider activeIdx={activeIdx} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
-      <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} />
+      <TopFadeScrollProvider>
+        <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} />
+      </TopFadeScrollProvider>
     </TabProvider>
   );
 }

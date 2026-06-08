@@ -1,5 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { Image } from 'expo-image';
+import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -63,7 +65,7 @@ function TrainerThemeIcon({
       <Image
         accessibilityIgnoresInvertColors
         fadeDuration={0}
-        resizeMode="contain"
+        contentFit="contain"
         source={trainerThemeIconSource(themeMode, kind)}
         style={{ width: size, height: size }}
       />
@@ -646,9 +648,9 @@ export default function TrainerScreen() {
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer">
         <ContentWrap>
           <View style={styles.headerRow}>
-            <TouchableOpacity accessibilityRole="button" accessibilityLabel="Back" onPress={() => safeRouterBack(router)} style={{ padding: 4, marginRight: 12 }}>
+            <TapScale accessibilityRole="button" accessibilityLabel="Back" onPress={() => safeRouterBack(router)} style={{ padding: 4, marginRight: 12 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary}/>
-            </TouchableOpacity>
+            </TapScale>
             <View style={{ flex: 1 }}>
               <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.h2 }]}>
                 {triLang(lang, {
@@ -685,7 +687,7 @@ export default function TrainerScreen() {
             />
           </View>
 
-          <ScrollView contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false}>
             {null}
 
             {null}
@@ -871,7 +873,7 @@ export default function TrainerScreen() {
                     <Ionicons name="sparkles-outline" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : t.textMuted}/>
                     <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
                       {triLang(lang, {
-                    ru: 'Пройди квиз или тренировку - если будут ошибки, здесь появятся темы и фразы для разбора.',
+                    ru: 'Пройди вызов или тренировку — если будут ошибки, здесь появятся темы и фразы для разбора.',
                     uk: 'Пройди квіз або тренування - якщо будуть помилки, тут зʼявляться теми й фрази для розбору.',
                     es: 'Haz un quiz o una práctica: si hay errores, aquí aparecerán temas y frases para analizar.',
                     'pt-BR': "Faça um quiz ou treino: se houver erros, aqui aparecerão temas e frases para analisar.",

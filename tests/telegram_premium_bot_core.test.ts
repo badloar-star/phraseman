@@ -12,6 +12,8 @@
   parseInvoicePayload,
 } = require('../tools/telegram-premium-bot/core.cjs');
 
+const MOJIBAKE_NO_ACCESS = 'ÃÂÃÂµÃ‘â€š ÃÂ´ÃÂ¾Ã‘ÂÃ‘â€šÃ‘Æ’ÃÂ¿ÃÂ°';
+
 describe('telegram premium bot core', () => {
   const config = {
     monthlyStars: 300,
@@ -357,7 +359,7 @@ describe('telegram premium bot core', () => {
       status: 'paid_pending_manual_activation',
       paidAt: '2026-06-02T12:00:00.000Z',
       plan: 'monthly',
-      planDuration: '1 Ð¼ÐµÑÑÑ†',
+      planDuration: '1 месяц',
       appNickname: 'Player One',
       telegramUserId: 456,
       totalAmount: 300,
@@ -387,7 +389,7 @@ describe('telegram premium bot core', () => {
       status: 'paid_pending_manual_activation',
       paidAt: '2026-06-02T12:00:00.000Z',
       plan: 'monthly',
-      planDuration: '1 Ð¼ÐµÑÑÑ†',
+      planDuration: '1 месяц',
       appNickname: 'Setup Owner Order',
       telegramUserId: 456,
       totalAmount: 300,
@@ -414,7 +416,7 @@ describe('telegram premium bot core', () => {
       status: 'paid_pending_manual_activation',
       paidAt: '2026-06-02T12:00:00.000Z',
       plan: 'yearly',
-      planDuration: '1 ÃÂ³ÃÂ¾ÃÂ´',
+      planDuration: '1 год',
       appNickname: 'Immediate Button Order',
       telegramUserId: 456,
       totalAmount: 1800,
@@ -439,7 +441,7 @@ describe('telegram premium bot core', () => {
       .map((call) => String(call.args[1]));
     expect(state.adminUserIds.map(String)).toContain('777');
     expect(messageTexts.join('\n')).toContain('Immediate Button Order');
-    expect(messageTexts.join('\n')).not.toContain('ÃÂÃÂµÃ‘â€š ÃÂ´ÃÂ¾Ã‘ÂÃ‘â€šÃ‘Æ’ÃÂ¿ÃÂ°');
+    expect(messageTexts.join('\n')).not.toContain(MOJIBAKE_NO_ACCESS);
   });
 
   it('shows a single order by Telegram charge id for the configured admin', async () => {
@@ -449,7 +451,7 @@ describe('telegram premium bot core', () => {
       status: 'paid_pending_manual_activation',
       paidAt: '2026-06-02T12:00:00.000Z',
       plan: 'yearly',
-      planDuration: '1 Ð³Ð¾Ð´',
+      planDuration: '1 год',
       appNickname: 'Yearly Player',
       telegramUserId: 456,
       totalAmount: 1800,

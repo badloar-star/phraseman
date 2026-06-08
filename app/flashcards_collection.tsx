@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, DEV_MODE, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
@@ -20,10 +21,10 @@ import {
     TextInput,
     TouchableOpacity,
     View,
-    FlatList,
     useWindowDimensions,
     type ViewToken,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -884,7 +885,7 @@ export default function FlashcardsScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Не удалось загрузить карточки.',
+          ru: 'Карточки не загрузились. Попробуй позже.',
           uk: 'Не вдалося завантажити картки.',
           es: 'No se pudieron cargar las tarjetas.',
           'pt-BR': 'Não foi possível carregar os cartões.',
@@ -1120,7 +1121,7 @@ export default function FlashcardsScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Не удалось удалить карточку.',
+          ru: 'Карточка не удалилась. Попробуй снова.',
           uk: 'Не вдалося видалити картку.',
           es: 'No se pudo eliminar la tarjeta.',
           'pt-BR': 'Não foi possível remover o cartão.',
@@ -1278,7 +1279,7 @@ export default function FlashcardsScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Не удалось сохранить карточку.',
+          ru: 'Карточка не сохранилась. Повтори попытку.',
           uk: 'Не вдалося зберегти картку.',
           es: 'No se pudo guardar la tarjeta.',
           'pt-BR': 'Não foi possível salvar o cartão.',
@@ -1326,7 +1327,7 @@ export default function FlashcardsScreen() {
 
           {/* Header */}
           <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
-            <TouchableOpacity onPress={cancelCreate} style={{ width: 40 }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TouchableOpacity activeOpacity={0.75} onPress={cancelCreate} style={{ width: 40 }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="close" size={26} color={t.textMuted} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
@@ -1452,9 +1453,9 @@ export default function FlashcardsScreen() {
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
       <ContentWrap>
         <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
-          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
+          <TapScale testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <Text
             style={[st.headerTitle, { color: t.textPrimary, fontSize: collectionHeaderTitleFontSize, flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4 }]}
             numberOfLines={1}
@@ -1553,9 +1554,9 @@ export default function FlashcardsScreen() {
 
         {/* Header */}
         <View style={[st.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 12 }]}>
-          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
+          <TapScale testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <Text
             style={[st.headerTitle, { color: t.textPrimary, fontSize: collectionHeaderTitleFontSize, flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4 }]}
             numberOfLines={1}
@@ -1865,7 +1866,7 @@ export default function FlashcardsScreen() {
                 pl: 'Przytrzymaj kartę, aby ją usunąć',
               })}
             </Text>
-            <TouchableOpacity onPress={dismissDeleteHint} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TouchableOpacity activeOpacity={0.75} onPress={dismissDeleteHint} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="close" size={18} color={t.textMuted} />
             </TouchableOpacity>
           </Animated.View>
@@ -1879,8 +1880,9 @@ export default function FlashcardsScreen() {
           const listPadBottom = scrollViewH > 0 ? Math.max(12, scrollViewH - CARD_H - 12 - PEEK) : 20;
           return (
         <View ref={listViewportRef} collapsable={false} style={{ flex: 1 }} onLayout={(e) => setScrollViewH(e.nativeEvent.layout.height)}>
-        <FlatList
+        <FlashList
           ref={flatListRef as any}
+          estimatedItemSize={200}
           style={{ flex: 1 }}
           data={filteredCards}
           keyExtractor={(item) => item.id}
@@ -1955,10 +1957,6 @@ export default function FlashcardsScreen() {
           contentContainerStyle={{ paddingHorizontal: 16, paddingTop: listPadTop, paddingBottom: listPadBottom }}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
-          initialNumToRender={8}
-          maxToRenderPerBatch={10}
-          windowSize={7}
-          removeClippedSubviews={false}
           onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewabilityConfig}
           onScrollBeginDrag={() => {

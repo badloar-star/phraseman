@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import TapScale from '../components/TapScale';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -482,9 +484,9 @@ function FrenchLevelExamUnavailable({
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TouchableOpacity onPress={onBack} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={onBack} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
-            </TouchableOpacity>
+            </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
             <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
@@ -592,7 +594,7 @@ export default function LevelExam() {
         setAccessBlockKind('level');
         setBlockedText(prevLevel
           ? triLang(lang, {
-            ru: `Чтобы открыть уровень ${examLevel}, сначала сдайте зачёт ${prevLevel}.`,
+            ru: `Чтобы открыть уровень ${examLevel}, сначала сдай зачёт ${prevLevel}.`,
             uk: `Щоб відкрити рівень ${examLevel}, спочатку складіть залік ${prevLevel}.`,
             es: `Para abrir el nivel ${examLevel}, primero supera el examen de ${prevLevel}.`,
             'pt-BR': `Para abrir o nível ${examLevel}, primeiro passe no teste ${prevLevel}.`,
@@ -617,7 +619,7 @@ export default function LevelExam() {
       if (!cancelled) {
         setAccessBlockKind('error');
         setBlockedText(triLang(lang, {
-          ru: 'Не удалось проверить доступ к зачёту. Попробуйте открыть его ещё раз.',
+          ru: 'Доступ к зачёту не проверился. Попробуй открыть его ещё раз.',
           uk: 'Не вдалося перевірити доступ до заліку. Спробуйте відкрити його ще раз.',
           es: 'No se pudo comprobar el acceso al examen. Inténtalo de nuevo.',
           'pt-BR': "Não foi possível verificar o acesso ao teste. Tente abri-lo de novo.",
@@ -786,9 +788,9 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
-            </TouchableOpacity>
+            </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
             <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
@@ -929,7 +931,7 @@ export default function LevelExam() {
       },
     ];
     const introBody = triLang(lang, {
-      ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Для перехода дальше нужно набрать минимум ${PASS_PCT}%. Если результат не устроит, зачёт можно пройти повторно — без штрафа, с сохранением лучшего результата.`,
+      ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Чтобы перейти дальше — нужно ${PASS_PCT}% и выше. Не понравился результат? Пройди зачёт снова — без штрафа, лучший результат сохранится.`,
       uk: `${INTRO_Q_COUNT} запитань за ключовими темами рівня ${lvl}. Щоб перейти далі, потрібно набрати щонайменше ${PASS_PCT}%. Якщо результат не влаштує, залік можна пройти повторно — без штрафу, зі збереженням найкращого результату.`,
       es: `${INTRO_Q_COUNT} preguntas sobre los temas clave del nivel ${lvl}. Para avanzar necesitas al menos un ${PASS_PCT} %. Si quieres mejorar, puedes repetir el examen sin penalización: guardaremos tu mejor resultado.`,
       'pt-BR': `${INTRO_Q_COUNT} perguntas sobre os temas principais do nível ${lvl}. Para avançar, você precisa acertar pelo menos ${PASS_PCT}%. Se quiser melhorar, pode refazer o teste sem penalidade: vamos guardar seu melhor resultado.`,
@@ -966,11 +968,11 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
-            </TouchableOpacity>
+            </TapScale>
           </View>
-          <ScrollView contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
             <View
               style={{
                 backgroundColor: LX.card,
@@ -1128,19 +1130,19 @@ export default function LevelExam() {
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}>
               <Ionicons name="chevron-back" size={26} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
           </View>
-          <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
             {/* Итог */}
             <View style={{ alignItems: 'center', gap: 8, paddingVertical: 12 }}>
               {examMedalTier !== 'none' && MEDAL_IMAGES_EXAM[examMedalTier] ? (
                 <Image
                   source={MEDAL_IMAGES_EXAM[examMedalTier]}
                   style={{ width: 90, height: 90 }}
-                  resizeMode="contain"
+                  contentFit="contain"
                 />
               ) : (
                 <View style={{ width: 90, height: 90, borderRadius: 45, backgroundColor: '#3A3A3A', justifyContent: 'center', alignItems: 'center' }}>
@@ -1429,12 +1431,12 @@ export default function LevelExam() {
       <ContentWrap>
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={() => {
+          <TapScale onPress={() => {
             hapticTap();
             setExitExamConfirm(true);
           }}>
             <Ionicons name="close" size={26} color={sx.primary} />
-          </TouchableOpacity>
+          </TapScale>
           <View style={{ flex: 1, marginHorizontal: 12 }}>
             <View
               style={{
@@ -1463,7 +1465,7 @@ export default function LevelExam() {
           </Text>
         </View>
 
-        <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }} bounces={false}>
+        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }} bounces={false}>
           {/* Топик */}
           <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
             {triLang(lang, {

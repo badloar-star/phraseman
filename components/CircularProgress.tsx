@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, Text } from 'react-native';
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
  * All fill layers are clipped to a circle via the outer borderRadius+overflow:hidden
  * wrapper, so the ring edges are always smooth.
  */
-export default function CircularProgress({
+function CircularProgress({
   pct, size = 52, sw = 4, color, bg, textColor, fontSize = 11, innerBg,
 }: Props) {
   const clamped = Math.min(100, Math.max(0, pct));
@@ -105,3 +105,5 @@ export default function CircularProgress({
     </View>
   );
 }
+
+export default memo(CircularProgress);

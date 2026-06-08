@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Static preview shown in the widget picker before placement. The live widget is
+  rendered by Glance; this is only the picker thumbnail / initial loading view.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="14dp"
+    android:background="#FFF7F5FF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Break the ice"
+        android:textColor="#FF1A1726"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Растопить лёд"
+        android:textColor="#FF5B5570"
+        android:textSize="13sp" />
+</LinearLayout>

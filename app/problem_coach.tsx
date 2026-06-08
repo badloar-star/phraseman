@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -177,9 +178,9 @@ export default function ProblemCoach() {
 
   const renderHeader = () => (
     <View style={[styles.header, { borderBottomColor: t.border }]}>
-      <TouchableOpacity onPress={handleBack} style={styles.backBtn} hitSlop={10}>
+      <TapScale onPress={handleBack} style={styles.backBtn} hitSlop={10}>
         <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-      </TouchableOpacity>
+      </TapScale>
       <View style={styles.headerCenter}>
         <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.sub }]}>
           {copy(diagnosisTraining.title)}
@@ -613,7 +614,7 @@ export default function ProblemCoach() {
     <ScreenGradient>
       <SafeAreaView style={styles.root}>
         {renderHeader()}
-        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
           <ContentWrap>
             {stage === 'intro' && renderIntro()}
             {stage === 'practice' && renderPractice()}

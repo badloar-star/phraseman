@@ -167,6 +167,9 @@ functions/scripts/diag_*
 /android/.gradle/
 /android/app/build/
 /android/app/.cxx/
+# Local Expo module build outputs (e.g. modules/phrase-widget/android/build).
+/modules/*/android/build/
+/modules/*/android/.cxx/
 /subscription-recovery/apps/web/.next/
 /.next/
 
@@ -208,6 +211,29 @@ functions/scripts/diag_*
 *.swp
 *.swo
 
+# Dev screenshots and scratch previews captured at repo root during local sessions.
+/_*.png
+/_*.jpg
+/runtime-dev-loaded.png
+/paywall_preview.html
+/assets/paywall_preview_v2.html
+/.claude/onboarding-preview/
+/.claude/paywall-preview/
+
+# Compiled JS sourcemaps for Cloud Functions (generated from TypeScript).
+/functions/lib/*.js.map
+
+# Nested tool node_modules (intro_remotion has its own package install).
+/tools/intro_remotion/node_modules/
+
+# Image backups and DALL-E source dumps produced during asset regeneration.
+**/backups/
+**/dalle_sources/
+/assets/**/sources/
+
+# Local agent worktree checkouts.
+/.claude/worktrees/
+
 # Content-generation pipelines and agent runs only; not app source.
 /.agents/
 /docs/gustav/
@@ -244,3 +270,4 @@ functions/scripts/diag_*
 /.maestro-tmp/
 /maestro-tmp/
 /maestro*.xml
+/tools/intro_remotion/out/

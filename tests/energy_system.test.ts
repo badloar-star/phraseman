@@ -7,6 +7,7 @@ import {
   resetEnergyToMax,
   getTimeUntilNextRecovery,
   formatTimeUntilRecovery,
+  secondsUntilEnergyFull,
   EnergyState,
 } from '../app/energy_system';
 
@@ -49,6 +50,47 @@ describe('Energy System', () => {
       const state = await getEnergyState();
 
       expect(state.current).toBe(3);
+    });
+  });
+
+  describe('secondsUntilEnergyFull', () => {
+    const RECOVERY_MS = 10 * 60 * 1000; // 10 минут
+    const NOW = 1_700_000_000_000;
+
+    it('returns 0 when energy is already full', () => {
+      expect(secondsUntilEnergyFull(5, 5, RECOVERY_MS, NOW, NOW)).toBe(0);
+      expect(secondsUntilEnergyFull(6, 5, RECOVERY_MS, NOW, NOW)).toBe(0);
+    });
+
+    it('returns full interval when one unit missing and timer just reset', () => {
+      // current=4/5, только что потратили (lastRecovery == now) → ровно 10 минут
+      const secs = secondsUntilEnergyFull(4, 5, RECOVERY_MS, NOW, NOW);
+      expect(secs).toBe(600);
+    });
+
+    it('accounts for elapsed time within the current interval', () => {
+      // прошло 4 минуты из 10 текущего интервала, не хватает 1 единицы → осталось 6 минут
+      const lastRecovery = NOW - 4 * 60 * 1000;
+      const secs = secondsUntilEnergyFull(4, 5, RECOVERY_MS, lastRecovery, NOW);
+      expect(secs).toBe(6 * 60);
+    });
+
+    it('sums multiple missing units minus elapsed remainder', () => {
+      // не хватает 3 единиц = 30 минут, прошло 2 минуты текущего интервала → 28 минут
+      const lastRecovery = NOW - 2 * 60 * 1000;
+      const secs = secondsUntilEnergyFull(2, 5, RECOVERY_MS, lastRecovery, NOW);
+      expect(secs).toBe(28 * 60);
+    });
+
+    it('never returns less than 1 second when not full', () => {
+      // граничный случай: остаток почти весь интервал прошёл
+      const lastRecovery = NOW - (RECOVERY_MS - 100);
+      const secs = secondsUntilEnergyFull(4, 5, RECOVERY_MS, lastRecovery, NOW);
+      expect(secs).toBeGreaterThanOrEqual(1);
+    });
+
+    it('returns 0 for non-positive recovery interval (defensive)', () => {
+      expect(secondsUntilEnergyFull(2, 5, 0, NOW, NOW)).toBe(0);
     });
   });
 

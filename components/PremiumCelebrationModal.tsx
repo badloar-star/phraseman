@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import {
   Animated as RNAnim,
@@ -79,7 +79,7 @@ const CELEBRATION_PALETTES: Record<CelebrationVariant, {
       pl: '👑 Premium aktywowany',
     },
     subtitle: {
-      ru: 'Все возможности разблокированы — поехали',
+      ru: 'Всё открыто. Учи без лимитов — прямо сейчас',
       uk: 'Усі можливості розблоковано — поїхали',
       es: 'Todo desbloqueado — empieza ahora',
       'pt-BR': 'Tudo desbloqueado — vamos começar',
@@ -134,10 +134,10 @@ interface FeatureRow {
 
 const FEATURES: FeatureRow[] = [
   { emoji: '⚡', ru: 'Безлимит энергии', uk: 'Безліміт енергії', es: 'Energía ilimitada', 'pt-BR': 'Energia ilimitada', vi: 'Năng lượng không giới hạn', id: 'Energi tanpa batas', tr: 'Sınırsız enerji', pl: 'Nielimitowana energia' },
-  { emoji: '🔁', ru: 'Повтор уроков неограниченно', uk: 'Повтор уроків необмежено', es: 'Lecciones sin límites', 'pt-BR': 'Repetição ilimitada de lições', vi: 'Ôn bài không giới hạn', id: 'Ulangi pelajaran tanpa batas', tr: 'Sınırsız ders tekrarı', pl: 'Nieograniczone powtórki lekcji' },
+  { emoji: '🔁', ru: 'Повтор любого урока', uk: 'Повтор уроків необмежено', es: 'Lecciones sin límites', 'pt-BR': 'Repetição ilimitada de lições', vi: 'Ôn bài không giới hạn', id: 'Ulangi pelajaran tanpa batas', tr: 'Sınırsız ders tekrarı', pl: 'Nieograniczone powtórki lekcji' },
   { emoji: '📊', ru: 'Моя практика слабых мест', uk: 'Моя практика слабких місць', es: 'Mi práctica de puntos débiles', 'pt-BR': 'Minha prática de pontos fracos', vi: 'Luyện điểm yếu của tôi', id: 'Latihan titik lemah saya', tr: 'Zayıf noktalar pratiğim', pl: 'Moja praktyka słabych miejsc' },
   { emoji: '🧠', ru: 'Аналитика прогресса', uk: 'Аналітика прогресу', es: 'Analítica del progreso', 'pt-BR': 'Análise do progresso', vi: 'Phân tích tiến độ', id: 'Analitik kemajuan', tr: 'İlerleme analitiği', pl: 'Analityka postępów' },
-  { emoji: '🥇', ru: 'Сложные квизы', uk: 'Складні квізи', es: 'Quizzes difíciles', 'pt-BR': 'Quizzes difíceis', vi: 'Quiz khó', id: 'Kuis sulit', tr: 'Zor quizler', pl: 'Trudne quizy' },
+  { emoji: '🥇', ru: 'Сложные вызовы', uk: 'Складні квізи', es: 'Quizzes difíciles', 'pt-BR': 'Quizzes difíceis', vi: 'Quiz khó', id: 'Kuis sulit', tr: 'Zor quizler', pl: 'Trudne quizy' },
   { emoji: '🛡️', ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha', 'pt-BR': 'Proteção da sequência', vi: 'Bảo vệ chuỗi', id: 'Perlindungan rangkaian', tr: 'Seri koruması', pl: 'Ochrona serii' },
 ];
 
@@ -360,7 +360,7 @@ interface PremiumCelebrationModalProps {
   variant?: CelebrationVariant;
 }
 
-export default function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: PremiumCelebrationModalProps) {
+function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: PremiumCelebrationModalProps) {
   const { width: winW, height: winH } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
@@ -528,7 +528,7 @@ export default function PremiumCelebrationModal({ visible, onClose, variant = 'p
                 pl: 'Dostęp VIP otwarty: energia i funkcje odblokowane',
               })
               : triLang(lang, {
-                ru: 'Все возможности разблокированы — поехали',
+                ru: 'Всё открыто. Учи без лимитов — прямо сейчас',
                 uk: 'Усі можливості розблоковано — поїхали',
                 es: 'Todo desbloqueado — empieza ahora',
                 'pt-BR': 'Tudo desbloqueado — vamos começar',
@@ -636,6 +636,8 @@ export default function PremiumCelebrationModal({ visible, onClose, variant = 'p
     </Modal>
   );
 }
+
+export default memo(PremiumCelebrationModal);
 
 const styles = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'center' },

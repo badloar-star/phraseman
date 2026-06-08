@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter, type Router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -487,22 +488,22 @@ export default function PhraseAnalyticsScreen() {
 
         {/* ── Header ── */}
         <View style={styles.header}>
-          <TouchableOpacity
+          <TapScale
             onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
             style={styles.backBtn}
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
           {showDevAudit ? (
-            <TouchableOpacity
+            <TapScale
               onPress={() => { hapticTap(); router.push(POS_ANALYTICS_AUDIT_ROUTE as any); }}
               style={styles.auditBtn}
               hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
             >
               <Ionicons name="bug-outline" size={19} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
           ) : (
             <View style={{ width: 36 }} />
           )}
@@ -510,7 +511,7 @@ export default function PhraseAnalyticsScreen() {
 
         {/* ── Premium gate ── */}
         {!isPremium ? (
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.gateScroll}>
+          <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.gateScroll}>
             <ContentWrap>
               <View
                 style={[
@@ -626,7 +627,7 @@ export default function PhraseAnalyticsScreen() {
           </View>
 
         ) : (
-          <ScrollView showsVerticalScrollIndicator contentContainerStyle={styles.scrollContent}>
+          <ScrollView decelerationRate="normal" showsVerticalScrollIndicator contentContainerStyle={styles.scrollContent}>
             <ContentWrap>
 
               {/* ── Сводка ── */}

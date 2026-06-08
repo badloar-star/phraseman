@@ -93,7 +93,7 @@ export function buildFilterOptions(
 }
 
 const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'quiz' | 'daily_phrase', string>> = {
-  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', quiz: 'Квизы', daily_phrase: 'Фраза дня' },
+  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', quiz: 'Вызовы', daily_phrase: 'Фраза дня' },
   uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', quiz: 'Квізи', daily_phrase: 'Фраза дня' },
   es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', quiz: 'Cuestionarios', daily_phrase: 'Frase del día' },
   'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', quiz: 'Quizzes', daily_phrase: 'Frase do dia' },

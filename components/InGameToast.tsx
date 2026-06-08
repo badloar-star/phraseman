@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { Animated, StyleSheet, Text } from 'react-native';
 import { useTheme } from './ThemeContext';
 
@@ -9,7 +9,7 @@ interface Props {
   type?: 'error' | 'info';
 }
 
-export default function InGameToast({ message, onHide, duration = 3000, type = 'info' }: Props) {
+function InGameToast({ message, onHide, duration = 3000, type = 'info' }: Props) {
   const { theme: t, f } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
 
@@ -51,6 +51,8 @@ export default function InGameToast({ message, onHide, duration = 3000, type = '
     </Animated.View>
   );
 }
+
+export default memo(InGameToast);
 
 const styles = StyleSheet.create({
   toast: {

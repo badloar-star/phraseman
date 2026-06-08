@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, Pressable, Image, PanResponder } from 'react-native';
+import TapScale from '../components/TapScale';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, PanResponder } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import * as Haptics from 'expo-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,7 +24,6 @@ import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import {
   LEAGUES,
-  clubDescForLang,
   clubDescPlanned,
   clubNamePlanned,
   GroupMember, LeagueState, LeagueResult,
@@ -43,10 +44,9 @@ import { getTitleString } from '../constants/titles';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { ensureAnonUser } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
-import { getXPProgress, getLevelFromXP, screenTextOnGradient, type ThemeMode } from '../constants/theme';
+import { getXPProgress, getLevelFromXP, screenTextOnGradient } from '../constants/theme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { getLeagueBonusGiftImage } from '../constants/leagueBonusGiftImages';
-import { getLeagueGuardianImage } from '../constants/leagueGuardianAssets';
 import {
   loadPrevRank, savePrevRank, computeRankDelta,
   KEY_CLUB_PREV_RANK, RankDelta,
@@ -63,6 +63,7 @@ import {
   resolveMyLeagueGroupMeta,
   unlockLeagueGoldThemeReward,
   type LeagueBonusAdminPreview,
+  type LeagueCrown,
   type LeagueChestRewardDrop,
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
@@ -98,6 +99,8 @@ const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
 const CLUB_ENTRY_REPEATING_MOTION_ENABLED = false;
 const CLUB_ANIMATION_USE_NATIVE_DRIVER = false;
 const CLUB_LEAGUE_PREVIEW_SWIPE_THRESHOLD = 54;
+const CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE = 148;
+const CLUB_LEAGUE_PREVIEW_ICON_SIZE = 122;
 
 /** Локальный календарный день — для «первый заход в лигу за день». */
 const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
@@ -236,7 +239,7 @@ function LeagueIconImageWithFallback({
               { translateY: contentOffset.y },
             ],
           }}
-          resizeMode="contain"
+          contentFit="contain"
           onLoad={() => setFailed(false)}
           onError={() => setFailed(true)}
         />
@@ -277,7 +280,7 @@ function LeagueBonusGiftImageWithFallback({
       {source ? (
         <Image
           source={source}
-          resizeMode="contain"
+          contentFit="contain"
           style={{ width: '100%', height: '100%', opacity }}
           onLoad={() => setLoaded(true)}
           onError={() => setLoaded(false)}
@@ -346,28 +349,6 @@ function LeagueIcon({
   ) : <>{icon}</>;
 }
 
-type LeaguePersona = {
-  titleRU: string;
-  titleUK: string;
-  titleES: string;
-  icon: string;
-};
-
-const LEAGUE_PERSONAS: LeaguePersona[] = [
-  { titleRU: 'Хранитель старта', titleUK: 'Хранитель старту', titleES: 'Guardian of the Start', icon: 'shield-outline' },
-  { titleRU: 'Мастер привычки', titleUK: 'Майстер звички', titleES: 'Master of Habit', icon: 'flame-outline' },
-  { titleRU: 'Искатель смысла', titleUK: 'Шукач сенсу', titleES: 'Seeker of Meaning', icon: 'compass-outline' },
-  { titleRU: 'Кузнец практики', titleUK: 'Коваль практики', titleES: 'Practice Forger', icon: 'hammer-outline' },
-  { titleRU: 'Архитектор правил', titleUK: 'Архітектор правил', titleES: 'Rules Architect', icon: 'analytics-outline' },
-  { titleRU: 'Мудрец памяти', titleUK: 'Мудрець памʼяті', titleES: 'Memory Sage', icon: 'library-outline' },
-  { titleRU: 'Синий наставник', titleUK: 'Синій наставник', titleES: 'Blue Mentor', icon: 'diamond-outline' },
-  { titleRU: 'Страж огня', titleUK: 'Страж вогню', titleES: 'Fire Warden', icon: 'flame' },
-  { titleRU: 'Магистр ясности', titleUK: 'Магістр ясності', titleES: 'Clarity Magister', icon: 'school-outline' },
-  { titleRU: 'Теневой мыслитель', titleUK: 'Тіньовий мислитель', titleES: 'Shadow Thinker', icon: 'sparkles-outline' },
-  { titleRU: 'Эфирный мастер', titleUK: 'Ефірний майстер', titleES: 'Ether Master', icon: 'planet-outline' },
-  { titleRU: 'Верховный учитель', titleUK: 'Верховний учитель', titleES: 'Supreme Teacher', icon: 'trophy-outline' },
-];
-
 function leagueNameForLang(league: (typeof LEAGUES)[number], lang: Lang): string {
   return triLang(lang, {
     ru: league.nameRU,
@@ -379,146 +360,6 @@ function leagueNameForLang(league: (typeof LEAGUES)[number], lang: Lang): string
     tr: clubNamePlanned(league.id, 'tr'),
     pl: clubNamePlanned(league.id, 'pl'),
   });
-}
-
-function personaTitleForLang(persona: LeaguePersona, lang: Lang): string {
-  return triLang(lang, {
-    ru: persona.titleRU,
-    uk: persona.titleUK,
-    es: persona.titleES,
-    'pt-BR': persona.titleES,
-    vi: persona.titleES,
-    id: persona.titleES,
-    tr: persona.titleES,
-    pl: persona.titleES,
-  });
-}
-
-function alphaColor(hex: string, alpha: string): string {
-  return /^#[0-9a-f]{6}$/i.test(hex) ? `${hex}${alpha}` : hex;
-}
-
-function LeaguePersonaArt({
-  league,
-  palette,
-  size = 280,
-}: {
-  league: (typeof LEAGUES)[number];
-  palette: ReturnType<typeof getLeagueBonusPalette>;
-  size?: number;
-}) {
-  const persona = LEAGUE_PERSONAS[league.id] ?? LEAGUE_PERSONAS[0];
-  const accent = palette.accent;
-  const ready = palette.readyAccent;
-  const leagueColor = league.color;
-  const darkBase = palette.modal.card[2];
-  const robe = [alphaColor(leagueColor, 'EE'), alphaColor(accent, 'F2'), alphaColor(ready, 'E6')] as [string, string, string];
-
-  return (
-    <LinearGradient
-      colors={[darkBase, palette.modal.card[1], palette.modal.card[0]]}
-      start={{ x: 0.5, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      style={{
-        width: size,
-        height: Math.round(size * 1.5),
-        borderRadius: 26,
-        overflow: 'hidden',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        borderWidth: 1,
-        borderColor: palette.modal.rail,
-      }}
-    >
-      <View style={{ position:'absolute', top:42, width:size * 0.56, height:size * 0.56, borderRadius:size, borderWidth:2, borderColor:accent, shadowColor:accent, shadowOpacity:0.75, shadowRadius:22 }} />
-      <View style={{ position:'absolute', top:0, left:0, right:0, height:'100%', opacity:0.55 }}>
-        <LinearGradient colors={palette.modal.wash} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ flex:1 }} />
-      </View>
-      {[0, 1, 2, 3].map((i) => (
-        <View
-          key={i}
-          style={{
-            position:'absolute',
-            top: 76 + i * 54,
-            left: i % 2 === 0 ? -18 : undefined,
-            right: i % 2 === 1 ? -18 : undefined,
-            width: 46,
-            height: 46,
-            borderRadius: 23,
-            borderWidth: 1,
-            borderColor: alphaColor(accent, '99'),
-            opacity: 0.42,
-          }}
-        />
-      ))}
-      <View style={{ alignItems:'center', marginBottom:34 }}>
-        <View style={{ width:142, height:142, borderRadius:71, backgroundColor:alphaColor(leagueColor, '33'), borderWidth:1, borderColor:palette.modal.haloBorder, alignItems:'center', justifyContent:'center' }}>
-          <View style={{ width:104, height:114, borderRadius:28, backgroundColor:alphaColor(darkBase, 'F2'), borderWidth:2, borderColor:accent, alignItems:'center', justifyContent:'center', overflow:'hidden' }}>
-            <LinearGradient colors={[alphaColor(accent, '99'), alphaColor(leagueColor, 'DD'), alphaColor(darkBase, 'F2')]} start={{ x:0, y:0 }} end={{ x:1, y:1 }} style={{ position:'absolute', top:0, right:0, bottom:0, left:0 }} />
-            <View style={{ position:'absolute', top:14, width:72, height:34, borderRadius:18, backgroundColor:alphaColor(ready, 'A8'), opacity:0.82 }} />
-            <Ionicons name={persona.icon as any} size={54} color={palette.modal.primaryText} />
-          </View>
-        </View>
-        <LinearGradient colors={robe} start={{ x:0.15, y:0 }} end={{ x:0.85, y:1 }} style={{ marginTop:-16, width:198, height:158, borderTopLeftRadius:54, borderTopRightRadius:54, borderBottomLeftRadius:32, borderBottomRightRadius:32, borderWidth:1, borderColor:palette.modal.rail, alignItems:'center', justifyContent:'center' }}>
-          <View style={{ position:'absolute', top:24, width:112, height:112, borderRadius:56, borderWidth:1, borderColor:palette.modal.shine }} />
-          <View style={{ flexDirection:'row', gap:8, marginBottom:12 }}>
-            {[0, 1, 2].map((i) => (
-              <View key={i} style={{ width:14, height:14, borderRadius:7, backgroundColor:i === 1 ? ready : accent, borderWidth:1, borderColor:palette.modal.shine }} />
-            ))}
-          </View>
-          <View style={{ width:118, height:2, borderRadius:2, backgroundColor:palette.modal.shine }} />
-        </LinearGradient>
-        <View style={{ marginTop:-4, width:12, height:112, borderRadius:6, backgroundColor:accent, borderWidth:1, borderColor:palette.modal.shine }} />
-      </View>
-    </LinearGradient>
-  );
-}
-
-// ── NPC profile generation (seeded by name) ──────────────────────────────────
-function LeagueGuardianCard({
-  league,
-  palette,
-  themeMode,
-  size = 260,
-}: {
-  league: (typeof LEAGUES)[number];
-  palette: ReturnType<typeof getLeagueBonusPalette>;
-  themeMode: ThemeMode;
-  size?: number;
-}) {
-  const guardianImage = getLeagueGuardianImage(league.id, themeMode);
-
-  if (!guardianImage) {
-    return <LeaguePersonaArt league={league} palette={palette} size={size} />;
-  }
-
-  return (
-    <View
-      style={{
-        width: size,
-        height: Math.round(size * 1.5),
-        borderRadius: 26,
-        overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: palette.modal.rail,
-        backgroundColor: palette.modal.card[2],
-        shadowColor: palette.accent,
-        shadowOpacity: 0.28,
-        shadowRadius: 18,
-        shadowOffset: { width: 0, height: 10 },
-        elevation: 8,
-      }}
-    >
-      <Image source={guardianImage} resizeMode="cover" style={{ width: '100%', height: '100%' }} />
-      <LinearGradient
-        colors={['rgba(255,255,255,0.18)', 'rgba(255,255,255,0)', 'rgba(0,0,0,0.28)']}
-        start={{ x: 0.5, y: 0 }}
-        end={{ x: 0.5, y: 1 }}
-        style={{ position:'absolute', top:0, right:0, bottom:0, left:0 }}
-      />
-      <View style={{ position:'absolute', top:8, right:8, bottom:8, left:8, borderRadius:20, borderWidth:1, borderColor:palette.modal.shine, opacity:0.55 }} />
-    </View>
-  );
 }
 
 export default function ClubScreen() {
@@ -541,7 +382,6 @@ export default function ClubScreen() {
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
   const [previewLeagueId, setPreviewLeagueId] = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => initialLeagueState?.group ?? []);
-  const [descModal, setDescModal]       = useState<(typeof LEAGUES)[number] | null>(null);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
   const [myFrameId, setMyFrameId]         = useState('plain');
@@ -577,7 +417,7 @@ export default function ClubScreen() {
   const [groupBoostLikedToday, setGroupBoostLikedToday] = useState(false);
   const [groupBoostLikeTotal, setGroupBoostLikeTotal] = useState(0);
   const activeGroupBoostRef = useRef<LeagueGroupBoostState | null>(null);
-  const [leagueCrownsByUid, setLeagueCrownsByUid] = useState<Record<string, { expiresAt: number }>>({});
+  const [leagueCrownsByUid, setLeagueCrownsByUid] = useState<Record<string, LeagueCrown>>({});
   const [leagueChestOpenModal, setLeagueChestOpenModal] = useState<{
     crownName?: string;
     isCrownWinner?: boolean;
@@ -1242,7 +1082,7 @@ export default function ClubScreen() {
       <ContentWrap>
       {/* Хедер */}
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TouchableOpacity
+        <TapScale
           testID="league-screen-back"
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
@@ -1255,7 +1095,6 @@ export default function ClubScreen() {
             tr: "Geri",
             pl: "Wstecz",
           })}
-          activeOpacity={0.85}
           hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
           onPress={() => {
             Haptics.selectionAsync().catch(() => {});
@@ -1264,7 +1103,7 @@ export default function ClubScreen() {
           style={{ width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' }}
         >
           <Ionicons name="chevron-back" size={28} color={sx.primary} />
-        </TouchableOpacity>
+        </TapScale>
         <Text style={{ color:sx.primary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}>
           {triLang(lang, {
             ru: 'Лига недели',
@@ -1282,6 +1121,7 @@ export default function ClubScreen() {
       <ScrollView
         ref={contentScrollRef}
         scrollEnabled
+        decelerationRate="normal"
         keyboardShouldPersistTaps="handled"
         style={{ flex: 1 }}
         contentContainerStyle={{
@@ -1314,19 +1154,13 @@ export default function ClubScreen() {
         >
           <View style={{ position:'absolute', right:-42, top:-48, width:170, height:170, borderRadius:85, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, opacity:0.35 }} />
           <View style={{ position:'absolute', left:-32, bottom:-52, width:150, height:150, borderRadius:75, backgroundColor:leagueBonusPalette.modal.ribbon, opacity:0.9 }} />
-          <TouchableOpacity
+          <View
             testID="league-current-icon"
-            accessibilityRole="button"
             accessibilityLabel={leagueNameForLang(previewLeague, lang)}
-            activeOpacity={0.86}
-            onPress={() => {
-              setDescModal(previewLeague);
-              void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
-            }}
             style={{ width:'100%', alignItems:'center', justifyContent:'center', gap:11, paddingHorizontal:0, paddingTop:2 }}
           >
-            <View style={{ width:122, height:122, borderRadius:61, alignItems:'center', justifyContent:'center', backgroundColor:leagueBonusPalette.modal.crestBg, borderWidth:1, borderColor:leagueBonusPalette.modal.crestBorder, shadowColor:leagueBonusPalette.accent, shadowOpacity:0.36, shadowRadius:18, shadowOffset:{ width:0, height:8 }, elevation:8 }}>
-              <LeagueIcon league={previewLeague} size={92} active alignContent={false} />
+            <View style={{ width:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, height:CLUB_LEAGUE_PREVIEW_ICON_SLOT_SIZE, alignItems:'center', justifyContent:'center' }}>
+              <LeagueIcon league={previewLeague} size={CLUB_LEAGUE_PREVIEW_ICON_SIZE} active alignContent={false} />
             </View>
             <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'900', textAlign:'center', width:'100%', paddingHorizontal:56 }} numberOfLines={2}>
               {leagueNameForLang(previewLeague, lang)}
@@ -1338,7 +1172,7 @@ export default function ClubScreen() {
                 </Text>
               </View>
             )}
-          </TouchableOpacity>
+          </View>
           {leaguePreviewState.isPreviewingMyLeague && (
           <TouchableOpacity
             testID="league-chat-icon"
@@ -1481,7 +1315,7 @@ export default function ClubScreen() {
                   <Image
                     source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
                     style={{ width:16, height:16 }}
-                    resizeMode="contain"
+                    contentFit="contain"
                   />
                 </View>
               )}
@@ -1554,14 +1388,14 @@ export default function ClubScreen() {
               <Ionicons name="trophy-outline" size={15} color={leagueCrownAccent} />
               <Text style={{ color:t.textSecond, fontSize:Math.max(10, f.caption - 1), fontWeight:'800', flex:1 }} numberOfLines={1}>
                 {triLang(lang, {
-                  ru: `Корона недели: ${leagueCrownWinnerName}`,
-                  uk: `Корона тижня: ${leagueCrownWinnerName}`,
-                  es: `Corona semanal: ${leagueCrownWinnerName}`,
-                  'pt-BR': `Coroa da semana: ${leagueCrownWinnerName}`,
-                  vi: `Vương miện tuần: ${leagueCrownWinnerName}`,
-                  id: `Mahkota mingguan: ${leagueCrownWinnerName}`,
-                  tr: `Haftanın tacı: ${leagueCrownWinnerName}`,
-                  pl: `Korona tygodnia: ${leagueCrownWinnerName}`,
+                  ru: `Корона: ${leagueCrownWinnerName}`,
+                  uk: `Корона: ${leagueCrownWinnerName}`,
+                  es: `Corona: ${leagueCrownWinnerName}`,
+                  'pt-BR': `Coroa: ${leagueCrownWinnerName}`,
+                  vi: `Vương miện: ${leagueCrownWinnerName}`,
+                  id: `Mahkota: ${leagueCrownWinnerName}`,
+                  tr: `Taç: ${leagueCrownWinnerName}`,
+                  pl: `Korona: ${leagueCrownWinnerName}`,
                 })}
               </Text>
             </View>
@@ -1712,10 +1546,13 @@ export default function ClubScreen() {
               const rowMask = rowFinalBg === 'transparent' ? t.bgCard : rowFinalBg;
               const rowEffectiveAura = getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium, p.isVip);
               const rowUsesPremiumAura = rowEffectiveAura === PREMIUM_AVATAR_AURA_ID;
-              const hasLeagueCrown = leagueRaceVisible && !!p.uid && (
+              const leagueCrownCount = Math.max(0, Math.floor(Number(leagueCrownsByUid[p.uid ?? '']?.crownCount) || 0));
+              const hasLeagueCrown = !!p.uid && (
                 p.uid === leagueCrownWinnerUid ||
+                leagueCrownCount > 0 ||
                 Number(leagueCrownsByUid[p.uid]?.expiresAt) > Date.now()
               );
+              const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
               const rowInner = (
               <TouchableOpacity
                 testID={`league-row-${p.uid || i}`}
@@ -1738,6 +1575,7 @@ export default function ClubScreen() {
                   leagueCrownExpiresAt: hasLeagueCrown
                     ? Math.max(Date.now() + 1, Number(leagueCrownsByUid[p.uid ?? '']?.expiresAt) || 0)
                     : undefined,
+                  leagueCrownCount: displayLeagueCrownCount || undefined,
                   profileCardLevel: p.profileCardLevel,
                   profileCardTheme: p.profileCardTheme,
                   profileCardMotion: p.profileCardMotion,
@@ -1789,7 +1627,7 @@ export default function ClubScreen() {
                 </View>
                 <View style={{ flex:1, minWidth: 0 }}>
                   {hasLeagueCrown ? (
-                    <LeagueCrownName text={p.name} fontSize={f.body} />
+                    <LeagueCrownName text={p.name} fontSize={f.body} count={displayLeagueCrownCount} />
                   ) : !!p.isVip ? (
                     <VipGreenUserName text={p.name} fontSize={f.body} />
                   ) : !!p.isPremium ? (
@@ -1911,46 +1749,6 @@ export default function ClubScreen() {
         onClose={() => setProfile(null)}
       />
 
-      {/* Описание лиги — попап при тапе на иконку */}
-      <Modal
-        visible={descModal !== null}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setDescModal(null)}
-      >
-        <Pressable style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', padding:24 }} onPress={() => setDescModal(null)}>
-          <Pressable onPress={() => {}}>
-            <View style={{ backgroundColor:leagueBonusPalette.modal.card[1], borderRadius:28, padding:14, maxWidth:360, borderWidth:1, borderColor:leagueBonusPalette.modal.rail, overflow:'hidden', alignItems:'center' }}>
-              {descModal ? (
-                <LeagueGuardianCard league={descModal} palette={leagueBonusPalette} themeMode={themeMode} size={260} />
-              ) : null}
-              <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'800', marginBottom:12, textAlign:'center' }}>
-                {descModal ? leagueNameForLang(descModal, lang) : ''}
-              </Text>
-              {descModal ? (
-                <Text style={{ color:leagueBonusPalette.modal.eyebrow, fontSize:f.body, fontWeight:'900', marginTop:-6, marginBottom:10, textAlign:'center' }}>
-                  {personaTitleForLang(LEAGUE_PERSONAS[descModal.id] ?? LEAGUE_PERSONAS[0], lang)}
-                </Text>
-              ) : null}
-              <Text style={{ color:t.textSecond, fontSize:f.body, lineHeight:22, textAlign:'center' }}>
-                {descModal ? clubDescForLang(descModal, lang) : ''}
-              </Text>
-              {!!descModal && !!leagueTag(lang, descModal.tagRU, descModal.tagUK) && (
-                <Text style={{ color:'#D4A017', fontSize:f.body, fontWeight:'700', textAlign:'center', marginTop:12 }}>
-                  {leagueTag(lang, descModal.tagRU, descModal.tagUK)}
-                </Text>
-              )}
-              <TouchableOpacity
-                onPress={() => setDescModal(null)}
-                style={{ width:'100%', marginTop:20, backgroundColor:t.accent, borderRadius:12, paddingVertical:12, alignItems:'center' }}
-              >
-                <Text style={{ color:t.correctText, fontWeight:'700', fontSize:f.body }}>OK</Text>
-              </TouchableOpacity>
-            </View>
-          </Pressable>
-        </Pressable>
-      </Modal>
-
       <ThemedConfirmModal
         visible={groupBoostConfirmVisible}
         title="Включить буст лиги?"
@@ -1966,7 +1764,7 @@ export default function ClubScreen() {
               <Image
                 source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
                 style={{ width:20, height:20 }}
-                resizeMode="contain"
+                contentFit="contain"
               />
               <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
                 {LEAGUE_GROUP_BOOST_COST_SHARDS}

@@ -1,4 +1,5 @@
 import React from 'react';
+import TapScale from '../components/TapScale';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
@@ -130,7 +131,7 @@ export default function TrainerSessionReport({
 
       <View style={styles.actions}>
         {onPracticeMore && !isEmpty ? (
-          <TouchableOpacity onPress={onPracticeMore} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { borderColor: isCompassTheme ? COMPASS_RICH.hairline : accent + '66', backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '14', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+          <TapScale scaleTo={0.96} onPress={onPracticeMore} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { borderColor: isCompassTheme ? COMPASS_RICH.hairline : accent + '66', backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '14', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
             {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
             <Text style={{ color: reportAccent, fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
@@ -144,9 +145,9 @@ export default function TrainerSessionReport({
                 pl: 'Jeszcze słabe',
               })}
             </Text>
-          </TouchableOpacity>
+          </TapScale>
         ) : null}
-        <TouchableOpacity onPress={onDone} style={[styles.primaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : accent, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+        <TapScale scaleTo={0.96} onPress={onDone} style={[styles.primaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : accent, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
           {isCompassTheme ? <CompassDepthSurface radius={9} cream /> : null}
           <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : '#fff', fontSize: f.sub, fontWeight: '900' }}>
             {triLang(lang, {
@@ -160,7 +161,7 @@ export default function TrainerSessionReport({
               pl: 'Gotowe',
             })}
           </Text>
-        </TouchableOpacity>
+        </TapScale>
       </View>
     </View>
   );

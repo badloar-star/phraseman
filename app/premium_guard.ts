@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
-import { IS_EXPO_GO } from './config';
+import { IS_EXPO_GO, IS_STORE_RELEASE } from './config';
+import { isIntroFullAccessActive } from './intro_full_access';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
@@ -69,7 +70,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   // но не VIP-доступ, который считается отдельно.
   if (noPremium === 'true') return cacheReal(false);
   // Dev builds are premium by default — вимикається лише прапорцем tester_no_premium вище
-  if (isDevRuntime) return cacheReal(true);
+  if (isDevRuntime && !IS_STORE_RELEASE) return cacheReal(true);
 
   // Return cached result if still fresh
   if (_cachedRealResult !== null && Date.now() - _realCacheTime < CACHE_TTL_MS) {
@@ -217,13 +218,17 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
   }
 
   const noLimits = await AsyncStorage.getItem('tester_no_limits').catch(() => null);
-  if (noLimits === 'true') return cacheAccess(true);
+  if (noLimits === 'true' && !IS_STORE_RELEASE) return cacheAccess(true);
 
   const [realPremium, vip] = await Promise.all([
     getVerifiedRealPremiumStatus().catch(() => false),
     getVerifiedVipStatus().catch(() => false),
   ]);
   if (realPremium || vip) return cacheAccess(true);
+
+  if (await isIntroFullAccessActive().catch(() => false)) {
+    return cacheAccess(true);
+  }
 
   const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded();
   if (cloudRefreshed) {

@@ -72,6 +72,7 @@ export type LeagueCrown = {
   groupId: string;
   leagueId: number;
   expiresAt: number;
+  crownCount?: number;
   aura: 'league_chest_crown';
 };
 
@@ -545,7 +546,11 @@ export async function ensureLeagueChestRewards(params: {
     const { data } = await fn({ weekId: params.weekId, groupId: params.groupId });
     if (data.claimed) await AsyncStorage.setItem(claimKey, '1');
     if (data.crown?.uid === myUid) {
-      emitAppEvent('league_crown_updated', { uid: myUid, expiresAt: data.crown.expiresAt });
+      emitAppEvent('league_crown_updated', {
+        uid: myUid,
+        expiresAt: data.crown.expiresAt,
+        crownCount: Math.max(1, Math.floor(Number(data.crown.crownCount) || 1)),
+      });
     }
     if (data.rewards) await applyLocalRewardPack(data.rewards, data.balance, params.studyTarget);
     return data;
@@ -559,17 +564,34 @@ export async function fetchActiveLeagueCrowns(uids: string[]): Promise<Record<st
   if (!db || uids.length === 0) return {};
   const unique = Array.from(new Set(uids.filter(Boolean)));
   const out: Record<string, LeagueCrown> = {};
+  const docCountByUid: Record<string, number> = {};
+  const storedCountByUid: Record<string, number> = {};
   for (let i = 0; i < unique.length; i += 10) {
     const part = unique.slice(i, i + 10);
     try {
       const snap = await db.collection(CROWNS_COL).where('uid', 'in', part).get();
       snap.docs.forEach((doc) => {
         const d = doc.data() as LeagueCrown;
-        if (d?.uid && Number(d.expiresAt) > Date.now()) out[d.uid] = d;
+        if (!d?.uid) return;
+        docCountByUid[d.uid] = (docCountByUid[d.uid] ?? 0) + 1;
+        storedCountByUid[d.uid] = Math.max(
+          storedCountByUid[d.uid] ?? 0,
+          Math.floor(Number(d.crownCount) || 0),
+        );
+        const current = out[d.uid];
+        const currentUpdatedAt = Math.max(0, Math.floor(Number((current as any)?.updatedAt) || Number(current?.expiresAt) || 0));
+        const nextUpdatedAt = Math.max(0, Math.floor(Number((d as any).updatedAt) || Number(d.expiresAt) || 0));
+        if (!current || nextUpdatedAt >= currentUpdatedAt) out[d.uid] = d;
       });
     } catch {
       // ignore chunk
     }
   }
+  Object.keys(out).forEach((uid) => {
+    out[uid] = {
+      ...out[uid],
+      crownCount: Math.max(1, storedCountByUid[uid] ?? 0, docCountByUid[uid] ?? 0),
+    };
+  });
   return out;
 }

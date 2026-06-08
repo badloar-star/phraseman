@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   AppState,
@@ -36,7 +36,7 @@ const INVITE_TIMEOUT_MS = 60_000;
  * При отклонении/истечении — пишет status='declined' в arena_invites,
  * чтобы отправитель мог подписаться и показать тост.
  */
-export default function ArenaFriendInviteHost() {
+function ArenaFriendInviteHost() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -406,3 +406,5 @@ export default function ArenaFriendInviteHost() {
     </Animated.View>
   );
 }
+
+export default memo(ArenaFriendInviteHost);

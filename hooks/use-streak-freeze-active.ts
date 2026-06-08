@@ -22,7 +22,11 @@ export function useStreakFreezeActive(): boolean {
 
   useEffect(() => {
     const refreshNow = () => {
-      void readStreakFreezeActive().then(setFreezeActive);
+      let cancelled = false;
+      void readStreakFreezeActive().then(active => {
+        if (!cancelled) setFreezeActive(active);
+      });
+      return () => { cancelled = true; };
     };
     const subs = [
       onAppEvent('streak_freeze_updated', refreshNow),

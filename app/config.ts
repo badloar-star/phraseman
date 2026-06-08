@@ -50,7 +50,7 @@ export const DEV_MODE = false;
 
 // true  = премиум включён для всех по умолчанию (тестовая сборка для тестеров)
 // false = обычный флоу RevenueCat
-export const FORCE_PREMIUM = false;
+export const FORCE_PREMIUM = true; // TEMP dev-check — вернуть в false перед коммитом
 
 // ── Синхронизация прогресса с Firebase ───────────────────────────────────────
 // false = синхронизация отключена (AsyncStorage only, текущее состояние)
@@ -90,12 +90,27 @@ export const ENABLE_ARENA_RANKED_WAGER = true;
 export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;
 
 /**
+ * Анимации переходов между экранами (slide/fade вместо мгновенного появления).
+ *
+ * ПО УМОЛЧАНИЮ ВЫКЛЮЧЕНО. Причина: native-stack transitions ранее роняли
+ * Android/Fabric на открытии вложенных экранов и Back (см. _layout.tsx screenOptions).
+ * Включается ТОЛЬКО осознанно через EXPO_PUBLIC_SCREEN_TRANSITIONS=1 ПОСЛЕ
+ * проверки на реальном Android-устройстве (открытие/закрытие/Back на всех табах
+ * и вложенных экранах). При выключенном флаге поведение идентично текущему.
+ */
+export const ENABLE_SCREEN_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_TRANSITIONS === '1';
+
+/**
  * Spanish interface/explanation locale.
  *
  * This is a source/UI language for learning English. It is intentionally
  * separate from the dev-only "study Spanish" experiment below.
+ *
+ * Выключено: ES (как и весь Heisenberg batch) пока недопереведён и падает в
+ * русский фолбэк. В проде показываем только готовые ru/uk. Включить обратно
+ * вместе с переносом 'es' в ACTIVE_INTERFACE_SOURCE_LOCALES, когда перевод готов.
  */
-export const SPANISH_UI_LOCALE_ENABLED = true;
+export const SPANISH_UI_LOCALE_ENABLED = false;
 
 /**
  * DEV-only: в настройках RU/UK можно выбрать язык, который учишь.

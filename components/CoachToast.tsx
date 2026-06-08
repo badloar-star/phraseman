@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Animated, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from './TapScale';
 import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -44,7 +45,7 @@ interface CoachToastProps {
 
 const AUTO_DISMISS_MS = 8000;
 
-export default function CoachToast({
+function CoachToast({
   category,
   labelRu,
   labelUk,
@@ -223,9 +224,9 @@ export default function CoachToast({
               {titleText}
             </Text>
           </View>
-          <TouchableOpacity onPress={dismiss} style={styles.dismissBtn} hitSlop={12}>
+          <TapScale onPress={dismiss} style={styles.dismissBtn} hitSlop={12}>
             <Ionicons name="close" size={19} color={t.textMuted} />
-          </TouchableOpacity>
+          </TapScale>
         </View>
 
         <Text style={[styles.desc, { color: t.textSecond, fontSize: f.caption }]} numberOfLines={2}>
@@ -267,6 +268,8 @@ export default function CoachToast({
     </Animated.View>
   );
 }
+
+export default memo(CoachToast);
 
 const styles = StyleSheet.create({
   container: {

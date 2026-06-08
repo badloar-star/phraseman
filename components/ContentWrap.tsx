@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View } from 'react-native';
 import { useScreen } from '../hooks/use-screen';
 
@@ -6,7 +6,7 @@ import { useScreen } from '../hooks/use-screen';
 // На телефонах ширина ≤ contentMaxW — занимает всю ширину.
 // Используй внутри SafeAreaView вместо прямых дочерних элементов.
 
-export default function ContentWrap({ children }: { children: React.ReactNode }) {
+function ContentWrap({ children }: { children: React.ReactNode }) {
   const { contentMaxW } = useScreen();
   return (
     <View style={{ flex: 1, maxWidth: contentMaxW, width: '100%', alignSelf: 'center' }}>
@@ -14,3 +14,5 @@ export default function ContentWrap({ children }: { children: React.ReactNode })
     </View>
   );
 }
+
+export default memo(ContentWrap);

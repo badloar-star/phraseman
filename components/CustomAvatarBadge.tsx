@@ -1,5 +1,6 @@
-import React from 'react';
-import { Image, View } from 'react-native';
+import React, { memo } from 'react';
+import { View } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
 import {
@@ -95,13 +96,13 @@ const CUSTOM_AVATAR_IMAGE_FITS: Record<string, AvatarImageFit> = {
 function CustomAvatarImageWithFallback({
   source,
   style,
-  resizeMode,
+  contentFit,
   fallbackSize,
   fallbackColor,
 }: {
   source: any;
   style: any;
-  resizeMode: 'contain';
+  contentFit: 'contain';
   fallbackSize: number;
   fallbackColor: string;
 }) {
@@ -124,7 +125,7 @@ function CustomAvatarImageWithFallback({
       <Image
         source={source}
         style={style}
-        resizeMode={resizeMode}
+        contentFit={contentFit}
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(false)}
       />
@@ -132,7 +133,7 @@ function CustomAvatarImageWithFallback({
   );
 }
 
-export default function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, size = 44, style }: Props) {
+function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, size = 44, style }: Props) {
   const parsed = parseCustomAvatarValue(value);
   const resolvedAvatarId = avatarId ?? parsed?.avatarId;
   const resolvedGradientId = gradientId ?? parsed?.gradientId;
@@ -197,7 +198,7 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
               tintColor: rimColor,
               transform: [{ translateX: x }, { translateY: y }],
             }}
-            resizeMode="contain"
+            contentFit="contain"
           />
         </View>
       ))}
@@ -210,7 +211,7 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
             tintColor: nativeImage ? undefined : logoColorFinal,
             transform: [{ translateX: imageTranslateX }, { translateY: imageTranslateY }],
           }}
-          resizeMode="contain"
+          contentFit="contain"
           fallbackSize={size}
           fallbackColor={logoColorFinal}
         />
@@ -218,3 +219,5 @@ export default function CustomAvatarBadge({ value, avatarId, gradientId, logoCol
     </View>
   );
 }
+
+export default memo(CustomAvatarBadge);

@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { View, Text, TouchableOpacity, Animated, useWindowDimensions, Image, } from 'react-native';
+import { View, Text, TouchableOpacity, Animated, useWindowDimensions, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
+import TapScale from '../../components/TapScale';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import { buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
@@ -9,6 +12,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import ScreenGradient from '../../components/ScreenGradient';
+import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
@@ -204,7 +208,7 @@ function MedalDots({ dots }: {
                 width: SIZE,
                 height: SIZE,
                 zIndex: dots.length - i,
-            }} resizeMode="contain"/>))}
+            }} contentFit="contain"/>))}
     </View>);
 }
 // Высоты элементов (должны точно совпадать с реальным рендером)
@@ -217,6 +221,8 @@ const ATTESTATION_H = 126 + 12; // attestation card + marginTop
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LessonsTab() {
     const router = useRouter();
+    const insets = useSafeAreaInsets();
+    const topFadeScroll = useTopFadeScroll();
     const { goHome } = useTabNav();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';
@@ -416,7 +422,7 @@ export default function LessonsTab() {
     }, [progCounts, unlockedLessons]);
     // ── Per-item scale animations based on scroll position ───────────────────
     const itemAnims = useMemo(() => {
-        let y = HEADER_H;
+        let y = 0;
         return listData.map(item => {
             const absY = y;
             let h: number;
@@ -444,15 +450,23 @@ export default function LessonsTab() {
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
-      <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={1} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }],
+      <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }],
         // Fabric + native-driver on ScrollView can crash with animated node
         // connect/disconnect races during rapid remount/navigation.
-        { useNativeDriver: false })} contentContainerStyle={{ paddingBottom: 40 }}>
-        {/* Header */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14, paddingBottom: 6 }}>
-          <TouchableOpacity style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12, flexShrink: 0 }} onPress={() => { hapticTap(); goHome(); }}>
+        { useNativeDriver: false, listener: topFadeScroll?.onScroll })}
+        contentContainerStyle={{ paddingBottom: 40, paddingTop: insets.top }}
+        decelerationRate="normal"
+      >
+
+        {/* Хедер */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 }}>
+          <TapScale
+            onPress={() => goHome()}
+            withHaptic={true}
+            style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12, flexShrink: 0 }}
+          >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary}/>
-          </TouchableOpacity>
+          </TapScale>
           <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
             <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
               {s.tabs.lessons}
@@ -700,7 +714,7 @@ export default function LessonsTab() {
                         backgroundColor: isGoldTheme ? goldSurface : t.bgCard,
                     }}>
                   <LinearGradient colors={attestationColors as any} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>
-                  <Image source={menuImages.test} style={{ position: 'absolute', right: -16, top: 7, width: 128, height: 128, opacity: isGoldTheme ? 0.16 : 0.08 }} resizeMode="contain"/>
+                  <Image source={menuImages.test} style={{ position: 'absolute', right: -16, top: 7, width: 128, height: 128, opacity: isGoldTheme ? 0.16 : 0.08 }} contentFit="contain"/>
                   <View style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 6, backgroundColor: attestationAccent, opacity: 0.88 }}/>
                   <View style={{ position: 'absolute', left: 6, right: 0, top: 0, height: 1, backgroundColor: attestationAccent, opacity: 0.24 }}/>
                   {isGoldTheme && <GoldBevel radius={18} intensity="normal"/>}
@@ -715,7 +729,7 @@ export default function LessonsTab() {
                         borderWidth: 1,
                         borderColor: attestationBorder,
                     }}>
-                      <Image source={menuImages.test} style={{ width: 58, height: 58, opacity: 0.96 }} resizeMode="contain"/>
+                      <Image source={menuImages.test} style={{ width: 58, height: 58, opacity: 0.96 }} contentFit="contain"/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
                       <Text style={{ color: attestationMuted, fontSize: Math.max(12, f.label), fontWeight: '800', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
@@ -976,6 +990,7 @@ export default function LessonsTab() {
         })}/>
         </View>
       </Animated.ScrollView>
+
     </ScreenGradient>
     <ThemedChoiceModal visible={gateModal !== null} title={gateModal?.kind === 'frenchExam'
             ? frenchExamGateCopy('level', lang).title
@@ -1029,7 +1044,7 @@ export default function LessonsTab() {
             })
             : gateModal?.kind === 'levelGate'
                 ? triLang(lang, {
-                    ru: `Чтобы открыть уровень ${gateModal.level}, сначала сдайте зачёт ${gateModal.prevLevel}.`,
+                    ru: `Чтобы открыть уровень ${gateModal.level}, сначала сдай зачёт ${gateModal.prevLevel}.`,
                     uk: `Щоб відкрити рівень ${gateModal.level}, спочатку складіть залік ${gateModal.prevLevel}.`,
                     es: `Para abrir el nivel ${gateModal.level}, primero supera el examen de ${gateModal.prevLevel}.`,
                     'pt-BR': `Para abrir o nível ${gateModal.level}, primeiro passe no exame ${gateModal.prevLevel}.`,

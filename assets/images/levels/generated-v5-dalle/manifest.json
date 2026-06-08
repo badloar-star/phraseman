@@ -1,7 +1,58 @@
 {
   "version": "generated-v6-custom-avatar-hex",
-  "generatedAt": "2026-05-22T21:55:29.229Z",
-  "intent": "Level avatar hexes regenerated as the paid custom avatar card hex underlay only: no icon/logo, transparent corners, one centered number, and a smooth 60-step light-to-red progression.",
+  "generatedAt": "2026-06-06T09:42:42.502Z",
+  "intent": "Level avatar hexes regenerated as paid custom avatar card hex underlays only: no icon/logo, transparent corners, one centered number, and a smooth premium two-tone material progression: grey metal slowly gains unusual luxury color accents instead of stepping through a rainbow.",
+  "continuousGradientStops": [
+    {
+      "at": 0,
+      "name": "graphite steel",
+      "primary": "#5C626A",
+      "secondary": "#272D36",
+      "accent": "#DFE4EA"
+    },
+    {
+      "at": 0.18,
+      "name": "pewter moonstone",
+      "primary": "#7E8284",
+      "secondary": "#474E51",
+      "accent": "#EEEBE0"
+    },
+    {
+      "at": 0.35,
+      "name": "champagne graphite",
+      "primary": "#927D5C",
+      "secondary": "#403A32",
+      "accent": "#F6DA9E"
+    },
+    {
+      "at": 0.55,
+      "name": "champagne petrol",
+      "primary": "#306661",
+      "secondary": "#1D3A43",
+      "accent": "#E6C680"
+    },
+    {
+      "at": 0.73,
+      "name": "sapphire petrol",
+      "primary": "#2A527E",
+      "secondary": "#1C2D54",
+      "accent": "#8EBFC9"
+    },
+    {
+      "at": 0.88,
+      "name": "royal blue gold",
+      "primary": "#2F4374",
+      "secondary": "#1A2344",
+      "accent": "#DAB462"
+    },
+    {
+      "at": 1,
+      "name": "black gold diamond",
+      "primary": "#CCA959",
+      "secondary": "#1F1F26",
+      "accent": "#FFEFBA"
+    }
+  ],
   "finalCanvasSize": 512,
   "referenceComponent": "components/CustomAvatarBadge.tsx",
   "referenceViewBoxPoints": "50,3.5 93,26 93,74 50,96.5 7,74 7,26",
@@ -9,483 +60,483 @@
   "levels": [
     {
       "level": 1,
-      "file": "assets/images/levels/generated-v5-dalle/1.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/1.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 31406
+      "bytes": 36034
     },
     {
       "level": 2,
-      "file": "assets/images/levels/generated-v5-dalle/2.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/2.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 33484
+      "bytes": 37950
     },
     {
       "level": 3,
-      "file": "assets/images/levels/generated-v5-dalle/3.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/3.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 34472
+      "bytes": 38746
     },
     {
       "level": 4,
-      "file": "assets/images/levels/generated-v5-dalle/4.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/4.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 32104
+      "bytes": 35672
     },
     {
       "level": 5,
-      "file": "assets/images/levels/generated-v5-dalle/5.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/5.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 33202
+      "bytes": 37446
     },
     {
       "level": 6,
-      "file": "assets/images/levels/generated-v5-dalle/6.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/6.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 34786
+      "bytes": 38202
     },
     {
       "level": 7,
-      "file": "assets/images/levels/generated-v5-dalle/7.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/7.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 33852
+      "bytes": 36470
     },
     {
       "level": 8,
-      "file": "assets/images/levels/generated-v5-dalle/8.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/8.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35504
+      "bytes": 39076
     },
     {
       "level": 9,
-      "file": "assets/images/levels/generated-v5-dalle/9.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/9.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35728
+      "bytes": 38524
     },
     {
       "level": 10,
-      "file": "assets/images/levels/generated-v5-dalle/10.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/10.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36174
+      "bytes": 38674
     },
     {
       "level": 11,
-      "file": "assets/images/levels/generated-v5-dalle/11.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/11.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 35434
+      "bytes": 37034
     },
     {
       "level": 12,
-      "file": "assets/images/levels/generated-v5-dalle/12.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/12.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 37014
+      "bytes": 38978
     },
     {
       "level": 13,
-      "file": "assets/images/levels/generated-v5-dalle/13.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/13.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38390
+      "bytes": 39548
     },
     {
       "level": 14,
-      "file": "assets/images/levels/generated-v5-dalle/14.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/14.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 36994
+      "bytes": 37678
     },
     {
       "level": 15,
-      "file": "assets/images/levels/generated-v5-dalle/15.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/15.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38120
+      "bytes": 38162
     },
     {
       "level": 16,
-      "file": "assets/images/levels/generated-v5-dalle/16.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/16.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38722
+      "bytes": 38924
     },
     {
       "level": 17,
-      "file": "assets/images/levels/generated-v5-dalle/17.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/17.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 37654
+      "bytes": 37302
     },
     {
       "level": 18,
-      "file": "assets/images/levels/generated-v5-dalle/18.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/18.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 39846
+      "bytes": 38618
     },
     {
       "level": 19,
-      "file": "assets/images/levels/generated-v5-dalle/19.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/19.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38846
+      "bytes": 38944
     },
     {
       "level": 20,
-      "file": "assets/images/levels/generated-v5-dalle/20.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/20.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40200
+      "bytes": 39042
     },
     {
       "level": 21,
-      "file": "assets/images/levels/generated-v5-dalle/21.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/21.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 38626
+      "bytes": 37872
     },
     {
       "level": 22,
-      "file": "assets/images/levels/generated-v5-dalle/22.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/22.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40272
+      "bytes": 39488
     },
     {
       "level": 23,
-      "file": "assets/images/levels/generated-v5-dalle/23.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/23.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 41860
+      "bytes": 39658
     },
     {
       "level": 24,
-      "file": "assets/images/levels/generated-v5-dalle/24.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/24.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40664
+      "bytes": 38642
     },
     {
       "level": 25,
-      "file": "assets/images/levels/generated-v5-dalle/25.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/25.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42134
+      "bytes": 40082
     },
     {
       "level": 26,
-      "file": "assets/images/levels/generated-v5-dalle/26.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/26.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42756
+      "bytes": 41218
     },
     {
       "level": 27,
-      "file": "assets/images/levels/generated-v5-dalle/27.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/27.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 41272
+      "bytes": 39560
     },
     {
       "level": 28,
-      "file": "assets/images/levels/generated-v5-dalle/28.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/28.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43144
+      "bytes": 41470
     },
     {
       "level": 29,
-      "file": "assets/images/levels/generated-v5-dalle/29.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/29.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43062
+      "bytes": 41476
     },
     {
       "level": 30,
-      "file": "assets/images/levels/generated-v5-dalle/30.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/30.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43606
+      "bytes": 42052
     },
     {
       "level": 31,
-      "file": "assets/images/levels/generated-v5-dalle/31.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/31.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 41658
+      "bytes": 40378
     },
     {
       "level": 32,
-      "file": "assets/images/levels/generated-v5-dalle/32.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/32.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 44274
+      "bytes": 42940
     },
     {
       "level": 33,
-      "file": "assets/images/levels/generated-v5-dalle/33.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/33.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43296
+      "bytes": 43670
     },
     {
       "level": 34,
-      "file": "assets/images/levels/generated-v5-dalle/34.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/34.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 41898
+      "bytes": 41938
     },
     {
       "level": 35,
-      "file": "assets/images/levels/generated-v5-dalle/35.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/35.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43100
+      "bytes": 43260
     },
     {
       "level": 36,
-      "file": "assets/images/levels/generated-v5-dalle/36.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/36.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43382
+      "bytes": 43786
     },
     {
       "level": 37,
-      "file": "assets/images/levels/generated-v5-dalle/37.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/37.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42054
+      "bytes": 42108
     },
     {
       "level": 38,
-      "file": "assets/images/levels/generated-v5-dalle/38.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/38.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43596
+      "bytes": 43446
     },
     {
       "level": 39,
-      "file": "assets/images/levels/generated-v5-dalle/39.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/39.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43916
+      "bytes": 43854
     },
     {
       "level": 40,
-      "file": "assets/images/levels/generated-v5-dalle/40.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/40.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42558
+      "bytes": 42400
     },
     {
       "level": 41,
-      "file": "assets/images/levels/generated-v5-dalle/41.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/41.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 40846
+      "bytes": 40734
     },
     {
       "level": 42,
-      "file": "assets/images/levels/generated-v5-dalle/42.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/42.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42750
+      "bytes": 42930
     },
     {
       "level": 43,
-      "file": "assets/images/levels/generated-v5-dalle/43.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/43.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42952
+      "bytes": 43610
     },
     {
       "level": 44,
-      "file": "assets/images/levels/generated-v5-dalle/44.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/44.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 41666
+      "bytes": 42494
     },
     {
       "level": 45,
-      "file": "assets/images/levels/generated-v5-dalle/45.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/45.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43158
+      "bytes": 43424
     },
     {
       "level": 46,
-      "file": "assets/images/levels/generated-v5-dalle/46.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/46.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43518
+      "bytes": 43598
     },
     {
       "level": 47,
-      "file": "assets/images/levels/generated-v5-dalle/47.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/47.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 41826
+      "bytes": 42020
     },
     {
       "level": 48,
-      "file": "assets/images/levels/generated-v5-dalle/48.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/48.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43478
+      "bytes": 43302
     },
     {
       "level": 49,
-      "file": "assets/images/levels/generated-v5-dalle/49.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/49.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43504
+      "bytes": 42436
     },
     {
       "level": 50,
-      "file": "assets/images/levels/generated-v5-dalle/50.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/50.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 44482
+      "bytes": 43338
     },
     {
       "level": 51,
-      "file": "assets/images/levels/generated-v5-dalle/51.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/51.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 42528
+      "bytes": 42404
     },
     {
       "level": 52,
-      "file": "assets/images/levels/generated-v5-dalle/52.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/52.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 44734
+      "bytes": 42694
     },
     {
       "level": 53,
-      "file": "assets/images/levels/generated-v5-dalle/53.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/53.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 45312
+      "bytes": 43152
     },
     {
       "level": 54,
-      "file": "assets/images/levels/generated-v5-dalle/54.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/54.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43984
+      "bytes": 41564
     },
     {
       "level": 55,
-      "file": "assets/images/levels/generated-v5-dalle/55.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/55.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 45306
+      "bytes": 42912
     },
     {
       "level": 56,
-      "file": "assets/images/levels/generated-v5-dalle/56.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/56.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 45646
+      "bytes": 43540
     },
     {
       "level": 57,
-      "file": "assets/images/levels/generated-v5-dalle/57.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/57.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 43936
+      "bytes": 42196
     },
     {
       "level": 58,
-      "file": "assets/images/levels/generated-v5-dalle/58.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/58.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 45756
+      "bytes": 46408
     },
     {
       "level": 59,
-      "file": "assets/images/levels/generated-v5-dalle/59.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/59.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 46042
+      "bytes": 44810
     },
     {
       "level": 60,
-      "file": "assets/images/levels/generated-v5-dalle/60.webp",
+      "file": "qa-artifacts/level-avatar-premium-staging/60.webp",
       "width": 512,
       "height": 512,
       "hasAlpha": true,
-      "bytes": 46078
+      "bytes": 46768
     }
   ]
 }

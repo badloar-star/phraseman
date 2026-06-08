@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -21,6 +22,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { safeRouterBack } from './navigation_back';
@@ -127,7 +129,7 @@ function diagnosticSkillA11y(lang: Lang, kind: keyof typeof DIAGNOSTIC_SKILL_A11
 function diagnosticUiCopy(lang: Lang) {
   return {
     loadError: triLang(lang, {
-      ru: 'Не удалось загрузить вопросы. Попробуй позже.',
+      ru: 'Вопросы не загрузились. Проверь сеть и попробуй снова.',
       uk: 'Не вдалося завантажити питання. Спробуй пізніше.',
       es: 'No se pudieron cargar las preguntas. Inténtalo más tarde.',
       'pt-BR': 'Não foi possível carregar as perguntas. Tente novamente mais tarde.',
@@ -900,9 +902,9 @@ function FrenchDiagnosticUnavailable({
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={onBack}>
+            <TapScale onPress={onBack}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
             <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
@@ -957,6 +959,7 @@ export default function DiagnosticTest() {
   const [prevResult,  setPrev]     = useState<{ score: number; level: string; date: string } | null>(null);
   const [hapticsOn,   setHapticsOn]= useState(true);
   const [autoAdvance, setAutoAdvance]= useState(false);
+  const { playCorrect } = useCorrectSound();
   const [examLessonsDone, setExamLessonsDone] = useState(0);
   const [examReadiness, setExamReadiness] = useState<ExamReadinessSnapshot>({
     percent: 0,
@@ -1223,6 +1226,7 @@ export default function DiagnosticTest() {
     const ns = isRight ? score + 1 : score;
     if (isRight) {
       setScore(ns);
+      playCorrect();
       if (userNameRef.current) {
         registerXP(2, 'diagnostic_test', userNameRef.current, lang);
       }
@@ -1251,6 +1255,7 @@ export default function DiagnosticTest() {
     setChosen(isRight && q ? q.correct : -1);
     if (isRight) {
       setScore(ns);
+      playCorrect();
       if (userNameRef.current) registerXP(2, 'diagnostic_test', userNameRef.current, lang);
     } else if (hapticsOn) {
       void hapticError();
@@ -1276,6 +1281,7 @@ export default function DiagnosticTest() {
     setChosen(isRight ? 0 : -1);
     if (isRight) {
       setScore(ns);
+      playCorrect();
       if (userNameRef.current) registerXP(2, 'diagnostic_test', userNameRef.current, lang);
     } else if (hapticsOn) {
       void hapticError();
@@ -1313,11 +1319,11 @@ export default function DiagnosticTest() {
               <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
                 {diagnosticUi.loadError}
               </Text>
-              <TouchableOpacity onPress={() => safeRouterBack(router)} style={{ marginTop: 20 }}>
+              <TapScale onPress={() => safeRouterBack(router)} style={{ marginTop: 20 }}>
                 <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '700' }}>
                   {diagnosticUi.back}
                 </Text>
-              </TouchableOpacity>
+              </TapScale>
             </View>
           </ContentWrap>
         </SafeAreaView>
@@ -1336,15 +1342,15 @@ export default function DiagnosticTest() {
       <ContentWrap>
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
         {!isFromOnboarding && (
-          <TouchableOpacity onPress={() => safeRouterBack(router)}>
+          <TapScale onPress={() => safeRouterBack(router)}>
             <Ionicons name="chevron-back" size={28} color={sx.primary} />
-          </TouchableOpacity>
+          </TapScale>
         )}
         <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: isFromOnboarding ? 0 : 8 }}>
           {s.diagnostic.start}
         </Text>
       </View>
-      <ScrollView contentContainerStyle={{ padding: 24 }}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24 }}>
         {prevResult && (
           <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border, marginBottom: 20, width: '100%' }}>
             <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
@@ -1505,7 +1511,7 @@ export default function DiagnosticTest() {
     <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <ScrollView contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
         <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, borderWidth: 1.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
           <Ionicons name="school-outline" size={44} color={t.textSecond} />
         </View>
@@ -1542,9 +1548,9 @@ export default function DiagnosticTest() {
             {s.diagnostic.again}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
+        <TapScale style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
           <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
-        </TouchableOpacity>
+        </TapScale>
       </ScrollView>
       </ContentWrap>
     </SafeAreaView>
@@ -1563,20 +1569,20 @@ export default function DiagnosticTest() {
 
   return (
     <ScreenGradient artBackdrop="diagnosticTest">
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
           {isFromOnboarding ? (
-            <TouchableOpacity onPress={() => { AsyncStorage.removeItem(diagnosticOpenFlagKey(studyTarget)); router.replace('/(tabs)/home' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <TapScale onPress={() => { AsyncStorage.removeItem(diagnosticOpenFlagKey(studyTarget)); router.replace('/(tabs)/home' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '600' }}>
                 {diagnosticUi.cancel}
               </Text>
-            </TouchableOpacity>
+            </TapScale>
           ) : (
-            <TouchableOpacity onPress={() => safeRouterBack(router)}>
+            <TapScale onPress={() => safeRouterBack(router)}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
           )}
           <Text style={{ color: sx.second, fontSize: f.body, fontWeight: '500' }}>{idx + 1} / {questions.length}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
@@ -1598,6 +1604,7 @@ export default function DiagnosticTest() {
 
         <ScrollView
           style={{ flex: 1 }}
+          decelerationRate="normal"
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 20,

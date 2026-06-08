@@ -1,5 +1,6 @@
 import React from 'react';
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import ScreenGradient from '../components/ScreenGradient';
@@ -17,20 +18,42 @@ export default function WebScreen() {
   if (!url) {
     return (
       <ScreenGradient artBackdrop="settings">
-        <View style={styles.center}>
-        <Text style={{ color: t.textPrimary }}>
-          {triLang(lang, {
-            ru: 'Ссылка не указана',
-            uk: 'Посилання не вказано',
-            es: 'No hay URL',
-            'pt-BR': 'URL não informado',
-            vi: 'Chưa có URL',
-            id: 'URL belum diisi',
-            tr: 'URL belirtilmedi',
-            pl: 'Nie podano URL',
-          })}
-        </Text>
-      </View>
+        <View style={styles.container}>
+          {/* Хедер с кнопкой «Назад» — иначе на iOS (свайп-назад выключен
+              глобально) пользователь застревает в этом error-состоянии. */}
+          <View style={[styles.header, { backgroundColor: t.bgCard, borderBottomColor: t.border }]}>
+            <TapScale
+              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+              style={styles.back}
+              accessibilityLabel={triLang(lang, {
+                ru: 'Назад',
+                uk: 'Назад',
+                es: 'Atrás',
+                'pt-BR': 'Voltar',
+                vi: 'Quay lại',
+                id: 'Kembali',
+                tr: 'Geri',
+                pl: 'Wstecz',
+              })}
+            >
+              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+            </TapScale>
+          </View>
+          <View style={styles.center}>
+            <Text style={{ color: t.textPrimary }}>
+              {triLang(lang, {
+                ru: 'Ссылка не указана',
+                uk: 'Посилання не вказано',
+                es: 'No hay URL',
+                'pt-BR': 'URL não informado',
+                vi: 'Chưa có URL',
+                id: 'URL belum diisi',
+                tr: 'URL belirtilmedi',
+                pl: 'Nie podano URL',
+              })}
+            </Text>
+          </View>
+        </View>
       </ScreenGradient>
     );
   }
@@ -39,9 +62,9 @@ export default function WebScreen() {
     <ScreenGradient artBackdrop="settings">
       <View style={styles.container}>
       <View style={[styles.header, { backgroundColor: t.bgCard, borderBottomColor: t.border }]}>
-        <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={styles.back}>
+        <TapScale onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={styles.back}>
           <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-        </TouchableOpacity>
+        </TapScale>
         {title ? (
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
             {title}

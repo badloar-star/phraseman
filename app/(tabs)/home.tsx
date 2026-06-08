@@ -4,6 +4,7 @@ import { tabSwipeLock } from '../tabSwipeLock';
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
@@ -13,6 +14,8 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import ScreenGradient from '../../components/ScreenGradient';
+import BouncyScrollView from '../../components/BouncyScrollView';
+import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
@@ -247,12 +250,12 @@ async function resolveDailyGreeting(pool: readonly string[], lang: Lang): Promis
             }
         }
     }
-    catch { }
+    catch { /* ignore */ }
     const idx = Math.floor(Math.random() * pool.length);
     try {
         await AsyncStorage.setItem(HOME_DAILY_GREETING_KEY, JSON.stringify({ day: today, lang, idx } satisfies DailyGreetingStored));
     }
-    catch { }
+    catch { /* ignore */ }
     return pool[idx]!;
 }
 function parseStoredCount(raw: string | null): number {
@@ -281,13 +284,13 @@ type HomeMenuIconAlign = {
 type HomeMenuIconAlignKey = 'lesson' | 'quizes' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice';
 const HOME_MENU_ICON_ALIGNMENT: Partial<Record<ThemeMode, Partial<Record<HomeMenuIconAlignKey, HomeMenuIconAlign>>>> = {
     compass: {
-        lesson: { x: -8.5 / 256, y: -8.5 / 256 },
-        quizes: { x: 1.5 / 256, y: -6 / 256 },
-        cards: { x: 9 / 256, y: -11.5 / 256 },
-        dayTasks: { x: -0.5 / 256, y: 4 / 256 },
-        league: { x: -0.5 / 256, y: -1.5 / 256 },
-        test: { x: 0, y: 0.5 / 256 },
-        practice: { x: 0, y: 3.5 / 256 },
+        lesson: { x: 0, y: 0 },
+        quizes: { x: 0, y: 0 },
+        cards: { x: 0, y: 0 },
+        dayTasks: { x: 0, y: 0 },
+        league: { x: 0, y: 0 },
+        test: { x: 0, y: 0 },
+        practice: { x: 0, y: 0 },
     },
 };
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
@@ -368,6 +371,7 @@ export default function HomeScreen() {
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
     const insets = useSafeAreaInsets();
+    const topFadeScroll = useTopFadeScroll();
     const { goToTab, activeIdx, focusTick } = useTabNav();
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
@@ -447,9 +451,9 @@ export default function HomeScreen() {
     const [dailyTaskBarCount, setDailyTaskBarCount] = useState(3);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, hasPremiumAccess } = usePremium();
-    // [SRS] Количество фраз, готовых к повторению сегодня.
-    // Временно: только __DEV__ (в стор-сборках карточка скрыта, запрос не делаем).
-    // >0 = карточка над «Тест/Экзамен», ведёт на /trainer.
+    // [SRS] Количество фраз, готовых к повторению сегодня (из локального стора).
+    // Показывается в подписи «Моя практика»: >0 → «N ждут сегодня», иначе
+    // «Ошибки под контролем». Считается и в проде (запрос локальный, без сети).
     const [dueCount, setDueCount] = useState(0);
     const [userAvatar, setUserAvatar] = useState(() => hh?.userAvatar ?? '🐣');
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(null);
@@ -621,6 +625,7 @@ export default function HomeScreen() {
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? 0);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
+    const [homeLeagueCrownCount, setHomeLeagueCrownCount] = useState(() => hh?.homeLeagueCrownCount ?? 0);
     const [homeLeagueRaceVisible, setHomeLeagueRaceVisible] = useState(() => hh?.homeLeagueRaceVisible ?? false);
     const [homeLeagueChest, setHomeLeagueChest] = useState<{
         leagueName: string;
@@ -781,8 +786,9 @@ export default function HomeScreen() {
             loadData();
         });
         const leagueStateSub = onAppEvent('league_local_state_updated', () => { loadData(); });
-        const crownSub = onAppEvent('league_crown_updated', ({ expiresAt }) => {
+        const crownSub = onAppEvent('league_crown_updated', ({ expiresAt, crownCount }) => {
             setHomeLeagueCrownExpiresAt(expiresAt);
+            setHomeLeagueCrownCount(Math.max(1, Math.floor(Number(crownCount) || 1)));
         });
         // Слушаем событие начисления осколков
         const shardsSub = DeviceEventEmitter.addListener('shards_earned', (payload: {
@@ -931,13 +937,11 @@ export default function HomeScreen() {
         });
     }, []);
     useEffect(() => {
-        void refreshDailyTaskSummary();
-        loadData();
+        void Promise.all([refreshDailyTaskSummary(), loadData()]);
     }, [focusTick, studyTarget, refreshDailyTaskSummary]);
     useEffect(() => {
         if (activeIdx === 0) {
-            void refreshDailyTaskSummary();
-            loadData();
+            void Promise.all([refreshDailyTaskSummary(), loadData()]);
         }
     }, [activeIdx, studyTarget, refreshDailyTaskSummary]);
     useEffect(() => {
@@ -946,11 +950,19 @@ export default function HomeScreen() {
             .then((uid) => {
             if (!uid)
                 return null;
-            return fetchActiveLeagueCrowns([uid]).then((crowns) => crowns[uid]?.expiresAt ?? 0);
+            return fetchActiveLeagueCrowns([uid]).then((crowns) => {
+                const crown = crowns[uid];
+                return {
+                    expiresAt: crown?.expiresAt ?? 0,
+                    crownCount: Math.max(0, Math.floor(Number(crown?.crownCount) || 0)),
+                };
+            });
         })
-            .then((expiresAt) => {
-            if (!cancelled && typeof expiresAt === 'number')
-                setHomeLeagueCrownExpiresAt(expiresAt);
+            .then((crown) => {
+            if (!cancelled && crown) {
+                setHomeLeagueCrownExpiresAt(crown.expiresAt);
+                setHomeLeagueCrownCount(crown.crownCount);
+            }
         })
             .catch(() => { });
         return () => {
@@ -1223,6 +1235,7 @@ export default function HomeScreen() {
                 lastLessonScore: snapLastLessonScore,
                 homeLeagueRaceVisible,
                 homeLeagueCrownExpiresAt,
+                homeLeagueCrownCount,
                 homeLeagueChest,
                 personalPlanSnapshot: planSnapshot ?? (activePlanState ? personalPlanSnapshot : null),
             }, studyTarget);
@@ -1242,7 +1255,10 @@ export default function HomeScreen() {
                 // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
                 // Если remote недоступен — функция сама перейдет на локальный state.
                 checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null),
-                __DEV__ ? getTrainerTotalDue(studyTarget).then(n => Array(n).fill(null)) : Promise.resolve([]),
+                // SRS-счётчик считается из локального стора (AsyncStorage, без сети) —
+                // дёшево и безопасно, поэтому показываем реальное число и в проде,
+                // а не всегда 0. При сбое — пустой массив (подпись «Ошибки под контролем»).
+                getTrainerTotalDue(studyTarget).then(n => Array(n).fill(null)).catch(() => []),
                 loadAllMedals(studyTarget),
                 isRepairEligible(),
                 AsyncStorage.getItem('login_bonus_pending'),
@@ -1362,6 +1378,7 @@ export default function HomeScreen() {
             if (pending && mountedRef.current) {
                 const marker = await getPendingCelebrationMarker();
                 setCelebrationMarker(marker);
+                void consumeCelebration(marker);
                 // Не показываем одновременно с revive-модалкой — celebration важнее, revive отложится до закрытия.
                 if (!offer)
                     setCelebrationVisible(true);
@@ -1377,6 +1394,7 @@ export default function HomeScreen() {
                 if (vipCelebrationQueuedMarkerRef.current !== queueKey) {
                     vipCelebrationQueuedMarkerRef.current = queueKey;
                     setVipCelebrationMarker(marker);
+                    void consumeVipCelebration(marker);
                     if (!offer && !pending)
                         setVipCelebrationVisible(true);
                     else {
@@ -1515,7 +1533,7 @@ export default function HomeScreen() {
     ) => {
         if (marker === 'freeze') {
             const iceSize = Math.round(size * 1.34);
-            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain"/>;
+            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel="Заморозка стрика" />;
         }
         if (marker === 'revive' || marker === 'repair') {
             return <Ionicons name="checkmark" size={checkSize} color={checkColor}/>;
@@ -1559,7 +1577,7 @@ export default function HomeScreen() {
                 pl: `Dzień ${loginBonus.cycle}`,
             })}</Text>
           </View>
-          <TouchableOpacity onPress={() => setLoginBonus(null)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TouchableOpacity>
+          <TapScale onPress={() => setLoginBonus(null)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
         </View>)}
       {showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>
           <Text style={{ fontSize: 28 }}>🚀</Text>
@@ -1585,7 +1603,7 @@ export default function HomeScreen() {
                 pl: "Cały dzień: +100% XP za każdą dobrą odpowiedź",
             })}</Text>
           </View>
-          <TouchableOpacity onPress={() => setComebackBanner(false)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TouchableOpacity>
+          <TapScale onPress={() => setComebackBanner(false)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
         </View>)}
       {showRepairCard && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: t.bgCard, borderRadius: 16, padding: 14, borderWidth: 1, borderColor: '#FF9500' + '99' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 8 }}>
@@ -1612,7 +1630,7 @@ export default function HomeScreen() {
                 pl: `Dziś ukończ 1 lekcję, żeby nie przerwać serii · ${repairProgress}/1`,
             })}</Text>
             </View>
-            <TouchableOpacity onPress={() => setShowRepairCard(false)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TouchableOpacity>
+            <TapScale onPress={() => setShowRepairCard(false)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
           </View>
           <View style={{ height: 6, backgroundColor: t.bgSurface2, borderRadius: 3 }}>
             <View style={{ height: 6, width: `${repairProgress / 2 * 100}%` as any, backgroundColor: '#FF9500', borderRadius: 3 }}/>
@@ -1626,14 +1644,14 @@ export default function HomeScreen() {
         const homeQuickRowPad = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16;
         const homeQuickRowGap = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 14 : 10;
         const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
-        const homeQuickIconPlateSize = isCompassTheme ? 88 : Math.min(118, Math.max(88, homeQuickTileWidth - 20));
-        const homeQuickIconImageSize = isCompassTheme ? 160 : Math.max(96, homeQuickIconPlateSize + 18);
-        const homeQuickIconLegacySize = isCompassTheme ? 152 : Math.max(96, homeQuickIconPlateSize + 14);
+        const homeQuickIconPlateSize = Math.min(118, Math.max(88, homeQuickTileWidth - 20));
+        const homeQuickIconImageSize = Math.max(96, homeQuickIconPlateSize + 18);
+        const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
         const homePracticeIconSize = 64;
-        const homePracticeIconImageSize = isCompassTheme ? 96 : homePracticeIconSize;
+        const homePracticeIconImageSize = homePracticeIconSize;
         const homeTodayIconSize = 96;
-        const homeTodayIconImageSize = isCompassTheme ? 118 : homeTodayIconSize;
+        const homeTodayIconImageSize = homeTodayIconSize;
         const quickItems = [
             { key: 'lessons', iconKey: 'lesson' as const, testID: 'home-quick-lessons', img: menuImages.lesson, label: s.tabs.lessons, sub: triLang(lang, {
                     ru: '32 урока',
@@ -1853,9 +1871,6 @@ export default function HomeScreen() {
                     <Text style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 14 : 16, fontWeight: '900', lineHeight: eliteStatsCompact ? 18 : 20 }} numberOfLines={1}>
                       {xpInLevel} / {xpNeeded} XP
                     </Text>
-                    <Text style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
-                      {xpPct}%
-                    </Text>
                   </View>
 
                   <View style={{
@@ -1935,7 +1950,7 @@ export default function HomeScreen() {
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
-        return (<ScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 32, paddingTop: 6 }}>
+        return (<BouncyScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: 32, marginTop: -Math.max(0, insets.top - 8) }}>
 
           {/* ХЕДЕР */}
           <Animated.View style={sectionStyle(0)}>
@@ -1943,8 +1958,8 @@ export default function HomeScreen() {
             <View style={{ flex: 1, minWidth: 0 }}>
               <View pointerEvents="box-none" style={[{ paddingRight: homeHeaderAccessTitleRightReserve }, homeHeaderAccessLayout ? { transform: [{ translateY: homeHeaderAccessTitleShiftY }] } : null]}>
                 <Text style={{ color: t.heroTextMuted, fontSize: f.caption }}>{greeting}</Text>
-                {homeLeagueRaceVisible && homeLeagueCrownExpiresAt > Date.now() ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
-                    <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1}/>
+                {homeLeagueRaceVisible && (homeLeagueCrownCount > 0 || homeLeagueCrownExpiresAt > Date.now()) ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
+                    <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1} count={Math.max(1, homeLeagueCrownCount)}/>
                   </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>)}
               </View>
               {/* Анимация начисления осколков */}
@@ -1989,7 +2004,7 @@ export default function HomeScreen() {
                 router.push('/shards_shop');
             }} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                      <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center"/>
+                      <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
                       <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
                     </Animated.View>
                   </TouchableOpacity>
@@ -2120,12 +2135,9 @@ export default function HomeScreen() {
                   <View style={{ marginBottom: 15 }}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 7 }}>
                       <Text style={{ color: t.textMuted, fontSize: eliteMetaFontSize, fontWeight: '800' }}>{xpInLevel} / {xpNeeded} XP</Text>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                        {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 2 }}>
+                      {totalXPMulti > 1.0 && (<View style={{ backgroundColor: t.gold, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 2 }}>
                             <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
                           </View>)}
-                        <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: eliteMetaFontSize, fontWeight: '800' }}>{xpPct}%</Text>
-                      </View>
                     </View>
                     <View style={{
                     height: 12,
@@ -2586,7 +2598,7 @@ export default function HomeScreen() {
                       </Text>
                       <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.78}>
                         {triLang(lang, {
-                        ru: 'Выбрать свой план обучения',
+                        ru: 'Составь свой маршрут',
                         uk: 'Вибрати свій план навчання',
                         es: 'Elegir mi plan de estudio',
                         'pt-BR': "Escolher meu plano de estudo",
@@ -2598,7 +2610,7 @@ export default function HomeScreen() {
                       </Text>
                       <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
                         {triLang(lang, {
-                        ru: '3 вопроса — и маршрут готов',
+                        ru: '3 вопроса — и план под тебя',
                         uk: '3 питання — і маршрут готовий',
                         es: '3 preguntas y la ruta está lista',
                         'pt-BR': "3 perguntas e a rota fica pronta",
@@ -2633,7 +2645,7 @@ export default function HomeScreen() {
                   </Text>
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }}>
                     {triLang(lang, {
-                        ru: 'Выбрать свой план обучения',
+                        ru: 'Составь свой маршрут',
                         uk: 'Вибрати свій план навчання',
                         es: 'Elegir mi plan de estudio',
                         'pt-BR': "Escolher meu plano de estudo",
@@ -2645,7 +2657,7 @@ export default function HomeScreen() {
                   </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
                     {triLang(lang, {
-                        ru: '3 вопроса — и маршрут готов',
+                        ru: '3 вопроса — и план под тебя',
                         uk: '3 питання — і маршрут готовий',
                         es: '3 preguntas y la ruta está lista',
                         'pt-BR': "3 perguntas e a rota fica pronta",
@@ -2676,7 +2688,7 @@ export default function HomeScreen() {
                     }}>
                   {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
                   {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
-                  <Image source={menuImages.lesson} style={{ position: 'absolute', right: 72, bottom: -20, width: 132, height: 132, opacity: isLightTheme ? 0.08 : 0.12 }} resizeMode="contain" pointerEvents="none"/>
+                  <Image source={menuImages.lesson} style={{ position: 'absolute', right: 72, bottom: -20, width: 132, height: 132, opacity: isLightTheme ? 0.08 : 0.12 }} resizeMode="contain" pointerEvents="none" accessible={false} />
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
                     <View style={{ width: 70, height: 70, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <CircularProgress pct={Math.round(lastLesson.progress / 50 * 100)} size={70} sw={8} color={isGoldTheme ? GOLD_RICH.champagne : t.accent} bg={isCompassTheme ? compassSubtleTrack : homeThemeTrackBg} innerBg={homeThemeIconPlateBg} textColor={isPaperHomeTheme ? homeThemePanelText : '#FFFFFF'} fontSize={12}/>
@@ -2998,10 +3010,10 @@ export default function HomeScreen() {
                     pl: "Cel ligi",
                 })}>
               <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 132, borderRadius: 24, borderWidth: 1, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: 18, paddingVertical: 16, overflow: 'hidden' }}>
-                <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -18, width: 142, height: 142, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain"/>
+                <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -18, width: 142, height: 142, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false} />
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13, marginBottom: 14 }}>
                   <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
+                    <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги" />
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
                     <Text style={{ color: t.textPrimary, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
@@ -3113,7 +3125,7 @@ export default function HomeScreen() {
                     pl: `${dueCount} czeka dziś`,
                 })
                 : triLang(lang, {
-                    ru: 'Повторение ошибок',
+                    ru: 'Закрепи сложное',
                     uk: 'Повторення помилок',
                     es: 'Repaso de errores',
                     'pt-BR': "Revisão de erros",
@@ -3274,11 +3286,12 @@ export default function HomeScreen() {
                     transform: [{ rotate: '-8deg' }],
                   }}
                   contentFit="contain"
+                  accessible={false}
                 />
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
                     <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, borderRadius: isCompassTheme ? compassHomeRadius : Math.round(homeTodayIconSize / 2), backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>
-                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain"/>
+                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги" />
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
@@ -3346,7 +3359,7 @@ export default function HomeScreen() {
           </View>
           </Animated.View>
 
-      </ScrollView>);
+      </BouncyScrollView>);
     };
     const energyTTAnchor = energyTooltip.anchor;
     const energyFallbackTop = insets.top +
@@ -3630,7 +3643,7 @@ export default function HomeScreen() {
                 })}
               </View>
 
-              <ScrollView style={{ maxHeight: Math.min(SCREEN_H * 0.58, 480) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator contentContainerStyle={{ paddingBottom: 8 }}>
+              <ScrollView decelerationRate="normal" style={{ maxHeight: Math.min(SCREEN_H * 0.58, 480) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator contentContainerStyle={{ paddingBottom: 8 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
                     return (<TouchableOpacity key={item.key} activeOpacity={item.unlocked ? 0.82 : 1} disabled={!item.unlocked} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 64, borderRadius: 16, padding: 12, marginBottom: 9, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.055)'), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (item.unlocked ? titleColor + '55' : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border)) }}>

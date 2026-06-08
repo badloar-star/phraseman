@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
@@ -77,7 +78,7 @@ export default function DuelJoinScreen() {
     }
     emitAppEvent('action_toast', {
       type: 'error',
-      messageRu: 'Не удалось присоединиться к комнате.',
+      messageRu: 'Не попал в комнату. Проверь код и попробуй снова.',
       messageUk: 'Не вдалося приєднатися до кімнати.',
       messageEs: 'No ha sido posible unirte a la sala. Inténtalo de nuevo.',
     });
@@ -90,15 +91,14 @@ export default function DuelJoinScreen() {
 
   return (
     <ScreenGradient>
-      <TouchableOpacity
+      <TapScale
         accessibilityRole="button"
         accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-        activeOpacity={0.85}
         onPress={goBack}
         style={[styles.backBtn, { backgroundColor: t.bgCard, borderColor: t.border }]}
       >
         <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-      </TouchableOpacity>
+      </TapScale>
       <View style={styles.centered}>
         {status === 'loading' && (
           <>

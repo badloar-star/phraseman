@@ -37,6 +37,7 @@ export type BuildPlanRuntimeBlockBundleInput = {
   dayIndex: number;
   phrases: PersonalPlanPhraseDraft[];
   spec: PlanRuntimeBlockSpec;
+  lang?: string;
 };
 
 export type BuildPlanRuntimeBlockBundleResult =
@@ -164,6 +165,7 @@ export function buildPlanRuntimeBlockBundle(
       exerciseType: input.spec.type,
       missingWord: input.spec.missingWordsByPhraseId?.[phraseId],
       distractors: input.spec.distractorsByPhraseId?.[phraseId],
+      lang: input.lang,
     });
   });
   const bundle = { block, items };

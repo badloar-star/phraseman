@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { triLang } from '../constants/i18n';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
@@ -12,7 +12,7 @@ interface Props {
   onClose: () => void;
 }
 
-export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
+function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
   const isCompassTheme = themeMode === 'compass';
@@ -64,7 +64,7 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginBottom: hardMode ? 8 : 24 }}>
               {triLang(lang, {
-                ru: 'Очень жаль 😔 Попробуй ещё раз!',
+                ru: 'Почти! Попробуй ещё раз.',
                 uk: 'Дуже шкода 😔 Спробуй ще раз!',
                 es: '¡Qué pena! 😔 ¡Inténtalo de nuevo!',
                 'pt-BR': 'Que pena 😔 Tente de novo!',
@@ -77,7 +77,7 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
             {hardMode && (
               <Text style={{ color: t.textSecond, fontSize: f.sub, textAlign: 'center', lineHeight: 20, marginBottom: 24, opacity: 0.85 }}>
                 {triLang(lang, {
-                  ru: 'Подсказка: попробуй выбрать уровень полегче или выключи ручной ввод в настройках.',
+                  ru: 'Попробуй уровень полегче или выключи ручной ввод в настройках.',
                   uk: 'Підказка: спробуй вибрати рівень легше або вимкни ручне введення в налаштуваннях.',
                   es: 'Sugerencia: prueba un nivel más fácil o desactiva el teclado en Ajustes.',
                   'pt-BR': 'Dica: tente escolher um nível mais fácil ou desative a digitação manual nas configurações.',
@@ -125,3 +125,5 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
     </Modal>
   );
 }
+
+export default memo(QuizTimeoutModal);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import React, { memo, useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import {
   Pressable,
   View,
@@ -54,7 +54,7 @@ interface Props {
   studyTarget?: RuntimeStudyTarget;
 }
 
-export default function AddToFlashcard({
+function AddToFlashcard({
   en, ru, uk, es, sourceLocales, source, sourceId, size = 20,
   literalRu, literalUk, literalEs,
   explanationRu, explanationUk, explanationEs,
@@ -267,6 +267,8 @@ export default function AddToFlashcard({
     </Pressable>
   );
 }
+
+export default memo(AddToFlashcard);
 
 const styles = StyleSheet.create({
   root: {

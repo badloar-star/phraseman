@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,7 +17,7 @@ type Props = {
 /**
  * Декларативный шеврон-аккордеон (Ionicons `chevron-down`), с теми же motion-таймингами, что и FAQ.
  */
-export default function AccordionChevronIonicons({
+function AccordionChevronIonicons({
   isOpen,
   size = 20,
   color,
@@ -33,3 +33,5 @@ export default function AccordionChevronIonicons({
     </Animated.View>
   );
 }
+
+export default memo(AccordionChevronIonicons);

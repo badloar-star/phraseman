@@ -29,7 +29,7 @@ export function planTaskDestinationLabel(destination: PlanTaskDestination): stri
     if (destination.exerciseType === 'plan_listen_build') return `Собрать на слух · ${destination.requiredCorrect}`;
     return `Произношение · ${destination.requiredCorrect}`;
   }
-  if (destination.type === 'quiz') return `Квиз дня · ${destination.questionCount} вопросов`;
+  if (destination.type === 'quiz') return `Вызов дня · ${destination.questionCount} вопросов`;
   if (destination.type === 'practice') {
     return `Моя практика · ${phraseLabel(destination.requiredPhrases ?? 3)}`;
   }

@@ -12,7 +12,7 @@
 //   • Throttle 30 c (спільний з user_reports).
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -70,7 +70,7 @@ const REASONS_ES: { id: PackReportReason; label: string; sub: string }[] = [
   { id: 'other', label: 'Otro', sub: 'No encaja en las categorías anteriores.' },
 ];
 
-export default function ReportPackModal({
+function ReportPackModal({
   visible,
   packId,
   packTitle,
@@ -419,3 +419,5 @@ export default function ReportPackModal({
     </Modal>
   );
 }
+
+export default memo(ReportPackModal);

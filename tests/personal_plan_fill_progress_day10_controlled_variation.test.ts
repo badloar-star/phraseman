@@ -4,7 +4,7 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 
 describe('personal plan fill progress day 10 controlled variation', () => {
-  it('tracks Day 10 chat drafts for every plan as a controlled variation day', () => {
+  it('tracks Day 10 as a controlled variation day for every plan', () => {
     const data = JSON.parse(fs.readFileSync(
       path.join(ROOT, 'docs', 'reports', 'personal-plans-fill-progress-data.json'),
       'utf8',
@@ -20,13 +20,19 @@ describe('personal plan fill progress day 10 controlled variation', () => {
     const day10Rows = data.dayQuality.filter((row: { label: string }) => row.label.endsWith('Day 10'));
     expect(day10Rows).toHaveLength(5);
     expect(day10Rows).toEqual(expect.arrayContaining([
-      expect.objectContaining({ label: 'Mitap Day 10', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Voyazh Day 10', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Gavan Day 10', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Impuls Day 10', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Echo Day 10', status: 'chat draft' }),
+      expect.objectContaining({ label: 'Mitap Day 10', status: 'certified' }),
+      expect.objectContaining({ label: 'Voyazh Day 10', status: 'certified' }),
+      expect.objectContaining({ label: 'Gavan Day 10', status: 'certified' }),
+      expect.objectContaining({ label: 'Impuls Day 10', status: 'certified' }),
+      expect.objectContaining({ label: 'Echo Day 10', status: 'certified' }),
     ]));
-    expect(day10Rows.every((row: { whatExists: string }) => row.whatExists.toLowerCase().includes('controlled variation'))).toBe(true);
-    expect(day10Rows.every((row: { notes: string }) => row.notes.toLowerCase().includes('precision'))).toBe(true);
+    for (const row of day10Rows as Array<{ status: string; whatExists: string; notes: string }>) {
+      expect(row.whatExists.toLowerCase()).toContain('controlled variation');
+      if (row.status === 'certified') {
+        expect(row.notes).toMatch(/_d010_generator_packet/);
+      } else {
+        expect(row.notes.toLowerCase()).toContain('precision');
+      }
+    }
   });
 });

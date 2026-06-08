@@ -5,17 +5,17 @@
 
 import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
-  Image,
   Modal,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import {
   applyGift, ApplyGiftResult, GiftDef, giftDisplayDescForLang, giftDisplayTitleForLang, giftRarityUiLabel,
   isEnergyBonusGiftId,
@@ -187,7 +187,7 @@ interface Props {
 /** pair: сундуки + мини-раскрытие (только названия); full: описания + «Получить всё» */
 type Phase = 'pair' | 'full';
 
-export default function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', studyTarget }: Props) {
+function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolledPair, deliveryMode = 'claim', studyTarget }: Props) {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const { energy, maxEnergy, reload: reloadEnergy } = useEnergy();
@@ -917,6 +917,8 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
   );
 }
 
+export default memo(LevelGiftDualModal);
+
 /** Сразу после открытия: только иконка + название, без описания (анимация по редкости). */
 function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, premVisual }: {
   gift:        GiftDef;
@@ -956,7 +958,7 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, 
             zIndex: 2,
             position: 'relative',
           }}
-          resizeMode="contain"
+          contentFit="contain"
         />
       </View>
       <Text
@@ -1035,7 +1037,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level, themeM
         {label} · {giftRarityUiLabel(rarity, lang)}
       </Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        <Image source={getLevelGiftRewardIcon(g.id, themeMode)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} resizeMode="contain" />
+        <Image source={getLevelGiftRewardIcon(g.id, themeMode)} style={{ width: DETAIL_REWARD_ICON_SIZE, height: DETAIL_REWARD_ICON_SIZE }} contentFit="contain" />
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.h2 - 2, fontWeight: '900' }}>{giftDisplayTitleForLang(g, lang)}</Text>
           {!!giftDisplayDescForLang(g, lang) && (

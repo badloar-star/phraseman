@@ -9,8 +9,9 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   View, Text, Modal, Animated, Easing, TouchableOpacity,
-  Dimensions, ScrollView, Image, StyleSheet, Pressable,
+  Dimensions, ScrollView, StyleSheet, Pressable,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -643,7 +644,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       <Image
                         source={club.imageUri}
                         style={{ width: 110, height: 110 }}
-                        resizeMode="contain"
+                        contentFit="contain"
                       />
                     </Animated.View>
                   </View>
@@ -691,7 +692,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                         backgroundColor: 'rgba(0,0,0,0.32)',
                       }}
                     >
-                      <Image source={prevLeague.imageUri} style={{ width: 18, height: 18, opacity: 0.7 }} resizeMode="contain" />
+                      <Image source={prevLeague.imageUri} style={{ width: 18, height: 18, opacity: 0.7 }} contentFit="contain" />
                       <Text style={{ color: t.textMuted, fontSize: f.caption }}>
                         {triLang(lang, {
   ru: prevLeague.nameRU,
@@ -709,7 +710,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                         size={14}
                         color={palette.primary}
                       />
-                      <Image source={newLeague.imageUri} style={{ width: 18, height: 18 }} resizeMode="contain" />
+                      <Image source={newLeague.imageUri} style={{ width: 18, height: 18 }} contentFit="contain" />
                       <Text style={{ color: palette.primary, fontSize: f.caption, fontWeight: '700' }}>
                         {triLang(lang, {
   ru: newLeague.nameRU,
@@ -729,6 +730,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                 {/* ── RANK + RESULT ZONE ─────────────────────────── */}
                 <ScrollView
                   style={{ flex: 1 }}
+                  decelerationRate="normal"
                   contentContainerStyle={{ paddingBottom: 4 }}
                   showsVerticalScrollIndicator={false}
                   nestedScrollEnabled

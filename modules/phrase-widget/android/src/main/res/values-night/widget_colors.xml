@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark-mode widget palette. -->
+<resources>
+    <color name="phrase_widget_bg">#FF161325</color>
+    <color name="phrase_widget_primary">#FFF3F1FA</color>
+    <color name="phrase_widget_secondary">#FFB9B2CC</color>
+    <color name="phrase_widget_accent">#FF9D86FF</color>
+</resources>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { Polygon } from 'react-native-svg';
 
@@ -16,10 +16,12 @@ type Props = {
 };
 
 /** Сплошная заливка без стыков (в отличие от трёх View с border). */
-export default function FlatTopHexFill({ width: w, height: h, fill, style }: Props) {
+function FlatTopHexFill({ width: w, height: h, fill, style }: Props) {
   return (
     <Svg width={w} height={h} style={style}>
       <Polygon points={flatTopHexPoints(w, h)} fill={fill} />
     </Svg>
   );
 }
+
+export default memo(FlatTopHexFill);

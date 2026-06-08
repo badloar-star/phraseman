@@ -967,7 +967,9 @@ export const readGiftXpBank = async (): Promise<GiftXpBankState> => {
     if (!raw) return { remaining: 0, grantedTotal: 0, updatedAt: 0 };
     const parsed = JSON.parse(raw) as Partial<GiftXpBankState>;
     const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0));
-    const grantedTotal = Math.max(0, Math.floor(Number(parsed.grantedTotal) || remaining));
+    const rawGrantedTotal = Math.max(0, Math.floor(Number(parsed.grantedTotal) || 0));
+    // Целостность: grantedTotal не может быть меньше remaining (remaining — остаток банка)
+    const grantedTotal = Math.max(remaining, rawGrantedTotal);
     return { remaining, grantedTotal, updatedAt: Math.max(0, Number(parsed.updatedAt) || 0) };
   } catch {
     return { remaining: 0, grantedTotal: 0, updatedAt: 0 };
@@ -979,9 +981,11 @@ export const grantGiftXpBank = async (amount: number): Promise<void> => {
   if (safe <= 0) return;
   const cur = await readGiftXpBank();
   const nextRemaining = Math.min(GIFT_XP_BANK_CAP, cur.remaining + safe);
+  // grantedTotal — исторический итог выданных XP (не текущий остаток)
+  const nextGrantedTotal = cur.grantedTotal + safe;
   await AsyncStorage.setItem(
     GIFT_XP_BANK_KEY,
-    JSON.stringify({ remaining: nextRemaining, grantedTotal: nextRemaining, updatedAt: Date.now() }),
+    JSON.stringify({ remaining: nextRemaining, grantedTotal: nextGrantedTotal, updatedAt: Date.now() }),
   );
 };
 
@@ -992,14 +996,11 @@ export const consumeGiftXpBank = async (baseXp: number): Promise<number> => {
   const used = Math.min(cur.remaining, safe);
   if (used <= 0) return 0;
   const remaining = cur.remaining - used;
-  if (remaining <= 0) {
-    await AsyncStorage.removeItem(GIFT_XP_BANK_KEY);
-  } else {
-    await AsyncStorage.setItem(
-      GIFT_XP_BANK_KEY,
-      JSON.stringify({ remaining, grantedTotal: cur.grantedTotal, updatedAt: Date.now() }),
-    );
-  }
+  // Всегда сохраняем — grantedTotal (исторический счётчик) нельзя уничтожать removeItem
+  await AsyncStorage.setItem(
+    GIFT_XP_BANK_KEY,
+    JSON.stringify({ remaining: Math.max(0, remaining), grantedTotal: cur.grantedTotal, updatedAt: Date.now() }),
+  );
   return used;
 };
 

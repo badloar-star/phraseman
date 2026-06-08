@@ -61,7 +61,7 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   }
   if (lower.includes('insufficient') || lower.includes('недостаточ') || lower.includes('недостатн')) {
     return {
-      ru: 'Недостаточно осколков на балансе. Проверьте баланс после синхронизации.',
+      ru: 'Недостаточно осколков на балансе. Проверь баланс после синхронизации.',
       uk: 'Недостатньо осколків на балансі. Перевірте баланс після синхронізації.',
       es: 'Saldo de fragmentos insuficiente. Sincroniza con el servidor y comprueba.',
       'pt-BR': 'Saldo de fragmentos insuficiente. Sincronize com o servidor e confira.',
@@ -97,7 +97,7 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   }
   const short = raw.slice(0, 200);
   return {
-    ru: short || 'Не удалось купить набор.',
+    ru: short || 'Покупка не прошла. Попробуй снова.',
     uk: short || 'Не вдалося купити набір.',
     es: short || 'No se pudo comprar el pack.',
     'pt-BR': short || 'Não foi possível comprar o pacote.',
@@ -136,7 +136,7 @@ export async function purchaseCommunityPackWithShards(
 
   if (!(await ensureFirebaseUserSignedInForCallable())) {
     emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Не удалось подключить облачный вход. Повторите попытку.',
+      ru: 'Облачный вход не подключился. Повтори попытку.',
       uk: 'Не вдалося підключити хмарний вхід. Спробуйте ще раз.',
       es: 'No se pudo conectar con la cuenta en la nube. Inténtalo de nuevo.',
       'pt-BR': 'Não foi possível conectar o login na nuvem. Tente novamente.',
@@ -155,7 +155,10 @@ export async function purchaseCommunityPackWithShards(
       studyTarget: storageStudyTarget(studyTarget),
       buyerDisplayName,
     });
-    if (res.alreadyOwned) return 'already_owned';
+    if (res.alreadyOwned) {
+      await addCommunityOwnedPackId(pack.id, studyTarget);
+      return 'already_owned';
+    }
     if (typeof res.buyerBalanceAfter === 'number') {
       await replaceShardsBalanceLocal(res.buyerBalanceAfter);
     } else {

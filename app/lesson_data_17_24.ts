@@ -1627,25 +1627,6 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
     ],
   },
   {
-    id: 'lesson18_phrase_31',
-    english: "Can you help me?",
-    russian: "Ты можешь помочь мне?",
-    ukrainian: "Ти можеш допомогти мені?",
-    spanish: "¿Puedes ayudarme?",
-    words: [
-      { text: '¿', correct: '¿', distractors: ['?', '.', ',', '!', ';'], category: 'puntuacion' },
-      { text: 'Puedes', correct: 'Puedes', distractors: ['Puedo', 'Puede', 'Podemos', 'Pueden', 'Quieres'], category: 'modal' },
-      { text: 'ayudarme', correct: 'ayudarme', distractors: ['llamarme', 'mirarme', 'escucharme', 'esperarme', 'traerme'], category: 'imperativo' },
-      { text: '?', correct: '?', distractors: ['.', ',', '!', ';', ':'], category: 'puntuacion' },
-    ],
-    wordsEn: [
-      { text: 'Can', correct: 'Can', distractors: ['Could', 'Should', 'Will', 'May', 'Shall'], category: 'modal' },
-      { text: 'you', correct: 'you', distractors: ['he', 'she', 'we', 'they', 'I'], category: 'pronombre' },
-      { text: 'help', correct: 'help', distractors: ['wait', 'call', 'check', 'send', 'open'], category: 'imperativo' },
-      { text: 'me', correct: 'me', distractors: ['him', 'her', 'us', 'them', 'it'], category: 'pronombre' },
-    ],
-  },
-  {
     id: 'lesson18_phrase_32',
     english: "Can you call me later?",
     russian: "Ты можешь позвонить мне позже?",
@@ -3801,25 +3782,6 @@ export const LESSON_20_PHRASES: LessonPhrase[] = [
     ],
   },
   {
-    id: 'lesson20_phrase_33',
-    english: "Is the phone on the table?",
-    russian: "Телефон на столе?",
-    ukrainian: "Телефон на столі?",
-    spanish: "¿Está el teléfono sobre la mesa?",
-    words: [
-      { text: "Телефон", correct: "Телефон", distractors: ["сумка", "ключ", "билет", "паспорт", "зарядка"] },
-      { text: "столе", correct: "столе", distractors: ["стуле", "кровати", "полке", "диване", "окне"] },
-    ],
-    wordsEn: [
-      { text: "Is", correct: "Is", distractors: ["are", "am", "was", "has", "does"] },
-      { text: "the", correct: "the", distractors: ["a", "an", "my", "this", "that"], category: "article" },
-      { text: "phone", correct: "phone", distractors: ["bag", "key", "ticket", "passport", "charger"] },
-      { text: "on", correct: "on", distractors: ["in", "at", "to", "of", "by"], category: "preposition" },
-      { text: "the", correct: "the", distractors: ["a", "an", "my", "this", "that"], category: "article" },
-      { text: "table", correct: "table", distractors: ["chair", "bed", "shelf", "sofa", "window"] },
-    ],
-  },
-  {
     id: 'lesson20_phrase_34',
     english: "Does she have a bag?",
     russian: "У неё есть сумка?",
@@ -4167,8 +4129,8 @@ export const LESSON_23_PHRASES: LessonPhrase[] = [
     words: [
       { text: 'Комната', correct: 'Комната', distractors: ['Комнату', 'Комнаты', 'я', 'ты', 'он'] },
       { text: 'убирается', correct: 'убирается', distractors: ['убирался', 'убирать', 'я', 'ты', 'он'] },
-      { text: 'каждый', correct: 'каждый', distractors: ['я', 'ты', 'он', 'она', 'мы'] },
-      { text: 'день', correct: 'день', distractors: ['я', 'ты', 'он', 'она', 'мы'] },
+      { text: 'каждый', correct: 'каждый', distractors: ['любой', 'этот', 'тот', 'другой', 'один'] },
+      { text: 'день', correct: 'день', distractors: ['ночь', 'утро', 'вечер', 'час', 'неделя'] },
     ],
     wordsEn: [
       { text: 'The', correct: 'The', distractors: ['a', 'an', 'this', 'that', 'these'] },
@@ -4188,8 +4150,8 @@ export const LESSON_23_PHRASES: LessonPhrase[] = [
     words: [
       { text: 'Документы', correct: 'Документы', distractors: ['Документ', 'Документа', 'я', 'ты', 'он'] },
       { text: 'проверяются', correct: 'проверяются', distractors: ['проверялись', 'проверять', 'я', 'ты', 'он'] },
-      { text: 'каждое', correct: 'каждое', distractors: ['я', 'ты', 'он', 'она', 'мы'] },
-      { text: 'утро', correct: 'утро', distractors: ['я', 'ты', 'он', 'она', 'мы'] },
+      { text: 'каждое', correct: 'каждое', distractors: ['любое', 'это', 'то', 'другое', 'одно'] },
+      { text: 'утро', correct: 'утро', distractors: ['вечер', 'день', 'ночь', 'час', 'неделя'] },
     ],
     wordsEn: [
       { text: 'The', correct: 'The', distractors: ['a', 'an', 'this', 'that', 'these'] },

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
@@ -169,7 +170,7 @@ export default function FlashcardsMarketDevScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Не удалось сохранить DEV-покупку.',
+          ru: 'DEV-покупка не сохранилась.',
           uk: 'Не вдалося зберегти DEV-покупку.',
           es: 'No se pudo guardar la compra DEV.',
           'pt-BR': 'Não foi possível salvar a compra DEV.',
@@ -204,9 +205,9 @@ export default function FlashcardsMarketDevScreen() {
         <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
           <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: 10, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TouchableOpacity onPress={() => safeRouterBack(router, '/flashcards' as any)} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={() => safeRouterBack(router, '/flashcards' as any)} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{title}</Text>
             <View style={{ minWidth: 72, borderRadius: 12, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgSurface, paddingHorizontal: 10, paddingVertical: 5, flexDirection: 'row', alignItems: 'center', gap: 6, justifyContent: 'center' }}>
               <Image source={oskolokImageForPackShards(shards)} style={{ width: 18, height: 18 }} contentFit="contain" />
@@ -242,7 +243,7 @@ export default function FlashcardsMarketDevScreen() {
           </View>
         </View>
 
-        <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
+        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }}>
           <View style={{ backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, borderRadius: 14, padding: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>

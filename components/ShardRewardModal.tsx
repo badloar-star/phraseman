@@ -1,6 +1,7 @@
 import { LinearGradient } from './SafeLinearGradient';
-import React, { useEffect, useRef } from 'react';
-import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { bundleLang } from '../constants/i18n';
@@ -45,14 +46,14 @@ const TEXTS = {
     kicker: 'НАГРАДА',
     title: 'Осколки у тебя',
     subtitle: (n: number) => ruShardKnowledgeSubtitle(n),
-    body: 'Репорт проверили и починили баг. Заслуженная награда за настоящую сыскную работу.',
+    body: 'Твой репорт проверили и баг починили. Это настоящая работа — осколки заслужены.',
     bodySuggestion:
-      'Команда начислила тебе осколки. Спасибо, что помогаешь Phraseman становиться лучше.',
-    bodyAdmin: 'Команда начислила тебе осколки. Это наш способ сказать спасибо за твою поддержку.',
+      'Команда начислила тебе осколки. Твоя помощь делает Phraseman лучше — спасибо.',
+    bodyAdmin: 'Команда начислила тебе осколки — это наш способ сказать спасибо.',
     label: 'За исправление:',
     labelSuggestion: 'От команды:',
     labelAdmin: 'От команды:',
-    btn: 'Прекрасно',
+    btn: 'Отлично',
     multiple: (n: number) => `${n} исправленных ошибок`,
     multipleSuggestion: (n: number) => `${n} наград от команды`,
     multipleAdmin: (n: number) => `${n} наград от команды`,
@@ -169,7 +170,7 @@ const TEXTS = {
 
 const USE_ELITE_SHARD_REWARD_MODAL = true;
 
-export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
+function ShardRewardModal({ rewards, visible, onClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
@@ -295,7 +296,7 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                       <Image
                         source={oskolokImageForPackShards(Math.max(1, totalShards))}
                         style={styles.gemIcon}
-                        resizeMode="contain"
+                        contentFit="contain"
                       />
                     </View>
                   </Animated.View>
@@ -374,6 +375,8 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
     </Modal>
   );
 }
+
+export default memo(ShardRewardModal);
 
 const styles = StyleSheet.create({
   overlayRoot: {

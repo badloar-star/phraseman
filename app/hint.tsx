@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -1349,9 +1350,9 @@ export default function HintScreen() {
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-        <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={{ marginRight: 12 }}>
+        <TapScale onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={{ marginRight: 12 }}>
           <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-        </TouchableOpacity>
+        </TapScale>
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textMuted, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.7 }}>
             {hintSubtitle}
@@ -1361,7 +1362,7 @@ export default function HintScreen() {
           </Text>
         </View>
       </View>
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {frenchHintCopy ? (
           <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 18, gap: 12 }}>
             <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>

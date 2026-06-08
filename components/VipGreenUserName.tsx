@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { View, Text, StyleSheet, type LayoutChangeEvent } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
 import { useTheme } from './ThemeContext';
@@ -26,7 +26,7 @@ const VIP_STOPS_SKETCH = [
   { offset: '1', color: '#064E3B' },
 ];
 
-export default function VipGreenUserName({ text, fontSize }: Props) {
+function VipGreenUserName({ text, fontSize }: Props) {
   const { themeMode } = useTheme();
   const [measuredW, setMeasuredW] = useState(0);
   const display = text || 'Phraseman';
@@ -77,6 +77,8 @@ export default function VipGreenUserName({ text, fontSize }: Props) {
     </View>
   );
 }
+
+export default memo(VipGreenUserName);
 
 const styles = StyleSheet.create({
   wrap: { alignSelf: 'flex-start', position: 'relative', marginTop: 2 },

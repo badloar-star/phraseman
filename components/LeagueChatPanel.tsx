@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Dimensions, Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, TextInput, TouchableOpacity, View, type KeyboardEvent } from 'react-native';
 import { moderateLeagueChatMessage } from '../app/league_chat_moderation';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,6 +19,8 @@ import {
   getBlockedLeagueChatUsers,
   LeagueChatMessage,
   LeagueChatRoom,
+  LeagueChatSystemType,
+  isSystemLeagueChatMessage,
   loadCachedLeagueChatMessages,
   loadCachedLeagueChatRoom,
   reportLeagueChatMessage,
@@ -52,11 +54,23 @@ function sameRoom(a: LeagueChatRoom | null | undefined, b: LeagueChatRoom | null
   return !!a && !!b && a.groupId === b.groupId && a.weekId === b.weekId && a.leagueId === b.leagueId;
 }
 
+/** Иконка Ionicons для системного события лиги. */
+function systemMessageIcon(type: LeagueChatSystemType | undefined): keyof typeof Ionicons.glyphMap {
+  switch (type) {
+    case 'rank_up': return 'trending-up';
+    case 'new_leader': return 'trophy';
+    case 'member_joined': return 'person-add';
+    case 'chest_unlocked': return 'gift';
+    case 'week_ending': return 'time';
+    default: return 'sparkles';
+  }
+}
+
 function roomKey(room: LeagueChatRoom | null | undefined): string {
   return room ? `${room.weekId}:${room.leagueId}:${room.groupId}` : '';
 }
 
-export default function LeagueChatPanel({
+function LeagueChatPanel({
   initialRoom,
   myUid,
   myAvatar,
@@ -486,7 +500,7 @@ export default function LeagueChatPanel({
 }), 'success');
     } catch {
       showToast(triLang(lang, {
-  ru: 'Не удалось отправить жалобу',
+  ru: 'Жалоба не отправилась',
   uk: 'Не вдалося надіслати скаргу',
   es: 'No se pudo enviar el reporte',
   "pt-BR": 'Não foi possível enviar a denúncia',
@@ -573,7 +587,7 @@ export default function LeagueChatPanel({
           return next;
         });
         showToast(triLang(lang, {
-  ru: 'Не удалось скрыть участника',
+  ru: 'Участник не скрылся',
   uk: 'Не вдалося приховати учасника',
   es: 'No se pudo ocultar al participante',
   "pt-BR": 'Não foi possível ocultar o participante',
@@ -815,6 +829,51 @@ export default function LeagueChatPanel({
               </Text>
             </View>
           ) : visibleMessages.map((m) => {
+            // ── Системное сообщение лиги: по центру, мельче, с иконкой,
+            //    без аватара и без действий (репорт/скрыть). Явно «не от людей».
+            if (isSystemLeagueChatMessage(m)) {
+              // Оптимистичные сообщения никогда не системные → безопасно читаем systemType.
+              const systemType = (m as LeagueChatMessage).systemType;
+              return (
+                <View
+                  key={m.id}
+                  testID={`league-chat-system-${m.id}`}
+                  style={{ alignItems: 'center', paddingHorizontal: 2, marginVertical: 2 }}
+                >
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 6,
+                      maxWidth: '88%',
+                      paddingHorizontal: 12,
+                      paddingVertical: 6,
+                      borderRadius: 999,
+                      backgroundColor: t.bgSurface,
+                      borderWidth: 0.5,
+                      borderColor: t.border,
+                      opacity: 0.92,
+                    }}
+                  >
+                    <Ionicons name={systemMessageIcon(systemType)} size={13} color={t.textMuted} />
+                    <Text
+                      testID={`league-chat-system-text-${m.id}`}
+                      style={{
+                        color: t.textMuted,
+                        fontSize: Math.max(11, f.caption - 1),
+                        fontWeight: '700',
+                        textAlign: 'center',
+                        lineHeight: Math.round((f.caption - 1) * 1.4),
+                        flexShrink: 1,
+                      }}
+                    >
+                      {m.text}
+                    </Text>
+                  </View>
+                </View>
+              );
+            }
+
             const localMessage = isOptimisticLeagueChatMessage(m);
             const isMine = localMessage || (!!myUid && m.authorUid === myUid);
             const pendingHideUntil = pendingHideUntilByUid[m.authorUid] ?? 0;
@@ -1005,11 +1064,12 @@ export default function LeagueChatPanel({
 })}
               placeholderTextColor={t.textGhost}
               multiline
+              scrollEnabled
               maxLength={420}
               style={{
                 flex: 1,
                 minHeight: 44,
-                maxHeight: 110,
+                maxHeight: 120,
                 borderRadius: 20,
                 borderWidth: 0.5,
                 borderColor: draftBlocked ? '#E05252' : t.border,
@@ -1019,6 +1079,8 @@ export default function LeagueChatPanel({
                 paddingHorizontal: 14,
                 paddingVertical: 10,
                 fontSize: f.sub,
+                lineHeight: Math.round(f.sub * 1.35),
+                textAlignVertical: 'top',
               }}
             />
             <TouchableOpacity
@@ -1046,3 +1108,5 @@ export default function LeagueChatPanel({
     </>
   );
 }
+
+export default memo(LeagueChatPanel);

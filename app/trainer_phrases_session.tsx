@@ -14,18 +14,22 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { safeRouterBack } from './navigation_back';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import {
   getDueItems,
   markTrainerResult,
@@ -91,6 +95,7 @@ function WordBankMode({ item, onResult }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = themeMode === 'compass';
   const { lang } = useLang();
+  const { playCorrect } = useCorrectSound();
   const [bank, setBank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
@@ -118,6 +123,7 @@ function WordBankMode({ item, onResult }: WordBankProps) {
     setFeedback(isOk ? 'correct' : 'wrong');
     if (isOk) {
       hapticSuccess();
+      playCorrect();
       setTimeout(() => onResult(true), 700);
     } else {
       hapticError();
@@ -249,6 +255,7 @@ interface FillGapProps {
 function FillGapMode({ item, onResult }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = themeMode === 'compass';
+  const { playCorrect } = useCorrectSound();
   const { lang } = useLang();
   const errorWord = item.errorWord ?? '';
   const [options] = useState(() => buildTrainerFillGapOptions({
@@ -270,6 +277,7 @@ function FillGapMode({ item, onResult }: FillGapProps) {
     setFeedback(isOk ? 'correct' : 'wrong');
     if (isOk) {
       hapticSuccess();
+      playCorrect();
       setTimeout(() => onResult(true), 700);
     } else {
       hapticError();
@@ -352,23 +360,38 @@ export default function TrainerPhrasesSession() {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
   const [accessReady, setAccessReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
   const dailySessionTracked = useRef(false);
 
   useEffect(() => {
+    let cancelled = false;
+    setLoadError(false);
+    setLoading(true);
     void (async () => {
-      const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session');
-      if (!allowed) {
-        logTrainerDirectGateBlocked('/trainer_phrases_session');
-        router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
-        return;
+      try {
+        const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session');
+        if (cancelled) return;
+        if (!allowed) {
+          logTrainerDirectGateBlocked('/trainer_phrases_session');
+          router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+          return;
+        }
+        setAccessReady(true);
+        const items = await getDueItems('phrases', 15);
+        if (cancelled) return;
+        if (items.length === 0) { setDone(true); setLoading(false); return; }
+        setDeck(buildDeck(items));
+        setLoading(false);
+      } catch {
+        // Сбой загрузки колоды → экран ошибки с retry вместо вечного лоадера.
+        if (cancelled) return;
+        setLoadError(true);
+        setLoading(false);
       }
-      setAccessReady(true);
-      const items = await getDueItems('phrases', 15);
-      if (items.length === 0) { setDone(true); setLoading(false); return; }
-      setDeck(buildDeck(items));
-      setLoading(false);
     })();
-  }, [router]);
+    return () => { cancelled = true; };
+  }, [router, reloadKey]);
 
   const handleResult = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
@@ -407,14 +430,18 @@ export default function TrainerPhrasesSession() {
     if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
   }, [deck, current, correct, wrong]);
 
-  if (!accessReady || loading) {
+  if (loadError) {
     return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: '#888' }} />
-        </SafeAreaView>
-      </ScreenGradient>
+      <TrainerErrorView
+        lang={lang}
+        onRetry={() => { hapticTap(); setReloadKey(k => k + 1); }}
+        onExit={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+      />
     );
+  }
+
+  if (!accessReady || loading) {
+    return <TrainerLoadingView lang={lang} />;
   }
 
   if (done) {
@@ -428,7 +455,7 @@ export default function TrainerPhrasesSession() {
               wrong={wrong}
               total={deck.length || correct + wrong}
               accent="#40C080"
-              onDone={() => { hapticTap(); router.back(); }}
+              onDone={() => { hapticTap(); safeRouterBack(router, '/trainer'); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
           </ContentWrap>
@@ -466,9 +493,9 @@ export default function TrainerPhrasesSession() {
         <ContentWrap>
           {/* Header */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
+            <TapScale onPress={() => safeRouterBack(router, '/trainer')} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
             <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.body }]}>
               {triLang(lang, {
                 ru: 'Фразы',
@@ -497,6 +524,7 @@ export default function TrainerPhrasesSession() {
           </View>
 
           <ScrollView
+            decelerationRate="normal"
             contentContainerStyle={{ padding: 16, paddingTop: 8, flex: 1 }}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}

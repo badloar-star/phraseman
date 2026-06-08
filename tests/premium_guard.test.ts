@@ -138,6 +138,37 @@ test('admin_grant ignored when admin explicitly revoked (override false)', async
   expect(result).toBe(false);
 });
 
+test('intro full access grants premium-level access without making real Premium active', async () => {
+  asyncStore.intro_full_access_started_at_v1 = String(Date.now() - 60_000);
+  asyncStore.intro_full_access_ends_at_v1 = String(Date.now() + 60_000);
+  getCustomerInfo.mockResolvedValue({
+    entitlements: { active: {} },
+    activeSubscriptions: [],
+  });
+
+  const { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } = require('../app/premium_guard');
+
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(true);
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  await expect(getVerifiedVipStatus()).resolves.toBe(false);
+  expect(asyncStore.premium_active).not.toBe('true');
+  expect(asyncStore.vip_active).toBeUndefined();
+});
+
+test('expired intro full access does not grant premium-level access', async () => {
+  asyncStore.intro_full_access_started_at_v1 = String(Date.now() - 4 * 24 * 60 * 60 * 1000);
+  asyncStore.intro_full_access_ends_at_v1 = String(Date.now() - 24 * 60 * 60 * 1000);
+  getCustomerInfo.mockResolvedValue({
+    entitlements: { active: {} },
+    activeSubscriptions: [],
+  });
+
+  const { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus } = require('../app/premium_guard');
+
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(false);
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+});
+
 test('restores VIP from cloud before denying Premium access', async () => {
   restoreFromCloud.mockImplementation(async () => {
     asyncStore.vip_active = 'true';

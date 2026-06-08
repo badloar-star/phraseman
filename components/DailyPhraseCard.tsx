@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import {
-  Image,
   Modal,
   Pressable,
   ScrollView,
@@ -8,12 +7,16 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
+import { useGlobalSearchParams } from 'expo-router';
+import { useAudio } from '../hooks/use-audio';
+import { syncWidgetData } from '../app/widget_bridge';
+import { dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { checkAchievements } from '../app/achievements';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
-import type { ThemeMode } from '../constants/theme';
 import {
   dailyPhraseCopyForLang,
   getTodayPhraseForTarget,
@@ -41,119 +44,20 @@ const DAILY_PHRASE_IMAGES: Record<string, any> = {
 
 const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;
 
-type DailyPhraseChrome = {
-  colors: [string, string, string];
-  border: string;
-  glow: string;
-  title: string;
-  phrase: string;
-  sub: string;
-  iconBg: string;
-  iconBorder: string;
-  ornament: string;
-  shadow: string;
-};
-
-const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
-  dark: {
-    colors: ['#193025', '#13241C', '#09110D'],
-    border: 'rgba(116,232,156,0.28)',
-    glow: 'rgba(71,200,112,0.22)',
-    title: '#D9FFE5',
-    phrase: '#FFFFFF',
-    sub: '#B8D9C2',
-    iconBg: 'rgba(116,232,156,0.13)',
-    iconBorder: 'rgba(116,232,156,0.22)',
-    ornament: '#58CC89',
-    shadow: '#47C870',
-  },
-  neon: {
-    colors: ['#202713', '#151914', '#080909'],
-    border: 'rgba(200,255,0,0.34)',
-    glow: 'rgba(200,255,0,0.26)',
-    title: '#F1FFC2',
-    phrase: '#FFFFFF',
-    sub: '#CDD7A1',
-    iconBg: 'rgba(200,255,0,0.13)',
-    iconBorder: 'rgba(200,255,0,0.25)',
-    ornament: '#C8FF00',
-    shadow: '#C8FF00',
-  },
-  gold: {
-    colors: ['#242424', '#151515', '#070707'],
-    border: 'rgba(230,190,103,0.42)',
-    glow: 'rgba(214,179,90,0.15)',
-    title: '#FFF0BF',
-    phrase: '#FFF8E8',
-    sub: '#D2BE91',
-    iconBg: 'rgba(230,190,103,0.14)',
-    iconBorder: 'rgba(230,190,103,0.34)',
-    ornament: '#D6B35A',
-    shadow: '#D6B35A',
-  },
-  coral: {
-    colors: ['#302026', '#1D171A', '#0D0A0B'],
-    border: 'rgba(255,128,128,0.34)',
-    glow: 'rgba(255,100,100,0.24)',
-    title: '#FFE0E0',
-    phrase: '#FFFFFF',
-    sub: '#E5B9C2',
-    iconBg: 'rgba(255,128,128,0.14)',
-    iconBorder: 'rgba(255,128,128,0.25)',
-    ornament: '#FF6464',
-    shadow: '#FF6464',
-  },
-  minimalLight: {
-    colors: ['#FFFDF7', '#F5EDDE', '#E8DCC7'],
-    border: 'rgba(45,39,30,0.28)',
-    glow: 'rgba(118,83,31,0.18)',
-    title: '#343842',
-    phrase: '#171615',
-    sub: '#514B42',
-    iconBg: 'rgba(52,56,66,0.10)',
-    iconBorder: 'rgba(45,39,30,0.18)',
-    ornament: '#343842',
-    shadow: 'rgba(34,28,18,0.28)',
-  },
-  minimalDark: {
-    colors: ['#26303E', '#20242C', '#121419'],
-    border: 'rgba(110,168,255,0.34)',
-    glow: 'rgba(110,168,255,0.22)',
-    title: '#DCEAFF',
-    phrase: '#FFFFFF',
-    sub: '#B8C1CF',
-    iconBg: 'rgba(110,168,255,0.13)',
-    iconBorder: 'rgba(110,168,255,0.24)',
-    ornament: '#6EA8FF',
-    shadow: '#6EA8FF',
-  },
-  compass: {
-    colors: ['#25221D', '#141311', '#060605'],
-    border: 'rgba(242,196,141,0.42)',
-    glow: 'rgba(242,196,141,0.15)',
-    title: '#FFE7B6',
-    phrase: '#FFF8E8',
-    sub: '#D8C7AA',
-    iconBg: 'rgba(242,196,141,0.15)',
-    iconBorder: 'rgba(242,196,141,0.31)',
-    ornament: '#F2C48D',
-    shadow: '#F2C48D',
-  },
-};
-
-function dailyPhraseChromeFor(mode: ThemeMode): DailyPhraseChrome {
-  return DAILY_PHRASE_CHROME[mode] ?? DAILY_PHRASE_CHROME.minimalDark;
-}
+// Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
+// home/lock-screen widget can render the identical look. See that file.
 
 interface Props {
   userLevel?: number;
   variant?: 'default' | 'homeAdditional';
 }
 
-export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) {
+function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { speak } = useAudio();
+  const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
   const [phrase, setPhrase] = useState<DailyPhrase | null>(() => (
     getTodayPhraseSyncForTarget(studyTarget)
   ));
@@ -170,6 +74,45 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
     const unsubscribe = subscribeTodayPhraseForTarget(p => { if (p) setPhrase(p); }, studyTarget);
     return unsubscribe;
   }, [studyTarget]);
+
+  // React to "phrase of the day" widget deep links:
+  //   phraseman://phrase/<id>        -> openPhrase=<id>        (open details)
+  //   phraseman://phrase/<id>?play=1 -> openPhrase=<id>&play=1 (open + speak)
+  // handledDeepLinkRef ensures we act once per distinct link, not every render.
+  const handledDeepLinkRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (studyTarget === 'fr') return;
+    const openPhrase = typeof params.openPhrase === 'string' ? params.openPhrase : '';
+    if (!openPhrase) return;
+
+    const wantsPlay = typeof params.play === 'string' && params.play === '1';
+    const linkKey = `${openPhrase}:${wantsPlay ? '1' : '0'}`;
+    if (handledDeepLinkRef.current === linkKey) return;
+
+    // Always open details immediately.
+    setDetailsVisible(true);
+
+    if (!wantsPlay) {
+      handledDeepLinkRef.current = linkKey;
+      return;
+    }
+
+    // For play: only mark handled once we actually have text to speak, so a cold
+    // launch (phrase not yet loaded) retries on the next render instead of
+    // silently swallowing the play intent.
+    const english = (phrase?.english ?? getTodayPhraseSyncForTarget(studyTarget)?.english ?? '').trim();
+    if (english) {
+      speak(english);
+      handledDeepLinkRef.current = linkKey;
+    }
+  }, [params.openPhrase, params.play, studyTarget, phrase, speak]);
+
+  // Keep the home/lock-screen widget in lockstep with whatever this card shows.
+  // Best-effort and a native no-op off-device, so it never affects rendering.
+  useEffect(() => {
+    if (studyTarget === 'fr') return;
+    void syncWidgetData({ studyTarget, lang, themeMode });
+  }, [studyTarget, lang, themeMode, phrase?.id]);
 
   if (studyTarget === 'fr') {
     return null;
@@ -261,7 +204,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
             <Image
               source={dailyPhraseImage}
               style={styles.homeAdditionalGhostImage}
-              resizeMode="contain"
+              contentFit="contain"
             />
           </View>
         ) : null}
@@ -269,7 +212,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
           {!homeAdditional && (
             <View style={[styles.plaqueIcon, { backgroundColor: chrome.iconBg, borderColor: chrome.iconBorder }]}>
               {dailyPhraseImage ? (
-                <Image source={dailyPhraseImage} style={styles.iconImage} resizeMode="contain" />
+                <Image source={dailyPhraseImage} style={styles.iconImage} contentFit="contain" />
               ) : (
                 <Ionicons name="chatbubble-ellipses-outline" size={22} color={chrome.title} />
               )}
@@ -315,7 +258,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
             <View style={styles.sheetHeader}>
               <View style={[styles.sheetIcon, { backgroundColor: t.bgSurface2 }]}>
                 {dailyPhraseImage ? (
-                  <Image source={dailyPhraseImage} style={styles.sheetIconImage} resizeMode="contain" />
+                  <Image source={dailyPhraseImage} style={styles.sheetIconImage} contentFit="contain" />
                 ) : (
                   <Ionicons name="chatbubble-ellipses-outline" size={24} color={t.textMuted} />
                 )}
@@ -328,6 +271,22 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
                   {phrase.english}
                 </Text>
               </View>
+              <Pressable
+                onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, {
+                  uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
+                  'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
+                })}
+                style={({ pressed }) => [
+                  styles.closeButton,
+                  { backgroundColor: t.bgSurface2 },
+                  pressed && styles.pressed,
+                ]}
+              >
+                <Ionicons name="volume-high" size={20} color={t.accent} />
+              </Pressable>
               <Pressable
                 onPress={closeDetails}
                 hitSlop={8}
@@ -401,6 +360,8 @@ export default function DailyPhraseCard({ userLevel: _userLevel, variant = 'defa
     </>
   );
 }
+
+export default memo(DailyPhraseCard);
 
 const styles = StyleSheet.create({
   placeholder: {

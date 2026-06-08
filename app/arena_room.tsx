@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Text, TextInput, TouchableOpacity, View, ScrollView,
-  Modal, KeyboardAvoidingView, Platform, FlatList, Clipboard,
+  Modal, KeyboardAvoidingView, Platform, Clipboard, Animated,
 } from 'react-native';
+import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenGradient from '../components/ScreenGradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
@@ -132,9 +135,9 @@ function MemberRow({
         </Text>
       </View>
       {meIsHost && !isMe && !isHost && (
-        <TouchableOpacity onPress={() => onKick(member.authUid, member.userName)} style={{ padding: 4 }}>
+        <TapScale onPress={() => onKick(member.authUid, member.userName)} style={{ padding: 4 }}>
           <Ionicons name="close-circle-outline" size={20} color={t.textMuted} />
-        </TouchableOpacity>
+        </TapScale>
       )}
     </View>
   );
@@ -170,6 +173,8 @@ function ChatBubble({ msg, isMe, t, f }: { msg: ArenaRoomChatMessage; isMe: bool
 export default function ArenaRoomScreen() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
+  const insets = useSafeAreaInsets();
+  const topFadeScrollY = useRef(new Animated.Value(0)).current;
   const arenaReadyAccent = '#22C55E';
   const arenaRankAccent = '#F59E0B';
   const arenaCtaColors = ['#F59E0B', '#7C3AED'] as [string, string];
@@ -197,7 +202,7 @@ export default function ArenaRoomScreen() {
   const codeCopiedRef = useRef(false);
   const joinedRef = useRef(false);
   const lastReadChatCount = useRef(0);
-  const chatListRef = useRef<FlatList<ArenaRoomChatMessage>>(null);
+  const chatListRef = useRef<FlashListRef<ArenaRoomChatMessage>>(null);
 
   const roomCode = room?.code ?? cleanCode(codeInput);
   const sortedRuns = useMemo(() => [...runs].sort((a, b) => b.score - a.score), [runs]);
@@ -205,7 +210,7 @@ export default function ArenaRoomScreen() {
   const meIsHost = !!(myUid && room && room.ownerUid === myUid);
   const myMember = members.find(m => m.authUid === myUid);
   const allReady = members.length > 0 && members.every(m => m.ready);
-  const canStart = meIsHost && allReady && members.length >= 1;
+  const canStart = meIsHost && allReady && members.length >= 2;
 
   // Загружаем uid
   useEffect(() => {
@@ -522,7 +527,7 @@ export default function ArenaRoomScreen() {
     } catch {
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось отправить сообщение',
+        messageRu: 'Сообщение не дошло. Проверь сеть и повтори.',
         messageUk: 'Не вдалося надіслати повідомлення',
         messageEs: 'No se pudo enviar el mensaje',
       });
@@ -536,21 +541,23 @@ export default function ArenaRoomScreen() {
   const myRank = myRun ? sortedRuns.indexOf(myRun) + 1 : null;
 
   return (
-    <ScreenGradient>
+    <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
       <ScrollView
         testID="screen-arena-room"
-        contentContainerStyle={{ padding: 20, paddingTop: 64, gap: 16, paddingBottom: 40 }}
+        decelerationRate="normal"
+        contentContainerStyle={{ padding: 20, paddingTop: insets.top + 20, gap: 16, paddingBottom: 40 }}
         keyboardShouldPersistTaps="handled"
+        scrollEventThrottle={16}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
       >
         {/* Шапка */}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-          <TouchableOpacity
-            testID="arena-room-header-back"
+          <TapScale
             onPress={() => safeRouterBack(router, '/(tabs)/arena' as any)}
             style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <View style={{ flex: 1 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '900' }} numberOfLines={1}>
               {triLang(lang, {
@@ -581,7 +588,7 @@ export default function ArenaRoomScreen() {
           </View>
           {/* Кнопка чата — только в комнате */}
           {room && (
-            <TouchableOpacity
+            <TapScale
               onPress={handleOpenChat}
               style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}
             >
@@ -591,7 +598,7 @@ export default function ArenaRoomScreen() {
                   <Text style={{ color: '#fff', fontSize: 9, fontWeight: '900' }}>{unreadChat > 99 ? '99+' : unreadChat}</Text>
                 </View>
               )}
-            </TouchableOpacity>
+            </TapScale>
           )}
         </View>
 
@@ -613,6 +620,16 @@ export default function ArenaRoomScreen() {
             <View style={{ flexDirection: 'row', gap: 10 }}>
               <TextInput
                 testID="arena-room-code-input"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Код комнаты',
+                  uk: 'Код кімнати',
+                  es: 'Código de sala',
+                  'pt-BR': 'Código da sala',
+                  vi: 'Mã phòng',
+                  id: 'Kode ruangan',
+                  tr: 'Oda kodu',
+                  pl: 'Kod pokoju',
+                })}
                 value={codeInput}
                 onChangeText={(v) => setCodeInput(cleanCode(v))}
                 autoCapitalize="characters"
@@ -621,8 +638,7 @@ export default function ArenaRoomScreen() {
                 placeholderTextColor={t.textGhost}
                 style={{ flex: 1, height: 52, borderRadius: 14, borderWidth: 1, borderColor: t.border, color: t.textPrimary, backgroundColor: t.bgSurface, paddingHorizontal: 14, fontSize: f.h2, fontWeight: '900', letterSpacing: 2, textAlign: 'center' }}
               />
-              <TouchableOpacity
-                testID="arena-room-join-btn"
+              <TapScale
                 onPress={handleJoin}
                 disabled={loadingRoom || !codeInput}
                 style={{ paddingHorizontal: 16, height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: codeInput ? t.accent + '22' : t.bgSurface, borderWidth: 1, borderColor: codeInput ? t.accent : t.border, flexDirection: 'row', gap: 6 }}
@@ -640,7 +656,7 @@ export default function ArenaRoomScreen() {
                     pl: "Wejdź",
                   })}
                 </Text>
-              </TouchableOpacity>
+              </TapScale>
             </View>
 
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -731,7 +747,7 @@ export default function ArenaRoomScreen() {
                   </TouchableOpacity>
                 </View>
                 <View style={{ gap: 6 }}>
-                  <TouchableOpacity
+                  <TapScale
                     onPress={() => shareArenaLiveRoom(room, lang)}
                     style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 10, borderWidth: 1, borderColor: t.accent + '88', backgroundColor: t.accent + '15' }}
                   >
@@ -748,9 +764,9 @@ export default function ArenaRoomScreen() {
                         pl: "Zaproś",
                       })}
                     </Text>
-                  </TouchableOpacity>
+                  </TapScale>
                   {meIsHost && (
-                    <TouchableOpacity
+                    <TapScale
                       onPress={handleClose}
                       style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 10, borderWidth: 1, borderColor: '#EF444488', backgroundColor: '#EF444415' }}
                     >
@@ -767,7 +783,7 @@ export default function ArenaRoomScreen() {
                           pl: "Zamknij",
                         })}
                       </Text>
-                    </TouchableOpacity>
+                    </TapScale>
                   )}
                 </View>
               </View>
@@ -1071,17 +1087,16 @@ export default function ArenaRoomScreen() {
               })}
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}> {room?.code}</Text>
             </Text>
-            <TouchableOpacity onPress={() => setShowChat(false)} style={{ padding: 4 }}>
+            <TapScale onPress={() => setShowChat(false)} style={{ padding: 4 }}>
               <Ionicons name="close" size={24} color={t.textPrimary} />
-            </TouchableOpacity>
+            </TapScale>
           </View>
 
           {/* Сообщения */}
-          <FlatList
+          <FlashList
             ref={chatListRef}
             data={chatMessages}
             keyExtractor={item => item.id}
-            removeClippedSubviews={false}
             contentContainerStyle={{ padding: 16, paddingBottom: 8 }}
             ListEmptyComponent={
               <View style={{ alignItems: 'center', marginTop: 40 }}>
@@ -1109,6 +1124,16 @@ export default function ArenaRoomScreen() {
           {/* Поле ввода */}
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', padding: 12, paddingBottom: 20, gap: 8, borderTopWidth: 0.5, borderTopColor: t.border }}>
             <TextInput
+              accessibilityLabel={triLang(lang, {
+                ru: 'Сообщение в чат',
+                uk: 'Повідомлення в чат',
+                es: 'Mensaje de chat',
+                'pt-BR': 'Mensagem de chat',
+                vi: 'Tin nhắn chat',
+                id: 'Pesan obrolan',
+                tr: 'Sohbet mesajı',
+                pl: 'Wiadomość na czacie',
+              })}
               value={chatInput}
               onChangeText={setChatInput}
               placeholder={triLang(lang, {
@@ -1127,13 +1152,13 @@ export default function ArenaRoomScreen() {
               style={{ flex: 1, borderRadius: 20, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgSurface, color: t.textPrimary, paddingHorizontal: 14, paddingVertical: 10, fontSize: f.body, maxHeight: 100 }}
               onSubmitEditing={handleSendChat}
             />
-            <TouchableOpacity
+            <TapScale
               onPress={handleSendChat}
               disabled={!chatInput.trim() || chatSending}
               style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: chatInput.trim() ? t.accent : t.bgSurface, alignItems: 'center', justifyContent: 'center' }}
             >
               <Ionicons name="send" size={18} color={chatInput.trim() ? '#fff' : t.textMuted} />
-            </TouchableOpacity>
+            </TapScale>
           </View>
         </KeyboardAvoidingView>
         </ScreenGradient>

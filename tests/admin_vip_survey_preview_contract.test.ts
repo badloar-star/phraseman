@@ -66,7 +66,7 @@ describe('admin VIP survey preview', () => {
     expect(modal).not.toContain('StyleSheet.absoluteFill} onPress={onClose}');
     expect(modal).toContain('setError(copy.error)');
     expect(modal).not.toContain('`${copy.error} (${detail})`');
-    expect(modal).toContain('Нажмите «Завершить опрос», чтобы отправить ответы и активировать VIP.');
+    expect(modal).toContain('Нажми «Завершить опрос» — и VIP активируется.');
     expect(modal).not.toContain('VIP-аккаунт активирован');
     expect(modal).not.toContain('VIP account is active');
     expect(surveyClient).toContain('ensureFirebaseAuthUidForVipCallable');

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
@@ -17,7 +17,7 @@ interface Props {
   previewOnly?: boolean;
 }
 
-export default function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, previewOnly = false }: Props) {
+function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, previewOnly = false }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const isCompassTheme = themeMode === 'compass';
   const [loading, setLoading] = useState(false);
@@ -208,3 +208,5 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
     </Modal>
   );
 }
+
+export default memo(ReportUserModal);

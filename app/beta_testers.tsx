@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
 import React, { useLayoutEffect, useMemo, useState } from 'react';
 import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BETA_TESTERS } from '../constants/beta_testers_roll';
 import { useLang } from '../components/LangContext';
@@ -46,9 +47,9 @@ export default function BetaTesters() {
       <SafeAreaView style={{ flex: 1 }}>
         {/* Header */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}>
+          <TapScale onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TouchableOpacity>
+          </TapScale>
           <View style={{ flex: 1, marginLeft: 8 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
               {triLang(lang, {
@@ -65,7 +66,7 @@ export default function BetaTesters() {
           </View>
         </View>
 
-        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 8, paddingBottom: 16 }}>
+        <ScrollView style={{ flex: 1 }} decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 8, paddingBottom: 16 }}>
           {BETA_TESTERS.map((tester, index) => {
             const isExpanded = expanded === tester.name;
             const isLast = index === BETA_TESTERS.length - 1;

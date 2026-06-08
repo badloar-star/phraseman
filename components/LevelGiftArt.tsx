@@ -1,5 +1,6 @@
-import React from 'react';
-import { Image, View, type ImageStyle, type StyleProp, type ViewStyle } from 'react-native';
+import React, { memo } from 'react';
+import { View, type ImageStyle, type StyleProp, type ViewStyle } from 'react-native';
+import { Image } from 'expo-image';
 import {
   getLevelGiftImage,
   type LevelGiftImageTheme,
@@ -23,7 +24,7 @@ const resolveTheme = (theme: string | null | undefined): LevelGiftImageTheme =>
 const resolveVariant = (variant: string | null | undefined): LevelGiftImageVariant =>
   isGiftVariant(variant) ? variant : 'common';
 
-export default function LevelGiftArt({
+function LevelGiftArt({
   themeMode,
   variant,
   size,
@@ -55,9 +56,11 @@ export default function LevelGiftArt({
     >
       <Image
         source={getLevelGiftImage(safeTheme, safeVariant)}
-        resizeMode="contain"
+        contentFit="contain"
         style={[{ width: size, height: size } satisfies ImageStyle, imageStyle]}
       />
     </View>
   );
 }
+
+export default memo(LevelGiftArt);

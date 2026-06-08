@@ -45,6 +45,7 @@ export type PlanRuntimeItemInput = {
   exerciseType: PlanRuntimeExerciseType;
   missingWord?: string;
   distractors?: string[];
+  lang?: string;
 };
 
 export type PlanRuntimeSubmissionInput = {
@@ -139,11 +140,35 @@ function choice(id: string, text: string, isCorrect: boolean): PlanRuntimeChoice
   return { id, text, isCorrect };
 }
 
-function promptFor(exerciseType: PlanRuntimeExerciseType): string {
-  if (exerciseType === 'plan_phrase_build') return 'Соберите фразу из слов.';
-  if (exerciseType === 'plan_choose_natural_phrase') return 'Выберите естественную фразу.';
-  if (exerciseType === 'plan_missing_word') return 'Вставьте пропущенное слово.';
-  return 'Вспомните фразу без подсказок.';
+const PROMPT_FOR_COPY: Record<PlanRuntimeExerciseType, { ru: string; uk: string; es: string }> = {
+  plan_phrase_build: {
+    ru: 'Соберите фразу из слов.',
+    uk: 'Зберіть фразу зі слів.',
+    es: 'Construye la frase con las palabras.',
+  },
+  plan_choose_natural_phrase: {
+    ru: 'Выбери естественную фразу.',
+    uk: 'Обери природну фразу.',
+    es: 'Elige la frase más natural.',
+  },
+  plan_missing_word: {
+    ru: 'Вставьте пропущенное слово.',
+    uk: 'Вставте пропущене слово.',
+    es: 'Inserta la palabra que falta.',
+  },
+  plan_phrase_recall: {
+    ru: 'Вспомните фразу без подсказок.',
+    uk: 'Пригадайте фразу без підказок.',
+    es: 'Recuerda la frase sin pistas.',
+  },
+};
+
+function promptFor(exerciseType: PlanRuntimeExerciseType, lang: string): string {
+  const copy = PROMPT_FOR_COPY[exerciseType];
+  if (!copy) return 'Вспомните фразу без подсказок.';
+  if (lang === 'uk') return copy.uk;
+  if (lang === 'es') return copy.es;
+  return copy.ru;
 }
 
 function displayEnglishFor(
@@ -222,7 +247,7 @@ export function buildPlanRuntimeItem(input: PlanRuntimeItemInput): PlanRuntimeIt
     id: `${block.id}:${exerciseType}:${phrase.id}`,
     exerciseType,
     phraseId: phrase.id,
-    promptRu: promptFor(exerciseType),
+    promptRu: promptFor(exerciseType, input.lang ?? 'ru'),
     targetRu: phrase.russian,
     displayEnglish: displayEnglishFor(phrase, exerciseType, input.missingWord),
     correctAnswer,

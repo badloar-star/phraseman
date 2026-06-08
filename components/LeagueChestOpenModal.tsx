@@ -1,6 +1,7 @@
 import { LinearGradient } from './SafeLinearGradient';
-import React, { useEffect, useMemo, useRef } from 'react';
-import { Animated, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
+import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import type { ImageSourcePropType } from 'react-native';
 import type { LeagueChestRewardDrop } from '../app/services/league_chest_rewards';
 import { getAvatarAuraById } from '../constants/avatar_auras';
@@ -293,7 +294,7 @@ function RewardIcon({ card, drop }: { card: RewardCard; drop: LeagueChestRewardD
   if (icon.type === 'goldTheme') {
     return (
       <View style={styles.goldThemeIconSlot}>
-        <Image source={icon.source} resizeMode="contain" style={styles.goldThemeIconImage} />
+        <Image source={icon.source} contentFit="contain" style={styles.goldThemeIconImage} />
       </View>
     );
   }
@@ -302,7 +303,7 @@ function RewardIcon({ card, drop }: { card: RewardCard; drop: LeagueChestRewardD
     <View style={styles.rewardIconSlot}>
       <Image
         source={icon.source}
-        resizeMode="contain"
+        contentFit="contain"
         style={[
           styles.rewardIconImage,
           icon.scale === 'large' ? styles.rewardIconImageLarge : null,
@@ -312,7 +313,7 @@ function RewardIcon({ card, drop }: { card: RewardCard; drop: LeagueChestRewardD
   );
 }
 
-export default function LeagueChestOpenModal({
+function LeagueChestOpenModal({
   visible,
   crownName,
   isCrownWinner = false,
@@ -371,17 +372,17 @@ export default function LeagueChestOpenModal({
   if (!visible) return null;
 
   const dim = modalTheme.overlay;
-  const crownDisplayName = crownName || triLang(lang, { ru: 'лидер недели', uk: 'лідер тижня', es: 'líder semanal', 'pt-BR': 'líder da semana', vi: 'người dẫn đầu tuần', id: 'pemimpin minggu ini', tr: 'haftanın lideri', pl: 'lider tygodnia' });
+  const crownDisplayName = crownName || triLang(lang, { ru: 'лидер', uk: 'лідер', es: 'líder', 'pt-BR': 'líder', vi: 'người dẫn đầu', id: 'pemimpin', tr: 'lider', pl: 'lider' });
   const giftCopy = isCrownWinner
     ? triLang(lang, {
-      ru: 'Корона активна: она появится на твоей карточке, в лиге и рейтингах, пока идёт неделя.',
-      uk: 'Корона активна: вона зʼявиться на твоїй картці, у лізі й рейтингах, доки триває тиждень.',
-      es: 'La corona está activa: aparecerá en tu tarjeta, liga y rankings durante la semana.',
-      'pt-BR': 'A coroa está ativa: ela aparecerá no seu cartão, na liga e nos rankings durante a semana.',
-      vi: 'Vương miện đang hoạt động: nó sẽ xuất hiện trên thẻ, trong giải đấu và bảng xếp hạng suốt tuần.',
-      id: 'Mahkota aktif: akan muncul di kartumu, liga, dan peringkat selama minggu ini.',
-      tr: 'Taç aktif: hafta boyunca kartında, ligde ve sıralamalarda görünecek.',
-      pl: 'Korona jest aktywna: będzie widoczna na twojej karcie, w lidze i rankingach przez cały tydzień.',
+      ru: 'Корона активна: она появится на твоей карточке, в лиге и рейтингах.',
+      uk: 'Корона активна: вона зʼявиться на твоїй картці, у лізі й рейтингах.',
+      es: 'Corona activa: aparecerá en tu tarjeta, liga y rankings.',
+      'pt-BR': 'Coroa ativa: ela aparecerá no seu cartão, liga e rankings.',
+      vi: 'Vương miện đang hoạt động: nó sẽ xuất hiện trên thẻ, giải đấu và bảng xếp hạng của bạn.',
+      id: 'Mahkota aktif: akan muncul di kartu, liga, dan peringkatmu.',
+      tr: 'Taç aktif: kartında, ligde ve sıralamalarda görünecek.',
+      pl: 'Korona aktywna: pojawi się na twojej karcie, w lidze i rankingach.',
     })
     : hasAvatarCosmetic
       ? null
@@ -459,9 +460,9 @@ export default function LeagueChestOpenModal({
                 <Animated.View style={{ alignItems: 'center', transform: [{ translateY: crownFloat }] }}>
                   <View style={[styles.crownHalo, { borderColor: modalTheme.crestBorder, backgroundColor: modalTheme.crestBg }]}>
                     {isCrownWinner ? (
-                      <Image source={LEAGUE_CROWN_ICON} resizeMode="contain" style={styles.crownImage} />
+                      <Image source={LEAGUE_CROWN_ICON} contentFit="contain" style={styles.crownImage} />
                     ) : (
-                      <Image source={leagueBonusGiftImage} resizeMode="contain" style={styles.leagueGiftImage} />
+                      <Image source={leagueBonusGiftImage} contentFit="contain" style={styles.leagueGiftImage} />
                     )}
                   </View>
                 </Animated.View>
@@ -528,6 +529,8 @@ export default function LeagueChestOpenModal({
     </Modal>
   );
 }
+
+export default memo(LeagueChestOpenModal);
 
 const styles = StyleSheet.create({
   root: { flex: 1 },

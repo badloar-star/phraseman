@@ -151,7 +151,7 @@ describe('Skyler thematic quiz registry', () => {
     for (const item of home!.pack.items) {
       expect(item.localizedPrompts.ru).toEqual(expect.any(String));
       expect(item.localizedPrompts.ru).not.toMatch(/[A-Za-z]/);
-      expect(item.localizedPrompts.ru).toMatch(/^Выберите английский вариант: «.+»\.$/);
+      expect(item.localizedPrompts.ru).toMatch(/^Выбери английский вариант: «.+»\.$/);
       expect(item.explanations.ru).toHaveLength(4);
       for (const explanation of item.explanations.ru ?? []) {
         expect(explanation).not.toMatch(/домашней тем|подходит к смыслу|Здесь нужен ответ|нужен ответ/i);

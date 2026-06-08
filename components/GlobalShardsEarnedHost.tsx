@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { onAppEvent } from '../app/events';
 import { labelForShardModalReason } from '../app/shard_earn_ui';
 import { useLang } from './LangContext';
@@ -10,7 +10,7 @@ type Queued = { amount: number; reason: string };
 /**
  * Единая ShardsEarnedModal по всему приложению (слушает shards_earned).
  */
-export default function GlobalShardsEarnedHost() {
+function GlobalShardsEarnedHost() {
   const { lang } = useLang();
   const [active, setActive] = useState<Queued | null>(null);
   const visible = useOverlayVisible('shardsEarned', active != null);
@@ -62,3 +62,5 @@ export default function GlobalShardsEarnedHost() {
     />
   );
 }
+
+export default memo(GlobalShardsEarnedHost);

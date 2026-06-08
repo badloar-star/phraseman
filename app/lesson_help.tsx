@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -189,6 +190,7 @@ function Table({ rows, t, f }: { rows: string[][]; t: any; f?: any }) {
       <View style={{ borderRadius: 10, borderWidth: 1, borderColor: c.border, overflow: 'hidden' }}>
         <ScrollView
           horizontal
+          decelerationRate="normal"
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
@@ -19814,7 +19816,7 @@ export default function LessonHelp() {
   });
   const unavailableTheoryText = triLang(lang, {
     uk: `Теорія для уроку ${lessonId} незабаром з'явиться. Продовжуй практикуватись!`,
-    ru: `Теория для урока ${lessonId} скоро появится. Продолжай практиковаться!`,
+    ru: `Теория для этого урока скоро появится. Пока практикуйся — это важнее!`,
     es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
     'pt-BR': `A teoria da lição ${lessonId} estará disponível em breve. Continue praticando!`,
     vi: `Lý thuyết của bài ${lessonId} sẽ sớm có. Hãy tiếp tục luyện tập!`,
@@ -19836,9 +19838,9 @@ export default function LessonHelp() {
         borderBottomWidth: 0.5,
         borderBottomColor: t.border,
       }}>
-        <TouchableOpacity onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)} style={{ marginRight: 12, padding: 4 }}>
+        <TapScale onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)} style={{ marginRight: 12, padding: 4 }}>
           <Ionicons name="arrow-back" size={24} color={sx.primary} />
-        </TouchableOpacity>
+        </TapScale>
         <View style={{ flex: 1 }}>
           <Text style={{ color: sx.muted, fontSize: f.caption }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
             {triLang(lang, {
@@ -19862,7 +19864,7 @@ export default function LessonHelp() {
           <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
             {triLang(lang, {
               uk: 'Коротко: правило + приклади + 25 XP',
-              ru: 'Коротко: правило + примеры + 25 XP',
+              ru: 'Правило, примеры и +25 XP в конце',
               es: 'Resumen: regla + ejemplos + 25 XP',
               'pt-BR': 'Resumo: regra + exemplos + 25 XP',
               vi: 'Tóm tắt: quy tắc + ví dụ + 25 XP',
@@ -19876,6 +19878,7 @@ export default function LessonHelp() {
 
       {/* Content */}
       <ScrollView
+        decelerationRate="normal"
         contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
         showsVerticalScrollIndicator={true}
       >
@@ -19952,7 +19955,7 @@ export default function LessonHelp() {
               {xpClaimed
                 ? triLang(lang, {
                     uk: `XP отримано (+${earnedXP})`,
-                    ru: `XP получено (+${earnedXP})`,
+                    ru: `Готово — +${earnedXP} XP`,
                     es: `Has obtenido +${earnedXP} XP`,
                     'pt-BR': `Você ganhou +${earnedXP} XP`,
                     vi: `Đã nhận +${earnedXP} XP`,
@@ -19962,7 +19965,7 @@ export default function LessonHelp() {
                   })
                 : triLang(lang, {
                     uk: `Отримати ${previewXP} XP`,
-                    ru: `Получить ${previewXP} XP`,
+                    ru: `Забрать ${previewXP} XP`,
                     es: `Reclamar ${previewXP} XP`,
                     'pt-BR': `Resgatar ${previewXP} XP`,
                     vi: `Nhận ${previewXP} XP`,

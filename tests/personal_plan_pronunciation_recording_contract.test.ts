@@ -5,13 +5,14 @@ import {
 } from '../app/personal_plan_pronunciation_recording_contract';
 
 describe('personal plan pronunciation recording contract', () => {
-  it('requires recording permission and local playback before completion', () => {
+  it('requires recording permission and scored pronunciation before completion', () => {
     expect(buildPlanPronunciationRecordingContract()).toEqual({
-      mode: 'record_and_self_check',
+      mode: 'device_listen_score_and_retry',
       requiresMicrophonePermission: true,
-      requiresUserPlaybackBeforeCompletion: true,
-      scoringAvailable: false,
-      completionPolicy: 'completion_only_after_recording',
+      requiresUserPlaybackBeforeCompletion: false,
+      scoringAvailable: true,
+      passThreshold: 90,
+      completionPolicy: 'device_transcript_score_at_least_90',
       audioMode: {
         allowsRecording: true,
         playsInSilentMode: true,
@@ -22,19 +23,23 @@ describe('personal plan pronunciation recording contract', () => {
     });
   });
 
-  it('does not complete until a recorded uri exists', () => {
+  it('does not complete until a speech attempt and passing score exist', () => {
     expect(canCompletePlanPronunciationRecording({
       hasPermission: true,
       recordingUri: null,
       durationMs: 1800,
       userPlayedRecording: false,
-    })).toEqual(false);
+      score: 100,
+      passed: true,
+    })).toEqual(true);
 
     expect(canCompletePlanPronunciationRecording({
       hasPermission: true,
       recordingUri: 'file:///tmp/phrase.m4a',
       durationMs: 1800,
       userPlayedRecording: false,
+      score: 89,
+      passed: false,
     })).toEqual(false);
 
     expect(canCompletePlanPronunciationRecording({
@@ -42,29 +47,46 @@ describe('personal plan pronunciation recording contract', () => {
       recordingUri: 'file:///tmp/phrase.m4a',
       durationMs: 0,
       userPlayedRecording: true,
+      score: 100,
+      passed: true,
     })).toEqual(false);
 
     expect(canCompletePlanPronunciationRecording({
       hasPermission: true,
       recordingUri: 'file:///tmp/phrase.m4a',
       durationMs: 1800,
-      userPlayedRecording: true,
+      userPlayedRecording: false,
+      score: 90,
+      passed: true,
     })).toEqual(true);
   });
 
-  it('stores recording metadata without fake pronunciation score', () => {
+  it('stores scored recording metadata with transcript and threshold evidence', () => {
     expect(buildPlanPronunciationAttemptPayload({
       recordingUri: 'file:///tmp/phrase.m4a',
       durationMs: 1800,
-      userPlayedRecording: true,
+      userPlayedRecording: false,
+      transcript: 'The next steps are clear',
+      score: 94,
+      passed: true,
+      provider: 'device_speech_recognition',
+      scoringVersion: 'device-transcript-match-v1',
+      recognitionConfidence: 0.91,
     })).toEqual({
       recordingId: 'phrase.m4a',
       recordingUri: 'file:///tmp/phrase.m4a',
       durationMs: 1800,
-      userPlayedRecording: true,
-      scoringAvailable: false,
-      mode: 'practice',
-      status: 'recorded',
+      userPlayedRecording: false,
+      scoringAvailable: true,
+      mode: 'scored',
+      status: 'scored',
+      transcript: 'The next steps are clear',
+      score: 94,
+      passed: true,
+      threshold: 90,
+      provider: 'device_speech_recognition',
+      scoringVersion: 'device-transcript-match-v1',
+      recognitionConfidence: 0.91,
     });
   });
 });

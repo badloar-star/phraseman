@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import AppArtBackdrop from './AppArtBackdrop';
 
-export default function StatsArtBackdrop() {
+function StatsArtBackdrop() {
   return <AppArtBackdrop name="statistics" />;
 }
+
+export default memo(StatsArtBackdrop);

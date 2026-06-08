@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { safeRouterBack } from './navigation_back';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
 import CompassBevel from '../components/CompassBevel';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -13,6 +16,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import { logMistake } from './mistake_log';
@@ -196,7 +200,7 @@ function queueLabel(queue: TrainerQueue, lang: Lang): string {
     uk: 'слово',
     es: 'palabra',
     'pt-BR': "palavra",
-    vi: "t?",
+    vi: "từ",
     id: "kata",
     tr: "kelime",
     pl: "słowo",
@@ -494,6 +498,7 @@ export default function TrainerSmartSession() {
   const { lang } = useLang();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
+  const { playCorrect } = useCorrectSound();
   const mode = modeFromParam(params.mode);
   const meta = MODE_META[mode];
   const modeAccent = isCompassTheme ? compassSmartAccent(mode) : meta.accent;
@@ -503,37 +508,50 @@ export default function TrainerSmartSession() {
   const smartRecessed = isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface;
   const smartBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
   const planTrainerTaskId = params.planTrainerTask === '1' ? params.planTaskId : undefined;
+  const isPlanTrainerTask = Boolean(planTrainerTaskId);
   const planTrainerDayIndex = parseInt(params.planDayIndex ?? '1', 10) || 1;
   const planTrainerRequiredItems = Math.max(1, Math.min(12, parseInt(params.requiredItems ?? '3', 10) || 3));
   const planTrainerCompletionTracked = useRef(false);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [cards, setCards] = useState<SmartCard[]>([]);
   const [index, setIndex] = useState(0);
   const [state, setState] = useState<AnswerState>('idle');
   const [picked, setPicked] = useState<string | null>(null);
   const [attempts, setAttempts] = useState<SessionAttempt[]>([]);
   const [mistakeInsight, setMistakeInsight] = useState<MistakeInsight | null>(null);
+  // План #11: вместо мгновенного редиректа — lock-preview, чтобы юзер увидел ценность фичи.
+  const [needsPremiumLock, setNeedsPremiumLock] = useState(false);
 
   const loadSession = useCallback(async () => {
+    setLoadError(false);
     setLoading(true);
-    const premiumAllowed = params.preview === 'report' || params.preview === 'mistake'
-      ? true
-      : await getVerifiedPremiumStatus();
-    if (!premiumAllowed) {
-      router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer' } } as any);
-      return;
-    }
+    try {
+      const premiumAllowed = params.preview === 'report' || params.preview === 'mistake'
+        ? true
+        : await getVerifiedPremiumStatus();
+      if (!premiumAllowed) {
+        setNeedsPremiumLock(true);
+        setLoading(false);
+        return;
+      }
 
-    const items = planTrainerTaskId
-      ? await getTrainerPremiumItemsForPlan(params.planInstanceId, mode, planTrainerRequiredItems)
-      : await getTrainerPremiumItems(mode, 12);
-    setCards(items.map((item) => buildCard(item, items, lang)));
-    setIndex(0);
-    setState('idle');
-    setPicked(null);
-    setAttempts([]);
-    setMistakeInsight(null);
-    setLoading(false);
+      const items = planTrainerTaskId
+        ? await getTrainerPremiumItemsForPlan(params.planInstanceId, mode, planTrainerRequiredItems)
+        : await getTrainerPremiumItems(mode, 12);
+      setCards(items.map((item) => buildCard(item, items, lang)));
+      setIndex(0);
+      setState('idle');
+      setPicked(null);
+      setAttempts([]);
+      setMistakeInsight(null);
+      setLoading(false);
+    } catch {
+      // Сбой загрузки (сеть/Firestore/premium-проверка) → экран ошибки с retry
+      // вместо вечного «...».
+      setLoadError(true);
+      setLoading(false);
+    }
   }, [lang, mode, params.planInstanceId, params.preview, planTrainerRequiredItems, planTrainerTaskId, router]);
 
   useEffect(() => {
@@ -581,7 +599,7 @@ export default function TrainerSmartSession() {
     hapticTap();
     setPicked(option);
     setState(correct ? 'correct' : 'wrong');
-    if (correct) hapticSuccess();
+    if (correct) { hapticSuccess(); playCorrect(); }
     else hapticError();
 
     await markTrainerResult(current.item.key, current.item.queue, correct);
@@ -636,14 +654,63 @@ export default function TrainerSmartSession() {
     setPicked(null);
   };
 
-  if (loading) {
+  // План #11: lock-preview умного микса — показываем ценность фичи, а не молча кидаем на пейвол.
+  if (needsPremiumLock) {
+    const teaser = [
+      triLang(lang, { ru: 'Твои слабые места — в одной сессии', uk: 'Твої слабкі місця — в одній сесії', es: 'Tus puntos débiles en una sesión', 'pt-BR': 'Seus pontos fracos em uma sessão', vi: 'Điểm yếu của bạn trong một phiên', id: 'Titik lemahmu dalam satu sesi', tr: 'Zayıf yönlerin tek seansta', pl: 'Twoje słabe punkty w jednej sesji' }),
+      triLang(lang, { ru: 'Подбор под тебя каждый раз', uk: 'Добір під тебе щоразу', es: 'Selección a tu medida cada vez', 'pt-BR': 'Seleção sob medida toda vez', vi: 'Lựa chọn riêng cho bạn mỗi lần', id: 'Pilihan sesuai kamu setiap kali', tr: 'Her seferinde sana göre seçim', pl: 'Dobór pod ciebie za każdym razem' }),
+      triLang(lang, { ru: 'Разбор ошибок после сессии', uk: 'Розбір помилок після сесії', es: 'Análisis de errores tras la sesión', 'pt-BR': 'Análise de erros após a sessão', vi: 'Phân tích lỗi sau phiên', id: 'Ulasan kesalahan setelah sesi', tr: 'Seans sonrası hata analizi', pl: 'Analiza błędów po sesji' }),
+    ];
     return (
       <ScreenGradient>
         <SafeAreaView style={styles.center}>
-          <Text style={{ color: sx.muted, fontSize: f.body }}>...</Text>
+          <View style={{ width: '100%', maxWidth: 420, paddingHorizontal: 24 }}>
+            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', marginBottom: 6 }}>
+              {triLang(lang, { ru: 'Умный микс', uk: 'Розумний мікс', es: 'Mezcla inteligente', 'pt-BR': 'Mistura inteligente', vi: 'Trộn thông minh', id: 'Campuran pintar', tr: 'Akıllı karışım', pl: 'Inteligentny miks' })}
+            </Text>
+            <Text style={{ color: sx.muted, fontSize: f.sub, textAlign: 'center', lineHeight: f.sub * 1.45, marginBottom: 18 }}>
+              {triLang(lang, { ru: 'Phraseman сам соберёт твои слабые места в одну сессию.', uk: 'Phraseman сам збере твої слабкі місця в одну сесію.', es: 'Phraseman reúne tus puntos débiles en una sesión.', 'pt-BR': 'O Phraseman reúne seus pontos fracos em uma sessão.', vi: 'Phraseman tự gom điểm yếu của bạn vào một phiên.', id: 'Phraseman mengumpulkan titik lemahmu dalam satu sesi.', tr: 'Phraseman zayıf yönlerini tek seansta toplar.', pl: 'Phraseman zbiera twoje słabe punkty w jednej sesji.' })}
+            </Text>
+            {teaser.map((line, i) => (
+              <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10, opacity: 0.85 }}>
+                <Ionicons name="lock-closed" size={16} color={modeAccent} />
+                <Text style={{ color: sx.primary, fontSize: f.sub, flex: 1 }}>{line}</Text>
+              </View>
+            ))}
+            <TouchableOpacity
+              onPress={() => { hapticTap(); router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any); }}
+              style={[styles.primaryBtn, { backgroundColor: modeAccent, marginTop: 16 }]}
+            >
+              <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
+                {triLang(lang, { ru: 'Открыть умный микс', uk: 'Відкрити розумний мікс', es: 'Abrir la mezcla inteligente', 'pt-BR': 'Abrir a mistura inteligente', vi: 'Mở trộn thông minh', id: 'Buka campuran pintar', tr: 'Akıllı karışımı aç', pl: 'Otwórz inteligentny miks' })}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }} style={{ marginTop: 12, alignItems: 'center' }}>
+              <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700' }}>
+                {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </SafeAreaView>
       </ScreenGradient>
     );
+  }
+
+  if (loadError) {
+    return (
+      <TrainerErrorView
+        lang={lang}
+        accent={modeAccent}
+        mutedColor={sx.muted}
+        primaryColor={sx.primary}
+        onRetry={() => { hapticTap(); void loadSession(); }}
+        onExit={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
+      />
+    );
+  }
+
+  if (loading) {
+    return <TrainerLoadingView lang={lang} accent={modeAccent} />;
   }
 
   if (cards.length === 0) {
@@ -662,7 +729,7 @@ export default function TrainerSmartSession() {
               pl: "Nie ma jeszcze nic do powtórki",
             })}
           </Text>
-          <TouchableOpacity onPress={() => router.back()} style={[styles.primaryBtn, { backgroundColor: modeAccent, marginTop: 18 }]}>
+          <TouchableOpacity onPress={() => safeRouterBack(router, '/trainer')} style={[styles.primaryBtn, { backgroundColor: modeAccent, marginTop: 18 }]}>
             <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Готово',
@@ -686,13 +753,13 @@ export default function TrainerSmartSession() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <View style={styles.report}>
-              <View style={[styles.reportHero, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : modeAccent + '55', borderRadius: isCompassTheme ? 10 : 22 }]}>
+            <View style={[styles.report, isPlanTrainerTask && styles.planReport]}>
+              <View style={[styles.reportHero, isPlanTrainerTask && styles.planReportHero, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : modeAccent + '55', borderRadius: isCompassTheme ? 10 : 22 }]}>
                 {isCompassTheme ? <CompassSmartSurface radius={10} selected /> : null}
-                <View style={[styles.doneIcon, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : modeAccent + '18', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : modeAccent + '66', borderRadius: isCompassTheme ? 14 : 20 }]}>
-                  <Ionicons name="checkmark-circle" size={34} color={modeAccent} />
+                <View style={[styles.doneIcon, isPlanTrainerTask && styles.planDoneIcon, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : modeAccent + '18', borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : modeAccent + '66', borderRadius: isCompassTheme ? 14 : 20 }]}>
+                  <Ionicons name="checkmark-circle" size={isPlanTrainerTask ? 28 : 34} color={modeAccent} />
                 </View>
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+                <Text style={{ color: t.textPrimary, fontSize: isPlanTrainerTask ? f.bodyLg : f.h2, fontWeight: '900', textAlign: 'center' }} numberOfLines={isPlanTrainerTask ? 2 : undefined}>
                   {triLang(lang, {
                     ru: 'Тренировка завершена',
                     uk: 'Тренування завершено',
@@ -706,7 +773,7 @@ export default function TrainerSmartSession() {
                 </Text>
               </View>
 
-              <View style={styles.reportGrid}>
+              <View style={[styles.reportGrid, isPlanTrainerTask && styles.planReportGrid]}>
                 <ReportMetric label={triLang(lang, {
                   ru: 'точность',
                   uk: 'точність',
@@ -740,7 +807,7 @@ export default function TrainerSmartSession() {
               </View>
 
               {posStats.length > 0 && (
-                <View style={[styles.reportPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: smartBorder, borderRadius: isCompassTheme ? 9 : 18 }]}>
+                <View style={[styles.reportPanel, isPlanTrainerTask && styles.planReportPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: smartBorder, borderRadius: isCompassTheme ? 9 : 18 }]}>
                   {isCompassTheme ? <CompassSmartSurface radius={9} quiet /> : null}
                   {posStats.map(([category, row]) => (
                     <View key={category} style={styles.attentionRow}>
@@ -771,7 +838,7 @@ export default function TrainerSmartSession() {
                     })}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={[styles.nextBtn, { backgroundColor: modeAccent }]}>
+                <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/trainer'); }} style={[styles.nextBtn, { backgroundColor: modeAccent }]}>
                   <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
                     {triLang(lang, {
                       ru: 'Готово',
@@ -799,23 +866,38 @@ export default function TrainerSmartSession() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer-smart-session">
         <ContentWrap>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
+          <View style={[styles.header, isPlanTrainerTask && styles.planHeader]}>
+            <TapScale onPress={() => safeRouterBack(router, '/trainer')} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TouchableOpacity>
+            </TapScale>
             <View style={{ flex: 1 }}>
-              <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '900' }}>{meta.title[lang]}</Text>
-              <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }}>{meta.sub[lang]}</Text>
+              <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+                {isPlanTrainerTask
+                  ? triLang(lang, {
+                    ru: 'Тренер плана',
+                    uk: 'Тренер плану',
+                    es: 'Entrenador del plan',
+                    'pt-BR': 'Treinador do plano',
+                    vi: 'Huấn luyện theo kế hoạch',
+                    id: 'Pelatih rencana',
+                    tr: 'Plan antrenörü',
+                    pl: 'Trener planu',
+                  })
+                  : meta.title[lang]}
+              </Text>
+              {!isPlanTrainerTask && (
+                <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }}>{meta.sub[lang]}</Text>
+              )}
             </View>
             <Text style={{ color: sx.muted, fontSize: f.caption, fontWeight: '800' }}>{index + 1}/{cards.length}</Text>
           </View>
 
-          <View style={[styles.progress, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : t.bgSurface, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>
+          <View style={[styles.progress, isPlanTrainerTask && styles.planProgress, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : t.bgSurface, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>
             <View style={[styles.progressFill, { backgroundColor: modeAccent, width: `${(index / cards.length) * 100}%` }]} />
           </View>
 
-          <View style={styles.body}>
-            {!!sessionCoachText && (
+          <View style={[styles.body, isPlanTrainerTask && styles.planBody]}>
+            {!!sessionCoachText && !isPlanTrainerTask && (
               <View style={[styles.coachStrip, { backgroundColor: modeAccent + '17', borderColor: modeAccent + '44' }]}>
                 <Ionicons name={meta.icon} size={17} color={modeAccent} />
                 <Text style={{ color: sx.second, fontSize: f.caption, fontWeight: '700', flex: 1, lineHeight: f.caption * 1.35 }}>
@@ -824,13 +906,13 @@ export default function TrainerSmartSession() {
               </View>
             )}
 
-            <View style={[styles.card, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: isCompassTheme ? (state === 'correct' ? COMPASS_RICH.hairlineStrong : state === 'wrong' ? COMPASS_RICH.copper : COMPASS_RICH.hairline) : state === 'correct' ? '#40C080' : state === 'wrong' ? '#FB7185' : t.border, borderRadius: smartRadius, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+            <View style={[styles.card, isPlanTrainerTask && styles.planCard, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: isCompassTheme ? (state === 'correct' ? COMPASS_RICH.hairlineStrong : state === 'wrong' ? COMPASS_RICH.copper : COMPASS_RICH.hairline) : state === 'correct' ? '#40C080' : state === 'wrong' ? '#FB7185' : t.border, borderRadius: smartRadius, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
               {isCompassTheme ? <CompassSmartSurface radius={smartRadius} selected={state !== 'idle'} quiet={state === 'idle'} physical /> : null}
               <View style={styles.cardTop}>
                 <View style={styles.cardMetaLeft}>
                   {current.item.queue !== 'words' && (
                     <View style={[styles.typeBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : current.accent + '22', borderColor: isCompassTheme ? COMPASS_RICH.hairline : current.accent + '66', borderRadius: isCompassTheme ? 7 : 999 }]}>
-                      <Text style={{ color: currentAccent, fontSize: f.label, fontWeight: '900' }}>{queueLabel(current.item.queue, lang)}</Text>
+                      <Text style={{ color: currentAccent, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>{queueLabel(current.item.queue, lang)}</Text>
                     </View>
                   )}
                   {current.profile && (
@@ -861,23 +943,27 @@ export default function TrainerSmartSession() {
               </View>
 
               {!!current.title && current.title !== current.profile?.title[lang] && (
-                <Text style={{ color: currentAccent, fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+                <Text style={{ color: currentAccent, fontSize: isPlanTrainerTask ? f.body : f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={isPlanTrainerTask ? 1 : undefined}>
                   {current.title}
                 </Text>
               )}
-              <View style={[styles.helperBox, isCompassTheme && styles.compassClip, { backgroundColor: isCompassTheme ? smartRecessed : current.accent + '10', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : current.accent + '35', borderRadius: smartSmallRadius }]}>
+              <View style={[styles.helperBox, isPlanTrainerTask && styles.planHelperBox, isCompassTheme && styles.compassClip, { backgroundColor: isCompassTheme ? smartRecessed : current.accent + '10', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : current.accent + '35', borderRadius: smartSmallRadius }]}>
                 {isCompassTheme ? <CompassSmartSurface radius={smartSmallRadius} quiet /> : null}
                 <Ionicons name="navigate" size={15} color={currentAccent} />
-                <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.35 }}>
+                <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.3 }} numberOfLines={isPlanTrainerTask ? 2 : undefined}>
                   {current.helper}
                 </Text>
               </View>
               {current.instruction && (
-                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', textAlign: 'center', lineHeight: f.caption * 1.35 }}>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', textAlign: 'center', lineHeight: f.caption * 1.3 }} numberOfLines={isPlanTrainerTask ? 2 : undefined}>
                   {current.instruction}
                 </Text>
               )}
-              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center', lineHeight: f.h2 * 1.22 }}>
+              <Text
+                style={{ color: t.textPrimary, fontSize: isPlanTrainerTask ? f.bodyLg : f.h2, fontWeight: '900', textAlign: 'center', lineHeight: (isPlanTrainerTask ? f.bodyLg : f.h2) * 1.18 }}
+                adjustsFontSizeToFit={isPlanTrainerTask}
+                numberOfLines={isPlanTrainerTask ? 3 : undefined}
+              >
                 {current.prompt}
               </Text>
               {current.focusChips && current.focusChips.length > 0 && (
@@ -893,9 +979,9 @@ export default function TrainerSmartSession() {
               )}
             </View>
 
-            <View style={{ gap: 10 }}>
+            <View style={isPlanTrainerTask ? styles.planOptionsGrid : { gap: 10 }}>
               {current.answerLabel && (
-                <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }}>
+                <Text style={[{ color: sx.muted, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }, isPlanTrainerTask && styles.planAnswerLabel]}>
                   {current.answerLabel}
                 </Text>
               )}
@@ -914,11 +1000,17 @@ export default function TrainerSmartSession() {
                     disabled={state !== 'idle'}
                     onPress={() => { void answer(option); }}
                     testID="trainer-smart-option"
-                    style={[styles.option, isCompassTheme && compassShadow(selected ? 2 : 1), { backgroundColor: bg, borderColor: border, borderRadius: isCompassTheme ? 9 : 15, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                    style={[styles.option, isPlanTrainerTask && styles.planOption, isCompassTheme && compassShadow(selected ? 2 : 1), { backgroundColor: bg, borderColor: border, borderRadius: isCompassTheme ? 9 : 15, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
                     activeOpacity={0.86}
                   >
                     {isCompassTheme ? <CompassSmartSurface radius={9} selected={selected} quiet={!selected} physical /> : null}
-                    <Text style={{ color, fontSize: f.body, fontWeight: '800', lineHeight: f.body * 1.25 }}>{option}</Text>
+                    <Text
+                      style={{ color, fontSize: isPlanTrainerTask ? f.caption : f.body, fontWeight: '800', lineHeight: (isPlanTrainerTask ? f.caption : f.body) * 1.25 }}
+                      adjustsFontSizeToFit={isPlanTrainerTask}
+                      numberOfLines={isPlanTrainerTask ? 2 : undefined}
+                    >
+                      {option}
+                    </Text>
                   </TouchableOpacity>
                 );
               })}
@@ -1074,9 +1166,12 @@ function ReportMetric({ label, value, color, t, f }: { label: string; value: str
 const styles = StyleSheet.create({
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingVertical: 14 },
+  planHeader: { paddingVertical: 8 },
   progress: { height: 6, borderRadius: 999, marginHorizontal: 16, overflow: 'hidden' },
+  planProgress: { height: 4 },
   progressFill: { height: '100%', borderRadius: 999 },
   body: { flex: 1, padding: 16, justifyContent: 'center', gap: 14 },
+  planBody: { paddingTop: 8, paddingBottom: 10, gap: 8 },
   coachStrip: {
     borderRadius: 14,
     borderWidth: StyleSheet.hairlineWidth,
@@ -1087,6 +1182,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   card: { borderRadius: 20, borderWidth: 1, padding: 18, gap: 13, minHeight: 248, justifyContent: 'center' },
+  planCard: { padding: 12, gap: 8, minHeight: 190 },
   compassClip: { overflow: 'hidden' },
   compassTopShelf: {
     position: 'absolute',
@@ -1145,6 +1241,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     gap: 7,
   },
+  planHelperBox: { paddingHorizontal: 9, paddingVertical: 7 },
   drillChipRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -1159,7 +1256,11 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   option: { borderRadius: 15, borderWidth: 1, padding: 15, minHeight: 56, justifyContent: 'center' },
+  planOptionsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  planAnswerLabel: { width: '100%' },
+  planOption: { width: '48%', minHeight: 48, paddingHorizontal: 10, paddingVertical: 8 },
   report: { flex: 1, padding: 16, gap: 12, justifyContent: 'center' },
+  planReport: { paddingTop: 10, paddingBottom: 10, gap: 8 },
   reportHero: {
     borderRadius: 22,
     borderWidth: 1,
@@ -1167,7 +1268,9 @@ const styles = StyleSheet.create({
     gap: 10,
     alignItems: 'center',
   },
+  planReportHero: { padding: 12, gap: 7 },
   reportGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  planReportGrid: { gap: 6 },
   reportMetric: {
     flex: 1,
     minWidth: '30%',
@@ -1178,10 +1281,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   reportPanel: { borderRadius: 18, borderWidth: StyleSheet.hairlineWidth, padding: 14, gap: 10 },
+  planReportPanel: { padding: 10, gap: 7 },
   attentionRow: { flexDirection: 'row', alignItems: 'center', gap: 9, minHeight: 28 },
   attentionDot: { width: 7, height: 7, borderRadius: 4 },
   reportActions: { flexDirection: 'row', gap: 10 },
   doneIcon: { width: 64, height: 64, borderRadius: 20, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  planDoneIcon: { width: 50, height: 50 },
   primaryBtn: { minHeight: 52, borderRadius: 16, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center' },
   modalRoot: {
     flex: 1,

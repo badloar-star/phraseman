@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -698,7 +699,7 @@ export default function FlashcardsAudioScreen() {
   const renderHeader = (onBack: () => void) => (
     <View style={[styles.header, { borderBottomColor: t.border, paddingTop: topSafeInset + 8 }]}>
       <View style={styles.headerSide}>
-        <TouchableOpacity
+        <TapScale
           testID="flashcards-audio-header-back"
           accessibilityLabel="qa-flashcards-audio-header-back"
           accessible
@@ -707,7 +708,7 @@ export default function FlashcardsAudioScreen() {
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
         >
           <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-        </TouchableOpacity>
+        </TapScale>
       </View>
       <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
         {text.title}
@@ -743,6 +744,7 @@ export default function FlashcardsAudioScreen() {
       {renderHeader(() => safeRouterBack(router, '/flashcards' as any))}
       <ScrollView
         style={styles.scroll}
+        decelerationRate="normal"
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(insets.bottom, 16) + 20 }]}
         showsVerticalScrollIndicator={false}
       >
@@ -821,10 +823,10 @@ export default function FlashcardsAudioScreen() {
         {!loadingSources && sources.length === 0 ? (
           <View style={[styles.emptyPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>{loadError || text.empty}</Text>
-            <TouchableOpacity onPress={() => void loadSources(false)} style={[styles.secondaryButton, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
+            <TapScale onPress={() => void loadSources(false)} style={[styles.secondaryButton, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
               <Ionicons name="refresh" size={18} color={t.textSecond} />
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800' }}>{text.reload}</Text>
-            </TouchableOpacity>
+            </TapScale>
           </View>
         ) : null}
 
@@ -1008,13 +1010,13 @@ export default function FlashcardsAudioScreen() {
           </View>
 
           <View style={styles.controlRow}>
-            <TouchableOpacity onPress={goToPreviousCard} disabled={cardIndex === 0} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border, opacity: cardIndex === 0 ? 0.45 : 1 }]}>
+            <TapScale onPress={goToPreviousCard} disabled={cardIndex === 0} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border, opacity: cardIndex === 0 ? 0.45 : 1 }]}>
               <Ionicons name="play-skip-back" size={20} color={t.textSecond} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={replayCurrentSide} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+            </TapScale>
+            <TapScale onPress={replayCurrentSide} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
               <Ionicons name="refresh" size={21} color={t.textSecond} />
-            </TouchableOpacity>
-            <TouchableOpacity
+            </TapScale>
+            <TapScale
               testID="flashcards-audio-play-pause"
               accessibilityLabel="qa-flashcards-audio-play-pause"
               accessible
@@ -1022,13 +1024,13 @@ export default function FlashcardsAudioScreen() {
               style={[styles.playButton, { backgroundColor: t.accent }]}
             >
               <Ionicons name={isPlaying ? 'pause' : 'play'} size={28} color={t.correctText} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={goToNextCard} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+            </TapScale>
+            <TapScale onPress={goToNextCard} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
               <Ionicons name="play-skip-forward" size={20} color={t.textSecond} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={backToSetup} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+            </TapScale>
+            <TapScale onPress={backToSetup} style={[styles.iconButton, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
               <Ionicons name="stop" size={21} color={t.textSecond} />
-            </TouchableOpacity>
+            </TapScale>
           </View>
         </View>
       </>
@@ -1046,14 +1048,14 @@ export default function FlashcardsAudioScreen() {
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>{text.done}</Text>
           <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{cardCountLabel(lang, deck.length)}</Text>
           <View style={styles.doneButtons}>
-            <TouchableOpacity onPress={() => void startSession()} style={[styles.doneButton, { backgroundColor: t.accent }]}>
+            <TapScale onPress={() => void startSession()} style={[styles.doneButton, { backgroundColor: t.accent }]}>
               <Ionicons name="play" size={18} color={t.correctText} />
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{text.again}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={backToSetup} style={[styles.doneButton, { backgroundColor: t.bgSurface, borderColor: t.border, borderWidth: 1 }]}>
+            </TapScale>
+            <TapScale onPress={backToSetup} style={[styles.doneButton, { backgroundColor: t.bgSurface, borderColor: t.border, borderWidth: 1 }]}>
               <Ionicons name="options-outline" size={18} color={t.textSecond} />
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '900' }}>{text.settings}</Text>
-            </TouchableOpacity>
+            </TapScale>
           </View>
         </View>
       </View>

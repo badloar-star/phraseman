@@ -20,6 +20,7 @@ import * as admin from 'firebase-admin';
 import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import * as functions from 'firebase-functions/v2';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 
@@ -183,7 +184,9 @@ async function assertAuthStableLink(
  * App Check: клиент инициализирует в app/app_check_init.ts.
  * После проверки токенов в Firebase Console → true (иначе callables вернут 401).
  */
-const CALLABLE_BASE = { region: REGION, enforceAppCheck: false } as const;
+// App Check env-gated (ENFORCE_APP_CHECK=true) — как в callable_options/account_delete.
+// По умолчанию off, чтобы не ломать клиентов без App Check-токена; включается на проде через env.
+const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
 
 /** Возвращает/создаёт публичный рефкод, привязанный к users/{stableId} через auth_links. */
 export const referralEnsureMyCode = onCall(CALLABLE_BASE, async (request) => {

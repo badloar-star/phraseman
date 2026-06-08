@@ -8209,6 +8209,7 @@
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
   <div class="tab" onclick="switchTab('review-promo')">VIP survey</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>
+  <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('archive')" data-i18n-es="Archivo">Archive</div>
   <div class="tab" onclick="switchTab('audit')" data-i18n-es="Log de auditoría">Audit log</div>
@@ -8545,6 +8546,23 @@
 </div>
 
 <!-- APP MESSAGES TAB -->
+<div id="tab-remote-config" class="reports-tab">
+  <div style="padding:4px 0 16px;max-width:1080px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">Remote Config</h2>
+    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.55">
+      Управление лимитами, экономикой и A/B-сплитами <b>без релиза приложения</b>. Значения пишутся в
+      <code style="color:#818cf8">remote_config/app</code>, клиенты подхватывают их через onSnapshot за секунды.
+      Пустое поле = значение по умолчанию из приложения. Значения вне диапазона приложение само зажмёт в безопасные границы.
+    </p>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+    <button type="button" onclick="loadRemoteConfig(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 14px;border-radius:8px;cursor:pointer">🔄 Перечитать</button>
+    <button type="button" onclick="saveRemoteConfig()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить</button>
+    <span id="rc-status" style="align-self:center;font-size:13px;color:#9ca3af"></span>
+  </div>
+  <div id="rc-form" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:920px"></div>
+</div>
+
 <div id="tab-app-messages" class="reports-tab">
   <div style="padding:4px 0 16px;max-width:1080px">
     <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa" data-i18n-es="Mensajes para usuarios">Сообщения пользователям</h2>
@@ -9766,7 +9784,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log'];
+  const ADMIN_TAB_KEYS = ['overview','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -13020,6 +13038,8 @@
     if (reviewPromoTab) reviewPromoTab.classList.toggle('active', tab === 'review-promo');
     const appMessagesTab = document.getElementById('tab-app-messages');
     if (appMessagesTab) appMessagesTab.classList.toggle('active', tab === 'app-messages');
+    const remoteConfigTab = document.getElementById('tab-remote-config');
+    if (remoteConfigTab) remoteConfigTab.classList.toggle('active', tab === 'remote-config');
     const ugcTab = document.getElementById('tab-ugc-purchases');
     if (ugcTab) ugcTab.classList.toggle('active', tab === 'ugc-purchases');
     const cpTabEl = document.getElementById('tab-card-packs');
@@ -13058,6 +13078,9 @@
     if(tab==='ops-log' && !window._opsLoaded) loadOpsLog();
     if (tab === 'community-packs' && typeof window.setCommunityPacksSubtab === 'function') {
       window.setCommunityPacksSubtab(window._cpSubTab || 'queue');
+    }
+    if (tab === 'remote-config' && typeof window.loadRemoteConfig === 'function' && !window._remoteConfigLoaded) {
+      void window.loadRemoteConfig(false);
     }
     if (tab === 'clubs' && !window._clubsLoaded && typeof window.loadClubsData === 'function') {
       void window.loadClubsData(false);
@@ -17533,6 +17556,93 @@
       });
     });
   }
+
+  // ── Remote Config ─────────────────────────────────────────────────────────
+  // Mirror of app/remote_flags.ts defaults+bounds. Keep in sync.
+  const RC_NUMBER_FIELDS = [
+    { key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 8, min: 1, max: 32 },
+    { key: 'free_daily_quiz_limit', label: 'Free: квизов в день', def: 3, min: 0, max: 999 },
+    { key: 'arena_daily_max', label: 'Free: матчей арены в день', def: 5, min: 0, max: 999 },
+    { key: 'arena_shard_refill_cost', label: 'Арена: цена докупки (осколки)', def: 5, min: 0, max: 9999 },
+    { key: 'arena_shard_refill_slots', label: 'Арена: слотов за докупку', def: 5, min: 0, max: 999 },
+    { key: 'max_energy', label: 'Макс. энергии', def: 5, min: 1, max: 99 },
+    { key: 'energy_recovery_interval_ms', label: 'Восст. энергии (мс)', def: 600000, min: 10000, max: 86400000 },
+    { key: 'free_trainer_sessions_per_day', label: 'Free: сессий тренера в день', def: 2, min: 0, max: 99 },
+    { key: 'trainer_ab_a_pct', label: 'A/B тренер: группа A %', def: 0, min: 0, max: 100 },
+    { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 100, min: 0, max: 100 },
+    { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
+    { key: 'paywall_v2_pct', label: 'Пейволл: доля v2 %', def: 50, min: 0, max: 100 },
+  ];
+  const RC_BOOL_FIELDS = [
+    { key: 'referral_enabled', label: 'Реферальная программа включена', def: false },
+    { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
+  ];
+
+  function rcSetStatus(msg, color) {
+    const el = document.getElementById('rc-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
+  }
+
+  function rcRenderForm(numbers, bools) {
+    const form = document.getElementById('rc-form');
+    if (!form) return;
+    const numHtml = RC_NUMBER_FIELDS.map(f => {
+      const v = (numbers && typeof numbers[f.key] === 'number') ? numbers[f.key] : '';
+      return `<label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">
+        <span>${f.label} <span style="color:#6b7280">(деф. ${f.def}, ${f.min}–${f.max})</span></span>
+        <input type="number" id="rc-num-${f.key}" value="${v}" placeholder="${f.def}" min="${f.min}" max="${f.max}"
+          style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
+      </label>`;
+    }).join('');
+    const boolHtml = RC_BOOL_FIELDS.map(f => {
+      const v = (bools && typeof bools[f.key] === 'boolean') ? bools[f.key] : f.def;
+      return `<label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#cbd5e1;padding:8px 0">
+        <input type="checkbox" id="rc-bool-${f.key}" ${v ? 'checked' : ''} style="width:18px;height:18px"/>
+        <span>${f.label} <span style="color:#6b7280">(деф. ${f.def ? 'вкл' : 'выкл'})</span></span>
+      </label>`;
+    }).join('');
+    form.innerHTML = numHtml + `<div style="grid-column:1/-1;border-top:1px solid #2a2a3a;margin-top:6px;padding-top:6px"></div>` + boolHtml;
+  }
+
+  window.loadRemoteConfig = async function(force) {
+    window._remoteConfigLoaded = true;
+    rcSetStatus('Загрузка…');
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      rcRenderForm(data.numbers || {}, data.bools || {});
+      rcSetStatus(snap.exists() ? ('Загружено. Обновлено: ' + (data.updatedBy || '—')) : 'Документа ещё нет — заполни и сохрани.', '#4ade80');
+    } catch (e) {
+      rcSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
+      rcRenderForm({}, {});
+    }
+  };
+
+  window.saveRemoteConfig = async function() {
+    rcSetStatus('Сохранение…');
+    try {
+      const numbers = {};
+      for (const f of RC_NUMBER_FIELDS) {
+        const el = document.getElementById('rc-num-' + f.key);
+        const raw = el && el.value !== '' ? Number(el.value) : null;
+        if (raw != null && Number.isFinite(raw)) {
+          numbers[f.key] = Math.max(f.min, Math.min(f.max, raw));
+        }
+      }
+      const bools = {};
+      for (const f of RC_BOOL_FIELDS) {
+        const el = document.getElementById('rc-bool-' + f.key);
+        if (el) bools[f.key] = !!el.checked;
+      }
+      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      await setDoc(doc(db, 'remote_config', 'app'), {
+        numbers, bools, updatedAt: Date.now(), updatedBy: who,
+      }, { merge: false });
+      rcSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+    } catch (e) {
+      rcSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
 
   window.loadAppMessages = async function(force) {
     window._appMessagesLoaded = true;

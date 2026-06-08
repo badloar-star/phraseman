@@ -104,6 +104,7 @@ import { isReferralCloudEnabled } from '../referral_flags';
 import {
   shouldShowReferralAccessEnded,
   markReferralAccessEndedSeen,
+  getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
@@ -1479,16 +1480,21 @@ export default function FriendsTabScreen() {
     setReferralInvites(state.invites);
     setClaimableDays(state.claimableVipDays);
 
-    // Модал окончания — только для реферального окна (vip_plan==='referral'), один раз на окно.
+    // Модал окончания: трекер сам определяет «реферальность» окна (стикки-маркер переживает
+    // зануление vip_plan при истечении). Гейт по текущему плану здесь НЕ нужен — это и был баг.
     try {
       const pairs = await AsyncStorage.multiGet(['vip_plan', 'vip_until']);
-      const plan = (pairs.find(p => p[0] === 'vip_plan')?.[1] ?? '').trim().toLowerCase();
+      const plan = pairs.find(p => p[0] === 'vip_plan')?.[1] ?? '';
       const until = Number(pairs.find(p => p[0] === 'vip_until')?.[1] ?? '0') || 0;
-      if (plan === 'referral') {
-        const show = await shouldShowReferralAccessEnded(until);
-        if (show) setAccessEndedOpen(true);
-      }
+      const show = await shouldShowReferralAccessEnded(plan, until);
+      if (show) setAccessEndedOpen(true);
     } catch { /* нет данных — пропускаем */ }
+  }, []);
+
+  /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
+  const dismissReferralAccessEnded = useCallback(async () => {
+    const windowEnd = await getTrackedReferralWindowEnd();
+    await markReferralAccessEndedSeen(windowEnd);
   }, []);
 
   const handleReferralInvite = useCallback(async () => {
@@ -1500,6 +1506,12 @@ export default function FriendsTabScreen() {
     }
   }, [lang, myProfile?.name]);
 
+  const showReferralFeedback = useCallback((msg: string) => {
+    setAddFeedback(msg);
+    if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
+    feedbackTimerRef.current = setTimeout(() => setAddFeedback(null), 2500);
+  }, []);
+
   const handleReferralClaim = useCallback(async () => {
     if (isClaiming) return;
     hapticTap();
@@ -1508,12 +1520,37 @@ export default function FriendsTabScreen() {
       const outcome = await claimReferralVipDays();
       if (outcome.ok && outcome.granted > 0) {
         setActivatedModal({ days: outcome.granted, friends: outcome.friends });
-        await refreshReferralState();
+        if (outcome.cappedThisMonth) {
+          showReferralFeedback(L(
+            'Лимит на этот месяц достигнут — остальное откроется в следующем.',
+            'Ліміт на цей місяць досягнуто — решта відкриється наступного.',
+            'Límite del mes alcanzado — el resto se abrirá el próximo.',
+            'Limite do mês atingido — o resto abre no próximo.',
+            'Đã đạt giới hạn tháng này — phần còn lại mở tháng sau.',
+            'Batas bulan ini tercapai — sisanya buka bulan depan.',
+            'Bu ayki sınıra ulaşıldı — kalanı önümüzdeki ay açılır.',
+            'Limit na ten miesiąc osiągnięty — reszta otworzy się w następnym.',
+          ));
+        }
+      } else if (!outcome.ok && outcome.reason === 'error') {
+        // Сетевая/серверная ошибка — мягко по Библии (Стиль 5), без техкодов.
+        showReferralFeedback(L(
+          'Что-то пошло не так. Попробуй снова.',
+          'Щось пішло не так. Спробуй ще раз.',
+          'Algo salió mal. Inténtalo de nuevo.',
+          'Algo deu errado. Tente de novo.',
+          'Có gì đó không ổn. Thử lại nhé.',
+          'Ada yang salah. Coba lagi.',
+          'Bir şeyler ters gitti. Tekrar dene.',
+          'Coś poszło nie tak. Spróbuj jeszcze raz.',
+        ));
       }
     } finally {
       setIsClaiming(false);
+      // Пере-синк состояния даже после ошибки/пустого результата — бейджи/счётчик актуальны.
+      await refreshReferralState();
     }
-  }, [isClaiming, refreshReferralState]);
+  }, [isClaiming, refreshReferralState, showReferralFeedback, L]);
 
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
@@ -2752,13 +2789,13 @@ export default function FriendsTabScreen() {
 
       <ReferralAccessEndedModal
         visible={accessEndedOpen}
-        onInviteFriend={() => { setAccessEndedOpen(false); void markReferralAccessEndedSeen(0); void handleReferralInvite(); }}
+        onInviteFriend={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); void handleReferralInvite(); }}
         onOpenFullAccess={() => {
           setAccessEndedOpen(false);
-          void markReferralAccessEndedSeen(0);
+          void dismissReferralAccessEnded();
           router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'referral_ended' } } as any);
         }}
-        onClose={() => { setAccessEndedOpen(false); void markReferralAccessEndedSeen(0); }}
+        onClose={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); }}
         L={L}
         t={t}
       />

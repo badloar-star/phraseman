@@ -57,14 +57,14 @@ export function ReferralAccessEndedModal({
 }: ReferralAccessEndedModalProps) {
   // Копия — строго по «Библии»: глагольные кнопки, gain-framing, без «потеряешь»
   const title = L(
-    'Твои дни доступа завершились',
-    'Твої дні доступу завершились',
-    'Tus días de acceso han terminado',
-    'Seus dias de acesso chegaram ao fim',
-    'Những ngày truy cập của bạn đã kết thúc',
-    'Hari aksesmu sudah selesai',
-    'Erişim günlerin sona erdi',
-    'Twoje dni dostępu dobiegły końca',
+    'Доступ можно открыть снова',
+    'Доступ можна відкрити знову',
+    'Puedes abrir el acceso de nuevo',
+    'Você pode abrir o acesso de novo',
+    'Bạn có thể mở lại quyền truy cập',
+    'Kamu bisa buka akses lagi',
+    'Erişimi yeniden açabilirsin',
+    'Możesz znów otworzyć dostęp',
   );
 
   // Reassurance: что уже твоё — останется твоим

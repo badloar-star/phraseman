@@ -129,6 +129,8 @@ type PremiumContext =
   | 'trainer'
   /** Trainer daily session limit reached. */
   | 'trainer_limit'
+  /** AI dialogue daily free limit reached. */
+  | 'dialog_limit'
   /** Personalized diagnosis training after the one free try. */
   | 'diagnosis_training'
   /** Mastery — повторное прохождение урока за осколки либо безлимит на Premium. */
@@ -156,6 +158,7 @@ const PREMIUM_CONTEXT_VALUES = [
   'club',
   'trainer',
   'trainer_limit',
+  'dialog_limit',
   'diagnosis_training',
   'mastery',
   'stats',
@@ -198,6 +201,7 @@ const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   club: { accent: '#FACC15', accent2: '#22C55E', shardAmount: 420 },
   trainer: { accent: '#A78BFA', accent2: '#5EEAD4', shardAmount: 180 },
   trainer_limit: { accent: '#A78BFA', accent2: '#5EEAD4', shardAmount: 180 },
+  dialog_limit: { accent: '#58D6FF', accent2: '#A7FF4F', shardAmount: 180 },
   diagnosis_training: { accent: '#5EEAD4', accent2: '#60A5FA', shardAmount: 180 },
   mastery: { accent: '#86EFAC', accent2: '#FDE68A', shardAmount: 420 },
   stats: { accent: '#60A5FA', accent2: '#FDE68A', shardAmount: 180 },
@@ -372,6 +376,14 @@ const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { generic: Pa
     subtitleRu: 'В бесплатной версии можно начать одну сессию в день. Premium открывает безлимит повторений во всех режимах.',
     subtitleUk: 'У безкоштовній версії можна почати одну сесію на день. Premium відкриває безліміт повторень у всіх режимах.',
     subtitleEs: 'En la versión gratis puedes iniciar una sesión al día. Premium desbloquea repeticiones ilimitadas en todos los modos.',
+  },
+  dialog_limit: {
+    titleRu: 'Говори с Филом без лимита',
+    titleUk: 'Спілкуйся з Філом без ліміту',
+    titleEs: 'Habla con Phil sin límite',
+    subtitleRu: 'Бесплатно — один разговор в день. Premium открывает живую практику английского без ограничений: новые сценарии, разбор каждой реплики, твои слова из карточек.',
+    subtitleUk: 'Безкоштовно — одна розмова на день. Premium відкриває живу практику англійської без обмежень: нові сценарії, розбір кожної репліки, твої слова з карток.',
+    subtitleEs: 'Gratis: una conversación al día. Premium abre práctica real de inglés sin límites: nuevos escenarios, análisis de cada frase y tus palabras de las tarjetas.',
   },
   diagnosis_training: {
     titleRu: 'Новые разборы ошибок — в Premium',

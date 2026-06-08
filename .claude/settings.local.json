@@ -1,6 +1,15 @@
 {
   "permissions": {
     "allow": [
+      "Bash(git *)",
+      "Bash(grep *)",
+      "Bash(wc *)",
+      "Bash(find *)",
+      "Bash(diff *)",
+      "Bash(head *)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Read(/c/appsprojects/phraseman-integration/**)",
       "Bash(wc -l /c/appsprojects/phraseman/app/lesson_data_all.ts /c/appsprojects/phraseman/app/lesson_words.tsx /c/appsprojects/phraseman/app/lesson_verbs.tsx /c/appsprojects/phraseman/app/'\\(tabs\\)'/home.tsx)",
       "Bash(diff c:/appsprojects/phraseman/app/settings_edu.tsx \"c:/appsprojects/phraseman/app/\\(tabs\\)/settings_edu.tsx\")",
       "Bash(grep -rn \"Ð\\\\|Ñ\\\\|Ò\\\\|ÐŸ\\\\|Ð¾\" c:/appsprojects/phraseman/app/ --include=*.tsx --include=*.ts -l)",

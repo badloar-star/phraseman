@@ -223,6 +223,17 @@ functions/scripts/diag_*
 # Compiled JS sourcemaps for Cloud Functions (generated from TypeScript).
 /functions/lib/*.js.map
 
+# Nested tool node_modules (intro_remotion has its own package install).
+/tools/intro_remotion/node_modules/
+
+# Image backups and DALL-E source dumps produced during asset regeneration.
+**/backups/
+**/dalle_sources/
+/assets/**/sources/
+
+# Local agent worktree checkouts.
+/.claude/worktrees/
+
 # Content-generation pipelines and agent runs only; not app source.
 /.agents/
 /docs/gustav/
@@ -259,3 +270,4 @@ functions/scripts/diag_*
 /.maestro-tmp/
 /maestro-tmp/
 /maestro*.xml
+/tools/intro_remotion/out/

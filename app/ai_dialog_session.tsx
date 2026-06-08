@@ -28,6 +28,7 @@ import {
   getFreeDialogsLeftToday,
   markFreeDialogUsed,
 } from './dialogs_limit_session';
+import { trackEvent } from './analytics';
 
 const MAX_EXCHANGES = 8; // teaser-обрыв на интересном месте (free); см. план Фазы 0
 
@@ -74,7 +75,7 @@ export default function AiDialogSession() {
   }, [messages]);
 
   const send = useCallback(
-    async (text: string) => {
+    async (text: string, fromSuggested = false) => {
       const trimmed = text.trim();
       if (!trimmed || sending || ended) return;
       hapticTap();
@@ -83,10 +84,16 @@ export default function AiDialogSession() {
       if (messages.length === 0 && !hasPremiumAccess) {
         const left = await getFreeDialogsLeftToday();
         if (left <= 0) {
+          void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id });
+          void trackEvent('paywall_shown', { context: 'dialog_limit' });
           router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
           return;
         }
       }
+
+      const exchangeIndex = messages.filter((m) => m.role === 'user').length + 1;
+      void trackEvent('ai_dialog_message_sent', { scenarioId: scenario.id, exchangeIndex });
+      if (fromSuggested) void trackEvent('ai_dialog_suggested_tapped', { scenarioId: scenario.id, exchangeIndex });
 
       const history = buildHistory();
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
@@ -125,10 +132,13 @@ export default function AiDialogSession() {
       if (!hasPremiumAccess) {
         const left = await getFreeDialogsLeftToday();
         if (left <= 0) {
+          void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id });
+          void trackEvent('paywall_shown', { context: 'dialog_limit' });
           router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
           return;
         }
       }
+      void trackEvent('ai_dialog_started', { scenarioId: scenario.id, cefr: scenario.cefr });
       setSending(true);
       try {
         const res = await callPremiumDialogSend({
@@ -161,9 +171,10 @@ export default function AiDialogSession() {
   useEffect(() => {
     if (userExchanges >= MAX_EXCHANGES && !ended) {
       setEnded(true);
+      void trackEvent('ai_dialog_completed', { scenarioId: scenario.id, exchanges: userExchanges });
       if (!hasPremiumAccess) void markFreeDialogUsed();
     }
-  }, [userExchanges, ended, hasPremiumAccess]);
+  }, [userExchanges, ended, hasPremiumAccess, scenario.id]);
 
   useEffect(() => {
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
@@ -172,8 +183,11 @@ export default function AiDialogSession() {
 
   const onBack = useCallback(() => {
     hapticTap();
+    if (!ended && userExchanges > 0) {
+      void trackEvent('ai_dialog_abandoned', { scenarioId: scenario.id, atExchange: userExchanges });
+    }
     router.back();
-  }, [router]);
+  }, [router, ended, userExchanges, scenario.id]);
 
   const progressFill = themeMode === 'compass' ? '#F2C48D' : '#40C080';
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
@@ -287,6 +301,7 @@ export default function AiDialogSession() {
                         <TouchableOpacity
                           onPress={() => {
                             hapticTap();
+                            void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
                             speak(m.text, undefined, { language: 'en-US' });
                           }}
                           activeOpacity={0.6}
@@ -307,9 +322,10 @@ export default function AiDialogSession() {
                           <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
                         </TouchableOpacity>
                         <TouchableOpacity
-                          onPress={() =>
-                            setShowTranslationFor((prev) => ({ ...prev, [i]: !prev[i] }))
-                          }
+                          onPress={() => {
+                            if (!showTr) void trackEvent('ai_dialog_translation_used', { scenarioId: scenario.id });
+                            setShowTranslationFor((prev) => ({ ...prev, [i]: !prev[i] }));
+                          }}
                           activeOpacity={0.6}
                           style={{ marginTop: 8, flexDirection: 'row', alignItems: 'center', gap: 6 }}
                         >
@@ -400,7 +416,7 @@ export default function AiDialogSession() {
               {SUGGESTED_REPLIES.map((sug, idx) => (
                 <TouchableOpacity
                   key={idx}
-                  onPress={() => send(sug)}
+                  onPress={() => send(sug, true)}
                   activeOpacity={0.82}
                   style={{
                     borderRadius: 14,

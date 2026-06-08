@@ -53,6 +53,7 @@ import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
 import { isAiDialogEnabled } from '../ai_dialog_flags';
+import { trackEvent as trackAiDialogEvent } from '../analytics';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
@@ -383,6 +384,12 @@ export default function HomeScreen() {
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
+    // ИИ-диалоги: impression карточки (CTR-знаменатель) — один раз при показе
+    useEffect(() => {
+        if (isAiDialogEnabled() && studyTarget === 'en') {
+            void trackAiDialogEvent('ai_dialog_card_shown');
+        }
+    }, [studyTarget]);
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const [userName, setUserName] = useState(() => hh?.userName ?? '');
     const [streak, setStreak] = useState(() => hh?.streak ?? 0);
@@ -2876,7 +2883,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
 
             {isAiDialogEnabled() && studyTarget === 'en' ? (
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); void trackAiDialogEvent('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}

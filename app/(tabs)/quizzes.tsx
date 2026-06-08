@@ -24,6 +24,7 @@ import {
 } from 'react-native';
 
 import AddToFlashcard from '../../components/AddToFlashcard';
+import SpeakingButton from '../../components/SpeakingButton';
 import BonusXPCard from '../../components/BonusXPCard';
 import CoachToast from '../../components/CoachToast';
 import CompassDepthSurface from '../../components/CompassDepthSurface';
@@ -2282,6 +2283,10 @@ function QuizGame({
                 <View onStartShouldSetResponder={() => true}>
                   <AddToFlashcard en={shownCorrectEnglish} ru={current.ru} uk={current.uk} es={current.es} source="lesson" sourceId="quiz" studyTarget={studyTarget} />
                 </View>
+              </View>
+              {/* [SPEAKING] Произнести правильный ответ вслух (premium) */}
+              <View onStartShouldSetResponder={() => true} style={{ marginTop: 12 }}>
+                <SpeakingButton targetText={shownCorrectEnglish} lang={lang} variant="pill" />
               </View>
               {(isRight === false || typedOk === false) && displayAnswer && (
                 <>

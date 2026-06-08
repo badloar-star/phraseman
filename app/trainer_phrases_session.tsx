@@ -19,6 +19,7 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import SpeakingButton from '../components/SpeakingButton';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
@@ -236,6 +237,9 @@ function WordBankMode({ item, onResult }: WordBankProps) {
           })}
         </Text>
       </TouchableOpacity>
+
+      {/* [SPEAKING] Произнести фразу вслух (premium) */}
+      <SpeakingButton targetText={correctTokens.join(' ')} lang={lang} variant="pill" />
     </View>
   );
 }

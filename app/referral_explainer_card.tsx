@@ -129,14 +129,14 @@ export function ReferralExplainerCard({
       <View style={[styles.bodyBlock, { backgroundColor: t.bgSurface2 }]}>
         <Text style={[styles.bodyText, { color: t.textMuted }]}>
           {L(
-            'За каждого друга, который пройдёт первую сессию, ты получаешь 7 дней полного доступа.',
-            'За кожного друга, що пройде першу сесію, ти отримуєш 7 днів повного доступу.',
-            'Por cada amigo que complete la primera sesión, obtienes 7 días de acceso completo.',
-            'Por cada amigo que completar a primeira sessão, você ganha 7 dias de acesso completo.',
-            'Mỗi người bạn hoàn thành phiên đầu tiên, bạn nhận được 7 ngày truy cập đầy đủ.',
-            'Setiap teman yang menyelesaikan sesi pertama, kamu dapat 7 hari akses penuh.',
-            'İlk oturumu tamamlayan her arkadaşın için 7 günlük tam erişim kazanırsın.',
-            'Za każdego znajomego, który ukończy pierwszą sesję, dostajesz 7 dni pełnego dostępu.',
+            'Друг прошёл первую сессию — ты открываешь 7 дней полного доступа.',
+            'Друг пройшов першу сесію — ти відкриваєш 7 днів повного доступу.',
+            'Tu amigo completó la primera sesión: abres 7 días de acceso completo.',
+            'Seu amigo completou a primeira sessão: você abre 7 dias de acesso completo.',
+            'Bạn của bạn xong phiên đầu — bạn mở 7 ngày truy cập đầy đủ.',
+            'Temanmu selesai sesi pertama — kamu buka 7 hari akses penuh.',
+            'Arkadaşın ilk oturumu bitirdi — 7 günlük tam erişim açarsın.',
+            'Znajomy ukończył pierwszą sesję — otwierasz 7 dni pełnego dostępu.',
           )}
         </Text>
         <Text style={[styles.bodyText, styles.bodyTextSecond, { color: t.textMuted }]}>

@@ -174,27 +174,27 @@ export function ReferralAccessActivatedModal({
   // Строка срока действия (опционально)
   const untilText = untilLabel
     ? L(
-        `Действует ${untilLabel}.`,
-        `Діє ${untilLabel}.`,
-        `Válido ${untilLabel}.`,
-        `Válido até ${untilLabel}.`,
-        `Có hiệu lực đến ${untilLabel}.`,
-        `Berlaku hingga ${untilLabel}.`,
-        `${untilLabel} tarihine kadar geçerli.`,
-        `Ważny do ${untilLabel}.`,
+        `Открыто до ${untilLabel}.`,
+        `Відкрито до ${untilLabel}.`,
+        `Abierto hasta ${untilLabel}.`,
+        `Aberto até ${untilLabel}.`,
+        `Mở đến ${untilLabel}.`,
+        `Terbuka hingga ${untilLabel}.`,
+        `${untilLabel} tarihine kadar açık.`,
+        `Otwarte do ${untilLabel}.`,
       )
     : null;
 
-  // Кнопка подтверждения
+  // Кнопка подтверждения — по Библии: глагол завершения «Готово» (не «Отлично»)
   const buttonLabel = L(
-    'Отлично',
-    'Чудово',
-    'Genial',
-    'Ótimo',
-    'Tuyệt vời',
-    'Bagus',
-    'Harika',
-    'Świetnie',
+    'Готово',
+    'Готово',
+    'Listo',
+    'Pronto',
+    'Xong',
+    'Selesai',
+    'Tamam',
+    'Gotowe',
   );
 
   // ---------------------------------------------------------------------------

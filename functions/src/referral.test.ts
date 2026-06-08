@@ -60,4 +60,13 @@ describe('stackVipUntilMs — «копить на потом»', () => {
     expect(stackVipUntilMs(0, NOW, 0)).toBe(NOW);
     expect(stackVipUntilMs(0, NOW, -5)).toBe(NOW);
   });
+
+  it('bilateral grant: referee and referrer each get the same 7d math from a clean window', () => {
+    // оба получают неделю доступа за прохождение урока 1 — одна и та же чистая функция
+    const refereeUntil = stackVipUntilMs(0, NOW, 7); // авто при qualify
+    const referrerUntil = stackVipUntilMs(0, NOW, 7); // по кнопке (pull)
+    expect(refereeUntil).toBe(NOW + 7 * DAY);
+    expect(referrerUntil).toBe(NOW + 7 * DAY);
+    expect(refereeUntil).toBe(referrerUntil);
+  });
 });

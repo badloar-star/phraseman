@@ -1,17 +1,19 @@
 /**
- * Вирусный реферал (pull-модель, экономия Firebase-лимитов).
+ * Вирусный реферал (двусторонний VIP, экономия Firebase-лимитов).
+ * Крючок: «позови друга — неделя полного доступа вам обоим».
  *
  * Поток:
  *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
  *   2. referralApply — referee вводит код (deeplink/manual). Идемпотентно, антифрод по возрасту аккаунта.
  *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
  *   3. referee проходит урок 1 (>= бронзы ⇒ unlocked_lessons содержит 2). Его cloud_sync и так
- *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated помечает attribution
- *      status='qualified' — БЕЗ начисления (никаких фоновых записей на referrer).
- *   4. referrer в /friends видит qualified-друга и сам жмёт «Получить 7 дней» → referralClaimVipReward:
+ *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated:
+ *        — сразу даёт REFEREE 7 дней VIP (бесплатно по записям: мы уже в его документе);
+ *        — помечает attribution status='qualified' (referrer'у в фоне НИЧЕГО не пишем).
+ *   4. referrer в /friends видит qualified-друга и сам жмёт «Открыть» → referralClaimVipReward:
  *      одна транзакция, +7 дней VIP (стак vip_until), attribution → 'rewarded'. 1 write на клик.
  *
- * VIP-механику НЕ меняем: пишем те же поля vip_* в users/{referrerId}.progress, что и admin-grant.
+ * VIP-механику НЕ меняем: пишем те же поля vip_* в users/{id}.progress, что и admin-grant.
  * Авторитетный источник premium/vip — только Admin SDK (firestore.rules: progressHasNoPremiumWrites).
  */
 import * as admin from 'firebase-admin';
@@ -25,11 +27,9 @@ const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_CODE_ATTEMPTS = 12;
 
-/** Referee тоже получает шарды за прохождение урока 1 — мягкий стимул, не меняем. */
-const REFEREE_SHARD_BONUS = 15;
-
-/** VIP referrer'у: 7 дней за каждого приведённого друга, стакается. */
-const REFERRER_VIP_DAYS = 7;
+/** Двусторонний VIP: оба получают неделю доступа за прохождение урока 1. */
+const REFERRER_VIP_DAYS = 7; // referrer — по кнопке (pull), стакается
+const REFEREE_VIP_DAYS = 7; // referee — автоматически при qualify (мы уже в его документе)
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
 const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
@@ -76,13 +76,6 @@ function hasLesson1DoneProgress(
   return parseUnlockedLessons(u).includes(2);
 }
 
-function parseShardBalance(data: admin.firestore.DocumentData | undefined): number {
-  const raw = data?.shards;
-  const n = typeof raw === 'number' ? raw : Number(raw);
-  if (!Number.isFinite(n) || n < 0) return 0;
-  return Math.floor(n);
-}
-
 /** Текущее VIP-окно referrer'а из users/{id}.progress (ms). Не активные/пустые → 0. */
 function parseVipUntilMs(data: admin.firestore.DocumentData | undefined): number {
   const p = (data as { progress?: Record<string, unknown> } | undefined)?.progress;
@@ -112,14 +105,6 @@ export function stackVipUntilMs(
   return base + Math.max(0, Math.floor(addDays)) * dayMs;
 }
 
-function shardLedgerMeta(reason: string, updatedAtMs: number) {
-  return {
-    shards_updated_at_ms: updatedAtMs,
-    shards_updated_op: 'earn',
-    shards_updated_reason: reason,
-    updatedAt: updatedAtMs,
-  };
-}
 
 function randomCode(): string {
   let s = '';
@@ -135,9 +120,12 @@ function yyyymmNow(): string {
 }
 
 /**
- * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified' (если был 'pending').
- * Параллельно — мягкий бонус шардами самому referee (как раньше). referrer'у ничего не пишем:
- * он сам обналичит VIP по кнопке (pull). Это убирает фоновую запись на чужой документ.
+ * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified' + сразу начисляем ему
+ * 7 дней VIP. Это БЕСПЛАТНО по записям: триггер и так пишет в документ referee, мы лишь
+ * добавляем vip_* поля в тот же merge-set. referrer'у в фоне НИЧЕГО не пишем — он обналичит
+ * свои 7 дней по кнопке (pull), чтобы не делать запись в чужой документ на каждого друга.
+ *
+ * Двусторонний крючок: «позови друга — неделя доступа вам обоим».
  */
 async function markRefereeQualifiedAndRewardReferee(
   db: admin.firestore.Firestore,
@@ -163,36 +151,34 @@ async function markRefereeQualifiedAndRewardReferee(
     if (row?.status && row.status !== 'pending') return;
 
     const nowMs = Date.now();
-    const nowIso = new Date(nowMs).toISOString();
 
-    // Мягкий бонус referee шардами (не VIP — VIP только для referrer по pull).
-    const refeeBal = parseShardBalance(refeeSnap.data());
-    const nextRefee = refeeBal + REFEREE_SHARD_BONUS;
+    // Сразу даём referee 7 дней VIP — теми же полями vip_*, что admin-grant (механику не трогаем).
+    const refeeData = refeeSnap.data() ?? {};
+    const refeeVipUntil = stackVipUntilMs(parseVipUntilMs(refeeData), nowMs, REFEREE_VIP_DAYS);
     tx.set(
       uref(userId),
       {
-        shards: nextRefee,
-        ...shardLedgerMeta('referral_referee_l1', nowMs),
+        progress: {
+          vip_active: 'true',
+          vip_plan: 'referral',
+          vip_from: String(Math.min(parseVipUntilMs(refeeData) || nowMs, nowMs)),
+          vip_until: String(refeeVipUntil),
+          vip_admin_override: 'true',
+          vip_admin_grant_at: String(nowMs),
+        },
+        updatedAt: nowMs,
       },
       { merge: true },
     );
-    const refeeLog = uref(userId).collection('shard_log').doc();
-    tx.set(refeeLog, {
-      type: 'earn',
-      amount: REFEREE_SHARD_BONUS,
-      reason: 'referral_referee_l1',
-      balanceBefore: refeeBal,
-      balanceAfter: nextRefee,
-      ts: nowIso,
-    });
 
-    // Помечаем attribution готовым к обналичиванию referrer'ом.
+    // Помечаем attribution: referee получил VIP, referrer ещё должен забрать (qualified).
     tx.set(
       attRef,
       {
         status: 'qualified' as AttributionStatus,
         qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
-        refeeShardBonus: REFEREE_SHARD_BONUS,
+        refereeVipDays: REFEREE_VIP_DAYS,
+        refereeRewardedAt: admin.firestore.FieldValue.serverTimestamp(),
         qualifiedBy: 'unlocked_lesson_2',
       },
       { merge: true },

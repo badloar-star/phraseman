@@ -1,6 +1,18 @@
 /**
- * Вирусный реферал: код в облаке, apply идемпотентно, награда шардами после
- * целевого действия (разблокирован урок 2 ⇒ урок 1 пройден с >= бронзы).
+ * Вирусный реферал (pull-модель, экономия Firebase-лимитов).
+ *
+ * Поток:
+ *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
+ *   2. referralApply — referee вводит код (deeplink/manual). Идемпотентно, антифрод по возрасту аккаунта.
+ *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
+ *   3. referee проходит урок 1 (>= бронзы ⇒ unlocked_lessons содержит 2). Его cloud_sync и так
+ *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated помечает attribution
+ *      status='qualified' — БЕЗ начисления (никаких фоновых записей на referrer).
+ *   4. referrer в /friends видит qualified-друга и сам жмёт «Получить 7 дней» → referralClaimVipReward:
+ *      одна транзакция, +7 дней VIP (стак vip_until), attribution → 'rewarded'. 1 write на клик.
+ *
+ * VIP-механику НЕ меняем: пишем те же поля vip_* в users/{referrerId}.progress, что и admin-grant.
+ * Авторитетный источник premium/vip — только Admin SDK (firestore.rules: progressHasNoPremiumWrites).
  */
 import * as admin from 'firebase-admin';
 import * as crypto from 'node:crypto';
@@ -13,9 +25,17 @@ const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_CODE_ATTEMPTS = 12;
 
+/** Referee тоже получает шарды за прохождение урока 1 — мягкий стимул, не меняем. */
 const REFEREE_SHARD_BONUS = 15;
-const REFERRER_SHARD_BONUS = 20;
-const MAX_REFERRER_BONUSES_PER_MONTH = 30;
+
+/** VIP referrer'у: 7 дней за каждого приведённого друга, стакается. */
+const REFERRER_VIP_DAYS = 7;
+const DAY_MS = 24 * 60 * 60 * 1000;
+/** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
+const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
+/** Сколько qualified-друзей обрабатываем за один claim-вызов (защита от гигантских транзакций). */
+const MAX_CLAIMS_PER_CALL = 20;
+
 /** Привязка apply только для «свежих» аккаунтов (ms с users.created_at). 0 = выкл. */
 const REFEREE_MAX_ACCOUNT_AGE_MS = 14 * 24 * 60 * 60 * 1000;
 
@@ -25,7 +45,11 @@ const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
 
-type AttributionStatus = 'pending' | 'rewarded' | 'skipped_referrer_cap';
+type AttributionStatus =
+  | 'pending'
+  | 'qualified'
+  | 'rewarded'
+  | 'skipped_referrer_cap';
 
 function parseUnlockedLessons(raw: unknown): number[] {
   if (raw == null) return [];
@@ -59,6 +83,35 @@ function parseShardBalance(data: admin.firestore.DocumentData | undefined): numb
   return Math.floor(n);
 }
 
+/** Текущее VIP-окно referrer'а из users/{id}.progress (ms). Не активные/пустые → 0. */
+function parseVipUntilMs(data: admin.firestore.DocumentData | undefined): number {
+  const p = (data as { progress?: Record<string, unknown> } | undefined)?.progress;
+  return vipUntilFromProgress(p);
+}
+
+/** Чистая функция: читает vip_until/vip_expiry из объекта progress (ms). Экспортируется для тестов. */
+export function vipUntilFromProgress(progress: Record<string, unknown> | undefined): number {
+  const raw = progress?.vip_until ?? progress?.vip_expiry;
+  const n = typeof raw === 'number' ? raw : Number(raw);
+  if (!Number.isFinite(n) || n <= 0) return 0;
+  return Math.floor(n);
+}
+
+/**
+ * Чистая функция стакинга VIP-дней. Ключевое решение «копить на потом»:
+ * стак считается от max(текущее_окно, now), поэтому уже накопленные дни НЕ сгорают,
+ * а новые добавляются к концу окна. Экспортируется для тестов.
+ */
+export function stackVipUntilMs(
+  currentUntilMs: number,
+  nowMs: number,
+  addDays: number,
+  dayMs = DAY_MS,
+): number {
+  const base = Math.max(currentUntilMs > 0 ? currentUntilMs : 0, nowMs);
+  return base + Math.max(0, Math.floor(addDays)) * dayMs;
+}
+
 function shardLedgerMeta(reason: string, updatedAtMs: number) {
   return {
     shards_updated_at_ms: updatedAtMs,
@@ -81,7 +134,12 @@ function yyyymmNow(): string {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
 }
 
-async function grantReferralRewardIfQualified(
+/**
+ * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified' (если был 'pending').
+ * Параллельно — мягкий бонус шардами самому referee (как раньше). referrer'у ничего не пишем:
+ * он сам обналичит VIP по кнопке (pull). Это убирает фоновую запись на чужой документ.
+ */
+async function markRefereeQualifiedAndRewardReferee(
   db: admin.firestore.Firestore,
   userId: string,
 ): Promise<void> {
@@ -89,36 +147,27 @@ async function grantReferralRewardIfQualified(
   const attSnap = await attRef.get();
   if (!attSnap.exists) return;
   const att0 = attSnap.data() as { status?: string; referrerStableId?: string };
+  // Уже qualified/rewarded — ничего не делаем (идемпотентность).
   if (att0?.status && att0.status !== 'pending') return;
   const referrerId = String(att0.referrerStableId ?? '').trim();
   if (!referrerId) return;
 
-  const ym = yyyymmNow();
   const uref = (uid: string) => db.collection(USERS).doc(uid);
 
   await db.runTransaction(async (tx) => {
     const attR = await tx.get(attRef);
-    const refUserSnap = await tx.get(uref(referrerId));
     const refeeSnap = await tx.get(uref(userId));
     if (!attR.exists) return;
     if (!hasLesson1DoneProgress(refeeSnap.data())) return;
     const row = attR.data() as { status?: string };
     if (row?.status && row.status !== 'pending') return;
 
-    const refData = refUserSnap.data() ?? {};
-    const monthly = (refData.referral_bonuses_monthly as Record<string, number> | undefined) ?? {};
-    const used = Math.max(0, Math.floor(Number(monthly[ym] ?? 0)));
-    let refererDelta = REFERRER_SHARD_BONUS;
-    let outStatus: AttributionStatus = 'rewarded';
-    if (used >= MAX_REFERRER_BONUSES_PER_MONTH) {
-      refererDelta = 0;
-      outStatus = 'skipped_referrer_cap';
-    }
-
-    const refeeBal = parseShardBalance(refeeSnap.data());
-    const nextRefee = refeeBal + REFEREE_SHARD_BONUS;
     const nowMs = Date.now();
     const nowIso = new Date(nowMs).toISOString();
+
+    // Мягкий бонус referee шардами (не VIP — VIP только для referrer по pull).
+    const refeeBal = parseShardBalance(refeeSnap.data());
+    const nextRefee = refeeBal + REFEREE_SHARD_BONUS;
     tx.set(
       uref(userId),
       {
@@ -137,36 +186,13 @@ async function grantReferralRewardIfQualified(
       ts: nowIso,
     });
 
-    if (refererDelta > 0) {
-      const refBal = parseShardBalance(refUserSnap.data());
-      const nextRef = refBal + refererDelta;
-      tx.set(
-        uref(referrerId),
-        {
-          shards: nextRef,
-          ...shardLedgerMeta('referral_referrer_l1', nowMs),
-          referral_bonuses_monthly: { ...monthly, [ym]: used + 1 },
-        },
-        { merge: true },
-      );
-      const refLog = uref(referrerId).collection('shard_log').doc();
-      tx.set(refLog, {
-        type: 'earn',
-        amount: refererDelta,
-        reason: 'referral_referrer_l1',
-        balanceBefore: refBal,
-        balanceAfter: nextRef,
-        ts: nowIso,
-      });
-    }
-
+    // Помечаем attribution готовым к обналичиванию referrer'ом.
     tx.set(
       attRef,
       {
-        status: outStatus,
-        rewardedAt: admin.firestore.FieldValue.serverTimestamp(),
-        referrerShardBonus: refererDelta,
-        refereeShardBonus: REFEREE_SHARD_BONUS,
+        status: 'qualified' as AttributionStatus,
+        qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
+        refeeShardBonus: REFEREE_SHARD_BONUS,
         qualifiedBy: 'unlocked_lesson_2',
       },
       { merge: true },
@@ -317,8 +343,8 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
     return { ok: true, already: false, referrerStableId: ownerStableId, refCode };
   });
   if (result?.ok) {
-    await grantReferralRewardIfQualified(db, refereeStableId).catch((e) => {
-      console.warn('[referral] reward after apply failed', e);
+    await markRefereeQualifiedAndRewardReferee(db, refereeStableId).catch((e) => {
+      console.warn('[referral] qualify after apply failed', e);
     });
   }
   return result;
@@ -326,8 +352,8 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
 
 /**
  * Когда в users/{stableId} появляется progress.unlocked_lessons с "2" (урок 1 с бронзой) —
- * начисляем шарды referee и referrer (идемпотентно; лимит на referrer в месяц).
- * onDocumentWritten: и первый create, и update.
+ * помечаем attribution referee как 'qualified' + начисляем referee шарды. referrer'у НИЧЕГО
+ * не пишем (pull): он обналичит VIP по кнопке. onDocumentWritten: и create, и update.
  */
 export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritten(
   { document: `${USERS}/{userId}`, region: REGION },
@@ -343,6 +369,205 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
     if (!hasLesson1DoneProgress(after)) return;
 
     const db = admin.firestore();
-    await grantReferralRewardIfQualified(db, userId);
+    await markRefereeQualifiedAndRewardReferee(db, userId);
   },
 );
+
+type InviteState = {
+  refereeStableId: string;
+  status: AttributionStatus;
+  /** ms, для сортировки «новые сверху» на клиенте. */
+  createdAtMs: number;
+};
+
+/**
+ * Список приглашений этого referrer'а для экрана друзей (бейджи + кнопка «Получить»).
+ * Читаем attributions на сервере (rules держим закрытыми: isAdmin only), отдаём только
+ * безопасные поля. Один read на открытие /friends; клиент кеширует через SWR.
+ */
+export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
+  if (!request.auth?.uid) {
+    throw new HttpsError('unauthenticated', 'Auth required');
+  }
+  const authUid = request.auth.uid;
+  const referrerStableId = String(request.data?.referrerStableId ?? '').trim();
+  if (!referrerStableId) {
+    throw new HttpsError('invalid-argument', 'referrerStableId required');
+  }
+  const db = admin.firestore();
+  await assertAuthStableLink(db, authUid, referrerStableId);
+
+  const snap = await db
+    .collection(REFERRAL_ATTRIBUTIONS)
+    .where('referrerStableId', '==', referrerStableId)
+    .limit(200)
+    .get();
+
+  const invites: InviteState[] = snap.docs.map((d) => {
+    const row = d.data() as { status?: string; createdAt?: admin.firestore.Timestamp };
+    const createdAtMs =
+      row.createdAt && typeof row.createdAt.toMillis === 'function'
+        ? row.createdAt.toMillis()
+        : 0;
+    return {
+      refereeStableId: d.id,
+      status: (row.status as AttributionStatus) ?? 'pending',
+      createdAtMs,
+    };
+  });
+
+  const qualifiedCount = invites.filter((i) => i.status === 'qualified').length;
+  return {
+    ok: true,
+    invites,
+    qualifiedCount,
+    claimableVipDays: qualifiedCount * REFERRER_VIP_DAYS,
+  };
+});
+
+type ClaimedFriend = {
+  refereeStableId: string;
+  daysGranted: number;
+};
+
+/**
+ * Pull-обналичивание: referrer жмёт «Получить 7 дней». Начисляем +7 дней VIP за каждого
+ * qualified-друга (стак vip_until), помечаем attribution 'rewarded'. Идемпотентно: повторный
+ * вызов без новых qualified вернёт granted=0. Месячный кап от абьюза.
+ *
+ * VIP пишем теми же полями, что admin-grant (vip_* в users/{id}.progress) — механику не трогаем.
+ */
+export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
+  if (!request.auth?.uid) {
+    throw new HttpsError('unauthenticated', 'Auth required');
+  }
+  const authUid = request.auth.uid;
+  const referrerStableId = String(request.data?.referrerStableId ?? '').trim();
+  if (!referrerStableId) {
+    throw new HttpsError('invalid-argument', 'referrerStableId required');
+  }
+
+  const db = admin.firestore();
+  await assertAuthStableLink(db, authUid, referrerStableId);
+
+  // Какие приглашения этого referrer'а готовы к обналичиванию (qualified, ещё не rewarded).
+  const qualifiedSnap = await db
+    .collection(REFERRAL_ATTRIBUTIONS)
+    .where('referrerStableId', '==', referrerStableId)
+    .where('status', '==', 'qualified')
+    .limit(MAX_CLAIMS_PER_CALL)
+    .get();
+
+  if (qualifiedSnap.empty) {
+    // Возвращаем текущее окно, чтобы клиент мог синхронизировать состояние без начисления.
+    const u = await db.collection(USERS).doc(referrerStableId).get();
+    return {
+      ok: true,
+      granted: 0,
+      claimed: [] as ClaimedFriend[],
+      vipUntilMs: parseVipUntilMs(u.data()),
+      cappedThisMonth: false,
+    };
+  }
+
+  const ym = yyyymmNow();
+  const userRef = db.collection(USERS).doc(referrerStableId);
+
+  return db.runTransaction(async (tx) => {
+    const userSnap = await tx.get(userRef);
+    // Перечитываем attributions внутри транзакции (защита от гонки двойного клика).
+    const attRefs = qualifiedSnap.docs.map((d) =>
+      db.collection(REFERRAL_ATTRIBUTIONS).doc(d.id),
+    );
+    const attSnaps = await Promise.all(attRefs.map((r) => tx.get(r)));
+
+    const userData = userSnap.data() ?? {};
+    const monthly =
+      (userData.progress as { referral_vip_claims_monthly?: Record<string, number> } | undefined)
+        ?.referral_vip_claims_monthly ?? {};
+    let usedThisMonth = Math.max(0, Math.floor(Number(monthly[ym] ?? 0)));
+
+    const nowMs = Date.now();
+    const nowIso = new Date(nowMs).toISOString();
+    let vipUntil = Math.max(parseVipUntilMs(userData), nowMs);
+    const claimed: ClaimedFriend[] = [];
+    let cappedThisMonth = false;
+
+    for (let i = 0; i < attSnaps.length; i += 1) {
+      const snap = attSnaps[i];
+      if (!snap.exists) continue;
+      const row = snap.data() as { status?: string } | undefined;
+      if (row?.status !== 'qualified') continue; // уже обналичено в гонке — пропускаем
+
+      if (usedThisMonth >= MAX_REFERRER_CLAIMS_PER_MONTH) {
+        cappedThisMonth = true;
+        tx.set(
+          attRefs[i],
+          {
+            status: 'skipped_referrer_cap' as AttributionStatus,
+            cappedAt: admin.firestore.FieldValue.serverTimestamp(),
+          },
+          { merge: true },
+        );
+        continue;
+      }
+
+      // Стак: +7 дней от текущего конца окна (или от now, если окна не было).
+      vipUntil = stackVipUntilMs(vipUntil, nowMs, REFERRER_VIP_DAYS);
+      usedThisMonth += 1;
+      claimed.push({ refereeStableId: snap.id, daysGranted: REFERRER_VIP_DAYS });
+
+      tx.set(
+        attRefs[i],
+        {
+          status: 'rewarded' as AttributionStatus,
+          rewardedAt: admin.firestore.FieldValue.serverTimestamp(),
+          referrerVipDays: REFERRER_VIP_DAYS,
+          rewardKind: 'vip_days',
+        },
+        { merge: true },
+      );
+    }
+
+    if (claimed.length > 0) {
+      // Пишем VIP теми же полями, что admin-grant — премиум-механику не меняем.
+      // vip_admin_grant_at — маркер для клиентской анимации (vip_celebration_state).
+      tx.set(
+        userRef,
+        {
+          progress: {
+            vip_active: 'true',
+            vip_plan: 'referral',
+            vip_from: String(Math.min(parseVipUntilMs(userData) || nowMs, nowMs)),
+            vip_until: String(vipUntil),
+            vip_admin_override: 'true',
+            vip_admin_grant_at: String(nowMs),
+            referral_vip_claims_monthly: { ...monthly, [ym]: usedThisMonth },
+          },
+          updatedAt: nowMs,
+        },
+        { merge: true },
+      );
+
+      const rewardRef = userRef.collection('shard_rewards').doc();
+      tx.set(rewardRef, {
+        ts: nowIso,
+        reason: 'referral_referrer_vip',
+        rewardType: 'vip_days',
+        amount: 0,
+        days: claimed.length * REFERRER_VIP_DAYS,
+        friends: claimed.length,
+        label: `💎 +${claimed.length * REFERRER_VIP_DAYS} дней VIP`,
+        seen: false,
+      });
+    }
+
+    return {
+      ok: true,
+      granted: claimed.length * REFERRER_VIP_DAYS,
+      claimed,
+      vipUntilMs: vipUntil,
+      cappedThisMonth,
+    };
+  });
+});

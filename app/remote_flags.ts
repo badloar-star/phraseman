@@ -179,18 +179,20 @@ export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 /**
  * Deterministic A/B group for a user (stable across launches unless the split
  * config changes). djb2 hash of `${userId}:${salt}` → bucket by cumulative pct.
- * Groups: 'a' | 'b' | 'c'. Defaults to 'b' if all pcts are zero.
+ * Groups: 'A' | 'B' | 'C'. Defaults to 'B' (2 sessions) if all pcts are zero.
  */
-export function getTrainerAbGroup(userId: string): 'a' | 'b' | 'c' {
+export type TrainerAbGroup = 'A' | 'B' | 'C';
+
+export function getTrainerAbGroup(userId: string): TrainerAbGroup {
   const a = getRemoteNumber('trainer_ab_a_pct');
   const b = getRemoteNumber('trainer_ab_b_pct');
   const c = getRemoteNumber('trainer_ab_c_pct');
   const total = a + b + c;
-  if (total <= 0) return 'b';
+  if (total <= 0) return 'B';
   const bucket = hashToUnit(`${userId}:trainer_sessions_ab`) * total;
-  if (bucket < a) return 'a';
-  if (bucket < a + b) return 'b';
-  return 'c';
+  if (bucket < a) return 'A';
+  if (bucket < a + b) return 'B';
+  return 'C';
 }
 
 /** Deterministic paywall variant for a user: 'v1' | 'v2' by paywall_v2_pct. */
@@ -216,12 +218,12 @@ function hashToUnit(input: string): number {
 
 const TRAINER_AB_CACHE_KEY = 'trainer_sessions_ab_group_v1';
 
-/** Sessions/day for a given A/B group. a=1, b=2, c=3. */
-function trainerSessionsForGroup(group: 'a' | 'b' | 'c'): number {
+/** Sessions/day for a given A/B group. A=1, B=2, C=3. */
+export function trainerSessionsForGroup(group: TrainerAbGroup): number {
   switch (group) {
-    case 'a': return 1;
-    case 'b': return 2;
-    case 'c': return 3;
+    case 'A': return 1;
+    case 'B': return 2;
+    case 'C': return 3;
   }
 }
 
@@ -241,11 +243,11 @@ export async function getEffectiveFreeTrainerSessions(userId: string | null): Pr
   if (!hasAbSplit || !userId) return getFreeTrainerSessionsPerDay();
 
   const sig = getRemoteConfigSignature();
-  let group: 'a' | 'b' | 'c' | null = null;
+  let group: TrainerAbGroup | null = null;
   const cached = await AsyncStorage.getItem(TRAINER_AB_CACHE_KEY).catch(() => null);
   if (cached) {
     const [cachedSig, cachedGroup] = cached.split('|');
-    if (cachedSig === sig && (cachedGroup === 'a' || cachedGroup === 'b' || cachedGroup === 'c')) {
+    if (cachedSig === sig && (cachedGroup === 'A' || cachedGroup === 'B' || cachedGroup === 'C')) {
       group = cachedGroup;
     }
   }

@@ -37,6 +37,51 @@ export async function callReferralApply(params: {
   return res.data;
 }
 
+/** Статус приглашения для бейджей в /friends (зеркало серверного AttributionStatus). */
+export type ReferralInviteStatus = 'pending' | 'qualified' | 'rewarded' | 'skipped_referrer_cap';
+
+export type ReferralInvite = {
+  refereeStableId: string;
+  status: ReferralInviteStatus;
+  createdAtMs: number;
+};
+
+export type ListMyInvitesResult = {
+  ok?: boolean;
+  invites: ReferralInvite[];
+  qualifiedCount: number;
+  claimableVipDays: number;
+};
+
+/** Список приглашений текущего пользователя (для бейджей и кнопки «Открыть»). */
+export async function callReferralListMyInvites(referrerStableId: string): Promise<ListMyInvitesResult> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<{ referrerStableId: string }, ListMyInvitesResult>('referralListMyInvites');
+  const res = await fn({ referrerStableId });
+  return res.data;
+}
+
+export type ClaimedFriend = {
+  refereeStableId: string;
+  daysGranted: number;
+};
+
+export type ClaimVipRewardResult = {
+  ok?: boolean;
+  granted: number;
+  claimed: ClaimedFriend[];
+  vipUntilMs: number;
+  cappedThisMonth: boolean;
+};
+
+/** Обналичивание накопленных дней доступа: +7 дней за каждого qualified-друга (стакается). */
+export async function callReferralClaimVipReward(referrerStableId: string): Promise<ClaimVipRewardResult> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<{ referrerStableId: string }, ClaimVipRewardResult>('referralClaimVipReward');
+  const res = await fn({ referrerStableId });
+  return res.data;
+}
+
 /** Коды ошибок callable для UI. */
 export function getReferralCallableErrorCode(e: unknown): string | null {
   if (e && typeof e === 'object' && 'code' in e) {

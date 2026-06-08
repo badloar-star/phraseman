@@ -86,6 +86,8 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow write: if false;
     }
+    // Чтение клиентом — только через callable referralListMyInvites (CF проверяет auth_links).
+    // Прямой клиентский read закрыт; запись — только Admin SDK (referralApply/referralClaimVipReward).
     match /referral_attributions/{id} {
       allow read: if isAdmin();
       allow write: if false;

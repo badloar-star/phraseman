@@ -127,12 +127,12 @@ export default function StatsPremiumBlur({
   devUnlock = false,
 }: StatsPremiumBlurProps) {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
 
   if (isPremium || devUnlock) return <>{children}</>;
 
-  const isLight = false;
+  const isLight = themeMode === 'minimalLight';
   const titleCopy = CONTEXT_TITLES[context];
   const title = overrideTitle ?? triLang(lang, titleCopy);
   const resolvedSnapshotKey: StatsPremiumSnapshotKey =

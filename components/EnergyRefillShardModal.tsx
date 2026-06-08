@@ -167,7 +167,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
 
   const bodyHint = isUnlimited ? hintUnlimited : baseFull ? hintFull : hintOk;
 
-  const isLight = false;
+  const isLight = themeMode === 'minimalLight';
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>

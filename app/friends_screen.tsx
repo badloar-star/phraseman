@@ -12,9 +12,7 @@ import {
   Share,
   StyleSheet,
   InteractionManager,
-  Animated,
 } from 'react-native';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -123,8 +121,6 @@ async function fetchUserProfile(uid: string): Promise<UserProfile> {
 // ── Main screen ───────────────────────────────────────────────────────────────
 
 export default function FriendsScreen() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { theme: t } = useTheme();
   const { lang } = useLang();
@@ -872,9 +868,7 @@ export default function FriendsScreen() {
           </Text>
         </View>
 
-        <BouncyWrap>
-          <Animated.View style={bouncyStyle}>
-        <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
           <ContentWrap>
 
             {/* ── Section 1: My Code ────────────────────────────────────── */}
@@ -993,8 +987,6 @@ export default function FriendsScreen() {
             <View style={styles.bottomPad} />
           </ContentWrap>
         </BouncyScrollView>
-          </Animated.View>
-        </BouncyWrap>
         <Modal
           visible={giftTarget !== null}
           transparent

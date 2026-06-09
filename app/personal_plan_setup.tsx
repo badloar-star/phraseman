@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import TapScale from '../components/TapScale';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -258,8 +257,6 @@ function PlanCard({
 
 // ─── Main screen ───────────────────────────────────────────────────────────
 export default function PersonalPlanSetupScreen() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { theme: t } = useTheme();
   const [step, setStep] = useState<Step>('goal');
@@ -572,13 +569,9 @@ export default function PersonalPlanSetupScreen() {
           </View>
         </View>
 
-        <BouncyWrap>
-          <Animated.View style={bouncyStyle}>
-            <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-              {content}
-            </BouncyScrollView>
-          </Animated.View>
-        </BouncyWrap>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          {content}
+        </BouncyScrollView>
       </LinearGradient>
     </SafeAreaView>
   );

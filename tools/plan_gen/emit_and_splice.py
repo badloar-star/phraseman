@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-# Reusable: emit TS for a fixed batch JSON and splice into plan_content_voyazh.ts.
-# Usage: python tools/plan_gen/emit_and_splice.py <fixed.json> <order_csv> <max_day_in_array>
+# Reusable: emit TS for a fixed batch JSON and splice into plan_content_<plan>.ts.
+# Usage: python tools/plan_gen/emit_and_splice.py <fixed.json> <order_csv> <max_day_in_array> [planId]
 #   order_csv: "22,23,24,25,26,27,28"
-#   max_day_in_array: rebuild VOYAZH_CONTENT_DAYS = [DAY_1..DAY_<max>]
+#   max_day_in_array: rebuild <PLAN>_CONTENT_DAYS = [DAY_1..DAY_<max>]
+#   planId: optional, defaults to 'voyazh' (e.g. 'mitap')
+# NOTE: only APPENDS/rebuilds for contiguous days 1..MAXDAY. To patch scattered
+# existing days, use in-place const-block replacement, NOT this script.
 import json, sys
 SRC = sys.argv[1]
 ORDER = [int(x) for x in sys.argv[2].split(',')]
 MAXDAY = int(sys.argv[3])
-FILE = r'C:\appsprojects\phraseman\app\plan_content_voyazh.ts'
+PLAN = sys.argv[4] if len(sys.argv) > 4 else 'voyazh'
+UPPER = PLAN.upper()
+FILE = r'C:\appsprojects\phraseman\app\plan_content_%s.ts' % PLAN
 
 d = json.load(open(SRC, encoding='utf-8'))
 def js(s): return "'" + s.replace('\\','\\\\').replace("'","\\'") + "'"
@@ -15,8 +20,8 @@ def loc(o): return "{ ru: %s, uk: %s, es: %s }" % (js(o['ru']), js(o['uk']), js(
 
 def emit_day(day):
     n=day['dayIndex']; L=[]
-    L.append(f"export const VOYAZH_DAY_{n}: PlanContentDay = {{")
-    L.append(f"  planId: 'voyazh',")
+    L.append(f"export const {UPPER}_DAY_{n}: PlanContentDay = {{")
+    L.append(f"  planId: '{PLAN}',")
     L.append(f"  dayIndex: {n},")
     L.append(f"  topic: {loc(day['topic'])},")
     L.append(f"  outcome: {{")
@@ -73,8 +78,8 @@ def emit_day(day):
 
 emit = "\n\n".join(emit_day(d[str(n)]) for n in ORDER) + "\n"
 src = open(FILE, encoding='utf-8').read()
-marker = 'export const VOYAZH_CONTENT_DAYS'
+marker = 'export const %s_CONTENT_DAYS' % UPPER
 head, _ = src.split(marker, 1)
-arr = "export const VOYAZH_CONTENT_DAYS: PlanContentDay[] = [\n" + ''.join(f"  VOYAZH_DAY_{i},\n" for i in range(1, MAXDAY+1)) + "];\n"
+arr = "export const %s_CONTENT_DAYS: PlanContentDay[] = [\n" % UPPER + ''.join(f"  {UPPER}_DAY_{i},\n" for i in range(1, MAXDAY+1)) + "];\n"
 open(FILE, 'w', encoding='utf-8').write(head + emit + "\n" + arr)
-print('spliced', ORDER, '-> array 1..%d' % MAXDAY)
+print('spliced', ORDER, '-> %s array 1..%d' % (PLAN, MAXDAY))

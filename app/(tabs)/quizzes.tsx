@@ -1009,7 +1009,6 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       </View>
 
       <BouncyWrap>
-        <Animated.View style={bouncyStyle}>
       <ScrollView
         style={{ flex: 1 }}
         decelerationRate="normal"
@@ -1027,6 +1026,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         onScroll={onBouncyScroll}
         scrollEventThrottle={16}
       >
+        <Animated.View style={bouncyStyle}>
         {(Object.keys(LEVEL_CONFIG) as Level[]).map(lv => {
           const c        = LEVEL_CONFIG[lv];
           const lbl      = triLang(lang, {
@@ -1285,8 +1285,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             </Text>
           </View>
         )}
-      </ScrollView>
         </Animated.View>
+      </ScrollView>
       </BouncyWrap>
       </ContentWrap>
 

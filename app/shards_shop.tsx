@@ -67,7 +67,6 @@ import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } f
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
 import { initRevenueCat } from './revenuecat_init';
 import { trackActivity } from './app_activity';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { emitAppEvent, onAppEvent } from './events';
@@ -384,8 +383,6 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
 }
 
 export default function ShardsShopScreen() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { theme: t, f, isDark, themeMode, statusBarLight } = useTheme();
   const isGoldTheme = themeMode === 'gold';
@@ -1340,8 +1337,6 @@ export default function ShardsShopScreen() {
           </View>
           </View>
 
-          <BouncyWrap>
-            <Animated.View style={bouncyStyle}>
           <BouncyScrollView
             style={{ zIndex: 0 }}
             decelerationRate="normal"
@@ -1354,7 +1349,6 @@ export default function ShardsShopScreen() {
               width: '100%',
             }}
             showsVerticalScrollIndicator={false}
-            onScroll={onBouncyScroll}
             scrollEventThrottle={16}
           >
             {/**
@@ -1741,8 +1735,6 @@ export default function ShardsShopScreen() {
               </>
             </View>
           </BouncyScrollView>
-            </Animated.View>
-          </BouncyWrap>
         </ContentWrap>
       </SafeAreaView>
       {cardPackPaywallModal}

@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
-# Bake a batch JSON into the voyazh gen workflow script (writer + 3 critics).
-# Usage: python tools/plan_gen/write_gen_wf.py <batch.json> <out_wf.js>
+# Bake a batch JSON into a <plan> gen workflow script (writer + 3 critics).
+# Usage: python tools/plan_gen/write_gen_wf.py <batch.json> <out_wf.js> [planId] [themeDesc] [arcDesc]
+#   planId: defaults 'voyazh'
+#   themeDesc: short theme, e.g. 'рабочие созвоны и митинги' (default 'путешествия')
+#   arcDesc: arc note, e.g. 'Сюжетная арка рабочей коммуникации (112 дней)'
 import json, sys
 batch = json.load(open(sys.argv[1], encoding='utf-8'))
 OUT = sys.argv[2]
+PLAN = sys.argv[3] if len(sys.argv) > 3 else 'voyazh'
+THEME = sys.argv[4] if len(sys.argv) > 4 else 'путешествия'
+ARC = sys.argv[5] if len(sys.argv) > 5 else 'Длинная сюжетная арка реального путешествия (84 дня)'
 inject = 'const BATCH = ' + json.dumps(batch, ensure_ascii=False) + ';\n'
 
 POS_TAGS = 'verb, noun, pronoun, adjective, adverb, modifier, preposition, syntax, determiner, existential, article, to-be, conjunction, modal, phrasal_particle, other'
@@ -17,8 +23,8 @@ CBL = ('1:to-be,pronouns | 2:to-be-negation,to-be-questions | 3:present-simple |
        '28:reflexive-pronouns | 29:used-to | 30:relative-clauses | 31:complex-object')
 
 js = '''export const meta = {
-  name: 'voyazh-gen-batch',
-  description: 'Generate a batch of voyazh days (writer + 3 critics each)',
+  name: '__PLAN__-gen-batch',
+  description: 'Generate a batch of __PLAN__ days (writer + 3 critics each)',
   phases: [ { title: 'Write' }, { title: 'Critique' } ],
 }
 

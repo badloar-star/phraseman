@@ -24,87 +24,52 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
  * ─────────────────────────────────────────────────────────────────────────────
  * АРХИТЕКТУРА v4 (стабильная, без вылетов):
  *
- * 1. Pan-жест активен ТОЛЬКО когда atTop=true (scrollY≈0). Через
- *    `simultaneousWithExternalGesture(nativeGesture)` он НЕ блокирует нативный
- *    скролл → нет race condition «скролл через раз» (баг v1).
+ * 1. Pan-жест скомпонован с нативным скроллом через `Gesture.Simultaneous`
+ *    и вешается на САМ ScrollView. Так Pan видит касания, но НЕ перехватывает
+ *    управление у скролла → нет «скролл через раз» (баг v1: Pan-обёртка снаружи
+ *    создавала race condition).
  *
  * 2. `useAnimatedStyle` НЕ вызывается внутри useBouncy. Его дергает компонент
  *    через `useBouncyStyle(stretch)`. Иначе на Fabric при Fast Refresh / двойном
  *    монтировании viewTag инвалидируется и Reanimated кидает
  *    "set key `current` on frozen object" (баг v2/v3 — вылеты на всех экранах).
  *
- * 3. `GestureWrap` — реальная обёртка GestureDetector (НЕ pass-through),
- *    объявлена ВНЕ useBouncy (стабильная ссылка). Экраны с Animated.event
- *    оборачивают свой Animated.ScrollView в <BouncyWrap>.
+ * 3. Pan активен только при scrollY≈0 и тяге вниз — иначе stretch=0 и скролл
+ *    работает как обычно.
  *
  * Drop-in замена ScrollView. Для Animated.event-экранов — хук useBouncy +
- * useBouncyStyle + onBouncyScroll (см. примеры использования в проекте).
+ * useBouncyStyle + onBouncyScroll + GestureWrap (см. примеры в проекте).
  */
 
 const SPRING = { damping: 16, stiffness: 170, mass: 0.6 } as const;
-const RESISTANCE_DIV = 2.2; // чем больше — тем «тяжелее» тянется
+const RESISTANCE_DIV = 2.2; // больше = «тяжелее» тянется
 
 export interface BouncyScrollViewProps extends ScrollViewProps {
   maxStretch?: number;
 }
 
-interface BouncyCore {
-  /** Текущее смещение резинки (px, >= 0 = контент вниз). */
-  stretch: SharedValue<number>;
-  /** scrollY в UI-thread — обновляется и scrollHandler, и onBouncyScroll. */
-  scrollY: SharedValue<number>;
-  /** Pan-жест для верхней резинки (нужен GestureWrap). */
-  pan: ReturnType<typeof Gesture.Pan>;
-  /** Animated scroll handler (UI-thread) — для BouncyScrollView. */
-  scrollHandler: ReturnType<typeof useAnimatedScrollHandler>;
-  /** JS-listener для Animated.event-экранов (обновляет только scrollY). */
-  onBouncyScroll: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
-  /** Обёртка GestureDetector. */
-  GestureWrap: (props: { children: React.ReactNode }) => React.ReactElement;
-  maxStretch: number;
-}
-
-/**
- * Создаёт жест/handler/обёртку. Вызывать на верхнем уровне компонента.
- */
-export function useBouncy({ maxStretch = 110 }: { maxStretch?: number } = {}): BouncyCore {
+export function useBouncy({ maxStretch = 110 }: { maxStretch?: number } = {}) {
   const stretch = useSharedValue(0);
   const scrollY = useSharedValue(0);
-  // Стартовое смещение резинки на момент начала жеста (для накопительного pull).
-  const panStart = useSharedValue(0);
-
   const ms = useSharedValue(maxStretch);
   ms.value = maxStretch;
 
-  // Нативный жест скролла — чтобы Pan работал ОДНОВРЕМЕННО с ним, не блокируя.
-  const nativeGesture = useRef(Gesture.Native()).current;
+  // Нативный жест ScrollView — Pan работает ОДНОВРЕМЕННО с ним.
+  const native = useRef(Gesture.Native()).current;
 
   const pan = useRef(
     Gesture.Pan()
-      .simultaneousWithExternalGesture(nativeGesture)
-      // Активируемся только на заметном вертикальном движении.
-      .activeOffsetY(10)
+      .activeOffsetY(12)
       .failOffsetX([-20, 20])
-      .onBegin(() => {
-        'worklet';
-        panStart.value = stretch.value;
-      })
       .onUpdate((e) => {
         'worklet';
-        // Резинка ТОЛЬКО у верха и ТОЛЬКО при тяге вниз.
-        if (scrollY.value > 1) {
-          stretch.value = 0;
-          return;
-        }
-        const dy = e.translationY;
-        if (dy <= 0) {
-          // Палец пошёл вверх — отдаём управление скроллу.
+        // Резинка ТОЛЬКО у верха (scrollY≈0) и ТОЛЬКО при тяге вниз.
+        if (scrollY.value > 1 || e.translationY <= 0) {
           stretch.value = 0;
           return;
         }
         const limit = ms.value;
-        // Логарифмическое сопротивление: тянется всё тяжелее к пределу.
-        stretch.value = limit * (1 - Math.exp(-dy / (limit * RESISTANCE_DIV)));
+        stretch.value = limit * (1 - Math.exp(-e.translationY / (limit * RESISTANCE_DIV)));
       })
       .onEnd(() => {
         'worklet';
@@ -116,12 +81,16 @@ export function useBouncy({ maxStretch = 110 }: { maxStretch?: number } = {}): B
       }),
   ).current;
 
+  // Композиция: оба жеста активны одновременно, вешается на ScrollView.
+  const composed = useRef(Gesture.Simultaneous(native, pan)).current;
+
   const scrollHandler = useAnimatedScrollHandler({
     onScroll(e) {
       scrollY.value = e.contentOffset.y;
     },
   });
 
+  // Для Animated.event-экранов: обновляет только scrollY (UI-thread читает его в Pan).
   const onBouncyScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       scrollY.value = e.nativeEvent.contentOffset.y;
@@ -130,18 +99,19 @@ export function useBouncy({ maxStretch = 110 }: { maxStretch?: number } = {}): B
     [],
   );
 
+  // Обёртка для Animated.event-экранов: оборачивает ИХ Animated.ScrollView.
   const GestureWrap = useCallback(
     ({ children }: { children: React.ReactNode }) => (
-      <GestureDetector gesture={pan}>{children as React.ReactElement}</GestureDetector>
+      <GestureDetector gesture={composed}>{children as React.ReactElement}</GestureDetector>
     ),
-    [pan],
+    [composed],
   );
 
-  return { stretch, scrollY, pan, scrollHandler, onBouncyScroll, GestureWrap, maxStretch };
+  return { stretch, scrollY, composed, scrollHandler, onBouncyScroll, GestureWrap };
 }
 
 /**
- * Возвращает animatedStyle для контент-обёртки. ДОЛЖЕН вызываться в компоненте
+ * animatedStyle для контент-обёртки. ДОЛЖЕН вызываться в компоненте
  * (не внутри useBouncy) — иначе Fabric не привязывает viewTag корректно.
  */
 export function useBouncyStyle(stretch: SharedValue<number>) {
@@ -154,7 +124,7 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
   { children, onScroll, maxStretch = 110, ...rest },
   ref,
 ) {
-  const { stretch, scrollHandler, onBouncyScroll, GestureWrap } = useBouncy({ maxStretch });
+  const { stretch, composed, scrollHandler, onBouncyScroll } = useBouncy({ maxStretch });
   const animatedStyle = useBouncyStyle(stretch);
 
   const handleScroll = useCallback(
@@ -166,7 +136,7 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
   );
 
   return (
-    <GestureWrap>
+    <GestureDetector gesture={composed}>
       <Animated.ScrollView
         ref={ref as any}
         scrollEventThrottle={16}
@@ -176,7 +146,7 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
       >
         <Animated.View style={animatedStyle}>{children}</Animated.View>
       </Animated.ScrollView>
-    </GestureWrap>
+    </GestureDetector>
   );
 });
 

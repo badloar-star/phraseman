@@ -4,8 +4,7 @@ import * as Speech from 'expo-speech';
 import type { Voice } from 'expo-speech';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -72,8 +71,6 @@ function formatVoiceLabel(voice: Voice): string {
 }
 
 export default function SettingsEdu() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const isCompassTheme = themeMode === 'compass';
@@ -201,9 +198,7 @@ export default function SettingsEdu() {
             <View style={{ width: 28 }} />
           </View>
 
-          <BouncyWrap>
-            <Animated.View style={bouncyStyle}>
-          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             {rows.map(row => {
               const isOn = !!s[row.key];
               return (
@@ -409,8 +404,6 @@ export default function SettingsEdu() {
               </View>
             ) : null}
           </BouncyScrollView>
-            </Animated.View>
-          </BouncyWrap>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>

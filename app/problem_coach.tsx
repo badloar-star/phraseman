@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -41,8 +40,6 @@ import { buildPracticeOptionsByStepId } from './practice_option_shuffle';
 type Stage = 'intro' | 'practice' | 'done';
 
 export default function ProblemCoach() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { microDiagnosisId } = useLocalSearchParams<{
     microDiagnosisId?: string;
   }>();
@@ -618,17 +615,13 @@ export default function ProblemCoach() {
     <ScreenGradient>
       <SafeAreaView style={styles.root}>
         {renderHeader()}
-        <BouncyWrap>
-          <Animated.View style={bouncyStyle}>
-            <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-              <ContentWrap>
-                {stage === 'intro' && renderIntro()}
-                {stage === 'practice' && renderPractice()}
-                {stage === 'done' && renderDone()}
-              </ContentWrap>
-            </BouncyScrollView>
-          </Animated.View>
-        </BouncyWrap>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <ContentWrap>
+            {stage === 'intro' && renderIntro()}
+            {stage === 'practice' && renderPractice()}
+            {stage === 'done' && renderDone()}
+          </ContentWrap>
+        </BouncyScrollView>
       </SafeAreaView>
     </ScreenGradient>
   );

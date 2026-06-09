@@ -1,12 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
-import { Animated, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -102,8 +101,6 @@ const dualPartLabel = (
 );
 
 export default function LevelGiftsInventoryScreen() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -156,9 +153,7 @@ export default function LevelGiftsInventoryScreen() {
             </Text>
           </View>
 
-          <BouncyWrap>
-            <Animated.View style={bouncyStyle}>
-          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             {activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 2 }}>
@@ -389,8 +384,6 @@ export default function LevelGiftsInventoryScreen() {
             )}
             <View style={{ height: 8 }} />
           </BouncyScrollView>
-            </Animated.View>
-          </BouncyWrap>
         </ContentWrap>
 
         {selected?.kind === 'single' && (

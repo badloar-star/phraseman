@@ -453,6 +453,59 @@
     .report-meta-row { display: flex; align-items: center; margin-top: 4px; }
     .report-comment { font-size: 13px; color: #aaa; margin: 4px 0; padding: 6px 10px; background: #1e1e2e; border-radius: 8px; border-left: 3px solid #4a4a7a; }
 
+    /* ── League chat thread viewer (Telegram-style) ───────────────────────── */
+    #lc-thread-overlay { display: none; position: fixed; inset: 0; z-index: 10050; }
+    #lc-thread-overlay.lc-thread-open { display: block; }
+    #lc-thread-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.86); backdrop-filter: blur(6px); cursor: pointer; }
+    #lc-thread-panel {
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: min(560px, 100vw);
+      display: flex; flex-direction: column;
+      background: #0e0f17; border-left: 1px solid #2a2a3a; box-shadow: -8px 0 40px #000a;
+    }
+    .lc-thread-head { flex-shrink: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 14px 18px; border-bottom: 1px solid #23232f; background: #12121b; }
+    .lc-thread-head .lc-th-title { font-size: 16px; font-weight: 700; color: #f4f4f5; line-height: 1.3; }
+    .lc-thread-head .lc-th-sub { font-size: 12px; color: #8b8b9a; margin-top: 3px; word-break: break-all; }
+    .lc-thread-head .lc-th-stats { font-size: 11px; color: #6b7280; margin-top: 6px; }
+    .lc-thread-close { background: #23232f; border: none; color: #9a9aa8; border-radius: 7px; padding: 6px 11px; cursor: pointer; font-size: 16px; line-height: 1; flex-shrink: 0; }
+    .lc-thread-close:hover { color: #fff; background: #2f2f3d; }
+    .lc-thread-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 18px 16px 28px; display: flex; flex-direction: column; gap: 2px; background: linear-gradient(180deg, #0e0f17 0%, #0c0d14 100%); }
+    .lc-thread-daysep { align-self: center; margin: 12px 0 8px; padding: 3px 12px; font-size: 11px; font-weight: 600; color: #9aa0b0; background: #1a1b27; border-radius: 999px; }
+    .lc-msg-row { display: flex; gap: 9px; max-width: 86%; margin-top: 8px; }
+    .lc-msg-row.lc-grouped { margin-top: 2px; }
+    .lc-msg-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; background: #2a2a3a; object-fit: cover; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #cbd5e1; align-self: flex-end; overflow: hidden; }
+    .lc-msg-row.lc-grouped .lc-msg-avatar { visibility: hidden; }
+    .lc-bubble-wrap { display: flex; flex-direction: column; min-width: 0; }
+    .lc-msg-author { font-size: 12px; font-weight: 700; color: #a5b4fc; margin: 0 0 3px 2px; }
+    .lc-bubble {
+      position: relative;
+      background: #1c1e2b; color: #e8e8ee;
+      border-radius: 14px 14px 14px 4px;
+      padding: 8px 12px 6px; font-size: 14px; line-height: 1.42;
+      word-break: break-word; white-space: pre-wrap;
+      box-shadow: 0 1px 2px #0004;
+    }
+    .lc-msg-row.lc-deleted .lc-bubble { background: #2a1414; border: 1px dashed #6b2a2a; color: #d8a0a0; }
+    .lc-msg-row.lc-queued .lc-bubble { background: #211d10; border: 1px dashed #6b5a1a; color: #e8d9a0; }
+    .lc-msg-row.lc-focus .lc-bubble { box-shadow: 0 0 0 2px #6c47ff, 0 0 18px #6c47ff66; animation: lcFocusPulse 1.6s ease-out; }
+    @keyframes lcFocusPulse { 0% { box-shadow: 0 0 0 3px #a78bfa, 0 0 26px #a78bfa99; } 100% { box-shadow: 0 0 0 2px #6c47ff, 0 0 18px #6c47ff44; } }
+    .lc-bubble-meta { display: flex; align-items: center; gap: 7px; margin-top: 4px; font-size: 10px; color: #7e8494; }
+    .lc-bubble-status { font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
+    .lc-bubble-status.s-deleted { color: #f87171; }
+    .lc-bubble-status.s-queued { color: #fbbf24; }
+    .lc-bubble-status.s-visible { color: #4ade80; }
+    .lc-bubble-reports { color: #fb923c; font-weight: 700; }
+    .lc-bubble-actions { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    .lc-bubble-actions button { background: #23232f; border: 1px solid #34344a; color: #c9c9d4; border-radius: 7px; padding: 3px 9px; font-size: 11px; cursor: pointer; }
+    .lc-bubble-actions button:hover { filter: brightness(1.18); }
+    .lc-bubble-actions button.lc-act-del { background: #3a1a1a; border-color: #5a2a2a; color: #f87171; }
+    .lc-bubble-actions button.lc-act-mute { background: #2a2410; border-color: #5a4a1a; color: #fbbf24; }
+    .lc-bubble-actions button.lc-act-ban { background: #3a1a1a; border-color: #5a2a2a; color: #f87171; }
+    .lc-thread-empty { margin: auto; color: #666; font-size: 14px; text-align: center; padding: 40px; }
+    .lc-thread-loading { margin: auto; color: #888; font-size: 14px; padding: 40px; }
+    .lc-row-clickable { cursor: pointer; }
+    .lc-row-clickable:hover { background: #161620 !important; }
+
     .analytics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
     .chart-card { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 18px; }
     .chart-card h3 { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
@@ -8156,6 +8209,21 @@
 <!-- TOAST CONTAINER -->
 <div id="toast-wrap"></div>
 
+<div id="lc-thread-overlay" aria-hidden="true">
+  <div id="lc-thread-backdrop" title="Закрыть" data-i18n-es="Cerrar"></div>
+  <div id="lc-thread-panel" role="dialog" aria-modal="true" aria-label="League chat thread">
+    <div class="lc-thread-head">
+      <div style="min-width:0">
+        <div class="lc-th-title" id="lc-thread-title">—</div>
+        <div class="lc-th-sub" id="lc-thread-sub"></div>
+        <div class="lc-th-stats" id="lc-thread-stats"></div>
+      </div>
+      <button type="button" class="lc-thread-close" id="lc-thread-close" title="Закрыть" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="lc-thread-scroll" id="lc-thread-scroll"></div>
+  </div>
+</div>
+
 <!-- COMMUNITY PACK: full-screen tile preview (like in-app cards) -->
 <div id="cp-pack-preview-overlay" aria-hidden="true">
   <div id="cp-pack-preview-backdrop" title="Закрыть" data-i18n-es="Cerrar"></div>
@@ -13981,13 +14049,8 @@
     window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
   };
   window.leagueChatOpenRoom = function(groupId) {
-    const filter = document.getElementById('lc-filter');
-    const search = document.getElementById('lc-search');
-    const week = document.getElementById('lc-week');
-    if (filter) filter.value = 'messages';
-    if (search) search.value = String(groupId || '');
-    if (week) week.value = 'all';
-    renderLeagueChatAdmin();
+    // Open the full Telegram-style thread overlay for this room.
+    leagueChatOpenThread(groupId, '');
   };
   window.leagueChatResolveReport = async function(id) {
     await updateDoc(doc(db, 'league_chat_reports', id), { status: 'resolved', resolvedAt: Date.now() });
@@ -14034,6 +14097,185 @@
     logAction('league_chat_unrestrict_user', uid);
     showToast('Chat restriction cleared');
     window._leagueChatLoaded = false; loadLeagueChatAdmin(true);
+  };
+
+  // ── League chat thread viewer (Telegram-style read-through) ───────────────
+  window._lcThread = { groupId: '', focusId: '', messages: [], loading: false };
+
+  function lcInitials(name, uid) {
+    const s = String(name || '').trim();
+    if (s) {
+      const parts = s.split(/\s+/).filter(Boolean);
+      const a = parts[0] ? parts[0][0] : '';
+      const b = parts.length > 1 ? parts[parts.length - 1][0] : '';
+      return (a + b).toUpperCase() || a.toUpperCase();
+    }
+    const u = String(uid || '').trim();
+    return u ? u.slice(0, 2).toUpperCase() : '?';
+  }
+  function lcAvatarHtml(m) {
+    const url = m.authorAvatar || '';
+    if (url && /^https?:\/\//i.test(url)) {
+      return `<div class="lc-msg-avatar"><img src="${escapeHtml(url)}" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.remove()"></div>`;
+    }
+    return `<div class="lc-msg-avatar">${escapeHtml(lcInitials(m.authorName, m.authorUid))}</div>`;
+  }
+  function lcStatusOf(m) {
+    if (m.status === 'deleted') return 'deleted';
+    if (m.status === 'review' || m.decision === 'pending') return 'queued';
+    return 'visible';
+  }
+  function lcDayKey(ts) {
+    const n = Number(ts || 0);
+    if (!n) return '—';
+    try { return new Date(n).toLocaleDateString(ADMIN_DATE_LOCALE, { day: '2-digit', month: 'short', year: 'numeric' }); }
+    catch (_) { return new Date(n).toDateString(); }
+  }
+  function lcTimeOf(ts) {
+    const n = Number(ts || 0);
+    if (!n) return '';
+    try { return new Date(n).toLocaleTimeString(ADMIN_DATE_LOCALE, { hour: '2-digit', minute: '2-digit' }); }
+    catch (_) { return ''; }
+  }
+  window.leagueChatCloseThread = function() {
+    const ov = document.getElementById('lc-thread-overlay');
+    if (ov) { ov.classList.remove('lc-thread-open'); ov.setAttribute('aria-hidden', 'true'); }
+    window._lcThread = { groupId: '', focusId: '', messages: [], loading: false };
+  };
+  window.leagueChatOpenThread = async function(groupId, focusMsgId) {
+    const gid = String(groupId || '');
+    if (!gid) { showToast('Нет groupId у сообщения'); return; }
+    const ov = document.getElementById('lc-thread-overlay');
+    const scroll = document.getElementById('lc-thread-scroll');
+    const titleEl = document.getElementById('lc-thread-title');
+    const subEl = document.getElementById('lc-thread-sub');
+    const statsEl = document.getElementById('lc-thread-stats');
+    if (!ov || !scroll) return;
+    window._lcThread = { groupId: gid, focusId: String(focusMsgId || ''), messages: [], loading: true };
+    if (titleEl) titleEl.textContent = 'Тред комнаты';
+    if (subEl) subEl.textContent = gid;
+    if (statsEl) statsEl.textContent = '';
+    scroll.innerHTML = '<div class="lc-thread-loading">Загрузка треда…</div>';
+    ov.classList.add('lc-thread-open');
+    ov.setAttribute('aria-hidden', 'false');
+    try {
+      // Pull the FULL thread for this room from Firestore, not the truncated sample.
+      const snap = await getDocs(query(
+        collection(db, 'league_chat_messages'),
+        where('groupId', '==', gid),
+        orderBy('createdAt', 'asc'),
+        limit(1000),
+      ));
+      const messages = snap.docs.map(d => ({ id: d.id, _collection: 'league_chat_messages', ...(d.data() || {}) }));
+      if (window._lcThread.groupId !== gid) return; // overlay changed/closed while loading
+      window._lcThread.messages = messages;
+      window._lcThread.loading = false;
+      lcRenderThread();
+    } catch (e) {
+      if (window._lcThread.groupId !== gid) return;
+      // Missing composite index or other error → fall back to local cache filtered by group.
+      const cached = (window._leagueChatCache?.messages || []).filter(m => String(m.groupId || '') === gid)
+        .sort((a, b) => Number(a.createdAt || 0) - Number(b.createdAt || 0));
+      window._lcThread.messages = cached;
+      window._lcThread.loading = false;
+      lcRenderThread(e && e.message ? String(e.message) : '');
+    }
+  };
+  function lcRenderThread(warnMsg) {
+    const t = window._lcThread || {};
+    const scroll = document.getElementById('lc-thread-scroll');
+    const titleEl = document.getElementById('lc-thread-title');
+    const subEl = document.getElementById('lc-thread-sub');
+    const statsEl = document.getElementById('lc-thread-stats');
+    if (!scroll) return;
+    const msgs = t.messages || [];
+    const room = (window._leagueChatCache?.rooms || []).find(r => String(r.groupId || r.id) === t.groupId);
+    if (titleEl) titleEl.textContent = room ? `Лига ${room.leagueId ?? '—'} · ${room.weekId || '—'}` : 'Тред комнаты';
+    if (subEl) subEl.textContent = t.groupId + (room && room.memberCount ? ` · ${room.memberCount} участников` : '');
+    if (statsEl) {
+      const visible = msgs.filter(m => lcStatusOf(m) === 'visible').length;
+      const deleted = msgs.filter(m => lcStatusOf(m) === 'deleted').length;
+      statsEl.textContent = `${msgs.length} сообщений · visible ${visible} · deleted ${deleted}` + (warnMsg ? ` · ⚠ из кэша (${warnMsg})` : '');
+    }
+    if (!msgs.length) {
+      scroll.innerHTML = '<div class="lc-thread-empty">В этом треде пока нет сообщений.</div>';
+      return;
+    }
+    let html = '';
+    let lastDay = '';
+    let lastAuthor = '';
+    let lastTs = 0;
+    msgs.forEach(m => {
+      const day = lcDayKey(m.createdAt);
+      if (day !== lastDay) {
+        html += `<div class="lc-thread-daysep">${escapeHtml(day)}</div>`;
+        lastDay = day;
+        lastAuthor = '';
+      }
+      const author = String(m.authorUid || m.authorName || '');
+      const grouped = author && author === lastAuthor && (Number(m.createdAt || 0) - lastTs) < 5 * 60 * 1000;
+      lastAuthor = author;
+      lastTs = Number(m.createdAt || 0);
+      const status = lcStatusOf(m);
+      const rowCls = ['lc-msg-row', grouped ? 'lc-grouped' : '', status === 'deleted' ? 'lc-deleted' : '', status === 'queued' ? 'lc-queued' : '', String(m.id) === String(t.focusId) ? 'lc-focus' : ''].filter(Boolean).join(' ');
+      const idArg = JSON.stringify(String(m.id || ''));
+      const uidArg = JSON.stringify(String(m.authorUid || ''));
+      const reports = Number(m.reportCount || 0);
+      const modBtns = status === 'deleted'
+        ? `<button onclick='leagueChatThreadAction("restore", ${idArg})'>Восстановить</button>`
+        : `<button class="lc-act-del" onclick='leagueChatThreadAction("delete", ${idArg})'>Удалить</button>`;
+      const userBtns = m.authorUid
+        ? `<button class="lc-act-mute" onclick='leagueChatMuteUser(${uidArg})'>Mute 24h</button><button class="lc-act-ban" onclick='leagueChatBanUser(${uidArg})'>Ban</button>`
+        : '';
+      html += `<div class="${rowCls}" id="lc-thread-msg-${escapeHtml(String(m.id || ''))}">
+        ${lcAvatarHtml(m)}
+        <div class="lc-bubble-wrap">
+          ${grouped ? '' : `<div class="lc-msg-author">${escapeHtml(m.authorName || m.authorUid || 'Аноним')}</div>`}
+          <div class="lc-bubble">${escapeHtml(lcText(m) || '—')}
+            <div class="lc-bubble-meta">
+              <span>${escapeHtml(lcTimeOf(m.createdAt))}</span>
+              <span class="lc-bubble-status s-${status}">${status === 'visible' ? 'видно' : status === 'deleted' ? 'удалено' : 'в очереди'}</span>
+              ${reports ? `<span class="lc-bubble-reports">⚑ ${reports}</span>` : ''}
+            </div>
+            <div class="lc-bubble-actions">${modBtns}${userBtns}</div>
+          </div>
+        </div>
+      </div>`;
+    });
+    scroll.innerHTML = html;
+    // Scroll to the focused message if present, else to the bottom (latest).
+    const focusEl = t.focusId ? document.getElementById('lc-thread-msg-' + t.focusId) : null;
+    if (focusEl) focusEl.scrollIntoView({ block: 'center' });
+    else scroll.scrollTop = scroll.scrollHeight;
+  }
+  // In-thread moderation: mutate one message, refresh the thread + invalidate the tab cache.
+  window.leagueChatThreadAction = async function(kind, id) {
+    if (!id) return;
+    try {
+      if (kind === 'delete') {
+        await updateDoc(doc(db, 'league_chat_messages', id), { status: 'deleted', deletedAt: Date.now() });
+        logAction('league_chat_delete_message', id, { from: 'thread' });
+        showToast('Сообщение скрыто');
+      } else if (kind === 'restore') {
+        await updateDoc(doc(db, 'league_chat_messages', id), { status: 'visible', restoredAt: Date.now(), deletedAt: deleteField() });
+        logAction('league_chat_restore_message', id, { from: 'thread' });
+        showToast('Сообщение восстановлено');
+      } else { return; }
+    } catch (e) {
+      showToast('Ошибка: ' + (e && e.message ? e.message : String(e)));
+      return;
+    }
+    // Update the in-memory thread copy so the bubble re-renders without a full reload.
+    const msgs = window._lcThread.messages || [];
+    const idx = msgs.findIndex(m => String(m.id) === String(id));
+    if (idx >= 0) {
+      const next = { ...msgs[idx] };
+      if (kind === 'delete') { next.status = 'deleted'; next.deletedAt = Date.now(); }
+      else { next.status = 'visible'; delete next.deletedAt; }
+      window._lcThread.messages = [...msgs.slice(0, idx), next, ...msgs.slice(idx + 1)];
+    }
+    lcRenderThread();
+    window._leagueChatLoaded = false; // table data is now stale; refresh lazily next time the tab loads
   };
 
   function applyCleanLeagueChatChrome() {
@@ -14113,8 +14355,23 @@
     return `${lcActionButton('Mute 24h', `leagueChatMuteUser(${uidArg})`, 'lc-muted-action')} ${lcActionButton('Chat-ban', `leagueChatBanUser(${uidArg})`, 'lc-ban-action')}`;
   }
 
+  function lcWireThreadOverlay() {
+    if (window._lcThreadWired) return;
+    const ov = document.getElementById('lc-thread-overlay');
+    const backdrop = document.getElementById('lc-thread-backdrop');
+    const closeBtn = document.getElementById('lc-thread-close');
+    if (!ov) return;
+    window._lcThreadWired = true;
+    if (backdrop) backdrop.addEventListener('click', () => leagueChatCloseThread());
+    if (closeBtn) closeBtn.addEventListener('click', () => leagueChatCloseThread());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && ov.classList.contains('lc-thread-open')) leagueChatCloseThread();
+    });
+  }
+
   window.loadLeagueChatAdmin = async function loadLeagueChatAdmin(force = false) {
     applyCleanLeagueChatChrome();
+    lcWireThreadOverlay();
     if (window._leagueChatLoaded && !force) {
       renderLeagueChatAdmin();
       return;
@@ -14211,7 +14468,14 @@
           : r.status === 'deleted'
             ? lcActionButton('Restore', `leagueChatRestoreMessage(${idArg})`)
             : lcActionButton('Delete message', `leagueChatDeleteMessage(${idArg})`, 'lc-delete-action');
-      return `<tr>
+      // Click anywhere on the row (except a button) to open the full thread for this
+      // room, scrolled to this message. Reports point at messageId; messages/archive at id.
+      const groupId = String(r.groupId || '');
+      const focusId = isReport ? String(r.messageId || '') : (isQueue ? '' : String(r.id || ''));
+      const rowAttrs = groupId
+        ? ` class="lc-row-clickable" title="Открыть тред" onclick='if(!event.target.closest("button")) leagueChatOpenThread(${JSON.stringify(groupId)}, ${JSON.stringify(focusId)})'`
+        : '';
+      return `<tr${rowAttrs}>
         <td>${escapeHtml(lcDate(r.createdAt))}</td>
         <td><span class="lc-status-pill">${escapeHtml(r.status || r.decision || 'new')}</span></td>
         <td><div class="lc-row-main">${escapeHtml(r.authorName || '-')}</div><div class="lc-row-meta">${escapeHtml(r.authorUid || '-')}</div></td>

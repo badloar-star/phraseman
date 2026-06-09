@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useMemo } from 'react';
-import { Animated, Linking, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -14,14 +14,11 @@ import TapScale from '../components/TapScale';
 import TERMS_OF_USE_EN_IOS from './legal/terms_of_use_en_ios.json';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { safeRouterBack } from './navigation_back';
-import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import BouncyScrollView from '../components/BouncyScrollView';
 
 type PolicySection = { heading: string; body: string };
 
 export default function TermsScreen() {
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
-  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const TERMS_EN = useMemo(
@@ -66,10 +63,8 @@ export default function TermsScreen() {
             <Ionicons name="open-outline" size={24} color={t.textSecond} />
           </TouchableOpacity>
         </View>
-        <BouncyWrap>
-          <Animated.View style={bouncyStyle}>
-            <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, paddingBottom: 60 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-              {TERMS_EN.map((s, i) => (
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, paddingBottom: 60 }} scrollEventThrottle={16}>
+          {TERMS_EN.map((s, i) => (
                 <View key={i} style={{ marginBottom: 20 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>
                     {s.heading}
@@ -79,9 +74,7 @@ export default function TermsScreen() {
                   </Text>
                 </View>
               ))}
-            </BouncyScrollView>
-          </Animated.View>
-        </BouncyWrap>
+        </BouncyScrollView>
       </SafeAreaView>
     </ScreenGradient>
   );

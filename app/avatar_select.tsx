@@ -353,6 +353,7 @@ export default function AvatarSelect() {
   const avatarVipAccent = '#22C55E';
   const { lang } = useLang();
   const { isPremium, isVip } = usePremium();
+  const isUK = lang === 'uk';
   const [level, setLevel] = useState(1);
   const [shards, setShards] = useState(0);
   const [activeAvatar, setActiveAvatar] = useState<string>('1');

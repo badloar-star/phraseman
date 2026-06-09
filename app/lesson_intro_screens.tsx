@@ -1147,6 +1147,7 @@ export default function LessonIntroScreens({
     tr: 'Ders',
     pl: 'Lekcja',
   });
+
   const headerLabel = `${lessonWord} ${lessonId}`;
   const lvlLabel = lessonLevelLabel(lessonId);
   const lvlColor = levelColor(lessonId, isLight);

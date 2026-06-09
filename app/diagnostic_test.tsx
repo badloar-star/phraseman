@@ -1244,9 +1244,9 @@ export default function DiagnosticTest() {
   const handleTypeSubmit = () => {
     if (locked.current || typeSubmitted) return;
     const q = questions[idx];
-    // Normalize: lowercase, trim, strip trailing punctuation (? ! .) so typing "?" doesn\'t cause error
+    // Normalize: lowercase, trim, strip trailing punctuation (? ! .) so typing "?" doesn't cause error
     const expectedAnswer = q?.answer || q?.opts?.[q.correct];
-    if (!expectedAnswer) return;
+    if (!expectedAnswer) { locked.current = false; return; }
     locked.current = true;
     stopQuestionTimer();
     const isRight = isCorrectAnswer(typedAnswer, expectedAnswer);

@@ -71,6 +71,8 @@ const {
   referralClaimVipReward,
   referralListMyInvites,
 } = require('./referral');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { premiumDialogSend } = require('./premium_dialog');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -110,6 +112,7 @@ exports.referralApply = referralApply;
 exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
+exports.premiumDialogSend = premiumDialogSend;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

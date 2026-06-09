@@ -226,12 +226,27 @@ export const toCanonicalAnswerLexis = (lowercased: string): string => {
  * 6. Раскрывает все сокращения
  * 7. Убирает лишние пробелы
  */
+// Кириллические буквы, визуально идентичные латинским (lookalikes)
+const CYRILLIC_TO_LATIN: [RegExp, string][] = [
+  [/\u0430/g, 'a'], // а → a
+  [/\u0435/g, 'e'], // е → e
+  [/\u043E/g, 'o'], // о → o
+  [/\u0440/g, 'p'], // р → p
+  [/\u0441/g, 'c'], // с → c
+  [/\u0445/g, 'x'], // х → x
+  [/\u0443/g, 'y'], // у → y
+  [/\u0456/g, 'i'], // і → i
+];
+
 export const normalize = (text: string): string => {
   let result = text.trim().normalize('NFKC');
 
-  // Нормализация апострофов: любой символ из диапазонов одиночных кавычек, диакритики и модификаторов → прямой апостроф
-  // Диапазоны: \u0060-\u0060 (backtick), \u00B4 (acute), \u02B0-\u02FF (modifier letters), \u0300-\u036F (combining diacritics),
-  //            \u2018-\u201F (typographic quotes), \u2032-\u2037 (prime symbols), \u275B-\u275E (ornamental), \uFF07 (fullwidth)
+  // Нормализация кириллических lookalike-символов (из multilang): с/c, х/x, … → латиница.
+  for (const [pattern, replacement] of CYRILLIC_TO_LATIN) {
+    result = result.replace(pattern, replacement);
+  }
+
+  // Нормализация апострофов — широкий диапазон (надмножество узкого набора multilang).
   result = result.replace(/[\u0060\u00B4\u02B0-\u02FF\u0300-\u036F\u2018-\u201F\u2032-\u2037\u275B-\u275E\uFF07]/g, "'");
 
   result = result.toLowerCase();

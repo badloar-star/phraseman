@@ -18,6 +18,7 @@ export default function BetaTesters() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const isUK = lang === 'uk';
   const [expanded, setExpanded] = useState<string | null>(null);
 
   /** Раздел только для Android-сборки; на iOS не показываем и не оставляем «пустой» стек. */
@@ -42,6 +43,7 @@ export default function BetaTesters() {
   if (Platform.OS !== 'android') {
     return null;
   }
+
 
   return (
     <ScreenGradient>

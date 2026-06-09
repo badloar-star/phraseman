@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
@@ -56,6 +56,7 @@ import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
 import { isAiDialogEnabled } from '../ai_dialog_flags';
+import { trackEvent as trackAiDialogEvent } from '../analytics';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
@@ -248,6 +249,7 @@ async function resolveDailyGreeting(pool: readonly string[], lang: Lang): Promis
                 return pool[parsed.idx % pool.length]!;
             }
         }
+
     }
     catch { /* ignore */ }
     const idx = Math.floor(Math.random() * pool.length);
@@ -387,9 +389,10 @@ export default function HomeScreen() {
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
+    // ИИ-диалоги: impression карточки (CTR-знаменатель) — один раз при показе
     useEffect(() => {
         if (isAiDialogEnabled() && studyTarget === 'en') {
-            logFeatureOpened('ai_dialog_card_shown');
+            void trackAiDialogEvent('ai_dialog_card_shown');
         }
     }, [studyTarget]);
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
@@ -2468,6 +2471,7 @@ export default function HomeScreen() {
             </TouchableOpacity>)}
 
           {/* ПРОДОЛЖИТЬ УРОК */}
+
           {personalPlanSnapshot ? (
             <PersonalPlanHomeRouteCard snapshot={personalPlanSnapshot} compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT} />
           ) : hasActivePersonalPlan ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-personal-plan-card" activeOpacity={0.88} onPress={() => { hapticTap(); router.push('/personal_plan' as any); }} style={{
@@ -2527,6 +2531,7 @@ export default function HomeScreen() {
               </TouchableOpacity>) : (<PremiumCard testID="home-personal-plan-card" level={3} onPress={() => { hapticTap(); router.push('/personal_plan' as any); }} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
                 <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(18,14,8,0.92)' : t.bgSurface2, borderWidth: 1, borderColor: t.border }}>
                   <Ionicons name="map-outline" size={25} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
+
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6 }}>
@@ -2557,6 +2562,7 @@ export default function HomeScreen() {
                     })}
                   </Text>
                 </View>
+
               </PremiumCard>))
           : (hasPremiumAccess || freeHomePlanCtaMode === 'choosePlan' || lastLesson == null) ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-choose-personal-plan" activeOpacity={0.88} onPress={hasPremiumAccess ? () => { hapticTap(); router.push('/personal_plan_setup' as any); } : handleFreeHomeChoosePlanPress} onTouchStart={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchStart} onTouchMove={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchMove} onTouchEnd={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchEnd} onTouchCancel={hasPremiumAccess ? undefined : handleFreeHomePlanCtaTouchEnd} style={{
                         marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
@@ -2580,6 +2586,7 @@ export default function HomeScreen() {
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
                     <View style={{ width: 70, height: 70, borderRadius: isCompassTheme ? compassHomeRadius : 35, alignItems: 'center', justifyContent: 'center', flexShrink: 0, backgroundColor: homeThemeIconPlateBg, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairline : lightPanelBorder }}>
                       <Ionicons name="sparkles-outline" size={32} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
+
                     </View>
                     <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
                       <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0, lineHeight: 15 }} numberOfLines={1}>
@@ -2893,7 +2900,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
 
             {isAiDialogEnabled() && studyTarget === 'en' ? (
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); logFeatureOpened('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); void trackAiDialogEvent('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}

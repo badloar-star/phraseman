@@ -1,12 +1,13 @@
 import React, { memo, useRef, useCallback } from 'react';
-import { Animated, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
+import { Animated, Pressable, type PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { mergeAccessibilityDisabled } from './a11y_state';
 
 // Пробрасываем нативные пропсы Pressable (accessibilityLabel/Role/State/Hint,
-// testID и т.д.), кроме обрабатываемых самим компонентом. Закрывает a11y для
-// всех крупных кнопок/карточек на PressableScale.
+// testID, hitSlop, onFocus и т.д.), кроме обрабатываемых самим компонентом.
+// Без этого каждая кнопка PressableScale невидима для скринридеров
+// (VoiceOver / TalkBack) — критично для аудитории 50+.
 type PassthroughPressableProps = Omit<
   PressableProps,
   'onPress' | 'onLongPress' | 'onPressIn' | 'onPressOut' | 'style' | 'disabled' | 'children'
@@ -20,7 +21,7 @@ interface Props extends PassthroughPressableProps {
   disabled?: boolean;
   scaleTo?: number; // default 0.94
   withHaptic?: boolean;
-}
+};
 
 function PressableScale({
   onPress,

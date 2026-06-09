@@ -22,6 +22,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import SpeakingButton from '../components/SpeakingButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
@@ -243,6 +244,9 @@ function WordBankMode({ item, onResult }: WordBankProps) {
           })}
         </Text>
       </TouchableOpacity>
+
+      {/* [SPEAKING] Произнести фразу вслух (premium) */}
+      <SpeakingButton targetText={correctTokens.join(' ')} lang={lang} variant="pill" />
     </View>
   );
 }

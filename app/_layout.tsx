@@ -1367,13 +1367,15 @@ function AppContent() {
     };
 
     const runHeavyInit = () => {
-      // Удалённые флаги (тренажёр A/B и пр.) + идентификация PostHog для воронки.
-      // Оба — no-op без зависимостей/ключа, безопасны при любой сборке.
+      // Remote Config: apply cached/live admin-tuned flags ASAP, then keep live.
+      void import('./remote_config_client')
+        .then((m) => {
+          void m.loadRemoteConfig().catch(() => {});
+          m.subscribeRemoteConfig();
+        })
+        .catch(() => {});
+      // Идентификация PostHog для воронки (no-op без ключа/пакета, безопасна при любой сборке).
       void (async () => {
-        try {
-          const { loadRemoteOverrides } = await import('./remote_flags');
-          await loadRemoteOverrides();
-        } catch { /* флаги остаются на дефолтах */ }
         try {
           const uid = await getCanonicalUserId().catch(() => null);
           if (uid) {

@@ -1,0 +1,28 @@
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.4,
+      "text": "Сегодня разберем фразу I am ready.",
+      "speaker": "lingman"
+    },
+    {
+      "start": 4.5,
+      "end": 6.0,
+      "text": "стоп, заново",
+      "speaker": "lingman"
+    },
+    {
+      "start": 8.0,
+      "end": 11.8,
+      "text": "Сегодня разберем фразу I am ready, потому что в английском нельзя сказать I ready.",
+      "speaker": "lingman"
+    },
+    {
+      "start": 13.0,
+      "end": 17.2,
+      "text": "I am ready значит я готов, и am здесь соединяет человека и состояние.",
+      "speaker": "lingman"
+    }
+  ]
+}

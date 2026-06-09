@@ -18,6 +18,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { generateReferralCode } from '../app/referral_system';
+import { hapticTap } from '../hooks/use-haptics';
 import { IS_BETA_TESTER } from '../app/config';
 // Онбординг закреплён за темой "Графит" (MINIMAL_DARK) — это одна из двух
 // бесплатных тем (вторая — "Скетч"/MINIMAL_LIGHT). Импортируем под алиасом
@@ -628,6 +629,9 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
 
   // Плавный переход между экранами
   const goToStep = useCallback((next: typeof step) => {
+    // Tactile feedback on every onboarding transition (Telegram-grade feel).
+    // Fired here (the single nav choke point) so all ~40 step buttons get it.
+    hapticTap();
     setShowPlanFreeConfirm(false);
     Animated.timing(screenFade, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
       setStep(next);

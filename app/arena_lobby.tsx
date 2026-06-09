@@ -2096,7 +2096,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 </View>) : null}
 
                 <View style={styles.arenaActionList}>
-                  <TouchableOpacity activeOpacity={0.75} testID="arena-play-with-friend" accessibilityLabel="qa-arena-play-with-friend" accessible={true} accessibilityRole="button" accessibilityState={{ expanded: friendRoomId != null }} onPress={() => {
+                  <TouchableOpacity testID="arena-play-with-friend" accessibilityLabel="qa-arena-play-with-friend" accessible={true} accessibilityRole="button" accessibilityState={{ expanded: friendRoomId != null }} onPress={() => {
                 if (friendRoomId) {
                     hapticTap();
                     friendUnsubRef.current?.();
@@ -2161,7 +2161,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         const name = profile?.name ?? '—';
                         const sending = arenaInviteSendingUid === friend.uid;
                         const selected = arenaFriendPickUid === friend.uid;
-                        return (<TouchableOpacity activeOpacity={0.75} testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending }} key={friend.uid} onPress={() => {
+                        return (<TouchableOpacity testID={`arena-friend-pick-${friend.uid}`} accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`} accessibilityRole="button" accessibilityState={{ selected, disabled: sending }} key={friend.uid} onPress={() => {
                                 if (sending)
                                     return;
                                 hapticTap();
@@ -2391,7 +2391,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             })}
                 </Text>
               </View>
-              <TouchableOpacity activeOpacity={0.75} accessibilityRole="button" accessibilityLabel="Close" onPress={() => {
+              <TouchableOpacity accessibilityRole="button" accessibilityLabel="Close" onPress={() => {
             hapticTap();
             setThroneTopVisible(false);
         }} style={styles.throneModalClose} activeOpacity={0.76}>

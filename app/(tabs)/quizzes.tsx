@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+﻿import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticTap } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
@@ -27,6 +27,7 @@ import {
 } from 'react-native';
 
 import AddToFlashcard from '../../components/AddToFlashcard';
+import SpeakingButton from '../../components/SpeakingButton';
 import BonusXPCard from '../../components/BonusXPCard';
 import CoachToast from '../../components/CoachToast';
 import CompassDepthSurface from '../../components/CompassDepthSurface';
@@ -59,10 +60,12 @@ import EnergyBar from '../../components/EnergyBar';
 import NoEnergyModal from '../../components/NoEnergyModal';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
+
 import { useAudio } from '../../hooks/use-audio';
 import type { QuizPhrase } from '../quiz_data';
 import { ensureQuizPhrasesLoaded, getQuizPhrasesLoaded, prefetchQuizPhrases } from '../quiz_phrases_loader';
 import { isQuizChoiceCorrect, quizPrimaryCorrectIndex } from '../quiz_utils';
+
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from '../settings_edu';
 import { useTabNav } from '../TabContext';
 import { tabSwipeLock } from '../tabSwipeLock';
@@ -740,8 +743,10 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { theme:t , f, themeMode } = useTheme();
+
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
+
   const router = useRouter();
   const { hasPremiumAccess: isPremium } = usePremium();
   const insets = useSafeAreaInsets();
@@ -1301,6 +1306,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
 }
 
 // ── КВИЗ ────────────────────────────────────────────────────────────────────
+
 function QuizGame({
   level,
   thematicCategoryId,
@@ -1327,6 +1333,7 @@ function QuizGame({
   const isCompassTheme = themeMode === 'compass';
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
+
   const { goHome, activeIdx } = useTabNav();
   const router = useRouter();
   const { hasPremiumAccess: isPremium } = usePremium();
@@ -1366,7 +1373,9 @@ function QuizGame({
   );
 
   const [retryCount, setRetryCount] = useState(0);
+
   const [planQuizUserName, setPlanQuizUserName] = useState('Phraseman');
+
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
 
   const phrases = useMemo((): Phrase[] => {
@@ -1648,9 +1657,11 @@ function QuizGame({
       setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(timerRef.current!);
+          timerRef.current = null;
           if (!answeredRef.current) {
             answeredRef.current = true;
-            setShowTimeoutAlert(true);
+            // setTimeout чтобы не вызывать setState внутри setState
+            setTimeout(() => setShowTimeoutAlert(true), 0);
           }
           return 0;
         }
@@ -2364,6 +2375,10 @@ function QuizGame({
                 <View onStartShouldSetResponder={() => true}>
                   <AddToFlashcard en={shownCorrectEnglish} ru={current.ru} uk={current.uk} es={current.es} source="lesson" sourceId="quiz" studyTarget={studyTarget} />
                 </View>
+              </View>
+              {/* [SPEAKING] Произнести правильный ответ вслух (premium) */}
+              <View onStartShouldSetResponder={() => true} style={{ marginTop: 12 }}>
+                <SpeakingButton targetText={shownCorrectEnglish} lang={lang} variant="pill" />
               </View>
               {(isRight === false || typedOk === false) && displayAnswer && (
                 <>

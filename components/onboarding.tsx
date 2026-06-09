@@ -955,9 +955,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     }
 
     setNameBusy(true);
-    const result = 'ok' as Awaited<ReturnType<typeof reserveName>>;
-    setName(trimmed);
-    nameForProfileRef.current = trimmed;
+    // Жёсткая проверка уникальности ДО применения имени. Раньше здесь был хардкод
+    // `result = 'ok'` + fire-and-forget reserveName — поэтому дубликаты имён
+    // проходили насквозь. Теперь имя резервируется на сервере атомарно и не
+    // принимается, пока бронь не подтверждена.
+    let result: Awaited<ReturnType<typeof reserveName>>;
+    try {
+      result = await reserveName(trimmed, '');
+    } catch {
+      result = 'error';
+    }
     if (result === 'taken') {
       setNameBusy(false);
       setNameFieldError(pick(
@@ -977,13 +984,15 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       return;
     }
 
+    // Бронь подтверждена ('ok') — теперь можно применить имя.
+    setName(trimmed);
+    nameForProfileRef.current = trimmed;
     try {
       Keyboard.dismiss();
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         ['user_name', trimmed],
       ]);
-      void reserveName(trimmed, '').catch(() => {});
       void import('../app/firestore_leagues')
         .then((m) => m.registerInLeagueGroupSilently())
         .catch(() => {});

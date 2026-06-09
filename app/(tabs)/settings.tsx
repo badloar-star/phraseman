@@ -418,6 +418,36 @@ export default function SettingsMain() {
       return;
     }
 
+    // Жёсткая проверка уникальности: бронируем имя на сервере СНАЧАЛА и применяем
+    // локально только при 'ok'. Раньше имя применялось до ответа сервера (и при
+    // 'taken' откатывалось «как получится») — из-за чего дубликаты просачивались.
+    let reservation: Awaited<ReturnType<typeof reserveName>>;
+    try {
+      reservation = await reserveName(trimmed, oldName);
+    } catch (error) {
+      DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
+      reservation = 'error';
+    }
+
+    if (reservation === 'taken') {
+      showInfoAlert('', L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+      return;
+    }
+    if (reservation !== 'ok') {
+      showInfoAlert('', L(
+        'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
+        'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
+        'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
+        'Não foi possível verificar o nome. Verifique a conexão e tente novamente.',
+        'Không thể kiểm tra tên. Kiểm tra kết nối và thử lại.',
+        'Tidak bisa memeriksa nama. Periksa koneksi dan coba lagi.',
+        'Ad doğrulanamadı. Bağlantını kontrol et ve tekrar dene.',
+        'Nie udało się sprawdzić nazwy. Sprawdź połączenie i spróbuj ponownie.',
+      ));
+      return;
+    }
+
+    // Бронь подтверждена — применяем локально и закрываем модалку.
     try {
       await AsyncStorage.setItem('user_name', trimmed);
       setUserName(trimmed);
@@ -438,27 +468,10 @@ export default function SettingsMain() {
       return;
     }
 
-    void (async () => {
-      try {
-        const reservation = await reserveName(trimmed, oldName);
-        if (reservation === 'taken') {
-          if (oldName) await AsyncStorage.setItem('user_name', oldName);
-          else await AsyncStorage.removeItem('user_name');
-          setUserName(oldName);
-          await updateLocalNameReferences(trimmed, oldName);
-          showInfoAlert('', L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
-          return;
-        }
-        if (reservation !== 'ok') {
-          DebugLogger.error('settings.tsx:renameName:reserveName', new Error('reserveName failed'), 'warning');
-          return;
-        }
-        await syncArenaDisplayName(trimmed);
-        void syncMyLeagueMemberProfileNow();
-      } catch (error) {
-        DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
-      }
-    })();
+    await syncArenaDisplayName(trimmed).catch((error) => {
+      DebugLogger.error('settings.tsx:renameName:arenaSync', error, 'warning');
+    });
+    void syncMyLeagueMemberProfileNow();
   };
 
   const vipExpiryText = vipUntilMs > 0

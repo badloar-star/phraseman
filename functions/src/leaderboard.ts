@@ -48,36 +48,47 @@ async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: strin
   }
 }
 
-function leaderboardDocIsVisible(doc: FirebaseFirestore.QueryDocumentSnapshot | FirebaseFirestore.DocumentSnapshot): boolean {
-  return doc.exists && doc.data()?.identityHidden !== true;
-}
-
-async function nameOwnerIsActive(db: FirebaseFirestore.Firestore, uid: string): Promise<boolean> {
+/**
+ * Whether the current owner of a name reservation is a LIVE account.
+ *
+ * A reservation may only be reclaimed by a different user if its owner is
+ * genuinely gone — i.e. the owner's users/{uid} doc is missing OR has been
+ * tombstoned (identityHidden / banned). Crucially this is keyed on the OWNER'S
+ * USER DOC only, NOT on whether they happen to have a visible leaderboard row.
+ *
+ * The previous implementation treated "no visible leaderboard row" as "inactive",
+ * which let a second user STEAL the name of any real account that simply hadn't
+ * reached the leaderboard yet. That was the root cause of duplicate usernames.
+ */
+async function nameOwnerIsLive(db: FirebaseFirestore.Firestore, uid: string): Promise<boolean> {
   const cleanUid = sanitizeString(uid, 180);
   if (!cleanUid) return false;
-  const [lbSnap, userSnap] = await Promise.all([
-    db.collection('leaderboard').doc(cleanUid).get().catch(() => null),
-    db.collection('users').doc(cleanUid).get().catch(() => null),
-  ]);
-  if (lbSnap?.exists && lbSnap.data()?.identityHidden !== true) return true;
-  if (userSnap?.exists && userSnap.data()?.identityHidden !== true) return true;
-  return false;
+  const userSnap = await db.collection('users').doc(cleanUid).get().catch(() => null);
+  if (!userSnap?.exists) return false;
+  const data = userSnap.data() ?? {};
+  if (data.identityHidden === true) return false;
+  if (data.banned === true) return false;
+  return true;
 }
 
-async function txNameOwnerIsActive(
+async function txNameOwnerIsLive(
   tx: FirebaseFirestore.Transaction,
   db: FirebaseFirestore.Firestore,
   uid: string,
 ): Promise<boolean> {
   const cleanUid = sanitizeString(uid, 180);
   if (!cleanUid) return false;
-  const [lbSnap, userSnap] = await Promise.all([
-    tx.get(db.collection('leaderboard').doc(cleanUid)),
-    tx.get(db.collection('users').doc(cleanUid)),
-  ]);
-  if (lbSnap.exists && lbSnap.data()?.identityHidden !== true) return true;
-  if (userSnap.exists && userSnap.data()?.identityHidden !== true) return true;
-  return false;
+  const userSnap = await tx.get(db.collection('users').doc(cleanUid));
+  if (!userSnap.exists) return false;
+  const data = userSnap.data() ?? {};
+  if (data.identityHidden === true) return false;
+  if (data.banned === true) return false;
+  return true;
+}
+
+/** A name_index doc that is itself tombstoned never blocks a new reservation. */
+function nameIndexDocIsHidden(data: FirebaseFirestore.DocumentData | undefined): boolean {
+  return data?.identityHidden === true;
 }
 
 export const leaderboardUpdateDailyAnalytics = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
@@ -105,15 +116,20 @@ export const nameCheckAvailability = onCall(HOT_CALLABLE_OPTIONS, async (request
   const { name, nameLower } = normalizeName(request.data?.name);
   assertValidName(name);
 
+  // Source of truth = name_index/{nameLower}. A reservation owned by another,
+  // still-live account makes the name unavailable. (No leaderboard fallback —
+  // that was the steal vector that let unreached-leaderboard accounts lose names.)
   const idxSnap = await db.collection(NAME_INDEX).doc(nameLower).get();
   const indexOwner = sanitizeString(idxSnap.data()?.uid, 180);
-  if (idxSnap.exists && indexOwner !== stableUid && await nameOwnerIsActive(db, indexOwner)) {
+  if (
+    idxSnap.exists &&
+    !nameIndexDocIsHidden(idxSnap.data()) &&
+    indexOwner !== stableUid &&
+    (await nameOwnerIsLive(db, indexOwner))
+  ) {
     return { ok: true, available: false };
   }
-
-  const sameName = await db.collection('leaderboard').where('nameLower', '==', nameLower).limit(8).get();
-  const takenByOther = sameName.docs.some((d) => d.id !== stableUid && leaderboardDocIsVisible(d));
-  return { ok: true, available: !takenByOther };
+  return { ok: true, available: true };
 });
 
 export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
@@ -127,40 +143,61 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const oldNameLower = sanitizeString(request.data?.oldName, 32).toLowerCase();
   assertValidName(name);
 
-  const sameName = await db.collection('leaderboard').where('nameLower', '==', nameLower).limit(8).get();
-  if (sameName.docs.some((d) => d.id !== stableUid && leaderboardDocIsVisible(d))) {
-    return { ok: true, status: 'taken' };
+  // Atomic reservation. The ONLY source of truth is name_index/{nameLower}.
+  // Every concurrent claimant reads that exact doc inside the transaction, so
+  // Firestore serializes them: the first commit wins, the rest retry and then
+  // see the now-owned doc → 'taken'. There is NO out-of-transaction pre-check
+  // (that was a TOCTOU race) and NO "owner has a leaderboard row" escape hatch
+  // (that let live-but-unranked accounts get their name stolen).
+  //
+  // The single legitimate takeover is a genuinely DEAD reservation — the owner's
+  // users/{uid} doc is missing or tombstoned (identityHidden/banned). That is
+  // checked transactionally via txNameOwnerIsLive, keyed on the owner's USER doc.
+  try {
+    await db.runTransaction(async (tx) => {
+      const nameRef = db.collection(NAME_INDEX).doc(nameLower);
+      const nameSnap = await tx.get(nameRef);
+      const oldRef = oldNameLower && oldNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldNameLower) : null;
+      const oldSnap = oldRef ? await tx.get(oldRef) : null;
+
+      if (nameSnap.exists && !nameIndexDocIsHidden(nameSnap.data())) {
+        const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);
+        if (indexOwner && indexOwner !== stableUid) {
+          // Owned by someone else → block UNLESS that owner is provably dead.
+          const ownerLive = await txNameOwnerIsLive(tx, db, indexOwner);
+          if (ownerLive) {
+            throw new HttpsError('already-exists', 'name_taken');
+          }
+          // Dead owner → reclaim is allowed; fall through to overwrite below.
+        }
+      }
+
+      tx.set(nameRef, {
+        uid: stableUid,
+        authUid,
+        name,
+        nameLower,
+        identityHidden: admin.firestore.FieldValue.delete(),
+        updatedAt: Date.now(),
+      }, { merge: true });
+
+      if (oldRef && oldSnap?.exists && oldSnap.data()?.uid === stableUid) {
+        tx.delete(oldRef);
+      }
+
+      tx.set(db.collection('leaderboard').doc(stableUid), {
+        name,
+        nameLower,
+        firebaseAuthUid: authUid,
+        updatedAt: Date.now(),
+      }, { merge: true });
+    });
+  } catch (e) {
+    if (e instanceof HttpsError && e.code === 'already-exists') {
+      return { ok: true, status: 'taken' };
+    }
+    throw e;
   }
-
-  await db.runTransaction(async (tx) => {
-    const nameRef = db.collection(NAME_INDEX).doc(nameLower);
-    const nameSnap = await tx.get(nameRef);
-    const oldRef = oldNameLower && oldNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldNameLower) : null;
-    const oldSnap = oldRef ? await tx.get(oldRef) : null;
-    const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);
-    if (nameSnap.exists && indexOwner !== stableUid && await txNameOwnerIsActive(tx, db, indexOwner)) {
-      throw new HttpsError('already-exists', 'name_taken');
-    }
-
-    tx.set(nameRef, {
-      uid: stableUid,
-      authUid,
-      name,
-      nameLower,
-      updatedAt: Date.now(),
-    }, { merge: true });
-
-    if (oldRef && oldSnap?.exists && oldSnap.data()?.uid === stableUid) {
-      tx.delete(oldRef);
-    }
-
-    tx.set(db.collection('leaderboard').doc(stableUid), {
-      name,
-      nameLower,
-      firebaseAuthUid: authUid,
-      updatedAt: Date.now(),
-    }, { merge: true });
-  });
 
   return { ok: true, status: 'ok' };
 });

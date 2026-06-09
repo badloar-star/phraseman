@@ -294,9 +294,13 @@ export function validatePlanContentDay(day: PlanContentDay): PlanContentIssue[] 
     if (day.intro.length > PLAN_DAY_MAX_INTRO) {
       issues.push({ code: 'too_many_intro', detail: `Need <= ${PLAN_DAY_MAX_INTRO} intro screens, got ${day.intro.length}.` });
     }
+    const validIntroKinds: ReadonlySet<string> = new Set(['why', 'how', 'trap', 'tip', 'mechanic']);
     for (const screen of day.intro) {
       if (!hasRu(screen.title) || !hasRu(screen.body)) {
         issues.push({ code: 'intro_screen_incomplete', detail: `Intro screen "${screen.kind}" needs a title and body.` });
+      }
+      if (!validIntroKinds.has(screen.kind)) {
+        issues.push({ code: 'intro_screen_incomplete', detail: `Intro screen has invalid kind "${screen.kind}" (allowed: why/how/trap/tip/mechanic).` });
       }
     }
   }

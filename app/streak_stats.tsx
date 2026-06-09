@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import TapScale from '../components/TapScale';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Animated, View, Text, ScrollView, Modal, Pressable, TouchableOpacity, Platform, Share, PanResponder, StyleSheet, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -2791,6 +2792,8 @@ export default function StreakStats() {
         return () => { cancelled = true; };
     }, []));
     const scrollRef = useRef<any>(null);
+    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+    const bouncyStyle = useBouncyStyle(bouncyStretch);
     const chartScrollRef = useRef<any>(null);
     /** «Опыт» | «Время» — один блок графика по дням. */
     const [dailyChartTab, setDailyChartTab] = useState<'xp' | 'time'>('xp');
@@ -3298,7 +3301,9 @@ export default function StreakStats() {
         </View>
       </View>
 
-      <ScrollView ref={scrollRef} decelerationRate="normal" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false}>
+      <BouncyWrap>
+      <ScrollView ref={scrollRef} decelerationRate="normal" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        <Animated.View style={bouncyStyle}>
         <View style={{ gap: 12 }}>
         <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} reviveOffer={reviveOffer} onRevivePress={handleReviveStreak} percentilesStreak={percentiles.streak}/>
 
@@ -3873,7 +3878,9 @@ export default function StreakStats() {
 
         <View style={{ height: 8 }}/>
         </View>
+        </Animated.View>
       </ScrollView>
+      </BouncyWrap>
       </ContentWrap>
 
       {/* Кастомный модал описания клуба — вместо системного Alert */}

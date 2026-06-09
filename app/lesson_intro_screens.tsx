@@ -29,6 +29,7 @@ import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, Lesso
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 type PlannedIntroLang = Extract<Lang, 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl'>;
 
@@ -1303,7 +1304,7 @@ export default function LessonIntroScreens({
             visibleHeightRef.current = e.nativeEvent.layout.height;
           }}
         >
-          <ScrollView
+          <BouncyScrollView
             ref={scrollRef}
             decelerationRate="normal"
             contentContainerStyle={[styles.scrollContent, { paddingTop: scrollTopPadding }]}
@@ -1385,7 +1386,7 @@ export default function LessonIntroScreens({
 
               <View style={{ height: 28 + insets.bottom }} />
             </Pressable>
-          </ScrollView>
+          </BouncyScrollView>
         </Animated.View>
 
       </SafeAreaView>

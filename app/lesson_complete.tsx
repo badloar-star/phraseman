@@ -45,6 +45,7 @@ import { buildLessonShareMessage } from './lesson_share';
 import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
 import { syncToCloud } from './cloud_sync';
 import { getLessonData } from './lesson_data_all';
+import BouncyScrollView from '../components/BouncyScrollView';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
@@ -876,7 +877,7 @@ export default function LessonComplete() {
         <Ionicons name="chevron-back" size={20} color={isCompassTheme ? COMPASS_RICH.champagne : t.textPrimary} />
       </TapScale>
       <ContentWrap>
-      <ScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView testID="lesson-complete-screen" decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{
@@ -1095,7 +1096,7 @@ export default function LessonComplete() {
           </TouchableOpacity>
         </Animated.View>
 
-      </ScrollView>
+      </BouncyScrollView>
       </ContentWrap>
       {showBonus && (
         <BonusXPCard

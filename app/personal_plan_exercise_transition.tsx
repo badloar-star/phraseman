@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { hapticSuccess } from '../hooks/use-haptics';
 
@@ -117,6 +118,7 @@ export default function PersonalPlanExerciseTransitionScreen() {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: bg }]}>
       <LinearGradient colors={t.bgGradient} style={styles.fill}>
+        <BounceView style={styles.fill}>
         <View style={styles.topBar}>
           <TouchableOpacity
             activeOpacity={0.72}
@@ -187,6 +189,7 @@ export default function PersonalPlanExerciseTransitionScreen() {
             </LinearGradient>
           </TouchableOpacity>
         </Animated.View>
+        </BounceView>
       </LinearGradient>
     </SafeAreaView>
   );

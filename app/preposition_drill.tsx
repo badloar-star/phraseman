@@ -16,6 +16,7 @@ import { useEnergy } from '../components/EnergyContext';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ReportErrorButton from '../components/ReportErrorButton';
+import BouncyScrollView from '../components/BouncyScrollView';
 import ClozeGapText from '../components/ClozeGapText';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -469,7 +470,7 @@ export default function PrepositionDrillScreen() {
 
           {!done && item ? (
             <View style={{ flex: 1 }}>
-              <ScrollView
+              <BouncyScrollView
                 ref={scrollRef}
                 style={{ flex: 1 }}
                 decelerationRate="normal"
@@ -623,7 +624,7 @@ export default function PrepositionDrillScreen() {
                 style={{ alignSelf: 'center', marginTop: ds.spacing.md, marginBottom: ds.spacing.sm }}
                 textColor={sx.muted}
               />
-              </ScrollView>
+              </BouncyScrollView>
             </View>
           ) : (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>

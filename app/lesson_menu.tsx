@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import TapScale from '../components/TapScale';
-import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager } from 'react-native';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager, Animated } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -211,6 +212,8 @@ export default function LessonMenu() {
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
   const router = useRouter();
   const { theme:t, f, themeMode } = useTheme();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const isLightTheme = false;
   const isGoldTheme = themeMode === 'gold';
   const isCompassTheme = themeMode === 'compass';
@@ -1100,7 +1103,9 @@ export default function LessonMenu() {
         </PremiumCard>
       </View>
 
-      <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }}>
+      <BouncyWrap>
+      <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        <Animated.View style={bouncyStyle}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}
@@ -1266,7 +1271,9 @@ export default function LessonMenu() {
         </View>
       ) : null}
 
+        </Animated.View>
       </ScrollView>
+      </BouncyWrap>
       {/* Модальное окно блокировки */}
       <Modal transparent animationType="fade" visible={showLockModal} onRequestClose={() => setShowLockModal(false)}>
         <Pressable style={{flex:1, backgroundColor:'rgba(0,0,0,0.5)'}} onPress={() => setShowLockModal(false)}>

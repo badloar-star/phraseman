@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Dimensions, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -25,7 +26,8 @@ import {
   getPlanDayLessonRecommendation,
   type PlanDayLessonRecommendation,
 } from './plan_day_lesson_recommendation';
-import { authoredPlanIntroCount } from './plan_content_registry';
+import { authoredPlanIntroCount, hasAuthoredPlanContent } from './plan_content_registry';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { awardPlanDayCompletionReward } from './personal_plan_day_reward';
 import { loadPlanDayComparison, planDayComparisonLine, type PlanDayComparison } from './personal_plan_day_comparison';
 import {
@@ -274,6 +276,8 @@ export default function PersonalPlanScreen() {
   // Entrance animation
   const entranceFade = useRef(new Animated.Value(0)).current;
   const entranceSlide = useRef(new Animated.Value(24)).current;
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
 
   const load = useCallback(async () => {
     const state = await readPersonalPlanState();
@@ -501,6 +505,16 @@ export default function PersonalPlanScreen() {
               {day.title}
             </Text>
           </View>
+          {hasAuthoredPlanContent(loaded.plan.id, day.dayIndex) ? (
+            <ReportErrorButton
+              variant="icon-flag"
+              screen="personal_plan_day"
+              dataId={`${loaded.plan.id}_day_${day.dayIndex}`}
+              dataText={`${plan.name} · День ${day.dayIndex}: ${day.title}`}
+              style={[styles.statsButton, { backgroundColor: chrome.taskSurface, borderColor: chrome.border, marginRight: 8 }]}
+              textColor={chrome.accent}
+            />
+          ) : null}
           <TouchableOpacity
             activeOpacity={0.78}
             onPress={() => { hapticTap(); router.push('/personal_plan_stats_screen' as any); }}
@@ -513,12 +527,16 @@ export default function PersonalPlanScreen() {
           <StreakBadge dayIndex={day.dayIndex} chrome={chrome} />
         </View>
 
+        <BouncyWrap>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
           contentContainerStyle={styles.scroll}
           style={{ opacity: entranceFade, transform: [{ translateY: entranceSlide }] }}
+          scrollEventThrottle={16}
+          onScroll={onBouncyScroll}
         >
+          <Animated.View style={bouncyStyle}>
           {/* ── Hero card ── */}
           <LinearGradient colors={chrome.hero} style={[styles.heroCard, { borderColor: chrome.border }]}>
             {/* Top row */}
@@ -763,7 +781,9 @@ export default function PersonalPlanScreen() {
               <Text style={[styles.devLinkText, { color: chrome.accent }]}>DEV</Text>
             </TouchableOpacity>
           ) : null}
+          </Animated.View>
         </Animated.ScrollView>
+        </BouncyWrap>
       </LinearGradient>
     </SafeAreaView>
   );

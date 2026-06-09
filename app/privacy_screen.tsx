@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useMemo } from 'react';
-import { Linking, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Linking, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -14,10 +14,14 @@ import TapScale from '../components/TapScale';
 import PRIVACY_POLICY_EN_IOS from './legal/privacy_policy_en_ios.json';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { safeRouterBack } from './navigation_back';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 type PolicySection = { heading: string; body: string };
 
 export default function PrivacyScreen() {
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const PRIVACY_EN = useMemo(
@@ -62,18 +66,22 @@ export default function PrivacyScreen() {
             <Ionicons name="open-outline" size={24} color={t.textSecond} />
           </TouchableOpacity>
         </View>
-        <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
-          {PRIVACY_EN.map((s, i) => (
-            <View key={i} style={{ marginBottom: 20 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>
-                {s.heading}
-              </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body * 1.6 }}>
-                {s.body}
-              </Text>
-            </View>
-          ))}
-        </ScrollView>
+        <BouncyWrap>
+          <Animated.View style={bouncyStyle}>
+            <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, paddingBottom: 60 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+              {PRIVACY_EN.map((s, i) => (
+                <View key={i} style={{ marginBottom: 20 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>
+                    {s.heading}
+                  </Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body * 1.6 }}>
+                    {s.body}
+                  </Text>
+                </View>
+              ))}
+            </BouncyScrollView>
+          </Animated.View>
+        </BouncyWrap>
       </SafeAreaView>
     </ScreenGradient>
   );

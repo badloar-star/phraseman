@@ -87,6 +87,7 @@ import CoachToast from '../components/CoachToast';
 import { frenchTrainerGateCopy, srsReviewContentAvailableForTarget } from './trainer_target_gate';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { resolvePersonalPracticeSeededDuePhrases } from './personal_plan_practice_seeded_gate';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -1386,7 +1387,7 @@ export default function ReviewScreen() {
         }} />
       </View>
 
-      <ScrollView
+      <BouncyScrollView
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: isPlanPracticeTask ? 6 : 32 }}
         decelerationRate="normal"
         keyboardShouldPersistTaps="handled"
@@ -1651,7 +1652,7 @@ export default function ReviewScreen() {
           )}
 
         </Animated.View>
-      </ScrollView>
+      </BouncyScrollView>
 
       {/* Кнопки "Далее" и "Сжечь" — появляются после ответа */}
       {status === 'result' && (

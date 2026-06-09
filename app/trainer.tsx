@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { Image } from 'expo-image';
 import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
@@ -18,6 +18,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { clearTrainerStore, devSeedTrainer, getTrainerDashboard, type TrainerDashboard, type TrainerQueue, } from './trainer_store';
 import { ENABLE_DEV_TOOLS } from './config';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { getFreeSessionsLeftToday, reserveTrainerSessionEntry } from './trainer_session';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
@@ -559,6 +560,8 @@ export default function TrainerScreen() {
     const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
     const trainerSessionEnabled = trainerSessionContentAvailableForTarget(studyTarget);
     const trainerGateCopy = frenchTrainerGateCopy(lang);
+    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+    const bouncyStyle = useBouncyStyle(bouncyStretch);
     const loadData = useCallback(async () => {
         setLoading(true);
         const [dash, premium, left, analyticsResult, resolved] = await Promise.all([
@@ -687,7 +690,9 @@ export default function TrainerScreen() {
             />
           </View>
 
-          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false}>
+          <BouncyWrap>
+          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+            <Animated.View style={bouncyStyle}>
             {null}
 
             {null}
@@ -997,7 +1002,9 @@ export default function TrainerScreen() {
                   </TouchableOpacity>
                 </View>
               </View>)}
+            </Animated.View>
             </ScrollView>
+          </BouncyWrap>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>);

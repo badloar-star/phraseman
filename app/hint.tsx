@@ -15,6 +15,7 @@ import {
   lessonSupportContentAvailableForTarget,
 } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 function L(
   lang: Lang,
@@ -1362,7 +1363,7 @@ export default function HintScreen() {
           </Text>
         </View>
       </View>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {frenchHintCopy ? (
           <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 18, gap: 12 }}>
             <View style={{ alignSelf: 'center', width: 64, height: 64, borderRadius: 32, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, alignItems: 'center', justifyContent: 'center' }}>
@@ -1393,7 +1394,7 @@ export default function HintScreen() {
             })}
           </Text>
         </TouchableOpacity>
-      </ScrollView>
+      </BouncyScrollView>
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>

@@ -20,6 +20,7 @@ import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import TapScale from '../components/TapScale';
 import ScreenGradient from '../components/ScreenGradient';
+import BounceView from '../components/BounceView';
 import ArenaMatchBackdrop from '../components/ArenaMatchBackdrop';
 import AvatarView from '../components/AvatarView';
 import ArenaDuelEmojiReact from '../components/ArenaDuelEmojiReact';
@@ -871,6 +872,7 @@ export default function DuelGameScreen() {
       <ArenaMatchBackdrop variant="match" />
       <View style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
+      <BounceView style={{ flex: 1 }}>
       {/* Таймер-полоска */}
       <View style={[styles.timerTrack, { backgroundColor: t.bgSurface2 }]}>
         <Reanimated.View
@@ -1024,6 +1026,7 @@ export default function DuelGameScreen() {
         />
       )}
 
+      </BounceView>
       </SafeAreaView>
       {(phase === 'question' || phase === 'reveal') && flyEmojis.length > 0 ? (
         <ArenaDuelFlyingEmojiOverlay

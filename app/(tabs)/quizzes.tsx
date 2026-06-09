@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticTap } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import BouncyScrollView, { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import TapScale from '../../components/TapScale';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
@@ -736,6 +737,8 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
 
 // ── ВЫБОР УРОВНЯ ────────────────────────────────────────────────────────────
 function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>void }) {
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { theme:t , f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -1005,6 +1008,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         />
       </View>
 
+      <BouncyWrap>
+        <Animated.View style={bouncyStyle}>
       <ScrollView
         style={{ flex: 1 }}
         decelerationRate="normal"
@@ -1019,6 +1024,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         showsVerticalScrollIndicator
         persistentScrollbar
         indicatorStyle={themeMode === 'minimalLight' ? 'black' : 'white'}
+        onScroll={onBouncyScroll}
+        scrollEventThrottle={16}
       >
         {(Object.keys(LEVEL_CONFIG) as Level[]).map(lv => {
           const c        = LEVEL_CONFIG[lv];
@@ -1279,6 +1286,8 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
           </View>
         )}
       </ScrollView>
+        </Animated.View>
+      </BouncyWrap>
       </ContentWrap>
 
       <NoEnergyModal
@@ -1926,7 +1935,7 @@ function QuizGame({
       <ScreenGradient forceFullBleed artBackdrop="quizzes">
       <View style={{ flex:1 }}>
         <ContentWrap>
-        <ScrollView decelerationRate="normal" contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
           <Image
             source={completionMedalSource}
             contentFit="contain"
@@ -2111,7 +2120,7 @@ function QuizGame({
 })}
             </Text>
           </TouchableOpacity>
-        </ScrollView>
+        </BouncyScrollView>
         </ContentWrap>
         {showBonus && (
           <BonusXPCard
@@ -2255,7 +2264,7 @@ function QuizGame({
 
         <View style={{ flex: 1 }}>
         <Animated.View style={{ flex:1, opacity:fadeAnim }}>
-          <ScrollView
+          <BouncyScrollView
             style={{ flex:1 }}
             decelerationRate="normal"
             contentContainerStyle={planQuizId
@@ -2611,7 +2620,7 @@ function QuizGame({
               </View>
             </View>
           )}
-          </ScrollView>
+          </BouncyScrollView>
         </Animated.View>
         </View>
 

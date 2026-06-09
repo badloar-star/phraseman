@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
 import {
+  Animated,
   ScrollView,
   Share,
   Text,
@@ -21,6 +22,8 @@ import { updateMultipleTaskProgress } from './daily_tasks';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 const REFEREE_BONUS = 15;
 const REFERRER_BONUS = 20;
@@ -274,6 +277,8 @@ const OFFLINE_SHARE_BODIES_BY_LANG: Record<Lang, readonly string[]> = {
 };
 
 export default function SettingsInviteFriend() {
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { theme: t, f, themeMode } = useTheme();
@@ -355,10 +360,14 @@ export default function SettingsInviteFriend() {
           </Text>
         </View>
 
-        <ScrollView
+        <BouncyWrap>
+          <Animated.View style={bouncyStyle}>
+        <BouncyScrollView
           decelerationRate="normal"
           contentContainerStyle={{ padding: 20, paddingBottom: scrollBottomPad }}
           showsVerticalScrollIndicator={false}
+          onScroll={onBouncyScroll}
+          scrollEventThrottle={16}
         >
           <View style={{ alignItems: 'center', marginTop: 6, marginBottom: 18 }}>
             <View
@@ -499,7 +508,9 @@ export default function SettingsInviteFriend() {
               </Text>
             </View>
           </View>
-        </ScrollView>
+        </BouncyScrollView>
+          </Animated.View>
+        </BouncyWrap>
 
         <View
           style={{

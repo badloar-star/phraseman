@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter, type Router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -511,7 +512,7 @@ export default function PhraseAnalyticsScreen() {
 
         {/* ── Premium gate ── */}
         {!isPremium ? (
-          <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.gateScroll}>
+          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={styles.gateScroll}>
             <ContentWrap>
               <View
                 style={[
@@ -603,7 +604,7 @@ export default function PhraseAnalyticsScreen() {
                 </TouchableOpacity>
               </View>
             </ContentWrap>
-          </ScrollView>
+          </BouncyScrollView>
 
         ) : !analyticsSourceGateOpen ? (
           <View style={styles.center}>
@@ -627,7 +628,7 @@ export default function PhraseAnalyticsScreen() {
           </View>
 
         ) : (
-          <ScrollView decelerationRate="normal" showsVerticalScrollIndicator contentContainerStyle={styles.scrollContent}>
+          <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator contentContainerStyle={styles.scrollContent}>
             <ContentWrap>
 
               {/* ── Сводка ── */}
@@ -788,7 +789,7 @@ export default function PhraseAnalyticsScreen() {
               )}
 
             </ContentWrap>
-          </ScrollView>
+          </BouncyScrollView>
         )}
       </SafeAreaView>
     </ScreenGradient>

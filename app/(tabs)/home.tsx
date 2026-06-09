@@ -55,6 +55,7 @@ import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
+import { isAiDialogEnabled } from '../ai_dialog_flags';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
@@ -386,6 +387,11 @@ export default function HomeScreen() {
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
+    useEffect(() => {
+        if (isAiDialogEnabled() && studyTarget === 'en') {
+            logFeatureOpened('ai_dialog_card_shown');
+        }
+    }, [studyTarget]);
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const [userName, setUserName] = useState(() => hh?.userName ?? '');
     const [streak, setStreak] = useState(() => hh?.streak ?? 0);
@@ -2886,6 +2892,27 @@ export default function HomeScreen() {
               </LinearGradient>
             </TouchableOpacity>
 
+            {isAiDialogEnabled() && studyTarget === 'en' ? (
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); logFeatureOpened('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
+                {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
+                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
+                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Ionicons name="chatbubbles-outline" size={Math.round(homeTodayIconImageSize * 0.6)} color={homeThemePanelAccent}/>
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
+                    {triLang(lang, { ru: 'Разговор с Филом', uk: 'Розмова з Філом', es: 'Habla con Phil', 'pt-BR': 'Fale com Phil', vi: 'Nói chuyện với Phil', id: 'Bicara dengan Phil', tr: 'Phil ile konuş', pl: 'Rozmawiaj z Philem' })}
+                  </Text>
+                  <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
+                    {triLang(lang, { ru: 'Говори по-английски без страха', uk: 'Говори англійською без страху', es: 'Habla inglés sin miedo', 'pt-BR': 'Fale inglês sem medo', vi: 'Nói tiếng Anh không sợ', id: 'Bicara bahasa Inggris tanpa takut', tr: 'İngilizce konuş korkusuzca', pl: 'Mów po angielsku bez strachu' })}
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={20} color={homeThemePanelAccent} style={{ marginRight: 2 }}/>
+              </LinearGradient>
+            </TouchableOpacity>
+            ) : null}
+
             <TouchableOpacity activeOpacity={0.85} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
@@ -3314,6 +3341,17 @@ export default function HomeScreen() {
           </View>
           {studyTarget !== 'fr' && <DailyPhraseCard variant="homeAdditional" />}
           </>) : studyTarget !== 'fr' ? <DailyPhraseCard /> : null}
+
+          <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog-debug" onPress={() => { hapticTap(); router.push('/ai_dialog_home'); }} style={{ marginHorizontal: 16, marginTop: 16, marginBottom: 8, borderRadius: 20, overflow: 'hidden' }}>
+            <LinearGradient colors={['#5B4AE8', '#8B5CF6']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 72, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+              <Ionicons name="chatbubbles-outline" size={28} color="#fff"/>
+              <View style={{ flex: 1 }}>
+                <Text style={{ color: '#fff', fontSize: 18, fontWeight: '900' }}>Разговор с Филом</Text>
+                <Text style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, fontWeight: '700', marginTop: 2 }}>ИИ-диалог • тест</Text>
+              </View>
+              <Ionicons name="chevron-forward" size={20} color="rgba(255,255,255,0.75)"/>
+            </LinearGradient>
+          </TouchableOpacity>
 
           {/* Подвал */}
           <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>

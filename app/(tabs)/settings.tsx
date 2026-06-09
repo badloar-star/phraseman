@@ -18,6 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme, FontSize, FONT_SIZE_LABELS, FONT_SCALE } from '../../components/ThemeContext';
 import ReportErrorButton from '../../components/ReportErrorButton';
+import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
@@ -186,6 +187,8 @@ export default function SettingsMain() {
   const scrollY = useRef(new Animated.Value(0)).current;
   const insets = useSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { activeIdx, focusTick, goHome } = useTabNav();
   const SETTINGS_TAB_IDX = 4;
 
@@ -504,6 +507,7 @@ export default function SettingsMain() {
 
   return (
     <ScreenGradient>
+      <BouncyWrap>
       <Animated.ScrollView
         testID="screen-settings"
         ref={scrollRef}
@@ -514,9 +518,10 @@ export default function SettingsMain() {
         scrollEventThrottle={16}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false, listener: topFadeScroll?.onScroll },
+          { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },
         )}
       >
+        <Animated.View style={bouncyStyle}>
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8 }}>
@@ -1027,7 +1032,9 @@ export default function SettingsMain() {
           </View>
         </View>
 
+        </Animated.View>
       </Animated.ScrollView>
+      </BouncyWrap>
 
 
       <RegistrationPromptModal

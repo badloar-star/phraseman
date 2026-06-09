@@ -4,9 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { loadPlanDayComparison, planDayComparisonLine, type PlanDayComparison } from './personal_plan_day_comparison';
+import { hasAuthoredPlanContent } from './plan_content_registry';
+import ReportErrorButton from '../components/ReportErrorButton';
 
 function firstParam(v: string | string[] | undefined): string {
   return Array.isArray(v) ? v[0] ?? '' : v ?? '';
@@ -69,6 +72,7 @@ export default function PersonalPlanTaskDoneScreen() {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: bg }]}>
       <LinearGradient colors={t.bgGradient} style={styles.fill}>
+        <BounceView style={styles.fill}>
         <View style={styles.topBar}>
           <TouchableOpacity
             activeOpacity={0.72}
@@ -77,6 +81,16 @@ export default function PersonalPlanTaskDoneScreen() {
           >
             <Ionicons name="close" size={22} color={t.textMuted} />
           </TouchableOpacity>
+          <View style={{ flex: 1 }} />
+          {hasAuthoredPlanContent(planId, dayIndex) ? (
+            <ReportErrorButton
+              variant="icon-flag"
+              screen="personal_plan_task_done"
+              dataId={`${planId}_day_${dayIndex}_done`}
+              dataText={`День ${dayIndex} закрыт${taskTitle ? ` · ${taskTitle}` : ''}`}
+              style={[styles.closeBtn, { borderColor: t.border, backgroundColor: t.bgCard }]}
+            />
+          ) : null}
         </View>
 
         <Animated.View
@@ -170,6 +184,7 @@ export default function PersonalPlanTaskDoneScreen() {
             </LinearGradient>
           </TouchableOpacity>
         </Animated.View>
+        </BounceView>
       </LinearGradient>
     </SafeAreaView>
   );

@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import BouncyScrollView from '../components/BouncyScrollView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -1350,7 +1351,7 @@ export default function DiagnosticTest() {
           {s.diagnostic.start}
         </Text>
       </View>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24 }}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24 }}>
         {prevResult && (
           <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border, marginBottom: 20, width: '100%' }}>
             <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
@@ -1497,7 +1498,7 @@ export default function DiagnosticTest() {
           )}
         </View>
 
-      </ScrollView>
+      </BouncyScrollView>
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
@@ -1511,7 +1512,7 @@ export default function DiagnosticTest() {
     <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
         <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, borderWidth: 1.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
           <Ionicons name="school-outline" size={44} color={t.textSecond} />
         </View>
@@ -1551,7 +1552,7 @@ export default function DiagnosticTest() {
         <TapScale style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
           <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
         </TapScale>
-      </ScrollView>
+      </BouncyScrollView>
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
@@ -1602,7 +1603,7 @@ export default function DiagnosticTest() {
           {isAnswered ? '—' : `${timeLeft}${diagnosticUi.secondSuffix}`}
         </Text>
 
-        <ScrollView
+        <BouncyScrollView
           style={{ flex: 1 }}
           decelerationRate="normal"
           contentContainerStyle={{
@@ -1830,7 +1831,7 @@ export default function DiagnosticTest() {
           )}
           </View>
         </View>
-        </ScrollView>
+        </BouncyScrollView>
         {isAnswered && !autoAdvance && (
           <View
             testID="diagnostic-continue-footer"

@@ -18,6 +18,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import BounceView from '../components/BounceView';
 import ContentWrap from '../components/ContentWrap';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { screenTextOnGradient } from '../constants/theme';
@@ -204,6 +205,7 @@ export default function TrainerArenaSession() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
+            <BounceView style={{ flex: 1 }}>
             <TrainerSessionReport
               queue="arena"
               correct={correct}
@@ -213,6 +215,7 @@ export default function TrainerArenaSession() {
               onDone={() => { hapticTap(); safeRouterBack(router, '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
             />
+            </BounceView>
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -227,6 +230,7 @@ export default function TrainerArenaSession() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
+          <BounceView style={{ flex: 1 }}>
           {/* Header */}
           <View style={styles.headerRow}>
             <TapScale onPress={() => safeRouterBack(router, '/trainer' as any)} style={{ padding: 4 }}>
@@ -294,6 +298,7 @@ export default function TrainerArenaSession() {
               })}
             </View>
           </View>
+          </BounceView>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>

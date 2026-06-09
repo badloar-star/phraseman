@@ -13,6 +13,7 @@ import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
+import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
@@ -260,6 +261,8 @@ export default function LessonsTab() {
     }>>(() => boot?.examResults ?? {});
     const scrollRef = useRef<any>(null);
     const scrollY = useRef(new Animated.Value(0)).current;
+    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+    const bouncyStyle = useBouncyStyle(bouncyStretch);
     const { activeIdx, focusTick } = useTabNav();
     const [gateModal, setGateModal] = useState<null | {
         kind: 'exam';
@@ -450,13 +453,15 @@ export default function LessonsTab() {
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
+      <BouncyWrap>
       <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }],
         // Fabric + native-driver on ScrollView can crash with animated node
         // connect/disconnect races during rapid remount/navigation.
-        { useNativeDriver: false, listener: topFadeScroll?.onScroll })}
+        { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } })}
         contentContainerStyle={{ paddingBottom: 40, paddingTop: insets.top }}
         decelerationRate="normal"
       >
+        <Animated.View style={bouncyStyle}>
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 }}>
@@ -989,7 +994,9 @@ export default function LessonsTab() {
             pl: 'Lista lekcji',
         })}/>
         </View>
+        </Animated.View>
       </Animated.ScrollView>
+      </BouncyWrap>
 
     </ScreenGradient>
     <ThemedChoiceModal visible={gateModal !== null} title={gateModal?.kind === 'frenchExam'

@@ -63,6 +63,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
 import { safeRouterBack } from './navigation_back';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 type Row = {
   id: string;
@@ -895,7 +896,7 @@ export default function CommunityPackCreateScreen() {
             </Text>
             <View style={{ width: 40 }} />
           </View>
-          <ScrollView
+          <BouncyScrollView
             ref={scrollViewRef}
             style={{ flex: 1 }}
             decelerationRate="normal"
@@ -1258,7 +1259,7 @@ export default function CommunityPackCreateScreen() {
               </View>
               </View>
             </ContentWrap>
-          </ScrollView>
+          </BouncyScrollView>
         </KeyboardAvoidingView>
         <ThemedConfirmModal
           visible={clearDraftModalOpen}

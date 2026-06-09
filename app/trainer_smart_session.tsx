@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import BounceView from '../components/BounceView';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
 import CompassBevel from '../components/CompassBevel';
@@ -753,6 +754,7 @@ export default function TrainerSmartSession() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
+            <BounceView style={{ flex: 1 }}>
             <View style={[styles.report, isPlanTrainerTask && styles.planReport]}>
               <View style={[styles.reportHero, isPlanTrainerTask && styles.planReportHero, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? smartSurface : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : modeAccent + '55', borderRadius: isCompassTheme ? 10 : 22 }]}>
                 {isCompassTheme ? <CompassSmartSurface radius={10} selected /> : null}
@@ -854,6 +856,7 @@ export default function TrainerSmartSession() {
                 </TouchableOpacity>
               </View>
             </View>
+            </BounceView>
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -866,6 +869,7 @@ export default function TrainerSmartSession() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer-smart-session">
         <ContentWrap>
+          <BounceView style={{ flex: 1 }}>
           <View style={[styles.header, isPlanTrainerTask && styles.planHeader]}>
             <TapScale onPress={() => safeRouterBack(router, '/trainer')} style={{ padding: 4 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
@@ -1028,6 +1032,7 @@ export default function TrainerSmartSession() {
             f={f}
             isCompassTheme={isCompassTheme}
           />
+          </BounceView>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>

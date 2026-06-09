@@ -12,6 +12,7 @@ import { triLang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 export default function BetaTesters() {
   const router = useRouter();
@@ -66,7 +67,7 @@ export default function BetaTesters() {
           </View>
         </View>
 
-        <ScrollView style={{ flex: 1 }} decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 8, paddingBottom: 16 }}>
+        <BouncyScrollView style={{ flex: 1 }} decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 8, paddingBottom: 16 }}>
           {BETA_TESTERS.map((tester, index) => {
             const isExpanded = expanded === tester.name;
             const isLast = index === BETA_TESTERS.length - 1;
@@ -104,7 +105,7 @@ export default function BetaTesters() {
               </View>
             );
           })}
-        </ScrollView>
+        </BouncyScrollView>
 
         {versionLabel !== '' && (
           <View style={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 10 }} pointerEvents="box-none">

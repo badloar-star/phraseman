@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
+import BounceView from '../components/BounceView';
 import { emitAppEvent } from './events';
 import { triLang } from '../constants/i18n';
 import { useEnergy } from '../components/EnergyContext';
@@ -99,7 +100,7 @@ export default function DuelJoinScreen() {
       >
         <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
       </TapScale>
-      <View style={styles.centered}>
+      <BounceView style={styles.centered}>
         {status === 'loading' && (
           <>
             <Text style={{ fontSize: 64 }}>⚔️</Text>
@@ -229,7 +230,7 @@ export default function DuelJoinScreen() {
             </TouchableOpacity>
           </>
         )}
-      </View>
+      </BounceView>
     </ScreenGradient>
   );
 }

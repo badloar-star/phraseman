@@ -33,6 +33,7 @@ import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_g
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
 import { getDailyTaskCardPressIntent } from './daily_task_card_press_intent';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 type DailyTaskUiMeta = {
     stage: string;
@@ -1647,6 +1648,8 @@ export default function DailyTasksScreen() {
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
     const { lang } = useLang();
     const { studyTarget } = useStudyTarget();
+    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+    const bouncyStyle = useBouncyStyle(bouncyStretch);
     // Не подставляем getTodayTasks() (всегда тир уровня 1) — иначе после обновления/холодного старта
     // карточки не совпадают с AsyncStorage и «Забрать» не срабатывает, пока не перезагрузишь экран.
     const [tasks, setTasks] = useState<DailyTask[]>([]);
@@ -2220,7 +2223,9 @@ export default function DailyTasksScreen() {
           <XpGainBadge amount={claimedXP} visible={claimedXP !== null} style={{ color: rewardActionText, fontSize: f.h1, fontWeight: '800' }}/>
         </Animated.View>)}
 
-      <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled">
+      <BouncyWrap>
+      <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        <Animated.View style={bouncyStyle}>
 
         {/* Прогресс */}
         {(trioClaimButtonEnabled || trioShardsClaimed) && (<View style={[
@@ -2618,7 +2623,9 @@ export default function DailyTasksScreen() {
         </View>
 
         <View style={{ height: 16 }}/>
+        </Animated.View>
       </ScrollView>
+      </BouncyWrap>
       </View>
       </ContentWrap>
 

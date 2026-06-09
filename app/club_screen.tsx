@@ -74,6 +74,7 @@ import { useLeagueChatUnread } from './use_league_chat_unread';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { oskolokImageForPackShards } from './oskolok';
 import { tabSwipeLock } from './tabSwipeLock';
 import { getLeagueSwipePreviewState, swipeLeaguePreview } from './league_swipe_preview';
@@ -363,6 +364,8 @@ function leagueNameForLang(league: (typeof LEAGUES)[number], lang: Lang): string
 }
 
 export default function ClubScreen() {
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -1118,6 +1121,8 @@ export default function ClubScreen() {
         </Text>
       </View>
 
+      <BouncyWrap>
+        <Animated.View style={bouncyStyle}>
       <ScrollView
         ref={contentScrollRef}
         scrollEnabled
@@ -1130,6 +1135,8 @@ export default function ClubScreen() {
           paddingBottom: 16,
           gap: 12,
         }}
+        onScroll={onBouncyScroll}
+        scrollEventThrottle={16}
       >
 
         {rankDelta && (
@@ -1688,6 +1695,8 @@ export default function ClubScreen() {
         )}
 
       </ScrollView>
+        </Animated.View>
+      </BouncyWrap>
 
       </ContentWrap>
 

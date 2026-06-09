@@ -12,6 +12,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, DEV_MODE, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { primeCustomFlashcardsCache } from './flashcards_collection';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
+import BouncyScrollView from '../components/BouncyScrollView';
 import {
   reserveBundledMarketPacks,
   loadMarketplacePacks,
@@ -264,7 +265,7 @@ export default function FlashcardsHubScreen() {
         </View>
 
         <View style={styles.scrollRegion}>
-          <ScrollView
+          <BouncyScrollView
             style={styles.scrollView}
             decelerationRate="normal"
             contentContainerStyle={[
@@ -292,7 +293,7 @@ export default function FlashcardsHubScreen() {
               onTrainingPress={openTraining}
               onAudioPress={openAudioMode}
             />
-          </ScrollView>
+          </BouncyScrollView>
         </View>
       </SafeAreaView>
     </ScreenGradient>

@@ -3,6 +3,7 @@ import {
   Text, TextInput, TouchableOpacity, View, ScrollView,
   Modal, KeyboardAvoidingView, Platform, Clipboard, Animated,
 } from 'react-native';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -175,6 +176,8 @@ export default function ArenaRoomScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const insets = useSafeAreaInsets();
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const arenaReadyAccent = '#22C55E';
   const arenaRankAccent = '#F59E0B';
   const arenaCtaColors = ['#F59E0B', '#7C3AED'] as [string, string];
@@ -542,14 +545,16 @@ export default function ArenaRoomScreen() {
 
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
+      <BouncyWrap>
       <ScrollView
         testID="screen-arena-room"
         decelerationRate="normal"
         contentContainerStyle={{ padding: 20, paddingTop: insets.top + 20, gap: 16, paddingBottom: 40 }}
         keyboardShouldPersistTaps="handled"
         scrollEventThrottle={16}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true, listener: (e: any) => { onBouncyScroll(e); } })}
       >
+        <Animated.View style={bouncyStyle}>
         {/* Шапка */}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TapScale
@@ -1066,7 +1071,9 @@ export default function ArenaRoomScreen() {
             })}
           </View>
         )}
+        </Animated.View>
       </ScrollView>
+      </BouncyWrap>
 
       {/* ─── Модалка чата ─────────────────────────────────────────────────────── */}
       <Modal visible={showChat} animationType="slide" presentationStyle="pageSheet" onRequestClose={() => setShowChat(false)}>

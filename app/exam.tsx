@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import BouncyScrollView from '../components/BouncyScrollView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -794,7 +795,7 @@ export default function ExamScreen() {
           {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso', 'Teste final do curso', 'Bài kiểm tra tổng kết khóa học', 'Tes akhir kursus', 'Kurs final sınavı', 'Test końcowy kursu')}
         </Text>
       </View>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20}}>
         {certificate && (
           <View style={{flexDirection:'row',alignItems:'center',gap:8,backgroundColor:'rgba(212,160,23,0.08)',borderRadius:10,padding:10,borderWidth:1,borderColor:'#d4a017',marginBottom:16}}>
             <Ionicons name="information-circle" size={18} color="#FFD700"/>
@@ -924,7 +925,7 @@ export default function ExamScreen() {
             {t3('На главную', 'На головну', 'Volver al inicio', 'Voltar ao início', 'Về trang chủ', 'Kembali ke beranda', 'Ana sayfaya dön', 'Wróć na stronę główną')}
           </Text>
         </TouchableOpacity>
-      </ScrollView>
+      </BouncyScrollView>
     </SafeAreaView>
     </ScreenGradient>
     <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
@@ -972,7 +973,7 @@ export default function ExamScreen() {
         </View>
       </View>
 
-      <ScrollView decelerationRate="normal" contentContainerStyle={{paddingBottom:120}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{paddingBottom:120}}>
         {questions.map((qItem, i) => {
           const isAnswered = choices[i] !== null;
           const isFlaggedItem = flagged[i];
@@ -1009,7 +1010,7 @@ export default function ExamScreen() {
             </TouchableOpacity>
           );
         })}
-      </ScrollView>
+      </BouncyScrollView>
 
       <View style={{
         position:'absolute', bottom:0, left:0, right:0,
@@ -1100,7 +1101,7 @@ export default function ExamScreen() {
           />
         </View>
       )}
-      <ScrollView decelerationRate="normal" contentContainerStyle={{padding:24,alignItems:'center'}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:24,alignItems:'center'}}>
         <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,borderWidth:1.5,borderColor:t.border,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
           <Ionicons name="ribbon" size={44} color={t.textSecond}/>
         </View>
@@ -1259,7 +1260,7 @@ export default function ExamScreen() {
             {t3('На главную', 'На головну', 'Volver al inicio', 'Voltar ao início', 'Về trang chủ', 'Kembali ke beranda', 'Ana sayfaya dön', 'Wróć na stronę główną')}
           </Text>
         </TouchableOpacity>
-      </ScrollView>
+      </BouncyScrollView>
     </SafeAreaView>
     </ScreenGradient>
     <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
@@ -1308,7 +1309,7 @@ export default function ExamScreen() {
           {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2', 'Meu diploma B2', 'Phần thưởng B2 của tôi', 'Diploma B2 saya', 'B2 diplomam', 'Mój dyplom B2')}
         </Text>
       </View>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{padding:20,alignItems:'center'}}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{padding:20,alignItems:'center'}}>
         <View style={{flexDirection:'row',alignItems:'center',gap:8,marginBottom:8}}>
           <Ionicons name="ribbon" size={22} color="#FFD700"/>
           <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:1.4}}>
@@ -1456,7 +1457,7 @@ export default function ExamScreen() {
             'Nowy wynik nadpisze dyplom tylko przy wyniku ≥ 80%',
           )}
         </Text>
-      </ScrollView>
+      </BouncyScrollView>
     </SafeAreaView>
     </ScreenGradient>
     <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
@@ -1501,7 +1502,7 @@ export default function ExamScreen() {
         <View style={{height:'100%',width:`${(answered/questions.length)*100}%` as any,backgroundColor:t.textSecond,borderRadius:2}}/>
       </View>
 
-      <ScrollView
+      <BouncyScrollView
         decelerationRate="normal"
         contentContainerStyle={{paddingHorizontal:20,paddingTop:16,paddingBottom:160}}
         keyboardShouldPersistTaps="handled"
@@ -1531,7 +1532,7 @@ export default function ExamScreen() {
             </TouchableOpacity>
           );
         })}
-      </ScrollView>
+      </BouncyScrollView>
 
       <ReportErrorButton
         screen="exam"

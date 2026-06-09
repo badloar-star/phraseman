@@ -1,6 +1,8 @@
 import React from 'react';
 import TapScale from '../components/TapScale';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { Animated, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,6 +19,8 @@ import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { safeRouterBack } from './navigation_back';
 
 export default function SettingsLanguage() {
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const { lang, setLang, s } = useLang();
@@ -71,7 +75,9 @@ export default function SettingsLanguage() {
             />
           </View>
 
-          <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>
+          <BouncyWrap>
+            <Animated.View style={bouncyStyle}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
             {getVisibleInterfaceLanguageOptions(IS_STORE_RELEASE).map((item) => {
               const interfaceCode = coerceInterfaceLang(item.code);
               const enabled = interfaceCode === item.code;
@@ -118,7 +124,9 @@ export default function SettingsLanguage() {
                 </TouchableOpacity>
               );
             })}
-          </ScrollView>
+          </BouncyScrollView>
+            </Animated.View>
+          </BouncyWrap>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>

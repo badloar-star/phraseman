@@ -6,6 +6,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
 import ScreenGradient from '../components/ScreenGradient';
+import BounceView from '../components/BounceView';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -114,6 +115,7 @@ export default function LingmanVideoPlayerScreen() {
   return (
     <ScreenGradient artBackdrop="home">
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
+        <BounceView style={styles.container}>
         <View style={styles.header}>
           <TapScale
             accessibilityRole="button"
@@ -193,6 +195,7 @@ export default function LingmanVideoPlayerScreen() {
           <Ionicons name="open-outline" size={19} color={chrome.accent} />
           <Text style={[styles.youtubeButtonText, { color: chrome.accent }]}>{copy.openYoutube}</Text>
         </TouchableOpacity>
+        </BounceView>
       </SafeAreaView>
     </ScreenGradient>
   );

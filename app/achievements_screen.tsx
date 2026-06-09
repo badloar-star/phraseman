@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
+import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
@@ -1415,7 +1416,7 @@ function AchievementModal({
       <Pressable style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'center', alignItems: 'center', padding: 16 }} onPress={onClose}>
         <Pressable onPress={e => e.stopPropagation()} style={{ width: modalWidth, maxHeight: modalMaxHeight }}>
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, width: '100%', maxHeight: modalMaxHeight, overflow: 'hidden', position: 'relative' }}>
-            <ScrollView
+            <BouncyScrollView
               keyboardShouldPersistTaps="handled"
               decelerationRate="normal"
               showsVerticalScrollIndicator
@@ -1609,7 +1610,7 @@ function AchievementModal({
                 {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </TapScale>
-            </ScrollView>
+            </BouncyScrollView>
           </View>
         </Pressable>
       </Pressable>

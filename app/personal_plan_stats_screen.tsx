@@ -15,6 +15,7 @@ import { readCompletedPlanTasks } from './personal_plan_progress';
 import { buildPersonalPlanStats, type PersonalPlanStatsSummary } from './personal_plan_stats';
 import { readPlanWeakSpotView, type PlanWeakSpotView } from './personal_plan_weak_spot_reader';
 import { readPlanXpLedger, type PlanXpLedgerEntry } from './personal_plan_xp_ledger';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 
 type StatsChrome = {
   bg: [string, string, string];
@@ -121,6 +122,8 @@ export default function PersonalPlanStatsScreen() {
 
   const fade = useRef(new Animated.Value(0)).current;
   const slide = useRef(new Animated.Value(20)).current;
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
 
   const load = useCallback(async () => {
     const state = await readPersonalPlanState();
@@ -187,12 +190,16 @@ export default function PersonalPlanStatsScreen() {
           </View>
         </View>
 
+        <BouncyWrap>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
           contentContainerStyle={styles.scroll}
           style={{ opacity: fade, transform: [{ translateY: slide }] }}
+          onScroll={(e: any) => { onBouncyScroll(e); }}
+          scrollEventThrottle={16}
         >
+          <Animated.View style={bouncyStyle}>
           {/* Overall progress hero */}
           <LinearGradient colors={chrome.card} style={[styles.heroCard, { borderColor: chrome.border }]}>
             <View style={styles.heroTop}>
@@ -264,7 +271,9 @@ export default function PersonalPlanStatsScreen() {
               ))}
             </LinearGradient>
           ) : null}
+          </Animated.View>
         </Animated.ScrollView>
+        </BouncyWrap>
       </LinearGradient>
     </SafeAreaView>
   );

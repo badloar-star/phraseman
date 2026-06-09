@@ -3,8 +3,9 @@ import TapScale from '../components/TapScale';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet, ScrollView,
-  Modal, Pressable, Dimensions, InteractionManager,
+  Modal, Pressable, Dimensions, InteractionManager, Animated,
 } from 'react-native';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -186,6 +187,8 @@ export default function DuelRatingScreen() {
   const [rankPickerTop, setRankPickerTop] = useState(0);
   const rankRowRef = useRef<View>(null);
   const rankListRef = useRef<ScrollView>(null);
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
 
   const pickerMaxH = useMemo(() => Math.round(Dimensions.get('window').height * 0.58), []);
 
@@ -280,7 +283,9 @@ export default function DuelRatingScreen() {
         <View style={{ width: 32 }} />
       </View>
 
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <BouncyWrap>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        <Animated.View style={bouncyStyle}>
         {/* Моя карточка */}
         <LinearGradient
           colors={t.cardGradient}
@@ -512,7 +517,9 @@ export default function DuelRatingScreen() {
             <MatchRow key={match.id} match={match} t={t} f={f} lang={lang} />
           ))}
         </View>
+        </Animated.View>
       </ScrollView>
+      </BouncyWrap>
     </ScreenGradient>
   );
 }

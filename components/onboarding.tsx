@@ -54,6 +54,7 @@ import {
 } from '../app/personal_plan_activation';
 import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
 import { usePremium } from './PremiumContext';
+import BouncyScrollView from './BouncyScrollView';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -1207,7 +1208,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           </TouchableOpacity>
           {renderPlanSegmentProgress()}
         </View>
-        <ScrollView
+        <BouncyScrollView
           style={styles.onboardingScroll}
           decelerationRate="normal"
           contentContainerStyle={styles.planFlowScroll}
@@ -1218,7 +1219,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             {lead ? <Text style={styles.planFlowLead}>{lead}</Text> : null}
           </View>
           {children}
-        </ScrollView>
+        </BouncyScrollView>
       </View>
     ),
     undefined,
@@ -1312,7 +1313,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     testID,
     ONBOARDING_BG_WELCOME,
     (
-      <ScrollView
+      <BouncyScrollView
         style={styles.onboardingScroll}
         decelerationRate="normal"
         contentContainerStyle={styles.planMockupResultScroll}
@@ -1332,7 +1333,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           {renderPlanRows(plan, todayIconAsset)}
           <View style={styles.planMockupCtaStack}>{actions}</View>
         </View>
-      </ScrollView>
+      </BouncyScrollView>
     ),
     undefined,
     true,
@@ -1663,7 +1664,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       ONBOARDING_BG_WELCOME,
       (
         <>
-          <ScrollView
+          <BouncyScrollView
             style={styles.onboardingScroll}
             decelerationRate="normal"
             contentContainerStyle={styles.planPaywallScroll}
@@ -1761,7 +1762,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <Text style={styles.legal}>
               Trial, цена после trial и период подписки берутся из App Store или Google Play. После trial подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления. Terms of Use и Privacy Policy доступны до покупки.
             </Text>
-          </ScrollView>
+          </BouncyScrollView>
 
           {showPlanFreeConfirm ? (
             <View style={styles.planFreeConfirmOverlay}>
@@ -1884,7 +1885,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       'onboarding-beta-screen',
       ONBOARDING_BG_BETA,
       (
-        <ScrollView
+        <BouncyScrollView
           {...onboardingScrollProps}
           contentContainerStyle={{
             alignItems: 'center',
@@ -1951,7 +1952,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           >
             <Text style={styles.continueBtnText}>{pick('Понятно 👍', 'Зрозуміло 👍', 'Entendido 👍')}</Text>
           </TouchableOpacity>
-        </ScrollView>
+        </BouncyScrollView>
       ),
     );
   }
@@ -2098,7 +2099,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       (
         <>
           {renderProgressBar()}
-        <ScrollView
+        <BouncyScrollView
           {...onboardingScrollProps}
           contentContainerStyle={[
             styles.center,
@@ -2188,7 +2189,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               </TouchableOpacity>
             </Animated.View>
           )}
-        </ScrollView>
+        </BouncyScrollView>
         </>
       ),
     );
@@ -2239,7 +2240,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       (
         <>
           {renderProgressBar()}
-        <ScrollView
+        <BouncyScrollView
           {...onboardingScrollProps}
           contentContainerStyle={{
             flexGrow: 1,
@@ -2381,7 +2382,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               </TouchableOpacity>
             )}
           </Animated.View>
-        </ScrollView>
+        </BouncyScrollView>
         </>
       ),
     );
@@ -2421,7 +2422,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               <Text style={styles.planFlowBackGlyph}>‹</Text>
             </TouchableOpacity>
           </View>
-          <ScrollView
+          <BouncyScrollView
             style={styles.onboardingScroll}
             decelerationRate="normal"
             contentContainerStyle={[
@@ -2490,7 +2491,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 {pick('Продолжить', 'Продовжити', 'Continuar')}
               </Text>
             </TouchableOpacity>
-          </ScrollView>
+          </BouncyScrollView>
         </KeyboardAvoidingView>
       ),
       undefined,
@@ -2511,7 +2512,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={Platform.OS === 'ios' ? 8 : 0}
         >
-          <ScrollView
+          <BouncyScrollView
             style={styles.onboardingScroll}
             decelerationRate="normal"
             contentContainerStyle={{
@@ -2614,7 +2615,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 )}
               </Text>
             </TouchableOpacity>
-          </ScrollView>
+          </BouncyScrollView>
         </KeyboardAvoidingView>
         </>
       ),
@@ -2650,7 +2651,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       (
         <>
           {renderProgressBar()}
-        <ScrollView
+        <BouncyScrollView
           {...onboardingScrollProps}
           contentContainerStyle={[
             styles.center,
@@ -2753,7 +2754,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               {pick('Поехали', 'Погнали', 'Vamos')}
             </Text>
           </TouchableOpacity>
-        </ScrollView>
+        </BouncyScrollView>
         </>
       ),
     );
@@ -2885,7 +2886,7 @@ function AuthOnboardingStep({
   return (
     <>
       {renderProgressBar()}
-        <ScrollView
+        <BouncyScrollView
           style={styles.onboardingScroll}
           decelerationRate="normal"
           keyboardShouldPersistTaps="handled"
@@ -3001,7 +3002,7 @@ function AuthOnboardingStep({
               'No publicamos tu correo ni enviamos spam.',
             )}
           </Text>
-        </ScrollView>
+        </BouncyScrollView>
     </>
   );
 }

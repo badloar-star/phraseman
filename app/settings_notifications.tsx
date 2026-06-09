@@ -14,6 +14,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import ReportErrorButton from '../components/ReportErrorButton';
+import BouncyScrollView from '../components/BouncyScrollView';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { hapticTap } from '../hooks/use-haptics';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
@@ -76,7 +77,7 @@ function SimplePicker({ values, value, onChange }: {
       <View pointerEvents="none" style={{ position:'absolute', zIndex:3, top:PAD, left:6, right:6, height:ITEM_H, borderTopWidth:1.5, borderBottomWidth:1.5, borderColor:t.textSecond }}/>
       <View pointerEvents="none" style={{ position:'absolute', zIndex:2, top:0, left:0, right:0, height:PAD, backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface, opacity:0.65 }}/>
       <View pointerEvents="none" style={{ position:'absolute', zIndex:2, bottom:0, left:0, right:0, height:PAD, backgroundColor:isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface, opacity:0.65 }}/>
-      <ScrollView
+      <BouncyScrollView
         ref={ref}
         showsVerticalScrollIndicator={false}
         snapToInterval={ITEM_H}
@@ -93,7 +94,7 @@ function SimplePicker({ values, value, onChange }: {
             <Text style={{ fontSize:22, fontWeight:'400', color:t.textPrimary }}>{pad(v)}</Text>
           </View>
         ))}
-      </ScrollView>
+      </BouncyScrollView>
     </View>
   );
 }
@@ -281,7 +282,7 @@ export default function SettingsNotifications() {
         />
       </View>
 
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom:40 }}>
+      <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom:40 }}>
         {days.map((dayName, d) => {
           const day = s.schedule[d];
           if (!day) return null;
@@ -357,7 +358,7 @@ export default function SettingsNotifications() {
             {footerHint}
           </Text>
         </View>
-      </ScrollView>
+      </BouncyScrollView>
 
       <TimeModal
         visible={pickerDay !== null}

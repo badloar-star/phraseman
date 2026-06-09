@@ -42,6 +42,7 @@ import {
   flashcardsOfficialPacksAvailableForTarget,
   frenchFlashcardsGateCopy,
 } from './flashcards_target_gate';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
@@ -598,7 +599,7 @@ export default function PackOpeningScreen() {
       )}
 
       {/* Сітка карточок */}
-      <ScrollView
+      <BouncyScrollView
         decelerationRate="normal"
         contentContainerStyle={{
           paddingHorizontal: H_PADDING,
@@ -624,7 +625,7 @@ export default function PackOpeningScreen() {
             />
           ))}
         </View>
-      </ScrollView>
+      </BouncyScrollView>
 
       {/* Низова панель з кнопками */}
       <View

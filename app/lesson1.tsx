@@ -73,6 +73,7 @@ import { getPersonalPlanPhraseLesson, personalizePlanPhraseLesson } from './pers
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { frenchStudyActive, spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
+import BouncyScrollView from '../components/BouncyScrollView';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getMedalTier, getProgressCellColor, loadMedalInfo } from './medal_utils';
 import type { MedalTier } from './medal_utils';
@@ -853,7 +854,7 @@ const LessonContent = React.memo(function LessonContent({
         </View>
       </View>
 
-      <ScrollView
+      <BouncyScrollView
         testID="lesson1-scroll"
         style={{ flex: 1 }}
         contentContainerStyle={{
@@ -1035,7 +1036,7 @@ const LessonContent = React.memo(function LessonContent({
 
             </Animated.View>
           )}
-        </ScrollView>
+        </BouncyScrollView>
 
 {/* ПОДСКАЗКА О ГРАММАТИКЕ — появляется один раз при первом появлении конструкции */}
         {grammarHintText !== null && (

@@ -20,6 +20,8 @@ import {
 import { ExpoSpeechRecognitionModule as speechModule } from 'expo-speech-recognition';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import type { PersonalPlanId } from './personal_plan_catalog';
+import { hasAuthoredPlanContent } from './plan_content_registry';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { getPersonalPlanMissingWordItems } from './personal_plan_missing_word_items';
 import { getPersonalPlanChooseNaturalPhraseItems } from './personal_plan_choose_natural_phrase_items';
 import { getPersonalPlanListenChooseItems, type PersonalPlanListenChooseItem } from './personal_plan_listen_choose_items';
@@ -37,6 +39,7 @@ import { createPlanRecoveryDefaultHandlers } from './personal_plan_recovery_defa
 import type { PlanExerciseBlock, PlanExerciseType } from './personal_plan_engine_contracts';
 import { planExerciseRendererContractForType, type PlanExerciseVisualShell } from './personal_plan_exercise_renderer_contracts';
 import { evaluateRecallAnswer } from './review_evaluator';
+import BouncyScrollView from '../components/BouncyScrollView';
 
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] ?? '' : value ?? '';
@@ -976,11 +979,20 @@ export default function PersonalPlanExerciseScreen() {
           <View style={styles.headerStats}>
             <Text style={[styles.statText, { color: t.correct, fontSize: f.label }]}>●{correctIds.length}</Text>
             <Text style={[styles.statText, { color: t.textMuted, fontSize: f.label }]}>/{targetCorrect}</Text>
+            {hasAuthoredPlanContent(planId, dayIndex) ? (
+              <ReportErrorButton
+                variant="icon-flag"
+                screen="personal_plan_exercise"
+                dataId={`${planId}_day_${dayIndex}_${item?.id ?? 'unit'}`}
+                dataText={`${chrome.title} · ${currentExerciseType}`}
+                style={styles.reportFlag}
+              />
+            ) : null}
           </View>
         </View>
         <PlanExerciseProgressRail correct={correctIds.length} target={targetCorrect} accent={accent} />
 
-        <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+        <BouncyScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
           {!item || !modeReady ? (
             <PlanExerciseFeedbackSurface
               tone="blocked"
@@ -1291,7 +1303,7 @@ export default function PersonalPlanExerciseScreen() {
               {lastResult ? <View style={styles.doneSpacer} /> : null}
             </>
           )}
-        </ScrollView>
+        </BouncyScrollView>
         <View style={[styles.footer, { borderTopColor: t.border }]}>
           <TouchableOpacity
             activeOpacity={0.78}
@@ -1347,6 +1359,7 @@ type PersonalPlanExerciseStyles = {
   backText: TextStyle;
   headerStats: ViewStyle;
   statText: TextStyle;
+  reportFlag: ViewStyle;
   headerCopy: ViewStyle;
   headerModeIcon: ViewStyle;
   kicker: TextStyle;
@@ -1453,6 +1466,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     gap: 2,
   },
   statText: { fontWeight: '700' },
+  reportFlag: { marginLeft: 10, paddingHorizontal: 4 },
   headerCopy: { flex: 1, minWidth: 0 },
   headerModeIcon: {
     width: 44,

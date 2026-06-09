@@ -18,6 +18,8 @@ import TapScale from '../components/TapScale';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -347,6 +349,8 @@ function FillGapMode({ item, onResult }: FillGapProps) {
 
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerPhrasesSession() {
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = themeMode === 'compass';
@@ -523,17 +527,23 @@ export default function TrainerPhrasesSession() {
             <Text style={{ color: sx.muted, fontSize: f.caption, fontWeight: '600' }}>{modeLabel}</Text>
           </View>
 
-          <ScrollView
-            decelerationRate="normal"
-            contentContainerStyle={{ padding: 16, paddingTop: 8, flex: 1 }}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
-          >
-            {card?.mode === 'word_bank'
-              ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} />
-              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} />
-            }
-          </ScrollView>
+          <BouncyWrap>
+            <Animated.View style={bouncyStyle}>
+              <BouncyScrollView
+                decelerationRate="normal"
+                contentContainerStyle={{ padding: 16, paddingTop: 8, flex: 1 }}
+                keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}
+                onScroll={onBouncyScroll}
+                scrollEventThrottle={16}
+              >
+                {card?.mode === 'word_bank'
+                  ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} />
+                  : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} />
+                }
+              </BouncyScrollView>
+            </Animated.View>
+          </BouncyWrap>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>

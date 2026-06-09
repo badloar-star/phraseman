@@ -25,6 +25,7 @@ import { triLang } from '../constants/i18n';
 import { useAudio } from '../hooks/use-audio';
 import { peekFlashcardsCache } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import BouncyScrollView from '../components/BouncyScrollView';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import {
@@ -742,7 +743,7 @@ export default function FlashcardsAudioScreen() {
   const renderSelect = () => (
     <>
       {renderHeader(() => safeRouterBack(router, '/flashcards' as any))}
-      <ScrollView
+      <BouncyScrollView
         style={styles.scroll}
         decelerationRate="normal"
         contentContainerStyle={[styles.selectContent, { paddingBottom: Math.max(insets.bottom, 16) + 20 }]}
@@ -864,7 +865,7 @@ export default function FlashcardsAudioScreen() {
         {loadError && sources.length > 0 ? (
           <Text style={[styles.errorText, { color: t.wrong, fontSize: f.caption }]}>{loadError}</Text>
         ) : null}
-      </ScrollView>
+      </BouncyScrollView>
 
       <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, 12), backgroundColor: t.bgPrimary, borderTopColor: t.border }]}>
         <TouchableOpacity

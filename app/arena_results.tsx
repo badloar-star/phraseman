@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import TapScale from '../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -341,6 +342,8 @@ export default function DuelResultsScreen() {
   const scaleAnim = useRef(new Animated.Value(0.7)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const flyX = useRef(new Animated.Value(0)).current;
   const flyY = useRef(new Animated.Value(0)).current;
   const flyScale = useRef(new Animated.Value(0.2)).current;
@@ -1379,13 +1382,15 @@ export default function DuelResultsScreen() {
 
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
+      <BouncyWrap>
       <ScrollView
         decelerationRate="normal"
         contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 16 }]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true, listener: (e: any) => { onBouncyScroll(e); } })}
       >
+        <Animated.View style={bouncyStyle}>
         <TapScale
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
@@ -2210,7 +2215,9 @@ export default function DuelResultsScreen() {
             </TouchableOpacity>
           )}
         </View>
+        </Animated.View>
       </ScrollView>
+      </BouncyWrap>
 
       {/* Модалка разбора вопросов */}
       <Modal

@@ -5,6 +5,7 @@ import {
   Share, Keyboard, StyleSheet, Modal, InteractionManager,
 } from 'react-native';
 import { Image } from 'expo-image';
+import Reanimated from 'react-native-reanimated';
 import TapScale from '../../components/TapScale';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Clipboard from 'expo-clipboard';
@@ -13,6 +14,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
+import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
@@ -1409,6 +1411,8 @@ export default function FriendsTabScreen() {
   const insets = useSafeAreaInsets();
   const scrollY = useRef(new Animated.Value(0)).current;
   const topFadeScroll = useTopFadeScroll();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
   const sentGiftChrome = themeMode === 'compass'
     ? {
@@ -2172,6 +2176,7 @@ export default function FriendsTabScreen() {
   return (
     <ScreenGradient artBackdrop="friends">
       <View testID="screen-friends" style={{ flex: 1 }}>
+      <BouncyWrap>
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
@@ -2180,9 +2185,10 @@ export default function FriendsTabScreen() {
         scrollEventThrottle={16}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false, listener: topFadeScroll?.onScroll },
+          { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },
         )}
       >
+        <Reanimated.View style={bouncyStyle}>
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 8, marginHorizontal: -PX, paddingHorizontal: PX }}>
           <TapScale
@@ -2384,7 +2390,9 @@ export default function FriendsTabScreen() {
           />
         </View>
 
+        </Reanimated.View>
       </Animated.ScrollView>
+      </BouncyWrap>
 
 
       <AddFriendModal

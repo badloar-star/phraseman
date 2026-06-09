@@ -18,6 +18,7 @@ import { XpCounter } from './ui';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import GoldBevel from '../../components/GoldBevel';
 import { getQuizCompletionMedalSource } from './medal_assets';
+import BouncyScrollView from '../../components/BouncyScrollView';
 
 type Props = {
   phrases: QuizPhrase[];
@@ -93,7 +94,7 @@ export default function QuizResultView({
     <ScreenGradient artBackdrop="quizzes">
       <View style={{ flex: 1 }}>
         <ContentWrap>
-          <ScrollView decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+          <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
             <Image
               source={completionMedalSource}
               contentFit="contain"
@@ -259,7 +260,7 @@ export default function QuizResultView({
                 })}
               </Text>
             </TouchableOpacity>
-          </ScrollView>
+          </BouncyScrollView>
         </ContentWrap>
 
         {showBonus && (

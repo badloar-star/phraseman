@@ -35,6 +35,7 @@ import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
+import BouncyScrollView from '../components/BouncyScrollView';
 import AddToFlashcard from '../components/AddToFlashcard';
 import { recordWordMistake, activateWordForTrainer } from './trainer_store';
 import { logMistake } from './mistake_log';
@@ -835,7 +836,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const { theme: t, f } = useTheme();
   const pack = stringsForLang(lang);
   return (
-    <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
+    <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 30 }}>
       <TouchableOpacity
         onPress={onStartLearn}
         style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 1, borderColor: t.border, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
@@ -847,7 +848,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
       </TouchableOpacity>
 
       <IrregVerbsScrollTable t={t} f={f} lang={lang} allVerbs={allVerbs} globalCounts={globalCounts} lessonId={lessonId} />
-    </ScrollView>
+    </BouncyScrollView>
   );
 }
 

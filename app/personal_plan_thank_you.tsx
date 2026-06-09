@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
+import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
@@ -23,6 +24,7 @@ export default function PersonalPlanThankYouScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe}>
+        <BounceView style={styles.safe}>
         <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
           <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.border }]}>
             <Ionicons name="checkmark" size={34} color={t.correctText} />
@@ -84,6 +86,7 @@ export default function PersonalPlanThankYouScreen() {
             </Text>
           </TouchableOpacity>
         </View>
+        </BounceView>
       </SafeAreaView>
 
       <RegistrationPromptModal

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import TapScale from '../components/TapScale';
 import {
+  Animated,
   Dimensions,
   Modal,
   Pressable,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -344,6 +346,8 @@ export default function AvatarSelect() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+  const bouncyStyle = useBouncyStyle(bouncyStretch);
   const avatarAccent = '#A78BFA';
   const avatarPremiumAccent = '#FACC15';
   const avatarVipAccent = '#22C55E';
@@ -797,7 +801,9 @@ export default function AvatarSelect() {
         </View>
       )}
 
-      <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }}>
+      <BouncyWrap>
+      <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        <Animated.View style={bouncyStyle}>
         {showProfileCardSection ? (
         <View style={{ marginBottom: 18 }}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 8 }}>
@@ -1088,7 +1094,9 @@ export default function AvatarSelect() {
             })}
           </ScrollView>
         </View>
+        </Animated.View>
       </ScrollView>
+      </BouncyWrap>
 
       {showProfileCardSection ? (
         <>

@@ -1,0 +1,75 @@
+/**
+ * Клиент фичи «Объясни как для 5-летнего» (explainPhrase + submitExplainReport).
+ * Паттерн скопирован с app/ai_dialog_client.ts (тот же httpsCallable + App Check init).
+ *
+ * ИНВАРИАНТ: клиент шлёт phraseEn СЫРЫМ — хэш считает СЕРВЕР (explain_cache.phraseHashFor).
+ * Клиент НИКОГДА не вычисляет phraseHash и НЕ содержит логики «годен/не годен»: он лишь
+ * вызывает CF и показывает text как есть. Качество решает сервер (judge + репорты).
+ */
+import { getApp } from '@react-native-firebase/app';
+import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+
+const FUNCTIONS_REGION = 'us-central1';
+
+export interface ExplainPhraseRequest {
+  /** Английская фраза, как показана пользователю (сервер её нормализует и хэширует). */
+  phraseEn: string;
+  /** Перевод/смысл на родном языке — сервер использует его для fallback-текста. */
+  phraseMeaning: string;
+  /** Язык пользователя (для генерации/fallback). */
+  lang: string;
+}
+
+/**
+ * Контракт ответа закреплён в plan-02 (explain_phrase.ts) — единый источник правды для
+ * CF и клиента. Сервер ВСЕГДА собирает fallback-текст (никогда клиент); клиент рендерит
+ * text как есть и не решает качество.
+ *  - status 'ok'        — настоящее объяснение (свежее или из кэша)
+ *  - status 'rejected'  — judge/репорты отклонили, text = fallback
+ *  - status 'exhausted' — упёрлись в глобальный/юзер-бюджет, text = fallback
+ *  - status 'pending'   — другой запрос генерирует, text = fallback (v1 показывает fallback)
+ */
+export interface ExplainPhraseResponse {
+  ok: true;
+  text: string;
+  status: 'ok' | 'rejected' | 'exhausted' | 'pending';
+  fromCache: boolean;
+}
+
+/** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
+export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<ExplainPhraseResponse> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = httpsCallable<ExplainPhraseRequest, ExplainPhraseResponse>(
+    getFunctions(getApp(), FUNCTIONS_REGION),
+    'explainPhrase',
+  );
+  const res = await fn(req);
+  return res.data;
+}
+
+export interface SubmitExplainReportRequest {
+  /** Английская фраза — сервер сам выведет phraseHash; клиент хэш НЕ шлёт. */
+  phraseEn: string;
+}
+
+export interface SubmitExplainReportResponse {
+  ok: boolean;
+}
+
+/**
+ * Пожаловаться на объяснение фразы («сообщить о баге»). Шлёт ТОЛЬКО phraseEn —
+ * сервер выводит phraseHash и инкрементит счётчик репортов (бэкстоп-модерация, уровень 4).
+ * UI-кнопку подключает план 04.
+ */
+export async function callSubmitExplainReport(
+  req: SubmitExplainReportRequest,
+): Promise<SubmitExplainReportResponse> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = httpsCallable<SubmitExplainReportRequest, SubmitExplainReportResponse>(
+    getFunctions(getApp(), FUNCTIONS_REGION),
+    'submitExplainReport',
+  );
+  const res = await fn(req);
+  return res.data;
+}

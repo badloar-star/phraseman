@@ -6,15 +6,15 @@ OUT = sys.argv[1]
 
 def gate(d): return max(8, min(32, 8 + int((d-1)*0.8)))
 
-# MITAP Batch 2: days 8-14 (week 2, A2: meeting the team — introduce/role/timezone/name+title/contacts + review)
+# MITAP Batch 6: days 36-42 (week 6, B1: facilitating by agenda — open/agenda/timing/hand-over/refocus/summarize + review)
 ROWS = [
- (8,'A2',['present-simple','to-have'],[3,7],'Представиться команде: роль и стаж',"I'm on the design team. I have two years here. рассказать о себе."),
- (9,'A2',['present-simple','present-simple-questions'],[3,5],'Рассказать, чем именно занимаешься',"I work on the mobile app. описать свою работу."),
- (10,'A2',['wh-questions','present-simple'],[5,6],'Спросить про роль коллеги',"What do you do here? узнать, чем занимается собеседник."),
- (11,'A2',['present-simple-questions','prepositions-time'],[5,8],'Откуда ты и какой часовой пояс',"Where are you based? What time is it for you? страна и время."),
- (12,'A2',['wh-questions','to-have'],[6,7],'Уточнить имя и должность собеседника',"Sorry, what's your name again? переспросить имя и роль."),
- (13,'A2',['present-simple','imperative'],[3,18],'Обменяться контактами в чате',"I will send my email. Drop yours in the chat. обмен контактами."),
- (14,'A2',['present-simple','wh-questions','to-have'],[6,7],'Повторение недели 2: знакомство с командой','Review-диалог: представиться, роль, часовой пояс, контакты.'),
+ (36,'B1',['present-perfect','future-simple'],[24,13],'Открыть встречу как ведущий',"Thanks for joining. Let us get started. начало встречи."),
+ (37,'B1',['future-simple','gerund'],[13,22],'Озвучить повестку встречи',"Today we will cover three things. план встречи."),
+ (38,'B1',['future-simple','prepositions-time'],[13,8],'Назначить тайминг пунктов',"Let us spend ten minutes on this. тайминг обсуждения."),
+ (39,'B1',['modals','imperative'],[10,18],'Передать слово коллеге',"Over to you, Mark. Please go ahead. дать слово."),
+ (40,'B1',['present-continuous','modals'],[17,10],'Вернуть фокус к теме встречи',"Let us get back on track. вернуть фокус."),
+ (41,'B1',['present-perfect','gerund'],[24,22],'Подвести итог пункта',"So, to sum up this point. итог обсуждения."),
+ (42,'B1',['present-perfect','future-simple','gerund'],[24,22],'Повторение недели 6: ведём по повестке','Review-диалог: открыть, повестка, тайминг, фокус, итог.'),
 ]
 batch=[]
 for d,level,cons,prereq,topic,note in ROWS:

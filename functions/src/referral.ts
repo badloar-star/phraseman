@@ -36,8 +36,22 @@ const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
 /** Сколько qualified-друзей обрабатываем за один claim-вызов (защита от гигантских транзакций). */
 const MAX_CLAIMS_PER_CALL = 20;
 
-/** Привязка apply только для «свежих» аккаунтов (ms с users.created_at). 0 = выкл. */
-const REFEREE_MAX_ACCOUNT_AGE_MS = 14 * 24 * 60 * 60 * 1000;
+/**
+ * Антифрод: код принимаем только от «нового» пользователя — того, у кого, по сути,
+ * раньше не было приложения. Точный device-level признак «было/не было приложение»
+ * недоступен (App Store/Play запрещают аппам стабильные device-id: IDFV сбрасывается,
+ * SSAID меняется при factory reset). Поэтому опираемся на stableId, который СПЕЦИАЛЬНО
+ * переживает переустановку (iOS Keychain AFTER_FIRST_UNLOCK + iCloud Keychain; Android
+ * AsyncStorage в Google Drive Auto Backup — см. app/stable_id.ts). Если у человека когда-то
+ * было приложение, у него уже есть stableId и users/{id}.created_at — он отсекается.
+ *
+ * Окно = 72ч, синхронно с intro-доступом новичка (intro_full_access ~72ч): пока у друга
+ * идёт бесплатное полное окно — он точно новенький. НЕ ставим «created_at отсутствует»:
+ * created_at пишется при ПЕРВОМ облачном синке прогресса (cloud_sync.ts), т.е. РАНЬШЕ,
+ * чем друг успеет ввести код (особенно iOS — ручной ввод позже) — иначе резали бы честных.
+ * 0 = проверка выключена.
+ */
+const REFEREE_MAX_ACCOUNT_AGE_MS = 72 * 60 * 60 * 1000;
 
 const REFERRAL_CODES = 'referral_codes';
 const REFERRAL_OWNERS = 'referral_owners';
@@ -238,7 +252,9 @@ export const referralEnsureMyCode = onCall(CALLABLE_BASE, async (request) => {
 
 /**
  * Первичная фиксация: приглашённый (referee) вводит код до/после sign-in. Идемпотентно.
- * Антифрод: аки старше REFEREE_MAX_ACCOUNT_AGE_MS (по users.created_at) не принимаем.
+ * Антифрод: код принимаем только от нового пользователя (у кого, по сути, не было
+ * приложения) — аккаунт старше REFEREE_MAX_ACCOUNT_AGE_MS (72ч, по users.created_at,
+ * stableId переживает переустановку) не принимаем.
  */
 export const referralApply = onCall(CALLABLE_BASE, async (request) => {
   if (!request.auth?.uid) {

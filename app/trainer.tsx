@@ -690,9 +690,8 @@ export default function TrainerScreen() {
             />
           </View>
 
-          <BouncyWrap>
+          <BouncyWrap style={bouncyStyle}>
           <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-            <Animated.View style={bouncyStyle}>
             {null}
 
             {null}
@@ -1002,7 +1001,6 @@ export default function TrainerScreen() {
                   </TouchableOpacity>
                 </View>
               </View>)}
-            </Animated.View>
             </ScrollView>
           </BouncyWrap>
         </ContentWrap>

@@ -1103,9 +1103,8 @@ export default function LessonMenu() {
         </PremiumCard>
       </View>
 
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-        <Animated.View style={bouncyStyle}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}
@@ -1271,7 +1270,6 @@ export default function LessonMenu() {
         </View>
       ) : null}
 
-        </Animated.View>
       </ScrollView>
       </BouncyWrap>
       {/* Модальное окно блокировки */}

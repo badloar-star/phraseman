@@ -513,7 +513,7 @@ export default function SettingsMain() {
 
   return (
     <ScreenGradient>
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <Animated.ScrollView
         testID="screen-settings"
         ref={scrollRef}
@@ -527,7 +527,6 @@ export default function SettingsMain() {
           { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },
         )}
       >
-        <Animated.View style={bouncyStyle}>
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8 }}>
@@ -1042,7 +1041,6 @@ export default function SettingsMain() {
           </View>
         </View>
 
-        </Animated.View>
       </Animated.ScrollView>
       </BouncyWrap>
 

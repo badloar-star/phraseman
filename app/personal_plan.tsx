@@ -527,7 +527,7 @@ export default function PersonalPlanScreen() {
           <StreakBadge dayIndex={day.dayIndex} chrome={chrome} />
         </View>
 
-        <BouncyWrap>
+        <BouncyWrap style={bouncyStyle}>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
@@ -536,7 +536,6 @@ export default function PersonalPlanScreen() {
           scrollEventThrottle={16}
           onScroll={onBouncyScroll}
         >
-          <Animated.View style={bouncyStyle}>
           {/* ── Hero card ── */}
           <LinearGradient colors={chrome.hero} style={[styles.heroCard, { borderColor: chrome.border }]}>
             {/* Top row */}
@@ -781,7 +780,6 @@ export default function PersonalPlanScreen() {
               <Text style={[styles.devLinkText, { color: chrome.accent }]}>DEV</Text>
             </TouchableOpacity>
           ) : null}
-          </Animated.View>
         </Animated.ScrollView>
         </BouncyWrap>
       </LinearGradient>

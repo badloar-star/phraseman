@@ -545,7 +545,7 @@ export default function ArenaRoomScreen() {
 
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <ScrollView
         testID="screen-arena-room"
         decelerationRate="normal"
@@ -554,7 +554,6 @@ export default function ArenaRoomScreen() {
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true, listener: (e: any) => { onBouncyScroll(e); } })}
       >
-        <Animated.View style={bouncyStyle}>
         {/* Шапка */}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TapScale
@@ -1071,7 +1070,6 @@ export default function ArenaRoomScreen() {
             })}
           </View>
         )}
-        </Animated.View>
       </ScrollView>
       </BouncyWrap>
 

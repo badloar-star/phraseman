@@ -1,5 +1,6 @@
 import type { PlanContentDay } from './plan_content_schema';
 import { VOYAZH_CONTENT_DAYS } from './plan_content_voyazh';
+import { MITAP_CONTENT_DAYS } from './plan_content_mitap';
 
 /**
  * Registry of authored PlanContentDay content from the new pipeline, keyed by
@@ -18,6 +19,7 @@ function keyFor(planId: string, dayIndex: number): string {
 
 const ALL_CONTENT_DAYS: readonly PlanContentDay[] = [
   ...VOYAZH_CONTENT_DAYS,
+  ...MITAP_CONTENT_DAYS,
 ];
 
 const CONTENT_BY_KEY: ReadonlyMap<string, PlanContentDay> = new Map(

@@ -1,0 +1,1223 @@
+// Authored content for the "mitap" plan (work meetings / remote calls, 112 days).
+// Generated and audited via tools/plan_gen. Each MITAP_DAY_<N> is a PlanContentDay
+// with planId 'mitap'. Days are appended in week-batches of 7; the
+// MITAP_CONTENT_DAYS array is rebuilt to list DAY_1..DAY_<max> contiguously.
+import type { PlanContentDay } from './plan_content_schema';
+
+export const MITAP_DAY_1: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 1,
+  topic: { ru: 'Подключиться к созвону и поздороваться', uk: 'Підключитися до дзвінка і привітатися', es: 'Conectarse a la llamada y saludar' },
+  outcome: {
+    ru: 'Ты сможешь зайти в рабочий созвон, назвать своё имя и сказать, что ты на месте.',
+    uk: 'Ти зможеш зайти в робочий дзвінок, назвати своє ім\'я і сказати, що ти на місці.',
+    es: 'Podrás entrar a una llamada de trabajo, decir tu nombre y avisar que ya estás.',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Скажи кто ты: I am', uk: 'Скажи хто ти: I am', es: 'Di quién eres: I am' },
+      body: {
+        ru: 'Когда заходишь в созвон, начни с имени. Слово am идёт после I и значит «я есть». I am Anna — это «я Анна».',
+        uk: 'Коли заходиш у дзвінок, почни з імені. Слово am іде після I і значить «я є». I am Anna — це «я Анна».',
+        es: 'Cuando entras a la llamada, empieza con tu nombre. La palabra am va después de I y significa «yo soy». I am Anna es «soy Anna».',
+      },
+      examples: [
+        { en: 'I am Anna.', gloss: { ru: 'Я Анна.', uk: 'Я Анна.', es: 'Soy Anna.' } },
+        { en: 'I am here.', gloss: { ru: 'Я на месте.', uk: 'Я на місці.', es: 'Ya estoy aquí.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Коротко: I\'m', uk: 'Коротко: I\'m', es: 'Corto: I\'m' },
+      body: {
+        ru: 'В живой речи I am часто сливают в I\'m. Это то же самое, просто быстрее. I\'m here звучит как «я тут».',
+        uk: 'У живій мові I am часто зливають в I\'m. Це те саме, просто швидше. I\'m here звучить як «я тут».',
+        es: 'Al hablar, I am suele unirse en I\'m. Es lo mismo, solo más rápido. I\'m here suena como «estoy aquí».',
+      },
+      examples: [
+        { en: 'I\'m Anna.', gloss: { ru: 'Я Анна.', uk: 'Я Анна.', es: 'Soy Anna.' } },
+        { en: 'I\'m here.', gloss: { ru: 'Я тут.', uk: 'Я тут.', es: 'Estoy aquí.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Спроси про другого: are you', uk: 'Спитай про іншого: are you', es: 'Pregunta por otro: are you' },
+      body: {
+        ru: 'Про собеседника говорят you и слово are. Are you here? — «ты на связи?». Сначала are, потом you — и это уже вопрос.',
+        uk: 'Про співрозмовника кажуть you і слово are. Are you here? — «ти на зв\'язку?». Спочатку are, потім you — і це вже питання.',
+        es: 'Para el otro se usa you y la palabra are. ¿Are you here? es «¿estás ahí?». Primero are, luego you, y ya es pregunta.',
+      },
+      examples: [
+        { en: 'Are you here?', gloss: { ru: 'Ты на связи?', uk: 'Ти на зв\'язку?', es: '¿Estás ahí?' } },
+        { en: 'You are Max.', gloss: { ru: 'Ты Макс.', uk: 'Ти Макс.', es: 'Tú eres Max.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d1_p1',
+      english: 'Hi, I am Anna.',
+      meaning: { ru: 'Привет, я Анна.', uk: 'Привіт, я Анна.', es: 'Hola, soy Anna.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Назови себя', uk: 'Назви себе', es: 'Preséntate' },
+        rule: { ru: 'После I ставь am, потом своё имя: I am Anna — «я Анна».', uk: 'Після I став am, потім своє ім\'я: I am Anna — «я Анна».', es: 'Después de I pon am y luego tu nombre: I am Anna, «soy Anna».' },
+        why: { ru: 'Так на созвоне сразу понятно, кто только что подключился.', uk: 'Так на дзвінку одразу зрозуміло, хто щойно підключився.', es: 'Así en la llamada se sabe enseguida quién acaba de entrar.' },
+        commonMistake: { ru: 'Не говори I Anna без am. Нужно I am Anna.', uk: 'Не кажи I Anna без am. Потрібно I am Anna.', es: 'No digas I Anna sin am. Hay que decir I am Anna.' },
+      },
+      words: [
+        { text: 'Hi', partOfSpeech: 'other', distractors: ['Bye', 'Yes', 'No', 'Please', 'Thanks'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'he', 'she', 'it', 'we'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'Anna', partOfSpeech: 'other', distractors: ['Monday', 'London', 'blue', 'seven', 'door'] },
+      ],
+    },
+    {
+      id: 'mitap_d1_p2',
+      english: 'I am here now.',
+      meaning: { ru: 'Я на месте, я тут.', uk: 'Я на місці, я тут.', es: 'Ya estoy aquí.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Скажи, что ты на связи', uk: 'Скажи, що ти на зв\'язку', es: 'Avisa que ya estás' },
+        rule: { ru: 'Слово here значит «тут». I am here — «я на месте».', uk: 'Слово here значить «тут». I am here — «я на місці».', es: 'La palabra here significa «aquí». I am here es «ya estoy».' },
+        why: { ru: 'Этим ты показываешь команде, что готов начинать.', uk: 'Цим ти показуєш команді, що готовий починати.', es: 'Así muestras al equipo que estás listo para empezar.' },
+        commonMistake: { ru: 'Не путай here «тут» с there «там».', uk: 'Не плутай here «тут» з there «там».', es: 'No confundas here «aquí» con there «allí».' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'he', 'she', 'it', 'they'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'loudly', 'quickly', 'always'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'always', 'never', 'maybe'] },
+      ],
+    },
+    {
+      id: 'mitap_d1_p3',
+      english: 'Hello, are you here?',
+      meaning: { ru: 'Привет, ты на связи?', uk: 'Привіт, ти на зв\'язку?', es: 'Hola, ¿estás ahí?' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Спроси, на месте ли другой', uk: 'Спитай, чи на місці інший', es: 'Pregunta si el otro está' },
+        rule: { ru: 'Поставь are перед you — и это вопрос: are you here?', uk: 'Постав are перед you — і це питання: are you here?', es: 'Pon are antes de you y es pregunta: ¿are you here?' },
+        why: { ru: 'Так ты проверяешь, слышит ли тебя коллега на созвоне.', uk: 'Так ти перевіряєш, чи чує тебе колега на дзвінку.', es: 'Así compruebas si tu colega te oye en la llamada.' },
+        commonMistake: { ru: 'Не говори you are here? Для вопроса are идёт первым.', uk: 'Не кажи you are here? Для питання are іде першим.', es: 'No digas you are here? En la pregunta are va primero.' },
+      },
+      words: [
+        { text: 'Hello', partOfSpeech: 'other', distractors: ['Goodbye', 'Sorry', 'Okay', 'Maybe', 'Welcome'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['is', 'am', 'was', 'were', 'be'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['slowly', 'early', 'loudly', 'quickly', 'soon'] },
+      ],
+    },
+    {
+      id: 'mitap_d1_p4',
+      english: 'Yes, I am ready.',
+      meaning: { ru: 'Да, я готов.', uk: 'Так, я готовий.', es: 'Sí, estoy listo.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Скажи, что ты готов', uk: 'Скажи, що ти готовий', es: 'Di que estás listo' },
+        rule: { ru: 'Слово ready значит «готов». I am ready — «я готов».', uk: 'Слово ready значить «готовий». I am ready — «я готовий».', es: 'La palabra ready significa «listo». I am ready es «estoy listo».' },
+        why: { ru: 'Так команда понимает, что можно начинать встречу.', uk: 'Так команда розуміє, що можна починати зустріч.', es: 'Así el equipo sabe que se puede empezar la reunión.' },
+        commonMistake: { ru: 'Не пропускай am: нужно I am ready, не I ready.', uk: 'Не пропускай am: потрібно I am ready, не I ready.', es: 'No omitas am: es I am ready, no I ready.' },
+      },
+      words: [
+        { text: 'Yes', partOfSpeech: 'other', distractors: ['No', 'Maybe', 'Please', 'Sorry', 'Okay'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'he', 'she', 'it', 'they'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'ready', partOfSpeech: 'adjective', distractors: ['busy', 'late', 'tired', 'happy', 'new'] },
+      ],
+    },
+    {
+      id: 'mitap_d1_p5',
+      english: 'You are Max, right?',
+      meaning: { ru: 'Ты Макс, верно?', uk: 'Ти Макс, так?', es: 'Tú eres Max, ¿verdad?' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Уточни имя коллеги', uk: 'Уточни ім\'я колеги', es: 'Confirma el nombre del colega' },
+        rule: { ru: 'Про другого: you are. You are Max — «ты Макс».', uk: 'Про іншого: you are. You are Max — «ти Макс».', es: 'Para el otro: you are. You are Max es «tú eres Max».' },
+        why: { ru: 'Так ты сразу понимаешь, с кем именно говоришь на созвоне.', uk: 'Так ти одразу розумієш, з ким саме говориш на дзвінку.', es: 'Así sabes enseguida con quién hablas en la llamada.' },
+        commonMistake: { ru: 'Для you бери are, не is: you are, не you is.', uk: 'Для you бери are, не is: you are, не you is.', es: 'Para you usa are, no is: you are, no you is.' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'it', 'we'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['is', 'am', 'was', 'were', 'be'] },
+        { text: 'Max', partOfSpeech: 'other', distractors: ['Friday', 'Paris', 'green', 'door', 'table'] },
+        { text: 'right', partOfSpeech: 'adjective', distractors: ['wrong', 'late', 'busy', 'new', 'tired'] },
+      ],
+    },
+    {
+      id: 'mitap_d1_p6',
+      english: 'He is in the call.',
+      meaning: { ru: 'Он в созвоне.', uk: 'Він у дзвінку.', es: 'Él está en la llamada.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Скажи про третьего', uk: 'Скажи про третього', es: 'Habla de un tercero' },
+        rule: { ru: 'Про него говорят he и слово is: he is — «он есть».', uk: 'Про нього кажуть he і слово is: he is — «він є».', es: 'Para él se usa he y la palabra is: he is, «él está».' },
+        why: { ru: 'Так ты сообщаешь команде, кто уже подключился к встрече.', uk: 'Так ти повідомляєш команді, хто вже підключився до зустрічі.', es: 'Así avisas al equipo de quién ya se conectó a la reunión.' },
+        commonMistake: { ru: 'Для he бери is, не are: he is, не he are.', uk: 'Для he бери is, не are: he is, не he are.', es: 'Para he usa is, no are: he is, no he are.' },
+      },
+      words: [
+        { text: 'He', partOfSpeech: 'pronoun', distractors: ['I', 'you', 'we', 'they', 'it'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'in', partOfSpeech: 'preposition', distractors: ['under', 'of', 'off', 'up', 'out'] },
+        { text: 'call', partOfSpeech: 'noun', distractors: ['chair', 'week', 'color', 'number', 'window'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'am', partOfSpeech: 'to-be', translation: { ru: '(я) есть', uk: '(я) є', es: 'soy / estoy' }, example: 'Hi, I am Anna.' },
+    { word: 'here', partOfSpeech: 'adverb', translation: { ru: 'тут, на месте', uk: 'тут, на місці', es: 'aquí' }, example: 'I am here now.' },
+    { word: 'are', partOfSpeech: 'to-be', translation: { ru: '(ты) есть', uk: '(ти) є', es: 'eres / estás' }, example: 'Hello, are you here?' },
+    { word: 'ready', partOfSpeech: 'adjective', translation: { ru: 'готов', uk: 'готовий', es: 'listo' }, example: 'Yes, I am ready.' },
+    { word: 'you', partOfSpeech: 'pronoun', translation: { ru: 'ты, вы', uk: 'ти, ви', es: 'tú' }, example: 'You are Max, right?' },
+    { word: 'is', partOfSpeech: 'to-be', translation: { ru: '(он) есть', uk: '(він) є', es: 'es / está' }, example: 'He is in the call.' },
+  ],
+};
+
+export const MITAP_DAY_2: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 2,
+  topic: { ru: 'Проверка звука и видео перед началом', uk: 'Перевірка звуку й відео перед початком', es: 'Revisar el sonido y el video antes de empezar' },
+  outcome: {
+    ru: 'Сможешь спокойно проверить микрофон, звук и камеру перед созвоном и сказать, что готов.',
+    uk: 'Зможеш спокійно перевірити мікрофон, звук і камеру перед дзвінком та сказати, що готовий.',
+    es: 'Podrás revisar con calma el micrófono, el sonido y la cámara antes de la llamada y decir que estás listo.',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1, 2],
+  intro: [
+    {
+      kind: 'why',
+      title: { ru: 'Зачем эти фразы', uk: 'Навіщо ці фрази', es: 'Por qué estas frases' },
+      body: {
+        ru: 'Созвон вот-вот начнётся, а ты не уверен: слышно тебя или нет? Эти 6 фраз помогут быстро проверить звук и видео.',
+        uk: 'Дзвінок ось-ось почнеться, а ти не впевнений: чути тебе чи ні? Ці 6 фраз допоможуть швидко перевірити звук і відео.',
+        es: 'La llamada está por empezar y no estás seguro: ¿te oyen o no? Estas 6 frases te ayudan a revisar rápido el sonido y el video.',
+      },
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Как это работает', uk: 'Як це працює', es: 'Cómo funciona' },
+      body: {
+        ru: 'Секрет простой: чтобы спросить, ставь is/are/am в начало — Is my mic on? А чтобы сказать о себе, ставь его после: I\'m ready.',
+        uk: 'Секрет простий: щоб спитати, став is/are/am на початок — Is my mic on? А щоб сказати про себе, став його після: I\'m ready.',
+        es: 'El truco es simple: para preguntar, pon is/are/am al inicio — Is my mic on? Y para hablar de ti, ponlo después: I\'m ready.',
+      },
+      examples: [
+        { en: 'Is my mic on?', gloss: { ru: 'Мой микрофон включён?', uk: 'Мій мікрофон увімкнений?', es: '¿Está encendido mi micrófono?' } },
+        { en: 'I\'m ready now.', gloss: { ru: 'Я теперь готов.', uk: 'Я тепер готовий.', es: 'Ya estoy listo.' } },
+      ],
+    },
+    {
+      kind: 'trap',
+      title: { ru: 'Частая ошибка', uk: 'Часта помилка', es: 'Error común' },
+      body: {
+        ru: 'В вопросе слово is/are идёт ПЕРВЫМ: Is the video on? А не My video is on? Поменял местами — и это уже не вопрос.',
+        uk: 'У питанні слово is/are йде ПЕРШИМ: Is the video on? А не My video is on? Поміняв місцями — і це вже не питання.',
+        es: 'En la pregunta, is/are va PRIMERO: Is the video on? No My video is on? Si los cambias, ya no es pregunta.',
+      },
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d2_p1',
+      english: 'Is my mic on?',
+      meaning: { ru: 'Мой микрофон включён?', uk: 'Мій мікрофон увімкнений?', es: '¿Está encendido mi micrófono?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Вопрос с Is', uk: 'Питання з Is', es: 'Pregunta con Is' },
+        rule: { ru: 'Is — ставим первым, и это уже вопрос. on = «включён». Is my mic on? = «микрофон включён?».', uk: 'Is — ставимо першим, і це вже питання. on = «увімкнений». Is my mic on? = «мікрофон увімкнений?».', es: 'Is va primero y ya es pregunta. on = «encendido». Is my mic on? = «¿está encendido el micro?».' },
+        why: { ru: 'Это первое, что спрашивают на созвоне: тебя не слышно, пока mic не on.', uk: 'Це перше, що питають на дзвінку: тебе не чути, поки mic не on.', es: 'Es lo primero que se pregunta en la llamada: no te oyen hasta que el mic está on.' },
+        commonMistake: { ru: 'Ставь Is первым: Is my mic on? — а не My mic is on, это уже не вопрос.', uk: 'Став Is першим: Is my mic on? — а не My mic is on, це вже не питання.', es: 'Pon Is primero: Is my mic on? — no My mic is on, eso ya no es pregunta.' },
+      },
+      words: [
+        { text: 'Is', partOfSpeech: 'to-be', distractors: ['Are', 'Am', 'Was', 'Were', 'Be'] },
+        { text: 'my', partOfSpeech: 'determiner', distractors: ['me', 'we', 'they', 'he', 'she'] },
+        { text: 'mic', partOfSpeech: 'noun', distractors: ['screen', 'chat', 'link', 'call', 'room'] },
+        { text: 'on', partOfSpeech: 'adverb', distractors: ['up', 'down', 'out', 'away', 'over'] },
+      ],
+    },
+    {
+      id: 'mitap_d2_p2',
+      english: 'Am I too quiet?',
+      meaning: { ru: 'Я слишком тихо говорю?', uk: 'Я надто тихо говорю?', es: '¿Hablo demasiado bajo?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Вопрос с Am I', uk: 'Питання з Am I', es: 'Pregunta con Am I' },
+        rule: { ru: 'Про себя спрашиваем Am I. quiet = «тихий». Am I too quiet? = «я слишком тихий?».', uk: 'Про себе питаємо Am I. quiet = «тихий». Am I too quiet? = «я надто тихий?».', es: 'Para uno mismo se pregunta Am I. quiet = «bajo». Am I too quiet? = «¿hablo muy bajo?».' },
+        why: { ru: 'Если люди щурятся и наклоняются к экрану — спроси этой фразой, слышно ли тебя.', uk: 'Якщо люди мружаться й нахиляються до екрана — спитай цією фразою, чи чути тебе.', es: 'Si la gente entrecierra los ojos y se acerca a la pantalla, pregunta así si te oyen.' },
+        commonMistake: { ru: 'С I всегда Am, не Is: Am I too quiet?, а не Is I too quiet.', uk: 'З I завжди Am, не Is: Am I too quiet?, а не Is I too quiet.', es: 'Con I siempre Am, no Is: Am I too quiet?, no Is I too quiet.' },
+      },
+      words: [
+        { text: 'Am', partOfSpeech: 'to-be', distractors: ['Is', 'Are', 'Was', 'Were', 'Be'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
+        { text: 'too', partOfSpeech: 'adverb', distractors: ['so', 'very', 'quite', 'really', 'pretty'] },
+        { text: 'quiet', partOfSpeech: 'adjective', distractors: ['slow', 'fast', 'clear', 'calm', 'dark'] },
+      ],
+    },
+    {
+      id: 'mitap_d2_p3',
+      english: 'Is the video on?',
+      meaning: { ru: 'Видео включено?', uk: 'Відео ввімкнене?', es: '¿Está encendido el video?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Вопрос про видео', uk: 'Питання про відео', es: 'Pregunta sobre el video' },
+        rule: { ru: 'Is первым — это вопрос. video = «видео». Is the video on? = «видео включено?».', uk: 'Is першим — це питання. video = «відео». Is the video on? = «відео ввімкнене?».', es: 'Is primero, es pregunta. video = «video». Is the video on? = «¿está encendido el video?».' },
+        why: { ru: 'Иногда камера выключена, и тебя не видно. Спроси заранее, чтобы не сидеть «в темноте».', uk: 'Іноді камера вимкнена, і тебе не видно. Спитай заздалегідь, щоб не сидіти «в темряві».', es: 'A veces la cámara está apagada y no te ven. Pregunta antes para no quedar «a oscuras».' },
+        commonMistake: { ru: 'Перед video нужно the: Is the video on?, а не Is video on.', uk: 'Перед video потрібне the: Is the video on?, а не Is video on.', es: 'Antes de video va the: Is the video on?, no Is video on.' },
+      },
+      words: [
+        { text: 'Is', partOfSpeech: 'to-be', distractors: ['Are', 'Am', 'Was', 'Were', 'Be'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'me', 'we', 'they', 'he'] },
+        { text: 'video', partOfSpeech: 'noun', distractors: ['button', 'folder', 'window', 'wall', 'door'] },
+        { text: 'on', partOfSpeech: 'adverb', distractors: ['up', 'down', 'out', 'away', 'over'] },
+      ],
+    },
+    {
+      id: 'mitap_d2_p4',
+      english: 'Are you there?',
+      meaning: { ru: 'Ты на связи?', uk: 'Ти на зв\'язку?', es: '¿Estás ahí?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Вопрос с Are you', uk: 'Питання з Are you', es: 'Pregunta con Are you' },
+        rule: { ru: 'К you идёт Are. there = «там, на месте». Are you there? = «ты там?».', uk: 'До you йде Are. there = «там, на місці». Are you there? = «ти там?».', es: 'Con you va Are. there = «ahí». Are you there? = «¿estás ahí?».' },
+        why: { ru: 'Тишина в эфире? Этой фразой проверяешь, что собеседник ещё на связи.', uk: 'Тиша в ефірі? Цією фразою перевіряєш, що співрозмовник ще на зв\'язку.', es: '¿Silencio en la línea? Con esta frase compruebas que la otra persona sigue ahí.' },
+        commonMistake: { ru: 'С you всегда Are, не Is: Are you there?, а не Is you there.', uk: 'З you завжди Are, не Is: Are you there?, а не Is you there.', es: 'Con you siempre Are, no Is: Are you there?, no Is you there.' },
+      },
+      words: [
+        { text: 'Are', partOfSpeech: 'to-be', distractors: ['Is', 'Am', 'Was', 'Were', 'Be'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'there', partOfSpeech: 'adverb', distractors: ['busy', 'ready', 'late', 'calm', 'new'] },
+      ],
+    },
+    {
+      id: 'mitap_d2_p5',
+      english: 'The sound is fine.',
+      meaning: { ru: 'Звук в порядке.', uk: 'Звук у порядку.', es: 'El sonido está bien.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Словечко is', uk: 'Слівце is', es: 'La palabra is' },
+        rule: { ru: 'is — как «=» для одного предмета. sound = «звук», fine = «нормально». The sound is fine = «звук нормальный».', uk: 'is — як «=» для одного предмета. sound = «звук», fine = «нормально». The sound is fine = «звук нормальний».', es: 'is es como «=» para una cosa. sound = «sonido», fine = «bien». The sound is fine = «el sonido está bien».' },
+        why: { ru: 'Когда тебя спросили про звук — коротко успокой собеседника этой фразой.', uk: 'Коли тебе спитали про звук — коротко заспокой співрозмовника цією фразою.', es: 'Cuando te preguntan por el sonido, tranquiliza al otro rápido con esta frase.' },
+        commonMistake: { ru: 'Не теряй is: The sound is fine, а не The sound fine.', uk: 'Не губи is: The sound is fine, а не The sound fine.', es: 'No pierdas is: The sound is fine, no The sound fine.' },
+      },
+      words: [
+        { text: 'The', partOfSpeech: 'determiner', distractors: ['A', 'This', 'That', 'My', 'Your'] },
+        { text: 'sound', partOfSpeech: 'noun', distractors: ['floor', 'wall', 'door', 'window', 'button'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
+        { text: 'fine', partOfSpeech: 'adjective', distractors: ['dark', 'wet', 'cold', 'green', 'round'] },
+      ],
+    },
+    {
+      id: 'mitap_d2_p6',
+      english: 'I\'m ready now.',
+      meaning: { ru: 'Я теперь готов.', uk: 'Я тепер готовий.', es: 'Ya estoy listo.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Словечко I\'m', uk: 'Слівце I\'m', es: 'La palabra I\'m' },
+        rule: { ru: 'I\'m — это «я есть». ready = «готов». I\'m ready = «я готов».', uk: 'I\'m — це «я є». ready = «готовий». I\'m ready = «я готовий».', es: 'I\'m es «yo estoy». ready = «listo». I\'m ready = «estoy listo».' },
+        why: { ru: 'Проверил звук и видео — скажи это, и встреча может начинаться.', uk: 'Перевірив звук і відео — скажи це, і зустріч може починатися.', es: 'Ya revisaste sonido y video; di esto y la reunión puede empezar.' },
+        commonMistake: { ru: 'Не теряй \'m: I\'m ready, а не I ready — без него фраза неполная.', uk: 'Не губи \'m: I\'m ready, а не I ready — без нього фраза неповна.', es: 'No pierdas \'m: I\'m ready, no I ready; sin él la frase queda coja.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['You\'re', 'He\'s', 'We\'re', 'It\'s', 'She\'s'] },
+        { text: 'ready', partOfSpeech: 'adjective', distractors: ['busy', 'tired', 'late', 'happy', 'calm'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'today', 'here', 'again'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'mic', partOfSpeech: 'noun', translation: { ru: 'микрофон', uk: 'мікрофон', es: 'micrófono' }, example: 'Is my mic on?' },
+    { word: 'video', partOfSpeech: 'noun', translation: { ru: 'видео', uk: 'відео', es: 'video' }, example: 'Is the video on?' },
+    { word: 'sound', partOfSpeech: 'noun', translation: { ru: 'звук', uk: 'звук', es: 'sonido' }, example: 'The sound is fine.' },
+    { word: 'quiet', partOfSpeech: 'adjective', translation: { ru: 'тихий', uk: 'тихий', es: 'bajo' }, example: 'Am I too quiet?' },
+    { word: 'ready', partOfSpeech: 'adjective', translation: { ru: 'готовый', uk: 'готовий', es: 'listo' }, example: 'I\'m ready now.' },
+    { word: 'there', partOfSpeech: 'adverb', translation: { ru: 'на месте', uk: 'на місці', es: 'ahí' }, example: 'Are you there?' },
+  ],
+};
+
+export const MITAP_DAY_3: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 3,
+  topic: { ru: 'Я вас не слышу, вы на mute', uk: 'Я вас не чую, ви на mute', es: 'No te oigo, estás en silencio' },
+  outcome: {
+    ru: 'Ты сможешь спокойно сказать на созвоне, что не слышишь человека и что у него выключен звук.',
+    uk: 'Ти зможеш спокійно сказати на дзвінку, що не чуєш людину і що в неї вимкнено звук.',
+    es: 'Podrás decir con calma en una llamada que no oyes a la persona y que tiene el micrófono apagado.',
+  },
+  level: 'A1',
+  prerequisiteLessons: [2, 3],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Скажи, что не слышишь', uk: 'Скажи, що не чуєш', es: 'Di que no oyes' },
+      body: {
+        ru: 'Звук пропал на созвоне? Простая фраза I can\'t hear you говорит человеку: я тебя не слышу. Это вежливо и понятно всем.',
+        uk: 'Звук зник на дзвінку? Проста фраза I can\'t hear you каже людині: я тебе не чую. Це ввічливо і зрозуміло всім.',
+        es: '¿Se cortó el sonido en la llamada? La frase I can\'t hear you le dice a la persona: no te oigo. Es educado y claro para todos.',
+      },
+      examples: [
+        { en: 'Sorry, I can\'t hear you.', gloss: { ru: 'Извини, я тебя не слышу.', uk: 'Вибач, я тебе не чую.', es: 'Perdona, no te oigo.' } },
+        { en: 'I can\'t hear you well.', gloss: { ru: 'Я тебя плохо слышу.', uk: 'Я тебе погано чую.', es: 'No te oigo bien.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Подскажи про mute', uk: 'Підкажи про mute', es: 'Avisa sobre el silencio' },
+      body: {
+        ru: 'Часто человек просто забыл включить микрофон. Скажи You\'re on mute, и он сразу поймёт, что его не слышно. Короткая фраза-спасатель.',
+        uk: 'Часто людина просто забула увімкнути мікрофон. Скажи You\'re on mute, і вона одразу зрозуміє, що її не чути. Коротка фраза-рятівник.',
+        es: 'A menudo la persona solo olvidó activar el micrófono. Di You\'re on mute, y entenderá que no se le oye. Una frase corta que salva.',
+      },
+      examples: [
+        { en: 'You\'re on mute.', gloss: { ru: 'У тебя выключен звук.', uk: 'У тебе вимкнено звук.', es: 'Estás en silencio.' } },
+        { en: 'I think you\'re on mute.', gloss: { ru: 'Кажется, у тебя выключен звук.', uk: 'Здається, у тебе вимкнено звук.', es: 'Creo que estás en silencio.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Спокойно про звук', uk: 'Спокійно про звук', es: 'Con calma sobre el sonido' },
+      body: {
+        ru: 'Проблемы со звуком бывают у всех. Скажи The sound is bad, и команда поймёт, что дело не в тебе. Никто не нервничает.',
+        uk: 'Проблеми зі звуком бувають у всіх. Скажи The sound is bad, і команда зрозуміє, що справа не в тобі. Ніхто не нервує.',
+        es: 'Los problemas de sonido le pasan a todos. Di The sound is bad, y el equipo entenderá que no es culpa tuya. Nadie se pone nervioso.',
+      },
+      examples: [
+        { en: 'The sound is bad today.', gloss: { ru: 'Звук сегодня плохой.', uk: 'Звук сьогодні поганий.', es: 'El sonido está mal hoy.' } },
+        { en: 'Now the sound is good.', gloss: { ru: 'Теперь звук хороший.', uk: 'Тепер звук хороший.', es: 'Ahora el sonido está bien.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d3_p1',
+      english: 'Sorry, I can\'t hear you.',
+      meaning: { ru: 'Извини, я тебя не слышу.', uk: 'Вибач, я тебе не чую.', es: 'Perdona, no te oigo.' },
+      constructions: ['to-be-negation', 'present-simple'],
+      explanation: {
+        title: { ru: 'Я не слышу тебя', uk: 'Я не чую тебе', es: 'No te oigo' },
+        rule: { ru: 'I can\'t hear you = я тебя не слышу. Hear значит слышать, you значит тебя. Простая фраза, когда звук пропал.', uk: 'I can\'t hear you = я тебе не чую. Hear значить чути, you значить тебе. Проста фраза, коли звук зник.', es: 'I can\'t hear you = no te oigo. Hear es oír, you es a ti. Frase simple cuando se corta el sonido.' },
+        why: { ru: 'Так ты вежливо говоришь, что звука нет, и человек не обижается.', uk: 'Так ти ввічливо кажеш, що звуку немає, і людина не ображається.', es: 'Así dices con cortesía que no hay sonido, y la persona no se ofende.' },
+        commonMistake: { ru: 'Не говори I no hear you. Тут нужно can\'t перед hear: I can\'t hear you.', uk: 'Не кажи I no hear you. Тут потрібне can\'t перед hear: I can\'t hear you.', es: 'No digas I no hear you. Hace falta can\'t antes de hear: I can\'t hear you.' },
+      },
+      words: [
+        { text: 'Sorry', partOfSpeech: 'other', distractors: ['Yes', 'No', 'Bye', 'Wow', 'Okay'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'he', 'she', 'they', 'it'] },
+        { text: 'can\'t', partOfSpeech: 'modal', distractors: ['won\'t', 'mustn\'t', 'shouldn\'t', 'couldn\'t', 'wouldn\'t'] },
+        { text: 'hear', partOfSpeech: 'verb', distractors: ['feel', 'eat', 'walk', 'draw', 'cook'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'them', 'us', 'me'] },
+      ],
+    },
+    {
+      id: 'mitap_d3_p2',
+      english: 'You\'re on mute.',
+      meaning: { ru: 'У тебя выключен звук.', uk: 'У тебе вимкнено звук.', es: 'Estás en silencio.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'У тебя выключен звук', uk: 'У тебе вимкнено звук', es: 'Estás en silencio' },
+        rule: { ru: 'You\'re on mute = у тебя выключен микрофон. Mute значит без звука. Говори так, когда человека не слышно.', uk: 'You\'re on mute = у тебе вимкнено мікрофон. Mute значить без звуку. Кажи так, коли людину не чути.', es: 'You\'re on mute = tienes el micrófono apagado. Mute es sin sonido. Dilo cuando no se oye a la persona.' },
+        why: { ru: 'Короткая подсказка, которая сразу спасает созвон и экономит время.', uk: 'Коротка підказка, яка одразу рятує дзвінок і економить час.', es: 'Una pista corta que salva la llamada al instante y ahorra tiempo.' },
+        commonMistake: { ru: 'Не говори You on mute. Нужно you\'re: You\'re on mute.', uk: 'Не кажи You on mute. Потрібно you\'re: You\'re on mute.', es: 'No digas You on mute. Hace falta you\'re: You\'re on mute.' },
+      },
+      words: [
+        { text: 'You\'re', partOfSpeech: 'to-be', distractors: ['I\'m', 'He\'s', 'She\'s', 'We\'re', 'They\'re'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'for', 'with'] },
+        { text: 'mute', partOfSpeech: 'noun', distractors: ['button', 'window', 'keyboard', 'wall', 'folder'] },
+      ],
+    },
+    {
+      id: 'mitap_d3_p3',
+      english: 'I think you\'re on mute.',
+      meaning: { ru: 'Кажется, у тебя выключен звук.', uk: 'Здається, у тебе вимкнено звук.', es: 'Creo que estás en silencio.' },
+      constructions: ['present-simple', 'to-be'],
+      explanation: {
+        title: { ru: 'Кажется, ты на mute', uk: 'Здається, ти на mute', es: 'Creo que estás en silencio' },
+        rule: { ru: 'I think значит кажется, я думаю. Добавь его перед фразой, чтобы прозвучало мягче: I think you\'re on mute.', uk: 'I think значить здається, я думаю. Додай його перед фразою, щоб звучало м\'якше: I think you\'re on mute.', es: 'I think significa creo. Ponlo antes de la frase para sonar más suave: I think you\'re on mute.' },
+        why: { ru: 'С I think подсказка звучит мягко и вежливо, без напора на человека.', uk: 'З I think підказка звучить м\'яко і ввічливо, без тиску на людину.', es: 'Con I think la pista suena suave y educada, sin presionar a la persona.' },
+        commonMistake: { ru: 'Не говори I think you on mute. После you нужно \'re: you\'re.', uk: 'Не кажи I think you on mute. Після you потрібне \'re: you\'re.', es: 'No digas I think you on mute. Tras you hace falta \'re: you\'re.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'he', 'she', 'they', 'it'] },
+        { text: 'think', partOfSpeech: 'verb', distractors: ['know', 'guess', 'hope', 'feel', 'mean'] },
+        { text: 'you\'re', partOfSpeech: 'to-be', distractors: ['I\'m', 'he\'s', 'she\'s', 'we\'re', 'they\'re'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'for', 'with'] },
+        { text: 'mute', partOfSpeech: 'noun', distractors: ['button', 'window', 'keyboard', 'wall', 'folder'] },
+      ],
+    },
+    {
+      id: 'mitap_d3_p4',
+      english: 'The sound is bad today.',
+      meaning: { ru: 'Звук сегодня плохой.', uk: 'Звук сьогодні поганий.', es: 'El sonido está mal hoy.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Звук плохой', uk: 'Звук поганий', es: 'El sonido está mal' },
+        rule: { ru: 'The sound is bad = звук плохой. Sound значит звук, bad значит плохой. Today значит сегодня.', uk: 'The sound is bad = звук поганий. Sound значить звук, bad значить поганий. Today значить сьогодні.', es: 'The sound is bad = el sonido está mal. Sound es sonido, bad es malo. Today es hoy.' },
+        why: { ru: 'Так ты честно говоришь о проблеме, и команда ищет причину вместе.', uk: 'Так ти чесно кажеш про проблему, і команда шукає причину разом.', es: 'Así dices con sinceridad el problema, y el equipo busca la causa contigo.' },
+        commonMistake: { ru: 'Не говори The sound bad today. Перед bad нужно is: sound is bad.', uk: 'Не кажи The sound bad today. Перед bad потрібне is: sound is bad.', es: 'No digas The sound bad today. Antes de bad hace falta is: sound is bad.' },
+      },
+      words: [
+        { text: 'The', partOfSpeech: 'article', distractors: ['A', 'An', 'This', 'That', 'My'] },
+        { text: 'sound', partOfSpeech: 'noun', distractors: ['floor', 'door', 'book', 'window', 'wall'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'be', 'was', 'were'] },
+        { text: 'bad', partOfSpeech: 'adjective', distractors: ['happy', 'green', 'early', 'round', 'wet'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['now', 'here', 'soon', 'again', 'late'] },
+      ],
+    },
+    {
+      id: 'mitap_d3_p5',
+      english: 'My microphone is not working.',
+      meaning: { ru: 'Мой микрофон не работает.', uk: 'Мій мікрофон не працює.', es: 'Mi micrófono no funciona.' },
+      constructions: ['to-be-negation'],
+      explanation: {
+        title: { ru: 'Микрофон не работает', uk: 'Мікрофон не працює', es: 'El micrófono no funciona' },
+        rule: { ru: 'Microphone значит микрофон. Is not working = не работает. My значит мой. Скажи это, когда тебя не слышно.', uk: 'Microphone значить мікрофон. Is not working = не працює. My значить мій. Скажи це, коли тебе не чути.', es: 'Microphone es micrófono. Is not working = no funciona. My es mi. Dilo cuando no te oyen.' },
+        why: { ru: 'Так ты объясняешь, почему молчишь, и никто не думает, что ты пропал.', uk: 'Так ти пояснюєш, чому мовчиш, і ніхто не думає, що ти зник.', es: 'Así explicas por qué callas, y nadie cree que desapareciste.' },
+        commonMistake: { ru: 'Не говори My microphone not working. Перед not нужно is: is not working.', uk: 'Не кажи My microphone not working. Перед not потрібне is: is not working.', es: 'No digas My microphone not working. Antes de not hace falta is: is not working.' },
+      },
+      words: [
+        { text: 'My', partOfSpeech: 'pronoun', distractors: ['His', 'Her', 'Our', 'Their', 'Your'] },
+        { text: 'microphone', partOfSpeech: 'noun', distractors: ['camera', 'laptop', 'screen', 'speaker', 'button'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'be', 'was', 'were'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['no', 'never', 'none', 'nothing', 'neither'] },
+        { text: 'working', partOfSpeech: 'verb', distractors: ['loading', 'playing', 'opening', 'starting', 'ringing'] },
+      ],
+    },
+    {
+      id: 'mitap_d3_p6',
+      english: 'Now I can hear you well.',
+      meaning: { ru: 'Теперь я тебя хорошо слышу.', uk: 'Тепер я тебе добре чую.', es: 'Ahora te oigo bien.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Теперь слышу хорошо', uk: 'Тепер чую добре', es: 'Ahora oigo bien' },
+        rule: { ru: 'Now значит теперь, well значит хорошо. I can hear you = я тебя слышу. Скажи так, когда звук вернулся.', uk: 'Now значить тепер, well значить добре. I can hear you = я тебе чую. Скажи так, коли звук повернувся.', es: 'Now es ahora, well es bien. I can hear you = te oigo. Dilo cuando vuelve el sonido.' },
+        why: { ru: 'Так ты подтверждаешь, что звук вернулся, и созвон спокойно идёт дальше.', uk: 'Так ти підтверджуєш, що звук повернувся, і дзвінок спокійно йде далі.', es: 'Así confirmas que volvió el sonido, y la llamada sigue con calma.' },
+        commonMistake: { ru: 'Не говори Now I hear you well. С can звучит естественнее: I can hear you.', uk: 'Не кажи Now I hear you well. З can звучить природніше: I can hear you.', es: 'No digas Now I hear you well. Con can suena más natural: I can hear you.' },
+      },
+      words: [
+        { text: 'Now', partOfSpeech: 'adverb', distractors: ['Soon', 'Then', 'Here', 'Again', 'Late'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'he', 'she', 'they', 'it'] },
+        { text: 'can', partOfSpeech: 'modal', distractors: ['will', 'must', 'should', 'could', 'would'] },
+        { text: 'hear', partOfSpeech: 'verb', distractors: ['feel', 'eat', 'walk', 'draw', 'cook'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'them', 'us', 'me'] },
+        { text: 'well', partOfSpeech: 'adverb', distractors: ['fast', 'loud', 'soon', 'again', 'here'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'hear', partOfSpeech: 'verb', translation: { ru: 'слышать', uk: 'чути', es: 'oír' }, example: 'Sorry, I can\'t hear you.' },
+    { word: 'mute', partOfSpeech: 'noun', translation: { ru: 'без звука, выключенный микрофон', uk: 'без звуку, вимкнений мікрофон', es: 'silencio, micrófono apagado' }, example: 'You\'re on mute.' },
+    { word: 'think', partOfSpeech: 'verb', translation: { ru: 'думать, казаться', uk: 'думати, здаватися', es: 'creer, pensar' }, example: 'I think you\'re on mute.' },
+    { word: 'sound', partOfSpeech: 'noun', translation: { ru: 'звук', uk: 'звук', es: 'sonido' }, example: 'The sound is bad today.' },
+    { word: 'microphone', partOfSpeech: 'noun', translation: { ru: 'микрофон', uk: 'мікрофон', es: 'micrófono' }, example: 'My microphone is not working.' },
+    { word: 'well', partOfSpeech: 'adverb', translation: { ru: 'хорошо', uk: 'добре', es: 'bien' }, example: 'Now I can hear you well.' },
+  ],
+};
+
+export const MITAP_DAY_4: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 4,
+  topic: { ru: 'Кто сегодня на созвоне', uk: 'Хто сьогодні на дзвінку', es: 'Quién está hoy en la llamada' },
+  outcome: {
+    ru: 'Ты сможешь спросить и сказать, кто сегодня участвует в созвоне и кого мы ждём.',
+    uk: 'Ти зможеш запитати й сказати, хто сьогодні бере участь у дзвінку і кого ми чекаємо.',
+    es: 'Podrás preguntar y decir quién participa hoy en la llamada y a quién esperamos.',
+  },
+  level: 'A1',
+  prerequisiteLessons: [3, 6],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Спрашиваем, кто будет на созвоне', uk: 'Питаємо, хто буде на дзвінку', es: 'Preguntamos quién está en la llamada' },
+      body: {
+        ru: 'Перед встречей удобно спросить, кто сегодня участвует. Бери слово who (кто) и обычный вопрос: Who joins today? Кто сегодня присоединяется. Так ты сразу знаешь, кого ждать.',
+        uk: 'Перед зустріччю зручно запитати, хто сьогодні бере участь. Бери слово who (хто) і звичайне питання: Who joins today? Хто сьогодні приєднується. Так одразу знаєш, кого чекати.',
+        es: 'Antes de la reunión conviene preguntar quién participa hoy. Usa la palabra who (quién) y una pregunta normal: Who joins today? Quién se une hoy. Así sabes a quién esperar.',
+      },
+      examples: [
+        { en: 'Who joins the call today?', gloss: { ru: 'Кто присоединяется к созвону сегодня?', uk: 'Хто приєднується до дзвінка сьогодні?', es: '¿Quién se une a la llamada hoy?' } },
+        { en: 'My manager joins us today.', gloss: { ru: 'Мой руководитель присоединяется к нам сегодня.', uk: 'Мій керівник приєднується до нас сьогодні.', es: 'Mi jefe se une a nosotros hoy.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Говорим, кто участвует, а кто нет', uk: 'Кажемо, хто бере участь, а хто ні', es: 'Decimos quién participa y quién no' },
+      body: {
+        ru: 'Чтобы сказать, что кого-то нет, добавь does not: She does not join today. Её сегодня нет. А who знает: Who knows the topic? Кто знает тему. Коротко и понятно команде.',
+        uk: 'Щоб сказати, що когось немає, додай does not: She does not join today. Її сьогодні немає. А who знає: Who knows the topic? Хто знає тему. Коротко й зрозуміло.',
+        es: 'Para decir que alguien no está, añade does not: She does not join today. Hoy ella no está. Y who sabe: Who knows the topic? Quién sabe el tema. Corto y claro.',
+      },
+      examples: [
+        { en: 'She does not join the call today.', gloss: { ru: 'Она сегодня не на созвоне.', uk: 'Вона сьогодні не на дзвінку.', es: 'Ella hoy no está en la llamada.' } },
+        { en: 'Who knows the topic today?', gloss: { ru: 'Кто знает тему сегодня?', uk: 'Хто знає тему сьогодні?', es: '¿Quién sabe el tema hoy?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Кого мы ждём на встрече', uk: 'Кого ми чекаємо на зустрічі', es: 'A quién esperamos en la reunión' },
+      body: {
+        ru: 'Если кто-то опаздывает, скажи: We wait for the client. Мы ждём клиента. Или спроси: Who do we wait for? Кого мы ждём. Так все понимают, можно ли начинать.',
+        uk: 'Якщо хтось спізнюється, скажи: We wait for the client. Ми чекаємо клієнта. Або спитай: Who do we wait for? Кого ми чекаємо. Так усі розуміють, чи можна починати.',
+        es: 'Si alguien llega tarde, di: We wait for the client. Esperamos al cliente. O pregunta: Who do we wait for? A quién esperamos. Así todos saben si pueden empezar.',
+      },
+      examples: [
+        { en: 'We wait for the client today.', gloss: { ru: 'Мы сегодня ждём клиента.', uk: 'Ми сьогодні чекаємо клієнта.', es: 'Hoy esperamos al cliente.' } },
+        { en: 'Who do we wait for today?', gloss: { ru: 'Кого мы сегодня ждём?', uk: 'Кого ми сьогодні чекаємо?', es: '¿A quién esperamos hoy?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d4_p1',
+      english: 'Who joins the call today?',
+      meaning: { ru: 'Кто присоединяется к созвону сегодня?', uk: 'Хто приєднується до дзвінка сьогодні?', es: '¿Quién se une a la llamada hoy?' },
+      constructions: ['wh-questions', 'present-simple'],
+      explanation: {
+        title: { ru: 'Спрашиваем, кто на созвоне', uk: 'Питаємо, хто на дзвінку', es: 'Preguntamos quién está en la llamada' },
+        rule: { ru: 'Who значит кто. Ставь его в начало вопроса: Who joins — кто присоединяется.', uk: 'Who значить хто. Став його на початок питання: Who joins — хто приєднується.', es: 'Who significa quién. Ponlo al inicio de la pregunta: Who joins, quién se une.' },
+        why: { ru: 'С who сразу понятно, что спрашиваешь про человека, а не про время или место.', uk: 'З who одразу зрозуміло, що питаєш про людину, а не про час чи місце.', es: 'Con who queda claro que preguntas por una persona, no por la hora o el lugar.' },
+        commonMistake: { ru: 'Не ставь do перед who тут: говори Who joins, а не Who do joins.', uk: 'Не став do перед who тут: кажи Who joins, а не Who do joins.', es: 'No pongas do antes de who aquí: di Who joins, no Who do joins.' },
+      },
+      words: [
+        { text: 'Who', partOfSpeech: 'pronoun', distractors: ['When', 'Where', 'How', 'Why', 'Whose'] },
+        { text: 'joins', partOfSpeech: 'verb', distractors: ['leaves', 'starts', 'ends', 'calls', 'books'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['an', 'me', 'we', 'they', 'he'] },
+        { text: 'call', partOfSpeech: 'noun', distractors: ['report', 'desk', 'office', 'email', 'screen'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['here', 'slowly', 'again', 'together', 'early'] },
+      ],
+    },
+    {
+      id: 'mitap_d4_p2',
+      english: 'My manager joins us today.',
+      meaning: { ru: 'Мой руководитель присоединяется к нам сегодня.', uk: 'Мій керівник приєднується до нас сьогодні.', es: 'Mi jefe se une a nosotros hoy.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Говорим, кто будет с нами', uk: 'Кажемо, хто буде з нами', es: 'Decimos quién está con nosotros' },
+        rule: { ru: 'Manager значит руководитель. Joins us — присоединяется к нам.', uk: 'Manager значить керівник. Joins us — приєднується до нас.', es: 'Manager significa jefe. Joins us, se une a nosotros.' },
+        why: { ru: 'Так команда знает, что начальник тоже на встрече, и говорит спокойнее.', uk: 'Так команда знає, що начальник теж на зустрічі, і говорить спокійніше.', es: 'Así el equipo sabe que el jefe también está y habla con más calma.' },
+        commonMistake: { ru: 'После my один человек: говори joins с буквой s, не join.', uk: 'Після my одна людина: кажи joins з буквою s, не join.', es: 'Tras my una persona: di joins con s, no join.' },
+      },
+      words: [
+        { text: 'My', partOfSpeech: 'determiner', distractors: ['Me', 'I', 'We', 'They', 'He'] },
+        { text: 'manager', partOfSpeech: 'noun', distractors: ['client', 'report', 'screen', 'desk', 'office'] },
+        { text: 'joins', partOfSpeech: 'verb', distractors: ['leaves', 'calls', 'ends', 'starts', 'books'] },
+        { text: 'us', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'I'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['here', 'slowly', 'again', 'together', 'early'] },
+      ],
+    },
+    {
+      id: 'mitap_d4_p3',
+      english: 'She does not join the call today.',
+      meaning: { ru: 'Она сегодня не на созвоне.', uk: 'Вона сьогодні не на дзвінку.', es: 'Ella hoy no está en la llamada.' },
+      constructions: ['present-simple-negation'],
+      explanation: {
+        title: { ru: 'Говорим, что кого-то нет', uk: 'Кажемо, що когось немає', es: 'Decimos que alguien no está' },
+        rule: { ru: 'Does not значит не. She does not join — она не присоединяется.', uk: 'Does not значить не. She does not join — вона не приєднується.', es: 'Does not significa no. She does not join, ella no se une.' },
+        why: { ru: 'Так сразу ясно, что её ждать не нужно, и встреча идёт дальше.', uk: 'Так одразу ясно, що її чекати не треба, і зустріч іде далі.', es: 'Así queda claro que no hay que esperarla y la reunión sigue.' },
+        commonMistake: { ru: 'После does not слово join без s: не говори does not joins.', uk: 'Після does not слово join без s: не кажи does not joins.', es: 'Tras does not va join sin s: no digas does not joins.' },
+      },
+      words: [
+        { text: 'She', partOfSpeech: 'pronoun', distractors: ['They', 'We', 'You', 'I', 'Who'] },
+        { text: 'does', partOfSpeech: 'verb', distractors: ['is', 'has', 'goes', 'wants', 'needs'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'also', 'still', 'only', 'just'] },
+        { text: 'join', partOfSpeech: 'verb', distractors: ['leave', 'start', 'end', 'call', 'book'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['an', 'me', 'we', 'they', 'he'] },
+        { text: 'call', partOfSpeech: 'noun', distractors: ['report', 'desk', 'office', 'email', 'screen'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['here', 'slowly', 'again', 'together', 'early'] },
+      ],
+    },
+    {
+      id: 'mitap_d4_p4',
+      english: 'Who knows the topic today?',
+      meaning: { ru: 'Кто знает тему сегодня?', uk: 'Хто знає тему сьогодні?', es: '¿Quién sabe el tema hoy?' },
+      constructions: ['wh-questions', 'present-simple'],
+      explanation: {
+        title: { ru: 'Спрашиваем, кто в теме', uk: 'Питаємо, хто в темі', es: 'Preguntamos quién sabe el tema' },
+        rule: { ru: 'Knows значит знает. Who knows — кто знает.', uk: 'Knows значить знає. Who knows — хто знає.', es: 'Knows significa sabe. Who knows, quién sabe.' },
+        why: { ru: 'Так ты находишь человека, который расскажет про вопрос встречи.', uk: 'Так ти знаходиш людину, яка розкаже про питання зустрічі.', es: 'Así encuentras a la persona que explicará el tema de la reunión.' },
+        commonMistake: { ru: 'После who один человек: говори knows с s, не know.', uk: 'Після who одна людина: кажи knows з s, не know.', es: 'Tras who una persona: di knows con s, no know.' },
+      },
+      words: [
+        { text: 'Who', partOfSpeech: 'pronoun', distractors: ['When', 'Where', 'How', 'Why', 'Whose'] },
+        { text: 'knows', partOfSpeech: 'verb', distractors: ['leaves', 'calls', 'books', 'starts', 'ends'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['an', 'me', 'we', 'they', 'he'] },
+        { text: 'topic', partOfSpeech: 'noun', distractors: ['desk', 'screen', 'office', 'email', 'report'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['here', 'slowly', 'again', 'together', 'early'] },
+      ],
+    },
+    {
+      id: 'mitap_d4_p5',
+      english: 'We wait for the client today.',
+      meaning: { ru: 'Мы сегодня ждём клиента.', uk: 'Ми сьогодні чекаємо клієнта.', es: 'Hoy esperamos al cliente.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Говорим, кого ждём', uk: 'Кажемо, кого чекаємо', es: 'Decimos a quién esperamos' },
+        rule: { ru: 'Wait for значит ждём. We wait for the client — ждём клиента.', uk: 'Wait for значить чекаємо. We wait for the client — чекаємо клієнта.', es: 'Wait for significa esperar. We wait for the client, esperamos al cliente.' },
+        why: { ru: 'Так команда понимает, почему пауза, и спокойно ждёт нужного человека.', uk: 'Так команда розуміє, чому пауза, і спокійно чекає потрібну людину.', es: 'Así el equipo entiende la pausa y espera con calma a la persona.' },
+        commonMistake: { ru: 'Не теряй for: говори wait for the client, а не wait the client.', uk: 'Не губи for: кажи wait for the client, а не wait the client.', es: 'No pierdas for: di wait for the client, no wait the client.' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'It', 'Who', 'Anna'] },
+        { text: 'wait', partOfSpeech: 'verb', distractors: ['start', 'call', 'leave', 'book', 'end'] },
+        { text: 'for', partOfSpeech: 'other', distractors: ['to', 'at', 'of', 'off', 'up'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['an', 'me', 'we', 'they', 'he'] },
+        { text: 'client', partOfSpeech: 'noun', distractors: ['report', 'desk', 'screen', 'email', 'office'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['here', 'slowly', 'again', 'together', 'early'] },
+      ],
+    },
+    {
+      id: 'mitap_d4_p6',
+      english: 'Who do we wait for today?',
+      meaning: { ru: 'Кого мы сегодня ждём?', uk: 'Кого ми сьогодні чекаємо?', es: '¿A quién esperamos hoy?' },
+      constructions: ['wh-questions', 'present-simple'],
+      explanation: {
+        title: { ru: 'Спрашиваем, кого ждать', uk: 'Питаємо, кого чекати', es: 'Preguntamos a quién esperar' },
+        rule: { ru: 'Who do we wait for значит кого мы ждём. Это вопрос про человека.', uk: 'Who do we wait for значить кого ми чекаємо. Це питання про людину.', es: 'Who do we wait for significa a quién esperamos. Pregunta por una persona.' },
+        why: { ru: 'Так все узнают, можно ли начинать или стоит подождать кого-то ещё.', uk: 'Так усі дізнаються, чи можна починати, чи варто почекати ще когось.', es: 'Así todos saben si pueden empezar o deben esperar a alguien más.' },
+        commonMistake: { ru: 'Здесь нужен do: говори Who do we wait for, а не Who we wait for.', uk: 'Тут потрібен do: кажи Who do we wait for, а не Who we wait for.', es: 'Aquí va do: di Who do we wait for, no Who we wait for.' },
+      },
+      words: [
+        { text: 'Who', partOfSpeech: 'pronoun', distractors: ['When', 'Where', 'How', 'Why', 'Whose'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['are', 'is', 'have', 'go', 'want'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'he', 'she', 'you', 'it'] },
+        { text: 'wait', partOfSpeech: 'verb', distractors: ['start', 'call', 'leave', 'book', 'end'] },
+        { text: 'for', partOfSpeech: 'other', distractors: ['to', 'at', 'of', 'off', 'up'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['here', 'slowly', 'again', 'together', 'early'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'joins', partOfSpeech: 'verb', translation: { ru: 'присоединяется', uk: 'приєднується', es: 'se une' }, example: 'Who joins the call today?' },
+    { word: 'manager', partOfSpeech: 'noun', translation: { ru: 'руководитель', uk: 'керівник', es: 'jefe' }, example: 'My manager joins us today.' },
+    { word: 'knows', partOfSpeech: 'verb', translation: { ru: 'знает', uk: 'знає', es: 'sabe' }, example: 'Who knows the topic today?' },
+    { word: 'topic', partOfSpeech: 'noun', translation: { ru: 'тема', uk: 'тема', es: 'tema' }, example: 'Who knows the topic today?' },
+    { word: 'wait', partOfSpeech: 'verb', translation: { ru: 'ждём', uk: 'чекаємо', es: 'esperamos' }, example: 'We wait for the client today.' },
+    { word: 'client', partOfSpeech: 'noun', translation: { ru: 'клиент', uk: 'клієнт', es: 'cliente' }, example: 'We wait for the client today.' },
+  ],
+};
+
+export const MITAP_DAY_5: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 5,
+  topic: { ru: 'Опоздал на созвон: коротко извиниться', uk: 'Запізнився на дзвінок: коротко вибачитися', es: 'Tarde a la llamada: disculparse rápido' },
+  outcome: {
+    ru: 'Сможешь спокойно войти в созвон с опозданием, коротко извиниться и сказать, что ты уже на месте.',
+    uk: 'Зможеш спокійно зайти в дзвінок із запізненням, коротко вибачитися й сказати, що ти вже на місці.',
+    es: 'Podrás entrar tarde a la llamada con calma, disculparte rápido y decir que ya estás aquí.',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1, 3],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Как извиниться за опоздание', uk: 'Як вибачитися за запізнення', es: 'Cómo disculparse por llegar tarde' },
+      body: {
+        ru: 'Ты заходишь в созвон позже всех. Не нужно длинных оправданий. Скажи I\'m sorry («извини») плюс I\'m late («я опоздал») — и всё, можно работать.',
+        uk: 'Ти заходиш у дзвінок пізніше за всіх. Не треба довгих виправдань. Скажи I\'m sorry («вибач») плюс I\'m late («я запізнився») — і все, можна працювати.',
+        es: 'Entras a la llamada el último. No hacen falta excusas largas. Di I\'m sorry («perdón») más I\'m late («llegué tarde») y listo, a trabajar.',
+      },
+      examples: [
+        { en: 'Sorry, I\'m late.', gloss: { ru: 'Извини, я опоздал.', uk: 'Вибач, я запізнився.', es: 'Perdón, llegué tarde.' } },
+        { en: 'I\'m here now.', gloss: { ru: 'Я уже на месте.', uk: 'Я вже на місці.', es: 'Ya estoy aquí.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Маленькое I\'m', uk: 'Маленьке I\'m', es: 'El pequeño I\'m' },
+      body: {
+        ru: 'Почти в каждой фразе сегодня есть I\'m — это «я есть». I\'m late, I\'m here, I\'m sorry. Поставил I\'m — и фраза стоит крепко.',
+        uk: 'Майже в кожній фразі сьогодні є I\'m — це «я є». I\'m late, I\'m here, I\'m sorry. Поставив I\'m — і фраза стоїть міцно.',
+        es: 'Casi cada frase de hoy tiene I\'m, que es «yo estoy». I\'m late, I\'m here, I\'m sorry. Pones I\'m y la frase queda firme.',
+      },
+      examples: [
+        { en: 'I\'m so sorry.', gloss: { ru: 'Мне очень жаль.', uk: 'Мені дуже шкода.', es: 'Lo siento mucho.' } },
+        { en: 'I\'m late.', gloss: { ru: 'Я опоздал.', uk: 'Я запізнився.', es: 'Llegué tarde.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Скажи, почему опоздал', uk: 'Скажи, чому запізнився', es: 'Di por qué llegaste tarde' },
+      body: {
+        ru: 'Хочешь объяснить причину? Возьми I have («у меня есть») плюс дело: I have a quick meeting. Коротко и понятно, без долгих историй.',
+        uk: 'Хочеш пояснити причину? Візьми I have («у мене є») плюс справу: I have a quick meeting. Коротко й зрозуміло, без довгих історій.',
+        es: '¿Quieres explicar el motivo? Usa I have («tengo») más la tarea: I have a quick meeting. Corto y claro, sin historias largas.',
+      },
+      examples: [
+        { en: 'I have a quick meeting.', gloss: { ru: 'У меня была короткая встреча.', uk: 'У мене була коротка зустріч.', es: 'Tengo una reunión corta.' } },
+        { en: 'We start now.', gloss: { ru: 'Мы начинаем сейчас.', uk: 'Ми починаємо зараз.', es: 'Empezamos ahora.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d5_p1',
+      english: 'Sorry, I\'m late.',
+      meaning: { ru: 'Извини, я опоздал.', uk: 'Вибач, я запізнився.', es: 'Perdón, llegué tarde.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Словечко I\'m late', uk: 'Слівце I\'m late', es: 'La palabra I\'m late' },
+        rule: { ru: 'I\'m — это «я есть». late = «поздно», I\'m late = «я опоздал».', uk: 'I\'m — це «я є». late = «пізно», I\'m late = «я запізнився».', es: 'I\'m es «yo estoy». late = «tarde», I\'m late = «llegué tarde».' },
+        why: { ru: 'Sorry впереди — это «извини». Дальше сразу говоришь, в чём дело: I\'m late.', uk: 'Sorry попереду — це «вибач». Далі одразу кажеш, у чому річ: I\'m late.', es: 'Sorry delante es «perdón». Luego dices enseguida qué pasa: I\'m late.' },
+        commonMistake: { ru: 'Не теряй I\'m: говори I\'m late, а не просто late — без I\'m фраза неполная.', uk: 'Не губи I\'m: кажи I\'m late, а не просто late — без I\'m фраза неповна.', es: 'No pierdas I\'m: di I\'m late, no solo late; sin I\'m la frase queda coja.' },
+      },
+      words: [
+        { text: 'Sorry', partOfSpeech: 'other', distractors: ['Yes', 'No', 'Bye', 'Please', 'Thanks'] },
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['You\'re', 'He\'s', 'We\'re', 'It\'s', 'She\'s'] },
+        { text: 'late', partOfSpeech: 'adjective', distractors: ['tired', 'busy', 'ready', 'sick', 'new'] },
+      ],
+    },
+    {
+      id: 'mitap_d5_p2',
+      english: 'I\'m here now.',
+      meaning: { ru: 'Я уже на месте.', uk: 'Я вже на місці.', es: 'Ya estoy aquí.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Слово here', uk: 'Слово here', es: 'La palabra here' },
+        rule: { ru: 'here — это «тут, на месте». I\'m here = «я тут, я на связи».', uk: 'here — це «тут, на місці». I\'m here = «я тут, я на зв\'язку».', es: 'here es «aquí». I\'m here = «estoy aquí, ya conectado».' },
+        why: { ru: 'now в конце — это «сейчас». Оно говорит: я уже на месте, можно начинать.', uk: 'now у кінці — це «зараз». Воно каже: я вже на місці, можна починати.', es: 'now al final es «ahora». Dice: ya estoy aquí, podemos empezar.' },
+        commonMistake: { ru: 'Перед here не нужен предлог: говори I\'m here, а не I\'m in here.', uk: 'Перед here не потрібен прийменник: кажи I\'m here, а не I\'m in here.', es: 'Antes de here no va preposición: di I\'m here, no I\'m in here.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['You\'re', 'He\'s', 'We\'re', 'It\'s', 'She\'s'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['then', 'soon', 'today', 'again', 'always'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'today', 'later', 'always', 'yet'] },
+      ],
+    },
+    {
+      id: 'mitap_d5_p3',
+      english: 'I have a quick meeting.',
+      meaning: { ru: 'У меня короткая встреча.', uk: 'У мене коротка зустріч.', es: 'Tengo una reunión corta.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Слово have', uk: 'Слово have', es: 'La palabra have' },
+        rule: { ru: 'have — это «есть, имею». meeting = «встреча», I have a meeting = «у меня встреча».', uk: 'have — це «є, маю». meeting = «зустріч», I have a meeting = «у мене зустріч».', es: 'have es «tengo». meeting = «reunión», I have a meeting = «tengo una reunión».' },
+        why: { ru: 'quick — «быстрый, короткий». Это коротко объясняет, почему ты опоздал.', uk: 'quick — «швидкий, короткий». Це коротко пояснює, чому ти запізнився.', es: 'quick es «rápido, corto». Explica en breve por qué llegaste tarde.' },
+        commonMistake: { ru: 'Перед meeting нужно a: говори a quick meeting, а не quick meeting.', uk: 'Перед meeting потрібне a: кажи a quick meeting, а не quick meeting.', es: 'Antes de meeting va a: di a quick meeting, no quick meeting.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['You', 'We', 'They', 'He', 'She'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['want', 'see', 'take', 'find', 'make'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['the', 'my', 'this', 'one', 'that'] },
+        { text: 'quick', partOfSpeech: 'adjective', distractors: ['small', 'early', 'calm', 'easy', 'new'] },
+        { text: 'meeting', partOfSpeech: 'noun', distractors: ['call', 'problem', 'report', 'task', 'client'] },
+      ],
+    },
+    {
+      id: 'mitap_d5_p4',
+      english: 'I\'m so sorry.',
+      meaning: { ru: 'Мне очень жаль.', uk: 'Мені дуже шкода.', es: 'Lo siento mucho.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Словечко so', uk: 'Слівце so', es: 'La palabra so' },
+        rule: { ru: 'so — это «очень, так». I\'m so sorry = «мне очень жаль».', uk: 'so — це «дуже, так». I\'m so sorry = «мені дуже шкода».', es: 'so es «muy, tan». I\'m so sorry = «lo siento mucho».' },
+        why: { ru: 'so перед sorry делает извинение теплее — слышно, что тебе правда неловко.', uk: 'so перед sorry робить вибачення теплішим — чути, що тобі справді ніяково.', es: 'so antes de sorry hace la disculpa más cálida: se nota que de verdad lo sientes.' },
+        commonMistake: { ru: 'so ставят перед sorry, а не после: говори so sorry, а не sorry so.', uk: 'so ставлять перед sorry, а не після: кажи so sorry, а не sorry so.', es: 'so va antes de sorry, no después: di so sorry, no sorry so.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['You\'re', 'He\'s', 'We\'re', 'It\'s', 'She\'s'] },
+        { text: 'so', partOfSpeech: 'adverb', distractors: ['too', 'just', 'maybe', 'soon', 'always'] },
+        { text: 'sorry', partOfSpeech: 'adjective', distractors: ['glad', 'sure', 'late', 'busy', 'ready'] },
+      ],
+    },
+    {
+      id: 'mitap_d5_p5',
+      english: 'We start now.',
+      meaning: { ru: 'Мы начинаем сейчас.', uk: 'Ми починаємо зараз.', es: 'Empezamos ahora.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Слово start', uk: 'Слово start', es: 'La palabra start' },
+        rule: { ru: 'start — это «начинаем». We start now = «мы начинаем сейчас».', uk: 'start — це «починаємо». We start now = «ми починаємо зараз».', es: 'start es «empezamos». We start now = «empezamos ahora».' },
+        why: { ru: 'Скажи это после извинения — ты двигаешь созвон дальше, а не застреваешь.', uk: 'Скажи це після вибачення — ти рухаєш дзвінок далі, а не застрягаєш.', es: 'Dilo tras la disculpa: así mueves la llamada adelante y no te atascas.' },
+        commonMistake: { ru: 'С we глагол простой: говори we start, а не we starts.', uk: 'З we дієслово просте: кажи we start, а не we starts.', es: 'Con we el verbo va simple: di we start, no we starts.' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['You', 'They', 'He', 'She', 'It'] },
+        { text: 'start', partOfSpeech: 'verb', distractors: ['wait', 'check', 'read', 'call', 'ask'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'today', 'later', 'always', 'yet'] },
+      ],
+    },
+    {
+      id: 'mitap_d5_p6',
+      english: 'I\'m ready to go.',
+      meaning: { ru: 'Я готов начать.', uk: 'Я готовий почати.', es: 'Estoy listo para empezar.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Слово ready', uk: 'Слово ready', es: 'La palabra ready' },
+        rule: { ru: 'ready — это «готов». I\'m ready = «я готов».', uk: 'ready — це «готовий». I\'m ready = «я готовий».', es: 'ready es «listo». I\'m ready = «estoy listo».' },
+        why: { ru: 'to go тут — «начинать, поехали». Ты показываешь: всё, я в деле.', uk: 'to go тут — «починати, поїхали». Ти показуєш: усе, я в справі.', es: 'to go aquí es «empezar, vamos». Muestras: listo, estoy en marcha.' },
+        commonMistake: { ru: 'После ready идёт to: говори ready to go, а не ready go.', uk: 'Після ready йде to: кажи ready to go, а не ready go.', es: 'Tras ready va to: di ready to go, no ready go.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['You\'re', 'He\'s', 'We\'re', 'It\'s', 'She\'s'] },
+        { text: 'ready', partOfSpeech: 'adjective', distractors: ['late', 'busy', 'sick', 'tired', 'new'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'at', 'on', 'by', 'of'] },
+        { text: 'go', partOfSpeech: 'verb', distractors: ['start', 'wait', 'talk', 'join', 'read'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'late', partOfSpeech: 'adjective', translation: { ru: 'опоздавший, поздно', uk: 'той, що запізнився, пізно', es: 'tarde' }, example: 'Sorry, I\'m late.' },
+    { word: 'here', partOfSpeech: 'adverb', translation: { ru: 'тут, на месте', uk: 'тут, на місці', es: 'aquí' }, example: 'I\'m here now.' },
+    { word: 'quick', partOfSpeech: 'adjective', translation: { ru: 'быстрый, короткий', uk: 'швидкий, короткий', es: 'rápido, corto' }, example: 'I have a quick meeting.' },
+    { word: 'meeting', partOfSpeech: 'noun', translation: { ru: 'встреча', uk: 'зустріч', es: 'reunión' }, example: 'I have a quick meeting.' },
+    { word: 'sorry', partOfSpeech: 'adjective', translation: { ru: 'жаль, извини', uk: 'шкода, вибач', es: 'lo siento' }, example: 'I\'m so sorry.' },
+    { word: 'ready', partOfSpeech: 'adjective', translation: { ru: 'готовый', uk: 'готовий', es: 'listo' }, example: 'I\'m ready to go.' },
+  ],
+};
+
+export const MITAP_DAY_6: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 6,
+  topic: { ru: 'Подождать остальных участников', uk: 'Зачекати на решту учасників', es: 'Esperar al resto de participantes' },
+  outcome: {
+    ru: 'Ты сможешь спросить, все ли на связи, и предложить подождать остальных перед началом встречи.',
+    uk: 'Ти зможеш запитати, чи всі на зв\'язку, і запропонувати зачекати на решту перед початком зустрічі.',
+    es: 'Podrás preguntar si están todos y proponer esperar al resto antes de empezar la reunión.',
+  },
+  level: 'A1',
+  prerequisiteLessons: [3, 5],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Спроси: все на месте?', uk: 'Запитай: чи всі на місці?', es: 'Pregunta: ¿están todos?' },
+      body: {
+        ru: 'Перед стартом встречи проверь, кто на связи. Фраза Are we all here? значит все на месте. Просто и понятно всем.',
+        uk: 'Перед стартом зустрічі перевір, хто на зв\'язку. Фраза Are we all here? означає чи всі на місці. Просто і зрозуміло всім.',
+        es: 'Antes de empezar, comprueba quién está. La frase Are we all here? significa están todos. Es simple y claro.',
+      },
+      examples: [
+        { en: 'Are we all here?', gloss: { ru: 'Мы все на месте?', uk: 'Ми всі на місці?', es: '¿Estamos todos?' } },
+        { en: 'I wait for the others.', gloss: { ru: 'Я жду остальных.', uk: 'Я чекаю на інших.', es: 'Espero a los demás.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Предложи подождать', uk: 'Запропонуй зачекати', es: 'Propón esperar' },
+      body: {
+        ru: 'Если кого-то нет, скажи We wait. Это значит мы ждём. Спокойная фраза, чтобы не начинать без людей.',
+        uk: 'Якщо когось немає, скажи We wait. Це означає ми чекаємо. Спокійна фраза, щоб не починати без людей.',
+        es: 'Si falta alguien, di We wait. Significa esperamos. Una frase tranquila para no empezar sin gente.',
+      },
+      examples: [
+        { en: 'We wait two minutes.', gloss: { ru: 'Мы ждём две минуты.', uk: 'Ми чекаємо дві хвилини.', es: 'Esperamos dos minutos.' } },
+        { en: 'Tom is not here.', gloss: { ru: 'Тома нет на месте.', uk: 'Тома немає на місці.', es: 'Tom no está aquí.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Спроси про конкретного человека', uk: 'Запитай про конкретну людину', es: 'Pregunta por una persona' },
+      body: {
+        ru: 'Хочешь узнать про кого-то? Спроси Where is Tom? Это значит где Том. Так ты ищешь нужного человека.',
+        uk: 'Хочеш дізнатися про когось? Запитай Where is Tom? Це означає де Том. Так ти шукаєш потрібну людину.',
+        es: '¿Quieres saber de alguien? Pregunta Where is Tom? Significa dónde está Tom. Así buscas a la persona.',
+      },
+      examples: [
+        { en: 'Where is Tom now?', gloss: { ru: 'Где Том сейчас?', uk: 'Де Том зараз?', es: '¿Dónde está Tom ahora?' } },
+        { en: 'We wait for him.', gloss: { ru: 'Мы ждём его.', uk: 'Ми чекаємо на нього.', es: 'Lo esperamos a él.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d6_p1',
+      english: 'Are we all here?',
+      meaning: { ru: 'Мы все на месте?', uk: 'Ми всі на місці?', es: '¿Estamos todos?' },
+      constructions: ['present-simple-questions'],
+      explanation: {
+        title: { ru: 'Спрашиваем: все ли тут', uk: 'Питаємо: чи всі тут', es: 'Preguntamos: ¿están todos?' },
+        rule: { ru: 'Слово here значит тут, на месте. All значит все. Вместе: все на месте?', uk: 'Слово here значить тут, на місці. All значить всі. Разом: чи всі на місці?', es: 'La palabra here significa aquí. All significa todos. Juntas: ¿todos aquí?' },
+        why: { ru: 'Это первый вопрос встречи. Так ты проверяешь, можно ли начинать разговор.', uk: 'Це перше питання зустрічі. Так ти перевіряєш, чи можна починати розмову.', es: 'Es la primera pregunta. Así compruebas si puedes empezar la charla.' },
+        commonMistake: { ru: 'Не путай here (тут) и hear (слышать). Тут нужно here: все на месте.', uk: 'Не плутай here (тут) і hear (чути). Тут потрібне here: всі на місці.', es: 'No confundas here (aquí) con hear (oír). Aquí va here: todos aquí.' },
+      },
+      words: [
+        { text: 'Are', partOfSpeech: 'to-be', distractors: ['Is', 'Am', 'Was', 'Were', 'Be'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'all', partOfSpeech: 'determiner', distractors: ['some', 'each', 'any', 'every', 'no'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['now', 'soon', 'today', 'tomorrow', 'yesterday'] },
+      ],
+    },
+    {
+      id: 'mitap_d6_p2',
+      english: 'I wait for the others.',
+      meaning: { ru: 'Я жду остальных.', uk: 'Я чекаю на інших.', es: 'Espero a los demás.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Говорим: я жду', uk: 'Кажемо: я чекаю', es: 'Decimos: yo espero' },
+        rule: { ru: 'Слово wait значит ждать. Others значит остальные люди. Вместе: жду остальных.', uk: 'Слово wait значить чекати. Others значить інші люди. Разом: чекаю інших.', es: 'La palabra wait significa esperar. Others significa los demás. Juntas: espero a los demás.' },
+        why: { ru: 'Так ты говоришь команде, что не начинаешь без людей. Спокойно и вежливо.', uk: 'Так ти кажеш команді, що не починаєш без людей. Спокійно і ввічливо.', es: 'Así dices al equipo que no empiezas sin gente. Tranquilo y amable.' },
+        commonMistake: { ru: 'После wait нужно for: wait for the others. Без for звучит неверно.', uk: 'Після wait потрібне for: wait for the others. Без for звучить неправильно.', es: 'Tras wait va for: wait for the others. Sin for suena mal.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'wait', partOfSpeech: 'verb', distractors: ['work', 'look', 'stay', 'call', 'ask'] },
+        { text: 'for', partOfSpeech: 'preposition', distractors: ['with', 'at', 'on', 'by', 'to'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'others', partOfSpeech: 'noun', distractors: ['people', 'names', 'faces', 'seats', 'desks'] },
+      ],
+    },
+    {
+      id: 'mitap_d6_p3',
+      english: 'Tom is not here yet.',
+      meaning: { ru: 'Тома ещё нет на месте.', uk: 'Тома ще немає на місці.', es: 'Tom no está aquí todavía.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Говорим: его ещё нет', uk: 'Кажемо: його ще немає', es: 'Decimos: aún no está' },
+        rule: { ru: 'Слово yet значит ещё, пока что. Not here yet значит пока не на месте.', uk: 'Слово yet значить ще, поки що. Not here yet значить поки не на місці.', es: 'La palabra yet significa todavía. Not here yet significa aún no está.' },
+        why: { ru: 'Так ты называешь, кого ждёте. Команда понимает, почему встреча не идёт.', uk: 'Так ти називаєш, кого чекаєте. Команда розуміє, чому зустріч не йде.', es: 'Así dices a quién esperan. El equipo entiende por qué no empieza.' },
+        commonMistake: { ru: 'Yet ставь в конце: not here yet. В начало его не двигай.', uk: 'Yet став у кінці: not here yet. На початок його не став.', es: 'Yet va al final: not here yet. No lo pongas al inicio.' },
+      },
+      words: [
+        { text: 'Tom', partOfSpeech: 'noun', distractors: ['Anna', 'Kate', 'Mark', 'Lisa', 'Paul'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['no', 'never', 'none', 'nor', 'nothing'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['now', 'soon', 'today', 'late', 'early'] },
+        { text: 'yet', partOfSpeech: 'adverb', distractors: ['still', 'again', 'also', 'too', 'once'] },
+      ],
+    },
+    {
+      id: 'mitap_d6_p4',
+      english: 'We wait two minutes for him.',
+      meaning: { ru: 'Мы ждём его две минуты.', uk: 'Ми чекаємо на нього дві хвилини.', es: 'Lo esperamos a él dos minutos.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Говорим: ждём пару минут', uk: 'Кажемо: чекаємо пару хвилин', es: 'Decimos: esperamos un poco' },
+        rule: { ru: 'Слово minutes значит минуты. Two minutes значит две минуты. Короткое время ожидания.', uk: 'Слово minutes значить хвилини. Two minutes значить дві хвилини. Короткий час чекання.', es: 'La palabra minutes significa minutos. Two minutes significa dos minutos. Poco tiempo.' },
+        why: { ru: 'Так ты называешь, сколько ждать. Команде ясно, что встреча скоро начнётся.', uk: 'Так ти кажеш, скільки чекати. Команді ясно, що зустріч скоро почнеться.', es: 'Así dices cuánto esperar. Al equipo le queda claro que empieza pronto.' },
+        commonMistake: { ru: 'После цифры два слово во множественном: two minutes. Не говори two minute.', uk: 'Після цифри два слово у множині: two minutes. Не кажи two minute.', es: 'Tras dos va plural: two minutes. No digas two minute.' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['They', 'You', 'He', 'She', 'It'] },
+        { text: 'wait', partOfSpeech: 'verb', distractors: ['work', 'look', 'stay', 'call', 'ask'] },
+        { text: 'two', partOfSpeech: 'determiner', distractors: ['five', 'six', 'nine', 'ten', 'four'] },
+        { text: 'minutes', partOfSpeech: 'noun', distractors: ['hours', 'days', 'weeks', 'calls', 'tasks'] },
+        { text: 'for', partOfSpeech: 'preposition', distractors: ['with', 'at', 'on', 'by', 'to'] },
+        { text: 'him', partOfSpeech: 'pronoun', distractors: ['her', 'them', 'us', 'me', 'you'] },
+      ],
+    },
+    {
+      id: 'mitap_d6_p5',
+      english: 'Where is the last person?',
+      meaning: { ru: 'Где последний человек?', uk: 'Де остання людина?', es: '¿Dónde está la última persona?' },
+      constructions: ['wh-questions'],
+      explanation: {
+        title: { ru: 'Спрашиваем: где он', uk: 'Питаємо: де він', es: 'Preguntamos: ¿dónde está?' },
+        rule: { ru: 'Слово where значит где. Last person значит последний человек. Вместе: где он.', uk: 'Слово where значить де. Last person значить остання людина. Разом: де він.', es: 'La palabra where significa dónde. Last person significa última persona.' },
+        why: { ru: 'Так ты узнаёшь, кого ещё ждать. Помогает понять, можно ли начинать.', uk: 'Так ти дізнаєшся, кого ще чекати. Допомагає зрозуміти, чи можна починати.', es: 'Así sabes a quién falta. Ayuda a ver si puedes empezar.' },
+        commonMistake: { ru: 'После where ставь is: where is. Не говори where the person is тут.', uk: 'Після where став is: where is. Не кажи where the person is тут.', es: 'Tras where va is: where is. No digas where the person is aquí.' },
+      },
+      words: [
+        { text: 'Where', partOfSpeech: 'adverb', distractors: ['When', 'Why', 'How', 'Who', 'What'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'last', partOfSpeech: 'determiner', distractors: ['next', 'first', 'other', 'same', 'whole'] },
+        { text: 'person', partOfSpeech: 'noun', distractors: ['team', 'group', 'name', 'face', 'voice'] },
+      ],
+    },
+    {
+      id: 'mitap_d6_p6',
+      english: 'We start the meeting now.',
+      meaning: { ru: 'Мы начинаем встречу сейчас.', uk: 'Ми починаємо зустріч зараз.', es: 'Empezamos la reunión ahora.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Говорим: начинаем сейчас', uk: 'Кажемо: починаємо зараз', es: 'Decimos: empezamos ya' },
+        rule: { ru: 'Слово start значит начинать. Meeting значит встреча. Вместе: начинаем встречу.', uk: 'Слово start значить починати. Meeting значить зустріч. Разом: починаємо зустріч.', es: 'La palabra start significa empezar. Meeting significa reunión. Juntas: empezamos la reunión.' },
+        why: { ru: 'Когда все на месте, скажи это. Так ты вежливо запускаешь встречу.', uk: 'Коли всі на місці, скажи це. Так ти ввічливо запускаєш зустріч.', es: 'Cuando están todos, di esto. Así abres la reunión con calma.' },
+        commonMistake: { ru: 'Слово now ставь в конце: start now. В начало его не двигай.', uk: 'Слово now став у кінці: start now. На початок його не став.', es: 'Now va al final: start now. No lo pongas al inicio.' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['They', 'You', 'He', 'She', 'It'] },
+        { text: 'start', partOfSpeech: 'verb', distractors: ['join', 'plan', 'check', 'share', 'read'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'meeting', partOfSpeech: 'noun', distractors: ['report', 'email', 'screen', 'folder', 'button'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'today', 'late', 'early', 'again'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'here', partOfSpeech: 'adverb', translation: { ru: 'тут, на месте', uk: 'тут, на місці', es: 'aquí' }, example: 'Are we all here?' },
+    { word: 'wait', partOfSpeech: 'verb', translation: { ru: 'ждать', uk: 'чекати', es: 'esperar' }, example: 'I wait for the others.' },
+    { word: 'yet', partOfSpeech: 'adverb', translation: { ru: 'ещё, пока что', uk: 'ще, поки що', es: 'todavía' }, example: 'Tom is not here yet.' },
+    { word: 'minutes', partOfSpeech: 'noun', translation: { ru: 'минуты', uk: 'хвилини', es: 'minutos' }, example: 'We wait two minutes for him.' },
+    { word: 'where', partOfSpeech: 'adverb', translation: { ru: 'где', uk: 'де', es: 'dónde' }, example: 'Where is the last person?' },
+    { word: 'meeting', partOfSpeech: 'noun', translation: { ru: 'встреча', uk: 'зустріч', es: 'reunión' }, example: 'We start the meeting now.' },
+  ],
+};
+
+export const MITAP_DAY_7: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 7,
+  topic: { ru: 'Повторение недели 1: захожу на первый созвон', uk: 'Повторення тижня 1: заходжу на перший дзвінок', es: 'Repaso de la semana 1: entro a mi primera llamada' },
+  outcome: {
+    ru: 'Сможешь зайти на первый созвон: поздороваться, проверить звук, спросить кто здесь и извиниться за опоздание.',
+    uk: 'Зможеш зайти на перший дзвінок: привітатися, перевірити звук, спитати хто тут і вибачитися за запізнення.',
+    es: 'Podrás entrar a tu primera llamada: saludar, revisar el sonido, preguntar quién está y disculparte por llegar tarde.',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1, 3, 6],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Что повторяем сегодня', uk: 'Що повторюємо сьогодні', es: 'Qué repasamos hoy' },
+      body: {
+        ru: 'Сегодня собираем всю неделю в один заход на созвон: «привет», проверка звука, «кто тут?» и «извини, опоздал». Всё уже знакомо.',
+        uk: 'Сьогодні збираємо весь тиждень в один захід на дзвінок: «привіт», перевірка звуку, «хто тут?» і «вибач, запізнився». Усе вже знайоме.',
+        es: 'Hoy juntamos toda la semana en una sola llamada: «hola», revisar el sonido, «¿quién está?» y «perdón, llegué tarde». Todo ya conocido.',
+      },
+      examples: [
+        { en: 'Can you hear me?', gloss: { ru: 'Ты меня слышишь?', uk: 'Ти мене чуєш?', es: '¿Me oyes?' } },
+        { en: 'Sorry, I\'m late.', gloss: { ru: 'Извини, я опоздал.', uk: 'Вибач, я запізнився.', es: 'Perdón, llego tarde.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Маленькие слова-помощники', uk: 'Маленькі слова-помічники', es: 'Pequeñas palabras de ayuda' },
+      body: {
+        ru: 'Два кита недели: am/is (это как «=») и who («кто»). С ними ты говоришь «я тут» и спрашиваешь «кто на созвоне».',
+        uk: 'Два кити тижня: am/is (це як «=») і who («хто»). З ними ти кажеш «я тут» і питаєш «хто на дзвінку».',
+        es: 'Dos claves de la semana: am/is (como un «=») y who («quién»). Con ellas dices «estoy aquí» y preguntas «quién está en la llamada».',
+      },
+      examples: [
+        { en: 'I\'m here.', gloss: { ru: 'Я на месте.', uk: 'Я на місці.', es: 'Estoy aquí.' } },
+        { en: 'Who is on the call?', gloss: { ru: 'Кто на созвоне?', uk: 'Хто на дзвінку?', es: '¿Quién está en la llamada?' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Один совет для созвона', uk: 'Одна порада для дзвінка', es: 'Un consejo para la llamada' },
+      body: {
+        ru: 'Не молчи в начале. Скажи «I\'m here» сразу — и команда знает, что ты подключился. Короткой фразы достаточно.',
+        uk: 'Не мовчи на початку. Скажи «I\'m here» одразу — і команда знає, що ти підключився. Короткої фрази досить.',
+        es: 'No te quedes callado al inicio. Di «I\'m here» enseguida y el equipo sabe que entraste. Una frase corta basta.',
+      },
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d7_p1',
+      english: 'Hi, I\'m here.',
+      meaning: { ru: 'Привет, я на месте.', uk: 'Привіт, я на місці.', es: 'Hola, estoy aquí.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Словечко I\'m', uk: 'Слівце I\'m', es: 'La palabra I\'m' },
+        rule: { ru: 'I\'m — это «я есть». here = «тут», I\'m here = «я тут».', uk: 'I\'m — це «я є». here = «тут», I\'m here = «я тут».', es: 'I\'m es «yo estoy». here = «aquí», I\'m here = «estoy aquí».' },
+        why: { ru: 'I am почти всегда сжимают до I\'m — так говорят на созвонах. Смысл тот же.', uk: 'I am майже завжди стискають до I\'m — так кажуть на дзвінках. Зміст той самий.', es: 'I am casi siempre se acorta a I\'m, así se habla en las llamadas. El sentido es el mismo.' },
+        commonMistake: { ru: 'Не теряй I\'m: говори I\'m here, а не просто here — иначе фраза неполная.', uk: 'Не губи I\'m: кажи I\'m here, а не просто here — інакше фраза неповна.', es: 'No pierdas I\'m: di I\'m here, no solo here; si no, la frase queda coja.' },
+      },
+      words: [
+        { text: 'Hi', partOfSpeech: 'other', distractors: ['Hey', 'Hello', 'Yo', 'Hiya', 'Howdy'] },
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['You\'re', 'He\'s', 'We\'re', 'It\'s', 'She\'s'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['under', 'outside', 'inside', 'upstairs', 'nearby'] },
+      ],
+    },
+    {
+      id: 'mitap_d7_p2',
+      english: 'Can you hear me?',
+      meaning: { ru: 'Ты меня слышишь?', uk: 'Ти мене чуєш?', es: '¿Me oyes?' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Вопрос с can', uk: 'Питання з can', es: 'Pregunta con can' },
+        rule: { ru: 'hear = «слышать». Ставишь can вперёд — и это вопрос: «можешь слышать меня?»', uk: 'hear = «чути». Ставиш can вперед — і це питання: «можеш чути мене?»', es: 'hear = «oír». Pones can delante y es pregunta: «¿puedes oírme?»' },
+        why: { ru: 'Так на созвоне сразу проверяют звук. Короткий вопрос — и ясно, всё ли в порядке.', uk: 'Так на дзвінку одразу перевіряють звук. Коротке питання — і ясно, чи все гаразд.', es: 'Así se revisa el sonido al instante. Una pregunta corta y queda claro si todo va bien.' },
+        commonMistake: { ru: 'После can — простое hear, не hearing: говори can you hear, а не can you hearing.', uk: 'Після can — просте hear, не hearing: кажи can you hear, а не can you hearing.', es: 'Tras can va hear simple, no hearing: di can you hear, no can you hearing.' },
+      },
+      words: [
+        { text: 'Can', partOfSpeech: 'modal', distractors: ['Could', 'Will', 'Should', 'Would', 'May'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'hear', partOfSpeech: 'verb', distractors: ['feel', 'eat', 'walk', 'draw', 'cook'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'it'] },
+      ],
+    },
+    {
+      id: 'mitap_d7_p3',
+      english: 'Who is on the call?',
+      meaning: { ru: 'Кто на созвоне?', uk: 'Хто на дзвінку?', es: '¿Quién está en la llamada?' },
+      constructions: ['wh-questions', 'to-be'],
+      explanation: {
+        title: { ru: 'Вопрос со словом who', uk: 'Питання зі словом who', es: 'Pregunta con who' },
+        rule: { ru: 'who = «кто». is = «есть». Who is on the call = «кто есть на созвоне».', uk: 'who = «хто». is = «є». Who is on the call = «хто є на дзвінку».', es: 'who = «quién». is = «está». Who is on the call = «quién está en la llamada».' },
+        why: { ru: 'Слово-вопрос who всегда идёт первым. За ним сразу is — и вопрос готов.', uk: 'Слово-питання who завжди йде першим. За ним одразу is — і питання готове.', es: 'La palabra who siempre va primero. Tras ella va is y la pregunta está lista.' },
+        commonMistake: { ru: 'Не теряй is: говори who is on the call, а не who on the call.', uk: 'Не губи is: кажи who is on the call, а не who on the call.', es: 'No pierdas is: di who is on the call, no who on the call.' },
+      },
+      words: [
+        { text: 'Who', partOfSpeech: 'pronoun', distractors: ['What', 'Where', 'When', 'Why', 'How'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'be', 'were'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'with', 'for'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'call', partOfSpeech: 'noun', distractors: ['meeting', 'screen', 'chat', 'room', 'team'] },
+      ],
+    },
+    {
+      id: 'mitap_d7_p4',
+      english: 'Sorry, I\'m late.',
+      meaning: { ru: 'Извини, я опоздал.', uk: 'Вибач, я запізнився.', es: 'Perdón, llego tarde.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'I\'m late на созвоне', uk: 'I\'m late на дзвінку', es: 'I\'m late en la llamada' },
+        rule: { ru: 'late = «поздно, опоздавший». I\'m late = «я опоздал». Sorry впереди — это «извини».', uk: 'late = «пізно, той, хто запізнився». I\'m late = «я запізнився». Sorry попереду — це «вибач».', es: 'late = «tarde». I\'m late = «llego tarde». Sorry delante es «perdón».' },
+        why: { ru: 'Одно sorry плюс I\'m late — и ты вежливо объяснил опоздание. Длинных слов не нужно.', uk: 'Одне sorry плюс I\'m late — і ти ввічливо пояснив запізнення. Довгих слів не треба.', es: 'Un sorry más I\'m late y ya explicas tu tardanza con cortesía. No hacen falta palabras largas.' },
+        commonMistake: { ru: 'Не говори I late: нужно I\'m late, маленькое I\'m держит фразу вместе.', uk: 'Не кажи I late: треба I\'m late, маленьке I\'m тримає фразу разом.', es: 'No digas I late: hace falta I\'m late; el pequeño I\'m sostiene la frase.' },
+      },
+      words: [
+        { text: 'Sorry', partOfSpeech: 'other', distractors: ['Please', 'Thanks', 'Hello', 'Okay', 'Hi'] },
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['You\'re', 'He\'s', 'We\'re', 'It\'s', 'She\'s'] },
+        { text: 'late', partOfSpeech: 'adjective', distractors: ['busy', 'tired', 'ready', 'new', 'slow'] },
+      ],
+    },
+    {
+      id: 'mitap_d7_p5',
+      english: 'Are we all here?',
+      meaning: { ru: 'Мы все на месте?', uk: 'Ми всі на місці?', es: '¿Estamos todos aquí?' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Вопрос с Are we', uk: 'Питання з Are we', es: 'Pregunta con Are we' },
+        rule: { ru: 'are = «есть» для we. Ставишь are вперёд — вопрос: «мы все тут?»', uk: 'are = «є» для we. Ставиш are вперед — питання: «ми всі тут?»', es: 'are = «estamos» para we. Pones are delante y es pregunta: «¿estamos todos aquí?»' },
+        why: { ru: 'all («все») стоит после we. Так ты проверяешь, можно ли начинать созвон.', uk: 'all («всі») стоїть після we. Так ти перевіряєш, чи можна починати дзвінок.', es: 'all («todos») va después de we. Así compruebas si ya se puede empezar la llamada.' },
+        commonMistake: { ru: 'В вопросе are идёт первым: говори are we all here, а не we are all here.', uk: 'У питанні are йде першим: кажи are we all here, а не we are all here.', es: 'En la pregunta are va primero: di are we all here, no we are all here.' },
+      },
+      words: [
+        { text: 'Are', partOfSpeech: 'to-be', distractors: ['Is', 'Am', 'Was', 'Were', 'Be'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'all', partOfSpeech: 'determiner', distractors: ['both', 'each', 'some', 'many', 'few'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['under', 'outside', 'inside', 'upstairs', 'nearby'] },
+      ],
+    },
+    {
+      id: 'mitap_d7_p6',
+      english: 'Who do we wait for?',
+      meaning: { ru: 'Кого мы ждём?', uk: 'Кого ми чекаємо?', es: '¿A quién esperamos?' },
+      constructions: ['wh-questions', 'present-simple'],
+      explanation: {
+        title: { ru: 'Вопрос с do', uk: 'Питання з do', es: 'Pregunta con do' },
+        rule: { ru: 'wait for = «ждать кого-то». who впереди + do we — вопрос «кого мы ждём».', uk: 'wait for = «чекати когось». who попереду + do we — питання «кого ми чекаємо».', es: 'wait for = «esperar a alguien». who delante + do we = «¿a quién esperamos?»' },
+        why: { ru: 'Маленькое do помогает задать вопрос. После него — простое wait, без окончаний.', uk: 'Маленьке do допомагає поставити питання. Після нього — просте wait, без закінчень.', es: 'El pequeño do ayuda a hacer la pregunta. Tras él va wait simple, sin terminaciones.' },
+        commonMistake: { ru: 'Не теряй do: говори who do we wait for, а не who we wait for.', uk: 'Не губи do: кажи who do we wait for, а не who we wait for.', es: 'No pierdas do: di who do we wait for, no who we wait for.' },
+      },
+      words: [
+        { text: 'Who', partOfSpeech: 'pronoun', distractors: ['What', 'Where', 'When', 'Why', 'How'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['did', 'does', 'can', 'will', 'should'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'wait', partOfSpeech: 'verb', distractors: ['eat', 'cook', 'sleep', 'drive', 'sing'] },
+        { text: 'for', partOfSpeech: 'preposition', distractors: ['at', 'on', 'to', 'with', 'by'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'here', partOfSpeech: 'adverb', translation: { ru: 'тут, на месте', uk: 'тут, на місці', es: 'aquí' }, example: 'Hi, I\'m here.' },
+    { word: 'hear', partOfSpeech: 'verb', translation: { ru: 'слышать', uk: 'чути', es: 'oír' }, example: 'Can you hear me?' },
+    { word: 'call', partOfSpeech: 'noun', translation: { ru: 'созвон, звонок', uk: 'дзвінок', es: 'llamada' }, example: 'Who is on the call?' },
+    { word: 'late', partOfSpeech: 'adjective', translation: { ru: 'опоздавший, поздно', uk: 'той, хто запізнився', es: 'tarde' }, example: 'Sorry, I\'m late.' },
+    { word: 'all', partOfSpeech: 'determiner', translation: { ru: 'все', uk: 'всі', es: 'todos' }, example: 'Are we all here?' },
+    { word: 'wait', partOfSpeech: 'verb', translation: { ru: 'ждать', uk: 'чекати', es: 'esperar' }, example: 'Who do we wait for?' },
+  ],
+};
+
+export const MITAP_CONTENT_DAYS: PlanContentDay[] = [
+  MITAP_DAY_1,
+  MITAP_DAY_2,
+  MITAP_DAY_3,
+  MITAP_DAY_4,
+  MITAP_DAY_5,
+  MITAP_DAY_6,
+  MITAP_DAY_7,
+];

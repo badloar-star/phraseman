@@ -2176,7 +2176,7 @@ export default function FriendsTabScreen() {
   return (
     <ScreenGradient artBackdrop="friends">
       <View testID="screen-friends" style={{ flex: 1 }}>
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
@@ -2188,7 +2188,6 @@ export default function FriendsTabScreen() {
           { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },
         )}
       >
-        <Reanimated.View style={bouncyStyle}>
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 8, marginHorizontal: -PX, paddingHorizontal: PX }}>
           <TapScale
@@ -2390,7 +2389,6 @@ export default function FriendsTabScreen() {
           />
         </View>
 
-        </Reanimated.View>
       </Animated.ScrollView>
       </BouncyWrap>
 

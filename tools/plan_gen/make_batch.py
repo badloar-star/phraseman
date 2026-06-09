@@ -6,15 +6,15 @@ OUT = sys.argv[1]
 
 def gate(d): return max(8, min(32, 8 + int((d-1)*0.8)))
 
-# Batch 10 (FINAL voyazh): days 78-84 (week 12: opinions/humour/apology/etiquette/toast/farewell + final review; B2)
+# MITAP Batch 2: days 8-14 (week 2, A2: meeting the team — introduce/role/timezone/name+title/contacts + review)
 ROWS = [
- (78,'B2',['conditionals','present-perfect'],[24,26],'Выразить мнение и вежливо не согласиться',"I see your point but I'd argue, культурный спор без конфликта."),
- (79,'B2',['relative-clauses','present-perfect'],[24,30],'Юмор и идиомы в дружеской беседе',"You're pulling my leg, понять и пошутить с местными."),
- (80,'B2',['present-perfect','conditionals'],[24,26],'Извиниться за оплошность и сгладить неловкость',"I'm so sorry I didn't realize, It won't happen again, восстановить отношения."),
- (81,'B2',['modals','passive-voice'],[10,23],'Культурные тонкости: этикет, чаевые, табу',"Is it expected to tip, You are not supposed to, разобраться в нормах."),
- (82,'B2',['complex-object','present-perfect'],[24,31],'Подарить и принять подарок, тост на встрече',"I would like to propose a toast, You shouldn't have, застольный этикет."),
- (83,'B2',['future-simple','present-perfect'],[13,24],'Прощание: тёплые слова и планы вернуться',"I will never forget this, I will definitely come back, эмоциональное прощание."),
- (84,'B2',['conditionals','reported-speech','present-perfect'],[24,26,27],'Повторение недели 12 и всего курса: отъезд и итоги поездки','Финальный review: мнения, юмор, извинения, этикет, прощание.'),
+ (8,'A2',['present-simple','to-have'],[3,7],'Представиться команде: роль и стаж',"I'm on the design team. I have two years here. рассказать о себе."),
+ (9,'A2',['present-simple','present-simple-questions'],[3,5],'Рассказать, чем именно занимаешься',"I work on the mobile app. описать свою работу."),
+ (10,'A2',['wh-questions','present-simple'],[5,6],'Спросить про роль коллеги',"What do you do here? узнать, чем занимается собеседник."),
+ (11,'A2',['present-simple-questions','prepositions-time'],[5,8],'Откуда ты и какой часовой пояс',"Where are you based? What time is it for you? страна и время."),
+ (12,'A2',['wh-questions','to-have'],[6,7],'Уточнить имя и должность собеседника',"Sorry, what's your name again? переспросить имя и роль."),
+ (13,'A2',['present-simple','imperative'],[3,18],'Обменяться контактами в чате',"I will send my email. Drop yours in the chat. обмен контактами."),
+ (14,'A2',['present-simple','wh-questions','to-have'],[6,7],'Повторение недели 2: знакомство с командой','Review-диалог: представиться, роль, часовой пояс, контакты.'),
 ]
 batch=[]
 for d,level,cons,prereq,topic,note in ROWS:

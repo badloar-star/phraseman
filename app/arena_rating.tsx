@@ -283,9 +283,8 @@ export default function DuelRatingScreen() {
         <View style={{ width: 32 }} />
       </View>
 
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-        <Animated.View style={bouncyStyle}>
         {/* Моя карточка */}
         <LinearGradient
           colors={t.cardGradient}
@@ -517,7 +516,6 @@ export default function DuelRatingScreen() {
             <MatchRow key={match.id} match={match} t={t} f={f} lang={lang} />
           ))}
         </View>
-        </Animated.View>
       </ScrollView>
       </BouncyWrap>
     </ScreenGradient>

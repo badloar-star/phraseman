@@ -1675,9 +1675,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
         </View>
       </View>
 
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled onScroll={onBouncyScroll} scrollEventThrottle={16}>
-        <Animated.View style={bouncyStyle}>
         {/* INFO-зона — фиксированная высота над actions. Любая поздняя
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
@@ -2345,7 +2344,6 @@ export default function DuelLobbyScreen({ isTab = false }: {
             pl: "Lobby areny",
         })}/>
         </View>
-        </Animated.View>
       </ScrollView>
       </BouncyWrap>
       </SafeAreaView>

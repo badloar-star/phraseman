@@ -1382,7 +1382,7 @@ export default function DuelResultsScreen() {
 
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <ScrollView
         decelerationRate="normal"
         contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 16 }]}
@@ -1390,7 +1390,6 @@ export default function DuelResultsScreen() {
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true, listener: (e: any) => { onBouncyScroll(e); } })}
       >
-        <Animated.View style={bouncyStyle}>
         <TapScale
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
@@ -2215,7 +2214,6 @@ export default function DuelResultsScreen() {
             </TouchableOpacity>
           )}
         </View>
-        </Animated.View>
       </ScrollView>
       </BouncyWrap>
 

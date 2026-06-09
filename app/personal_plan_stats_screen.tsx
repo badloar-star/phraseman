@@ -190,7 +190,7 @@ export default function PersonalPlanStatsScreen() {
           </View>
         </View>
 
-        <BouncyWrap>
+        <BouncyWrap style={bouncyStyle}>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
@@ -199,7 +199,6 @@ export default function PersonalPlanStatsScreen() {
           onScroll={(e: any) => { onBouncyScroll(e); }}
           scrollEventThrottle={16}
         >
-          <Animated.View style={bouncyStyle}>
           {/* Overall progress hero */}
           <LinearGradient colors={chrome.card} style={[styles.heroCard, { borderColor: chrome.border }]}>
             <View style={styles.heroTop}>
@@ -271,7 +270,6 @@ export default function PersonalPlanStatsScreen() {
               ))}
             </LinearGradient>
           ) : null}
-          </Animated.View>
         </Animated.ScrollView>
         </BouncyWrap>
       </LinearGradient>

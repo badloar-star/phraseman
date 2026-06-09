@@ -1121,7 +1121,7 @@ export default function ClubScreen() {
         </Text>
       </View>
 
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <ScrollView
         ref={contentScrollRef}
         scrollEnabled
@@ -1137,7 +1137,6 @@ export default function ClubScreen() {
         onScroll={onBouncyScroll}
         scrollEventThrottle={16}
       >
-        <Animated.View style={bouncyStyle}>
 
         {rankDelta && (
           <RankChangeBanner
@@ -1694,7 +1693,6 @@ export default function ClubScreen() {
         </View>
         )}
 
-        </Animated.View>
       </ScrollView>
       </BouncyWrap>
 

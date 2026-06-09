@@ -2223,9 +2223,8 @@ export default function DailyTasksScreen() {
           <XpGainBadge amount={claimedXP} visible={claimedXP !== null} style={{ color: rewardActionText, fontSize: f.h1, fontWeight: '800' }}/>
         </Animated.View>)}
 
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
-        <Animated.View style={bouncyStyle}>
 
         {/* Прогресс */}
         {(trioClaimButtonEnabled || trioShardsClaimed) && (<View style={[
@@ -2623,7 +2622,6 @@ export default function DailyTasksScreen() {
         </View>
 
         <View style={{ height: 16 }}/>
-        </Animated.View>
       </ScrollView>
       </BouncyWrap>
       </View>

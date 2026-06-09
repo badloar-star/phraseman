@@ -453,7 +453,7 @@ export default function LessonsTab() {
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
-      <BouncyWrap>
+      <BouncyWrap style={bouncyStyle}>
       <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }],
         // Fabric + native-driver on ScrollView can crash with animated node
         // connect/disconnect races during rapid remount/navigation.
@@ -461,7 +461,6 @@ export default function LessonsTab() {
         contentContainerStyle={{ paddingBottom: 40, paddingTop: insets.top }}
         decelerationRate="normal"
       >
-        <Animated.View style={bouncyStyle}>
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 }}>
@@ -994,7 +993,6 @@ export default function LessonsTab() {
             pl: 'Lista lekcji',
         })}/>
         </View>
-        </Animated.View>
       </Animated.ScrollView>
       </BouncyWrap>
 

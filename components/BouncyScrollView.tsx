@@ -1,86 +1,182 @@
-import React, { forwardRef } from 'react';
-import { ScrollView, type ScrollViewProps, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
+import React, { forwardRef, useRef, useCallback } from 'react';
+import {
+  ScrollView,
+  type ScrollViewProps,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
+} from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
+  useAnimatedScrollHandler,
   withSpring,
+  type SharedValue,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 /**
- * Кросс-платформенная overscroll-резинка («потяни за край» как в Telegram/Instagram).
+ * Кросс-платформенная overscroll-резинка — ТОЛЬКО у верхнего края.
  *
- * На Android родной `bounces` не работает (iOS-only), а glow почти не виден.
- * Здесь резинка — через Reanimated + gesture-handler: контент у края тянется с
- * затухающим сопротивлением и пружинит назад. Ничего не «обновляется».
+ * Поведение: когда список доскроллен до самого верха (scrollY <= 0) и палец
+ * тянет ВНИЗ — контент отъезжает вниз с затухающим сопротивлением и пружинит
+ * назад. В любом другом положении (середина, низ) — обычный скролл, резинки нет.
  *
- * Drop-in замена ScrollView: прокидывает все пропсы и ref.
- * Тот же паттерн, что у app/TabSlider.tsx (Gesture.Pan + Animated.View) — он
- * заведомо работает в этом проекте.
+ * ─────────────────────────────────────────────────────────────────────────────
+ * АРХИТЕКТУРА v4 (стабильная, без вылетов):
+ *
+ * 1. Pan-жест активен ТОЛЬКО когда atTop=true (scrollY≈0). Через
+ *    `simultaneousWithExternalGesture(nativeGesture)` он НЕ блокирует нативный
+ *    скролл → нет race condition «скролл через раз» (баг v1).
+ *
+ * 2. `useAnimatedStyle` НЕ вызывается внутри useBouncy. Его дергает компонент
+ *    через `useBouncyStyle(stretch)`. Иначе на Fabric при Fast Refresh / двойном
+ *    монтировании viewTag инвалидируется и Reanimated кидает
+ *    "set key `current` on frozen object" (баг v2/v3 — вылеты на всех экранах).
+ *
+ * 3. `GestureWrap` — реальная обёртка GestureDetector (НЕ pass-through),
+ *    объявлена ВНЕ useBouncy (стабильная ссылка). Экраны с Animated.event
+ *    оборачивают свой Animated.ScrollView в <BouncyWrap>.
+ *
+ * Drop-in замена ScrollView. Для Animated.event-экранов — хук useBouncy +
+ * useBouncyStyle + onBouncyScroll (см. примеры использования в проекте).
  */
+
+const SPRING = { damping: 16, stiffness: 170, mass: 0.6 } as const;
+const RESISTANCE_DIV = 2.2; // чем больше — тем «тяжелее» тянется
+
 export interface BouncyScrollViewProps extends ScrollViewProps {
   maxStretch?: number;
-  damping?: number;
 }
 
-const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function BouncyScrollView(
-  { children, onScroll, maxStretch = 110, damping = 15, scrollEnabled = true, ...rest },
-  ref,
-) {
-  const offsetY = useSharedValue(0);
-  const maxOffsetY = useSharedValue(0);
+interface BouncyCore {
+  /** Текущее смещение резинки (px, >= 0 = контент вниз). */
+  stretch: SharedValue<number>;
+  /** scrollY в UI-thread — обновляется и scrollHandler, и onBouncyScroll. */
+  scrollY: SharedValue<number>;
+  /** Pan-жест для верхней резинки (нужен GestureWrap). */
+  pan: ReturnType<typeof Gesture.Pan>;
+  /** Animated scroll handler (UI-thread) — для BouncyScrollView. */
+  scrollHandler: ReturnType<typeof useAnimatedScrollHandler>;
+  /** JS-listener для Animated.event-экранов (обновляет только scrollY). */
+  onBouncyScroll: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  /** Обёртка GestureDetector. */
+  GestureWrap: (props: { children: React.ReactNode }) => React.ReactElement;
+  maxStretch: number;
+}
+
+/**
+ * Создаёт жест/handler/обёртку. Вызывать на верхнем уровне компонента.
+ */
+export function useBouncy({ maxStretch = 110 }: { maxStretch?: number } = {}): BouncyCore {
   const stretch = useSharedValue(0);
+  const scrollY = useSharedValue(0);
+  // Стартовое смещение резинки на момент начала жеста (для накопительного pull).
+  const panStart = useSharedValue(0);
+
   const ms = useSharedValue(maxStretch);
   ms.value = maxStretch;
 
-  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
-    offsetY.value = contentOffset.y;
-    maxOffsetY.value = Math.max(0, contentSize.height - layoutMeasurement.height);
-    onScroll?.(e);
-  };
+  // Нативный жест скролла — чтобы Pan работал ОДНОВРЕМЕННО с ним, не блокируя.
+  const nativeGesture = useRef(Gesture.Native()).current;
 
-  const pan = Gesture.Pan()
-    .enabled(scrollEnabled)
-    // Активируемся на вертикали, сдаёмся на горизонтали — чтобы не мешать
-    // свайпу табов (TabSlider зеркально: активен на X, сдаётся на Y) и тапам.
-    .activeOffsetY([-14, 14])
-    .failOffsetX([-18, 18])
-    .onUpdate((e) => {
-      'worklet';
-      const dy = e.translationY;
-      const limit = ms.value;
-      const atTop = offsetY.value <= 0 && dy > 0;
-      const atBottom = offsetY.value >= maxOffsetY.value && dy < 0;
-      if (atTop || atBottom) {
-        const sign = dy < 0 ? -1 : 1;
-        const mag = Math.min(Math.abs(dy), 600);
-        stretch.value = sign * limit * (1 - Math.exp(-mag / (limit * 1.6)));
-      } else {
-        stretch.value = 0;
-      }
-    })
-    .onEnd(() => {
-      'worklet';
-      stretch.value = withSpring(0, { damping, stiffness: 180, mass: 0.6 });
-    });
+  const pan = useRef(
+    Gesture.Pan()
+      .simultaneousWithExternalGesture(nativeGesture)
+      // Активируемся только на заметном вертикальном движении.
+      .activeOffsetY(10)
+      .failOffsetX([-20, 20])
+      .onBegin(() => {
+        'worklet';
+        panStart.value = stretch.value;
+      })
+      .onUpdate((e) => {
+        'worklet';
+        // Резинка ТОЛЬКО у верха и ТОЛЬКО при тяге вниз.
+        if (scrollY.value > 1) {
+          stretch.value = 0;
+          return;
+        }
+        const dy = e.translationY;
+        if (dy <= 0) {
+          // Палец пошёл вверх — отдаём управление скроллу.
+          stretch.value = 0;
+          return;
+        }
+        const limit = ms.value;
+        // Логарифмическое сопротивление: тянется всё тяжелее к пределу.
+        stretch.value = limit * (1 - Math.exp(-dy / (limit * RESISTANCE_DIV)));
+      })
+      .onEnd(() => {
+        'worklet';
+        stretch.value = withSpring(0, SPRING);
+      })
+      .onFinalize(() => {
+        'worklet';
+        if (stretch.value !== 0) stretch.value = withSpring(0, SPRING);
+      }),
+  ).current;
 
-  const animatedStyle = useAnimatedStyle(() => ({
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll(e) {
+      scrollY.value = e.contentOffset.y;
+    },
+  });
+
+  const onBouncyScroll = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      scrollY.value = e.nativeEvent.contentOffset.y;
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  const GestureWrap = useCallback(
+    ({ children }: { children: React.ReactNode }) => (
+      <GestureDetector gesture={pan}>{children as React.ReactElement}</GestureDetector>
+    ),
+    [pan],
+  );
+
+  return { stretch, scrollY, pan, scrollHandler, onBouncyScroll, GestureWrap, maxStretch };
+}
+
+/**
+ * Возвращает animatedStyle для контент-обёртки. ДОЛЖЕН вызываться в компоненте
+ * (не внутри useBouncy) — иначе Fabric не привязывает viewTag корректно.
+ */
+export function useBouncyStyle(stretch: SharedValue<number>) {
+  return useAnimatedStyle(() => ({
     transform: [{ translateY: stretch.value }],
   }));
+}
+
+const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function BouncyScrollView(
+  { children, onScroll, maxStretch = 110, ...rest },
+  ref,
+) {
+  const { stretch, scrollHandler, onBouncyScroll, GestureWrap } = useBouncy({ maxStretch });
+  const animatedStyle = useBouncyStyle(stretch);
+
+  const handleScroll = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      (onScroll as ((e: NativeSyntheticEvent<NativeScrollEvent>) => void) | undefined)?.(e);
+      onBouncyScroll(e);
+    },
+    [onScroll, onBouncyScroll],
+  );
 
   return (
-    <GestureDetector gesture={pan}>
+    <GestureWrap>
       <Animated.ScrollView
         ref={ref as any}
-        scrollEnabled={scrollEnabled}
         scrollEventThrottle={16}
-        onScroll={handleScroll}
+        onScroll={onScroll ? handleScroll : scrollHandler}
+        overScrollMode="never"
         {...rest}
       >
         <Animated.View style={animatedStyle}>{children}</Animated.View>
       </Animated.ScrollView>
-    </GestureDetector>
+    </GestureWrap>
   );
 });
 

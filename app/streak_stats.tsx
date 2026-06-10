@@ -3486,7 +3486,7 @@ export default function StreakStats() {
         <View testID="stats-activity-365" onLayout={(event) => {
             activity365YRef.current = event.nativeEvent.layout.y;
         }}>
-          <ActivityHeatmap365 />
+          <ActivityHeatmap365 hideNextStep={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE}/>
         </View>
         </StatsPremiumBlur>
 

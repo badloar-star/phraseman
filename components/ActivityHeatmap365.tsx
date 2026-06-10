@@ -564,7 +564,7 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
   );
 }
 
-function ActivityHeatmap365() {
+function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean } = {}) {
   const { theme: t, f, themeMode } = useTheme();
   const isGoldTheme = themeMode === 'gold';
   const { lang } = useLang();
@@ -863,12 +863,16 @@ function ActivityHeatmap365() {
         </View>
       </TouchableOpacity>
 
+      {/* Скрываем подсказку «что дальше», когда её уже показывает карточка
+          «Баланс практики» (actionable-вариант), чтобы не дублировать нудж. */}
+      {hideNextStep ? null : (
       <View style={[styles.nextStepBar, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'activity', 'quiet'), borderColor: activityHairline }]}>
         <Ionicons name="sparkles-outline" size={16} color={activeAccent} />
         <Text style={{ color: isGoldTheme ? GOLD_RICH.ivoryMuted : activeAccent, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.25 }}>
           {nextStepText}
         </Text>
       </View>
+      )}
 
       {expanded && analytics ? (
         <Animated.View style={revealStyle}>

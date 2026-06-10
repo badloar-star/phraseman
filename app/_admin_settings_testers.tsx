@@ -171,6 +171,7 @@ import {
   resetIntroFullAccessForAdmin,
   getIntroFullAccessState,
 } from './intro_full_access';
+import { callVipRevokeMine } from './vip_revoke_client';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -1170,17 +1171,25 @@ export default function SettingsTestersFunctions() {
         await ensureStableAuthLinkForStableId(uid).catch(() => false);
         const db = getAdminFirestoreDb();
         if (db) {
-          await db.collection('users').doc(uid).set({
-            progress: {
-              vip_active: 'true',
-              vip_plan: 'admin_vip',
-              vip_from: grantAt,
-              vip_until: until,
-              vip_admin_override: 'true',
-              vip_admin_grant_at: grantAt,
-            },
-            updatedAt: Date.now(),
-          }, { merge: true });
+          // firestore.rules (progressHasNoPremiumWrites) пропускает этот grant
+          // только у аккаунтов с admin-клеймом. Self-grant CF не делаем — это
+          // дыра в paywall. Для QA-превью достаточно локального VIP выше,
+          // поэтому отказ сервера не должен ронять кнопку.
+          try {
+            await db.collection('users').doc(uid).set({
+              progress: {
+                vip_active: 'true',
+                vip_plan: 'admin_vip',
+                vip_from: grantAt,
+                vip_until: until,
+                vip_admin_override: 'true',
+                vip_admin_grant_at: grantAt,
+              },
+              updatedAt: Date.now(),
+            }, { merge: true });
+          } catch (error) {
+            console.warn('[QA] server VIP grant denied (non-admin), VIP enabled locally only', error);
+          }
         }
       }
 
@@ -2267,19 +2276,13 @@ export default function SettingsTestersFunctions() {
       const uid = await ensureAnonUser().catch(() => null);
       if (uid) {
         await ensureStableAuthLinkForStableId(uid).catch(() => false);
-        const db = getAdminFirestoreDb();
-        if (db) {
-          await db.collection('users').doc(uid).set({
-            progress: {
-              vip_active: 'false',
-              vip_plan: '',
-              vip_from: '0',
-              vip_until: stripAt,
-              vip_admin_override: 'false',
-              vip_revoked_at: stripAt,
-            },
-            updatedAt: Date.now(),
-          }, { merge: true });
+        // Прямую запись vip_* с клиента запрещает firestore.rules
+        // (progressHasNoPremiumWrites) — серверный VIP отзывает CF vipRevokeMine.
+        // Отказ сервера не валит strip: локально премиум уже снят.
+        try {
+          await callVipRevokeMine();
+        } catch (error) {
+          console.warn('[QA] server VIP revoke unavailable, stripped locally only', error);
         }
       }
       await recomputeEarnedUnlocks(studyTarget);

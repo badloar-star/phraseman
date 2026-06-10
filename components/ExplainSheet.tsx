@@ -39,6 +39,8 @@ import {
   resolveExplainDisplay,
   loadingLineForLang,
   asLang,
+  splitExplainParagraphs,
+  splitExplainSegments,
   type ExplainRequestStatus,
 } from '../app/explain_phrase_request';
 import ExplainReportButton from './ExplainReportButton';
@@ -186,7 +188,9 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
             </Text>
           </View>
 
-          {/* Тело: скелетон во время генерации, иначе полный текст */}
+          {/* Тело: скелетон во время генерации, иначе абзацы с подсветкой английского.
+              Английские фрагменты ("am", "I am ready") красятся акцентом — текст «дышит»
+              и глаз сразу выхватывает, какие слова разбираются. */}
           <ScrollView
             style={styles.bodyScroll}
             contentContainerStyle={styles.bodyScrollContent}
@@ -203,9 +207,52 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
                 <View style={[styles.skeletonBar, { backgroundColor: t.bgSurface2, width: '85%' }]} />
               </View>
             ) : (
-              <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
-                {display.text}
-              </Text>
+              <>
+                {splitExplainParagraphs(display.text).map((paragraph, pIdx) => (
+                  <Text
+                    key={`p-${pIdx}`}
+                    style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}
+                  >
+                    {splitExplainSegments(paragraph).map((seg, sIdx) => (
+                      seg.en ? (
+                        <Text key={`s-${sIdx}`} style={[styles.bodyEn, { color: t.accent }]}>
+                          {seg.text}
+                        </Text>
+                      ) : (
+                        <Text key={`s-${sIdx}`}>{seg.text}</Text>
+                      )
+                    ))}
+                  </Text>
+                ))}
+                {display.degraded ? (
+                  <Pressable
+                    onPress={() => {
+                      hapticTap();
+                      state.retry();
+                    }}
+                    accessibilityRole="button"
+                    style={({ pressed }) => [
+                      styles.retryBtn,
+                      { backgroundColor: t.bgSurface2, borderColor: t.border },
+                      pressed && styles.pressed,
+                    ]}
+                  >
+                    <Ionicons name="refresh" size={16} color={t.accent} />
+                    <Text style={[styles.retryLabel, { color: t.textPrimary, fontSize: f.sub }]}>
+                      {triLang(asLang(effLang), {
+                        ru: 'Попробовать ещё раз',
+                        uk: 'Спробувати ще раз',
+                        es: 'Intentar de nuevo',
+                        'pt-BR': 'Tentar de novo',
+                        vi: 'Thử lại',
+                        id: 'Coba lagi',
+                        tr: 'Tekrar dene',
+                        pl: 'Spróbuj ponownie',
+                      })}
+                    </Text>
+                  </Pressable>
+                ) : null}
+              </>
             )}
           </ScrollView>
 
@@ -294,14 +341,32 @@ const styles = StyleSheet.create({
     lineHeight: 26,
   },
   bodyScroll: {
-    maxHeight: 320,
+    maxHeight: 400,
   },
   bodyScrollContent: {
     paddingBottom: 8,
   },
   bodyText: {
     fontWeight: '500',
-    lineHeight: 24,
+    lineHeight: 26,
+    marginBottom: 12,
+  },
+  bodyEn: {
+    fontWeight: '800',
+  },
+  retryBtn: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 14,
+    borderWidth: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    marginTop: 4,
+  },
+  retryLabel: {
+    fontWeight: '700',
   },
   skeleton: {
     gap: 12,

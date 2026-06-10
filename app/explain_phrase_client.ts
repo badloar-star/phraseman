@@ -56,6 +56,10 @@ export interface SubmitExplainReportRequest {
    * не в тот док. Сервер нормализует тем же резолвером (unknown → ru); хэш всё равно считает он.
    */
   lang: string;
+  /** Причина из меню жалобы. Сервер сверяет с белым списком (неизвестное → unclear). */
+  reason?: string;
+  /** Свободный комментарий юзера. Сервер чистит и режет до 300 символов. */
+  comment?: string;
 }
 
 export interface SubmitExplainReportResponse {

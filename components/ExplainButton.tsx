@@ -78,14 +78,14 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
         <Ionicons name="bulb-outline" size={18} color={t.accent} />
         <Text style={[styles.label, { color: t.textPrimary, fontSize: f.sub }]} numberOfLines={1}>
           {triLang(uiLang, {
-            ru: 'Объясни проще',
-            uk: 'Поясни простіше',
-            es: 'Explícalo simple',
-            'pt-BR': 'Explique simples',
+            ru: 'Объяснить просто',
+            uk: 'Пояснити просто',
+            es: 'Explicar simple',
+            'pt-BR': 'Explicar simples',
             vi: 'Giải thích đơn giản',
             id: 'Jelaskan sederhana',
             tr: 'Basitçe açıkla',
-            pl: 'Wyjaśnij prościej',
+            pl: 'Wyjaśnij prosto',
           })}
         </Text>
       </TouchableOpacity>

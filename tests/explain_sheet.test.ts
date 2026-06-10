@@ -27,6 +27,8 @@ jest.mock('../app/explain_phrase_client', () => ({
 import {
   resolveExplainDisplay,
   loadingLineForLang,
+  splitExplainSegments,
+  splitExplainParagraphs,
   type ExplainRequestState,
 } from '../app/explain_phrase_request';
 
@@ -99,6 +101,64 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     expect(loadingLineForLang('uk')).not.toContain('👶');
     expect(loadingLineForLang('es')).toBeTruthy();
   });
+
+  it('degraded=false на настоящем объяснении (ok и live-rejected), true на фолбэках', () => {
+    // ok — настоящий текст.
+    expect(resolveExplainDisplay({ ...baseState, status: 'ok', text: 'т' }, 'ru').degraded).toBe(false);
+    // live-rejected (fromCache=false) несёт НАСТОЯЩИЙ сгенерированный текст — не degraded.
+    expect(
+      resolveExplainDisplay({ ...baseState, status: 'rejected', fromCache: false, text: 'т' }, 'ru').degraded,
+    ).toBe(false);
+    // Фолбэк-пути: rejected из кэша / exhausted / pending / сетевая ошибка.
+    expect(
+      resolveExplainDisplay({ ...baseState, status: 'rejected', fromCache: true, text: 'fb' }, 'ru').degraded,
+    ).toBe(true);
+    expect(resolveExplainDisplay({ ...baseState, status: 'exhausted', text: 'fb' }, 'ru').degraded).toBe(true);
+    expect(resolveExplainDisplay({ ...baseState, status: 'pending', text: 'fb' }, 'ru').degraded).toBe(true);
+    expect(resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'ru').degraded).toBe(true);
+  });
+});
+
+describe('splitExplainSegments — подсветка английского в объяснении', () => {
+  it('латинские фрагменты помечаются en:true, проза — en:false', () => {
+    const segs = splitExplainSegments('Слово "am" — это связка.');
+    expect(segs).toEqual([
+      { text: 'Слово "', en: false },
+      { text: 'am', en: true },
+      { text: '" — это связка.', en: false },
+    ]);
+  });
+
+  it('фраза из нескольких английских слов подсвечивается ОДНИМ куском', () => {
+    const segs = splitExplainSegments('Фраза "I am ready" короткая.');
+    expect(segs.find((s) => s.en)?.text).toBe('I am ready');
+  });
+
+  it('апострофы и дефисы внутри английского не рвут сегмент', () => {
+    expect(splitExplainSegments(`"I'm" — короткая форма.`).find((s) => s.en)?.text).toBe(`I'm`);
+    expect(splitExplainSegments('Слово "well-known" сложное.').find((s) => s.en)?.text).toBe('well-known');
+  });
+
+  it('чисто русский текст — один сегмент en:false; пустой текст — пусто', () => {
+    expect(splitExplainSegments('Просто русский текст.')).toEqual([
+      { text: 'Просто русский текст.', en: false },
+    ]);
+    expect(splitExplainSegments('')).toEqual([]);
+  });
+});
+
+describe('splitExplainParagraphs — красивые абзацы', () => {
+  it('режет по пустой строке и чистит края', () => {
+    expect(splitExplainParagraphs('Раз.\n\nДва.\n\n\nТри.')).toEqual(['Раз.', 'Два.', 'Три.']);
+  });
+
+  it('одиночный перевод строки НЕ создаёт новый абзац', () => {
+    expect(splitExplainParagraphs('Раз.\nВсё ещё раз.')).toEqual(['Раз.\nВсё ещё раз.']);
+  });
+
+  it('пустой/пробельный текст — ноль абзацев', () => {
+    expect(splitExplainParagraphs('  \n \n ')).toEqual([]);
+  });
 });
 
 describe('ExplainButton: флаг-гейтинг и аналитика', () => {
@@ -130,9 +190,9 @@ describe('ExplainButton: флаг-гейтинг и аналитика', () => {
 describe('ExplainSheet: рендер тела и слайд-ап в доме', () => {
   const src = read(path.join(COMPONENTS_DIR, 'ExplainSheet.tsx'));
 
-  it('рендерит тело объяснения из resolveExplainDisplay (display.text)', () => {
+  it('рендерит тело объяснения из resolveExplainDisplay (display.text → абзацы)', () => {
     expect(src).toContain('resolveExplainDisplay');
-    expect(src).toContain('{display.text}');
+    expect(src).toContain('splitExplainParagraphs(display.text)');
   });
 
   it('показывает скелетон-лоадер с дружелюбной строкой во время генерации', () => {
@@ -156,6 +216,19 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
 
   it('содержит футер-репорт ExplainReportButton', () => {
     expect(src).toContain('ExplainReportButton');
+  });
+
+  it('рендерит объяснение абзацами с подсветкой английского (splitExplain*)', () => {
+    expect(src).toContain('splitExplainParagraphs');
+    expect(src).toContain('splitExplainSegments');
+    // Английские сегменты красятся акцентом.
+    expect(src).toContain('bodyEn');
+  });
+
+  it('на degraded-пути есть кнопка «Попробовать ещё раз» → state.retry()', () => {
+    expect(src).toContain('display.degraded');
+    expect(src).toContain('state.retry()');
+    expect(src).toContain('Попробовать ещё раз');
   });
 });
 
@@ -181,6 +254,37 @@ describe('ExplainReportButton: контракт репорта', () => {
     expect(src).toContain('Ionicons');
     expect(src).toContain("name={sent ? 'checkmark-circle' : 'flag'}");
     expect(src).toContain('t.wrong');
+  });
+
+  it('открывает ФОРМУ жалобы: меню причин (4 ключа = серверный белый список) + комментарий', () => {
+    // Ключи причин — зеркало REPORT_REASONS в functions/src/explain/explain_reports.ts.
+    expect(src).toContain("['unclear', 'incorrect', 'wrong_language', 'other']");
+    expect(src).toContain('Что именно непонятно?');
+    expect(src).toContain('TextInput');
+    expect(src).toContain('maxLength={COMMENT_MAX_LEN}');
+  });
+
+  it('шлёт reason и comment вместе с phraseEn/lang', () => {
+    const code = stripComments(src);
+    expect(code).toMatch(/callSubmitExplainReport\(\{\s*phraseEn,\s*lang,\s*reason,\s*comment/);
+  });
+
+  it('форма — вложенный Modal с KeyboardAvoidingView (клавиатура не перекрывает ввод)', () => {
+    expect(src).toContain('KeyboardAvoidingView');
+    expect(src).toContain('<Modal');
+  });
+});
+
+describe('Кнопка называется «Объяснить просто» (переименование 2026-06-10)', () => {
+  it('ExplainButton (фраза дня и другие поверхности)', () => {
+    const src = read(path.join(COMPONENTS_DIR, 'ExplainButton.tsx'));
+    expect(src).toContain('Объяснить просто');
+    expect(src).not.toContain('Объясни проще');
+  });
+
+  it('lesson1 — кнопка на экране результата', () => {
+    const src = read(path.join(APP_DIR, 'lesson1.tsx'));
+    expect(src).toContain('Объяснить просто');
   });
 });
 

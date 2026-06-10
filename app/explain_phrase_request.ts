@@ -62,6 +62,12 @@ const INITIAL_STATE: ExplainRequestState = {
  * Чистая функция: на ошибке возвращает НЕЙТРАЛЬНЫЙ локализованный fallback, иначе —
  * серверный text как есть. КЛИЕНТ НЕ правит и НЕ оценивает текст сервера.
  *
+ * `degraded` = в теле НЕ настоящее объяснение, а запасной текст (сетевая ошибка или серверный
+ * fallback) — шторка показывает кнопку «Попробовать ещё раз». Контракт CF: fallback лежит в text
+ * при status exhausted/pending и при rejected ИЗ КЭША; live-rejected (fromCache=false) несёт
+ * НАСТОЯЩИЙ сгенерированный текст (сервер рискует показать его одному юзеру, не всем) — это
+ * НЕ degraded, ретрай не нужен.
+ *
  * ВАЖНО (зафиксировано с юзером 2026-06-10): фича объясняет английскую грамматику и НИКОГДА
  * не пересказывает смысл/перевод фразы. Поэтому на ошибке мы НЕ показываем родной перевод
  * (старый fallback показывал — это и был баг «русский пересказ»). `_fallbackMeaning` оставлен
@@ -71,9 +77,9 @@ export function resolveExplainDisplay(
   state: ExplainRequestState,
   lang: string,
   _fallbackMeaning?: string,
-): { showSkeleton: boolean; text: string } {
+): { showSkeleton: boolean; text: string; degraded: boolean } {
   if (state.loading) {
-    return { showSkeleton: true, text: '' };
+    return { showSkeleton: true, text: '', degraded: false };
   }
   if (state.error) {
     // Сеть упала — сервер ничего не отдал. Показываем НЕЙТРАЛЬНЫЙ запасной текст:
@@ -88,11 +94,54 @@ export function resolveExplainDisplay(
       tr: 'Açıklama yüklenemedi. Daha sonra tekrar dene.',
       pl: 'Nie udało się wczytać wyjaśnienia. Spróbuj ponownie później.',
     });
-    return { showSkeleton: false, text };
+    return { showSkeleton: false, text, degraded: true };
   }
   // status 'ok' | 'rejected' | 'exhausted' | 'pending' — сервер ВСЕГДА положил text
   // (для не-ok это его собственный нейтральный fallback). Рендерим как есть.
-  return { showSkeleton: false, text: state.text };
+  const degraded =
+    state.status === 'exhausted' ||
+    state.status === 'pending' ||
+    (state.status === 'rejected' && state.fromCache);
+  return { showSkeleton: false, text: state.text, degraded };
+}
+
+/** Сегмент текста объяснения: английский фрагмент (подсветить) или обычная проза. */
+export interface ExplainSegment {
+  text: string;
+  /** true — латинский (английский) фрагмент, рендерится акцентным цветом. */
+  en: boolean;
+}
+
+// Ран английских слов: латиница с апострофами/дефисами внутри, включая пробелы МЕЖДУ
+// латинскими словами — "I am ready" подсвечивается как ОДИН кусок, не три.
+const EN_RUN_RE = /[A-Za-z][A-Za-z'’-]*(?:\s+[A-Za-z][A-Za-z'’-]*)*/g;
+
+/**
+ * Разбить текст объяснения на сегменты «английский / не английский» для подсветки.
+ * Чистая функция (тестируется в node без рендера). Кавычки вокруг английского остаются
+ * в обычных сегментах — подсвечиваются только сами латинские слова.
+ */
+export function splitExplainSegments(text: string): ExplainSegment[] {
+  const s = String(text ?? '');
+  if (!s) return [];
+  const out: ExplainSegment[] = [];
+  let last = 0;
+  for (const match of s.matchAll(EN_RUN_RE)) {
+    const start = match.index ?? 0;
+    if (start > last) out.push({ text: s.slice(last, start), en: false });
+    out.push({ text: match[0], en: true });
+    last = start + match[0].length;
+  }
+  if (last < s.length) out.push({ text: s.slice(last), en: false });
+  return out;
+}
+
+/** Абзацы объяснения: режем по пустой строке, мусорные края убираем. */
+export function splitExplainParagraphs(text: string): string[] {
+  return String(text ?? '')
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter((p) => p.length > 0);
 }
 
 /** Дружелюбная строка скелетон-лоадера на время генерации (cache MISS). */
@@ -109,15 +158,22 @@ export function loadingLineForLang(lang: string): string {
   });
 }
 
+/** Состояние запроса + ручной повтор (кнопка «Попробовать ещё раз» на degraded-пути). */
+export interface ExplainRequestHandle extends ExplainRequestState {
+  retry: () => void;
+}
+
 /**
  * Запросить объяснение фразы. Вызывается на открытии шторки (enabled=true).
  * Повторный вызов при той же фразе не дёргает сеть, если уже есть результат.
+ * retry() форсит новый сетевой вызов (после ошибки/фолбэка) — кэш-хит бесплатен.
  */
 export function useExplainRequest(
   req: ExplainPhraseRequest,
   enabled: boolean,
-): ExplainRequestState {
+): ExplainRequestHandle {
   const [state, setState] = useState<ExplainRequestState>(INITIAL_STATE);
+  const [attempt, setAttempt] = useState(0);
   // Сторожим против setState после размонтажа (шторку могли закрыть до ответа).
   const mountedRef = useRef(true);
   useEffect(() => {
@@ -159,7 +215,9 @@ export function useExplainRequest(
   useEffect(() => {
     if (!enabled) return;
     void run();
-  }, [enabled, run]);
+  }, [enabled, run, attempt]);
 
-  return state;
+  const retry = useCallback(() => setAttempt((n) => n + 1), []);
+
+  return { ...state, retry };
 }

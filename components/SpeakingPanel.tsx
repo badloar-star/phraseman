@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
+  Linking,
   Modal,
   Platform,
   Pressable,
@@ -44,6 +45,7 @@ export type SpeakingPanelStatus =
   | 'scoring'
   | 'passed'
   | 'failed'
+  | 'no_speech'
   | 'denied'
   | 'unavailable';
 
@@ -152,7 +154,8 @@ export function SpeakingPanel({
       setVoiceLevel(0);
       setStatus('scoring');
       if (!text) {
-        setStatus('failed');
+        // Nothing recognized -> "didn't catch that", not a 0% failure.
+        setStatus('no_speech');
         hapticError();
         return;
       }
@@ -222,11 +225,11 @@ export function SpeakingPanel({
     const errorSub = speech.addListener('error', () => {
       if (mountedRef.current) {
         if (latest) finishAttempt(latest);
-        else setStatus('failed');
+        else setStatus('no_speech');
       }
     });
     const noMatchSub = speech.addListener('nomatch', () => {
-      if (mountedRef.current) setStatus('failed');
+      if (mountedRef.current) setStatus('no_speech');
     });
     // Live volume -> equalizer level. Smoothed so bars glide, not jump.
     const volumeSub = speech.addListener('volumechange', (event: any) => {
@@ -280,8 +283,16 @@ export function SpeakingPanel({
     onClose();
   }, [stopListening, speech, onClose]);
 
+  const openAppSettings = useCallback(() => {
+    hapticTap();
+    Linking.openSettings().catch(() => {
+      /* no-op: some platforms/contexts can't open settings */
+    });
+  }, []);
+
   const listening = status === 'listening';
   const showResult = status === 'passed' || status === 'failed';
+  const isBlocked = status === 'denied' || status === 'unavailable';
   const passThreshold = PLAN_PRONUNCIATION_PASS_THRESHOLD;
 
   const statusLine = (() => {
@@ -302,17 +313,23 @@ export function SpeakingPanel({
         return L(lang, { ru: 'Отлично! Чисто сказано', uk: 'Чудово! Чітко сказано', es: '¡Genial! Bien dicho' });
       case 'failed':
         return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez' });
+      case 'no_speech':
+        return L(lang, {
+          ru: 'Не расслышал. Скажи чуть громче',
+          uk: 'Не розчув. Скажи трохи гучніше',
+          es: 'No te oí. Habla un poco más alto',
+        });
       case 'denied':
         return L(lang, {
-          ru: 'Нужен доступ к микрофону. Включи в настройках',
-          uk: 'Потрібен доступ до мікрофона. Увімкни в налаштуваннях',
-          es: 'Se necesita el micrófono. Actívalo en ajustes',
+          ru: 'Нужен доступ к микрофону',
+          uk: 'Потрібен доступ до мікрофона',
+          es: 'Se necesita el micrófono',
         });
       case 'unavailable':
         return L(lang, {
-          ru: 'Режим говорения недоступен на этом устройстве',
-          uk: 'Режим говоріння недоступний на цьому пристрої',
-          es: 'El modo de voz no está disponible en este dispositivo',
+          ru: 'Это устройство не умеет распознавать речь. Остальные упражнения доступны',
+          uk: 'Цей пристрій не вміє розпізнавати мовлення. Інші вправи доступні',
+          es: 'Este dispositivo no reconoce voz. Los demás ejercicios están disponibles',
         });
       default:
         return '';
@@ -418,36 +435,66 @@ export function SpeakingPanel({
             {statusLine}
           </Text>
 
-          {/* Mic / action button */}
-          <Pressable
-            onPress={listening ? stopListening : startListening}
-            disabled={micDisabled}
-            accessibilityRole="button"
-            accessibilityLabel={
-              listening
-                ? L(lang, { ru: 'Остановить запись', uk: 'Зупинити запис', es: 'Detener' })
-                : L(lang, { ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar' })
-            }
-            accessibilityState={{ disabled: micDisabled, busy: status === 'requesting' || status === 'scoring' }}
-            style={[
-              styles.micBtn,
-              {
-                backgroundColor: listening ? theme.wrong : theme.accent,
-                opacity: micDisabled ? 0.5 : 1,
-              },
-            ]}
-          >
-            {status === 'requesting' || status === 'scoring' ? (
-              <ActivityIndicator color="#fff" />
-            ) : (
-              <Ionicons name={listening ? 'stop' : 'mic'} size={28} color="#fff" />
-            )}
-          </Pressable>
+          {/* Mic button — hidden when blocked (denied/unavailable): there the
+              mic can't help, so a clear action button takes its place. */}
+          {!isBlocked && (
+            <Pressable
+              onPress={listening ? stopListening : startListening}
+              disabled={micDisabled}
+              accessibilityRole="button"
+              accessibilityLabel={
+                listening
+                  ? L(lang, { ru: 'Остановить запись', uk: 'Зупинити запис', es: 'Detener' })
+                  : L(lang, { ru: 'Начать говорить', uk: 'Почати говорити', es: 'Empezar a hablar' })
+              }
+              accessibilityState={{ disabled: micDisabled, busy: status === 'requesting' || status === 'scoring' }}
+              style={[
+                styles.micBtn,
+                {
+                  backgroundColor: listening ? theme.wrong : theme.accent,
+                  opacity: micDisabled ? 0.5 : 1,
+                },
+              ]}
+            >
+              {status === 'requesting' || status === 'scoring' ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <Ionicons name={listening ? 'stop' : 'mic'} size={28} color="#fff" />
+              )}
+            </Pressable>
+          )}
 
-          {(status === 'failed' || status === 'passed') && (
+          {/* Retry link after an attempt (pass / fail / nothing heard). */}
+          {(status === 'failed' || status === 'passed' || status === 'no_speech') && (
             <Pressable onPress={startListening} hitSlop={8} style={styles.retry}>
               <Text style={[styles.retryText, { color: theme.accent }]}>
                 {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo' })}
+              </Text>
+            </Pressable>
+          )}
+
+          {/* Denied -> deep-link to system settings so the user can grant mic. */}
+          {status === 'denied' && (
+            <Pressable
+              onPress={openAppSettings}
+              accessibilityRole="button"
+              style={[styles.actionBtn, { backgroundColor: theme.accent }]}
+            >
+              <Text style={styles.actionBtnText}>
+                {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes' })}
+              </Text>
+            </Pressable>
+          )}
+
+          {/* Unavailable -> not a dead end: a calm "Got it" closes the panel. */}
+          {status === 'unavailable' && (
+            <Pressable
+              onPress={handleClose}
+              accessibilityRole="button"
+              style={[styles.actionBtn, { backgroundColor: theme.accent }]}
+            >
+              <Text style={styles.actionBtnText}>
+                {L(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}
               </Text>
             </Pressable>
           )}
@@ -501,6 +548,15 @@ const styles = StyleSheet.create({
   },
   retry: { marginTop: 16 },
   retryText: { fontSize: 15, fontWeight: '600' },
+  actionBtn: {
+    marginTop: 18,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 14,
+    minWidth: 180,
+    alignItems: 'center',
+  },
+  actionBtnText: { color: '#fff', fontSize: 15, fontWeight: '700' },
 });
 
 export default SpeakingPanel;

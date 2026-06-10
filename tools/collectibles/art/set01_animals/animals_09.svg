@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Слон в комнате">
+<rect x="14" y="118" width="172" height="8" rx="4" fill="#4A4063"/>
+<rect x="150" y="52" width="6" height="66" rx="3" fill="#C4A24E"/>
+<path d="M136 52h34l-6-16h-22z" fill="#E8C56A"/>
+<rect x="20" y="86" width="38" height="32" rx="8" fill="#9A5BB5"/>
+<rect x="16" y="80" width="46" height="14" rx="7" fill="#B077C9"/>
+<path d="M70 118c-4-26 8-48 32-54 22-6 44 4 50 24 4 16-2 28-12 30l-2-14c-4 10-14 14-24 14H82z" fill="#8FA3C8"/>
+<path d="M148 86c10 0 16 8 14 18-2 8-8 12-14 12" fill="none" stroke="#7288AE" stroke-width="9" stroke-linecap="round"/>
+<circle cx="124" cy="84" r="4.6" fill="#1B2438"/>
+<path d="M96 72c-8-6-10-16-6-24 8 2 14 8 16 16z" fill="#7288AE"/>
+<path d="M84 118v14M118 118v14" stroke="#8FA3C8" stroke-width="10" stroke-linecap="round"/>
+</svg>

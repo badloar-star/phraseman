@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Волк в овечьей шкуре">
+<ellipse cx="100" cy="146" rx="54" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M100 22c34 0 56 22 58 48 2 22-8 40-22 50H64c-14-10-24-28-22-50 2-26 24-48 58-48z" fill="#F5F0E6"/>
+<circle cx="58" cy="46" r="16" fill="#F5F0E6"/><circle cx="142" cy="46" r="16" fill="#F5F0E6"/>
+<circle cx="76" cy="34" r="14" fill="#F5F0E6"/><circle cx="124" cy="34" r="14" fill="#F5F0E6"/><circle cx="100" cy="28" r="15" fill="#F5F0E6"/>
+<path d="M100 58c20 0 34 14 34 34 0 12-6 22-16 28H82c-10-6-16-16-16-28 0-20 14-34 34-34z" fill="#8B93A7"/>
+<path d="M100 84l-26 22c2 8 8 12 14 14h24c6-2 12-6 14-14z" fill="#6E7689"/>
+<circle cx="86" cy="86" r="5" fill="#FFD23F"/><circle cx="114" cy="86" r="5" fill="#FFD23F"/>
+<circle cx="86" cy="86" r="2.2" fill="#16243A"/><circle cx="114" cy="86" r="2.2" fill="#16243A"/>
+<ellipse cx="100" cy="106" rx="7" ry="5" fill="#2B3142"/>
+<path d="M92 116l4 5 4-5 4 5 4-5" stroke="#2B3142" stroke-width="3" stroke-linecap="round" fill="none"/>
+</svg>

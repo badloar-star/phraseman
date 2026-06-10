@@ -2,489 +2,2786 @@
   "version": 1,
   "generatedFor": "Сокровищница (collectibles) — каталог 300 фраз + 30 секретных, 30 сетов",
   "rarityDistribution": {
-    "A": { "common": 5, "rare": 3, "epic": 2, "legendary": 0 },
-    "B": { "common": 5, "rare": 3, "epic": 1, "legendary": 1 }
+    "A": {
+      "common": 5,
+      "rare": 3,
+      "epic": 2,
+      "legendary": 0
+    },
+    "B": {
+      "common": 5,
+      "rare": 3,
+      "epic": 1,
+      "legendary": 1
+    }
   },
-  "statuses": ["seed", "texts_done", "art_done", "ready"],
+  "statuses": [
+    "seed",
+    "texts_done",
+    "art_done",
+    "ready"
+  ],
   "sets": [
     {
-      "setId": "set01_animals", "order": 1, "type": "B", "titleRu": "Животные", "titleEn": "Animals", "icon": "paw", "status": "texts_done",
-      "secret": { "id": "animals_secret", "en": "Top dog", "ipa": "tɒp dɒɡ", "ru": "Главный, лучший", "literalRu": "верхний пёс", "meaningRu": "Самый главный или самый успешный человек в группе.", "exampleEn": "After the promotion, she's the top dog now.", "exampleRu": "После повышения теперь она тут главная.", "originRu": "Из собачьих боёв: победитель оказывался сверху — «верхним псом».", "status": "texts_done" },
+      "setId": "set01_animals",
+      "order": 1,
+      "type": "B",
+      "titleRu": "Животные",
+      "titleEn": "Animals",
+      "icon": "paw",
+      "status": "texts_done",
+      "secret": {
+        "id": "animals_secret",
+        "en": "Top dog",
+        "ipa": "tɒp dɒɡ",
+        "ru": "Главный, лучший",
+        "literalRu": "верхний пёс",
+        "meaningRu": "Самый главный или самый успешный человек в группе.",
+        "exampleEn": "After the promotion, she's the top dog now.",
+        "exampleRu": "После повышения теперь она тут главная.",
+        "originRu": "Из собачьих боёв: победитель оказывался сверху — «верхним псом».",
+        "status": "texts_done"
+      },
       "cards": [
-        { "id": "animals_01", "en": "Hold your horses", "ipa": "həʊld jɔː ˈhɔːsɪz", "ru": "Придержи коней", "literalRu": "придержи своих лошадей", "meaningRu": "Не торопись, подожди.", "exampleEn": "Hold your horses! Let me finish my coffee first.", "exampleRu": "Придержи коней! Дай сначала допить кофе.", "originRu": "Из времён конных повозок: чтобы остановиться, кучер натягивал поводья.", "rarity": "common", "art": "horse", "status": "texts_done" },
-        { "id": "animals_02", "en": "A little bird told me", "ipa": "ə ˈlɪtl bɜːd təʊld miː", "ru": "Сорока на хвосте принесла", "literalRu": "маленькая птичка мне сказала", "meaningRu": "Узнал по секрету — не скажу от кого.", "exampleEn": "A little bird told me it's your birthday tomorrow!", "exampleRu": "Птичка нашептала, что у тебя завтра день рождения!", "originRu": "Птицы-вестники — образ из древних историй и даже из Библии.", "rarity": "common", "art": "bird", "status": "texts_done" },
-        { "id": "animals_03", "en": "A wolf in sheep's clothing", "ipa": "wʊlf ɪn ʃiːps ˈkləʊðɪŋ", "ru": "Волк в овечьей шкуре", "literalRu": "волк в овечьей одежде", "meaningRu": "Опасный человек, притворяющийся добрым.", "exampleEn": "Be careful — he's a wolf in sheep's clothing.", "exampleRu": "Осторожно — он волк в овечьей шкуре.", "originRu": "Из басни Эзопа и Евангелия от Матфея — выражению больше 2000 лет.", "rarity": "common", "art": "wolf", "status": "texts_done" },
-        { "id": "animals_04", "en": "Busy as a bee", "ipa": "ˈbɪzi əz ə biː", "ru": "Трудится как пчёлка", "literalRu": "занят как пчела", "meaningRu": "Очень занятой и работящий.", "exampleEn": "Mom has been busy as a bee all morning.", "exampleRu": "Мама всё утро крутится как пчёлка.", "originRu": "Впервые — у Чосера в «Кентерберийских рассказах», XIV век!", "rarity": "common", "art": "bee", "status": "texts_done" },
-        { "id": "animals_05", "en": "Curiosity killed the cat", "ipa": "ˌkjʊəriˈɒsɪti kɪld ðə kæt", "ru": "Любопытной Варваре…", "literalRu": "любопытство убило кошку", "meaningRu": "Излишнее любопытство до добра не доводит.", "exampleEn": "Why do you ask? Curiosity killed the cat!", "exampleRu": "А зачем тебе? Любопытной Варваре нос оторвали!", "originRu": "Сначала говорили «care killed the cat» — «забота сгубила кота» (XVI век, Бен Джонсон и Шекспир).", "rarity": "common", "art": "catbox", "status": "texts_done" },
-        { "id": "animals_06", "en": "Let the cat out of the bag", "ipa": "let ðə kæt aʊt əv ðə bæɡ", "ru": "Проболтаться, выдать секрет", "literalRu": "выпустить кота из мешка", "meaningRu": "Случайно раскрыть тайну.", "exampleEn": "Oops, I let the cat out of the bag about the party.", "exampleRu": "Упс, я проболтался про вечеринку.", "originRu": "На средневековых рынках вместо поросёнка в мешок подсовывали кота. Кот выскочил — обман раскрыт!", "rarity": "rare", "art": "catbag", "status": "texts_done" },
-        { "id": "animals_07", "en": "When pigs fly", "ipa": "wen pɪɡz flaɪ", "ru": "Когда рак на горе свистнет", "literalRu": "когда свиньи полетят", "meaningRu": "Никогда этого не будет.", "exampleEn": "He'll clean his room when pigs fly.", "exampleRu": "Он уберётся в комнате, когда рак на горе свистнет.", "originRu": "Старинная шотландская присказка: свинья — то, что точно не полетит.", "rarity": "rare", "art": "pig", "status": "texts_done" },
-        { "id": "animals_08", "en": "A night owl", "ipa": "ə naɪt aʊl", "ru": "Сова, полуночник", "literalRu": "ночная сова", "meaningRu": "Человек, который любит не спать допоздна.", "exampleEn": "I'm a night owl — my best ideas come after midnight.", "exampleRu": "Я сова — лучшие идеи приходят после полуночи.", "originRu": "Совы охотятся ночью; о людях так говорят со времён Шекспира.", "rarity": "rare", "art": "owl", "status": "texts_done" },
-        { "id": "animals_09", "en": "The elephant in the room", "ipa": "ði ˈelɪfənt ɪn ðə ruːm", "ru": "Слон в комнате", "literalRu": "слон в комнате", "meaningRu": "Огромная проблема, которую все замечают, но молчат.", "exampleEn": "Let's talk about the elephant in the room — our budget.", "exampleRu": "Давайте обсудим слона в комнате — наш бюджет.", "originRu": "Родом из басни Крылова «Любопытный» (1814): герой заметил в музее всё… кроме слона!", "rarity": "epic", "art": "elephant", "status": "texts_done" },
-        { "id": "animals_10", "en": "The bee's knees", "ipa": "ðə biːz niːz", "ru": "Высший класс, просто блеск", "literalRu": "пчелиные коленки", "meaningRu": "Нечто превосходное, самое лучшее.", "exampleEn": "This new café is the bee's knees!", "exampleRu": "Это новое кафе — просто блеск!", "originRu": "Америка 1920-х, эпоха джаза: модные шутливые фразы вроде «the cat's pajamas». Пчела несёт пыльцу на «коленках» — самое ценное.", "rarity": "legendary", "art": "beeknees", "status": "texts_done" }
+        {
+          "id": "animals_01",
+          "en": "Hold your horses",
+          "ipa": "həʊld jɔː ˈhɔːsɪz",
+          "ru": "Придержи коней",
+          "literalRu": "придержи своих лошадей",
+          "meaningRu": "Не торопись, подожди.",
+          "exampleEn": "Hold your horses! Let me finish my coffee first.",
+          "exampleRu": "Придержи коней! Дай сначала допить кофе.",
+          "originRu": "Из времён конных повозок: чтобы остановиться, кучер натягивал поводья.",
+          "rarity": "common",
+          "art": "set01_animals/animals_01",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_02",
+          "en": "A little bird told me",
+          "ipa": "ə ˈlɪtl bɜːd təʊld miː",
+          "ru": "Сорока на хвосте принесла",
+          "literalRu": "маленькая птичка мне сказала",
+          "meaningRu": "Узнал по секрету — не скажу от кого.",
+          "exampleEn": "A little bird told me it's your birthday tomorrow!",
+          "exampleRu": "Птичка нашептала, что у тебя завтра день рождения!",
+          "originRu": "Птицы-вестники — образ из древних историй и даже из Библии.",
+          "rarity": "common",
+          "art": "set01_animals/animals_02",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_03",
+          "en": "A wolf in sheep's clothing",
+          "ipa": "wʊlf ɪn ʃiːps ˈkləʊðɪŋ",
+          "ru": "Волк в овечьей шкуре",
+          "literalRu": "волк в овечьей одежде",
+          "meaningRu": "Опасный человек, притворяющийся добрым.",
+          "exampleEn": "Be careful — he's a wolf in sheep's clothing.",
+          "exampleRu": "Осторожно — он волк в овечьей шкуре.",
+          "originRu": "Из басни Эзопа и Евангелия от Матфея — выражению больше 2000 лет.",
+          "rarity": "common",
+          "art": "set01_animals/animals_03",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_04",
+          "en": "Busy as a bee",
+          "ipa": "ˈbɪzi əz ə biː",
+          "ru": "Трудится как пчёлка",
+          "literalRu": "занят как пчела",
+          "meaningRu": "Очень занятой и работящий.",
+          "exampleEn": "Mom has been busy as a bee all morning.",
+          "exampleRu": "Мама всё утро крутится как пчёлка.",
+          "originRu": "Впервые — у Чосера в «Кентерберийских рассказах», XIV век!",
+          "rarity": "common",
+          "art": "set01_animals/animals_04",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_05",
+          "en": "Curiosity killed the cat",
+          "ipa": "ˌkjʊəriˈɒsɪti kɪld ðə kæt",
+          "ru": "Любопытной Варваре…",
+          "literalRu": "любопытство убило кошку",
+          "meaningRu": "Излишнее любопытство до добра не доводит.",
+          "exampleEn": "Why do you ask? Curiosity killed the cat!",
+          "exampleRu": "А зачем тебе? Любопытной Варваре нос оторвали!",
+          "originRu": "Сначала говорили «care killed the cat» — «забота сгубила кота» (XVI век, Бен Джонсон и Шекспир).",
+          "rarity": "common",
+          "art": "set01_animals/animals_05",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_06",
+          "en": "Let the cat out of the bag",
+          "ipa": "let ðə kæt aʊt əv ðə bæɡ",
+          "ru": "Проболтаться, выдать секрет",
+          "literalRu": "выпустить кота из мешка",
+          "meaningRu": "Случайно раскрыть тайну.",
+          "exampleEn": "Oops, I let the cat out of the bag about the party.",
+          "exampleRu": "Упс, я проболтался про вечеринку.",
+          "originRu": "На средневековых рынках вместо поросёнка в мешок подсовывали кота. Кот выскочил — обман раскрыт!",
+          "rarity": "rare",
+          "art": "set01_animals/animals_06",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_07",
+          "en": "When pigs fly",
+          "ipa": "wen pɪɡz flaɪ",
+          "ru": "Когда рак на горе свистнет",
+          "literalRu": "когда свиньи полетят",
+          "meaningRu": "Никогда этого не будет.",
+          "exampleEn": "He'll clean his room when pigs fly.",
+          "exampleRu": "Он уберётся в комнате, когда рак на горе свистнет.",
+          "originRu": "Старинная шотландская присказка: свинья — то, что точно не полетит.",
+          "rarity": "rare",
+          "art": "set01_animals/animals_07",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_08",
+          "en": "A night owl",
+          "ipa": "ə naɪt aʊl",
+          "ru": "Сова, полуночник",
+          "literalRu": "ночная сова",
+          "meaningRu": "Человек, который любит не спать допоздна.",
+          "exampleEn": "I'm a night owl — my best ideas come after midnight.",
+          "exampleRu": "Я сова — лучшие идеи приходят после полуночи.",
+          "originRu": "Совы охотятся ночью; о людях так говорят со времён Шекспира.",
+          "rarity": "rare",
+          "art": "set01_animals/animals_08",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_09",
+          "en": "The elephant in the room",
+          "ipa": "ði ˈelɪfənt ɪn ðə ruːm",
+          "ru": "Слон в комнате",
+          "literalRu": "слон в комнате",
+          "meaningRu": "Огромная проблема, которую все замечают, но молчат.",
+          "exampleEn": "Let's talk about the elephant in the room — our budget.",
+          "exampleRu": "Давайте обсудим слона в комнате — наш бюджет.",
+          "originRu": "Родом из басни Крылова «Любопытный» (1814): герой заметил в музее всё… кроме слона!",
+          "rarity": "epic",
+          "art": "set01_animals/animals_09",
+          "status": "art_done"
+        },
+        {
+          "id": "animals_10",
+          "en": "The bee's knees",
+          "ipa": "ðə biːz niːz",
+          "ru": "Высший класс, просто блеск",
+          "literalRu": "пчелиные коленки",
+          "meaningRu": "Нечто превосходное, самое лучшее.",
+          "exampleEn": "This new café is the bee's knees!",
+          "exampleRu": "Это новое кафе — просто блеск!",
+          "originRu": "Америка 1920-х, эпоха джаза: модные шутливые фразы вроде «the cat's pajamas». Пчела несёт пыльцу на «коленках» — самое ценное.",
+          "rarity": "legendary",
+          "art": "set01_animals/animals_10",
+          "status": "art_done"
+        }
       ]
     },
     {
-      "setId": "set02_food", "order": 2, "type": "B", "titleRu": "Еда и кухня", "titleEn": "Food & Kitchen", "icon": "fork", "status": "texts_done",
-      "secret": { "id": "food_secret", "en": "Food coma", "ipa": "fuːd ˈkəʊmə", "ru": "Пищевая кома", "literalRu": "пищевая кома", "meaningRu": "Сонливость и лень после очень сытной еды.", "exampleEn": "After that pizza I'm in a food coma.", "exampleRu": "После этой пиццы я в пищевой коме.", "originRu": "Шутливый «медицинский» термин из Америки 1980-х — наука зовёт это postprandial somnolence.", "status": "texts_done" },
+      "setId": "set02_food",
+      "order": 2,
+      "type": "B",
+      "titleRu": "Еда и кухня",
+      "titleEn": "Food & Kitchen",
+      "icon": "fork",
+      "status": "texts_done",
+      "secret": {
+        "id": "food_secret",
+        "en": "Food coma",
+        "ipa": "fuːd ˈkəʊmə",
+        "ru": "Пищевая кома",
+        "literalRu": "пищевая кома",
+        "meaningRu": "Сонливость и лень после очень сытной еды.",
+        "exampleEn": "After that pizza I'm in a food coma.",
+        "exampleRu": "После этой пиццы я в пищевой коме.",
+        "originRu": "Шутливый «медицинский» термин из Америки 1980-х — наука зовёт это postprandial somnolence.",
+        "status": "texts_done"
+      },
       "cards": [
-        { "id": "food_01", "en": "A piece of cake", "ipa": "ə piːs əv keɪk", "ru": "Проще простого", "literalRu": "кусок торта", "meaningRu": "Очень лёгкое дело.", "exampleEn": "Don't worry, the test was a piece of cake.", "exampleRu": "Не волнуйся, тест оказался проще простого.", "originRu": "Америка 1870-х: на конкурсах танца cakewalk призом был торт — победа доставалась легко.", "rarity": "common", "art": "", "status": "texts_done" },
-        { "id": "food_02", "en": "In a nutshell", "ipa": "ɪn ə ˈnʌtʃel", "ru": "В двух словах", "literalRu": "в ореховой скорлупе", "meaningRu": "Коротко, самая суть.", "exampleEn": "In a nutshell, we won.", "exampleRu": "В двух словах — мы победили.", "originRu": "Плиний Старший уверял, что «Илиаду» переписали так мелко, что она поместилась бы в скорлупу ореха.", "rarity": "common", "art": "", "status": "texts_done" },
-        { "id": "food_03", "en": "Spill the beans", "ipa": "spɪl ðə biːnz", "ru": "Проболтаться", "literalRu": "рассыпать бобы", "meaningRu": "Выдать секрет раньше времени.", "exampleEn": "Who spilled the beans about the surprise?", "exampleRu": "Кто проболтался про сюрприз?", "originRu": "В Древней Греции голосовали бобами: белый — «за», тёмный — «против». Опрокинул сосуд — раскрыл результат!", "rarity": "common", "art": "", "status": "texts_done" },
-        { "id": "food_04", "en": "Not my cup of tea", "ipa": "nɒt maɪ kʌp əv tiː", "ru": "Не моё", "literalRu": "не моя чашка чая", "meaningRu": "Не нравится, не подходит мне.", "exampleEn": "Horror movies are not my cup of tea.", "exampleRu": "Ужастики — не моё.", "originRu": "Англичане так любят чай, что «своя чашка» стала мерой всего приятного. В отрицательной форме — с 1930-х.", "rarity": "common", "art": "", "status": "texts_done" },
-        { "id": "food_05", "en": "Bread and butter", "ipa": "bred ənd ˈbʌtə", "ru": "Хлеб насущный", "literalRu": "хлеб с маслом", "meaningRu": "Основной заработок, главное дело.", "exampleEn": "Teaching is my bread and butter.", "exampleRu": "Преподавание — мой основной хлеб.", "originRu": "Хлеб с маслом веками был самой базовой едой — без него никак.", "rarity": "common", "art": "", "status": "texts_done" },
-        { "id": "food_06", "en": "Butter someone up", "ipa": "ˈbʌtə ˈsʌmwʌn ʌp", "ru": "Подмасливать", "literalRu": "намазать кого-то маслом", "meaningRu": "Льстить ради выгоды.", "exampleEn": "He's buttering up the boss for a raise.", "exampleRu": "Он подмасливает шефа ради прибавки.", "originRu": "По одной из версий — от древнего обычая бросать шарики масла в статуи богов, прося милости.", "rarity": "rare", "art": "", "status": "texts_done" },
-        { "id": "food_07", "en": "Have bigger fish to fry", "ipa": "hæv ˈbɪɡə fɪʃ tə fraɪ", "ru": "Есть дела поважнее", "literalRu": "есть рыба покрупнее для жарки", "meaningRu": "Заняты более важными делами.", "exampleEn": "I can't argue now — I have bigger fish to fry.", "exampleRu": "Некогда спорить — у меня дела поважнее.", "originRu": "Выражению больше 350 лет — оно встречается ещё в раннем переводе «Дон Кихота».", "rarity": "rare", "art": "", "status": "texts_done" },
-        { "id": "food_08", "en": "Sell like hot cakes", "ipa": "sel laɪk hɒt keɪks", "ru": "Разлетаться как горячие пирожки", "literalRu": "продаваться как горячие лепёшки", "meaningRu": "Раскупаться мгновенно.", "exampleEn": "The tickets are selling like hot cakes.", "exampleRu": "Билеты разлетаются как горячие пирожки.", "originRu": "На американских ярмарках XIX века горячие лепёшки расходились быстрее, чем их успевали печь.", "rarity": "rare", "art": "", "status": "texts_done" },
-        { "id": "food_09", "en": "The icing on the cake", "ipa": "ði ˈaɪsɪŋ ɒn ðə keɪk", "ru": "Вишенка на торте", "literalRu": "глазурь на торте", "meaningRu": "Приятное дополнение к тому, что и так хорошо.", "exampleEn": "The bonus was the icing on the cake.", "exampleRu": "Премия стала вишенкой на торте.", "originRu": "Торт хорош и без глазури — но с ней совсем праздник. В переносном смысле — с начала XX века.", "rarity": "epic", "art": "", "status": "texts_done" },
-        { "id": "food_10", "en": "Cool as a cucumber", "ipa": "kuːl əz ə ˈkjuːkʌmbə", "ru": "Спокоен как удав", "literalRu": "прохладен как огурец", "meaningRu": "Абсолютно невозмутимый даже в стрессе.", "exampleEn": "She stayed cool as a cucumber during the interview.", "exampleRu": "На собеседовании она была спокойна как удав.", "originRu": "Мякоть огурца и правда на несколько градусов прохладнее воздуха — это подметили поэты ещё в XVIII веке!", "rarity": "legendary", "art": "", "status": "texts_done" }
+        {
+          "id": "food_01",
+          "en": "A piece of cake",
+          "ipa": "ə piːs əv keɪk",
+          "ru": "Проще простого",
+          "literalRu": "кусок торта",
+          "meaningRu": "Очень лёгкое дело.",
+          "exampleEn": "Don't worry, the test was a piece of cake.",
+          "exampleRu": "Не волнуйся, тест оказался проще простого.",
+          "originRu": "Америка 1870-х: на конкурсах танца cakewalk призом был торт — победа доставалась легко.",
+          "rarity": "common",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_02",
+          "en": "In a nutshell",
+          "ipa": "ɪn ə ˈnʌtʃel",
+          "ru": "В двух словах",
+          "literalRu": "в ореховой скорлупе",
+          "meaningRu": "Коротко, самая суть.",
+          "exampleEn": "In a nutshell, we won.",
+          "exampleRu": "В двух словах — мы победили.",
+          "originRu": "Плиний Старший уверял, что «Илиаду» переписали так мелко, что она поместилась бы в скорлупу ореха.",
+          "rarity": "common",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_03",
+          "en": "Spill the beans",
+          "ipa": "spɪl ðə biːnz",
+          "ru": "Проболтаться",
+          "literalRu": "рассыпать бобы",
+          "meaningRu": "Выдать секрет раньше времени.",
+          "exampleEn": "Who spilled the beans about the surprise?",
+          "exampleRu": "Кто проболтался про сюрприз?",
+          "originRu": "В Древней Греции голосовали бобами: белый — «за», тёмный — «против». Опрокинул сосуд — раскрыл результат!",
+          "rarity": "common",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_04",
+          "en": "Not my cup of tea",
+          "ipa": "nɒt maɪ kʌp əv tiː",
+          "ru": "Не моё",
+          "literalRu": "не моя чашка чая",
+          "meaningRu": "Не нравится, не подходит мне.",
+          "exampleEn": "Horror movies are not my cup of tea.",
+          "exampleRu": "Ужастики — не моё.",
+          "originRu": "Англичане так любят чай, что «своя чашка» стала мерой всего приятного. В отрицательной форме — с 1930-х.",
+          "rarity": "common",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_05",
+          "en": "Bread and butter",
+          "ipa": "bred ənd ˈbʌtə",
+          "ru": "Хлеб насущный",
+          "literalRu": "хлеб с маслом",
+          "meaningRu": "Основной заработок, главное дело.",
+          "exampleEn": "Teaching is my bread and butter.",
+          "exampleRu": "Преподавание — мой основной хлеб.",
+          "originRu": "Хлеб с маслом веками был самой базовой едой — без него никак.",
+          "rarity": "common",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_06",
+          "en": "Butter someone up",
+          "ipa": "ˈbʌtə ˈsʌmwʌn ʌp",
+          "ru": "Подмасливать",
+          "literalRu": "намазать кого-то маслом",
+          "meaningRu": "Льстить ради выгоды.",
+          "exampleEn": "He's buttering up the boss for a raise.",
+          "exampleRu": "Он подмасливает шефа ради прибавки.",
+          "originRu": "По одной из версий — от древнего обычая бросать шарики масла в статуи богов, прося милости.",
+          "rarity": "rare",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_07",
+          "en": "Have bigger fish to fry",
+          "ipa": "hæv ˈbɪɡə fɪʃ tə fraɪ",
+          "ru": "Есть дела поважнее",
+          "literalRu": "есть рыба покрупнее для жарки",
+          "meaningRu": "Заняты более важными делами.",
+          "exampleEn": "I can't argue now — I have bigger fish to fry.",
+          "exampleRu": "Некогда спорить — у меня дела поважнее.",
+          "originRu": "Выражению больше 350 лет — оно встречается ещё в раннем переводе «Дон Кихота».",
+          "rarity": "rare",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_08",
+          "en": "Sell like hot cakes",
+          "ipa": "sel laɪk hɒt keɪks",
+          "ru": "Разлетаться как горячие пирожки",
+          "literalRu": "продаваться как горячие лепёшки",
+          "meaningRu": "Раскупаться мгновенно.",
+          "exampleEn": "The tickets are selling like hot cakes.",
+          "exampleRu": "Билеты разлетаются как горячие пирожки.",
+          "originRu": "На американских ярмарках XIX века горячие лепёшки расходились быстрее, чем их успевали печь.",
+          "rarity": "rare",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_09",
+          "en": "The icing on the cake",
+          "ipa": "ði ˈaɪsɪŋ ɒn ðə keɪk",
+          "ru": "Вишенка на торте",
+          "literalRu": "глазурь на торте",
+          "meaningRu": "Приятное дополнение к тому, что и так хорошо.",
+          "exampleEn": "The bonus was the icing on the cake.",
+          "exampleRu": "Премия стала вишенкой на торте.",
+          "originRu": "Торт хорош и без глазури — но с ней совсем праздник. В переносном смысле — с начала XX века.",
+          "rarity": "epic",
+          "art": "",
+          "status": "texts_done"
+        },
+        {
+          "id": "food_10",
+          "en": "Cool as a cucumber",
+          "ipa": "kuːl əz ə ˈkjuːkʌmbə",
+          "ru": "Спокоен как удав",
+          "literalRu": "прохладен как огурец",
+          "meaningRu": "Абсолютно невозмутимый даже в стрессе.",
+          "exampleEn": "She stayed cool as a cucumber during the interview.",
+          "exampleRu": "На собеседовании она была спокойна как удав.",
+          "originRu": "Мякоть огурца и правда на несколько градусов прохладнее воздуха — это подметили поэты ещё в XVIII веке!",
+          "rarity": "legendary",
+          "art": "",
+          "status": "texts_done"
+        }
       ]
     },
     {
-      "setId": "set03_weather", "order": 3, "type": "A", "titleRu": "Погода", "titleEn": "Weather", "icon": "cloud", "status": "seed",
-      "secret": { "id": "weather_secret", "en": "A fair-weather friend", "ru": "Друг до первой беды", "status": "seed" },
+      "setId": "set03_weather",
+      "order": 3,
+      "type": "A",
+      "titleRu": "Погода",
+      "titleEn": "Weather",
+      "icon": "cloud",
+      "status": "seed",
+      "secret": {
+        "id": "weather_secret",
+        "en": "A fair-weather friend",
+        "ru": "Друг до первой беды",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "weather_01", "en": "Under the weather", "ru": "Нездоровится", "rarity": "common", "status": "seed" },
-        { "id": "weather_02", "en": "Come rain or shine", "ru": "При любых обстоятельствах", "rarity": "common", "status": "seed" },
-        { "id": "weather_03", "en": "Save for a rainy day", "ru": "Отложить на чёрный день", "rarity": "common", "status": "seed" },
-        { "id": "weather_04", "en": "Break the ice", "ru": "Растопить лёд", "rarity": "common", "status": "seed" },
-        { "id": "weather_05", "en": "Take a rain check", "ru": "Перенести на другой раз", "rarity": "common", "status": "seed" },
-        { "id": "weather_06", "en": "A storm in a teacup", "ru": "Буря в стакане воды", "rarity": "rare", "status": "seed" },
-        { "id": "weather_07", "en": "On cloud nine", "ru": "На седьмом небе", "rarity": "rare", "status": "seed" },
-        { "id": "weather_08", "en": "Steal someone's thunder", "ru": "Украсть чьи-то лавры", "rarity": "rare", "status": "seed" },
-        { "id": "weather_09", "en": "It's raining cats and dogs", "ru": "Льёт как из ведра", "rarity": "epic", "status": "seed" },
-        { "id": "weather_10", "en": "The calm before the storm", "ru": "Затишье перед бурей", "rarity": "epic", "status": "seed" }
+        {
+          "id": "weather_01",
+          "en": "Under the weather",
+          "ru": "Нездоровится",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "weather_02",
+          "en": "Come rain or shine",
+          "ru": "При любых обстоятельствах",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "weather_03",
+          "en": "Save for a rainy day",
+          "ru": "Отложить на чёрный день",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "weather_04",
+          "en": "Break the ice",
+          "ru": "Растопить лёд",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "weather_05",
+          "en": "Take a rain check",
+          "ru": "Перенести на другой раз",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "weather_06",
+          "en": "A storm in a teacup",
+          "ru": "Буря в стакане воды",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "weather_07",
+          "en": "On cloud nine",
+          "ru": "На седьмом небе",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "weather_08",
+          "en": "Steal someone's thunder",
+          "ru": "Украсть чьи-то лавры",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "weather_09",
+          "en": "It's raining cats and dogs",
+          "ru": "Льёт как из ведра",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "weather_10",
+          "en": "The calm before the storm",
+          "ru": "Затишье перед бурей",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set04_money", "order": 4, "type": "B", "titleRu": "Деньги", "titleEn": "Money", "icon": "coin", "status": "seed",
-      "secret": { "id": "money_secret", "en": "Cha-ching!", "ru": "Деньги! (звук кассы)", "status": "seed" },
+      "setId": "set04_money",
+      "order": 4,
+      "type": "B",
+      "titleRu": "Деньги",
+      "titleEn": "Money",
+      "icon": "coin",
+      "status": "seed",
+      "secret": {
+        "id": "money_secret",
+        "en": "Cha-ching!",
+        "ru": "Деньги! (звук кассы)",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "money_01", "en": "Cost an arm and a leg", "ru": "Стоить бешеных денег", "rarity": "common", "status": "seed" },
-        { "id": "money_02", "en": "From rags to riches", "ru": "Из грязи в князи", "rarity": "common", "status": "seed" },
-        { "id": "money_03", "en": "Money talks", "ru": "Деньги решают всё", "rarity": "common", "status": "seed" },
-        { "id": "money_04", "en": "Tighten your belt", "ru": "Затянуть пояс", "rarity": "common", "status": "seed" },
-        { "id": "money_05", "en": "Worth every penny", "ru": "Стоит каждой копейки", "rarity": "common", "status": "seed" },
-        { "id": "money_06", "en": "Break the bank", "ru": "Разориться, слишком дорого", "rarity": "rare", "status": "seed" },
-        { "id": "money_07", "en": "A nest egg", "ru": "Заначка, накопления", "rarity": "rare", "status": "seed" },
-        { "id": "money_08", "en": "Born with a silver spoon", "ru": "Родился в богатой семье", "rarity": "rare", "status": "seed" },
-        { "id": "money_09", "en": "Money doesn't grow on trees", "ru": "Деньги не растут на деревьях", "rarity": "epic", "status": "seed" },
-        { "id": "money_10", "en": "Bring home the bacon", "ru": "Зарабатывать на жизнь", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "money_01",
+          "en": "Cost an arm and a leg",
+          "ru": "Стоить бешеных денег",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "money_02",
+          "en": "From rags to riches",
+          "ru": "Из грязи в князи",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "money_03",
+          "en": "Money talks",
+          "ru": "Деньги решают всё",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "money_04",
+          "en": "Tighten your belt",
+          "ru": "Затянуть пояс",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "money_05",
+          "en": "Worth every penny",
+          "ru": "Стоит каждой копейки",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "money_06",
+          "en": "Break the bank",
+          "ru": "Разориться, слишком дорого",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "money_07",
+          "en": "A nest egg",
+          "ru": "Заначка, накопления",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "money_08",
+          "en": "Born with a silver spoon",
+          "ru": "Родился в богатой семье",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "money_09",
+          "en": "Money doesn't grow on trees",
+          "ru": "Деньги не растут на деревьях",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "money_10",
+          "en": "Bring home the bacon",
+          "ru": "Зарабатывать на жизнь",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set05_emotions", "order": 5, "type": "A", "titleRu": "Эмоции", "titleEn": "Emotions", "icon": "heart", "status": "seed",
-      "secret": { "id": "emotions_secret", "en": "Hangry", "ru": "Голодный и злой одновременно", "status": "seed" },
+      "setId": "set05_emotions",
+      "order": 5,
+      "type": "A",
+      "titleRu": "Эмоции",
+      "titleEn": "Emotions",
+      "icon": "heart",
+      "status": "seed",
+      "secret": {
+        "id": "emotions_secret",
+        "en": "Hangry",
+        "ru": "Голодный и злой одновременно",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "emotions_01", "en": "Over the moon", "ru": "Вне себя от счастья", "rarity": "common", "status": "seed" },
-        { "id": "emotions_02", "en": "Down in the dumps", "ru": "Как в воду опущенный", "rarity": "common", "status": "seed" },
-        { "id": "emotions_03", "en": "Butterflies in my stomach", "ru": "Бабочки в животе", "rarity": "common", "status": "seed" },
-        { "id": "emotions_04", "en": "Lose your temper", "ru": "Выйти из себя", "rarity": "common", "status": "seed" },
-        { "id": "emotions_05", "en": "Get cold feet", "ru": "Струсить в последний момент", "rarity": "common", "status": "seed" },
-        { "id": "emotions_06", "en": "Blow off steam", "ru": "Выпустить пар", "rarity": "rare", "status": "seed" },
-        { "id": "emotions_07", "en": "A lump in my throat", "ru": "Ком в горле", "rarity": "rare", "status": "seed" },
-        { "id": "emotions_08", "en": "Wear your heart on your sleeve", "ru": "Душа нараспашку", "rarity": "rare", "status": "seed" },
-        { "id": "emotions_09", "en": "Head over heels", "ru": "По уши влюблён", "rarity": "epic", "status": "seed" },
-        { "id": "emotions_10", "en": "Green with envy", "ru": "Позеленел от зависти", "rarity": "epic", "status": "seed" }
+        {
+          "id": "emotions_01",
+          "en": "Over the moon",
+          "ru": "Вне себя от счастья",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_02",
+          "en": "Down in the dumps",
+          "ru": "Как в воду опущенный",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_03",
+          "en": "Butterflies in my stomach",
+          "ru": "Бабочки в животе",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_04",
+          "en": "Lose your temper",
+          "ru": "Выйти из себя",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_05",
+          "en": "Get cold feet",
+          "ru": "Струсить в последний момент",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_06",
+          "en": "Blow off steam",
+          "ru": "Выпустить пар",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_07",
+          "en": "A lump in my throat",
+          "ru": "Ком в горле",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_08",
+          "en": "Wear your heart on your sleeve",
+          "ru": "Душа нараспашку",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_09",
+          "en": "Head over heels",
+          "ru": "По уши влюблён",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "emotions_10",
+          "en": "Green with envy",
+          "ru": "Позеленел от зависти",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set06_time", "order": 6, "type": "B", "titleRu": "Время", "titleEn": "Time", "icon": "clock", "status": "seed",
-      "secret": { "id": "time_secret", "en": "In a jiffy", "ru": "Мигом, в два счёта", "status": "seed" },
+      "setId": "set06_time",
+      "order": 6,
+      "type": "B",
+      "titleRu": "Время",
+      "titleEn": "Time",
+      "icon": "clock",
+      "status": "seed",
+      "secret": {
+        "id": "time_secret",
+        "en": "In a jiffy",
+        "ru": "Мигом, в два счёта",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "time_01", "en": "Better late than never", "ru": "Лучше поздно, чем никогда", "rarity": "common", "status": "seed" },
-        { "id": "time_02", "en": "Time flies", "ru": "Время летит", "rarity": "common", "status": "seed" },
-        { "id": "time_03", "en": "In the nick of time", "ru": "В самый последний момент", "rarity": "common", "status": "seed" },
-        { "id": "time_04", "en": "Around the clock", "ru": "Круглосуточно", "rarity": "common", "status": "seed" },
-        { "id": "time_05", "en": "Call it a day", "ru": "Закончить на сегодня", "rarity": "common", "status": "seed" },
-        { "id": "time_06", "en": "Long time no see", "ru": "Сто лет не виделись", "rarity": "rare", "status": "seed" },
-        { "id": "time_07", "en": "Beat the clock", "ru": "Успеть до дедлайна", "rarity": "rare", "status": "seed" },
-        { "id": "time_08", "en": "A race against time", "ru": "Гонка со временем", "rarity": "rare", "status": "seed" },
-        { "id": "time_09", "en": "The eleventh hour", "ru": "Самый последний момент", "rarity": "epic", "status": "seed" },
-        { "id": "time_10", "en": "Fashionably late", "ru": "Модное опоздание", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "time_01",
+          "en": "Better late than never",
+          "ru": "Лучше поздно, чем никогда",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "time_02",
+          "en": "Time flies",
+          "ru": "Время летит",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "time_03",
+          "en": "In the nick of time",
+          "ru": "В самый последний момент",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "time_04",
+          "en": "Around the clock",
+          "ru": "Круглосуточно",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "time_05",
+          "en": "Call it a day",
+          "ru": "Закончить на сегодня",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "time_06",
+          "en": "Long time no see",
+          "ru": "Сто лет не виделись",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "time_07",
+          "en": "Beat the clock",
+          "ru": "Успеть до дедлайна",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "time_08",
+          "en": "A race against time",
+          "ru": "Гонка со временем",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "time_09",
+          "en": "The eleventh hour",
+          "ru": "Самый последний момент",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "time_10",
+          "en": "Fashionably late",
+          "ru": "Модное опоздание",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set07_body", "order": 7, "type": "A", "titleRu": "Тело и здоровье", "titleEn": "Body & Health", "icon": "hand", "status": "seed",
-      "secret": { "id": "body_secret", "en": "Couch potato", "ru": "Лежебока, домосед", "status": "seed" },
+      "setId": "set07_body",
+      "order": 7,
+      "type": "A",
+      "titleRu": "Тело и здоровье",
+      "titleEn": "Body & Health",
+      "icon": "hand",
+      "status": "seed",
+      "secret": {
+        "id": "body_secret",
+        "en": "Couch potato",
+        "ru": "Лежебока, домосед",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "body_01", "en": "Keep your chin up", "ru": "Не вешай нос", "rarity": "common", "status": "seed" },
-        { "id": "body_02", "en": "I'm all ears", "ru": "Я весь внимание", "rarity": "common", "status": "seed" },
-        { "id": "body_03", "en": "A sweet tooth", "ru": "Сладкоежка", "rarity": "common", "status": "seed" },
-        { "id": "body_04", "en": "See eye to eye", "ru": "Сходиться во взглядах", "rarity": "common", "status": "seed" },
-        { "id": "body_05", "en": "Learn by heart", "ru": "Выучить наизусть", "rarity": "common", "status": "seed" },
-        { "id": "body_06", "en": "Pull someone's leg", "ru": "Разыгрывать, подшучивать", "rarity": "rare", "status": "seed" },
-        { "id": "body_07", "en": "Let your hair down", "ru": "Расслабиться, отпустить себя", "rarity": "rare", "status": "seed" },
-        { "id": "body_08", "en": "Get it off your chest", "ru": "Выговориться", "rarity": "rare", "status": "seed" },
-        { "id": "body_09", "en": "Break a leg", "ru": "Ни пуха ни пера", "rarity": "epic", "status": "seed" },
-        { "id": "body_10", "en": "Head in the clouds", "ru": "Витать в облаках", "rarity": "epic", "status": "seed" }
+        {
+          "id": "body_01",
+          "en": "Keep your chin up",
+          "ru": "Не вешай нос",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "body_02",
+          "en": "I'm all ears",
+          "ru": "Я весь внимание",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "body_03",
+          "en": "A sweet tooth",
+          "ru": "Сладкоежка",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "body_04",
+          "en": "See eye to eye",
+          "ru": "Сходиться во взглядах",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "body_05",
+          "en": "Learn by heart",
+          "ru": "Выучить наизусть",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "body_06",
+          "en": "Pull someone's leg",
+          "ru": "Разыгрывать, подшучивать",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "body_07",
+          "en": "Let your hair down",
+          "ru": "Расслабиться, отпустить себя",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "body_08",
+          "en": "Get it off your chest",
+          "ru": "Выговориться",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "body_09",
+          "en": "Break a leg",
+          "ru": "Ни пуха ни пера",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "body_10",
+          "en": "Head in the clouds",
+          "ru": "Витать в облаках",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set08_travel", "order": 8, "type": "B", "titleRu": "Путешествия", "titleEn": "Travel", "icon": "plane", "status": "seed",
-      "secret": { "id": "travel_secret", "en": "Jet lag", "ru": "Сбой часов после перелёта", "status": "seed" },
+      "setId": "set08_travel",
+      "order": 8,
+      "type": "B",
+      "titleRu": "Путешествия",
+      "titleEn": "Travel",
+      "icon": "plane",
+      "status": "seed",
+      "secret": {
+        "id": "travel_secret",
+        "en": "Jet lag",
+        "ru": "Сбой часов после перелёта",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "travel_01", "en": "Hit the road", "ru": "Отправиться в путь", "rarity": "common", "status": "seed" },
-        { "id": "travel_02", "en": "Off the beaten track", "ru": "Вдали от туристических троп", "rarity": "common", "status": "seed" },
-        { "id": "travel_03", "en": "Travel light", "ru": "Путешествовать налегке", "rarity": "common", "status": "seed" },
-        { "id": "travel_04", "en": "Catch the red-eye", "ru": "Лететь ночным рейсом", "rarity": "common", "status": "seed" },
-        { "id": "travel_05", "en": "On the go", "ru": "На бегу, в движении", "rarity": "common", "status": "seed" },
-        { "id": "travel_06", "en": "Itchy feet", "ru": "Тяга к перемене мест", "rarity": "rare", "status": "seed" },
-        { "id": "travel_07", "en": "Live out of a suitcase", "ru": "Жить на чемоданах", "rarity": "rare", "status": "seed" },
-        { "id": "travel_08", "en": "A home away from home", "ru": "Второй дом", "rarity": "rare", "status": "seed" },
-        { "id": "travel_09", "en": "The world is your oyster", "ru": "Весь мир у твоих ног", "rarity": "epic", "status": "seed" },
-        { "id": "travel_10", "en": "Wanderlust", "ru": "Страсть к путешествиям", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "travel_01",
+          "en": "Hit the road",
+          "ru": "Отправиться в путь",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "travel_02",
+          "en": "Off the beaten track",
+          "ru": "Вдали от туристических троп",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "travel_03",
+          "en": "Travel light",
+          "ru": "Путешествовать налегке",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "travel_04",
+          "en": "Catch the red-eye",
+          "ru": "Лететь ночным рейсом",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "travel_05",
+          "en": "On the go",
+          "ru": "На бегу, в движении",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "travel_06",
+          "en": "Itchy feet",
+          "ru": "Тяга к перемене мест",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "travel_07",
+          "en": "Live out of a suitcase",
+          "ru": "Жить на чемоданах",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "travel_08",
+          "en": "A home away from home",
+          "ru": "Второй дом",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "travel_09",
+          "en": "The world is your oyster",
+          "ru": "Весь мир у твоих ног",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "travel_10",
+          "en": "Wanderlust",
+          "ru": "Страсть к путешествиям",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set09_work", "order": 9, "type": "A", "titleRu": "Работа и карьера", "titleEn": "Work & Career", "icon": "briefcase", "status": "seed",
-      "secret": { "id": "work_secret", "en": "TGIF", "ru": "Слава богу, пятница!", "status": "seed" },
+      "setId": "set09_work",
+      "order": 9,
+      "type": "A",
+      "titleRu": "Работа и карьера",
+      "titleEn": "Work & Career",
+      "icon": "briefcase",
+      "status": "seed",
+      "secret": {
+        "id": "work_secret",
+        "en": "TGIF",
+        "ru": "Слава богу, пятница!",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "work_01", "en": "Get down to business", "ru": "Перейти к делу", "rarity": "common", "status": "seed" },
-        { "id": "work_02", "en": "Climb the career ladder", "ru": "Подниматься по карьерной лестнице", "rarity": "common", "status": "seed" },
-        { "id": "work_03", "en": "Call the shots", "ru": "Командовать, принимать решения", "rarity": "common", "status": "seed" },
-        { "id": "work_04", "en": "Think outside the box", "ru": "Мыслить нестандартно", "rarity": "common", "status": "seed" },
-        { "id": "work_05", "en": "Learn the ropes", "ru": "Освоиться в новом деле", "rarity": "common", "status": "seed" },
-        { "id": "work_06", "en": "Burn the midnight oil", "ru": "Работать по ночам", "rarity": "rare", "status": "seed" },
-        { "id": "work_07", "en": "Cut corners", "ru": "Халтурить, экономить на качестве", "rarity": "rare", "status": "seed" },
-        { "id": "work_08", "en": "Back to the drawing board", "ru": "Начать всё заново", "rarity": "rare", "status": "seed" },
-        { "id": "work_09", "en": "Burnout", "ru": "Выгорание", "rarity": "epic", "status": "seed" },
-        { "id": "work_10", "en": "Wear many hats", "ru": "Совмещать много ролей", "rarity": "epic", "status": "seed" }
+        {
+          "id": "work_01",
+          "en": "Get down to business",
+          "ru": "Перейти к делу",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "work_02",
+          "en": "Climb the career ladder",
+          "ru": "Подниматься по карьерной лестнице",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "work_03",
+          "en": "Call the shots",
+          "ru": "Командовать, принимать решения",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "work_04",
+          "en": "Think outside the box",
+          "ru": "Мыслить нестандартно",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "work_05",
+          "en": "Learn the ropes",
+          "ru": "Освоиться в новом деле",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "work_06",
+          "en": "Burn the midnight oil",
+          "ru": "Работать по ночам",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "work_07",
+          "en": "Cut corners",
+          "ru": "Халтурить, экономить на качестве",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "work_08",
+          "en": "Back to the drawing board",
+          "ru": "Начать всё заново",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "work_09",
+          "en": "Burnout",
+          "ru": "Выгорание",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "work_10",
+          "en": "Wear many hats",
+          "ru": "Совмещать много ролей",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set10_home", "order": 10, "type": "A", "titleRu": "Дом и быт", "titleEn": "Home", "icon": "home", "status": "seed",
-      "secret": { "id": "home_secret", "en": "Man cave", "ru": "Мужская берлога", "status": "seed" },
+      "setId": "set10_home",
+      "order": 10,
+      "type": "A",
+      "titleRu": "Дом и быт",
+      "titleEn": "Home",
+      "icon": "home",
+      "status": "seed",
+      "secret": {
+        "id": "home_secret",
+        "en": "Man cave",
+        "ru": "Мужская берлога",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "home_01", "en": "Make yourself at home", "ru": "Чувствуй себя как дома", "rarity": "common", "status": "seed" },
-        { "id": "home_02", "en": "Home sweet home", "ru": "Дом, милый дом", "rarity": "common", "status": "seed" },
-        { "id": "home_03", "en": "Spring cleaning", "ru": "Генеральная уборка", "rarity": "common", "status": "seed" },
-        { "id": "home_04", "en": "Everything but the kitchen sink", "ru": "Всё подряд, целая куча", "rarity": "common", "status": "seed" },
-        { "id": "home_05", "en": "A skeleton in the closet", "ru": "Скелет в шкафу", "rarity": "common", "status": "seed" },
-        { "id": "home_06", "en": "Bring the house down", "ru": "Сорвать бурные овации", "rarity": "rare", "status": "seed" },
-        { "id": "home_07", "en": "Get on like a house on fire", "ru": "Мгновенно подружиться", "rarity": "rare", "status": "seed" },
-        { "id": "home_08", "en": "A roof over your head", "ru": "Крыша над головой", "rarity": "rare", "status": "seed" },
-        { "id": "home_09", "en": "Home is where the heart is", "ru": "Дом там, где сердце", "rarity": "epic", "status": "seed" },
-        { "id": "home_10", "en": "Sweep it under the rug", "ru": "Замести под ковёр", "rarity": "epic", "status": "seed" }
+        {
+          "id": "home_01",
+          "en": "Make yourself at home",
+          "ru": "Чувствуй себя как дома",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "home_02",
+          "en": "Home sweet home",
+          "ru": "Дом, милый дом",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "home_03",
+          "en": "Spring cleaning",
+          "ru": "Генеральная уборка",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "home_04",
+          "en": "Everything but the kitchen sink",
+          "ru": "Всё подряд, целая куча",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "home_05",
+          "en": "A skeleton in the closet",
+          "ru": "Скелет в шкафу",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "home_06",
+          "en": "Bring the house down",
+          "ru": "Сорвать бурные овации",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "home_07",
+          "en": "Get on like a house on fire",
+          "ru": "Мгновенно подружиться",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "home_08",
+          "en": "A roof over your head",
+          "ru": "Крыша над головой",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "home_09",
+          "en": "Home is where the heart is",
+          "ru": "Дом там, где сердце",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "home_10",
+          "en": "Sweep it under the rug",
+          "ru": "Замести под ковёр",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set11_love", "order": 11, "type": "B", "titleRu": "Дружба и любовь", "titleEn": "Friends & Love", "icon": "hearts", "status": "seed",
-      "secret": { "id": "love_secret", "en": "Bromance", "ru": "Крепкая мужская дружба", "status": "seed" },
+      "setId": "set11_love",
+      "order": 11,
+      "type": "B",
+      "titleRu": "Дружба и любовь",
+      "titleEn": "Friends & Love",
+      "icon": "hearts",
+      "status": "seed",
+      "secret": {
+        "id": "love_secret",
+        "en": "Bromance",
+        "ru": "Крепкая мужская дружба",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "love_01", "en": "Hit it off", "ru": "Сразу поладить", "rarity": "common", "status": "seed" },
-        { "id": "love_02", "en": "Through thick and thin", "ru": "И в горе, и в радости", "rarity": "common", "status": "seed" },
-        { "id": "love_03", "en": "A shoulder to cry on", "ru": "Жилетка, в которую можно поплакать", "rarity": "common", "status": "seed" },
-        { "id": "love_04", "en": "Tie the knot", "ru": "Пожениться", "rarity": "common", "status": "seed" },
-        { "id": "love_05", "en": "Love at first sight", "ru": "Любовь с первого взгляда", "rarity": "common", "status": "seed" },
-        { "id": "love_06", "en": "Two peas in a pod", "ru": "Не разлей вода", "rarity": "rare", "status": "seed" },
-        { "id": "love_07", "en": "Pop the question", "ru": "Сделать предложение", "rarity": "rare", "status": "seed" },
-        { "id": "love_08", "en": "Friends in high places", "ru": "Связи наверху", "rarity": "rare", "status": "seed" },
-        { "id": "love_09", "en": "A match made in heaven", "ru": "Идеальная пара", "rarity": "epic", "status": "seed" },
-        { "id": "love_10", "en": "My better half", "ru": "Моя вторая половинка", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "love_01",
+          "en": "Hit it off",
+          "ru": "Сразу поладить",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "love_02",
+          "en": "Through thick and thin",
+          "ru": "И в горе, и в радости",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "love_03",
+          "en": "A shoulder to cry on",
+          "ru": "Жилетка, в которую можно поплакать",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "love_04",
+          "en": "Tie the knot",
+          "ru": "Пожениться",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "love_05",
+          "en": "Love at first sight",
+          "ru": "Любовь с первого взгляда",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "love_06",
+          "en": "Two peas in a pod",
+          "ru": "Не разлей вода",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "love_07",
+          "en": "Pop the question",
+          "ru": "Сделать предложение",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "love_08",
+          "en": "Friends in high places",
+          "ru": "Связи наверху",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "love_09",
+          "en": "A match made in heaven",
+          "ru": "Идеальная пара",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "love_10",
+          "en": "My better half",
+          "ru": "Моя вторая половинка",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set12_sport", "order": 12, "type": "A", "titleRu": "Спорт и игры", "titleEn": "Sport & Games", "icon": "trophy", "status": "seed",
-      "secret": { "id": "sport_secret", "en": "GG", "ru": "Хорошая игра! (good game)", "status": "seed" },
+      "setId": "set12_sport",
+      "order": 12,
+      "type": "A",
+      "titleRu": "Спорт и игры",
+      "titleEn": "Sport & Games",
+      "icon": "trophy",
+      "status": "seed",
+      "secret": {
+        "id": "sport_secret",
+        "en": "GG",
+        "ru": "Хорошая игра! (good game)",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "sport_01", "en": "The ball is in your court", "ru": "Теперь твой ход", "rarity": "common", "status": "seed" },
-        { "id": "sport_02", "en": "Hit the ground running", "ru": "Взяться за дело с ходу", "rarity": "common", "status": "seed" },
-        { "id": "sport_03", "en": "Keep your eye on the ball", "ru": "Не терять фокус", "rarity": "common", "status": "seed" },
-        { "id": "sport_04", "en": "A level playing field", "ru": "Равные условия для всех", "rarity": "common", "status": "seed" },
-        { "id": "sport_05", "en": "Take it on the chin", "ru": "Стойко держать удар", "rarity": "common", "status": "seed" },
-        { "id": "sport_06", "en": "Throw in the towel", "ru": "Сдаться, выбросить полотенце", "rarity": "rare", "status": "seed" },
-        { "id": "sport_07", "en": "Move the goalposts", "ru": "Менять правила на ходу", "rarity": "rare", "status": "seed" },
-        { "id": "sport_08", "en": "Down to the wire", "ru": "До самого последнего момента", "rarity": "rare", "status": "seed" },
-        { "id": "sport_09", "en": "A game changer", "ru": "То, что меняет всё", "rarity": "epic", "status": "seed" },
-        { "id": "sport_10", "en": "Saved by the bell", "ru": "Спасён гонгом", "rarity": "epic", "status": "seed" }
+        {
+          "id": "sport_01",
+          "en": "The ball is in your court",
+          "ru": "Теперь твой ход",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sport_02",
+          "en": "Hit the ground running",
+          "ru": "Взяться за дело с ходу",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sport_03",
+          "en": "Keep your eye on the ball",
+          "ru": "Не терять фокус",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sport_04",
+          "en": "A level playing field",
+          "ru": "Равные условия для всех",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sport_05",
+          "en": "Take it on the chin",
+          "ru": "Стойко держать удар",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sport_06",
+          "en": "Throw in the towel",
+          "ru": "Сдаться, выбросить полотенце",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sport_07",
+          "en": "Move the goalposts",
+          "ru": "Менять правила на ходу",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sport_08",
+          "en": "Down to the wire",
+          "ru": "До самого последнего момента",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sport_09",
+          "en": "A game changer",
+          "ru": "То, что меняет всё",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "sport_10",
+          "en": "Saved by the bell",
+          "ru": "Спасён гонгом",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set13_music", "order": 13, "type": "B", "titleRu": "Музыка и вечеринки", "titleEn": "Music & Parties", "icon": "note", "status": "seed",
-      "secret": { "id": "music_secret", "en": "A banger", "ru": "Хитяра, мощный трек", "status": "seed" },
+      "setId": "set13_music",
+      "order": 13,
+      "type": "B",
+      "titleRu": "Музыка и вечеринки",
+      "titleEn": "Music & Parties",
+      "icon": "note",
+      "status": "seed",
+      "secret": {
+        "id": "music_secret",
+        "en": "A banger",
+        "ru": "Хитяра, мощный трек",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "music_01", "en": "Music to my ears", "ru": "Бальзам на душу", "rarity": "common", "status": "seed" },
-        { "id": "music_02", "en": "Face the music", "ru": "Ответить за последствия", "rarity": "common", "status": "seed" },
-        { "id": "music_03", "en": "Ring a bell", "ru": "Звучит знакомо", "rarity": "common", "status": "seed" },
-        { "id": "music_04", "en": "Blow your own trumpet", "ru": "Хвастаться", "rarity": "common", "status": "seed" },
-        { "id": "music_05", "en": "A party animal", "ru": "Заядлый тусовщик", "rarity": "common", "status": "seed" },
-        { "id": "music_06", "en": "Strike a chord", "ru": "Задеть за живое, откликнуться", "rarity": "rare", "status": "seed" },
-        { "id": "music_07", "en": "Change your tune", "ru": "Запеть по-другому", "rarity": "rare", "status": "seed" },
-        { "id": "music_08", "en": "The life of the party", "ru": "Душа компании", "rarity": "rare", "status": "seed" },
-        { "id": "music_09", "en": "It takes two to tango", "ru": "Танго танцуют вдвоём", "rarity": "epic", "status": "seed" },
-        { "id": "music_10", "en": "Paint the town red", "ru": "Оторваться по полной", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "music_01",
+          "en": "Music to my ears",
+          "ru": "Бальзам на душу",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "music_02",
+          "en": "Face the music",
+          "ru": "Ответить за последствия",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "music_03",
+          "en": "Ring a bell",
+          "ru": "Звучит знакомо",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "music_04",
+          "en": "Blow your own trumpet",
+          "ru": "Хвастаться",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "music_05",
+          "en": "A party animal",
+          "ru": "Заядлый тусовщик",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "music_06",
+          "en": "Strike a chord",
+          "ru": "Задеть за живое, откликнуться",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "music_07",
+          "en": "Change your tune",
+          "ru": "Запеть по-другому",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "music_08",
+          "en": "The life of the party",
+          "ru": "Душа компании",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "music_09",
+          "en": "It takes two to tango",
+          "ru": "Танго танцуют вдвоём",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "music_10",
+          "en": "Paint the town red",
+          "ru": "Оторваться по полной",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set14_school", "order": 14, "type": "A", "titleRu": "Учёба и знания", "titleEn": "Learning", "icon": "book", "status": "seed",
-      "secret": { "id": "school_secret", "en": "Cram", "ru": "Зубрить в последнюю ночь", "status": "seed" },
+      "setId": "set14_school",
+      "order": 14,
+      "type": "A",
+      "titleRu": "Учёба и знания",
+      "titleEn": "Learning",
+      "icon": "book",
+      "status": "seed",
+      "secret": {
+        "id": "school_secret",
+        "en": "Cram",
+        "ru": "Зубрить в последнюю ночь",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "school_01", "en": "Hit the books", "ru": "Засесть за учёбу", "rarity": "common", "status": "seed" },
-        { "id": "school_02", "en": "Pass with flying colors", "ru": "Сдать блестяще", "rarity": "common", "status": "seed" },
-        { "id": "school_03", "en": "A quick learner", "ru": "Схватывает на лету", "rarity": "common", "status": "seed" },
-        { "id": "school_04", "en": "Put your thinking cap on", "ru": "Включить голову", "rarity": "common", "status": "seed" },
-        { "id": "school_05", "en": "Practice makes perfect", "ru": "Повторение — мать учения", "rarity": "common", "status": "seed" },
-        { "id": "school_06", "en": "Teacher's pet", "ru": "Любимчик учителя", "rarity": "rare", "status": "seed" },
-        { "id": "school_07", "en": "Draw a blank", "ru": "Вылетело из головы", "rarity": "rare", "status": "seed" },
-        { "id": "school_08", "en": "The school of hard knocks", "ru": "Школа жизни", "rarity": "rare", "status": "seed" },
-        { "id": "school_09", "en": "Know it inside out", "ru": "Знать вдоль и поперёк", "rarity": "epic", "status": "seed" },
-        { "id": "school_10", "en": "A walking encyclopedia", "ru": "Ходячая энциклопедия", "rarity": "epic", "status": "seed" }
+        {
+          "id": "school_01",
+          "en": "Hit the books",
+          "ru": "Засесть за учёбу",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "school_02",
+          "en": "Pass with flying colors",
+          "ru": "Сдать блестяще",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "school_03",
+          "en": "A quick learner",
+          "ru": "Схватывает на лету",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "school_04",
+          "en": "Put your thinking cap on",
+          "ru": "Включить голову",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "school_05",
+          "en": "Practice makes perfect",
+          "ru": "Повторение — мать учения",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "school_06",
+          "en": "Teacher's pet",
+          "ru": "Любимчик учителя",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "school_07",
+          "en": "Draw a blank",
+          "ru": "Вылетело из головы",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "school_08",
+          "en": "The school of hard knocks",
+          "ru": "Школа жизни",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "school_09",
+          "en": "Know it inside out",
+          "ru": "Знать вдоль и поперёк",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "school_10",
+          "en": "A walking encyclopedia",
+          "ru": "Ходячая энциклопедия",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set15_colors", "order": 15, "type": "B", "titleRu": "Цвета", "titleEn": "Colors", "icon": "palette", "status": "seed",
-      "secret": { "id": "colors_secret", "en": "Red tape", "ru": "Бюрократия, волокита", "status": "seed" },
+      "setId": "set15_colors",
+      "order": 15,
+      "type": "B",
+      "titleRu": "Цвета",
+      "titleEn": "Colors",
+      "icon": "palette",
+      "status": "seed",
+      "secret": {
+        "id": "colors_secret",
+        "en": "Red tape",
+        "ru": "Бюрократия, волокита",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "colors_01", "en": "Out of the blue", "ru": "Как гром среди ясного неба", "rarity": "common", "status": "seed" },
-        { "id": "colors_02", "en": "Give the green light", "ru": "Дать зелёный свет", "rarity": "common", "status": "seed" },
-        { "id": "colors_03", "en": "A white lie", "ru": "Ложь во спасение", "rarity": "common", "status": "seed" },
-        { "id": "colors_04", "en": "The black sheep", "ru": "Белая ворона (в семье)", "rarity": "common", "status": "seed" },
-        { "id": "colors_05", "en": "A golden opportunity", "ru": "Золотой шанс", "rarity": "common", "status": "seed" },
-        { "id": "colors_06", "en": "A red flag", "ru": "Тревожный звоночек", "rarity": "rare", "status": "seed" },
-        { "id": "colors_07", "en": "Tickled pink", "ru": "В полном восторге", "rarity": "rare", "status": "seed" },
-        { "id": "colors_08", "en": "A grey area", "ru": "Серая зона, неоднозначность", "rarity": "rare", "status": "seed" },
-        { "id": "colors_09", "en": "Show your true colors", "ru": "Показать истинное лицо", "rarity": "epic", "status": "seed" },
-        { "id": "colors_10", "en": "Roll out the red carpet", "ru": "Встречать по-королевски", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "colors_01",
+          "en": "Out of the blue",
+          "ru": "Как гром среди ясного неба",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "colors_02",
+          "en": "Give the green light",
+          "ru": "Дать зелёный свет",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "colors_03",
+          "en": "A white lie",
+          "ru": "Ложь во спасение",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "colors_04",
+          "en": "The black sheep",
+          "ru": "Белая ворона (в семье)",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "colors_05",
+          "en": "A golden opportunity",
+          "ru": "Золотой шанс",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "colors_06",
+          "en": "A red flag",
+          "ru": "Тревожный звоночек",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "colors_07",
+          "en": "Tickled pink",
+          "ru": "В полном восторге",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "colors_08",
+          "en": "A grey area",
+          "ru": "Серая зона, неоднозначность",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "colors_09",
+          "en": "Show your true colors",
+          "ru": "Показать истинное лицо",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "colors_10",
+          "en": "Roll out the red carpet",
+          "ru": "Встречать по-королевски",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set16_clothes", "order": 16, "type": "A", "titleRu": "Одежда и стиль", "titleEn": "Clothes & Style", "icon": "shirt", "status": "seed",
-      "secret": { "id": "clothes_secret", "en": "Sunday best", "ru": "Парадный наряд", "status": "seed" },
+      "setId": "set16_clothes",
+      "order": 16,
+      "type": "A",
+      "titleRu": "Одежда и стиль",
+      "titleEn": "Clothes & Style",
+      "icon": "shirt",
+      "status": "seed",
+      "secret": {
+        "id": "clothes_secret",
+        "en": "Sunday best",
+        "ru": "Парадный наряд",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "clothes_01", "en": "Dress to impress", "ru": "Одеться сногсшибательно", "rarity": "common", "status": "seed" },
-        { "id": "clothes_02", "en": "Fit like a glove", "ru": "Сидит как влитой", "rarity": "common", "status": "seed" },
-        { "id": "clothes_03", "en": "Put yourself in my shoes", "ru": "Поставь себя на моё место", "rarity": "common", "status": "seed" },
-        { "id": "clothes_04", "en": "Roll up your sleeves", "ru": "Засучить рукава", "rarity": "common", "status": "seed" },
-        { "id": "clothes_05", "en": "Off the cuff", "ru": "Экспромтом, без подготовки", "rarity": "common", "status": "seed" },
-        { "id": "clothes_06", "en": "Wear the trousers", "ru": "Быть главным в семье", "rarity": "rare", "status": "seed" },
-        { "id": "clothes_07", "en": "At the drop of a hat", "ru": "В любую секунду, без раздумий", "rarity": "rare", "status": "seed" },
-        { "id": "clothes_08", "en": "Below the belt", "ru": "Удар ниже пояса", "rarity": "rare", "status": "seed" },
-        { "id": "clothes_09", "en": "Walk a mile in my shoes", "ru": "Пройди милю в моих ботинках", "rarity": "epic", "status": "seed" },
-        { "id": "clothes_10", "en": "All dressed up with nowhere to go", "ru": "Разодет, а идти некуда", "rarity": "epic", "status": "seed" }
+        {
+          "id": "clothes_01",
+          "en": "Dress to impress",
+          "ru": "Одеться сногсшибательно",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_02",
+          "en": "Fit like a glove",
+          "ru": "Сидит как влитой",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_03",
+          "en": "Put yourself in my shoes",
+          "ru": "Поставь себя на моё место",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_04",
+          "en": "Roll up your sleeves",
+          "ru": "Засучить рукава",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_05",
+          "en": "Off the cuff",
+          "ru": "Экспромтом, без подготовки",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_06",
+          "en": "Wear the trousers",
+          "ru": "Быть главным в семье",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_07",
+          "en": "At the drop of a hat",
+          "ru": "В любую секунду, без раздумий",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_08",
+          "en": "Below the belt",
+          "ru": "Удар ниже пояса",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_09",
+          "en": "Walk a mile in my shoes",
+          "ru": "Пройди милю в моих ботинках",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "clothes_10",
+          "en": "All dressed up with nowhere to go",
+          "ru": "Разодет, а идти некуда",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set17_sea", "order": 17, "type": "B", "titleRu": "Море и вода", "titleEn": "Sea & Water", "icon": "wave", "status": "seed",
-      "secret": { "id": "sea_secret", "en": "Catfish", "ru": "Фейк, выдающий себя за другого в сети", "status": "seed" },
+      "setId": "set17_sea",
+      "order": 17,
+      "type": "B",
+      "titleRu": "Море и вода",
+      "titleEn": "Sea & Water",
+      "icon": "wave",
+      "status": "seed",
+      "secret": {
+        "id": "sea_secret",
+        "en": "Catfish",
+        "ru": "Фейк, выдающий себя за другого в сети",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "sea_01", "en": "The tip of the iceberg", "ru": "Верхушка айсберга", "rarity": "common", "status": "seed" },
-        { "id": "sea_02", "en": "In hot water", "ru": "В большой беде", "rarity": "common", "status": "seed" },
-        { "id": "sea_03", "en": "Test the waters", "ru": "Прощупать почву", "rarity": "common", "status": "seed" },
-        { "id": "sea_04", "en": "Like a fish out of water", "ru": "Не в своей тарелке", "rarity": "common", "status": "seed" },
-        { "id": "sea_05", "en": "Go with the flow", "ru": "Плыть по течению", "rarity": "common", "status": "seed" },
-        { "id": "sea_06", "en": "Make waves", "ru": "Наводить шуму", "rarity": "rare", "status": "seed" },
-        { "id": "sea_07", "en": "In the same boat", "ru": "В одной лодке", "rarity": "rare", "status": "seed" },
-        { "id": "sea_08", "en": "A drop in the ocean", "ru": "Капля в море", "rarity": "rare", "status": "seed" },
-        { "id": "sea_09", "en": "Sail close to the wind", "ru": "Ходить по краю", "rarity": "epic", "status": "seed" },
-        { "id": "sea_10", "en": "Still waters run deep", "ru": "В тихом омуте черти водятся", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "sea_01",
+          "en": "The tip of the iceberg",
+          "ru": "Верхушка айсберга",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sea_02",
+          "en": "In hot water",
+          "ru": "В большой беде",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sea_03",
+          "en": "Test the waters",
+          "ru": "Прощупать почву",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sea_04",
+          "en": "Like a fish out of water",
+          "ru": "Не в своей тарелке",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sea_05",
+          "en": "Go with the flow",
+          "ru": "Плыть по течению",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sea_06",
+          "en": "Make waves",
+          "ru": "Наводить шуму",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sea_07",
+          "en": "In the same boat",
+          "ru": "В одной лодке",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sea_08",
+          "en": "A drop in the ocean",
+          "ru": "Капля в море",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sea_09",
+          "en": "Sail close to the wind",
+          "ru": "Ходить по краю",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "sea_10",
+          "en": "Still waters run deep",
+          "ru": "В тихом омуте черти водятся",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set18_sky", "order": 18, "type": "A", "titleRu": "Небо и космос", "titleEn": "Sky & Space", "icon": "star", "status": "seed",
-      "secret": { "id": "sky_secret", "en": "Space out", "ru": "Залипнуть, улететь мыслями", "status": "seed" },
+      "setId": "set18_sky",
+      "order": 18,
+      "type": "A",
+      "titleRu": "Небо и космос",
+      "titleEn": "Sky & Space",
+      "icon": "star",
+      "status": "seed",
+      "secret": {
+        "id": "sky_secret",
+        "en": "Space out",
+        "ru": "Залипнуть, улететь мыслями",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "sky_01", "en": "Reach for the stars", "ru": "Целиться в звёзды", "rarity": "common", "status": "seed" },
-        { "id": "sky_02", "en": "Once in a blue moon", "ru": "Раз в сто лет", "rarity": "common", "status": "seed" },
-        { "id": "sky_03", "en": "Under the stars", "ru": "Под открытым небом", "rarity": "common", "status": "seed" },
-        { "id": "sky_04", "en": "Down to earth", "ru": "Простой и адекватный", "rarity": "common", "status": "seed" },
-        { "id": "sky_05", "en": "The sky's the limit", "ru": "Нет никаких пределов", "rarity": "common", "status": "seed" },
-        { "id": "sky_06", "en": "Written in the stars", "ru": "Предначертано судьбой", "rarity": "rare", "status": "seed" },
-        { "id": "sky_07", "en": "Many moons ago", "ru": "Давным-давно", "rarity": "rare", "status": "seed" },
-        { "id": "sky_08", "en": "Starry-eyed", "ru": "Мечтательный, наивный", "rarity": "rare", "status": "seed" },
-        { "id": "sky_09", "en": "Shoot for the moon", "ru": "Метить в Луну", "rarity": "epic", "status": "seed" },
-        { "id": "sky_10", "en": "Out of this world", "ru": "Неземной, потрясающий", "rarity": "epic", "status": "seed" }
+        {
+          "id": "sky_01",
+          "en": "Reach for the stars",
+          "ru": "Целиться в звёзды",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sky_02",
+          "en": "Once in a blue moon",
+          "ru": "Раз в сто лет",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sky_03",
+          "en": "Under the stars",
+          "ru": "Под открытым небом",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sky_04",
+          "en": "Down to earth",
+          "ru": "Простой и адекватный",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sky_05",
+          "en": "The sky's the limit",
+          "ru": "Нет никаких пределов",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sky_06",
+          "en": "Written in the stars",
+          "ru": "Предначертано судьбой",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sky_07",
+          "en": "Many moons ago",
+          "ru": "Давным-давно",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sky_08",
+          "en": "Starry-eyed",
+          "ru": "Мечтательный, наивный",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sky_09",
+          "en": "Shoot for the moon",
+          "ru": "Метить в Луну",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "sky_10",
+          "en": "Out of this world",
+          "ru": "Неземной, потрясающий",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set19_nature", "order": 19, "type": "A", "titleRu": "Природа и сад", "titleEn": "Nature", "icon": "leaf", "status": "seed",
-      "secret": { "id": "nature_secret", "en": "Touch grass", "ru": "«Выйди потрогай траву» — оторвись от экрана", "status": "seed" },
+      "setId": "set19_nature",
+      "order": 19,
+      "type": "A",
+      "titleRu": "Природа и сад",
+      "titleEn": "Nature",
+      "icon": "leaf",
+      "status": "seed",
+      "secret": {
+        "id": "nature_secret",
+        "en": "Touch grass",
+        "ru": "«Выйди потрогай траву» — оторвись от экрана",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "nature_01", "en": "Beat around the bush", "ru": "Ходить вокруг да около", "rarity": "common", "status": "seed" },
-        { "id": "nature_02", "en": "Turn over a new leaf", "ru": "Начать с чистого листа", "rarity": "common", "status": "seed" },
-        { "id": "nature_03", "en": "The grass is always greener", "ru": "Хорошо там, где нас нет", "rarity": "common", "status": "seed" },
-        { "id": "nature_04", "en": "Nip it in the bud", "ru": "Пресечь в зародыше", "rarity": "common", "status": "seed" },
-        { "id": "nature_05", "en": "Can't see the forest for the trees", "ru": "За деревьями не видеть леса", "rarity": "common", "status": "seed" },
-        { "id": "nature_06", "en": "Barking up the wrong tree", "ru": "Идти по ложному следу", "rarity": "rare", "status": "seed" },
-        { "id": "nature_07", "en": "A late bloomer", "ru": "Тот, кто раскрылся позже других", "rarity": "rare", "status": "seed" },
-        { "id": "nature_08", "en": "An old chestnut", "ru": "Баян, заезженная шутка", "rarity": "rare", "status": "seed" },
-        { "id": "nature_09", "en": "Everything's coming up roses", "ru": "Всё складывается отлично", "rarity": "epic", "status": "seed" },
-        { "id": "nature_10", "en": "Grasp at straws", "ru": "Хвататься за соломинку", "rarity": "epic", "status": "seed" }
+        {
+          "id": "nature_01",
+          "en": "Beat around the bush",
+          "ru": "Ходить вокруг да около",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "nature_02",
+          "en": "Turn over a new leaf",
+          "ru": "Начать с чистого листа",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "nature_03",
+          "en": "The grass is always greener",
+          "ru": "Хорошо там, где нас нет",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "nature_04",
+          "en": "Nip it in the bud",
+          "ru": "Пресечь в зародыше",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "nature_05",
+          "en": "Can't see the forest for the trees",
+          "ru": "За деревьями не видеть леса",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "nature_06",
+          "en": "Barking up the wrong tree",
+          "ru": "Идти по ложному следу",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "nature_07",
+          "en": "A late bloomer",
+          "ru": "Тот, кто раскрылся позже других",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "nature_08",
+          "en": "An old chestnut",
+          "ru": "Баян, заезженная шутка",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "nature_09",
+          "en": "Everything's coming up roses",
+          "ru": "Всё складывается отлично",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "nature_10",
+          "en": "Grasp at straws",
+          "ru": "Хвататься за соломинку",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set20_city", "order": 20, "type": "B", "titleRu": "Город и улицы", "titleEn": "City Streets", "icon": "building", "status": "seed",
-      "secret": { "id": "city_secret", "en": "Street smart", "ru": "Уличная смекалка", "status": "seed" },
+      "setId": "set20_city",
+      "order": 20,
+      "type": "B",
+      "titleRu": "Город и улицы",
+      "titleEn": "City Streets",
+      "icon": "building",
+      "status": "seed",
+      "secret": {
+        "id": "city_secret",
+        "en": "Street smart",
+        "ru": "Уличная смекалка",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "city_01", "en": "Right up my alley", "ru": "Как раз по моей части", "rarity": "common", "status": "seed" },
-        { "id": "city_02", "en": "Hit the town", "ru": "Отправиться гулять по городу", "rarity": "common", "status": "seed" },
-        { "id": "city_03", "en": "The middle of nowhere", "ru": "У чёрта на куличках", "rarity": "common", "status": "seed" },
-        { "id": "city_04", "en": "Just around the corner", "ru": "Совсем рядом, не за горами", "rarity": "common", "status": "seed" },
-        { "id": "city_05", "en": "Take a shortcut", "ru": "Срезать путь", "rarity": "common", "status": "seed" },
-        { "id": "city_06", "en": "Burn bridges", "ru": "Сжигать мосты", "rarity": "rare", "status": "seed" },
-        { "id": "city_07", "en": "My way or the highway", "ru": "Или по-моему, или никак", "rarity": "rare", "status": "seed" },
-        { "id": "city_08", "en": "A one-way street", "ru": "Игра в одни ворота", "rarity": "rare", "status": "seed" },
-        { "id": "city_09", "en": "Build castles in the air", "ru": "Строить воздушные замки", "rarity": "epic", "status": "seed" },
-        { "id": "city_10", "en": "The concrete jungle", "ru": "Каменные джунгли", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "city_01",
+          "en": "Right up my alley",
+          "ru": "Как раз по моей части",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "city_02",
+          "en": "Hit the town",
+          "ru": "Отправиться гулять по городу",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "city_03",
+          "en": "The middle of nowhere",
+          "ru": "У чёрта на куличках",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "city_04",
+          "en": "Just around the corner",
+          "ru": "Совсем рядом, не за горами",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "city_05",
+          "en": "Take a shortcut",
+          "ru": "Срезать путь",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "city_06",
+          "en": "Burn bridges",
+          "ru": "Сжигать мосты",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "city_07",
+          "en": "My way or the highway",
+          "ru": "Или по-моему, или никак",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "city_08",
+          "en": "A one-way street",
+          "ru": "Игра в одни ворота",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "city_09",
+          "en": "Build castles in the air",
+          "ru": "Строить воздушные замки",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "city_10",
+          "en": "The concrete jungle",
+          "ru": "Каменные джунгли",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set21_sleep", "order": 21, "type": "A", "titleRu": "Сон и отдых", "titleEn": "Sleep & Rest", "icon": "moon", "status": "seed",
-      "secret": { "id": "sleep_secret", "en": "Doomscrolling", "ru": "Думскроллинг — залипание в плохие новости", "status": "seed" },
+      "setId": "set21_sleep",
+      "order": 21,
+      "type": "A",
+      "titleRu": "Сон и отдых",
+      "titleEn": "Sleep & Rest",
+      "icon": "moon",
+      "status": "seed",
+      "secret": {
+        "id": "sleep_secret",
+        "en": "Doomscrolling",
+        "ru": "Думскроллинг — залипание в плохие новости",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "sleep_01", "en": "Hit the hay", "ru": "Отправиться на боковую", "rarity": "common", "status": "seed" },
-        { "id": "sleep_02", "en": "Sleep on it", "ru": "Утро вечера мудренее", "rarity": "common", "status": "seed" },
-        { "id": "sleep_03", "en": "A power nap", "ru": "Короткий бодрящий сон", "rarity": "common", "status": "seed" },
-        { "id": "sleep_04", "en": "Recharge your batteries", "ru": "Подзарядить батарейки", "rarity": "common", "status": "seed" },
-        { "id": "sleep_05", "en": "Sleep like a log", "ru": "Спать как убитый", "rarity": "common", "status": "seed" },
-        { "id": "sleep_06", "en": "Burn the candle at both ends", "ru": "Гореть с двух концов", "rarity": "rare", "status": "seed" },
-        { "id": "sleep_07", "en": "Rise and shine", "ru": "Проснись и пой", "rarity": "rare", "status": "seed" },
-        { "id": "sleep_08", "en": "Forty winks", "ru": "Вздремнуть чуток", "rarity": "rare", "status": "seed" },
-        { "id": "sleep_09", "en": "Beauty sleep", "ru": "Сон красоты", "rarity": "epic", "status": "seed" },
-        { "id": "sleep_10", "en": "Let sleeping dogs lie", "ru": "Не буди лихо, пока оно тихо", "rarity": "epic", "status": "seed" }
+        {
+          "id": "sleep_01",
+          "en": "Hit the hay",
+          "ru": "Отправиться на боковую",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_02",
+          "en": "Sleep on it",
+          "ru": "Утро вечера мудренее",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_03",
+          "en": "A power nap",
+          "ru": "Короткий бодрящий сон",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_04",
+          "en": "Recharge your batteries",
+          "ru": "Подзарядить батарейки",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_05",
+          "en": "Sleep like a log",
+          "ru": "Спать как убитый",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_06",
+          "en": "Burn the candle at both ends",
+          "ru": "Гореть с двух концов",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_07",
+          "en": "Rise and shine",
+          "ru": "Проснись и пой",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_08",
+          "en": "Forty winks",
+          "ru": "Вздремнуть чуток",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_09",
+          "en": "Beauty sleep",
+          "ru": "Сон красоты",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "sleep_10",
+          "en": "Let sleeping dogs lie",
+          "ru": "Не буди лихо, пока оно тихо",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set22_luck", "order": 22, "type": "B", "titleRu": "Удача и шансы", "titleEn": "Luck", "icon": "clover", "status": "seed",
-      "secret": { "id": "luck_secret", "en": "Jinx!", "ru": "«Сглазил!» — когда сказали одно и то же", "status": "seed" },
+      "setId": "set22_luck",
+      "order": 22,
+      "type": "B",
+      "titleRu": "Удача и шансы",
+      "titleEn": "Luck",
+      "icon": "clover",
+      "status": "seed",
+      "secret": {
+        "id": "luck_secret",
+        "en": "Jinx!",
+        "ru": "«Сглазил!» — когда сказали одно и то же",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "luck_01", "en": "Fingers crossed", "ru": "Держу кулачки", "rarity": "common", "status": "seed" },
-        { "id": "luck_02", "en": "Take a chance", "ru": "Рискнуть", "rarity": "common", "status": "seed" },
-        { "id": "luck_03", "en": "Beginner's luck", "ru": "Новичкам везёт", "rarity": "common", "status": "seed" },
-        { "id": "luck_04", "en": "Third time's a charm", "ru": "Бог троицу любит", "rarity": "common", "status": "seed" },
-        { "id": "luck_05", "en": "The odds are in your favor", "ru": "Шансы на твоей стороне", "rarity": "common", "status": "seed" },
-        { "id": "luck_06", "en": "Hit the jackpot", "ru": "Сорвать куш", "rarity": "rare", "status": "seed" },
-        { "id": "luck_07", "en": "A blessing in disguise", "ru": "Нет худа без добра", "rarity": "rare", "status": "seed" },
-        { "id": "luck_08", "en": "Push your luck", "ru": "Испытывать судьбу", "rarity": "rare", "status": "seed" },
-        { "id": "luck_09", "en": "Lightning never strikes twice", "ru": "Молния дважды в одно место не бьёт", "rarity": "epic", "status": "seed" },
-        { "id": "luck_10", "en": "Knock on wood", "ru": "Постучи по дереву", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "luck_01",
+          "en": "Fingers crossed",
+          "ru": "Держу кулачки",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "luck_02",
+          "en": "Take a chance",
+          "ru": "Рискнуть",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "luck_03",
+          "en": "Beginner's luck",
+          "ru": "Новичкам везёт",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "luck_04",
+          "en": "Third time's a charm",
+          "ru": "Бог троицу любит",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "luck_05",
+          "en": "The odds are in your favor",
+          "ru": "Шансы на твоей стороне",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "luck_06",
+          "en": "Hit the jackpot",
+          "ru": "Сорвать куш",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "luck_07",
+          "en": "A blessing in disguise",
+          "ru": "Нет худа без добра",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "luck_08",
+          "en": "Push your luck",
+          "ru": "Испытывать судьбу",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "luck_09",
+          "en": "Lightning never strikes twice",
+          "ru": "Молния дважды в одно место не бьёт",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "luck_10",
+          "en": "Knock on wood",
+          "ru": "Постучи по дереву",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set23_truth", "order": 23, "type": "A", "titleRu": "Правда и ложь", "titleEn": "Truth & Lies", "icon": "scale", "status": "seed",
-      "secret": { "id": "truth_secret", "en": "No cap", "ru": "Без обмана, реально (сленг)", "status": "seed" },
+      "setId": "set23_truth",
+      "order": 23,
+      "type": "A",
+      "titleRu": "Правда и ложь",
+      "titleEn": "Truth & Lies",
+      "icon": "scale",
+      "status": "seed",
+      "secret": {
+        "id": "truth_secret",
+        "en": "No cap",
+        "ru": "Без обмана, реально (сленг)",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "truth_01", "en": "To be honest", "ru": "Честно говоря", "rarity": "common", "status": "seed" },
-        { "id": "truth_02", "en": "The naked truth", "ru": "Голая правда", "rarity": "common", "status": "seed" },
-        { "id": "truth_03", "en": "Tell it like it is", "ru": "Говорить как есть", "rarity": "common", "status": "seed" },
-        { "id": "truth_04", "en": "Actions speak louder than words", "ru": "Дела говорят громче слов", "rarity": "common", "status": "seed" },
-        { "id": "truth_05", "en": "Read between the lines", "ru": "Читать между строк", "rarity": "common", "status": "seed" },
-        { "id": "truth_06", "en": "Take it with a grain of salt", "ru": "Отнестись со скепсисом", "rarity": "rare", "status": "seed" },
-        { "id": "truth_07", "en": "Stretch the truth", "ru": "Приукрашивать", "rarity": "rare", "status": "seed" },
-        { "id": "truth_08", "en": "Come clean", "ru": "Признаться во всём", "rarity": "rare", "status": "seed" },
-        { "id": "truth_09", "en": "The moment of truth", "ru": "Момент истины", "rarity": "epic", "status": "seed" },
-        { "id": "truth_10", "en": "Liar, liar, pants on fire", "ru": "Врунишка! (детская дразнилка)", "rarity": "epic", "status": "seed" }
+        {
+          "id": "truth_01",
+          "en": "To be honest",
+          "ru": "Честно говоря",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "truth_02",
+          "en": "The naked truth",
+          "ru": "Голая правда",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "truth_03",
+          "en": "Tell it like it is",
+          "ru": "Говорить как есть",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "truth_04",
+          "en": "Actions speak louder than words",
+          "ru": "Дела говорят громче слов",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "truth_05",
+          "en": "Read between the lines",
+          "ru": "Читать между строк",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "truth_06",
+          "en": "Take it with a grain of salt",
+          "ru": "Отнестись со скепсисом",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "truth_07",
+          "en": "Stretch the truth",
+          "ru": "Приукрашивать",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "truth_08",
+          "en": "Come clean",
+          "ru": "Признаться во всём",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "truth_09",
+          "en": "The moment of truth",
+          "ru": "Момент истины",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "truth_10",
+          "en": "Liar, liar, pants on fire",
+          "ru": "Врунишка! (детская дразнилка)",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set24_courage", "order": 24, "type": "B", "titleRu": "Смелость и страх", "titleEn": "Courage & Fear", "icon": "shield", "status": "seed",
-      "secret": { "id": "courage_secret", "en": "The heebie-jeebies", "ru": "Мурашки от жути", "status": "seed" },
+      "setId": "set24_courage",
+      "order": 24,
+      "type": "B",
+      "titleRu": "Смелость и страх",
+      "titleEn": "Courage & Fear",
+      "icon": "shield",
+      "status": "seed",
+      "secret": {
+        "id": "courage_secret",
+        "en": "The heebie-jeebies",
+        "ru": "Мурашки от жути",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "courage_01", "en": "Face your fears", "ru": "Взглянуть страху в лицо", "rarity": "common", "status": "seed" },
-        { "id": "courage_02", "en": "Take the plunge", "ru": "Решиться и нырнуть", "rarity": "common", "status": "seed" },
-        { "id": "courage_03", "en": "Scared stiff", "ru": "Оцепенеть от страха", "rarity": "common", "status": "seed" },
-        { "id": "courage_04", "en": "Goosebumps", "ru": "Мурашки", "rarity": "common", "status": "seed" },
-        { "id": "courage_05", "en": "Bite the bullet", "ru": "Стиснуть зубы и сделать", "rarity": "common", "status": "seed" },
-        { "id": "courage_06", "en": "Nerves of steel", "ru": "Стальные нервы", "rarity": "rare", "status": "seed" },
-        { "id": "courage_07", "en": "Jump out of your skin", "ru": "Подпрыгнуть от испуга", "rarity": "rare", "status": "seed" },
-        { "id": "courage_08", "en": "Chicken out", "ru": "Струсить и слиться", "rarity": "rare", "status": "seed" },
-        { "id": "courage_09", "en": "Fortune favors the bold", "ru": "Удача любит смелых", "rarity": "epic", "status": "seed" },
-        { "id": "courage_10", "en": "The heart of a lion", "ru": "Львиное сердце", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "courage_01",
+          "en": "Face your fears",
+          "ru": "Взглянуть страху в лицо",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "courage_02",
+          "en": "Take the plunge",
+          "ru": "Решиться и нырнуть",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "courage_03",
+          "en": "Scared stiff",
+          "ru": "Оцепенеть от страха",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "courage_04",
+          "en": "Goosebumps",
+          "ru": "Мурашки",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "courage_05",
+          "en": "Bite the bullet",
+          "ru": "Стиснуть зубы и сделать",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "courage_06",
+          "en": "Nerves of steel",
+          "ru": "Стальные нервы",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "courage_07",
+          "en": "Jump out of your skin",
+          "ru": "Подпрыгнуть от испуга",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "courage_08",
+          "en": "Chicken out",
+          "ru": "Струсить и слиться",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "courage_09",
+          "en": "Fortune favors the bold",
+          "ru": "Удача любит смелых",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "courage_10",
+          "en": "The heart of a lion",
+          "ru": "Львиное сердце",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set25_mind", "order": 25, "type": "A", "titleRu": "Ум и идеи", "titleEn": "Mind & Ideas", "icon": "bulb", "status": "seed",
-      "secret": { "id": "mind_secret", "en": "Galaxy brain", "ru": "Гига-мозг (мем об «гениальных» идеях)", "status": "seed" },
+      "setId": "set25_mind",
+      "order": 25,
+      "type": "A",
+      "titleRu": "Ум и идеи",
+      "titleEn": "Mind & Ideas",
+      "icon": "bulb",
+      "status": "seed",
+      "secret": {
+        "id": "mind_secret",
+        "en": "Galaxy brain",
+        "ru": "Гига-мозг (мем об «гениальных» идеях)",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "mind_01", "en": "A bright idea", "ru": "Светлая мысль", "rarity": "common", "status": "seed" },
-        { "id": "mind_02", "en": "Food for thought", "ru": "Пища для размышлений", "rarity": "common", "status": "seed" },
-        { "id": "mind_03", "en": "Make up your mind", "ru": "Определиться наконец", "rarity": "common", "status": "seed" },
-        { "id": "mind_04", "en": "A no-brainer", "ru": "Ежу понятно", "rarity": "common", "status": "seed" },
-        { "id": "mind_05", "en": "Pick someone's brain", "ru": "Выведать мнение знатока", "rarity": "common", "status": "seed" },
-        { "id": "mind_06", "en": "A light bulb moment", "ru": "Момент озарения", "rarity": "rare", "status": "seed" },
-        { "id": "mind_07", "en": "Put two and two together", "ru": "Сложить два и два", "rarity": "rare", "status": "seed" },
-        { "id": "mind_08", "en": "Off the top of my head", "ru": "Навскидку", "rarity": "rare", "status": "seed" },
-        { "id": "mind_09", "en": "Great minds think alike", "ru": "Великие умы мыслят одинаково", "rarity": "epic", "status": "seed" },
-        { "id": "mind_10", "en": "Connect the dots", "ru": "Сложить картину воедино", "rarity": "epic", "status": "seed" }
+        {
+          "id": "mind_01",
+          "en": "A bright idea",
+          "ru": "Светлая мысль",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "mind_02",
+          "en": "Food for thought",
+          "ru": "Пища для размышлений",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "mind_03",
+          "en": "Make up your mind",
+          "ru": "Определиться наконец",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "mind_04",
+          "en": "A no-brainer",
+          "ru": "Ежу понятно",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "mind_05",
+          "en": "Pick someone's brain",
+          "ru": "Выведать мнение знатока",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "mind_06",
+          "en": "A light bulb moment",
+          "ru": "Момент озарения",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "mind_07",
+          "en": "Put two and two together",
+          "ru": "Сложить два и два",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "mind_08",
+          "en": "Off the top of my head",
+          "ru": "Навскидку",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "mind_09",
+          "en": "Great minds think alike",
+          "ru": "Великие умы мыслят одинаково",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "mind_10",
+          "en": "Connect the dots",
+          "ru": "Сложить картину воедино",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set26_talk", "order": 26, "type": "B", "titleRu": "Разговоры и слова", "titleEn": "Talk & Words", "icon": "chat", "status": "seed",
-      "secret": { "id": "talk_secret", "en": "Spill the tea", "ru": "Выкладывай сплетни!", "status": "seed" },
+      "setId": "set26_talk",
+      "order": 26,
+      "type": "B",
+      "titleRu": "Разговоры и слова",
+      "titleEn": "Talk & Words",
+      "icon": "chat",
+      "status": "seed",
+      "secret": {
+        "id": "talk_secret",
+        "en": "Spill the tea",
+        "ru": "Выкладывай сплетни!",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "talk_01", "en": "In other words", "ru": "Другими словами", "rarity": "common", "status": "seed" },
-        { "id": "talk_02", "en": "Word of mouth", "ru": "Сарафанное радио", "rarity": "common", "status": "seed" },
-        { "id": "talk_03", "en": "Small talk", "ru": "Светская беседа", "rarity": "common", "status": "seed" },
-        { "id": "talk_04", "en": "Get to the point", "ru": "Ближе к делу", "rarity": "common", "status": "seed" },
-        { "id": "talk_05", "en": "Easier said than done", "ru": "Легче сказать, чем сделать", "rarity": "common", "status": "seed" },
-        { "id": "talk_06", "en": "Have the last word", "ru": "Оставить последнее слово за собой", "rarity": "rare", "status": "seed" },
-        { "id": "talk_07", "en": "Talk someone's ear off", "ru": "Заболтать до полусмерти", "rarity": "rare", "status": "seed" },
-        { "id": "talk_08", "en": "Bite your tongue", "ru": "Прикусить язык", "rarity": "rare", "status": "seed" },
-        { "id": "talk_09", "en": "Lost in translation", "ru": "Потерялось при переводе", "rarity": "epic", "status": "seed" },
-        { "id": "talk_10", "en": "Speak of the devil", "ru": "Лёгок на помине", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "talk_01",
+          "en": "In other words",
+          "ru": "Другими словами",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "talk_02",
+          "en": "Word of mouth",
+          "ru": "Сарафанное радио",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "talk_03",
+          "en": "Small talk",
+          "ru": "Светская беседа",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "talk_04",
+          "en": "Get to the point",
+          "ru": "Ближе к делу",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "talk_05",
+          "en": "Easier said than done",
+          "ru": "Легче сказать, чем сделать",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "talk_06",
+          "en": "Have the last word",
+          "ru": "Оставить последнее слово за собой",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "talk_07",
+          "en": "Talk someone's ear off",
+          "ru": "Заболтать до полусмерти",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "talk_08",
+          "en": "Bite your tongue",
+          "ru": "Прикусить язык",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "talk_09",
+          "en": "Lost in translation",
+          "ru": "Потерялось при переводе",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "talk_10",
+          "en": "Speak of the devil",
+          "ru": "Лёгок на помине",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set27_family", "order": 27, "type": "A", "titleRu": "Семья", "titleEn": "Family", "icon": "people", "status": "seed",
-      "secret": { "id": "family_secret", "en": "Helicopter parents", "ru": "Родители-«вертолёты», гиперопека", "status": "seed" },
+      "setId": "set27_family",
+      "order": 27,
+      "type": "A",
+      "titleRu": "Семья",
+      "titleEn": "Family",
+      "icon": "people",
+      "status": "seed",
+      "secret": {
+        "id": "family_secret",
+        "en": "Helicopter parents",
+        "ru": "Родители-«вертолёты», гиперопека",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "family_01", "en": "It runs in the family", "ru": "Это у нас семейное", "rarity": "common", "status": "seed" },
-        { "id": "family_02", "en": "Like father, like son", "ru": "Яблоко от яблони", "rarity": "common", "status": "seed" },
-        { "id": "family_03", "en": "My own flesh and blood", "ru": "Родная кровь", "rarity": "common", "status": "seed" },
-        { "id": "family_04", "en": "The apple of my eye", "ru": "Свет моих очей", "rarity": "common", "status": "seed" },
-        { "id": "family_05", "en": "Family comes first", "ru": "Семья превыше всего", "rarity": "common", "status": "seed" },
-        { "id": "family_06", "en": "The spitting image", "ru": "Вылитая копия", "rarity": "rare", "status": "seed" },
-        { "id": "family_07", "en": "A mama's boy", "ru": "Маменькин сынок", "rarity": "rare", "status": "seed" },
-        { "id": "family_08", "en": "An empty nest", "ru": "Опустевшее гнездо", "rarity": "rare", "status": "seed" },
-        { "id": "family_09", "en": "Blood is thicker than water", "ru": "Кровь не водица", "rarity": "epic", "status": "seed" },
-        { "id": "family_10", "en": "A chip off the old block", "ru": "Весь в отца", "rarity": "epic", "status": "seed" }
+        {
+          "id": "family_01",
+          "en": "It runs in the family",
+          "ru": "Это у нас семейное",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "family_02",
+          "en": "Like father, like son",
+          "ru": "Яблоко от яблони",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "family_03",
+          "en": "My own flesh and blood",
+          "ru": "Родная кровь",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "family_04",
+          "en": "The apple of my eye",
+          "ru": "Свет моих очей",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "family_05",
+          "en": "Family comes first",
+          "ru": "Семья превыше всего",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "family_06",
+          "en": "The spitting image",
+          "ru": "Вылитая копия",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "family_07",
+          "en": "A mama's boy",
+          "ru": "Маменькин сынок",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "family_08",
+          "en": "An empty nest",
+          "ru": "Опустевшее гнездо",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "family_09",
+          "en": "Blood is thicker than water",
+          "ru": "Кровь не водица",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "family_10",
+          "en": "A chip off the old block",
+          "ru": "Весь в отца",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set28_holidays", "order": 28, "type": "B", "titleRu": "Праздники", "titleEn": "Holidays", "icon": "gift", "status": "seed",
-      "secret": { "id": "holidays_secret", "en": "Friendsgiving", "ru": "Праздник с друзьями вместо родни", "status": "seed" },
+      "setId": "set28_holidays",
+      "order": 28,
+      "type": "B",
+      "titleRu": "Праздники",
+      "titleEn": "Holidays",
+      "icon": "gift",
+      "status": "seed",
+      "secret": {
+        "id": "holidays_secret",
+        "en": "Friendsgiving",
+        "ru": "Праздник с друзьями вместо родни",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "holidays_01", "en": "The more the merrier", "ru": "Чем больше народу, тем веселее", "rarity": "common", "status": "seed" },
-        { "id": "holidays_02", "en": "Have a blast", "ru": "Оторваться на полную", "rarity": "common", "status": "seed" },
-        { "id": "holidays_03", "en": "In the holiday spirit", "ru": "В праздничном настроении", "rarity": "common", "status": "seed" },
-        { "id": "holidays_04", "en": "Eat, drink and be merry", "ru": "Ешь, пей, веселись", "rarity": "common", "status": "seed" },
-        { "id": "holidays_05", "en": "Like there's no tomorrow", "ru": "Как в последний раз", "rarity": "common", "status": "seed" },
-        { "id": "holidays_06", "en": "Steal the show", "ru": "Затмить всех", "rarity": "rare", "status": "seed" },
-        { "id": "holidays_07", "en": "The party's over", "ru": "Праздник закончился", "rarity": "rare", "status": "seed" },
-        { "id": "holidays_08", "en": "Push the boat out", "ru": "Раскошелиться на праздник", "rarity": "rare", "status": "seed" },
-        { "id": "holidays_09", "en": "Christmas came early", "ru": "Праздник пришёл раньше времени", "rarity": "epic", "status": "seed" },
-        { "id": "holidays_10", "en": "On top of the world", "ru": "На вершине мира", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "holidays_01",
+          "en": "The more the merrier",
+          "ru": "Чем больше народу, тем веселее",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_02",
+          "en": "Have a blast",
+          "ru": "Оторваться на полную",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_03",
+          "en": "In the holiday spirit",
+          "ru": "В праздничном настроении",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_04",
+          "en": "Eat, drink and be merry",
+          "ru": "Ешь, пей, веселись",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_05",
+          "en": "Like there's no tomorrow",
+          "ru": "Как в последний раз",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_06",
+          "en": "Steal the show",
+          "ru": "Затмить всех",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_07",
+          "en": "The party's over",
+          "ru": "Праздник закончился",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_08",
+          "en": "Push the boat out",
+          "ru": "Раскошелиться на праздник",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_09",
+          "en": "Christmas came early",
+          "ru": "Праздник пришёл раньше времени",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "holidays_10",
+          "en": "On top of the world",
+          "ru": "На вершине мира",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set29_slang", "order": 29, "type": "A", "titleRu": "Современный сленг", "titleEn": "Modern Slang", "icon": "fire", "status": "seed",
-      "secret": { "id": "slang_secret", "en": "Rizz", "ru": "Харизма, умение очаровывать", "status": "seed" },
+      "setId": "set29_slang",
+      "order": 29,
+      "type": "A",
+      "titleRu": "Современный сленг",
+      "titleEn": "Modern Slang",
+      "icon": "fire",
+      "status": "seed",
+      "secret": {
+        "id": "slang_secret",
+        "en": "Rizz",
+        "ru": "Харизма, умение очаровывать",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "slang_01", "en": "It's a vibe", "ru": "Это вайб", "rarity": "common", "status": "seed" },
-        { "id": "slang_02", "en": "Low-key", "ru": "Слегка, потихоньку", "rarity": "common", "status": "seed" },
-        { "id": "slang_03", "en": "Salty", "ru": "Обиженный, токсичный", "rarity": "common", "status": "seed" },
-        { "id": "slang_04", "en": "Ghost someone", "ru": "Пропасть из переписки", "rarity": "common", "status": "seed" },
-        { "id": "slang_05", "en": "Binge-watch", "ru": "Смотреть сериал запоем", "rarity": "common", "status": "seed" },
-        { "id": "slang_06", "en": "Throw shade", "ru": "Тонко подколоть", "rarity": "rare", "status": "seed" },
-        { "id": "slang_07", "en": "Living rent-free in my head", "ru": "Живёт в моей голове бесплатно", "rarity": "rare", "status": "seed" },
-        { "id": "slang_08", "en": "Main character energy", "ru": "Энергия главного героя", "rarity": "rare", "status": "seed" },
-        { "id": "slang_09", "en": "Plot twist", "ru": "Неожиданный поворот", "rarity": "epic", "status": "seed" },
-        { "id": "slang_10", "en": "Glow-up", "ru": "Эффектное преображение", "rarity": "epic", "status": "seed" }
+        {
+          "id": "slang_01",
+          "en": "It's a vibe",
+          "ru": "Это вайб",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "slang_02",
+          "en": "Low-key",
+          "ru": "Слегка, потихоньку",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "slang_03",
+          "en": "Salty",
+          "ru": "Обиженный, токсичный",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "slang_04",
+          "en": "Ghost someone",
+          "ru": "Пропасть из переписки",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "slang_05",
+          "en": "Binge-watch",
+          "ru": "Смотреть сериал запоем",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "slang_06",
+          "en": "Throw shade",
+          "ru": "Тонко подколоть",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "slang_07",
+          "en": "Living rent-free in my head",
+          "ru": "Живёт в моей голове бесплатно",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "slang_08",
+          "en": "Main character energy",
+          "ru": "Энергия главного героя",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "slang_09",
+          "en": "Plot twist",
+          "ru": "Неожиданный поворот",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "slang_10",
+          "en": "Glow-up",
+          "ru": "Эффектное преображение",
+          "rarity": "epic",
+          "status": "seed"
+        }
       ]
     },
     {
-      "setId": "set30_british", "order": 30, "type": "B", "titleRu": "Британцы vs Американцы", "titleEn": "British vs American", "icon": "flag", "status": "seed",
-      "secret": { "id": "british_secret", "en": "Innit", "ru": "«Не так ли?» по-лондонски", "status": "seed" },
+      "setId": "set30_british",
+      "order": 30,
+      "type": "B",
+      "titleRu": "Британцы vs Американцы",
+      "titleEn": "British vs American",
+      "icon": "flag",
+      "status": "seed",
+      "secret": {
+        "id": "british_secret",
+        "en": "Innit",
+        "ru": "«Не так ли?» по-лондонски",
+        "status": "seed"
+      },
       "cards": [
-        { "id": "british_01", "en": "Cheers, mate!", "ru": "Спасибо/пока, дружище (брит.)", "rarity": "common", "status": "seed" },
-        { "id": "british_02", "en": "What's up?", "ru": "Как дела? (амер.)", "rarity": "common", "status": "seed" },
-        { "id": "british_03", "en": "Fancy a cuppa?", "ru": "Чайку? (брит.)", "rarity": "common", "status": "seed" },
-        { "id": "british_04", "en": "My bad", "ru": "Моя вина (амер.)", "rarity": "common", "status": "seed" },
-        { "id": "british_05", "en": "No worries", "ru": "Без проблем", "rarity": "common", "status": "seed" },
-        { "id": "british_06", "en": "Bob's your uncle", "ru": "И дело в шляпе (брит.)", "rarity": "rare", "status": "seed" },
-        { "id": "british_07", "en": "Hit me up", "ru": "Напиши мне (амер.)", "rarity": "rare", "status": "seed" },
-        { "id": "british_08", "en": "Chuffed to bits", "ru": "Страшно доволен (брит.)", "rarity": "rare", "status": "seed" },
-        { "id": "british_09", "en": "Not my first rodeo", "ru": "Я не первый день замужем (амер.)", "rarity": "epic", "status": "seed" },
-        { "id": "british_10", "en": "The full monty", "ru": "По полной программе (брит.)", "rarity": "legendary", "status": "seed" }
+        {
+          "id": "british_01",
+          "en": "Cheers, mate!",
+          "ru": "Спасибо/пока, дружище (брит.)",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "british_02",
+          "en": "What's up?",
+          "ru": "Как дела? (амер.)",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "british_03",
+          "en": "Fancy a cuppa?",
+          "ru": "Чайку? (брит.)",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "british_04",
+          "en": "My bad",
+          "ru": "Моя вина (амер.)",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "british_05",
+          "en": "No worries",
+          "ru": "Без проблем",
+          "rarity": "common",
+          "status": "seed"
+        },
+        {
+          "id": "british_06",
+          "en": "Bob's your uncle",
+          "ru": "И дело в шляпе (брит.)",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "british_07",
+          "en": "Hit me up",
+          "ru": "Напиши мне (амер.)",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "british_08",
+          "en": "Chuffed to bits",
+          "ru": "Страшно доволен (брит.)",
+          "rarity": "rare",
+          "status": "seed"
+        },
+        {
+          "id": "british_09",
+          "en": "Not my first rodeo",
+          "ru": "Я не первый день замужем (амер.)",
+          "rarity": "epic",
+          "status": "seed"
+        },
+        {
+          "id": "british_10",
+          "en": "The full monty",
+          "ru": "По полной программе (брит.)",
+          "rarity": "legendary",
+          "status": "seed"
+        }
       ]
     }
   ]

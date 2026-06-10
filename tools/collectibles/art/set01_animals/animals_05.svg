@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кот заглядывает в коробку">
+<ellipse cx="100" cy="146" rx="58" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M52 96h96l-8 46H60z" fill="#B98A5A"/>
+<path d="M48 96h104l8-16H40z" fill="#D8A86F"/>
+<path d="M100 80V96" stroke="#8A6238" stroke-width="3"/>
+<path d="M70 64c0-18 14-32 32-32s32 14 32 32" fill="#F08C42"/>
+<path d="M74 40l-4-16 16 8zM130 40l4-16-16 8z" fill="#F08C42"/>
+<circle cx="90" cy="56" r="4.5" fill="#16243A"/><circle cx="114" cy="56" r="4.5" fill="#16243A"/>
+<ellipse cx="102" cy="68" rx="5" ry="3.6" fill="#C75146"/>
+<path d="M66 58l-18-4M66 64l-18 4M138 58l18-4M138 64l18 4" stroke="#E8E2D8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M148 118c10-2 16-10 14-20" stroke="#F08C42" stroke-width="8" stroke-linecap="round" fill="none"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кот выпрыгивает из мешка">
+<ellipse cx="100" cy="148" rx="56" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M58 86c-8 18-10 38-4 50 8 10 70 10 84 2 8-12 6-34-2-52l-12 6c-16-8-40-10-54-2z" fill="#A07444"/>
+<path d="M58 86c4-8 12-12 20-12M136 86c-4-8-12-12-20-12" stroke="#7C5530" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M78 70c0-16 10-28 24-28s24 12 24 28" fill="#5E6B8C"/>
+<path d="M82 48l-4-14 14 7zM126 48l4-14-14 7z" fill="#5E6B8C"/>
+<circle cx="94" cy="62" r="4" fill="#FFD23F"/><circle cx="112" cy="62" r="4" fill="#FFD23F"/>
+<circle cx="94" cy="62" r="1.8" fill="#16243A"/><circle cx="112" cy="62" r="1.8" fill="#16243A"/>
+<ellipse cx="103" cy="72" rx="4.4" ry="3.2" fill="#2B3142"/>
+<path d="M70 56l-16-6M70 62l-16 2M134 56l16-6M134 62l16 2" stroke="#C9D4EE" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M56 102l-14-10M150 100l12-12" stroke="#FFD23F" stroke-width="4" stroke-linecap="round"/>
+<path d="M40 78l6 2M158 74l-6 4" stroke="#FFD23F" stroke-width="4" stroke-linecap="round"/>
+</svg>

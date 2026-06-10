@@ -7,20 +7,26 @@
 ## Команды
 
 ```bash
-node tools/collectibles/generate.mjs validate        # схема, уникальность, распределение редкостей, лимиты текстов
-node tools/collectibles/generate.mjs stats           # прогресс по сетам (тексты/арт/секретка)
-node tools/collectibles/generate.mjs build           # build/collectibles_catalog.json + progress.md (только если валидно)
-node tools/collectibles/generate.mjs placeholders    # уникальные SVG-плейсхолдеры для карточек без арта
-node tools/collectibles/generate.mjs prompts set03_weather   # готовые LLM-промпты: тексты + SVG-арты сета
+node tools/collectibles/generate.mjs validate            # G1/G2: схема, уникальность, редкости, лимиты, арт-файлы
+node tools/collectibles/generate.mjs lint                # G3: стилевые эвристики (канцелярит, штампы)
+node tools/collectibles/generate.mjs merge set03_weather # G5: применить batches/<setId>.texts.json (атомарно)
+node tools/collectibles/generate.mjs ingest-art set03_weather # G4: принять batches/art/<setId>/*.svg → art/
+node tools/collectibles/generate.mjs selftest            # гейт гейтов: 15 негативных тестов G1-G5
+node tools/collectibles/generate.mjs stats               # прогресс по сетам (тексты/арт/секретка)
+node tools/collectibles/generate.mjs build               # сборка (только при нуле ошибок validate+lint)
+node tools/collectibles/generate.mjs placeholders        # SVG-плейсхолдеры для карточек без арта
+node tools/collectibles/generate.mjs prompts set03_weather # промпты для агентов writer/illustrator
 ```
 
-## Конвейер одного сета (батч ~1 час работы с LLM)
+## Конвейер одного сета (агентами — см. AGENTS.md)
 
-1. `prompts <setId>` → скопировать ПРОМПТ 1 (тексты) в Claude → получить JSON 11 объектов;
-2. вставить поля в `catalog_seed.json` (статусы карточек → `texts_done`), запустить `validate`;
-3. скопировать ПРОМПТ 2 (SVG) → получить 10 иллюстраций → сложить в ассеты, проставить `art` + статус `art_done`;
-4. ревью человеком по чек-листу STYLE_GUIDE (особенно `originRu` — факты!);
-5. `build` → каталог готов к интеграции; локализация и TTS — отдельными проходами (см. STYLE_GUIDE §4–5).
+1. `prompts <setId>` → запустить агентов **writer** (пишет `batches/<setId>.texts.json`) и **illustrator** (пишет `batches/art/<setId>/*.svg`) параллельно;
+2. `merge <setId>` → гейты G1/G2/G3/G5 (отказ = каталог не тронут, правишь батч и повторяешь);
+3. `ingest-art <setId>` → гейт G4, арты ложатся в `art/<setId>/`;
+4. **reviewer**-агент (G6): факты в историях, естественность примеров, сцены артов; FIX → точечные правки;
+5. commit сета; `build` → каталог готов к интеграции; локализация и TTS — отдельными проходами (STYLE_GUIDE §4–5).
+
+Агенты пишут ТОЛЬКО в `batches/` — параллельные агенты и параллельные сессии не конфликтуют (подробно: `AGENTS.md`).
 
 ## Статусы карточки
 

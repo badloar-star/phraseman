@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Летающая свинка">
+<ellipse cx="44" cy="42" rx="20" ry="9" fill="#fff" opacity=".25"/><ellipse cx="160" cy="120" rx="24" ry="10" fill="#fff" opacity=".22"/><ellipse cx="166" cy="34" rx="16" ry="8" fill="#fff" opacity=".2"/>
+<ellipse cx="100" cy="92" rx="44" ry="32" fill="#F6A8C0"/>
+<path d="M72 64c-14-10-30-8-38 2 10 8 24 10 36 6z" fill="#FDE3ED"/>
+<path d="M128 64c14-10 30-8 38 2-10 8-24 10-36 6z" fill="#FDE3ED"/>
+<circle cx="128" cy="84" r="20" fill="#F6A8C0"/>
+<path d="M118 64l-2-12 12 6zM138 66l6-12 6 12z" fill="#EE7FA5"/>
+<circle cx="124" cy="82" r="3.6" fill="#5A2A3A"/><circle cx="138" cy="82" r="3.6" fill="#5A2A3A"/>
+<ellipse cx="131" cy="94" rx="9" ry="7" fill="#EE7FA5"/>
+<circle cx="128" cy="94" r="2" fill="#5A2A3A"/><circle cx="135" cy="94" r="2" fill="#5A2A3A"/>
+<path d="M60 110c-6 6-6 12 0 16" stroke="#EE7FA5" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M84 122l-3 10M112 122l3 10" stroke="#EE7FA5" stroke-width="6" stroke-linecap="round"/>
+</svg>

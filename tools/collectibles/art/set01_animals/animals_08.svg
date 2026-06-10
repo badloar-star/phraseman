@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ночная сова">
+<path d="M150 28a22 22 0 1 0 14 30 18 18 0 0 1-14-30z" fill="#FFE9A8"/>
+<circle cx="48" cy="34" r="2.4" fill="#FFE9A8"/><circle cx="70" cy="20" r="1.8" fill="#FFE9A8"/><circle cx="172" cy="78" r="2" fill="#FFE9A8"/><circle cx="30" cy="70" r="1.6" fill="#FFE9A8"/>
+<path d="M40 138h120" stroke="#6B5A3E" stroke-width="7" stroke-linecap="round"/>
+<ellipse cx="96" cy="96" rx="36" ry="40" fill="#7C6A9C"/>
+<path d="M68 64l-6-16 16 8zM124 64l6-16-16 8z" fill="#7C6A9C"/>
+<circle cx="84" cy="86" r="13" fill="#F5F0E6"/><circle cx="108" cy="86" r="13" fill="#F5F0E6"/>
+<circle cx="84" cy="86" r="5.5" fill="#16243A"/><circle cx="108" cy="86" r="5.5" fill="#16243A"/>
+<path d="M96 96l-5 8h10z" fill="#F6A623"/>
+<path d="M72 112c8 8 18 11 24 11s16-3 24-11" stroke="#5E4F7A" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M88 134l-2 6M104 134l2 6" stroke="#F6A623" stroke-width="4.6" stroke-linecap="round"/>
+</svg>

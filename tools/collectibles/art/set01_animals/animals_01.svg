@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Лошадь с поводьями">
+<ellipse cx="100" cy="142" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M68 132c-4-34 8-66 34-78 18-8 38-6 50 8 8 10 10 24 6 34l-12-6c-8 18-26 26-44 28l-6 14z" fill="#A9744F"/>
+<path d="M96 50c-2-12 4-24 14-30 2 8 8 12 14 14-10 2-16 8-18 18z" fill="#7C4F33"/>
+<path d="M102 54c14-10 34-8 44 4l-8 10c-10-8-24-10-36-4z" fill="#7C4F33"/>
+<circle cx="134" cy="74" r="5" fill="#26160C"/>
+<path d="M150 92c6 2 10 6 11 12" stroke="#26160C" stroke-width="4" stroke-linecap="round" fill="none"/>
+<path d="M66 96c20 6 44 6 62-2" stroke="#E8B04B" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M64 96l-14 22M128 94l16 24" stroke="#E8B04B" stroke-width="6" stroke-linecap="round"/>
+<circle cx="50" cy="120" r="7" fill="#E8B04B"/><circle cx="146" cy="120" r="7" fill="#E8B04B"/>
+</svg>

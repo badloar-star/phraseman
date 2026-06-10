@@ -192,6 +192,14 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // â”€â”€ Admin config (alerts settings, admin-only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // admin_config/alerts holds Telegram alert settings (chatId, enabled, types).
+    // Read/write only by admin from the panel. The alert Cloud Functions use the
+    // Admin SDK (bypasses rules) to read config and write bookkeeping fields.
+    match /admin_config/{docId} {
+      allow read, write: if isAdmin();
+    }
+
     // â”€â”€ User warnings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /user_warnings/{docId} {
       allow read:   if request.auth != null;
@@ -684,7 +692,36 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Explain like I'm five (Phase 5) ────────────────────────────────────────
+    // Публичный кэш объяснений: ЛЮБОЙ может читать готовое объяснение напрямую (быстро,
+    // без CF, 0 токенов), но писать — ТОЛЬКО Admin SDK из Cloud Function (explainPhrase).
+    // Клиент НИКОГДА не пишет публичный контент (инвариант аудита SECURITY_AUDIT_2026-06-07).
+    match /phrase_explanations/{phraseHash} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Внутренние CF-only коллекции фичи: бюджет/лимиты/биллинг/счётчики репортов.
+    // Всё пишет и читает только сервер (Admin SDK). НЕ через isAdmin(): эти коллекции НЕ
+    // открыты admin-панели (в отличие от referral_owners), поэтому read И write = false.
+    match /explain_global_budget/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+    match /explain_user_limits/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+    match /explain_billing/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+    match /explain_reports/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /{document=**} {
       allow read, write: if false;
     }

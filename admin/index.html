@@ -506,6 +506,80 @@
     .lc-row-clickable { cursor: pointer; }
     .lc-row-clickable:hover { background: #161620 !important; }
 
+    /* ── Cmd-K global command palette ─────────────────────────────────────── */
+    #cmdk-overlay { display: none; position: fixed; inset: 0; z-index: 10100; }
+    #cmdk-overlay.cmdk-open { display: block; }
+    #cmdk-backdrop { position: absolute; inset: 0; background: rgba(5, 6, 10, 0.72); backdrop-filter: blur(4px); }
+    #cmdk-box {
+      position: absolute; top: 12vh; left: 50%; transform: translateX(-50%);
+      width: min(620px, 92vw);
+      background: #14141d; border: 1px solid #2e2e40; border-radius: 14px;
+      box-shadow: 0 24px 70px #000b; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    #cmdk-input {
+      border: none; outline: none; background: transparent;
+      color: #f4f4f5; font-size: 17px; padding: 18px 20px;
+      border-bottom: 1px solid #23232f;
+    }
+    #cmdk-input::placeholder { color: #6b7280; }
+    #cmdk-results { max-height: 52vh; overflow-y: auto; padding: 6px; }
+    .cmdk-item {
+      display: flex; align-items: center; gap: 11px;
+      padding: 9px 13px; border-radius: 9px; cursor: pointer;
+      font-size: 14px; color: #d4d4dc;
+    }
+    .cmdk-item.cmdk-active { background: #25253a; }
+    .cmdk-item:hover { background: #1e1e2e; }
+    .cmdk-item-icon { width: 24px; text-align: center; font-size: 15px; flex-shrink: 0; }
+    .cmdk-item-main { min-width: 0; flex: 1; }
+    .cmdk-item-title { color: #f4f4f5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cmdk-item-sub { font-size: 11px; color: #7e8494; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: ui-monospace, monospace; }
+    .cmdk-item-kind { font-size: 10px; color: #8b8b9a; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; padding: 2px 7px; background: #1e1e2e; border-radius: 5px; }
+    .cmdk-item mark { background: #6c47ff44; color: #c4b5fd; border-radius: 2px; padding: 0 1px; }
+    .cmdk-section { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.6px; padding: 10px 13px 4px; }
+    .cmdk-empty { padding: 26px 16px; text-align: center; color: #6b7280; font-size: 13px; }
+    #cmdk-hint { padding: 9px 16px; border-top: 1px solid #23232f; font-size: 11px; color: #6b7280; }
+    .lc-date-input { background:#1a1a24; border:1px solid #2a2a3a; border-radius:6px; color:#cbd5e1; padding:4px 8px; font-size:12px; color-scheme:dark; }
+    .lc-date-input::-webkit-calendar-picker-indicator { filter: invert(0.7); cursor: pointer; }
+
+    /* ── User 360: collapsible accordion sections ─────────────────────────── */
+    .u360-summary {
+      display: flex; flex-wrap: wrap; gap: 7px; align-items: center;
+      padding: 12px 14px; margin-bottom: 12px;
+      background: #16161f; border: 1px solid #26263400; border-radius: 11px;
+    }
+    .u360-chip { font-size: 12px; font-weight: 600; color: #cbd5e1; background: #20202e; border: 1px solid #2e2e40; border-radius: 999px; padding: 3px 11px; }
+    .u360-chip.c-prem { background: #2a2410; border-color: #5a4a1a; color: #fbbf24; }
+    .u360-chip.c-vip { background: #062a18; border-color: #166534; color: #4ade80; }
+    .u360-chip.c-ban { background: #3a1414; border-color: #6b2a2a; color: #f87171; }
+    .u360-chip.c-rep { background: #3a1414; border-color: #6b2a2a; color: #fca5a5; }
+    .u360-chip.c-ok { background: #0f2a1a; border-color: #14532d; color: #4ade80; }
+    .dsec-acc { border: 1px solid #23232f; border-radius: 11px; margin-bottom: 9px; overflow: hidden; background: #15151d; }
+    .dsec-acc-head {
+      display: flex; align-items: center; gap: 10px; width: 100%;
+      background: transparent; border: none; cursor: pointer;
+      padding: 13px 15px; color: #e8e8ee; font-size: 14px; font-weight: 700; text-align: left;
+    }
+    .dsec-acc-head:hover { background: #1b1b27; }
+    .dsec-acc-head .acc-chev { margin-left: auto; transition: transform 0.2s ease; color: #6b7280; flex-shrink: 0; }
+    .dsec-acc.open > .dsec-acc-head .acc-chev { transform: rotate(90deg); }
+    .dsec-acc-head .acc-badge { font-size: 11px; font-weight: 700; color: #fca5a5; background: #3a1414; border: 1px solid #6b2a2a; border-radius: 999px; padding: 1px 8px; }
+    .dsec-acc-body { display: none; padding: 4px 15px 15px; }
+    .dsec-acc.open > .dsec-acc-body { display: block; }
+    .dsec-acc-body .drow { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 5px 0; border-bottom: 1px solid #ffffff08; }
+    .dsec-acc-body .drow:last-child { border-bottom: none; }
+    .dsec-acc-body .drow .k { color: #8b8b9a; font-size: 13px; }
+    .dsec-acc-body .drow .v { color: #e8e8ee; font-size: 13px; text-align: right; }
+    .u360-loading { color: #888; font-size: 13px; padding: 10px 0; }
+    .u360-list-item { padding: 8px 10px; background: #1a1a24; border: 1px solid #23232f; border-radius: 8px; margin-bottom: 6px; font-size: 12px; line-height: 1.5; }
+    .u360-list-item .u360-li-top { display: flex; justify-content: space-between; gap: 8px; }
+    .u360-pill { font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 5px; text-transform: uppercase; }
+    .u360-pill.p-open { background: #2a2410; color: #fbbf24; }
+    .u360-pill.p-fixed, .u360-pill.p-resolved, .u360-pill.p-approved { background: #0f2a1a; color: #4ade80; }
+    .u360-pill.p-deleted, .u360-pill.p-rejected, .u360-pill.p-banned { background: #3a1414; color: #f87171; }
+    .u360-empty { color: #6b7280; font-size: 12px; padding: 6px 0; }
+
     .analytics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
     .chart-card { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 18px; }
     .chart-card h3 { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
@@ -516,7 +590,7 @@
     .bar-count { font-size: 12px; color: #888; min-width: 40px; }
 
     /* Detail panel */
-    .detail { display: none; position: fixed; right: 0; top: 0; bottom: 0; width: 420px; background: #13131c; border-left: 1px solid #2a2a3a; overflow-y: auto; z-index: 100; box-shadow: -4px 0 24px #0008; }
+    .detail { display: none; position: fixed; right: 0; top: 0; bottom: 0; width: min(480px, 96vw); background: #13131c; border-left: 1px solid #2a2a3a; overflow-y: auto; z-index: 100; box-shadow: -4px 0 24px #0008; }
     .detail.open { display: flex; flex-direction: column; }
     .detail-header { padding: 18px 20px; border-bottom: 1px solid #2a2a3a; display: flex; justify-content: space-between; align-items: flex-start; }
     .detail-name { font-size: 18px; color: #fff; font-weight: 700; }
@@ -8224,6 +8298,15 @@
   </div>
 </div>
 
+<div id="cmdk-overlay" aria-hidden="true">
+  <div id="cmdk-backdrop"></div>
+  <div id="cmdk-box" role="dialog" aria-modal="true" aria-label="Быстрый поиск">
+    <input id="cmdk-input" type="text" autocomplete="off" spellcheck="false" placeholder="Поиск: UID, имя, email, или вкладка…" aria-label="Поиск">
+    <div id="cmdk-results"></div>
+    <div id="cmdk-hint">↑↓ навигация · ↵ открыть · esc закрыть</div>
+  </div>
+</div>
+
 <!-- COMMUNITY PACK: full-screen tile preview (like in-app cards) -->
 <div id="cp-pack-preview-overlay" aria-hidden="true">
   <div id="cp-pack-preview-backdrop" title="Закрыть" data-i18n-es="Cerrar"></div>
@@ -8279,6 +8362,7 @@
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>
   <div class="tab" onclick="switchTab('onboarding-qa')">Onboarding QA</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
+  <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('archive')" data-i18n-es="Archivo">Archive</div>
   <div class="tab" onclick="switchTab('audit')" data-i18n-es="Log de auditoría">Audit log</div>
@@ -8572,6 +8656,11 @@
       <option value="category" data-i18n-es="Por categoría">По категории</option>
     </select>
     <button type="button" onclick="loadReports()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
+      <input type="checkbox" id="r-group-dataid" onchange="filterReports()" /> <span>📑 Группировать по dataId</span>
+    </label>
+    <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">с <input type="date" id="r-date-from" onchange="filterReports()" class="lc-date-input"></label>
+    <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">по <input type="date" id="r-date-to" onchange="filterReports()" class="lc-date-input"></label>
     <button type="button" id="btn-mark-all-fixed" onclick="markAllVisibleReportsFixed()" style="background:#1a3a1a;border:1px solid #2a5a2a;color:#4ade80" title="Все открытые репорты из текущего фильтра — пофикшено и награды, как по кнопке на карточке" data-i18n-es="✅ Todo arreglado" data-i18n-es-title="Todos los reportes abiertos del filtro actual: arreglados y recompensas como con el botón de la tarjeta">✅ Пофикшено все</button>
     <span class="reports-count" id="reports-count"></span>
   </div>
@@ -8613,6 +8702,7 @@
     </div>
   </div>
   <div id="reports-list"><div class="reports-empty" data-i18n-es="⏳ Cargando reportes...">⏳ Загрузка репортов...</div></div>
+  <div style="text-align:center;padding:8px 0 28px"><button id="reports-load-more" onclick="loadMoreReports()" style="display:none;background:#1a2540;border:1px solid #5a8ad0;color:#bfdbfe;padding:9px 20px;border-radius:9px;cursor:pointer;font-weight:600">⬇ Загрузить ещё 500 (старее)</button></div>
 </div>
 
 <!-- APP MESSAGES TAB -->
@@ -8631,6 +8721,62 @@
     <span id="rc-status" style="align-self:center;font-size:13px;color:#9ca3af"></span>
   </div>
   <div id="rc-form" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:920px"></div>
+</div>
+
+<div id="tab-alerts" class="reports-tab">
+  <div style="padding:4px 0 16px;max-width:1080px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🔔 Telegram-алерты</h2>
+    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.55">
+      Проактивные уведомления в Telegram о важных событиях. Браузер не может слать в Telegram напрямую —
+      алерты идут через Cloud Functions (бот <b>@codex_reportbot</b>). Настройки хранятся в
+      <code style="color:#818cf8">admin_config/alerts</code>, токен — секрет в Cloud Functions.
+    </p>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+    <button type="button" onclick="loadAlertsConfig(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 14px;border-radius:8px;cursor:pointer">🔄 Перечитать</button>
+    <button type="button" onclick="saveAlertsConfig()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить</button>
+    <button type="button" onclick="sendAlertTest()" style="background:#0e2a3a;border:1px solid #1e5a7a;color:#38bdf8;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">📨 Тест</button>
+    <span id="alerts-status" style="align-self:center;font-size:13px;color:#9ca3af"></span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:920px">
+    <div style="background:#13131c;border:1px solid #23232f;border-radius:12px;padding:18px">
+      <h3 style="margin:0 0 14px;font-size:13px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px">Подключение</h3>
+      <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:6px">Master-тумблер</label>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:16px;cursor:pointer">
+        <input type="checkbox" id="alerts-enabled" style="width:18px;height:18px;cursor:pointer">
+        <span style="font-size:14px;color:#e5e7eb">Алерты включены</span>
+      </label>
+      <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:6px">Chat ID (куда слать)</label>
+      <input type="text" id="alerts-chatid" placeholder="напр. 123456789" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:14px;width:100%;font-family:ui-monospace,monospace">
+      <p style="margin:8px 0 0;font-size:11px;color:#6b7280;line-height:1.5">
+        Напиши боту <b>@codex_reportbot</b> любое сообщение, затем нажми «Тест» — если chat_id верный, бот пришлёт подтверждение.
+        Не знаешь свой chat_id? Напиши боту, потом открой
+        <code style="color:#818cf8">api.telegram.org/bot&lt;token&gt;/getUpdates</code>.
+      </p>
+    </div>
+    <div style="background:#13131c;border:1px solid #23232f;border-radius:12px;padding:18px">
+      <h3 style="margin:0 0 14px;font-size:13px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px">Типы событий</h3>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-userReport" style="width:16px;height:16px;cursor:pointer">
+        <span style="font-size:13px;color:#e5e7eb">🚩 Жалобы на пользователей</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-criticalError" style="width:16px;height:16px;cursor:pointer">
+        <span style="font-size:13px;color:#e5e7eb">🔴 Critical errors</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-contentReportDigest" style="width:16px;height:16px;cursor:pointer">
+        <span style="font-size:13px;color:#e5e7eb">📝 Content-репорты (сводка раз в час)</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-cancelRefundSpike" style="width:16px;height:16px;cursor:pointer">
+        <span style="font-size:13px;color:#e5e7eb">📉 Всплеск отмен/рефандов</span>
+      </label>
+      <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:6px">Порог всплеска (событий/час)</label>
+      <input type="number" id="alerts-spike" min="1" max="100" placeholder="5" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:14px;width:120px">
+    </div>
+  </div>
+  <div id="alerts-meta" style="margin-top:16px;max-width:920px;font-size:12px;color:#6b7280;line-height:1.6"></div>
 </div>
 
 <div id="tab-app-messages" class="reports-tab">
@@ -9267,9 +9413,12 @@
       <option value="global_broadcast_deactivate">global_broadcast_deactivate</option>
     </select>
     <button onclick="loadAuditLog()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">с <input type="date" id="audit-date-from" onchange="filterAuditLog()" class="lc-date-input"></label>
+    <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">по <input type="date" id="audit-date-to" onchange="filterAuditLog()" class="lc-date-input"></label>
     <span class="reports-count" id="audit-count"></span>
   </div>
   <div id="audit-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+  <div style="text-align:center;padding:8px 0 28px"><button id="audit-load-more" onclick="loadMoreAuditLog()" style="display:none;background:#1a2540;border:1px solid #5a8ad0;color:#bfdbfe;padding:9px 20px;border-radius:9px;cursor:pointer;font-weight:600">⬇ Загрузить ещё 200 (старее)</button></div>
 </div>
 
 <!-- APP HEALTH TAB -->
@@ -9315,6 +9464,7 @@
   <div style="height:14px"></div>
   <div style="font-weight:800;color:#ddd;margin:8px 0 10px 0" data-i18n-es="Eventos de salud">Health Events</div>
   <div id="ah-list"><div class="reports-empty" data-i18n-es="Abre App Health para cargar diagnósticos.">Open App Health to load diagnostics.</div></div>
+  <div style="text-align:center;padding:8px 0 28px"><button id="ah-load-more" onclick="loadMoreAppHealth()" style="display:none;background:#1a2540;border:1px solid #5a8ad0;color:#bfdbfe;padding:9px 20px;border-radius:9px;cursor:pointer;font-weight:600">⬇ Load more (older)</button></div>
 </div>
 
 <!-- OPS LOG TAB -->
@@ -9564,6 +9714,9 @@
 <div id="tab-arena-live" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadArenaLive(true)" data-i18n-es="🔄 Actualizar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
+    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
+      <input type="checkbox" id="al-live" onchange="arenaLiveToggleAuto(this.checked)" /> <span>🔴 Live (авто 5с)</span>
+    </label>
     <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
       <input type="checkbox" id="al-only-stuck" onchange="renderArenaLive()" /> <span data-i18n-es="solo atascadas (>5 min)">только зависшие (>5 мин)</span>
     </label>
@@ -10540,7 +10693,7 @@
 
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
@@ -10622,7 +10775,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['overview','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -13662,24 +13815,47 @@
       tasksDone = u.dailyTasks.filter(t => t && t.completed).length;
     }
 
+    // ── Accordion helper: each section collapses; closed by default ──────────
+    const acc = (key, head, bodyHtml, opts = {}) => {
+      const open = opts.open ? ' open' : '';
+      const lazy = opts.lazy ? ` data-lazy="${opts.lazy}"` : '';
+      const badge = opts.badge ? `<span class="acc-badge">${escapeHtml(String(opts.badge))}</span>` : '';
+      return `<div class="dsec-acc${open}" data-acc="${key}"${lazy}>
+        <button class="dsec-acc-head" type="button">${head}${badge}<span class="acc-chev">▸</span></button>
+        <div class="dsec-acc-body">${bodyHtml}</div>
+      </div>`;
+    };
+    const lazyPlaceholder = '<div class="u360-loading">Откройте секцию для загрузки…</div>';
+
+    // ── Summary header (always visible) ──────────────────────────────────────
+    const summaryChips = [
+      `<span class="u360-chip">Lvl ${lvl(u.xp)}</span>`,
+      `<span class="u360-chip">${u.xp.toLocaleString()} XP</span>`,
+      `<span class="u360-chip">🔥 ${u.streak}</span>`,
+      `<span class="u360-chip">💎 ${toSafeNumber(u.shards, 0)}</span>`,
+      premInfo.hasPlan ? `<span class="u360-chip c-prem">⭐ ${escapeHtml(String(premInfo.plan || 'premium'))}</span>` : '',
+      vip.active ? `<span class="u360-chip c-vip">💚 VIP</span>` : '',
+      u.banned ? `<span class="u360-chip c-ban">🚫 Забанен</span>` : `<span class="u360-chip c-ok">✅ Активен</span>`,
+      `<span class="u360-chip" id="u360-rep-chip" style="display:none"></span>`,
+    ].filter(Boolean).join('');
+
     document.getElementById('d-body').innerHTML = `
-      <div class="dsec">
-        <h3>👤 Профиль</h3>
-        <div class="drow"><span class="k">Имя</span><span class="v">${u.name}</span></div>
+      <div class="u360-summary">${summaryChips}</div>
+      ${acc('profile', '👤 Профиль', `
+        <div class="drow"><span class="k">Имя</span><span class="v">${escapeHtml(u.name)}</span></div>
         <div class="drow"><span class="k">Язык</span><span class="v">${u.lang==='uk'?'🇺🇦 Украинский':'🇷🇺 Русский'}</span></div>
         <div class="drow"><span class="k">Платформа</span><span class="v">${platBadge(u.platform)}</span></div>
         <div class="drow"><span class="k">Тема</span><span class="v">${{minimalDark:'⚫ Графит',minimalLight:'✏️ Скетч',dark:'🌲 Форест',neon:'💚 Неон',gold:'🌟 Gold reward'}[u.theme]||u.theme||'⚫ Графит'}</span></div>
         <div class="drow"><span class="k">Уровень знаний (тест)</span><span class="v">${klvlBadge(u.placementLevel)}</span></div>
-        <div class="drow"><span class="k">Premium</span><span class="v">${premHtml}<div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap"><button data-action="premium-grant" data-uid="${u.uid}" style="background:#062a18;border:1px solid #166534;color:#4ade80;padding:2px 7px;font-size:10px;border-radius:4px;cursor:pointer;opacity:0.7">💚 VIP</button><button data-action="vip-revoke" data-uid="${u.uid}" style="background:#2a1111;border:1px solid #7f1d1d;color:#fca5a5;padding:2px 7px;font-size:10px;border-radius:4px;cursor:pointer;opacity:0.7">Снять VIP</button></div></span></div>
-        <div class="drow"><span class="k">Онбординг</span><span class="v">${u.onboarding?'✅ Завершён':'❌ Нет'}</span></div>
-      </div>
-      <div class="dsec">
-        <h3>🔐 Аккаунт (auth)</h3>
-        ${(()=>{
+        <div class="drow"><span class="k">Premium</span><span class="v">${premHtml}</span></div>
+        <div class="drow"><span class="k">Онбординг</span><span class="v">${u.onboarding?'✅ Завершён':'❌ Нет'}</span></div>`, { open: true })}
+      ${acc('reputation', '🚩 Репутация и нарушения', lazyPlaceholder, { lazy: 'reputation' })}
+      ${acc('reports', '📝 Content-репорты юзера', lazyPlaceholder, { lazy: 'reports' })}
+      ${acc('payments', '💳 Платежи / Premium-история', lazyPlaceholder, { lazy: 'payments' })}
+      ${acc('chat', '💬 Чат лиг / UGC / рефералы', lazyPlaceholder, { lazy: 'social' })}
+      ${acc('auth', '🔐 Аккаунт (auth)', (()=>{
           const la = u.linkedAuth;
-          if (!la || !la.provider) {
-            return authDetailHtml(u);
-          }
+          if (!la || !la.provider) { return authDetailHtml(u); }
           const icon = la.provider === 'apple' ? '🍎 Apple' : '🔵 Google';
           const linkedAt = la.linkedAt ? fdate(la.linkedAt) : '—';
           const lastSignIn = la.lastSignInAt ? fdate(la.lastSignInAt) : '—';
@@ -13690,66 +13866,44 @@
             <div class="drow"><span class="k">Provider UID</span><span class="v" style="font-family:monospace;font-size:11px;word-break:break-all">${la.providerUid ? escapeHtml(la.providerUid) : '—'}</span></div>
             <div class="drow"><span class="k">Привязан</span><span class="v">${linkedAt}</span></div>
             <div class="drow"><span class="k">Последний вход</span><span class="v">${lastSignIn}</span></div>
-            <div class="drow"><span class="k">Платформа привязки</span><span class="v">${la.devicePlatform || '—'}</span></div>
-          `;
-        })()}
-      </div>
-      <div class="dsec">
-        <h3>⚡ Активные множители XP</h3>
-        ${multsHtml}
-      </div>
-      <div class="dsec">
-        <h3>📈 Прогресс</h3>
+            <div class="drow"><span class="k">Платформа привязки</span><span class="v">${la.devicePlatform || '—'}</span></div>`;
+        })())}
+      ${acc('progress', '📈 Прогресс', `
         <div class="drow"><span class="k">Уровень</span><span class="v"><span class="level-badge">Lvl ${lvl(u.xp)}</span></span></div>
         <div class="drow"><span class="k">XP всего</span><span class="v">${u.xp.toLocaleString()}</span></div>
         <div class="drow"><span class="k">До следующего уровня</span><span class="v">${pct(u.xp)}%</span></div>
         <div class="drow"><span class="k">Streak</span><span class="v">🔥 ${u.streak} дней</span></div>
         <div class="drow"><span class="k">Последний streak</span><span class="v">${u.streakLastDate||'—'}</span></div>
         <div class="drow"><span class="k">💎 Осколки знаний</span><span class="v" style="color:#34d399;font-weight:700;font-size:16px">${toSafeNumber(u.shards, 0)}</span></div>
-      </div>
-      ${shardsSection(u)}
-      <div class="dsec">
-        <h3>📚 Обучение</h3>
+        ${shardsSection(u)}`)}
+      ${acc('learning', '📚 Обучение', `
         <div class="drow"><span class="k">Уроков пройдено</span><span class="v">${u.lessons.length} / ${LESSON_NAMES.length}</span></div>
         <div class="drow"><span class="k">Карточек сохранено</span><span class="v">${u.flashcards}</span></div>
         <div class="drow"><span class="k">Достижений выполнено</span><span class="v">${achDone}${achTotal?' / '+achTotal:''}</span></div>
-        ${u.lessons.length?`<div class="drow"><span class="k">Последний урок</span><span class="v">${(()=>{const id=Math.max(...u.lessons);const lessonName=LESSON_NAMES[id];return lessonName||'#'+id;})()} </span></div>`:''}
-      </div>
-      <div class="dsec">
-        <h3>🎯 Квизы сегодня</h3>
-        <div class="drow"><span class="k">🌱 Лёгкий</span><span class="v">${quiz.easy > 0 ? quiz.easy+' вопр.' : '—'}</span></div>
-        <div class="drow"><span class="k">⚔️ Средний</span><span class="v">${quiz.medium > 0 ? quiz.medium+' вопр.' : '—'}</span></div>
-        <div class="drow"><span class="k">💀 Сложный</span><span class="v">${quiz.hard > 0 ? quiz.hard+' вопр.' : '—'}</span></div>
-        <div class="drow"><span class="k">Дневные задания</span><span class="v">${tasksTotal ? tasksDone+' / '+tasksTotal+' выполнено' : '—'}</span></div>
-      </div>
-      <div class="dsec">
-        <h3>🏆 Лига</h3>
-        <div class="drow"><span class="k">Текущая лига</span><span class="v">${leagueName}</span></div>
+        ${u.lessons.length?`<div class="drow"><span class="k">Последний урок</span><span class="v">${(()=>{const id=Math.max(...u.lessons);const lessonName=LESSON_NAMES[id];return lessonName||'#'+id;})()} </span></div>`:''}`)}
+      ${acc('league', '🏆 Лига', `
+        <div class="drow"><span class="k">Текущая лига</span><span class="v">${escapeHtml(String(leagueName))}</span></div>
         <div class="drow"><span class="k">ID лиги</span><span class="v">${u.leagueState?.leagueId ?? '—'}</span></div>
-        <div class="drow"><span class="k">Очки недели</span><span class="v">${weekPts}</span></div>
-      </div>
-      <div class="dsec">
-        <h3>⚙️ Настройки обучения</h3>
+        <div class="drow"><span class="k">Очки недели</span><span class="v">${weekPts}</span></div>`)}
+      ${acc('gameplay', '⚡ Геймплей и настройки', `
+        <div style="margin-bottom:8px">${multsHtml}</div>
+        <div class="drow"><span class="k">🌱 Квиз лёгкий</span><span class="v">${quiz.easy > 0 ? quiz.easy+' вопр.' : '—'}</span></div>
+        <div class="drow"><span class="k">⚔️ Квиз средний</span><span class="v">${quiz.medium > 0 ? quiz.medium+' вопр.' : '—'}</span></div>
+        <div class="drow"><span class="k">💀 Квиз сложный</span><span class="v">${quiz.hard > 0 ? quiz.hard+' вопр.' : '—'}</span></div>
+        <div class="drow"><span class="k">Дневные задания</span><span class="v">${tasksTotal ? tasksDone+' / '+tasksTotal : '—'}</span></div>
         <div class="drow"><span class="k">Hard Mode</span><span class="v">${u.settings.hardMode?'<span class="pill pill-red">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Auto Check</span><span class="v">${u.settings.autoCheck?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Voice Out</span><span class="v">${u.settings.voiceOut!==false?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
-        <div class="drow"><span class="k">Auto Advance</span><span class="v">${u.settings.autoAdvance?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
-        <div class="drow"><span class="k">Speech Rate</span><span class="v">${u.settings.speechRate||1.0}x</span></div>
-        <div class="drow"><span class="k">Font Size</span><span class="v">${u.fontSize||'medium'}</span></div>
-      </div>
-      ${arenaSection(u.uid)}
-      ${arenaServerResultsSection(u)}
-      <div class="dsec">
-        <h3>🖥️ Система</h3>
-        <div class="drow"><span class="k">UID</span><span class="v" style="font-size:10px;font-family:monospace">${u.uid}</span></div>
-        <div class="drow"><span class="k">Версия приложения</span><span class="v">${u.appVersion||'—'}</span></div>
+        <div class="drow"><span class="k">Speech Rate</span><span class="v">${u.settings.speechRate||1.0}x</span></div>`)}
+      ${acc('arena', '🥇 Arena', `${arenaSection(u.uid)}${arenaServerResultsSection(u)}`)}
+      ${acc('system', '🖥️ Система', `
+        <div class="drow"><span class="k">UID</span><span class="v" style="font-size:10px;font-family:monospace">${escapeHtml(u.uid)}</span></div>
+        <div class="drow"><span class="k">Версия приложения</span><span class="v">${escapeHtml(u.appVersion||'—')}</span></div>
         <div class="drow"><span class="k">Зарегистрирован</span><span class="v">${u.createdAt ? fdate(u.createdAt) : '<span style="color:#555">нет данных</span>'}</span></div>
         <div class="drow"><span class="k">Последняя активность</span><span class="v">${u.lastActiveAt ? fdate(u.lastActiveAt) : fdate(u.updatedAt)}</span></div>
         <div class="drow"><span class="k">Обновлён</span><span class="v">${fdate(u.updatedAt)}</span></div>
-        <div class="drow"><span class="k">Статус</span><span class="v">${u.banned?'<span class="pill pill-red">🚫 Забанен</span>':'<span class="pill pill-green">✅ Активен</span>'}</span></div>
-      </div>
-      <div class="dsec" style="border-color:#3a1a1a">
-        <h3>🛠️ Управление аккаунтом</h3>
+        <div class="drow"><span class="k">Статус</span><span class="v">${u.banned?'<span class="pill pill-red">🚫 Забанен</span>':'<span class="pill pill-green">✅ Активен</span>'}</span></div>`)}
+      ${acc('manage', '🛠️ Управление аккаунтом', `
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px">
           <button data-action="edit-name" data-uid="${u.uid}">✏️ Имя</button>
           <button data-action="edit-xp"   data-uid="${u.uid}" style="background:#1a2a3a">✏️ XP</button>
@@ -13772,11 +13926,24 @@
             : `<button data-action="ban"   data-uid="${u.uid}" style="background:#2a1a00;color:#fbbf24;border:1px solid #4a2a00">🚫 Забанить</button>`
           }
           <button data-action="delete" data-uid="${u.uid}" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#f87171">🗑 Удалить аккаунт</button>
-        </div>
-      </div>
+        </div>`)}
     `;
     document.getElementById('detail').classList.add('open');
     document.getElementById('detail-overlay').style.display = 'block';
+
+    // Accordion toggle + lazy-load on first open
+    document.getElementById('d-body').querySelectorAll('.dsec-acc-head').forEach(head => {
+      head.addEventListener('click', () => {
+        const sec = head.closest('.dsec-acc');
+        if (!sec) return;
+        const wasOpen = sec.classList.contains('open');
+        sec.classList.toggle('open');
+        if (!wasOpen && sec.dataset.lazy && !sec.dataset.loaded) {
+          sec.dataset.loaded = '1';
+          u360LoadLazySection(sec.dataset.lazy, uid, sec.querySelector('.dsec-acc-body'));
+        }
+      });
+    });
 
     // Delegate detail-panel button clicks via data-action (no inline JS, no XSS)
     document.getElementById('d-body').querySelectorAll('button[data-action]').forEach(btn => {
@@ -13811,6 +13978,135 @@
     document.getElementById('detail-overlay').style.display = 'none';
   };
 
+  // ── User 360: lazy-loaded history/reputation sections ─────────────────────
+  // Query a root collection filtered by a UID field, tolerant of a missing
+  // composite index (falls back to no orderBy + client sort). Mirrors the shape
+  // of loadArenaServerResults / the league-chat thread loader.
+  async function u360Query(collName, field, uid, sortField, max) {
+    const lim = max || 25;
+    try {
+      const snap = await getDocs(query(collection(db, collName), where(field, '==', uid), orderBy(sortField, 'desc'), limit(lim)));
+      return snap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
+    } catch (_) {
+      // Likely a missing composite index → retry without orderBy, sort client-side.
+      try {
+        const snap = await getDocs(query(collection(db, collName), where(field, '==', uid), limit(lim)));
+        return snap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }))
+          .sort((a, b) => Number(b[sortField] || 0) - Number(a[sortField] || 0));
+      } catch (e2) {
+        throw e2;
+      }
+    }
+  }
+  function u360Pill(status) {
+    const s = String(status || '').toLowerCase();
+    return `<span class="u360-pill p-${escapeHtml(s)}">${escapeHtml(status || '—')}</span>`;
+  }
+  function u360List(rows, renderRow, emptyText) {
+    if (!rows.length) return `<div class="u360-empty">${escapeHtml(emptyText || 'Нет записей')}</div>`;
+    return rows.map(renderRow).join('');
+  }
+  window.u360LoadLazySection = async function(kind, uid, bodyEl) {
+    if (!bodyEl) return;
+    bodyEl.innerHTML = '<div class="u360-loading">Загрузка…</div>';
+    try {
+      if (kind === 'reputation') {
+        const [against, by, banSnap] = await Promise.all([
+          u360Query('user_reports', 'reportedUid', uid, 'createdAt', 25).catch(() => []),
+          u360Query('user_reports', 'reporterUid', uid, 'createdAt', 25).catch(() => []),
+          getDoc(doc(db, 'banned_users', uid)).catch(() => null),
+        ]);
+        const banned = banSnap && banSnap.exists();
+        const violationCount = against.length + (banned ? 1 : 0);
+        // Reflect into the summary chip
+        const chip = document.getElementById('u360-rep-chip');
+        if (chip) {
+          chip.style.display = '';
+          chip.className = 'u360-chip ' + (violationCount > 0 ? 'c-rep' : 'c-ok');
+          chip.textContent = violationCount > 0 ? `🚩 ${violationCount} нарушений` : '🚩 чисто';
+        }
+        const repBadge = document.querySelector('.dsec-acc[data-acc="reputation"] .acc-badge');
+        const bodyHtml = `
+          ${banned ? `<div class="u360-list-item" style="border-color:#6b2a2a"><b style="color:#f87171">🚫 ЗАБАНЕН</b> · ${escapeHtml(fdate(banSnap.data().bannedAt || banSnap.data().createdAt))} · ${escapeHtml(banSnap.data().reason || 'без причины')} · ${escapeHtml(banSnap.data().bannedBy || '')}</div>` : ''}
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:8px 0 5px">Жалобы на него (${against.length})</div>
+          ${u360List(against, r => `<div class="u360-list-item"><div class="u360-li-top"><span>${escapeHtml(r.reason || r.category || '—')}</span>${u360Pill(r.status || 'new')}</div><div style="color:#7e8494">${escapeHtml(fdate(r.createdAt))} · от ${escapeHtml(r.reporterName || r.reporterUid || '—')}</div></div>`, 'Жалоб нет')}
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">Жалобы от него (${by.length})</div>
+          ${u360List(by, r => `<div class="u360-list-item"><div class="u360-li-top"><span>на ${escapeHtml(r.reportedName || r.reportedUid || '—')}</span>${u360Pill(r.status || 'new')}</div><div style="color:#7e8494">${escapeHtml(fdate(r.createdAt))} · ${escapeHtml(r.reason || '—')}</div></div>`, 'Жалоб нет')}`;
+        bodyEl.innerHTML = bodyHtml;
+        if (repBadge && violationCount > 0) repBadge.textContent = String(violationCount);
+        else if (repBadge) repBadge.remove();
+      } else if (kind === 'reports') {
+        const rows = await u360Query('error_reports', 'uid', uid, 'createdAt', 30).catch(() => []);
+        bodyEl.innerHTML = `<div style="font-size:11px;color:#8b8b9a;margin-bottom:6px">Content-репортов: ${rows.length}</div>` +
+          u360List(rows, r => `<div class="u360-list-item"><div class="u360-li-top"><span>${escapeHtml(r.screen || '—')} · ${escapeHtml(r.category || '—')}</span>${u360Pill(r.status || (r.fixed ? 'fixed' : 'open'))}</div><div style="color:#7e8494">${escapeHtml(fdate(r.createdAt))}${r.dataId ? ' · ' + escapeHtml(String(r.dataId)) : ''}</div></div>`, 'Юзер не отправлял репортов');
+      } else if (kind === 'payments') {
+        const [prem, shards] = await Promise.all([
+          u360Query('revenuecat_premium_events', 'uid', uid, 'createdAt', 20).catch(() => []),
+          u360Query('revenuecat_shard_transactions', 'uid', uid, 'createdAt', 20).catch(() => []),
+        ]);
+        bodyEl.innerHTML = `
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:2px 0 5px">RevenueCat события (${prem.length})</div>
+          ${u360List(prem, r => `<div class="u360-list-item"><div class="u360-li-top"><span>${escapeHtml(r.type || r.event || '—')}</span><span style="color:#7e8494">${escapeHtml(fdate(r.createdAt))}</span></div><div style="color:#7e8494">${escapeHtml(r.productId || r.product || '—')}</div></div>`, 'Нет событий')}
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">Транзакции осколков (${shards.length})</div>
+          ${u360List(shards, r => `<div class="u360-list-item"><div class="u360-li-top"><span>${escapeHtml(r.type || '—')} ${r.amount != null ? '· ' + escapeHtml(String(r.amount)) : ''}</span><span style="color:#7e8494">${escapeHtml(fdate(r.createdAt))}</span></div></div>`, 'Нет транзакций')}`;
+      } else if (kind === 'social') {
+        const [msgs, buys, sells, refByMe, refMe] = await Promise.all([
+          u360Query('league_chat_messages', 'authorUid', uid, 'createdAt', 15).catch(() => []),
+          u360Query('community_pack_purchases', 'buyerStableId', uid, 'createdAt', 15).catch(() => []),
+          u360Query('community_pack_purchases', 'sellerStableId', uid, 'createdAt', 15).catch(() => []),
+          u360Query('referral_attributions', 'referrerStableId', uid, 'createdAt', 25).catch(() => []),
+          getDoc(doc(db, 'referral_attributions', uid)).catch(() => null),
+        ]);
+        const invitedBy = refMe && refMe.exists() ? (refMe.data().referrerStableId || '—') : null;
+        bodyEl.innerHTML = `
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:2px 0 5px">Сообщения в чате лиг (${msgs.length})</div>
+          ${u360List(msgs, r => `<div class="u360-list-item"><div class="u360-li-top"><span style="flex:1;min-width:0">${escapeHtml(String(r.text || r.messageText || '—').slice(0, 90))}</span>${u360Pill(r.status || 'visible')}</div><div style="color:#7e8494">${escapeHtml(fdate(r.createdAt))}${r.groupId ? ` · <a href="#" onclick="event.preventDefault();leagueChatOpenThread('${escapeHtml(String(r.groupId))}','${escapeHtml(String(r.id))}')" style="color:#818cf8">тред</a>` : ''}</div></div>`, 'Сообщений нет')}
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">UGC: купил ${buys.length} · продал ${sells.length}</div>
+          ${u360List(buys.slice(0, 8), r => `<div class="u360-list-item"><div class="u360-li-top"><span>🛒 ${escapeHtml(r.packId || r.packTitle || '—')}</span>${u360Pill(r.status || 'completed')}</div><div style="color:#7e8494">${escapeHtml(fdate(r.createdAt))} · ${escapeHtml(String(r.priceShards ?? r.price ?? '—'))} 💎</div></div>`, 'Покупок нет')}
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">Рефералы</div>
+          ${invitedBy ? `<div class="u360-list-item">Приглашён: <span style="font-family:monospace">${escapeHtml(String(invitedBy))}</span></div>` : ''}
+          <div class="u360-list-item">Пригласил: <b>${refByMe.length}</b> чел.</div>
+          ${u360List(refByMe.slice(0, 8), r => `<div class="u360-list-item" style="padding:5px 10px"><span style="font-family:monospace;font-size:11px">${escapeHtml(String(r.id))}</span> ${u360Pill(r.status || 'pending')}</div>`, '')}`;
+      } else {
+        bodyEl.innerHTML = '<div class="u360-empty">Неизвестная секция</div>';
+      }
+    } catch (e) {
+      bodyEl.innerHTML = `<div class="u360-empty" style="color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+    }
+  };
+
+  // Fallback: open a user not present in the loaded _users cache (Cmd-K direct
+  // UID, ban-list profile). Loads the user doc and reuses the table's mapper.
+  window.openUserByUid = async function(uid) {
+    if (!uid) return;
+    const existing = Array.isArray(window._users) ? window._users.find(x => x.uid === uid) : null;
+    if (existing) { switchTab('users'); openDetail(uid); return; }
+    showToast('Загрузка профиля…');
+    try {
+      const snap = await getDoc(doc(db, 'users', uid));
+      if (!snap.exists()) { showToast('Пользователь не найден: ' + uid, 'err'); return; }
+      let mapped = null;
+      if (typeof window.mapUserDoc === 'function') {
+        mapped = window.mapUserDoc(uid, snap.data() || {});
+      } else if (typeof buildUserFromDoc === 'function') {
+        mapped = buildUserFromDoc(uid, snap.data() || {});
+      }
+      if (mapped) {
+        if (!Array.isArray(window._users)) window._users = [];
+        if (!window._users.some(x => x.uid === uid)) window._users.push(mapped);
+        switchTab('users');
+        openDetail(uid);
+      } else {
+        // No mapper available — fall back to loading the full table then opening.
+        if (typeof window.loadUsers === 'function') await window.loadUsers({ full: true }).catch(() => {});
+        switchTab('users');
+        setTimeout(() => openDetail(uid), 80);
+      }
+    } catch (e) {
+      showToast('Ошибка загрузки профиля: ' + (e && e.message ? e.message : e), 'err');
+    }
+  };
+
   window.openAdminUserFromQuery = async function openAdminUserFromQuery() {
     if (window._openAdminUserFromQueryHandled) return;
     const params = new URLSearchParams(window.location.search || '');
@@ -13828,6 +14124,8 @@
 
   window.switchTab = function(tab, opts) {
     const options = opts || {};
+    // Stop arena-live auto-refresh when navigating away (avoid background polling).
+    if (tab !== 'arena-live' && typeof window.arenaLiveStopAuto === 'function') window.arenaLiveStopAuto();
     const tabSearch = document.getElementById('admin-tab-search');
     if (tabSearch && tabSearch.value) {
       tabSearch.value = '';
@@ -13878,6 +14176,8 @@
     if (appMessagesTab) appMessagesTab.classList.toggle('active', tab === 'app-messages');
     const remoteConfigTab = document.getElementById('tab-remote-config');
     if (remoteConfigTab) remoteConfigTab.classList.toggle('active', tab === 'remote-config');
+    const alertsTab = document.getElementById('tab-alerts');
+    if (alertsTab) alertsTab.classList.toggle('active', tab === 'alerts');
     const changelogTab = document.getElementById('tab-changelog-0608');
     if (changelogTab) changelogTab.classList.toggle('active', tab === 'changelog-0608');
     const ugcTab = document.getElementById('tab-ugc-purchases');
@@ -13921,6 +14221,9 @@
     }
     if (tab === 'remote-config' && typeof window.loadRemoteConfig === 'function' && !window._remoteConfigLoaded) {
       void window.loadRemoteConfig(false);
+    }
+    if (tab === 'alerts' && typeof window.loadAlertsConfig === 'function' && !window._alertsLoaded) {
+      void window.loadAlertsConfig(false);
     }
     if (tab === 'clubs' && !window._clubsLoaded && typeof window.loadClubsData === 'function') {
       void window.loadClubsData(false);
@@ -15029,6 +15332,148 @@
     window._leagueChatLoaded = false; // table data is now stale; refresh lazily next time the tab loads
   };
 
+  // ── Cmd-K global command palette ──────────────────────────────────────────
+  // Human-readable labels for tab navigation results (keys must be in ADMIN_TAB_KEYS).
+  const CMDK_TAB_LABELS = {
+    'overview': '📊 Overview', 'analytics': '📈 Analytics', 'app-health': '🩺 App Health',
+    'users': '👥 Users', 'reports': '🐞 Content reports', 'website-inbox': '✉️ Support (site)',
+    'user-reports': '🚩 User reports', 'ban-list': '🚫 Ban list', 'premium': '⭐ Premium',
+    'vip': '💚 VIP', 'cancel-surveys': '📉 Cancel surveys', 'review-promo': '📝 VIP survey',
+    'referrals': '🔗 Referrals', 'app-messages': '💬 Messages', 'ugc-purchases': '🛒 UGC purchases',
+    'community-packs': '🧩 Community', 'card-packs': '🃏 Card packs', 'daily-phrases': '📅 Daily phrases',
+    'push-notify': '🔔 Push', 'clubs': '🏆 Clubs', 'league-chat': '💬 League chat',
+    'arena-ranks': '🥇 Arena — Top', 'arena-live': '🔴 Arena — Live', 'arena-bets': '🎲 Arena bets',
+    'arena-rooms': '🚪 Rooms', 'archive': '📦 Archive', 'audit': '📜 Audit log',
+    'ops-log': '🧾 Ops log', 'remote-config': '🎛️ Remote Config', 'alerts': '🔔 Alerts',
+    'changelog-0608': '📋 Changelog',
+  };
+  let _cmdkActiveIndex = 0;
+  let _cmdkItems = [];
+  function cmdkEscapeReg(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function cmdkHighlight(text, q) {
+    const safe = escapeHtml(String(text || ''));
+    if (!q) return safe;
+    try {
+      return safe.replace(new RegExp('(' + cmdkEscapeReg(escapeHtml(q)) + ')', 'ig'), '<mark>$1</mark>');
+    } catch (_) { return safe; }
+  }
+  function cmdkBuildItems(rawQuery) {
+    const q = String(rawQuery || '').trim().toLowerCase();
+    const items = [];
+    // 1) Tab navigation
+    const tabKeys = (typeof ADMIN_TAB_KEYS !== 'undefined' ? ADMIN_TAB_KEYS : Object.keys(CMDK_TAB_LABELS));
+    for (const key of tabKeys) {
+      const label = CMDK_TAB_LABELS[key] || key;
+      if (!q || key.includes(q) || label.toLowerCase().includes(q)) {
+        items.push({ kind: 'tab', icon: label.split(' ')[0] || '▸', title: label.replace(/^\S+\s/, ''), sub: '#' + key, action: () => switchTab(key) });
+      }
+    }
+    // 2) Users (only when there is a query, to avoid dumping the whole list)
+    if (q) {
+      const users = Array.isArray(window._users) ? window._users : [];
+      let matched = 0;
+      for (const u of users) {
+        const email = (u.linkedAuth && u.linkedAuth.email) || '';
+        const hay = [u.uid, u.name, email].map(x => String(x || '').toLowerCase());
+        if (hay.some(x => x.includes(q))) {
+          items.push({
+            kind: 'user',
+            icon: '👤',
+            title: u.name || '(без имени)',
+            sub: (email ? email + ' · ' : '') + String(u.uid || '').slice(0, 18),
+            action: () => { switchTab('users'); if (typeof openDetail === 'function') openDetail(u.uid); },
+          });
+          if (++matched >= 8) break;
+        }
+      }
+      if (!matched && users.length === 0) {
+        items.push({ kind: 'hint', icon: '⏳', title: 'Открой вкладку Users чтобы искать по людям', sub: 'клик загрузит базу', action: () => switchTab('users') });
+      }
+      // 3) Direct UID (looks like an id, not found in loaded list)
+      const looksLikeUid = rawQuery.trim().length >= 18 && !/\s/.test(rawQuery.trim());
+      if (looksLikeUid && !items.some(it => it.kind === 'user')) {
+        const uid = rawQuery.trim();
+        items.push({ kind: 'uid', icon: '🆔', title: 'Открыть профиль по UID', sub: uid, action: () => { if (typeof openUserByUid === 'function') openUserByUid(uid); else { switchTab('users'); if (typeof openDetail === 'function') openDetail(uid); } } });
+      }
+    }
+    return items;
+  }
+  function cmdkRender() {
+    const q = document.getElementById('cmdk-input')?.value || '';
+    _cmdkItems = cmdkBuildItems(q);
+    if (_cmdkActiveIndex >= _cmdkItems.length) _cmdkActiveIndex = Math.max(0, _cmdkItems.length - 1);
+    const box = document.getElementById('cmdk-results');
+    if (!box) return;
+    if (!_cmdkItems.length) { box.innerHTML = '<div class="cmdk-empty">Ничего не найдено</div>'; return; }
+    box.innerHTML = _cmdkItems.map((it, i) => `
+      <div class="cmdk-item ${i === _cmdkActiveIndex ? 'cmdk-active' : ''}" data-idx="${i}">
+        <span class="cmdk-item-icon">${escapeHtml(it.icon)}</span>
+        <div class="cmdk-item-main">
+          <div class="cmdk-item-title">${cmdkHighlight(it.title, q)}</div>
+          ${it.sub ? `<div class="cmdk-item-sub">${cmdkHighlight(it.sub, q)}</div>` : ''}
+        </div>
+        <span class="cmdk-item-kind">${escapeHtml(it.kind)}</span>
+      </div>`).join('');
+    box.querySelectorAll('.cmdk-item').forEach(el => {
+      el.addEventListener('click', () => { _cmdkActiveIndex = Number(el.dataset.idx); cmdkChoose(); });
+      el.addEventListener('mousemove', () => { const i = Number(el.dataset.idx); if (i !== _cmdkActiveIndex) { _cmdkActiveIndex = i; cmdkPaintActive(); } });
+    });
+  }
+  function cmdkPaintActive() {
+    document.querySelectorAll('#cmdk-results .cmdk-item').forEach(el => {
+      el.classList.toggle('cmdk-active', Number(el.dataset.idx) === _cmdkActiveIndex);
+    });
+    const active = document.querySelector('#cmdk-results .cmdk-item.cmdk-active');
+    if (active) active.scrollIntoView({ block: 'nearest' });
+  }
+  function cmdkChoose() {
+    const it = _cmdkItems[_cmdkActiveIndex];
+    if (!it) return;
+    cmdkClose();
+    try { it.action(); } catch (e) { showToast('Ошибка: ' + (e && e.message ? e.message : e), 'err'); }
+  }
+  window.cmdkOpen = function() {
+    const ov = document.getElementById('cmdk-overlay');
+    const input = document.getElementById('cmdk-input');
+    if (!ov || !input) return;
+    ov.classList.add('cmdk-open');
+    ov.setAttribute('aria-hidden', 'false');
+    input.value = '';
+    _cmdkActiveIndex = 0;
+    cmdkRender();
+    setTimeout(() => input.focus(), 0);
+  };
+  window.cmdkClose = function() {
+    const ov = document.getElementById('cmdk-overlay');
+    if (ov) { ov.classList.remove('cmdk-open'); ov.setAttribute('aria-hidden', 'true'); }
+  };
+  function cmdkWire() {
+    if (window._cmdkWired) return;
+    const ov = document.getElementById('cmdk-overlay');
+    const input = document.getElementById('cmdk-input');
+    const backdrop = document.getElementById('cmdk-backdrop');
+    if (!ov || !input) return;
+    window._cmdkWired = true;
+    backdrop?.addEventListener('click', () => cmdkClose());
+    input.addEventListener('input', () => { _cmdkActiveIndex = 0; cmdkRender(); });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); _cmdkActiveIndex = Math.min(_cmdkItems.length - 1, _cmdkActiveIndex + 1); cmdkPaintActive(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); _cmdkActiveIndex = Math.max(0, _cmdkActiveIndex - 1); cmdkPaintActive(); }
+      else if (e.key === 'Enter') { e.preventDefault(); cmdkChoose(); }
+      else if (e.key === 'Escape') { e.preventDefault(); cmdkClose(); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+        e.preventDefault();
+        const isOpen = ov.classList.contains('cmdk-open');
+        if (isOpen) cmdkClose(); else cmdkOpen();
+      }
+    });
+  }
+  // Wire on load (palette is global, available from any tab).
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cmdkWire);
+  else cmdkWire();
+
   function applyCleanLeagueChatChrome() {
     const tab = document.getElementById('tab-league-chat');
     if (!tab) return;
@@ -16051,7 +16496,13 @@
         } catch (_) {
           showToast('Некорректный id репорта', 'err');
         }
+        return;
       }
+      // Grouped-view actions
+      const grpFix = el.closest('[data-group-fixed]');
+      if (grpFix) { e.preventDefault(); void window.reportsGroupMarkFixed(Number(grpFix.getAttribute('data-group-fixed'))); return; }
+      const grpExp = el.closest('[data-group-expand]');
+      if (grpExp) { e.preventDefault(); window.reportsGroupExpand(Number(grpExp.getAttribute('data-group-expand')), grpExp); return; }
     });
   })();
 
@@ -16211,11 +16662,114 @@
       const cb = b.category || extractCategory(b.context) || '';
       return ca.localeCompare(cb);
     });
+    filtered = applyDateRange(filtered, 'createdAt', 'r-date-from', 'r-date-to');
     return filtered;
   }
 
+  window.loadMoreReports = function() { return loadReports(true); };
+
   window.filterReports = function() {
-    renderReports(getFilteredReportsList());
+    const moreBtn = document.getElementById('reports-load-more');
+    if (moreBtn) moreBtn.style.display = window._reportsHasMore ? 'inline-block' : 'none';
+    const grouped = !!document.getElementById('r-group-dataid')?.checked;
+    if (grouped) renderReportsGrouped(getFilteredReportsList());
+    else renderReports(getFilteredReportsList());
+  };
+
+  // ── Group similar content reports by dataId ───────────────────────────────
+  function reportGroupKey(r) {
+    return String(r.dataId || r.context || r.dataText || '—');
+  }
+  function renderReportsGrouped(reports) {
+    const list = document.getElementById('reports-list');
+    if (!list) return;
+    const elCnt = document.getElementById('reports-count');
+    if (!reports.length) {
+      if (elCnt) elCnt.textContent = '0 репортов';
+      list.innerHTML = '<div class="reports-empty">🎉 Репортов нет — всё чисто!</div>';
+      return;
+    }
+    const groups = new Map();
+    for (const r of reports) {
+      const key = reportGroupKey(r);
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(r);
+    }
+    const arr = Array.from(groups.entries()).map(([key, rows]) => {
+      const cats = {};
+      let openCount = 0, fixedCount = 0, minTs = Infinity, maxTs = 0;
+      for (const r of rows) {
+        const cat = r.category || extractCategory(r.context) || 'other';
+        cats[cat] = (cats[cat] || 0) + 1;
+        if (r.status === 'fixed') fixedCount++; else openCount++;
+        const ts = Number(r.createdAt || 0);
+        if (ts) { minTs = Math.min(minTs, ts); maxTs = Math.max(maxTs, ts); }
+      }
+      return { key, rows, count: rows.length, cats, openCount, fixedCount, minTs: minTs === Infinity ? 0 : minTs, maxTs };
+    }).sort((a, b) => b.count - a.count);
+    if (elCnt) elCnt.textContent = `${arr.length} групп из ${reports.length} репортов`;
+    list.innerHTML = arr.map((g, i) => {
+      const sampleText = String(g.rows[0]?.dataText || extractContext(g.rows[0]?.context) || g.key).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').slice(0, 160);
+      const screen = escapeHtml(String(g.rows[0]?.screen || '—').replace(/_/g,' '));
+      const catChips = Object.entries(g.cats).map(([c, n]) => `<span style="font-size:11px;color:#aaa;background:#1a1a2a;border:1px solid #2a2a3a;border-radius:4px;padding:2px 6px">${escapeHtml(c)}: ${n}</span>`).join(' ');
+      const openIds = g.rows.filter(r => r.status !== 'fixed').map(r => String(r.id));
+      return `<div class="report-card" style="display:block">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+          <div style="min-width:0;flex:1">
+            <div class="report-screen">📍 ${screen}</div>
+            <div style="color:#fff;font-size:15px;margin:6px 0">${sampleText}</div>
+            <code class="report-dataid">${escapeHtml(g.key)}</code>
+            <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px">${catChips}</div>
+            <div style="margin-top:6px;font-size:11px;color:#888">${g.minTs ? formatReportDate(g.minTs) : '—'}${g.maxTs && g.maxTs !== g.minTs ? ' → ' + formatReportDate(g.maxTs) : ''}</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0">
+            <div style="font-size:28px;font-weight:800;color:#fbbf24;line-height:1">${g.count}</div>
+            <div style="font-size:11px;color:#888;margin-bottom:8px">репортов</div>
+            <div style="font-size:11px;color:#4ade80">✅ ${g.fixedCount}</div>
+            <div style="font-size:11px;color:#fbbf24;margin-bottom:8px">🔓 ${g.openCount}</div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              ${openIds.length ? `<button type="button" class="btn-fixed" data-group-fixed="${i}">✅ Пофиксить все (${openIds.length})</button>` : ''}
+              <button type="button" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#aaa;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer" data-group-expand="${i}">▸ Показать все</button>
+            </div>
+          </div>
+        </div>
+        <div class="report-group-detail" data-group-detail="${i}" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid #2a2a3a"></div>
+      </div>`;
+    }).join('');
+    window._reportGroups = arr;
+  }
+  window.reportsGroupMarkFixed = async function(groupIdx) {
+    const g = (window._reportGroups || [])[groupIdx];
+    if (!g) return;
+    const openRows = g.rows.filter(r => r.status !== 'fixed');
+    if (!openRows.length) { showToast('В группе нет открытых репортов', 'warn'); return; }
+    if (typeof showConfirmModal === 'function') {
+      const ok = await showConfirmModal({ title: 'Пофиксить всю группу?', desc: `${openRows.length} репортов с одним dataId будут помечены fixed (с наградами репортёрам).`, confirmLabel: 'Пофиксить все' });
+      if (!ok) return;
+    }
+    let done = 0;
+    for (const r of openRows) {
+      try { await applyReportStatusFix(r, 'fixed', { silent: true }); done++; } catch (_) { /* continue */ }
+    }
+    logAction('mark_fixed_group', 'group', { dataId: g.key, count: done });
+    showToast(`✅ Пофиксено ${done} репортов в группе`, 'ok');
+    void updateTabBadges(true);
+    filterReports();
+  };
+  window.reportsGroupExpand = function(groupIdx, btn) {
+    const detail = document.querySelector(`.report-group-detail[data-group-detail="${groupIdx}"]`);
+    const g = (window._reportGroups || [])[groupIdx];
+    if (!detail || !g) return;
+    const isOpen = detail.style.display !== 'none';
+    if (isOpen) { detail.style.display = 'none'; if (btn) btn.textContent = '▸ Показать все'; return; }
+    detail.innerHTML = g.rows.map(r => {
+      const isFixed = r.status === 'fixed';
+      const who = escapeHtml(r.userName || 'unknown');
+      const ans = String(r.userAnswer || r.user_answer || r.answer || '').trim();
+      return `<div class="u360-list-item"><div class="u360-li-top"><span>${who}${ans ? ' · ответ: ' + escapeHtml(ans.slice(0, 40)) : ''}</span>${isFixed ? '<span class="u360-pill p-fixed">fixed</span>' : '<span class="u360-pill p-open">open</span>'}</div><div style="color:#7e8494">${formatReportDate(r.createdAt)} · uid …${escapeHtml(String(r.uid || '—').slice(-6))}</div></div>`;
+    }).join('');
+    detail.style.display = 'block';
+    if (btn) btn.textContent = '▾ Скрыть';
   };
 
   /** Полный текст всех репортов в порядке списка (фильтр + сортировка как в панели). */
@@ -17257,17 +17811,25 @@
     }
   };
 
-  window.loadReports = async function() {
+  window._reportsLastDoc = null;
+  window._reportsHasMore = false;
+  const REPORTS_PAGE = 500;
+  window.loadReports = async function(append) {
     window._reportsLoaded = true;
     const list = document.getElementById('reports-list');
-    list.innerHTML = '<div class="reports-empty">⏳ Загрузка репортов из Firestore...</div>';
+    if (!append) { list.innerHTML = '<div class="reports-empty">⏳ Загрузка репортов из Firestore...</div>'; _allReports = []; window._reportsLastDoc = null; }
     try {
       if (!auth.currentUser) return;
-      const snap = await getDocs(
-        query(collection(db, 'error_reports'), orderBy('createdAt', 'desc'), limit(500))
-      );
-      _allReports = [];
-      snap.forEach((doc) => _allReports.push({ ...doc.data(), id: doc.id }));
+      const base = [collection(db, 'error_reports'), orderBy('createdAt', 'desc')];
+      const qy = (append && window._reportsLastDoc)
+        ? query(...base, startAfter(window._reportsLastDoc), limit(REPORTS_PAGE))
+        : query(...base, limit(REPORTS_PAGE));
+      const snap = await getDocs(qy);
+      const page = [];
+      snap.forEach((doc) => page.push({ ...doc.data(), id: doc.id }));
+      window._reportsLastDoc = snap.docs[snap.docs.length - 1] || window._reportsLastDoc;
+      window._reportsHasMore = snap.size === REPORTS_PAGE;
+      _allReports = append ? _allReports.concat(page) : page;
       _allReports.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
       if (_allReports.length === 0) {
         const ec = document.getElementById('reports-count');
@@ -18680,6 +19242,96 @@
     }
   };
 
+  // ── Telegram alerts config (admin_config/alerts) ──────────────────────────
+  function alertsSetStatus(msg, color) {
+    const el = document.getElementById('alerts-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
+  }
+  const ALERTS_TYPES = ['userReport', 'criticalError', 'contentReportDigest', 'cancelRefundSpike'];
+  function alertsRenderMeta(data) {
+    const meta = document.getElementById('alerts-meta');
+    if (!meta) return;
+    const last = data.lastSentByType || {};
+    const lastLines = ALERTS_TYPES
+      .filter(t => last[t])
+      .map(t => `${t}: ${fdate(last[t])}`);
+    const pending = Number(data.pendingContentReports || 0);
+    meta.innerHTML = [
+      `Бот: <b>@codex_reportbot</b> · текущий chat_id: <code>${escapeHtml(String(data.chatId || '—'))}</code>`,
+      data.lastSentAt ? `Последний алерт: ${escapeHtml(fdate(data.lastSentAt))}` : 'Алертов ещё не было.',
+      lastLines.length ? ('По типам — ' + lastLines.map(escapeHtml).join(' · ')) : '',
+      pending > 0 ? `Ожидают сводки content-репортов: <b>${pending}</b>` : '',
+      data.testPingResult ? `Последний тест: ${escapeHtml(data.testPingResult)}${data.testPingResultAt ? ' (' + escapeHtml(fdate(data.testPingResultAt)) + ')' : ''}` : '',
+    ].filter(Boolean).join('<br>');
+  }
+  window.loadAlertsConfig = async function(force) {
+    window._alertsLoaded = true;
+    alertsSetStatus('Загрузка…');
+    try {
+      const snap = await getDoc(doc(db, 'admin_config', 'alerts'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const setChecked = (id, val) => { const el = document.getElementById(id); if (el) el.checked = !!val; };
+      const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val == null ? '' : String(val); };
+      setChecked('alerts-enabled', data.enabled !== false && snap.exists());
+      setVal('alerts-chatid', data.chatId);
+      setVal('alerts-spike', data.spikePerHour);
+      const types = data.types || {};
+      for (const t of ALERTS_TYPES) setChecked('alerts-type-' + t, types[t] !== false);
+      alertsRenderMeta(data);
+      alertsSetStatus(snap.exists() ? 'Загружено.' : 'Документа ещё нет — заполни и сохрани.', '#4ade80');
+    } catch (e) {
+      alertsSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+  function alertsReadForm() {
+    const types = {};
+    for (const t of ALERTS_TYPES) {
+      const el = document.getElementById('alerts-type-' + t);
+      types[t] = el ? !!el.checked : true;
+    }
+    const chatId = String(document.getElementById('alerts-chatid')?.value || '').trim();
+    const spikeRaw = document.getElementById('alerts-spike')?.value;
+    const spikePerHour = spikeRaw !== '' && spikeRaw != null ? Math.max(1, Math.min(100, Number(spikeRaw))) : 5;
+    return {
+      enabled: !!document.getElementById('alerts-enabled')?.checked,
+      chatId,
+      types,
+      spikePerHour,
+    };
+  }
+  window.saveAlertsConfig = async function() {
+    alertsSetStatus('Сохранение…');
+    try {
+      const form = alertsReadForm();
+      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      await setDoc(doc(db, 'admin_config', 'alerts'), {
+        ...form, updatedAt: Date.now(), updatedBy: who,
+      }, { merge: true });
+      if (typeof logAction === 'function') logAction('admin_alerts_config', 'admin_config/alerts', { enabled: form.enabled, hasChatId: !!form.chatId });
+      alertsSetStatus('✅ Сохранено.', '#4ade80');
+      loadAlertsConfig(true);
+    } catch (e) {
+      alertsSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+  window.sendAlertTest = async function() {
+    const chatId = String(document.getElementById('alerts-chatid')?.value || '').trim();
+    if (!chatId) { alertsSetStatus('Сначала впиши chat_id.', '#fbbf24'); return; }
+    alertsSetStatus('Отправляем тест… (придёт через пару секунд)');
+    try {
+      const form = alertsReadForm();
+      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      // Write enabled config + a testPing; the adminAlertOnConfigWritten CF sends the message.
+      await setDoc(doc(db, 'admin_config', 'alerts'), {
+        ...form, enabled: true, testPing: Date.now(), updatedAt: Date.now(), updatedBy: who,
+      }, { merge: true });
+      if (typeof logAction === 'function') logAction('admin_alerts_test', 'admin_config/alerts', { chatId });
+      alertsSetStatus('📨 Тест отправлен. Проверь Telegram (@codex_reportbot). Обнови статус через «Перечитать».', '#38bdf8');
+    } catch (e) {
+      alertsSetStatus('Ошибка теста: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
   window.loadAppMessages = async function(force) {
     window._appMessagesLoaded = true;
     const list = document.getElementById('am-list');
@@ -19343,23 +19995,57 @@
     app_message_delete:'#f87171', app_message_cleanup_expired:'#fb923c',
   };
 
-  window.loadAuditLog = async function() {
+  // ── Reusable client-side date-range filter for ISO-string timestamp fields ──
+  // Returns rows whose `field` (ISO 8601 string) falls within [fromId, toId].
+  // Reads two <input type="date"> elements; empty inputs mean unbounded.
+  function applyDateRange(rows, field, fromInputId, toInputId) {
+    const fromEl = document.getElementById(fromInputId);
+    const toEl = document.getElementById(toInputId);
+    const from = fromEl && fromEl.value ? fromEl.value : '';          // 'YYYY-MM-DD'
+    const to = toEl && toEl.value ? toEl.value : '';
+    if (!from && !to) return rows;
+    return rows.filter(r => {
+      const iso = String(r[field] || '');
+      if (!iso) return false;
+      const day = iso.slice(0, 10); // ISO date portion sorts == chronologically
+      if (from && day < from) return false;
+      if (to && day > to) return false;
+      return true;
+    });
+  }
+
+  window._auditLastDoc = null;
+  window._auditHasMore = false;
+  const AUDIT_PAGE = 200;
+  window.loadAuditLog = async function(append) {
     window._auditLoaded = true;
     const list = document.getElementById('audit-list');
-    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    if (!append) { list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>'; _auditAll = []; window._auditLastDoc = null; }
     try {
-      const snap = await getDocs(query(collection(db, 'admin_log'), orderBy('ts','desc'), limit(200)));
-      _auditAll = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const base = [collection(db, 'admin_log'), orderBy('ts', 'desc')];
+      const qy = (append && window._auditLastDoc)
+        ? query(...base, startAfter(window._auditLastDoc), limit(AUDIT_PAGE))
+        : query(...base, limit(AUDIT_PAGE));
+      const snap = await getDocs(qy);
+      const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      _auditAll = append ? _auditAll.concat(rows) : rows;
+      window._auditLastDoc = snap.docs[snap.docs.length - 1] || window._auditLastDoc;
+      window._auditHasMore = snap.size === AUDIT_PAGE;
       filterAuditLog();
     } catch(e) {
-      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message)}</div>`;
+      if (!append) list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message)}</div>`;
+      else showToast('Ошибка догрузки: ' + (e.message || e), 'err');
     }
   };
+  window.loadMoreAuditLog = function() { return loadAuditLog(true); };
 
   window.filterAuditLog = function() {
     const action = document.getElementById('audit-filter-action').value;
     let arr = action ? _auditAll.filter(r => r.action === action) : _auditAll;
-    document.getElementById('audit-count').textContent = `${arr.length} записей`;
+    arr = applyDateRange(arr, 'ts', 'audit-date-from', 'audit-date-to');
+    const moreBtn = document.getElementById('audit-load-more');
+    if (moreBtn) moreBtn.style.display = window._auditHasMore ? 'inline-block' : 'none';
+    document.getElementById('audit-count').textContent = `${arr.length} из ${_auditAll.length} загруженных`;
     const list = document.getElementById('audit-list');
     if (!arr.length) { list.innerHTML = '<div class="reports-empty">📋 Действий не найдено</div>'; return; }
     list.innerHTML = arr.map(r => {
@@ -19460,33 +20146,50 @@
     }).join('');
   }
 
-  window.loadAppHealth = async function(force = false) {
+  window._appHealthLastDoc = null;
+  window._appHealthHasMore = false;
+  const APPHEALTH_PAGE = 500;
+  window.loadAppHealth = async function(force = false, append = false) {
     window._appHealthLoaded = true;
     const list = document.getElementById('ah-list');
-    list.innerHTML = '<div class="reports-empty">Loading App Health...</div>';
-    if (force) {
+    if (!append) list.innerHTML = '<div class="reports-empty">Loading App Health...</div>';
+    if (force && !append) {
       _appActivityAll = [];
       _appActivityLoadedAt = 0;
       renderAppActivity([]);
     }
     try {
-      if (!force && _appHealthAll.length && Date.now() - _appHealthLoadedAt < 60_000) {
+      if (!force && !append && _appHealthAll.length && Date.now() - _appHealthLoadedAt < 60_000) {
         filterAppHealth();
         return;
       }
-      const hours = parseInt(document.getElementById('ah-period').value || '24', 10);
-      const since = new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
-      const snap = await getDocs(query(collection(db, 'app_errors'), orderBy('createdAt', 'desc'), limit(500)));
-      _appHealthAll = snap.docs
-        .map(d => ({ id: d.id, ...d.data() }))
-        .filter(r => !r.createdAt || String(r.createdAt) >= since);
+      // "Load more" pages older rows by cursor; the period dropdown is the date control,
+      // so when appending we DON'T re-apply the recent-N-hours `since` filter (we want older rows).
+      const base = [collection(db, 'app_errors'), orderBy('createdAt', 'desc')];
+      const qy = (append && window._appHealthLastDoc)
+        ? query(...base, startAfter(window._appHealthLastDoc), limit(APPHEALTH_PAGE))
+        : query(...base, limit(APPHEALTH_PAGE));
+      const snap = await getDocs(qy);
+      window._appHealthLastDoc = snap.docs[snap.docs.length - 1] || window._appHealthLastDoc;
+      window._appHealthHasMore = snap.size === APPHEALTH_PAGE;
+      const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      if (append) {
+        _appHealthAll = _appHealthAll.concat(rows);
+      } else {
+        const hours = parseInt(document.getElementById('ah-period').value || '24', 10);
+        const since = new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
+        _appHealthAll = rows.filter(r => !r.createdAt || String(r.createdAt) >= since);
+        window._appHealthLastDoc = snap.docs[snap.docs.length - 1] || null;
+      }
       _appHealthLoadedAt = Date.now();
       updateAppHealthFeatureFilter(_appHealthAll);
       filterAppHealth();
     } catch (e) {
-      list.innerHTML = `<div class="reports-empty">Failed to load App Health: ${escapeHtml(e.message || String(e))}</div>`;
+      if (!append) list.innerHTML = `<div class="reports-empty">Failed to load App Health: ${escapeHtml(e.message || String(e))}</div>`;
+      else showToast('Ошибка догрузки: ' + (e.message || e), 'err');
     }
   };
+  window.loadMoreAppHealth = function() { return loadAppHealth(false, true); };
 
   window.loadAppActivity = async function(force = false) {
     const list = document.getElementById('ah-activity-list');
@@ -19534,6 +20237,8 @@
         .some(v => String(v || '').toLowerCase().includes(q));
     }));
     document.getElementById('ah-count').textContent = `${rows.length} rows`;
+    const moreBtn = document.getElementById('ah-load-more');
+    if (moreBtn) moreBtn.style.display = window._appHealthHasMore ? 'inline-block' : 'none';
     const list = document.getElementById('ah-list');
     if (!rows.length) {
       list.innerHTML = '<div class="reports-empty">No app-health events for this filter.</div>';
@@ -23474,6 +24179,22 @@
     } catch (e) {
       content.innerHTML = `<div class="reports-empty">Error: ${escapeHtml(e.message)}</div>`;
     }
+  };
+
+  // Auto-refresh ("Live") for arena-live: polls every 5s while enabled and the
+  // tab is active. Cleared on toggle-off and when leaving the tab.
+  window.arenaLiveToggleAuto = function(on) {
+    if (window._arenaLiveAutoTimer) { clearInterval(window._arenaLiveAutoTimer); window._arenaLiveAutoTimer = null; }
+    if (on) {
+      window._arenaLiveAutoTimer = setInterval(() => {
+        const tabActive = document.getElementById('tab-arena-live')?.classList.contains('active');
+        if (!tabActive) { window.arenaLiveStopAuto(); const cb = document.getElementById('al-live'); if (cb) cb.checked = false; return; }
+        if (typeof loadArenaLive === 'function') loadArenaLive(true);
+      }, 5000);
+    }
+  };
+  window.arenaLiveStopAuto = function() {
+    if (window._arenaLiveAutoTimer) { clearInterval(window._arenaLiveAutoTimer); window._arenaLiveAutoTimer = null; }
   };
 
   window.renderArenaLive = function renderArenaLive() {

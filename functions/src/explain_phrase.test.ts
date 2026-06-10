@@ -135,7 +135,7 @@ function billingDocs(): DocData[] {
   return collectionDocs('explain_billing').map((d) => d.data);
 }
 function explanationDoc(phraseEn: string): DocData | undefined {
-  return docs.get(`phrase_explanations/${phraseHashFor(phraseEn)}`);
+  return docs.get(`phrase_explanations/${phraseHashFor(phraseEn, 'ru')}`);
 }
 
 async function callExplain(data: DocData, authUid: string | null = AUTH_UID) {
@@ -194,7 +194,7 @@ describe('explainPhrase — auth + identity', () => {
 
 describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
   it('cache READY ⇒ returns cached text, calls neither provider nor judge', async () => {
-    docs.set(`phrase_explanations/${phraseHashFor(PHRASE)}`, {
+    docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
       status: 'ready',
       text: 'Готовое объяснение из кэша.',
       schemaVersion: EXPLAIN_SCHEMA_VERSION,
@@ -208,8 +208,31 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
     expect(billingDocs()).toHaveLength(0); // a hit writes no billing doc
   });
 
+  it('es-запрос НЕ получает ru-кэш той же фразы — генерит своё (audit bug 2026-06-10)', async () => {
+    // Русское объяснение уже в кэше под ru-ключом.
+    docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
+      status: 'ready',
+      text: 'Готовое РУССКОЕ объяснение.',
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
+    });
+    mockOpenAiChat.mockResolvedValue(genReply('Una explicación sencilla de la gramática inglesa.'));
+    mockJudge.mockResolvedValue(verdict(true, 'ok'));
+
+    const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'es' });
+
+    // НЕ кэш-хит: испанец не должен увидеть русский текст.
+    expect(res.fromCache).toBe(false);
+    expect(res.text).not.toContain('РУССКОЕ');
+    expect(mockOpenAiChat).toHaveBeenCalledTimes(1);
+    // Новый док лёг под es-ключом, ru-док не тронут.
+    expect(docs.get(`phrase_explanations/${phraseHashFor(PHRASE, 'es')}`)).toMatchObject({ status: 'ready' });
+    expect(docs.get(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`)).toMatchObject({
+      text: 'Готовое РУССКОЕ объяснение.',
+    });
+  });
+
   it('cache REJECTED ⇒ returns fallback, no regen, no AI calls', async () => {
-    docs.set(`phrase_explanations/${phraseHashFor(PHRASE)}`, {
+    docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
       status: 'rejected',
       reason: 'toxic',
       schemaVersion: EXPLAIN_SCHEMA_VERSION,
@@ -316,7 +339,7 @@ describe('explainPhrase — budget exhaustion degrades gracefully (no 500)', () 
 describe('explainPhrase — concurrent generation (lost lock race)', () => {
   it('a fresh pending lock held by someone else ⇒ fallback with status pending, no generate', async () => {
     // Another request is actively generating: a fresh pending doc exists.
-    docs.set(`phrase_explanations/${phraseHashFor(PHRASE)}`, {
+    docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
       status: 'pending',
       schemaVersion: EXPLAIN_SCHEMA_VERSION,
       createdAtMs: Date.now(), // fresh → claimPendingLock returns false

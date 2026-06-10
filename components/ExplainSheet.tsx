@@ -211,7 +211,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
 
           {/* Футер: «Непонятно объяснили» */}
           <View style={[styles.footer, { borderTopColor: t.border }]}>
-            <ExplainReportButton phraseEn={phraseEn} />
+            <ExplainReportButton phraseEn={phraseEn} lang={effLang} />
           </View>
         </Animated.View>
       </View>

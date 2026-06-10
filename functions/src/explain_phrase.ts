@@ -26,7 +26,7 @@ import {
 } from './explain/explain_cache';
 import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
 import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
-import { buildExplainPrompt } from './explain/explain_prompts';
+import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
 
@@ -100,7 +100,10 @@ export const explainPhrase = onCall({
   const input = validateExplainInput({ phraseEn, phraseMeaning, lang });
   if (!input.ok) throw new HttpsError('invalid-argument', input.reason ?? 'invalid_input');
 
-  const phraseHash = phraseHashFor(phraseEn);
+  // Cache key = (phrase, CANONICAL language). langKey is also the language the text will be
+  // generated in (resolvePromptLang uses the same resolver) — key and content always agree.
+  const langKey = resolvePromptLangKey(lang);
+  const phraseHash = phraseHashFor(phraseEn, langKey);
 
   // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
   const cached = await readCachedExplanation(phraseHash);

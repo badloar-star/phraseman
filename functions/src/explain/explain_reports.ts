@@ -29,6 +29,7 @@ import {
   EXPLAIN_SCHEMA_VERSION,
   phraseHashFor,
 } from './explain_cache';
+import { resolvePromptLangKey } from './explain_prompts';
 
 const REGION = 'us-central1';
 
@@ -72,13 +73,16 @@ export const submitExplainReport = onCall({
 
   const phraseEn = String(request.data?.phraseEn ?? '').trim();
   if (!phraseEn) throw new HttpsError('invalid-argument', 'phrase_required');
+  // Язык объяснения, на которое жалуются. Кэш теперь per-(phrase,lang) — репорт должен бить в
+  // ТОТ ЖЕ док, что генерация. Тот же резолвер (unknown → ru), хэш всё равно считает сервер.
+  const lang = String(request.data?.lang ?? '').trim();
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
 
-  // Хэш ВСЕГДА выводится сервером из phraseEn — любой клиентский 'hash' игнорируется.
-  const phraseHash = phraseHashFor(phraseEn);
+  // Хэш ВСЕГДА выводится сервером из (phraseEn, langKey) — любой клиентский 'hash' игнорируется.
+  const phraseHash = phraseHashFor(phraseEn, resolvePromptLangKey(lang));
   const now = Date.now();
 
   const rateRef = db.collection(REPORT_RATE_COLLECTION).doc(rateDocId(authUid, stableUid));

@@ -51,6 +51,11 @@ export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<Expl
 export interface SubmitExplainReportRequest {
   /** Английская фраза — сервер сам выведет phraseHash; клиент хэш НЕ шлёт. */
   phraseEn: string;
+  /**
+   * Язык объяснения, на которое жалуемся. Кэш per-(phrase,lang) — без языка репорт попал бы
+   * не в тот док. Сервер нормализует тем же резолвером (unknown → ru); хэш всё равно считает он.
+   */
+  lang: string;
 }
 
 export interface SubmitExplainReportResponse {

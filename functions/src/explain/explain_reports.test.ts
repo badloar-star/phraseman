@@ -175,7 +175,7 @@ const {
 const EXPLAIN_COLLECTION = 'phrase_explanations';
 
 const PHRASE = 'Break a leg';
-const HASH = phraseHashFor(PHRASE);
+const HASH = phraseHashFor(PHRASE, 'ru');
 
 async function callReport(data: DocData, authUid = 'auth-reporter') {
   return submitExplainReport({ auth: { uid: authUid }, data });
@@ -229,6 +229,21 @@ describe('submitExplainReport — per-user rate limit (copied scaffold)', () => 
       code: 'resource-exhausted',
       message: 'rate_limited',
     });
+  });
+});
+
+describe('submitExplainReport — per-(phrase,lang) counter', () => {
+  test('репорт с lang=es бьёт в ДРУГОЙ счётчик, чем ru (кэш per-(phrase,lang))', async () => {
+    await callReport({ phraseEn: PHRASE, lang: 'es' }, 'auth-r0');
+    const esHash = phraseHashFor(PHRASE, 'es');
+    expect(esHash).not.toBe(HASH); // ru-хэш
+    expect(docs.get(`${REPORTS_COLLECTION}/${esHash}`)).toMatchObject({ reportCount: 1 });
+    expect(counterDoc()).toBeUndefined(); // ru-счётчик не тронут
+  });
+
+  test('репорт БЕЗ lang падает в ru (тот же резолвер, что генерация)', async () => {
+    await callReport({ phraseEn: PHRASE }, 'auth-r0');
+    expect(counterDoc()).toMatchObject({ phraseHash: HASH, reportCount: 1 });
   });
 });
 

@@ -30,24 +30,45 @@ export type JudgeReason = (typeof JUDGE_REASONS)[number];
  * Per-language generation instruction. Declares which of the app's UI languages have a localized
  * "write the explanation in this language" directive. An unknown/unsupported `lang` falls back to
  * 'ru' — mirroring the bundleLang fallback in app/i18n.ts (the app's default audience is RU).
- * v1 supported set: ru + en (extend this map to add languages; no code change needed elsewhere).
+ *
+ * Covers ALL 8 app UI languages (audit 2026-06-10: previously only ru+en — Spanish/Turkish/… users
+ * silently got RUSSIAN explanations). Keys are 2-letter codes after slice(0,2): 'pt-BR' → 'pt'.
+ * The map key is ALSO the cache-key language component (see resolvePromptLangKey + phraseHashFor):
+ * one cached explanation per (phrase, language).
  */
 export const PROMPT_LANGUAGES: Record<string, { name: string; writeIn: string }> = {
   ru: { name: 'Russian', writeIn: 'Пиши объяснение ТОЛЬКО на русском языке.' },
   en: { name: 'English', writeIn: 'Write the explanation in English only.' },
+  uk: { name: 'Ukrainian', writeIn: 'Пиши пояснення ЛИШЕ українською мовою.' },
+  es: { name: 'Spanish', writeIn: 'Escribe la explicación SOLO en español.' },
+  pt: { name: 'Portuguese', writeIn: 'Escreva a explicação SOMENTE em português.' },
+  vi: { name: 'Vietnamese', writeIn: 'Viết lời giải thích CHỈ bằng tiếng Việt.' },
+  id: { name: 'Indonesian', writeIn: 'Tulis penjelasan HANYA dalam bahasa Indonesia.' },
+  tr: { name: 'Turkish', writeIn: 'Açıklamayı YALNIZCA Türkçe yaz.' },
+  pl: { name: 'Polish', writeIn: 'Pisz wyjaśnienie WYŁĄCZNIE po polsku.' },
 };
 
 /** Fallback UI language when `lang` is unknown — matches i18n.ts bundleLang default. */
 export const DEFAULT_PROMPT_LANG = 'ru';
 
+/**
+ * Canonical language KEY for a raw client `lang` ('pt-BR' → 'pt', unknown → 'ru').
+ * Single source of truth for BOTH the generation language and the cache key:
+ * phraseHashFor(phraseEn, resolvePromptLangKey(lang)) — so an es-user can never be served the
+ * ru-cached explanation of the same phrase (audit bug 2026-06-10).
+ */
+export function resolvePromptLangKey(lang: string): string {
+  const code = String(lang ?? '').slice(0, 2).toLowerCase();
+  return PROMPT_LANGUAGES[code] ? code : DEFAULT_PROMPT_LANG;
+}
+
 /** Soft target so the model keeps it short; the deterministic gate enforces hard limits.
  *  Grammar/word-order explanations need a little more room than a one-line gloss. */
 const MAX_WORDS = 75;
 
-/** Resolve a 2-letter code to a supported prompt language, falling back to RU. */
+/** Resolve a raw client lang to its prompt-language entry, falling back to RU. */
 function resolvePromptLang(lang: string): { name: string; writeIn: string } {
-  const code = String(lang ?? '').slice(0, 2).toLowerCase();
-  return PROMPT_LANGUAGES[code] ?? PROMPT_LANGUAGES[DEFAULT_PROMPT_LANG];
+  return PROMPT_LANGUAGES[resolvePromptLangKey(lang)];
 }
 
 /**
@@ -75,6 +96,7 @@ export function buildExplainPrompt(phraseEn: string, phraseMeaning: string, lang
     `- why the words are in THIS order,`,
     `- why this form is used and not another (e.g. why "sounds" and not "sound", why "I'm" and not "I am", why a small word like "it"/"do"/"to" is there).`,
     `Use a tiny everyday picture/comparison if it helps a child feel why it works.`,
+    `Every grammar claim must be TRUE (e.g. "I'm" is short for "I am" — never misstate what a form or contraction stands for). If unsure about a detail, leave it out.`,
     `${target.writeIn}`,
     `Keep it under ${MAX_WORDS} words. Output ONLY plain text — no markdown, no bullet points, no headings, no stage directions, no quotes around the answer.`,
     ``,

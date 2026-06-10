@@ -16,15 +16,20 @@ import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { callSubmitExplainReport } from '../app/explain_phrase_client';
+import { asLang } from '../app/explain_phrase_request';
 
 interface Props {
   /** Английская фраза — сервер сам выведет phraseHash; клиент хэш НЕ шлёт. */
   phraseEn: string;
+  /** Язык объяснения, на которое жалуемся (кэш per-(phrase,lang)). Дефолт — язык интерфейса. */
+  lang?: string;
 }
 
-function ExplainReportButton({ phraseEn }: Props) {
+function ExplainReportButton({ phraseEn, lang: langProp }: Props) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { lang: ctxLang } = useLang();
+  const lang = langProp || ctxLang;
+  const uiLang = asLang(lang);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -33,7 +38,7 @@ function ExplainReportButton({ phraseEn }: Props) {
     hapticTap();
     setSending(true);
     try {
-      await callSubmitExplainReport({ phraseEn });
+      await callSubmitExplainReport({ phraseEn, lang });
       setSent(true);
     } catch {
       // Репорт — бэкстоп-сигнал, не критичный путь. Сбой проглатываем тихо для
@@ -45,7 +50,7 @@ function ExplainReportButton({ phraseEn }: Props) {
   };
 
   const label = sent
-    ? triLang(lang, {
+    ? triLang(uiLang, {
         ru: 'Спасибо, учтём',
         uk: 'Дякуємо, врахуємо',
         es: 'Gracias, lo revisaremos',
@@ -55,7 +60,7 @@ function ExplainReportButton({ phraseEn }: Props) {
         tr: 'Teşekkürler, inceleyeceğiz',
         pl: 'Dzięki, sprawdzimy',
       })
-    : triLang(lang, {
+    : triLang(uiLang, {
         ru: 'Непонятно объяснили',
         uk: 'Незрозуміло пояснили',
         es: 'Explicación poco clara',
@@ -73,7 +78,7 @@ function ExplainReportButton({ phraseEn }: Props) {
       style={[styles.trigger, (sending || sent) && styles.triggerMuted]}
       hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
       accessibilityRole="button"
-      accessibilityLabel={triLang(lang, {
+      accessibilityLabel={triLang(uiLang, {
         ru: 'Сообщить, что объяснение непонятное',
         uk: 'Повідомити, що пояснення незрозуміле',
         es: 'Informar de que la explicación no es clara',

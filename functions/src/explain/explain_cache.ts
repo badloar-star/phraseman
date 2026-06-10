@@ -66,9 +66,21 @@ export function normalizePhrase(phraseEn: string): string {
     .trim();
 }
 
-/** Deterministic 40-hex cache id for a phrase. */
-export function phraseHashFor(phraseEn: string): string {
-  return createHash('sha256').update(normalizePhrase(phraseEn)).digest('hex').slice(0, 40);
+/**
+ * Deterministic 40-hex cache id for a (phrase, LANGUAGE) pair.
+ *
+ * langKey is REQUIRED (audit bug 2026-06-10): the cached text is written in one language, so the
+ * key must include it — hashing the phrase alone let an es-user receive the ru-cached explanation.
+ * Pass the CANONICAL key from resolvePromptLangKey() (explain_prompts), never the raw client lang —
+ * both the generation CF and the report CF must derive the key the same way to hit the same doc.
+ * Side effect of the key change: all pre-2026-06-10 docs (keyed without lang) are orphaned —
+ * unreachable by reads, regenerated under new keys. Acceptable: the cache was just invalidated.
+ */
+export function phraseHashFor(phraseEn: string, langKey: string): string {
+  return createHash('sha256')
+    .update(`${String(langKey ?? '').trim().toLowerCase()}|${normalizePhrase(phraseEn)}`)
+    .digest('hex')
+    .slice(0, 40);
 }
 
 function docRef(phraseHash: string) {

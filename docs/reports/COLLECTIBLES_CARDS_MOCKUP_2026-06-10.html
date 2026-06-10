@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сокровищница · Коллекция идиом — макеты карточек (2026-06-10)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1020; --bg2:#10162C; --panel:#151C38; --card:#1A2142; --card2:#202850;
+    --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+    --text:#EEF2FF; --body:#C9D1EC; --muted:#8B93B0;
+    --indigo:#6366F1; --indigo2:#818CF8; --green:#22C55E; --green2:#4ADE80;
+    --com:#9AA6C0; --rare:#38BDF8; --epic:#A78BFA; --leg:#FBBF24;
+    --com-bg:#2A3350; --rare-bg:#0E3A57; --epic-bg:#372B63; --leg-bg:#4A3413;
+    --r-card:20px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(1200px 600px at 70% -10%, #1B2350 0%, var(--bg) 55%) fixed, var(--bg);
+    color:var(--body);
+    font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+    line-height:1.55; padding:48px 24px 96px;
+  }
+  .wrap{max-width:1240px; margin:0 auto}
+  h1,h2,h3{color:var(--text); letter-spacing:-.02em}
+  h1{font-size:clamp(28px,4vw,44px); font-weight:900; line-height:1.1}
+  h2{font-size:clamp(20px,2.6vw,28px); font-weight:800; margin:0 0 6px}
+  .sub{color:var(--muted); font-size:15px; max-width:760px}
+  .kicker{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--indigo2); margin-bottom:14px}
+  .kicker::before{content:""; width:22px; height:2px; background:var(--indigo); border-radius:2px}
+  section{margin-top:72px}
+  .section-head{margin-bottom:28px}
+
+  /* ── rarity legend ─────────────────────────── */
+  .legend{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}
+  .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border-radius:999px; border:1px solid var(--line2); background:var(--panel); font-size:13px; font-weight:600; color:var(--body)}
+  .dot{width:10px; height:10px; border-radius:50%; flex:none}
+  .pill b{color:var(--text); font-weight:800}
+  .pill.note{border-style:dashed; color:var(--muted); font-weight:500}
+
+  .sources{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+  .chip{font-size:12px; font-weight:600; color:var(--muted); border:1px solid var(--line); border-radius:8px; padding:5px 10px; background:rgba(255,255,255,.02)}
+  .chip svg{vertical-align:-2px; margin-right:5px}
+
+  /* ── card gallery ──────────────────────────── */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(228px,1fr)); gap:22px}
+  .flip{perspective:1200px; cursor:pointer; outline:none}
+  .flip:focus-visible .cardface.front{box-shadow:0 0 0 3px var(--indigo)}
+  .inner{position:relative; width:100%; aspect-ratio:3/4.35; transition:transform .45s cubic-bezier(.2,.7,.2,1); transform-style:preserve-3d}
+  .flip.flipped .inner{transform:rotateY(180deg)}
+  .cardface{
+    position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    border-radius:var(--r-card); overflow:hidden; display:flex; flex-direction:column;
+    background:linear-gradient(180deg,var(--card) 0%, var(--bg2) 100%);
+    border:1px solid var(--line2);
+  }
+  .cardface.back{transform:rotateY(180deg)}
+  /* rarity frames */
+  .fr-common .cardface{border:1px solid rgba(154,166,192,.45)}
+  .fr-rare   .cardface{border:1px solid rgba(56,189,248,.55); box-shadow:0 6px 24px -10px rgba(56,189,248,.35)}
+  .fr-epic   .cardface{border:1px solid rgba(167,139,250,.6);  box-shadow:0 6px 26px -10px rgba(167,139,250,.45)}
+  .fr-leg    .cardface{border:1.5px solid rgba(251,191,36,.75); box-shadow:0 8px 30px -8px rgba(251,191,36,.45)}
+  .flip:hover .cardface{border-color:var(--line2)}
+  .fr-common:hover .cardface{border-color:var(--com)}
+  .fr-rare:hover .cardface{border-color:var(--rare)}
+  .fr-epic:hover .cardface{border-color:var(--epic)}
+  .fr-leg:hover .cardface{border-color:var(--leg)}
+
+  .art{position:relative; flex:0 0 56%; display:flex; align-items:center; justify-content:center; overflow:hidden}
+  .art svg.illus{width:86%; height:86%}
+  .art::after{content:""; position:absolute; inset:auto 0 0 0; height:34%; background:linear-gradient(180deg,transparent, rgba(11,16,32,.55))}
+  .bg-common{background:radial-gradient(120% 90% at 50% 20%, #39456B 0%, #232B49 70%)}
+  .bg-rare  {background:radial-gradient(120% 90% at 50% 20%, #155E8A 0%, #11324E 70%)}
+  .bg-epic  {background:radial-gradient(120% 90% at 50% 20%, #5B4399 0%, #2C2356 70%)}
+  .bg-leg   {background:radial-gradient(120% 90% at 50% 20%, #8A6210 0%, #45330E 70%)}
+
+  /* legendary shine sweep */
+  .fr-leg .art::before{
+    content:""; position:absolute; inset:-40%;
+    background:linear-gradient(115deg, transparent 42%, rgba(255,236,170,.32) 50%, transparent 58%);
+    animation:shine 3.2s linear infinite;
+  }
+  @keyframes shine{from{transform:translateX(-60%)}to{transform:translateX(60%)}}
+
+  .rbadge{position:absolute; top:10px; left:10px; z-index:2; display:inline-flex; align-items:center; gap:6px; font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:5px 9px; border-radius:8px; color:#0B1020}
+  .rb-common{background:var(--com)} .rb-rare{background:var(--rare)} .rb-epic{background:var(--epic)} .rb-leg{background:linear-gradient(135deg,#FDE68A,#F59E0B)}
+  .cnum{position:absolute; top:10px; right:10px; z-index:2; font-size:11px; font-weight:700; color:rgba(255,255,255,.85); background:rgba(11,16,32,.55); border:1px solid var(--line2); padding:4px 8px; border-radius:8px; backdrop-filter:blur(4px)}
+
+  .meta{flex:1; padding:14px 16px 12px; display:flex; flex-direction:column; gap:4px}
+  .idiom{font-size:17.5px; font-weight:800; color:var(--text); line-height:1.2; letter-spacing:-.01em}
+  .ipa{font-size:12px; color:var(--muted); font-weight:500}
+  .ru{font-size:13.5px; font-weight:600; margin-top:2px}
+  .ru.t-common{color:#C3CDE4} .ru.t-rare{color:#7DD3FC} .ru.t-epic{color:#C4B5FD} .ru.t-leg{color:#FCD34D}
+  .meta .hint{margin-top:auto; display:flex; align-items:center; justify-content:space-between; font-size:11px; color:var(--muted)}
+  .meta .hint .set{font-weight:600}
+
+  /* back of card */
+  .back .bhead{padding:14px 16px 10px; border-bottom:1px solid var(--line)}
+  .back .bhead .idiom{font-size:15.5px}
+  .back .bbody{padding:12px 16px; display:flex; flex-direction:column; gap:10px; font-size:12.5px; overflow:hidden}
+  .blab{font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:3px}
+  .bbody .mean{color:var(--text); font-weight:600}
+  .ex{font-style:italic; color:var(--body)}
+  .ex mark{background:transparent; color:var(--green2); font-weight:700; font-style:normal}
+  .ex .tr{display:block; font-style:normal; color:var(--muted); font-size:11.5px; margin-top:2px}
+  .origin{color:var(--body)}
+  .audio{margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:700; color:#0B1020; background:var(--green); border-radius:999px; padding:7px 13px}
+  .back .bbody .audio:hover{background:var(--green2)}
+
+  /* ── phones ────────────────────────────────── */
+  .phones{display:flex; flex-wrap:wrap; gap:34px; justify-content:center; align-items:flex-start}
+  .phone-col{display:flex; flex-direction:column; align-items:center; gap:14px}
+  .phone-cap{font-size:13px; font-weight:700; color:var(--text)}
+  .phone-cap span{display:block; font-size:11.5px; font-weight:500; color:var(--muted); text-align:center; max-width:300px}
+  .phone{
+    width:320px; height:660px; border-radius:42px; position:relative; overflow:hidden; flex:none;
+    background:linear-gradient(180deg,#0D1226,#0A0E1F);
+    border:1px solid var(--line2);
+    box-shadow:0 0 0 8px #060913, 0 0 0 9px rgba(255,255,255,.07), 0 30px 60px -25px rgba(0,0,0,.8);
+  }
+  .notch{position:absolute; top:10px; left:50%; transform:translateX(-50%); width:96px; height:24px; border-radius:14px; background:#060913; z-index:50}
+  .scr{position:absolute; inset:0; padding:48px 16px 16px; display:flex; flex-direction:column; overflow:hidden}
+
+  .navbar{display:flex; align-items:center; justify-content:space-between; padding:4px 4px 12px}
+  .navbar .ttl{font-size:17px; font-weight:800; color:var(--text)}
+  .iconbtn{width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--panel); border:1px solid var(--line)}
+
+  /* floating tab bar (как в приложении) */
+  .tabbar{position:absolute; left:50%; bottom:14px; transform:translateX(-50%); display:flex; gap:6px; padding:8px 12px; border-radius:999px; background:rgba(21,28,56,.85); border:1px solid var(--line2); backdrop-filter:blur(10px); z-index:40}
+  .tab{width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--muted)}
+  .tab.on{background:var(--indigo); color:#fff; box-shadow:0 6px 16px -6px rgba(99,102,241,.7)}
+
+  /* phone 1: drop */
+  .drop-scr{align-items:center; justify-content:center; gap:14px; background:radial-gradient(90% 60% at 50% 38%, rgba(251,191,36,.16), transparent 70%)}
+  .rays{position:absolute; top:33%; left:50%; width:560px; height:560px; transform:translate(-50%,-50%); z-index:0; opacity:.5;
+    background:conic-gradient(from 0deg, rgba(251,191,36,.16) 0 9deg, transparent 9deg 22deg, rgba(251,191,36,.16) 22deg 31deg, transparent 31deg 45deg, rgba(251,191,36,.16) 45deg 54deg, transparent 54deg 67deg, rgba(251,191,36,.16) 67deg 76deg, transparent 76deg 90deg);
+    border-radius:50%; animation:spin 18s linear infinite; mask-image:radial-gradient(circle, #000 0 46%, transparent 70%);
+  }
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .drop-top{z-index:2; text-align:center}
+  .drop-top .ctx{font-size:11.5px; color:var(--muted); font-weight:600}
+  .drop-top .big{font-size:21px; font-weight:900; letter-spacing:.02em; background:linear-gradient(90deg,#FDE68A,#F59E0B,#FDE68A); -webkit-background-clip:text; background-clip:text; color:transparent; margin-top:3px}
+  .drop-card{z-index:2; width:196px; animation:pop .6s cubic-bezier(.2,1.4,.4,1) both}
+  @keyframes pop{0%{transform:scale(.4) rotate(-8deg); opacity:0} 100%{transform:scale(1) rotate(0); opacity:1}}
+  .drop-card .flip{cursor:default}
+  .confetti{position:absolute; width:8px; height:8px; border-radius:2px; z-index:1; animation:fall 2.8s ease-in infinite}
+  @keyframes fall{0%{transform:translateY(-30px) rotate(0); opacity:0} 12%{opacity:1} 100%{transform:translateY(560px) rotate(540deg); opacity:0}}
+  .drop-info{z-index:2; text-align:center; font-size:12px; color:var(--body)}
+  .drop-info b{color:var(--text)}
+  .drop-btns{z-index:2; display:flex; flex-direction:column; gap:8px; width:82%}
+  .btn{display:flex; align-items:center; justify-content:center; gap:8px; min-height:46px; border-radius:14px; font-size:14.5px; font-weight:800; cursor:pointer; border:none; transition:filter .2s, background .2s}
+  .btn.primary{background:var(--green); color:#06240F}
+  .btn.primary:hover{background:var(--green2)}
+  .btn.ghost{background:transparent; border:1px solid var(--line2); color:var(--body)}
+  .btn.ghost:hover{border-color:var(--muted)}
+  .btn.gold{background:linear-gradient(135deg,#FDE68A,#F59E0B); color:#3A2604}
+
+  /* phone 2: collection */
+  .progress-hero{background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:14px; margin-bottom:12px}
+  .ph-row{display:flex; justify-content:space-between; align-items:baseline}
+  .ph-row .n{font-size:22px; font-weight:900; color:var(--text)}
+  .ph-row .n small{font-size:13px; color:var(--muted); font-weight:600}
+  .ph-row .next{font-size:11px; color:var(--leg); font-weight:700}
+  .bar{height:8px; border-radius:6px; background:rgba(255,255,255,.07); margin-top:10px; overflow:hidden}
+  .bar i{display:block; height:100%; border-radius:6px; background:linear-gradient(90deg,var(--indigo),var(--indigo2))}
+  .mstones{display:flex; justify-content:space-between; margin-top:8px; font-size:9.5px; color:var(--muted); font-weight:600}
+  .mstones .done{color:var(--green2)}
+  .statusline{display:flex; gap:8px; margin-bottom:12px}
+  .stat{flex:1; display:flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:8px 10px; font-size:10.5px; font-weight:600; color:var(--body); line-height:1.25}
+  .stat b{color:var(--text)}
+  .sethead{display:flex; justify-content:space-between; align-items:center; margin:8px 2px 8px}
+  .sethead .sn{font-size:14.5px; font-weight:800; color:var(--text)}
+  .sethead .sp{font-size:11.5px; font-weight:700; color:var(--indigo2)}
+  .minigrid{display:grid; grid-template-columns:repeat(5,1fr); gap:7px}
+  .mini{aspect-ratio:3/4; border-radius:10px; position:relative; overflow:hidden; border:1px solid var(--line2); display:flex; align-items:center; justify-content:center}
+  .mini svg{width:78%; height:78%}
+  .mini.b-common{border-color:rgba(154,166,192,.5)} .mini.b-rare{border-color:rgba(56,189,248,.6)} .mini.b-epic{border-color:rgba(167,139,250,.65)} .mini.b-leg{border-color:rgba(251,191,36,.7)}
+  .mini.locked{background:#11162B; border-style:dashed; border-color:rgba(255,255,255,.13)}
+  .mini.locked .q{font-size:18px; font-weight:900; color:#39415F}
+  .mini .mnum{position:absolute; bottom:3px; right:5px; font-size:8px; font-weight:700; color:rgba(255,255,255,.75)}
+  .setrow2{display:flex; gap:8px; margin-top:14px}
+  .setcard{flex:1; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:10px; font-size:11px; font-weight:700; color:var(--body)}
+  .setcard .sc-bar{height:5px; border-radius:4px; background:rgba(255,255,255,.07); margin-top:7px; overflow:hidden}
+  .setcard .sc-bar i{display:block; height:100%; background:var(--indigo)}
+  .setcard.done{border-color:rgba(34,197,94,.45)}
+  .setcard.done .sc-bar i{background:var(--green)}
+  .setcard small{display:block; color:var(--muted); font-weight:600; font-size:9.5px; margin-top:2px}
+
+  /* phone 3: detail */
+  .detail-card{margin:0 auto; width:226px}
+  .dsec{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:11px 13px; margin-top:9px; font-size:12px}
+  .dsec .blab{margin-bottom:4px}
+  .dsec.gold{border-color:rgba(251,191,36,.4); background:linear-gradient(180deg, rgba(251,191,36,.08), var(--panel))}
+  .drow{display:flex; gap:8px; margin-top:10px}
+  .drow .btn{flex:1; min-height:42px; font-size:13px}
+
+  /* phone 4: set complete */
+  .setdone-scr{align-items:center; text-align:center; gap:10px; background:radial-gradient(90% 50% at 50% 30%, rgba(34,197,94,.13), transparent 70%)}
+  .badge-big{width:92px; height:92px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:radial-gradient(circle at 35% 30%, #34D399, #15803D); box-shadow:0 0 0 7px rgba(34,197,94,.15), 0 0 0 14px rgba(34,197,94,.07); margin-top:14px; animation:pop .6s cubic-bezier(.2,1.4,.4,1) both}
+  .setdone-scr h3{font-size:20px; font-weight:900; color:var(--text)}
+  .setdone-scr .sd-sub{font-size:12px; color:var(--muted)}
+  .minirow{display:flex; gap:5px; justify-content:center; margin:8px 0 2px}
+  .minirow .mini{width:26px; flex:none}
+  .rewards{width:100%; display:flex; flex-direction:column; gap:8px; margin-top:8px}
+  .rew{display:flex; align-items:center; gap:11px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:11px 13px; text-align:left}
+  .rew .ric{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex:none}
+  .rew b{display:block; font-size:13px; color:var(--text)}
+  .rew span{font-size:10.5px; color:var(--muted)}
+  .ric.shard{background:rgba(56,189,248,.15)} .ric.frz{background:rgba(129,140,248,.15)} .ric.dict{background:rgba(34,197,94,.15)}
+
+  /* design notes */
+  .notes{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
+  .note-card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px}
+  .note-card h3{font-size:14.5px; font-weight:800; margin-bottom:6px; display:flex; align-items:center; gap:8px}
+  .note-card p{font-size:13px; color:var(--body)}
+  .note-card .nic{width:26px; height:26px; border-radius:8px; background:rgba(99,102,241,.18); display:flex; align-items:center; justify-content:center; flex:none}
+
+  footer{margin-top:80px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important}
+  }
+  @media (max-width:760px){
+    body{padding:32px 14px 80px}
+    .phones{gap:26px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ════════ HERO ════════ -->
+  <header>
+    <div class="kicker">Phraseman · концепт коллекционной системы · 10.06.2026</div>
+    <h1>«Сокровищница» — коллекция идиом</h1>
+    <p class="sub" style="margin-top:12px">100 карточек · 10 тематических сетов · выпадают только за активности (купить нельзя).
+    Ниже — первый сет <b style="color:var(--text)">«Животные»</b> целиком (10 карточек, все 4 редкости) и макеты четырёх ключевых экранов.
+    Карточки в галерее <b style="color:var(--text)">кликабельны — переворачиваются</b>.</p>
+
+    <div class="legend">
+      <span class="pill"><span class="dot" style="background:var(--com)"></span>Обычная <b>×50</b> · шанс 55%</span>
+      <span class="pill"><span class="dot" style="background:var(--rare)"></span>Редкая <b>×30</b> · шанс 30%</span>
+      <span class="pill"><span class="dot" style="background:var(--epic)"></span>Эпическая <b>×15</b> · шанс 12%</span>
+      <span class="pill"><span class="dot" style="background:var(--leg)"></span>Легендарная <b>×5</b> · шанс 3%</span>
+      <span class="pill note">без дублей · гарант: эпика ≤ 15 дропов, легендарка ≤ 35</span>
+    </div>
+    <div class="sources">
+      <span class="chip">Дроп дают: Урок</span><span class="chip">День плана</span><span class="chip">Квиз</span><span class="chip">Победа в арене</span><span class="chip">Экзамен</span><span class="chip">Произношение</span><span class="chip">Диалог с Филом</span>
+      <span class="chip" style="border-color:rgba(251,191,36,.4); color:var(--leg)">1-й дроп дня гарантирован · кап 2/день (Premium 3)</span>
+    </div>
+  </header>
+
+  <!-- ════════ PHONES ════════ -->
+  <section>
+    <div class="section-head">
+      <h2>Макеты экранов</h2>
+      <p class="sub">Момент дропа → коллекция → карточка → бонус за сет. Тёмная «сокровищница» с плавающим таб-баром, как в приложении.</p>
+    </div>
+    <div class="phones">
+
+      <!-- PHONE 1 · DROP -->
+      <div class="phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="scr drop-scr">
+            <div class="rays"></div>
+            <i class="confetti" style="left:14%; background:var(--leg); animation-delay:.1s"></i>
+            <i class="confetti" style="left:28%; background:var(--indigo2); animation-delay:.9s"></i>
+            <i class="confetti" style="left:46%; background:var(--green); animation-delay:.4s"></i>
+            <i class="confetti" style="left:64%; background:var(--epic); animation-delay:1.3s"></i>
+            <i class="confetti" style="left:80%; background:var(--leg); animation-delay:.7s"></i>
+            <i class="confetti" style="left:90%; background:var(--rare); animation-delay:1.7s"></i>
+            <div class="drop-top">
+              <div class="ctx">Урок пройден · сюрприз!</div>
+              <div class="big">ЛЕГЕНДАРНАЯ КАРТОЧКА</div>
+            </div>
+            <div class="drop-card" id="dropCardSlot"></div>
+            <div class="drop-info">Коллекция: <b>24 / 100</b> · сет «Животные» <b>6/10</b><br><span style="color:var(--muted); font-size:11px">Дропы сегодня: 1 из 2</span></div>
+            <div class="drop-btns">
+              <button class="btn primary" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                В коллекцию</button>
+              <button class="btn ghost" type="button">Дальше</button>
+            </div>
+          </div>
+        </div>
+        <div class="phone-cap">1 · Момент дропа<span>Появляется ПОСЛЕ экрана результатов урока — сюрприз, а не приманка. Редкость = цвет + лучи + конфетти.</span></div>
+      </div>
+
+      <!-- PHONE 2 · COLLECTION -->
+      <div class="phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="scr">
+            <div class="navbar">
+              <div class="ttl">Сокровищница</div>
+              <div style="display:flex; gap:8px">
+                <div class="iconbtn" title="Шансы дропа">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B93B0" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="progress-hero">
+              <div class="ph-row">
+                <div class="n">23<small> / 100</small></div>
+                <div class="next">до рубежа 25 → аура ✦ 2 карточки</div>
+              </div>
+              <div class="bar"><i style="width:23%"></i></div>
+              <div class="mstones"><span class="done">10 ✓</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+            </div>
+            <div class="statusline">
+              <div class="stat">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 9l8 13 8-13-8-7Z"/><path d="M4 9h16"/></svg>
+                <span>Гарант эпики:<br><b>через 7 дропов</b></span>
+              </div>
+              <div class="stat">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                <span>Дропы сегодня:<br><b>1 / 2</b> · сброс в 00:00</span>
+              </div>
+            </div>
+            <div class="sethead"><span class="sn">Животные</span><span class="sp">6 / 10 · бонус: 15 осколков + заморозка</span></div>
+            <div class="minigrid" id="miniGrid"></div>
+            <div class="setrow2">
+              <div class="setcard done">Еда · 10/10 ✓<small>словарь собран</small><div class="sc-bar"><i style="width:100%"></i></div></div>
+              <div class="setcard">Погода · 4/10<small>идёт сбор</small><div class="sc-bar"><i style="width:40%"></i></div></div>
+              <div class="setcard">Деньги · 3/10<small>идёт сбор</small><div class="sc-bar"><i style="width:30%"></i></div></div>
+            </div>
+            <div class="tabbar">
+              <div class="tab"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg></div>
+              <div class="tab"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1-2-2Z"/><path d="M8 7h8M8 11h6"/></svg></div>
+              <div class="tab on"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3 6-9 12L3 9l3-6Z"/><path d="M3 9h18M9 9l3 12M15 9l-3 12"/></svg></div>
+              <div class="tab"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 6 5 5-5 5M14 6l5 5-5 5"/></svg></div>
+              <div class="tab"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5 8-5s6.5 1 8 5"/></svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="phone-cap">2 · Экран коллекции<span>Все 100 слотов видны с первого дня (силуэты «?»). Открытые шансы, честный гарант, прогресс к рубежу.</span></div>
+      </div>
+
+      <!-- PHONE 3 · DETAIL -->
+      <div class="phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="scr">
+            <div class="navbar">
+              <div class="iconbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B93B0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg></div>
+              <div class="ttl" style="font-size:14px">№ 09 · Животные</div>
+              <div class="iconbtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8B93B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.9 7.6-4.6M8.2 13.1l7.6 4.6"/></svg></div>
+            </div>
+            <div class="detail-card" id="detailCardSlot"></div>
+            <div class="dsec"><div class="blab">Пример</div><span class="ex">“Let’s talk about <mark>the elephant in the room</mark> — our budget.”<span class="tr">«Давайте обсудим слона в комнате — наш бюджет».</span></span></div>
+            <div class="dsec gold"><div class="blab" style="color:var(--leg)">История · знаете ли вы?</div>Выражение родом… из басни Крылова «Любопытный» (1814): герой разглядел в музее всё, кроме слона! В английский оно пришло позже.</div>
+            <div class="drow">
+              <button class="btn primary" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+                Прослушать</button>
+              <button class="btn ghost" type="button">В профиль ✦</button>
+            </div>
+          </div>
+        </div>
+        <div class="phone-cap">3 · Карточка крупно<span>Каждая карточка — микро-урок: пример, перевод, история происхождения, озвучка. Листать коллекцию = повторять.</span></div>
+      </div>
+
+      <!-- PHONE 4 · SET COMPLETE -->
+      <div class="phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="scr setdone-scr">
+            <i class="confetti" style="left:18%; background:var(--green); animation-delay:.2s"></i>
+            <i class="confetti" style="left:40%; background:var(--indigo2); animation-delay:1.1s"></i>
+            <i class="confetti" style="left:62%; background:var(--leg); animation-delay:.6s"></i>
+            <i class="confetti" style="left:84%; background:var(--rare); animation-delay:1.5s"></i>
+            <div class="badge-big">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5M17 6h3a3 3 0 0 1-3 5"/></svg>
+            </div>
+            <h3>Сет «Животные» собран!</h3>
+            <div class="sd-sub">10 идиом о животных — теперь твои навсегда</div>
+            <div class="minirow" id="miniRowDone"></div>
+            <div class="rewards">
+              <div class="rew"><div class="ric shard">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 9l8 13 8-13-8-7Z"/><path d="M4 9h16M12 2 8.5 9l3.5 13 3.5-13L12 2Z"/></svg>
+              </div><div><b>+15 осколков знаний</b><span>валюта магазина</span></div></div>
+              <div class="rew"><div class="ric frz">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4 6l16 12M20 6 4 18M12 6l3-2M12 6 9 4M12 18l3 2M12 18l-3 2M6.5 7.5v-3M17.5 7.5v-3"/></svg>
+              </div><div><b>+1 заморозка стрика</b><span>страховка серии</span></div></div>
+              <div class="rew"><div class="ric dict">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1-2-2Z"/><path d="M20 17H6a2 2 0 0 0 0 4"/><path d="M9 7h6"/></svg>
+              </div><div><b>Мини-словарь «Животные»</b><span>10 идиом — в колоду повторения</span></div></div>
+            </div>
+            <button class="btn gold" style="width:100%; margin-top:6px" type="button">Забрать награды</button>
+          </div>
+        </div>
+        <div class="phone-cap">4 · Бонус за сет<span>Награда видна заранее (как в Coin Master). Косметика + лёгкая утилитарность — подписку не обесценивает.</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════ GALLERY ════════ -->
+  <section>
+    <div class="section-head">
+      <h2>Сет «Животные» — все 10 карточек</h2>
+      <p class="sub">5 обычных · 3 редких · 1 эпическая · 1 легендарная — точно по распределению 50/30/15/5.
+      Нажми на карточку, чтобы перевернуть: сзади значение, пример и история. Иллюстрации — плейсхолдеры стиля (в проде — DALL·E-пайплайн, как для аватаров).</p>
+    </div>
+    <div class="grid" id="gallery"></div>
+  </section>
+
+  <!-- ════════ DESIGN NOTES ════════ -->
+  <section>
+    <div class="section-head">
+      <h2>Почему так — 6 решений</h2>
+    </div>
+    <div class="notes">
+      <div class="note-card"><h3><span class="nic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg></span>Цвета редкостей — отраслевой стандарт</h3><p>Серый → синий → фиолетовый → золотой: схему знают все, кто играл хоть во что-то (закон Якоба). Объяснять не нужно — ценность считывается мгновенно.</p></div>
+      <div class="note-card"><h3><span class="nic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></span>100 слотов видны сразу</h3><p>Пустые силуэты с «?» включают эффект незавершённого набора (Зейгарник + endowment): у игрока с первого дня «дыры в своём», а не пустой экран.</p></div>
+      <div class="note-card"><h3><span class="nic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 9l8 13 8-13-8-7Z"/></svg></span>Шансы и гарант — открыто в UI</h3><p>Прозрачность вместо казино-ощущения: проценты на экране, честный pity-счётчик «эпика через N дропов». Дропы нельзя купить — юридически это не лутбокс.</p></div>
+      <div class="note-card"><h3><span class="nic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1-2-2Z"/><path d="M8 7h8"/></svg></span>Карточка = микро-урок</h3><p>Перевод, пример, транскрипция, история, озвучка. Просмотр коллекции — это скрытое повторение (spaced repetition), а не отвлечение от учёбы. У конкурентов такого нет.</p></div>
+      <div class="note-card"><h3><span class="nic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Дроп — после результатов</h3><p>Сюрприз после завершения, а не «пройди урок ради карточки» в начале: защита внутренней мотивации учиться (overjustification effect, Deci 1999).</p></div>
+      <div class="note-card"><h3><span class="nic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5 8-5s6.5 1 8 5"/></svg></span>Статус виден другим</h3><p>Кнопка «В профиль ✦»: легендарка и рамки рубежей показываются в арене и публичном профиле — статус-сигналинг, главный мотиватор после сборки.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Phraseman · «Сокровищница» · макет-концепт v1 · 10.06.2026</span>
+    <span>см. ресёрч: docs/reports/COLLECTIBLES_RESEARCH_2026-06-10.md</span>
+  </footer>
+</div>
+
+<script>
+/* ── SVG-иллюстрации (плейсхолдеры стиля: плоские, дружелюбные) ── */
+const ART = {
+horse:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Лошадь с поводьями">
+<ellipse cx="100" cy="142" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M68 132c-4-34 8-66 34-78 18-8 38-6 50 8 8 10 10 24 6 34l-12-6c-8 18-26 26-44 28l-6 14z" fill="#A9744F"/>
+<path d="M96 50c-2-12 4-24 14-30 2 8 8 12 14 14-10 2-16 8-18 18z" fill="#7C4F33"/>
+<path d="M102 54c14-10 34-8 44 4l-8 10c-10-8-24-10-36-4z" fill="#7C4F33"/>
+<circle cx="134" cy="74" r="5" fill="#26160C"/>
+<path d="M150 92c6 2 10 6 11 12" stroke="#26160C" stroke-width="4" stroke-linecap="round" fill="none"/>
+<path d="M66 96c20 6 44 6 62-2" stroke="#E8B04B" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M64 96l-14 22M128 94l16 24" stroke="#E8B04B" stroke-width="6" stroke-linecap="round"/>
+<circle cx="50" cy="120" r="7" fill="#E8B04B"/><circle cx="146" cy="120" r="7" fill="#E8B04B"/>
+</svg>`,
+bird:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Птичка с секретом">
+<ellipse cx="92" cy="144" rx="48" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M40 132h104" stroke="#6B7BA8" stroke-width="6" stroke-linecap="round"/>
+<ellipse cx="92" cy="100" rx="34" ry="30" fill="#5BB7F0"/>
+<circle cx="104" cy="78" r="20" fill="#5BB7F0"/>
+<path d="M58 104c-12 2-20 8-24 16 10 2 20 0 28-6z" fill="#3E92CC"/>
+<circle cx="110" cy="74" r="4.5" fill="#16243A"/>
+<path d="M122 80l14 5-14 5z" fill="#F6A623"/>
+<path d="M84 128l-4 10M100 128l4 10" stroke="#F6A623" stroke-width="5" stroke-linecap="round"/>
+<path d="M86 96c8 6 16 6 24 0" stroke="#3E92CC" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="128" y="34" rx="12" width="50" height="32" fill="#FFFFFF" opacity=".92"/>
+<path d="M138 66l-4 10 14-8z" fill="#FFFFFF" opacity=".92"/>
+<circle cx="143" cy="50" r="3.5" fill="#5B6B95"/><circle cx="154" cy="50" r="3.5" fill="#5B6B95"/><circle cx="165" cy="50" r="3.5" fill="#5B6B95"/>
+</svg>`,
+wolf:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Волк в овечьей шкуре">
+<ellipse cx="100" cy="146" rx="54" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M100 22c34 0 56 22 58 48 2 22-8 40-22 50H64c-14-10-24-28-22-50 2-26 24-48 58-48z" fill="#F5F0E6"/>
+<circle cx="58" cy="46" r="16" fill="#F5F0E6"/><circle cx="142" cy="46" r="16" fill="#F5F0E6"/>
+<circle cx="76" cy="34" r="14" fill="#F5F0E6"/><circle cx="124" cy="34" r="14" fill="#F5F0E6"/><circle cx="100" cy="28" r="15" fill="#F5F0E6"/>
+<path d="M100 58c20 0 34 14 34 34 0 12-6 22-16 28H82c-10-6-16-16-16-28 0-20 14-34 34-34z" fill="#8B93A7"/>
+<path d="M100 84l-26 22c2 8 8 12 14 14h24c6-2 12-6 14-14z" fill="#6E7689"/>
+<circle cx="86" cy="86" r="5" fill="#FFD23F"/><circle cx="114" cy="86" r="5" fill="#FFD23F"/>
+<circle cx="86" cy="86" r="2.2" fill="#16243A"/><circle cx="114" cy="86" r="2.2" fill="#16243A"/>
+<ellipse cx="100" cy="106" rx="7" ry="5" fill="#2B3142"/>
+<path d="M92 116l4 5 4-5 4 5 4-5" stroke="#2B3142" stroke-width="3" stroke-linecap="round" fill="none"/>
+</svg>`,
+bee:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Трудолюбивая пчела">
+<ellipse cx="104" cy="144" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M30 96c10-6 22-6 30 0M26 116c10-6 22-6 30 0" stroke="#7E89AD" stroke-width="5" stroke-linecap="round" fill="none" opacity=".7"/>
+<ellipse cx="86" cy="62" rx="22" ry="14" fill="#CFE8FF" opacity=".9" transform="rotate(-28 86 62)"/>
+<ellipse cx="124" cy="58" rx="22" ry="14" fill="#CFE8FF" opacity=".9" transform="rotate(22 124 58)"/>
+<ellipse cx="106" cy="100" rx="40" ry="30" fill="#FFC93C"/>
+<path d="M92 72a40 30 0 0 0 0 56M120 74a40 30 0 0 1 0 52" stroke="#2B2118" stroke-width="11" fill="none" stroke-linecap="round"/>
+<circle cx="146" cy="92" r="17" fill="#2B2118"/>
+<circle cx="152" cy="88" r="3" fill="#fff"/>
+<path d="M158 78l8-8M166 86l10-4" stroke="#2B2118" stroke-width="4" stroke-linecap="round"/>
+<path d="M64 102l-12 2" stroke="#2B2118" stroke-width="5" stroke-linecap="round"/>
+</svg>`,
+catbox:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кот заглядывает в коробку">
+<ellipse cx="100" cy="146" rx="58" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M52 96h96l-8 46H60z" fill="#B98A5A"/>
+<path d="M48 96h104l8-16H40z" fill="#D8A86F"/>
+<path d="M100 80V96" stroke="#8A6238" stroke-width="3"/>
+<path d="M70 64c0-18 14-32 32-32s32 14 32 32" fill="#F08C42"/>
+<path d="M74 40l-4-16 16 8zM130 40l4-16-16 8z" fill="#F08C42"/>
+<circle cx="90" cy="56" r="4.5" fill="#16243A"/><circle cx="114" cy="56" r="4.5" fill="#16243A"/>
+<ellipse cx="102" cy="68" rx="5" ry="3.6" fill="#C75146"/>
+<path d="M66 58l-18-4M66 64l-18 4M138 58l18-4M138 64l18 4" stroke="#E8E2D8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M148 118c10-2 16-10 14-20" stroke="#F08C42" stroke-width="8" stroke-linecap="round" fill="none"/>
+</svg>`,
+catbag:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кот выпрыгивает из мешка">
+<ellipse cx="100" cy="148" rx="56" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M58 86c-8 18-10 38-4 50 8 10 70 10 84 2 8-12 6-34-2-52l-12 6c-16-8-40-10-54-2z" fill="#A07444"/>
+<path d="M58 86c4-8 12-12 20-12M136 86c-4-8-12-12-20-12" stroke="#7C5530" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M78 70c0-16 10-28 24-28s24 12 24 28" fill="#5E6B8C"/>
+<path d="M82 48l-4-14 14 7zM126 48l4-14-14 7z" fill="#5E6B8C"/>
+<circle cx="94" cy="62" r="4" fill="#FFD23F"/><circle cx="112" cy="62" r="4" fill="#FFD23F"/>
+<circle cx="94" cy="62" r="1.8" fill="#16243A"/><circle cx="112" cy="62" r="1.8" fill="#16243A"/>
+<ellipse cx="103" cy="72" rx="4.4" ry="3.2" fill="#2B3142"/>
+<path d="M70 56l-16-6M70 62l-16 2M134 56l16-6M134 62l16 2" stroke="#C9D4EE" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M56 102l-14-10M150 100l12-12" stroke="#FFD23F" stroke-width="4" stroke-linecap="round"/>
+<path d="M40 78l6 2M158 74l-6 4" stroke="#FFD23F" stroke-width="4" stroke-linecap="round"/>
+</svg>`,
+pig:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Летающая свинка">
+<ellipse cx="44" cy="42" rx="20" ry="9" fill="#fff" opacity=".25"/><ellipse cx="160" cy="120" rx="24" ry="10" fill="#fff" opacity=".22"/><ellipse cx="166" cy="34" rx="16" ry="8" fill="#fff" opacity=".2"/>
+<ellipse cx="100" cy="92" rx="44" ry="32" fill="#F6A8C0"/>
+<path d="M72 64c-14-10-30-8-38 2 10 8 24 10 36 6z" fill="#FDE3ED"/>
+<path d="M128 64c14-10 30-8 38 2-10 8-24 10-36 6z" fill="#FDE3ED"/>
+<circle cx="128" cy="84" r="20" fill="#F6A8C0"/>
+<path d="M118 64l-2-12 12 6zM138 66l6-12 6 12z" fill="#EE7FA5"/>
+<circle cx="124" cy="82" r="3.6" fill="#5A2A3A"/><circle cx="138" cy="82" r="3.6" fill="#5A2A3A"/>
+<ellipse cx="131" cy="94" rx="9" ry="7" fill="#EE7FA5"/>
+<circle cx="128" cy="94" r="2" fill="#5A2A3A"/><circle cx="135" cy="94" r="2" fill="#5A2A3A"/>
+<path d="M60 110c-6 6-6 12 0 16" stroke="#EE7FA5" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M84 122l-3 10M112 122l3 10" stroke="#EE7FA5" stroke-width="6" stroke-linecap="round"/>
+</svg>`,
+owl:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ночная сова">
+<path d="M150 28a22 22 0 1 0 14 30 18 18 0 0 1-14-30z" fill="#FFE9A8"/>
+<circle cx="48" cy="34" r="2.4" fill="#FFE9A8"/><circle cx="70" cy="20" r="1.8" fill="#FFE9A8"/><circle cx="172" cy="78" r="2" fill="#FFE9A8"/><circle cx="30" cy="70" r="1.6" fill="#FFE9A8"/>
+<path d="M40 138h120" stroke="#6B5A3E" stroke-width="7" stroke-linecap="round"/>
+<ellipse cx="96" cy="96" rx="36" ry="40" fill="#7C6A9C"/>
+<path d="M68 64l-6-16 16 8zM124 64l6-16-16 8z" fill="#7C6A9C"/>
+<circle cx="84" cy="86" r="13" fill="#F5F0E6"/><circle cx="108" cy="86" r="13" fill="#F5F0E6"/>
+<circle cx="84" cy="86" r="5.5" fill="#16243A"/><circle cx="108" cy="86" r="5.5" fill="#16243A"/>
+<path d="M96 96l-5 8h10z" fill="#F6A623"/>
+<path d="M72 112c8 8 18 11 24 11s16-3 24-11" stroke="#5E4F7A" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M88 134l-2 6M104 134l2 6" stroke="#F6A623" stroke-width="4.6" stroke-linecap="round"/>
+</svg>`,
+elephant:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Слон в комнате">
+<rect x="14" y="118" width="172" height="8" rx="4" fill="#4A4063"/>
+<rect x="150" y="52" width="6" height="66" rx="3" fill="#C4A24E"/>
+<path d="M136 52h34l-6-16h-22z" fill="#E8C56A"/>
+<rect x="20" y="86" width="38" height="32" rx="8" fill="#9A5BB5"/>
+<rect x="16" y="80" width="46" height="14" rx="7" fill="#B077C9"/>
+<path d="M70 118c-4-26 8-48 32-54 22-6 44 4 50 24 4 16-2 28-12 30l-2-14c-4 10-14 14-24 14H82z" fill="#8FA3C8"/>
+<path d="M148 86c10 0 16 8 14 18-2 8-8 12-14 12" fill="none" stroke="#7288AE" stroke-width="9" stroke-linecap="round"/>
+<circle cx="124" cy="84" r="4.6" fill="#1B2438"/>
+<path d="M96 72c-8-6-10-16-6-24 8 2 14 8 16 16z" fill="#7288AE"/>
+<path d="M84 118v14M118 118v14" stroke="#8FA3C8" stroke-width="10" stroke-linecap="round"/>
+</svg>`,
+beeknees:`<svg class="illus" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Золотая пчела с короной">
+<path d="M100 16l5 10 11 1-8 8 2 11-10-5-10 5 2-11-8-8 11-1z" fill="#FFE9A8"/>
+<path d="M36 60l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1zM164 100l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#FFE9A8" opacity=".85"/>
+<ellipse cx="100" cy="146" rx="46" ry="8" fill="rgba(0,0,0,.3)"/>
+<ellipse cx="78" cy="66" rx="24" ry="15" fill="#FFF3C9" opacity=".85" transform="rotate(-26 78 66)"/>
+<ellipse cx="122" cy="66" rx="24" ry="15" fill="#FFF3C9" opacity=".85" transform="rotate(26 122 66)"/>
+<ellipse cx="100" cy="102" rx="38" ry="29" fill="#F2B705"/>
+<path d="M86 75a38 29 0 0 0 0 54M114 76a38 29 0 0 1 0 52" stroke="#6B4A0A" stroke-width="10" fill="none" stroke-linecap="round"/>
+<circle cx="100" cy="64" r="16" fill="#6B4A0A"/>
+<circle cx="95" cy="61" r="3.4" fill="#FFE9A8"/><circle cx="106" cy="61" r="3.4" fill="#FFE9A8"/>
+<path d="M88 46l4-10 8 6 8-6 4 10z" fill="#FFD23F" stroke="#B8860B" stroke-width="2" stroke-linejoin="round"/>
+<path d="M70 118l-6 10M130 118l6 10" stroke="#6B4A0A" stroke-width="5" stroke-linecap="round"/>
+<circle cx="64" cy="130" r="4" fill="#FFD23F"/><circle cx="136" cy="130" r="4" fill="#FFD23F"/>
+</svg>`
+};
+
+/* ── данные 10 карточек сета «Животные» ── */
+const RARITY = {
+  common:{label:'Обычная', cls:'common'},
+  rare:{label:'Редкая', cls:'rare'},
+  epic:{label:'Эпическая', cls:'epic'},
+  leg:{label:'Легендарная', cls:'leg'}
+};
+const CARDS = [
+ {n:1, art:'horse', r:'common', en:'Hold your horses', ipa:'həʊld jɔː ˈhɔːsɪz', ru:'Придержи коней',
+  mean:'Не торопись, подожди.',
+  ex:'<mark>Hold your horses</mark>! Let me finish my coffee first.', exr:'«Придержи коней! Дай сначала допить кофе».',
+  org:'Из времён конных повозок: чтобы остановиться, кучер натягивал поводья.'},
+ {n:2, art:'bird', r:'common', en:'A little bird told me', ipa:'ə ˈlɪtl bɜːd təʊld miː', ru:'Сорока на хвосте принесла',
+  mean:'Узнал по секрету — не скажу от кого.',
+  ex:'<mark>A little bird told me</mark> it’s your birthday tomorrow!', exr:'«Птичка нашептала, что у тебя завтра день рождения!»',
+  org:'Птицы-вестники — образ из древних историй и даже из Библии.'},
+ {n:3, art:'wolf', r:'common', en:'A wolf in sheep’s clothing', ipa:'wʊlf ɪn ʃiːps ˈkləʊðɪŋ', ru:'Волк в овечьей шкуре',
+  mean:'Опасный человек, притворяющийся добрым.',
+  ex:'Be careful — he’s <mark>a wolf in sheep’s clothing</mark>.', exr:'«Осторожно — он волк в овечьей шкуре».',
+  org:'Из басни Эзопа и Евангелия от Матфея — выражению больше 2000 лет.'},
+ {n:4, art:'bee', r:'common', en:'Busy as a bee', ipa:'ˈbɪzi əz ə biː', ru:'Трудится как пчёлка',
+  mean:'Очень занятой и работящий.',
+  ex:'Mom has been <mark>busy as a bee</mark> all morning.', exr:'«Мама всё утро крутится как пчёлка».',
+  org:'Впервые — у Чосера в «Кентерберийских рассказах», XIV век!'},
+ {n:5, art:'catbox', r:'common', en:'Curiosity killed the cat', ipa:'ˌkjʊəriˈɒsɪti kɪld ðə kæt', ru:'Любопытной Варваре…',
+  mean:'Излишнее любопытство до добра не доводит.',
+  ex:'Why do you ask? <mark>Curiosity killed the cat</mark>!', exr:'«А зачем тебе? Любопытной Варваре нос оторвали!»',
+  org:'Сначала говорили “care killed the cat” — «забота сгубила кота» (XVI век, Бен Джонсон и Шекспир).'},
+ {n:6, art:'catbag', r:'rare', en:'Let the cat out of the bag', ipa:'let ðə kæt aʊt əv ðə bæɡ', ru:'Проболтаться, выдать секрет',
+  mean:'Случайно раскрыть тайну.',
+  ex:'Oops, I <mark>let the cat out of the bag</mark> about the party.', exr:'«Упс, я проболтался про вечеринку».',
+  org:'На средневековых рынках вместо поросёнка в мешок подсовывали кота. Кот выскочил — обман раскрыт!'},
+ {n:7, art:'pig', r:'rare', en:'When pigs fly', ipa:'wen pɪɡz flaɪ', ru:'Когда рак на горе свистнет',
+  mean:'Никогда этого не будет.',
+  ex:'He’ll clean his room <mark>when pigs fly</mark>.', exr:'«Он уберётся в комнате, когда рак на горе свистнет».',
+  org:'Старинная шотландская присказка: свинья — то, что точно не полетит.'},
+ {n:8, art:'owl', r:'rare', en:'A night owl', ipa:'ə naɪt aʊl', ru:'Сова, полуночник',
+  mean:'Человек, который любит не спать допоздна.',
+  ex:'I’m <mark>a night owl</mark> — my best ideas come after midnight.', exr:'«Я сова — лучшие идеи приходят после полуночи».',
+  org:'Совы охотятся ночью; о людях так говорят со времён Шекспира.'},
+ {n:9, art:'elephant', r:'epic', en:'The elephant in the room', ipa:'ði ˈelɪfənt ɪn ðə ruːm', ru:'Слон в комнате',
+  mean:'Огромная проблема, которую все замечают, но молчат.',
+  ex:'Let’s talk about <mark>the elephant in the room</mark> — our budget.', exr:'«Давайте обсудим слона в комнате — наш бюджет».',
+  org:'Родом из басни Крылова «Любопытный» (1814): герой заметил в музее всё… кроме слона!'},
+ {n:10, art:'beeknees', r:'leg', en:'The bee’s knees', ipa:'ðə biːz niːz', ru:'Высший класс, просто блеск',
+  mean:'Нечто превосходное, самое лучшее.',
+  ex:'This new café is <mark>the bee’s knees</mark>!', exr:'«Это новое кафе — просто блеск!»',
+  org:'Америка 1920-х, эпоха джаза: модные шутливые фразы вроде “the cat’s pajamas”. Пчела несёт пыльцу на «коленках» — самое ценное.'}
+];
+
+/* ── рендер карточки ── */
+function cardHTML(c, interactive=true){
+  const r = RARITY[c.r];
+  return `
+  <div class="flip fr-${r.cls}" ${interactive?'tabindex="0" role="button" aria-label="Карточка: '+c.en+'. Нажмите, чтобы перевернуть"':''}>
+    <div class="inner">
+      <div class="cardface front">
+        <div class="art bg-${r.cls}">
+          <span class="rbadge rb-${r.cls}">${r.label}</span>
+          <span class="cnum">№ ${String(c.n).padStart(2,'0')}/10</span>
+          ${ART[c.art]}
+        </div>
+        <div class="meta">
+          <div class="idiom">${c.en}</div>
+          <div class="ipa">[${c.ipa}]</div>
+          <div class="ru t-${r.cls}">${c.ru}</div>
+          <div class="hint"><span class="set">Сет «Животные»</span><span>нажми ↻</span></div>
+        </div>
+      </div>
+      <div class="cardface back">
+        <div class="bhead">
+          <span class="rbadge rb-${r.cls}" style="position:static; margin-bottom:6px; display:inline-flex">${r.label}</span>
+          <div class="idiom">${c.en}</div>
+        </div>
+        <div class="bbody">
+          <div><div class="blab">Значение</div><div class="mean">${c.mean}</div></div>
+          <div><div class="blab">Пример</div><span class="ex">“${c.ex}”<span class="tr">${c.exr}</span></span></div>
+          <div><div class="blab">История</div><div class="origin">${c.org}</div></div>
+          <span class="audio"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>Прослушать</span>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* галерея 10 карточек */
+const gallery = document.getElementById('gallery');
+gallery.innerHTML = CARDS.map(c=>cardHTML(c)).join('');
+gallery.querySelectorAll('.flip').forEach(el=>{
+  const toggle = ()=>el.classList.toggle('flipped');
+  el.addEventListener('click', toggle);
+  el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); toggle();} });
+});
+
+/* телефон 1: легендарный дроп (карточка №10) */
+document.getElementById('dropCardSlot').innerHTML = cardHTML(CARDS[9], false);
+
+/* телефон 3: деталка (карточка №9, эпик) — компакт: только фронт */
+const d = CARDS[8], dr = RARITY[d.r];
+document.getElementById('detailCardSlot').innerHTML = `
+  <div class="flip fr-${dr.cls}" style="cursor:default">
+    <div class="inner"><div class="cardface front">
+      <div class="art bg-${dr.cls}">
+        <span class="rbadge rb-${dr.cls}">${dr.label}</span>
+        <span class="cnum">№ 09/10</span>
+        ${ART[d.art]}
+      </div>
+      <div class="meta">
+        <div class="idiom">${d.en}</div>
+        <div class="ipa">[${d.ipa}]</div>
+        <div class="ru t-${dr.cls}">${d.ru}</div>
+        <div class="hint"><span class="set">Сет «Животные»</span><span>получена вчера</span></div>
+      </div>
+    </div></div>
+  </div>`;
+
+/* телефон 2: мини-грид 6 собранных + 4 силуэта */
+const collected = [0,1,3,5,7,8]; // индексы собранных
+const miniGrid = document.getElementById('miniGrid');
+miniGrid.innerHTML = CARDS.map((c,i)=>{
+  const r = RARITY[c.r];
+  if(collected.includes(i)){
+    return `<div class="mini b-${r.cls} bg-${r.cls}">${ART[c.art]}<span class="mnum">${String(c.n).padStart(2,'0')}</span></div>`;
+  }
+  return `<div class="mini locked"><span class="q">?</span><span class="mnum">${String(c.n).padStart(2,'0')}</span></div>`;
+}).join('');
+
+/* телефон 4: ряд из 10 собранных мини-иконок */
+document.getElementById('miniRowDone').innerHTML = CARDS.map(c=>{
+  const r = RARITY[c.r];
+  return `<div class="mini b-${r.cls} bg-${r.cls}">${ART[c.art]}</div>`;
+}).join('');
+</script>
+</body>
+</html>

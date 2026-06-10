@@ -50,6 +50,7 @@ import GoldBevel from '../components/GoldBevel';
 import { StatScoreRing } from '../components/stats/StatScoreRing';
 import { StatBars, type StatBar } from '../components/stats/StatBars';
 import { StatProgressRow } from '../components/stats/StatProgressRow';
+import { StatCountUpText } from '../components/stats/StatCountUpText';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
@@ -794,8 +795,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
     isGoldTheme?: boolean;
     themeMode: ThemeMode;
 }) {
-    const metricRow = (label: string, value: string, kind: LifetimeTotalsChartKind, numValue: number) => {
-        void numValue;
+    const metricRow = (label: string, value: string, kind: LifetimeTotalsChartKind, numValue: number, rowIndex: number = 0) => {
         const multiSeries = showAllPathCharts ? pathChartsByKind?.[kind] : undefined;
         const teaserOk = !!gateExpandAll && teaserChartDays && teaserChartDays.length > 0;
         const rowExpanded = teaserOk || expandedKind === kind || (!!showAllPathCharts && !!multiSeries?.length);
@@ -821,9 +821,13 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
               {label}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>
-                {value}
-              </Text>
+              {Number.isFinite(numValue) && numValue > 0 ? (
+                <StatCountUpText value={numValue} style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1} delayMs={120 + rowIndex * 70}/>
+              ) : (
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+                  {value}
+                </Text>
+              )}
               <Ionicons name={rowExpanded ? 'chevron-down' : 'chevron-forward'} size={18} color={t.textMuted}/>
             </View>
           </View>
@@ -883,8 +887,9 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap'),
         }}>
       <Text style={{
-            color: t.textMuted,
+            color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'archiveMap'),
             fontSize: f.label,
+            fontWeight: '900',
             textTransform: 'uppercase',
             letterSpacing: 0.8,
             marginBottom: 10,
@@ -918,7 +923,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             pl: "Liczby po prawej to suma historyczna.",
         })}
       </Text>
-      {lifetimeRows.filter((r) => !collapseZeros || r.numValue > 0).map((r) => metricRow(r.label, String(r.numValue), r.kind, r.numValue))}
+      {lifetimeRows.filter((r) => !collapseZeros || r.numValue > 0).map((r, i) => metricRow(r.label, String(r.numValue), r.kind, r.numValue, i))}
       {zeroRows.length > 0 ? (zeroRowsExpanded ? (<>
           {zeroRows.map((r) => metricRow(r.label, String(r.numValue), r.kind, r.numValue))}
           <TouchableOpacity activeOpacity={0.72} onPress={() => setZeroRowsExpanded(false)} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 10, marginTop: 2 }}>

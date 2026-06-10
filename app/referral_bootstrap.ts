@@ -41,7 +41,7 @@ const PENDING_REF_KEY = 'pending_referral_code';
 /** Сохраняет pending-код; `source` — аналитика. */
 export async function captureReferralCodeIfNew(
   code: string,
-  source: 'deeplink' | 'play_install' | 'manual_code' = 'deeplink',
+  source: 'deeplink' | 'play_install' | 'manual_code' | 'clipboard' = 'deeplink',
 ): Promise<void> {
   const c = String(code).trim().toUpperCase();
   if (c.length < 4) return;
@@ -94,57 +94,107 @@ export async function captureReferralFromUrl(url: string | null | undefined): Pr
   await captureReferralCodeIfNew(code, 'deeplink');
 }
 
+/** Итог попытки применить реферальный код — для UI-фидбека и pending-логики. */
+export type ReferralApplyStatus =
+  | 'applied'       // привязка создана
+  | 'already'       // этот аккаунт уже привязан (к этому или другому коду)
+  | 'invalid'       // код короче 4 символов / мусор
+  | 'unknown_code'  // кода нет в referral_codes
+  | 'too_old'       // аккаунту больше 72ч — антифрод отклонил
+  | 'self'          // собственный код
+  | 'needs_link'    // нет auth_links (облако ещё не связало аккаунт) — можно повторить позже
+  | 'disabled'      // referral_enabled выключен / нет облака
+  | 'error';        // сеть/прочее — можно повторить позже
+
+/** Статусы, после которых pending-код хранить бессмысленно (повтор не поможет). */
+const TERMINAL_APPLY_STATUSES: ReadonlySet<ReferralApplyStatus> = new Set([
+  'applied', 'already', 'too_old', 'self', 'unknown_code',
+]);
+
 /**
- * Пытается применить отложенный код (нужен вход Google/Apple: auth_links).
- * Ключ «успеха» — на пару (stableId + ref), плюс снятие устаревшего глобального ключа.
+ * Применяет код для текущего пользователя СЕЙЧАС и возвращает статус.
+ * Не трогает PENDING_REF_KEY — этим управляют обёртки (pending/manual).
  */
-export async function tryApplyPendingReferral(): Promise<void> {
-  if (!isReferralCloudEnabled()) return;
-  const code = (await AsyncStorage.getItem(PENDING_REF_KEY) ?? '').trim().toUpperCase();
-  if (!code) {
-    await AsyncStorage.removeItem(LEGACY_APPLIED_KEY);
-    return;
-  }
-  const stableId = await getCanonicalUserId();
-  if (!stableId) return;
-  if (await AsyncStorage.getItem(LEGACY_APPLIED_KEY)) {
-    await AsyncStorage.removeItem(LEGACY_APPLIED_KEY);
-  }
-  const appliedFor = await AsyncStorage.getItem(appliedStorageKey(stableId));
-  if (appliedFor === code) {
-    await AsyncStorage.removeItem(PENDING_REF_KEY);
-    return;
-  }
+async function applyReferralCodeNow(stableId: string, code: string): Promise<ReferralApplyStatus> {
   try {
     const res = await callReferralApply({ refereeStableId: stableId, refCode: code });
-    if (res?.ok) {
-      await AsyncStorage.setItem(appliedStorageKey(stableId), code);
-      await AsyncStorage.removeItem(PENDING_REF_KEY);
-      logEvent('referral_applied', { already: res.already ? 1 : 0 });
-      await loadShardsFromCloud().catch(() => {});
-      // Авто-дружба: отправляем запрос пригласившему, чтобы он сразу появился в друзьях.
-      // Best-effort и только при первом apply (не already), чтобы не слать повторно.
-      if (!res.already && res.referrerStableId) {
-        await sendAutoFriendRequestToReferrer(res.referrerStableId).catch(() => {});
-      }
+    if (!res?.ok) return 'error';
+    await AsyncStorage.setItem(appliedStorageKey(stableId), code);
+    logEvent('referral_applied', { already: res.already ? 1 : 0 });
+    await loadShardsFromCloud().catch(() => {});
+    // Авто-дружба: отправляем запрос пригласившему, чтобы он сразу появился в друзьях.
+    // Best-effort и только при первом apply (не already), чтобы не слать повторно.
+    if (!res.already && res.referrerStableId) {
+      await sendAutoFriendRequestToReferrer(res.referrerStableId).catch(() => {});
     }
+    return res.already ? 'already' : 'applied';
   } catch (e: unknown) {
     const c = getReferralCallableErrorCode(e);
     const msg = e && typeof e === 'object' && 'message' in e ? String((e as { message: string }).message) : '';
     const blob = `${msg} ${c} ${String(e)}`;
     if (blob.includes('REFERRAL_REFEREE_ACCOUNT_TOO_OLD')) {
       logEvent('referral_apply_too_old', {});
-      await AsyncStorage.removeItem(PENDING_REF_KEY);
-      return;
+      return 'too_old';
     }
     if (blob.includes('LINK_ACCOUNT_REQUIRED')) {
       logEvent('referral_apply_needs_link', {});
-      return;
+      return 'needs_link';
     }
-    if (blob.includes('SELF_REFERRAL')) {
-      await AsyncStorage.removeItem(PENDING_REF_KEY);
-    }
+    if (blob.includes('SELF_REFERRAL')) return 'self';
+    if (blob.includes('REF_CODE_UNKNOWN')) return 'unknown_code';
+    return 'error';
   }
+}
+
+/**
+ * Пытается применить отложенный код (нужна связка auth_links — облако создаёт её само).
+ * Ключ «успеха» — на пару (stableId + ref), плюс снятие устаревшего глобального ключа.
+ */
+export async function tryApplyPendingReferral(): Promise<ReferralApplyStatus | null> {
+  if (!isReferralCloudEnabled()) return 'disabled';
+  const code = (await AsyncStorage.getItem(PENDING_REF_KEY) ?? '').trim().toUpperCase();
+  if (!code) {
+    await AsyncStorage.removeItem(LEGACY_APPLIED_KEY);
+    return null;
+  }
+  const stableId = await getCanonicalUserId();
+  if (!stableId) return 'needs_link';
+  if (await AsyncStorage.getItem(LEGACY_APPLIED_KEY)) {
+    await AsyncStorage.removeItem(LEGACY_APPLIED_KEY);
+  }
+  const appliedFor = await AsyncStorage.getItem(appliedStorageKey(stableId));
+  if (appliedFor === code) {
+    await AsyncStorage.removeItem(PENDING_REF_KEY);
+    return 'already';
+  }
+  const status = await applyReferralCodeNow(stableId, code);
+  if (TERMINAL_APPLY_STATUSES.has(status)) {
+    await AsyncStorage.removeItem(PENDING_REF_KEY);
+  }
+  return status;
+}
+
+/**
+ * Ручной ввод реферального кода (модалка на экране «Друзья»). Возвращает статус
+ * для человекочитаемого фидбека. При needs_link/error код остаётся pending —
+ * фоновый tryApplyPendingReferral доделает при следующем запуске.
+ */
+export async function applyManualReferralCode(codeRaw: string): Promise<ReferralApplyStatus> {
+  if (!isReferralCloudEnabled()) return 'disabled';
+  const code = String(codeRaw).trim().toUpperCase();
+  if (code.length < 4) return 'invalid';
+  const stableId = await getCanonicalUserId();
+  if (stableId) {
+    const appliedFor = await AsyncStorage.getItem(appliedStorageKey(stableId));
+    if (appliedFor === code) return 'already';
+  }
+  await captureReferralCodeIfNew(code, 'manual_code');
+  if (!stableId) return 'needs_link';
+  const status = await applyReferralCodeNow(stableId, code);
+  if (TERMINAL_APPLY_STATUSES.has(status)) {
+    await AsyncStorage.removeItem(PENDING_REF_KEY);
+  }
+  return status;
 }
 
 /**

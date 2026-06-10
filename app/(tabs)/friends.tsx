@@ -98,6 +98,7 @@ import { ReferralExplainerCard } from '../referral_explainer_card';
 import { ReferralAccessActivatedModal } from '../referral_access_activated_modal';
 import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
 import { ReferralsListModal } from '../referrals_list_modal';
+import { ReferralCodeEntryModal } from '../referral_code_entry_modal';
 import {
   getClaimableReferralState,
   claimReferralVipDays,
@@ -1481,6 +1482,7 @@ export default function FriendsTabScreen() {
   const [activatedModal, setActivatedModal] = useState<{ days: number; friends: number } | null>(null);
   const [accessEndedOpen, setAccessEndedOpen] = useState(false);
   const [referralsModalOpen, setReferralsModalOpen] = useState(false);
+  const [refCodeEntryOpen, setRefCodeEntryOpen] = useState(false);
 
   const refreshReferralState = useCallback(async () => {
     if (!isReferralCloudEnabled()) return;
@@ -1559,6 +1561,33 @@ export default function FriendsTabScreen() {
       await refreshReferralState();
     }
   }, [isClaiming, refreshReferralState, showReferralFeedback, L]);
+
+  // Тап по серой кнопке «Получить 7 дней» (нечего открывать): объясняем, чего не хватает.
+  const handleReferralClaimHint = useCallback(() => {
+    hapticTap();
+    const hasPending = referralInvites.some((inv) => inv.status === 'pending');
+    showReferralFeedback(hasPending
+      ? L(
+          'Друг установил приложение, но ещё не прошёл первый урок. Дни откроются после этого.',
+          'Друг встановив застосунок, але ще не пройшов перший урок. Дні відкриються після цього.',
+          'Tu amigo instaló la app pero aún no completó la primera lección. Los días se abrirán después.',
+          'Seu amigo instalou o app, mas ainda não fez a primeira lição. Os dias abrem depois disso.',
+          'Bạn của bạn đã cài ứng dụng nhưng chưa xong bài đầu. Sau đó ngày sẽ mở.',
+          'Temanmu sudah memasang aplikasi tapi belum selesai pelajaran pertama. Hari terbuka setelah itu.',
+          'Arkadaşın uygulamayı yükledi ama ilk dersi bitirmedi. Günler ondan sonra açılır.',
+          'Znajomy zainstalował aplikację, ale nie ukończył pierwszej lekcji. Dni otworzą się po tym.',
+        )
+      : L(
+          'Пригласи друга — как только он пройдёт первый урок, получишь 7 дней доступа.',
+          'Запроси друга — щойно він пройде перший урок, отримаєш 7 днів доступу.',
+          'Invita a un amigo: en cuanto complete la primera lección, recibirás 7 días de acceso.',
+          'Convide um amigo — assim que ele fizer a primeira lição, você ganha 7 dias de acesso.',
+          'Mời một người bạn — khi họ xong bài đầu, bạn nhận 7 ngày truy cập.',
+          'Undang teman — begitu ia selesai pelajaran pertama, kamu dapat 7 hari akses.',
+          'Bir arkadaşını davet et — ilk dersi bitirince 7 gün erişim kazanırsın.',
+          'Zaproś znajomego — gdy ukończy pierwszą lekcję, dostaniesz 7 dni dostępu.',
+        ));
+  }, [referralInvites, showReferralFeedback, L]);
 
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
@@ -2260,8 +2289,12 @@ export default function FriendsTabScreen() {
         {isReferralCloudEnabled() && (
           <ReferralExplainerCard
             claimableDays={claimableDays}
+            invitesTotal={referralInvites.length}
             onInvite={handleReferralInvite}
             onClaim={handleReferralClaim}
+            onClaimHint={handleReferralClaimHint}
+            onOpenReferrals={() => { hapticTap(); setReferralsModalOpen(true); }}
+            onEnterCode={() => { hapticTap(); setRefCodeEntryOpen(true); }}
             claiming={isClaiming}
             L={L}
             t={t}
@@ -2857,6 +2890,16 @@ export default function FriendsTabScreen() {
         claiming={isClaiming}
         onClaim={() => { setReferralsModalOpen(false); void handleReferralClaim(); }}
         onInvite={() => { setReferralsModalOpen(false); void handleReferralInvite(); }}
+        lang={lang}
+        t={t}
+        f={f}
+        chrome={chrome}
+      />
+
+      <ReferralCodeEntryModal
+        visible={refCodeEntryOpen}
+        onClose={() => setRefCodeEntryOpen(false)}
+        onApplied={() => { void refreshReferralState(); }}
         lang={lang}
         t={t}
         f={f}

@@ -6,8 +6,9 @@
  *   • qualified — прошёл первый урок, награда готова к открытию;
  *   • rewarded  — доступ уже открыт (+7 дней начислены).
  *
- * Внизу — одна основная кнопка «Открыть N дней доступа», активна только когда
- * есть qualified-друзья (claimableDays > 0). Пустое состояние — когда рефералов нет.
+ * Внизу — кнопка «Открыть N дней доступа» (всегда видна: активная при qualified-друзьях,
+ * иначе серая — тап объясняет, чего не хватает) и «Пригласить друга». Пустое состояние —
+ * когда рефералов нет.
  *
  * Презентационный компонент: данные и обработчики приходят пропсами. Имён друзей
  * у нас нет (приватность — сервер отдаёт только refereeStableId), поэтому строка
@@ -17,7 +18,7 @@
  * AddFriendModal для визуальной консистентности.
  */
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -199,11 +200,46 @@ export function ReferralsListModal({
   });
 
   const qualifiedCount = invites.filter((i) => i.status === 'qualified').length;
+  const pendingCount = invites.filter((i) => i.status === 'pending').length;
   const canClaim = claimableDays > 0 && qualifiedCount > 0 && !claiming;
+
+  // Подсказка при тапе на серую claim-кнопку: почему открыть пока нечего.
+  const [hint, setHint] = useState<string | null>(null);
+  const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (hintTimerRef.current) clearTimeout(hintTimerRef.current); }, []);
+  const showHint = (text: string) => {
+    setHint(text);
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    hintTimerRef.current = setTimeout(() => setHint(null), 3000);
+  };
+  const onClaimHint = () => {
+    showHint(pendingCount > 0
+      ? L(
+          'Друг установил приложение, но ещё не прошёл первый урок. Дни откроются после этого.',
+          'Друг встановив застосунок, але ще не пройшов перший урок. Дні відкриються після цього.',
+          'Tu amigo instaló la app pero aún no completó la primera lección. Los días se abrirán después.',
+          'Seu amigo instalou o app, mas ainda não fez a primeira lição. Os dias abrem depois disso.',
+          'Bạn của bạn đã cài ứng dụng nhưng chưa xong bài đầu. Sau đó ngày sẽ mở.',
+          'Temanmu sudah memasang aplikasi tapi belum selesai pelajaran pertama. Hari terbuka setelah itu.',
+          'Arkadaşın uygulamayı yükledi ama ilk dersi bitirmedi. Günler ondan sonra açılır.',
+          'Znajomy zainstalował aplikację, ale nie ukończył pierwszej lekcji. Dni otworzą się po tym.',
+        )
+      : L(
+          'Пока некого открывать — пригласи друга. Как только он пройдёт первый урок, получишь 7 дней.',
+          'Поки нікого відкривати — запроси друга. Щойно він пройде перший урок, отримаєш 7 днів.',
+          'Aún no hay nadie: invita a un amigo. En cuanto complete la primera lección, recibirás 7 días.',
+          'Ainda não há ninguém — convide um amigo. Assim que ele fizer a primeira lição, você ganha 7 dias.',
+          'Chưa có ai — hãy mời một người bạn. Khi họ xong bài đầu, bạn nhận 7 ngày.',
+          'Belum ada siapa pun — undang teman. Begitu ia selesai pelajaran pertama, kamu dapat 7 hari.',
+          'Henüz kimse yok — bir arkadaşını davet et. İlk dersi bitirince 7 gün kazanırsın.',
+          'Jeszcze nikogo nie ma — zaproś znajomego. Gdy ukończy pierwszą lekcję, dostaniesz 7 dni.',
+        ));
+  };
 
   const claimLabel = claiming
     ? L('Открываю…', 'Відкриваю…', 'Abriendo…', 'Abrindo…', 'Đang mở…', 'Membuka…', 'Açılıyor…', 'Otwieram…')
-    : L(
+    : claimableDays > 0
+    ? L(
         `Открыть ${claimableDays} ${pluralDaysRu(claimableDays)} доступа`,
         `Відкрити ${claimableDays} дн. доступу`,
         `Abrir ${claimableDays} días de acceso`,
@@ -212,7 +248,8 @@ export function ReferralsListModal({
         `Buka ${claimableDays} hari akses`,
         `${claimableDays} gün erişimi aç`,
         `Otwórz ${claimableDays} dni dostępu`,
-      );
+      )
+    : L('Получить 7 дней', 'Отримати 7 днів', 'Obtener 7 días', 'Ganhar 7 dias', 'Nhận 7 ngày', 'Dapatkan 7 hari', '7 gün kazan', 'Odbierz 7 dni');
 
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
@@ -293,45 +330,57 @@ export function ReferralsListModal({
                 )}
               </ScrollView>
 
-              {/* Низ: основное действие */}
+              {/* Низ: claim всегда виден (серый, пока нечего открывать) + приглашение */}
               <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: 8, gap: 10 }}>
-                {claimableDays > 0 ? (
-                  <TouchableOpacity
-                    onPress={onClaim}
-                    disabled={!canClaim}
-                    activeOpacity={0.85}
-                    accessibilityRole="button"
+                {hint && (
+                  <Text
+                    testID="referrals-claim-hint"
                     style={{
-                      flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
-                      backgroundColor: t.accent ?? '#0A84FF',
-                      borderRadius: 16, paddingVertical: 16,
-                      opacity: canClaim ? 1 : 0.55,
+                      color: t.textMuted,
+                      fontSize: f.sub ?? 13,
+                      lineHeight: Math.round((f.sub ?? 13) * 1.4),
+                      textAlign: 'center',
                     }}
                   >
-                    {claiming
-                      ? <ActivityIndicator color={t.correctText ?? '#fff'} />
-                      : <Ionicons name="sparkles" size={18} color={t.correctText ?? '#fff'} />}
-                    <Text style={{ color: t.correctText ?? '#fff', fontSize: f.bodyLg ?? 16, fontWeight: '800' }}>
-                      {claimLabel}
-                    </Text>
-                  </TouchableOpacity>
-                ) : (
-                  <TouchableOpacity
-                    onPress={onInvite}
-                    activeOpacity={0.85}
-                    accessibilityRole="button"
-                    style={{
-                      flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
-                      backgroundColor: t.accent ?? '#0A84FF',
-                      borderRadius: 16, paddingVertical: 16,
-                    }}
-                  >
-                    <Ionicons name="person-add-outline" size={18} color={t.correctText ?? '#fff'} />
-                    <Text style={{ color: t.correctText ?? '#fff', fontSize: f.bodyLg ?? 16, fontWeight: '800' }}>
-                      {L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
-                    </Text>
-                  </TouchableOpacity>
+                    {hint}
+                  </Text>
                 )}
+                <TouchableOpacity
+                  testID="referrals-claim-button"
+                  onPress={canClaim ? onClaim : onClaimHint}
+                  disabled={claiming}
+                  activeOpacity={0.85}
+                  accessibilityRole="button"
+                  style={{
+                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    backgroundColor: t.accent ?? '#0A84FF',
+                    borderRadius: 16, paddingVertical: 16,
+                    opacity: canClaim ? 1 : 0.55,
+                  }}
+                >
+                  {claiming
+                    ? <ActivityIndicator color={t.correctText ?? '#fff'} />
+                    : <Ionicons name="sparkles" size={18} color={t.correctText ?? '#fff'} />}
+                  <Text style={{ color: t.correctText ?? '#fff', fontSize: f.bodyLg ?? 16, fontWeight: '800' }}>
+                    {claimLabel}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={onInvite}
+                  activeOpacity={0.85}
+                  accessibilityRole="button"
+                  style={{
+                    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.5, borderColor: t.accent ?? '#0A84FF',
+                    borderRadius: 16, paddingVertical: 14,
+                  }}
+                >
+                  <Ionicons name="person-add-outline" size={18} color={t.accent ?? '#0A84FF'} />
+                  <Text style={{ color: t.accent ?? '#0A84FF', fontSize: f.bodyLg ?? 16, fontWeight: '800' }}>
+                    {L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           </SafeAreaView>

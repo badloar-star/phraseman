@@ -1,9 +1,12 @@
 /**
  * ReferralExplainerCard — карточка реферальной программы на экране «Друзья».
  *
- * Объясняет механику (7 дней полного доступа за друга) и предоставляет два действия:
+ * Объясняет механику (7 дней полного доступа за друга) и предоставляет действия:
  *  1. «Пригласить друга» — всегда видна.
- *  2. «Открыть N дней доступа» — только когда claimableDays > 0.
+ *  2. «Открыть N дней доступа» — всегда видна: активная при claimableDays > 0,
+ *     иначе серая «Получить 7 дней» → onClaimHint (подсказка, почему пока нельзя).
+ *  3. «Мои рефералы (N)» — список приглашённых (ReferralsListModal).
+ *  4. «Ввести код» — ручной ввод реферального кода приглашённым (фолбэк для iOS).
  *
  * Чисто презентационный компонент: никаких сетевых вызовов, только пропсы.
  */
@@ -20,12 +23,20 @@ import { Ionicons } from '@expo/vector-icons';
 // ── Интерфейс пропсов ─────────────────────────────────────────────────────────
 
 export interface ReferralExplainerCardProps {
-  /** Количество дней доступа, готовых к открытию (0 = скрыть кнопку). */
+  /** Количество дней доступа, готовых к открытию (0 = кнопка серая). */
   claimableDays: number;
+  /** Всего приглашённых (pending+qualified+rewarded) — счётчик кнопки «Мои рефералы». */
+  invitesTotal: number;
   /** Нажатие «Пригласить друга» — шеринг реферальной ссылки. */
   onInvite: () => void;
   /** Нажатие «Открыть N дней» — запуск flow начисления. */
   onClaim: () => void;
+  /** Нажатие на СЕРУЮ кнопку (claimableDays = 0) — показать подсказку почему. */
+  onClaimHint: () => void;
+  /** Открыть список «Мои рефералы». */
+  onOpenReferrals: () => void;
+  /** Открыть ввод реферального кода (для приглашённого). */
+  onEnterCode: () => void;
   /** true = начисление в процессе → кнопку задизейблить, показать «Открываю…». */
   claiming?: boolean;
   /**
@@ -75,13 +86,18 @@ function pluralDaysRu(n: number): string {
 
 export function ReferralExplainerCard({
   claimableDays,
+  invitesTotal,
   onInvite,
   onClaim,
+  onClaimHint,
+  onOpenReferrals,
+  onEnterCode,
   claiming = false,
   L,
   t,
 }: ReferralExplainerCardProps) {
-  // Текст кнопки «Открыть» с правильным склонением
+  const hasClaimable = claimableDays > 0;
+  // Текст кнопки «Открыть» с правильным склонением; при 0 — «Получить 7 дней».
   const claimLabel = claiming
     ? L(
         'Открываю…',
@@ -93,7 +109,8 @@ export function ReferralExplainerCard({
         'Açılıyor…',
         'Otwieram…',
       )
-    : L(
+    : hasClaimable
+    ? L(
         `Открыть ${claimableDays} ${pluralDaysRu(claimableDays)} доступа`,
         `Відкрити ${claimableDays} дн. доступу`,
         `Abrir ${claimableDays} días de acceso`,
@@ -102,6 +119,16 @@ export function ReferralExplainerCard({
         `Buka ${claimableDays} hari akses`,
         `${claimableDays} gün erişimi aç`,
         `Otwórz ${claimableDays} dni dostępu`,
+      )
+    : L(
+        'Получить 7 дней',
+        'Отримати 7 днів',
+        'Obtener 7 días',
+        'Ganhar 7 dias',
+        'Nhận 7 ngày',
+        'Dapatkan 7 hari',
+        '7 gün kazan',
+        'Odbierz 7 dni',
       );
 
   return (
@@ -174,34 +201,75 @@ export function ReferralExplainerCard({
         </Text>
       </TouchableOpacity>
 
-      {/* Кнопка «Открыть N дней» — только когда есть что открывать */}
-      {claimableDays > 0 && (
-        <TouchableOpacity
+      {/* Кнопка «Открыть N дней» — всегда видна: серая, пока некого открывать.
+          Серая остаётся нажимаемой: тап объясняет, что друг ещё не прошёл урок. */}
+      <TouchableOpacity
+        testID="referral-claim-button"
+        style={[
+          styles.btnSecondary,
+          { borderColor: hasClaimable ? t.accent : t.textMuted },
+          (claiming || !hasClaimable) && styles.btnDisabled,
+        ]}
+        onPress={hasClaimable ? onClaim : onClaimHint}
+        disabled={claiming}
+        activeOpacity={0.75}
+      >
+        <Ionicons
+          name="sparkles-outline"
+          size={16}
+          color={hasClaimable && !claiming ? t.accent : t.textMuted}
+          style={styles.btnIcon}
+        />
+        <Text
           style={[
-            styles.btnSecondary,
-            { borderColor: t.accent },
-            claiming && styles.btnDisabled,
+            styles.btnSecondaryText,
+            { color: hasClaimable && !claiming ? t.accent : t.textMuted },
           ]}
-          onPress={onClaim}
-          disabled={claiming}
-          activeOpacity={0.75}
         >
-          <Ionicons
-            name="sparkles-outline"
-            size={16}
-            color={claiming ? t.textMuted : t.accent}
-            style={styles.btnIcon}
-          />
-          <Text
-            style={[
-              styles.btnSecondaryText,
-              { color: claiming ? t.textMuted : t.accent },
-            ]}
-          >
-            {claimLabel}
+          {claimLabel}
+        </Text>
+      </TouchableOpacity>
+
+      {/* Нижний ряд: список рефералов + ручной ввод кода приглашённым */}
+      <View style={styles.linkRow}>
+        <TouchableOpacity
+          testID="referral-open-list"
+          style={styles.linkBtn}
+          onPress={onOpenReferrals}
+          activeOpacity={0.7}
+          accessibilityRole="button"
+        >
+          <Ionicons name="people-outline" size={15} color={t.accent} style={styles.btnIcon} />
+          <Text style={[styles.linkText, { color: t.accent }]} numberOfLines={1}>
+            {L(
+              `Мои рефералы${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+              `Мої реферали${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+              `Mis referidos${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+              `Meus indicados${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+              `Lời mời của tôi${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+              `Referal saya${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+              `Davetlerim${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+              `Moje polecenia${invitesTotal > 0 ? ` (${invitesTotal})` : ''}`,
+            )}
           </Text>
         </TouchableOpacity>
-      )}
+        <View style={[styles.linkDivider, { backgroundColor: t.textMuted }]} />
+        <TouchableOpacity
+          testID="referral-enter-code"
+          style={styles.linkBtn}
+          onPress={onEnterCode}
+          activeOpacity={0.7}
+          accessibilityRole="button"
+        >
+          <Ionicons name="ticket-outline" size={15} color={t.accent} style={styles.btnIcon} />
+          <Text style={[styles.linkText, { color: t.accent }]} numberOfLines={1}>
+            {L(
+              'Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código',
+              'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod',
+            )}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -275,6 +343,29 @@ const styles = StyleSheet.create({
   },
   btnDisabled: {
     opacity: 0.55,
+  },
+  linkRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 12,
+    gap: 12,
+  },
+  linkBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 4,
+    paddingHorizontal: 2,
+    flexShrink: 1,
+  },
+  linkText: {
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  linkDivider: {
+    width: 1,
+    height: 14,
+    opacity: 0.35,
   },
 });
 

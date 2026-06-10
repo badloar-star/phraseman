@@ -22,36 +22,38 @@ describe('Firebase cost controls', () => {
     }
   });
 
-  it('does not run the referral reward scanner on every user document write', () => {
+  // Реферальная система (Фаза 2, односторонний VIP) — теперь штатная: контракт
+  // защищает конвейер от случайного выпиливания при cleanup (как было с VIP-кнопкой).
+  it('keeps the referral pipeline wired into exports and the deploy whitelist', () => {
     const indexSource = read('functions/src/index.ts');
     const packageJson = read('functions/package.json');
 
-    expect(indexSource).not.toContain('referralOnUserProgressUpdated');
-    expect(packageJson).not.toContain('functions:referralOnUserProgressUpdated');
+    for (const name of [
+      'referralEnsureMyCode',
+      'referralApply',
+      'referralOnUserProgressUpdated',
+      'referralClaimVipReward',
+      'referralListMyInvites',
+    ]) {
+      expect(indexSource).toContain(name);
+      expect(packageJson).toContain(`functions:${name}`);
+    }
   });
 
-  it('does not keep removed referral callables wired into the app or deploy list', () => {
-    const indexSource = read('functions/src/index.ts');
-    const packageJson = read('functions/package.json');
+  it('keeps referral cost guardrails: no code generation on sign-in, no referral reads in friends sync', () => {
     const authProviderSource = read('app/auth_provider.ts');
     const inviteSource = read('app/settings_invite_friend.tsx');
     const friendsSource = read('app/firestore_friends.ts');
-    const friendsScreenSource = read('app/(tabs)/friends.tsx');
-    const legacyFriendsScreenSource = read('app/friends_screen.tsx');
 
-    for (const name of ['referralEnsureMyCode', 'referralApply']) {
-      expect(indexSource).not.toContain(name);
-      expect(packageJson).not.toContain(`functions:${name}`);
-    }
-
+    // Код выдаётся лениво (по «Пригласить»), а не на каждый вход.
     expect(authProviderSource).not.toContain("import('./referral_system')");
     expect(authProviderSource).not.toContain('generateReferralCode');
+    // Экран настроек шарит без референции на referral cloud (дешёвый путь).
     expect(inviteSource).not.toContain('buildCloudReferralInviteShare');
     expect(inviteSource).not.toContain('isReferralCloudEnabled');
+    // Синк друзей не читает реферальные коллекции.
     expect(friendsSource).not.toContain("collection('referral_codes')");
     expect(friendsSource).not.toContain("'referral_code'");
-    expect(friendsScreenSource).not.toContain('captureReferralCodeFromManualInput');
-    expect(legacyFriendsScreenSource).not.toContain('captureReferralCodeFromManualInput');
   });
 
   it('keeps duplicate identity cleanup callable-driven but not scheduled', () => {

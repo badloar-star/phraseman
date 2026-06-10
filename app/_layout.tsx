@@ -1335,16 +1335,26 @@ function AppContent() {
 
   useEffect(() => {
     let subRemove: (() => void) | undefined;
+    let clipboardTimer: ReturnType<typeof setTimeout> | undefined;
     void import('./referral_bootstrap')
       .then((m) => {
         void Linking.getInitialURL().then((u) => m.captureReferralFromUrl(u)).catch((e) => { if (__DEV__) console.warn('[_layout]', e); });
         subRemove = m.subscribeReferralUrl((u) => {
           void m.captureReferralFromUrl(u);
         }).remove;
+        // iOS-фолбэк: App Store не передаёт параметры установки — инвайт-страница
+        // кладёт ссылку в буфер. Задержка даёт initial URL отработать первым,
+        // чтобы не показывать промпт вставки, когда код уже пришёл диплинком.
+        clipboardTimer = setTimeout(() => {
+          void import('./referral_clipboard')
+            .then((c) => c.checkClipboardForReferralOnce())
+            .catch(() => {});
+        }, 1500);
       })
       .catch(() => {});
     return () => {
       subRemove?.();
+      if (clipboardTimer) clearTimeout(clipboardTimer);
     };
   }, []);
 

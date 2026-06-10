@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Head over heels">
+<ellipse cx="100" cy="151" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M84 30c-6 8-2 22 8 28M116 30c6 8 2 22-8 28" stroke="#F6C8A0" stroke-width="11" fill="none" stroke-linecap="round"/>
+<path d="M70 44c-10 2-16 12-14 22M130 44c10 2 16 12 14 22" stroke="#F6C8A0" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M74 60c-2 28 8 50 26 50s28-22 26-50z" fill="#F0A24E"/>
+<ellipse cx="100" cy="118" rx="26" ry="28" fill="#F6C8A0"/>
+<path d="M126 122c0 15-12 24-26 24s-26-9-26-24z" fill="#8A5A3E"/>
+<circle cx="90" cy="120" r="4" fill="#3A2418"/><circle cx="110" cy="120" r="4" fill="#3A2418"/>
+<path d="M86 118c0-3 3-5 6-3M108 115c3-2 6 0 6 3" stroke="#3A2418" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<path d="M91 104c5-4 13-4 18 0" stroke="#7A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="80" cy="106" rx="6" ry="4" fill="#F4A6A4" opacity=".7"/>
+<ellipse cx="120" cy="106" rx="6" ry="4" fill="#F4A6A4" opacity=".7"/>
+<path d="M40 90c0-5 4-8 8-6 2 1 3 3 3 5 0-2 1-4 3-5 4-2 8 1 8 6 0 7-11 15-11 15s-11-8-11-15z" fill="#E8484F"/>
+<path d="M150 40c0-4 3-6 6-4 1 1 2 2 2 4 0-2 1-3 2-4 3-2 6 0 6 4 0 5-8 11-8 11s-8-6-8-11z" fill="#F06A70"/>
+<path d="M158 100c0-3 2-5 4-3 1 0 1 1 1 2 0-1 1-2 2-2 2-1 4 0 4 3 0 4-5 8-5 8s-6-4-6-8z" fill="#E8484F"/>
+</svg>

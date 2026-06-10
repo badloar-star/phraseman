@@ -1,0 +1,22 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A race against time">
+<ellipse cx="58" cy="148" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="142" cy="148" rx="32" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M16 60h16M10 76h18M16 92h16" stroke="#C9D4E6" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="58" cy="86" rx="20" ry="24" fill="#E2A86A"/>
+<path d="M38 82c0-12 9-20 20-20s20 8 20 20z" fill="#7A4A2B"/>
+<circle cx="54" cy="84" r="3.2" fill="#3A2418"/><circle cx="68" cy="84" r="3.2" fill="#3A2418"/>
+<path d="M64 70l8-2" stroke="#3A2418" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M52 94c5 3 11 3 15 0" stroke="#3A2418" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M40 90c-12 0-20-6-22-12M76 90c10 2 16 8 18 14" stroke="#E2A86A" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M50 108l-12 18M70 110l8 16" stroke="#E2A86A" stroke-width="9" stroke-linecap="round"/>
+<circle cx="142" cy="84" r="27" fill="#8E6BB0"/>
+<circle cx="142" cy="84" r="20" fill="#FFF7DD"/>
+<circle cx="142" cy="84" r="20" fill="none" stroke="#5E4F7A" stroke-width="3"/>
+<path d="M142 70v-6M142 98v-6M128 84h-6M156 84h-6" stroke="#3A2A52" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M142 84l-2-12M142 84l9 4" stroke="#2A1E40" stroke-width="2.8" stroke-linecap="round"/>
+<rect x="126" y="52" width="9" height="9" rx="4" fill="#5E4F7A"/>
+<rect x="149" y="52" width="9" height="9" rx="4" fill="#5E4F7A"/>
+<circle cx="134" cy="80" r="2.2" fill="#3A2A52"/><circle cx="150" cy="80" r="2.2" fill="#3A2A52"/>
+<path d="M132 88l6 2" stroke="#3A2A52" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M132 110l-10 18M152 110l10 18" stroke="#8E6BB0" stroke-width="9" stroke-linecap="round"/>
+</svg>

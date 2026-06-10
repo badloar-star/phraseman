@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Get cold feet">
+<ellipse cx="100" cy="151" rx="46" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M52 148l8-22h80l8 22z" fill="#A8D8EA"/>
+<path d="M60 126h80l4 10-44-4-44 4z" fill="#CDEBF6"/>
+<path d="M62 134l16 6M120 132l18 8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+<path d="M74 126c-2-26 8-46 26-46s28 20 26 46z" fill="#E8A77E"/>
+<ellipse cx="100" cy="60" rx="24" ry="26" fill="#F6C8A0"/>
+<path d="M76 56c0-14 11-22 24-22s24 8 24 22z" fill="#8A5A3E"/>
+<circle cx="91" cy="60" r="3.8" fill="#3A2418"/><circle cx="109" cy="60" r="3.8" fill="#3A2418"/>
+<path d="M92 74c5 3 11 3 16 0" stroke="#7A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M84 64l-6-2M122 64l6-2" stroke="#3A2418" stroke-width="2.5" stroke-linecap="round"/>
+<ellipse cx="86" cy="124" rx="12" ry="8" fill="#6FB8E0"/>
+<ellipse cx="114" cy="124" rx="12" ry="8" fill="#6FB8E0"/>
+<path d="M76 122c-2 0-4 1-5 3M124 122c2 0 4 1 5 3" stroke="#4A9AC8" stroke-width="3" stroke-linecap="round" fill="none"/>
+<path d="M48 70c4 4-4 8 0 12M156 66c-4 4 4 8 0 12M44 100c4 4-4 8 0 12" stroke="#6FB8E0" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

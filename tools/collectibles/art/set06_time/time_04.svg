@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Around the clock">
+<ellipse cx="100" cy="146" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="100" cy="82" rx="78" ry="62" fill="none" stroke="#C9D4E6" stroke-width="3" stroke-dasharray="4 7"/>
+<circle cx="100" cy="82" r="44" fill="#E0524E"/>
+<circle cx="100" cy="82" r="35" fill="#FFF7DD"/>
+<circle cx="100" cy="82" r="35" fill="none" stroke="#B8443F" stroke-width="3.5"/>
+<path d="M100 56v-9M100 117v-9M74 82h-9M135 82h-9M100 82l-2-22M100 82l16 9" stroke="#5A2A3A" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M83 60l-4-6M120 110l4 6M119 56l4-6M80 110l-4 6" stroke="#5A2A3A" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M100 82l-2-26M100 82l19 11" stroke="#3A2230" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="100" cy="82" r="3.4" fill="#3A2230"/>
+<circle cx="22" cy="82" r="14" fill="#FFD23F"/>
+<path d="M22 60v-7M5 82h-7M9 64l-5-5M9 100l-5 5M35 64l5-5M35 100l5 5" stroke="#FFB800" stroke-width="3" stroke-linecap="round"/>
+<circle cx="22" cy="82" r="9" fill="#FFC93C"/>
+<path d="M178 70a14 14 0 1 0 8 22 11 11 0 0 1-8-22z" fill="#F2E27A"/>
+<circle cx="172" cy="64" r="2" fill="#fff"/><circle cx="166" cy="74" r="1.6" fill="#fff"/><circle cx="178" cy="98" r="1.8" fill="#fff"/>
+</svg>

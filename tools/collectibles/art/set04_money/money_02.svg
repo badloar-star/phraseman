@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="From rags to riches">
+<ellipse cx="44" cy="150" rx="26" ry="7" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="150" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M44 96c-12 0-20 8-22 16-1 6 2 10 4 14l-6 6 12 2 4-10c4 6 12 6 16 0l4 10 12-2-6-6c2-4 5-8 4-14-2-8-10-16-22-16z" fill="#9A8C7A"/>
+<rect x="36" y="74" width="16" height="26" rx="8" fill="#C2B4A0"/>
+<circle cx="44" cy="64" r="14" fill="#E8B07E"/>
+<circle cx="40" cy="64" r="2.4" fill="#5A3A28"/><circle cx="48" cy="64" r="2.4" fill="#5A3A28"/>
+<path d="M40 70c2 2 6 2 8 0" stroke="#5A3A28" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<rect x="30" y="86" width="10" height="9" rx="2" fill="#7E8AA6" transform="rotate(12 35 90)"/>
+<rect x="50" y="100" width="9" height="8" rx="2" fill="#B07A4A" transform="rotate(-14 54 104)"/>
+<path d="M80 92l28-30m0 0l-12 2m12-2l-2 12" stroke="#4FA84F" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M118 138c4-14 60-14 64 0z" fill="#E8C56A"/>
+<path d="M114 146c6-10 68-10 72 0z" fill="#FFD23F"/>
+<circle cx="138" cy="138" r="9" fill="#E8C56A"/><circle cx="162" cy="139" r="9" fill="#E8C56A"/><circle cx="150" cy="132" r="9" fill="#FFD23F"/>
+<rect x="142" y="80" width="16" height="26" rx="8" fill="#E0AABE"/>
+<circle cx="150" cy="70" r="14" fill="#E8B07E"/>
+<circle cx="146" cy="70" r="2.4" fill="#5A3A28"/><circle cx="154" cy="70" r="2.4" fill="#5A3A28"/>
+<path d="M145 76c3 3 7 3 10 0" stroke="#5A3A28" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M136 56l4-12 5 8 5-10 5 10 5-8 4 12z" fill="#FFD23F" stroke="#E8B800" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="140" cy="50" r="2" fill="#E0524E"/><circle cx="160" cy="50" r="2" fill="#6FA8DC"/>
+</svg>

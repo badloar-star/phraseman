@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Green with envy">
+<ellipse cx="58" cy="151" rx="34" ry="7" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="148" cy="151" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M28 148c-4-26 6-46 30-46s34 20 30 46z" fill="#6FB85A"/>
+<ellipse cx="58" cy="74" rx="26" ry="28" fill="#8FCF78"/>
+<path d="M34 70c0-15 11-24 24-24s24 9 24 24z" fill="#4E9A3E"/>
+<circle cx="48" cy="74" r="4" fill="#234A18"/><circle cx="68" cy="74" r="4" fill="#234A18"/>
+<path d="M40 68l10 4M66 72l8-3" stroke="#234A18" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<ellipse cx="58" cy="90" rx="6" ry="4" fill="#3A6A2A"/>
+<path d="M118 148c-2-22 6-40 26-40s28 18 26 40z" fill="#E8A77E"/>
+<ellipse cx="144" cy="78" rx="22" ry="24" fill="#F6C8A0"/>
+<path d="M122 74c0-13 10-21 22-21s22 8 22 21z" fill="#8A5A3E"/>
+<circle cx="136" cy="80" r="3.6" fill="#3A2418"/><circle cx="152" cy="80" r="3.6" fill="#3A2418"/>
+<path d="M137 92c4 4 11 4 15 0" stroke="#7A3A2A" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<path d="M104 70l24-18 6 10-22 16z" fill="#E8A77E"/>
+<path d="M92 24l16 38-30-6z" fill="#F4C28A"/>
+<circle cx="98" cy="22" r="14" fill="#F6A8C0"/><circle cx="84" cy="30" r="12" fill="#FFE08A"/><circle cx="106" cy="34" r="11" fill="#A8D8C0"/>
+</svg>

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Beat the clock">
+<ellipse cx="74" cy="146" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="150" cy="146" rx="30" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="20" y="22" width="6" height="110" rx="3" fill="#9AA6C0"/>
+<path d="M26 52c14 0 14 8 28 8" stroke="#E0524E" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M62 60c-10-2-18 2-22 8" stroke="#E0524E" stroke-width="6" fill="none" stroke-linecap="round"/>
+<ellipse cx="74" cy="86" rx="20" ry="24" fill="#6FB3D2"/>
+<path d="M54 82c0-12 9-20 20-20s20 8 20 20z" fill="#4A8FB0"/>
+<circle cx="70" cy="84" r="3.2" fill="#16243A"/><circle cx="84" cy="84" r="3.2" fill="#16243A"/>
+<path d="M80 70l8-2" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M68 94c5 3 11 3 15 0" stroke="#16243A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M56 90c-12 2-22-4-26-12M92 88c12-2 20 4 24 12" stroke="#6FB3D2" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M66 108l-12 18M86 110l10 16" stroke="#6FB3D2" stroke-width="9" stroke-linecap="round"/>
+<circle cx="152" cy="98" r="26" fill="#E0524E"/>
+<circle cx="152" cy="98" r="19" fill="#FFF7DD"/>
+<circle cx="152" cy="98" r="19" fill="none" stroke="#B8443F" stroke-width="3"/>
+<path d="M152 84v-6M152 112v-6M138 98h-6M166 98h-6" stroke="#5A2A3A" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M152 98l-2-12M152 98l8 4" stroke="#3A2230" stroke-width="2.8" stroke-linecap="round"/>
+<rect x="136" y="66" width="9" height="9" rx="4" fill="#B8443F"/>
+<rect x="159" y="66" width="9" height="9" rx="4" fill="#B8443F"/>
+<circle cx="144" cy="94" r="2.2" fill="#5A2A3A"/><circle cx="160" cy="94" r="2.2" fill="#5A2A3A"/>
+<path d="M120 90h12M124 102h12" stroke="#C9D4E6" stroke-width="4" stroke-linecap="round"/>
+</svg>

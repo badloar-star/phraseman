@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="In the nick of time">
+<ellipse cx="92" cy="146" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="20" y="20" width="86" height="124" rx="6" fill="#7A4A2B"/>
+<rect x="28" y="28" width="62" height="108" rx="4" fill="#A9744F"/>
+<rect x="28" y="28" width="22" height="108" fill="#946239" opacity=".5"/>
+<circle cx="80" cy="84" r="4" fill="#FFD23F"/>
+<ellipse cx="112" cy="92" rx="22" ry="28" fill="#6FB3D2"/>
+<path d="M90 88c0-13 10-22 22-22s22 9 22 22z" fill="#4A8FB0"/>
+<circle cx="106" cy="90" r="3.4" fill="#16243A"/><circle cx="120" cy="90" r="3.4" fill="#16243A"/>
+<path d="M104 102c5 4 13 4 18 0" stroke="#16243A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M132 92c10 2 16 8 18 16" stroke="#6FB3D2" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M104 118l-4 18M122 118l4 18" stroke="#6FB3D2" stroke-width="9" stroke-linecap="round"/>
+<circle cx="166" cy="60" r="28" fill="#E0524E"/>
+<circle cx="166" cy="60" r="21" fill="#FFF7DD"/>
+<circle cx="166" cy="60" r="21" fill="none" stroke="#B8443F" stroke-width="3"/>
+<path d="M166 44v-6M166 80v-6M150 60h-6M188 60h-6" stroke="#5A2A3A" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M166 60l-2-14M166 60l9 3" stroke="#3A2230" stroke-width="3" stroke-linecap="round"/>
+<circle cx="166" cy="60" r="2.8" fill="#3A2230"/>
+</svg>

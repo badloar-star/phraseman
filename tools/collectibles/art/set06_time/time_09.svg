@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The eleventh hour">
+<ellipse cx="120" cy="148" rx="60" ry="9" fill="rgba(0,0,0,.25)"/>
+<circle cx="120" cy="74" r="64" fill="#E0524E"/>
+<circle cx="120" cy="74" r="52" fill="#FFF7DD"/>
+<circle cx="120" cy="74" r="52" fill="none" stroke="#B8443F" stroke-width="4"/>
+<path d="M120 32v-11M120 127v-11M78 74h-11M173 74h-11" stroke="#5A2A3A" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M99 38l-5-9M141 110l5 9M146 38l5-9M94 110l-5 9M76 53l-9-5M164 95l9 5M164 53l9-5M76 95l-9 5" stroke="#5A2A3A" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M120 74l-5-30M120 74l13 8" stroke="#3A2230" stroke-width="4" stroke-linecap="round"/>
+<circle cx="120" cy="74" r="4" fill="#3A2230"/>
+<path d="M44 60l4-8M40 78l-9 1M52 92l-6 7" stroke="#FFD23F" stroke-width="3.4" stroke-linecap="round"/>
+<ellipse cx="42" cy="116" rx="18" ry="22" fill="#6FB3D2"/>
+<path d="M24 112c0-11 8-19 18-19s18 8 18 19z" fill="#4A8FB0"/>
+<circle cx="36" cy="116" r="3" fill="#16243A"/><circle cx="49" cy="116" r="3" fill="#16243A"/>
+<ellipse cx="42" cy="126" rx="4" ry="5.5" fill="#16243A"/>
+<path d="M60 116c10 4 14 12 14 20" stroke="#6FB3D2" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M70 134l14 6" stroke="#7A4A2B" stroke-width="4" stroke-linecap="round"/>
+<path d="M26 116c-8 2-14 8-14 16" stroke="#6FB3D2" stroke-width="7" fill="none" stroke-linecap="round"/>
+</svg>

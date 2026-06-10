@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Better late than never">
+<ellipse cx="104" cy="138" rx="50" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="36" y="30" width="6" height="100" rx="3" fill="#9AA6C0"/>
+<rect x="158" y="30" width="6" height="100" rx="3" fill="#9AA6C0"/>
+<path d="M42 44c20 8 40 8 60 0s40-8 56 0c-16 8-40 8-56 0s-40 8-60 0z" fill="#E0524E"/>
+<path d="M164 36l30-12-30-12z" fill="#FFD23F"/>
+<path d="M164 24v30" stroke="#7A4A2B" stroke-width="3"/>
+<path d="M58 118c-2-22 16-40 44-40s46 18 44 40z" fill="#7FB069"/>
+<path d="M70 116c-1-15 12-26 32-26s33 11 32 26z" fill="#5E8A4A"/>
+<path d="M78 100l10-2 8 6M104 96l12 0 8 6M68 108l8 4" stroke="#4A7038" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="142" cy="112" rx="20" ry="15" fill="#9BCB7E"/>
+<circle cx="150" cy="106" r="3.6" fill="#2A3A1E"/><circle cx="160" cy="108" r="3.6" fill="#2A3A1E"/>
+<path d="M148 118c5 4 13 3 16-1" stroke="#2A3A1E" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M152 100l-2-8 7 4z" fill="#9BCB7E"/>
+<path d="M70 124l-4 10M96 126l-2 10M118 124l2 10M140 126l4 10" stroke="#7FB069" stroke-width="7" stroke-linecap="round"/>
+<path d="M22 92h18M18 104h22" stroke="#C9D4E6" stroke-width="4" stroke-linecap="round"/>
+</svg>

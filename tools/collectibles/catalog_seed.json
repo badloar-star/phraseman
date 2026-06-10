@@ -524,7 +524,14 @@
         "id": "money_secret",
         "en": "Cha-ching!",
         "ru": "Деньги! (звук кассы)",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "tʃɑː ˈtʃɪŋ",
+        "literalRu": "ча-чин! (звяканье кассы)",
+        "meaningRu": "Радостный возглас, когда привалили деньги или светит выгода.",
+        "exampleEn": "I just got a bonus — cha-ching!",
+        "exampleRu": "Мне выписали премию — деньги потекли!",
+        "originRu": "Это звукоподражание старому кассовому аппарату: при выбивании чека он звякал колокольчиком и выдвигал ящик с деньгами — «ка-чинь». Возглас стал популярен в 1990-х.",
+        "art": "set04_money/money_secret"
       },
       "cards": [
         {
@@ -532,70 +539,140 @@
           "en": "Cost an arm and a leg",
           "ru": "Стоить бешеных денег",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kɒst ən ɑːm ənd ə leɡ",
+          "literalRu": "стоить руки и ноги",
+          "meaningRu": "Очень дорого, почти неподъёмно по цене.",
+          "exampleEn": "These concert tickets cost an arm and a leg!",
+          "exampleRu": "Эти билеты на концерт стоили бешеных денег!",
+          "originRu": "По одной из версий — слияние старых оборотов «отдать правую руку» и «даже если это будет стоить ноги»: рука и нога звучат как самая высокая мыслимая цена. Закрепилось в Америке в 1940-х.",
+          "art": "set04_money/money_01"
         },
         {
           "id": "money_02",
           "en": "From rags to riches",
           "ru": "Из грязи в князи",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "frəm ræɡz tə ˈrɪtʃɪz",
+          "literalRu": "из лохмотьев в богатство",
+          "meaningRu": "Был бедняком, а стал богачом.",
+          "exampleEn": "His story is a classic from rags to riches.",
+          "exampleRu": "Его история — это классика, из грязи в князи.",
+          "originRu": "Образ прославил американский писатель Хорейс Элджер: в XIX веке он написал десятки повестей о нищих мальчишках, честным трудом выбившихся в люди.",
+          "art": "set04_money/money_02"
         },
         {
           "id": "money_03",
           "en": "Money talks",
           "ru": "Деньги решают всё",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈmʌni tɔːks",
+          "literalRu": "деньги говорят",
+          "meaningRu": "С деньгами можно добиться чего угодно.",
+          "exampleEn": "They got the best table — money talks.",
+          "exampleRu": "Им дали лучший столик — деньги решают всё.",
+          "originRu": "Мысль древняя: ещё греческий комедиограф Аристофан писал, что «деньги говорят», а в нынешнем виде фраза закрепилась в Англии к XVII веку.",
+          "art": "set04_money/money_03"
         },
         {
           "id": "money_04",
           "en": "Tighten your belt",
           "ru": "Затянуть пояс",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈtaɪtn jɔː belt",
+          "literalRu": "затянуть свой ремень",
+          "meaningRu": "Начать жить экономнее, урезать траты.",
+          "exampleEn": "Money's tight this month, so we'll tighten our belts.",
+          "exampleRu": "В этом месяце туго с деньгами, так что затянем пояса.",
+          "originRu": "Образ прямой: у голодного человека худеет живот, и ремень приходится затягивать на дырку туже. В смысле экономии оборот гремел в годы Великой депрессии.",
+          "art": "set04_money/money_04"
         },
         {
           "id": "money_05",
           "en": "Worth every penny",
           "ru": "Стоит каждой копейки",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "wɜːθ ˈevri ˈpeni",
+          "literalRu": "стоит каждого пенни",
+          "meaningRu": "Покупка целиком оправдала свою цену.",
+          "exampleEn": "This comfy mattress was worth every penny.",
+          "exampleRu": "Этот удобный матрас стоил каждой копейки.",
+          "originRu": "Пенни — самая мелкая британская монета, она в ходу с англосаксонских времён. «Отработать» даже её — значит оправдать цену до последней мелочи.",
+          "art": "set04_money/money_05"
         },
         {
           "id": "money_06",
           "en": "Break the bank",
           "ru": "Разориться, слишком дорого",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "breɪk ðə bæŋk",
+          "literalRu": "сорвать банк",
+          "meaningRu": "Потратить столько, что не остаётся денег.",
+          "exampleEn": "A nice dinner out won't break the bank.",
+          "exampleRu": "Хороший ужин в кафе нас не разорит.",
+          "originRu": "Из азартных игр: «банк» — это касса заведения. Если игрок выигрывал больше, чем в ней лежало, говорили, что он «сорвал банк» — и стол закрывали.",
+          "art": "set04_money/money_06"
         },
         {
           "id": "money_07",
           "en": "A nest egg",
           "ru": "Заначка, накопления",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈnest eɡ",
+          "literalRu": "яйцо в гнезде",
+          "meaningRu": "Деньги, отложенные про запас на будущее.",
+          "exampleEn": "We've saved a little nest egg for retirement.",
+          "exampleRu": "Мы скопили небольшую заначку на старость.",
+          "originRu": "От старой хитрости птицеводов: в гнездо клали фарфоровое яйцо, чтобы курица охотнее неслась туда же. Один «вложенный» предмет растил новые — как сбережения.",
+          "art": "set04_money/money_07"
         },
         {
           "id": "money_08",
           "en": "Born with a silver spoon",
           "ru": "Родился в богатой семье",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɔːn wɪð ə ˈsɪlvə spuːn",
+          "literalRu": "рождённый с серебряной ложкой",
+          "meaningRu": "С рождения окружён деньгами и достатком.",
+          "exampleEn": "He never worked a day — born with a silver spoon.",
+          "exampleRu": "Он ни дня не работал — родился в богатой семье.",
+          "originRu": "Раньше у крёстных был обычай дарить младенцу серебряную ложку. У богатых она была своя сразу, у бедных — нет, отсюда и «родиться с серебряной ложкой во рту».",
+          "art": "set04_money/money_08"
         },
         {
           "id": "money_09",
           "en": "Money doesn't grow on trees",
           "ru": "Деньги не растут на деревьях",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈmʌni ˈdʌznt ɡrəʊ ɒn triːz",
+          "literalRu": "деньги не растут на деревьях",
+          "meaningRu": "Деньги достаются трудом, тратить их зря нельзя.",
+          "exampleEn": "Turn off the lights — money doesn't grow on trees!",
+          "exampleRu": "Выключи свет — деньги не растут на деревьях!",
+          "originRu": "Любимая присказка родителей с XVIII века: раз деньги не сорвёшь с ветки, как яблоко, значит, они конечны и достаются только трудом.",
+          "art": "set04_money/money_09"
         },
         {
           "id": "money_10",
           "en": "Bring home the bacon",
           "ru": "Зарабатывать на жизнь",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "brɪŋ həʊm ðə ˈbeɪkən",
+          "literalRu": "приносить домой бекон",
+          "meaningRu": "Зарабатывать деньги, кормить семью.",
+          "exampleEn": "She brings home the bacon while he raises the kids.",
+          "exampleRu": "Она зарабатывает на жизнь, а он растит детей.",
+          "originRu": "По одной из версий — от ярмарочной забавы: кто поймает намазанного жиром скользкого поросёнка, тот и забирал его домой. Прижилась фраза в Америке начала XX века.",
+          "art": "set04_money/money_10"
         }
       ]
     },
@@ -611,7 +688,14 @@
         "id": "emotions_secret",
         "en": "Hangry",
         "ru": "Голодный и злой одновременно",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˈhæŋɡri",
+        "literalRu": "голозлый",
+        "meaningRu": "Раздражённый и вспыльчивый просто оттого, что сильно проголодался.",
+        "exampleEn": "Feed me before I get hangry, please!",
+        "exampleRu": "Покорми меня, пока я не стал голодным и злым!",
+        "originRu": "Шутливое склеивание слов hungry (голодный) и angry (злой). Слово замечали уже в 1918 году, а в словарь Oxford его официально внесли в 2018-м.",
+        "art": "set05_emotions/emotions_secret"
       },
       "cards": [
         {
@@ -619,70 +703,140 @@
           "en": "Over the moon",
           "ru": "Вне себя от счастья",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈəʊvə ðə muːn",
+          "literalRu": "над луной",
+          "meaningRu": "Безумно рад, на седьмом небе от радости.",
+          "exampleEn": "She was over the moon when she got the call.",
+          "exampleRu": "Она была вне себя от счастья, когда ей позвонили.",
+          "originRu": "Из старого детского стишка «Hey Diddle Diddle», где корова прыгает через луну от восторга. Коротко прыгнуть «над луной» стали говорить о самой большой радости.",
+          "art": "set05_emotions/emotions_01"
         },
         {
           "id": "emotions_02",
           "en": "Down in the dumps",
           "ru": "Как в воду опущенный",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "daʊn ɪn ðə dʌmps",
+          "literalRu": "внизу, в унынии",
+          "meaningRu": "Грустный, подавленный, без настроения.",
+          "exampleEn": "He's been down in the dumps since the team lost.",
+          "exampleRu": "Он как в воду опущенный с тех пор, как команда проиграла.",
+          "originRu": "Слово «dumps» в значении уныния и хандры известно с XVI века — его использовал ещё Шекспир в «Укрощении строптивой».",
+          "art": "set05_emotions/emotions_02"
         },
         {
           "id": "emotions_03",
           "en": "Butterflies in my stomach",
           "ru": "Бабочки в животе",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈbʌtəflaɪz ɪn maɪ ˈstʌmək",
+          "literalRu": "бабочки в животе",
+          "meaningRu": "Лёгкое волнение и трепет перед чем-то важным.",
+          "exampleEn": "I get butterflies in my stomach before every exam.",
+          "exampleRu": "У меня бабочки в животе перед каждым экзаменом.",
+          "originRu": "За образом стоит реальная физиология: при волнении кровь отливает от живота, и в нём правда появляется щекочущее, порхающее чувство.",
+          "art": "set05_emotions/emotions_03"
         },
         {
           "id": "emotions_04",
           "en": "Lose your temper",
           "ru": "Выйти из себя",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "luːz jɔː ˈtempə",
+          "literalRu": "потерять свой нрав",
+          "meaningRu": "Внезапно вспылить, не сдержать злость.",
+          "exampleEn": "Dad lost his temper when he saw the broken window.",
+          "exampleRu": "Папа вышел из себя, когда увидел разбитое окно.",
+          "originRu": "Слово «temper» раньше означало спокойную уравновешенность ума — отсюда и «потерять её» значит сорваться. Корень тот же, что и у «закалки» металла.",
+          "art": "set05_emotions/emotions_04"
         },
         {
           "id": "emotions_05",
           "en": "Get cold feet",
           "ru": "Струсить в последний момент",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡet kəʊld fiːt",
+          "literalRu": "получить холодные ноги",
+          "meaningRu": "В последнюю минуту испугаться и передумать.",
+          "exampleEn": "He got cold feet right before the wedding.",
+          "exampleRu": "Он струсил прямо перед свадьбой.",
+          "originRu": "По одной из версий — солдатское: у того, кто боялся идти в бой, «мёрзли ноги», и он отступал. Выражение разошлось после романа Фонтане конца XIX века.",
+          "art": "set05_emotions/emotions_05"
         },
         {
           "id": "emotions_06",
           "en": "Blow off steam",
           "ru": "Выпустить пар",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bləʊ ɒf stiːm",
+          "literalRu": "стравить пар",
+          "meaningRu": "Сбросить напряжение и злость, чтобы стало легче.",
+          "exampleEn": "After a hard week I go running to blow off steam.",
+          "exampleRu": "После тяжёлой недели я бегаю, чтобы выпустить пар.",
+          "originRu": "От паровозов и паровых машин: чтобы котёл не взорвался от давления, лишний пар стравливали через клапан со свистом.",
+          "art": "set05_emotions/emotions_06"
         },
         {
           "id": "emotions_07",
           "en": "A lump in my throat",
           "ru": "Ком в горле",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə lʌmp ɪn maɪ θrəʊt",
+          "literalRu": "комок в горле",
+          "meaningRu": "Сжимающее чувство в горле, когда вот-вот заплачешь от волнения.",
+          "exampleEn": "I had a lump in my throat during the goodbye speech.",
+          "exampleRu": "У меня был ком в горле во время прощальной речи.",
+          "originRu": "И это не выдумка: от сильных эмоций мышцы горла напрягаются, чтобы сдержать слёзы, и возникает ощущение настоящего комка.",
+          "art": "set05_emotions/emotions_07"
         },
         {
           "id": "emotions_08",
           "en": "Wear your heart on your sleeve",
           "ru": "Душа нараспашку",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "weə jɔː hɑːt ɒn jɔː sliːv",
+          "literalRu": "носить сердце на рукаве",
+          "meaningRu": "Открыто показывать свои чувства, ничего не пряча.",
+          "exampleEn": "She wears her heart on her sleeve, so you always know how she feels.",
+          "exampleRu": "У неё душа нараспашку, поэтому всегда понятно, что она чувствует.",
+          "originRu": "Образ прославил Шекспир: в «Отелло» злодей Яго говорит, что носить сердце на рукаве — значит стать беззащитным. А идёт он, по одной из версий, от рыцарей, повязывавших на рукав ленту дамы сердца.",
+          "art": "set05_emotions/emotions_08"
         },
         {
           "id": "emotions_09",
           "en": "Head over heels",
           "ru": "По уши влюблён",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hed ˈəʊvə hiːlz",
+          "literalRu": "голова через пятки",
+          "meaningRu": "Влюбиться без памяти, целиком и сразу.",
+          "exampleEn": "They met in spring and fell head over heels.",
+          "exampleRu": "Они встретились весной и влюбились по уши.",
+          "originRu": "Сначала говорили «heels over head» — кувырком, вверх тормашками. Со временем слова поменяли местами, и оборот прилип к тому, кто теряет голову от любви.",
+          "art": "set05_emotions/emotions_09"
         },
         {
           "id": "emotions_10",
           "en": "Green with envy",
           "ru": "Позеленел от зависти",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡriːn wɪð ˈenvi",
+          "literalRu": "зелёный от зависти",
+          "meaningRu": "Сильно завидует чужому успеху или вещи.",
+          "exampleEn": "All my friends were green with envy over my new bike.",
+          "exampleRu": "Все друзья позеленели от зависти из-за моего нового велика.",
+          "originRu": "Греки верили, что от сильных чувств в теле разливается жёлчь и кожа зеленеет. А связал зелёный цвет с ревностью и завистью Шекспир — это его «зеленоглазое чудовище» из «Отелло».",
+          "art": "set05_emotions/emotions_10"
         }
       ]
     },
@@ -698,7 +852,14 @@
         "id": "time_secret",
         "en": "In a jiffy",
         "ru": "Мигом, в два счёта",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ɪn ə ˈdʒɪfi",
+        "literalRu": "в один джиффи",
+        "meaningRu": "Очень-очень быстро, буквально за секунду.",
+        "exampleEn": "Hang on, I'll be back in a jiffy with the snacks.",
+        "exampleRu": "Подожди, я мигом вернусь с закусками.",
+        "originRu": "«Jiffy» — словечко XVIII века; забавно, что позже учёные сделали его настоящей единицей: в физике джиффи — время, за которое свет пробегает один сантиметр.",
+        "art": "set06_time/time_secret"
       },
       "cards": [
         {
@@ -706,70 +867,140 @@
           "en": "Better late than never",
           "ru": "Лучше поздно, чем никогда",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈbetə leɪt ðən ˈnevə",
+          "literalRu": "лучше поздно, чем никогда",
+          "meaningRu": "Сделать с опозданием всё равно лучше, чем не сделать вовсе.",
+          "exampleEn": "You finished the book a year later? Well, better late than never!",
+          "exampleRu": "Дочитал книгу через год? Что ж, лучше поздно, чем никогда!",
+          "originRu": "Мысль древняя: её приводит ещё римский историк Тит Ливий, а до него — греки. В английский пришла через Чосера в XIV веке.",
+          "art": "set06_time/time_01"
         },
         {
           "id": "time_02",
           "en": "Time flies",
           "ru": "Время летит",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "taɪm flaɪz",
+          "literalRu": "время летит",
+          "meaningRu": "Время проходит очень быстро, особенно когда тебе хорошо.",
+          "exampleEn": "Is it midnight already? Wow, time flies when we chat!",
+          "exampleRu": "Уже полночь? Ого, время летит, когда мы болтаем!",
+          "originRu": "Сокращение латинского «tempus fugit» Вергилия — полностью это звучало «время бежит безвозвратно».",
+          "art": "set06_time/time_02"
         },
         {
           "id": "time_03",
           "en": "In the nick of time",
           "ru": "В самый последний момент",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪn ðə nɪk əv taɪm",
+          "literalRu": "в зарубку времени",
+          "meaningRu": "Точно вовремя, за секунду до того, как стало бы поздно.",
+          "exampleEn": "The taxi arrived in the nick of time — we caught our flight!",
+          "exampleRu": "Такси приехало в самый последний момент — мы успели на рейс!",
+          "originRu": "«Nick» — это зарубка на палочке: так в старину вели счёт. Попасть «в зарубку» значило успеть тютелька в тютельку.",
+          "art": "set06_time/time_03"
         },
         {
           "id": "time_04",
           "en": "Around the clock",
           "ru": "Круглосуточно",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "əˈraʊnd ðə klɒk",
+          "literalRu": "вокруг часов",
+          "meaningRu": "Без остановки, все 24 часа в сутки.",
+          "exampleEn": "The bakery works around the clock, so we can grab bread at 3 a.m.",
+          "exampleRu": "Пекарня работает круглосуточно, так что хлеб можно взять и в три ночи.",
+          "originRu": "Образ от часовой стрелки, которая обходит весь циферблат по кругу — от двенадцати до двенадцати, не пропуская ни часа.",
+          "art": "set06_time/time_04"
         },
         {
           "id": "time_05",
           "en": "Call it a day",
           "ru": "Закончить на сегодня",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kɔːl ɪt ə deɪ",
+          "literalRu": "назвать это днём",
+          "meaningRu": "Решить, что на сегодня работы хватит, и остановиться.",
+          "exampleEn": "We've been at this for hours — let's call it a day.",
+          "exampleRu": "Мы возимся уже несколько часов — давай закончим на сегодня.",
+          "originRu": "Сначала рабочие говорили «call it half a day», уходя пораньше; со временем «половину» отбросили и стали заканчивать целый день.",
+          "art": "set06_time/time_05"
         },
         {
           "id": "time_06",
           "en": "Long time no see",
           "ru": "Сто лет не виделись",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌlɒŋ taɪm nəʊ ˈsiː",
+          "literalRu": "долгое время не видеть",
+          "meaningRu": "Дружеское приветствие тому, кого давно не встречал.",
+          "exampleEn": "Mike! Long time no see — how have you been?",
+          "exampleRu": "Майк! Сто лет не виделись — как ты?",
+          "originRu": "Фраза с «ломаной» грамматикой родилась как калька-подражание речи: по одной из версий — пиджин-английского китайских и индейских торговцев XIX века.",
+          "art": "set06_time/time_06"
         },
         {
           "id": "time_07",
           "en": "Beat the clock",
           "ru": "Успеть до дедлайна",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "biːt ðə klɒk",
+          "literalRu": "побить часы",
+          "meaningRu": "Закончить дело раньше, чем кончится отведённое время.",
+          "exampleEn": "We packed all the boxes in an hour and beat the clock.",
+          "exampleRu": "Мы собрали все коробки за час и успели в срок.",
+          "originRu": "Так назвали популярную американскую телеигру 1950-х, где участники выполняли трюки, пока тикал большой таймер; название ушло в речь.",
+          "art": "set06_time/time_07"
         },
         {
           "id": "time_08",
           "en": "A race against time",
           "ru": "Гонка со временем",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə reɪs əˈɡenst taɪm",
+          "literalRu": "гонка против времени",
+          "meaningRu": "Отчаянная спешка успеть что-то сделать до крайнего срока.",
+          "exampleEn": "Finishing the project before the deadline was a real race against time.",
+          "exampleRu": "Закончить проект к сроку было настоящей гонкой со временем.",
+          "originRu": "Образ из спорта, где соперник — не другой бегун, а секундомер; в переносном смысле так стали говорить о любой отчаянной спешке.",
+          "art": "set06_time/time_08"
         },
         {
           "id": "time_09",
           "en": "The eleventh hour",
           "ru": "Самый последний момент",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ði ɪˈlevnθ ˈaʊə",
+          "literalRu": "одиннадцатый час",
+          "meaningRu": "Последний момент, когда ещё можно успеть.",
+          "exampleEn": "They signed the deal at the eleventh hour, just before the office closed.",
+          "exampleRu": "Они подписали сделку в самый последний момент, перед самым закрытием офиса.",
+          "originRu": "Из притчи Иисуса о работниках в винограднике: нанятые в одиннадцатом часу (под конец дня) получили ту же плату, что и пришедшие с утра.",
+          "art": "set06_time/time_09"
         },
         {
           "id": "time_10",
           "en": "Fashionably late",
           "ru": "Модное опоздание",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈfæʃnəbli leɪt",
+          "literalRu": "модно опоздавший",
+          "meaningRu": "Прийти чуть позже нарочно — так считается стильно.",
+          "exampleEn": "She always shows up fashionably late, never first at the party.",
+          "exampleRu": "Она всегда приходит с модным опозданием, никогда не первой на вечеринке.",
+          "originRu": "Привычка тянется от европейской знати, которой являться вовремя считалось не по статусу: пусть гости подождут и оценят появление.",
+          "art": "set06_time/time_10"
         }
       ]
     },

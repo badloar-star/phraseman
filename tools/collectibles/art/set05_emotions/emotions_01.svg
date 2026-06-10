@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Over the moon">
+<ellipse cx="100" cy="150" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M58 134c-18-6-30-24-30-46 0-26 18-46 42-46-14 8-22 24-22 42 0 22 14 40 32 46-8 4-16 6-22 4z" fill="#F4C430"/>
+<path d="M40 60l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z" fill="#FFE08A"/>
+<path d="M168 40l2 6 6 1-5 4 2 6-5-3-5 3 1-6-4-4 6-1z" fill="#FFE08A"/>
+<path d="M150 96l2 5 5 1-4 4 1 5-4-3-4 3 1-5-4-4 5-1z" fill="#FFE08A"/>
+<ellipse cx="116" cy="64" rx="26" ry="30" fill="#F6C8A0"/>
+<path d="M90 58c0-16 12-26 26-26s26 10 26 26z" fill="#9A6B4F"/>
+<circle cx="106" cy="62" r="4" fill="#3A2418"/><circle cx="126" cy="62" r="4" fill="#3A2418"/>
+<path d="M100 56l10 3M122 59l10-3" stroke="#3A2418" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<path d="M102 76c6 8 22 8 28 0" stroke="#7A3A2A" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M92 96c-6 10-2 24 8 30M140 96c6 10 2 24-8 30" stroke="#F6C8A0" stroke-width="11" fill="none" stroke-linecap="round"/>
+<path d="M84 86c-10-4-20 0-24 10M148 86c10-4 20 0 24 10" stroke="#F6C8A0" stroke-width="10" fill="none" stroke-linecap="round"/>
+</svg>

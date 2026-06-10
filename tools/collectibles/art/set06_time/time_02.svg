@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Time flies">
+<ellipse cx="118" cy="142" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="44" cy="44" rx="22" ry="11" fill="#fff" opacity=".9"/>
+<ellipse cx="30" cy="48" rx="12" ry="8" fill="#fff" opacity=".85"/>
+<ellipse cx="160" cy="116" rx="26" ry="12" fill="#fff" opacity=".9"/>
+<ellipse cx="176" cy="110" rx="13" ry="8" fill="#fff" opacity=".8"/>
+<path d="M40 78h26M34 92h34M44 106h24" stroke="#C9D4E6" stroke-width="5" stroke-linecap="round"/>
+<path d="M70 82c-22-10-44 2-46 4 18 4 30 4 44 10z" fill="#BFD0E8" opacity=".7"/>
+<path d="M78 56c-16-6-30 2-30 16 0 8 6 14 14 16-6-12 2-26 16-32z" fill="#E8C56A"/>
+<path d="M156 56c16-6 30 2 30 16 0 8-6 14-14 16 6-12-2-26-16-32z" fill="#E8C56A"/>
+<circle cx="116" cy="84" r="34" fill="#E0524E"/>
+<circle cx="116" cy="84" r="26" fill="#FFF7DD"/>
+<circle cx="116" cy="84" r="26" fill="none" stroke="#B8443F" stroke-width="3"/>
+<path d="M116 70v-8M116 106v-8M102 84h-8M138 84h-8" stroke="#5A2A3A" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M116 84l0-14M116 84l11 6" stroke="#3A2230" stroke-width="3" stroke-linecap="round"/>
+<circle cx="116" cy="84" r="3" fill="#3A2230"/>
+<rect x="98" y="50" width="10" height="9" rx="4" fill="#B8443F"/>
+<rect x="124" y="50" width="10" height="9" rx="4" fill="#B8443F"/>
+<rect x="112" y="44" width="8" height="8" rx="4" fill="#B8443F"/>
+<circle cx="108" cy="80" r="2.4" fill="#5A2A3A"/><circle cx="124" cy="80" r="2.4" fill="#5A2A3A"/>
+</svg>

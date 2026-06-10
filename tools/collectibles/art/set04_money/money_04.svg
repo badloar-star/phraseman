@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tighten your belt">
+<ellipse cx="100" cy="150" rx="50" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M52 56c0-12 14-20 48-20s48 8 48 20v54c0 14-18 22-48 22s-48-8-48-22z" fill="#7FB069"/>
+<path d="M52 56c0-12 14-20 48-20s48 8 48 20c-4 8-22 12-48 12s-44-4-48-12z" fill="#9CC47E"/>
+<rect x="86" y="30" width="28" height="14" rx="6" fill="#5E8A4A"/>
+<circle cx="78" cy="58" r="7" fill="#fff"/><circle cx="122" cy="58" r="7" fill="#fff"/>
+<circle cx="79" cy="59" r="3.4" fill="#2A3A1E"/><circle cx="123" cy="59" r="3.4" fill="#2A3A1E"/>
+<path d="M88 72c4 5 20 5 24 0" stroke="#2A3A1E" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M48 92c0-4 4-8 8-8h88c4 0 8 4 8 8v12c0 4-4 8-8 8H56c-4 0-8-4-8-8z" fill="#6B4A2E"/>
+<path d="M52 84c8 14 88 14 96 0v6c-12 12-84 12-96 0z" fill="#7A5638"/>
+<rect x="88" y="84" width="24" height="28" rx="5" fill="#C4A24E"/>
+<rect x="94" y="90" width="12" height="16" rx="3" fill="#E8C56A"/>
+<circle cx="100" cy="98" r="3" fill="#6B4A2E"/>
+<path d="M58 104h28M114 104h28" stroke="#5A3A22" stroke-width="2" stroke-dasharray="4 4"/>
+</svg>

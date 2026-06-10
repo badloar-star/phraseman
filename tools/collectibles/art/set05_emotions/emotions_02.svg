@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Down in the dumps">
+<ellipse cx="100" cy="150" rx="60" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M20 150l8-30 30-6 6 36z" fill="#8C8C9A"/>
+<path d="M22 122l32-6 4 4-32 6z" fill="#A6A6B4"/>
+<path d="M150 150l-6-26 28-8 14 34z" fill="#7E7E8C"/>
+<path d="M146 126l28-8 3 5-28 8z" fill="#9A9AA8"/>
+<rect x="120" y="112" width="34" height="34" rx="4" fill="#A89A86" transform="rotate(-6 137 129)"/>
+<rect x="122" y="124" width="34" height="6" fill="#C4B59E" transform="rotate(-6 139 127)"/>
+<ellipse cx="92" cy="116" rx="28" ry="26" fill="#9CB0D0"/>
+<path d="M68 110c0-14 10-22 24-22s24 8 24 22z" fill="#7E92B4"/>
+<circle cx="83" cy="116" r="4" fill="#3A4258"/><circle cx="101" cy="116" r="4" fill="#3A4258"/>
+<path d="M76 110l10 4M98 114l10-4" stroke="#3A4258" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<path d="M82 132c4-5 16-5 20 0" stroke="#3A4258" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M84 142v6M100 142v6" stroke="#9CB0D0" stroke-width="9" stroke-linecap="round"/>
+</svg>

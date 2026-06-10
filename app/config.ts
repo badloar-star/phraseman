@@ -48,9 +48,28 @@ import { Platform } from 'react-native';
 
 export const DEV_MODE = false;
 
+/**
+ * EAS profile `production` в eas.json: EXPO_PUBLIC_STORE_RELEASE=1.
+ * Метка публичной стор-сборки: dev-флаги (DEV_MODE, FORCE_PREMIUM…) не должны
+ * влиять на настоящий IAP. Объявлено РАНО — другие предохранители ниже на него
+ * опираются.
+ */
+export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
+
+/** true только в реальном dev-рантайме Metro (не preview, не стор). */
+const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
+
 // true  = премиум включён для всех по умолчанию (тестовая сборка для тестеров)
 // false = обычный флоу RevenueCat
-export const FORCE_PREMIUM = true; // TEMP dev-check — вернуть в false перед коммитом
+//
+// ⚠️ ПРЕДОХРАНИТЕЛЬ: даже если кто-то впишет здесь «голый» true, итог
+// принудительно гасится в стор-сборке (&& !IS_STORE_RELEASE). Поэтому Premium
+// НИКОГДА не раздаётся всем бесплатно в проде, что бы ни оставила dev-сессия.
+// История: 1d659478 (08.06) случайно увёз сюда `= true` («TEMP dev-check») в
+// большом cleanup-коммите. Тест tests/force_premium_prod_guard.test.ts держит
+// этот инвариант. Для локального теста премиума меняй ТОЛЬКО левый операнд.
+const FORCE_PREMIUM_DEV_INTENT = true;
+export const FORCE_PREMIUM = FORCE_PREMIUM_DEV_INTENT && IS_DEV_RUNTIME && !IS_STORE_RELEASE;
 
 // ── Синхронизация прогресса с Firebase ───────────────────────────────────────
 // false = синхронизация отключена (AsyncStorage only, текущее состояние)
@@ -62,12 +81,6 @@ export const CLOUD_SYNC_ENABLED = true;
 // false = продакшн, бета-экран пропускается
 export const IS_BETA_TESTER = false;
 export const IS_EXPO_GO = Constants.appOwnership === 'expo';
-
-/**
- * EAS profile `production` в eas.json: EXPO_PUBLIC_STORE_RELEASE=1.
- * Метка публичной стор-сборки: флаги вроде DEV_MODE не отключают настоящий IAP.
- */
-export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
 
 /**
  * Single switch for visible/internal dev tooling.

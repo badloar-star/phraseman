@@ -38,9 +38,10 @@ import { safeRouterBack } from './navigation_back';
 
 const SCREEN_W = Dimensions.get('window').width;
 
-const RED = '#FF2020';
-const RED_DIM = '#CC0000';
-const RED_BORDER = 'rgba(255,32,32,0.35)';
+// Серый акцент в тон редизайна QA-панели (2026-06, без красного).
+const RED = '#A9B1BD';
+const RED_DIM = '#5D6571';
+const RED_BORDER = 'rgba(169,177,189,0.35)';
 
 const LESSON_IDS = Array.from({ length: 32 }, (_, i) => i + 1);
 

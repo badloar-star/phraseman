@@ -4,14 +4,10 @@ import { withStorageLock } from './storage_mutex';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  Alert,
   Animated,
-  Modal,
   Platform,
-  Pressable,
   ScrollView,
-  Switch,
-  Text, TouchableOpacity,
+  Text, TextInput, TouchableOpacity,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -26,7 +22,6 @@ import { AVATARS, unlockAllFrames } from '../constants/avatars';
 import AvatarView from '../components/AvatarView';
 import AvatarAura from '../components/AvatarAura';
 import CustomAvatarBadge from '../components/CustomAvatarBadge';
-import AccordionChevronIonicons from '../components/AccordionChevronIonicons';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements, ALL_ACHIEVEMENTS, devSeedAchievementsSmoke } from './achievements';
 import { getMyWeekPoints } from './hall_of_fame_utils';
@@ -172,6 +167,20 @@ import {
   getIntroFullAccessState,
 } from './intro_full_access';
 import { callVipRevokeMine } from './vip_revoke_client';
+import {
+  ACCENT, ACCENT_BG, ACCENT_BORDER, ACCENT_BORDER_SOFT, ACCENT_DARK, ACCENT_DIM,
+  ADMIN_BG, ADMIN_BORDER_MUTED, ADMIN_HEADER_BG, ADMIN_SURFACE,
+  ADMIN_SURFACE_DANGER, ADMIN_SURFACE_ELEVATED, ADMIN_SURFACE_MUTED,
+  ADMIN_TEXT, ADMIN_TEXT_MUTED, DANGER, DANGER_TEXT,
+  AdminBackground, AdminNavContext, ButtonRow, CHAPTERS, ToggleRow,
+  AccordionSection, type AdminChapterId,
+} from '../components/admin_panel/ui';
+import ScenariosSection from '../components/admin_panel/sections/ScenariosSection';
+import RewardModalsExtraSection from '../components/admin_panel/sections/RewardModalsExtraSection';
+import SystemModalsExtraSection from '../components/admin_panel/sections/SystemModalsExtraSection';
+import BannersToastsExtraSection from '../components/admin_panel/sections/BannersToastsExtraSection';
+import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
+import LabsSection from '../components/admin_panel/sections/LabsSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -190,21 +199,8 @@ function getAdminFirestoreDb(): any | null {
   }
 }
 
-const RED = '#FF2020';
-const RED_DIM = '#CC0000';
-const RED_DARK = '#8B0000';
-const ADMIN_BG = '#000000';
-const ADMIN_HEADER_BG = '#0D0000';
-const ADMIN_SURFACE = '#140000';
-const ADMIN_SURFACE_ELEVATED = '#1B0000';
-const ADMIN_SURFACE_MUTED = '#0A0000';
-const ADMIN_SURFACE_DANGER = '#260000';
-const ADMIN_TEXT = '#FFD6D6';
-const ADMIN_TEXT_MUTED = '#FF8A8A';
-const ADMIN_BORDER_MUTED = '#4A0000';
-const RED_BG = '#190000';
-const RED_BORDER = 'rgba(255,32,32,0.58)';
-const RED_BORDER_SOFT = 'rgba(255,32,32,0.34)';
+// Палитра, примитивы и навигация панели — в components/admin_panel/ui.tsx
+// (общие для хаба и секций; серый дизайн без красного).
 const DAILY_TASK_QA_PACKS = getDailyTaskAdminPacks(3);
 const ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS: Array<{
   themeMode: ThemeMode;
@@ -483,61 +479,6 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
   },
 ];
 
-function AdminBackground() {
-  return (
-    <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden', backgroundColor: ADMIN_BG }} pointerEvents="none" />
-  );
-}
-
-const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
-  icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
-  t: any; f: any;
-}) => (
-  <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
-    <Ionicons name={icon as any} size={22} color={RED} style={{ marginRight: 14 }} />
-    <View style={{ flex: 1 }}>
-      <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg }}>{label}</Text>
-      {sub && <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
-    </View>
-    <Switch value={value} onValueChange={onToggle} thumbColor={value ? RED : ADMIN_BORDER_MUTED} trackColor={{ false: ADMIN_SURFACE_MUTED, true: RED_DARK }} />
-  </View>
-);
-
-const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic, pressInStarts, confirm }: {
-  icon: string; label: string; sub?: string; onPress: () => void; danger?: boolean; testID?: string;
-  t: any; f: any; doHaptic: () => void; pressInStarts?: boolean; confirm?: string;
-}) => {
-  const handlePress = () => {
-    if (confirm) {
-      Alert.alert('Подтверждение', confirm, [
-        { text: 'Отмена', style: 'cancel' },
-        { text: 'Выполнить', style: danger ? 'destructive' : 'default', onPress: () => { doHaptic(); onPress(); } },
-      ]);
-      return;
-    }
-    doHaptic();
-    onPress();
-  };
-  return (
-  <TouchableOpacity
-    testID={testID}
-    accessibilityLabel={testID ? `qa-${testID}` : undefined}
-    accessible={!!testID}
-    style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: danger ? ADMIN_SURFACE_DANGER : ADMIN_SURFACE }}
-    onPressIn={pressInStarts ? handlePress : undefined}
-    onPress={pressInStarts ? undefined : handlePress}
-    activeOpacity={0.6}
-  >
-    <Ionicons name={icon as any} size={22} color={danger ? '#FF4444' : RED} style={{ marginRight: 14 }} />
-    <View style={{ flex: 1 }}>
-      <Text style={{ color: danger ? '#FF6B6B' : ADMIN_TEXT, fontSize: f.bodyLg }}>{label}</Text>
-      {sub && <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
-    </View>
-    <Ionicons name="chevron-forward" size={18} color={RED_DIM} />
-  </TouchableOpacity>
-  );
-};
-
 function AdminCosmeticsPreview({ f }: { f: any }) {
   const renderCustomAvatarPreview = (
     avatar: (typeof CUSTOM_AVATAR_SHOP)[number],
@@ -553,7 +494,7 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: RED_BORDER_SOFT,
+        borderColor: ACCENT_BORDER_SOFT,
         backgroundColor: ADMIN_SURFACE_ELEVATED,
         paddingVertical: 9,
         paddingHorizontal: 6,
@@ -604,7 +545,7 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
                 justifyContent: 'center',
                 borderRadius: 10,
                 borderWidth: 1,
-                borderColor: RED_BORDER_SOFT,
+                borderColor: ACCENT_BORDER_SOFT,
                 backgroundColor: ADMIN_SURFACE_ELEVATED,
                 paddingVertical: 8,
               }}
@@ -639,7 +580,7 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
                 justifyContent: 'center',
                 borderRadius: 10,
                 borderWidth: 1,
-                borderColor: RED_BORDER_SOFT,
+                borderColor: ACCENT_BORDER_SOFT,
                 backgroundColor: ADMIN_SURFACE_ELEVATED,
                 paddingVertical: 9,
                 paddingHorizontal: 6,
@@ -662,35 +603,6 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
   );
 }
 
-function AccordionSection({ id, icon, title, badge, open, onToggle, children }: {
-  id: string; icon: string; title: string; badge?: number; open: boolean;
-  onToggle: (id: string) => void; children: React.ReactNode;
-}) {
-  return (
-    <View style={{ marginHorizontal: 12, marginBottom: 8, borderRadius: 14, borderWidth: 1, borderColor: RED_BORDER, overflow: 'hidden', backgroundColor: ADMIN_SURFACE }}>
-      <TouchableOpacity
-        testID={`testers-section-${id}`}
-        style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}
-        onPress={() => { configureAccordionLayout(); onToggle(id); }}
-        activeOpacity={0.7}
-      >
-        <Ionicons name={icon as any} size={20} color={RED} style={{ marginRight: 12 }} />
-        <Text style={{ flex: 1, color: ADMIN_TEXT, fontSize: 15, fontWeight: '700' }}>{title}</Text>
-        {badge !== undefined && badge > 0 && (
-          <View style={{ backgroundColor: RED_DARK, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2, marginRight: 8 }}>
-            <Text style={{ color: '#fff', fontSize: 11, fontWeight: '700' }}>{badge}</Text>
-          </View>
-        )}
-        <AccordionChevronIonicons isOpen={open} size={16} color={RED_DIM} />
-      </TouchableOpacity>
-      {open && (
-        <View style={{ borderTopWidth: 0.5, borderTopColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
-          {children}
-        </View>
-      )}
-    </View>
-  );
-}
 
 
 export default function SettingsTestersFunctions() {
@@ -833,6 +745,12 @@ export default function SettingsTestersFunctions() {
   const RANK_LEVELS = ['I', 'II', 'III'];
 
   const [openSection, setOpenSection] = useState<string | null>(null);
+  // Навигация панели: активная глава (категория разделов) + поисковый запрос.
+  const [navChapter, setNavChapter] = useState<AdminChapterId>('all');
+  const [navQuery, setNavQuery] = useState('');
+  // Закреплённые блоки «Быстрый QA» видны только без активного фильтра/поиска.
+  const quickVisible = (navChapter === 'all' || navChapter === 'quick') && navQuery.trim() === '';
+  const toggleSection = (id: string) => setOpenSection(openSection === id ? null : id);
   const [dailyTaskSeedMode, setDailyTaskSeedMode] = useState<DailyTaskSeedMode>('empty');
   const [trialCooldownStatusLine, setTrialCooldownStatusLine] = useState('…');
 
@@ -2435,23 +2353,76 @@ export default function SettingsTestersFunctions() {
     <View style={{ flex: 1, backgroundColor: ADMIN_BG }}>
       <AdminBackground />
       <SafeAreaView style={{ flex: 1 }}>
-        {/* Header */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: RED_BORDER, backgroundColor: ADMIN_HEADER_BG }}>
-          <TouchableOpacity onPress={() => {
-            safeRouterBack(router);
-          }}>
-            <Ionicons name="chevron-back" size={28} color={RED} />
-          </TouchableOpacity>
-          <View style={{ flex: 1, marginLeft: 8 }}>
-            <Text style={{ color: RED, fontSize: f.h2, fontWeight: '900', textShadowColor: RED_DIM, textShadowRadius: 8, textShadowOffset: { width: 0, height: 0 } }}>
-              🛠 Админ панель
-            </Text>
-            <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 2 }}>Dev only · не для пользователей</Text>
+        {/* Header: заголовок + поиск + чипы глав */}
+        <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 10, borderBottomWidth: 1, borderBottomColor: ACCENT_BORDER, backgroundColor: ADMIN_HEADER_BG }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity
+              onPress={() => { safeRouterBack(router); }}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            >
+              <Ionicons name="chevron-back" size={26} color={ADMIN_TEXT} />
+            </TouchableOpacity>
+            <View style={{ flex: 1, marginLeft: 8 }}>
+              <Text style={{ color: ADMIN_TEXT, fontSize: f.h2, fontWeight: '800' }}>Админ панель</Text>
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 1 }}>Dev only · не для пользователей</Text>
+            </View>
           </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, borderRadius: 10, borderWidth: 1, borderColor: ACCENT_BORDER_SOFT, backgroundColor: ADMIN_SURFACE, paddingHorizontal: 10 }}>
+            <Ionicons name="search-outline" size={16} color={ACCENT_DIM} />
+            <TextInput
+              testID="admin-nav-search"
+              value={navQuery}
+              onChangeText={(text) => { configureAccordionLayout(); setNavQuery(text); }}
+              placeholder="Поиск по разделам…"
+              placeholderTextColor={ACCENT_DIM}
+              style={{ flex: 1, color: ADMIN_TEXT, fontSize: 14, paddingVertical: 8, paddingHorizontal: 8 }}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            {navQuery.length > 0 && (
+              <TouchableOpacity
+                onPress={() => { configureAccordionLayout(); setNavQuery(''); }}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <Ionicons name="close-circle" size={16} color={ACCENT_DIM} />
+              </TouchableOpacity>
+            )}
+          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{ marginTop: 10 }}
+            contentContainerStyle={{ gap: 6, paddingRight: 8 }}
+          >
+            {CHAPTERS.map((chapter) => {
+              const active = navChapter === chapter.id;
+              return (
+                <TouchableOpacity
+                  key={chapter.id}
+                  testID={`admin-nav-chapter-${chapter.id}`}
+                  onPress={() => { configureAccordionLayout(); setNavChapter(chapter.id); }}
+                  activeOpacity={0.7}
+                  style={{
+                    flexDirection: 'row', alignItems: 'center', gap: 5,
+                    paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16,
+                    backgroundColor: active ? ACCENT_DARK : ADMIN_SURFACE,
+                    borderWidth: 1, borderColor: active ? ACCENT_DIM : ACCENT_BORDER_SOFT,
+                  }}
+                >
+                  <Ionicons name={chapter.icon as any} size={13} color={active ? ADMIN_TEXT : ADMIN_TEXT_MUTED} />
+                  <Text style={{ color: active ? ADMIN_TEXT : ADMIN_TEXT_MUTED, fontSize: 12, fontWeight: active ? '800' : '600' }}>
+                    {chapter.label}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
         </View>
 
+        <AdminNavContext.Provider value={{ chapter: navChapter, query: navQuery }}>
         <ScrollView testID="screen-settings-testers" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
-          <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1.5, borderColor: RED, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
+          {quickVisible && (<>
+          <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1, borderColor: ACCENT_BORDER, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 6 }}>
               <Text style={{ color: ADMIN_TEXT, fontSize: 13, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
                 Maestro quick QA
@@ -2541,8 +2512,8 @@ export default function SettingsTestersFunctions() {
               activeOpacity={0.75}
               style={{
                 borderRadius: 14,
-                borderWidth: 1.5,
-                borderColor: RED,
+                borderWidth: 1,
+                borderColor: ACCENT_BORDER,
                 backgroundColor: ADMIN_SURFACE,
                 paddingHorizontal: 14,
                 paddingVertical: 12,
@@ -2550,7 +2521,7 @@ export default function SettingsTestersFunctions() {
                 alignItems: 'center',
               }}
             >
-              <Ionicons name="flask-outline" size={20} color={RED} style={{ marginRight: 10 }} />
+              <Ionicons name="flask-outline" size={20} color={ACCENT} style={{ marginRight: 10 }} />
               <View style={{ flex: 1 }}>
                 <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '800' }}>
                   {triLang(lang, {
@@ -2577,9 +2548,10 @@ export default function SettingsTestersFunctions() {
 })}
                 </Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color={RED_DIM} />
+              <Ionicons name="chevron-forward" size={18} color={ACCENT_DIM} />
             </TouchableOpacity>
           </View>
+          </>)}
 
           {/* ── NEW PAYWALL v2 preview ── */}
           <AccordionSection
@@ -2597,7 +2569,7 @@ export default function SettingsTestersFunctions() {
               <TouchableOpacity
                 onPress={() => { doHaptic(); router.push({ pathname: '/premium_modal_v2' } as any); }}
                 activeOpacity={0.8}
-                style={{ backgroundColor: RED_DARK, borderRadius: 10, paddingVertical: 12, paddingHorizontal: 14, alignItems: 'center' }}
+                style={{ backgroundColor: ACCENT_DARK, borderRadius: 10, paddingVertical: 12, paddingHorizontal: 14, alignItems: 'center' }}
               >
                 <Text style={{ color: '#fff', fontSize: 13, fontWeight: '900' }}>🆕 Открыть новый пейвол</Text>
               </TouchableOpacity>
@@ -2754,7 +2726,7 @@ export default function SettingsTestersFunctions() {
 
           <AccordionSection id="friends_admin" icon="people-outline" title="Друзья — QA и подарки" badge={7}
             open={openSection === 'friends_admin'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            <View style={{ paddingHorizontal: 18, paddingVertical: 12, borderBottomWidth: 0.5, borderBottomColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
+            <View style={{ paddingHorizontal: 18, paddingVertical: 12, borderBottomWidth: 0.5, borderBottomColor: ACCENT_BORDER_SOFT, backgroundColor: ADMIN_SURFACE }}>
               <Text style={{ color: ADMIN_TEXT, fontSize: f.bodyLg, fontWeight: '900' }}>Social QA hub</Text>
               <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, marginTop: 4, lineHeight: 17 }}>
                 Подготовка friend list, gifts, входящей модалки, activity feed и кешей для Maestro/dev-проверок.
@@ -2910,9 +2882,9 @@ export default function SettingsTestersFunctions() {
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
                 {TIERS_LIST.map(tier => (
                   <TouchableOpacity key={tier} onPress={() => { doHaptic(); setRankTestTier(tier); }}
-                    style={{ borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1.5, borderColor: rankTestTier === tier ? RED : ADMIN_BORDER_MUTED, backgroundColor: rankTestTier === tier ? RED_BG : ADMIN_SURFACE_MUTED }}
+                    style={{ borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1.5, borderColor: rankTestTier === tier ? ACCENT : ADMIN_BORDER_MUTED, backgroundColor: rankTestTier === tier ? ACCENT_BG : ADMIN_SURFACE_MUTED }}
                     activeOpacity={0.75}>
-                    <Text style={{ color: rankTestTier === tier ? RED : ADMIN_TEXT_MUTED, fontSize: 12, fontWeight: '700' }}>{TIER_SHORT_NAMES[tier]}</Text>
+                    <Text style={{ color: rankTestTier === tier ? ACCENT : ADMIN_TEXT_MUTED, fontSize: 12, fontWeight: '700' }}>{TIER_SHORT_NAMES[tier]}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
@@ -2920,17 +2892,17 @@ export default function SettingsTestersFunctions() {
               <View style={{ flexDirection: 'row', gap: 6 }}>
                 {RANK_LEVELS.map(lv => (
                   <TouchableOpacity key={lv} onPress={() => { doHaptic(); setRankTestLevel(lv); }}
-                    style={{ borderRadius: 8, paddingHorizontal: 18, paddingVertical: 7, borderWidth: 1.5, borderColor: rankTestLevel === lv ? RED : ADMIN_BORDER_MUTED, backgroundColor: rankTestLevel === lv ? RED_BG : ADMIN_SURFACE_MUTED }}
+                    style={{ borderRadius: 8, paddingHorizontal: 18, paddingVertical: 7, borderWidth: 1.5, borderColor: rankTestLevel === lv ? ACCENT : ADMIN_BORDER_MUTED, backgroundColor: rankTestLevel === lv ? ACCENT_BG : ADMIN_SURFACE_MUTED }}
                     activeOpacity={0.75}>
-                    <Text style={{ color: rankTestLevel === lv ? RED : ADMIN_TEXT_MUTED, fontSize: 14, fontWeight: '800' }}>{lv}</Text>
+                    <Text style={{ color: rankTestLevel === lv ? ACCENT : ADMIN_TEXT_MUTED, fontSize: 14, fontWeight: '800' }}>{lv}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
               <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
                 <TouchableOpacity onPress={() => { doHaptic(); setRankModal({ promoted: true, tier: rankTestTier, level: rankTestLevel }); }}
-                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: RED, backgroundColor: RED_BG, alignItems: 'center' }}
+                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: ACCENT, backgroundColor: ACCENT_BG, alignItems: 'center' }}
                   activeOpacity={0.8}>
-                  <Text style={{ color: RED, fontSize: 13, fontWeight: '800' }}>⬆️ Повышение</Text>
+                  <Text style={{ color: ACCENT, fontSize: 13, fontWeight: '800' }}>⬆️ Повышение</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { doHaptic(); setRankModal({ promoted: false, tier: rankTestTier, level: rankTestLevel }); }}
                   style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: ADMIN_BORDER_MUTED, backgroundColor: ADMIN_SURFACE_MUTED, alignItems: 'center' }}
@@ -3105,8 +3077,8 @@ export default function SettingsTestersFunctions() {
             {/* Trial UI QA — приоритетный блок: проверка новой золотой ленты + Free 3 days
                 в карточках планов. _force_trial_ui=1 форсит UI даже без реального RC
                 (Expo Go / dev / магазин не отдаёт intro). В проде параметр недоступен. */}
-            <View style={{ marginHorizontal: 12, marginVertical: 10, borderRadius: 12, borderWidth: 1.5, borderColor: RED, backgroundColor: ADMIN_SURFACE_ELEVATED, padding: 12 }}>
-              <Text style={{ color: RED, fontSize: 13, fontWeight: '900', letterSpacing: 0.4, marginBottom: 6 }}>
+            <View style={{ marginHorizontal: 12, marginVertical: 10, borderRadius: 12, borderWidth: 1.5, borderColor: ACCENT, backgroundColor: ADMIN_SURFACE_ELEVATED, padding: 12 }}>
+              <Text style={{ color: ACCENT, fontSize: 13, fontWeight: '900', letterSpacing: 0.4, marginBottom: 6 }}>
                 🎁 ТРИАЛ-UI · ЧТО ПРОВЕРИТЬ
               </Text>
               <Text style={{ color: ADMIN_TEXT, fontSize: 11, lineHeight: 15, marginBottom: 10 }}>
@@ -3120,7 +3092,7 @@ export default function SettingsTestersFunctions() {
                   router.push({ pathname: '/premium_modal', params: { context: 'generic', _force_trial_ui: '1' } } as any);
                 }}
                 activeOpacity={0.8}
-                style={{ backgroundColor: RED_DARK, borderRadius: 10, paddingVertical: 11, paddingHorizontal: 12, alignItems: 'center', marginBottom: 8 }}
+                style={{ backgroundColor: ACCENT_DARK, borderRadius: 10, paddingVertical: 11, paddingHorizontal: 12, alignItems: 'center', marginBottom: 8 }}
               >
                 <Text style={{ color: '#fff', fontSize: 13, fontWeight: '900' }}>
                   ⚡ ФОРС: trial-UI + сброс кулдауна
@@ -3134,7 +3106,7 @@ export default function SettingsTestersFunctions() {
                   router.push({ pathname: '/premium_modal', params: { context: 'generic' } } as any);
                 }}
                 activeOpacity={0.8}
-                style={{ borderRadius: 10, paddingVertical: 9, paddingHorizontal: 12, alignItems: 'center', borderWidth: 1, borderColor: RED_BORDER }}
+                style={{ borderRadius: 10, paddingVertical: 9, paddingHorizontal: 12, alignItems: 'center', borderWidth: 1, borderColor: ACCENT_BORDER }}
               >
                 <Text style={{ color: ADMIN_TEXT, fontSize: 12, fontWeight: '700' }}>
                   «Натуральный» режим (как у юзера)
@@ -3500,7 +3472,7 @@ export default function SettingsTestersFunctions() {
               <View style={{ paddingHorizontal: 16, paddingVertical: 8 }}>
                 <Text style={{ color: ADMIN_TEXT, fontSize: 12 }}>
                   Бесплатных сессий сегодня:{' '}
-                  <Text style={{ color: freeSessionsLeft > 0 ? '#22C55E' : '#FF4444', fontWeight: '700' }}>
+                  <Text style={{ color: freeSessionsLeft > 0 ? '#22C55E' : DANGER, fontWeight: '700' }}>
                     {freeSessionsLeft}
                   </Text>
                 </Text>
@@ -3881,9 +3853,9 @@ export default function SettingsTestersFunctions() {
             {diagnosisDevBlocked ? (
               <View
                 testID="admin-french-personal-practice-source-gate"
-                style={{ marginHorizontal: 16, marginBottom: 8, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: RED_BORDER_SOFT, backgroundColor: ADMIN_SURFACE_DANGER }}
+                style={{ marginHorizontal: 16, marginBottom: 8, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: ACCENT_BORDER_SOFT, backgroundColor: ADMIN_SURFACE_DANGER }}
               >
-                <Text style={{ color: '#FF8A8A', fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
+                <Text style={{ color: DANGER_TEXT, fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
                   {frenchPersonalPracticeGate.title}
                 </Text>
                 <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35) }}>
@@ -4658,14 +4630,14 @@ export default function SettingsTestersFunctions() {
                   paddingHorizontal: 16,
                   paddingVertical: 14,
                   borderBottomWidth: 0.5,
-                  borderBottomColor: RED_BORDER,
+                  borderBottomColor: ACCENT_BORDER,
                 }}
               >
                 <Text style={{ color: ADMIN_TEXT, fontSize: 14, flex: 1, paddingRight: 8 }}>{label}</Text>
                 <Text style={{ color: qaChecks[key] ? '#22C55E' : ADMIN_TEXT_MUTED, fontSize: 13, fontWeight: '700' }}>
                   {qaChecks[key] ? '✅ OK' : '⏳ TODO'}
                 </Text>
-                <Ionicons name="chevron-forward" size={16} color={RED_DIM} style={{ marginLeft: 6 }} />
+                <Ionicons name="chevron-forward" size={16} color={ACCENT_DIM} style={{ marginLeft: 6 }} />
               </TouchableOpacity>
             ))}
             <ButtonRow
@@ -4789,7 +4761,26 @@ export default function SettingsTestersFunctions() {
           />
           </AccordionSection>
 
+          {/* ── Новые секции (редизайн 2026-06): сценарии, непокрытые модалки/тосты, лабы ── */}
+          <ScenariosSection
+            open={openSection === 'scenarios_conflicts'}
+            onToggle={toggleSection}
+            onSeedGlobalLevelUp={triggerGlobalLevelUp}
+            onGoHome={navigateHomeAfterVipSurveySeed}
+            onSeedVipSurvey={() => { void showVipSurveyNotificationPreview(); }}
+          />
+          <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
+          <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
+          <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />
+          <VipSurveyExtraSection open={openSection === 'vip_survey_extra'} onToggle={toggleSection} />
+          <LabsSection
+            open={openSection === 'labs_hub'}
+            onToggle={toggleSection}
+            onOpenReviewBench={() => { void runAdminReviewTestBench(); }}
+          />
+
         </ScrollView>
+        </AdminNavContext.Provider>
       </SafeAreaView>
 
       {leagueResult && (

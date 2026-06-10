@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Reanimated, {
   interpolate,
@@ -37,6 +37,12 @@ interface Props extends PassthroughPressableProps {
   gradientStart?: { x: number; y: number };
   gradientEnd?: { x: number; y: number };
   withHaptic?: boolean;
+  /**
+   * Удерживать лицо «вдавленным» извне (поверх реального press пальца). Нужно,
+   * когда объём должен оставаться на время вспышки/отклика, а не только пока
+   * палец зажат (плитка успевает показать глубину даже при быстром тапе).
+   */
+  pressedExternally?: boolean;
 }
 
 /**
@@ -65,9 +71,13 @@ function DuoPressable({
   gradientStart = { x: 0, y: 0 },
   gradientEnd = { x: 1, y: 1 },
   withHaptic = true,
+  pressedExternally = false,
   ...rest
 }: Props) {
   const press = useSharedValue(0);
+  // Внешнее удержание «вдавленным» — отдельный канал, чтобы palec-press и
+  // программное удержание не затирали друг друга.
+  const held = useSharedValue(0);
 
   const pressIn = useCallback(() => {
     if (withHaptic && !disabled) hapticTap();
@@ -78,11 +88,18 @@ function DuoPressable({
     press.value = withSpring(0, MOTION_SPRING.micro);
   }, [press]);
 
+  useEffect(() => {
+    held.value = withSpring(pressedExternally ? 1 : 0, MOTION_SPRING.micro);
+  }, [pressedExternally, held]);
+
   // Лицо опускается вниз на высоту кромки при нажатии — «оседает» на кромку.
   // Кромка НЕ двигается (это нижний слой), лицо её накрывает. Тени сверху нет.
-  const surfaceStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: interpolate(press.value, [0, 1], [0, edgeHeight]) }],
-  }));
+  // Глубина = max(реальный press, внешнее удержание) — depressed остаётся на
+  // время вспышки, даже когда палец уже отпущен.
+  const surfaceStyle = useAnimatedStyle(() => {
+    const depth = Math.max(press.value, held.value);
+    return { transform: [{ translateY: interpolate(depth, [0, 1], [0, edgeHeight]) }] };
+  });
 
   return (
     <Pressable

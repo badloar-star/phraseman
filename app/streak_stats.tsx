@@ -44,13 +44,16 @@ import { loadAchievementStates } from './achievements';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import type { ThemeMode } from '../constants/theme';
-import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsSoftBg, statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
+import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsSoftBg, statsThemeAccent, statsThemeSoftBg, type StatsChromeTone } from '../constants/statsThemeChrome';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 import GoldBevel from '../components/GoldBevel';
 import { StatScoreRing } from '../components/stats/StatScoreRing';
 import { StatBars, type StatBar } from '../components/stats/StatBars';
 import { StatProgressRow } from '../components/stats/StatProgressRow';
 import { StatCountUpText } from '../components/stats/StatCountUpText';
+import { AiBlockNote } from '../components/stats/AiBlockNote';
+import { getStatsInsightsState, generateStatsInsights, type StatsInsightsNotes, type StatsInsightsBriefing } from './stats_insights_client';
+import { loadActivity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
@@ -2783,6 +2786,9 @@ export default function StreakStats() {
     const [percentiles, setPercentiles] = useState<AllPercentiles>({ xp: null, streak: null, weekXp: null, daily7xp: null, daily7timeMs: null, arenaXp: null, totalUsers: 0 });
     const [myXp7, setMyXp7] = useState(0);
     const [myTime7ms, setMyTime7ms] = useState(0);
+    // ИИ-микротексты под блоками (premium, ленивая генерация — см. stats_insights_client).
+    const [aiNotes, setAiNotes] = useState<StatsInsightsNotes | null>(null);
+    const [aiNotesLoading, setAiNotesLoading] = useState(false);
     const coachMetrics = useMemo(() => buildLearningCoachMetrics(allDays.length > 0 ? allDays : days, allTimeDays, totalStreak, lang), [allDays, days, allTimeDays, totalStreak, lang]);
     const [expandedLifetimeKind, setExpandedLifetimeKind] = useState<LifetimeTotalsChartKind | null>(null);
     const [lifetimeChartDays, setLifetimeChartDays] = useState<LifetimeChartDay[]>([]);
@@ -2923,6 +2929,73 @@ export default function StreakStats() {
         void loadAll();
         return undefined;
     }, [loadAll]));
+    // ── ИИ-микротексты под блоками ──────────────────────────────────────────
+    // 1) Мгновенно показываем кэш. 2) Только для premium и только когда данные
+    //    загружены — ленивая генерация (серверное окно 3 дня не даст частить).
+    useFocusEffect(React.useCallback(() => {
+        let cancelled = false;
+        void (async () => {
+            const cached = await getStatsInsightsState(studyTarget);
+            if (!cancelled && cached.kind === 'cached') setAiNotes(cached.notes);
+        })();
+        return () => { cancelled = true; };
+    }, [studyTarget]));
+    React.useEffect(() => {
+        if (!isPremium || !lifetimeStats) return; // фича premium-only; ждём данные
+        let cancelled = false;
+        void (async () => {
+            try {
+                const activity = await loadActivity365Analytics().catch(() => null);
+                const briefing: StatsInsightsBriefing = {
+                    lang,
+                    studyTarget,
+                    balance: {
+                        score: coachMetrics.score,
+                        isWarmup: coachMetrics.isWarmup,
+                        active7: coachMetrics.active7,
+                        avgMinutes: Math.round(coachMetrics.avgMinutesActive),
+                    },
+                    rhythm: {
+                        active7: coachMetrics.active7,
+                        xp7: coachMetrics.xp7,
+                        minutes7: Math.round(coachMetrics.minutes7),
+                        bestDay: coachMetrics.bestDayLabel ?? '',
+                    },
+                    year: {
+                        activeDays: activity?.activeDays ?? 0,
+                        currentStreak: activity?.currentStreak ?? totalStreak,
+                        longestStreak: activity?.longestStreak ?? 0,
+                        bestMonth: '',
+                        goalPct: activity?.goal ? Math.round((activity.goal.activeDays / Math.max(1, activity.goal.goal)) * 100) : 0,
+                    },
+                    percentiles: {
+                        totalXp: percentiles.xp,
+                        week: percentiles.weekXp,
+                        daily7: myXp7 > 0 ? percentiles.daily7xp : null,
+                    },
+                    lifetime: {
+                        words: lifetimeStats.wordsLearned,
+                        phrases: lifetimeStats.phrasesLearned,
+                        quizzes: lifetimeStats.quizzesTotal,
+                        arenaWins: lifetimeStats.arenaWins,
+                        daysActive: lifetimeStats.appDaysUnion,
+                    },
+                    weakCategories: [],
+                };
+                if (!cancelled) setAiNotesLoading(true);
+                const state = await generateStatsInsights({ briefing, isPremium });
+                if (cancelled) return;
+                if (state.kind === 'cached') setAiNotes(state.notes);
+                else if (state.kind === 'error' && state.notes) setAiNotes(state.notes);
+            } finally {
+                if (!cancelled) setAiNotesLoading(false);
+            }
+        })();
+        return () => { cancelled = true; };
+    // Намеренно зависим только от ключевых сигналов, не от каждого числа —
+    // генерацию всё равно гейтит серверное окно.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isPremium, !!lifetimeStats, studyTarget, lang]);
     const randomizeLifetimeChartsForDev = React.useCallback(async () => {
         if (!ENABLE_DEV_TOOLS)
             return;
@@ -3111,6 +3184,32 @@ export default function StreakStats() {
         setFreezeActive(true);
         emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
+    };
+    // ИИ-заметка под карточкой `block`. Premium → текст Фила; free → тизер на пейвол.
+    const renderAiNote = (block: keyof StatsInsightsNotes, tone: StatsChromeTone) => {
+        const note = aiNotes?.[block];
+        // Free без текста и без загрузки прячем целиком, кроме случая «есть что показать».
+        if (!isPremium && !note && !aiNotesLoading) {
+            // Тизер показываем только под «Балансом» (первый блок), чтобы не спамить пейволом.
+            if (block !== 'balance') return null;
+        } else if (isPremium && !note && !aiNotesLoading) {
+            return null;
+        }
+        const accent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, tone);
+        return (<AiBlockNote
+          note={note}
+          isPremium={isPremium}
+          loading={aiNotesLoading}
+          accent={accent}
+          softBg={isGoldTheme ? GOLD_RICH.blackPiano : statsSoftBg(themeMode, tone, 'quiet')}
+          borderColor={isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, tone)}
+          textColor={t.textPrimary}
+          mutedColor={t.textMuted}
+          authorLabel={triLang(lang, { ru: 'Фил · ИИ-разбор', uk: 'Філ · ШІ-розбір', es: 'Phil · análisis IA', 'pt-BR': 'Phil · análise IA', vi: 'Phil · phân tích AI', id: 'Phil · analisis AI', tr: 'Phil · AI analizi', pl: 'Phil · analiza AI' })}
+          lockedLabel={triLang(lang, { ru: 'Открой ИИ-разбор твоей статистики с Premium', uk: 'Відкрий ШІ-розбір твоєї статистики з Premium', es: 'Desbloquea el análisis IA de tus estadísticas con Premium', 'pt-BR': 'Desbloqueie a análise IA das suas estatísticas com Premium', vi: 'Mở khóa phân tích AI thống kê của bạn với Premium', id: 'Buka analisis AI statistikmu dengan Premium', tr: 'İstatistiklerinin AI analizini Premium ile aç', pl: 'Odblokuj analizę AI swoich statystyk z Premium' })}
+          loadingLabel={triLang(lang, { ru: 'Фил анализирует…', uk: 'Філ аналізує…', es: 'Phil está analizando…', 'pt-BR': 'Phil está analisando…', vi: 'Phil đang phân tích…', id: 'Phil sedang menganalisis…', tr: 'Phil analiz ediyor…', pl: 'Phil analizuje…' })}
+          onUnlock={() => { hapticTap(); router.push('/premium_modal' as any); }}
+        />);
     };
     return (<ScreenGradient artBackdrop={false}>
     <SafeAreaView testID="screen-streak-stats" style={{ flex: 1 }}>
@@ -3495,10 +3594,12 @@ export default function StreakStats() {
             router.push('/trainer' as any);
         }}/>
         </StatsPremiumBlur>
+        {renderAiNote('balance', 'practiceBalance')}
 
         <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="weekRhythm" devUnlock={statsDevUnlock}>
           <RhythmWeekCard t={t} f={f} lang={lang} metrics={coachMetrics} isGoldTheme={isGoldTheme} themeMode={themeMode}/>
         </StatsPremiumBlur>
+        {renderAiNote('rhythm', 'weekRhythm')}
 
         {/* Годовая карта активности (~365 дней); премиум — без блюра. */}
         <StatsPremiumBlur isPremium={isPremium} context="heatmap" snapshotKey="heatmap" devUnlock={statsDevUnlock}>
@@ -3508,6 +3609,7 @@ export default function StreakStats() {
           <ActivityHeatmap365 hideNextStep={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE}/>
         </View>
         </StatsPremiumBlur>
+        {renderAiNote('year', 'activity')}
 
         {/* Перцентили — единый блок: горизонтальные дорожки «ты обходишь N%». */}
         {(() => {
@@ -3586,6 +3688,7 @@ export default function StreakStats() {
               </StatsCardArtSurface>
             </StatsPremiumBlur>);
         })()}
+        {renderAiNote('percentiles', 'percentiles')}
 
         {/* Два премиум-графика подряд; сразу под «Аналитика ошибок». */}
         <TouchableOpacity testID="stats-details-toggle" activeOpacity={0.84} onPress={() => {
@@ -3793,6 +3896,7 @@ export default function StreakStats() {
                     setExpandedLifetimeKind((prev) => (prev === kind ? null : kind));
                 }} chartDays={lifetimeChartDays} chartLoading={lifetimeChartLoading} chartScrollRef={lifetimeChartScrollRef} showAllPathCharts={devLifetimeAllCharts} pathChartsByKind={lifetimePathChartsByKind} isGoldTheme={isGoldTheme} themeMode={themeMode}/>
           </StatsPremiumBlur>)}
+        {detailsOpen ? renderAiNote('lifetime', 'archiveMap') : null}
         {ENABLE_DEV_TOOLS && (<TouchableOpacity onPress={() => void randomizeLifetimeChartsForDev()} disabled={devLifetimeChartsBusy} activeOpacity={0.75} style={{
                     marginBottom: 12,
                     borderRadius: 14,

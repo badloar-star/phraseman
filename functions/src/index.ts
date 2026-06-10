@@ -78,6 +78,8 @@ const { premiumDialogSend } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitExplainReport } = require('./explain/explain_reports');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   adminAlertOnUserReport,
   adminAlertOnCriticalError,
@@ -129,6 +131,7 @@ exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.explainPhrase = explainPhrase;
+exports.submitExplainReport = submitExplainReport;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;

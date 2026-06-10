@@ -293,6 +293,53 @@ describe('firestore.rules friend system (Phase 1)', () => {
   });
 });
 
+describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
+  const rules = readFileSync(rulesPath, 'utf8');
+
+  // Публичный кэш объяснений: клиент читает напрямую, но НИКОГДА не пишет публичный контент.
+  // Запись — только Admin SDK из CF explainPhrase (инвариант аудита).
+  test('phrase_explanations is world-readable cache but Admin-SDK-only writes', () => {
+    const block = rules.match(/match \/phrase_explanations\/\{phraseHash\} \{[\s\S]*?\n    \}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain('allow read: if true;');
+    expect(block![0]).toContain('allow write: if false;');
+    // Клиент не должен иметь возможности писать публичный кэш ни под каким условием.
+    expect(block![0]).not.toContain('allow write: if request.auth != null;');
+    expect(block![0]).not.toContain('isAdmin()');
+  });
+
+  // Четыре внутренние CF-only коллекции: read И write полностью закрыты (если false), а НЕ
+  // isAdmin() — они не открыты admin-панели; копирование isAdmin() провалило бы этот тест.
+  const SERVER_ONLY_EXPLAIN_COLLECTIONS = [
+    'explain_global_budget',
+    'explain_user_limits',
+    'explain_billing',
+    'explain_reports',
+  ] as const;
+
+  for (const collection of SERVER_ONLY_EXPLAIN_COLLECTIONS) {
+    test(`${collection} is server-only: read AND write are denied (if false, not isAdmin())`, () => {
+      const block = rules.match(new RegExp(`match /${collection}/\\{docId\\} \\{[\\s\\S]*?\\n    \\}`));
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow read: if false;');
+      expect(block![0]).toContain('allow write: if false;');
+      // Никаких клиентских/админских лазеек: ни isAdmin(), ни authed read/write.
+      expect(block![0]).not.toContain('isAdmin()');
+      expect(block![0]).not.toContain('request.auth != null');
+    });
+  }
+
+  test('explain blocks sit at ROOT level, before the deny-all catch-all', () => {
+    const catchAllIdx = rules.indexOf('match /{document=**} {');
+    expect(catchAllIdx).toBeGreaterThan(-1);
+    for (const collection of ['phrase_explanations', ...SERVER_ONLY_EXPLAIN_COLLECTIONS]) {
+      const idx = rules.indexOf(`match /${collection}/`);
+      expect(idx).toBeGreaterThan(-1);
+      expect(idx).toBeLessThan(catchAllIdx);
+    }
+  });
+});
+
 describe('firestore.rules friends bidirectional create/delete (Plan 02-01)', () => {
   const rules = readFileSync(rulesPath, 'utf8');
 

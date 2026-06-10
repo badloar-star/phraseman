@@ -17,7 +17,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { streakCalendarShortWeekdays, streakWeeklyExperienceHint, streakWeeklyExperienceLabel, streakWeeklyTimeTotalHint, streakWeekRowShort, streakWagerTierDaysLabel, } from '../constants/streak_stats_i18n';
-import { LEAGUES, CLUB_DESC_ES, CLUB_DESC_PLANNED, CLUB_NAME_PLANNED } from './league_engine';
+import { LEAGUES } from './league_engine';
 import { getEffectiveWagerStake, loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
 // stationary_clubs feature удалён.
 import { ENABLE_DEV_TOOLS, STORE_URL } from './config';
@@ -1328,10 +1328,10 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode }: {
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>+{wager.rewardXP}</Text>
           </View>
         </View>
-        <TouchableOpacity activeOpacity={0.75} onPress={() => {
+        <TouchableOpacity activeOpacity={0.8} onPress={() => {
                 hapticTap();
                 setWagerInfoOpen(v => !v);
-            }} activeOpacity={0.8} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 12, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 12, backgroundColor: statsSoftBg(themeMode, 'wager', 'quiet') }}>
+            }} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 12, paddingVertical: 10, paddingHorizontal: 10, borderRadius: 12, backgroundColor: statsSoftBg(themeMode, 'wager', 'quiet') }}>
           <Ionicons name="information-circle-outline" size={18} color={wagerAccent}/>
           <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
             {triLang(lang, {
@@ -2720,7 +2720,6 @@ export default function StreakStats() {
     const [giftXpBankRemaining, setGiftXpBankRemaining] = useState(_sc.giftXpBankRemaining);
     const [giftTimeLeft, setGiftTimeLeft] = useState('');
     const [chainShieldDays, setChainShieldDays] = useState(_sc.chainShieldDays);
-    const [clubDescVisible, setClubDescVisible] = useState(false);
     const [, setHadPremiumEver] = useState(_sc.hadPremiumEver);
     const [trainerPracticeDue, setTrainerPracticeDue] = useState(_sc.trainerPracticeDue);
     const [achievementCount, setAchievementCount] = useState(0);
@@ -3221,7 +3220,7 @@ export default function StreakStats() {
           onPress={() => {
             safeRouterBack(router, '/(tabs)/home' as any);
           }}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          hitSlop={10}
         >
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
         </TapScale>
@@ -3881,95 +3880,8 @@ export default function StreakStats() {
       </BouncyWrap>
       </ContentWrap>
 
-      {/* Кастомный модал описания клуба — вместо системного Alert */}
-      <Modal visible={clubDescVisible} transparent animationType="fade" onRequestClose={() => setClubDescVisible(false)}>
-        <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'center', alignItems: 'center', padding: 24 }} onPress={() => setClubDescVisible(false)}>
-          <Pressable onPress={() => { }}>
-            <View style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 24, maxWidth: 360, borderWidth: 0.5, borderColor: t.border }}>
-              {engineLeague.imageUri && (<Image source={engineLeague.imageUri} style={{ width: 64, height: 64, alignSelf: 'center', marginBottom: 12 }} contentFit="contain"/>)}
-              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 12, textAlign: 'center' }}>
-                {triLang(lang, {
-            ru: engineLeague.nameRU,
-            uk: engineLeague.nameUK,
-            es: engineLeague.nameES ?? engineLeague.nameRU,
-            'pt-BR': CLUB_NAME_PLANNED[engineLeague.id]?.['pt-BR'] ?? engineLeague.nameES ?? engineLeague.nameRU,
-            vi: CLUB_NAME_PLANNED[engineLeague.id]?.vi ?? engineLeague.nameES ?? engineLeague.nameRU,
-            id: CLUB_NAME_PLANNED[engineLeague.id]?.id ?? engineLeague.nameES ?? engineLeague.nameRU,
-            tr: CLUB_NAME_PLANNED[engineLeague.id]?.tr ?? engineLeague.nameES ?? engineLeague.nameRU,
-            pl: CLUB_NAME_PLANNED[engineLeague.id]?.pl ?? engineLeague.nameES ?? engineLeague.nameRU,
-        })}
-              </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, textAlign: 'center' }}>
-                {triLang(lang, {
-            ru: engineLeague.descRU,
-            uk: engineLeague.descUK,
-            es: CLUB_DESC_ES[engineLeague.id] ?? engineLeague.descRU,
-            'pt-BR': CLUB_DESC_PLANNED[engineLeague.id]?.['pt-BR'] ?? CLUB_DESC_ES[engineLeague.id] ?? engineLeague.descRU,
-            vi: CLUB_DESC_PLANNED[engineLeague.id]?.vi ?? CLUB_DESC_ES[engineLeague.id] ?? engineLeague.descRU,
-            id: CLUB_DESC_PLANNED[engineLeague.id]?.id ?? CLUB_DESC_ES[engineLeague.id] ?? engineLeague.descRU,
-            tr: CLUB_DESC_PLANNED[engineLeague.id]?.tr ?? CLUB_DESC_ES[engineLeague.id] ?? engineLeague.descRU,
-            pl: CLUB_DESC_PLANNED[engineLeague.id]?.pl ?? CLUB_DESC_ES[engineLeague.id] ?? engineLeague.descRU,
-        })}
-              </Text>
-              {(() => {
-            const xpHintRU: Record<number, string> = {
-                0: `Ты только начинаешь — все занятия приносят стандартный опыт, бонус +0%.`,
-                1: `Первый шаг сделан — все занятия приносят +10% опыта.`,
-                2: `Ты нашёл свой путь — все занятия засчитываются с +20% опыта.`,
-                3: `Практика приносит плоды — все занятия дают +30% опыта.`,
-                4: `Острый ум — острый рост. Все занятия приносят +40% опыта.`,
-                5: `Эрудиты учатся эффективнее — все занятия приносят +50% опыта.`,
-                6: `Знаток своего дела — все занятия приносят +60% опыта.`,
-                7: `Эксперты растут быстрее всех — все занятия приносят +70% опыта.`,
-                8: `Магистры учатся с максимальной отдачей — все занятия приносят +80% опыта.`,
-                9: `Мыслители видят глубже и дальше — все занятия приносят +90% опыта.`,
-                10: `Мастера выкладываются на полную — все занятия приносят +100% опыта.`,
-                11: `Вершина мастерства! Профессора получают максимальный бонус — все занятия приносят +110% опыта.`,
-            };
-            const xpHintUK: Record<number, string> = {
-                0: `Ти тільки починаєш — всі заняття приносять стандартний досвід, бонус +0%.`,
-                1: `Перший крок зроблено — всі заняття приносять +10% досвіду.`,
-                2: `Ти знайшов свій шлях — всі заняття зараховуються з +20% досвіду.`,
-                3: `Практика дає результат — всі заняття приносять +30% досвіду.`,
-                4: `Гострий розум — стрімке зростання. Всі заняття приносять +40% досвіду.`,
-                5: `Ерудити вчаться ефективніше — всі заняття приносять +50% досвіду.`,
-                6: `Знавець своєї справи — всі заняття приносять +60% досвіду.`,
-                7: `Експерти ростуть швидше за всіх — всі заняття приносять +70% досвіду.`,
-                8: `Магістри вчаться з максимальною віддачею — всі заняття приносять +80% досвіду.`,
-                9: `Мислителі бачать глибше і далі — всі заняття приносять +90% досвіду.`,
-                10: `Майстри викладаються на повну — всі заняття приносять +100% досвіду.`,
-                11: `Вершина майстерності! Професори отримують максимальний бонус — всі заняття приносять +110% досвіду.`,
-            };
-            const xpHintES: Record<number, string> = {
-                0: `Empiezas desde cero: todas las actividades dan XP estándar, bonificación +0 %.`,
-                1: `Primer paso: todas las actividades dan +10 % de XP.`,
-                2: `Ya encontraste tu ritmo: todas las actividades cuentan con +20 % de XP.`,
-                3: `La práctica da frutos: todas las actividades dan +30 % de XP.`,
-                4: `Mente ágil, progreso rápido: todas las actividades dan +40 % de XP.`,
-                5: `Quienes estudian con método ganan más: +50 % de XP en todas las actividades.`,
-                6: `Dominas el proceso: todas las actividades dan +60 % de XP.`,
-                7: `Los expertos avanzan más rápido: todas las actividades dan +70 % de XP.`,
-                8: `Sacas el máximo a cada sesión: todas las actividades dan +80 % de XP.`,
-                9: `Ves el idioma en profundidad: todas las actividades dan +90 % de XP.`,
-                10: `Das el cien por cien: todas las actividades dan +100 % de XP.`,
-                11: `¡Cima del recorrido! En la élite profesional todas las actividades dan +110 % de XP.`,
-            };
-            const hint = lang === 'uk'
-                ? xpHintUK[engineLeague.id]
-                : lang === 'es'
-                    ? xpHintES[engineLeague.id]
-                    : xpHintRU[engineLeague.id];
-            return hint ? (<Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : t.gold, fontSize: f.body, fontWeight: '700', textAlign: 'center', marginTop: 12 }}>
-                    ⭐ {hint}
-                  </Text>) : null;
-        })()}
-              <TouchableOpacity activeOpacity={0.75} onPress={() => setClubDescVisible(false)} style={{ marginTop: 20, backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}>
-                <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>OK</Text>
-              </TouchableOpacity>
-            </View>
-          </Pressable>
-        </Pressable>
-      </Modal>
+      {/* stationary_clubs feature удалён — модал описания клуба был мёртвым кодом
+          (clubDescVisible никогда не выставлялся в true) и удалён. */}
 
       <ThemedConfirmModal visible={freezeNeedShardsModal} title={triLang(lang, {
             ru: 'Недостаточно осколков',

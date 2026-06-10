@@ -98,6 +98,7 @@ import {
 import { getBonusHintsToday } from './level_gift_system';
 import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
+import ExplainButton from '../components/ExplainButton';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
@@ -1047,6 +1048,13 @@ const LessonContent = React.memo(function LessonContent({
                 userAnswer={reportUserAnswer}
                 style={{ alignSelf: 'flex-end', marginTop: linkedSliceCompact ? 2 : 4 }}
                 textColor={sx.muted}
+              />
+
+              <ExplainButton
+                phraseEn={resultCorrectLine}
+                phraseMeaning={lang === 'uk' ? (phrase.ukrainian || phrase.russian) : (lang === 'es' && phrase.spanish ? phrase.spanish : phrase.russian)}
+                lang={lang}
+                style={{ alignSelf: 'flex-end', marginTop: 4 }}
               />
 
             </Animated.View>

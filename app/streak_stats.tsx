@@ -49,6 +49,7 @@ import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constan
 import GoldBevel from '../components/GoldBevel';
 import { StatScoreRing } from '../components/stats/StatScoreRing';
 import { StatBars, type StatBar } from '../components/stats/StatBars';
+import { StatProgressRow } from '../components/stats/StatProgressRow';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
@@ -3503,67 +3504,40 @@ export default function StreakStats() {
         </View>
         </StatsPremiumBlur>
 
-        {/* Перцентили — единый блок */}
+        {/* Перцентили — единый блок: горизонтальные дорожки «ты обходишь N%». */}
         {(() => {
             const pItems: {
-                icon: string | null;
-                emoji: string | null;
+                icon: keyof typeof Ionicons.glyphMap;
                 color: string;
-                text: string;
+                label: string;
+                percent: number;
             }[] = [];
             const visibleXpPercentile = visiblePercentile(percentiles.xp);
             const visibleWeekXpPercentile = visiblePercentile(percentiles.weekXp);
             const visibleDaily7XpPercentile = visiblePercentile(percentiles.daily7xp, myXp7 > 0);
             const visibleDaily7TimePercentile = visiblePercentile(percentiles.daily7timeMs, myTime7ms > 0);
             if (visibleXpPercentile !== null)
-                pItems.push({ icon: null, emoji: '🏆', color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'), text: triLang(lang, {
-                        ru: `По суммарному опыту ты обошёл ${visibleXpPercentile}% пользователей`,
-                        uk: `За сумарним досвідом ви обігнали ${visibleXpPercentile}% користувачів`,
-                        es: `En XP total superas al ${visibleXpPercentile}% de los usuarios`,
-                        'pt-BR': `No XP total, você supera ${visibleXpPercentile}% dos usuários`,
-                        vi: `Tổng XP của bạn vượt ${visibleXpPercentile}% người dùng`,
-                        id: `Total XP kamu melampaui ${visibleXpPercentile}% pengguna`,
-                        tr: `Toplam XP’de kullanıcıların %${visibleXpPercentile} bölümünü geçiyorsun`,
-                        pl: `W łącznym XP przebijasz ${visibleXpPercentile}% użytkowników`,
+                pItems.push({ icon: 'trophy-outline', color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'), percent: visibleXpPercentile, label: triLang(lang, {
+                        ru: 'Суммарный опыт', uk: 'Сумарний досвід', es: 'XP total', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP',
                     }) });
             if (visibleWeekXpPercentile !== null)
-                pItems.push({ icon: null, emoji: '📅', color: isGoldTheme ? GOLD_RICH.metalGold : statsAccent(themeMode, 'archiveMap'), text: triLang(lang, {
-                        ru: `На этой неделе ты обошёл ${visibleWeekXpPercentile}% пользователей по опыту`,
-                        uk: `Цього тижня ви обігнали ${visibleWeekXpPercentile}% користувачів за досвідом`,
-                        es: `Esta semana superaste al ${visibleWeekXpPercentile}% de los usuarios en XP`,
-                        'pt-BR': `Nesta semana, você superou ${visibleWeekXpPercentile}% dos usuários em XP`,
-                        vi: `Tuần này bạn vượt ${visibleWeekXpPercentile}% người dùng về XP`,
-                        id: `Minggu ini XP kamu melampaui ${visibleWeekXpPercentile}% pengguna`,
-                        tr: `Bu hafta XP’de kullanıcıların %${visibleWeekXpPercentile} bölümünü geçtin`,
-                        pl: `W tym tygodniu w XP przebijasz ${visibleWeekXpPercentile}% użytkowników`,
+                pItems.push({ icon: 'calendar-outline', color: isGoldTheme ? GOLD_RICH.metalGold : statsAccent(themeMode, 'archiveMap'), percent: visibleWeekXpPercentile, label: triLang(lang, {
+                        ru: 'Опыт за неделю', uk: 'Досвід за тиждень', es: 'XP de la semana', 'pt-BR': 'XP da semana', vi: 'XP trong tuần', id: 'XP minggu ini', tr: 'Haftalık XP', pl: 'XP w tygodniu',
                     }) });
             if (visibleDaily7XpPercentile !== null)
-                pItems.push({ icon: 'trending-up-outline', emoji: null, color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'), text: triLang(lang, {
-                        ru: `За последние 7 дней: ${myXp7} опыта. Это выше, чем у ${visibleDaily7XpPercentile}% пользователей.`,
-                        uk: `За останні 7 днів: ${myXp7} досвіду. Це вище, ніж у ${visibleDaily7XpPercentile}% користувачів.`,
-                        es: `Últimos 7 días: ${myXp7} XP. Supera al ${visibleDaily7XpPercentile}% de usuarios.`,
-                        'pt-BR': `Últimos 7 dias: ${myXp7} XP. Supera ${visibleDaily7XpPercentile}% dos usuários.`,
-                        vi: `7 ngày qua: ${myXp7} XP. Vượt ${visibleDaily7XpPercentile}% người dùng.`,
-                        id: `7 hari terakhir: ${myXp7} XP. Melampaui ${visibleDaily7XpPercentile}% pengguna.`,
-                        tr: `Son 7 gün: ${myXp7} XP. Kullanıcıların %${visibleDaily7XpPercentile} bölümünü geçiyor.`,
-                        pl: `Ostatnie 7 dni: ${myXp7} XP. Przebija ${visibleDaily7XpPercentile}% użytkowników.`,
+                pItems.push({ icon: 'trending-up-outline', color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'), percent: visibleDaily7XpPercentile, label: triLang(lang, {
+                        ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', es: 'XP en 7 días', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni',
                     }) });
             if (visibleDaily7TimePercentile !== null)
-                pItems.push({ icon: null, emoji: '⏱️', color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), text: triLang(lang, {
-                        ru: `За последние 7 дней ты обошёл ${visibleDaily7TimePercentile}% пользователей по времени изучения`,
-                        uk: `За останні 7 днів ви обігнали ${visibleDaily7TimePercentile}% користувачів за часом навчання`,
-                        es: `En los últimos 7 días superaste al ${visibleDaily7TimePercentile}% de los usuarios en tiempo de estudio`,
-                        'pt-BR': `Nos últimos 7 dias, você superou ${visibleDaily7TimePercentile}% dos usuários em tempo de estudo`,
-                        vi: `Trong 7 ngày qua, thời gian học của bạn vượt ${visibleDaily7TimePercentile}% người dùng`,
-                        id: `Dalam 7 hari terakhir, waktu belajarmu melampaui ${visibleDaily7TimePercentile}% pengguna`,
-                        tr: `Son 7 günde çalışma süresinde kullanıcıların %${visibleDaily7TimePercentile} bölümünü geçtin`,
-                        pl: `W ostatnich 7 dniach czasem nauki przebijasz ${visibleDaily7TimePercentile}% użytkowników`,
+                pItems.push({ icon: 'time-outline', color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), percent: visibleDaily7TimePercentile, label: triLang(lang, {
+                        ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni',
                     }) });
             if (pItems.length === 0)
                 return null;
+            const percentilesAccent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'percentiles');
             return (<StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
               <StatsCardArtSurface name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : statsBorder(themeMode, 'percentiles', 'medium'), overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
-                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 10 }}>
+                <Text style={{ color: percentilesAccent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase', marginBottom: 4 }}>
                   {triLang(lang, {
                     ru: 'Твой результат среди других',
                     uk: 'Ваш результат серед інших',
@@ -3575,15 +3549,34 @@ export default function StreakStats() {
                     pl: "Twój wynik na tle innych",
                 })}
                 </Text>
-                <View style={{ gap: 8 }}>
-                  {pItems.map((item, idx) => (<View key={idx} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 12, padding: 10, backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2 }}>
-                      <View style={{ width: 30, height: 30, borderRadius: 10, backgroundColor: item.color + '24', alignItems: 'center', justifyContent: 'center' }}>
-                        {item.icon
-                        ? <Ionicons name={item.icon as any} size={17} color={item.color}/>
-                        : <Text style={{ fontSize: 16 }}>{item.emoji}</Text>}
-                      </View>
-                      <Text style={{ color: t.textPrimary, fontSize: f.caption, flex: 1, lineHeight: f.caption * 1.4, fontWeight: '600' }}>{item.text}</Text>
-                    </View>))}
+                <Text style={{ color: t.textMuted, fontSize: f.label, lineHeight: f.label * 1.35, marginBottom: 14 }}>
+                  {triLang(lang, {
+                    ru: 'Доля пользователей, которых ты обходишь.',
+                    uk: 'Частка користувачів, яких ти обходиш.',
+                    es: 'Porcentaje de usuarios a los que superas.',
+                    'pt-BR': "Porcentagem de usuários que você supera.",
+                    vi: "Tỷ lệ người dùng bạn vượt qua.",
+                    id: "Persentase pengguna yang kamu lampaui.",
+                    tr: "Geçtiğin kullanıcıların yüzdesi.",
+                    pl: "Odsetek użytkowników, których wyprzedzasz.",
+                })}
+                </Text>
+                <View style={{ gap: 16 }}>
+                  {pItems.map((item, idx) => (
+                    <StatProgressRow
+                      key={item.label}
+                      percent={item.percent}
+                      label={item.label}
+                      icon={item.icon}
+                      accent={item.color}
+                      accentSoft={item.color + 'AA'}
+                      trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'percentiles', 'quiet')}
+                      iconChipBg={item.color + '24'}
+                      labelColor={t.textPrimary}
+                      valueColor={item.color}
+                      delayMs={120 + idx * 110}
+                    />
+                  ))}
                 </View>
               </StatsCardArtSurface>
             </StatsPremiumBlur>);

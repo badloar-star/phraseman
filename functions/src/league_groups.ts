@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
+import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 
@@ -478,46 +478,15 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
   return { ok: true, groupId, boost: createdBoost, shardsBalance };
 }
 
-function callableErrorStatus(code: string): string {
-  switch (code) {
-    case 'failed-precondition':
-      return 'FAILED_PRECONDITION';
-    case 'permission-denied':
-      return 'PERMISSION_DENIED';
-    case 'not-found':
-      return 'NOT_FOUND';
-    case 'unauthenticated':
-      return 'UNAUTHENTICATED';
-    default:
-      return 'INTERNAL';
-  }
-}
-
-export const leagueActivateGroupBoost = onRequest(
-  { region: 'us-central1', timeoutSeconds: 15, memory: '256MiB', maxInstances: 80, invoker: 'public' },
-  async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Firebase-Instance-ID-Token, X-Firebase-AppCheck');
-    if (req.method === 'OPTIONS') {
-      res.status(204).send('');
-      return;
-    }
-    if (req.method !== 'POST') {
-      res.status(405).json({ error: { status: 'INVALID_ARGUMENT', message: 'method-not-allowed' } });
-      return;
-    }
-    try {
-      const db = admin.firestore();
-      const data = req.body?.data && typeof req.body.data === 'object' ? req.body.data : req.body || {};
-      const stableUid = sanitizeString(data?.stableId, 128);
-      if (!stableUid) throw new HttpsError('failed-precondition', 'missing-stable-id');
-      const result = await activateLeagueGroupBoostForStableUid(db, stableUid);
-      res.status(200).json({ result });
-    } catch (e: any) {
-      const code = typeof e?.code === 'string' ? e.code : 'internal';
-      const message = sanitizeString(e?.message || code, 160) || 'internal';
-      res.status(200).json({ error: { status: callableErrorStatus(code), message } });
-    }
-  },
-);
+// БЫЛО: onRequest с invoker:'public' и stableId из тела — кто угодно мог POST-запросом
+// списать 50 shards у ЛЮБОГО аккаунта (griefing) в обход App Check. Переведено на onCall:
+// uid берётся из request.auth, stableId резолвится через resolveStableUidForAuth — списать
+// можно только со своего аккаунта. Клиент уже зовёт это как callable (league_group_boosts.ts),
+// поэтому сигнатура вызова не меняется; поля ответа (ok/groupId/boost/shardsBalance) теперь
+// корректно ложатся в res.data (раньше клиент читал их из обёртки {result} и получал undefined).
+export const leagueActivateGroupBoost = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  const db = admin.firestore();
+  const stableUid = await resolveStableUidForAuth(db, request.auth.uid, request.data?.stableId, { requireKnownIdentity: true });
+  return activateLeagueGroupBoostForStableUid(db, stableUid);
+});

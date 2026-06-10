@@ -605,6 +605,16 @@ const LessonContent = React.memo(function LessonContent({
   const [grammarHintText, setGrammarHintText] = useState<string | null>(null);
   const grammarHintAnim = useRef(new Animated.Value(0)).current;
   const grammarHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Вспышка плитки при тапе слова: { word, correct } — зелёная если верно, красная если нет.
+  // Чёткий визуальный отклик «выбрано/верно/неверно» (раньше плитка никак не реагировала).
+  const [flashWord, setFlashWord] = useState<{ word: string; correct: boolean } | null>(null);
+  const flashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerWordFlash = useCallback((word: string, correct: boolean) => {
+    if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
+    setFlashWord({ word, correct });
+    flashTimerRef.current = setTimeout(() => setFlashWord(null), 260);
+  }, []);
+  useEffect(() => () => { if (flashTimerRef.current) clearTimeout(flashTimerRef.current); }, []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const phraseTokens = phrase ? getPhraseTokens(phrase, studyTarget) : [];
@@ -1109,9 +1119,22 @@ const LessonContent = React.memo(function LessonContent({
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
                     opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
+                    {(() => {
+                      const isFlashing = flashWord?.word === word;
+                      const flashOk = isFlashing && flashWord?.correct;
+                      const flashBad = isFlashing && !flashWord?.correct;
+                      return (
                     <LessonPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
-                      style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14), alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
+                      style={{
+                        width: '100%',
+                        backgroundColor: flashOk ? t.correctBg : flashBad ? t.wrongBg : t.bgCard,
+                        paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14),
+                        alignItems: 'center', borderRadius: 12,
+                        borderWidth: isFlashing ? 1.5 : (themeMode === 'neon' ? 1 : 0.5),
+                        borderColor: flashOk ? t.correct : flashBad ? t.wrong : t.border,
+                        ...getCardShadow(themeMode, t.glow),
+                      }}
                       suppressFeedback={isDimmed}
                       onPress={() => {
                         if (isDimmed) return;
@@ -1123,13 +1146,17 @@ const LessonContent = React.memo(function LessonContent({
                           setTypedText(current ? current + ' ' + w : w);
                           setTimeout(() => textInputRef.current?.focus(), 50);
                         } else {
+                          // Вспышка плитки: зелёная если слово правильное для текущей позиции, иначе красная.
+                          triggerWordFlash(word, isCorrectOption);
                           handleWordPress(word);
                         }
                         requestAnimationFrame(() => { void hapticTap(); });
                       }}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
+                      <Text style={{ color: (flashOk || flashBad) ? '#fff' : t.textPrimary, fontSize: f.numMd, fontWeight: (flashOk || flashBad) ? '700' : '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
                     </LessonPressable>
+                      );
+                    })()}
                   </Animated.View>
                 );
               })}

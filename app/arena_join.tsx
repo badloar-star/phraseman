@@ -12,6 +12,7 @@ import { useEnergy } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
 import { joinArenaFriendRoomAsGuest } from './arena_friend_room_guest';
 import { safeRouterBack } from './navigation_back';
+import DuoPressable from '../components/DuoPressable';
 
 type RoomStatus = 'loading' | 'waiting' | 'not_found' | 'expired' | 'joining';
 
@@ -137,7 +138,7 @@ export default function DuelJoinScreen() {
                 pl: 'Zaproszono cię na pojedynek z angielskiego na Arenie.',
               })}
             </Text>
-            <TouchableOpacity onPress={handleJoin} activeOpacity={0.85} style={[styles.btn, { backgroundColor: t.accent }]}>
+            <DuoPressable onPress={handleJoin} edgeColor={t.accent} wrapStyle={{ marginTop: 8 }} style={[styles.btn, { backgroundColor: t.accent, marginTop: 0 }]}>
               <Text style={[styles.btnText, { color: t.correctText, fontSize: f.h2 }]}>
                 {triLang(lang, {
                   ru: 'Принять вызов',
@@ -150,7 +151,7 @@ export default function DuelJoinScreen() {
                   pl: 'Przyjmij wyzwanie',
                 })}
               </Text>
-            </TouchableOpacity>
+            </DuoPressable>
             <TouchableOpacity onPress={() => router.replace('/(tabs)/home' as any)} style={styles.decline}>
               <Text style={[{ color: t.textMuted, fontSize: f.body }]}>
                 {triLang(lang, { ru: 'Отказаться', uk: 'Відмовитися', es: 'Rechazar', 'pt-BR': 'Recusar', vi: 'Từ chối', id: 'Tolak', tr: 'Reddet', pl: 'Odrzuć' })}

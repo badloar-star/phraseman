@@ -56,6 +56,7 @@ import {
 import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
 import { usePremium } from './PremiumContext';
 import BouncyScrollView from './BouncyScrollView';
+import DuoPressable from './DuoPressable';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -1392,16 +1393,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               )}
             </Text>
             <View style={styles.planEntryCtas}>
-            <TouchableOpacity
+            <DuoPressable
               testID="onboarding-create-personal-plan"
               style={[styles.eliteWelcomeCta, styles.planEntryCta]}
+              edgeColor="#C4922A"
               onPress={() => goToStep('planGoal')}
-              activeOpacity={0.88}
             >
               <Text style={[styles.eliteWelcomeCtaText, styles.planEntryCtaText]}>
                 {triOb('Составить план под мою цель', 'Скласти план під мою ціль', 'Crear mi plan')}
               </Text>
-            </TouchableOpacity>
+            </DuoPressable>
             <TouchableOpacity
               testID="onboarding-continue-independently"
               style={[styles.eliteWelcomeSecondaryCta, styles.planEntrySecondaryCta]}
@@ -1568,19 +1569,19 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           })}
         </View>
         {canContinuePlanPhrase ? (
-        <TouchableOpacity
+        <DuoPressable
           style={[
             styles.eliteWelcomeCta,
             styles.planMockupPrimaryButton,
           ]}
-          activeOpacity={0.88}
+          edgeColor="#C4922A"
           onPress={() => {
             setPlanPhraseWasCorrect(!planPhraseHasError);
             goToStep('planLoading');
           }}
         >
           <Text style={styles.planMockupPrimaryButtonText}>Продолжить</Text>
-        </TouchableOpacity>
+        </DuoPressable>
         ) : null}
       </View>,
     );
@@ -1635,9 +1636,9 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           pointerEvents={planLoadingCtaReady ? 'auto' : 'none'}
           style={{ opacity: planLoadingButtonAnim }}
         >
-          <TouchableOpacity style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]} activeOpacity={0.88} onPress={() => goToStep('planResult')}>
+          <DuoPressable style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]} edgeColor="#C4922A" onPress={() => goToStep('planResult')}>
             <Text style={styles.planMockupPrimaryButtonText}>План готов</Text>
-          </TouchableOpacity>
+          </DuoPressable>
         </Animated.View>
       </View>,
     );
@@ -1652,14 +1653,14 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       todayIconAsset: selectedPlan.todayIconAsset,
       actions: (
         <>
-        <TouchableOpacity
+        <DuoPressable
           testID="data-plan-result-cta"
           style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]}
-          activeOpacity={0.88}
+          edgeColor="#C4922A"
           onPress={() => goToStep('planPaywall')}
         >
           <Text style={styles.planMockupPrimaryButtonText}>Это мой план — вперёд</Text>
-        </TouchableOpacity>
+        </DuoPressable>
         <TouchableOpacity style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]} activeOpacity={0.82} onPress={() => goToStep('planPicker')}>
           <Text style={styles.planMockupSecondaryButtonText}>Другие планы</Text>
         </TouchableOpacity>
@@ -1755,16 +1756,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity
+            <DuoPressable
               testID="data-plan-paywall-trial-cta"
               style={styles.eliteWelcomeCta}
-              activeOpacity={0.88}
+              edgeColor="#C4922A"
               onPress={handleStartPersonalPlanFromOnboarding}
             >
               <Text style={styles.eliteWelcomeCtaText}>
                 {storePrices.hasTrial ? 'Попробовать 3 дня бесплатно' : 'Открыть полный доступ'}
               </Text>
-            </TouchableOpacity>
+            </DuoPressable>
             <TouchableOpacity
               style={styles.eliteWelcomeSecondaryCta}
               activeOpacity={0.82}
@@ -1785,9 +1786,9 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   Персональный план открыт в Premium. Остальное работает в полном доступе. Разбор слабых мест и маршрут под цель — с планом.
                 </Text>
                 <View style={styles.planFreeConfirmActions}>
-                  <TouchableOpacity style={styles.eliteWelcomeCta} activeOpacity={0.88} onPress={() => setShowPlanFreeConfirm(false)}>
+                  <DuoPressable style={styles.eliteWelcomeCta} edgeColor="#C4922A" onPress={() => setShowPlanFreeConfirm(false)}>
                     <Text style={styles.eliteWelcomeCtaText}>Оставить план</Text>
-                  </TouchableOpacity>
+                  </DuoPressable>
                   <TouchableOpacity
                     style={styles.eliteWelcomeSecondaryCta}
                     activeOpacity={0.82}
@@ -1853,13 +1854,13 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       todayIconAsset: entry?.todayIconAsset ?? selectedPlan.todayIconAsset,
       actions: (
         <>
-        <TouchableOpacity
+        <DuoPressable
           style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]}
-          activeOpacity={0.88}
+          edgeColor="#C4922A"
           onPress={() => goToStep('planResult')}
         >
           <Text style={styles.planMockupPrimaryButtonText}>Выбрать этот план</Text>
-        </TouchableOpacity>
+        </DuoPressable>
         <TouchableOpacity
           style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]}
           activeOpacity={0.82}
@@ -1957,14 +1958,14 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             </View>
           </View>
 
-          <TouchableOpacity
+          <DuoPressable
             testID="onboarding-beta-continue"
             style={[styles.continueBtn, { width: '100%' }]}
+            edgeColor="#C4922A"
             onPress={() => goToStep('demo2')}
-            activeOpacity={0.85}
           >
             <Text style={styles.continueBtnText}>{pick('Понятно 👍', 'Зрозуміло 👍', 'Entendido 👍')}</Text>
-          </TouchableOpacity>
+          </DuoPressable>
         </BouncyScrollView>
       ),
     );
@@ -2019,16 +2020,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             </Animated.View>
 
             <View style={styles.eliteWelcomeBottom}>
-              <TouchableOpacity
+              <DuoPressable
                 testID="onboarding-welcome-continue"
                 style={styles.eliteWelcomeCta}
+                edgeColor="#C4922A"
                 onPress={() => goToStep('name')}
-                activeOpacity={0.88}
               >
                 <Text style={styles.eliteWelcomeCtaText}>
                   {triOb('Начать', 'Почати', 'Empezar')}
                 </Text>
-              </TouchableOpacity>
+              </DuoPressable>
               <Text style={styles.eliteWelcomeFootnote}>
                 {triOb('Без регистрации. Сразу в дело.', 'Без реєстрації. Одразу до діла.', 'Sin registro. Al grano.')}
               </Text>
@@ -2060,16 +2061,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               '+350 frases antes de terminar la semana.',
             )}
           </Text>
-          <TouchableOpacity
+          <DuoPressable
             testID="onboarding-welcome-continue"
             style={[styles.continueBtn, { width: '100%' }]}
+            edgeColor="#C4922A"
             onPress={() => goToStep('name')}
-            activeOpacity={0.85}
           >
             <Text style={styles.continueBtnText}>
               {triOb('Попробовать →', 'Спробувати →', 'Probar ahora →')}
             </Text>
-          </TouchableOpacity>
+          </DuoPressable>
         </>
       ),
       { justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 },
@@ -2493,17 +2494,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 maxFontSizeMultiplier={1.08}
               />
             </View>
-            <TouchableOpacity
+            <DuoPressable
               testID="onboarding-name-continue"
               style={[styles.eliteWelcomeCta, styles.regularNameCta, nameBusy && { opacity: 0.75 }]}
+              edgeColor="#C4922A"
               onPress={handleNameDone}
-              activeOpacity={0.88}
               disabled={nameBusy}
             >
               <Text style={styles.eliteWelcomeCtaText} maxFontSizeMultiplier={1.05}>
                 {pick('Продолжить', 'Продовжити', 'Continuar')}
               </Text>
-            </TouchableOpacity>
+            </DuoPressable>
           </BouncyScrollView>
         </KeyboardAvoidingView>
       ),
@@ -2757,16 +2758,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             ))}
           </View>
 
-          <TouchableOpacity
+          <DuoPressable
             testID="onboarding-streak-continue"
             style={[styles.continueBtn, onboardingPrimaryButtonStyle, { width: '100%' }]}
+            edgeColor="#C4922A"
             onPress={() => goToStep('auth')}
-            activeOpacity={0.85}
           >
             <Text style={[styles.continueBtnText, onboardingPrimaryButtonTextStyle]} maxFontSizeMultiplier={1.05}>
               {pick('Поехали', 'Погнали', 'Vamos')}
             </Text>
-          </TouchableOpacity>
+          </DuoPressable>
         </BouncyScrollView>
         </>
       ),

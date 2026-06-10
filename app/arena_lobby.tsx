@@ -57,6 +57,7 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '.
 import { getTodayArenaHillTop, subscribeTodayArenaHillThrone, type ArenaHillThrone, type ArenaHillTopEntry } from './services/arena_hill';
 import { subscribeArenaFeatureFlags, type ArenaFeatureFlags, } from './services/arena_feature_flags';
 import { safeRouterBack } from './navigation_back';
+import DuoPressable from '../components/DuoPressable';
 import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import {
     getOrRefreshIdleQueueHintCount,
@@ -1676,7 +1677,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
       </View>
 
       <BouncyWrap style={bouncyStyle}>
-      <ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled bounces alwaysBounceVertical overScrollMode="always" onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {/* INFO-зона — фиксированная высота над actions. Любая поздняя
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
@@ -1805,7 +1806,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
               <View style={styles.queueActionMorphRow}>
                 <Animated.View style={[styles.queueBtnSlot, { width: leftW, overflow: 'hidden' }]}>
                   {showMatchFound && (<Animated.View style={{ width: '100%', opacity: leftOp }}>
-                      <TouchableOpacity testID="arena-accept-match" activeOpacity={0.9} onPress={handleMatchFoundAccept} style={[styles.queueAcceptBtn, { backgroundColor: t.accent, borderColor: t.accent }]}>
+                      <DuoPressable testID="arena-accept-match" onPress={handleMatchFoundAccept} edgeColor={t.accent} style={[styles.queueAcceptBtn, { backgroundColor: t.accent, borderColor: t.accent }]}>
                         <Ionicons name="checkmark-circle" size={20} color={t.correctText}/>
                         <Text style={{ color: t.correctText, fontWeight: '900', fontSize: f.sub }}>
                           {triLang(lang, {
@@ -1819,7 +1820,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     pl: "AKCEPTUJ",
                 })}
                         </Text>
-                      </TouchableOpacity>
+                      </DuoPressable>
                     </Animated.View>)}
                 </Animated.View>
                 <Animated.View style={{ width: spacerW, flexShrink: 0 }}/>
@@ -2060,7 +2061,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             })}
                     </Text>
                     <View style={styles.arenaIncomingInviteActions}>
-                      <TouchableOpacity testID="arena-incoming-invite-accept" accessibilityLabel="qa-arena-incoming-invite-accept" accessibilityRole="button" accessibilityState={{ disabled: incomingArenaInviteBusy, busy: incomingArenaInviteBusy }} disabled={incomingArenaInviteBusy} activeOpacity={0.86} onPress={() => void handleIncomingArenaInviteAccept(incomingArenaInvite)} style={[styles.arenaIncomingInviteButton, { backgroundColor: arenaGlass.solidAccent, opacity: incomingArenaInviteBusy ? 0.58 : 1 }]}>
+                      <DuoPressable testID="arena-incoming-invite-accept" accessibilityLabel="qa-arena-incoming-invite-accept" accessibilityRole="button" accessibilityState={{ disabled: incomingArenaInviteBusy, busy: incomingArenaInviteBusy }} disabled={incomingArenaInviteBusy} onPress={() => void handleIncomingArenaInviteAccept(incomingArenaInvite)} edgeColor={arenaGlass.solidAccent} wrapStyle={{ opacity: incomingArenaInviteBusy ? 0.58 : 1 }} style={[styles.arenaIncomingInviteButton, { backgroundColor: arenaGlass.solidAccent }]}>
                         <Ionicons name="checkmark" size={17} color={t.correctText}/>
                         <Text style={[styles.arenaIncomingInviteButtonText, { color: t.correctText, fontSize: f.caption }]}>
                           {triLang(lang, {
@@ -2074,7 +2075,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     pl: 'Przyjmij',
                 })}
                         </Text>
-                      </TouchableOpacity>
+                      </DuoPressable>
                       <TouchableOpacity testID="arena-incoming-invite-decline" accessibilityLabel="qa-arena-incoming-invite-decline" accessibilityRole="button" accessibilityState={{ disabled: incomingArenaInviteBusy }} disabled={incomingArenaInviteBusy} activeOpacity={0.78} onPress={() => void handleIncomingArenaInviteDecline(incomingArenaInvite)} style={[styles.arenaIncomingInviteButton, styles.arenaIncomingInviteDecline, { borderColor: arenaGlass.innerBorder, opacity: incomingArenaInviteBusy ? 0.58 : 1 }]}>
                         <Ionicons name="close" size={17} color={screenMuted}/>
                         <Text style={[styles.arenaIncomingInviteButtonText, { color: screenMuted, fontSize: f.caption }]}>
@@ -2095,9 +2096,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 </View>) : null}
 
                 <View style={styles.arenaActionList}>
-                  <TouchableOpacity testID="arena-play-with-friend" accessibilityLabel="qa-arena-play-with-friend" accessible={true} accessibilityRole="button" accessibilityState={{ expanded: friendRoomId != null }} onPress={() => {
+                  <DuoPressable testID="arena-play-with-friend" accessibilityLabel="qa-arena-play-with-friend" accessible={true} accessibilityRole="button" accessibilityState={{ expanded: friendRoomId != null }} onPress={() => {
                 if (friendRoomId) {
-                    hapticTap();
                     friendUnsubRef.current?.();
                     sentInviteUnsubRef.current?.();
                     friendUnsubRef.current = null;
@@ -2108,7 +2108,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     return;
                 }
                 void handlePlayWithFriend();
-            }} activeOpacity={0.78} style={[styles.arenaCommandButton, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBg }]}>
+            }} edgeColor={arenaGlass.innerBorder} style={[styles.arenaCommandButton, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBg }]}>
                     <View style={[styles.arenaCommandIcon, {
                         backgroundColor: 'transparent',
                         borderColor: 'transparent',
@@ -2147,7 +2147,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                       </Text>
                     </View>
                     <Ionicons name={friendRoomId ? 'chevron-up' : 'chevron-down'} size={18} color={screenMuted}/>
-                  </TouchableOpacity>
+                  </DuoPressable>
 
                   {friendRoomId && (<View testID="arena-friend-panel" style={[styles.arenaFriendsPanel, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
                       {arenaFriends.length > 0 ? (<>
@@ -2188,14 +2188,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
                                 </TouchableOpacity>);
                     })}
                           </ScrollView>
-                          {arenaFriendPickUid != null && (<TouchableOpacity testID={`arena-send-friend-invite-${arenaFriendPickUid}`} accessibilityLabel="qa-arena-send-friend-invite" accessibilityRole="button" accessibilityState={{
+                          {arenaFriendPickUid != null && (<DuoPressable testID={`arena-send-friend-invite-${arenaFriendPickUid}`} accessibilityLabel="qa-arena-send-friend-invite" accessibilityRole="button" accessibilityState={{
                             disabled: arenaInviteSendingUid != null || !friendRoomReady,
                             busy: arenaInviteSendingUid != null || !friendRoomReady,
-                        }} activeOpacity={0.86} disabled={arenaInviteSendingUid != null || !friendRoomReady} onPress={() => void handleSendInAppInviteToFriend(arenaFriendPickUid)} style={[
+                        }} disabled={arenaInviteSendingUid != null || !friendRoomReady} onPress={() => void handleSendInAppInviteToFriend(arenaFriendPickUid)} edgeColor={arenaGlass.solidAccent} wrapStyle={{ marginHorizontal: 12, opacity: arenaInviteSendingUid != null || !friendRoomReady ? 0.55 : 1 }} style={[
                             styles.arenaInviteButton,
                             {
                                 backgroundColor: arenaGlass.solidAccent,
-                                opacity: arenaInviteSendingUid != null || !friendRoomReady ? 0.55 : 1,
+                                marginHorizontal: 0,
                             },
                         ]}>
                           <Ionicons name="flash" size={18} color={t.correctText}/>
@@ -2233,7 +2233,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                                     pl: "Rzuć wyzwanie",
                                 })}
                               </Text>
-                            </TouchableOpacity>)}
+                            </DuoPressable>)}
                         </>) : (<View testID="arena-friend-empty" style={styles.arenaFriendEmpty}>
                           <Ionicons name="person-add-outline" size={20} color={arenaGlass.accent}/>
                           <Text style={[styles.arenaFriendEmptyText, { color: screenMuted, fontSize: f.caption }]}>

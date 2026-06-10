@@ -69,6 +69,15 @@ export interface SpeakingPanelProps {
   onPass?: (result: { score: number; transcript: string }) => void;
   /** Called when the user closes the panel. */
   onClose: () => void;
+  /**
+   * DEV/QA only. When set, the panel mounts in this status and the mic is
+   * inert (no permission request, no native speech module) so every visual
+   * state can be inspected from the in-app admin lab. Has no effect in normal
+   * use — production hosts never pass it.
+   */
+  previewStatus?: SpeakingPanelStatus;
+  /** DEV/QA only. Fixed score shown for the passed/failed preview states. */
+  previewScore?: number;
 }
 
 type SpeechModule = {
@@ -101,11 +110,20 @@ export function SpeakingPanel({
   recognitionLocale = 'en-US',
   onPass,
   onClose,
+  previewStatus,
+  previewScore,
 }: SpeakingPanelProps) {
-  const speech = useMemo(loadSpeechModule, []);
-  const [status, setStatus] = useState<SpeakingPanelStatus>('idle');
+  const isPreview = previewStatus != null;
+  // In preview mode the native speech module is never touched, so permission
+  // prompts and recognition stay inert while the visual state is inspected.
+  const speech = useMemo(() => (isPreview ? null : loadSpeechModule()), [isPreview]);
+  const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const [transcript, setTranscript] = useState('');
-  const [score, setScore] = useState<number | null>(null);
+  const [score, setScore] = useState<number | null>(
+    isPreview && (previewStatus === 'passed' || previewStatus === 'failed')
+      ? previewScore ?? (previewStatus === 'passed' ? 97 : 45)
+      : null,
+  );
   const listenersRef = useRef<Array<{ remove?: () => void }>>([]);
   const mountedRef = useRef(true);
 
@@ -156,6 +174,7 @@ export function SpeakingPanel({
   }, [speech]);
 
   const startListening = useCallback(async () => {
+    if (isPreview) return; // mic is inert while previewing a fixed status
     if (!speech) {
       setStatus('unavailable');
       return;
@@ -215,7 +234,7 @@ export function SpeakingPanel({
     } catch {
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [speech, recognitionLocale, cleanupListeners, finishAttempt]);
+  }, [isPreview, speech, recognitionLocale, cleanupListeners, finishAttempt]);
 
   useEffect(() => {
     mountedRef.current = true;

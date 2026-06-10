@@ -1,6 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
+import DuoPressable from '../components/DuoPressable';
+import { useWordFlash } from '../hooks/use-word-flash';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -551,6 +553,8 @@ export default function ExamScreen() {
       tension: 140,
     }).start();
   }, [countdownNum, phase, countdownAnim]);
+
+  const { flashKey, flash } = useWordFlash();
 
   const handleAnswer = (ci: number) => {
     setChoices(prev => { const n=[...prev]; n[idx]=ci; return n; });
@@ -1520,16 +1524,23 @@ export default function ExamScreen() {
         <ClozeGapText text={q.q} style={{color:sx.primary,fontSize:f.h2+4,fontWeight:'500',lineHeight:32,marginBottom:20}} />
 
         {(q.opts ?? []).map((opt,ci)=>{
-          let bg=t.bgCard, border=t.border, tc=t.textPrimary;
-          if(chosen===ci){ bg=t.bgSurface; border=t.textSecond; }
+          const on = flashKey === `${ci}`;
+          let bg = on ? t.accent : t.bgCard;
+          let border = on ? t.accent : t.border;
+          let tc = on ? (t.correctText ?? '#fff') : t.textPrimary;
+          if(chosen===ci && !on){ bg=t.bgSurface; border=t.textSecond; }
           return(
-            <TouchableOpacity key={ci}
-              style={{backgroundColor:bg,borderWidth:chosen===ci?2:1,borderColor:border,borderRadius:14,padding:16,marginBottom:10}}
-              onPress={()=>handleAnswer(ci)}
-              activeOpacity={0.8}
+            <DuoPressable
+              key={ci}
+              edgeHeight={5}
+              withHaptic={false}
+              edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+              wrapStyle={{ marginBottom: 10 }}
+              style={{backgroundColor:bg,borderWidth:on?1.5:(chosen===ci?2:1),borderColor:border,borderRadius:14,padding:16}}
+              onPress={()=>{ flash(`${ci}`); handleAnswer(ci); }}
             >
-              <Text style={{color:tc,fontSize:f.body,fontWeight:'500'}}>{opt}</Text>
-            </TouchableOpacity>
+              <Text style={{color:tc,fontSize:f.body,fontWeight: on ? '700' : '500'}}>{opt}</Text>
+            </DuoPressable>
           );
         })}
       </BouncyScrollView>

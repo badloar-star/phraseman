@@ -31,6 +31,8 @@ import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import DuoPressable from '../components/DuoPressable';
+import { useWordFlash } from '../hooks/use-word-flash';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import {
   getDueItems,
@@ -102,6 +104,7 @@ function WordBankMode({ item, onResult }: WordBankProps) {
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
   const shakeAnim = useRef(new Animated.Value(0)).current;
+  const { flashKey, flash } = useWordFlash();
 
   const correctTokens = tokenizeRecallPhrase(item.key);
 
@@ -205,16 +208,37 @@ function WordBankMode({ item, onResult }: WordBankProps) {
 
       {/* Банк слов */}
       <View style={styles.tilesRow}>
-        {bank.map(tile => (
-          <TouchableOpacity
-            key={tile.slot}
-            onPress={() => tapBank(tile)}
-            style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 8 : 10, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body }]}>{tile.text}</Text>
-          </TouchableOpacity>
-        ))}
+        {bank.map(tile => {
+          const tileKey = `${tile.slot}`;
+          const on = flashKey === tileKey;
+          return (
+            <DuoPressable
+              key={tile.slot}
+              withHaptic={false}
+              edgeHeight={5}
+              edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+              style={[
+                styles.tile,
+                isCompassTheme && compassShadow(1),
+                {
+                  backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard),
+                  borderColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border),
+                  borderWidth: on ? 1.5 : 1,
+                  borderRadius: isCompassTheme ? 8 : 10,
+                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                },
+              ]}
+              onPress={() => {
+                flash(tileKey);
+                requestAnimationFrame(() => { void hapticTap(); });
+                tapBank(tile);
+              }}
+            >
+              {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+              <Text style={[styles.tileText, { color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.body, fontWeight: on ? '700' : '600' }]}>{tile.text}</Text>
+            </DuoPressable>
+          );
+        })}
       </View>
 
       {/* Кнопка проверки */}
@@ -262,6 +286,7 @@ function FillGapMode({ item, onResult }: FillGapProps) {
   const isCompassTheme = themeMode === 'compass';
   const { playCorrect } = useCorrectSound();
   const { lang } = useLang();
+  const { flashKey, flash } = useWordFlash();
   const errorWord = item.errorWord ?? '';
   const [options] = useState(() => buildTrainerFillGapOptions({
     correctWord: errorWord,
@@ -324,25 +349,43 @@ function FillGapMode({ item, onResult }: FillGapProps) {
         {options.map(opt => {
           const isChosen = chosen === opt;
           const isCorrect = opt.toLowerCase() === errorWord.toLowerCase();
-          let bg = isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard;
-          let bc = isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border;
-          let tc = t.textPrimary;
+          const on = flashKey === opt;
+          let bg = on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard);
+          let bc = on ? t.accent : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border);
+          let tc = on ? (t.correctText ?? '#fff') : t.textPrimary;
           let opacity = 1;
           if (isChosen && feedback === 'correct') { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; bc = isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
           if (isChosen && feedback === 'wrong')   { bg = isCompassTheme ? COMPASS_RICH.copperWash : t.wrongBg; bc = isCompassTheme ? COMPASS_RICH.copper : t.wrong; tc = isCompassTheme ? COMPASS_RICH.peach : t.wrong; }
           if (!isChosen && feedback !== 'none' && isCorrect) { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; bc = isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
           if (feedback !== 'none' && !isChosen && !isCorrect) opacity = 0.58;
           return (
-            <TouchableOpacity
+            <DuoPressable
               key={opt}
-              onPress={() => pick(opt)}
+              withHaptic={false}
               disabled={feedback !== 'none'}
-              activeOpacity={0.82}
-              style={[styles.optionBtn, isCompassTheme && compassShadow(feedback === 'none' ? 1 : 2), { backgroundColor: bg, borderColor: bc, borderRadius: isCompassTheme ? 9 : 14, overflow: isCompassTheme ? 'hidden' : 'visible', opacity }]}
+              edgeHeight={5}
+              edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+              style={[
+                styles.optionBtn,
+                isCompassTheme && compassShadow(feedback === 'none' ? 1 : 2),
+                {
+                  backgroundColor: bg,
+                  borderColor: bc,
+                  borderWidth: on ? 1.5 : 1.5,
+                  borderRadius: isCompassTheme ? 9 : 14,
+                  overflow: isCompassTheme ? 'hidden' : 'visible',
+                  opacity,
+                },
+              ]}
+              onPress={() => {
+                flash(opt);
+                requestAnimationFrame(() => { void hapticTap(); });
+                pick(opt);
+              }}
             >
               {isCompassTheme ? <CompassDepthSurface radius={9} selected={feedback !== 'none' && (isChosen || isCorrect)} quiet={feedback === 'none'} /> : null}
-              <Text style={[styles.optionText, { color: tc, fontSize: f.body }]}>{opt}</Text>
-            </TouchableOpacity>
+              <Text style={[styles.optionText, { color: tc, fontSize: f.body, fontWeight: on ? '700' : '700' }]}>{opt}</Text>
+            </DuoPressable>
           );
         })}
       </View>

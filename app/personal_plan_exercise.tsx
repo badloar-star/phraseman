@@ -19,6 +19,8 @@ import {
 } from './personal_plan_pronunciation_scoring_client';
 import { ExpoSpeechRecognitionModule as speechModule } from 'expo-speech-recognition';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import DuoPressable from '../components/DuoPressable';
+import { useWordFlash } from '../hooks/use-word-flash';
 import type { PersonalPlanId } from './personal_plan_catalog';
 import { hasAuthoredPlanContent } from './plan_content_registry';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -684,6 +686,7 @@ export default function PersonalPlanExerciseScreen() {
   const [recallItems, setRecallItems] = useState<PersonalPlanPhraseRecallItem[]>([]);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
   const [pronunciationScoring, setPronunciationScoring] = useState(false);
+  const { flashKey, flash } = useWordFlash();
   const isMissingWordMode = rendererType === 'plan_missing_word';
   const isChoiceMode = rendererType === 'plan_choose_natural_phrase';
   const isListeningMode = rendererType === 'plan_listen_choose';
@@ -1095,21 +1098,33 @@ export default function PersonalPlanExerciseScreen() {
                   const usedCount = buildWords.filter((value) => value === word).length;
                   const availableCount = item.wordOptions.filter((value) => value === word).length;
                   const disabled = Boolean(lastResult) || saving || usedCount >= availableCount || buildWords.length >= item.targetWords.length;
+                  const tileKey = `${wordIndex}`;
+                  const on = flashKey === tileKey;
                   return (
-                    <TouchableOpacity
+                    <DuoPressable
                       key={`${word}:${wordIndex}`}
-                      activeOpacity={0.82}
-                      accessibilityRole="button"
                       accessibilityLabel={`Добавить слово: ${word}`}
+                      withHaptic={false}
                       disabled={disabled}
+                      edgeHeight={5}
+                      edgeColor={on ? accent : 'rgba(0,0,0,0.30)'}
+                      style={[
+                        styles.wordTile,
+                        {
+                          backgroundColor: on ? accent : t.bgCard,
+                          borderColor: on ? accent : t.border,
+                          borderWidth: on ? 1.5 : 1.5,
+                          opacity: disabled ? 0.42 : 1,
+                        },
+                      ]}
                       onPress={() => {
-                        hapticTap();
+                        flash(tileKey);
+                        requestAnimationFrame(() => { void hapticTap(); });
                         setBuildWords((current) => [...current, word]);
                       }}
-                      style={[styles.wordTile, { backgroundColor: t.bgCard, borderColor: t.border, opacity: disabled ? 0.42 : 1 }]}
                     >
-                      <Text style={[styles.wordTileText, { color: t.textPrimary }]}>{word}</Text>
-                    </TouchableOpacity>
+                      <Text style={[styles.wordTileText, { color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontWeight: on ? '700' : '700' }]}>{word}</Text>
+                    </DuoPressable>
                   );
                 })}
               </View>
@@ -1256,10 +1271,13 @@ export default function PersonalPlanExerciseScreen() {
                   const isCorrect = option === currentCorrectAnswer;
                   const isWrong = lastResult && isSelected && !isCorrect;
                   const isRight = lastResult && isSelected && isCorrect;
+                  const on = flashKey === option;
                   const borderColor = isRight
                     ? t.correct
                     : isWrong
                     ? t.wrong
+                    : on
+                    ? accent
                     : isSelected
                     ? accent
                     : t.border;
@@ -1267,35 +1285,46 @@ export default function PersonalPlanExerciseScreen() {
                     ? t.correctBg
                     : isWrong
                     ? t.wrongBg
+                    : on
+                    ? accent
                     : t.bgCard;
-                  const textColor = isRight ? t.correct : isWrong ? t.wrong : t.textPrimary;
+                  const textColor = isRight
+                    ? t.correct
+                    : isWrong
+                    ? t.wrong
+                    : on
+                    ? (t.correctText ?? '#fff')
+                    : t.textPrimary;
                   return (
-                    <TouchableOpacity
+                    <DuoPressable
                       key={option}
-                      activeOpacity={0.82}
-                      accessibilityRole="button"
                       accessibilityLabel={`Выбрать ответ: ${option}`}
+                      withHaptic={false}
                       disabled={Boolean(lastResult) || saving}
+                      edgeHeight={5}
+                      edgeColor={on ? accent : 'rgba(0,0,0,0.30)'}
+                      wrapStyle={useGridOptions ? styles.optionGridWrap : undefined}
+                      style={[
+                        useGridOptions ? styles.optionGridSurface : styles.option,
+                        { backgroundColor: bgColor, borderColor, borderWidth: on ? 1.5 : (useGridOptions ? 0.5 : 1) },
+                      ]}
                       onPress={() => {
-                        hapticTap();
+                        flash(option);
+                        requestAnimationFrame(() => { void hapticTap(); });
                         void submit(option);
                       }}
-                      style={[
-                        useGridOptions ? styles.optionGrid : styles.option,
-                        { backgroundColor: bgColor, borderColor },
-                      ]}
                     >
                       <Text
                         style={[
                           useGridOptions ? styles.optionGridText : styles.optionText,
-                          { color: textColor },
+                          { color: textColor, fontWeight: on ? '700' : (useGridOptions ? '500' : '600') },
                         ]}
                         numberOfLines={useGridOptions ? 1 : undefined}
                         adjustsFontSizeToFit={useGridOptions}
                       >
                         {option}
                       </Text>
-                    </TouchableOpacity>
+                    </DuoPressable>
                   );
                 })}
               </View>
@@ -1398,6 +1427,8 @@ type PersonalPlanExerciseStyles = {
   option: ViewStyle;
   optionText: TextStyle;
   optionGrid: ViewStyle;
+  optionGridWrap: ViewStyle;
+  optionGridSurface: ViewStyle;
   optionGridText: TextStyle;
   explain: ViewStyle;
   explainTitle: TextStyle;
@@ -1723,6 +1754,16 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     paddingHorizontal: 8,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  optionGridWrap: {
+    width: '48%',
+    marginBottom: 10,
+  },
+  optionGridSurface: {
+    borderRadius: 12,
+    borderWidth: 0.5,
+    paddingVertical: 14,
+    paddingHorizontal: 8,
   },
   optionGridText: { fontSize: 20, lineHeight: 25, fontWeight: '500', textAlign: 'center' },
 });

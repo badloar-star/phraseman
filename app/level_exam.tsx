@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
+import DuoPressable from '../components/DuoPressable';
+import { useWordFlash } from '../hooks/use-word-flash';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -672,6 +674,8 @@ export default function LevelExam() {
     setShowAnswer(false);
     setPhase('quiz');
   }, [frenchExamBlocked, questions.length, lvl, studyTarget]);
+
+  const { flashKey, flash } = useWordFlash();
 
   const handlePick = (ci: number) => {
     if (chosen !== null) return;
@@ -1512,29 +1516,33 @@ export default function LevelExam() {
           {/* Варианты ответов */}
           <View style={{ gap: 10 }}>
             {(q.opts ?? []).map((opt, ci) => {
+              const on = flashKey === `${ci}`;
               const isChosen  = chosen === ci;
               const isOptCorrect = ci === q.correct;
-              let bg = t.bgCard;
-              let border = t.border;
-              let textColor = t.textPrimary;
-              if (showAnswer && isOptCorrect)  { bg = t.correctBg ?? t.bgCard; border = t.correct; textColor = t.correct; }
-              if (showAnswer && isChosen && !isOptCorrect) { bg = '#3A1A1A'; border = t.wrong; textColor = t.wrong; }
+              let bg = on ? t.accent : t.bgCard;
+              let border = on ? t.accent : t.border;
+              let textColor = on ? (t.correctText ?? '#fff') : t.textPrimary;
+              if (!on && showAnswer && isOptCorrect)  { bg = t.correctBg ?? t.bgCard; border = t.correct; textColor = t.correct; }
+              if (!on && showAnswer && isChosen && !isOptCorrect) { bg = '#3A1A1A'; border = t.wrong; textColor = t.wrong; }
               return (
-                <TouchableOpacity
+                <DuoPressable
                   key={ci}
-                  onPress={() => handlePick(ci)}
+                  edgeHeight={5}
+                  withHaptic={false}
+                  edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+                  style={{ backgroundColor: bg, borderRadius: 14, borderWidth: on ? 1.5 : 1.5, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
+                  onPress={() => { flash(`${ci}`); handlePick(ci); }}
                   disabled={chosen !== null}
-                  style={{ backgroundColor: bg, borderRadius: 14, borderWidth: 1.5, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
                 >
                   <View style={{ width: 26, height: 26, borderRadius: 13, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
                       {['A','B','C','D'][ci]}
                     </Text>
                   </View>
-                  <Text style={{ color: textColor, fontSize: f.body, flex: 1 }}>{opt}</Text>
+                  <Text style={{ color: textColor, fontSize: f.body, fontWeight: on ? '700' : '400', flex: 1 }}>{opt}</Text>
                   {showAnswer && isOptCorrect && <Ionicons name="checkmark-circle" size={20} color={t.correct} />}
                   {showAnswer && isChosen && !isOptCorrect && <Ionicons name="close-circle" size={20} color={t.wrong} />}
-                </TouchableOpacity>
+                </DuoPressable>
               );
             })}
           </View>

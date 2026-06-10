@@ -1,5 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import DuoPressable from '../components/DuoPressable';
+import { useWordFlash } from '../hooks/use-word-flash';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -2647,6 +2649,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { playCorrect } = useCorrectSound();
+  const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme:t, f, themeMode } = useTheme();
   const { s } = useLang();
@@ -3124,12 +3127,16 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
             if (isCorrect)       { bg = t.correctBg; borderColor = t.correct; tc = t.correct; bw = 1.5; }
             else if (isSelected) { bg = t.wrongBg;   borderColor = t.wrong;   tc = t.wrong;   bw = 1.5; }
           }
+          const on = flashKey === `${i}`;
           return (
-            <TouchableOpacity key={i}
+            <DuoPressable key={i}
               testID={isCorrect ? 'lesson-words-option-correct' : `lesson-words-option-${i}`}
-              style={{ width:'48%', minHeight:68, paddingVertical:12, paddingHorizontal:10, borderRadius:16, alignItems:'center', justifyContent:'center', borderWidth:bw, backgroundColor:bg, borderColor }}
-              onPress={() => { hapticTap(); handleChoice(opt); }}
-              activeOpacity={0.72}
+              edgeHeight={5}
+              withHaptic={false}
+              edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+              wrapStyle={{ width:'48%' }}
+              style={{ minHeight:68, paddingVertical:12, paddingHorizontal:10, borderRadius:16, borderWidth: on ? 1.5 : bw, backgroundColor: on ? t.accent : bg, borderColor: on ? t.accent : borderColor }}
+              onPress={() => { if (chosen !== null) return; flash(`${i}`); requestAnimationFrame(() => { void hapticTap(); }); handleChoice(opt); }}
               disabled={chosen !== null}
             >
               {chosen !== null && isCorrect && (
@@ -3142,8 +3149,8 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
                   <Ionicons name="close-circle" size={15} color={t.wrong} />
                 </View>
               )}
-              <Text style={{ color:tc, fontSize:f.h2, fontWeight:'500', textAlign:'center' }} numberOfLines={2} adjustsFontSizeToFit>{opt}</Text>
-            </TouchableOpacity>
+              <Text style={{ color: on ? (t.correctText ?? '#fff') : tc, fontSize:f.h2, fontWeight: on ? '700' : '500', textAlign:'center' }} numberOfLines={2} adjustsFontSizeToFit>{opt}</Text>
+            </DuoPressable>
           );
         })}
       </View>

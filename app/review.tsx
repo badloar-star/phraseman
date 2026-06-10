@@ -26,6 +26,8 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import DuoPressable from '../components/DuoPressable';
+import { useWordFlash } from '../hooks/use-word-flash';
 import PopUpActionButton from '../components/PopUpActionButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -627,6 +629,7 @@ export default function ReviewScreen() {
   const { studyTarget } = useStudyTarget();
   const srsReviewGateOpen = srsReviewContentAvailableForTarget(studyTarget);
   const { playCorrect } = useCorrectSound();
+  const { flashKey, flash } = useWordFlash();
   // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
   const params = useLocalSearchParams<{
     trainerMode?: string;
@@ -1488,27 +1491,32 @@ export default function ReviewScreen() {
           {/* Задание: банк слов / выбор перевода / ввод */}
           {mode === 'word_bank' && bankTiles.length > 0 && (
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: isPlanPracticeTask ? 6 : 10, marginBottom: isPlanPracticeTask ? 8 : 16, justifyContent: 'center' }}>
-              {bankTiles.map(tile => (
-                <TouchableOpacity
+              {bankTiles.map(tile => {
+                const on = flashKey === `wb-${tile.slot}`;
+                return (
+                <DuoPressable
                   key={`wb-${tile.slot}`}
-                  onPress={() => onWordBankTap(tile)}
+                  edgeHeight={5}
+                  withHaptic={false}
+                  edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+                  onPress={() => { flash(`wb-${tile.slot}`); onWordBankTap(tile); }}
                   disabled={status !== 'playing'}
-                  activeOpacity={0.85}
                   style={{
-                    backgroundColor: t.bgCard,
+                    backgroundColor: on ? t.accent : t.bgCard,
                     borderRadius: 14,
                     paddingVertical: isPlanPracticeTask ? 8 : 12,
                     paddingHorizontal: isPlanPracticeTask ? 12 : 16,
                     borderWidth: 1.5,
-                    borderColor: t.border,
+                    borderColor: on ? t.accent : t.border,
                     opacity: status === 'playing' ? 1 : 0.4,
                   }}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }} numberOfLines={1}>
+                  <Text style={{ color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }} numberOfLines={1}>
                     {tile.text}
                   </Text>
-                </TouchableOpacity>
-              ))}
+                </DuoPressable>
+                );
+              })}
             </View>
           )}
 
@@ -1516,30 +1524,33 @@ export default function ReviewScreen() {
             <View style={{ gap: isPlanPracticeTask ? 7 : 10, marginBottom: isPlanPracticeTask ? 8 : 16 }}>
               {meaningOptions.map((opt, j) => {
                 const st = mcOptionStyle(opt);
+                const on = flashKey === `mm-${j}`;
                 return (
-                  <TouchableOpacity
+                  <DuoPressable
                     key={`mean-${j}-${opt.slice(0, 20)}`}
-                    onPress={() => onMeaningPick(opt)}
+                    edgeHeight={5}
+                    withHaptic={false}
+                    edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+                    onPress={() => { flash(`mm-${j}`); onMeaningPick(opt); }}
                     disabled={status !== 'playing'}
-                    activeOpacity={0.85}
                     style={{
-                      backgroundColor: st.bg,
+                      backgroundColor: on ? t.accent : st.bg,
                       borderRadius: 14,
                       paddingVertical: isPlanPracticeTask ? 8 : 12,
                       paddingHorizontal: 14,
                       borderWidth: 1.5,
-                      borderColor: st.border,
+                      borderColor: on ? t.accent : st.border,
                       opacity: st.opacity,
                     }}
                   >
                     <Text
-                      style={{ color: st.color, fontSize: isPlanPracticeTask ? f.caption : f.body, fontWeight: '600', textAlign: 'left', lineHeight: isPlanPracticeTask ? 18 : 22 }}
+                      style={{ alignSelf: 'stretch', color: on ? (t.correctText ?? '#fff') : st.color, fontSize: isPlanPracticeTask ? f.caption : f.body, fontWeight: on ? '700' : '600', textAlign: 'left', lineHeight: isPlanPracticeTask ? 18 : 22 }}
                       adjustsFontSizeToFit={isPlanPracticeTask}
                       numberOfLines={isPlanPracticeTask ? 2 : undefined}
                     >
                       {opt}
                     </Text>
-                  </TouchableOpacity>
+                  </DuoPressable>
                 );
               })}
             </View>

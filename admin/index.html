@@ -24427,11 +24427,39 @@
           <div class="cp-pack-updated">Updated: ${escapeHtml(p.updatedAt || '-')}</div>
         </div>
         <div class="rc-right cp-pack-actions">
+          <button type="button" onclick="viewCardPackContent('${safeId}')">👁 Карточки</button>
           <button type="button" onclick="editCardPack('${safeId}')">Edit</button>
           <button type="button" onclick="toggleCardPackStatus('${safeId}')">${isPub ? 'Unpublish' : 'Publish'}</button>
         </div>
       </div>`;
     }).join('');
+  };
+
+  // View the actual cards inside a card_pack — reuses the flip-tile preview overlay.
+  window.viewCardPackContent = async function(packId) {
+    let p = (_cardPacks || []).find(x => x.id === packId);
+    try {
+      // The cards array may not be on the list doc; fetch fresh if missing.
+      if (!p || !Array.isArray(p.cards)) {
+        const snap = await getDoc(doc(db, 'card_packs', packId));
+        if (!snap.exists()) { showToast('Пак не найден: ' + packId, 'err'); return; }
+        p = { id: snap.id, ...(snap.data() || {}) };
+      }
+      if (!Array.isArray(p.cards) || !p.cards.length) {
+        showToast('У пака нет инлайн-карточек (cards). Возможно, контент в подколлекции — смотри Firebase console.', 'warn');
+        return;
+      }
+      if (typeof openCpPackPreviewFromPayload === 'function') {
+        openCpPackPreviewFromPayload({
+          cards: p.cards, studyTarget: p.studyTarget, cardThemeKey: p.cardThemeKey,
+          titleRu: p.titleRu, titleUk: p.titleUk, title: p.titleRu || p.titleUk || p.id, priceShards: p.priceShards,
+        }, p.id);
+      } else {
+        showToast('Просмотрщик недоступен', 'err');
+      }
+    } catch (e) {
+      showToast('Ошибка: ' + (e && e.message ? e.message : e), 'err');
+    }
   };
 
   window.editCardPack = async function editCardPack(packId) {

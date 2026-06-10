@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { defineSecret } from 'firebase-functions/params';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
+import { HttpsError, onCall } from 'firebase-functions/v2/https';
 
 /**
  * AI triage for moderation queues.
@@ -130,5 +131,54 @@ export const triageOnUserReport = onDocumentCreated(
     } catch (error) {
       console.error('[adminTriage] write user_report verdict failed', error);
     }
+  },
+);
+
+// ── On-demand backlog triage (admin button) ──────────────────────────────────
+// Triages up to `limit` already-existing reports that have no `triage` yet.
+// Admin-only. Lets the admin see priority badges on the existing queue instead
+// of waiting for only-new reports to be processed.
+function buildContentPrompt(d: FirebaseFirestore.DocumentData): string {
+  return [
+    `Экран: ${clamp(d.screen, 80)}`,
+    `Категория: ${clamp(d.category, 80)}`,
+    `dataId: ${clamp(d.dataId, 180)}`,
+    `Текст/контекст: ${clamp(d.dataText || d.context, 1500)}`,
+    d.userAnswer ? `Ответ пользователя: ${clamp(d.userAnswer, 200)}` : '',
+  ].filter(Boolean).join('\n');
+}
+function buildUserPrompt(d: FirebaseFirestore.DocumentData): string {
+  return [
+    `Причина жалобы: ${clamp(d.reason, 120)}`,
+    `Ник нарушителя: ${clamp(d.reportedName, 80)}`,
+    `Экран: ${clamp(d.screen, 80)}`,
+    d.comment ? `Комментарий: ${clamp(d.comment, 300)}` : '',
+  ].filter(Boolean).join('\n');
+}
+
+export const triageBacklog = onCall(
+  { region: REGION, secrets: [OPENAI_API_KEY], timeoutSeconds: 300 },
+  async (request) => {
+    if (!request.auth?.token?.admin) {
+      throw new HttpsError('permission-denied', 'Admin only');
+    }
+    const which = String(request.data?.which || 'error') === 'user' ? 'user' : 'error';
+    const max = Math.max(1, Math.min(40, Number(request.data?.limit) || 20));
+    const collName = which === 'user' ? 'user_reports' : 'error_reports';
+    const sys = which === 'user' ? USER_SYSTEM : CONTENT_SYSTEM;
+    const buildPrompt = which === 'user' ? buildUserPrompt : buildContentPrompt;
+    const db = admin.firestore();
+    // Fetch recent docs, then process the ones still missing a verdict.
+    const snap = await db.collection(collName).orderBy('createdAt', 'desc').limit(max * 3).get();
+    const pending = snap.docs.filter((doc) => !doc.data().triage).slice(0, max);
+    let done = 0, failed = 0;
+    for (const doc of pending) {
+      const verdict = await runTriage(sys, buildPrompt(doc.data()));
+      if (verdict) {
+        try { await doc.ref.set({ triage: verdict }, { merge: true }); done++; }
+        catch { failed++; }
+      } else { failed++; }
+    }
+    return { collection: collName, scanned: snap.size, processed: done, failed, remaining: Math.max(0, snap.docs.filter((d) => !d.data().triage).length - done) };
   },
 );

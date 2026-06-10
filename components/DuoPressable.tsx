@@ -101,6 +101,12 @@ function DuoPressable({
     return { transform: [{ translateY: interpolate(depth, [0, 1], [0, edgeHeight]) }] };
   });
 
+  // Кромка должна повторять скругление ЛИЦА, иначе цветная кромка снизу торчит
+  // с другим радиусом углов и объём читается «сломанным» (углы кромки острее
+  // углов кнопки). Берём borderRadius из переданного style лица.
+  const flatFace = StyleSheet.flatten(style) as ViewStyle | undefined;
+  const faceRadius = typeof flatFace?.borderRadius === 'number' ? flatFace.borderRadius : undefined;
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -120,6 +126,7 @@ function DuoPressable({
         style={[
           styles.edge,
           { top: edgeHeight },
+          faceRadius != null ? { borderRadius: faceRadius } : null,
           edgeColor ? { backgroundColor: edgeColor } : styles.edgeDefault,
         ]}
       />

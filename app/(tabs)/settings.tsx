@@ -59,7 +59,7 @@ import {
   studyTargetsForSourceLocale,
 } from '../study_target';
 import { triLang, type Lang } from '../../constants/i18n';
-import { SETTINGS_TESTERS_ROUTE, ADMIN_CELEBRATION_LAB_ROUTE } from '../../constants/devRoutes';
+import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { reserveName } from '../firestore_leaderboard';
@@ -534,57 +534,6 @@ export default function SettingsMain() {
             {L('Настройки', 'Налаштування', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
           </Text>
         </View>
-
-        {/* ── DEV: Превью празднований (самый верх, только для разработчика) ──────── */}
-        {ENABLE_DEV_TOOLS && (
-          <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: 4 }}>
-            <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
-              {L('Дизайн-лаборатория (DEV)', 'Дизайн-лабораторія (DEV)', 'Laboratorio de diseño (DEV)', 'Laboratório de design (DEV)', 'Phòng thiết kế (DEV)', 'Lab desain (DEV)', 'Tasarım laboratuvarı (DEV)', 'Laboratorium projektowe (DEV)')}
-            </Text>
-            <TouchableOpacity
-              testID="settings-open-celebration-lab"
-              activeOpacity={0.85}
-              onPressIn={() => doHaptic()}
-              onPress={() => router.push(ADMIN_CELEBRATION_LAB_ROUTE as any)}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 16,
-                paddingVertical: 16,
-                borderRadius: 16,
-                overflow: 'hidden',
-                borderWidth: 1,
-                borderColor: 'rgba(255,215,128,0.45)',
-                backgroundColor: 'rgba(255,196,77,0.10)',
-              }}
-            >
-              <LinearGradient
-                colors={['rgba(255,213,128,0.16)', 'rgba(255,170,60,0.06)']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={StyleSheet.absoluteFill}
-              />
-              <View style={{
-                width: 42, height: 42, borderRadius: 21,
-                alignItems: 'center', justifyContent: 'center',
-                marginRight: 14,
-                backgroundColor: 'rgba(255,196,77,0.18)',
-                borderWidth: 1, borderColor: 'rgba(255,215,128,0.4)',
-              }}>
-                <Text style={{ fontSize: 22 }}>🎉</Text>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: screenPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
-                  {L('Празднование победы', 'Святкування перемоги', 'Celebración de victoria', 'Celebração de vitória', 'Ăn mừng chiến thắng', 'Perayaan kemenangan', 'Zafer kutlaması', 'Świętowanie zwycięstwa')}
-                </Text>
-                <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 3, lineHeight: 17 }}>
-                  {L('Превью нового экрана завершения урока', 'Прев’ю нового екрана завершення уроку', 'Vista previa de la nueva pantalla de fin de lección', 'Prévia da nova tela de fim de lição', 'Xem trước màn hình hoàn thành bài học mới', 'Pratinjau layar penyelesaian pelajaran baru', 'Yeni ders bitiş ekranının önizlemesi', 'Podgląd nowego ekranu ukończenia lekcji')}
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="rgba(255,215,128,0.9)" />
-            </TouchableOpacity>
-          </View>
-        )}
 
         {isStudyTargetSourceUiLang(lang) && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>

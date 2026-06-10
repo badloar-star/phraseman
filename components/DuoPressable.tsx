@@ -6,6 +6,7 @@ import Reanimated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import { LinearGradient } from './SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_SPRING } from '../constants/motion';
 import { mergeAccessibilityDisabled } from './a11y_state';
@@ -30,6 +31,11 @@ interface Props extends PassthroughPressableProps {
   edgeColor?: string;
   /** Высота 3D-кромки в покое (px). Default 6. */
   edgeHeight?: number;
+  /** Градиент поверхности (для градиентных CTA). Если задан — рисуется LinearGradient под children. */
+  gradientColors?: readonly string[];
+  /** start/end градиента (по умолчанию диагональ). */
+  gradientStart?: { x: number; y: number };
+  gradientEnd?: { x: number; y: number };
   withHaptic?: boolean;
 }
 
@@ -55,6 +61,9 @@ function DuoPressable({
   disabled,
   edgeColor,
   edgeHeight = 6,
+  gradientColors,
+  gradientStart = { x: 0, y: 0 },
+  gradientEnd = { x: 1, y: 1 },
   withHaptic = true,
   ...rest
 }: Props) {

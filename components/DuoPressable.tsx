@@ -78,15 +78,10 @@ function DuoPressable({
     press.value = withSpring(0, MOTION_SPRING.micro);
   }, [press]);
 
-  // Верхняя поверхность съезжает вниз на высоту кромки при нажатии.
+  // Лицо опускается вниз на высоту кромки при нажатии — «оседает» на кромку.
+  // Кромка НЕ двигается (это нижний слой), лицо её накрывает. Тени сверху нет.
   const surfaceStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: interpolate(press.value, [0, 1], [0, edgeHeight]) }],
-  }));
-
-  // Кромка снизу сжимается (поверхность её «накрывает»).
-  const edgeStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: interpolate(press.value, [0, 1], [edgeHeight, 1]) }],
-    opacity: interpolate(press.value, [0, 1], [1, 0.55]),
   }));
 
   return (
@@ -99,18 +94,19 @@ function DuoPressable({
       onPressOut={pressOut}
       disabled={disabled}
       accessibilityState={mergeAccessibilityDisabled(rest.accessibilityState, disabled)}
-      style={[styles.wrap, wrapStyle]}
+      style={[styles.wrap, { paddingBottom: edgeHeight }, wrapStyle]}
     >
-      {/* Кромка-тень под поверхностью */}
-      <Reanimated.View
+      {/* Кромка — нижний слой, стоит на месте. Видна полоской снизу (top сдвинут
+          на edgeHeight, так что верх кромки совпадает с верхом лица в покое). */}
+      <View
         pointerEvents="none"
         style={[
           styles.edge,
+          { top: edgeHeight },
           edgeColor ? { backgroundColor: edgeColor } : styles.edgeDefault,
-          edgeStyle,
         ]}
       />
-      {/* Нажимаемая поверхность */}
+      {/* Лицо — обычный поток, при нажатии съезжает вниз на edgeHeight. */}
       <Reanimated.View style={[styles.surface, style, gradientColors ? styles.surfaceClip : null, surfaceStyle]}>
         {gradientColors ? (
           <LinearGradient

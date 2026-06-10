@@ -1,5 +1,6 @@
 import type { PlanRuntimeChoice, PlanRuntimeItem } from './personal_plan_exercise_runtime';
 import type { PlanRuntimeExerciseSession } from './personal_plan_exercise_runtime_session';
+import { PERSONAL_PLAN_CATALOG } from './personal_plan_catalog';
 
 export type PlanRuntimeExerciseViewModelIssue =
   | 'technical_copy'
@@ -80,7 +81,10 @@ function cleanSelectedAnswer(value: string | null | undefined): string | undefin
 }
 
 function eyebrowFor(session: PlanRuntimeExerciseSession): string {
-  const planName = session.block.planId === 'gavan' ? 'Гавань' : session.block.planId;
+  // Display name comes from the catalog so a plan rename never leaves a stale
+  // hardcoded label here; unknown ids fall back to the raw id.
+  const planName = PERSONAL_PLAN_CATALOG.find((plan) => plan.id === session.block.planId)?.name
+    ?? session.block.planId;
   return `${planName} · день ${session.block.dayIndex}`;
 }
 

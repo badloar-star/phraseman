@@ -64,7 +64,7 @@ describe('personal plan exercise runtime view model', () => {
     expect(viewModel).toEqual(expect.objectContaining({
       sessionId: 'session_runtime_view_1',
       title: 'Фразы дня',
-      eyebrow: 'Гавань · день 1',
+      eyebrow: 'Запас · день 1',
       instruction: 'Выбери естественную фразу.',
       primaryActionLabel: 'Проверить',
       canSubmit: false,

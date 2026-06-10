@@ -54,6 +54,7 @@ import {
   PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
 } from '../app/personal_plan_activation';
 import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
+import { resolvePersonalPlanForGoal, type PersonalPlanSetupGoal } from '../app/personal_plan_recommendation';
 import { usePremium } from './PremiumContext';
 import BouncyScrollView from './BouncyScrollView';
 import DuoPressable from './DuoPressable';
@@ -75,7 +76,8 @@ interface Props {
 const TARGET_LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1'] as const;
 const PROGRESS_STEPS = ['welcome', 'name', 'streak', 'auth'] as const;
 type OnboardingStepKey = 'beta' | 'planEntry' | 'planGoal' | 'planLevel' | 'planMinutes' | 'planPhrase' | 'planLoading' | 'planResult' | 'planPaywall' | 'planPicker' | 'planDetails' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
-type OnboardingPlanGoal = 'travel' | 'work' | 'move' | 'self';
+// Тема онбординга = канонические 5 тем планов (один к одному, см. resolvePersonalPlanForGoal).
+type OnboardingPlanGoal = PersonalPlanSetupGoal;
 type OnboardingPlanLevel = 'a0' | 'a1' | 'a2' | 'b1';
 type OnboardingBillingChoice = 'monthly' | 'annual';
 type OnboardingNicknameMode = 'regular' | 'personal_plan';
@@ -279,90 +281,83 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
   outcome: string;
 }> = {
   voyazh: {
-    name: 'Вояж',
-    goal: 'спокойно проходить поездку без переводчика на каждом шаге',
-    pitch: 'Представь поездку, где ты не ищешь каждую фразу в переводчике: можешь спросить дорогу, уточнить бронь, заказать еду, заселиться и объяснить проблему простыми словами.',
+    name: 'Компас',
+    goal: 'спокойно объясняться в любой поездке',
+    pitch: 'План для путешествий. Каждый день — маленький живой диалог: услышал, понял, ответил вслух. Спросить дорогу, заказать еду, заселиться, решить вопрос на месте.',
     horizon: 'около 12 недель',
     days: 84,
     recommendedLevel: 'A2',
     minutesDefault: 15,
     iconAsset: ONBOARDING_PLAN_ICONS.travel,
     todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
-    short: 'Поездки, отель, кафе, аэропорт и вопросы на месте.',
-    levelSub: 'Рекомендуем A2, потому что план сразу ведёт в реальные сценарии поездки: аэропорт, стойка регистрации, кафе, отель, просьбы и уточнения.',
-    outcome: 'Уже к середине этого срока ты сможешь не просто учить слова, а действовать: спросить, понять ответ, переспросить и не теряться в типичных ситуациях поездки.',
+    short: 'Поездки: аэропорт, отель, кафе, дорога.',
+    levelSub: 'Рекомендуем A2: план сразу ведёт в реальные сценарии поездки — аэропорт, отель, кафе, просьбы и уточнения.',
+    outcome: 'Уже к середине пути ты сможешь спросить, понять ответ, переспросить — и спокойно решить вопрос в поездке.',
   },
   mitap: {
-    name: 'Митап',
-    goal: 'не выпадать из рабочих разговоров и переписки',
-    pitch: 'План для рабочих моментов, где важно звучать понятно: ты учишься отвечать на созвоне, уточнять задачу, объяснять срок, просить детали и писать коротко без паники.',
+    name: 'Фокус',
+    goal: 'держать ум в тонусе через язык',
+    pitch: 'План для тех, кто занимается для себя. Ровный микс: новые слова, понимание на слух, речь вслух. Спокойный темп, понемногу обо всём — как зарядка для ума.',
     horizon: 'около 16 недель',
     days: 112,
     recommendedLevel: 'A2 → B1',
     minutesDefault: 20,
-    iconAsset: ONBOARDING_PLAN_ICONS.work,
+    iconAsset: ONBOARDING_PLAN_ICONS.study,
     todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
-    short: 'Рабочие созвоны, переписка, сроки и короткие объяснения.',
-    levelSub: 'A2 даёт быстрый вход в рабочие фразы, а движение к B1 добавляет связки для объяснений, уточнений, вежливых просьб и короткой переписки.',
-    outcome: 'Уже к середине этого срока ты сможешь держаться в простых рабочих ситуациях: ответить по задаче, назвать срок, попросить уточнение и обозначить следующий шаг.',
+    short: 'Язык для себя: слова, слух, речь — понемногу.',
+    levelSub: 'A2 даёт комфортный вход, движение к B1 добавляет живые связки для речи и понимания.',
+    outcome: 'Уже к середине пути ты заметишь: понимаешь больше, отвечаешь быстрее, а занятия стали спокойной привычкой.',
   },
   gavan: {
-    name: 'Гавань',
-    goal: 'решать бытовые вопросы в новой стране увереннее',
-    pitch: 'План для первых месяцев после переезда: чтобы не зависеть от переводчика в каждом вопросе и спокойно говорить про жильё, документы, врача, школу и обычные дела.',
+    name: 'Запас',
+    goal: 'собрать запас слов на каждый день',
+    pitch: 'План про нужные слова. Каждый день — несколько слов из реальной жизни: дом, город, дела, покупки. Слово сразу идёт в работу: ты вспоминаешь его и проговариваешь вслух.',
     horizon: 'около 18 недель',
     days: 126,
     recommendedLevel: 'A1 → A2',
     minutesDefault: 15,
-    iconAsset: ONBOARDING_PLAN_ICONS.home,
+    iconAsset: ONBOARDING_PLAN_ICONS.basic,
     todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
-    short: 'Переезд, жильё, документы, врачи, школа и бытовые дела.',
-    levelSub: 'A1 закрывает бытовую базу, затем A2 добавляет самостоятельность: объяснить ситуацию, спросить детали, записаться, уточнить условия и договориться.',
-    outcome: 'Уже к середине этого срока ты сможешь увереннее решать городские задачи: спросить, записаться, описать проблему, заполнить простые данные и понять следующий шаг.',
+    short: 'Нужные слова на каждый день — и сразу в речь.',
+    levelSub: 'A1 закрывает базу, A2 добавляет самостоятельность: слова складываются в простые живые фразы.',
+    outcome: 'Уже к середине пути у тебя будет рабочий запас слов: они вспоминаются сами и звучат вслух.',
   },
   impuls: {
-    name: 'Импульс',
-    goal: 'начинать говорить быстрее, даже если ответ не идеальный',
-    pitch: 'План для момента, когда ты понимаешь мысль, но зависаешь перед ответом. Здесь тренируются готовые связки, реакции и короткие конструкции, чтобы речь начиналась быстрее.',
+    name: 'Реплика',
+    goal: 'отвечать в разговоре без ступора',
+    pitch: 'План про живую речь. Понимаешь мысль, но зависаешь перед ответом? Здесь каждый день тренируется речь вслух: готовые связки, быстрые ответы, уверенные фразы.',
     horizon: 'около 20 недель',
     days: 140,
     recommendedLevel: 'A2 → B1',
     minutesDefault: 20,
     iconAsset: ONBOARDING_PLAN_ICONS.confidence,
     todayIconAsset: ONBOARDING_PLAN_ICONS.speaking,
-    short: 'Быстрее отвечать и меньше зависать в живом разговоре.',
-    levelSub: 'A2 собирает каркас ответа, B1 добавляет гибкость: уточнить, согласиться, отказаться, попросить время и продолжить разговор.',
-    outcome: 'Уже к середине этого срока ты сможешь отвечать быстрее, меньше зависать на каждой фразе и собирать уверенные ответы из знакомых конструкций.',
+    short: 'Повседневное общение: отвечать быстрее и проще.',
+    levelSub: 'A2 собирает каркас ответа, B1 добавляет гибкость: уточнить, согласиться, отказаться, продолжить разговор.',
+    outcome: 'Уже к середине пути ты будешь отвечать быстрее и собирать уверенные ответы из знакомых фраз.',
   },
   echo: {
-    name: 'Эхо',
-    goal: 'поддерживать короткий разговор без ощущения экзамена',
-    pitch: 'План для живых диалогов, где нужно не идеально говорить, а быстро понять смысл, переспросить, уточнить и ответить так, чтобы разговор продолжался.',
+    name: 'Эфир',
+    goal: 'понимать живую речь без субтитров',
+    pitch: 'План про понимание на слух. Кино, сериалы, живые голоса. Ты учишься ловить смысл с первого раза — и отвечать вслух, чтобы речь не отставала от слуха.',
     horizon: 'около 12 недель',
     days: 84,
     recommendedLevel: 'A2',
     minutesDefault: 10,
     iconAsset: ONBOARDING_PLAN_ICONS.speaking,
     todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
-    short: 'Короткие диалоги, уточнения, переспросы и быстрые ответы.',
-    levelSub: 'A2 достаточно, чтобы тренировать короткие реплики, реакции, уточнения и готовые ответы без отдельного режима и без перегруза теорией.',
-    outcome: 'Уже к середине этого срока ты сможешь быстрее подбирать ответ, переспрашивать без неловкости, уточнять смысл и поддерживать короткий обычный диалог.',
+    short: 'Кино и сериалы: понимать речь на слух.',
+    levelSub: 'A2 достаточно: короткие реплики, живые фразы и понимание на слух — без перегруза теорией.',
+    outcome: 'Уже к середине пути ты будешь ловить смысл живой речи с первого раза и отвечать без долгой паузы.',
   },
 };
 
 function resolveOnboardingPlanId(
   goal: OnboardingPlanGoal,
-  level: OnboardingPlanLevel,
-  minutes: PlanMinutesChoice,
   explicitPlanId?: PersonalPlanId | null,
 ): PersonalPlanId {
-  if (explicitPlanId) return explicitPlanId;
-  if (goal === 'travel') return 'voyazh';
-  if (goal === 'work') return 'mitap';
-  if (goal === 'move') return 'gavan';
-  if (level === 'b1') return 'impuls';
-  if (level === 'a2' && (minutes === 15 || minutes === 20)) return 'impuls';
-  return 'echo';
+  // Тема однозначно определяет план — та же логика, что в настройке плана.
+  return explicitPlanId ?? resolvePersonalPlanForGoal(goal);
 }
 
 function dayWord(n: number) {
@@ -381,10 +376,11 @@ const PLAN_GOAL_CHOICES: Array<{
   title: string;
   subtitle: string;
 }> = [
-  { id: 'travel', iconAsset: ONBOARDING_PLAN_ICONS.travel, title: 'Для поездок', subtitle: 'Аэропорт, отель, кафе, вопросы на месте' },
-  { id: 'work', iconAsset: ONBOARDING_PLAN_ICONS.work, title: 'Для работы', subtitle: 'Созвоны, переписка, короткие объяснения' },
-  { id: 'move', iconAsset: ONBOARDING_PLAN_ICONS.home, title: 'Для переезда', subtitle: 'Быт, документы, врачи, школа, жильё' },
-  { id: 'self', iconAsset: ONBOARDING_PLAN_ICONS.study, title: 'Для себя', subtitle: 'Спокойно прокачивать понимание и речь' },
+  { id: 'series', iconAsset: ONBOARDING_PLAN_ICONS.phrase, title: 'Понимать кино и сериалы', subtitle: 'Живая речь на слух — без субтитров' },
+  { id: 'everyday', iconAsset: ONBOARDING_PLAN_ICONS.speaking, title: 'Говорить в обычной жизни', subtitle: 'Отвечать в разговоре без ступора' },
+  { id: 'travel', iconAsset: ONBOARDING_PLAN_ICONS.travel, title: 'Путешествовать', subtitle: 'Аэропорт, отель, кафе и дорога' },
+  { id: 'words', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'Знать нужные слова', subtitle: 'Запас на каждый день — и сразу в речь' },
+  { id: 'mind', iconAsset: ONBOARDING_PLAN_ICONS.study, title: 'Заниматься для себя', subtitle: 'Спокойный темп и польза для ума' },
 ];
 
 const PLAN_LEVEL_CHOICES: Array<{
@@ -407,11 +403,11 @@ const PLAN_ENTRIES: Array<{
   short: string;
   todayIconAsset?: PlanIconSource;
 }> = [
-  { key: 'voyazh', minutes: 15, short: 'Поездки, отель, кафе, аэропорт и вопросы на месте.' },
-  { key: 'mitap', minutes: 20, short: 'Рабочие созвоны, переписка, сроки и короткие объяснения.' },
-  { key: 'gavan', minutes: 15, short: 'Переезд, жильё, документы, врачи, школа и бытовые дела.' },
-  { key: 'impuls', minutes: 20, short: 'Быстрее отвечать и меньше зависать в живом разговоре.', todayIconAsset: ONBOARDING_PLAN_ICONS.speaking },
-  { key: 'echo', minutes: 10, short: 'Короткие диалоги, уточнения, переспросы и быстрые ответы.' },
+  { key: 'voyazh', minutes: 15, short: 'Поездки: аэропорт, отель, кафе, дорога.' },
+  { key: 'mitap', minutes: 20, short: 'Язык для себя: слова, слух, речь — понемногу.' },
+  { key: 'gavan', minutes: 15, short: 'Нужные слова на каждый день — и сразу в речь.' },
+  { key: 'impuls', minutes: 20, short: 'Повседневное общение: отвечать быстрее и проще.', todayIconAsset: ONBOARDING_PLAN_ICONS.speaking },
+  { key: 'echo', minutes: 10, short: 'Кино и сериалы: понимать речь на слух.' },
 ];
 const PLAN_PAYWALL_BENEFITS: Array<{
   key: string;
@@ -625,7 +621,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     lang === 'es' ? es : isUK ? uk : ru;
   const triOb = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
-  const selectedPlanId = resolveOnboardingPlanId(selectedPlanGoal, selectedPlanLevel, selectedPlanMinutes, selectedPlanOverride);
+  const selectedPlanId = resolveOnboardingPlanId(selectedPlanGoal, selectedPlanOverride);
   const selectedPlan = PERSONAL_PLAN_ONBOARDING_PLANS[selectedPlanId];
 
   // Плавный переход между экранами

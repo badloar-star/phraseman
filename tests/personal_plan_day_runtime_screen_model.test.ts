@@ -40,7 +40,7 @@ describe('personal plan day runtime screen model', () => {
     const model = buildPlanDayRuntimeScreenModel(startLoop(15));
 
     expect(model.header).toEqual({
-      eyebrow: 'Гавань · день 1',
+      eyebrow: 'Запас · день 1',
       title: 'Задания дня',
       percentLabel: '0%',
     });

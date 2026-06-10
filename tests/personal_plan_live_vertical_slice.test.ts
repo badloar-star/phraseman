@@ -15,17 +15,17 @@ describe('live Personal Plans vertical slice', () => {
   const day1 = gavan.days[0];
 
   it('ships Gavan day 1 as authored runtime content, not scaffold cards', () => {
-    expect(gavan.name).toBe('Гавань');
+    expect(gavan.name).toBe('Запас');
     expect(day1.status).toBe('certified');
     expect(day1.title).toBe('Короткие ответы');
     expect(day1.tasks.map((task) => task.kind)).toEqual([
       'plan_phrase_lesson',
       'plan_missing_word',
+      'plan_phrase_recall',
+      'plan_pronunciation_repeat',
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
-      'plan_pronunciation_repeat',
-      'plan_phrase_recall',
       'plan_quiz',
     ]);
     expect(day1.tasks.some((task) => task.destination.type === 'lesson')).toBe(false);
@@ -35,11 +35,11 @@ describe('live Personal Plans vertical slice', () => {
     const expectedKinds = [
       'plan_phrase_lesson',
       'plan_missing_word',
+      'plan_phrase_recall',
+      'plan_pronunciation_repeat',
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
-      'plan_pronunciation_repeat',
-      'plan_phrase_recall',
       'plan_quiz',
     ];
 
@@ -57,10 +57,10 @@ describe('live Personal Plans vertical slice', () => {
 
     expect(exerciseDestinations).toEqual([
       'plan_missing_word',
+      'plan_pronunciation_repeat',
       'plan_choose_natural_phrase',
       'plan_listen_choose',
       'plan_listen_build',
-      'plan_pronunciation_repeat',
     ]);
   });
 
@@ -71,7 +71,8 @@ describe('live Personal Plans vertical slice', () => {
 
     const lesson = getPersonalPlanPhraseLesson(task.destination.lessonId);
     expect(lesson).not.toBeNull();
-    expect(lesson?.phrases).toHaveLength(5);
+    // Канон контента: 6 фраз/день (см. PlanContentDay контракт).
+    expect(lesson?.phrases).toHaveLength(6);
 
     const copy = JSON.stringify(lesson);
     expect(copy).not.toMatch(FORBIDDEN_LIVE_PLAN_COPY);

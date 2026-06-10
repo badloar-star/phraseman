@@ -20,7 +20,8 @@ describe('personal plan setup theme contract', () => {
   });
 
   it('asks for daily time during plan setup and activates the plan with that selected load', () => {
-    expect(source).toContain("type Step = 'goal' | 'level' | 'focus' | 'minutes' | 'result' | 'all'");
+    // Ф5: шаг «фокус» убран — тема выбирает план один-к-одному, поток 3 вопроса.
+    expect(source).toContain("type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all'");
     expect(source).toContain('PERSONAL_PLAN_SETUP_MINUTES');
     expect(source).toContain('const [selectedMinutes, setSelectedMinutes]');
     expect(source).toContain('setStep(\'minutes\')');

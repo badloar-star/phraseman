@@ -1,19 +1,23 @@
 import {
   getPlanDefaultMinutes,
   recommendPersonalPlan,
+  resolvePersonalPlanForGoal,
 } from '../app/personal_plan_recommendation';
 
 describe('personal plan recommendation', () => {
-  it('routes concrete user goals to matching plans', () => {
-    expect(recommendPersonalPlan({ goal: 'travel', level: 'a1', focus: 'guided' })).toBe('voyazh');
-    expect(recommendPersonalPlan({ goal: 'work', level: 'a1', focus: 'guided' })).toBe('mitap');
-    expect(recommendPersonalPlan({ goal: 'move', level: 'a0', focus: 'guided' })).toBe('gavan');
+  it('maps each of the 5 themes to its plan one-to-one', () => {
+    expect(resolvePersonalPlanForGoal('series')).toBe('echo');
+    expect(resolvePersonalPlanForGoal('everyday')).toBe('impuls');
+    expect(resolvePersonalPlanForGoal('travel')).toBe('voyazh');
+    expect(resolvePersonalPlanForGoal('words')).toBe('gavan');
+    expect(resolvePersonalPlanForGoal('mind')).toBe('mitap');
   });
 
-  it('uses the third onboarding-style question when there is no concrete scenario goal', () => {
-    expect(recommendPersonalPlan({ goal: 'self', level: 'a1', focus: 'dialog' })).toBe('echo');
-    expect(recommendPersonalPlan({ goal: 'self', level: 'a1', focus: 'speak' })).toBe('impuls');
-    expect(recommendPersonalPlan({ goal: 'self', level: 'b1', focus: 'guided' })).toBe('impuls');
+  it('recommendPersonalPlan delegates to the same theme resolver regardless of level', () => {
+    expect(recommendPersonalPlan({ goal: 'series', level: 'a0' })).toBe('echo');
+    expect(recommendPersonalPlan({ goal: 'series', level: 'b1' })).toBe('echo');
+    expect(recommendPersonalPlan({ goal: 'words', level: 'a0' })).toBe('gavan');
+    expect(recommendPersonalPlan({ goal: 'mind', level: 'a2' })).toBe('mitap');
   });
 
   it('activates plans with their catalog default rhythm, without showing a time-choice screen', () => {

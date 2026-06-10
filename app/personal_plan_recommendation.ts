@@ -1,8 +1,15 @@
 import { getPlanById, type PersonalPlanId, type PlanMinutesChoice } from './personal_plan_catalog';
 
-export type PersonalPlanSetupGoal = 'travel' | 'work' | 'move' | 'self';
+/**
+ * Канонический выбор плана по теме (Ф5 перестройки планов).
+ *
+ * 5 тем = 5 планов, один к одному. Тема полностью определяет план; уровень и
+ * минуты настраивают темп, но не меняют сам план. И онбординг, и экран
+ * настройки плана используют ЭТОТ резолвер — другой логики выбора нет.
+ */
+
+export type PersonalPlanSetupGoal = 'series' | 'everyday' | 'travel' | 'words' | 'mind';
 export type PersonalPlanSetupLevel = 'a0' | 'a1' | 'a2' | 'b1';
-export type PersonalPlanSetupFocus = 'guided' | 'speak' | 'dialog';
 
 export type PersonalPlanSetupChoice = {
   id: string;
@@ -12,10 +19,11 @@ export type PersonalPlanSetupChoice = {
 };
 
 export const PERSONAL_PLAN_SETUP_GOALS: (PersonalPlanSetupChoice & { id: PersonalPlanSetupGoal })[] = [
-  { id: 'travel', icon: 'airplane-outline', title: 'Для поездок', subtitle: 'Аэропорт, отель, кафе, вопросы на месте' },
-  { id: 'work', icon: 'briefcase-outline', title: 'Для работы', subtitle: 'Созвоны, переписка, короткие объяснения' },
-  { id: 'move', icon: 'home-outline', title: 'Для переезда', subtitle: 'Быт, документы, врачи, школа, жилье' },
-  { id: 'self', icon: 'school-outline', title: 'Для себя', subtitle: 'Спокойно прокачивать понимание и речь' },
+  { id: 'series', icon: 'ear-outline', title: 'Понимать кино и сериалы', subtitle: 'Живая речь на слух — без субтитров' },
+  { id: 'everyday', icon: 'chatbubble-ellipses-outline', title: 'Говорить в обычной жизни', subtitle: 'Отвечать в разговоре без ступора' },
+  { id: 'travel', icon: 'airplane-outline', title: 'Путешествовать', subtitle: 'Аэропорт, отель, кафе и дорога' },
+  { id: 'words', icon: 'book-outline', title: 'Знать нужные слова', subtitle: 'Запас на каждый день — и сразу в речь' },
+  { id: 'mind', icon: 'school-outline', title: 'Заниматься для себя', subtitle: 'Спокойный темп и польза для ума' },
 ];
 
 export const PERSONAL_PLAN_SETUP_LEVELS: (PersonalPlanSetupChoice & { id: PersonalPlanSetupLevel })[] = [
@@ -25,25 +33,26 @@ export const PERSONAL_PLAN_SETUP_LEVELS: (PersonalPlanSetupChoice & { id: Person
   { id: 'b1', icon: 'mic-outline', title: 'B1: хочу увереннее', subtitle: 'Нужен ритм и более живые задания' },
 ];
 
-export const PERSONAL_PLAN_SETUP_FOCUS: (PersonalPlanSetupChoice & { id: PersonalPlanSetupFocus })[] = [
-  { id: 'guided', icon: 'map-outline', title: 'Вести меня по маршруту', subtitle: 'Каждый день понятно, что делать дальше' },
-  { id: 'speak', icon: 'flash-outline', title: 'Быстрее отвечать', subtitle: 'Меньше зависать и быстрее начинать фразу' },
-  { id: 'dialog', icon: 'ear-outline', title: 'Лучше слышать диалоги', subtitle: 'Переспрашивать, уточнять и продолжать разговор' },
-];
+/** Тема → план. Единственное место, где выбирается план. */
+export function resolvePersonalPlanForGoal(goal: PersonalPlanSetupGoal): PersonalPlanId {
+  switch (goal) {
+    case 'series': return 'echo';
+    case 'everyday': return 'impuls';
+    case 'travel': return 'voyazh';
+    case 'words': return 'gavan';
+    case 'mind': return 'mitap';
+  }
+}
 
 export type PersonalPlanRecommendationInput = {
   goal: PersonalPlanSetupGoal;
   level: PersonalPlanSetupLevel;
-  focus: PersonalPlanSetupFocus;
 };
 
 export function recommendPersonalPlan(input: PersonalPlanRecommendationInput): PersonalPlanId {
-  if (input.goal === 'travel') return 'voyazh';
-  if (input.goal === 'work') return 'mitap';
-  if (input.goal === 'move') return 'gavan';
-  if (input.focus === 'dialog') return 'echo';
-  if (input.focus === 'speak' || input.level === 'b1' || input.level === 'a2') return 'impuls';
-  return 'echo';
+  // Уровень пока не меняет план — тема решает. Поле в подписи оставлено,
+  // чтобы настройка темпа могла учесть его без смены вызовов.
+  return resolvePersonalPlanForGoal(input.goal);
 }
 
 export function getPlanDefaultMinutes(planId: PersonalPlanId): PlanMinutesChoice {

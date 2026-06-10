@@ -12,27 +12,24 @@ import { getPlanById, type PersonalPlanId, type PlanMinutesChoice } from './pers
 import { activatePersonalPlan } from './personal_plan_state';
 import { getPersonalPlanArt } from './personal_plan_art';
 import {
-  PERSONAL_PLAN_SETUP_FOCUS,
   PERSONAL_PLAN_SETUP_GOALS,
   PERSONAL_PLAN_SETUP_LEVELS,
   recommendPersonalPlan,
   type PersonalPlanSetupChoice,
-  type PersonalPlanSetupFocus,
   type PersonalPlanSetupGoal,
   type PersonalPlanSetupLevel,
 } from './personal_plan_recommendation';
 
-type Step = 'goal' | 'level' | 'focus' | 'minutes' | 'result' | 'all';
+type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';
 
 const PLAN_IDS: PersonalPlanId[] = ['voyazh', 'mitap', 'gavan', 'impuls', 'echo'];
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 4;
 
 function stepIndex(step: Step): number {
   if (step === 'goal') return 1;
   if (step === 'level') return 2;
-  if (step === 'focus') return 3;
-  if (step === 'minutes') return 4;
-  return 5;
+  if (step === 'minutes') return 3;
+  return 4;
 }
 
 type PersonalPlanSetupMinuteChoice = {
@@ -76,22 +73,22 @@ const PERSONAL_PLAN_SETUP_MINUTES: PersonalPlanSetupMinuteChoice[] = [
 
 function planReason(planId: PersonalPlanId): string {
   switch (planId) {
-    case 'voyazh': return 'Фокус на путешествиях, кафе, отелях и быстрых бытовых ситуациях.';
-    case 'mitap': return 'Рабочие созвоны, переписка и объяснения без паники и "э-э-э".';
-    case 'gavan': return 'Бытовые вопросы после переезда — аренда, врач, магазин, соседи.';
-    case 'impuls': return 'Понимаешь, но хочешь быстрее отвечать вслух без промедления.';
-    case 'echo': return 'Спокойнее слышать диалоги, переспрашивать и поддерживать разговор.';
+    case 'voyazh': return 'Каждый день — живой диалог поездки: услышал, понял, ответил вслух.';
+    case 'mitap': return 'Спокойный микс для себя: слова, слух и речь — понемногу каждый день.';
+    case 'gavan': return 'Нужные слова на каждый день — и каждое сразу звучит вслух.';
+    case 'impuls': return 'Понимаешь, но зависаешь перед ответом? Здесь тренируется речь вслух.';
+    case 'echo': return 'Понимать живую речь с первого раза — и отвечать без долгой паузы.';
     default: return 'Подходит под выбранный старт и ближайшую цель.';
   }
 }
 
 function planTagline(planId: PersonalPlanId): string {
   switch (planId) {
-    case 'voyazh': return '✈️ Путешествия и поездки';
-    case 'mitap': return '💼 Работа и общение';
-    case 'gavan': return '🏠 Жизнь за рубежом';
-    case 'impuls': return '⚡ Беглость речи';
-    case 'echo': return '👂 Понимание на слух';
+    case 'voyazh': return '✈️ Путешествия и дорога';
+    case 'mitap': return '🧠 Язык для ума';
+    case 'gavan': return '📦 Запас нужных слов';
+    case 'impuls': return '💬 Живое общение';
+    case 'echo': return '🎬 Кино и сериалы';
     default: return '📚 Общее развитие';
   }
 }
@@ -260,16 +257,15 @@ export default function PersonalPlanSetupScreen() {
   const router = useRouter();
   const { theme: t } = useTheme();
   const [step, setStep] = useState<Step>('goal');
-  const [goal, setGoal] = useState<PersonalPlanSetupGoal>('move');
+  const [goal, setGoal] = useState<PersonalPlanSetupGoal>('words');
   const [level, setLevel] = useState<PersonalPlanSetupLevel>('a1');
-  const [focus, setFocus] = useState<PersonalPlanSetupFocus>('guided');
   const [selectedMinutes, setSelectedMinutes] = useState<PlanMinutesChoice>(15);
   const [selectedPlanId, setSelectedPlanId] = useState<PersonalPlanId | null>(null);
 
   const slideFade = useRef(new Animated.Value(1)).current;
   const slideX = useRef(new Animated.Value(0)).current;
 
-  const recommendedPlanId = useMemo(() => recommendPersonalPlan({ goal, level, focus }), [focus, goal, level]);
+  const recommendedPlanId = useMemo(() => recommendPersonalPlan({ goal, level }), [goal, level]);
   const visiblePlanId = selectedPlanId ?? recommendedPlanId;
   const visiblePlan = getPlanById(visiblePlanId);
   const planArt = getPersonalPlanArt(visiblePlanId);
@@ -372,35 +368,6 @@ export default function PersonalPlanSetupScreen() {
               hapticTap();
               animateStep(() => {
                 setLevel(item.id);
-                setStep('focus');
-              });
-            }}
-          />
-        )),
-      );
-    }
-
-    if (step === 'focus') {
-      return renderQuestion(
-        'Что важнее сейчас?',
-        'Выбери подход — маршрут адаптируется под него.',
-        PERSONAL_PLAN_SETUP_FOCUS.map((item) => (
-          <ChoiceCard
-            key={item.id}
-            item={item}
-            selected={focus === item.id}
-            accent={accent}
-            onAccent={onAccent}
-            cardBg={cardBg}
-            softBg={softBg}
-            border={border}
-            borderHighlight={t.borderHighlight}
-            text={text}
-            muted={muted}
-            onPress={() => {
-              hapticTap();
-              animateStep(() => {
-                setFocus(item.id);
                 setSelectedPlanId(null);
                 setStep('minutes');
               });
@@ -537,8 +504,7 @@ export default function PersonalPlanSetupScreen() {
     hapticTap();
     animateStep(() => {
       if (step === 'level') setStep('goal');
-      else if (step === 'focus') setStep('level');
-      else if (step === 'minutes') setStep('focus');
+      else if (step === 'minutes') setStep('level');
       else if (step === 'result') setStep('minutes');
       else if (step === 'all') setStep('result');
       else if (router.canGoBack()) router.back(); else router.replace('/personal_plan');

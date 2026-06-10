@@ -10,16 +10,18 @@ describe('personal plan onboarding mockup contract', () => {
   it('keeps the polished plan-flow copy and removes the intermediate app copy', () => {
     [
       'Зачем тебе английский?',
-      'План подстроится под ситуации и фразы, которые пригодятся первыми.',
-      'Для поездок',
-      'Аэропорт, отель, кафе, вопросы на месте',
-      'Для работы',
-      'Созвоны, переписка, короткие объяснения',
-      'Для переезда',
-      'Быт, документы, врачи, школа, жильё',
-      'Для себя',
-      'Спокойно прокачивать понимание и речь',
-      'Какой старт ближе?',
+      'Скажи — и план сразу подберёт нужные слова и ситуации.',
+      'Понимать кино и сериалы',
+      'Живая речь на слух — без субтитров',
+      'Говорить в обычной жизни',
+      'Отвечать в разговоре без ступора',
+      'Путешествовать',
+      'Аэропорт, отель, кафе и дорога',
+      'Знать нужные слова',
+      'Запас на каждый день — и сразу в речь',
+      'Заниматься для себя',
+      'Спокойный темп и польза для ума',
+      'С чего начнём?',
       'Сколько времени удобно?',
       'Выбери ритм, который реально получится держать каждый день.',
       'Соберём первую фразу',
@@ -29,8 +31,8 @@ describe('personal plan onboarding mockup contract', () => {
       'Месячный план',
       'Годовой план',
       'Персональный план',
-      'Все уроки разблокированы',
-      'Разборы твоих ошибок',
+      'Все уроки открыты',
+      'Разбор твоих слабых мест',
       'Продолжить без плана',
     ].filter((text) => !text.includes('onboarding ')).forEach((text) => {
       expect(source).toContain(text);
@@ -144,8 +146,7 @@ describe('personal plan onboarding mockup contract', () => {
   it('keeps bitmap plan icons wired into choice cards', () => {
     [
       'iconAsset: ONBOARDING_PLAN_ICONS.travel',
-      'iconAsset: ONBOARDING_PLAN_ICONS.work',
-      'iconAsset: ONBOARDING_PLAN_ICONS.home',
+      'iconAsset: ONBOARDING_PLAN_ICONS.phrase',
       'iconAsset: ONBOARDING_PLAN_ICONS.study',
       'iconAsset: ONBOARDING_PLAN_ICONS.beginner',
       'iconAsset: ONBOARDING_PLAN_ICONS.basic',
@@ -191,8 +192,8 @@ describe('personal plan onboarding mockup contract', () => {
       'days: 112',
       'days: 126',
       'days: 140',
-      'Рекомендуем A2, потому что план сразу ведёт в реальные сценарии поездки: аэропорт, стойка регистрации, кафе, отель, просьбы и уточнения.',
-      'Уже к середине этого срока ты сможешь не просто учить слова, а действовать: спросить, понять ответ, переспросить и не теряться в типичных ситуациях поездки.',
+      'Рекомендуем A2: план сразу ведёт в реальные сценарии поездки — аэропорт, отель, кафе, просьбы и уточнения.',
+      'Уже к середине пути ты сможешь спросить, понять ответ, переспросить — и спокойно решить вопрос в поездке.',
       'Дней занятий',
       'planMockupDaysCard',
       'planMockupResultHero',
@@ -256,7 +257,7 @@ describe('personal plan onboarding mockup contract', () => {
       'PLAN_DAYS_COUNT_TICK_MS',
       'let countTimer: ReturnType<typeof setInterval> | null = null',
       'Math.round(total * easedProgress)',
-      'Хочу свой план',
+      'Составить план под мою цель',
       'Продолжить без плана',
     ].forEach((text) => {
       expect(source).toContain(text);
@@ -270,7 +271,7 @@ describe('personal plan onboarding mockup contract', () => {
     expect(source).not.toContain('planDaysProgress.addListener');
     expect(source).not.toContain('Math.round(total * value)');
     expect(source).toContain('planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep(\'name\')}');
-    expect(source).toContain('style={styles.eliteWelcomeSecondaryCta} activeOpacity={0.82} onPress={() => goToStep(\'name\')}');
+    expect(source).toContain('style={[styles.eliteWelcomeSecondaryCta, styles.planEntrySecondaryCta]}');
   });
 });
 

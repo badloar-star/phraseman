@@ -100,7 +100,7 @@ describe('personal plan runtime state', () => {
       dueTrainerCount: 0,
     });
 
-    expect(snapshot.planName).toBe('Гавань');
+    expect(snapshot.planName).toBe('Запас');
     expect(snapshot.dayIndex).toBe(1);
     expect(snapshot.todayTitle).toBe(gavan.days[0].title);
     expect(snapshot.requiredTodayCount).toBe(5);

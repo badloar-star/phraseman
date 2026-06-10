@@ -25,7 +25,7 @@ import {
   writeRejectedExplanation,
 } from './explain/explain_cache';
 import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
-import { validateExplainInput, sanitizeExplanationOutput, MAX_MEANING_LEN } from './explain/explain_gates';
+import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
 import { buildExplainPrompt } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
@@ -60,14 +60,16 @@ function asText(value: unknown, max: number): string {
 
 /**
  * Deterministic, AI-free fallback the CF returns when it will not (or cannot) generate: rejected
- * cache, exhausted budget, or a lost lock race. Built from phraseMeaning the client already sent —
- * never calls the model. The client never builds this (server is the source of truth).
+ * cache, exhausted budget, or a lost lock race. Never calls the model; the client never builds this.
+ *
+ * IMPORTANT (locked with the user 2026-06-10): this feature explains the ENGLISH grammar, it must
+ * NEVER restate the phrase's meaning/translation. So the fallback is a NEUTRAL "try again" message —
+ * it deliberately does NOT echo phraseMeaning (the old fallback did, which reproduced the very
+ * "Russian re-telling" we were fixing). `_phraseMeaning` is kept in the signature only so callers
+ * don't have to change and so a future localized fallback could use the lang, never the meaning.
  */
-export function buildFallback(phraseMeaning: string): string {
-  const meaning = asText(phraseMeaning, MAX_MEANING_LEN);
-  if (!meaning) return 'Объяснение пока недоступно. Попробуйте позже.';
-  const trimmed = meaning.replace(/[.!?]+$/u, '');
-  return `${trimmed}. Например: так говорят в обычном разговоре.`;
+export function buildFallback(_phraseMeaning?: string): string {
+  return 'Не получилось подготовить объяснение. Попробуйте позже.';
 }
 
 export const explainPhrase = onCall({

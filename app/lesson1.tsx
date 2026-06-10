@@ -470,10 +470,10 @@ interface LessonContentProps {
   setFailedTapCount: (val: number | ((prev: number) => number)) => void;
   checkAnswer: (answer: string) => Promise<void>;
   contrExpanded: string[] | null;
-  onFiftyFifty: () => void;
+  /** Списать один дневной кредит «Объясни» (бывш. 50/50; тот же счётчик/«подарок»). */
+  onConsumeExplainCredit: () => void;
   fiftyFiftyUsedToday: number;
   bonusHints: number;
-  dimmedWords: Set<string>;
   displayCell: number;
   isErrorReplay: boolean;
   replaySolvedCorrectly: boolean;
@@ -550,10 +550,9 @@ const LessonContent = React.memo(function LessonContent({
   setFailedTapCount,
   checkAnswer,
   contrExpanded,
-  onFiftyFifty,
+  onConsumeExplainCredit,
   fiftyFiftyUsedToday,
   bonusHints,
-  dimmedWords,
   displayCell,
   isErrorReplay,
   replaySolvedCorrectly,
@@ -601,19 +600,35 @@ const LessonContent = React.memo(function LessonContent({
   // (3 + bonusHints − fiftyFiftyUsedToday, тот же «подарок»). После ответа — без лимита,
   // кнопка по центру. Объясняет английскую фразу (грамматику), НЕ русский смысл (промпт CF).
   const [explainOpen, setExplainOpen] = useState(false);
+  // Режим открытия: 'pre' (до ответа, считаем лимит) или 'post' (после ответа, без лимита).
+  const explainModeRef = useRef<'pre' | 'post'>('post');
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
-  // До ответа: открыть, только если есть лимит, и сразу списать один кредит (через onFiftyFifty).
+  // До ответа: открыть, только если ещё есть кредиты. Кредит НЕ списываем здесь —
+  // только когда шторка реально сгенерит (cache MISS) в onExplainResolved: бесплатный
+  // кэш-хит или сетевая ошибка кредит НЕ тратят.
   const openExplainPreAnswer = useCallback(() => {
     if (explainHintsLeft <= 0) return;
     hapticTap();
-    onFiftyFifty(); // списывает дневной кредит (тот же счётчик, что был у 50/50)
+    explainModeRef.current = 'pre';
     setExplainOpen(true);
-  }, [explainHintsLeft, onFiftyFifty]);
+  }, [explainHintsLeft]);
   // После ответа: без лимита.
   const openExplainResult = useCallback(() => {
     hapticTap();
+    explainModeRef.current = 'post';
     setExplainOpen(true);
   }, []);
+  // Резолв запроса шторки. Списываем дневной кредит ТОЛЬКО если: открыто до ответа ('pre'),
+  // это реальная генерация (не из кэша) и без ошибки. Так бесплатные/упавшие открытия не жгут лимит.
+  const onExplainResolved = useCallback(
+    (info: { fromCache: boolean; status: string; error: boolean }) => {
+      if (explainModeRef.current !== 'pre') return;
+      if (info.error || info.fromCache) return;
+      if (info.status !== 'ok' && info.status !== 'rejected') return; // exhausted/pending не списываем
+      onConsumeExplainCredit();
+    },
+    [onConsumeExplainCredit],
+  );
 
 
   // [ARROW] Анимированная стрелка над прогресс-баром
@@ -670,11 +685,10 @@ const LessonContent = React.memo(function LessonContent({
         index: i,
         isCorrectOption,
         shouldShowHint: !isPlanLessonTask && !isPlanPhraseLessonTask && showToBeHint && cellIndex < 2 && isCorrectOption,
-        isDimmed: dimmedWords.has(word),
         displayText,
       };
     });
-  }, [shuffled, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, dimmedWords, s.lesson.noArticle]);
+  }, [shuffled, contrExpanded, currentCorrectWord, currentValidContraction, isPlanLessonTask, isPlanPhraseLessonTask, showToBeHint, cellIndex, s.lesson.noArticle]);
   const selectedAnswerMatchesAlternative = Boolean(
     gradeAlts?.length && isCorrectAnswer(selectedAnswer, gradeTarget, gradeAlts)
   );
@@ -1168,14 +1182,14 @@ const LessonContent = React.memo(function LessonContent({
             style={{ paddingHorizontal: lessonHorizontalPadding, paddingTop: linkedSliceCompact ? 2 : 4, paddingBottom: linkedSliceCompact ? 2 : 4 }}
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-              {wordOptionItems.map(({ word, index: i, isCorrectOption, shouldShowHint, isDimmed, displayText }) => {
+              {wordOptionItems.map(({ word, index: i, isCorrectOption, shouldShowHint, displayText }) => {
                 return (
                   <Animated.View
                     key={`${phrase?.id ?? 'phrase'}-${phraseWordIdx}-${word}-${i}`}
                     style={{
                     width: '48%',
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
-                    opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
+                    opacity: shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] })
                   }}>
                     {(() => {
                       // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
@@ -1196,7 +1210,6 @@ const LessonContent = React.memo(function LessonContent({
                         borderColor: isFlashing ? t.accent : t.border,
                       }}
                       onPress={() => {
-                        if (isDimmed) return;
                         if (showTapHint) setShowTapHint(false);
                         if (settings.hardMode) {
                           // В hardMode нажатие на кнопку вставляет слово в текстовое поле
@@ -1477,6 +1490,7 @@ const LessonContent = React.memo(function LessonContent({
           <ExplainSheet
             visible={explainOpen}
             onClose={() => setExplainOpen(false)}
+            onResolved={onExplainResolved}
             phraseEn={(status === 'result' && resultCorrectLine) ? resultCorrectLine : phraseAnswerDisplayLine(phrase, studyTarget, lang)}
             phraseMeaning={lang === 'uk' ? (phrase.ukrainian || phrase.russian) : (lang === 'es' && phrase.spanish ? phrase.spanish : phrase.russian)}
             lang={lang}
@@ -1658,9 +1672,6 @@ export default function LessonScreen() {
   const xpToastAnim = useRef(new Animated.Value(0)).current;
   const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
   const [bonusHints, setBonusHints] = useState(0);
-  const [dimmedWords, setDimmedWords] = useState<Set<string>>(new Set());
-  // Сбрасываем затемнение при смене набора слов (новое слово/фраза)
-  useEffect(() => { setDimmedWords(new Set()); }, [shuffled]);
   const [passCount, setPassCount]   = useState(0);
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
@@ -2953,7 +2964,7 @@ export default function LessonScreen() {
   // Списать один дневной кредит. Раньше это был 50/50 (затемнение слов); теперь кредит
   // тратится на «Объясни проще» ДО ответа (Фаза 5). Дневной счётчик и «подарок» те же,
   // ключ AsyncStorage оставлен прежним (`fifty_fifty_*`), чтобы не сбрасывать историю.
-  const handleFiftyFifty = useCallback(() => {
+  const consumeExplainCredit = useCallback(() => {
     if (fiftyFiftyUsedToday >= 3 + bonusHints || !phrase) return;
     const newCount = fiftyFiftyUsedToday + 1;
     setFiftyFiftyUsedToday(newCount);
@@ -3082,10 +3093,9 @@ export default function LessonScreen() {
             setFailedTapCount={setFailedTapCount}
             checkAnswer={checkAnswer}
             contrExpanded={contrExpanded}
-            onFiftyFifty={handleFiftyFifty}
+            onConsumeExplainCredit={consumeExplainCredit}
             fiftyFiftyUsedToday={fiftyFiftyUsedToday}
             bonusHints={bonusHints}
-            dimmedWords={dimmedWords}
             displayCell={overridePhraseCell ?? cellIndex}
             isErrorReplay={overridePhraseCell !== null}
             replaySolvedCorrectly={replaySolvedCorrectly}

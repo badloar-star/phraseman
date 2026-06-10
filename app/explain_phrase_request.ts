@@ -59,33 +59,26 @@ const INITIAL_STATE: ExplainRequestState = {
 
 /**
  * Что реально показать в теле шторки.
- * Чистая функция: на ошибке возвращает мягкий локализованный fallback, иначе —
+ * Чистая функция: на ошибке возвращает НЕЙТРАЛЬНЫЙ локализованный fallback, иначе —
  * серверный text как есть. КЛИЕНТ НЕ правит и НЕ оценивает текст сервера.
+ *
+ * ВАЖНО (зафиксировано с юзером 2026-06-10): фича объясняет английскую грамматику и НИКОГДА
+ * не пересказывает смысл/перевод фразы. Поэтому на ошибке мы НЕ показываем родной перевод
+ * (старый fallback показывал — это и был баг «русский пересказ»). `_fallbackMeaning` оставлен
+ * в сигнатуре только ради совместимости вызовов; в тексте он НЕ используется.
  */
 export function resolveExplainDisplay(
   state: ExplainRequestState,
   lang: string,
-  fallbackMeaning: string,
+  _fallbackMeaning?: string,
 ): { showSkeleton: boolean; text: string } {
   if (state.loading) {
     return { showSkeleton: true, text: '' };
   }
   if (state.error) {
-    // Сеть упала — сервер ничего не отдал. Показываем мягкий запасной текст,
-    // опираясь на родной перевод фразы, который уже есть на клиенте.
-    const trimmed = (fallbackMeaning ?? '').trim();
-    const safeLang = asLang(lang);
-    const intro = triLang(safeLang, {
-      ru: 'Не получилось загрузить объяснение. Если коротко:',
-      uk: 'Не вдалося завантажити пояснення. Якщо коротко:',
-      es: 'No se pudo cargar la explicación. En resumen:',
-      'pt-BR': 'Não foi possível carregar a explicação. Resumindo:',
-      vi: 'Không tải được phần giải thích. Tóm lại:',
-      id: 'Penjelasan gagal dimuat. Singkatnya:',
-      tr: 'Açıklama yüklenemedi. Kısacası:',
-      pl: 'Nie udało się wczytać wyjaśnienia. W skrócie:',
-    });
-    const text = trimmed ? `${intro} ${trimmed}` : triLang(safeLang, {
+    // Сеть упала — сервер ничего не отдал. Показываем НЕЙТРАЛЬНЫЙ запасной текст:
+    // ни перевода, ни смысла фразы (это объяснялка грамматики, не словарь).
+    const text = triLang(asLang(lang), {
       ru: 'Не получилось загрузить объяснение. Попробуй ещё раз позже.',
       uk: 'Не вдалося завантажити пояснення. Спробуй ще раз пізніше.',
       es: 'No se pudo cargar la explicación. Inténtalo de nuevo más tarde.',
@@ -98,7 +91,7 @@ export function resolveExplainDisplay(
     return { showSkeleton: false, text };
   }
   // status 'ok' | 'rejected' | 'exhausted' | 'pending' — сервер ВСЕГДА положил text
-  // (для не-ok это его собственный fallback). Рендерим как есть.
+  // (для не-ok это его собственный нейтральный fallback). Рендерим как есть.
   return { showSkeleton: false, text: state.text };
 }
 

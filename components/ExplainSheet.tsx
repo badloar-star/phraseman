@@ -39,6 +39,7 @@ import {
   resolveExplainDisplay,
   loadingLineForLang,
   asLang,
+  type ExplainRequestStatus,
 } from '../app/explain_phrase_request';
 import ExplainReportButton from './ExplainReportButton';
 
@@ -47,15 +48,21 @@ interface Props {
   onClose: () => void;
   /** Английская фраза, как показана пользователю (сервер её хэширует). */
   phraseEn: string;
-  /** Родной перевод/смысл фразы — для серверного и клиентского fallback. */
+  /** Родной перевод/смысл фразы — передаётся серверу как ПОДСКАЗКА для генерации (не выводится). */
   phraseMeaning: string;
   /** Язык интерфейса пользователя. */
   lang: string;
+  /**
+   * Вызывается РОВНО ОДИН РАЗ за открытие, когда запрос зарезолвился (после скелетона).
+   * Нужен, чтобы вызывающий мог списать дневной кредит ТОЛЬКО на реальной генерации
+   * (cache MISS), а не на бесплатном кэш-хите/ошибке. Необязателен (после ответа лимита нет).
+   */
+  onResolved?: (info: { fromCache: boolean; status: ExplainRequestStatus; error: boolean }) => void;
 }
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang }: Props) {
+function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResolved }: Props) {
   const { theme: t, f } = useTheme();
   const { lang: ctxLang } = useLang();
   const effLang = lang || ctxLang;
@@ -104,7 +111,10 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang }: Props
       status: state.status,
       phase: 'resolved',
     });
-  }, [visible, state.loading, state.fromCache, state.status, effLang]);
+    // Сообщаем вызывающему результат РОВНО раз — он решает, списывать ли дневной кредит
+    // (только реальная генерация: cache MISS, без ошибки).
+    onResolved?.({ fromCache: state.fromCache, status: state.status, error: state.error });
+  }, [visible, state.loading, state.fromCache, state.status, state.error, effLang, onResolved]);
 
   const handleClose = () => {
     hapticTap();

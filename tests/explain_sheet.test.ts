@@ -76,10 +76,11 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     }
   });
 
-  it('на сетевой ошибке показывает мягкий fallback на основе родного перевода, не сырой стек', () => {
+  it('на сетевой ошибке показывает НЕЙТРАЛЬНЫЙ fallback, НЕ родной перевод и не сырой стек', () => {
     const out = resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'ru', 'быть в ударе');
     expect(out.showSkeleton).toBe(false);
-    expect(out.text).toContain('быть в ударе');
+    // КРИТИЧНО: перевод/смысл фразы НЕ должен попадать в текст (объяснялка грамматики, не словарь).
+    expect(out.text).not.toContain('быть в ударе');
     expect(out.text).not.toMatch(/error|stack|undefined|null/i);
     expect(out.text.length).toBeGreaterThan(0);
   });
@@ -91,11 +92,11 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     expect(out.text).not.toMatch(/error|stack/i);
   });
 
-  it('строка скелетона локализована и дружелюбная (👶)', () => {
-    expect(loadingLineForLang('ru')).toContain('👶');
+  it('строка скелетона локализована и БЕЗ эмодзи (правило: никаких эмодзи)', () => {
+    expect(loadingLineForLang('ru')).toContain('готов');
+    expect(loadingLineForLang('ru')).not.toContain('👶');
     expect(loadingLineForLang('en' as string)).toBeTruthy();
-    // дефолт-локали из triLang (ru/uk/es) обязаны быть покрыты
-    expect(loadingLineForLang('uk')).toContain('👶');
+    expect(loadingLineForLang('uk')).not.toContain('👶');
     expect(loadingLineForLang('es')).toBeTruthy();
   });
 });
@@ -139,9 +140,9 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).toContain('loadingLineForLang');
   });
 
-  it('заголовок «Простыми словами» с эмодзи-малышом', () => {
+  it('заголовок «Простыми словами» БЕЗ эмодзи (правило: никаких эмодзи)', () => {
     expect(src).toContain('Простыми словами');
-    expect(src).toContain('👶');
+    expect(src).not.toContain('👶');
   });
 
   it('слайд-ап на legacy Animated + Modal + LinearGradient (дом-паттерн NoEnergyModal, НЕ reanimated)', () => {

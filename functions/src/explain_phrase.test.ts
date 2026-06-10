@@ -343,13 +343,17 @@ describe('explainPhrase — input validation', () => {
   });
 });
 
-describe('buildFallback — server builds it, never the client, never AI', () => {
-  it('is derived from phraseMeaning', () => {
-    expect(buildFallback('Привет')).toContain('Привет');
-    expect(buildFallback('Привет')).toContain('Например');
+describe('buildFallback — neutral, never echoes the meaning/translation', () => {
+  it('NEVER includes the phrase meaning (feature explains English grammar, not RU sense)', () => {
+    // Even when a meaning is passed, it must NOT appear in the fallback text.
+    expect(buildFallback('Привет, как дела')).not.toContain('Привет');
+    expect(buildFallback('Привет, как дела')).not.toContain('Например');
   });
 
-  it('degrades to a generic string when meaning is empty', () => {
-    expect(buildFallback('')).toBe('Объяснение пока недоступно. Попробуйте позже.');
+  it('is a neutral try-again message regardless of input (with or without meaning)', () => {
+    const neutral = 'Не получилось подготовить объяснение. Попробуйте позже.';
+    expect(buildFallback('')).toBe(neutral);
+    expect(buildFallback('что угодно')).toBe(neutral);
+    expect(buildFallback()).toBe(neutral);
   });
 });

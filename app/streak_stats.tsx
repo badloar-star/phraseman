@@ -2483,14 +2483,14 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
       {/* Bento 3-up: Частота / Длина / Серия — каждый сигнал крупной плиткой
           с воздухом вместо тесной строки со скрытым хинтом. */}
       <View style={{ flexDirection: 'row', gap: 8 }}>
-        {learningSignals.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance'), alignItems: 'center' }}>
+        {learningSignals.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, minHeight: 104, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance'), alignItems: 'center', justifyContent: 'flex-start' }}>
             <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
               <Ionicons name={item.icon} size={18} color={scoreAccent}/>
             </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg ?? f.body, fontWeight: '900', textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.6}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.55}>
               {item.value}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 3, textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
+            <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 'auto', textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
               {item.label}
             </Text>
           </View>))}

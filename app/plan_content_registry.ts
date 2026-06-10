@@ -1,5 +1,4 @@
 import type { PlanContentDay } from './plan_content_schema';
-import { VOYAZH_CONTENT_DAYS } from './plan_content_voyazh';
 import { MITAP_CONTENT_DAYS } from './plan_content_mitap';
 
 /**
@@ -17,8 +16,10 @@ function keyFor(planId: string, dayIndex: number): string {
   return `${planId}:${dayIndex}`;
 }
 
+// 2026-06-10: voyazh authored content (84 days, old concept) deleted by owner
+// decision — Компас gets fully regenerated content in Ф4. Until then voyazh days
+// fall back to the template path like the other non-authored plans.
 const ALL_CONTENT_DAYS: readonly PlanContentDay[] = [
-  ...VOYAZH_CONTENT_DAYS,
   ...MITAP_CONTENT_DAYS,
 ];
 

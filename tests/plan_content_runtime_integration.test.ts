@@ -7,35 +7,39 @@ import { getPersonalPlanChooseNaturalPhraseItems } from '../app/personal_plan_ch
  *
  * The catalog/navigation request content units positionally as
  * `${lessonId}_phrase_${N}` and the exercise item builders filter lesson phrases by
- * those exact ids. Authored content (plan_content_voyazh etc.) uses internal phrase ids
- * (voyazh_d1_p1) that would NOT match — so buildGeneratedPlanPhraseLesson must re-key
+ * those exact ids. Authored content (plan_content_mitap etc.) uses internal phrase ids
+ * (mitap_d1_p1) that would NOT match — so buildGeneratedPlanPhraseLesson must re-key
  * authored phrases to the positional scheme. If it doesn't, every exercise task shows
  * "задание не открылось". Unit tests miss this because it's a cross-module id contract;
  * this test locks it.
+ *
+ * 2026-06-10: re-pointed from voyazh to mitap — the old voyazh authored content was
+ * deleted by owner decision (full rewrite under the new concept in Ф4). The contract
+ * itself is plan-agnostic; it just needs ANY registered authored day to exercise it.
  */
 
-const VOYAZH_DAY1_LESSON = 'voyazh_d001_content_unit';
+const MITAP_DAY1_LESSON = 'mitap_d001_content_unit';
 const requestedIds = (count: number) =>
-  Array.from({ length: count }, (_, i) => `${VOYAZH_DAY1_LESSON}_phrase_${i + 1}`);
+  Array.from({ length: count }, (_, i) => `${MITAP_DAY1_LESSON}_phrase_${i + 1}`);
 
 describe('authored plan content runtime integration', () => {
-  it('serves the authored etalon for voyazh day 1', () => {
-    const lesson = getPersonalPlanPhraseLesson(VOYAZH_DAY1_LESSON);
+  it('serves the authored content for mitap day 1', () => {
+    const lesson = getPersonalPlanPhraseLesson(MITAP_DAY1_LESSON);
     expect(lesson).not.toBeNull();
-    // etalon content actually present
-    expect(lesson!.phrases.map((p) => p.english)).toContain("I'm lost.");
+    // authored content actually present
+    expect(lesson!.phrases.map((p) => p.english)).toContain('Hi, I am Anna.');
   });
 
   it('re-keys authored phrase ids to the positional content-unit scheme', () => {
-    const lesson = getPersonalPlanPhraseLesson(VOYAZH_DAY1_LESSON)!;
+    const lesson = getPersonalPlanPhraseLesson(MITAP_DAY1_LESSON)!;
     lesson.phrases.forEach((phrase, index) => {
-      expect(String(phrase.id)).toBe(`${VOYAZH_DAY1_LESSON}_phrase_${index + 1}`);
+      expect(String(phrase.id)).toBe(`${MITAP_DAY1_LESSON}_phrase_${index + 1}`);
     });
   });
 
   it('builds missing-word items for the requested content units (not zero)', () => {
     const items = getPersonalPlanMissingWordItems({
-      lessonId: VOYAZH_DAY1_LESSON,
+      lessonId: MITAP_DAY1_LESSON,
       contentUnitIds: requestedIds(5),
     });
     expect(items.length).toBe(5);
@@ -47,7 +51,7 @@ describe('authored plan content runtime integration', () => {
 
   it('builds choose-natural items for the requested content units (not zero)', () => {
     const items = getPersonalPlanChooseNaturalPhraseItems({
-      lessonId: VOYAZH_DAY1_LESSON,
+      lessonId: MITAP_DAY1_LESSON,
       contentUnitIds: requestedIds(5),
     });
     expect(items.length).toBe(5);

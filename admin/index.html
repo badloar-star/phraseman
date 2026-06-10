@@ -2714,6 +2714,7 @@
       color: var(--admin-muted) !important;
     }
     body[data-admin-skin="onboarding"] #ar-summary,
+    body[data-admin-skin="onboarding"] #arr-summary,
     body[data-admin-skin="onboarding"] #al-summary,
     body[data-admin-skin="onboarding"] #ref-summary-stats {
       padding: 0 0 14px !important;
@@ -9834,12 +9835,12 @@
 <div id="tab-arena-rooms" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadArenaRooms(true)" data-i18n-es="🔄 Actualizar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
-    <input type="text" id="ar-search" placeholder="🔍 Код, хост, название…" data-i18n-es="🔍 Código, host, nombre…" oninput="renderArenaRooms()"
+    <input type="text" id="arr-search" placeholder="🔍 Код, хост, название…" data-i18n-es="🔍 Código, host, nombre…" oninput="renderArenaRooms()"
       style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:220px;font-size:13px" />
     <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
-      <input type="checkbox" id="ar-only-active" onchange="renderArenaRooms()" checked /> <span data-i18n-es="solo activas">только активные</span>
+      <input type="checkbox" id="arr-only-active" onchange="renderArenaRooms()" checked /> <span data-i18n-es="solo activas">только активные</span>
     </label>
-    <span class="reports-count" id="ar-count"></span>
+    <span class="reports-count" id="arr-count"></span>
   </div>
   <p data-i18n-es="Fuente: arena_rooms_live. Cerrar cambia la sala a estado closed y desactiva a todos los participantes. Eliminar borra el documento completo. Participantes: desde arena_room_members. ⚠️ No tocar salas con partida activa." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:1100px;line-height:1.5">
     <span data-i18n-es="Fuente:">Источник:</span> <code style="color:#a78bfa" data-i18n-es="arena_rooms_live">arena_rooms_live</code>.
@@ -9847,7 +9848,7 @@
     <span data-i18n-es="«Eliminar» borra el documento completo. Participantes: desde">«Удалить» удаляет документ целиком. Участники — из</span> <code data-i18n-es="arena_room_members">arena_room_members</code>.
     <strong data-i18n-es="⚠️ No tocar salas con partida activa.">⚠️ Не трогать комнаты с активной игрой.</strong>
   </p>
-  <div id="ar-summary" style="padding:0 24px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px"></div>
+  <div id="arr-summary" style="padding:0 24px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px"></div>
   <div id="ar-content" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
 </div>
 
@@ -25973,10 +25974,10 @@
 
     window.renderArenaRooms = function renderArenaRooms() {
       const content = document.getElementById('ar-content');
-      const cnt = document.getElementById('ar-count');
-      const summary = document.getElementById('ar-summary');
-      const search = document.getElementById('ar-search')?.value || '';
-      const onlyActive = !!document.getElementById('ar-only-active')?.checked;
+      const cnt = document.getElementById('arr-count');
+      const summary = document.getElementById('arr-summary');
+      const search = document.getElementById('arr-search')?.value || '';
+      const onlyActive = !!document.getElementById('arr-only-active')?.checked;
 
       const q = search.trim().toLowerCase();
       const list = _arRooms.filter(r => {
@@ -26078,7 +26079,7 @@
         refresh.textContent = 'Refresh';
         refresh.setAttribute('data-i18n-es', 'Refresh');
       }
-      const search = document.getElementById('ar-search');
+      const search = document.getElementById('arr-search');
       if (search) {
         search.placeholder = 'Code, host, room title...';
         search.setAttribute('data-i18n-es', 'Code, host, room title...');
@@ -26112,10 +26113,10 @@
     window.renderArenaRooms = function renderArenaRooms() {
       applyCleanArenaRoomsChrome();
       const content = document.getElementById('ar-content');
-      const cnt = document.getElementById('ar-count');
-      const summary = document.getElementById('ar-summary');
-      const search = document.getElementById('ar-search')?.value || '';
-      const onlyActive = !!document.getElementById('ar-only-active')?.checked;
+      const cnt = document.getElementById('arr-count');
+      const summary = document.getElementById('arr-summary');
+      const search = document.getElementById('arr-search')?.value || '';
+      const onlyActive = !!document.getElementById('arr-only-active')?.checked;
       if (!content) return;
 
       const q = search.trim().toLowerCase();

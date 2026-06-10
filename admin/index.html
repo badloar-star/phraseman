@@ -9962,7 +9962,11 @@
         <label data-i18n-es="Text" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Text</label>
         <textarea id="push-seg-body" placeholder="Notification text..." data-i18n-es="Notification text..." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
         <input id="push-seg-action" type="text" placeholder="Click action (optional)" data-i18n-es="Click action (optional)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
-        <button type="button" onclick="submitPushJob('segment')" data-i18n-es="Send segment" style="background:#1a3a2a;border:1px solid #14532d;color:#4ade80;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;align-self:flex-start">Send segment</button>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button type="button" onclick="previewPushAudience()" style="background:#0e2a3a;border:1px solid #1e5a7a;color:#38bdf8;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer">👁 Сколько получит</button>
+          <button type="button" onclick="submitPushJob('segment')" data-i18n-es="Send segment" style="background:#1a3a2a;border:1px solid #14532d;color:#4ade80;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer">Send segment</button>
+          <span id="push-audience-preview" style="font-size:13px;color:#9ca3af"></span>
+        </div>
       </div>
     </div>
 
@@ -25351,6 +25355,30 @@
     });
   };
   setTimeout(() => window.setPushMode(_pushMode), 0);
+
+  // Preview how many loaded users match the current segment filters (client-side
+  // estimate from _users; the real send is done server-side by the push CF).
+  window.previewPushAudience = async function() {
+    const out = document.getElementById('push-audience-preview');
+    if (out) out.textContent = 'Считаю…';
+    if ((!window._users || !window._users.length) && typeof window.loadUsers === 'function') {
+      await window.loadUsers({ full: true }).catch(() => {});
+    }
+    const users = window._users || [];
+    const v = id => document.getElementById(id)?.value?.trim() || '';
+    const lang = v('push-seg-lang');
+    const prem = v('push-seg-premium');
+    const streakMin = parseInt(v('push-seg-streak') || '0', 10);
+    let n = 0;
+    for (const u of users) {
+      if (lang && String(u.lang || '') !== lang) continue;
+      if (prem !== '') { const active = premiumInfo(u).active; if (active !== (prem === 'true')) continue; }
+      if (streakMin > 0 && Number(u.streak || 0) < streakMin) continue;
+      n++;
+    }
+    const pct = users.length ? Math.round(n / users.length * 100) : 0;
+    if (out) { out.textContent = `≈ ${n} получат (${pct}% из ${users.length} загруженных)`; out.style.color = n ? '#4ade80' : '#fbbf24'; }
+  };
 
   window.submitPushJob = async function(mode) {
     const v = id => document.getElementById(id)?.value?.trim() || '';

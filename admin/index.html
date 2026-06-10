@@ -8544,8 +8544,6 @@
   </div>
   <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
     <button type="button" onclick="loadModQueue(true)" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700">🔄 Собрать очередь</button>
-    <button type="button" onclick="runTriageBacklog()" style="background:#0e2a3a;border:1px solid #1e5a7a;color:#38bdf8;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700" title="Прогнать AI-триаж по старым репортам без вердикта">🤖 Проанализировать старые</button>
-    <span id="mq-triage-status" style="font-size:12px;color:#888"></span>
     <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="mq-only-critical" onchange="renderModQueue()"> <span>🔴 только critical (ИИ)</span></label>
     <select id="mq-source" onchange="renderModQueue()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px">
       <option value="">Все источники</option>
@@ -16804,7 +16802,6 @@
           <div class="rc-right">
             ${catBadge(cat)}
             ${severityLabel(cat)}
-            ${triageBadge(r)}
             <div class="report-date">🕐 ${formatReportDate(r.createdAt)}</div>
             ${isFixed && r.fixedAt ? `<div style="font-size:10px;color:#4ade80;margin-top:2px">✅ ${formatReportDate(r.fixedAt)}</div>` : ''}
             <div style="font-size:10px;color:#444;margin-top:4px">${r.deviceModel ? '🆕 full meta' : r.dataId ? '🆕 new' : '📦 legacy'}</div>
@@ -16830,18 +16827,6 @@
     if (s === 'medium') return '<span class="sev-badge sev-medium">🟡 средняя</span>';
     return '<span class="sev-badge sev-low">⚪ низкая</span>';
   }
-
-  // AI triage verdict badge (written by the triage Cloud Functions onto r.triage).
-  window.triageBadge = function(r) {
-    const t = r && r.triage;
-    if (!t) return '';
-    const sev = String(t.severity || 'normal');
-    const color = sev === 'critical' ? '#f87171' : sev === 'low' ? '#6b7280' : '#fbbf24';
-    const bg = sev === 'critical' ? '#3a1414' : sev === 'low' ? '#1a1a24' : '#2a2410';
-    const spam = t.isSpam ? '<span style="background:#3a1414;color:#f87171;border-radius:4px;padding:1px 5px;font-size:9px;font-weight:800;margin-left:3px">SPAM</span>' : '';
-    const action = t.suggestedAction ? `<div style="font-size:10px;color:#9ca3af;margin-top:2px;max-width:160px">🤖 ${escapeHtml(t.suggestedAction)}</div>` : '';
-    return `<div style="margin-top:4px"><span title="${escapeHtml(t.reason || '')}" style="background:${bg};color:${color};border-radius:4px;padding:2px 7px;font-size:10px;font-weight:800">🤖 ${escapeHtml(sev)}</span>${spam}${action}</div>`;
-  };
 
   function getFilteredReportsList() {
     const screen = document.getElementById('r-filter-screen').value;
@@ -18153,7 +18138,6 @@
         <div class="rc-left" style="min-width:0;flex:1">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
             <span style="background:#1a1a24;border:1px solid ${srcColor}44;color:${srcColor};border-radius:5px;padding:2px 8px;font-size:11px;font-weight:700">${it.icon} ${escapeHtml(it.sourceLabel)}</span>
-            ${typeof triageBadge === 'function' ? triageBadge(it).replace('margin-top:4px','display:inline-block') : ''}
           </div>
           <div style="color:#fff;font-size:14px;margin-bottom:3px">${escapeHtml(it.title)}</div>
           <div style="font-size:12px;color:#888">${escapeHtml(it.sub)}${when ? ' · ' + escapeHtml(when) : ''}</div>
@@ -18182,29 +18166,6 @@
     if (typeof loadCommunitySubmissions === 'function') { jobs.push(Promise.resolve(loadCommunitySubmissions()).catch(() => {})); }
     try { await Promise.all(jobs); } catch (_) {}
     renderModQueue();
-  };
-
-  // Run AI triage on existing (untriaged) reports via the triageBacklog callable.
-  window.runTriageBacklog = async function() {
-    const status = document.getElementById('mq-triage-status');
-    if (status) status.textContent = '🤖 Анализирую старые репорты… (~10-30 сек)';
-    try {
-      if (typeof httpsCallable !== 'function' || !functionsUs) { if (status) status.textContent = 'Callable недоступен'; return; }
-      const fn = httpsCallable(functionsUs, 'triageBacklog');
-      const [er, ur] = await Promise.all([
-        fn({ which: 'error', limit: 25 }).then(r => r.data).catch(e => ({ error: e.message })),
-        fn({ which: 'user', limit: 15 }).then(r => r.data).catch(e => ({ error: e.message })),
-      ]);
-      const erDone = er && er.processed != null ? er.processed : 0;
-      const urDone = ur && ur.processed != null ? ur.processed : 0;
-      if (status) status.textContent = `✅ Обработано: ${erDone} репортов + ${urDone} жалоб. Перезагружаю…`;
-      window._reportsLoaded = false;
-      window._userReportsLoaded = false;
-      await loadModQueue(true);
-      if (status) status.textContent = `✅ Готово. ИИ разобрал ${erDone + urDone} обращений — смотри бейджи приоритета.`;
-    } catch (e) {
-      if (status) status.textContent = 'Ошибка: ' + (e && e.message ? e.message : e);
-    }
   };
 
   // ── Refund / dispute center ───────────────────────────────────────────────
@@ -19276,7 +19237,6 @@
           </div>
           <div class="rc-right" style="font-size:11px;color:#666;min-width:80px;text-align:right">
             <span style="color:${statusColor};font-weight:700">${statusTxt}</span>
-            ${triageBadge(r)}
           </div>
         </div>`;
     }).join('');

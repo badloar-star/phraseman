@@ -25,6 +25,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
@@ -1120,22 +1121,23 @@ const LessonContent = React.memo(function LessonContent({
                     opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
                     {(() => {
+                      // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
+                      // фирменный цвет на любой тап). Объём — через DuoPressable (3D-кромка).
                       const isFlashing = flashWord?.word === word;
-                      const flashOk = isFlashing && flashWord?.correct;
-                      const flashBad = isFlashing && !flashWord?.correct;
                       return (
-                    <LessonPressable
+                    <DuoPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
+                      edgeHeight={5}
+                      edgeColor={isFlashing ? t.accent : (themeMode === 'neon' ? t.border : 'rgba(0,0,0,0.30)')}
+                      withHaptic={false}
                       style={{
                         width: '100%',
-                        backgroundColor: flashOk ? t.correctBg : flashBad ? t.wrongBg : t.bgCard,
+                        backgroundColor: isFlashing ? t.accent : t.bgCard,
                         paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14),
-                        alignItems: 'center', borderRadius: 12,
+                        borderRadius: 12,
                         borderWidth: isFlashing ? 1.5 : (themeMode === 'neon' ? 1 : 0.5),
-                        borderColor: flashOk ? t.correct : flashBad ? t.wrong : t.border,
-                        ...getCardShadow(themeMode, t.glow),
+                        borderColor: isFlashing ? t.accent : t.border,
                       }}
-                      suppressFeedback={isDimmed}
                       onPress={() => {
                         if (isDimmed) return;
                         if (showTapHint) setShowTapHint(false);
@@ -1146,15 +1148,15 @@ const LessonContent = React.memo(function LessonContent({
                           setTypedText(current ? current + ' ' + w : w);
                           setTimeout(() => textInputRef.current?.focus(), 50);
                         } else {
-                          // Вспышка плитки: зелёная если слово правильное для текущей позиции, иначе красная.
+                          // Вспышка плитки акцентным цветом темы.
                           triggerWordFlash(word, isCorrectOption);
                           handleWordPress(word);
                         }
                         requestAnimationFrame(() => { void hapticTap(); });
                       }}
                     >
-                      <Text style={{ color: (flashOk || flashBad) ? '#fff' : t.textPrimary, fontSize: f.numMd, fontWeight: (flashOk || flashBad) ? '700' : '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
-                    </LessonPressable>
+                      <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
+                    </DuoPressable>
                       );
                     })()}
                   </Animated.View>

@@ -21,6 +21,14 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
+import {
+  SettingsGroup,
+  SettingsRow,
+  SettingsCustomRow,
+  SettingsSectionTitle,
+  SettingsIconTile,
+  SETTINGS_GROUP_MARGIN,
+} from '../../components/settings/SettingsGroup';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
 import CompassDepthSurface from '../../components/CompassDepthSurface';
@@ -478,51 +486,8 @@ export default function SettingsMain() {
     ? `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
     : L('VIP без срока окончания', 'VIP без дати завершення', 'VIP has no end date', 'VIP sem data de término', 'VIP không có ngày kết thúc', 'VIP tanpa tanggal akhir', 'VIP bitiş tarihi yok', 'VIP bez daty zakończenia');
 
-  const Row = ({ icon, label, sub, onPress, right, danger, testID }: {
-    icon: string; label: string; sub?: string;
-    onPress: () => void; right?: React.ReactNode; danger?: boolean; testID?: string;
-  }) => (
-    <TouchableOpacity
-      testID={testID}
-      accessibilityLabel={testID ? `qa-${testID}` : undefined}
-      accessible={!!testID}
-      style={[
-        {
-          flexDirection: 'row',
-          alignItems: 'center',
-          paddingHorizontal: 20,
-          paddingVertical: 16,
-          borderBottomWidth: isCompassTheme ? 0 : 0.5,
-          borderBottomColor: screenBorder,
-        },
-        isCompassTheme && {
-          marginHorizontal: 20,
-          marginVertical: 4,
-          borderRadius: 8,
-          borderWidth: 0.5,
-          borderColor: COMPASS_RICH.hairlineQuiet,
-          backgroundColor: COMPASS_RICH.charcoalRaised,
-          overflow: 'hidden',
-        },
-        isCompassTheme && compassShadow(1),
-      ]}
-      onPress={() => { doHaptic(); onPress(); }} activeOpacity={0.7}
-    >
-      {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-      <Ionicons name={icon as any} size={22} color={danger ? t.wrong : screenSecond} style={{ marginRight: 14 }} />
-      <View style={{ flex: 1 }}>
-        <Text style={{ color: danger ? t.wrong : screenPrimary, fontSize: f.bodyLg }}>{label}</Text>
-        {sub && <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
-      </View>
-      {right || <Ionicons name="chevron-forward" size={18} color={screenGhost} />}
-    </TouchableOpacity>
-  );
-
-  const SectionTitle = ({ title }: { title: string }) => (
-    <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 1, paddingHorizontal: 20, paddingTop: 20, paddingBottom: 8 }}>
-      {title}
-    </Text>
-  );
+  // Список настроек переведён на Telegram-стиль: сгруппированные карточки
+  // (components/settings/SettingsGroup). Старые локальные Row/SectionTitle удалены.
 
   return (
     <ScreenGradient>
@@ -699,43 +664,53 @@ export default function SettingsMain() {
           </View>
         )}
 
-        <SectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
+        <SettingsSectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
 
-        <Row
-          testID="settings-profile-row"
-          icon="person-outline"
-          label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
-          sub={
-            false && !nameReady ? '' : (userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono'))
-          }
-          onPress={() => { setNewName(userName); setNameModal(true); }}
-        />
-        <Row
-          icon="person-circle-outline"
-          label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
-          sub={
-            false && !authReady ? '' : linkedAuth
+        <SettingsGroup>
+          <SettingsRow
+            testID="settings-profile-row"
+            icon="person"
+            color="blue"
+            label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
+            sub={userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono')}
+            onPress={() => { setNewName(userName); setNameModal(true); }}
+          />
+          <SettingsRow
+            icon="key"
+            color="green"
+            label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
+            sub={
+              linkedAuth
                 ? `${linkedAuth.provider === 'apple' ? 'Apple' : 'Google'}${linkedAuth.email ? ` · ${linkedAuth.email}` : ''}`
                 : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')
-          }
-          onPress={() => {
-            if (!linkedAuth) {
-              setAuthPromptVisible(true);
-              return;
             }
-            setAccountModalVisible(true);
-          }}
-        />
+            onPress={() => {
+              if (!linkedAuth) {
+                setAuthPromptVisible(true);
+                return;
+              }
+              setAccountModalVisible(true);
+            }}
+          />
+          <SettingsRow
+            testID="settings-language-row"
+            icon="language"
+            color="teal"
+            label={s.settings.lang}
+            sub={LANG_NATIVE[lang]}
+            onPress={() => router.push('/settings_language' as any)}
+          />
+        </SettingsGroup>
         {/* Баннер: нет ника */}
         {nameReady && !userName && (
           <TouchableOpacity
             activeOpacity={0.85}
             onPress={() => { doHaptic(); setNewName(''); setNameModal(true); }}
             style={{
-              marginHorizontal: 20, marginTop: 8, marginBottom: 4,
+              marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
               flexDirection: 'row', alignItems: 'center', gap: 10,
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface,
-              borderRadius: isCompassTheme ? 8 : 12, padding: 12,
+              borderRadius: 12, padding: 12,
               borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.accent + '55',
               overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(1) : {}),
@@ -760,140 +735,156 @@ export default function SettingsMain() {
         )}
 
 
-        <Row
-          testID="settings-language-row"
-          icon="language-outline"
-          label={s.settings.lang}
-          sub={LANG_NATIVE[lang]}
-          onPress={() => router.push('/settings_language' as any)}
-        />
+        <SettingsSectionTitle title={L('Внешний вид', 'Зовнішній вигляд', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')} />
+        <SettingsGroup>
+          <SettingsRow
+            icon="color-palette"
+            color="purple"
+            label={L('Темы', 'Теми', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
+            sub={currentThemeLabel}
+            onPress={() => router.push('/settings_themes' as any)}
+          />
 
-
-        <SectionTitle title={L('Внешний вид', 'Зовнішній вигляд', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')} />
-        <Row
-          icon="color-palette-outline"
-          label={L('Темы', 'Теми', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
-          sub={currentThemeLabel}
-          onPress={() => router.push('/settings_themes' as any)}
-        />
-
-
-        {/* РАЗМЕР ШРИФТА */}
-        <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: screenBorder }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
-            <Ionicons name="text-outline" size={22} color={screenSecond} style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Размер шрифта', 'Розмір шрифту', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki')}</Text>
-              <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>
-                {triLang(lang, {
-                  ru: FONT_SIZE_LABELS[fontSize].ru,
-                  uk: FONT_SIZE_LABELS[fontSize].uk,
-                  es: FONT_SIZE_LABELS[fontSize].es,
-                  'pt-BR': FONT_SIZE_LABELS[fontSize]['pt-BR'],
-                  vi: FONT_SIZE_LABELS[fontSize].vi,
-                  id: FONT_SIZE_LABELS[fontSize].id,
-                  tr: FONT_SIZE_LABELS[fontSize].tr,
-                  pl: FONT_SIZE_LABELS[fontSize].pl,
-                })}
-              </Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', gap: 8 }}>
-            {(['small','medium','large'] as const).map(sz => (
-              <TouchableOpacity
-                key={sz}
-                onPress={() => { doHaptic(); setFontSize(sz); }}
-                activeOpacity={0.8}
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  paddingVertical: 10,
-                  borderRadius: isCompassTheme ? 8 : 10,
-                  borderWidth: fontSize === sz ? (isCompassTheme ? 1 : 2) : 0.5,
-                  borderColor: isCompassTheme
-                    ? (fontSize === sz ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
-                    : fontSize === sz ? chipBorderOn : (isGradientLight ? chipBorderOff : t.border),
-                  backgroundColor: isCompassTheme
-                    ? (fontSize === sz ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised)
-                    : fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
-                  overflow: 'hidden',
-                  ...(isCompassTheme && fontSize === sz ? compassShadow(1) : {}),
-                }}
-              >
-                {isCompassTheme ? <CompassDepthSurface radius={8} quiet={fontSize !== sz} cream={fontSize === sz} /> : null}
-                <Text style={{
-                  fontSize: sz === 'small' ? 12 : sz === 'medium' ? 14 : sz === 'large' ? 17 : 20,
-                  fontWeight: '700',
-                  color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenSecond) : fontSize === sz ? chipTextOn : t.textSecond,
-                }}>A</Text>
-                <Text numberOfLines={1} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
-                  {L(
-                    sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
-                    sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
-                    sz === 'small' ? 'Pequeño' : sz === 'medium' ? 'Mediano' : 'Grande',
-                    sz === 'small' ? 'Pequeno' : sz === 'medium' ? 'Médio' : 'Grande',
-                    sz === 'small' ? 'Nhỏ' : sz === 'medium' ? 'Vừa' : 'Lớn',
-                    sz === 'small' ? 'Kecil' : sz === 'medium' ? 'Sedang' : 'Besar',
-                    sz === 'small' ? 'Küçük' : sz === 'medium' ? 'Orta' : 'Büyük',
-                    sz === 'small' ? 'Mały' : sz === 'medium' ? 'Średni' : 'Duży',
-                  )}
+          {/* РАЗМЕР ШРИФТА */}
+          <SettingsCustomRow>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
+              <SettingsIconTile icon="text" color="pink" />
+              <View style={{ flex: 1, marginLeft: 12 }}>
+                <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Размер шрифта', 'Розмір шрифту', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki')}</Text>
+                <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>
+                  {triLang(lang, {
+                    ru: FONT_SIZE_LABELS[fontSize].ru,
+                    uk: FONT_SIZE_LABELS[fontSize].uk,
+                    es: FONT_SIZE_LABELS[fontSize].es,
+                    'pt-BR': FONT_SIZE_LABELS[fontSize]['pt-BR'],
+                    vi: FONT_SIZE_LABELS[fontSize].vi,
+                    id: FONT_SIZE_LABELS[fontSize].id,
+                    tr: FONT_SIZE_LABELS[fontSize].tr,
+                    pl: FONT_SIZE_LABELS[fontSize].pl,
+                  })}
                 </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row', gap: 8 }}>
+              {(['small','medium','large'] as const).map(sz => (
+                <TouchableOpacity
+                  key={sz}
+                  onPress={() => { doHaptic(); setFontSize(sz); }}
+                  activeOpacity={0.8}
+                  style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    paddingVertical: 10,
+                    borderRadius: isCompassTheme ? 8 : 10,
+                    borderWidth: fontSize === sz ? (isCompassTheme ? 1 : 2) : 0.5,
+                    borderColor: isCompassTheme
+                      ? (fontSize === sz ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
+                      : fontSize === sz ? chipBorderOn : (isGradientLight ? chipBorderOff : t.border),
+                    backgroundColor: isCompassTheme
+                      ? (fontSize === sz ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised)
+                      : fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
+                    overflow: 'hidden',
+                    ...(isCompassTheme && fontSize === sz ? compassShadow(1) : {}),
+                  }}
+                >
+                  {isCompassTheme ? <CompassDepthSurface radius={8} quiet={fontSize !== sz} cream={fontSize === sz} /> : null}
+                  <Text style={{
+                    fontSize: sz === 'small' ? 12 : sz === 'medium' ? 14 : sz === 'large' ? 17 : 20,
+                    fontWeight: '700',
+                    color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenSecond) : fontSize === sz ? chipTextOn : t.textSecond,
+                  }}>A</Text>
+                  <Text numberOfLines={1} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
+                    {L(
+                      sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
+                      sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
+                      sz === 'small' ? 'Pequeño' : sz === 'medium' ? 'Mediano' : 'Grande',
+                      sz === 'small' ? 'Pequeno' : sz === 'medium' ? 'Médio' : 'Grande',
+                      sz === 'small' ? 'Nhỏ' : sz === 'medium' ? 'Vừa' : 'Lớn',
+                      sz === 'small' ? 'Kecil' : sz === 'medium' ? 'Sedang' : 'Besar',
+                      sz === 'small' ? 'Küçük' : sz === 'medium' ? 'Orta' : 'Büyük',
+                      sz === 'small' ? 'Mały' : sz === 'medium' ? 'Średni' : 'Duży',
+                    )}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </SettingsCustomRow>
 
-        {/* Тактильный отклик — глобальный */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: screenBorder }}>
-          <Ionicons name="phone-portrait-outline" size={22} color={screenSecond} style={{ marginRight: 14 }} />
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Тактильный отклик', 'Тактильний відгук', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna')}</Text>
-            <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>{L('Вибрация на каждом нажатии', 'Вібрація на кожному натисканні', 'Vibración ligera al pulsar', 'Vibração leve a cada toque', 'Rung nhẹ khi chạm', 'Getaran ringan setiap ketukan', 'Her dokunuşta hafif titreşim', 'Lekka wibracja przy każdym dotknięciu')}</Text>
-          </View>
-          <CustomSwitch
-            value={hapticTap}
-            onValueChange={val => {
-              setHapticTap(val);
-              setHapticCacheEnabled(val);
-              AsyncStorage.setItem('haptics_tap', String(val));
+          {/* Тактильный отклик — глобальный */}
+          <SettingsRow
+            icon="phone-portrait"
+            color="orange"
+            label={L('Тактильный отклик', 'Тактильний відгук', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna')}
+            sub={L('Вибрация на каждом нажатии', 'Вібрація на кожному натисканні', 'Vibración ligera al pulsar', 'Vibração leve a cada toque', 'Rung nhẹ khi chạm', 'Getaran ringan setiap ketukan', 'Her dokunuşta hafif titreşim', 'Lekka wibracja przy każdym dotknięciu')}
+            hideChevron
+            right={
+              <CustomSwitch
+                value={hapticTap}
+                onValueChange={val => {
+                  setHapticTap(val);
+                  setHapticCacheEnabled(val);
+                  AsyncStorage.setItem('haptics_tap', String(val));
+                }}
+              />
+            }
+          />
+        </SettingsGroup>
+
+        <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
+        <SettingsGroup>
+          <SettingsRow
+            icon="school"
+            color="indigo"
+            label={L('Настройки обучения', 'Налаштування навчання', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}
+            onPress={() => router.push('/settings_edu')}
+          />
+          <SettingsRow
+            icon="notifications"
+            color="red"
+            label={L('Напоминания', 'Нагадування', 'Recordatorios', 'Lembretes', 'Nhắc nhở', 'Pengingat', 'Hatırlatıcılar', 'Przypomnienia')}
+            sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')}
+            onPress={() => router.push('/settings_notifications')}
+          />
+        </SettingsGroup>
+
+
+        <SettingsSectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />
+        <SettingsGroup>
+          <SettingsRow
+            icon="mail"
+            color="blue"
+            label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
+            sub="support.phraseman@gmail.com"
+            onPress={() => {
+              doHaptic();
+              void Linking.openURL(
+                'mailto:support.phraseman@gmail.com?subject=' + encodeURIComponent('Phraseman'),
+              );
             }}
           />
-        </View>
-
-        <SectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
-        <Row icon="school-outline"        label={L('Настройки обучения', 'Налаштування навчання', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}   onPress={() => router.push('/settings_edu')} />
-        <Row icon="notifications-outline" label={L('Напоминания', 'Нагадування', 'Recordatorios', 'Lembretes', 'Nhắc nhở', 'Pengingat', 'Hatırlatıcılar', 'Przypomnienia')} sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')} onPress={() => router.push('/settings_notifications')} />
-
-
-<SectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />
-        <Row
-          icon="at-outline"
-          label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
-          sub="support.phraseman@gmail.com"
-          onPress={() => {
-            doHaptic();
-            void Linking.openURL(
-              'mailto:support.phraseman@gmail.com?subject=' + encodeURIComponent('Phraseman'),
-            );
-          }}
-        />
-        {effectiveOs === 'android' && (
-          <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta', 'Testadores beta', 'Người thử nghiệm beta', 'Penguji beta', 'Beta test kullanıcıları', 'Beta testerzy')} onPress={() => router.push('/beta_testers' as any)} />
-        )}
-
-        {ENABLE_DEV_TOOLS && (
-          <Row
-            icon="construct-outline"
-            label={L('Админ панель', 'Адмін панель', 'Panel admin', 'Painel admin', 'Bảng quản trị', 'Panel admin', 'Yönetici paneli', 'Panel admina')}
-            onPress={() => router.push(SETTINGS_TESTERS_ROUTE as any)}
-            testID="settings-open-testers"
-          />
-        )}
+          {effectiveOs === 'android' ? (
+            <SettingsRow
+              icon="people"
+              color="green"
+              label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta', 'Testadores beta', 'Người thử nghiệm beta', 'Penguji beta', 'Beta test kullanıcıları', 'Beta testerzy')}
+              onPress={() => router.push('/beta_testers' as any)}
+            />
+          ) : null}
+          {ENABLE_DEV_TOOLS ? (
+            <SettingsRow
+              icon="construct"
+              color="gray"
+              label={L('Админ панель', 'Адмін панель', 'Panel admin', 'Painel admin', 'Bảng quản trị', 'Panel admin', 'Yönetici paneli', 'Panel admina')}
+              onPress={() => router.push(SETTINGS_TESTERS_ROUTE as any)}
+              testID="settings-open-testers"
+            />
+          ) : null}
+        </SettingsGroup>
         {isVip && !isPremium && (
           <View testID="settings-vip-card" style={{
             flexDirection: 'row',
             alignItems: 'center',
-            marginHorizontal: 20,
+            marginHorizontal: SETTINGS_GROUP_MARGIN,
             marginTop: 20,
             marginBottom: -4,
             backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : vipActiveSurface,
@@ -927,7 +918,8 @@ export default function SettingsMain() {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              margin: 20,
+              margin: SETTINGS_GROUP_MARGIN,
+              marginVertical: 20,
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : premiumActiveSurface,
               borderRadius: isCompassTheme ? 8 : 14,
               padding: 16,
@@ -963,7 +955,8 @@ export default function SettingsMain() {
               {
                 flexDirection: 'row',
                 alignItems: 'center',
-                margin: 20,
+                margin: SETTINGS_GROUP_MARGIN,
+                marginVertical: 20,
                 backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
                 borderRadius: isCompassTheme ? 8 : 14,
                 padding: 16,

@@ -8544,7 +8544,6 @@
   </div>
   <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
     <button type="button" onclick="loadModQueue(true)" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700">🔄 Собрать очередь</button>
-    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="mq-only-critical" onchange="renderModQueue()"> <span>🔴 только critical (ИИ)</span></label>
     <select id="mq-source" onchange="renderModQueue()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px">
       <option value="">Все источники</option>
       <option value="content">Content-репорты</option>
@@ -18043,13 +18042,8 @@
   };
 
   // ── Unified Moderation Queue ──────────────────────────────────────────────
-  // Aggregates open items from all moderation sources into one list, sorted by
-  // AI-triage severity. Reuses each tab's existing loader + data array.
-  const MQ_SEV_RANK = { critical: 0, normal: 1, low: 2, none: 3 };
-  function mqTriageSev(item) {
-    const t = item.triage;
-    return t && t.severity ? String(t.severity) : 'none';
-  }
+  // Aggregates open items from all moderation sources into one list, newest
+  // first. Reuses each tab's existing loader + data array.
   function mqBuildItems() {
     const items = [];
     // 1) Content reports (open only)
@@ -18059,7 +18053,7 @@
         source: 'content', icon: '🐞', sourceLabel: 'Content',
         title: String(r.dataText || extractContext(r.context) || r.context || r.dataId || '—').slice(0, 90),
         sub: `${r.screen || '—'} · ${r.category || '—'}`,
-        date: r.createdAt || '', triage: r.triage, raw: r,
+        date: r.createdAt || '', raw: r,
         jump: () => { switchTab('reports'); },
       });
     }
@@ -18070,7 +18064,7 @@
         source: 'user', icon: '🚩', sourceLabel: 'Жалоба',
         title: `на ${r.reportedName || r.reportedUid || '—'}`,
         sub: `${r.reason || '—'} · от ${r.reporterName || '—'}`,
-        date: r.createdAt || '', triage: r.triage, raw: r,
+        date: r.createdAt || '', raw: r,
         jump: () => { switchTab('user-reports'); },
       });
     }
@@ -18081,7 +18075,7 @@
         source: 'ugc', icon: '📦', sourceLabel: 'UGC',
         title: String(p.titleRu || r.id).slice(0, 90),
         sub: `автор ${r.authorStableId || '—'} · карт ${(p.cards && p.cards.length) || 0}`,
-        date: r.submittedAt ? new Date(r.submittedAt).toISOString() : '', triage: r.triage, raw: r,
+        date: r.submittedAt ? new Date(r.submittedAt).toISOString() : '', raw: r,
         jump: () => { switchTab('community-packs'); },
       });
     }
@@ -18092,16 +18086,12 @@
         source: 'chat', icon: '💬', sourceLabel: 'Чат',
         title: String(r.text || r.messageText || '—').slice(0, 90),
         sub: `автор ${r.authorName || r.authorUid || '—'}`,
-        date: r.createdAt ? new Date(r.createdAt).toISOString() : '', triage: r.triage, raw: r,
+        date: r.createdAt ? new Date(r.createdAt).toISOString() : '', raw: r,
         jump: () => { switchTab('league-chat'); },
       });
     }
-    // Sort: AI severity first, then newest.
-    items.sort((a, b) => {
-      const sa = MQ_SEV_RANK[mqTriageSev(a)] ?? 3, sb = MQ_SEV_RANK[mqTriageSev(b)] ?? 3;
-      if (sa !== sb) return sa - sb;
-      return String(b.date || '').localeCompare(String(a.date || ''));
-    });
+    // Sort: newest first.
+    items.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
     return items;
   }
   window.renderModQueue = function() {
@@ -18111,15 +18101,12 @@
     if (!list) return;
     let items = mqBuildItems();
     const srcFilter = document.getElementById('mq-source')?.value || '';
-    const onlyCrit = !!document.getElementById('mq-only-critical')?.checked;
     if (summary) {
       const bySource = { content: 0, user: 0, ugc: 0, chat: 0 };
-      let critical = 0;
-      for (const it of items) { bySource[it.source] = (bySource[it.source] || 0) + 1; if (mqTriageSev(it) === 'critical') critical++; }
+      for (const it of items) { bySource[it.source] = (bySource[it.source] || 0) + 1; }
       const card = (l, v, c) => `<div class="stat-card"><div class="label">${l}</div><div class="value" style="color:${c || '#fff'}">${v}</div></div>`;
       summary.innerHTML = [
         card('Всего открыто', items.length, '#4ade80'),
-        card('🔴 Critical (ИИ)', critical, '#f87171'),
         card('Content', bySource.content),
         card('Жалобы', bySource.user),
         card('UGC', bySource.ugc),
@@ -18127,7 +18114,6 @@
       ].join('');
     }
     if (srcFilter) items = items.filter(it => it.source === srcFilter);
-    if (onlyCrit) items = items.filter(it => mqTriageSev(it) === 'critical');
     if (cnt) cnt.textContent = `${items.length} обращений`;
     if (!items.length) { list.innerHTML = '<div class="reports-empty">Пусто — очередь чиста 🎉</div>'; return; }
     window._mqItems = items;

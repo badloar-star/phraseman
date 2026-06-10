@@ -20,6 +20,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { getScenarioById } from './ai_dialog_scenarios';
+import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
 import {
   callPremiumDialogSend,
   type DialogChatTurn,
@@ -298,15 +299,7 @@ export default function AiDialogSession() {
                       </Text>
                     ) : (
                       <>
-                        <TouchableOpacity
-                          onPress={() => {
-                            hapticTap();
-                            void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
-                            speak(m.text, undefined, { language: 'en-US' });
-                          }}
-                          activeOpacity={0.6}
-                          style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}
-                        >
+                        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
                           <Text
                             style={{
                               color: t.textPrimary,
@@ -317,10 +310,55 @@ export default function AiDialogSession() {
                             }}
                             maxFontSizeMultiplier={1.2}
                           >
-                            {m.text}
+                            {parseKeyPhrases(m.text).map((seg, si) =>
+                              seg.isKey ? (
+                                // Ключевая фраза: подсвечена акцентом + тап озвучивает ИМЕННО ЕЁ.
+                                <Text
+                                  key={si}
+                                  onPress={() => {
+                                    hapticTap();
+                                    void trackEvent('ai_dialog_phrase_tapped', {
+                                      scenarioId: scenario.id,
+                                      phrase: seg.text.slice(0, 60),
+                                    });
+                                    speak(seg.text, undefined, { language: 'en-US' });
+                                  }}
+                                  style={{
+                                    color: t.accent,
+                                    fontWeight: '800',
+                                    textDecorationLine: 'underline',
+                                  }}
+                                >
+                                  {seg.text}
+                                </Text>
+                              ) : (
+                                // Обычный текст: тап озвучивает всю реплику (как раньше).
+                                <Text
+                                  key={si}
+                                  onPress={() => {
+                                    hapticTap();
+                                    void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
+                                    speak(stripMarkers(m.text), undefined, { language: 'en-US' });
+                                  }}
+                                >
+                                  {seg.text}
+                                </Text>
+                              ),
+                            )}
                           </Text>
-                          <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
-                        </TouchableOpacity>
+                          <TouchableOpacity
+                            onPress={() => {
+                              hapticTap();
+                              void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
+                              speak(stripMarkers(m.text), undefined, { language: 'en-US' });
+                            }}
+                            activeOpacity={0.6}
+                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                            style={{ paddingTop: 2 }}
+                          >
+                            <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
+                          </TouchableOpacity>
+                        </View>
                         <TouchableOpacity
                           onPress={() => {
                             if (!showTr) void trackEvent('ai_dialog_translation_used', { scenarioId: scenario.id });

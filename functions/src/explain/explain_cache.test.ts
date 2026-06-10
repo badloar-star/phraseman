@@ -58,6 +58,7 @@ import {
   writeReadyExplanation,
   writeRejectedExplanation,
   LOCK_TTL_MS,
+  EXPLAIN_SCHEMA_VERSION,
 } from './explain_cache';
 
 beforeEach(() => docs.clear());
@@ -92,7 +93,18 @@ describe('readCachedExplanation', () => {
     const got = await readCachedExplanation(hash);
     expect(got?.status).toBe('ready');
     expect(got?.text).toBe('Это значит удачи.');
-    expect(got?.schemaVersion).toBe(1);
+    expect(got?.schemaVersion).toBe(EXPLAIN_SCHEMA_VERSION);
+  });
+
+  it('returns null for a doc written by an older schema (stale → regenerate)', async () => {
+    const hash = phraseHashFor('Old cached phrase');
+    // Simulate a leftover doc from before the prompt rewrite: ready, but an older schemaVersion.
+    docs.set(`${EXPLAIN_COLLECTION}/${hash}`, {
+      status: 'ready',
+      text: 'старое объяснение (re-telling, wrong)',
+      schemaVersion: EXPLAIN_SCHEMA_VERSION - 1,
+    });
+    expect(await readCachedExplanation(hash)).toBeNull();
   });
 
   it('returns rejected after writeRejectedExplanation', async () => {

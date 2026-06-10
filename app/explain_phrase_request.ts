@@ -105,14 +105,14 @@ export function resolveExplainDisplay(
 /** Дружелюбная строка скелетон-лоадера на время генерации (cache MISS). */
 export function loadingLineForLang(lang: string): string {
   return triLang(asLang(lang), {
-    ru: '👶 готовлю объяснение…',
-    uk: '👶 готую пояснення…',
-    es: '👶 preparando la explicación…',
-    'pt-BR': '👶 preparando a explicação…',
-    vi: '👶 đang chuẩn bị lời giải thích…',
-    id: '👶 menyiapkan penjelasan…',
-    tr: '👶 açıklama hazırlanıyor…',
-    pl: '👶 przygotowuję wyjaśnienie…',
+    ru: 'готовлю объяснение…',
+    uk: 'готую пояснення…',
+    es: 'preparando la explicación…',
+    'pt-BR': 'preparando a explicação…',
+    vi: 'đang chuẩn bị lời giải thích…',
+    id: 'menyiapkan penjelasan…',
+    tr: 'açıklama hazırlanıyor…',
+    pl: 'przygotowuję wyjaśnienie…',
   });
 }
 

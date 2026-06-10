@@ -21,8 +21,17 @@ export const EXPLAIN_COLLECTION = 'phrase_explanations';
  *  becomes re-claimable right after the request that held it dies. */
 export const LOCK_TTL_MS = 30_000;
 
-/** Cache doc schema version — lets a future ai_content migration version-check on read. */
-export const EXPLAIN_SCHEMA_VERSION = 1;
+/** Cache doc schema version — also used to invalidate stale cached explanations on read.
+ *  Bumped to 2 (2026-06-10): the prompt was rewritten to explain ENGLISH grammar instead of
+ *  restating the meaning; every v1 doc holds a now-wrong explanation and MUST be regenerated.
+ *  A doc whose schemaVersion is below this is treated as absent (see isCurrentSchema). */
+export const EXPLAIN_SCHEMA_VERSION = 2;
+
+/** True iff a cached doc was written by the CURRENT prompt/schema. Older docs are stale and
+ *  must be ignored on read + re-claimable for regeneration. */
+function isCurrentSchema(data: { schemaVersion?: number } | undefined | null): boolean {
+  return Number(data?.schemaVersion ?? 0) >= EXPLAIN_SCHEMA_VERSION;
+}
 
 export type ExplanationStatus = 'pending' | 'ready' | 'rejected';
 
@@ -66,11 +75,12 @@ function docRef(phraseHash: string) {
   return admin.firestore().collection(EXPLAIN_COLLECTION).doc(phraseHash);
 }
 
-/** Read the cached doc, or null if absent. */
+/** Read the cached doc, or null if absent OR written by an older schema (stale → regenerate). */
 export async function readCachedExplanation(phraseHash: string): Promise<CachedExplanation | null> {
   const snap = await docRef(phraseHash).get();
   const data = snap.data();
   if (!data) return null;
+  if (!isCurrentSchema(data)) return null; // stale v1 explanation → treat as cache miss
   return data as CachedExplanation;
 }
 
@@ -85,8 +95,9 @@ export async function claimPendingLock(phraseHash: string, nowMs: number): Promi
   const db = admin.firestore();
   return db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() as CachedExplanation | undefined;
-    if (data) {
-      if (data.status !== 'pending') return false; // ready or rejected → don't regenerate
+    // A doc from an older schema is stale content → allow re-claim (regenerate over it).
+    if (data && isCurrentSchema(data)) {
+      if (data.status !== 'pending') return false; // current-schema ready/rejected → don't regenerate
       const createdAtMs = Number(data.createdAtMs ?? 0);
       const stale = nowMs - createdAtMs > LOCK_TTL_MS;
       if (!stale) return false; // another request is actively generating

@@ -257,7 +257,7 @@ describe('submitExplainReport — threshold auto-reject (NET-NEW logic)', () => 
     // Сидируем готовый кэш, чтобы было что отклонять.
     docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
       status: 'ready',
-      schemaVersion: 1,
+      schemaVersion: 2,
       text: 'a fine explanation',
     });
 
@@ -289,7 +289,7 @@ describe('submitExplainReport — threshold auto-reject (NET-NEW logic)', () => 
 
 describe('submitExplainReport — concurrency does not race past threshold', () => {
   test('two concurrent reports crossing the threshold → exactly one flip, no lost update', async () => {
-    docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 1, text: 'ok' });
+    docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 2, text: 'ok' });
 
     // Доводим счётчик ровно до THRESHOLD-1: следующий репорт — порог.
     for (let i = 0; i < REPORT_REJECT_THRESHOLD - 1; i += 1) {

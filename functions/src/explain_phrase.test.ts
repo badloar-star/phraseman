@@ -120,7 +120,7 @@ jest.mock('./explain/explain_judge', () => ({
 }));
 
 import { explainPhrase as explainPhraseRaw, buildFallback, type ExplainResponse } from './explain_phrase';
-import { phraseHashFor } from './explain/explain_cache';
+import { phraseHashFor, EXPLAIN_SCHEMA_VERSION } from './explain/explain_cache';
 
 // The mocked onCall returns the raw handler; type it as the callable for the tests.
 type CallableRequest = { auth?: { uid: string }; data: DocData };
@@ -197,7 +197,7 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
     docs.set(`phrase_explanations/${phraseHashFor(PHRASE)}`, {
       status: 'ready',
       text: 'Готовое объяснение из кэша.',
-      schemaVersion: 1,
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
     });
 
     const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
@@ -212,7 +212,7 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
     docs.set(`phrase_explanations/${phraseHashFor(PHRASE)}`, {
       status: 'rejected',
       reason: 'toxic',
-      schemaVersion: 1,
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
     });
 
     const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
@@ -318,7 +318,7 @@ describe('explainPhrase — concurrent generation (lost lock race)', () => {
     // Another request is actively generating: a fresh pending doc exists.
     docs.set(`phrase_explanations/${phraseHashFor(PHRASE)}`, {
       status: 'pending',
-      schemaVersion: 1,
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
       createdAtMs: Date.now(), // fresh → claimPendingLock returns false
     });
 

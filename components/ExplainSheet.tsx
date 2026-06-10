@@ -6,7 +6,7 @@
  * Эталон слайд-апа и затемнения — components/NoEnergyModal.tsx. Reanimated НЕ
  * используем (правило проекта: модалки на legacy Animated).
  *
- * v1 НЕ стримит: cache MISS → скелетон «👶 готовлю объяснение…», по приходу — полный
+ * v1 НЕ стримит: cache MISS → скелетон «готовлю объяснение…», по приходу — полный
  * текст; cache HIT → текст сразу. Текст приходит с сервера и рендерится КАК ЕСТЬ
  * (никакой клиентской валидации качества). На сетевой ошибке — мягкий fallback из
  * resolveExplainDisplay, не сырой стек.
@@ -113,14 +113,14 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang }: Props
   };
 
   const title = triLang(asLang(effLang), {
-    ru: '👶 Простыми словами',
-    uk: '👶 Простими словами',
-    es: '👶 En palabras simples',
-    'pt-BR': '👶 Em palavras simples',
-    vi: '👶 Nói đơn giản',
-    id: '👶 Dengan kata sederhana',
-    tr: '👶 Basit kelimelerle',
-    pl: '👶 Prościej mówiąc',
+    ru: 'Простыми словами',
+    uk: 'Простими словами',
+    es: 'En palabras simples',
+    'pt-BR': 'Em palavras simples',
+    vi: 'Nói đơn giản',
+    id: 'Dengan kata sederhana',
+    tr: 'Basit kelimelerle',
+    pl: 'Prościej mówiąc',
   });
 
   return (
@@ -199,7 +199,7 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang }: Props
             )}
           </ScrollView>
 
-          {/* Футер: «🚩 Непонятно объяснили» */}
+          {/* Футер: «Непонятно объяснили» */}
           <View style={[styles.footer, { borderTopColor: t.border }]}>
             <ExplainReportButton phraseEn={phraseEn} />
           </View>

@@ -99,7 +99,7 @@ import {
 import { getBonusHintsToday } from './level_gift_system';
 import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
-import ExplainButton from '../components/ExplainButton';
+import ExplainSheet from '../components/ExplainSheet';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
@@ -597,6 +597,24 @@ const LessonContent = React.memo(function LessonContent({
     setSpeakingOpen(true);
   }, [speakingIsPremium, router]);
 
+  // [EXPLAIN] «Объясни проще» (Фаза 5). До ответа — заменяет 50/50, тратит дневной лимит
+  // (3 + bonusHints − fiftyFiftyUsedToday, тот же «подарок»). После ответа — без лимита,
+  // кнопка по центру. Объясняет английскую фразу (грамматику), НЕ русский смысл (промпт CF).
+  const [explainOpen, setExplainOpen] = useState(false);
+  const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
+  // До ответа: открыть, только если есть лимит, и сразу списать один кредит (через onFiftyFifty).
+  const openExplainPreAnswer = useCallback(() => {
+    if (explainHintsLeft <= 0) return;
+    hapticTap();
+    onFiftyFifty(); // списывает дневной кредит (тот же счётчик, что был у 50/50)
+    setExplainOpen(true);
+  }, [explainHintsLeft, onFiftyFifty]);
+  // После ответа: без лимита.
+  const openExplainResult = useCallback(() => {
+    hapticTap();
+    setExplainOpen(true);
+  }, []);
+
 
   // [ARROW] Анимированная стрелка над прогресс-баром
   const arrowAnim  = useRef(new Animated.Value(0)).current;
@@ -1061,12 +1079,51 @@ const LessonContent = React.memo(function LessonContent({
                 textColor={sx.muted}
               />
 
-              <ExplainButton
-                phraseEn={resultCorrectLine}
-                phraseMeaning={lang === 'uk' ? (phrase.ukrainian || phrase.russian) : (lang === 'es' && phrase.spanish ? phrase.spanish : phrase.russian)}
-                lang={lang}
-                style={{ alignSelf: 'flex-end', marginTop: 4 }}
-              />
+              {/* «Объясни проще» после ответа — ПО ЦЕНТРУ, без лимита (Фаза 5). */}
+              <TouchableOpacity
+                testID="lesson1-explain-result"
+                onPress={openExplainResult}
+                activeOpacity={0.8}
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Объяснить простыми словами',
+                  uk: 'Пояснити простими словами',
+                  es: 'Explicar en palabras simples',
+                  'pt-BR': 'Explicar em palavras simples',
+                  vi: 'Giải thích bằng lời đơn giản',
+                  id: 'Jelaskan dengan kata sederhana',
+                  tr: 'Basit kelimelerle açıkla',
+                  pl: 'Wyjaśnij prościej',
+                })}
+                style={{
+                  alignSelf: 'center',
+                  marginTop: linkedSliceCompact ? 8 : 14,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  borderRadius: 14,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                  backgroundColor: t.bgSurface2,
+                  paddingVertical: 11,
+                  paddingHorizontal: 18,
+                }}
+              >
+                <Ionicons name="bulb-outline" size={18} color={t.accent} />
+                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }} numberOfLines={1}>
+                  {triLang(lang, {
+                    ru: 'Объясни проще',
+                    uk: 'Поясни простіше',
+                    es: 'Explícalo simple',
+                    'pt-BR': 'Explique simples',
+                    vi: 'Giải thích đơn giản',
+                    id: 'Jelaskan sederhana',
+                    tr: 'Basitçe açıkla',
+                    pl: 'Wyjaśnij prościej',
+                  })}
+                </Text>
+              </TouchableOpacity>
 
             </Animated.View>
           )}
@@ -1209,28 +1266,46 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* ФУТЕР */}
         <View style={{ flexDirection: 'row', paddingVertical: linkedSliceCompact ? 8 : 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
-          {/* 50/50 Button — вместо Шпаргалки */}
-          {!settings.hardMode && !isPlanPhraseRecallTask && (
+          {/* «Объясни проще» — заменяет 50/50. До ответа: 3/день (+ «подарок»), списывает кредит. */}
+          {!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && (
             (() => {
-              const hintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
-              const canUse = hintsLeft > 0 && status === 'playing' && dimmedWords.size === 0;
+              const canUse = explainHintsLeft > 0;
               return (
                 <LessonPressable
-                  testID="lesson1-fifty-fifty"
+                  testID="lesson1-explain"
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, {
+                    ru: 'Объяснить простыми словами',
+                    uk: 'Пояснити простими словами',
+                    es: 'Explicar en palabras simples',
+                    'pt-BR': 'Explicar em palavras simples',
+                    vi: 'Giải thích bằng lời đơn giản',
+                    id: 'Jelaskan dengan kata sederhana',
+                    tr: 'Basit kelimelerle açıkla',
+                    pl: 'Wyjaśnij prościej',
+                  })}
                   style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
                   disabled={!canUse}
-                  onPress={() => {
-                    hapticTap();
-                    onFiftyFifty();
-                  }}
+                  onPress={openExplainPreAnswer}
                 >
                   <View style={{ position: 'relative' }}>
-                    <Text style={{ color: canUse ? t.accent : sx.second, fontSize: 20, fontWeight: '700', lineHeight: 26 }}>½</Text>
+                    <Ionicons name="bulb-outline" size={26} color={canUse ? t.accent : sx.second} />
                     <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
-                      <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{hintsLeft}</Text>
+                      <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
                     </View>
                   </View>
-                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>50/50</Text>
+                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+                    {triLang(lang, {
+                      ru: 'Объясни',
+                      uk: 'Поясни',
+                      es: 'Explica',
+                      'pt-BR': 'Explica',
+                      vi: 'Giải thích',
+                      id: 'Jelaskan',
+                      tr: 'Açıkla',
+                      pl: 'Wyjaśnij',
+                    })}
+                  </Text>
                 </LessonPressable>
               );
             })()
@@ -1402,6 +1477,19 @@ const LessonContent = React.memo(function LessonContent({
               border: t.border,
             }}
             onClose={() => setSpeakingOpen(false)}
+          />
+        )}
+
+        {/* [EXPLAIN] Общая шторка «Объясни проще» — открывается и из футера (до ответа,
+            тратит кредит), и центральной кнопкой (после ответа, без лимита). Объясняет
+            английскую фразу/грамматику, НЕ русский смысл. */}
+        {phrase && (
+          <ExplainSheet
+            visible={explainOpen}
+            onClose={() => setExplainOpen(false)}
+            phraseEn={(status === 'result' && resultCorrectLine) ? resultCorrectLine : phraseAnswerDisplayLine(phrase, studyTarget, lang)}
+            phraseMeaning={lang === 'uk' ? (phrase.ukrainian || phrase.russian) : (lang === 'es' && phrase.spanish ? phrase.spanish : phrase.russian)}
+            lang={lang}
           />
         )}
 
@@ -2872,41 +2960,16 @@ export default function LessonScreen() {
     }
   }, [status, settings.hardMode, showTapHint, selectedWords, phrase, studyTarget, phraseWordIdx, checkAnswer]);
 
+  // Списать один дневной кредит. Раньше это был 50/50 (затемнение слов); теперь кредит
+  // тратится на «Объясни проще» ДО ответа (Фаза 5). Дневной счётчик и «подарок» те же,
+  // ключ AsyncStorage оставлен прежним (`fifty_fifty_*`), чтобы не сбрасывать историю.
   const handleFiftyFifty = useCallback(() => {
     if (fiftyFiftyUsedToday >= 3 + bonusHints || !phrase) return;
-
-    const phraseWordsList = getPhraseTokens(phrase, studyTargetRef.current);
-    const correctWord = phraseWordsList[phraseWordIdx] ?? null;
-    const nextCorrectWord = phraseWordsList[phraseWordIdx + 1] ?? null;
-    const validContraction = correctWord && nextCorrectWord
-      ? getContractionFor(correctWord, nextCorrectWord)
-      : null;
-
-    const isCorrect = (word: string): boolean => {
-      const stripped = stripMarkers(word).toLowerCase();
-      if (contrExpanded !== null && contrExpanded.length > 0) {
-        return stripped === contrExpanded[0].toLowerCase();
-      }
-      return correctWord != null && (
-        stripped === correctWord.toLowerCase() ||
-        (validContraction != null && stripped === validContraction.toLowerCase())
-      );
-    };
-
-    const wrong = shuffled.filter(w => !isCorrect(w));
-    if (wrong.length < 1) return; // нечего затемнять
-
-    // Затемняем ровно 3 неправильных дистрактора
-    const shuffledWrong = [...wrong].sort(() => Math.random() - 0.5);
-    const toDim = shuffledWrong.slice(0, Math.min(3, wrong.length));
-
-    setDimmedWords(new Set(toDim));
-
     const newCount = fiftyFiftyUsedToday + 1;
     setFiftyFiftyUsedToday(newCount);
     const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
     AsyncStorage.setItem(todayKey, String(newCount));
-  }, [fiftyFiftyUsedToday, bonusHints, phrase, phraseWordIdx, shuffled, contrExpanded]);
+  }, [fiftyFiftyUsedToday, bonusHints, phrase]);
 
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows;
   const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;

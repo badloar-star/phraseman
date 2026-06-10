@@ -203,7 +203,8 @@
         "exampleEn": "After that pizza I'm in a food coma.",
         "exampleRu": "После этой пиццы я в пищевой коме.",
         "originRu": "Шутливый «медицинский» термин из Америки 1980-х — наука зовёт это postprandial somnolence.",
-        "status": "texts_done"
+        "status": "art_done",
+        "art": "set02_food/food_secret"
       },
       "cards": [
         {
@@ -217,8 +218,8 @@
           "exampleRu": "Не волнуйся, тест оказался проще простого.",
           "originRu": "Америка 1870-х: на конкурсах танца cakewalk призом был торт — победа доставалась легко.",
           "rarity": "common",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_01",
+          "status": "art_done"
         },
         {
           "id": "food_02",
@@ -231,8 +232,8 @@
           "exampleRu": "В двух словах — мы победили.",
           "originRu": "Плиний Старший уверял, что «Илиаду» переписали так мелко, что она поместилась бы в скорлупу ореха.",
           "rarity": "common",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_02",
+          "status": "art_done"
         },
         {
           "id": "food_03",
@@ -245,8 +246,8 @@
           "exampleRu": "Кто проболтался про сюрприз?",
           "originRu": "В Древней Греции голосовали бобами: белый — «за», тёмный — «против». Опрокинул сосуд — раскрыл результат!",
           "rarity": "common",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_03",
+          "status": "art_done"
         },
         {
           "id": "food_04",
@@ -259,8 +260,8 @@
           "exampleRu": "Ужастики — не моё.",
           "originRu": "Англичане так любят чай, что «своя чашка» стала мерой всего приятного. В отрицательной форме — с 1930-х.",
           "rarity": "common",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_04",
+          "status": "art_done"
         },
         {
           "id": "food_05",
@@ -273,8 +274,8 @@
           "exampleRu": "Преподавание — мой основной хлеб.",
           "originRu": "Хлеб с маслом веками был самой базовой едой — без него никак.",
           "rarity": "common",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_05",
+          "status": "art_done"
         },
         {
           "id": "food_06",
@@ -287,8 +288,8 @@
           "exampleRu": "Он подмасливает шефа ради прибавки.",
           "originRu": "По одной из версий — от древнего обычая бросать шарики масла в статуи богов, прося милости.",
           "rarity": "rare",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_06",
+          "status": "art_done"
         },
         {
           "id": "food_07",
@@ -301,8 +302,8 @@
           "exampleRu": "Некогда спорить — у меня дела поважнее.",
           "originRu": "Выражению больше 350 лет — оно встречается ещё в раннем переводе «Дон Кихота».",
           "rarity": "rare",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_07",
+          "status": "art_done"
         },
         {
           "id": "food_08",
@@ -315,8 +316,8 @@
           "exampleRu": "Билеты разлетаются как горячие пирожки.",
           "originRu": "На американских ярмарках XIX века горячие лепёшки расходились быстрее, чем их успевали печь.",
           "rarity": "rare",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_08",
+          "status": "art_done"
         },
         {
           "id": "food_09",
@@ -329,8 +330,8 @@
           "exampleRu": "Премия стала вишенкой на торте.",
           "originRu": "Торт хорош и без глазури — но с ней совсем праздник. В переносном смысле — с начала XX века.",
           "rarity": "epic",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_09",
+          "status": "art_done"
         },
         {
           "id": "food_10",
@@ -343,8 +344,8 @@
           "exampleRu": "На собеседовании она была спокойна как удав.",
           "originRu": "Мякоть огурца и правда на несколько градусов прохладнее воздуха — это подметили поэты ещё в XVIII веке!",
           "rarity": "legendary",
-          "art": "",
-          "status": "texts_done"
+          "art": "set02_food/food_10",
+          "status": "art_done"
         }
       ]
     },

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bread and butter">
+<ellipse cx="88" cy="138" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M40 78c0-18 16-30 48-30s48 12 48 30v40c0 7-5 12-12 12H52c-7 0-12-5-12-12z" fill="#E6A45A"/>
+<path d="M48 86c0-12 12-20 40-20s40 8 40 20v30c0 4-3 7-7 7H55c-4 0-7-3-7-7z" fill="#FBE3B8"/>
+<path d="M58 92l28-14 28 14-10 8-18-9-18 9z" fill="#F7D597"/>
+<path d="M76 84h-2M96 88h-2M86 96h-2M104 94h-2M70 100h-2" stroke="#E8B96A" stroke-width="3" stroke-linecap="round"/>
+<path d="M70 84l40 0 6 10c-8 6-18 8-26 8s-18-2-26-8z" fill="#FFD23F"/>
+<path d="M70 84l40 0 4 6c-7 5-15 7-24 7s-17-2-24-7z" fill="#FFE066"/>
+<path d="M72 90c4 8 8 14 6 24M92 90c2 8 0 16-4 22" stroke="#F0BE2E" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+<g transform="rotate(38 158 96)">
+<rect x="146" y="58" width="12" height="44" rx="6" fill="#D9DEE6"/>
+<rect x="142" y="100" width="20" height="24" rx="6" fill="#7A5230"/>
+</g>
+</svg>

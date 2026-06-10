@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="In a nutshell">
+<ellipse cx="100" cy="142" rx="48" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M52 132c-14-22-10-54 16-68 18-10 42-10 60 0 26 14 30 46 16 68z" fill="#C68A4E"/>
+<path d="M52 132c-14-22-10-54 16-68 18-10 42-10 60 0 26 14 30 46 16 68z" fill="none" stroke="#A06B36" stroke-width="3"/>
+<path d="M100 60c-8 14-8 34 0 70M76 70c-6 18-4 40 4 60M124 70c6 18 4 40-4 60" fill="none" stroke="#A06B36" stroke-width="3" opacity=".7"/>
+<path d="M64 132c-2-20 2-40 14-52 14-12 30-12 44 0 12 12 16 32 14 52z" fill="#F3D9A6"/>
+<path d="M84 132v-22a16 14 0 0 1 32 0v22z" fill="#E0524E"/>
+<rect x="93" y="120" width="14" height="12" fill="#B23B38"/>
+<circle cx="100" cy="98" r="14" fill="#FFE0B5"/>
+<circle cx="95" cy="97" r="2.6" fill="#5A2A3A"/><circle cx="105" cy="97" r="2.6" fill="#5A2A3A"/>
+<path d="M95 104c3 4 7 4 10 0" fill="none" stroke="#5A2A3A" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="89" cy="102" r="3" fill="#F2B8C6" opacity=".7"/><circle cx="111" cy="102" r="3" fill="#F2B8C6" opacity=".7"/>
+</svg>

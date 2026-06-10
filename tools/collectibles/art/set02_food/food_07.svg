@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Have bigger fish to fry">
+<ellipse cx="84" cy="138" rx="58" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="124" y="104" width="68" height="11" rx="5" transform="rotate(-8 124 104)" fill="#444B57"/>
+<ellipse cx="78" cy="108" rx="50" ry="30" fill="#3A4049"/>
+<ellipse cx="78" cy="104" rx="44" ry="25" fill="#5A626E"/>
+<ellipse cx="78" cy="102" rx="40" ry="22" fill="#6E7682"/>
+<path d="M46 100c14-12 44-12 58 0-2 8-20 16-30 16s-26-8-28-16z" fill="#8FB7D6"/>
+<path d="M104 100l18-10v22z" fill="#8FB7D6"/>
+<circle cx="60" cy="98" r="3.6" fill="#1F2933"/>
+<path d="M68 108c8 3 18 3 26 0" fill="none" stroke="#5B7FA0" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M88 92c-1 4-1 8 0 12M98 92c-1 4-1 8 0 12" stroke="#6E97BC" stroke-width="2.4" opacity=".7"/>
+<ellipse cx="158" cy="70" rx="22" ry="13" fill="#F2A65A"/>
+<path d="M178 70l12-8v16z" fill="#F2A65A"/>
+<circle cx="148" cy="66" r="3" fill="#5A2A3A"/>
+<path d="M142 76c4 2 9 2 13 0" fill="none" stroke="#B96A2E" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M150 50l-3-8M158 49l1-9M166 51l4-7" stroke="#E0524E" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

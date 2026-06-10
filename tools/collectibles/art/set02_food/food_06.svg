@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Butter someone up">
+<ellipse cx="120" cy="142" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="48" cy="140" rx="30" ry="6" fill="rgba(0,0,0,.18)"/>
+<circle cx="126" cy="86" r="34" fill="#FFE0B5"/>
+<path d="M104 70c14-6 30-6 44 0-4 8-8 12-22 12s-18-4-22-12z" fill="#FFD23F" opacity=".85"/>
+<path d="M108 90c4 3 8 3 12 0M132 90c4 3 8 3 12 0" fill="none" stroke="#5A2A3A" stroke-width="3" stroke-linecap="round"/>
+<path d="M118 104c5 4 13 4 18 0" fill="none" stroke="#5A2A3A" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="108" cy="100" r="4" fill="#F2B8C6" opacity=".7"/><circle cx="146" cy="100" r="4" fill="#F2B8C6" opacity=".7"/>
+<circle cx="50" cy="92" r="24" fill="#F6C8A0"/>
+<circle cx="44" cy="90" r="3" fill="#5A2A3A"/><circle cx="56" cy="90" r="3" fill="#5A2A3A"/>
+<path d="M44 100c4 3 9 3 13 0" fill="none" stroke="#5A2A3A" stroke-width="2.6" stroke-linecap="round"/>
+<rect x="60" y="74" width="32" height="9" rx="4" transform="rotate(20 60 74)" fill="#9B6B3E"/>
+<path d="M84 84c12 2 14 8 12 14-10 0-18-2-22-8z" transform="rotate(20 84 84)" fill="#FFD23F"/>
+<path d="M96 96c6-1 11 1 12 5" stroke="#F0BE2E" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+</svg>

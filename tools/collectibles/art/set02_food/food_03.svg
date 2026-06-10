@@ -1,0 +1,23 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spill the beans">
+<ellipse cx="112" cy="138" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<g transform="rotate(-32 70 96)">
+<rect x="40" y="64" width="60" height="74" rx="14" fill="#BFE3F2"/>
+<rect x="40" y="64" width="60" height="74" rx="14" fill="none" stroke="#8FC9DE" stroke-width="3"/>
+<rect x="46" y="58" width="48" height="12" rx="5" fill="#E0524E"/>
+<rect x="51" y="80" width="38" height="22" rx="6" fill="#fff" opacity=".55"/>
+<circle cx="58" cy="118" r="3.4" fill="#5A2A3A"/><circle cx="82" cy="118" r="3.4" fill="#5A2A3A"/>
+<ellipse cx="70" cy="130" rx="6" ry="7" fill="#5A2A3A"/>
+</g>
+<g fill="#7BAF6E">
+<ellipse cx="120" cy="120" rx="9" ry="6" transform="rotate(20 120 120)"/>
+<ellipse cx="142" cy="130" rx="9" ry="6" transform="rotate(-15 142 130)"/>
+<ellipse cx="106" cy="132" rx="9" ry="6" transform="rotate(40 106 132)"/>
+<ellipse cx="134" cy="112" rx="9" ry="6" transform="rotate(-30 134 112)"/>
+<ellipse cx="158" cy="122" rx="9" ry="6" transform="rotate(10 158 122)"/>
+<ellipse cx="124" cy="98" rx="8" ry="5" transform="rotate(25 124 98)"/>
+</g>
+<g fill="#A8D29A">
+<path d="M118 117c2-1 4 0 4 2" stroke="#5C9650" stroke-width="1.5" fill="none"/>
+</g>
+<path d="M120 120c-1 1-1 3 0 4M142 130c-1 1-1 3 0 4" stroke="#5C9650" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

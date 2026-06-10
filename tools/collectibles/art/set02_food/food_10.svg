@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cool as a cucumber">
+<ellipse cx="100" cy="140" rx="62" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M28 132l34-44" stroke="#C97F46" stroke-width="7" stroke-linecap="round"/>
+<path d="M172 132l-22-30" stroke="#C97F46" stroke-width="7" stroke-linecap="round"/>
+<path d="M40 116l108-26" stroke="#E0524E" stroke-width="14" stroke-linecap="round"/>
+<path d="M40 116l108-26" stroke="#F07B6E" stroke-width="6" stroke-linecap="round"/>
+<path d="M150 60c30 6 30 38 4 44-44 10-86 14-104 4-10-6-6-18 6-20 30-4 64-22 94-28z" fill="#7CB342"/>
+<path d="M150 60c30 6 30 38 4 44-44 10-86 14-104 4z" fill="#8FC94E"/>
+<path d="M70 96c4-1 6 1 6 4M92 90c4-1 6 1 6 4M114 84c4-1 6 1 6 4" stroke="#6BA336" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<rect x="146" y="62" width="34" height="15" rx="7" fill="#2B3138"/>
+<rect x="148" y="64" width="13" height="11" rx="5" fill="#1B2026"/>
+<rect x="165" y="63" width="13" height="11" rx="5" fill="#1B2026"/>
+<circle cx="153" cy="68" r="2" fill="#5C8FB0" opacity=".8"/>
+<path d="M150 86c8 3 16 3 24 0" fill="none" stroke="#5C9233" stroke-width="3" stroke-linecap="round"/>
+</svg>

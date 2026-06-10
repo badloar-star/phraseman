@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A piece of cake">
+<ellipse cx="76" cy="142" rx="42" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M44 96l34-44 34 44-14 38c-2 5-6 7-12 7H70c-6 0-10-2-12-7z" fill="#FBE3B8"/>
+<path d="M44 96l34-44 34 44-6 8-28-18-28 18z" fill="#F2B8C6"/>
+<path d="M58 134l40 0-2 7c-2 5-6 7-12 7H70c-6 0-10-2-12-7z" fill="#C98A5E"/>
+<path d="M62 96c8 6 14 6 22 0s14-6 22 0" fill="none" stroke="#F2B8C6" stroke-width="6" stroke-linecap="round"/>
+<path d="M78 52c-2-8 2-12 6-12" fill="none" stroke="#7BAF6E" stroke-width="4" stroke-linecap="round"/>
+<circle cx="78" cy="50" r="8" fill="#E0524E"/>
+<circle cx="75" cy="47" r="2.5" fill="#fff" opacity=".7"/>
+<circle cx="160" cy="86" r="24" fill="#FFE0B5"/>
+<circle cx="152" cy="84" r="3.2" fill="#5A2A3A"/><circle cx="167" cy="84" r="3.2" fill="#5A2A3A"/>
+<path d="M152 94c5 5 11 5 16 0" fill="none" stroke="#5A2A3A" stroke-width="3" stroke-linecap="round"/>
+<path d="M138 92c-7 2-9 8-5 13l8-5z" fill="#FFE0B5"/>
+<path d="M139 104l-2-12 9 4z" fill="#FFD23F"/><circle cx="142" cy="98" r="3" fill="#5A2A3A"/>
+</svg>

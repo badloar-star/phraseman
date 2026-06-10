@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Not my cup of tea">
+<ellipse cx="64" cy="140" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="62" cy="132" rx="40" ry="6" fill="#D8D4C8"/>
+<path d="M30 92h64l-5 28c-1 7-7 11-14 11H49c-7 0-13-4-14-11z" fill="#F2EFE6"/>
+<path d="M30 92h64l-2 10H32z" fill="#9F6FB0"/>
+<path d="M94 100c14 0 19 9 16 18-3 7-10 10-16 10" fill="none" stroke="#F2EFE6" stroke-width="8" stroke-linecap="round"/>
+<ellipse cx="62" cy="92" rx="32" ry="6" fill="#C9A56A"/>
+<circle cx="54" cy="112" r="3.2" fill="#5A2A3A"/><circle cx="72" cy="112" r="3.2" fill="#5A2A3A"/>
+<path d="M54 124c4-4 10-4 14 0" fill="none" stroke="#5A2A3A" stroke-width="3" stroke-linecap="round"/>
+<path d="M48 80c-2 6-1 9 1 12M76 80c2 6 1 9-1 12" stroke="#C9A56A" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>
+<circle cx="158" cy="78" r="24" fill="#FFE0B5"/>
+<path d="M140 76c2-2 5-2 7 0" fill="none" stroke="#5A2A3A" stroke-width="3" stroke-linecap="round"/>
+<path d="M140 90c5-3 11-3 16 0" fill="none" stroke="#5A2A3A" stroke-width="3" stroke-linecap="round"/>
+<circle cx="148" cy="80" r="3" fill="#5A2A3A"/>
+<path d="M132 96c-10-2-16 2-18 10l12 2z" fill="#FFE0B5"/>
+<path d="M114 104h12M116 98h8M116 110h8" stroke="#E8B98A" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

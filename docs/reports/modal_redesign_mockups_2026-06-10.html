@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman — редизайн модалок и тостов · 2026-06-10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter', -apple-system, system-ui, sans-serif;
+    background:#0B0C0E; color:#E8EAED;
+    padding:32px 24px 80px;
+  }
+  h1 { font-size:28px; font-weight:900; letter-spacing:-0.5px; }
+  .sub { color:#9AA0A6; font-size:14px; margin-top:6px; max-width:860px; line-height:1.5; }
+  .stats { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+  .stat {
+    background:#16181C; border:1px solid #26282E; border-radius:14px;
+    padding:14px 18px; min-width:150px;
+  }
+  .stat b { font-size:26px; font-weight:900; display:block; }
+  .stat span { font-size:12px; color:#9AA0A6; }
+  .stat.bad b { color:#FF6E78; } .stat.warn b { color:#FFC857; } .stat.ok b { color:#65E49A; }
+
+  /* ── Theme switcher ───────────────────── */
+  .switcher { position:sticky; top:12px; z-index:50; display:flex; gap:8px; margin-top:24px;
+    background:#16181Cee; border:1px solid #26282E; border-radius:14px; padding:10px 12px;
+    width:fit-content; backdrop-filter:blur(8px); align-items:center; }
+  .switcher .lbl { font-size:12px; color:#9AA0A6; margin-right:4px; font-weight:700; }
+  .tbtn { border:1px solid #34373E; background:#1D2025; color:#C9CDD3; font-family:inherit;
+    font-size:13px; font-weight:700; border-radius:10px; padding:8px 14px; cursor:pointer; }
+  .tbtn.active { background:#E8EAED; color:#101214; border-color:#E8EAED; }
+
+  h2 { font-size:20px; font-weight:900; margin:56px 0 6px; display:flex; align-items:center; gap:10px; }
+  .tag { font-size:11px; font-weight:900; letter-spacing:1px; border-radius:7px; padding:4px 9px; }
+  .tag.bad { background:#3A1418; color:#FF8A92; } .tag.good { background:#0F2E1B; color:#65E49A; }
+  .h2sub { color:#9AA0A6; font-size:13px; max-width:880px; line-height:1.55; margin-bottom:22px; }
+
+  /* ── Conflict timeline ───────────────── */
+  .timeline { display:flex; gap:8px; align-items:stretch; flex-wrap:wrap; max-width:1200px; }
+  .tl-chip { background:#16181C; border:1px solid #26282E; border-radius:12px; padding:10px 12px; min-width:130px; }
+  .tl-chip b { font-size:13px; display:block; }
+  .tl-chip span { font-size:11px; color:#9AA0A6; display:block; margin-top:3px; }
+  .tl-chip .flag { display:inline-block; font-size:10px; font-weight:800; margin-top:6px;
+    border-radius:6px; padding:2px 6px; background:#3A1418; color:#FF8A92; }
+  .tl-arrow { align-self:center; color:#5F6368; font-size:13px; font-weight:700; white-space:nowrap; }
+  .tl-chip.danger { border-color:#7A2730; }
+
+  /* ── Phones grid ─────────────────────── */
+  .row { display:flex; gap:28px; flex-wrap:wrap; align-items:flex-start; }
+  .ph-wrap { width:360px; }
+  .caption { margin-top:14px; font-size:13px; line-height:1.5; color:#C9CDD3; }
+  .caption b { color:#fff; }
+  .caption .pin { display:block; margin-top:6px; font-size:12px; color:#9AA0A6; }
+  .caption .neg { color:#FF8A92; } .caption .pos { color:#65E49A; }
+
+  /* ════ PHONE FRAME ════ */
+  .phone {
+    width:360px; height:760px; border-radius:44px; overflow:hidden; position:relative;
+    border:1px solid #2A2D33; box-shadow:0 24px 60px rgba(0,0,0,0.55);
+    background:linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
+    color:var(--text);
+  }
+  /* ── THEMES (точные токены приложения) ── */
+  .t-compass {
+    --bg0:#333335; --bg1:#303032; --bg2:#2D2D2F;
+    --bgCard:#2E2E30; --bgSurface:#202022;
+    --text:#FFF8E8; --text2:#F2C48D; --muted:#D7D2CC;
+    --accent:#F2C48D; --accentBg:rgba(248,215,163,0.12); --gold:#F2C48D;
+    --border:rgba(248,215,163,0.23); --borderHi:rgba(255,231,182,0.28);
+    --panel0:#22252A; --panel1:#16181C; --panel2:#090A0C;
+    --mAccent:#CBD5E1; --mBorder:rgba(203,213,225,0.30); --mSoft:rgba(203,213,225,0.08);
+    --mBtn0:#E5E7EB; --mBtn1:#9CA3AF; --mBtnText:#111827;
+    --cta0:#FFE7B6; --cta1:#F2C48D; --cta2:#F4B06E; --ctaText:#21170E;
+    --rCard:18px; --rBtn:12px; --sb:#FFF8E8;
+    --bdGift:rgba(0,0,0,0.46); --bdShards:rgba(3,5,10,0.82); --bdNew:rgba(2,4,8,0.55);
+    --wrong:#F26D6D;
+  }
+  .t-dark {
+    --bg0:#112318; --bg1:#09150E; --bg2:#030805;
+    --bgCard:#152019; --bgSurface:#1D2D23;
+    --text:#F0F7F2; --text2:#58CC89; --muted:#8AB49A;
+    --accent:#47C870; --accentBg:rgba(71,200,112,0.14); --gold:#FFC800;
+    --border:rgba(255,255,255,0.07); --borderHi:rgba(255,255,255,0.14);
+    --panel0:#15231A; --panel1:#0A120E; --panel2:#040906;
+    --mAccent:#FFC800; --mBorder:rgba(88,204,137,0.30); --mSoft:rgba(255,255,255,0.055);
+    --mBtn0:#F0F7F2; --mBtn1:#8FE5AD; --mBtnText:#101214;
+    --cta0:#47C870; --cta1:#47C870; --cta2:#47C870; --ctaText:#042010;
+    --rCard:24px; --rBtn:16px; --sb:#F0F7F2;
+    --bdGift:rgba(0,0,0,0.46); --bdShards:rgba(3,5,10,0.82); --bdNew:rgba(2,4,8,0.55);
+    --wrong:#F05454;
+  }
+  .t-gold {
+    --bg0:#080706; --bg1:#030303; --bg2:#010101;
+    --bgCard:#0A0A0A; --bgSurface:#111111;
+    --text:#F7F1E4; --text2:#E9CE7A; --muted:#B8AD92;
+    --accent:#D6B35A; --accentBg:rgba(214,179,90,0.14); --gold:#D6B35A;
+    --border:rgba(214,179,90,0.28); --borderHi:rgba(246,227,161,0.38);
+    --panel0:#160F07; --panel1:#22190D; --panel2:#060503;
+    --mAccent:#E8C36C; --mBorder:rgba(232,195,108,0.48); --mSoft:rgba(232,195,108,0.10);
+    --mBtn0:#F4D889; --mBtn1:#B9852E; --mBtnText:#101214;
+    --cta0:#F0D98C; --cta1:#C8A34C; --cta2:#765316; --ctaText:#0A0A0A;
+    --rCard:18px; --rBtn:12px; --sb:#F7F1E4;
+    --bdGift:rgba(0,0,0,0.46); --bdShards:rgba(3,5,10,0.82); --bdNew:rgba(2,4,8,0.55);
+    --wrong:#F26D6D;
+  }
+  .t-sketch {
+    --bg0:#F1E8D7; --bg1:#E0D0B7; --bg2:#CDB99C;
+    --bgCard:#FFFDF6; --bgSurface:#DED4C0;
+    --text:#171615; --text2:#273044; --muted:#48443C;
+    --accent:#343842; --accentBg:rgba(45,39,30,0.10); --gold:#7A5520;
+    --border:rgba(45,39,30,0.24); --borderHi:rgba(45,39,30,0.32);
+    --panel0:#FFFDF6; --panel1:#F6EEDE; --panel2:#E8DBC6;
+    --mAccent:#7A5520; --mBorder:rgba(45,39,30,0.26); --mSoft:rgba(255,253,246,0.72);
+    --mBtn0:#343842; --mBtn1:#171615; --mBtnText:#FFFDF6;
+    --cta0:#343842; --cta1:#262A33; --cta2:#171615; --ctaText:#FFFDF6;
+    --rCard:24px; --rBtn:16px; --sb:#171615;
+    --bdGift:rgba(24,18,10,0.30); --bdShards:rgba(8,12,20,0.68); --bdNew:rgba(24,18,10,0.38);
+    --wrong:#B3473F;
+  }
+
+  /* ── Home screen background (структура как в app/(tabs)/home.tsx) ── */
+  .statusbar { display:flex; justify-content:space-between; padding:16px 26px 0;
+    font-size:13px; font-weight:700; color:var(--sb); }
+  .home-header { padding:18px 20px 10px; }
+  .hh-hello { font-size:13px; color:var(--muted); font-weight:600; }
+  .hh-name { font-size:24px; font-weight:800; color:var(--text); margin-top:2px; }
+  .hh-meta { display:flex; align-items:center; gap:10px; margin-top:10px; }
+  .bolt { width:22px; height:22px; }
+  .hh-shards { display:flex; align-items:center; gap:5px; font-size:14px; font-weight:900; color:var(--text); }
+  .status-card { margin:6px 14px 0; border-radius:var(--rCard); padding:16px;
+    background:linear-gradient(160deg, var(--panel0), var(--panel2));
+    border:1px solid var(--border); }
+  .sc-top { display:flex; align-items:center; gap:12px; }
+  .ava { width:46px; height:46px; border-radius:50%; background:var(--accentBg);
+    border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:18px; color:var(--accent); }
+  .sc-name { font-size:15px; font-weight:800; }
+  .lvl-pill { display:inline-block; font-size:10px; font-weight:900; color:var(--ctaText);
+    background:linear-gradient(135deg, var(--cta0), var(--cta2)); border-radius:999px;
+    padding:2px 8px; margin-left:6px; vertical-align:1px; }
+  .xpbar { height:6px; border-radius:3px; background:var(--accentBg); margin-top:7px; width:170px; overflow:hidden; }
+  .xpbar i { display:block; height:100%; width:62%; border-radius:3px; background:var(--accent); }
+  .streak { margin-left:auto; text-align:center; }
+  .streak b { font-size:30px; font-weight:900; color:var(--text); display:block; line-height:1; }
+  .streak span { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:0.6px; }
+  .sc-div { height:1px; background:var(--border); margin:13px 0 11px; }
+  .week { display:flex; gap:7px; justify-content:space-between; }
+  .day { width:30px; height:30px; border-radius:50%; border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:var(--muted); }
+  .day.on { background:var(--accentBg); border-color:var(--accent); color:var(--accent); }
+  .tiles { display:flex; gap:10px; margin:14px 14px 0; }
+  .tile { flex:1; border-radius:var(--rCard); padding:13px 10px; background:var(--bgCard);
+    border:1px solid var(--border); text-align:center; }
+  .tile em { font-style:normal; font-size:19px; display:block; }
+  .tile b { font-size:11.5px; font-weight:800; display:block; margin-top:6px; color:var(--text); }
+
+  /* ── Floating tab bar (точно как app/(tabs)/_layout.tsx) ── */
+  .tabbar { position:absolute; left:16px; right:16px; bottom:18px; height:56px; border-radius:28px;
+    background:color-mix(in srgb, var(--bgCard) 62%, transparent);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--borderHi);
+    box-shadow:0 8px 16px rgba(0,0,0,0.28);
+    display:flex; align-items:center; justify-content:space-around; padding:0 6px; z-index:5; }
+  .tab { width:48px; height:36px; border-radius:18px; display:flex; align-items:center; justify-content:center; }
+  .tab svg { width:24px; height:24px; stroke:var(--muted); fill:none; stroke-width:1.7; }
+  .tab.active { background:var(--accentBg); }
+  .tab.active svg { stroke:var(--accent); }
+
+  /* ── Backdrops & generic modal bits ── */
+  .backdrop { position:absolute; inset:0; z-index:10; display:flex; align-items:center;
+    justify-content:center; padding:18px; }
+  .backdrop.blurred { backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px); }
+  .toast-zone { position:absolute; left:12px; right:12px; bottom:88px; z-index:11;
+    display:flex; flex-direction:column; gap:10px; }
+
+  /* crystal / chest / trophy art */
+  .crystal { filter:drop-shadow(0 4px 10px rgba(80,160,255,0.35)); }
+
+  /* ════ BEFORE: LevelGiftModal ════ */
+  .bm-gift { width:300px; border-radius:30px; border:1px solid var(--mBorder); position:relative;
+    background:linear-gradient(170deg, var(--panel0), var(--panel1) 50%, var(--panel2));
+    padding:30px 22px 24px; text-align:center; overflow:hidden;
+    box-shadow:0 18px 34px rgba(0,0,0,0.42); }
+  .bm-gift .topline { position:absolute; top:0; left:24px; right:24px; height:1px;
+    background:var(--mAccent); opacity:0.35; }
+  .bm-gift .tint { position:absolute; top:0; left:0; right:0; height:74px; background:var(--mSoft); }
+  .bm-x { position:absolute; top:10px; right:10px; width:34px; height:34px; border-radius:17px;
+    background:rgba(3,5,10,0.42); border:1px solid rgba(255,255,255,0.18);
+    color:#fff; font-size:21px; font-weight:800; display:flex; align-items:center;
+    justify-content:center; line-height:1; }
+  .bm-kicker { font-size:12px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase;
+    color:var(--mAccent); position:relative; }
+  .bm-title { font-size:24px; font-weight:900; color:var(--text); margin:8px 0 4px; position:relative; }
+  .bm-sub { font-size:13px; font-weight:600; color:var(--muted); position:relative; }
+  .chestbox { width:136px; height:136px; margin:18px auto 0; display:flex;
+    align-items:center; justify-content:center; position:relative; }
+  .bm-hint { font-size:12.5px; color:var(--muted); margin-top:16px; position:relative; }
+  .bm-later { display:inline-block; margin-top:16px; padding:11px 22px; border-radius:16px;
+    background:var(--mSoft); border:1px solid var(--mBorder); font-size:14px; font-weight:800;
+    color:var(--text); position:relative; }
+
+  /* ════ BEFORE: ShardsEarnedModal ════ */
+  .bm-shards-frame { width:300px; border-radius:30px; padding:1px;
+    background:linear-gradient(135deg, rgba(255,255,255,0.10), var(--mAccent), rgba(255,255,255,0.08));
+    box-shadow:0 18px 34px rgba(214,184,92,0.20); }
+  .bm-shards { border-radius:29px; border:1px solid var(--mBorder); text-align:center;
+    background:linear-gradient(170deg, var(--panel0), var(--panel1) 50%, var(--panel2));
+    padding:26px 22px 24px; position:relative; overflow:hidden; }
+  .bm-eyebrow { font-size:11px; font-weight:800; letter-spacing:1.7px; text-transform:uppercase;
+    color:var(--mAccent); }
+  .gem-halo { width:118px; height:118px; margin:16px auto 0; border-radius:52px;
+    border:1px solid var(--mBorder); background:var(--mSoft);
+    display:flex; align-items:center; justify-content:center; }
+  .bm-amount { font-size:46px; font-weight:900; color:var(--mAccent); margin-top:10px;
+    text-shadow:0 2px 14px rgba(214,184,92,0.35); }
+  .bm-amount-sub { font-size:12.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
+    color:var(--text2); margin-top:2px; }
+  .reason { margin-top:16px; border-radius:18px; border:1px solid var(--mBorder);
+    background:var(--mSoft); padding:13px 15px; text-align:left; }
+  .reason b { font-size:10px; font-weight:800; letter-spacing:0.6px; text-transform:uppercase;
+    color:var(--mAccent); display:block; }
+  .reason span { font-size:14px; color:var(--text); line-height:1.45; display:block; margin-top:4px; }
+  .bm-touch { font-size:12px; color:var(--muted); opacity:0.78; margin-top:13px; }
+  .bm-cta { margin-top:12px; border-radius:18px; padding:14px;
+    background:linear-gradient(135deg, var(--mBtn0), var(--mBtn1));
+    color:var(--mBtnText); font-size:17px; font-weight:900; }
+
+  /* ════ BEFORE: ThroneRewardModal (хардкод-золото) ════ */
+  .bd-throne { background:rgba(0,0,0,0.88) !important; }
+  .bm-throne { width:308px; border-radius:32px; border:1.5px solid rgba(201,168,76,0.55);
+    background:linear-gradient(180deg, var(--panel0), var(--panel1) 50%, var(--panel2));
+    box-shadow:0 12px 32px rgba(201,168,76,0.45); padding:30px 26px 24px; text-align:center;
+    position:relative; overflow:hidden; }
+  .bm-throne .rays { position:absolute; top:38px; left:50%; width:0; height:0; }
+  .bm-throne .ray { position:absolute; left:-1px; top:-80px; width:2px; height:80px;
+    background:rgba(201,168,76,0.12); transform-origin:bottom center; }
+  .crown-circle { width:100px; height:100px; border-radius:50%; margin:4px auto 0;
+    background:conic-gradient(from 200deg, #2E1F04, #6B4E12, #C9A84C, #E8C96A, #C9A84C, #6B4E12, #2E1F04);
+    display:flex; align-items:center; justify-content:center; position:relative;
+    box-shadow:0 8px 24px rgba(201,168,76,0.4); }
+  .bm-throne h3 { color:#FFE566; font-size:21px; font-weight:900; margin-top:14px;
+    text-shadow:0 2px 12px rgba(201,168,76,0.5); }
+  .bm-throne .tsub { color:rgba(255,255,255,0.6); font-size:13px; font-weight:500; margin-top:5px; }
+  .throne-reward { margin-top:16px; border-radius:20px; padding:16px 22px;
+    background:linear-gradient(90deg, rgba(30,100,180,0.18), rgba(20,70,140,0.28), rgba(30,100,180,0.18));
+    border:1px solid rgba(201,168,76,0.3); display:flex; align-items:center; gap:14px;
+    justify-content:center; }
+  .throne-reward b { font-size:30px; font-weight:900; color:#FFE566; letter-spacing:-1px; }
+  .throne-reward span { font-size:11px; font-weight:700; letter-spacing:2px; color:rgba(255,255,255,0.55); }
+  .bm-throne .cta { margin-top:16px; border-radius:18px; border:1.5px solid rgba(201,168,76,0.5);
+    padding:15px; background:linear-gradient(90deg, var(--mBtn0), var(--mBtn1));
+    color:var(--mBtnText); font-size:15px; font-weight:900; letter-spacing:1px; text-transform:uppercase;
+    box-shadow:0 4px 12px rgba(201,168,76,0.4); }
+  .particle { position:absolute; border-radius:50%; opacity:0.8; }
+
+  /* ════ BEFORE: ReleaseWaveBonusModal ════ */
+  .bd-wave { background:rgba(0,0,0,0.62) !important; }
+  .bm-wave { width:312px; border-radius:20px; border:1.5px solid var(--mBorder);
+    background:linear-gradient(150deg, var(--panel0), var(--panel1) 55%, var(--panel2));
+    box-shadow:0 18px 26px rgba(214,184,92,0.22); padding:24px 20px 20px; text-align:center; }
+  .bm-wave .pray { font-size:46px; }
+  .bm-wave h3 { font-size:21px; font-weight:800; color:var(--text); margin-top:4px; }
+  .bm-wave .list { text-align:left; margin-top:10px; font-size:14.5px; line-height:24px; color:var(--muted); }
+  .wave-reward { margin-top:14px; border-radius:18px; border:1px solid var(--mBorder);
+    background:var(--mSoft); padding:14px 12px; }
+  .wave-reward b { color:var(--mAccent); font-size:17px; font-weight:800; display:block; margin-top:6px; }
+  .wave-reward span { color:var(--text2); font-size:12.5px; }
+  .bm-wave .cta { margin-top:14px; border-radius:14px; min-height:52px; display:flex;
+    align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--mBtn0), var(--mBtn1));
+    color:var(--mBtnText); font-size:17px; font-weight:800; }
+
+  /* ════ BEFORE: toast zoo ════ */
+  .toast-action { background:#121419; border-radius:16px; border:1px solid rgba(101,228,154,0.34);
+    min-height:66px; padding:12px 16px; display:flex; gap:12px; align-items:center; position:relative; }
+  .toast-action .rail { position:absolute; left:0; top:11px; bottom:11px; width:3px;
+    border-radius:0 4px 4px 0; background:#65E49A; }
+  .ticon { width:38px; height:38px; border-radius:12px; border:1px solid rgba(101,228,154,0.34);
+    background:rgba(101,228,154,0.14); display:flex; align-items:center; justify-content:center;
+    flex:none; font-size:18px; color:#65E49A; font-weight:900; }
+  .toast-action .lbl { font-size:12px; font-weight:800; color:#65E49A; }
+  .toast-action .msg { font-size:15px; font-weight:700; color:#F8FAFC; margin-top:1px; }
+
+  .toast-daily { border-radius:10px; border:1px solid rgba(242,196,141,0.30); min-height:88px;
+    background:linear-gradient(135deg, #1F1F21, #171719); display:flex; gap:10px;
+    align-items:center; padding:12px 14px; position:relative; overflow:hidden; }
+  .toast-daily .rail { position:absolute; left:0; top:0; bottom:0; width:5px; background:#F2C48D; }
+  .toast-daily .ic { width:44px; height:44px; border-radius:50%; border:1px solid rgba(242,196,141,0.4);
+    display:flex; align-items:center; justify-content:center; font-size:19px; flex:none; }
+  .toast-daily .t1 { font-size:14.5px; font-weight:900; color:#FFF8E8; }
+  .toast-daily .t2 { font-size:12.5px; font-weight:700; color:#D7D2CC; margin-top:1px; }
+  .toast-daily .t3 { font-size:11.5px; font-weight:900; color:#FFE17A; margin-top:2px; }
+  .toast-daily .claim { width:96px; border-radius:14px; background:#E7B13F; color:#151008;
+    font-size:12px; font-weight:900; padding:11px 0; text-align:center; flex:none; }
+
+  .toast-ach { background:var(--bgCard); border-radius:20px; border:1.5px solid var(--text2);
+    padding:12px 14px; display:flex; gap:12px; align-items:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.25); }
+  .toast-ach .slot { width:56px; height:56px; border-radius:16px; border:1px solid var(--border);
+    background:var(--accentBg); display:flex; align-items:center; justify-content:center;
+    font-size:25px; flex:none; }
+  .toast-ach .lbl { font-size:11px; font-weight:700; letter-spacing:0.4px; text-transform:uppercase;
+    color:var(--text2); }
+  .toast-ach .name { font-size:16px; font-weight:700; color:var(--text); margin-top:1px; }
+  .toast-ach .desc { font-size:12.5px; color:var(--muted); margin-top:1px; }
+  .toast-ach .spark { margin-left:auto; font-size:18px; opacity:0.5; color:var(--text2); }
+
+  /* ════ AFTER: Reward Card v2 ════ */
+  .nm { width:300px; border-radius:var(--rCard); border:1px solid var(--mBorder);
+    background:linear-gradient(170deg, var(--panel0), var(--panel1) 52%, var(--panel2));
+    box-shadow:0 24px 44px rgba(0,0,0,0.45); padding:26px 20px 18px; text-align:center;
+    position:relative; overflow:hidden; }
+  .nm .topline { position:absolute; top:0; left:26px; right:26px; height:1px;
+    background:linear-gradient(90deg, transparent, var(--rare, var(--mAccent)), transparent); opacity:0.8; }
+  .nm-kicker { font-size:11px; font-weight:900; letter-spacing:2px; text-transform:uppercase;
+    color:var(--rare, var(--mAccent)); }
+  .nm-ring { width:104px; height:104px; margin:18px auto 0; border-radius:50%;
+    border:1px solid color-mix(in srgb, var(--rare, var(--mAccent)) 44%, transparent);
+    background:var(--mSoft); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 34px color-mix(in srgb, var(--rare, var(--mAccent)) 22%, transparent); }
+  .nm-title { font-size:22px; font-weight:900; color:var(--text); margin-top:16px; letter-spacing:-0.2px; }
+  .nm-value { font-size:14px; font-weight:600; color:var(--text2); margin-top:5px; line-height:1.45; }
+  .nm-reason { margin-top:14px; border-radius:14px; border:1px solid var(--mBorder);
+    background:var(--mSoft); padding:11px 14px; text-align:left; }
+  .nm-reason b { font-size:10px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase;
+    color:var(--rare, var(--mAccent)); display:block; }
+  .nm-reason span { font-size:13.5px; color:var(--text); line-height:1.4; display:block; margin-top:3px; }
+  .nm-cta { margin-top:18px; height:52px; border-radius:var(--rBtn); display:flex; align-items:center;
+    justify-content:center; background:linear-gradient(135deg, var(--cta0), var(--cta1), var(--cta2));
+    color:var(--ctaText); font-size:16px; font-weight:800; }
+  .nm-ghost { margin-top:12px; font-size:14px; font-weight:700; color:var(--muted); }
+
+  /* stack mode */
+  .stackwrap { position:relative; width:300px; }
+  .stack-under { position:absolute; left:50%; border-radius:var(--rCard); border:1px solid var(--mBorder);
+    background:var(--panel1); opacity:0.6; }
+  .stack-u1 { width:272px; height:96%; top:-9px; transform:translateX(-50%); }
+  .stack-u2 { width:246px; height:94%; top:-17px; transform:translateX(-50%); opacity:0.32; }
+  .dots { display:flex; gap:6px; justify-content:center; margin-top:14px; }
+  .dots i { width:6px; height:6px; border-radius:3px; background:var(--muted); opacity:0.35; }
+  .dots i.on { width:18px; background:var(--rare, var(--mAccent)); opacity:1; }
+
+  /* ════ AFTER: unified toast ════ */
+  .nt { background:var(--bgCard); border-radius:16px; border:1px solid var(--border);
+    min-height:62px; padding:11px 14px; display:flex; gap:12px; align-items:center;
+    position:relative; box-shadow:0 6px 16px rgba(0,0,0,0.25); }
+  .nt .rail { position:absolute; left:0; top:11px; bottom:11px; width:3px; border-radius:0 4px 4px 0;
+    background:var(--ntc); }
+  .nt .ic { width:38px; height:38px; border-radius:12px; flex:none;
+    border:1px solid color-mix(in srgb, var(--ntc) 34%, transparent);
+    background:color-mix(in srgb, var(--ntc) 14%, transparent);
+    display:flex; align-items:center; justify-content:center; font-size:17px; color:var(--ntc); }
+  .nt .lbl { font-size:11px; font-weight:800; letter-spacing:0.8px; color:var(--ntc); text-transform:uppercase; }
+  .nt .msg { font-size:14.5px; font-weight:700; color:var(--text); margin-top:1px; }
+  .nt .chip { margin-left:auto; flex:none; border-radius:11px; padding:9px 14px;
+    background:color-mix(in srgb, var(--ntc) 18%, transparent);
+    border:1px solid color-mix(in srgb, var(--ntc) 40%, transparent);
+    color:var(--ntc); font-size:12.5px; font-weight:900; }
+
+  /* ════ AFTER: ThemedConfirm ════ */
+  .cf { width:300px; border-radius:16px; border:1px solid var(--border); background:var(--bgCard);
+    padding:22px; box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+  .cf h3 { font-size:19px; font-weight:700; color:var(--text); }
+  .cf p { font-size:14.5px; color:var(--muted); line-height:1.5; margin:10px 0 20px; }
+  .cf .b1 { border-radius:var(--rBtn); padding:14px; text-align:center; font-size:15px; font-weight:700;
+    background:linear-gradient(135deg, var(--cta0), var(--cta2)); color:var(--ctaText);
+    border:1px solid var(--borderHi); }
+  .cf .b2 { border-radius:var(--rBtn); padding:14px; text-align:center; font-size:15px; font-weight:600;
+    background:var(--bgSurface); color:var(--text); border:1px solid var(--border); margin-top:10px; }
+
+  /* rules + migration table */
+  .rules { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px; max-width:1240px; }
+  .rule { background:#16181C; border:1px solid #26282E; border-radius:14px; padding:16px 18px; }
+  .rule b { font-size:14px; display:block; margin-bottom:6px; }
+  .rule p { font-size:12.5px; color:#9AA0A6; line-height:1.55; }
+  table.mig { border-collapse:collapse; margin-top:8px; max-width:1100px; width:100%; }
+  table.mig th, table.mig td { text-align:left; padding:10px 14px; font-size:13px;
+    border-bottom:1px solid #26282E; vertical-align:top; }
+  table.mig th { color:#9AA0A6; font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+  table.mig td b { color:#fff; }
+  .to-toast { color:#65E49A; font-weight:800; } .to-inline { color:#74A7FF; font-weight:800; }
+  .to-keep { color:#FFC857; font-weight:800; } .to-confirm { color:#D8A6FF; font-weight:800; }
+</style>
+</head>
+<body>
+
+<h1>Phraseman — аудит и редизайн модалок и тостов</h1>
+<div class="sub">87 модальных окон, 8 тост-систем, 127 вызовов action_toast. Макеты построены на точных
+токенах приложения: темы из <code>constants/theme.ts</code>, панели наград из <code>RewardModalBackdrop.tsx</code>,
+кнопки из <code>PrimaryButton.tsx</code>, таб-бар из <code>app/(tabs)/_layout.tsx</code>. Переключай тему — макеты
+перекрашиваются так же, как приложение.</div>
+
+<div class="stats">
+  <div class="stat"><b>87</b><span>модалок всего</span></div>
+  <div class="stat bad"><b>12</b><span>конфликтных сценариев</span></div>
+  <div class="stat bad"><b>8</b><span>технических багов наложения</span></div>
+  <div class="stat warn"><b>5</b><span>разных радиусов у наградных (20–32)</span></div>
+  <div class="stat warn"><b>5</b><span>разных бэкдропов (0.46–0.88)</span></div>
+  <div class="stat ok"><b>1</b><span>система вместо 9 — цель редизайна</span></div>
+</div>
+
+<div class="switcher">
+  <span class="lbl">ТЕМА:</span>
+  <button class="tbtn active" data-t="t-compass">Compass (дефолт)</button>
+  <button class="tbtn" data-t="t-dark">Forest (Premium)</button>
+  <button class="tbtn" data-t="t-gold">Black Gold</button>
+  <button class="tbtn" data-t="t-sketch">Sketch Light</button>
+</div>
+
+<!-- ════════════ CONFLICT TIMELINE ════════════ -->
+<h2>Худший сценарий: конец первого урока <span class="tag bad">КАК СЕЙЧАС</span></h2>
+<div class="h2sub">Три попапа за 1,5 секунды на трёх независимых таймерах, два — нативные Modal одновременно
+(lesson_complete.tsx:618, :766, :797). Дальше цепочка level-up может добавить ещё три окна.</div>
+<div class="timeline">
+  <div class="tl-chip"><b>Урок завершён</b><span>экран результата</span></div>
+  <div class="tl-arrow">0 мс →</div>
+  <div class="tl-chip danger"><b>ReviewModal</b><span>«Оцени приложение»</span><span class="flag">вне арбитра</span></div>
+  <div class="tl-arrow">+1,2 с →</div>
+  <div class="tl-chip danger"><b>AchievementNotif</b><span>медаль / открыт урок</span><span class="flag">таймер, не onClose</span></div>
+  <div class="tl-arrow">+0,3 с →</div>
+  <div class="tl-chip danger"><b>RegistrationPrompt</b><span>«Зарегистрируйся»</span><span class="flag">2 Modal сразу</span></div>
+  <div class="tl-arrow">затем →</div>
+  <div class="tl-chip"><b>LevelUp</b><span>новый уровень</span></div>
+  <div class="tl-arrow">+260 мс →</div>
+  <div class="tl-chip"><b>LevelGiftModal</b><span>сундук</span></div>
+  <div class="tl-arrow">onClose →</div>
+  <div class="tl-chip danger"><b>Пейвол</b><span>premium_modal</span><span class="flag">7-е окно подряд</span></div>
+</div>
+
+<!-- ════════════ BEFORE ════════════ -->
+<h2>Наградные модалки <span class="tag bad">КАК СЕЙЧАС — точное воссоздание из кода</span></h2>
+<div class="h2sub">Одна «семья», но: радиусы 20/29/30/32, бэкдропы от 46% до 88% затемнения (у двух — хардкод,
+не реагирует на тему), тап по фону где-то закрывает, где-то нет, CTA везде разная. Переключи тему на
+Sketch Light — Throne и ReleaseWave остаются с чёрным бэкдропом и золотым хардкодом.</div>
+
+<div class="row">
+
+  <!-- BEFORE 1: LevelGiftModal -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">С возвращением</div>
+        <div class="hh-name">Алекс</div>
+        <div class="hh-meta">
+          <svg class="bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="var(--accent)"/></svg>
+          <svg class="bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="var(--accent)"/></svg>
+          <svg class="bolt" viewBox="0 0 24 24" opacity="0.3"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="var(--muted)"/></svg>
+          <div class="hh-shards">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2 19 9l-7 13L5 9z" fill="#6FB1FF" stroke="#BFDDFF" stroke-width="1"/></svg> 152
+          </div>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="sc-top">
+          <div class="ava">А</div>
+          <div><div class="sc-name">Алекс <span class="lvl-pill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
+          <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
+        </div>
+        <div class="sc-div"></div>
+        <div class="week">
+          <div class="day on">Пн</div><div class="day on">Вт</div><div class="day on">Ср</div>
+          <div class="day on">Чт</div><div class="day">Пт</div><div class="day">Сб</div><div class="day">Вс</div>
+        </div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><em>📘</em><b>Уроки</b></div>
+        <div class="tile"><em>⚔️</em><b>Вызовы</b></div>
+        <div class="tile"><em>🃏</em><b>Карточки</b></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop" style="background:var(--bdGift)">
+        <div class="bm-gift">
+          <div class="tint"></div><div class="topline"></div>
+          <div class="bm-x">×</div>
+          <div class="bm-kicker">Уровень 12</div>
+          <div class="bm-title">🎁 Подарок за уровень!</div>
+          <div class="bm-sub">Подарок за прогресс</div>
+          <div class="chestbox">
+            <svg width="112" height="112" viewBox="0 0 120 120">
+              <rect x="14" y="52" width="92" height="50" rx="10" fill="#7A5530" stroke="#3D2A14" stroke-width="3"/>
+              <path d="M14 58 Q14 30 60 30 Q106 30 106 58 v6 H14z" fill="#9A6E3E" stroke="#3D2A14" stroke-width="3"/>
+              <rect x="50" y="50" width="20" height="26" rx="4" fill="#E8C36C" stroke="#3D2A14" stroke-width="2.5"/>
+              <circle cx="60" cy="60" r="3.4" fill="#3D2A14"/>
+              <rect x="14" y="62" width="92" height="6" fill="#5C3F22"/>
+            </svg>
+          </div>
+          <div class="bm-hint">Нажми, чтобы открыть</div>
+          <div class="bm-later">Забрать позже</div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>LevelGiftModal</b> — сундук за уровень. Радиус 30, бэкдроп 46%, тап по фону <span class="neg">не закрывает</span>.
+      <span class="pin"><span class="neg">Минусы:</span> три строки текста до взаимодействия; эмодзи в заголовке; «Забрать позже» выглядит как основная кнопка; внутри ещё бывает жёлтая системная плашка-предупреждение.</span></div>
+  </div>
+
+  <!-- BEFORE 2: ShardsEarnedModal -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">С возвращением</div>
+        <div class="hh-name">Алекс</div>
+      </div>
+      <div class="status-card">
+        <div class="sc-top">
+          <div class="ava">А</div>
+          <div><div class="sc-name">Алекс <span class="lvl-pill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
+          <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
+        </div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><em>📘</em><b>Уроки</b></div>
+        <div class="tile"><em>⚔️</em><b>Вызовы</b></div>
+        <div class="tile"><em>🃏</em><b>Карточки</b></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop" style="background:var(--bdShards)">
+        <div class="bm-shards-frame"><div class="bm-shards">
+          <div class="bm-eyebrow">✦ Сокровище зачислено ✦</div>
+          <div class="gem-halo">
+            <svg class="crystal" width="80" height="80" viewBox="0 0 24 24"><path d="M12 1.5 20 9l-8 13.5L4 9z" fill="#6FB1FF" stroke="#CFE6FF" stroke-width="0.8"/><path d="M4 9h16M12 1.5 8 9l4 13.5L16 9z" stroke="#CFE6FF" stroke-width="0.6" fill="none" opacity="0.8"/></svg>
+          </div>
+          <div class="bm-amount">+25</div>
+          <div class="bm-amount-sub">осколков знаний</div>
+          <div class="reason"><b>За что</b><span>Задание дня выполнено: пройди 2 урока без ошибок</span></div>
+          <div class="bm-touch">Коснись, чтобы продолжить</div>
+          <div class="bm-cta">Забрать</div>
+        </div></div>
+      </div>
+    </div>
+    <div class="caption"><b>ShardsEarnedModal</b> — осколки. Радиус 30 + градиентная рамка, бэкдроп 82%, автозакрытие через 40 секунд.
+      <span class="pin"><span class="neg">Минусы:</span> «✦ Сокровище зачислено ✦» — фэнтези-2015; цифра 48px с тенью; 4 анимации одновременно (sheen, glow, bounce, линия); «Коснись, чтобы продолжить» + кнопка «Забрать» — двойной CTA. Автозакрытие = это вообще тост по природе.</span></div>
+  </div>
+
+  <!-- BEFORE 3: ThroneRewardModal -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">Арена</div>
+        <div class="hh-name">Трон</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop bd-throne">
+        <span class="particle" style="width:6px;height:6px;background:#FFE566;top:18%;left:14%"></span>
+        <span class="particle" style="width:4px;height:4px;background:#C9A84C;top:30%;right:12%"></span>
+        <span class="particle" style="width:5px;height:5px;background:#FFD700;bottom:24%;left:18%"></span>
+        <span class="particle" style="width:4px;height:4px;background:#fff;bottom:30%;right:20%"></span>
+        <div class="bm-throne">
+          <div class="rays">
+            <span class="ray" style="transform:rotate(0deg)"></span><span class="ray" style="transform:rotate(30deg)"></span>
+            <span class="ray" style="transform:rotate(60deg)"></span><span class="ray" style="transform:rotate(90deg)"></span>
+            <span class="ray" style="transform:rotate(120deg)"></span><span class="ray" style="transform:rotate(150deg)"></span>
+            <span class="ray" style="transform:rotate(180deg)"></span><span class="ray" style="transform:rotate(210deg)"></span>
+            <span class="ray" style="transform:rotate(240deg)"></span><span class="ray" style="transform:rotate(270deg)"></span>
+            <span class="ray" style="transform:rotate(300deg)"></span><span class="ray" style="transform:rotate(330deg)"></span>
+          </div>
+          <div class="crown-circle">
+            <svg width="46" height="46" viewBox="0 0 24 24"><path d="M5 8v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M8 21h8M12 18v3M7 8a5 5 0 0 0 10 0M9 4h6" stroke="#FFE566" stroke-width="1.8" fill="none"/></svg>
+          </div>
+          <h3>Ты удержал трон!</h3>
+          <div class="tsub">5 побед сегодня — никто тебя не скинул</div>
+          <div class="throne-reward">
+            <svg width="44" height="44" viewBox="0 0 24 24"><path d="M12 1.5 20 9l-8 13.5L4 9z" fill="#6FB1FF" stroke="#CFE6FF" stroke-width="0.8"/></svg>
+            <div><b>+40</b><br><span>ОСКОЛКОВ</span></div>
+          </div>
+          <div class="cta">Забрать награду</div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>ThroneRewardModal</b> — трон арены. <span class="neg">Бэкдроп 88% — хардкод</span>, золотая рамка — хардкод, не подстраивается под тему.
+      <span class="pin"><span class="neg">Минусы:</span> 12 лучей + glow + 4 звезды + 8 частиц + 3 спринга = цирк из 7 анимаций; синий блок награды внутри золотой карточки; в Sketch-теме будет чёрная дыра на бумажном фоне (переключи тему!).</span></div>
+  </div>
+
+  <!-- BEFORE 4: ReleaseWaveBonusModal -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">С возвращением</div>
+        <div class="hh-name">Алекс</div>
+      </div>
+      <div class="status-card">
+        <div class="sc-top">
+          <div class="ava">А</div>
+          <div><div class="sc-name">Алекс <span class="lvl-pill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
+          <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop bd-wave">
+        <div class="bm-wave">
+          <div class="pray">🙏</div>
+          <h3>Список дел:</h3>
+          <div class="list">
+            ✅ Починили синхронизацию прогресса<br>
+            ✅ Ускорили загрузку уроков<br>
+            ✅ Новые задания дня<br>
+            ⏳ Турниры кланов — в работе<br>
+            ⏳ Голосовые диалоги — скоро
+          </div>
+          <div class="wave-reward">
+            <svg class="crystal" width="56" height="48" viewBox="0 0 24 24"><path d="M12 1.5 20 9l-8 13.5L4 9z" fill="#6FB1FF" stroke="#CFE6FF" stroke-width="0.8"/></svg>
+            <b>+30 осколков знаний</b>
+            <span>осколки знаний</span>
+          </div>
+          <div class="cta">Забрать</div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>ReleaseWaveBonusModal</b> — бонус за обновление. Радиус 20 (у соседей 30–32), <span class="neg">бэкдроп 62% — хардкод</span>.
+      <span class="pin"><span class="neg">Минусы:</span> эмодзи 🙏 как главный визуал; чеклист ✅/⏳ обычным текстом — выглядит как тех-сообщение, а не награда; подпись «осколки знаний» дублирует строку выше; единственная модалка вообще без анимации появления.</span></div>
+  </div>
+
+  <!-- BEFORE 5: toast zoo -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">С возвращением</div>
+        <div class="hh-name">Алекс</div>
+      </div>
+      <div class="status-card">
+        <div class="sc-top">
+          <div class="ava">А</div>
+          <div><div class="sc-name">Алекс <span class="lvl-pill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
+          <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="toast-zone">
+        <div class="toast-ach">
+          <div class="slot">🏅</div>
+          <div><div class="lbl">Достижение разблокировано!</div><div class="name">Первая сотня</div><div class="desc">Выучи 100 фраз</div></div>
+          <div class="spark">✦</div>
+        </div>
+        <div class="toast-daily">
+          <div class="rail"></div>
+          <div class="ic">🧭</div>
+          <div style="flex:1"><div class="t1">Задание дня выполнено</div><div class="t2">Пройди 2 урока</div><div class="t3">Награда: +20 XP</div></div>
+          <div class="claim">🎁 Забрать</div>
+        </div>
+        <div class="toast-action">
+          <div class="rail"></div>
+          <div class="ticon">✓</div>
+          <div><div class="lbl">ГОТОВО</div><div class="msg">Аватар применен</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>Зоопарк тостов</b> (показаны вместе для сравнения — арбитр показывает по одному).
+      <span class="pin"><span class="neg">Минусы:</span> 3 разных радиуса (16/10/20), ActionToast — хардкод-чёрный #121419 в любой теме, DailyTask — 7 собственных палитр, Achievement — свой бордер 1.5px. Плюс MedalToast и InGameToast живут мимо арбитра и могут лечь поверх.</span></div>
+  </div>
+</div>
+
+<!-- ════════════ AFTER ════════════ -->
+<h2>Редизайн: система «Reward Card» <span class="tag good">ПРЕДЛОЖЕНИЕ</span></h2>
+<div class="h2sub">Одна анатомия для всех наград: кикер → кольцо с артом → заголовок → значение → причина (опц.) → CTA 52px → «Позже».
+Бэкдроп единый: blur + 55%. Тап по фону = «Забрать» (награда никогда не теряется). Редкость меняет только цвет кикера и кольца.
+Радиусы и кнопки — из дизайн-системы темы (compass/gold — 18, остальные — 24). Максимум 2 анимации: вход + glow кольца.</div>
+
+<div class="row">
+
+  <!-- AFTER 1: Reward Card — level gift -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">С возвращением</div>
+        <div class="hh-name">Алекс</div>
+      </div>
+      <div class="status-card">
+        <div class="sc-top">
+          <div class="ava">А</div>
+          <div><div class="sc-name">Алекс <span class="lvl-pill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
+          <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
+        </div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><em>📘</em><b>Уроки</b></div>
+        <div class="tile"><em>⚔️</em><b>Вызовы</b></div>
+        <div class="tile"><em>🃏</em><b>Карточки</b></div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop blurred" style="background:var(--bdNew)">
+        <div class="nm" style="--rare:#FFD700">
+          <div class="topline"></div>
+          <div class="nm-kicker">Уровень 12 · Эпический</div>
+          <div class="nm-ring">
+            <svg width="64" height="64" viewBox="0 0 120 120">
+              <rect x="14" y="52" width="92" height="50" rx="10" fill="#7A5530" stroke="#3D2A14" stroke-width="3"/>
+              <path d="M14 58 Q14 30 60 30 Q106 30 106 58 v6 H14z" fill="#9A6E3E" stroke="#3D2A14" stroke-width="3"/>
+              <rect x="50" y="50" width="20" height="26" rx="4" fill="#E8C36C" stroke="#3D2A14" stroke-width="2.5"/>
+              <circle cx="60" cy="60" r="3.4" fill="#3D2A14"/>
+            </svg>
+          </div>
+          <div class="nm-title">Подарок за уровень</div>
+          <div class="nm-value">Нажми на сундук — внутри награда<br>за 12-й уровень</div>
+          <div class="nm-cta">Открыть</div>
+          <div class="nm-ghost">Сохранить на потом</div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>Reward Card — подарок за уровень.</b>
+      <span class="pin"><span class="pos">Что изменилось:</span> один заголовок вместо трёх строк; без эмодзи в тексте; редкость = золотой кикер и кольцо; CTA — системная кнопка 52px; «Сохранить на потом» — явный ghost, не конкурирует с CTA; радиус и кнопка из темы.</span></div>
+  </div>
+
+  <!-- AFTER 2: Reward Stack -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">Урок 14 завершён</div>
+        <div class="hh-name">Отлично!</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop blurred" style="background:var(--bdNew)">
+        <div class="stackwrap">
+          <div class="stack-under stack-u2"></div>
+          <div class="stack-under stack-u1"></div>
+          <div class="nm" style="--rare:#FFD700; position:relative;">
+            <div class="topline"></div>
+            <div class="nm-kicker">Награды за урок · 1 из 3</div>
+            <div class="nm-ring">
+              <svg width="58" height="58" viewBox="0 0 24 24"><path d="M5 8v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M8 21h8M12 18v3M7 8a5 5 0 0 0 10 0M9 4h6" stroke="#FFD700" stroke-width="1.6" fill="none"/></svg>
+            </div>
+            <div class="nm-title">Новый уровень 13</div>
+            <div class="nm-value">Дальше: медаль урока и +25 осколков —<br>листай или забери всё сразу</div>
+            <div class="dots"><i class="on"></i><i></i><i></i></div>
+            <div class="nm-cta">Забрать всё</div>
+            <div class="nm-ghost">Смотреть по одной →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>Reward Stack — агрегация очереди.</b>
+      <span class="pin"><span class="pos">Что изменилось:</span> вместо парада «LevelUp → Gift → Медаль → Осколки» (4 окна подряд) — одна карточка-стопка с пейджером «1 из 3» и кнопкой «Забрать всё». Хвост очереди виден за карточкой — ощущение богатства, а не спама.</span></div>
+  </div>
+
+  <!-- AFTER 3: Reward Toast вместо ShardsEarnedModal + unified toasts -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">С возвращением</div>
+        <div class="hh-name">Алекс</div>
+      </div>
+      <div class="status-card">
+        <div class="sc-top">
+          <div class="ava">А</div>
+          <div><div class="sc-name">Алекс <span class="lvl-pill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
+          <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
+        </div>
+        <div class="sc-div"></div>
+        <div class="week">
+          <div class="day on">Пн</div><div class="day on">Вт</div><div class="day on">Ср</div>
+          <div class="day on">Чт</div><div class="day">Пт</div><div class="day">Сб</div><div class="day">Вс</div>
+        </div>
+      </div>
+      <div class="tabbar">
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="toast-zone">
+        <div class="nt" style="--ntc:#6FB1FF">
+          <div class="rail"></div>
+          <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2 19 9l-7 13L5 9z" fill="#6FB1FF"/></svg></div>
+          <div><div class="lbl">Награда</div><div class="msg">+25 осколков — задание дня</div></div>
+        </div>
+        <div class="nt" style="--ntc:var(--gold)">
+          <div class="rail"></div>
+          <div class="ic">🏅</div>
+          <div><div class="lbl">Достижение</div><div class="msg">Первая сотня</div></div>
+          <div class="chip">Открыть</div>
+        </div>
+        <div class="nt" style="--ntc:#65E49A">
+          <div class="rail"></div>
+          <div class="ic">✓</div>
+          <div><div class="lbl">Готово</div><div class="msg">Аватар применён</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>Единый каркас тостов.</b> ShardsEarnedModal стала тостом «Награда».
+      <span class="pin"><span class="pos">Что изменилось:</span> один каркас (радиус 16, фон карточки темы, левый рейл = семантический цвет, бейдж-иконка 38px, опциональная кнопка-чип). Мелкие осколки больше не блокируют экран модалкой с 82% затемнением. Показ по одному, очередь — у арбитра.</span></div>
+  </div>
+
+  <!-- AFTER 4: Throne v2 -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">Арена</div>
+        <div class="hh-name">Трон</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop blurred" style="background:var(--bdNew)">
+        <div class="nm" style="--rare:var(--gold)">
+          <div class="topline"></div>
+          <div class="nm-kicker">Арена · Трон удержан</div>
+          <div class="nm-ring">
+            <svg width="54" height="54" viewBox="0 0 24 24"><path d="M5 8v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M8 21h8M12 18v3M7 8a5 5 0 0 0 10 0M9 4h6" stroke="var(--gold)" stroke-width="1.7" fill="none"/></svg>
+          </div>
+          <div class="nm-title">Ты удержал трон!</div>
+          <div class="nm-value">5 побед — никто не смог тебя скинуть</div>
+          <div class="nm-reason" style="display:flex; align-items:center; gap:12px;">
+            <svg width="34" height="34" viewBox="0 0 24 24" style="flex:none"><path d="M12 1.5 20 9l-8 13.5L4 9z" fill="#6FB1FF" stroke="#CFE6FF" stroke-width="0.8"/></svg>
+            <span style="margin:0; font-size:17px; font-weight:900; color:var(--text)">+40 осколков</span>
+          </div>
+          <div class="nm-cta">Забрать</div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>Трон в единой системе.</b>
+      <span class="pin"><span class="pos">Что изменилось:</span> «золото» = семантический цвет t.gold текущей темы (переключи тему — карточка следует за ней); бэкдроп единый 55% + blur вместо чёрных 88%; одна награда — один блок, без синего пятна; 2 анимации вместо 7. Торжественность даёт кольцо с glow, а не цирк частиц.</span></div>
+  </div>
+
+  <!-- AFTER 5: ThemedConfirm vs Alert -->
+  <div class="ph-wrap">
+    <div class="phone themable t-compass">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
+      <div class="home-header">
+        <div class="hh-hello">Premium</div>
+        <div class="hh-name">Оформление</div>
+      </div>
+      <div class="tabbar">
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
+        <div class="tab active"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
+      </div>
+      <div class="backdrop" style="background:rgba(0,0,0,0.60)">
+        <div class="cf">
+          <h3>Не удалось оформить</h3>
+          <p>Магазин не ответил. Попробуй ещё раз или восстанови покупки — подписка не списана дважды.</p>
+          <div class="b1">Повторить</div>
+          <div class="b2">Восстановить покупки</div>
+        </div>
+      </div>
+    </div>
+    <div class="caption"><b>ThemedConfirmModal вместо Alert.alert.</b>
+      <span class="pin"><span class="pos">Что изменилось:</span> 4 нативных Alert в premium_modal_v2 (ошибки покупки) переезжают на системный диалог приложения — тематизированный, с понятным действием вместо «OK», и без Android-бага «Alert под Modal».</span></div>
+  </div>
+</div>
+
+<!-- ════════════ RULES ════════════ -->
+<h2>Правила системы (после редизайна)</h2>
+<div class="rules">
+  <div class="rule"><b>1 · Один бэкдроп</b><p>Везде blur + затемнение 55% (светлая тема — тёплый шоколадный 38%). Тап по фону у наград = «Забрать», у подтверждений = «Отмена». Награда не может потеряться от случайного тапа.</p></div>
+  <div class="rule"><b>2 · Одна анатомия наград</b><p>Кикер → кольцо 104px с артом → заголовок 22/900 → значение → причина (опц.) → CTA 52px → ghost «Позже». Редкость меняет только цвет кикера/кольца. Радиус и CTA — из дизайн-системы темы.</p></div>
+  <div class="rule"><b>3 · Бюджет анимаций</b><p>Максимум 2 анимированных слоя: вход (spring 0.94→1 + fade 240мс, единый конфиг MOTION_SPRING.ui) и glow кольца. Никаких одновременных sheen + лучи + частицы + звёзды.</p></div>
+  <div class="rule"><b>4 · Всё через арбитр</b><p>Каждый попап получает ключ OverlayArbiter (добавить: review, authPrompt, noEnergy, inboxFlow). Запрещены setTimeout-цепочки — следующее окно открывается только из onClose предыдущего.</p></div>
+  <div class="rule"><b>5 · Маркетинговый слот = 1</b><p>После урока показывается максимум ОДИН маркетинг-попап (оценка ИЛИ регистрация ИЛИ апселл — по скорингу и кулдаунам). Остальные ждут следующего удачного момента.</p></div>
+  <div class="rule"><b>6 · Награды агрегируются</b><p>≥2 наград за один триггер → один Reward Stack с пейджером и «Забрать всё», а не очередь модалок. Мелкие награды (осколки, +XP) → Reward Toast, очередь до 2, дальше схлопывается в «+N наград».</p></div>
+</div>
+
+<h2>Миграционная таблица</h2>
+<table class="mig">
+  <tr><th>Сейчас</th><th>Станет</th><th>Почему</th></tr>
+  <tr><td><b>ShardsEarnedModal</b></td><td><span class="to-toast">→ Reward Toast</span></td><td>Автозакрытие 40с — это тост по природе; мелкие суммы не стоят блокировки экрана</td></tr>
+  <tr><td><b>PlanLessonDoneModal</b> (lesson1)</td><td><span class="to-toast">→ Reward Toast</span></td><td>Мини-событие внутри потока урока</td></tr>
+  <tr><td><b>LeagueBonusAvailableModal</b></td><td><span class="to-toast">→ тост с кнопкой «Открыть»</span></td><td>Информашка с CTA, как DailyTaskRewardToast</td></tr>
+  <tr><td><b>QuizTimeoutModal</b> (×2 дубля)</td><td><span class="to-inline">→ inline-баннер + слить дубли</span></td><td>Сообщение в контексте экрана квиза, модалка избыточна</td></tr>
+  <tr><td><b>EnergyTooltip / ArenaRatingInfo / Heatmap-день / ThroneTop / ClubBotStats</b></td><td><span class="to-inline">→ поповер / экспанд-секция</span></td><td>Информационные, без действий — Modal избыточен</td></tr>
+  <tr><td><b>Alert.alert ×4</b> (premium_modal_v2)</td><td><span class="to-confirm">→ ThemedConfirmModal</span></td><td>Тематизация + фикс Android-бага «Alert под Modal»</td></tr>
+  <tr><td><b>NotificationPermissionModal ×2</b></td><td><span class="to-confirm">→ один компонент</span></td><td>Дубликат в settings_notifications</td></tr>
+  <tr><td><b>LevelGift / Dual / LeagueChest / Throne / ReleaseWave / ShardReward</b></td><td><span class="to-keep">→ Reward Card v2</span></td><td>Остаются модалками, но в единой анатомии и теме</td></tr>
+  <tr><td><b>Premium/Vip Celebration, пейволы, NoEnergy, подтверждения трат, DeleteAccount</b></td><td><span class="to-keep">→ без изменений типа</span></td><td>Оправданные модалки; фиксы только оркестрации (onClose-цепочки, арбитр)</td></tr>
+  <tr><td><b>8 тостов</b> (Action/Achievement/Daily/Medal/Coach/InGame/MatchFound/RankBanner)</td><td><span class="to-toast">→ единый каркас, 1 рендерер</span></td><td>Один радиус/фон/рейл, разные иконки и чипы; все через арбитр, включая MedalToast и InGameToast</td></tr>
+</table>
+
+<script>
+  const btns = document.querySelectorAll('.tbtn');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.phone.themable').forEach(p => {
+      p.classList.remove('t-compass','t-dark','t-gold','t-sketch');
+      p.classList.add(b.dataset.t);
+    });
+  }));
+</script>
+</body>
+</html>

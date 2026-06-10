@@ -19,6 +19,7 @@ import {
   speakingMatchedFlags,
   speakingTargetTokens,
 } from '../app/speaking_word_match';
+import { nextVolumeLevel } from '../app/speaking_volume';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 
 /**
@@ -119,6 +120,9 @@ export function SpeakingPanel({
   const speech = useMemo(() => (isPreview ? null : loadSpeechModule()), [isPreview]);
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const [transcript, setTranscript] = useState('');
+  // Live mic level 0..1 for the equalizer. Updated on every `volumechange`.
+  const [voiceLevel, setVoiceLevel] = useState(0);
+  const voiceLevelRef = useRef(0);
   const [score, setScore] = useState<number | null>(
     isPreview && (previewStatus === 'passed' || previewStatus === 'failed')
       ? previewScore ?? (previewStatus === 'passed' ? 97 : 45)
@@ -142,6 +146,9 @@ export function SpeakingPanel({
     (finalTranscript: string) => {
       if (!mountedRef.current) return;
       const text = finalTranscript.trim();
+      // Attempt finished -> let the equalizer settle to rest before the ring.
+      voiceLevelRef.current = 0;
+      setVoiceLevel(0);
       setStatus('scoring');
       if (!text) {
         setStatus('failed');
@@ -182,6 +189,8 @@ export function SpeakingPanel({
     hapticTap();
     setTranscript('');
     setScore(null);
+    voiceLevelRef.current = 0;
+    setVoiceLevel(0);
     setStatus('requesting');
     try {
       const permission = await speech.requestPermissionsAsync();
@@ -218,8 +227,16 @@ export function SpeakingPanel({
     const noMatchSub = speech.addListener('nomatch', () => {
       if (mountedRef.current) setStatus('failed');
     });
+    // Live volume -> equalizer level. Smoothed so bars glide, not jump.
+    const volumeSub = speech.addListener('volumechange', (event: any) => {
+      if (!mountedRef.current) return;
+      const raw = Number(event?.value);
+      const next = nextVolumeLevel(voiceLevelRef.current, raw);
+      voiceLevelRef.current = next;
+      setVoiceLevel(next);
+    });
 
-    listenersRef.current = [resultSub, endSub, errorSub, noMatchSub].filter(
+    listenersRef.current = [resultSub, endSub, errorSub, noMatchSub, volumeSub].filter(
       Boolean,
     ) as Array<{ remove?: () => void }>;
 
@@ -229,6 +246,9 @@ export function SpeakingPanel({
         lang: recognitionLocale,
         interimResults: true,
         continuous: false,
+        // Enable real-time volume metering so the equalizer reacts to the voice.
+        // Value arrives in `volumechange` (-2..10); ~100ms cadence is plenty.
+        volumeChangeEventOptions: { enabled: true, intervalMillis: 100 },
         ...(Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}),
       });
     } catch {
@@ -340,9 +360,15 @@ export function SpeakingPanel({
             ))}
           </View>
 
-          {/* Equalizer */}
+          {/* Equalizer — live level from the mic in real use; falls back to the
+              decorative pulse in dev preview (no mic) by omitting `level`. */}
           <View style={styles.waveWrap}>
-            <VoiceWaveform active={listening} color={theme.accent} idleColor={theme.border} />
+            <VoiceWaveform
+              active={listening}
+              color={theme.accent}
+              idleColor={theme.border}
+              {...(isPreview ? {} : { level: voiceLevel })}
+            />
           </View>
 
           {/* Status line / score */}

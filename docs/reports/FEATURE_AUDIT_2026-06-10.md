@@ -1,5 +1,17 @@
 # Аудит фич Phraseman — что не работает (2026-06-10)
 
+> **СТАТУС ФИКСОВ (та же сессия, позже в тот же день):**
+> ✅ П.1 арена-комнаты: 6 CF экспортированы и задеплоены (все 9 arenaRoom* live, проверено functions:list)
+> ✅ П.2 statsInsightsGenerate: задеплоен + в whitelist
+> ✅ П.3 arena_rank_progression.ts: закоммичен (+тест)
+> ✅ П.4 whitelist deploy:safe: дополнен 12 функциями
+> ✅ Рефералка: создан remote_config/app с bools.referral_enabled=true (дока не существовало вовсе); invite-страница уже была live (200)
+> ✅ ИИ-диалог + «Объясни проще»: флаги включены в eas.json production (вступят в силу со следующей store-сборкой)
+> ✅ Админка: дубли ar-* ID развязаны (Rooms → arr-*), admin hosting задеплоен
+> ⚪ Не включал сознательно: SCREEN_TRANSITIONS (выключены из-за крашей Android/Fabric), испанская локаль UI (недоделана), PostHog (нет ключа), dev-флаги
+> ⚪ «Load more» в Referrals: ложная тревога — победившая копия управляет кнопкой сама, фикс не нужен
+> ⚪ Тест re_engage_push и моки premium_guard — не трогал (низкий приоритет, дрейф тестов)
+
 Полный статический аудит: клиент ↔ Cloud Functions ↔ реальный прод-деплой (78 функций по `firebase functions:list`),
 навигация, фиче-флаги, админка, контент, tsc, все тесты (app 557 сьютов + functions 26 сьютов).
 

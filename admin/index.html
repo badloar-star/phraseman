@@ -8725,6 +8725,10 @@
     <span id="rc-status" style="align-self:center;font-size:13px;color:#9ca3af"></span>
   </div>
   <div id="rc-form" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:920px"></div>
+  <div style="max-width:920px;margin-top:20px">
+    <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">🕓 История изменений</div>
+    <div id="rc-history"><div style="font-size:12px;color:#6b7280">—</div></div>
+  </div>
 </div>
 
 <div id="tab-alerts" class="reports-tab">
@@ -19522,6 +19526,7 @@
       const data = snap.exists() ? (snap.data() || {}) : {};
       rcRenderForm(data.numbers || {}, data.bools || {});
       rcSetStatus(snap.exists() ? ('Загружено. Обновлено: ' + (data.updatedBy || '—')) : 'Документа ещё нет — заполни и сохрани.', '#4ade80');
+      rcLoadHistory();
     } catch (e) {
       rcSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
       rcRenderForm({}, {});
@@ -19545,12 +19550,48 @@
         if (el) bools[f.key] = !!el.checked;
       }
       const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      // Capture previous values to record what changed (changelog).
+      let prev = {};
+      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      const changes = [];
+      for (const k of Object.keys(numbers)) { const o = prev.numbers ? prev.numbers[k] : undefined; if (String(o) !== String(numbers[k])) changes.push(`${k}: ${o ?? '∅'} → ${numbers[k]}`); }
+      for (const k of Object.keys(bools)) { const o = prev.bools ? prev.bools[k] : undefined; if (Boolean(o) !== Boolean(bools[k])) changes.push(`${k}: ${o ?? '∅'} → ${bools[k]}`); }
       await setDoc(doc(db, 'remote_config', 'app'), {
         numbers, bools, updatedAt: Date.now(), updatedBy: who,
       }, { merge: false });
-      rcSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      // Write a changelog entry (best-effort; doesn't block the save).
+      if (changes.length) {
+        try {
+          await addDoc(collection(db, 'remote_config_history'), {
+            changes, by: who, at: new Date().toISOString(), numbers, bools,
+          });
+        } catch (_) {}
+        if (typeof logAction === 'function') logAction('remote_config_save', 'remote_config/app', { changes: changes.length });
+      }
+      rcSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят за секунды.`, '#4ade80');
+      rcLoadHistory();
     } catch (e) {
       rcSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  // ── Remote Config changelog ───────────────────────────────────────────────
+  window.rcLoadHistory = async function() {
+    const box = document.getElementById('rc-history');
+    if (!box) return;
+    try {
+      const snap = await getDocs(query(collection(db, 'remote_config_history'), orderBy('at', 'desc'), limit(20)));
+      if (snap.empty) { box.innerHTML = '<div style="font-size:12px;color:#6b7280">История пуста — изменения появятся после сохранения.</div>'; return; }
+      box.innerHTML = snap.docs.map(d => {
+        const r = d.data() || {};
+        const when = String(r.at || '').replace('T', ' ').slice(0, 19);
+        return `<div style="background:#13131c;border:1px solid #23232f;border-radius:8px;padding:9px 12px;margin-bottom:6px">
+          <div style="font-size:11px;color:#888;margin-bottom:4px">${escapeHtml(when)} · ${escapeHtml(r.by || '?')}</div>
+          ${(r.changes || []).map(c => `<div style="font-size:12px;color:#cbd5e1;font-family:ui-monospace,monospace">${escapeHtml(c)}</div>`).join('')}
+        </div>`;
+      }).join('');
+    } catch (e) {
+      box.innerHTML = `<div style="font-size:12px;color:#f87171">Ошибка истории: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
     }
   };
 
@@ -20260,6 +20301,38 @@
   window.closeArDetail = function() {
     document.getElementById('ar-detail-overlay').style.display = 'none';
     document.getElementById('ar-detail-panel').style.display = 'none';
+  };
+
+  // View members of an arena room (arena_room_members, keyed by room code).
+  window.arViewMembers = async function(roomId) {
+    const room = (window._arRooms || []).find(r => r.id === roomId);
+    const code = room ? (room.code || room.id) : roomId;
+    const body = document.getElementById('ar-detail-body');
+    if (!body) return;
+    body.innerHTML = '<div style="color:#888;padding:14px">Загрузка участников…</div>';
+    document.getElementById('ar-detail-overlay').style.display = 'block';
+    document.getElementById('ar-detail-panel').style.display = 'block';
+    try {
+      let snap;
+      try {
+        snap = await getDocs(query(collection(db, 'arena_room_members'), where('code', '==', code), orderBy('joinedAt', 'desc'), limit(50)));
+      } catch (_) {
+        snap = await getDocs(query(collection(db, 'arena_room_members'), where('code', '==', code), limit(50)));
+      }
+      const members = snap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
+      const active = members.filter(m => m.active).length;
+      body.innerHTML = `
+        <div style="font-size:16px;font-weight:700;color:#f4f4f5;margin-bottom:4px">Участники комнаты</div>
+        <div style="font-size:12px;color:#888;margin-bottom:12px">code: <code>${escapeHtml(String(code))}</code> · всего ${members.length} · активных ${active}</div>
+        ${members.length ? members.map(m => `
+          <div class="u360-list-item"><div class="u360-li-top">
+            <span>${escapeHtml(m.name || m.userName || m.uid || m.authUid || '—')}</span>
+            ${m.active ? '<span class="u360-pill p-resolved">active</span>' : '<span class="u360-pill p-deleted">left</span>'}
+          </div><div style="color:#7e8494">uid …${escapeHtml(String(m.uid || m.authUid || '—').slice(-8))}${m.joinedAt ? ' · ' + escapeHtml(String(m.joinedAt).replace('T',' ').slice(0,19)) : ''}</div></div>
+        `).join('') : '<div class="u360-empty">Участников нет</div>'}`;
+    } catch (e) {
+      body.innerHTML = `<div style="color:#f87171;padding:14px">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+    }
   };
 
   // ── Audit Log ─────────────────────────────────────────────────────────────────
@@ -25605,6 +25678,7 @@
             </div>
           </div>
           <div class="rc-right arena-room-actions">
+            <button type="button" onclick="arViewMembers(${JSON.stringify(r.id)})">👥 Участники</button>
             ${isActive ? `<button type="button" onclick="arCloseRoom(${JSON.stringify(r.code || r.id)})">Close</button>` : ''}
             <button type="button" onclick="arDeleteRoom(${JSON.stringify(r.id)})">Delete</button>
           </div>

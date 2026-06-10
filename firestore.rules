@@ -200,6 +200,12 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
 
+    // Remote Config changelog — admin-only audit trail of config saves.
+    match /remote_config_history/{docId} {
+      allow read, create: if isAdmin();
+      allow update, delete: if false;
+    }
+
     // â”€â”€ User warnings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /user_warnings/{docId} {
       allow read:   if request.auth != null;

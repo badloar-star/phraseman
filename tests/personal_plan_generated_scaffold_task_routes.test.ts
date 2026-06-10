@@ -10,13 +10,15 @@ describe('generated personal plan scaffold task routes', () => {
   const visibleTasks = tasksForMinutes(day, 15);
 
   it('shows the full day-1 mode ladder for generated scaffold plans', () => {
+    // Day-1 ladder follows the mitap mode profile (Ф3): even the mix plan
+    // surfaces speaking inside the first short session.
     const expectedKinds = [
       'plan_phrase_lesson',
       'plan_missing_word',
-      'plan_choose_natural_phrase',
       'plan_listen_choose',
-      'plan_listen_build',
       'plan_pronunciation_repeat',
+      'plan_choose_natural_phrase',
+      'plan_listen_build',
       'plan_phrase_recall',
       'plan_quiz',
     ];
@@ -45,10 +47,10 @@ describe('generated personal plan scaffold task routes', () => {
 
     expect(exerciseTasks.map((task) => task.destination.type === 'plan_exercise' ? task.destination.exerciseType : null)).toEqual([
       'plan_missing_word',
-      'plan_choose_natural_phrase',
       'plan_listen_choose',
-      'plan_listen_build',
       'plan_pronunciation_repeat',
+      'plan_choose_natural_phrase',
+      'plan_listen_build',
     ]);
 
     for (const task of exerciseTasks) {

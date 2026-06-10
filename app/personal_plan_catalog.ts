@@ -1,4 +1,5 @@
 import { lessonGateForDay } from './plan_lesson_gate';
+import { requiredMinutesForKind, tailOrderForPlanDay } from './personal_plan_mode_profiles';
 
 export type PersonalPlanId = 'voyazh' | 'mitap' | 'gavan' | 'impuls' | 'echo';
 const PERSONAL_PLAN_IDS: PersonalPlanId[] = ['voyazh', 'mitap', 'gavan', 'impuls', 'echo'];
@@ -686,7 +687,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
         'Вставить нужное слово',
         'Короткая проверка фраз дня: одно точное слово внутри живой фразы.',
         3,
-        [5, 10, 15, 20],
+        requiredMinutesForKind(planId, 'plan_missing_word'),
         {
           type: 'plan_exercise',
           exerciseType: 'plan_missing_word',
@@ -703,7 +704,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
         'Выбрать естественную фразу',
         'Выбери фразу, которая лучше всего подходит к ситуации дня.',
         3,
-        [5, 10, 15, 20],
+        requiredMinutesForKind(planId, 'plan_choose_natural_phrase'),
         {
           type: 'plan_exercise',
           exerciseType: 'plan_choose_natural_phrase',
@@ -720,7 +721,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
         'Услышать и выбрать',
         'Послушай фразу дня и выбери правильный смысл.',
         4,
-        [5, 10, 15, 20],
+        requiredMinutesForKind(planId, 'plan_listen_choose'),
         {
           type: 'plan_exercise',
           exerciseType: 'plan_listen_choose',
@@ -737,7 +738,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
         'Собрать услышанную фразу',
         'Послушай и собери фразу из слов.',
         4,
-        [5, 10, 15, 20],
+        requiredMinutesForKind(planId, 'plan_listen_build'),
         {
           type: 'plan_exercise',
           exerciseType: 'plan_listen_build',
@@ -754,7 +755,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
         'Повторить вслух',
         'Повтори фразы дня и послушай себя.',
         4,
-        [5, 10, 15, 20],
+        requiredMinutesForKind(planId, 'plan_pronunciation_repeat'),
         {
           type: 'plan_exercise',
           exerciseType: 'plan_pronunciation_repeat',
@@ -773,7 +774,7 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
           ? 'Вернем фразы вчерашнего плана, чтобы они вспоминались без подсказки.'
           : 'Коротко вернем фразы, которые уже встретились сегодня.',
         4,
-        [15, 20],
+        requiredMinutesForKind(planId, 'plan_phrase_recall'),
         {
           type: 'plan_phrase_recall',
           lessonId: recallLessonId,
@@ -791,84 +792,21 @@ function makeGeneratedDay(planId: PersonalPlanId, dayIndex: number, topic: strin
         'Вызов дня',
         'Проверь фразы дня и часть старых фраз.',
         4,
-        [20],
+        requiredMinutesForKind(planId, 'plan_quiz'),
         { type: 'quiz', quizId: `${planId}_day_${dayIndex}_quiz`, questionCount: 10, level: quizLevel },
       ),
     ],
   };
 }
 
-const DAILY_TASK_TAIL_ORDER: PlanTaskKind[][] = [
-  [
-    'plan_missing_word',
-    'plan_choose_natural_phrase',
-    'plan_listen_choose',
-    'plan_listen_build',
-    'plan_pronunciation_repeat',
-    'plan_phrase_recall',
-    'plan_quiz',
-  ],
-  [
-    'plan_choose_natural_phrase',
-    'plan_missing_word',
-    'plan_phrase_recall',
-    'plan_listen_choose',
-    'plan_listen_build',
-    'plan_pronunciation_repeat',
-    'plan_quiz',
-  ],
-  [
-    'plan_listen_choose',
-    'plan_missing_word',
-    'plan_listen_build',
-    'plan_choose_natural_phrase',
-    'plan_pronunciation_repeat',
-    'plan_phrase_recall',
-    'plan_quiz',
-  ],
-  [
-    'plan_missing_word',
-    'plan_pronunciation_repeat',
-    'plan_choose_natural_phrase',
-    'plan_listen_build',
-    'plan_phrase_recall',
-    'plan_listen_choose',
-    'plan_quiz',
-  ],
-  [
-    'plan_choose_natural_phrase',
-    'plan_listen_build',
-    'plan_missing_word',
-    'plan_listen_choose',
-    'plan_quiz',
-    'plan_pronunciation_repeat',
-    'plan_phrase_recall',
-  ],
-  [
-    'plan_listen_build',
-    'plan_phrase_recall',
-    'plan_choose_natural_phrase',
-    'plan_missing_word',
-    'plan_listen_choose',
-    'plan_pronunciation_repeat',
-    'plan_quiz',
-  ],
-  [
-    'plan_phrase_recall',
-    'plan_quiz',
-    'plan_missing_word',
-    'plan_choose_natural_phrase',
-    'plan_listen_choose',
-    'plan_listen_build',
-    'plan_pronunciation_repeat',
-  ],
-];
-
-function orderPlanNativeTasksForDay(tasks: PlanDailyTask[], dayIndex: number): PlanDailyTask[] {
+// Tail order now comes from the per-plan mode emphasis profile (Ф3): each plan
+// leads with its signature modes and rotates between its own variants.
+// See app/personal_plan_mode_profiles.ts.
+function orderPlanNativeTasksForDay(planId: PersonalPlanId, tasks: PlanDailyTask[], dayIndex: number): PlanDailyTask[] {
   const introTask = tasks.find((task) => task.kind === 'plan_phrase_lesson');
   if (!introTask) return tasks;
 
-  const tailOrder = DAILY_TASK_TAIL_ORDER[(Math.max(1, dayIndex) - 1) % DAILY_TASK_TAIL_ORDER.length];
+  const tailOrder = tailOrderForPlanDay(planId, dayIndex);
   const tailRank = new Map(tailOrder.map((kind, index) => [kind, index]));
   const tail = tasks
     .filter((task) => task !== introTask)
@@ -877,10 +815,11 @@ function orderPlanNativeTasksForDay(tasks: PlanDailyTask[], dayIndex: number): P
   return [introTask, ...tail];
 }
 
-function withoutLessonTasks(day: PlanDay): PlanDay {
+function withoutLessonTasks(planId: PersonalPlanId, day: PlanDay): PlanDay {
   return {
     ...day,
     tasks: orderPlanNativeTasksForDay(
+      planId,
       day.tasks.filter((task) => task.kind !== 'linked_lesson_slice' && task.destination.type !== 'lesson'),
       day.dayIndex,
     ),
@@ -898,11 +837,11 @@ function bindAcceptedCandidateSource(planId: PersonalPlanId, day: PlanDay): Plan
 function generateDays(planId: PersonalPlanId, horizonWeeks: number, topics: string[], firstDays?: PlanDay | PlanDay[]): PlanDay[] {
   const total = horizonWeeks * 7;
   const days: PlanDay[] = firstDays ? (Array.isArray(firstDays) ? [...firstDays] : [firstDays]).map((day) =>
-    bindAcceptedCandidateSource(planId, withoutLessonTasks(day))
+    bindAcceptedCandidateSource(planId, withoutLessonTasks(planId, day))
   ) : [];
   for (let day = days.length + 1; day <= total; day += 1) {
     const topic = topics[(day - 2 + topics.length) % topics.length];
-    days.push(withoutLessonTasks(makeGeneratedDay(planId, day, topic)));
+    days.push(withoutLessonTasks(planId, makeGeneratedDay(planId, day, topic)));
   }
   return days;
 }

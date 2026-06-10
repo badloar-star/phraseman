@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The calm before the storm">
+<ellipse cx="100" cy="150" rx="52" ry="8" fill="rgba(0,0,0,.18)"/>
+<circle cx="48" cy="48" r="19" fill="#FFD23F"/>
+<path d="M48 20v-7M25 33l-5-5M71 33l5-5M19 48h-7" stroke="#FFB800" stroke-width="4" stroke-linecap="round"/>
+<rect x="20" y="116" width="160" height="34" rx="8" fill="#6FC5E8"/>
+<path d="M28 126c8-4 16 4 24 0s16 4 24 0 16 4 24 0" stroke="#A6E0F2" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M40 138c8-4 16 4 24 0s16 4 24 0" stroke="#A6E0F2" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="158" cy="56" rx="46" ry="26" fill="#5A6178"/>
+<ellipse cx="126" cy="64" rx="22" ry="16" fill="#727A94"/>
+<ellipse cx="178" cy="66" rx="22" ry="15" fill="#727A94"/>
+<ellipse cx="156" cy="44" rx="28" ry="18" fill="#727A94"/>
+<path d="M150 80l-6 16 10-2-6 14" stroke="#FFD23F" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M126 82l-4 10M186 82l-4 10M168 90l-4 10" stroke="#6FA8DC" stroke-width="4.5" stroke-linecap="round"/>
+</svg>

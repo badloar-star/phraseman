@@ -360,7 +360,14 @@
         "id": "weather_secret",
         "en": "A fair-weather friend",
         "ru": "Друг до первой беды",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ə ˈfeə ˈweðə frend",
+        "literalRu": "друг хорошей погоды",
+        "meaningRu": "Тот, кто рядом в радости, но исчезает в трудный час.",
+        "exampleEn": "When I lost my job, I found out who my fair-weather friends were.",
+        "exampleRu": "Когда я потерял работу, я понял, кто был другом до первой беды.",
+        "originRu": "Образ держится на погоде: такой приятель хорош, лишь пока светит солнце, а в «ненастье» жизни пропадает. Поговорке больше 300 лет.",
+        "art": "set03_weather/weather_secret"
       },
       "cards": [
         {
@@ -368,70 +375,140 @@
           "en": "Under the weather",
           "ru": "Нездоровится",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈʌndə ðə ˈweðə",
+          "literalRu": "под погодой",
+          "meaningRu": "Чувствуешь себя приболевшим, не в форме.",
+          "exampleEn": "I'm a bit under the weather today, so I'll skip the gym.",
+          "exampleRu": "Мне сегодня нездоровится, так что зал пропущу.",
+          "originRu": "Морская фраза: заболевших качкой матросов отправляли вниз, под палубу, прятаться от непогоды — буквально «под погоду».",
+          "art": "set03_weather/weather_01"
         },
         {
           "id": "weather_02",
           "en": "Come rain or shine",
           "ru": "При любых обстоятельствах",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kʌm reɪn ɔː ʃaɪn",
+          "literalRu": "хоть дождь, хоть солнце",
+          "meaningRu": "Что бы ни случилось, обязательно сделаю.",
+          "exampleEn": "Come rain or shine, Grandpa walks the dog every morning.",
+          "exampleRu": "При любой погоде дедушка каждое утро выгуливает пса.",
+          "originRu": "Раньше говорили «rain or fine» — обещание сделать дело независимо от погоды, ведь от неё в старину зависело почти всё.",
+          "art": "set03_weather/weather_02"
         },
         {
           "id": "weather_03",
           "en": "Save for a rainy day",
           "ru": "Отложить на чёрный день",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "seɪv fər ə ˈreɪni deɪ",
+          "literalRu": "копить на дождливый день",
+          "meaningRu": "Откладывать деньги на трудные времена.",
+          "exampleEn": "Don't spend it all — save a little for a rainy day.",
+          "exampleRu": "Не трать всё сразу — отложи немного на чёрный день.",
+          "originRu": "Поговорке больше 400 лет: для крестьян дождь означал день без работы и заработка, поэтому к нему готовились заранее.",
+          "art": "set03_weather/weather_03"
         },
         {
           "id": "weather_04",
           "en": "Break the ice",
           "ru": "Растопить лёд",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "breɪk ðə aɪs",
+          "literalRu": "разбить лёд",
+          "meaningRu": "Снять неловкость и завязать разговор с незнакомцами.",
+          "exampleEn": "He told a joke to break the ice at the meeting.",
+          "exampleRu": "Он пошутил, чтобы растопить лёд на встрече.",
+          "originRu": "Образ из судоходства: корабль ломает лёд, пробивая путь, — так и человек «ломает» неловкое молчание. В переносном смысле оборот встречается уже у Шекспира в «Укрощении строптивой» (XVI век).",
+          "art": "set03_weather/weather_04"
         },
         {
           "id": "weather_05",
           "en": "Take a rain check",
           "ru": "Перенести на другой раз",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "teɪk ə ˈreɪn tʃek",
+          "literalRu": "взять дождевой талон",
+          "meaningRu": "Вежливо отложить приглашение на потом.",
+          "exampleEn": "Can I take a rain check on dinner? I'm swamped tonight.",
+          "exampleRu": "Можно перенести ужин? Сегодня я совсем зашиваюсь.",
+          "originRu": "Из американского бейсбола 1880-х: если матч отменяли из-за дождя, зрителю давали талон-«rain check» на бесплатный вход в другой день.",
+          "art": "set03_weather/weather_05"
         },
         {
           "id": "weather_06",
           "en": "A storm in a teacup",
           "ru": "Буря в стакане воды",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə stɔːm ɪn ə ˈtiːkʌp",
+          "literalRu": "буря в чайной чашке",
+          "meaningRu": "Много шума и паники из-за сущего пустяка.",
+          "exampleEn": "Their big fight was just a storm in a teacup.",
+          "exampleRu": "Их громкая ссора оказалась бурей в стакане воды.",
+          "originRu": "Похожий образ есть ещё у Цицерона — «буря в разливательной ложке»; британцы заменили ложку чайной чашкой в XIX веке.",
+          "art": "set03_weather/weather_06"
         },
         {
           "id": "weather_07",
           "en": "On cloud nine",
           "ru": "На седьмом небе",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɒn klaʊd naɪn",
+          "literalRu": "на девятом облаке",
+          "meaningRu": "Безмерно счастлив и доволен.",
+          "exampleEn": "She's been on cloud nine since she got the job.",
+          "exampleRu": "Она на седьмом небе с тех пор, как получила работу.",
+          "originRu": "По одной из версий — из классификации облаков метеослужбы США, где под номером девять шла самая высокая, до небес, грозовая туча.",
+          "art": "set03_weather/weather_07"
         },
         {
           "id": "weather_08",
           "en": "Steal someone's thunder",
           "ru": "Украсть чьи-то лавры",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "stiːl ˈsʌmwʌnz ˈθʌndə",
+          "literalRu": "украсть чей-то гром",
+          "meaningRu": "Присвоить чужой успех или внимание.",
+          "exampleEn": "Don't announce it first — you'll steal her thunder.",
+          "exampleRu": "Не объявляй первым — украдёшь её лавры.",
+          "originRu": "Драматург Джон Деннис придумал в 1709 году машину для театрального грома; его пьесу провалили, но звук тайком взяли в постановку «Макбета» — «они украли мой гром!».",
+          "art": "set03_weather/weather_08"
         },
         {
           "id": "weather_09",
           "en": "It's raining cats and dogs",
           "ru": "Льёт как из ведра",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪts ˈreɪnɪŋ kæts ənd dɒɡz",
+          "literalRu": "идёт дождь из кошек и собак",
+          "meaningRu": "Дождь хлещет очень сильно.",
+          "exampleEn": "Grab an umbrella — it's raining cats and dogs out there!",
+          "exampleRu": "Бери зонт — на улице льёт как из ведра!",
+          "originRu": "По одной из версий — от Джонатана Свифта: в стихотворении 1710 года ливень нёс по грязным улицам Лондона дохлых кошек и щенков.",
+          "art": "set03_weather/weather_09"
         },
         {
           "id": "weather_10",
           "en": "The calm before the storm",
           "ru": "Затишье перед бурей",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə kɑːm bɪˈfɔː ðə stɔːm",
+          "literalRu": "затишье перед штормом",
+          "meaningRu": "Подозрительное спокойствие перед большими неприятностями.",
+          "exampleEn": "The office is quiet today — the calm before the storm.",
+          "exampleRu": "В офисе сегодня тихо — затишье перед бурей.",
+          "originRu": "Подмечено моряками: перед штормом воздух пьянеет от низкого давления, ветер стихает, и наступает обманчивая тишина.",
+          "art": "set03_weather/weather_10"
         }
       ]
     },

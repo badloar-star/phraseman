@@ -1,0 +1,22 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="It's raining cats and dogs">
+<ellipse cx="100" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="100" cy="30" rx="42" ry="18" fill="#9AA6C0"/>
+<ellipse cx="72" cy="34" rx="20" ry="13" fill="#B4C0D8"/>
+<ellipse cx="128" cy="34" rx="18" ry="12" fill="#B4C0D8"/>
+<g>
+<circle cx="64" cy="74" r="13" fill="#F6A623"/>
+<path d="M54 66l-3-8 8 4zM74 66l3-8-8 4z" fill="#F6A623"/>
+<circle cx="60" cy="73" r="2" fill="#3A2A18"/><circle cx="68" cy="73" r="2" fill="#3A2A18"/>
+<path d="M62 78l2 2 2-2" stroke="#3A2A18" stroke-width="1.5" fill="none"/>
+<path d="M52 76l-8 2M52 80l-8 4M76 76l8 2M76 80l8 4" stroke="#F6A623" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+<g>
+<circle cx="138" cy="78" r="14" fill="#B07A4A"/>
+<ellipse cx="126" cy="70" rx="6" ry="9" fill="#9A6638"/><ellipse cx="150" cy="70" rx="6" ry="9" fill="#9A6638"/>
+<circle cx="133" cy="77" r="2.2" fill="#2A1A0E"/><circle cx="143" cy="77" r="2.2" fill="#2A1A0E"/>
+<ellipse cx="138" cy="83" rx="3.5" ry="2.5" fill="#2A1A0E"/>
+</g>
+<path d="M100 96c-26 0-44 12-46 18h92c-2-6-20-18-46-18z" fill="#E0524E"/>
+<path d="M100 96V70" stroke="#7A4A2B" stroke-width="4"/>
+<path d="M100 114v22c0 5-8 5-8 0" stroke="#7A4A2B" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

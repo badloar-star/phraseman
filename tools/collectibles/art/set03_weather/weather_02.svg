@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Come rain or shine">
+<ellipse cx="100" cy="146" rx="42" ry="9" fill="rgba(0,0,0,.25)"/>
+<circle cx="40" cy="36" r="20" fill="#FFD23F"/>
+<path d="M40 8v-7M19 17l-5-5M61 17l5-5M18 36h-8M14 56l-6 5" stroke="#FFB800" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="158" cy="36" rx="32" ry="17" fill="#8390AC"/>
+<ellipse cx="138" cy="40" rx="18" ry="12" fill="#A4B0C8"/>
+<path d="M140 56l-4 10M158 58l-4 10M176 56l-4 10" stroke="#6FA8DC" stroke-width="4.5" stroke-linecap="round"/>
+<path d="M100 72c-26 0-46 14-48 22h96c-2-8-22-22-48-22z" fill="#E0524E"/>
+<rect x="98" y="60" width="5" height="40" rx="2.5" fill="#7A4A2B"/>
+<ellipse cx="100" cy="116" rx="22" ry="24" fill="#F2C9A0"/>
+<path d="M80 110c0-12 9-20 20-20s20 8 20 20z" fill="#5A3A28"/>
+<circle cx="92" cy="114" r="3.5" fill="#5A3A28"/><circle cx="108" cy="114" r="3.5" fill="#5A3A28"/>
+<path d="M92 126c4 4 12 4 16 0" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M88 140l-3 8M112 140l3 8" stroke="#E0524E" stroke-width="6" stroke-linecap="round"/>
+</svg>

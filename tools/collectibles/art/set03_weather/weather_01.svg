@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Under the weather">
+<ellipse cx="100" cy="146" rx="46" ry="9" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="92" cy="40" rx="40" ry="20" fill="#7E8AA6"/>
+<ellipse cx="120" cy="44" rx="24" ry="15" fill="#9AA6C0"/>
+<ellipse cx="68" cy="46" rx="20" ry="13" fill="#9AA6C0"/>
+<path d="M66 60l-5 12M88 62l-5 12M110 60l-5 12" stroke="#6FA8DC" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="98" cy="104" rx="30" ry="34" fill="#F2C9A0"/>
+<path d="M70 96c0-16 12-26 28-26s28 10 28 26z" fill="#E8B07E"/>
+<circle cx="88" cy="100" r="4" fill="#5A3A28"/><circle cx="108" cy="100" r="4" fill="#5A3A28"/>
+<path d="M84 100l8-3M104 100l8-3" stroke="#5A3A28" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M88 120c4-4 16-4 20 0" stroke="#5A3A28" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M70 126c8 6 48 6 56 0 4 8 0 16-8 16H78c-8 0-12-8-8-16z" fill="#D9534F"/>
+<rect x="62" y="124" width="14" height="9" rx="4" fill="#C9433F"/>
+<rect x="150" y="96" width="10" height="40" rx="5" fill="#EDEDED"/>
+<rect x="152" y="100" width="6" height="30" rx="3" fill="#D9534F"/>
+<circle cx="155" cy="138" r="9" fill="#D9534F"/>
+</svg>

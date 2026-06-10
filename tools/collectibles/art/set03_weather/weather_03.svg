@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Save for a rainy day">
+<ellipse cx="100" cy="146" rx="44" ry="9" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="100" cy="34" rx="34" ry="17" fill="#9AA6C0"/>
+<ellipse cx="78" cy="38" rx="18" ry="12" fill="#B4C0D8"/>
+<ellipse cx="122" cy="38" rx="16" ry="11" fill="#B4C0D8"/>
+<path d="M82 52l-5 12M100 54l-5 12M118 52l-5 12" stroke="#6FA8DC" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="100" cy="108" rx="46" ry="34" fill="#F49AC1"/>
+<ellipse cx="142" cy="100" rx="12" ry="10" fill="#F49AC1"/>
+<path d="M148 92l5-10 5 10z" fill="#F07CAE"/>
+<rect x="64" y="130" width="10" height="14" rx="4" fill="#E07CAB"/>
+<rect x="126" y="130" width="10" height="14" rx="4" fill="#E07CAB"/>
+<rect x="86" y="76" width="28" height="6" rx="3" fill="#C95E94"/>
+<circle cx="78" cy="106" r="4.5" fill="#5A2A3A"/>
+<path d="M70 100c4-3 10-3 14 0" stroke="#5A2A3A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="86" cy="120" rx="7" ry="5" fill="#F07CAE"/>
+<circle cx="100" cy="60" r="11" fill="#FFD23F"/><circle cx="100" cy="60" r="6" fill="#FFB800"/>
+<circle cx="120" cy="68" r="9" fill="#FFD23F"/><circle cx="120" cy="68" r="5" fill="#FFB800"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Break the ice">
+<ellipse cx="100" cy="148" rx="48" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="50" y="64" width="100" height="78" rx="10" fill="#9FD9F0"/>
+<rect x="50" y="64" width="100" height="78" rx="10" fill="#BCE6F7" opacity=".5"/>
+<path d="M58 72l16 12-10 14 18 10" stroke="#fff" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>
+<path d="M100 64l-8 22 14 8-12 20 10 18 8-12-12-10 14-18-6-12z" fill="#5FB8DC"/>
+<path d="M100 64l-8 22 14 8-12 20 10 18" stroke="#3F98BC" stroke-width="2.5" fill="none"/>
+<circle cx="68" cy="110" r="5" fill="#16243A"/>
+<path d="M60 104c4-3 12-3 16 0" stroke="#16243A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<circle cx="132" cy="110" r="5" fill="#16243A"/>
+<path d="M124 104c4-3 12-3 16 0" stroke="#16243A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<rect x="122" y="14" width="9" height="46" rx="4" fill="#A9743F" transform="rotate(28 126 38)"/>
+<rect x="110" y="10" width="44" height="22" rx="6" fill="#C0392B" transform="rotate(28 132 21)"/>
+<rect x="118" y="14" width="6" height="14" rx="2" fill="#E05545" transform="rotate(28 121 21)"/>
+<path d="M150 60l8-4-2 10z" fill="#FFE08A"/>
+<path d="M160 70l9-2-4 9zM146 50l9-3-3 9z" fill="#FFE08A"/>
+</svg>

@@ -20,6 +20,7 @@ import {
   speakingTargetTokens,
 } from '../app/speaking_word_match';
 import { nextVolumeLevel } from '../app/speaking_volume';
+import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 
 /**
@@ -280,6 +281,7 @@ export function SpeakingPanel({
   }, [stopListening, speech, onClose]);
 
   const listening = status === 'listening';
+  const showResult = status === 'passed' || status === 'failed';
   const passThreshold = PLAN_PRONUNCIATION_PASS_THRESHOLD;
 
   const statusLine = (() => {
@@ -360,15 +362,43 @@ export function SpeakingPanel({
             ))}
           </View>
 
-          {/* Equalizer — live level from the mic in real use; falls back to the
-              decorative pulse in dev preview (no mic) by omitting `level`. */}
+          {/* While recording: live equalizer. After scoring: the result ring
+              takes its place (Rosetta-style, percent in the center). */}
           <View style={styles.waveWrap}>
-            <VoiceWaveform
-              active={listening}
-              color={theme.accent}
-              idleColor={theme.border}
-              {...(isPreview ? {} : { level: voiceLevel })}
-            />
+            {showResult && score != null ? (
+              <View
+                style={styles.ringWrap}
+                accessibilityRole="text"
+                accessibilityLabel={L(lang, {
+                  ru: `Результат ${score} процентов из ${passThreshold} нужных, ${status === 'passed' ? 'засчитано' : 'не засчитано'}`,
+                  uk: `Результат ${score} відсотків із ${passThreshold} потрібних, ${status === 'passed' ? 'зараховано' : 'не зараховано'}`,
+                  es: `Resultado ${score} por ciento de ${passThreshold} necesarios, ${status === 'passed' ? 'aprobado' : 'no aprobado'}`,
+                })}
+              >
+                <SpeakingScoreRing
+                  score={score}
+                  color={status === 'passed' ? theme.correct : theme.wrong}
+                  trackColor={theme.border}
+                  textColor={theme.textPrimary}
+                  innerBg={theme.card}
+                  animate={!isPreview}
+                />
+                <Text style={[styles.ringTarget, { color: theme.textMuted }]}>
+                  {L(lang, {
+                    ru: `нужно ${passThreshold}%`,
+                    uk: `потрібно ${passThreshold}%`,
+                    es: `se necesita ${passThreshold}%`,
+                  })}
+                </Text>
+              </View>
+            ) : (
+              <VoiceWaveform
+                active={listening}
+                color={theme.accent}
+                idleColor={theme.border}
+                {...(isPreview ? {} : { level: voiceLevel })}
+              />
+            )}
           </View>
 
           {/* Status line / score */}
@@ -386,9 +416,6 @@ export function SpeakingPanel({
             ]}
           >
             {statusLine}
-            {score != null && (status === 'passed' || status === 'failed')
-              ? `  ·  ${score}% / ${passThreshold}%`
-              : ''}
           </Text>
 
           {/* Mic / action button */}
@@ -461,7 +488,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   phraseWord: { fontSize: 22, fontWeight: '600', lineHeight: 30 },
-  waveWrap: { height: 48, justifyContent: 'center', marginBottom: 12 },
+  waveWrap: { minHeight: 110, justifyContent: 'center', alignItems: 'center', marginBottom: 12 },
+  ringWrap: { alignItems: 'center', justifyContent: 'center' },
+  ringTarget: { fontSize: 13, fontWeight: '600', marginTop: 8 },
   status: { fontSize: 14, textAlign: 'center', marginBottom: 20, minHeight: 20 },
   micBtn: {
     width: 72,

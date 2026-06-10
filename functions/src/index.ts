@@ -53,7 +53,17 @@ const { friendEnsureMyCode } = require('./friend_codes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendLikeActivity } = require('./friend_activity_likes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish } = require('./arena_rooms');
+const {
+  arenaRoomCreate,
+  arenaRoomRecordRun,
+  arenaPulsePublish,
+  arenaRoomJoin,
+  arenaRoomLeave,
+  arenaRoomSetReady,
+  arenaRoomKick,
+  arenaRoomClose,
+  arenaRoomChatSend,
+} = require('./arena_rooms');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -121,6 +131,12 @@ exports.friendLikeActivity = friendLikeActivity;
 exports.arenaRoomCreate = arenaRoomCreate;
 exports.arenaRoomRecordRun = arenaRoomRecordRun;
 exports.arenaPulsePublish = arenaPulsePublish;
+exports.arenaRoomJoin = arenaRoomJoin;
+exports.arenaRoomLeave = arenaRoomLeave;
+exports.arenaRoomSetReady = arenaRoomSetReady;
+exports.arenaRoomKick = arenaRoomKick;
+exports.arenaRoomClose = arenaRoomClose;
+exports.arenaRoomChatSend = arenaRoomChatSend;
 exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
@@ -337,8 +353,11 @@ async function pickArenaQuestions(count: number): Promise<string[]> {
 // ─── Leaderboard percentile stats cron ──────────────────────────────────────
 // Runs daily. Computes p1-p99 thresholds for XP/streak/time/arena
 // and writes them to leaderboard_stats/global for all clients to read.
+// memory: 1GiB + timeout 540s — крон агрегирует перцентили, держа в памяти XP/streak/time
+// всех eligible-юзеров (полный скан users + leaderboard постранично). На дефолтных 256MiB
+// падал OOM ежедневно (perсentile-статистика переставала обновляться).
 export const computeLeaderboardStatsCron = functions.scheduler.onSchedule(
-  { schedule: '0 3 * * *', timeZone: 'UTC' },
+  { schedule: '0 3 * * *', timeZone: 'UTC', memory: '1GiB', timeoutSeconds: 540 },
   async () => { await computeLeaderboardStats(); }
 );
 

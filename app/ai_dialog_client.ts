@@ -15,15 +15,25 @@ export interface DialogChatTurn {
   content: string;
 }
 
+/** Память коуча для режима companion (собирается из профиля + SRS-истории). */
+export interface DialogMemory {
+  profile?: string;
+  weakWords?: string[];
+  summary?: string;
+}
+
 export interface PremiumDialogRequest {
-  mode: 'scenario';
+  mode: 'scenario' | 'companion';
   userText: string;
   cefr?: string;
   history?: DialogChatTurn[];
+  /** scenario-режим */
   role?: string;
   setting?: string;
   goalEn?: string;
   scenarioId?: string;
+  /** companion-режим */
+  memory?: DialogMemory;
   isPremium?: boolean;
 }
 

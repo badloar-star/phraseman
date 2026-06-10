@@ -103,7 +103,55 @@ export default function AiDialogHome() {
             Безопасное место поговорить по-английски. Без оценок и спешки.
           </Text>
 
-          {/* Группы сценариев */}
+          {/* Главный вход — открытый разговор с Филом (MVP-1) */}
+          <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => {
+              hapticTap();
+              router.push({ pathname: '/ai_companion_session' } as never);
+            }}
+            style={{
+              marginTop: 14,
+              marginHorizontal: 14,
+              borderRadius: CARD_RADIUS,
+              overflow: 'hidden',
+              backgroundColor: t.accent,
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 18,
+              paddingVertical: 18,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.18,
+              shadowRadius: 9,
+              elevation: 6,
+            }}
+          >
+            <View
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 13,
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginRight: 14,
+              }}
+            >
+              <Ionicons name="chatbubbles" size={24} color="#fff" />
+            </View>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
+                Поговори с Филом
+              </Text>
+              <Text style={{ color: 'rgba(255,255,255,0.85)', fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+                Свободный разговор о чём угодно
+              </Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color="#fff" />
+          </TouchableOpacity>
+
+          {/* Группы сценариев (вторичная полка) */}
           {groups.map((g) => (
             <View key={g.category}>
               {/* Заголовок группы — как CEFR header */}

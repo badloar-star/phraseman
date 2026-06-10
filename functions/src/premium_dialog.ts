@@ -50,6 +50,32 @@ interface PremiumDialogRequest {
   goalEn?: unknown;
   scenarioId?: unknown;
   isPremium?: unknown;
+  /** Память коуча (режим companion): профиль + слабые слова из SRS + резюме прошлых бесед. */
+  memory?: unknown;
+}
+
+/** Память, собираемая клиентом из профиля + SRS-истории. Все поля опциональны. */
+interface DialogMemory {
+  /** Короткий профиль: уровень, цель, родной язык. */
+  profile?: string;
+  /** top-K слов/фраз, с которыми ученик мучается (из getTrainerPremiumItems('weak')). */
+  weakWords?: string[];
+  /** Скользящее резюме прошлых разговоров (в MVP-1 обычно пустое). */
+  summary?: string;
+}
+
+function sanitizeMemory(value: unknown): DialogMemory {
+  const m = (value ?? {}) as Record<string, unknown>;
+  const weakRaw = Array.isArray(m.weakWords) ? m.weakWords : [];
+  const weakWords = weakRaw
+    .map((w) => text(w, 60))
+    .filter((w) => w.length > 0)
+    .slice(0, 8);
+  return {
+    profile: text(m.profile, 400) || undefined,
+    weakWords: weakWords.length > 0 ? weakWords : undefined,
+    summary: text(m.summary, 800) || undefined,
+  };
 }
 
 interface OpenAIChatResponse {
@@ -148,6 +174,7 @@ Speak natural everyday English. Avoid slang, idioms, and rare words unless the l
 Adapt to the learner's CEFR level: {CEFR}. Speak slightly above it (i+1), introducing at most ONE new word per turn, always understandable from context.
 SOFT CORRECTION (recast): if the learner makes an error, naturally restate the correct form inside your reply WITHOUT stopping the conversation and WITHOUT meta-commentary. Example - learner: "I go to shop yesterday" -> you: "Oh, you went to the shop yesterday? What did you buy?"
 NEVER break character to lecture. If the learner writes in Russian, gently nudge back to English with a simple model phrase, but accept it - do not refuse to continue.
+NOISY INPUT: the learner's message may come from imperfect on-device speech recognition. Infer their intent, never nitpick recognition artifacts, and NEVER say you "didn't understand" because of small garbled words. If truly unintelligible, warmly ask them to say it again.
 End most replies with a simple question or prompt to keep the conversation going.
 KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets, like [[I'd rather stay home]]. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap the whole sentence. If nothing is worth highlighting, wrap nothing.
 Output ONLY your spoken reply. No stage directions and no markdown, EXCEPT the [[...]] key-phrase markers described above.`;
@@ -168,7 +195,40 @@ function buildScenarioSystemPrompt(cefr: string, data: PremiumDialogRequest): st
     .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
     .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
     .replace('{CEFR}', cefr);
-  return `${GLOBAL_RULES.replace('{CEFR}', cefr)}\n\n${block}`;
+  return `${GLOBAL_RULES.replace('{CEFR}', cefr)}\n\n${block}${cefrReinjection(cefr)}`;
+}
+
+const COMPANION_BLOCK = `MODE: OPEN COMPANION CONVERSATION.
+You are NOT playing a fixed scenario. You are the learner's warm English-speaking friend having a real, open conversation.
+- Talk like a genuine friend with light personality and humour - NOT a servile assistant, NOT an interviewer firing questions.
+- Follow the learner's interest and let them lead where they can; show real curiosity with natural follow-ups.
+- Your hidden coaching goal: gently steer the chat so the learner naturally PRODUCES speech using the words/phrases they struggle with (provided below). Do not list them or announce this - weave them into your questions.
+- The conversation is open and ongoing - do NOT try to "wrap it up" after a few turns. Keep it alive.`;
+
+/**
+ * Реинъекция уровня в КОНЕЦ промпта — против alignment-drift (LLM дрейфует
+ * к нативной сложности за ~9 ходов; стратегия §6.4).
+ */
+function cefrReinjection(cefr: string): string {
+  return `\n\nREMINDER (keep enforcing every turn): stay at CEFR ${cefr}. Short replies, simple everyday words, at most one new word per turn. Do NOT drift to native-level complexity.`;
+}
+
+/** Блок «памяти коуча» — то, что делает Фила «знающим тебя». */
+function buildMemoryBlock(memory: DialogMemory): string {
+  const lines: string[] = [];
+  if (memory.profile) lines.push(`About the learner: ${memory.profile}`);
+  if (memory.weakWords && memory.weakWords.length > 0) {
+    lines.push(
+      `Words/phrases they are currently struggling with (lure them into SAYING these naturally, do not list them): ${memory.weakWords.join(', ')}`,
+    );
+  }
+  if (memory.summary) lines.push(`Earlier conversations: ${memory.summary}`);
+  if (lines.length === 0) return '';
+  return `\n\nWHAT YOU REMEMBER ABOUT THIS LEARNER:\n${lines.join('\n')}`;
+}
+
+function buildCompanionSystemPrompt(cefr: string, memory: DialogMemory): string {
+  return `${GLOBAL_RULES.replace('{CEFR}', cefr)}\n\n${COMPANION_BLOCK}${buildMemoryBlock(memory)}${cefrReinjection(cefr)}`;
 }
 
 export const premiumDialogSend = onCall({
@@ -186,9 +246,11 @@ export const premiumDialogSend = onCall({
 
   const data = (request.data ?? {}) as PremiumDialogRequest;
 
-  // Phase 0: scenario mode only.
+  // MVP-1: scenario (роль-ролёвка) ИЛИ companion (открытый разговор-друг + память).
   const mode = text(data.mode, 20) || 'scenario';
-  if (mode !== 'scenario') throw new HttpsError('invalid-argument', 'unsupported_mode');
+  if (mode !== 'scenario' && mode !== 'companion') {
+    throw new HttpsError('invalid-argument', 'unsupported_mode');
+  }
 
   const cefr = asCefr(data.cefr);
   const userText = text(data.userText, MAX_USER_TEXT);
@@ -203,8 +265,13 @@ export const premiumDialogSend = onCall({
   await enforceRateLimit(authUid, stableUid);
   const remaining = await enforceDailyQuota(authUid, stableUid, isPremium);
 
+  const systemPrompt =
+    mode === 'companion'
+      ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory))
+      : buildScenarioSystemPrompt(cefr, data);
+
   const messages: ChatMessage[] = [
-    { role: 'system', content: buildScenarioSystemPrompt(cefr, data) },
+    { role: 'system', content: systemPrompt },
     ...sanitizeHistory(data.history),
     { role: 'user', content: userText },
   ];

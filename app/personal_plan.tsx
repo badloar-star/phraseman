@@ -531,6 +531,9 @@ export default function PersonalPlanScreen() {
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
+          bounces
+          alwaysBounceVertical
+          overScrollMode="always"
           contentContainerStyle={styles.scroll}
           style={{ opacity: entranceFade, transform: [{ translateY: entranceSlide }] }}
           scrollEventThrottle={16}

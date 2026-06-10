@@ -1385,6 +1385,9 @@ export default function DuelResultsScreen() {
       <BouncyWrap style={bouncyStyle}>
       <ScrollView
         decelerationRate="normal"
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 16 }]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}

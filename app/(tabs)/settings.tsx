@@ -535,6 +535,9 @@ export default function SettingsMain() {
         keyboardShouldPersistTaps="handled"
         decelerationRate="normal"
         scrollEventThrottle={16}
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },

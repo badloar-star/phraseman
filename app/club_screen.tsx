@@ -1126,6 +1126,9 @@ export default function ClubScreen() {
         ref={contentScrollRef}
         scrollEnabled
         decelerationRate="normal"
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         keyboardShouldPersistTaps="handled"
         style={{ flex: 1 }}
         contentContainerStyle={{

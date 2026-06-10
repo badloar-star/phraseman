@@ -691,7 +691,7 @@ export default function TrainerScreen() {
           </View>
 
           <BouncyWrap style={bouncyStyle}>
-          <ScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+          <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
             {null}
 
             {null}

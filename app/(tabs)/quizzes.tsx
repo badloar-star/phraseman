@@ -1028,6 +1028,9 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         showsVerticalScrollIndicator
         persistentScrollbar
         indicatorStyle={themeMode === 'minimalLight' ? 'black' : 'white'}
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         onScroll={onBouncyScroll}
         scrollEventThrottle={16}
       >

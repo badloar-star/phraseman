@@ -1466,7 +1466,7 @@ export default function LevelExam() {
           </Text>
         </View>
 
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }} bounces={false}>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 20, gap: 16 }}>
           {/* Топик */}
           <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
             {triLang(lang, {

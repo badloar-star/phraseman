@@ -48,6 +48,7 @@ import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsSoftBg, s
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 import GoldBevel from '../components/GoldBevel';
 import { StatScoreRing } from '../components/stats/StatScoreRing';
+import { StatBars, type StatBar } from '../components/stats/StatBars';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
@@ -2597,32 +2598,40 @@ function RhythmWeekCard({ t, f, lang, metrics, isGoldTheme, themeMode, }: {
         </View>
       </View>
 
-      <View style={{ marginBottom: 14, borderRadius: 16, padding: 10, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'weekRhythm') }}>
-        <View style={{ height: 110, flexDirection: 'row', alignItems: 'flex-end', gap: 7, paddingHorizontal: 2 }}>
-          {metrics.rhythmDays.map((d) => {
-            const barH = d.active ? Math.max(14, Math.round((d.combined / maxCombined) * 82)) : 8;
-            return (<View key={d.date} style={{ flex: 1, alignItems: 'center', gap: 5 }}>
-                <Text style={{ color: d.isToday ? t.textPrimary : t.textGhost, fontSize: 9, fontWeight: '800' }} numberOfLines={1}>
-                  {d.points > 0 ? `${d.points} XP` : humanMinutes(d.minutes, lang)}
-                </Text>
-                <View style={{ height: 82, justifyContent: 'flex-end', width: '100%', alignItems: 'center' }}>
-                  <View style={{ width: '76%', maxWidth: 28, height: barH, borderRadius: 8, backgroundColor: d.active ? scoreAccent : statsSoftBg(themeMode, 'weekRhythm', 'quiet'), opacity: d.active ? 1 : 0.5 }}/>
-                </View>
-                <Text style={{ color: d.isToday ? t.textPrimary : t.textMuted, fontSize: 10, fontWeight: d.isToday ? '900' : '700' }}>{d.shortLabel}</Text>
-              </View>);
-        })}
-        </View>
+      <View style={{ marginBottom: 14, borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'weekRhythm') }}>
+        <StatBars
+          bars={metrics.rhythmDays.map((d): StatBar => ({
+            key: d.date,
+            ratio: d.combined / maxCombined,
+            active: d.active,
+            topLabel: d.points > 0 ? `${d.points} XP` : (d.minutes > 0 ? humanMinutes(d.minutes, lang) : ''),
+            bottomLabel: d.shortLabel,
+            highlight: d.isToday,
+        }))}
+          accent={scoreAccent}
+          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : metrics.scoreColor + 'CC'}
+          inactiveColor={statsSoftBg(themeMode, 'weekRhythm', 'quiet')}
+          todayDotColor={scoreAccent}
+          height={88}
+          topLabelColor={t.textPrimary}
+          topLabelMutedColor={t.textGhost}
+          bottomLabelColor={t.textPrimary}
+          bottomLabelMutedColor={t.textMuted}
+        />
       </View>
 
-      <View style={{ gap: 8 }}>
-        {facts.map((item) => (<View key={item.label} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 12, padding: 10, backgroundColor: t.bgSurface2 }}>
-            <View style={{ width: 30, height: 30, borderRadius: 10, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center' }}>
-              <Ionicons name={item.icon} size={17} color={scoreAccent}/>
+      {/* Bento 3-up: Неделя / Время / Опыт — единый язык с «Балансом практики». */}
+      <View style={{ flexDirection: 'row', gap: 8 }}>
+        {facts.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, minHeight: 96, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'weekRhythm'), alignItems: 'center', justifyContent: 'flex-start' }}>
+            <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+              <Ionicons name={item.icon} size={18} color={scoreAccent}/>
             </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{item.label}: {item.value}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, lineHeight: f.label * 1.3, marginTop: 2 }}>{item.hint}</Text>
-            </View>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.55}>
+              {item.value}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 'auto', textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
+              {item.label}
+            </Text>
           </View>))}
       </View>
     </StatsCardArtSurface>);

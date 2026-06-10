@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
-import { IS_EXPO_GO, IS_STORE_RELEASE } from './config';
+import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
@@ -27,6 +27,22 @@ export function invalidatePremiumCache(): void {
   _vipCacheTime = 0;
   _cachedAccessResult = null;
   _accessCacheTime = 0;
+}
+
+/**
+ * Должен ли dev-сборочный FORCE_PREMIUM сейчас раздавать Premium.
+ *
+ * FORCE_PREMIUM открывает весь Premium в dev-рантайме (и гасится в проде через
+ * IS_STORE_RELEASE — см. config.ts). Но тестерский флаг «Снять премиум»
+ * (tester_no_premium) должен побеждать его, иначе QA не может проверить
+ * не-премиум состояние (пейвол, плашки «Premium» на уроках). Это тот же
+ * приоритет, что уже зашит в getVerifiedRealPremiumStatus (tester_no_premium
+ * срезает dev-default), вынесенный для шортката FORCE_PREMIUM в PremiumContext.
+ */
+export async function forcePremiumActive(): Promise<boolean> {
+  if (!FORCE_PREMIUM) return false;
+  const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+  return noPremium !== 'true';
 }
 
 /**

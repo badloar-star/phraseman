@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, InteractionManager } from 'react-native';
 import Purchases from 'react-native-purchases';
 import {
+  forcePremiumActive,
   getVerifiedPremiumAccessStatus,
   getVerifiedRealPremiumStatus,
   getVerifiedVipStatus,
@@ -99,7 +100,9 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const runReload = useCallback(async () => {
-    if (FORCE_PREMIUM) {
+    // FORCE_PREMIUM раздаёт Premium в dev, НО тестерский «Снять премиум»
+    // (tester_no_premium) должен побеждать — иначе не проверить не-премиум UI.
+    if (await forcePremiumActive()) {
       setIsPremium(true);
       setIsVip(false);
       setHasPremiumAccess(true);
@@ -167,15 +170,17 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     return () => sub.remove();
   }, [reloadAfterCloudRefresh]);
 
-  // Load on mount; if FORCE_PREMIUM — сбрасываем все флаги отмены премиума
+  // Load on mount. При активном dev-FORCE_PREMIUM подтягиваем premium_active,
+  // но НЕ затираем tester_no_premium — иначе кнопка «Снять премиум» в dev
+  // бесполезна (флаг сбрасывался на каждом маунте). forcePremiumActive()
+  // сам уважает tester_no_premium, поэтому при снятом премиуме ничего не пишем.
   useEffect(() => {
-    if (FORCE_PREMIUM) {
-      AsyncStorage.multiSet([
-        ['premium_active', 'true'],
-        ['tester_no_premium', 'false'],
-      ]).catch(() => {});
-    }
-    void reload();
+    void (async () => {
+      if (await forcePremiumActive()) {
+        await AsyncStorage.setItem('premium_active', 'true').catch(() => {});
+      }
+      await reload();
+    })();
   }, [reload]);
 
   // Live VIP grants/revokes from admin/index.html write users/{uid}.progress.

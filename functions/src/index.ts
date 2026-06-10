@@ -73,6 +73,8 @@ const {
 } = require('./referral');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogSend } = require('./premium_dialog');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { weeklyReviewGenerate } = require('./weekly_review');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -113,6 +115,7 @@ exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
+exports.weeklyReviewGenerate = weeklyReviewGenerate;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

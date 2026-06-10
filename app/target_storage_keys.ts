@@ -448,6 +448,10 @@ export function mistakeLogKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('mistake_log_v1', 'trainer_practice', studyTarget);
 }
 
+export function weeklyReviewStorageKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('weekly_review_v1', 'trainer_practice', studyTarget);
+}
+
 export function activeRecallItemsKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('active_recall_items', 'trainer_practice', studyTarget);
 }

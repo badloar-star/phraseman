@@ -141,18 +141,8 @@ export interface CategoryWeaknessCandidate {
   weaknessScore: number;
 }
 
-// ── Словари для автовывода категории когда нет явного поля ─────────────────
-
-const ARTICLES = new Set(['a', 'an', 'the']);
-const TO_BE = new Set(['am', 'is', 'are', 'was', 'were', 'be', 'been', 'being']);
-const MODALS = new Set(['can', 'could', 'will', 'would', 'shall', 'should', 'may', 'might', 'must', 'need', 'dare', 'ought']);
-const PRONOUNS = new Set(['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'myself', 'yourself', 'himself', 'herself', 'itself', 'ourselves', 'themselves', 'who', 'which', 'that', 'what', 'this', 'these', 'those']);
-const CONJUNCTIONS = new Set(['and', 'but', 'or', 'nor', 'so', 'yet', 'for', 'because', 'although', 'though', 'while', 'when', 'if', 'unless', 'until', 'since', 'after', 'before', 'as', 'than', 'that', 'whether']);
-// phrasal_particle checked BEFORE preposition so 'up/down/out/off' in phrasal context aren\'t swallowed by the preposition set
-const PHRASAL_PARTICLES = new Set(['up', 'down', 'out', 'in', 'on', 'off', 'away', 'back', 'over', 'through', 'around', 'along', 'ahead', 'forward', 'together', 'apart']);
-const COMMON_PREPOSITIONS = new Set(['in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'into', 'onto', 'about', 'above', 'below', 'between', 'behind', 'beside', 'under', 'over', 'through', 'during', 'before', 'after', 'near', 'without', 'against', 'around', 'among', 'along', 'across', 'off', 'out', 'up', 'down', 'inside', 'outside', 'opposite', 'past']);
-const ADVERBS = new Set(['there', 'here', 'now', 'then', 'not', 'never', 'always', 'often', 'still', 'already', 'just', 'very', 'really', 'quite', 'soon', 'today', 'yesterday', 'tomorrow', 'right', 'again', 'also', 'too', 'well', 'loudly', 'slowly', 'quickly', 'carefully', 'finally', 'suddenly', 'recently', 'often', 'sometimes', 'usually', 'immediately']);
-
+// Категория слова выводится централизованно через normalizeWordCategory
+// (pos_taxonomy.ts) — там единый каскад closed-class/alias/pool/suffix.
 function inferCategory(word: string, knownCategory?: string): WordCategory {
   return normalizeWordCategory(knownCategory, word).category;
 }
@@ -690,13 +680,15 @@ function buildInsights(
   total: number,
 ): PersonalInsight[] {
   const insights: PersonalInsight[] = [];
-  if (total < 5) return insights;
+  // Мало данных или ошибки размазаны по категориям → ни один порог не сработает.
+  // Не оставляем блок «ВЫВОДЫ» пустым: показываем мягкий ободряющий инсайт.
+  if (total < 5) return total > 0 ? [collectingDataInsight()] : insights;
 
   // Топ-1 слабая категория
   const weak = catStats[0];
   if (weak && weak.priorityScore >= 55 && weak.pct >= 10) {
     const label = CATEGORY_LABELS[weak.category];
-    const topWord = weak.topWords[0] ? ` («${weak.topWords[0]}»)` : '';
+    const topWord = weak.topWords[0] ? ` («${displayWord(weak.topWords[0])}»)` : '';
     insights.push({
       type: 'weak_category',
       ru: `${label.ru} — ${weak.pct}% ошибок${topWord}. Стоит повторить.`,
@@ -781,7 +773,7 @@ function buildInsights(
 
   // Топ-фраза с наибольшим числом ошибок
   if (catStats.length > 0 && catStats[0].topWords.length > 0) {
-    const word = catStats[0].topWords[0];
+    const word = displayWord(catStats[0].topWords[0]);
     const label = CATEGORY_LABELS[catStats[0].category];
     insights.push({
       type: 'top_phrase',
@@ -798,7 +790,39 @@ function buildInsights(
     });
   }
 
+  // Порогов хватило — но если ни один инсайт не набрался (ошибки размазаны),
+  // показываем тот же мягкий инсайт вместо пустого блока.
+  if (insights.length === 0) return [collectingDataInsight()];
+
   return insights.slice(0, 4);
+}
+
+/**
+ * Причёсывает токен для показа пользователю: топ-слова хранятся в нижнем
+ * регистре (normalizeTokenKey, нужно для дедупа/матчинга), но в тексте инсайта
+ * «Слово «have»» лучше выглядит с заглавной. На ключи это НЕ влияет —
+ * только presentation.
+ */
+function displayWord(word: string): string {
+  if (!word) return word;
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+/** Нейтральный ободряющий инсайт, когда конкретных выводов ещё нет. */
+function collectingDataInsight(): PersonalInsight {
+  return {
+    type: 'general',
+    ru: 'Данные ещё копятся. Продолжай заниматься — скоро покажем, что подтянуть.',
+    uk: 'Дані ще накопичуються. Продовжуй займатися — скоро покажемо, що підтягнути.',
+    es: 'Aún estamos reuniendo datos. Sigue practicando y pronto te diremos qué reforzar.',
+    ptBR: 'Ainda estamos reunindo dados. Continue praticando — em breve mostraremos o que reforçar.',
+    'pt-BR': 'Ainda estamos reunindo dados. Continue praticando — em breve mostraremos o que reforçar.',
+    vi: 'Dữ liệu vẫn đang được thu thập. Hãy tiếp tục luyện tập — chúng tôi sẽ sớm cho biết cần cải thiện gì.',
+    id: 'Data masih dikumpulkan. Terus berlatih — sebentar lagi kami tunjukkan yang perlu diperkuat.',
+    tr: 'Veriler hâlâ toplanıyor. Çalışmaya devam et — yakında neyi geliştirmen gerektiğini göstereceğiz.',
+    pl: 'Dane wciąż się zbierają. Ćwicz dalej — wkrótce pokażemy, co warto podszlifować.',
+    accent: 'blue',
+  };
 }
 
 function emptyResult(): PhraseAnalyticsResult {

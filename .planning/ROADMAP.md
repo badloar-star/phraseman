@@ -121,3 +121,35 @@ All v1.0 requirements mapped to a phase:
 
 ---
 *Last updated: 2026-05-03 after initialization*
+
+---
+
+## Milestone v1.2: AI Content (new track)
+
+**Goal:** Открыть трек ИИ-генерируемого обучающего контента. Первый кирпич — объяснения фраз
+«как для 5-летнего» с глобальным кэшем и серверной валидацией. Модуль спроектирован как зерно
+будущей платформы `ai_content` (авто-фраза дня, контекстный перевод, сторителлинг).
+
+**Success metric:** ≥X% активных юзеров открывают «Объясни» хотя бы раз; <1% объяснений в
+публичном кэше получают репорт-флаг после ИИ-валидации; расход ИИ ограничен глобальным бюджетом.
+
+### Phase 5: Explain Like I'm Five
+**UI hint:** yes (bottom-sheet + button on phrase surfaces)
+
+**Goal:** Кнопка «Объясни как для 5-летнего» → bottom-sheet с простым объяснением фразы.
+Глобальный кэш (первый сгенерил → всем), gpt-4o-mini, стриминг триггеру. Валидация —
+ИИ-судья отдельным вызовом + эвристика + кэш вердикта + юзер-репорты (бэкстоп). Все гейты на
+сервере, бюджет-предохранитель. Clone&extend `premium_dialog.ts` с заделом под `ai_content`.
+
+**Plans:** 5 plans — see `phases/05-explain-like-im-five/`
+- 01 — Core: cache + budget + gates (B-ready, separated fns)
+- 02 — CF `explainPhrase` + AI-judge + provider
+- 03 — Client + flags + firestore.rules + reports backstop
+- 04 — UI: bottom-sheet + ExplainButton + injection
+- 05 — Deploy (rules-first, point-to-point, App Check) + docs
+
+**Invariants:** App Check · identity via `resolveStableUidForAuth` (not body) · cache
+read-only in `firestore.rules` (Admin SDK writes) · CF NOT in `deploy:safe` (point-to-point) ·
+reuse existing `OPENAI_API_KEY`.
+
+*Added: 2026-06-09*

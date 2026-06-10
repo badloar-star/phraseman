@@ -6160,184 +6160,764 @@ export const MITAP_DAY_25: PlanContentDay = {
 };
 
 export const MITAP_DAY_26: PlanContentDay = {
-  planId: 'mitap',
-  dayIndex: 26,
-  topic: { ru: 'Попросить помощи с задачей', uk: 'Попросити допомоги із завданням', es: 'Pedir ayuda con una tarea' },
-  outcome: {
-    ru: 'Ты сможешь вежливо попросить коллегу на созвоне помочь тебе с задачей и объяснить, что именно непонятно.',
-    uk: 'Ти зможеш ввічливо попросити колегу на дзвінку допомогти тобі із завданням і пояснити, що саме незрозуміло.',
-    es: 'Podrás pedir con amabilidad a un colega en una llamada que te ayude con una tarea y explicar qué no entiendes.',
+  "planId": "mitap",
+  "dayIndex": 26,
+  "topic": {
+    "ru": "Попросить помощи с задачей",
+    "uk": "Попросити допомоги із завданням",
+    "es": "Pedir ayuda con una tarea"
   },
-  level: 'A2',
-  prerequisiteLessons: [10, 5],
-  intro: [
-    {
-      kind: 'how',
-      title: { ru: 'Попроси о помощи через Can you', uk: 'Попроси про допомогу через Can you', es: 'Pide ayuda con Can you' },
-      body: {
-        ru: 'На созвоне застрял с задачей? Самый простой способ попросить помощь: Can you help me with this? Это значит «можешь помочь мне с этим». Слово can в начале делает фразу вежливой просьбой. Дальше идёт help me with this — «помочь мне с этим».',
-        uk: 'На дзвінку застряг із завданням? Найпростіший спосіб попросити допомогу: Can you help me with this? Це означає «можеш допомогти мені з цим». Слово can на початку робить фразу ввічливим проханням. Далі йде help me with this — «допомогти мені з цим».',
-        es: '¿Te atascaste con una tarea en la llamada? La forma más simple de pedir ayuda: Can you help me with this? Significa «puedes ayudarme con esto». La palabra can al inicio convierte la frase en una petición cortés. Luego va help me with this — «ayudarme con esto».',
-      },
-      examples: [
-        { en: 'Can you help me with this?', gloss: { ru: 'Можешь помочь мне с этим?', uk: 'Можеш допомогти мені з цим?', es: '¿Puedes ayudarme con esto?' } },
-        { en: 'Can you help me with the report?', gloss: { ru: 'Можешь помочь мне с отчётом?', uk: 'Можеш допомогти мені зі звітом?', es: '¿Puedes ayudarme con el informe?' } },
-      ],
-    },
-    {
-      kind: 'how',
-      title: { ru: 'Скажи, что именно непонятно', uk: 'Скажи, що саме незрозуміло', es: 'Di qué no entiendes' },
-      body: {
-        ru: 'Чтобы коллега понял, где ты застрял, скажи прямо: I do not understand this part. Это значит «я не понимаю эту часть». Тут do not — это «не». Так помощь будет точной, и человек объяснит именно то место, где ты запутался.',
-        uk: 'Щоб колега зрозумів, де ти застряг, скажи прямо: I do not understand this part. Це означає «я не розумію цю частину». Тут do not — це «не». Так допомога буде точною, і людина пояснить саме те місце, де ти заплутався.',
-        es: 'Para que el colega sepa dónde te atascaste, dilo directo: I do not understand this part. Significa «no entiendo esta parte». Aquí do not es «no». Así la ayuda será precisa y la persona explicará justo donde te perdiste.',
-      },
-      examples: [
-        { en: 'I do not understand this part.', gloss: { ru: 'Я не понимаю эту часть.', uk: 'Я не розумію цю частину.', es: 'No entiendo esta parte.' } },
-        { en: 'I do not understand the task.', gloss: { ru: 'Я не понимаю задачу.', uk: 'Я не розумію завдання.', es: 'No entiendo la tarea.' } },
-      ],
-    },
-    {
-      kind: 'how',
-      title: { ru: 'Спроси, можешь ли позвать на помощь', uk: 'Запитай, чи можеш покликати на допомогу', es: 'Pregunta si puedes pedir ayuda' },
-      body: {
-        ru: 'Иногда тебе нужно ещё немного помощи. Спроси вежливо: Could you show me how? Это значит «мог бы ты показать мне как». Слово could мягче, чем can, и звучит особенно вежливо. Так ты просишь коллегу провести тебя по шагам.',
-        uk: 'Іноді тобі потрібно ще трохи допомоги. Запитай ввічливо: Could you show me how? Це означає «чи міг би ти показати мені як». Слово could м\'якше, ніж can, і звучить особливо ввічливо. Так ти просиш колегу провести тебе по кроках.',
-        es: 'A veces necesitas un poco más de ayuda. Pregunta con amabilidad: Could you show me how? Significa «¿podrías mostrarme cómo». La palabra could es más suave que can y suena muy cortés. Así pides al colega que te guíe paso a paso.',
-      },
-      examples: [
-        { en: 'Could you show me how?', gloss: { ru: 'Мог бы ты показать мне как?', uk: 'Чи міг би ти показати мені як?', es: '¿Podrías mostrarme cómo?' } },
-        { en: 'Could you show me the steps?', gloss: { ru: 'Мог бы ты показать мне шаги?', uk: 'Чи міг би ти показати мені кроки?', es: '¿Podrías mostrarme los pasos?' } },
-      ],
-    },
+  "outcome": {
+    "ru": "Ты сможешь вежливо попросить коллегу на созвоне помочь тебе с задачей и объяснить, что именно непонятно.",
+    "uk": "Ти зможеш ввічливо попросити колегу на дзвінку допомогти тобі із завданням і пояснити, що саме незрозуміло.",
+    "es": "Podrás pedir con amabilidad a un colega en una llamada que te ayude con una tarea y explicar qué no entiendes."
+  },
+  "level": "A2",
+  "prerequisiteLessons": [
+    10,
+    5
   ],
-  phrases: [
+  "intro": [
     {
-      id: 'mitap_d26_p1',
-      english: 'Can you help me with this?',
-      meaning: { ru: 'Можешь помочь мне с этим?', uk: 'Можеш допомогти мені з цим?', es: '¿Puedes ayudarme con esto?' },
-      constructions: ['modals', 'present-simple-questions'],
-      explanation: {
-        title: { ru: 'Вежливая просьба о помощи', uk: 'Ввічливе прохання про допомогу', es: 'Petición cortés de ayuda' },
-        rule: { ru: 'Can значит «можешь». Ставь Can в начало, и просьба готова. Can -> можешь.', uk: 'Can значить «можеш». Постав Can на початок, і прохання готове. Can -> можеш.', es: 'Can significa «puedes». Pon Can al inicio y la petición está lista. Can -> puedes.' },
-        why: { ru: 'Это самая простая и вежливая фраза, когда застрял с задачей на созвоне.', uk: 'Це найпростіша і ввічлива фраза, коли застряг із завданням на дзвінку.', es: 'Es la frase más simple y cortés cuando te atascas con una tarea en la llamada.' },
-        commonMistake: { ru: 'После Can бери help без to: Can you help, а не Can you to help.', uk: 'Після Can бери help без to: Can you help, а не Can you to help.', es: 'Tras Can usa help sin to: Can you help, no Can you to help.' },
+      "kind": "how",
+      "title": {
+        "ru": "Попроси о помощи через Can you",
+        "uk": "Попроси про допомогу через Can you",
+        "es": "Pide ayuda con Can you"
       },
-      words: [
-        { text: 'Can', partOfSpeech: 'modal', distractors: ['Must', 'Should', 'May', 'Did', 'Do'] },
-        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
-        { text: 'help', partOfSpeech: 'verb', distractors: ['call', 'read', 'write', 'drive', 'cook'] },
-        { text: 'me', partOfSpeech: 'pronoun', distractors: ['us', 'them', 'him', 'her', 'it'] },
-        { text: 'with', partOfSpeech: 'preposition', distractors: ['for', 'near', 'from', 'by', 'of'] },
-        { text: 'this', partOfSpeech: 'determiner', distractors: ['a', 'my', 'the', 'some', 'any'] },
-      ],
+      "body": {
+        "ru": "На созвоне застрял с задачей? Самый простой способ попросить помощь: Can you help me with this? Это значит «можешь помочь мне с этим». Слово can в начале делает фразу вежливой просьбой. Дальше идёт help me with this — «помочь мне с этим».",
+        "uk": "На дзвінку застряг із завданням? Найпростіший спосіб попросити допомогу: Can you help me with this? Це означає «можеш допомогти мені з цим». Слово can на початку робить фразу ввічливим проханням. Далі йде help me with this — «допомогти мені з цим».",
+        "es": "¿Te atascaste con una tarea en la llamada? La forma más simple de pedir ayuda: Can you help me with this? Significa «puedes ayudarme con esto». La palabra can al inicio convierte la frase en una petición cortés. Luego va help me with this — «ayudarme con esto»."
+      },
+      "examples": [
+        {
+          "en": "Can you help me with this?",
+          "gloss": {
+            "ru": "Можешь помочь мне с этим?",
+            "uk": "Можеш допомогти мені з цим?",
+            "es": "¿Puedes ayudarme con esto?"
+          }
+        },
+        {
+          "en": "Can you help me with the report?",
+          "gloss": {
+            "ru": "Можешь помочь мне с отчётом?",
+            "uk": "Можеш допомогти мені зі звітом?",
+            "es": "¿Puedes ayudarme con el informe?"
+          }
+        }
+      ]
     },
     {
-      id: 'mitap_d26_p2',
-      english: 'I do not understand this part.',
-      meaning: { ru: 'Я не понимаю эту часть.', uk: 'Я не розумію цю частину.', es: 'No entiendo esta parte.' },
-      constructions: ['present-simple'],
-      explanation: {
-        title: { ru: 'Скажи, что не понимаешь', uk: 'Скажи, що не розумієш', es: 'Di que no entiendes' },
-        rule: { ru: 'Do not значит «не». Ставь do not перед understand, и говоришь, что не понял. understand -> понимать.', uk: 'Do not значить «не». Постав do not перед understand, і кажеш, що не зрозумів. understand -> розуміти.', es: 'Do not significa «no». Pon do not antes de understand y dices que no entiendes. understand -> entender.' },
-        why: { ru: 'Так коллега понимает, где именно ты застрял, и помощь будет точной.', uk: 'Так колега розуміє, де саме ти застряг, і допомога буде точною.', es: 'Así el colega entiende dónde te atascaste y la ayuda será precisa.' },
-        commonMistake: { ru: 'Не теряй do перед not: нужно I do not understand, а не I not understand.', uk: 'Не губи do перед not: треба I do not understand, а не I not understand.', es: 'No pierdas do antes de not: I do not understand, no I not understand.' },
+      "kind": "how",
+      "title": {
+        "ru": "Скажи, что именно непонятно",
+        "uk": "Скажи, що саме незрозуміло",
+        "es": "Di qué no entiendes"
       },
-      words: [
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'you', 'he', 'she'] },
-        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'am', 'is', 'was'] },
-        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'always', 'often', 'soon', 'here'] },
-        { text: 'understand', partOfSpeech: 'verb', distractors: ['read', 'write', 'drive', 'cook', 'run'] },
-        { text: 'this', partOfSpeech: 'determiner', distractors: ['a', 'my', 'the', 'some', 'any'] },
-        { text: 'part', partOfSpeech: 'noun', distractors: ['call', 'desk', 'room', 'box', 'door'] },
-      ],
+      "body": {
+        "ru": "Чтобы коллега понял, где ты застрял, скажи прямо: I do not understand this part. Это значит «я не понимаю эту часть». Тут do not — это «не». Так помощь будет точной, и человек объяснит именно то место, где ты запутался.",
+        "uk": "Щоб колега зрозумів, де ти застряг, скажи прямо: I do not understand this part. Це означає «я не розумію цю частину». Тут do not — це «не». Так допомога буде точною, і людина пояснить саме те місце, де ти заплутався.",
+        "es": "Para que el colega sepa dónde te atascaste, dilo directo: I do not understand this part. Significa «no entiendo esta parte». Aquí do not es «no». Así la ayuda será precisa y la persona explicará justo donde te perdiste."
+      },
+      "examples": [
+        {
+          "en": "I do not understand this part.",
+          "gloss": {
+            "ru": "Я не понимаю эту часть.",
+            "uk": "Я не розумію цю частину.",
+            "es": "No entiendo esta parte."
+          }
+        },
+        {
+          "en": "I do not understand the task.",
+          "gloss": {
+            "ru": "Я не понимаю задачу.",
+            "uk": "Я не розумію завдання.",
+            "es": "No entiendo la tarea."
+          }
+        }
+      ]
     },
     {
-      id: 'mitap_d26_p3',
-      english: 'Could you show me how?',
-      meaning: { ru: 'Мог бы ты показать мне как?', uk: 'Чи міг би ти показати мені як?', es: '¿Podrías mostrarme cómo?' },
-      constructions: ['modals', 'present-simple-questions'],
-      explanation: {
-        title: { ru: 'Очень вежливая просьба', uk: 'Дуже ввічливе прохання', es: 'Petición muy cortés' },
-        rule: { ru: 'Could мягче, чем can, и значит «мог бы». Ставь Could в начало просьбы. Could -> мог бы.', uk: 'Could м\'якше, ніж can, і значить «міг би». Постав Could на початок прохання. Could -> міг би.', es: 'Could es más suave que can y significa «podrías». Pon Could al inicio de la petición. Could -> podrías.' },
-        why: { ru: 'Could звучит мягче и вежливее. Хорошо для просьбы к старшему коллеге.', uk: 'Could звучить м\'якше і ввічливіше. Добре для прохання до старшого колеги.', es: 'Could suena más suave y cortés. Bueno para pedir a un colega mayor.' },
-        commonMistake: { ru: 'После Could бери show без to: Could you show, а не Could you to show.', uk: 'Після Could бери show без to: Could you show, а не Could you to show.', es: 'Tras Could usa show sin to: Could you show, no Could you to show.' },
+      "kind": "how",
+      "title": {
+        "ru": "Спроси, можешь ли позвать на помощь",
+        "uk": "Запитай, чи можеш покликати на допомогу",
+        "es": "Pregunta si puedes pedir ayuda"
       },
-      words: [
-        { text: 'Could', partOfSpeech: 'modal', distractors: ['Must', 'Should', 'May', 'Did', 'Do'] },
-        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
-        { text: 'show', partOfSpeech: 'verb', distractors: ['read', 'write', 'drive', 'cook', 'run'] },
-        { text: 'me', partOfSpeech: 'pronoun', distractors: ['us', 'them', 'him', 'her', 'it'] },
-        { text: 'how', partOfSpeech: 'adverb', distractors: ['when', 'where', 'why', 'who', 'what'] },
-      ],
-    },
-    {
-      id: 'mitap_d26_p4',
-      english: 'Do you have a minute?',
-      meaning: { ru: 'У тебя есть минутка?', uk: 'У тебе є хвилинка?', es: '¿Tienes un minuto?' },
-      constructions: ['present-simple-questions'],
-      explanation: {
-        title: { ru: 'Спроси, есть ли время', uk: 'Запитай, чи є час', es: 'Pregunta si tiene tiempo' },
-        rule: { ru: 'Ставь Do you have в начало, и спрашиваешь, есть ли у человека время. have -> есть.', uk: 'Постав Do you have на початок, і питаєш, чи є в людини час. have -> є.', es: 'Pon Do you have al inicio y preguntas si la persona tiene tiempo. have -> tener.' },
-        why: { ru: 'Перед просьбой о помощи вежливо спросить, свободен ли человек сейчас.', uk: 'Перед проханням про допомогу ввічливо запитати, чи вільна людина зараз.', es: 'Antes de pedir ayuda es cortés preguntar si la persona está libre ahora.' },
-        commonMistake: { ru: 'Начинай вопрос с Do: нужно Do you have, а не You have a minute?', uk: 'Починай запитання з Do: треба Do you have, а не You have a minute?', es: 'Empieza la pregunta con Do: Do you have, no You have a minute?' },
+      "body": {
+        "ru": "Иногда тебе нужно ещё немного помощи. Спроси вежливо: Could you show me how? Это значит «мог бы ты показать мне как». Слово could мягче, чем can, и звучит особенно вежливо. Так ты просишь коллегу провести тебя по шагам.",
+        "uk": "Іноді тобі потрібно ще трохи допомоги. Запитай ввічливо: Could you show me how? Це означає «чи міг би ти показати мені як». Слово could м'якше, ніж can, і звучить особливо ввічливо. Так ти просиш колегу провести тебе по кроках.",
+        "es": "A veces necesitas un poco más de ayuda. Pregunta con amabilidad: Could you show me how? Significa «¿podrías mostrarme cómo». La palabra could es más suave que can y suena muy cortés. Así pides al colega que te guíe paso a paso."
       },
-      words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Are', 'Is', 'Was'] },
-        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
-        { text: 'have', partOfSpeech: 'verb', distractors: ['read', 'write', 'drive', 'cook', 'run'] },
-        { text: 'a', partOfSpeech: 'determiner', distractors: ['the', 'my', 'this', 'that', 'some'] },
-        { text: 'minute', partOfSpeech: 'noun', distractors: ['call', 'desk', 'room', 'box', 'door'] },
-      ],
-    },
-    {
-      id: 'mitap_d26_p5',
-      english: 'Can you explain this task again?',
-      meaning: { ru: 'Можешь объяснить эту задачу ещё раз?', uk: 'Можеш пояснити це завдання ще раз?', es: '¿Puedes explicar esta tarea otra vez?' },
-      constructions: ['modals', 'present-simple-questions'],
-      explanation: {
-        title: { ru: 'Попроси объяснить ещё раз', uk: 'Попроси пояснити ще раз', es: 'Pide explicar otra vez' },
-        rule: { ru: 'Explain значит «объяснить». После Can you ставь explain, и просишь повтор. explain -> объяснить.', uk: 'Explain значить «пояснити». Після Can you став explain, і просиш повтор. explain -> пояснити.', es: 'Explain significa «explicar». Tras Can you pon explain y pides repetir. explain -> explicar.' },
-        why: { ru: 'Если не понял с первого раза, нормально вежливо попросить объяснить снова.', uk: 'Якщо не зрозумів з першого разу, нормально ввічливо попросити пояснити знову.', es: 'Si no entendiste a la primera, está bien pedir con cortesía que expliquen de nuevo.' },
-        commonMistake: { ru: 'После Can бери explain без to: Can you explain, а не Can you to explain.', uk: 'Після Can бери explain без to: Can you explain, а не Can you to explain.', es: 'Tras Can usa explain sin to: Can you explain, no Can you to explain.' },
-      },
-      words: [
-        { text: 'Can', partOfSpeech: 'modal', distractors: ['Must', 'Should', 'May', 'Did', 'Do'] },
-        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
-        { text: 'explain', partOfSpeech: 'verb', distractors: ['read', 'write', 'drive', 'cook', 'run'] },
-        { text: 'this', partOfSpeech: 'determiner', distractors: ['a', 'my', 'the', 'some', 'any'] },
-        { text: 'task', partOfSpeech: 'noun', distractors: ['call', 'desk', 'room', 'box', 'door'] },
-        { text: 'again', partOfSpeech: 'adverb', distractors: ['here', 'soon', 'often', 'never', 'always'] },
-      ],
-    },
-    {
-      id: 'mitap_d26_p6',
-      english: 'Thank you for your help.',
-      meaning: { ru: 'Спасибо за твою помощь.', uk: 'Дякую за твою допомогу.', es: 'Gracias por tu ayuda.' },
-      constructions: ['present-simple'],
-      explanation: {
-        title: { ru: 'Поблагодари за помощь', uk: 'Подякуй за допомогу', es: 'Agradece la ayuda' },
-        rule: { ru: 'Thank you for значит «спасибо за». Дальше ставь то, за что благодаришь: your help. help -> помощь.', uk: 'Thank you for значить «дякую за». Далі став те, за що дякуєш: your help. help -> допомога.', es: 'Thank you for significa «gracias por». Luego pon lo que agradeces: your help. help -> ayuda.' },
-        why: { ru: 'После помощи на созвоне всегда вежливо поблагодарить коллегу. Это поддерживает добрые отношения.', uk: 'Після допомоги на дзвінку завжди ввічливо подякувати колезі. Це підтримує добрі стосунки.', es: 'Tras la ayuda en la llamada siempre es cortés agradecer al colega. Mantiene buena relación.' },
-        commonMistake: { ru: 'После thank you бери for, а не of: thank you for your help.', uk: 'Після thank you бери for, а не of: thank you for your help.', es: 'Tras thank you usa for, no of: thank you for your help.' },
-      },
-      words: [
-        { text: 'Thank', partOfSpeech: 'verb', distractors: ['read', 'write', 'drive', 'cook', 'run'] },
-        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
-        { text: 'for', partOfSpeech: 'preposition', distractors: ['with', 'near', 'from', 'by', 'of'] },
-        { text: 'your', partOfSpeech: 'pronoun', distractors: ['my', 'his', 'her', 'their', 'our'] },
-        { text: 'help', partOfSpeech: 'noun', distractors: ['call', 'desk', 'room', 'box', 'door'] },
-      ],
-    },
+      "examples": [
+        {
+          "en": "Could you show me how?",
+          "gloss": {
+            "ru": "Мог бы ты показать мне как?",
+            "uk": "Чи міг би ти показати мені як?",
+            "es": "¿Podrías mostrarme cómo?"
+          }
+        },
+        {
+          "en": "Could you show me the steps?",
+          "gloss": {
+            "ru": "Мог бы ты показать мне шаги?",
+            "uk": "Чи міг би ти показати мені кроки?",
+            "es": "¿Podrías mostrarme los pasos?"
+          }
+        }
+      ]
+    }
   ],
-  vocabulary: [
-    { word: 'help', partOfSpeech: 'verb', translation: { ru: 'помогать', uk: 'допомагати', es: 'ayudar' }, example: 'Can you help me with this?' },
-    { word: 'understand', partOfSpeech: 'verb', translation: { ru: 'понимать', uk: 'розуміти', es: 'entender' }, example: 'I do not understand this part.' },
-    { word: 'show', partOfSpeech: 'verb', translation: { ru: 'показывать', uk: 'показувати', es: 'mostrar' }, example: 'Could you show me how?' },
-    { word: 'minute', partOfSpeech: 'noun', translation: { ru: 'минута', uk: 'хвилина', es: 'minuto' }, example: 'Do you have a minute?' },
-    { word: 'explain', partOfSpeech: 'verb', translation: { ru: 'объяснять', uk: 'пояснювати', es: 'explicar' }, example: 'Can you explain this task again?' },
-    { word: 'task', partOfSpeech: 'noun', translation: { ru: 'задача', uk: 'завдання', es: 'tarea' }, example: 'Can you explain this task again?' },
+  "phrases": [
+    {
+      "id": "mitap_d26_p1",
+      "english": "Can you help me with this?",
+      "meaning": {
+        "ru": "Можешь помочь мне с этим?",
+        "uk": "Можеш допомогти мені з цим?",
+        "es": "¿Puedes ayudarme con esto?"
+      },
+      "constructions": [
+        "modals",
+        "present-simple-questions"
+      ],
+      "explanation": {
+        "title": {
+          "ru": "Вежливая просьба о помощи",
+          "uk": "Ввічливе прохання про допомогу",
+          "es": "Petición cortés de ayuda"
+        },
+        "rule": {
+          "ru": "Can значит «можешь». Ставь Can в начало, и просьба готова. Can -> можешь.",
+          "uk": "Can значить «можеш». Постав Can на початок, і прохання готове. Can -> можеш.",
+          "es": "Can significa «puedes». Pon Can al inicio y la petición está lista. Can -> puedes."
+        },
+        "why": {
+          "ru": "Это самая простая и вежливая фраза, когда застрял с задачей на созвоне.",
+          "uk": "Це найпростіша і ввічлива фраза, коли застряг із завданням на дзвінку.",
+          "es": "Es la frase más simple y cortés cuando te atascas con una tarea en la llamada."
+        },
+        "commonMistake": {
+          "ru": "После Can бери help без to: Can you help, а не Can you to help.",
+          "uk": "Після Can бери help без to: Can you help, а не Can you to help.",
+          "es": "Tras Can usa help sin to: Can you help, no Can you to help."
+        }
+      },
+      "words": [
+        {
+          "text": "Can",
+          "partOfSpeech": "modal",
+          "distractors": [
+            "Must",
+            "Should",
+            "May",
+            "Did",
+            "Do"
+          ]
+        },
+        {
+          "text": "you",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "we",
+            "they",
+            "he",
+            "she",
+            "it"
+          ]
+        },
+        {
+          "text": "help",
+          "partOfSpeech": "verb",
+          "distractors": [
+            "call",
+            "read",
+            "write",
+            "drive",
+            "cook"
+          ]
+        },
+        {
+          "text": "me",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "us",
+            "them",
+            "him",
+            "her",
+            "it"
+          ]
+        },
+        {
+          "text": "with",
+          "partOfSpeech": "preposition",
+          "distractors": [
+            "for",
+            "near",
+            "from",
+            "by",
+            "of"
+          ]
+        },
+        {
+          "text": "this",
+          "partOfSpeech": "determiner",
+          "distractors": [
+            "a",
+            "my",
+            "the",
+            "some",
+            "any"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mitap_d26_p2",
+      "english": "I am stuck on this part.",
+      "meaning": {
+        "ru": "Я застрял на этой части.",
+        "uk": "Я застряг на цій частині.",
+        "es": "Estoy atascado en esta parte."
+      },
+      "constructions": [
+        "present-simple"
+      ],
+      "explanation": {
+        "title": {
+          "ru": "stuck — застрял",
+          "uk": "stuck — застряг",
+          "es": "stuck — atascado"
+        },
+        "rule": {
+          "ru": "I am stuck on значит «я застрял на». Так просишь помощи с конкретным местом.",
+          "uk": "I am stuck on значить «я застряг на». Так просиш допомоги з конкретним місцем.",
+          "es": "I am stuck on significa «estoy atascado en». Así pides ayuda con un punto."
+        },
+        "why": {
+          "ru": "Честно говоришь, что нужна помощь именно здесь, и не теряешь время.",
+          "uk": "Чесно кажеш, що потрібна допомога саме тут, і не гаєш час.",
+          "es": "Dices con honestidad que necesitas ayuda aquí y no pierdes tiempo."
+        },
+        "commonMistake": {
+          "ru": "После stuck нужен on: stuck on this, не stuck in this.",
+          "uk": "Після stuck потрібен on: stuck on this, не stuck in this.",
+          "es": "Tras stuck va on: stuck on this, no stuck in this."
+        }
+      },
+      "words": [
+        {
+          "text": "I",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "we",
+            "they",
+            "you",
+            "he",
+            "she"
+          ]
+        },
+        {
+          "text": "am",
+          "partOfSpeech": "to-be",
+          "distractors": [
+            "is",
+            "are",
+            "was",
+            "were",
+            "be"
+          ]
+        },
+        {
+          "text": "stuck",
+          "partOfSpeech": "adjective",
+          "distractors": [
+            "glad",
+            "ready",
+            "late",
+            "calm",
+            "sure"
+          ]
+        },
+        {
+          "text": "on",
+          "partOfSpeech": "preposition",
+          "distractors": [
+            "of",
+            "off",
+            "up",
+            "at",
+            "to"
+          ]
+        },
+        {
+          "text": "this",
+          "partOfSpeech": "determiner",
+          "distractors": [
+            "each",
+            "every",
+            "some",
+            "any",
+            "its"
+          ]
+        },
+        {
+          "text": "part",
+          "partOfSpeech": "noun",
+          "distractors": [
+            "desk",
+            "room",
+            "door",
+            "floor",
+            "wall"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mitap_d26_p3",
+      "english": "Could you show me how?",
+      "meaning": {
+        "ru": "Мог бы ты показать мне как?",
+        "uk": "Чи міг би ти показати мені як?",
+        "es": "¿Podrías mostrarme cómo?"
+      },
+      "constructions": [
+        "modals",
+        "present-simple-questions"
+      ],
+      "explanation": {
+        "title": {
+          "ru": "Очень вежливая просьба",
+          "uk": "Дуже ввічливе прохання",
+          "es": "Petición muy cortés"
+        },
+        "rule": {
+          "ru": "Could мягче, чем can, и значит «мог бы». Ставь Could в начало просьбы. Could -> мог бы.",
+          "uk": "Could м'якше, ніж can, і значить «міг би». Постав Could на початок прохання. Could -> міг би.",
+          "es": "Could es más suave que can y significa «podrías». Pon Could al inicio de la petición. Could -> podrías."
+        },
+        "why": {
+          "ru": "Could звучит мягче и вежливее. Хорошо для просьбы к старшему коллеге.",
+          "uk": "Could звучить м'якше і ввічливіше. Добре для прохання до старшого колеги.",
+          "es": "Could suena más suave y cortés. Bueno para pedir a un colega mayor."
+        },
+        "commonMistake": {
+          "ru": "После Could бери show без to: Could you show, а не Could you to show.",
+          "uk": "Після Could бери show без to: Could you show, а не Could you to show.",
+          "es": "Tras Could usa show sin to: Could you show, no Could you to show."
+        }
+      },
+      "words": [
+        {
+          "text": "Could",
+          "partOfSpeech": "modal",
+          "distractors": [
+            "Must",
+            "Should",
+            "May",
+            "Did",
+            "Do"
+          ]
+        },
+        {
+          "text": "you",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "we",
+            "they",
+            "he",
+            "she",
+            "it"
+          ]
+        },
+        {
+          "text": "show",
+          "partOfSpeech": "verb",
+          "distractors": [
+            "read",
+            "write",
+            "drive",
+            "cook",
+            "run"
+          ]
+        },
+        {
+          "text": "me",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "us",
+            "them",
+            "him",
+            "her",
+            "it"
+          ]
+        },
+        {
+          "text": "how",
+          "partOfSpeech": "adverb",
+          "distractors": [
+            "when",
+            "where",
+            "why",
+            "who",
+            "what"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mitap_d26_p4",
+      "english": "Do you have a minute?",
+      "meaning": {
+        "ru": "У тебя есть минутка?",
+        "uk": "У тебе є хвилинка?",
+        "es": "¿Tienes un minuto?"
+      },
+      "constructions": [
+        "present-simple-questions"
+      ],
+      "explanation": {
+        "title": {
+          "ru": "Спроси, есть ли время",
+          "uk": "Запитай, чи є час",
+          "es": "Pregunta si tiene tiempo"
+        },
+        "rule": {
+          "ru": "Ставь Do you have в начало, и спрашиваешь, есть ли у человека время. have -> есть.",
+          "uk": "Постав Do you have на початок, і питаєш, чи є в людини час. have -> є.",
+          "es": "Pon Do you have al inicio y preguntas si la persona tiene tiempo. have -> tener."
+        },
+        "why": {
+          "ru": "Перед просьбой о помощи вежливо спросить, свободен ли человек сейчас.",
+          "uk": "Перед проханням про допомогу ввічливо запитати, чи вільна людина зараз.",
+          "es": "Antes de pedir ayuda es cortés preguntar si la persona está libre ahora."
+        },
+        "commonMistake": {
+          "ru": "Начинай вопрос с Do: нужно Do you have, а не You have a minute?",
+          "uk": "Починай запитання з Do: треба Do you have, а не You have a minute?",
+          "es": "Empieza la pregunta con Do: Do you have, no You have a minute?"
+        }
+      },
+      "words": [
+        {
+          "text": "Do",
+          "partOfSpeech": "verb",
+          "distractors": [
+            "Does",
+            "Did",
+            "Are",
+            "Is",
+            "Was"
+          ]
+        },
+        {
+          "text": "you",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "we",
+            "they",
+            "he",
+            "she",
+            "it"
+          ]
+        },
+        {
+          "text": "have",
+          "partOfSpeech": "verb",
+          "distractors": [
+            "read",
+            "write",
+            "drive",
+            "cook",
+            "run"
+          ]
+        },
+        {
+          "text": "a",
+          "partOfSpeech": "determiner",
+          "distractors": [
+            "the",
+            "my",
+            "this",
+            "that",
+            "some"
+          ]
+        },
+        {
+          "text": "minute",
+          "partOfSpeech": "noun",
+          "distractors": [
+            "call",
+            "desk",
+            "room",
+            "box",
+            "door"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mitap_d26_p5",
+      "english": "Can you explain this task again?",
+      "meaning": {
+        "ru": "Можешь объяснить эту задачу ещё раз?",
+        "uk": "Можеш пояснити це завдання ще раз?",
+        "es": "¿Puedes explicar esta tarea otra vez?"
+      },
+      "constructions": [
+        "modals",
+        "present-simple-questions"
+      ],
+      "explanation": {
+        "title": {
+          "ru": "Попроси объяснить ещё раз",
+          "uk": "Попроси пояснити ще раз",
+          "es": "Pide explicar otra vez"
+        },
+        "rule": {
+          "ru": "Explain значит «объяснить». После Can you ставь explain, и просишь повтор. explain -> объяснить.",
+          "uk": "Explain значить «пояснити». Після Can you став explain, і просиш повтор. explain -> пояснити.",
+          "es": "Explain significa «explicar». Tras Can you pon explain y pides repetir. explain -> explicar."
+        },
+        "why": {
+          "ru": "Если не понял с первого раза, нормально вежливо попросить объяснить снова.",
+          "uk": "Якщо не зрозумів з першого разу, нормально ввічливо попросити пояснити знову.",
+          "es": "Si no entendiste a la primera, está bien pedir con cortesía que expliquen de nuevo."
+        },
+        "commonMistake": {
+          "ru": "После Can бери explain без to: Can you explain, а не Can you to explain.",
+          "uk": "Після Can бери explain без to: Can you explain, а не Can you to explain.",
+          "es": "Tras Can usa explain sin to: Can you explain, no Can you to explain."
+        }
+      },
+      "words": [
+        {
+          "text": "Can",
+          "partOfSpeech": "modal",
+          "distractors": [
+            "Must",
+            "Should",
+            "May",
+            "Did",
+            "Do"
+          ]
+        },
+        {
+          "text": "you",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "we",
+            "they",
+            "he",
+            "she",
+            "it"
+          ]
+        },
+        {
+          "text": "explain",
+          "partOfSpeech": "verb",
+          "distractors": [
+            "read",
+            "write",
+            "drive",
+            "cook",
+            "run"
+          ]
+        },
+        {
+          "text": "this",
+          "partOfSpeech": "determiner",
+          "distractors": [
+            "a",
+            "my",
+            "the",
+            "some",
+            "any"
+          ]
+        },
+        {
+          "text": "task",
+          "partOfSpeech": "noun",
+          "distractors": [
+            "call",
+            "desk",
+            "room",
+            "box",
+            "door"
+          ]
+        },
+        {
+          "text": "again",
+          "partOfSpeech": "adverb",
+          "distractors": [
+            "here",
+            "soon",
+            "often",
+            "never",
+            "always"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mitap_d26_p6",
+      "english": "Thank you for your help.",
+      "meaning": {
+        "ru": "Спасибо за твою помощь.",
+        "uk": "Дякую за твою допомогу.",
+        "es": "Gracias por tu ayuda."
+      },
+      "constructions": [
+        "present-simple"
+      ],
+      "explanation": {
+        "title": {
+          "ru": "Поблагодари за помощь",
+          "uk": "Подякуй за допомогу",
+          "es": "Agradece la ayuda"
+        },
+        "rule": {
+          "ru": "Thank you for значит «спасибо за». Дальше ставь то, за что благодаришь: your help. help -> помощь.",
+          "uk": "Thank you for значить «дякую за». Далі став те, за що дякуєш: your help. help -> допомога.",
+          "es": "Thank you for significa «gracias por». Luego pon lo que agradeces: your help. help -> ayuda."
+        },
+        "why": {
+          "ru": "После помощи на созвоне всегда вежливо поблагодарить коллегу. Это поддерживает добрые отношения.",
+          "uk": "Після допомоги на дзвінку завжди ввічливо подякувати колезі. Це підтримує добрі стосунки.",
+          "es": "Tras la ayuda en la llamada siempre es cortés agradecer al colega. Mantiene buena relación."
+        },
+        "commonMistake": {
+          "ru": "После thank you бери for, а не of: thank you for your help.",
+          "uk": "Після thank you бери for, а не of: thank you for your help.",
+          "es": "Tras thank you usa for, no of: thank you for your help."
+        }
+      },
+      "words": [
+        {
+          "text": "Thank",
+          "partOfSpeech": "verb",
+          "distractors": [
+            "read",
+            "write",
+            "drive",
+            "cook",
+            "run"
+          ]
+        },
+        {
+          "text": "you",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "we",
+            "they",
+            "he",
+            "she",
+            "it"
+          ]
+        },
+        {
+          "text": "for",
+          "partOfSpeech": "preposition",
+          "distractors": [
+            "with",
+            "near",
+            "from",
+            "by",
+            "of"
+          ]
+        },
+        {
+          "text": "your",
+          "partOfSpeech": "pronoun",
+          "distractors": [
+            "my",
+            "his",
+            "her",
+            "their",
+            "our"
+          ]
+        },
+        {
+          "text": "help",
+          "partOfSpeech": "noun",
+          "distractors": [
+            "call",
+            "desk",
+            "room",
+            "box",
+            "door"
+          ]
+        }
+      ]
+    }
   ],
+  "vocabulary": [
+    {
+      "word": "help",
+      "partOfSpeech": "verb",
+      "translation": {
+        "ru": "помогать",
+        "uk": "допомагати",
+        "es": "ayudar"
+      },
+      "example": "Can you help me with this?"
+    },
+    {
+      "word": "stuck",
+      "partOfSpeech": "adjective",
+      "translation": {
+        "ru": "застрявший",
+        "uk": "застряглий",
+        "es": "atascado"
+      },
+      "example": "I am stuck on this part."
+    },
+    {
+      "word": "show",
+      "partOfSpeech": "verb",
+      "translation": {
+        "ru": "показывать",
+        "uk": "показувати",
+        "es": "mostrar"
+      },
+      "example": "Could you show me how?"
+    },
+    {
+      "word": "minute",
+      "partOfSpeech": "noun",
+      "translation": {
+        "ru": "минута",
+        "uk": "хвилина",
+        "es": "minuto"
+      },
+      "example": "Do you have a minute?"
+    },
+    {
+      "word": "explain",
+      "partOfSpeech": "verb",
+      "translation": {
+        "ru": "объяснять",
+        "uk": "пояснювати",
+        "es": "explicar"
+      },
+      "example": "Can you explain this task again?"
+    },
+    {
+      "word": "task",
+      "partOfSpeech": "noun",
+      "translation": {
+        "ru": "задача",
+        "uk": "завдання",
+        "es": "tarea"
+      },
+      "example": "Can you explain this task again?"
+    }
+  ]
 };
 
 export const MITAP_DAY_27: PlanContentDay = {
@@ -9300,6 +9880,2631 @@ export const MITAP_DAY_42: PlanContentDay = {
   ],
 };
 
+export const MITAP_DAY_43: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 43,
+  topic: { ru: 'Попросить повторить сказанное', uk: 'Попросити повторити сказане', es: 'Pedir que repitan lo dicho' },
+  outcome: {
+    ru: 'Ты вежливо переспросишь на созвоне, если не расслышал: Sorry, could you repeat that, please? и Could you say that again? — и не упустишь важное.',
+    uk: 'Ти ввічливо перепитаєш на дзвінку, якщо не розчув: Sorry, could you repeat that, please? і Could you say that again? — і не втратиш важливе.',
+    es: 'Pedirás con cortesía que repitan en la llamada si no oíste bien: Sorry, could you repeat that, please? y Could you say that again?, sin perder lo importante.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [24, 10],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Sorry, could you repeat that?', uk: 'Sorry, could you repeat that?', es: 'Sorry, could you repeat that?' },
+      body: {
+        ru: 'Если не расслышал, скажи: Sorry, could you repeat that? Слово could делает просьбу мягкой и вежливой. Это значит «извини, можешь повторить?».',
+        uk: 'Якщо не розчув, скажи: Sorry, could you repeat that? Слово could робить прохання м\'яким і ввічливим. Це значить «вибач, можеш повторити?».',
+        es: 'Si no oíste bien, di: Sorry, could you repeat that? La palabra could hace la petición suave y cortés. Significa «perdona, ¿puedes repetir?».',
+      },
+      examples: [
+        { en: 'Sorry, could you repeat that, please?', gloss: { ru: 'Извини, можешь повторить, пожалуйста?', uk: 'Вибач, можеш повторити, будь ласка?', es: 'Perdona, ¿puedes repetirlo, por favor?' } },
+        { en: 'Could you say that again, please?', gloss: { ru: 'Можешь сказать это ещё раз, пожалуйста?', uk: 'Можеш сказати це ще раз, будь ласка?', es: '¿Puedes decirlo otra vez, por favor?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'I did not catch — я не расслышал', uk: 'I did not catch — я не розчув', es: 'I did not catch — no capté' },
+      body: {
+        ru: 'Чтобы сказать, что упустил кусок, используй did not catch: I did not catch the last part. Это значит «я не расслышал последнюю часть». Коротко и честно.',
+        uk: 'Щоб сказати, що пропустив шматок, використай did not catch: I did not catch the last part. Це значить «я не розчув останню частину». Коротко і чесно.',
+        es: 'Para decir que perdiste un trozo, usa did not catch: I did not catch the last part. Significa «no capté la última parte». Corto y honesto.',
+      },
+      examples: [
+        { en: 'I did not catch the last part.', gloss: { ru: 'Я не расслышал последнюю часть.', uk: 'Я не розчув останню частину.', es: 'No capté la última parte.' } },
+        { en: 'I did not get your point.', gloss: { ru: 'Я не понял твою мысль.', uk: 'Я не зрозумів твою думку.', es: 'No entendí tu idea.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'I have not heard — я не услышал', uk: 'I have not heard — я не почув', es: 'I have not heard — no he oído' },
+      body: {
+        ru: 'Чтобы сказать про сейчас важный пропуск, используй have not + heard: I have not heard the number. Это значит «я так и не услышал число». Сразу просишь повторить.',
+        uk: 'Щоб сказати про важливий пропуск зараз, використай have not + heard: I have not heard the number. Це значить «я так і не почув число». Одразу просиш повторити.',
+        es: 'Para un dato importante que falta ahora, usa have not + heard: I have not heard the number. Significa «no he oído el número». Pides repetir enseguida.',
+      },
+      examples: [
+        { en: 'I have not heard the number yet.', gloss: { ru: 'Я ещё не услышал число.', uk: 'Я ще не почув число.', es: 'Aún no he oído el número.' } },
+        { en: 'Can you speak a little slower?', gloss: { ru: 'Можешь говорить чуть медленнее?', uk: 'Можеш говорити трохи повільніше?', es: '¿Puedes hablar un poco más despacio?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d43_p1',
+      english: 'Sorry, could you repeat that, please?',
+      meaning: { ru: 'Извини, можешь повторить, пожалуйста?', uk: 'Вибач, можеш повторити, будь ласка?', es: 'Perdona, ¿puedes repetirlo, por favor?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'could you repeat — можешь повторить', uk: 'could you repeat — можеш повторити', es: 'could you repeat — puedes repetir' },
+        rule: { ru: 'Поставь could перед you для мягкой просьбы: could you repeat that — «можешь повторить это».', uk: 'Постав could перед you для м\'якого прохання: could you repeat that — «можеш повторити це».', es: 'Pon could antes de you para una petición suave: could you repeat that — «¿puedes repetir eso?».' },
+        why: { ru: 'С could просьба звучит вежливо. На созвоне это не выглядит грубо или резко.', uk: 'З could прохання звучить ввічливо. На дзвінку це не виглядає грубо чи різко.', es: 'Con could la petición suena cortés. En la llamada no parece brusca ni grosera.' },
+        commonMistake: { ru: 'После could сразу простое слово: could you repeat, не could you to repeat.', uk: 'Після could одразу просте слово: could you repeat, не could you to repeat.', es: 'Tras could va la palabra simple: could you repeat, no could you to repeat.' },
+      },
+      words: [
+        { text: 'Sorry', partOfSpeech: 'other', distractors: ['Hello', 'Goodbye', 'Welcome', 'Congrats', 'Cheers'] },
+        { text: 'could', partOfSpeech: 'modal', distractors: ['should', 'must', 'might', 'shall', 'may'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
+        { text: 'repeat', partOfSpeech: 'verb', distractors: ['check', 'send', 'plan', 'book', 'close'] },
+        { text: 'that', partOfSpeech: 'pronoun', distractors: ['who', 'what', 'one', 'here', 'there'] },
+        { text: 'please', partOfSpeech: 'other', distractors: ['maybe', 'hardly', 'indeed', 'quite', 'rather'] },
+      ],
+    },
+    {
+      id: 'mitap_d43_p2',
+      english: 'I did not catch the last part.',
+      meaning: { ru: 'Я не расслышал последнюю часть.', uk: 'Я не розчув останню частину.', es: 'No capté la última parte.' },
+      constructions: ['past-simple-negation'],
+      explanation: {
+        title: { ru: 'did not catch — не расслышал', uk: 'did not catch — не розчув', es: 'did not catch — no capté' },
+        rule: { ru: 'did not + catch значит «не расслышал»: I did not catch the last part — упустил конец.', uk: 'did not + catch значить «не розчув»: I did not catch the last part — пропустив кінець.', es: 'did not + catch significa «no capté»: I did not catch the last part — perdí el final.' },
+        why: { ru: 'Так честно говоришь, что часть прошла мимо, и просишь повторить именно её.', uk: 'Так чесно кажеш, що частина пройшла повз, і просиш повторити саме її.', es: 'Así dices con honestidad que se te escapó un trozo y pides repetirlo.' },
+        commonMistake: { ru: 'После did not слово без окончания: did not catch, не did not caught.', uk: 'Після did not слово без закінчення: did not catch, не did not caught.', es: 'Tras did not va la forma simple: did not catch, no did not caught.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'he', 'she', 'it', 'they'] },
+        { text: 'did', partOfSpeech: 'verb', distractors: ['does', 'do', 'done', 'doing', 'had'] },
+        { text: 'not', partOfSpeech: 'other', distractors: ['no', 'never', 'none', 'nor', 'neither'] },
+        { text: 'catch', partOfSpeech: 'verb', distractors: ['sit', 'run', 'walk', 'sleep', 'swim'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'last', partOfSpeech: 'adjective', distractors: ['red', 'cold', 'tall', 'round', 'empty'] },
+        { text: 'part', partOfSpeech: 'noun', distractors: ['desk', 'room', 'chair', 'door', 'floor'] },
+      ],
+    },
+    {
+      id: 'mitap_d43_p3',
+      english: 'Could you say that again, please?',
+      meaning: { ru: 'Можешь сказать это ещё раз, пожалуйста?', uk: 'Можеш сказати це ще раз, будь ласка?', es: '¿Puedes decirlo otra vez, por favor?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'say that again — сказать ещё раз', uk: 'say that again — сказати ще раз', es: 'say that again — decir otra vez' },
+        rule: { ru: 'Слово again значит «ещё раз»: Could you say that again — «можешь сказать это ещё раз».', uk: 'Слово again значить «ще раз»: Could you say that again — «можеш сказати це ще раз».', es: 'La palabra again significa «otra vez»: Could you say that again — «¿puedes decirlo otra vez?».' },
+        why: { ru: 'Удобный готовый способ переспросить, когда не уверен, что услышал правильно.', uk: 'Зручний готовий спосіб перепитати, коли не впевнений, що почув правильно.', es: 'Una forma cómoda y lista de volver a preguntar cuando no estás seguro.' },
+        commonMistake: { ru: 'again ставь в конец: say that again, не say again that.', uk: 'again став у кінець: say that again, не say again that.', es: 'again va al final: say that again, no say again that.' },
+      },
+      words: [
+        { text: 'Could', partOfSpeech: 'modal', distractors: ['should', 'must', 'might', 'shall', 'may'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
+        { text: 'say', partOfSpeech: 'verb', distractors: ['check', 'send', 'plan', 'book', 'close'] },
+        { text: 'that', partOfSpeech: 'pronoun', distractors: ['who', 'what', 'one', 'here', 'there'] },
+        { text: 'again', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'early', 'loudly', 'quickly'] },
+        { text: 'please', partOfSpeech: 'other', distractors: ['maybe', 'hardly', 'indeed', 'quite', 'rather'] },
+      ],
+    },
+    {
+      id: 'mitap_d43_p4',
+      english: 'I have not heard the number yet.',
+      meaning: { ru: 'Я ещё не услышал число.', uk: 'Я ще не почув число.', es: 'Aún no he oído el número.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: 'have not heard — так и не услышал', uk: 'have not heard — так і не почув', es: 'have not heard — no he oído' },
+        rule: { ru: 'have not + heard показывает пропуск сейчас: I have not heard the number — число до меня не дошло.', uk: 'have not + heard показує пропуск зараз: I have not heard the number — число до мене не дійшло.', es: 'have not + heard muestra un dato que falta ahora: I have not heard the number — no me llegó.' },
+        why: { ru: 'Сразу видно, что важная цифра пропала, и собеседник её повторит.', uk: 'Одразу видно, що важлива цифра зникла, і співрозмовник її повторить.', es: 'Se ve enseguida que falta un número clave y el otro lo repetirá.' },
+        commonMistake: { ru: 'Нужно have перед not heard: have not heard, не did not heard.', uk: 'Потрібне have перед not heard: have not heard, не did not heard.', es: 'Hace falta have antes de not heard: have not heard, no did not heard.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'he', 'she', 'it', 'they'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'having', 'be', 'being', 'do'] },
+        { text: 'not', partOfSpeech: 'other', distractors: ['no', 'never', 'none', 'nor', 'neither'] },
+        { text: 'heard', partOfSpeech: 'verb', distractors: ['sent', 'planned', 'booked', 'closed', 'checked'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'number', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'chair', 'door'] },
+        { text: 'yet', partOfSpeech: 'adverb', distractors: ['soon', 'early', 'loudly', 'quickly', 'later'] },
+      ],
+    },
+    {
+      id: 'mitap_d43_p5',
+      english: 'Can you speak a little slower?',
+      meaning: { ru: 'Можешь говорить чуть медленнее?', uk: 'Можеш говорити трохи повільніше?', es: '¿Puedes hablar un poco más despacio?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Can you speak slower — говори медленнее', uk: 'Can you speak slower — говори повільніше', es: 'Can you speak slower — habla más despacio' },
+        rule: { ru: 'Слово slower значит «медленнее»: Can you speak a little slower — «можешь говорить чуть медленнее».', uk: 'Слово slower значить «повільніше»: Can you speak a little slower — «можеш говорити трохи повільніше».', es: 'La palabra slower significa «más despacio»: Can you speak a little slower — «¿puedes hablar más despacio?».' },
+        why: { ru: 'Если темп быстрый, ты просишь сбавить, и тогда расслышишь всё точно.', uk: 'Якщо темп швидкий, ти просиш збавити, і тоді розчуєш усе точно.', es: 'Si el ritmo es rápido, pides bajarlo y así oirás todo con claridad.' },
+        commonMistake: { ru: 'После Can you простое слово: can you speak, не can you to speak.', uk: 'Після Can you просте слово: can you speak, не can you to speak.', es: 'Tras Can you va la palabra simple: can you speak, no can you to speak.' },
+      },
+      words: [
+        { text: 'Can', partOfSpeech: 'modal', distractors: ['should', 'must', 'might', 'shall', 'may'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
+        { text: 'speak', partOfSpeech: 'verb', distractors: ['check', 'send', 'plan', 'book', 'close'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'little', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'early', 'loudly', 'always'] },
+        { text: 'slower', partOfSpeech: 'adverb', distractors: ['slowly', 'quietly', 'clearly', 'calmly', 'softly'] },
+      ],
+    },
+    {
+      id: 'mitap_d43_p6',
+      english: 'I did not get your point.',
+      meaning: { ru: 'Я не понял твою мысль.', uk: 'Я не зрозумів твою думку.', es: 'No entendí tu idea.' },
+      constructions: ['past-simple-negation'],
+      explanation: {
+        title: { ru: 'did not get — не понял', uk: 'did not get — не зрозумів', es: 'did not get — no entendí' },
+        rule: { ru: 'did not + get здесь значит «не понял»: I did not get your point — мысль до меня не дошла.', uk: 'did not + get тут значить «не зрозумів»: I did not get your point — думка до мене не дійшла.', es: 'did not + get aquí significa «no entendí»: I did not get your point — no me llegó la idea.' },
+        why: { ru: 'Вежливо признаёшь, что мысль непонятна, и собеседник объяснит её снова.', uk: 'Ввічливо визнаєш, що думка незрозуміла, і співрозмовник пояснить її знову.', es: 'Admites con cortesía que no entendiste y el otro lo explicará de nuevo.' },
+        commonMistake: { ru: 'После did not слово без окончания: did not get, не did not got.', uk: 'Після did not слово без закінчення: did not get, не did not got.', es: 'Tras did not va la forma simple: did not get, no did not got.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'he', 'she', 'it', 'they'] },
+        { text: 'did', partOfSpeech: 'verb', distractors: ['does', 'do', 'done', 'doing', 'had'] },
+        { text: 'not', partOfSpeech: 'other', distractors: ['no', 'never', 'none', 'nor', 'neither'] },
+        { text: 'get', partOfSpeech: 'verb', distractors: ['send', 'plan', 'book', 'close', 'check'] },
+        { text: 'your', partOfSpeech: 'determiner', distractors: ['its', 'whose', 'any', 'few', 'both'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'repeat', partOfSpeech: 'verb', translation: { ru: 'повторить', uk: 'повторити', es: 'repetir' }, example: 'Sorry, could you repeat that, please?' },
+    { word: 'catch', partOfSpeech: 'verb', translation: { ru: 'расслышать', uk: 'розчути', es: 'captar' }, example: 'I did not catch the last part.' },
+    { word: 'again', partOfSpeech: 'adverb', translation: { ru: 'ещё раз', uk: 'ще раз', es: 'otra vez' }, example: 'Could you say that again, please?' },
+    { word: 'heard', partOfSpeech: 'verb', translation: { ru: 'услышал', uk: 'почув', es: 'oído' }, example: 'I have not heard the number yet.' },
+    { word: 'slower', partOfSpeech: 'adverb', translation: { ru: 'медленнее', uk: 'повільніше', es: 'más despacio' }, example: 'Can you speak a little slower?' },
+    { word: 'point', partOfSpeech: 'noun', translation: { ru: 'мысль, суть', uk: 'думка, суть', es: 'idea' }, example: 'I did not get your point.' },
+  ],
+};
+
+export const MITAP_DAY_44: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 44,
+  topic: { ru: 'Уточнить, что имелось в виду', uk: 'Уточнити, що малося на увазі', es: 'Aclarar qué se quiso decir' },
+  outcome: {
+    ru: 'Ты сможешь вежливо переспросить и уточнить смысл слов коллеги на созвоне.',
+    uk: 'Ти зможеш ввічливо перепитати й уточнити зміст слів колеги на дзвінку.',
+    es: 'Podrás preguntar de nuevo con cortesía y aclarar el sentido de las palabras de un colega.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [5, 22],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Спрашиваем смысл словами What do you mean', uk: 'Питаємо зміст словами What do you mean', es: 'Preguntamos el sentido con What do you mean' },
+      body: {
+        ru: 'Когда не понял мысль коллеги, спроси What do you mean by that? Это значит «что ты имеешь в виду». Спокойно и вежливо.',
+        uk: 'Коли не зрозумів думку колеги, спитай What do you mean by that? Це означає «що ти маєш на увазі». Спокійно й ввічливо.',
+        es: 'Cuando no entiendes la idea de un colega, pregunta What do you mean by that? Significa «¿qué quieres decir?». Con calma y cortesía.',
+      },
+      examples: [
+        { en: 'What do you mean by that?', gloss: { ru: 'Что ты имеешь в виду под этим?', uk: 'Що ти маєш на увазі під цим?', es: '¿Qué quieres decir con eso?' } },
+        { en: 'Do you mean the new plan?', gloss: { ru: 'Ты имеешь в виду новый план?', uk: 'Ти маєш на увазі новий план?', es: '¿Te refieres al nuevo plan?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Действие-слово после mean без to', uk: 'Дія-слово після mean без to', es: 'Una acción tras mean termina en -ing' },
+      body: {
+        ru: 'Если после смысла идёт действие, ставь форму на -ing: Do you mean changing the date? Так звучит естественно для англичан.',
+        uk: 'Якщо після змісту йде дія, став форму на -ing: Do you mean changing the date? Так звучить природно для англійців.',
+        es: 'Si tras el sentido va una acción, usa la forma en -ing: Do you mean changing the date? Suena natural en inglés.',
+      },
+      examples: [
+        { en: 'Do you mean moving the call?', gloss: { ru: 'Ты имеешь в виду перенести созвон?', uk: 'Ти маєш на увазі перенести дзвінок?', es: '¿Quieres decir mover la llamada?' } },
+        { en: 'I mean starting the report today.', gloss: { ru: 'Я имею в виду начать отчёт сегодня.', uk: 'Я маю на увазі почати звіт сьогодні.', es: 'Quiero decir empezar el informe hoy.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Переспрос, чтобы все поняли одинаково', uk: 'Перепит, щоб усі зрозуміли однаково', es: 'Repreguntar para que todos entiendan igual' },
+      body: {
+        ru: 'Лучше переспросить, чем ошибиться. Спроси Sorry, what do you mean? Никто не подумает плохо — это нормально на встречах.',
+        uk: 'Краще перепитати, ніж помилитися. Спитай Sorry, what do you mean? Ніхто не подумає погано — це нормально на зустрічах.',
+        es: 'Mejor repreguntar que equivocarse. Pregunta Sorry, what do you mean? Nadie lo verá mal: es normal en reuniones.',
+      },
+      examples: [
+        { en: 'Sorry, what do you mean exactly?', gloss: { ru: 'Извини, что именно ты имеешь в виду?', uk: 'Вибач, що саме ти маєш на увазі?', es: 'Perdona, ¿qué quieres decir exactamente?' } },
+        { en: 'Does that mean we wait?', gloss: { ru: 'Это значит, что мы ждём?', uk: 'Це значить, що ми чекаємо?', es: '¿Eso significa que esperamos?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d44_p1',
+      english: 'What do you mean by that?',
+      meaning: { ru: 'Что ты имеешь в виду под этим?', uk: 'Що ти маєш на увазі під цим?', es: '¿Qué quieres decir con eso?' },
+      constructions: ['present-simple-questions', 'wh-questions'],
+      explanation: {
+        title: { ru: 'Спрашиваем смысл: mean = иметь в виду', uk: 'Питаємо зміст: mean = мати на увазі', es: 'Preguntamos el sentido: mean = querer decir' },
+        rule: { ru: 'What значит «что». Спрашиваешь смысл словами What do you mean by that — что ты имеешь в виду.', uk: 'What do you mean — це «що ти маєш на увазі». Слово mean значить «мати на увазі». Приклад: mean -> що ти маєш на увазі.', es: 'What do you mean es «¿qué quieres decir?». La palabra mean significa «querer decir». Ejemplo: mean -> qué quieres decir.' },
+        why: { ru: 'Так ты вежливо просишь объяснить мысль, не выглядя грубым на созвоне.', uk: 'Так ти ввічливо просиш пояснити думку, не виглядаючи грубим на дзвінку.', es: 'Así pides con cortesía que expliquen la idea sin parecer brusco en la llamada.' },
+        commonMistake: { ru: 'Не говори What you mean? Нужно маленькое do: What do you mean?', uk: 'Не кажи What you mean? Потрібне маленьке do: What do you mean?', es: 'No digas What you mean? Hace falta el pequeño do: What do you mean?' },
+      },
+      words: [
+        { text: 'What', partOfSpeech: 'pronoun', distractors: ['Where', 'When', 'How', 'Why', 'Who'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'make', 'have', 'go'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['think', 'know', 'ask', 'hear', 'read'] },
+        { text: 'by', partOfSpeech: 'preposition', distractors: ['for', 'to', 'into', 'onto', 'upon'] },
+        { text: 'that', partOfSpeech: 'pronoun', distractors: ['something', 'anything', 'everything', 'nothing', 'these'] },
+      ],
+    },
+    {
+      id: 'mitap_d44_p2',
+      english: 'Do you mean the new plan?',
+      meaning: { ru: 'Ты имеешь в виду новый план?', uk: 'Ти маєш на увазі новий план?', es: '¿Te refieres al nuevo plan?' },
+      constructions: ['present-simple-questions', 'articles'],
+      explanation: {
+        title: { ru: 'Уточняем предмет: Do you mean...?', uk: 'Уточнюємо предмет: Do you mean...?', es: 'Aclaramos el objeto: Do you mean...?' },
+        rule: { ru: 'Do you mean...? — «ты имеешь в виду...?». Дальше называешь предмет. Пример: plan -> план, the new plan -> новый план.', uk: 'Do you mean...? — «ти маєш на увазі...?». Далі називаєш предмет. Приклад: plan -> план, the new plan -> новий план.', es: 'Do you mean...? — «¿te refieres a...?». Luego nombras el objeto. Ejemplo: plan -> plan, the new plan -> el nuevo plan.' },
+        why: { ru: 'Так ты проверяешь, о какой именно вещи говорит коллега, и не путаешь её.', uk: 'Так ти перевіряєш, про яку саме річ говорить колега, і не плутаєш її.', es: 'Así compruebas de qué cosa habla el colega y no la confundes.' },
+        commonMistake: { ru: 'Перед new plan нужно the: the new plan, а не просто new plan.', uk: 'Перед new plan потрібне the: the new plan, а не просто new plan.', es: 'Antes de new plan hace falta the: the new plan, no solo new plan.' },
+      },
+      words: [
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Are', 'Have', 'Can'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['think', 'say', 'ask', 'know', 'hear'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'of', 'to', 'at'] },
+        { text: 'new', partOfSpeech: 'adjective', distractors: ['old', 'late', 'small', 'quick', 'short'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['call', 'date', 'report', 'team', 'week'] },
+      ],
+    },
+    {
+      id: 'mitap_d44_p3',
+      english: 'Do you mean moving the call?',
+      meaning: { ru: 'Ты имеешь в виду перенести созвон?', uk: 'Ти маєш на увазі перенести дзвінок?', es: '¿Quieres decir mover la llamada?' },
+      constructions: ['present-simple-questions', 'gerund'],
+      explanation: {
+        title: { ru: 'Действие после mean: форма на -ing', uk: 'Дія після mean: форма на -ing', es: 'Acción tras mean: forma en -ing' },
+        rule: { ru: 'После mean действие берёт -ing: move -> moving. Пример: moving the call -> перенести созвон.', uk: 'Після mean дія бере -ing: move -> moving. Приклад: moving the call -> перенести дзвінок.', es: 'Tras mean la acción toma -ing: move -> moving. Ejemplo: moving the call -> mover la llamada.' },
+        why: { ru: 'Так ты уточняешь, какое именно действие предлагает коллега на встрече.', uk: 'Так ти уточнюєш, яку саме дію пропонує колега на зустрічі.', es: 'Así aclaras qué acción propone el colega en la reunión.' },
+        commonMistake: { ru: 'Не говори mean to move. После mean ставь moving: Do you mean moving?', uk: 'Не кажи mean to move. Після mean став moving: Do you mean moving?', es: 'No digas mean to move. Tras mean usa moving: Do you mean moving?' },
+      },
+      words: [
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Are', 'Have', 'Will'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['think', 'say', 'ask', 'know', 'feel'] },
+        { text: 'moving', partOfSpeech: 'verb', distractors: ['keeping', 'calling', 'reading', 'writing', 'sending'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'of', 'to', 'at'] },
+        { text: 'call', partOfSpeech: 'noun', distractors: ['plan', 'date', 'report', 'team', 'week'] },
+      ],
+    },
+    {
+      id: 'mitap_d44_p4',
+      english: 'Sorry, what do you mean exactly?',
+      meaning: { ru: 'Извини, что именно ты имеешь в виду?', uk: 'Вибач, що саме ти маєш на увазі?', es: 'Perdona, ¿qué quieres decir exactamente?' },
+      constructions: ['present-simple-questions', 'wh-questions'],
+      explanation: {
+        title: { ru: 'Вежливый переспрос со словом Sorry', uk: 'Ввічливий перепит зі словом Sorry', es: 'Repregunta cortés con la palabra Sorry' },
+        rule: { ru: 'Начни с Sorry — «извини». Слово exactly значит «именно». Пример: exactly -> что именно ты имеешь в виду.', uk: 'Почни з Sorry — «вибач». Слово exactly значить «саме». Приклад: exactly -> що саме ти маєш на увазі.', es: 'Empieza con Sorry — «perdona». La palabra exactly significa «exactamente». Ejemplo: exactly -> qué quieres decir exactamente.' },
+        why: { ru: 'Sorry смягчает вопрос, а exactly просит точный смысл — звучишь вежливо и ясно.', uk: 'Sorry пом\'якшує питання, а exactly просить точний зміст — звучиш ввічливо й ясно.', es: 'Sorry suaviza la pregunta y exactly pide el sentido exacto: suenas cortés y claro.' },
+        commonMistake: { ru: 'Не ставь exactly в начало. Оно идёт в конце: what do you mean exactly?', uk: 'Не став exactly на початок. Воно йде в кінці: what do you mean exactly?', es: 'No pongas exactly al inicio. Va al final: what do you mean exactly?' },
+      },
+      words: [
+        { text: 'Sorry', partOfSpeech: 'other', distractors: ['Please', 'Hello', 'Okay', 'Right', 'Sure'] },
+        { text: 'what', partOfSpeech: 'pronoun', distractors: ['where', 'when', 'how', 'why', 'who'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'make', 'have', 'go'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['think', 'say', 'ask', 'know', 'hear'] },
+        { text: 'exactly', partOfSpeech: 'adverb', distractors: ['really', 'clearly', 'simply', 'quickly', 'slowly'] },
+      ],
+    },
+    {
+      id: 'mitap_d44_p5',
+      english: 'I mean starting the report today.',
+      meaning: { ru: 'Я имею в виду начать отчёт сегодня.', uk: 'Я маю на увазі почати звіт сьогодні.', es: 'Quiero decir empezar el informe hoy.' },
+      constructions: ['present-simple', 'gerund'],
+      explanation: {
+        title: { ru: 'Сам объясняешь смысл: I mean...', uk: 'Сам пояснюєш зміст: I mean...', es: 'Tú explicas el sentido: I mean...' },
+        rule: { ru: 'I mean — «я имею в виду». Действие берёт -ing: start -> starting. Пример: starting the report -> начать отчёт.', uk: 'I mean — «я маю на увазі». Дія бере -ing: start -> starting. Приклад: starting the report -> почати звіт.', es: 'I mean — «quiero decir». La acción toma -ing: start -> starting. Ejemplo: starting the report -> empezar el informe.' },
+        why: { ru: 'Так ты сам поясняешь мысль, когда коллега тебя не понял на созвоне.', uk: 'Так ти сам пояснюєш думку, коли колега тебе не зрозумів на дзвінку.', es: 'Así explicas tu idea cuando el colega no te entendió en la llamada.' },
+        commonMistake: { ru: 'Не говори I mean to start. После mean ставь starting: I mean starting.', uk: 'Не кажи I mean to start. Після mean став starting: I mean starting.', es: 'No digas I mean to start. Tras mean usa starting: I mean starting.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'you', 'they', 'he', 'she'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['think', 'say', 'ask', 'know', 'hear'] },
+        { text: 'starting', partOfSpeech: 'verb', distractors: ['keeping', 'calling', 'reading', 'moving', 'sending'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'of', 'to', 'at'] },
+        { text: 'report', partOfSpeech: 'noun', distractors: ['plan', 'call', 'date', 'team', 'week'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['never', 'always', 'almost', 'rather', 'quite'] },
+      ],
+    },
+    {
+      id: 'mitap_d44_p6',
+      english: 'Does that mean we wait now?',
+      meaning: { ru: 'Это значит, что мы ждём сейчас?', uk: 'Це значить, що ми чекаємо зараз?', es: '¿Eso significa que esperamos ahora?' },
+      constructions: ['present-simple-questions', 'wh-questions'],
+      explanation: {
+        title: { ru: 'Проверяем вывод: Does that mean...?', uk: 'Перевіряємо висновок: Does that mean...?', es: 'Comprobamos la conclusión: Does that mean...?' },
+        rule: { ru: 'Does that mean...? — «это значит...?». Здесь mean значит «значить». Пример: mean -> это значит, что мы ждём.', uk: 'Does that mean...? — «це значить...?». Тут mean значить «означати». Приклад: mean -> це значить, що ми чекаємо.', es: 'Does that mean...? — «¿eso significa...?». Aquí mean significa «significar». Ejemplo: mean -> eso significa que esperamos.' },
+        why: { ru: 'Так ты проверяешь, правильно ли понял итог встречи, прежде чем действовать.', uk: 'Так ти перевіряєш, чи правильно зрозумів підсумок зустрічі, перш ніж діяти.', es: 'Así compruebas si entendiste bien el resultado de la reunión antes de actuar.' },
+        commonMistake: { ru: 'После that нужно Does, не Do: Does that mean...?', uk: 'Після that потрібне Does, не Do: Does that mean...?', es: 'Tras that hace falta Does, no Do: Does that mean...?' },
+      },
+      words: [
+        { text: 'Does', partOfSpeech: 'verb', distractors: ['Do', 'Did', 'Is', 'Has', 'Can'] },
+        { text: 'that', partOfSpeech: 'pronoun', distractors: ['this', 'these', 'those', 'it', 'them'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['think', 'say', 'ask', 'know', 'hear'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['you', 'they', 'he', 'she', 'it'] },
+        { text: 'wait', partOfSpeech: 'verb', distractors: ['leave', 'finish', 'read', 'start', 'move'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['never', 'always', 'almost', 'rather', 'quite'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'mean', partOfSpeech: 'verb', translation: { ru: 'иметь в виду, значить', uk: 'мати на увазі, значити', es: 'querer decir, significar' }, example: 'What do you mean by that?' },
+    { word: 'by', partOfSpeech: 'preposition', translation: { ru: 'под (по смыслу)', uk: 'під (за змістом)', es: 'con (en sentido de)' }, example: 'What do you mean by that?' },
+    { word: 'plan', partOfSpeech: 'noun', translation: { ru: 'план', uk: 'план', es: 'el plan' }, example: 'Do you mean the new plan?' },
+    { word: 'moving', partOfSpeech: 'noun', translation: { ru: 'перенос, перенести', uk: 'перенесення, перенести', es: 'mover' }, example: 'Do you mean moving the call?' },
+    { word: 'exactly', partOfSpeech: 'adverb', translation: { ru: 'именно, точно', uk: 'саме, точно', es: 'exactamente' }, example: 'Sorry, what do you mean exactly?' },
+    { word: 'starting', partOfSpeech: 'noun', translation: { ru: 'начало, начать', uk: 'початок, почати', es: 'empezar' }, example: 'I mean starting the report today.' },
+  ],
+};
+
+export const MITAP_DAY_45: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 45,
+  topic: { ru: 'Переформулировать чужую мысль', uk: 'Переформулювати чужу думку', es: 'Reformular la idea de otra persona' },
+  outcome: {
+    ru: 'Ты сможешь повторить чужую мысль своими словами и проверить, правильно ли ты понял.',
+    uk: 'Ти зможеш повторити чужу думку своїми словами й перевірити, чи правильно зрозумів.',
+    es: 'Podrás repetir la idea de otra persona con tus palabras y comprobar si la entendiste bien.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [24, 23],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Покажи, что ты слушал', uk: 'Покажи, що ти слухав', es: 'Muestra que escuchaste' },
+      body: {
+        ru: 'На созвоне хорошо повторить чужую мысль своими словами. Так ты показываешь, что слушал, и сразу проверяешь, верно ли понял.',
+        uk: 'На дзвінку добре повторити чужу думку своїми словами. Так ти показуєш, що слухав, і одразу перевіряєш, чи правильно зрозумів.',
+        es: 'En una llamada es bueno repetir la idea de otra persona con tus palabras. Así muestras que escuchaste y compruebas si entendiste bien.',
+      },
+      examples: [
+        { en: 'So, if I understand correctly, you need more time.', gloss: { ru: 'Итак, если я правильно понимаю, тебе нужно больше времени.', uk: 'Отже, якщо я правильно розумію, тобі потрібно більше часу.', es: 'Entonces, si entiendo bien, necesitas más tiempo.' } },
+        { en: 'In other words, the plan has been changed.', gloss: { ru: 'Другими словами, план изменили.', uk: 'Іншими словами, план змінили.', es: 'En otras palabras, el plan ha sido cambiado.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Начни мягко', uk: 'Почни м\'яко', es: 'Empieza con suavidad' },
+      body: {
+        ru: 'Начинай переформулировку с мягких слов: So, In other words, If I understand correctly. Они дают понять, что ты не споришь, а уточняешь.',
+        uk: 'Починай переформулювання з м\'яких слів: So, In other words, If I understand correctly. Вони показують, що ти не сперечаєшся, а уточнюєш.',
+        es: 'Empieza la reformulación con palabras suaves: So, In other words, If I understand correctly. Muestran que no discutes, solo aclaras.',
+      },
+      examples: [
+        { en: 'So you mean the work is already done.', gloss: { ru: 'То есть ты имеешь в виду, что работа уже сделана.', uk: 'Тобто ти маєш на увазі, що робота вже зроблена.', es: 'Entonces quieres decir que el trabajo ya está hecho.' } },
+        { en: 'If I understand correctly, we have lost the file.', gloss: { ru: 'Если я правильно понимаю, мы потеряли файл.', uk: 'Якщо я правильно розумію, ми втратили файл.', es: 'Si entiendo bien, hemos perdido el archivo.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Спроси, прав ли ты', uk: 'Запитай, чи маєш рацію', es: 'Pregunta si tienes razón' },
+      body: {
+        ru: 'После своей версии задай короткий вопрос: Is that right? Так ты даёшь человеку шанс поправить тебя, и встреча идёт ровно.',
+        uk: 'Після своєї версії задай коротке запитання: Is that right? Так ти даєш людині шанс виправити тебе, і зустріч іде рівно.',
+        es: 'Después de tu versión haz una pregunta corta: ¿Is that right? Así das a la persona la oportunidad de corregirte y la reunión va bien.',
+      },
+      examples: [
+        { en: 'So we will start on Monday. Is that right?', gloss: { ru: 'То есть мы начнём в понедельник. Так?', uk: 'Тобто ми почнемо в понеділок. Так?', es: 'Entonces empezaremos el lunes. ¿Es así?' } },
+        { en: 'You have already sent the report. Is that right?', gloss: { ru: 'Ты уже отправил отчёт. Так?', uk: 'Ти вже відправив звіт. Так?', es: 'Ya has enviado el informe. ¿Es así?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d45_p1',
+      english: 'So, if I understand correctly, you need help.',
+      meaning: { ru: 'Итак, если я правильно понимаю, тебе нужна помощь.', uk: 'Отже, якщо я правильно розумію, тобі потрібна допомога.', es: 'Entonces, si entiendo bien, necesitas ayuda.' },
+      constructions: ['present-simple', 'conditionals'],
+      explanation: {
+        title: { ru: 'if I understand correctly — мягкое уточнение', uk: 'if I understand correctly — м\'яке уточнення', es: 'if I understand correctly — aclaración suave' },
+        rule: { ru: 'Фраза if I understand correctly значит «если я правильно понимаю». Ставь её перед своей версией чужой мысли.', uk: 'Фраза if I understand correctly значить «якщо я правильно розумію». Став її перед своєю версією чужої думки.', es: 'La frase if I understand correctly significa «si entiendo bien». Ponla antes de tu versión de la idea.' },
+        why: { ru: 'So в начале значит «итак». Оно мягко вводит твой пересказ и не звучит как спор.', uk: 'So на початку значить «отже». Воно м\'яко вводить твій переказ і не звучить як суперечка.', es: 'So al inicio significa «entonces». Introduce tu resumen con suavidad y no suena a discusión.' },
+        commonMistake: { ru: 'Не говори understand correct. Нужно understand correctly — со словом correctly.', uk: 'Не кажи understand correct. Потрібно understand correctly — зі словом correctly.', es: 'No digas understand correct. Se dice understand correctly — con la palabra correctly.' },
+      },
+      words: [
+        { text: 'So', partOfSpeech: 'adverb', distractors: ['Up', 'For', 'At', 'By', 'Of'] },
+        { text: 'if', partOfSpeech: 'conjunction', distractors: ['that', 'which', 'whose', 'than', 'whom'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'you'] },
+        { text: 'understand', partOfSpeech: 'verb', distractors: ['forget', 'remember', 'explain', 'decide', 'believe'] },
+        { text: 'correctly', partOfSpeech: 'adverb', distractors: ['loudly', 'warmly', 'happily', 'sadly', 'proudly'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'it', 'they', 'she', 'we'] },
+        { text: 'need', partOfSpeech: 'verb', distractors: ['bring', 'find', 'keep', 'lose', 'carry'] },
+        { text: 'help', partOfSpeech: 'noun', distractors: ['money', 'time', 'food', 'space', 'luck'] },
+      ],
+    },
+    {
+      id: 'mitap_d45_p2',
+      english: 'In other words, the plan has been changed.',
+      meaning: { ru: 'Другими словами, план изменили.', uk: 'Іншими словами, план змінили.', es: 'En otras palabras, el plan ha sido cambiado.' },
+      constructions: ['passive-voice', 'present-perfect'],
+      explanation: {
+        title: { ru: 'has been changed — это изменили', uk: 'has been changed — це змінили', es: 'has been changed — esto fue cambiado' },
+        rule: { ru: 'has been changed значит «изменили», когда важен сам факт, а не кто это сделал. План в центре внимания.', uk: 'has been changed значить «змінили», коли важливий сам факт, а не хто це зробив. План у центрі уваги.', es: 'has been changed significa «fue cambiado», cuando importa el hecho, no quién lo hizo. El plan es el centro.' },
+        why: { ru: 'In other words значит «другими словами». Это лучший заход для пересказа чужой мысли по-новому.', uk: 'In other words значить «іншими словами». Це найкращий захід для переказу чужої думки по-новому.', es: 'In other words significa «en otras palabras». Es la mejor entrada para repetir la idea de otra forma.' },
+        commonMistake: { ru: 'Не говори has been change. После been нужно changed — со словом changed.', uk: 'Не кажи has been change. Після been потрібно changed — зі словом changed.', es: 'No digas has been change. Después de been se dice changed — con la palabra changed.' },
+      },
+      words: [
+        { text: 'In', partOfSpeech: 'preposition', distractors: ['On', 'At', 'To', 'By', 'Of'] },
+        { text: 'other', partOfSpeech: 'adjective', distractors: ['heavy', 'quiet', 'brave', 'sweet', 'sharp'] },
+        { text: 'words', partOfSpeech: 'noun', distractors: ['chairs', 'rivers', 'clouds', 'streets', 'apples'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'my', 'this', 'some'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['door', 'tree', 'glass', 'shoe', 'cloud'] },
+        { text: 'has', partOfSpeech: 'verb', distractors: ['have', 'had', 'is', 'was', 'does'] },
+        { text: 'been', partOfSpeech: 'verb', distractors: ['was', 'were', 'being', 'be', 'is'] },
+        { text: 'changed', partOfSpeech: 'verb', distractors: ['walked', 'cooked', 'jumped', 'painted', 'cleaned'] },
+      ],
+    },
+    {
+      id: 'mitap_d45_p3',
+      english: 'So you mean the work is already done.',
+      meaning: { ru: 'То есть ты имеешь в виду, что работа уже сделана.', uk: 'Тобто ти маєш на увазі, що робота вже зроблена.', es: 'Entonces quieres decir que el trabajo ya está hecho.' },
+      constructions: ['passive-voice', 'present-simple'],
+      explanation: {
+        title: { ru: 'you mean — ты имеешь в виду', uk: 'you mean — ти маєш на увазі', es: 'you mean — quieres decir' },
+        rule: { ru: 'So you mean значит «то есть ты имеешь в виду». Этим ты повторяешь чужую мысль и просишь подтвердить.', uk: 'So you mean значить «тобто ти маєш на увазі». Цим ти повторюєш чужу думку й просиш підтвердити.', es: 'So you mean significa «entonces quieres decir». Así repites la idea y pides confirmación.' },
+        why: { ru: 'is done значит «сделана». Важен результат работы, а не тот, кто её делал.', uk: 'is done значить «зроблена». Важливий результат роботи, а не той, хто її робив.', es: 'is done significa «está hecho». Importa el resultado del trabajo, no quién lo hizo.' },
+        commonMistake: { ru: 'Не говори you means. После you нужно mean — со словом mean.', uk: 'Не кажи you means. Після you потрібно mean — зі словом mean.', es: 'No digas you means. Después de you se dice mean — con la palabra mean.' },
+      },
+      words: [
+        { text: 'So', partOfSpeech: 'adverb', distractors: ['Up', 'For', 'At', 'By', 'Of'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'it', 'they', 'we'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['show', 'ask', 'tell', 'write', 'read'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'my', 'one'] },
+        { text: 'work', partOfSpeech: 'noun', distractors: ['road', 'lamp', 'book', 'wall', 'field'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'be', 'were', 'being'] },
+        { text: 'already', partOfSpeech: 'adverb', distractors: ['loudly', 'gently', 'rarely', 'calmly', 'barely'] },
+        { text: 'done', partOfSpeech: 'verb', distractors: ['seen', 'made', 'taken', 'given', 'known'] },
+      ],
+    },
+    {
+      id: 'mitap_d45_p4',
+      english: 'If I understand correctly, we have lost the file.',
+      meaning: { ru: 'Если я правильно понимаю, мы потеряли файл.', uk: 'Якщо я правильно розумію, ми втратили файл.', es: 'Si entiendo bien, hemos perdido el archivo.' },
+      constructions: ['present-perfect', 'conditionals'],
+      explanation: {
+        title: { ru: 'have lost — потеряли и сейчас нет', uk: 'have lost — втратили і зараз немає', es: 'have lost — hemos perdido y ahora falta' },
+        rule: { ru: 'have lost значит «потеряли», и файла нет прямо сейчас. Результат важен в этот момент.', uk: 'have lost значить «втратили», і файлу немає прямо зараз. Результат важливий цієї миті.', es: 'have lost significa «hemos perdido», y el archivo falta ahora mismo. El resultado importa ya.' },
+        why: { ru: 'If I understand correctly мягко вводит твою догадку. Ты уточняешь, а не обвиняешь команду.', uk: 'If I understand correctly м\'яко вводить твою здогадку. Ти уточнюєш, а не звинувачуєш команду.', es: 'If I understand correctly introduce tu idea con suavidad. Aclaras, no culpas al equipo.' },
+        commonMistake: { ru: 'Не говори we have losed. Нужно have lost — со словом lost.', uk: 'Не кажи we have losed. Потрібно have lost — зі словом lost.', es: 'No digas we have losed. Se dice have lost — con la palabra lost.' },
+      },
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['That', 'Which', 'Than', 'Whose', 'Whom'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'it', 'they', 'you'] },
+        { text: 'understand', partOfSpeech: 'verb', distractors: ['forget', 'explain', 'doubt', 'decide', 'believe'] },
+        { text: 'correctly', partOfSpeech: 'adverb', distractors: ['softly', 'quickly', 'poorly', 'early', 'brightly'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'it', 'you', 'they'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'is', 'was', 'does'] },
+        { text: 'lost', partOfSpeech: 'verb', distractors: ['broken', 'driven', 'eaten', 'spoken', 'flown'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'my', 'one'] },
+        { text: 'file', partOfSpeech: 'noun', distractors: ['chair', 'window', 'garden', 'bottle', 'mountain'] },
+      ],
+    },
+    {
+      id: 'mitap_d45_p5',
+      english: 'So we will start the project on Monday.',
+      meaning: { ru: 'То есть мы начнём проект в понедельник.', uk: 'Тобто ми почнемо проєкт у понеділок.', es: 'Entonces empezaremos el proyecto el lunes.' },
+      constructions: ['future-simple', 'prepositions-time'],
+      explanation: {
+        title: { ru: 'will start — начнём в будущем', uk: 'will start — почнемо в майбутньому', es: 'will start — empezaremos en el futuro' },
+        rule: { ru: 'will start значит «начнём». Так ты повторяешь чужой план на будущее и просишь подтвердить его.', uk: 'will start значить «почнемо». Так ти повторюєш чужий план на майбутнє й просиш підтвердити його.', es: 'will start significa «empezaremos». Así repites el plan futuro de otra persona y pides confirmación.' },
+        why: { ru: 'on Monday значит «в понедельник». Перед днями недели всегда ставь on, а не in.', uk: 'on Monday значить «у понеділок». Перед днями тижня завжди став on, а не in.', es: 'on Monday significa «el lunes». Antes de los días de la semana usa on, no in.' },
+        commonMistake: { ru: 'Не говори in Monday. С днями недели нужно on — со словом on.', uk: 'Не кажи in Monday. З днями тижня потрібно on — зі словом on.', es: 'No digas in Monday. Con días de la semana se usa on — con la palabra on.' },
+      },
+      words: [
+        { text: 'So', partOfSpeech: 'adverb', distractors: ['Rarely', 'Almost', 'Soon', 'Maybe', 'Often'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'it', 'you', 'they'] },
+        { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'may', 'would'] },
+        { text: 'start', partOfSpeech: 'verb', distractors: ['close', 'leave', 'build', 'throw', 'carry'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'my', 'this', 'some'] },
+        { text: 'project', partOfSpeech: 'noun', distractors: ['river', 'spoon', 'cloud', 'ticket', 'bridge'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'to', 'of'] },
+        { text: 'Monday', partOfSpeech: 'noun', distractors: ['April', 'Summer', 'Morning', 'Winter', 'Evening'] },
+      ],
+    },
+    {
+      id: 'mitap_d45_p6',
+      english: 'You have already sent the report. Is that right?',
+      meaning: { ru: 'Ты уже отправил отчёт. Так?', uk: 'Ти вже відправив звіт. Так?', es: 'Ya has enviado el informe. ¿Es así?' },
+      constructions: ['present-perfect', 'to-be-questions'],
+      explanation: {
+        title: { ru: 'Is that right? — проверка понимания', uk: 'Is that right? — перевірка розуміння', es: 'Is that right? — comprobar la comprensión' },
+        rule: { ru: 'Is that right? значит «так?». Задавай этот короткий вопрос после своей версии чужой мысли.', uk: 'Is that right? значить «так?». Задавай це коротке запитання після своєї версії чужої думки.', es: 'Is that right? significa «¿es así?». Haz esta pregunta corta después de tu versión de la idea.' },
+        why: { ru: 'have sent значит «отправил» с результатом сейчас. already значит «уже» — действие закончено.', uk: 'have sent значить «відправив» з результатом зараз. already значить «вже» — дія завершена.', es: 'have sent significa «has enviado» con resultado ahora. already significa «ya» — la acción terminó.' },
+        commonMistake: { ru: 'Не говори you have send. Нужно have sent — со словом sent.', uk: 'Не кажи you have send. Потрібно have sent — зі словом sent.', es: 'No digas you have send. Se dice have sent — con la palabra sent.' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'It', 'They', 'We'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'is', 'was', 'does'] },
+        { text: 'already', partOfSpeech: 'adverb', distractors: ['loudly', 'calmly', 'rarely', 'gently', 'barely'] },
+        { text: 'sent', partOfSpeech: 'verb', distractors: ['grown', 'worn', 'held', 'read', 'sold'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'my', 'one'] },
+        { text: 'report', partOfSpeech: 'noun', distractors: ['garden', 'bottle', 'window', 'blanket', 'mountain'] },
+        { text: 'Is', partOfSpeech: 'to-be', distractors: ['Are', 'Am', 'Be', 'Were', 'Being'] },
+        { text: 'that', partOfSpeech: 'pronoun', distractors: ['who', 'which', 'whose', 'whom', 'what'] },
+        { text: 'right', partOfSpeech: 'adjective', distractors: ['warm', 'loud', 'soft', 'dark', 'sweet'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'correctly', partOfSpeech: 'adverb', translation: { ru: 'правильно', uk: 'правильно', es: 'correctamente' }, example: 'So, if I understand correctly, you need help.' },
+    { word: 'In other words', partOfSpeech: 'other', translation: { ru: 'другими словами', uk: 'іншими словами', es: 'en otras palabras' }, example: 'In other words, the plan has been changed.' },
+    { word: 'mean', partOfSpeech: 'verb', translation: { ru: 'иметь в виду', uk: 'мати на увазі', es: 'querer decir' }, example: 'So you mean the work is already done.' },
+    { word: 'lost', partOfSpeech: 'verb', translation: { ru: 'потеряли', uk: 'втратили', es: 'perdido' }, example: 'If I understand correctly, we have lost the file.' },
+    { word: 'project', partOfSpeech: 'noun', translation: { ru: 'проект', uk: 'проєкт', es: 'proyecto' }, example: 'So we will start the project on Monday.' },
+    { word: 'right', partOfSpeech: 'adjective', translation: { ru: 'верно', uk: 'вірно', es: 'correcto' }, example: 'You have already sent the report. Is that right?' },
+  ],
+};
+
+export const MITAP_DAY_46: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 46,
+  topic: { ru: 'Попросить пример', uk: 'Попросити приклад', es: 'Pedir un ejemplo' },
+  outcome: {
+    ru: 'Ты спокойно попросишь пример на созвоне: Can you give me an example? Could you show me an example? — и поймёшь идею до конца.',
+    uk: 'Ти спокійно попросиш приклад на дзвінку: Can you give me an example? Could you show me an example? — і зрозумієш ідею до кінця.',
+    es: 'Pedirás con calma un ejemplo en la llamada: Can you give me an example? Could you show me an example? — y entenderás la idea del todo.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [10, 5],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Can you give me an example?', uk: 'Can you give me an example?', es: 'Can you give me an example?' },
+      body: {
+        ru: 'Не понял идею? Скажи Can you give me an example? Это значит «можешь дать мне пример?». Can делает просьбу лёгкой и вежливой.',
+        uk: 'Не зрозумів ідею? Скажи Can you give me an example? Це значить «можеш дати мені приклад?». Can робить прохання легким і ввічливим.',
+        es: '¿No entendiste la idea? Di Can you give me an example? Significa «¿puedes darme un ejemplo?». Can hace la petición fácil y cortés.',
+      },
+      examples: [
+        { en: 'Can you give me an example?', gloss: { ru: 'Можешь дать мне пример?', uk: 'Можеш дати мені приклад?', es: '¿Puedes darme un ejemplo?' } },
+        { en: 'Can you give me an example here?', gloss: { ru: 'Можешь дать мне пример здесь?', uk: 'Можеш дати мені приклад тут?', es: '¿Puedes darme un ejemplo aquí?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Could you — чуть мягче', uk: 'Could you — трохи м\'якше', es: 'Could you — más suave' },
+      body: {
+        ru: 'Хочешь попросить мягче? Замени Can на Could: Could you show me an example? Это значит «не мог бы показать пример?». Звучит особенно вежливо.',
+        uk: 'Хочеш попросити м\'якше? Заміни Can на Could: Could you show me an example? Це значить «чи не міг би показати приклад?». Звучить особливо ввічливо.',
+        es: '¿Quieres pedir más suave? Cambia Can por Could: Could you show me an example? Significa «¿podrías mostrarme un ejemplo?». Suena muy cortés.',
+      },
+      examples: [
+        { en: 'Could you show me an example?', gloss: { ru: 'Не мог бы показать мне пример?', uk: 'Чи не міг би показати мені приклад?', es: '¿Podrías mostrarme un ejemplo?' } },
+        { en: 'Could you give one more example?', gloss: { ru: 'Не мог бы дать ещё один пример?', uk: 'Чи не міг би дати ще один приклад?', es: '¿Podrías darme un ejemplo más?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Do you have — у тебя есть?', uk: 'Do you have — у тебе є?', es: 'Do you have — ¿tienes?' },
+      body: {
+        ru: 'Чтобы спросить, есть ли пример, начни с Do you have: Do you have an example for this? Это значит «у тебя есть пример к этому?».',
+        uk: 'Щоб спитати, чи є приклад, почни з Do you have: Do you have an example for this? Це значить «у тебе є приклад до цього?».',
+        es: 'Para preguntar si hay un ejemplo, empieza con Do you have: Do you have an example for this? Significa «¿tienes un ejemplo para esto?».',
+      },
+      examples: [
+        { en: 'Do you have an example for this?', gloss: { ru: 'У тебя есть пример к этому?', uk: 'У тебе є приклад до цього?', es: '¿Tienes un ejemplo para esto?' } },
+        { en: 'Do you have a quick example?', gloss: { ru: 'У тебя есть быстрый пример?', uk: 'У тебе є швидкий приклад?', es: '¿Tienes un ejemplo rápido?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d46_p1',
+      english: 'Can you give me an example?',
+      meaning: { ru: 'Можешь дать мне пример?', uk: 'Можеш дати мені приклад?', es: '¿Puedes darme un ejemplo?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Can you — можешь ли ты', uk: 'Can you — чи можеш ти', es: 'Can you — puedes' },
+        rule: { ru: 'Can you в начале — вежливая просьба «можешь ли ты». Дальше give me an example — «дать мне пример».', uk: 'Can you на початку — ввічливе прохання «чи можеш ти». Далі give me an example — «дати мені приклад».', es: 'Can you al inicio es una petición cortés «¿puedes?». Luego give me an example — «darme un ejemplo».' },
+        why: { ru: 'Простой способ попросить пример, когда идея непонятна. Звучит вежливо и легко.', uk: 'Простий спосіб попросити приклад, коли ідея незрозуміла. Звучить ввічливо і легко.', es: 'Una forma simple de pedir un ejemplo cuando la idea no se entiende. Suena cortés.' },
+        commonMistake: { ru: 'После Can слово-действие без to: Can you give, не Can you to give.', uk: 'Після Can слово-дія без to: Can you give, не Can you to give.', es: 'Tras Can el verbo va sin to: Can you give, no Can you to give.' },
+      },
+      words: [
+        { text: 'Can', partOfSpeech: 'modal', distractors: ['Will', 'Did', 'Does', 'Do', 'Are'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'give', partOfSpeech: 'verb', distractors: ['read', 'plan', 'check', 'write', 'close'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
+        { text: 'an', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
+      ],
+    },
+    {
+      id: 'mitap_d46_p2',
+      english: 'Could you show me an example?',
+      meaning: { ru: 'Не мог бы показать мне пример?', uk: 'Чи не міг би показати мені приклад?', es: '¿Podrías mostrarme un ejemplo?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Could you — мягкая просьба', uk: 'Could you — м\'яке прохання', es: 'Could you — petición suave' },
+        rule: { ru: 'Could you звучит мягче, чем Can you: «не мог бы ты». Дальше show me an example — «показать мне пример».', uk: 'Could you звучить м\'якше, ніж Can you: «чи не міг би ти». Далі show me an example — «показати мені приклад».', es: 'Could you suena más suave que Can you: «¿podrías?». Luego show me an example — «mostrarme un ejemplo».' },
+        why: { ru: 'Особенно вежливый вариант для созвона с руководителем или клиентом. Никто не почувствует напора.', uk: 'Особливо ввічливий варіант для дзвінка з керівником чи клієнтом. Ніхто не відчує тиску.', es: 'Una opción muy cortés para una llamada con tu jefe o cliente. Nadie sentirá presión.' },
+        commonMistake: { ru: 'После Could слово-действие без to: Could you show, не Could you to show.', uk: 'Після Could слово-дія без to: Could you show, не Could you to show.', es: 'Tras Could el verbo va sin to: Could you show, no Could you to show.' },
+      },
+      words: [
+        { text: 'Could', partOfSpeech: 'modal', distractors: ['Will', 'Did', 'Does', 'Do', 'Are'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'show', partOfSpeech: 'verb', distractors: ['read', 'plan', 'check', 'write', 'close'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
+        { text: 'an', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
+      ],
+    },
+    {
+      id: 'mitap_d46_p3',
+      english: 'Do you have an example for this?',
+      meaning: { ru: 'У тебя есть пример к этому?', uk: 'У тебе є приклад до цього?', es: '¿Tienes un ejemplo para esto?' },
+      constructions: ['present-simple-questions'],
+      explanation: {
+        title: { ru: 'Do you have — у тебя есть', uk: 'Do you have — у тебе є', es: 'Do you have — ¿tienes?' },
+        rule: { ru: 'Вопрос про наличие начинается с Do you have — «у тебя есть». Дальше an example for this — «пример к этому».', uk: 'Питання про наявність починається з Do you have — «у тебе є». Далі an example for this — «приклад до цього».', es: 'La pregunta sobre tener algo empieza con Do you have — «¿tienes?». Luego an example for this — «un ejemplo para esto».' },
+        why: { ru: 'Удобно спросить, есть ли у человека пример, прежде чем он начнёт объяснять. Чёткий запрос.', uk: 'Зручно спитати, чи є в людини приклад, перш ніж вона почне пояснювати. Чіткий запит.', es: 'Útil para preguntar si la persona tiene un ejemplo antes de que explique. Una petición clara.' },
+        commonMistake: { ru: 'Вопрос начинается с Do: Do you have, не You have an example?', uk: 'Питання починається з Do: Do you have, не You have an example?', es: 'La pregunta empieza con Do: Do you have, no You have an example?' },
+      },
+      words: [
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Are', 'Is', 'Have', 'Was', 'Were'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'having', 'be', 'being', 'get'] },
+        { text: 'an', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
+        { text: 'for', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'on', 'of'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['its', 'his', 'whose', 'few', 'both'] },
+      ],
+    },
+    {
+      id: 'mitap_d46_p4',
+      english: 'Can you give one more example?',
+      meaning: { ru: 'Можешь дать ещё один пример?', uk: 'Можеш дати ще один приклад?', es: '¿Puedes dar un ejemplo más?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'one more — ещё один', uk: 'one more — ще один', es: 'one more — uno más' },
+        rule: { ru: 'one more значит «ещё один». Can you give one more example — «можешь дать ещё один пример».', uk: 'one more значить «ще один». Can you give one more example — «можеш дати ще один приклад».', es: 'one more significa «uno más». Can you give one more example — «¿puedes dar un ejemplo más?».' },
+        why: { ru: 'Просишь второй пример, когда первый был не до конца понятен. Помогает уловить идею.', uk: 'Просиш другий приклад, коли перший був не до кінця зрозумілий. Допомагає вловити ідею.', es: 'Pides un segundo ejemplo cuando el primero no quedó claro. Ayuda a captar la idea.' },
+        commonMistake: { ru: 'Порядок: one more example, не more one example.', uk: 'Порядок: one more example, не more one example.', es: 'El orden es one more example, no more one example.' },
+      },
+      words: [
+        { text: 'Can', partOfSpeech: 'modal', distractors: ['Will', 'Did', 'Does', 'Do', 'Are'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'give', partOfSpeech: 'verb', distractors: ['read', 'plan', 'check', 'write', 'close'] },
+        { text: 'one', partOfSpeech: 'determiner', distractors: ['its', 'his', 'whose', 'each', 'both'] },
+        { text: 'more', partOfSpeech: 'adjective', distractors: ['red', 'cold', 'tall', 'round', 'empty'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
+      ],
+    },
+    {
+      id: 'mitap_d46_p5',
+      english: 'Could you explain it with an example?',
+      meaning: { ru: 'Не мог бы объяснить это на примере?', uk: 'Чи не міг би пояснити це на прикладі?', es: '¿Podrías explicarlo con un ejemplo?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'with an example — на примере', uk: 'with an example — на прикладі', es: 'with an example — con un ejemplo' },
+        rule: { ru: 'with an example значит «на примере». Could you explain it with an example — «не мог бы объяснить это на примере».', uk: 'with an example значить «на прикладі». Could you explain it with an example — «чи не міг би пояснити це на прикладі».', es: 'with an example significa «con un ejemplo». Could you explain it with an example — «¿podrías explicarlo con un ejemplo?».' },
+        why: { ru: 'Просишь не просто повторить, а показать на примере. Так сложная идея становится понятной.', uk: 'Просиш не просто повторити, а показати на прикладі. Так складна ідея стає зрозумілою.', es: 'Pides no solo repetir, sino mostrar con un ejemplo. Así la idea difícil se entiende.' },
+        commonMistake: { ru: '«На примере» идёт через with: with an example, не by an example.', uk: '«На прикладі» іде через with: with an example, не by an example.', es: '«Con un ejemplo» va con with: with an example, no by an example.' },
+      },
+      words: [
+        { text: 'Could', partOfSpeech: 'modal', distractors: ['Will', 'Did', 'Does', 'Do', 'Are'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'explain', partOfSpeech: 'verb', distractors: ['read', 'plan', 'check', 'write', 'close'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
+        { text: 'with', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'on', 'of'] },
+        { text: 'an', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
+      ],
+    },
+    {
+      id: 'mitap_d46_p6',
+      english: 'Do you have a quick example?',
+      meaning: { ru: 'У тебя есть быстрый пример?', uk: 'У тебе є швидкий приклад?', es: '¿Tienes un ejemplo rápido?' },
+      constructions: ['present-simple-questions'],
+      explanation: {
+        title: { ru: 'a quick example — быстрый пример', uk: 'a quick example — швидкий приклад', es: 'a quick example — un ejemplo rápido' },
+        rule: { ru: 'quick значит «быстрый, короткий». Do you have a quick example — «у тебя есть быстрый пример».', uk: 'quick значить «швидкий, короткий». Do you have a quick example — «у тебе є швидкий приклад».', es: 'quick significa «rápido, corto». Do you have a quick example — «¿tienes un ejemplo rápido?».' },
+        why: { ru: 'Просишь короткий пример, чтобы не задерживать встречу. Все ценят, что ты бережёшь время.', uk: 'Просиш короткий приклад, щоб не затримувати зустріч. Усі цінують, що ти бережеш час.', es: 'Pides un ejemplo corto para no alargar la reunión. Todos valoran que cuides el tiempo.' },
+        commonMistake: { ru: 'Перед quick example нужен a: a quick example, не quick example.', uk: 'Перед quick example потрібне a: a quick example, не quick example.', es: 'Antes de quick example va a: a quick example, no quick example.' },
+      },
+      words: [
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Are', 'Is', 'Have', 'Was', 'Were'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'having', 'be', 'being', 'get'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
+        { text: 'quick', partOfSpeech: 'adjective', distractors: ['red', 'cold', 'tall', 'round', 'empty'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'Can', partOfSpeech: 'modal', translation: { ru: 'можешь (просьба)', uk: 'можеш (прохання)', es: 'puedes' }, example: 'Can you give me an example?' },
+    { word: 'give', partOfSpeech: 'verb', translation: { ru: 'дать', uk: 'дати', es: 'dar' }, example: 'Can you give me an example?' },
+    { word: 'example', partOfSpeech: 'noun', translation: { ru: 'пример', uk: 'приклад', es: 'ejemplo' }, example: 'Can you give me an example?' },
+    { word: 'show', partOfSpeech: 'verb', translation: { ru: 'показать', uk: 'показати', es: 'mostrar' }, example: 'Could you show me an example?' },
+    { word: 'explain', partOfSpeech: 'verb', translation: { ru: 'объяснить', uk: 'пояснити', es: 'explicar' }, example: 'Could you explain it with an example?' },
+    { word: 'quick', partOfSpeech: 'adjective', translation: { ru: 'быстрый, короткий', uk: 'швидкий, короткий', es: 'rápido' }, example: 'Do you have a quick example?' },
+  ],
+};
+
+export const MITAP_DAY_47: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 47,
+  topic: { ru: 'Признаться, что не понял', uk: 'Зізнатися, що не зрозумів', es: 'Admitir que no entendiste' },
+  outcome: {
+    ru: 'Ты сможешь честно и спокойно сказать на созвоне, что не понял мысль, и попросить повторить — без стыда и паники.',
+    uk: 'Ти зможеш чесно й спокійно сказати на дзвінку, що не зрозумів думку, і попросити повторити — без сорому й паніки.',
+    es: 'Podrás decir con calma en una llamada que no entendiste una idea y pedir que la repitan, sin vergüenza ni pánico.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [3, 24],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Скажи честно: я потерял мысль', uk: 'Скажи чесно: я загубив думку', es: 'Di con sinceridad: perdí el hilo' },
+      body: {
+        ru: 'На созвоне нормально не понять с первого раза. Не молчи и не кивай вслепую. Фраза I am not following, sorry звучит вежливо и спокойно: ты просто говоришь, что потерял нить. Так делают даже опытные коллеги.',
+        uk: 'На дзвінку нормально не зрозуміти з першого разу. Не мовчи й не кивай наосліп. Фраза I am not following, sorry звучить ввічливо й спокійно: ти просто кажеш, що загубив нитку. Так роблять навіть досвідчені колеги.',
+        es: 'En una llamada es normal no entender a la primera. No te calles ni asientas a ciegas. La frase I am not following, sorry suena cortés y tranquila: solo dices que perdiste el hilo. Hasta los colegas con experiencia lo hacen.',
+      },
+      examples: [
+        { en: 'Sorry, I am not following.', gloss: { ru: 'Извини, я не улавливаю мысль.', uk: 'Вибач, я не вловлюю думку.', es: 'Perdona, no te sigo.' } },
+        { en: 'I do not understand this part.', gloss: { ru: 'Я не понимаю эту часть.', uk: 'Я не розумію цю частину.', es: 'No entiendo esta parte.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Скажи, что именно потерял', uk: 'Скажи, що саме загубив', es: 'Di qué fue lo que perdiste' },
+      body: {
+        ru: 'Не просто проси повторить — назови, где запутался. Скажи I missed the last point или I have lost you here. Так коллега поймёт, что именно повторить, и созвон не затянется.',
+        uk: 'Не просто проси повторити — назви, де заплутався. Скажи I missed the last point або I have lost you here. Так колега зрозуміє, що саме повторити, і дзвінок не затягнеться.',
+        es: 'No solo pidas que repitan: di dónde te perdiste. Di I missed the last point o I have lost you here. Así el colega sabrá qué repetir y la llamada no se alargará.',
+      },
+      examples: [
+        { en: 'I missed the last point.', gloss: { ru: 'Я упустил последнюю мысль.', uk: 'Я пропустив останню думку.', es: 'Me perdí la última idea.' } },
+        { en: 'I have lost you here.', gloss: { ru: 'Я тут потерял твою мысль.', uk: 'Я тут загубив твою думку.', es: 'Aquí te he perdido.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Попроси повторить просто', uk: 'Попроси повторити простіше', es: 'Pide que lo repitan más simple' },
+      body: {
+        ru: 'После признания мягко попроси помочь. Say it again, please или Can you explain it again? Это не слабость, а забота о деле: лучше переспросить сейчас, чем сделать неправильно потом.',
+        uk: 'Після зізнання м\'яко попроси допомогти. Say it again, please або Can you explain it again? Це не слабкість, а турбота про справу: краще перепитати зараз, ніж зробити неправильно потім.',
+        es: 'Tras admitirlo, pide ayuda con suavidad. Say it again, please o Can you explain it again? No es debilidad, es cuidar el trabajo: mejor preguntar ahora que hacerlo mal después.',
+      },
+      examples: [
+        { en: 'Can you say it again, please?', gloss: { ru: 'Можешь повторить, пожалуйста?', uk: 'Можеш повторити, будь ласка?', es: '¿Puedes repetirlo, por favor?' } },
+        { en: 'Can you explain it again?', gloss: { ru: 'Можешь объяснить ещё раз?', uk: 'Можеш пояснити ще раз?', es: '¿Puedes explicarlo otra vez?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d47_p1',
+      english: 'Sorry, I am not following you.',
+      meaning: { ru: 'Извини, я не улавливаю твою мысль.', uk: 'Вибач, я не вловлюю твою думку.', es: 'Perdona, no te sigo.' },
+      constructions: ['present-continuous'],
+      explanation: {
+        title: { ru: 'following — улавливаю мысль прямо сейчас', uk: 'following — вловлюю думку просто зараз', es: 'following — sigo el hilo ahora mismo' },
+        rule: { ru: 'am not following — про этот момент: я не успеваю за мыслью прямо сейчас. not following -> не улавливаю.', uk: 'am not following — про цей момент: я не встигаю за думкою просто зараз. not following -> не вловлюю.', es: 'am not following — sobre este momento: no sigo la idea ahora mismo. not following -> no sigo.' },
+        why: { ru: 'Это вежливый способ сказать, что ты потерял нить, не обвиняя коллегу.', uk: 'Це ввічливий спосіб сказати, що ти загубив нитку, не звинувачуючи колегу.', es: 'Es una forma cortés de decir que perdiste el hilo sin culpar al colega.' },
+        commonMistake: { ru: 'Говорят I not following. Нужно am: I am not following.', uk: 'Кажуть I not following. Потрібно am: I am not following.', es: 'Dicen I not following. Hace falta am: I am not following.' },
+      },
+      words: [
+        { text: 'Sorry', partOfSpeech: 'other', distractors: ['Please', 'Hello', 'Thanks', 'Maybe', 'Okay'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['very', 'too', 'so', 'quite', 'rather'] },
+        { text: 'following', partOfSpeech: 'verb', distractors: ['cooking', 'eating', 'driving', 'sleeping', 'jumping'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'us', 'them', 'him', 'her'] },
+      ],
+    },
+    {
+      id: 'mitap_d47_p2',
+      english: 'I do not understand this part.',
+      meaning: { ru: 'Я не понимаю эту часть.', uk: 'Я не розумію цю частину.', es: 'No entiendo esta parte.' },
+      constructions: ['present-simple-negation'],
+      explanation: {
+        title: { ru: 'do not understand — не понимаю', uk: 'do not understand — не розумію', es: 'do not understand — no entiendo' },
+        rule: { ru: 'do not understand — простое признание: понимания нет. understand -> понимаю, do not -> делает это отрицанием.', uk: 'do not understand — просте зізнання: розуміння немає. understand -> розумію, do not -> робить це запереченням.', es: 'do not understand — admisión simple: no hay comprensión. understand -> entiendo, do not -> lo niega.' },
+        why: { ru: 'Прямо и честно: ты говоришь о факте, а не извиняешься без конца.', uk: 'Прямо й чесно: ти говориш про факт, а не вибачаєшся без кінця.', es: 'Directo y honesto: hablas de un hecho, no te disculpas sin parar.' },
+        commonMistake: { ru: 'Говорят I not understand. Нужно do not: I do not understand.', uk: 'Кажуть I not understand. Потрібно do not: I do not understand.', es: 'Dicen I not understand. Hace falta do not: I do not understand.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'am', 'is', 'was'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'quite', 'also', 'still', 'just'] },
+        { text: 'understand', partOfSpeech: 'verb', distractors: ['remember', 'explain', 'believe', 'notice', 'accept'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['a', 'each', 'every', 'its', 'some'] },
+        { text: 'part', partOfSpeech: 'noun', distractors: ['desk', 'room', 'chair', 'door', 'floor'] },
+      ],
+    },
+    {
+      id: 'mitap_d47_p3',
+      english: 'I have lost you here, sorry.',
+      meaning: { ru: 'Я тут потерял твою мысль, извини.', uk: 'Я тут загубив твою думку, вибач.', es: 'Aquí te he perdido, perdona.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: 'have lost — потерял и сейчас не понимаю', uk: 'have lost — загубив і зараз не розумію', es: 'have lost — perdí y ahora no entiendo' },
+        rule: { ru: 'have lost — потерял мысль, и это важно сейчас. lost -> потерял, have -> связь с этим моментом.', uk: 'have lost — загубив думку, і це важливо зараз. lost -> загубив, have -> зв\'язок з цим моментом.', es: 'have lost — perdí la idea y ahora importa. lost -> perdí, have -> conexión con este momento.' },
+        why: { ru: 'Показывает, что ты только что отстал и тебе нужно повторение.', uk: 'Показує, що ти щойно відстав і тобі потрібне повторення.', es: 'Muestra que acabas de quedarte atrás y necesitas que lo repitan.' },
+        commonMistake: { ru: 'Говорят I have lose you. Нужно lost: I have lost you.', uk: 'Кажуть I have lose you. Потрібно lost: I have lost you.', es: 'Dicen I have lose you. Hace falta lost: I have lost you.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'do', 'am', 'was'] },
+        { text: 'lost', partOfSpeech: 'verb', distractors: ['cooked', 'painted', 'cleaned', 'walked', 'driven'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'us', 'them', 'him', 'her'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['twice', 'alone', 'badly', 'loudly', 'slowly'] },
+        { text: 'sorry', partOfSpeech: 'other', distractors: ['please', 'hello', 'thanks', 'maybe', 'okay'] },
+      ],
+    },
+    {
+      id: 'mitap_d47_p4',
+      english: 'I have missed the last point.',
+      meaning: { ru: 'Я упустил последнюю мысль.', uk: 'Я пропустив останню думку.', es: 'Me he perdido la última idea.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: 'have missed — упустил и это важно сейчас', uk: 'have missed — пропустив і це важливо зараз', es: 'have missed — me lo perdí y ahora importa' },
+        rule: { ru: 'have missed — пропустил мысль, и сейчас её нет в голове. missed -> пропустил, have -> связь с моментом.', uk: 'have missed — пропустив думку, і зараз її немає в голові. missed -> пропустив, have -> зв\'язок з моментом.', es: 'have missed — me perdí la idea y ahora no la tengo. missed -> perdí, have -> conexión con el momento.' },
+        why: { ru: 'Точно называешь, что именно пропустил, и коллеге легко повторить.', uk: 'Точно називаєш, що саме пропустив, і колезі легко повторити.', es: 'Dices con precisión qué te perdiste y al colega le es fácil repetirlo.' },
+        commonMistake: { ru: 'Говорят I missed the point уже после; здесь нужна связь: I have missed.', uk: 'Кажуть I missed the point вже після; тут потрібен зв\'язок: I have missed.', es: 'Dicen I missed the point en pasado; aquí hace falta la conexión: I have missed.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'do', 'am', 'was'] },
+        { text: 'missed', partOfSpeech: 'verb', distractors: ['dropped', 'skipped', 'ignored', 'refused', 'delayed'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'this', 'that', 'some', 'any'] },
+        { text: 'last', partOfSpeech: 'adjective', distractors: ['early', 'late', 'wide', 'deep', 'round'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['desk', 'door', 'floor', 'wall', 'window'] },
+      ],
+    },
+    {
+      id: 'mitap_d47_p5',
+      english: 'Can you say it again, please?',
+      meaning: { ru: 'Можешь повторить это, пожалуйста?', uk: 'Можеш повторити це, будь ласка?', es: '¿Puedes repetirlo, por favor?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Can you say it again — мягкая просьба повторить', uk: 'Can you say it again — м\'яке прохання повторити', es: 'Can you say it again — petición suave de repetir' },
+        rule: { ru: 'Can you — вежливо просишь повторить. say it again -> скажи это снова, can you -> можешь ли ты.', uk: 'Can you — ввічливо просиш повторити. say it again -> скажи це знову, can you -> чи можеш ти.', es: 'Can you — pides repetir con cortesía. say it again -> dilo otra vez, can you -> ¿puedes?.' },
+        why: { ru: 'После признания это естественный следующий шаг: попросить повторить.', uk: 'Після зізнання це природний наступний крок: попросити повторити.', es: 'Tras admitirlo, es el paso natural siguiente: pedir que lo repitan.' },
+        commonMistake: { ru: 'Говорят Can you say it again it. Лишнее it в конце убери.', uk: 'Кажуть Can you say it again it. Зайве it в кінці прибери.', es: 'Dicen Can you say it again it. Quita el it sobrante al final.' },
+      },
+      words: [
+        { text: 'Can', partOfSpeech: 'modal', distractors: ['may', 'will', 'must', 'should', 'would'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'say', partOfSpeech: 'verb', distractors: ['read', 'write', 'show', 'ask', 'call'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'us', 'me', 'him', 'her'] },
+        { text: 'again', partOfSpeech: 'adverb', distractors: ['twice', 'alone', 'badly', 'loudly', 'quietly'] },
+        { text: 'please', partOfSpeech: 'other', distractors: ['sorry', 'thanks', 'hello', 'maybe', 'okay'] },
+      ],
+    },
+    {
+      id: 'mitap_d47_p6',
+      english: 'I want to be sure I understand.',
+      meaning: { ru: 'Я хочу убедиться, что понимаю.', uk: 'Я хочу переконатися, що розумію.', es: 'Quiero asegurarme de que entiendo.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'I want to be sure — хочу убедиться', uk: 'I want to be sure — хочу переконатися', es: 'I want to be sure — quiero asegurarme' },
+        rule: { ru: 'want to be sure — хочешь убедиться, что всё понял правильно. be sure -> быть уверенным, I understand -> я понимаю.', uk: 'want to be sure — хочеш переконатися, що все зрозумів правильно. be sure -> бути впевненим, I understand -> я розумію.', es: 'want to be sure — quieres asegurarte de entender bien. be sure -> estar seguro, I understand -> entiendo.' },
+        why: { ru: 'Звучит ответственно: ты не молчишь, а проверяешь, что понял верно.', uk: 'Звучить відповідально: ти не мовчиш, а перевіряєш, що зрозумів вірно.', es: 'Suena responsable: no te callas, compruebas que entendiste bien.' },
+        commonMistake: { ru: 'Говорят I want be sure. Нужно to: I want to be sure.', uk: 'Кажуть I want be sure. Потрібно to: I want to be sure.', es: 'Dicen I want be sure. Hace falta to: I want to be sure.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
+        { text: 'want', partOfSpeech: 'verb', distractors: ['cook', 'drive', 'sleep', 'walk', 'swim'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'of', 'at', 'in', 'on'] },
+        { text: 'be', partOfSpeech: 'to-be', distractors: ['am', 'is', 'are', 'was', 'been'] },
+        { text: 'sure', partOfSpeech: 'adjective', distractors: ['empty', 'round', 'wooden', 'square', 'metal'] },
+        { text: 'understand', partOfSpeech: 'verb', distractors: ['remember', 'explain', 'believe', 'notice', 'accept'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'following', partOfSpeech: 'verb', translation: { ru: 'улавливаю (мысль)', uk: 'вловлюю (думку)', es: 'sigo (el hilo)' }, example: 'Sorry, I am not following you.' },
+    { word: 'understand', partOfSpeech: 'verb', translation: { ru: 'понимаю', uk: 'розумію', es: 'entiendo' }, example: 'I do not understand this part.' },
+    { word: 'lost', partOfSpeech: 'verb', translation: { ru: 'потерял', uk: 'загубив', es: 'perdí' }, example: 'I have lost you here, sorry.' },
+    { word: 'missed', partOfSpeech: 'verb', translation: { ru: 'упустил', uk: 'пропустив', es: 'me perdí' }, example: 'I have missed the last point.' },
+    { word: 'again', partOfSpeech: 'adverb', translation: { ru: 'снова', uk: 'знову', es: 'otra vez' }, example: 'Can you say it again, please?' },
+    { word: 'sure', partOfSpeech: 'adjective', translation: { ru: 'уверен', uk: 'впевнений', es: 'seguro' }, example: 'I want to be sure I understand.' },
+  ],
+};
+
+export const MITAP_DAY_48: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 48,
+  topic: { ru: 'Проверить, всем ли понятно', uk: 'Перевірити, чи всім зрозуміло', es: 'Comprobar si todos entienden' },
+  outcome: {
+    ru: 'Ты сможешь после своей части на созвоне спокойно проверить, всё ли понятно команде, и предложить задать вопросы.',
+    uk: 'Ти зможеш після своєї частини на дзвінку спокійно перевірити, чи все зрозуміло команді, і запропонувати поставити питання.',
+    es: 'Podrás, después de tu parte en la reunión, comprobar con calma si todo está claro para el equipo y proponer preguntas.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [24, 5],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Does that make sense? — главный вопрос дня', uk: 'Does that make sense? — головне питання дня', es: 'Does that make sense? — la pregunta clave del día' },
+      body: {
+        ru: 'Ты закончил свою часть на созвоне и хочешь проверить, всё ли понятно. Самая живая фраза для этого: Does that make sense? Дословно — «это имеет смысл?», а по-настоящему значит «понятно?». Говори её спокойно, с улыбкой в голосе — так ты приглашаешь людей сказать, если что-то неясно.',
+        uk: 'Ти закінчив свою частину на дзвінку і хочеш перевірити, чи все зрозуміло. Найжвавіша фраза для цього: Does that make sense? Дослівно — «це має сенс?», а насправді означає «зрозуміло?». Кажи її спокійно, з усмішкою в голосі — так ти запрошуєш людей сказати, якщо щось неясно.',
+        es: 'Terminaste tu parte en la reunión y quieres comprobar si todo está claro. La frase más natural es: Does that make sense? Literalmente «¿tiene sentido?», pero de verdad significa «¿se entiende?». Dila con calma, con una sonrisa en la voz — así invitas a la gente a hablar si algo no queda claro.',
+      },
+      examples: [
+        { en: 'Does that make sense to everyone?', gloss: { ru: 'Всем понятно?', uk: 'Усім зрозуміло?', es: '¿Tiene sentido para todos?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Спроси, остались ли вопросы', uk: 'Запитай, чи лишилися питання', es: 'Pregunta si quedan preguntas' },
+      body: {
+        ru: 'После «понятно?» дай людям шанс заговорить. Простой вопрос «Do you have any questions?» — «Есть вопросы?» — работает всегда. Слово any здесь значит «хоть какие-нибудь». Сделай маленькую паузу после вопроса: тишина даёт людям время поднять руку или написать в чат.',
+        uk: 'Після «зрозуміло?» дай людям шанс заговорити. Просте питання «Do you have any questions?» — «Є питання?» — працює завжди. Слово any тут значить «хоч якісь». Зроби маленьку паузу після питання: тиша дає людям час підняти руку або написати в чат.',
+        es: 'Después de «¿se entiende?», dale a la gente la oportunidad de hablar. La pregunta simple «Do you have any questions?» — «¿Hay preguntas?» — siempre funciona. La palabra any aquí significa «algunas». Haz una pequeña pausa: el silencio da tiempo a levantar la mano o escribir en el chat.',
+      },
+      examples: [
+        { en: 'Do you have any questions for me?', gloss: { ru: 'Есть ко мне вопросы?', uk: 'Є до мене питання?', es: '¿Tienen alguna pregunta para mí?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: '«Я объяснил» — это про результат сейчас', uk: '«Я пояснив» — це про результат зараз', es: '«Lo he explicado» — es sobre el resultado ahora' },
+      body: {
+        ru: 'Когда ты говоришь «я уже объяснил это», важен результат прямо сейчас — объяснение сделано. Для этого берём have/has + третью форму: I have explained — «я объяснил». Это короткий способ сказать «дело сделано, теперь проверим, дошло ли». Очень удобно в конце своей части.',
+        uk: 'Коли ти кажеш «я вже пояснив це», важливий результат прямо зараз — пояснення зроблено. Для цього беремо have/has + третю форму: I have explained — «я пояснив». Це короткий спосіб сказати «справу зроблено, тепер перевіримо, чи дійшло». Дуже зручно в кінці своєї частини.',
+        es: 'Cuando dices «ya lo he explicado», importa el resultado ahora — la explicación está hecha. Para eso usamos have/has + la tercera forma: I have explained — «lo he explicado». Es una forma corta de decir «está hecho, ahora comprobamos si llegó». Muy útil al final de tu parte.',
+      },
+      examples: [
+        { en: 'I have explained the main steps already.', gloss: { ru: 'Я уже объяснил основные шаги.', uk: 'Я вже пояснив основні кроки.', es: 'Ya he explicado los pasos principales.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d48_p1',
+      english: 'Does that make sense to everyone?',
+      meaning: { ru: 'Всем понятно?', uk: 'Усім зрозуміло?', es: '¿Tiene sentido para todos?' },
+      constructions: ['present-simple-questions'],
+      explanation: {
+        title: { ru: 'Главная фраза «понятно?»', uk: 'Головна фраза «зрозуміло?»', es: 'La frase clave «¿se entiende?»' },
+        rule: { ru: 'Does that make sense — это «понятно?». Слово does открывает вопрос: Does it work — это работает?', uk: 'Does that make sense — це «зрозуміло?». Слово does відкриває питання: Does it work — це працює?', es: 'Does that make sense es «¿se entiende?». Does abre la pregunta: Does it work — ¿funciona?' },
+        why: { ru: 'Это самый живой способ мягко проверить команду после своей части на созвоне.', uk: 'Це найжвавіший спосіб м\'яко перевірити команду після своєї частини на дзвінку.', es: 'Es la forma más natural de comprobar al equipo con suavidad tras tu parte.' },
+        commonMistake: { ru: 'Не говори «Is that make sense». Перед make нужен does, а не is: Does that make sense.', uk: 'Не кажи «Is that make sense». Перед make потрібен does, а не is: Does that make sense.', es: 'No digas «Is that make sense». Antes de make va does, no is: Does that make sense.' },
+      },
+      words: [
+        { text: 'Does', partOfSpeech: 'verb', distractors: ['Is', 'Am', 'Are', 'Was', 'Were'] },
+        { text: 'that', partOfSpeech: 'pronoun', distractors: ['this', 'it', 'they', 'one', 'such'] },
+        { text: 'make', partOfSpeech: 'verb', distractors: ['made', 'makes', 'build', 'give', 'take'] },
+        { text: 'sense', partOfSpeech: 'noun', distractors: ['meaning', 'point', 'idea', 'reason', 'value'] },
+        { text: 'to', partOfSpeech: 'preposition', distractors: ['for', 'at', 'with', 'of', 'on'] },
+        { text: 'everyone', partOfSpeech: 'pronoun', distractors: ['someone', 'anyone', 'nobody', 'each', 'all'] },
+      ],
+    },
+    {
+      id: 'mitap_d48_p2',
+      english: 'Do you have any questions for me?',
+      meaning: { ru: 'Есть ко мне вопросы?', uk: 'Є до мене питання?', es: '¿Tienen alguna pregunta para mí?' },
+      constructions: ['present-simple-questions'],
+      explanation: {
+        title: { ru: 'Спроси про вопросы', uk: 'Запитай про питання', es: 'Pregunta por las preguntas' },
+        rule: { ru: 'Do you have — это «у тебя есть?». Слово any значит «хоть какие-нибудь»: any questions — какие-нибудь вопросы.', uk: 'Do you have — це «у тебе є?». Слово any значить «хоч якісь»: any questions — якісь питання.', es: 'Do you have es «¿tienes?». Any significa «algunas»: any questions — algunas preguntas.' },
+        why: { ru: 'Так ты открыто приглашаешь команду заговорить, если что-то осталось неясным.', uk: 'Так ти відкрито запрошуєш команду заговорити, якщо щось лишилося неясним.', es: 'Así invitas abiertamente al equipo a hablar si algo quedó sin aclarar.' },
+        commonMistake: { ru: 'В вопросе нужен do: «Do you have», а не «You have any questions?».', uk: 'У питанні потрібен do: «Do you have», а не «You have any questions?».', es: 'En la pregunta hace falta do: «Do you have», no «You have any questions?».' },
+      },
+      words: [
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Are', 'Have', 'Will'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'I', 'she'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'keep', 'hold', 'own'] },
+        { text: 'any', partOfSpeech: 'determiner', distractors: ['a', 'each', 'its', 'this', 'my'] },
+        { text: 'questions', partOfSpeech: 'noun', distractors: ['answers', 'points', 'topics', 'ideas', 'notes'] },
+        { text: 'for', partOfSpeech: 'preposition', distractors: ['to', 'with', 'at', 'of', 'by'] },
+      ],
+    },
+    {
+      id: 'mitap_d48_p3',
+      english: 'I have explained the main steps already.',
+      meaning: { ru: 'Я уже объяснил основные шаги.', uk: 'Я вже пояснив основні кроки.', es: 'Ya he explicado los pasos principales.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: '«Я объяснил» про результат сейчас', uk: '«Я пояснив» про результат зараз', es: '«He explicado» sobre el resultado ahora' },
+        rule: { ru: 'I have explained — «я объяснил». Берём have + explained (третья форма): дело сделано, результат важен сейчас.', uk: 'I have explained — «я пояснив». Беремо have + explained (третя форма): справу зроблено, результат важливий зараз.', es: 'I have explained — «he explicado». Tomamos have + explained: está hecho, importa el resultado ahora.' },
+        why: { ru: 'Удобно сказать в конце части: объяснение готово, теперь спокойно проверишь понимание.', uk: 'Зручно сказати в кінці частини: пояснення готове, тепер спокійно перевіриш розуміння.', es: 'Útil al final de tu parte: la explicación está lista, ahora compruebas la comprensión.' },
+        commonMistake: { ru: 'Не говори «I have explain». После have нужна форма explained: I have explained.', uk: 'Не кажи «I have explain». Після have потрібна форма explained: I have explained.', es: 'No digas «I have explain». Tras have va explained: I have explained.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'you', 'they', 'he', 'she'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'am', 'do', 'will'] },
+        { text: 'explained', partOfSpeech: 'verb', distractors: ['explain', 'explains', 'showed', 'told', 'said'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'this', 'my', 'some'] },
+        { text: 'main', partOfSpeech: 'adjective', distractors: ['big', 'small', 'next', 'last', 'new'] },
+        { text: 'steps', partOfSpeech: 'noun', distractors: ['parts', 'points', 'tasks', 'stages', 'ideas'] },
+        { text: 'already', partOfSpeech: 'adverb', distractors: ['twice', 'once', 'rarely', 'barely', 'hardly'] },
+      ],
+    },
+    {
+      id: 'mitap_d48_p4',
+      english: 'Please tell me if something is unclear.',
+      meaning: { ru: 'Скажи мне, если что-то непонятно.', uk: 'Скажи мені, якщо щось незрозуміло.', es: 'Por favor, dime si algo no está claro.' },
+      constructions: ['imperative'],
+      explanation: {
+        title: { ru: 'Попроси сказать, если неясно', uk: 'Попроси сказати, якщо неясно', es: 'Pide que avisen si no está claro' },
+        rule: { ru: 'Please tell me — это прямая просьба «скажи мне». Слово unclear значит «непонятно»: is unclear — непонятно.', uk: 'Please tell me — це пряме прохання «скажи мені». Слово unclear значить «незрозуміло»: is unclear — незрозуміло.', es: 'Please tell me es una petición directa «dime». Unclear significa «no claro»: is unclear — no está claro.' },
+        why: { ru: 'Так ты сам открываешь дверь: людям проще признаться, что что-то непонятно.', uk: 'Так ти сам відкриваєш двері: людям простіше зізнатися, що щось незрозуміло.', es: 'Así abres tú la puerta: a la gente le cuesta menos admitir que algo no se entiende.' },
+        commonMistake: { ru: 'В просьбе не нужен you: говори «Please tell me», а не «Please you tell me».', uk: 'У проханні не потрібен you: кажи «Please tell me», а не «Please you tell me».', es: 'En la petición no va you: di «Please tell me», no «Please you tell me».' },
+      },
+      words: [
+        { text: 'Please', partOfSpeech: 'other', distractors: ['Kindly', 'Maybe', 'Just', 'Now', 'Well'] },
+        { text: 'tell', partOfSpeech: 'verb', distractors: ['cook', 'drive', 'sleep', 'walk', 'swim'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['us', 'you', 'him', 'her', 'them'] },
+        { text: 'if', partOfSpeech: 'conjunction', distractors: ['when', 'that', 'so', 'as', 'unless'] },
+        { text: 'something', partOfSpeech: 'pronoun', distractors: ['someone', 'nothing', 'everybody', 'myself', 'itself'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'be', 'am', 'were'] },
+        { text: 'unclear', partOfSpeech: 'adjective', distractors: ['hard', 'strange', 'wrong', 'missing', 'new'] },
+      ],
+    },
+    {
+      id: 'mitap_d48_p5',
+      english: 'Has everyone understood the plan now?',
+      meaning: { ru: 'Все поняли план сейчас?', uk: 'Усі зрозуміли план зараз?', es: '¿Han entendido todos el plan ahora?' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: 'Спроси «все поняли?»', uk: 'Запитай «усі зрозуміли?»', es: 'Pregunta «¿todos han entendido?»' },
+        rule: { ru: 'Has everyone understood — «все поняли?». Тут has открывает вопрос про результат, а understood — третья форма.', uk: 'Has everyone understood — «усі зрозуміли?». Тут has відкриває питання про результат, а understood — третя форма.', es: 'Has everyone understood — «¿todos han entendido?». Has abre la pregunta del resultado, understood es la tercera forma.' },
+        why: { ru: 'Прямая проверка в конце: ты узнаёшь, дошёл ли план до всей команды.', uk: 'Пряма перевірка в кінці: ти дізнаєшся, чи дійшов план до всієї команди.', es: 'Comprobación directa al final: averiguas si el plan llegó a todo el equipo.' },
+        commonMistake: { ru: 'С everyone бери has, не have: «Has everyone understood», а не «Have everyone».', uk: 'З everyone бери has, не have: «Has everyone understood», а не «Have everyone».', es: 'Con everyone usa has, no have: «Has everyone understood», no «Have everyone».' },
+      },
+      words: [
+        { text: 'Has', partOfSpeech: 'verb', distractors: ['Have', 'Had', 'Does', 'Is', 'Was'] },
+        { text: 'everyone', partOfSpeech: 'pronoun', distractors: ['someone', 'anyone', 'nobody', 'each', 'all'] },
+        { text: 'understood', partOfSpeech: 'verb', distractors: ['understand', 'understands', 'heard', 'learned', 'seen'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'this', 'my', 'some'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['task', 'goal', 'idea', 'step', 'note'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'then', 'again', 'still', 'once'] },
+      ],
+    },
+    {
+      id: 'mitap_d48_p6',
+      english: 'I can explain it again if you want.',
+      meaning: { ru: 'Я могу объяснить это снова, если хочешь.', uk: 'Я можу пояснити це знову, якщо хочеш.', es: 'Puedo explicarlo otra vez si quieres.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Предложи объяснить ещё раз', uk: 'Запропонуй пояснити ще раз', es: 'Ofrece explicarlo de nuevo' },
+        rule: { ru: 'I can explain — «я могу объяснить». Слово can показывает готовность помочь: can explain — могу объяснить.', uk: 'I can explain — «я можу пояснити». Слово can показує готовність допомогти: can explain — можу пояснити.', es: 'I can explain — «puedo explicar». Can muestra tu disposición a ayudar: can explain — puedo explicar.' },
+        why: { ru: 'Мягкое предложение снимает напряжение: человеку легче попросить повторить.', uk: 'М\'яка пропозиція знімає напругу: людині легше попросити повторити.', es: 'Una oferta suave quita tensión: a la persona le cuesta menos pedir que repitas.' },
+        commonMistake: { ru: 'После can сразу идёт explain без to: «can explain», а не «can to explain».', uk: 'Після can одразу йде explain без to: «can explain», а не «can to explain».', es: 'Tras can va explain sin to: «can explain», no «can to explain».' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'you', 'they', 'he', 'she'] },
+        { text: 'can', partOfSpeech: 'modal', distractors: ['must', 'shall', 'dare', 'need', 'ought'] },
+        { text: 'explain', partOfSpeech: 'verb', distractors: ['explains', 'explained', 'show', 'tell', 'repeat'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['that', 'this', 'them', 'one', 'us'] },
+        { text: 'again', partOfSpeech: 'adverb', distractors: ['once', 'twice', 'more', 'still', 'back'] },
+        { text: 'if', partOfSpeech: 'conjunction', distractors: ['when', 'that', 'so', 'as', 'unless'] },
+        { text: 'want', partOfSpeech: 'verb', distractors: ['wants', 'wanted', 'like', 'wish', 'prefer'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'make sense', partOfSpeech: 'verb', translation: { ru: 'иметь смысл, быть понятным', uk: 'мати сенс, бути зрозумілим', es: 'tener sentido' }, example: 'Does that make sense to everyone?' },
+    { word: 'questions', partOfSpeech: 'noun', translation: { ru: 'вопросы', uk: 'питання', es: 'preguntas' }, example: 'Do you have any questions for me?' },
+    { word: 'explained', partOfSpeech: 'verb', translation: { ru: 'объяснил', uk: 'пояснив', es: 'he explicado' }, example: 'I have explained the main steps already.' },
+    { word: 'unclear', partOfSpeech: 'adjective', translation: { ru: 'непонятно, неясно', uk: 'незрозуміло', es: 'no claro' }, example: 'Please tell me if something is unclear.' },
+    { word: 'understood', partOfSpeech: 'verb', translation: { ru: 'понял, поняли', uk: 'зрозумів, зрозуміли', es: 'han entendido' }, example: 'Has everyone understood the plan now?' },
+    { word: 'again', partOfSpeech: 'adverb', translation: { ru: 'снова, ещё раз', uk: 'знову, ще раз', es: 'otra vez' }, example: 'I can explain it again if you want.' },
+  ],
+};
+
+export const MITAP_DAY_49: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 49,
+  topic: { ru: 'Повторение недели 7: уточняем и понимаем', uk: 'Повторення тижня 7: уточнюємо й розуміємо', es: 'Repaso de la semana 7: aclaramos y entendemos' },
+  outcome: {
+    ru: 'Ты сможешь переспросить, что человек имел в виду, переформулировать свою мысль и дать пример на созвоне.',
+    uk: 'Ти зможеш перепитати, що людина мала на увазі, переформулювати свою думку й навести приклад на дзвінку.',
+    es: 'Podrás preguntar qué quiso decir alguien, reformular tu idea y dar un ejemplo en una reunión.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [23, 24],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Переспроси, что человек имел в виду', uk: 'Перепитай, що людина мала на увазі', es: 'Pregunta qué quiso decir la persona' },
+      body: {
+        ru: 'Если ты не понял мысль, спокойно переспроси. Скажи, что не уловил, и попроси повторить. Это нормально на любом созвоне.',
+        uk: 'Якщо ти не зрозумів думку, спокійно перепитай. Скажи, що не вловив, і попроси повторити. Це нормально на будь-якому дзвінку.',
+        es: 'Si no entendiste la idea, pregunta con calma. Di que no la captaste y pide repetir. Es normal en cualquier reunión.',
+      },
+      examples: [
+        { en: 'Sorry, I have not understood your point.', gloss: { ru: 'Извини, я не понял твою мысль.', uk: 'Вибач, я не зрозумів твою думку.', es: 'Perdona, no he entendido tu idea.' } },
+        { en: 'What did you mean by that word?', gloss: { ru: 'Что ты имел в виду под этим словом?', uk: 'Що ти мав на увазі під цим словом?', es: '¿Qué quisiste decir con esa palabra?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Переформулируй свою мысль проще', uk: 'Переформулюй свою думку простіше', es: 'Reformula tu idea de forma simple' },
+      body: {
+        ru: 'Если тебя не поняли, скажи то же самое другими словами. Начни мягко и повтори главное проще. Так встреча идёт гладко.',
+        uk: 'Якщо тебе не зрозуміли, скажи те саме іншими словами. Почни м\'яко й повтори головне простіше. Так зустріч іде гладко.',
+        es: 'Si no te entendieron, di lo mismo con otras palabras. Empieza con calma y repite lo principal más simple. Así la reunión va bien.',
+      },
+      examples: [
+        { en: 'Let me say it in other words.', gloss: { ru: 'Давай я скажу это другими словами.', uk: 'Давай я скажу це іншими словами.', es: 'Déjame decirlo con otras palabras.' } },
+        { en: 'My idea has been explained badly.', gloss: { ru: 'Моя мысль была объяснена плохо.', uk: 'Моя думка була пояснена погано.', es: 'Mi idea ha sido explicada mal.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Дай пример, чтобы стало ясно', uk: 'Наведи приклад, щоб стало зрозуміло', es: 'Da un ejemplo para que quede claro' },
+      body: {
+        ru: 'Пример помогает понять быстрее любых слов. Покажи живую ситуацию из работы. Так все в созвоне видят, о чём ты.',
+        uk: 'Приклад допомагає зрозуміти швидше за будь-які слова. Покажи живу ситуацію з роботи. Так усі на дзвінку бачать, про що ти.',
+        es: 'Un ejemplo ayuda a entender más rápido que las palabras. Muestra una situación real del trabajo. Así todos en la reunión ven de qué hablas.',
+      },
+      examples: [
+        { en: 'Giving an example is the easiest way.', gloss: { ru: 'Привести пример — самый простой способ.', uk: 'Навести приклад — найпростіший спосіб.', es: 'Dar un ejemplo es la forma más fácil.' } },
+        { en: 'Has everyone understood my example now?', gloss: { ru: 'Все ли поняли мой пример теперь?', uk: 'Чи всі зрозуміли мій приклад тепер?', es: '¿Todos han entendido mi ejemplo ahora?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d49_p1',
+      english: 'Sorry, I have not understood your point.',
+      meaning: { ru: 'Извини, я не понял твою мысль.', uk: 'Вибач, я не зрозумів твою думку.', es: 'Perdona, no he entendido tu idea.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: 'have not understood — пока не понял', uk: 'have not understood — поки не зрозумів', es: 'have not understood — aún no he entendido' },
+        rule: { ru: 'have not understood говорит: до этой секунды смысл не дошёл. understood — это «понял». point здесь — «мысль».', uk: 'have not understood каже: до цієї секунди сенс не дійшов. understood — це «зрозумів». point тут — «думка».', es: 'have not understood dice: hasta ahora la idea no llegó. understood es «entendí». point aquí es «idea».' },
+        why: { ru: 'Так ты вежливо признаёшь, что не уловил, и открываешь дверь к повтору.', uk: 'Так ти ввічливо визнаєш, що не вловив, і відкриваєш двері до повтору.', es: 'Así admites con cortesía que no captaste y abres la puerta a repetir.' },
+        commonMistake: { ru: 'Не говори «I not understood». Нужно have not understood: have держит результат в настоящем.', uk: 'Не кажи «I not understood». Потрібно have not understood: have тримає результат у теперішньому.', es: 'No digas «I not understood». Usa have not understood: have mantiene el resultado ahora.' },
+      },
+      words: [
+        { text: 'Sorry', partOfSpeech: 'other', distractors: ['Please', 'Maybe', 'Almost', 'Really', 'Quite'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'you', 'he', 'she'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['am', 'do', 'was', 'will', 'can'] },
+        { text: 'not', partOfSpeech: 'other', distractors: ['never', 'also', 'just', 'still', 'yet'] },
+        { text: 'understood', partOfSpeech: 'verb', distractors: ['heard', 'noticed', 'believed', 'remembered', 'decided'] },
+        { text: 'your', partOfSpeech: 'determiner', distractors: ['their', 'our', 'his', 'her', 'its'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['plan', 'goal', 'fact', 'rule', 'task'] },
+      ],
+    },
+    {
+      id: 'mitap_d49_p2',
+      english: 'What did you mean by that word?',
+      meaning: { ru: 'Что ты имел в виду под этим словом?', uk: 'Що ти мав на увазі під цим словом?', es: '¿Qué quisiste decir con esa palabra?' },
+      constructions: ['past-simple-irregular', 'wh-questions'],
+      explanation: {
+        title: { ru: 'What did you mean — что ты имел в виду', uk: 'What did you mean — що ти мав на увазі', es: 'What did you mean — qué quisiste decir' },
+        rule: { ru: 'mean здесь — «иметь в виду». did ставит вопрос про только что сказанное. by that word — «под этим словом».', uk: 'mean тут — «мати на увазі». did ставить питання про щойно сказане. by that word — «під цим словом».', es: 'mean aquí es «querer decir». did hace la pregunta sobre lo recién dicho. by that word — «con esa palabra».' },
+        why: { ru: 'Точный переспрос про одно слово помогает быстро закрыть непонимание на встрече.', uk: 'Точний перепит про одне слово допомагає швидко закрити непорозуміння на зустрічі.', es: 'Preguntar por una palabra concreta cierra rápido el malentendido en la reunión.' },
+        commonMistake: { ru: 'Не говори «What you meant». После did слово идёт в простой форме: did you mean.', uk: 'Не кажи «What you meant». Після did слово йде в простій формі: did you mean.', es: 'No digas «What you meant». Tras did va la forma simple: did you mean.' },
+      },
+      words: [
+        { text: 'What', partOfSpeech: 'pronoun', distractors: ['Why', 'When', 'Where', 'How', 'Who'] },
+        { text: 'did', partOfSpeech: 'verb', distractors: ['do', 'does', 'was', 'has', 'will'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['say', 'ask', 'write', 'call', 'read'] },
+        { text: 'by', partOfSpeech: 'other', distractors: ['for', 'with', 'at', 'on', 'of'] },
+        { text: 'that', partOfSpeech: 'determiner', distractors: ['this', 'each', 'any', 'some', 'every'] },
+        { text: 'word', partOfSpeech: 'noun', distractors: ['line', 'name', 'rule', 'term', 'note'] },
+      ],
+    },
+    {
+      id: 'mitap_d49_p3',
+      english: 'Let me say it in other words.',
+      meaning: { ru: 'Давай я скажу это другими словами.', uk: 'Давай я скажу це іншими словами.', es: 'Déjame decirlo con otras palabras.' },
+      constructions: ['complex-object'],
+      explanation: {
+        title: { ru: 'Let me say — давай я скажу', uk: 'Let me say — давай я скажу', es: 'Let me say — déjame decir' },
+        rule: { ru: 'Let me say — мягкая просьба разрешить тебе сказать. in other words — «другими словами», то есть проще.', uk: 'Let me say — м\'яке прохання дозволити тобі сказати. in other words — «іншими словами», тобто простіше.', es: 'Let me say es pedir permiso para decir. in other words — «con otras palabras», o sea más simple.' },
+        why: { ru: 'Так ты вежливо берёшь паузу и переформулируешь мысль, чтобы тебя поняли.', uk: 'Так ти ввічливо береш паузу й переформульовуєш думку, щоб тебе зрозуміли.', es: 'Así tomas una pausa con cortesía y reformulas la idea para que te entiendan.' },
+        commonMistake: { ru: 'После Let me слово идёт в простой форме: say, не «to say» и не «saying».', uk: 'Після Let me слово йде в простій формі: say, не «to say» і не «saying».', es: 'Tras Let me va la forma simple: say, no «to say» ni «saying».' },
+      },
+      words: [
+        { text: 'Let', partOfSpeech: 'verb', distractors: ['Make', 'Help', 'Watch', 'Keep', 'Have'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['us', 'them', 'him', 'her', 'you'] },
+        { text: 'say', partOfSpeech: 'verb', distractors: ['put', 'show', 'ask', 'read', 'write'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'us', 'him', 'her', 'me'] },
+        { text: 'in', partOfSpeech: 'other', distractors: ['on', 'at', 'by', 'for', 'with'] },
+        { text: 'other', partOfSpeech: 'determiner', distractors: ['many', 'few', 'both', 'such', 'each'] },
+        { text: 'words', partOfSpeech: 'noun', distractors: ['lines', 'names', 'terms', 'notes', 'facts'] },
+      ],
+    },
+    {
+      id: 'mitap_d49_p4',
+      english: 'I explained my idea badly.',
+      meaning: { ru: 'Я плохо объяснил свою мысль.', uk: 'Я погано пояснив свою думку.', es: 'Expliqué mal mi idea.' },
+      constructions: ['past-simple-regular'],
+      explanation: {
+        title: { ru: 'has been explained — была объяснена', uk: 'has been explained — була пояснена', es: 'has been explained — ha sido explicada' },
+        rule: { ru: 'has been explained — мысль кто-то объяснил, но как — важнее кто. badly здесь — «плохо», то есть неясно.', uk: 'has been explained — думку хтось пояснив, але як — важливіше за хто. badly тут — «погано», тобто неясно.', es: 'has been explained — alguien explicó la idea, pero importa cómo. badly aquí — «mal», o sea poco claro.' },
+        why: { ru: 'Так ты честно признаёшь промах без обвинений и сразу готов переформулировать.', uk: 'Так ти чесно визнаєш промах без звинувачень і одразу готовий переформулювати.', es: 'Así admites el fallo sin culpar a nadie y te dispones a reformular.' },
+        commonMistake: { ru: 'Не говори «has explained badly» про мысль. Когда мысль не делает сама — нужно has been explained.', uk: 'Не кажи «has explained badly» про думку. Коли думка не діє сама — потрібно has been explained.', es: 'No digas «has explained badly» de la idea. Si la idea no actúa sola, usa has been explained.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'explained', partOfSpeech: 'verb', distractors: ['cooked', 'painted', 'cleaned', 'walked', 'planted'] },
+        { text: 'my', partOfSpeech: 'determiner', distractors: ['your', 'our', 'their', 'his', 'her'] },
+        { text: 'idea', partOfSpeech: 'noun', distractors: ['plan', 'goal', 'topic', 'case', 'rule'] },
+        { text: 'badly', partOfSpeech: 'adverb', distractors: ['twice', 'alone', 'loudly', 'early', 'outside'] },
+      ],
+    },
+    {
+      id: 'mitap_d49_p5',
+      english: 'Giving an example is the easiest way.',
+      meaning: { ru: 'Привести пример — самый простой способ.', uk: 'Навести приклад — найпростіший спосіб.', es: 'Dar un ejemplo es la forma más fácil.' },
+      constructions: ['gerund', 'superlatives'],
+      explanation: {
+        title: { ru: 'Giving an example — привести пример', uk: 'Giving an example — навести приклад', es: 'Giving an example — dar un ejemplo' },
+        rule: { ru: 'Giving an example — само действие «приводить пример» как идея. the easiest way — «самый простой способ».', uk: 'Giving an example — сама дія «наводити приклад» як ідея. the easiest way — «найпростіший спосіб».', es: 'Giving an example — la acción «dar un ejemplo» como idea. the easiest way — «la forma más fácil».' },
+        why: { ru: 'Так ты показываешь коллегам быстрый путь к ясности прямо на созвоне.', uk: 'Так ти показуєш колегам швидкий шлях до ясності прямо на дзвінку.', es: 'Así muestras a los colegas un camino rápido a la claridad en la reunión.' },
+        commonMistake: { ru: 'В начале фразы как «дело» нужно Giving, не «Give example» и не «To give».', uk: 'На початку фрази як «справа» потрібно Giving, не «Give example» і не «To give».', es: 'Al inicio como «la acción» usa Giving, no «Give example» ni «To give».' },
+      },
+      words: [
+        { text: 'Giving', partOfSpeech: 'verb', distractors: ['Showing', 'Asking', 'Reading', 'Sending', 'Writing'] },
+        { text: 'an', partOfSpeech: 'determiner', distractors: ['the', 'one', 'each', 'any', 'some'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['answer', 'plan', 'reason', 'story', 'detail'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'be', 'am', 'were'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'this', 'that', 'one', 'each'] },
+        { text: 'easiest', partOfSpeech: 'adjective', distractors: ['quickest', 'safest', 'newest', 'smallest', 'cheapest'] },
+        { text: 'way', partOfSpeech: 'noun', distractors: ['step', 'plan', 'rule', 'path', 'move'] },
+      ],
+    },
+    {
+      id: 'mitap_d49_p6',
+      english: 'Has everyone understood my example now?',
+      meaning: { ru: 'Все ли поняли мой пример теперь?', uk: 'Чи всі зрозуміли мій приклад тепер?', es: '¿Todos han entendido mi ejemplo ahora?' },
+      constructions: ['present-perfect', 'indefinite-pronouns'],
+      explanation: {
+        title: { ru: 'Has everyone understood — все ли поняли', uk: 'Has everyone understood — чи всі зрозуміли', es: 'Has everyone understood — todos han entendido' },
+        rule: { ru: 'Has everyone understood спрашивает про результат к этой минуте. everyone — «все» как один. now — «теперь».', uk: 'Has everyone understood питає про результат до цієї хвилини. everyone — «всі» як один. now — «тепер».', es: 'Has everyone understood pregunta el resultado hasta ahora. everyone — «todos» como uno. now — «ahora».' },
+        why: { ru: 'Так ты проверяешь, дошёл ли пример, прежде чем идти дальше по встрече.', uk: 'Так ти перевіряєш, чи дійшов приклад, перш ніж іти далі по зустрічі.', es: 'Así compruebas si llegó el ejemplo antes de seguir con la reunión.' },
+        commonMistake: { ru: 'С everyone берём Has, не «Have»: everyone считается за одного.', uk: 'З everyone беремо Has, не «Have»: everyone рахується за одного.', es: 'Con everyone usa Has, no «Have»: everyone cuenta como uno.' },
+      },
+      words: [
+        { text: 'Has', partOfSpeech: 'verb', distractors: ['Have', 'Is', 'Was', 'Does', 'Had'] },
+        { text: 'everyone', partOfSpeech: 'pronoun', distractors: ['someone', 'anyone', 'nobody', 'everything', 'somebody'] },
+        { text: 'understood', partOfSpeech: 'verb', distractors: ['heard', 'noticed', 'believed', 'remembered', 'followed'] },
+        { text: 'my', partOfSpeech: 'determiner', distractors: ['your', 'our', 'their', 'his', 'her'] },
+        { text: 'example', partOfSpeech: 'noun', distractors: ['answer', 'plan', 'reason', 'story', 'detail'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'today', 'already', 'still', 'then'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'understood', partOfSpeech: 'verb', translation: { ru: 'понял', uk: 'зрозумів', es: 'entendido' }, example: 'Sorry, I have not understood your point.' },
+    { word: 'mean', partOfSpeech: 'verb', translation: { ru: 'иметь в виду', uk: 'мати на увазі', es: 'querer decir' }, example: 'What did you mean by that word?' },
+    { word: 'words', partOfSpeech: 'noun', translation: { ru: 'слова', uk: 'слова', es: 'palabras' }, example: 'Let me say it in other words.' },
+    { word: 'explained', partOfSpeech: 'verb', translation: { ru: 'объяснён', uk: 'пояснений', es: 'explicada' }, example: 'I explained my idea badly.' },
+    { word: 'Giving', partOfSpeech: 'noun', translation: { ru: 'приведение', uk: 'наведення', es: 'dar' }, example: 'Giving an example is the easiest way.' },
+    { word: 'everyone', partOfSpeech: 'pronoun', translation: { ru: 'все', uk: 'всі', es: 'todos' }, example: 'Has everyone understood my example now?' },
+  ],
+};
+
+export const MITAP_DAY_50: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 50,
+  topic: { ru: 'Высказать своё мнение', uk: 'Висловити свою думку', es: 'Expresar tu opinión' },
+  outcome: {
+    ru: 'Ты научишься чётко озвучивать свою позицию на созвоне: говорить, что думаешь, и предлагать решение спокойно и уверенно.',
+    uk: 'Ти навчишся чітко озвучувати свою позицію на дзвінку: казати, що думаєш, і пропонувати рішення спокійно та впевнено.',
+    es: 'Aprenderás a expresar tu posición con claridad en una llamada: decir lo que piensas y proponer una solución con calma y seguridad.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [3, 22],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Скажи, что думаешь', uk: 'Скажи, що думаєш', es: 'Di lo que piensas' },
+      body: {
+        ru: 'Чтобы озвучить мнение, начни с I think — «я думаю». Дальше идёт обычная фраза: I think we should ship it. Просто и уверенно.',
+        uk: 'Щоб озвучити думку, почни з I think — «я думаю». Далі звичайна фраза: I think we should ship it. Просто й упевнено.',
+        es: 'Para dar tu opinión, empieza con I think — «creo». Luego una frase normal: I think we should ship it. Simple y seguro.',
+      },
+      examples: [
+        { en: 'I think we should ship it.', gloss: { ru: 'Думаю, нам стоит это выпустить.', uk: 'Гадаю, нам варто це випустити.', es: 'Creo que deberíamos lanzarlo.' } },
+        { en: 'I think this plan works.', gloss: { ru: 'Я думаю, этот план работает.', uk: 'Я думаю, цей план працює.', es: 'Creo que este plan funciona.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Назови причину', uk: 'Назви причину', es: 'Da una razón' },
+      body: {
+        ru: 'Мнение звучит сильнее с причиной. Скажи because — «потому что» — и объясни. I like it because it saves time. Коротко и по делу.',
+        uk: 'Думка звучить сильніше з причиною. Скажи because — «тому що» — і поясни. I like it because it saves time. Коротко і по суті.',
+        es: 'La opinión suena más fuerte con una razón. Di because — «porque» — y explica. I like it because it saves time. Corto y al punto.',
+      },
+      examples: [
+        { en: 'I like this idea because it saves time.', gloss: { ru: 'Мне нравится эта идея, потому что она экономит время.', uk: 'Мені подобається ця ідея, бо вона економить час.', es: 'Me gusta esta idea porque ahorra tiempo.' } },
+        { en: 'I prefer testing it first.', gloss: { ru: 'Я предпочитаю сначала это протестировать.', uk: 'Я надаю перевагу спершу це протестувати.', es: 'Prefiero probarlo primero.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Мягко не согласись', uk: 'М\'яко не погодься', es: 'Discrepa con suavidad' },
+      body: {
+        ru: 'Не согласен? Скажи мягко: I am not sure about this. Это вежливо и открывает разговор, а не закрывает его.',
+        uk: 'Не згоден? Скажи м\'яко: I am not sure about this. Це ввічливо й відкриває розмову, а не закриває її.',
+        es: '¿No estás de acuerdo? Dilo con suavidad: I am not sure about this. Es cortés y abre la conversación.',
+      },
+      examples: [
+        { en: 'I am not sure about this idea.', gloss: { ru: 'Я не уверен насчёт этой идеи.', uk: 'Я не впевнений щодо цієї ідеї.', es: 'No estoy seguro sobre esta idea.' } },
+        { en: 'I agree with your point.', gloss: { ru: 'Я согласен с твоей мыслью.', uk: 'Я погоджуюся з твоєю думкою.', es: 'Estoy de acuerdo con tu punto.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d50_p1',
+      english: 'I think we should ship it',
+      meaning: { ru: 'Думаю, нам стоит это выпустить', uk: 'Гадаю, нам варто це випустити', es: 'Creo que deberíamos lanzarlo' },
+      constructions: ['present-simple', 'modals'],
+      explanation: {
+        title: { ru: 'I think — «я думаю»', uk: 'I think — «я думаю»', es: 'I think — «creo»' },
+        rule: { ru: 'Начни мнение с I think — «я думаю». Дальше обычная фраза. think -> думаю, should -> стоит.', uk: 'Почни думку з I think — «я думаю». Далі звичайна фраза. think -> думаю, should -> варто.', es: 'Empieza la opinión con I think — «creo». Luego una frase normal. think -> creo, should -> deberíamos.' },
+        why: { ru: 'Так ты спокойно и ясно озвучиваешь позицию на созвоне.', uk: 'Так ти спокійно і ясно озвучуєш позицію на дзвінку.', es: 'Así expresas tu posición con calma y claridad en la llamada.' },
+        commonMistake: { ru: 'Не говори I think to ship. После I think идёт фраза: I think we should.', uk: 'Не кажи I think to ship. Після I think іде фраза: I think we should.', es: 'No digas I think to ship. Tras I think va una frase: I think we should.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'think', partOfSpeech: 'verb', distractors: ['believe', 'feel', 'guess', 'suppose', 'hope'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'should', partOfSpeech: 'modal', distractors: ['must', 'can', 'will', 'may', 'might'] },
+        { text: 'ship', partOfSpeech: 'verb', distractors: ['skip', 'delay', 'drop', 'keep', 'hide'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'him', 'her', 'us', 'you'] },
+      ],
+    },
+    {
+      id: 'mitap_d50_p2',
+      english: 'I like this idea because it saves time',
+      meaning: { ru: 'Мне нравится эта идея, потому что она экономит время', uk: 'Мені подобається ця ідея, бо вона економить час', es: 'Me gusta esta idea porque ahorra tiempo' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'because — «потому что»', uk: 'because — «тому що»', es: 'because — «porque»' },
+        rule: { ru: 'Добавь причину через because — «потому что». like -> нравится, saves -> экономит.', uk: 'Додай причину через because — «тому що». like -> подобається, saves -> економить.', es: 'Añade la razón con because — «porque». like -> gusta, saves -> ahorra.' },
+        why: { ru: 'Мнение с причиной звучит убедительнее, и команда быстрее соглашается.', uk: 'Думка з причиною звучить переконливіше, і команда швидше погоджується.', es: 'La opinión con razón suena más convincente y el equipo acepta antes.' },
+        commonMistake: { ru: 'Не путай because с why. why — это вопрос, because — ответ-причина.', uk: 'Не плутай because з why. why — це питання, because — відповідь-причина.', es: 'No confundas because con why. why pregunta, because da la razón.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'like', partOfSpeech: 'verb', distractors: ['hate', 'doubt', 'miss', 'drop', 'skip'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['that', 'each', 'every', 'some', 'any'] },
+        { text: 'idea', partOfSpeech: 'noun', distractors: ['plan', 'goal', 'option', 'step', 'choice'] },
+        { text: 'because', partOfSpeech: 'conjunction', distractors: ['although', 'unless', 'while', 'since', 'whereas'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'you'] },
+        { text: 'saves', partOfSpeech: 'verb', distractors: ['wastes', 'costs', 'takes', 'needs', 'loses'] },
+        { text: 'time', partOfSpeech: 'noun', distractors: ['money', 'space', 'work', 'effort', 'energy'] },
+      ],
+    },
+    {
+      id: 'mitap_d50_p3',
+      english: 'I am not sure about this plan',
+      meaning: { ru: 'Я не уверен насчёт этого плана', uk: 'Я не впевнений щодо цього плану', es: 'No estoy seguro sobre este plan' },
+      constructions: ['to-be-negation'],
+      explanation: {
+        title: { ru: 'I am not sure — мягкое сомнение', uk: 'I am not sure — м\'який сумнів', es: 'I am not sure — duda suave' },
+        rule: { ru: 'Не согласен? Скажи мягко: I am not sure about — «я не уверен насчёт». sure -> уверен.', uk: 'Не згоден? Скажи м\'яко: I am not sure about — «я не впевнений щодо». sure -> впевнений.', es: '¿Dudas? Dilo suave: I am not sure about — «no estoy seguro sobre». sure -> seguro.' },
+        why: { ru: 'Так ты возражаешь вежливо, и разговор не превращается в спор.', uk: 'Так ти заперечуєш ввічливо, і розмова не перетворюється на суперечку.', es: 'Así objetas con cortesía y la charla no se vuelve una pelea.' },
+        commonMistake: { ru: 'Говори about, не for: I am not sure about this, не sure for.', uk: 'Кажи about, не for: I am not sure about this, не sure for.', es: 'Di about, no for: I am not sure about this, no sure for.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'hardly', 'rarely', 'barely', 'seldom'] },
+        { text: 'sure', partOfSpeech: 'adjective', distractors: ['old', 'new', 'late', 'full', 'free'] },
+        { text: 'about', partOfSpeech: 'preposition', distractors: ['with', 'for', 'over', 'on', 'at'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['that', 'each', 'every', 'some', 'any'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['idea', 'goal', 'step', 'option', 'choice'] },
+      ],
+    },
+    {
+      id: 'mitap_d50_p4',
+      english: 'I prefer testing it first',
+      meaning: { ru: 'Я предпочитаю сначала это протестировать', uk: 'Я надаю перевагу спершу це протестувати', es: 'Prefiero probarlo primero' },
+      constructions: ['present-simple', 'gerund'],
+      explanation: {
+        title: { ru: 'prefer + -ing', uk: 'prefer + -ing', es: 'prefer + -ing' },
+        rule: { ru: 'После prefer слово часто с -ing: testing — «тестировать». prefer -> предпочитаю.', uk: 'Після prefer слово часто з -ing: testing — «тестувати». prefer -> надаю перевагу.', es: 'Tras prefer la palabra suele llevar -ing: testing — «probar». prefer -> prefiero.' },
+        why: { ru: 'Так ты вежливо предлагаешь свой вариант действий на встрече.', uk: 'Так ти ввічливо пропонуєш свій варіант дій на зустрічі.', es: 'Así propones con cortesía tu opción de acción en la reunión.' },
+        commonMistake: { ru: 'Не говори prefer to testing. После prefer бери testing, без to.', uk: 'Не кажи prefer to testing. Після prefer бери testing, без to.', es: 'No digas prefer to testing. Tras prefer usa testing, sin to.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'prefer', partOfSpeech: 'verb', distractors: ['suggest', 'propose', 'recommend', 'advise', 'choose'] },
+        { text: 'testing', partOfSpeech: 'verb', distractors: ['building', 'writing', 'checking', 'planning', 'shipping'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'him', 'her', 'us', 'you'] },
+        { text: 'first', partOfSpeech: 'adverb', distractors: ['later', 'soon', 'now', 'again', 'early'] },
+      ],
+    },
+    {
+      id: 'mitap_d50_p5',
+      english: 'I agree with your point',
+      meaning: { ru: 'Я согласен с твоей мыслью', uk: 'Я погоджуюся з твоєю думкою', es: 'Estoy de acuerdo con tu punto' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'agree with — «согласен с»', uk: 'agree with — «згоден з»', es: 'agree with — «de acuerdo con»' },
+        rule: { ru: 'Согласие говори через agree with — «согласен с». agree -> согласен, point -> мысль.', uk: 'Згоду кажи через agree with — «згоден з». agree -> згоден, point -> думка.', es: 'Para mostrar acuerdo dilo con agree with — «de acuerdo con». agree -> de acuerdo, point -> punto.' },
+        why: { ru: 'Поддержать коллегу важно: так ты строишь доверие на созвоне.', uk: 'Підтримати колегу важливо: так ти будуєш довіру на дзвінку.', es: 'Apoyar a un colega importa: así construyes confianza en la llamada.' },
+        commonMistake: { ru: 'Говори agree with, не agree to your point. with — для мнения.', uk: 'Кажи agree with, не agree to your point. with — для думки.', es: 'Di agree with, no agree to your point. with — para una opinión.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'agree', partOfSpeech: 'verb', distractors: ['hear', 'note', 'miss', 'doubt', 'meet'] },
+        { text: 'with', partOfSpeech: 'preposition', distractors: ['to', 'on', 'for', 'about', 'at'] },
+        { text: 'your', partOfSpeech: 'determiner', distractors: ['my', 'his', 'her', 'their', 'our'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['idea', 'view', 'plan', 'goal', 'note'] },
+      ],
+    },
+    {
+      id: 'mitap_d50_p6',
+      english: 'In my opinion this option works',
+      meaning: { ru: 'По-моему, этот вариант работает', uk: 'На мою думку, цей варіант працює', es: 'En mi opinión esta opción funciona' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'In my opinion — «по-моему»', uk: 'In my opinion — «на мою думку»', es: 'In my opinion — «en mi opinión»' },
+        rule: { ru: 'Начни мнение с In my opinion — «по-моему». Дальше фраза. works -> работает.', uk: 'Почни думку з In my opinion — «на мою думку». Далі фраза. works -> працює.', es: 'Empieza con In my opinion — «en mi opinión». Luego la frase. works -> funciona.' },
+        why: { ru: 'Эта связка звучит уверенно и профессионально на деловой встрече.', uk: 'Ця зв\'язка звучить упевнено і професійно на діловій зустрічі.', es: 'Esta fórmula suena segura y profesional en una reunión de trabajo.' },
+        commonMistake: { ru: 'Говори in my opinion, не to my opinion. Связка фиксированная.', uk: 'Кажи in my opinion, не to my opinion. Зв\'язка фіксована.', es: 'Di in my opinion, no to my opinion. La fórmula es fija.' },
+      },
+      words: [
+        { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'at', 'by', 'for', 'to'] },
+        { text: 'my', partOfSpeech: 'determiner', distractors: ['your', 'his', 'her', 'their', 'our'] },
+        { text: 'opinion', partOfSpeech: 'noun', distractors: ['view', 'idea', 'point', 'mind', 'sense'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['that', 'each', 'every', 'some', 'any'] },
+        { text: 'option', partOfSpeech: 'noun', distractors: ['plan', 'idea', 'goal', 'step', 'choice'] },
+        { text: 'works', partOfSpeech: 'verb', distractors: ['fails', 'breaks', 'stops', 'costs', 'hurts'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'think', partOfSpeech: 'verb', translation: { ru: 'думать', uk: 'думати', es: 'creer, pensar' }, example: 'I think we should ship it' },
+    { word: 'because', partOfSpeech: 'conjunction', translation: { ru: 'потому что', uk: 'тому що', es: 'porque' }, example: 'I like this idea because it saves time' },
+    { word: 'sure', partOfSpeech: 'adjective', translation: { ru: 'уверенный', uk: 'впевнений', es: 'seguro' }, example: 'I am not sure about this plan' },
+    { word: 'prefer', partOfSpeech: 'verb', translation: { ru: 'предпочитать', uk: 'надавати перевагу', es: 'preferir' }, example: 'I prefer testing it first' },
+    { word: 'agree', partOfSpeech: 'verb', translation: { ru: 'соглашаться', uk: 'погоджуватися', es: 'estar de acuerdo' }, example: 'I agree with your point' },
+    { word: 'opinion', partOfSpeech: 'noun', translation: { ru: 'мнение', uk: 'думка', es: 'opinión' }, example: 'In my opinion this option works' },
+  ],
+};
+
+export const MITAP_DAY_51: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 51,
+  topic: { ru: 'Мягко согласиться с оговоркой', uk: 'Мʼяко погодитися із занепокоєнням', es: 'Aceptar con una salvedad' },
+  outcome: {
+    ru: 'Ты научишься соглашаться на созвоне, но сразу добавлять важное условие, чтобы не звучать резко.',
+    uk: 'Ти навчишся погоджуватися на дзвінку, але одразу додавати важливу умову, щоб не звучати різко.',
+    es: 'Aprenderás a estar de acuerdo en una llamada, pero añadiendo enseguida una condición importante para no sonar brusco.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [24, 10],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Сначала «да», потом «но»', uk: 'Спочатку «так», потім «але»', es: 'Primero «sí», luego «pero»' },
+      body: {
+        ru: 'На созвоне начни с согласия, а потом добавь оговорку через «but». Так ты звучишь дружелюбно, но всё равно ставишь своё условие.',
+        uk: 'На дзвінку почни зі згоди, а потім додай занепокоєння через «but». Так ти звучиш дружньо, але все одно ставиш свою умову.',
+        es: 'En la llamada empieza con un acuerdo y luego añade la salvedad con «but». Así suenas amable, pero igual pones tu condición.',
+      },
+      examples: [
+        { en: 'I agree, but I have one small concern.', gloss: { ru: 'Я согласен, но у меня есть одно небольшое опасение.', uk: 'Я згоден, але в мене є одне невелике занепокоєння.', es: 'Estoy de acuerdo, pero tengo una pequeña preocupación.' } },
+        { en: 'Yes, but we should check the budget first.', gloss: { ru: 'Да, но нам стоит сначала проверить бюджет.', uk: 'Так, але нам варто спочатку перевірити бюджет.', es: 'Sí, pero deberíamos revisar primero el presupuesto.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Скажи, что ты уже сделал', uk: 'Скажи, що ти вже зробив', es: 'Di lo que ya has hecho' },
+      body: {
+        ru: 'Чтобы оговорка звучала весомо, покажи, что ты уже подумал об этом. Используй «I have» плюс готовое действие.',
+        uk: 'Щоб занепокоєння звучало вагомо, покажи, що ти вже подумав про це. Використай «I have» плюс готову дію.',
+        es: 'Para que la salvedad suene seria, muestra que ya lo has pensado. Usa «I have» más una acción ya hecha.',
+      },
+      examples: [
+        { en: 'I have already checked the report.', gloss: { ru: 'Я уже проверил отчёт.', uk: 'Я вже перевірив звіт.', es: 'Ya he revisado el informe.' } },
+        { en: 'We have not agreed on the date yet.', gloss: { ru: 'Мы ещё не договорились о дате.', uk: 'Ми ще не домовилися про дату.', es: 'Todavía no hemos acordado la fecha.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Мягко предложи условие', uk: 'Мʼяко запропонуй умову', es: 'Propón la condición con suavidad' },
+      body: {
+        ru: 'Чтобы условие не звучало как приказ, добавь «we should» или «we could». Это звучит как совет, а не требование.',
+        uk: 'Щоб умова не звучала як наказ, додай «we should» або «we could». Це звучить як порада, а не вимога.',
+        es: 'Para que la condición no suene como una orden, añade «we should» o «we could». Suena como un consejo, no una exigencia.',
+      },
+      examples: [
+        { en: 'We could move the call to Friday.', gloss: { ru: 'Мы могли бы перенести созвон на пятницу.', uk: 'Ми могли б перенести дзвінок на пʼятницю.', es: 'Podríamos mover la llamada al viernes.' } },
+        { en: 'We should ask the team about this.', gloss: { ru: 'Нам стоит спросить команду об этом.', uk: 'Нам варто запитати команду про це.', es: 'Deberíamos preguntar al equipo sobre esto.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d51_p1',
+      english: 'I agree, but I have one concern.',
+      meaning: { ru: 'Я согласен, но у меня есть одно опасение.', uk: 'Я згоден, але в мене є одне занепокоєння.', es: 'Estoy de acuerdo, pero tengo una preocupación.' },
+      constructions: ['present-simple', 'to-have'],
+      explanation: {
+        title: { ru: '«but» = но', uk: '«but» = але', es: '«but» = pero' },
+        rule: { ru: 'Слово «but» добавляет твоё условие после согласия. agree — согласен, but — но дальше идёт оговорка.', uk: 'Слово «but» додає твою умову після згоди. agree — згоден, but — але далі йде занепокоєння.', es: 'La palabra «but» añade tu condición tras el acuerdo. agree — de acuerdo, but — pero luego va la salvedad.' },
+        why: { ru: 'Без «but» твоё опасение прозвучит как спор. С «but» ты сначала согласился, потом мягко добавил условие.', uk: 'Без «but» твоє занепокоєння прозвучить як суперечка. З «but» ти спочатку погодився, потім мʼяко додав умову.', es: 'Sin «but» tu preocupación suena a discusión. Con «but» primero aceptas y luego añades la condición.' },
+        commonMistake: { ru: 'Не ставь «and» вместо «but» — тогда теряется смысл оговорки и звучит, будто всё хорошо.', uk: 'Не став «and» замість «but» — тоді губиться сенс занепокоєння і звучить, ніби все гаразд.', es: 'No pongas «and» en vez de «but» — se pierde la salvedad y suena como si todo fuera bien.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'agree', partOfSpeech: 'verb', distractors: ['think', 'know', 'hope', 'feel', 'doubt'] },
+        { text: 'but', partOfSpeech: 'conjunction', distractors: ['so', 'or', 'then', 'too', 'also'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'they', 'we', 'she', 'you'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['see', 'keep', 'find', 'open', 'read'] },
+        { text: 'one', partOfSpeech: 'determiner', distractors: ['two', 'three', 'five', 'four', 'six'] },
+        { text: 'concern', partOfSpeech: 'noun', distractors: ['idea', 'plan', 'goal', 'topic', 'update'] },
+      ],
+    },
+    {
+      id: 'mitap_d51_p2',
+      english: 'Yes, but we should check the budget.',
+      meaning: { ru: 'Да, но нам стоит проверить бюджет.', uk: 'Так, але нам варто перевірити бюджет.', es: 'Sí, pero deberíamos revisar el presupuesto.' },
+      constructions: ['modals', 'present-simple'],
+      explanation: {
+        title: { ru: '«should» = стоит', uk: '«should» = варто', es: '«should» = deberíamos' },
+        rule: { ru: '«we should» — мягкий совет сделать что-то. should — стоит, check — проверить. Звучит вежливо, не как приказ.', uk: '«we should» — мʼяка порада щось зробити. should — варто, check — перевірити. Звучить ввічливо, не як наказ.', es: '«we should» — un consejo suave de hacer algo. should — deberíamos, check — revisar. Suena cortés, no como orden.' },
+        why: { ru: '«should» смягчает твоё условие. Вместо «проверь бюджет» ты говоришь «нам стоит» — и коллега не обижается.', uk: '«should» помʼякшує твою умову. Замість «перевір бюджет» ти кажеш «нам варто» — і колега не ображається.', es: '«should» suaviza tu condición. En vez de «revisa el presupuesto» dices «deberíamos» — y el colega no se ofende.' },
+        commonMistake: { ru: 'После «should» сразу идёт действие без «to»: «should check», а не «should to check».', uk: 'Після «should» одразу йде дія без «to»: «should check», а не «should to check».', es: 'Tras «should» va la acción sin «to»: «should check», no «should to check».' },
+      },
+      words: [
+        { text: 'Yes', partOfSpeech: 'other', distractors: ['Sure', 'Right', 'Okay', 'Fine', 'Indeed'] },
+        { text: 'but', partOfSpeech: 'conjunction', distractors: ['so', 'or', 'then', 'too', 'also'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'they', 'you'] },
+        { text: 'should', partOfSpeech: 'modal', distractors: ['cook', 'drive', 'paint', 'sing', 'read'] },
+        { text: 'check', partOfSpeech: 'verb', distractors: ['share', 'send', 'write', 'read', 'fix'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'budget', partOfSpeech: 'noun', distractors: ['report', 'schedule', 'email', 'meeting', 'contract'] },
+      ],
+    },
+    {
+      id: 'mitap_d51_p3',
+      english: 'I have already checked the report.',
+      meaning: { ru: 'Я уже проверил отчёт.', uk: 'Я вже перевірив звіт.', es: 'Ya he revisado el informe.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: '«have already» = уже сделал', uk: '«have already» = вже зробив', es: '«have already» = ya he hecho' },
+        rule: { ru: '«I have already checked» — действие уже готово к этому моменту. already — уже, checked — проверил.', uk: '«I have already checked» — дія вже готова на цей момент. already — вже, checked — перевірив.', es: '«I have already checked» — la acción ya está hecha hasta ahora. already — ya, checked — revisado.' },
+        why: { ru: 'Так ты показываешь, что не сидел без дела. Твоя оговорка звучит весомо: ты уже всё посмотрел.', uk: 'Так ти показуєш, що не сидів без діла. Твоє занепокоєння звучить вагомо: ти вже все подивився.', es: 'Así muestras que no estuviste sin hacer nada. Tu salvedad suena seria: ya lo has visto todo.' },
+        commonMistake: { ru: 'Не говори «I already checked» на созвоне про только что — нужно «have already checked», связь с сейчас.', uk: 'Не кажи «I already checked» про щойно — потрібно «have already checked», звʼязок із зараз.', es: 'No digas «I already checked» para algo recién hecho — usa «have already checked», ligado al ahora.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['had', 'has', 'having', 'do', 'did'] },
+        { text: 'already', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'often', 'early', 'once'] },
+        { text: 'checked', partOfSpeech: 'verb', distractors: ['opened', 'closed', 'signed', 'printed', 'saved'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'report', partOfSpeech: 'noun', distractors: ['budget', 'schedule', 'email', 'contract', 'invoice'] },
+      ],
+    },
+    {
+      id: 'mitap_d51_p4',
+      english: 'We have not agreed on the date yet.',
+      meaning: { ru: 'Мы ещё не договорились о дате.', uk: 'Ми ще не домовилися про дату.', es: 'Todavía no hemos acordado la fecha.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: '«have not … yet» = ещё не', uk: '«have not … yet» = ще не', es: '«have not … yet» = aún no' },
+        rule: { ru: '«have not agreed … yet» — дело пока не сделано. not — не, yet — ещё. Условие, которое надо закрыть.', uk: '«have not agreed … yet» — справу поки не зроблено. not — не, yet — ще. Умова, яку треба закрити.', es: '«have not agreed … yet» — algo aún sin hacer. not — no, yet — aún. Una condición pendiente.' },
+        why: { ru: 'Так ты мягко напоминаешь про открытый вопрос. Ты согласен в целом, но дата ещё висит.', uk: 'Так ти мʼяко нагадуєш про відкрите питання. Ти згоден загалом, але дата ще висить.', es: 'Así recuerdas con suavidad un tema abierto. Estás de acuerdo en general, pero la fecha sigue pendiente.' },
+        commonMistake: { ru: 'Слово «yet» ставь в конец фразы, а не в начало: «agreed yet», а не «yet agreed».', uk: 'Слово «yet» став у кінець фрази, а не на початок: «agreed yet», а не «yet agreed».', es: 'Pon «yet» al final de la frase, no al inicio: «agreed yet», no «yet agreed».' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['I', 'He', 'She', 'They', 'You'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['had', 'has', 'having', 'do', 'did'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'hardly', 'barely', 'rarely', 'seldom'] },
+        { text: 'agreed', partOfSpeech: 'verb', distractors: ['decided', 'planned', 'arranged', 'confirmed', 'settled'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'to', 'for', 'with'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'date', partOfSpeech: 'noun', distractors: ['time', 'price', 'place', 'topic', 'name'] },
+        { text: 'yet', partOfSpeech: 'adverb', distractors: ['still', 'soon', 'again', 'now', 'once'] },
+      ],
+    },
+    {
+      id: 'mitap_d51_p5',
+      english: 'I like it, but I have a small concern.',
+      meaning: { ru: 'Мне нравится, но у меня есть небольшое опасение.', uk: 'Мені подобається, але в мене є невелике занепокоєння.', es: 'Me gusta, pero tengo una pequeña preocupación.' },
+      constructions: ['present-simple', 'to-have'],
+      explanation: {
+        title: { ru: '«small» = небольшое', uk: '«small» = невелике', es: '«small» = pequeña' },
+        rule: { ru: 'Слово «small» делает опасение лёгким, не пугающим. small — небольшое, concern — опасение. Звучит мягко.', uk: 'Слово «small» робить занепокоєння легким, не страшним. small — невелике, concern — занепокоєння. Звучить мʼяко.', es: 'La palabra «small» hace la preocupación ligera, no alarmante. small — pequeña, concern — preocupación.' },
+        why: { ru: '«small» показывает, что ты не против всего плана. Опасение есть, но оно маленькое и решаемое.', uk: '«small» показує, що ти не проти всього плану. Занепокоєння є, але воно мале й вирішуване.', es: '«small» muestra que no rechazas todo el plan. Hay una preocupación, pero pequeña y solucionable.' },
+        commonMistake: { ru: 'Перед «small concern» ставь «a»: «a small concern». Без «a» фраза звучит неполно.', uk: 'Перед «small concern» став «a»: «a small concern». Без «a» фраза звучить неповно.', es: 'Antes de «small concern» pon «a»: «a small concern». Sin «a» suena incompleta.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'like', partOfSpeech: 'verb', distractors: ['want', 'love', 'enjoy', 'prefer', 'accept'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'him', 'her', 'us', 'that'] },
+        { text: 'but', partOfSpeech: 'conjunction', distractors: ['so', 'or', 'then', 'too', 'also'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['see', 'keep', 'find', 'open', 'read'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'this', 'that', 'my'] },
+        { text: 'small', partOfSpeech: 'adjective', distractors: ['big', 'huge', 'wide', 'deep', 'heavy'] },
+        { text: 'concern', partOfSpeech: 'noun', distractors: ['idea', 'plan', 'goal', 'topic', 'update'] },
+      ],
+    },
+    {
+      id: 'mitap_d51_p6',
+      english: 'Sure, but we could move the call.',
+      meaning: { ru: 'Конечно, но мы могли бы перенести созвон.', uk: 'Звісно, але ми могли б перенести дзвінок.', es: 'Claro, pero podríamos mover la llamada.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: '«could» = могли бы', uk: '«could» = могли б', es: '«could» = podríamos' },
+        rule: { ru: '«we could» — мягкое предложение, не настойчивое. could — могли бы, move — перенести. Звучит как идея.', uk: '«we could» — мʼяка пропозиція, не наполеглива. could — могли б, move — перенести. Звучить як ідея.', es: '«we could» — una propuesta suave, no insistente. could — podríamos, move — mover. Suena como una idea.' },
+        why: { ru: '«could» оставляет коллеге выбор. Ты не давишь, а предлагаешь вариант — это вежливо на созвоне.', uk: '«could» залишає колезі вибір. Ти не тиснеш, а пропонуєш варіант — це ввічливо на дзвінку.', es: '«could» deja elegir al colega. No presionas, ofreces una opción — eso es cortés en la llamada.' },
+        commonMistake: { ru: 'После «could» идёт действие без «to»: «could move», а не «could to move».', uk: 'Після «could» йде дія без «to»: «could move», а не «could to move».', es: 'Tras «could» va la acción sin «to»: «could move», no «could to move».' },
+      },
+      words: [
+        { text: 'Sure', partOfSpeech: 'other', distractors: ['Yes', 'Right', 'Okay', 'Fine', 'Indeed'] },
+        { text: 'but', partOfSpeech: 'conjunction', distractors: ['so', 'or', 'then', 'too', 'also'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'they', 'you'] },
+        { text: 'could', partOfSpeech: 'modal', distractors: ['cook', 'drive', 'paint', 'sing', 'read'] },
+        { text: 'move', partOfSpeech: 'verb', distractors: ['push', 'cancel', 'delay', 'start', 'join'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'call', partOfSpeech: 'noun', distractors: ['meeting', 'report', 'email', 'budget', 'date'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'agree', partOfSpeech: 'verb', translation: { ru: 'соглашаться', uk: 'погоджуватися', es: 'estar de acuerdo' }, example: 'I agree, but I have one concern.' },
+    { word: 'concern', partOfSpeech: 'noun', translation: { ru: 'опасение', uk: 'занепокоєння', es: 'preocupación' }, example: 'I agree, but I have one concern.' },
+    { word: 'should', partOfSpeech: 'modal', translation: { ru: 'стоит', uk: 'варто', es: 'deberíamos' }, example: 'Yes, but we should check the budget.' },
+    { word: 'already', partOfSpeech: 'adverb', translation: { ru: 'уже', uk: 'вже', es: 'ya' }, example: 'I have already checked the report.' },
+    { word: 'yet', partOfSpeech: 'adverb', translation: { ru: 'ещё', uk: 'ще', es: 'aún' }, example: 'We have not agreed on the date yet.' },
+    { word: 'could', partOfSpeech: 'modal', translation: { ru: 'могли бы', uk: 'могли б', es: 'podríamos' }, example: 'Sure, but we could move the call.' },
+  ],
+};
+
+export const MITAP_DAY_52: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 52,
+  topic: { ru: 'Вежливо возразить на созвоне', uk: 'Ввічливо заперечити на дзвінку', es: 'Discrepar con cortesía en la reunión' },
+  outcome: {
+    ru: 'Ты сможешь спокойно сказать, что не согласен, признать чужую мысль и предложить другой путь на встрече.',
+    uk: 'Ти зможеш спокійно сказати, що не згоден, визнати чужу думку й запропонувати інший шлях на зустрічі.',
+    es: 'Podrás decir con calma que no estás de acuerdo, reconocer la idea del otro y proponer otro camino en la reunión.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [26, 10],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Сначала признай чужую мысль', uk: 'Спершу визнай чужу думку', es: 'Primero reconoce la idea del otro' },
+      body: {
+        ru: 'Перед тем как возразить, покажи, что услышал коллегу. Скажи, что понимаешь его мысль, и только потом мягко добавь своё несогласие.',
+        uk: 'Перш ніж заперечити, покажи, що почув колегу. Скажи, що розумієш його думку, і тільки потім м\'яко додай свою незгоду.',
+        es: 'Antes de discrepar, muestra que escuchaste al colega. Di que entiendes su idea y luego añade con calma tu desacuerdo.',
+      },
+      examples: [
+        { en: 'I see your point, but I disagree.', gloss: { ru: 'Я понимаю твою мысль, но я не согласен.', uk: 'Я розумію твою думку, але я не згоден.', es: 'Veo tu idea, pero no estoy de acuerdo.' } },
+        { en: 'You may be right, but I doubt it.', gloss: { ru: 'Ты можешь быть прав, но я сомневаюсь.', uk: 'Ти можеш мати рацію, але я сумніваюся.', es: 'Puede que tengas razón, pero lo dudo.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Возрази мягко через «если»', uk: 'Заперечуй м\'яко через «якщо»', es: 'Discrepa con calma usando «si»' },
+      body: {
+        ru: 'Слово «если» делает несогласие мягким. Ты не споришь в лоб, а показываешь, что будет при другом выборе. Так коллега слышит тебя спокойно.',
+        uk: 'Слово «якщо» робить незгоду м\'якою. Ти не сперечаєшся в лоб, а показуєш, що буде при іншому виборі. Так колега чує тебе спокійно.',
+        es: 'La palabra «si» suaviza el desacuerdo. No discutes de frente, muestras qué pasa con otra opción. Así el colega te oye con calma.',
+      },
+      examples: [
+        { en: 'If we rush, we will miss bugs.', gloss: { ru: 'Если мы поспешим, мы пропустим ошибки.', uk: 'Якщо ми поспішимо, ми пропустимо помилки.', es: 'Si nos apuramos, se nos escaparán errores.' } },
+        { en: 'If you agree, we can try both.', gloss: { ru: 'Если ты согласен, мы можем попробовать оба.', uk: 'Якщо ти згоден, ми можемо спробувати обидва.', es: 'Si estás de acuerdo, podemos probar ambos.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Предложи другой путь, а не просто «нет»', uk: 'Запропонуй інший шлях, а не просто «ні»', es: 'Propón otro camino, no solo «no»' },
+      body: {
+        ru: 'Несогласие звучит сильнее, когда ты даёшь идею. Не закрывай тему словом «нет», а покажи, что можно сделать иначе и почему так лучше.',
+        uk: 'Незгода звучить сильніше, коли ти даєш ідею. Не закривай тему словом «ні», а покажи, що можна зробити інакше і чому так краще.',
+        es: 'El desacuerdo suena mejor cuando das una idea. No cierres el tema con «no», muestra qué hacer distinto y por qué.',
+      },
+      examples: [
+        { en: 'We should test this plan first.', gloss: { ru: 'Нам стоит сначала проверить этот план.', uk: 'Нам варто спершу перевірити цей план.', es: 'Deberíamos probar este plan primero.' } },
+        { en: 'If we wait, the risk will drop.', gloss: { ru: 'Если мы подождём, риск снизится.', uk: 'Якщо ми почекаємо, ризик знизиться.', es: 'Si esperamos, el riesgo bajará.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d52_p1',
+      english: 'I see your point, but I disagree.',
+      meaning: { ru: 'Я понимаю твою мысль, но я не согласен.', uk: 'Я розумію твою думку, але я не згоден.', es: 'Veo tu idea, pero no estoy de acuerdo.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'I see your point — я понимаю мысль', uk: 'I see your point — я розумію думку', es: 'I see your point — veo tu idea' },
+        rule: { ru: 'I see your point — «я понимаю твою мысль». disagree — «не согласен». but соединяет уважение и своё «нет».', uk: 'I see your point — «я розумію твою думку». disagree — «не згоден». but з\'єднує повагу і своє «ні».', es: 'I see your point — «veo tu idea». disagree — «no estoy de acuerdo». but une el respeto y tu «no».' },
+        why: { ru: 'Сначала уважение, потом несогласие — так коллега не закрывается и слышит тебя.', uk: 'Спершу повага, потім незгода — так колега не закривається і чує тебе.', es: 'Primero respeto, luego desacuerdo: así el colega no se cierra y te oye.' },
+        commonMistake: { ru: 'Не говори «I am disagree». disagree уже значит «не согласен», am тут лишний.', uk: 'Не кажи «I am disagree». disagree вже значить «не згоден», am тут зайвий.', es: 'No digas «I am disagree». disagree ya es «no estoy de acuerdo», am sobra.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'you', 'he', 'she'] },
+        { text: 'see', partOfSpeech: 'verb', distractors: ['hear', 'know', 'feel', 'read', 'watch'] },
+        { text: 'your', partOfSpeech: 'determiner', distractors: ['their', 'our', 'his', 'her', 'its'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['plan', 'goal', 'fact', 'rule', 'task'] },
+        { text: 'but', partOfSpeech: 'other', distractors: ['so', 'and', 'or', 'then', 'yet'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'you', 'he', 'she'] },
+        { text: 'disagree', partOfSpeech: 'verb', distractors: ['worry', 'decide', 'wonder', 'insist', 'object'] },
+      ],
+    },
+    {
+      id: 'mitap_d52_p2',
+      english: 'You may be right, but I doubt it.',
+      meaning: { ru: 'Ты можешь быть прав, но я сомневаюсь.', uk: 'Ти можеш мати рацію, але я сумніваюся.', es: 'Puede que tengas razón, pero lo dudo.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'You may be right — ты можешь быть прав', uk: 'You may be right — ти можеш мати рацію', es: 'You may be right — puede que tengas razón' },
+        rule: { ru: 'may здесь — «вполне возможно». doubt — «сомневаюсь». Вместе: я допускаю, но пока не верю.', uk: 'may тут — «цілком можливо». doubt — «сумніваюся». Разом: я припускаю, але поки не вірю.', es: 'may aquí — «quizá». doubt — «dudo». Juntos: lo admito, pero aún no lo creo.' },
+        why: { ru: 'may смягчает твоё сомнение: ты не отрезаешь коллегу, а оставляешь место разговору.', uk: 'may пом\'якшує твій сумнів: ти не відрізаєш колегу, а лишаєш місце розмові.', es: 'may suaviza tu duda: no cortas al colega, dejas sitio a la charla.' },
+        commonMistake: { ru: 'После may слово идёт в простой форме: may be, не «may to be» и не «may is».', uk: 'Після may слово йде в простій формі: may be, не «may to be» і не «may is».', es: 'Tras may va la forma simple: may be, no «may to be» ni «may is».' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'may', partOfSpeech: 'modal', distractors: ['must', 'should', 'can', 'will', 'would'] },
+        { text: 'be', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'am'] },
+        { text: 'right', partOfSpeech: 'adjective', distractors: ['calm', 'kind', 'sure', 'fair', 'close'] },
+        { text: 'but', partOfSpeech: 'other', distractors: ['so', 'and', 'or', 'then', 'yet'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'you', 'he', 'she'] },
+        { text: 'doubt', partOfSpeech: 'verb', distractors: ['wonder', 'insist', 'decide', 'worry', 'mind'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'us', 'him', 'her', 'me'] },
+      ],
+    },
+    {
+      id: 'mitap_d52_p3',
+      english: 'If we rush, we will miss bugs.',
+      meaning: { ru: 'Если мы поспешим, мы пропустим ошибки.', uk: 'Якщо ми поспішимо, ми пропустимо помилки.', es: 'Si nos apuramos, se nos escaparán errores.' },
+      constructions: ['conditionals'],
+      explanation: {
+        title: { ru: 'If we rush — если мы поспешим', uk: 'If we rush — якщо ми поспішимо', es: 'If we rush — si nos apuramos' },
+        rule: { ru: 'If we rush — «если поспешим». will miss — «пропустим». Связка показывает плохой итог спешки.', uk: 'If we rush — «якщо поспішимо». will miss — «пропустимо». Зв\'язка показує поганий підсумок поспіху.', es: 'If we rush — «si nos apuramos». will miss — «dejaremos». La unión muestra el mal final de la prisa.' },
+        why: { ru: 'Через «если» ты возражаешь мягко: показываешь риск, а не просто говоришь «нет».', uk: 'Через «якщо» ти заперечуєш м\'яко: показуєш ризик, а не просто кажеш «ні».', es: 'Con «si» discrepas suave: muestras el riesgo, no solo dices «no».' },
+        commonMistake: { ru: 'После If берём простое we rush, не «we will rush»: will идёт во второй части.', uk: 'Після If беремо просте we rush, не «we will rush»: will іде в другій частині.', es: 'Tras If usa simple we rush, no «we will rush»: will va en la segunda parte.' },
+      },
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['When', 'Because', 'While', 'Unless', 'Although'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'rush', partOfSpeech: 'verb', distractors: ['wait', 'stop', 'pause', 'relax', 'leave'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'may', 'must', 'should', 'would'] },
+        { text: 'miss', partOfSpeech: 'verb', distractors: ['find', 'fix', 'hide', 'keep', 'mark'] },
+        { text: 'bugs', partOfSpeech: 'noun', distractors: ['dates', 'names', 'calls', 'files', 'tasks'] },
+      ],
+    },
+    {
+      id: 'mitap_d52_p4',
+      english: 'We should test this plan first.',
+      meaning: { ru: 'Нам стоит сначала проверить этот план.', uk: 'Нам варто спершу перевірити цей план.', es: 'Deberíamos probar este plan primero.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'We should test — нам стоит проверить', uk: 'We should test — нам варто перевірити', es: 'We should test — deberíamos probar' },
+        rule: { ru: 'should — мягкий совет «стоит». test — «проверить». first — «сначала», то есть до решения.', uk: 'should — м\'яка порада «варто». test — «перевірити». first — «спершу», тобто до рішення.', es: 'should — consejo suave «deberíamos». test — «probar». first — «primero», antes de decidir.' },
+        why: { ru: 'should даёт совет без давления — коллега слышит идею, а не приказ.', uk: 'should дає пораду без тиску — колега чує ідею, а не наказ.', es: 'should aconseja sin presión: el colega oye una idea, no una orden.' },
+        commonMistake: { ru: 'После should слово идёт в простой форме: should test, не «should to test».', uk: 'Після should слово йде в простій формі: should test, не «should to test».', es: 'Tras should va la forma simple: should test, no «should to test».' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['They', 'You', 'He', 'She', 'It'] },
+        { text: 'should', partOfSpeech: 'modal', distractors: ['could', 'might', 'must', 'will', 'would'] },
+        { text: 'test', partOfSpeech: 'verb', distractors: ['build', 'share', 'write', 'read', 'keep'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['each', 'every', 'any', 'some', 'that'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['goal', 'fact', 'rule', 'case', 'note'] },
+        { text: 'first', partOfSpeech: 'adverb', distractors: ['alone', 'twice', 'early', 'loudly', 'outside'] },
+      ],
+    },
+    {
+      id: 'mitap_d52_p5',
+      english: 'If you agree, we can try both.',
+      meaning: { ru: 'Если ты согласен, мы можем попробовать оба.', uk: 'Якщо ти згоден, ми можемо спробувати обидва.', es: 'Si estás de acuerdo, podemos probar ambos.' },
+      constructions: ['conditionals', 'modals'],
+      explanation: {
+        title: { ru: 'If you agree — если ты согласен', uk: 'If you agree — якщо ти згоден', es: 'If you agree — si estás de acuerdo' },
+        rule: { ru: 'If you agree — «если ты согласен». can try — «можем попробовать». both — «оба варианта».', uk: 'If you agree — «якщо ти згоден». can try — «можемо спробувати». both — «обидва варіанти».', es: 'If you agree — «si estás de acuerdo». can try — «podemos probar». both — «ambos».' },
+        why: { ru: 'Ты возражаешь, но даёшь выход: пробуем оба пути, и коллега чувствует уважение.', uk: 'Ти заперечуєш, але даєш вихід: пробуємо обидва шляхи, і колега відчуває повагу.', es: 'Discrepas pero das salida: probamos ambos caminos y el colega siente respeto.' },
+        commonMistake: { ru: 'После can слово идёт в простой форме: can try, не «can to try».', uk: 'Після can слово йде в простій формі: can try, не «can to try».', es: 'Tras can va la forma simple: can try, no «can to try».' },
+      },
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['When', 'Because', 'While', 'Unless', 'Although'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'agree', partOfSpeech: 'verb', distractors: ['decide', 'wonder', 'insist', 'worry', 'listen'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'can', partOfSpeech: 'modal', distractors: ['must', 'should', 'will', 'would', 'might'] },
+        { text: 'try', partOfSpeech: 'verb', distractors: ['keep', 'skip', 'drop', 'mix', 'split'] },
+        { text: 'both', partOfSpeech: 'determiner', distractors: ['each', 'many', 'few', 'such', 'other'] },
+      ],
+    },
+    {
+      id: 'mitap_d52_p6',
+      english: 'I am not sure about this idea.',
+      meaning: { ru: 'Я не уверен насчёт этой идеи.', uk: 'Я не впевнений щодо цієї ідеї.', es: 'No estoy seguro de esta idea.' },
+      constructions: ['to-be-negation'],
+      explanation: {
+        title: { ru: 'I am not sure — я не уверен', uk: 'I am not sure — я не впевнений', es: 'I am not sure — no estoy seguro' },
+        rule: { ru: 'am not sure — «не уверен». about this idea — «насчёт этой идеи». Мягкое «нет» без спора.', uk: 'am not sure — «не впевнений». about this idea — «щодо цієї ідеї». М\'яке «ні» без суперечки.', es: 'am not sure — «no seguro». about this idea — «de esta idea». Un «no» suave sin pelea.' },
+        why: { ru: '«Не уверен» звучит мягче, чем «нет», и оставляет коллеге место объяснить.', uk: '«Не впевнений» звучить м\'якше, ніж «ні», і лишає колезі місце пояснити.', es: '«No seguro» suena más suave que «no» y deja al colega explicar.' },
+        commonMistake: { ru: 'Не говори «I not sure». Нужно am not sure: am держит «я» и «не».', uk: 'Не кажи «I not sure». Потрібно am not sure: am тримає «я» і «не».', es: 'No digas «I not sure». Usa am not sure: am sostiene «yo» y «no».' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'you', 'he', 'she'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'other', distractors: ['never', 'also', 'just', 'still', 'quite'] },
+        { text: 'sure', partOfSpeech: 'adjective', distractors: ['calm', 'glad', 'keen', 'proud', 'tired'] },
+        { text: 'about', partOfSpeech: 'other', distractors: ['for', 'with', 'of', 'at', 'on'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['each', 'every', 'any', 'some', 'that'] },
+        { text: 'idea', partOfSpeech: 'noun', distractors: ['goal', 'fact', 'rule', 'case', 'note'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'disagree', partOfSpeech: 'verb', translation: { ru: 'не соглашаться', uk: 'не погоджуватися', es: 'discrepar' }, example: 'I see your point, but I disagree.' },
+    { word: 'doubt', partOfSpeech: 'verb', translation: { ru: 'сомневаться', uk: 'сумніватися', es: 'dudar' }, example: 'You may be right, but I doubt it.' },
+    { word: 'rush', partOfSpeech: 'verb', translation: { ru: 'спешить', uk: 'поспішати', es: 'apurarse' }, example: 'If we rush, we will miss bugs.' },
+    { word: 'test', partOfSpeech: 'verb', translation: { ru: 'проверить', uk: 'перевірити', es: 'probar' }, example: 'We should test this plan first.' },
+    { word: 'both', partOfSpeech: 'determiner', translation: { ru: 'оба', uk: 'обидва', es: 'ambos' }, example: 'If you agree, we can try both.' },
+    { word: 'sure', partOfSpeech: 'adjective', translation: { ru: 'уверенный', uk: 'впевнений', es: 'seguro' }, example: 'I am not sure about this idea.' },
+  ],
+};
+
+export const MITAP_DAY_53: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 53,
+  topic: { ru: 'Предложить альтернативу', uk: 'Запропонувати альтернативу', es: 'Proponer una alternativa' },
+  outcome: {
+    ru: 'Ты сможешь мягко предложить другой путь на созвоне: если первый план не идёт, ты спокойно скажешь команде попробовать иначе.',
+    uk: 'Ти зможеш м\'яко запропонувати інший шлях на дзвінку: якщо перший план не йде, ти спокійно скажеш команді спробувати інакше.',
+    es: 'Podrás proponer con calma otro camino en la llamada: si el primer plan no funciona, dirás al equipo que pruebe de otra forma.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [26, 13],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Если... то получится', uk: 'Якщо... то вийде', es: 'Si... entonces funcionará' },
+      body: {
+        ru: 'На созвоне план застрял. Ты предлагаешь другой путь через «если»: называешь условие и говоришь, что тогда будет. Звучит мягко, не как приказ.',
+        uk: 'На дзвінку план застряг. Ти пропонуєш інший шлях через «якщо»: називаєш умову й кажеш, що тоді буде. Звучить м\'яко, не як наказ.',
+        es: 'En la llamada el plan se atascó. Propones otro camino con «si»: dices la condición y qué pasará entonces. Suena suave, no como una orden.',
+      },
+      examples: [
+        { en: 'If we try another way, it will work.', gloss: { ru: 'Если мы попробуем другой путь, это сработает.', uk: 'Якщо ми спробуємо інший шлях, це спрацює.', es: 'Si probamos otro camino, funcionará.' } },
+        { en: 'If we change the plan, we will save time.', gloss: { ru: 'Если мы поменяем план, мы сэкономим время.', uk: 'Якщо ми змінимо план, ми заощадимо час.', es: 'Si cambiamos el plan, ahorraremos tiempo.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Мягкое «а что если»', uk: 'М\'яке «а що як»', es: 'El suave «¿y si?»' },
+      body: {
+        ru: 'Чтобы не давить, начинай вопросом «What if...». Это значит «а что если». Ты не приказываешь, а вместе думаешь и зовёшь команду пробовать.',
+        uk: 'Щоб не тиснути, починай питанням «What if...». Це означає «а що як». Ти не наказуєш, а разом думаєш і кличеш команду пробувати.',
+        es: 'Para no presionar, empieza con «What if...». Significa «¿y si?». No ordenas, piensas junto al equipo e invitas a probar.',
+      },
+      examples: [
+        { en: 'What if we tried another way?', gloss: { ru: 'А что если мы попробуем другой путь?', uk: 'А що як ми спробуємо інший шлях?', es: '¿Y si probáramos otro camino?' } },
+        { en: 'What if we start with the small part?', gloss: { ru: 'А что если мы начнём с маленькой части?', uk: 'А що як ми почнемо з маленької частини?', es: '¿Y si empezamos por la parte pequeña?' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Подай как помощь команде', uk: 'Подай як допомогу команді', es: 'Preséntalo como ayuda al equipo' },
+      body: {
+        ru: 'Альтернатива звучит лучше, если она помогает всем. Скажи, что новый путь будет быстрее или проще, и команда легче согласится.',
+        uk: 'Альтернатива звучить краще, якщо вона допомагає всім. Скажи, що новий шлях буде швидший або простіший, і команда легше погодиться.',
+        es: 'La alternativa suena mejor si ayuda a todos. Di que el nuevo camino será más rápido o más fácil, y el equipo aceptará con gusto.',
+      },
+      examples: [
+        { en: 'This way will be faster for everyone.', gloss: { ru: 'Этот путь будет быстрее для всех.', uk: 'Цей шлях буде швидший для всіх.', es: 'Este camino será más rápido para todos.' } },
+        { en: 'If you agree, we will start today.', gloss: { ru: 'Если ты согласен, мы начнём сегодня.', uk: 'Якщо ти згоден, ми почнемо сьогодні.', es: 'Si estás de acuerdo, empezaremos hoy.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d53_p1',
+      english: 'If we try another way, it will work',
+      meaning: { ru: 'Если мы попробуем другой путь, это сработает', uk: 'Якщо ми спробуємо інший шлях, це спрацює', es: 'Si probamos otro camino, funcionará' },
+      constructions: ['conditionals', 'future-simple'],
+      explanation: {
+        title: { ru: '«Если..., то сработает»', uk: '«Якщо..., то спрацює»', es: '«Si..., funcionará»' },
+        rule: { ru: 'Сначала условие со словом if, потом результат с will. work здесь — «сработает, получится».', uk: 'Спершу умова зі словом if, потім результат із will. work тут — «спрацює, вийде».', es: 'Primero la condición con if, luego el resultado con will. work aquí es «funcionará».' },
+        why: { ru: 'Это мягкое предложение: ты не приказываешь, а показываешь, что будет, если попробовать.', uk: 'Це м\'яка пропозиція: ти не наказуєш, а показуєш, що буде, якщо спробувати.', es: 'Es una propuesta suave: no ordenas, muestras qué pasará si se prueba.' },
+        commonMistake: { ru: 'Не ставь will после if. Говорим if we try, а не if we will try.', uk: 'Не став will після if. Кажемо if we try, а не if we will try.', es: 'No pongas will tras if. Decimos if we try, no if we will try.' },
+      },
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['When', 'Because', 'Although', 'Unless', 'While'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'try', partOfSpeech: 'verb', distractors: ['close', 'sell', 'sleep', 'cook', 'drive'] },
+        { text: 'another', partOfSpeech: 'determiner', distractors: ['each', 'every', 'some', 'both', 'these'] },
+        { text: 'way', partOfSpeech: 'noun', distractors: ['road', 'door', 'step', 'plan', 'goal'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'you'] },
+        { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'may', 'would'] },
+        { text: 'work', partOfSpeech: 'verb', distractors: ['agree', 'arrive', 'smile', 'rest', 'sleep'] },
+      ],
+    },
+    {
+      id: 'mitap_d53_p2',
+      english: 'What if we tried another plan?',
+      meaning: { ru: 'А что если мы попробуем другой план?', uk: 'А що як ми спробуємо інший план?', es: '¿Y si probáramos otro plan?' },
+      constructions: ['conditionals', 'past-simple-regular'],
+      explanation: {
+        title: { ru: '«А что если...?»', uk: '«А що як...?»', es: '«¿Y si...?»' },
+        rule: { ru: 'What if значит «а что если». Дальше идёт мягкая форма tried — звучит как осторожное предложение.', uk: 'What if значить «а що як». Далі йде м\'яка форма tried — звучить як обережна пропозиція.', es: 'What if significa «¿y si?». Después va la forma suave tried — suena como propuesta cuidadosa.' },
+        why: { ru: 'Так ты зовёшь команду подумать вместе, а не давишь своим решением.', uk: 'Так ти кличеш команду подумати разом, а не тиснеш своїм рішенням.', es: 'Así invitas al equipo a pensar juntos, sin imponer tu decisión.' },
+        commonMistake: { ru: 'Не говори what if we try here как просьбу; для мягкости берём tried.', uk: 'Не кажи what if we try тут як прохання; для м\'якості беремо tried.', es: 'No digas what if we try aquí; para suavidad usamos tried.' },
+      },
+      words: [
+        { text: 'What', partOfSpeech: 'pronoun', distractors: ['How', 'Where', 'Why', 'When', 'Who'] },
+        { text: 'if', partOfSpeech: 'conjunction', distractors: ['when', 'unless', 'because', 'although', 'while'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'tried', partOfSpeech: 'verb', distractors: ['made', 'took', 'gave', 'found', 'kept'] },
+        { text: 'another', partOfSpeech: 'determiner', distractors: ['each', 'every', 'some', 'any', 'this'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['goal', 'task', 'rule', 'price', 'list'] },
+      ],
+    },
+    {
+      id: 'mitap_d53_p3',
+      english: 'This way will be faster for everyone',
+      meaning: { ru: 'Этот путь будет быстрее для всех', uk: 'Цей шлях буде швидший для всіх', es: 'Este camino será más rápido para todos' },
+      constructions: ['future-simple', 'comparatives'],
+      explanation: {
+        title: { ru: '«Будет быстрее»', uk: '«Буде швидше»', es: '«Será más rápido»' },
+        rule: { ru: 'will be — «будет». faster значит «быстрее»: к слову fast добавили хвост -er для сравнения.', uk: 'will be — «буде». faster значить «швидше»: до слова fast додали хвіст -er для порівняння.', es: 'will be es «será». faster significa «más rápido»: a fast se le añade -er para comparar.' },
+        why: { ru: 'Ты показываешь выгоду нового пути для всех, и команде легче согласиться.', uk: 'Ти показуєш вигоду нового шляху для всіх, і команді легше погодитися.', es: 'Muestras el beneficio del nuevo camino para todos, y el equipo acepta más fácil.' },
+        commonMistake: { ru: 'Не говори more fast. У коротких слов сравнение через -er: faster.', uk: 'Не кажи more fast. У коротких слів порівняння через -er: faster.', es: 'No digas more fast. En palabras cortas se compara con -er: faster.' },
+      },
+      words: [
+        { text: 'This', partOfSpeech: 'determiner', distractors: ['These', 'Each', 'Some', 'Any', 'Every'] },
+        { text: 'way', partOfSpeech: 'noun', distractors: ['door', 'box', 'wall', 'floor', 'shelf'] },
+        { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'may', 'would'] },
+        { text: 'be', partOfSpeech: 'to-be', distractors: ['is', 'was', 'are', 'been', 'were'] },
+        { text: 'faster', partOfSpeech: 'adjective', distractors: ['slower', 'cheaper', 'bigger', 'smaller', 'longer'] },
+        { text: 'for', partOfSpeech: 'other', distractors: ['to', 'with', 'at', 'by', 'from'] },
+        { text: 'everyone', partOfSpeech: 'pronoun', distractors: ['someone', 'anyone', 'nobody', 'everything', 'anything'] },
+      ],
+    },
+    {
+      id: 'mitap_d53_p4',
+      english: 'If you agree, we will start today',
+      meaning: { ru: 'Если ты согласен, мы начнём сегодня', uk: 'Якщо ти згоден, ми почнемо сьогодні', es: 'Si estás de acuerdo, empezaremos hoy' },
+      constructions: ['conditionals', 'future-simple'],
+      explanation: {
+        title: { ru: '«Если согласен, начнём»', uk: '«Якщо згоден, почнемо»', es: '«Si aceptas, empezaremos»' },
+        rule: { ru: 'agree значит «соглашаться». Условие с if, а результат с will: «начнём».', uk: 'agree значить «погоджуватися». Умова з if, а результат із will: «почнемо».', es: 'agree significa «estar de acuerdo». Condición con if, resultado con will: «empezaremos».' },
+        why: { ru: 'Ты даёшь команде выбор и сразу зовёшь к действию — это звучит уважительно.', uk: 'Ти даєш команді вибір і одразу кличеш до дії — це звучить шанобливо.', es: 'Das al equipo la opción y llamas a la acción — suena respetuoso.' },
+        commonMistake: { ru: 'Не ставь will в части с if. Говорим if you agree, а не if you will agree.', uk: 'Не став will у частині з if. Кажемо if you agree, а не if you will agree.', es: 'No pongas will tras if. Decimos if you agree, no if you will agree.' },
+      },
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['When', 'Because', 'Although', 'Unless', 'While'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'it'] },
+        { text: 'agree', partOfSpeech: 'verb', distractors: ['bring', 'send', 'close', 'arrive', 'sleep'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'may', 'would'] },
+        { text: 'start', partOfSpeech: 'verb', distractors: ['finish', 'wait', 'stop', 'leave', 'return'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'now', 'early', 'always'] },
+      ],
+    },
+    {
+      id: 'mitap_d53_p5',
+      english: 'If the plan fails, we will change it',
+      meaning: { ru: 'Если план не сработает, мы его поменяем', uk: 'Якщо план не спрацює, ми його змінимо', es: 'Si el plan falla, lo cambiaremos' },
+      constructions: ['conditionals', 'future-simple'],
+      explanation: {
+        title: { ru: '«Если не выйдет, поменяем»', uk: '«Якщо не вийде, змінимо»', es: '«Si falla, lo cambiaremos»' },
+        rule: { ru: 'fails значит «не срабатывает, проваливается». Условие с if, план Б с will: «поменяем».', uk: 'fails значить «не спрацьовує, провалюється». Умова з if, план Б із will: «змінимо».', es: 'fails significa «falla». Condición con if, plan B con will: «cambiaremos».' },
+        why: { ru: 'Ты заранее готовишь запасной путь — команде спокойнее идти на риск.', uk: 'Ти заздалегідь готуєш запасний шлях — команді спокійніше йти на ризик.', es: 'Preparas un camino de reserva — el equipo arriesga con más calma.' },
+        commonMistake: { ru: 'it значит «его, это». Не пропускай его: change it, а не просто change.', uk: 'it значить «його, це». Не пропускай його: change it, а не просто change.', es: 'it significa «lo». No lo omitas: change it, no solo change.' },
+      },
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['When', 'Because', 'Although', 'Unless', 'While'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'my', 'this', 'some'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['goal', 'task', 'rule', 'price', 'list'] },
+        { text: 'fails', partOfSpeech: 'verb', distractors: ['ends', 'stops', 'grows', 'moves', 'waits'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'may', 'would'] },
+        { text: 'change', partOfSpeech: 'verb', distractors: ['keep', 'drop', 'hold', 'mark', 'share'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'you'] },
+      ],
+    },
+    {
+      id: 'mitap_d53_p6',
+      english: 'What if we start with the small part?',
+      meaning: { ru: 'А что если мы начнём с маленькой части?', uk: 'А що як ми почнемо з маленької частини?', es: '¿Y si empezamos por la parte pequeña?' },
+      constructions: ['conditionals', 'prepositions-place'],
+      explanation: {
+        title: { ru: '«А что если с малого?»', uk: '«А що як з малого?»', es: '«¿Y si por lo pequeño?»' },
+        rule: { ru: 'What if зовёт подумать. start with значит «начать с». part значит «часть».', uk: 'What if кличе подумати. start with значить «почати з». part значить «частина».', es: 'What if invita a pensar. start with es «empezar por». part es «parte».' },
+        why: { ru: 'Маленький шаг легче принять, и команда не боится большого риска.', uk: 'Маленький крок легше прийняти, і команда не боїться великого ризику.', es: 'Un paso pequeño se acepta mejor, y el equipo no teme un gran riesgo.' },
+        commonMistake: { ru: 'Говорим start with, а не start from, когда зовём начать с части.', uk: 'Кажемо start with, а не start from, коли кличемо почати з частини.', es: 'Decimos start with, no start from, al empezar por una parte.' },
+      },
+      words: [
+        { text: 'What', partOfSpeech: 'pronoun', distractors: ['How', 'Where', 'Why', 'When', 'Who'] },
+        { text: 'if', partOfSpeech: 'conjunction', distractors: ['when', 'unless', 'because', 'although', 'while'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'start', partOfSpeech: 'verb', distractors: ['finish', 'wait', 'stop', 'leave', 'return'] },
+        { text: 'with', partOfSpeech: 'other', distractors: ['to', 'at', 'by', 'from', 'for'] },
+        { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'my', 'this', 'some'] },
+        { text: 'small', partOfSpeech: 'adjective', distractors: ['big', 'long', 'wide', 'heavy', 'tall'] },
+        { text: 'part', partOfSpeech: 'noun', distractors: ['sky', 'rain', 'hour', 'cloud', 'tree'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'another', partOfSpeech: 'determiner', translation: { ru: 'другой, ещё один', uk: 'інший, ще один', es: 'otro' }, example: 'If we try another way, it will work' },
+    { word: 'way', partOfSpeech: 'noun', translation: { ru: 'путь, способ', uk: 'шлях, спосіб', es: 'camino, manera' }, example: 'If we try another way, it will work' },
+    { word: 'tried', partOfSpeech: 'verb', translation: { ru: 'попробовали бы', uk: 'спробували б', es: 'probáramos' }, example: 'What if we tried another plan?' },
+    { word: 'faster', partOfSpeech: 'adjective', translation: { ru: 'быстрее', uk: 'швидше', es: 'más rápido' }, example: 'This way will be faster for everyone' },
+    { word: 'agree', partOfSpeech: 'verb', translation: { ru: 'соглашаться', uk: 'погоджуватися', es: 'estar de acuerdo' }, example: 'If you agree, we will start today' },
+    { word: 'fails', partOfSpeech: 'verb', translation: { ru: 'не срабатывает, проваливается', uk: 'не спрацьовує, провалюється', es: 'falla' }, example: 'If the plan fails, we will change it' },
+  ],
+};
+
+export const MITAP_DAY_54: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 54,
+  topic: { ru: 'Поддержать чужую идею и дополнить', uk: 'Підтримати чужу ідею та доповнити', es: 'Apoyar la idea de otro y ampliarla' },
+  outcome: {
+    ru: 'Ты сможешь согласиться с коллегой и красиво добавить свою мысль на созвоне.',
+    uk: 'Ти зможеш погодитися з колегою та гарно додати свою думку на дзвінку.',
+    es: 'Podrás estar de acuerdo con un colega y añadir tu idea con elegancia en la reunión.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [24, 14],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Сначала похвали мысль, потом добавь свою', uk: 'Спочатку похвали думку, потім додай свою', es: 'Primero elogia la idea, luego añade la tuya' },
+      body: {
+        ru: 'На созвоне не спорь сразу. Скажи, что мысль хорошая, и аккуратно добавь своё. Так тебя слушают охотнее.',
+        uk: 'На дзвінку не сперечайся одразу. Скажи, що думка гарна, і обережно додай своє. Так тебе слухають охочіше.',
+        es: 'En la reunión no discutas de inmediato. Di que la idea es buena y añade lo tuyo con cuidado. Así te escuchan mejor.',
+      },
+      examples: [
+        { en: 'That is a great point.', gloss: { ru: 'Это отличная мысль.', uk: 'Це чудова думка.', es: 'Es una idea excelente.' } },
+        { en: 'I would add one more thing.', gloss: { ru: 'Я бы добавил ещё одну вещь.', uk: 'Я б додав ще одну річ.', es: 'Yo añadiría una cosa más.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Покажи, что ты уже думал об этом', uk: 'Покажи, що ти вже думав про це', es: 'Muestra que ya lo has pensado' },
+      body: {
+        ru: 'Свяжи свою идею с чужой: «я тоже это видел», «мы уже пробовали». Готовый результат звучит весомее простого мнения.',
+        uk: 'Зв\'яжи свою ідею з чужою: «я теж це бачив», «ми вже пробували». Готовий результат звучить вагоміше за просту думку.',
+        es: 'Conecta tu idea con la de otro: «yo también lo he visto», «ya lo probamos». Un resultado listo suena más fuerte que una simple opinión.',
+      },
+      examples: [
+        { en: 'We have tried this before.', gloss: { ru: 'Мы пробовали это раньше.', uk: 'Ми пробували це раніше.', es: 'Hemos probado esto antes.' } },
+        { en: 'Your plan is better than mine.', gloss: { ru: 'Твой план лучше моего.', uk: 'Твій план кращий за мій.', es: 'Tu plan es mejor que el mío.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Сравни и сделай идею сильнее', uk: 'Порівняй і зроби ідею сильнішою', es: 'Compara y haz la idea más fuerte' },
+      body: {
+        ru: 'Скажи, что вместе вариант становится лучше или быстрее. Лёгкое сравнение помогает дополнить, а не перебить коллегу.',
+        uk: 'Скажи, що разом варіант стає кращим або швидшим. Легке порівняння допомагає доповнити, а не перебити колегу.',
+        es: 'Di que juntos la opción se vuelve mejor o más rápida. Una comparación ligera ayuda a ampliar, no a interrumpir al colega.',
+      },
+      examples: [
+        { en: 'This way is faster than email.', gloss: { ru: 'Этот способ быстрее почты.', uk: 'Цей спосіб швидший за пошту.', es: 'Esta forma es más rápida que el correo.' } },
+        { en: 'That makes the idea even stronger.', gloss: { ru: 'Это делает идею ещё сильнее.', uk: 'Це робить ідею ще сильнішою.', es: 'Eso hace la idea aún más fuerte.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d54_p1',
+      english: 'That is a great point.',
+      meaning: { ru: 'Это отличная мысль.', uk: 'Це чудова думка.', es: 'Es una idea excelente.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Хвалим чужую мысль', uk: 'Хвалимо чужу думку', es: 'Elogiamos la idea ajena' },
+        rule: { ru: 'Point здесь — мысль, замечание. Great point — отличная мысль. Простой способ поддержать коллегу одной фразой.', uk: 'Point тут — думка, зауваження. Great point — чудова думка. Простий спосіб підтримати колегу однією фразою.', es: 'Point aquí es idea o comentario. Great point es idea excelente. Una forma simple de apoyar al colega.' },
+        why: { ru: 'С этого начинают поддержку: сначала похвала, потом своё дополнение.', uk: 'З цього починають підтримку: спочатку похвала, потім своє доповнення.', es: 'Así se empieza el apoyo: primero el elogio, luego tu aporte.' },
+        commonMistake: { ru: 'Не говори good idea вместо great point — звучит слабее на созвоне.', uk: 'Не кажи good idea замість great point — звучить слабше на дзвінку.', es: 'No digas good idea en vez de great point: suena más débil en la reunión.' },
+      },
+      words: [
+        { text: 'That', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'It', 'They', 'We'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'were', 'am', 'be'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'this', 'that', 'my'] },
+        { text: 'great', partOfSpeech: 'adjective', distractors: ['loud', 'green', 'heavy', 'early', 'wet'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['floor', 'window', 'engine', 'branch', 'corner'] },
+      ],
+    },
+    {
+      id: 'mitap_d54_p2',
+      english: 'I would add one more thing.',
+      meaning: { ru: 'Я бы добавил ещё одну вещь.', uk: 'Я б додав ще одну річ.', es: 'Yo añadiría una cosa más.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Мягко добавляем своё', uk: 'М\'яко додаємо своє', es: 'Añadimos lo nuestro con suavidad' },
+        rule: { ru: 'Would add — бы добавил. Это вежливо: не приказываю, а предлагаю своё. One more thing — ещё одна вещь.', uk: 'Would add — би додав. Це ввічливо: не наказую, а пропоную своє. One more thing — ще одна річ.', es: 'Would add es añadiría. Es cortés: no ordeno, propongo lo mío. One more thing es una cosa más.' },
+        why: { ru: 'После похвалы это лучший мостик к своей идее.', uk: 'Після похвали це найкращий місток до своєї ідеї.', es: 'Tras el elogio, es el mejor puente hacia tu idea.' },
+        commonMistake: { ru: 'Не говори I add — звучит резко. Would add мягче и вежливее.', uk: 'Не кажи I add — звучить різко. Would add м\'якше і ввічливіше.', es: 'No digas I add: suena brusco. Would add es más suave y cortés.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'It', 'They', 'You'] },
+        { text: 'would', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'might', 'may'] },
+        { text: 'add', partOfSpeech: 'verb', distractors: ['paint', 'carry', 'clean', 'build', 'wash'] },
+        { text: 'one', partOfSpeech: 'determiner', distractors: ['two', 'five', 'ten', 'six', 'nine'] },
+        { text: 'more', partOfSpeech: 'adjective', distractors: ['loud', 'sharp', 'empty', 'warm', 'plain'] },
+        { text: 'thing', partOfSpeech: 'noun', distractors: ['road', 'cloud', 'shelf', 'river', 'fence'] },
+      ],
+    },
+    {
+      id: 'mitap_d54_p3',
+      english: 'We have tried this before.',
+      meaning: { ru: 'Мы пробовали это раньше.', uk: 'Ми пробували це раніше.', es: 'Hemos probado esto antes.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: 'Показываем свой опыт', uk: 'Показуємо свій досвід', es: 'Mostramos nuestra experiencia' },
+        rule: { ru: 'Have tried — уже пробовали, и это важно сейчас. Before — раньше. Так ты дополняешь идею своим опытом.', uk: 'Have tried — вже пробували, і це важливо зараз. Before — раніше. Так ти доповнюєш ідею своїм досвідом.', es: 'Have tried es ya probamos, y eso importa ahora. Before es antes. Así amplías la idea con tu experiencia.' },
+        why: { ru: 'Поддержку усиливает факт: мы это уже видели на деле.', uk: 'Підтримку посилює факт: ми це вже бачили на ділі.', es: 'El apoyo se refuerza con un hecho: ya lo vimos en la práctica.' },
+        commonMistake: { ru: 'Не говори we tried — теряется связь с сейчас. Have tried держит связь.', uk: 'Не кажи we tried — губиться зв\'язок із зараз. Have tried тримає зв\'язок.', es: 'No digas we tried: pierdes el vínculo con ahora. Have tried lo mantiene.' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'It', 'I', 'You'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'having', 'do', 'be'] },
+        { text: 'tried', partOfSpeech: 'verb', distractors: ['walked', 'cooked', 'jumped', 'painted', 'cleaned'] },
+        { text: 'this', partOfSpeech: 'pronoun', distractors: ['that', 'it', 'these', 'those', 'them'] },
+        { text: 'before', partOfSpeech: 'adverb', distractors: ['slowly', 'quietly', 'loudly', 'badly', 'gladly'] },
+      ],
+    },
+    {
+      id: 'mitap_d54_p4',
+      english: 'Your plan is better than mine.',
+      meaning: { ru: 'Твой план лучше моего.', uk: 'Твій план кращий за мій.', es: 'Tu plan es mejor que el mío.' },
+      constructions: ['comparatives', 'possessive-pronouns'],
+      explanation: {
+        title: { ru: 'Честно признаём чужой плюс', uk: 'Чесно визнаємо чужий плюс', es: 'Reconocemos con honestidad lo bueno ajeno' },
+        rule: { ru: 'Better than — лучше, чем. Mine — мой. Признать чужой план сильнее своего — мощный способ поддержать.', uk: 'Better than — кращий за. Mine — мій. Визнати чужий план сильнішим за свій — потужний спосіб підтримати.', es: 'Better than es mejor que. Mine es el mío. Reconocer que su plan supera al tuyo apoya con fuerza.' },
+        why: { ru: 'Сравнение показывает: ты слушал и оценил идею честно.', uk: 'Порівняння показує: ти слухав і оцінив ідею чесно.', es: 'La comparación muestra que escuchaste y valoraste la idea con honestidad.' },
+        commonMistake: { ru: 'Не говори more good — правильно better. И не путай mine с my.', uk: 'Не кажи more good — правильно better. І не плутай mine з my.', es: 'No digas more good: lo correcto es better. Y no confundas mine con my.' },
+      },
+      words: [
+        { text: 'Your', partOfSpeech: 'determiner', distractors: ['My', 'His', 'Her', 'Their', 'Our'] },
+        { text: 'plan', partOfSpeech: 'noun', distractors: ['weather', 'music', 'silence', 'laughter', 'traffic'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'were', 'am', 'be'] },
+        { text: 'better', partOfSpeech: 'adjective', distractors: ['wider', 'colder', 'darker', 'softer', 'heavier'] },
+        { text: 'than', partOfSpeech: 'conjunction', distractors: ['with', 'from', 'about', 'under', 'near'] },
+        { text: 'mine', partOfSpeech: 'pronoun', distractors: ['hers', 'his', 'ours', 'theirs', 'yours'] },
+      ],
+    },
+    {
+      id: 'mitap_d54_p5',
+      english: 'This way is faster than email.',
+      meaning: { ru: 'Этот способ быстрее почты.', uk: 'Цей спосіб швидший за пошту.', es: 'Esta forma es más rápida que el correo.' },
+      constructions: ['comparatives'],
+      explanation: {
+        title: { ru: 'Дополняем выгодой по скорости', uk: 'Доповнюємо вигодою у швидкості', es: 'Ampliamos con la ventaja de la rapidez' },
+        rule: { ru: 'Faster than — быстрее, чем. Way здесь — способ. Так ты добавляешь к идее конкретную выгоду.', uk: 'Faster than — швидший за. Way тут — спосіб. Так ти додаєш до ідеї конкретну вигоду.', es: 'Faster than es más rápido que. Way aquí es forma o manera. Así sumas a la idea una ventaja concreta.' },
+        why: { ru: 'Дополнение работает, когда показывает реальный плюс — скорость.', uk: 'Доповнення працює, коли показує реальний плюс — швидкість.', es: 'El aporte funciona cuando muestra una ventaja real: la rapidez.' },
+        commonMistake: { ru: 'Не говори more fast — правильно faster. Короткое слово берёт -er.', uk: 'Не кажи more fast — правильно faster. Коротке слово бере -er.', es: 'No digas more fast: lo correcto es faster. La palabra corta toma -er.' },
+      },
+      words: [
+        { text: 'This', partOfSpeech: 'determiner', distractors: ['That', 'Each', 'Some', 'Every', 'Any'] },
+        { text: 'way', partOfSpeech: 'noun', distractors: ['lamp', 'field', 'clock', 'glass', 'truck'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'were', 'am', 'be'] },
+        { text: 'faster', partOfSpeech: 'adjective', distractors: ['taller', 'cooler', 'cleaner', 'rounder', 'greener'] },
+        { text: 'than', partOfSpeech: 'conjunction', distractors: ['with', 'from', 'about', 'under', 'near'] },
+        { text: 'email', partOfSpeech: 'noun', distractors: ['garden', 'pocket', 'mirror', 'ticket', 'carpet'] },
+      ],
+    },
+    {
+      id: 'mitap_d54_p6',
+      english: 'That makes the idea even stronger.',
+      meaning: { ru: 'Это делает идею ещё сильнее.', uk: 'Це робить ідею ще сильнішою.', es: 'Eso hace la idea aún más fuerte.' },
+      constructions: ['comparatives', 'present-simple'],
+      explanation: {
+        title: { ru: 'Закрепляем: вместе лучше', uk: 'Закріплюємо: разом краще', es: 'Cerramos: juntos es mejor' },
+        rule: { ru: 'Even stronger — ещё сильнее. Even усиливает сравнение. Так ты говоришь: твоё добавление улучшает чужую идею.', uk: 'Even stronger — ще сильніше. Even підсилює порівняння. Так ти кажеш: твоє доповнення покращує чужу ідею.', es: 'Even stronger es aún más fuerte. Even refuerza la comparación. Dices que tu aporte mejora la idea ajena.' },
+        why: { ru: 'Финальная фраза поддержки: идея коллеги плюс твоё дополнение.', uk: 'Фінальна фраза підтримки: ідея колеги плюс твоє доповнення.', es: 'Frase final de apoyo: la idea del colega más tu aporte.' },
+        commonMistake: { ru: 'Не говори more strong — правильно stronger. Even ставим перед ним.', uk: 'Не кажи more strong — правильно stronger. Even ставимо перед ним.', es: 'No digas more strong: lo correcto es stronger. Even va antes.' },
+      },
+      words: [
+        { text: 'That', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'It', 'They', 'We'] },
+        { text: 'makes', partOfSpeech: 'verb', distractors: ['cleans', 'paints', 'carries', 'washes', 'pulls'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'my', 'some'] },
+        { text: 'idea', partOfSpeech: 'noun', distractors: ['window', 'pocket', 'garden', 'kitchen', 'corner'] },
+        { text: 'even', partOfSpeech: 'adverb', distractors: ['softly', 'quickly', 'badly', 'gladly', 'loudly'] },
+        { text: 'stronger', partOfSpeech: 'adjective', distractors: ['wider', 'colder', 'darker', 'cleaner', 'rounder'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'point', partOfSpeech: 'noun', translation: { ru: 'мысль, замечание', uk: 'думка, зауваження', es: 'idea, observación' }, example: 'That is a great point.' },
+    { word: 'add', partOfSpeech: 'verb', translation: { ru: 'добавить', uk: 'додати', es: 'añadir' }, example: 'I would add one more thing.' },
+    { word: 'tried', partOfSpeech: 'verb', translation: { ru: 'пробовали', uk: 'пробували', es: 'hemos probado' }, example: 'We have tried this before.' },
+    { word: 'better', partOfSpeech: 'adjective', translation: { ru: 'лучше', uk: 'кращий', es: 'mejor' }, example: 'Your plan is better than mine.' },
+    { word: 'faster', partOfSpeech: 'adjective', translation: { ru: 'быстрее', uk: 'швидший', es: 'más rápido' }, example: 'This way is faster than email.' },
+    { word: 'stronger', partOfSpeech: 'adjective', translation: { ru: 'сильнее', uk: 'сильніший', es: 'más fuerte' }, example: 'That makes the idea even stronger.' },
+  ],
+};
+
+export const MITAP_DAY_55: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 55,
+  topic: { ru: 'Остаться нейтральным в споре', uk: 'Залишитися нейтральним у суперечці', es: 'Mantenerse neutral en una discusión' },
+  outcome: {
+    ru: 'Ты научишься спокойно не вставать ни на чью сторону на созвоне и показывать, что понимаешь оба мнения, не разжигая спор.',
+    uk: 'Ти навчишся спокійно не ставати на жоден бік на дзвінку й показувати, що розумієш обидві думки, не розпалюючи суперечку.',
+    es: 'Aprenderás a mantenerte neutral en una llamada y a mostrar que entiendes ambas opiniones sin avivar la discusión.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [10, 22],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Покажи, что видишь оба мнения', uk: 'Покажи, що бачиш обидві думки', es: 'Muestra que ves ambas opiniones' },
+      body: {
+        ru: 'Когда двое спорят, не выбирай сторону сразу. Скажи, что понимаешь каждого. Так люди слышат: ты честный, а не против кого-то.',
+        uk: 'Коли двоє сперечаються, не обирай бік одразу. Скажи, що розумієш кожного. Так люди чують: ти чесний, а не проти когось.',
+        es: 'Cuando dos personas discuten, no elijas un lado de inmediato. Di que entiendes a cada uno. Así la gente oye que eres justo, no que estás en contra.',
+      },
+      examples: [
+        { en: 'I can see both sides here.', gloss: { ru: 'Я вижу здесь обе стороны.', uk: 'Я бачу тут обидві сторони.', es: 'Veo ambos lados aquí.' } },
+        { en: 'You both have a good point.', gloss: { ru: 'У вас обоих хорошая мысль.', uk: 'У вас обох гарна думка.', es: 'Ambos tienen un buen punto.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Не вставай ни на чью сторону словами', uk: 'Не ставай на жоден бік словами', es: 'No tomes partido con palabras' },
+      body: {
+        ru: 'Скажи прямо, что не выбираешь сторону. Фраза I am not taking sides спокойно показывает: ты тут не судья, а помощник для всех.',
+        uk: 'Скажи прямо, що не обираєш бік. Фраза I am not taking sides спокійно показує: ти тут не суддя, а помічник для всіх.',
+        es: 'Di con claridad que no eliges un lado. La frase I am not taking sides muestra con calma que no eres juez, sino ayuda para todos.',
+      },
+      examples: [
+        { en: 'I am not taking sides today.', gloss: { ru: 'Сегодня я не встаю ни на чью сторону.', uk: 'Сьогодні я не стаю на жоден бік.', es: 'Hoy no tomo partido.' } },
+        { en: 'We can fix this without blaming anyone.', gloss: { ru: 'Мы можем решить это, никого не виня.', uk: 'Ми можемо вирішити це, нікого не звинувачуючи.', es: 'Podemos arreglar esto sin culpar a nadie.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Переведи спор в общую цель', uk: 'Переведи суперечку в спільну мету', es: 'Lleva la discusión a una meta común' },
+      body: {
+        ru: 'После того как ты выслушал обоих, мягко направь к решению. Слово keep + дело по-английски значит продолжать: keep talking — продолжать говорить.',
+        uk: 'Після того як ти вислухав обох, м\'яко спрямуй до рішення. Слово keep + справа англійською значить продовжувати: keep talking — продовжувати говорити.',
+        es: 'Después de escuchar a ambos, dirige con suavidad hacia una solución. La palabra keep + acción significa seguir: keep talking — seguir hablando.',
+      },
+      examples: [
+        { en: 'Let us keep talking and find a plan.', gloss: { ru: 'Давайте продолжать говорить и найдём план.', uk: 'Давайте продовжувати говорити й знайдемо план.', es: 'Sigamos hablando y encontremos un plan.' } },
+        { en: 'We should focus on fixing the problem.', gloss: { ru: 'Нам стоит сосредоточиться на решении проблемы.', uk: 'Нам варто зосередитися на вирішенні проблеми.', es: 'Deberíamos centrarnos en resolver el problema.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d55_p1',
+      english: 'I can see both sides here.',
+      meaning: { ru: 'Я вижу здесь обе стороны.', uk: 'Я бачу тут обидві сторони.', es: 'Veo ambos lados aquí.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'can — могу, умею', uk: 'can — можу, вмію', es: 'can — puedo, sé' },
+        rule: { ru: 'can перед делом значит «могу, способен». I can see — я могу видеть, я вижу.', uk: 'can перед справою значить «можу, здатний». I can see — я можу бачити, я бачу.', es: 'can antes de una acción significa «puedo». I can see — puedo ver, veo.' },
+        why: { ru: 'На созвоне это мягко: ты не споришь, а показываешь, что понимаешь оба мнения.', uk: 'На дзвінку це м\'яко: ти не сперечаєшся, а показуєш, що розумієш обидві думки.', es: 'En la llamada suena suave: no discutes, muestras que entiendes ambas opiniones.' },
+        commonMistake: { ru: 'Не ставь to: говорят I can see, не «I can to see».', uk: 'Не став to: кажуть I can see, не «I can to see».', es: 'No pongas to: se dice I can see, no «I can to see».' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'can', partOfSpeech: 'modal', distractors: ['must', 'should', 'may', 'could', 'will'] },
+        { text: 'see', partOfSpeech: 'verb', distractors: ['open', 'send', 'buy', 'draw', 'close'] },
+        { text: 'both', partOfSpeech: 'determiner', distractors: ['each', 'every', 'some', 'any', 'most'] },
+        { text: 'sides', partOfSpeech: 'noun', distractors: ['colors', 'prices', 'doors', 'plans', 'rooms'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['there', 'now', 'today', 'outside', 'soon'] },
+      ],
+    },
+    {
+      id: 'mitap_d55_p2',
+      english: 'You both have a good point.',
+      meaning: { ru: 'У вас обоих хорошая мысль.', uk: 'У вас обох гарна думка.', es: 'Ambos tienen un buen punto.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'point — мысль, довод', uk: 'point — думка, довід', es: 'point — punto, idea' },
+        rule: { ru: 'a good point значит «хорошая мысль, верный довод». Так хвалят чужую идею.', uk: 'a good point значить «гарна думка, слушний довід». Так хвалять чужу ідею.', es: 'a good point significa «buena idea, buen argumento». Así elogias la idea de otro.' },
+        why: { ru: 'Похвалив обоих, ты остаёшься нейтральным и снимаешь напряжение в споре.', uk: 'Похваливши обох, ти залишаєшся нейтральним і знімаєш напругу в суперечці.', es: 'Al elogiar a ambos, te mantienes neutral y bajas la tensión.' },
+        commonMistake: { ru: 'Перед good нужен a: «a good point», не «good point» без слова.', uk: 'Перед good потрібен a: «a good point», не «good point» без слова.', es: 'Antes de good va a: «a good point», no «good point» sin la palabra.' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
+        { text: 'both', partOfSpeech: 'determiner', distractors: ['each', 'all', 'some', 'many', 'few'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['see', 'read', 'buy', 'open', 'close'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['an', 'the', 'this', 'that', 'my'] },
+        { text: 'good', partOfSpeech: 'adjective', distractors: ['fair', 'clear', 'strong', 'big', 'new'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['day', 'seat', 'meal', 'view', 'road'] },
+      ],
+    },
+    {
+      id: 'mitap_d55_p3',
+      english: 'I am not taking sides today.',
+      meaning: { ru: 'Сегодня я не встаю ни на чью сторону.', uk: 'Сьогодні я не стаю на жоден бік.', es: 'Hoy no tomo partido.' },
+      constructions: ['present-continuous'],
+      explanation: {
+        title: { ru: 'am not — прямо отказ', uk: 'am not — прямо відмова', es: 'am not — niega directo' },
+        rule: { ru: 'am not говорит «я не…» прямо сейчас. I am not taking — я не делаю этого.', uk: 'am not каже «я не…» прямо зараз. I am not taking — я не роблю цього.', es: 'am not dice «yo no…» ahora mismo. I am not taking — no lo hago.' },
+        why: { ru: 'Так ты честно объявляешь: я не выбираю сторону, я за общее решение.', uk: 'Так ти чесно оголошуєш: я не обираю бік, я за спільне рішення.', es: 'Así anuncias con honestidad: no elijo lado, estoy por la solución común.' },
+        commonMistake: { ru: 'Тут не I don\'t take, а I am not taking — про прямо сейчас.', uk: 'Тут не I don\'t take, а I am not taking — про прямо зараз.', es: 'Aquí no I don\'t take, sino I am not taking — sobre ahora mismo.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'just', 'still', 'only', 'also'] },
+        { text: 'taking', partOfSpeech: 'verb', distractors: ['holding', 'calling', 'reading', 'buying', 'cooking'] },
+        { text: 'sides', partOfSpeech: 'noun', distractors: ['teams', 'groups', 'rooms', 'names', 'desks'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['now', 'soon', 'here', 'later', 'again'] },
+      ],
+    },
+    {
+      id: 'mitap_d55_p4',
+      english: 'We can fix this without blaming anyone.',
+      meaning: { ru: 'Мы можем решить это, никого не виня.', uk: 'Ми можемо вирішити це, нікого не звинувачуючи.', es: 'Podemos arreglar esto sin culpar a nadie.' },
+      constructions: ['gerund', 'modals'],
+      explanation: {
+        title: { ru: 'without + дело на -ing', uk: 'without + справа на -ing', es: 'without + acción en -ing' },
+        rule: { ru: 'После without дело берёт -ing: without blaming — без обвинений, никого не виня.', uk: 'Після without справа бере -ing: without blaming — без звинувачень, нікого не виня.', es: 'Tras without la acción lleva -ing: without blaming — sin culpar.' },
+        why: { ru: 'Ты зовёшь решать проблему, а не искать виноватого — это и есть нейтральность.', uk: 'Ти кличеш вирішувати проблему, а не шукати винного — це і є нейтральність.', es: 'Invitas a resolver el problema, no a buscar culpable — eso es neutralidad.' },
+        commonMistake: { ru: 'После without нужна форма -ing: «without blaming», не «without blame».', uk: 'Після without потрібна форма -ing: «without blaming», не «without blame».', es: 'Tras without va la forma -ing: «without blaming», no «without blame».' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'can', partOfSpeech: 'modal', distractors: ['must', 'should', 'may', 'could', 'will'] },
+        { text: 'fix', partOfSpeech: 'verb', distractors: ['reach', 'name', 'share', 'watch', 'count'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['that', 'these', 'those', 'each', 'some'] },
+        { text: 'without', partOfSpeech: 'preposition', distractors: ['before', 'after', 'during', 'upon', 'within'] },
+        { text: 'blaming', partOfSpeech: 'verb', distractors: ['judging', 'scolding', 'fighting', 'pushing', 'leaving'] },
+        { text: 'anyone', partOfSpeech: 'pronoun', distractors: ['someone', 'everyone', 'nobody', 'anybody', 'anything'] },
+      ],
+    },
+    {
+      id: 'mitap_d55_p5',
+      english: 'Let us keep talking and stay calm.',
+      meaning: { ru: 'Давайте продолжать говорить и сохраним спокойствие.', uk: 'Давайте продовжувати говорити й збережемо спокій.', es: 'Sigamos hablando y mantengamos la calma.' },
+      constructions: ['gerund'],
+      explanation: {
+        title: { ru: 'keep + дело на -ing', uk: 'keep + справа на -ing', es: 'keep + acción en -ing' },
+        rule: { ru: 'keep + дело на -ing значит «продолжать». keep talking — продолжать говорить.', uk: 'keep + справа на -ing значить «продовжувати». keep talking — продовжувати говорити.', es: 'keep + acción en -ing significa «seguir». keep talking — seguir hablando.' },
+        why: { ru: 'Спор не закрывают, а ведут дальше спокойно — ты держишь разговор живым.', uk: 'Суперечку не закривають, а ведуть далі спокійно — ти тримаєш розмову живою.', es: 'No cierras la discusión, la llevas con calma — mantienes viva la charla.' },
+        commonMistake: { ru: 'После keep нужна форма -ing: «keep talking», не «keep to talk».', uk: 'Після keep потрібна форма -ing: «keep talking», не «keep to talk».', es: 'Tras keep va la forma -ing: «keep talking», no «keep to talk».' },
+      },
+      words: [
+        { text: 'Let', partOfSpeech: 'verb', distractors: ['make', 'help', 'have', 'want', 'ask'] },
+        { text: 'us', partOfSpeech: 'pronoun', distractors: ['me', 'them', 'him', 'her', 'you'] },
+        { text: 'keep', partOfSpeech: 'verb', distractors: ['want', 'need', 'hope', 'plan', 'wish'] },
+        { text: 'talking', partOfSpeech: 'verb', distractors: ['working', 'meeting', 'sharing', 'writing', 'reading'] },
+        { text: 'and', partOfSpeech: 'conjunction', distractors: ['but', 'or', 'so', 'yet', 'because'] },
+        { text: 'stay', partOfSpeech: 'verb', distractors: ['sit', 'work', 'speak', 'listen', 'walk'] },
+        { text: 'calm', partOfSpeech: 'adjective', distractors: ['quiet', 'kind', 'soft', 'still', 'cool'] },
+      ],
+    },
+    {
+      id: 'mitap_d55_p6',
+      english: 'We should focus on fixing the problem.',
+      meaning: { ru: 'Нам стоит сосредоточиться на решении проблемы.', uk: 'Нам варто зосередитися на вирішенні проблеми.', es: 'Deberíamos centrarnos en resolver el problema.' },
+      constructions: ['gerund', 'modals'],
+      explanation: {
+        title: { ru: 'on + дело на -ing', uk: 'on + справа на -ing', es: 'on + acción en -ing' },
+        rule: { ru: 'После on дело берёт -ing: focus on fixing — сосредоточиться на решении.', uk: 'Після on справа бере -ing: focus on fixing — зосередитися на вирішенні.', es: 'Tras on la acción lleva -ing: focus on fixing — centrarse en resolver.' },
+        why: { ru: 'Ты уводишь спор от людей к проблеме — это держит всех на одной стороне.', uk: 'Ти відводиш суперечку від людей до проблеми — це тримає всіх на одному боці.', es: 'Llevas la discusión de las personas al problema — eso une a todos.' },
+        commonMistake: { ru: 'После on нужна форма -ing: «on fixing», не «on fix».', uk: 'Після on потрібна форма -ing: «on fixing», не «on fix».', es: 'Tras on va la forma -ing: «on fixing», no «on fix».' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'it'] },
+        { text: 'should', partOfSpeech: 'modal', distractors: ['must', 'can', 'may', 'could', 'will'] },
+        { text: 'focus', partOfSpeech: 'verb', distractors: ['agree', 'decide', 'insist', 'rely', 'depend'] },
+        { text: 'on', partOfSpeech: 'preposition', distractors: ['at', 'in', 'for', 'with', 'about'] },
+        { text: 'fixing', partOfSpeech: 'verb', distractors: ['solving', 'closing', 'building', 'clearing', 'starting'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
+        { text: 'problem', partOfSpeech: 'noun', distractors: ['meeting', 'goal', 'team', 'call', 'plan'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'both', partOfSpeech: 'determiner', translation: { ru: 'оба, обе', uk: 'обидва, обидві', es: 'ambos' }, example: 'I can see both sides here.' },
+    { word: 'point', partOfSpeech: 'noun', translation: { ru: 'мысль, довод', uk: 'думка, довід', es: 'punto, idea' }, example: 'You both have a good point.' },
+    { word: 'taking', partOfSpeech: 'verb', translation: { ru: 'беру (сторону)', uk: 'беру (бік)', es: 'tomando' }, example: 'I am not taking sides today.' },
+    { word: 'blaming', partOfSpeech: 'noun', translation: { ru: 'обвинение, виня', uk: 'звинувачення, виня', es: 'culpar' }, example: 'We can fix this without blaming anyone.' },
+    { word: 'keep', partOfSpeech: 'verb', translation: { ru: 'продолжать', uk: 'продовжувати', es: 'seguir' }, example: 'Let us keep talking and stay calm.' },
+    { word: 'focus', partOfSpeech: 'verb', translation: { ru: 'сосредоточиться', uk: 'зосередитися', es: 'centrarse' }, example: 'We should focus on fixing the problem.' },
+  ],
+};
+
+export const MITAP_DAY_56: PlanContentDay = {
+  planId: 'mitap',
+  dayIndex: 56,
+  topic: { ru: 'Повторение недели 8: спорим конструктивно', uk: 'Повторення тижня 8: сперечаємось конструктивно', es: 'Repaso de la semana 8: discrepar de forma constructiva' },
+  outcome: {
+    ru: 'Ты соберёшь весь review-диалог: скажешь мнение, согласишься, мягко возразишь и предложишь альтернативу — спокойно и по делу.',
+    uk: 'Ти збереш увесь review-діалог: скажеш думку, погодишся, мʼяко заперечиш і запропонуєш альтернативу — спокійно і по суті.',
+    es: 'Reunirás todo el diálogo de repaso: darás tu opinión, estarás de acuerdo, discreparás con suavidad y propondrás una alternativa, con calma y al grano.',
+  },
+  level: 'B1',
+  prerequisiteLessons: [24, 26],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Сначала согласись, потом возрази', uk: 'Спочатку погодься, потім запереч', es: 'Primero acepta, luego discrepa' },
+      body: {
+        ru: 'На созвоне грубое «нет» закрывает разговор. Сначала покажи, что ты услышал коллегу: «Я понимаю твою мысль». Потом мягко добавь своё «но». Так спор остаётся дружеским, и тебя слушают дальше.',
+        uk: 'На дзвінку грубе «ні» закриває розмову. Спочатку покажи, що ти почув колегу: «Я розумію твою думку». Потім мʼяко додай своє «але». Так суперечка лишається дружньою, і тебе слухають далі.',
+        es: 'En una llamada un «no» seco cierra la charla. Primero muestra que escuchaste a tu colega: «Entiendo tu idea». Luego añade tu «pero» con suavidad. Así la discrepancia sigue amistosa y te siguen escuchando.',
+      },
+      examples: [
+        { en: 'I see your point, but I have a different idea.', gloss: { ru: 'Я понимаю твою мысль, но у меня другая идея.', uk: 'Я розумію твою думку, але в мене інша ідея.', es: 'Entiendo tu idea, pero tengo una idea diferente.' } },
+        { en: 'You are right, but we have tried this before.', gloss: { ru: 'Ты прав, но мы уже пробовали это раньше.', uk: 'Ти маєш рацію, але ми вже пробували це раніше.', es: 'Tienes razón, pero ya hemos probado esto antes.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Предлагай альтернативу через «если»', uk: 'Пропонуй альтернативу через «якщо»', es: 'Propón una alternativa con «si»' },
+      body: {
+        ru: 'Просто сказать «мне не нравится» — мало. Дай выход: «Если мы сделаем так, будет лучше». Часть с «если» показывает условие, вторая — результат. Так возражение превращается в полезное предложение.',
+        uk: 'Просто сказати «мені не подобається» — мало. Дай вихід: «Якщо ми зробимо так, буде краще». Частина з «якщо» показує умову, друга — результат. Так заперечення стає корисною пропозицією.',
+        es: 'Decir solo «no me gusta» no basta. Da una salida: «Si lo hacemos así, será mejor». La parte con «si» muestra la condición, la otra el resultado. Así la objeción se vuelve una propuesta útil.',
+      },
+      examples: [
+        { en: 'If we change the plan, the team will be happy.', gloss: { ru: 'Если мы изменим план, команда будет рада.', uk: 'Якщо ми змінимо план, команда буде рада.', es: 'Si cambiamos el plan, el equipo estará contento.' } },
+        { en: 'If you share the file, I will check it today.', gloss: { ru: 'Если ты пришлёшь файл, я проверю его сегодня.', uk: 'Якщо ти надішлеш файл, я перевірю його сьогодні.', es: 'Si compartes el archivo, lo revisaré hoy.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Покажи опыт через «мы уже»', uk: 'Покажи досвід через «ми вже»', es: 'Muestra experiencia con «ya hemos»' },
+      body: {
+        ru: 'Чтобы возражение звучало весомо, обопрись на опыт: «Мы уже пробовали это». Форма «мы уже сделали» говорит, что дело связано с сейчас, результат важен прямо на встрече. Это сильный аргумент.',
+        uk: 'Щоб заперечення звучало вагомо, обіприся на досвід: «Ми вже пробували це». Форма «ми вже зробили» каже, що справа повʼязана із зараз, результат важливий прямо на зустрічі. Це сильний аргумент.',
+        es: 'Para que la objeción pese, apóyate en la experiencia: «Ya hemos probado esto». La forma «ya hemos hecho» dice que el asunto se liga al ahora y el resultado importa en la reunión. Es un argumento fuerte.',
+      },
+      examples: [
+        { en: 'We have already tested this idea on real users.', gloss: { ru: 'Мы уже протестировали эту идею на реальных пользователях.', uk: 'Ми вже протестували цю ідею на реальних користувачах.', es: 'Ya hemos probado esta idea con usuarios reales.' } },
+        { en: 'I have seen this problem many times before.', gloss: { ru: 'Я уже видел эту проблему много раз раньше.', uk: 'Я вже бачив цю проблему багато разів раніше.', es: 'Ya he visto este problema muchas veces antes.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'mitap_d56_p1',
+      english: 'I see your point, but I disagree.',
+      meaning: { ru: 'Я понимаю твою мысль, но я не согласен.', uk: 'Я розумію твою думку, але я не згоден.', es: 'Entiendo tu idea, pero no estoy de acuerdo.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Сначала «вижу», потом «но»', uk: 'Спочатку «бачу», потім «але»', es: 'Primero «veo», luego «pero»' },
+        rule: { ru: 'see your point значит «понимаю твою мысль». Сначала прими, потом добавь but — «но» — и своё несогласие.', uk: 'see your point значить «розумію твою думку». Спочатку прийми, потім додай but — «але» — і свою незгоду.', es: 'see your point significa «entiendo tu idea». Primero acepta, luego añade but — «pero» — y tu desacuerdo.' },
+        why: { ru: 'Мягкое начало держит спор дружеским: коллега слышит уважение раньше возражения.', uk: 'Мʼякий початок тримає суперечку дружньою: колега чує повагу раніше за заперечення.', es: 'Un inicio suave mantiene la discrepancia amistosa: el colega oye respeto antes que la objeción.' },
+        commonMistake: { ru: 'Не говори «I disagree your point». Несогласие идёт после but, отдельной частью.', uk: 'Не кажи «I disagree your point». Незгода йде після but, окремою частиною.', es: 'No digas «I disagree your point». El desacuerdo va tras but, como parte aparte.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'you'] },
+        { text: 'see', partOfSpeech: 'verb', distractors: ['feel', 'want', 'like', 'need', 'keep'] },
+        { text: 'your', partOfSpeech: 'determiner', distractors: ['my', 'their', 'his', 'her', 'our'] },
+        { text: 'point', partOfSpeech: 'noun', distractors: ['plan', 'goal', 'fact', 'rule', 'step'] },
+        { text: 'but', partOfSpeech: 'conjunction', distractors: ['and', 'so', 'or', 'because', 'then'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'you'] },
+        { text: 'disagree', partOfSpeech: 'verb', distractors: ['worry', 'hesitate', 'wonder', 'apologize', 'complain'] },
+      ],
+    },
+    {
+      id: 'mitap_d56_p2',
+      english: 'You are right about the budget.',
+      meaning: { ru: 'Ты прав насчёт бюджета.', uk: 'Ти маєш рацію щодо бюджету.', es: 'Tienes razón sobre el presupuesto.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Согласись прямо: «ты прав»', uk: 'Погодься прямо: «ти маєш рацію»', es: 'Acepta directo: «tienes razón»' },
+        rule: { ru: 'You are right значит «ты прав». about — «насчёт», «про» — вводит тему, с которой ты согласен.', uk: 'You are right значить «ти маєш рацію». about — «щодо», «про» — вводить тему, з якою ти згоден.', es: 'You are right significa «tienes razón». about — «sobre», «acerca de» — introduce el tema con el que estás de acuerdo.' },
+        why: { ru: 'Честное согласие в начале строит доверие — потом твоё возражение примут легче.', uk: 'Чесна згода на початку будує довіру — потім твоє заперечення приймуть легше.', es: 'Un acuerdo honesto al inicio crea confianza: luego aceptarán mejor tu objeción.' },
+        commonMistake: { ru: 'Не говори «You right». Здесь нужно are — «ты есть прав».', uk: 'Не кажи «You right». Тут потрібно are — «ти є правий».', es: 'No digas «You right». Aquí hace falta are — «tú estás en lo correcto».' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'I'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['is', 'am', 'was', 'were', 'be'] },
+        { text: 'right', partOfSpeech: 'adjective', distractors: ['kind', 'calm', 'ready', 'late', 'busy'] },
+        { text: 'about', partOfSpeech: 'preposition', distractors: ['on', 'for', 'with', 'of', 'at'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'some'] },
+        { text: 'budget', partOfSpeech: 'noun', distractors: ['report', 'deadline', 'client', 'meeting', 'result'] },
+      ],
+    },
+    {
+      id: 'mitap_d56_p3',
+      english: 'We have already tried this idea.',
+      meaning: { ru: 'Мы уже пробовали эту идею.', uk: 'Ми вже пробували цю ідею.', es: 'Ya hemos probado esta idea.' },
+      constructions: ['present-perfect'],
+      explanation: {
+        title: { ru: 'Опыт сейчас: «мы уже пробовали»', uk: 'Досвід зараз: «ми вже пробували»', es: 'Experiencia ahora: «ya hemos probado»' },
+        rule: { ru: 'have tried значит «пробовали» — связка с сейчас. already — «уже» — ставят перед tried.', uk: 'have tried значить «пробували» — звʼязок із зараз. already — «вже» — ставлять перед tried.', es: 'have tried significa «hemos probado», ligado al ahora. already — «ya» — va antes de tried.' },
+        why: { ru: 'Опыт «мы уже это делали» — сильный довод: возражение звучит весомо, не пусто.', uk: 'Досвід «ми вже це робили» — сильний довід: заперечення звучить вагомо, не пусто.', es: 'El argumento «ya lo hicimos» pesa: la objeción suena con fuerza, no vacía.' },
+        commonMistake: { ru: 'Не говори «We already tried». В деловом «мы уже» бери have tried.', uk: 'Не кажи «We already tried». У діловому «ми вже» бери have tried.', es: 'No digas «We already tried». Para «ya» en contexto formal usa have tried.' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'I'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'do', 'did', 'was', 'gets'] },
+        { text: 'already', partOfSpeech: 'adverb', distractors: ['yet', 'soon', 'still', 'again', 'ever'] },
+        { text: 'tried', partOfSpeech: 'verb', distractors: ['shown', 'kept', 'found', 'closed', 'built'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['that', 'these', 'those', 'the', 'such'] },
+        { text: 'idea', partOfSpeech: 'noun', distractors: ['plan', 'goal', 'rule', 'task', 'tool'] },
+      ],
+    },
+    {
+      id: 'mitap_d56_p4',
+      english: 'If we change it, results will improve.',
+      meaning: { ru: 'Если мы изменим это, результаты улучшатся.', uk: 'Якщо ми змінимо це, результати покращаться.', es: 'Si lo cambiamos, los resultados mejorarán.' },
+      constructions: ['conditionals'],
+      explanation: {
+        title: { ru: 'Альтернатива через «если»', uk: 'Альтернатива через «якщо»', es: 'Alternativa con «si»' },
+        rule: { ru: 'If — «если» — открывает условие: change it «изменим это». Дальше результат: will improve «улучшатся».', uk: 'If — «якщо» — відкриває умову: change it «змінимо це». Далі результат: will improve «покращаться».', es: 'If — «si» — abre la condición: change it «lo cambiamos». Luego el resultado: will improve «mejorarán».' },
+        why: { ru: '«Если… то…» превращает голое «нет» в полезное предложение с ясной выгодой.', uk: '«Якщо… то…» перетворює голе «ні» на корисну пропозицію з ясною вигодою.', es: '«Si… entonces…» convierte un «no» seco en una propuesta útil con beneficio claro.' },
+        commonMistake: { ru: 'После if бери change, не will change: «если изменим», а не «если будем».', uk: 'Після if бери change, не will change: «якщо змінимо», а не «якщо будемо».', es: 'Tras if usa change, no will change: «si cambiamos», no «si cambiaremos».' },
+      },
+      words: [
+        { text: 'If', partOfSpeech: 'conjunction', distractors: ['when', 'because', 'so', 'though', 'unless'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'I'] },
+        { text: 'change', partOfSpeech: 'verb', distractors: ['move', 'keep', 'build', 'drop', 'split'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'him', 'her', 'us', 'me'] },
+        { text: 'results', partOfSpeech: 'noun', distractors: ['numbers', 'costs', 'tasks', 'sales', 'reports'] },
+        { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'may', 'must', 'should', 'might'] },
+        { text: 'improve', partOfSpeech: 'verb', distractors: ['grow', 'rise', 'change', 'help', 'work'] },
+      ],
+    },
+    {
+      id: 'mitap_d56_p5',
+      english: 'Maybe we should ask the team first.',
+      meaning: { ru: 'Может, нам стоит сначала спросить команду.', uk: 'Можливо, нам варто спочатку спитати команду.', es: 'Quizás deberíamos preguntar al equipo primero.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Мягкое предложение: «нам стоит»', uk: 'Мʼяка пропозиція: «нам варто»', es: 'Sugerencia suave: «deberíamos»' },
+        rule: { ru: 'should значит «стоит», «следует». maybe — «может» — впереди делает совет ещё мягче.', uk: 'should значить «варто», «слід». maybe — «можливо» — спереду робить пораду ще мʼякшою.', es: 'should significa «deberíamos». maybe — «quizás» — al frente suaviza aún más el consejo.' },
+        why: { ru: 'Мягкое «может, нам стоит» предлагает выход, не давит — коллеги соглашаются охотнее.', uk: 'Мʼяке «можливо, нам варто» пропонує вихід, не тисне — колеги погоджуються охочіше.', es: 'Un suave «quizás deberíamos» propone una salida sin presionar: aceptan con más gusto.' },
+        commonMistake: { ru: 'После should бери ask, не to ask: «стоит спросить», без to.', uk: 'Після should бери ask, не to ask: «варто спитати», без to.', es: 'Tras should usa ask, no to ask: «deberíamos preguntar», sin to.' },
+      },
+      words: [
+        { text: 'Maybe', partOfSpeech: 'adverb', distractors: ['surely', 'always', 'really', 'soon', 'now'] },
+        { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'you', 'he', 'she', 'I'] },
+        { text: 'should', partOfSpeech: 'modal', distractors: ['must', 'will', 'shall', 'dare', 'need'] },
+        { text: 'ask', partOfSpeech: 'verb', distractors: ['tell', 'call', 'warn', 'show', 'send'] },
+        { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'some'] },
+        { text: 'team', partOfSpeech: 'noun', distractors: ['boss', 'client', 'group', 'staff', 'user'] },
+        { text: 'first', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'again', 'now', 'early'] },
+      ],
+    },
+    {
+      id: 'mitap_d56_p6',
+      english: 'Let us find a better solution together.',
+      meaning: { ru: 'Давай найдём решение получше вместе.', uk: 'Давай знайдемо краще рішення разом.', es: 'Busquemos juntos una solución mejor.' },
+      constructions: ['imperative', 'comparatives'],
+      explanation: {
+        title: { ru: 'Закрой спор на «давай вместе»', uk: 'Закрий суперечку на «давай разом»', es: 'Cierra con «busquemos juntos»' },
+        rule: { ru: 'Let us значит «давай мы». better — «получше» — растёт от good. together — «вместе».', uk: 'Let us значить «давай ми». better — «краще» — росте від good. together — «разом».', es: 'Let us significa «vamos a». better — «mejor» — viene de good. together — «juntos».' },
+        why: { ru: 'Финал «давай вместе» превращает спор в общую задачу — никто не проигрывает.', uk: 'Фінал «давай разом» перетворює суперечку на спільну задачу — ніхто не програє.', es: 'El cierre «juntos» vuelve la discrepancia una tarea común: nadie pierde.' },
+        commonMistake: { ru: 'Не говори «more better». Просто better — «получше», без more.', uk: 'Не кажи «more better». Просто better — «краще», без more.', es: 'No digas «more better». Solo better — «mejor», sin more.' },
+      },
+      words: [
+        { text: 'Let', partOfSpeech: 'verb', distractors: ['make', 'help', 'keep', 'give', 'show'] },
+        { text: 'us', partOfSpeech: 'pronoun', distractors: ['them', 'him', 'her', 'me', 'you'] },
+        { text: 'find', partOfSpeech: 'verb', distractors: ['make', 'build', 'pick', 'reach', 'set'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'this', 'that', 'some'] },
+        { text: 'better', partOfSpeech: 'adjective', distractors: ['bigger', 'faster', 'safer', 'cheaper', 'clearer'] },
+        { text: 'solution', partOfSpeech: 'noun', distractors: ['answer', 'option', 'method', 'result', 'plan'] },
+        { text: 'together', partOfSpeech: 'adverb', distractors: ['quickly', 'calmly', 'openly', 'soon', 'again'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'point', partOfSpeech: 'noun', translation: { ru: 'мысль, довод', uk: 'думка, довід', es: 'idea, argumento' }, example: 'I see your point, but I disagree.' },
+    { word: 'right', partOfSpeech: 'adjective', translation: { ru: 'прав, верный', uk: 'правий, вірний', es: 'correcto, en lo cierto' }, example: 'You are right about the budget.' },
+    { word: 'already', partOfSpeech: 'adverb', translation: { ru: 'уже', uk: 'вже', es: 'ya' }, example: 'We have already tried this idea.' },
+    { word: 'improve', partOfSpeech: 'verb', translation: { ru: 'улучшаться', uk: 'покращуватися', es: 'mejorar' }, example: 'If we change it, results will improve.' },
+    { word: 'should', partOfSpeech: 'modal', translation: { ru: 'стоит, следует', uk: 'варто, слід', es: 'deberíamos' }, example: 'Maybe we should ask the team first.' },
+    { word: 'solution', partOfSpeech: 'noun', translation: { ru: 'решение', uk: 'рішення', es: 'solución' }, example: 'Let us find a better solution together.' },
+  ],
+};
+
 export const MITAP_CONTENT_DAYS: PlanContentDay[] = [
   MITAP_DAY_1,
   MITAP_DAY_2,
@@ -9343,4 +12548,18 @@ export const MITAP_CONTENT_DAYS: PlanContentDay[] = [
   MITAP_DAY_40,
   MITAP_DAY_41,
   MITAP_DAY_42,
+  MITAP_DAY_43,
+  MITAP_DAY_44,
+  MITAP_DAY_45,
+  MITAP_DAY_46,
+  MITAP_DAY_47,
+  MITAP_DAY_48,
+  MITAP_DAY_49,
+  MITAP_DAY_50,
+  MITAP_DAY_51,
+  MITAP_DAY_52,
+  MITAP_DAY_53,
+  MITAP_DAY_54,
+  MITAP_DAY_55,
+  MITAP_DAY_56,
 ];

@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback } from 'react';
 import {
   ScrollView,
+  useWindowDimensions,
   type ScrollViewProps,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
@@ -44,27 +45,48 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
  * Для useBouncy-экранов структура такая же — см. useBouncyStyle + GestureWrap.
  */
 
-const SPRING = { damping: 16, stiffness: 170, mass: 0.6 } as const;
-const RESISTANCE_DIV = 2.2;
+// ── Физика iOS / Telegram ─────────────────────────────────────────────────────
+// Telegram использует стандартный UIScrollView rubber-band. Воспроизводим точно:
+//
+// 1) СОПРОТИВЛЕНИЕ при оттягивании — формула Apple:
+//      f(x, d, c) = (x · d · c) / (d + c · x)
+//    где x — смещение пальца, d — высота вьюпорта, c = 0.55 (константа Apple).
+//    Даёт «бесконечно тяжелеющее» оттягивание без жёсткого предела (в отличие
+//    от exp-формулы со стенкой на maxStretch).
+//
+// 2) ВОЗВРАТ — iOS НЕ отскакивает (нет overshoot). Критически задемпфированный
+//    spring: dampingRatio = 1. duration ≈ 0.5s — родная скорость отбоя iOS.
+const APPLE_C = 0.55;
+const SPRING = { dampingRatio: 1, duration: 500 } as const;
 
-export interface BouncyScrollViewProps extends ScrollViewProps {
-  maxStretch?: number;
+function rubberBand(x: number, dim: number): number {
+  'worklet';
+  // x — абсолютное смещение пальца (>0). Возвращает «сопротивлённое» смещение.
+  return (x * dim * APPLE_C) / (dim + APPLE_C * x);
 }
 
-export function useBouncy({ maxStretch = 110 }: { maxStretch?: number } = {}) {
+export interface BouncyScrollViewProps extends ScrollViewProps {
+  /** Высота вьюпорта для формулы сопротивления. По умолчанию — высота экрана. */
+  dimension?: number;
+}
+
+export function useBouncy({ dimension }: { dimension?: number } = {}) {
+  const { height: screenH } = useWindowDimensions();
+  const dim = dimension ?? screenH;
   const stretch = useSharedValue(0);
   const scrollY = useSharedValue(0);
 
   const pan = Gesture.Pan()
-    .activeOffsetY(12)
+    .activeOffsetY(10)
     .failOffsetX([-20, 20])
     .onUpdate((e) => {
       'worklet';
+      // Резинка ТОЛЬКО у верха (scrollY ≈ 0) и ТОЛЬКО при тяге вниз.
       if (scrollY.value > 1 || e.translationY <= 0) {
         stretch.value = 0;
         return;
       }
-      stretch.value = maxStretch * (1 - Math.exp(-e.translationY / (maxStretch * RESISTANCE_DIV)));
+      stretch.value = rubberBand(e.translationY, dim);
     })
     .onEnd(() => {
       'worklet';
@@ -121,10 +143,10 @@ export function useBouncyStyle(stretch: SharedValue<number>) {
 }
 
 const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function BouncyScrollView(
-  { children, onScroll, maxStretch = 110, style, ...rest },
+  { children, onScroll, dimension, style, ...rest },
   ref,
 ) {
-  const { stretch, pan, onBouncyScroll } = useBouncy({ maxStretch });
+  const { stretch, pan, onBouncyScroll } = useBouncy({ dimension });
   const animatedStyle = useBouncyStyle(stretch);
 
   const handleScroll = useCallback(

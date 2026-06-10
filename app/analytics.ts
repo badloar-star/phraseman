@@ -47,6 +47,10 @@ export type AnalyticsEvent =
   | 'ai_dialog_limit_hit'
   | 'ai_dialog_tts_used'
   | 'ai_dialog_translation_used'
+  // «Объясни как для 5-летнего» (Фаза 5 — adoption/cohort + health кэш-хитов)
+  | 'explain_button_shown'
+  | 'explain_sheet_opened'
+  | 'explain_sheet_closed'
   | 'review_session'
   | 'words_session'
   | 'verbs_session'

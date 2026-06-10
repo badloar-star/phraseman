@@ -8661,6 +8661,9 @@
     </label>
     <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">с <input type="date" id="r-date-from" onchange="filterReports()" class="lc-date-input"></label>
     <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">по <input type="date" id="r-date-to" onchange="filterReports()" class="lc-date-input"></label>
+    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
+      <input type="checkbox" id="r-heatmap" onchange="filterReports()" /> <span>📊 Хитмап по экранам</span>
+    </label>
     <button type="button" id="btn-mark-all-fixed" onclick="markAllVisibleReportsFixed()" style="background:#1a3a1a;border:1px solid #2a5a2a;color:#4ade80" title="Все открытые репорты из текущего фильтра — пофикшено и награды, как по кнопке на карточке" data-i18n-es="✅ Todo arreglado" data-i18n-es-title="Todos los reportes abiertos del filtro actual: arreglados y recompensas como con el botón de la tarjeta">✅ Пофикшено все</button>
     <span class="reports-count" id="reports-count"></span>
   </div>
@@ -8938,6 +8941,7 @@
       <option value="cheating" data-i18n-es="Trampas">Читерство</option>
     </select>
     <button onclick="loadUserReports()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <button type="button" onclick="exportUserReportsCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
     <span class="reports-count" id="ur-count"></span>
   </div>
   <div id="ur-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
@@ -9031,6 +9035,7 @@
 <div id="tab-premium" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadPremiumData(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <button type="button" onclick="exportPremiumCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
     <select id="pr-filter" onchange="renderPremiumList()">
       <option value="all" data-i18n-es="Todos Premium">Все Premium</option>
       <option value="paid" data-i18n-es="Solo pagados (RC)">Только оплаченные (RC)</option>
@@ -9095,6 +9100,7 @@
 <div id="tab-vip" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadVipData(true)" style="background:#064e3b;border:1px solid #047857;color:#86efac" data-i18n-es="🔄 Actualizar VIP">🔄 Обновить VIP</button>
+    <button type="button" onclick="exportVipCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
     <button type="button" onclick="repairAdminGrantPremiumCompat()" style="background:#062a18;border:1px solid #166534;color:#4ade80" data-i18n-es="🛠 Migrar admin_grant → VIP">🛠 admin_grant → VIP</button>
     <select id="vip-filter" onchange="renderVipList()">
       <option value="all" data-i18n-es="Todos VIP">Все VIP</option>
@@ -9155,6 +9161,7 @@
 <div id="tab-cancel-surveys" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadCancelSurveys(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">Refresh</button>
+    <button type="button" onclick="exportCancelSurveysCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
     <select id="cs-filter-reason" onchange="renderCancelSurveys()">
       <option value="">All reasons</option>
       <option value="too_expensive">Too expensive</option>
@@ -9757,6 +9764,7 @@
 <div id="tab-referrals" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
     <button type="button" onclick="loadReferralsData(true)" data-i18n-es="🔄 Cargar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Загрузить</button>
+    <button type="button" onclick="exportReferralsCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
     <input type="text" id="ref-search" placeholder="🔍 Код, UID, имя…" data-i18n-es="🔍 Código, UID, nombre…" oninput="renderReferralsTable()"
       style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:240px;font-size:13px" />
     <span class="reports-count" id="ref-status"></span>
@@ -13139,6 +13147,90 @@
     window._currentPage = (window._currentPage || 0) + delta;
     renderTable();
     document.getElementById('tab-users').scrollTop = 0;
+  };
+
+  // ── Reusable CSV export ───────────────────────────────────────────────────
+  // columns: [{ header, get:(row)=>value }]. Downloads a UTF-8 CSV with BOM.
+  window.exportToCsv = function(rows, columns, filenameBase) {
+    if (!Array.isArray(rows) || !rows.length) { showToast('Нет данных для экспорта', 'warn'); return; }
+    const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+    const head = columns.map(c => esc(c.header)).join(',');
+    const body = rows.map(r => columns.map(c => {
+      let v; try { v = c.get(r); } catch (_) { v = ''; }
+      return esc(v);
+    }).join(',')).join('\n');
+    const csv = head + '\n' + body;
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `phraseman_${filenameBase}_${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast(`✅ Экспортировано ${rows.length} строк`);
+  };
+
+  // Per-tab CSV exporters (built on exportToCsv, reading each tab's loaded data).
+  window.exportPremiumCSV = function() {
+    const rows = (window._users || []).filter(u => premiumInfo(u).active);
+    exportToCsv(rows, [
+      { header: 'UID', get: u => u.uid },
+      { header: 'Имя', get: u => u.name },
+      { header: 'Email', get: u => u.linkedAuth?.email || '' },
+      { header: 'План', get: u => premiumInfo(u).plan || 'premium' },
+      { header: 'Source', get: u => premiumInfo(u).source || '' },
+      { header: 'Trial', get: u => premiumInfo(u).isTrial ? '1' : '0' },
+      { header: 'From', get: u => { const p = premiumInfo(u); return p.issuedAt ? new Date(p.issuedAt).toISOString() : ''; } },
+      { header: 'To', get: u => { const p = premiumInfo(u); return p.endsAt ? new Date(p.endsAt).toISOString() : ''; } },
+      { header: 'XP', get: u => u.xp },
+    ], 'premium');
+  };
+  window.exportVipCSV = function() {
+    const rows = (window._users || []).filter(u => vipInfo(u).active);
+    exportToCsv(rows, [
+      { header: 'UID', get: u => u.uid },
+      { header: 'Имя', get: u => u.name },
+      { header: 'Email', get: u => u.linkedAuth?.email || '' },
+      { header: 'Legacy', get: u => vipInfo(u).legacy ? '1' : '0' },
+      { header: 'From', get: u => { const v = vipInfo(u); return v.from ? new Date(v.from).toISOString() : ''; } },
+      { header: 'Until', get: u => { const v = vipInfo(u); return v.until ? new Date(v.until).toISOString() : ''; } },
+      { header: 'XP', get: u => u.xp },
+    ], 'vip');
+  };
+  window.exportCancelSurveysCSV = function() {
+    exportToCsv(window._cancelSurveysAll || [], [
+      { header: 'UID', get: r => r.uid || '' },
+      { header: 'Имя', get: r => r.userName || r.name || '' },
+      { header: 'Причина', get: r => r.reason || '' },
+      { header: 'Текст', get: r => r.text || r.comment || '' },
+      { header: 'План', get: r => r.premiumPlan || '' },
+      { header: 'Платформа', get: r => r.platform || '' },
+      { header: 'Язык', get: r => r.lang || r.language || '' },
+      { header: 'Версия', get: r => r.appVersion || '' },
+      { header: 'Дата', get: r => r.createdAt || '' },
+    ], 'cancel_surveys');
+  };
+  window.exportReferralsCSV = function() {
+    exportToCsv(window._referralsRows || [], [
+      { header: 'Referee UID', get: r => r.refereeId || '' },
+      { header: 'Referrer UID', get: r => r.referrerId || '' },
+      { header: 'Статус', get: r => r.status || '' },
+      { header: 'Shards referrer', get: r => r.referrerShards ?? '' },
+      { header: 'Shards referee', get: r => r.refereeShards ?? '' },
+      { header: 'Applied', get: r => r.appliedAt || r.createdAt || '' },
+      { header: 'Rewarded', get: r => r.rewardedAt || '' },
+    ], 'referrals');
+  };
+  window.exportUserReportsCSV = function() {
+    exportToCsv(_allUserReports || [], [
+      { header: 'Нарушитель UID', get: r => r.reportedUid || '' },
+      { header: 'Нарушитель', get: r => r.reportedName || '' },
+      { header: 'Жалобщик UID', get: r => r.reporterUid || '' },
+      { header: 'Причина', get: r => r.reason || '' },
+      { header: 'Статус', get: r => r.status || 'new' },
+      { header: 'Экран', get: r => r.screen || '' },
+      { header: 'Дата', get: r => r.createdAt || '' },
+    ], 'user_reports');
   };
 
   window.exportUsersCSV = function() {
@@ -16671,10 +16763,46 @@
   window.filterReports = function() {
     const moreBtn = document.getElementById('reports-load-more');
     if (moreBtn) moreBtn.style.display = window._reportsHasMore ? 'inline-block' : 'none';
+    if (document.getElementById('r-heatmap')?.checked) { renderReportsHeatmap(getFilteredReportsList()); return; }
     const grouped = !!document.getElementById('r-group-dataid')?.checked;
     if (grouped) renderReportsGrouped(getFilteredReportsList());
     else renderReports(getFilteredReportsList());
   };
+
+  // ── Content-error heatmap: which screens/lessons generate most reports ──────
+  function renderReportsHeatmap(reports) {
+    const list = document.getElementById('reports-list');
+    if (!list) return;
+    const elCnt = document.getElementById('reports-count');
+    if (!reports.length) { if (elCnt) elCnt.textContent = '0 репортов'; list.innerHTML = '<div class="reports-empty">🎉 Репортов нет</div>'; return; }
+    const byScreen = new Map();
+    for (const r of reports) {
+      const key = String(r.screen || 'unknown');
+      if (!byScreen.has(key)) byScreen.set(key, { screen: key, total: 0, open: 0, fixed: 0, cats: {} });
+      const g = byScreen.get(key);
+      g.total++;
+      if (r.status === 'fixed') g.fixed++; else g.open++;
+      const c = r.category || extractCategory(r.context) || 'other';
+      g.cats[c] = (g.cats[c] || 0) + 1;
+    }
+    const arr = Array.from(byScreen.values()).sort((a, b) => b.total - a.total);
+    const max = arr[0]?.total || 1;
+    if (elCnt) elCnt.textContent = `${arr.length} экранов · ${reports.length} репортов`;
+    list.innerHTML = `<div style="max-width:760px">${arr.map(g => {
+      const pct = Math.round((g.total / max) * 100);
+      const topCats = Object.entries(g.cats).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([c, n]) => `${escapeHtml(c)} ${n}`).join(' · ');
+      return `<div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px">
+          <span style="color:#e8e8ee;font-weight:600">📍 ${escapeHtml(g.screen.replace(/_/g,' '))}</span>
+          <span style="color:#888">${g.total} <span style="color:#4ade80">✅${g.fixed}</span> <span style="color:#fbbf24">🔓${g.open}</span></span>
+        </div>
+        <div style="height:22px;background:#1a1a24;border-radius:5px;overflow:hidden;position:relative">
+          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#6c47ff,#a78bfa);min-width:3px"></div>
+          <span style="position:absolute;left:8px;top:3px;font-size:11px;color:#cbd5e1">${escapeHtml(topCats)}</span>
+        </div>
+      </div>`;
+    }).join('')}</div>`;
+  }
 
   // ── Group similar content reports by dataId ───────────────────────────────
   function reportGroupKey(r) {

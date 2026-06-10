@@ -6,15 +6,15 @@ OUT = sys.argv[1]
 
 def gate(d): return max(8, min(32, 8 + int((d-1)*0.8)))
 
-# MITAP Batch 6: days 36-42 (week 6, B1: facilitating by agenda — open/agenda/timing/hand-over/refocus/summarize + review)
+# MITAP Batch 8: days 50-56 (week 8, B1: opinions & constructive debate — opine/agree-with-caveat/disagree/alternative/support/neutral + review)
 ROWS = [
- (36,'B1',['present-perfect','future-simple'],[24,13],'Открыть встречу как ведущий',"Thanks for joining. Let us get started. начало встречи."),
- (37,'B1',['future-simple','gerund'],[13,22],'Озвучить повестку встречи',"Today we will cover three things. план встречи."),
- (38,'B1',['future-simple','prepositions-time'],[13,8],'Назначить тайминг пунктов',"Let us spend ten minutes on this. тайминг обсуждения."),
- (39,'B1',['modals','imperative'],[10,18],'Передать слово коллеге',"Over to you, Mark. Please go ahead. дать слово."),
- (40,'B1',['present-continuous','modals'],[17,10],'Вернуть фокус к теме встречи',"Let us get back on track. вернуть фокус."),
- (41,'B1',['present-perfect','gerund'],[24,22],'Подвести итог пункта',"So, to sum up this point. итог обсуждения."),
- (42,'B1',['present-perfect','future-simple','gerund'],[24,22],'Повторение недели 6: ведём по повестке','Review-диалог: открыть, повестка, тайминг, фокус, итог.'),
+ (50,'B1',['present-simple','gerund'],[3,22],'Высказать своё мнение',"I think we should ship it. чётко озвучить позицию."),
+ (51,'B1',['present-perfect','modals'],[24,10],'Мягко согласиться с оговоркой',"I agree, but with one caveat. согласие с условием."),
+ (52,'B1',['conditionals','modals'],[26,10],'Вежливо возразить',"I see your point, but I disagree. корректное несогласие."),
+ (53,'B1',['conditionals','future-simple'],[26,13],'Предложить альтернативу',"What if we tried another way? предложить другой путь."),
+ (54,'B1',['present-perfect','comparatives'],[24,14],'Поддержать чужую идею и дополнить',"That is a great point. I would add. развить чужую мысль."),
+ (55,'B1',['gerund','modals'],[22,10],'Остаться нейтральным в споре',"I can see both sides here. не принимать сторону."),
+ (56,'B1',['conditionals','present-perfect','modals'],[26,24],'Повторение недели 8: спорим конструктивно','Review-диалог: мнение, согласие, возражение, альтернатива.'),
 ]
 batch=[]
 for d,level,cons,prereq,topic,note in ROWS:

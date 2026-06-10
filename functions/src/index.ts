@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
 import { calculateArenaPoints } from './arena_scoring';
 import { getLevelFromXP } from './xp_levels';
+import { applyStarDelta, isPromotion } from './arena_rank_progression';
 
 admin.initializeApp();
 
@@ -78,9 +79,13 @@ const { premiumDialogSend } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { statsInsightsGenerate } = require('./stats_insights');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitExplainReport } = require('./explain/explain_reports');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { vipRevokeMine } = require('./vip_revoke');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   adminAlertOnUserReport,
@@ -133,8 +138,10 @@ exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
+exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.submitExplainReport = submitExplainReport;
+exports.vipRevokeMine = vipRevokeMine;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;
@@ -145,8 +152,7 @@ exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 
-const LEVELS = ['I', 'II', 'III'] as const;
-const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'] as const;
+// Порядок уровней/рангов и математика повышения вынесены в ./arena_rank_progression.
 
 type ArenaCourseLbExtra = {
   points: number;
@@ -835,41 +841,20 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
               updatedAt: Date.now(),
             });
           } else {
-            // Ничья — звёзды и ранг не меняются.
-            newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
-            newTier = oldTier;
-            newLevel = oldLevel;
-
-            if (newStars >= 3) {
-              newStars = 0;
-              const li = LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]);
-              if (li < LEVELS.length - 1 && li >= 0) {
-                newLevel = LEVELS[li + 1];
-              } else {
-                newLevel = LEVELS[0];
-                const ti = TIERS.indexOf(oldTier as (typeof TIERS)[number]);
-                if (ti < TIERS.length - 1 && ti >= 0) newTier = TIERS[ti + 1];
-              }
-            } else if (newStars < 0) {
-              newStars = 2;
-              const li = LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]);
-              if (li > 0) {
-                newLevel = LEVELS[li - 1];
-              } else {
-                const ti = TIERS.indexOf(oldTier as (typeof TIERS)[number]);
-                if (ti > 0) {
-                  newTier = TIERS[ti - 1];
-                  newLevel = LEVELS[LEVELS.length - 1];
-                } else {
-                  newStars = 0;
-                }
-              }
-            }
+            // Ничья — звёзды и ранг не меняются. Иначе: +1 за победу, -1 за последнее место.
+            const starDelta = isDraw ? 0 : (won ? 1 : isLast ? -1 : 0);
+            const progressed = applyStarDelta(
+              { tier: oldTier, level: oldLevel, stars: oldStars },
+              starDelta,
+            );
+            newTier = progressed.tier;
+            newLevel = progressed.level;
+            newStars = progressed.stars;
 
             rankChanged = newTier !== oldTier || newLevel !== oldLevel;
-            promoted = rankChanged && (
-              TIERS.indexOf(newTier as (typeof TIERS)[number]) > TIERS.indexOf(oldTier as (typeof TIERS)[number])
-              || (newTier === oldTier && LEVELS.indexOf(newLevel as (typeof LEVELS)[number]) > LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]))
+            promoted = rankChanged && isPromotion(
+              { tier: oldTier, level: oldLevel },
+              { tier: newTier, level: newLevel },
             );
             // Ничья сохраняет победную серию (не удлиняет её). Поражение — обнуляет.
             const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;

@@ -26,6 +26,7 @@
 
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import PopUpActionButton from '../components/PopUpActionButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -1577,31 +1578,8 @@ export default function ReviewScreen() {
                   marginBottom: isPlanPracticeTask ? 8 : 12,
                 }}
               />
-              {status === 'playing' && (
-                <TouchableOpacity
-                  onPress={onSubmitTyped}
-                  activeOpacity={0.88}
-                  style={{
-                    backgroundColor: t.accent,
-                    borderRadius: 14,
-                    paddingVertical: isPlanPracticeTask ? 11 : 14,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={{ color: t.correctText, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '700' }}>
-                    {triLang(lang, {
-                      ru: 'Проверить',
-                      uk: 'Перевірити',
-                      es: 'Comprobar',
-                      'pt-BR': "Verificar",
-                      vi: "Kiểm tra",
-                      id: "Periksa",
-                      tr: "Kontrol et",
-                      pl: "Sprawdź",
-                    })}
-                  </Text>
-                </TouchableOpacity>
-              )}
+              {/* Кнопка «Проверить» вынесена во всплывающую снизу PopUpActionButton
+                  (после ScrollView). Появляется когда введён текст ответа. */}
             </View>
           )}
 
@@ -1653,6 +1631,28 @@ export default function ReviewScreen() {
 
         </Animated.View>
       </BouncyScrollView>
+
+      {/* Всплывающая снизу кнопка «Проверить» — только в режиме ввода текста,
+          появляется когда пользователь ввёл ответ (не в футере, выезжает снизу). */}
+      {mode === 'recall_type' && (
+        <PopUpActionButton
+          visible={status === 'playing' && !burning && typeText.trim().length > 0}
+          label={triLang(lang, {
+            ru: 'Проверить',
+            uk: 'Перевірити',
+            es: 'Comprobar',
+            'pt-BR': 'Verificar',
+            vi: 'Kiểm tra',
+            id: 'Periksa',
+            tr: 'Kontrol et',
+            pl: 'Sprawdź',
+          })}
+          onPress={onSubmitTyped}
+          color={t.accent}
+          textColor={t.correctText}
+          testID="review-check-typed"
+        />
+      )}
 
       {/* Кнопки "Далее" и "Сжечь" — появляются после ответа */}
       {status === 'result' && (

@@ -23,6 +23,7 @@ import EnergyIcon from '../components/EnergyIcon';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import ShineOverlay from '../components/ShineOverlay';
 import { useAdaptiveBackgroundSource } from '../components/adaptiveBackgroundAssets';
 import { paywallGlassColor } from '../components/paywallGlass';
 import MatchFoundToast from '../components/MatchFoundToast';
@@ -1769,6 +1770,8 @@ export default function PremiumModal() {
   const [packages,   setPackages]   = useState<PremiumPackages>({});
   const [loadingPackages, setLoadingPackages] = useState(false);
   const [packagesLoadAttempted, setPackagesLoadAttempted] = useState(false);
+  // Размер главного CTA для бегущего блика (ShineOverlay требует явные width/height).
+  const [ctaSize, setCtaSize] = useState({ w: 0, h: 0 });
   /** true = в 90-дн. «окне» после последней покупки/триал-флоу — не показываем копию 3 дня (локально). */
   const [trialReofferBlocked, setTrialReofferBlocked] = useState(false);
 
@@ -4632,6 +4635,10 @@ export default function PremiumModal() {
               return (
                 <Animated.View style={{ transform: [{ scale: purchasing ? 1 : ctaPulse }] }}>
                 <TouchableOpacity
+                  onLayout={(e) => {
+                    const { width, height } = e.nativeEvent.layout;
+                    if (width !== ctaSize.w || height !== ctaSize.h) setCtaSize({ w: width, h: height });
+                  }}
                   style={{
                     backgroundColor: isCompassPaywall ? COMPASS_RICH.creamSoft : t.textSecond, borderRadius: isCompassPaywall ? 10 : 16, padding: 18,
                     alignItems: 'center', marginBottom: 10,
@@ -4685,6 +4692,11 @@ export default function PremiumModal() {
                         {ctaLabel}
                       </Text>
                   }
+                  {/* Бегущий блик на главном CTA — только когда кнопка активна
+                      (не во время загрузки/покупки). Своего shimmer тут нет. */}
+                  {canPurchaseSelectedPlan && !purchasing && !loadingPackages && ctaSize.w > 0 && (
+                    <ShineOverlay width={ctaSize.w} height={ctaSize.h} borderRadius={isCompassPaywall ? 10 : 16} />
+                  )}
                 </TouchableOpacity>
                 </Animated.View>
               );

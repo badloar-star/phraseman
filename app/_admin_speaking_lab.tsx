@@ -74,7 +74,7 @@ const PREVIEW_ROWS: readonly PreviewRow[] = [
   {
     status: 'passed',
     title: 'passed (≥90%) — «Отлично! Чисто сказано»',
-    desc: 'Зелёный текст, hapticSuccess, score 97% / 90%, кнопка «Сказать ещё раз».',
+    desc: 'Зелёный кружок со счётом 97% (анимация заполнения), подпись «нужно 90%», hapticSuccess, retry.',
     icon: 'checkmark-circle',
     tint: '#36E6A0',
     score: 97,
@@ -82,10 +82,17 @@ const PREVIEW_ROWS: readonly PreviewRow[] = [
   {
     status: 'failed',
     title: 'failed (<90%) — «Почти. Попробуй ещё раз»',
-    desc: 'Красный текст, hapticError, score 45% / 90%, retry-кнопка.',
+    desc: 'Красный кружок со счётом 45%, подпись «нужно 90%», retry-кнопка.',
     icon: 'close-circle',
     tint: '#E5484D',
     score: 45,
+  },
+  {
+    status: 'no_speech',
+    title: 'no_speech — «Не расслышал. Скажи чуть громче»',
+    desc: 'Ничего не распознано (тишина/nomatch). Нейтральный текст, retry-кнопка. НЕ провал 0%.',
+    icon: 'volume-mute-outline',
+    tint: '#8A93A6',
   },
   {
     status: 'denied',
@@ -215,6 +222,7 @@ export default function AdminSpeakingLab() {
 
       {preview && (
         <SpeakingPanel
+          key={preview.status}
           targetText={PREVIEW_TARGET}
           lang={lang}
           theme={panelTheme}

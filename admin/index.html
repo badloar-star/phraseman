@@ -8349,6 +8349,7 @@
     <div class="admin-tab-empty">No sections found</div>
   </div>
   <div class="tab active" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
+  <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Testers">Testers</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>
@@ -8529,6 +8530,31 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- UNIFIED MODERATION QUEUE -->
+<div id="tab-mod-queue" class="reports-tab">
+  <div style="padding:4px 0 12px;max-width:1080px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🛡 Очередь модерации</h2>
+    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5">
+      Все открытые обращения из всех очередей в одном месте, отсортированы по приоритету ИИ-триажа.
+      Content-репорты, жалобы на юзеров, UGC-паки на проверке и чат лиг. Клик «Открыть» — переход в нативную вкладку.
+    </p>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+    <button type="button" onclick="loadModQueue(true)" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700">🔄 Собрать очередь</button>
+    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="mq-only-critical" onchange="renderModQueue()"> <span>🔴 только critical (ИИ)</span></label>
+    <select id="mq-source" onchange="renderModQueue()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px">
+      <option value="">Все источники</option>
+      <option value="content">Content-репорты</option>
+      <option value="user">Жалобы на юзеров</option>
+      <option value="ugc">UGC-паки</option>
+      <option value="chat">Чат лиг</option>
+    </select>
+    <span class="reports-count" id="mq-count"></span>
+  </div>
+  <div id="mq-summary" class="stats" style="margin-bottom:14px"></div>
+  <div id="mq-list"><div class="reports-empty">Нажми «Собрать очередь» чтобы загрузить все источники.</div></div>
 </div>
 
 <!-- USERS TAB -->
@@ -10801,7 +10827,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -14274,6 +14300,8 @@
     });
     const overviewTab = document.getElementById('tab-overview');
     if (overviewTab) overviewTab.classList.toggle('active', tab === 'overview');
+    const modQueueTab = document.getElementById('tab-mod-queue');
+    if (modQueueTab) modQueueTab.classList.toggle('active', tab === 'mod-queue');
     document.getElementById('tab-users').classList.toggle('active',tab==='users');
     document.getElementById('tab-analytics').classList.toggle('active',tab==='analytics');
     document.getElementById('tab-app-health').classList.toggle('active',tab==='app-health');
@@ -14326,6 +14354,9 @@
     if (sb) {
       if (tab === 'users' && window._users && window._users.length) sb.style.display = 'block';
       else sb.style.display = 'none';
+    }
+    if (tab === 'mod-queue' && !window._modQueueLoaded && typeof window.loadModQueue === 'function') {
+      void window.loadModQueue(false);
     }
     if (tab === 'overview' && typeof window.renderAdminOverview === 'function') {
       window.renderAdminOverview();
@@ -17988,6 +18019,133 @@
     } catch(e) {
       showToast('Ошибка добавления теста: ' + e.message, 'err');
     }
+  };
+
+  // ── Unified Moderation Queue ──────────────────────────────────────────────
+  // Aggregates open items from all moderation sources into one list, sorted by
+  // AI-triage severity. Reuses each tab's existing loader + data array.
+  const MQ_SEV_RANK = { critical: 0, normal: 1, low: 2, none: 3 };
+  function mqTriageSev(item) {
+    const t = item.triage;
+    return t && t.severity ? String(t.severity) : 'none';
+  }
+  function mqBuildItems() {
+    const items = [];
+    // 1) Content reports (open only)
+    for (const r of (_allReports || [])) {
+      if (r.status === 'fixed' || r.status === 'archived') continue;
+      items.push({
+        source: 'content', icon: '🐞', sourceLabel: 'Content',
+        title: String(r.dataText || extractContext(r.context) || r.context || r.dataId || '—').slice(0, 90),
+        sub: `${r.screen || '—'} · ${r.category || '—'}`,
+        date: r.createdAt || '', triage: r.triage, raw: r,
+        jump: () => { switchTab('reports'); },
+      });
+    }
+    // 2) User reports (new/reviewed, not banned/archived)
+    for (const r of (_allUserReports || [])) {
+      if (r.status === 'banned' || r.status === 'archived') continue;
+      items.push({
+        source: 'user', icon: '🚩', sourceLabel: 'Жалоба',
+        title: `на ${r.reportedName || r.reportedUid || '—'}`,
+        sub: `${r.reason || '—'} · от ${r.reporterName || '—'}`,
+        date: r.createdAt || '', triage: r.triage, raw: r,
+        jump: () => { switchTab('user-reports'); },
+      });
+    }
+    // 3) UGC submissions pending
+    for (const r of (typeof _communitySubmissionsCache !== 'undefined' ? _communitySubmissionsCache : [])) {
+      const p = r.payload || {};
+      items.push({
+        source: 'ugc', icon: '📦', sourceLabel: 'UGC',
+        title: String(p.titleRu || r.id).slice(0, 90),
+        sub: `автор ${r.authorStableId || '—'} · карт ${(p.cards && p.cards.length) || 0}`,
+        date: r.submittedAt ? new Date(r.submittedAt).toISOString() : '', triage: r.triage, raw: r,
+        jump: () => { switchTab('community-packs'); },
+      });
+    }
+    // 4) League chat moderation queue + reports
+    const lc = window._leagueChatCache || {};
+    for (const r of (lc.queue || [])) {
+      items.push({
+        source: 'chat', icon: '💬', sourceLabel: 'Чат',
+        title: String(r.text || r.messageText || '—').slice(0, 90),
+        sub: `автор ${r.authorName || r.authorUid || '—'}`,
+        date: r.createdAt ? new Date(r.createdAt).toISOString() : '', triage: r.triage, raw: r,
+        jump: () => { switchTab('league-chat'); },
+      });
+    }
+    // Sort: AI severity first, then newest.
+    items.sort((a, b) => {
+      const sa = MQ_SEV_RANK[mqTriageSev(a)] ?? 3, sb = MQ_SEV_RANK[mqTriageSev(b)] ?? 3;
+      if (sa !== sb) return sa - sb;
+      return String(b.date || '').localeCompare(String(a.date || ''));
+    });
+    return items;
+  }
+  window.renderModQueue = function() {
+    const list = document.getElementById('mq-list');
+    const cnt = document.getElementById('mq-count');
+    const summary = document.getElementById('mq-summary');
+    if (!list) return;
+    let items = mqBuildItems();
+    const srcFilter = document.getElementById('mq-source')?.value || '';
+    const onlyCrit = !!document.getElementById('mq-only-critical')?.checked;
+    if (summary) {
+      const bySource = { content: 0, user: 0, ugc: 0, chat: 0 };
+      let critical = 0;
+      for (const it of items) { bySource[it.source] = (bySource[it.source] || 0) + 1; if (mqTriageSev(it) === 'critical') critical++; }
+      const card = (l, v, c) => `<div class="stat-card"><div class="label">${l}</div><div class="value" style="color:${c || '#fff'}">${v}</div></div>`;
+      summary.innerHTML = [
+        card('Всего открыто', items.length, '#4ade80'),
+        card('🔴 Critical (ИИ)', critical, '#f87171'),
+        card('Content', bySource.content),
+        card('Жалобы', bySource.user),
+        card('UGC', bySource.ugc),
+        card('Чат', bySource.chat),
+      ].join('');
+    }
+    if (srcFilter) items = items.filter(it => it.source === srcFilter);
+    if (onlyCrit) items = items.filter(it => mqTriageSev(it) === 'critical');
+    if (cnt) cnt.textContent = `${items.length} обращений`;
+    if (!items.length) { list.innerHTML = '<div class="reports-empty">Пусто — очередь чиста 🎉</div>'; return; }
+    window._mqItems = items;
+    list.innerHTML = items.slice(0, 300).map((it, i) => {
+      const when = String(it.date || '').replace('T', ' ').slice(0, 16);
+      const srcColor = { content: '#38bdf8', user: '#fbbf24', ugc: '#a78bfa', chat: '#4ade80' }[it.source] || '#888';
+      return `<div class="report-card">
+        <div class="rc-left" style="min-width:0;flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+            <span style="background:#1a1a24;border:1px solid ${srcColor}44;color:${srcColor};border-radius:5px;padding:2px 8px;font-size:11px;font-weight:700">${it.icon} ${escapeHtml(it.sourceLabel)}</span>
+            ${typeof triageBadge === 'function' ? triageBadge(it).replace('margin-top:4px','display:inline-block') : ''}
+          </div>
+          <div style="color:#fff;font-size:14px;margin-bottom:3px">${escapeHtml(it.title)}</div>
+          <div style="font-size:12px;color:#888">${escapeHtml(it.sub)}${when ? ' · ' + escapeHtml(when) : ''}</div>
+        </div>
+        <div class="rc-right" style="display:flex;align-items:center">
+          <button type="button" data-mq-i="${i}" style="background:#4338ca;border:1px solid #6366f1;color:#fff;border-radius:7px;padding:6px 14px;font-size:12px;cursor:pointer;font-weight:600">Открыть →</button>
+        </div>
+      </div>`;
+    }).join('');
+    list.querySelectorAll('button[data-mq-i]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const it = (window._mqItems || [])[Number(btn.getAttribute('data-mq-i'))];
+        if (it && typeof it.jump === 'function') it.jump();
+      });
+    });
+  };
+  window.loadModQueue = async function(force) {
+    window._modQueueLoaded = true;
+    const list = document.getElementById('mq-list');
+    if (list && force) list.innerHTML = '<div class="reports-empty">⏳ Собираю очередь из всех источников…</div>';
+    // Trigger source loaders that haven't run yet (each is idempotent / guarded).
+    const jobs = [];
+    if (force || !window._reportsLoaded) { if (typeof loadReports === 'function') jobs.push(loadReports()); }
+    if (force || !window._userReportsLoaded) { if (typeof loadUserReports === 'function') jobs.push(Promise.resolve(loadUserReports())); }
+    if (force || !window._leagueChatLoaded) { if (typeof loadLeagueChatAdmin === 'function') jobs.push(Promise.resolve(loadLeagueChatAdmin(force)).catch(() => {})); }
+    if (typeof loadCommunitySubmissions === 'function') { jobs.push(Promise.resolve(loadCommunitySubmissions()).catch(() => {})); }
+    try { await Promise.all(jobs); } catch (_) {}
+    renderModQueue();
   };
 
   window._reportsLastDoc = null;

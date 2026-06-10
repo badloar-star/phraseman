@@ -280,7 +280,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 setNoEnergyModal(true);
                 return;
             }
-            let uid = (uidOverride || userId).trim();
+            // onPress передаёт сюда GestureResponderEvent первым аргументом — берём
+            // uidOverride только если это реально строка, иначе откатываемся на userId.
+            const overrideUid = typeof uidOverride === 'string' ? uidOverride : '';
+            let uid = (overrideUid || userId).trim();
             if (!uid) {
                 uid = (await ensureArenaAuthUid()) ?? '';
             }
@@ -1547,6 +1550,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
             innerBg: gold ? GOLD_RICH.bronzeWash : compass ? 'rgba(10,9,8,0.76)' : light ? 'rgba(255,252,246,0.48)' : 'rgba(255,255,255,0.07)',
             innerBgSoft: gold ? GOLD_RICH.wash : compass ? 'rgba(8,7,6,0.68)' : light ? 'rgba(63,55,44,0.10)' : 'rgba(255,255,255,0.045)',
             innerBorder: gold ? GOLD_RICH.hairline : compass ? 'rgba(242,196,141,0.24)' : light ? 'rgba(52,45,35,0.24)' : alphaColor(accent, 0.18),
+            // Видимая «3D-кромка» для вторичных command-кнопок (Вызов другу / Трон дня).
+            // innerBorder для кромки слишком бледный (≈18% alpha) — объём не читался.
+            // Здесь плотная тёмная (или для светлой темы — тёплая тень) кромка.
+            commandEdge: gold ? GOLD_RICH.bronzeDark : compass ? 'rgba(0,0,0,0.55)' : light ? 'rgba(52,45,35,0.30)' : 'rgba(0,0,0,0.38)',
             accent: accent,
             accentSoft: alphaColor(accent, light ? 0.10 : 0.15),
             solidAccent: accent,
@@ -1962,7 +1969,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                   accessibilityLabel="qa-arena-find-match"
                   accessible={true}
                   disabled={!myRank.isHydrated}
-                  onPress={handleFindMatch}
+                  onPress={() => handleFindMatch()}
                   gradientColors={arenaGlass.ctaColors}
                   gradientStart={{ x: 0, y: 0 }}
                   gradientEnd={{ x: 1, y: 1 }}
@@ -2114,7 +2121,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                     return;
                 }
                 void handlePlayWithFriend();
-            }} edgeColor={arenaGlass.innerBorder} style={[styles.arenaCommandButton, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBg }]}>
+            }} edgeColor={arenaGlass.commandEdge} style={[styles.arenaCommandButton, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBg }]}>
                     <View style={[styles.arenaCommandIcon, {
                         backgroundColor: 'transparent',
                         borderColor: 'transparent',
@@ -2257,7 +2264,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         </View>)}
                     </View>)}
 
-                  <TouchableOpacity testID="arena-throne-info" accessible accessibilityRole="button" accessibilityLabel={triLang(lang, {
+                  <DuoPressable testID="arena-throne-info" accessible accessibilityRole="button" accessibilityLabel={triLang(lang, {
                 ru: 'Трон дня. Открыть топ игроков за день',
                 uk: 'Трон дня. Відкрити топ гравців за день',
                 es: 'Trono del día. Abrir el top de jugadores del día',
@@ -2266,7 +2273,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 id: 'Takhta hari ini. Buka pemain terbaik hari ini',
                 tr: 'Günün tahtı. Günün en iyi oyuncularını aç',
                 pl: 'Tron dnia. Otwórz top graczy dnia',
-            })} onPress={openThroneTop} activeOpacity={0.78} style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
+            })} onPress={openThroneTop} edgeColor={arenaGlass.commandEdge} style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
                     <View style={[styles.arenaCommandIcon, {
                         backgroundColor: 'transparent',
                         borderColor: 'transparent',
@@ -2327,7 +2334,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                       </Text>
                     </View>
                     <Ionicons name="chevron-forward" size={18} color={screenMuted}/>
-                  </TouchableOpacity>
+                  </DuoPressable>
                 </View>
               </LinearGradient>
 

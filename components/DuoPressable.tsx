@@ -111,7 +111,16 @@ function DuoPressable({
         ]}
       />
       {/* Нажимаемая поверхность */}
-      <Reanimated.View style={[styles.surface, style, surfaceStyle]}>
+      <Reanimated.View style={[styles.surface, style, gradientColors ? styles.surfaceClip : null, surfaceStyle]}>
+        {gradientColors ? (
+          <LinearGradient
+            colors={gradientColors as unknown as readonly [string, string, ...string[]]}
+            start={gradientStart}
+            end={gradientEnd}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
+        ) : null}
         {children}
       </Reanimated.View>
     </Pressable>
@@ -143,5 +152,8 @@ const styles = StyleSheet.create({
     minHeight: 56,
     borderRadius: 16,
     paddingHorizontal: 16,
+  },
+  surfaceClip: {
+    overflow: 'hidden',
   },
 });

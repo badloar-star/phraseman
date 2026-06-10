@@ -1957,51 +1957,57 @@ export default function DuelLobbyScreen({ isTab = false }: {
                   </Text>
                 </View>
 
-                <TouchableOpacity testID="arena-find-match" accessibilityLabel="qa-arena-find-match" accessible={true} disabled={!myRank.isHydrated} onPress={() => { hapticTap(); handleFindMatch(); }} activeOpacity={0.9} style={[styles.arenaLaunchTouch, !myRank.isHydrated && styles.eliteDisabled]}>
-                  <LinearGradient colors={arenaGlass.ctaColors as [
-            string,
-            string,
-            string
-        ]} locations={themeMode === 'gold' ? [0, 0.36, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[
-                styles.arenaLaunchGradient,
-                { borderColor: arenaGlass.ctaBorder, borderWidth: arenaGlass.ctaBorderWidth },
-            ]}>
-                    {themeMode === 'gold' && <GoldBevel radius={20} intensity="strong"/>}
-                    {false}
-                    <Image
-                      source={arenaMatchIconSource}
-                      contentFit="contain"
-                      style={styles.arenaLaunchActionIcon}
-                    />
-                    <View style={styles.arenaLaunchTextWrap}>
-                      <Text style={[styles.arenaLaunchTitle, { color: arenaGlass.ctaText, fontSize: f.h2 + 3 }]}>
-                        {triLang(lang, {
-                ru: 'Найти матч',
-                uk: 'Знайти матч',
-                es: 'Buscar partida',
-                'pt-BR': "Encontrar partida",
-                vi: "Tìm trận",
-                id: "Cari pertandingan",
-                tr: "Maç bul",
-                pl: "Znajdź mecz",
-            })}
-                      </Text>
-                      <Text style={[styles.arenaLaunchSub, { color: arenaGlass.ctaSubText, fontSize: f.caption }]}>
-                        {triLang(lang, {
-                ru: 'подбор соперника',
-                uk: 'підбір суперника',
-                es: 'matchmaking',
-                'pt-BR': "pareamento",
-                vi: "ghép trận",
-                id: "matchmaking",
-                tr: "eşleştirme",
-                pl: "dobieranie rywala",
-            })}
-                      </Text>
-                    </View>
-                    <Ionicons name="arrow-forward-circle" size={34} color={arenaGlass.ctaIcon}/>
-                  </LinearGradient>
-                </TouchableOpacity>
+                <DuoPressable
+                  testID="arena-find-match"
+                  accessibilityLabel="qa-arena-find-match"
+                  accessible={true}
+                  disabled={!myRank.isHydrated}
+                  onPress={handleFindMatch}
+                  gradientColors={arenaGlass.ctaColors}
+                  gradientStart={{ x: 0, y: 0 }}
+                  gradientEnd={{ x: 1, y: 1 }}
+                  edgeColor={arenaGlass.ctaBorder}
+                  wrapStyle={[styles.arenaLaunchTouch, !myRank.isHydrated && styles.eliteDisabled]}
+                  style={[
+                    styles.arenaLaunchGradient,
+                    { borderColor: arenaGlass.ctaBorder, borderWidth: arenaGlass.ctaBorderWidth },
+                  ]}
+                >
+                  {themeMode === 'gold' && <GoldBevel radius={20} intensity="strong"/>}
+                  {false}
+                  <Image
+                    source={arenaMatchIconSource}
+                    contentFit="contain"
+                    style={styles.arenaLaunchActionIcon}
+                  />
+                  <View style={styles.arenaLaunchTextWrap}>
+                    <Text style={[styles.arenaLaunchTitle, { color: arenaGlass.ctaText, fontSize: f.h2 + 3 }]}>
+                      {triLang(lang, {
+              ru: 'Найти матч',
+              uk: 'Знайти матч',
+              es: 'Buscar partida',
+              'pt-BR': "Encontrar partida",
+              vi: "Tìm trận",
+              id: "Cari pertandingan",
+              tr: "Maç bul",
+              pl: "Znajdź mecz",
+          })}
+                    </Text>
+                    <Text style={[styles.arenaLaunchSub, { color: arenaGlass.ctaSubText, fontSize: f.caption }]}>
+                      {triLang(lang, {
+              ru: 'подбор соперника',
+              uk: 'підбір суперника',
+              es: 'matchmaking',
+              'pt-BR': "pareamento",
+              vi: "ghép trận",
+              id: "matchmaking",
+              tr: "eşleştirme",
+              pl: "dobieranie rywala",
+          })}
+                    </Text>
+                  </View>
+                  <Ionicons name="arrow-forward-circle" size={34} color={arenaGlass.ctaIcon}/>
+                </DuoPressable>
 
                 {!isUnlimited ? (<View style={styles.arenaCostRow}>
                       <View style={[styles.arenaCostChip, { backgroundColor: arenaGlass.innerBg, borderColor: arenaGlass.innerBorder }]}>

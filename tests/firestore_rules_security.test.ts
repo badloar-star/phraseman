@@ -297,24 +297,26 @@ describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
   const rules = readFileSync(rulesPath, 'utf8');
 
   // Публичный кэш объяснений: клиент читает напрямую, но НИКОГДА не пишет публичный контент.
-  // Запись — только Admin SDK из CF explainPhrase (инвариант аудита).
-  test('phrase_explanations is world-readable cache but Admin-SDK-only writes', () => {
+  // Запись контента — только Admin SDK из CF explainPhrase (инвариант аудита).
+  // delete: isAdmin() — это «Сбросить объяснение» в админке (2026-06-10, раздел «Непонятно
+  // объяснили»): удаление дока заставляет следующий запрос сгенерировать фразу заново.
+  test('phrase_explanations: world-readable, content writes denied, admin may only DELETE (reset)', () => {
     const block = rules.match(/match \/phrase_explanations\/\{phraseHash\} \{[\s\S]*?\n    \}/);
     expect(block).not.toBeNull();
     expect(block![0]).toContain('allow read: if true;');
-    expect(block![0]).toContain('allow write: if false;');
-    // Клиент не должен иметь возможности писать публичный кэш ни под каким условием.
+    expect(block![0]).toContain('allow create, update: if false;');
+    expect(block![0]).toContain('allow delete: if isAdmin();');
+    // Клиент (и даже админ из браузера) не должен СОЗДАВАТЬ/МЕНЯТЬ публичный контент.
     expect(block![0]).not.toContain('allow write: if request.auth != null;');
-    expect(block![0]).not.toContain('isAdmin()');
+    expect(block![0]).not.toContain('allow create, update: if isAdmin()');
   });
 
-  // Четыре внутренние CF-only коллекции: read И write полностью закрыты (если false), а НЕ
+  // Три внутренние CF-only коллекции: read И write полностью закрыты (если false), а НЕ
   // isAdmin() — они не открыты admin-панели; копирование isAdmin() провалило бы этот тест.
   const SERVER_ONLY_EXPLAIN_COLLECTIONS = [
     'explain_global_budget',
     'explain_user_limits',
     'explain_billing',
-    'explain_reports',
   ] as const;
 
   for (const collection of SERVER_ONLY_EXPLAIN_COLLECTIONS) {
@@ -329,10 +331,36 @@ describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
     });
   }
 
+  // Жалобы «Непонятно объяснили» (2026-06-10): пишет ТОЛЬКО CF (create/update: false),
+  // админка читает и разбирает — паттерн user_reports. НЕ публичные: никакого read:true
+  // и никакого request.auth != null (только isAdmin).
+  test('explain_reports (счётчики): admin read+delete, никакой клиентской записи', () => {
+    const block = rules.match(/match \/explain_reports\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain('allow read, delete: if isAdmin();');
+    expect(block![0]).toContain('allow create, update: if false;');
+    expect(block![0]).not.toContain('read: if true');
+    expect(block![0]).not.toContain('request.auth != null');
+  });
+
+  test('explain_report_entries (лента жалоб): admin read/update/delete, create только CF', () => {
+    const block = rules.match(/match \/explain_report_entries\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain('allow read, update, delete: if isAdmin();');
+    expect(block![0]).toContain('allow create: if false;');
+    expect(block![0]).not.toContain('read: if true');
+    expect(block![0]).not.toContain('request.auth != null');
+  });
+
   test('explain blocks sit at ROOT level, before the deny-all catch-all', () => {
     const catchAllIdx = rules.indexOf('match /{document=**} {');
     expect(catchAllIdx).toBeGreaterThan(-1);
-    for (const collection of ['phrase_explanations', ...SERVER_ONLY_EXPLAIN_COLLECTIONS]) {
+    for (const collection of [
+      'phrase_explanations',
+      ...SERVER_ONLY_EXPLAIN_COLLECTIONS,
+      'explain_reports',
+      'explain_report_entries',
+    ]) {
       const idx = rules.indexOf(`match /${collection}/`);
       expect(idx).toBeGreaterThan(-1);
       expect(idx).toBeLessThan(catchAllIdx);

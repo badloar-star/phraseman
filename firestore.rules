@@ -700,16 +700,20 @@ service cloud.firestore {
 
     // ── Explain like I'm five (Phase 5) ────────────────────────────────────────
     // Публичный кэш объяснений: ЛЮБОЙ может читать готовое объяснение напрямую (быстро,
-    // без CF, 0 токенов), но писать — ТОЛЬКО Admin SDK из Cloud Function (explainPhrase).
+    // без CF, 0 токенов), но писать КОНТЕНТ — ТОЛЬКО Admin SDK из Cloud Function (explainPhrase).
     // Клиент НИКОГДА не пишет публичный контент (инвариант аудита SECURITY_AUDIT_2026-06-07).
+    // delete: isAdmin() — кнопка «Сбросить объяснение» в админке (раздел «Непонятно объяснили»):
+    // удаление дока ⇒ следующий запрос фразы генерирует заново. Создавать/менять контент
+    // из браузера (включая админа) по-прежнему НЕЛЬЗЯ.
     match /phrase_explanations/{phraseHash} {
       allow read: if true;
-      allow write: if false;
+      allow create, update: if false;
+      allow delete: if isAdmin();
     }
 
-    // Внутренние CF-only коллекции фичи: бюджет/лимиты/биллинг/счётчики репортов.
-    // Всё пишет и читает только сервер (Admin SDK). НЕ через isAdmin(): эти коллекции НЕ
-    // открыты admin-панели (в отличие от referral_owners), поэтому read И write = false.
+    // Внутренние CF-only коллекции фичи: бюджет/лимиты/биллинг. Всё пишет и читает только
+    // сервер (Admin SDK). НЕ через isAdmin(): эти коллекции НЕ открыты admin-панели
+    // (в отличие от referral_owners), поэтому read И write = false.
     match /explain_global_budget/{docId} {
       allow read: if false;
       allow write: if false;
@@ -722,9 +726,20 @@ service cloud.firestore {
       allow read: if false;
       allow write: if false;
     }
+
+    // Жалобы «Непонятно объяснили»: ПИШЕТ только CF submitExplainReport (Admin SDK), а
+    // админ-панель ЧИТАЕТ и разбирает их (раздел «Непонятно объяснили») — паттерн user_reports.
+    // explain_reports — счётчик «сколько РАЗНЫХ юзеров пожаловались» по фразе
+    // (delete = админ сбрасывает счётчик после починки фразы).
     match /explain_reports/{docId} {
-      allow read: if false;
-      allow write: if false;
+      allow read, delete: if isAdmin();
+      allow create, update: if false;
+    }
+    // explain_report_entries — лента жалоб, по записи на каждую отправку
+    // (update = пометить разобранной, delete = убрать мусор).
+    match /explain_report_entries/{docId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if false;
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

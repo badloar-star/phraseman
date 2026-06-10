@@ -8356,6 +8356,7 @@
   <div class="tab" onclick="switchTab('reports')" data-i18n-es="Reportes">Reports</div>
   <div class="tab" onclick="switchTab('website-inbox')" data-i18n-es="Soporte (sitio)">Support (site)</div>
   <div class="tab" onclick="switchTab('user-reports')" data-i18n-es="Reportes de usuarios">User reports</div>
+  <div class="tab" onclick="switchTab('explain-reports')" data-i18n-es="Explicaciones">Explain reports</div>
   <div class="tab" onclick="switchTab('ban-list')" data-i18n-es="Lista de bloqueos">Ban list</div>
   <div class="tab" onclick="switchTab('premium')" data-i18n-es="Premium">Premium</div>
   <div class="tab" onclick="switchTab('vip')" data-i18n-es="VIP">VIP</div>
@@ -8976,6 +8977,33 @@
     <span class="reports-count" id="ur-count"></span>
   </div>
   <div id="ur-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
+<!-- EXPLAIN REPORTS TAB («Непонятно объяснили») -->
+<div id="tab-explain-reports" class="reports-tab">
+  <div class="reports-toolbar">
+    <select id="xr-filter-status" onchange="filterExplainReports()">
+      <option value="new" data-i18n-es="Nuevas">Новые</option>
+      <option value="done" data-i18n-es="Resueltas">Разобранные</option>
+      <option value="" data-i18n-es="Todas">Все</option>
+    </select>
+    <select id="xr-filter-reason" onchange="filterExplainReports()">
+      <option value="" data-i18n-es="Todas las razones">Все причины</option>
+      <option value="unclear">Всё равно непонятно</option>
+      <option value="incorrect">Есть ошибка</option>
+      <option value="wrong_language">Не тот язык</option>
+      <option value="other">Другое</option>
+    </select>
+    <button onclick="loadExplainReports()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <span class="reports-count" id="xr-count"></span>
+  </div>
+  <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
+    Жалобы «Непонятно объяснили» из шторки объяснения фразы. Источник: <code style="color:#a78bfa">explain_report_entries</code>
+    (каждая отправка) + счётчики <code style="color:#a78bfa">explain_reports</code> (разных юзеров на фразу; порог авто-отключения — 5).
+    <strong>«Сбросить объяснение»</strong> удаляет кэш фразы — следующий запрос сгенерирует объяснение заново
+    (так оживляются и фразы, убитые порогом жалоб или ложным вердиктом ИИ-судьи).
+  </p>
+  <div id="xr-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
 </div>
 
 <!-- BAN LIST TAB -->
@@ -10855,7 +10883,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -14337,6 +14365,8 @@
     const wiTabInbox = document.getElementById('tab-website-inbox');
     if (wiTabInbox) wiTabInbox.classList.toggle('active', tab === 'website-inbox');
     document.getElementById('tab-user-reports').classList.toggle('active',tab==='user-reports');
+    const explainRepTab = document.getElementById('tab-explain-reports');
+    if (explainRepTab) explainRepTab.classList.toggle('active', tab === 'explain-reports');
     document.getElementById('tab-archive').classList.toggle('active',tab==='archive');
     document.getElementById('tab-audit').classList.toggle('active',tab==='audit');
     document.getElementById('tab-ops-log').classList.toggle('active',tab==='ops-log');
@@ -14406,6 +14436,7 @@
       void window.loadWebsiteInbox(false);
     }
     if(tab==='user-reports' && !window._userReportsLoaded) loadUserReports();
+    if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
     if(tab==='archive' && !window._archiveLoaded) loadArchive();
     if(tab==='audit' && !window._auditLoaded) loadAuditLog();
     if(tab==='app-health' && !window._appHealthLoaded) loadAppHealth();
@@ -14626,6 +14657,7 @@
     reports: 'Reports',
     'website-inbox': 'Site support',
     'user-reports': 'User reports',
+    'explain-reports': 'Explain reports',
     'ban-list': 'Ban list',
     premium: 'Premium',
     vip: 'VIP',
@@ -14676,6 +14708,7 @@
     reports: 'users',
     'website-inbox': 'users',
     'user-reports': 'users',
+    'explain-reports': 'users',
     'ban-list': 'users',
     premium: 'revenue',
     vip: 'revenue',
@@ -15531,7 +15564,7 @@
   const CMDK_TAB_LABELS = {
     'overview': '📊 Overview', 'analytics': '📈 Analytics', 'app-health': '🩺 App Health',
     'users': '👥 Users', 'reports': '🐞 Content reports', 'website-inbox': '✉️ Support (site)',
-    'user-reports': '🚩 User reports', 'ban-list': '🚫 Ban list', 'premium': '⭐ Premium',
+    'user-reports': '🚩 User reports', 'explain-reports': '💡 Explain reports', 'ban-list': '🚫 Ban list', 'premium': '⭐ Premium',
     'vip': '💚 VIP', 'cancel-surveys': '📉 Cancel surveys', 'review-promo': '📝 VIP survey',
     'referrals': '🔗 Referrals', 'app-messages': '💬 Messages', 'ugc-purchases': '🛒 UGC purchases',
     'community-packs': '🧩 Community', 'card-packs': '🃏 Card packs', 'daily-phrases': '📅 Daily phrases',
@@ -19340,6 +19373,164 @@
       showToast('❌ Ошибка: ' + e.message, 'err');
     }
   };
+
+  // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────
+  // Лента: explain_report_entries (каждая отправка). Счётчики: explain_reports
+  // (РАЗНЫХ юзеров на фразу, порог авто-отключения 5). Кэш: phrase_explanations
+  // («Сбросить объяснение» = deleteDoc ⇒ следующий запрос генерирует заново —
+  // так оживляются фразы, убитые порогом или ложным вердиктом ИИ-судьи).
+  window._explainReportsLoaded = false;
+  window._explainEntries = [];
+  window._explainCounters = {};
+  window._explainCache = {};
+
+  const XR_REASON_LABELS = {
+    unclear: 'Всё равно непонятно',
+    incorrect: 'Есть ошибка',
+    wrong_language: 'Не тот язык',
+    other: 'Другое',
+  };
+
+  window.loadExplainReports = async function() {
+    window._explainReportsLoaded = true;
+    const list = document.getElementById('xr-list');
+    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      const [entriesSnap, countersSnap] = await Promise.all([
+        getDocs(query(collection(db, 'explain_report_entries'), orderBy('createdAtMs', 'desc'), limit(300))),
+        getDocs(query(collection(db, 'explain_reports'), limit(500))),
+      ]);
+      window._explainEntries = entriesSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+      window._explainCounters = {};
+      countersSnap.docs.forEach(d => { window._explainCounters[d.id] = d.data(); });
+      // Текущее состояние кэша по фразам из ленты — что юзеры видят ПРЯМО СЕЙЧАС.
+      const hashes = [...new Set(window._explainEntries.map(e => e.phraseHash).filter(Boolean))].slice(0, 80);
+      window._explainCache = {};
+      await Promise.all(hashes.map(async (h) => {
+        try {
+          const s = await getDoc(doc(db, 'phrase_explanations', h));
+          window._explainCache[h] = s.exists() ? (s.data() || {}) : null;
+        } catch { window._explainCache[h] = undefined; }
+      }));
+      filterExplainReports();
+    } catch(e) {
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.filterExplainReports = function() {
+    const status = document.getElementById('xr-filter-status').value;
+    const reason = document.getElementById('xr-filter-reason').value;
+    let arr = window._explainEntries;
+    if (status) arr = arr.filter(r => (r.status || 'new') === status);
+    if (reason) arr = arr.filter(r => r.reason === reason);
+    renderExplainReports(arr);
+  };
+
+  function xrCacheChip(hash) {
+    const cache = window._explainCache[hash];
+    if (cache === undefined) return '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a2a3a;color:#888">кэш: ?</span>';
+    if (cache === null) return '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a2540;color:#93c5fd">нет в кэше — сгенерится заново</span>';
+    const st = cache.status || '?';
+    if (st === 'ready') return '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a2a1a;color:#4ade80">объяснение live</span>';
+    if (st === 'rejected') {
+      const why = cache.reason === 'report_threshold' ? 'порог жалоб' : escapeHtml(cache.reason || 'judge');
+      return `<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#3b0a0a;color:#f87171">отключено: ${why}</span>`;
+    }
+    return `<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${escapeHtml(st)}</span>`;
+  }
+
+  function renderExplainReports(entries) {
+    const list = document.getElementById('xr-list');
+    document.getElementById('xr-count').textContent = `${entries.length} жалоб`;
+    if (!entries.length) { list.innerHTML = '<div class="reports-empty">🎉 Жалоб нет!</div>'; return; }
+
+    // Группируем по фразе (phraseHash); группы — по самой свежей жалобе сверху.
+    const groups = new Map();
+    entries.forEach((e) => {
+      const key = e.phraseHash || '—';
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(e);
+    });
+    const ordered = [...groups.entries()].sort((a, b) => (b[1][0].createdAtMs || 0) - (a[1][0].createdAtMs || 0));
+
+    list.innerHTML = ordered.map(([hash, items]) => {
+      const counter = window._explainCounters[hash] || {};
+      const phrase = escapeHtml(items[0].phraseEn || counter.phraseEn || '(фраза неизвестна)');
+      const lang = escapeHtml(items[0].lang || counter.lang || '?');
+      const distinct = Number(counter.reportCount || 0);
+      const rows = items.map((r) => {
+        const date = r.createdAtMs ? new Date(r.createdAtMs).toISOString().slice(0, 16).replace('T', ' ') : '—';
+        const reasonLabel = escapeHtml(XR_REASON_LABELS[r.reason] || r.reason || '—');
+        const comment = r.comment ? `<div style="color:#d0d0da;font-size:13px;white-space:pre-wrap;margin-top:4px">${escapeHtml(r.comment)}</div>` : '';
+        const uidShort = escapeHtml(String(r.stableUid || '?').slice(-8));
+        const done = (r.status || 'new') === 'done';
+        return `
+          <div style="border-top:1px solid #22222e;padding:8px 0 6px;opacity:${done ? '0.55' : '1'}">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${reasonLabel}</span>
+              <span style="color:#666;font-size:11px">${date}</span>
+              <span style="color:#666;font-size:11px;font-family:monospace">uid: ${uidShort}</span>
+              <span style="flex:1"></span>
+              <button data-xr-entry="${escapeHtml(r.id)}" data-xr-action="${done ? 'reopen' : 'done'}" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80;border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer">${done ? '↩ Вернуть' : '✓ Разобрано'}</button>
+              <button data-xr-entry="${escapeHtml(r.id)}" data-xr-action="delete" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#f87171;border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer">🗑</button>
+            </div>
+            ${comment}
+          </div>`;
+      }).join('');
+
+      return `
+        <div class="report-card" style="display:block;border-left:3px solid #a78bfa;margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
+            <span style="font-size:16px">💡</span>
+            <span style="color:#fff;font-weight:700;font-size:15px">${phrase}</span>
+            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a1a3a;color:#a78bfa">${lang}</span>
+            ${xrCacheChip(hash)}
+            <span style="color:#888;font-size:11px">${distinct} ${distinct === 1 ? 'юзер' : 'юзеров'} · порог 5</span>
+            <span style="flex:1"></span>
+            <button data-xr-hash="${escapeHtml(hash)}" data-xr-action="reset" style="background:#1a2540;border:1px solid #5a8ad0;color:#93c5fd;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🔁 Сбросить объяснение</button>
+            <button data-xr-hash="${escapeHtml(hash)}" data-xr-action="clear-counter" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#aaa;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🧹 Сбросить счётчик</button>
+          </div>
+          ${rows}
+        </div>`;
+    }).join('');
+
+    list.querySelectorAll('button[data-xr-action]').forEach((btn) => {
+      btn.addEventListener('click', () => xrAction(btn.dataset.xrAction, btn));
+    });
+  }
+
+  async function xrAction(action, btn) {
+    const entryId = btn.dataset.xrEntry;
+    const hash = btn.dataset.xrHash;
+    btn.disabled = true;
+    const prevText = btn.textContent;
+    btn.textContent = '⏳';
+    try {
+      if (action === 'done' && entryId) {
+        await updateDoc(doc(db, 'explain_report_entries', entryId), { status: 'done', reviewedAtMs: Date.now() });
+      } else if (action === 'reopen' && entryId) {
+        await updateDoc(doc(db, 'explain_report_entries', entryId), { status: 'new' });
+      } else if (action === 'delete' && entryId) {
+        await deleteDoc(doc(db, 'explain_report_entries', entryId));
+      } else if (action === 'reset' && hash) {
+        if (!confirm('Сбросить объяснение этой фразы? Кэш и счётчик жалоб удалятся, следующий запрос сгенерирует объяснение заново.')) {
+          btn.disabled = false; btn.textContent = prevText; return;
+        }
+        await deleteDoc(doc(db, 'phrase_explanations', hash));
+        await deleteDoc(doc(db, 'explain_reports', hash)).catch(() => {});
+        showToast('✅ Кэш сброшен — фраза перегенерируется', 'ok');
+      } else if (action === 'clear-counter' && hash) {
+        await deleteDoc(doc(db, 'explain_reports', hash));
+        showToast('✅ Счётчик жалоб очищен', 'ok');
+      }
+      loadExplainReports();
+    } catch(e) {
+      btn.disabled = false;
+      btn.textContent = prevText;
+      showToast('❌ Ошибка: ' + (e.message || e), 'err');
+    }
+  }
 
   // ── APP MESSAGES INBOX ──────────────────────────────────────────────────────
   window._appMessagesLoaded = false;

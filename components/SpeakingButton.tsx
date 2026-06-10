@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 import { usePremium } from './PremiumContext';
-import SpeakingPanel, { type SpeakingPanelTheme } from './SpeakingPanel';
+import SpeakingPanel, { buildSpeakingPanelTheme } from './SpeakingPanel';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -44,20 +44,6 @@ export interface SpeakingButtonProps {
   variant?: 'pill' | 'footer';
   style?: StyleProp<ViewStyle>;
   onPass?: (result: { score: number; transcript: string }) => void;
-}
-
-function buildPanelTheme(t: any): SpeakingPanelTheme {
-  return {
-    bg: t.bgPrimary,
-    card: t.bgCard,
-    textPrimary: t.textPrimary,
-    textSecond: t.textSecond,
-    textMuted: t.textMuted,
-    accent: t.accent,
-    correct: t.correct,
-    wrong: t.wrong,
-    border: t.border,
-  };
 }
 
 export function SpeakingButton({
@@ -138,7 +124,7 @@ export function SpeakingButton({
         <SpeakingPanel
           targetText={cleaned}
           lang={lang}
-          theme={buildPanelTheme(t)}
+          theme={buildSpeakingPanelTheme(t)}
           onPass={onPass}
           onClose={() => setOpen(false)}
         />

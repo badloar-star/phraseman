@@ -25,6 +25,7 @@ import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import {
   SpeakingPanel,
+  buildSpeakingPanelTheme,
   type SpeakingPanelStatus,
   type SpeakingPanelTheme,
 } from '../components/SpeakingPanel';
@@ -127,20 +128,7 @@ export default function AdminSpeakingLab() {
     }
   }, [router]);
 
-  const panelTheme = useMemo<SpeakingPanelTheme>(
-    () => ({
-      bg: t.bgPrimary,
-      card: t.bgCard,
-      textPrimary: t.textPrimary,
-      textSecond: t.textSecond,
-      textMuted: t.textMuted,
-      accent: t.accent,
-      correct: t.correct,
-      wrong: t.wrong,
-      border: t.border,
-    }),
-    [t],
-  );
+  const panelTheme = useMemo<SpeakingPanelTheme>(() => buildSpeakingPanelTheme(t), [t]);
 
   const openPreview = (row: PreviewRow) => {
     hapticTap();

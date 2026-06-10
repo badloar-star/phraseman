@@ -61,6 +61,38 @@ export interface SpeakingPanelTheme {
   border: string;
 }
 
+/** Subset of the app theme that the speaking panel needs. */
+export interface SpeakingPanelThemeSource {
+  bgPrimary: string;
+  bgCard: string;
+  textPrimary: string;
+  textSecond: string;
+  textMuted: string;
+  accent: string;
+  correct: string;
+  wrong: string;
+  border: string;
+}
+
+/**
+ * Canonical mapping from the app theme to a SpeakingPanelTheme.
+ * Single source of truth so every host (lessons / quizzes / trainer / QA lab)
+ * builds the panel theme identically instead of duplicating the object.
+ */
+export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPanelTheme {
+  return {
+    bg: t.bgPrimary,
+    card: t.bgCard,
+    textPrimary: t.textPrimary,
+    textSecond: t.textSecond,
+    textMuted: t.textMuted,
+    accent: t.accent,
+    correct: t.correct,
+    wrong: t.wrong,
+    border: t.border,
+  };
+}
+
 export interface SpeakingPanelProps {
   /** Canonical target phrase the user must say (English). */
   targetText: string;

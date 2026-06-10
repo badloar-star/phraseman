@@ -46,7 +46,7 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
-import SpeakingPanel from '../components/SpeakingPanel';
+import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -1465,17 +1465,7 @@ const LessonContent = React.memo(function LessonContent({
           <SpeakingPanel
             targetText={cleanPhraseForDisplay(gradeTarget)}
             lang={lang}
-            theme={{
-              bg: t.bgPrimary,
-              card: t.bgCard,
-              textPrimary: t.textPrimary,
-              textSecond: t.textSecond,
-              textMuted: t.textMuted,
-              accent: t.accent,
-              correct: t.correct,
-              wrong: t.wrong,
-              border: t.border,
-            }}
+            theme={buildSpeakingPanelTheme(t)}
             onClose={() => setSpeakingOpen(false)}
           />
         )}

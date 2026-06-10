@@ -96,13 +96,13 @@ type OwnedAvatars = Record<string, string>;
 type OwnedAuras = Record<string, true>;
 
 const { width: SCREEN_W } = Dimensions.get('window');
-const GRID_GAP = 8;
+const GRID_GAP = 10;
 const GRID_PAD = 16;
-const GRID_COLS = 4;
+const GRID_COLS = 3;
 const CELL_W = Math.floor((SCREEN_W - GRID_PAD * 2 - GRID_GAP * (GRID_COLS - 1)) / GRID_COLS);
-const CUSTOM_AVATAR_CELL_H = Math.max(104, Math.round(CELL_W * 1.34));
-const CUSTOM_AVATAR_SLOT_SIZE = Math.min(70, Math.round(CELL_W * 0.82));
-const CUSTOM_AVATAR_BADGE_SIZE = Math.min(60, Math.round(CELL_W * 0.68));
+const CUSTOM_AVATAR_CELL_H = Math.max(124, Math.round(CELL_W * 1.22));
+const CUSTOM_AVATAR_SLOT_SIZE = Math.min(96, Math.round(CELL_W * 0.82));
+const CUSTOM_AVATAR_BADGE_SIZE = Math.min(82, Math.round(CELL_W * 0.68));
 
 type ProfileCardPreviewVisual = {
   theme: ProfileCardTheme;
@@ -243,11 +243,16 @@ const formatCompact = (value: number) => {
   return String(safe);
 };
 
-function ShardCost({ amount, color }: { amount: number; color: string }) {
+function ShardCost({
+  amount,
+  color,
+  fontSize = 11,
+  iconSize = 14,
+}: { amount: number; color: string; fontSize?: number; iconSize?: number }) {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-      <Text style={{ color, fontSize: 11, fontWeight: '900' }}>{amount}</Text>
-      <Image source={oskolokImageForPackShards(amount)} style={{ width: 14, height: 14 }} contentFit="contain" />
+      <Text style={{ color, fontSize, fontWeight: '900' }}>{amount}</Text>
+      <Image source={oskolokImageForPackShards(amount)} style={{ width: iconSize, height: iconSize }} contentFit="contain" />
     </View>
   );
 }
@@ -986,7 +991,7 @@ export default function AvatarSelect() {
                 style={{
                   width: CELL_W,
                   height: CUSTOM_AVATAR_CELL_H,
-                  borderRadius: 16,
+                  borderRadius: 18,
                   borderWidth: isActive ? 2 : 1,
                   borderColor: isActive ? t.accent : t.border,
                   backgroundColor: t.bgCard,
@@ -1013,12 +1018,12 @@ export default function AvatarSelect() {
                         numberOfLines={1}
                         adjustsFontSizeToFit
                         minimumFontScale={0.78}
-                        style={{ width: '100%', color: isGifted ? t.accent : t.textPrimary, fontSize: 10, fontWeight: '900', textAlign: 'center' }}
+                        style={{ width: '100%', color: isGifted ? t.accent : t.textPrimary, fontSize: 11, fontWeight: '900', textAlign: 'center' }}
                       >
                         {isGifted ? 'Получено' : 'Куплен'}
                       </Text>
                     )
-                    : <ShardCost amount={CUSTOM_AVATAR_BUY_COST} color={t.textMuted} />}
+                    : <ShardCost amount={CUSTOM_AVATAR_BUY_COST} color={t.textMuted} fontSize={13} iconSize={16} />}
                 </View>
               </TouchableOpacity>
             );

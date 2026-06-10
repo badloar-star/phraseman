@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phraseman — редизайн модалок и тостов · 2026-06-10</title>
+<title>Phraseman — редизайн модалок и тостов · v2 · 2026-06-10</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -121,7 +121,7 @@
     --wrong:#B3473F;
   }
 
-  /* ── Home screen background (структура как в app/(tabs)/home.tsx) ── */
+  /* ── Home screen background ── */
   .statusbar { display:flex; justify-content:space-between; padding:16px 26px 0;
     font-size:13px; font-weight:700; color:var(--sb); }
   .home-header { padding:18px 20px 10px; }
@@ -129,7 +129,8 @@
   .hh-name { font-size:24px; font-weight:800; color:var(--text); margin-top:2px; }
   .hh-meta { display:flex; align-items:center; gap:10px; margin-top:10px; }
   .bolt { width:22px; height:22px; }
-  .hh-shards { display:flex; align-items:center; gap:5px; font-size:14px; font-weight:900; color:var(--text); }
+  .hh-shards { display:flex; align-items:center; gap:5px; font-size:14px; font-weight:900;
+    color:var(--text); position:relative; }
   .status-card { margin:6px 14px 0; border-radius:var(--rCard); padding:16px;
     background:linear-gradient(160deg, var(--panel0), var(--panel2));
     border:1px solid var(--border); }
@@ -157,7 +158,7 @@
   .tile em { font-style:normal; font-size:19px; display:block; }
   .tile b { font-size:11.5px; font-weight:800; display:block; margin-top:6px; color:var(--text); }
 
-  /* ── Floating tab bar (точно как app/(tabs)/_layout.tsx) ── */
+  /* ── Floating tab bar ── */
   .tabbar { position:absolute; left:16px; right:16px; bottom:18px; height:56px; border-radius:28px;
     background:color-mix(in srgb, var(--bgCard) 62%, transparent);
     backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
@@ -169,14 +170,12 @@
   .tab.active { background:var(--accentBg); }
   .tab.active svg { stroke:var(--accent); }
 
-  /* ── Backdrops & generic modal bits ── */
+  /* ── Backdrops & toasts ── */
   .backdrop { position:absolute; inset:0; z-index:10; display:flex; align-items:center;
     justify-content:center; padding:18px; }
   .backdrop.blurred { backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px); }
   .toast-zone { position:absolute; left:12px; right:12px; bottom:88px; z-index:11;
     display:flex; flex-direction:column; gap:10px; }
-
-  /* crystal / chest / trophy art */
   .crystal { filter:drop-shadow(0 4px 10px rgba(80,160,255,0.35)); }
 
   /* ════ BEFORE: LevelGiftModal ════ */
@@ -228,7 +227,7 @@
     background:linear-gradient(135deg, var(--mBtn0), var(--mBtn1));
     color:var(--mBtnText); font-size:17px; font-weight:900; }
 
-  /* ════ BEFORE: ThroneRewardModal (хардкод-золото) ════ */
+  /* ════ BEFORE: ThroneRewardModal ════ */
   .bd-throne { background:rgba(0,0,0,0.88) !important; }
   .bm-throne { width:308px; border-radius:32px; border:1.5px solid rgba(201,168,76,0.55);
     background:linear-gradient(180deg, var(--panel0), var(--panel1) 50%, var(--panel2));
@@ -330,11 +329,12 @@
   .nm-reason span { font-size:13.5px; color:var(--text); line-height:1.4; display:block; margin-top:3px; }
   .nm-cta { margin-top:18px; height:52px; border-radius:var(--rBtn); display:flex; align-items:center;
     justify-content:center; background:linear-gradient(135deg, var(--cta0), var(--cta1), var(--cta2));
-    color:var(--ctaText); font-size:16px; font-weight:800; }
+    color:var(--ctaText); font-size:16px; font-weight:800; cursor:pointer; }
   .nm-ghost { margin-top:12px; font-size:14px; font-weight:700; color:var(--muted); }
 
-  /* stack mode */
-  .stackwrap { position:relative; width:300px; }
+  /* stack mode v2 */
+  .stack-col { display:flex; flex-direction:column; align-items:center; gap:14px; position:relative; }
+  .stackwrap { position:relative; width:300px; transition:transform 0.3s cubic-bezier(0.5,0,0.8,0.4), opacity 0.3s; }
   .stack-under { position:absolute; left:50%; border-radius:var(--rCard); border:1px solid var(--mBorder);
     background:var(--panel1); opacity:0.6; }
   .stack-u1 { width:272px; height:96%; top:-9px; transform:translateX(-50%); }
@@ -342,6 +342,50 @@
   .dots { display:flex; gap:6px; justify-content:center; margin-top:14px; }
   .dots i { width:6px; height:6px; border-radius:3px; background:var(--muted); opacity:0.35; }
   .dots i.on { width:18px; background:var(--rare, var(--mAccent)); opacity:1; }
+  .claim-all { width:300px; height:52px; border-radius:var(--rBtn);
+    background:color-mix(in srgb, var(--bgCard) 72%, transparent);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--borderHi); color:var(--text);
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    font-size:15px; font-weight:800; cursor:pointer;
+    transition:transform 0.25s, opacity 0.25s; }
+  .claim-all .cnt { min-width:24px; height:24px; border-radius:12px; padding:0 7px;
+    background:var(--accentBg); color:var(--accent); font-size:13px; font-weight:900;
+    display:flex; align-items:center; justify-content:center; }
+
+  /* ── claim-all animation ── */
+  .anim-bd { transition:background 0.55s ease, backdrop-filter 0.55s ease; }
+  .claiming .stackwrap { transform:scale(0.55) translateY(60px); opacity:0; }
+  .claiming .claim-all { transform:scale(0.9) translateY(20px); opacity:0; }
+  .claiming.anim-bd { background:rgba(0,0,0,0) !important; backdrop-filter:blur(0px); }
+  .fly-layer { position:absolute; inset:0; z-index:14; pointer-events:none; }
+  .fly { position:absolute; left:50%; top:46%; width:60px; height:60px; margin:-30px 0 0 -30px;
+    border-radius:50%; background:color-mix(in srgb, var(--panel0) 86%, transparent);
+    border:1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+    box-shadow:0 0 26px color-mix(in srgb, var(--gold) 36%, transparent);
+    display:flex; align-items:center; justify-content:center; font-size:26px;
+    opacity:0; }
+  .claiming ~ .fly-layer .fly, .fly-layer.go .fly { animation:popfly 1.45s cubic-bezier(0.45,0,0.3,1) forwards; }
+  .fly.f1 { animation-delay:0.10s !important; --fx:-78px; }
+  .fly.f2 { animation-delay:0.22s !important; --fx:0px; }
+  .fly.f3 { animation-delay:0.34s !important; --fx:78px; }
+  @keyframes popfly {
+    0%   { opacity:0; transform:translate(0,0) scale(0.2); }
+    16%  { opacity:1; transform:translate(calc(var(--fx)*0.35), -6px) scale(1.18); }
+    30%  { opacity:1; transform:translate(calc(var(--fx)*0.5), 2px) scale(1.0); }
+    42%  { opacity:1; transform:translate(calc(var(--fx)*0.55), 14px) scale(0.94); }
+    100% { opacity:0; transform:translate(var(--fx), -470px) scale(0.34); }
+  }
+  .shard-bump { animation:bump 0.7s cubic-bezier(0.3,1.6,0.4,1); }
+  @keyframes bump { 0%{transform:scale(1)} 35%{transform:scale(1.45)} 100%{transform:scale(1)} }
+  .plus-fly { position:absolute; right:-6px; top:-16px; font-size:13px; font-weight:900;
+    color:var(--accent); opacity:0; pointer-events:none; }
+  .plus-fly.go { animation:plusfly 1.1s ease forwards; }
+  @keyframes plusfly { 0%{opacity:0; transform:translateY(8px)} 25%{opacity:1}
+    100%{opacity:0; transform:translateY(-22px)} }
+  .replay { margin-top:10px; border:1px solid #34373E; background:#1D2025; color:#C9CDD3;
+    font-family:inherit; font-size:13px; font-weight:700; border-radius:10px;
+    padding:9px 16px; cursor:pointer; }
 
   /* ════ AFTER: unified toast ════ */
   .nt { background:var(--bgCard); border-radius:16px; border:1px solid var(--border);
@@ -371,7 +415,20 @@
   .cf .b2 { border-radius:var(--rBtn); padding:14px; text-align:center; font-size:15px; font-weight:600;
     background:var(--bgSurface); color:var(--text); border:1px solid var(--border); margin-top:10px; }
 
-  /* rules + migration table */
+  /* ════ GALLERY: вся система в одном типе ════ */
+  .gallery { border-radius:24px; padding:34px 28px;
+    background:radial-gradient(120% 120% at 50% 0%, #1B1E24 0%, #101216 60%, #0B0C0E 100%);
+    border:1px solid #26282E; max-width:1400px; }
+  .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:26px; }
+  .g-item .nm { width:100%; }
+  .g-item .gname { margin-top:10px; font-size:12px; color:#9AA0A6; line-height:1.5; }
+  .g-item .gname b { color:#E8EAED; display:block; font-size:13px; }
+  .nm-cta.danger { background:linear-gradient(135deg, #FF8A92, var(--wrong, #F26D6D)); color:#2A0508; }
+  .nm-input { margin-top:14px; border-radius:var(--rBtn); border:1px dashed var(--mBorder);
+    background:var(--mSoft); padding:13px; font-size:14px; font-weight:700; color:var(--muted);
+    letter-spacing:2px; }
+
+  /* rules + migration */
   .rules { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px; max-width:1240px; }
   .rule { background:#16181C; border:1px solid #26282E; border-radius:14px; padding:16px 18px; }
   .rule b { font-size:14px; display:block; margin-bottom:6px; }
@@ -387,11 +444,11 @@
 </head>
 <body>
 
-<h1>Phraseman — аудит и редизайн модалок и тостов</h1>
+<h1>Phraseman — аудит и редизайн модалок и тостов <span style="font-size:14px;color:#9AA0A6;font-weight:700">v2</span></h1>
 <div class="sub">87 модальных окон, 8 тост-систем, 127 вызовов action_toast. Макеты построены на точных
-токенах приложения: темы из <code>constants/theme.ts</code>, панели наград из <code>RewardModalBackdrop.tsx</code>,
-кнопки из <code>PrimaryButton.tsx</code>, таб-бар из <code>app/(tabs)/_layout.tsx</code>. Переключай тему — макеты
-перекрашиваются так же, как приложение.</div>
+токенах приложения. <b style="color:#E8EAED">Новое в v2:</b> очередь наград — стопка с кнопкой «Забрать всё» ПОД модалкой
+и анимацией улёта наград (нажми кнопку в телефоне!), плюс галерея «вся система в одном типе» — все остальные
+модалки и тосты на одной анатомии.</div>
 
 <div class="stats">
   <div class="stat"><b>87</b><span>модалок всего</span></div>
@@ -545,7 +602,7 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
       </div>
     </div>
     <div class="caption"><b>ShardsEarnedModal</b> — осколки. Радиус 30 + градиентная рамка, бэкдроп 82%, автозакрытие через 40 секунд.
-      <span class="pin"><span class="neg">Минусы:</span> «✦ Сокровище зачислено ✦» — фэнтези-2015; цифра 48px с тенью; 4 анимации одновременно (sheen, glow, bounce, линия); «Коснись, чтобы продолжить» + кнопка «Забрать» — двойной CTA. Автозакрытие = это вообще тост по природе.</span></div>
+      <span class="pin"><span class="neg">Минусы:</span> «✦ Сокровище зачислено ✦» — фэнтези-2015; цифра 48px с тенью; 4 анимации одновременно; двойной CTA. Автозакрытие = это вообще тост по природе.</span></div>
   </div>
 
   <!-- BEFORE 3: ThroneRewardModal -->
@@ -590,8 +647,8 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
         </div>
       </div>
     </div>
-    <div class="caption"><b>ThroneRewardModal</b> — трон арены. <span class="neg">Бэкдроп 88% — хардкод</span>, золотая рамка — хардкод, не подстраивается под тему.
-      <span class="pin"><span class="neg">Минусы:</span> 12 лучей + glow + 4 звезды + 8 частиц + 3 спринга = цирк из 7 анимаций; синий блок награды внутри золотой карточки; в Sketch-теме будет чёрная дыра на бумажном фоне (переключи тему!).</span></div>
+    <div class="caption"><b>ThroneRewardModal</b> — трон арены. <span class="neg">Бэкдроп 88% — хардкод</span>, золотая рамка — хардкод.
+      <span class="pin"><span class="neg">Минусы:</span> 12 лучей + glow + 4 звезды + 8 частиц + 3 спринга = цирк из 7 анимаций; синий блок в золотой карточке; в Sketch-теме — чёрная дыра на бумажном фоне (переключи тему!).</span></div>
   </div>
 
   <!-- BEFORE 4: ReleaseWaveBonusModal -->
@@ -637,7 +694,7 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
       </div>
     </div>
     <div class="caption"><b>ReleaseWaveBonusModal</b> — бонус за обновление. Радиус 20 (у соседей 30–32), <span class="neg">бэкдроп 62% — хардкод</span>.
-      <span class="pin"><span class="neg">Минусы:</span> эмодзи 🙏 как главный визуал; чеклист ✅/⏳ обычным текстом — выглядит как тех-сообщение, а не награда; подпись «осколки знаний» дублирует строку выше; единственная модалка вообще без анимации появления.</span></div>
+      <span class="pin"><span class="neg">Минусы:</span> эмодзи 🙏 как главный визуал; чеклист ✅/⏳ обычным текстом; дубль подписи; единственная без анимации появления.</span></div>
   </div>
 
   <!-- BEFORE 5: toast zoo -->
@@ -682,15 +739,15 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
       </div>
     </div>
     <div class="caption"><b>Зоопарк тостов</b> (показаны вместе для сравнения — арбитр показывает по одному).
-      <span class="pin"><span class="neg">Минусы:</span> 3 разных радиуса (16/10/20), ActionToast — хардкод-чёрный #121419 в любой теме, DailyTask — 7 собственных палитр, Achievement — свой бордер 1.5px. Плюс MedalToast и InGameToast живут мимо арбитра и могут лечь поверх.</span></div>
+      <span class="pin"><span class="neg">Минусы:</span> 3 разных радиуса (16/10/20), ActionToast — хардкод-чёрный #121419 в любой теме, DailyTask — 7 собственных палитр, Achievement — свой бордер. MedalToast и InGameToast живут мимо арбитра.</span></div>
   </div>
 </div>
 
 <!-- ════════════ AFTER ════════════ -->
-<h2>Редизайн: система «Reward Card» <span class="tag good">ПРЕДЛОЖЕНИЕ</span></h2>
-<div class="h2sub">Одна анатомия для всех наград: кикер → кольцо с артом → заголовок → значение → причина (опц.) → CTA 52px → «Позже».
-Бэкдроп единый: blur + 55%. Тап по фону = «Забрать» (награда никогда не теряется). Редкость меняет только цвет кикера и кольца.
-Радиусы и кнопки — из дизайн-системы темы (compass/gold — 18, остальные — 24). Максимум 2 анимации: вход + glow кольца.</div>
+<h2>Редизайн: система «Reward Card» <span class="tag good">ПРЕДЛОЖЕНИЕ · v2</span></h2>
+<div class="h2sub">Одна анатомия для всех наград: кикер → кольцо с артом → заголовок → значение → CTA «Забрать».
+Очередь наград видна стопкой за карточкой, кнопка «Забрать всё» — отдельно ПОД модалкой.
+Бэкдроп единый: blur + 55%. Тап по фону = «Забрать». Редкость меняет только цвет кикера и кольца.</div>
 
 <div class="row">
 
@@ -741,16 +798,32 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
       </div>
     </div>
     <div class="caption"><b>Reward Card — подарок за уровень.</b>
-      <span class="pin"><span class="pos">Что изменилось:</span> один заголовок вместо трёх строк; без эмодзи в тексте; редкость = золотой кикер и кольцо; CTA — системная кнопка 52px; «Сохранить на потом» — явный ghost, не конкурирует с CTA; радиус и кнопка из темы.</span></div>
+      <span class="pin"><span class="pos">Что изменилось:</span> один заголовок вместо трёх строк; без эмодзи в тексте; редкость = золотой кикер и кольцо; CTA — системная кнопка 52px; радиус и кнопка из темы.</span></div>
   </div>
 
-  <!-- AFTER 2: Reward Stack -->
+  <!-- AFTER 2: Reward Stack v2 — ИНТЕРАКТИВ -->
   <div class="ph-wrap">
-    <div class="phone themable t-compass">
+    <div class="phone themable t-compass" id="stackPhone">
       <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
       <div class="home-header">
         <div class="hh-hello">Урок 14 завершён</div>
         <div class="hh-name">Отлично!</div>
+        <div class="hh-meta">
+          <svg class="bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="var(--accent)"/></svg>
+          <svg class="bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="var(--accent)"/></svg>
+          <div class="hh-shards" id="shardCounter">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2 19 9l-7 13L5 9z" fill="#6FB1FF" stroke="#BFDDFF" stroke-width="1"/></svg>
+            <span id="shardNum">152</span>
+            <span class="plus-fly" id="plusFly">+25</span>
+          </div>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="sc-top">
+          <div class="ava">А</div>
+          <div><div class="sc-name">Алекс <span class="lvl-pill" id="lvlPill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
+          <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
+        </div>
       </div>
       <div class="tabbar">
         <div class="tab"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
@@ -759,30 +832,42 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
         <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
         <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
       </div>
-      <div class="backdrop blurred" style="background:var(--bdNew)">
-        <div class="stackwrap">
-          <div class="stack-under stack-u2"></div>
-          <div class="stack-under stack-u1"></div>
-          <div class="nm" style="--rare:#FFD700; position:relative;">
-            <div class="topline"></div>
-            <div class="nm-kicker">Награды за урок · 1 из 3</div>
-            <div class="nm-ring">
-              <svg width="58" height="58" viewBox="0 0 24 24"><path d="M5 8v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M8 21h8M12 18v3M7 8a5 5 0 0 0 10 0M9 4h6" stroke="#FFD700" stroke-width="1.6" fill="none"/></svg>
+      <div class="backdrop blurred anim-bd" id="stackBackdrop" style="background:var(--bdNew)">
+        <div class="stack-col">
+          <div class="stackwrap" id="stackWrap">
+            <div class="stack-under stack-u2"></div>
+            <div class="stack-under stack-u1"></div>
+            <div class="nm" style="--rare:#FFD700; position:relative;">
+              <div class="topline"></div>
+              <div class="nm-kicker">Награда 1 из 3</div>
+              <div class="nm-ring">
+                <svg width="56" height="56" viewBox="0 0 24 24">
+                  <path d="M12 2.6 14.6 8l5.9 0.6-4.4 4 1.3 5.8L12 15.5 6.6 18.4 7.9 12.6 3.5 8.6 9.4 8z" fill="#FFD700" stroke="#B8860B" stroke-width="0.8"/>
+                </svg>
+              </div>
+              <div class="nm-title">Новый уровень 13</div>
+              <div class="nm-value">Ты достиг 13-го уровня</div>
+              <div class="dots"><i class="on"></i><i></i><i></i></div>
+              <div class="nm-cta">Забрать</div>
             </div>
-            <div class="nm-title">Новый уровень 13</div>
-            <div class="nm-value">Дальше: медаль урока и +25 осколков —<br>листай или забери всё сразу</div>
-            <div class="dots"><i class="on"></i><i></i><i></i></div>
-            <div class="nm-cta">Забрать всё</div>
-            <div class="nm-ghost">Смотреть по одной →</div>
+          </div>
+          <div class="claim-all" id="claimAllBtn">
+            Забрать всё <span class="cnt">3</span>
           </div>
         </div>
       </div>
+      <div class="fly-layer" id="flyLayer">
+        <div class="fly f1"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 2.6 14.6 8l5.9 0.6-4.4 4 1.3 5.8L12 15.5 6.6 18.4 7.9 12.6 3.5 8.6 9.4 8z" fill="#FFD700" stroke="#B8860B" stroke-width="0.8"/></svg></div>
+        <div class="fly f2">🏅</div>
+        <div class="fly f3"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M12 1.5 20 9l-8 13.5L4 9z" fill="#6FB1FF" stroke="#CFE6FF" stroke-width="0.8"/></svg></div>
+      </div>
     </div>
-    <div class="caption"><b>Reward Stack — агрегация очереди.</b>
-      <span class="pin"><span class="pos">Что изменилось:</span> вместо парада «LevelUp → Gift → Медаль → Осколки» (4 окна подряд) — одна карточка-стопка с пейджером «1 из 3» и кнопкой «Забрать всё». Хвост очереди виден за карточкой — ощущение богатства, а не спама.</span></div>
+    <div class="caption"><b>Reward Stack — очередь наград.</b> <span class="pos">⚡ Нажми «Забрать всё» в телефоне — увидишь анимацию.</span>
+      <span class="pin"><span class="pos">Как устроено:</span> на карточке только сама награда и обычная «Забрать»; очередь видна стопкой позади и точками; «Забрать всё» — отдельная стеклянная кнопка ПОД модалкой. По «Забрать всё»: стопка схлопывается, иконки всех наград выпархивают и улетают вверх к счётчикам, осколки в шапке подскакивают +25.</span>
+      <button class="replay" id="replayBtn">↺ Сбросить анимацию</button></div>
   </div>
 
-  <!-- AFTER 3: Reward Toast вместо ShardsEarnedModal + unified toasts -->
+  <!-- AFTER 3: unified toasts -->
   <div class="ph-wrap">
     <div class="phone themable t-compass">
       <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
@@ -795,11 +880,6 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
           <div class="ava">А</div>
           <div><div class="sc-name">Алекс <span class="lvl-pill">УР. 12</span></div><div class="xpbar"><i></i></div></div>
           <div class="streak"><b>47</b><span>ДНЕЙ</span></div>
-        </div>
-        <div class="sc-div"></div>
-        <div class="week">
-          <div class="day on">Пн</div><div class="day on">Вт</div><div class="day on">Ср</div>
-          <div class="day on">Чт</div><div class="day">Пт</div><div class="day">Сб</div><div class="day">Вс</div>
         </div>
       </div>
       <div class="tabbar">
@@ -826,49 +906,139 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
           <div class="ic">✓</div>
           <div><div class="lbl">Готово</div><div class="msg">Аватар применён</div></div>
         </div>
-      </div>
-    </div>
-    <div class="caption"><b>Единый каркас тостов.</b> ShardsEarnedModal стала тостом «Награда».
-      <span class="pin"><span class="pos">Что изменилось:</span> один каркас (радиус 16, фон карточки темы, левый рейл = семантический цвет, бейдж-иконка 38px, опциональная кнопка-чип). Мелкие осколки больше не блокируют экран модалкой с 82% затемнением. Показ по одному, очередь — у арбитра.</span></div>
-  </div>
-
-  <!-- AFTER 4: Throne v2 -->
-  <div class="ph-wrap">
-    <div class="phone themable t-compass">
-      <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
-      <div class="home-header">
-        <div class="hh-hello">Арена</div>
-        <div class="hh-name">Трон</div>
-      </div>
-      <div class="tabbar">
-        <div class="tab"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
-        <div class="tab"><svg viewBox="0 0 24 24"><path d="M4 4h7v16H6a2 2 0 0 1-2-2zM20 4h-7v16h5a2 2 0 0 0 2-2z"/></svg></div>
-        <div class="tab active"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
-        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19a6.2 6.2 0 0 1 12.4 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.4 14.6a5 5 0 0 1 5.8 4.4"/></svg></div>
-        <div class="tab"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></div>
-      </div>
-      <div class="backdrop blurred" style="background:var(--bdNew)">
-        <div class="nm" style="--rare:var(--gold)">
-          <div class="topline"></div>
-          <div class="nm-kicker">Арена · Трон удержан</div>
-          <div class="nm-ring">
-            <svg width="54" height="54" viewBox="0 0 24 24"><path d="M5 8v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M8 21h8M12 18v3M7 8a5 5 0 0 0 10 0M9 4h6" stroke="var(--gold)" stroke-width="1.7" fill="none"/></svg>
-          </div>
-          <div class="nm-title">Ты удержал трон!</div>
-          <div class="nm-value">5 побед — никто не смог тебя скинуть</div>
-          <div class="nm-reason" style="display:flex; align-items:center; gap:12px;">
-            <svg width="34" height="34" viewBox="0 0 24 24" style="flex:none"><path d="M12 1.5 20 9l-8 13.5L4 9z" fill="#6FB1FF" stroke="#CFE6FF" stroke-width="0.8"/></svg>
-            <span style="margin:0; font-size:17px; font-weight:900; color:var(--text)">+40 осколков</span>
-          </div>
-          <div class="nm-cta">Забрать</div>
+        <div class="nt" style="--ntc:var(--wrong)">
+          <div class="rail"></div>
+          <div class="ic">!</div>
+          <div><div class="lbl">Ошибка</div><div class="msg">Нет соединения — попробуй ещё раз</div></div>
         </div>
       </div>
     </div>
-    <div class="caption"><b>Трон в единой системе.</b>
-      <span class="pin"><span class="pos">Что изменилось:</span> «золото» = семантический цвет t.gold текущей темы (переключи тему — карточка следует за ней); бэкдроп единый 55% + blur вместо чёрных 88%; одна награда — один блок, без синего пятна; 2 анимации вместо 7. Торжественность даёт кольцо с glow, а не цирк частиц.</span></div>
+    <div class="caption"><b>Единый каркас всех тостов.</b>
+      <span class="pin"><span class="pos">Один тип:</span> радиус 16, фон карточки темы, левый рейл и иконка = семантический цвет (награда/достижение/успех/ошибка), опциональная кнопка-чип. Сюда переезжают все 8 тостов + ShardsEarnedModal. Показ по одному, очередь у арбитра.</span></div>
   </div>
+</div>
 
-  <!-- AFTER 5: ThemedConfirm vs Alert -->
+<!-- ════════════ GALLERY: ВСЕ МОДАЛКИ В ОДНОМ ТИПЕ ════════════ -->
+<h2>Вся система в одном типе — остальные модалки <span class="tag good">ОДНА АНАТОМИЯ</span></h2>
+<div class="h2sub">Та же карточка Reward Card для каждой категории: меняются только семантический цвет (кикер + кольцо),
+иконка и тексты. Подтверждения, опасные действия, лимиты, системные, социальные — всё единое.
+Тема меняет всю галерею сразу (переключатель сверху).</div>
+
+<div class="gallery">
+  <div class="gallery-grid">
+
+    <div class="g-item">
+      <div class="phone-mini themable t-compass" style="display:contents">
+      <div class="nm themable t-compass" style="--rare:#6FB1FF">
+        <div class="topline"></div>
+        <div class="nm-kicker">Цепочка · 47 дней</div>
+        <div class="nm-ring" style="font-size:40px">❄️</div>
+        <div class="nm-title">Заморозить цепочку?</div>
+        <div class="nm-value">Один пропущенный день не сожжёт серию</div>
+        <div class="nm-cta">Заморозить за 8 <svg width="15" height="15" viewBox="0 0 24 24" style="margin-left:6px"><path d="M12 2 19 9l-7 13L5 9z" fill="currentColor"/></svg></div>
+        <div class="nm-ghost">Отмена</div>
+      </div></div>
+      <div class="gname"><b>Подтверждение траты</b>заменяет StreakFreezeConfirm, RerollConfirm, EnergyRefillShard — семантика «осколки» (синий)</div>
+    </div>
+
+    <div class="g-item">
+      <div class="nm themable t-compass" style="--rare:#FF8A92">
+        <div class="topline"></div>
+        <div class="nm-kicker" style="color:#FF8A92">Опасное действие</div>
+        <div class="nm-ring" style="border-color:rgba(255,138,146,0.44); box-shadow:0 0 34px rgba(255,138,146,0.2); font-size:36px">🗑️</div>
+        <div class="nm-title">Удалить аккаунт?</div>
+        <div class="nm-value">Прогресс, покупки и друзья исчезнут навсегда</div>
+        <div class="nm-input">ВВЕДИ «УДАЛИТЬ»</div>
+        <div class="nm-cta danger">Удалить навсегда</div>
+        <div class="nm-ghost">Отмена</div>
+      </div>
+      <div class="gname"><b>Опасное действие</b>заменяет DeleteAccountConfirm — красная семантика, ввод слова сохраняется</div>
+    </div>
+
+    <div class="g-item">
+      <div class="nm themable t-compass" style="--rare:#FFC857">
+        <div class="topline"></div>
+        <div class="nm-kicker">Энергия · 0 из 3</div>
+        <div class="nm-ring" style="font-size:38px">⚡</div>
+        <div class="nm-title">Энергия закончилась</div>
+        <div class="nm-value">Восстановится через 1 ч 12 мин</div>
+        <div class="nm-cta">Premium — безлимит</div>
+        <div class="nm-ghost">Пополнить за 6 осколков</div>
+      </div>
+      <div class="gname"><b>Лимит ресурса</b>заменяет NoEnergyModal, ArenaLimitModal — жёлтая семантика «лимит»</div>
+    </div>
+
+    <div class="g-item">
+      <div class="nm themable t-compass" style="--rare:#FFD700">
+        <div class="topline"></div>
+        <div class="nm-kicker">Подарок от друга</div>
+        <div class="nm-ring" style="font-size:38px">🎁</div>
+        <div class="nm-title">Маша подарила щит</div>
+        <div class="nm-value">Щит защитит цепочку на 1 пропуск</div>
+        <div class="nm-cta">Забрать</div>
+        <div class="nm-ghost">Открыть «Подарки»</div>
+      </div>
+      <div class="gname"><b>Социальное</b>заменяет incomingGiftModal / sentGiftModal в друзьях — золотая семантика «награда»</div>
+    </div>
+
+    <div class="g-item">
+      <div class="nm themable t-compass">
+        <div class="topline"></div>
+        <div class="nm-kicker">Обновление · 2.4</div>
+        <div class="nm-ring" style="font-size:36px">⬇️</div>
+        <div class="nm-title">Новая версия готова</div>
+        <div class="nm-value">Турниры кланов и исправления ошибок</div>
+        <div class="nm-cta">Обновить</div>
+        <div class="nm-ghost">Позже</div>
+      </div>
+      <div class="gname"><b>Системное</b>заменяет UpdateModal, ReleaseNotesModal, GlobalBroadcastModal — нейтральный акцент темы</div>
+    </div>
+
+    <div class="g-item">
+      <div class="nm themable t-compass" style="--rare:#FF9F6E">
+        <div class="topline"></div>
+        <div class="nm-kicker">Цепочка сгорела</div>
+        <div class="nm-ring" style="font-size:38px">🔥</div>
+        <div class="nm-title">Верни 47 дней</div>
+        <div class="nm-value">Восстановить можно ещё 18 часов</div>
+        <div class="nm-cta">Восстановить за 20 <svg width="15" height="15" viewBox="0 0 24 24" style="margin-left:6px"><path d="M12 2 19 9l-7 13L5 9z" fill="currentColor"/></svg></div>
+        <div class="nm-ghost">Отпустить</div>
+      </div>
+      <div class="gname"><b>Спасение прогресса</b>заменяет StreakReviveModal — оранжевая семантика «срочно»</div>
+    </div>
+
+    <div class="g-item">
+      <div class="nm themable t-compass">
+        <div class="topline"></div>
+        <div class="nm-kicker">Сохрани прогресс</div>
+        <div class="nm-ring" style="font-size:36px">🛡️</div>
+        <div class="nm-title">Привяжи аккаунт</div>
+        <div class="nm-value">47 дней и 12 уровней не потеряются при смене телефона</div>
+        <div class="nm-cta">Войти через Google</div>
+        <div class="nm-ghost">Не сейчас</div>
+      </div>
+      <div class="gname"><b>Регистрация</b>заменяет RegistrationPromptModal — показывается ОДНА после урока (маркетинговый слот)</div>
+    </div>
+
+    <div class="g-item">
+      <div class="nm themable t-compass" style="--rare:#D8A6FF">
+        <div class="topline"></div>
+        <div class="nm-kicker">Арена · Соперник найден</div>
+        <div class="nm-ring" style="font-size:36px">⚔️</div>
+        <div class="nm-title">Игорь, ур. 14</div>
+        <div class="nm-value">Матч начнётся через 8 сек</div>
+        <div class="nm-cta">В бой</div>
+        <div class="nm-ghost">Отклонить</div>
+      </div>
+      <div class="gname"><b>Приглашение</b>заменяет arenaRoomConfirm / приглашения друзей — фиолетовая семантика «событие»</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════ CONFIRM ════════════ -->
+<h2>Ошибки покупки: из нативного Alert — в системный диалог <span class="tag good">ПРЕДЛОЖЕНИЕ</span></h2>
+<div class="row">
   <div class="ph-wrap">
     <div class="phone themable t-compass">
       <div class="statusbar"><span>9:41</span><span>▮▮▮ 87%</span></div>
@@ -893,46 +1063,83 @@ Sketch Light — Throne и ReleaseWave остаются с чёрным бэкд
       </div>
     </div>
     <div class="caption"><b>ThemedConfirmModal вместо Alert.alert.</b>
-      <span class="pin"><span class="pos">Что изменилось:</span> 4 нативных Alert в premium_modal_v2 (ошибки покупки) переезжают на системный диалог приложения — тематизированный, с понятным действием вместо «OK», и без Android-бага «Alert под Modal».</span></div>
+      <span class="pin"><span class="pos">Что изменилось:</span> 4 нативных Alert в premium_modal_v2 переезжают на системный диалог приложения — тематизированный, с действием вместо «OK», без Android-бага «Alert под Modal».</span></div>
   </div>
 </div>
 
 <!-- ════════════ RULES ════════════ -->
 <h2>Правила системы (после редизайна)</h2>
 <div class="rules">
-  <div class="rule"><b>1 · Один бэкдроп</b><p>Везде blur + затемнение 55% (светлая тема — тёплый шоколадный 38%). Тап по фону у наград = «Забрать», у подтверждений = «Отмена». Награда не может потеряться от случайного тапа.</p></div>
-  <div class="rule"><b>2 · Одна анатомия наград</b><p>Кикер → кольцо 104px с артом → заголовок 22/900 → значение → причина (опц.) → CTA 52px → ghost «Позже». Редкость меняет только цвет кикера/кольца. Радиус и CTA — из дизайн-системы темы.</p></div>
-  <div class="rule"><b>3 · Бюджет анимаций</b><p>Максимум 2 анимированных слоя: вход (spring 0.94→1 + fade 240мс, единый конфиг MOTION_SPRING.ui) и glow кольца. Никаких одновременных sheen + лучи + частицы + звёзды.</p></div>
-  <div class="rule"><b>4 · Всё через арбитр</b><p>Каждый попап получает ключ OverlayArbiter (добавить: review, authPrompt, noEnergy, inboxFlow). Запрещены setTimeout-цепочки — следующее окно открывается только из onClose предыдущего.</p></div>
-  <div class="rule"><b>5 · Маркетинговый слот = 1</b><p>После урока показывается максимум ОДИН маркетинг-попап (оценка ИЛИ регистрация ИЛИ апселл — по скорингу и кулдаунам). Остальные ждут следующего удачного момента.</p></div>
-  <div class="rule"><b>6 · Награды агрегируются</b><p>≥2 наград за один триггер → один Reward Stack с пейджером и «Забрать всё», а не очередь модалок. Мелкие награды (осколки, +XP) → Reward Toast, очередь до 2, дальше схлопывается в «+N наград».</p></div>
+  <div class="rule"><b>1 · Один бэкдроп</b><p>Везде blur + затемнение 55% (светлая тема — тёплый 38%). Тап по фону у наград = «Забрать», у подтверждений = «Отмена». Награда не может потеряться от случайного тапа.</p></div>
+  <div class="rule"><b>2 · Одна анатомия</b><p>Кикер → кольцо 104px → заголовок 22/900 → значение → CTA 52px → ghost. Для ВСЕХ модалок: награды, подтверждения, лимиты, системные, социальные. Семантика = цвет кикера/кольца: золото-награда, синий-осколки, красный-опасно, жёлтый-лимит.</p></div>
+  <div class="rule"><b>3 · Очередь = стопка</b><p>≥2 окон за один триггер → стопка с точками «1 из N», обычная «Забрать» на карточке и стеклянная «Забрать всё» ПОД ней. По «Забрать всё» — иконки наград улетают вверх к счётчикам шапки.</p></div>
+  <div class="rule"><b>4 · Всё через арбитр</b><p>Каждый попап получает ключ OverlayArbiter (добавить: review, authPrompt, noEnergy, inboxFlow). Запрещены setTimeout-цепочки — следующее окно только из onClose предыдущего.</p></div>
+  <div class="rule"><b>5 · Маркетинговый слот = 1</b><p>После урока максимум ОДИН маркетинг-попап (оценка ИЛИ регистрация ИЛИ апселл — по скорингу и кулдаунам). Остальные ждут следующего момента.</p></div>
+  <div class="rule"><b>6 · Бюджет анимаций</b><p>Максимум 2 анимированных слоя: вход (spring 0.94→1 + fade 240мс) и glow кольца. Плюс одна общая анимация «улёт наград» для «Забрать всё». Никаких sheen + лучи + частицы одновременно.</p></div>
 </div>
 
 <h2>Миграционная таблица</h2>
 <table class="mig">
   <tr><th>Сейчас</th><th>Станет</th><th>Почему</th></tr>
-  <tr><td><b>ShardsEarnedModal</b></td><td><span class="to-toast">→ Reward Toast</span></td><td>Автозакрытие 40с — это тост по природе; мелкие суммы не стоят блокировки экрана</td></tr>
+  <tr><td><b>ShardsEarnedModal</b></td><td><span class="to-toast">→ Reward Toast</span></td><td>Автозакрытие 40с — тост по природе; мелкие суммы не стоят блокировки экрана</td></tr>
   <tr><td><b>PlanLessonDoneModal</b> (lesson1)</td><td><span class="to-toast">→ Reward Toast</span></td><td>Мини-событие внутри потока урока</td></tr>
-  <tr><td><b>LeagueBonusAvailableModal</b></td><td><span class="to-toast">→ тост с кнопкой «Открыть»</span></td><td>Информашка с CTA, как DailyTaskRewardToast</td></tr>
-  <tr><td><b>QuizTimeoutModal</b> (×2 дубля)</td><td><span class="to-inline">→ inline-баннер + слить дубли</span></td><td>Сообщение в контексте экрана квиза, модалка избыточна</td></tr>
-  <tr><td><b>EnergyTooltip / ArenaRatingInfo / Heatmap-день / ThroneTop / ClubBotStats</b></td><td><span class="to-inline">→ поповер / экспанд-секция</span></td><td>Информационные, без действий — Modal избыточен</td></tr>
+  <tr><td><b>LeagueBonusAvailableModal</b></td><td><span class="to-toast">→ тост с кнопкой «Открыть»</span></td><td>Информашка с CTA</td></tr>
+  <tr><td><b>QuizTimeoutModal</b> (×2 дубля)</td><td><span class="to-inline">→ inline-баннер + слить дубли</span></td><td>Сообщение в контексте экрана квиза</td></tr>
+  <tr><td><b>EnergyTooltip / ArenaRatingInfo / Heatmap-день / ThroneTop / ClubBotStats</b></td><td><span class="to-inline">→ поповер / экспанд-секция</span></td><td>Информационные, без действий</td></tr>
   <tr><td><b>Alert.alert ×4</b> (premium_modal_v2)</td><td><span class="to-confirm">→ ThemedConfirmModal</span></td><td>Тематизация + фикс Android-бага «Alert под Modal»</td></tr>
   <tr><td><b>NotificationPermissionModal ×2</b></td><td><span class="to-confirm">→ один компонент</span></td><td>Дубликат в settings_notifications</td></tr>
-  <tr><td><b>LevelGift / Dual / LeagueChest / Throne / ReleaseWave / ShardReward</b></td><td><span class="to-keep">→ Reward Card v2</span></td><td>Остаются модалками, но в единой анатомии и теме</td></tr>
-  <tr><td><b>Premium/Vip Celebration, пейволы, NoEnergy, подтверждения трат, DeleteAccount</b></td><td><span class="to-keep">→ без изменений типа</span></td><td>Оправданные модалки; фиксы только оркестрации (onClose-цепочки, арбитр)</td></tr>
-  <tr><td><b>8 тостов</b> (Action/Achievement/Daily/Medal/Coach/InGame/MatchFound/RankBanner)</td><td><span class="to-toast">→ единый каркас, 1 рендерер</span></td><td>Один радиус/фон/рейл, разные иконки и чипы; все через арбитр, включая MedalToast и InGameToast</td></tr>
+  <tr><td><b>LevelGift / Dual / LeagueChest / Throne / ReleaseWave / ShardReward</b></td><td><span class="to-keep">→ Reward Card v2 (+Stack при очереди)</span></td><td>Единая анатомия, тема, «Забрать всё» с улётом иконок</td></tr>
+  <tr><td><b>Подтверждения, лимиты, системные, социальные</b> (DeleteAccount, NoEnergy, ArenaLimit, Update, StreakRevive, Registration, подарки друзей…)</td><td><span class="to-keep">→ та же анатомия Reward Card</span></td><td>Один тип для всех модалок, семантика через цвет (см. галерею)</td></tr>
+  <tr><td><b>8 тостов</b> (Action/Achievement/Daily/Medal/Coach/InGame/MatchFound/RankBanner)</td><td><span class="to-toast">→ единый каркас, 1 рендерер</span></td><td>Один радиус/фон/рейл, разные иконки и чипы; все через арбитр</td></tr>
 </table>
 
 <script>
+  /* theme switcher */
   const btns = document.querySelectorAll('.tbtn');
   btns.forEach(b => b.addEventListener('click', () => {
     btns.forEach(x => x.classList.remove('active'));
     b.classList.add('active');
-    document.querySelectorAll('.phone.themable').forEach(p => {
+    document.querySelectorAll('.themable').forEach(p => {
       p.classList.remove('t-compass','t-dark','t-gold','t-sketch');
       p.classList.add(b.dataset.t);
     });
   }));
+
+  /* claim-all animation */
+  const bd = document.getElementById('stackBackdrop');
+  const flyLayer = document.getElementById('flyLayer');
+  const claimBtn = document.getElementById('claimAllBtn');
+  const shardNum = document.getElementById('shardNum');
+  const shardCounter = document.getElementById('shardCounter');
+  const plusFly = document.getElementById('plusFly');
+  const lvlPill = document.getElementById('lvlPill');
+  let played = false;
+
+  claimBtn.addEventListener('click', () => {
+    if (played) return;
+    played = true;
+    bd.classList.add('claiming');
+    flyLayer.classList.add('go');
+    setTimeout(() => {
+      shardCounter.classList.add('shard-bump');
+      plusFly.classList.add('go');
+      shardNum.textContent = '177';
+      lvlPill.textContent = 'УР. 13';
+    }, 950);
+    setTimeout(() => { bd.style.visibility = 'hidden'; }, 1600);
+  });
+
+  document.getElementById('replayBtn').addEventListener('click', () => {
+    played = false;
+    bd.style.visibility = 'visible';
+    bd.classList.remove('claiming');
+    flyLayer.classList.remove('go');
+    shardCounter.classList.remove('shard-bump');
+    plusFly.classList.remove('go');
+    shardNum.textContent = '152';
+    lvlPill.textContent = 'УР. 12';
+    void flyLayer.offsetWidth; /* force reflow для повторного запуска keyframes */
+  });
 </script>
 </body>
 </html>

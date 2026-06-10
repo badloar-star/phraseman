@@ -503,27 +503,16 @@ export default function ProblemCoach() {
                     tr: 'Bitti',
                     pl: 'Gotowe',
                   })
-                  : feedback.correct
-                    ? triLang(lang, {
-                      ru: 'Дальше',
-                      uk: 'Далі',
-                      es: 'Continuar',
-                      'pt-BR': 'Continuar',
-                      vi: 'Tiếp theo',
-                      id: 'Lanjut',
-                      tr: 'Devam et',
-                      pl: 'Dalej',
-                    })
-                    : triLang(lang, {
-                      ru: 'Попробовать проще',
-                      uk: 'Спробувати простіше',
-                      es: 'Intentarlo más simple',
-                      'pt-BR': 'Tentar de forma mais simples',
-                      vi: 'Thử cách đơn giản hơn',
-                      id: 'Coba yang lebih sederhana',
-                      tr: 'Daha basit dene',
-                      pl: 'Spróbuj prościej',
-                    })}
+                  : triLang(lang, {
+                    ru: 'Дальше',
+                    uk: 'Далі',
+                    es: 'Continuar',
+                    'pt-BR': 'Continuar',
+                    vi: 'Tiếp theo',
+                    id: 'Lanjut',
+                    tr: 'Devam et',
+                    pl: 'Dalej',
+                  })}
               </Text>
               <View style={styles.ctaIconWrap}>
                 <Ionicons name="arrow-forward" size={18} color={t.correctText} />

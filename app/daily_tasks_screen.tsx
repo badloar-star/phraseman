@@ -2098,13 +2098,14 @@ export default function DailyTasksScreen() {
                 router.push('/trainer');
                 break;
             case 'trainer_words':
-                router.push('/trainer');
+                // Сразу в сессию слов — только она засчитывает trainer_words (лимит сессия проверяет сама).
+                router.push('/trainer_words_session');
                 break;
             case 'trainer_phrases':
-                router.push('/trainer');
+                router.push('/trainer_phrases_session');
                 break;
             case 'trainer_arena':
-                router.push('/trainer');
+                router.push('/trainer_arena_session');
                 break;
             case 'daily_phrase_read':
             case 'daily_phrase_save':

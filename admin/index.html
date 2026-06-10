@@ -8169,6 +8169,7 @@
   <div class="umodal">
     <h3 id="umodal-title"></h3>
     <p id="umodal-desc" style="display:none"></p>
+    <div id="umodal-presets" style="display:none;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
     <input type="text" id="umodal-input" style="display:none" />
     <textarea id="umodal-textarea" style="display:none"></textarea>
     <div class="umodal-btns">
@@ -9422,6 +9423,7 @@
     <button onclick="loadAuditLog()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
     <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">с <input type="date" id="audit-date-from" onchange="filterAuditLog()" class="lc-date-input"></label>
     <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">по <input type="date" id="audit-date-to" onchange="filterAuditLog()" class="lc-date-input"></label>
+    <input type="text" id="audit-search" placeholder="🔍 UID / email / детали" oninput="filterAuditLog()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px;width:200px">
     <span class="reports-count" id="audit-count"></span>
   </div>
   <div id="audit-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
@@ -11239,7 +11241,7 @@
   }
 
   // ── Input modal (replaces prompt) ─────────────────────────────────────────────
-  function showInputModal({ title, desc='', defaultVal='', multiline=false, confirmLabel='Сохранить', danger=false, allowEmpty=false }) {
+  function showInputModal({ title, desc='', defaultVal='', multiline=false, confirmLabel='Сохранить', danger=false, allowEmpty=false, presets=null }) {
     return new Promise(resolve => {
       document.getElementById('umodal-title').textContent = title;
       const descEl = document.getElementById('umodal-desc');
@@ -11250,6 +11252,26 @@
         ta.value = defaultVal; ta.style.display = 'block'; inp.style.display = 'none';
       } else {
         inp.value = defaultVal; inp.style.display = 'block'; ta.style.display = 'none';
+      }
+      // Optional quick-pick preset chips — fill the field on click.
+      const presetsEl = document.getElementById('umodal-presets');
+      if (presetsEl) {
+        if (Array.isArray(presets) && presets.length) {
+          presetsEl.style.display = 'flex';
+          presetsEl.innerHTML = presets.map((p, i) =>
+            `<button type="button" data-preset-i="${i}" style="background:#23232f;border:1px solid #34344a;color:#c9c9d4;border-radius:7px;padding:4px 10px;font-size:12px;cursor:pointer">${escapeHtml(p)}</button>`
+          ).join('');
+          presetsEl.querySelectorAll('button[data-preset-i]').forEach(b => {
+            b.addEventListener('click', () => {
+              const val = presets[Number(b.getAttribute('data-preset-i'))];
+              if (multiline) ta.value = val; else inp.value = val;
+              (multiline ? ta : inp).focus();
+            });
+          });
+        } else {
+          presetsEl.style.display = 'none';
+          presetsEl.innerHTML = '';
+        }
       }
       const btn = document.getElementById('umodal-confirm-btn');
       btn.textContent = confirmLabel;
@@ -15207,7 +15229,7 @@
   window.leagueChatMuteUser = async function(uid) {
     if (!uid) return;
     const reason = (typeof showInputModal === 'function')
-      ? await showInputModal({ title: 'Chat mute 24h', desc: `UID: ${uid}`, confirmLabel: 'Mute', danger: true, allowEmpty: true })
+      ? await showInputModal({ title: 'Chat mute 24h', desc: `UID: ${uid}`, confirmLabel: 'Mute', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Флуд', 'Неприемлемый контент', 'Ссылки/мошенничество'] })
       : window.prompt(`Chat mute 24h for ${uid}. Reason:`, '');
     if (reason === null || reason === false) return;
     const now = Date.now();
@@ -15221,7 +15243,7 @@
   window.leagueChatBanUser = async function(uid) {
     if (!uid) return;
     const reason = (typeof showInputModal === 'function')
-      ? await showInputModal({ title: 'Permanent chat-ban', desc: `UID: ${uid}`, confirmLabel: 'Chat-ban', danger: true, allowEmpty: true })
+      ? await showInputModal({ title: 'Permanent chat-ban', desc: `UID: ${uid}`, confirmLabel: 'Chat-ban', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Мошенничество', 'Повторные нарушения', 'Неприемлемый контент'] })
       : window.prompt(`Permanent chat-ban for ${uid}. Reason:`, '');
     if (reason === null || reason === false) return;
     const now = Date.now();
@@ -18911,12 +18933,20 @@
     loadUserReports();
   };
 
+  // Preset moderator messages — quick-pick chips in the warn/ban modals.
+  const MOD_WARN_PRESETS = [
+    'Ваш ник нарушает правила. Пожалуйста, смените его.',
+    'Оскорбления в чате запрещены. Это предупреждение.',
+    'Замечен спам/реклама. Прекратите, иначе бан.',
+    'Нечестная игра (читы) недопустима.',
+    'Неприемлемый контент. Соблюдайте правила сообщества.',
+  ];
   window.urAction = async function(action, reportId, uid, name, btn) {
     if (action === 'archived') { await urMarkReviewed(reportId, btn); return; }
     if (!uid) { showToast('Нет UID пользователя', 'err'); return; }
 
     if (action === 'warn') {
-      const msg = await showInputModal({ title: `Предупреждение для "${escapeHtml(name)}"`, desc: 'Сообщение увидит пользователь', defaultVal: 'Ваш ник нарушает правила. Пожалуйста, смените его.', multiline: true, confirmLabel: 'Отправить' });
+      const msg = await showInputModal({ title: `Предупреждение для "${escapeHtml(name)}"`, desc: 'Сообщение увидит пользователь', defaultVal: MOD_WARN_PRESETS[0], multiline: true, confirmLabel: 'Отправить', presets: MOD_WARN_PRESETS });
       if (!msg) return;
       await addDoc(collection(db, 'user_warnings'), { uid, name, message: msg, createdAt: new Date().toISOString() });
       logAction('warn_user', uid, { name, message: msg });
@@ -20181,6 +20211,18 @@
     });
   }
 
+  // Rebuild the action <select> to include every action type present in the data
+  // (so new action types — alerts, daily_phrase, bulk — are always filterable).
+  function auditSyncActionOptions() {
+    const sel = document.getElementById('audit-filter-action');
+    if (!sel) return;
+    const current = sel.value;
+    const present = Array.from(new Set(_auditAll.map(r => r.action).filter(Boolean))).sort();
+    sel.innerHTML = '<option value="">Все действия</option>' +
+      present.map(a => `<option value="${escapeHtml(a)}">${escapeHtml(ACTION_LABELS[a] || a)}</option>`).join('');
+    if (present.includes(current)) sel.value = current;
+  }
+
   window._auditLastDoc = null;
   window._auditHasMore = false;
   const AUDIT_PAGE = 200;
@@ -20198,6 +20240,7 @@
       _auditAll = append ? _auditAll.concat(rows) : rows;
       window._auditLastDoc = snap.docs[snap.docs.length - 1] || window._auditLastDoc;
       window._auditHasMore = snap.size === AUDIT_PAGE;
+      auditSyncActionOptions();
       filterAuditLog();
     } catch(e) {
       if (!append) list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message)}</div>`;
@@ -20210,6 +20253,13 @@
     const action = document.getElementById('audit-filter-action').value;
     let arr = action ? _auditAll.filter(r => r.action === action) : _auditAll;
     arr = applyDateRange(arr, 'ts', 'audit-date-from', 'audit-date-to');
+    const q = (document.getElementById('audit-search')?.value || '').trim().toLowerCase();
+    if (q) {
+      arr = arr.filter(r => {
+        const detailsStr = Object.entries(r.details || {}).map(([k, v]) => `${k} ${v}`).join(' ');
+        return [r.action, r.targetUid, r.adminEmail, detailsStr].some(x => String(x || '').toLowerCase().includes(q));
+      });
+    }
     const moreBtn = document.getElementById('audit-load-more');
     if (moreBtn) moreBtn.style.display = window._auditHasMore ? 'inline-block' : 'none';
     document.getElementById('audit-count').textContent = `${arr.length} из ${_auditAll.length} загруженных`;

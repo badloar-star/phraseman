@@ -13,25 +13,58 @@
  */
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, type ViewStyle, type TextStyle } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../ThemeContext';
 import { compassShadow } from '../../constants/compassTheme';
 
-/** Палитра плиток-иконок в духе iOS-Telegram. Белый глиф на плотной заливке. */
+/**
+ * Палитра плиток-иконок.
+ *
+ * Намеренно НЕ системные цвета Apple/iOS: каждый оттенок сдвинут от
+ * соответствующего systemColor (#34C759, #FF3B30, #FF9500, #AF52DE …),
+ * чтобы экран не читался как точная копия iOS/Telegram-настроек. Сохранены
+ * 10 различимых «ролей»-хюэ (рядам нужна разноцветность для скан-абилити),
+ * но тон уведён в более тёплую/глубокую гамму приложения.
+ *
+ * Каждый цвет — пара [верх, низ] для лёгкого вертикального градиента плитки
+ * (светлее сверху → насыщеннее снизу), вместо плоской iOS-заливки.
+ */
 export const SETTINGS_TILE_COLORS = {
-  blue:   '#3E7BFA',
-  green:  '#34C759',
-  orange: '#FF9500',
-  red:    '#FF3B30',
-  purple: '#AF52DE',
-  teal:   '#30B0C7',
-  pink:   '#FF2D78',
-  indigo: '#5856D6',
-  gray:   '#8E8E93',
-  yellow: '#FFB300',
-} as const;
+  blue:   ['#4C8DF6', '#2D63D8'] as const, // прохладно-индиговый, не systemBlue
+  green:  ['#3FB984', '#2C9466'] as const, // лесной/изумрудный, не systemGreen
+  orange: ['#F6A53A', '#E07C1E'] as const, // янтарный, не systemOrange
+  red:    ['#F06868', '#D24545'] as const, // тёпло-коралловый, не systemRed
+  purple: ['#9B7BE8', '#7B5BD6'] as const, // лавандовый, не systemPurple
+  teal:   ['#3FB6C2', '#2C90A0'] as const, // приглушённый бирюзовый
+  pink:   ['#F26F9C', '#D8487F'] as const, // розово-маджента, не systemPink
+  indigo: ['#6F73DE', '#4F53C6'] as const, // сине-фиолетовый
+  gray:   ['#9AA0A8', '#727880'] as const, // тёплый графит
+  yellow: ['#F6C23A', '#E0A21E'] as const, // золотисто-жёлтый
+} as const satisfies Record<string, readonly [string, string]>;
 
 export type SettingsTileColor = keyof typeof SETTINGS_TILE_COLORS;
+
+/**
+ * Глифы плиток. Намеренно сдвинуты с дефолтных «filled» Ionicons, которые
+ * 1-в-1 совпадают с пиктограммами iOS-настроек: используем circle/outline/
+ * альтернативные варианты, чтобы и сами иконки отличались от системных.
+ * Ключ — имя, которое передают экраны (исторически = старый filled-глиф),
+ * значение — фактически отрисовываемый глиф.
+ */
+const TILE_GLYPH_ALIAS: Record<string, keyof typeof Ionicons.glyphMap> = {
+  person:          'person-circle',       // профиль → кружок-аватар
+  key:             'keypad',              // аккаунт → клавиатура-код
+  language:        'globe-outline',       // язык → глобус (контур)
+  'color-palette': 'color-wand',          // темы → «волшебная палочка»
+  text:            'text-outline',        // размер шрифта → контурный glyph
+  'phone-portrait':'pulse',               // тактильный отклик → пульс-волна
+  school:          'library-outline',     // обучение → библиотека (контур)
+  notifications:   'alarm',               // напоминания → будильник
+  mail:            'paper-plane-outline', // поддержка → бумажный самолётик
+  people:          'people-circle',       // тестеры → кружок-группа
+  construct:       'build-outline',       // админ → гаечный ключ (контур)
+};
 
 const TILE_SIZE = 29;
 
@@ -48,20 +81,42 @@ interface SettingsIconTileProps {
   size?: number;
 }
 
-/** Белая глиф-иконка в плотном цветном скруглённом квадрате. */
+/**
+ * Белый глиф в скруглённой плитке с лёгким вертикальным градиентом, тонким
+ * верхним бликом и hairline-рамкой. Намеренно отличается от плоской
+ * iOS-плитки: чуть круглее (0.32 против ~0.22 у Apple) + объём.
+ */
 export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIconTileProps) {
+  const [top, bottom] = SETTINGS_TILE_COLORS[color];
+  const radius = size * 0.32;
+  const glyph = TILE_GLYPH_ALIAS[icon as string] ?? (icon as keyof typeof Ionicons.glyphMap);
   return (
     <View
       style={{
         width: size,
         height: size,
-        borderRadius: size * 0.28,
-        backgroundColor: SETTINGS_TILE_COLORS[color],
+        borderRadius: radius,
         alignItems: 'center',
         justifyContent: 'center',
+        overflow: 'hidden',
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: 'rgba(255,255,255,0.22)',
       }}
     >
-      <Ionicons name={icon as any} size={Math.round(size * 0.62)} color="#FFFFFF" />
+      <LinearGradient
+        colors={[top, bottom]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+      {/* Верхний внутренний блик — отделяет плитку от плоского iOS-вида. */}
+      <LinearGradient
+        colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 0.6 }}
+        style={StyleSheet.absoluteFill}
+      />
+      <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color="#FFFFFF" />
     </View>
   );
 }

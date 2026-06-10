@@ -239,6 +239,35 @@
   .note-card p{font-size:13px; color:var(--body)}
   .note-card .nic{width:26px; height:26px; border-radius:8px; background:rgba(99,102,241,.18); display:flex; align-items:center; justify-content:center; flex:none}
 
+  /* ── меню карточки (деталка, как «Фраза дня») ── */
+  .cmodal{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(5,8,18,.74); backdrop-filter:blur(8px)}
+  .cmodal[hidden]{display:none}
+  .cm-panel{width:min(430px,100%); max-height:92vh; overflow-y:auto; background:linear-gradient(180deg,#161D3C,#0E1430); border:1px solid var(--line2); border-radius:28px; position:relative; animation:cmIn .3s cubic-bezier(.2,1,.3,1)}
+  @keyframes cmIn{from{transform:translateY(26px) scale(.96); opacity:0}}
+  .cm-top{position:sticky; top:0; z-index:5; display:flex; align-items:center; justify-content:space-between; padding:13px 16px; background:linear-gradient(180deg, rgba(14,20,48,.97), rgba(14,20,48,.72) 70%, transparent)}
+  .cm-top .cm-set{font-size:12.5px; font-weight:800; color:var(--body)}
+  .cm-x{width:34px; height:34px; border-radius:50%; background:rgba(21,28,56,.9); border:1px solid var(--line2); color:var(--body); display:flex; align-items:center; justify-content:center; cursor:pointer; font-family:inherit}
+  .cm-x:hover{border-color:var(--muted)}
+  .cm-hero{position:relative; margin:0 16px; border-radius:20px; overflow:hidden; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; border:1px solid var(--line2)}
+  .cm-hero svg.illus{width:60%; height:84%}
+  .cm-body{padding:16px 20px 4px}
+  .cm-en{font-size:24px; font-weight:900; color:var(--text); letter-spacing:-.02em; line-height:1.15}
+  .cm-row{display:flex; align-items:center; gap:10px; margin-top:7px}
+  .cm-ipa{font-size:13.5px; color:var(--muted)}
+  .cm-speaker{width:34px; height:34px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; border:none}
+  .cm-speaker:hover{background:var(--green2)}
+  .cm-ru{font-size:17px; font-weight:800; margin-top:8px}
+  .cm-sec{background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:16px; padding:12px 14px; margin-top:10px; font-size:13.5px; color:var(--body)}
+  .cm-sec .blab{margin-bottom:5px}
+  .cm-sec.gold{border-color:rgba(251,191,36,.4); background:linear-gradient(180deg, rgba(251,191,36,.07), rgba(255,255,255,.03))}
+  .cm-chips{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px}
+  .cm-chip{font-size:11px; font-weight:700; color:var(--muted); border:1px solid var(--line); border-radius:8px; padding:4px 9px}
+  .cm-actions{display:flex; gap:8px; margin-top:14px}
+  .cm-actions .btn{flex:1; min-height:44px; font-size:13px}
+  .cm-nav{display:flex; align-items:center; justify-content:space-between; padding:14px 20px 18px; color:var(--muted); font-size:12.5px; font-weight:700}
+  .cm-nav button{background:var(--panel); color:var(--body); border:1px solid var(--line2); border-radius:10px; min-height:38px; padding:0 14px; font-weight:800; font-size:12.5px; cursor:pointer; font-family:inherit}
+  .cm-nav button:hover{border-color:var(--muted)}
+
   footer{margin-top:80px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px}
 
   @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
@@ -521,7 +550,7 @@
   <section>
     <div class="section-head">
       <h2>Сет «Животные» — 10 карточек + секретная</h2>
-      <p class="sub">Первый сет из 30. Нажми карточку — перевернётся. Две последние показаны как в Сокровищнице у новичка: серая залоченная (видно, ЧТО ловить) и секретная «???» (узнаешь, только собрав сет).</p>
+      <p class="sub"><b style="color:var(--text)">Нажми любую карточку — откроется её меню</b> с полным разбором (как «Фраза дня»): дословный перевод, значение, пример, история, озвучка, навигация по сету. Две последние карточки показаны как у новичка: серая залоченная (видно, ЧТО ловить) и секретная «???» (узнаешь, только собрав сет).</p>
     </div>
     <div class="grid" id="gallery"></div>
   </section>
@@ -543,6 +572,11 @@
     <span>Phraseman · «Сокровищница» · макет-концепт v2 (300 фраз) · 10.06.2026</span>
     <span>см. ресёрч: docs/reports/COLLECTIBLES_RESEARCH_2026-06-10.md</span>
   </footer>
+</div>
+
+<!-- меню карточки (деталка) -->
+<div class="cmodal" id="cardModal" hidden role="dialog" aria-modal="true" aria-label="Карточка подробно">
+  <div class="cm-panel" id="cmPanel"></div>
 </div>
 
 <script>
@@ -739,7 +773,7 @@ function cardHTML(c, interactive=true){
           <div class="idiom">${c.en}</div>
           <div class="ipa">[${c.ipa}]</div>
           <div class="ru t-${r.cls}">${c.ru}</div>
-          <div class="hint"><span class="set">Сет «Животные»</span><span>нажми ↻</span></div>
+          <div class="hint"><span class="set">Сет «Животные»</span><span>открыть ▸</span></div>
         </div>
       </div>
       <div class="cardface back">
@@ -800,10 +834,80 @@ const secretCardHTML = `
 /* галерея: 10 интерактивных карточек + демо серой залоченной (№7 в сером состоянии) + секретная */
 const gallery = document.getElementById('gallery');
 gallery.innerHTML = CARDS.map(c=>cardHTML(c)).join('') + lockedCardHTML(CARDS[6]) + secretCardHTML;
-gallery.querySelectorAll('.flip:not(.lockedcard):not(.secretcard)').forEach(el=>{
-  const toggle = ()=>el.classList.toggle('flipped');
-  el.addEventListener('click', toggle);
-  el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); toggle();} });
+gallery.querySelectorAll('.flip:not(.lockedcard):not(.secretcard)').forEach((el,i)=>{
+  const open = ()=>openCard(i);
+  el.addEventListener('click', open);
+  el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); open();} });
+});
+
+/* ── меню карточки (деталка, как «Фраза дня») ── */
+const LIT = {
+  1:'придержи своих лошадей', 2:'маленькая птичка мне сказала', 3:'волк в овечьей одежде',
+  4:'занят как пчела', 5:'любопытство убило кошку', 6:'выпустить кота из мешка',
+  7:'когда свиньи полетят', 8:'ночная сова', 9:'слон в комнате', 10:'пчелиные коленки'
+};
+const cmodal = document.getElementById('cardModal');
+const cmPanel = document.getElementById('cmPanel');
+let cmIdx = 0;
+
+function renderCardModal(){
+  const c = CARDS[cmIdx], r = RARITY[c.r];
+  cmPanel.innerHTML = `
+    <div class="cm-top">
+      <span class="cm-set">Сокровищница · Сет «Животные»</span>
+      <button class="cm-x" id="cmClose" aria-label="Закрыть">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="cm-hero bg-${r.cls}">
+      <span class="rbadge rb-${r.cls}">${r.label}</span>
+      <span class="cnum">№ ${String(c.n).padStart(2,'0')}/10</span>
+      ${ART[c.art]}
+    </div>
+    <div class="cm-body">
+      <div class="cm-en">${c.en}</div>
+      <div class="cm-row">
+        <button class="cm-speaker" aria-label="Прослушать произношение">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#06240F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+        </button>
+        <span class="cm-ipa">[${c.ipa}]</span>
+      </div>
+      <div class="cm-ru t-${r.cls}">${c.ru}</div>
+      <div class="cm-sec"><div class="blab">Дословно</div>«${LIT[c.n]}»</div>
+      <div class="cm-sec"><div class="blab">Значение</div>${c.mean}</div>
+      <div class="cm-sec"><div class="blab">Пример</div><span class="ex">“${c.ex}”<span class="tr">${c.exr}</span></span></div>
+      <div class="cm-sec gold"><div class="blab" style="color:var(--leg)">История · знаете ли вы?</div>${c.org}</div>
+      <div class="cm-chips">
+        <span class="cm-chip">${r.label}</span>
+        <span class="cm-chip">№ ${String(c.n).padStart(2,'0')} из 10</span>
+        <span class="cm-chip">Получена вчера</span>
+        <span class="cm-chip">Выпала за: Урок</span>
+      </div>
+      <div class="cm-actions">
+        <button class="btn primary" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          Прослушать</button>
+        <button class="btn ghost" type="button">В повторение</button>
+        <button class="btn ghost" type="button">В профиль ✦</button>
+      </div>
+    </div>
+    <div class="cm-nav">
+      <button id="cmPrev" type="button">‹ Предыдущая</button>
+      <span>${cmIdx+1} / 10</span>
+      <button id="cmNext" type="button">Следующая ›</button>
+    </div>`;
+  document.getElementById('cmClose').addEventListener('click', closeCardModal);
+  document.getElementById('cmPrev').addEventListener('click', ()=>{ cmIdx=(cmIdx+9)%10; renderCardModal(); });
+  document.getElementById('cmNext').addEventListener('click', ()=>{ cmIdx=(cmIdx+1)%10; renderCardModal(); });
+}
+function openCard(i){ cmIdx=i; renderCardModal(); cmodal.hidden=false; document.body.style.overflow='hidden'; }
+function closeCardModal(){ cmodal.hidden=true; document.body.style.overflow=''; }
+cmodal.addEventListener('click', e=>{ if(e.target===cmodal) closeCardModal(); });
+document.addEventListener('keydown', e=>{
+  if(cmodal.hidden) return;
+  if(e.key==='Escape') closeCardModal();
+  if(e.key==='ArrowLeft'){ cmIdx=(cmIdx+9)%10; renderCardModal(); }
+  if(e.key==='ArrowRight'){ cmIdx=(cmIdx+1)%10; renderCardModal(); }
 });
 
 /* телефон-дроп: легендарка №10 */

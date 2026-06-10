@@ -4,6 +4,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolveServerPremium } from './premium_status';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -337,6 +338,38 @@ function parseAndGuardResult(rawContent: string, briefing: WeeklyReviewBriefing)
   return { greeting, paragraphs, recommendations };
 }
 
+// How many paragraphs a free (non-premium) user receives. The rest are withheld
+// SERVER-SIDE — they are never sent to the device, so the paywall cannot be
+// bypassed by reading local storage or removing a client-side slice.
+const FREE_VISIBLE_PARAGRAPHS = 1;
+
+interface WeeklyReviewResponseReview {
+  greeting: string;
+  paragraphs: string[];
+  recommendations: BriefingRecommendation[];
+  /** Paragraphs withheld for free users (>0 ⇒ show the "full in Premium" teaser). */
+  lockedParagraphCount: number;
+}
+
+/**
+ * Shapes the payload actually returned to the client per entitlement. Premium
+ * gets everything; free gets greeting + the first paragraph + NO recommendations,
+ * plus a count of withheld paragraphs so the UI can show the upgrade teaser.
+ * The withheld text never leaves the server.
+ */
+function buildResponseReview(result: WeeklyReviewResult, isPremium: boolean): WeeklyReviewResponseReview {
+  if (isPremium) {
+    return { ...result, lockedParagraphCount: 0 };
+  }
+  const visible = result.paragraphs.slice(0, FREE_VISIBLE_PARAGRAPHS);
+  return {
+    greeting: result.greeting,
+    paragraphs: visible,
+    recommendations: [],
+    lockedParagraphCount: Math.max(0, result.paragraphs.length - visible.length),
+  };
+}
+
 // ── Callable ──────────────────────────────────────────────────────────────────
 
 export const weeklyReviewGenerate = onCall({
@@ -354,7 +387,6 @@ export const weeklyReviewGenerate = onCall({
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
 
   const data = (request.data ?? {}) as Record<string, unknown>;
-  const isPremium = data.isPremium === true; // TODO Phase 1: confirm premium server-side via RevenueCat shard
   const briefing = sanitizeBriefing(data.briefing);
 
   if (briefing.totalMistakes < 5 || briefing.weakCategories.length === 0) {
@@ -365,6 +397,13 @@ export const weeklyReviewGenerate = onCall({
   const authUid = request.auth.uid;
   // uid from auth identity — NEVER from request body (security invariant).
   const stableUid = await resolveStableUidForAuth(db, authUid);
+
+  // Premium is resolved SERVER-SIDE from users/{stableUid}.progress (RevenueCat /
+  // VIP / admin), NEVER from request.data.isPremium. This gates both the quota
+  // window length (7 vs 14 days) AND how much of the review the user receives —
+  // free users get a truncated payload (see buildResponseReview), so the full
+  // premium text is never sent to a non-premium device.
+  const isPremium = await resolveServerPremium(db, stableUid);
 
   // Limits BEFORE the paid API call. Window is only CHECKED here (read-only) —
   // it is committed after a successful generation so a provider failure does
@@ -403,6 +442,8 @@ export const weeklyReviewGenerate = onCall({
   if (!content) throw new HttpsError('unavailable', 'weekly_review_empty_reply');
 
   const result = parseAndGuardResult(content, briefing);
+  // Trim per entitlement BEFORE returning — free users never receive the full text.
+  const responseReview = buildResponseReview(result, isPremium);
 
   // Generation succeeded — NOW commit the window (so failures above never burn it).
   const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium);
@@ -426,7 +467,8 @@ export const weeklyReviewGenerate = onCall({
 
   return {
     ok: true,
-    review: result,
+    review: responseReview,
+    isPremium,
     nextAllowedAtMs,
     model: MODEL_DEFAULT,
   };
@@ -437,5 +479,6 @@ export const __weeklyReviewTestHooks = {
   sanitizeBriefing,
   parseAndGuardResult,
   buildSystemPrompt,
+  buildResponseReview,
 };
-export type { WeeklyReviewBriefing, WeeklyReviewResult };
+export type { WeeklyReviewBriefing, WeeklyReviewResult, WeeklyReviewResponseReview };

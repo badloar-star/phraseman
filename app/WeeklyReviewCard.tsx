@@ -8,7 +8,7 @@
 // Вынесена отдельным компонентом, чтобы не раздувать phrase_analytics_screen.tsx.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -44,11 +44,32 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   const isCompassTheme = themeMode === 'compass';
   const [state, setState] = useState<WeeklyReviewState | null>(null);
   const [busy, setBusy] = useState(false);
+  // In-flight латч: useFocusEffect перезапускает refreshState на КАЖДЫЙ фокус
+  // экрана; без этого быстрые фокус/блюр или первый заход без кэша могли пускать
+  // несколько параллельных вызовов CF. setBusy асинхронный, поэтому гейтим на ref.
+  const inFlight = useRef(false);
+
+  const runGenerate = useCallback(async (force: boolean) => {
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setBusy(true);
+    try {
+      const generated = await generateWeeklyReview({ lang, studyTarget, isPremium, force });
+      setState(generated);
+    } finally {
+      setBusy(false);
+      inFlight.current = false;
+    }
+  }, [lang, studyTarget, isPremium]);
 
   const refreshState = useCallback(async () => {
+    if (inFlight.current) return;
     const next = await getWeeklyReviewState(studyTarget);
     setState(next);
-    // Авто-генерация при первом заходе или когда окно открылось.
+    // Авто-генерация при первом заходе или когда окно открылось. Апгрейд
+    // free→premium подтянет полный разбор на следующем открытии окна (extra
+    // платный вызов посреди окна намеренно не форсим — это всего лишь усечение
+    // до конца текущего цикла).
     const shouldAutoGenerate =
       next.kind === 'none'
         ? next.canGenerate
@@ -56,22 +77,16 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
           ? next.canRefresh
           : false;
     if (shouldAutoGenerate) {
-      setBusy(true);
-      const generated = await generateWeeklyReview({ lang, studyTarget, isPremium });
-      setState(generated);
-      setBusy(false);
+      await runGenerate(false);
     }
-  }, [lang, studyTarget, isPremium]);
+  }, [studyTarget, runGenerate]);
 
   useFocusEffect(useCallback(() => { void refreshState(); }, [refreshState]));
 
   const onManualRefresh = useCallback(async () => {
     hapticTap();
-    setBusy(true);
-    const generated = await generateWeeklyReview({ lang, studyTarget, isPremium, force: true });
-    setState(generated);
-    setBusy(false);
-  }, [lang, studyTarget, isPremium]);
+    await runGenerate(true);
+  }, [runGenerate]);
 
   const openLesson = useCallback((microDiagnosisId: string) => {
     hapticTap();
@@ -108,9 +123,11 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   if (!stored) return null;
 
   const { review } = stored;
-  // Free видит приветствие + 1 абзац, остальное под тизером.
-  const visibleParagraphs = isPremium ? review.paragraphs : review.paragraphs.slice(0, 1);
-  const hiddenCount = isPremium ? 0 : Math.max(0, review.paragraphs.length - 1);
+  // Сервер уже обрезал payload по реальному премиуму: free получает только
+  // приветствие + 1 абзац, а сколько спрятано — в review.lockedParagraphCount.
+  // Клиент НЕ режет сам (придержанный текст на устройство не приходит).
+  const visibleParagraphs = review.paragraphs;
+  const hiddenCount = review.lockedParagraphCount;
 
   return (
     <CardShell isCompassTheme={isCompassTheme} t={t}>
@@ -144,8 +161,9 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
         </TouchableOpacity>
       )}
 
-      {/* Рекомендованные уроки (только premium видит кликабельные) */}
-      {isPremium && review.recommendations.length > 0 && (
+      {/* Рекомендованные уроки: сервер кладёт их только в premium-payload
+          (free получает []), поэтому гейтим по факту присланного. */}
+      {review.recommendations.length > 0 && (
         <View style={styles.recommendations}>
           <Text style={[styles.recLabel, { color: t.textMuted, fontSize: f.label }]}>
             {triLang(lang, {

@@ -1,6 +1,6 @@
-import { __weeklyReviewTestHooks, type WeeklyReviewBriefing } from './weekly_review';
+import { __weeklyReviewTestHooks, type WeeklyReviewBriefing, type WeeklyReviewResult } from './weekly_review';
 
-const { sanitizeBriefing, parseAndGuardResult, buildSystemPrompt } = __weeklyReviewTestHooks;
+const { sanitizeBriefing, parseAndGuardResult, buildSystemPrompt, buildResponseReview } = __weeklyReviewTestHooks;
 
 function baseBriefing(): WeeklyReviewBriefing {
   return {
@@ -120,5 +120,46 @@ describe('weekly_review buildSystemPrompt', () => {
     expect(prompt).toContain('Russian');
     expect(prompt).toContain('NEVER recommend');
     expect(prompt).toContain('STRICT JSON');
+  });
+});
+
+describe('weekly_review buildResponseReview (server-side paywall)', () => {
+  function fullResult(): WeeklyReviewResult {
+    return {
+      greeting: 'Привет!',
+      paragraphs: ['Абзац 1', 'Абзац 2', 'Абзац 3', 'Абзац 4'],
+      recommendations: [
+        { microDiagnosisId: 'verb_present_perfect_basic', label: 'Present Perfect' },
+        { microDiagnosisId: 'article_a_an', label: 'Articles' },
+      ],
+    };
+  }
+
+  it('premium gets the FULL review and nothing locked', () => {
+    const out = buildResponseReview(fullResult(), true);
+    expect(out.paragraphs).toHaveLength(4);
+    expect(out.recommendations).toHaveLength(2);
+    expect(out.lockedParagraphCount).toBe(0);
+  });
+
+  it('free gets ONLY greeting + 1 paragraph, NO recommendations, and the rest withheld', () => {
+    const out = buildResponseReview(fullResult(), false);
+    expect(out.greeting).toBe('Привет!');
+    expect(out.paragraphs).toHaveLength(1);
+    expect(out.paragraphs[0]).toBe('Абзац 1');
+    // The withheld paragraphs must NOT be present in the free payload.
+    expect(out.paragraphs).not.toContain('Абзац 2');
+    expect(out.paragraphs).not.toContain('Абзац 4');
+    // Recommendations are premium-only — free must receive none.
+    expect(out.recommendations).toHaveLength(0);
+    // Teaser hint: 3 of 4 paragraphs withheld.
+    expect(out.lockedParagraphCount).toBe(3);
+  });
+
+  it('free with a single-paragraph review locks nothing (no teaser)', () => {
+    const single: WeeklyReviewResult = { greeting: 'Hi', paragraphs: ['only one'], recommendations: [] };
+    const out = buildResponseReview(single, false);
+    expect(out.paragraphs).toHaveLength(1);
+    expect(out.lockedParagraphCount).toBe(0);
   });
 });

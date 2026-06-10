@@ -29,6 +29,12 @@ export interface WeeklyReview {
   greeting: string;
   paragraphs: string[];
   recommendations: WeeklyReviewRecommendation[];
+  /**
+   * Сколько абзацев сервер придержал для free-пользователя (>0 ⇒ показать тизер
+   * «полный разбор — в Premium»). Сервер обрезает payload по реальному премиуму;
+   * клиент НЕ режет сам — придержанный текст на устройство не приходит.
+   */
+  lockedParagraphCount: number;
 }
 
 export interface WeeklyReviewStored {
@@ -41,6 +47,11 @@ export interface WeeklyReviewStored {
   windowDays: number;
   /** Язык, на котором сгенерирован — чтобы не показывать чужой при смене языка. */
   lang: Lang;
+  /**
+   * Под каким тарифом сервер собрал этот разбор (серверный вердикт). Нужно, чтобы
+   * после апгрейда free→premium не показывать стухший усечённый кэш, а перегенерить.
+   */
+  generatedAsPremium: boolean;
 }
 
 export type WeeklyReviewState =
@@ -72,12 +83,14 @@ function callable<TReq, TRes>(name: string) {
 /** Normalizes a stored/CF review so downstream code can trust its shape. */
 function normalizeReview(review: Partial<WeeklyReview> | undefined): WeeklyReview | null {
   if (!review || typeof review.greeting !== 'string' || !review.greeting) return null;
+  const lockedRaw = Number((review as { lockedParagraphCount?: unknown }).lockedParagraphCount);
   return {
     greeting: review.greeting,
     paragraphs: Array.isArray(review.paragraphs) ? review.paragraphs.filter((p): p is string => typeof p === 'string') : [],
     recommendations: Array.isArray(review.recommendations)
       ? review.recommendations.filter((r): r is WeeklyReviewRecommendation => !!r && typeof r.microDiagnosisId === 'string' && typeof r.label === 'string')
       : [],
+    lockedParagraphCount: Number.isFinite(lockedRaw) && lockedRaw > 0 ? Math.floor(lockedRaw) : 0,
   };
 }
 
@@ -94,6 +107,7 @@ async function loadStored(studyTarget?: RuntimeStudyTarget): Promise<WeeklyRevie
       nextAllowedAtMs: Number(parsed.nextAllowedAtMs ?? 0),
       windowDays: Number(parsed.windowDays ?? 0),
       lang: (parsed.lang ?? 'ru') as WeeklyReviewStored['lang'],
+      generatedAsPremium: parsed.generatedAsPremium === true,
     };
   } catch {
     return null;
@@ -198,6 +212,8 @@ export async function generateWeeklyReview(options: GenerateOptions): Promise<We
   const fn = callable<{ briefing: typeof briefing; isPremium: boolean }, {
     ok: boolean;
     review: WeeklyReview;
+    /** Серверный вердикт по премиуму (из users/{uid}.progress, не из тела). */
+    isPremium: boolean;
     nextAllowedAtMs: number;
     model: string;
   }>('weeklyReviewGenerate');
@@ -217,12 +233,14 @@ export async function generateWeeklyReview(options: GenerateOptions): Promise<We
       return stored ? { kind: 'error', code: 'provider_failed', stored } : { kind: 'error', code: 'provider_failed', stored: null };
     }
 
+    const serverPremium = data.isPremium === true;
     const nextStored: WeeklyReviewStored = {
       review,
       generatedAtMs: nowMs,
-      nextAllowedAtMs: data.nextAllowedAtMs ?? nowMs + windowDaysFor(isPremium) * DAY_MS,
+      nextAllowedAtMs: data.nextAllowedAtMs ?? nowMs + windowDaysFor(serverPremium) * DAY_MS,
       windowDays: briefing.windowDays,
       lang,
+      generatedAsPremium: serverPremium,
     };
     await saveStored(nextStored, studyTarget);
     return { kind: 'cached', stored: nextStored, canRefresh: false, nextAllowedAtMs: nextStored.nextAllowedAtMs };

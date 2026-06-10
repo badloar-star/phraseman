@@ -249,7 +249,9 @@ exports.referralEnsureMyCode = (0, https_1.onCall)(CALLABLE_BASE, async (request
 });
 /**
  * Первичная фиксация: приглашённый (referee) вводит код до/после sign-in. Идемпотентно.
- * Антифрод: аки старше REFEREE_MAX_ACCOUNT_AGE_MS (по users.created_at) не принимаем.
+ * Антифрод: код принимаем только от нового пользователя (у кого, по сути, не было
+ * приложения) — аккаунт старше REFEREE_MAX_ACCOUNT_AGE_MS (72ч, по users.created_at,
+ * stableId переживает переустановку) не принимаем.
  */
 exports.referralApply = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
     if (!request.auth?.uid) {

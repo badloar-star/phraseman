@@ -1,35 +1,43 @@
-import React from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useWindowDimensions, type ViewStyle, type StyleProp } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
+  cancelAnimation,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { rubberBand, BOUNCE_SPRING } from './bounceMath';
 
 /**
- * Кросс-платформенная «резинка» для экранов БЕЗ скролла — ТОЛЬКО тяга вниз.
+ * «Резинка» для экранов БЕЗ скролла — В ОБЕ СТОРОНЫ (тяга вниз и вверх).
  *
- * Где контент целиком влезает в экран, скроллить нечего. Здесь потяг ВНИЗ
- * сдвигает контент с тем же сопротивлением, что у `BouncyScrollView` (формула
- * Apple), и пружинит назад. Тяга вверх игнорируется (симметрично скролл-резинке,
- * которая активна только у верхнего края).
+ * Где контент целиком влезает в экран, скроллить нечего и нативного overscroll
+ * нет. Поэтому здесь резинку даёт Pan-жест: тяга в любую сторону сдвигает контент
+ * с сопротивлением (формула Apple) и пружинит назад.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * ВАЖНО (Fabric): translateY-узел вынесен НАРУЖУ GestureDetector. Если
- * <Animated.View style={animatedStyle}> положить ВНУТРЬ <GestureDetector>,
- * GestureDetector.Wrap клонирует его, ремаунтит Reanimated-узел и роняет
- * приложение: "set key `current` on frozen object". Поэтому здесь:
- *   <Animated.View style={animatedStyle}>      ← translateY снаружи
- *     <GestureDetector><Animated.View>{children}</Animated.View></GestureDetector>
+ * АРХИТЕКТУРА v7 (исправлены баги v1–v6):
+ *
+ *   • Pan-жест МЕМОИЗИРОВАН (useMemo) — раньше он пересоздавался на каждом
+ *     рендере, GestureDetector переустанавливал нативный хэндлер, и жест «залипал»
+ *     после нескольких касаний. Теперь объект стабилен.
+ *   • Сброс stretch→0 БЕЗУСЛОВНЫЙ на onEnd И onFinalize, плюс cancelAnimation +
+ *     обнуление на unmount — застрять смещённым нельзя даже при ремаунте/навигации.
+ *   • Обе стороны: тяга вниз (translationY>0) и вверх (translationY<0).
+ *
+ *   ВАЖНО (Fabric): на экране БЕЗ скролла Pan не конфликтует ни с чем (нативного
+ *   ScrollView тут нет), поэтому жест безопасен — в отличие от скролл-экранов, где
+ *   мы от Pan отказались полностью (см. BouncyScrollView.tsx v7).
+ *
+ *   translateY-узел вынесен НАРУЖУ GestureDetector: если <Animated.View
+ *   style={animatedStyle}> положить ВНУТРЬ <GestureDetector>, его Wrap клонирует
+ *   узел, ремаунтит Reanimated и роняет приложение ("set key `current` on frozen
+ *   object").
  *
  * Drop-in: оборачивает контент. Ставить ВНУТРИ фона (SafeAreaView/корневой View),
- * чтобы фон (`ScreenGradient`) и абсолютные оверлеи/модалки оставались на месте.
+ * чтобы фон (ScreenGradient) и абсолютные оверлеи/модалки оставались на месте.
  */
-
-// Физика iOS/Telegram — см. BouncyScrollView.tsx.
-const APPLE_C = 0.55;
-const SPRING = { dampingRatio: 1, duration: 500 } as const;
 
 export interface BounceViewProps {
   children: React.ReactNode;
@@ -49,28 +57,36 @@ export default function BounceView({
   const dim = dimension ?? screenH;
   const stretch = useSharedValue(0);
 
-  const pan = Gesture.Pan()
-    .enabled(enabled)
-    .activeOffsetY(10)
-    .failOffsetX([-18, 18])
-    .onUpdate((e) => {
-      'worklet';
-      // Только тяга ВНИЗ (translationY > 0). Вверх — игнор.
-      if (e.translationY <= 0) {
-        stretch.value = 0;
-        return;
-      }
-      // Сопротивление по формуле Apple: (x·d·c)/(d+c·x).
-      stretch.value = (e.translationY * dim * APPLE_C) / (dim + APPLE_C * e.translationY);
-    })
-    .onEnd(() => {
-      'worklet';
-      stretch.value = withSpring(0, SPRING);
-    })
-    .onFinalize(() => {
-      'worklet';
-      if (stretch.value !== 0) stretch.value = withSpring(0, SPRING);
-    });
+  const pan = useMemo(
+    () =>
+      Gesture.Pan()
+        .enabled(enabled)
+        .activeOffsetY([-10, 10])
+        .failOffsetX([-18, 18])
+        .onUpdate((e) => {
+          'worklet';
+          // Обе стороны: сопротивление по модулю смещения, знак сохраняется.
+          const sign = e.translationY < 0 ? -1 : 1;
+          stretch.value = sign * rubberBand(Math.abs(e.translationY), dim);
+        })
+        .onEnd(() => {
+          'worklet';
+          stretch.value = withSpring(0, BOUNCE_SPRING);
+        })
+        .onFinalize(() => {
+          'worklet';
+          stretch.value = withSpring(0, BOUNCE_SPRING);
+        }),
+    [enabled, dim, stretch],
+  );
+
+  // Гарантия: при размонтировании/навигации не оставить контент смещённым.
+  useEffect(() => {
+    return () => {
+      cancelAnimation(stretch);
+      stretch.value = 0;
+    };
+  }, [stretch]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: stretch.value }],

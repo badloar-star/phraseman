@@ -10620,6 +10620,11 @@
       <div class="stat-card" style="border-color:#1a3a2a"><div class="label" data-i18n-es="💎 Fragmentos totales">💎 Всего осколков</div><div class="value" id="a-shards-total" style="color:#34d399">—</div><div class="sub" id="a-shards-avg" data-i18n-es="media por usuario">ср. на польз.</div></div>
     </div>
   </div>
+  <!-- Subscriptions & modeled revenue -->
+  <div id="a-subs-section" style="display:none;margin-bottom:16px">
+    <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">💳 Подписки и доход (оценка)</div>
+    <div id="a-subs-content"></div>
+  </div>
   <!-- Retention -->
   <div id="a-retention-section" style="display:none;margin-bottom:16px">
     <div data-i18n-es="📈 Retention (por fecha de registro)" style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">📈 Retention (по дате регистрации)</div>
@@ -18276,6 +18281,61 @@
         <div style="font-size:11px;color:#444;margin-top:6px">Данные появятся для пользователей после обновления приложения (поле created_at). ${usersWithCreated.length} из ${n} пользователей имеют дату регистрации.</div>
       `;
     }
+
+    // ── Subscriptions & modeled revenue ───────────────────────────────────────
+    // IMPORTANT: RevenueCat events store NO price. So $ is MODELED from a hardcoded
+    // price book (editable below), NOT measured. Sub counts ARE real (from premiumInfo).
+    try {
+      // USD price book by plan (approx; adjust to your real prices).
+      const PRICE_BOOK = window._adminPriceBook || { monthly: 4.99, yearly: 29.99, trial: 0 };
+      window._adminPriceBook = PRICE_BOOK;
+      let activeMonthly = 0, activeYearly = 0, activeTrial = 0, activeOther = 0;
+      let everConverted = 0, activeTotal = 0;
+      for (const u of users) {
+        const info = premiumInfo(u);
+        const ever = u.raw && (u.raw.had_premium_ever === '1' || u.raw.had_premium_ever === 'true' || u.raw.had_premium_ever === true);
+        if (ever) everConverted++;
+        if (!info.active) continue;
+        activeTotal++;
+        if (info.isTrial) activeTrial++;
+        else {
+          const plan = String(info.plan || '').toLowerCase();
+          if (plan.includes('year') || plan.includes('annual')) activeYearly++;
+          else if (plan.includes('month')) activeMonthly++;
+          else activeOther++;
+        }
+      }
+      // Modeled monthly recurring revenue (yearly normalized to /12).
+      const modeledMrr = activeMonthly * PRICE_BOOK.monthly + activeYearly * (PRICE_BOOK.yearly / 12) + activeOther * PRICE_BOOK.monthly;
+      // Churn proxy: paying users whose RC expiry already passed (lapsed) vs active.
+      let lapsed = 0;
+      for (const u of users) {
+        const exp = u.raw && u.raw.premium_rc_expiry_ms ? Number(u.raw.premium_rc_expiry_ms) : 0;
+        const ever = u.raw && (u.raw.had_premium_ever === '1' || u.raw.had_premium_ever === 'true');
+        if (ever && exp && exp < Date.now() && !premiumInfo(u).active) lapsed++;
+      }
+      const churnBase = activeTotal + lapsed;
+      const churnPct = churnBase > 0 ? Math.round(lapsed / churnBase * 100) : 0;
+      const convPct = users.length ? Math.round(everConverted / users.length * 100) : 0;
+      const card = (label, val, sub, color) => `<div class="stat-card"><div class="label">${label}</div><div class="value" style="color:${color||'#fff'}">${val}</div><div class="sub">${sub}</div></div>`;
+      document.getElementById('a-subs-section').style.display = 'block';
+      document.getElementById('a-subs-content').innerHTML = `
+        <div class="stats" style="margin-bottom:10px">
+          ${card('Активных подписок', activeTotal, 'из ' + users.length + ' загруженных', '#4ade80')}
+          ${card('Месячные', activeMonthly, 'plan=monthly')}
+          ${card('Годовые', activeYearly, 'plan=yearly')}
+          ${card('Триал', activeTrial, 'trial period', '#60a5fa')}
+          ${card('Когда-либо платили', everConverted, convPct + '% от загруженных', '#a78bfa')}
+          ${card('Отвалились (lapsed)', lapsed, 'churn-прокси ' + churnPct + '%', '#f87171')}
+          ${card('💵 MRR (оценка)', '$' + modeledMrr.toFixed(0), 'по прайс-листу, не факт', '#fbbf24')}
+        </div>
+        <div style="font-size:11px;color:#6b7280;line-height:1.5;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;padding:10px 12px">
+          ⚠️ <b>MRR — оценка, не реальные деньги.</b> RevenueCat не присылает цену в событиях, поэтому доход смоделирован по прайс-листу
+          (monthly $${PRICE_BOOK.monthly}, yearly $${PRICE_BOOK.yearly}). Количество подписок — реальное (из premiumInfo).
+          Реальные деньги есть только в Telegram Stars (telegram_premium_orders). Churn — прокси по истёкшим подпискам без продления (зависит от лимита загрузки users).
+          <br>Поменять цены: в консоли <code>window._adminPriceBook = {monthly: X, yearly: Y}</code> и обнови вкладку.
+        </div>`;
+    } catch (e) { /* subs section is best-effort */ }
 
     // Lesson distribution
     const lessonCount = new Array(LESSON_NAMES.length).fill(0);

@@ -23,6 +23,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { getFreeSessionsLeftToday, reserveTrainerSessionEntry } from './trainer_session';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
 import { computePhraseAnalytics, type LessonMistakeStat, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
+import WeeklyReviewCard from './WeeklyReviewCard';
 import { getDiagnosisTraining } from './diagnosis_trainings';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
@@ -976,6 +977,11 @@ export default function TrainerScreen() {
                 </View>
                 <Ionicons name="chevron-forward" size={20} color={t.textMuted}/>
               </TouchableOpacity>) : null}
+
+            {/* ── Разбор недели (ИИ) — отдельный контейнер внизу «Моей практики» ── */}
+            {personalPracticeCoachEnabled ? (
+              <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} />
+            ) : null}
 
             {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : '#1a1a2e', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#4A9EFF44', borderRadius: isCompassTheme ? 9 : 14 }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={9} quiet physical /> : null}

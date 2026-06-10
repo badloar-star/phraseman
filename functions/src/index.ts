@@ -89,6 +89,8 @@ const {
   adminAlertOnUgcRefund,
   adminAlertOnConfigWritten,
 } = require('./admin_alerts');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { triageOnErrorReport, triageOnUserReport } = require('./admin_triage');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -139,6 +141,8 @@ exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
 exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
+exports.triageOnErrorReport = triageOnErrorReport;
+exports.triageOnUserReport = triageOnUserReport;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

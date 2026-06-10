@@ -16737,6 +16737,7 @@
           <div class="rc-right">
             ${catBadge(cat)}
             ${severityLabel(cat)}
+            ${triageBadge(r)}
             <div class="report-date">🕐 ${formatReportDate(r.createdAt)}</div>
             ${isFixed && r.fixedAt ? `<div style="font-size:10px;color:#4ade80;margin-top:2px">✅ ${formatReportDate(r.fixedAt)}</div>` : ''}
             <div style="font-size:10px;color:#444;margin-top:4px">${r.deviceModel ? '🆕 full meta' : r.dataId ? '🆕 new' : '📦 legacy'}</div>
@@ -16762,6 +16763,18 @@
     if (s === 'medium') return '<span class="sev-badge sev-medium">🟡 средняя</span>';
     return '<span class="sev-badge sev-low">⚪ низкая</span>';
   }
+
+  // AI triage verdict badge (written by the triage Cloud Functions onto r.triage).
+  window.triageBadge = function(r) {
+    const t = r && r.triage;
+    if (!t) return '';
+    const sev = String(t.severity || 'normal');
+    const color = sev === 'critical' ? '#f87171' : sev === 'low' ? '#6b7280' : '#fbbf24';
+    const bg = sev === 'critical' ? '#3a1414' : sev === 'low' ? '#1a1a24' : '#2a2410';
+    const spam = t.isSpam ? '<span style="background:#3a1414;color:#f87171;border-radius:4px;padding:1px 5px;font-size:9px;font-weight:800;margin-left:3px">SPAM</span>' : '';
+    const action = t.suggestedAction ? `<div style="font-size:10px;color:#9ca3af;margin-top:2px;max-width:160px">🤖 ${escapeHtml(t.suggestedAction)}</div>` : '';
+    return `<div style="margin-top:4px"><span title="${escapeHtml(t.reason || '')}" style="background:${bg};color:${color};border-radius:4px;padding:2px 7px;font-size:10px;font-weight:800">🤖 ${escapeHtml(sev)}</span>${spam}${action}</div>`;
+  };
 
   function getFilteredReportsList() {
     const screen = document.getElementById('r-filter-screen').value;
@@ -18956,6 +18969,7 @@
           </div>
           <div class="rc-right" style="font-size:11px;color:#666;min-width:80px;text-align:right">
             <span style="color:${statusColor};font-weight:700">${statusTxt}</span>
+            ${triageBadge(r)}
           </div>
         </div>`;
     }).join('');

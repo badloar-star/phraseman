@@ -16,7 +16,9 @@
       "channel": "production",
       "autoIncrement": false,
       "env": {
-        "EXPO_PUBLIC_STORE_RELEASE": "1"
+        "EXPO_PUBLIC_STORE_RELEASE": "1",
+        "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
+        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
       }
     }
   },

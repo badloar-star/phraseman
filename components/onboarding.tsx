@@ -302,7 +302,7 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
     days: 112,
     recommendedLevel: 'A2 → B1',
     minutesDefault: 20,
-    iconAsset: ONBOARDING_PLAN_ICONS.study,
+    iconAsset: ONBOARDING_PLAN_ICONS.path,
     todayIconAsset: ONBOARDING_PLAN_ICONS.phrase,
     short: 'Язык для себя: слова, слух, речь — понемногу.',
     levelSub: 'A2 даёт комфортный вход, движение к B1 добавляет живые связки для речи и понимания.',
@@ -330,7 +330,7 @@ const PERSONAL_PLAN_ONBOARDING_PLANS: Record<PersonalPlanId, {
     days: 140,
     recommendedLevel: 'A2 → B1',
     minutesDefault: 20,
-    iconAsset: ONBOARDING_PLAN_ICONS.confidence,
+    iconAsset: ONBOARDING_PLAN_ICONS.work,
     todayIconAsset: ONBOARDING_PLAN_ICONS.speaking,
     short: 'Повседневное общение: отвечать быстрее и проще.',
     levelSub: 'A2 собирает каркас ответа, B1 добавляет гибкость: уточнить, согласиться, отказаться, продолжить разговор.',
@@ -376,11 +376,14 @@ const PLAN_GOAL_CHOICES: Array<{
   title: string;
   subtitle: string;
 }> = [
+  // Иконки: в пределах экрана без повторов; арт темы совпадает с артом её плана.
+  // ВАЖНО: имена ассетов исторические и не совпадают с картинками
+  // (work = пузырь диалога с точками, phrase/speaking = один и тот же пузырь с кавычками).
   { id: 'series', iconAsset: ONBOARDING_PLAN_ICONS.phrase, title: 'Понимать кино и сериалы', subtitle: 'Живая речь на слух — без субтитров' },
-  { id: 'everyday', iconAsset: ONBOARDING_PLAN_ICONS.speaking, title: 'Говорить в обычной жизни', subtitle: 'Отвечать в разговоре без ступора' },
+  { id: 'everyday', iconAsset: ONBOARDING_PLAN_ICONS.work, title: 'Говорить в обычной жизни', subtitle: 'Отвечать в разговоре без ступора' },
   { id: 'travel', iconAsset: ONBOARDING_PLAN_ICONS.travel, title: 'Путешествовать', subtitle: 'Аэропорт, отель, кафе и дорога' },
   { id: 'words', iconAsset: ONBOARDING_PLAN_ICONS.basic, title: 'Знать нужные слова', subtitle: 'Запас на каждый день — и сразу в речь' },
-  { id: 'mind', iconAsset: ONBOARDING_PLAN_ICONS.study, title: 'Заниматься для себя', subtitle: 'Спокойный темп и польза для ума' },
+  { id: 'mind', iconAsset: ONBOARDING_PLAN_ICONS.path, title: 'Заниматься для себя', subtitle: 'Спокойный темп и польза для ума' },
 ];
 
 const PLAN_LEVEL_CHOICES: Array<{

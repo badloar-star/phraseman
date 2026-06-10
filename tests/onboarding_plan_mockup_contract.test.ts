@@ -147,7 +147,8 @@ describe('personal plan onboarding mockup contract', () => {
     [
       'iconAsset: ONBOARDING_PLAN_ICONS.travel',
       'iconAsset: ONBOARDING_PLAN_ICONS.phrase',
-      'iconAsset: ONBOARDING_PLAN_ICONS.study',
+      'iconAsset: ONBOARDING_PLAN_ICONS.work',
+      'iconAsset: ONBOARDING_PLAN_ICONS.path',
       'iconAsset: ONBOARDING_PLAN_ICONS.beginner',
       'iconAsset: ONBOARDING_PLAN_ICONS.basic',
       'iconAsset: ONBOARDING_PLAN_ICONS.speaking',

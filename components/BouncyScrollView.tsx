@@ -18,46 +18,47 @@ import Animated, {
  * Кросс-платформенная overscroll-резинка — В ОБЕ СТОРОНЫ (верх и низ).
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * АРХИТЕКТУРА v7 — БЕЗ Pan-жеста (нативный bounce + reanimated-усиление).
+ * АРХИТЕКТУРА v8 — ЧИСТО НАТИВНЫЙ overscroll, БЕЗ translateY-наложения.
  *
- * ПОЧЕМУ переписано с нуля (баги v1–v6):
- *   Старые версии вешали поверх ScrollView свой `Gesture.Pan()`. Это и есть
- *   корень всех бед:
- *     1. pan пересоздавался на каждом рендере → GestureDetector переустанавливал
- *        нативный хэндлер → гонка с нативным скроллом → «скролл ломается после
- *        3/5/N раз».
- *     2. pan конкурировал со скроллом за тот же вертикальный drag
- *        (без simultaneousWithExternalGesture) → периодически крал тач.
- *     3. translateY мог застрять ≠0 при ремаунте → смещал hit-area → скролл мёртв.
- *     4. нижний край не детектился → резинка только сверху.
+ * ПОЧЕМУ переписано (баги v7):
+ *   v7 одновременно держал нативный bounce И докручивал свой translateY,
+ *   читая contentOffset. Это давало два дефекта на проде:
+ *     • iOS: нативный `bounces` уже уводит контент за край (contentOffset.y<0),
+ *       а v7 читал тот же y и ДОБАВЛЯЛ translateY поверх → смещения
+ *       складывались → ДВОЙНОЙ/преувеличенный bounce + рассинхрон хвоста
+ *       (нативный decay vs reanimated-spring).
+ *     • Android: нативный scroll КЛАМПИТ contentOffset.y в [0,maxScroll] при
+ *       оверскролле → y<0 не наступал → translateY-докрутка не срабатывала
+ *       вообще. Резинка была «инвертирована» относительно намерения: на iOS
+ *       двойная, на Android отсутствовала.
+ *   Бонусом докстринг обещал чтение на UI-потоке через useAnimatedScrollHandler,
+ *   но в коде его не было — резинка считалась на JS-потоке (лаг под нагрузкой).
  *
- * РЕШЕНИЕ v7: НИКАКОГО Gesture.Pan / GestureDetector. Скролл остаётся чистым
- *   нативным ScrollView — его НЕВОЗМОЖНО сломать жестом, которого нет.
+ * РЕШЕНИЕ v8: резинку целиком отдаём НАТИВНОМУ overscroll, translateY НЕ двигаем.
+ *   • iOS: родной UIScrollView rubber-band (`bounces` + `alwaysBounceVertical`) —
+ *     двунаправленный, работает даже при коротком контенте. Идеально, даром.
+ *   • Android: системный stretch-overscroll (EdgeEffect, API 31+) через
+ *     `overScrollMode="always"` — двунаправленный, тоже нативный.
+ *   Никакого Pan/GestureDetector, никакого scroll→translateY. Скролл = чистый
+ *   нативный ScrollView, сломать нечем.
  *
- *   • iOS: родной UIScrollView rubber-band (`bounces` + `alwaysBounceVertical`)
- *     даёт настоящую резинку в обе стороны бесплатно.
- *   • Android: `overScrollMode="always"` (родной glow слабый), поэтому СВЕРХУ
- *     докручиваем эффект сами — через useAnimatedScrollHandler читаем
- *     contentOffset на UI-потоке и при оверскролле за край сдвигаем контент
- *     translateY с резиновым сопротивлением (формула Apple). При возврате к
- *     краю — критически задемпфированный spring (без overshoot, как на iOS).
+ * ИЗВЕСТНОЕ ОГРАНИЧЕНИЕ (Android + контент КОРОЧЕ вьюпорта): системный stretch
+ *   не запускается, когда скроллить нечего (RN #18857) → резинки на таком
+ *   экране не будет. В v7 её там тоже не было (кламп оффсета) — не регресс.
+ *   Если на конкретном коротком экране резинка нужна — оборачивать в
+ *   <BounceView> (Pan-докрутка, рассчитанная на отсутствие скролла).
  *
- *   translateY-узел — отдельный <Animated.View> СНАРУЖИ ScrollView. Он чисто
- *   визуальный (transform), тача не перехватывает. Сброс к 0 происходит сам в
- *   том же scroll-worklet, как только палец отпущен и offset вернулся в границы
- *   → застрять ≠0 нельзя (нет гесчура, чей onEnd мог бы не сработать).
- *
- * СОВМЕСТИМОСТЬ API (не менять вызовы на ~58 экранах):
+ * СОВМЕСТИМОСТЬ API (не менять вызовы на ~58 экранах) — всё сохранено:
  *   useBouncy() → { stretch, scrollY, pan, onBouncyScroll, GestureWrap }
- *   useBouncyStyle(stretch) → animatedStyle (translateY)
+ *   useBouncyStyle(stretch) → animatedStyle (translateY, теперь всегда 0)
  *   <BouncyScrollView> — drop-in ScrollView
- *   `pan` сохранён в возврате как НИ-ОП (Gesture.Tap, ни на что не влияет) —
- *   на случай если где-то остался <GestureDetector gesture={pan}>; такой
- *   детектор станет безвредным no-op вместо конфликтующего Pan.
+ *   `stretch`/`GestureWrap`/`useBouncyStyle` сохранены, но дают transform: 0
+ *   (нативная резинка их не использует). `scrollY` по-прежнему живой — экраны
+ *   читают его для scale-хедера и пр. `pan` — НИ-ОП (Gesture.Tap), безвреден.
  */
 
 import { Gesture } from 'react-native-gesture-handler';
-import { bounceOffset, BOUNCE_SPRING } from './bounceMath';
+import { BOUNCE_SPRING } from './bounceMath';
 
 export interface BouncyScrollViewProps extends ScrollViewProps {
   /** Высота вьюпорта для формулы сопротивления. По умолчанию — высота экрана. */
@@ -78,25 +79,41 @@ type BouncyScroll = {
 };
 
 /**
- * Применяет резиновое смещение к stretch по сырому scroll-событию.
- * Двунаправленно: top (y<0) и bottom (y за пределом). Worklet-safe вызывается с
- * UI-потока (через runOnUI scroll handler) и с JS-потока (через onScroll listener
- * экранов bucket B) — в обоих случаях лишь пишет в shared value.
+ * v8: резинку для скролл-экранов целиком отдаём НАТИВНОМУ overscroll —
+ * `stretch` (translateY) больше не двигаем. Эта функция оставлена как тонкая
+ * прослойка ради обратной совместимости сигнатуры (её зовёт onBouncyScroll),
+ * но translateY она НЕ трогает — только страхует сброс к 0, если где-то
+ * осталось ненулевое смещение от прежней версии.
+ *
+ * ПОЧЕМУ убрана translateY-докрутка (баги v7):
+ *   • iOS: нативный `bounces` уже физически уводит контент за край и репортит
+ *     отрицательный contentOffset.y. Старый код читал этот же y и ДОБАВЛЯЛ свой
+ *     translateY поверх → резинка складывалась → ДВОЙНОЙ/преувеличенный bounce.
+ *   • Android: нативный scroll КЛАМПИТ contentOffset.y в [0, maxScroll] при
+ *     оверскролле, поэтому y<0 практически не наступал → translateY-докрутка
+ *     не срабатывала ВООБЩЕ. Реальную резинку там даёт системный stretch
+ *     (EdgeEffect, API 31+) через overScrollMode="always".
+ *
+ * Итог: на обеих платформах резинка теперь чисто нативная (см. флаги на
+ * ScrollView ниже), translateY не наслаивается. translateY-узел/обёртка
+ * (GestureWrap/useBouncyStyle) сохранены в API, но всегда дают transform: 0.
+ *
+ * Известное ограничение: на Android при контенте КОРОЧЕ вьюпорта системный
+ * stretch не запускается (RN #18857) — резинки на таком экране не будет.
+ * В сломанной v7 её там тоже не было (кламп оффсета), так что это не регресс.
+ * Для таких экранов есть отдельный <BounceView> (Pan-докрутка без скролла).
  */
 function applyBounce(
   stretch: SharedValue<number>,
-  y: number,
-  layoutH: number,
-  contentH: number,
-  dim: number,
+  _y: number,
+  _layoutH: number,
+  _contentH: number,
+  _dim: number,
 ) {
   'worklet';
-  const target = bounceOffset(y, layoutH, contentH, dim);
-  if (target !== null) {
-    // Оверскролл (верх → target>0, низ → target<0): сразу следуем за пальцем.
-    stretch.value = target;
-  } else if (stretch.value !== 0) {
-    // Вернулись в границы — мягко пружиним к 0 (без overshoot).
+  // translateY-резинку не трогаем (нативный overscroll). Только страхуем:
+  // если осталось ненулевое смещение — мягко вернуть к 0.
+  if (stretch.value !== 0) {
     stretch.value = withSpring(0, BOUNCE_SPRING);
   }
 }

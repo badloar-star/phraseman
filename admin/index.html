@@ -8366,6 +8366,7 @@
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
+  <div class="tab" onclick="switchTab('refunds')">↩️ Refunds</div>
   <div class="tab" onclick="switchTab('archive')" data-i18n-es="Archivo">Archive</div>
   <div class="tab" onclick="switchTab('audit')" data-i18n-es="Log de auditoría">Audit log</div>
   <div class="tab" onclick="switchTab('ops-log')" data-i18n-es="Log ops">Ops log</div>
@@ -9402,6 +9403,30 @@
   </p>
   <div id="up-summary" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
   <div id="up-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
+</div>
+
+<!-- REFUND / DISPUTE CENTER -->
+<div id="tab-refunds" class="reports-tab">
+  <div style="padding:4px 24px 12px;max-width:1080px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">↩️ Центр возвратов</h2>
+    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5">
+      Все возвраты в одном месте: UGC-паки (community_pack_purchases status=refunded) и RevenueCat-рефанды
+      (revenuecat_premium_events eventType=REFUND). Автоматически отмечаются <b>серийные рефандеры</b> (≥2 возвратов).
+    </p>
+  </div>
+  <div style="padding:0 24px 14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    <button type="button" onclick="loadRefunds(true)" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700">🔄 Загрузить возвраты</button>
+    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="rf-only-serial" onchange="renderRefunds()"> <span>🚩 только серийные</span></label>
+    <select id="rf-type" onchange="renderRefunds()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px">
+      <option value="">Все типы</option>
+      <option value="ugc">UGC-паки</option>
+      <option value="rc">RevenueCat</option>
+    </select>
+    <input type="text" id="rf-search" placeholder="🔍 UID покупателя / pack" oninput="renderRefunds()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px;width:220px">
+    <span class="reports-count" id="rf-count"></span>
+  </div>
+  <div id="rf-summary" class="stats" style="padding:0 24px 14px"></div>
+  <div id="rf-list" style="padding:0 24px 32px"><div class="reports-empty">Нажми «Загрузить возвраты».</div></div>
 </div>
 
 <!-- ARCHIVE TAB -->
@@ -10827,7 +10852,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','app-health','users','testers','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -14340,6 +14365,8 @@
     if (changelogTab) changelogTab.classList.toggle('active', tab === 'changelog-0608');
     const ugcTab = document.getElementById('tab-ugc-purchases');
     if (ugcTab) ugcTab.classList.toggle('active', tab === 'ugc-purchases');
+    const refundsTab = document.getElementById('tab-refunds');
+    if (refundsTab) refundsTab.classList.toggle('active', tab === 'refunds');
     const cpTabEl = document.getElementById('tab-card-packs');
     if (cpTabEl) cpTabEl.classList.toggle('active', tab === 'card-packs');
     const dpTabEl = document.getElementById('tab-daily-phrases');
@@ -14357,6 +14384,9 @@
     }
     if (tab === 'mod-queue' && !window._modQueueLoaded && typeof window.loadModQueue === 'function') {
       void window.loadModQueue(false);
+    }
+    if (tab === 'refunds' && !window._refundsLoaded && typeof window.loadRefunds === 'function') {
+      void window.loadRefunds(false);
     }
     if (tab === 'overview' && typeof window.renderAdminOverview === 'function') {
       window.renderAdminOverview();
@@ -18146,6 +18176,96 @@
     if (typeof loadCommunitySubmissions === 'function') { jobs.push(Promise.resolve(loadCommunitySubmissions()).catch(() => {})); }
     try { await Promise.all(jobs); } catch (_) {}
     renderModQueue();
+  };
+
+  // ── Refund / dispute center ───────────────────────────────────────────────
+  // Aggregates UGC refunds (community_pack_purchases status=refunded) + RevenueCat
+  // REFUND events, and flags serial refunders (same buyer with >=2 refunds).
+  window._refundItems = [];
+  window.loadRefunds = async function(force) {
+    window._refundsLoaded = true;
+    const list = document.getElementById('rf-list');
+    if (list && force) list.innerHTML = '<div class="reports-empty">⏳ Загружаю возвраты…</div>';
+    try {
+      // UGC refunds: reuse the ugc-purchases loader, then filter refunded.
+      if (force || !window._ugcPurchasesLoaded) {
+        if (typeof loadUgcPurchases === 'function') { try { await loadUgcPurchases(); } catch (_) {} }
+      }
+      const ugc = (typeof _ugcPurchasesAll !== 'undefined' ? _ugcPurchasesAll : [])
+        .filter(p => p.status === 'refunded')
+        .map(p => ({
+          type: 'ugc', buyer: p.buyerStableId || p.buyerUid || '', item: p.packId || '—',
+          amount: Number(p.priceShards) || 0, unit: '💎',
+          when: p.refundedAt || p.createdAt || '', by: p.refundedBy || '', reason: p.refundReason || '',
+        }));
+      // RevenueCat refunds: read REFUND events directly.
+      let rc = [];
+      try {
+        const snap = await getDocs(query(collection(db, 'revenuecat_premium_events'), where('eventType', '==', 'REFUND'), limit(300)));
+        rc = snap.docs.map(d => { const r = d.data() || {}; return {
+          type: 'rc', buyer: r.uid || '', item: r.productId || 'premium',
+          amount: 0, unit: '', when: r.eventTimestampMs ? new Date(Number(r.eventTimestampMs)).toISOString() : '', by: 'RevenueCat', reason: 'store refund',
+        }; });
+      } catch (_) { /* may need index; skip RC silently */ }
+      const all = ugc.concat(rc);
+      // Serial-refunder detection.
+      const byBuyer = {};
+      for (const r of all) { if (r.buyer) byBuyer[r.buyer] = (byBuyer[r.buyer] || 0) + 1; }
+      for (const r of all) { r.buyerCount = byBuyer[r.buyer] || 1; r.serial = r.buyerCount >= 2; }
+      all.sort((a, b) => (b.serial - a.serial) || String(b.when || '').localeCompare(String(a.when || '')));
+      window._refundItems = all;
+      renderRefunds();
+    } catch (e) {
+      if (list) list.innerHTML = `<div class="reports-empty" style="color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+    }
+  };
+  window.renderRefunds = function() {
+    const list = document.getElementById('rf-list');
+    const cnt = document.getElementById('rf-count');
+    const summary = document.getElementById('rf-summary');
+    if (!list) return;
+    let items = window._refundItems || [];
+    if (summary) {
+      const serialBuyers = new Set(items.filter(r => r.serial).map(r => r.buyer));
+      const ugcN = items.filter(r => r.type === 'ugc').length;
+      const rcN = items.filter(r => r.type === 'rc').length;
+      const shards = items.filter(r => r.type === 'ugc').reduce((s, r) => s + (r.amount || 0), 0);
+      const card = (l, v, c) => `<div class="stat-card"><div class="label">${l}</div><div class="value" style="color:${c || '#fff'}">${v}</div></div>`;
+      summary.innerHTML = [
+        card('Всего возвратов', items.length, '#fbbf24'),
+        card('🚩 Серийных рефандеров', serialBuyers.size, serialBuyers.size ? '#f87171' : '#4ade80'),
+        card('UGC-паки', ugcN),
+        card('RevenueCat', rcN),
+        card('💎 Возвращено осколков', shards, '#34d399'),
+      ].join('');
+    }
+    const typeF = document.getElementById('rf-type')?.value || '';
+    const onlySerial = !!document.getElementById('rf-only-serial')?.checked;
+    const q = (document.getElementById('rf-search')?.value || '').trim().toLowerCase();
+    if (typeF) items = items.filter(r => r.type === typeF);
+    if (onlySerial) items = items.filter(r => r.serial);
+    if (q) items = items.filter(r => (r.buyer || '').toLowerCase().includes(q) || (r.item || '').toLowerCase().includes(q));
+    if (cnt) cnt.textContent = `${items.length} возвратов`;
+    if (!items.length) { list.innerHTML = '<div class="reports-empty">Возвратов нет 🎉</div>'; return; }
+    list.innerHTML = items.slice(0, 400).map(r => {
+      const when = String(r.when || '').replace('T', ' ').slice(0, 16);
+      const typeColor = r.type === 'ugc' ? '#a78bfa' : '#67e8f9';
+      const buyerArg = JSON.stringify(String(r.buyer || ''));
+      return `<div class="report-card">
+        <div class="rc-left" style="min-width:0;flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap">
+            <span style="background:#1a1a24;border:1px solid ${typeColor}44;color:${typeColor};border-radius:5px;padding:2px 8px;font-size:11px;font-weight:700">${r.type === 'ugc' ? '📦 UGC' : '⭐ RC'}</span>
+            ${r.serial ? `<span style="background:#3a1414;color:#f87171;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:800">🚩 СЕРИЙНЫЙ ×${r.buyerCount}</span>` : ''}
+            ${r.amount ? `<span style="color:#34d399;font-weight:700;font-size:13px">${r.amount} ${r.unit}</span>` : ''}
+          </div>
+          <div style="color:#fff;font-size:14px">${escapeHtml(r.item)}</div>
+          <div style="font-size:12px;color:#888">buyer <code style="color:#aaa">${escapeHtml(String(r.buyer || '—'))}</code>${when ? ' · ' + escapeHtml(when) : ''}${r.by ? ' · ' + escapeHtml(r.by) : ''}${r.reason ? ' · ' + escapeHtml(r.reason) : ''}</div>
+        </div>
+        <div class="rc-right" style="display:flex;align-items:center">
+          ${r.buyer ? `<button type="button" onclick='openUserByUid(${buyerArg})' style="background:#1a2540;border:1px solid #5a8ad0;color:#bfdbfe;border-radius:7px;padding:6px 12px;font-size:12px;cursor:pointer">Профиль</button>` : ''}
+        </div>
+      </div>`;
+    }).join('');
   };
 
   window._reportsLastDoc = null;

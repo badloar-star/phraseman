@@ -791,7 +791,8 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
     isGoldTheme?: boolean;
     themeMode: ThemeMode;
 }) {
-    const metricRow = (label: string, value: string, kind: LifetimeTotalsChartKind) => {
+    const metricRow = (label: string, value: string, kind: LifetimeTotalsChartKind, numValue: number) => {
+        void numValue;
         const multiSeries = showAllPathCharts ? pathChartsByKind?.[kind] : undefined;
         const teaserOk = !!gateExpandAll && teaserChartDays && teaserChartDays.length > 0;
         const rowExpanded = teaserOk || expandedKind === kind || (!!showAllPathCharts && !!multiSeries?.length);
@@ -853,6 +854,24 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
           </>) : null}
       </React.Fragment>);
     };
+    type LifetimeRow = { label: string; numValue: number; kind: LifetimeTotalsChartKind };
+    const lifetimeRows: LifetimeRow[] = [
+        { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
+        { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
+        { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
+        { kind: 'quizzes_completed', numValue: data.quizzesTotal, label: triLang(lang, { ru: 'Вызовов пройдено', uk: 'Квізів пройдено', es: 'Cuestionarios hechos', 'pt-BR': 'Quizzes feitos', vi: 'Quiz đã làm', id: 'Kuis dikerjakan', tr: 'Yapılan quizler', pl: 'Zrobione quizy' }) },
+        { kind: 'arena_wins', numValue: data.arenaWins, label: triLang(lang, { ru: 'Побед на Арене', uk: 'Перемог на Арені', es: 'Victorias en Arena', 'pt-BR': 'Vitórias na Arena', vi: 'Thắng ở Đấu trường', id: 'Kemenangan di Arena', tr: 'Arena zaferleri', pl: 'Zwycięstwa na Arenie' }) },
+        { kind: 'arena_losses', numValue: data.arenaLosses, label: triLang(lang, { ru: 'Поражений на Арене', uk: 'Поразок на Арені', es: 'Derrotas en Arena', 'pt-BR': 'Derrotas na Arena', vi: 'Thua ở Đấu trường', id: 'Kekalahan di Arena', tr: 'Arena yenilgileri', pl: 'Porażki na Arenie' }) },
+        { kind: 'daily_tasks_claimed', numValue: data.dailyTasksClaimed, label: triLang(lang, { ru: 'Заданий дня выполнено', uk: 'Завдань дня виконано', es: 'Misiones diarias hechas', 'pt-BR': 'Missões diárias feitas', vi: 'Nhiệm vụ hằng ngày đã làm', id: 'Misi harian selesai', tr: 'Tamamlanan günlük görevler', pl: 'Wykonane misje dzienne' }) },
+        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Осколков заработано', uk: 'Осколків зароблено', es: 'Fragmentos ganados', 'pt-BR': 'Fragmentos ganhos', vi: 'Mảnh đã kiếm', id: 'Fragmen diperoleh', tr: 'Kazanılan parçalar', pl: 'Zdobyte odłamki' }) },
+        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Осколков потрачено', uk: 'Осколків витрачено', es: 'Fragmentos gastados', 'pt-BR': 'Fragmentos gastos', vi: 'Mảnh đã dùng', id: 'Fragmen dipakai', tr: 'Harcanan parçalar', pl: 'Wydane odłamki' }) },
+    ];
+    // В dev/teaser-режимах (gateExpandAll / showAllPathCharts) показываем все строки
+    // без сворачивания, иначе прячем нулевые под раскрывашку, чтобы у новичка
+    // не было простыни нулей.
+    const collapseZeros = !gateExpandAll && !showAllPathCharts;
+    const zeroRows = collapseZeros ? lifetimeRows.filter((r) => r.numValue <= 0) : [];
+    const [zeroRowsExpanded, setZeroRowsExpanded] = React.useState(false);
     return (<StatsCardArtSurface name="archiveMap" theme={t} isGoldTheme={isGoldTheme} gradientColors={[t.bgCard, t.bgCard, t.bgSurface]} radius={18} scrim="strong" style={{
             borderRadius: 18,
             padding: 16,
@@ -896,96 +915,39 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             pl: "Liczby po prawej to suma historyczna.",
         })}
       </Text>
-      {metricRow(triLang(lang, {
-            ru: 'Слов выучено',
-            uk: 'Слів вивчено',
-            es: 'Palabras aprendidas',
-            'pt-BR': "Palavras aprendidas",
-            vi: "Từ đã học",
-            id: "Kata dipelajari",
-            tr: "Öğrenilen kelimeler",
-            pl: "Nauczone słowa",
-        }), String(data.wordsLearned), 'words_learned')}
-      {metricRow(triLang(lang, {
-            ru: 'Карточек сохранено',
-            uk: 'Карток збережено',
-            es: 'Tarjetas guardadas',
-            'pt-BR': "Cartões salvos",
-            vi: "Thẻ đã lưu",
-            id: "Kartu disimpan",
-            tr: "Kaydedilen kartlar",
-            pl: "Zapisane fiszki",
-        }), String(data.flashcardsSaved), 'flashcards_saved')}
-      {metricRow(triLang(lang, {
-            ru: 'Фраз выучено',
-            uk: 'Фраз вивчено',
-            es: 'Frases aprendidas',
-            'pt-BR': "Frases aprendidas",
-            vi: "Cụm từ đã học",
-            id: "Frasa dipelajari",
-            tr: "Öğrenilen ifadeler",
-            pl: "Nauczone zwroty",
-        }), String(data.phrasesLearned), 'phrases_learned')}
-      {metricRow(triLang(lang, {
-            ru: 'Вызовов пройдено',
-            uk: 'Квізів пройдено',
-            es: 'Cuestionarios hechos',
-            'pt-BR': "Quizzes feitos",
-            vi: "Quiz đã làm",
-            id: "Kuis dikerjakan",
-            tr: "Yapılan quizler",
-            pl: "Zrobione quizy",
-        }), String(data.quizzesTotal), 'quizzes_completed')}
-      {metricRow(triLang(lang, {
-            ru: 'Побед на Арене',
-            uk: 'Перемог на Арені',
-            es: 'Victorias en Arena',
-            'pt-BR': "Vitórias na Arena",
-            vi: "Thắng ở Đấu trường",
-            id: "Kemenangan di Arena",
-            tr: "Arena zaferleri",
-            pl: "Zwycięstwa na Arenie",
-        }), String(data.arenaWins), 'arena_wins')}
-      {metricRow(triLang(lang, {
-            ru: 'Поражений на Арене',
-            uk: 'Поразок на Арені',
-            es: 'Derrotas en Arena',
-            'pt-BR': "Derrotas na Arena",
-            vi: "Thua ở Đấu trường",
-            id: "Kekalahan di Arena",
-            tr: "Arena yenilgileri",
-            pl: "Porażki na Arenie",
-        }), String(data.arenaLosses), 'arena_losses')}
-      {metricRow(triLang(lang, {
-            ru: 'Заданий дня выполнено',
-            uk: 'Завдань дня виконано',
-            es: 'Misiones diarias hechas',
-            'pt-BR': "Missões diárias feitas",
-            vi: "Nhiệm vụ hằng ngày đã làm",
-            id: "Misi harian selesai",
-            tr: "Tamamlanan günlük görevler",
-            pl: "Wykonane misje dzienne",
-        }), String(data.dailyTasksClaimed), 'daily_tasks_claimed')}
-      {metricRow(triLang(lang, {
-            ru: 'Осколков заработано',
-            uk: 'Осколків зароблено',
-            es: 'Fragmentos ganados',
-            'pt-BR': "Fragmentos ganhos",
-            vi: "Mảnh đã kiếm",
-            id: "Fragmen diperoleh",
-            tr: "Kazanılan parçalar",
-            pl: "Zdobyte odłamki",
-        }), String(data.shardsEarned), 'shards_earned')}
-      {metricRow(triLang(lang, {
-            ru: 'Осколков потрачено',
-            uk: 'Осколків витрачено',
-            es: 'Fragmentos gastados',
-            'pt-BR': "Fragmentos gastos",
-            vi: "Mảnh đã dùng",
-            id: "Fragmen dipakai",
-            tr: "Harcanan parçalar",
-            pl: "Wydane odłamki",
-        }), String(data.shardsSpent), 'shards_spent')}
+      {lifetimeRows.filter((r) => !collapseZeros || r.numValue > 0).map((r) => metricRow(r.label, String(r.numValue), r.kind, r.numValue))}
+      {zeroRows.length > 0 ? (zeroRowsExpanded ? (<>
+          {zeroRows.map((r) => metricRow(r.label, String(r.numValue), r.kind, r.numValue))}
+          <TouchableOpacity activeOpacity={0.72} onPress={() => setZeroRowsExpanded(false)} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 10, marginTop: 2 }}>
+            <Ionicons name="chevron-up" size={16} color={t.textMuted}/>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+              {triLang(lang, {
+                    ru: 'Свернуть нулевые',
+                    uk: 'Згорнути нульові',
+                    es: 'Ocultar los vacíos',
+                    'pt-BR': "Ocultar os zerados",
+                    vi: "Ẩn mục bằng 0",
+                    id: "Sembunyikan yang nol",
+                    tr: "Sıfırları gizle",
+                    pl: "Ukryj zerowe",
+                })}
+            </Text>
+          </TouchableOpacity>
+        </>) : (<TouchableOpacity activeOpacity={0.72} onPress={() => setZeroRowsExpanded(true)} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 12, marginTop: 2 }}>
+          <Ionicons name="add-circle-outline" size={17} color={t.textMuted}/>
+          <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+            {triLang(lang, {
+                    ru: `Ещё ${zeroRows.length} — пока без данных`,
+                    uk: `Ще ${zeroRows.length} — поки без даних`,
+                    es: `${zeroRows.length} más — aún sin datos`,
+                    'pt-BR': `Mais ${zeroRows.length} — ainda sem dados`,
+                    vi: `Còn ${zeroRows.length} — chưa có dữ liệu`,
+                    id: `${zeroRows.length} lagi — belum ada data`,
+                    tr: `${zeroRows.length} tane daha — henüz veri yok`,
+                    pl: `Jeszcze ${zeroRows.length} — na razie bez danych`,
+                })}
+          </Text>
+        </TouchableOpacity>)) : null}
     </StatsCardArtSurface>);
 }
 const LIFETIME_PATH_DEV_CHART_KINDS: LifetimeTotalsChartKind[] = [

@@ -20202,29 +20202,8 @@
   // ── WEBSITE CONTACT INBOX (public site) ─────────────────────────────────────
   let _allWebsiteInbox = [];
 
-  window.loadWebsiteInbox = async function (force) {
-    window._websiteInboxLoaded = true;
-    const list = document.getElementById('wi-list');
-    if (list) list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
-    try {
-      const snap = await getDocs(
-        query(collection(db, 'website_contact_inbox'), orderBy('createdAt', 'desc'), limit(200)),
-      );
-      _allWebsiteInbox = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      filterWebsiteInbox();
-      updateTabBadges(true);
-    } catch (e) {
-      if (list) list.innerHTML = '<div class="reports-empty">❌ ' + escapeHtml(e.message || String(e)) + '</div>';
-    }
-  };
-
-  window.filterWebsiteInbox = function () {
-    const sel = document.getElementById('wi-filter-status');
-    const status = sel ? sel.value : '';
-    let arr = _allWebsiteInbox;
-    if (status) arr = arr.filter((r) => (r.status || 'new') === status);
-    renderWebsiteInbox(arr);
-  };
+  // NOTE: old loadWebsiteInbox/filterWebsiteInbox removed — redefined below with
+  // applyCleanWebsiteInboxChrome. Shared _allWebsiteInbox + wiFmtDate/escapeWiText kept.
 
   function wiFmtDate(x) {
     if (!x) return '—';

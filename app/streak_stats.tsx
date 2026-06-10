@@ -47,6 +47,7 @@ import type { ThemeMode } from '../constants/theme';
 import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsSoftBg, statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 import GoldBevel from '../components/GoldBevel';
+import { StatScoreRing } from '../components/stats/StatScoreRing';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
@@ -2432,13 +2433,21 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     return (<StatsCardArtSurface name="practiceBalance" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} testID="stats-learning-health-card" style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 1, borderColor: scoreBorder, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance')]}>
       {isGoldTheme && <GoldBevel radius={16} intensity="normal"/>}
-      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 14 }}>
-        <View style={{ width: 92, height: 92, borderRadius: 46, borderWidth: isGoldTheme ? 6 : 8, borderColor: scoreAccent, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'practiceBalance', 'quiet') }}>
-          <Text style={{ color: t.textPrimary, fontSize: 28, fontWeight: '900', lineHeight: 32 }}>{metrics.scoreLabel}</Text>
-          <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '800' }}>{metrics.scoreSubLabel}</Text>
-        </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+        <StatScoreRing
+          progress={metrics.isWarmup ? Math.min(100, (metrics.active7 / 5) * 100) : metrics.score}
+          centerValue={metrics.isWarmup ? metrics.active7 : metrics.score}
+          centerSubLabel={metrics.scoreSubLabel}
+          accent={scoreAccent}
+          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : metrics.scoreColor + 'B0'}
+          trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'practiceBalance', 'quiet')}
+          size={104}
+          strokeWidth={10}
+          centerColor={t.textPrimary}
+          subColor={t.textMuted}
+        />
         <View style={{ flex: 1, minWidth: 0 }}>
-          <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+          <Text style={{ color: scoreAccent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8, textTransform: 'uppercase' }}>
             {triLang(lang, {
             ru: 'Баланс практики',
             uk: 'Баланс практики',
@@ -2450,18 +2459,17 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             pl: "Bilans ćwiczenia",
         })}
           </Text>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', marginTop: 4 }} numberOfLines={2}>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', marginTop: 4, lineHeight: f.h2 * 1.15 }} numberOfLines={2}>
             {metrics.status}
           </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.35, marginTop: 6 }}>
+          <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: f.caption * 1.4, marginTop: 6 }}>
             {metrics.scoreHint}
           </Text>
         </View>
       </View>
 
-      <View style={{ marginTop: 14, borderRadius: 16, padding: 10, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance') }}>
-        <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase', marginBottom: 8 }}>
-          {triLang(lang, {
+      <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase', marginTop: 16, marginBottom: 10 }}>
+        {triLang(lang, {
             ru: 'Что поможет сейчас',
             uk: 'Що допоможе зараз',
             es: 'Qué ayuda ahora',
@@ -2471,25 +2479,21 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             tr: "Şimdi ne yardımcı olur",
             pl: "Co teraz pomaga",
         })}
-        </Text>
-        <View style={{ gap: 8 }}>
-          {learningSignals.map((item) => (<View key={item.label} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 12, padding: 10, backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2 }}>
-              <View style={{ width: 30, height: 30, borderRadius: 10, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name={item.icon} size={17} color={scoreAccent}/>
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }} numberOfLines={1}>
-                  {item.label}
-                </Text>
-                <Text style={{ color: t.textGhost, fontSize: 10, lineHeight: 13, marginTop: 2 }} numberOfLines={2}>
-                  {item.hint}
-                </Text>
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: 12, fontWeight: '900', maxWidth: 76, textAlign: 'right' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
-                {item.value}
-              </Text>
-            </View>))}
-        </View>
+      </Text>
+      {/* Bento 3-up: Частота / Длина / Серия — каждый сигнал крупной плиткой
+          с воздухом вместо тесной строки со скрытым хинтом. */}
+      <View style={{ flexDirection: 'row', gap: 8 }}>
+        {learningSignals.map((item) => (<View key={item.label} style={{ flex: 1, minWidth: 0, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 8, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance'), alignItems: 'center' }}>
+            <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+              <Ionicons name={item.icon} size={18} color={scoreAccent}/>
+            </View>
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg ?? f.body, fontWeight: '900', textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.6}>
+              {item.value}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 3, textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
+              {item.label}
+            </Text>
+          </View>))}
       </View>
 
       {showAction ? (<View style={{ marginTop: 14, borderRadius: 16, padding: 14, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance') }}>

@@ -6,15 +6,15 @@ OUT = sys.argv[1]
 
 def gate(d): return max(8, min(32, 8 + int((d-1)*0.8)))
 
-# MITAP Batch 2: days 8-14 (week 2, A2: meeting the team — introduce/role/timezone/name+title/contacts + review)
+# MITAP Batch 8: days 50-56 (week 8, B1: opinions & constructive debate — opine/agree-with-caveat/disagree/alternative/support/neutral + review)
 ROWS = [
- (8,'A2',['present-simple','to-have'],[3,7],'Представиться команде: роль и стаж',"I'm on the design team. I have two years here. рассказать о себе."),
- (9,'A2',['present-simple','present-simple-questions'],[3,5],'Рассказать, чем именно занимаешься',"I work on the mobile app. описать свою работу."),
- (10,'A2',['wh-questions','present-simple'],[5,6],'Спросить про роль коллеги',"What do you do here? узнать, чем занимается собеседник."),
- (11,'A2',['present-simple-questions','prepositions-time'],[5,8],'Откуда ты и какой часовой пояс',"Where are you based? What time is it for you? страна и время."),
- (12,'A2',['wh-questions','to-have'],[6,7],'Уточнить имя и должность собеседника',"Sorry, what's your name again? переспросить имя и роль."),
- (13,'A2',['present-simple','imperative'],[3,18],'Обменяться контактами в чате',"I will send my email. Drop yours in the chat. обмен контактами."),
- (14,'A2',['present-simple','wh-questions','to-have'],[6,7],'Повторение недели 2: знакомство с командой','Review-диалог: представиться, роль, часовой пояс, контакты.'),
+ (50,'B1',['present-simple','gerund'],[3,22],'Высказать своё мнение',"I think we should ship it. чётко озвучить позицию."),
+ (51,'B1',['present-perfect','modals'],[24,10],'Мягко согласиться с оговоркой',"I agree, but with one caveat. согласие с условием."),
+ (52,'B1',['conditionals','modals'],[26,10],'Вежливо возразить',"I see your point, but I disagree. корректное несогласие."),
+ (53,'B1',['conditionals','future-simple'],[26,13],'Предложить альтернативу',"What if we tried another way? предложить другой путь."),
+ (54,'B1',['present-perfect','comparatives'],[24,14],'Поддержать чужую идею и дополнить',"That is a great point. I would add. развить чужую мысль."),
+ (55,'B1',['gerund','modals'],[22,10],'Остаться нейтральным в споре',"I can see both sides here. не принимать сторону."),
+ (56,'B1',['conditionals','present-perfect','modals'],[26,24],'Повторение недели 8: спорим конструктивно','Review-диалог: мнение, согласие, возражение, альтернатива.'),
 ]
 batch=[]
 for d,level,cons,prereq,topic,note in ROWS:

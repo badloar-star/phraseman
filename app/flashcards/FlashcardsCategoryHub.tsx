@@ -37,6 +37,7 @@ import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import { packTileImageForPack } from './packMarketplaceIcons';
+import DuoPressable from '../../components/DuoPressable';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import ReportPackModal from '../../components/ReportPackModal';
@@ -968,11 +969,12 @@ export default function FlashcardsCategoryHub({
         ) : (
           <View style={{ width: hubBarW }}>
             {hasUnfinishedPackDraft ? (
-              <TouchableOpacity
+              <DuoPressable
                 onPress={() => router.push('/community_pack_create' as any)}
+                edgeColor={t.accent}
+                wrapStyle={{ width: hubBarW, marginBottom: 10 }}
                 style={{
                   width: hubBarW,
-                  marginBottom: 10,
                   paddingVertical: 12,
                   paddingHorizontal: 14,
                   borderRadius: 14,
@@ -998,9 +1000,9 @@ export default function FlashcardsCategoryHub({
                     pl: 'Kontynuuj tworzenie zestawu',
                   })}
                 </Text>
-              </TouchableOpacity>
+              </DuoPressable>
             ) : null}
-            <TouchableOpacity
+            <DuoPressable
               onPress={() => {
                 if (hasUnfinishedPackDraft) {
                   setDiscardDraftForNewOpen(true);
@@ -1008,20 +1010,20 @@ export default function FlashcardsCategoryHub({
                 }
                 router.push('/community_pack_create' as any);
               }}
+              edgeColor={t.accent}
+              wrapStyle={{ width: hubBarW, marginBottom: 12 }}
               style={{
                 width: hubBarW,
-                marginBottom: 12,
                 paddingVertical: 12,
                 paddingHorizontal: 14,
                 borderRadius: 14,
                 backgroundColor: t.accent,
-                alignItems: 'center',
               }}
             >
               <Text style={{ color: t.correctText, fontWeight: '800', fontSize: labelSize + 2 }}>
                 {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack', 'pt-BR': '+ Criar pacote', vi: '+ Tạo bộ thẻ', id: '+ Buat paket', tr: '+ Paket oluştur', pl: '+ Utwórz zestaw' })}
               </Text>
-            </TouchableOpacity>
+            </DuoPressable>
             {visibleCommunityPacks.length === 0 ? (
               communityPacks.length === 0 ? (
                 <Text style={{ width: hubBarW, color: isGradientSurface ? hubLabelMuted : t.textMuted, fontSize: labelSize + 2, textAlign: 'center', marginBottom: 8 }}>

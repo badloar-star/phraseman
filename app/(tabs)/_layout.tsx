@@ -1,10 +1,10 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, Text, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BlurView } from 'expo-blur';
 import { Ionicons } from '@expo/vector-icons';
-import { useLang } from '../../components/LangContext';
 import { useTheme } from '../../components/ThemeContext';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
@@ -15,10 +15,26 @@ import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { HOME_ENTRANCE } from '../../constants/motion';
 import { emitAppEvent, onAppEvent } from '../events';
-import { scheduleAnimatedStateUpdate, type ScheduledAnimatedStateUpdate } from '../../components/animationScheduling';
 import HomeScreen       from './home';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
+
+/**
+ * Возвращает цвет с заданной альфой. Поддерживает hex (#RGB/#RRGGBB/#RRGGBBAA);
+ * для уже-rgba/прочих форматов возвращает исходник без изменений (безопасный фолбэк).
+ */
+function withAlpha(color: string, alpha: number): string {
+  if (color[0] !== '#') return color;
+  let hex = color.slice(1);
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  if (hex.length === 8) hex = hex.slice(0, 6);
+  if (hex.length !== 6) return color;
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  const a = Math.max(0, Math.min(1, alpha));
+  return `rgba(${r},${g},${b},${a})`;
+}
 
 type TabScreenComponent = React.ComponentType;
 type DeferredTabModule = { default: TabScreenComponent };
@@ -67,14 +83,6 @@ function DeferredTabScreen({ shouldLoad, loadScreen }: { shouldLoad: boolean; lo
 
 type TabDef = {
   key: string;
-  ru: string;
-  uk: string;
-  es: string;
-  'pt-BR': string;
-  vi: string;
-  id: string;
-  tr: string;
-  pl: string;
   icon: IconName;
   active: IconName;
 };
@@ -104,9 +112,8 @@ function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
   return next;
 }
 
-const TAB_BACKGROUND_TRANSITION_MS = 900;
-const TAB_CHROME_TRANSITIONS_ENABLED = false;
-const TAB_CHROME_TRANSITION_USE_NATIVE_DRIVER = false;
+/** Доп. зазор между плавающей капсулой и зоной системных жестов снизу. */
+const FLOATING_PILL_BOTTOM_GAP = 6;
 
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
@@ -161,73 +168,32 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
   return idx === tabIdx;
 }
 
+// Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов (home..settings).
 const TABS: TabDef[] = [
-  { key: 'home', ru: 'Главная', uk: 'Головна', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Start', icon: 'home-outline', active: 'home' },
-  { key: 'index', ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje', icon: 'book-outline', active: 'book' },
-  { key: 'arena', ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena', icon: 'flash-outline', active: 'flash' },
-  { key: 'friends', ru: 'Друзья', uk: 'Друзі', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi', icon: 'people-outline', active: 'people' },
-  { key: 'settings', ru: 'Настройки', uk: 'Налаштування', es: 'Ajustes', 'pt-BR': 'Configurações', vi: 'Cài đặt', id: 'Pengaturan', tr: 'Ayarlar', pl: 'Ustawienia', icon: 'settings-outline', active: 'settings' },
+  { key: 'home',     icon: 'home-outline',     active: 'home' },
+  { key: 'index',    icon: 'book-outline',     active: 'book' },
+  { key: 'arena',    icon: 'flash-outline',    active: 'flash' },
+  { key: 'friends',  icon: 'people-outline',   active: 'people' },
+  { key: 'settings', icon: 'settings-outline', active: 'settings' },
 ];
 
 
 type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean };
-
-type TabChromeLayer = {
-  id: number;
-  wrapBg: string;
-  barBg: string;
-  safeBg: string;
-  fade: Animated.Value;
-};
-
-function renderTabChromeLayer(layer: TabChromeLayer, keyPrefix: string, backgroundColor: string) {
-  if (!TAB_CHROME_TRANSITIONS_ENABLED) {
-    return (
-      <View
-        key={`${keyPrefix}-${layer.id}`}
-        style={[s.tabChromeFill, { backgroundColor }]}
-      />
-    );
-  }
-
-  return (
-    <Animated.View
-      key={`${keyPrefix}-${layer.id}`}
-      style={[s.tabChromeFill, { backgroundColor, opacity: layer.fade }]}
-    />
-  );
-}
 
 /**
  * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
 function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
-  const { lang } = useLang();
-  const { theme: t, f, ds, themeMode, statusBarLight } = useTheme();
+  const { theme: t, ds, themeMode, statusBarLight } = useTheme();
   const { tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
   const isMinimal = themeMode === 'minimalLight' || themeMode === 'minimalDark';
-  const tabChromeSolidBg = isMinimal ? t.bgCard : t.bgPrimary;
-  const tabChromeWrapBg = t.bgPrimary;
-  const tabChromeBarBg = tabChromeSolidBg;
-  const tabChromeSafeBg = tabChromeBarBg;
-  const tabChromeKey = `${themeMode}:plain:${tabChromeWrapBg}:${tabChromeBarBg}:${tabChromeSafeBg}`;
-  const [tabChromeLayers, setTabChromeLayers] = useState<TabChromeLayer[]>(() => [{
-    id: 0,
-    wrapBg: tabChromeWrapBg,
-    barBg: tabChromeBarBg,
-    safeBg: tabChromeSafeBg,
-    fade: new Animated.Value(1),
-  }]);
-  const tabChromeLayerSeqRef = useRef(0);
-  const tabChromeLayersRef = useRef<TabChromeLayer[]>(tabChromeLayers);
-  const activeTabChromeKeyRef = useRef(tabChromeKey);
-  const tabChromeLayerCleanupTasksRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
+  /** Тон-подложка плавающей капсулы поверх blur: на тёмных темах — затемнение, на светлых — осветление.
+   *  Берём bgCard и подмешиваем альфу, чтобы стекло читалось, но контент за ним просвечивал. */
+  const tabPillTintBg = withAlpha(t.bgCard, statusBarLight ? 0.55 : 0.72);
   const firstContentReadyEmittedRef = useRef(false);
 
   const notifyFirstContentReady = useCallback(() => {
@@ -244,80 +210,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   useEffect(() => {
     notifyFirstContentReady();
   }, [notifyFirstContentReady]);
-
-  useEffect(() => {
-    tabChromeLayersRef.current = tabChromeLayers;
-  }, [tabChromeLayers]);
-
-  const cancelTabChromeLayerCleanupTasks = useCallback(() => {
-    tabChromeLayerCleanupTasksRef.current.forEach(task => task.cancel());
-    tabChromeLayerCleanupTasksRef.current = [];
-  }, []);
-
-  const removeTabChromeLayerAfterCommit = useCallback((layerId: number) => {
-    let scheduled: ScheduledAnimatedStateUpdate | null = null;
-    scheduled = scheduleAnimatedStateUpdate(() => {
-      if (scheduled) {
-        tabChromeLayerCleanupTasksRef.current = tabChromeLayerCleanupTasksRef.current.filter(task => task !== scheduled);
-      }
-      setTabChromeLayers(current => current.filter(item => item.id !== layerId));
-    });
-    tabChromeLayerCleanupTasksRef.current.push(scheduled);
-  }, []);
-
-  useEffect(() => () => {
-    cancelTabChromeLayerCleanupTasks();
-  }, [cancelTabChromeLayerCleanupTasks]);
-
-  useEffect(() => {
-    if (activeTabChromeKeyRef.current === tabChromeKey) return;
-    activeTabChromeKeyRef.current = tabChromeKey;
-    cancelTabChromeLayerCleanupTasks();
-
-    const previousLayers = tabChromeLayersRef.current;
-    previousLayers.forEach(layer => {
-      layer.fade.stopAnimation();
-    });
-
-    if (!TAB_CHROME_TRANSITIONS_ENABLED) {
-      setTabChromeLayers([{
-        id: ++tabChromeLayerSeqRef.current,
-        wrapBg: tabChromeWrapBg,
-        barBg: tabChromeBarBg,
-        safeBg: tabChromeSafeBg,
-        fade: new Animated.Value(1),
-      }]);
-      return;
-    }
-
-    const nextLayer: TabChromeLayer = {
-      id: ++tabChromeLayerSeqRef.current,
-      wrapBg: tabChromeWrapBg,
-      barBg: tabChromeBarBg,
-      safeBg: tabChromeSafeBg,
-      fade: new Animated.Value(0),
-    };
-
-    previousLayers.forEach(layer => {
-      Animated.timing(layer.fade, {
-        toValue: 0,
-        duration: TAB_BACKGROUND_TRANSITION_MS,
-        easing: Easing.inOut(Easing.cubic),
-        useNativeDriver: TAB_CHROME_TRANSITION_USE_NATIVE_DRIVER,
-      }).start(({ finished }) => {
-        if (!finished) return;
-        removeTabChromeLayerAfterCommit(layer.id);
-      });
-    });
-
-    setTabChromeLayers(current => [...current.slice(-1), nextLayer]);
-    Animated.timing(nextLayer.fade, {
-      toValue: 1,
-      duration: TAB_BACKGROUND_TRANSITION_MS,
-      easing: Easing.inOut(Easing.cubic),
-      useNativeDriver: TAB_CHROME_TRANSITION_USE_NATIVE_DRIVER,
-    }).start();
-  }, [cancelTabChromeLayerCleanupTasks, removeTabChromeLayerAfterCommit, tabChromeBarBg, tabChromeKey, tabChromeSafeBg, tabChromeWrapBg]);
 
   return (
     <ScreenGradient artBackdrop="home" style={{ flex: 1 }} staticParallaxY={HOME_ENTRANCE.bgDriftPx}>
@@ -338,33 +230,37 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
               </TabSlider>
             </GestureHandlerRootView>
           </View>
-          <View style={s.tabBarWrap}>
-            <View pointerEvents="none" style={s.tabChromeFill}>
-              {tabChromeLayers.map(layer => renderTabChromeLayer(layer, 'wrap', layer.wrapBg))}
-            </View>
+          {/* Плавающая «капсула» (Instagram/Telegram): отрывается от краёв, парит над контентом,
+              полупрозрачный blur-фон. Обёртка по-прежнему резервирует ту же высоту в потоке,
+              поэтому padding контента и use-global-bottom-overlay-offset не меняются. */}
+          <View
+            style={[s.tabBarWrap, { height: tabBarHeight + PB }]}
+            pointerEvents="box-none"
+          >
             <View
               style={[
-                s.tabBar,
+                s.tabPill,
                 {
+                  bottom: Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP,
+                  marginHorizontal: ds.spacing.lg,
                   height: tabBarHeight,
-                  backgroundColor: 'transparent',
-                  borderTopColor: t.border,
-                  borderTopWidth: isMinimal ? 1 : 0.5,
-                  borderTopLeftRadius: isMinimal ? ds.radius.xl : 0,
-                  borderTopRightRadius: isMinimal ? ds.radius.xl : 0,
-                  paddingTop: isMinimal ? ds.spacing.sm : 6,
-                  paddingHorizontal: isMinimal ? ds.spacing.md : 0,
-                  ...ds.shadow.soft,
+                  borderRadius: tabBarHeight / 2,
+                  borderColor: t.borderHighlight,
+                  shadowColor: t.shadowDark,
                 },
               ]}
             >
-              <View pointerEvents="none" style={s.tabChromeFill}>
-                {tabChromeLayers.map(layer => renderTabChromeLayer(layer, 'bar', layer.barBg))}
-              </View>
+              <BlurView
+                intensity={isMinimal ? 40 : 60}
+                tint={statusBarLight ? 'dark' : 'light'}
+                style={s.tabPillFill}
+              />
+              {/* Полупрозрачная подложка-тон поверх blur — стабильный вид на Android, где blur слабее. */}
+              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: tabPillTintBg }]} />
+
               {TABS.map((tab, i) => {
                 const focused = activeIdx === i;
                 const color = focused ? t.accent : t.textMuted;
-                const label = isES ? tab.es : isUK ? tab.uk : tab.ru;
                 return (
                   <TouchableOpacity
                     key={tab.key}
@@ -376,30 +272,24 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                     onPress={() => { goToTab(i); }}
                     activeOpacity={0.7}
                   >
-                    {focused && <View style={[s.indicator, { backgroundColor: t.accent }]} />}
-
+                    {/* Подсветка активного таба — мягкая «пилюля» под иконкой (как в Instagram). */}
+                    {focused && (
+                      <View
+                        style={[
+                          s.tabActivePill,
+                          { backgroundColor: t.accentBg, borderColor: t.borderHighlight },
+                        ]}
+                      />
+                    )}
                     <Ionicons
                       name={focused ? tab.active : tab.icon}
-                      size={22}
+                      size={26}
                       color={color}
                     />
-
-                    <Text
-                      style={[s.tabLabel, { color, fontWeight: focused ? '600' : '400', fontSize: f.label }]}
-                      numberOfLines={1}
-                    >
-                      {label}
-                    </Text>
                   </TouchableOpacity>
                 );
               })}
             </View>
-            <View style={[s.tabSafeInset, { height: PB }]}>
-              <View pointerEvents="none" style={s.tabChromeFill}>
-                {tabChromeLayers.map(layer => renderTabChromeLayer(layer, 'safe', layer.safeBg))}
-              </View>
-            </View>
-
           </View>
         </View>
       </View>
@@ -551,14 +441,33 @@ const s = StyleSheet.create({
   },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },
-  /** Не absolute: панель — последний flex-элемент, всегда видна и кликабельна. */
+  /** Обёртка резервирует высоту бара в потоке (контент над ней не меняется); сама прозрачна,
+   *  капсула внутри позиционируется absolute снизу. box-none — тапы проходят мимо пустых зон. */
   tabBarWrap: { width: '100%', flexShrink: 0, zIndex: 1, elevation: 8, position: 'relative', backgroundColor: 'transparent' },
-  tabBar:     { flexDirection: 'row', borderTopWidth: 0.5, paddingTop: 6, position: 'relative', overflow: 'hidden' },
-  tabSafeInset: { position: 'relative', overflow: 'hidden', backgroundColor: 'transparent' },
-  tabChromeFill: { ...StyleSheet.absoluteFillObject },
-  tabBtn:     { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, position: 'relative', zIndex: 10 },
-  indicator:  { position: 'absolute', top: -6, left: '25%', right: '25%', height: 2, borderRadius: 1 },
-  /** alignSelf + textAlign: иначе на iOS подпись может схлопнуться в «узкую колонку» и рисоваться вертикально */
-  tabLabel:   { fontSize: 10, letterSpacing: 0.1, textAlign: 'center', alignSelf: 'stretch' },
+  /** Плавающая капсула: отрывается от низа и краёв, полностью скруглена, со своим blur-фоном. */
+  tabPill: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    overflow: 'hidden',
+    borderWidth: StyleSheet.hairlineWidth,
+    // Объёмная тень, чтобы капсула «парила» над контентом.
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.28,
+    shadowRadius: 16,
+    elevation: 12,
+  },
+  tabPillFill: { ...StyleSheet.absoluteFillObject },
+  tabBtn:     { flex: 1, alignItems: 'center', justifyContent: 'center', alignSelf: 'stretch', position: 'relative', zIndex: 10 },
+  /** Подсветка активного таба внутри капсулы — мягкая пилюля под иконкой. */
+  tabActivePill: {
+    position: 'absolute',
+    width: 48,
+    height: 36,
+    borderRadius: 18,
+    borderWidth: StyleSheet.hairlineWidth,
+  },
 
 });

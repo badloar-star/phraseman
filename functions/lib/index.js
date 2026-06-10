@@ -59,6 +59,8 @@ const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, league
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink } = require('./auth_identity');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { authMergeStableAccounts } = require('./auth_merge');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { accountDeleteMine } = require('./account_delete');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leaderboardUpdateDailyAnalytics, nameCheckAvailability, nameReserve, nameReleaseMine, } = require('./leaderboard');
@@ -90,6 +92,14 @@ const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('.
 const { scorePronunciationAttempt } = require('./pronunciation_scoring');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated, referralClaimVipReward, referralListMyInvites, } = require('./referral');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { premiumDialogSend } = require('./premium_dialog');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { explainPhrase } = require('./explain_phrase');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitExplainReport } = require('./explain/explain_reports');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { adminAlertOnUserReport, adminAlertOnCriticalError, adminAlertOnContentReport, adminAlertContentReportDigest, adminAlertOnCancelSurvey, adminAlertOnUgcRefund, adminAlertOnConfigWritten, } = require('./admin_alerts');
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
 exports.leagueChatReportMessage = leagueChatReportMessage;
@@ -98,6 +108,7 @@ exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
 exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
+exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
@@ -128,6 +139,16 @@ exports.referralApply = referralApply;
 exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
+exports.premiumDialogSend = premiumDialogSend;
+exports.explainPhrase = explainPhrase;
+exports.submitExplainReport = submitExplainReport;
+exports.adminAlertOnUserReport = adminAlertOnUserReport;
+exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
+exports.adminAlertOnContentReport = adminAlertOnContentReport;
+exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
+exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
+exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
+exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 const LEVELS = ['I', 'II', 'III'];
 const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'];

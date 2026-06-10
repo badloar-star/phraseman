@@ -284,7 +284,7 @@ export default function DuelRatingScreen() {
       </View>
 
       <BouncyWrap style={bouncyStyle}>
-      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false} bounces alwaysBounceVertical overScrollMode="always" onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {/* Моя карточка */}
         <LinearGradient
           colors={t.cardGradient}

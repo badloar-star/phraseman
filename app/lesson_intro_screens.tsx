@@ -19,6 +19,7 @@ import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
+import DuoPressable from '../components/DuoPressable';
 import TopFadeMask from '../components/TopFadeMask';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import CompassDepthSurface from '../components/CompassDepthSurface';
@@ -1190,31 +1191,31 @@ export default function LessonIntroScreens({
       ]}
     >
       <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
-        <TouchableOpacity testID="lesson-intro-start" accessibilityRole="button" accessibilityLabel={startLabel} activeOpacity={0.88} onPress={handleStart}>
-          <LinearGradient
-            colors={isCompassTheme ? COMPASS_GRADIENTS.primaryButton : [`${t.accent}`, `${t.correct}`]}
-            locations={isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={[
-              styles.ctaBtn,
-              {
-                borderRadius: isCompassTheme ? 9 : 18,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.borderHighlight,
-                shadowColor: isCompassTheme ? '#000000' : t.accent,
-                ...(isCompassTheme ? compassShadow(2) : null),
-              },
-            ]}
-          >
-            {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-            <Text style={[styles.ctaText, { color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.bodyLg }]}>
-              {startLabel}
-            </Text>
-            <View style={[styles.ctaIconWrap, isCompassTheme && { backgroundColor: 'rgba(21,16,8,0.12)', borderRadius: 8 }]}>
-              <Ionicons name="arrow-forward" size={18} color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
-            </View>
-          </LinearGradient>
-        </TouchableOpacity>
+        <DuoPressable
+          testID="lesson-intro-start"
+          accessibilityLabel={startLabel}
+          onPress={handleStart}
+          gradientColors={isCompassTheme ? COMPASS_GRADIENTS.primaryButton : [`${t.accent}`, `${t.correct}`]}
+          gradientStart={{ x: 0, y: 0 }}
+          gradientEnd={{ x: 1, y: 1 }}
+          edgeColor={isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct}
+          style={[
+            styles.ctaBtn,
+            {
+              borderRadius: isCompassTheme ? 9 : 18,
+              borderWidth: 1,
+              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.borderHighlight,
+            },
+          ]}
+        >
+          {isCompassTheme && <CompassDepthSurface radius={9} cream />}
+          <Text style={[styles.ctaText, { color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.bodyLg }]}>
+            {startLabel}
+          </Text>
+          <View style={[styles.ctaIconWrap, isCompassTheme && { backgroundColor: 'rgba(21,16,8,0.12)', borderRadius: 8 }]}>
+            <Ionicons name="arrow-forward" size={18} color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
+          </View>
+        </DuoPressable>
       </Animated.View>
     </Animated.View>
   );

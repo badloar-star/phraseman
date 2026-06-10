@@ -460,6 +460,9 @@ export default function LessonsTab() {
         { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } })}
         contentContainerStyle={{ paddingBottom: 40, paddingTop: insets.top }}
         decelerationRate="normal"
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
       >
 
         {/* Хедер */}

@@ -40,6 +40,7 @@ import {
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
   ensureStableAuthLinkForStableId,
+  mergeStableAccountsViaServer,
 } from './cloud_sync';
 import { reserveName } from './firestore_leaderboard';
 import { loadShardsFromCloud } from './shards_system';
@@ -768,14 +769,6 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     remoteStableId = null;
   }
 
-  if (remoteStableId) {
-    const remoteAuthLinked = await ensureStableAuthLinkForStableId(remoteStableId);
-    if (!remoteAuthLinked) {
-      captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed');
-      return { result: 'error', error: 'auth_link_failed' };
-    }
-  }
-
   type Outcome =
     | { kind: 'linked_existing' }
     | { kind: 'created_new' }
@@ -783,8 +776,40 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     | { kind: 'merged_swap_to_remote'; remoteStableId: string; mergedFromStableId: string };
 
   let outcome: Outcome;
-  try {
-    outcome = await db.runTransaction(async (tx: any) => {
+
+  if (remoteStableId) {
+    // ── Cross-device merge: provider already maps to a DIFFERENT stable_id. ────
+    // Раньше здесь крутилась клиентская транзакция, читавшая users/{remoteStableId};
+    // это запрещено Firestore rules (read требует firebaseAuthUid == auth.uid у
+    // ДРУГОГО устройства) → транзакция падала → merge не происходил → ДВА аккаунта.
+    // Теперь слияние делает Cloud Function authMergeStableAccounts (Admin SDK,
+    // обходит правила, политика «лучшее по каждому полю», premium/VIP сохраняются).
+    const merge = await mergeStableAccountsViaServer(localStableId, remoteStableId);
+    if (!merge || !merge.ok || !merge.canonicalStableId) {
+      // Серверный merge недоступен/упал — НЕ плодим третий профиль и НЕ свапаем
+      // stable_id вслепую. Лучше явная ошибка входа, чем потеря/дублирование данных.
+      captureAuthSignInFailure(provider, 'merge', 'server_merge_failed');
+      return { result: 'error', error: 'merge_failed' };
+    }
+
+    const canonical = merge.canonicalStableId.trim();
+    if (canonical === localStableId) {
+      // Данные remote влиты в локальный аккаунт на сервере — просто остаёмся здесь.
+      outcome = merge.mergedFromStableId
+        ? { kind: 'merged_keep_local', mergedFromStableId: merge.mergedFromStableId }
+        : { kind: 'linked_existing' };
+    } else {
+      // Canonical — другой stable_id (обычно remote): свапаем на него.
+      outcome = {
+        kind: 'merged_swap_to_remote',
+        remoteStableId: canonical,
+        mergedFromStableId: merge.mergedFromStableId ?? localStableId,
+      };
+    }
+    // Падаем в общий post-transaction обработчик ниже (swap/restore/RevenueCat).
+  } else {
+    try {
+      outcome = await db.runTransaction(async (tx: any) => {
       const linkSnap = await tx.get(linkRef);
 
       if (linkSnap.exists) {
@@ -974,6 +999,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     const errStr = `transaction_${e?.message ?? 'unknown'}`.slice(0, 80);
     captureAuthSignInFailure(provider, 'transaction', errStr);
     return { result: 'error', error: errStr };
+    }
   }
 
   // 4. Post-transaction: handle stable_id swap if needed

@@ -26,6 +26,7 @@ import {
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
 import AddToFlashcard from './AddToFlashcard';
+import ExplainButton from './ExplainButton';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -325,6 +326,14 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                 </Text>
               </View>
 
+              {/* «Объясни как для 5-летнего» — self-hides когда флаг OFF (Фаза 5). */}
+              <ExplainButton
+                phraseEn={phrase.english}
+                phraseMeaning={phraseCopy.meaning || phrase.meaning}
+                lang={lang}
+                style={styles.explainButton}
+              />
+
               <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
                 {phraseCopy.text}
               </Text>
@@ -566,6 +575,9 @@ const styles = StyleSheet.create({
   storyText: {
     fontWeight: '500',
     lineHeight: 23,
+  },
+  explainButton: {
+    marginTop: 2,
   },
   saveRow: {
     borderTopWidth: 1,

@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
+import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -946,24 +947,25 @@ export default function LessonComplete() {
             </Text>
           </View>
 
-          {/* Следующий урок */}
+          {/* Следующий урок — Duolingo-кнопка (вдавливается в кромку при нажатии) */}
           {lessonId < 32 && !showPremiumBanner && (
-            <TouchableOpacity
+            <DuoPressable
               testID="lesson-complete-next-lesson"
+              edgeColor={isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border}
+              wrapStyle={{ marginBottom: 12 }}
               style={{
                 width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.bgSurface,
-                borderRadius: isCompassTheme ? 9 : 16, padding: 18, alignItems: 'center',
-                borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, marginBottom: 12,
+                borderRadius: isCompassTheme ? 9 : 16, padding: 18,
+                borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border,
                 overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(2) : null),
               }}
-              onPress={() => { hapticTap(); goNext(); }} activeOpacity={0.85}
+              onPress={goNext}
             >
               {isCompassTheme && <CompassDepthSurface radius={9} cream />}
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.textPrimary, fontSize: 18, fontWeight: '700' }}>
                 {c.nextLesson} {lessonId + 1} →
               </Text>
-            </TouchableOpacity>
+            </DuoPressable>
           )}
 
           {/* Premium-баннер: появляется вместо перехода на пейвол — пользователь уже видел результат */}
@@ -1024,28 +1026,27 @@ export default function LessonComplete() {
             </Animated.View>
           )}
 
-          {/* Повторить урок */}
-          <TouchableOpacity
+          {/* Повторить урок — Duolingo-кнопка */}
+          <DuoPressable
             testID="lesson-complete-repeat"
+            edgeColor={isCompassTheme ? COMPASS_RICH.hairline : t.accent}
+            wrapStyle={{ marginBottom: 14 }}
             style={{
               width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.accentBg,
-              borderRadius: isCompassTheme ? 9 : 16, padding: 16, alignItems: 'center',
-              borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.accent, marginBottom: 14,
+              borderRadius: isCompassTheme ? 9 : 16, padding: 16,
+              borderWidth: 0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.accent,
               flexDirection: 'row', justifyContent: 'center', gap: 8,
               overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(1) : null),
             }}
             onPress={() => {
-              hapticTap();
               void (async () => { await primeLessonScreenFromStorage(lessonId, studyTarget); router.replace({ pathname: '/lesson1', params: { id: lessonId } }); })();
             }}
-            activeOpacity={0.85}
           >
             {isCompassTheme && <CompassDepthSurface radius={9} selected />}
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : t.accent, fontSize: 16, fontWeight: '600' }}>
               ↺ {c.repeatLesson}
             </Text>
-          </TouchableOpacity>
+          </DuoPressable>
 
           {/* Поделиться результатом */}
           <TouchableOpacity

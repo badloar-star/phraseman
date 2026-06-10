@@ -7,6 +7,7 @@ import {
 import { Image } from 'expo-image';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../../components/TapScale';
+import DuoPressable from '../../components/DuoPressable';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
@@ -96,9 +97,11 @@ import { checkAchievements } from '../achievements';
 import { ReferralExplainerCard } from '../referral_explainer_card';
 import { ReferralAccessActivatedModal } from '../referral_access_activated_modal';
 import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
+import { ReferralsListModal } from '../referrals_list_modal';
 import {
   getClaimableReferralState,
   claimReferralVipDays,
+  summarizeInvites,
   type ReferralInvite,
 } from '../referral_vip';
 import { buildCloudReferralInviteShare } from '../referral_invite_share';
@@ -599,11 +602,11 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
         )}
       </View>
       <View style={{ gap: 8, alignSelf: 'center' }}>
-        <TapScale
+        <DuoPressable
           testID={`friend-request-accept-${profile.uid}`}
           onPress={onAccept}
-          scaleTo={0.96}
-          style={{ backgroundColor: t.accent, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, minWidth: 96, alignItems: 'center' }}
+          edgeColor={t.accent}
+          style={{ backgroundColor: t.accent, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, minWidth: 96 }}
         >
           <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>
             {triLang(lang as any, {
@@ -617,7 +620,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
               pl: 'Przyjmij',
             })}
           </Text>
-        </TapScale>
+        </DuoPressable>
         <TapScale
           testID={`friend-request-decline-${profile.uid}`}
           onPress={onDecline}
@@ -705,14 +708,14 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
           <Ionicons name="close-circle" size={22} color={t.textMuted} />
         </TapScale>
       </View>
-      <TapScale
+      <DuoPressable
         testID="friends-add-found"
         onPress={onAdd}
         disabled={isAdding}
-        scaleTo={0.96}
+        edgeColor={t.accent}
         style={{
           backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14,
-          alignItems: 'center', opacity: isAdding ? 0.6 : 1,
+          opacity: isAdding ? 0.6 : 1,
           flexDirection: 'row', justifyContent: 'center', gap: 8,
         }}
       >
@@ -729,7 +732,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
             pl: 'Dodaj znajomego',
           })}
         </Text>
-      </TapScale>
+      </DuoPressable>
     </View>
   );
 }
@@ -1477,6 +1480,7 @@ export default function FriendsTabScreen() {
   const [isClaiming, setIsClaiming] = useState(false);
   const [activatedModal, setActivatedModal] = useState<{ days: number; friends: number } | null>(null);
   const [accessEndedOpen, setAccessEndedOpen] = useState(false);
+  const [referralsModalOpen, setReferralsModalOpen] = useState(false);
 
   const refreshReferralState = useCallback(async () => {
     if (!isReferralCloudEnabled()) return;
@@ -2169,6 +2173,9 @@ export default function FriendsTabScreen() {
     return map;
   }, [referralInvites]);
 
+  /** Сводка по статусам приглашений — для бейджа на кнопке хедера и модалки. */
+  const referralSummary = useMemo(() => summarizeInvites(referralInvites), [referralInvites]);
+
   const PX = 16;
 
   // ── Render ─────────────────────────────────────────────────────────────────
@@ -2183,6 +2190,9 @@ export default function FriendsTabScreen() {
         contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX, paddingTop: insets.top }}
         decelerationRate="normal"
         scrollEventThrottle={16}
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } },
@@ -2205,6 +2215,38 @@ export default function FriendsTabScreen() {
           <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5, flex: 1 }}>
             {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
           </Text>
+          {isReferralCloudEnabled() && (
+            <TouchableOpacity
+              testID="friends-open-referrals"
+              accessibilityRole="button"
+              accessibilityLabel={L('Мои рефералы', 'Мої реферали', 'Mis referidos', 'Meus indicados', 'Lời mời của tôi', 'Referal saya', 'Davetlerim', 'Moje polecenia')}
+              onPressIn={() => hapticTap()}
+              onPress={() => setReferralsModalOpen(true)}
+              activeOpacity={0.8}
+              style={{
+                width: 40, height: 40, borderRadius: 20,
+                backgroundColor: chrome.button, borderWidth: 0.5, borderColor: chrome.border,
+                justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 10,
+              }}
+            >
+              <Ionicons name="gift-outline" size={18} color={t.textPrimary} />
+              {referralSummary.qualified > 0 && (
+                <View
+                  style={{
+                    position: 'absolute', top: -3, right: -3,
+                    minWidth: 18, height: 18, borderRadius: 9,
+                    backgroundColor: t.correct ?? '#34C759',
+                    borderWidth: 1.5, borderColor: t.bgPrimary ?? '#000',
+                    alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4,
+                  }}
+                >
+                  <Text style={{ color: t.correctText ?? '#fff', fontSize: 10, fontWeight: '900' }}>
+                    {referralSummary.qualified}
+                  </Text>
+                </View>
+              )}
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             testID="friends-open-add"
             onPressIn={() => hapticTap()}
@@ -2279,7 +2321,6 @@ export default function FriendsTabScreen() {
                     key={req.fromUid}
                     profile={profiles[req.fromUid] ?? placeholderFriendProfile(req.fromUid)}
                     onAccept={() => {
-                      hapticTap();
                       acceptFriendRequest(req.fromUid)
                         .then(() => { void invalidateFriendsActivityCache(); })
                         .catch(() => {
@@ -2329,16 +2370,18 @@ export default function FriendsTabScreen() {
                   )}
                 </Text>
                 <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
-                  <TapScale
+                  <DuoPressable
                     testID="friends-empty-invite"
                     onPress={() => { void handleShare(); }}
-                    style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: t.accent, borderRadius: 14, paddingVertical: 13 }}
+                    edgeColor={t.accent}
+                    wrapStyle={{ flex: 1 }}
+                    style={{ flexDirection: 'row', justifyContent: 'center', gap: 6, backgroundColor: t.accent, borderRadius: 14, paddingVertical: 13 }}
                   >
                     <Ionicons name="share-social" size={17} color={t.correctText} />
                     <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>
                       {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
                     </Text>
-                  </TapScale>
+                  </DuoPressable>
                   <TapScale
                     testID="friends-empty-addcode"
                     onPress={() => { hapticTap(); setAddModalOpen(true); }}
@@ -2804,6 +2847,20 @@ export default function FriendsTabScreen() {
         onClose={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); }}
         L={L}
         t={t}
+      />
+
+      <ReferralsListModal
+        visible={referralsModalOpen}
+        onClose={() => setReferralsModalOpen(false)}
+        invites={referralInvites}
+        claimableDays={claimableDays}
+        claiming={isClaiming}
+        onClaim={() => { setReferralsModalOpen(false); void handleReferralClaim(); }}
+        onInvite={() => { setReferralsModalOpen(false); void handleReferralInvite(); }}
+        lang={lang}
+        t={t}
+        f={f}
+        chrome={chrome}
       />
 
       <UnifiedPlayerModal

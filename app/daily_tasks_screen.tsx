@@ -2224,7 +2224,7 @@ export default function DailyTasksScreen() {
         </Animated.View>)}
 
       <BouncyWrap style={bouncyStyle}>
-      <ScrollView decelerationRate="normal" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
 
         {/* Прогресс */}
         {(trioClaimButtonEnabled || trioShardsClaimed) && (<View style={[

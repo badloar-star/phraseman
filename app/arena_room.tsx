@@ -549,6 +549,9 @@ export default function ArenaRoomScreen() {
       <ScrollView
         testID="screen-arena-room"
         decelerationRate="normal"
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         contentContainerStyle={{ padding: 20, paddingTop: insets.top + 20, gap: 16, paddingBottom: 40 }}
         keyboardShouldPersistTaps="handled"
         scrollEventThrottle={16}

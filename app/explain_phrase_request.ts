@@ -1,0 +1,172 @@
+/**
+ * Хук запроса объяснения для шторки «Объясни как для 5-летнего» (план 04).
+ *
+ * v1 НЕ стримит (см. CONTEXT «Streaming: explicit status»): httpsCallable отдаёт
+ * один ответ, поэтому хук просто вызывает callExplainPhrase на открытии и держит
+ * {loading, text, status, fromCache, error}. Cache HIT → текст приходит сразу;
+ * cache MISS → пока промис не зарезолвился, loading=true и UI показывает скелетон.
+ *
+ * ИНВАРИАНТ: клиент НЕ решает «годен/не годен». Хук рендерит то, что вернул сервер
+ * (включая серверный fallback при status 'rejected'/'exhausted'/'pending'). На сетевой
+ * ошибке (промис упал) сервер ничего не вернул — выставляем error, а UI показывает
+ * собственный мягкий fallback-текст (никогда сырой стек).
+ *
+ * Чистые хелперы (resolveExplainDisplay / loadingLineForLang) вынесены наружу, чтобы
+ * их можно было покрыть unit-тестами без рендера RN-дерева (jest здесь node-окружение).
+ */
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  callExplainPhrase,
+  type ExplainPhraseRequest,
+  type ExplainPhraseResponse,
+} from './explain_phrase_client';
+import { triLang, type Lang } from '../constants/i18n';
+import { SOURCE_LOCALES } from './source_locales';
+
+/**
+ * Сузить произвольную строку языка до Lang для triLang (контракт клиента — string,
+ * а triLang требует Lang). Неизвестный язык → 'ru' (как и legacyRuUk по умолчанию).
+ * Экспортируется, чтобы компоненты не дублировали приведение.
+ */
+export function asLang(lang: string): Lang {
+  return (SOURCE_LOCALES as readonly string[]).includes(lang) ? (lang as Lang) : 'ru';
+}
+
+/** Статусы из контракта CF (plan-02) + локальный 'error' для сетевого сбоя. */
+export type ExplainRequestStatus = ExplainPhraseResponse['status'] | 'error';
+
+/** Состояние запроса, которым живёт шторка. */
+export interface ExplainRequestState {
+  /** true пока идёт генерация/сетевой вызов и текста ещё нет (cache MISS). */
+  loading: boolean;
+  /** Текст объяснения (или серверный fallback). Пусто, пока грузится. */
+  text: string;
+  /** Статус ответа сервера, либо 'error' при упавшем промисе. */
+  status: ExplainRequestStatus;
+  /** Пришло ли из глобального кэша (для аналитики и «мгновенного» UX). */
+  fromCache: boolean;
+  /** true, если сетевой вызов упал (сервер ничего не вернул). */
+  error: boolean;
+}
+
+const INITIAL_STATE: ExplainRequestState = {
+  loading: true,
+  text: '',
+  status: 'pending',
+  fromCache: false,
+  error: false,
+};
+
+/**
+ * Что реально показать в теле шторки.
+ * Чистая функция: на ошибке возвращает мягкий локализованный fallback, иначе —
+ * серверный text как есть. КЛИЕНТ НЕ правит и НЕ оценивает текст сервера.
+ */
+export function resolveExplainDisplay(
+  state: ExplainRequestState,
+  lang: string,
+  fallbackMeaning: string,
+): { showSkeleton: boolean; text: string } {
+  if (state.loading) {
+    return { showSkeleton: true, text: '' };
+  }
+  if (state.error) {
+    // Сеть упала — сервер ничего не отдал. Показываем мягкий запасной текст,
+    // опираясь на родной перевод фразы, который уже есть на клиенте.
+    const trimmed = (fallbackMeaning ?? '').trim();
+    const safeLang = asLang(lang);
+    const intro = triLang(safeLang, {
+      ru: 'Не получилось загрузить объяснение. Если коротко:',
+      uk: 'Не вдалося завантажити пояснення. Якщо коротко:',
+      es: 'No se pudo cargar la explicación. En resumen:',
+      'pt-BR': 'Não foi possível carregar a explicação. Resumindo:',
+      vi: 'Không tải được phần giải thích. Tóm lại:',
+      id: 'Penjelasan gagal dimuat. Singkatnya:',
+      tr: 'Açıklama yüklenemedi. Kısacası:',
+      pl: 'Nie udało się wczytać wyjaśnienia. W skrócie:',
+    });
+    const text = trimmed ? `${intro} ${trimmed}` : triLang(safeLang, {
+      ru: 'Не получилось загрузить объяснение. Попробуй ещё раз позже.',
+      uk: 'Не вдалося завантажити пояснення. Спробуй ще раз пізніше.',
+      es: 'No se pudo cargar la explicación. Inténtalo de nuevo más tarde.',
+      'pt-BR': 'Não foi possível carregar a explicação. Tente de novo mais tarde.',
+      vi: 'Không tải được phần giải thích. Hãy thử lại sau.',
+      id: 'Penjelasan gagal dimuat. Coba lagi nanti.',
+      tr: 'Açıklama yüklenemedi. Daha sonra tekrar dene.',
+      pl: 'Nie udało się wczytać wyjaśnienia. Spróbuj ponownie później.',
+    });
+    return { showSkeleton: false, text };
+  }
+  // status 'ok' | 'rejected' | 'exhausted' | 'pending' — сервер ВСЕГДА положил text
+  // (для не-ok это его собственный fallback). Рендерим как есть.
+  return { showSkeleton: false, text: state.text };
+}
+
+/** Дружелюбная строка скелетон-лоадера на время генерации (cache MISS). */
+export function loadingLineForLang(lang: string): string {
+  return triLang(asLang(lang), {
+    ru: '👶 готовлю объяснение…',
+    uk: '👶 готую пояснення…',
+    es: '👶 preparando la explicación…',
+    'pt-BR': '👶 preparando a explicação…',
+    vi: '👶 đang chuẩn bị lời giải thích…',
+    id: '👶 menyiapkan penjelasan…',
+    tr: '👶 açıklama hazırlanıyor…',
+    pl: '👶 przygotowuję wyjaśnienie…',
+  });
+}
+
+/**
+ * Запросить объяснение фразы. Вызывается на открытии шторки (enabled=true).
+ * Повторный вызов при той же фразе не дёргает сеть, если уже есть результат.
+ */
+export function useExplainRequest(
+  req: ExplainPhraseRequest,
+  enabled: boolean,
+): ExplainRequestState {
+  const [state, setState] = useState<ExplainRequestState>(INITIAL_STATE);
+  // Сторожим против setState после размонтажа (шторку могли закрыть до ответа).
+  const mountedRef = useRef(true);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  const run = useCallback(async () => {
+    setState({ ...INITIAL_STATE, loading: true });
+    try {
+      const res = await callExplainPhrase(req);
+      if (!mountedRef.current) return;
+      setState({
+        loading: false,
+        text: res.text,
+        status: res.status,
+        fromCache: res.fromCache,
+        error: false,
+      });
+    } catch {
+      // Сетевой/транспортный сбой — сервер ничего не вернул. UI покажет мягкий
+      // fallback через resolveExplainDisplay. Никаких сырых стеков пользователю.
+      if (!mountedRef.current) return;
+      setState({
+        loading: false,
+        text: '',
+        status: 'error',
+        fromCache: false,
+        error: true,
+      });
+    }
+    // req раскладываем по полям: иначе новый объект-литерал на каждый рендер
+    // дёргал бы эффект бесконечно.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [req.phraseEn, req.phraseMeaning, req.lang]);
+
+  useEffect(() => {
+    if (!enabled) return;
+    void run();
+  }, [enabled, run]);
+
+  return state;
+}

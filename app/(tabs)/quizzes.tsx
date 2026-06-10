@@ -62,6 +62,8 @@ import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
 
 import { useAudio } from '../../hooks/use-audio';
+import DuoPressable from '../../components/DuoPressable';
+import { useWordFlash } from '../../hooks/use-word-flash';
 import type { QuizPhrase } from '../quiz_data';
 import { ensureQuizPhrasesLoaded, getQuizPhrasesLoaded, prefetchQuizPhrases } from '../quiz_phrases_loader';
 import { isQuizChoiceCorrect, quizPrimaryCorrectIndex } from '../quiz_utils';
@@ -1028,6 +1030,9 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         showsVerticalScrollIndicator
         persistentScrollbar
         indicatorStyle={themeMode === 'minimalLight' ? 'black' : 'white'}
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         onScroll={onBouncyScroll}
         scrollEventThrottle={16}
       >
@@ -1421,6 +1426,7 @@ function QuizGame({
   );
 
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const { flashKey, flash } = useWordFlash();
   const [idx,      setIdx]      = useState(0);
   const [chosen,   setChosen]   = useState<number|null>(null);
   const [typed,    setTyped]    = useState('');
@@ -2548,19 +2554,34 @@ function QuizGame({
           ) : (
             chosen === null && (
               <View style={{ gap: planQuizId ? 8 : 10 }}>
-                {(current.choices || []).map((ch, ci) => (
-                  <TouchableOpacity key={ci}
-                    style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth:1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 14, padding: planQuizId ? 12 : 18, minHeight: planQuizId ? 52 : undefined, justifyContent: 'center', overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
-                    onPress={() => { hapticTap(); handleChoice(ci); }} activeOpacity={0.8}
+                {(current.choices || []).map((ch, ci) => {
+                  const on = flashKey === `${ci}`;
+                  return (
+                  <DuoPressable
+                    key={ci}
+                    edgeHeight={5}
+                    withHaptic={false}
+                    edgeColor={on ? t.accent : (isCompassTheme ? 'rgba(0,0,0,0.35)' : 'rgba(0,0,0,0.30)')}
+                    style={[{
+                      backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard),
+                      borderWidth: on ? 1.5 : 1,
+                      borderColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border),
+                      borderRadius: isCompassTheme ? 9 : 14,
+                      padding: planQuizId ? 12 : 18,
+                      minHeight: planQuizId ? 52 : undefined,
+                      overflow: isCompassTheme ? 'hidden' : 'visible',
+                    }, isCompassTheme && compassShadow(1)]}
+                    onPress={() => { flash(`${ci}`); requestAnimationFrame(() => { void hapticTap(); }); handleChoice(ci); }}
                   >
-                    {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+                    {isCompassTheme && !on ? <CompassDepthSurface radius={9} quiet /> : null}
                     <Text
                       numberOfLines={planQuizId ? 2 : undefined}
                       adjustsFontSizeToFit={Boolean(planQuizId)}
-                      style={{ color:t.textPrimary, fontSize: planQuizId ? f.bodyLg : f.h2 + 2, lineHeight: (planQuizId ? f.bodyLg : f.h2 + 2) * 1.22, fontWeight:'600' }}
+                      style={{ color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: planQuizId ? f.bodyLg : f.h2 + 2, lineHeight: (planQuizId ? f.bodyLg : f.h2 + 2) * 1.22, fontWeight: on ? '700' : '600' }}
                     >{ch}</Text>
-                  </TouchableOpacity>
-                ))}
+                  </DuoPressable>
+                  );
+                })}
               </View>
             )
           )}

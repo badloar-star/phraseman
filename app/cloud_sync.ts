@@ -1027,6 +1027,48 @@ export async function ensureStableAuthLink(): Promise<boolean> {
   return ensureStableAuthLinkForStableId(stableId);
 }
 
+export type MergeStableAccountsResult = {
+  ok: boolean;
+  canonicalStableId: string;
+  mergedFromStableId: string | null;
+  alreadyMerged: boolean;
+};
+
+/**
+ * Сливает два stable-id аккаунта на СЕРВЕРЕ (Admin SDK, обходит Firestore rules).
+ * Заменяет клиентскую транзакцию слияния, которая падала по правам при чтении
+ * чужого users-дока (корень бага расслоения аккаунтов).
+ *
+ * Возвращает null, если вызов недоступен/упал — вызывающая сторона ОБЯЗАНА в этом
+ * случае НЕ переключать stable_id (лучше оставить как есть, чем создать третий
+ * профиль).
+ */
+export async function mergeStableAccountsViaServer(
+  stableIdA: string,
+  stableIdB: string,
+): Promise<MergeStableAccountsResult | null> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
+  const a = String(stableIdA || '').trim();
+  const b = String(stableIdB || '').trim();
+  if (!a || !b) return null;
+  try {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = callable<
+      { stableIdA: string; stableIdB: string },
+      MergeStableAccountsResult
+    >('authMergeStableAccounts');
+    const res = await withTimeout(
+      fn({ stableIdA: a, stableIdB: b }),
+      STABLE_AUTH_LINK_TIMEOUT_MS,
+      'auth_merge_callable',
+    );
+    return res?.data ?? null;
+  } catch (e) {
+    if (__DEV__) console.warn('[cloud_sync] mergeStableAccountsViaServer failed', e);
+    return null;
+  }
+}
+
 /**
  * Сбросить in-memory кеш ensureAnonAuthReady().
  * Вызывается из auth_provider.signOutCurrentProvider() после auth.signOut(),

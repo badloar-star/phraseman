@@ -272,3 +272,8 @@ functions/scripts/diag_*
 /maestro-tmp/
 /maestro*.xml
 /tools/intro_remotion/out/
+
+# scratch test artifacts (bounce-physics capture, etc.)
+_bounce_test.mp4
+_frames/
+/_*.mp4

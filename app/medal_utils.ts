@@ -164,8 +164,17 @@ export const saveMedalProgress = async (
     const newPass   = prevPass + 1;
     const newTier   = getMedalTier(newBest);
 
-    // Save best score for lesson medal/unlock state. Count a pass for strong silver+ runs.
-    const passCountIncreased = scoreForPass >= 4.5;
+    // Засчитываем «проход» ТОЛЬКО за идеальный прогон — ни одной ошибки за прохождение.
+    // Каждая клетка должна быть строго 'correct'. Клетка 'replay_correct' означает, что
+    // ошибка была (пусть и исправлена в повторе) → прогон не идеальный, проход не считается.
+    // Если массива прогресса нет (восстановление из облака и т.п.) — мягкий откат на оценку ≥ 4.5.
+    const hasProgressArr = Array.isArray(progressArr) && progressArr.length > 0;
+    const isPerfectRun = hasProgressArr
+      ? progressArr.length >= progressTotal && progressArr.every(x => x === 'correct')
+      : scoreForPass >= 4.5;
+
+    // Save best score for lesson medal/unlock state. Count a pass only for a flawless run.
+    const passCountIncreased = isPerfectRun;
     const writes: [string, string][] = [
       [lessonBestScoreKey(lessonId, studyTarget), String(newBest)],
     ];
@@ -344,6 +353,34 @@ export const getEarnedDots = (medalTier: MedalTier, passCount: number): string[]
   return dots;
 };
 
+// Затемняет hex-цвет (#RGB или #RRGGBB) на множитель factor (0..1 → темнее).
+// Не-hex значения (rgba/именованные) возвращаются как есть — без NaN.
+const darkenCorrectShade = (color: string, factor: number): string => {
+  const hex = color.trim();
+  let r: number, g: number, b: number;
+  if (/^#[0-9a-fA-F]{6}$/.test(hex)) {
+    r = parseInt(hex.slice(1, 3), 16);
+    g = parseInt(hex.slice(3, 5), 16);
+    b = parseInt(hex.slice(5, 7), 16);
+  } else if (/^#[0-9a-fA-F]{3}$/.test(hex)) {
+    r = parseInt(hex[1] + hex[1], 16);
+    g = parseInt(hex[2] + hex[2], 16);
+    b = parseInt(hex[3] + hex[3], 16);
+  } else {
+    return color; // нечего затемнять (rgba/имя цвета) — отдаём базовый
+  }
+  return `rgb(${Math.round(r * factor)},${Math.round(g * factor)},${Math.round(b * factor)})`;
+};
+
+// Множитель затемнения «правильного» цвета по числу пройденных раз.
+// Каждое следующее прохождение — тот же оттенок темы, но темнее (никогда не красный).
+const correctShadeFactor = (passCount: number): number => {
+  if (passCount >= 4) return 0.45; // самый тёмный
+  if (passCount === 3) return 0.60;
+  if (passCount === 2) return 0.78;
+  return 1;                        // 0–1 проход — базовый цвет темы
+};
+
 // ─── Цвет прогресс-бара клетки в зависимости от passCount и статуса
 export const getProgressCellColor = (
   status: string,
@@ -355,10 +392,9 @@ export const getProgressCellColor = (
   if (isCurrentCell) return 'rgba(255,255,255,0.85)';
   if (status === 'wrong') return t.wrong;
   if (status === 'correct' || status === 'replay_correct') {
-    if (passCount >= 4) return '#4FC3F7';  // diamond blue
-    if (passCount >= 3) return '#50C878';  // emerald green
-    if (passCount >= 2) return '#E53935';  // ruby red
-    return t.correct;                      // first pass — цвет темы
+    // Каждое следующее прохождение → более тёмный оттенок основного цвета темы.
+    // У каждой темы свой t.correct, поэтому оттенки тоже свои.
+    return darkenCorrectShade(t.correct, correctShadeFactor(passCount));
   }
   return t.bgSurface2;
 };

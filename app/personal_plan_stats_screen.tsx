@@ -194,6 +194,9 @@ export default function PersonalPlanStatsScreen() {
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
+          bounces
+          alwaysBounceVertical
+          overScrollMode="always"
           contentContainerStyle={styles.scroll}
           style={{ opacity: fade, transform: [{ translateY: slide }] }}
           onScroll={(e: any) => { onBouncyScroll(e); }}

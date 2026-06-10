@@ -74,6 +74,7 @@ import {
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { actionToastTri, emitAppEvent } from './events';
+import { getFreeDialogsPerDay, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ArenaLimitModal from '../components/ArenaLimitModal';
@@ -438,6 +439,16 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     label: '💎 Базовый (generic)',
     sub: 'Старт без context — дефолт',
     params: { context: 'generic' },
+  },
+  {
+    label: '🎙 Устно (speaking)',
+    sub: 'Замок на «Устно» в уроке/квизе/тренере для free',
+    params: { context: 'speaking' },
+  },
+  {
+    label: '💬 ИИ-диалог (ai_dialog)',
+    sub: 'Лимит бесплатного ИИ-диалога исчерпан',
+    params: { context: 'ai_dialog' },
   },
   {
     label: '🏋 Тренер — Premium режимы',
@@ -3193,6 +3204,87 @@ export default function SettingsTestersFunctions() {
                 t={t} f={f} doHaptic={doHaptic}
               />
             ))}
+          </AccordionSection>
+
+          {/* ── 4a1. SPEAKING MODE — все статусы ── */}
+          <AccordionSection id="speaking_mode" icon="mic-outline" title="🎙 Устно (Speaking) — все статусы" badge={9}
+            open={openSection === 'speaking_mode'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <ButtonRow icon="albums-outline"
+              label="🎬 Открыть лабораторию статусов"
+              sub="Все 8 состояний SpeakingPanel + пейвол speaking. Микрофон в превью инертен."
+              onPress={() => router.push('/admin_speaking_lab' as any)}
+              t={t} f={f} doHaptic={doHaptic} testID="testers-open-speaking-lab" />
+            <ButtonRow icon="diamond-outline"
+              label="🔒 Пейвол context='speaking'"
+              sub="Что видит free при тапе на «Устно» в уроке/квизе/тренере"
+              onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'speaking', source: 'admin_preview' } } as any)}
+              t={t} f={f} doHaptic={doHaptic} />
+          </AccordionSection>
+
+          {/* ── 4a2. AI DIALOGUE ── */}
+          <AccordionSection id="ai_dialogue" icon="chatbubbles-outline" title="💬 ИИ-диалог" badge={3}
+            open={openSection === 'ai_dialogue'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <ButtonRow icon="chatbubble-ellipses-outline"
+              label="💬 Открыть экран ИИ-диалога"
+              sub="ai_dialog_home — выбор сценария и запуск сессии"
+              onPress={() => router.push('/ai_dialog_home' as any)}
+              t={t} f={f} doHaptic={doHaptic} testID="testers-open-ai-dialog" />
+            <ButtonRow icon="diamond-outline"
+              label="🔒 Пейвол context='ai_dialog'"
+              sub="Когда бесплатный лимит ИИ-диалога исчерпан"
+              onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'ai_dialog', source: 'admin_preview' } } as any)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="information-circle-outline"
+              label={`ℹ️ Лимит: ${getFreeDialogsPerDay()}/день · диалоги ${isAiDialogEnabled() ? 'вкл' : 'выкл'}`}
+              sub="Счётчик дневного лимита считается на сервере (Cloud Function), сбросить из приложения нельзя"
+              onPress={() => {
+                emitAppEvent('action_toast', actionToastTri('info', {
+                  ru: 'Лимит ИИ-диалога серверный. Для сброса используй админ-веб (Cloud Function).',
+                  uk: 'Ліміт ШІ-діалогу серверний. Для скидання — адмін-веб (Cloud Function).',
+                  es: 'El límite del diálogo IA es del servidor. Reinícialo desde el admin web.',
+                  'pt-BR': 'O limite do diálogo de IA é do servidor. Reinicie pelo admin web.',
+                  vi: 'Giới hạn hội thoại AI ở phía máy chủ. Đặt lại qua admin web.',
+                  id: 'Batas dialog AI ada di server. Reset lewat admin web.',
+                  tr: 'AI diyalog limiti sunucuda. Sıfırlamak için admin web kullan.',
+                  pl: 'Limit dialogu AI jest po stronie serwera. Zresetuj przez admin web.',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic} />
+          </AccordionSection>
+
+          {/* ── 4a3. REFERRAL / VIP МОДАЛКИ ── */}
+          <AccordionSection id="referral_modals" icon="gift-outline" title="🎁 Referral / VIP — модалки" badge={2}
+            open={openSection === 'referral_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <ButtonRow icon="albums-outline"
+              label="🎬 Открыть лабораторию VIP-модалок"
+              sub="Activated (VIP открылся, 7/14/30 дней) и Ended (доступ истёк)"
+              onPress={() => router.push('/admin_referral_lab' as any)}
+              t={t} f={f} doHaptic={doHaptic} testID="testers-open-referral-lab" />
+            <ButtonRow icon="diamond-outline"
+              label="🔒 Пейвол после истечения VIP"
+              sub="context='generic', source='referral_ended'"
+              onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'referral_ended' } } as any)}
+              t={t} f={f} doHaptic={doHaptic} />
+          </AccordionSection>
+
+          {/* ── 4a4. ОШИБКИ / EDGE-СОСТОЯНИЯ ── */}
+          <AccordionSection id="error_states" icon="warning-outline" title="⚠️ Ошибки и edge-состояния" badge={3}
+            open={openSection === 'error_states'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <ButtonRow icon="mic-off-outline"
+              label="🚫 Отказ в правах микрофона (denied)"
+              sub="Состояние SpeakingPanel когда юзер запретил микрофон"
+              onPress={() => router.push('/admin_speaking_lab' as any)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="phone-portrait-outline"
+              label="📵 Устройство без распознавания (unavailable)"
+              sub="Нет expo-speech-recognition — режим говорения недоступен"
+              onPress={() => router.push('/admin_speaking_lab' as any)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="git-merge-outline"
+              label="🪪 Слияние аккаунтов / account-switch"
+              sub="Auth-matrix: смена аккаунта, отсутствие утечки VIP, server-side merge"
+              onPress={() => router.push('/admin_premium_delivery_test' as any)}
+              t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
           {/* ── 4b. MONETIZATION SCENARIOS ── */}

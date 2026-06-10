@@ -46,6 +46,7 @@ import { recordArenaClubWarContribution, type ArenaClubWarContributionResult } f
 import { recordArenaRoomRun, subscribeArenaRoomRuns, type ArenaRoomRun } from './services/arena_rooms_live';
 import { publishArenaPulseEvent } from './services/arena_pulse';
 import { safeRouterBack } from './navigation_back';
+import DuoPressable from '../components/DuoPressable';
 
 type ArenaReviewItem = {
   question: string;
@@ -1385,6 +1386,9 @@ export default function DuelResultsScreen() {
       <BouncyWrap style={bouncyStyle}>
       <ScrollView
         decelerationRate="normal"
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
         contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 16 }]}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
@@ -1994,26 +1998,27 @@ export default function DuelResultsScreen() {
                 </Text>
               )}
               <View style={{ flexDirection: 'row', gap: 8 }}>
-                <TouchableOpacity onPress={handleRematchAccept} activeOpacity={0.85} style={{ flex: 1 }}>
-                  <LinearGradient
-                    colors={[t.correct, t.correct + 'BB']}
-                    style={styles.rematchBtn}
-                    start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                  >
-                    <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.body }]}>
-                      {triLang(lang, {
-                        uk: '⚔️ Прийняти',
-                        ru: '⚔️ Принять',
-                        es: '⚔️ Aceptar',
-                        'pt-BR': "⚔️ Aceitar",
-                        vi: "⚔️ Chấp nhận",
-                        id: "⚔️ Terima",
-                        tr: "⚔️ Kabul et",
-                        pl: "⚔️ Akceptuj",
-                      })}
-                    </Text>
-                  </LinearGradient>
-                </TouchableOpacity>
+                <DuoPressable
+                  onPress={handleRematchAccept}
+                  gradientColors={[t.correct, t.correct + 'BB']}
+                  gradientStart={{ x: 0, y: 0 }}
+                  gradientEnd={{ x: 1, y: 1 }}
+                  wrapStyle={{ flex: 1 }}
+                  style={styles.rematchBtn}
+                >
+                  <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.body }]}>
+                    {triLang(lang, {
+                      uk: '⚔️ Прийняти',
+                      ru: '⚔️ Принять',
+                      es: '⚔️ Aceptar',
+                      'pt-BR': "⚔️ Aceitar",
+                      vi: "⚔️ Chấp nhận",
+                      id: "⚔️ Terima",
+                      tr: "⚔️ Kabul et",
+                      pl: "⚔️ Akceptuj",
+                    })}
+                  </Text>
+                </DuoPressable>
                 <TouchableOpacity
                   style={[styles.homeBtn, { flex: 1, borderColor: t.border, height: 60 }]}
                   onPress={handleRematchDecline}
@@ -2066,71 +2071,71 @@ export default function DuelResultsScreen() {
 
           {!rematchPending && (
             isMockSession ? (
-              <TouchableOpacity onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1', playAgainTs: String(Date.now()) } })} activeOpacity={0.85}>
-                <LinearGradient
-                  colors={[t.accent, t.accent + 'BB']}
-                  style={styles.rematchBtn}
-                  start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                >
-                  <Ionicons name="flash" size={20} color={t.correctText} />
-                  <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
-                    {triLang(lang, {
-                      uk: 'Ще раз!',
-                      ru: 'Ещё раз!',
-                      es: '¡Otra vez!',
-                      'pt-BR': "Mais uma!",
-                      vi: "Lại lần nữa!",
-                      id: "Sekali lagi!",
-                      tr: "Bir daha!",
-                      pl: "Jeszcze raz!",
-                    })}
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
+              <DuoPressable
+                onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1', playAgainTs: String(Date.now()) } })}
+                gradientColors={[t.accent, t.accent + 'BB']}
+                gradientStart={{ x: 0, y: 0 }}
+                gradientEnd={{ x: 1, y: 1 }}
+                style={styles.rematchBtn}
+              >
+                <Ionicons name="flash" size={20} color={t.correctText} />
+                <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
+                  {triLang(lang, {
+                    uk: 'Ще раз!',
+                    ru: 'Ещё раз!',
+                    es: '¡Otra vez!',
+                    'pt-BR': "Mais uma!",
+                    vi: "Lại lần nữa!",
+                    id: "Sekali lagi!",
+                    tr: "Bir daha!",
+                    pl: "Jeszcze raz!",
+                  })}
+                </Text>
+              </DuoPressable>
             ) : !isForfeited && !opponentSurrendered ? (
-              <TouchableOpacity onPress={handleRematchOffer} activeOpacity={0.85}>
-                <LinearGradient
-                  colors={[t.accent, t.accent + 'BB']}
-                  style={styles.rematchBtn}
-                  start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                >
-                  <Ionicons name="flash" size={20} color={t.correctText} />
-                  <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
-                    {triLang(lang, {
-                      ru: '🥊 Реванш',
-                      uk: '🥊 Реванш',
-                      es: '🥊 Revancha',
-                      'pt-BR': "🥊 Revanche",
-                      vi: "🥊 Tái đấu",
-                      id: "🥊 Rematch",
-                      tr: "🥊 Rövanş",
-                      pl: "🥊 Rewanż",
-                    })}
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
+              <DuoPressable
+                onPress={handleRematchOffer}
+                gradientColors={[t.accent, t.accent + 'BB']}
+                gradientStart={{ x: 0, y: 0 }}
+                gradientEnd={{ x: 1, y: 1 }}
+                style={styles.rematchBtn}
+              >
+                <Ionicons name="flash" size={20} color={t.correctText} />
+                <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
+                  {triLang(lang, {
+                    ru: '🥊 Реванш',
+                    uk: '🥊 Реванш',
+                    es: '🥊 Revancha',
+                    'pt-BR': "🥊 Revanche",
+                    vi: "🥊 Tái đấu",
+                    id: "🥊 Rematch",
+                    tr: "🥊 Rövanş",
+                    pl: "🥊 Rewanż",
+                  })}
+                </Text>
+              </DuoPressable>
             ) : (
-              <TouchableOpacity onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1', playAgainTs: String(Date.now()) } })} activeOpacity={0.85}>
-                <LinearGradient
-                  colors={[t.accent, t.accent + 'BB']}
-                  style={styles.rematchBtn}
-                  start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                >
-                  <Ionicons name="flash" size={20} color={t.correctText} />
-                  <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
-                    {triLang(lang, {
-                      ru: 'Ещё раз!',
-                      uk: 'Ще раз!',
-                      es: '¡Otra vez!',
-                      'pt-BR': "Mais uma!",
+              <DuoPressable
+                onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1', playAgainTs: String(Date.now()) } })}
+                gradientColors={[t.accent, t.accent + 'BB']}
+                gradientStart={{ x: 0, y: 0 }}
+                gradientEnd={{ x: 1, y: 1 }}
+                style={styles.rematchBtn}
+              >
+                <Ionicons name="flash" size={20} color={t.correctText} />
+                <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
+                  {triLang(lang, {
+                    ru: 'Ещё раз!',
+                    uk: 'Ще раз!',
+                    es: '¡Otra vez!',
+                    'pt-BR': "Mais uma!",
                       vi: "Lại lần nữa!",
-                      id: "Sekali lagi!",
-                      tr: "Bir daha!",
-                      pl: "Jeszcze raz!",
-                    })}
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
+                    id: "Sekali lagi!",
+                    tr: "Bir daha!",
+                    pl: "Jeszcze raz!",
+                  })}
+                </Text>
+              </DuoPressable>
             )
           )}
 

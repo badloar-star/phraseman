@@ -21,8 +21,16 @@ describe('auth provider stable-id linking', () => {
     expect(preTransactionSource).toMatch(/ensureStableAuthLinkForStableId\(localStableId\)/);
   });
 
-  test('signInWithProvider pre-links an existing remote stable id before merge writes', () => {
-    expect(preTransactionSource).toMatch(/ensureStableAuthLinkForStableId\(remoteStableId\)/);
+  test('cross-device merge (different remote stable id) is delegated to the server CF, not a client transaction', () => {
+    // Root cause of the account-split bug: the client transaction read the OTHER
+    // device's users/{remoteStableId}, which Firestore rules deny → transaction
+    // failed → no merge → two accounts. The merge now runs server-side (Admin SDK)
+    // via authMergeStableAccounts, and the client only swaps to the canonical id.
+    expect(source).toContain('mergeStableAccountsViaServer(localStableId, remoteStableId)');
+    expect(cloudSyncSource).toContain('export async function mergeStableAccountsViaServer');
+    expect(cloudSyncSource).toContain("'authMergeStableAccounts'");
+    // On a failed server merge we must NOT blindly swap / create a third profile.
+    expect(source).toContain("captureAuthSignInFailure(provider, 'merge', 'server_merge_failed')");
   });
 
   test('linkedAuth user patches carry firebaseAuthUid for Firestore owner rules', () => {

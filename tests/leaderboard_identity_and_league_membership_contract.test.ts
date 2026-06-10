@@ -51,7 +51,7 @@ describe('leaderboard identity and weekly league membership contract', () => {
     const leagues = read('functions/src/league_groups.ts');
     const leaderboard = read('functions/src/leaderboard.ts');
 
-    expect(identity).toContain('options?: { requireKnownIdentity?: boolean }');
+    expect(identity).toContain('requireKnownIdentity?: boolean');
     expect(identity).toContain("throw new HttpsError('failed-precondition', 'stable_id_required')");
     expect(leaderboard).toContain('{ requireKnownIdentity: true }');
     expect((leagues.match(/requireKnownIdentity: true/g) ?? [])).toHaveLength(3);
@@ -87,7 +87,7 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(functionsPkg.scripts['deploy:safe']).not.toContain('functions:cleanupLegacyIdentityDuplicatesCron');
   });
 
-  test('server nickname uniqueness is enforced by name_index transaction and leaderboard backstop', () => {
+  test('server nickname uniqueness is atomic on name_index and blocks on a live owner', () => {
     const source = read('functions/src/leaderboard.ts');
     const reserveStart = source.indexOf('export const nameReserve');
     expect(reserveStart).toBeGreaterThanOrEqual(0);
@@ -96,17 +96,25 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(source).toContain("const NAME_INDEX = 'name_index';");
     expect(source).toContain(".normalize('NFKC')");
     expect(source).toContain('return { name, nameLower: name.toLowerCase() };');
-    expect(source).toContain('function leaderboardDocIsVisible');
-    expect(source).toContain('async function nameOwnerIsActive');
-    expect(source).toContain('async function txNameOwnerIsActive');
-    expect(reserveBody).toContain("db.collection('leaderboard').where('nameLower', '==', nameLower).limit(8).get()");
-    expect(reserveBody).toContain('leaderboardDocIsVisible(d)');
+
+    // Uniqueness is decided ONLY by the name_index doc inside the transaction.
     expect(reserveBody).toContain('const nameRef = db.collection(NAME_INDEX).doc(nameLower);');
     expect(reserveBody).toContain('const nameSnap = await tx.get(nameRef);');
-    expect(reserveBody).toContain('txNameOwnerIsActive(tx, db, indexOwner)');
+    expect(reserveBody).toContain('txNameOwnerIsLive(tx, db, indexOwner)');
     expect(reserveBody).toContain("throw new HttpsError('already-exists', 'name_taken')");
     expect(reserveBody).toContain('tx.set(nameRef');
     expect(reserveBody).toContain("tx.set(db.collection('leaderboard').doc(stableUid)");
+
+    // Liveness is keyed on the OWNER'S USER DOC, not on a leaderboard row — this
+    // is the fix for the username-steal bug (live-but-unranked accounts).
+    expect(source).toContain('async function nameOwnerIsLive');
+    expect(source).toContain('async function txNameOwnerIsLive');
+
+    // The old race surfaces must be GONE: no out-of-transaction pre-check, no
+    // "owner has a visible leaderboard row" escape hatch.
+    expect(reserveBody).not.toContain(".where('nameLower', '==', nameLower).limit(8).get()");
+    expect(source).not.toContain('async function nameOwnerIsActive');
+    expect(source).not.toContain('async function txNameOwnerIsActive');
   });
 
   test('weekly league top members never backfill stale global leaderboard docs over real groups', () => {

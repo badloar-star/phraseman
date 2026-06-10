@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import DuoPressable from '../components/DuoPressable';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -2067,9 +2068,11 @@ export default function FlashcardsSwipeScreen() {
             </View>
           ))}
         </View>
-        <TouchableOpacity
+        <DuoPressable
           onPress={startSession}
           disabled={selectedSources.length === 0 || starting || loadingSources}
+          edgeColor={t.accent}
+          wrapStyle={{ marginTop: 14 }}
           style={[
             styles.heroStart,
             {
@@ -2080,7 +2083,7 @@ export default function FlashcardsSwipeScreen() {
         >
           <Ionicons name={starting ? 'sparkles-outline' : 'play'} size={20} color={t.correctText} />
           <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>{text.start}</Text>
-        </TouchableOpacity>
+        </DuoPressable>
       </View>
 
       <Text style={[styles.segmentLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.sourcesTitle}</Text>
@@ -2195,16 +2198,18 @@ export default function FlashcardsSwipeScreen() {
             ))}
           </View>
           <View style={[styles.doneButtons, isPlanFlashcardsTask && styles.planDoneButtons]}>
-            <TouchableOpacity
+            <DuoPressable
               onPress={() => {
                 void startSession();
               }}
+              edgeColor={t.accent}
+              wrapStyle={styles.doneButtonWrap}
               style={[styles.primaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.accent }]}
               accessibilityLabel={text.nextRound}
             >
               <Ionicons name="play" size={18} color={t.correctText} />
               <Text style={[styles.doneButtonText, { color: t.correctText, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.nextRound}</Text>
-            </TouchableOpacity>
+            </DuoPressable>
             <TouchableOpacity
               onPress={openSettings}
               style={[styles.secondaryDoneButton, isPlanFlashcardsTask && styles.planDoneButton, { backgroundColor: t.bgCard, borderColor: t.border }]}
@@ -2407,12 +2412,13 @@ export default function FlashcardsSwipeScreen() {
         </View>
 
         {feedback ? (
-          <TouchableOpacity
+          <DuoPressable
             onPress={continueAfterFeedback}
+            edgeColor={t.accent}
             style={[styles.continueButton, isPlanFlashcardsTask && styles.planContinueButton, { backgroundColor: t.accent }]}
           >
             <Text style={[styles.continueText, { color: t.correctText, fontSize: isPlanFlashcardsTask ? f.caption : f.body }]}>{text.continue}</Text>
-          </TouchableOpacity>
+          </DuoPressable>
         ) : (
           <>
             <TouchableOpacity
@@ -3152,6 +3158,9 @@ const styles = StyleSheet.create({
   planDoneButtons: {
     marginTop: 10,
     gap: 8,
+  },
+  doneButtonWrap: {
+    flex: 1,
   },
   primaryDoneButton: {
     flex: 1,

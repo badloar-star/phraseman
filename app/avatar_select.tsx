@@ -803,7 +803,7 @@ export default function AvatarSelect() {
       )}
 
       <BouncyWrap style={bouncyStyle}>
-      <ScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {showProfileCardSection ? (
         <View style={{ marginBottom: 18 }}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 8 }}>

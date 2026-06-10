@@ -29,6 +29,8 @@ const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, league
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink } = require('./auth_identity');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { authMergeStableAccounts } = require('./auth_merge');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { accountDeleteMine } = require('./account_delete');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
@@ -75,6 +77,20 @@ const {
 const { premiumDialogSend } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { explainPhrase } = require('./explain_phrase');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitExplainReport } = require('./explain/explain_reports');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  adminAlertOnUserReport,
+  adminAlertOnCriticalError,
+  adminAlertOnContentReport,
+  adminAlertContentReportDigest,
+  adminAlertOnCancelSurvey,
+  adminAlertOnUgcRefund,
+  adminAlertOnConfigWritten,
+} = require('./admin_alerts');
 
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
 exports.leagueChatSendMessage = leagueChatSendMessage;
@@ -84,6 +100,7 @@ exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
 exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
+exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
@@ -116,6 +133,15 @@ exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
+exports.explainPhrase = explainPhrase;
+exports.submitExplainReport = submitExplainReport;
+exports.adminAlertOnUserReport = adminAlertOnUserReport;
+exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
+exports.adminAlertOnContentReport = adminAlertOnContentReport;
+exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
+exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
+exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
+exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

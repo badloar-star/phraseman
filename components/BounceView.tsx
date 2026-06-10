@@ -1,78 +1,103 @@
-import React from 'react';
-import { type ViewStyle, type StyleProp } from 'react-native';
+import React, { useMemo, useEffect } from 'react';
+import { useWindowDimensions, type ViewStyle, type StyleProp } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
+  cancelAnimation,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { rubberBand, BOUNCE_SPRING } from './bounceMath';
 
 /**
- * Кросс-платформенная «резинка» для экранов БЕЗ скролла.
+ * «Резинка» для экранов БЕЗ скролла — В ОБЕ СТОРОНЫ (тяга вниз и вверх).
  *
- * На скролл-экранах за overscroll-резинку отвечает `BouncyScrollView`. Но там,
- * где контент целиком влезает в экран, скроллить нечего — «края» нет. Здесь любой
- * вертикальный потяг сдвигает весь контент с затухающим сопротивлением и пружинит
- * назад (тот же Telegram/Instagram-фил), даже когда двигать по сути некуда.
+ * Где контент целиком влезает в экран, скроллить нечего и нативного overscroll
+ * нет. Поэтому здесь резинку даёт Pan-жест: тяга в любую сторону сдвигает контент
+ * с сопротивлением (формула Apple) и пружинит назад.
  *
- * Тот же паттерн, что у `app/TabSlider.tsx` и `components/BouncyScrollView.tsx`
- * (Gesture.Pan + Animated.View) — он заведомо работает в этом проекте на Fabric
- * (`newArchEnabled=true`), где defaultProps на host-компонентах игнорируются.
+ * ─────────────────────────────────────────────────────────────────────────────
+ * АРХИТЕКТУРА v7 (исправлены баги v1–v6):
+ *
+ *   • Pan-жест МЕМОИЗИРОВАН (useMemo) — раньше он пересоздавался на каждом
+ *     рендере, GestureDetector переустанавливал нативный хэндлер, и жест «залипал»
+ *     после нескольких касаний. Теперь объект стабилен.
+ *   • Сброс stretch→0 БЕЗУСЛОВНЫЙ на onEnd И onFinalize, плюс cancelAnimation +
+ *     обнуление на unmount — застрять смещённым нельзя даже при ремаунте/навигации.
+ *   • Обе стороны: тяга вниз (translationY>0) и вверх (translationY<0).
+ *
+ *   ВАЖНО (Fabric): на экране БЕЗ скролла Pan не конфликтует ни с чем (нативного
+ *   ScrollView тут нет), поэтому жест безопасен — в отличие от скролл-экранов, где
+ *   мы от Pan отказались полностью (см. BouncyScrollView.tsx v7).
+ *
+ *   translateY-узел вынесен НАРУЖУ GestureDetector: если <Animated.View
+ *   style={animatedStyle}> положить ВНУТРЬ <GestureDetector>, его Wrap клонирует
+ *   узел, ремаунтит Reanimated и роняет приложение ("set key `current` on frozen
+ *   object").
  *
  * Drop-in: оборачивает контент. Ставить ВНУТРИ фона (SafeAreaView/корневой View),
- * чтобы фон (`ScreenGradient`) и абсолютные оверлеи/модалки оставались на месте,
- * а тянулся только контент.
+ * чтобы фон (ScreenGradient) и абсолютные оверлеи/модалки оставались на месте.
  */
+
 export interface BounceViewProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
-  /** Максимальное смещение при «дотягивании» (px). */
-  maxStretch?: number;
-  /** Жёсткость возврата: меньше — мягче пружинит. */
-  damping?: number;
+  /** Высота вьюпорта для формулы сопротивления. По умолчанию — высота экрана. */
+  dimension?: number;
   enabled?: boolean;
 }
 
 export default function BounceView({
   children,
   style,
-  maxStretch = 90,
-  damping = 15,
+  dimension,
   enabled = true,
 }: BounceViewProps) {
+  const { height: screenH } = useWindowDimensions();
+  const dim = dimension ?? screenH;
   const stretch = useSharedValue(0);
-  const ms = useSharedValue(maxStretch);
-  ms.value = maxStretch;
 
-  const pan = Gesture.Pan()
-    .enabled(enabled)
-    // Активируемся на вертикали, сдаёмся на горизонтали — чтобы не мешать тапам,
-    // кнопкам и горизонтальным back-свайпам. (Зеркально к TabSlider, который
-    // активен на X и сдаётся на Y.)
-    .activeOffsetY([-14, 14])
-    .failOffsetX([-18, 18])
-    .onUpdate((e) => {
-      'worklet';
-      const dy = e.translationY;
-      const limit = ms.value;
-      // Скроллить некуда, поэтому тянем в обе стороны с логарифмическим
-      // сопротивлением (та же формула, что в BouncyScrollView).
-      const sign = dy < 0 ? -1 : 1;
-      const mag = Math.min(Math.abs(dy), 600);
-      stretch.value = sign * limit * (1 - Math.exp(-mag / (limit * 1.6)));
-    })
-    .onEnd(() => {
-      'worklet';
-      stretch.value = withSpring(0, { damping, stiffness: 180, mass: 0.6 });
-    });
+  const pan = useMemo(
+    () =>
+      Gesture.Pan()
+        .enabled(enabled)
+        .activeOffsetY([-10, 10])
+        .failOffsetX([-18, 18])
+        .onUpdate((e) => {
+          'worklet';
+          // Обе стороны: сопротивление по модулю смещения, знак сохраняется.
+          const sign = e.translationY < 0 ? -1 : 1;
+          stretch.value = sign * rubberBand(Math.abs(e.translationY), dim);
+        })
+        .onEnd(() => {
+          'worklet';
+          stretch.value = withSpring(0, BOUNCE_SPRING);
+        })
+        .onFinalize(() => {
+          'worklet';
+          stretch.value = withSpring(0, BOUNCE_SPRING);
+        }),
+    [enabled, dim, stretch],
+  );
+
+  // Гарантия: при размонтировании/навигации не оставить контент смещённым.
+  useEffect(() => {
+    return () => {
+      cancelAnimation(stretch);
+      stretch.value = 0;
+    };
+  }, [stretch]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: stretch.value }],
   }));
 
+  // translateY-узел СНАРУЖИ GestureDetector — ключ к отсутствию вылетов.
   return (
-    <GestureDetector gesture={pan}>
-      <Animated.View style={[style, animatedStyle]}>{children}</Animated.View>
-    </GestureDetector>
+    <Animated.View style={[style, animatedStyle]}>
+      <GestureDetector gesture={pan}>
+        <Animated.View style={{ flex: 1 }}>{children}</Animated.View>
+      </GestureDetector>
+    </Animated.View>
   );
 }

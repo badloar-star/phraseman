@@ -33,6 +33,7 @@ import { getLevelFromXP } from '../constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/arena';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import DuoPressable from '../components/DuoPressable';
 import { IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { logArenaDirectGateBlocked, logEvent } from './firebase';
@@ -769,8 +770,7 @@ export default function DuelGameScreen() {
                     {arenaGameStr(lang, 'decline')}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.9}
+                <DuoPressable
                   onPress={async () => {
                     hapticSuccess();
                     try {
@@ -782,13 +782,15 @@ export default function DuelGameScreen() {
                       });
                     }
                   }}
-                  style={[styles.chipAccept, { backgroundColor: t.accent }]}
+                  edgeColor={t.accent}
+                  wrapStyle={{ flex: 1 }}
+                  style={[styles.chipAccept, { backgroundColor: t.accent, flex: 0 }]}
                 >
                   <Ionicons name="checkmark-circle" size={22} color="#fff" />
                   <Text style={{ color: '#fff', fontWeight: '900', fontSize: f.body }}>
                     {arenaGameStr(lang, 'accept')}
                   </Text>
-                </TouchableOpacity>
+                </DuoPressable>
               </View>
               {acceptSecLeft != null && (
                 <View style={styles.deadlinePill}>

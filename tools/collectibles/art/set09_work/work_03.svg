@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Call the shots">
+<ellipse cx="100" cy="150" rx="62" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="78" y="96" width="44" height="34" rx="4" fill="#8C7AA8"/>
+<rect x="72" y="88" width="56" height="12" rx="4" fill="#A595BE"/>
+<path d="M86 88c-2-22 6-34 14-34s16 12 14 34z" fill="#E0726B"/>
+<path d="M86 88c-2-22 6-34 14-34 3 0 5 1 7 2-4 18-14 26-21 30z" fill="#F08C84"/>
+<circle cx="100" cy="46" r="14" fill="#F4E3C8"/>
+<circle cx="96" cy="46" r="2.8" fill="#2A2030"/>
+<circle cx="105" cy="46" r="2.8" fill="#2A2030"/>
+<path d="M114 50l30-10-2 22z" fill="#FFD23F" stroke="#C4A24E" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M126 54c10 2 18 0 24-6" fill="none" stroke="#FFE27A" stroke-width="2.4"/>
+<path d="M126 122c-2-16 4-24 12-24s14 8 12 24z" fill="#6FB3D2"/>
+<circle cx="138" cy="92" r="10" fill="#F4E3C8"/>
+<circle cx="135" cy="92" r="2.4" fill="#2A2030"/>
+<circle cx="142" cy="92" r="2.4" fill="#2A2030"/>
+<path d="M50 122c-2-16 4-24 12-24s14 8 12 24z" fill="#79D0C2"/>
+<circle cx="62" cy="92" r="10" fill="#F4E3C8"/>
+<circle cx="59" cy="92" r="2.4" fill="#2A2030"/>
+<circle cx="66" cy="92" r="2.4" fill="#2A2030"/>
+</svg>

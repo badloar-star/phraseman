@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Friends in high places">
+<ellipse cx="50" cy="152" rx="34" ry="6" fill="rgba(0,0,0,.25)"/>
+<path d="M150 60c14 0 22-6 22-16s-10-12-14-8c0-8-12-10-16-2-10-4-18 4-16 12-8 0-12 8-6 14 8 4 38 4 46 0z" fill="#EAF2FA"/>
+<path d="M30 150c-3-22 6-38 22-38s24 16 21 38z" fill="#6FB6D6"/>
+<ellipse cx="48" cy="118" rx="18" ry="19" fill="#F6C8A0"/>
+<path d="M31 116c0-11 8-18 17-18s17 7 17 18z" fill="#8A5A3E"/>
+<circle cx="42" cy="120" r="3.2" fill="#3A2418"/><circle cx="54" cy="120" r="3.2" fill="#3A2418"/>
+<path d="M42 127c4 4 10 4 13 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M66 110c8-8 14-12 20-12" stroke="#F6C8A0" stroke-width="7" stroke-linecap="round" fill="none"/>
+<path d="M152 96c-3-18 5-30 18-30s20 12 17 30z" fill="#E8A04E"/>
+<ellipse cx="170" cy="68" rx="16" ry="17" fill="#F6C8A0"/>
+<path d="M155 66c0-10 7-16 15-16s15 6 15 16z" fill="#5A3A22"/>
+<circle cx="164" cy="70" r="2.8" fill="#3A2418"/><circle cx="175" cy="70" r="2.8" fill="#3A2418"/>
+<path d="M164 76c4 3 8 3 11 0" stroke="#7A3A2A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M154 62c-8-6-14-8-20-6" stroke="#F6C8A0" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M98 80l2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1z" fill="#F6C744"/>
+</svg>

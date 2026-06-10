@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A level playing field">
+<ellipse cx="100" cy="138" rx="74" ry="12" fill="rgba(0,0,0,.25)"/>
+<rect x="22" y="106" width="156" height="22" rx="6" fill="#7FB069"/>
+<rect x="22" y="106" width="156" height="8" rx="4" fill="#9BCB7E"/>
+<path d="M52 114h96" stroke="#6A9658" stroke-width="2" stroke-dasharray="3 7"/>
+<rect x="30" y="78" width="4" height="30" rx="2" fill="#9AA6C0"/>
+<path d="M34 80l16 6-16 6z" fill="#E0524E"/>
+<rect x="166" y="78" width="4" height="30" rx="2" fill="#9AA6C0"/>
+<path d="M166 80l-16 6 16 6z" fill="#6FB3D2"/>
+<ellipse cx="58" cy="92" rx="15" ry="18" fill="#F2A65A"/>
+<path d="M43 88c0-9 7-15 15-15s15 6 15 15z" fill="#D9863B"/>
+<circle cx="54" cy="90" r="2.8" fill="#16243A"/><circle cx="64" cy="90" r="2.8" fill="#16243A"/>
+<path d="M52 100c4 3 10 3 14 0" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<ellipse cx="142" cy="92" rx="15" ry="18" fill="#F2A65A"/>
+<path d="M127 88c0-9 7-15 15-15s15 6 15 15z" fill="#D9863B"/>
+<circle cx="138" cy="90" r="2.8" fill="#16243A"/><circle cx="148" cy="90" r="2.8" fill="#16243A"/>
+<path d="M136 100c4 3 10 3 14 0" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<circle cx="100" cy="100" r="9" fill="#FFF7DD"/>
+<circle cx="100" cy="100" r="9" fill="none" stroke="#16243A" stroke-width="1.6"/>
+<path d="M100 100l4-5 6 1M100 100l-5-3-2-6M100 100l-2 6 5 3" stroke="#16243A" stroke-width="1.6" fill="none"/>
+</svg>

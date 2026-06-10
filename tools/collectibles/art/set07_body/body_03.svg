@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A sweet tooth">
+<ellipse cx="100" cy="150" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<circle cx="40" cy="48" r="11" fill="#F6A8C0"/><circle cx="162" cy="56" r="10" fill="#7FB069"/><circle cx="172" cy="112" r="11" fill="#6FA8DC"/>
+<path d="M62 60c0-16 12-24 26-24s26 8 26 24c0 22-6 40-12 56-3 8-9 8-12 0l-4-22-4 22c-3 8-9 8-12 0-6-16-12-34-8-56z" fill="#FBFBFB"/>
+<path d="M62 60c0-16 12-24 26-24s26 8 26 24c-14-8-38-8-52 0z" fill="#E8EEF2"/>
+<circle cx="78" cy="70" r="4" fill="#3A3A3A"/><circle cx="98" cy="70" r="4" fill="#3A3A3A"/>
+<path d="M80 82c5 4 11 4 16 0" stroke="#3A3A3A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="118" y="58" width="7" height="60" rx="3" fill="#D9A066"/>
+<circle cx="128" cy="44" r="22" fill="#E8615E"/>
+<path d="M128 22a22 22 0 0 1 0 44 22 22 0 0 0 0-44z" fill="#F4A6A4"/>
+<path d="M114 38c8-6 20-6 28 0M114 50c8 6 20 6 28 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+</svg>

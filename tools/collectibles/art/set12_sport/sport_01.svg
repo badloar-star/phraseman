@@ -1,0 +1,23 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The ball is in your court">
+<ellipse cx="50" cy="142" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="156" cy="142" rx="24" ry="6" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="62" cy="134" rx="14" ry="5" fill="rgba(0,0,0,.25)"/>
+<rect x="98" y="48" width="6" height="92" rx="3" fill="#9AA6C0"/>
+<path d="M101 60v74M88 70h26M88 86h26M88 102h26M88 118h26" stroke="#C9D4E6" stroke-width="3" stroke-linecap="round" fill="none"/>
+<path d="M114 70v62M88 70v62" stroke="#9AA6C0" stroke-width="3" fill="none"/>
+<ellipse cx="50" cy="96" rx="20" ry="24" fill="#6FB3D2"/>
+<path d="M30 92c0-12 9-20 20-20s20 8 20 20z" fill="#4A8FB0"/>
+<circle cx="46" cy="94" r="3.2" fill="#16243A"/><circle cx="60" cy="94" r="3.2" fill="#16243A"/>
+<path d="M44 104c5 3 11 3 15 0" stroke="#16243A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M68 90c14-2 24 4 26 14" stroke="#6FB3D2" stroke-width="8" fill="none" stroke-linecap="round"/>
+<ellipse cx="92" cy="58" rx="11" ry="14" fill="#E0524E" transform="rotate(28 92 58)"/>
+<ellipse cx="92" cy="58" rx="6" ry="9" fill="#FFF7DD" transform="rotate(28 92 58)"/>
+<path d="M40 110l-6 24M58 112l6 22" stroke="#6FB3D2" stroke-width="9" stroke-linecap="round"/>
+<ellipse cx="156" cy="100" rx="18" ry="22" fill="#7FB069"/>
+<path d="M138 96c0-11 8-18 18-18s18 7 18 18z" fill="#5E8A4A"/>
+<circle cx="152" cy="98" r="3" fill="#16243A"/><circle cx="164" cy="98" r="3" fill="#16243A"/>
+<path d="M150 110c4 2 9 2 13-1" stroke="#16243A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M138 112l-4 22M174 112l4 22" stroke="#7FB069" stroke-width="8" stroke-linecap="round"/>
+<circle cx="62" cy="126" r="9" fill="#D7E04E"/>
+<path d="M55 122c4 5 4 9 0 13M69 122c-4 5-4 9 0 13" stroke="#A8B23A" stroke-width="1.8" fill="none"/>
+</svg>

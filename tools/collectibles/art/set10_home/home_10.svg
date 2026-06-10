@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sweep it under the rug">
+<ellipse cx="100" cy="150" rx="60" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M40 138c40-6 80-6 120 0 6 1 6 8 0 8H40c-6 0-6-7 0-8z" fill="#C9544E"/>
+<path d="M40 138c40-6 80-6 120 0" fill="none" stroke="#A03A36" stroke-width="3"/>
+<path d="M132 134c12-3 22-2 28 4-6 6-16 7-28 4z" fill="#7E92B4"/>
+<path d="M56 134c8-2 14-2 14-2l4 8c-8 2-16 0-22-2z" fill="#E0AE3E"/>
+<g stroke="#A03A36" stroke-width="3" stroke-linecap="round"><path d="M58 142h84M66 138v8M86 137v9M106 137v9M126 138v8"/></g>
+<path d="M30 56l34 64" stroke="#B5854E" stroke-width="7" stroke-linecap="round"/>
+<path d="M50 96l24 44c8-4 10-16 4-28s-20-20-28-16z" fill="#F2C14E"/>
+<path d="M54 102l3 6M60 100l3 6M66 110l3 6M58 114l3 6" stroke="#D89A2E" stroke-width="2.2" stroke-linecap="round"/>
+<circle cx="40" cy="46" r="22" fill="#9CB0D0"/>
+<path d="M22 42c0-12 8-20 18-20s18 8 18 20z" fill="#7E92B4"/>
+<circle cx="34" cy="48" r="3.6" fill="#3A4258"/><circle cx="46" cy="48" r="3.6" fill="#3A4258"/>
+<path d="M33 36l8-3M47 33l-8 3" stroke="#3A4258" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

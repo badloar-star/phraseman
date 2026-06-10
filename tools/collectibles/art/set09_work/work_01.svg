@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Get down to business">
+<ellipse cx="100" cy="150" rx="58" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="36" y="104" width="128" height="14" rx="4" fill="#C98A4B"/>
+<rect x="44" y="118" width="10" height="26" rx="3" fill="#A9703A"/>
+<rect x="146" y="118" width="10" height="26" rx="3" fill="#A9703A"/>
+<rect x="118" y="92" width="34" height="16" rx="2" fill="#F2C14E"/>
+<rect x="124" y="84" width="34" height="16" rx="2" fill="#FFD86B"/>
+<path d="M62 104c-2-30 12-50 38-50s40 20 38 50z" fill="#7E5FB0"/>
+<path d="M62 104c-2-30 12-50 38-50 6 0 11 1 16 3-10 38-34 44-54 47z" fill="#9A78C9"/>
+<path d="M70 70c-12 2-20 12-18 24 8 0 14-4 18-10" fill="none" stroke="#7E5FB0" stroke-width="9" stroke-linecap="round"/>
+<path d="M130 70c12 2 20 12 18 24-8 0-14-4-18-10" fill="none" stroke="#7E5FB0" stroke-width="9" stroke-linecap="round"/>
+<circle cx="100" cy="46" r="22" fill="#F4E3C8"/>
+<path d="M82 40c4-12 32-12 36 0-4-6-32-6-36 0z" fill="#5A4632"/>
+<circle cx="92" cy="46" r="3.4" fill="#2A2030"/>
+<circle cx="108" cy="46" r="3.4" fill="#2A2030"/>
+<path d="M91 36l8 4M109 36l-8 4" stroke="#3A2E22" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M94 56c4 3 8 3 12 0" stroke="#C77" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+</svg>

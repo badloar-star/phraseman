@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Itchy feet">
+<ellipse cx="68" cy="138" rx="34" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M44 130c-8-2-12-10-10-22 2-14 8-30 22-30 10 0 14 8 14 18 0 14-4 24-6 30z" fill="#F2C9A0"/>
+<path d="M78 134c-8-2-12-10-10-22 2-14 8-30 22-30 10 0 14 8 14 18 0 14-4 24-6 30z" fill="#F6D5AF"/>
+<circle cx="56" cy="74" r="4" fill="#FBE3C8"/><circle cx="64" cy="70" r="3.4" fill="#FBE3C8"/>
+<circle cx="72" cy="69" r="3" fill="#FBE3C8"/><circle cx="80" cy="70" r="2.6" fill="#FBE3C8"/>
+<path d="M30 48l4 8 8 2-8 4-2 8-4-8-8-2 8-4z" fill="#FFD23F"/>
+<path d="M48 36l3 6 6 1-6 3-2 6-3-6-6-1 6-3z" fill="#FFD23F"/>
+<path d="M22 76l2 5 5 1-5 2-2 5-2-5-5-1 5-2z" fill="#FFD23F"/>
+<rect x="118" y="74" width="56" height="48" rx="10" fill="#5BA9D6"/>
+<rect x="118" y="92" width="56" height="8" fill="#3F86B8"/>
+<rect x="138" y="64" width="18" height="14" rx="6" fill="#3F86B8"/>
+<rect x="158" y="98" width="10" height="6" rx="3" fill="#FFD78A"/>
+</svg>

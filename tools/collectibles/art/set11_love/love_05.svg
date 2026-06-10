@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Love at first sight">
+<ellipse cx="100" cy="152" rx="56" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M30 150c-3-26 7-46 30-46s33 20 30 46z" fill="#E8615E"/>
+<ellipse cx="60" cy="80" rx="22" ry="23" fill="#F6C8A0"/>
+<path d="M38 78c0-13 10-21 22-21s22 8 22 21z" fill="#8A5A3E"/>
+<path d="M48 78c0-4 3-6 6-4 1 1 2 2 2 3 0-1 1-2 2-3 3-2 6 0 6 4 0 5-8 10-8 10s-8-5-8-10z" fill="#D94A47"/>
+<path d="M58 78c0-4 3-6 6-4 1 1 2 2 2 3 0-1 1-2 2-3 3-2 6 0 6 4 0 5-8 10-8 10s-8-5-8-10z" fill="#D94A47"/>
+<path d="M52 96c5 4 13 4 17 0" stroke="#7A3A2A" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<path d="M110 150c-3-26 7-46 30-46s33 20 30 46z" fill="#9B6FD0"/>
+<ellipse cx="140" cy="80" rx="22" ry="23" fill="#F6C8A0"/>
+<path d="M118 76c0-14 11-22 22-22s22 9 22 22z" fill="#5A3A22"/>
+<path d="M128 78c0-4 3-6 6-4 1 1 2 2 2 3 0-1 1-2 2-3 3-2 6 0 6 4 0 5-8 10-8 10s-8-5-8-10z" fill="#D94A47"/>
+<path d="M138 78c0-4 3-6 6-4 1 1 2 2 2 3 0-1 1-2 2-3 3-2 6 0 6 4 0 5-8 10-8 10s-8-5-8-10z" fill="#D94A47"/>
+<path d="M131 96c5 4 13 4 17 0" stroke="#7A3A2A" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<path d="M94 62l10 12-8 4 12 14-14-8 8-4z" fill="#F6C744"/>
+<path d="M88 44l3 8M112 44l-3 8M100 40v9" stroke="#F4D03F" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Live out of a suitcase">
+<ellipse cx="100" cy="142" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M44 70c0-8 6-14 14-14h84c8 0 14 6 14 14v-2c0-10-8-18-18-18H62c-10 0-18 8-18 18z" fill="#C49A6C"/>
+<path d="M44 66l56-30 56 30v60c0 6-5 11-11 11H55c-6 0-11-5-11-11z" fill="#5BA9D6"/>
+<path d="M50 74h100v52H50z" fill="#FBE3C8"/>
+<rect x="58" y="98" width="40" height="26" rx="8" fill="#F06AA0"/>
+<rect x="64" y="104" width="28" height="14" rx="6" fill="#FCAFD2"/>
+<rect x="112" y="104" width="14" height="22" rx="3" fill="#7A4A2B"/>
+<path d="M112 104c0-8 7-14 14-14s14 6 14 14z" fill="#FFD23F"/>
+<rect x="130" y="106" width="12" height="9" rx="3" fill="#E0524E"/>
+<path d="M134 106c0-3 3-5 6-5s6 2 6 5z" fill="#F2A03D"/>
+<circle cx="118" cy="86" r="3" fill="#FFF7DD"/>
+</svg>

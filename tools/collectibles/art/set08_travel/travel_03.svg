@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Travel light">
+<ellipse cx="96" cy="146" rx="26" ry="6" fill="rgba(0,0,0,.25)"/>
+<path d="M150 60c10 4 16 14 14 26-8-2-14-8-16-16" fill="#FFFFFF"/>
+<path d="M150 60c10 4 16 14 14 26-8-2-14-8-16-16" stroke="#C9D4E6" stroke-width="2" fill="#fff"/>
+<path d="M152 66c4 2 7 7 6 13" stroke="#C9D4E6" stroke-width="2" stroke-linecap="round"/>
+<rect x="84" y="40" width="26" height="30" rx="11" fill="#F2A03D"/>
+<rect x="89" y="46" width="16" height="18" rx="6" fill="#FFD78A"/>
+<ellipse cx="96" cy="92" rx="20" ry="22" fill="#F2C9A0"/>
+<path d="M76 88c0-12 9-20 20-20s20 8 20 20z" fill="#5A3A28"/>
+<circle cx="89" cy="92" r="3.4" fill="#5A3A28"/><circle cx="104" cy="92" r="3.4" fill="#5A3A28"/>
+<path d="M88 101c4 4 12 4 16 0" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="82" y="110" width="28" height="22" rx="9" fill="#5BA9D6"/>
+<path d="M84 130l8 12M108 130l-8 12" stroke="#E0524E" stroke-width="7" stroke-linecap="round"/>
+<path d="M70 118c-6 2-10 6-12 10M122 118c6 2 10 6 12 10" stroke="#9AA6BC" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

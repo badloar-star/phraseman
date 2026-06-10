@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wanderlust">
+<ellipse cx="100" cy="150" rx="56" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M20 150L70 96l30 34 18-22 42 42z" fill="#9AA6BC"/>
+<path d="M70 96l16 18-16 8-14-12z" fill="#FFF7DD"/>
+<path d="M30 40l3 7 7 1-7 3-3 7-3-7-7-1 7-3z" fill="#FFE08A"/>
+<path d="M168 30l3 6 6 1-6 3-3 6-2-6-6-1 6-3z" fill="#FFE08A"/>
+<path d="M150 70l2 5 5 1-5 2-2 5-2-5-5-1 5-2z" fill="#FFE08A"/>
+<circle cx="58" cy="56" r="13" fill="#5BA9D6"/>
+<circle cx="58" cy="56" r="9" fill="#FFF7DD"/>
+<path d="M58 50l3 6-6 4 2-7z" fill="#E0524E"/>
+<path d="M132 96c4-5 12-5 16 0 3 4 1 9-8 16-9-7-11-12-8-16z" fill="#F06AA0"/>
+<path d="M134 104l10-3 4 4-9 5z" fill="#FFF7DD"/>
+<ellipse cx="92" cy="74" rx="15" ry="16" fill="#F2C9A0"/>
+<path d="M77 70c0-9 7-15 15-15s15 6 15 15z" fill="#5A3A28"/>
+<circle cx="87" cy="74" r="2.8" fill="#5A3A28"/><circle cx="98" cy="74" r="2.8" fill="#5A3A28"/>
+<path d="M86 81c4 3 8 3 12 0" stroke="#5A3A28" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<rect x="83" y="89" width="18" height="14" rx="6" fill="#E0524E"/>
+</svg>

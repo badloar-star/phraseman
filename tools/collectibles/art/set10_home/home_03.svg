@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spring cleaning">
+<ellipse cx="100" cy="150" rx="58" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="150" y="96" width="34" height="48" rx="4" fill="#C9A06A"/>
+<rect x="148" y="92" width="38" height="8" rx="4" fill="#E0BE86"/>
+<rect x="164" y="70" width="6" height="24" rx="3" fill="#5FA86E"/>
+<circle cx="167" cy="64" r="9" fill="#F2A8C0"/><circle cx="167" cy="64" r="4" fill="#F2C14E"/>
+<path d="M40 60l44 44" stroke="#B5854E" stroke-width="7" stroke-linecap="round"/>
+<path d="M78 96l24 24c6-6 4-18-4-26s-20-10-26-4z" fill="#F2C14E"/>
+<path d="M82 100l4 4M88 96l4 4M86 106l4 4M94 100l4 4" stroke="#D89A2E" stroke-width="2.4" stroke-linecap="round"/>
+<circle cx="56" cy="76" r="24" fill="#9CB0D0"/>
+<path d="M36 70c0-14 8-22 20-22s20 8 20 22z" fill="#7E92B4"/>
+<circle cx="49" cy="78" r="4" fill="#3A4258"/><circle cx="63" cy="78" r="4" fill="#3A4258"/>
+<path d="M48 88c5 5 13 5 18 0" fill="none" stroke="#3A4258" stroke-width="3" stroke-linecap="round"/>
+<circle cx="30" cy="40" r="3" fill="#F2C14E"/><circle cx="120" cy="50" r="3" fill="#F2A8C0"/><circle cx="100" cy="30" r="2.6" fill="#5FA86E"/>
+</svg>

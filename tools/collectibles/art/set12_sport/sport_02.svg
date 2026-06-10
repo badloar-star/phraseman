@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hit the ground running">
+<ellipse cx="120" cy="142" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="44" y="120" width="120" height="10" rx="3" fill="#E0524E"/>
+<path d="M44 120v10M68 120v10M92 120v10M116 120v10M140 120v10M164 120v10" stroke="#FFF7DD" stroke-width="3"/>
+<path d="M22 60h30M16 78h34M24 96h28" stroke="#9AC6DE" stroke-width="6" stroke-linecap="round"/>
+<ellipse cx="112" cy="72" rx="20" ry="24" fill="#F2A65A"/>
+<path d="M92 68c0-12 9-20 20-20s20 8 20 20z" fill="#D9863B"/>
+<circle cx="116" cy="68" r="3.4" fill="#16243A"/><circle cx="128" cy="70" r="3.4" fill="#16243A"/>
+<path d="M114 80c5 2 11 1 14-3" stroke="#16243A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M92 74c-12 6-20 4-26-2" stroke="#F2A65A" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M130 78c12 8 16 4 22-4" stroke="#F2A65A" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M104 94l-20 14" stroke="#F2A65A" stroke-width="9" stroke-linecap="round"/>
+<path d="M118 96l24 8" stroke="#F2A65A" stroke-width="9" stroke-linecap="round"/>
+<path d="M80 108l-12 6" stroke="#E0524E" stroke-width="6" stroke-linecap="round"/>
+<path d="M144 102l12 8" stroke="#E0524E" stroke-width="6" stroke-linecap="round"/>
+</svg>

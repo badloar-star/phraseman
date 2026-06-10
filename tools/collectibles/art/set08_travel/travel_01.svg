@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hit the road">
+<ellipse cx="74" cy="142" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<circle cx="168" cy="34" r="18" fill="#FFD23F"/>
+<path d="M168 8v-7M147 15l-5-5M189 15l5-5M146 34h-8" stroke="#FFB800" stroke-width="4" stroke-linecap="round"/>
+<path d="M40 150L20 132h160L120 150z" fill="#9AA6BC"/>
+<path d="M86 150l4-18h12l-4 18zM112 150l4-18h12l-4 18z" fill="#FFF7DD"/>
+<path d="M70 96c-14 6-22 20-22 30h44c0-10-8-24-22-30z" fill="#5BA9D6"/>
+<rect x="80" y="62" width="34" height="40" rx="14" fill="#E0524E"/>
+<rect x="86" y="70" width="22" height="26" rx="8" fill="#F2A03D"/>
+<ellipse cx="68" cy="58" rx="20" ry="22" fill="#F2C9A0"/>
+<path d="M48 54c0-12 9-20 20-20s20 8 20 20z" fill="#5A3A28"/>
+<circle cx="61" cy="58" r="3.4" fill="#5A3A28"/><circle cx="76" cy="58" r="3.4" fill="#5A3A28"/>
+<path d="M60 68c4 4 11 4 15 0" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M56 126l-6 14M82 126l5 14" stroke="#E0524E" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Head in the clouds">
+<ellipse cx="100" cy="152" rx="34" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M84 152c-4-30 4-56 16-56s20 26 16 56z" fill="#7FB069"/>
+<path d="M72 120c-10-6-18-2-20 8M128 120c10-6 18-2 20 8" stroke="#E8B07E" stroke-width="8" fill="none" stroke-linecap="round"/>
+<ellipse cx="100" cy="58" rx="52" ry="30" fill="#C9D4E6"/>
+<ellipse cx="62" cy="64" rx="26" ry="20" fill="#DCE4F0"/>
+<ellipse cx="140" cy="62" rx="28" ry="22" fill="#DCE4F0"/>
+<ellipse cx="100" cy="50" rx="34" ry="22" fill="#EDF1F8"/>
+<circle cx="86" cy="58" r="4" fill="#5A6B7E"/><circle cx="114" cy="58" r="4" fill="#5A6B7E"/>
+<path d="M88 68c5 5 15 5 20 0" stroke="#5A6B7E" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="74" cy="64" r="5" fill="#fff" opacity=".7"/><circle cx="126" cy="64" r="5" fill="#fff" opacity=".7"/>
+<path d="M96 88c2-6 6-6 8 0" stroke="#7A4A2B" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>

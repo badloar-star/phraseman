@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Move the goalposts">
+<ellipse cx="138" cy="142" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="46" cy="134" rx="20" ry="6" fill="rgba(0,0,0,.25)"/>
+<path d="M118 56v76M170 56v76M118 56h52" stroke="#C9D4E6" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M122 64h44M122 78h44M122 92h44M122 106h44M132 60v68M148 60v68" stroke="#E2E6EE" stroke-width="2" fill="none"/>
+<path d="M104 118c6-2 12-2 16 2" stroke="#C9D4E6" stroke-width="4" fill="none" stroke-linecap="round"/>
+<ellipse cx="78" cy="98" rx="20" ry="24" fill="#C46AA8"/>
+<path d="M58 94c0-12 9-20 20-20s20 8 20 20z" fill="#A4528C"/>
+<circle cx="86" cy="94" r="3.2" fill="#16243A"/><circle cx="98" cy="94" r="3.2" fill="#16243A"/>
+<path d="M83 88l8-2M94 88l8 2" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M85 106c5 2 11 1 14-3" stroke="#16243A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M96 100c8-2 14 2 16 6" stroke="#C46AA8" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M68 112l-8 22M88 114l4 20" stroke="#C46AA8" stroke-width="9" stroke-linecap="round"/>
+<path d="M20 100c8 4 16 6 24 6" stroke="#C9D4E6" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7" fill="none"/>
+<circle cx="46" cy="112" r="11" fill="#FFF7DD"/>
+<circle cx="46" cy="112" r="11" fill="none" stroke="#16243A" stroke-width="1.8"/>
+<path d="M46 112l5-6 7 1M46 112l-6-4-2-7" stroke="#16243A" stroke-width="1.8" fill="none"/>
+</svg>

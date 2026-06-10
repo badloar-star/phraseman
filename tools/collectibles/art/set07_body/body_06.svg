@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pull someone's leg">
+<ellipse cx="150" cy="150" rx="32" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="60" cy="92" rx="20" ry="9" fill="rgba(0,0,0,.18)"/>
+<path d="M118 150c-4-26 6-46 32-46s36 20 32 46z" fill="#7FB069"/>
+<ellipse cx="150" cy="78" rx="24" ry="26" fill="#F2C9A0"/>
+<path d="M128 72c0-16 10-26 22-26s22 10 22 26c-12-7-32-7-44 0z" fill="#7A4A2B"/>
+<path d="M138 78l8 4-8 3M162 78l-8 4 8 3" stroke="#5A3A28" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M138 92c6 7 18 7 24 0 0 8-6 13-12 13s-12-5-12-13z" fill="#7A1A16"/>
+<path d="M124 100c-22 4-44-2-62-16" stroke="#E8B07E" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M28 70c-12 4-18 14-14 28 14-2 22-12 22-28z" fill="#6FA8DC"/>
+<ellipse cx="38" cy="58" rx="16" ry="18" fill="#F2C9A0"/>
+<path d="M22 56c0-12 8-20 16-20s16 8 16 20c-9-5-23-5-32 0z" fill="#3A2A1E"/>
+<path d="M30 58c3 3 9 3 12 0" stroke="#5A3A28" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M30 68c4 4 8 4 12 0" stroke="#5A3A28" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Burnout">
+<ellipse cx="100" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="88" y="58" width="24" height="86" rx="10" fill="#F4E3C8"/>
+<rect x="88" y="58" width="10" height="86" rx="5" fill="#FBF0DC"/>
+<path d="M100 58c-13 0-22-10-22-22 0-12 9-24 22-24s22 12 22 24c0 12-9 22-22 22z" fill="#3A2E2A"/>
+<path d="M100 12c-9 0-16 8-19 17 6 3 14 2 20-3 4-3 4-9 2-13z" fill="#5A4A44"/>
+<circle cx="92" cy="40" r="3" fill="#1A1410"/>
+<circle cx="108" cy="40" r="3" fill="#1A1410"/>
+<path d="M88 36l8 2M112 36l-8 2" stroke="#1A1410" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M94 50c4 2 8 2 12 0" stroke="#1A1410" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M100 12c-2-8 4-12 2-12-6 2-8 8-6 12z" fill="#7A6A60"/>
+<path d="M98 6c-4-8 2-14 0-14-6 4-4 12 0 14M104 4c-3-7 3-12 1-12-5 3-4 9-1 12" fill="none" stroke="#B9B0A6" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A skeleton in the closet">
+<ellipse cx="100" cy="150" rx="54" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="44" y="30" width="112" height="114" rx="6" fill="#9A6B44"/>
+<rect x="50" y="36" width="50" height="102" rx="3" fill="#B5854E"/>
+<rect x="100" y="36" width="50" height="102" rx="3" fill="#C9985E"/>
+<rect x="92" y="80" width="6" height="16" rx="3" fill="#5A3A22"/><rect x="102" y="80" width="6" height="16" rx="3" fill="#5A3A22"/>
+<circle cx="124" cy="86" r="18" fill="#F2EFE6"/>
+<path d="M110 92c0-12 6-18 14-18s14 6 14 18z" fill="#FFFFFF"/>
+<ellipse cx="118" cy="86" rx="3.6" ry="4.6" fill="#3A3A4A"/><ellipse cx="130" cy="86" rx="3.6" ry="4.6" fill="#3A3A4A"/>
+<path d="M118 98h12M120 98v6M126 98v6" stroke="#9A9AA8" stroke-width="2" stroke-linecap="round"/>
+<rect x="116" y="104" width="16" height="22" rx="4" fill="#F2EFE6"/>
+<path d="M132 110c10-2 16 4 18 12" fill="none" stroke="#F2EFE6" stroke-width="6" stroke-linecap="round"/>
+<circle cx="151" cy="124" r="4" fill="#F2EFE6"/>
+</svg>

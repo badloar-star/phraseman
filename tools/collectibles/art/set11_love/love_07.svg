@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pop the question">
+<ellipse cx="100" cy="152" rx="58" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M24 150c4-22 10-30 22-32l14-2c6 14 6 24 4 36z" fill="#5B8DB8"/>
+<path d="M40 110c8 4 16 16 16 40h-30c4-22 6-34 14-40z" fill="#5B8DB8"/>
+<ellipse cx="50" cy="84" rx="21" ry="22" fill="#F6C8A0"/>
+<path d="M30 82c0-13 9-21 20-21s20 8 20 21z" fill="#5A3A22"/>
+<circle cx="44" cy="86" r="3.4" fill="#3A2418"/><circle cx="57" cy="86" r="3.4" fill="#3A2418"/>
+<path d="M44 94c4 4 10 4 14 0" stroke="#7A3A2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="62" y="92" rx="3" width="20" height="14" fill="#C84A47"/>
+<path d="M62 92l10-8 10 8z" fill="#E8615E"/>
+<circle cx="72" cy="86" r="4" fill="none" stroke="#F6C744" stroke-width="2.5"/>
+<circle cx="72" cy="82" r="2.4" fill="#8FD3F4"/>
+<path d="M140 150c-3-24 6-42 28-42s30 18 27 42z" fill="#D87FB0"/>
+<ellipse cx="168" cy="82" rx="21" ry="22" fill="#F6C8A0"/>
+<path d="M148 80c0-13 9-21 20-21s20 8 20 21z" fill="#8A5A3E"/>
+<circle cx="162" cy="86" r="4.2" fill="#3A2418"/><circle cx="176" cy="86" r="4.2" fill="#3A2418"/>
+<ellipse cx="169" cy="98" rx="5" ry="7" fill="#7A3A2A"/>
+<path d="M120 90l4-7M126 86l5-6" stroke="#F6C744" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

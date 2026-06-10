@@ -1017,7 +1017,14 @@
         "id": "body_secret",
         "en": "Couch potato",
         "ru": "Лежебока, домосед",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "kaʊtʃ pəˈteɪtəʊ",
+        "literalRu": "диванная картошка",
+        "meaningRu": "Тот, кто целыми днями лежит на диване перед телевизором и почти не двигается.",
+        "exampleEn": "Every weekend he turns into a couch potato with the remote.",
+        "exampleRu": "Каждые выходные он превращается в лежебоку с пультом в руке.",
+        "originRu": "Шутку придумали в Америке в 1976 году: телевизор в сленге звали «boob tube», а его любителей — «tubers», то есть «клубни». Картофелина-клубень, валяющаяся на диване, стала идеальным символом такого зрителя.",
+        "art": "set07_body/body_secret"
       },
       "cards": [
         {
@@ -1025,70 +1032,140 @@
           "en": "Keep your chin up",
           "ru": "Не вешай нос",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kiːp jɔː tʃɪn ʌp",
+          "literalRu": "держи подбородок поднятым",
+          "meaningRu": "Не унывай и держись бодро, даже когда всё идёт плохо.",
+          "exampleEn": "I know the exam went badly, but keep your chin up — there's a retake.",
+          "exampleRu": "Знаю, экзамен прошёл плохо, но не вешай нос — будет пересдача.",
+          "originRu": "Когда человек грустит, голова опускается, а подбородок падает на грудь. Поднятый подбородок издавна был знаком смелости, поэтому призыв «выше подбородок» прижился к началу XX века в Америке.",
+          "art": "set07_body/body_01"
         },
         {
           "id": "body_02",
           "en": "I'm all ears",
           "ru": "Я весь внимание",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "aɪm ɔːl ɪəz",
+          "literalRu": "я весь — сплошные уши",
+          "meaningRu": "Слушаю тебя очень внимательно, готов услышать каждое слово.",
+          "exampleEn": "You've got news? Go on, I'm all ears!",
+          "exampleRu": "У тебя новости? Давай рассказывай, я весь внимание!",
+          "originRu": "Шутливый образ: будто человек целиком превратился в одни уши, лишь бы ничего не упустить. В английской речи оборот встречается уже с XVIII века.",
+          "art": "set07_body/body_02"
         },
         {
           "id": "body_03",
           "en": "A sweet tooth",
           "ru": "Сладкоежка",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə swiːt tuːθ",
+          "literalRu": "сладкий зуб",
+          "meaningRu": "Большая любовь к сладкому — тянет на торты, конфеты и десерты.",
+          "exampleEn": "I can't walk past a bakery — I've got such a sweet tooth.",
+          "exampleRu": "Не могу пройти мимо пекарни — я страшная сладкоежка.",
+          "originRu": "В старину словом «tooth» называли не только зуб, но и вкус, пристрастие к еде. «Сладкий зуб» как тяга к сладкому известен в английском ещё с XIV века.",
+          "art": "set07_body/body_03"
         },
         {
           "id": "body_04",
           "en": "See eye to eye",
           "ru": "Сходиться во взглядах",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "siː aɪ tə aɪ",
+          "literalRu": "видеть глаза в глаза",
+          "meaningRu": "Полностью соглашаться друг с другом, смотреть на вещи одинаково.",
+          "exampleEn": "My sister and I don't always see eye to eye about money.",
+          "exampleRu": "Мы с сестрой не всегда сходимся во взглядах насчёт денег.",
+          "originRu": "Оборот пришёл из Библии, из книги пророка Исаии: там сторожа «увидят глаза в глаза», то есть будут смотреть на одно и то же и думать заодно.",
+          "art": "set07_body/body_04"
         },
         {
           "id": "body_05",
           "en": "Learn by heart",
           "ru": "Выучить наизусть",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "lɜːn baɪ hɑːt",
+          "literalRu": "выучить сердцем",
+          "meaningRu": "Запомнить что-то слово в слово, так чтобы повторить без подсказок.",
+          "exampleEn": "She learned the whole poem by heart for the school concert.",
+          "exampleRu": "Она выучила весь стих наизусть к школьному концерту.",
+          "originRu": "Древние греки считали, что память живёт не в голове, а в сердце. Отсюда и привычка «учить сердцем»: для них именно сердце хранило всё, что человек знает.",
+          "art": "set07_body/body_05"
         },
         {
           "id": "body_06",
           "en": "Pull someone's leg",
           "ru": "Разыгрывать, подшучивать",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pʊl ˈsʌmwʌnz leɡ",
+          "literalRu": "тянуть кого-то за ногу",
+          "meaningRu": "Подшучивать над человеком, говоря в шутку неправду.",
+          "exampleEn": "Relax, I'm just pulling your leg — the car is fine.",
+          "exampleRu": "Расслабься, я просто тебя разыгрываю — с машиной всё в порядке.",
+          "originRu": "По одной из версий, образ идёт от уличных воришек: один дёргал прохожего за ногу, чтобы тот споткнулся и упал, а сообщник обчищал карманы. Со временем «подёргать за ногу» смягчилось до безобидной шутки.",
+          "art": "set07_body/body_06"
         },
         {
           "id": "body_07",
           "en": "Let your hair down",
           "ru": "Расслабиться, отпустить себя",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "let jɔː heə daʊn",
+          "literalRu": "распустить волосы",
+          "meaningRu": "Перестать держать себя в рамках и наконец расслабиться, повеселиться.",
+          "exampleEn": "It's Friday — let your hair down and forget about work!",
+          "exampleRu": "Сегодня пятница — расслабься и забудь про работу!",
+          "originRu": "Знатные дамы прошлого весь день носили тугие высокие причёски и распускали волосы только дома, наедине. Снять шпильки значило сбросить напряжение и побыть собой.",
+          "art": "set07_body/body_07"
         },
         {
           "id": "body_08",
           "en": "Get it off your chest",
           "ru": "Выговориться",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡet ɪt ɒf jɔː tʃest",
+          "literalRu": "снять это с груди",
+          "meaningRu": "Высказать то, что давно тяготило, и сразу станет легче на душе.",
+          "exampleEn": "You look upset — tell me what happened and get it off your chest.",
+          "exampleRu": "Ты расстроен — расскажи, что случилось, выговорись.",
+          "originRu": "Тяжёлые переживания издавна сравнивали с грузом, давящим на грудь. «Снять это с груди» значит сбросить тяжесть, поделившись ею вслух.",
+          "art": "set07_body/body_08"
         },
         {
           "id": "body_09",
           "en": "Break a leg",
           "ru": "Ни пуха ни пера",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "breɪk ə leɡ",
+          "literalRu": "сломай ногу",
+          "meaningRu": "Пожелание удачи, особенно перед выходом на сцену.",
+          "exampleEn": "Your big audition is today? Break a leg!",
+          "exampleRu": "У тебя сегодня важное прослушивание? Ни пуха ни пера!",
+          "originRu": "Театральное суеверие: актёры боялись спугнуть удачу, поэтому вместо «удачи» желали обратного — как русское «ни пуха ни пера». По одной из версий, поклон со сгибанием ноги после успешного выступления и называли «сломать ногу».",
+          "art": "set07_body/body_09"
         },
         {
           "id": "body_10",
           "en": "Head in the clouds",
           "ru": "Витать в облаках",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hed ɪn ðə klaʊdz",
+          "literalRu": "голова в облаках",
+          "meaningRu": "Мечтать и грезить, не замечая того, что происходит вокруг.",
+          "exampleEn": "He missed his stop again — always with his head in the clouds.",
+          "exampleRu": "Он снова проехал свою остановку — вечно витает в облаках.",
+          "originRu": "Образ прямой и понятный любому: голова мечтателя будто поднялась к облакам, оторвавшись от земных дел. В английской речи оборот закрепился к XVIII веку.",
+          "art": "set07_body/body_10"
         }
       ]
     },
@@ -1104,7 +1181,14 @@
         "id": "travel_secret",
         "en": "Jet lag",
         "ru": "Сбой часов после перелёта",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˈdʒet læɡ",
+        "literalRu": "отставание от реактивного самолёта",
+        "meaningRu": "Разбитость и сонливость, когда внутренние часы тела не поспевают за сменой часовых поясов.",
+        "exampleEn": "After the flight from Tokyo I had jet lag for three whole days.",
+        "exampleRu": "После рейса из Токио меня три дня мучил сбой часов.",
+        "originRu": "Слово родилось в 1960-х, когда реактивные лайнеры впервые стали за часы перебрасывать людей через множество поясов: тело «отставало» (lag) от скорости джета.",
+        "art": "set08_travel/travel_secret"
       },
       "cards": [
         {
@@ -1112,70 +1196,140 @@
           "en": "Hit the road",
           "ru": "Отправиться в путь",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt ðə rəʊd",
+          "literalRu": "ударить по дороге",
+          "meaningRu": "Тронуться в путь, начать поездку или просто уйти.",
+          "exampleEn": "It's getting late — let's hit the road before traffic starts.",
+          "exampleRu": "Уже поздно — давай тронемся в путь, пока нет пробок.",
+          "originRu": "По одной из версий — от стука копыт и колёс по дороге; фраза разошлась по Америке, а в 1961 году её закрепил хит Рэя Чарльза «Hit the Road Jack».",
+          "art": "set08_travel/travel_01"
         },
         {
           "id": "travel_02",
           "en": "Off the beaten track",
           "ru": "Вдали от туристических троп",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɒf ðə ˈbiːtn træk",
+          "literalRu": "в стороне от протоптанной тропы",
+          "meaningRu": "В глухом, малоизвестном месте, куда мало кто добирается.",
+          "exampleEn": "We found a tiny café off the beaten track, away from the crowds.",
+          "exampleRu": "Мы нашли крошечное кафе вдали от троп, подальше от толпы.",
+          "originRu": "«Beaten track» — тропа, утоптанная множеством ног; сойти с неё значит выбрать путь, которым ходят редко. Образ известен в английском с XVII века.",
+          "art": "set08_travel/travel_02"
         },
         {
           "id": "travel_03",
           "en": "Travel light",
           "ru": "Путешествовать налегке",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈtrævl laɪt",
+          "literalRu": "путешествовать легко",
+          "meaningRu": "Брать в дорогу самый минимум вещей.",
+          "exampleEn": "I always travel light — just a backpack for the whole week.",
+          "exampleRu": "Я всегда езжу налегке — один рюкзак на всю неделю.",
+          "originRu": "Здесь «light» — это «лёгкий по весу»: чем меньше поклажи, тем легче в пути. Тот же образ слышен в военном «travel light» — идти без лишнего груза.",
+          "art": "set08_travel/travel_03"
         },
         {
           "id": "travel_04",
           "en": "Catch the red-eye",
           "ru": "Лететь ночным рейсом",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kætʃ ðə ˈred aɪ",
+          "literalRu": "поймать красный глаз",
+          "meaningRu": "Лететь ночным рейсом и прилетать под утро невыспавшимся.",
+          "exampleEn": "I'll catch the red-eye and be at the office by morning.",
+          "exampleRu": "Полечу ночным рейсом и к утру буду в офисе.",
+          "originRu": "«Red-eye» — красные от недосыпа глаза пассажиров таких рейсов. Выражение пошло из США в середине XX века, когда ночные перелёты стали обычным делом.",
+          "art": "set08_travel/travel_04"
         },
         {
           "id": "travel_05",
           "en": "On the go",
           "ru": "На бегу, в движении",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɒn ðə ɡəʊ",
+          "literalRu": "в движении",
+          "meaningRu": "Постоянно занят и в разъездах, без минуты покоя.",
+          "exampleEn": "I grabbed a sandwich on the go between two meetings.",
+          "exampleRu": "Я перехватил сэндвич на бегу между двумя встречами.",
+          "originRu": "Здесь «go» — это само движение, ход: быть «on the go» значит всё время быть на ходу. Оборот в ходу с XIX века.",
+          "art": "set08_travel/travel_05"
         },
         {
           "id": "travel_06",
           "en": "Itchy feet",
           "ru": "Тяга к перемене мест",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈɪtʃi fiːt",
+          "literalRu": "зудящие ноги",
+          "meaningRu": "Неудержимое желание сорваться с места и отправиться путешествовать.",
+          "exampleEn": "After a year in one city, she got itchy feet again.",
+          "exampleRu": "После года в одном городе её снова потянуло в дорогу.",
+          "originRu": "Образ прямой: будто ноги чешутся и сами просятся идти. По той же логике говорят «itchy palm» — про руку, что «чешется» от жажды денег.",
+          "art": "set08_travel/travel_06"
         },
         {
           "id": "travel_07",
           "en": "Live out of a suitcase",
           "ru": "Жить на чемоданах",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "lɪv aʊt əv ə ˈsuːtkeɪs",
+          "literalRu": "жить из чемодана",
+          "meaningRu": "Постоянно быть в разъездах, так и не распаковав вещи.",
+          "exampleEn": "During the tour the band lived out of a suitcase for months.",
+          "exampleRu": "Во время гастролей группа месяцами жила на чемоданах.",
+          "originRu": "Образ буквальный: вещи так и остаются в чемодане, потому что человек нигде не задерживается надолго и достаёт нужное прямо из багажа.",
+          "art": "set08_travel/travel_07"
         },
         {
           "id": "travel_08",
           "en": "A home away from home",
           "ru": "Второй дом",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə həʊm əˈweɪ frəm həʊm",
+          "literalRu": "дом вдали от дома",
+          "meaningRu": "Чужое место, где так же уютно и спокойно, как у себя дома.",
+          "exampleEn": "That cosy hostel became a home away from home for us.",
+          "exampleRu": "Тот уютный хостел стал для нас вторым домом.",
+          "originRu": "Оборот популярен с XIX века: так хвалили гостиницы и пансионы, где постояльцу было по-домашнему тепло вдали от родного очага.",
+          "art": "set08_travel/travel_08"
         },
         {
           "id": "travel_09",
           "en": "The world is your oyster",
           "ru": "Весь мир у твоих ног",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə wɜːld ɪz jɔːr ˈɔɪstə",
+          "literalRu": "мир — твоя устрица",
+          "meaningRu": "Перед тобой открыты любые возможности, бери что хочешь.",
+          "exampleEn": "You're young and free — the world is your oyster!",
+          "exampleRu": "Ты молод и свободен — весь мир у твоих ног!",
+          "originRu": "Фразу придумал Шекспир в «Виндзорских насмешницах» (1602): мир — устрица, которую герой вскроет мечом, чтобы добыть жемчужину-награду.",
+          "art": "set08_travel/travel_09"
         },
         {
           "id": "travel_10",
           "en": "Wanderlust",
           "ru": "Страсть к путешествиям",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈwɒndəlʌst",
+          "literalRu": "жажда странствий",
+          "meaningRu": "Сильное, неутолимое желание странствовать и открывать новые места.",
+          "exampleEn": "Her wanderlust took her to thirty countries before she turned thirty.",
+          "exampleRu": "Страсть к путешествиям привела её в тридцать стран ещё до тридцати лет.",
+          "originRu": "Слово целиком пришло из немецкого: wandern — «бродить» и Lust — «страсть». Английский позаимствовал его в начале XX века и не стал переводить.",
+          "art": "set08_travel/travel_10"
         }
       ]
     },
@@ -1191,7 +1345,14 @@
         "id": "work_secret",
         "en": "TGIF",
         "ru": "Слава богу, пятница!",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˌtiː dʒiː aɪ ˈef",
+        "literalRu": "слава богу, сегодня пятница",
+        "meaningRu": "Радостный возглас в конце рабочей недели, когда впереди выходные.",
+        "exampleEn": "Last email sent — TGIF, see you all on Monday!",
+        "exampleRu": "Последнее письмо отправлено — наконец-то пятница, до понедельника!",
+        "originRu": "Сокращение от «Thank God It's Friday». Возглас так прижился, что в 1965 году в Америке его сделали названием сети ресторанов T.G.I. Friday's.",
+        "art": "set09_work/work_secret"
       },
       "cards": [
         {
@@ -1199,70 +1360,140 @@
           "en": "Get down to business",
           "ru": "Перейти к делу",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡet daʊn tə ˈbɪznɪs",
+          "literalRu": "спуститься к делу",
+          "meaningRu": "Хватит болтать — берёмся за главное прямо сейчас.",
+          "exampleEn": "Enough small talk — let's get down to business.",
+          "exampleRu": "Хватит светских бесед — давай перейдём к делу.",
+          "originRu": "Раньше «business» означало просто занятость, хлопоты. «Спуститься» к делу — значит отбросить лишнее и опуститься к самой сути работы.",
+          "art": "set09_work/work_01"
         },
         {
           "id": "work_02",
           "en": "Climb the career ladder",
           "ru": "Подниматься по карьерной лестнице",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "klaɪm ðə kəˈrɪə ˈlædə",
+          "literalRu": "взбираться по карьерной лестнице",
+          "meaningRu": "Шаг за шагом продвигаться к должностям повыше.",
+          "exampleEn": "She started as an intern and slowly climbed the career ladder.",
+          "exampleRu": "Она начинала стажёром и потихоньку поднималась по карьерной лестнице.",
+          "originRu": "Образ лестницы для жизненного пути древний: ещё в Средние века рисовали «лестницу добродетелей», по которой человек поднимается всё выше, ступенька за ступенькой.",
+          "art": "set09_work/work_02"
         },
         {
           "id": "work_03",
           "en": "Call the shots",
           "ru": "Командовать, принимать решения",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kɔːl ðə ʃɒts",
+          "literalRu": "объявлять выстрелы",
+          "meaningRu": "Быть главным и решать, как всё будет.",
+          "exampleEn": "In this kitchen the head chef calls the shots.",
+          "exampleRu": "На этой кухне всем заправляет шеф-повар.",
+          "originRu": "По одной из версий — из стрельбы: стрелок заранее объявлял, в какую точку мишени попадёт, и так доказывал, что управляет ситуацией, а не палит наугад.",
+          "art": "set09_work/work_03"
         },
         {
           "id": "work_04",
           "en": "Think outside the box",
           "ru": "Мыслить нестандартно",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "θɪŋk ˌaʊtsaɪd ðə bɒks",
+          "literalRu": "думать за пределами коробки",
+          "meaningRu": "Искать необычное решение, а не очевидное.",
+          "exampleEn": "To win new clients we need to think outside the box.",
+          "exampleRu": "Чтобы привлечь новых клиентов, нужно мыслить нестандартно.",
+          "originRu": "От головоломки с девятью точками: их нельзя соединить четырьмя линиями, не выйдя карандашом за воображаемые границы квадрата. Загадку любили психологи и бизнес-тренеры середины XX века.",
+          "art": "set09_work/work_04"
         },
         {
           "id": "work_05",
           "en": "Learn the ropes",
           "ru": "Освоиться в новом деле",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "lɜːn ðə rəʊps",
+          "literalRu": "выучить верёвки",
+          "meaningRu": "Разобраться, как всё устроено на новом месте.",
+          "exampleEn": "Give me a week to learn the ropes and I'll be fine.",
+          "exampleRu": "Дай мне неделю освоиться, и всё будет в порядке.",
+          "originRu": "С парусных кораблей: новичка-матроса первым делом учили десяткам канатов, ведь без знания, какую верёвку тянуть, судном не управлять.",
+          "art": "set09_work/work_05"
         },
         {
           "id": "work_06",
           "en": "Burn the midnight oil",
           "ru": "Работать по ночам",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɜːn ðə ˈmɪdnaɪt ɔɪl",
+          "literalRu": "жечь полуночное масло",
+          "meaningRu": "Засиживаться допоздна за работой или учёбой.",
+          "exampleEn": "I burned the midnight oil to finish the report on time.",
+          "exampleRu": "Я работал до глубокой ночи, чтобы сдать отчёт вовремя.",
+          "originRu": "Когда не было электричества, поздняя работа означала горящую масляную лампу. Выражение закрепил английский поэт Фрэнсис Куорлз ещё в XVII веке.",
+          "art": "set09_work/work_06"
         },
         {
           "id": "work_07",
           "en": "Cut corners",
           "ru": "Халтурить, экономить на качестве",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kʌt ˈkɔːnəz",
+          "literalRu": "срезать углы",
+          "meaningRu": "Делать кое-как, лишь бы побыстрее и подешевле.",
+          "exampleEn": "They cut corners on the repair, and the roof leaks again.",
+          "exampleRu": "Они схалтурили с ремонтом, и крыша снова течёт.",
+          "originRu": "Образ от пешехода или возницы, который срезает путь через угол, чтобы сэкономить шаги, — но рискует и теряет в надёжности ради скорости.",
+          "art": "set09_work/work_07"
         },
         {
           "id": "work_08",
           "en": "Back to the drawing board",
           "ru": "Начать всё заново",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bæk tə ðə ˈdrɔːɪŋ bɔːd",
+          "literalRu": "обратно к чертёжной доске",
+          "meaningRu": "Первый план провалился — придумываем с нуля.",
+          "exampleEn": "The client hated our idea, so it's back to the drawing board.",
+          "exampleRu": "Клиенту наша идея не понравилась, так что начинаем всё заново.",
+          "originRu": "Фразу прославила подпись к карикатуре в журнале The New Yorker 1941 года: инженер уходит от разбившегося самолёта со словами «Ну что ж, обратно к чертёжной доске».",
+          "art": "set09_work/work_08"
         },
         {
           "id": "work_09",
           "en": "Burnout",
           "ru": "Выгорание",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈbɜːnaʊt",
+          "literalRu": "выгорание дотла",
+          "meaningRu": "Полное истощение сил от слишком долгой и тяжёлой работы.",
+          "exampleEn": "After two years without a break, he hit total burnout.",
+          "exampleRu": "После двух лет без отдыха он полностью выгорел.",
+          "originRu": "Термин ввёл психолог Герберт Фройденбергер в 1974 году, наблюдая измотанных волонтёров. В 2019-м Всемирная организация здравоохранения официально признала выгорание профессиональным синдромом.",
+          "art": "set09_work/work_09"
         },
         {
           "id": "work_10",
           "en": "Wear many hats",
           "ru": "Совмещать много ролей",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "weə ˈmeni hæts",
+          "literalRu": "носить много шляп",
+          "meaningRu": "Выполнять сразу несколько разных обязанностей.",
+          "exampleEn": "In a small startup you wear many hats every single day.",
+          "exampleRu": "В маленьком стартапе каждый день совмещаешь кучу ролей.",
+          "originRu": "Шляпа издавна была знаком профессии: у пожарного, повара, моряка — своя. «Носить много шляп» значит примерять сразу несколько занятий, меняя их как головные уборы.",
+          "art": "set09_work/work_10"
         }
       ]
     },
@@ -1278,7 +1509,14 @@
         "id": "home_secret",
         "en": "Man cave",
         "ru": "Мужская берлога",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "mæn keɪv",
+        "literalRu": "мужская пещера",
+        "meaningRu": "Своя комната или уголок в доме, где мужчина отдыхает по-своему: игры, спорт, инструменты.",
+        "exampleEn": "He turned the garage into a man cave with a big TV and a fridge.",
+        "exampleRu": "Он превратил гараж в мужскую берлогу с большим телевизором и холодильником.",
+        "originRu": "Шутливое сравнение с пещерой первобытного человека: дескать, мужчине нужно своё логово. Словечко стало модным в 1990-х и попало в словари в 2010-х.",
+        "art": "set10_home/home_secret"
       },
       "cards": [
         {
@@ -1286,70 +1524,140 @@
           "en": "Make yourself at home",
           "ru": "Чувствуй себя как дома",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "meɪk jɔːˈself ət həʊm",
+          "literalRu": "сделай себя как дома",
+          "meaningRu": "Расслабься и веди себя свободно, будто ты у себя дома.",
+          "exampleEn": "Come in, take off your shoes and make yourself at home!",
+          "exampleRu": "Заходи, разувайся и чувствуй себя как дома!",
+          "originRu": "Простое и прямое приглашение гостю: веди себя так же свободно, как в собственном доме. В английской речи закрепилось ещё в XVII веке как формула радушия.",
+          "art": "set10_home/home_01"
         },
         {
           "id": "home_02",
           "en": "Home sweet home",
           "ru": "Дом, милый дом",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "həʊm swiːt həʊm",
+          "literalRu": "дом, сладкий дом",
+          "meaningRu": "Как хорошо вернуться домой — нет места уютнее.",
+          "exampleEn": "After two weeks away, I dropped my bags and sighed: home sweet home.",
+          "exampleRu": "После двух недель в отъезде я бросил сумки и выдохнул: дом, милый дом.",
+          "originRu": "Фразу прославила песня «Home! Sweet Home!» 1823 года из оперы «Клари»: её мотив так трогал солдат, что во время Гражданской войны в США её одно время запрещали играть, чтобы не вызывать тоску по дому.",
+          "art": "set10_home/home_02"
         },
         {
           "id": "home_03",
           "en": "Spring cleaning",
           "ru": "Генеральная уборка",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "sprɪŋ ˈkliːnɪŋ",
+          "literalRu": "весенняя уборка",
+          "meaningRu": "Большая уборка всего дома, обычно весной.",
+          "exampleEn": "We did a big spring cleaning and threw out three bags of junk.",
+          "exampleRu": "Мы устроили генеральную уборку и выкинули три мешка хлама.",
+          "originRu": "Привычка тянется от тех времён, когда дома отапливали углём и копотью: с первым теплом распахивали окна и отмывали за зиму всё разом. Похожий обычай есть и у других народов — например, весенняя приборка перед персидским Новым годом.",
+          "art": "set10_home/home_03"
         },
         {
           "id": "home_04",
           "en": "Everything but the kitchen sink",
           "ru": "Всё подряд, целая куча",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈevriθɪŋ bət ðə ˈkɪtʃɪn sɪŋk",
+          "literalRu": "всё, кроме кухонной раковины",
+          "meaningRu": "Взяли с собой буквально всё, что только можно, даже лишнее.",
+          "exampleEn": "For one night away she packed everything but the kitchen sink.",
+          "exampleRu": "На одну ночь она собрала с собой всё, кроме разве что раковины.",
+          "originRu": "Шутка строится на том, что раковина намертво прикручена к трубам — её-то с собой и не утащишь. Фраза разошлась в годы Второй мировой: говорили, что по врагу летит всё, «кроме кухонной раковины».",
+          "art": "set10_home/home_04"
         },
         {
           "id": "home_05",
           "en": "A skeleton in the closet",
           "ru": "Скелет в шкафу",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈskelɪtn ɪn ðə ˈklɒzɪt",
+          "literalRu": "скелет в шкафу",
+          "meaningRu": "Постыдная тайна из прошлого, которую тщательно скрывают.",
+          "exampleEn": "Every family has a skeleton in the closet they don't talk about.",
+          "exampleRu": "В каждой семье есть свой скелет в шкафу, о котором не говорят.",
+          "originRu": "Образ вошёл в речь в Англии XIX века; по одной из версий — намёк на времена, когда врачи тайком хранили скелеты для занятий анатомией, ведь вскрытие тел долго было под запретом.",
+          "art": "set10_home/home_05"
         },
         {
           "id": "home_06",
           "en": "Bring the house down",
           "ru": "Сорвать бурные овации",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "brɪŋ ðə haʊs daʊn",
+          "literalRu": "обрушить дом",
+          "meaningRu": "Выступить так блестяще, что зал взрывается аплодисментами.",
+          "exampleEn": "Her final song brought the house down — everyone was on their feet.",
+          "exampleRu": "Её последняя песня сорвала бурю оваций — зал встал.",
+          "originRu": "«House» здесь — это театр и публика в нём. Шутка старая: артисты говорили, что хохот и хлопки такие громкие, будто вот-вот обрушат само здание.",
+          "art": "set10_home/home_06"
         },
         {
           "id": "home_07",
           "en": "Get on like a house on fire",
           "ru": "Мгновенно подружиться",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡet ɒn laɪk ə haʊs ɒn ˈfaɪə",
+          "literalRu": "ладить как горящий дом",
+          "meaningRu": "Сразу же отлично поладить, сдружиться с полуслова.",
+          "exampleEn": "I worried they'd clash, but they got on like a house on fire.",
+          "exampleRu": "Я боялся, что они поссорятся, а они мгновенно подружились.",
+          "originRu": "Образ — в скорости: деревянный дом в старину вспыхивал и разгорался стремительно. Так же быстро и жарко, по задумке фразы, вспыхивает и симпатия между людьми. Оборот встречается уже в начале XIX века.",
+          "art": "set10_home/home_07"
         },
         {
           "id": "home_08",
           "en": "A roof over your head",
           "ru": "Крыша над головой",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ruːf ˈəʊvə jɔː hed",
+          "literalRu": "крыша над твоей головой",
+          "meaningRu": "Жильё, дом — самое базовое, что нужно человеку.",
+          "exampleEn": "It's a small flat, but at least we have a roof over our heads.",
+          "exampleRu": "Квартирка маленькая, но крыша над головой у нас есть.",
+          "originRu": "Крыша веками была главным признаком дома — того, что защищает от дождя, снега и холода. Поэтому именно она стала образом самого необходимого жилья сразу во многих языках.",
+          "art": "set10_home/home_08"
         },
         {
           "id": "home_09",
           "en": "Home is where the heart is",
           "ru": "Дом там, где сердце",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "həʊm ɪz weə ðə hɑːt ɪz",
+          "literalRu": "дом там, где сердце",
+          "meaningRu": "Настоящий дом — не стены, а место и люди, к которым тянется душа.",
+          "exampleEn": "I've lived in five cities, but home is where the heart is — with my family.",
+          "exampleRu": "Я пожил в пяти городах, но дом там, где сердце, — рядом с семьёй.",
+          "originRu": "Мысль приписывают ещё римскому писателю Плинию Старшему. Идея проста: дом — это не адрес, а то место, куда тянет сердце, будь там хоть дворец, хоть скромная комнатка.",
+          "art": "set10_home/home_09"
         },
         {
           "id": "home_10",
           "en": "Sweep it under the rug",
           "ru": "Замести под ковёр",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "swiːp ɪt ˈʌndə ðə rʌɡ",
+          "literalRu": "замести это под ковёр",
+          "meaningRu": "Спрятать проблему или неприятную правду, сделать вид, что её нет.",
+          "exampleEn": "We can't just sweep this mistake under the rug and hope nobody notices.",
+          "exampleRu": "Нельзя просто замести эту ошибку под ковёр и надеяться, что никто не заметит.",
+          "originRu": "Образ очень бытовой: ленивый способ убраться — смахнуть мусор под ковёр, чтобы не было видно. В переносном смысле — прятать неудобное «с глаз долой» — оборот закрепился в середине XX века.",
+          "art": "set10_home/home_10"
         }
       ]
     },
@@ -1365,7 +1673,14 @@
         "id": "love_secret",
         "en": "Bromance",
         "ru": "Крепкая мужская дружба",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˈbrəʊmæns",
+        "literalRu": "браманс",
+        "meaningRu": "Очень тёплая, нежная дружба между двумя парнями — почти как роман, только без романтики.",
+        "exampleEn": "Those two are inseparable — total bromance.",
+        "exampleRu": "Эти двое неразлучны — настоящая мужская дружба.",
+        "originRu": "Слово склеено из «bro» (братан) и «romance» (роман). Придумал его в 1990-х редактор скейт-журнала Дэйв Карни, а в моду оно вошло благодаря комедиям 2000-х.",
+        "art": "set11_love/love_secret"
       },
       "cards": [
         {
@@ -1373,70 +1688,140 @@
           "en": "Hit it off",
           "ru": "Сразу поладить",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt ɪt ɒf",
+          "literalRu": "ударить это прочь",
+          "meaningRu": "С первой минуты понравиться друг другу и легко подружиться.",
+          "exampleEn": "We met at a party and hit it off right away.",
+          "exampleRu": "Мы познакомились на вечеринке и сразу поладили.",
+          "originRu": "Старое значение глагола «to hit it» — точно угадать, попасть в цель. Когда двое «попадают» характерами друг в друга, между ними сразу ладится — отсюда и оборот.",
+          "art": "set11_love/love_01"
         },
         {
           "id": "love_02",
           "en": "Through thick and thin",
           "ru": "И в горе, и в радости",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "θruː θɪk ənd θɪn",
+          "literalRu": "сквозь чащу и редколесье",
+          "meaningRu": "Быть рядом и в хорошие времена, и в самые трудные.",
+          "exampleEn": "She stood by me through thick and thin.",
+          "exampleRu": "Она была рядом со мной и в горе, и в радости.",
+          "originRu": "По одной из версий — из охоты: «thick and thin» это густой и редкий лес, через который всадник скакал напролом, не разбирая дороги. Обороту больше шестисот лет, он есть ещё у Чосера.",
+          "art": "set11_love/love_02"
         },
         {
           "id": "love_03",
           "en": "A shoulder to cry on",
           "ru": "Жилетка, в которую можно поплакать",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈʃəʊldə tə kraɪ ɒn",
+          "literalRu": "плечо, чтобы поплакать на нём",
+          "meaningRu": "Близкий человек, который выслушает и утешит в тяжёлый момент.",
+          "exampleEn": "After the breakup, she just needed a shoulder to cry on.",
+          "exampleRu": "После расставания ей просто нужна была жилетка, чтобы поплакать.",
+          "originRu": "Образ держится на привычном жесте утешения: расстроенный человек утыкается лицом в плечо друга. Выражение разошлось по миру в XX веке, особенно с песнями о разбитом сердце.",
+          "art": "set11_love/love_03"
         },
         {
           "id": "love_04",
           "en": "Tie the knot",
           "ru": "Пожениться",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "taɪ ðə nɒt",
+          "literalRu": "завязать узел",
+          "meaningRu": "Официально вступить в брак.",
+          "exampleEn": "After ten years together, they finally tied the knot.",
+          "exampleRu": "После десяти лет вместе они наконец поженились.",
+          "originRu": "Во многих культурах на свадьбе руки жениха и невесты буквально связывали лентой или шнуром — обряд «handfasting». Завязанный узел стал символом нерушимого союза.",
+          "art": "set11_love/love_04"
         },
         {
           "id": "love_05",
           "en": "Love at first sight",
           "ru": "Любовь с первого взгляда",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "lʌv ət ˈfɜːst saɪt",
+          "literalRu": "любовь с первого взгляда",
+          "meaningRu": "Чувство, которое вспыхивает сразу, как только увидел человека.",
+          "exampleEn": "For my parents it was love at first sight at a bus stop.",
+          "exampleRu": "Для моих родителей это была любовь с первого взгляда на остановке.",
+          "originRu": "Идея мгновенной любви идёт ещё от древних греков: они верили, что страсть влетает в человека через глаза, как стрела. Образ закрепил Шекспир в «Ромео и Джульетте».",
+          "art": "set11_love/love_05"
         },
         {
           "id": "love_06",
           "en": "Two peas in a pod",
           "ru": "Не разлей вода",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "tuː piːz ɪn ə pɒd",
+          "literalRu": "две горошины в одном стручке",
+          "meaningRu": "Двое, которые всегда вместе и очень похожи друг на друга.",
+          "exampleEn": "Those twins are like two peas in a pod.",
+          "exampleRu": "Эти близнецы — просто не разлей вода.",
+          "originRu": "Горошины из одного стручка и впрямь похожи как копии и лежат бок о бок. Это сходство подметили очень давно — оборот встречается в английском уже в XVI веке.",
+          "art": "set11_love/love_06"
         },
         {
           "id": "love_07",
           "en": "Pop the question",
           "ru": "Сделать предложение",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pɒp ðə ˈkwestʃən",
+          "literalRu": "выпалить вопрос",
+          "meaningRu": "Предложить руку и сердце, позвать замуж.",
+          "exampleEn": "He popped the question on the beach at sunset.",
+          "exampleRu": "Он сделал ей предложение на пляже на закате.",
+          "originRu": "Глагол «to pop» значит сказать что-то внезапно, выпалить. «The question» здесь — тот самый главный вопрос «выйдешь за меня?». В этом смысле оборот живёт с XVIII века.",
+          "art": "set11_love/love_07"
         },
         {
           "id": "love_08",
           "en": "Friends in high places",
           "ru": "Связи наверху",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "frendz ɪn haɪ ˈpleɪsɪz",
+          "literalRu": "друзья на высоких местах",
+          "meaningRu": "Влиятельные знакомые, которые могут помочь и замолвить словечко.",
+          "exampleEn": "He got the contract because he has friends in high places.",
+          "exampleRu": "Он получил контракт, потому что у него связи наверху.",
+          "originRu": "«High places» — это верхушка власти, высокие должности. Сама идея, что покровители «наверху» открывают двери, стара как мир и встречается ещё в библейских текстах.",
+          "art": "set11_love/love_08"
         },
         {
           "id": "love_09",
           "en": "A match made in heaven",
           "ru": "Идеальная пара",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə mætʃ ˌmeɪd ɪn ˈhevn",
+          "literalRu": "пара, созданная на небесах",
+          "meaningRu": "Двое, которые подходят друг другу идеально, будто так и задумано свыше.",
+          "exampleEn": "Coffee and a rainy morning — a match made in heaven.",
+          "exampleRu": "Кофе и дождливое утро — идеальная пара.",
+          "originRu": "Поговорка опирается на старое поверье «браки заключаются на небесах»: будто пары предопределены свыше ещё до встречи. Записям этой мысли уже несколько веков.",
+          "art": "set11_love/love_09"
         },
         {
           "id": "love_10",
           "en": "My better half",
           "ru": "Моя вторая половинка",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "maɪ ˈbetə hɑːf",
+          "literalRu": "моя лучшая половина",
+          "meaningRu": "Ласковое название для жены, мужа или любимого человека.",
+          "exampleEn": "I'd love to come, but I'll ask my better half first.",
+          "exampleRu": "Я бы с радостью пришёл, но сначала спрошу свою половинку.",
+          "originRu": "Идею о том, что любимый — это лучшая часть тебя самого, ещё римский поэт Гораций называл «animae dimidium meae», «половина моей души». В английском оборот закрепился в XVI веке.",
+          "art": "set11_love/love_10"
         }
       ]
     },
@@ -1451,8 +1836,15 @@
       "secret": {
         "id": "sport_secret",
         "en": "GG",
-        "ru": "Хорошая игра! (good game)",
-        "status": "seed"
+        "ru": "Хорошая игра!",
+        "status": "art_done",
+        "ipa": "dʒiː ˈdʒiː",
+        "literalRu": "джи-джи (good game)",
+        "meaningRu": "Дружеское «хорошая игра» в конце матча — признание достойной партии.",
+        "exampleEn": "Great match, everyone — GG!",
+        "exampleRu": "Отличный матч, ребята — хорошая игра!",
+        "originRu": "Сокращение от good game из мира видеоигр: соперники пишут «GG» в чате после боя как знак уважения. Иногда с подколом — «gg» в безнадёжно проигранной партии.",
+        "art": "set12_sport/sport_secret"
       },
       "cards": [
         {
@@ -1460,70 +1852,140 @@
           "en": "The ball is in your court",
           "ru": "Теперь твой ход",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə bɔːl ɪz ɪn jɔː kɔːt",
+          "literalRu": "мяч на твоей стороне корта",
+          "meaningRu": "Теперь очередь за тобой — решение или действие зависит от тебя.",
+          "exampleEn": "I've made my offer, so now the ball is in your court.",
+          "exampleRu": "Я сделал предложение, так что теперь твой ход.",
+          "originRu": "Образ из тенниса: пока мяч на твоей половине корта, играть должен ты. В переносном смысле оборот прижился в середине XX века.",
+          "art": "set12_sport/sport_01"
         },
         {
           "id": "sport_02",
           "en": "Hit the ground running",
           "ru": "Взяться за дело с ходу",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt ðə ɡraʊnd ˈrʌnɪŋ",
+          "literalRu": "коснуться земли уже на бегу",
+          "meaningRu": "С первой минуты взяться за дело энергично, без раскачки.",
+          "exampleEn": "She hit the ground running on her first day at the new job.",
+          "exampleRu": "В первый же день на новой работе она взялась за дело с ходу.",
+          "originRu": "По одной из версий — от десантников и солдат, спрыгивавших с поезда или парашюта и сразу пускавшихся бежать, не теряя ни секунды.",
+          "art": "set12_sport/sport_02"
         },
         {
           "id": "sport_03",
           "en": "Keep your eye on the ball",
           "ru": "Не терять фокус",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kiːp jɔːr aɪ ɒn ðə bɔːl",
+          "literalRu": "не своди глаз с мяча",
+          "meaningRu": "Сосредоточься на главном и не отвлекайся.",
+          "exampleEn": "There are lots of distractions, but keep your eye on the ball.",
+          "exampleRu": "Вокруг куча отвлекающего, но не теряй фокус.",
+          "originRu": "Совет родом из игр с мячом — крикета, бейсбола, тенниса: отведёшь взгляд от мяча хоть на миг — промахнёшься.",
+          "art": "set12_sport/sport_03"
         },
         {
           "id": "sport_04",
           "en": "A level playing field",
           "ru": "Равные условия для всех",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈlevl ˈpleɪɪŋ fiːld",
+          "literalRu": "ровное игровое поле",
+          "meaningRu": "Условия, при которых ни у кого нет нечестного преимущества.",
+          "exampleEn": "New rules give small firms a level playing field with the giants.",
+          "exampleRu": "Новые правила дают мелким фирмам равные условия с гигантами.",
+          "originRu": "Образ прямой: на покатом поле команда, играющая вниз по склону, в выигрыше, поэтому честная игра требует ровного, «горизонтального» поля.",
+          "art": "set12_sport/sport_04"
         },
         {
           "id": "sport_05",
           "en": "Take it on the chin",
           "ru": "Стойко держать удар",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "teɪk ɪt ɒn ðə tʃɪn",
+          "literalRu": "принять это в подбородок",
+          "meaningRu": "Мужественно стерпеть неприятность или неудачу, не раскисая.",
+          "exampleEn": "He lost the contest but took it on the chin and tried again.",
+          "exampleRu": "Он проиграл конкурс, но стойко держал удар и попробовал снова.",
+          "originRu": "Из бокса: удар в подбородок — один из самых тяжёлых, и выстоять после него способен лишь крепкий боец.",
+          "art": "set12_sport/sport_05"
         },
         {
           "id": "sport_06",
           "en": "Throw in the towel",
           "ru": "Сдаться, выбросить полотенце",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "θrəʊ ɪn ðə ˈtaʊəl",
+          "literalRu": "бросить полотенце на ринг",
+          "meaningRu": "Признать поражение и прекратить борьбу.",
+          "exampleEn": "After three failed attempts, he threw in the towel.",
+          "exampleRu": "После трёх провалов он сдался и выбросил полотенце.",
+          "originRu": "Из бокса: когда тренер видел, что его боец больше не может драться, он бросал на ринг полотенце — знак, что бой окончен.",
+          "art": "set12_sport/sport_06"
         },
         {
           "id": "sport_07",
           "en": "Move the goalposts",
           "ru": "Менять правила на ходу",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "muːv ðə ˈɡəʊlpəʊsts",
+          "literalRu": "передвинуть ворота",
+          "meaningRu": "Менять условия прямо по ходу дела, чтобы цель стало труднее достичь.",
+          "exampleEn": "Every time I finish a task, the boss moves the goalposts.",
+          "exampleRu": "Стоит мне доделать задачу, как шеф меняет правила на ходу.",
+          "originRu": "Образ из футбола и регби: если посреди матча взять и подвинуть ворота, забить станет почти невозможно — нечестная смена условий.",
+          "art": "set12_sport/sport_07"
         },
         {
           "id": "sport_08",
           "en": "Down to the wire",
           "ru": "До самого последнего момента",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "daʊn tə ðə ˈwaɪə",
+          "literalRu": "до самой финишной нити",
+          "meaningRu": "Исход решается в самый последний миг, до последней секунды.",
+          "exampleEn": "The election went down to the wire and nobody knew who'd win.",
+          "exampleRu": "Выборы шли до самого последнего момента, и никто не знал, кто победит.",
+          "originRu": "От конных скачек: раньше над финишем натягивали проволоку, чтобы видеть, чей нос пересёк черту первым в плотной борьбе.",
+          "art": "set12_sport/sport_08"
         },
         {
           "id": "sport_09",
           "en": "A game changer",
           "ru": "То, что меняет всё",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈɡeɪm ˌtʃeɪndʒə",
+          "literalRu": "тот, кто меняет ход игры",
+          "meaningRu": "Человек, событие или вещь, которые полностью меняют ситуацию.",
+          "exampleEn": "This new phone is a real game changer for photographers.",
+          "exampleRu": "Этот новый телефон — настоящий прорыв для фотографов.",
+          "originRu": "Сначала так в американском спорте называли игрока, который в одиночку переворачивал ход матча; из раздевалок словечко ушло в бизнес и обиход в 1990-х.",
+          "art": "set12_sport/sport_09"
         },
         {
           "id": "sport_10",
           "en": "Saved by the bell",
           "ru": "Спасён гонгом",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "seɪvd baɪ ðə bel",
+          "literalRu": "спасён гонгом",
+          "meaningRu": "В последний миг избежал неприятности благодаря удачной случайности.",
+          "exampleEn": "The teacher was about to ask me, but the bell rang — saved by the bell!",
+          "exampleRu": "Учитель уже собрался меня спросить, но прозвенел звонок — спасён гонгом!",
+          "originRu": "Из бокса: проигрывающего боксёра от нокаута спасает гонг, возвещающий конец раунда. Старая байка о звонке на могиле — лишь красивая выдумка.",
+          "art": "set12_sport/sport_10"
         }
       ]
     },

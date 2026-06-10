@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A game changer">
+<ellipse cx="60" cy="144" rx="28" ry="7" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="110" cy="146" rx="26" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M188 30C150 44 120 52 96 64c20-2 30 2 34 12-26-6-44 2-52 18 28-10 50-8 62-22 14-16 30-30 48-40z" fill="#F2A65A"/>
+<path d="M180 36c-30 12-54 20-72 30 16 0 26 4 30 12-22-6-38 0-46 14 24-8 44-8 56-20 12-12 22-22 32-30z" fill="#FFD23F"/>
+<circle cx="148" cy="50" r="15" fill="#FFF7DD"/>
+<circle cx="148" cy="50" r="15" fill="none" stroke="#16243A" stroke-width="2"/>
+<path d="M148 50l7-9 10 2M148 50l-9-5-3-10M148 50l-4 11 8 5" stroke="#16243A" stroke-width="2" fill="none"/>
+<ellipse cx="60" cy="98" rx="20" ry="24" fill="#9B8CC4"/>
+<path d="M40 94c0-12 9-20 20-20s20 8 20 20z" fill="#7B6AA8"/>
+<circle cx="66" cy="92" r="5" fill="#FFF7DD"/><circle cx="80" cy="90" r="5" fill="#FFF7DD"/>
+<circle cx="69" cy="91" r="2.6" fill="#16243A"/><circle cx="83" cy="89" r="2.6" fill="#16243A"/>
+<path d="M64 106c5 3 11 3 16 0" stroke="#16243A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M50 112l-6 24M72 112l6 24" stroke="#9B8CC4" stroke-width="9" stroke-linecap="round"/>
+<ellipse cx="110" cy="102" rx="18" ry="22" fill="#7FB069"/>
+<path d="M92 98c0-11 8-18 18-18s18 7 18 18z" fill="#5E8A4A"/>
+<circle cx="114" cy="96" r="4.4" fill="#FFF7DD"/><circle cx="126" cy="96" r="4.4" fill="#FFF7DD"/>
+<circle cx="116" cy="95" r="2.4" fill="#16243A"/><circle cx="128" cy="95" r="2.4" fill="#16243A"/>
+<path d="M112 110c5 3 11 3 16 0" stroke="#16243A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M94 114l-4 22M128 114l4 22" stroke="#7FB069" stroke-width="8" stroke-linecap="round"/>
+</svg>

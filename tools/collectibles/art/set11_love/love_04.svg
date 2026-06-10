@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tie the knot">
+<ellipse cx="100" cy="150" rx="50" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M84 80c-18-10-34 2-34 18s16 24 34 14c-8-6-12-14-12-24z" fill="#E8615E"/>
+<path d="M116 80c18-10 34 2 34 18s-16 24-34 14c8-6 12-14 12-24z" fill="#F08A88"/>
+<path d="M84 80c10-6 22-6 32 0 6 12 6 28 0 40-10 6-22 6-32 0-6-12-6-28 0-40z" fill="#D94A47"/>
+<path d="M90 84c7-3 13-3 20 0M90 116c7 3 13 3 20 0" stroke="#F2A8A6" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<path d="M52 116c-10 8-16 18-14 30 12-2 22-12 26-24z" fill="#E8615E"/>
+<path d="M148 116c10 8 16 18 14 30-12-2-22-12-26-24z" fill="#F08A88"/>
+<circle cx="46" cy="138" r="9" fill="none" stroke="#F6C744" stroke-width="4"/>
+<circle cx="154" cy="138" r="9" fill="none" stroke="#F6C744" stroke-width="4"/>
+<circle cx="46" cy="129" r="3" fill="#8FD3F4"/>
+<circle cx="154" cy="129" r="3" fill="#8FD3F4"/>
+<path d="M70 70l3 6 6 1-4 4 1 6-6-3M130 70l-3 6-6 1 4 4-1 6 6-3" stroke="#F6C744" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

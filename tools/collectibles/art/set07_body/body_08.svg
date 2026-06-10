@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Get it off your chest">
+<ellipse cx="100" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M58 150c-4-30 8-52 42-52s46 22 42 52z" fill="#6FA8DC"/>
+<ellipse cx="100" cy="68" rx="26" ry="28" fill="#F2C9A0"/>
+<path d="M76 62c2-16 12-26 24-26s22 10 24 24c-14-7-36-5-48 2z" fill="#7A4A2B"/>
+<path d="M86 60c4-3 10-3 13 0M101 60c4-3 10-3 13 0" stroke="#5A3A28" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<circle cx="92" cy="68" r="3.5" fill="#5A3A28"/><circle cx="108" cy="68" r="3.5" fill="#5A3A28"/>
+<path d="M88 80c6 6 18 6 24 0" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M64 122c-12-8-20-22-16-36" stroke="#E8B07E" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M136 122c12-8 20-22 16-36" stroke="#E8B07E" stroke-width="9" fill="none" stroke-linecap="round"/>
+<ellipse cx="100" cy="40" rx="34" ry="22" fill="#8E99A6"/>
+<ellipse cx="100" cy="36" rx="34" ry="20" fill="#A6B0BC"/>
+<circle cx="84" cy="34" r="5" fill="#7E8894" opacity=".7"/><circle cx="116" cy="38" r="6" fill="#7E8894" opacity=".7"/><circle cx="102" cy="28" r="4" fill="#7E8894" opacity=".7"/>
+</svg>

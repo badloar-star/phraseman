@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Learn the ropes">
+<ellipse cx="92" cy="150" rx="54" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="150" y="24" width="9" height="120" rx="4" fill="#A9703A"/>
+<path d="M154 28c-24 6-40 22-40 44 0 20 14 34 30 40" fill="none" stroke="#E8C56A" stroke-width="6" stroke-linecap="round"/>
+<circle cx="120" cy="60" r="9" fill="none" stroke="#E8C56A" stroke-width="6"/>
+<circle cx="128" cy="96" r="9" fill="none" stroke="#E8C56A" stroke-width="6"/>
+<path d="M154 60c14 0 22 8 22 18s-8 18-22 18" fill="none" stroke="#D8B45A" stroke-width="6" stroke-linecap="round"/>
+<path d="M56 118c-2-24 10-40 30-40s32 16 30 40z" fill="#5BB6A8"/>
+<path d="M56 118c-2-24 10-40 30-40 5 0 9 1 13 3-8 30-28 36-43 37z" fill="#79D0C2"/>
+<path d="M64 88c-10 4-14 14-10 24" fill="none" stroke="#5BB6A8" stroke-width="8" stroke-linecap="round"/>
+<path d="M108 86c10 2 16 10 14 20" fill="none" stroke="#5BB6A8" stroke-width="8" stroke-linecap="round"/>
+<circle cx="86" cy="64" r="18" fill="#F4E3C8"/>
+<path d="M68 60c0-10 8-16 18-16s18 6 18 16z" fill="#5C7CB0"/>
+<rect x="78" y="40" width="16" height="6" rx="3" fill="#3E5C8C"/>
+<circle cx="80" cy="64" r="3" fill="#2A2030"/>
+<circle cx="92" cy="64" r="3" fill="#2A2030"/>
+<path d="M81 72c4 3 9 3 12 0" stroke="#C77" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+</svg>

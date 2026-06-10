@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Climb the career ladder">
+<ellipse cx="96" cy="150" rx="50" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M150 24l7 21-22-4z" fill="#FFD23F" stroke="#C4A24E" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M150 24l-7 21 22-4z" fill="#FFE27A" stroke="#C4A24E" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="70" y="40" width="9" height="106" rx="4" fill="#C98A4B"/>
+<rect x="108" y="40" width="9" height="106" rx="4" fill="#C98A4B"/>
+<rect x="74" y="56" width="40" height="7" rx="3" fill="#A9703A"/>
+<rect x="74" y="82" width="40" height="7" rx="3" fill="#A9703A"/>
+<rect x="74" y="108" width="40" height="7" rx="3" fill="#A9703A"/>
+<rect x="74" y="134" width="40" height="7" rx="3" fill="#A9703A"/>
+<path d="M84 50c-2-18 8-30 24-30s26 12 24 30z" fill="#5BB6A8"/>
+<path d="M84 50c-2-18 8-30 24-30 4 0 8 1 11 2-6 24-22 28-35 28z" fill="#79D0C2"/>
+<path d="M88 36c-10 6-12 16-6 24" fill="none" stroke="#5BB6A8" stroke-width="8" stroke-linecap="round"/>
+<path d="M128 30c10-2 18 4 18 14" fill="none" stroke="#5BB6A8" stroke-width="8" stroke-linecap="round"/>
+<circle cx="108" cy="16" r="14" fill="#F4E3C8"/>
+<circle cx="103" cy="16" r="2.8" fill="#2A2030"/>
+<circle cx="114" cy="16" r="2.8" fill="#2A2030"/>
+<path d="M104 22c3 2 6 2 9 0" stroke="#C77" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Break a leg">
+<path d="M44 78l24-20 12 16z" fill="#FFE9A8" opacity=".55"/>
+<path d="M44 78l24-20 12 16-30 38z" fill="#FFE9A8" opacity=".3"/>
+<ellipse cx="100" cy="150" rx="38" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M14 6c14 4 24 4 38 0v120c-12-4-26-4-38 0z" fill="#C9433F"/>
+<path d="M186 6c-14 4-24 4-38 0v120c12-4 26-4 38 0z" fill="#C9433F"/>
+<path d="M14 6c60 8 112 8 172 0v14c-60 8-112 8-172 0z" fill="#9A2A26"/>
+<path d="M78 148c-4-26 6-44 22-44s26 18 22 44z" fill="#6FA8DC"/>
+<ellipse cx="100" cy="84" rx="22" ry="24" fill="#F2C9A0"/>
+<path d="M80 80c0-14 9-24 20-24s20 10 20 24c-11-6-29-6-40 0z" fill="#3A2A1E"/>
+<circle cx="92" cy="84" r="3.5" fill="#3A2A1E"/><circle cx="108" cy="84" r="3.5" fill="#3A2A1E"/>
+<path d="M90 94c5 5 15 5 20 0" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M82 102c-8 8-10 18-6 26" stroke="#E8B07E" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M40 34l-7 12 7 1-5 11 14-15-7-1 5-9zM160 34l-7 12 7 1-5 11 14-15-7-1 5-9z" fill="#FFD23F"/>
+</svg>

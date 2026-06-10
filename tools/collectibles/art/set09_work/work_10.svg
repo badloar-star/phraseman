@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wear many hats">
+<ellipse cx="100" cy="150" rx="50" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M64 144c-4-30 12-50 36-50s40 20 36 50z" fill="#5BB6A8"/>
+<path d="M64 144c-4-30 12-50 36-50 6 0 11 1 16 3-12 38-36 44-56 47z" fill="#79D0C2"/>
+<path d="M70 110c-12 4-16 16-10 26" fill="none" stroke="#5BB6A8" stroke-width="9" stroke-linecap="round"/>
+<path d="M130 110c12 4 16 16 10 26" fill="none" stroke="#5BB6A8" stroke-width="9" stroke-linecap="round"/>
+<circle cx="100" cy="96" r="17" fill="#F4E3C8"/>
+<circle cx="94" cy="98" r="2.8" fill="#2A2030"/>
+<circle cx="106" cy="98" r="2.8" fill="#2A2030"/>
+<path d="M95 104c3 2 7 2 10 0" stroke="#C77" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<rect x="78" y="72" width="44" height="12" rx="4" fill="#E0726B"/>
+<path d="M82 72c0-12 8-18 18-18s18 6 18 18z" fill="#F08C84"/>
+<rect x="74" y="56" width="52" height="6" rx="3" fill="#2A2030"/>
+<rect x="84" y="40" width="32" height="18" rx="3" fill="#3A3142"/>
+<rect x="86" y="30" width="28" height="14" rx="6" fill="#FFFDF4"/>
+<path d="M86 30c0-12 6-18 14-18s14 6 14 18z" fill="#FFFFFF" stroke="#E5E0D2" stroke-width="2"/>
+<rect x="92" y="22" width="16" height="6" rx="3" fill="#E0726B"/>
+</svg>

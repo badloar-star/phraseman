@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Everything but the kitchen sink">
+<ellipse cx="84" cy="150" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="36" y="76" width="96" height="62" rx="6" fill="#B5703C"/>
+<rect x="36" y="92" width="96" height="46" rx="4" fill="#C9854E"/>
+<rect x="74" y="70" width="20" height="10" rx="4" fill="#8B5A3C"/>
+<rect x="32" y="100" width="104" height="7" fill="#8B5A3C"/>
+<path d="M58 76l-6-22 14-2 2 24z" fill="#F2C14E"/><path d="M48 50h22l-6-12h-10z" fill="#FFE0A6"/>
+<ellipse cx="104" cy="64" rx="14" ry="13" fill="#9A8478"/>
+<path d="M94 60l-4-8m24 8l4-8" stroke="#9A8478" stroke-width="5" stroke-linecap="round"/>
+<circle cx="100" cy="64" r="2.6" fill="#2E2A26"/><circle cx="108" cy="64" r="2.6" fill="#2E2A26"/>
+<rect x="118" y="56" width="8" height="28" rx="4" fill="#C46B5E" transform="rotate(14 122 70)"/>
+<circle cx="118" cy="58" r="9" fill="#E0BE86"/>
+<rect x="156" y="108" width="34" height="30" rx="4" fill="#B8C2CE"/>
+<ellipse cx="173" cy="116" rx="13" ry="6" fill="#8C97A6"/>
+<rect x="170" y="98" width="6" height="14" rx="3" fill="#A6B0BE"/>
+<circle cx="166" cy="122" r="2.6" fill="#3A4258"/><circle cx="180" cy="122" r="2.6" fill="#3A4258"/>
+<path d="M168 132c3-3 9-3 12 0" fill="none" stroke="#3A4258" stroke-width="2.4" stroke-linecap="round" transform="rotate(180 174 131)"/>
+</svg>

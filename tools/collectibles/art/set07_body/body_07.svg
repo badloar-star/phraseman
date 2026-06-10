@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Let your hair down">
+<ellipse cx="100" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M60 150c-4-28 8-50 40-50s44 22 40 50z" fill="#F6A8C0"/>
+<path d="M64 70C40 84 36 118 50 150c12-2 18-16 16-34 14 6 18-30-2-46z" fill="#C98A3A"/>
+<path d="M136 70c24 14 28 48 14 80-12-2-18-16-16-34-14 6-18-30 2-46z" fill="#C98A3A"/>
+<path d="M70 64c2-18 14-30 30-30s28 12 30 30c-16-8-44-8-60 0z" fill="#E0A53A"/>
+<ellipse cx="100" cy="78" rx="28" ry="30" fill="#F2C9A0"/>
+<circle cx="90" cy="76" r="4" fill="#5A3A28"/><circle cx="110" cy="76" r="4" fill="#5A3A28"/>
+<path d="M84 68c4-3 10-3 13 0M103 68c4-3 10-3 13 0" stroke="#5A3A28" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M86 90c6 7 22 7 28 0 0 8-7 14-14 14s-14-6-14-14z" fill="#C9433F"/>
+<path d="M90 90c5 3 15 3 20 0" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="80" cy="92" r="5" fill="#F6A8C0" opacity=".6"/><circle cx="120" cy="92" r="5" fill="#F6A8C0" opacity=".6"/>
+</svg>

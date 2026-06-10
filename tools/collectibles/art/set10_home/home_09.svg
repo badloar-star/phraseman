@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Home is where the heart is">
+<ellipse cx="100" cy="150" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="54" y="74" width="92" height="66" rx="4" fill="#F2D6A6"/>
+<path d="M46 74l54-40 54 40z" fill="#E07A6B"/>
+<path d="M46 74l54-40 54 40z" fill="none" stroke="#C25D50" stroke-width="3"/>
+<rect x="62" y="108" width="22" height="32" rx="3" fill="#8B5A3C"/>
+<circle cx="79" cy="125" r="3" fill="#F2C14E"/>
+<circle cx="118" cy="106" r="26" fill="#FFE6A0" opacity=".55"/>
+<path d="M118 122c-14-9-22-19-22-29 0-8 6-13 12-13 5 0 8 3 10 6 2-3 5-6 10-6 6 0 12 5 12 13 0 10-8 20-22 29z" fill="#EF6F7E"/>
+<path d="M118 122c-14-9-22-19-22-29 0-8 6-13 12-13 5 0 8 3 10 6 2-3 5-6 10-6 6 0 12 5 12 13 0 10-8 20-22 29z" fill="none" stroke="#D44E5E" stroke-width="2.6"/>
+<circle cx="110" cy="96" r="3" fill="#FFFFFF" opacity=".7"/>
+</svg>

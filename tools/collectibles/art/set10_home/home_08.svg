@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A roof over your head">
+<ellipse cx="100" cy="150" rx="48" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M48 70l52-30 52 30z" fill="#E07A6B"/>
+<path d="M48 70l52-30 52 30z" fill="none" stroke="#C25D50" stroke-width="3"/>
+<rect x="96" y="70" width="6" height="40" rx="3" fill="#B5854E"/>
+<ellipse cx="100" cy="124" rx="26" ry="24" fill="#F2C14E"/>
+<path d="M78 118c0-14 10-22 22-22s22 8 22 22z" fill="#E0AE3E"/>
+<circle cx="91" cy="124" r="4" fill="#3A2A1E"/><circle cx="109" cy="124" r="4" fill="#3A2A1E"/>
+<path d="M90 134c6 5 14 5 20 0" fill="none" stroke="#3A2A1E" stroke-width="3" stroke-linecap="round"/>
+<circle cx="84" cy="130" r="3.4" fill="#F2A8C0" opacity=".7"/><circle cx="116" cy="130" r="3.4" fill="#F2A8C0" opacity=".7"/>
+<g stroke="#8FB0D8" stroke-width="4" stroke-linecap="round">
+<path d="M38 86l-4 10M62 96l-4 10M138 96l4 10M162 86l4 10M52 116l-3 8M148 116l3 8"/>
+</g>
+</svg>

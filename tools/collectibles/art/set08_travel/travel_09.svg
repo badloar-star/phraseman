@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The world is your oyster">
+<ellipse cx="100" cy="140" rx="52" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M40 116c0-26 27-44 60-44s60 18 60 44c0 8-4 14-10 16H50c-6-2-10-8-10-16z" fill="#E5A9C4"/>
+<path d="M48 124c8-6 18-9 22-22M76 130c4-12 10-20 16-26M152 124c-8-6-18-9-22-22M124 130c-4-12-10-20-16-26" stroke="#D98FB4" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M44 116c0 8 4 14 10 16h92c6-2 10-8 10-16-8 10-30 16-56 16s-48-6-56-16z" fill="#F2CADC"/>
+<circle cx="100" cy="92" r="26" fill="#7FC0E8"/>
+<circle cx="100" cy="92" r="26" fill="none" stroke="#FFF7DD" stroke-width="2"/>
+<path d="M82 84c10 4 14-2 22 0 6 2 10-2 14-4M80 98c8-2 12 4 20 2 6-2 12 2 18-2" stroke="#6FBF73" stroke-width="4" fill="none" stroke-linecap="round"/>
+<circle cx="90" cy="80" r="6" fill="#FFF7DD" opacity=".55"/>
+<path d="M62 70l3 6 6 1-6 3-2 6-3-6-6-1 6-3z" fill="#FFE08A"/>
+</svg>

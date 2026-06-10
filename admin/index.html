@@ -18821,7 +18821,13 @@
     window._urMap = {};
     reports.forEach(r => { window._urMap[r.id] = r; });
 
-    list.innerHTML = reports.map(r => {
+    const bulkBar = `<div id="ur-bulk-bar" style="display:none;position:sticky;top:0;z-index:5;background:#1a2540;border:1px solid #5a8ad0;border-radius:9px;padding:8px 14px;margin-bottom:10px;align-items:center;gap:12px">
+      <span id="ur-bulk-count" style="color:#bfdbfe;font-weight:700;font-size:13px"></span>
+      <button onclick="urBulkAction('archived')" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">📦 Архивировать выбранные</button>
+      <button onclick="urBulkClear()" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#aaa;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">Снять выбор</button>
+    </div>`;
+
+    list.innerHTML = bulkBar + reports.map(r => {
       const reasonLabel = escapeHtml(UR_REASON_LABELS[r.reason] || r.reason || '—');
       const statusColor = r.status === 'banned' ? '#f87171' : r.status === 'reviewed' ? '#4ade80' : r.status === 'archived' ? '#6b7280' : '#fbbf24';
       const date = escapeHtml(r.createdAt ? r.createdAt.slice(0,10) : '—');
@@ -18836,6 +18842,7 @@
         <div class="report-card" style="border-left:3px solid ${statusColor}">
           <div class="rc-left">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+              <input type="checkbox" class="ur-check" data-ur-check="${rid}" onchange="urSelectionChanged()" style="width:16px;height:16px;cursor:pointer">
               <span style="font-size:18px">🚩</span>
               <div>
                 <div style="color:#fff;font-weight:700;font-size:15px">${rName}</div>
@@ -18871,6 +18878,38 @@
       });
     });
   }
+
+  // ── Bulk selection for user-reports ───────────────────────────────────────
+  window.urSelectionChanged = function() {
+    const checked = document.querySelectorAll('.ur-check:checked');
+    const bar = document.getElementById('ur-bulk-bar');
+    const cnt = document.getElementById('ur-bulk-count');
+    if (bar) bar.style.display = checked.length ? 'flex' : 'none';
+    if (cnt) cnt.textContent = `Выбрано: ${checked.length}`;
+  };
+  window.urBulkClear = function() {
+    document.querySelectorAll('.ur-check:checked').forEach(c => { c.checked = false; });
+    urSelectionChanged();
+  };
+  window.urBulkAction = async function(action) {
+    const ids = Array.from(document.querySelectorAll('.ur-check:checked')).map(c => c.getAttribute('data-ur-check'));
+    if (!ids.length) return;
+    if (typeof showConfirmModal === 'function') {
+      const ok = await showConfirmModal({ title: 'Массовое действие', desc: `${ids.length} жалоб будут помечены «${action === 'archived' ? 'в архив' : action}».`, confirmLabel: 'Применить' });
+      if (!ok) return;
+    }
+    let done = 0;
+    for (const id of ids) {
+      try {
+        await updateDoc(doc(db, 'user_reports', id), { status: action, reviewedAt: new Date().toISOString() });
+        done++;
+      } catch (_) { /* continue */ }
+    }
+    logAction('user_report_bulk', 'bulk', { action, count: done });
+    showToast(`✅ Обработано ${done} жалоб`);
+    void updateTabBadges(true);
+    loadUserReports();
+  };
 
   window.urAction = async function(action, reportId, uid, name, btn) {
     if (action === 'archived') { await urMarkReviewed(reportId, btn); return; }

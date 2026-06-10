@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Reanimated, {
   interpolate,
@@ -103,9 +103,32 @@ function DuoPressable({
 
   // Кромка должна повторять скругление ЛИЦА, иначе цветная кромка снизу торчит
   // с другим радиусом углов и объём читается «сломанным» (углы кромки острее
-  // углов кнопки). Берём borderRadius из переданного style лица.
-  const flatFace = StyleSheet.flatten(style) as ViewStyle | undefined;
-  const faceRadius = typeof flatFace?.borderRadius === 'number' ? flatFace.borderRadius : undefined;
+  // углов кнопки). Копируем ВСЕ заданные радиусы лица (uniform + по-угловые,
+  // число или строка-процент), а не только числовой borderRadius — иначе кнопки
+  // с pill/по-угловым скруглением остаются с дефолтной кромкой 16.
+  const edgeRadiusStyle = useMemo<ViewStyle | null>(() => {
+    const flat = StyleSheet.flatten(style) as ViewStyle | undefined;
+    if (!flat) return null;
+    const RADIUS_KEYS = [
+      'borderRadius',
+      'borderTopLeftRadius',
+      'borderTopRightRadius',
+      'borderBottomLeftRadius',
+      'borderBottomRightRadius',
+      'borderTopStartRadius',
+      'borderTopEndRadius',
+      'borderBottomStartRadius',
+      'borderBottomEndRadius',
+    ] as const;
+    let out: ViewStyle | null = null;
+    for (const k of RADIUS_KEYS) {
+      const v = (flat as Record<string, unknown>)[k];
+      if (typeof v === 'number' || typeof v === 'string') {
+        (out ??= {} as ViewStyle)[k] = v as never;
+      }
+    }
+    return out;
+  }, [style]);
 
   return (
     <Pressable
@@ -126,7 +149,7 @@ function DuoPressable({
         style={[
           styles.edge,
           { top: edgeHeight },
-          faceRadius != null ? { borderRadius: faceRadius } : null,
+          edgeRadiusStyle,
           edgeColor ? { backgroundColor: edgeColor } : styles.edgeDefault,
         ]}
       />

@@ -45,6 +45,10 @@ export const SETTINGS_TILE_COLORS = {
 
 export type SettingsTileColor = keyof typeof SETTINGS_TILE_COLORS;
 
+/** Цвет плитки для danger-рядов. Типизирован, чтобы переименование ключа в палитре
+ *  ловилось компилятором, а не падало в рантайме на `SETTINGS_TILE_COLORS[undefined]`. */
+const DANGER_TILE_COLOR: SettingsTileColor = 'red';
+
 /**
  * Глифы плиток. Намеренно сдвинуты с дефолтных «filled» Ionicons, которые
  * 1-в-1 совпадают с пиктограммами iOS-настроек: используем circle/outline/
@@ -99,8 +103,6 @@ export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIcon
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: 'rgba(255,255,255,0.22)',
       }}
     >
       <LinearGradient
@@ -115,6 +117,17 @@ export function SettingsIconTile({ icon, color, size = TILE_SIZE }: SettingsIcon
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 0.6 }}
         style={StyleSheet.absoluteFill}
+      />
+      {/*
+        Рамку рисуем НАКЛАДКОЙ поверх градиентов, а не на контейнере: на Android
+        borderWidth у View с overflow:'hidden' обрезается клипом и не виден.
+      */}
+      <View
+        pointerEvents="none"
+        style={[
+          StyleSheet.absoluteFillObject,
+          { borderRadius: radius, borderWidth: StyleSheet.hairlineWidth, borderColor: 'rgba(255,255,255,0.22)' },
+        ]}
       />
       <Ionicons name={glyph as any} size={Math.round(size * 0.6)} color="#FFFFFF" />
     </View>
@@ -249,7 +262,7 @@ export function SettingsRow({
         minHeight: 52,
       }}
     >
-      <SettingsIconTile icon={icon} color={danger ? 'red' : color} />
+      <SettingsIconTile icon={icon} color={danger ? DANGER_TILE_COLOR : color} />
       <View style={{ flex: 1, marginLeft: ROW_GAP, marginRight: 8 }}>
         <Text
           style={{ color: danger ? t.wrong : t.textPrimary, fontSize: f.bodyLg }}

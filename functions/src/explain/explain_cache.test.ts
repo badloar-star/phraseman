@@ -57,8 +57,11 @@ import {
   claimPendingLock,
   writeReadyExplanation,
   writeRejectedExplanation,
+  isRetryableRejected,
   LOCK_TTL_MS,
   EXPLAIN_SCHEMA_VERSION,
+  REJECTED_RETRY_TTL_MS,
+  REPORT_REJECT_REASON,
 } from './explain_cache';
 
 beforeEach(() => docs.clear());
@@ -164,10 +167,45 @@ describe('claimPendingLock — race + staleness', () => {
     expect(await claimPendingLock(hash, 5_000)).toBe(false);
   });
 
-  it('does not re-claim a rejected doc', async () => {
+  it('does NOT re-claim a FRESH judge-rejected doc (TTL not passed)', async () => {
     const hash = phraseHashFor('nope', 'ru');
-    await writeRejectedExplanation(hash, 'off_topic');
-    expect(await claimPendingLock(hash, 5_000)).toBe(false);
+    const t0 = 100_000;
+    docs.set(`${EXPLAIN_COLLECTION}/${hash}`, {
+      status: 'rejected',
+      reason: 'off_topic',
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
+      updatedAtMs: t0,
+    });
+    expect(await claimPendingLock(hash, t0 + REJECTED_RETRY_TTL_MS - 1)).toBe(false);
+  });
+
+  it('RE-claims a judge-rejected doc once REJECTED_RETRY_TTL_MS passed (false-positive recovery)', async () => {
+    // Прод-кейс 2026-06-10: судья ложно отклонил нормальное русское объяснение как
+    // non_target_language → фраза навсегда отдавала fallback. Теперь judge-reject ретраится.
+    const hash = phraseHashFor('retry me', 'ru');
+    const t0 = 100_000;
+    docs.set(`${EXPLAIN_COLLECTION}/${hash}`, {
+      status: 'rejected',
+      reason: 'non_target_language',
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
+      updatedAtMs: t0,
+    });
+    expect(await claimPendingLock(hash, t0 + REJECTED_RETRY_TTL_MS + 1)).toBe(true);
+    // Claim перевёл док в pending и очистил старую причину (не утечёт в будущий ready-док).
+    const claimed = docs.get(`${EXPLAIN_COLLECTION}/${hash}`);
+    expect(claimed).toMatchObject({ status: 'pending', reason: null });
+  });
+
+  it('NEVER re-claims a report_threshold-rejected doc (sticky until admin reset)', async () => {
+    const hash = phraseHashFor('mass reported', 'ru');
+    const t0 = 100_000;
+    docs.set(`${EXPLAIN_COLLECTION}/${hash}`, {
+      status: 'rejected',
+      reason: REPORT_REJECT_REASON,
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
+      updatedAtMs: t0,
+    });
+    expect(await claimPendingLock(hash, t0 + REJECTED_RETRY_TTL_MS * 1000)).toBe(false);
   });
 
   it('re-claims a STALE pending (older than LOCK_TTL_MS), not a fresh one', async () => {
@@ -186,6 +224,32 @@ describe('claimPendingLock — race + staleness', () => {
     const got = await readCachedExplanation(hash);
     expect(got?.status).toBe('pending');
     expect(got?.createdAtMs).toBe(42_000);
+  });
+});
+
+describe('isRetryableRejected — judge rejects heal, report rejects stay', () => {
+  const t0 = 50_000;
+
+  it('false for non-rejected / absent docs', () => {
+    expect(isRetryableRejected(undefined, t0)).toBe(false);
+    expect(isRetryableRejected(null, t0)).toBe(false);
+    expect(isRetryableRejected({ status: 'ready', updatedAtMs: 0 }, t0)).toBe(false);
+    expect(isRetryableRejected({ status: 'pending', updatedAtMs: 0 }, t0)).toBe(false);
+  });
+
+  it('judge-rejected: false within TTL, true after TTL', () => {
+    const doc = { status: 'rejected', reason: 'incoherent', updatedAtMs: t0 };
+    expect(isRetryableRejected(doc, t0 + REJECTED_RETRY_TTL_MS - 1)).toBe(false);
+    expect(isRetryableRejected(doc, t0 + REJECTED_RETRY_TTL_MS + 1)).toBe(true);
+  });
+
+  it('report_threshold-rejected: false forever (admin-only reset)', () => {
+    const doc = { status: 'rejected', reason: REPORT_REJECT_REASON, updatedAtMs: t0 };
+    expect(isRetryableRejected(doc, t0 + REJECTED_RETRY_TTL_MS * 1_000_000)).toBe(false);
+  });
+
+  it('rejected doc WITHOUT a timestamp (legacy/corrupt) is retryable, not stuck forever', () => {
+    expect(isRetryableRejected({ status: 'rejected', reason: 'toxic' }, REJECTED_RETRY_TTL_MS + 1)).toBe(true);
   });
 });
 

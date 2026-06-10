@@ -64,22 +64,24 @@ const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const BILLING_COLLECTION = 'explain_billing';
 const MODEL_DEFAULT = 'gpt-4o-mini';
-const GEN_MAX_TOKENS = 240;
+// 90–140 words in Cyrillic ≈ 350–420 tokens; headroom so the model never cuts mid-sentence.
+const GEN_MAX_TOKENS = 520;
 const GEN_TEMPERATURE = 0.7;
 function asText(value, max) {
     return String(value ?? '').trim().slice(0, max);
 }
 /**
  * Deterministic, AI-free fallback the CF returns when it will not (or cannot) generate: rejected
- * cache, exhausted budget, or a lost lock race. Built from phraseMeaning the client already sent —
- * never calls the model. The client never builds this (server is the source of truth).
+ * cache, exhausted budget, or a lost lock race. Never calls the model; the client never builds this.
+ *
+ * IMPORTANT (locked with the user 2026-06-10): this feature explains the ENGLISH grammar, it must
+ * NEVER restate the phrase's meaning/translation. So the fallback is a NEUTRAL "try again" message —
+ * it deliberately does NOT echo phraseMeaning (the old fallback did, which reproduced the very
+ * "Russian re-telling" we were fixing). `_phraseMeaning` is kept in the signature only so callers
+ * don't have to change and so a future localized fallback could use the lang, never the meaning.
  */
-function buildFallback(phraseMeaning) {
-    const meaning = asText(phraseMeaning, explain_gates_1.MAX_MEANING_LEN);
-    if (!meaning)
-        return 'Объяснение пока недоступно. Попробуйте позже.';
-    const trimmed = meaning.replace(/[.!?]+$/u, '');
-    return `${trimmed}. Например: так говорят в обычном разговоре.`;
+function buildFallback(_phraseMeaning) {
+    return 'Не получилось подготовить объяснение. Попробуйте позже.';
 }
 exports.explainPhrase = (0, https_1.onCall)({
     region: REGION,
@@ -107,14 +109,20 @@ exports.explainPhrase = (0, https_1.onCall)({
     const input = (0, explain_gates_1.validateExplainInput)({ phraseEn, phraseMeaning, lang });
     if (!input.ok)
         throw new https_1.HttpsError('invalid-argument', input.reason ?? 'invalid_input');
-    const phraseHash = (0, explain_cache_1.phraseHashFor)(phraseEn);
+    // Cache key = (phrase, CANONICAL language). langKey is also the language the text will be
+    // generated in (resolvePromptLang uses the same resolver) — key and content always agree.
+    const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
+    const phraseHash = (0, explain_cache_1.phraseHashFor)(phraseEn, langKey);
     // 3. Read the global cache FIRST. A hit is the ≥99% path and costs $0.
     const cached = await (0, explain_cache_1.readCachedExplanation)(phraseHash);
     if (cached?.status === 'ready' && cached.text) {
         return { ok: true, text: cached.text, status: 'ok', fromCache: true };
     }
-    if (cached?.status === 'rejected') {
-        // Known-bad phrase: serve fallback, never auto-regenerate (prevents mass-report regen abuse).
+    if (cached?.status === 'rejected' && !(0, explain_cache_1.isRetryableRejected)(cached, Date.now())) {
+        // Known-bad phrase: serve fallback. Report-threshold rejects are sticky (admin reset only);
+        // judge rejects stay sticky only until REJECTED_RETRY_TTL_MS — then ONE request falls through
+        // to the generation path below (claimPendingLock flips rejected→pending atomically), because
+        // the judge has false positives and must not poison a phrase forever.
         return { ok: true, text: buildFallback(phraseMeaning), status: 'rejected', fromCache: true };
     }
     // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is

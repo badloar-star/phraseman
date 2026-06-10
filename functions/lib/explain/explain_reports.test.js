@@ -122,10 +122,13 @@ jest.mock('firebase-admin', () => {
 });
 // Хэш считаем тем же каноническим способом, что и CF — чтобы проверять doc id'ы кэша/счётчика.
 const { phraseHashFor } = require('./explain_cache');
-const { submitExplainReport, REPORT_REJECT_THRESHOLD, REPORT_RATE_MAX, REPORTS_COLLECTION, } = require('./explain_reports');
+const { submitExplainReport, REPORT_REJECT_THRESHOLD, REPORT_RATE_MAX, REPORTS_COLLECTION, REPORT_ENTRIES_COLLECTION, REPORT_COMMENT_MAX_LEN, normalizeReportReason, sanitizeReportComment, } = require('./explain_reports');
 const EXPLAIN_COLLECTION = 'phrase_explanations';
+function entryDocs() {
+    return collectionDocs(REPORT_ENTRIES_COLLECTION).map((d) => d.data);
+}
 const PHRASE = 'Break a leg';
-const HASH = phraseHashFor(PHRASE);
+const HASH = phraseHashFor(PHRASE, 'ru');
 async function callReport(data, authUid = 'auth-reporter') {
     return submitExplainReport({ auth: { uid: authUid }, data });
 }
@@ -174,6 +177,19 @@ describe('submitExplainReport — per-user rate limit (copied scaffold)', () => 
         });
     });
 });
+describe('submitExplainReport — per-(phrase,lang) counter', () => {
+    test('репорт с lang=es бьёт в ДРУГОЙ счётчик, чем ru (кэш per-(phrase,lang))', async () => {
+        await callReport({ phraseEn: PHRASE, lang: 'es' }, 'auth-r0');
+        const esHash = phraseHashFor(PHRASE, 'es');
+        expect(esHash).not.toBe(HASH); // ru-хэш
+        expect(docs.get(`${REPORTS_COLLECTION}/${esHash}`)).toMatchObject({ reportCount: 1 });
+        expect(counterDoc()).toBeUndefined(); // ru-счётчик не тронут
+    });
+    test('репорт БЕЗ lang падает в ru (тот же резолвер, что генерация)', async () => {
+        await callReport({ phraseEn: PHRASE }, 'auth-r0');
+        expect(counterDoc()).toMatchObject({ phraseHash: HASH, reportCount: 1 });
+    });
+});
 describe('submitExplainReport — per-hash counter', () => {
     test('increments the per-hash report counter across distinct users', async () => {
         await callReport({ phraseEn: PHRASE }, 'auth-r0');
@@ -195,7 +211,7 @@ describe('submitExplainReport — threshold auto-reject (NET-NEW logic)', () => 
         // Сидируем готовый кэш, чтобы было что отклонять.
         docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
             status: 'ready',
-            schemaVersion: 1,
+            schemaVersion: 2,
             text: 'a fine explanation',
         });
         for (let i = 0; i < REPORT_REJECT_THRESHOLD - 1; i += 1) {
@@ -222,7 +238,7 @@ describe('submitExplainReport — threshold auto-reject (NET-NEW logic)', () => 
 });
 describe('submitExplainReport — concurrency does not race past threshold', () => {
     test('two concurrent reports crossing the threshold → exactly one flip, no lost update', async () => {
-        docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 1, text: 'ok' });
+        docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 2, text: 'ok' });
         // Доводим счётчик ровно до THRESHOLD-1: следующий репорт — порог.
         for (let i = 0; i < REPORT_REJECT_THRESHOLD - 1; i += 1) {
             await callReport({ phraseEn: PHRASE }, `auth-r${i}`);
@@ -246,6 +262,74 @@ describe('submitExplainReport — concurrency does not race past threshold', () 
         expect(flips).toBe(1);
         // Кэш отклонён (и остаётся rejected, без двойного перезаписывания reason).
         expect(cacheDoc()).toMatchObject({ status: 'rejected', reason: 'report_threshold' });
+    });
+});
+describe('submitExplainReport — один юзер = ОДИН голос на фразу (дедуп по stableUid)', () => {
+    test('повторная жалоба того же юзера НЕ растит счётчик (но лента получает обе записи)', async () => {
+        await callReport({ phraseEn: PHRASE }, 'auth-r0');
+        await callReport({ phraseEn: PHRASE }, 'auth-r0');
+        await callReport({ phraseEn: PHRASE }, 'auth-r0');
+        expect(counterDoc()).toMatchObject({ reportCount: 1 });
+        expect(entryDocs()).toHaveLength(3); // админ видит каждую отправку
+    });
+    test('один юзер НЕ может в одиночку добить порог авто-reject (раньше мог: rate 5/ч == порог 5)', async () => {
+        docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 3, text: 'fine' });
+        for (let i = 0; i < REPORT_RATE_MAX; i += 1) {
+            await callReport({ phraseEn: PHRASE }, 'auth-r0');
+        }
+        expect(counterDoc()).toMatchObject({ reportCount: 1 });
+        expect(docs.get(`${EXPLAIN_COLLECTION}/${HASH}`)).toMatchObject({ status: 'ready' }); // не отклонено
+    });
+});
+describe('submitExplainReport — лента explain_report_entries (раздел админки)', () => {
+    test('каждая жалоба пишет полную запись: фраза, язык, причина, комментарий, кто, когда', async () => {
+        await callReport({
+            phraseEn: PHRASE,
+            lang: 'ru',
+            reason: 'incorrect',
+            comment: '  Тут перепутано, "am" объяснили как прошедшее время.  ',
+        }, 'auth-r0');
+        expect(entryDocs()).toHaveLength(1);
+        expect(entryDocs()[0]).toMatchObject({
+            phraseHash: HASH,
+            phraseEn: PHRASE,
+            lang: 'ru',
+            reason: 'incorrect',
+            comment: 'Тут перепутано, "am" объяснили как прошедшее время.',
+            stableUid: 'auth-r0',
+            status: 'new',
+        });
+    });
+    test('неизвестная причина схлопывается в unclear; комментарий режется по длине', async () => {
+        await callReport({
+            phraseEn: PHRASE,
+            reason: 'hack_the_planet',
+            comment: 'x'.repeat(REPORT_COMMENT_MAX_LEN + 500),
+        }, 'auth-r0');
+        expect(entryDocs()[0]).toMatchObject({ reason: 'unclear' });
+        expect(String(entryDocs()[0].comment)).toHaveLength(REPORT_COMMENT_MAX_LEN);
+    });
+    test('счётчик хранит фразу и язык — админка показывает текст, не только хэш', async () => {
+        await callReport({ phraseEn: PHRASE, lang: 'ru' }, 'auth-r0');
+        expect(counterDoc()).toMatchObject({ phraseEn: PHRASE, lang: 'ru', lastReason: 'unclear' });
+    });
+});
+describe('normalizeReportReason / sanitizeReportComment — чистые хелперы', () => {
+    test('reason: только белый список, иначе unclear', () => {
+        expect(normalizeReportReason('incorrect')).toBe('incorrect');
+        expect(normalizeReportReason('wrong_language')).toBe('wrong_language');
+        expect(normalizeReportReason('other')).toBe('other');
+        expect(normalizeReportReason('unclear')).toBe('unclear');
+        expect(normalizeReportReason('<script>')).toBe('unclear');
+        expect(normalizeReportReason(undefined)).toBe('unclear');
+        expect(normalizeReportReason(42)).toBe('unclear');
+    });
+    test('comment: trim + cap + вычистка control-символов (переводы строк живут)', () => {
+        expect(sanitizeReportComment('  привет  ')).toBe('привет');
+        expect(sanitizeReportComment(`a${String.fromCharCode(7)}b${String.fromCharCode(0)}c`)).toBe('abc');
+        expect(sanitizeReportComment('строка раз\nстрока два')).toBe('строка раз\nстрока два');
+        expect(sanitizeReportComment(null)).toBe('');
+        expect(sanitizeReportComment('y'.repeat(1000))).toHaveLength(REPORT_COMMENT_MAX_LEN);
     });
 });
 describe('submitExplainReport — server derives hash, ignores client-supplied hash', () => {

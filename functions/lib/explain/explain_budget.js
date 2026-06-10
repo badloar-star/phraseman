@@ -54,12 +54,17 @@ const https_1 = require("firebase-functions/v2/https");
 const crypto_1 = require("crypto");
 exports.USER_LIMIT_COLLECTION = 'explain_user_limits';
 exports.GLOBAL_BUDGET_COLLECTION = 'explain_global_budget';
-/** Per-user new generations per UTC day. Free-for-all feature → moderate ceiling: allows
- *  casual use, blocks single-account spam-DoS. */
-exports.USER_DAILY_GEN_CAP = 20;
-/** New phrases generated per UTC day across the WHOLE product. At ~230 tokens/miss this is
- *  ~$0.02 per 100 misses; daily reset = circuit breaker against a viral spike. */
-exports.GLOBAL_DAILY_CAP = 100;
+/** Per-user new generations per UTC day. Raised 20→50 (2026-06-10): post-answer use is
+ *  positioned as "unlimited", so the per-user cap must be high enough that a real learner never
+ *  hits it in a day; it still blocks single-account spam-DoS. Cache reads stay free & unlimited —
+ *  this only counts cache MISSES (the paid path). */
+exports.USER_DAILY_GEN_CAP = 50;
+/** New phrases generated per UTC day across the WHOLE product. Raised 100→3000 (2026-06-10):
+ *  the cache was just invalidated (schema v2) so for a while EVERY phrase is a fresh miss — a cap of
+ *  100 would push everyone past the ~100th distinct phrase onto the fallback. At ~230 tokens/miss,
+ *  3000 misses ≈ $0.60/day worst case; daily reset = circuit breaker against a viral spike. As the
+ *  cache re-warms, real daily misses fall well below this. */
+exports.GLOBAL_DAILY_CAP = 3000;
 /** sha256 doc id, same shape as premium_dialog.docId(). */
 function docId(prefix, authUid, stableUid) {
     const hash = (0, crypto_1.createHash)('sha256').update(`${prefix}|${authUid}|${stableUid}`).digest('hex').slice(0, 48);

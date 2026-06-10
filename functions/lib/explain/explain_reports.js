@@ -33,27 +33,33 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.submitExplainReport = exports.REPORT_REJECT_THRESHOLD = exports.REPORT_RATE_WINDOW_MS = exports.REPORT_RATE_MAX = exports.REPORT_RATE_COLLECTION = exports.REPORTS_COLLECTION = void 0;
+exports.submitExplainReport = exports.REPORT_REPORTERS_CAP = exports.REPORT_COMMENT_MAX_LEN = exports.REPORT_REASONS = exports.REPORT_REJECT_THRESHOLD = exports.REPORT_RATE_WINDOW_MS = exports.REPORT_RATE_MAX = exports.REPORT_RATE_COLLECTION = exports.REPORT_ENTRIES_COLLECTION = exports.REPORTS_COLLECTION = void 0;
+exports.normalizeReportReason = normalizeReportReason;
+exports.sanitizeReportComment = sanitizeReportComment;
 /**
  * Бэкстоп-модерация (уровень 4) для «Объясни как для 5-летнего».
  *
  * submitExplainReport: юзер жалуется на объяснение фразы. Каркас (auth + per-user rate-doc
  * через транзакцию) скопирован с submitClientReport (functions/src/client_reports.ts:218).
  *
- * НОВАЯ логика (в эталоне submitClientReport ОТСУТСТВУЕТ): порог авто-reject. Сервер выводит
- * phraseHash из phraseEn (client НИКОГДА не шлёт хэш) и в ОДНОЙ транзакции:
- *   1) инкрементит счётчик репортов на этот phraseHash (explain_reports/{phraseHash});
- *   2) если новый счётчик >= REPORT_REJECT_THRESHOLD — ставит phrase_explanations/{phraseHash}
- *      .status='rejected' (фраза начинает отдавать fallback вместо плохого текста).
+ * Что пишет (всё в ОДНОЙ транзакции):
+ *  1) explain_report_entries/{auto} — КАЖДАЯ жалоба целиком (фраза, причина, комментарий,
+ *     кто, когда) — это лента для раздела админки «Непонятно объяснили».
+ *  2) explain_reports/{phraseHash} — счётчик РАЗНЫХ юзеров на фразу. ДЕДУП: повторная жалоба
+ *     того же stableUid НЕ инкрементит счётчик (иначе один юзер в одиночку добивал порог —
+ *     rate-limit 5/час == порогу 5). Запись жалобы в ленту при этом всё равно создаётся.
+ *  3) если счётчик РАЗНЫХ юзеров >= REPORT_REJECT_THRESHOLD — ставит
+ *     phrase_explanations/{phraseHash}.status='rejected' (фраза отдаёт fallback).
  * Инкремент и флип статуса АТОМАРНЫ в одной tx — иначе параллельные репорты проскочат порог.
  *
- * Авто-reject НЕ регенерирует: rejected-запись отдаёт fallback, пока админ вручную не сбросит
- * её в pending (иначе массовые репорты вынуждали бы дорогую регенерацию).
+ * Авто-reject по порогу НЕ регенерируется автоматически (reason=report_threshold — sticky),
+ * сбросить может только админ (раздел «Непонятно объяснили» в админке → «Сбросить кэш»).
  *
  * SECURITY (инварианты phraseman):
  *  - App Check enforced (ENFORCE_APP_CHECK из callable_options).
  *  - Идентичность из request.auth.uid через resolveStableUidForAuth(db, authUid) — НЕ из body.
  *  - phraseHash считает сервер (explain_cache.phraseHashFor); поле 'hash' из body игнорируется.
+ *  - reason — только из белого списка; comment режется по длине и чистится от control-символов.
  */
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
@@ -61,9 +67,12 @@ const crypto_1 = require("crypto");
 const callable_options_1 = require("../callable_options");
 const auth_identity_1 = require("../auth_identity");
 const explain_cache_1 = require("./explain_cache");
+const explain_prompts_1 = require("./explain_prompts");
 const REGION = 'us-central1';
-/** Per-hash счётчики репортов. Серверная (CF-only) коллекция, в firestore.rules: read/write false. */
+/** Per-hash счётчики репортов. Серверная коллекция; админка читает (isAdmin в rules). */
 exports.REPORTS_COLLECTION = 'explain_reports';
+/** Лента жалоб (по одной записи на каждую отправку) — источник раздела админки. */
+exports.REPORT_ENTRIES_COLLECTION = 'explain_report_entries';
 /** Rate-doc'и репортов (per-user окно). CF-only; в firestore.rules read/write false. */
 exports.REPORT_RATE_COLLECTION = 'explain_report_rate_limits';
 const HOUR_MS = 60 * 60 * 1000;
@@ -71,13 +80,32 @@ const HOUR_MS = 60 * 60 * 1000;
 exports.REPORT_RATE_MAX = 5;
 exports.REPORT_RATE_WINDOW_MS = HOUR_MS;
 /**
- * Сколько РАЗНЫХ репортов на один phraseHash, чтобы авто-reject кэш-запись. 5 — под конвенцию
- * max:5 из client_reports. НОВАЯ логика (в submitClientReport счётчика/порога нет).
+ * Сколько РАЗНЫХ юзеров должны пожаловаться на один phraseHash, чтобы авто-reject кэш-запись.
+ * Считаются только УНИКАЛЬНЫЕ stableUid (см. reporters) — один юзер не может добить порог сам.
  */
 exports.REPORT_REJECT_THRESHOLD = 5;
+/** Белый список причин жалобы (меню в шторке). Неизвестное/пустое значение → 'unclear'. */
+exports.REPORT_REASONS = ['unclear', 'incorrect', 'wrong_language', 'other'];
+/** Максимум символов свободного комментария юзера. */
+exports.REPORT_COMMENT_MAX_LEN = 300;
+/** Максимум ключей в карте reporters (ограничение размера дока; порог=5, так что с запасом). */
+exports.REPORT_REPORTERS_CAP = 50;
 function numeric(value, fallback = 0) {
     const n = Number(value);
     return Number.isFinite(n) ? n : fallback;
+}
+/** Причина — строго из enum; всё чужое схлопывается в 'unclear' (дефолт старых клиентов). */
+function normalizeReportReason(value) {
+    const s = String(value ?? '').trim();
+    return exports.REPORT_REASONS.includes(s) ? s : 'unclear';
+}
+/** Комментарий: без control-символов (кроме переводов строк), trim, жёсткий cap длины. */
+function sanitizeReportComment(value) {
+    return String(value ?? '')
+        // eslint-disable-next-line no-control-regex
+        .replace(/[\u0000-\u0008\u000B-\u001F\u007F]/g, '')
+        .trim()
+        .slice(0, exports.REPORT_COMMENT_MAX_LEN);
 }
 /** sha256 doc id rate-дока, та же форма, что rateDocId() в client_reports. */
 function rateDocId(authUid, stableUid) {
@@ -96,15 +124,23 @@ exports.submitExplainReport = (0, https_1.onCall)({
     const phraseEn = String(request.data?.phraseEn ?? '').trim();
     if (!phraseEn)
         throw new https_1.HttpsError('invalid-argument', 'phrase_required');
+    // Язык объяснения, на которое жалуются. Кэш per-(phrase,lang) — репорт должен бить в
+    // ТОТ ЖЕ док, что генерация. Тот же резолвер (unknown → ru), хэш всё равно считает сервер.
+    const lang = String(request.data?.lang ?? '').trim();
+    const reason = normalizeReportReason(request.data?.reason);
+    const comment = sanitizeReportComment(request.data?.comment);
     const db = admin.firestore();
     const authUid = request.auth.uid;
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
-    // Хэш ВСЕГДА выводится сервером из phraseEn — любой клиентский 'hash' игнорируется.
-    const phraseHash = (0, explain_cache_1.phraseHashFor)(phraseEn);
+    // Хэш ВСЕГДА выводится сервером из (phraseEn, langKey) — любой клиентский 'hash' игнорируется.
+    const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
+    const phraseHash = (0, explain_cache_1.phraseHashFor)(phraseEn, langKey);
     const now = Date.now();
     const rateRef = db.collection(exports.REPORT_RATE_COLLECTION).doc(rateDocId(authUid, stableUid));
     const counterRef = db.collection(exports.REPORTS_COLLECTION).doc(phraseHash);
     const cacheRef = db.collection(explain_cache_1.EXPLAIN_COLLECTION).doc(phraseHash);
+    // Запись ленты создаётся в ТОЙ ЖЕ tx (ref с auto-id готовим заранее — reads-before-writes).
+    const entryRef = db.collection(exports.REPORT_ENTRIES_COLLECTION).doc();
     return db.runTransaction(async (tx) => {
         // --- читаем всё ДО записи (Firestore требует reads-before-writes) ---
         const rateSnap = await tx.get(rateRef);
@@ -118,9 +154,16 @@ exports.submitExplainReport = (0, https_1.onCall)({
         if (rateCount >= exports.REPORT_RATE_MAX) {
             throw new https_1.HttpsError('resource-exhausted', 'rate_limited');
         }
-        // --- per-hash счётчик репортов (НОВАЯ логика) ---
-        const prevReports = numeric(counterSnap.data()?.reportCount);
-        const reportCount = prevReports + 1;
+        // --- счётчик РАЗНЫХ юзеров на phraseHash (дедуп по stableUid) ---
+        const counter = counterSnap.data() || {};
+        const reporters = { ...(counter.reporters ?? {}) };
+        const knownReporter = reporters[stableUid] === true;
+        const reportersFull = Object.keys(reporters).length >= exports.REPORT_REPORTERS_CAP;
+        const isNewReporter = !knownReporter && !reportersFull;
+        if (isNewReporter)
+            reporters[stableUid] = true;
+        const prevReports = numeric(counter.reportCount);
+        const reportCount = isNewReporter ? prevReports + 1 : prevReports;
         const reachedThreshold = reportCount >= exports.REPORT_REJECT_THRESHOLD;
         const cacheStatus = String(cacheSnap.data()?.status ?? '');
         const alreadyRejected = cacheStatus === 'rejected';
@@ -133,10 +176,28 @@ exports.submitExplainReport = (0, https_1.onCall)({
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAtMs: now,
         }, { merge: true });
-        // per-hash counter doc
+        // Лента для админки: КАЖДАЯ отправка (включая повторную от того же юзера —
+        // комментарии разные, админу важны все).
+        tx.set(entryRef, {
+            phraseHash,
+            phraseEn: phraseEn.slice(0, 200),
+            lang: langKey,
+            reason,
+            comment,
+            stableUid,
+            authUid,
+            status: 'new',
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAtMs: now,
+        });
+        // per-hash counter doc (+ фраза/язык, чтобы админка показывала текст, а не только хэш)
         tx.set(counterRef, {
             phraseHash,
+            phraseEn: phraseEn.slice(0, 200),
+            lang: langKey,
             reportCount,
+            reporters,
+            lastReason: reason,
             lastReporterStableUid: stableUid,
             lastReporterAuthUid: authUid,
             updatedAtMs: now,
@@ -150,7 +211,7 @@ exports.submitExplainReport = (0, https_1.onCall)({
             tx.set(cacheRef, {
                 status: 'rejected',
                 schemaVersion: explain_cache_1.EXPLAIN_SCHEMA_VERSION,
-                reason: 'report_threshold',
+                reason: explain_cache_1.REPORT_REJECT_REASON,
                 updatedAtMs: now,
             }, { merge: true });
         }

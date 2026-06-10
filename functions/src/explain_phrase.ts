@@ -23,6 +23,7 @@ import {
   claimPendingLock,
   writeReadyExplanation,
   writeRejectedExplanation,
+  isRetryableRejected,
 } from './explain/explain_cache';
 import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
 import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
@@ -35,7 +36,8 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const BILLING_COLLECTION = 'explain_billing';
 const MODEL_DEFAULT = 'gpt-4o-mini';
-const GEN_MAX_TOKENS = 240;
+// 90–140 words in Cyrillic ≈ 350–420 tokens; headroom so the model never cuts mid-sentence.
+const GEN_MAX_TOKENS = 520;
 const GEN_TEMPERATURE = 0.7;
 
 /** Status reported to the client so the UI can distinguish cache vs. fresh vs. degraded paths. */
@@ -110,8 +112,11 @@ export const explainPhrase = onCall({
   if (cached?.status === 'ready' && cached.text) {
     return { ok: true, text: cached.text, status: 'ok', fromCache: true };
   }
-  if (cached?.status === 'rejected') {
-    // Known-bad phrase: serve fallback, never auto-regenerate (prevents mass-report regen abuse).
+  if (cached?.status === 'rejected' && !isRetryableRejected(cached, Date.now())) {
+    // Known-bad phrase: serve fallback. Report-threshold rejects are sticky (admin reset only);
+    // judge rejects stay sticky only until REJECTED_RETRY_TTL_MS — then ONE request falls through
+    // to the generation path below (claimPendingLock flips rejected→pending atomically), because
+    // the judge has false positives and must not poison a phrase forever.
     return { ok: true, text: buildFallback(phraseMeaning), status: 'rejected', fromCache: true };
   }
 

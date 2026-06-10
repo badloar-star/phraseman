@@ -114,9 +114,11 @@ describe('enforceGlobalBudget — product-wide daily breaker, atomic', () => {
     });
 });
 describe('constants have explicit values (audit blocker)', () => {
-    it('GLOBAL_DAILY_CAP and USER_DAILY_GEN_CAP are finite positive numbers', () => {
-        expect(explain_budget_1.GLOBAL_DAILY_CAP).toBe(100);
-        expect(explain_budget_1.USER_DAILY_GEN_CAP).toBe(20);
+    it('GLOBAL_DAILY_CAP and USER_DAILY_GEN_CAP are the raised post-audit values', () => {
+        // Raised 2026-06-10 (audit F2/F3): cache was invalidated (every phrase a fresh miss for a
+        // while) and post-answer use is "unlimited", so caps must be high enough to not bite real use.
+        expect(explain_budget_1.GLOBAL_DAILY_CAP).toBe(3000);
+        expect(explain_budget_1.USER_DAILY_GEN_CAP).toBe(50);
     });
 });
 //# sourceMappingURL=explain_budget.test.js.map

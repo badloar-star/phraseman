@@ -171,8 +171,16 @@ const {
   REPORT_REJECT_THRESHOLD,
   REPORT_RATE_MAX,
   REPORTS_COLLECTION,
+  REPORT_ENTRIES_COLLECTION,
+  REPORT_COMMENT_MAX_LEN,
+  normalizeReportReason,
+  sanitizeReportComment,
 } = require('./explain_reports');
 const EXPLAIN_COLLECTION = 'phrase_explanations';
+
+function entryDocs(): DocData[] {
+  return collectionDocs(REPORT_ENTRIES_COLLECTION).map((d) => d.data);
+}
 
 const PHRASE = 'Break a leg';
 const HASH = phraseHashFor(PHRASE, 'ru');
@@ -331,6 +339,83 @@ describe('submitExplainReport — concurrency does not race past threshold', () 
     expect(flips).toBe(1);
     // Кэш отклонён (и остаётся rejected, без двойного перезаписывания reason).
     expect(cacheDoc()).toMatchObject({ status: 'rejected', reason: 'report_threshold' });
+  });
+});
+
+describe('submitExplainReport — один юзер = ОДИН голос на фразу (дедуп по stableUid)', () => {
+  test('повторная жалоба того же юзера НЕ растит счётчик (но лента получает обе записи)', async () => {
+    await callReport({ phraseEn: PHRASE }, 'auth-r0');
+    await callReport({ phraseEn: PHRASE }, 'auth-r0');
+    await callReport({ phraseEn: PHRASE }, 'auth-r0');
+    expect(counterDoc()).toMatchObject({ reportCount: 1 });
+    expect(entryDocs()).toHaveLength(3); // админ видит каждую отправку
+  });
+
+  test('один юзер НЕ может в одиночку добить порог авто-reject (раньше мог: rate 5/ч == порог 5)', async () => {
+    docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 3, text: 'fine' });
+    for (let i = 0; i < REPORT_RATE_MAX; i += 1) {
+      await callReport({ phraseEn: PHRASE }, 'auth-r0');
+    }
+    expect(counterDoc()).toMatchObject({ reportCount: 1 });
+    expect(docs.get(`${EXPLAIN_COLLECTION}/${HASH}`)).toMatchObject({ status: 'ready' }); // не отклонено
+  });
+});
+
+describe('submitExplainReport — лента explain_report_entries (раздел админки)', () => {
+  test('каждая жалоба пишет полную запись: фраза, язык, причина, комментарий, кто, когда', async () => {
+    await callReport({
+      phraseEn: PHRASE,
+      lang: 'ru',
+      reason: 'incorrect',
+      comment: '  Тут перепутано, "am" объяснили как прошедшее время.  ',
+    }, 'auth-r0');
+
+    expect(entryDocs()).toHaveLength(1);
+    expect(entryDocs()[0]).toMatchObject({
+      phraseHash: HASH,
+      phraseEn: PHRASE,
+      lang: 'ru',
+      reason: 'incorrect',
+      comment: 'Тут перепутано, "am" объяснили как прошедшее время.',
+      stableUid: 'auth-r0',
+      status: 'new',
+    });
+  });
+
+  test('неизвестная причина схлопывается в unclear; комментарий режется по длине', async () => {
+    await callReport({
+      phraseEn: PHRASE,
+      reason: 'hack_the_planet',
+      comment: 'x'.repeat(REPORT_COMMENT_MAX_LEN + 500),
+    }, 'auth-r0');
+
+    expect(entryDocs()[0]).toMatchObject({ reason: 'unclear' });
+    expect(String(entryDocs()[0].comment)).toHaveLength(REPORT_COMMENT_MAX_LEN);
+  });
+
+  test('счётчик хранит фразу и язык — админка показывает текст, не только хэш', async () => {
+    await callReport({ phraseEn: PHRASE, lang: 'ru' }, 'auth-r0');
+    expect(counterDoc()).toMatchObject({ phraseEn: PHRASE, lang: 'ru', lastReason: 'unclear' });
+  });
+});
+
+describe('normalizeReportReason / sanitizeReportComment — чистые хелперы', () => {
+  test('reason: только белый список, иначе unclear', () => {
+    expect(normalizeReportReason('incorrect')).toBe('incorrect');
+    expect(normalizeReportReason('wrong_language')).toBe('wrong_language');
+    expect(normalizeReportReason('other')).toBe('other');
+    expect(normalizeReportReason('unclear')).toBe('unclear');
+    expect(normalizeReportReason('<script>')).toBe('unclear');
+    expect(normalizeReportReason(undefined)).toBe('unclear');
+    expect(normalizeReportReason(42)).toBe('unclear');
+  });
+
+  test('comment: trim + cap + вычистка control-символов (переводы строк живут)', () => {
+    expect(sanitizeReportComment('  привет  ')).toBe('привет');
+    expect(sanitizeReportComment(`a${String.fromCharCode(7)}b${String.fromCharCode(0)}c`)).toBe('abc');
+    expect(sanitizeReportComment('строка раз\nстрока два')).toBe('строка раз\nстрока два');
+    expect(sanitizeReportComment(null)).toBe('');
+    expect(sanitizeReportComment('y'.repeat(1000))).toHaveLength(REPORT_COMMENT_MAX_LEN);
   });
 });
 

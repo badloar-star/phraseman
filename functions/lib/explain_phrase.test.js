@@ -108,7 +108,7 @@ function billingDocs() {
     return collectionDocs('explain_billing').map((d) => d.data);
 }
 function explanationDoc(phraseEn) {
-    return docs.get(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(phraseEn)}`);
+    return docs.get(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(phraseEn, 'ru')}`);
 }
 async function callExplain(data, authUid = AUTH_UID) {
     // authUid === null means "no auth" — pass null explicitly to avoid the default-param trap
@@ -158,10 +158,10 @@ describe('explainPhrase — auth + identity', () => {
 });
 describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
     it('cache READY ⇒ returns cached text, calls neither provider nor judge', async () => {
-        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE)}`, {
+        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'ru')}`, {
             status: 'ready',
             text: 'Готовое объяснение из кэша.',
-            schemaVersion: 1,
+            schemaVersion: explain_cache_1.EXPLAIN_SCHEMA_VERSION,
         });
         const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
         expect(res).toEqual({ ok: true, text: 'Готовое объяснение из кэша.', status: 'ok', fromCache: true });
@@ -169,11 +169,32 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
         expect(mockJudge).not.toHaveBeenCalled();
         expect(billingDocs()).toHaveLength(0); // a hit writes no billing doc
     });
-    it('cache REJECTED ⇒ returns fallback, no regen, no AI calls', async () => {
-        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE)}`, {
+    it('es-запрос НЕ получает ru-кэш той же фразы — генерит своё (audit bug 2026-06-10)', async () => {
+        // Русское объяснение уже в кэше под ru-ключом.
+        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'ru')}`, {
+            status: 'ready',
+            text: 'Готовое РУССКОЕ объяснение.',
+            schemaVersion: explain_cache_1.EXPLAIN_SCHEMA_VERSION,
+        });
+        mockOpenAiChat.mockResolvedValue(genReply('Una explicación sencilla de la gramática inglesa.'));
+        mockJudge.mockResolvedValue(verdict(true, 'ok'));
+        const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'es' });
+        // НЕ кэш-хит: испанец не должен увидеть русский текст.
+        expect(res.fromCache).toBe(false);
+        expect(res.text).not.toContain('РУССКОЕ');
+        expect(mockOpenAiChat).toHaveBeenCalledTimes(1);
+        // Новый док лёг под es-ключом, ru-док не тронут.
+        expect(docs.get(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'es')}`)).toMatchObject({ status: 'ready' });
+        expect(docs.get(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'ru')}`)).toMatchObject({
+            text: 'Готовое РУССКОЕ объяснение.',
+        });
+    });
+    it('FRESH judge-rejected cache ⇒ returns fallback, no regen, no AI calls', async () => {
+        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'ru')}`, {
             status: 'rejected',
             reason: 'toxic',
-            schemaVersion: 1,
+            schemaVersion: explain_cache_1.EXPLAIN_SCHEMA_VERSION,
+            updatedAtMs: Date.now(), // только что отклонили — TTL ретрая ещё не прошёл
         });
         const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
         expect(res.status).toBe('rejected');
@@ -181,6 +202,36 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
         expect(res.text).toBe((0, explain_phrase_1.buildFallback)(MEANING));
         expect(mockOpenAiChat).not.toHaveBeenCalled();
         expect(mockJudge).not.toHaveBeenCalled();
+    });
+    it('judge-rejected cache PAST retry TTL ⇒ regenerates (false-positive recovery, prod 2026-06-10)', async () => {
+        const { REJECTED_RETRY_TTL_MS } = require('./explain/explain_cache');
+        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'ru')}`, {
+            status: 'rejected',
+            reason: 'non_target_language', // ложный вердикт судьи (реальный прод-кейс «i am ready»)
+            schemaVersion: explain_cache_1.EXPLAIN_SCHEMA_VERSION,
+            updatedAtMs: Date.now() - REJECTED_RETRY_TTL_MS - 1,
+        });
+        mockOpenAiChat.mockResolvedValue(genReply('Слово "am" — это связка для "I". Поэтому порядок такой.'));
+        mockJudge.mockResolvedValue(verdict(true, 'ok'));
+        const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
+        expect(mockOpenAiChat).toHaveBeenCalledTimes(1);
+        expect(res.status).toBe('ok');
+        expect(res.fromCache).toBe(false);
+        // Фраза вылечилась: кэш снова ready, фолбэк больше не отдаётся.
+        expect(explanationDoc(PHRASE)).toMatchObject({ status: 'ready' });
+    });
+    it('report_threshold-rejected cache ⇒ fallback FOREVER (no regen even past TTL)', async () => {
+        const { REJECTED_RETRY_TTL_MS, REPORT_REJECT_REASON } = require('./explain/explain_cache');
+        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'ru')}`, {
+            status: 'rejected',
+            reason: REPORT_REJECT_REASON,
+            schemaVersion: explain_cache_1.EXPLAIN_SCHEMA_VERSION,
+            updatedAtMs: Date.now() - REJECTED_RETRY_TTL_MS * 100,
+        });
+        const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
+        expect(res.status).toBe('rejected');
+        expect(res.text).toBe((0, explain_phrase_1.buildFallback)(MEANING));
+        expect(mockOpenAiChat).not.toHaveBeenCalled();
     });
 });
 describe('explainPhrase — full miss path', () => {
@@ -257,9 +308,9 @@ describe('explainPhrase — budget exhaustion degrades gracefully (no 500)', () 
 describe('explainPhrase — concurrent generation (lost lock race)', () => {
     it('a fresh pending lock held by someone else ⇒ fallback with status pending, no generate', async () => {
         // Another request is actively generating: a fresh pending doc exists.
-        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE)}`, {
+        docs.set(`phrase_explanations/${(0, explain_cache_1.phraseHashFor)(PHRASE, 'ru')}`, {
             status: 'pending',
-            schemaVersion: 1,
+            schemaVersion: explain_cache_1.EXPLAIN_SCHEMA_VERSION,
             createdAtMs: Date.now(), // fresh → claimPendingLock returns false
         });
         const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
@@ -279,13 +330,17 @@ describe('explainPhrase — input validation', () => {
             .rejects.toMatchObject({ code: 'invalid-argument' });
     });
 });
-describe('buildFallback — server builds it, never the client, never AI', () => {
-    it('is derived from phraseMeaning', () => {
-        expect((0, explain_phrase_1.buildFallback)('Привет')).toContain('Привет');
-        expect((0, explain_phrase_1.buildFallback)('Привет')).toContain('Например');
+describe('buildFallback — neutral, never echoes the meaning/translation', () => {
+    it('NEVER includes the phrase meaning (feature explains English grammar, not RU sense)', () => {
+        // Even when a meaning is passed, it must NOT appear in the fallback text.
+        expect((0, explain_phrase_1.buildFallback)('Привет, как дела')).not.toContain('Привет');
+        expect((0, explain_phrase_1.buildFallback)('Привет, как дела')).not.toContain('Например');
     });
-    it('degrades to a generic string when meaning is empty', () => {
-        expect((0, explain_phrase_1.buildFallback)('')).toBe('Объяснение пока недоступно. Попробуйте позже.');
+    it('is a neutral try-again message regardless of input (with or without meaning)', () => {
+        const neutral = 'Не получилось подготовить объяснение. Попробуйте позже.';
+        expect((0, explain_phrase_1.buildFallback)('')).toBe(neutral);
+        expect((0, explain_phrase_1.buildFallback)('что угодно')).toBe(neutral);
+        expect((0, explain_phrase_1.buildFallback)()).toBe(neutral);
     });
 });
 //# sourceMappingURL=explain_phrase.test.js.map

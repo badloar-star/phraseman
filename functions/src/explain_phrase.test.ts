@@ -231,11 +231,12 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
     });
   });
 
-  it('cache REJECTED ⇒ returns fallback, no regen, no AI calls', async () => {
+  it('FRESH judge-rejected cache ⇒ returns fallback, no regen, no AI calls', async () => {
     docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
       status: 'rejected',
       reason: 'toxic',
       schemaVersion: EXPLAIN_SCHEMA_VERSION,
+      updatedAtMs: Date.now(), // только что отклонили — TTL ретрая ещё не прошёл
     });
 
     const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
@@ -245,6 +246,42 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
     expect(res.text).toBe(buildFallback(MEANING));
     expect(mockOpenAiChat).not.toHaveBeenCalled();
     expect(mockJudge).not.toHaveBeenCalled();
+  });
+
+  it('judge-rejected cache PAST retry TTL ⇒ regenerates (false-positive recovery, prod 2026-06-10)', async () => {
+    const { REJECTED_RETRY_TTL_MS } = require('./explain/explain_cache');
+    docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
+      status: 'rejected',
+      reason: 'non_target_language', // ложный вердикт судьи (реальный прод-кейс «i am ready»)
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
+      updatedAtMs: Date.now() - REJECTED_RETRY_TTL_MS - 1,
+    });
+    mockOpenAiChat.mockResolvedValue(genReply('Слово "am" — это связка для "I". Поэтому порядок такой.'));
+    mockJudge.mockResolvedValue(verdict(true, 'ok'));
+
+    const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
+
+    expect(mockOpenAiChat).toHaveBeenCalledTimes(1);
+    expect(res.status).toBe('ok');
+    expect(res.fromCache).toBe(false);
+    // Фраза вылечилась: кэш снова ready, фолбэк больше не отдаётся.
+    expect(explanationDoc(PHRASE)).toMatchObject({ status: 'ready' });
+  });
+
+  it('report_threshold-rejected cache ⇒ fallback FOREVER (no regen even past TTL)', async () => {
+    const { REJECTED_RETRY_TTL_MS, REPORT_REJECT_REASON } = require('./explain/explain_cache');
+    docs.set(`phrase_explanations/${phraseHashFor(PHRASE, 'ru')}`, {
+      status: 'rejected',
+      reason: REPORT_REJECT_REASON,
+      schemaVersion: EXPLAIN_SCHEMA_VERSION,
+      updatedAtMs: Date.now() - REJECTED_RETRY_TTL_MS * 100,
+    });
+
+    const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
+
+    expect(res.status).toBe('rejected');
+    expect(res.text).toBe(buildFallback(MEANING));
+    expect(mockOpenAiChat).not.toHaveBeenCalled();
   });
 });
 

@@ -1,0 +1,22 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Speak of the devil">
+<ellipse cx="76" cy="151" rx="64" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M8 150c-3-24 6-40 26-40s29 16 26 40z" fill="#F2A65A"/>
+<ellipse cx="34" cy="84" rx="19" ry="21" fill="#F6C8A0"/>
+<path d="M15 82c0-12 9-19 19-19s19 7 19 19z" fill="#8A5A3E"/>
+<circle cx="40" cy="86" r="3.2" fill="#3A2418"/>
+<path d="M36 95c3 3 8 3 11 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M82 150c-3-24 6-40 26-40s29 16 26 40z" fill="#6FB6D6"/>
+<ellipse cx="108" cy="84" rx="19" ry="21" fill="#F6C8A0"/>
+<path d="M89 80c0-13 9-20 19-20s19 7 19 20z" fill="#3A2A1E"/>
+<circle cx="98" cy="86" r="3.2" fill="#3A2418"/><circle cx="116" cy="86" r="3.2" fill="#3A2418"/>
+<path d="M99 95c5 3 12 3 16 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<rect x="150" y="40" rx="6" width="44" height="108" fill="#C9A56A"/>
+<rect x="156" y="46" rx="4" width="32" height="96" fill="#A87F4A"/>
+<circle cx="182" cy="96" r="3" fill="#F6C744"/>
+<path d="M158 150c-2-22 5-36 22-36s24 14 22 36z" fill="#F46C6C"/>
+<ellipse cx="180" cy="92" rx="17" ry="19" fill="#F4978E"/>
+<path d="M165 80l-4-12 12 7zM195 80l4-12-12 7z" fill="#E04848"/>
+<circle cx="174" cy="92" r="3" fill="#3A2418"/><circle cx="186" cy="92" r="3" fill="#3A2418"/>
+<path d="M172 100c4 4 10 4 14 0" stroke="#B0322A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M150 70c8-4 14 2 14 8" fill="none" stroke="#F46C6C" stroke-width="9" stroke-linecap="round"/>
+</svg>

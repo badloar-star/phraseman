@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Have the last word">
+<ellipse cx="100" cy="151" rx="64" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M14 60c0-8 6-13 15-13h28c9 0 15 5 15 13v14c0 8-6 13-15 13h-8l-12 11 3-11c-9 0-14-5-14-13z" fill="#FFE3EC" stroke="#E7A8C0" stroke-width="3"/>
+<path d="M28 67h30M28 75h22" stroke="#E07A9A" stroke-width="4" stroke-linecap="round"/>
+<path d="M186 60c0-8-6-13-15-13h-28c-9 0-15 5-15 13v14c0 8 6 13 15 13h8l12 11-3-11c9 0 14-5 14-13z" fill="#DCEBF7" stroke="#9EC3E0" stroke-width="3"/>
+<path d="M150 67h30M158 75h22" stroke="#5E97C4" stroke-width="4" stroke-linecap="round"/>
+<path d="M62 132c0-9 8-15 20-15h36c12 0 20 6 20 15s-8 15-20 15h-14l8 11-16-11h-14c-12 0-20-6-20-15z" fill="#FFF7DD" stroke="#C9B98A" stroke-width="3"/>
+<path d="M78 116l-6-6h56l-6 6z" fill="#F6C744"/>
+<path d="M72 110l4-12 8 9 6-13 6 13 8-9 4 12z" fill="#F6C744" stroke="#E0B030" stroke-width="2"/>
+<circle cx="78" cy="103" r="2.6" fill="#F46C6C"/><circle cx="100" cy="100" r="2.6" fill="#5BAE8E"/><circle cx="122" cy="103" r="2.6" fill="#6FA8DC"/>
+<path d="M80 132h40" stroke="#C9A04A" stroke-width="4" stroke-linecap="round"/>
+</svg>

@@ -3968,8 +3968,15 @@
       "secret": {
         "id": "mind_secret",
         "en": "Galaxy brain",
-        "ru": "Гига-мозг (мем об «гениальных» идеях)",
-        "status": "seed"
+        "ru": "Гига-мозг (мем о «гениальных» идеях)",
+        "status": "art_done",
+        "ipa": "ˈɡæləksi breɪn",
+        "literalRu": "галактический мозг",
+        "meaningRu": "В шутку о невероятно «умной» мысли — обычно с иронией, мол, гениально до абсурда.",
+        "exampleEn": "Skip sleep to save time? That's some real galaxy brain logic.",
+        "exampleRu": "Не спать, чтобы экономить время? Вот это гига-мозговая логика.",
+        "originRu": "Из интернет-мема «расширяющийся мозг» (Expanding Brain) 2017 года: с каждым «умным» шагом мозг на картинке всё больше и наконец сияет целой галактикой. Чаще всего так подкалывают мысль, которая лишь притворяется гениальной.",
+        "art": "set25_mind/mind_secret"
       },
       "cards": [
         {
@@ -3977,70 +3984,140 @@
           "en": "A bright idea",
           "ru": "Светлая мысль",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə braɪt aɪˈdɪə",
+          "literalRu": "яркая идея",
+          "meaningRu": "Удачная и умная мысль, которая вдруг приходит в голову.",
+          "exampleEn": "I just had a bright idea — let's order pizza instead of cooking.",
+          "exampleRu": "Меня осенила светлая мысль — давай закажем пиццу, а не будем готовить.",
+          "originRu": "В английском «bright» — это и «яркий», и «смышлёный». Хорошая идея будто светится в голове, поэтому она «яркая». По-русски тоже мысль не «умная», а именно «светлая».",
+          "art": "set25_mind/mind_01"
         },
         {
           "id": "mind_02",
           "en": "Food for thought",
           "ru": "Пища для размышлений",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "fuːd fə θɔːt",
+          "literalRu": "еда для мысли",
+          "meaningRu": "То, над чем стоит хорошенько подумать.",
+          "exampleEn": "Her question gave me a lot of food for thought.",
+          "exampleRu": "Её вопрос дал мне немало пищи для размышлений.",
+          "originRu": "Образ простой: как телу нужна еда, так и уму нужна «пища» — новые мысли, которые он «переваривает». Англичане так говорят уже пару веков, и по-русски «пища для ума» звучит так же.",
+          "art": "set25_mind/mind_02"
         },
         {
           "id": "mind_03",
           "en": "Make up your mind",
           "ru": "Определиться наконец",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "meɪk ʌp jɔː maɪnd",
+          "literalRu": "собери свой ум",
+          "meaningRu": "Перестать колебаться и принять решение.",
+          "exampleEn": "Tea or coffee? Make up your mind, we're late!",
+          "exampleRu": "Чай или кофе? Определись наконец, мы опаздываем!",
+          "originRu": "«Make up» — это «собрать, составить» (так «составляют» счёт или застилают постель). Здесь ум как бы собирают из разрозненных мыслей в одно готовое решение.",
+          "art": "set25_mind/mind_03"
         },
         {
           "id": "mind_04",
           "en": "A no-brainer",
           "ru": "Ежу понятно",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈnəʊˌbreɪnə",
+          "literalRu": "то, для чего не нужен мозг",
+          "meaningRu": "Настолько простое и очевидное, что и думать не надо.",
+          "exampleEn": "Free upgrade? That's a no-brainer, I'll take it.",
+          "exampleRu": "Бесплатное улучшение? Тут и ежу понятно — конечно, беру.",
+          "originRu": "Дословно — «то, для чего не требуется мозг», ведь решение очевидно само по себе. Словечко родилось в американском английском в середине XX века и стало особенно модным в речи бизнесменов.",
+          "art": "set25_mind/mind_04"
         },
         {
           "id": "mind_05",
           "en": "Pick someone's brain",
           "ru": "Выведать мнение знатока",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pɪk ˈsʌmwʌnz breɪn",
+          "literalRu": "поковыряться в чьём-то мозге",
+          "meaningRu": "Расспросить знающего человека, чтобы воспользоваться его знаниями.",
+          "exampleEn": "Can I pick your brain about which laptop to buy?",
+          "exampleRu": "Можно у тебя выведать, какой ноутбук стоит купить?",
+          "originRu": "«Pick» здесь — «собирать, выклёвывать», как птица клюёт зёрнышки. Знания будто по крупинке вытаскивают из чужой головы. В этом смысле оборот ходит в английском с XIX века.",
+          "art": "set25_mind/mind_05"
         },
         {
           "id": "mind_06",
           "en": "A light bulb moment",
           "ru": "Момент озарения",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈlaɪt bʌlb ˈməʊmənt",
+          "literalRu": "момент лампочки",
+          "meaningRu": "Миг, когда тебя внезапно осеняет блестящая идея.",
+          "exampleEn": "Then I had a light bulb moment and finally solved the puzzle.",
+          "exampleRu": "И тут на меня снизошло озарение, и я наконец разгадал головоломку.",
+          "originRu": "Прямо из мультфильмов и комиксов: когда герою приходит идея, над его головой загорается лампочка. Этот рисованный приём прижился в XX веке и подарил языку целое выражение.",
+          "art": "set25_mind/mind_06"
         },
         {
           "id": "mind_07",
           "en": "Put two and two together",
           "ru": "Сложить два и два",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pʊt tuː ən tuː təˈɡeðə",
+          "literalRu": "сложить два и два",
+          "meaningRu": "Догадаться о правде, сопоставив очевидные факты.",
+          "exampleEn": "I put two and two together and realised it was a surprise party.",
+          "exampleRu": "Я сложил два и два и понял, что это вечеринка-сюрприз.",
+          "originRu": "За образом — простейшая арифметика: 2 + 2 = 4, тут не ошибёшься. А о неверном выводе шутят «put two and two together and get five» — «сложить два и два и получить пять».",
+          "art": "set25_mind/mind_07"
         },
         {
           "id": "mind_08",
           "en": "Off the top of my head",
           "ru": "Навскидку",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɒf ðə tɒp əv maɪ hed",
+          "literalRu": "с самой верхушки моей головы",
+          "meaningRu": "Сказать сразу, по памяти, не проверяя и не раздумывая.",
+          "exampleEn": "Off the top of my head, I'd say it costs about twenty pounds.",
+          "exampleRu": "Навскидку скажу, что это стоит фунтов двадцать.",
+          "originRu": "Ответ берут будто с самой «макушки» головы — с поверхности, не копаясь глубоко в памяти. Оборот появился в американском английском в середине XX века.",
+          "art": "set25_mind/mind_08"
         },
         {
           "id": "mind_09",
           "en": "Great minds think alike",
           "ru": "Великие умы мыслят одинаково",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡreɪt maɪndz θɪŋk əˈlaɪk",
+          "literalRu": "великие умы думают одинаково",
+          "meaningRu": "Шутливо говорят, когда двое одновременно придумали одно и то же.",
+          "exampleEn": "You brought snacks too? Great minds think alike!",
+          "exampleRu": "Ты тоже принёс закуски? Великие умы мыслят одинаково!",
+          "originRu": "У поговорки есть лукавое продолжение: «...though fools seldom differ» — «...хотя и дураки редко расходятся во мнениях». Так что фраза мягко подтрунивает и над собой.",
+          "art": "set25_mind/mind_09"
         },
         {
           "id": "mind_10",
           "en": "Connect the dots",
           "ru": "Сложить картину воедино",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kəˈnekt ðə dɒts",
+          "literalRu": "соединить точки",
+          "meaningRu": "Связать отдельные факты и увидеть общую картину.",
+          "exampleEn": "Once she connected the dots, the whole plan made sense.",
+          "exampleRu": "Как только она сложила картину воедино, весь план стал понятен.",
+          "originRu": "Образ из детской игры-головоломки: соединяешь пронумерованные точки линией — и из россыпи точек проступает целый рисунок. Так и разрозненные факты складываются в ясную картину.",
+          "art": "set25_mind/mind_10"
         }
       ]
     },
@@ -4056,7 +4133,14 @@
         "id": "talk_secret",
         "en": "Spill the tea",
         "ru": "Выкладывай сплетни!",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˌspɪl ðə ˈtiː",
+        "literalRu": "пролить чай",
+        "meaningRu": "Рассказать свежие сплетни и горячие подробности.",
+        "exampleEn": "Okay, sit down and spill the tea about your date!",
+        "exampleRu": "Так, садись и выкладывай все сплетни про своё свидание!",
+        "originRu": "Здесь «tea» — сленг для «сплетен». По распространённой версии, словечко пошло от буквы «T» в слове «truth» (правда) в дрэг-культуре США. Мемом фраза стала в конце 2010-х.",
+        "art": "set26_talk/talk_secret"
       },
       "cards": [
         {
@@ -4064,70 +4148,140 @@
           "en": "In other words",
           "ru": "Другими словами",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪn ˈʌðə wɜːdz",
+          "literalRu": "в других словах",
+          "meaningRu": "Сейчас скажу то же самое, но проще и понятнее.",
+          "exampleEn": "We're out of money. In other words, no holiday this year.",
+          "exampleRu": "Денег нет. Другими словами, отпуска в этом году не будет.",
+          "originRu": "Оборот собран из простых слов: «in other words» дословно — «в других словах», то есть та же мысль, пересказанная иначе. В английской речи он служит мостиком к более ясному объяснению уже несколько веков.",
+          "art": "set26_talk/talk_01"
         },
         {
           "id": "talk_02",
           "en": "Word of mouth",
           "ru": "Сарафанное радио",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌwɜːd əv ˈmaʊθ",
+          "literalRu": "слово изо рта",
+          "meaningRu": "Когда новость расходится из уст в уста, без рекламы и газет.",
+          "exampleEn": "The little café got popular purely by word of mouth.",
+          "exampleRu": "Кафешка стала популярной чисто через сарафанное радио.",
+          "originRu": "Образ прямой: новость передаётся «изо рта в рот», от человека к человеку. Английскому обороту больше 500 лет — он жил задолго до газет и интернета, когда молва была главным источником вестей.",
+          "art": "set26_talk/talk_02"
         },
         {
           "id": "talk_03",
           "en": "Small talk",
           "ru": "Светская беседа",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌsmɔːl ˈtɔːk",
+          "literalRu": "маленький разговор",
+          "meaningRu": "Лёгкая болтовня ни о чём — о погоде, выходных, пробках.",
+          "exampleEn": "We made small talk in the lift until my floor.",
+          "exampleRu": "Мы поболтали о пустяках в лифте, пока я не доехал до этажа.",
+          "originRu": "«Small» здесь — «незначительный»: разговор «маленький», потому что тема пустяковая и ни к чему не обязывает. В таком смысле оборот закрепился в Англии XVIII века как примета вежливого общения.",
+          "art": "set26_talk/talk_03"
         },
         {
           "id": "talk_04",
           "en": "Get to the point",
           "ru": "Ближе к делу",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡet tə ðə ˈpɔɪnt",
+          "literalRu": "добраться до точки",
+          "meaningRu": "Хватит вступлений — скажи главное, ради чего всё затеял.",
+          "exampleEn": "Stop rambling and get to the point, please.",
+          "exampleRu": "Хватит ходить вокруг да около, ближе к делу.",
+          "originRu": "«Point» — это самая суть, остриё мысли, к которому надо «добраться». Образ идёт от острого кончика: как у иглы есть точка-остриё, так и у речи есть главное, ради чего всё говорится.",
+          "art": "set26_talk/talk_04"
         },
         {
           "id": "talk_05",
           "en": "Easier said than done",
           "ru": "Легче сказать, чем сделать",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈiːziə ˈsed ðən ˈdʌn",
+          "literalRu": "легче сказано, чем сделано",
+          "meaningRu": "На словах просто, а на деле выходит куда труднее.",
+          "exampleEn": "Just stay calm? Easier said than done!",
+          "exampleRu": "Просто сохранять спокойствие? Легче сказать, чем сделать!",
+          "originRu": "Мысль очень старая: похожее «soon said but hard to do» встречается в английских текстах ещё с XV века. У нас ей в точности вторит «легко сказать, да тяжело сделать».",
+          "art": "set26_talk/talk_05"
         },
         {
           "id": "talk_06",
           "en": "Have the last word",
           "ru": "Оставить последнее слово за собой",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hæv ðə ˈlɑːst ˈwɜːd",
+          "literalRu": "иметь последнее слово",
+          "meaningRu": "Сказать в споре финальную фразу, чтобы остаться правым.",
+          "exampleEn": "My sister always has to have the last word in an argument.",
+          "exampleRu": "Моя сестра в споре всегда оставляет последнее слово за собой.",
+          "originRu": "Образ из спора: кто договорил последним, тот будто и победил. Идея древняя — ещё римляне ценили того, за кем оставалась завершающая реплика, а английский оборот закрепился пару веков назад.",
+          "art": "set26_talk/talk_06"
         },
         {
           "id": "talk_07",
           "en": "Talk someone's ear off",
           "ru": "Заболтать до полусмерти",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌtɔːk ˈsʌmwʌnz ˈɪər ɒf",
+          "literalRu": "заболтать кому-то ухо напрочь",
+          "meaningRu": "Говорить так долго и много, что собеседник вконец вымотан.",
+          "exampleEn": "Grandma talked my ear off about her garden for an hour.",
+          "exampleRu": "Бабушка час подряд заболтала меня до полусмерти про свой огород.",
+          "originRu": "Шутливое преувеличение: болтун треплет так, что ухо будто вот-вот отвалится. Такой образ «болтовни до отпадания уха» прижился в американской речи в XX веке.",
+          "art": "set26_talk/talk_07"
         },
         {
           "id": "talk_08",
           "en": "Bite your tongue",
           "ru": "Прикусить язык",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌbaɪt jɔː ˈtʌŋ",
+          "literalRu": "прикусить свой язык",
+          "meaningRu": "Удержаться и промолчать, хотя очень хочется ответить.",
+          "exampleEn": "I wanted to argue, but I bit my tongue.",
+          "exampleRu": "Я хотел поспорить, но прикусил язык.",
+          "originRu": "Образ телесный: чтобы не сказать лишнего, человек будто буквально зажимает язык зубами. Оборот встречается уже у Шекспира — в пьесе «Генрих VI» герой велит себе «прикусить язык».",
+          "art": "set26_talk/talk_08"
         },
         {
           "id": "talk_09",
           "en": "Lost in translation",
           "ru": "Потерялось при переводе",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌlɒst ɪn trænzˈleɪʃn",
+          "literalRu": "потеряно в переводе",
+          "meaningRu": "Когда при переводе на другой язык теряется смысл или оттенок.",
+          "exampleEn": "The joke was funny in Italian, but it got lost in translation.",
+          "exampleRu": "Шутка была смешной на итальянском, но потерялась при переводе.",
+          "originRu": "Мысль приписывают поэту Роберту Фросту: мол, поэзия — это то, что теряется в переводе. А по-настоящему крылатым оборот сделал фильм Софии Копполы «Трудности перевода» (2003).",
+          "art": "set26_talk/talk_09"
         },
         {
           "id": "talk_10",
           "en": "Speak of the devil",
           "ru": "Лёгок на помине",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌspiːk əv ðə ˈdevl",
+          "literalRu": "помяни дьявола",
+          "meaningRu": "Так говорят, когда человек появляется ровно тогда, когда о нём зашла речь.",
+          "exampleEn": "Speak of the devil — here's Tom now!",
+          "exampleRu": "Лёгок на помине — а вот и Том!",
+          "originRu": "Полная поговорка звучала «помяни дьявола — и он появится»: в старину верили, что нечисть нельзя называть вслух, иначе призовёшь её. Со временем мрачное предостережение стало шутливой репликой при появлении знакомого.",
+          "art": "set26_talk/talk_10"
         }
       ]
     },
@@ -4143,7 +4297,14 @@
         "id": "family_secret",
         "en": "Helicopter parents",
         "ru": "Родители-«вертолёты», гиперопека",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˈhelɪkɒptə ˈpeərənts",
+        "literalRu": "родители-вертолёты",
+        "meaningRu": "Мама и папа, которые кружат над ребёнком и контролируют каждый его шаг.",
+        "exampleEn": "Her parents text her teachers every day — total helicopter parents.",
+        "exampleRu": "Её родители каждый день пишут учителям — настоящие родители-вертолёты.",
+        "originRu": "Сравнение появилось ещё в 1969 году в книге психолога Хаима Гинотта: подросток жаловался, что мать «висит надо мной, как вертолёт». В словари «helicopter parent» вошло уже в 2010-х.",
+        "art": "set27_family/family_secret"
       },
       "cards": [
         {
@@ -4151,70 +4312,140 @@
           "en": "It runs in the family",
           "ru": "Это у нас семейное",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪt rʌnz ɪn ðə ˈfæməli",
+          "literalRu": "это бежит в семье",
+          "meaningRu": "Черта или талант передаётся из поколения в поколение.",
+          "exampleEn": "All three brothers are great singers — it runs in the family.",
+          "exampleRu": "Все три брата прекрасно поют — это у них семейное.",
+          "originRu": "Глагол «run» здесь в старом значении «течь, передаваться по линии» — так же говорят «runs in the blood». Образ идёт от мысли, что черта «бежит» по семейному руслу, как ручей.",
+          "art": "set27_family/family_01"
         },
         {
           "id": "family_02",
           "en": "Like father, like son",
           "ru": "Яблоко от яблони",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "laɪk ˈfɑːðə laɪk sʌn",
+          "literalRu": "каков отец, таков и сын",
+          "meaningRu": "Сын повторяет отца — характером или поступками.",
+          "exampleEn": "He fixes cars just like his dad did. Like father, like son!",
+          "exampleRu": "Чинит машины — точь-в-точь как отец. Яблоко от яблони!",
+          "originRu": "Поговорка восходит к латинскому «qualis pater, talis filius» и в английском встречается уже в XVI веке. Похожий женский вариант — «like mother, like daughter».",
+          "art": "set27_family/family_02"
         },
         {
           "id": "family_03",
           "en": "My own flesh and blood",
           "ru": "Родная кровь",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "maɪ əʊn fleʃ ənd blʌd",
+          "literalRu": "моя собственная плоть и кровь",
+          "meaningRu": "Близкий кровный родственник — тот, кто тебе родной.",
+          "exampleEn": "I can't stay angry at him — he's my own flesh and blood.",
+          "exampleRu": "Не могу на него долго злиться — он мне родная кровь.",
+          "originRu": "Оборот «flesh and blood» встречается ещё в Библии (Адам о Еве: «плоть от плоти моей») и закрепился у Шекспира. «Плоть и кровь» — то, из чего мы буквально сделаны, поэтому так говорят о самых родных.",
+          "art": "set27_family/family_03"
         },
         {
           "id": "family_04",
           "en": "The apple of my eye",
           "ru": "Свет моих очей",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ði ˈæpl əv maɪ aɪ",
+          "literalRu": "яблоко моего глаза",
+          "meaningRu": "Тот, кого любишь и бережёшь больше всего на свете.",
+          "exampleEn": "His little daughter is the apple of his eye.",
+          "exampleRu": "Маленькая дочка — свет его очей.",
+          "originRu": "«Яблоком глаза» в старину называли зрачок — его берегли как самое ценное. Образ есть в древнеанглийских текстах и в Библии (Псалтирь): «храни меня как зеницу ока».",
+          "art": "set27_family/family_04"
         },
         {
           "id": "family_05",
           "en": "Family comes first",
           "ru": "Семья превыше всего",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈfæməli kʌmz fɜːst",
+          "literalRu": "семья идёт первой",
+          "meaningRu": "Семья важнее работы, друзей и всего остального.",
+          "exampleEn": "I turned down the trip — family comes first.",
+          "exampleRu": "Я отказался от поездки — семья превыше всего.",
+          "originRu": "Здесь «come first» — «быть на первом месте, в приоритете»; так же говорят «safety comes first». Фраза стала почти девизом и часто звучит в фильмах про семейные ценности.",
+          "art": "set27_family/family_05"
         },
         {
           "id": "family_06",
           "en": "The spitting image",
           "ru": "Вылитая копия",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə ˈspɪtɪŋ ˈɪmɪdʒ",
+          "literalRu": "плюющий образ",
+          "meaningRu": "Человек, до мелочей похожий на другого — обычно на родителя.",
+          "exampleEn": "She's the spitting image of her grandmother in that photo.",
+          "exampleRu": "На этом фото она вылитая копия своей бабушки.",
+          "originRu": "По одной из версий, выражение выросло из старой фразы «the very spit of him» — «будто его выплюнули»; то есть похож так, словно отец его «выплюнул». Со временем «spit and image» превратилось в «spitting image».",
+          "art": "set27_family/family_06"
         },
         {
           "id": "family_07",
           "en": "A mama's boy",
           "ru": "Маменькин сынок",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈmɑːməz bɔɪ",
+          "literalRu": "мамин мальчик",
+          "meaningRu": "Взрослый парень, слишком привязанный к маме и зависимый от неё.",
+          "exampleEn": "He calls his mum about every little decision — total mama's boy.",
+          "exampleRu": "Он звонит маме по любому пустяку — типичный маменькин сынок.",
+          "originRu": "Американское «mama's boy» вошло в обиход в XIX веке и почти всегда звучит с лёгкой насмешкой. В Британии тот же смысл чаще передают словом «mummy's boy».",
+          "art": "set27_family/family_07"
         },
         {
           "id": "family_08",
           "en": "An empty nest",
           "ru": "Опустевшее гнездо",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ən ˈempti nest",
+          "literalRu": "пустое гнездо",
+          "meaningRu": "Дом, где родители остались одни, после того как выросшие дети разъехались.",
+          "exampleEn": "Now that the kids are at college, we're getting used to an empty nest.",
+          "exampleRu": "Дети в университете, и мы привыкаем к опустевшему гнезду.",
+          "originRu": "Образ взят прямо у птиц: птенцы оперились и улетели, гнездо опустело. Отсюда и слово «empty-nesters» — родители, чьи дети покинули дом.",
+          "art": "set27_family/family_08"
         },
         {
           "id": "family_09",
           "en": "Blood is thicker than water",
           "ru": "Кровь не водица",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "blʌd ɪz ˈθɪkə ðən ˈwɔːtə",
+          "literalRu": "кровь гуще воды",
+          "meaningRu": "Родственные связи сильнее и важнее любых других.",
+          "exampleEn": "We argue a lot, but we always help each other — blood is thicker than water.",
+          "exampleRu": "Мы часто спорим, но всегда выручаем друг друга — кровь не водица.",
+          "originRu": "Образ простой: кровь и впрямь гуще воды, намёк — родная связь крепче. Поговорку записали ещё в средневековой Германии (XII век), в английском она прижилась позже.",
+          "art": "set27_family/family_09"
         },
         {
           "id": "family_10",
           "en": "A chip off the old block",
           "ru": "Весь в отца",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə tʃɪp ɒf ði əʊld blɒk",
+          "literalRu": "щепка от старого полена",
+          "meaningRu": "Ребёнок, очень похожий на родителя характером или повадками.",
+          "exampleEn": "He's stubborn and funny, just like his dad — a chip off the old block.",
+          "exampleRu": "Упрямый и весёлый, прямо как отец — весь в него.",
+          "originRu": "Образ из столярной мастерской: отколотая щепка сделана из того же дерева, что и полено. Старая форма «a chip of the old block» известна с XVII века.",
+          "art": "set27_family/family_10"
         }
       ]
     },
@@ -4229,79 +4460,156 @@
       "secret": {
         "id": "holidays_secret",
         "en": "Friendsgiving",
-        "ru": "Праздник с друзьями вместо родни",
-        "status": "seed"
+        "ru": "День благодарения с друзьями вместо родни",
+        "status": "art_done",
+        "ipa": "ˈfrendzɡɪvɪŋ",
+        "literalRu": "друзьедарение",
+        "meaningRu": "Праздничный ужин в стиле Дня благодарения, но в компании друзей, а не семьи.",
+        "exampleEn": "We're skipping the family this year and hosting a Friendsgiving instead.",
+        "exampleRu": "В этом году вместо семьи мы устраиваем праздник с друзьями.",
+        "originRu": "Словечко — смесь «friends» (друзья) и «Thanksgiving» (День благодарения). Появилось около 2007 года и стало модным у молодёжи, которая празднует свой ужин в кругу друзей.",
+        "art": "set28_holidays/holidays_secret"
       },
       "cards": [
         {
           "id": "holidays_01",
           "en": "The more the merrier",
-          "ru": "Чем больше народу, тем веселее",
+          "ru": "В тесноте, да не в обиде",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə mɔː ðə ˈmeriə",
+          "literalRu": "чем больше, тем веселее",
+          "meaningRu": "Чем больше людей собирается, тем праздник радостнее.",
+          "exampleEn": "Bring your friends to the party — the more the merrier!",
+          "exampleRu": "Бери друзей на вечеринку — в тесноте, да не в обиде!",
+          "originRu": "Поговорке больше 600 лет: в таком виде она встречается в английских текстах уже в XIV веке. Рифма «more — merrier» помогла ей закрепиться в речи.",
+          "art": "set28_holidays/holidays_01"
         },
         {
           "id": "holidays_02",
           "en": "Have a blast",
           "ru": "Оторваться на полную",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "həv ə blɑːst",
+          "literalRu": "получить взрыв",
+          "meaningRu": "Отлично провести время и здорово повеселиться.",
+          "exampleEn": "We had a blast at the New Year's party last night!",
+          "exampleRu": "Мы вчера оторвались на полную на новогодней вечеринке!",
+          "originRu": "В американском сленге слово «blast» — «взрыв» — стало значить бурное веселье в середине XX века: радость такая, будто внутри всё взрывается от восторга.",
+          "art": "set28_holidays/holidays_02"
         },
         {
           "id": "holidays_03",
           "en": "In the holiday spirit",
           "ru": "В праздничном настроении",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪn ðə ˈhɒlədeɪ ˈspɪrɪt",
+          "literalRu": "в праздничном духе",
+          "meaningRu": "Чувствуешь радость и тепло праздника, хочется дарить и делиться.",
+          "exampleEn": "She's already in the holiday spirit, baking cookies and singing carols.",
+          "exampleRu": "Она уже в праздничном настроении: печёт печенье и поёт колядки.",
+          "originRu": "Слово «spirit» здесь — не привидение, а настрой души. Образ «духа праздника» прославил Чарльз Диккенс в «Рождественской песни» (1843), где к Скруджу являются сами Духи Рождества.",
+          "art": "set28_holidays/holidays_03"
         },
         {
           "id": "holidays_04",
           "en": "Eat, drink and be merry",
           "ru": "Ешь, пей, веселись",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "iːt drɪŋk ənd biː ˈmeri",
+          "literalRu": "ешь, пей и веселись",
+          "meaningRu": "Радуйся моменту, наслаждайся жизнью здесь и сейчас.",
+          "exampleEn": "It's a holiday — eat, drink and be merry, the diet starts Monday!",
+          "exampleRu": "Сегодня праздник — ешь, пей, веселись, диета начнётся в понедельник!",
+          "originRu": "Фраза родом из Библии: похожие слова есть в книге Екклесиаста и в притче из Евангелия от Луки о беспечном богаче, который собрал урожай и решил жить в своё удовольствие.",
+          "art": "set28_holidays/holidays_04"
         },
         {
           "id": "holidays_05",
           "en": "Like there's no tomorrow",
           "ru": "Как в последний раз",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "laɪk ðeəz nəʊ təˈmɒrəʊ",
+          "literalRu": "как будто завтра не наступит",
+          "meaningRu": "Делать что-то изо всех сил, не сдерживаясь и забыв обо всём.",
+          "exampleEn": "At the wedding they danced like there's no tomorrow.",
+          "exampleRu": "На свадьбе они танцевали как в последний раз.",
+          "originRu": "Идея проста: если завтра не будет, то и беречь себя незачем — гуляй на полную сегодня. В этом виде оборот разошёлся по английской речи в XX веке.",
+          "art": "set28_holidays/holidays_05"
         },
         {
           "id": "holidays_06",
           "en": "Steal the show",
           "ru": "Затмить всех",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "stiːl ðə ʃəʊ",
+          "literalRu": "украсть представление",
+          "meaningRu": "Привлечь к себе всё внимание и оказаться ярче остальных.",
+          "exampleEn": "The little dog in a Santa hat stole the show at the party.",
+          "exampleRu": "Маленький пёс в шапке Санты затмил всех на вечеринке.",
+          "originRu": "Из театрального мира: актёр так хорош, что «крадёт» всё внимание зрителей у остальных на сцене. Оборот вошёл в обиход в первой половине XX века.",
+          "art": "set28_holidays/holidays_06"
         },
         {
           "id": "holidays_07",
           "en": "The party's over",
           "ru": "Праздник закончился",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə ˈpɑːtiz ˈəʊvə",
+          "literalRu": "вечеринка окончена",
+          "meaningRu": "Хорошие беззаботные времена прошли, пора возвращаться к делам.",
+          "exampleEn": "The holidays are done and it's back to work — the party's over.",
+          "exampleRu": "Праздники прошли, и снова на работу — праздник закончился.",
+          "originRu": "«The Party's Over» — название знаменитой песни из мюзикла «Bells Are Ringing» (1956), которую пела Джуди Холлидей. Фраза прижилась как печальное «всё хорошее кончается».",
+          "art": "set28_holidays/holidays_07"
         },
         {
           "id": "holidays_08",
           "en": "Push the boat out",
-          "ru": "Раскошелиться на праздник",
+          "ru": "Раскошелиться, не поскупиться на праздник",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pʊʃ ðə bəʊt aʊt",
+          "literalRu": "вытолкнуть лодку",
+          "meaningRu": "Потратиться щедро и устроить что-то с размахом.",
+          "exampleEn": "For her 50th birthday they really pushed the boat out.",
+          "exampleRu": "На её пятидесятилетие они по-настоящему раскошелились.",
+          "originRu": "Британский оборот родом из морского дела: спустить тяжёлую лодку на воду в одиночку трудно, нужна помощь многих — отсюда щедрый общий жест и трата сил на большое дело.",
+          "art": "set28_holidays/holidays_08"
         },
         {
           "id": "holidays_09",
           "en": "Christmas came early",
           "ru": "Праздник пришёл раньше времени",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈkrɪsməs keɪm ˈɜːli",
+          "literalRu": "рождество наступило рано",
+          "meaningRu": "Случилась нежданная радость или удача, будто подарок не в срок.",
+          "exampleEn": "A bonus in June? Christmas came early this year!",
+          "exampleRu": "Премия в июне? Праздник пришёл раньше времени!",
+          "originRu": "Рождество — главный день подарков в году, поэтому любую внезапную радость в шутку называют «ранним Рождеством». Так говорят, когда хорошее случается раньше, чем ждали.",
+          "art": "set28_holidays/holidays_09"
         },
         {
           "id": "holidays_10",
           "en": "On top of the world",
-          "ru": "На вершине мира",
+          "ru": "На вершине мира, на седьмом небе",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɒn tɒp əv ðə wɜːld",
+          "literalRu": "на вершине мира",
+          "meaningRu": "Невероятно счастлив и доволен, всё идёт прекрасно.",
+          "exampleEn": "After winning the prize, she felt on top of the world.",
+          "exampleRu": "Выиграв приз, она почувствовала себя на вершине мира.",
+          "originRu": "Образ простой: счастливому человеку кажется, будто он поднялся выше всех на свете. Песня «On Top of the World» группы The Carpenters (1972) разнесла фразу по всему миру.",
+          "art": "set28_holidays/holidays_10"
         }
       ]
     },
@@ -4317,7 +4625,14 @@
         "id": "slang_secret",
         "en": "Rizz",
         "ru": "Харизма, умение очаровывать",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "rɪz",
+        "literalRu": "ризз",
+        "meaningRu": "Природный шарм и умение легко покорять и флиртовать.",
+        "exampleEn": "He's so shy in class but online his rizz is unreal.",
+        "exampleRu": "В классе он стесняшка, а в переписке очаровывает всех подряд.",
+        "originRu": "«Rizz» — обрезанная серединка слова «charisma» (как «flu» из «influenza»). Слово раскрутил стример Кай Сенат на Twitch около 2022 года, а в 2023-м словарь Oxford назвал его словом года.",
+        "art": "set29_slang/slang_secret"
       },
       "cards": [
         {
@@ -4325,70 +4640,140 @@
           "en": "It's a vibe",
           "ru": "Это вайб",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪts ə vaɪb",
+          "literalRu": "это вибрация",
+          "meaningRu": "Атмосфера или настроение, которое прямо цепляет и радует.",
+          "exampleEn": "Candles, lo-fi music, fuzzy socks — honestly, it's a vibe.",
+          "exampleRu": "Свечи, ло-фай и тёплые носки — честно, это прям вайб.",
+          "originRu": "Слово «vibe» — короткое от «vibration», в значении «настроение места» его раскрутили хип-хоп и соцсети; короткая фраза «it's a vibe» разлетелась по Твиттеру и TikTok ближе к 2018 году.",
+          "art": "set29_slang/slang_01"
         },
         {
           "id": "slang_02",
           "en": "Low-key",
           "ru": "Слегка, потихоньку",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌləʊ ˈkiː",
+          "literalRu": "на низкой ноте",
+          "meaningRu": "Чуть-чуть, по-тихому, не признаваясь в этом громко.",
+          "exampleEn": "I low-key miss school, but don't tell anyone I said that.",
+          "exampleRu": "Я слегка скучаю по школе, только никому не говори.",
+          "originRu": "Изначально «low-key» по-английски — «приглушённый, негромкий» (как тихая нота). В сленге афроамериканцев слово стало значить «чуть-чуть, тайком» и через Твиттер ушло в мейнстрим в середине 2010-х; его противоположность — «high-key».",
+          "art": "set29_slang/slang_02"
         },
         {
           "id": "slang_03",
           "en": "Salty",
           "ru": "Обиженный, токсичный",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈsɔːlti",
+          "literalRu": "солёный",
+          "meaningRu": "Злишься и ворчишь из-за обиды или проигрыша.",
+          "exampleEn": "He's still salty that I won the last game.",
+          "exampleRu": "Он до сих пор дуется, что я выиграл в прошлой партии.",
+          "originRu": "По одной из версий, корень — в старом моряцком «salty»: так звали просоленного, желчного морского волка. В нынешнем виде «обиженный, бомбит» слово раскрутили геймеры и стримеры в 2010-х.",
+          "art": "set29_slang/slang_03"
         },
         {
           "id": "slang_04",
           "en": "Ghost someone",
           "ru": "Пропасть из переписки",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡəʊst ˈsʌmwʌn",
+          "literalRu": "сделать кого-то призраком",
+          "meaningRu": "Резко исчезнуть и перестать отвечать, без объяснений.",
+          "exampleEn": "We had three great dates and then he just ghosted me.",
+          "exampleRu": "У нас было три классных свидания, а потом он просто пропал.",
+          "originRu": "Слово взлетело вместе с приложениями для знакомств: Tinder появился в конце 2012-го, и к 2014–2015 годам «ghosting» был уже везде. В словарь Merriam-Webster его внесли в феврале 2017 года.",
+          "art": "set29_slang/slang_04"
         },
         {
           "id": "slang_05",
           "en": "Binge-watch",
           "ru": "Смотреть сериал запоем",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈbɪndʒ wɒtʃ",
+          "literalRu": "смотреть взахлёб",
+          "meaningRu": "Глотать серию за серией без остановки.",
+          "exampleEn": "We binge-watched the whole season in one rainy weekend.",
+          "exampleRu": "Мы посмотрели весь сезон запоем за один дождливый уик-энд.",
+          "originRu": "Глагол прославил Netflix: словарь Collins назвал «binge-watch» словом года 2015, ведь его употребление за год утроилось. Само «binge» — диалектное слово из Линкольншира XIX века со значением «вымачивать, накачиваться».",
+          "art": "set29_slang/slang_05"
         },
         {
           "id": "slang_06",
           "en": "Throw shade",
           "ru": "Тонко подколоть",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "θrəʊ ʃeɪd",
+          "literalRu": "бросить тень",
+          "meaningRu": "Незаметно, с улыбкой намекнуть гадость в чей-то адрес.",
+          "exampleEn": "She didn't insult him directly — she just threw a little shade.",
+          "exampleRu": "Она не оскорбляла его прямо — просто тонко подколола.",
+          "originRu": "Выражение родилось в нью-йоркской бальной культуре чёрных и латино-квир-сообществ 1980-х и попало в фильм «Paris Is Burning» (1990), где Дориан Кори объясняет, что такое «shade». В массы его вынес шоу «RuPaul's Drag Race».",
+          "art": "set29_slang/slang_06"
         },
         {
           "id": "slang_07",
           "en": "Living rent-free in my head",
           "ru": "Живёт в моей голове бесплатно",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈlɪvɪŋ ˌrent ˈfriː ɪn maɪ hed",
+          "literalRu": "живёт в моей голове без арендной платы",
+          "meaningRu": "Мысль или человек, о котором не можешь перестать думать.",
+          "exampleEn": "That catchy ad jingle has been living rent-free in my head all day.",
+          "exampleRu": "Этот навязчивый мотивчик из рекламы весь день крутится в голове.",
+          "originRu": "Шутка строится на том, что незваная мысль «снимает» твою голову, но за «жильё» не платит. Фразу раскрутили фанатские сообщества в Твиттере, и пика мема она достигла около 2020 года.",
+          "art": "set29_slang/slang_07"
         },
         {
           "id": "slang_08",
           "en": "Main character energy",
           "ru": "Энергия главного героя",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "meɪn ˈkærəktər ˈenədʒi",
+          "literalRu": "энергия главного персонажа",
+          "meaningRu": "Держишься так, будто весь мир — фильм, а ты в нём главный.",
+          "exampleEn": "She walked in with sunglasses and total main character energy.",
+          "exampleRu": "Она вошла в тёмных очках и с энергией главной героини.",
+          "originRu": "Тренд пошёл в TikTok весной 2020-го: 26 мая ролик Эшли Уорд призвал «думать о себе как о главном герое». В локдаун люди снимали обычные дела под киношную музыку — «романтизируй свою жизнь».",
+          "art": "set29_slang/slang_08"
         },
         {
           "id": "slang_09",
           "en": "Plot twist",
           "ru": "Неожиданный поворот",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "plɒt twɪst",
+          "literalRu": "поворот сюжета",
+          "meaningRu": "Внезапная развязка, которую совсем не ждал.",
+          "exampleEn": "Plot twist: the quiet new guy turned out to be the boss's son.",
+          "exampleRu": "Неожиданный поворот: тихий новенький оказался сыном начальника.",
+          "originRu": "Термин пришёл из сценарного и литературного ремесла, где «twist» — резкий перелом сюжета. В соцсетях фразой стали шутливо предварять любую неожиданность в обычной жизни.",
+          "art": "set29_slang/slang_09"
         },
         {
           "id": "slang_10",
           "en": "Glow-up",
           "ru": "Эффектное преображение",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈɡləʊ ʌp",
+          "literalRu": "засиять",
+          "meaningRu": "Заметно похорошеть и стать круче, чем был раньше.",
+          "exampleEn": "Check her graduation photo — what a glow-up since middle school!",
+          "exampleRu": "Глянь на её выпускное фото — вот это преображение со школы!",
+          "originRu": "Слово придумал рэпер Chief Keef в треке «Gotta Glo Up One Day» (вышел 15 августа 2013 года). Это игра слов из «grow up» (повзрослеть) и «glow» (сиять); к концу 2010-х оно разлетелось по Твиттеру и Инстаграму с фото «до и после».",
+          "art": "set29_slang/slang_10"
         }
       ]
     },
@@ -4403,79 +4788,156 @@
       "secret": {
         "id": "british_secret",
         "en": "Innit",
-        "ru": "«Не так ли?» по-лондонски",
-        "status": "seed"
+        "ru": "Не так ли? Ага!",
+        "status": "art_done",
+        "ipa": "ˈɪnɪt",
+        "literalRu": "разве не так?",
+        "meaningRu": "Лондонское словечко-«хвостик» из «isn't it»: его лепят в конец фразы для согласия — «правда же, ну да».",
+        "exampleEn": "It's proper cold today, innit?",
+        "exampleRu": "Сегодня реально холодно, не так ли?",
+        "originRu": "«Innit» — это слипшееся в речи «isn't it». Визитной карточкой словечко стало в говоре лондонских кварталов, и сегодня его лепят даже туда, где грамматически нужны другие концовки, — как универсальное «ага, согласен?».",
+        "art": "set30_british/british_secret"
       },
       "cards": [
         {
           "id": "british_01",
           "en": "Cheers, mate!",
-          "ru": "Спасибо/пока, дружище (брит.)",
+          "ru": "Спасибо, дружище!",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "tʃɪəz meɪt",
+          "literalRu": "ура, приятель!",
+          "meaningRu": "У британцев это разом и «спасибо», и «пока», и тост — короткое тёплое словечко между своими.",
+          "exampleEn": "Cheers, mate! I'll grab the next round.",
+          "exampleRu": "Спасибо, дружище! Следующий заказ за мной.",
+          "originRu": "«Cheers» родилось как тост за чашей, от старого слова «cheer» — «лицо, настроение». Британцы со временем растянули его на благодарность и прощание, а «mate» («товарищ по делу») добавило панибратства.",
+          "art": "set30_british/british_01"
         },
         {
           "id": "british_02",
           "en": "What's up?",
-          "ru": "Как дела? (амер.)",
+          "ru": "Как дела? Чё как?",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "wɒts ʌp",
+          "literalRu": "что наверху?",
+          "meaningRu": "Американское приветствие-вопрос «как сам, что нового?»; часто его и не ждут ответа, просто бросают на ходу.",
+          "exampleEn": "Hey, what's up? Haven't seen you in ages!",
+          "exampleRu": "Привет, чё как? Сто лет тебя не видел!",
+          "originRu": "Дословно «что там стряслось?» — изначально спрашивали о происшествии. В США XX века оборот стёрся до простого «привет», а мультяшное «What's up, Doc?» кролика Багза Банни разнесло его по всему миру.",
+          "art": "set30_british/british_02"
         },
         {
           "id": "british_03",
           "en": "Fancy a cuppa?",
-          "ru": "Чайку? (брит.)",
+          "ru": "Чайку не желаешь?",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈfænsi ə ˈkʌpə",
+          "literalRu": "вообразить чашечку?",
+          "meaningRu": "Очень британское приглашение выпить чаю: «cuppa» — это «cup of tea», а «fancy» тут значит «хочется ли».",
+          "exampleEn": "You look frozen — fancy a cuppa?",
+          "exampleRu": "Ты весь продрог — чайку не желаешь?",
+          "originRu": "«Cuppa» — это сжатое в речи «cup of tea», где «of» проглотили. Чай в Британии — почти ритуал, поэтому предложить «cuppa» давно значит и просто посидеть, поболтать, утешить.",
+          "art": "set30_british/british_03"
         },
         {
           "id": "british_04",
           "en": "My bad",
-          "ru": "Моя вина (амер.)",
+          "ru": "Моя вина, виноват",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "maɪ bæd",
+          "literalRu": "моё плохое",
+          "meaningRu": "Лёгкое американское «упс, это я напортачил» — признать промах без лишних церемоний.",
+          "exampleEn": "Oh, my bad, I took your charger by mistake.",
+          "exampleRu": "Ой, виноват, я случайно взял твою зарядку.",
+          "originRu": "По одной из версий, фраза пошла с баскетбольных площадок США, где игрок так признавал свою ошибку. В широкую речь её занесли 1990-е и фильм «Бестолковые», после чего «my bad» подхватил весь интернет.",
+          "art": "set30_british/british_04"
         },
         {
           "id": "british_05",
           "en": "No worries",
-          "ru": "Без проблем",
+          "ru": "Без проблем, не парься",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "nəʊ ˈwʌriz",
+          "literalRu": "никаких волнений",
+          "meaningRu": "Беззаботное «да всё нормально, не переживай» — и в ответ на спасибо, и в ответ на извинение.",
+          "exampleEn": "You're ten minutes late? No worries, sit down.",
+          "exampleRu": "Опоздал на десять минут? Без проблем, садись.",
+          "originRu": "Фраза выросла из австралийского сленга и стала там почти девизом расслабленного отношения к жизни. Через сёрферов, кино и сериалы «no worries» разошлось по всему англоязычному миру.",
+          "art": "set30_british/british_05"
         },
         {
           "id": "british_06",
           "en": "Bob's your uncle",
-          "ru": "И дело в шляпе (брит.)",
+          "ru": "И дело в шляпе",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɒbz jɔː ˈʌŋkl",
+          "literalRu": "Боб — твой дядя",
+          "meaningRu": "Британский хлопок в ладоши в конце объяснения: «вот и всё, проще простого, готово!»",
+          "exampleEn": "Press the button, wait a sec, and Bob's your uncle.",
+          "exampleRu": "Жмёшь кнопку, ждёшь секунду — и дело в шляпе.",
+          "originRu": "По одной из версий, всё пошло от премьер-министра Британии Роберта (Боба) Сесила, который в 1887 году пристроил племянника на тёплое место. Намёк был такой: если Боб тебе дядя, остальное устроится само.",
+          "art": "set30_british/british_06"
         },
         {
           "id": "british_07",
           "en": "Hit me up",
-          "ru": "Напиши мне (амер.)",
+          "ru": "Напиши мне, звони",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt miː ʌp",
+          "literalRu": "стукни меня вверх",
+          "meaningRu": "Американское «свяжись со мной» — напиши, позвони, скинь сообщение, когда будешь готов.",
+          "exampleEn": "Hit me up when you land and we'll grab dinner.",
+          "exampleRu": "Напиши, как приземлишься, и сходим поужинать.",
+          "originRu": "«Hit» в американском сленге давно значит «быстро обратиться, дёрнуть» кого-то. С появлением пейджеров и мобильных «hit me up» закрепилось как «черкни мне», а хип-хоп и соцсети сделали оборот повседневным.",
+          "art": "set30_british/british_07"
         },
         {
           "id": "british_08",
           "en": "Chuffed to bits",
-          "ru": "Страшно доволен (брит.)",
+          "ru": "Безумно доволен",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "tʃʌft tə bɪts",
+          "literalRu": "довольный на кусочки",
+          "meaningRu": "Очень британский способ сказать «я в полном восторге, прямо сияю от счастья».",
+          "exampleEn": "She passed her driving test and was chuffed to bits.",
+          "exampleRu": "Она сдала на права и была страшно довольна.",
+          "originRu": "«Chuffed» идёт от диалектного «chuff» — «пухлый, раздувшийся от удовольствия». Забавно, что в армейском сленге у слова был и обратный смысл «раздосадованный», но британцы оставили в ходу именно радостное «chuffed».",
+          "art": "set30_british/british_08"
         },
         {
           "id": "british_09",
           "en": "Not my first rodeo",
-          "ru": "Я не первый день замужем (амер.)",
+          "ru": "Я не первый день замужем",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "nɒt maɪ fɜːst rəʊˈdeɪəʊ",
+          "literalRu": "это не моё первое родео",
+          "meaningRu": "Американское «меня не проведёшь, я это уже проходил» — опыта хватает, всё знакомо.",
+          "exampleEn": "Relax, I've handled tough clients before — not my first rodeo.",
+          "exampleRu": "Расслабься, я и раньше имел дело со сложными клиентами — не первый день замужем.",
+          "originRu": "Образ пришёл с американского Дикого Запада, где родео — испытание для ковбоя. По одной из версий, крылатой фразу сделал фильм «Поездка в Бунвиль» 1981 года с Лили Томлин.",
+          "art": "set30_british/british_09"
         },
         {
           "id": "british_10",
           "en": "The full monty",
-          "ru": "По полной программе (брит.)",
+          "ru": "По полной программе",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə fʊl ˈmɒnti",
+          "literalRu": "полный монти",
+          "meaningRu": "Британское «всё и сразу, без остатка, по максимуму» — полный набор, ничего не упущено.",
+          "exampleEn": "For breakfast we went the full monty: eggs, beans, the lot.",
+          "exampleRu": "На завтрак мы взяли по полной программе: яйца, фасоль, всё подряд.",
+          "originRu": "По одной из версий, оборот связан с портным Монтегю Бёртоном, у которого «полный Монти» означал костюм-тройку целиком. Британская комедия «Мужской стриптиз» 1997 года (в оригинале «The Full Monty») разнесла фразу по миру.",
+          "art": "set30_british/british_10"
         }
       ]
     }

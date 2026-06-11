@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A light bulb moment">
+<ellipse cx="100" cy="151" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M100 4v18M100 138v18M4 80h18M178 80h18M33 33l13 13M154 33l-13 13M33 127l13-13M154 127l-13-13" stroke="#FFD23F" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M62 42l11 11M138 42l-11 11M52 80l16 0M148 80l-16 0" stroke="#FFE08A" stroke-width="3" stroke-linecap="round"/>
+<circle cx="100" cy="50" r="22" fill="#FFE27A" stroke="#C4A24E" stroke-width="3"/>
+<path d="M100 50c0-11 4-18 0-26-4 8 0 15 0 26z" fill="#FFF6D0"/>
+<rect x="90" y="70" width="20" height="8" rx="3" fill="#C4A24E"/>
+<path d="M66 132c-2-24 12-40 34-40s36 16 34 40z" fill="#5BB6A8"/>
+<path d="M66 132c-2-24 12-40 34-40 5 0 9 1 13 3-9 28-26 34-47 37z" fill="#79D0C2"/>
+<circle cx="100" cy="118" r="18" fill="#F4E3C8"/>
+<circle cx="93" cy="116" r="3.2" fill="#2A2030"/><circle cx="107" cy="116" r="3.2" fill="#2A2030"/>
+<ellipse cx="100" cy="126" rx="5" ry="6" fill="#7A3A2A"/>
+</svg>

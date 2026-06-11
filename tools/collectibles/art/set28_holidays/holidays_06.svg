@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Steal the show">
+<ellipse cx="100" cy="150" rx="34" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M100 70l-46 78h92z" fill="#FFF6C8" opacity=".55"/>
+<circle cx="34" cy="100" r="20" fill="#5E6B86"/>
+<path d="M18 105c0-11 7-18 16-18s16 7 16 18z" fill="#46506A"/>
+<circle cx="29" cy="99" r="2.6" fill="#2A2030"/><circle cx="40" cy="99" r="2.6" fill="#2A2030"/>
+<path d="M30 106c3 1 7 1 9-1" stroke="#2A2030" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<circle cx="168" cy="100" r="20" fill="#5E6B86"/>
+<path d="M152 105c0-11 7-18 16-18s16 7 16 18z" fill="#46506A"/>
+<circle cx="163" cy="99" r="2.6" fill="#2A2030"/><circle cx="174" cy="99" r="2.6" fill="#2A2030"/>
+<path d="M160 100c3-1 7-1 9 1" stroke="#2A2030" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M76 148c-4-26 8-44 24-44s28 18 24 44z" fill="#FFD23F"/>
+<ellipse cx="100" cy="92" rx="22" ry="24" fill="#F4E3C8"/>
+<path d="M80 90c0-13 9-22 20-22s20 9 20 22z" fill="#F2B705"/>
+<circle cx="93" cy="92" r="3.2" fill="#2A2030"/><circle cx="107" cy="92" r="3.2" fill="#2A2030"/>
+<path d="M90 100c6 7 14 7 20 0z" fill="#C95B5B"/>
+<path d="M100 64l4-10 4 10z" fill="#F2B705"/>
+<rect x="186" y="14" width="0" height="0"/>
+<path d="M100 28l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#FFD23F"/>
+<path d="M150 22l2 5 5 1-4 3 1 5-4-2-4 2 1-5-4-3 5-1z" fill="#FFF6C8"/>
+</svg>

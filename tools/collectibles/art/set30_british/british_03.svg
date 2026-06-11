@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fancy a cuppa?">
+<ellipse cx="78" cy="146" rx="50" ry="10" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="158" cy="148" rx="26" ry="7" fill="rgba(0,0,0,.25)"/>
+<g transform="rotate(18 78 96)">
+<path d="M44 76h62c6 0 10 4 10 10v18c0 14-12 24-30 24h-22c-18 0-30-10-30-24V86c0-6 4-10 10-10z" fill="#6FB3D2"/>
+<path d="M44 76h62c6 0 10 4 10 10v6H34v-6c0-6 4-10 10-10z" fill="#5494B5"/>
+<path d="M116 90c14 0 20 8 17 18-3 8-11 11-17 11" fill="none" stroke="#6FB3D2" stroke-width="9" stroke-linecap="round"/>
+<rect x="62" y="62" width="26" height="14" rx="6" fill="#5494B5"/>
+<circle cx="60" cy="106" r="4" fill="#16243A"/><circle cx="84" cy="106" r="4" fill="#16243A"/>
+<path d="M58 118c8 6 20 6 28 0" stroke="#16243A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="50" cy="112" rx="5" ry="4" fill="#E0857F" opacity=".6"/>
+<ellipse cx="96" cy="112" rx="5" ry="4" fill="#E0857F" opacity=".6"/>
+</g>
+<path d="M138 116h36l-3 22c-1 6-6 10-12 10h-6c-6 0-11-4-12-10z" fill="#FFF7DD"/>
+<path d="M174 122c10 0 13 6 11 12-2 5-7 7-11 7" fill="none" stroke="#FFF7DD" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="156" cy="116" rx="18" ry="4" fill="#E6E0CC"/>
+</svg>

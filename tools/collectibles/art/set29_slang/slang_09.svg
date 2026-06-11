@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plot twist">
+<ellipse cx="100" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M6 128c30 0 36-8 40-26 5-22 30-28 44-10 10 13-2 30-16 24-12-5-6-22 8-20 14 2 30 10 50 10" fill="none" stroke="#E8C46A" stroke-width="13" stroke-linecap="round"/>
+<path d="M6 128c30 0 36-8 40-26 5-22 30-28 44-10 10 13-2 30-16 24-12-5-6-22 8-20 14 2 30 10 50 10" fill="none" stroke="#F4DFA0" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12"/>
+<path d="M98 96c-2-26 10-44 28-44s30 18 28 44z" fill="#6FB6CF"/>
+<ellipse cx="126" cy="58" rx="24" ry="23" fill="#F6D0B0"/>
+<path d="M104 56c-2-13 8-22 22-22s24 9 22 22c0-11-10-16-22-16s-20 5-22 16z" fill="#3A3A5A"/>
+<circle cx="116" cy="56" r="4.5" fill="#2A2030"/><circle cx="136" cy="56" r="4.5" fill="#2A2030"/>
+<path d="M112 47l-7 3M140 50l7-3" stroke="#3A3A5A" stroke-width="2.4" stroke-linecap="round"/>
+<ellipse cx="126" cy="70" rx="6" ry="7" fill="#2A2030"/>
+<path d="M100 64c-6 6-8 16-4 24M152 64c6 6 8 16 4 24" fill="none" stroke="#F6D0B0" stroke-width="8" stroke-linecap="round"/>
+<circle cx="100" cy="92" r="6" fill="#F6D0B0"/><circle cx="156" cy="92" r="6" fill="#F6D0B0"/>
+</svg>

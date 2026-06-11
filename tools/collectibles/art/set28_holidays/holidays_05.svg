@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Like there's no tomorrow">
+<ellipse cx="100" cy="151" rx="38" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M96 150c-10-26-2-44 8-58l16 10c2 18-6 36-8 48z" fill="#E8638E"/>
+<path d="M120 102c14-6 24 0 26 12" fill="none" stroke="#E8638E" stroke-width="9" stroke-linecap="round"/>
+<path d="M100 92c-14-4-24 4-22 18" fill="none" stroke="#E8638E" stroke-width="9" stroke-linecap="round"/>
+<ellipse cx="112" cy="70" rx="22" ry="24" fill="#F4E3C8"/>
+<path d="M92 68c0-13 9-22 20-22s20 9 20 22z" fill="#7E5FB0"/>
+<circle cx="105" cy="70" r="3.2" fill="#2A2030"/><circle cx="119" cy="70" r="3.2" fill="#2A2030"/>
+<path d="M102 78c6 8 16 8 22 0z" fill="#C95B5B"/>
+<rect x="36" y="58" width="34" height="22" rx="3" fill="#FBEFD6"/>
+<rect x="36" y="58" width="34" height="9" rx="3" fill="#F6A93F"/>
+<path d="M44 56v-8M53 56v-8M61 56v-8" stroke="#E0524E" stroke-width="3" stroke-linecap="round"/>
+<circle cx="53" cy="46" r="3" fill="#FFD23F"/>
+<circle cx="152" cy="44" r="14" fill="#6FB6D6"/>
+<path d="M152 56v12" stroke="#9AA6C0" stroke-width="2.5"/>
+<path d="M148 30l4-8 4 8z" fill="#FFD23F"/>
+<circle cx="40" cy="30" r="3.5" fill="#7FB069"/><circle cx="120" cy="26" r="4" fill="#FFD23F"/>
+<rect x="170" y="78" width="7" height="7" rx="2" fill="#E8638E" transform="rotate(20 173 81)"/>
+</svg>

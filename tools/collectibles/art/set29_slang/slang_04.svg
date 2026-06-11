@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ghost someone">
+<ellipse cx="68" cy="150" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<rect x="40" y="30" width="56" height="112" rx="12" fill="#3A3358"/>
+<rect x="46" y="42" width="44" height="84" rx="4" fill="#C8E4F0"/>
+<rect x="50" y="50" width="30" height="12" rx="6" fill="#7AC8E8"/>
+<rect x="56" y="68" width="30" height="12" rx="6" fill="#7AC8E8"/>
+<rect x="50" y="86" width="24" height="12" rx="6" fill="#7AC8E8"/>
+<circle cx="68" cy="134" r="4" fill="#564E80"/>
+<path d="M120 56c-16 0-26 13-26 30v44l8-8 8 8 8-8 8 8 8-8 8 8V86c0-17-10-30-30-30z" fill="#EAF0FA"/>
+<ellipse cx="120" cy="84" rx="30" ry="28" fill="#EAF0FA" opacity=".5"/>
+<circle cx="112" cy="80" r="4" fill="#3A3358"/><circle cx="130" cy="80" r="4" fill="#3A3358"/>
+<path d="M112 94c5 4 12 4 16 0" stroke="#6E6A90" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<ellipse cx="106" cy="88" rx="5" ry="3.5" fill="#C0B8E0" opacity=".7"/><ellipse cx="134" cy="88" rx="5" ry="3.5" fill="#C0B8E0" opacity=".7"/>
+<path d="M150 62c10-4 18-2 22 4M152 74c8-2 14 0 16 5" fill="none" stroke="#C8C2E0" stroke-width="3" stroke-linecap="round"/>
+</svg>

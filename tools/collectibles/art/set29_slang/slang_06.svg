@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Throw shade">
+<ellipse cx="60" cy="150" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M86 96l92 30-2 16-90-18z" fill="#3A4258" opacity=".4"/>
+<path d="M138 140c-2-22 8-38 26-38s28 16 26 38z" fill="#5A6478"/>
+<ellipse cx="164" cy="98" rx="20" ry="19" fill="#C8B89A"/>
+<path d="M150 100c3-3 7-3 9 0M158 100c3-3 7-3 9 0" stroke="#3A3328" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M154 112c4-3 14-3 16 1" stroke="#3A3328" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M58 142c-2-28 12-46 30-46s32 18 30 46z" fill="#C97AB0"/>
+<ellipse cx="88" cy="92" rx="25" ry="24" fill="#F2C8A0"/>
+<rect x="66" y="86" width="44" height="12" rx="6" fill="#2A2438"/>
+<circle cx="76" cy="92" r="6" fill="#4A4060"/><circle cx="100" cy="92" r="6" fill="#4A4060"/>
+<rect x="86" y="90" width="4" height="3" fill="#2A2438"/>
+<path d="M78 106c5 3 13 3 18-1" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M110 100c12 4 22 12 26 22" fill="none" stroke="#F2C8A0" stroke-width="10" stroke-linecap="round"/>
+<path d="M134 116c6 2 10 6 12 12" fill="none" stroke="#F2C8A0" stroke-width="9" stroke-linecap="round"/>
+</svg>

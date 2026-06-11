@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Make up your mind">
+<ellipse cx="100" cy="151" rx="52" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="20" y="40" width="44" height="100" rx="4" fill="#D14B4B"/>
+<rect x="26" y="46" width="32" height="88" rx="3" fill="#E86A6A"/>
+<circle cx="52" cy="92" r="3.4" fill="#FFE08A"/>
+<rect x="136" y="40" width="44" height="100" rx="4" fill="#3E6FB0"/>
+<rect x="142" y="46" width="32" height="88" rx="3" fill="#5C8FD0"/>
+<circle cx="148" cy="92" r="3.4" fill="#FFE08A"/>
+<path d="M76 138c-2-24 10-40 24-40s26 16 24 40z" fill="#5BB6A8"/>
+<path d="M76 138c-2-24 10-40 24-40 4 0 7 1 10 2-7 30-21 36-34 38z" fill="#79D0C2"/>
+<path d="M114 96c8-2 14-12 12-22" stroke="#F4E3C8" stroke-width="9" fill="none" stroke-linecap="round"/>
+<circle cx="120" cy="66" r="7" fill="#F4E3C8"/>
+<circle cx="100" cy="86" r="19" fill="#F4E3C8"/>
+<path d="M81 84c0-12 8-20 19-20s19 8 19 20z" fill="#6B4A8A"/>
+<circle cx="94" cy="86" r="3.2" fill="#2A2030"/><circle cx="107" cy="86" r="3.2" fill="#2A2030"/>
+<path d="M93 80l-7 2M108 82l7-2" stroke="#6B4A8A" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M94 95c4 2 9 2 13 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="It runs in the family">
+<ellipse cx="100" cy="150" rx="60" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="34" y="30" width="132" height="108" rx="8" fill="#C9A36B"/>
+<rect x="44" y="40" width="112" height="88" rx="4" fill="#FCEFD9"/>
+<circle cx="74" cy="84" r="17" fill="#F6C9A8"/>
+<path d="M58 80c2-14 30-14 32 0 4-6 4-16-4-20-6-10-22-8-26 2-6 4-6 14-2 18z" fill="#E8763C"/>
+<circle cx="116" cy="84" r="17" fill="#F6C9A8"/>
+<path d="M100 80c2-14 30-14 32 0 4-6 4-16-4-20-6-10-22-8-26 2-6 4-6 14-2 18z" fill="#E8763C"/>
+<ellipse cx="100" cy="116" rx="13" ry="11" fill="#F6C9A8"/>
+<path d="M88 112c2-10 22-10 24 0 2-4 0-12-6-14-4-6-14-5-16 2-4 3-4 9-2 12z" fill="#E8763C"/>
+<path d="M100 124l-4 6h8z" fill="#F0A878"/>
+<circle cx="68" cy="86" r="2.6" fill="#33240F"/><circle cx="80" cy="86" r="2.6" fill="#33240F"/>
+<path d="M67 92c4 3 9 3 13 0" stroke="#33240F" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<circle cx="110" cy="86" r="2.6" fill="#33240F"/><circle cx="122" cy="86" r="2.6" fill="#33240F"/>
+<path d="M109 92c4 3 9 3 13 0" stroke="#33240F" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<circle cx="96" cy="116" r="1.8" fill="#33240F"/><circle cx="104" cy="116" r="1.8" fill="#33240F"/>
+<path d="M95 121c3 2 7 2 10 0" stroke="#33240F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>

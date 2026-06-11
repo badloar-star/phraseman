@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Glow-up">
+<ellipse cx="42" cy="150" rx="22" ry="6" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="150" cy="150" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M30 142c-2-22 6-46 12-46s14 24 12 46z" fill="#9AA0A8"/>
+<path d="M34 104c2-4 14-4 16 0M34 118c2-4 14-4 16 0M34 132c2-4 14-4 16 0" fill="none" stroke="#7E848C" stroke-width="2.4" stroke-linecap="round"/>
+<ellipse cx="42" cy="92" rx="14" ry="13" fill="#C2C6CC"/>
+<circle cx="38" cy="92" r="2.6" fill="#4A4E54"/><circle cx="46" cy="92" r="2.6" fill="#4A4E54"/>
+<path d="M37 100c3 2 7 2 10 0" stroke="#5A5E64" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M76 96l24-2-8-7M92 87l8 7-8 7" fill="none" stroke="#F6C744" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M150 138c-2-22 8-40 0-40s-6 18-8 40z" fill="#F2C8A0"/>
+<path d="M148 100c-6-14-26-22-34-10-6 9 2 22 14 22 10 0 16-6 20-12zM152 100c6-14 26-22 34-10 6 9-2 22-14 22-10 0-16-6-20-12z" fill="#F47AB0"/>
+<path d="M150 104c-4-10-18-16-24-8M150 104c4-10 18-16 24-8" fill="#FFC0E0" opacity=".7"/>
+<circle cx="146" cy="92" r="2.6" fill="#2A2030"/><circle cx="154" cy="92" r="2.6" fill="#2A2030"/>
+<path d="M145 100c3 2 7 2 10 0" stroke="#7A3A2A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M170 64l1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5z" fill="#FFD24A"/>
+</svg>

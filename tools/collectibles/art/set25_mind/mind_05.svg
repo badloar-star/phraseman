@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pick someone's brain">
+<ellipse cx="120" cy="151" rx="50" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M96 140c-2-30 14-50 46-50s48 20 46 50z" fill="#8A9BB5"/>
+<path d="M96 140c-2-30 14-50 46-50 6 0 12 1 17 3-12 36-36 44-63 47z" fill="#A6B6CE"/>
+<circle cx="142" cy="76" r="26" fill="#F6C8A0"/>
+<path d="M116 72c0-16 12-26 26-26s26 10 26 26z" fill="#C9C2CC"/>
+<rect x="124" y="74" width="14" height="10" rx="5" fill="none" stroke="#3A2418" stroke-width="2.4"/>
+<rect x="146" y="74" width="14" height="10" rx="5" fill="none" stroke="#3A2418" stroke-width="2.4"/>
+<path d="M138 78h8" stroke="#3A2418" stroke-width="2.4"/>
+<circle cx="131" cy="79" r="2.4" fill="#2A2030"/><circle cx="153" cy="79" r="2.4" fill="#2A2030"/>
+<path d="M132 92c6 5 16 5 22 0" stroke="#7A3A2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M122 56c4-6 14-8 22-4" stroke="#C4A24E" stroke-width="6" fill="none" stroke-linecap="round"/>
+<circle cx="60" cy="44" r="15" fill="#FFE27A" stroke="#C4A24E" stroke-width="2.6"/>
+<rect x="53" y="58" width="14" height="6" rx="2" fill="#C4A24E"/>
+<path d="M70 50l36-2" stroke="#9AA0A8" stroke-width="3" stroke-linecap="round"/>
+<path d="M70 50l34 4M70 50l34-12" stroke="#9AA0A8" stroke-width="3" stroke-linecap="round" fill="none"/>
+<circle cx="70" cy="50" r="4" fill="#7A808A"/>
+</svg>

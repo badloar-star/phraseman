@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Easier said than done">
+<ellipse cx="146" cy="150" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M30 60c0-9 7-15 17-15h22c10 0 17 6 17 15s-7 15-17 15h-6l8 12-14-12h-10c-10 0-17-6-17-15z" fill="#FFF7DD" stroke="#C9B98A" stroke-width="3"/>
+<path d="M58 38c-10 3-16 12-14 22 8-2 14-8 16-16 6 5 7 14 2 21 9-2 12-13 6-21 7 1 11 9 8 17" fill="none" stroke="#E0B85C" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 64c-4 1-7 4-8 9" stroke="#C9B98A" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+<circle cx="170" cy="92" r="22" fill="#9AA3AD"/>
+<circle cx="156" cy="84" r="5" fill="#7E8790"/><circle cx="180" cy="100" r="4" fill="#7E8790"/><circle cx="176" cy="80" r="3.4" fill="#B7Bec6"/>
+<path d="M96 150c-3-24 6-40 26-40 8 0 14 3 18 8" fill="#6FB6D6"/>
+<ellipse cx="120" cy="86" rx="19" ry="21" fill="#F6C8A0"/>
+<path d="M101 84c0-12 9-19 19-19s19 7 19 19z" fill="#8A5A3E"/>
+<circle cx="126" cy="88" r="3.4" fill="#3A2418"/>
+<path d="M122 98c3 2 7 1 9-1" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M138 100c8 0 14 4 14 4" stroke="#F6C8A0" stroke-width="9" stroke-linecap="round" fill="none"/>
+</svg>

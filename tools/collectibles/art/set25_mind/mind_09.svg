@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Great minds think alike">
+<ellipse cx="56" cy="152" rx="34" ry="6" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="144" cy="152" rx="34" ry="6" fill="rgba(0,0,0,.25)"/>
+<path d="M64 28a30 16 0 0 1 72 0a30 16 0 0 1-72 0z" fill="#EAF0F6"/>
+<circle cx="100" cy="28" r="13" fill="#FFE27A" stroke="#C4A24E" stroke-width="2.4"/>
+<rect x="94" y="40" width="12" height="5" rx="2" fill="#C4A24E"/>
+<circle cx="78" cy="56" r="4" fill="#EAF0F6"/><circle cx="122" cy="56" r="4" fill="#EAF0F6"/>
+<path d="M34 144c-2-26 8-44 22-44s24 18 22 44z" fill="#5BB6A8"/>
+<path d="M34 144c-2-26 8-44 22-44 4 0 7 1 10 2-6 30-19 38-32 42z" fill="#79D0C2"/>
+<circle cx="56" cy="92" r="18" fill="#F4E3C8"/>
+<circle cx="50" cy="92" r="3" fill="#2A2030"/><circle cx="62" cy="92" r="3" fill="#2A2030"/>
+<path d="M50 100c4 4 9 4 13 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M122 144c-2-26 8-44 22-44s24 18 22 44z" fill="#E08A4A"/>
+<path d="M122 144c-2-26 8-44 22-44 4 0 7 1 10 2-6 30-19 38-32 42z" fill="#F2A65A"/>
+<circle cx="144" cy="92" r="18" fill="#F6C8A0"/>
+<path d="M126 88c0-12 8-20 18-20s18 8 18 20z" fill="#5A3A28"/>
+<circle cx="138" cy="92" r="3" fill="#2A2030"/><circle cx="150" cy="92" r="3" fill="#2A2030"/>
+<path d="M138 100c4 4 9 4 13 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+</svg>

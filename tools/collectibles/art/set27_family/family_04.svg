@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The apple of my eye">
+<ellipse cx="100" cy="150" rx="56" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M28 80c30-40 114-40 144 0-30 40-114 40-144 0z" fill="#FFFFFF"/>
+<path d="M28 80c30-40 114-40 144 0-30 40-114 40-144 0z" fill="none" stroke="#3A4258" stroke-width="4"/>
+<circle cx="100" cy="80" r="34" fill="#8FD9E8"/>
+<circle cx="100" cy="80" r="24" fill="#E5524A"/>
+<path d="M100 60c-2-6-12-8-12 0 0 4 8 8 12 10 4-2 12-6 12-10 0-8-10-6-12 0z" fill="#F2728A" opacity=".5"/>
+<rect x="98" y="50" width="4" height="8" rx="2" fill="#7A4A2C"/>
+<path d="M104 52c8-6 14 2 6 6-4 2-8 0-6-6z" fill="#7BC47F"/>
+<circle cx="93" cy="78" r="3.6" fill="#2A1E12"/><circle cx="107" cy="78" r="3.6" fill="#2A1E12"/>
+<circle cx="94.5" cy="76.5" r="1.2" fill="#FFFFFF"/><circle cx="108.5" cy="76.5" r="1.2" fill="#FFFFFF"/>
+<path d="M91 86c5 5 13 5 18 0" stroke="#2A1E12" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="64" cy="80" r="6" fill="#FFFFFF"/>
+</svg>

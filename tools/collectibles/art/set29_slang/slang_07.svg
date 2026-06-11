@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Living rent-free in my head">
+<ellipse cx="100" cy="150" rx="50" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M48 78l52-36 52 36v64H48z" fill="#E0C8A0"/>
+<path d="M40 82l60-42 60 42-6 8-54-38-54 38z" fill="#C97A6A"/>
+<rect x="62" y="94" width="76" height="48" rx="4" fill="#F4E6CC"/>
+<path d="M64 102c24 32 48 32 72 0" fill="none" stroke="#B07A4A" stroke-width="4" stroke-linecap="round"/>
+<path d="M70 110c22 24 38 24 60 0" fill="#C97AB0"/>
+<ellipse cx="86" cy="116" rx="15" ry="14" fill="#F2C8A0"/>
+<path d="M72 114c0-9 7-14 16-14s14 5 14 13z" fill="#5A3A8A"/>
+<circle cx="82" cy="116" r="2.8" fill="#2A2030"/>
+<path d="M91 113c2-3 6-3 8 0" stroke="#2A2030" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M80 124c4 2 10 2 13-1" stroke="#7A3A2A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M100 118c10 2 16 8 18 18" fill="none" stroke="#F2C8A0" stroke-width="6" stroke-linecap="round"/>
+<path d="M72 124c-4 4-5 10-3 16" fill="none" stroke="#F2C8A0" stroke-width="6" stroke-linecap="round"/>
+<circle cx="68" cy="106" r="3" fill="#A86844"/><circle cx="132" cy="106" r="3" fill="#A86844"/>
+</svg>

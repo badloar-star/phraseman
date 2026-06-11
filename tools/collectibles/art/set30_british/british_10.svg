@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The full monty">
+<ellipse cx="100" cy="138" rx="86" ry="14" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="100" cy="104" rx="86" ry="30" fill="#FFF7DD"/>
+<ellipse cx="100" cy="104" rx="86" ry="30" fill="none" stroke="#E6DEC4" stroke-width="3"/>
+<ellipse cx="64" cy="98" rx="22" ry="14" fill="#FFFBEF"/>
+<circle cx="64" cy="98" r="8" fill="#FFC24A"/>
+<circle cx="60" cy="96" r="1.6" fill="#16243A"/><circle cx="68" cy="96" r="1.6" fill="#16243A"/>
+<path d="M60 102c3 2 5 2 8 0" stroke="#16243A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<rect x="92" y="92" width="38" height="14" rx="7" fill="#B5562E"/>
+<rect x="96" y="95" width="30" height="5" rx="2.5" fill="#D9784E" opacity=".7"/>
+<rect x="96" y="110" width="38" height="14" rx="7" fill="#9A4422"/>
+<path d="M48 112h28l-3 10c-1 4-5 6-11 6s-10-2-11-6z" fill="#C97A3A"/>
+<rect x="138" y="92" width="22" height="20" rx="3" fill="#E0A85A"/>
+<path d="M141 96h16M141 100h16M141 104h16" stroke="#B5803A" stroke-width="1.6"/>
+<g transform="translate(0 -2)">
+<path d="M150 116h30l-2 12c-1 5-4 8-9 8h-8c-5 0-8-3-9-8z" fill="#FFF7DD"/>
+<path d="M180 120c8 0 11 5 9 10-2 4-6 6-9 6" fill="none" stroke="#FFF7DD" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="165" cy="116" rx="15" ry="3" fill="#C9A56A"/>
+</g>
+<circle cx="36" cy="92" r="5" fill="#E0524E"/><circle cx="44" cy="96" r="5" fill="#E0524E"/><circle cx="38" cy="100" r="5" fill="#E0524E"/>
+</svg>

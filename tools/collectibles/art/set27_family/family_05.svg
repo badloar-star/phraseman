@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Family comes first">
+<ellipse cx="100" cy="150" rx="58" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="30" y="120" width="34" height="22" rx="3" fill="#6B4A2E"/>
+<rect x="40" y="114" width="14" height="8" rx="2" fill="#6B4A2E"/>
+<rect x="44" y="128" width="6" height="5" rx="1.5" fill="#C9A24E"/>
+<path d="M100 86c-8-16-34-12-34 10 0 18 26 30 34 36 8-6 34-18 34-36 0-22-26-26-34-10z" fill="#F2728A"/>
+<circle cx="100" cy="62" r="12" fill="#F6C9A8"/>
+<rect x="90" y="74" width="20" height="22" rx="8" fill="#7AA9D8"/>
+<circle cx="80" cy="74" r="9" fill="#F6C9A8"/>
+<rect x="72" y="84" width="16" height="16" rx="6" fill="#E58A5E"/>
+<circle cx="120" cy="74" r="9" fill="#F4BE9A"/>
+<rect x="112" y="84" width="16" height="16" rx="6" fill="#C9A24E"/>
+<circle cx="96" cy="61" r="2.4" fill="#33240F"/><circle cx="104" cy="61" r="2.4" fill="#33240F"/>
+<path d="M95 66c3 2 7 2 10 0" stroke="#33240F" stroke-width="2" fill="none" stroke-linecap="round"/>
+<circle cx="77" cy="73" r="1.8" fill="#33240F"/><circle cx="83" cy="73" r="1.8" fill="#33240F"/>
+<path d="M76 77c3 2 5 2 8 0" stroke="#33240F" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<circle cx="117" cy="73" r="1.8" fill="#33240F"/><circle cx="123" cy="73" r="1.8" fill="#33240F"/>
+<path d="M116 77c3 2 5 2 8 0" stroke="#33240F" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</svg>

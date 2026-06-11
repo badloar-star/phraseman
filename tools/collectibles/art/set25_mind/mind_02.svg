@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Food for thought">
+<ellipse cx="100" cy="151" rx="50" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M44 96c-2-22 10-38 38-38s40 16 38 38z" fill="#7E5FB0"/>
+<path d="M44 96c-2-22 10-38 38-38 5 0 9 1 13 2-9 28-28 34-51 36z" fill="#9A78C9"/>
+<circle cx="80" cy="80" r="18" fill="#F4E3C8"/>
+<circle cx="74" cy="80" r="3" fill="#2A2030"/><circle cx="87" cy="80" r="3" fill="#2A2030"/>
+<path d="M74 90c4 2 9 2 13-1" stroke="#7A3A2A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M96 86l24 8" stroke="#B0B7C0" stroke-width="3.4" stroke-linecap="round"/>
+<ellipse cx="148" cy="108" rx="34" ry="11" fill="#E6ECF2"/>
+<path d="M116 106a32 9 0 0 0 64 0z" fill="#CFD8E0"/>
+<circle cx="134" cy="104" r="6" fill="#FFE27A" stroke="#C4A24E" stroke-width="2"/>
+<rect x="131" y="109" width="6" height="3" rx="1" fill="#C4A24E"/>
+<circle cx="152" cy="106" r="6" fill="#FFE27A" stroke="#C4A24E" stroke-width="2"/>
+<rect x="149" y="111" width="6" height="3" rx="1" fill="#C4A24E"/>
+<circle cx="168" cy="103" r="5" fill="#FFE27A" stroke="#C4A24E" stroke-width="2"/>
+</svg>

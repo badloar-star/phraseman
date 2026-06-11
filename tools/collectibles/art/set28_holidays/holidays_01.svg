@@ -1,0 +1,24 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The more the merrier">
+<ellipse cx="100" cy="150" rx="62" ry="8" fill="rgba(0,0,0,.25)"/>
+<circle cx="48" cy="96" r="24" fill="#F08C84"/>
+<path d="M28 102c0-13 9-21 20-21s20 8 20 21z" fill="#C95B5B"/>
+<circle cx="42" cy="94" r="3" fill="#2A2030"/><circle cx="55" cy="94" r="3" fill="#2A2030"/>
+<path d="M41 102c5 4 13 4 17 0" stroke="#2A2030" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="152" cy="96" r="24" fill="#6FB6D6"/>
+<path d="M132 102c0-13 9-21 20-21s20 8 20 21z" fill="#4A8AA8"/>
+<circle cx="146" cy="94" r="3" fill="#16243A"/><circle cx="159" cy="94" r="3" fill="#16243A"/>
+<path d="M145 102c5 4 13 4 17 0" stroke="#16243A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="78" cy="104" r="26" fill="#7FB069"/>
+<path d="M56 110c0-14 10-23 22-23s22 9 22 23z" fill="#5E8A4A"/>
+<circle cx="71" cy="101" r="3.2" fill="#16243A"/><circle cx="85" cy="101" r="3.2" fill="#16243A"/>
+<path d="M70 109c5 5 14 5 19 0" stroke="#16243A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<circle cx="124" cy="104" r="26" fill="#FFD23F"/>
+<path d="M102 110c0-14 10-23 22-23s22 9 22 23z" fill="#E0954E"/>
+<circle cx="117" cy="101" r="3.2" fill="#3A2A1E"/><circle cx="131" cy="101" r="3.2" fill="#3A2A1E"/>
+<path d="M116 109c5 5 14 5 19 0" stroke="#7A3A2A" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<rect x="40" y="30" width="8" height="8" rx="2" fill="#E8638E" transform="rotate(22 44 34)"/>
+<rect x="150" y="32" width="8" height="8" rx="2" fill="#7FB069" transform="rotate(-25 154 36)"/>
+<circle cx="100" cy="24" r="4.5" fill="#E8638E"/>
+<rect x="96" y="42" width="8" height="8" rx="2" fill="#6FB6D6" transform="rotate(15 100 46)"/>
+<circle cx="72" cy="30" r="3.5" fill="#F6C744"/><circle cx="128" cy="32" r="3.5" fill="#6FB3D2"/>
+</svg>

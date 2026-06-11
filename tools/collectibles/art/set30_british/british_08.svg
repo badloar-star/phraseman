@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chuffed to bits">
+<ellipse cx="100" cy="148" rx="44" ry="9" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="100" cy="92" rx="30" ry="32" fill="#FFC24A"/>
+<path d="M74 90c0-16 12-26 26-26s26 10 26 26z" fill="#E0A030"/>
+<circle cx="90" cy="90" r="4" fill="#16243A"/><circle cx="110" cy="90" r="4" fill="#16243A"/>
+<path d="M84 82c4-4 8-4 12 0M104 82c4-4 8-4 12 0" stroke="#16243A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M84 102c8 9 24 9 32 0z" fill="#E0524E"/>
+<path d="M84 102c8 9 24 9 32 0" fill="none" stroke="#16243A" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="80" cy="104" rx="6" ry="5" fill="#FF9AA0" opacity=".7"/>
+<ellipse cx="120" cy="104" rx="6" ry="5" fill="#FF9AA0" opacity=".7"/>
+<path d="M48 50l5 10 10 5-10 5-5 10-5-10-10-5 10-5z" fill="#E0524E"/>
+<path d="M150 46l5 10 10 5-10 5-5 10-5-10-10-5 10-5z" fill="#6FB3D2"/>
+<path d="M158 92l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#7FB069"/>
+<path d="M40 100l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#C77FB0"/>
+<circle cx="100" cy="30" r="5" fill="#FFD23F"/><circle cx="30" cy="76" r="4" fill="#FFD23F"/><circle cx="172" cy="78" r="4" fill="#FFD23F"/>
+</svg>

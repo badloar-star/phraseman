@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Like father, like son">
+<ellipse cx="80" cy="150" rx="62" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="150" y="70" width="10" height="74" rx="4" fill="#9B6A43"/>
+<circle cx="155" cy="54" r="30" fill="#7BC47F"/>
+<circle cx="138" cy="62" r="18" fill="#8FD193"/>
+<circle cx="150" cy="92" r="6" fill="#E5524A"/>
+<circle cx="146" cy="136" r="6" fill="#E5524A"/>
+<rect x="40" y="78" width="30" height="50" rx="12" fill="#5B8BD0"/>
+<circle cx="55" cy="60" r="16" fill="#F6C9A8"/>
+<path d="M39 58a16 16 0 0 1 32 0z" fill="#3E6FB0"/>
+<rect x="37" y="56" width="36" height="6" rx="3" fill="#3E6FB0"/>
+<rect x="84" y="98" width="22" height="36" rx="9" fill="#5B8BD0"/>
+<circle cx="95" cy="86" r="11" fill="#F6C9A8"/>
+<path d="M84 85a11 11 0 0 1 22 0z" fill="#3E6FB0"/>
+<rect x="82" y="83" width="26" height="5" rx="2.5" fill="#3E6FB0"/>
+<circle cx="50" cy="60" r="2.6" fill="#33240F"/><circle cx="60" cy="60" r="2.6" fill="#33240F"/>
+<path d="M49 66c4 3 8 3 12 0" stroke="#33240F" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<circle cx="91" cy="86" r="2" fill="#33240F"/><circle cx="99" cy="86" r="2" fill="#33240F"/>
+<path d="M90 91c3 2 7 2 10 0" stroke="#33240F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>

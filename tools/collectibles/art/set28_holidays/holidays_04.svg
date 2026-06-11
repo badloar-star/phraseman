@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eat, drink and be merry">
+<ellipse cx="100" cy="148" rx="74" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="24" y="108" width="152" height="14" rx="4" fill="#C98A52"/>
+<rect x="24" y="108" width="152" height="6" rx="3" fill="#E0A668"/>
+<circle cx="58" cy="78" r="26" fill="#F08C84"/>
+<path d="M40 84c0-12 8-20 18-20s18 8 18 20z" fill="#C95B5B"/>
+<circle cx="52" cy="77" r="3" fill="#2A2030"/><circle cx="64" cy="77" r="3" fill="#2A2030"/>
+<path d="M51 84c4 4 12 4 15 0" stroke="#2A2030" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="142" cy="78" r="26" fill="#6FB6D6"/>
+<path d="M124 84c0-12 8-20 18-20s18 8 18 20z" fill="#4A8AA8"/>
+<circle cx="136" cy="77" r="3" fill="#16243A"/><circle cx="148" cy="77" r="3" fill="#16243A"/>
+<path d="M135 84c4 4 12 4 15 0" stroke="#16243A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M78 58l8 18 8-18z" fill="#E0524E"/>
+<rect x="84" y="76" width="4" height="22" fill="#D9D2BE"/>
+<path d="M122 58l-8 18-8-18z" fill="#F6C744"/>
+<rect x="112" y="76" width="4" height="22" fill="#D9D2BE"/>
+<ellipse cx="100" cy="100" rx="22" ry="8" fill="#FBEFD6"/>
+<circle cx="92" cy="98" r="5" fill="#E8638E"/><circle cx="104" cy="98" r="5" fill="#7FB069"/><circle cx="100" cy="100" r="5" fill="#F6A93F"/>
+<circle cx="46" cy="34" r="4" fill="#FFD23F"/><circle cx="100" cy="26" r="4" fill="#E8638E"/><circle cx="154" cy="36" r="4" fill="#7FB069"/>
+</svg>

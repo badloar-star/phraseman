@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Not my first rodeo">
+<ellipse cx="100" cy="150" rx="70" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M40 132c-6-20-4-40 8-50 14-12 38-12 52 0 6 6 8 14 8 22l18-6c8-2 14 2 16 10-4 0-8 2-12 6l-14 14c-10 8-24 12-44 12-16 0-26-10-32-18z" fill="#5A3A2A"/>
+<path d="M44 120c0 8 4 14 10 18M132 100c4-4 8-6 12-6" stroke="#3A2418" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="118" cy="108" r="3.4" fill="#16243A"/>
+<path d="M126 112c4 0 7-1 9-3" stroke="#3A2418" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="56" y="116" width="9" height="22" rx="4" fill="#3A2418"/>
+<rect x="92" y="120" width="9" height="20" rx="4" fill="#3A2418"/>
+<ellipse cx="74" cy="58" rx="24" ry="26" fill="#E08A4A"/>
+<path d="M40 64c8-6 22-9 34-9s26 3 34 9c-8-10-20-15-34-15s-26 5-34 15z" fill="#9A6B3A"/>
+<path d="M48 64h52v8H48z" fill="#9A6B3A"/>
+<path d="M52 48c0-12 10-18 22-18s22 6 22 18z" fill="#9A6B3A"/>
+<circle cx="68" cy="60" r="3.4" fill="#16243A"/><circle cx="82" cy="60" r="3.4" fill="#16243A"/>
+<path d="M66 70c4 3 12 3 16 0" stroke="#16243A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M96 70c8 2 12 8 12 16" stroke="#E08A4A" stroke-width="9" fill="none" stroke-linecap="round"/>
+</svg>

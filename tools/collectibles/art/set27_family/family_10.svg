@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A chip off the old block">
+<ellipse cx="92" cy="150" rx="60" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="34" y="50" width="78" height="92" rx="8" fill="#C28A4E"/>
+<rect x="34" y="50" width="78" height="92" rx="8" fill="none" stroke="#9B6A36" stroke-width="3"/>
+<path d="M44 64c20 4 56 4 60 0M40 124c24-4 52-4 66 0" stroke="#A8763E" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>
+<circle cx="62" cy="92" r="4" fill="#3A2614"/><circle cx="84" cy="92" r="4" fill="#3A2614"/>
+<path d="M58 108c8 6 18 6 26 0" stroke="#3A2614" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+<ellipse cx="52" cy="102" rx="5" ry="3.4" fill="#E5A06A" opacity=".6"/>
+<ellipse cx="94" cy="102" rx="5" ry="3.4" fill="#E5A06A" opacity=".6"/>
+<path d="M132 96l30-6-6 24-26 6 8-12z" fill="#D89C5E"/>
+<path d="M132 96l30-6-6 24-26 6 8-12z" fill="none" stroke="#B07A3E" stroke-width="2.4"/>
+<circle cx="142" cy="104" r="2.6" fill="#3A2614"/><circle cx="152" cy="102" r="2.6" fill="#3A2614"/>
+<path d="M140 110c5 3 10 2 14-1" stroke="#3A2614" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+</svg>

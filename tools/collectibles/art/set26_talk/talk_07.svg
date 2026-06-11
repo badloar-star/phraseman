@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Talk someone's ear off">
+<ellipse cx="100" cy="151" rx="64" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M16 150c-3-26 7-44 30-44s33 18 30 44z" fill="#F2A65A"/>
+<ellipse cx="46" cy="80" rx="21" ry="23" fill="#F6C8A0"/>
+<path d="M25 78c0-13 9-20 21-20s21 7 21 20z" fill="#8A5A3E"/>
+<circle cx="52" cy="82" r="3.4" fill="#3A2418"/>
+<ellipse cx="58" cy="92" rx="6" ry="7" fill="#7A3A2A"/>
+<path d="M70 70c10 0 14 6 9 11s-15 2-13-4M74 88c10 0 14 6 9 11s-15 2-13-4M70 106c10 0 14 6 9 11s-15 2-13-4" fill="none" stroke="#C9B98A" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M124 150c-3-26 7-44 30-44s33 18 30 44z" fill="#6FB6D6"/>
+<ellipse cx="154" cy="80" rx="21" ry="23" fill="#F6C8A0"/>
+<path d="M133 76c0-14 10-21 21-21s21 7 21 21z" fill="#3A2A1E"/>
+<circle cx="148" cy="82" r="3.4" fill="#3A2418"/>
+<path d="M144 92c4 3 9 2 11-1" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M152 70c-7-2-13 3-13 9s6 11 13 9" fill="#F6C8A0" stroke="#E0A878" stroke-width="2"/>
+<path d="M178 50c8-4 16 2 14 10s-12 8-16 4" fill="#F6C8A0" stroke="#E0A878" stroke-width="2"/>
+<path d="M180 56c-3 0-5 2-5 5" stroke="#E0A878" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M168 64l8-6M170 70l9-3" stroke="#F2A65A" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

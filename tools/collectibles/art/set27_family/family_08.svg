@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An empty nest">
+<ellipse cx="100" cy="146" rx="58" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M8 126h184" stroke="#8A6238" stroke-width="7" stroke-linecap="round"/>
+<path d="M56 114c0 16 18 26 40 26s40-10 40-26l-4-6H60z" fill="#B98A5A"/>
+<ellipse cx="96" cy="110" rx="40" ry="12" fill="#8A6238"/>
+<ellipse cx="96" cy="112" rx="29" ry="8" fill="#5C3F22"/>
+<path d="M58 112c8-6 16-8 22-7M134 112c-8-6-16-8-22-7" stroke="#D8A86F" stroke-width="4" stroke-linecap="round" fill="none"/>
+<ellipse cx="22" cy="114" rx="13" ry="11" fill="#7C6A9C"/>
+<circle cx="30" cy="105" r="7" fill="#7C6A9C"/>
+<circle cx="32.5" cy="104" r="1.8" fill="#16243A"/>
+<path d="M37 106l7 2-7 2z" fill="#F6A623"/>
+<ellipse cx="44" cy="116" rx="11" ry="9" fill="#C98AA8"/>
+<circle cx="51" cy="108" r="6" fill="#C98AA8"/>
+<circle cx="53.2" cy="107" r="1.6" fill="#16243A"/>
+<path d="M57 109l6 1.6-6 1.6z" fill="#F6A623"/>
+<path d="M120 60c14-12 34-20 56-24" stroke="#9AB8D8" stroke-width="2.5" stroke-dasharray="4 6" fill="none"/>
+<path d="M126 46q6-8 12 0q-6 8-12 0z" fill="#5BB7F0"/>
+<path d="M150 30q6-8 12 0q-6 8-12 0z" fill="#5BB7F0"/>
+<path d="M170 52q5-7 10 0q-5 7-10 0z" fill="#5BB7F0"/>
+</svg>

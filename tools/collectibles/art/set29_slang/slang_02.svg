@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Low-key">
+<ellipse cx="116" cy="150" rx="36" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M150 150c8-44-34-46-66-30" fill="none" stroke="#4A4270" stroke-width="3" opacity=".5"/>
+<path d="M90 148c-2-28 12-46 30-46s32 18 30 46z" fill="#6E7AC2"/>
+<ellipse cx="120" cy="94" rx="25" ry="24" fill="#E8CBA8"/>
+<path d="M90 90c-2-12 8-20 20-20h20c12 0 20 8 20 20 0-11-9-16-20-16h-20c-9 0-16 5-20 16z" fill="#3A3358"/>
+<rect x="98" y="90" width="44" height="13" rx="6" fill="#2A2438"/>
+<circle cx="108" cy="96" r="6" fill="#4A4060"/><circle cx="132" cy="96" r="6" fill="#4A4060"/>
+<rect x="118" y="94" width="4" height="3" fill="#2A2438"/>
+<path d="M111 110c5 3 13 3 18 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<ellipse cx="100" cy="106" rx="5" ry="4" fill="#E0A0A0" opacity=".6"/>
+<path d="M134 112c-2-3 1-5 3-3M141 110c-2-3 1-5 3-3" stroke="#FFE08A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M30 44l1 4 4 1-4 1-1 4-1-4-4-1 4-1zM44 70l1 3 3 1-3 1-1 3-1-3-3-1 3-1zM22 96l1 3 3 1-3 1-1 3-1-3-3-1 3-1z" fill="#A8B0D8" opacity=".8"/>
+</svg>

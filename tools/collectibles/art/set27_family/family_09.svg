@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blood is thicker than water">
+<ellipse cx="100" cy="150" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="96" y="40" width="8" height="100" rx="4" fill="#9B7B3C"/>
+<rect x="80" y="136" width="40" height="8" rx="4" fill="#9B7B3C"/>
+<path d="M52 52l96-16" stroke="#C9A24E" stroke-width="6" stroke-linecap="round"/>
+<circle cx="100" cy="44" r="7" fill="#C9A24E"/>
+<path d="M40 56l-14 30h44z" fill="none" stroke="#C9A24E" stroke-width="3"/>
+<path d="M48 88c0 8-26 8-26 0z" fill="#D8B85A"/>
+<path d="M150 40l-12 26h38z" fill="none" stroke="#C9A24E" stroke-width="3"/>
+<path d="M155 68c0 7-22 7-22 0z" fill="#D8B85A"/>
+<path d="M35 64c-7 9-12 16-12 22a12 12 0 0 0 24 0c0-6-5-13-12-22z" fill="#E0524A"/>
+<path d="M30 78c-1 5 2 9 6 10" stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".7"/>
+<circle cx="31" cy="80" r="1.8" fill="#2A1E12"/><circle cx="39" cy="80" r="1.8" fill="#2A1E12"/>
+<path d="M30 85c3 2 7 2 10 0" stroke="#2A1E12" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M144 50c-6 8-10 14-10 19a10 10 0 0 0 20 0c0-5-4-11-10-19z" fill="#7FD4F0"/>
+<circle cx="140" cy="66" r="1.6" fill="#2A4A5A"/><circle cx="147" cy="66" r="1.6" fill="#2A4A5A"/>
+<path d="M139 71c2 1 5 1 7 0" stroke="#2A4A5A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</svg>

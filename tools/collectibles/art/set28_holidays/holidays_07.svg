@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The party's over">
+<ellipse cx="96" cy="150" rx="48" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M58 138c-4-28 10-46 28-46s32 18 28 46z" fill="#6FB6D6"/>
+<ellipse cx="86" cy="84" rx="24" ry="26" fill="#F4E3C8"/>
+<path d="M64 84c0-14 10-23 22-23s22 9 22 23z" fill="#4A8AA8"/>
+<circle cx="79" cy="86" r="3.2" fill="#2A2030"/><circle cx="93" cy="86" r="3.2" fill="#2A2030"/>
+<path d="M79 96c5 4 11 4 16 1" stroke="#2A2030" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M108 96l40 36" stroke="#A9824E" stroke-width="6" stroke-linecap="round"/>
+<path d="M146 126l-6 22 22-6z" fill="#C98A52"/>
+<path d="M146 126l16 16-22 6z" fill="#E0A668"/>
+<path d="M150 70c-10 2-14 10-10 18 4 2 9 0 11-4" fill="#D9534F" opacity=".85"/>
+<path d="M150 70c2 8-2 14-8 18" fill="none" stroke="#A33" stroke-width="2"/>
+<path d="M150 88l-2 18" stroke="#9AA6C0" stroke-width="2"/>
+<rect x="40" y="138" width="8" height="8" rx="2" fill="#E8638E" transform="rotate(15 44 142)"/>
+<rect x="64" y="142" width="8" height="8" rx="2" fill="#7FB069" transform="rotate(-20 68 146)"/>
+<rect x="108" y="140" width="8" height="8" rx="2" fill="#FFD23F" transform="rotate(30 112 144)"/>
+<rect x="22" y="120" width="7" height="7" rx="2" fill="#6FB6D6" transform="rotate(25 25 123)"/>
+<rect x="130" y="142" width="7" height="7" rx="2" fill="#F08C84" transform="rotate(-15 133 145)"/>
+</svg>

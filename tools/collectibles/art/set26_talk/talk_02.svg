@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Word of mouth">
+<ellipse cx="100" cy="150" rx="74" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M14 148c-2-22 6-38 24-38s26 16 24 38z" fill="#F2A65A"/>
+<ellipse cx="38" cy="92" rx="20" ry="22" fill="#F6C8A0"/>
+<path d="M19 90c0-12 9-19 19-19s19 7 19 19z" fill="#8A5A3E"/>
+<circle cx="44" cy="94" r="3.4" fill="#3A2418"/>
+<path d="M44 104c4 3 9 3 12 0" stroke="#7A3A2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M70 148c-2-22 6-38 24-38s26 16 24 38z" fill="#6FB6D6"/>
+<ellipse cx="94" cy="92" rx="20" ry="22" fill="#F6C8A0"/>
+<path d="M75 90c0-12 9-19 19-19s19 7 19 19z" fill="#3A2A1E"/>
+<circle cx="86" cy="94" r="3.4" fill="#3A2418"/><circle cx="100" cy="94" r="3.4" fill="#3A2418"/>
+<path d="M126 148c-2-22 6-38 24-38s26 16 24 38z" fill="#8FCB9B"/>
+<ellipse cx="150" cy="92" rx="20" ry="22" fill="#F6C8A0"/>
+<path d="M131 90c0-12 9-19 19-19s19 7 19 19z" fill="#6A4A30"/>
+<circle cx="142" cy="94" r="3.4" fill="#3A2418"/><circle cx="156" cy="94" r="3.4" fill="#3A2418"/>
+<circle cx="62" cy="80" r="5" fill="#FFFFFF" opacity=".92"/><circle cx="70" cy="72" r="3.4" fill="#FFFFFF" opacity=".92"/>
+<circle cx="118" cy="80" r="5" fill="#FFFFFF" opacity=".92"/><circle cx="126" cy="72" r="3.4" fill="#FFFFFF" opacity=".92"/>
+</svg>

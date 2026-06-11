@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="In the holiday spirit">
+<ellipse cx="100" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M70 148c-4-30 12-50 30-50s34 20 30 50z" fill="#7E5FB0"/>
+<ellipse cx="100" cy="78" rx="26" ry="28" fill="#F4E3C8"/>
+<path d="M78 78c0-15 10-25 22-25s22 10 22 25z" fill="#F2C744" opacity=".25"/>
+<circle cx="91" cy="80" r="3.4" fill="#2A2030"/><circle cx="109" cy="80" r="3.4" fill="#2A2030"/>
+<path d="M88 90c7 8 17 8 24 0z" fill="#C95B5B"/>
+<ellipse cx="84" cy="88" rx="5" ry="3.5" fill="#F4A6A4" opacity=".7"/>
+<ellipse cx="116" cy="88" rx="5" ry="3.5" fill="#F4A6A4" opacity=".7"/>
+<path d="M72 52l28-26 28 26z" fill="#E0524E"/>
+<path d="M72 52h56l-4 8H76z" fill="#FFFDF4"/>
+<circle cx="100" cy="22" r="6" fill="#FFFDF4"/>
+<path d="M58 110c10-14 26-20 42-20s32 6 42 20" fill="none" stroke="#5E8A4A" stroke-width="7" stroke-linecap="round"/>
+<circle cx="60" cy="110" r="5" fill="#FFD23F"/><circle cx="84" cy="100" r="5" fill="#E8638E"/>
+<circle cx="116" cy="100" r="5" fill="#6FB6D6"/><circle cx="140" cy="110" r="5" fill="#F08C84"/>
+<circle cx="100" cy="96" r="5" fill="#7FB069"/>
+<path d="M44 60l5 5M156 60l-5 5M40 90l6 2M160 90l-6 2" stroke="#FFD23F" stroke-width="3" stroke-linecap="round"/>
+</svg>

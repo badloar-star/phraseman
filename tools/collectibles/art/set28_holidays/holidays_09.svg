@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Christmas came early">
+<ellipse cx="116" cy="148" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<circle cx="40" cy="38" r="16" fill="#FFD23F"/>
+<path d="M40 14v-8M40 70v8M16 38h-8M64 38h8M22 20l-6-6M58 20l6-6M22 56l-6 6M58 56l6 6" stroke="#F6A93F" stroke-width="3" stroke-linecap="round"/>
+<rect x="86" y="100" width="58" height="44" rx="4" fill="#E0524E"/>
+<rect x="86" y="100" width="58" height="14" rx="4" fill="#C2403C"/>
+<rect x="108" y="100" width="14" height="44" fill="#FFD23F"/>
+<path d="M115 100c-12-14-2-26 8-18 2 8-4 14-8 18zM115 100c12-14 22-12 18 0-6 6-14 4-18 0z" fill="#FFD23F"/>
+<circle cx="115" cy="92" r="5" fill="#F6A93F"/>
+<circle cx="40" cy="118" r="20" fill="#F4E3C8"/>
+<path d="M20 116c0-13 9-22 20-22s20 9 20 22z" fill="#7FB069"/>
+<circle cx="34" cy="118" r="3.2" fill="#2A2030"/><circle cx="47" cy="118" r="3.2" fill="#2A2030"/>
+<ellipse cx="40" cy="128" rx="5" ry="6" fill="#C95B5B"/>
+<circle cx="166" cy="120" r="12" fill="#E8638E"/><circle cx="166" cy="120" r="4" fill="#FFD23F"/>
+<circle cx="70" cy="138" r="9" fill="#F6C744"/><circle cx="70" cy="138" r="3" fill="#FFFDF4"/>
+<circle cx="160" cy="60" r="8" fill="#F08C84"/><circle cx="160" cy="60" r="3" fill="#FFFDF4"/>
+<path d="M178 92l4-9 4 9z" fill="#7FB069"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="On top of the world">
+<ellipse cx="100" cy="150" rx="40" ry="7" fill="rgba(0,0,0,.25)"/>
+<circle cx="100" cy="118" r="36" fill="#6FB6D6"/>
+<path d="M70 102c8-2 12 2 20 0s14-4 20 0M68 118c10 2 16-2 24 0s16 4 22 0M74 134c8 0 12-3 18-2" fill="none" stroke="#7FB069" stroke-width="4" stroke-linecap="round"/>
+<path d="M88 84c-6-26 2-44 12-44s18 18 12 44z" fill="#E8638E"/>
+<path d="M76 60c12-4 18 0 24-4M124 60c-12-4-18 0-24-4" stroke="#E8638E" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M76 52l-6-12M124 52l6-12" stroke="#E8638E" stroke-width="9" fill="none" stroke-linecap="round"/>
+<ellipse cx="100" cy="52" rx="20" ry="22" fill="#F4E3C8"/>
+<path d="M80 50c0-13 9-22 20-22s20 9 20 22z" fill="#F6A93F"/>
+<circle cx="93" cy="52" r="3.2" fill="#2A2030"/><circle cx="107" cy="52" r="3.2" fill="#2A2030"/>
+<path d="M91 60c6 7 14 7 18 0z" fill="#C95B5B"/>
+<path d="M124 30l6-3v22z" fill="#FFD23F"/>
+<path d="M130 24v-12" stroke="#A9824E" stroke-width="3" stroke-linecap="round"/>
+<path d="M40 30l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#FFD23F"/>
+<path d="M168 50l2 5 5 1-4 3 1 5-4-2-4 2 1-5-4-3 5-1z" fill="#FFF6C8"/>
+<circle cx="56" cy="64" r="3" fill="#FFD23F"/><circle cx="158" cy="92" r="3" fill="#FFF6C8"/>
+</svg>

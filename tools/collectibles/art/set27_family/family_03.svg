@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="My own flesh and blood">
+<ellipse cx="100" cy="150" rx="58" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M100 40c6-12 28-10 28 8 0 14-22 26-28 30-6-4-28-16-28-30 0-18 22-20 28-8z" fill="#F2728A"/>
+<path d="M58 144c0-26 14-44 30-44 8 0 14 6 14 6s-6 8-6 18c0 8 4 14 4 20z" fill="#E58A5E"/>
+<circle cx="74" cy="86" r="18" fill="#F6C9A8"/>
+<path d="M56 84c0-16 36-16 36 0 2-8-2-20-12-22-8-6-22-2-24 8-2 4-2 10 0 14z" fill="#6B4A2E"/>
+<path d="M142 144c0-26-14-44-30-44-8 0-14 6-14 6s6 8 6 18c0 8-4 14-4 20z" fill="#7AA9D8"/>
+<circle cx="126" cy="86" r="18" fill="#F4BE9A"/>
+<path d="M108 84c0-16 36-16 36 0 2-8-2-20-12-22-8-6-22-2-24 8-2 4-2 10 0 14z" fill="#C9A24E"/>
+<circle cx="68" cy="88" r="2.8" fill="#33240F"/><circle cx="80" cy="88" r="2.8" fill="#33240F"/>
+<path d="M67 94c4 3 9 3 13 0" stroke="#33240F" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<circle cx="120" cy="88" r="2.8" fill="#33240F"/><circle cx="132" cy="88" r="2.8" fill="#33240F"/>
+<path d="M119 94c4 3 9 3 13 0" stroke="#33240F" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<ellipse cx="60" cy="93" rx="4" ry="2.6" fill="#F4A6A4" opacity=".6"/>
+<ellipse cx="140" cy="93" rx="4" ry="2.6" fill="#F4A6A4" opacity=".6"/>
+</svg>

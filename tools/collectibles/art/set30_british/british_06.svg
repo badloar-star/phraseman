@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bob's your uncle">
+<ellipse cx="74" cy="148" rx="46" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M44 44h60l-4 12H48z" fill="#5A3A2A"/>
+<path d="M52 22c0-8 8-14 22-14s22 6 22 14v22H52z" fill="#5A3A2A"/>
+<ellipse cx="74" cy="86" rx="24" ry="26" fill="#F2C9A0"/>
+<path d="M54 92c0-6 4-10 10-10M94 92c0-6-4-10-10-10" stroke="#F2C9A0" stroke-width="3" fill="none"/>
+<circle cx="68" cy="84" r="3.4" fill="#16243A"/><circle cx="82" cy="84" r="3.4" fill="#16243A"/>
+<path d="M58 78c3-3 7-3 10 0M82 78c3-3 7-3 10 0" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M62 96c4 4 6 6 6 10s-4 6-8 4M88 96c-4 4-6 6-6 10s4 6 8 4" stroke="#C9C9C9" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M62 92c8 5 20 5 28 0" stroke="#16243A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M96 100c8 0 14-4 18-10" stroke="#F2C9A0" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M150 60l5 14 14 5-14 5-5 14-5-14-14-5 14-5z" fill="#FFD23F"/>
+<path d="M150 76l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#FFF7DD"/>
+<path d="M134 50l2 6M168 50l-2 6M124 88l6-2M176 88l-6-2" stroke="#FFD23F" stroke-width="3" stroke-linecap="round"/>
+</svg>

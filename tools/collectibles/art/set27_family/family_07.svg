@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A mama's boy">
+<ellipse cx="100" cy="150" rx="58" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="104" y="92" width="40" height="52" rx="12" fill="#5B8BD0"/>
+<circle cx="124" cy="70" r="20" fill="#F4BE9A"/>
+<path d="M104 68c0-22 40-22 40 0 2-12-2-26-20-26s-22 14-20 26z" fill="#6B4A2E"/>
+<path d="M108 98c10 8 22 8 32 0" stroke="#C97A52" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M106 96c12 9 26 9 38 0" stroke="#E0524A" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M140 100l-2 14 8-4z" fill="#E0524A"/>
+<rect x="44" y="98" width="30" height="46" rx="11" fill="#E58A5E"/>
+<circle cx="59" cy="80" r="16" fill="#F6C9A8"/>
+<path d="M44 80c0-18 30-18 30 0 2-12-4-24-15-24s-17 12-15 24z" fill="#C97A52"/>
+<rect x="74" y="104" width="20" height="8" rx="4" fill="#F6C9A8"/>
+<circle cx="118" cy="70" r="2.8" fill="#33240F"/><circle cx="132" cy="70" r="2.8" fill="#33240F"/>
+<path d="M114 78c1-2 4-2 6 0M130 78c2-2 5-2 6 0" stroke="#33240F" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<ellipse cx="112" cy="78" rx="4" ry="3" fill="#F4A6A4" opacity=".7"/>
+<ellipse cx="138" cy="78" rx="4" ry="3" fill="#F4A6A4" opacity=".7"/>
+<circle cx="54" cy="80" r="2.4" fill="#33240F"/><circle cx="64" cy="80" r="2.4" fill="#33240F"/>
+<path d="M53 86c4 3 8 3 12 0" stroke="#33240F" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

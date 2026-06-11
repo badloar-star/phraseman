@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="It's a vibe">
+<ellipse cx="100" cy="150" rx="42" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M14 72c14-10 24 10 38 0M148 72c14-10 24 10 38 0M10 132c14-10 24 10 38 0M152 132c14-10 24 10 38 0" fill="none" stroke="#8FD0E8" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<path d="M72 140c-2-30 10-50 28-50s30 20 28 50z" fill="#7AC8B6"/>
+<ellipse cx="100" cy="84" rx="27" ry="26" fill="#FAD9B0"/>
+<path d="M70 80c-2-14 8-24 30-24s32 10 30 24c0-12-12-18-30-18s-28 6-30 18z" fill="#6B4A8A"/>
+<path d="M68 84c0-20 14-34 32-34s32 14 32 34" fill="none" stroke="#3A3358" stroke-width="7" stroke-linecap="round"/>
+<rect x="58" y="76" width="16" height="24" rx="7" fill="#3A3358"/>
+<rect x="126" y="76" width="16" height="24" rx="7" fill="#3A3358"/>
+<path d="M84 84c3-3 9-3 12 0M104 84c3-3 9-3 12 0" stroke="#2A2030" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M90 96c5 5 14 5 20 0" stroke="#7A3A2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="80" cy="93" rx="6" ry="4" fill="#F4A6A4" opacity=".7"/><ellipse cx="120" cy="93" rx="6" ry="4" fill="#F4A6A4" opacity=".7"/>
+<path d="M40 54l2 6 6 2-6 2-2 6-2-6-6-2 6-2zM160 50l2 6 6 2-6 2-2 6-2-6-6-2 6-2zM152 108l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#F6C744"/>
+</svg>

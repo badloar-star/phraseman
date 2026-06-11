@@ -3,6 +3,7 @@ import { Animated, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { onAppEvent } from '../app/events';
 import { useLang } from './LangContext';
+import { useTheme } from './ThemeContext';
 import { hapticError, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
@@ -26,7 +27,7 @@ type ToastPayload = {
   messagePl?: string;
 };
 
-type ToastType = 'success' | 'error' | 'info';
+type ToastType = 'success' | 'error' | 'info' | 'reward';
 
 type ToastTone = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -85,6 +86,22 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
     accentSoft: 'rgba(116,167,255,0.14)',
     border: 'rgba(116,167,255,0.34)',
   },
+  reward: {
+    icon: 'gift',
+    label: {
+      ru: 'Награда',
+      uk: 'Нагорода',
+      es: 'Premio',
+      'pt-BR': 'Prêmio',
+      vi: 'Phần thưởng',
+      id: 'Hadiah',
+      tr: 'Ödül',
+      pl: 'Nagroda',
+    },
+    accent: '#F2C56A',
+    accentSoft: 'rgba(242,197,106,0.14)',
+    border: 'rgba(242,197,106,0.36)',
+  },
 };
 
 const AUTO_DISMISS_MS = 3200;
@@ -103,6 +120,7 @@ function toastKey(p: ToastPayload): string {
 
 function ActionToast() {
   const { lang } = useLang();
+  const { theme: t } = useTheme();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [overlayWanted, setOverlayWanted] = useState(false);
@@ -128,7 +146,7 @@ function ActionToast() {
 
   const runHaptics = (payload: ToastPayload) => {
     if (payload.type === 'error') hapticError();
-    else if (payload.type === 'success') hapticSuccess();
+    else if (payload.type === 'success' || payload.type === 'reward') hapticSuccess();
     else hapticSoftImpact();
   };
 
@@ -242,7 +260,9 @@ function ActionToast() {
       ? 'Algo salió mal.'
       : toast.type === 'success'
         ? 'Hecho.'
-        : 'Listo.';
+        : toast.type === 'reward'
+          ? '¡Premio!'
+          : 'Listo.';
   const message =
     lang === 'uk' ? (toast.messageUk ?? toast.messageRu)
       : lang === 'es' ? (toast.messageEs ?? esFallback)
@@ -271,6 +291,7 @@ function ActionToast() {
         style={[
           styles.toast,
           {
+            backgroundColor: t.bgCard,
             borderColor: tone.border,
           },
         ]}
@@ -291,7 +312,7 @@ function ActionToast() {
           <Text style={[styles.label, { color: tone.accent }]} numberOfLines={1}>
             {toneLabel}
           </Text>
-          <Text style={styles.message} numberOfLines={3}>
+          <Text style={[styles.message, { color: t.textPrimary }]} numberOfLines={3}>
             {message}
           </Text>
         </View>
@@ -315,7 +336,6 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 560,
     minHeight: 66,
-    backgroundColor: '#121419',
     borderWidth: 1,
     borderRadius: 16,
     paddingVertical: 12,
@@ -325,6 +345,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
     overflow: 'hidden',
+    elevation: 8,
   },
   accentRail: {
     position: 'absolute',
@@ -354,7 +375,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
   },
   message: {
-    color: '#F8FAFC',
     fontSize: 15,
     lineHeight: 20,
     fontWeight: '700',

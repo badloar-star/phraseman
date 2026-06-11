@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman — немые действия: где нужен тост или модалка · 2026-06-11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter', -apple-system, system-ui, sans-serif; background:#0B0C0E; color:#E8EAED; padding:32px 24px 80px; }
+  h1 { font-size:28px; font-weight:900; letter-spacing:-0.5px; }
+  .sub { color:#9AA0A6; font-size:14px; margin-top:6px; max-width:880px; line-height:1.5; }
+  .stats { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+  .stat { background:#16181C; border:1px solid #26282E; border-radius:14px; padding:14px 18px; min-width:150px; }
+  .stat b { font-size:26px; font-weight:900; display:block; }
+  .stat span { font-size:12px; color:#9AA0A6; }
+  .stat.bad b { color:#FF6E78; } .stat.warn b { color:#FFC857; } .stat.ok b { color:#65E49A; }
+
+  .switcher { position:sticky; top:12px; z-index:50; display:flex; gap:8px; margin-top:24px;
+    background:#16181Cee; border:1px solid #26282E; border-radius:14px; padding:10px 12px;
+    width:fit-content; backdrop-filter:blur(8px); align-items:center; }
+  .switcher .lbl { font-size:12px; color:#9AA0A6; margin-right:4px; font-weight:700; }
+  .tbtn { border:1px solid #34373E; background:#1D2025; color:#C9CDD3; font-family:inherit;
+    font-size:13px; font-weight:700; border-radius:10px; padding:8px 14px; cursor:pointer; }
+  .tbtn.active { background:#E8EAED; color:#101214; border-color:#E8EAED; }
+
+  h2 { font-size:20px; font-weight:900; margin:52px 0 6px; display:flex; align-items:center; gap:10px; }
+  .tag { font-size:11px; font-weight:900; letter-spacing:1px; border-radius:7px; padding:4px 9px; }
+  .tag.money { background:#3A2A10; color:#FFC857; } .tag.bad { background:#3A1418; color:#FF8A92; }
+  .tag.good { background:#0F2E1B; color:#65E49A; } .tag.info { background:#16263E; color:#74A7FF; }
+  .h2sub { color:#9AA0A6; font-size:13px; max-width:880px; line-height:1.55; margin-bottom:20px; }
+
+  /* ── themes (токены приложения) ── */
+  .t-compass { --bg0:#333335; --bg1:#303032; --bg2:#2D2D2F; --bgCard:#2E2E30; --bgSurface:#202022;
+    --text:#FFF8E8; --text2:#F2C48D; --muted:#D7D2CC; --accent:#F2C48D; --accentBg:rgba(248,215,163,0.12);
+    --gold:#F2C48D; --border:rgba(248,215,163,0.23); --borderHi:rgba(255,231,182,0.28);
+    --panel0:#22252A; --panel1:#16181C; --panel2:#090A0C;
+    --mAccent:#CBD5E1; --mBorder:rgba(203,213,225,0.30); --mSoft:rgba(203,213,225,0.08);
+    --cta0:#FFE7B6; --cta1:#F2C48D; --cta2:#F4B06E; --ctaText:#21170E;
+    --rCard:18px; --rBtn:12px; --wrong:#F26D6D; }
+  .t-dark { --bg0:#112318; --bg1:#09150E; --bg2:#030805; --bgCard:#152019; --bgSurface:#1D2D23;
+    --text:#F0F7F2; --text2:#58CC89; --muted:#8AB49A; --accent:#47C870; --accentBg:rgba(71,200,112,0.14);
+    --gold:#FFC800; --border:rgba(255,255,255,0.07); --borderHi:rgba(255,255,255,0.14);
+    --panel0:#15231A; --panel1:#0A120E; --panel2:#040906;
+    --mAccent:#FFC800; --mBorder:rgba(88,204,137,0.30); --mSoft:rgba(255,255,255,0.055);
+    --cta0:#47C870; --cta1:#47C870; --cta2:#47C870; --ctaText:#042010;
+    --rCard:24px; --rBtn:16px; --wrong:#F05454; }
+  .t-gold { --bg0:#080706; --bg1:#030303; --bg2:#010101; --bgCard:#0A0A0A; --bgSurface:#111111;
+    --text:#F7F1E4; --text2:#E9CE7A; --muted:#B8AD92; --accent:#D6B35A; --accentBg:rgba(214,179,90,0.14);
+    --gold:#D6B35A; --border:rgba(214,179,90,0.28); --borderHi:rgba(246,227,161,0.38);
+    --panel0:#160F07; --panel1:#22190D; --panel2:#060503;
+    --mAccent:#E8C36C; --mBorder:rgba(232,195,108,0.48); --mSoft:rgba(232,195,108,0.10);
+    --cta0:#F0D98C; --cta1:#C8A34C; --cta2:#765316; --ctaText:#0A0A0A;
+    --rCard:18px; --rBtn:12px; --wrong:#F26D6D; }
+  .t-sketch { --bg0:#F1E8D7; --bg1:#E0D0B7; --bg2:#CDB99C; --bgCard:#FFFDF6; --bgSurface:#DED4C0;
+    --text:#171615; --text2:#273044; --muted:#48443C; --accent:#343842; --accentBg:rgba(45,39,30,0.10);
+    --gold:#7A5520; --border:rgba(45,39,30,0.24); --borderHi:rgba(45,39,30,0.32);
+    --panel0:#FFFDF6; --panel1:#F6EEDE; --panel2:#E8DBC6;
+    --mAccent:#7A5520; --mBorder:rgba(45,39,30,0.26); --mSoft:rgba(255,253,246,0.72);
+    --cta0:#343842; --cta1:#262A33; --cta2:#171615; --ctaText:#FFFDF6;
+    --rCard:24px; --rBtn:16px; --wrong:#B3473F; }
+
+  /* ── grid of cases ── */
+  .cases { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:22px; max-width:1500px; }
+  .case { background:#131519; border:1px solid #26282E; border-radius:18px; overflow:hidden; }
+  .case .head { padding:14px 16px 12px; border-bottom:1px solid #1E2126; }
+  .case .head .prio { font-size:10px; font-weight:900; letter-spacing:1px; border-radius:6px; padding:3px 7px; }
+  .prio.p1 { background:#3A1418; color:#FF8A92; } .prio.p2 { background:#3A2A10; color:#FFC857; }
+  .prio.p3 { background:#16263E; color:#74A7FF; }
+  .case .head b { display:block; font-size:14.5px; margin-top:7px; }
+  .case .head .now { font-size:12px; color:#FF8A92; margin-top:4px; line-height:1.45; }
+  .case .head .loc { font-size:11px; color:#5F6368; margin-top:4px; font-family:ui-monospace, monospace; }
+  /* зона "как будет в приложении" */
+  .appzone { padding:18px 14px; background:linear-gradient(165deg, var(--bg0), var(--bg1) 55%, var(--bg2));
+    display:flex; flex-direction:column; gap:10px; align-items:center; justify-content:center;
+    min-height:120px; position:relative; }
+  .appzone .zlabel { position:absolute; top:8px; right:12px; font-size:9px; font-weight:800;
+    letter-spacing:1px; color:var(--muted); opacity:0.55; text-transform:uppercase; }
+
+  /* unified toast */
+  .nt { background:var(--bgCard); border-radius:16px; border:1px solid var(--border);
+    min-height:60px; padding:11px 14px; display:flex; gap:12px; align-items:center;
+    position:relative; box-shadow:0 6px 16px rgba(0,0,0,0.25); width:100%; max-width:330px; color:var(--text); }
+  .nt .rail { position:absolute; left:0; top:11px; bottom:11px; width:3px; border-radius:0 4px 4px 0; background:var(--ntc); }
+  .nt .ic { width:38px; height:38px; border-radius:12px; flex:none;
+    border:1px solid color-mix(in srgb, var(--ntc) 34%, transparent);
+    background:color-mix(in srgb, var(--ntc) 14%, transparent);
+    display:flex; align-items:center; justify-content:center; font-size:17px; color:var(--ntc); }
+  .nt .lbl { font-size:10.5px; font-weight:800; letter-spacing:0.8px; color:var(--ntc); text-transform:uppercase; }
+  .nt .msg { font-size:13.5px; font-weight:700; color:var(--text); margin-top:1px; line-height:1.35; }
+  .nt .chip { margin-left:auto; flex:none; border-radius:11px; padding:8px 12px;
+    background:color-mix(in srgb, var(--ntc) 18%, transparent);
+    border:1px solid color-mix(in srgb, var(--ntc) 40%, transparent);
+    color:var(--ntc); font-size:12px; font-weight:900; white-space:nowrap; }
+
+  /* unified modal card */
+  .nm { width:100%; max-width:300px; border-radius:var(--rCard); border:1px solid var(--mBorder);
+    background:linear-gradient(170deg, var(--panel0), var(--panel1) 52%, var(--panel2));
+    box-shadow:0 20px 38px rgba(0,0,0,0.4); padding:24px 18px 16px; text-align:center;
+    position:relative; overflow:hidden; color:var(--text); }
+  .nm .topline { position:absolute; top:0; left:26px; right:26px; height:1px;
+    background:linear-gradient(90deg, transparent, var(--rare, var(--mAccent)), transparent); opacity:0.8; }
+  .nm-kicker { font-size:10.5px; font-weight:900; letter-spacing:2px; text-transform:uppercase;
+    color:var(--rare, var(--mAccent)); }
+  .nm-ring { width:92px; height:92px; margin:15px auto 0; border-radius:50%;
+    border:1px solid color-mix(in srgb, var(--rare, var(--mAccent)) 44%, transparent);
+    background:var(--mSoft); display:flex; align-items:center; justify-content:center; font-size:36px;
+    box-shadow:0 0 30px color-mix(in srgb, var(--rare, var(--mAccent)) 22%, transparent); }
+  .nm-title { font-size:20px; font-weight:900; color:var(--text); margin-top:14px; letter-spacing:-0.2px; }
+  .nm-value { font-size:13px; font-weight:600; color:var(--text2); margin-top:5px; line-height:1.45; }
+  .nm-cta { margin-top:16px; height:48px; border-radius:var(--rBtn); display:flex; align-items:center;
+    justify-content:center; background:linear-gradient(135deg, var(--cta0), var(--cta1), var(--cta2));
+    color:var(--ctaText); font-size:15px; font-weight:800; }
+  .nm-cta.danger { background:linear-gradient(135deg, #FF8A92, var(--wrong)); color:#2A0508; }
+  .nm-ghost { margin-top:11px; font-size:13.5px; font-weight:700; color:var(--muted); }
+
+  /* full table */
+  table.mig { border-collapse:collapse; margin-top:8px; max-width:1400px; width:100%; }
+  table.mig th, table.mig td { text-align:left; padding:9px 12px; font-size:12.5px;
+    border-bottom:1px solid #26282E; vertical-align:top; }
+  table.mig th { color:#9AA0A6; font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+  table.mig td b { color:#fff; }
+  table.mig td code { font-family:ui-monospace, monospace; font-size:11px; color:#74A7FF; }
+  .tt { font-weight:800; } .tt.toast { color:#65E49A; } .tt.modal { color:#FFC857; } .tt.confirm { color:#D8A6FF; } .tt.error { color:#FF8A92; }
+</style>
+</head>
+<body>
+
+<h1>Немые места: где нужен тост или модалка, а сейчас — тишина</h1>
+<div class="sub">Аудит под микроскопом: 35 мест, где приложение молчит. Каждое — с доказательством (файл:строка)
+и <b style="color:#E8EAED">готовым дизайном в единой системе</b> (тот же каркас тостов и карточек, что в утверждённом редизайне).
+Все макеты тематизированы — переключай тему сверху.</div>
+
+<div class="stats">
+  <div class="stat bad"><b>35</b><span>немых мест найдено</span></div>
+  <div class="stat bad"><b>5</b><span>бьют по деньгам (премиум-цикл)</span></div>
+  <div class="stat warn"><b>10</b><span>молчаливых провалов (ошибка — юзер не узнал)</span></div>
+  <div class="stat warn"><b>2</b><span>события эмитятся, но никто не слушает</span></div>
+  <div class="stat ok"><b>28</b><span>закрываются готовым тостом — дёшево</span></div>
+</div>
+
+<div class="switcher">
+  <span class="lbl">ТЕМА:</span>
+  <button class="tbtn active" data-t="t-compass">Compass (дефолт)</button>
+  <button class="tbtn" data-t="t-dark">Forest (Premium)</button>
+  <button class="tbtn" data-t="t-gold">Black Gold</button>
+  <button class="tbtn" data-t="t-sketch">Sketch Light</button>
+</div>
+
+<!-- ════════ ДЕНЬГИ ════════ -->
+<h2>Премиум-цикл <span class="tag money">БЬЁТ ПО ДЕНЬГАМ</span></h2>
+<div class="h2sub">Самое дорогое молчание. Событие <code style="color:#74A7FF">premium_deactivated</code> уже эмитится в _layout.tsx:1472 —
+его просто никто не слушает: подписка кончается, а приложение делает вид, что ничего не произошло.</div>
+
+<div class="cases">
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · ДЕНЬГИ</span>
+      <b>Premium истёк — юзер открыл приложение</b>
+      <div class="now">Сейчас: молчит. Юзер узнаёт, только упёршись в пейвол.</div>
+      <div class="loc">premium_guard.ts:158 · premium_deactivated никем не слушается (_layout.tsx:1472)</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nm" style="--rare:var(--gold)">
+        <div class="topline"></div>
+        <div class="nm-kicker">Подписка завершилась</div>
+        <div class="nm-ring">👑</div>
+        <div class="nm-title">Premium закончился</div>
+        <div class="nm-value">Прогресс цел. Возможности заморожены — верни их со скидкой за возвращение</div>
+        <div class="nm-cta">Продлить со скидкой</div>
+        <div class="nm-ghost">Позже</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · ДЕНЬГИ</span>
+      <b>Магазин не подтвердил оплату (grace 24ч)</b>
+      <div class="now">Сейчас: молчит сутки, потом доступ внезапно пропадает.</div>
+      <div class="loc">premium_guard.ts:150–158 (RC_STALE_GRACE_MS)</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#FFC857">
+        <div class="rail"></div><div class="ic">⚠️</div>
+        <div><div class="lbl">Подписка</div><div class="msg">Оплата не подтвердилась — проверь способ оплаты</div></div>
+        <div class="chip">Проверить</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · ДЕНЬГИ</span>
+      <b>Пробный доступ кончается через 2 часа</b>
+      <div class="now">Сейчас: только push (у 40–60% Android он выключен) — эти юзеры узнают постфактум.</div>
+      <div class="loc">intro_full_access.ts:55 → notifications.ts:837 (только push)</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#FFC857">
+        <div class="rail"></div><div class="ic">⏳</div>
+        <div><div class="lbl">Пробный доступ</div><div class="msg">Осталось 2 часа полного доступа</div></div>
+        <div class="chip">Оставить всё</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · ДЕНЬГИ</span>
+      <b>VIP от друга истёк — модалка живёт только во вкладке «Друзья»</b>
+      <div class="now">Сейчас: не зашёл в «Друзья» — никогда не узнал. Реферальная воронка рвётся.</div>
+      <div class="loc">friends.tsx:1499 · нет глобального слушателя в _layout</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении (глобально)</span>
+      <div class="nm" style="--rare:#D8A6FF">
+        <div class="topline"></div>
+        <div class="nm-kicker">VIP от друга завершился</div>
+        <div class="nm-ring">🤝</div>
+        <div class="nm-title">VIP-доступ закончился</div>
+        <div class="nm-value">Пригласи ещё друзей — получишь снова, по 7 дней за каждого</div>
+        <div class="nm-cta">Пригласить друзей</div>
+        <div class="nm-ghost">Оформить Premium</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · ВИРАЛЬНОСТЬ</span>
+      <b>Подарок от друга пришёл — а юзер не во вкладке «Друзья»</b>
+      <div class="now">Сейчас: тишина на всех остальных экранах. Друг не получает ответной реакции — виральная петля рвётся.</div>
+      <div class="loc">friend_gift_inbox.ts:40 · единственный вызов friends.tsx:1696</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении (глобальный тост)</span>
+      <div class="nt" style="--ntc:var(--gold)">
+        <div class="rail"></div><div class="ic">🎁</div>
+        <div><div class="lbl">Подарок</div><div class="msg">Маша прислала тебе подарок</div></div>
+        <div class="chip">Открыть</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p2">P2</span>
+      <b>Подписка восстановлена («Восстановить покупки»)</b>
+      <div class="now">Сейчас: успех = экран молча закрывается. Понятно только по косвенным признакам.</div>
+      <div class="loc">premium_modal_v2.tsx:253</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#65E49A">
+        <div class="rail"></div><div class="ic">👑</div>
+        <div><div class="lbl">Готово</div><div class="msg">Подписка восстановлена</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ СТРИК И РЕСУРСЫ ════════ -->
+<h2>Цепочка и ресурсы <span class="tag bad">МОЛЧАТ</span></h2>
+<div class="h2sub">Заморозка и щит срабатывают ночью беззвучно — юзер даже не знает, что его спасли (и что расходник потрачен).
+Это момент благодарности, который сейчас выбрасывается.</div>
+
+<div class="cases">
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · УДЕРЖАНИЕ</span>
+      <b>Заморозка спасла цепочку ночью</b>
+      <div class="now">Сейчас: расходник тратится молча (active=false и всё).</div>
+      <div class="loc">hall_of_fame_utils.ts:207–210</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#7FD8FF">
+        <div class="rail"></div><div class="ic">🧊</div>
+        <div><div class="lbl">Цепочка спасена</div><div class="msg">Заморозка сработала — 47 дней целы</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · СОЦИАЛЬНОЕ</span>
+      <b>Щит от друга защитил цепочку</b>
+      <div class="now">Сейчас: полная тишина — юзер не знает, что друг его спас.</div>
+      <div class="loc">hall_of_fame_utils.ts:222–234</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#7FD8FF">
+        <div class="rail"></div><div class="ic">🛡️</div>
+        <div><div class="lbl">Цепочка спасена</div><div class="msg">Щит от Маши сработал · осталось 2 дня защиты</div></div>
+        <div class="chip">Спасибо!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p2">P2 · УДЕРЖАНИЕ</span>
+      <b>Вечер, урок не пройден — стрик сгорит в полночь</b>
+      <div class="now">Сейчас: только push к 23:00 (если разрешён). В приложении — ничего.</div>
+      <div class="loc">notifications.ts:1559–1570 (только push)</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении (вечером, при входе)</span>
+      <div class="nt" style="--ntc:#FF9F6E">
+        <div class="rail"></div><div class="ic">🔥</div>
+        <div><div class="lbl">Цепочка под угрозой</div><div class="msg">47 дней сгорят в полночь — успей урок</div></div>
+        <div class="chip">Урок · 3 мин</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p3">P3</span>
+      <b>Энергия полностью восстановилась (юзер в приложении)</b>
+      <div class="now">Сейчас: checkAndRecover() доводит до максимума молча.</div>
+      <div class="loc">energy_system.ts:72–97</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#65E49A">
+        <div class="rail"></div><div class="ic">⚡</div>
+        <div><div class="lbl">Энергия</div><div class="msg">Полный запас — можно учиться</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p3">P3</span>
+      <b>XP-буст клуба истёк</b>
+      <div class="now">Сейчас: множитель молча перестаёт применяться.</div>
+      <div class="loc">league_group_boosts.ts:128</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#74A7FF">
+        <div class="rail"></div><div class="ic">⏱️</div>
+        <div><div class="lbl">Буст</div><div class="msg">XP-буст клуба закончился</div></div>
+        <div class="chip">Новый</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p2">P2</span>
+      <b>Подарок за уровень лежит неоткрытый &gt;24ч</b>
+      <div class="now">Сейчас: только маленькая иконка в статистике.</div>
+      <div class="loc">level_gift_inventory.ts:104 · statsCache.ts:368</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:var(--gold)">
+        <div class="rail"></div><div class="ic">🎁</div>
+        <div><div class="lbl">Награда ждёт</div><div class="msg">Неоткрытый подарок за уровень</div></div>
+        <div class="chip">Открыть</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ ЛИГА / АРЕНА ════════ -->
+<h2>Лига и арена <span class="tag bad">МОЛЧАТ</span></h2>
+
+<div class="cases">
+  <div class="case">
+    <div class="head"><span class="prio p2">P2 · ВОВЛЕЧЕНИЕ</span>
+      <b>Зона вылета — до конца недели лиги 2 часа</b>
+      <div class="now">Сейчас: юзер узнаёт о понижении постфактум из LeagueResultModal.</div>
+      <div class="loc">league_engine.ts:365–370 · club_screen.tsx:1543 (isRelegationZone известен)</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#FF9F6E">
+        <div class="rail"></div><div class="ic">📉</div>
+        <div><div class="lbl">Лига · 2 часа</div><div class="msg">Ты в зоне вылета — ещё можно спастись</div></div>
+        <div class="chip">В клуб</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p3">P3</span>
+      <b>Тебя обогнали в лиге, пока ты был офлайн</b>
+      <div class="now">Сейчас: только push. В приложении — тишина.</div>
+      <div class="loc">_layout.tsx:516 (checkLeagueOvertakeNotification → push)</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#FF9F6E">
+        <div class="rail"></div><div class="ic">⚔️</div>
+        <div><div class="lbl">Лига</div><div class="msg">Игорь обогнал тебя — теперь ты 5-й</div></div>
+        <div class="chip">Вернуть</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ СИСТЕМА ════════ -->
+<h2>Система и данные <span class="tag bad">МОЛЧАЛИВЫЕ ПРОВАЛЫ</span></h2>
+<div class="h2sub">Худший класс: операция провалилась, а юзер уверен, что всё хорошо.</div>
+
+<div class="cases">
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · ДАННЫЕ</span>
+      <b>Синхронизация с облаком упала — прогресс не сохранён</b>
+      <div class="now">Сейчас: syncToCloud().catch(()=>{}) — в проде полная тишина.</div>
+      <div class="loc">_layout.tsx:1465 · cloud_sync.ts:1788</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет (1 раз в сессию, не спам)</span>
+      <div class="nt" style="--ntc:var(--wrong)">
+        <div class="rail"></div><div class="ic">☁️</div>
+        <div><div class="lbl">Синхронизация</div><div class="msg">Прогресс не ушёл в облако — проверь сеть</div></div>
+        <div class="chip">Повторить</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p1">P1 · ДОВЕРИЕ</span>
+      <b>Уведомления «включены», но система отказала</b>
+      <div class="now">Сейчас: catch → DebugLogger. Свитч горит «вкл», напоминание никогда не придёт.</div>
+      <div class="loc">settings.tsx:181–195</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:var(--wrong)">
+        <div class="rail"></div><div class="ic">🔕</div>
+        <div><div class="lbl">Не включилось</div><div class="msg">Телефон запретил уведомления приложению</div></div>
+        <div class="chip">Настройки</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p2">P2</span>
+      <b>Аватар не сохранился, а осколки уже списаны</b>
+      <div class="now">Сейчас: spendShards до persistAvatar, провал сохранения без catch.</div>
+      <div class="loc">avatar_select.tsx:590–642</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:var(--wrong)">
+        <div class="rail"></div><div class="ic">!</div>
+        <div><div class="lbl">Ошибка</div><div class="msg">Аватар не сохранился — осколки вернули</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p3">P3</span>
+      <b>Контент уроков обновился после миграции</b>
+      <div class="now">Сейчас: кэш стирается молча — юзер не знает, что уроки стали лучше.</div>
+      <div class="loc">content_delivery_migration.ts:43–49</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#74A7FF">
+        <div class="rail"></div><div class="ic">✨</div>
+        <div><div class="lbl">Обновление</div><div class="msg">Уроки обновились — новые упражнения внутри</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ ДЕЙСТВИЯ ЮЗЕРА ════════ -->
+<h2>Действия пользователя без ответа <span class="tag info">28 ЗАКРЫВАЮТСЯ ТОСТОМ</span></h2>
+<div class="h2sub">Юзер нажал — и гадает, сработало ли. Все случаи ниже закрываются готовым каркасом тостов из единой системы
+(один компонент, разные иконки/цвет/чип). Здесь — самые показательные.</div>
+
+<div class="cases">
+  <div class="case">
+    <div class="head"><span class="prio p1">P1</span>
+      <b>Заявка в друзья: принял / отклонил</b>
+      <div class="now">Сейчас: void declineFriendRequest(...) — ни успеха, ни ошибки; при сбое сети заявка «зависает» в списке.</div>
+      <div class="loc">friends.tsx:2363 · friends_screen.tsx:376–383</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#65E49A">
+        <div class="rail"></div><div class="ic">🤝</div>
+        <div><div class="lbl">Друзья</div><div class="msg">Маша добавлена в друзья</div></div>
+      </div>
+      <div class="nt" style="--ntc:#74A7FF">
+        <div class="rail"></div><div class="ic">✓</div>
+        <div><div class="lbl">Друзья</div><div class="msg">Заявка отклонена</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p1">P1</span>
+      <b>«Пригласить друга» — ссылка не сформировалась</b>
+      <div class="now">Сейчас: catch(() =&gt; null) → кнопка просто «не работает». Выглядит как баг.</div>
+      <div class="loc">friends.tsx:1510–1516</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:var(--wrong)">
+        <div class="rail"></div><div class="ic">🔗</div>
+        <div><div class="lbl">Ошибка</div><div class="msg">Ссылка не создалась — проверь интернет</div></div>
+        <div class="chip">Повторить</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p2">P2</span>
+      <b>Жалоба на игрока не отправилась</b>
+      <div class="now">Сейчас: только вибрация ошибки, спиннер исчез — текста нет.</div>
+      <div class="loc">ReportUserModal.tsx:102–105</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:var(--wrong)">
+        <div class="rail"></div><div class="ic">🚩</div>
+        <div><div class="lbl">Жалоба</div><div class="msg">Не отправилась — попробуй ещё раз</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p2">P2</span>
+      <b>Шаринг (сертификат, стрик, достижение, экзамен) провалился</b>
+      <div class="now">Сейчас: 8+ мест с .catch(()=&gt;{}) — Share падает беззвучно.</div>
+      <div class="loc">exam.tsx:716 · streak_stats.tsx:2006 · achievements_screen.tsx:1590 · lesson_complete.tsx:410…</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет (один общий хелпер)</span>
+      <div class="nt" style="--ntc:var(--wrong)">
+        <div class="rail"></div><div class="ic">📤</div>
+        <div><div class="lbl">Шаринг</div><div class="msg">Не получилось поделиться</div></div>
+        <div class="chip">Ещё раз</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p3">P3</span>
+      <b>Удаление друга — без подтверждения</b>
+      <div class="now">Сейчас: void deleteFriend(...) сразу по тапу, провал молчит.</div>
+      <div class="loc">friends_screen.tsx:1063–1067</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет (confirm в единой анатомии)</span>
+      <div class="nm" style="--rare:#FF8A92">
+        <div class="topline"></div>
+        <div class="nm-kicker" style="color:#FF8A92">Друзья</div>
+        <div class="nm-ring" style="border-color:rgba(255,138,146,0.44)">💔</div>
+        <div class="nm-title">Удалить Машу из друзей?</div>
+        <div class="nm-value">Общие подарки и дуэли пропадут</div>
+        <div class="nm-cta danger">Удалить</div>
+        <div class="nm-ghost">Отмена</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="head"><span class="prio p3">P3</span>
+      <b>Мелкие подтверждения: имя, тема, настройки</b>
+      <div class="now">Сейчас: имя сохранилось — модалка молча закрылась; настройки обучения падают в catch(()=&gt;{}).</div>
+      <div class="loc">settings.tsx:458–482 · settings_edu.tsx:89–103 · user_settings_store.ts:64</div>
+    </div>
+    <div class="appzone themable t-compass"><span class="zlabel">так будет в приложении</span>
+      <div class="nt" style="--ntc:#65E49A">
+        <div class="rail"></div><div class="ic">✓</div>
+        <div><div class="lbl">Готово</div><div class="msg">Имя сохранено</div></div>
+      </div>
+      <div class="nt" style="--ntc:var(--wrong)">
+        <div class="rail"></div><div class="ic">!</div>
+        <div><div class="lbl">Ошибка</div><div class="msg">Настройки не сохранились</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ FULL TABLE ════════ -->
+<h2>Полный список — 35 находок</h2>
+<table class="mig">
+  <tr><th>#</th><th>Место</th><th>Файл:строка</th><th>Что сейчас</th><th>Решение</th></tr>
+  <tr><td>1</td><td><b>Premium истёк при входе</b></td><td><code>premium_guard.ts:158</code></td><td>молчит, premium_deactivated не слушается</td><td><span class="tt modal">Reward Card</span> «Продлить со скидкой»</td></tr>
+  <tr><td>2</td><td><b>Grace 24ч / billing issue</b></td><td><code>premium_guard.ts:150–158</code></td><td>молчит сутки → внезапная потеря</td><td><span class="tt toast">toast warning</span> + чип «Проверить»</td></tr>
+  <tr><td>3</td><td><b>Триал кончается (2ч)</b></td><td><code>notifications.ts:837</code></td><td>только push</td><td><span class="tt toast">toast warning</span> + чип «Продлить»</td></tr>
+  <tr><td>4</td><td><b>VIP от друга истёк</b></td><td><code>friends.tsx:1499</code></td><td>модалка только во вкладке Друзья</td><td><span class="tt modal">Reward Card</span> глобально</td></tr>
+  <tr><td>5</td><td><b>Подарок от друга (глобально)</b></td><td><code>friend_gift_inbox.ts:40</code></td><td>тост только в friends.tsx</td><td><span class="tt toast">toast reward</span> + чип «Открыть»</td></tr>
+  <tr><td>6</td><td><b>Заморозка спасла стрик</b></td><td><code>hall_of_fame_utils.ts:207</code></td><td>расходник тратится молча</td><td><span class="tt toast">toast ice</span></td></tr>
+  <tr><td>7</td><td><b>Щит друга сработал</b></td><td><code>hall_of_fame_utils.ts:222</code></td><td>молчит</td><td><span class="tt toast">toast ice</span> + чип «Спасибо»</td></tr>
+  <tr><td>8</td><td><b>Стрик под угрозой вечером</b></td><td><code>notifications.ts:1559</code></td><td>только push</td><td><span class="tt toast">toast warning</span> + чип «Урок»</td></tr>
+  <tr><td>9</td><td><b>Энергия восстановилась</b></td><td><code>energy_system.ts:72</code></td><td>молчит</td><td><span class="tt toast">toast success</span></td></tr>
+  <tr><td>10</td><td><b>XP-буст истёк</b></td><td><code>league_group_boosts.ts:128</code></td><td>молчит</td><td><span class="tt toast">toast info</span></td></tr>
+  <tr><td>11</td><td><b>Зона вылета лиги (финал недели)</b></td><td><code>club_screen.tsx:1543</code></td><td>узнаёт постфактум</td><td><span class="tt toast">toast warning</span> + чип «В клуб»</td></tr>
+  <tr><td>12</td><td><b>Обогнали в лиге офлайн</b></td><td><code>_layout.tsx:516</code></td><td>только push</td><td><span class="tt toast">toast warning</span></td></tr>
+  <tr><td>13</td><td><b>Синк в облако упал</b></td><td><code>_layout.tsx:1465</code></td><td>catch(()=&gt;{}) в проде</td><td><span class="tt error">toast error</span> + чип «Повторить» (1/сессию)</td></tr>
+  <tr><td>14</td><td><b>Контент обновился</b></td><td><code>content_delivery_migration.ts:43</code></td><td>молча стирает кэш</td><td><span class="tt toast">toast info</span></td></tr>
+  <tr><td>15</td><td><b>Неоткрытый подарок &gt;24ч</b></td><td><code>level_gift_inventory.ts:104</code></td><td>только иконка в статистике</td><td><span class="tt toast">toast reward</span> + чип «Открыть»</td></tr>
+  <tr><td>16</td><td><b>Отклонение заявки в друзья</b></td><td><code>friends.tsx:2363</code></td><td>void без catch — зависает в UI при сбое</td><td><span class="tt toast">toast info/error</span></td></tr>
+  <tr><td>17</td><td><b>Принятие заявки (старый экран)</b></td><td><code>friends_screen.tsx:376</code></td><td>без try/catch, без тоста</td><td><span class="tt toast">toast success/error</span></td></tr>
+  <tr><td>18</td><td><b>Удаление друга</b></td><td><code>friends_screen.tsx:1063</code></td><td>сразу, без confirm, провал молчит</td><td><span class="tt confirm">confirm</span> + <span class="tt toast">toast</span></td></tr>
+  <tr><td>19</td><td><b>Инвайт-ссылка не создалась</b></td><td><code>friends.tsx:1510</code></td><td>кнопка «не работает»</td><td><span class="tt error">toast error</span> + чип «Повторить»</td></tr>
+  <tr><td>20</td><td><b>Жалоба не отправилась</b></td><td><code>ReportUserModal.tsx:102</code></td><td>только вибрация</td><td><span class="tt error">toast error</span></td></tr>
+  <tr><td>21</td><td><b>Уведомления: система отказала</b></td><td><code>settings.tsx:181–195</code></td><td>свитч «вкл», пушей не будет</td><td><span class="tt error">toast error</span> + чип «Настройки» + откат свитча</td></tr>
+  <tr><td>22</td><td><b>Шаринг провалился (8+ мест)</b></td><td><code>exam.tsx:716 · streak_stats.tsx:2006 …</code></td><td>.catch(()=&gt;{})</td><td><span class="tt error">toast error</span> через общий хелпер shareWithFeedback()</td></tr>
+  <tr><td>23</td><td><b>PNG-сертификат → текстовый fallback</b></td><td><code>shareCardPng.ts:61–78</code></td><td>юзер не знает, что ушёл текст вместо картинки</td><td><span class="tt toast">toast info</span></td></tr>
+  <tr><td>24</td><td><b>Аватар не сохранился (осколки списаны)</b></td><td><code>avatar_select.tsx:590–642</code></td><td>без catch после spendShards</td><td><span class="tt error">toast error</span> + возврат осколков</td></tr>
+  <tr><td>25</td><td><b>Имя сохранено</b></td><td><code>settings.tsx:458–482</code></td><td>модалка молча закрывается</td><td><span class="tt toast">toast success</span></td></tr>
+  <tr><td>26</td><td><b>Смена темы</b></td><td><code>settings_themes.tsx:197</code></td><td>без подтверждения</td><td><span class="tt toast">toast success</span> (лёгкий)</td></tr>
+  <tr><td>27</td><td><b>Настройки обучения не сохранились</b></td><td><code>settings_edu.tsx:89 · user_settings_store.ts:64</code></td><td>catch(()=&gt;{})</td><td><span class="tt error">toast error</span></td></tr>
+  <tr><td>28</td><td><b>Расписание уведомлений — провал</b></td><td><code>settings_notifications.tsx:172</code></td><td>успех inline есть, провал молчит</td><td><span class="tt error">toast error</span></td></tr>
+  <tr><td>29</td><td><b>Хаптика — провал сохранения</b></td><td><code>settings.tsx:774</code></td><td>fire-and-forget</td><td><span class="tt error">toast error</span> (ред. случай)</td></tr>
+  <tr><td>30</td><td><b>Размер шрифта</b></td><td><code>settings.tsx:719</code></td><td>без подтверждения</td><td><span class="tt toast">toast success</span> (лёгкий)</td></tr>
+  <tr><td>31</td><td><b>Подписка восстановлена — успех</b></td><td><code>premium_modal_v2.tsx:253</code></td><td>молча закрывается</td><td><span class="tt toast">toast success</span></td></tr>
+  <tr><td>32</td><td><b>Подарок другу: приём не зачислился</b></td><td><code>friends.tsx:1715</code></td><td>catch {} — подарок «пропал»</td><td><span class="tt error">toast error</span> + повтор</td></tr>
+  <tr><td>33</td><td><b>Шаринг арена-комнаты</b></td><td><code>arena_rooms_live.ts:352</code></td><td>.catch(()=&gt;{})</td><td><span class="tt error">toast error</span></td></tr>
+  <tr><td>34</td><td><b>Выход из урока на середине</b></td><td><code>lesson1.tsx (back)</code></td><td>уходит без вопроса</td><td><span class="tt confirm">confirm</span> «Прогресс карточек сохранится»</td></tr>
+  <tr><td>35</td><td><b>Жалоба на игрока из клуба — нет UI вовсе</b></td><td><code>club_screen.tsx (UnifiedPlayerModal без onReport)</code></td><td>функция недоступна</td><td>добавить пункт + <span class="tt toast">toast success</span></td></tr>
+</table>
+
+<script>
+  const btns = document.querySelectorAll('.tbtn');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.themable').forEach(p => {
+      p.classList.remove('t-compass','t-dark','t-gold','t-sketch');
+      p.classList.add(b.dataset.t);
+    });
+  }));
+</script>
+</body>
+</html>

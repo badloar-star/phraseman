@@ -38,8 +38,8 @@
 6. **Цепочка level-up**: LevelUp → (260мс) → LevelGiftModal → onClose → пейвол-апселл. `_layout.tsx:659–699`. До 3 окон подряд + хрупкие платформенные задержки.
 
 ### Технические баги
-- `CoachToast.tsx:77` — `useOverlayVisible('coachToast', true)`: пока смонтирован, перманентно занимает want-слот и душит actionToast.
-- `NoEnergyModal.tsx:204` — router.push без закрытия модалки.
+- ~~`CoachToast.tsx:77` — перманентный want-слот~~ — НЕ ПОДТВЕРДИЛОСЬ (2026-06-11): компонент везде рендерится условно `{coachToast?.show && …}`, слот занят только пока тост реально показан. Не баг.
+- ~~`NoEnergyModal.tsx:204` — router.push без закрытия модалки~~ — УЖЕ ИСПРАВЛЕНО в коде (2026-06-11): push отложен через `pendingPremiumContextRef` и выполняется после снятия окна.
 - Вложенные Modal: AppMessagesInbox (3 шт), AchievementToast detail (:361) поверх чужих Modal.
 - Хардкод-бэкдропы, ломающие светлую тему: ThroneRewardModal `rgba(0,0,0,0.88)`, ReleaseWaveBonusModal `rgba(0,0,0,0.62)`.
 

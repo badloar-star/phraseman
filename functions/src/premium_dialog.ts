@@ -4,6 +4,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolvePremiumAccess } from './premium_status';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -259,7 +260,10 @@ export const premiumDialogSend = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
-  const isPremium = data.isPremium === true; // TODO Phase 1: confirm premium server-side via RevenueCat shard
+  // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
+  // free-юзер прислал бы isPremium:true и получил премиум-квоту (100/день
+  // вместо 1/день) — ×100 к дневному бюджету OpenAI на одного абьюзера.
+  const isPremium = await resolvePremiumAccess(db, stableUid);
 
   // Limits BEFORE the paid API call.
   await enforceRateLimit(authUid, stableUid);

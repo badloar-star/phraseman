@@ -4,6 +4,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { resolvePremiumAccess } from './premium_status';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -354,7 +355,8 @@ export const weeklyReviewGenerate = onCall({
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
 
   const data = (request.data ?? {}) as Record<string, unknown>;
-  const isPremium = data.isPremium === true; // TODO Phase 1: confirm premium server-side via RevenueCat shard
+  // НЕ доверяем data.isPremium из тела — премиум резолвится на сервере ниже
+  // (после resolveStableUidForAuth) из users/{stableUid}.progress.
   const briefing = sanitizeBriefing(data.briefing);
 
   if (briefing.totalMistakes < 5 || briefing.weakCategories.length === 0) {
@@ -365,6 +367,9 @@ export const weeklyReviewGenerate = onCall({
   const authUid = request.auth.uid;
   // uid from auth identity — NEVER from request body (security invariant).
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
+  // free-юзер прислал бы isPremium:true и получил укороченное (премиум) окно.
+  const isPremium = await resolvePremiumAccess(db, stableUid);
 
   // Limits BEFORE the paid API call. Window is only CHECKED here (read-only) —
   // it is committed after a successful generation so a provider failure does

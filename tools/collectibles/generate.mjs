@@ -10,6 +10,9 @@
  *   selftest              — Гейт гейтов: негативные тесты G1-G5 на фикстурах (ничего не пишет)
  *   stats                 — прогресс по сетам
  *   build                 — собрать build/collectibles_catalog.json + progress.md (только если всё зелёное)
+ *   build-app             — сгенерировать модули фичи: app/collectibles/catalog_data.ts (тексты+SVG
+ *                           инлайном, только полностью готовые сеты) + functions/src/collectibles_catalog.ts
+ *                           (компактный пул id/rarity/set для серверного движка дропов)
  *   placeholders          — уникальные SVG-плейсхолдеры для карточек без арта
  *   prompts <setId>       — промпты для агентов writer/illustrator (файловый протокол)
  *
@@ -439,6 +442,173 @@ function build(catalog) {
   console.log(`build OK → ${outPath}`);
 }
 
+/* ── build-app: генерация модулей фичи (клиент + сервер) ──── */
+const APP_CATALOG_OUT = path.join(HERE, '..', '..', 'app', 'collectibles', 'catalog_data.ts');
+const SERVER_CATALOG_OUT = path.join(HERE, '..', '..', 'functions', 'src', 'collectibles_catalog.ts');
+
+/** Сет «живой» = все 10 карточек с артом и секретка хотя бы с текстами. */
+function isLiveSet(s) {
+  return s.cards.every((c) => statusAtLeast(c.status, 'art_done'))
+    && statusAtLeast(s.secret.status, 'texts_done');
+}
+
+/** Сжать SVG без изменения разметки: убрать межтеговые переводы строк и двойные пробелы. */
+function compactSvg(svg) {
+  return svg.replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').trim();
+}
+
+function readArtSvg(artRef) {
+  if (!artRef) return null;
+  const file = path.join(ART_DIR, `${artRef}.svg`);
+  if (!fs.existsSync(file)) return null;
+  return compactSvg(fs.readFileSync(file, 'utf8'));
+}
+
+function cardTs(card) {
+  const fields = [
+    `id: ${JSON.stringify(card.id)}`,
+    `en: ${JSON.stringify(card.en)}`,
+    `ipa: ${JSON.stringify(card.ipa ?? '')}`,
+    `ru: ${JSON.stringify(card.ru)}`,
+    `literalRu: ${JSON.stringify(card.literalRu ?? '')}`,
+    `meaningRu: ${JSON.stringify(card.meaningRu ?? '')}`,
+    `exampleEn: ${JSON.stringify(card.exampleEn ?? '')}`,
+    `exampleRu: ${JSON.stringify(card.exampleRu ?? '')}`,
+    `originRu: ${JSON.stringify(card.originRu ?? '')}`,
+  ];
+  if (card.rarity) fields.push(`rarity: ${JSON.stringify(card.rarity)}`);
+  const svg = readArtSvg(card.art);
+  fields.push(`svg: ${svg ? JSON.stringify(svg) : 'null'}`);
+  return `{ ${fields.join(', ')} }`;
+}
+
+function buildApp(catalog) {
+  const v = validate(catalog, { quiet: true });
+  if (v.errors.length) {
+    console.error(`build-app остановлен: validate=${v.errors.length} ошибок`);
+    process.exitCode = 1;
+    return;
+  }
+  const live = catalog.sets.filter(isLiveSet);
+  if (live.length === 0) {
+    console.error('build-app: нет ни одного полностью готового сета');
+    process.exitCode = 1;
+    return;
+  }
+
+  // ── клиентский модуль: полный контент live-сетов + SVG инлайном ──
+  const setBlocks = live.map((s) => {
+    const cards = s.cards.map((c) => `    ${cardTs(c)},`).join('\n');
+    return [
+      '  {',
+      `    setId: ${JSON.stringify(s.setId)},`,
+      `    order: ${s.order},`,
+      `    type: ${JSON.stringify(s.type)},`,
+      `    titleRu: ${JSON.stringify(s.titleRu)},`,
+      `    titleEn: ${JSON.stringify(s.titleEn ?? '')},`,
+      `    icon: ${JSON.stringify(s.icon ?? '')},`,
+      '    cards: [',
+      cards,
+      '    ],',
+      `    secret: ${cardTs(s.secret)},`,
+      '  },',
+    ].join('\n');
+  }).join('\n');
+
+  const clientTs = `// АВТОГЕНЕРИРОВАНО: node tools/collectibles/generate.mjs build-app
+// НЕ ПРАВИТЬ РУКАМИ — источник истины tools/collectibles/catalog_seed.json.
+// Только полностью готовые сеты (10/10 арт + секретка с текстами): ${live.length} из ${catalog.sets.length}.
+/* eslint-disable */
+
+export type CollectibleRarity = 'common' | 'rare' | 'epic' | 'legendary';
+
+export type CollectibleCardData = {
+  id: string;
+  en: string;
+  ipa: string;
+  ru: string;
+  literalRu: string;
+  meaningRu: string;
+  exampleEn: string;
+  exampleRu: string;
+  originRu: string;
+  rarity: CollectibleRarity;
+  /** Инлайн-SVG сцены (viewBox 0 0 200 160, прозрачный фон). */
+  svg: string | null;
+};
+
+/** Секретная 11-я карточка сета: без редкости, открывается за полный сет. */
+export type CollectibleSecretData = Omit<CollectibleCardData, 'rarity'>;
+
+export type CollectibleSetData = {
+  setId: string;
+  order: number;
+  type: 'A' | 'B';
+  titleRu: string;
+  titleEn: string;
+  icon: string;
+  cards: CollectibleCardData[];
+  secret: CollectibleSecretData;
+};
+
+export const COLLECTIBLES_CATALOG_VERSION = ${catalog.version};
+
+export const COLLECTIBLE_SETS: CollectibleSetData[] = [
+${setBlocks}
+];
+`;
+
+  // ── серверный модуль: компактный пул для движка дропов ──
+  const poolLines = [];
+  const secretBySet = [];
+  const setCardIds = [];
+  for (const s of live) {
+    for (const c of s.cards) {
+      poolLines.push(`  { id: ${JSON.stringify(c.id)}, setId: ${JSON.stringify(s.setId)}, rarity: ${JSON.stringify(c.rarity)} },`);
+    }
+    secretBySet.push(`  ${JSON.stringify(s.setId)}: ${JSON.stringify(s.secret.id)},`);
+    setCardIds.push(`  ${JSON.stringify(s.setId)}: [${s.cards.map((c) => JSON.stringify(c.id)).join(', ')}],`);
+  }
+
+  const serverTs = `// АВТОГЕНЕРИРОВАНО: node tools/collectibles/generate.mjs build-app
+// НЕ ПРАВИТЬ РУКАМИ — источник истины tools/collectibles/catalog_seed.json.
+// Live-сеты (полностью готовые): ${live.length} из ${catalog.sets.length}. Без текстов/SVG — только пул для ролла.
+
+export type CollectibleRarity = 'common' | 'rare' | 'epic' | 'legendary';
+
+export type CollectiblePoolCard = {
+  id: string;
+  setId: string;
+  rarity: CollectibleRarity;
+};
+
+export const COLLECTIBLES_CATALOG_VERSION = ${catalog.version};
+
+/** Дропающиеся карточки (секретки сюда не входят — они выдаются за полный сет). */
+export const COLLECTIBLE_POOL: CollectiblePoolCard[] = [
+${poolLines.join('\n')}
+];
+
+/** id секретной карточки по сету (выдаётся автоматически при сборе всех 10). */
+export const COLLECTIBLE_SECRET_BY_SET: Record<string, string> = {
+${secretBySet.join('\n')}
+};
+
+/** Состав сетов для проверки полноты. */
+export const COLLECTIBLE_SET_CARD_IDS: Record<string, string[]> = {
+${setCardIds.join('\n')}
+};
+`;
+
+  fs.mkdirSync(path.dirname(APP_CATALOG_OUT), { recursive: true });
+  fs.writeFileSync(APP_CATALOG_OUT, clientTs, 'utf8');
+  fs.writeFileSync(SERVER_CATALOG_OUT, serverTs, 'utf8');
+  const cardCount = live.length * 10;
+  console.log(`build-app OK: ${live.length} live-сетов, ${cardCount} карточек + ${live.length} секреток`);
+  console.log(`  client → ${APP_CATALOG_OUT} (${(fs.statSync(APP_CATALOG_OUT).size / 1024).toFixed(0)} КБ)`);
+  console.log(`  server → ${SERVER_CATALOG_OUT} (${(fs.statSync(SERVER_CATALOG_OUT).size / 1024).toFixed(0)} КБ)`);
+}
+
 /* ── placeholders ─────────────────────────────────────────── */
 function hash32(str) {
   let h = 2166136261 >>> 0;
@@ -561,8 +731,9 @@ switch (cmd) {
   case 'selftest': selftest(); break;
   case 'stats': stats(catalog); break;
   case 'build': build(catalog); break;
+  case 'build-app': buildApp(catalog); break;
   case 'placeholders': placeholders(catalog); break;
   case 'prompts': prompts(catalog, arg); break;
   default:
-    console.log('Команды: validate | lint | merge <setId> | ingest-art <setId> | selftest | stats | build | placeholders | prompts <setId>');
+    console.log('Команды: validate | lint | merge <setId> | ingest-art <setId> | selftest | stats | build | build-app | placeholders | prompts <setId>');
 }

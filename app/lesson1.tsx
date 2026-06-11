@@ -649,6 +649,11 @@ const LessonContent = React.memo(function LessonContent({
     flashTimerRef.current = setTimeout(() => setFlashWord(null), 260);
   }, []);
   useEffect(() => () => { if (flashTimerRef.current) clearTimeout(flashTimerRef.current); }, []);
+  // Тап «в полёте»: пока ждём отложенный handleWordPress (170мс на показ вспышки),
+  // игнорируем повторные тапы — при синхронном варианте банк пересобирался сразу
+  // и второй тап по старым плиткам был физически невозможен.
+  const wordDispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const phraseTokens = phrase ? getPhraseTokens(phrase, studyTarget) : [];
@@ -1200,6 +1205,7 @@ const LessonContent = React.memo(function LessonContent({
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
                       edgeHeight={5}
                       edgeColor={isFlashing ? t.accent : (themeMode === 'neon' ? t.border : 'rgba(0,0,0,0.30)')}
+                      pressedExternally={isFlashing}
                       withHaptic={false}
                       style={{
                         width: '100%',
@@ -1218,9 +1224,16 @@ const LessonContent = React.memo(function LessonContent({
                           setTypedText(current ? current + ' ' + w : w);
                           setTimeout(() => textInputRef.current?.focus(), 50);
                         } else {
-                          // Вспышка плитки акцентным цветом темы.
+                          // Вспышка плитки акцентным цветом темы. handleWordPress зовёт
+                          // setShuffled → банк плиток пересобирается и нажатая плитка
+                          // размонтируется; задержка 170мс < окна вспышки 260мс держит
+                          // акцент+объём (pressedExternally) видимыми на нажатой плитке.
+                          if (wordDispatchTimerRef.current) return;
                           triggerWordFlash(word, isCorrectOption);
-                          handleWordPress(word);
+                          wordDispatchTimerRef.current = setTimeout(() => {
+                            wordDispatchTimerRef.current = null;
+                            handleWordPress(word);
+                          }, 170);
                         }
                         requestAnimationFrame(() => { void hapticTap(); });
                       }}

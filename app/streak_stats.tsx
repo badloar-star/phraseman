@@ -57,6 +57,9 @@ import { loadActivity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
+import { collectiblesTotalCount } from './collectibles/catalog';
+import { getCollectiblesProgress, getCollectiblesUnseenCount } from './collectibles/storage';
+import { isCollectiblesEnabled } from './remote_flags';
 import { shouldUsePracticeWarmup } from './streak_stats_practice_balance';
 import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
@@ -2708,6 +2711,8 @@ export default function StreakStats() {
     const [trainerPracticeDue, setTrainerPracticeDue] = useState(_sc.trainerPracticeDue);
     const [achievementCount, setAchievementCount] = useState(0);
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
+    const [collectiblesOwned, setCollectiblesOwned] = useState(0);
+    const [collectiblesUnseen, setCollectiblesUnseen] = useState(0);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
     const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
@@ -2772,6 +2777,16 @@ export default function StreakStats() {
             .catch(() => {
             // Keep the last known value on transient storage errors to avoid a visible zero flash.
         });
+        return () => { cancelled = true; };
+    }, []));
+    useFocusEffect(useCallback(() => {
+        let cancelled = false;
+        void getCollectiblesProgress()
+            .then(({ owned }) => { if (!cancelled) setCollectiblesOwned(owned); })
+            .catch(() => { });
+        void getCollectiblesUnseenCount()
+            .then(count => { if (!cancelled) setCollectiblesUnseen(count); })
+            .catch(() => { });
         return () => { cancelled = true; };
     }, []));
     const scrollRef = useRef<any>(null);
@@ -3186,7 +3201,7 @@ export default function StreakStats() {
         emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
     };
-    // ИИ-заметка под карточкой `block`. Premium → текст Фила; free → тизер на пейвол.
+    // ИИ-заметка под карточкой `block`. Premium → текст Тео; free → тизер на пейвол.
     const renderAiNote = (block: keyof StatsInsightsNotes, tone: StatsChromeTone) => {
         const note = aiNotes?.[block];
         // Free без текста и без загрузки прячем целиком, кроме случая «есть что показать».
@@ -3206,9 +3221,9 @@ export default function StreakStats() {
           borderColor={isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, tone)}
           textColor={t.textPrimary}
           mutedColor={t.textMuted}
-          authorLabel={triLang(lang, { ru: 'Фил · ИИ-разбор', uk: 'Філ · ШІ-розбір', es: 'Phil · análisis IA', 'pt-BR': 'Phil · análise IA', vi: 'Phil · phân tích AI', id: 'Phil · analisis AI', tr: 'Phil · AI analizi', pl: 'Phil · analiza AI' })}
+          authorLabel={triLang(lang, { ru: 'Тео · ИИ-разбор', uk: 'Тео · ШІ-розбір', es: 'Theo · análisis IA', 'pt-BR': 'Theo · análise IA', vi: 'Theo · phân tích AI', id: 'Theo · analisis AI', tr: 'Theo · AI analizi', pl: 'Theo · analiza AI' })}
           lockedLabel={triLang(lang, { ru: 'Открой ИИ-разбор твоей статистики с Premium', uk: 'Відкрий ШІ-розбір твоєї статистики з Premium', es: 'Desbloquea el análisis IA de tus estadísticas con Premium', 'pt-BR': 'Desbloqueie a análise IA das suas estatísticas com Premium', vi: 'Mở khóa phân tích AI thống kê của bạn với Premium', id: 'Buka analisis AI statistikmu dengan Premium', tr: 'İstatistiklerinin AI analizini Premium ile aç', pl: 'Odblokuj analizę AI swoich statystyk z Premium' })}
-          loadingLabel={triLang(lang, { ru: 'Фил анализирует…', uk: 'Філ аналізує…', es: 'Phil está analizando…', 'pt-BR': 'Phil está analisando…', vi: 'Phil đang phân tích…', id: 'Phil sedang menganalisis…', tr: 'Phil analiz ediyor…', pl: 'Phil analizuje…' })}
+          loadingLabel={triLang(lang, { ru: 'Тео анализирует…', uk: 'Тео аналізує…', es: 'Theo está analizando…', 'pt-BR': 'Theo está analisando…', vi: 'Theo đang phân tích…', id: 'Theo sedang menganalisis…', tr: 'Theo analiz ediyor…', pl: 'Theo analizuje…' })}
           onUnlock={() => { hapticTap(); router.push('/premium_modal' as any); }}
         />);
     };
@@ -3351,6 +3366,26 @@ export default function StreakStats() {
         })}
           </Text>
         </TouchableOpacity>
+        {isCollectiblesEnabled() && (
+        <TouchableOpacity testID="stats-header-collectibles" accessibilityHint={triLang(lang, {
+            ru: `Сокровищница: ${collectiblesOwned} из ${collectiblesTotalCount()}`,
+            uk: `Скарбниця: ${collectiblesOwned} з ${collectiblesTotalCount()}`,
+            es: `Colección: ${collectiblesOwned}/${collectiblesTotalCount()}`,
+            'pt-BR': `Coleção: ${collectiblesOwned}/${collectiblesTotalCount()}`,
+            vi: `Bộ sưu tập: ${collectiblesOwned}/${collectiblesTotalCount()}`,
+            id: `Koleksi: ${collectiblesOwned}/${collectiblesTotalCount()}`,
+            tr: `Koleksiyon: ${collectiblesOwned}/${collectiblesTotalCount()}`,
+            pl: `Kolekcja: ${collectiblesOwned}/${collectiblesTotalCount()}`,
+        })} activeOpacity={0.82} onPress={() => {
+            hapticTap();
+            router.push('/collectibles_screen' as any);
+        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 1, borderColor: collectiblesUnseen > 0 ? statsBorder(themeMode, 'multipliers', 'strong') : (isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'multipliers')) }}>
+          <Ionicons name="albums-outline" size={19} color={collectiblesUnseen > 0 ? t.textSecond : t.textMuted}/>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+            {collectiblesOwned}/{collectiblesTotalCount()}
+          </Text>
+        </TouchableOpacity>
+        )}
         <TouchableOpacity testID="stats-header-gifts" accessibilityHint={triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
             uk: ukGiftPhrase(pendingGiftCount),

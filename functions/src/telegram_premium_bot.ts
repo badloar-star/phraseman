@@ -2,6 +2,14 @@ import * as admin from 'firebase-admin';
 import { defineSecret } from 'firebase-functions/params';
 import { onDocumentUpdated } from 'firebase-functions/v2/firestore';
 import { onRequest } from 'firebase-functions/v2/https';
+import {
+  SUPPORT_BUTTON_TEXT_RU,
+  SUPPORT_CALLBACK_START,
+  SupportDeps,
+  clearSupportState,
+  tryHandleSupportCallback,
+  tryHandleSupportMessage,
+} from './telegram_support';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const REGION = 'us-central1';
@@ -15,12 +23,15 @@ type PremiumPlan = 'monthly' | 'yearly';
 type TelegramUser = {
   id?: number;
   username?: string;
+  first_name?: string;
 };
 
 type TelegramMessage = {
+  message_id?: number;
   chat?: { id?: number | string };
   from?: TelegramUser;
   text?: string;
+  reply_to_message?: { message_id?: number };
   successful_payment?: {
     currency?: string;
     total_amount?: number;
@@ -166,7 +177,7 @@ function mainMenu() {
 
 function startReplyKeyboard() {
   return {
-    keyboard: [[{ text: PAY_BUTTON_TEXT_RU }]],
+    keyboard: [[{ text: PAY_BUTTON_TEXT_RU }], [{ text: SUPPORT_BUTTON_TEXT_RU }]],
     resize_keyboard: true,
     one_time_keyboard: false,
     input_field_placeholder: 'Ник в Phraseman',
@@ -344,6 +355,10 @@ async function addAdmin(userId: number | string): Promise<void> {
   }, { merge: true });
 }
 
+// Чат поддержки (telegram_support.ts) использует тот же Telegram-клиент и
+// реестр админов, что и остальной бот.
+const supportDeps: SupportDeps = { sendMessage, isAdmin, readAdminUserIds };
+
 function formatTelegramUser(order: FirebaseFirestore.DocumentData): string {
   return String(order.telegramUserId || '-');
 }
@@ -517,7 +532,11 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
       payload.plan === 'monthly'
         ? 'Продление: автоматически каждые 30 дней'
         : 'Продление: нет, это разовая оплата на год',
-    ].join('\n'));
+    ].join('\n'), {
+      reply_markup: {
+        inline_keyboard: [[{ text: SUPPORT_BUTTON_TEXT_RU, callback_data: SUPPORT_CALLBACK_START }]],
+      },
+    });
     await notifyAdmins(token, order);
     return;
   }
@@ -551,15 +570,21 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
     return;
   }
   if (text === '/start' || text === '/premium') {
+    await clearSupportState(userId);
     await writeSession(userId, { step: 'awaiting_nickname' });
     await sendPremiumWelcome(token, chatId);
     return;
   }
   if (text === PAY_BUTTON_TEXT_RU) {
+    await clearSupportState(userId);
     await writeSession(userId, { step: 'awaiting_nickname' });
     await sendShortNicknamePrompt(token, chatId);
     return;
   }
+
+  // Чат поддержки: кнопка//support, /reply и reply-роутинг админа,
+  // пересылка сообщений юзера в режиме поддержки.
+  if (await tryHandleSupportMessage(token, message, supportDeps)) return;
 
   const session = await readSession(userId);
   if (session.step === 'awaiting_nickname') {
@@ -596,7 +621,10 @@ async function handleCallbackQuery(token: string, callbackQuery: TelegramCallbac
 
   await answerCallbackQuery(token, callbackId);
 
+  if (await tryHandleSupportCallback(token, data, chatId, callbackQuery.from, supportDeps)) return;
+
   if (data === 'premium:start') {
+    await clearSupportState(userId);
     await writeSession(userId, { step: 'awaiting_nickname' });
     await sendShortNicknamePrompt(token, chatId);
     return;

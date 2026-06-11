@@ -55,6 +55,7 @@ beforeEach(() => {
 describe('level gift milestone rewards', () => {
   it('returns guaranteed milestone gifts for key levels', async () => {
     await expect(rollF2pLevelGiftForUser(5)).resolves.toMatchObject({ id: 'xp_bank_150' });
+    await expect(rollF2pLevelGiftForUser(10)).resolves.toMatchObject({ id: 'xp_bank_300' });
     await expect(rollF2pLevelGiftForUser(15)).resolves.toMatchObject({ id: 'cosmetic_avatar_common' });
     await expect(rollF2pLevelGiftForUser(25)).resolves.toMatchObject({ id: 'pack_voucher_48h' });
     await expect(rollF2pLevelGiftForUser(35)).resolves.toMatchObject({ id: 'cosmetic_avatar_aura' });
@@ -62,14 +63,27 @@ describe('level gift milestone rewards', () => {
     await expect(rollF2pLevelGiftForUser(45)).resolves.toMatchObject({ id: 'cosmetic_avatar_aura' });
   });
 
+  it('returns guaranteed milestone gifts beyond level 50', async () => {
+    await expect(rollF2pLevelGiftForUser(55)).resolves.toMatchObject({ id: 'chain_shield_3' });
+    await expect(rollF2pLevelGiftForUser(70)).resolves.toMatchObject({ id: 'xp_2x_48h' });
+    await expect(rollF2pLevelGiftForUser(80)).resolves.toMatchObject({ id: 'cosmetic_avatar_aura' });
+    await expect(rollF2pLevelGiftForUser(90)).resolves.toMatchObject({ id: 'pack_voucher_48h' });
+  });
+
   it('uses a dual-modal safe replacement for choice milestones', () => {
     expect(getMilestoneLevelGift(30)?.id).toBe('choice_3_level');
     expect(getMilestoneLevelGift(30, { premiumSafe: true })?.id).toBe('xp_bank_600');
+    expect(getMilestoneLevelGift(50)?.id).toBe('choice_3_level');
+    expect(getMilestoneLevelGift(60)?.id).toBe('choice_3_level');
+    expect(getMilestoneLevelGift(100)?.id).toBe('choice_3_level');
+    expect(getMilestoneLevelGift(100, { premiumSafe: true })?.id).toBe('xp_bank_600');
   });
 
   it('source-gates pack gift milestones for French while preserving English legacy rewards', async () => {
     expect(getMilestoneLevelGift(25, { studyTarget: 'en' })?.id).toBe('pack_voucher_48h');
     expect(getMilestoneLevelGift(25, { studyTarget: 'fr' })?.id).toBe('shards_10');
+    expect(getMilestoneLevelGift(90, { studyTarget: 'en' })?.id).toBe('pack_voucher_48h');
+    expect(getMilestoneLevelGift(90, { studyTarget: 'fr' })?.id).toBe('shards_10');
 
     await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'en' })).resolves.toMatchObject({ id: 'pack_voucher_48h' });
     await expect(rollF2pLevelGiftForUser(25, { studyTarget: 'fr' })).resolves.toMatchObject({ id: 'shards_10' });

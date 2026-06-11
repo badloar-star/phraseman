@@ -824,7 +824,7 @@ export function sanitizeLevelGiftForStudyTarget(gift: GiftDef, studyTarget?: Run
   return cloned;
 }
 
-export const LEVEL_GIFT_MILESTONE_LEVELS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50] as const;
+export const LEVEL_GIFT_MILESTONE_LEVELS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 100] as const;
 
 const LEVEL_GIFT_MILESTONE_IDS: Record<number, GiftId> = {
   5: 'xp_bank_150',
@@ -837,6 +837,13 @@ const LEVEL_GIFT_MILESTONE_IDS: Record<number, GiftId> = {
   40: 'xp_bank_600',
   45: 'cosmetic_avatar_aura',
   50: 'choice_3_level',
+  // Вехи после 50: раньше дальше шёл только рандом и игрок терял «гарантированные» подарки.
+  55: 'chain_shield_3',
+  60: 'choice_3_level',
+  70: 'xp_2x_48h',
+  80: 'cosmetic_avatar_aura',
+  90: 'pack_voucher_48h',
+  100: 'choice_3_level',
 };
 
 export function getMilestoneLevelGift(level: number, opts?: { premiumSafe?: boolean; studyTarget?: RuntimeStudyTarget }): GiftDef | null {

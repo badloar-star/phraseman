@@ -3,161 +3,310 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Phraseman - скачать приложение</title>
+  <title>Phraseman — живые английские фразы и произношение. Скачать для iPhone и Android</title>
   <meta
     name="description"
-    content="Скачайте Phraseman для iPhone и Android. Английские фразы, тренировка произношения и короткие уроки в одном приложении."
+    content="10 000+ живых английских фраз с тренировкой произношения, короткие уроки и дуэли с реальными игроками. Объяснения по-русски — просто и без скуки. Бесплатно для iPhone и Android."
   />
-  <meta property="og:title" content="Phraseman - скачать приложение" />
+  <link rel="canonical" href="https://knowlyapps.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://knowlyapps.com/" />
+  <meta property="og:title" content="Phraseman — английский, на котором действительно говорят" />
   <meta
     property="og:description"
-    content="Английские фразы, тренировка произношения и короткие уроки, которые легко проходить каждый день."
+    content="10 000+ живых фраз, тренировка произношения, дуэли и лиги. Объяснения по-русски. Бесплатно для iPhone и Android."
   />
-  <meta property="og:image" content="/assets/phraseman-icon.png" />
+  <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://knowlyapps.com/assets/og-banner.png" />
+  <meta name="apple-itunes-app" content="app-id=6764800879" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Syne:wght@700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/knowly.css?v=phraseman-download-4" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/phraseman.css?v=bg1" />
+  <link rel="preload" as="image" href="/assets/phraseman-screen-home.webp" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Phraseman",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "EducationalApplication",
+    "description": "Живые английские фразы с тренировкой произношения, короткие уроки и дуэли. Объяснения по-русски.",
+    "image": "https://knowlyapps.com/assets/og-banner.png",
+    "url": "https://knowlyapps.com/",
+    "installUrl": "https://knowlyapps.com/download/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Organization", "name": "Knowly", "url": "https://knowlyapps.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Phraseman — это бесплатно?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Да. Уроки, фразы дня, дуэли и лиги доступны бесплатно. Premium снимает лимиты энергии и открывает все планы и темы — но учиться можно и без него." }
+      },
+      {
+        "@type": "Question",
+        "name": "Какой уровень английского нужен?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Любой. Планы начинаются с самых основ, а если фраза непонятна — кнопка «Объяснить просто» разберёт её по-русски." }
+      },
+      {
+        "@type": "Question",
+        "name": "Чем Phraseman отличается от Duolingo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Phraseman учит не отдельным словам, а готовым фразам, которые сразу можно сказать, и тренирует произношение вслух. Объяснения написаны по-русски и для русскоязычных." }
+      },
+      {
+        "@type": "Question",
+        "name": "Произношение слушает сервер?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Нет. Распознавание речи работает прямо на телефоне — голос никуда не отправляется." }
+      },
+      {
+        "@type": "Question",
+        "name": "Где скачать Phraseman?",
+        "acceptedAnswer": { "@type": "Answer", "text": "В App Store для iPhone и iPad и в Google Play для Android." }
+      }
+    ]
+  }
+  </script>
 </head>
-<body class="pm-download-page">
-  <div class="pm-page-bg" aria-hidden="true"></div>
+<body>
+  <div class="bg" aria-hidden="true"></div>
 
-  <div class="pm-shell">
-    <header class="pm-topbar" aria-label="Навигация Phraseman">
-      <a class="pm-brand" href="/" aria-label="Phraseman">
-        <img src="/assets/phraseman-icon.png" alt="" width="42" height="42" decoding="async" />
-        <span>Phraseman</span>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Phraseman">
+        <img src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
+        <span><b>Phraseman</b><small>Живой английский</small></span>
       </a>
-      <nav class="pm-toplinks" aria-label="Ссылки">
-        <a href="/download/">Download</a>
-        <a href="/legal/privacy/">Privacy</a>
-        <a href="/legal/terms/">Terms</a>
-        <a href="/contact/">Support</a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="#features">Что внутри</a>
+        <a href="#how">Как это работает</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">Вопросы</a>
+        <a href="/contact/">Поддержка</a>
+        <a class="cta" href="/download/">Скачать бесплатно</a>
       </nav>
     </header>
 
-    <main class="pm-download-main">
-      <section class="pm-hero" aria-labelledby="pm-title">
-        <div class="pm-copy">
-          <img
-            class="pm-app-icon"
-            src="/assets/phraseman-icon.png"
-            alt="Иконка приложения Phraseman"
-            width="132"
-            height="132"
-            decoding="async"
-          />
-
-          <p class="pm-kicker">Приложение для английских фраз</p>
-          <h1 id="pm-title">Phraseman</h1>
-          <p class="pm-lead">
-            Учите живые английские фразы, тренируйте произношение и проходите короткие уроки без скуки.
-          </p>
-          <p class="pm-download-note">
-            Скачать приложение можно, нажав на кнопку вашей платформы ниже.
-          </p>
-
-          <div class="pm-store-actions" aria-label="Скачать Phraseman">
-            <a
-              class="pm-store-button pm-store-button-ios"
-              id="km-ios"
-              href="https://apps.apple.com/app/id6764800879"
-              rel="noopener noreferrer"
-              aria-label="Скачать Phraseman в App Store"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z" />
-              </svg>
-              <span>
-                <strong>App Store</strong>
-                <small>для iPhone и iPad</small>
-              </span>
-            </a>
-
-            <a
-              class="pm-store-button pm-store-button-android"
-              id="km-android"
-              href="https://play.google.com/store/apps/details?id=app.phraseman"
-              rel="noopener noreferrer"
-              aria-label="Скачать Phraseman в Google Play"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path class="pm-play-blue" d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Z" />
-                <path class="pm-play-green" d="m15.42 8.88-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Z" />
-                <path class="pm-play-yellow" d="m15.48 15.09-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Z" />
-                <path class="pm-play-red" d="M15.48 8.91 6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z" />
-              </svg>
-              <span>
-                <strong>Google Play</strong>
-                <small>для Android</small>
-              </span>
-            </a>
-          </div>
-        </div>
-
-        <aside class="pm-phone-panel" aria-label="Скриншоты приложения Phraseman">
-          <div class="pm-device-cluster">
-            <figure class="pm-device pm-device-main">
-              <img src="/assets/phraseman-screen-home.png" alt="Главный экран Phraseman в теме Forest" decoding="async" />
-            </figure>
-          </div>
-        </aside>
-      </section>
-
-      <section class="pm-qr-section" aria-labelledby="pm-qr-title">
+    <main>
+      <section class="hero" id="download" aria-labelledby="pm-title">
         <div>
-          <h2 id="pm-qr-title">Откройте на телефоне</h2>
-          <p>Можно отсканировать QR-код и выбрать App Store или Google Play уже с мобильного устройства.</p>
+          <p class="kicker">Английский по фразам · iOS и Android</p>
+          <h1 id="pm-title">Английский, на котором <span class="gold-accent">действительно говорят</span></h1>
+          <p class="lead">
+            <b>10&nbsp;000+ живых фраз</b> с тренировкой произношения, короткие уроки
+            и дуэли с реальными игроками. Объяснения по-русски — просто, как объяснил бы друг.
+          </p>
+
+          <div class="actions" aria-label="Скачать Phraseman">
+            <a class="store-badge" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer" aria-label="Скачать Phraseman в App Store">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z" /></svg>
+              <span><small>Загрузите в</small><b>App Store</b></span>
+            </a>
+            <a class="store-badge" data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer" aria-label="Скачать Phraseman в Google Play">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z" /></svg>
+              <span><small>Доступно в</small><b>Google Play</b></span>
+            </a>
+          </div>
+          <p class="under-cta">Бесплатно. <b>Без регистрации</b> — первый урок через 30 секунд.</p>
         </div>
-        <div class="pm-qr-frame">
-          <div id="km-qr-host" class="pm-qr-host" aria-label="QR-код страницы скачивания"></div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <figure class="device">
+            <img src="/assets/phraseman-screen-home.webp" alt="Главный экран приложения Phraseman" width="640" height="1422" />
+          </figure>
         </div>
       </section>
+
+      <div class="proof reveal" role="list" aria-label="Phraseman в цифрах">
+        <div role="listitem"><b><i>10 000+</i></b><span>живых фраз</span></div>
+        <div role="listitem"><b>15 минут</b><span>в день достаточно</span></div>
+        <div role="listitem"><b><i>Дуэли</i></b><span>и лиги каждую неделю</span></div>
+        <div role="listitem"><b>По-русски</b><span>все объяснения</span></div>
+      </div>
+
+      <section id="features" class="block reveal">
+        <p class="eyebrow">Что внутри</p>
+        <h2>Не курс. <span class="gold-accent">Тренажёр речи</span></h2>
+        <p class="sub">Phraseman не заставляет зубрить грамматику — он ставит фразы,
+          которыми вы заговорите в первый же день.</p>
+        <div class="features">
+          <article class="fcard">
+            <div class="num">01</div>
+            <h3>Фразы из жизни, не из учебника</h3>
+            <p>То, что говорят в аэропорту, на собеседовании и в переписке. Каждая фраза —
+              с разбором, почему носители говорят именно так.</p>
+          </article>
+          <article class="fcard">
+            <div class="num">02</div>
+            <h3>Телефон слышит ваше произношение</h3>
+            <p>Говорите вслух — приложение оценивает произношение прямо на устройстве.
+              Голос не отправляется на сервер.</p>
+          </article>
+          <article class="fcard">
+            <div class="num">03</div>
+            <h3>Дуэли и лиги</h3>
+            <p>Сражайтесь с реальными игроками в арене, поднимайтесь из Бронзы наверх
+              и защищайте серию — бросить не получится.</p>
+          </article>
+          <article class="fcard">
+            <div class="num">04</div>
+            <h3>Объяснения «как для пятилетнего»</h3>
+            <p>Непонятно? Нажмите «Объяснить просто» — и правило разложат по-русски,
+              на бытовых примерах, без терминов.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="how" class="block reveal">
+        <p class="eyebrow">Как это работает</p>
+        <h2>Несколько минут в день. <span class="gold-accent">Серьёзно</span></h2>
+        <p class="sub">Никаких «с понедельника начну». Формат настолько короткий,
+          что проще пройти урок, чем придумать отговорку.</p>
+        <div class="steps">
+          <div class="step"><h3>Скачайте и выберите план</h3><p>Поездка, работа, переезд или разговорный — план подстраивается под вашу цель.</p></div>
+          <div class="step"><h3>Проходите короткие уроки</h3><p>Фразы, произношение, карточки и вызовы — около 15 минут в день.</p></div>
+          <div class="step"><h3>Возвращайтесь за серией</h3><p>Серия, энергия, лиги и подарки — механики, ради которых хочется открыть приложение завтра.</p></div>
+        </div>
+      </section>
+
+      <section id="reviews" class="block reveal">
+        <p class="eyebrow">Что говорят</p>
+        <h2>Настоящие отзывы из <span class="gold-accent">Google Play</span></h2>
+        <p class="sub">Не маркетинговые цитаты — реальные отзывы пользователей со страницы приложения.</p>
+        <div class="quotes">
+          <article class="quote">
+            <div class="qmark">“</div>
+            <p>Я использовал такие приложения, как Дуолинго, Puzzle English, English Galaxy, Glossika,
+              Anki. Только это приложение вдохновляет, мотивирует и делает обучение интересным,
+              по-настоящему наделяет способностью понимать и говорить правильно на современном
+              английском языке!</p>
+            <footer>— отзыв в Google Play</footer>
+          </article>
+          <article class="quote">
+            <div class="qmark">“</div>
+            <p>Отличная система: учишь не изолированные лексические единицы, а целые фразы
+              и словосочетания, которые реально используют носители… Алгоритм подсовывает
+              забывающиеся фразы ровно вовремя, так что материал реально уходит в долгую память.
+              За месяц заметно улучшилось понимание на слух.</p>
+            <footer>— отзыв в Google Play</footer>
+          </article>
+          <article class="quote">
+            <div class="qmark">“</div>
+            <p>Увидел приложение у жены. Очень впечатлился. С первого урока уже увлекает и хочется
+              продолжать заниматься… Короткие, но очень понятные подсказки при ошибках.
+              Приложение рекомендую 👍</p>
+            <footer>— отзыв в Google Play</footer>
+          </article>
+          <article class="quote">
+            <div class="qmark">“</div>
+            <p>Простые фразы хорошо запоминаются, чётко и кратко подаётся грамматика, а ещё есть
+              «фишка» — значения слов приводятся с комментарием, часто с юмором. Рекомендую.</p>
+            <footer>— отзыв в Google Play</footer>
+          </article>
+        </div>
+        <p class="quotes-more">
+          <a href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer">Читать все отзывы в Google Play →</a>
+        </p>
+      </section>
+
+      <section id="faq" class="block reveal">
+        <p class="eyebrow">Вопросы</p>
+        <h2>Коротко о главном</h2>
+        <div class="faq">
+          <details open>
+            <summary>Это бесплатно?</summary>
+            <p>Да. Уроки, фразы дня, дуэли и лиги доступны бесплатно. Premium снимает лимиты
+              энергии и открывает все планы и темы — но учиться можно и без него.</p>
+          </details>
+          <details>
+            <summary>Какой уровень английского нужен?</summary>
+            <p>Любой. Планы начинаются с самых основ, а если фраза непонятна — кнопка
+              «Объяснить просто» разберёт её по-русски.</p>
+          </details>
+          <details>
+            <summary>Чем Phraseman отличается от Duolingo?</summary>
+            <p>Мы учим не словам, а готовым фразам, которые сразу можно сказать, — и тренируем
+              произношение вслух. Объяснения написаны по-русски и для русскоязычных.</p>
+          </details>
+          <details>
+            <summary>Произношение слушает сервер?</summary>
+            <p>Нет. Распознавание речи работает прямо на телефоне — ваш голос никуда
+              не отправляется.</p>
+          </details>
+          <details>
+            <summary>Где скачать?</summary>
+            <p>В App Store для iPhone и iPad и в Google Play для Android. Кнопки — выше
+              и ниже на этой странице.</p>
+          </details>
+        </div>
+      </section>
+
+      <div class="final reveal">
+        <img class="icon" src="/assets/phraseman-icon-128.png" alt="" width="84" height="84" loading="lazy" />
+        <h2>Первый урок займёт <span class="gold-accent">три минуты</span></h2>
+        <p class="sub">Скачайте Phraseman и скажите первую живую фразу уже сегодня.</p>
+        <div class="actions">
+          <a class="store-badge" data-store="ios" href="https://apps.apple.com/app/id6764800879" rel="noopener noreferrer" aria-label="Скачать Phraseman в App Store">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z" /></svg>
+            <span><small>Загрузите в</small><b>App Store</b></span>
+          </a>
+          <a class="store-badge" data-store="android" href="https://play.google.com/store/apps/details?id=app.phraseman" rel="noopener noreferrer" aria-label="Скачать Phraseman в Google Play">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z" /></svg>
+            <span><small>Доступно в</small><b>Google Play</b></span>
+          </a>
+        </div>
+        <p class="under-cta">Бесплатно для iPhone, iPad и Android.</p>
+      </div>
     </main>
+
+    <footer class="footer">
+      <a class="brand" href="/" style="gap:10px">
+        <img src="/assets/phraseman-icon-128.png" alt="" style="width:30px;height:30px;border-radius:8px" loading="lazy" />
+        <span><b style="font-size:14px">Phraseman</b><small style="letter-spacing:.18em">by Knowly</small></span>
+      </a>
+      <nav class="flinks" aria-label="Ссылки">
+        <a href="/download/">Скачать</a>
+        <a href="/contact/">Поддержка</a>
+        <a href="/legal/privacy/">Конфиденциальность</a>
+        <a href="/legal/terms/">Условия</a>
+        <a href="/legal/data-deletion/">Удаление данных</a>
+      </nav>
+      <p>© 2026 Knowly · Phraseman — учите английский живыми фразами.</p>
+    </footer>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="/assets/site.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var config = window.KNOWLY_SITE || {};
-      var ios = document.getElementById('km-ios');
-      var android = document.getElementById('km-android');
-      if (ios && config.storeIos) ios.href = config.storeIos;
-      if (android && config.storeAndroid) android.href = config.storeAndroid;
+      document.querySelectorAll('[data-store="ios"]').forEach(function (a) {
+        if (config.storeIos) a.href = config.storeIos;
+      });
+      document.querySelectorAll('[data-store="android"]').forEach(function (a) {
+        if (config.storeAndroid) a.href = config.storeAndroid;
+      });
 
-      var raw = (config.publicDownloadPageUrl || '').trim();
-      var pageUrl = raw || (typeof location !== 'undefined' ? location.origin.replace(/\/$/, '') + '/download/' : '');
-      var host = document.getElementById('km-qr-host');
-      if (!host || !pageUrl) return;
-
-      if (typeof QRCode === 'undefined') {
-        host.innerHTML =
-          '<p class="pm-qr-open-link"><a href="' +
-          pageUrl.replace(/"/g, '&quot;') +
-          '" rel="noopener noreferrer">Открыть страницу</a></p>';
-        return;
-      }
-
-      try {
-        host.innerHTML = '';
-        new QRCode(host, {
-          text: pageUrl,
-          width: 184,
-          height: 184,
-          colorDark: '#08111f',
-          colorLight: '#ffffff',
-          correctLevel: QRCode.CorrectLevel.M,
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
         });
-        var img = host.querySelector('img');
-        if (img) img.alt = 'QR: страница скачивания Phraseman';
-      } catch (err) {
-        host.innerHTML =
-          '<p class="pm-qr-open-link"><a href="' +
-          pageUrl.replace(/"/g, '&quot;') +
-          '" rel="noopener noreferrer">Открыть страницу</a></p>';
-      }
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
     });
   </script>
 </body>

@@ -3,114 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title data-i18n-es="Contacto y comentarios — Knowly · PhraseMan">Связь и отзывы — Knowly · PhraseMan</title>
-  <meta name="description" content="Написать в поддержку PhraseMan или оставить отзыв." />
+  <title>Поддержка и отзывы — Phraseman</title>
+  <meta name="description" content="Написать в поддержку Phraseman или оставить отзыв. Отвечаем в течение 1–2 дней." />
+  <link rel="canonical" href="https://knowlyapps.com/contact/" />
+  <meta property="og:title" content="Поддержка Phraseman" />
+  <meta property="og:description" content="Напишите нам — прочитаем и ответим в течение 1–2 дней." />
+  <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/knowly.css?v=c1" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/assets/phraseman.css?v=bg1" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
 </head>
 <body>
-  <div class="km-page-bg" aria-hidden="true"></div>
-  <div class="km-shell">
-    <header class="km-nav">
-      <a class="km-brand" href="/">
-        <span class="km-mark" aria-hidden="true"></span>
-        <span>
-          <span class="km-brand-name" data-i18n-es="Knowly">Knowly</span><br />
-          <span class="km-brand-tag" data-i18n-es="estudio móvil">мобильная студия</span>
-        </span>
-      </a>
-      <nav class="km-nav-links" aria-label="Главное" data-i18n-es-aria="Principal">
-        <a href="/" data-i18n-es="Inicio">Главная</a>
-        <div class="km-dd">
-          <button type="button" class="km-dd-btn" aria-haspopup="true" aria-expanded="false">
-            <span data-i18n-es="Apps ▾">Приложения ▾</span>
-          </button>
-          <div class="km-dd-panel" role="menu">
-            <a href="/download/" role="menuitem" data-i18n-es="PhraseMan — descargar">PhraseMan — скачать</a>
-            <a href="/legal/privacy/" role="menuitem" data-i18n-es="Privacidad">Privacy</a>
-            <a href="/legal/terms/" role="menuitem" data-i18n-es="Términos">Terms</a>
-            <a href="/contact/" role="menuitem" data-i18n-es="Contacto para apps">Связь по приложениям</a>
-            <span style="display:block;padding:10px 12px;font-size:12px;color:var(--km-muted);border-top:1px solid var(--km-border);margin-top:6px" data-i18n-es="Más apps próximamente">Другие приложения — скоро</span>
-          </div>
-        </div>
-        <a href="/#news" data-i18n-es="Noticias">Новости</a>
-        <a href="/download/" class="km-cta" data-i18n-es="Ir a la tienda">В магазин</a>
-      </nav>
-      <button type="button" id="km-burger" class="km-burger" aria-label="Меню" data-i18n-es-aria="Menú">☰</button>
-    </header>
-    <div id="km-overlay" class="km-overlay" aria-hidden="true"></div>
-    <aside id="km-drawer" class="km-drawer" aria-label="Меню" data-i18n-es-aria="Menú">
-      <div style="font-family:Syne,sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px" data-i18n-es="Knowly">Knowly</div>
-      <a href="/" data-drawer-close data-i18n-es="Inicio">Главная</a>
-      <div class="km-drawer-h" data-i18n-es="Apps">Приложения</div>
-      <a href="/download/" data-drawer-close data-i18n-es="PhraseMan — descargar">PhraseMan — скачать</a>
-      <a href="/legal/privacy/" data-drawer-close data-i18n-es="Privacidad">Privacy</a>
-      <a href="/legal/terms/" data-drawer-close data-i18n-es="Términos">Terms</a>
-      <a href="/contact/" data-drawer-close data-i18n-es="Contacto para apps">Связь по приложениям</a>
-      <div class="km-drawer-h" data-i18n-es="Más">Ещё</div>
-      <a href="/#news" data-drawer-close data-i18n-es="Noticias">Новости</a>
-      <a href="/download/" data-drawer-close class="km-btn-primary km-cta" data-i18n-es="Ir a la tienda">В магазин</a>
-    </aside>
+  <div class="bg" aria-hidden="true"></div>
 
-    <main class="km-main">
-      <section class="km-section">
-        <h1 class="km-h2" data-i18n-es="Contacto y comentarios">Связь и отзывы</h1>
-        <p class="km-sub">
-          <span data-i18n-es="Escribe qué quieres contarnos o preguntar y deja un email de respuesta. Leeremos el mensaje y nos pondremos en contacto contigo.">Напишите, что хотите сообщить или спросить, и укажите почту для ответа — мы прочитаем обращение и свяжемся с вами.</span>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Phraseman">
+        <img src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
+        <span><b>Phraseman</b><small>Живой английский</small></span>
+      </a>
+      <nav class="nav" aria-label="Навигация">
+        <a href="/">О приложении</a>
+        <a href="/download/">Скачать</a>
+        <a class="cta" href="/download/">В магазин</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="block" style="padding-top:clamp(28px,5vh,52px)">
+        <p class="eyebrow">Поддержка</p>
+        <h2>Связь и <span class="gold-accent">отзывы</span></h2>
+        <p class="sub">
+          Напишите, что хотите сообщить или спросить, и укажите почту для ответа.
+          Мы читаем каждое обращение и отвечаем в течение 1–2 дней.
+          Можно и напрямую: <a href="mailto:support.phraseman@gmail.com" style="color:var(--gold);font-weight:650;text-decoration:none">support.phraseman@gmail.com</a>
         </p>
 
-        <div class="km-glass-panel" style="max-width:560px">
+        <div class="panel" style="max-width:560px">
           <form id="km-contact-form" novalidate>
-            <div class="km-field km-hp" aria-hidden="true">
-              <label for="km-trap" data-i18n-es="Empresa">Company</label>
+            <div class="field hp" aria-hidden="true">
+              <label for="km-trap">Company</label>
               <input type="text" id="km-trap" name="company" tabindex="-1" autocomplete="off" />
             </div>
-            <div class="km-field">
-              <label for="km-name" data-i18n-es="Nombre (opcional)">Имя (по желанию)</label>
+            <div class="field">
+              <label for="km-name">Имя (по желанию)</label>
               <input type="text" id="km-name" name="name" maxlength="120" autocomplete="name" />
             </div>
-            <div class="km-field">
-              <label for="km-email" data-i18n-es="Email para responder *">Email для ответа *</label>
+            <div class="field">
+              <label for="km-email">Email для ответа *</label>
               <input type="email" id="km-email" name="email" required maxlength="320" autocomplete="email" />
             </div>
-            <div class="km-field">
-              <label for="km-topic" data-i18n-es="Tema">Тема</label>
+            <div class="field">
+              <label for="km-topic">Тема</label>
               <select id="km-topic" name="topic">
-                <option value="support" data-i18n-es="Soporte">Поддержка</option>
-                <option value="feedback" data-i18n-es="Comentario">Отзыв</option>
-                <option value="legal" data-i18n-es="Pregunta legal">Юридический вопрос</option>
-                <option value="other" data-i18n-es="Otro">Другое</option>
+                <option value="support">Поддержка</option>
+                <option value="feedback">Отзыв</option>
+                <option value="legal">Юридический вопрос</option>
+                <option value="other">Другое</option>
               </select>
             </div>
-            <div class="km-field">
-              <label for="km-msg" data-i18n-es="Mensaje *">Сообщение *</label>
-              <textarea id="km-msg" name="message" required minlength="10" maxlength="5000" placeholder="Опишите вопрос или идею (не меньше 10 символов)" data-i18n-es="Describe tu pregunta o idea (al menos 10 caracteres)"></textarea>
+            <div class="field">
+              <label for="km-msg">Сообщение *</label>
+              <textarea id="km-msg" name="message" required minlength="10" maxlength="5000" placeholder="Опишите вопрос или идею (не меньше 10 символов)"></textarea>
             </div>
-            <button type="submit" class="km-btn km-btn-primary" style="width:100%;border:none;cursor:pointer">
-              <span data-i18n-es="Enviar">Отправить</span>
-            </button>
-            <div id="km-toast" class="km-toast" role="status" aria-live="polite"></div>
+            <button type="submit" class="btn-gold">Отправить</button>
+            <div id="km-toast" class="toast" role="status" aria-live="polite"></div>
           </form>
         </div>
       </section>
     </main>
 
-    <footer class="km-footer">
-      <div class="km-footer-inner">
-        <p class="km-fineprint" data-i18n-es="Knowly — estudio · formulario de contacto para apps">Knowly — студия · форма обратной связи по приложениям</p>
-        <nav class="km-footer-links">
-          <a href="/" data-i18n-es="Inicio">Главная</a>
-          <a href="/download/" data-i18n-es="Descargar">Скачать</a>
-          <a href="/legal/privacy/" data-i18n-es="Privacidad">Privacy</a>
-          <a href="/legal/terms/" data-i18n-es="Términos">Terms</a>
-        </nav>
-      </div>
+    <footer class="footer">
+      <a class="brand" href="/" style="gap:10px">
+        <img src="/assets/phraseman-icon-128.png" alt="" style="width:30px;height:30px;border-radius:8px" loading="lazy" />
+        <span><b style="font-size:14px">Phraseman</b><small style="letter-spacing:.18em">by Knowly</small></span>
+      </a>
+      <nav class="flinks" aria-label="Ссылки">
+        <a href="/">О приложении</a>
+        <a href="/download/">Скачать</a>
+        <a href="/legal/privacy/">Конфиденциальность</a>
+        <a href="/legal/terms/">Условия</a>
+        <a href="/legal/data-deletion/">Удаление данных</a>
+      </nav>
+      <p>© 2026 Knowly · Phraseman — учите английский живыми фразами.</p>
     </footer>
   </div>
-  <script src="/assets/site.js" defer></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var form = document.getElementById('km-contact-form');
@@ -119,13 +105,13 @@
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
         if (toast) {
-          toast.className = 'km-toast';
+          toast.className = 'toast';
           toast.textContent = '';
         }
         var trap = document.getElementById('km-trap');
         if (trap && trap.value) {
           if (toast) {
-            toast.className = 'km-toast ok';
+            toast.className = 'toast ok';
             toast.textContent = 'Спасибо! Сообщение принято.';
           }
           return;
@@ -134,7 +120,7 @@
         var ep = cfg.contactEndpoint;
         if (!ep) {
           if (toast) {
-            toast.className = 'km-toast err';
+            toast.className = 'toast err';
             toast.textContent = 'Не настроен адрес отправки. Напишите на support.phraseman@gmail.com';
           }
           return;
@@ -168,13 +154,13 @@
             throw new Error(json.error || 'Ошибка сервера (' + res.status + ')');
           }
           if (toast) {
-            toast.className = 'km-toast ok';
-            toast.textContent = 'Спасибо! Сообщение принято.';
+            toast.className = 'toast ok';
+            toast.textContent = 'Спасибо! Сообщение принято — ответим в течение 1–2 дней.';
           }
           form.reset();
         } catch (err) {
           if (toast) {
-            toast.className = 'km-toast err';
+            toast.className = 'toast err';
             toast.textContent = (err && err.message) || 'Не удалось отправить. Попробуйте позже или напишите на почту.';
           }
         } finally {

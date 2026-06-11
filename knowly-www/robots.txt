@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /phraseman/apple-auth/
+
+Sitemap: https://knowlyapps.com/sitemap.xml

@@ -1752,6 +1752,9 @@ export default function SettingsTestersFunctions() {
         fromUid: ADMIN_QA_FRIEND_UID,
         fromName: ADMIN_QA_FRIEND_NAME,
         seen: false,
+        // Обязательная метка по firestore.rules: клиентское создание shard_rewards
+        // разрешено только для QA-симуляции (UI показывает «(QA)»).
+        qa: true,
       }, { merge: true });
       await db.collection('users').doc(uid).collection('friend_gifts_received').doc(docId).set({
         ts: new Date(now).toISOString(),

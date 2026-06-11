@@ -131,7 +131,10 @@ service cloud.firestore {
       match /shard_rewards/{rewardId} {
         allow read:   if userDocOwnerMatchesAuth(userId);
         allow update: if userDocOwnerMatchesAuth(userId) && request.resource.data.seen == true;
-        allow create: if userDocOwnerMatchesAuth(userId);
+        // Реальные награды (friend_gift и пр.) пишет только Admin SDK из CF в обход rules.
+        // Клиенту разрешена лишь QA-симуляция с обязательной меткой qa == true —
+        // UI помечает такие записи «(QA)», подделать «настоящий» подарок себе нельзя.
+        allow create: if userDocOwnerMatchesAuth(userId) && request.resource.data.qa == true;
         allow delete: if false;
       }
     }

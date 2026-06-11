@@ -59,18 +59,23 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
   const batch = db.batch();
   for (const doc of snap.docs as Array<{ id: string; ref: unknown; data: () => Record<string, unknown> }>) {
     const d = doc.data();
+    // Записи, созданные клиентом (QA-симуляция), по rules обязаны нести qa == true —
+    // помечаем их в UI, чтобы поддельный «подарок от друга» нельзя было выдать за настоящий.
+    const isQa = d.qa === true;
+    const withQaMark = (label: string | undefined): string | undefined =>
+      isQa && label ? `${label} (QA)` : label;
     gifts.push({
       id: doc.id,
       giftId: String(d.rewardType ?? d.giftId ?? ''),
-      giftLabel: String(d.giftLabel ?? d.label ?? d.rewardType ?? ''),
-      giftLabelRu: typeof d.giftLabelRu === 'string' ? d.giftLabelRu : undefined,
-      giftLabelUk: typeof d.giftLabelUk === 'string' ? d.giftLabelUk : undefined,
-      giftLabelEs: typeof d.giftLabelEs === 'string' ? d.giftLabelEs : undefined,
-      giftLabelPtBr: typeof d.giftLabelPtBr === 'string' ? d.giftLabelPtBr : undefined,
-      giftLabelVi: typeof d.giftLabelVi === 'string' ? d.giftLabelVi : undefined,
-      giftLabelId: typeof d.giftLabelId === 'string' ? d.giftLabelId : undefined,
-      giftLabelTr: typeof d.giftLabelTr === 'string' ? d.giftLabelTr : undefined,
-      giftLabelPl: typeof d.giftLabelPl === 'string' ? d.giftLabelPl : undefined,
+      giftLabel: withQaMark(String(d.giftLabel ?? d.label ?? d.rewardType ?? '')) ?? '',
+      giftLabelRu: withQaMark(typeof d.giftLabelRu === 'string' ? d.giftLabelRu : undefined),
+      giftLabelUk: withQaMark(typeof d.giftLabelUk === 'string' ? d.giftLabelUk : undefined),
+      giftLabelEs: withQaMark(typeof d.giftLabelEs === 'string' ? d.giftLabelEs : undefined),
+      giftLabelPtBr: withQaMark(typeof d.giftLabelPtBr === 'string' ? d.giftLabelPtBr : undefined),
+      giftLabelVi: withQaMark(typeof d.giftLabelVi === 'string' ? d.giftLabelVi : undefined),
+      giftLabelId: withQaMark(typeof d.giftLabelId === 'string' ? d.giftLabelId : undefined),
+      giftLabelTr: withQaMark(typeof d.giftLabelTr === 'string' ? d.giftLabelTr : undefined),
+      giftLabelPl: withQaMark(typeof d.giftLabelPl === 'string' ? d.giftLabelPl : undefined),
       fromUid: String(d.fromUid ?? ''),
       fromName: String(d.fromName ?? ''),
       ts: parseTs(d.ts),

@@ -301,6 +301,10 @@ export const SYNC_KEYS = [
   'custom_avatar_gift_owned_v1',
   'avatar_aura_owned_v1',
   'avatar_aura_gift_owned_v1',
+  // «Сокровищница»: server-owned (см. SERVER_OWNED_PROGRESS_KEYS) — в SYNC_KEYS
+  // только ради restoreFromCloud; в исходящий патч не попадают.
+  'collectibles_owned_v1',
+  'collectibles_state_v1',
   'profile_card_level',
   'profile_card_theme',
   'profile_card_motion',
@@ -391,6 +395,9 @@ export const SYNC_KEYS = [
   'arena_daily_gift_bonus_v1',
   flashcardsPackTrialGiftKey('en'),
   'club_gift_free_boost_v1',
+  // Анти-повтор премиум pack-unlock подарков уровня: без синка при смене
+  // устройства один и тот же набор мог выпасть повторно.
+  'level_premium_pack_unlock_gifts_v1',
   'wager_discount',
   'league_chest_energy_override_v1',
   'league_chest_xp_override_v1',
@@ -646,6 +653,17 @@ const PREMIUM_PROGRESS_KEYS = new Set([
   'vip_admin_override',
   'vip_admin_grant_at',
   'vip_migrated_from_admin_grant_at',
+]);
+
+// Ключи, которые ВЫДАЁТ ТОЛЬКО СЕРВЕР (CF collectiblesClaimDrop и т.п.).
+// Клиент их в облако НИКОГДА не шлёт — они в blocklist progressHasNoPremiumWrites
+// (firestore.rules), и любая исходящая запись уронит весь set целиком, как с
+// premium-ключами. Отличие от PREMIUM_PROGRESS_KEYS: исключение безусловное
+// (нет аналога hasLocalPremiumSyncState). Локальная копия обновляется из ответа
+// CF и при restoreFromCloud — поэтому ключи ОБЯЗАНЫ оставаться в SYNC_KEYS.
+export const SERVER_OWNED_PROGRESS_KEYS = new Set([
+  'collectibles_owned_v1',
+  'collectibles_state_v1',
 ]);
 
 const premiumValuePresent = (value: unknown): boolean => {
@@ -1287,6 +1305,9 @@ async function doSyncToCloud(): Promise<void> {
       // (progressHasNoPremiumWrites) отклонят такую запись для обычного юзера и уронят
       // весь set целиком (вместе с XP/streak). Поэтому вычищаем их из patch заранее.
       if (PREMIUM_PROGRESS_KEYS.has(key)) continue;
+      // Server-owned ключи (Сокровищница): пишет только CF, исходящая запись
+      // была бы отклонена rules и уронила бы весь set.
+      if (SERVER_OWNED_PROGRESS_KEYS.has(key)) continue;
       if (previousSnapshot[key] !== value) progressPatch[key] = value;
     }
 
@@ -1361,6 +1382,7 @@ async function doSyncToCloud(): Promise<void> {
     }
     const snapshotData: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
+      if (SERVER_OWNED_PROGRESS_KEYS.has(key)) continue;
       if (shouldSyncPremiumProgressField(key, value, data)) snapshotData[key] = value;
     }
     await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(() => {});
@@ -1717,6 +1739,8 @@ export async function forceSyncToCloud(): Promise<boolean> {
       // Иначе Firestore rules отклонят force-sync целиком при смене устройства/аккаунта
       // и юзер не сможет завершить миграцию прогресса. См. progressHasNoPremiumWrites.
       else if (PREMIUM_PROGRESS_KEYS.has(key)) delete data[key];
+      // Server-owned ключи (Сокровищница) — та же причина: пишет только CF.
+      else if (SERVER_OWNED_PROGRESS_KEYS.has(key)) delete data[key];
     }
 
     const now = Date.now();

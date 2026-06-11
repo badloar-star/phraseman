@@ -39,6 +39,8 @@ export type AppEventMap = {
   app_messages_local_changed: undefined;
   /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */
   remote_config_changed: undefined;
+  /** «Сокровищница»: инвентарь карточек изменился (дроп/restore) — обновить счётчики и сетки. */
+  collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
   auth_provider_linked: undefined;
   /** Начисление осколков: анимация на главной + глобальная ShardsEarnedModal (если есть reason). */
@@ -81,7 +83,7 @@ export type AppEventMap = {
   /** Юзер запустил перепрохождение урока (mastery). lesson1.tsx должен перезагрузить прогресс. */
   lesson_replay_started: { lessonId: number; spent: number; studyTarget?: string };
   action_toast: {
-    type: 'success' | 'error' | 'info';
+    type: 'success' | 'error' | 'info' | 'reward';
     messageRu: string;
     messageUk?: string;
     /** Испанский UX (например dev); если нет — ActionToast использует базовую строку */
@@ -163,7 +165,13 @@ export function emitAppEvent<K extends keyof AppEventMap>(
       .then(({ trackActivity }) =>
         trackActivity(`event:${String(event)}`, {
           feature: event === 'action_toast' ? 'toast' : 'app_event',
-          result: event === 'action_toast' ? (payload as AppEventMap['action_toast']).type : 'info',
+          result: event === 'action_toast'
+            ? (() => {
+                const t = (payload as AppEventMap['action_toast']).type;
+                // 'reward' нет в словаре result у trackActivity — для аналитики это успех.
+                return t === 'reward' ? 'success' : t;
+              })()
+            : 'info',
           tags: {
             hasPayload: true,
             payload: JSON.stringify(payload).slice(0, 220),

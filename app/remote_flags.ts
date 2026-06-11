@@ -32,7 +32,8 @@ export type RemoteNumberKey =
 
 export type RemoteBoolKey =
   | 'referral_enabled'
-  | 'speaking_enabled';
+  | 'speaking_enabled'
+  | 'collectibles_enabled';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -59,6 +60,10 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   referral_enabled: false,
   speaking_enabled: true,
+  // «Сокровищница»: дефолт true = kill-switch семантика (фича едет с релизом,
+  // админка может экстренно выключить). Урок referral_enabled=false: фича,
+  // спрятанная за выключенным флагом, «не работает» для всех.
+  collectibles_enabled: true,
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -175,6 +180,7 @@ export const getFreeTrainerSessionsPerDay = () => getRemoteNumber('free_trainer_
 export const getPaywallV2Pct = () => getRemoteNumber('paywall_v2_pct');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
+export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 
 /**
  * Deterministic A/B group for a user (stable across launches unless the split

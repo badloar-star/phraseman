@@ -1189,6 +1189,9 @@ export {
 
 export { syncFriendActivityMirrorCron } from './friend_activity_mirror';
 
+// ── Деактивация истёкшего премиума/VIP по сроку (бессрочное не трогает) ───────
+export { premiumExpiryCron } from './premium_expiry_cron';
+
 export { friendSendGift } from './friend_gifts';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────

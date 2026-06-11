@@ -391,6 +391,7 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
   const now = Date.now();
   let createdBoost: Record<string, unknown> | null = null;
   let shardsBalance = 0;
+  let usedGiftVoucher = false;
 
   await db.runTransaction(async (tx) => {
     const [groupSnap, userSnap] = await Promise.all([tx.get(groupRef), tx.get(userRef)]);
@@ -412,11 +413,21 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
       throw new HttpsError('failed-precondition', 'already-active');
     }
 
-    const before = Math.max(0, readInt(userSnap.data()?.shards, 0));
-    if (before < LEAGUE_GROUP_BOOST_COST_SHARDS) {
+    const userData = userSnap.data() || {};
+    const userProgress = userData.progress && typeof userData.progress === 'object' && !Array.isArray(userData.progress)
+      ? userData.progress as Record<string, unknown>
+      : {};
+    // Подарок уровня «Буст клуба бесплатно»: клиент хранит флаг в AsyncStorage
+    // (club_gift_free_boost_v1), cloud_sync зеркалит его в progress. Если ваучер
+    // есть — активация бесплатна, ваучер гасится в этой же транзакции, чтобы
+    // нельзя было использовать дважды.
+    usedGiftVoucher = userData.club_gift_free_boost_v1 === '1' || userProgress.club_gift_free_boost_v1 === '1';
+    const boostCost = usedGiftVoucher ? 0 : LEAGUE_GROUP_BOOST_COST_SHARDS;
+    const before = Math.max(0, readInt(userData.shards, 0));
+    if (before < boostCost) {
       throw new HttpsError('failed-precondition', 'insufficient-shards');
     }
-    const after = before - LEAGUE_GROUP_BOOST_COST_SHARDS;
+    const after = before - boostCost;
     const startedAt = now;
     const expiresAt = now + LEAGUE_GROUP_BOOST_DURATION_MS;
     const likeEventId = `league_group_boost_${groupWeekId}_${groupId}_${startedAt}`;
@@ -442,16 +453,21 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
     };
     shardsBalance = after;
 
-    tx.set(userRef, {
+    const userPatch: Record<string, unknown> = {
       shards: after,
       shards_updated_at_ms: now,
       shards_updated_op: 'spend',
-      shards_updated_reason: 'league_group_boost',
-    }, { merge: true });
+      shards_updated_reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
+    };
+    if (usedGiftVoucher) {
+      userPatch.club_gift_free_boost_v1 = admin.firestore.FieldValue.delete();
+      userPatch.progress = { club_gift_free_boost_v1: admin.firestore.FieldValue.delete() };
+    }
+    tx.set(userRef, userPatch, { merge: true });
     tx.create(logRef, {
       type: 'spend',
-      amount: LEAGUE_GROUP_BOOST_COST_SHARDS,
-      reason: 'league_group_boost',
+      amount: usedGiftVoucher ? 0 : LEAGUE_GROUP_BOOST_COST_SHARDS,
+      reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
       balanceBefore: before,
       balanceAfter: after,
       ts: new Date(now).toISOString(),
@@ -475,7 +491,7 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
     }, { merge: true });
   });
 
-  return { ok: true, groupId, boost: createdBoost, shardsBalance };
+  return { ok: true, groupId, boost: createdBoost, shardsBalance, usedGiftVoucher };
 }
 
 // БЫЛО: onRequest с invoker:'public' и stableId из тела — кто угодно мог POST-запросом

@@ -4,6 +4,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink, getCurrentUid } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { clearClubGiftFreeBoostFromLevel } from './club_boosts';
 import { replaceShardsBalanceLocal } from './shards_system';
 import { sendFriendActivityLike, fetchTodayActivityLikeState } from './friend_activity_likes';
 
@@ -43,6 +44,8 @@ type ActivateLeagueGroupBoostResponse = {
   groupId: string;
   boost: LeagueGroupBoostState;
   shardsBalance: number;
+  /** true — сервер погасил подарочный ваучер «буст бесплатно» (club_boost_free). */
+  usedGiftVoucher?: boolean;
 };
 
 function callable<TReq, TRes>(name: string) {
@@ -261,7 +264,7 @@ export async function fetchLeagueGroupBoostLikedToday(boost: LeagueGroupBoostSta
 }
 
 export async function buyLeagueGroupBoost(): Promise<
-  | { ok: true; boost: LeagueGroupBoostState; shardsBalance: number }
+  | { ok: true; boost: LeagueGroupBoostState; shardsBalance: number; usedGiftVoucher: boolean }
   | { ok: false; reason: 'unavailable' | 'auth_required' | 'not_deployed' | 'active' | 'not_enough_shards' | 'no_current_group' | 'unknown' }
 > {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return { ok: false, reason: 'unavailable' };
@@ -277,7 +280,12 @@ export async function buyLeagueGroupBoost(): Promise<
     await cacheLeagueGroupBoost(boost);
     const balance = Math.max(0, Math.floor(Number(res.data?.shardsBalance) || 0));
     await replaceShardsBalanceLocal(balance);
-    return { ok: true, boost, shardsBalance: balance };
+    const usedGiftVoucher = res.data?.usedGiftVoucher === true;
+    if (usedGiftVoucher) {
+      // Сервер погасил ваучер — убираем локальный флаг, чтобы cloud_sync не вернул его обратно.
+      await clearClubGiftFreeBoostFromLevel().catch(() => {});
+    }
+    return { ok: true, boost, shardsBalance: balance, usedGiftVoucher };
   } catch (e: any) {
     const code = String(e?.code || '');
     const message = String(e?.message || '');

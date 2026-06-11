@@ -91,6 +91,7 @@ import {
   subscribeToActiveLeagueGroupBoost,
   type LeagueGroupBoostState,
 } from './league_group_boosts';
+import { hasClubGiftFreeBoostFromLevel } from './club_boosts';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
@@ -415,6 +416,14 @@ export default function ClubScreen() {
   const [activeGroupBoost, setActiveGroupBoost] = useState<LeagueGroupBoostState | null>(null);
   const [groupBoostTimeLeft, setGroupBoostTimeLeft] = useState('');
   const [groupBoostConfirmVisible, setGroupBoostConfirmVisible] = useState(false);
+  // Подарок уровня «Буст клуба бесплатно»: следующая активация не списывает осколки.
+  const [freeBoostGiftReady, setFreeBoostGiftReady] = useState(false);
+
+  useEffect(() => {
+    void hasClubGiftFreeBoostFromLevel().then((v) => {
+      if (isMountedRef.current) setFreeBoostGiftReady(v);
+    }).catch(() => {});
+  }, []);
   const [groupBoostBuying, setGroupBoostBuying] = useState(false);
   const [groupBoostLikeBusy, setGroupBoostLikeBusy] = useState(false);
   const [groupBoostLikedToday, setGroupBoostLikedToday] = useState(false);
@@ -969,6 +978,11 @@ export default function ClubScreen() {
 
   const handleBuyGroupBoost = useCallback(() => {
     if (activeGroupBoost || groupBoostBuying) return;
+    // Обновляем состояние подарочного ваучера перед показом подтверждения,
+    // чтобы цена в модалке («бесплатно» vs 50) была актуальной.
+    void hasClubGiftFreeBoostFromLevel()
+      .then((v) => { if (isMountedRef.current) setFreeBoostGiftReady(v); })
+      .catch(() => {});
     setGroupBoostConfirmVisible(true);
   }, [activeGroupBoost, groupBoostBuying]);
 
@@ -1004,7 +1018,10 @@ export default function ClubScreen() {
     if (activeGroupBoost || groupBoostBuying) return;
     const previousBoost: LeagueGroupBoostState | null = null;
     const previousBalance = await getShardsBalance().catch(() => null);
-    if (previousBalance !== null && previousBalance < LEAGUE_GROUP_BOOST_COST_SHARDS) {
+    // Подарочный ваучер: проверяем свежее значение прямо перед покупкой —
+    // активация бесплатна, баланс не трогаем.
+    const giftVoucher = await hasClubGiftFreeBoostFromLevel().catch(() => false);
+    if (!giftVoucher && previousBalance !== null && previousBalance < LEAGUE_GROUP_BOOST_COST_SHARDS) {
       showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} осколков`, 'error');
       return;
     }
@@ -1014,7 +1031,7 @@ export default function ClubScreen() {
     setGroupBoostLikedToday(false);
     setGroupBoostConfirmVisible(false);
     void cacheLeagueGroupBoost(optimisticBoost);
-    if (previousBalance !== null) {
+    if (!giftVoucher && previousBalance !== null) {
       void replaceShardsBalanceLocal(Math.max(0, previousBalance - LEAGUE_GROUP_BOOST_COST_SHARDS));
     }
     setGroupBoostBuying(true);
@@ -1023,7 +1040,12 @@ export default function ClubScreen() {
       if (res.ok) {
         setActiveGroupBoost(res.boost);
         setGroupBoostLikeTotal(res.boost.likeCount);
-        showLeagueToast(`Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен для всей лиги на 3 часа`, 'success');
+        if (res.usedGiftVoucher) {
+          setFreeBoostGiftReady(false);
+          showLeagueToast(`Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен на 3 часа — бесплатно, подарок использован 🎁`, 'success');
+        } else {
+          showLeagueToast(`Буст ×${LEAGUE_GROUP_BOOST_MULTIPLIER} включен для всей лиги на 3 часа`, 'success');
+        }
         return;
       }
       const shouldRollback = res.reason === 'active' || res.reason === 'not_enough_shards' || res.reason === 'no_current_group';
@@ -1031,7 +1053,7 @@ export default function ClubScreen() {
         setActiveGroupBoost(previousBoost);
         setGroupBoostLikeTotal(0);
         void cacheLeagueGroupBoost(previousBoost);
-        if (previousBalance !== null) void replaceShardsBalanceLocal(previousBalance);
+        if (!giftVoucher && previousBalance !== null) void replaceShardsBalanceLocal(previousBalance);
       }
       if (res.reason === 'active') {
         showLeagueToast('Буст уже активен. Новый можно купить после таймера.', 'info');
@@ -1317,16 +1339,22 @@ export default function ClubScreen() {
                 {activeGroupBoost ? 'Активен' : (groupBoostBuying ? 'Включаем...' : 'Купить')}
               </Text>
               {!activeGroupBoost && (
-                <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
+                freeBoostGiftReady ? (
                   <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                    {LEAGUE_GROUP_BOOST_COST_SHARDS}
+                    🎁 бесплатно
                   </Text>
-                  <Image
-                    source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
-                    style={{ width:16, height:16 }}
-                    contentFit="contain"
-                  />
-                </View>
+                ) : (
+                  <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
+                    <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
+                      {LEAGUE_GROUP_BOOST_COST_SHARDS}
+                    </Text>
+                    <Image
+                      source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
+                      style={{ width:16, height:16 }}
+                      contentFit="contain"
+                    />
+                  </View>
+                )
               )}
             </TouchableOpacity>
             {!!activeGroupBoost && (
@@ -1771,19 +1799,27 @@ export default function ClubScreen() {
               <Text style={{ color:t.textMuted, fontSize:f.body, fontWeight:'800' }}>
                 Стоимость:
               </Text>
-              <Image
-                source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
-                style={{ width:20, height:20 }}
-                contentFit="contain"
-              />
-              <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
-                {LEAGUE_GROUP_BOOST_COST_SHARDS}
-              </Text>
+              {freeBoostGiftReady ? (
+                <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
+                  Бесплатно — подарок за уровень 🎁
+                </Text>
+              ) : (
+                <>
+                  <Image
+                    source={oskolokImageForPackShards(LEAGUE_GROUP_BOOST_COST_SHARDS, themeMode)}
+                    style={{ width:20, height:20 }}
+                    contentFit="contain"
+                  />
+                  <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
+                    {LEAGUE_GROUP_BOOST_COST_SHARDS}
+                  </Text>
+                </>
+              )}
             </View>
           </View>
         )}
         cancelLabel="Отмена"
-        confirmLabel={groupBoostBuying ? 'Включаем...' : `Включить за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`}
+        confirmLabel={groupBoostBuying ? 'Включаем...' : (freeBoostGiftReady ? 'Включить бесплатно' : `Включить за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`)}
         confirmVariant="accent"
         testIDPrefix="league-group-boost-confirm"
         onCancel={() => {

@@ -3,104 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title data-i18n-es="Knowly">Knowly</title>
-  <meta name="description" content="Knowly — мобильная студия. Приложение PhraseMan для iPhone и Android." />
+  <title>Phraseman - скачать приложение</title>
+  <meta
+    name="description"
+    content="Скачайте Phraseman для iPhone и Android. Английские фразы, тренировка произношения и короткие уроки в одном приложении."
+  />
+  <meta property="og:title" content="Phraseman - скачать приложение" />
+  <meta
+    property="og:description"
+    content="Английские фразы, тренировка произношения и короткие уроки, которые легко проходить каждый день."
+  />
+  <meta property="og:image" content="/assets/phraseman-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/knowly.css?v=m1" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Syne:wght@700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/knowly.css?v=phraseman-download-4" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
 </head>
-<body>
-  <div class="km-page-bg" aria-hidden="true"></div>
-  <div class="km-shell">
-    <header class="km-nav">
-      <a class="km-brand" href="/">
-        <span class="km-mark" aria-hidden="true"></span>
-        <span>
-          <span class="km-brand-name" data-i18n-es="Knowly">Knowly</span><br />
-          <span class="km-brand-tag" data-i18n-es="estudio móvil">мобильная студия</span>
-        </span>
+<body class="pm-download-page">
+  <div class="pm-page-bg" aria-hidden="true"></div>
+
+  <div class="pm-shell">
+    <header class="pm-topbar" aria-label="Навигация Phraseman">
+      <a class="pm-brand" href="/" aria-label="Phraseman">
+        <img src="/assets/phraseman-icon.png" alt="" width="42" height="42" decoding="async" />
+        <span>Phraseman</span>
       </a>
-      <nav class="km-nav-links" aria-label="Главное" data-i18n-es-aria="Principal">
-        <div class="km-dd">
-          <button type="button" class="km-dd-btn" aria-haspopup="true" aria-expanded="false">
-            <span data-i18n-es="Apps ▾">Приложения ▾</span>
-          </button>
-          <div class="km-dd-panel" role="menu">
-            <a href="/download/" role="menuitem" data-i18n-es="PhraseMan — descarga">PhraseMan — загрузка</a>
-            <a href="/legal/privacy/" role="menuitem" data-i18n-es="Privacidad">Privacy</a>
-            <a href="/legal/terms/" role="menuitem" data-i18n-es="Términos">Terms</a>
-            <a href="/contact/" role="menuitem" data-i18n-es="Contacto">Связь</a>
-          </div>
-        </div>
-        <a href="/contact/" class="km-cta-muted" data-i18n-es="Contacto">Связь</a>
-        <a href="/download/" class="km-cta" data-i18n-es="Ir a la tienda">В магазин</a>
+      <nav class="pm-toplinks" aria-label="Ссылки">
+        <a href="/download/">Download</a>
+        <a href="/legal/privacy/">Privacy</a>
+        <a href="/legal/terms/">Terms</a>
+        <a href="/contact/">Support</a>
       </nav>
-      <button type="button" id="km-burger" class="km-burger" aria-label="Меню" data-i18n-es-aria="Menú">☰</button>
     </header>
 
-    <div id="km-overlay" class="km-overlay" aria-hidden="true"></div>
-    <aside id="km-drawer" class="km-drawer" aria-label="Меню" data-i18n-es-aria="Menú">
-      <div style="font-family:Syne,sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px" data-i18n-es="Knowly">Knowly</div>
-      <a href="/download/" data-drawer-close data-i18n-es="Descargar PhraseMan">Загрузка PhraseMan</a>
-      <a href="/contact/" data-drawer-close data-i18n-es="Contacto">Связь</a>
-      <div class="km-drawer-h" data-i18n-es="Documentos">Документы</div>
-      <a href="/legal/privacy/" data-drawer-close data-i18n-es="Privacidad">Privacy</a>
-      <a href="/legal/terms/" data-drawer-close data-i18n-es="Términos">Terms</a>
-      <a href="/download/" data-drawer-close class="km-btn-primary km-cta" data-i18n-es="Ir a la tienda">В магазин</a>
-    </aside>
+    <main class="pm-download-main">
+      <section class="pm-hero" aria-labelledby="pm-title">
+        <div class="pm-copy">
+          <img
+            class="pm-app-icon"
+            src="/assets/phraseman-icon.png"
+            alt="Иконка приложения Phraseman"
+            width="132"
+            height="132"
+            decoding="async"
+          />
 
-    <main class="km-main">
-      <section class="km-section km-home-min" id="about">
-        <h1 class="km-home-title" data-i18n-es="Knowly">Knowly</h1>
-        <p class="km-home-line" data-i18n-es="Estudio móvil.">Мобильная студия.</p>
-        <p class="km-home-values" data-i18n-es="claridad · honestidad · personas">ясность · честность · люди</p>
+          <p class="pm-kicker">Приложение для английских фраз</p>
+          <h1 id="pm-title">Phraseman</h1>
+          <p class="pm-lead">
+            Учите живые английские фразы, тренируйте произношение и проходите короткие уроки без скуки.
+          </p>
+          <p class="pm-download-note">
+            Скачать приложение можно, нажав на кнопку вашей платформы ниже.
+          </p>
 
-        <div class="km-home-badges" id="km-home-stores">
-          <a
-            id="hm-ios"
-            class="km-store-badge-link"
-            href="https://apps.apple.com/app/id6764800879"
-            rel="noopener noreferrer"
-            aria-label="App Store"
-            data-i18n-es-aria="App Store"
-          >
-            <img class="km-store-badge-img km-store-badge-apple" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/ru-ru?size=250x83" alt="App Store" data-i18n-es-alt="App Store" decoding="async" />
-          </a>
-          <a
-            id="hm-android"
-            class="km-store-badge-link"
-            href="https://play.google.com/store/apps/details?id=app.phraseman"
-            rel="noopener noreferrer"
-            aria-label="Google Play"
-            data-i18n-es-aria="Google Play"
-          >
-            <img class="km-store-badge-img km-store-badge-google" src="https://play.google.com/intl/ru_ru/badges/static/images/badges/ru_badge_web_generic.png" alt="Google Play" data-i18n-es-alt="Google Play" decoding="async" />
-          </a>
+          <div class="pm-store-actions" aria-label="Скачать Phraseman">
+            <a
+              class="pm-store-button pm-store-button-ios"
+              id="km-ios"
+              href="https://apps.apple.com/app/id6764800879"
+              rel="noopener noreferrer"
+              aria-label="Скачать Phraseman в App Store"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z" />
+              </svg>
+              <span>
+                <strong>App Store</strong>
+                <small>для iPhone и iPad</small>
+              </span>
+            </a>
+
+            <a
+              class="pm-store-button pm-store-button-android"
+              id="km-android"
+              href="https://play.google.com/store/apps/details?id=app.phraseman"
+              rel="noopener noreferrer"
+              aria-label="Скачать Phraseman в Google Play"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path class="pm-play-blue" d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Z" />
+                <path class="pm-play-green" d="m15.42 8.88-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Z" />
+                <path class="pm-play-yellow" d="m15.48 15.09-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Z" />
+                <path class="pm-play-red" d="M15.48 8.91 6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z" />
+              </svg>
+              <span>
+                <strong>Google Play</strong>
+                <small>для Android</small>
+              </span>
+            </a>
+          </div>
         </div>
 
-        <p class="km-home-more">
-          <a href="/download/" data-i18n-es="Código QR y todos los enlaces">QR-код и все ссылки</a>
-          ·
-          <a href="/contact/" data-i18n-es="Formulario de contacto">Форма связи</a>
-          ·
-          <a href="mailto:support.phraseman@gmail.com" data-i18n-es="support.phraseman@gmail.com">support.phraseman@gmail.com</a>
-        </p>
+        <aside class="pm-phone-panel" aria-label="Скриншоты приложения Phraseman">
+          <div class="pm-device-cluster">
+            <figure class="pm-device pm-device-main">
+              <img src="/assets/phraseman-screen-home.png" alt="Главный экран Phraseman в теме Forest" decoding="async" />
+            </figure>
+          </div>
+        </aside>
+      </section>
+
+      <section class="pm-qr-section" aria-labelledby="pm-qr-title">
+        <div>
+          <h2 id="pm-qr-title">Откройте на телефоне</h2>
+          <p>Можно отсканировать QR-код и выбрать App Store или Google Play уже с мобильного устройства.</p>
+        </div>
+        <div class="pm-qr-frame">
+          <div id="km-qr-host" class="pm-qr-host" aria-label="QR-код страницы скачивания"></div>
+        </div>
       </section>
     </main>
-
-    <footer class="km-footer km-footer-min">
-      <div class="km-footer-inner">
-        <nav class="km-footer-links" aria-label="Нижнее меню" data-i18n-es-aria="Menú inferior">
-          <a href="/download/" data-i18n-es="Descarga">Загрузка</a>
-          <a href="/legal/privacy/" data-i18n-es="Privacidad">Privacy</a>
-          <a href="/legal/terms/" data-i18n-es="Términos">Terms</a>
-          <a href="/contact/" data-i18n-es="Contacto">Связь</a>
-        </nav>
-      </div>
-    </footer>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/assets/site.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var config = window.KNOWLY_SITE || {};
+      var ios = document.getElementById('km-ios');
+      var android = document.getElementById('km-android');
+      if (ios && config.storeIos) ios.href = config.storeIos;
+      if (android && config.storeAndroid) android.href = config.storeAndroid;
+
+      var raw = (config.publicDownloadPageUrl || '').trim();
+      var pageUrl = raw || (typeof location !== 'undefined' ? location.origin.replace(/\/$/, '') + '/download/' : '');
+      var host = document.getElementById('km-qr-host');
+      if (!host || !pageUrl) return;
+
+      if (typeof QRCode === 'undefined') {
+        host.innerHTML =
+          '<p class="pm-qr-open-link"><a href="' +
+          pageUrl.replace(/"/g, '&quot;') +
+          '" rel="noopener noreferrer">Открыть страницу</a></p>';
+        return;
+      }
+
+      try {
+        host.innerHTML = '';
+        new QRCode(host, {
+          text: pageUrl,
+          width: 184,
+          height: 184,
+          colorDark: '#08111f',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M,
+        });
+        var img = host.querySelector('img');
+        if (img) img.alt = 'QR: страница скачивания Phraseman';
+      } catch (err) {
+        host.innerHTML =
+          '<p class="pm-qr-open-link"><a href="' +
+          pageUrl.replace(/"/g, '&quot;') +
+          '" rel="noopener noreferrer">Открыть страницу</a></p>';
+      }
+    });
+  </script>
 </body>
 </html>

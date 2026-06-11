@@ -63,6 +63,7 @@ import ActionToast from '../components/ActionToast';
 import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
 import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
+import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
@@ -2091,6 +2092,7 @@ function AppContent() {
       <Stack.Screen name="shards_shop" />
       <Stack.Screen name="level_gifts_inventory" />
       <Stack.Screen name="achievements_screen" />
+      <Stack.Screen name="collectibles_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
       {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
@@ -2572,6 +2574,7 @@ export default function RootLayout() {
                     <MatchFoundToast />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
+                    <EntitlementExpiredHost />
                     <ThemedBlockingAlertHost />
                   </OverlayArbiterProvider>
                 </MatchmakingProvider>

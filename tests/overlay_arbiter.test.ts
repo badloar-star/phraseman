@@ -27,4 +27,10 @@ describe('OverlayArbiter queue resolution', () => {
     expect(resolveNextOverlay('achievementToast', {})).toBeNull();
     expect(resolveNextOverlay(null, {})).toBeNull();
   });
+
+  it('slots entitlementExpired below streakRevive but above toasts', () => {
+    expect(resolveNextOverlay(null, wants('entitlementExpired', 'streakRevive'))).toBe('streakRevive');
+    expect(resolveNextOverlay(null, wants('entitlementExpired', 'actionToast', 'achievementToast'))).toBe('entitlementExpired');
+    expect(resolveNextOverlay('entitlementExpired', wants('entitlementExpired', 'update'))).toBe('entitlementExpired');
+  });
 });

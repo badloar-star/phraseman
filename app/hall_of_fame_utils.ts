@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { checkAchievements } from './achievements';
+import { emitAppEvent } from './events';
 import { logStreakExtended, logStreakLost } from './firebase';
 import { updateMyGroupPoints } from './firestore_leagues';
 import { wasRepairedToday } from './streak_repair';
@@ -207,7 +208,14 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       if (isStreakFreezeActiveToday(freeze, today) && lastActive && lastActive >= dayBeforeStr) {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
         await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
-        // streak не меняем — заморозка спасла
+        // streak не меняем — заморозка спасла. Расходник потрачен — юзер должен узнать
+        // (аудит «немых мест» 2026-06-11, находка №6).
+        emitAppEvent('action_toast', {
+          type: 'reward',
+          messageRu: `Заморозка спасла цепочку ${streak} дн. 🧊`,
+          messageUk: `Заморозка врятувала ланцюжок ${streak} дн. 🧊`,
+          messageEs: `La congelación salvó tu racha de ${streak} días 🧊`,
+        });
       }
       // 2. Цепочка починена сегодня (2 урока выполнено)
       else if (lastActive && lastActive >= dayBeforeStr && await wasRepairedToday()) {
@@ -231,7 +239,20 @@ export const updateStreakOnActivity = async (): Promise<number> => {
             } else {
               await AsyncStorage.setItem('chain_shield', JSON.stringify({ ...cs, daysLeft: newDaysLeft }));
             }
-            // streak не меняем — щит спас
+            // streak не меняем — щит спас. Социальный момент благодарности — не молчим
+            // (аудит «немых мест» 2026-06-11, находка №7).
+            emitAppEvent('action_toast', {
+              type: 'reward',
+              messageRu: newDaysLeft > 0
+                ? `Щит друга спас цепочку 🛡️ Осталось дней: ${newDaysLeft}`
+                : 'Щит друга спас цепочку 🛡️ Это был последний день защиты',
+              messageUk: newDaysLeft > 0
+                ? `Щит друга врятував ланцюжок 🛡️ Залишилось днів: ${newDaysLeft}`
+                : 'Щит друга врятував ланцюжок 🛡️ Це був останній день захисту',
+              messageEs: newDaysLeft > 0
+                ? `El escudo de tu amigo salvó la racha 🛡️ Días restantes: ${newDaysLeft}`
+                : 'El escudo de tu amigo salvó la racha 🛡️ Era el último día',
+            });
           } else {
             // daysLeft === 0: испорченное состояние — чистим и теряем цепочку
             await AsyncStorage.removeItem('chain_shield');

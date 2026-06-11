@@ -43,7 +43,7 @@ export type AppEventMap = {
   collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
   auth_provider_linked: undefined;
-  /** Начисление осколков: анимация на главной + глобальная ShardsEarnedModal (если есть reason). */
+  /** Начисление осколков: анимация на главной + глобальный reward-тост (GlobalShardsEarnedHost). */
   shards_earned: {
     amount: number;
     /** Ключ из shard_earn_ui / ShardSource — для автоподписи */

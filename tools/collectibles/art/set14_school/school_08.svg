@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The school of hard knocks">
+<ellipse cx="100" cy="150" rx="54" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="22" y="30" width="156" height="100" rx="6" fill="#C97A55"/>
+<path d="M22 56h156M22 82h156M22 108h156" stroke="#E8C9B0" stroke-width="4"/>
+<path d="M60 30v26M120 30v26M40 56v26M100 56v26M160 56v26M60 82v26M120 82v26M40 108v22M100 108v22M160 108v22" stroke="#E8C9B0" stroke-width="4"/>
+<path d="M98 30c0-7 5-12 6-3 1-7 6-2 4 5z" fill="#7E5FB0"/>
+<path d="M60 130c-2-30 14-50 40-50s42 20 40 50z" fill="#5BB6A8"/>
+<path d="M60 130c-2-30 14-50 40-50 6 0 11 1 16 3-10 36-32 44-56 47z" fill="#79D0C2"/>
+<path d="M68 98c-10 4-16 14-12 24M132 98c10 4 16 14 12 24" stroke="#5BB6A8" stroke-width="9" fill="none" stroke-linecap="round"/>
+<circle cx="100" cy="64" r="24" fill="#F4E3C8"/>
+<rect x="86" y="48" width="20" height="9" rx="4" fill="#FFE0C0" transform="rotate(-12 96 52)"/>
+<path d="M88 50l16-4" stroke="#E0A878" stroke-width="1.6"/>
+<circle cx="91" cy="68" r="3.6" fill="#2A2030"/><circle cx="109" cy="68" r="3.6" fill="#2A2030"/>
+<path d="M90 78c6 5 14 5 20 0" stroke="#7A3A2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

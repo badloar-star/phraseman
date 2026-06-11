@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Out of this world">
+<circle cx="34" cy="30" r="10" fill="#F6C744"/><circle cx="170" cy="34" r="12" fill="#F46B6B"/>
+<path d="M158 34h24" stroke="#E8C9A0" stroke-width="2" stroke-linecap="round"/>
+<circle cx="40" cy="118" r="2.2" fill="#FFE08A"/><circle cx="176" cy="110" r="2.2" fill="#FFE08A"/>
+<ellipse cx="100" cy="150" rx="56" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="100" cy="128" rx="52" ry="14" fill="#8FA0C4"/>
+<ellipse cx="100" cy="122" rx="34" ry="12" fill="#B3C0DC"/>
+<path d="M82 112a18 18 0 0 1 36 0z" fill="#9FD8F0" opacity=".85"/>
+<ellipse cx="100" cy="96" rx="20" ry="18" fill="#9FE0A8"/>
+<circle cx="92" cy="94" r="6" fill="#FFFFFF"/><circle cx="108" cy="94" r="6" fill="#FFFFFF"/>
+<circle cx="92" cy="94" r="2.6" fill="#16243A"/><circle cx="108" cy="94" r="2.6" fill="#16243A"/>
+<path d="M90 104c5 5 15 5 20 0" stroke="#4E9E60" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M92 80l-3-12M108 80l3-12" stroke="#9FE0A8" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="89" cy="66" r="3.4" fill="#F6C744"/><circle cx="111" cy="66" r="3.4" fill="#F6C744"/>
+<path d="M126 104l8-14 8 14z" fill="#F2C28A"/>
+<path d="M126 104a8 8 0 0 0 16 0z" fill="#F4A6C4"/>
+<circle cx="130" cy="98" r="1.6" fill="#FFF"/><circle cx="138" cy="100" r="1.6" fill="#FFF"/>
+</svg>

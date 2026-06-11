@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Under the stars">
+<path d="M40 26l3 8 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#FFD23F"/>
+<path d="M150 18l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" fill="#FFD23F"/>
+<path d="M104 40l2 6 6 1-4 4 1 6-5-3-5 3 1-6-4-4 6-1z" fill="#FFE08A"/>
+<circle cx="72" cy="22" r="2.4" fill="#FFE08A"/><circle cx="178" cy="48" r="2.4" fill="#FFE08A"/><circle cx="24" cy="60" r="2.2" fill="#FFE08A"/><circle cx="130" cy="20" r="2" fill="#FFE08A"/>
+<ellipse cx="100" cy="150" rx="60" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M30 144l44-58 44 58z" fill="#E2654B"/>
+<path d="M74 86l-12 58h24z" fill="#C24A36"/>
+<path d="M66 144c0-10 6-16 8-16s8 6 8 16z" fill="#3A2A40"/>
+<path d="M150 144c-2-8 4-16 12-16s14 6 14 14l-26 2z" fill="#F2A65A"/>
+<path d="M156 144c2-12 8-18 8-26-6 6-10 10-10 16M170 144c-2-12-6-18-4-26 4 6 6 12 6 18" fill="#FFD23F"/>
+<path d="M158 130c2-8 4-12 4-18 2 6 2 12 0 18z" fill="#F6E27A"/>
+</svg>

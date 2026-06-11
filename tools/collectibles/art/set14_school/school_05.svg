@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Practice makes perfect">
+<ellipse cx="100" cy="150" rx="52" ry="9" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="44" cy="146" rx="13" ry="4" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="158" cy="148" rx="12" ry="4" fill="rgba(0,0,0,.25)"/>
+<path d="M100 18l4 9 10 1-7 7 2 10-9-5-9 5 2-10-7-7 10-1z" fill="#FFD23F"/>
+<circle cx="44" cy="138" r="10" fill="#7FB069"/>
+<circle cx="158" cy="140" r="10" fill="#5BA9D6"/>
+<path d="M62 116c-2-26 12-44 38-44s40 18 38 44z" fill="#E0524E"/>
+<path d="M62 116c-2-26 12-44 38-44 6 0 11 1 16 3-9 32-30 38-50 39z" fill="#EF7A6B"/>
+<path d="M70 86c-12 0-18 8-16 18M130 86c12 0 18 8 16 18" stroke="#E0524E" stroke-width="9" fill="none" stroke-linecap="round"/>
+<circle cx="56" cy="74" r="10" fill="#F2C14E"/>
+<circle cx="100" cy="58" r="10" fill="#7FB069"/>
+<circle cx="144" cy="74" r="10" fill="#5BA9D6"/>
+<circle cx="100" cy="46" r="20" fill="#F4E3C8"/>
+<path d="M82 42c0-11 8-18 18-18s18 7 18 18z" fill="#C77B3A"/>
+<circle cx="93" cy="46" r="3.2" fill="#2A2030"/><circle cx="107" cy="46" r="3.2" fill="#2A2030"/>
+<path d="M92 55c5 4 11 4 16 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Like a fish out of water">
+<path d="M0 120c20-6 30 2 50 0s30 4 50 0 30-6 50 0 16 4 0 0v40H0z" fill="#F2D9A6"/>
+<rect x="0" y="120" width="200" height="40" fill="#F2D9A6"/>
+<circle cx="166" cy="34" r="17" fill="#FFD23F"/>
+<path d="M166 9v-7M145 16l-5-5M187 16l5-5M188 34h7M145 52l-5 5M187 52l5 5" stroke="#FFB800" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="92" cy="138" rx="46" ry="7" fill="rgba(0,0,0,.2)"/>
+<ellipse cx="40" cy="106" rx="11" ry="22" fill="#7FB069"/>
+<path d="M40 96c0-8 8-8 8 0v8c0 6-8 6-8 0M40 100c0-8-8-8-8 0v6c0 6 8 6 8 0" fill="#7FB069"/>
+<ellipse cx="96" cy="112" rx="30" ry="20" fill="#F2A65A"/>
+<path d="M126 112l16-12v24z" fill="#F2A65A"/>
+<path d="M96 92c-3 5-3 9 0 12M84 94c-2 4-2 7 0 10" stroke="#D98438" stroke-width="2.4" stroke-linecap="round" opacity=".7"/>
+<circle cx="84" cy="108" r="4.4" fill="#1F2933"/>
+<circle cx="85.6" cy="106.4" r="1.5" fill="#FFFFFF"/>
+<path d="M76 120c6 4 16 4 24 0" stroke="#B96A2E" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M74 98c-2 5-2 9 0 12M104 96l-3-8" stroke="#9CD2EC" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<path d="M70 96c-2 4 2 7 4 4s0-7-4-4z" fill="#9CD2EC"/>
+<path d="M104 86c-2 4 2 7 4 4s0-7-4-4z" fill="#9CD2EC"/>
+</svg>

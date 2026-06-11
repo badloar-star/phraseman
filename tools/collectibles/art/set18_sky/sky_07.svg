@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Many moons ago">
+<circle cx="40" cy="34" r="2.2" fill="#FFE08A"/><circle cx="100" cy="20" r="2" fill="#FFE08A"/><circle cx="186" cy="40" r="2.2" fill="#FFE08A"/>
+<circle cx="172" cy="30" r="16" fill="#FFD23F"/>
+<path d="M150 38a13 13 0 1 0 9-21 16 16 0 0 1-9 21z" fill="#F6C744"/>
+<path d="M120 50a11 11 0 1 0 0-18 14 14 0 0 1 0 18z" fill="#E9BE3E"/>
+<circle cx="96" cy="56" r="8" fill="#D8B23A"/>
+<path d="M70 66a7 7 0 1 0 0-10 9 9 0 0 1 0 10z" fill="#C7A638"/>
+<ellipse cx="60" cy="150" rx="34" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M44 148c-3-20 4-34 16-34s19 14 16 34z" fill="#8C7C9C"/>
+<ellipse cx="60" cy="92" rx="13" ry="14" fill="#F2D2B6"/>
+<path d="M47 90c0-9 6-15 13-15s13 6 13 15z" fill="#E8E4E0"/>
+<path d="M52 100c4 3 9 3 13 0" stroke="#9A8A7A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M56 104c-2 2-2 6 0 10M64 104c2 2 2 6 0 10" stroke="#C9BFB5" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="55" cy="92" r="2.2" fill="#3A2418"/><circle cx="65" cy="92" r="2.2" fill="#3A2418"/>
+<path d="M76 116l8 32" stroke="#8A5A33" stroke-width="3.4" stroke-linecap="round"/>
+</svg>

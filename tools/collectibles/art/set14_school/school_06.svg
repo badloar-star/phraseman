@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Teacher's pet">
+<ellipse cx="100" cy="150" rx="62" ry="9" fill="rgba(0,0,0,.25)"/>
+<rect x="34" y="104" width="132" height="16" rx="4" fill="#C98A4B"/>
+<rect x="42" y="120" width="11" height="26" rx="3" fill="#A9703A"/>
+<rect x="147" y="120" width="11" height="26" rx="3" fill="#A9703A"/>
+<path d="M138 88c10 0 16 6 16 14 0 6-6 8-16 8s-16-2-16-8c0-8 6-14 16-14z" fill="#E0524E"/>
+<path d="M138 88c-2-6 2-10 6-11" fill="none" stroke="#7FB069" stroke-width="4" stroke-linecap="round"/>
+<path d="M64 104c-2-22 8-38 28-38s30 16 28 38z" fill="#8C8FA8"/>
+<path d="M68 70l-6-16 16 8zM116 70l6-16-16 8z" fill="#8C8FA8"/>
+<path d="M70 62l-2-9 9 5zM114 62l2-9-9 5z" fill="#F2B0C0"/>
+<circle cx="80" cy="84" r="4" fill="#2A2030"/><circle cx="104" cy="84" r="4" fill="#2A2030"/>
+<path d="M92 90l-3 5h6z" fill="#F2A0B0"/>
+<path d="M92 95v5M82 96c4 2 8 1 10-1M102 96c-4 2-8 1-10-1" stroke="#2A2030" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M68 90l-14 2M68 96l-14 4M120 90l14 2M120 96l14 4" stroke="#8C8FA8" stroke-width="2" stroke-linecap="round"/>
+<path d="M44 36c0-5 5-7 8-4 3-3 8-1 8 4 0 5-8 11-8 11s-8-6-8-11z" fill="#E0524E"/>
+<path d="M150 50c0-4 4-6 7-3 3-3 7-1 7 3 0 4-7 9-7 9s-7-5-7-9z" fill="#EF7A6B"/>
+</svg>

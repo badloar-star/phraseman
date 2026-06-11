@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shoot for the moon">
+<circle cx="156" cy="50" r="36" fill="#FFD23F"/>
+<path d="M130 64a28 28 0 1 0 18-46 34 34 0 0 1-18 46z" fill="#F6C744"/>
+<circle cx="150" cy="40" r="6" fill="#E9BE3E"/><circle cx="168" cy="60" r="4" fill="#E9BE3E"/>
+<circle cx="30" cy="26" r="2.4" fill="#FFE08A"/><circle cx="60" cy="118" r="2.2" fill="#FFE08A"/>
+<ellipse cx="56" cy="150" rx="38" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M38 148c-3-24 6-42 22-42s25 18 22 42z" fill="#6FB6D6"/>
+<ellipse cx="60" cy="78" rx="15" ry="16" fill="#F6C8A0"/>
+<path d="M45 76c0-10 7-16 15-16s15 6 15 16z" fill="#5A3A28"/>
+<circle cx="54" cy="80" r="2.6" fill="#3A2418"/><circle cx="66" cy="80" r="2.6" fill="#3A2418"/>
+<path d="M50 72l8 3M62 75l8-3" stroke="#5A3A28" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M48 100c-8 4-12 12-12 22" stroke="#6FB6D6" stroke-width="11" fill="none" stroke-linecap="round"/>
+<path d="M72 104l40-24" stroke="#8A5A33" stroke-width="3" stroke-linecap="round"/>
+<path d="M110 70l5 11 12 1-9 7 3 12-11-6-11 6 3-12-9-7 12-1z" fill="#FFD23F"/>
+</svg>

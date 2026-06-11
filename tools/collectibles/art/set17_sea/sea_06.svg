@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Make waves">
+<path d="M0 96h200v64H0z" fill="#6FC5E8"/>
+<path d="M0 96c18 0 24-34 40-34s20 34 36 34h124v64H0z" fill="#5AB3DE"/>
+<path d="M200 100c-18 0-26-30-44-30s-20 30-36 30" fill="#6FC5E8"/>
+<path d="M14 70c10-6 18 2 26 2-4 8-18 10-26-2z" fill="#BFEAF6"/>
+<path d="M158 78c10-6 18 2 26 2-4 8-18 10-26-2z" fill="#BFEAF6"/>
+<ellipse cx="100" cy="150" rx="40" ry="6" fill="rgba(0,0,0,.18)"/>
+<path d="M64 110h72l-12 22a6 6 0 0 1-5 3H81a6 6 0 0 1-5-3z" fill="#D94B45"/>
+<path d="M64 110h72l-2 8H66z" fill="#B23A35"/>
+<ellipse cx="100" cy="92" rx="16" ry="17" fill="#F2C9A0"/>
+<path d="M84 92c0-9 7-15 16-15s16 6 16 15z" fill="#8A5A38"/>
+<circle cx="93" cy="92" r="3" fill="#3A2418"/><circle cx="107" cy="92" r="3" fill="#3A2418"/>
+<path d="M92 100c4 4 12 4 16 0" stroke="#3A2418" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M116 96c6-2 12-8 14-16" stroke="#F2C9A0" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M122 72l8-6 2 10z" fill="#F2C14E"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Test the waters">
+<path d="M0 112h200v48H0z" fill="#6FC5E8"/>
+<path d="M0 112c30 0 40-30 100-30s70 30 100 30v-52H0z" fill="#F2D9A6"/>
+<ellipse cx="64" cy="138" rx="30" ry="7" fill="rgba(0,0,0,.2)"/>
+<path d="M0 112c16-4 26 4 40 0s24 4 38 0" stroke="#A6E0F2" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M120 118c12-4 22 4 36 0s24 4 36 0" stroke="#A6E0F2" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="64" cy="74" rx="22" ry="24" fill="#8ECae6"/>
+<path d="M42 70c0-12 10-20 22-20s22 8 22 20z" fill="#3E92CC"/>
+<circle cx="56" cy="74" r="3.6" fill="#16243A"/><circle cx="72" cy="74" r="3.6" fill="#16243A"/>
+<path d="M55 72l-5-3M73 72l5-3" stroke="#16243A" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M57 84c4 3 11 3 15 0" stroke="#16243A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M52 96l-2 14" stroke="#8ECae6" stroke-width="8" stroke-linecap="round"/>
+<path d="M76 96c8 6 16 14 20 22" stroke="#8ECae6" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M96 118l8 2" stroke="#F2C9A0" stroke-width="7" stroke-linecap="round"/>
+<ellipse cx="106" cy="122" rx="11" ry="4" fill="none" stroke="#FFFFFF" stroke-width="2.4" opacity=".9"/>
+<ellipse cx="106" cy="122" rx="18" ry="6" fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".55"/>
+</svg>

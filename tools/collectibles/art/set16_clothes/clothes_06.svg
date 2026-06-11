@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wear the trousers">
+<ellipse cx="100" cy="150" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M58 88h84l-6 60h-26l-10-34-10 34H64z" fill="#4C6CC8"/>
+<path d="M58 88h84v10H58z" fill="#3A57B0"/>
+<rect x="74" y="40" width="9" height="52" rx="4" fill="#E0524E"/>
+<rect x="117" y="40" width="9" height="52" rx="4" fill="#E0524E"/>
+<rect x="72" y="84" width="56" height="9" rx="4" fill="#C73E3A"/>
+<circle cx="78" cy="96" r="3.5" fill="#FFD23F"/><circle cx="122" cy="96" r="3.5" fill="#FFD23F"/>
+<circle cx="100" cy="54" r="18" fill="#F2C28B"/>
+<path d="M82 50c0-12 8-18 18-18s18 6 18 18c-5-4-12-6-18-6s-13 2-18 6z" fill="#5A3A28"/>
+<circle cx="93" cy="54" r="2.8" fill="#2A1830"/><circle cx="107" cy="54" r="2.8" fill="#2A1830"/>
+<path d="M93 64c4 3 10 3 14 0" stroke="#2A1830" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M84 36l4-12 4 6 4-8 4 8 4-6 4 12z" fill="#FFD23F"/>
+<path d="M84 36h32v5H84z" fill="#E8B800"/>
+<circle cx="91" cy="29" r="1.8" fill="#E0524E"/><circle cx="109" cy="29" r="1.8" fill="#E0524E"/>
+</svg>

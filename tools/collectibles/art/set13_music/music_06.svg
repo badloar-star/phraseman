@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strike a chord">
+<ellipse cx="74" cy="150" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="70" cy="118" rx="34" ry="30" fill="#D88A4E"/>
+<ellipse cx="70" cy="118" rx="22" ry="20" fill="#C97A3E"/>
+<circle cx="70" cy="118" r="11" fill="#7A4A22"/>
+<path d="M88 100l40-44" stroke="#A05A2E" stroke-width="9" stroke-linecap="round"/>
+<rect x="120" y="44" width="16" height="20" rx="3" fill="#7A4A22" transform="rotate(45 128 54)"/>
+<path d="M52 96l28-30M60 102l30-32M66 108l32-34M72 114l34-36" stroke="#FFF3C4" stroke-width="2" stroke-linecap="round"/>
+<path d="M62 104q6-10 16-4" stroke="#FFD23F" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+<path d="M150 118c-4-30 8-48 22-48s26 18 22 48c-22 14-22 14-44 0z" fill="#E8638E"/>
+<path d="M150 118c10 10 34 10 44 0-10-6-12-30-22-30s-12 24-22 30z" fill="#F285A6"/>
+<circle cx="172" cy="96" r="5" fill="#FFD2DE" opacity=".8"/>
+<path d="M126 86c8 0 12 6 12 14M120 100c8 2 11 8 10 16M134 72c6 2 8 7 6 13" stroke="#F6C744" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="118" cy="72" r="3.2" fill="#F6C744"/><circle cx="140" cy="58" r="3" fill="#F4D03F"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A golden opportunity">
+<ellipse cx="120" cy="150" rx="54" ry="8" fill="rgba(0,0,0,.25)"/>
+<g fill="#FFE9A8" opacity="0.9">
+<path d="M118 70l-40-22 4 26-30 12 30 12-4 26 40-22z"/>
+</g>
+<rect x="96" y="30" width="62" height="110" rx="6" fill="#C99A2E"/>
+<rect x="104" y="38" width="50" height="94" rx="4" fill="#FFD23F"/>
+<path d="M104 38h50v94l-50 0z" fill="#FFE34D"/>
+<path d="M154 38v94l16-8V46z" fill="#E8B800"/>
+<path d="M154 38l16 8-16 0z" fill="#C99A2E"/>
+<circle cx="148" cy="86" r="4.5" fill="#C99A2E"/>
+<ellipse cx="58" cy="106" rx="20" ry="24" fill="#F2C9A0"/>
+<path d="M38 100c0-13 9-22 20-22s20 9 20 22z" fill="#E8B07E"/>
+<circle cx="50" cy="102" r="5" fill="#fff"/><circle cx="66" cy="102" r="5" fill="#fff"/>
+<circle cx="51" cy="102" r="2.3" fill="#16243A"/><circle cx="67" cy="102" r="2.3" fill="#16243A"/>
+<path d="M48 116c5 3 12 3 18-1" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="74" y="90" width="26" height="9" rx="4" fill="#E8B07E" transform="rotate(-8 74 94)"/>
+</svg>

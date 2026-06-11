@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tickled pink">
+<ellipse cx="92" cy="150" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="90" cy="100" rx="40" ry="42" fill="#F6A8C8"/>
+<path d="M50 96c0-22 18-36 40-36s40 14 40 36z" fill="#EE8FB6"/>
+<path d="M58 92c4-5 14-5 18 0" stroke="#C25A86" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M104 92c4-5 14-5 18 0" stroke="#C25A86" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M62 116c10 14 36 14 48 0 4 12-6 24-24 24s-28-12-24-24z" fill="#9B3A66"/>
+<path d="M70 124c8 4 24 4 32 0" stroke="#F6A8C8" stroke-width="4" fill="none" stroke-linecap="round"/>
+<circle cx="62" cy="100" r="5" fill="#FF7BB0"/><circle cx="118" cy="100" r="5" fill="#FF7BB0"/>
+<path d="M44 108l-10-2M44 116l-9 3M138 108l10-2M138 116l9 3" stroke="#7BBEE0" stroke-width="3" stroke-linecap="round"/>
+<path d="M140 40c22 8 30 30 30 58-14-6-24-22-24-22 0 0 8 16 22 22-22 4-40-12-44-34z" fill="#FFFDF5" stroke="#D8E0EC" stroke-width="2" stroke-linejoin="round"/>
+<path d="M146 52c10 12 18 30 22 46" stroke="#D8E0EC" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

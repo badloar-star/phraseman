@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Below the belt">
+<ellipse cx="100" cy="148" rx="52" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="34" y="54" width="132" height="34" rx="12" fill="#7B4A22"/>
+<rect x="34" y="54" width="132" height="34" rx="12" fill="none" stroke="#5E3818" stroke-width="3"/>
+<circle cx="100" cy="71" r="22" fill="#FFD23F"/>
+<circle cx="100" cy="71" r="22" fill="none" stroke="#D9A800" stroke-width="3"/>
+<circle cx="100" cy="71" r="13" fill="#FFE38A"/>
+<path d="M100 60l3 6 6 1-4 5 1 6-6-3-6 3 1-6-4-5 6-1z" fill="#E8B800"/>
+<circle cx="58" cy="71" r="6" fill="#FFD23F"/><circle cx="142" cy="71" r="6" fill="#FFD23F"/>
+<path d="M100 104l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" fill="#E0524E"/>
+<path d="M100 116l-10-6M100 116l10-6M100 122v8" stroke="#FFB0AD" stroke-width="2.4" stroke-linecap="round"/>
+<circle cx="40" cy="116" r="12" fill="#EDEFF7"/>
+<circle cx="40" cy="116" r="12" fill="none" stroke="#C4C9DB" stroke-width="2.5"/>
+<circle cx="40" cy="116" r="4" fill="#9AA0B8"/>
+<circle cx="36" cy="113" r="1.6" fill="#5A6078"/><circle cx="44" cy="113" r="1.6" fill="#5A6078"/>
+<path d="M36 122c3 2 5 2 8 0" stroke="#5A6078" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M40 104v-8" stroke="#9AA0B8" stroke-width="3" stroke-linecap="round"/>
+</svg>

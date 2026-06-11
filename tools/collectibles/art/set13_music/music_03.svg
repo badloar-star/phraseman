@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ring a bell">
+<ellipse cx="62" cy="150" rx="32" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M40 148c-3-26 6-44 22-44s25 18 22 44z" fill="#C46AA8"/>
+<ellipse cx="62" cy="76" rx="22" ry="24" fill="#F2C9A0"/>
+<path d="M40 74c0-13 10-21 22-21s22 8 22 21z" fill="#7A4A2E"/>
+<circle cx="58" cy="78" r="3.4" fill="#3A2418"/><circle cx="72" cy="78" r="3.4" fill="#3A2418"/>
+<path d="M56 90c5 3 11 3 16-2" stroke="#7A3A2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="46" cy="86" rx="5" ry="3.5" fill="#F4A6A4" opacity=".7"/>
+<path d="M82 70c8-2 14 2 16 10" stroke="#C46AA8" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M118 122c-3-32 8-54 22-54s25 22 22 54z" fill="#E0A23F"/>
+<path d="M118 122h44l5 10h-54z" fill="#C98A1F"/>
+<circle cx="140" cy="138" r="6" fill="#B87A12"/>
+<rect x="136" y="58" width="8" height="10" rx="3" fill="#C98A1F"/>
+<path d="M104 96c-5-3-9 1-7 6M176 96c5-3 9 1 7 6M100 112c-6 0-9 5-5 9M180 112c6 0 9 5 5 9" stroke="#F6C744" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+<circle cx="140" cy="34" r="13" fill="#FFE89A" opacity=".55"/>
+<rect x="136" y="46" width="8" height="6" rx="2" fill="#E0B84E" opacity=".55"/>
+<path d="M140 26v-7M150 30l5-5M130 30l-5-5" stroke="#F6C744" stroke-width="2.6" stroke-linecap="round" opacity=".6"/>
+</svg>

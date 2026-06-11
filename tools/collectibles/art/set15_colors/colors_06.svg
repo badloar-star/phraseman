@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A red flag">
+<ellipse cx="120" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="60" cy="150" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<rect x="138" y="24" width="7" height="116" rx="3.5" fill="#8A6A4A"/>
+<circle cx="141" cy="22" r="6" fill="#E8B800"/>
+<path d="M138 30c30-10 44 14 70 4-26 12-40-12-70 2z" fill="#E0524E"/>
+<path d="M138 56c26-9 40 12 64 3-24 11-38-10-64 1z" fill="#C9433F"/>
+<ellipse cx="60" cy="104" rx="24" ry="28" fill="#F2C9A0"/>
+<path d="M36 98c0-15 11-24 24-24s24 9 24 24z" fill="#E8B07E"/>
+<path d="M44 84c5-4 13-4 16 1" stroke="#5A3A28" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<circle cx="50" cy="100" r="6" fill="#fff"/><circle cx="70" cy="100" r="6" fill="#fff"/>
+<circle cx="52" cy="101" r="2.6" fill="#16243A"/><circle cx="72" cy="101" r="2.6" fill="#16243A"/>
+<path d="M50 120c6 2 14 1 20-3" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

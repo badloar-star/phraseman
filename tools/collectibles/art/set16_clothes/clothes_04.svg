@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Roll up your sleeves">
+<ellipse cx="100" cy="150" rx="42" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M64 150v-44c0-16 14-28 36-28s36 12 36 28v44z" fill="#E0524E"/>
+<path d="M64 106c0-16 14-28 36-28s36 12 36 28v8H64z" fill="#C73E3A"/>
+<circle cx="100" cy="58" r="20" fill="#F2C28B"/>
+<path d="M80 54c0-13 9-20 20-20s20 7 20 20c-5-5-13-7-20-7s-15 2-20 7z" fill="#3A2A1A"/>
+<circle cx="92" cy="58" r="3" fill="#2A1830"/><circle cx="108" cy="58" r="3" fill="#2A1830"/>
+<path d="M90 56l6 2M104 58l6-2" stroke="#3A2A1A" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M92 70c5 4 11 4 16 0" stroke="#2A1830" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M64 110c-12 2-20 12-18 26 8-2 16-2 22-6z" fill="#C73E3A"/>
+<rect x="44" y="118" width="30" height="14" rx="7" fill="#E0524E" transform="rotate(28 59 125)"/>
+<path d="M70 116c-10 8-12 22-4 34 10-4 16-12 18-22z" fill="#F2C28B"/>
+<path d="M76 122c8 0 16 6 18 16 2 8-2 16-10 18-2-12-6-22-8-34z" fill="#E8AE76"/>
+<path d="M40 96l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" fill="#FFD23F"/>
+</svg>

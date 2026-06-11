@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Give the green light">
+<ellipse cx="58" cy="150" rx="34" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="150" cy="150" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<rect x="38" y="22" width="40" height="104" rx="14" fill="#3A4150"/>
+<circle cx="58" cy="44" r="11" fill="#7A2F2C"/>
+<circle cx="58" cy="74" r="11" fill="#C9A33A"/>
+<circle cx="58" cy="104" r="13" fill="#4FA84F"/>
+<path d="M51 104c2-3 12-3 14 0" stroke="#1E5E1E" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="55" cy="103" r="1.8" fill="#16243A"/><circle cx="61" cy="103" r="1.8" fill="#16243A"/>
+<path d="M112 110h44l10-22c2-5-1-10-7-10h-30l-12 16z" fill="#E0524E"/>
+<rect x="116" y="86" width="22" height="14" rx="3" fill="#BFE3FF"/>
+<circle cx="124" cy="112" r="9" fill="#2B3142"/><circle cx="124" cy="112" r="4" fill="#9AA6C0"/>
+<circle cx="158" cy="112" r="9" fill="#2B3142"/><circle cx="158" cy="112" r="4" fill="#9AA6C0"/>
+<path d="M168 96l10-4M170 104l11 0M168 112l10 4" stroke="#4FA84F" stroke-width="3" stroke-linecap="round"/>
+</svg>

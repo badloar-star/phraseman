@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dress to impress">
+<ellipse cx="100" cy="148" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M70 150c-2-30 4-54 30-54s32 24 30 54z" fill="#5468C8"/>
+<path d="M82 96l18 22 18-22-6-8H88z" fill="#EDEFF7"/>
+<path d="M94 104l6 8 6-8-2-4h-8z" fill="#E0524E"/>
+<path d="M88 96l-12 4 8 50 6-2zM112 96l12 4-8 50-6-2z" fill="#465AB8"/>
+<circle cx="100" cy="70" r="20" fill="#F2C28B"/>
+<path d="M80 64c0-14 9-22 20-22s20 8 20 22c-6-4-14-6-20-6s-14 2-20 6z" fill="#5A3A28"/>
+<circle cx="92" cy="70" r="3" fill="#2A1830"/><circle cx="108" cy="70" r="3" fill="#2A1830"/>
+<path d="M93 80c4 3 10 3 14 0" stroke="#2A1830" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="100" cy="120" r="4" fill="#E0524E"/>
+<path d="M100 120l-14 6 14-2 14 2z" fill="#C13B37"/>
+<path d="M40 40l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#FFD23F"/>
+<path d="M160 50l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z" fill="#FFD23F"/>
+<path d="M150 96l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FFD23F"/>
+<path d="M48 100l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#FFD23F"/>
+<circle cx="62" cy="58" r="3" fill="#FFE38A"/><circle cx="142" cy="92" r="3" fill="#FFE38A"/>
+</svg>

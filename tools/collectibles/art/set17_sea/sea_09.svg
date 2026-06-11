@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sail close to the wind">
+<path d="M0 112h200v48H0z" fill="#6FC5E8"/>
+<path d="M0 116c16-4 26 4 40 0s24 4 38 0 24 4 38 0 24 4 38 0 16 4 8 0" stroke="#A6E0F2" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M150 112L138 58l44 54z" fill="#7A8699"/>
+<path d="M168 112l-8-40 28 40z" fill="#9AA6BC"/>
+<ellipse cx="78" cy="138" rx="40" ry="6" fill="rgba(0,0,0,.2)"/>
+<path d="M48 110h70l-12 20a6 6 0 0 1-5 3H65a6 6 0 0 1-5-3z" fill="#8A5A38"/>
+<path d="M48 110h70l-2 7H50z" fill="#6E4628"/>
+<path d="M84 38v72" stroke="#5A3A28" stroke-width="4"/>
+<path d="M84 40c-30 6-46 28-50 40 22-2 42-10 50-22z" fill="#E0524E"/>
+<path d="M84 44c10 4 20 12 24 24-12 2-22-2-24-8z" fill="#F2C14E"/>
+<circle cx="74" cy="98" r="13" fill="#F2C9A0"/>
+<path d="M61 96c0-7 6-12 13-12s13 5 13 12z" fill="#3E92CC"/>
+<circle cx="70" cy="98" r="2.6" fill="#16243A"/><circle cx="80" cy="98" r="2.6" fill="#16243A"/>
+<path d="M69 104c4 3 9 3 12 0" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M120 50c10-3 18-3 28 0M122 62c8-2 14-2 22 0" stroke="#E8F4FA" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>
+</svg>

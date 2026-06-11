@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reach for the stars">
+<ellipse cx="90" cy="152" rx="46" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M168 24l5 13 14 1-11 9 4 14-12-8-12 8 4-14-11-9 14-1z" fill="#FFD23F"/>
+<path d="M188 36l9 4-9 4M150 14l5 8-9-1" stroke="#FFE08A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="40" cy="30" r="2.6" fill="#FFE08A"/><circle cx="60" cy="18" r="2" fill="#FFE08A"/>
+<path d="M64 146l24-44 24 44z" fill="#C98A52"/>
+<path d="M70 138h36M76 126h24M82 114h12" stroke="#8A5A33" stroke-width="3.4" stroke-linecap="round"/>
+<ellipse cx="78" cy="60" rx="13" ry="14" fill="#F6C8A0"/>
+<path d="M65 58c0-9 6-15 13-15s13 6 13 15z" fill="#7A4A2B"/>
+<circle cx="76" cy="60" r="2.6" fill="#3A2418"/><circle cx="86" cy="60" r="2.6" fill="#3A2418"/>
+<path d="M76 68c4 3 8 3 11 0" stroke="#7A3A2A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M82 74c-3 10-2 22 0 30" stroke="#5BA9D6" stroke-width="13" fill="none" stroke-linecap="round"/>
+<path d="M84 78c12-8 30-22 48-40" stroke="#F6C8A0" stroke-width="8" fill="none" stroke-linecap="round"/>
+</svg>

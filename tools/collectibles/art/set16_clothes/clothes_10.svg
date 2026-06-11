@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="All dressed up with nowhere to go">
+<ellipse cx="76" cy="150" rx="34" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="118" y="34" width="64" height="116" rx="6" fill="#A8683C"/>
+<rect x="124" y="40" width="52" height="104" rx="4" fill="#8E5630"/>
+<rect x="124" y="40" width="52" height="104" rx="4" fill="none" stroke="#704522" stroke-width="2"/>
+<circle cx="166" cy="94" r="3.5" fill="#FFD23F"/>
+<path d="M132 80c0-7 6-13 13-13s13 6 13 13v10h-7v-10c0-3-3-6-6-6s-6 3-6 6v10h-7z" fill="#C4C9DB"/>
+<rect x="135" y="88" width="20" height="20" rx="4" fill="#FFD23F"/>
+<circle cx="145" cy="98" r="3" fill="#8E5630"/>
+<path d="M52 150v-42c0-14 10-24 24-24s24 10 24 24v42z" fill="#46538C"/>
+<path d="M66 108l10 14 10-14-4-6H70z" fill="#EDEFF7"/>
+<circle cx="76" cy="62" r="18" fill="#F2C28B"/>
+<path d="M58 58c0-12 8-18 18-18s18 6 18 18c-5-4-12-6-18-6s-13 2-18 6z" fill="#3A2A1A"/>
+<circle cx="69" cy="63" r="2.8" fill="#2A1830"/><circle cx="83" cy="63" r="2.8" fill="#2A1830"/>
+<path d="M70 74c4 2 8 2 12 0" stroke="#2A1830" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="76" cy="92" r="4" fill="#E0524E"/>
+<path d="M76 92l-12 5 12-2 12 2z" fill="#C13B37"/>
+<path d="M62 78l-4 8M90 78l4 8" stroke="#9AB8E0" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

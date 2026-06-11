@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Know it inside out">
+<ellipse cx="118" cy="150" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M64 64c20-10 40-10 56 0 16-10 36-10 56 0v62c-20-10-40-10-56 0-16-10-36-10-56 0z" fill="#E0524E"/>
+<path d="M120 64v62" stroke="#B8443F" stroke-width="3"/>
+<path d="M70 76c14-6 30-6 44 0M70 90c14-6 30-6 44 0M70 104c14-6 30-6 44 0" stroke="#F5F0E6" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M126 76c14-6 30-6 44 0M126 90c14-6 30-6 44 0M126 104c14-6 30-6 44 0" stroke="#F5F0E6" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M64 64c-6 4-6 58 0 62M176 64c6 4 6 58 0 62" fill="none" stroke="#9A2A26" stroke-width="3" stroke-linecap="round"/>
+<path d="M42 124c-2-26 8-44 28-44s26 18 24 44z" fill="#E0843E"/>
+<path d="M42 124c-2-26 8-44 28-44 4 0 9 1 12 3-6 32-24 38-40 39z" fill="#F2A360"/>
+<path d="M48 92c-8 4-12 12-8 22" stroke="#E0843E" stroke-width="8" fill="none" stroke-linecap="round"/>
+<circle cx="66" cy="58" r="18" fill="#F4E3C8"/>
+<path d="M50 54c0-10 7-16 16-16s16 6 16 16z" fill="#4E6FA8"/>
+<circle cx="60" cy="58" r="3" fill="#2A2030"/><circle cx="72" cy="58" r="3" fill="#2A2030"/>
+<path d="M59 67c4 3 10 3 14 0" stroke="#7A3A2A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<circle cx="100" cy="90" r="16" fill="#BEEBFF" opacity=".55"/>
+<circle cx="100" cy="90" r="16" fill="none" stroke="#7AA0C0" stroke-width="4"/>
+<path d="M112 102l14 14" stroke="#7A4A2B" stroke-width="6" stroke-linecap="round"/>
+</svg>

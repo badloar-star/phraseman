@@ -1,0 +1,24 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The life of the party">
+<ellipse cx="100" cy="151" rx="34" ry="7" fill="rgba(0,0,0,.25)"/>
+<circle cx="36" cy="92" r="16" fill="#6FB6D6"/>
+<path d="M24 96c0-9 6-15 12-15s12 6 12 15z" fill="#4A8AA8"/>
+<circle cx="34" cy="92" r="2.6" fill="#16243A"/><circle cx="42" cy="92" r="2.6" fill="#16243A"/>
+<path d="M33 99c4 2 8 2 11-1" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<circle cx="164" cy="92" r="16" fill="#7FB069"/>
+<path d="M152 96c0-9 6-15 12-15s12 6 12 15z" fill="#5E8A4A"/>
+<circle cx="158" cy="92" r="2.6" fill="#16243A"/><circle cx="166" cy="92" r="2.6" fill="#16243A"/>
+<path d="M157 99c4 2 8 2 11-1" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M74 150c-4-30 8-50 26-50s30 20 26 50z" fill="#F6A93F"/>
+<ellipse cx="100" cy="84" rx="26" ry="28" fill="#FFD23F"/>
+<path d="M78 80c0-15 10-25 22-25s22 10 22 25z" fill="#E0954E"/>
+<path d="M88 76c2-3 6-3 8 0M104 76c2-3 6-3 8 0" stroke="#3A2A1E" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M86 92c7 7 21 7 28 0" stroke="#7A3A2A" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+<ellipse cx="83" cy="90" rx="5" ry="3.5" fill="#F4A6A4" opacity=".7"/>
+<ellipse cx="117" cy="90" rx="5" ry="3.5" fill="#F4A6A4" opacity=".7"/>
+<path d="M76 102c-10 2-14-2-12-10M124 102c10 2 14-2 12-10" stroke="#F6A93F" stroke-width="8" fill="none" stroke-linecap="round"/>
+<rect x="46" y="34" width="8" height="8" rx="2" fill="#E8638E" transform="rotate(20 50 38)"/>
+<rect x="146" y="36" width="8" height="8" rx="2" fill="#6FB6D6" transform="rotate(-25 150 40)"/>
+<circle cx="100" cy="26" r="4.5" fill="#E8638E"/>
+<rect x="96" y="44" width="8" height="8" rx="2" fill="#7FB069" transform="rotate(15 100 48)"/>
+<circle cx="72" cy="32" r="3.5" fill="#F6C744"/><circle cx="128" cy="34" r="3.5" fill="#6FB6D6"/>
+</svg>

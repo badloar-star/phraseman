@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="At the drop of a hat">
+<ellipse cx="150" cy="150" rx="34" ry="7" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="48" cy="142" rx="30" ry="6" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="48" cy="138" rx="28" ry="7" fill="#3A4660"/>
+<path d="M30 134c0-12 8-22 18-22s18 10 18 22z" fill="#2A3450"/>
+<rect x="32" y="128" width="32" height="6" rx="3" fill="#E0524E"/>
+<path d="M30 134c0 3 8 5 18 5s18-2 18-5" fill="none" stroke="#1E2640" stroke-width="2" stroke-linecap="round"/>
+<path d="M132 92c0-16 12-28 28-28s8 0 8 0v8c-10 0-18 8-18 20v36h-18z" fill="#E0524E"/>
+<path d="M132 96c0-16 12-32 28-32" fill="none" stroke="#C73E3A" stroke-width="3" opacity=".6"/>
+<circle cx="156" cy="46" r="16" fill="#F2C28B"/>
+<path d="M140 42c0-11 7-17 16-17s16 6 16 17c-5-4-11-5-16-5s-11 1-16 5z" fill="#3A2A1A"/>
+<circle cx="164" cy="46" r="2.8" fill="#2A1830"/>
+<path d="M168 54c-3 3-7 3-10 1" stroke="#2A1830" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<rect x="146" y="120" width="12" height="30" rx="6" fill="#F2C28B" transform="rotate(-20 152 135)"/>
+<rect x="160" y="118" width="12" height="30" rx="6" fill="#E8AE76" transform="rotate(18 166 133)"/>
+<path d="M122 80h-26M122 96h-22M122 112h-26" stroke="#9AB8E0" stroke-width="4" stroke-linecap="round"/>
+</svg>

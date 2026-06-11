@@ -2001,7 +2001,14 @@
         "id": "music_secret",
         "en": "A banger",
         "ru": "Хитяра, мощный трек",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ə ˈbæŋə",
+        "literalRu": "грохотушка",
+        "meaningRu": "Невероятно крутая, заводная песня, под которую хочется танцевать.",
+        "exampleEn": "Turn it up — this song is an absolute banger!",
+        "exampleRu": "Сделай погромче — эта песня просто хитяра!",
+        "originRu": "Сленг вырос из британской клубной сцены: «banger» буквально «то, что бахает», ведь мощный бит будто бьёт по ушам. О треках так говорят с конца 1990-х.",
+        "art": "set13_music/music_secret"
       },
       "cards": [
         {
@@ -2009,70 +2016,140 @@
           "en": "Music to my ears",
           "ru": "Бальзам на душу",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈmjuːzɪk tə maɪ ɪəz",
+          "literalRu": "музыка для моих ушей",
+          "meaningRu": "Новость или слова, которые невероятно приятно услышать.",
+          "exampleEn": "You got the job? That's music to my ears!",
+          "exampleRu": "Тебя взяли на работу? Это бальзам на душу!",
+          "originRu": "Образ держится на простом сравнении: хорошая весть радует слух так же, как красивая мелодия. В переносном смысле оборот встречается в английском уже с XVII века.",
+          "art": "set13_music/music_01"
         },
         {
           "id": "music_02",
           "en": "Face the music",
           "ru": "Ответить за последствия",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "feɪs ðə ˈmjuːzɪk",
+          "literalRu": "встретиться лицом к лицу с музыкой",
+          "meaningRu": "Смело принять наказание или неприятные итоги своих поступков.",
+          "exampleEn": "He broke the window, so now he has to face the music.",
+          "exampleRu": "Он разбил окно, так что теперь придётся за это ответить.",
+          "originRu": "По одной из версий — из театра: актёр выходил на сцену прямо к оркестровой яме, лицом к музыкантам, и должен был играть, даже если робел перед публикой.",
+          "art": "set13_music/music_02"
         },
         {
           "id": "music_03",
           "en": "Ring a bell",
           "ru": "Звучит знакомо",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "rɪŋ ə bel",
+          "literalRu": "звонить в колокольчик",
+          "meaningRu": "Что-то смутно припоминается, кажется знакомым.",
+          "exampleEn": "That name rings a bell, but I can't place her face.",
+          "exampleRu": "Это имя мне знакомо, но я не вспомню её лица.",
+          "originRu": "Образ от звонка, который будит память: услышанное словно дёргает за верёвку и заставляет в голове «звякнуть» нужное воспоминание.",
+          "art": "set13_music/music_03"
         },
         {
           "id": "music_04",
           "en": "Blow your own trumpet",
           "ru": "Хвастаться",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bləʊ jɔːr əʊn ˈtrʌmpɪt",
+          "literalRu": "дудеть в собственную трубу",
+          "meaningRu": "Громко расхваливать самого себя и свои успехи.",
+          "exampleEn": "I don't like to blow my own trumpet, but I aced the test.",
+          "exampleRu": "Не люблю себя хвалить, но тест я сдал на отлично.",
+          "originRu": "В старину о приезде знатной особы возвещали трубачи-герольды. Тот, кто трубит сам себе, как бы сам себя объявляет важной персоной — отсюда и насмешка над хвастуном.",
+          "art": "set13_music/music_04"
         },
         {
           "id": "music_05",
           "en": "A party animal",
           "ru": "Заядлый тусовщик",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈpɑːti ˈænɪml",
+          "literalRu": "вечериночное животное",
+          "meaningRu": "Тот, кто обожает вечеринки и веселится до утра.",
+          "exampleEn": "My brother is a real party animal — he never goes home early.",
+          "exampleRu": "Мой брат настоящий тусовщик — никогда не уходит домой пораньше.",
+          "originRu": "Выражение разлетелось в Америке 1980-х: «animal» добавили шутки ради, намекая, что на вечеринке человек ведёт себя необузданно, как зверь, дорвавшийся до свободы.",
+          "art": "set13_music/music_05"
         },
         {
           "id": "music_06",
           "en": "Strike a chord",
           "ru": "Задеть за живое, откликнуться",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "straɪk ə kɔːd",
+          "literalRu": "ударить по струне аккорда",
+          "meaningRu": "Вызвать сильный отклик, потому что что-то близко и понятно.",
+          "exampleEn": "Her speech about loss struck a chord with everyone in the room.",
+          "exampleRu": "Её речь о потере задела за живое всех в зале.",
+          "originRu": "Образ музыкальный: нужный аккорд заставляет струну зазвучать, и так же удачное слово находит отзвук в душе. В переносном смысле оборот в ходу с XIX века.",
+          "art": "set13_music/music_06"
         },
         {
           "id": "music_07",
           "en": "Change your tune",
           "ru": "Запеть по-другому",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "tʃeɪndʒ jɔː tjuːn",
+          "literalRu": "сменить свою мелодию",
+          "meaningRu": "Резко поменять мнение или поведение на противоположное.",
+          "exampleEn": "He hated the city, but he changed his tune after living there a year.",
+          "exampleRu": "Он терпеть не мог город, но запел по-другому, прожив там год.",
+          "originRu": "Тот же образ есть и в русском «запеть по-другому»: раз человек завёл новую мелодию, значит, и настрой у него сменился. В английском оборот известен ещё со Средних веков.",
+          "art": "set13_music/music_07"
         },
         {
           "id": "music_08",
           "en": "The life of the party",
           "ru": "Душа компании",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə laɪf əv ðə ˈpɑːti",
+          "literalRu": "жизнь вечеринки",
+          "meaningRu": "Самый весёлый и заводной гость, вокруг которого всё крутится.",
+          "exampleEn": "Grandma was the life of the party, dancing with everyone.",
+          "exampleRu": "Бабушка была душой компании и танцевала со всеми подряд.",
+          "originRu": "Идею хорошо передаёт сам образ: без этого человека веселье будто гаснет — он и есть та «жизнь», что наполняет вечеринку энергией. Оборот закрепился в XIX веке.",
+          "art": "set13_music/music_08"
         },
         {
           "id": "music_09",
           "en": "It takes two to tango",
           "ru": "Танго танцуют вдвоём",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪt teɪks tuː tə ˈtæŋɡəʊ",
+          "literalRu": "для танго нужны двое",
+          "meaningRu": "В ссоре или в деле виноваты и отвечают обе стороны, а не кто-то один.",
+          "exampleEn": "Don't just blame him for the fight — it takes two to tango.",
+          "exampleRu": "Не вали ссору только на него — танго танцуют вдвоём.",
+          "originRu": "Фразу прославила песня 1952 года «Takes Two to Tango» в исполнении Перл Бейли: танго и правда не станцуешь в одиночку, отсюда и намёк, что в любом споре участвуют двое.",
+          "art": "set13_music/music_09"
         },
         {
           "id": "music_10",
           "en": "Paint the town red",
           "ru": "Оторваться по полной",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "peɪnt ðə taʊn red",
+          "literalRu": "выкрасить город в красный",
+          "meaningRu": "Шумно и весело гулять всю ночь, от души праздновать.",
+          "exampleEn": "We passed our exams, so let's paint the town red tonight!",
+          "exampleRu": "Мы сдали экзамены, так что сегодня оторвёмся по полной!",
+          "originRu": "По одной из версий — от буйной ночи 1837 года, когда лорд Уотерфорд с приятелями и правда вымазали красной краской дома и вывески английского городка Мелтон-Моубрей.",
+          "art": "set13_music/music_10"
         }
       ]
     },
@@ -2088,7 +2165,14 @@
         "id": "school_secret",
         "en": "Cram",
         "ru": "Зубрить в последнюю ночь",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "kræm",
+        "literalRu": "впихнуть, набить",
+        "meaningRu": "Лихорадочно заучивать всё подряд прямо перед экзаменом.",
+        "exampleEn": "I didn't study all term, so I had to cram the night before.",
+        "exampleRu": "Весь семестр я не учился, так что пришлось зубрить в последнюю ночь.",
+        "originRu": "Студенческое словечко XIX века. Обычное значение «cram» — туго набить, впихнуть до отказа; так же «впихивают» в голову гору фактов за одну ночь перед экзаменом.",
+        "art": "set14_school/school_secret"
       },
       "cards": [
         {
@@ -2096,70 +2180,140 @@
           "en": "Hit the books",
           "ru": "Засесть за учёбу",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt ðə bʊks",
+          "literalRu": "ударить по книгам",
+          "meaningRu": "Начать усердно заниматься, налечь на учёбу.",
+          "exampleEn": "I have a big exam tomorrow, so I need to hit the books tonight.",
+          "exampleRu": "Завтра важный экзамен, так что сегодня надо засесть за учёбу.",
+          "originRu": "Студенческий сленг из американских колледжей начала XX века. «Hit» здесь в значении «энергично взяться»: так же говорят hit the road — «двинуть в путь» или hit the gym — «налечь в зале».",
+          "art": "set14_school/school_01"
         },
         {
           "id": "school_02",
           "en": "Pass with flying colors",
           "ru": "Сдать блестяще",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pɑːs wɪð ˈflaɪɪŋ ˈkʌləz",
+          "literalRu": "пройти с развевающимися флагами",
+          "meaningRu": "Справиться с чем-то на отлично, с большим успехом.",
+          "exampleEn": "She studied hard and passed her driving test with flying colors.",
+          "exampleRu": "Она усердно готовилась и сдала на права блестяще.",
+          "originRu": "От морских традиций: корабль, выигравший бой, возвращался в порт с поднятыми, развевающимися на ветру флагами — «colours». Спущенные флаги, наоборот, означали поражение и сдачу.",
+          "art": "set14_school/school_02"
         },
         {
           "id": "school_03",
           "en": "A quick learner",
           "ru": "Схватывает на лету",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə kwɪk ˈlɜːnə",
+          "literalRu": "быстрый ученик",
+          "meaningRu": "Тот, кто легко и быстро осваивает новое.",
+          "exampleEn": "Don't worry about training him — he's a quick learner.",
+          "exampleRu": "Не переживай за его обучение — он схватывает на лету.",
+          "originRu": "Прямой и понятный оборот без хитрой истории: «quick» в нём сохраняет старое значение «живой, проворный» — то же, что в выражении the quick and the dead, «живые и мёртвые».",
+          "art": "set14_school/school_03"
         },
         {
           "id": "school_04",
           "en": "Put your thinking cap on",
           "ru": "Включить голову",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pʊt jɔː ˈθɪŋkɪŋ kæp ɒn",
+          "literalRu": "надеть свою думательную шапку",
+          "meaningRu": "Как следует сосредоточиться и хорошенько подумать.",
+          "exampleEn": "This puzzle is tricky — let's put our thinking caps on.",
+          "exampleRu": "Эта головоломка с подвохом — давай-ка включим голову.",
+          "originRu": "Раньше был «considering cap» — «шапка для раздумий». По одной из версий, образ идёт от судей, которые надевали особую шапку, прежде чем вынести приговор.",
+          "art": "set14_school/school_04"
         },
         {
           "id": "school_05",
           "en": "Practice makes perfect",
           "ru": "Повторение — мать учения",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈpræktɪs meɪks ˈpɜːfɪkt",
+          "literalRu": "практика доводит до совершенства",
+          "meaningRu": "Чем больше тренируешься, тем лучше получается.",
+          "exampleEn": "Keep playing the piano every day — practice makes perfect.",
+          "exampleRu": "Играй на пианино каждый день — повторение мать учения.",
+          "originRu": "Мысль очень древняя: ещё римляне говорили «usus est magister optimus» — «опыт лучший учитель». В английском виде поговорка известна с XVI века.",
+          "art": "set14_school/school_05"
         },
         {
           "id": "school_06",
           "en": "Teacher's pet",
           "ru": "Любимчик учителя",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈtiːtʃəz pet",
+          "literalRu": "питомец учителя",
+          "meaningRu": "Ученик, которого учитель выделяет и любит больше других.",
+          "exampleEn": "He always sits in the front row — such a teacher's pet.",
+          "exampleRu": "Он всегда сидит на первой парте — такой любимчик учителя.",
+          "originRu": "Оборот гуляет с XIX века. «Pet» — это домашний любимец вроде кошки или собаки, которого балуют; так же насмешливо зовут и ученика, к которому у учителя особая слабость.",
+          "art": "set14_school/school_06"
         },
         {
           "id": "school_07",
           "en": "Draw a blank",
           "ru": "Вылетело из головы",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "drɔː ə blæŋk",
+          "literalRu": "вытянуть пустой билет",
+          "meaningRu": "Силиться вспомнить или придумать — и ничего, полная пустота в голове.",
+          "exampleEn": "I tried to recall her name, but I just drew a blank.",
+          "exampleRu": "Я пытался вспомнить её имя, но всё как вылетело из головы.",
+          "originRu": "От лотереи времён королевы Елизаветы I: часть билетов были пустыми, без надписи — «blank». Вытянуть такой значило остаться ни с чем.",
+          "art": "set14_school/school_07"
         },
         {
           "id": "school_08",
           "en": "The school of hard knocks",
           "ru": "Школа жизни",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə skuːl əv hɑːd nɒks",
+          "literalRu": "школа суровых ударов",
+          "meaningRu": "Жизненный опыт, добытый через трудности, а не за партой.",
+          "exampleEn": "He never went to college — he learned everything in the school of hard knocks.",
+          "exampleRu": "Он не учился в университете — всему его научила школа жизни.",
+          "originRu": "Американское выражение конца XIX века. «Hard knocks» — это «крепкие удары» судьбы; жизнь подаётся как суровая школа, где уроки достаются больно, зато накрепко.",
+          "art": "set14_school/school_08"
         },
         {
           "id": "school_09",
           "en": "Know it inside out",
           "ru": "Знать вдоль и поперёк",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "nəʊ ɪt ɪnˈsaɪd aʊt",
+          "literalRu": "знать это наизнанку",
+          "meaningRu": "Разбираться в чём-то досконально, до мельчайших подробностей.",
+          "exampleEn": "Ask Tom about the engine — he knows this car inside out.",
+          "exampleRu": "Спроси Тома про мотор — он знает эту машину вдоль и поперёк.",
+          "originRu": "Образ от вывернутой наизнанку вещи: если ты видел её и снаружи, и с изнанки, значит, изучил полностью. «Inside out» буквально — «изнутри наружу».",
+          "art": "set14_school/school_09"
         },
         {
           "id": "school_10",
           "en": "A walking encyclopedia",
           "ru": "Ходячая энциклопедия",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈwɔːkɪŋ ɪnˌsaɪkləˈpiːdiə",
+          "literalRu": "ходячая энциклопедия",
+          "meaningRu": "Человек, который знает уйму всего на любую тему.",
+          "exampleEn": "Ask Grandpa about old movies — he's a walking encyclopedia.",
+          "exampleRu": "Спроси дедушку про старое кино — он ходячая энциклопедия.",
+          "originRu": "Само слово «энциклопедия» — из греческого «enkyklios paideia», то есть «всестороннее образование». А «ходячей» книгу в шутку делает человек, в чьей голове уместились все эти знания.",
+          "art": "set14_school/school_10"
         }
       ]
     },
@@ -2175,7 +2329,14 @@
         "id": "colors_secret",
         "en": "Red tape",
         "ru": "Бюрократия, волокита",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "red teɪp",
+        "literalRu": "красная тесьма",
+        "meaningRu": "Бессмысленные бумажные проволочки и формальности.",
+        "exampleEn": "We're stuck in red tape just to get one permit.",
+        "exampleRu": "Мы увязли в бюрократии ради одного-единственного разрешения.",
+        "originRu": "В старой Англии важные казённые бумаги перевязывали красной тесьмой, а обычные — белой. Чтобы добраться до дела, чиновнику приходилось распутывать ту самую красную ленту.",
+        "art": "set15_colors/colors_secret"
       },
       "cards": [
         {
@@ -2183,70 +2344,140 @@
           "en": "Out of the blue",
           "ru": "Как гром среди ясного неба",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "aʊt əv ðə bluː",
+          "literalRu": "из синевы",
+          "meaningRu": "Совершенно неожиданно, без всякого предупреждения.",
+          "exampleEn": "She called me out of the blue after ten years.",
+          "exampleRu": "Она позвонила как гром среди ясного неба — спустя десять лет.",
+          "originRu": "Полностью фраза звучала «a bolt out of the blue» — молния из чистого синего неба. Гроза без единой тучи поражает внезапностью, отсюда и смысл.",
+          "art": "set15_colors/colors_01"
         },
         {
           "id": "colors_02",
           "en": "Give the green light",
           "ru": "Дать зелёный свет",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡɪv ðə ɡriːn laɪt",
+          "literalRu": "дать зелёный свет",
+          "meaningRu": "Разрешить начать, дать добро на дело.",
+          "exampleEn": "The boss gave the green light to the new project.",
+          "exampleRu": "Начальник дал зелёный свет новому проекту.",
+          "originRu": "От железнодорожных сигналов XIX века: зелёный фонарь означал «путь свободен, можно ехать». С появлением светофоров цвет закрепился за разрешением.",
+          "art": "set15_colors/colors_02"
         },
         {
           "id": "colors_03",
           "en": "A white lie",
           "ru": "Ложь во спасение",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə waɪt laɪ",
+          "literalRu": "белая ложь",
+          "meaningRu": "Маленькая безобидная неправда, сказанная по доброте.",
+          "exampleEn": "I told a white lie and said I loved the gift.",
+          "exampleRu": "Я соврал во спасение и сказал, что подарок мне понравился.",
+          "originRu": "Белый издавна был цветом чистоты и безвредности, в отличие от «чёрной» злой лжи. В таком виде выражение встречается в Англии уже с XVIII века.",
+          "art": "set15_colors/colors_03"
         },
         {
           "id": "colors_04",
           "en": "The black sheep",
           "ru": "Белая ворона (в семье)",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə blæk ʃiːp",
+          "literalRu": "чёрная овца",
+          "meaningRu": "Тот, кто выбивается из семьи и считается её позором.",
+          "exampleEn": "He's the black sheep — the only one who left the family business.",
+          "exampleRu": "Он белая ворона в семье — единственный, кто ушёл из семейного дела.",
+          "originRu": "Чёрную шерсть нельзя было покрасить, и стоила она дешевле белой. К тому же чёрного ягнёнка в стаде пастухи считали дурной приметой.",
+          "art": "set15_colors/colors_04"
         },
         {
           "id": "colors_05",
           "en": "A golden opportunity",
           "ru": "Золотой шанс",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈɡəʊldən ˌɒpəˈtjuːnɪti",
+          "literalRu": "золотая возможность",
+          "meaningRu": "Редкий удачный случай, который грех упустить.",
+          "exampleEn": "This internship is a golden opportunity — don't miss it.",
+          "exampleRu": "Эта стажировка — золотой шанс, не упусти его.",
+          "originRu": "Золото с древности было самым ценным металлом, поэтому слово «золотой» в английском стало означать «лучший из возможных». Так и шанс «золотой» — драгоценный и редкий.",
+          "art": "set15_colors/colors_05"
         },
         {
           "id": "colors_06",
           "en": "A red flag",
           "ru": "Тревожный звоночек",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə red flæɡ",
+          "literalRu": "красный флаг",
+          "meaningRu": "Признак, что что-то не так и стоит насторожиться.",
+          "exampleEn": "He never talks about his past — that's a red flag.",
+          "exampleRu": "Он никогда не говорит о своём прошлом — это тревожный звоночек.",
+          "originRu": "Красный флаг веками означал опасность: его поднимали на кораблях перед боем, на полигонах перед стрельбой и на гонках, чтобы остановить заезд.",
+          "art": "set15_colors/colors_06"
         },
         {
           "id": "colors_07",
           "en": "Tickled pink",
           "ru": "В полном восторге",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈtɪkld pɪŋk",
+          "literalRu": "защекоченный до розового",
+          "meaningRu": "Страшно доволен и обрадован.",
+          "exampleEn": "Grandma was tickled pink when we all came to visit.",
+          "exampleRu": "Бабушка была в полном восторге, когда мы все приехали в гости.",
+          "originRu": "По одной из версий — от старого значения «to tickle» (радовать, веселить): от смеха и удовольствия лицо розовеет, словно тебя защекотали. Оборот закрепился в начале XX века.",
+          "art": "set15_colors/colors_07"
         },
         {
           "id": "colors_08",
           "en": "A grey area",
           "ru": "Серая зона, неоднозначность",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ɡreɪ ˈeəriə",
+          "literalRu": "серая зона",
+          "meaningRu": "Спорный случай, где не ясно, что правильно, а что нет.",
+          "exampleEn": "Whether it's allowed is a grey area in the rules.",
+          "exampleRu": "Разрешено это или нет — в правилах серая зона.",
+          "originRu": "Серый — это смесь чёрного и белого, то есть ни то ни сё. Так и спорный вопрос лежит между ясным «можно» и «нельзя». Оборот вошёл в речь в середине XX века.",
+          "art": "set15_colors/colors_08"
         },
         {
           "id": "colors_09",
           "en": "Show your true colors",
           "ru": "Показать истинное лицо",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ʃəʊ jɔː truː ˈkʌləz",
+          "literalRu": "показать свои настоящие цвета",
+          "meaningRu": "Раскрыть свой настоящий характер, обычно не лучший.",
+          "exampleEn": "Under pressure, he finally showed his true colors.",
+          "exampleRu": "Под давлением он наконец показал своё истинное лицо.",
+          "originRu": "«Colours» по-английски — флаги корабля. В морских войнах судно поднимало чужой флаг, чтобы подобраться к врагу, а перед атакой вывешивало свой настоящий — «показывало истинные цвета».",
+          "art": "set15_colors/colors_09"
         },
         {
           "id": "colors_10",
           "en": "Roll out the red carpet",
           "ru": "Встречать по-королевски",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "rəʊl aʊt ðə red ˈkɑːpɪt",
+          "literalRu": "раскатать красный ковёр",
+          "meaningRu": "Принять гостя пышно и с большими почестями.",
+          "exampleEn": "They rolled out the red carpet for the visiting author.",
+          "exampleRu": "Заезжего писателя встречали по-королевски.",
+          "originRu": "Самый ранний красный ковёр упомянут ещё у Эсхила: в трагедии 458 года до н. э. царь Агамемнон ступает по багряной дорожке. С тех пор красный путь — знак особого почёта.",
+          "art": "set15_colors/colors_10"
         }
       ]
     },
@@ -2262,7 +2493,14 @@
         "id": "clothes_secret",
         "en": "Sunday best",
         "ru": "Парадный наряд",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˈsʌndeɪ best",
+        "literalRu": "воскресное лучшее",
+        "meaningRu": "Самая красивая и нарядная одежда, что у тебя есть.",
+        "exampleEn": "Grandpa put on his Sunday best for the wedding.",
+        "exampleRu": "Дедушка надел свой парадный наряд на свадьбу.",
+        "originRu": "От старого обычая надевать самую лучшую одежду по воскресеньям, идя в церковь. У многих был один-единственный нарядный комплект — его и звали «воскресным лучшим».",
+        "art": "set16_clothes/clothes_secret"
       },
       "cards": [
         {
@@ -2270,70 +2508,140 @@
           "en": "Dress to impress",
           "ru": "Одеться сногсшибательно",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "dres tu ɪmˈpres",
+          "literalRu": "одеться, чтобы впечатлить",
+          "meaningRu": "Нарядиться так, чтобы все ахнули и запомнили тебя.",
+          "exampleEn": "It's a big interview — dress to impress.",
+          "exampleRu": "Это важное собеседование — оденься сногсшибательно.",
+          "originRu": "Фраза-присказка из мира моды и рекламы XX века: одежда работает как первое впечатление, ведь встречают по одёжке. Звонкая рифма dress–impress помогла ей прижиться.",
+          "art": "set16_clothes/clothes_01"
         },
         {
           "id": "clothes_02",
           "en": "Fit like a glove",
           "ru": "Сидит как влитой",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "fɪt laɪk ə ɡlʌv",
+          "literalRu": "сидит как перчатка",
+          "meaningRu": "Подходит идеально, тютелька в тютельку.",
+          "exampleEn": "These new jeans fit like a glove.",
+          "exampleRu": "Эти новые джинсы сидят как влитые.",
+          "originRu": "Перчатка обтягивает руку плотнее любой другой одежды, повторяя каждый палец. Фразу закрепил писатель Тобайас Смоллетт ещё в XVIII веке.",
+          "art": "set16_clothes/clothes_02"
         },
         {
           "id": "clothes_03",
           "en": "Put yourself in my shoes",
           "ru": "Поставь себя на моё место",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pʊt jɔːˈself ɪn maɪ ʃuːz",
+          "literalRu": "влезь в мои ботинки",
+          "meaningRu": "Представь, что ты на моём месте, и поймёшь меня.",
+          "exampleEn": "Before you judge me, put yourself in my shoes.",
+          "exampleRu": "Прежде чем меня осуждать, поставь себя на моё место.",
+          "originRu": "Обувь у каждого своя и разношена по своей ноге — поэтому «влезть в чужие ботинки» давно стало образом того, как примерить на себя чужую жизнь.",
+          "art": "set16_clothes/clothes_03"
         },
         {
           "id": "clothes_04",
           "en": "Roll up your sleeves",
           "ru": "Засучить рукава",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "rəʊl ʌp jɔː sliːvz",
+          "literalRu": "закатать рукава",
+          "meaningRu": "Серьёзно взяться за тяжёлую работу.",
+          "exampleEn": "The kitchen is a mess — let's roll up our sleeves.",
+          "exampleRu": "На кухне бардак — давай засучим рукава.",
+          "originRu": "Образ прямой: перед грязной или тяжёлой работой рукава закатывают, чтобы не мешали и не пачкались. В русском и английском картинка совпала почти дословно.",
+          "art": "set16_clothes/clothes_04"
         },
         {
           "id": "clothes_05",
           "en": "Off the cuff",
           "ru": "Экспромтом, без подготовки",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɒf ðə kʌf",
+          "literalRu": "с манжеты",
+          "meaningRu": "Сказать или сделать что-то с ходу, не готовясь заранее.",
+          "exampleEn": "He gave a great speech off the cuff, with no notes.",
+          "exampleRu": "Он отлично выступил экспромтом, без всяких записок.",
+          "originRu": "По одной из версий — от привычки ораторов и официантов записывать наспех заметки прямо на крахмальной манжете рубашки, а потом говорить «с манжеты».",
+          "art": "set16_clothes/clothes_05"
         },
         {
           "id": "clothes_06",
           "en": "Wear the trousers",
           "ru": "Быть главным в семье",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "weə ðə ˈtraʊzəz",
+          "literalRu": "носить брюки",
+          "meaningRu": "Командовать и принимать главные решения в семье.",
+          "exampleEn": "Everyone knows that Grandma wears the trousers at home.",
+          "exampleRu": "Все знают, что дома всем заправляет бабушка.",
+          "originRu": "Оборот родился в те времена, когда брюки носили только мужчины — глава дома. Поэтому о том, кто реально командует, и говорят, что он «носит брюки».",
+          "art": "set16_clothes/clothes_06"
         },
         {
           "id": "clothes_07",
           "en": "At the drop of a hat",
           "ru": "В любую секунду, без раздумий",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ət ðə drɒp əv ə hæt",
+          "literalRu": "по падению шляпы",
+          "meaningRu": "Сразу же, мгновенно, без малейшего колебания.",
+          "exampleEn": "She's ready to help at the drop of a hat.",
+          "exampleRu": "Она готова помочь в любую секунду.",
+          "originRu": "На Диком Западе сигналом к началу драки или скачек служила резко брошенная или сорванная с головы шляпа — действовать нужно было мгновенно.",
+          "art": "set16_clothes/clothes_07"
         },
         {
           "id": "clothes_08",
           "en": "Below the belt",
           "ru": "Удар ниже пояса",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɪˈləʊ ðə belt",
+          "literalRu": "ниже пояса",
+          "meaningRu": "Нечестный, подлый поступок или обидные слова.",
+          "exampleEn": "Bringing up his weight was a bit below the belt.",
+          "exampleRu": "Припомнить ему вес — это было немного ниже пояса.",
+          "originRu": "Прямо из бокса: по правилам маркиза Куинсберри XIX века бить соперника ниже пояса запрещено. Из ринга выражение перешло в обычную речь.",
+          "art": "set16_clothes/clothes_08"
         },
         {
           "id": "clothes_09",
           "en": "Walk a mile in my shoes",
           "ru": "Пройди милю в моих ботинках",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "wɔːk ə maɪl ɪn maɪ ʃuːz",
+          "literalRu": "пройди милю в моих ботинках",
+          "meaningRu": "Сначала проживи мою жизнь, а потом суди.",
+          "exampleEn": "Don't criticize her until you've walked a mile in her shoes.",
+          "exampleRu": "Не критикуй её, пока не пройдёшь милю в её ботинках.",
+          "originRu": "Развёрнутый вариант про чужую обувь: чтобы по-настоящему понять человека, мало встать на его место — надо пройти в его обуви целую милю. Образ часто связывают со старой индейской поговоркой.",
+          "art": "set16_clothes/clothes_09"
         },
         {
           "id": "clothes_10",
           "en": "All dressed up with nowhere to go",
           "ru": "Разодет, а идти некуда",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɔːl drest ʌp wɪð ˈnəʊweə tə ɡəʊ",
+          "literalRu": "весь нарядился, а идти некуда",
+          "meaningRu": "Готов к чему-то важному, а оно вдруг отменилось.",
+          "exampleEn": "The party got cancelled, so I'm all dressed up with nowhere to go.",
+          "exampleRu": "Вечеринку отменили, и вот я разодет, а идти некуда.",
+          "originRu": "По одной из версий — из популярной песенки начала XX века о человеке, который принарядился, но остался не у дел. Фраза прижилась как образ обманутых ожиданий.",
+          "art": "set16_clothes/clothes_10"
         }
       ]
     },
@@ -2348,8 +2656,15 @@
       "secret": {
         "id": "sea_secret",
         "en": "Catfish",
-        "ru": "Фейк, выдающий себя за другого в сети",
-        "status": "seed"
+        "ru": "Фейк под чужой личиной",
+        "status": "art_done",
+        "ipa": "ˈkætfɪʃ",
+        "literalRu": "сом",
+        "meaningRu": "Тот, кто выдаёт себя в сети за другого человека, чтобы обмануть.",
+        "exampleEn": "She turned out to be a catfish using someone else's photos.",
+        "exampleRu": "Она оказалась фейком, который выдавал себя за другого по чужим фото.",
+        "originRu": "Слово в этом значении пришло из документального фильма «Catfish» (2010): в нём прозвучала байка, что сомов подсаживали к треске в бочках, чтобы рыба не дремала, — как обманщики «бодрят» жертву онлайн.",
+        "art": "set17_sea/sea_secret"
       },
       "cards": [
         {
@@ -2357,70 +2672,140 @@
           "en": "The tip of the iceberg",
           "ru": "Верхушка айсберга",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə tɪp əv ði ˈaɪsbɜːɡ",
+          "literalRu": "кончик айсберга",
+          "meaningRu": "Видимая малая часть гораздо большей скрытой проблемы.",
+          "exampleEn": "These complaints are just the tip of the iceberg.",
+          "exampleRu": "Эти жалобы — лишь верхушка айсберга.",
+          "originRu": "У айсберга над водой торчит примерно одна девятая часть, а остальное скрыто под поверхностью — отсюда и образ невидимой громады под маленькой вершиной.",
+          "art": "set17_sea/sea_01"
         },
         {
           "id": "sea_02",
           "en": "In hot water",
           "ru": "В большой беде",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪn hɒt ˈwɔːtə",
+          "literalRu": "в горячей воде",
+          "meaningRu": "Попал в неприятности и можешь получить наказание.",
+          "exampleEn": "He's in hot water with his boss for being late again.",
+          "exampleRu": "Он крупно влип с начальником из-за очередного опоздания.",
+          "originRu": "По одной из версий — от старого обычая лить кипяток на непрошеных гостей и врагов под стенами замка: оказаться «в горячей воде» значило попасть в крупную передрягу.",
+          "art": "set17_sea/sea_02"
         },
         {
           "id": "sea_03",
           "en": "Test the waters",
           "ru": "Прощупать почву",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "test ðə ˈwɔːtəz",
+          "literalRu": "проверить воду",
+          "meaningRu": "Осторожно разузнать обстановку перед серьёзным шагом.",
+          "exampleEn": "Test the waters before you ask the boss for a raise.",
+          "exampleRu": "Прощупай почву, прежде чем просить у начальника прибавку.",
+          "originRu": "Образ от пловца, который сначала пробует воду ногой — холодно или нет, — и лишь потом решается нырнуть.",
+          "art": "set17_sea/sea_03"
         },
         {
           "id": "sea_04",
           "en": "Like a fish out of water",
           "ru": "Не в своей тарелке",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "laɪk ə fɪʃ aʊt əv ˈwɔːtə",
+          "literalRu": "как рыба, вытащенная из воды",
+          "meaningRu": "Чувствуешь себя неловко и не на своём месте.",
+          "exampleEn": "At the fancy party I felt like a fish out of water.",
+          "exampleRu": "На том пафосном приёме я был совсем не в своей тарелке.",
+          "originRu": "Рыба без воды беспомощно бьётся и не может дышать; этот яркий образ встречается у Чосера ещё в XIV веке.",
+          "art": "set17_sea/sea_04"
         },
         {
           "id": "sea_05",
           "en": "Go with the flow",
           "ru": "Плыть по течению",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡəʊ wɪð ðə fləʊ",
+          "literalRu": "идти с потоком",
+          "meaningRu": "Не сопротивляться, а спокойно принимать ход событий.",
+          "exampleEn": "No fixed plans today — let's just go with the flow.",
+          "exampleRu": "Никаких чётких планов на сегодня — давай просто плыть по течению.",
+          "originRu": "По одной из версий, мысль восходит к римскому императору Марку Аврелию, который советовал плыть по течению природы вместо борьбы с ним.",
+          "art": "set17_sea/sea_05"
         },
         {
           "id": "sea_06",
           "en": "Make waves",
           "ru": "Наводить шуму",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "meɪk weɪvz",
+          "literalRu": "поднимать волны",
+          "meaningRu": "Своими действиями вызывать переполох и нарушать спокойствие.",
+          "exampleEn": "The new manager is already making waves in the office.",
+          "exampleRu": "Новый начальник уже наводит шуму в офисе.",
+          "originRu": "Брошенный в гладкую воду камень расходится кругами и тревожит всю поверхность — так и человек, который «поднимает волны», нарушает тихий покой вокруг.",
+          "art": "set17_sea/sea_06"
         },
         {
           "id": "sea_07",
           "en": "In the same boat",
           "ru": "В одной лодке",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɪn ðə seɪm bəʊt",
+          "literalRu": "в одной лодке",
+          "meaningRu": "В одинаково трудном положении вместе с кем-то.",
+          "exampleEn": "Don't worry, we missed the deadline too — we're in the same boat.",
+          "exampleRu": "Не переживай, мы тоже сорвали срок — мы в одной лодке.",
+          "originRu": "Образ от гребцов в одной лодке: в шторм они спасаются или тонут все вместе. Так писали ещё древние греки о тех, кого объединила общая опасность.",
+          "art": "set17_sea/sea_07"
         },
         {
           "id": "sea_08",
           "en": "A drop in the ocean",
           "ru": "Капля в море",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə drɒp ɪn ði ˈəʊʃən",
+          "literalRu": "капля в океане",
+          "meaningRu": "Совсем ничтожно мало по сравнению с тем, что нужно.",
+          "exampleEn": "My donation is a drop in the ocean, but every bit helps.",
+          "exampleRu": "Мой взнос — капля в море, но и он не лишний.",
+          "originRu": "Образ восходит к Библии: у пророка Исаии все народы перед Богом — «как капля из ведра». Англичане заменили ведро бескрайним океаном.",
+          "art": "set17_sea/sea_08"
         },
         {
           "id": "sea_09",
           "en": "Sail close to the wind",
           "ru": "Ходить по краю",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "seɪl kləʊs tə ðə wɪnd",
+          "literalRu": "идти под парусом близко к ветру",
+          "meaningRu": "Балансировать на грани дозволенного или опасного.",
+          "exampleEn": "Joking about the boss like that, he's sailing close to the wind.",
+          "exampleRu": "Так шутить про начальника — он ходит по самому краю.",
+          "originRu": "Морской термин: вести парусник почти против ветра — самый быстрый, но и самый рискованный курс, где судно легко потерять управление.",
+          "art": "set17_sea/sea_09"
         },
         {
           "id": "sea_10",
           "en": "Still waters run deep",
           "ru": "В тихом омуте черти водятся",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "stɪl ˈwɔːtəz rʌn diːp",
+          "literalRu": "тихие воды текут глубоко",
+          "meaningRu": "За спокойной внешностью скрывается глубокая и сложная натура.",
+          "exampleEn": "She's quiet, but still waters run deep — she knows a lot.",
+          "exampleRu": "Она тихоня, но в тихом омуте черти водятся — знает уйму всего.",
+          "originRu": "На поверхности глубокая река кажется неподвижной, тогда как мелкий ручей шумит на камнях. Поговорка известна в Англии с XV века.",
+          "art": "set17_sea/sea_10"
         }
       ]
     },
@@ -2436,7 +2821,14 @@
         "id": "sky_secret",
         "en": "Space out",
         "ru": "Залипнуть, улететь мыслями",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "speɪs aʊt",
+        "literalRu": "уйти в космос",
+        "meaningRu": "Отключиться, перестать соображать и витать где-то в мыслях.",
+        "exampleEn": "Sorry, I totally spaced out — what did you say?",
+        "exampleRu": "Прости, я совсем улетел — что ты сказал?",
+        "originRu": "Сленг родом из 1960-х: о человеке, чьи мысли будто уплыли в открытый космос, подальше от происходящего вокруг.",
+        "art": "set18_sky/sky_secret"
       },
       "cards": [
         {
@@ -2444,70 +2836,140 @@
           "en": "Reach for the stars",
           "ru": "Целиться в звёзды",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "riːtʃ fə ðə stɑːz",
+          "literalRu": "тянуться к звёздам",
+          "meaningRu": "Ставить себе самые высокие, смелые цели.",
+          "exampleEn": "Don't settle for an okay job — reach for the stars.",
+          "exampleRu": "Не соглашайся на работу так себе — целься в звёзды.",
+          "originRu": "Звёзды с древности были образом недостижимой высоты. Призыв тянуться к ним как к мечте прижился в английском к началу XX века.",
+          "art": "set18_sky/sky_01"
         },
         {
           "id": "sky_02",
           "en": "Once in a blue moon",
           "ru": "Раз в сто лет",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "wʌns ɪn ə bluː muːn",
+          "literalRu": "раз в голубую луну",
+          "meaningRu": "Очень редко, почти никогда.",
+          "exampleEn": "We only eat out once in a blue moon.",
+          "exampleRu": "Мы ходим в кафе раз в сто лет.",
+          "originRu": "«Голубой луной» зовут второе полнолуние за один месяц — оно и правда случается редко, в среднем раз в два-три года.",
+          "art": "set18_sky/sky_02"
         },
         {
           "id": "sky_03",
           "en": "Under the stars",
           "ru": "Под открытым небом",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈʌndə ðə stɑːz",
+          "literalRu": "под звёздами",
+          "meaningRu": "На улице ночью, без крыши над головой.",
+          "exampleEn": "We slept under the stars on the beach.",
+          "exampleRu": "Мы спали под открытым небом на пляже.",
+          "originRu": "Прямой образ ночёвки на воле: вместо потолка над тобой звёздное небо. Романтический оттенок фраза получила в литературе XIX века.",
+          "art": "set18_sky/sky_03"
         },
         {
           "id": "sky_04",
           "en": "Down to earth",
           "ru": "Простой и адекватный",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "daʊn tʊ ɜːθ",
+          "literalRu": "приземлённый",
+          "meaningRu": "Простой в общении человек без звёздной болезни.",
+          "exampleEn": "The famous chef was so down to earth and kind.",
+          "exampleRu": "Знаменитый повар оказался таким простым и добрым.",
+          "originRu": "Противоположность тому, кто «витает в облаках»: твёрдо стоящий на земле остаётся трезвым и реалистичным. В переносном смысле — с начала XX века.",
+          "art": "set18_sky/sky_04"
         },
         {
           "id": "sky_05",
           "en": "The sky's the limit",
           "ru": "Нет никаких пределов",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə skaɪz ðə ˈlɪmɪt",
+          "literalRu": "небо — вот предел",
+          "meaningRu": "Возможностям нет границ, добиться можно чего угодно.",
+          "exampleEn": "With your talent, the sky's the limit.",
+          "exampleRu": "С твоим талантом нет никаких пределов.",
+          "originRu": "По одной из версий — отголосок «Дон Кихота»: раз выше неба ничего нет, то и предел только там. В нынешнем виде фраза разошлась с появлением авиации в начале XX века.",
+          "art": "set18_sky/sky_05"
         },
         {
           "id": "sky_06",
           "en": "Written in the stars",
           "ru": "Предначертано судьбой",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈrɪtn ɪn ðə stɑːz",
+          "literalRu": "написано в звёздах",
+          "meaningRu": "Так предопределено судьбой, иначе и быть не могло.",
+          "exampleEn": "They met by chance — it was written in the stars.",
+          "exampleRu": "Они встретились случайно — так было предначертано судьбой.",
+          "originRu": "От веры астрологов, что по расположению звёзд можно прочесть будущее. Образ любил Шекспир — отсюда и его «star-crossed lovers», влюблённые под несчастливой звездой.",
+          "art": "set18_sky/sky_06"
         },
         {
           "id": "sky_07",
           "en": "Many moons ago",
           "ru": "Давным-давно",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈmeni muːnz əˈɡəʊ",
+          "literalRu": "много лун назад",
+          "meaningRu": "Очень давно, много времени тому назад.",
+          "exampleEn": "Many moons ago, we used to live by the sea.",
+          "exampleRu": "Давным-давно мы жили у моря.",
+          "originRu": "Когда-то время считали не месяцами, а сменами луны: одно полнолуние — одна «луна». Английский подхватил счёт «лунами» по образцу речи коренных народов Америки.",
+          "art": "set18_sky/sky_07"
         },
         {
           "id": "sky_08",
           "en": "Starry-eyed",
           "ru": "Мечтательный, наивный",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈstɑːri aɪd",
+          "literalRu": "со звёздами в глазах",
+          "meaningRu": "Полный наивных мечтаний, видит всё в розовом свете.",
+          "exampleEn": "She arrived in the big city young and starry-eyed.",
+          "exampleRu": "Она приехала в большой город юной и мечтательной.",
+          "originRu": "Образ восторженного блеска в глазах, будто там отражаются звёзды. Так стали говорить о наивных идеалистах с середины XIX века.",
+          "art": "set18_sky/sky_08"
         },
         {
           "id": "sky_09",
           "en": "Shoot for the moon",
           "ru": "Метить в Луну",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ʃuːt fə ðə muːn",
+          "literalRu": "целься в луну",
+          "meaningRu": "Замахиваться на дерзкую мечту, даже если не выйдет до конца.",
+          "exampleEn": "Shoot for the moon — even if you miss, you'll land among the stars.",
+          "exampleRu": "Меть в Луну — даже промахнувшись, окажешься среди звёзд.",
+          "originRu": "Призыв ставить заведомо высокую цель. Знаменитым его сделала фраза-продолжение про падение «среди звёзд», которую часто приписывают писателю Норману Винсенту Пилу.",
+          "art": "set18_sky/sky_09"
         },
         {
           "id": "sky_10",
           "en": "Out of this world",
           "ru": "Неземной, потрясающий",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "aʊt əv ðɪs wɜːld",
+          "literalRu": "не из этого мира",
+          "meaningRu": "Настолько хорош, что кажется неземным.",
+          "exampleEn": "Grandma's apple pie is out of this world.",
+          "exampleRu": "Бабушкин яблочный пирог — это что-то неземное.",
+          "originRu": "Похвала через образ чего-то нездешнего, будто прилетевшего из космоса. Особенно вошла в моду в Америке 1920–30-х годов.",
+          "art": "set18_sky/sky_10"
         }
       ]
     },

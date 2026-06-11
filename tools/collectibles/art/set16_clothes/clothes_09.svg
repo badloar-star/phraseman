@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Walk a mile in my shoes">
+<path d="M18 140q40-20 80-8t86-4" fill="none" stroke="#C4C9DB" stroke-width="5" stroke-linecap="round" stroke-dasharray="3 10"/>
+<ellipse cx="62" cy="120" rx="26" ry="6" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="120" cy="138" rx="24" ry="6" fill="rgba(0,0,0,.25)"/>
+<path d="M40 94c0-7 5-11 12-11h8l6 9c5 2 16 4 20 9 4 4 3 13-4 14H50c-6 0-10-4-10-10z" fill="#E0524E"/>
+<path d="M40 108h46c2 5-2 8-7 8H50c-6 0-10-4-10-8z" fill="#C73E3A"/>
+<circle cx="52" cy="98" r="2.6" fill="#fff"/><circle cx="64" cy="98" r="2.6" fill="#fff"/>
+<circle cx="52" cy="98" r="1.2" fill="#2A1830"/><circle cx="64" cy="98" r="1.2" fill="#2A1830"/>
+<path d="M52 106c4 2 9 2 13 0" stroke="#7A1E1B" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M100 112c0-7 5-11 12-11h8l6 9c5 2 16 4 20 9 4 4 3 13-4 14h-32c-6 0-10-4-10-10z" fill="#5468C8"/>
+<path d="M100 126h46c2 5-2 8-7 8h-29c-6 0-10-4-10-8z" fill="#3A57B0"/>
+<circle cx="112" cy="116" r="2.6" fill="#fff"/><circle cx="124" cy="116" r="2.6" fill="#fff"/>
+<circle cx="112" cy="116" r="1.2" fill="#2A1830"/><circle cx="124" cy="116" r="1.2" fill="#2A1830"/>
+<path d="M112 124c4 2 9 2 13 0" stroke="#26367A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M150 60l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" fill="#FFD23F"/>
+<circle cx="34" cy="70" r="3" fill="#FFE38A"/>
+</svg>

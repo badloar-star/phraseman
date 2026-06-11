@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Once in a blue moon">
+<path d="M62 32a26 26 0 1 0 17 36 21 21 0 0 1-17-36z" fill="#7FB4E6"/>
+<circle cx="50" cy="44" r="3.5" fill="#5E97D6"/><circle cx="64" cy="62" r="2.6" fill="#5E97D6"/><circle cx="44" cy="64" r="2.2" fill="#5E97D6"/>
+<path d="M120 22l3 8 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#FFE08A"/>
+<circle cx="150" cy="40" r="2.6" fill="#FFE08A"/><circle cx="168" cy="64" r="2.2" fill="#FFE08A"/><circle cx="104" cy="56" r="2" fill="#FFE08A"/>
+<path d="M30 132h150" stroke="#6B5A3E" stroke-width="7" stroke-linecap="round"/>
+<ellipse cx="138" cy="104" rx="30" ry="34" fill="#A98FC4"/>
+<path d="M114 78l-5-14 14 7zM162 78l5-14-14 7z" fill="#A98FC4"/>
+<circle cx="128" cy="98" r="11" fill="#F5F0E6"/><circle cx="148" cy="98" r="11" fill="#F5F0E6"/>
+<circle cx="128" cy="98" r="5" fill="#16243A"/><circle cx="148" cy="98" r="5" fill="#16243A"/>
+<path d="M132 110l-6 7h12z" fill="#F6A623"/>
+<path d="M122 80l10-5M154 80l-10-5" stroke="#8A6B33" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Roll out the red carpet">
+<g fill="#FFE9A8" opacity="0.85">
+<path d="M150 36l-46 14 0-30-28 22-34-8 18 28-18 24 38 0 14 26 16-26 38 2-22-26z"/>
+</g>
+<ellipse cx="100" cy="150" rx="52" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M40 146l34-58h12l-30 58z" fill="#C9433F"/>
+<path d="M74 146l30-58h14l-26 58z" fill="#E0524E"/>
+<circle cx="148" cy="62" r="6" fill="#fff" opacity="0.7"/>
+<path d="M150 40l9 18 20 2-15 14 4 20-18-10-18 10 4-20-15-14 20-2z" fill="#FFD23F" stroke="#E8B800" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="142" cy="56" r="2.4" fill="#16243A"/><circle cx="158" cy="56" r="2.4" fill="#16243A"/>
+<path d="M143 64c4 4 10 4 14 0" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<rect x="30" y="116" width="8" height="30" rx="4" fill="#C99A2E"/><circle cx="34" cy="112" r="6" fill="#FFD23F"/>
+<rect x="60" y="120" width="7" height="26" rx="3.5" fill="#C99A2E"/><circle cx="63" cy="116" r="5" fill="#FFD23F"/>
+</svg>

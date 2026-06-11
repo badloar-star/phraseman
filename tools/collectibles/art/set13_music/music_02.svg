@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Face the music">
+<ellipse cx="56" cy="150" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M34 148c-3-26 6-44 22-44s25 18 22 44z" fill="#8A8FB0"/>
+<ellipse cx="56" cy="78" rx="22" ry="24" fill="#F2C9A0"/>
+<path d="M34 76c0-13 10-21 22-21s22 8 22 21z" fill="#5A6A4A"/>
+<path d="M48 86l3 4M64 86l-3 4" stroke="#3A2418" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M48 98c4-3 12-3 16 0" stroke="#7A3A2A" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+<ellipse cx="42" cy="90" rx="5" ry="3.5" fill="#9FB4C9" opacity=".6"/>
+<rect x="108" y="46" width="68" height="84" rx="10" fill="#C46A4A" opacity=".18"/>
+<path d="M118 116c12-2 18-10 18-22s-6-22-18-26" fill="none" stroke="#E0954E" stroke-width="9" stroke-linecap="round"/>
+<ellipse cx="120" cy="68" rx="13" ry="10" fill="#FFD23F"/>
+<path d="M120 78v34" stroke="#D8A21F" stroke-width="6" stroke-linecap="round"/>
+<path d="M134 122c14-2 20-10 20-22s-6-22-20-26" fill="none" stroke="#E0B04E" stroke-width="10" stroke-linecap="round"/>
+<ellipse cx="138" cy="60" rx="14" ry="11" fill="#FFE38F"/>
+<path d="M138 71v34" stroke="#D8A21F" stroke-width="7" stroke-linecap="round"/>
+<path d="M152 130c16-2 22-10 22-24s-6-24-22-28" fill="none" stroke="#E0954E" stroke-width="11" stroke-linecap="round"/>
+<ellipse cx="156" cy="52" rx="15" ry="12" fill="#FFD23F"/>
+<path d="M156 64v36" stroke="#D8A21F" stroke-width="7" stroke-linecap="round"/>
+<circle cx="86" cy="58" r="2.6" fill="#7FB6E0"/><circle cx="90" cy="74" r="2.2" fill="#7FB6E0"/>
+</svg>

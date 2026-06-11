@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The sky's the limit">
+<path d="M40 22l3 8 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#FFD23F"/>
+<path d="M150 20l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" fill="#FFD23F"/>
+<circle cx="100" cy="18" r="2.6" fill="#FFE08A"/><circle cx="74" cy="30" r="2.2" fill="#FFE08A"/><circle cx="124" cy="32" r="2.2" fill="#FFE08A"/>
+<ellipse cx="60" cy="120" rx="26" ry="13" fill="#FFFFFF"/>
+<ellipse cx="40" cy="124" rx="14" ry="9" fill="#FFFFFF"/>
+<ellipse cx="148" cy="108" rx="24" ry="12" fill="#FFFFFF"/>
+<ellipse cx="166" cy="112" rx="13" ry="8" fill="#FFFFFF"/>
+<path d="M100 58c14 8 22 26 22 50l-44 0c0-24 8-42 22-50z" fill="#E8EDF4"/>
+<path d="M100 58c8 5 14 16 17 30H83c3-14 9-25 17-30z" fill="#F46B6B"/>
+<circle cx="100" cy="92" r="9" fill="#9FD0EE"/>
+<circle cx="96" cy="91" r="1.8" fill="#16243A"/><circle cx="104" cy="91" r="1.8" fill="#16243A"/>
+<path d="M96 96c3 3 5 3 8 0" stroke="#16243A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M78 108l-14 18 16-6zM122 108l14 18-16-6z" fill="#F46B6B"/>
+<path d="M88 130c4 12 8 18 12 18s8-6 12-18z" fill="#FFB347"/>
+</svg>

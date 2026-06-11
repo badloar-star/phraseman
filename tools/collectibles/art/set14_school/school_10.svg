@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A walking encyclopedia">
+<ellipse cx="100" cy="150" rx="52" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M78 132l-8 14M104 134l4 12" stroke="#7A4A2B" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M70 146l12 2M108 146l12-2" stroke="#5A3A1E" stroke-width="7" stroke-linecap="round"/>
+<rect x="50" y="48" width="100" height="86" rx="8" fill="#5BA9D6"/>
+<rect x="50" y="48" width="16" height="86" rx="8" fill="#3E84B0"/>
+<rect x="66" y="48" width="84" height="86" rx="6" fill="#7FC0E0"/>
+<path d="M78 64h60M78 78h60M78 92h44" stroke="#FFF7DD" stroke-width="4" stroke-linecap="round"/>
+<path d="M44 88c-10 4-14 14-10 24" stroke="#3E84B0" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M156 88c10 4 14 14 10 24" stroke="#3E84B0" stroke-width="8" fill="none" stroke-linecap="round"/>
+<circle cx="86" cy="108" r="11" fill="none" stroke="#3A2E22" stroke-width="3"/>
+<circle cx="114" cy="108" r="11" fill="none" stroke="#3A2E22" stroke-width="3"/>
+<path d="M97 108h6" stroke="#3A2E22" stroke-width="3" stroke-linecap="round"/>
+<circle cx="86" cy="108" r="3" fill="#2A2030"/><circle cx="114" cy="108" r="3" fill="#2A2030"/>
+<path d="M90 124c5 4 13 4 18 0" stroke="#3A2E22" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M60 40l4 8M100 36v9M140 40l-4 8" stroke="#FFD23F" stroke-width="3.4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A white lie">
+<ellipse cx="100" cy="148" rx="44" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="68" cy="56" rx="20" ry="13" fill="#F1F4FA"/>
+<ellipse cx="132" cy="56" rx="20" ry="13" fill="#F1F4FA"/>
+<ellipse cx="100" cy="44" rx="22" ry="16" fill="#FBFDFF"/>
+<path d="M62 96c0-18 14-30 38-30s38 12 38 30c0 18-14 34-38 34s-38-16-38-34z" fill="#FBFDFF"/>
+<ellipse cx="100" cy="30" rx="20" ry="7" fill="none" stroke="#FFD23F" stroke-width="4"/>
+<circle cx="84" cy="92" r="6" fill="#fff" stroke="#C7D2E0" stroke-width="1.5"/>
+<circle cx="116" cy="92" r="6" fill="#fff" stroke="#C7D2E0" stroke-width="1.5"/>
+<circle cx="84" cy="93" r="2.6" fill="#16243A"/><circle cx="116" cy="93" r="2.6" fill="#16243A"/>
+<path d="M86 112c5-3 12-2 16-7" stroke="#C7A0A0" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="118" cy="110" rx="9" ry="11" fill="#FBFDFF" stroke="#D8E0EC" stroke-width="1.5"/>
+</svg>

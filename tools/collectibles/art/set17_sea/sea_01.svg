@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The tip of the iceberg">
+<rect x="0" y="60" width="200" height="100" rx="0" fill="#6FC5E8"/>
+<rect x="0" y="60" width="200" height="100" rx="0" fill="#4FA8D8" opacity=".35"/>
+<ellipse cx="100" cy="150" rx="60" ry="7" fill="rgba(0,0,0,.18)"/>
+<path d="M118 60L100 30 82 60z" fill="#EAF6FC"/>
+<path d="M100 30l-10 18 14 12 8-12z" fill="#FFFFFF"/>
+<path d="M88 60L52 138l96 0L112 60z" fill="#BFE6F4"/>
+<path d="M88 60L60 122l28-30 18 26 26-58z" fill="#A6D9EF" opacity=".7"/>
+<path d="M0 60c14-5 22 4 36 0s22 4 36 0 22 4 36 0 22 4 36 0 22 4 20 0" stroke="#EAF6FC" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="40" cy="110" rx="18" ry="13" fill="#F2A65A"/>
+<path d="M22 110l-12-8v16z" fill="#F2A65A"/>
+<circle cx="46" cy="106" r="4.6" fill="#1F2933"/>
+<circle cx="47.6" cy="104.6" r="1.5" fill="#FFFFFF"/>
+<path d="M52 113c-3 5-3 9 0 13" stroke="#B96A2E" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+</svg>

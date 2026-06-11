@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Still waters run deep">
+<rect x="0" y="0" width="200" height="48" fill="#BFE6F4"/>
+<path d="M0 48h200v112H0z" fill="#3E7CA8"/>
+<path d="M0 100h200v60H0z" fill="#2E6090"/>
+<path d="M0 48h200" stroke="#EAF6FC" stroke-width="2.5" opacity=".8"/>
+<path d="M20 60c4 30-4 50-4 70M30 64c2 24-2 40-2 56" stroke="#4FB37A" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M180 58c-4 30 4 52 4 72M170 64c-2 22 2 38 2 54" stroke="#4FB37A" stroke-width="6" fill="none" stroke-linecap="round"/>
+<rect x="74" y="116" width="56" height="34" rx="5" fill="#9A6A38"/>
+<path d="M74 116c0-12 12-18 28-18s28 6 28 18z" fill="#B98A4E"/>
+<rect x="72" y="112" width="60" height="10" rx="5" fill="#C99A5E"/>
+<rect x="94" y="120" width="16" height="14" rx="3" fill="#F2C14E"/>
+<circle cx="102" cy="127" r="3" fill="#9A6A38"/>
+<circle cx="60" cy="80" r="5" fill="#EAF6FC"/><circle cx="76" cy="80" r="5" fill="#EAF6FC"/>
+<circle cx="61" cy="81" r="2.4" fill="#16243A"/><circle cx="77" cy="81" r="2.4" fill="#16243A"/>
+<circle cx="118" cy="86" r="3.5" fill="#EAF6FC" opacity=".55"/>
+<circle cx="40" cy="130" r="3" fill="#EAF6FC" opacity=".45"/>
+</svg>

@@ -1,0 +1,195 @@
+// ════════════════════════════════════════════════════════════════════════════
+// paywall_variant.ts — эксперимент пейволов v3: A («Компакт») / B («Стори») /
+// C («Атриум») против v1 (контроль).
+//
+// КОНФИГ: Firestore doc `remote_config/paywall_ab` — НАМЕРЕННО отдельный от
+// `remote_config/app`: вкладка Remote Config в админке сохраняет свой док через
+// setDoc(merge:false) и затёрла бы чужие ключи. Отдельный док = изоляция.
+//   { a_pct, b_pct, c_pct, salt, rating_x10, ratings_count, updatedAt, updatedBy }
+//
+// НАЗНАЧЕНИЕ ВАРИАНТА: детерминированный djb2-хэш `${stableId}:paywall_ab:${salt}`
+// → доли A/B/C, остаток трафика = v1. Один юзер всегда видит один вариант
+// (переустановка не сбивает — stableId переживает), НИКАКОЙ ротации по времени:
+// time-based ротация смешивает когорты (день недели/промо) и портит тест.
+// Смена `salt` в админке = осознанный пересев бакетов (новый эксперимент).
+//
+// ДЕФОЛТ (нет дока / оффлайн / первый запуск): a=b=c=0 → ВСЕ на v1.
+// Это и есть kill-switch: обнулить доли в админке — эксперимент выключен.
+//
+// СОЦДОКАЗАТЕЛЬСТВО: rating_x10 (50 → «5.0», 0 → скрыть) и ratings_count —
+// только РЕАЛЬНЫЕ сторовые числа, обновляются из админки. Никаких хардкодов.
+// ════════════════════════════════════════════════════════════════════════════
+import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { getStableId } from './stable_id';
+
+export type PaywallAbVariant = 'v1' | 'A' | 'B' | 'C';
+
+export interface PaywallAbConfig {
+  aPct: number;
+  bPct: number;
+  cPct: number;
+  salt: string;
+  ratingX10: number;
+  ratingsCount: number;
+}
+
+const CONFIG_DOC_COLLECTION = 'remote_config';
+const CONFIG_DOC_ID = 'paywall_ab';
+const CONFIG_CACHE_KEY = 'paywall_ab_config_cache_v1';
+/** Ключ старого A/B v1-vs-v2 (Math.random на устройство) — вычищаем. */
+const LEGACY_VARIANT_KEY = 'paywall_variant';
+
+const DEFAULT_CONFIG: PaywallAbConfig = {
+  aPct: 0,
+  bPct: 0,
+  cPct: 0,
+  salt: 'v3',
+  ratingX10: 0,
+  ratingsCount: 0,
+};
+
+let _config: PaywallAbConfig = { ...DEFAULT_CONFIG };
+let _loadedOnce = false;
+
+function clampPct(raw: unknown): number {
+  const n = typeof raw === 'number' && Number.isFinite(raw) ? raw : 0;
+  return Math.max(0, Math.min(100, Math.round(n)));
+}
+
+function sanitizeConfig(raw: unknown): PaywallAbConfig {
+  const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const cfg: PaywallAbConfig = {
+    aPct: clampPct(r.a_pct),
+    bPct: clampPct(r.b_pct),
+    cPct: clampPct(r.c_pct),
+    salt: typeof r.salt === 'string' && r.salt.length > 0 && r.salt.length <= 40 ? r.salt : DEFAULT_CONFIG.salt,
+    ratingX10: clampPct(r.rating_x10) > 50 ? 50 : clampPct(r.rating_x10),
+    ratingsCount:
+      typeof r.ratings_count === 'number' && Number.isFinite(r.ratings_count) && r.ratings_count >= 0
+        ? Math.floor(r.ratings_count)
+        : 0,
+  };
+  // Если админ ввёл суммарно >100 — пропорционально ужимаем (v1 получает 0, но не минус).
+  const sum = cfg.aPct + cfg.bPct + cfg.cPct;
+  if (sum > 100) {
+    cfg.aPct = Math.floor((cfg.aPct * 100) / sum);
+    cfg.bPct = Math.floor((cfg.bPct * 100) / sum);
+    cfg.cPct = Math.floor((cfg.cPct * 100) / sum);
+  }
+  return cfg;
+}
+
+type FirestoreFactory = () => {
+  collection: (name: string) => {
+    doc: (id: string) => {
+      get: () => Promise<{ exists: boolean; data: () => unknown }>;
+    };
+  };
+};
+
+async function getFirestoreModule(): Promise<FirestoreFactory | null> {
+  if (Platform.OS === 'web' || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    const mod = await import('@react-native-firebase/firestore');
+    return mod.default as unknown as FirestoreFactory;
+  } catch {
+    return null;
+  }
+}
+
+async function applyCache(): Promise<void> {
+  try {
+    const raw = await AsyncStorage.getItem(CONFIG_CACHE_KEY);
+    if (raw) _config = sanitizeConfig(JSON.parse(raw));
+  } catch {
+    // best-effort
+  }
+}
+
+/**
+ * Кэш-первый лоад: применяем кэш сразу, затем тихо обновляемся из сети.
+ * Безопасно вызывать многократно; сеть дёргается на каждый вызов (док крошечный,
+ * пейвол открывается нечасто — зато админ-правки долетают мгновенно).
+ */
+export async function loadPaywallAbConfig(): Promise<PaywallAbConfig> {
+  if (!_loadedOnce) {
+    await applyCache();
+    _loadedOnce = true;
+  }
+  const factory = await getFirestoreModule();
+  if (factory) {
+    try {
+      const snap = await factory().collection(CONFIG_DOC_COLLECTION).doc(CONFIG_DOC_ID).get();
+      if (snap.exists) {
+        _config = sanitizeConfig(snap.data());
+        void AsyncStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({
+          a_pct: _config.aPct, b_pct: _config.bPct, c_pct: _config.cPct,
+          salt: _config.salt, rating_x10: _config.ratingX10, ratings_count: _config.ratingsCount,
+        })).catch(() => {});
+      }
+    } catch {
+      // оффлайн/нет прав — остаёмся на кэше/дефолте (все на v1)
+    }
+  }
+  return _config;
+}
+
+export function getPaywallAbConfigSync(): PaywallAbConfig {
+  return _config;
+}
+
+/** djb2 → [0,1). Копия hashToUnit из remote_flags (не экспортирован там). */
+export function hashToUnit(input: string): number {
+  let h = 5381;
+  for (let i = 0; i < input.length; i += 1) {
+    h = ((h << 5) + h + input.charCodeAt(i)) >>> 0;
+  }
+  return (h % 100000) / 100000;
+}
+
+/** Чистая функция выбора по точке [0,1) — отдельно ради тестируемости. */
+export function pickVariantFromUnit(unit: number, cfg: PaywallAbConfig): PaywallAbVariant {
+  const point = unit * 100;
+  if (point < cfg.aPct) return 'A';
+  if (point < cfg.aPct + cfg.bPct) return 'B';
+  if (point < cfg.aPct + cfg.bPct + cfg.cPct) return 'C';
+  return 'v1';
+}
+
+/**
+ * Главная точка входа диспетчера: свежий конфиг (кэш→сеть) + stableId → вариант.
+ * Manage-режим подписки сюда не ходит (всегда v1 — там управление подпиской).
+ */
+export async function resolvePaywallAbVariant(): Promise<{ variant: PaywallAbVariant; stableId: string }> {
+  const [cfg, stableId] = await Promise.all([loadPaywallAbConfig(), getStableId()]);
+  // Подчищаем ключ старого Math.random-эксперимента, чтобы не путал при отладке.
+  void AsyncStorage.removeItem(LEGACY_VARIANT_KEY).catch(() => {});
+  const unit = hashToUnit(`${stableId}:paywall_ab:${cfg.salt}`);
+  return { variant: pickVariantFromUnit(unit, cfg), stableId };
+}
+
+/** Рейтинг для соцстроки: null = не показывать (нет подтверждённого числа). */
+export function getPaywallSocialProof(): { rating: number | null; count: number | null } {
+  const rating = _config.ratingX10 >= 10 ? _config.ratingX10 / 10 : null;
+  const count = _config.ratingsCount > 0 ? _config.ratingsCount : null;
+  return { rating, count };
+}
+
+/** Test-only. */
+export function __setPaywallAbConfigForTest(raw: unknown): PaywallAbConfig {
+  _config = sanitizeConfig(raw);
+  _loadedOnce = true;
+  return _config;
+}
+export function __resetPaywallAbForTest(): void {
+  _config = { ...DEFAULT_CONFIG };
+  _loadedOnce = false;
+}
+
+/* expo-router route shim. */
+export default function __RouteShim() {
+  return null;
+}

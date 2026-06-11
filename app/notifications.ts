@@ -2216,5 +2216,53 @@ export const setupNotificationTapHandler = (
   return () => { subscription?.remove?.(); };
 };
 
+// ── Напоминание о конце триала (обещание таймлайна пейвола v3) ───────────────
+// Пейвол обещает «напомним за день до списания» — это обещание ОБЯЗАНО быть
+// правдой (паттерн Blinkist: прозрачность триала = +23% стартов, −55% жалоб).
+// Живёт максимум одно напоминание; при новом триале пересоздаётся.
+const TRIAL_END_REMINDER_ID_KEY = 'trial_end_reminder_id_v1';
+
+export const scheduleTrialEndReminder = async (
+  trialDays: number,
+  title: string,
+  body: string,
+): Promise<boolean> => {
+  try {
+    const N = await getNotifications();
+    if (!N || Platform.OS === 'web') return false;
+    const { status } = await N.getPermissionsAsync();
+    if (status !== 'granted') return false;
+
+    const prevId = await AsyncStorage.getItem(TRIAL_END_REMINDER_ID_KEY).catch(() => null);
+    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+
+    // За сутки до конца триала; для сверхкоротких триалов — не раньше чем через час.
+    const seconds = Math.max(3600, Math.round((trialDays - 1) * 86400));
+    const id = await N.scheduleNotificationAsync({
+      content: { title, body, sound: 'default' },
+      trigger: triggerInterval(seconds),
+    });
+    await AsyncStorage.setItem(TRIAL_END_REMINDER_ID_KEY, id).catch(() => {});
+    return true;
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications] scheduleTrialEndReminder', e);
+    return false;
+  }
+};
+
+export const cancelTrialEndReminder = async (): Promise<void> => {
+  try {
+    const N = await getNotifications();
+    if (!N) return;
+    const prevId = await AsyncStorage.getItem(TRIAL_END_REMINDER_ID_KEY).catch(() => null);
+    if (prevId) {
+      await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+      await AsyncStorage.removeItem(TRIAL_END_REMINDER_ID_KEY).catch(() => {});
+    }
+  } catch {
+    // best-effort
+  }
+};
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

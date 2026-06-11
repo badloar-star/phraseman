@@ -4,7 +4,7 @@ import {
   RankTier, SessionSize, RANK_TO_QUESTION_LEVEL, RANK_TIERS, rankToIndex,
 } from './types';
 import { expireStaleAcceptanceSessions } from './arena_pregame';
-import { cleanupStaleArenaSessions } from './arena_cleanup';
+import { cleanupStaleArenaSessions, advanceStuckQuestionSessions } from './arena_cleanup';
 import { getLevelFromXP } from './xp_levels';
 
 const db = admin.firestore();
@@ -95,6 +95,14 @@ export async function runMatchmaking(): Promise<void> {
     await expireStaleAcceptanceSessions();
   } catch {
     // non-fatal
+  }
+  try {
+    // Watchdog зависших вопросов ПЕРЕД stale-cleanup: завершает матчи нормально
+    // (с наградами), если игрок отвалился посреди вопроса. Иначе сессия дожила бы
+    // до 2ч stale-cleanup и оборвалась без наград.
+    await advanceStuckQuestionSessions();
+  } catch (e) {
+    console.error('advanceStuckQuestionSessions', e);
   }
   try {
     await cleanupStaleArenaSessions();

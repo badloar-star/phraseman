@@ -49,6 +49,31 @@ const THEMED_OSKOLOK_IMAGES: Record<OskolokThemeMode, Record<OskolokTier, ImageS
     '180': require('../assets/images/shards/compass-premium-180-session.webp'),
     '420': require('../assets/images/shards/compass-premium-420-session.webp'),
   },
+  // «Чёрное кино»: свои спрайты осколков не отрисованы — компасные премиум.
+  midnight: {
+    single: require('../assets/images/shards/compass-premium-single-session.webp'),
+    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
+    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
+    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+  },
+  ember: {
+    single: require('../assets/images/shards/compass-premium-single-session.webp'),
+    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
+    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
+    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+  },
+  aurora: {
+    single: require('../assets/images/shards/compass-premium-single-session.webp'),
+    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
+    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
+    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+  },
+  volt: {
+    single: require('../assets/images/shards/compass-premium-single-session.webp'),
+    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
+    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
+    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+  },
 };
 
 export const OSKOLOK_IMAGE_SOURCES: readonly ImageSourcePropType[] = Object.values(THEMED_OSKOLOK_IMAGES)

@@ -1,4 +1,5 @@
 import { GOLD_GRADIENTS } from './goldTheme';
+import { CINEMA } from './cinemaThemes';
 import type { ThemeMode } from './theme';
 
 /**
@@ -16,6 +17,11 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   // Graphite dark neutral tone
   minimalDark: ['#191B1F', '#121316', '#0C0D0F'],
   compass: ['#333335', '#303032', '#2D2D2F'],
+  // «Чёрное кино»: чистый чёрный; блум рисуется слоем CinemaBloom поверх.
+  midnight: [...CINEMA.midnight.bgGradient3],
+  ember: [...CINEMA.ember.bgGradient3],
+  aurora: [...CINEMA.aurora.bgGradient3],
+  volt: [...CINEMA.volt.bgGradient3],
 };
 
 const LEGACY_UNSUPPORTED_BG_GRADIENTS: Record<'ocean' | 'sakura', string[]> = {

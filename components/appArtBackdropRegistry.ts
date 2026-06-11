@@ -43,13 +43,19 @@ const THEME_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   minimalLight: require('../assets/images/theme_backdrops/theme-backdrop-minimal-light.webp'),
   minimalDark: require('../assets/images/theme_backdrops/theme-backdrop-minimal-dark.webp'),
   compass: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
+  // «Чёрное кино»: бэкдроп не показывается (IMAGE_OPACITY=0), ключи — компасные ассеты.
+  midnight: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
+  ember: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
+  aurora: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
+  volt: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
 };
 
 function withOnboardingGraphite(
   base: Record<ThemeMode, ImageSourcePropType>,
   compass: ImageSourcePropType,
 ): Record<ThemeMode, ImageSourcePropType> {
-  return { ...base, compass };
+  // Cinema-темы наследуют компасный арт (он всё равно скрыт нулевой непрозрачностью).
+  return { ...base, compass, midnight: compass, ember: compass, aurora: compass, volt: compass };
 }
 
 const HOME_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'));

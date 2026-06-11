@@ -186,6 +186,10 @@ const FIRST_LESSON_SHEET_PANEL_SCRIMS: Record<ThemeMode, string> = {
   minimalLight: 'rgba(255,250,237,0.86)',
   minimalDark: 'rgba(8,12,20,0.54)',
   compass: 'rgba(12,10,7,0.54)',
+  midnight: 'rgba(8,10,22,0.56)',
+  ember: 'rgba(20,11,6,0.54)',
+  aurora: 'rgba(6,16,12,0.54)',
+  volt: 'rgba(12,14,5,0.54)',
 };
 const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
   dark: '#F7FFF4',
@@ -195,6 +199,10 @@ const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
   minimalLight: '#1B1712',
   minimalDark: '#F5F7FB',
   compass: '#FFF8E8',
+  midnight: '#FFFFFF',
+  ember: '#FFFFFF',
+  aurora: '#FFFFFF',
+  volt: '#FFFFFF',
 };
 const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
   dark: '#CFE7CF',
@@ -204,6 +212,10 @@ const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
   minimalLight: '#635845',
   minimalDark: '#A7ABB3',
   compass: '#D8D2C8',
+  midnight: '#A9AECB',
+  ember: '#C9B4A4',
+  aurora: '#A7C0B5',
+  volt: '#BFC6A3',
 };
 const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
   dark: '#A8BFA6',
@@ -213,6 +225,10 @@ const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
   minimalLight: '#766B58',
   minimalDark: '#8FA2C2',
   compass: '#F2C48D',
+  midnight: '#B79CFF',
+  ember: '#FFC894',
+  aurora: '#9FF2D4',
+  volt: '#EAFF8C',
 };
 const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
   dark: 'rgba(189,255,143,0.26)',
@@ -222,6 +238,10 @@ const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
   minimalLight: 'rgba(120,91,42,0.22)',
   minimalDark: 'rgba(110,168,255,0.28)',
   compass: 'rgba(242,196,141,0.28)',
+  midnight: 'rgba(143,160,255,0.30)',
+  ember: 'rgba(255,162,69,0.30)',
+  aurora: 'rgba(61,232,166,0.30)',
+  volt: 'rgba(214,255,61,0.32)',
 };
 const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
   dark: '#F6FFF2',
@@ -231,6 +251,10 @@ const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
   minimalLight: '#3F2C08',
   minimalDark: '#07101F',
   compass: '#151008',
+  midnight: '#0D1030',
+  ember: '#2A1502',
+  aurora: '#052A1C',
+  volt: '#1A2002',
 };
 const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, string]> = {
   dark: ['#2F8A42', '#155A2B'],
@@ -240,6 +264,10 @@ const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, stri
   minimalLight: ['#FFF2BF', '#E7B84E'],
   minimalDark: ['#D7E7FF', '#6EA8FF'],
   compass: ['#FFD58A', '#E7B13F'],
+  midnight: ['#C9D2FF', '#6E7FF5'],
+  ember: ['#FFD9A8', '#F5801E'],
+  aurora: ['#9FF2CF', '#1FC487'],
+  volt: ['#EFFF9E', '#A8D414'],
 };
 const FIRST_LESSON_SHEET_CTA_SHADOW_COLORS: Record<ThemeMode, string> = {
   dark: '#7CF05C',
@@ -249,6 +277,10 @@ const FIRST_LESSON_SHEET_CTA_SHADOW_COLORS: Record<ThemeMode, string> = {
   minimalLight: '#B78328',
   minimalDark: '#6EA8FF',
   compass: '#F2C48D',
+  midnight: '#8FA0FF',
+  ember: '#FFA245',
+  aurora: '#3DE8A6',
+  volt: '#D6FF3D',
 };
 const DAILY_LOGIN_BONUS_XP_BY_DAY = [
   20, 25, 30, 40, 50, 75, 120,

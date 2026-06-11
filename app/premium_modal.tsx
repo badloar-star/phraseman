@@ -152,6 +152,10 @@ const PREMIUM_HERO_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   minimalLight: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-light.webp'),
   minimalDark: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-dark.webp'),
   compass: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
+  midnight: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
+  ember: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
+  aurora: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
+  volt: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
 };
 
 type PremiumHeroArt = {

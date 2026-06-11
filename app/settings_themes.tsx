@@ -43,6 +43,10 @@ const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 
 const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'compass', labelRU: 'Компас', labelUK: 'Компас', labelES: 'Brújula', labelPtBr: 'Bússola', labelVi: 'La bàn', labelId: 'Kompas', labelTr: 'Pusula', labelPl: 'Kompas', bg: '#171719', accent: '#F2C48D', text: '#FFF8E8', preview2: '#FFE6B5', preview3: '#B4774E' },
+  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF', premiumOnly: true },
+  { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn', bg: '#010101', accent: '#FFA245', text: '#FFFFFF', preview2: '#FF8A2A', preview3: '#FF3D6E', premiumOnly: true },
+  { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', bg: '#010201', accent: '#3DE8A6', text: '#FFFFFF', preview2: '#2EE6A0', preview3: '#2E9DFF', premiumOnly: true },
+  { mode: 'volt', labelRU: 'Вольт', labelUK: 'Вольт', labelES: 'Volt', labelPtBr: 'Volt', labelVi: 'Volt', labelId: 'Volt', labelTr: 'Volt', labelPl: 'Volt', bg: '#010200', accent: '#D6FF3D', text: '#FFFFFF', preview2: '#B8F222', preview3: '#2EE08C', premiumOnly: true },
   { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937' },
   { mode: 'minimalLight', labelRU: 'Скетч', labelUK: 'Скетч', labelES: 'Sketch', labelPtBr: 'Sketch', labelVi: 'Phác thảo', labelId: 'Sketsa', labelTr: 'Eskiz', labelPl: 'Szkic', bg: '#F3ECDC', accent: '#343842', text: '#171615', preview2: '#BCA98E', preview3: '#DED4C0' },
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
@@ -57,6 +61,12 @@ function themeSwatches(item: ThemeOption): [string, string, string] {
       return ['#A8CBFF', item.accent, '#2F5C9B'];
     case 'compass':
       return [COMPASS_RICH.cream, COMPASS_RICH.champagne, COMPASS_RICH.copperDark];
+    // «Чёрное кино»: свотчи = ядро блума, акцент, ореол блума.
+    case 'midnight':
+    case 'ember':
+    case 'aurora':
+    case 'volt':
+      return [item.preview2, item.accent, item.preview3];
     case 'minimalLight':
       return ['#FFFDF6', item.bg, item.preview3];
     case 'dark':

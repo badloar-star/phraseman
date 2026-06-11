@@ -11,6 +11,18 @@ export interface TrainerThemeIconPalette {
   muted: string;
 }
 
+// «Чёрное кино»: свои webp-иконки тренера не отрисованы — компасные премиум.
+const CINEMA_TRAINER_PATHS: Record<TrainerThemeIconKind, string> = {
+  phrases: 'assets/images/trainer_theme_icons/compass-premium/phrases.webp',
+  words: 'assets/images/trainer_theme_icons/compass-premium/words.webp',
+  analytics: 'assets/images/trainer_theme_icons/compass-premium/analytics.webp',
+};
+const CINEMA_TRAINER_SOURCES: Record<TrainerThemeIconKind, ImageSourcePropType> = {
+  phrases: require('../assets/images/trainer_theme_icons/compass-premium/phrases.webp'),
+  words: require('../assets/images/trainer_theme_icons/compass-premium/words.webp'),
+  analytics: require('../assets/images/trainer_theme_icons/compass-premium/analytics.webp'),
+};
+
 const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
   dark: {
     primary: '#2DD4BF',
@@ -61,6 +73,34 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
     stroke: '#FFF0D2',
     muted: '#6F5038',
   },
+  midnight: {
+    primary: '#8FA0FF',
+    secondary: '#B79CFF',
+    tertiary: '#C9D2FF',
+    stroke: '#E6EAFF',
+    muted: '#3A4170',
+  },
+  ember: {
+    primary: '#FFA245',
+    secondary: '#FF7E5C',
+    tertiary: '#FFD9A8',
+    stroke: '#FFEAD2',
+    muted: '#7A4A1A',
+  },
+  aurora: {
+    primary: '#3DE8A6',
+    secondary: '#2E9DFF',
+    tertiary: '#9FF2D4',
+    stroke: '#DFFCF0',
+    muted: '#1A5A44',
+  },
+  volt: {
+    primary: '#D6FF3D',
+    secondary: '#2EE08C',
+    tertiary: '#EAFF8C',
+    stroke: '#F6FFD9',
+    muted: '#56611C',
+  },
 };
 
 export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThemeIconKind, string>> = {
@@ -99,6 +139,10 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     words: 'assets/images/trainer_theme_icons/compass-premium/words.webp',
     analytics: 'assets/images/trainer_theme_icons/compass-premium/analytics.webp',
   },
+  midnight: CINEMA_TRAINER_PATHS,
+  ember: CINEMA_TRAINER_PATHS,
+  aurora: CINEMA_TRAINER_PATHS,
+  volt: CINEMA_TRAINER_PATHS,
 };
 
 const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind, ImageSourcePropType>> = {
@@ -137,6 +181,10 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     words: require('../assets/images/trainer_theme_icons/compass-premium/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/compass-premium/analytics.webp'),
   },
+  midnight: CINEMA_TRAINER_SOURCES,
+  ember: CINEMA_TRAINER_SOURCES,
+  aurora: CINEMA_TRAINER_SOURCES,
+  volt: CINEMA_TRAINER_SOURCES,
 };
 
 export function trainerThemeIconPalette(

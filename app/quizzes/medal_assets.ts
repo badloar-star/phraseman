@@ -12,6 +12,10 @@ const QUIZ_COMPLETION_MEDALS: Record<Exclude<QuizCompletionMedalTheme, 'neon-gre
   minimalLight: require('../../assets/images/quizzes/medals/quiz-completion-medal-minimal-light-cutout.webp'),
   minimalDark: require('../../assets/images/quizzes/medals/quiz-completion-medal-minimal-dark-cutout.webp'),
   compass: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
+  midnight: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
+  ember: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
+  aurora: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
+  volt: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
   forest: require('../../assets/images/quizzes/medals/quiz-completion-medal-forest-cutout.webp'),
   neonGreen: require('../../assets/images/quizzes/medals/quiz-completion-medal-neon-green-cutout.webp'),
 };

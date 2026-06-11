@@ -11,6 +11,10 @@ const ENERGY_IMAGES: Record<ThemeMode, any> = {
   minimalDark: require('../assets/images/energy/energy-graphite.webp'),
   compass: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
   minimalLight: require('../assets/images/energy/energy-sketch.webp'),
+  midnight: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
+  ember: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
+  aurora: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
+  volt: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
 };
 
 interface EnergyIconProps {

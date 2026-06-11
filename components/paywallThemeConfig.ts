@@ -317,6 +317,142 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofText: COMPASS_RICH.textMuted,
     socialProofStarColor: COMPASS_RICH.champagne,
   },
+  midnight: {
+    heroAccent: '#C9D2FF',
+
+    selectedCardBorder: 'rgba(143,160,255,0.46)',
+    selectedCardBg: 'rgba(143,160,255,0.1)',
+    unselectedCardBg: 'rgba(255,255,255,0.06)',
+    selectedCardShadow: '#39448F',
+
+    savingsBadgeBg: '#8FA0FF',
+    savingsBadgeText: '#0D1030',
+
+    popularBadgeBg: '#C9D2FF',
+    popularBadgeText: '#0D1030',
+
+    ctaBg: '#8FA0FF',
+    ctaText: '#0D1030',
+    ctaShadow: 'transparent',
+
+    pillBg: 'rgba(143,160,255,0.1)',
+    pillText: '#8FA0FF',
+    pillBorder: 'rgba(143,160,255,0.18)',
+
+    urgencyBg: 'rgba(143,160,255,0.08)',
+    urgencyTimerText: '#C9D2FF',
+    urgencyLabelText: '#A9AECB',
+    urgencyStrikethroughColor: '#6E7390',
+    urgencyCurrentPriceText: '#8FA0FF',
+
+    expandBtnText: '#8FA0FF',
+    expandBtnBorder: 'rgba(143,160,255,0.22)',
+
+    socialProofText: '#A9AECB',
+    socialProofStarColor: '#FFD27A',
+  },
+  ember: {
+    heroAccent: '#FFD9A8',
+
+    selectedCardBorder: 'rgba(255,162,69,0.46)',
+    selectedCardBg: 'rgba(255,162,69,0.1)',
+    unselectedCardBg: 'rgba(255,255,255,0.06)',
+    selectedCardShadow: '#9A4E0E',
+
+    savingsBadgeBg: '#FFA245',
+    savingsBadgeText: '#2A1502',
+
+    popularBadgeBg: '#FFD9A8',
+    popularBadgeText: '#2A1502',
+
+    ctaBg: '#FFA245',
+    ctaText: '#2A1502',
+    ctaShadow: 'transparent',
+
+    pillBg: 'rgba(255,162,69,0.1)',
+    pillText: '#FFA245',
+    pillBorder: 'rgba(255,162,69,0.18)',
+
+    urgencyBg: 'rgba(255,162,69,0.08)',
+    urgencyTimerText: '#FFD9A8',
+    urgencyLabelText: '#C9B4A4',
+    urgencyStrikethroughColor: '#8A7464',
+    urgencyCurrentPriceText: '#FFA245',
+
+    expandBtnText: '#FFA245',
+    expandBtnBorder: 'rgba(255,162,69,0.22)',
+
+    socialProofText: '#C9B4A4',
+    socialProofStarColor: '#FFCB5C',
+  },
+  aurora: {
+    heroAccent: '#9FF2CF',
+
+    selectedCardBorder: 'rgba(61,232,166,0.46)',
+    selectedCardBg: 'rgba(61,232,166,0.1)',
+    unselectedCardBg: 'rgba(255,255,255,0.06)',
+    selectedCardShadow: '#0E7A57',
+
+    savingsBadgeBg: '#3DE8A6',
+    savingsBadgeText: '#052A1C',
+
+    popularBadgeBg: '#9FF2CF',
+    popularBadgeText: '#052A1C',
+
+    ctaBg: '#3DE8A6',
+    ctaText: '#052A1C',
+    ctaShadow: 'transparent',
+
+    pillBg: 'rgba(61,232,166,0.1)',
+    pillText: '#3DE8A6',
+    pillBorder: 'rgba(61,232,166,0.18)',
+
+    urgencyBg: 'rgba(61,232,166,0.08)',
+    urgencyTimerText: '#9FF2CF',
+    urgencyLabelText: '#A7C0B5',
+    urgencyStrikethroughColor: '#6F837A',
+    urgencyCurrentPriceText: '#3DE8A6',
+
+    expandBtnText: '#3DE8A6',
+    expandBtnBorder: 'rgba(61,232,166,0.22)',
+
+    socialProofText: '#A7C0B5',
+    socialProofStarColor: '#F2D27A',
+  },
+  volt: {
+    heroAccent: '#EFFF9E',
+
+    selectedCardBorder: 'rgba(214,255,61,0.46)',
+    selectedCardBg: 'rgba(214,255,61,0.1)',
+    unselectedCardBg: 'rgba(255,255,255,0.06)',
+    selectedCardShadow: '#5F7A0A',
+
+    savingsBadgeBg: '#D6FF3D',
+    savingsBadgeText: '#1A2002',
+
+    popularBadgeBg: '#EFFF9E',
+    popularBadgeText: '#1A2002',
+
+    ctaBg: '#D6FF3D',
+    ctaText: '#1A2002',
+    ctaShadow: 'transparent',
+
+    pillBg: 'rgba(214,255,61,0.1)',
+    pillText: '#D6FF3D',
+    pillBorder: 'rgba(214,255,61,0.18)',
+
+    urgencyBg: 'rgba(214,255,61,0.08)',
+    urgencyTimerText: '#EFFF9E',
+    urgencyLabelText: '#BFC6A3',
+    urgencyStrikethroughColor: '#7E8563',
+    urgencyCurrentPriceText: '#D6FF3D',
+
+    expandBtnText: '#D6FF3D',
+    expandBtnBorder: 'rgba(214,255,61,0.22)',
+
+    socialProofText: '#BFC6A3',
+    socialProofStarColor: '#FFE85C',
+  },
 };
 
 export function getPaywallThemeConfig(themeMode: ThemeMode): ThemePaywallConfig {

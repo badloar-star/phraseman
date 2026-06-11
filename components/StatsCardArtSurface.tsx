@@ -88,6 +88,42 @@ export const STATS_CARD_ART_BY_THEME = {
     archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
     wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
   },
+  midnight: {
+    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
+    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
+    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
+    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
+    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
+  },
+  ember: {
+    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
+    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
+    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
+    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
+    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
+  },
+  aurora: {
+    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
+    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
+    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
+    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
+    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
+  },
+  volt: {
+    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
+    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
+    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
+    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
+    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
+    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
+    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
+  },
 } as const satisfies Record<ThemeMode, Record<StatsCardArtName, ImageSourcePropType>>;
 
 type StatsArtTheme = {

@@ -19,6 +19,10 @@ const YOUTUBE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
   minimalLight: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalLight-dalle-v1.webp'),
   minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalDark-dalle-v1.webp'),
   compass: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
+  midnight: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
+  ember: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
+  aurora: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
+  volt: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
 };
 
 function LingmanVideosButton() {

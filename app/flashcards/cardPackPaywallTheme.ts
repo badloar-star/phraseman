@@ -266,6 +266,11 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   minimalLight: shellGold(),
   minimalDark: shellDark(),
   compass: shellOnboardingGraphite(),
+  // «Чёрное кино»: переиспользуем графитовую оболочку — на чистом чёрном она садится без правок.
+  midnight: shellOnboardingGraphite(),
+  ember: shellOnboardingGraphite(),
+  aurora: shellOnboardingGraphite(),
+  volt: shellOnboardingGraphite(),
 };
 
 // ─── Легкі «смаки» категорії (набір) поверх оболонки теми ────────────────────

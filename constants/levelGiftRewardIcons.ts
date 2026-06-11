@@ -68,6 +68,10 @@ const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   minimalLight: require('../assets/images/shards/minimalLight-80.webp'),
   minimalDark: require('../assets/images/shards/minimalDark-80.webp'),
   compass: require('../assets/images/shards/compass-premium-80-session.webp'),
+  midnight: require('../assets/images/shards/compass-premium-80-session.webp'),
+  ember: require('../assets/images/shards/compass-premium-80-session.webp'),
+  aurora: require('../assets/images/shards/compass-premium-80-session.webp'),
+  volt: require('../assets/images/shards/compass-premium-80-session.webp'),
 };
 
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {

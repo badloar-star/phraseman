@@ -12,6 +12,10 @@ const REWARD_MODAL_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
   minimalLight: require('../assets/images/reward_modals/reward-modal-sketch.webp'),
   minimalDark: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
   compass: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
+  midnight: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
+  ember: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
+  aurora: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
+  volt: require('../assets/images/reward_modals/reward-modal-graphite.webp'),
 };
 
 type RewardModalBackdropProps = {

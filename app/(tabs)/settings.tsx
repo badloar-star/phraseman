@@ -265,6 +265,10 @@ export default function SettingsMain() {
       minimalLight: { ru: 'Скетч', uk: 'Скетч', es: 'Boceto', 'pt-BR': 'Esboço', vi: 'Phác thảo', id: 'Sketsa', tr: 'Eskiz', pl: 'Szkic' },
       minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
       compass: { ru: 'Компас', uk: 'Компас', es: 'Brújula', 'pt-BR': 'Bússola', vi: 'La bàn', id: 'Kompas', tr: 'Pusula', pl: 'Kompas' },
+      midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
+      ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
+      aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
+      volt: { ru: 'Вольт', uk: 'Вольт', es: 'Volt', 'pt-BR': 'Volt', vi: 'Volt', id: 'Volt', tr: 'Volt', pl: 'Volt' },
     };
     const entry = names[themeMode] ?? names.minimalDark;
     return entry[lang];

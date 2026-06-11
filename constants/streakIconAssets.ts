@@ -20,6 +20,32 @@ type ThemeTierMap<T> = Record<ThemeMode, Record<StreakIconTierDays, T>>;
 
 const DEFAULT_THEME_MODE: ThemeMode = 'minimalDark';
 
+// «Чёрное кино»: свои спрайты огня не отрисованы — компасные премиум-ассеты.
+const CINEMA_FIRE_PATHS: Record<StreakIconTierDays, string> = {
+    10: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-010.webp',
+    20: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-020.webp',
+    30: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-030.webp',
+    40: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-040.webp',
+    50: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-050.webp',
+    60: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-060.webp',
+    70: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-070.webp',
+    80: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-080.webp',
+    90: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-090.webp',
+    100: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-100.webp',
+};
+const CINEMA_FIRE_SOURCES: Record<StreakIconTierDays, ImageSourcePropType> = {
+    10: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-010.webp'),
+    20: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-020.webp'),
+    30: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-030.webp'),
+    40: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-040.webp'),
+    50: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-050.webp'),
+    60: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-060.webp'),
+    70: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-070.webp'),
+    80: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-080.webp'),
+    90: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-090.webp'),
+    100: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-100.webp'),
+};
+
 const STREAK_FIRE_ICON_ASSET_PATHS: ThemeTierMap<string> = {
   dark: {
     10: 'assets/images/streak_icons/dark/streak-fire-dark-010.webp',
@@ -105,6 +131,10 @@ const STREAK_FIRE_ICON_ASSET_PATHS: ThemeTierMap<string> = {
     90: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-090.webp',
     100: 'assets/images/streak_icons/compass-premium/streak-fire-compass-premium-100.webp',
   },
+  midnight: CINEMA_FIRE_PATHS,
+  ember: CINEMA_FIRE_PATHS,
+  aurora: CINEMA_FIRE_PATHS,
+  volt: CINEMA_FIRE_PATHS,
 };
 
 const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
@@ -192,6 +222,10 @@ const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
     90: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-090.webp'),
     100: require('../assets/images/streak_icons/compass-premium/streak-fire-compass-premium-100.webp'),
   },
+  midnight: CINEMA_FIRE_SOURCES,
+  ember: CINEMA_FIRE_SOURCES,
+  aurora: CINEMA_FIRE_SOURCES,
+  volt: CINEMA_FIRE_SOURCES,
 };
 
 const FIRE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; accent: string }> = {
@@ -202,6 +236,10 @@ const FIRE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; a
   minimalLight: { rgb: [162, 79, 24], accent: '#A24F18' },
   minimalDark: { rgb: [110, 168, 255], accent: '#6EA8FF' },
   compass: { rgb: [242, 196, 141], accent: '#F2C48D' },
+  midnight: { rgb: [255, 210, 122], accent: '#FFD27A' },
+  ember: { rgb: [255, 138, 42], accent: '#FF8A2A' },
+  aurora: { rgb: [242, 210, 122], accent: '#F2D27A' },
+  volt: { rgb: [255, 232, 92], accent: '#FFE85C' },
 };
 
 const FREEZE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; accent: string }> = {
@@ -212,6 +250,10 @@ const FREEZE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number];
   minimalLight: { rgb: [31, 110, 165], accent: '#1F6EA5' },
   minimalDark: { rgb: [156, 163, 175], accent: '#9CA3AF' },
   compass: { rgb: [242, 196, 141], accent: '#F2C48D' },
+  midnight: { rgb: [143, 160, 255], accent: '#8FA0FF' },
+  ember: { rgb: [122, 200, 232], accent: '#7AC8E8' },
+  aurora: { rgb: [46, 157, 255], accent: '#2E9DFF' },
+  volt: { rgb: [111, 231, 220], accent: '#6FE7DC' },
 };
 
 const STREAK_FREEZE_ICON_ASSET_PATH = 'assets/images/streak_icons/streak-freeze.webp';
@@ -225,6 +267,10 @@ const STREAK_FREEZE_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   minimalLight: 'assets/images/streak_icons/minimalLight/streak-freeze-minimalLight.webp',
   minimalDark: 'assets/images/streak_icons/minimalDark/streak-freeze-minimalDark.webp',
   compass: 'assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp',
+  midnight: 'assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp',
+  ember: 'assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp',
+  aurora: 'assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp',
+  volt: 'assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp',
 };
 
 const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
@@ -235,6 +281,10 @@ const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
   minimalLight: require('../assets/images/streak_icons/minimalLight/streak-freeze-minimalLight.webp'),
   minimalDark: require('../assets/images/streak_icons/minimalDark/streak-freeze-minimalDark.webp'),
   compass: require('../assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp'),
+  midnight: require('../assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp'),
+  ember: require('../assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp'),
+  aurora: require('../assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp'),
+  volt: require('../assets/images/streak_icons/compass-premium/streak-freeze-compass-premium.webp'),
 };
 
 const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
@@ -245,6 +295,10 @@ const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
   minimalLight: 'assets/images/streak_icons/sources/streak-freeze-minimalLight-dalle-source.png',
   minimalDark: 'assets/images/streak_icons/sources/streak-freeze-minimalDark-dalle-source.png',
   compass: 'assets/images/theme_compass_premium/sources/streak-icons/streak-icons-compass-premium-dalle-source.png',
+  midnight: 'assets/images/theme_compass_premium/sources/streak-icons/streak-icons-compass-premium-dalle-source.png',
+  ember: 'assets/images/theme_compass_premium/sources/streak-icons/streak-icons-compass-premium-dalle-source.png',
+  aurora: 'assets/images/theme_compass_premium/sources/streak-icons/streak-icons-compass-premium-dalle-source.png',
+  volt: 'assets/images/theme_compass_premium/sources/streak-icons/streak-icons-compass-premium-dalle-source.png',
 };
 
 function rgba(rgb: readonly [number, number, number], alpha: number): string {

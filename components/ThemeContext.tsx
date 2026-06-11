@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, NEON, GOLD, CORAL, MINIMAL_DARK, MINIMAL_LIGHT, COMPASS, Theme, ThemeMode } from '../constants/theme';
+import { DARK, NEON, GOLD, CORAL, MINIMAL_DARK, MINIMAL_LIGHT, COMPASS, MIDNIGHT, EMBER, AURORA, VOLT, Theme, ThemeMode } from '../constants/theme';
 import { goldShadow } from '../constants/goldTheme';
 import { compassShadow } from '../constants/compassTheme';
 import { computeUiScale } from '../constants/layout-scale';
@@ -196,10 +196,14 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   minimalLight: MINIMAL_LIGHT,
   minimalDark: MINIMAL_DARK,
   compass: COMPASS,
+  midnight: MIDNIGHT,
+  ember: EMBER,
+  aurora: AURORA,
+  volt: VOLT,
 };
-const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'compass', 'dark', 'neon', 'coral', 'gold'];
+const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'compass', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'neon', 'coral', 'gold'];
 /** Темы только с Premium; бесплатные: `minimalDark`, `minimalLight` и `compass`. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'coral'];
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'coral', 'midnight', 'ember', 'aurora', 'volt'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 const DEFAULT_THEME_MODE: ThemeMode = 'compass';
 
@@ -241,7 +245,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         void AsyncStorage.setItem('app_theme', 'coral');
       }
       const valid =
-        migrated === 'neon' || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || migrated === 'minimalLight' || migrated === 'minimalDark' || migrated === 'compass';
+        migrated === 'neon' || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || migrated === 'minimalLight' || migrated === 'minimalDark' || migrated === 'compass' ||
+        migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
@@ -318,7 +323,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     [fontSize, uiScale],
   );
   const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
-  const isDark = themeMode === 'dark' || themeMode === 'neon' || themeMode === 'gold' || themeMode === 'coral' || themeMode === 'minimalDark' || themeMode === 'compass';
+  const isDark = themeMode !== 'minimalLight';
   const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));

@@ -23,6 +23,11 @@ const IMAGE_OPACITY: Record<ThemeMode, number> = {
   minimalLight: 0.62,
   minimalDark: 0.52,
   compass: 0.18,
+  // «Чёрное кино»: арт-бэкдроп глушим — фон делает CinemaBloom на чистом чёрном.
+  midnight: 0,
+  ember: 0,
+  aurora: 0,
+  volt: 0,
 };
 
 const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
@@ -33,6 +38,10 @@ const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
   minimalLight: ['rgba(34,28,18,0.16)', 'rgba(34,28,18,0.06)', 'rgba(34,28,18,0.28)'],
   minimalDark: ['rgba(8,10,14,0.30)', 'rgba(12,14,20,0.16)', 'rgba(6,7,10,0.56)'],
   compass: ['rgba(51,51,53,0.46)', 'rgba(48,48,50,0.34)', 'rgba(29,29,31,0.74)'],
+  midnight: ['rgba(1,1,2,0.40)', 'rgba(1,1,2,0.22)', 'rgba(1,1,2,0.66)'],
+  ember: ['rgba(1,1,1,0.40)', 'rgba(1,1,1,0.22)', 'rgba(1,1,1,0.66)'],
+  aurora: ['rgba(1,2,1,0.40)', 'rgba(1,2,1,0.22)', 'rgba(1,2,1,0.66)'],
+  volt: ['rgba(1,2,0,0.40)', 'rgba(1,2,0,0.22)', 'rgba(1,2,0,0.66)'],
 };
 
 const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
@@ -43,6 +52,10 @@ const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
   minimalLight: ['rgba(34,28,18,0.18)', 'rgba(34,28,18,0.04)', 'rgba(34,28,18,0.04)', 'rgba(34,28,18,0.16)'],
   minimalDark: ['rgba(8,10,14,0.36)', 'rgba(110,168,255,0.04)', 'rgba(110,168,255,0.03)', 'rgba(6,7,10,0.34)'],
   compass: ['rgba(29,29,31,0.50)', 'rgba(48,48,50,0.10)', 'rgba(48,48,50,0.08)', 'rgba(29,29,31,0.46)'],
+  midnight: ['rgba(1,1,2,0.46)', 'rgba(1,1,2,0.10)', 'rgba(1,1,2,0.08)', 'rgba(1,1,2,0.42)'],
+  ember: ['rgba(1,1,1,0.46)', 'rgba(1,1,1,0.10)', 'rgba(1,1,1,0.08)', 'rgba(1,1,1,0.42)'],
+  aurora: ['rgba(1,2,1,0.46)', 'rgba(1,2,1,0.10)', 'rgba(1,2,1,0.08)', 'rgba(1,2,1,0.42)'],
+  volt: ['rgba(1,2,0,0.46)', 'rgba(1,2,0,0.10)', 'rgba(1,2,0,0.08)', 'rgba(1,2,0,0.42)'],
 };
 
 function AppArtBackdrop({ name }: { name: AppArtBackdropName }) {

@@ -11,6 +11,19 @@ export const LEVEL_IMAGES: Record<string, number> = {
   hard: require('../../assets/images/levels/hard.webp'),
 };
 
+// «Чёрное кино» (midnight/ember/aurora/volt): свои webp-карточки не отрисованы,
+// используем компасные премиум-ассеты — на чистом чёрном они садятся лучше всего.
+const CINEMA_LEVEL_CARD_BG: Record<Level, number> = {
+  easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-compass-premium.webp'),
+  medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-compass-premium.webp'),
+  hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-compass-premium.webp'),
+};
+const CINEMA_LEVEL_LOGOS: Record<Level, number> = {
+  easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-compass-premium.webp'),
+  medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-compass-premium.webp'),
+  hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-compass-premium.webp'),
+};
+
 export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number>> = {
   dark: {
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-dark.webp'),
@@ -47,6 +60,10 @@ export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-compass-premium.webp'),
     hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-compass-premium.webp'),
   },
+  midnight: CINEMA_LEVEL_CARD_BG,
+  ember: CINEMA_LEVEL_CARD_BG,
+  aurora: CINEMA_LEVEL_CARD_BG,
+  volt: CINEMA_LEVEL_CARD_BG,
 };
 
 export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
@@ -85,6 +102,10 @@ export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-compass-premium.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-compass-premium.webp'),
   },
+  midnight: CINEMA_LEVEL_LOGOS,
+  ember: CINEMA_LEVEL_LOGOS,
+  aurora: CINEMA_LEVEL_LOGOS,
+  volt: CINEMA_LEVEL_LOGOS,
 };
 
 // Card palette by theme and level.
@@ -129,6 +150,26 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
     medium: { gradA: '#24211D', gradB: '#100D0A', accent: '#F4B978' },
     hard: { gradA: '#2C211B', gradB: '#0B0806', accent: '#FFE6B5' },
   },
+  midnight: {
+    easy: { gradA: '#08221A', gradB: '#020D0A', accent: '#5FE0B0' },
+    medium: { gradA: '#0E1430', gradB: '#040714', accent: '#8FA0FF' },
+    hard: { gradA: '#1C0E30', gradB: '#0A0414', accent: '#B070FF' },
+  },
+  ember: {
+    easy: { gradA: '#082218', gradB: '#020D09', accent: '#5FE8A8' },
+    medium: { gradA: '#2A1606', gradB: '#100802', accent: '#FFA245' },
+    hard: { gradA: '#2A0814', gradB: '#10030A', accent: '#FF4D6E' },
+  },
+  aurora: {
+    easy: { gradA: '#08241B', gradB: '#02100B', accent: '#3DE8A6' },
+    medium: { gradA: '#08182B', gradB: '#020A12', accent: '#3FA9FF' },
+    hard: { gradA: '#260C10', gradB: '#100406', accent: '#FF6470' },
+  },
+  volt: {
+    easy: { gradA: '#08241B', gradB: '#02100B', accent: '#4FE8AC' },
+    medium: { gradA: '#1C2406', gradB: '#0B0F02', accent: '#D6FF3D' },
+    hard: { gradA: '#2A1606', gradB: '#100802', accent: '#FF8A3D' },
+  },
   ocean: {
     easy: { gradA: '#0C2840', gradB: '#1A6FA0', accent: '#30C0FF' },
     medium: { gradA: '#081830', gradB: '#0E5090', accent: '#00B0F0' },
@@ -151,6 +192,10 @@ export const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondar
   minimalLight: { primary: '#2E261B', secondary: 'rgba(46,38,27,0.66)' },
   minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
   compass: { primary: '#FFF8E8', secondary: '#D8D2C8' },
+  midnight: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
+  ember: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
+  aurora: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
+  volt: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   ocean: { primary: 'rgba(240,252,255,0.96)', secondary: 'rgba(200,230,255,0.78)' },
   sakura: { primary: 'rgba(255,248,252,0.96)', secondary: 'rgba(255,210,230,0.78)' },
 };

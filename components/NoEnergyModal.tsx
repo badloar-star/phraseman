@@ -97,6 +97,38 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#FFF8E8',
     subtitleColor: '#D8D2C8',
   },
+  midnight: {
+    glow: '#8FA0FF',
+    borderColor: 'rgba(143,160,255,0.34)',
+    surfaceColors: ['rgba(26,29,44,0.9)', 'rgba(13,14,22,0.94)', 'rgba(1,1,2,0.96)'],
+    cardGlowColors: ['rgba(91,124,255,0.22)', 'rgba(91,124,255,0.08)', 'transparent'],
+    titleColor: '#FFFFFF',
+    subtitleColor: '#A9AECB',
+  },
+  ember: {
+    glow: '#FFA245',
+    borderColor: 'rgba(255,162,69,0.34)',
+    surfaceColors: ['rgba(35,26,18,0.9)', 'rgba(15,11,7,0.94)', 'rgba(1,1,2,0.96)'],
+    cardGlowColors: ['rgba(255,138,42,0.22)', 'rgba(255,138,42,0.08)', 'transparent'],
+    titleColor: '#FFFFFF',
+    subtitleColor: '#C9B4A4',
+  },
+  aurora: {
+    glow: '#3DE8A6',
+    borderColor: 'rgba(61,232,166,0.34)',
+    surfaceColors: ['rgba(21,33,27,0.9)', 'rgba(9,15,12,0.94)', 'rgba(1,1,2,0.96)'],
+    cardGlowColors: ['rgba(46,230,160,0.22)', 'rgba(46,230,160,0.08)', 'transparent'],
+    titleColor: '#FFFFFF',
+    subtitleColor: '#A7C0B5',
+  },
+  volt: {
+    glow: '#D6FF3D',
+    borderColor: 'rgba(214,255,61,0.34)',
+    surfaceColors: ['rgba(28,32,16,0.9)', 'rgba(12,14,6,0.94)', 'rgba(1,1,2,0.96)'],
+    cardGlowColors: ['rgba(184,242,34,0.22)', 'rgba(184,242,34,0.08)', 'transparent'],
+    titleColor: '#FFFFFF',
+    subtitleColor: '#BFC6A3',
+  },
 };
 
 const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;

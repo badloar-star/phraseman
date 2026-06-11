@@ -4,6 +4,7 @@
 import { Platform } from 'react-native';
 import { GOLD_GRADIENTS, GOLD_RICH } from './goldTheme';
 import { COMPASS_GRADIENTS, COMPASS_RICH } from './compassTheme';
+import { CINEMA, cinemaAlpha, type CinemaPalette } from './cinemaThemes';
 
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка
@@ -378,7 +379,52 @@ export const COMPASS = {
   bgGradient: [COMPASS_GRADIENTS.appBackground[0], COMPASS_GRADIENTS.appBackground[2]] as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'neon' | 'gold' | 'coral' | 'minimalLight' | 'minimalDark' | 'compass';
+// ─── «ЧЁРНОЕ КИНО» (midnight/ember/aurora/volt) ──────────────────────────────
+// Чистый чёрный + двухцветный блум снизу (рисуется слоем CinemaBloom в
+// ScreenGradient). Палитры — constants/cinemaThemes.ts; здесь только маппинг
+// спектра на токены Theme.
+const buildCinemaTheme = (p: CinemaPalette) => ({
+  bgPrimary:   '#010102',
+  bgCard:      p.card,
+  bgSurface:   p.surface,
+  bgSurface2:  p.surface2,
+  textPrimary: '#FFFFFF',
+  textOnCard:  '#FFFFFF',
+  textSecond:  p.second,
+  textMuted:   p.textMuted,
+  textGhost:   p.textGhost,
+  heroTextPrimary: '#FFFFFF',
+  heroTextMuted:   p.textMuted,
+  border:      'rgba(255,255,255,0.12)',
+  borderLight: p.borderLight,
+  correct:     p.correct,
+  correctBg:   cinemaAlpha(p.correct, 0.14),
+  wrong:       p.wrong,
+  wrongBg:     cinemaAlpha(p.wrong, 0.15),
+  gold:        p.gold,
+  goldBg:      cinemaAlpha(p.gold, 0.14),
+  textOnGold:  p.onGold,
+  accent:      p.accent,
+  accentBg:    cinemaAlpha(p.accent, 0.15),
+  correctText: p.onAccent,
+  shadowDark:       '#000000',
+  shadowLight:      cinemaAlpha(p.accent, 0.30),
+  borderHighlight:  'rgba(255,255,255,0.14)',
+  isGlowEnabled:    false,
+  isGlossEnabled:   false,
+  btnShadow:   p.btnShadow,
+  cardShadow:  'rgba(0,0,0,0.60)',
+  glow:        cinemaAlpha(p.bloomA, 0.30),
+  cardGradient: [p.cardGradient[0], p.cardGradient[1]] as [string, string],
+  bgGradient: [p.bgGradient3[0], p.bgGradient3[2]] as [string, string],
+});
+
+export const MIDNIGHT = buildCinemaTheme(CINEMA.midnight);
+export const EMBER    = buildCinemaTheme(CINEMA.ember);
+export const AURORA   = buildCinemaTheme(CINEMA.aurora);
+export const VOLT     = buildCinemaTheme(CINEMA.volt);
+
+export type ThemeMode = 'dark' | 'neon' | 'gold' | 'coral' | 'minimalLight' | 'minimalDark' | 'compass' | 'midnight' | 'ember' | 'aurora' | 'volt';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -402,6 +448,10 @@ const _checkCORAL:  Theme = CORAL        as any;
 const _checkMINL:   Theme = MINIMAL_LIGHT as any;
 const _checkMIND:   Theme = MINIMAL_DARK  as any;
 const _checkCOMPASS: Theme = COMPASS       as any;
+const _checkMIDNIGHT: Theme = MIDNIGHT as any;
+const _checkEMBER:    Theme = EMBER    as any;
+const _checkAURORA:   Theme = AURORA   as any;
+const _checkVOLT:     Theme = VOLT     as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────
 export const Colors = {

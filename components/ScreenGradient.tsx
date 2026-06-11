@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useMemo, useRef, memo } from 'react';
 import { View, Animated, StyleSheet, Dimensions, Easing, type ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Svg, { Defs, RadialGradient as SvgRadialGradient, Stop, Rect, Circle } from 'react-native-svg';
 import { useTheme } from './ThemeContext';
 import { GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';
+import { CINEMA, CINEMA_STARS, isCinemaMode, type CinemaMode } from '../constants/cinemaThemes';
 import { BG_GRADIENTS } from '../constants/screenBackground';
 import TopFadeMask, { type TopFadeMaskProps } from './TopFadeMask';
 import {
@@ -28,6 +30,11 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   minimalLight: 0.34,
   minimalDark: 0.48,
   compass: 0,
+  // «Чёрное кино»: альфы зашиты в стопы CinemaBloom, слой не глушим.
+  midnight: 1,
+  ember: 1,
+  aurora: 1,
+  volt: 1,
 };
 
 type OrbSpec = { x: number; y: number; r: number; color: string; opacity: number };
@@ -36,6 +43,7 @@ type ScreenBgLayer = {
   backgroundColor: string;
   accent: string;
   isGold: boolean;
+  cinemaMode: CinemaMode | null;
   gradColors: string[];
   orbs: OrbSpec[];
 };
@@ -81,6 +89,11 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   ],
   // Compass: reference-matched graphite field; warm amber is reserved for assets and CTA.
   compass: [],
+  // «Чёрное кино»: вместо орбов — слой CinemaBloom (двухцветный блум снизу + звёзды).
+  midnight: [],
+  ember: [],
+  aurora: [],
+  volt: [],
 };
 
 const LEGACY_UNSUPPORTED_ORBS: Record<'ocean' | 'sakura', OrbSpec[]> = {
@@ -403,6 +416,49 @@ function GoldFabricFlow() {
   );
 }
 
+/**
+ * «Чёрное кино»: кинематографичный блум снизу — белое ядро → bloomA → bloomB
+ * ореолом + слабый ответный отсвет сверху + звёздная пыль. Статичный SVG
+ * (без анимаций): радиальные градиенты дёшевы и не дёргают UI-поток.
+ */
+function CinemaBloom({ mode }: { mode: CinemaMode }) {
+  const p = CINEMA[mode];
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
+        <Defs>
+          <SvgRadialGradient id={`cinema-halo-${mode}`} cx="50%" cy="116%" rx="92%" ry="64%">
+            <Stop offset="0%" stopColor={p.bloomB} stopOpacity={0.55} />
+            <Stop offset="55%" stopColor={p.bloomB} stopOpacity={0.22} />
+            <Stop offset="100%" stopColor={p.bloomB} stopOpacity={0} />
+          </SvgRadialGradient>
+          <SvgRadialGradient id={`cinema-main-${mode}`} cx="50%" cy="110%" rx="66%" ry="46%">
+            <Stop offset="0%" stopColor={p.bloomA} stopOpacity={0.62} />
+            <Stop offset="60%" stopColor={p.bloomA} stopOpacity={0.24} />
+            <Stop offset="100%" stopColor={p.bloomA} stopOpacity={0} />
+          </SvgRadialGradient>
+          <SvgRadialGradient id={`cinema-core-${mode}`} cx="50%" cy="106%" rx="38%" ry="24%">
+            <Stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.40} />
+            <Stop offset="55%" stopColor="#FFFFFF" stopOpacity={0.14} />
+            <Stop offset="100%" stopColor="#FFFFFF" stopOpacity={0} />
+          </SvgRadialGradient>
+          <SvgRadialGradient id={`cinema-top-${mode}`} cx="50%" cy="-14%" rx="80%" ry="42%">
+            <Stop offset="0%" stopColor={p.bloomB} stopOpacity={0.10} />
+            <Stop offset="100%" stopColor={p.bloomB} stopOpacity={0} />
+          </SvgRadialGradient>
+        </Defs>
+        <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-halo-${mode})`} />
+        <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-main-${mode})`} />
+        <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-core-${mode})`} />
+        <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-top-${mode})`} />
+        {CINEMA_STARS.map(([sx, sy, r, o], i) => (
+          <Circle key={`star-${i}`} cx={W * sx} cy={H * sy} r={r} fill="#FFFFFF" opacity={o * 0.8} />
+        ))}
+      </Svg>
+    </View>
+  );
+}
+
 function ScreenGradientBackgroundLayer({
   layer,
   effectsOnly = false,
@@ -432,6 +488,8 @@ function ScreenGradientBackgroundLayer({
         {effectsOnly ? (
           layer.isGold ? (
             <GoldFabricFlow />
+          ) : layer.cinemaMode ? (
+            <CinemaBloom mode={layer.cinemaMode} />
           ) : (
             <>
               {layer.orbs.map((o, i) => (
@@ -521,6 +579,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
 
   const isGold = themeMode === 'gold';
+  const cinemaMode = isCinemaMode(themeMode) ? themeMode : null;
   const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = useMemo(
     () => BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]],
@@ -532,9 +591,10 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
     backgroundColor: t.bgPrimary,
     accent: t.accent,
     isGold,
+    cinemaMode,
     gradColors,
     orbs,
-  }), [activeBgKey, gradColors, isGold, orbs, t.accent, t.bgPrimary]);
+  }), [activeBgKey, cinemaMode, gradColors, isGold, orbs, t.accent, t.bgPrimary]);
   const { layers: bgLayers } = usePersistentBackgroundLayers({
     value: targetBgLayer,
     transitionKey: activeBgKey,

@@ -77,6 +77,10 @@ const ARENA_STAGE_BACKDROPS = {
     minimalLight: require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
     compass: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
+    midnight: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
+    ember: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
+    aurora: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
+    volt: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
 } as const;
 const ARENA_TICKET_ICONS = {
     dark: require('../assets/images/arena_tickets/ticket-dark.webp'),
@@ -86,6 +90,10 @@ const ARENA_TICKET_ICONS = {
     minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.webp'),
     minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
     compass: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
+    midnight: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
+    ember: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
+    aurora: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
+    volt: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
 } as const;
 function alphaColor(color: string, alpha: number, defaultRgb = '255,255,255'): string {
     if (/^#[0-9a-f]{6}$/i.test(color)) {
@@ -1521,7 +1529,27 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(8,24,23,0.86)', border: 'rgba(242,196,141,0.34)', shadow: '#8FEFE1' },
             throne: { bg: 'rgba(18,16,10,0.88)', border: 'rgba(242,196,141,0.32)', shadow: '#F2C48D' },
         };
-        const byTheme = { dark, neon, gold, coral, minimalLight, minimalDark, compass } as const;
+        const midnight = {
+            match: { bg: 'rgba(26,29,44,0.86)', border: 'rgba(95,224,176,0.46)', shadow: '#5FE0B0' },
+            friend: { bg: 'rgba(24,27,41,0.86)', border: 'rgba(143,160,255,0.44)', shadow: '#8FA0FF' },
+            throne: { bg: 'rgba(13,14,22,0.88)', border: 'rgba(255,210,122,0.42)', shadow: '#FFD27A' },
+        };
+        const ember = {
+            match: { bg: 'rgba(35,26,18,0.86)', border: 'rgba(95,232,168,0.46)', shadow: '#5FE8A8' },
+            friend: { bg: 'rgba(33,26,20,0.86)', border: 'rgba(255,162,69,0.44)', shadow: '#FFA245' },
+            throne: { bg: 'rgba(15,11,7,0.88)', border: 'rgba(255,203,92,0.42)', shadow: '#FFCB5C' },
+        };
+        const aurora = {
+            match: { bg: 'rgba(21,33,27,0.86)', border: 'rgba(61,232,166,0.46)', shadow: '#3DE8A6' },
+            friend: { bg: 'rgba(20,32,25,0.86)', border: 'rgba(61,232,166,0.44)', shadow: '#3DE8A6' },
+            throne: { bg: 'rgba(9,15,12,0.88)', border: 'rgba(242,210,122,0.42)', shadow: '#F2D27A' },
+        };
+        const volt = {
+            match: { bg: 'rgba(28,32,16,0.86)', border: 'rgba(79,232,172,0.46)', shadow: '#4FE8AC' },
+            friend: { bg: 'rgba(27,30,16,0.86)', border: 'rgba(214,255,61,0.44)', shadow: '#D6FF3D' },
+            throne: { bg: 'rgba(12,14,6,0.88)', border: 'rgba(255,232,92,0.42)', shadow: '#FFE85C' },
+        };
+        const byTheme = { dark, neon, gold, coral, minimalLight, minimalDark, compass, midnight, ember, aurora, volt } as const;
         return byTheme[themeMode] ?? dark;
     }, [themeMode]);
     const arenaGlass = useMemo(() => {

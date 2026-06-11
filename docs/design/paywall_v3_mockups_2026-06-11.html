@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman · Пейвол v3 «Атриум» — макеты</title>
+<style>
+/* ════════ Compass design tokens (из constants/compassTheme.ts) ════════ */
+:root{
+  --charcoal:#1B1B1D; --charcoal-raised:#202022; --charcoal-soft:#2E2E30;
+  --cream:#FFE7B6; --cream-soft:#F8D7A3; --champagne:#F2C48D;
+  --copper:#9B643F; --text-dark:#21170E; --text-muted:#D7D2CC;
+  --hairline-q:rgba(248,215,163,.14); --hairline:rgba(248,215,163,.23); --hairline-s:rgba(255,231,182,.36);
+  --wash:rgba(248,215,163,.07); --wash-s:rgba(248,215,163,.12);
+  --page:#070604; --good:#7ED9A7;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--page);color:var(--text-muted);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ════════ Page chrome ════════ */
+.page{max-width:1340px;margin:0 auto;padding:34px 22px 80px}
+.hd h1{color:#fff;font-size:26px;font-weight:800;letter-spacing:-.8px}
+.hd h1 em{color:var(--cream);font-style:normal}
+.hd p{margin-top:8px;font-size:13.5px;line-height:1.55;color:rgba(215,210,204,.78);max-width:880px}
+.hd .verdict{display:inline-block;margin-top:12px;padding:8px 14px;border:1px solid var(--hairline);
+  border-radius:10px;background:var(--wash);color:var(--cream);font-size:12.5px;font-weight:600}
+.controls{margin:18px 0 6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn-ann{cursor:pointer;border:1px solid var(--hairline);background:var(--charcoal-raised);color:var(--cream);
+  font:600 12px Inter,sans-serif;padding:9px 14px;border-radius:9px;transition:background .2s,border-color .2s}
+.btn-ann:hover{background:var(--charcoal-soft);border-color:var(--hairline-s)}
+.btn-ann.on{background:var(--cream-soft);color:var(--text-dark);border-color:transparent}
+.tokens{display:flex;gap:6px;align-items:center;margin-left:auto;flex-wrap:wrap}
+.chip{width:22px;height:22px;border-radius:6px;border:1px solid rgba(255,255,255,.12)}
+.tokens span{font-size:10.5px;color:rgba(215,210,204,.5);margin-left:2px}
+
+/* ════════ Phones grid ════════ */
+.grid{display:flex;gap:26px;margin-top:22px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;gap:12px}
+.col .tag{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:rgba(215,210,204,.55)}
+.col .tag b{color:#fff}
+.badge-rec{display:inline-block;margin-left:8px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:800;
+  letter-spacing:.5px;background:var(--cream-soft);color:var(--text-dark)}
+.badge-test{display:inline-block;margin-left:8px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;
+  letter-spacing:.5px;border:1px solid var(--hairline);color:rgba(215,210,204,.6)}
+.col .note{font-size:11px;color:rgba(215,210,204,.45);max-width:330px;text-align:center;line-height:1.5}
+
+.phone{width:372px;height:790px;border-radius:50px;border:9px solid #161617;position:relative;overflow:hidden;
+  background:#0B0904;box-shadow:0 0 0 1px #2a2a2c,0 34px 70px rgba(0,0,0,.75)}
+.phone .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:108px;height:24px;border-radius:14px;background:#161617;z-index:60}
+
+/* фон: уголь + золотая аврора + зерно */
+.bg{position:absolute;inset:0;background:linear-gradient(180deg,#0B0904 0%,#141008 46%,#0B0904 100%)}
+.bg::before{content:'';position:absolute;inset:-20% -30% auto;height:46%;
+  background:radial-gradient(60% 90% at 50% 0%,rgba(248,215,163,.16),transparent 70%)}
+.bg::after{content:'';position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.scr{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:0 18px 14px}
+.scr.scrollable{overflow-y:auto;scrollbar-width:none;display:block}
+.scr.scrollable::-webkit-scrollbar{display:none}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:14px 8px 0;font-size:12px;
+  font-weight:600;color:#fff;flex-shrink:0}
+.sb-ic{display:flex;gap:5px;align-items:center}
+.sb-ic i{display:block;background:rgba(255,255,255,.85)}
+.sb-ic .w{width:14px;height:9px;border-radius:2px 2px 0 0;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.sb-ic .b{width:18px;height:9px;border-radius:2.5px;border:1px solid rgba(255,255,255,.5);background:transparent;position:relative}
+.sb-ic .b::after{content:'';position:absolute;inset:1px 30% 1px 1px;background:#fff;border-radius:1px}
+
+.close{align-self:flex-end;margin:8px 0 2px;width:30px;height:30px;border-radius:15px;border:1px solid var(--hairline-q);
+  background:var(--wash);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.close svg{width:11px;height:11px;stroke:rgba(215,210,204,.7)}
+.scr.scrollable .close{position:sticky;top:8px;margin-left:auto;z-index:40;backdrop-filter:blur(8px)}
+
+/* ── hero ── */
+.glyphCap{align-self:center;margin-top:2px;width:62px;height:62px;border-radius:18px;border:1px solid var(--hairline);
+  background:linear-gradient(160deg,var(--charcoal-raised),#181410);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 34px rgba(248,215,163,.13);flex-shrink:0;position:relative}
+.glyphCap svg{width:30px;height:30px;stroke:var(--cream);fill:none;stroke-width:1.6}
+.breath .glyphCap{animation:breath 4s ease-in-out infinite}
+@keyframes breath{0%,100%{box-shadow:0 0 26px rgba(248,215,163,.10)}50%{box-shadow:0 0 44px rgba(248,215,163,.20)}}
+.h1{margin-top:14px;text-align:center;color:#fff;font-size:27px;line-height:1.16;font-weight:800;letter-spacing:-1.2px;flex-shrink:0}
+.h1 .gold{color:var(--cream)}
+.personal{margin-top:9px;text-align:center;font-size:13px;line-height:1.5;color:rgba(215,210,204,.75);flex-shrink:0}
+.personal b{color:var(--champagne);font-weight:600}
+
+/* ── trial timeline ── */
+.timeline{margin-top:16px;padding:13px 14px;border-radius:16px;border:1px solid var(--hairline-q);
+  background:var(--wash);flex-shrink:0;position:relative}
+.tl-row{display:flex;gap:11px;align-items:flex-start;position:relative;padding-bottom:13px}
+.tl-row:last-child{padding-bottom:0}
+.tl-row::before{content:'';position:absolute;left:10px;top:22px;bottom:-1px;width:1.5px;background:var(--hairline-q)}
+.tl-row:last-child::before{display:none}
+.tl-dot{width:21px;height:21px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--hairline);background:transparent;z-index:1}
+.tl-row.lit .tl-dot{background:var(--cream-soft);border-color:transparent}
+.tl-dot svg{width:11px;height:11px;stroke:var(--text-dark);stroke-width:2.4;fill:none}
+.tl-row:not(.lit) .tl-dot svg{stroke:rgba(215,210,204,.55);stroke-width:1.8}
+.tl-t{font-size:12.5px;font-weight:700;color:#fff;line-height:1.3}
+.tl-s{font-size:11px;color:rgba(215,210,204,.6);margin-top:1px;line-height:1.4}
+
+/* ── plans ── */
+.plans{margin-top:14px;display:flex;flex-direction:column;gap:9px;flex-shrink:0}
+.plan{position:relative;border-radius:16px;border:1.5px solid var(--hairline-q);background:rgba(32,32,34,.72);
+  padding:13px 15px;cursor:pointer;transition:border-color .22s,background .22s,box-shadow .22s}
+.plan:hover{border-color:var(--hairline)}
+.plan.sel{border-color:rgba(242,196,141,.8);background:linear-gradient(160deg,rgba(248,215,163,.12),rgba(248,215,163,.05));
+  box-shadow:0 6px 26px rgba(155,100,63,.22)}
+.plan .row1{display:flex;align-items:center;gap:10px}
+.radio{width:19px;height:19px;border-radius:10px;border:1.7px solid rgba(215,210,204,.35);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;transition:all .2s}
+.plan.sel .radio{background:var(--cream-soft);border-color:transparent}
+.radio svg{width:10px;height:10px;stroke:var(--text-dark);stroke-width:3;fill:none;opacity:0}
+.plan.sel .radio svg{opacity:1}
+.pname{font-size:14.5px;font-weight:700;color:#fff}
+.plan:not(.sel) .pname{color:rgba(215,210,204,.85)}
+.save{margin-left:7px;padding:2.5px 8px;border-radius:7px;font-size:10.5px;font-weight:800;letter-spacing:.3px;
+  background:var(--champagne);color:var(--text-dark)}
+.pright{margin-left:auto;text-align:right}
+.pprice{font-size:16.5px;font-weight:800;color:var(--cream);font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.plan:not(.sel) .pprice{color:rgba(215,210,204,.8)}
+.pper{font-size:10.5px;color:rgba(215,210,204,.5);font-weight:500}
+.psub{margin-top:7px;padding-left:29px;font-size:11px;color:rgba(215,210,204,.55);line-height:1.4}
+.psub b{color:rgba(255,231,182,.85);font-weight:600}
+
+/* ── CTA ── */
+.ctaWrap{margin-top:auto;padding-top:14px;flex-shrink:0}
+.scrollable .ctaWrap{margin-top:16px}
+.cta{position:relative;overflow:hidden;width:100%;border:none;cursor:pointer;border-radius:30px;padding:16.5px 10px;
+  background:linear-gradient(135deg,var(--cream) 0%,var(--cream-soft) 55%,var(--champagne) 100%);
+  color:var(--text-dark);font:800 16px/1 Inter,sans-serif;letter-spacing:-.2px;
+  box-shadow:0 10px 32px rgba(155,100,63,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+.cta .shine{position:absolute;top:0;bottom:0;width:46px;transform:skewX(-22deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);left:-80px;animation:shine 3.2s ease-in-out infinite}
+@keyframes shine{0%,64%{left:-80px}88%,100%{left:130%}}
+.ctaSub{margin-top:9px;text-align:center;font-size:11px;line-height:1.45;color:rgba(215,210,204,.6)}
+.ctaSub b{color:rgba(215,210,204,.85);font-weight:600;font-variant-numeric:tabular-nums}
+.foot{margin-top:11px;display:flex;justify-content:center;gap:7px;font-size:10.5px;color:rgba(215,210,204,.42)}
+.foot span{cursor:pointer}.foot span:hover{color:rgba(215,210,204,.75)}
+.ghost{margin-top:8px;text-align:center;font-size:12px;color:rgba(215,210,204,.45);text-decoration:underline;
+  text-underline-offset:3px;cursor:pointer;padding-bottom:2px}
+.ghost:hover{color:rgba(215,210,204,.7)}
+
+/* ── ниже фолда: галерея доказательств ── */
+.divider{margin:22px auto 4px;display:flex;align-items:center;gap:8px;color:rgba(215,210,204,.4);
+  font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--hairline-q)}
+.card{margin-top:12px;border-radius:16px;border:1px solid var(--hairline-q);background:rgba(32,32,34,.66);padding:14px 15px}
+.card .ct{font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--champagne);margin-bottom:10px}
+.mirror{display:flex;gap:8px;flex-wrap:wrap}
+.mstat{flex:1;min-width:68px;border-radius:11px;background:var(--wash);border:1px solid var(--hairline-q);
+  padding:9px 6px;text-align:center}
+.mstat b{display:block;font-size:17px;font-weight:800;color:var(--cream);font-variant-numeric:tabular-nums;letter-spacing:-.4px}
+.mstat span{display:block;margin-top:2px;font-size:9.5px;color:rgba(215,210,204,.55)}
+.mline{margin-top:10px;font-size:12px;color:rgba(215,210,204,.78);line-height:1.5}
+.pct{display:flex;gap:10px;align-items:center}
+.pct svg{width:26px;height:26px;stroke:var(--cream);fill:none;stroke-width:1.6;flex-shrink:0}
+.pct p{font-size:12.5px;line-height:1.5;color:rgba(215,210,204,.82)}
+.pct b{color:var(--cream)}
+.cmp .row{display:flex;align-items:center;padding:8.5px 0;border-bottom:1px solid rgba(248,215,163,.07);gap:8px}
+.cmp .row:last-child{border-bottom:none}
+.cmp .l{flex:1}
+.cmp .lt{font-size:12px;font-weight:700;color:#fff}
+.cmp .lf{font-size:10.5px;color:rgba(215,210,204,.45);margin-top:1px}
+.cmp .arrow{color:rgba(215,210,204,.3);flex-shrink:0;font-size:11px}
+.cmp .r{width:118px;text-align:right;font-size:11px;font-weight:700;color:var(--cream);line-height:1.3}
+.faq .q{border-bottom:1px solid rgba(248,215,163,.07);padding:10px 0;cursor:pointer}
+.faq .q:last-child{border-bottom:none}
+.faq .qh{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#fff}
+.faq .qh svg{margin-left:auto;width:13px;height:13px;stroke:rgba(215,210,204,.55);stroke-width:2;fill:none;
+  transition:transform .25s;flex-shrink:0}
+.faq .q.open .qh svg{transform:rotate(180deg)}
+.faq .qa{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:11.5px;line-height:1.55;color:rgba(215,210,204,.65)}
+.faq .q.open .qa{max-height:130px;padding-top:7px}
+
+/* ── sticky CTA bar ── */
+.sticky{position:absolute;left:10px;right:10px;bottom:12px;z-index:50;display:flex;align-items:center;gap:10px;
+  border-radius:18px;padding:10px 10px 10px 16px;background:rgba(22,20,15,.86);backdrop-filter:blur(14px);
+  border:1px solid var(--hairline);box-shadow:0 14px 38px rgba(0,0,0,.6);
+  transform:translateY(86px);opacity:0;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .32s;pointer-events:none}
+.sticky.show{transform:translateY(0);opacity:1;pointer-events:auto}
+.sticky .st{flex:1;min-width:0}
+.sticky .st b{display:block;font-size:12px;font-weight:700;color:#fff;white-space:nowrap}
+.sticky .st span{display:block;font-size:10px;color:rgba(215,210,204,.55);font-variant-numeric:tabular-nums}
+.sticky button{border:none;cursor:pointer;border-radius:14px;padding:11px 18px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--cream),var(--champagne));color:var(--text-dark);font:800 12.5px Inter,sans-serif}
+
+/* ── v2-наследник (вариант A) специфика ── */
+.socialRow{margin-top:13px;display:flex;align-items:center;justify-content:center;gap:7px;flex-shrink:0}
+.stars{display:flex;gap:1.5px}
+.stars svg{width:12px;height:12px;fill:var(--champagne)}
+.socialRow span{font-size:11px;color:rgba(215,210,204,.6)}
+.benefits{margin-top:14px;display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.ben{display:flex;gap:10px;align-items:center}
+.ben .ic{width:27px;height:27px;border-radius:8px;background:var(--wash);border:1px solid var(--hairline-q);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ben .ic svg{width:14px;height:14px;stroke:var(--cream);stroke-width:1.7;fill:none}
+.ben p{font-size:12.5px;line-height:1.4;color:rgba(215,210,204,.78)}
+
+/* ── v1-наследник (вариант B) специфика ── */
+.ribbon{margin-top:10px;border-radius:14px;border:1px solid var(--hairline-s);padding:11px 12px;text-align:center;
+  background:linear-gradient(160deg,rgba(248,215,163,.13),rgba(248,215,163,.04));flex-shrink:0}
+.ribbon b{display:block;font-size:13.5px;font-weight:800;color:var(--cream)}
+.ribbon span{display:block;margin-top:3px;font-size:10.5px;color:rgba(215,210,204,.6)}
+.testim{font-size:12px;line-height:1.55;color:rgba(215,210,204,.8);font-style:italic}
+.testim .who{margin-top:6px;font-style:normal;font-size:10.5px;color:rgba(215,210,204,.5);display:flex;align-items:center;gap:6px}
+.vbadge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:9px;font-weight:700;
+  border:1px solid rgba(126,217,167,.4);color:var(--good)}
+
+/* ════════ Аннотации ════════ */
+.ann{position:absolute;z-index:55;width:22px;height:22px;border-radius:12px;background:var(--cream);color:var(--text-dark);
+  font:800 11px/22px Inter,sans-serif;text-align:center;cursor:pointer;box-shadow:0 0 0 3px rgba(248,215,163,.25),0 4px 12px rgba(0,0,0,.5);
+  display:none}
+body.showAnn .ann{display:block}
+.ann .tip{position:absolute;top:26px;left:50%;transform:translateX(-50%);width:218px;padding:9px 11px;border-radius:11px;
+  background:#241F15;border:1px solid var(--hairline);color:var(--text-muted);font:400 10.8px/1.5 Inter,sans-serif;
+  text-align:left;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+.ann .tip b{color:var(--cream);font-weight:700}
+.ann:hover .tip,.ann.open .tip{opacity:1;pointer-events:auto}
+.ann.left .tip{left:auto;right:50%;transform:translateX(0)}
+
+/* ════════ сравнение вариантов / почему C ════════ */
+.why{margin-top:46px;border:1px solid var(--hairline-q);border-radius:18px;padding:22px 24px;background:rgba(27,27,29,.5)}
+.why h2{color:#fff;font-size:17px;font-weight:800;letter-spacing:-.4px}
+.why ul{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px 26px;list-style:none}
+.why li{font-size:12.5px;line-height:1.55;color:rgba(215,210,204,.75);padding-left:18px;position:relative}
+.why li::before{content:'';position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:4px;background:var(--champagne)}
+.why li b{color:var(--cream)}
+table.cmpv{margin-top:34px;width:100%;border-collapse:collapse;font-size:12px}
+table.cmpv th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(215,210,204,.5);text-align:left;
+  padding:9px 12px;border-bottom:1px solid var(--hairline-q)}
+table.cmpv td{padding:8.5px 12px;border-bottom:1px solid rgba(248,215,163,.06);color:rgba(215,210,204,.78);vertical-align:top}
+table.cmpv td:first-child{color:#fff;font-weight:600}
+table.cmpv .y{color:var(--good);font-weight:700}
+table.cmpv .n{color:rgba(215,210,204,.32)}
+table.cmpv .recCol{background:rgba(248,215,163,.045)}
+.src{margin-top:26px;font-size:11px;color:rgba(215,210,204,.4);line-height:1.6}
+.src a{color:rgba(248,215,163,.6)}
+
+@media (prefers-reduced-motion:reduce){
+  .cta .shine{animation:none}
+  .breath .glyphCap{animation:none}
+}
+</style>
+</head>
+<body class="showAnn">
+<div class="page">
+  <div class="hd">
+    <h1>Пейвол v3 <em>«Атриум»</em> — три макета: компакт · стори · гибрид</h1>
+    <p>Цены на макетах — условные (в проде только из RevenueCat). Тема — «Компас» (уголь + шампань). Контекст демо — <b>no_energy</b>.
+       Все решения аннотированы золотыми точками: наведи на цифру. Полный отчёт: <b>docs/reports/PAYWALL_V3_RESEARCH_2026-06-11.md</b></p>
+    <div class="verdict">Вердикт ресёрча: побеждает гибрид «Атриум» (C) — первый экран самодостаточен без скролла, доказательства ниже фолда, CTA закреплён при скролле</div>
+  </div>
+
+  <div class="controls">
+    <button class="btn-ann on" id="annBtn" onclick="toggleAnn()">Аннотации: вкл</button>
+    <div class="tokens">
+      <div class="chip" style="background:#0B0904"></div>
+      <div class="chip" style="background:#202022"></div>
+      <div class="chip" style="background:#FFE7B6"></div>
+      <div class="chip" style="background:#F2C48D"></div>
+      <div class="chip" style="background:#9B643F"></div>
+      <span>уголь · карточка · cream · champagne · copper — один акцент, остальное монохром</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+  <!-- ════════════════ ВАРИАНТ A — КОМПАКТ (v2 после чистки) ════════════════ -->
+  <div class="col">
+    <div class="tag"><b>A · Компакт</b> — наследник v2, без скролла<span class="badge-test">для A/B</span></div>
+    <div class="phone breath">
+      <div class="notch"></div><div class="bg"></div>
+
+      <div class="ann" style="top:118px;left:14px"><span>1</span>
+        <div class="tip"><b>Generic-заголовок — слабость A.</b> Identity-фрейминг хорош, но юзер пришёл из конкретной боли (тут — энергия), а экран её не отражает. Контекст-копия даёт +10–20% (Helium).</div></div>
+      <div class="ann left" style="top:236px;right:14px"><span>2</span>
+        <div class="tip"><b>Соцстрока без выдуманных чисел.</b> «47 000+ учеников» из v2 убрано (неверифицируемо, риск 2.3.1). Рейтинг — только реальный из стора, 4.2–4.5 правдоподобнее 5.0 (Airbridge).</div></div>
+      <div class="ann" style="top:404px;left:14px"><span>3</span>
+        <div class="tip"><b>Годовой по умолчанию + честный −62% + якорь месяца.</b> Подтверждённые +15–20% к выбору года (Mojo/RevenueCat). Цена/день — реframe из кейсов топов.</div></div>
+
+      <div class="scr">
+        <div class="statusbar"><span>9:41</span><div class="sb-ic"><i class="w"></i><i class="b"></i></div></div>
+        <div class="close"><svg viewBox="0 0 12 12"><path d="M2 2l8 8M10 2l-8 8" stroke-width="1.8" fill="none"/></svg></div>
+
+        <div class="glyphCap"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9z" stroke-linejoin="round"/></svg></div>
+        <div class="h1">Заговори.<br><span class="gold">Не останавливайся.</span></div>
+        <div class="personal">Безлимит энергии, все уроки и уровни — сразу</div>
+
+        <div class="socialRow">
+          <div class="stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+          </div>
+          <span>4.8 в App Store</span>
+        </div>
+
+        <div class="plans" data-variant="A">
+          <div class="plan sel" data-plan="year" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Год</span><span class="save">−62%</span>
+              <div class="pright"><div class="pprice">249 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+            <div class="psub">2 990 ₽ раз в год · <b>8 ₽ в день</b></div>
+          </div>
+          <div class="plan" data-plan="month" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Месяц</span>
+              <div class="pright"><div class="pprice">649 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="benefits">
+          <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9z" stroke-linejoin="round"/></svg></div><p>Занимайся сколько хочешь — без лимитов энергии</p></div>
+          <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/></svg></div><p>Все курсы и уровни открыты прямо сейчас</p></div>
+          <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16.5 9"/></svg></div><p>Видишь точно, что подтянуть — и как исправить</p></div>
+          <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 14.5 3 19l3.5-7L3 5l18 4.5-7 2.5 7 2.5z" stroke-linejoin="round"/></svg></div><p>Занимайся в самолёте и метро — офлайн</p></div>
+        </div>
+
+        <div class="ctaWrap">
+          <button class="cta">Попробовать 3 дня бесплатно<span class="shine"></span></button>
+          <div class="ctaSub">затем <b class="ctaPrice">2 990 ₽/год</b> · отмена в любой момент</div>
+          <div class="foot"><span>Восстановить</span>·<span>Условия</span>·<span>Конфиденциальность</span></div>
+          <div class="ghost">Продолжить бесплатно</div>
+        </div>
+      </div>
+    </div>
+    <div class="note">Сильное: всё видно сразу, ноль скролла. Слабое: нет контекста боли, нет таймлайна триала, нечем снять возражения сомневающихся.</div>
+  </div>
+
+  <!-- ════════════════ ВАРИАНТ B — СТОРИ (v1 после чистки, длинный скролл) ════════════════ -->
+  <div class="col">
+    <div class="tag"><b>B · Стори</b> — наследник v1, длинный скролл<span class="badge-test">для A/B</span></div>
+    <div class="phone">
+      <div class="notch"></div><div class="bg"></div>
+
+      <div class="ann" style="top:120px;left:14px"><span>4</span>
+        <div class="tip"><b>Лента триала наверху.</b> «Без списания сейчас» бьёт страх №1 (33% мгновенных отмен — из-за боязни забыть отменить, growth.design/Blinkist).</div></div>
+      <div class="ann left" style="top:560px;right:14px"><span>5</span>
+        <div class="tip"><b>Длинный скролл работает на холодном трафике</b> (кейс OMENA: лендинг-пейвол удвоил старты триала). Но у Phraseman трафик тёплый — поэтому B не дефолт, а ветка A/B.</div></div>
+      <div class="ann" style="top:706px;left:14px"><span>6</span>
+        <div class="tip"><b>Sticky-CTA обязателен при скролле:</b> цена и кнопка всегда видны (универсальное правило всех гайдов; +31% в e-commerce, 58M сессий). Появляется после ухода главного CTA. Поскролль макет!</div></div>
+
+      <div class="scr scrollable" id="scrB">
+        <div class="statusbar"><span>9:41</span><div class="sb-ic"><i class="w"></i><i class="b"></i></div></div>
+        <div class="close"><svg viewBox="0 0 12 12"><path d="M2 2l8 8M10 2l-8 8" stroke-width="1.8" fill="none"/></svg></div>
+
+        <div class="ribbon"><b>3 дня Premium бесплатно</b><span>Без списания сейчас · Отмена в любой момент</span></div>
+
+        <div class="glyphCap" style="margin-top:16px"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9z" stroke-linejoin="round"/></svg></div>
+        <div class="h1">Энергия не должна<br><span class="gold">заканчиваться</span></div>
+        <div class="personal">Энергия кончалась у тебя <b>12 раз</b> за неделю.<br>Premium убирает паузы насовсем.</div>
+
+        <div class="card" style="margin-top:18px">
+          <div class="ct">Уже твоё</div>
+          <div class="mirror">
+            <div class="mstat"><b>214</b><span>фразы</span></div>
+            <div class="mstat"><b>1 380</b><span>слов</span></div>
+            <div class="mstat"><b>4 210</b><span>XP</span></div>
+            <div class="mstat"><b>6</b><span>дн. серия</span></div>
+          </div>
+          <div class="mline">Premium держит этот темп.</div>
+        </div>
+
+        <div class="card cmp">
+          <div class="ct">Что меняется с Premium</div>
+          <div class="row"><div class="l"><div class="lt">Энергия</div><div class="lf">+1 раз в ~10 мин</div></div><div class="arrow">→</div><div class="r">Не заканчивается</div></div>
+          <div class="row"><div class="l"><div class="lt">Уроки</div><div class="lf">Уроки 1–8</div></div><div class="arrow">→</div><div class="r">Все уроки уровня</div></div>
+          <div class="row"><div class="l"><div class="lt">Квизы</div><div class="lf">Только Easy</div></div><div class="arrow">→</div><div class="r">Все уровни</div></div>
+          <div class="row"><div class="l"><div class="lt">Карточки</div><div class="lf">До 20 сохранённых</div></div><div class="arrow">→</div><div class="r">Без ограничений</div></div>
+          <div class="row"><div class="l"><div class="lt">Серия</div><div class="lf">Сгорает за пропуск</div></div><div class="arrow">→</div><div class="r">Заморозка серии</div></div>
+        </div>
+
+        <div class="card">
+          <div class="ct">Что говорят ученики</div>
+          <div class="testim">«За месяц поняла первый сериал без субтитров — это реально работает»
+            <div class="who">— Анна <span class="vbadge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" stroke="#7ED9A7" stroke-width="2"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg>проверенный</span></div>
+          </div>
+          <div style="margin-top:9px;font-size:9.5px;color:rgba(215,210,204,.35)">Образец. В прод — только реальные отзывы (verified:true), фаза 6 плана.</div>
+        </div>
+
+        <div class="plans" data-variant="B" style="margin-top:16px">
+          <div class="plan sel" data-plan="year" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Год</span><span class="save">−62%</span>
+              <div class="pright"><div class="pprice">249 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+            <div class="psub">Сначала 3 дня бесплатно · затем 2 990 ₽ раз в год · <b>8 ₽ в день</b></div>
+          </div>
+          <div class="plan" data-plan="month" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Месяц</span>
+              <div class="pright"><div class="pprice">649 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctaWrap">
+          <button class="cta" id="ctaB">Попробовать 3 дня бесплатно<span class="shine"></span></button>
+          <div class="ctaSub">затем <b class="ctaPrice">2 990 ₽/год</b> · отмена в любой момент</div>
+          <div class="foot"><span>Восстановить</span>·<span>Условия</span>·<span>Конфиденциальность</span></div>
+          <div class="ghost">Продолжить бесплатно</div>
+        </div>
+        <div style="height:8px"></div>
+      </div>
+
+      <div class="sticky" id="stB">
+        <div class="st"><b>3 дня бесплатно</b><span class="ctaPrice">затем 2 990 ₽/год</span></div>
+        <button>Начать</button>
+      </div>
+    </div>
+    <div class="note">Сильное: глубина убеждения (зеркало, сравнение, отзывы). Слабое: цена и CTA в самом низу — без sticky-бара это провал; путь до кнопки ~3 экрана.</div>
+  </div>
+
+  <!-- ════════════════ ВАРИАНТ C — АТРИУМ (гибрид, рекомендуемый) ════════════════ -->
+  <div class="col">
+    <div class="tag"><b>C · Атриум</b> — гибрид<span class="badge-rec">Рекомендуем</span></div>
+    <div class="phone breath">
+      <div class="notch"></div><div class="bg"></div>
+
+      <div class="ann" style="top:104px;left:14px"><span>7</span>
+        <div class="tip"><b>Контекст-герой:</b> заголовок отражает боль входа (26 контекстов из v1) + 1 строка ЛИЧНОЙ правды из счётчиков. Тейлоринг даёт +10–20%, личные данные — честный «social proof».</div></div>
+      <div class="ann left" style="top:248px;right:14px"><span>8</span>
+        <div class="tip"><b>Таймлайн триала — элемент №1 по данным:</b> Blinkist +23% к стартам триала, −55% жалоб, push opt-in 6→74%. Рендерится только при реальном intro-оффере из стора. Toggle-триал запрещён Apple с 2026 — таймлайн легален.</div></div>
+      <div class="ann" style="top:436px;left:14px"><span>9</span>
+        <div class="tip"><b>Годовой default + якорь + −62% + 8 ₽/день:</b> +15–20% к выбору года; SAVE-бейджи дали +64–72% в кейсах RevenueCat. Процент честный — из цен стора.</div></div>
+      <div class="ann left" style="top:614px;right:14px"><span>10</span>
+        <div class="tip"><b>Цена прямо под CTA</b> («затем 2 990 ₽/год») — гигиена App Store 3.1.2 и доверие: никаких сюрпризов. CTA-глагол без слова «подписка».</div></div>
+      <div class="ann" style="top:712px;left:14px"><span>11</span>
+        <div class="tip"><b>Первый экран самодостаточен</b> — скроллить НЕ обязательно (правило всех гайдов: цена+CTA видны сразу). Ниже — галерея доказательств для сомневающихся. Поскролль!</div></div>
+
+      <div class="scr scrollable" id="scrC">
+        <div class="statusbar"><span>9:41</span><div class="sb-ic"><i class="w"></i><i class="b"></i></div></div>
+        <div class="close"><svg viewBox="0 0 12 12"><path d="M2 2l8 8M10 2l-8 8" stroke-width="1.8" fill="none"/></svg></div>
+
+        <div class="glyphCap"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9z" stroke-linejoin="round"/></svg></div>
+        <div class="h1">Энергия не должна<br><span class="gold">заканчиваться</span></div>
+        <div class="personal">Ты занимаешься <b>6 дней подряд</b> — Premium не даст паузе всё сбросить</div>
+
+        <div class="timeline">
+          <div class="tl-row lit">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M7 13l3.5 3.5L17.5 9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="tl-t">Сегодня — полный доступ</div><div class="tl-s">Все уроки, безлимит энергии, ноль оплат</div></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M12 4a6 6 0 0 1 6 6v3l1.5 2.5H4.5L6 13v-3a6 6 0 0 1 6-6zM10 19a2 2 0 0 0 4 0" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="tl-t">День 2 — напомним</div><div class="tl-s">Пуш за день до конца триала — забыть невозможно</div></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10.5h18"/></svg></div>
+            <div><div class="tl-t">День 3 — начнётся доступ за <span class="tlPrice">2 990 ₽/год</span></div><div class="tl-s">Если не отменишь. Отмена — в два тапа</div></div>
+          </div>
+        </div>
+
+        <div class="plans" data-variant="C" style="margin-top:13px">
+          <div class="plan sel" data-plan="year" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Год</span><span class="save">−62%</span>
+              <div class="pright"><div class="pprice">249 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+            <div class="psub">2 990 ₽ раз в год · <b>8 ₽ в день</b></div>
+          </div>
+          <div class="plan" data-plan="month" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Месяц</span>
+              <div class="pright"><div class="pprice">649 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctaWrap">
+          <button class="cta" id="ctaC">Попробовать 3 дня бесплатно<span class="shine"></span></button>
+          <div class="ctaSub">затем <b class="ctaPrice">2 990 ₽/год</b> · отмена в любой момент</div>
+          <div class="foot"><span>Восстановить</span>·<span>Условия</span>·<span>Конфиденциальность</span></div>
+          <div class="ghost">Продолжить бесплатно</div>
+        </div>
+
+        <div class="divider">для сомневающихся</div>
+
+        <div class="card">
+          <div class="ct">Уже твоё</div>
+          <div class="mirror">
+            <div class="mstat"><b>214</b><span>фразы</span></div>
+            <div class="mstat"><b>1 380</b><span>слов</span></div>
+            <div class="mstat"><b>4 210</b><span>XP</span></div>
+            <div class="mstat"><b>6</b><span>дн. серия</span></div>
+          </div>
+          <div class="mline">Premium держит этот темп.</div>
+        </div>
+
+        <div class="card">
+          <div class="ct">Твоё место</div>
+          <div class="pct">
+            <svg viewBox="0 0 24 24"><path d="M12 3v12M12 3l-4 4M12 3l4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 21h14" stroke-linecap="round"/></svg>
+            <p>Ты упорнее <b>88% учеников</b> этого месяца. Premium закрепляет преимущество.</p>
+          </div>
+        </div>
+
+        <div class="card cmp">
+          <div class="ct">Что меняется с Premium</div>
+          <div class="row"><div class="l"><div class="lt">Энергия</div><div class="lf">+1 раз в ~10 мин</div></div><div class="arrow">→</div><div class="r">Не заканчивается</div></div>
+          <div class="row"><div class="l"><div class="lt">Уроки</div><div class="lf">Уроки 1–8</div></div><div class="arrow">→</div><div class="r">Все уроки уровня</div></div>
+          <div class="row"><div class="l"><div class="lt">Квизы</div><div class="lf">Только Easy</div></div><div class="arrow">→</div><div class="r">Все уровни</div></div>
+          <div class="row"><div class="l"><div class="lt">Карточки</div><div class="lf">До 20 сохранённых</div></div><div class="arrow">→</div><div class="r">Без ограничений</div></div>
+          <div class="row"><div class="l"><div class="lt">Серия</div><div class="lf">Сгорает за пропуск</div></div><div class="arrow">→</div><div class="r">Заморозка серии</div></div>
+        </div>
+
+        <div class="card faq">
+          <div class="ct">Частые вопросы</div>
+          <div class="q open" onclick="faq(this)">
+            <div class="qh">Что будет после триала?<svg viewBox="0 0 14 14"><path d="M2 5l5 5 5-5"/></svg></div>
+            <div class="qa">3 дня всё открыто бесплатно. За день до конца пришлём пуш. Спишется только если не отменишь — 2 990 ₽ за целый год.</div>
+          </div>
+          <div class="q" onclick="faq(this)">
+            <div class="qh">Как отменить?<svg viewBox="0 0 14 14"><path d="M2 5l5 5 5-5"/></svg></div>
+            <div class="qa">Настройки телефона → Подписки → Phraseman → Отменить. Две минуты, без писем и звонков. Доступ останется до конца оплаченного срока.</div>
+          </div>
+          <div class="q" onclick="faq(this)">
+            <div class="qh">Что входит в Premium?<svg viewBox="0 0 14 14"><path d="M2 5l5 5 5-5"/></svg></div>
+            <div class="qa">Все уроки и уровни, безлимит энергии и карточек, все квизы, заморозка серии, занятия офлайн.</div>
+          </div>
+        </div>
+
+        <div class="ctaWrap" style="margin-top:18px">
+          <button class="cta">Попробовать 3 дня бесплатно<span class="shine"></span></button>
+          <div class="ctaSub">затем <b class="ctaPrice">2 990 ₽/год</b> · отмена в любой момент</div>
+        </div>
+        <div style="height:10px"></div>
+      </div>
+
+      <div class="sticky" id="stC">
+        <div class="st"><b>3 дня бесплатно</b><span class="ctaPrice">затем 2 990 ₽/год</span></div>
+        <button>Начать</button>
+      </div>
+    </div>
+    <div class="note">Первый экран = решение целиком (герой → таймлайн → планы → CTA). Скролл опционален: зеркало, перцентиль, сравнение, FAQ. Sticky-CTA не отпускает цену с экрана.</div>
+  </div>
+
+  </div><!-- /grid -->
+
+  <!-- ════════ почему C ════════ -->
+  <div class="why">
+    <h2>Почему «Атриум» (C) — ставка на максимум конверсии</h2>
+    <ul>
+      <li><b>Таймлайн триала</b> — самый подтверждённый элемент индустрии: +23% стартов триала, −55% жалоб, push opt-in 6%→74% (Blinkist, growth.design). В A его нет вовсе, в B он растворяется в длине.</li>
+      <li><b>Правило «цена и CTA видны без скролла»</b> — единственное правило без единого противоречия во всех источниках. C выполняет его дважды: первый экран + sticky-бар.</li>
+      <li><b>Трафик Phraseman тёплый</b> (26 in-app точек после момента ценности) — по матрице ресёрча это аргумент за компактное ядро, а не лендинг.</li>
+      <li><b>Покупка обдуманная</b> (годовой ≈ 3 000 ₽) — сомневающимся нужны доказательства: зеркало прогресса, перцентиль, сравнение, FAQ. В A их некуда деть, в C они под фолдом и не мешают решившимся.</li>
+      <li><b>Честность = конверсия:</b> страх «забуду отменить» даёт 33% мгновенных отмен триала — FAQ + пуш-обещание бьют прямо в него. Фейк-таймеры и выдуманные зачёркнутые цены убраны: в топ-образовании их нет, а риск ревью и FTC реален.</li>
+      <li><b>scroll_depth-аналитика</b> в C впервые ответит данными, сколько наших юзеров вообще читает доказательства — дальше итерируем по фактам (команды с 50+ тестов зарабатывают ×18.7).</li>
+    </ul>
+
+    <table class="cmpv">
+      <tr><th>Элемент</th><th>A · Компакт</th><th>B · Стори</th><th class="recCol">C · Атриум</th></tr>
+      <tr><td>Цена+CTA без скролла</td><td class="y">да</td><td class="n">только sticky</td><td class="recCol y">да + sticky</td></tr>
+      <tr><td>Таймлайн триала (Blinkist)</td><td class="n">нет</td><td class="n">в ленте, без шагов</td><td class="recCol y">да, 3 шага</td></tr>
+      <tr><td>Контекст боли (26 входов)</td><td class="n">generic</td><td class="y">да</td><td class="recCol y">да</td></tr>
+      <tr><td>Личная персонализация</td><td class="n">общая строка</td><td class="y">тег + зеркало</td><td class="recCol y">строка + зеркало + перцентиль</td></tr>
+      <tr><td>Доказательства (сравнение/FAQ/отзывы)</td><td class="n">нет</td><td class="y">да, до планов</td><td class="recCol y">да, после CTA (не мешают)</td></tr>
+      <tr><td>Глубина до CTA</td><td class="y">0 скролла</td><td class="n">~3 экрана</td><td class="recCol y">0 скролла</td></tr>
+      <tr><td>Скролл-аналитика осмысленна</td><td class="n">—</td><td class="y">да</td><td class="recCol y">да (галерея)</td></tr>
+    </table>
+
+    <p class="src">Ключевые источники: growth.design (Blinkist case), RevenueCat State of Subscription Apps 2026 + paywall case studies, Adapty High-Performing Paywall 2026 + Education benchmarks, Airbridge, Apphud, Superwall. Полные ссылки и цифры — в отчёте <b>docs/reports/PAYWALL_V3_RESEARCH_2026-06-11.md</b>. Цены в макетах условные; в приложении — только из стора (RevenueCat). Отзыв в B — образец, в прод только verified.</p>
+  </div>
+</div>
+
+<script>
+/* выбор плана — обновляет цену в CTA-сабтексте/таймлайне/стикибаре своего телефона */
+function pick(el){
+  const wrap = el.closest('.plans');
+  wrap.querySelectorAll('.plan').forEach(p=>p.classList.remove('sel'));
+  el.classList.add('sel');
+  const phone = el.closest('.phone');
+  const yearly = el.dataset.plan === 'year';
+  phone.querySelectorAll('.ctaPrice').forEach(n=>{ n.textContent = yearly ? 'затем 2 990 ₽/год' : 'затем 649 ₽/мес'; });
+  phone.querySelectorAll('.tlPrice').forEach(n=>{ n.textContent = yearly ? '2 990 ₽/год' : '649 ₽/мес'; });
+}
+/* первичная установка текста ctaPrice под главным CTA (без 'затем' дубля) */
+document.querySelectorAll('.ctaSub .ctaPrice').forEach(n=>n.textContent='2 990 ₽/год');
+
+/* sticky CTA: показываем, когда главный CTA ушёл из вьюпорта телефона */
+function bindSticky(scrollId, ctaId, stickyId){
+  const scr = document.getElementById(scrollId), cta = document.getElementById(ctaId), st = document.getElementById(stickyId);
+  if(!scr||!cta||!st) return;
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>st.classList.toggle('show', !e.isIntersecting && scr.scrollTop>40));
+  },{root:scr,threshold:0});
+  io.observe(cta);
+}
+bindSticky('scrB','ctaB','stB');
+bindSticky('scrC','ctaC','stC');
+
+/* FAQ */
+function faq(q){ q.classList.toggle('open'); }
+
+/* аннотации */
+function toggleAnn(){
+  const on = document.body.classList.toggle('showAnn');
+  const b = document.getElementById('annBtn');
+  b.classList.toggle('on', on);
+  b.textContent = 'Аннотации: ' + (on ? 'вкл' : 'выкл');
+}
+/* тап по аннотации (мобайл) */
+document.querySelectorAll('.ann').forEach(a=>{
+  a.addEventListener('click',e=>{ e.stopPropagation(); document.querySelectorAll('.ann.open').forEach(o=>{if(o!==a)o.classList.remove('open')}); a.classList.toggle('open'); });
+});
+document.addEventListener('click',()=>document.querySelectorAll('.ann.open').forEach(o=>o.classList.remove('open')));
+</script>
+</body>
+</html>

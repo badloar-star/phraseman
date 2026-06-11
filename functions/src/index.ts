@@ -97,6 +97,8 @@ const { submitExplainReport } = require('./explain/explain_reports');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { vipRevokeMine } = require('./vip_revoke');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { collectiblesClaimDrop } = require('./collectibles');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   adminAlertOnUserReport,
   adminAlertOnCriticalError,
@@ -158,6 +160,7 @@ exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
+exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;

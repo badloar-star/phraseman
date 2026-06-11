@@ -62,7 +62,12 @@ service cloud.firestore {
                 'vip_until',
                 'vip_admin_override',
                 'vip_admin_grant_at',
-                'vip_migrated_from_admin_grant_at'
+                'vip_migrated_from_admin_grant_at',
+                // «Сокровищница»: инвентарь и счётчики дропов выдаёт только
+                // CF collectiblesClaimDrop — клиентская запись = накрутка.
+                // Клиент эти ключи наружу не шлёт (cloud_sync SERVER_OWNED_PROGRESS_KEYS).
+                'collectibles_owned_v1',
+                'collectibles_state_v1'
               ]);
     }
 

@@ -88,6 +88,58 @@ const GIFT_CATALOG: Record<FriendGiftId, GiftCatalogItem> = {
   },
 };
 
+type PushLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+
+/** Язык получателя из users/{uid}: cloud_sync зеркалит AsyncStorage 'app_lang'/'lang' в progress. */
+function normalizePushLang(value: unknown): PushLang {
+  const raw = String(value ?? '').trim().toLowerCase();
+  if (raw.startsWith('uk')) return 'uk';
+  if (raw.startsWith('es')) return 'es';
+  if (raw.startsWith('pt')) return 'pt-BR';
+  if (raw.startsWith('vi')) return 'vi';
+  if (raw === 'id' || raw.startsWith('id-')) return 'id';
+  if (raw.startsWith('tr')) return 'tr';
+  if (raw.startsWith('pl')) return 'pl';
+  return 'ru';
+}
+
+function giftLabelForPushLang(gift: GiftCatalogItem, lang: PushLang): string {
+  switch (lang) {
+    case 'uk': return gift.labelUk;
+    case 'es': return gift.labelEs;
+    case 'pt-BR': return gift.labelPtBr;
+    case 'vi': return gift.labelVi;
+    case 'id': return gift.labelId;
+    case 'tr': return gift.labelTr;
+    case 'pl': return gift.labelPl;
+    default: return gift.labelRu;
+  }
+}
+
+const GIFT_PUSH_TITLE: Record<PushLang, string> = {
+  ru: '🎁 Подарок от друга!',
+  uk: '🎁 Подарунок від друга!',
+  es: '🎁 ¡Regalo de un amigo!',
+  'pt-BR': '🎁 Presente de um amigo!',
+  vi: '🎁 Quà từ bạn bè!',
+  id: '🎁 Hadiah dari teman!',
+  tr: '🎁 Arkadaşından hediye!',
+  pl: '🎁 Prezent od znajomego!',
+};
+
+function giftPushBody(lang: PushLang, senderName: string, giftLabel: string): string {
+  switch (lang) {
+    case 'uk': return `${senderName} надіслав тобі подарунок: ${giftLabel}`;
+    case 'es': return `${senderName} te envió un regalo: ${giftLabel}`;
+    case 'pt-BR': return `${senderName} te enviou um presente: ${giftLabel}`;
+    case 'vi': return `${senderName} đã gửi cho bạn một món quà: ${giftLabel}`;
+    case 'id': return `${senderName} mengirimimu hadiah: ${giftLabel}`;
+    case 'tr': return `${senderName} sana bir hediye gönderdi: ${giftLabel}`;
+    case 'pl': return `${senderName} wysłał ci prezent: ${giftLabel}`;
+    default: return `${senderName} прислал тебе подарок: ${giftLabel}`;
+  }
+}
+
 function cleanId(value: unknown): string {
   return String(value ?? '').trim();
 }
@@ -406,6 +458,9 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: false },
     const recipientPushToken = typeof recipientSnap.data()?.expoPushToken === 'string'
       ? (recipientSnap.data()?.expoPushToken as string)
       : '';
+    const recipientLang = normalizePushLang(
+      getExistingField(recipientSnap.data(), 'app_lang') ?? getExistingField(recipientSnap.data(), 'lang'),
+    );
 
     return {
       ok: true,
@@ -415,17 +470,18 @@ export const friendSendGift = onCall({ region: REGION, enforceAppCheck: false },
       dailyRemaining: Math.max(0, MAX_DAILY_GIFTS_TOTAL - totalSentToday - 1),
       // Для push после commit (не возвращаем клиенту-отправителю).
       _recipientPushToken: recipientPushToken,
-      _giftLabelRu: gift.labelRu,
+      _recipientLang: recipientLang,
       _senderName: senderName,
     };
   });
 
-  // Push получателю — только после успешного commit транзакции.
+  // Push получателю — только после успешного commit транзакции, на языке получателя.
   if (result._recipientPushToken) {
+    const pushLang = result._recipientLang;
     await sendExpoPush(
       result._recipientPushToken,
-      '🎁 Подарок от друга!',
-      `${result._senderName} прислал тебе подарок: ${result._giftLabelRu}`,
+      GIFT_PUSH_TITLE[pushLang],
+      giftPushBody(pushLang, result._senderName, giftLabelForPushLang(gift, pushLang)),
       { type: 'friend_gift_received', fromName: result._senderName, giftId: result.giftId },
     );
   }

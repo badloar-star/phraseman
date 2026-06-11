@@ -10257,7 +10257,7 @@
         <div class="cl-modal-row" style="padding:7px 10px">
           <span class="cl-modal-tag" style="background:#1e2a1e;color:#4ade80">HOME CARD</span>
           <div class="cl-modal-info">
-            <b style="color:#e5e7eb">Карточка «Разговор с Филом» на home</b>
+            <b style="color:#e5e7eb">Карточка «Разговор с Тео» на home</b>
             <div class="cl-modal-trigger">Видна ТОЛЬКО если isAiDialogEnabled()=true И studyTarget='en'. Если язык не английский — скрыта.</div>
           </div>
         </div>
@@ -10271,7 +10271,7 @@
       </div>
       <div class="cl-checks" style="background:#150a24;border:1px solid #2a1a3a;color:#d8b4fe">
         <b>Проверить руками:</b>
-        ✓ Home (studyTarget=en): карточка «Разговор с Филом» видна<br>
+        ✓ Home (studyTarget=en): карточка «Разговор с Тео» видна<br>
         ✓ Home (studyTarget≠en): карточка СКРЫТА<br>
         ✓ coffee сценарий: 8 обменов → «Отличный разговор!» + кнопка пейвола<br>
         ✓ shop/hotel/airport/meeting: иконка замка, недоступны<br>
@@ -12113,9 +12113,8 @@
   }
 
   function cleanClubLeagueName(id) {
-    const names = ['Bronze I', 'Bronze II', 'Silver I', 'Silver II', 'Gold I', 'Gold II', 'Platinum I', 'Platinum II', 'Diamond', 'Master', 'Grandmaster', 'Legend'];
     const n = Math.floor(Number(id));
-    return names[n] || `League ${id ?? '-'}`;
+    return CLUB_DEFS_RU.find((league) => league.id === n)?.name || `Лига ${id ?? '-'}`;
   }
 
   function cleanClubMemberName(member) {

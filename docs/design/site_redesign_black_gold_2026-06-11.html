@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>МАКЕТ — Phraseman лендинг «Чёрное золото» (2026-06-11)</title>
+<!--
+  ДИЗАЙН-МАКЕТ редизайна knowlyapps.com (не прод-страница).
+  Концепция: «Джентльменский клуб» — чёрное золото под иконку приложения
+  (золотые очки и усы на чёрном). Один экран = вся воронка: оффер, доверие,
+  кнопки сторов, QR. Цифры со звёздочкой (*) — примеры, подставить реальные.
+  Картинки берутся с живого сайта knowlyapps.com (нужен интернет).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0A0A0E;
+  --surface:#121318;
+  --surface2:#16171E;
+  --line:rgba(244,241,234,.08);
+  --line-strong:rgba(244,241,234,.14);
+  --text:#F4F1EA;
+  --muted:#A4A5AE;
+  --muted2:#6E6F78;
+  --gold:#E8C566;
+  --gold-deep:#C2902E;
+  --gold-grad:linear-gradient(115deg,#F7DE8B 0%,#E3B84B 48%,#C2902E 100%);
+  --radius:20px;
+  --radius-sm:14px;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --serif:"Playfair Display",Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font);line-height:1.6;font-size:16px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+/* фон: одно тёплое золотое свечение сверху + лёгкое зерно, без неона и сетки */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(1100px 600px at 50% -180px, rgba(232,197,102,.13), transparent 62%),
+    radial-gradient(800px 500px at 88% 28%, rgba(232,197,102,.05), transparent 55%),
+    var(--bg);
+}
+.bg::after{content:"";position:absolute;inset:0;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.shell{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* плашка "макет" */
+.mock-note{position:fixed;right:14px;bottom:14px;z-index:99;font-size:11px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:#0A0A0E;background:var(--gold-grad);
+  padding:7px 12px;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+
+/* ===== topbar ===== */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:22px 0 20px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+.brand img{width:40px;height:40px;border-radius:11px;box-shadow:0 6px 24px rgba(0,0,0,.55)}
+.brand b{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.brand small{display:block;font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);margin-top:1px}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;
+  padding:9px 14px;border-radius:999px;transition:.18s}
+.nav a:hover{color:var(--text);background:rgba(244,241,234,.05)}
+.nav .cta{color:#0A0A0E;background:var(--gold-grad);font-weight:800;margin-left:8px;
+  box-shadow:0 10px 32px rgba(227,184,75,.22)}
+.nav .cta:hover{filter:brightness(1.07);background:var(--gold-grad);color:#0A0A0E}
+@media(max-width:760px){.nav a:not(.cta){display:none}}
+
+/* ===== hero ===== */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);
+  gap:clamp(36px,6vw,84px);align-items:center;padding:clamp(40px,7vh,84px) 0 56px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:28px}}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 22px}
+.kicker::before{content:"";width:26px;height:1px;background:var(--gold-grad)}
+h1{margin:0 0 20px;font-size:clamp(2.5rem,5.6vw,4.1rem);line-height:1.04;
+  letter-spacing:-.035em;font-weight:800}
+h1 em{font-family:var(--serif);font-style:italic;font-weight:600;letter-spacing:-.01em;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  padding-right:.06em}
+.lead{margin:0 0 30px;max-width:560px;font-size:clamp(1.05rem,1.7vw,1.22rem);
+  line-height:1.6;color:var(--muted)}
+.lead b{color:var(--text);font-weight:650}
+
+.actions{display:flex;flex-wrap:wrap;align-items:stretch;gap:14px;margin-bottom:14px}
+.store-badge{display:inline-flex;align-items:center;gap:12px;min-height:64px;
+  padding:11px 22px 11px 16px;border-radius:14px;text-decoration:none;
+  background:#000;color:#fff;border:1px solid var(--line-strong);
+  transition:transform .18s,border-color .18s,box-shadow .18s}
+.store-badge:hover{transform:translateY(-2px);border-color:rgba(232,197,102,.55);
+  box-shadow:0 14px 44px rgba(0,0,0,.5)}
+.store-badge svg{width:30px;height:30px;fill:#fff;flex:0 0 auto}
+.store-badge span{display:flex;flex-direction:column;line-height:1.1}
+.store-badge small{font-size:11px;font-weight:600;color:rgba(255,255,255,.62);letter-spacing:.02em}
+.store-badge b{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.under-cta{margin:0;font-size:13.5px;color:var(--muted2)}
+.under-cta b{color:var(--muted);font-weight:650}
+
+/* телефон + QR рядом */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.device{position:relative;width:min(100%,300px);aspect-ratio:9/19;border-radius:40px;
+  border:8px solid #17181D;background:#0c0d11;overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(244,241,234,.1),0 40px 110px rgba(0,0,0,.65),
+    0 0 90px rgba(232,197,102,.07)}
+.device::before{content:"";position:absolute;z-index:2;top:11px;left:50%;width:78px;height:6px;
+  border-radius:99px;background:rgba(244,241,234,.28);transform:translateX(-50%)}
+.device img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.qr-float{position:absolute;right:-26px;bottom:34px;width:158px;padding:13px 13px 11px;
+  text-align:center;background:#fff;border-radius:18px;
+  box-shadow:0 24px 70px rgba(0,0,0,.6);transform:rotate(3deg)}
+.qr-float img{width:100%;display:block;border-radius:8px}
+.qr-float small{display:block;margin-top:7px;color:#3c3a33;font-size:10.5px;font-weight:700;
+  letter-spacing:.04em;line-height:1.3}
+@media(max-width:900px){.qr-float{display:none}}
+
+/* ===== полоса доверия ===== */
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border-block:1px solid var(--line);margin:18px 0 0}
+.proof div{background:var(--bg);padding:26px 18px;text-align:center}
+.proof b{display:block;font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:800;letter-spacing:-.02em}
+.proof b i{font-style:normal;background:var(--gold-grad);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.proof span{font-size:12.5px;color:var(--muted2);font-weight:600;letter-spacing:.05em;
+  text-transform:uppercase}
+@media(max-width:760px){.proof{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== секции ===== */
+section{padding:clamp(60px,9vh,104px) 0 0}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 14px}
+h2{margin:0 0 14px;font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.12}
+h2 em{font-family:var(--serif);font-style:italic;font-weight:600;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 0 40px;max-width:620px;color:var(--muted);font-size:1.04rem}
+
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.fcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 26px;min-height:210px;position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s}
+.fcard:hover{border-color:rgba(232,197,102,.4);transform:translateY(-3px)}
+.fcard .num{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--gold);opacity:.85}
+.fcard h3{margin:14px 0 10px;font-size:1.13rem;font-weight:750;letter-spacing:-.015em}
+.fcard p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.62}
+.fcard::after{content:"";position:absolute;left:26px;right:26px;top:0;height:1px;
+  background:var(--gold-grad);opacity:0;transition:opacity .2s}
+.fcard:hover::after{opacity:.7}
+
+/* шаги */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{position:relative;padding:30px 26px;border:1px solid var(--line);
+  border-radius:var(--radius);background:linear-gradient(180deg,rgba(244,241,234,.025),transparent)}
+.step::before{counter-increment:s;content:"0" counter(s);font-size:13px;font-weight:800;
+  letter-spacing:.16em;background:var(--gold-grad);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.step h3{margin:12px 0 8px;font-size:1.08rem;font-weight:750}
+.step p{margin:0;font-size:14.5px;color:var(--muted)}
+
+/* цитаты */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.quote{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 26px}
+.quote .stars{color:var(--gold);letter-spacing:3px;font-size:14px;margin-bottom:14px}
+.quote p{margin:0 0 18px;font-size:15px;line-height:1.65;color:var(--text)}
+.quote footer{font-size:13px;color:var(--muted2);font-weight:600}
+
+/* FAQ */
+.faq{max-width:760px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;
+  align-items:center;gap:18px;padding:22px 4px;font-weight:650;font-size:1.02rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;font-weight:300;color:var(--gold);
+  transition:transform .2s;flex:0 0 auto}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0;padding:0 4px 24px;color:var(--muted);font-size:14.5px;max-width:640px}
+
+/* финальный CTA */
+.final{margin:clamp(60px,9vh,104px) 0 0;padding:clamp(44px,6vw,72px) clamp(24px,5vw,64px);
+  border-radius:28px;position:relative;overflow:hidden;text-align:center;
+  background:
+    radial-gradient(700px 320px at 50% -80px, rgba(232,197,102,.16), transparent 65%),
+    var(--surface2);
+  border:1px solid rgba(232,197,102,.22)}
+.final img.icon{width:84px;height:84px;border-radius:22px;margin-bottom:22px;
+  box-shadow:0 18px 60px rgba(0,0,0,.55)}
+.final h2{margin-bottom:10px}
+.final .sub{margin-inline:auto;margin-bottom:30px}
+.final .actions{justify-content:center}
+.final .under-cta{margin-top:6px}
+
+/* футер */
+.footer{margin-top:clamp(56px,8vh,88px);border-top:1px solid var(--line);
+  padding:34px 0 46px;display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;
+  justify-content:space-between}
+.footer .flinks{display:flex;flex-wrap:wrap;gap:4px 22px}
+.footer a{color:var(--muted);font-size:13.5px;text-decoration:none;font-weight:600}
+.footer a:hover{color:var(--gold)}
+.footer p{margin:0;font-size:12.5px;color:var(--muted2)}
+
+/* появление при скролле */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+.footnote{margin:26px 0 0;font-size:11.5px;color:var(--muted2)}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="mock-note">Макет · 11.06.2026</div>
+
+<div class="shell">
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <img src="https://knowlyapps.com/assets/phraseman-icon.png" alt="" />
+      <span><b>Phraseman</b><small>Живой английский</small></span>
+    </a>
+    <nav class="nav">
+      <a href="#features">Что внутри</a>
+      <a href="#how">Как это работает</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#" >Поддержка</a>
+      <a class="cta" href="#download">Скачать бесплатно</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="download" style="padding-top:clamp(28px,5vh,60px)">
+    <div>
+      <p class="kicker">Английский по фразам · iOS и Android</p>
+      <h1>Английский, на котором <em>действительно говорят</em></h1>
+      <p class="lead"><b>10&nbsp;000+ живых фраз</b> с тренировкой произношения, короткие уроки
+        по&nbsp;3&nbsp;минуты и дуэли с реальными игроками. Объяснения по-русски — просто,
+        как объяснил бы друг.</p>
+
+      <div class="actions">
+        <a class="store-badge" href="https://apps.apple.com/app/id6764800879">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z"/></svg>
+          <span><small>Загрузите в</small><b>App Store</b></span>
+        </a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=app.phraseman">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z"/></svg>
+          <span><small>Доступно в</small><b>Google Play</b></span>
+        </a>
+      </div>
+      <p class="under-cta">Бесплатно. <b>Без регистрации</b> — первый урок через 30 секунд.</p>
+    </div>
+
+    <div class="hero-visual">
+      <figure class="device" style="margin:0">
+        <img src="https://knowlyapps.com/assets/phraseman-screen-home.png" alt="Экран приложения Phraseman" />
+      </figure>
+      <div class="qr-float">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&data=https%3A%2F%2Fknowlyapps.com%2Fdownload%2F" alt="QR-код" />
+        <small>Наведите камеру — продолжите на телефоне</small>
+      </div>
+    </div>
+  </section>
+
+  <div class="proof reveal">
+    <div><b><i>4,9 ★</i></b><span>в App Store*</span></div>
+    <div><b>10 000+</b><span>живых фраз</span></div>
+    <div><b>3 мин</b><span>длится урок</span></div>
+    <div><b><i>Лиги</i></b><span>и дуэли каждую неделю</span></div>
+  </div>
+
+  <section id="features" class="reveal">
+    <p class="eyebrow">Что внутри</p>
+    <h2>Не курс. <em>Тренажёр речи</em></h2>
+    <p class="sub">Phraseman не заставляет зубрить грамматику — он ставит фразы,
+      которыми вы заговорите в первый же день.</p>
+    <div class="features">
+      <article class="fcard">
+        <div class="num">01</div>
+        <h3>Фразы из жизни, не из учебника</h3>
+        <p>То, что говорят в аэропорту, на собеседовании и в переписке. Каждая фраза —
+          с разбором, почему носители говорят именно так.</p>
+      </article>
+      <article class="fcard">
+        <div class="num">02</div>
+        <h3>Телефон слышит ваше произношение</h3>
+        <p>Говорите вслух — приложение оценивает произношение прямо на устройстве.
+          Голос не отправляется на сервер.</p>
+      </article>
+      <article class="fcard">
+        <div class="num">03</div>
+        <h3>Дуэли и лиги</h3>
+        <p>Сражайтесь с реальными игроками в арене, поднимайтесь из Бронзы наверх
+          и защищайте серию — бросить не получится.</p>
+      </article>
+      <article class="fcard">
+        <div class="num">04</div>
+        <h3>Объяснения «как для пятилетнего»</h3>
+        <p>Непонятно? Нажмите «Объяснить просто» — и правило разложат по-русски,
+          на бытовых примерах, без терминов.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="how" class="reveal">
+    <p class="eyebrow">Как это работает</p>
+    <h2>Три минуты в день. <em>Серьёзно</em></h2>
+    <p class="sub">Никаких «с понедельника начну». Формат настолько короткий,
+      что проще пройти урок, чем придумать отговорку.</p>
+    <div class="steps">
+      <div class="step"><h3>Скачайте и выберите план</h3><p>Поездка, работа, переезд или разговорный — план подстраивается под вашу цель.</p></div>
+      <div class="step"><h3>Проходите короткие уроки</h3><p>Фразы, произношение, карточки и вызовы. Один урок — около трёх минут.</p></div>
+      <div class="step"><h3>Возвращайтесь за серией</h3><p>Серия, энергия, лиги и подарки — механики, ради которых хочется открыть приложение завтра.</p></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="eyebrow">Что говорят</p>
+    <h2>Отзывы из сторов*</h2>
+    <p class="sub">Блок собирается из реальных отзывов App Store / Google Play.</p>
+    <div class="quotes">
+      <article class="quote"><div class="stars">★★★★★</div>
+        <p>«Первое приложение, которое я не забросила через неделю. Фразы реально из жизни — уже использовала в поездке.»</p>
+        <footer>— Пример отзыва, App Store</footer>
+      </article>
+      <article class="quote"><div class="stars">★★★★★</div>
+        <p>«Дуэли затягивают сильнее, чем игры. Незаметно прошёл сто уроков.»</p>
+        <footer>— Пример отзыва, Google Play</footer>
+      </article>
+      <article class="quote"><div class="stars">★★★★★</div>
+        <p>«Объяснения простым языком — то, чего не хватало всем остальным приложениям.»</p>
+        <footer>— Пример отзыва, App Store</footer>
+      </article>
+    </div>
+  </section>
+
+  <section id="faq" class="reveal">
+    <p class="eyebrow">Вопросы</p>
+    <h2>Коротко о главном</h2>
+    <div class="faq" style="margin-top:34px">
+      <details open>
+        <summary>Это бесплатно?</summary>
+        <p>Да. Уроки, фразы дня, дуэли и лиги доступны бесплатно. Premium снимает лимиты
+          энергии и открывает все планы и темы — но учиться можно и без него.</p>
+      </details>
+      <details>
+        <summary>Какой уровень английского нужен?</summary>
+        <p>Любой. Планы начинаются с самых основ, а если фраза непонятна — кнопка
+          «Объяснить просто» разберёт её по-русски.</p>
+      </details>
+      <details>
+        <summary>Чем Phraseman отличается от Duolingo?</summary>
+        <p>Мы учим не словам, а готовым фразам, которые сразу можно сказать, — и тренируем
+          произношение вслух. Объяснения написаны по-русски и для русскоязычных.</p>
+      </details>
+      <details>
+        <summary>Произношение слушает сервер?</summary>
+        <p>Нет. Распознавание речи работает прямо на телефоне — ваш голос никуда
+          не отправляется.</p>
+      </details>
+      <details>
+        <summary>Где скачать?</summary>
+        <p>В App Store для iPhone и iPad и в Google Play для Android. Кнопки — выше
+          и ниже на этой странице.</p>
+      </details>
+    </div>
+  </section>
+
+  <div class="final reveal">
+    <img class="icon" src="https://knowlyapps.com/assets/phraseman-icon.png" alt="" />
+    <h2>Первый урок займёт <em>три минуты</em></h2>
+    <p class="sub">Скачайте Phraseman и скажите первую живую фразу уже сегодня.</p>
+    <div class="actions">
+      <a class="store-badge" href="https://apps.apple.com/app/id6764800879">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.64 12.22c-.02-2.1 1.72-3.12 1.8-3.17-1-.1-1.53-2.15-3.92-2.18-1.65-.17-3.22.98-4.06.98-.85 0-2.15-.95-3.54-.92-1.82.03-3.5 1.06-4.44 2.7-1.9 3.3-.49 8.2 1.37 10.88.9 1.3 1.98 2.77 3.4 2.72 1.36-.06 1.87-.88 3.52-.88 1.64 0 2.1.88 3.54.85 1.46-.03 2.38-1.33 3.27-2.64 1.04-1.52 1.47-3 1.5-3.07-.03-.01-2.4-.92-2.44-3.27ZM13.44 5.14c.75-.9 1.25-2.16 1.11-3.41-1.07.04-2.37.72-3.14 1.62-.69.8-1.3 2.09-1.13 3.32 1.2.1 2.41-.62 3.16-1.53Z"/></svg>
+        <span><small>Загрузите в</small><b>App Store</b></span>
+      </a>
+      <a class="store-badge" href="https://play.google.com/store/apps/details?id=app.phraseman">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.62 2.33c-.38.4-.62 1.02-.62 1.82v15.7c0 .8.24 1.42.63 1.82l.06.05 8.8-9.62v-.2L3.68 2.28l-.06.05Zm11.8 6.55-2.93 3.02v.2l2.93 3.02.06-.03 3.48-2c1-.56 1-1.5 0-2.07l-3.48-2.02-.06-.12Zm.06 6.21-2.99-3.09-8.87 9.67c.6.64 1.58.72 2.7.08l9.16-6.66Zm0-6.18L6.32 2.25c-1.12-.64-2.1-.56-2.7.08l8.87 9.67 2.99-3.09Z"/></svg>
+        <span><small>Доступно в</small><b>Google Play</b></span>
+      </a>
+    </div>
+    <p class="under-cta">Или наведите камеру на QR-код в начале страницы.</p>
+  </div>
+
+  <p class="footnote">* Цифры и отзывы в макете — примеры. Перед публикацией подставить
+    реальные рейтинг, количество фраз и цитаты из сторов.</p>
+
+  <footer class="footer">
+    <a class="brand" href="#" style="gap:10px">
+      <img src="https://knowlyapps.com/assets/phraseman-icon.png" alt="" style="width:30px;height:30px;border-radius:8px" />
+      <span><b style="font-size:14px">Phraseman</b><small style="letter-spacing:.18em">by Knowly</small></span>
+    </a>
+    <nav class="flinks">
+      <a href="https://knowlyapps.com/download/">Скачать</a>
+      <a href="https://knowlyapps.com/contact/">Поддержка</a>
+      <a href="https://knowlyapps.com/legal/privacy/">Конфиденциальность</a>
+      <a href="https://knowlyapps.com/legal/terms/">Условия</a>
+      <a href="https://knowlyapps.com/legal/data-deletion/">Удаление данных</a>
+    </nav>
+    <p>© 2026 Knowly. Phraseman™ — учите английский живыми фразами.</p>
+  </footer>
+
+</div>
+
+<script>
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>

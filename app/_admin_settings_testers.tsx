@@ -125,6 +125,7 @@ import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './c
 import CoachToast from '../components/CoachToast';
 import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderboard_stats';
 import ThroneRewardModal from '../components/ThroneRewardModal';
+import RewardStackV2 from '../components/reward_v2/RewardStackV2';
 import { AVATAR_AURAS, USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import {
   CUSTOM_AVATAR_GIFT_ONLY,
@@ -183,6 +184,7 @@ import SystemModalsExtraSection from '../components/admin_panel/sections/SystemM
 import BannersToastsExtraSection from '../components/admin_panel/sections/BannersToastsExtraSection';
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
+import GiftsCatalogSection from '../components/admin_panel/sections/GiftsCatalogSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -737,6 +739,7 @@ export default function SettingsTestersFunctions() {
   const [activatedVipPreviewMarker, setActivatedVipPreviewMarker] = useState<string | null>(null);
   const [previewReviveOffer, setPreviewReviveOffer] = useState<StreakReviveOffer | null>(null);
   const [throneRewardPreview, setThroneRewardPreview] = useState(false);
+  const [rewardStackPreview, setRewardStackPreview] = useState(false);
 
   const [rankModal, setRankModal] = useState<{ promoted: boolean; tier: string; level: string } | null>(null);
   const [rankTest, setRankTest] = useState<{ mode: 'club'; delta: number } | null>(null);
@@ -2963,6 +2966,10 @@ export default function SettingsTestersFunctions() {
               sub="+10 осколков за удержание трона до 00:00"
               onPress={() => { doHaptic(); setThroneRewardPreview(true); }}
               t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="layers-outline" label="🎁 Reward Stack — очередь наград (новый стандарт)"
+              sub="Стопка «1 из 3» + «Забрать всё» с улётом иконок вверх"
+              onPress={() => { doHaptic(); setRewardStackPreview(true); }}
+              t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
           <AccordionSection
@@ -4812,6 +4819,7 @@ export default function SettingsTestersFunctions() {
             onSeedVipSurvey={() => { void showVipSurveyNotificationPreview(); }}
           />
           <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
+          <GiftsCatalogSection open={openSection === 'gifts_catalog'} onToggle={toggleSection} />
           <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
           <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />
           <VipSurveyExtraSection open={openSection === 'vip_survey_extra'} onToggle={toggleSection} />
@@ -5266,6 +5274,16 @@ export default function SettingsTestersFunctions() {
         shards={10}
         wins={7}
         onClose={() => setThroneRewardPreview(false)}
+      />
+      <RewardStackV2
+        visible={rewardStackPreview}
+        rewards={[
+          { key: 'demo_level', icon: '⭐', title: 'Новый уровень 13', value: 'Ты достиг 13-го уровня', semantic: 'gold' },
+          { key: 'demo_medal', icon: '🏅', title: 'Золотая медаль', value: 'Урок 14 пройден идеально', semantic: 'gold' },
+          { key: 'demo_shards', icon: '💎', title: '+25 осколков', value: 'Задание дня выполнено', semantic: 'shards' },
+        ]}
+        onClaimReward={() => {}}
+        onFinished={() => setRewardStackPreview(false)}
       />
       <IntroFullAccessModal
         visible={introFullAccessPreview !== null}

@@ -427,23 +427,23 @@ function CinemaBloom({ mode }: { mode: CinemaMode }) {
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
         <Defs>
-          <SvgRadialGradient id={`cinema-halo-${mode}`} cx="50%" cy="116%" rx="92%" ry="64%">
-            <Stop offset="0%" stopColor={p.bloomB} stopOpacity={0.55} />
-            <Stop offset="55%" stopColor={p.bloomB} stopOpacity={0.22} />
+          <SvgRadialGradient id={`cinema-halo-${mode}`} cx="50%" cy="116%" rx="96%" ry="68%">
+            <Stop offset="0%" stopColor={p.bloomB} stopOpacity={0.62} />
+            <Stop offset="55%" stopColor={p.bloomB} stopOpacity={0.26} />
             <Stop offset="100%" stopColor={p.bloomB} stopOpacity={0} />
           </SvgRadialGradient>
-          <SvgRadialGradient id={`cinema-main-${mode}`} cx="50%" cy="110%" rx="66%" ry="46%">
-            <Stop offset="0%" stopColor={p.bloomA} stopOpacity={0.62} />
-            <Stop offset="60%" stopColor={p.bloomA} stopOpacity={0.24} />
+          <SvgRadialGradient id={`cinema-main-${mode}`} cx="50%" cy="110%" rx="70%" ry="50%">
+            <Stop offset="0%" stopColor={p.bloomA} stopOpacity={0.72} />
+            <Stop offset="60%" stopColor={p.bloomA} stopOpacity={0.30} />
             <Stop offset="100%" stopColor={p.bloomA} stopOpacity={0} />
           </SvgRadialGradient>
-          <SvgRadialGradient id={`cinema-core-${mode}`} cx="50%" cy="106%" rx="38%" ry="24%">
-            <Stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.40} />
-            <Stop offset="55%" stopColor="#FFFFFF" stopOpacity={0.14} />
+          <SvgRadialGradient id={`cinema-core-${mode}`} cx="50%" cy="106%" rx="40%" ry="26%">
+            <Stop offset="0%" stopColor="#FFFFFF" stopOpacity={0.46} />
+            <Stop offset="55%" stopColor="#FFFFFF" stopOpacity={0.16} />
             <Stop offset="100%" stopColor="#FFFFFF" stopOpacity={0} />
           </SvgRadialGradient>
-          <SvgRadialGradient id={`cinema-top-${mode}`} cx="50%" cy="-14%" rx="80%" ry="42%">
-            <Stop offset="0%" stopColor={p.bloomB} stopOpacity={0.10} />
+          <SvgRadialGradient id={`cinema-top-${mode}`} cx="50%" cy="-14%" rx="84%" ry="46%">
+            <Stop offset="0%" stopColor={p.bloomB} stopOpacity={0.13} />
             <Stop offset="100%" stopColor={p.bloomB} stopOpacity={0} />
           </SvgRadialGradient>
         </Defs>
@@ -452,7 +452,7 @@ function CinemaBloom({ mode }: { mode: CinemaMode }) {
         <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-core-${mode})`} />
         <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-top-${mode})`} />
         {CINEMA_STARS.map(([sx, sy, r, o], i) => (
-          <Circle key={`star-${i}`} cx={W * sx} cy={H * sy} r={r} fill="#FFFFFF" opacity={o * 0.8} />
+          <Circle key={`star-${i}`} cx={W * sx} cy={H * sy} r={r} fill="#FFFFFF" opacity={o * 0.9} />
         ))}
       </Svg>
     </View>

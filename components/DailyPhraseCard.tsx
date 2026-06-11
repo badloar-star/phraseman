@@ -41,6 +41,11 @@ const DAILY_PHRASE_IMAGES: Record<string, any> = {
   coral: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
   ocean: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
   sakura: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
+  // «Чёрное кино»: своя картинка не отрисована — компасный премиум-глиф.
+  midnight: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
+  ember: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
+  aurora: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
+  volt: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
 };
 
 const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;

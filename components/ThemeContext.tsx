@@ -4,6 +4,7 @@ import { useWindowDimensions } from 'react-native';
 import { DARK, NEON, GOLD, CORAL, MINIMAL_DARK, MINIMAL_LIGHT, COMPASS, MIDNIGHT, EMBER, AURORA, VOLT, Theme, ThemeMode } from '../constants/theme';
 import { goldShadow } from '../constants/goldTheme';
 import { compassShadow } from '../constants/compassTheme';
+import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
@@ -115,6 +116,7 @@ export const getVolumetricShadow = (
 ) => {
   if (themeMode === 'gold') return goldShadow(level);
   if (themeMode === 'compass') return compassShadow(level);
+  if (isCinemaMode(themeMode)) return cinemaShadow(level);
   return {
     shadowColor:   '#000000',
     shadowOffset:  { width: 0, height: level === 1 ? 2 : level === 2 ? 3 : 5 },

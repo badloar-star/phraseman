@@ -1,5 +1,6 @@
 import type { PlanContentDay } from './plan_content_schema';
 import { MITAP_CONTENT_DAYS } from './plan_content_mitap';
+import { GAVAN_CONTENT_DAYS } from './plan_content_gavan';
 
 /**
  * Registry of authored PlanContentDay content from the new pipeline, keyed by
@@ -21,6 +22,7 @@ function keyFor(planId: string, dayIndex: number): string {
 // fall back to the template path like the other non-authored plans.
 const ALL_CONTENT_DAYS: readonly PlanContentDay[] = [
   ...MITAP_CONTENT_DAYS,
+  ...GAVAN_CONTENT_DAYS,
 ];
 
 const CONTENT_BY_KEY: ReadonlyMap<string, PlanContentDay> = new Map(

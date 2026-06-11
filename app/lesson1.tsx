@@ -2287,7 +2287,9 @@ export default function LessonScreen() {
       const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
       const ffCount = await AsyncStorage.getItem(todayKey);
       setFiftyFiftyUsedToday(ffCount ? parseInt(ffCount, 10) : 0);
-      const bonus = await getBonusHintsToday();
+      // Подарок «+N подсказок» пишется в ключ с учётом языка-цели (fr — отдельный
+      // namespace), поэтому читать нужно с тем же target, иначе бонус не виден.
+      const bonus = await getBonusHintsToday(studyTargetRef.current);
       setBonusHints(bonus);
 
       // (проверка энергии при входе — в отдельном useEffect ниже)

@@ -331,3 +331,55 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
   void persistLifetimeProfileStatsCache(result);
   return result;
 }
+
+/** Целочисленный рандом [min..max]. */
+function devRand(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * DEV-сид для «За всё время»: заполняет lifetime-счётчики (квизы, осколки,
+ * задания) и кладёт выученные слова/фразы в lessonWordsKey/lessonProgressKey,
+ * чтобы countLearnedWordsTotal/countPhrasesLearnedFromLessonProgress вернули
+ * ненулевые значения. Нужен, чтобы ИИ-разбор увидел полный lifetime-блок.
+ *
+ * Только для QA/dev (вызывается из админ-панели). Пишет реальные ключи —
+ * сбрасывает кэш, чтобы экран сразу подхватил.
+ */
+export async function devSeedLifetimeStatsScenario(studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const { LESSONS_WITH_WORDS } = await import('./lesson_words');
+  const wordLessons = [...LESSONS_WITH_WORDS].slice(0, 8);
+
+  const entries: Array<[string, string]> = [];
+
+  // Слова: 6–12 «выученных» (count >= WORD_REQUIRED) на урок.
+  for (const id of wordLessons) {
+    const map: Record<string, number> = {};
+    const learned = devRand(6, 12);
+    for (let i = 0; i < learned; i++) {
+      map[`w_${id}_${i}`] = devRand(WORD_REQUIRED, WORD_REQUIRED + 4);
+    }
+    entries.push([lessonWordsKey(id, studyTarget), JSON.stringify(map)]);
+  }
+
+  // Фразы: массив прогресса с 'correct' для первых уроков.
+  for (let lessonId = 1; lessonId <= 6; lessonId++) {
+    const correct = devRand(8, 24);
+    const arr = Array.from({ length: correct }, () => 'correct');
+    entries.push([lessonProgressKey(lessonId, studyTarget), JSON.stringify(arr)]);
+  }
+
+  // Lifetime-счётчики.
+  entries.push(
+    [K_QUIZ_EASY, String(devRand(10, 40))],
+    [K_QUIZ_MEDIUM, String(devRand(5, 25))],
+    [K_QUIZ_HARD, String(devRand(2, 12))],
+    [K_QUIZ_MIGRATED, 'true'],
+    [K_DAILY_CLAIMS, String(devRand(4, 20))],
+    [K_SHARDS_EARNED, String(devRand(200, 1500))],
+    [K_SHARDS_SPENT, String(devRand(50, 800))],
+  );
+
+  await AsyncStorage.multiSet(entries);
+  await AsyncStorage.removeItem(LIFETIME_PROFILE_STATS_CACHE_KEY);
+}

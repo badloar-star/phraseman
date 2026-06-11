@@ -2983,7 +2983,8 @@ export default function StreakStats() {
                     weakCategories: [],
                 };
                 if (!cancelled) setAiNotesLoading(true);
-                const state = await generateStatsInsights({ briefing, isPremium });
+                // QA-сценарий (qa365=1) форсит регенерацию, минуя локальный гейт.
+                const state = await generateStatsInsights({ briefing, isPremium, force: params.qa365 === '1' });
                 if (cancelled) return;
                 if (state.kind === 'cached') setAiNotes(state.notes);
                 else if (state.kind === 'error' && state.notes) setAiNotes(state.notes);

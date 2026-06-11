@@ -118,6 +118,7 @@ import {
 } from './trainer_session';
 import { clearTrainerStore, devSeedTrainerScenario } from './trainer_store';
 import { devSeedActivity365Scenario } from './activity_365_analytics';
+import { devSeedLifetimeStatsScenario } from './lifetime_profile_stats';
 import { getTopMistakePhrases, clearMistakeLog, logMistake, getMistakeLogDebugSnapshot } from './mistake_log';
 import type { TrainerMode } from './active_recall';
 import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
@@ -143,6 +144,7 @@ import {
   lessonWordsKey,
   masteryFinishedOnceKey,
   quizAchievementCounterKey,
+  statsInsightsStorageKey,
   unlockedLessonsKey,
 } from './target_storage_keys';
 import { touchLessonScreenPrimed } from './lesson_screen_bootstrap';
@@ -1233,6 +1235,33 @@ export default function SettingsTestersFunctions() {
     await ensureQaPremiumAccess();
     await devSeedActivity365Scenario('random');
     router.push({ pathname: '/streak_stats', params: { qa365: '1' } } as any);
+  };
+
+  /**
+   * QA «ИИ-разбор статистики»: набивает рандомный сид по ВСЕМ блокам
+   * (активность за год + XP/время по дням + lifetime слова/фразы/счётчики),
+   * включает premium и сбрасывает кэш ИИ-заметок — чтобы экран при открытии
+   * сразу сгенерировал свежий разбор под каждым блоком.
+   */
+  const [statsInsightsSeedBusy, setStatsInsightsSeedBusy] = useState(false);
+  const seedAndOpenStatsInsightsQa = async () => {
+    if (statsInsightsSeedBusy) return;
+    setStatsInsightsSeedBusy(true);
+    try {
+      await ensureQaPremiumAccess();
+      await devSeedActivity365Scenario('random');
+      await devSeedLifetimeStatsScenario(studyTarget);
+      // Сбрасываем кэш заметок (обе цели), чтобы пройти локальный гейт и
+      // запросить генерацию заново при следующем открытии экрана.
+      await AsyncStorage.multiRemove([
+        statsInsightsStorageKey(studyTarget),
+        statsInsightsStorageKey('en'),
+        statsInsightsStorageKey('fr'),
+      ]);
+      router.push({ pathname: '/streak_stats', params: { qa365: '1' } } as any);
+    } finally {
+      setStatsInsightsSeedBusy(false);
+    }
   };
   const { showMatchFoundForTesterPreview } = useMatchmakingContext();
 
@@ -3343,7 +3372,7 @@ export default function SettingsTestersFunctions() {
             id="activity_365_qa"
             icon="pulse-outline"
             title="Stats 365 QA"
-            badge={1}
+            badge={2}
             open={openSection === 'activity_365_qa'}
             onToggle={(id) => setOpenSection(openSection === id ? null : id)}
           >
@@ -3353,6 +3382,16 @@ export default function SettingsTestersFunctions() {
               label="Stats 365: random seeded year"
               sub="Seed yearly activity data and open streak_stats at the 365-day card"
               onPress={openStats365RandomQa}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="testers-stats-insights-seed"
+              icon="sparkles-outline"
+              label={statsInsightsSeedBusy ? 'Набиваю сид…' : 'ИИ-разбор: рандомный сид + открыть'}
+              sub="Набивает данные по всем блокам (год + неделя + lifetime), включает premium, сбрасывает кэш ИИ-заметок и открывает статистику — чтобы увидеть готовый ИИ-разбор под каждым блоком"
+              onPress={seedAndOpenStatsInsightsQa}
               t={t}
               f={f}
               doHaptic={doHaptic}

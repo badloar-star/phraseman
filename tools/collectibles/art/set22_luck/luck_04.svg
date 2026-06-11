@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Third time's a charm">
+<ellipse cx="100" cy="150" rx="50" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="74" y="108" width="52" height="30" rx="5" fill="#E0524E"/>
+<rect x="62" y="100" width="76" height="12" rx="4" fill="#F0746F"/>
+<path d="M100 28l8 22 24 1-19 15 7 23-20-13-20 13 7-23-19-15 24-1z" fill="#FFD23F"/>
+<path d="M100 28l8 22 24 1-19 15 7 23-20-13-20 13 7-23-19-15 24-1z" fill="none" stroke="#E8B800" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="93" cy="74" r="3.4" fill="#7A4A2B"/><circle cx="107" cy="74" r="3.4" fill="#7A4A2B"/>
+<path d="M92 84c4 4 12 4 16 0" stroke="#7A4A2B" stroke-width="3" fill="none" stroke-linecap="round"/>
+<g transform="rotate(-32 40 128)">
+<ellipse cx="40" cy="120" rx="9" ry="22" fill="#EDEDED"/>
+<ellipse cx="40" cy="104" rx="5.5" ry="9" fill="#EDEDED"/>
+<rect x="35" y="108" width="10" height="6" rx="3" fill="#E0524E"/>
+</g>
+<g transform="rotate(40 162 128)">
+<ellipse cx="162" cy="120" rx="9" ry="22" fill="#EDEDED"/>
+<ellipse cx="162" cy="104" rx="5.5" ry="9" fill="#EDEDED"/>
+<rect x="157" y="108" width="10" height="6" rx="3" fill="#E0524E"/>
+</g>
+</svg>

@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Take a shortcut">
+<rect x="14" y="14" width="172" height="132" rx="14" fill="#A8D6A0"/>
+<path d="M40 132C40 96 150 110 150 76 150 44 44 56 44 28" fill="none" stroke="#C9B89A" stroke-width="16" stroke-linecap="round"/>
+<circle cx="44" cy="28" r="9" fill="#E0524E"/>
+<path d="M44 132L150 28" stroke="#5A7C52" stroke-width="4" stroke-linecap="round" stroke-dasharray="9 9"/>
+<circle cx="100" cy="60" r="12" fill="#6FB85F"/><circle cx="64" cy="100" r="11" fill="#6FB85F"/><circle cx="132" cy="44" r="10" fill="#6FB85F"/>
+<circle cx="92" cy="88" r="9" fill="#F2C9A0"/>
+<path d="M84 86c0-6 4-10 8-10s8 4 8 10z" fill="#5A3A28"/>
+<circle cx="90" cy="88" r="2" fill="#5A3A28"/><circle cx="96" cy="88" r="2" fill="#5A3A28"/>
+<rect x="85" y="94" width="14" height="16" rx="6" fill="#5BA9D6"/>
+<path d="M84 104l-6 8M99 104l6 8" stroke="#F2C9A0" stroke-width="5" stroke-linecap="round"/>
+</svg>

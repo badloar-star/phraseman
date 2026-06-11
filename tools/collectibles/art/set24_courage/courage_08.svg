@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chicken out">
+<path d="M118 150V58l44-16v108z" fill="#C25B4E"/>
+<path d="M118 58l44-16-44-6z" fill="#E0726A"/>
+<ellipse cx="66" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M46 150c-8-26 6-50 32-50 20 0 30 14 28 32-2 14-10 18-10 18z" fill="#F7E04B"/>
+<circle cx="48" cy="86" r="20" fill="#F7E04B"/>
+<path d="M48 66l-4-14 8 6 4-12 4 12 8-6-4 14z" fill="#E0524E"/>
+<path d="M30 88l-14-4 14-6z" fill="#F2A03D"/>
+<circle cx="40" cy="84" r="3" fill="#16243A"/>
+<path d="M36 78c0-3 4-5 8-3" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M118 64l16-8M124 80l18-6M120 96l16-4" stroke="#F7E04B" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M150 70l8 6M148 88l10 4" stroke="#F2C14E" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="To be honest">
+<ellipse cx="100" cy="150" rx="42" ry="8" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="100" cy="40" rx="28" ry="7" fill="none" stroke="#FFD23F" stroke-width="4"/>
+<path d="M62 148c-2-30 10-50 38-50s40 20 38 50z" fill="#7FB6E0"/>
+<ellipse cx="100" cy="78" rx="28" ry="30" fill="#F6C8A0"/>
+<path d="M72 72c0-16 12-26 28-26s28 10 28 26z" fill="#8A5A3E"/>
+<circle cx="89" cy="78" r="5" fill="#3A2418"/><circle cx="111" cy="78" r="5" fill="#3A2418"/>
+<circle cx="91" cy="76" r="1.6" fill="#fff"/><circle cx="113" cy="76" r="1.6" fill="#fff"/>
+<path d="M82 68l12 3M106 71l12-3" stroke="#3A2418" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<path d="M92 92c5 4 11 4 16 0" stroke="#7A3A2A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M132 104c8 2 16 12 16 26" stroke="#F6C8A0" stroke-width="11" fill="none" stroke-linecap="round"/>
+<path d="M68 104c-8 2-14 10-14 22" stroke="#F6C8A0" stroke-width="11" fill="none" stroke-linecap="round"/>
+<path d="M84 116c0-7 7-12 16-12s16 5 16 12c0 9-8 17-16 21-8-4-16-12-16-21z" fill="#E0524E"/>
+<path d="M99 124c0-3 3-5 6-3 3-2 6 0 6 3 0 4-6 8-6 8s-6-4-6-8z" fill="#fff" opacity=".55"/>
+</svg>

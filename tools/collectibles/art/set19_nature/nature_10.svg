@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Grasp at straws">
+<path d="M0 108h200v52H0z" fill="#6FB8DC" opacity=".55"/>
+<path d="M0 108c20 6 40-6 60 0s40 6 60 0 40-6 60 0 20 0 20 0" stroke="#9AD2EC" stroke-width="4" fill="none"/>
+<ellipse cx="100" cy="150" rx="40" ry="6" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="92" cy="118" rx="22" ry="20" fill="#F2C9A0"/>
+<path d="M70 116c0-12 10-22 22-22s22 10 22 22z" fill="#C9A24E"/>
+<circle cx="84" cy="118" r="3.6" fill="#5A3A28"/><circle cx="100" cy="118" r="3.6" fill="#5A3A28"/>
+<path d="M82 110l-6-4M102 110l6-4" stroke="#5A3A28" stroke-width="2.4" stroke-linecap="round"/>
+<ellipse cx="92" cy="128" rx="6" ry="4" fill="#5A3A28"/>
+<rect x="116" y="44" width="5" height="64" rx="2.5" fill="#E8C46A" transform="rotate(10 116 44)"/>
+<rect x="116" y="44" width="5" height="64" rx="2.5" fill="#D8B254" opacity=".5" transform="rotate(10 116 44)"/>
+<path d="M118 50l-6-8M122 52l8-6M120 44l1-10" stroke="#E8C46A" stroke-width="3" stroke-linecap="round"/>
+<path d="M104 96c8-4 16-8 22-12" stroke="#E8B07E" stroke-width="9" fill="none" stroke-linecap="round"/>
+<ellipse cx="128" cy="80" rx="7" ry="8" fill="#F2C9A0"/>
+<path d="M122 76l8-6M126 72l8-2M124 84l9-4" stroke="#E8B07E" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tell it like it is">
+<ellipse cx="58" cy="150" rx="38" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M26 148c-2-28 8-46 32-46s34 18 32 46z" fill="#6FB3D2"/>
+<ellipse cx="58" cy="78" rx="26" ry="28" fill="#F6C8A0"/>
+<path d="M32 74c0-15 12-24 26-24s26 9 26 24z" fill="#3A2418"/>
+<circle cx="49" cy="78" r="4.5" fill="#3A2418"/><circle cx="69" cy="78" r="4.5" fill="#3A2418"/>
+<path d="M42 70l11 2M64 72l11-2" stroke="#3A2418" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+<ellipse cx="61" cy="92" rx="7" ry="8" fill="#7A3A2A"/>
+<path d="M68 100c8 0 16 8 18 22" stroke="#F6C8A0" stroke-width="10" fill="none" stroke-linecap="round"/>
+<path d="M100 56c0-7 6-12 16-12h44c10 0 16 5 16 12v18c0 7-6 12-16 12h-44l-12 12 4-12c-8-1-12-6-12-12z" fill="#FFF7DD"/>
+<path d="M100 56c0-7 6-12 16-12h44c10 0 16 5 16 12v18c0 7-6 12-16 12h-44l-12 12 4-12c-8-1-12-6-12-12z" fill="none" stroke="#C9B98A" stroke-width="3"/>
+<path d="M114 66h48" stroke="#5A2A3A" stroke-width="5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Forty winks">
+<ellipse cx="92" cy="150" rx="54" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="46" y="94" width="92" height="46" rx="12" fill="#C98E9C"/>
+<rect x="34" y="80" width="22" height="56" rx="10" fill="#B87C8A"/>
+<rect x="128" y="80" width="22" height="56" rx="10" fill="#B87C8A"/>
+<rect x="54" y="72" width="76" height="40" rx="12" fill="#D69EAC"/>
+<ellipse cx="92" cy="86" rx="22" ry="19" fill="#F2C9A0"/>
+<path d="M71 82c0-12 9-22 21-22s21 10 21 22z" fill="#7C6A9C"/>
+<path d="M76 86c4 4 11 4 15 0M93 86c4 4 11 4 15 0" stroke="#5A3A28" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<ellipse cx="78" cy="94" rx="5" ry="3.4" fill="#F4A6A4" opacity=".6"/>
+<ellipse cx="106" cy="94" rx="5" ry="3.4" fill="#F4A6A4" opacity=".6"/>
+<path d="M92 102c5 4 11 4 16 0" stroke="#5A3A28" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M150 40a8 8 0 1 1-1 13 6 6 0 0 0 1-13z" fill="#FFE08A"/>
+<path d="M168 66a6 6 0 1 1-1 10 5 5 0 0 0 1-10z" fill="#FFE08A"/>
+<path d="M138 24a5 5 0 1 1-1 8 4 4 0 0 0 1-8z" fill="#FFE08A"/>
+<path d="M44 50c4 3 9 3 12 0" stroke="#5A3A28" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+</svg>

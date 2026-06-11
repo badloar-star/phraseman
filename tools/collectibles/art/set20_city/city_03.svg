@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The middle of nowhere">
+<path d="M0 120c30-10 60-12 100-10s70 8 100 6v44H0z" fill="#E8C98A"/>
+<ellipse cx="96" cy="138" rx="20" ry="5" fill="rgba(0,0,0,.25)"/>
+<rect x="92" y="58" width="8" height="80" rx="3" fill="#9A744F" transform="rotate(6 96 98)"/>
+<path d="M98 70h44l-8 9 8 9H98z" fill="#C2A878" transform="rotate(6 120 79)"/>
+<path d="M92 92H52l8 9-8 9h40z" fill="#B89A6A" transform="rotate(6 72 101)"/>
+<circle cx="150" cy="124" r="16" fill="none" stroke="#B89A6A" stroke-width="3"/>
+<path d="M138 118c8 4 16 4 24 0M140 130c8-4 16-4 22 0M150 108v32M134 124h32" stroke="#B89A6A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<circle cx="34" cy="34" r="14" fill="#FFD23F"/>
+<path d="M34 14v-6M16 24l-4-4M52 24l4-4M14 34h-6" stroke="#FFB800" stroke-width="3" stroke-linecap="round"/>
+</svg>

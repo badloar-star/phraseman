@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Goosebumps">
+<ellipse cx="78" cy="150" rx="56" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M40 150V96c0-10 6-16 14-16h6V40c0-7 5-12 11-12s11 5 11 12v40h6c8 0 14 6 14 16v54z" fill="#F2C9A0"/>
+<path d="M62 80V42M84 80V42" stroke="#E0AE80" stroke-width="3" stroke-linecap="round"/>
+<circle cx="56" cy="60" r="3" fill="#E0AE80"/><circle cx="72" cy="52" r="3" fill="#E0AE80"/><circle cx="88" cy="60" r="3" fill="#E0AE80"/>
+<circle cx="62" cy="72" r="3" fill="#E0AE80"/><circle cx="80" cy="70" r="3" fill="#E0AE80"/><circle cx="70" cy="64" r="3" fill="#E0AE80"/>
+<circle cx="52" cy="98" r="3" fill="#E0AE80"/><circle cx="92" cy="98" r="3" fill="#E0AE80"/><circle cx="72" cy="92" r="3" fill="#E0AE80"/>
+<ellipse cx="158" cy="148" rx="24" ry="5" fill="rgba(0,0,0,.2)"/>
+<path d="M158 88c16 0 26 12 26 28 0 12-8 26-26 28-14-2-22-10-22-20 0-6 4-10 10-10-4-4-4-10 0-14-6-2-8-8-4-14 4-6 10-6 16-2 0-1 0-2 0-2z" fill="#F5F0E6"/>
+<circle cx="150" cy="106" r="3" fill="#16243A"/>
+<path d="M134 110l-10-2 10-4z" fill="#F2A03D"/>
+</svg>

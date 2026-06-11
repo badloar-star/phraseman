@@ -1,0 +1,24 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stretch the truth">
+<ellipse cx="100" cy="150" rx="68" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M40 80c30-26 90-26 120 0-30 26-90 26-120 0z" fill="#7FC4E8"/>
+<path d="M40 80c30-12 90-12 120 0-30 12-90 12-120 0z" fill="#A8DCF2" opacity=".6"/>
+<path d="M160 80c10-8 18-8 26 0-8 8-16 8-26 0z" fill="#7FC4E8"/>
+<path d="M40 80c-10-8-18-8-26 0 8 8 16 8 26 0z" fill="#7FC4E8"/>
+<circle cx="150" cy="74" r="4" fill="#16243A"/>
+<circle cx="50" cy="74" r="4" fill="#16243A"/>
+<path d="M70 80h60M80 72h40M80 88h40" stroke="#5AA0D0" stroke-width="2.5" stroke-linecap="round"/>
+<g>
+<ellipse cx="22" cy="118" rx="18" ry="20" fill="#F6C8A0"/>
+<path d="M4 116c0-12 8-20 18-20s18 8 18 20z" fill="#9A6B4F"/>
+<circle cx="16" cy="118" r="3.4" fill="#3A2418"/><circle cx="28" cy="118" r="3.4" fill="#3A2418"/>
+<path d="M14 128c4 3 8 3 12 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M30 104c-4-6-10-10-18-8" stroke="#F6C8A0" stroke-width="9" fill="none" stroke-linecap="round"/>
+</g>
+<g>
+<ellipse cx="178" cy="118" rx="18" ry="20" fill="#F0C49A"/>
+<path d="M160 116c0-12 8-20 18-20s18 8 18 20z" fill="#5A3A24"/>
+<circle cx="172" cy="118" r="3.4" fill="#3A2418"/><circle cx="184" cy="118" r="3.4" fill="#3A2418"/>
+<path d="M172 128c4 3 8 3 12 0" stroke="#7A3A2A" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+<path d="M170 104c4-6 10-10 18-8" stroke="#F0C49A" stroke-width="9" fill="none" stroke-linecap="round"/>
+</g>
+</svg>

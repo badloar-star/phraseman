@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Beauty sleep">
+<ellipse cx="100" cy="148" rx="62" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="30" y="104" width="140" height="36" rx="10" fill="#E0A6C2"/>
+<path d="M30 110h140" stroke="#C98EAE" stroke-width="3"/>
+<ellipse cx="100" cy="86" rx="30" ry="28" fill="#F2C9A0"/>
+<path d="M70 86c0-20 13-34 30-34s30 14 30 34z" fill="#7A4A2B"/>
+<rect x="74" y="80" width="52" height="20" rx="10" fill="#B8A0CE"/>
+<rect x="74" y="80" width="52" height="20" rx="10" fill="none" stroke="#9E84BE" stroke-width="2.4"/>
+<path d="M84 90c4 3 9 3 13 0M103 90c4 3 9 3 13 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M88 108c7 5 17 5 24 0" stroke="#5A3A28" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M76 50l8 12 12-12 12 12 8-12 2 16H74z" fill="#FFD23F"/>
+<path d="M76 50l8 12 12-12 12 12 8-12 2 16H74z" fill="none" stroke="#E8B800" stroke-width="2"/>
+<circle cx="100" cy="58" r="3" fill="#FF6F91"/>
+<path d="M150 40l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#FFF3B0"/>
+<path d="M44 60l1.6 5 5 1.6-5 1.6-1.6 5-1.6-5-5-1.6 5-1.6z" fill="#FFF3B0"/>
+<circle cx="158" cy="74" r="2.4" fill="#FFF3B0"/><circle cx="40" cy="100" r="2" fill="#FFF3B0"/>
+</svg>

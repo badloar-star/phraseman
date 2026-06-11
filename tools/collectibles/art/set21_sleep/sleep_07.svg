@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rise and shine">
+<ellipse cx="92" cy="150" rx="42" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M138 30l4 10 10-2-4 10 10 6-10 4 2 10-10-4-6 8-6-8-10 4 2-10-10-4 10-6-4-10 10 2z" fill="#FFD23F"/>
+<circle cx="140" cy="58" r="20" fill="#FBC02D"/>
+<circle cx="133" cy="55" r="3.4" fill="#5A3A28"/><circle cx="147" cy="55" r="3.4" fill="#5A3A28"/>
+<path d="M132 64c5 5 12 5 16 0" stroke="#5A3A28" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<rect x="8" y="14" width="24" height="120" rx="6" fill="#E0738F"/>
+<rect x="8" y="14" width="24" height="120" rx="6" fill="none" stroke="#C95B79" stroke-width="2"/>
+<path d="M14 22v104M22 22v104M28 22v104" stroke="#C95B79" stroke-width="1.6"/>
+<ellipse cx="72" cy="108" rx="20" ry="22" fill="#F2C9A0"/>
+<path d="M52 102c0-13 9-24 20-24s20 11 20 24z" fill="#5A8FCF"/>
+<circle cx="66" cy="104" r="3.2" fill="#5A3A28"/><circle cx="78" cy="104" r="3.2" fill="#5A3A28"/>
+<circle cx="67" cy="103" r="1" fill="#fff"/><circle cx="79" cy="103" r="1" fill="#fff"/>
+<path d="M64 116c5 5 13 5 18 0" stroke="#5A3A28" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M54 96c-10-6-16-16-14-26M90 96c10-6 16-16 14-26" fill="none" stroke="#F2C9A0" stroke-width="8" stroke-linecap="round"/>
+</svg>

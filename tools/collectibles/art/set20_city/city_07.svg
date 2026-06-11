@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="My way or the highway">
+<ellipse cx="100" cy="150" rx="34" ry="6" fill="rgba(0,0,0,.25)"/>
+<path d="M86 144 56 30h22l18 114z" fill="#C9A86A"/>
+<path d="M114 144 144 30h-22l-18 114z" fill="#8C95A6"/>
+<path d="M132 56l-2 12M128 80l-2 12M124 104l-2 12" stroke="#E6ECF2" stroke-width="4" stroke-linecap="round"/>
+<circle cx="64" cy="50" r="6" fill="#FF6F91"/><circle cx="72" cy="78" r="6" fill="#FFD23F"/>
+<circle cx="80" cy="106" r="6" fill="#A05BC8"/><circle cx="86" cy="132" r="6" fill="#FF6F91"/>
+<circle cx="62" cy="50" r="2" fill="#FFE9A8"/><circle cx="70" cy="78" r="2" fill="#fff"/>
+<circle cx="78" cy="106" r="2" fill="#FFE9A8"/><circle cx="84" cy="132" r="2" fill="#FFE9A8"/>
+<rect x="158" y="22" width="34" height="22" rx="3" fill="#5BB85A"/>
+<path d="M166 30h18M166 36h12" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

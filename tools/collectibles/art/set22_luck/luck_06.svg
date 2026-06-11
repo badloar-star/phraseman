@@ -1,0 +1,21 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hit the jackpot">
+<ellipse cx="84" cy="150" rx="48" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="38" y="34" width="92" height="108" rx="12" fill="#E0524E"/>
+<rect x="38" y="34" width="92" height="108" rx="12" fill="none" stroke="#B8443F" stroke-width="4"/>
+<rect x="50" y="50" width="68" height="36" rx="6" fill="#FFF7DD"/>
+<line x1="73" y1="52" x2="73" y2="84" stroke="#E8DCB0" stroke-width="2"/>
+<line x1="95" y1="52" x2="95" y2="84" stroke="#E8DCB0" stroke-width="2"/>
+<circle cx="62" cy="74" r="7" fill="#C9433F"/>
+<circle cx="84" cy="74" r="7" fill="#C9433F"/>
+<circle cx="106" cy="74" r="7" fill="#C9433F"/>
+<path d="M62 67q3-10 8-12M84 67q3-10 8-12M106 67q3-10 8-12" stroke="#5E8A4A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="130" y="56" width="8" height="30" rx="4" fill="#B8443F"/>
+<circle cx="134" cy="52" r="7" fill="#FFD23F" stroke="#C4A24E" stroke-width="2.5"/>
+<rect x="52" y="98" width="64" height="14" rx="5" fill="#7A2E2B"/>
+<circle cx="58" cy="124" r="9" fill="#FFD23F" stroke="#C4A24E" stroke-width="3"/>
+<circle cx="82" cy="132" r="9" fill="#FFD23F" stroke="#C4A24E" stroke-width="3"/>
+<circle cx="106" cy="124" r="9" fill="#FFD23F" stroke="#C4A24E" stroke-width="3"/>
+<circle cx="70" cy="142" r="8" fill="#E8C56A" stroke="#C4A24E" stroke-width="2.5"/>
+<circle cx="96" cy="142" r="8" fill="#E8C56A" stroke="#C4A24E" stroke-width="2.5"/>
+<path d="M152 92l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#FFE48A"/>
+</svg>

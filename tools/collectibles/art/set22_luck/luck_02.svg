@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Take a chance">
+<ellipse cx="44" cy="138" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="168" cy="140" rx="24" ry="6" fill="rgba(0,0,0,.25)"/>
+<path d="M14 140c0 8 4 12 12 12h36V140z" fill="#8A6A4A"/>
+<path d="M138 140c0 8 4 12 12 12h36V140z" fill="#8A6A4A"/>
+<rect x="14" y="134" width="48" height="8" rx="3" fill="#A6855E"/>
+<rect x="138" y="134" width="48" height="8" rx="3" fill="#A6855E"/>
+<path d="M176 96h6v40h-6z" fill="#C4A24E"/>
+<path d="M176 96l26 10-26 10z" fill="#E0524E"/>
+<ellipse cx="100" cy="74" rx="18" ry="20" fill="#6FB8DC"/>
+<path d="M82 70c0-12 8-20 18-20s18 8 18 20z" fill="#4A90C2"/>
+<circle cx="93" cy="74" r="3.4" fill="#16243A"/><circle cx="107" cy="74" r="3.4" fill="#16243A"/>
+<path d="M92 84c4 4 12 4 16 0" stroke="#16243A" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M84 88l-22-8M116 88l22 6" stroke="#6FB8DC" stroke-width="8" stroke-linecap="round"/>
+<path d="M90 96l-10 22M110 96l8 20" stroke="#6FB8DC" stroke-width="8" stroke-linecap="round"/>
+</svg>

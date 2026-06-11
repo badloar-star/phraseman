@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Take the plunge">
+<path d="M0 118h200v42H0z" fill="#6FC5E8"/>
+<path d="M0 122c18-5 30 4 46 0s28 4 46 0 28 4 46 0 28 4 16 0" stroke="#A6E0F2" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M150 118V44h22v74z" fill="#C25B4E"/>
+<path d="M150 44h44v10h-44z" fill="#E0726A"/>
+<path d="M70 92c0-14 26-14 26 0l-2 18c-2 6-10 8-12 8s-10-2-12-8z" fill="#3E92CC"/>
+<circle cx="83" cy="64" r="13" fill="#F2C9A0"/>
+<path d="M70 62c0-7 6-12 13-12s13 5 13 12z" fill="#5A3A28"/>
+<circle cx="79" cy="64" r="2.6" fill="#16243A"/><circle cx="88" cy="64" r="2.6" fill="#16243A"/>
+<path d="M78 70c4 3 6 3 10 0" stroke="#16243A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M62 88l-16-6M104 88l16-6M70 78l-14-10M96 78l14-10" stroke="#F2C9A0" stroke-width="7" fill="none" stroke-linecap="round"/>
+<path d="M64 120c-8-10-18-8-22 0 10 4 16 2 22 0zM112 122c10-8 20-4 22 4-10 2-18-1-22-4zM84 128c-2-12 6-18 12-12-2 8-7 12-12 12z" fill="#E8F4FA"/>
+<circle cx="50" cy="128" r="4" fill="#E8F4FA"/><circle cx="128" cy="132" r="4" fill="#E8F4FA"/><circle cx="96" cy="120" r="3.5" fill="#E8F4FA"/>
+</svg>

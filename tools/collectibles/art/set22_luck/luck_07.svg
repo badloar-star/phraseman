@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A blessing in disguise">
+<ellipse cx="100" cy="150" rx="40" ry="7" fill="rgba(0,0,0,.25)"/>
+<circle cx="100" cy="86" r="30" fill="#FFD23F"/>
+<path d="M100 50v-8M70 86h-8M130 86h8M78 64l-6-6M122 64l6-6M78 108l-6 6M122 108l6 6" stroke="#FFB800" stroke-width="4" stroke-linecap="round"/>
+<circle cx="92" cy="84" r="3.6" fill="#C98A00"/><circle cx="108" cy="84" r="3.6" fill="#C98A00"/>
+<path d="M90 96c4 5 16 5 20 0" stroke="#C98A00" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="78" cy="44" rx="34" ry="18" fill="#7E8AA6"/>
+<ellipse cx="58" cy="48" rx="16" ry="11" fill="#9AA6C0"/>
+<ellipse cx="96" cy="48" rx="14" ry="10" fill="#9AA6C0"/>
+<path d="M62 58l-4 9M96 60l-4 9" stroke="#6FA8DC" stroke-width="4" stroke-linecap="round"/>
+<path d="M118 40l28 6" stroke="#5E6B86" stroke-width="3" stroke-linecap="round"/>
+<path d="M148 38l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#FFE48A"/>
+</svg>

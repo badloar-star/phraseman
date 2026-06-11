@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Beat around the bush">
+<ellipse cx="110" cy="140" rx="56" ry="9" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="36" cy="118" rx="20" ry="6" fill="#000" opacity=".08"/>
+<circle cx="120" cy="98" r="36" fill="#7FB069"/>
+<ellipse cx="96" cy="90" rx="20" ry="16" fill="#9CC47E"/>
+<ellipse cx="142" cy="92" rx="20" ry="16" fill="#9CC47E"/>
+<ellipse cx="120" cy="78" rx="20" ry="16" fill="#9CC47E"/>
+<circle cx="100" cy="138" r="3" fill="#8A6A3E"/><circle cx="78" cy="132" r="3" fill="#8A6A3E"/><circle cx="62" cy="120" r="3" fill="#8A6A3E"/>
+<circle cx="56" cy="100" r="3" fill="#8A6A3E"/><circle cx="64" cy="80" r="3" fill="#8A6A3E"/><circle cx="84" cy="68" r="3" fill="#8A6A3E"/>
+<ellipse cx="40" cy="110" rx="16" ry="22" fill="#F2C9A0"/>
+<path d="M24 104c0-12 8-22 16-22s16 10 16 22z" fill="#5A8FCF"/>
+<circle cx="36" cy="108" r="3.4" fill="#5A3A28"/><circle cx="46" cy="108" r="3.4" fill="#5A3A28"/>
+<path d="M34 118c3 3 9 3 12 0" stroke="#5A3A28" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<rect x="52" y="86" width="40" height="5" rx="2.5" fill="#8A6A3E" transform="rotate(18 52 86)"/>
+<path d="M32 130l-3 8M48 130l3 8" stroke="#5A8FCF" stroke-width="6" stroke-linecap="round"/>
+</svg>

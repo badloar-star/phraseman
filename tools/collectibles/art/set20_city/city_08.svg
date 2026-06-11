@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A one-way street">
+<rect x="14" y="56" width="172" height="64" rx="6" fill="#8C95A6"/>
+<path d="M40 88l-16-9v18zM92 88l-16-9v18zM144 88l-16-9v18zM188 88l-2-9v18z" fill="#FFD23F"/>
+<ellipse cx="150" cy="138" rx="22" ry="6" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="150" cy="92" rx="14" ry="16" fill="#F2C9A0"/>
+<path d="M136 88c0-9 7-15 14-15s14 6 14 15z" fill="#5A3A28"/>
+<circle cx="145" cy="91" r="2.8" fill="#5A3A28"/><circle cx="155" cy="91" r="2.8" fill="#5A3A28"/>
+<path d="M144 102c4-3 8-3 12 0" stroke="#5A3A28" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<rect x="140" y="106" width="22" height="30" rx="7" fill="#7E8AC8"/>
+<path d="M138 78l-7-5 7-5z" fill="#E0524E"/>
+</svg>

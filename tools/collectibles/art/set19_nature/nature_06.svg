@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Barking up the wrong tree">
+<ellipse cx="58" cy="146" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="52" y="70" width="14" height="70" rx="5" fill="#9A7848"/>
+<path d="M52 92c-10 2-18 8-22 16" stroke="#9A7848" stroke-width="6" fill="none" stroke-linecap="round"/>
+<ellipse cx="58" cy="52" rx="34" ry="26" fill="#7FB069"/>
+<rect x="150" y="60" width="12" height="80" rx="5" fill="#8A6A3E"/>
+<ellipse cx="156" cy="46" rx="26" ry="20" fill="#88BC72"/>
+<ellipse cx="156" cy="92" rx="13" ry="16" fill="#C97B3E"/>
+<path d="M152 78c-6 0-10 6-10 12M160 78c6 0 10 6 10 12" stroke="#C97B3E" stroke-width="6" fill="none" stroke-linecap="round"/>
+<circle cx="152" cy="90" r="2.6" fill="#3A2410"/><circle cx="161" cy="90" r="2.6" fill="#3A2410"/>
+<path d="M154 100c3-4 7-1 8 1" stroke="#3A2410" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<ellipse cx="40" cy="118" rx="20" ry="15" fill="#E8C56A"/>
+<ellipse cx="60" cy="112" rx="13" ry="12" fill="#E8C56A"/>
+<path d="M52 102l-3-9 7 5M66 102l5-8 2 8" fill="#D8B254"/>
+<circle cx="56" cy="110" r="3" fill="#3A2A10"/><circle cx="66" cy="110" r="3" fill="#3A2A10"/>
+<ellipse cx="62" cy="118" rx="5" ry="4" fill="#fff"/><circle cx="61" cy="118" r="2" fill="#3A2A10"/>
+</svg>

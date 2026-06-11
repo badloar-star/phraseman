@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The odds are in your favor">
+<ellipse cx="100" cy="152" rx="32" ry="7" fill="rgba(0,0,0,.25)"/>
+<rect x="96" y="36" width="8" height="98" rx="4" fill="#8A6A4A"/>
+<rect x="80" y="132" width="40" height="10" rx="4" fill="#6E5238"/>
+<circle cx="100" cy="40" r="7" fill="#FFD23F" stroke="#C4A24E" stroke-width="3"/>
+<path d="M48 60l104-20" stroke="#C4A24E" stroke-width="6" stroke-linecap="round"/>
+<path d="M48 60v40M152 40v22" stroke="#9A8030" stroke-width="2.5"/>
+<path d="M26 100a22 12 0 0 0 44 0z" fill="#E0524E"/>
+<path d="M134 62a18 10 0 0 0 36 0z" fill="#F4978E"/>
+<path d="M36 96c-4-4-2-11 4-11 3 0 5 2 5 5 4-3 11-1 11 5 0 4-4 7-10 7-4 0-9-2-10-6z" fill="#C4A24E"/>
+<path d="M52 92c0-7 4-11 0-15M48 92c0-7-4-11 0-15" stroke="#7FB069" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M54 84c-4-5-4-10 0-14 4 4 10 4 14 0 4 4 4 9 0 14-4-4-10-4-14 0z" fill="#7FB069"/>
+</svg>

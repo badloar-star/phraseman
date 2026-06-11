@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fingers crossed">
+<ellipse cx="100" cy="150" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M40 30l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#FFD23F"/>
+<path d="M160 24l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#FFD23F"/>
+<path d="M168 92l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#FFE48A"/>
+<path d="M70 138c-8 0-14-6-14-16V86c0-5 4-9 9-9s9 4 9 9v18" fill="#F4C9A8"/>
+<rect x="72" y="60" width="20" height="58" rx="10" fill="#F4C9A8"/>
+<rect x="86" y="52" width="20" height="66" rx="10" fill="#FFDCBE" transform="rotate(14 96 85)"/>
+<rect x="74" y="100" width="56" height="40" rx="16" fill="#F4C9A8"/>
+<path d="M104 112c0-7 5-13 12-13s12 6 12 13v22h-24z" fill="#F4C9A8"/>
+<path d="M82 60c-3-2-3-7 0-9M96 50c-3-2-3-7 0-9" stroke="#E0A878" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

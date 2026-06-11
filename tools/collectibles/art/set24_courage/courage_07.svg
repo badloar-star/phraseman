@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jump out of your skin">
+<ellipse cx="62" cy="150" rx="36" ry="7" fill="rgba(0,0,0,.18)"/>
+<path d="M44 150v-44c0-8 4-14 10-14h6V72c0-7 5-12 11-12s11 5 11 12v20h6c6 0 10 6 10 14v44z" fill="none" stroke="#B7A8E0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="52" y="46" width="32" height="30" rx="10" fill="none" stroke="#B7A8E0" stroke-width="4"/>
+<ellipse cx="148" cy="60" rx="30" ry="5" fill="rgba(0,0,0,.12)"/>
+<path d="M126 60V26c0-7 5-12 11-12h22c6 0 10 5 10 12v34z" fill="#8E7CC3"/>
+<rect x="134" y="2" width="30" height="26" rx="9" fill="#F2C9A0"/>
+<path d="M149 2l-6-12 4 4 2-8 2 8 4-4z" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="144" cy="14" r="3" fill="#16243A"/><circle cx="156" cy="14" r="3" fill="#16243A"/>
+<ellipse cx="150" cy="22" rx="3.5" ry="5" fill="#3A1412"/>
+<path d="M118 44l-12-6M120 56l-14 0M180 44l12-6M178 56l14 0" stroke="#F4C430" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

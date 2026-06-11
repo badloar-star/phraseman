@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Turn over a new leaf">
+<ellipse cx="100" cy="146" rx="50" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M40 96c0-34 28-58 60-58 8 26-6 58-40 64-12 2-20-2-20-6z" fill="#C8A06A"/>
+<path d="M50 92c14-22 36-36 54-40" stroke="#A07C48" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M58 84l30-18M64 96l34-20M74 104l30-16" stroke="#A07C48" stroke-width="2" stroke-linecap="round"/>
+<path d="M150 64c14-6 30-2 38 8-10 10-26 12-38 4z" fill="#7FB069"/>
+<path d="M150 76l36-4" stroke="#5E8A4E" stroke-width="2" stroke-linecap="round"/>
+<rect x="108" y="100" width="6" height="34" rx="3" fill="#5E8A4E"/>
+<path d="M111 108c-10-2-18 4-20 12 10 2 18-2 22-8z" fill="#9CC47E"/>
+<path d="M111 96c8-4 18 0 22 8-8 4-18 2-24-2z" fill="#9CC47E"/>
+<circle cx="106" cy="118" r="2.6" fill="#3E5A2E"/><circle cx="116" cy="118" r="2.6" fill="#3E5A2E"/>
+<path d="M105 124c3 3 9 3 12 0" stroke="#3E5A2E" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M126 92l4-8 4 8M138 96l8-4-2 8" stroke="#FFB800" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

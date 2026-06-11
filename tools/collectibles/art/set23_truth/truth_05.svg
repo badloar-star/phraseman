@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Read between the lines">
+<ellipse cx="100" cy="150" rx="52" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="44" y="40" width="112" height="96" rx="10" fill="#FFF7DD"/>
+<rect x="44" y="40" width="112" height="96" rx="10" fill="none" stroke="#C9B98A" stroke-width="3"/>
+<g fill="#B8C4D0">
+<rect x="56" y="54" width="88" height="7" rx="3.5"/>
+<rect x="56" y="70" width="74" height="7" rx="3.5"/>
+<rect x="56" y="98" width="80" height="7" rx="3.5"/>
+<rect x="56" y="114" width="62" height="7" rx="3.5"/>
+</g>
+<g fill="#FF6B81">
+<path d="M100 92c-3-6-13-7-13 1 0 6 13 13 13 13s13-7 13-13c0-8-10-7-13-1z"/>
+</g>
+<path d="M100 80l-3-7M114 84l6-5M86 84l-6-5" stroke="#FFB627" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="128" cy="104" r="26" fill="#BFE3F2" opacity=".5"/>
+<circle cx="128" cy="104" r="26" fill="none" stroke="#5A8BA8" stroke-width="6"/>
+<path d="M146 122l18 18" stroke="#5A8BA8" stroke-width="9" stroke-linecap="round"/>
+<path d="M118 96c0-6 5-10 10-11" stroke="#fff" stroke-width="4" stroke-linecap="round" fill="none"/>
+</svg>

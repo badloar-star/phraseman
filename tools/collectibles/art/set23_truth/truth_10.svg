@@ -1,0 +1,20 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Liar, liar, pants on fire">
+<ellipse cx="100" cy="151" rx="40" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M78 118h44l-4 30H82z" fill="#5B7FB0"/>
+<path d="M96 148l4-26 4 26" fill="#3A5687"/>
+<g fill="#FF7A33">
+<path d="M70 122c-4-8-2-16 4-20-1 8 4 10 6 16 3-5 2-12 0-16 8 4 12 14 8 22z" />
+<path d="M118 118c4-8 10-12 16-12-4 6-2 10 0 16 4-4 4-10 4-14 6 6 6 16 0 22z"/>
+</g>
+<g fill="#FFD23F">
+<path d="M76 120c-2-5 0-9 4-11 0 5 2 7 4 10z"/>
+<path d="M124 116c2-4 5-7 9-7-2 4-1 7 0 11z"/>
+</g>
+<path d="M82 118c0-8 8-14 18-14s18 6 18 14z" fill="#7FB6E0"/>
+<ellipse cx="100" cy="74" rx="27" ry="29" fill="#F6C8A0"/>
+<path d="M73 70c0-15 12-25 27-25s27 10 27 25z" fill="#8A5A3E"/>
+<path d="M88 72c2-2 5-2 7 0M105 72c2-2 5-2 7 0" stroke="#3A2418" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+<circle cx="100" cy="90" r="5" fill="#7A3A2A"/>
+<path d="M110 86c8-6 8-16 0-22" stroke="#9AB8D0" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".8"/>
+<circle cx="84" cy="84" r="5" fill="#FF9E80" opacity=".5"/><circle cx="116" cy="84" r="5" fill="#FF9E80" opacity=".5"/>
+</svg>

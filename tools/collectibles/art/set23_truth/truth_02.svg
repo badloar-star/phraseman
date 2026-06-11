@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The naked truth">
+<ellipse cx="100" cy="150" rx="40" ry="8" fill="rgba(0,0,0,.25)"/>
+<g stroke="#FFB627" stroke-width="6" stroke-linecap="round">
+<path d="M100 22v-12M100 142v-2M40 82H28M172 82h-12M58 40l-8-8M150 40l8-8M58 124l-8 8M150 124l8 8"/>
+</g>
+<circle cx="100" cy="82" r="44" fill="#FFD23F"/>
+<circle cx="86" cy="76" r="5" fill="#5A3A12"/><circle cx="114" cy="76" r="5" fill="#5A3A12"/>
+<path d="M78 70l11 2M111 72l11-2" stroke="#5A3A12" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<path d="M88 92c4 5 20 5 24 0" stroke="#B5790E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<circle cx="80" cy="90" r="6" fill="#FF9E80" opacity=".55"/><circle cx="120" cy="90" r="6" fill="#FF9E80" opacity=".55"/>
+<path d="M100 138c-26 0-40-22-40-44 14 6 22 6 40 6s26 0 40-6c0 22-14 44-40 44z" fill="#6FB85C"/>
+<path d="M100 100c0 12 0 28 0 36" stroke="#4E9440" stroke-width="3" stroke-linecap="round" fill="none"/>
+<path d="M100 116l-14-8M100 128l14-8" stroke="#4E9440" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+</svg>

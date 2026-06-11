@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The moment of truth">
+<ellipse cx="100" cy="150" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M86 8h28l34 108H52z" fill="#FFF3B0" opacity=".55"/>
+<g fill="#9AA8B6">
+<circle cx="28" cy="96" r="11"/><path d="M16 130c0-9 5-15 12-15s12 6 12 15z" fill="#7E8A98"/>
+<circle cx="172" cy="96" r="11"/><path d="M160 130c0-9 5-15 12-15s12 6 12 15z" fill="#7E8A98"/>
+</g>
+<path d="M64 144c-2-26 8-42 36-42s38 16 36 42z" fill="#C77DBB"/>
+<ellipse cx="100" cy="78" rx="27" ry="29" fill="#F6C8A0"/>
+<path d="M73 74c0-15 12-25 27-25s27 10 27 25z" fill="#3A2418"/>
+<circle cx="90" cy="78" r="5" fill="#3A2418"/><circle cx="110" cy="78" r="5" fill="#3A2418"/>
+<circle cx="92" cy="76" r="1.6" fill="#fff"/><circle cx="112" cy="76" r="1.6" fill="#fff"/>
+<path d="M82 68l11 2M107 70l11-2" stroke="#3A2418" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+<ellipse cx="100" cy="94" rx="6" ry="7" fill="#7A3A2A"/>
+<rect x="78" y="116" width="44" height="30" rx="4" fill="#FFF7DD"/>
+<rect x="78" y="116" width="44" height="30" rx="4" fill="none" stroke="#C9B98A" stroke-width="2.5"/>
+<path d="M78 117l22 16 22-16" fill="none" stroke="#C9B98A" stroke-width="2.5"/>
+<path d="M126 108c8 0 16-4 18-12" stroke="#F6C8A0" stroke-width="10" fill="none" stroke-linecap="round"/>
+</svg>

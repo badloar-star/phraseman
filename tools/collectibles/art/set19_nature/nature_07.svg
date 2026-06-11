@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A late bloomer">
+<ellipse cx="100" cy="146" rx="66" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M30 138c0-10 4-18 4-18M52 138c0-12 2-20 2-20M168 138c0-10-4-18-4-18M146 138c0-12-2-20-2-20" stroke="#7E9A5E" stroke-width="4" stroke-linecap="round"/>
+<circle cx="34" cy="116" r="9" fill="#C7A2B8"/><circle cx="54" cy="114" r="9" fill="#B8A2C7"/>
+<circle cx="146" cy="114" r="9" fill="#C7A2B8"/><circle cx="166" cy="116" r="9" fill="#B0A8C0"/>
+<circle cx="34" cy="116" r="3" fill="#8A6A8E"/><circle cx="54" cy="114" r="3" fill="#7A6A8E"/>
+<circle cx="146" cy="114" r="3" fill="#8A6A8E"/><circle cx="166" cy="116" r="3" fill="#7A6A8E"/>
+<rect x="96" y="86" width="7" height="52" rx="3" fill="#5E8A4E"/>
+<path d="M99 104c-12-2-22 4-26 14 12 4 22 0 28-6z" fill="#7FB069"/>
+<path d="M99 100c10-6 22-2 28 8-10 6-22 4-30-2z" fill="#7FB069"/>
+<circle cx="99" cy="64" r="22" fill="#FF7AA2"/>
+<path d="M99 42c-8 6-12 16-10 26 9-2 14-12 14-22zM99 42c8 6 12 16 10 26-9-2-14-12-14-22z" fill="#FF9EBC"/>
+<circle cx="99" cy="64" r="9" fill="#FFD23F"/>
+<circle cx="95" cy="62" r="2.6" fill="#7A4A1A"/><circle cx="103" cy="62" r="2.6" fill="#7A4A1A"/>
+<path d="M95 70c3 3 7 3 10 0" stroke="#7A4A1A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+<path d="M76 46l4-7 2 7M120 46l-4-7-2 7" fill="#FFD23F"/>
+</svg>

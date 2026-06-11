@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hit the town">
+<ellipse cx="100" cy="150" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<rect x="6" y="40" width="44" height="104" rx="4" fill="#4A5680"/>
+<rect x="52" y="62" width="40" height="82" rx="4" fill="#5C6A98"/>
+<rect x="150" y="48" width="44" height="96" rx="4" fill="#4A5680"/>
+<rect x="14" y="52" width="12" height="14" rx="2" fill="#FFD23F"/><rect x="32" y="52" width="12" height="14" rx="2" fill="#FFD23F"/>
+<rect x="14" y="78" width="12" height="14" rx="2" fill="#FFD23F"/><rect x="32" y="78" width="12" height="14" rx="2" fill="#FFE9A8"/>
+<rect x="60" y="74" width="11" height="13" rx="2" fill="#FFD23F"/><rect x="74" y="74" width="11" height="13" rx="2" fill="#FFE9A8"/>
+<rect x="158" y="60" width="12" height="14" rx="2" fill="#FFE9A8"/><rect x="176" y="60" width="12" height="14" rx="2" fill="#FFD23F"/>
+<rect x="158" y="86" width="12" height="14" rx="2" fill="#FFD23F"/><rect x="176" y="86" width="12" height="14" rx="2" fill="#FFD23F"/>
+<rect x="86" y="108" width="28" height="36" rx="9" fill="#3A4258"/>
+<ellipse cx="100" cy="96" rx="15" ry="17" fill="#F2C9A0"/>
+<path d="M85 92c0-9 7-15 15-15s15 6 15 15z" fill="#2A2030"/>
+<circle cx="94" cy="95" r="2.8" fill="#2A2030"/><circle cx="106" cy="95" r="2.8" fill="#2A2030"/>
+<path d="M93 103c4 4 10 4 14 0" stroke="#2A2030" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M100 112l-7-5 0 8zM100 112l7-5 0 8z" fill="#E0524E"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Knock on wood">
+<ellipse cx="104" cy="150" rx="46" ry="8" fill="rgba(0,0,0,.25)"/>
+<path d="M62 92h84l-6 50c-1 6-6 8-12 8H80c-6 0-11-2-12-8z" fill="#C4A24E"/>
+<ellipse cx="104" cy="92" rx="42" ry="14" fill="#D8B470"/>
+<ellipse cx="104" cy="92" rx="30" ry="9" fill="#C9A24E"/>
+<ellipse cx="104" cy="92" rx="16" ry="5" fill="#B8904A"/>
+<circle cx="92" cy="118" r="4" fill="#7A5A2B"/><circle cx="118" cy="116" r="4" fill="#7A5A2B"/>
+<path d="M90 130c5 6 19 6 24 0" stroke="#7A5A2B" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M40 44c8 0 14 5 14 13v18c0 8-7 13-16 13-7 0-13-4-13-11 0-5 3-8 8-8" fill="#F4C9A8"/>
+<rect x="20" y="58" width="34" height="26" rx="13" fill="#F4C9A8"/>
+<path d="M52 70l16 8M50 80l14 6" stroke="#F4C9A8" stroke-width="9" stroke-linecap="round"/>
+<path d="M30 56c-3-2-3-7 0-9M40 54c-3-2-3-7 0-9" stroke="#E0A878" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M156 60l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#FFE48A"/>
+<path d="M150 96l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#FFD23F"/>
+</svg>

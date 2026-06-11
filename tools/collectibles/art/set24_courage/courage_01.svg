@@ -1,0 +1,13 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Face your fears">
+<ellipse cx="110" cy="148" rx="78" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M118 40c40 0 64 26 64 58 0 18-10 34-26 42H82c-16-8-26-24-26-42 0-32 22-58 62-58z" fill="#8E7CC3"/>
+<path d="M70 50c-6-10-2-20 6-22 4 8 2 16-6 22zM160 48c8-10 18-8 20 0-6 6-16 6-20 0z" fill="#8E7CC3"/>
+<circle cx="92" cy="92" r="9" fill="#fff"/><circle cx="138" cy="92" r="9" fill="#fff"/>
+<circle cx="94" cy="93" r="4" fill="#3A2F5B"/><circle cx="136" cy="93" r="4" fill="#3A2F5B"/>
+<path d="M98 116c8 6 22 6 30 0" stroke="#3A2F5B" stroke-width="4" fill="none" stroke-linecap="round"/>
+<ellipse cx="40" cy="142" rx="22" ry="5" fill="rgba(0,0,0,.18)"/>
+<path d="M40 96c14 0 22 12 22 26 0 8-4 16-12 20H30c-8-4-12-12-12-20 0-14 8-26 22-26z" fill="#F2C14E"/>
+<circle cx="34" cy="118" r="3" fill="#3A2F1B"/><circle cx="46" cy="118" r="3" fill="#3A2F1B"/>
+<path d="M33 128c4 4 10 4 14 0" stroke="#3A2F1B" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M40 96l-5-12 10 4 4-12 4 12 10-4-6 12z" fill="#E0524E"/>
+</svg>

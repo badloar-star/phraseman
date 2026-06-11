@@ -2985,7 +2985,14 @@
         "id": "nature_secret",
         "en": "Touch grass",
         "ru": "«Выйди потрогай траву» — оторвись от экрана",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "tʌtʃ ɡrɑːs",
+        "literalRu": "потрогай траву",
+        "meaningRu": "Совет выйти на улицу и вернуться в реальность, оторвавшись от интернета.",
+        "exampleEn": "You've been online all day — go touch grass.",
+        "exampleRu": "Ты весь день в сети — пойди потрогай траву.",
+        "originRu": "Интернет-сленг конца 2010-х: тому, кто слишком увлёкся спорами в сети, насмешливо предлагают выйти наружу и буквально коснуться травы — то есть вернуться к настоящей жизни.",
+        "art": "set19_nature/nature_secret"
       },
       "cards": [
         {
@@ -2993,70 +3000,140 @@
           "en": "Beat around the bush",
           "ru": "Ходить вокруг да около",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "biːt əˈraʊnd ðə bʊʃ",
+          "literalRu": "колотить вокруг куста",
+          "meaningRu": "Говорить уклончиво, не переходя к самой сути.",
+          "exampleEn": "Stop beating around the bush and tell me what happened.",
+          "exampleRu": "Хватит ходить вокруг да около — расскажи, что случилось.",
+          "originRu": "От старинной охоты на птиц: загонщики палками били по кустам, выпугивая дичь, но не трогали само гнездо — лишь ходили рядом.",
+          "art": "set19_nature/nature_01"
         },
         {
           "id": "nature_02",
           "en": "Turn over a new leaf",
           "ru": "Начать с чистого листа",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "tɜːn ˈəʊvər ə njuː liːf",
+          "literalRu": "перевернуть новый лист",
+          "meaningRu": "Начать жить по-новому, оставив прошлое позади.",
+          "exampleEn": "After the move, she turned over a new leaf and quit smoking.",
+          "exampleRu": "После переезда она начала с чистого листа и бросила курить.",
+          "originRu": "«Leaf» здесь — не лист дерева, а страница книги: перевернуть её значило открыть новую, ещё не исписанную. Так говорят с XVI века.",
+          "art": "set19_nature/nature_02"
         },
         {
           "id": "nature_03",
           "en": "The grass is always greener",
           "ru": "Хорошо там, где нас нет",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə ɡrɑːs ɪz ˈɔːlweɪz ˈɡriːnə",
+          "literalRu": "трава всегда зеленее",
+          "meaningRu": "Чужое всегда кажется лучше своего.",
+          "exampleEn": "He envies my job, but the grass is always greener.",
+          "exampleRu": "Он завидует моей работе, но хорошо там, где нас нет.",
+          "originRu": "Полностью фраза звучит «трава зеленее по ту сторону забора»: издалека чужой газон и правда выглядит ярче, ведь проплешин с расстояния не видно.",
+          "art": "set19_nature/nature_03"
         },
         {
           "id": "nature_04",
           "en": "Nip it in the bud",
           "ru": "Пресечь в зародыше",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "nɪp ɪt ɪn ðə bʌd",
+          "literalRu": "отщипнуть в бутоне",
+          "meaningRu": "Остановить проблему в самом начале, пока она не разрослась.",
+          "exampleEn": "We nipped the rumour in the bud before it spread.",
+          "exampleRu": "Мы пресекли слух в зародыше, пока он не разошёлся.",
+          "originRu": "От садоводства: если отщипнуть бутон, цветок уже не распустится. Так и беду гасят, пока она только «завязалась». Образу больше 400 лет.",
+          "art": "set19_nature/nature_04"
         },
         {
           "id": "nature_05",
           "en": "Can't see the forest for the trees",
           "ru": "За деревьями не видеть леса",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kɑːnt siː ðə ˈfɒrɪst fə ðə triːz",
+          "literalRu": "не видеть леса из-за деревьев",
+          "meaningRu": "Увязнуть в мелочах и упустить главное, картину целиком.",
+          "exampleEn": "You're so focused on typos you can't see the forest for the trees.",
+          "exampleRu": "Ты так залип на опечатках, что за деревьями не видишь леса.",
+          "originRu": "Пословица известна в английском с XVI века: стоя вплотную к стволам, человек перестаёт замечать, что вокруг целый лес.",
+          "art": "set19_nature/nature_05"
         },
         {
           "id": "nature_06",
           "en": "Barking up the wrong tree",
           "ru": "Идти по ложному следу",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈbɑːkɪŋ ʌp ðə rɒŋ triː",
+          "literalRu": "лаять не на то дерево",
+          "meaningRu": "Искать виноватого или решение совсем не там, где надо.",
+          "exampleEn": "If you think I broke it, you're barking up the wrong tree.",
+          "exampleRu": "Если думаешь, что это я сломал, то идёшь по ложному следу.",
+          "originRu": "От охоты с собаками: пёс загонял зверя на дерево и лаял внизу, но добыча успевала перескочить на соседнее — и собака лаяла впустую, не на то дерево.",
+          "art": "set19_nature/nature_06"
         },
         {
           "id": "nature_07",
           "en": "A late bloomer",
           "ru": "Тот, кто раскрылся позже других",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə leɪt ˈbluːmə",
+          "literalRu": "поздно зацветающий",
+          "meaningRu": "Человек, чьи таланты и успехи приходят позже, чем у сверстников.",
+          "exampleEn": "He was a late bloomer who found his calling at forty.",
+          "exampleRu": "Он раскрылся поздно и нашёл своё призвание в сорок.",
+          "originRu": "От растений, которые зацветают позже остальных: внешне отстают, но в свой срок распускаются ничуть не хуже. О людях так говорят с XIX века.",
+          "art": "set19_nature/nature_07"
         },
         {
           "id": "nature_08",
           "en": "An old chestnut",
           "ru": "Баян, заезженная шутка",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ən əʊld ˈtʃesnʌt",
+          "literalRu": "старый каштан",
+          "meaningRu": "История или шутка, которую повторяли столько раз, что она навязла в зубах.",
+          "exampleEn": "Grandpa told that old chestnut about the fish again.",
+          "exampleRu": "Дед опять рассказал тот баян про рыбалку.",
+          "originRu": "По одной из версий — из пьесы «The Broken Sword» (1816): герой в сотый раз заводит байку про пробковое дерево, а собеседник поправляет — «не пробка, а каштан, я слышал это двадцать семь раз».",
+          "art": "set19_nature/nature_08"
         },
         {
           "id": "nature_09",
           "en": "Everything's coming up roses",
           "ru": "Всё складывается отлично",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈevrɪθɪŋz ˈkʌmɪŋ ʌp ˈrəʊzɪz",
+          "literalRu": "всюду распускаются розы",
+          "meaningRu": "Дела идут как нельзя лучше, всё получается.",
+          "exampleEn": "New job, new flat — everything's coming up roses!",
+          "exampleRu": "Новая работа, новая квартира — всё складывается отлично!",
+          "originRu": "Фразу разнесла одноимённая песня из бродвейского мюзикла «Цыганка» (1959): образ сада, где из земли вместо сорняков вдруг лезут одни розы.",
+          "art": "set19_nature/nature_09"
         },
         {
           "id": "nature_10",
           "en": "Grasp at straws",
           "ru": "Хвататься за соломинку",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ɡrɑːsp ət strɔːz",
+          "literalRu": "хвататься за соломинки",
+          "meaningRu": "В отчаянии цепляться за безнадёжный, ничтожный шанс.",
+          "exampleEn": "Blaming the weather is just grasping at straws.",
+          "exampleRu": "Винить погоду — это просто хвататься за соломинку.",
+          "originRu": "От старой поговорки «утопающий хватается за соломинку»: тонущий в панике цепляется даже за травинку, хотя удержать она не может. Известно с XVI века.",
+          "art": "set19_nature/nature_10"
         }
       ]
     },
@@ -3072,7 +3149,14 @@
         "id": "city_secret",
         "en": "Street smart",
         "ru": "Уличная смекалка",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "striːt smɑːt",
+        "literalRu": "уличный умный",
+        "meaningRu": "Тот, кто ловко справляется с реальной жизнью, а не только с книгами.",
+        "exampleEn": "He's not bookish, but he's street smart and never gets fooled.",
+        "exampleRu": "Он не книжный, зато с уличной смекалкой — его не проведёшь.",
+        "originRu": "Американский сленг XX века противопоставил «street smart» (ум, добытый на улице) и «book smart» (ум из учебников). Ценится тот, кто чует подвох в живом городе.",
+        "art": "set20_city/city_secret"
       },
       "cards": [
         {
@@ -3080,70 +3164,140 @@
           "en": "Right up my alley",
           "ru": "Как раз по моей части",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "raɪt ʌp maɪ ˈæli",
+          "literalRu": "прямо по моему переулку",
+          "meaningRu": "Именно то, что мне по душе и хорошо удаётся.",
+          "exampleEn": "A puzzle about old maps? That's right up my alley!",
+          "exampleRu": "Загадка про старинные карты? Это как раз по моей части!",
+          "originRu": "Образ простой: «переулок» — твой родной закоулок, где ты знаешь каждый угол. Американский оборот прижился в начале XX века; рядом живёт вариант «right up my street».",
+          "art": "set20_city/city_01"
         },
         {
           "id": "city_02",
           "en": "Hit the town",
           "ru": "Отправиться гулять по городу",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt ðə taʊn",
+          "literalRu": "ударить по городу",
+          "meaningRu": "Выйти повеселиться: бары, кафе, клубы.",
+          "exampleEn": "We finished the exams, so let's hit the town tonight!",
+          "exampleRu": "Экзамены сдали — давай сегодня зажжём в городе!",
+          "originRu": "Глагол «hit» в американском сленге давно значит «отправиться куда-то» — отсюда же «hit the road». «Ударить по городу» — значит бодро выйти в его огни и шум.",
+          "art": "set20_city/city_02"
         },
         {
           "id": "city_03",
           "en": "The middle of nowhere",
           "ru": "У чёрта на куличках",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə ˈmɪdl əv ˈnəʊweə",
+          "literalRu": "посреди нигде",
+          "meaningRu": "Очень далёкое глухое место, где ничего нет.",
+          "exampleEn": "Our car broke down in the middle of nowhere at midnight.",
+          "exampleRu": "Машина заглохла в полночь у чёрта на куличках.",
+          "originRu": "«Nowhere» — «нигде»; быть в его середине значит застрять там, где нет ни домов, ни дорог. Оборот закрепился в Америке XIX века, когда за городами лежали бескрайние пустые земли.",
+          "art": "set20_city/city_03"
         },
         {
           "id": "city_04",
           "en": "Just around the corner",
           "ru": "Совсем рядом, не за горами",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "dʒʌst əˈraʊnd ðə ˈkɔːnə",
+          "literalRu": "прямо за углом",
+          "meaningRu": "Очень близко — по месту или по времени.",
+          "exampleEn": "Don't worry, summer is just around the corner.",
+          "exampleRu": "Не грусти, лето уже не за горами.",
+          "originRu": "Городская картинка: до угла улицы рукой подать, а что за ним — почти пришло. Со временем фразу стали применять и к близким событиям, а не только к месту.",
+          "art": "set20_city/city_04"
         },
         {
           "id": "city_05",
           "en": "Take a shortcut",
           "ru": "Срезать путь",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "teɪk ə ˈʃɔːtkʌt",
+          "literalRu": "взять короткий разрез",
+          "meaningRu": "Пойти более коротким путём, чтобы успеть быстрее.",
+          "exampleEn": "Let's take a shortcut through the park to save time.",
+          "exampleRu": "Давай срежем через парк, так быстрее.",
+          "originRu": "Слово «shortcut» — буквально «короткий прорез» сквозь поле или квартал, в обход длинной дороги. Позже так стали называть и любой быстрый способ что-то сделать.",
+          "art": "set20_city/city_05"
         },
         {
           "id": "city_06",
           "en": "Burn bridges",
           "ru": "Сжигать мосты",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɜːn ˈbrɪdʒɪz",
+          "literalRu": "сжигать мосты",
+          "meaningRu": "Бесповоротно рвать отношения, отрезая путь назад.",
+          "exampleEn": "Quit politely — don't burn bridges with your old boss.",
+          "exampleRu": "Увольняйся вежливо — не сжигай мосты с бывшим начальником.",
+          "originRu": "С древних войн: армия переходила реку и сжигала за собой мост, чтобы отступать было некуда — только вперёд. Так же люди «сжигают мосты» в отношениях.",
+          "art": "set20_city/city_06"
         },
         {
           "id": "city_07",
           "en": "My way or the highway",
           "ru": "Или по-моему, или никак",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "maɪ weɪ ɔː ðə ˈhaɪweɪ",
+          "literalRu": "мой путь или шоссе",
+          "meaningRu": "Делай как я сказал, иначе уходи.",
+          "exampleEn": "With this coach it's my way or the highway, no excuses.",
+          "exampleRu": "У этого тренера или по его, или на выход, без отговорок.",
+          "originRu": "Американская фраза второй половины XX века, где «highway» — шоссе, по которому несогласному предлагают уехать. Держится на созвучии «way — highway».",
+          "art": "set20_city/city_07"
         },
         {
           "id": "city_08",
           "en": "A one-way street",
           "ru": "Игра в одни ворота",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈwʌnweɪ striːt",
+          "literalRu": "улица с односторонним движением",
+          "meaningRu": "Отношения, где один всё отдаёт, а в ответ ничего.",
+          "exampleEn": "Our friendship feels like a one-way street — I always call first.",
+          "exampleRu": "Наша дружба — игра в одни ворота, я всегда звоню первым.",
+          "originRu": "Улица с односторонним движением пускает только в одну сторону — обратно проезда нет. Этот дорожный знак стал образом отношений без взаимности.",
+          "art": "set20_city/city_08"
         },
         {
           "id": "city_09",
           "en": "Build castles in the air",
           "ru": "Строить воздушные замки",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɪld ˈkɑːslz ɪn ði eə",
+          "literalRu": "строить замки в воздухе",
+          "meaningRu": "Мечтать о несбыточном, не делая ничего реального.",
+          "exampleEn": "Stop building castles in the air and finish your homework first.",
+          "exampleRu": "Хватит строить воздушные замки, сначала доделай уроки.",
+          "originRu": "Замок без фундамента, повисший в воздухе, рухнет сразу — вот и пустая мечта такая же. Похожий образ встречается ещё у Блаженного Августина, полторы тысячи лет назад.",
+          "art": "set20_city/city_09"
         },
         {
           "id": "city_10",
           "en": "The concrete jungle",
           "ru": "Каменные джунгли",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə ˈkɒŋkriːt ˈdʒʌŋɡl",
+          "literalRu": "бетонные джунгли",
+          "meaningRu": "Большой город, где жить так же тяжело и опасно, как в дикой чаще.",
+          "exampleEn": "After the village, the city felt like a real concrete jungle.",
+          "exampleRu": "После деревни город показался настоящими каменными джунглями.",
+          "originRu": "Выражение приписывают зоологу Десмонду Моррису: в книге «Людской зоопарк» (1969) он сравнил город с джунглями, где люди выживают, как звери. Бетон заменил лианы и деревья.",
+          "art": "set20_city/city_10"
         }
       ]
     },
@@ -3159,7 +3313,14 @@
         "id": "sleep_secret",
         "en": "Doomscrolling",
         "ru": "Думскроллинг — залипание в плохие новости",
-        "status": "seed"
+        "status": "art_done",
+        "ipa": "ˈduːmˌskrəʊlɪŋ",
+        "literalRu": "пролистывание до погибели",
+        "meaningRu": "Когда без конца листаешь тревожные новости в телефоне и не можешь остановиться.",
+        "exampleEn": "I was doomscrolling till 2 a.m. and couldn't sleep.",
+        "exampleRu": "Я думскроллил до двух ночи и не мог уснуть.",
+        "originRu": "Слово из «doom» (рок, погибель) и «scrolling» (листание ленты). Оно взлетело в 2020 году на фоне тревожных новостей и попало в словарные списки слов года.",
+        "art": "set21_sleep/sleep_secret"
       },
       "cards": [
         {
@@ -3167,70 +3328,140 @@
           "en": "Hit the hay",
           "ru": "Отправиться на боковую",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt ðə heɪ",
+          "literalRu": "ударить по сену",
+          "meaningRu": "Пойти спать, лечь в кровать.",
+          "exampleEn": "I'm exhausted — I'm going to hit the hay.",
+          "exampleRu": "Я вымотался — пойду на боковую.",
+          "originRu": "Из времён, когда матрасы набивали сеном или соломой. Лёг спать — буквально плюхнулся на сено. Выражение разошлось в Америке в начале XX века.",
+          "art": "set21_sleep/sleep_01"
         },
         {
           "id": "sleep_02",
           "en": "Sleep on it",
           "ru": "Утро вечера мудренее",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "sliːp ɒn ɪt",
+          "literalRu": "поспать на этом",
+          "meaningRu": "Не решать сразу, а обдумать на свежую голову после сна.",
+          "exampleEn": "Don't decide tonight — sleep on it and tell me tomorrow.",
+          "exampleRu": "Не решай сегодня — утро вечера мудренее, скажешь завтра.",
+          "originRu": "Совет отложить трудный выбор до утра. Похожая мысль звучит ещё в письмах эпохи Тюдоров: ответить на важное письмо лучше «переспав» с ним ночь.",
+          "art": "set21_sleep/sleep_02"
         },
         {
           "id": "sleep_03",
           "en": "A power nap",
           "ru": "Короткий бодрящий сон",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈpaʊə næp",
+          "literalRu": "мощный сон",
+          "meaningRu": "Совсем короткий дневной сон, чтобы взбодриться.",
+          "exampleEn": "A quick power nap after lunch and I'm good to go.",
+          "exampleRu": "Короткий сон после обеда — и я снова как огурчик.",
+          "originRu": "Термин ввёл психолог Джеймс Маас в 1990-х: 10–20 минут сна заряжают энергией, но не дают провалиться в глубокую фазу, после которой просыпаешься разбитым.",
+          "art": "set21_sleep/sleep_03"
         },
         {
           "id": "sleep_04",
           "en": "Recharge your batteries",
           "ru": "Подзарядить батарейки",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˌriːˈtʃɑːdʒ jɔː ˈbætəriz",
+          "literalRu": "перезарядить свои батарейки",
+          "meaningRu": "Отдохнуть и восстановить силы.",
+          "exampleEn": "I need a weekend off to recharge my batteries.",
+          "exampleRu": "Мне нужны выходные, чтобы подзарядить батарейки.",
+          "originRu": "Человека сравнивают с севшим аккумулятором, которому нужна подзарядка. Образ прижился в XX веке, когда батарейки и зарядка вошли в каждый дом.",
+          "art": "set21_sleep/sleep_04"
         },
         {
           "id": "sleep_05",
           "en": "Sleep like a log",
           "ru": "Спать как убитый",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "sliːp laɪk ə lɒɡ",
+          "literalRu": "спать как бревно",
+          "meaningRu": "Спать очень крепко и неподвижно.",
+          "exampleEn": "After the hike I slept like a log all night.",
+          "exampleRu": "После похода я всю ночь спал как убитый.",
+          "originRu": "Бревно лежит неподвижно и его не сдвинуть — так же крепко спит уставший человек. По-английски так говорят с XIX века.",
+          "art": "set21_sleep/sleep_05"
         },
         {
           "id": "sleep_06",
           "en": "Burn the candle at both ends",
           "ru": "Гореть с двух концов",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɜːn ðə ˈkændl ət bəʊθ endz",
+          "literalRu": "жечь свечу с обоих концов",
+          "meaningRu": "Изматывать себя, мало спать и работать на износ день и ночь.",
+          "exampleEn": "She's burning the candle at both ends with two jobs.",
+          "exampleRu": "Она горит с двух концов, работая на двух работах.",
+          "originRu": "Свеча — дорогой ресурс, а если поджечь её сразу с двух сторон, сгорит вдвое быстрее впустую. Образ пришёл из французского ещё в XVII веке.",
+          "art": "set21_sleep/sleep_06"
         },
         {
           "id": "sleep_07",
           "en": "Rise and shine",
           "ru": "Проснись и пой",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "raɪz ən ʃaɪn",
+          "literalRu": "вставай и сияй",
+          "meaningRu": "Бодрый призыв вставать утром и не киснуть.",
+          "exampleEn": "Rise and shine, kids — breakfast is ready!",
+          "exampleRu": "Проснись и пой, ребята — завтрак готов!",
+          "originRu": "По одной из версий — из военных побудок начала XX века: солдатам велели не просто встать («rise»), но и привести себя в блестящий вид («shine»).",
+          "art": "set21_sleep/sleep_07"
         },
         {
           "id": "sleep_08",
           "en": "Forty winks",
           "ru": "Вздремнуть чуток",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈfɔːti wɪŋks",
+          "literalRu": "сорок миганий",
+          "meaningRu": "Короткий сон, чтобы быстро отдохнуть.",
+          "exampleEn": "I'll grab forty winks before the night shift.",
+          "exampleRu": "Вздремну чуток перед ночной сменой.",
+          "originRu": "«Wink» — короткое смыкание век, а «сорок» здесь просто значит «немножко». В этом виде фраза разошлась по британским журналам в XIX веке.",
+          "art": "set21_sleep/sleep_08"
         },
         {
           "id": "sleep_09",
           "en": "Beauty sleep",
           "ru": "Сон красоты",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈbjuːti sliːp",
+          "literalRu": "сон красоты",
+          "meaningRu": "Сон, от которого выглядишь свежим и отдохнувшим.",
+          "exampleEn": "I can't stay out late — I need my beauty sleep.",
+          "exampleRu": "Не могу засиживаться допоздна — мне нужен сон красоты.",
+          "originRu": "Раньше «beauty sleep» считали самые ранние, до полуночи, часы сна — будто именно они полезнее всего для свежего вида. Фразе уже больше 150 лет.",
+          "art": "set21_sleep/sleep_09"
         },
         {
           "id": "sleep_10",
           "en": "Let sleeping dogs lie",
           "ru": "Не буди лихо, пока оно тихо",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "let ˈsliːpɪŋ dɒɡz laɪ",
+          "literalRu": "пусть спящие собаки лежат",
+          "meaningRu": "Не трогай то, что может обернуться бедой; не вороши старое.",
+          "exampleEn": "Don't bring up the old argument — let sleeping dogs lie.",
+          "exampleRu": "Не поднимай ту старую ссору — не буди лихо, пока оно тихо.",
+          "originRu": "Спящий пёс смирен, но разбуди его — и укусит. Совет не будить такую «собаку» встречается в английском ещё у Чосера в XIV веке.",
+          "art": "set21_sleep/sleep_10"
         }
       ]
     },
@@ -3245,8 +3476,15 @@
       "secret": {
         "id": "luck_secret",
         "en": "Jinx!",
-        "ru": "«Сглазил!» — когда сказали одно и то же",
-        "status": "seed"
+        "ru": "«Сглазил!»",
+        "status": "art_done",
+        "ipa": "dʒɪŋks",
+        "literalRu": "сглаз!",
+        "meaningRu": "Шутливый возглас, когда двое случайно сказали одно и то же слово разом.",
+        "exampleEn": "We both said \"pizza\" at once — jinx, you owe me a soda!",
+        "exampleRu": "Мы хором сказали «пицца» — сглазил, с тебя газировка!",
+        "originRu": "В детской игре кто крикнет «Jinx!» первым, тот «заколдовал» второго, и теперь ему нельзя говорить, пока не освободят. Само слово восходит к латинскому iynx — птичке, которой в древности привораживали.",
+        "art": "set22_luck/luck_secret"
       },
       "cards": [
         {
@@ -3254,70 +3492,140 @@
           "en": "Fingers crossed",
           "ru": "Держу кулачки",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈfɪŋɡəz krɒst",
+          "literalRu": "пальцы скрещены",
+          "meaningRu": "Очень надеюсь, что всё получится.",
+          "exampleEn": "Fingers crossed the weather stays nice for the picnic!",
+          "exampleRu": "Держу кулачки, чтобы погода не подвела пикник!",
+          "originRu": "Скрещённые пальцы как знак удачи известны в Британии не первый век. По распространённой версии жест восходит к крестному знамению, которым просили защиты, но точное происхождение не установлено.",
+          "art": "set22_luck/luck_01"
         },
         {
           "id": "luck_02",
           "en": "Take a chance",
           "ru": "Рискнуть",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "teɪk ə tʃɑːns",
+          "literalRu": "взять шанс",
+          "meaningRu": "Решиться на дело, хотя нет уверенности, что выйдет.",
+          "exampleEn": "Just apply for the job — take a chance, what's the worst that could happen?",
+          "exampleRu": "Просто подай на эту работу — рискни, что может случиться?",
+          "originRu": "Слово «chance» пришло из старофранцузского cheance — «как упадут кости». «Взять шанс» буквально и значило поставить на бросок и положиться на случай.",
+          "art": "set22_luck/luck_02"
         },
         {
           "id": "luck_03",
           "en": "Beginner's luck",
           "ru": "Новичкам везёт",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "bɪˈɡɪnəz lʌk",
+          "literalRu": "везение новичка",
+          "meaningRu": "Неожиданный успех у того, кто делает что-то впервые.",
+          "exampleEn": "She won her first poker game — pure beginner's luck!",
+          "exampleRu": "Она выиграла первую же партию в покер — чистое везение новичка!",
+          "originRu": "Замечено за карточными и бильярдными столами XIX века: новичок играет без страха и расчёта, поэтому порой выигрывает там, где осторожный мастер осторожничает.",
+          "art": "set22_luck/luck_03"
         },
         {
           "id": "luck_04",
           "en": "Third time's a charm",
           "ru": "Бог троицу любит",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈθɜːd taɪmz ə tʃɑːm",
+          "literalRu": "третий раз — волшебный",
+          "meaningRu": "С третьей попытки обязательно повезёт.",
+          "exampleEn": "Two flat tires already, but third time's a charm — let's try again.",
+          "exampleRu": "Уже два прокола, но Бог троицу любит — давай ещё раз.",
+          "originRu": "Вера в волшебство тройки очень древняя: тройка тянется через сказки, заклинания и христианскую Троицу. В английском поговорка известна уже с XVI века.",
+          "art": "set22_luck/luck_04"
         },
         {
           "id": "luck_05",
           "en": "The odds are in your favor",
           "ru": "Шансы на твоей стороне",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ði ɒdz ɑːr ɪn jɔː ˈfeɪvə",
+          "literalRu": "ставки в твою пользу",
+          "meaningRu": "Скорее всего, всё сложится для тебя удачно.",
+          "exampleEn": "You studied hard, so the odds are in your favor for tomorrow.",
+          "exampleRu": "Ты хорошо готовился, так что завтра шансы на твоей стороне.",
+          "originRu": "«Odds» — словечко букмекеров: так называли перевес одной стороны над другой в ставке. Фраза снова прогремела благодаря «Голодным играм» с их «И пусть удача всегда будет с вами».",
+          "art": "set22_luck/luck_05"
         },
         {
           "id": "luck_06",
           "en": "Hit the jackpot",
           "ru": "Сорвать куш",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "hɪt ðə ˈdʒækpɒt",
+          "literalRu": "попасть в джекпот",
+          "meaningRu": "Внезапно крупно повезти или сорвать большой выигрыш.",
+          "exampleEn": "We hit the jackpot and found a cheap flat right in the centre.",
+          "exampleRu": "Мы сорвали куш и нашли дешёвую квартиру прямо в центре.",
+          "originRu": "Слово родилось в покере: «jackpot» — общий банк, который рос, пока на руках не выпадет пара валетов (jacks) или выше. Накопленную кучу денег и забирал счастливчик.",
+          "art": "set22_luck/luck_06"
         },
         {
           "id": "luck_07",
           "en": "A blessing in disguise",
           "ru": "Нет худа без добра",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ə ˈblesɪŋ ɪn dɪsˈɡaɪz",
+          "literalRu": "благословение под маской",
+          "meaningRu": "Неприятность, которая в итоге обернулась удачей.",
+          "exampleEn": "Missing that train was a blessing in disguise — I met an old friend.",
+          "exampleRu": "То, что я опоздал на поезд, обернулось удачей — встретил старого друга.",
+          "originRu": "Выражение закрепил английский поэт XVIII века Джеймс Хёрви: беда нередко лишь «переоделась» в плохое, а на деле приносит добро — потому и «под маской».",
+          "art": "set22_luck/luck_07"
         },
         {
           "id": "luck_08",
           "en": "Push your luck",
           "ru": "Испытывать судьбу",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "pʊʃ jɔː lʌk",
+          "literalRu": "толкать своё везение",
+          "meaningRu": "Рисковать ещё сильнее, когда уже повезло, и можно всё потерять.",
+          "exampleEn": "You won twice already — don't push your luck and bet again.",
+          "exampleRu": "Ты уже дважды выиграл — не испытывай судьбу новой ставкой.",
+          "originRu": "Образ из азартной игры: удачу будто можно «подтолкнуть» дальше, продолжая ставить. Беда в том, что фортуна часто отворачивается ровно в этот миг.",
+          "art": "set22_luck/luck_08"
         },
         {
           "id": "luck_09",
           "en": "Lightning never strikes twice",
           "ru": "Молния дважды в одно место не бьёт",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈlaɪtnɪŋ ˈnevə straɪks twaɪs",
+          "literalRu": "молния никогда не бьёт дважды",
+          "meaningRu": "Редкое событие — хорошее или плохое — вряд ли повторится с тем же человеком.",
+          "exampleEn": "Don't worry about another break-in — lightning never strikes twice.",
+          "exampleRu": "Не бойся нового взлома — молния дважды в одно место не бьёт.",
+          "originRu": "Народное поверье красивое, но неверное: на деле молния охотно бьёт в одну точку по многу раз. Шпиль Эмпайр-стейт-билдинг ловит её около двух десятков раз за год.",
+          "art": "set22_luck/luck_09"
         },
         {
           "id": "luck_10",
           "en": "Knock on wood",
           "ru": "Постучи по дереву",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "nɒk ɒn wʊd",
+          "literalRu": "постучать по дереву",
+          "meaningRu": "Сказать так, чтобы не сглазить удачу, и для верности стукнуть по дереву.",
+          "exampleEn": "I haven't been sick all year — knock on wood!",
+          "exampleRu": "Я весь год не болел — постучи по дереву!",
+          "originRu": "По одной из версий, обычай тянется от древних поверий, что в деревьях живут добрые духи: коснувшись ствола, у них просили защиты и благодарили за удачу. Британцы говорят «touch wood».",
+          "art": "set22_luck/luck_10"
         }
       ]
     },
@@ -3332,8 +3640,15 @@
       "secret": {
         "id": "truth_secret",
         "en": "No cap",
-        "ru": "Без обмана, реально (сленг)",
-        "status": "seed"
+        "ru": "Без обмана, реально",
+        "status": "art_done",
+        "ipa": "nəʊ kæp",
+        "literalRu": "без кепки",
+        "meaningRu": "Говорю всерьёз, не вру — чистая правда.",
+        "exampleEn": "This is the best pizza in town, no cap.",
+        "exampleRu": "Это лучшая пицца в городе, без обмана.",
+        "originRu": "В афроамериканском сленге «to cap» давно значит «врать, привирать», поэтому «no cap» — «не вру, всерьёз». Молодёжным мемом фраза стала в конце 2010-х, ей вторит эмодзи кепки 🧢.",
+        "art": "set23_truth/truth_secret"
       },
       "cards": [
         {
@@ -3341,70 +3656,140 @@
           "en": "To be honest",
           "ru": "Честно говоря",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "tə biː ˈɒnɪst",
+          "literalRu": "чтобы быть честным",
+          "meaningRu": "Сейчас скажу прямо, без прикрас, как есть на самом деле.",
+          "exampleEn": "To be honest, I didn't really like the movie.",
+          "exampleRu": "Честно говоря, фильм мне не очень понравился.",
+          "originRu": "Слово «honest» пришло из латинского «honestus» — «достойный, почтенный»; в речи фраза стала вежливым предупреждением: дальше будет откровенно. В переписке её часто сокращают до «tbh».",
+          "art": "set23_truth/truth_01"
         },
         {
           "id": "truth_02",
           "en": "The naked truth",
           "ru": "Голая правда",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə ˈneɪkɪd truːθ",
+          "literalRu": "голая правда",
+          "meaningRu": "Чистая правда без прикрас, как она есть.",
+          "exampleEn": "I want the naked truth, even if it hurts.",
+          "exampleRu": "Хочу голую правду, даже если будет неприятно.",
+          "originRu": "По одной из версий — из старой басни: Правда и Ложь купались, Ложь надела чужую одежду и сбежала, а Правде осталось ходить нагой. С тех пор честность «голая», без покровов.",
+          "art": "set23_truth/truth_02"
         },
         {
           "id": "truth_03",
           "en": "Tell it like it is",
           "ru": "Говорить как есть",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "tel ɪt laɪk ɪt ɪz",
+          "literalRu": "рассказать это так, как оно есть",
+          "meaningRu": "Говорить прямо и честно, ничего не смягчая.",
+          "exampleEn": "I respect my doctor — she tells it like it is.",
+          "exampleRu": "Я уважаю своего врача — она говорит как есть.",
+          "originRu": "Оборот разошёлся по Америке в 1960-х и стал девизом тех, кто рубит правду в лицо. Так же называется и хит Аарона Невилла «Tell It Like It Is» (1966).",
+          "art": "set23_truth/truth_03"
         },
         {
           "id": "truth_04",
           "en": "Actions speak louder than words",
           "ru": "Дела говорят громче слов",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈækʃənz spiːk ˈlaʊdə ðən wɜːdz",
+          "literalRu": "поступки говорят громче слов",
+          "meaningRu": "О человеке судят по делам, а не по обещаниям.",
+          "exampleEn": "He keeps saying sorry, but actions speak louder than words.",
+          "exampleRu": "Он всё извиняется, но дела говорят громче слов.",
+          "originRu": "Мысль древняя — похожее есть ещё у античных авторов, — а привычную английскую форму закрепили в XVII веке. У нас ей вторит «не по словам судят, а по делам».",
+          "art": "set23_truth/truth_04"
         },
         {
           "id": "truth_05",
           "en": "Read between the lines",
           "ru": "Читать между строк",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "riːd bɪˈtwiːn ðə laɪnz",
+          "literalRu": "читать между строк",
+          "meaningRu": "Понимать скрытый смысл, о котором прямо не сказано.",
+          "exampleEn": "She didn't say no, but read between the lines.",
+          "exampleRu": "Она не сказала «нет», но читай между строк.",
+          "originRu": "Из старых шифров: тайное письмо писали в пустых промежутках между видимыми строками, и проявлялось оно лишь при нагреве. Отсюда — искать смысл «между строк».",
+          "art": "set23_truth/truth_05"
         },
         {
           "id": "truth_06",
           "en": "Take it with a grain of salt",
           "ru": "Отнестись со скепсисом",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "teɪk ɪt wɪð ə ɡreɪn əv sɔːlt",
+          "literalRu": "принять это с крупинкой соли",
+          "meaningRu": "Не верить услышанному полностью, относиться с сомнением.",
+          "exampleEn": "He exaggerates a lot, so take his story with a grain of salt.",
+          "exampleRu": "Он любит приврать, так что его рассказ принимай со скепсисом.",
+          "originRu": "Идёт от Плиния Старшего: древний рецепт противоядия советовали принимать «с крупинкой соли». Со временем соль стала образом здоровой щепотки недоверия.",
+          "art": "set23_truth/truth_06"
         },
         {
           "id": "truth_07",
           "en": "Stretch the truth",
           "ru": "Приукрашивать",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "stretʃ ðə truːθ",
+          "literalRu": "растягивать правду",
+          "meaningRu": "Чуть привирать, преувеличивать, не доходя до прямой лжи.",
+          "exampleEn": "He stretched the truth a bit to sound more impressive.",
+          "exampleRu": "Он немного приукрасил, чтобы прозвучать внушительнее.",
+          "originRu": "Образ простой: правду, как резинку, тянут за края, пока она не растянется почти до неправды. Англичане так говорят о приятном привирании уже пару веков.",
+          "art": "set23_truth/truth_07"
         },
         {
           "id": "truth_08",
           "en": "Come clean",
           "ru": "Признаться во всём",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "kʌm kliːn",
+          "literalRu": "стать чистым",
+          "meaningRu": "Честно во всём сознаться и перестать скрывать правду.",
+          "exampleEn": "Just come clean and tell your parents what happened.",
+          "exampleRu": "Просто признайся во всём и расскажи родителям, что случилось.",
+          "originRu": "Признание тут как стирка: выложил правду — и снова «чистый», совесть отмыта от пятна вины. Оборот в этом смысле прижился в Америке в начале XX века.",
+          "art": "set23_truth/truth_08"
         },
         {
           "id": "truth_09",
           "en": "The moment of truth",
           "ru": "Момент истины",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə ˈməʊmənt əv truːθ",
+          "literalRu": "момент правды",
+          "meaningRu": "Решающий миг, когда всё проверяется и становится ясно.",
+          "exampleEn": "The exam results are here — this is the moment of truth.",
+          "exampleRu": "Результаты экзамена пришли — вот он, момент истины.",
+          "originRu": "Из испанской корриды: «el momento de la verdad» — решающий миг последнего удара матадора. Хемингуэй ввёл оборот в английский в книге «Смерть после полудня» (1932).",
+          "art": "set23_truth/truth_09"
         },
         {
           "id": "truth_10",
           "en": "Liar, liar, pants on fire",
-          "ru": "Врунишка! (детская дразнилка)",
+          "ru": "Врунишка, горят штанишки!",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈlaɪə ˈlaɪə pænts ɒn ˈfaɪə",
+          "literalRu": "врун, врун, штаны горят",
+          "meaningRu": "Детская дразнилка тому, кого поймали на вранье.",
+          "exampleEn": "You didn't do your homework — liar, liar, pants on fire!",
+          "exampleRu": "Ты не делал домашку — врунишка, горят штанишки!",
+          "originRu": "Детская дразнилка-рифмовка из США середины XX века; по созвучию «liar — fire» придумали, будто у лгуна вспыхивают штаны. Бытует и шутливая «легенда», что строчку обронил поэт Уильям Блейк, но это выдумка.",
+          "art": "set23_truth/truth_10"
         }
       ]
     },
@@ -3419,8 +3804,15 @@
       "secret": {
         "id": "courage_secret",
         "en": "The heebie-jeebies",
-        "ru": "Мурашки от жути",
-        "status": "seed"
+        "ru": "Мурашки от жути — нервная дрожь",
+        "status": "art_done",
+        "ipa": "ðə ˈhiːbi ˈdʒiːbiz",
+        "literalRu": "хиби-джиби",
+        "meaningRu": "Неприятное чувство тревоги и мурашек, когда что-то жуткое или странное.",
+        "exampleEn": "That creepy old house gives me the heebie-jeebies.",
+        "exampleRu": "От этого жуткого старого дома у меня мурашки от жути.",
+        "originRu": "Смешное словечко-выдумку придумал в 1923 году американский карикатурист Билли ДеБек в комиксе «Barney Google». Оно прижилось и стало значить нервную дрожь от страха.",
+        "art": "set24_courage/courage_secret"
       },
       "cards": [
         {
@@ -3428,70 +3820,140 @@
           "en": "Face your fears",
           "ru": "Взглянуть страху в лицо",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "feɪs jɔː fɪəz",
+          "literalRu": "встретиться лицом со своими страхами",
+          "meaningRu": "Не убегать от того, что пугает, а смело пойти ему навстречу.",
+          "exampleEn": "She faced her fears and finally gave the speech.",
+          "exampleRu": "Она взглянула страху в лицо и наконец выступила с речью.",
+          "originRu": "Образ простой и древний: повернуться к опасности лицом, а не спиной. Психологи XX века подхватили его буквально — лучший способ победить страх это встретиться с ним, а не прятаться.",
+          "art": "set24_courage/courage_01"
         },
         {
           "id": "courage_02",
           "en": "Take the plunge",
           "ru": "Решиться и нырнуть",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "teɪk ðə plʌndʒ",
+          "literalRu": "совершить погружение",
+          "meaningRu": "Наконец решиться на смелый или рискованный шаг.",
+          "exampleEn": "After years of dating, they took the plunge and got married.",
+          "exampleRu": "После долгих лет встреч они решились и поженились.",
+          "originRu": "Образ прыжка в холодную воду: страшно, но один раз решился и уже плывёшь. В этом смысле фраза разошлась по английским книгам в XIX веке.",
+          "art": "set24_courage/courage_02"
         },
         {
           "id": "courage_03",
           "en": "Scared stiff",
           "ru": "Оцепенеть от страха",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "skeəd stɪf",
+          "literalRu": "напуган до окоченения",
+          "meaningRu": "Так сильно испугаться, что не можешь пошевелиться.",
+          "exampleEn": "I was scared stiff when the lights suddenly went out.",
+          "exampleRu": "Я оцепенел от страха, когда вдруг погас свет.",
+          "originRu": "От настоящей реакции тела: при сильном испуге человек замирает и деревенеет, будто окаменел. Поэтому «stiff» — окоченевший, негнущийся.",
+          "art": "set24_courage/courage_03"
         },
         {
           "id": "courage_04",
           "en": "Goosebumps",
           "ru": "Мурашки",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈɡuːsbʌmps",
+          "literalRu": "гусиные пупырышки",
+          "meaningRu": "Пупырышки на коже от холода, страха или сильного волнения.",
+          "exampleEn": "That song still gives me goosebumps every time.",
+          "exampleRu": "От этой песни у меня до сих пор каждый раз мурашки.",
+          "originRu": "Когда холодно или страшно, кожа покрывается пупырышками и встаёт дыбом волосок — точь-в-точь как у ощипанного гуся. Отсюда и «гусиная кожа».",
+          "art": "set24_courage/courage_04"
         },
         {
           "id": "courage_05",
           "en": "Bite the bullet",
           "ru": "Стиснуть зубы и сделать",
           "rarity": "common",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "baɪt ðə ˈbʊlɪt",
+          "literalRu": "закусить пулю",
+          "meaningRu": "Заставить себя сделать что-то неприятное, но неизбежное.",
+          "exampleEn": "I hate the dentist, but I'll bite the bullet and book it.",
+          "exampleRu": "Ненавижу стоматолога, но стисну зубы и запишусь.",
+          "originRu": "По одной из версий — из военной медицины до наркоза: раненому давали закусить свинцовую пулю, чтобы терпеть боль во время операции.",
+          "art": "set24_courage/courage_05"
         },
         {
           "id": "courage_06",
           "en": "Nerves of steel",
           "ru": "Стальные нервы",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "nɜːvz əv stiːl",
+          "literalRu": "нервы из стали",
+          "meaningRu": "Полное хладнокровие в опасной или напряжённой ситуации.",
+          "exampleEn": "You need nerves of steel to land a plane in that storm.",
+          "exampleRu": "Нужны стальные нервы, чтобы посадить самолёт в такую бурю.",
+          "originRu": "Сталь — крепкий металл, который не гнётся и не дрожит. Так и о человеке: его нервы будто из стали, поэтому он не паникует. Образ прижился в XIX веке вместе с эпохой стали.",
+          "art": "set24_courage/courage_06"
         },
         {
           "id": "courage_07",
           "en": "Jump out of your skin",
           "ru": "Подпрыгнуть от испуга",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "dʒʌmp aʊt əv jɔː skɪn",
+          "literalRu": "выпрыгнуть из своей кожи",
+          "meaningRu": "Резко вздрогнуть и подскочить от внезапного испуга.",
+          "exampleEn": "The balloon popped and I nearly jumped out of my skin.",
+          "exampleRu": "Шарик лопнул, и я чуть не подпрыгнул от испуга.",
+          "originRu": "Сильный испуг будто подбрасывает человека так высоко, что он словно выскакивает из собственной кожи. В этом виде оборот встречается в английском уже более 300 лет.",
+          "art": "set24_courage/courage_07"
         },
         {
           "id": "courage_08",
           "en": "Chicken out",
           "ru": "Струсить и слиться",
           "rarity": "rare",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈtʃɪkɪn aʊt",
+          "literalRu": "выкуриться курицей",
+          "meaningRu": "В последний момент испугаться и отказаться от задуманного.",
+          "exampleEn": "He was going to ask her out but chickened out.",
+          "exampleRu": "Он собирался позвать её на свидание, но струсил и слился.",
+          "originRu": "В английском курица издавна символ трусости — пугливая и суетливая птица. Глагол «to chicken out» в значении «струсить» закрепился в американском сленге в XX веке.",
+          "art": "set24_courage/courage_08"
         },
         {
           "id": "courage_09",
           "en": "Fortune favors the bold",
           "ru": "Удача любит смелых",
           "rarity": "epic",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ˈfɔːtʃuːn ˈfeɪvəz ðə bəʊld",
+          "literalRu": "фортуна благоволит дерзким",
+          "meaningRu": "Везёт чаще тем, кто решается действовать, а не медлит.",
+          "exampleEn": "Just apply for that job — fortune favors the bold.",
+          "exampleRu": "Просто откликнись на ту вакансию — удача любит смелых.",
+          "originRu": "Поговорке больше 2000 лет: латинское «Fortuna audaces iuvat» звучало ещё у римского поэта Вергилия. По легенде, эти слова повторил Плиний Старший, отплывая навстречу извержению Везувия.",
+          "art": "set24_courage/courage_09"
         },
         {
           "id": "courage_10",
           "en": "The heart of a lion",
           "ru": "Львиное сердце",
           "rarity": "legendary",
-          "status": "seed"
+          "status": "art_done",
+          "ipa": "ðə hɑːt əv ə ˈlaɪən",
+          "literalRu": "сердце льва",
+          "meaningRu": "Очень храбрый и бесстрашный человек.",
+          "exampleEn": "She has the heart of a lion — nothing scares her.",
+          "exampleRu": "У неё львиное сердце — её ничто не пугает.",
+          "originRu": "Лев — символ отваги ещё с древности. А прозвище «Львиное Сердце» носил английский король Ричард I за храбрость в боях крестовых походов XII века.",
+          "art": "set24_courage/courage_10"
         }
       ]
     },

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A power nap">
+<ellipse cx="100" cy="150" rx="56" ry="8" fill="rgba(0,0,0,.25)"/>
+<rect x="52" y="92" width="96" height="48" rx="12" fill="#6B8FCF"/>
+<rect x="40" y="78" width="22" height="58" rx="10" fill="#5A7EBE"/>
+<rect x="138" y="78" width="22" height="58" rx="10" fill="#5A7EBE"/>
+<rect x="60" y="70" width="80" height="40" rx="12" fill="#7CA0DE"/>
+<ellipse cx="100" cy="84" rx="22" ry="19" fill="#F2C9A0"/>
+<path d="M79 80c0-12 9-22 21-22s21 10 21 22z" fill="#E07A5F"/>
+<path d="M84 84c4 4 11 4 15 0M101 84c4 4 11 4 15 0" stroke="#5A3A28" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<ellipse cx="86" cy="92" rx="5" ry="3.4" fill="#F4A6A4" opacity=".6"/>
+<ellipse cx="114" cy="92" rx="5" ry="3.4" fill="#F4A6A4" opacity=".6"/>
+<path d="M100 100c5 4 11 4 16 0" stroke="#5A3A28" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M150 40l-12 18 9 2-10 16 22-20-10-2z" fill="#FFD23F"/>
+<path d="M150 40l-12 18 9 2-10 16" fill="none" stroke="#E8B800" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M40 36l-8 12 6 1-7 11 15-13-7-2z" fill="#FFD23F"/>
+<path d="M172 96l-6 9 5 1-6 9 12-11-5-1z" fill="#FFD23F"/>
+</svg>

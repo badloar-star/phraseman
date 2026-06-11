@@ -1,0 +1,15 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Everything's coming up roses">
+<ellipse cx="120" cy="144" rx="44" ry="9" fill="rgba(0,0,0,.25)"/>
+<path d="M30 138c0-10 2-16 2-16M52 138c0-14 4-22 4-22M76 138c0-18 2-26 2-26" stroke="#6E9A4E" stroke-width="4" stroke-linecap="round"/>
+<g fill="#E0524E"><circle cx="32" cy="118" r="8"/><circle cx="56" cy="112" r="9"/><circle cx="78" cy="108" r="10"/></g>
+<g fill="#F47A78"><circle cx="32" cy="118" r="3.6"/><circle cx="56" cy="112" r="4"/><circle cx="78" cy="108" r="4.6"/></g>
+<path d="M64 116c-8 0-14 4-16 10M48 110c-8 0-14 4-16 10" stroke="#5E8A4E" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="124" cy="112" rx="20" ry="24" fill="#F2C9A0"/>
+<path d="M104 108c0-12 9-22 20-22s20 10 20 22z" fill="#7A4A2A"/>
+<circle cx="116" cy="112" r="3.6" fill="#5A3A28"/><circle cx="132" cy="112" r="3.6" fill="#5A3A28"/>
+<ellipse cx="116" cy="112" rx="1.5" ry="1.5" fill="#fff"/><ellipse cx="132" cy="112" rx="1.5" ry="1.5" fill="#fff"/>
+<path d="M114 122c5 5 14 5 19 0" stroke="#5A3A28" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="108" cy="120" r="4" fill="#F4A8B8" opacity=".7"/><circle cx="140" cy="120" r="4" fill="#F4A8B8" opacity=".7"/>
+<path d="M112 138l-3 8M138 138l3 8" stroke="#7A4A2A" stroke-width="6" stroke-linecap="round"/>
+<path d="M150 80l3-8 3 8M164 92l8-3-3 8" stroke="#FFB800" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

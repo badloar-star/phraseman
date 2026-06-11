@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An old chestnut">
+<ellipse cx="64" cy="144" rx="44" ry="9" fill="rgba(0,0,0,.25)"/>
+<ellipse cx="150" cy="146" rx="30" ry="7" fill="rgba(0,0,0,.25)"/>
+<path d="M40 64c0-22 14-34 26-34s26 12 26 34c0 26-16 56-26 56s-26-30-26-56z" fill="#8A5A2E"/>
+<path d="M48 60c4-14 12-22 18-22s14 8 18 22c-8-4-28-4-36 0z" fill="#A6743E"/>
+<path d="M48 92c-12 4-22 12-26 22 12 4 24-2 30-10z" fill="#6E4622"/>
+<circle cx="56" cy="74" r="4" fill="#3A2410"/><circle cx="74" cy="74" r="4" fill="#3A2410"/>
+<path d="M50 68l-7-3M80 68l7-3" stroke="#3A2410" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M58 86c4 4 10 4 14 0" stroke="#3A2410" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+<path d="M50 92c-4 14-2 30 2 40M80 92c4 14 2 30-2 40" stroke="#E8E0D4" stroke-width="6" fill="none" stroke-linecap="round"/>
+<ellipse cx="150" cy="112" rx="22" ry="26" fill="#C9954E"/>
+<path d="M138 138l-2 6 8-2 6 4 2-8z" fill="#A07636"/>
+<path d="M150 86l-3-10 6 4 5-6 1 9z" fill="#8A6230"/>
+<circle cx="144" cy="108" r="3.4" fill="#3A2410"/>
+<ellipse cx="158" cy="116" rx="6" ry="9" fill="#3A2410"/>
+<path d="M158 92c-3-1-6 0-8 2" stroke="#3A2410" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

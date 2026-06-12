@@ -115,7 +115,7 @@ export default function SpikeVoice() {
           const ttsMs = nowMs() - ttsStart;
           setTimings([
             { label: 'ASR (распознавание)', ms: asrMs },
-            { label: 'LLM (ответ Фила)', ms: llmMs },
+            { label: 'LLM (ответ Тео)', ms: llmMs },
             { label: 'TTS (старт озвучки)', ms: ttsMs },
             { label: 'ИТОГО до звука', ms: asrMs + llmMs + ttsMs },
           ]);
@@ -187,8 +187,8 @@ export default function SpikeVoice() {
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg }}>{heard || '—'}</Text>
           </Block>
 
-          {/* Ответ Фила */}
-          <Block t={t} f={f} title="Ответ Фила">
+          {/* Ответ Тео */}
+          <Block t={t} f={f} title="Ответ Тео">
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg }}>
               {reply ? stripMarkers(reply) : '—'}
             </Text>

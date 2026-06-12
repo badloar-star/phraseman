@@ -100,12 +100,15 @@ import { getBonusHintsToday } from './level_gift_system';
 import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ExplainSheet from '../components/ExplainSheet';
+import AiMistakeCard, { type AiMistakeCardState } from '../components/AiMistakeCard';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
 import { lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { callExplainMistake } from './ai_mistake_explain_client';
+import { getAiMistakeExplainsLeftToday, markAiMistakeExplainUsed } from './ai_mistake_explain_limit_session';
 
 const GRAMMAR_HINTS = [
   {
@@ -596,12 +599,9 @@ const LessonContent = React.memo(function LessonContent({
     setSpeakingOpen(true);
   }, [speakingIsPremium, router]);
 
-  // [EXPLAIN] «Объясни проще» (Фаза 5). До ответа — заменяет 50/50, тратит дневной лимит
-  // (3 + bonusHints − fiftyFiftyUsedToday, тот же «подарок»). После ответа — без лимита,
-  // кнопка по центру. Объясняет английскую фразу (грамматику), НЕ русский смысл (промпт CF).
+  // [EXPLAIN] «Объясни проще» (Фаза 5). Заменяет 50/50 и тратит тот же дневной лимит:
+  // 3 базовые подсказки + подарочные бонусы. Объясняет английскую фразу, НЕ русский смысл.
   const [explainOpen, setExplainOpen] = useState(false);
-  // Режим открытия: 'pre' (до ответа, считаем лимит) или 'post' (после ответа, без лимита).
-  const explainModeRef = useRef<'pre' | 'post'>('post');
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
   // До ответа: открыть, только если ещё есть кредиты. Кредит НЕ списываем здесь —
   // только когда шторка реально сгенерит (cache MISS) в onExplainResolved: бесплатный
@@ -609,26 +609,20 @@ const LessonContent = React.memo(function LessonContent({
   const openExplainPreAnswer = useCallback(() => {
     if (explainHintsLeft <= 0) return;
     hapticTap();
-    explainModeRef.current = 'pre';
     setExplainOpen(true);
   }, [explainHintsLeft]);
-  // После ответа: без лимита.
-  const openExplainResult = useCallback(() => {
-    hapticTap();
-    explainModeRef.current = 'post';
-    setExplainOpen(true);
-  }, []);
-  // Резолв запроса шторки. Списываем дневной кредит ТОЛЬКО если: открыто до ответа ('pre'),
-  // это реальная генерация (не из кэша) и без ошибки. Так бесплатные/упавшие открытия не жгут лимит.
+  // Резолв запроса шторки. Списываем кредит только за live-генерацию без ошибки.
   const onExplainResolved = useCallback(
     (info: { fromCache: boolean; status: string; error: boolean }) => {
-      if (explainModeRef.current !== 'pre') return;
       if (info.error || info.fromCache) return;
       if (info.status !== 'ok' && info.status !== 'rejected') return; // exhausted/pending не списываем
       onConsumeExplainCredit();
     },
     [onConsumeExplainCredit],
   );
+  const [aiMistakeState, setAiMistakeState] = useState<AiMistakeCardState>('idle');
+  const [aiMistakeText, setAiMistakeText] = useState<string | null>(null);
+  const [aiMistakeRemaining, setAiMistakeRemaining] = useState<number | null>(null);
 
 
   // [ARROW] Анимированная стрелка над прогресс-баром
@@ -785,6 +779,95 @@ const LessonContent = React.memo(function LessonContent({
     ],
   };
 
+  const acceptedUserAnswerLine = settings.hardMode
+    ? reportUserAnswer.replace(/\s+/g, ' ').trim()
+    : cleanPhraseForDisplay(selectedAnswer).replace(/\s+/g, ' ').trim();
+  const resultCorrectLine = phrase
+    ? (status === 'result' && !wasWrong && acceptedUserAnswerLine.length > 0
+      ? acceptedUserAnswerLine
+      : phraseAnswerDisplayLine(phrase, studyTarget, lang))
+    : '';
+  const sourcePromptLine = useMemo(() => {
+    if (!phrase) return '';
+    if (lang === 'uk') return phrase.ukrainian || phrase.russian || '';
+    if (spanishStudyActive(studyTarget)) {
+      if (lang === 'es') return phrase.spanish ?? phrase.russian ?? '';
+      return phrase.russian ?? '';
+    }
+    if (lang === 'es') return phrase.russian || phrase.ukrainian || phrase.english || '';
+    return phrase.russian ?? '';
+  }, [phrase, lang, studyTarget]);
+  const aiMistakeAnswerLine = reportUserAnswer || acceptedUserAnswerLine;
+  const aiMistakeTargetLine = phrase ? phraseCanonicalAnswer(phrase, studyTarget) : '';
+
+  useEffect(() => {
+    let cancelled = false;
+    setAiMistakeState('idle');
+    setAiMistakeText(null);
+    setAiMistakeRemaining(null);
+    if (status !== 'result' || !wasWrong) return () => { cancelled = true; };
+    getAiMistakeExplainsLeftToday()
+      .then((left) => {
+        if (cancelled) return;
+        setAiMistakeRemaining(left);
+        if (left <= 0) setAiMistakeState('limit');
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [phraseEnterKey, status, wasWrong]);
+
+  const explainCurrentMistake = useCallback(async () => {
+    if (!phrase || status !== 'result' || !wasWrong || aiMistakeState === 'loading') return;
+    hapticTap();
+    const left = await getAiMistakeExplainsLeftToday().catch(() => 0);
+    setAiMistakeRemaining(left);
+    if (left <= 0) {
+      setAiMistakeState('limit');
+      return;
+    }
+    const mismatch = resolvePhraseMistakeToken(aiMistakeTargetLine, aiMistakeAnswerLine);
+    setAiMistakeState('loading');
+    setAiMistakeText(null);
+    try {
+      const res = await callExplainMistake({
+        lessonId,
+        phraseId: String(phrase.id ?? lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)),
+        studyTarget,
+        interfaceLang: lang,
+        prompt: sourcePromptLine,
+        userAnswer: aiMistakeAnswerLine,
+        targetAnswer: aiMistakeTargetLine,
+        phraseMeaning: sourcePromptLine,
+        selectedWrongWord: mismatch?.picked,
+        expectedWord: mismatch?.expected,
+      });
+      await markAiMistakeExplainUsed();
+      setAiMistakeText(res.text);
+      setAiMistakeRemaining(Math.max(0, Number(res.remainingQuota ?? left - 1)));
+      setAiMistakeState('ready');
+    } catch (error) {
+      const code = String((error as any)?.code ?? (error as any)?.message ?? '');
+      if (code.includes('resource-exhausted') || code.includes('mistake_explain_free_limit')) {
+        setAiMistakeRemaining(0);
+        setAiMistakeState('limit');
+        return;
+      }
+      setAiMistakeState('error');
+    }
+  }, [
+    phrase,
+    status,
+    wasWrong,
+    aiMistakeState,
+    aiMistakeTargetLine,
+    aiMistakeAnswerLine,
+    lessonId,
+    realPhraseIdx,
+    studyTarget,
+    lang,
+    sourcePromptLine,
+  ]);
+
   if (!introGateReady) {
     return <View style={{ flex: 1 }} />;
   }
@@ -809,13 +892,6 @@ const LessonContent = React.memo(function LessonContent({
       </View>
     );
   }
-
-  const acceptedUserAnswerLine = settings.hardMode
-    ? reportUserAnswer.replace(/\s+/g, ' ').trim()
-    : cleanPhraseForDisplay(selectedAnswer).replace(/\s+/g, ' ').trim();
-  const resultCorrectLine = status === 'result' && !wasWrong && acceptedUserAnswerLine.length > 0
-    ? acceptedUserAnswerLine
-    : phraseAnswerDisplayLine(phrase, studyTarget, lang);
 
   return (
     <>
@@ -1060,6 +1136,18 @@ const LessonContent = React.memo(function LessonContent({
                 />
               </View>
 
+              {status === 'result' && wasWrong && (
+                <View style={{ marginTop: linkedSliceCompact ? 6 : 10 }}>
+                  <AiMistakeCard
+                    lang={lang}
+                    state={aiMistakeState}
+                    explanation={aiMistakeText}
+                    remaining={aiMistakeRemaining}
+                    onExplain={explainCurrentMistake}
+                  />
+                </View>
+              )}
+
               {lessonTeachingNote && (
                 <View
                   testID="lesson-teaching-note"
@@ -1097,52 +1185,6 @@ const LessonContent = React.memo(function LessonContent({
                 style={{ alignSelf: 'flex-end', marginTop: linkedSliceCompact ? 2 : 4 }}
                 textColor={sx.muted}
               />
-
-              {/* «Объясни проще» после ответа — ПО ЦЕНТРУ, без лимита (Фаза 5). */}
-              <TouchableOpacity
-                testID="lesson1-explain-result"
-                onPress={openExplainResult}
-                activeOpacity={0.8}
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Объяснить простыми словами',
-                  uk: 'Пояснити простими словами',
-                  es: 'Explicar en palabras simples',
-                  'pt-BR': 'Explicar em palavras simples',
-                  vi: 'Giải thích bằng lời đơn giản',
-                  id: 'Jelaskan dengan kata sederhana',
-                  tr: 'Basit kelimelerle açıkla',
-                  pl: 'Wyjaśnij prościej',
-                })}
-                style={{
-                  alignSelf: 'center',
-                  marginTop: linkedSliceCompact ? 8 : 14,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                  borderRadius: 14,
-                  borderWidth: 1,
-                  borderColor: t.border,
-                  backgroundColor: t.bgSurface2,
-                  paddingVertical: 11,
-                  paddingHorizontal: 18,
-                }}
-              >
-                <Ionicons name="bulb-outline" size={18} color={t.accent} />
-                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }} numberOfLines={1}>
-                  {triLang(lang, {
-                    ru: 'Объяснить просто',
-                    uk: 'Пояснити просто',
-                    es: 'Explicar simple',
-                    'pt-BR': 'Explicar simples',
-                    vi: 'Giải thích đơn giản',
-                    id: 'Jelaskan sederhana',
-                    tr: 'Basitçe açıkla',
-                    pl: 'Wyjaśnij prosto',
-                  })}
-                </Text>
-              </TouchableOpacity>
 
             </Animated.View>
           )}
@@ -1204,7 +1246,7 @@ const LessonContent = React.memo(function LessonContent({
                     <DuoPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
                       edgeHeight={5}
-                      edgeColor={isFlashing ? t.accent : (themeMode === 'neon' ? t.border : 'rgba(0,0,0,0.30)')}
+                      edgeColor={isFlashing ? t.accent : (false ? t.border : 'rgba(0,0,0,0.30)')}
                       pressedExternally={isFlashing}
                       withHaptic={false}
                       style={{
@@ -1212,7 +1254,7 @@ const LessonContent = React.memo(function LessonContent({
                         backgroundColor: isFlashing ? t.accent : t.bgCard,
                         paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14),
                         borderRadius: 12,
-                        borderWidth: isFlashing ? 1.5 : (themeMode === 'neon' ? 1 : 0.5),
+                        borderWidth: isFlashing ? 1.5 : (false ? 1 : 0.5),
                         borderColor: isFlashing ? t.accent : t.border,
                       }}
                       onPress={() => {
@@ -1496,9 +1538,7 @@ const LessonContent = React.memo(function LessonContent({
           />
         )}
 
-        {/* [EXPLAIN] Общая шторка «Объясни проще» — открывается и из футера (до ответа,
-            тратит кредит), и центральной кнопкой (после ответа, без лимита). Объясняет
-            английскую фразу/грамматику, НЕ русский смысл. */}
+        {/* [EXPLAIN] Общая шторка «Объясни проще» из футера. Объясняет английскую фразу/грамматику, НЕ русский смысл. */}
         {phrase && (
           <ExplainSheet
             visible={explainOpen}
@@ -3141,7 +3181,7 @@ export default function LessonScreen() {
             promoted={medalToast.promoted}
             anim={medalToastAnim}
             bg={t.bgCard}
-            isLightTheme={themeMode === 'minimalLight'}
+            isLightTheme={false}
             lang={lang}
             spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}
           />

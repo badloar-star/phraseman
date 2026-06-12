@@ -15,7 +15,7 @@ interface Props {
 
 function UserWarningModal({ visible, message, lang, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const title =
     lang === 'uk'
       ? 'Важливе повідомлення'

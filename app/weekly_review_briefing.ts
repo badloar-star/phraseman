@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// weekly_review_briefing.ts — сборщик «брифинга» для еженедельного ИИ-разбора.
+// weekly_review_briefing.ts — сборщик «брифинга» для ИИ-разбора ошибок.
 //
 // Принцип фичи: ИИ НЕ видит сырой лог и НЕ выбирает темы. Клиент сам считает
 // аналитику (computePhraseAnalytics), сам отбирает ДОСТУПНЫЕ по гейту микро-уроки
@@ -39,7 +39,7 @@ export interface WeeklyReviewRecommendation {
 export interface WeeklyReviewBriefing {
   lang: Lang;
   studyTarget: 'en' | 'fr';
-  windowDays: 7 | 14;
+  windowDays: 3 | 7;
   totalMistakes: number;
   weakCategories: WeeklyReviewWeakCategory[];
   strongCategories: Array<{ category: string; label: string }>;
@@ -127,7 +127,7 @@ export async function buildWeeklyReviewBriefing(
   const { lang, isPremium } = options;
   const studyTarget = options.studyTarget;
   const target = storageStudyTarget(studyTarget);
-  const windowDays: 7 | 14 = isPremium ? 7 : 14;
+  const windowDays: 3 | 7 = isPremium ? 3 : 7;
   const maxWeak = options.maxWeakCategories ?? 3;
 
   try {

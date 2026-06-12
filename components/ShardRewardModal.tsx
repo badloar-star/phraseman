@@ -176,7 +176,7 @@ function ShardRewardModal({ rewards, visible, onClose }: Props) {
   const insets = useSafeAreaInsets();
   const tx = TEXTS[bundleLang(lang)];
   const backdropOpacity = useModalBackdropFade(visible);
-  const dimColor = themeMode === 'minimalLight'
+  const dimColor = false
     ? (USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(8,12,20,0.64)' : 'rgba(8,12,20,0.48)')
     : (USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(3,5,10,0.82)' : 'rgba(0,0,0,0.72)');
 

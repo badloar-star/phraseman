@@ -10,12 +10,9 @@
  *  2) explain_reports/{phraseHash} — счётчик РАЗНЫХ юзеров на фразу. ДЕДУП: повторная жалоба
  *     того же stableUid НЕ инкрементит счётчик (иначе один юзер в одиночку добивал порог —
  *     rate-limit 5/час == порогу 5). Запись жалобы в ленту при этом всё равно создаётся.
- *  3) если счётчик РАЗНЫХ юзеров >= REPORT_REJECT_THRESHOLD — ставит
- *     phrase_explanations/{phraseHash}.status='rejected' (фраза отдаёт fallback).
- * Инкремент и флип статуса АТОМАРНЫ в одной tx — иначе параллельные репорты проскочат порог.
- *
- * Авто-reject по порогу НЕ регенерируется автоматически (reason=report_threshold — sticky),
- * сбросить может только админ (раздел «Непонятно объяснили» в админке → «Сбросить кэш»).
+ *  3) phrase_explanations/{phraseHash} НЕ меняется автоматически. Жалоба только попадает
+ *     в очередь админки вместе с текущим текстом cached explanation. Удалить кэш может
+ *     только админ вручную: «Непонятно объяснили» → «Убрать из кэша».
  *
  * SECURITY (инварианты phraseman):
  *  - App Check enforced (ENFORCE_APP_CHECK из callable_options).
@@ -30,8 +27,6 @@ import { ENFORCE_APP_CHECK } from '../callable_options';
 import { resolveStableUidForAuth } from '../auth_identity';
 import {
   EXPLAIN_COLLECTION,
-  EXPLAIN_SCHEMA_VERSION,
-  REPORT_REJECT_REASON,
   phraseHashFor,
 } from './explain_cache';
 import { resolvePromptLangKey } from './explain_prompts';
@@ -152,9 +147,9 @@ export const submitExplainReport = onCall({
 
     const prevReports = numeric(counter.reportCount);
     const reportCount = isNewReporter ? prevReports + 1 : prevReports;
-    const reachedThreshold = reportCount >= REPORT_REJECT_THRESHOLD;
-    const cacheStatus = String(cacheSnap.data()?.status ?? '');
-    const alreadyRejected = cacheStatus === 'rejected';
+    const cache = cacheSnap.data() || {};
+    const cacheStatus = String(cache.status ?? '');
+    const explanationText = typeof cache.text === 'string' ? cache.text.slice(0, 4000) : '';
 
     // rate-doc
     tx.set(rateRef, {
@@ -177,6 +172,10 @@ export const submitExplainReport = onCall({
       stableUid,
       authUid,
       status: 'new',
+      cacheStatus,
+      cacheSchemaVersion: numeric(cache.schemaVersion),
+      hasCachedExplanation: !!explanationText,
+      explanationText,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAtMs: now,
     });
@@ -191,23 +190,11 @@ export const submitExplainReport = onCall({
       lastReason: reason,
       lastReporterStableUid: stableUid,
       lastReporterAuthUid: authUid,
+      latestCacheStatus: cacheStatus,
+      latestExplanationText: explanationText,
       updatedAtMs: now,
     }, { merge: true });
 
-    // --- авто-reject В ТОЙ ЖЕ tx: флип статуса кэша на 'rejected' при достижении порога ---
-    // flipped = ИМЕННО ЭТА транзакция пересекла порог и отклонила кэш (для observability
-    // атомарности: при гонке ровно одна tx даёт flipped=true). rejected = итоговое состояние
-    // кэша (true и для последующих репортов уже отклонённой фразы).
-    const flipped = reachedThreshold && !alreadyRejected;
-    if (flipped) {
-      tx.set(cacheRef, {
-        status: 'rejected',
-        schemaVersion: EXPLAIN_SCHEMA_VERSION,
-        reason: REPORT_REJECT_REASON,
-        updatedAtMs: now,
-      }, { merge: true });
-    }
-
-    return { ok: true, reportCount, flipped, rejected: alreadyRejected || flipped };
+    return { ok: true, reportCount, queued: true, flipped: false, rejected: false };
   });
 });

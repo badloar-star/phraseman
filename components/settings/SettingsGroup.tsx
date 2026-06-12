@@ -169,6 +169,9 @@ interface SettingsGroupProps {
   /** Доп. верхний отступ карточки (по умолчанию 0 — заголовок секции уже даёт паддинг). */
   marginTop?: number;
   marginBottom?: number;
+  surfaceColor?: string;
+  borderColor?: string;
+  dividerColor?: string;
   style?: ViewStyle;
 }
 
@@ -176,10 +179,21 @@ interface SettingsGroupProps {
  * Скруглённый контейнер-группа. Рядам внутри сам прорисовывает inset-делители
  * (между рядами, не под последним) и скругляет внешние углы через overflow.
  */
-export function SettingsGroup({ children, marginTop, marginBottom, style }: SettingsGroupProps) {
-  const { theme: t, themeMode } = useTheme();
-  const isCompass = themeMode === 'compass';
+export function SettingsGroup({
+  children,
+  marginTop,
+  marginBottom,
+  surfaceColor,
+  borderColor,
+  dividerColor,
+  style,
+}: SettingsGroupProps) {
+  const { theme: t } = useTheme();
+  const isCompass = false;
   const items = React.Children.toArray(children).filter(Boolean);
+  const groupSurface = surfaceColor ?? t.bgCard;
+  const groupBorder = borderColor ?? t.border;
+  const groupDivider = dividerColor ?? groupBorder;
 
   return (
     <View
@@ -189,9 +203,9 @@ export function SettingsGroup({ children, marginTop, marginBottom, style }: Sett
           marginTop: marginTop ?? 0,
           marginBottom: marginBottom ?? 0,
           borderRadius: 12,
-          backgroundColor: t.bgCard,
+          backgroundColor: groupSurface,
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: t.border,
+          borderColor: groupBorder,
           overflow: 'hidden',
         },
         isCompass ? compassShadow(1) : null,
@@ -204,7 +218,7 @@ export function SettingsGroup({ children, marginTop, marginBottom, style }: Sett
             <View
               style={{
                 height: StyleSheet.hairlineWidth,
-                backgroundColor: t.border,
+                backgroundColor: groupDivider,
                 marginLeft: ROW_PAD_H + TILE_SIZE + ROW_GAP,
               }}
             />

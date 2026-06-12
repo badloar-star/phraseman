@@ -9,7 +9,7 @@ import { resolvePremiumAccess } from './premium_status';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 /**
- * Weekly AI review — turns the learner's ALREADY-COMPUTED mistake analytics into
+ * AI mistake review — turns the learner's ALREADY-COMPUTED mistake analytics into
  * a warm, plain-language summary. The AI does NOT see the raw log and does NOT
  * pick lessons: the client sends a finished briefing (weak/strong categories,
  * recovered categories, weak lessons, top phrases, and a gate-filtered list of
@@ -31,10 +31,10 @@ const BILLING_COLLECTION = 'weekly_review_billing';
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_HOUR = 10;
 
-// One generation per window (premium weekly, free biweekly). Server is the
+// One generation per window (premium every 3 days, free every 7 days). Server is the
 // source of truth — the client gate is bypassable.
-const PREMIUM_WINDOW_DAYS = 7;
-const FREE_WINDOW_DAYS = 14;
+const PREMIUM_WINDOW_DAYS = 3;
+const FREE_WINDOW_DAYS = 7;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 const MAX_OUTPUT_TOKENS = 700;
@@ -65,7 +65,7 @@ interface BriefingWeakCategory {
 interface WeeklyReviewBriefing {
   lang: SupportedLang;
   studyTarget: 'en' | 'fr';
-  windowDays: 7 | 14;
+  windowDays: 3 | 7;
   totalMistakes: number;
   weakCategories: BriefingWeakCategory[];
   strongCategories: Array<{ category: string; label: string }>;
@@ -163,7 +163,7 @@ function sanitizeBriefing(raw: unknown): WeeklyReviewBriefing {
   return {
     lang: asLang(data.lang),
     studyTarget: data.studyTarget === 'fr' ? 'fr' : 'en',
-    windowDays: data.windowDays === 14 ? 14 : 7,
+    windowDays: data.windowDays === 7 ? 7 : 3,
     totalMistakes: clampInt(data.totalMistakes, 0, 1000000),
     weakCategories,
     strongCategories: labelPairs(data.strongCategories, 2),
@@ -207,7 +207,7 @@ async function enforceRateLimit(authUid: string, stableUid: string): Promise<voi
 }
 
 /**
- * Window quota — premium can regenerate every 7 days, free every 14.
+ * Window quota — premium can regenerate every 3 days, free every 7.
  * SERVER is the source of truth (client gate is bypassable).
  *
  * Split into a READ-ONLY check (before the paid call) and a COMMIT (after a
@@ -268,8 +268,8 @@ const LANG_NAMES: Record<SupportedLang, string> = {
 
 function buildSystemPrompt(lang: SupportedLang): string {
   const langName = LANG_NAMES[lang];
-  return `You are "Фил" (Phil), a warm, encouraging English tutor inside the Phraseman app.
-You are writing the learner's WEEKLY REVIEW of their English practice.
+  return `You are "Тео" (Theo), a warm, encouraging English tutor inside the Phraseman app.
+You are writing the learner's mistake review for their English practice.
 
 ABSOLUTE RULES:
 - Write ENTIRELY in ${langName}. Every word of greeting and paragraphs must be in ${langName}.

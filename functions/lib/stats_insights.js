@@ -1,0 +1,422 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.__statsInsightsTestHooks = exports.statsInsightsGenerate = void 0;
+const admin = __importStar(require("firebase-admin"));
+const https_1 = require("firebase-functions/v2/https");
+const params_1 = require("firebase-functions/params");
+const crypto_1 = require("crypto");
+const callable_options_1 = require("./callable_options");
+const auth_identity_1 = require("./auth_identity");
+const premium_status_1 = require("./premium_status");
+const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
+/**
+ * Stats insights — per-block AI micro-notes for the stats/Пульс screen.
+ *
+ * ONE call returns a short, warm note for EACH stats card (balance, rhythm,
+ * year, percentiles, lifetime). The client shows each note under its card.
+ * This avoids N calls per screen open: one generation → 5 personalized lines,
+ * cached client-side, gated by a SERVER window so it regenerates at most once
+ * every few days.
+ *
+ * Generation is LAZY and premium-only: the client only calls this when the
+ * stats screen is opened, premium is active, and the cached note is stale.
+ * A user who does not open the screen costs nothing — there is no cron, no
+ * background fan-out. This is the cheapest possible model.
+ *
+ * The AI does NOT see raw logs. The client sends ALREADY-COMPUTED numbers
+ * (a briefing). The model only describes those numbers; it never invents
+ * facts and never recommends a lesson it was not handed.
+ *
+ * Pattern mirrors weekly_review.ts (key via secret/env, auth.uid as identity,
+ * read-only window check before the paid call, commit after success).
+ *
+ * NOT in deploy:safe whitelist on purpose (spends OpenAI). Deploy point-to-point:
+ *   firebase deploy --only functions:statsInsightsGenerate
+ */
+const REGION = 'us-central1';
+const RATE_COLLECTION = 'stats_insights_rate_limits';
+const QUOTA_COLLECTION = 'stats_insights_quotas';
+const BILLING_COLLECTION = 'stats_insights_billing';
+const GLOBAL_BUDGET_COLLECTION = 'stats_insights_global_budget';
+const WINDOW_MS = 60 * 60 * 1000;
+const MAX_PER_HOUR = 6;
+// One generation per window. Premium regenerates every 3 days. Free never calls
+// (premium-only feature) but a window is kept defensively. SERVER is source of
+// truth — the client gate is bypassable.
+const PREMIUM_WINDOW_DAYS = 3;
+const FREE_WINDOW_DAYS = 7;
+const DAY_MS = 24 * 60 * 60 * 1000;
+// Product-wide daily breaker — protects the wallet from a spike. The feature
+// touches every premium user, so a global cap is worth keeping.
+const GLOBAL_DAILY_CAP = 5000;
+const MAX_OUTPUT_TOKENS = 600;
+const MAX_NOTE_CHARS = 400;
+const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
+const MODEL_DEFAULT = 'gpt-4o-mini';
+const SUPPORTED_LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+// The five stats cards we write notes for. Keep in sync with the client.
+const BLOCK_KEYS = ['balance', 'rhythm', 'year', 'percentiles', 'lifetime'];
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function text(value, max) {
+    return String(value ?? '').trim().slice(0, max);
+}
+function clampInt(value, min, max) {
+    const n = Math.round(Number(value));
+    if (!Number.isFinite(n))
+        return min;
+    return Math.max(min, Math.min(max, n));
+}
+function clampPercentOrNull(value) {
+    if (value === null || value === undefined)
+        return null;
+    const n = Math.round(Number(value));
+    if (!Number.isFinite(n))
+        return null;
+    return Math.max(0, Math.min(100, n));
+}
+function asLang(value) {
+    const v = text(value, 5);
+    return SUPPORTED_LANGS.includes(v) ? v : 'ru';
+}
+function docId(prefix, authUid, stableUid) {
+    const hash = (0, crypto_1.createHash)('sha256').update(`${prefix}|${authUid}|${stableUid}`).digest('hex').slice(0, 48);
+    return `${prefix}_${hash}`;
+}
+function utcDayKey(nowMs) {
+    return new Date(nowMs).toISOString().slice(0, 10);
+}
+/**
+ * Sanitizes the untrusted client briefing into a known-good, length-bounded
+ * shape so a hostile client cannot blow up the prompt.
+ */
+function sanitizeBriefing(raw) {
+    const data = (raw ?? {});
+    const obj = (v) => (v ?? {});
+    const arr = (v) => (Array.isArray(v) ? v : []);
+    const b = obj(data.balance);
+    const r = obj(data.rhythm);
+    const y = obj(data.year);
+    const p = obj(data.percentiles);
+    const l = obj(data.lifetime);
+    const weakCategories = arr(data.weakCategories).slice(0, 3).map((item) => {
+        const c = obj(item);
+        return { label: text(c.label, 80), pct: clampInt(c.pct, 0, 100) };
+    }).filter((c) => c.label);
+    return {
+        lang: asLang(data.lang),
+        studyTarget: data.studyTarget === 'fr' ? 'fr' : 'en',
+        balance: {
+            score: clampInt(b.score, 0, 100),
+            isWarmup: b.isWarmup === true,
+            active7: clampInt(b.active7, 0, 7),
+            avgMinutes: clampInt(b.avgMinutes, 0, 100000),
+        },
+        rhythm: {
+            active7: clampInt(r.active7, 0, 7),
+            xp7: clampInt(r.xp7, 0, 100000000),
+            minutes7: clampInt(r.minutes7, 0, 1000000),
+            bestDay: text(r.bestDay, 24),
+        },
+        year: {
+            activeDays: clampInt(y.activeDays, 0, 366),
+            currentStreak: clampInt(y.currentStreak, 0, 100000),
+            longestStreak: clampInt(y.longestStreak, 0, 100000),
+            bestMonth: text(y.bestMonth, 24),
+            goalPct: clampInt(y.goalPct, 0, 100),
+        },
+        percentiles: {
+            totalXp: clampPercentOrNull(p.totalXp),
+            week: clampPercentOrNull(p.week),
+            daily7: clampPercentOrNull(p.daily7),
+        },
+        lifetime: {
+            words: clampInt(l.words, 0, 100000000),
+            phrases: clampInt(l.phrases, 0, 100000000),
+            quizzes: clampInt(l.quizzes, 0, 100000000),
+            arenaWins: clampInt(l.arenaWins, 0, 100000000),
+            daysActive: clampInt(l.daysActive, 0, 100000),
+        },
+        weakCategories,
+    };
+}
+/**
+ * The screen has barely any signal until there is at least a little activity.
+ * Below this threshold we refuse to spend an API call — the static warmup copy
+ * already covers the empty state.
+ */
+function hasEnoughSignal(b) {
+    return b.lifetime.daysActive >= 2 || b.rhythm.active7 >= 2 || b.lifetime.words >= 3;
+}
+function startOfNextWindow(nowMs, windowDays) {
+    return nowMs + windowDays * DAY_MS;
+}
+async function enforceRateLimit(authUid, stableUid) {
+    const db = admin.firestore();
+    const now = Date.now();
+    const ref = db.collection(RATE_COLLECTION).doc(docId('sir', authUid, stableUid));
+    await db.runTransaction(async (tx) => {
+        const data = (await tx.get(ref)).data() ?? {};
+        const windowStartMs = Number(data.windowStartMs ?? 0);
+        const count = Number(data.count ?? 0);
+        const sameWindow = now - windowStartMs < WINDOW_MS;
+        if (sameWindow && count >= MAX_PER_HOUR) {
+            throw new https_1.HttpsError('resource-exhausted', 'stats_insights_rate_limited');
+        }
+        tx.set(ref, {
+            authUid,
+            stableUid,
+            windowStartMs: sameWindow ? windowStartMs : now,
+            count: sameWindow ? count + 1 : 1,
+            updatedAtMs: now,
+        }, { merge: true });
+    });
+}
+/**
+ * Product-wide daily generation breaker. Throws once the day's count would
+ * exceed GLOBAL_DAILY_CAP. Mirrors explain/explain_budget.ts.
+ */
+async function enforceGlobalBudget(nowMs = Date.now()) {
+    const db = admin.firestore();
+    const ref = db.collection(GLOBAL_BUDGET_COLLECTION).doc(utcDayKey(nowMs));
+    await db.runTransaction(async (tx) => {
+        const genCount = Number((await tx.get(ref)).data()?.genCount ?? 0);
+        if (genCount >= GLOBAL_DAILY_CAP) {
+            throw new https_1.HttpsError('resource-exhausted', 'stats_insights_global_budget_exceeded');
+        }
+        tx.set(ref, { genCount: genCount + 1, updatedAtMs: nowMs }, { merge: true });
+    });
+}
+/**
+ * Window quota. Split into a READ-ONLY check (before the paid call) and a
+ * COMMIT (after success) so a provider failure never burns the user's window.
+ */
+async function assertWindowOpen(authUid, stableUid) {
+    const db = admin.firestore();
+    const now = Date.now();
+    const ref = db.collection(QUOTA_COLLECTION).doc(docId('sirq', authUid, stableUid));
+    const snap = await ref.get();
+    const nextAllowedAtMs = Number(snap.data()?.nextAllowedAtMs ?? 0);
+    if (now < nextAllowedAtMs) {
+        throw new https_1.HttpsError('resource-exhausted', 'stats_insights_not_ready', { nextAllowedAtMs });
+    }
+}
+async function commitWindow(authUid, stableUid, isPremium) {
+    const db = admin.firestore();
+    const now = Date.now();
+    const windowDays = isPremium ? PREMIUM_WINDOW_DAYS : FREE_WINDOW_DAYS;
+    const ref = db.collection(QUOTA_COLLECTION).doc(docId('sirq', authUid, stableUid));
+    return db.runTransaction(async (tx) => {
+        const data = (await tx.get(ref)).data() ?? {};
+        const existingNext = Number(data.nextAllowedAtMs ?? 0);
+        if (now < existingNext) {
+            return existingNext;
+        }
+        const newNext = startOfNextWindow(now, windowDays);
+        tx.set(ref, {
+            authUid,
+            stableUid,
+            isPremium,
+            lastGeneratedAtMs: now,
+            nextAllowedAtMs: newNext,
+            updatedAtMs: now,
+        }, { merge: true });
+        return newNext;
+    });
+}
+// ── Prompt ─────────────────────────────────────────────────────────────────
+const LANG_NAMES = {
+    ru: 'Russian',
+    uk: 'Ukrainian',
+    es: 'Spanish',
+    'pt-BR': 'Brazilian Portuguese',
+    vi: 'Vietnamese',
+    id: 'Indonesian',
+    tr: 'Turkish',
+    pl: 'Polish',
+};
+function buildSystemPrompt(lang) {
+    const langName = LANG_NAMES[lang];
+    return `You are "Тео" (Theo), a warm, encouraging language tutor inside the Phraseman app.
+You write SHORT personal notes that appear under each card of the learner's stats screen.
+
+ABSOLUTE RULES:
+- Write ENTIRELY in ${langName}. Every word must be in ${langName}.
+- You receive a JSON briefing of ALREADY-COMPUTED numbers. Describe ONLY what is in it.
+- NEVER invent numbers, streaks, words, categories, or facts not present in the briefing.
+- Each note is 1–2 short sentences. Be specific: refer to the actual numbers for that block.
+- Do NOT claim that effort (streak, time, XP) causes language knowledge. Use effort only for warm acknowledgement.
+- Tone: a supportive coach. Plain, kind, concrete. Learners are often beginners and 50+. Never condescend, never shame.
+- If a block has almost no data (zeros / warmup), write a gentle one-line nudge instead of pretending there is progress.
+
+THE FIVE BLOCKS (write a note for each):
+- "balance": practice balance score ${'{score}'}/100 (warmup if isWarmup), active7 days, avgMinutes per session. Comment on consistency and session length.
+- "rhythm": this week — active7/7 days, xp7 XP, minutes7 minutes, best day. Comment on the weekly pattern.
+- "year": activeDays active days this year, currentStreak / longestStreak, bestMonth, goalPct% toward the yearly goal. Comment on the long-term picture.
+- "percentiles": how the learner ranks vs others (totalXp%, week%, daily7% — each may be null/absent). If all null, give a neutral encouraging line about focusing on their own pace. Otherwise highlight the best ranking.
+- "lifetime": all-time totals — words, phrases, quizzes, arenaWins, daysActive. Celebrate the biggest non-zero number; if mostly zero, encourage a first milestone.
+
+If weakCategories is non-empty, you MAY weave ONE concrete "what to pull up" suggestion (the category label) into the "balance" or "rhythm" note. Never suggest a topic that is not in weakCategories.
+
+OUTPUT FORMAT — respond with STRICT JSON only, no markdown, matching exactly:
+{
+  "balance": "1-2 sentences in ${langName}",
+  "rhythm": "1-2 sentences in ${langName}",
+  "year": "1-2 sentences in ${langName}",
+  "percentiles": "1-2 sentences in ${langName}",
+  "lifetime": "1-2 sentences in ${langName}"
+}
+Every value must be a non-empty string in ${langName}.`;
+}
+/**
+ * Parses the model JSON into the five known block notes, length-capped. Missing
+ * keys become '' (the client simply hides an empty note). Throws only if the
+ * output is not JSON or every note is empty.
+ */
+function parseAndGuardResult(rawContent) {
+    let parsed;
+    try {
+        parsed = JSON.parse(rawContent);
+    }
+    catch {
+        throw new https_1.HttpsError('unavailable', 'stats_insights_bad_json');
+    }
+    const notes = {};
+    let nonEmpty = 0;
+    for (const key of BLOCK_KEYS) {
+        const note = text(parsed[key], MAX_NOTE_CHARS);
+        notes[key] = note;
+        if (note)
+            nonEmpty += 1;
+    }
+    if (nonEmpty === 0) {
+        throw new https_1.HttpsError('unavailable', 'stats_insights_empty');
+    }
+    return { notes };
+}
+// ── Callable ──────────────────────────────────────────────────────────────────
+exports.statsInsightsGenerate = (0, https_1.onCall)({
+    region: REGION,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK,
+    timeoutSeconds: 30,
+    memory: '512MiB',
+    maxInstances: 10,
+    secrets: [OPENAI_API_KEY],
+}, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    // Do NOT clamp the secret — project-scoped keys can be long; truncation breaks auth.
+    const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    if (!apiKey)
+        throw new https_1.HttpsError('failed-precondition', 'openai_key_missing');
+    const data = (request.data ?? {});
+    // НЕ доверяем data.isPremium из тела — премиум резолвится на сервере ниже
+    // (после resolveStableUidForAuth) из users/{stableUid}.progress.
+    const briefing = sanitizeBriefing(data.briefing);
+    if (!hasEnoughSignal(briefing)) {
+        throw new https_1.HttpsError('failed-precondition', 'stats_insights_insufficient_data');
+    }
+    const db = admin.firestore();
+    const authUid = request.auth.uid;
+    // uid from auth identity — NEVER from request body (security invariant).
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
+    // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
+    // free-юзер прислал бы isPremium:true и получил укороченное (премиум) окно.
+    const isPremium = await (0, premium_status_1.resolvePremiumAccess)(db, stableUid);
+    // Limits BEFORE the paid call. Window is only CHECKED here (read-only) — it is
+    // committed after a successful generation so a provider failure does not lock
+    // the user out for the whole window.
+    await enforceRateLimit(authUid, stableUid);
+    await assertWindowOpen(authUid, stableUid);
+    await enforceGlobalBudget();
+    const messages = [
+        { role: 'system', content: buildSystemPrompt(briefing.lang) },
+        { role: 'user', content: JSON.stringify(briefing) },
+    ];
+    const response = await fetch(OPENAI_CHAT_URL, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${apiKey}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            model: MODEL_DEFAULT,
+            messages,
+            max_tokens: MAX_OUTPUT_TOKENS,
+            temperature: 0.7,
+            response_format: { type: 'json_object' },
+        }),
+    });
+    if (!response.ok) {
+        const detail = await response.text().catch(() => '');
+        console.error('stats_insights chat failed', response.status, detail.slice(0, 500));
+        throw new https_1.HttpsError('unavailable', 'stats_insights_provider_failed');
+    }
+    const json = (await response.json());
+    const content = text(json.choices?.[0]?.message?.content, 4000);
+    if (!content)
+        throw new https_1.HttpsError('unavailable', 'stats_insights_empty_reply');
+    const result = parseAndGuardResult(content);
+    // Generation succeeded — NOW commit the window (so failures above never burn it).
+    const nextAllowedAtMs = await commitWindow(authUid, stableUid, isPremium);
+    const usage = json.usage ?? {};
+    await db.collection(BILLING_COLLECTION).doc().set({
+        uid: stableUid,
+        authUid,
+        model: MODEL_DEFAULT,
+        lang: briefing.lang,
+        studyTarget: briefing.studyTarget,
+        promptTokens: Number(usage.prompt_tokens ?? 0),
+        completionTokens: Number(usage.completion_tokens ?? 0),
+        totalTokens: Number(usage.total_tokens ?? 0),
+        isPremium,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAtMs: Date.now(),
+    });
+    return {
+        ok: true,
+        notes: result.notes,
+        nextAllowedAtMs,
+        model: MODEL_DEFAULT,
+    };
+});
+// Pure functions exposed for unit tests (convention: see weekly_review.ts).
+exports.__statsInsightsTestHooks = {
+    sanitizeBriefing,
+    parseAndGuardResult,
+    buildSystemPrompt,
+    hasEnoughSignal,
+};
+//# sourceMappingURL=stats_insights.js.map

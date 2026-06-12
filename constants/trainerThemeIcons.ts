@@ -11,18 +11,7 @@ export interface TrainerThemeIconPalette {
   muted: string;
 }
 
-// «Чёрное кино»: свои webp-иконки тренера не отрисованы — компасные премиум.
-const CINEMA_TRAINER_PATHS: Record<TrainerThemeIconKind, string> = {
-  phrases: 'assets/images/trainer_theme_icons/compass-premium/phrases.webp',
-  words: 'assets/images/trainer_theme_icons/compass-premium/words.webp',
-  analytics: 'assets/images/trainer_theme_icons/compass-premium/analytics.webp',
-};
-const CINEMA_TRAINER_SOURCES: Record<TrainerThemeIconKind, ImageSourcePropType> = {
-  phrases: require('../assets/images/trainer_theme_icons/compass-premium/phrases.webp'),
-  words: require('../assets/images/trainer_theme_icons/compass-premium/words.webp'),
-  analytics: require('../assets/images/trainer_theme_icons/compass-premium/analytics.webp'),
-};
-
+// Cinema themes use DALL-E object-cutout trainer foreground icons.
 const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
   dark: {
     primary: '#2DD4BF',
@@ -30,13 +19,6 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
     tertiary: '#7DDC8B',
     stroke: '#9DFCE8',
     muted: '#0F5B49',
-  },
-  neon: {
-    primary: '#22D3EE',
-    secondary: '#EC4899',
-    tertiary: '#8B5CF6',
-    stroke: '#D7FBFF',
-    muted: '#3155B7',
   },
   gold: {
     primary: '#FACC15',
@@ -52,26 +34,12 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
     stroke: '#FFF0E7',
     muted: '#8A3D35',
   },
-  minimalLight: {
-    primary: '#8BB9AC',
-    secondary: '#F2A488',
-    tertiary: '#F8F3E8',
-    stroke: '#40514F',
-    muted: '#8B9692',
-  },
   minimalDark: {
     primary: '#6EA8FF',
     secondary: '#4B5563',
     tertiary: '#D1D5DB',
     stroke: '#E5E7EB',
     muted: '#374151',
-  },
-  compass: {
-    primary: '#F2C48D',
-    secondary: '#F2C48D',
-    tertiary: '#FFE4B8',
-    stroke: '#FFF0D2',
-    muted: '#6F5038',
   },
   midnight: {
     primary: '#8FA0FF',
@@ -109,11 +77,6 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     words: 'assets/images/trainer_theme_icons/dark/words.webp',
     analytics: 'assets/images/trainer_theme_icons/dark/analytics.webp',
   },
-  neon: {
-    phrases: 'assets/images/trainer_theme_icons/neon/phrases.webp',
-    words: 'assets/images/trainer_theme_icons/neon/words.webp',
-    analytics: 'assets/images/trainer_theme_icons/neon/analytics.webp',
-  },
   gold: {
     phrases: 'assets/images/trainer_theme_icons/gold/phrases.webp',
     words: 'assets/images/trainer_theme_icons/gold/words.webp',
@@ -124,25 +87,31 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     words: 'assets/images/trainer_theme_icons/coral/words.webp',
     analytics: 'assets/images/trainer_theme_icons/coral/analytics.webp',
   },
-  minimalLight: {
-    phrases: 'assets/images/trainer_theme_icons/minimalLight/phrases.webp',
-    words: 'assets/images/trainer_theme_icons/minimalLight/words.webp',
-    analytics: 'assets/images/trainer_theme_icons/minimalLight/analytics.webp',
-  },
   minimalDark: {
     phrases: 'assets/images/trainer_theme_icons/minimalDark/phrases.webp',
     words: 'assets/images/trainer_theme_icons/minimalDark/words.webp',
     analytics: 'assets/images/trainer_theme_icons/minimalDark/analytics.webp',
   },
-  compass: {
-    phrases: 'assets/images/trainer_theme_icons/compass-premium/phrases.webp',
-    words: 'assets/images/trainer_theme_icons/compass-premium/words.webp',
-    analytics: 'assets/images/trainer_theme_icons/compass-premium/analytics.webp',
+  midnight: {
+    phrases: 'assets/images/trainer_theme_icons/midnight/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/midnight/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/midnight/analytics.webp',
   },
-  midnight: CINEMA_TRAINER_PATHS,
-  ember: CINEMA_TRAINER_PATHS,
-  aurora: CINEMA_TRAINER_PATHS,
-  volt: CINEMA_TRAINER_PATHS,
+  ember: {
+    phrases: 'assets/images/trainer_theme_icons/ember/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/ember/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/ember/analytics.webp',
+  },
+  aurora: {
+    phrases: 'assets/images/trainer_theme_icons/aurora/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/aurora/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/aurora/analytics.webp',
+  },
+  volt: {
+    phrases: 'assets/images/trainer_theme_icons/volt/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/volt/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/volt/analytics.webp',
+  },
 };
 
 const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind, ImageSourcePropType>> = {
@@ -150,11 +119,6 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     phrases: require('../assets/images/trainer_theme_icons/dark/phrases.webp'),
     words: require('../assets/images/trainer_theme_icons/dark/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/dark/analytics.webp'),
-  },
-  neon: {
-    phrases: require('../assets/images/trainer_theme_icons/neon/phrases.webp'),
-    words: require('../assets/images/trainer_theme_icons/neon/words.webp'),
-    analytics: require('../assets/images/trainer_theme_icons/neon/analytics.webp'),
   },
   gold: {
     phrases: require('../assets/images/trainer_theme_icons/gold/phrases.webp'),
@@ -166,25 +130,31 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     words: require('../assets/images/trainer_theme_icons/coral/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/coral/analytics.webp'),
   },
-  minimalLight: {
-    phrases: require('../assets/images/trainer_theme_icons/minimalLight/phrases.webp'),
-    words: require('../assets/images/trainer_theme_icons/minimalLight/words.webp'),
-    analytics: require('../assets/images/trainer_theme_icons/minimalLight/analytics.webp'),
-  },
   minimalDark: {
     phrases: require('../assets/images/trainer_theme_icons/minimalDark/phrases.webp'),
     words: require('../assets/images/trainer_theme_icons/minimalDark/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/minimalDark/analytics.webp'),
   },
-  compass: {
-    phrases: require('../assets/images/trainer_theme_icons/compass-premium/phrases.webp'),
-    words: require('../assets/images/trainer_theme_icons/compass-premium/words.webp'),
-    analytics: require('../assets/images/trainer_theme_icons/compass-premium/analytics.webp'),
+  midnight: {
+    phrases: require('../assets/images/trainer_theme_icons/midnight/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/midnight/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/midnight/analytics.webp'),
   },
-  midnight: CINEMA_TRAINER_SOURCES,
-  ember: CINEMA_TRAINER_SOURCES,
-  aurora: CINEMA_TRAINER_SOURCES,
-  volt: CINEMA_TRAINER_SOURCES,
+  ember: {
+    phrases: require('../assets/images/trainer_theme_icons/ember/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/ember/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/ember/analytics.webp'),
+  },
+  aurora: {
+    phrases: require('../assets/images/trainer_theme_icons/aurora/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/aurora/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/aurora/analytics.webp'),
+  },
+  volt: {
+    phrases: require('../assets/images/trainer_theme_icons/volt/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/volt/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/volt/analytics.webp'),
+  },
 };
 
 export function trainerThemeIconPalette(

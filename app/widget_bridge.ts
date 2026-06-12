@@ -31,7 +31,7 @@ import PhraseWidget from '../modules/phrase-widget';
  * SharedPreferences hold strings).
  */
 export interface WidgetTheme {
-  /** Active app theme id (dark, neon, gold, coral, minimal light/dark, compass). */
+  /** Active app theme id. */
   mode: ThemeMode;
   /** 3-stop vertical gradient top → bottom (hex). */
   gradientTop: string;

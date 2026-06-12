@@ -260,12 +260,9 @@ function shellSakura(): CardPackPaywallTheme {
 
 const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   dark: shellDark(),
-  neon: shellNeon(),
   gold: shellGold(),
   coral: shellCoral(),
-  minimalLight: shellGold(),
   minimalDark: shellDark(),
-  compass: shellOnboardingGraphite(),
   // «Чёрное кино»: переиспользуем графитовую оболочку — на чистом чёрном она садится без правок.
   midnight: shellOnboardingGraphite(),
   ember: shellOnboardingGraphite(),

@@ -34,6 +34,11 @@ import Purchases, { type PurchasesPackage } from 'react-native-purchases';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
+import {
+  inferPremiumPlanFromProductId,
+  persistStorePremiumLocally,
+  revenueCatPremiumMetadata,
+} from './premium_revenuecat_state';
 import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
 import { getPaywallThemeConfig } from '../components/paywallThemeConfig';
 import {
@@ -48,6 +53,8 @@ import { safeRouterBack } from './navigation_back';
 import { DEV_IAP_BYPASS } from './config';
 import { trackEvent } from './analytics';
 import { useLocalSearchParams } from 'expo-router';
+import { emitAppEvent } from './events';
+import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../constants/screenBackground';
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 type Plan = 'monthly' | 'yearly';
@@ -64,15 +71,10 @@ function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
 }
 
 // ── фоновые градиенты — глубина и атмосфера для каждой темы ──────────────────
-const BG_GRADIENTS: Record<string, [string, string, string]> = {
-  dark:         ['#040c07', '#0b1610', '#040c07'],
-  neon:         ['#050707', '#090d07', '#050707'],
-  gold:         ['#080601', '#100d04', '#080601'],
-  coral:        ['#090404', '#110707', '#090404'],
-  minimalLight: ['#d4d7e6', '#e4e6f2', '#d4d7e6'],
-  minimalDark:  ['#080809', '#0e0e11', '#080809'],
-  compass:      ['#0b0904', '#130f06', '#0b0904'],
-};
+function screenBgTuple(themeMode: string): [string, string, string] {
+  const stops = SCREEN_BG_GRADIENTS[themeMode as keyof typeof SCREEN_BG_GRADIENTS] ?? SCREEN_BG_GRADIENTS.dark;
+  return [stops[0], stops[1] ?? stops[0], stops[2] ?? stops[1] ?? stops[0]];
+}
 
 // ── звёзды ───────────────────────────────────────────────────────────────────
 const FIVE_STARS = ['★', '★', '★', '★', '★'] as const;
@@ -101,8 +103,8 @@ export default function PremiumModalV2() {
   }, [ctx, source]);
   const insets = useSafeAreaInsets();
   const tc = getPaywallThemeConfig(themeMode);
-  const bgColors = BG_GRADIENTS[themeMode] ?? BG_GRADIENTS.dark;
-  const isLight = themeMode === 'minimalLight';
+  const bgColors = screenBgTuple(themeMode);
+  const isLight = false;
 
   // ── state ────────────────────────────────────────────────────────────────
   const [selected, setSelected] = useState<Plan>('yearly');
@@ -223,7 +225,11 @@ export default function PremiumModalV2() {
         void trackEvent('purchase_failed', { context: ctx, plan: selected, paywall: 'v2', error: 'identity_sync' });
         return;
       }
-      await Purchases.purchasePackage(pkg); // передаём RAW пакет — цена магазина без изменений
+      const { customerInfo } = await Purchases.purchasePackage(pkg); // передаём RAW пакет — цена магазина без изменений
+      const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
+      const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
+      await persistStorePremiumLocally(confirmedPlan, metadata);
+      emitAppEvent('premium_activated');
       void trackEvent('purchase_completed', { context: ctx, source, plan: selected, product_id: pkg.product.identifier, with_trial: hasTrial, paywall: 'v2' });
       if (hasTrial) void trackEvent('trial_started', { context: ctx, plan: selected, product_id: pkg.product.identifier, paywall: 'v2' });
       safeRouterBack(router);
@@ -245,8 +251,20 @@ export default function PremiumModalV2() {
     setRestoring(true);
     try {
       await initRevenueCat();
+      if (!(await syncRevenueCatIdentity())) {
+        Alert.alert('Ошибка подключения', 'Не удалось связаться с магазином. Попробуй позже.');
+        return;
+      }
       const info = await Purchases.restorePurchases();
-      if (Object.keys(info.entitlements.active).length > 0) {
+      const activeSubscriptions = info.activeSubscriptions ?? [];
+      if (Object.keys(info.entitlements.active).length > 0 || activeSubscriptions.length > 0) {
+        const metadata = revenueCatPremiumMetadata(info);
+        const plan = inferPremiumPlanFromProductId(
+          metadata.productId,
+          activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly',
+        );
+        await persistStorePremiumLocally(plan, metadata);
+        emitAppEvent('premium_activated');
         void trackEvent('subscription_restored', { context: ctx, paywall: 'v2' });
         safeRouterBack(router);
       } else {
@@ -257,7 +275,7 @@ export default function PremiumModalV2() {
     } finally {
       setRestoring(false);
     }
-  }, [router]);
+  }, [router, ctx]);
 
   // ── цвета адаптивные к теме ───────────────────────────────────────────────
   const textPrimary = isLight ? '#0c0c18' : '#FFFFFF';

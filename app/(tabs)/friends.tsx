@@ -30,6 +30,7 @@ import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId,
 import { getLevelFromXP, getXPProgress, type ThemeMode } from '../../constants/theme';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import {
   normalizeProfileCardLevel,
   normalizeProfileCardMotion,
@@ -91,8 +92,14 @@ import {
   FRIEND_GIFT_CATALOG,
   isFriendGiftsCloudEnabled,
   sendFriendGiftWithShards,
+  sendFriendGiftThanks,
   type FriendGiftId,
 } from '../friend_gifts';
+import {
+  claimFriendQuestReward,
+  getActiveFriendQuest,
+  type FriendQuest,
+} from '../friend_quests';
 import { checkAchievements } from '../achievements';
 import { ReferralExplainerCard } from '../referral_explainer_card';
 import { ReferralAccessActivatedModal } from '../referral_access_activated_modal';
@@ -151,7 +158,7 @@ type FriendsChrome = {
 };
 
 function makeFriendsChrome(themeMode: ThemeMode, t: any): FriendsChrome {
-  if (themeMode === 'neon') {
+  if (false) {
     return {
       card: 'rgba(32,32,32,0.76)',
       cardSoft: 'rgba(32,32,32,0.70)',
@@ -1082,6 +1089,74 @@ function eventIconColor(type: FriendEvent['type'], accent: string): string {
 
 // ── Activity tab ──────────────────────────────────────────────────────────────
 
+function FriendQuestStartedModal({
+  visible, onClose, L, f,
+}: {
+  visible: boolean;
+  onClose: () => void;
+  L: (...args: string[]) => string;
+  f: any;
+}) {
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
+        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+          <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(232,195,106,0.42)']} style={{ padding: 22, gap: 14 }}>
+            <View style={{ width: 66, height: 66, borderRadius: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#2A2115' }}>
+              <Ionicons name="people-circle-outline" size={38} color="#FFE5A6" />
+            </View>
+            <Text style={{ color: '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+              {L('Совместная миссия началась', 'Спільна місія почалася', 'Friend quest started', 'Missão conjunta iniciada', 'Nhiệm vụ bạn bè bắt đầu', 'Quest teman dimulai', 'Arkadaş görevi başladı', 'Misja ze znajomym rozpoczęta')}
+            </Text>
+            <Text style={{ color: '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
+              {L('Наберите оба по 3000 XP за 24 часа и получите по 10 шардов и 1000 XP.', 'Наберіть обидва по 3000 XP за 24 години й отримайте по 10 шардів і 1000 XP.', 'Both of you need 3000 XP in 24 hours to earn 10 shards and 1000 XP each.', 'Ambos precisam de 3000 XP em 24 horas para ganhar 10 shards e 1000 XP.', 'Cả hai cần 3000 XP trong 24 giờ để nhận 10 shards và 1000 XP.', 'Kumpulkan masing-masing 3000 XP dalam 24 jam untuk mendapat 10 shard dan 1000 XP.', '24 saatte ikiniz de 3000 XP toplayın, 10 shard ve 1000 XP kazanın.', 'Zdobądźcie po 3000 XP w 24 godziny, aby dostać po 10 shardów i 1000 XP.')}
+            </Text>
+            <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D7A83B' }}>
+              <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+                {L('Вперёд', 'Уперед', 'Let’s go', 'Vamos', 'Bắt đầu', 'Mulai', 'Başla', 'Start')}
+              </Text>
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
+function FriendQuestCompletedModal({
+  visible, onClose, L, f,
+}: {
+  visible: boolean;
+  onClose: () => void;
+  L: (...args: string[]) => string;
+  f: any;
+}) {
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: 'rgba(9, 8, 12, 0.72)' }}>
+        <View style={{ width: '100%', maxWidth: 372, borderRadius: 24, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 1, borderColor: 'rgba(156,115,45,0.32)' }}>
+          <LinearGradient colors={['rgba(255,248,221,0.98)', 'rgba(52,199,89,0.24)']} style={{ padding: 22, gap: 14 }}>
+            <View style={{ width: 66, height: 66, borderRadius: 22, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#19351F' }}>
+              <Ionicons name="sparkles-outline" size={38} color="#B9F6C9" />
+            </View>
+            <Text style={{ color: '#21170B', fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
+              {L('Миссия выполнена', 'Місію виконано', 'Quest complete', 'Missão concluída', 'Hoàn thành nhiệm vụ', 'Quest selesai', 'Görev tamamlandı', 'Misja wykonana')}
+            </Text>
+            <Text style={{ color: '#4E3B1D', fontSize: f.sub, lineHeight: f.sub + 5, textAlign: 'center' }}>
+              {L('Награда начислена вам обоим: 10 шардов и 1000 XP.', 'Нагороду нараховано вам обом: 10 шардів і 1000 XP.', 'Reward granted to both of you: 10 shards and 1000 XP.', 'Recompensa enviada para ambos: 10 shards e 1000 XP.', 'Cả hai đã nhận thưởng: 10 shards và 1000 XP.', 'Hadiah untuk kalian berdua: 10 shard dan 1000 XP.', 'Ödül ikinize de verildi: 10 shard ve 1000 XP.', 'Nagroda dla was obojga: 10 shardów i 1000 XP.')}
+            </Text>
+            <TouchableOpacity activeOpacity={0.86} onPress={onClose} style={{ minHeight: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: '#34C759' }}>
+              <Text style={{ color: '#071E0C', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }}>
+                {L('Отлично', 'Чудово', 'Nice', 'Boa', 'Tuyệt', 'Mantap', 'Harika', 'Super')}
+              </Text>
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
 function ActivityTab({
   friendUids, profiles, lang, t, f, chrome,
 }: {
@@ -1408,6 +1483,7 @@ function AddFriendModal({
 // ── Main screen ───────────────────────────────────────────────────────────────
 
 export default function FriendsTabScreen() {
+  const tabContentBottomPad = useTabContentBottomPad();
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
@@ -1418,7 +1494,7 @@ export default function FriendsTabScreen() {
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const chrome = useMemo(() => makeFriendsChrome(themeMode, t), [themeMode, t]);
-  const sentGiftChrome = themeMode === 'compass'
+  const sentGiftChrome = false
     ? {
         shellColors: ['rgba(21,24,18,0.98)', 'rgba(13,16,12,0.98)', 'rgba(2,3,4,0.98)'] as const,
         shellRadius: 8,
@@ -1631,6 +1707,10 @@ export default function FriendsTabScreen() {
     dailyRemaining?: number;
   } | null>(null);
   const [incomingGiftModal, setIncomingGiftModal] = useState<{ gifts: IncomingFriendGift[] } | null>(null);
+  const [activeFriendQuest, setActiveFriendQuest] = useState<FriendQuest | null>(null);
+  const [friendQuestStarted, setFriendQuestStarted] = useState<FriendQuest | null>(null);
+  const [friendQuestCompleted, setFriendQuestCompleted] = useState<FriendQuest | null>(null);
+  const [friendQuestBusy, setFriendQuestBusy] = useState(false);
 
   const mountedRef = useRef(true);
   /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
@@ -1718,14 +1798,25 @@ export default function FriendsTabScreen() {
     }
   }, [L, lang]);
 
+  const refreshFriendQuest = useCallback(async (cancelled?: { current: boolean }) => {
+    try {
+      const res = await getActiveFriendQuest();
+      if (cancelled?.current) return;
+      setActiveFriendQuest(res.quest && res.quest.status !== 'expired' && res.quest.status !== 'completed' ? res.quest : null);
+    } catch {
+      if (!cancelled?.current) setActiveFriendQuest(null);
+    }
+  }, []);
+
   useFocusEffect(
     useCallback(() => {
       const cancelled = { current: false };
       void ensureFriendRequestViewerAuthLink();
       void pollIncomingFriendGifts(cancelled);
+      void refreshFriendQuest(cancelled);
       void refreshReferralState();
       return () => { cancelled.current = true; };
-    }, [pollIncomingFriendGifts, refreshReferralState]),
+    }, [pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]),
   );
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
@@ -2062,7 +2153,7 @@ export default function FriendsTabScreen() {
       pl: gift.descPl,
     });
 
-  const handleSendGift = async (giftId: FriendGiftId, explicitTarget: FriendProfile | null = giftTarget) => {
+  const handleSendGift = async (giftId: FriendGiftId, explicitTarget: FriendProfile | null = giftTarget, balanceOverride = giftBalance) => {
     if (!explicitTarget || giftBusyId) return;
     const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
     if (!gift) return;
@@ -2070,7 +2161,7 @@ export default function FriendsTabScreen() {
       showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronizacion en la nube', 'Os presentes exigem sincronização na nuvem', 'Quà tặng cần đồng bộ đám mây', 'Hadiah memerlukan sinkronisasi cloud', 'Hediyeler için bulut senkronizasyonu gerekir', 'Prezenty wymagają synchronizacji w chmurze'));
       return;
     }
-    if (giftBalance < gift.costShards) {
+    if (balanceOverride < gift.costShards) {
       showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków'));
       return;
     }
@@ -2093,6 +2184,13 @@ export default function FriendsTabScreen() {
         balanceAfter: res.senderBalanceAfter,
         dailyRemaining: res.dailyRemaining,
       });
+      if (res.questStarted && res.quest) {
+        const quest = res.quest as FriendQuest;
+        setActiveFriendQuest(quest);
+        setFriendQuestStarted(quest);
+      } else {
+        void refreshFriendQuest();
+      }
       showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
       emitAppEvent('action_toast', {
         type: 'success',
@@ -2152,6 +2250,78 @@ export default function FriendsTabScreen() {
     setGiftConfirm({ target: giftTarget, giftId });
   };
 
+  const incomingReplyTarget = useCallback((gift: IncomingFriendGift): FriendProfile => {
+    const cached = profiles[gift.fromUid];
+    return cached ?? {
+      uid: gift.fromUid,
+      name: gift.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy'),
+      totalXp: 0,
+      weeklyXp: 0,
+      streak: 0,
+      isPremium: false,
+      isVip: false,
+      avatar: String(getBestAvatarForLevel(1)),
+      frame: String(getBestFrameForLevel(1).id),
+    };
+  }, [L, profiles]);
+
+  const handleIncomingGiftThanks = useCallback(async () => {
+    const first = incomingGiftModal?.gifts[0];
+    if (!first || giftBusyId) return;
+    hapticTap();
+    setGiftBusyId(first.giftId as FriendGiftId);
+    try {
+      await sendFriendGiftThanks({
+        friendStableId: first.fromUid,
+        giftId: first.giftId as FriendGiftId,
+        senderDisplayName: myProfile?.name ?? '',
+      });
+      setIncomingGiftModal(null);
+      showFeedback(L('Спасибо отправлено', 'Подяку надіслано', 'Thanks sent', 'Agradecimento enviado', 'Đã gửi lời cảm ơn', 'Ucapan terima kasih terkirim', 'Teşekkür gönderildi', 'Podziękowanie wysłane'));
+      void invalidateFriendsActivityCache();
+    } catch {
+      showFeedback(L('Не удалось отправить спасибо', 'Не вдалося надіслати подяку', 'Could not send thanks', 'Não foi possível agradecer', 'Không gửi được lời cảm ơn', 'Gagal mengirim terima kasih', 'Teşekkür gönderilemedi', 'Nie udało się podziękować'));
+    } finally {
+      setGiftBusyId(null);
+    }
+  }, [L, giftBusyId, incomingGiftModal, myProfile?.name, showFeedback]);
+
+  const handleIncomingGiftReply = useCallback(async (giftId: FriendGiftId) => {
+    const first = incomingGiftModal?.gifts[0];
+    if (!first || giftBusyId) return;
+    const target = incomingReplyTarget(first);
+    const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
+    if (!gift) return;
+    const balance = await getShardsBalance().catch(() => 0);
+    if (balance < gift.costShards) {
+      setIncomingGiftModal(null);
+      router.push({ pathname: '/shards_shop', params: { need: String(gift.costShards - balance), source: 'friend_gift_reply' } } as any);
+      return;
+    }
+    setIncomingGiftModal(null);
+    await handleSendGift(giftId, target, balance);
+  }, [giftBusyId, handleSendGift, incomingGiftModal, incomingReplyTarget, router]);
+
+  const handleClaimFriendQuest = useCallback(async () => {
+    if (!activeFriendQuest || friendQuestBusy) return;
+    hapticTap();
+    setFriendQuestBusy(true);
+    try {
+      const res = await claimFriendQuestReward(activeFriendQuest.questId);
+      if (res.reached) {
+        setFriendQuestCompleted(activeFriendQuest);
+        setActiveFriendQuest(null);
+      } else {
+        void refreshFriendQuest();
+        showFeedback(L('Квест ещё не выполнен', 'Квест ще не виконано', 'Quest is not finished yet', 'A missão ainda não terminou', 'Nhiệm vụ chưa xong', 'Quest belum selesai', 'Görev henüz bitmedi', 'Misja nie jest jeszcze gotowa'));
+      }
+    } catch {
+      showFeedback(L('Не удалось забрать награду', 'Не вдалося забрати нагороду', 'Could not claim reward', 'Não foi possível receber a recompensa', 'Không nhận được thưởng', 'Gagal mengambil hadiah', 'Ödül alınamadı', 'Nie udało się odebrać nagrody'));
+    } finally {
+      setFriendQuestBusy(false);
+    }
+  }, [L, activeFriendQuest, friendQuestBusy, refreshFriendQuest, showFeedback]);
+
   const openProfile = useCallback((profile: FriendProfile) => {
     hapticTap();
     setSelectedPlayer({
@@ -2205,6 +2375,23 @@ export default function FriendsTabScreen() {
   /** Сводка по статусам приглашений — для бейджа на кнопке хедера и модалки. */
   const referralSummary = useMemo(() => summarizeInvites(referralInvites), [referralInvites]);
 
+  const friendQuestPeerUid = useMemo(() => {
+    if (!activeFriendQuest) return '';
+    return activeFriendQuest.participantUids.find(uid => !!profiles[uid] || friends.some(friend => friend.uid === uid)) ?? activeFriendQuest.participantUids[1] ?? '';
+  }, [activeFriendQuest, friends, profiles]);
+  const friendQuestMyUid = useMemo(() => {
+    if (!activeFriendQuest) return '';
+    return activeFriendQuest.participantUids.find(uid => uid !== friendQuestPeerUid) ?? activeFriendQuest.participantUids[0] ?? '';
+  }, [activeFriendQuest, friendQuestPeerUid]);
+  const friendQuestPeerName = profiles[friendQuestPeerUid]?.name || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
+  const friendQuestMyProgress = activeFriendQuest ? Math.min(activeFriendQuest.targetXp, activeFriendQuest.progressByUid[friendQuestMyUid] ?? 0) : 0;
+  const friendQuestPeerProgress = activeFriendQuest ? Math.min(activeFriendQuest.targetXp, activeFriendQuest.progressByUid[friendQuestPeerUid] ?? 0) : 0;
+  const friendQuestMyRemaining = activeFriendQuest ? Math.max(0, activeFriendQuest.remainingXpByUid[friendQuestMyUid] ?? activeFriendQuest.targetXp) : 0;
+  const friendQuestPeerRemaining = activeFriendQuest ? Math.max(0, activeFriendQuest.remainingXpByUid[friendQuestPeerUid] ?? activeFriendQuest.targetXp) : 0;
+  const friendQuestReady = !!activeFriendQuest && friendQuestMyRemaining === 0 && friendQuestPeerRemaining === 0;
+  const friendQuestMsLeft = activeFriendQuest ? Math.max(0, activeFriendQuest.expiresAtMs - Date.now()) : 0;
+  const friendQuestHoursLeft = Math.max(0, Math.ceil(friendQuestMsLeft / 3600000));
+
   const PX = 16;
 
   // ── Render ─────────────────────────────────────────────────────────────────
@@ -2216,7 +2403,7 @@ export default function FriendsTabScreen() {
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX, paddingTop: insets.top }}
+        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: PX, paddingTop: insets.top }}
         decelerationRate="normal"
         scrollEventThrottle={16}
         bounces
@@ -2339,6 +2526,69 @@ export default function FriendsTabScreen() {
         </View>
         {activeTab === 'friends' && (
           <>
+            {activeFriendQuest && (
+              <View
+                testID="friend-quest-card"
+                style={{
+                  marginBottom: 16,
+                  borderRadius: 16,
+                  padding: 14,
+                  backgroundColor: chrome.card,
+                  borderWidth: 1,
+                  borderColor: chrome.border,
+                  gap: 12,
+                }}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                  <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center' }}>
+                    <Ionicons name="flash-outline" size={19} color={t.correctText} />
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
+                      {L('Совместный квест', 'Спільний квест', 'Friend Quest', 'Missão em dupla', 'Nhiệm vụ bạn bè', 'Quest teman', 'Arkadaş görevi', 'Misja znajomych')}
+                    </Text>
+                    <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }}>
+                      {L(`По 3000 XP за 24 часа · ${friendQuestHoursLeft}ч`, `По 3000 XP за 24 год · ${friendQuestHoursLeft}год`, `3000 XP each · ${friendQuestHoursLeft}h`, `3000 XP cada · ${friendQuestHoursLeft}h`, `Mỗi người 3000 XP · ${friendQuestHoursLeft}h`, `Masing-masing 3000 XP · ${friendQuestHoursLeft}j`, `Kişi başı 3000 XP · ${friendQuestHoursLeft}sa`, `Po 3000 XP · ${friendQuestHoursLeft}h`)}
+                    </Text>
+                  </View>
+                  {friendQuestReady && (
+                    <TouchableOpacity
+                      testID="friend-quest-claim"
+                      activeOpacity={0.84}
+                      disabled={friendQuestBusy}
+                      onPress={handleClaimFriendQuest}
+                      style={{ minHeight: 44, borderRadius: 14, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
+                    >
+                      <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>
+                        {L('Забрать', 'Забрати', 'Claim', 'Receber', 'Nhận', 'Klaim', 'Al', 'Odbierz')}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+                {[
+                  { id: 'friend-quest-my-progress', name: L('Ты', 'Ти', 'You', 'Você', 'Bạn', 'Kamu', 'Sen', 'Ty'), progress: friendQuestMyProgress, remaining: friendQuestMyRemaining },
+                  { id: 'friend-quest-friend-progress', name: friendQuestPeerName, progress: friendQuestPeerProgress, remaining: friendQuestPeerRemaining },
+                ].map(row => {
+                  const pct = activeFriendQuest.targetXp > 0 ? Math.min(100, Math.round((row.progress / activeFriendQuest.targetXp) * 100)) : 0;
+                  return (
+                    <View key={row.id} testID={row.id} style={{ gap: 6 }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                        <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', flex: 1 }} numberOfLines={1}>{row.name}</Text>
+                        <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
+                          {row.remaining > 0 ? L(`ещё ${row.remaining} XP`, `ще ${row.remaining} XP`, `${row.remaining} XP left`, `faltam ${row.remaining} XP`, `còn ${row.remaining} XP`, `sisa ${row.remaining} XP`, `${row.remaining} XP kaldı`, `zostało ${row.remaining} XP`) : L('готово', 'готово', 'ready', 'pronto', 'xong', 'siap', 'hazır', 'gotowe')}
+                        </Text>
+                      </View>
+                      <View style={{ height: 9, borderRadius: 5, backgroundColor: chrome.surface, overflow: 'hidden' }}>
+                        <View style={{ width: `${pct}%`, height: '100%', borderRadius: 5, backgroundColor: row.remaining === 0 ? '#34C759' : t.accent }} />
+                      </View>
+                    </View>
+                  );
+                })}
+                <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '700' }}>
+                  {L('+10 осколков и +1000 XP каждому', '+10 осколків і +1000 XP кожному', '+10 shards and +1000 XP each', '+10 fragmentos e +1000 XP para cada', '+10 mảnh và +1000 XP mỗi người', '+10 pecahan dan +1000 XP masing-masing', 'Herkese +10 parça ve +1000 XP', '+10 odłamków i +1000 XP dla każdego')}
+                </Text>
+              </View>
+            )}
             {requests.length > 0 && (
               <>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
@@ -2793,6 +3043,7 @@ export default function FriendsTabScreen() {
                   <View style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', width: 98, height: 98 }}>
                     <View style={{ position: 'absolute', width: 98, height: 98, borderRadius: 49, backgroundColor: 'rgba(214,157,44,0.14)' }} />
                     <LinearGradient
+                      testID={`friend-gift-rank-${iconGiftId || 'generic'}`}
                       colors={['#FFF8DD', '#E8C36A', '#B78628']}
                       start={{ x: 0.15, y: 0 }}
                       end={{ x: 0.9, y: 1 }}
@@ -2829,6 +3080,45 @@ export default function FriendsTabScreen() {
                 </>
               );
             })() : null}
+              {incomingGiftModal?.gifts[0] && (
+                <View style={{ gap: 8 }}>
+                  <TouchableOpacity
+                    testID="friend-gift-reply-thanks"
+                    activeOpacity={0.86}
+                    disabled={giftBusyId !== null}
+                    onPress={handleIncomingGiftThanks}
+                    style={{ minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.62)', borderWidth: 1, borderColor: 'rgba(126,88,27,0.16)' }}
+                  >
+                    <Text style={{ color: '#3D2B10', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                      {L('Сказать спасибо', 'Сказати дякую', 'Say thanks', 'Agradecer', 'Cảm ơn', 'Ucapkan terima kasih', 'Teşekkür et', 'Podziękuj')}
+                    </Text>
+                  </TouchableOpacity>
+                  <View style={{ flexDirection: 'row', gap: 8 }}>
+                    <TouchableOpacity
+                      testID="friend-gift-reply-shield"
+                      activeOpacity={0.86}
+                      disabled={giftBusyId !== null}
+                      onPress={() => void handleIncomingGiftReply('chain_shield_1')}
+                      style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#272015', borderWidth: 1, borderColor: 'rgba(255,255,255,0.16)' }}
+                    >
+                      <Text style={{ color: '#FFF7DF', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                        {L('Ответить щитом', 'Відповісти щитом', 'Send shield', 'Enviar escudo', 'Gửi khiên', 'Kirim perisai', 'Kalkan gönder', 'Wyślij tarczę')}
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      testID="friend-gift-reply-boost"
+                      activeOpacity={0.86}
+                      disabled={giftBusyId !== null}
+                      onPress={() => void handleIncomingGiftReply('xp_boost_2x_24h')}
+                      style={{ flex: 1, minHeight: 44, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#D7A83B' }}
+                    >
+                      <Text style={{ color: '#241905', fontSize: f.sub, fontWeight: '900', textAlign: 'center' }} numberOfLines={1}>
+                        {L('Отправить буст', 'Надіслати буст', 'Send boost', 'Enviar boost', 'Gửi boost', 'Kirim boost', 'Boost gönder', 'Wyślij boost')}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity
                   testID="friend-gift-received-open-inventory"
@@ -2859,6 +3149,20 @@ export default function FriendsTabScreen() {
           </LinearGradient>
         </View>
       </Modal>
+
+      <FriendQuestStartedModal
+        visible={friendQuestStarted !== null}
+        onClose={() => setFriendQuestStarted(null)}
+        L={L}
+        f={f}
+      />
+
+      <FriendQuestCompletedModal
+        visible={friendQuestCompleted !== null}
+        onClose={() => setFriendQuestCompleted(null)}
+        L={L}
+        f={f}
+      />
 
       <ReferralAccessActivatedModal
         visible={activatedModal !== null}

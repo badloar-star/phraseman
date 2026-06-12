@@ -17,7 +17,9 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import { requireOpenAiDevSpendGuard } from './openai-dev-guard.mjs';
 
+// Requires PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 before any OpenAI batch spend.
 const API_KEY = process.env.OPENAI_API_KEY;
 if (!API_KEY) {
   console.error('ERROR: Set OPENAI_API_KEY env variable');
@@ -30,6 +32,13 @@ if (phrases.length === 0) {
   console.error('Usage: OPENAI_API_KEY=sk-... node scripts/regen_phrase_audio.mjs "Your phrase here"');
   process.exit(1);
 }
+
+const estimatedChars = phrases.reduce((sum, phrase) => sum + phrase.length, 0);
+requireOpenAiDevSpendGuard({
+  action: 'OpenAI TTS regeneration for selected phrases',
+  estimatedCostUsd: (estimatedChars / 1000) * 0.030,
+  units: phrases.length,
+});
 
 const VOICE = 'nova';
 const MODEL = 'tts-1-hd';

@@ -13,7 +13,7 @@ export function premiumMemberNameStyle(
   themeMode?: string,
 ): TextStyle {
   if (!isPremium) return base;
-  const isSketch = themeMode === 'minimalLight';
+  const isSketch = false;
   return {
     ...base,
     color: isSketch ? PREMIUM_MEMBER_NAME_GOLD_SKETCH : PREMIUM_MEMBER_NAME_GOLD,
@@ -29,7 +29,7 @@ export function memberNameStatusStyle(
 ): TextStyle {
   if (opts.isPremium) return premiumMemberNameStyle(base, true, opts.themeMode);
   if (!opts.isVip) return base;
-  const isSketch = opts.themeMode === 'minimalLight';
+  const isSketch = false;
   return {
     ...base,
     color: isSketch ? VIP_MEMBER_NAME_GREEN_SKETCH : VIP_MEMBER_NAME_GREEN,

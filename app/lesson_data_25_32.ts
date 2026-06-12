@@ -7035,7 +7035,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
       { text: 'that', correct: 'that', distractors: ['this', 'these', 'those', 'than', 'then'] },
       { text: 'old', correct: 'old', distractors: ['older', 'oldest', 'gold', 'cold', 'hold'] },
       { text: 'jazz', correct: 'jazz', distractors: ['jaw', 'joy', 'jar', 'jam', 'jet'] },
-      { text: 'composition', correct: 'composition', distractors: ['compose', 'computer', 'company', 'comfort', 'compass'] },
+      { text: 'composition', correct: 'composition', distractors: ['compose', 'computer', 'company', 'comfort'] },
     ],
   },
   {

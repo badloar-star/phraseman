@@ -47,7 +47,7 @@ const TABLE_COL_MIN_W = 132;
 
 function theoryColors(t: any, themeMode: any) {
   const sx = screenTextOnGradient(t, themeMode);
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight';
+  const isLight = themeMode === 'ocean' || themeMode === 'sakura' || false;
   return {
     primary: sx.primary,
     body: sx.primary,
@@ -188,7 +188,7 @@ function Table({ rows, t, f }: { rows: string[][]; t: any; f?: any }) {
       onLayout={e => setContainerW(e.nativeEvent.layout.width)}
     >
       <View style={{ borderRadius: 10, borderWidth: 1, borderColor: c.border, overflow: 'hidden' }}>
-        <ScrollView
+        <Animated.ScrollView
           horizontal
           decelerationRate="normal"
           showsHorizontalScrollIndicator={false}
@@ -215,7 +215,7 @@ function Table({ rows, t, f }: { rows: string[][]; t: any; f?: any }) {
               </View>
             ))}
           </View>
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
 
       {/* Кастомный индикатор горизонтального скролла */}

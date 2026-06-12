@@ -76,7 +76,7 @@ function localeReviewsFor(locales: string[]) {
   }));
 }
 
-const ACTIVE_VISUAL_FAMILIES = ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark'] as const;
+const ACTIVE_VISUAL_FAMILIES = ['forest', 'dark', 'neonGreen', 'gold', 'coral', 'minimalDark'] as const;
 
 function visualAssetsFor(categoryId: string) {
   return {

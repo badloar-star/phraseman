@@ -1,10 +1,10 @@
 /**
- * Голосовой ИИ-компаньон — открытый разговор с Филом (MVP-1, Wave 2).
+ * Голосовой ИИ-компаньон — открытый разговор с Тео (MVP-1, Wave 2).
  * План: docs/reports/ai_companion_mvp1_plan_2026-06-10.md
  *
  * Отличия от сценарного ai_dialog_session.tsx:
  * - режим 'companion' (открытый разговор, без роли/цели сценария);
- * - Фил «знает» ученика — память (профиль + слабые слова из SRS) собирается
+ * - Тео «знает» ученика — память (профиль + слабые слова из SRS) собирается
  *   на первом ходу через buildCompanionMemory и уходит в premium_dialog;
  * - НЕТ teaser-обрыва на N ходов (это друг, а не задание) — лимит держит
  *   free-счётчик диалогов/день, как и раньше;
@@ -13,7 +13,7 @@
  * Голос (hold-to-talk + TTS) — добавляется поверх по итогам Спайка 0; здесь
  * текст-нить как фундамент. Маршрут expo-router: /ai_companion_session.
  */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -40,6 +40,7 @@ import { getFreeDialogsLeftToday, markFreeDialogUsed } from './dialogs_limit_ses
 import { trackEvent } from './analytics';
 
 const DEFAULT_CEFR = 'A2';
+const LOCAL_COMPANION_GREETING = 'Let\'s practice in English! What did you do today?';
 
 interface UiMessage {
   role: 'user' | 'assistant';
@@ -74,12 +75,12 @@ export default function AiCompanionSession() {
     return mem;
   }, [studyTarget]);
 
-  const sendToPhil = useCallback(
-    async (userText: string | null, history: DialogChatTurn[]) => {
+  const sendToTheo = useCallback(
+    async (userText: string, history: DialogChatTurn[]) => {
       const memory = await ensureMemory();
       return callPremiumDialogSend({
         mode: 'companion',
-        userText: userText ?? '(start the conversation: greet me warmly by giving one friendly opening line and one easy question)',
+        userText,
         cefr: DEFAULT_CEFR,
         history,
         memory,
@@ -90,7 +91,7 @@ export default function AiCompanionSession() {
   );
 
   const send = useCallback(
-    async (text: string, fromSuggested = false) => {
+    async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || sending) return;
       hapticTap();
@@ -108,14 +109,13 @@ export default function AiCompanionSession() {
 
       const exchangeIndex = userTurns + 1;
       void trackEvent('ai_dialog_message_sent', { scenarioId: 'companion', exchangeIndex });
-      if (fromSuggested) void trackEvent('ai_dialog_suggested_tapped', { scenarioId: 'companion', exchangeIndex });
 
       const history = buildHistory();
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
       setInput('');
       setSending(true);
       try {
-        const res = await sendToPhil(trimmed, history);
+        const res = await sendToTheo(trimmed, history);
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
         if (!hasPremiumAccess && exchangeIndex === 1) void markFreeDialogUsed();
       } catch {
@@ -124,33 +124,16 @@ export default function AiCompanionSession() {
         setSending(false);
       }
     },
-    [sending, messages.length, hasPremiumAccess, userTurns, buildHistory, sendToPhil, router],
+    [sending, messages.length, hasPremiumAccess, userTurns, buildHistory, sendToTheo, router],
   );
 
-  // Авто-старт: Фил здоровается первым.
+  // Локальное приветствие: OpenAI зовём только после первой реплики пользователя.
   useEffect(() => {
     let cancelled = false;
     void (async () => {
       if (messages.length > 0) return;
-      if (!hasPremiumAccess) {
-        const left = await getFreeDialogsLeftToday();
-        if (left <= 0) {
-          void trackEvent('ai_dialog_limit_hit', { scenarioId: 'companion' });
-          void trackEvent('paywall_shown', { context: 'dialog_limit' });
-          router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-          return;
-        }
-      }
       void trackEvent('ai_dialog_started', { scenarioId: 'companion', cefr: DEFAULT_CEFR });
-      setSending(true);
-      try {
-        const res = await sendToPhil(null, []);
-        if (!cancelled) setMessages([{ role: 'assistant', text: res.assistantMessage }]);
-      } catch {
-        if (!cancelled) setMessages([{ role: 'assistant', text: 'Hi! Good to see you. How are you today?' }]);
-      } finally {
-        if (!cancelled) setSending(false);
-      }
+      if (!cancelled) setMessages([{ role: 'assistant', text: LOCAL_COMPANION_GREETING }]);
     })();
     return () => {
       cancelled = true;
@@ -171,7 +154,6 @@ export default function AiCompanionSession() {
 
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
 
-  const suggested = useMemo(() => ['Tell me more.', 'I’m not sure — help me.'], []);
 
   return (
     <ScreenGradient>
@@ -190,7 +172,7 @@ export default function AiCompanionSession() {
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body }} numberOfLines={1}>
-            Фил
+            Свободный разговор
           </Text>
           <View style={{ width: 32 }} />
         </View>
@@ -246,7 +228,7 @@ export default function AiCompanionSession() {
                                   scenarioId: 'companion',
                                   phrase: seg.text.slice(0, 60),
                                 });
-                                speak(seg.text, undefined, { language: 'en-US' });
+                                speak(seg.text, undefined, { language: 'en-US', voice: '' });
                               }}
                               style={{ color: t.accent, fontWeight: '800', textDecorationLine: 'underline' }}
                             >
@@ -258,7 +240,7 @@ export default function AiCompanionSession() {
                               onPress={() => {
                                 hapticTap();
                                 void trackEvent('ai_dialog_tts_used', { scenarioId: 'companion' });
-                                speak(stripMarkers(m.text), undefined, { language: 'en-US' });
+                                speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
                               }}
                             >
                               {seg.text}
@@ -270,11 +252,20 @@ export default function AiCompanionSession() {
                         onPress={() => {
                           hapticTap();
                           void trackEvent('ai_dialog_tts_used', { scenarioId: 'companion' });
-                          speak(stripMarkers(m.text), undefined, { language: 'en-US' });
+                          speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
                         }}
                         activeOpacity={0.6}
-                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                        style={{ paddingTop: 2 }}
+                        accessibilityRole="button"
+                        accessibilityLabel="Озвучить реплику"
+                        style={{
+                          width: 44,
+                          minHeight: 44,
+                          flexShrink: 0,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginTop: -8,
+                          marginRight: -10,
+                        }}
                       >
                         <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
                       </TouchableOpacity>
@@ -291,28 +282,48 @@ export default function AiCompanionSession() {
             )}
           </ScrollView>
 
-          {/* Подсказки-ответы (анти-«пустой ввод») */}
+          {/* Подсказка направления: не готовый ответ, а помощь сформулировать свою реплику. */}
           {lastIsAssistant && !sending && (
             <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
-              {suggested.map((sug, idx) => (
-                <TouchableOpacity
-                  key={idx}
-                  onPress={() => send(sug, true)}
-                  activeOpacity={0.82}
-                  style={{
-                    borderRadius: 14,
-                    borderWidth: 1.5,
-                    paddingVertical: 12,
-                    paddingHorizontal: 16,
-                    alignItems: 'center',
-                    backgroundColor: t.bgCard,
-                    borderColor: t.border,
-                    marginBottom: 8,
-                  }}
-                >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{sug}</Text>
-                </TouchableOpacity>
-              ))}
+              <View
+                style={{
+                  borderRadius: 14,
+                  borderWidth: 1,
+                  paddingVertical: 12,
+                  paddingHorizontal: 14,
+                  backgroundColor: t.bgCard,
+                  borderColor: t.border,
+                  marginBottom: 8,
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                  gap: 10,
+                }}
+              >
+                <Ionicons name="bulb-outline" size={20} color={t.accent} style={{ marginTop: 2 }} />
+                <View style={{ flex: 1 }}>
+                  <Text
+                    style={{
+                      color: t.textPrimary,
+                      fontSize: f.caption,
+                      fontWeight: '800',
+                      marginBottom: 4,
+                    }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    Что можно спросить
+                  </Text>
+                  <Text
+                    style={{
+                      color: t.textSecond,
+                      fontSize: f.body,
+                      lineHeight: Math.round(f.body * 1.35),
+                    }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    Спроси про фразу, прогресс или свой следующий шаг. Можно ответить Тео по-английски одной короткой фразой.
+                  </Text>
+                </View>
+              </View>
             </View>
           )}
 
@@ -330,7 +341,7 @@ export default function AiCompanionSession() {
             <TextInput
               value={input}
               onChangeText={setInput}
-              placeholder="Напиши Филу…"
+              placeholder="Спроси о фразе или прогрессе"
               placeholderTextColor={t.textMuted}
               editable={!sending}
               onSubmitEditing={() => send(input)}

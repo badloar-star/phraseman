@@ -112,6 +112,22 @@ export type FriendGiftSendResponse = {
   costShards: number;
   senderBalanceAfter: number;
   dailyRemaining?: number;
+  questStarted?: boolean;
+  questBlockedReason?: 'active' | 'weekly' | null;
+  quest?: {
+    questId: string;
+    participantUids: string[];
+    status: string;
+    startedAtMs: number;
+    expiresAtMs: number;
+    weekKey: string;
+    targetXp: number;
+    rewardShards: number;
+    rewardXp: number;
+    progressByUid?: Record<string, number>;
+    remainingXpByUid?: Record<string, number>;
+    rewardClaimedByUid?: Record<string, boolean>;
+  } | null;
 };
 
 export async function sendFriendGiftWithShards(data: {
@@ -146,6 +162,33 @@ export async function sendFriendGiftWithShards(data: {
   }
   const { checkAchievements } = await import('./achievements');
   void checkAchievements({ type: 'gift_sent' });
+  return res.data;
+}
+
+export async function sendFriendGiftThanks(data: {
+  friendStableId: string;
+  giftId: FriendGiftId;
+  senderDisplayName?: string;
+}): Promise<{ ok: boolean }> {
+  if (!isFriendGiftsCloudEnabled()) {
+    throw new Error('friend_gifts_unavailable');
+  }
+  const senderStableId = await ensureAnonUser();
+  if (!senderStableId) {
+    throw new Error('sender_unavailable');
+  }
+  await ensureStableAuthLinkForStableId(senderStableId).catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<
+    { senderStableId: string; friendStableId: string; giftId: FriendGiftId; senderDisplayName?: string },
+    { ok: boolean }
+  >('friendThankGift');
+  const res = await fn({
+    senderStableId,
+    friendStableId: data.friendStableId,
+    giftId: data.giftId,
+    senderDisplayName: data.senderDisplayName ?? '',
+  });
   return res.data;
 }
 

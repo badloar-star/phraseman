@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import TapScale from '../components/TapScale';
 import {
-  Animated,
   Dimensions,
   Modal,
   Pressable,
@@ -10,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Reanimated from 'react-native-reanimated';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -776,38 +776,39 @@ export default function AvatarSelect() {
   return (
     <ScreenGradient>
       <View testID="screen-avatar-select" style={{ flex: 1 }}>
-      <View style={{ paddingTop: insets.top + 8, paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
-        <TapScale
-          style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12 }}
-          onPress={() => { hapticTap(); safeRouterBack(router); }}
-        >
-          <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-        </TapScale>
-        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>Аватар</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-          <Text style={{ color: avatarAccent, fontSize: 16, fontWeight: '900' }}>{shards}</Text>
-          <Image source={oskolokImageForPackShards(shards)} style={{ width: 20, height: 20 }} contentFit="contain" />
-        </View>
-      </View>
-
-      <View style={{ alignItems: 'center', paddingVertical: 14 }}>
-        <AvatarView avatar={activeAvatar} level={level} size={82} auraId={effectiveAuraId} />
-        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8 }}>Текущий аватар</Text>
-      </View>
-
-      {activeCustom && (
-        <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-          <TouchableOpacity
-            activeOpacity={0.82}
-            onPress={resetToLevelAvatar}
-            style={{ borderRadius: 16, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, paddingVertical: 12, alignItems: 'center' }}
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
+        <View style={{ paddingTop: insets.top + 8, paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' }}>
+          <TapScale
+            style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 12 }}
+            onPress={() => { hapticTap(); safeRouterBack(router); }}
           >
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>Вернуть аватар уровня</Text>
-          </TouchableOpacity>
+            <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+          </TapScale>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>Аватар</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+            <Text style={{ color: avatarAccent, fontSize: 16, fontWeight: '900' }}>{shards}</Text>
+            <Image source={oskolokImageForPackShards(shards)} style={{ width: 20, height: 20 }} contentFit="contain" />
+          </View>
         </View>
-      )}
 
-      <BouncyWrap style={bouncyStyle}>
+        <View style={{ alignItems: 'center', paddingVertical: 14 }}>
+          <AvatarView avatar={activeAvatar} level={level} size={82} auraId={effectiveAuraId} />
+          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8 }}>Текущий аватар</Text>
+        </View>
+
+        {activeCustom && (
+          <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
+            <TouchableOpacity
+              activeOpacity={0.82}
+              onPress={resetToLevelAvatar}
+              style={{ borderRadius: 16, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, paddingVertical: 12, alignItems: 'center' }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>Вернуть аватар уровня</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+      <BouncyWrap>
       <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: GRID_PAD, paddingBottom: insets.bottom + 18 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {showProfileCardSection ? (
         <View style={{ marginBottom: 18 }}>
@@ -1101,6 +1102,7 @@ export default function AvatarSelect() {
         </View>
       </ScrollView>
       </BouncyWrap>
+      </Reanimated.View>
 
       {showProfileCardSection ? (
         <>

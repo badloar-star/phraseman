@@ -11,8 +11,6 @@ import {
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-import { Image } from 'expo-image';
-const AnimatedImage = Animated.createAnimatedComponent(Image);
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -98,13 +96,13 @@ const ONBOARDING_GOLD_2 = '#FFD472';
 const ONBOARDING_TEAL = '#63E6D2';
 const ONBOARDING_ACCENT_BG = 'rgba(242,184,75,0.16)';
 const ONBOARDING_TEXT_MUTED = '#D8CCB5';
-const ONBOARDING_BG_WELCOME = require('../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
-const ONBOARDING_BG_BETA = ONBOARDING_BG_WELCOME;
-const ONBOARDING_BG_NAME = ONBOARDING_BG_WELCOME;
-const ONBOARDING_BG_BUILDER = ONBOARDING_BG_WELCOME;
-const ONBOARDING_BG_QUIZ = ONBOARDING_BG_WELCOME;
-const ONBOARDING_BG_STREAK = ONBOARDING_BG_WELCOME;
-const ONBOARDING_BG_AUTH = ONBOARDING_BG_WELCOME;
+const ONBOARDING_BG_WELCOME = null;
+const ONBOARDING_BG_BETA = null;
+const ONBOARDING_BG_NAME = null;
+const ONBOARDING_BG_BUILDER = null;
+const ONBOARDING_BG_QUIZ = null;
+const ONBOARDING_BG_STREAK = null;
+const ONBOARDING_BG_AUTH = null;
 const ONBOARDING_LINGMAN_ICON = require('../assets/images/onboarding/lingman-icon-transparent.webp');
 const ONBOARDING_AUTH_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
 const ONBOARDING_STREAK_ICONS: Record<StreakMilestoneIconKind, ImageSourcePropType> = {
@@ -1135,7 +1133,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         minutesPerDay: selectedPlanMinutes,
         source: 'onboarding',
       });
-      const introFullAccessStarted = await onIntroFullAccessStart?.().catch(() => false);
+      const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);
       if (hasPremiumAccess || introFullAccessStarted) {
         await activatePendingPersonalPlanAfterPremium();
         setNicknameMode('personal_plan');
@@ -1164,14 +1162,13 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
 
   const renderScreen = (
     testID: string | undefined,
-    source: ImageSourcePropType,
+    _source: ImageSourcePropType | null,
     children: React.ReactNode,
     contentStyle?: StyleProp<ViewStyle>,
     hideClose = false,
   ) => (
     <OnboardingScreenShell
       testID={testID}
-      source={source}
       screenFade={screenFade}
       contentStyle={contentStyle}
       hideClose={hideClose}
@@ -3022,7 +3019,6 @@ function AuthOnboardingStep({
 
 function OnboardingScreenShell({
   testID,
-  source,
   screenFade,
   contentStyle,
   hideClose = false,
@@ -3030,7 +3026,6 @@ function OnboardingScreenShell({
   children,
 }: {
   testID?: string;
-  source: ImageSourcePropType;
   screenFade: Animated.Value;
   contentStyle?: StyleProp<ViewStyle>;
   hideClose?: boolean;
@@ -3041,7 +3036,7 @@ function OnboardingScreenShell({
   const closeTop = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
   return (
     <SafeAreaView edges={[]} style={styles.container} testID={testID}>
-      <OnboardingArtBackground source={source} motion="zoomOut" />
+      <OnboardingArtBackground motion="zoomOut" />
       <Animated.View style={[styles.onboardingContentLayer, contentStyle, { opacity: screenFade }]}>
         {children}
       </Animated.View>
@@ -3142,15 +3137,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#020304',
     justifyContent: 'center',
     overflow: 'hidden',
-  },
-  onboardingBgImageStack: {
-    ...StyleSheet.absoluteFillObject,
-    opacity: 0.68,
-  },
-  onboardingBgImage: {
-    ...StyleSheet.absoluteFillObject,
-    width: '100%',
-    height: '100%',
   },
   onboardingBgDim: {
     ...StyleSheet.absoluteFillObject,
@@ -4511,26 +4497,12 @@ const styles = StyleSheet.create({
 });
 
 function OnboardingArtBackground({
-  source,
   motion = 'zoomOut',
 }: {
-  source: ImageSourcePropType;
   motion?: 'zoomIn' | 'zoomOut';
 }) {
-  const progress = useRef(new Animated.Value(0)).current;
+  void motion;
   const particleAnims = useRef(ONBOARDING_BACKGROUND_PARTICLES.map(() => new Animated.Value(0))).current;
-
-  useEffect(() => {
-    progress.setValue(0);
-    const anim = Animated.timing(progress, {
-      toValue: 1,
-      duration: 15000,
-      easing: Easing.out(Easing.quad),
-      useNativeDriver: true,
-    });
-    anim.start();
-    return () => anim.stop();
-  }, [motion, progress]);
 
   useEffect(() => {
     let active = true;
@@ -4560,22 +4532,15 @@ function OnboardingArtBackground({
     };
   }, [particleAnims]);
 
-  const scale = progress.interpolate({
-    inputRange: [0, 1],
-    outputRange: motion === 'zoomIn' ? [1.0, 1.085] : [1.085, 1.0],
-  });
   return (
     <>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View pointerEvents="none" style={styles.onboardingBg}>
-        <View pointerEvents="none" style={styles.onboardingBgImageStack}>
-          <AnimatedImage
-            source={source}
-            style={[styles.onboardingBgImage, { transform: [{ scale }] }]}
-            contentFit="cover"
-            resizeMethod="resize"
-          />
-        </View>
+        <LinearGradient
+          colors={['#101319', '#07090D', '#020304']}
+          locations={[0, 0.45, 1]}
+          style={styles.onboardingBgDim}
+        />
         <LinearGradient
           colors={[
             'rgba(1,2,3,0.58)',

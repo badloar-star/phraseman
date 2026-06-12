@@ -46,7 +46,7 @@
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
-export const DEV_MODE = false;
+export const DEV_MODE = true;
 
 /**
  * EAS profile `production` в eas.json: EXPO_PUBLIC_STORE_RELEASE=1.
@@ -84,11 +84,11 @@ export const IS_EXPO_GO = Constants.appOwnership === 'expo';
 
 /**
  * Single switch for visible/internal dev tooling.
- * Keep this tied to Metro's literal __DEV__ so buttons and routes cannot be
- * enabled by DEV_MODE in production or preview runtimes.
+ * Store builds stay hard-gated by EXPO_PUBLIC_STORE_RELEASE=1; local QA builds
+ * can also opt in through DEV_MODE when Metro's literal __DEV__ is unavailable.
  */
 export const ENABLE_DEV_TOOLS =
-  typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+  ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE) && !IS_STORE_RELEASE;
 
 /**
  * Ставка осколками на следующий рейтинг-матч арены (очередь «Найти матч»).
@@ -131,7 +131,7 @@ export const SPANISH_UI_LOCALE_ENABLED = false;
  * В production-бандле `__DEV__ === false` — код не активен. Не синкается в облако.
  */
 export const ENABLE_DEV_STUDY_TARGET_LANG =
-  typeof __DEV__ !== 'undefined' && __DEV__;
+  ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE) && !IS_STORE_RELEASE;
 
 // ── Store links ───────────────────────────────────────────────────────────────
 export const STORE_URL_IOS     = 'https://apps.apple.com/app/id6764800879';

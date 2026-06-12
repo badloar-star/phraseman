@@ -222,14 +222,7 @@ const ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS: Array<{
     taskTitle: 'Dark theme daily task preview',
     xpBase: 35,
   },
-  {
-    themeMode: 'neon',
-    icon: 'flash-outline',
-    label: 'Daily reward toast — neon',
-    sub: 'Lime HUD style, preview-only',
-    taskTitle: 'Neon theme daily task preview',
-    xpBase: 40,
-  },
+
   {
     themeMode: 'gold',
     icon: 'trophy-outline',
@@ -246,14 +239,7 @@ const ADMIN_DAILY_TASK_REWARD_TOAST_PREVIEWS: Array<{
     taskTitle: 'Coral theme daily task preview',
     xpBase: 45,
   },
-  {
-    themeMode: 'minimalLight',
-    icon: 'ribbon-outline',
-    label: 'Daily reward toast — minimal light',
-    sub: 'Clean paper style, preview-only',
-    taskTitle: 'Minimal light daily task preview',
-    xpBase: 30,
-  },
+
   {
     themeMode: 'minimalDark',
     icon: 'diamond-outline',
@@ -620,7 +606,7 @@ export default function SettingsTestersFunctions() {
   const { theme: t, f, themeMode, setThemeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const isLightTheme = themeMode === 'minimalLight';
+  const isLightTheme = false;
   const platformUiPreview = usePlatformUiPreviewMode();
   const vipSurveyPreviewBusyRef = useRef(false);
 

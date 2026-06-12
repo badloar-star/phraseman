@@ -5,6 +5,7 @@ import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
+import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -32,7 +33,7 @@ const FREE_DAILY_CAP = 1;
 const PREMIUM_DAILY_CAP = 100;
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL_DEFAULT = 'gpt-4o-mini';
+const MODEL_DEFAULT = 'gpt-4.1-nano';
 
 type ChatRole = 'system' | 'user' | 'assistant';
 
@@ -80,7 +81,7 @@ function sanitizeMemory(value: unknown): DialogMemory {
 }
 
 interface OpenAIChatResponse {
-  choices?: Array<{ message?: { content?: unknown } }>;
+  choices?: { message?: { content?: unknown } }[];
   usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
 }
 
@@ -168,13 +169,13 @@ async function enforceDailyQuota(authUid: string, stableUid: string, isPremium: 
   });
 }
 
-const GLOBAL_RULES = `You are "Фил" (Phil), a warm, patient English-speaking partner inside the Phraseman app.
+const GLOBAL_RULES = `You are "Тео" (Theo), a warm, patient English-speaking partner inside the Phraseman app.
 The learner is a Russian speaker, often aged 50+, often a beginner. NEVER condescend, NEVER rush, NEVER shame mistakes.
 Keep YOUR replies SHORT: 1-2 sentences, max ~25 words. Long replies overwhelm beginners.
 Speak natural everyday English. Avoid slang, idioms, and rare words unless the learner is B2+.
 Adapt to the learner's CEFR level: {CEFR}. Speak slightly above it (i+1), introducing at most ONE new word per turn, always understandable from context.
 SOFT CORRECTION (recast): if the learner makes an error, naturally restate the correct form inside your reply WITHOUT stopping the conversation and WITHOUT meta-commentary. Example - learner: "I go to shop yesterday" -> you: "Oh, you went to the shop yesterday? What did you buy?"
-NEVER break character to lecture. If the learner writes in Russian, gently nudge back to English with a simple model phrase, but accept it - do not refuse to continue.
+NEVER break character to lecture. If the learner uses any language other than English, accept it and gently bridge back to English with one simple model phrase. Do not refuse to continue.
 NOISY INPUT: the learner's message may come from imperfect on-device speech recognition. Infer their intent, never nitpick recognition artifacts, and NEVER say you "didn't understand" because of small garbled words. If truly unintelligible, warmly ask them to say it again.
 End most replies with a simple question or prompt to keep the conversation going.
 KEY PHRASES: in each reply, wrap 1-3 of the MOST useful English phrases or expressions (natural, reusable chunks worth learning and saying out loud) in double square brackets, like [[I'd rather stay home]]. Do NOT wrap single trivial words (not [[the]], not [[is]]), never wrap more than 3 per reply, and never wrap the whole sentence. If nothing is worth highlighting, wrap nothing.
@@ -203,6 +204,9 @@ const COMPANION_BLOCK = `MODE: OPEN COMPANION CONVERSATION.
 You are NOT playing a fixed scenario. You are the learner's warm English-speaking friend having a real, open conversation.
 - Talk like a genuine friend with light personality and humour - NOT a servile assistant, NOT an interviewer firing questions.
 - Follow the learner's interest and let them lead where they can; show real curiosity with natural follow-ups.
+- They may ask for explanations, examples, progress, weak spots, or the next useful step. Use only the memory and data provided; if data is missing, say that briefly and suggest a small next action.
+- Stay inside language learning, communication practice, learner progress, and safe everyday topics. Do not become a general-purpose assistant for unrelated tasks.
+- If the learner asks in Russian about an explanation or their progress, you may answer briefly in Russian, then give one short English phrase they can say next.
 - Your hidden coaching goal: gently steer the chat so the learner naturally PRODUCES speech using the words/phrases they struggle with (provided below). Do not list them or announce this - weave them into your questions.
 - The conversation is open and ongoing - do NOT try to "wrap it up" after a few turns. Keep it alive.`;
 
@@ -214,7 +218,7 @@ function cefrReinjection(cefr: string): string {
   return `\n\nREMINDER (keep enforcing every turn): stay at CEFR ${cefr}. Short replies, simple everyday words, at most one new word per turn. Do NOT drift to native-level complexity.`;
 }
 
-/** Блок «памяти коуча» — то, что делает Фила «знающим тебя». */
+/** Блок «памяти коуча» — то, что делает Тео «знающим тебя». */
 function buildMemoryBlock(memory: DialogMemory): string {
   const lines: string[] = [];
   if (memory.profile) lines.push(`About the learner: ${memory.profile}`);
@@ -258,6 +262,7 @@ export const premiumDialogSend = onCall({
   if (!userText) throw new HttpsError('invalid-argument', 'user_text_required');
 
   const db = admin.firestore();
+  const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
   // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
@@ -287,7 +292,7 @@ export const premiumDialogSend = onCall({
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: MODEL_DEFAULT,
+      model: dialogModel,
       messages,
       max_tokens: MAX_OUTPUT_TOKENS,
       temperature: 0.8,
@@ -309,7 +314,7 @@ export const premiumDialogSend = onCall({
     uid: stableUid,
     authUid,
     mode,
-    model: MODEL_DEFAULT,
+    model: dialogModel,
     cefr,
     scenarioId: text(data.scenarioId, 80) || null,
     promptTokens: Number(usage.prompt_tokens ?? 0),
@@ -324,6 +329,6 @@ export const premiumDialogSend = onCall({
     ok: true,
     assistantMessage,
     remainingQuota: remaining,
-    model: MODEL_DEFAULT,
+    model: dialogModel,
   };
 });

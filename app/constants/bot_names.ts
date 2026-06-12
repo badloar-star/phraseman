@@ -46,7 +46,7 @@ export const BOT_NAMES_LATIN: readonly string[] = [
   'onyx90', 'nerf_rx735', 'mint42', 'buff149', 'beta', 'void_jax', 'ctrl386', 'ctrl_mx68', 'syncx61', 'melon66',
   'pixel404', 'sand_hx59', 'ctrl22', 'gl_fx330', 'onyx225', 'zk_nerf533', 'stub285', 'fx_mint10', 'sudo500', 'cyan27',
   'lime12', 'mono33', 'jade_oz701', 'iris34', 'onyx_eu55', 'vx_onyx672', 'gl_cyan', 'ping87', 'vibe_zed', 'jade_ray11',
-  'rex_mono220', 'opal_rex72', 'lol', 'sol_oz630', 'crit_owl936', 'neon', 'ctrl', 'mint_kai613', 'gl_gl25', 'sync_v267',
+  'rex_mono220', 'opal_rex72', 'lol', 'sol_oz630', 'crit_owl936', 'ctrl', 'mint_kai613', 'gl_gl25', 'sync_v267',
   'npc_es972', 'patch_owl75', 'lag_fx103', 'nx_stub35', 'opal', 'rust71', 'teal_x30', 'px_stub437', 'ctrl_px981', 'ping_hex630',
   'zip_lag', 'onyx', 'owl_ray789', 'sudo46', 'pixel_sol907', 'wave99', 'vx_sudo958', 'cyan_kai', 'sync_pro512', 'zk_dash57',
   'vx_onyx973', 'px_plum22', 'flipx558', 'rx_lint', 'nerf', 'plum_v2800', 'fx_dash969', 'patch321', 'sync50', 'ray_volt224',

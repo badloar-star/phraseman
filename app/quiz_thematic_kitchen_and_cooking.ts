@@ -12013,11 +12013,6 @@ export const KITCHEN_AND_COOKING_SKYLER_PACK: SkylerThematicPack = {
         "iconPrompt": "Generate a dark family compact topic icon for the Kitchen and cooking quiz in existing Phraseman style, readable as kitchen tools, no text."
       },
       {
-        "family": "neon",
-        "plaquePrompt": "Generate a neon family topic plaque for the Kitchen and cooking quiz in existing Phraseman style, centered kitchen tools and ingredients, no text.",
-        "iconPrompt": "Generate a neon family compact topic icon for the Kitchen and cooking quiz in existing Phraseman style, readable as kitchen tools, no text."
-      },
-      {
         "family": "neonGreen",
         "plaquePrompt": "Generate a neonGreen family topic plaque for the Kitchen and cooking quiz in existing Phraseman style, centered kitchen tools and ingredients, no text.",
         "iconPrompt": "Generate a neonGreen family compact topic icon for the Kitchen and cooking quiz in existing Phraseman style, readable as kitchen tools, no text."
@@ -12031,11 +12026,6 @@ export const KITCHEN_AND_COOKING_SKYLER_PACK: SkylerThematicPack = {
         "family": "coral",
         "plaquePrompt": "Generate a coral family topic plaque for the Kitchen and cooking quiz in existing Phraseman style, centered kitchen tools and ingredients, no text.",
         "iconPrompt": "Generate a coral family compact topic icon for the Kitchen and cooking quiz in existing Phraseman style, readable as kitchen tools, no text."
-      },
-      {
-        "family": "minimalLight",
-        "plaquePrompt": "Generate a minimalLight family topic plaque for the Kitchen and cooking quiz in existing Phraseman style, centered kitchen tools and ingredients, no text.",
-        "iconPrompt": "Generate a minimalLight family compact topic icon for the Kitchen and cooking quiz in existing Phraseman style, readable as kitchen tools, no text."
       },
       {
         "family": "minimalDark",

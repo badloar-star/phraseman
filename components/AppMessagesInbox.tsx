@@ -42,17 +42,14 @@ import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import type { ThemeMode } from '../constants/theme';
 
 const MESSAGE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-dark-dalle-v1.webp'),
-  neon: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-neon-dalle-v1.webp'),
-  gold: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-gold-dalle-v1.webp'),
-  coral: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-coral-dalle-v1.webp'),
-  minimalLight: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-minimalLight-dalle-v1.webp'),
-  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-minimalDark-dalle-v1.webp'),
-  compass: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-compass-dalle-v1.webp'),
-  midnight: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-compass-dalle-v1.webp'),
-  ember: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-compass-dalle-v1.webp'),
-  aurora: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-compass-dalle-v1.webp'),
-  volt: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-compass-dalle-v1.webp'),
+  dark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-dark-outline-v1.webp'),
+  gold: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-gold-outline-v1.webp'),
+  coral: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-coral-outline-v1.webp'),
+  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-minimalDark-outline-v1.webp'),
+  midnight: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-midnight-outline-v1.webp'),
+  ember: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-ember-outline-v1.webp'),
+  aurora: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-aurora-outline-v1.webp'),
+  volt: require('../assets/images/header_glyphs/theme-accent-buttons/message-button-volt-outline-v1.webp'),
 };
 
 const BLUR_RENDER_GRACE_MS = 450;
@@ -311,7 +308,7 @@ function AppMessagesInbox() {
     }
   };
 
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const chrome = isCompassTheme
     ? {
       bg: '#020304',
@@ -335,7 +332,7 @@ function AppMessagesInbox() {
       panelGradient: ['#1A2430', '#101820'] as const,
     }
     : {
-      bg: themeMode === 'minimalLight' ? '#F3ECDC' : '#F7F8FB',
+      bg: false ? '#F3ECDC' : '#F7F8FB',
       panel: '#FFFFFF',
       card: '#F1F4F8',
       border: 'rgba(32,37,46,0.12)',
@@ -1083,4 +1080,3 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
 });
-

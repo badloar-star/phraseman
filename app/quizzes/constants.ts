@@ -11,29 +11,12 @@ export const LEVEL_IMAGES: Record<string, number> = {
   hard: require('../../assets/images/levels/hard.webp'),
 };
 
-// «Чёрное кино» (midnight/ember/aurora/volt): свои webp-карточки не отрисованы,
-// используем компасные премиум-ассеты — на чистом чёрном они садятся лучше всего.
-const CINEMA_LEVEL_CARD_BG: Record<Level, number> = {
-  easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-compass-premium.webp'),
-  medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-compass-premium.webp'),
-  hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-compass-premium.webp'),
-};
-const CINEMA_LEVEL_LOGOS: Record<Level, number> = {
-  easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-compass-premium.webp'),
-  medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-compass-premium.webp'),
-  hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-compass-premium.webp'),
-};
-
+// Cinema themes keep existing quiz card backgrounds; foreground logos are themed DALL-E cutouts.
 export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number>> = {
   dark: {
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-dark.webp'),
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-dark.webp'),
     hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-dark.webp'),
-  },
-  neon: {
-    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-neon.webp'),
-    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-neon.webp'),
-    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-neon.webp'),
   },
   gold: {
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-gold.webp'),
@@ -45,25 +28,31 @@ export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-coral.webp'),
     hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-coral.webp'),
   },
-  minimalLight: {
-    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-light.webp'),
-    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-light.webp'),
-    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-light.webp'),
-  },
   minimalDark: {
     easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp'),
     medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
     hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp'),
   },
-  compass: {
-    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-compass-premium.webp'),
-    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-compass-premium.webp'),
-    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-compass-premium.webp'),
+  midnight: {
+    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp'),
+    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
+    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp'),
   },
-  midnight: CINEMA_LEVEL_CARD_BG,
-  ember: CINEMA_LEVEL_CARD_BG,
-  aurora: CINEMA_LEVEL_CARD_BG,
-  volt: CINEMA_LEVEL_CARD_BG,
+  ember: {
+    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp'),
+    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
+    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp'),
+  },
+  aurora: {
+    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp'),
+    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
+    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp'),
+  },
+  volt: {
+    easy: require('../../assets/images/quizzes/level_cards/quiz-card-easy-minimal-dark.webp'),
+    medium: require('../../assets/images/quizzes/level_cards/quiz-card-medium-minimal-dark.webp'),
+    hard: require('../../assets/images/quizzes/level_cards/quiz-card-hard-minimal-dark.webp'),
+  },
 };
 
 export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
@@ -71,11 +60,6 @@ export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-dark.webp'),
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-dark.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-dark.webp'),
-  },
-  neon: {
-    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-neon.webp'),
-    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-neon.webp'),
-    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-neon.webp'),
   },
   gold: {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-gold.webp'),
@@ -87,25 +71,31 @@ export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-coral.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-coral.webp'),
   },
-  minimalLight: {
-    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-minimal-light.webp'),
-    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-minimal-light.webp'),
-    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-minimal-light.webp'),
-  },
   minimalDark: {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-minimal-dark.webp'),
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-minimal-dark.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-minimal-dark.webp'),
   },
-  compass: {
-    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-compass-premium.webp'),
-    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-compass-premium.webp'),
-    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-compass-premium.webp'),
+  midnight: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-midnight.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-midnight.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-midnight.webp'),
   },
-  midnight: CINEMA_LEVEL_LOGOS,
-  ember: CINEMA_LEVEL_LOGOS,
-  aurora: CINEMA_LEVEL_LOGOS,
-  volt: CINEMA_LEVEL_LOGOS,
+  ember: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-ember.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-ember.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-ember.webp'),
+  },
+  aurora: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-aurora.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-aurora.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-aurora.webp'),
+  },
+  volt: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-volt.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-volt.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-volt.webp'),
+  },
 };
 
 // Card palette by theme and level.
@@ -120,11 +110,6 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
     medium: { gradA: '#FECDD3', gradB: '#FFF1F2', accent: '#BE123C' },
     hard: { gradA: '#E9D5FF', gradB: '#F5F3FF', accent: '#6D28D9' },
   },
-  neon: {
-    easy: { gradA: '#082D1A', gradB: '#06140D', accent: '#73F7A2' },
-    medium: { gradA: '#0A3320', gradB: '#06150D', accent: '#45E889' },
-    hard: { gradA: '#123019', gradB: '#07140D', accent: '#B8FF6A' },
-  },
   gold: {
     easy: { gradA: '#2A210F', gradB: '#080705', accent: '#F1CC72' },
     medium: { gradA: '#24180A', gradB: '#070504', accent: '#D7AD56' },
@@ -135,20 +120,10 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
     medium: { gradA: '#2B1E22', gradB: '#463036', accent: '#FF6464' },
     hard: { gradA: '#140D0F', gradB: '#3A2A2E', accent: '#FFD060' },
   },
-  minimalLight: {
-    easy: { gradA: '#F7EFDF', gradB: '#E6D4B6', accent: '#2F8C66' },
-    medium: { gradA: '#F3E8D9', gradB: '#E4C8A8', accent: '#B65E3A' },
-    hard: { gradA: '#EFEAF7', gradB: '#D5C6EA', accent: '#6D5EBA' },
-  },
   minimalDark: {
     easy: { gradA: '#1D2636', gradB: '#10141C', accent: '#6EA8FF' },
     medium: { gradA: '#242A35', gradB: '#11151C', accent: '#9CA3AF' },
     hard: { gradA: '#161B2A', gradB: '#0C0E14', accent: '#A78BFA' },
-  },
-  compass: {
-    easy: { gradA: '#1F1F21', gradB: '#171719', accent: '#F2C48D' },
-    medium: { gradA: '#24211D', gradB: '#100D0A', accent: '#F4B978' },
-    hard: { gradA: '#2C211B', gradB: '#0B0806', accent: '#FFE6B5' },
   },
   midnight: {
     easy: { gradA: '#08221A', gradB: '#020D0A', accent: '#5FE0B0' },
@@ -186,12 +161,9 @@ export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: 
 export const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondary: string }> = {
   dark: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   light: { primary: '#0F172A', secondary: 'rgba(15,23,42,0.6)' },
-  neon: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   gold: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral: { primary: '#FFFFFF', secondary: '#D8C2C5' },
-  minimalLight: { primary: '#2E261B', secondary: 'rgba(46,38,27,0.66)' },
   minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
-  compass: { primary: '#FFF8E8', secondary: '#D8D2C8' },
   midnight: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   ember: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   aurora: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },

@@ -145,6 +145,9 @@ test('friends tab has an explicit received gift modal contract', () => {
   expect(source).toContain('friend-gift-received-card');
   expect(source).toContain('friend-gift-received-open-inventory');
   expect(source).toContain('friend-gift-received-ok');
+  expect(source).toContain('friend-gift-reply-thanks');
+  expect(source).toContain('friend-gift-reply-shield');
+  expect(source).toContain('friend-gift-reply-boost');
   expect(source).toContain('Сохранено в разделе «Подарки»');
   expect(source).toContain('friends-feedback');
   expect(source).toContain('friend-gift-feedback');
@@ -163,4 +166,17 @@ test('friends tab confirms successfully sent gifts explicitly', () => {
   expect(source).toContain('friend-gift-sent-card');
   expect(source).toContain('friend-gift-sent-ok');
   expect(source).toContain("emitAppEvent('action_toast'");
+});
+
+test('friends tab renders the active friend quest progress contract', () => {
+  const fs = require('fs');
+  const path = require('path');
+  const source = fs.readFileSync(path.join(process.cwd(), 'app', '(tabs)', 'friends.tsx'), 'utf8');
+
+  expect(source).toContain('friend-quest-card');
+  expect(source).toContain('friend-quest-my-progress');
+  expect(source).toContain('friend-quest-friend-progress');
+  expect(source).toContain('friend-quest-claim');
+  expect(source).toContain('FriendQuestStartedModal');
+  expect(source).toContain('FriendQuestCompletedModal');
 });

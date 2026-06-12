@@ -236,7 +236,7 @@ function PlayerProfileModalBody({
 }: BodyProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const profileUpgradeAccent = '#FACC15';
   const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
   const insets = useSafeAreaInsets();

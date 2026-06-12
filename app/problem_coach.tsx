@@ -199,7 +199,7 @@ export default function ProblemCoach() {
   );
 
   const cardStyle = {
-    backgroundColor: themeMode === 'minimalLight' ? '#FFFFFF' : t.bgCard,
+    backgroundColor: false ? '#FFFFFF' : t.bgCard,
     borderColor: t.borderHighlight,
     ...getVolumetricShadow(themeMode, t, 2),
   };

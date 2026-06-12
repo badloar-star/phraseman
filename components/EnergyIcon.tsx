@@ -5,16 +5,13 @@ import type { ThemeMode } from '../constants/theme';
 
 const ENERGY_IMAGES: Record<ThemeMode, any> = {
   dark: require('../assets/images/energy/energy-forest.webp'),
-  neon: require('../assets/images/energy/energy-neon.webp'),
   gold: require('../assets/images/energy/energy-gold.webp'),
   coral: require('../assets/images/energy/energy-coral.webp'),
   minimalDark: require('../assets/images/energy/energy-graphite.webp'),
-  compass: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
-  minimalLight: require('../assets/images/energy/energy-sketch.webp'),
-  midnight: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
-  ember: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
-  aurora: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
-  volt: require('../assets/images/energy/compass-premium/energy-compass-premium.webp'),
+  midnight: require('../assets/images/energy/energy-graphite.webp'),
+  ember: require('../assets/images/energy/energy-graphite.webp'),
+  aurora: require('../assets/images/energy/energy-graphite.webp'),
+  volt: require('../assets/images/energy/energy-graphite.webp'),
 };
 
 interface EnergyIconProps {

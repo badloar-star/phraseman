@@ -20,7 +20,7 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
   const { lang } = useLang();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const insets = useSafeAreaInsets();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
 
   const close = () => {
     hapticTap();

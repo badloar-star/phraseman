@@ -225,7 +225,7 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const profilePrimaryAccent = '#FACC15';
   const profileSuccessAccent = '#22C55E';
   const { lang } = useLang();

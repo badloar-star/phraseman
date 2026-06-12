@@ -38,6 +38,7 @@ import { useLang } from '../../components/LangContext';
 import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
+import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import {
   ENABLE_DEV_TOOLS,
   ENABLE_DEV_STUDY_TARGET_LANG,
@@ -59,6 +60,7 @@ import {
   studyTargetsForSourceLocale,
 } from '../study_target';
 import { triLang, type Lang } from '../../constants/i18n';
+import type { ThemeMode } from '../../constants/theme';
 import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
@@ -84,11 +86,79 @@ function formatDateTimeShort(ms: number): string {
   return `${day}.${month}.${year}, ${hour}:${minute}`;
 }
 
+type SettingsSurfacePalette = {
+  panel: string;
+  chip: string;
+  border: string;
+  divider: string;
+  notice: string;
+};
+
+const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
+  dark: {
+    panel: '#19231D',
+    chip: '#19231D',
+    border: 'rgba(214,255,226,0.10)',
+    divider: 'rgba(214,255,226,0.07)',
+    notice: '#1C281F',
+  },
+  gold: {
+    panel: '#1C1912',
+    chip: '#1C1912',
+    border: 'rgba(232,205,139,0.14)',
+    divider: 'rgba(232,205,139,0.08)',
+    notice: '#211C12',
+  },
+  coral: {
+    panel: '#24191D',
+    chip: '#24191D',
+    border: 'rgba(255,220,228,0.11)',
+    divider: 'rgba(255,220,228,0.07)',
+    notice: '#2A1C20',
+  },
+  minimalDark: {
+    panel: '#1C1C1E',
+    chip: '#1C1C1E',
+    border: 'rgba(255,255,255,0.12)',
+    divider: 'rgba(255,255,255,0.08)',
+    notice: '#202124',
+  },
+  midnight: {
+    panel: '#1B1D25',
+    chip: '#1B1D25',
+    border: 'rgba(225,232,255,0.12)',
+    divider: 'rgba(225,232,255,0.07)',
+    notice: '#202330',
+  },
+  ember: {
+    panel: '#241B18',
+    chip: '#241B18',
+    border: 'rgba(255,222,205,0.12)',
+    divider: 'rgba(255,222,205,0.07)',
+    notice: '#2B201B',
+  },
+  aurora: {
+    panel: '#182222',
+    chip: '#182222',
+    border: 'rgba(215,255,244,0.12)',
+    divider: 'rgba(215,255,244,0.07)',
+    notice: '#1B2828',
+  },
+  volt: {
+    panel: '#1F2417',
+    chip: '#1F2417',
+    border: 'rgba(226,255,122,0.13)',
+    divider: 'rgba(226,255,122,0.07)',
+    notice: '#242B19',
+  },
+};
+
 export default function SettingsMain() {
+  const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { theme: t, isDark, themeMode, fontSize, setFontSize, f } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   /**
    * Ocean / Sakura — это «светлые карточки на тёмном цветном фоне». Темы
    * рассчитаны на отрисовку контента ВНУТРИ светлой карточки (`t.bgCard`),
@@ -103,23 +173,29 @@ export default function SettingsMain() {
   const screenMuted = t.textMuted;
   const screenSecond = t.textSecond;
   const screenGhost = t.textGhost;
-  const screenBorder = t.border;
+  const settingsSurface = SETTINGS_SURFACES[themeMode];
+  const settingsPanelBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.panel;
+  const settingsChipBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.chip;
+  const settingsBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : settingsSurface.border;
+  const settingsDivider = isCompassTheme ? COMPASS_RICH.hairlineQuiet : settingsSurface.divider;
+  const settingsNoticeBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.notice;
+  const screenBorder = settingsBorder;
   /**
-   * Чипы на градиенте (Океан/Сакура): `t.bgCard` — светлая плитка → текст только тёмный (`t.textPrimary`).
-   * Выбранное состояние: не `correctBg` (полупрозрачный «просвечивает» градиент) — плотная заливка + белый текст.
+   * Settings-плашки отделены от tabbar chrome: как в Telegram, это один спокойный
+   * surface-слой для каждой темы, а выбранность читается рамкой и текстом.
    */
-  const chipSurfaceOff = t.bgCard;
+  const chipSurfaceOff = settingsChipBg;
   const chipTextOff = isGradientLight ? t.textPrimary : screenPrimary;
   /** Плотная заливка: сакура — яркая магента (#B0105C на тёмном фоне почти сливалась с белым при грязном рендере / субпиксели). */
-  const chipSurfaceOn = t.correctBg;
+  const chipSurfaceOn = settingsChipBg;
   const chipTextOn = isGradientLight ? '#FFFFFF' : t.correct;
   const chipBorderOn = isGradientLight ? chipSurfaceOn : t.correct;
   /** Плашка Premium/VIP на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
-  const premiumActiveSurface = isGradientLight ? t.bgCard : t.correctBg;
+  const premiumActiveSurface = isGradientLight ? t.bgCard : settingsNoticeBg;
   const premiumActiveTitle = isGradientLight ? t.textPrimary : t.correct;
   const premiumActiveSub = isGradientLight ? t.textMuted : t.textSecond;
   const premiumActiveIcon = isGradientLight ? t.accent : t.correct;
-  const vipActiveSurface = isGradientLight ? t.bgCard : t.accentBg;
+  const vipActiveSurface = isGradientLight ? t.bgCard : settingsNoticeBg;
   const vipActiveTitle = isGradientLight ? t.textPrimary : t.accent;
   const vipActiveSub = isGradientLight ? t.textMuted : t.textSecond;
   const vipActiveBorder = isGradientLight ? t.accent : t.accent;
@@ -259,12 +335,9 @@ export default function SettingsMain() {
   const currentThemeLabel = (() => {
     const names: Record<string, Record<Lang, string>> = {
       dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
-      neon: { ru: 'Неон', uk: 'Неон', es: 'Neón', 'pt-BR': 'Neon', vi: 'Neon', id: 'Neon', tr: 'Neon', pl: 'Neon' },
       gold: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
       coral: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
-      minimalLight: { ru: 'Скетч', uk: 'Скетч', es: 'Boceto', 'pt-BR': 'Esboço', vi: 'Phác thảo', id: 'Sketsa', tr: 'Eskiz', pl: 'Szkic' },
       minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
-      compass: { ru: 'Компас', uk: 'Компас', es: 'Brújula', 'pt-BR': 'Bússola', vi: 'La bàn', id: 'Kompas', tr: 'Pusula', pl: 'Kompas' },
       midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
       ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
       aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
@@ -500,7 +573,7 @@ export default function SettingsMain() {
         testID="screen-settings"
         ref={scrollRef}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 40, paddingTop: insets.top }}
+        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top }}
         keyboardShouldPersistTaps="handled"
         decelerationRate="normal"
         scrollEventThrottle={16}
@@ -523,7 +596,7 @@ export default function SettingsMain() {
             style={{
               width: 36, height: 36,
               borderRadius: isCompassTheme ? 8 : 18,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+              backgroundColor: settingsPanelBg,
               borderWidth: 0.5,
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : screenBorder,
               justifyContent: 'center', alignItems: 'center',
@@ -619,7 +692,7 @@ export default function SettingsMain() {
 
         <SettingsSectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
 
-        <SettingsGroup>
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             testID="settings-profile-row"
             icon="person"
@@ -662,7 +735,7 @@ export default function SettingsMain() {
             style={{
               marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
               flexDirection: 'row', alignItems: 'center', gap: 10,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface,
+              backgroundColor: settingsNoticeBg,
               borderRadius: 12, padding: 12,
               borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.accent + '55',
               overflow: 'hidden',
@@ -689,7 +762,7 @@ export default function SettingsMain() {
 
 
         <SettingsSectionTitle title={L('Внешний вид', 'Зовнішній вигляд', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')} />
-        <SettingsGroup>
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             icon="color-palette"
             color="purple"
@@ -732,7 +805,7 @@ export default function SettingsMain() {
                     borderWidth: fontSize === sz ? (isCompassTheme ? 1 : 2) : 0.5,
                     borderColor: isCompassTheme
                       ? (fontSize === sz ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
-                      : fontSize === sz ? chipBorderOn : (isGradientLight ? chipBorderOff : t.border),
+                      : fontSize === sz ? chipBorderOn : chipBorderOff,
                     backgroundColor: isCompassTheme
                       ? (fontSize === sz ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised)
                       : fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
@@ -784,7 +857,7 @@ export default function SettingsMain() {
         </SettingsGroup>
 
         <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
-        <SettingsGroup>
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             icon="school"
             color="indigo"
@@ -802,7 +875,7 @@ export default function SettingsMain() {
 
 
         <SettingsSectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />
-        <SettingsGroup>
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             icon="mail"
             color="blue"
@@ -910,11 +983,11 @@ export default function SettingsMain() {
                 alignItems: 'center',
                 margin: SETTINGS_GROUP_MARGIN,
                 marginVertical: 20,
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                backgroundColor: settingsPanelBg,
                 borderRadius: isCompassTheme ? 8 : 14,
                 padding: 16,
                 borderWidth: 0.5,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                borderColor: settingsBorder,
                 overflow: 'hidden',
               },
               isCompassTheme && compassShadow(1),

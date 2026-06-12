@@ -77,8 +77,8 @@ describe('achievements', () => {
   it('renders generated achievement art immediately and keeps fallback only for image errors', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');
-    const achievementImageComponent = source.match(/function AchievementImageWithFallback\([\s\S]*?\n}\n\nfunction CategoryIconImageWithFallback/)?.[0] ?? '';
-    const categoryImageComponent = source.match(/function CategoryIconImageWithFallback\([\s\S]*?\n}\n\nfunction BadgeShieldInner/)?.[0] ?? '';
+    const achievementImageComponent = source.match(/function AchievementImageWithFallback\([\s\S]*?\r?\n}\r?\n\r?\nfunction CategoryIconImageWithFallback/)?.[0] ?? '';
+    const categoryImageComponent = source.match(/function CategoryIconImageWithFallback\([\s\S]*?\r?\n}\r?\n\r?\nfunction BadgeShieldInner/)?.[0] ?? '';
 
     expect(source).toContain("import { Image as ExpoImage } from 'expo-image';");
     expect(achievementImageComponent).toContain('source && !imageFailed');
@@ -149,6 +149,17 @@ describe('achievements', () => {
     expect(source).toContain('testID="achievements-dev-show-all-toggle"');
     expect(source).toContain('if (catAchs.length === 0) return [];');
     expect(source).not.toContain('unlockedCount} / {total}');
+  });
+
+  it('wires nearest locked achievements into the achievements screen header', () => {
+    const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
+    const source = fs.readFileSync(screenPath, 'utf8');
+
+    expect(source).toContain("import { getNearestLockedAchievements } from './achievement_nearest';");
+    expect(source).toContain('const nearestAchievements = useMemo(() =>');
+    expect(source).toContain('getNearestLockedAchievements(');
+    expect(source).toContain('<NearestAchievementsBlock');
+    expect(source).toContain('ListHeaderComponent={nearestAchievements.length > 0 ?');
   });
 
   it('wires card pack achievements into both official and community purchase flows', () => {

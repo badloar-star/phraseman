@@ -19,7 +19,7 @@ function PrimaryButton({ label, onPress, disabled, loading, style }: PrimaryButt
   const { theme: t, f, ds, themeMode } = useTheme();
   const isDisabled = !!disabled || !!loading;
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const hasLuxuryGradient = !isDisabled && (isGoldTheme || isCompassTheme);
   const foreground = isGoldTheme && !isDisabled
     ? t.textOnGold

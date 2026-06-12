@@ -61,7 +61,7 @@ function PremiumCard({
   const { theme: t, themeMode } = useTheme();
   const longPressFiredRef = React.useRef(false);
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const effectiveBorderRadius = isGoldTheme && borderRadius === 16
     ? 14
     : isCompassTheme && borderRadius === 16

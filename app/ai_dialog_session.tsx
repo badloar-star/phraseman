@@ -31,7 +31,8 @@ import {
 } from './dialogs_limit_session';
 import { trackEvent } from './analytics';
 
-const MAX_EXCHANGES = 8; // teaser-обрыв на интересном месте (free); см. план Фазы 0
+const RECOMMENDED_EXCHANGES = 8;
+const LOCAL_SCENARIO_GREETING = 'Hi! Let\'s practice. Start with one short English sentence, and I will keep the conversation going.';
 
 interface UiMessage {
   role: 'user' | 'assistant';
@@ -39,7 +40,7 @@ interface UiMessage {
 }
 
 export default function AiDialogSession() {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const { hasPremiumAccess } = usePremium();
   const router = useRouter();
   const { speak } = useAudio();
@@ -58,7 +59,6 @@ export default function AiDialogSession() {
   const scrollRef = useRef<ScrollView>(null);
 
   const userExchanges = messages.filter((m) => m.role === 'user').length;
-  const progress = Math.min(1, userExchanges / MAX_EXCHANGES);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -76,13 +76,13 @@ export default function AiDialogSession() {
   }, [messages]);
 
   const send = useCallback(
-    async (text: string, fromSuggested = false) => {
+    async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || sending || ended) return;
       hapticTap();
 
-      // первый ход — проверяем лимит free
-      if (messages.length === 0 && !hasPremiumAccess) {
+      // первый пользовательский ход — проверяем лимит free
+      if (userExchanges === 0 && !hasPremiumAccess) {
         const left = await getFreeDialogsLeftToday();
         if (left <= 0) {
           void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id });
@@ -92,9 +92,8 @@ export default function AiDialogSession() {
         }
       }
 
-      const exchangeIndex = messages.filter((m) => m.role === 'user').length + 1;
+      const exchangeIndex = userExchanges + 1;
       void trackEvent('ai_dialog_message_sent', { scenarioId: scenario.id, exchangeIndex });
-      if (fromSuggested) void trackEvent('ai_dialog_suggested_tapped', { scenarioId: scenario.id, exchangeIndex });
 
       const history = buildHistory();
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
@@ -122,45 +121,16 @@ export default function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, messages.length, hasPremiumAccess, buildHistory, scenario, router],
+    [sending, ended, messages.length, hasPremiumAccess, userExchanges, buildHistory, scenario, router],
   );
 
-  // авто-старт: первая реплика ИИ (greeting) — отправляем скрытый системный ход
+  // Локальное приветствие: OpenAI зовём только после первой реплики пользователя.
   useEffect(() => {
     let cancelled = false;
-    (async () => {
+    void (async () => {
       if (messages.length > 0) return;
-      if (!hasPremiumAccess) {
-        const left = await getFreeDialogsLeftToday();
-        if (left <= 0) {
-          void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id });
-          void trackEvent('paywall_shown', { context: 'dialog_limit' });
-          router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-          return;
-        }
-      }
       void trackEvent('ai_dialog_started', { scenarioId: scenario.id, cefr: scenario.cefr });
-      setSending(true);
-      try {
-        const res = await callPremiumDialogSend({
-          mode: 'scenario',
-          userText: '(start the conversation with your greeting)',
-          cefr: scenario.cefr,
-          history: [],
-          role: scenario.role,
-          setting: scenario.setting,
-          goalEn: scenario.goalEn,
-          scenarioId: scenario.id,
-          isPremium: hasPremiumAccess,
-        });
-        if (!cancelled) setMessages([{ role: 'assistant', text: res.assistantMessage }]);
-      } catch {
-        if (!cancelled) {
-          setMessages([{ role: 'assistant', text: 'Hi! Welcome. How can I help you today?' }]);
-        }
-      } finally {
-        if (!cancelled) setSending(false);
-      }
+      if (!cancelled) setMessages([{ role: 'assistant', text: LOCAL_SCENARIO_GREETING }]);
     })();
     return () => {
       cancelled = true;
@@ -168,14 +138,13 @@ export default function AiDialogSession() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // завершение по достижении лимита обменов
-  useEffect(() => {
-    if (userExchanges >= MAX_EXCHANGES && !ended) {
-      setEnded(true);
-      void trackEvent('ai_dialog_completed', { scenarioId: scenario.id, exchanges: userExchanges });
-      if (!hasPremiumAccess) void markFreeDialogUsed();
-    }
-  }, [userExchanges, ended, hasPremiumAccess, scenario.id]);
+  const finishDialog = useCallback(() => {
+    if (ended || userExchanges <= 0) return;
+    hapticTap();
+    setEnded(true);
+    void trackEvent('ai_dialog_completed', { scenarioId: scenario.id, exchanges: userExchanges });
+    if (!hasPremiumAccess) void markFreeDialogUsed();
+  }, [ended, hasPremiumAccess, scenario.id, userExchanges]);
 
   useEffect(() => {
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
@@ -190,7 +159,6 @@ export default function AiDialogSession() {
     router.back();
   }, [router, ended, userExchanges, scenario.id]);
 
-  const progressFill = themeMode === 'compass' ? '#F2C48D' : '#40C080';
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
 
   return (
@@ -209,32 +177,37 @@ export default function AiDialogSession() {
           <TouchableOpacity onPress={onBack} style={{ padding: 4 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body }} numberOfLines={1}>
+          <Text
+            style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flex: 1, textAlign: 'center' }}
+            numberOfLines={1}
+          >
             {scenario.titleRu}
           </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-            {Math.min(userExchanges, MAX_EXCHANGES)} / {MAX_EXCHANGES}
-          </Text>
-        </View>
-
-        {/* Progress bar */}
-        <View
-          style={{
-            height: 4,
-            borderRadius: 2,
-            marginHorizontal: 16,
-            overflow: 'hidden',
-            backgroundColor: t.bgSurface,
-          }}
-        >
-          <View
-            style={{
-              height: '100%',
-              borderRadius: 2,
-              backgroundColor: progressFill,
-              width: `${progress * 100}%`,
-            }}
-          />
+          {!ended && userExchanges > 0 ? (
+            <TouchableOpacity
+              onPress={finishDialog}
+              activeOpacity={0.82}
+              accessibilityRole="button"
+              accessibilityLabel="Завершить диалог"
+              style={{
+                minHeight: 44,
+                minWidth: 96,
+                borderRadius: 14,
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingHorizontal: 10,
+                backgroundColor: t.bgCard,
+                borderWidth: 0.5,
+                borderColor: t.border,
+              }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
+                Завершить
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <View style={{ width: 96 }} />
+          )}
         </View>
 
         {/* Цель сценария */}
@@ -247,8 +220,21 @@ export default function AiDialogSession() {
           }}
           maxFontSizeMultiplier={1.2}
         >
-          🎯 {scenario.goalRu}
+          Цель: {scenario.goalRu}
         </Text>
+        {!ended && (
+          <Text
+            style={{
+              paddingHorizontal: 16,
+              paddingTop: 4,
+              fontSize: f.caption,
+              color: t.textMuted,
+            }}
+            maxFontSizeMultiplier={1.2}
+          >
+            Ориентир: около {RECOMMENDED_EXCHANGES} реплик, но можно продолжать.
+          </Text>
+        )}
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}
@@ -321,7 +307,7 @@ export default function AiDialogSession() {
                                       scenarioId: scenario.id,
                                       phrase: seg.text.slice(0, 60),
                                     });
-                                    speak(seg.text, undefined, { language: 'en-US' });
+                                    speak(seg.text, undefined, { language: 'en-US', voice: '' });
                                   }}
                                   style={{
                                     color: t.accent,
@@ -338,7 +324,7 @@ export default function AiDialogSession() {
                                   onPress={() => {
                                     hapticTap();
                                     void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
-                                    speak(stripMarkers(m.text), undefined, { language: 'en-US' });
+                                    speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
                                   }}
                                 >
                                   {seg.text}
@@ -350,11 +336,20 @@ export default function AiDialogSession() {
                             onPress={() => {
                               hapticTap();
                               void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
-                              speak(stripMarkers(m.text), undefined, { language: 'en-US' });
+                              speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
                             }}
                             activeOpacity={0.6}
-                            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                            style={{ paddingTop: 2 }}
+                            accessibilityRole="button"
+                            accessibilityLabel="Озвучить реплику"
+                            style={{
+                              width: 44,
+                              minHeight: 44,
+                              flexShrink: 0,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              marginTop: -8,
+                              marginRight: -10,
+                            }}
                           >
                             <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
                           </TouchableOpacity>
@@ -413,10 +408,10 @@ export default function AiDialogSession() {
                   style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}
                   maxFontSizeMultiplier={1.2}
                 >
-                  Отличный разговор! 🎉
+                  Разговор завершён
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6 }}>
-                  Ты говорил по-английски {userExchanges} раз.
+                  Твоих реплик: {userExchanges}. Хороший шаг: ты не просто читаешь, а пробуешь говорить.
                 </Text>
                 {!hasPremiumAccess && (
                   <TouchableOpacity
@@ -445,33 +440,40 @@ export default function AiDialogSession() {
             )}
           </ScrollView>
 
-          {/* Кнопки-подсказки (только когда ждём ответа юзера и есть реплика ИИ) */}
+          {/* Подсказка направления: не готовый ответ, а помощь сформулировать свою реплику. */}
           {!ended && lastIsAssistant && !sending && (
-            <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 8 }}>
-                💡 Можно тапнуть готовый ответ:
-              </Text>
-              {SUGGESTED_REPLIES.map((sug, idx) => (
-                <TouchableOpacity
-                  key={idx}
-                  onPress={() => send(sug, true)}
-                  activeOpacity={0.82}
-                  style={{
-                    borderRadius: 14,
-                    borderWidth: 1.5,
-                    paddingVertical: 14,
-                    paddingHorizontal: 16,
-                    alignItems: 'center',
-                    backgroundColor: t.bgCard,
-                    borderColor: t.border,
-                    marginBottom: 10,
-                  }}
-                >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                    {sug}
+            <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
+              <View
+                style={{
+                  borderRadius: 16,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                  backgroundColor: t.bgCard,
+                  paddingHorizontal: 14,
+                  paddingVertical: 12,
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                  gap: 10,
+                }}
+              >
+                <Ionicons name="bulb-outline" size={18} color={t.textSecond} style={{ marginTop: 1 }} />
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>
+                    Что сделать дальше
                   </Text>
-                </TouchableOpacity>
-              ))}
+                  <Text
+                    style={{
+                      color: t.textMuted,
+                      fontSize: f.sub,
+                      lineHeight: Math.round(f.sub * 1.35),
+                      marginTop: 4,
+                    }}
+                    maxFontSizeMultiplier={1.15}
+                  >
+                    {scenario.nextStepHintRu}
+                  </Text>
+                </View>
+              </View>
             </View>
           )}
 
@@ -529,6 +531,3 @@ export default function AiDialogSession() {
     </ScreenGradient>
   );
 }
-
-// Фаза 0: hardcode-подсказки под сценарий «кофе». Фаза 1 — генерация по контексту.
-const SUGGESTED_REPLIES = ['A large cup, please.', 'How much is it?'];

@@ -58,7 +58,7 @@ async function reloadAfterAccountDelete(): Promise<void> {
 function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const L = useCallback((copy: DeleteAccountCopy) => triLang(lang, {
     ru: copy.ru,
     uk: copy.uk,

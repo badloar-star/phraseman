@@ -97,7 +97,7 @@ interface WordBankProps {
 
 function WordBankMode({ item, onResult }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { lang } = useLang();
   const { playCorrect } = useCorrectSound();
   const [bank, setBank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
@@ -283,7 +283,7 @@ interface FillGapProps {
 
 function FillGapMode({ item, onResult }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { playCorrect } = useCorrectSound();
   const { lang } = useLang();
   const { flashKey, flash } = useWordFlash();
@@ -397,7 +397,7 @@ function FillGapMode({ item, onResult }: FillGapProps) {
 export default function TrainerPhrasesSession() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
 

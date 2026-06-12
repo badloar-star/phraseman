@@ -1,14 +1,10 @@
-import type { ImageSourcePropType } from 'react-native';
 import type { ThemeMode } from '../constants/theme';
 
 export const APP_ART_THEME_MODES = [
   'dark',
-  'neon',
   'gold',
   'coral',
-  'minimalLight',
   'minimalDark',
-  'compass',
 ] as const satisfies readonly ThemeMode[];
 
 export const APP_ART_BACKDROP_NAMES = [
@@ -34,71 +30,6 @@ export const APP_ART_BACKDROP_NAMES = [
 ] as const;
 
 export type AppArtBackdropName = (typeof APP_ART_BACKDROP_NAMES)[number];
-
-const THEME_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/theme_backdrops/theme-backdrop-dark.webp'),
-  neon: require('../assets/images/theme_backdrops/theme-backdrop-neon.webp'),
-  gold: require('../assets/images/theme_backdrops/theme-backdrop-gold.webp'),
-  coral: require('../assets/images/theme_backdrops/theme-backdrop-coral.webp'),
-  minimalLight: require('../assets/images/theme_backdrops/theme-backdrop-minimal-light.webp'),
-  minimalDark: require('../assets/images/theme_backdrops/theme-backdrop-minimal-dark.webp'),
-  compass: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
-  // «Чёрное кино»: бэкдроп не показывается (IMAGE_OPACITY=0), ключи — компасные ассеты.
-  midnight: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
-  ember: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
-  aurora: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
-  volt: require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'),
-};
-
-function withOnboardingGraphite(
-  base: Record<ThemeMode, ImageSourcePropType>,
-  compass: ImageSourcePropType,
-): Record<ThemeMode, ImageSourcePropType> {
-  // Cinema-темы наследуют компасный арт (он всё равно скрыт нулевой непрозрачностью).
-  return { ...base, compass, midnight: compass, ember: compass, aurora: compass, volt: compass };
-}
-
-const HOME_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/home-compass-premium-session.webp'));
-const LESSON_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessons-compass-premium-session.webp'));
-const LESSON_INTRO_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessonIntro-compass-premium-session.webp'));
-const LESSON_PRACTICE_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/lessonPractice-compass-premium-session.webp'));
-const ARENA_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arena-compass-premium-session.webp'));
-const ARENA_READY_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arenaReady-compass-premium-session.webp'));
-const ARENA_MATCH_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/arenaMatch-compass-premium-session.webp'));
-const FRIENDS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/friends-compass-premium-session.webp'));
-const SETTINGS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/settings-compass-premium-session.webp'));
-const ACHIEVEMENTS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/achievements-compass-premium-session.webp'));
-const DAILY_TASKS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/dailyTasks-compass-premium-session.webp'));
-const QUIZZES_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/quizzes-compass-premium-session.webp'));
-const DIAGNOSTIC_TEST_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/diagnosticTest-compass-premium-session.webp'));
-const EXAM_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/exam-compass-premium-session.webp'));
-const FLASHCARDS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/flashcards-compass-premium-session.webp'));
-const PROGRESS_MAP_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/progressMap-compass-premium-session.webp'));
-const SHARDS_SHOP_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/shardsShop-compass-premium-session.webp'));
-const LEVEL_GIFTS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/levelGifts-compass-premium-session.webp'));
-const STATISTICS_BACKDROPS = withOnboardingGraphite(THEME_BACKDROPS, require('../assets/images/app_backdrops/compass-premium/statistics-compass-premium-session.webp'));
-
-export const APP_ART_BACKDROP_SOURCES: Record<AppArtBackdropName, Record<ThemeMode, ImageSourcePropType>> = {
-  home: HOME_BACKDROPS,
-  lessons: LESSON_BACKDROPS,
-  lessonIntro: LESSON_INTRO_BACKDROPS,
-  lessonPractice: LESSON_PRACTICE_BACKDROPS,
-  arena: ARENA_BACKDROPS,
-  arenaReady: ARENA_READY_BACKDROPS,
-  arenaMatch: ARENA_MATCH_BACKDROPS,
-  friends: FRIENDS_BACKDROPS,
-  settings: SETTINGS_BACKDROPS,
-  achievements: ACHIEVEMENTS_BACKDROPS,
-  dailyTasks: DAILY_TASKS_BACKDROPS,
-  quizzes: QUIZZES_BACKDROPS,
-  diagnosticTest: DIAGNOSTIC_TEST_BACKDROPS,
-  exam: EXAM_BACKDROPS,
-  flashcards: FLASHCARDS_BACKDROPS,
-  progressMap: PROGRESS_MAP_BACKDROPS,
-  shardsShop: SHARDS_SHOP_BACKDROPS,
-  levelGifts: LEVEL_GIFTS_BACKDROPS,
-  statistics: STATISTICS_BACKDROPS,
-};
 
 export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   index: 'home',
@@ -217,14 +148,6 @@ export function resolveAppArtBackdropName(pathname?: string | null): AppArtBackd
   }
 
   return DEFAULT_ROUTE_BACKDROP;
-}
-
-export function getAppArtBackdropSource(
-  name: AppArtBackdropName,
-  themeMode: ThemeMode,
-): ImageSourcePropType {
-  const source = APP_ART_BACKDROP_SOURCES[name][themeMode];
-  return source ?? APP_ART_BACKDROP_SOURCES[name].dark;
 }
 
 function normalizePathname(pathname?: string | null): string {

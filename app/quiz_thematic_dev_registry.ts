@@ -10,73 +10,67 @@ type ThemeAssetMap = Record<string, ImageSourcePropType>;
 const doctorCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-forest.webp'),
   dark: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-gold.webp'),
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-at-the-doctor-compass-premium.webp'),
 };
 
 const doctorLogos: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-forest.webp'),
   dark: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-gold.webp'),
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-compass-premium.webp'),
+  midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-midnight.webp'),
+  ember: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-ember.webp'),
+  aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-aurora.webp'),
+  volt: require('../assets/images/quizzes/theme_logos/quiz-theme-at-the-doctor-volt.webp'),
 };
 
 const bodyCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-forest.webp'),
   dark: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-gold.webp'),
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-body-and-health-compass-premium.webp'),
 };
 
 const bodyLogos: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-forest.webp'),
   dark: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-gold.webp'),
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-compass-premium.webp'),
+  midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-midnight.webp'),
+  ember: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-ember.webp'),
+  aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-aurora.webp'),
+  volt: require('../assets/images/quizzes/theme_logos/quiz-theme-body-and-health-volt.webp'),
 };
 
 const shoppingCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-forest.webp'),
   dark: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-gold.webp'),
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-shopping-and-money-compass-premium.webp'),
 };
 
 const shoppingLogos: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-forest.webp'),
   dark: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-gold.webp'),
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-compass-premium.webp'),
+  midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-midnight.webp'),
+  ember: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-ember.webp'),
+  aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-aurora.webp'),
+  volt: require('../assets/images/quizzes/theme_logos/quiz-theme-shopping-and-money-volt.webp'),
 };
 
 const AT_THE_DOCTOR_CATEGORY: ThematicQuizCategory = {

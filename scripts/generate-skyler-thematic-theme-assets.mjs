@@ -74,17 +74,6 @@ const THEMES = {
     accent2: '#FF5E7A',
     ink: '#FFF1EC',
   },
-  minimalLight: {
-    file: 'minimal-light',
-    label: 'minimalLight',
-    hue: 36,
-    brightness: 1.22,
-    saturation: 0.42,
-    wash: '#F6EAD8',
-    accent: '#2E6EEB',
-    accent2: '#1BAA9B',
-    ink: '#243142',
-  },
   minimalDark: {
     file: 'minimal-dark',
     label: 'minimalDark',
@@ -157,7 +146,7 @@ function esc(value) {
 }
 
 function cardOverlaySvg(themeKey, theme) {
-  const light = themeKey === 'minimalLight';
+  const light = false;
   return Buffer.from(`
 <svg width="${CARD_W}" height="${CARD_H}" viewBox="0 0 ${CARD_W} ${CARD_H}" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -181,7 +170,7 @@ function cardOverlaySvg(themeKey, theme) {
 }
 
 function logoHaloSvg(themeKey, theme) {
-  const light = themeKey === 'minimalLight';
+  const light = false;
   return Buffer.from(`
 <svg width="${LOGO_SIZE}" height="${LOGO_SIZE}" viewBox="0 0 ${LOGO_SIZE} ${LOGO_SIZE}" xmlns="http://www.w3.org/2000/svg">
   <defs>

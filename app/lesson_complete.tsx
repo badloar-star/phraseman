@@ -8,6 +8,7 @@ import { Animated, Modal, Pressable, ScrollView, Share, StyleSheet, Text, Toucha
 import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
+import CollectibleDropModal from '../components/CollectibleDropModal';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -18,6 +19,7 @@ import { CEFR_FOR_LESSON } from '../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { checkAchievements } from './achievements';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { STORE_URL } from './config';
 import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
 import { scheduleD1PersonalizedReminder } from './notifications';
@@ -92,7 +94,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
   };
 
   if (!visible || !variant) return null;
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const panelRadius = isCompassTheme ? 14 : 24;
   const buttonRadius = isCompassTheme ? 9 : 14;
 
@@ -233,7 +235,7 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
   const dismiss = () => {
     Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true }).start(onDismiss);
   };
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
 
   const MEDAL_IMAGES: Record<string, any> = {
     bronze: require('../assets/images/levels/bronza.webp'),
@@ -448,7 +450,7 @@ export default function LessonComplete() {
   const { theme: t, f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const params = useLocalSearchParams<{
     id: string;
     unlocked?: string;
@@ -489,6 +491,18 @@ export default function LessonComplete() {
   const [, setNotifQueue] = useState<Notif[]>([]);
   const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
   const activeNotifVisible = useOverlayVisible('lessonCompleteNotif', activeNotif != null);
+
+  // Дроп карточки «Сокровищницы»: сервер решает (шанс/кап/без дублей), мы лишь
+  // показываем сюрприз ПОСЛЕ всей очереди наград — никогда поверх других модалок.
+  const [pendingCardDrop, setPendingCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const [shownCardDrop, setShownCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  useEffect(() => {
+    if (!pendingCardDrop || shownCardDrop || activeNotif) return;
+    // 900мс непрерывной «тишины»: пауза между нотификациями очереди 400мс —
+    // таймер переживает её только когда очередь действительно опустела.
+    const timer = setTimeout(() => setShownCardDrop(pendingCardDrop), 900);
+    return () => clearTimeout(timer);
+  }, [pendingCardDrop, shownCardDrop, activeNotif]);
 
   const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
 
@@ -709,6 +723,11 @@ export default function LessonComplete() {
       }
       grantBonus();
       void markLessonFinishedOnce(lessonId, studyTarget);
+      // Qualifying-активность для Сокровищницы. eventId детерминирован
+      // (lesson:id:день) — повтор того же урока в тот же день не дропает.
+      void maybeRollCollectibleDrop('lesson', String(lessonId)).then((drop) => {
+        if (!cancelled && drop) setPendingCardDrop(drop);
+      }).catch(() => {});
     })();
 
     // Загружаем оценку урока, сохраняем медаль
@@ -1134,6 +1153,18 @@ export default function LessonComplete() {
         visible={showAuthPrompt}
         context="lesson1"
         onClose={() => setShowAuthPrompt(false)}
+      />
+      <CollectibleDropModal
+        outcome={shownCardDrop}
+        onClose={() => {
+          setShownCardDrop(null);
+          setPendingCardDrop(null);
+        }}
+        onOpenCollection={() => {
+          setShownCardDrop(null);
+          setPendingCardDrop(null);
+          router.push('/collectibles_screen' as any);
+        }}
       />
       {coachToast?.show && (
         <CoachToast

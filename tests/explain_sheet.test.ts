@@ -187,6 +187,24 @@ describe('ExplainButton: флаг-гейтинг и аналитика', () => {
   });
 });
 
+describe('Lesson explain footer contract', () => {
+  const src = stripComments(read(path.join(APP_DIR, 'lesson1.tsx')));
+
+  it('uses one limited footer explain flow instead of a post-answer unlimited button', () => {
+    expect(src).toContain('const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday)');
+    expect(src).toContain('onPress={openExplainPreAnswer}');
+    expect(src).not.toContain('explainModeRef');
+    expect(src).not.toContain('openExplainResult');
+    expect(src).not.toContain('lesson1-explain-result');
+  });
+
+  it('spends explain credit only for successful live generations', () => {
+    expect(src).toContain('if (info.error || info.fromCache) return;');
+    expect(src).toContain("if (info.status !== 'ok' && info.status !== 'rejected') return;");
+    expect(src).toContain('onConsumeExplainCredit();');
+  });
+});
+
 describe('ExplainSheet: рендер тела и слайд-ап в доме', () => {
   const src = read(path.join(COMPONENTS_DIR, 'ExplainSheet.tsx'));
 
@@ -282,9 +300,11 @@ describe('Кнопка называется «Объяснить просто» 
     expect(src).not.toContain('Объясни проще');
   });
 
-  it('lesson1 — кнопка на экране результата', () => {
-    const src = read(path.join(APP_DIR, 'lesson1.tsx'));
-    expect(src).toContain('Объяснить просто');
+  it('lesson1 keeps explain in the footer and does not duplicate it on the result screen', () => {
+    const src = stripComments(read(path.join(APP_DIR, 'lesson1.tsx')));
+    expect(src).toContain('testID="lesson1-explain"');
+    expect(src).not.toContain('lesson1-explain-result');
+    expect(src).not.toContain('Объяснить просто');
   });
 });
 

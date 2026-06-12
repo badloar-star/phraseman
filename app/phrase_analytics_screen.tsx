@@ -145,7 +145,7 @@ function ProgressBar({ pct }: { pct: number }) {
 function InsightRow({ insight }: { insight: PersonalInsight }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const rowRadius = isCompassTheme ? 8 : 14;
   const text = triLang(lang, {
     ru: insight.ru,
@@ -190,7 +190,7 @@ function CategoryRow({
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const rowRadius = isCompassTheme ? 8 : 14;
   const categoryCopy = CATEGORY_LABELS[stat.category] ?? CATEGORY_LABELS.other;
   const label = triLang(lang, {
@@ -323,7 +323,7 @@ function LessonRow({ stat, studyTarget }: { stat: LessonMistakeStat; studyTarget
   const { lang } = useLang();
   const name = phraseAnalyticsLessonTitle(stat, lang, studyTarget);
   const pctOpacity = stat.pct >= 25 ? 1 : stat.pct >= 12 ? 0.75 : 0.45;
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const rowRadius = isCompassTheme ? 8 : 14;
 
   return (
@@ -367,7 +367,7 @@ export default function PhraseAnalyticsScreen() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const isLightGate = false;
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';

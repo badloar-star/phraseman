@@ -41,7 +41,7 @@ function VipGreenUserName({ text, fontSize }: Props) {
     return `vipGreen_${hash}`;
   }, [display, fontSize]);
 
-  const gradientStops = themeMode === 'minimalLight' ? VIP_STOPS_SKETCH : VIP_STOPS;
+  const gradientStops = false ? VIP_STOPS_SKETCH : VIP_STOPS;
   const safetyPad = Math.ceil(fontSize * 0.18);
   const w = (measuredW > 0 ? Math.ceil(measuredW) : fallbackW) + safetyPad;
   const h = lineHeight;

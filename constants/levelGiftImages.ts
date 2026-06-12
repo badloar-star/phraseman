@@ -5,9 +5,6 @@ export const LEVEL_GIFT_IMAGE_THEMES = [
   'dark',
   'gold',
   'minimalDark',
-  'compass',
-  'minimalLight',
-  'neon',
 ] as const;
 
 export const LEVEL_GIFT_IMAGE_VARIANTS = [
@@ -50,24 +47,6 @@ const LEVEL_GIFT_IMAGES: Record<
     rare: require('../assets/images/level_gifts_v2/minimalDark-rare.webp'),
     epic: require('../assets/images/level_gifts_v2/minimalDark-epic.webp'),
     premium: require('../assets/images/level_gifts_v2/minimalDark-premium.webp'),
-  },
-  compass: {
-    common: require('../assets/images/level_gifts_v2/compass-premium-common-session.webp'),
-    rare: require('../assets/images/level_gifts_v2/compass-premium-rare-session.webp'),
-    epic: require('../assets/images/level_gifts_v2/compass-premium-epic-session.webp'),
-    premium: require('../assets/images/level_gifts_v2/compass-premium-premium-session.webp'),
-  },
-  minimalLight: {
-    common: require('../assets/images/level_gifts_v2/minimalLight-common.webp'),
-    rare: require('../assets/images/level_gifts_v2/minimalLight-rare.webp'),
-    epic: require('../assets/images/level_gifts_v2/minimalLight-epic.webp'),
-    premium: require('../assets/images/level_gifts_v2/minimalLight-premium.webp'),
-  },
-  neon: {
-    common: require('../assets/images/level_gifts_v2/neon-common.webp'),
-    rare: require('../assets/images/level_gifts_v2/neon-rare.webp'),
-    epic: require('../assets/images/level_gifts_v2/neon-epic.webp'),
-    premium: require('../assets/images/level_gifts_v2/neon-premium.webp'),
   },
 };
 

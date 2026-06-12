@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager, Animated } from 'react-native';
@@ -47,6 +48,8 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { isAiDialogEnabled } from './ai_dialog_flags';
+import { getLessonDialogScenarioId, lessonDialogLockedHint } from './lesson_dialog_scenarios';
 import {
   lastOpenedLessonKey,
   irregularVerbsGlobalKey,
@@ -216,7 +219,7 @@ export default function LessonMenu() {
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const isLightTheme = false;
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
@@ -571,6 +574,9 @@ export default function LessonMenu() {
   useFocusEffect(loadLockState);
 
   const isStarted = progress > 0;
+  const lessonDialogScenarioId = getLessonDialogScenarioId(lessonId);
+  const lessonDialogUnlocked = progress >= 50 && getMedalTier(score) === 'gold';
+  const showLessonDialogRow = !!lessonDialogScenarioId && isAiDialogEnabled();
 
   type IconName = React.ComponentProps<typeof Ionicons>['name'];
   const menuItems: {
@@ -646,6 +652,57 @@ export default function LessonMenu() {
       onLongPress: isStarted && !frenchLessonSourceGated && !isLessonLocked && !showReplayCta ? handleReplayIntroAndContinue : undefined,
       disabled: isLessonLocked,
       unavailable: frenchLessonSourceGated,
+    },
+    {
+      testID: 'lesson-menu-dialog',
+      hidden: !showLessonDialogRow,
+      label: triLang(lang, {
+        ru: 'Диалог',
+        uk: 'Діалог',
+        es: 'Diálogo',
+        'pt-BR': 'Diálogo',
+        vi: 'Hội thoại',
+        id: 'Dialog',
+        tr: 'Diyalog',
+        pl: 'Dialog',
+      }),
+      sub: lessonDialogUnlocked
+        ? triLang(lang, {
+            ru: 'Сцена из фраз урока',
+            uk: 'Сцена з фраз уроку',
+            es: 'Escena con frases de la lección',
+            'pt-BR': 'Cena com frases da lição',
+            vi: 'Tình huống từ cụm trong bài',
+            id: 'Adegan dari frasa pelajaran',
+            tr: 'Dersteki ifadelerle sahne',
+            pl: 'Scenka z fraz lekcji',
+          })
+        : triLang(lang, {
+            ru: 'Откроется после золота',
+            uk: 'Відкриється після золота',
+            es: 'Se abre después del oro',
+            'pt-BR': 'Abre depois do ouro',
+            vi: 'Mở sau huy chương vàng',
+            id: 'Terbuka setelah emas',
+            tr: 'Altından sonra açılır',
+            pl: 'Otwiera się po złocie',
+          }),
+      icon: lessonDialogUnlocked ? 'chatbubbles-outline' as const : 'lock-closed-outline' as const,
+      unavailable: !lessonDialogUnlocked,
+      onPress: () => {
+        hapticTap();
+        if (!lessonDialogUnlocked || !lessonDialogScenarioId) {
+          const hint = lessonDialogLockedHint(lang);
+          emitAppEvent('action_toast', {
+            type: 'info',
+            messageRu: hint,
+            messageUk: hint,
+            messageEs: hint,
+          });
+          return;
+        }
+        router.push({ pathname: '/ai_dialog_session', params: { scenarioId: lessonDialogScenarioId } } as any);
+      },
     },
     {
       testID: 'lesson-menu-words',
@@ -1065,6 +1122,7 @@ export default function LessonMenu() {
     <LessonArtBackdrop variant="menu" />
     <SafeAreaView style={{flex:1}}>
       <ContentWrap>
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       {/* Хедер */}
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingHorizontal:16,paddingVertical:14,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <PremiumCard testID="lesson-menu-back" level={1} onPress={()=>{
@@ -1103,7 +1161,7 @@ export default function LessonMenu() {
         </PremiumCard>
       </View>
 
-      <BouncyWrap style={bouncyStyle}>
+      <BouncyWrap>
       <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
       {/* Тема урока */}
       <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
@@ -1272,6 +1330,7 @@ export default function LessonMenu() {
 
       </ScrollView>
       </BouncyWrap>
+      </Reanimated.View>
       {/* Модальное окно блокировки */}
       <Modal transparent animationType="fade" visible={showLockModal} onRequestClose={() => setShowLockModal(false)}>
         <Pressable style={{flex:1, backgroundColor:'rgba(0,0,0,0.5)'}} onPress={() => setShowLockModal(false)}>

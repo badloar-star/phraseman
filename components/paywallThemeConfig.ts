@@ -102,42 +102,6 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#FFC800',
   },
 
-  // ── NEON (electric lime) ──────────────────────────────────────────────────
-  neon: {
-    heroAccent: '#C8FF00',
-
-    selectedCardBorder: '#C8FF00',
-    selectedCardBg: 'rgba(200,255,0,0.10)',
-    unselectedCardBg: 'rgba(32,32,32,0.86)',
-    selectedCardShadow: '#C8FF00',
-
-    savingsBadgeBg: '#C8FF00',
-    savingsBadgeText: '#0A0A00',
-
-    popularBadgeBg: '#C8FF00',
-    popularBadgeText: '#1A2400',
-
-    ctaBg: '#C8FF00',
-    ctaText: '#1A2400',
-    ctaShadow: '#C8FF00',
-
-    pillBg: 'rgba(200,255,0,0.10)',
-    pillText: '#C8FF00',
-    pillBorder: 'rgba(200,255,0,0.26)',
-
-    urgencyBg: 'rgba(200,255,0,0.08)',
-    urgencyTimerText: '#C8FF00',
-    urgencyLabelText: '#A8A8A8',
-    urgencyStrikethroughColor: '#606060',
-    urgencyCurrentPriceText: '#C8FF00',
-
-    expandBtnText: '#C8FF00',
-    expandBtnBorder: 'rgba(200,255,0,0.26)',
-
-    socialProofText: '#A8A8A8',
-    socialProofStarColor: '#FFE600',
-  },
-
   // ── GOLD (black gold luxury) ──────────────────────────────────────────────
   gold: {
     heroAccent: GOLD_RICH.paleGold,
@@ -211,40 +175,6 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
   },
 
   // ── MINIMAL LIGHT (warm parchment) ────────────────────────────────────────
-  minimalLight: {
-    heroAccent: '#273044',
-
-    selectedCardBorder: '#273044',
-    selectedCardBg: 'rgba(39,48,68,0.10)',
-    unselectedCardBg: 'rgba(255,253,246,0.90)',
-    selectedCardShadow: 'rgba(39,48,68,0.22)',
-
-    savingsBadgeBg: '#273044',
-    savingsBadgeText: '#F3ECDC',
-
-    popularBadgeBg: '#273044',
-    popularBadgeText: '#F3ECDC',
-
-    ctaBg: '#273044',
-    ctaText: '#FFFFFF',
-    ctaShadow: 'rgba(39,48,68,0.30)',
-
-    pillBg: 'rgba(39,48,68,0.08)',
-    pillText: '#273044',
-    pillBorder: 'rgba(39,48,68,0.22)',
-
-    urgencyBg: 'rgba(118,83,31,0.10)',
-    urgencyTimerText: '#76531F',
-    urgencyLabelText: '#48443C',
-    urgencyStrikethroughColor: '#6A6256',
-    urgencyCurrentPriceText: '#273044',
-
-    expandBtnText: '#273044',
-    expandBtnBorder: 'rgba(39,48,68,0.22)',
-
-    socialProofText: '#48443C',
-    socialProofStarColor: '#76531F',
-  },
 
   // ── MINIMAL DARK (clean dark / blue accent) ───────────────────────────────
   minimalDark: {
@@ -283,40 +213,6 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
   },
 
   // ── COMPASS (warm charcoal / champagne) ───────────────────────────────────
-  compass: {
-    heroAccent: COMPASS_RICH.cream,
-
-    selectedCardBorder: 'rgba(255,231,182,0.46)',
-    selectedCardBg: 'rgba(248,215,163,0.10)',
-    unselectedCardBg: 'rgba(116,114,110,0.40)',
-    selectedCardShadow: COMPASS_RICH.copper,
-
-    savingsBadgeBg: COMPASS_RICH.champagne,
-    savingsBadgeText: COMPASS_RICH.textDark,
-
-    popularBadgeBg: COMPASS_RICH.creamSoft,
-    popularBadgeText: COMPASS_RICH.textDark,
-
-    ctaBg: COMPASS_RICH.creamSoft,
-    ctaText: COMPASS_RICH.textDark,
-    ctaShadow: 'transparent',
-
-    pillBg: COMPASS_RICH.wash,
-    pillText: COMPASS_RICH.champagne,
-    pillBorder: COMPASS_RICH.hairlineQuiet,
-
-    urgencyBg: COMPASS_RICH.wash,
-    urgencyTimerText: COMPASS_RICH.cream,
-    urgencyLabelText: COMPASS_RICH.textMuted,
-    urgencyStrikethroughColor: COMPASS_RICH.copper,
-    urgencyCurrentPriceText: COMPASS_RICH.champagne,
-
-    expandBtnText: COMPASS_RICH.champagne,
-    expandBtnBorder: COMPASS_RICH.hairline,
-
-    socialProofText: COMPASS_RICH.textMuted,
-    socialProofStarColor: COMPASS_RICH.champagne,
-  },
   midnight: {
     heroAccent: '#C9D2FF',
 

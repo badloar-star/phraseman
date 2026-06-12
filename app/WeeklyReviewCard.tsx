@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// WeeklyReviewCard.tsx — карточка «Разбор недели» сверху экрана аналитики.
+// WeeklyReviewCard.tsx — карточка «Разбор ошибок» сверху экрана аналитики.
 //
 // Premium: полный разбор от ИИ (приветствие + абзацы) + кликабельные уроки.
 // Free: усечённый разбор (приветствие + 1 абзац) + тизер «полный — в Premium».
@@ -23,7 +23,6 @@ import { hapticTap } from '../hooks/use-haptics';
 import {
   generateWeeklyReview,
   getWeeklyReviewState,
-  nextReviewCopy,
   type WeeklyReviewState,
   type WeeklyReviewStored,
 } from './weekly_review_client';
@@ -41,9 +40,10 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const [state, setState] = useState<WeeklyReviewState | null>(null);
   const [busy, setBusy] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const refreshState = useCallback(async () => {
     const next = await getWeeklyReviewState(studyTarget);
@@ -90,14 +90,21 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   if (!stored && busy) {
     return (
       <CardShell isCompassTheme={isCompassTheme} t={t}>
-        <Header lang={lang} t={t} f={f} />
+        <Header
+          lang={lang}
+          t={t}
+          f={f}
+          expanded={expanded}
+          busy={busy}
+          onPress={() => setExpanded((value) => !value)}
+        />
         <View style={styles.loadingRow}>
           <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.champagne : GOLD} />
           <Text style={[styles.loadingText, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
-              ru: 'Готовлю твой разбор недели…', uk: 'Готую твій розбір тижня…', es: 'Preparando tu análisis semanal…',
-              'pt-BR': 'Preparando sua análise semanal…', vi: 'Đang chuẩn bị bản phân tích tuần của bạn…',
-              id: 'Menyiapkan analisis mingguanmu…', tr: 'Haftalık analizini hazırlıyorum…', pl: 'Przygotowuję twoją analizę tygodnia…',
+              ru: 'Готовлю твой разбор ошибок…', uk: 'Готую твій розбір помилок…', es: 'Preparando tu análisis de errores…',
+              'pt-BR': 'Preparando sua análise de erros…', vi: 'Đang chuẩn bị bản phân tích lỗi của bạn…',
+              id: 'Menyiapkan analisis kesalahanmu…', tr: 'Hata analizini hazırlıyorum…', pl: 'Przygotowuję twoją analizę błędów…',
             })}
           </Text>
         </View>
@@ -111,85 +118,96 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   // Free видит приветствие + 1 абзац, остальное под тизером.
   const visibleParagraphs = isPremium ? review.paragraphs : review.paragraphs.slice(0, 1);
   const hiddenCount = isPremium ? 0 : Math.max(0, review.paragraphs.length - 1);
+  const canManualRefresh = (state.kind === 'cached' && state.canRefresh) || state.kind === 'error';
 
   return (
     <CardShell isCompassTheme={isCompassTheme} t={t}>
-      <Header lang={lang} t={t} f={f} />
+      <Header
+        lang={lang}
+        t={t}
+        f={f}
+        expanded={expanded}
+        busy={busy}
+        onPress={() => setExpanded((value) => !value)}
+      />
 
-      <Text style={[styles.greeting, { color: isCompassTheme ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.h2 }]}>
-        {review.greeting}
-      </Text>
-
-      {visibleParagraphs.map((p, i) => (
-        <Text key={i} style={[styles.paragraph, { color: t.textSecond, fontSize: f.body }]}>
-          {p}
-        </Text>
-      ))}
-
-      {/* Free-тизер на скрытые абзацы */}
-      {hiddenCount > 0 && (
-        <TouchableOpacity
-          activeOpacity={0.88}
-          onPress={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'patterns' } } as never); }}
-          style={[styles.teaser, { borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'rgba(201,162,39,0.3)' }]}
-        >
-          <Ionicons name="lock-closed" size={14} color={GOLD} />
-          <Text style={[styles.teaserText, { color: isCompassTheme ? COMPASS_RICH.textDark : GOLD_SOFT, fontSize: f.sub }]}>
-            {triLang(lang, {
-              ru: 'Полный разбор и план — в Premium', uk: 'Повний розбір і план — у Premium', es: 'Análisis completo y plan — en Premium',
-              'pt-BR': 'Análise completa e plano — no Premium', vi: 'Phân tích đầy đủ và kế hoạch — trong Premium',
-              id: 'Analisis lengkap dan rencana — di Premium', tr: 'Tam analiz ve plan — Premium\'de', pl: 'Pełna analiza i plan — w Premium',
-            })}
+      {expanded && (
+        <>
+          <Text style={[styles.greeting, { color: isCompassTheme ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.h2 }]}>
+            {review.greeting}
           </Text>
-        </TouchableOpacity>
-      )}
 
-      {/* Рекомендованные уроки (только premium видит кликабельные) */}
-      {isPremium && review.recommendations.length > 0 && (
-        <View style={styles.recommendations}>
-          <Text style={[styles.recLabel, { color: t.textMuted, fontSize: f.label }]}>
-            {triLang(lang, {
-              ru: 'НАД ЧЕМ ПОРАБОТАТЬ', uk: 'НАД ЧИМ ПОПРАЦЮВАТИ', es: 'EN QUÉ TRABAJAR',
-              'pt-BR': 'NO QUE TRABALHAR', vi: 'CẦN LUYỆN GÌ', id: 'YANG PERLU DILATIH', tr: 'NE ÜZERİNDE ÇALIŞMALI', pl: 'NAD CZYM POPRACOWAĆ',
-            })}
-          </Text>
-          {review.recommendations.map((rec) => (
-            <TouchableOpacity
-              key={rec.microDiagnosisId}
-              activeOpacity={0.86}
-              onPress={() => openLesson(rec.microDiagnosisId)}
-              style={[styles.recRow, { borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border }]}
-            >
-              <Ionicons name="school-outline" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
-              <Text style={[styles.recText, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
-                {rec.label}
-              </Text>
-              <Ionicons name="chevron-forward" size={14} color={t.textMuted} />
-            </TouchableOpacity>
+          {visibleParagraphs.map((p, i) => (
+            <Text key={i} style={[styles.paragraph, { color: t.textSecond, fontSize: f.body }]}>
+              {p}
+            </Text>
           ))}
-        </View>
-      )}
 
-      {/* Подпись «следующий разбор» + ручное обновление при ошибке/доступности */}
-      <View style={[styles.footer, { borderTopColor: t.border }]}>
-        <Text style={[styles.footerText, { color: t.textMuted, fontSize: f.caption }]}>
-          {state.kind === 'error'
-            ? triLang(lang, {
-                ru: 'Не удалось обновить — показан прошлый разбор', uk: 'Не вдалося оновити — показано минулий розбір',
-                es: 'No se pudo actualizar — se muestra el anterior', 'pt-BR': 'Não foi possível atualizar — exibindo o anterior',
-                vi: 'Không thể cập nhật — hiển thị bản trước', id: 'Gagal memperbarui — menampilkan yang sebelumnya',
-                tr: 'Güncellenemedi — önceki gösteriliyor', pl: 'Nie udało się odświeżyć — pokazano poprzednią',
-              })
-            : nextReviewCopy(stored.nextAllowedAtMs, lang)}
-        </Text>
-        {(state.kind === 'cached' && state.canRefresh) || state.kind === 'error' ? (
-          <TapScale onPress={onManualRefresh} disabled={busy} hitSlop={8}>
-            {busy
-              ? <ActivityIndicator size="small" color={t.accent} />
-              : <Ionicons name="refresh" size={16} color={t.accent} />}
-          </TapScale>
-        ) : null}
-      </View>
+          {/* Free-тизер на скрытые абзацы */}
+          {hiddenCount > 0 && (
+            <TouchableOpacity
+              activeOpacity={0.88}
+              onPress={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'patterns' } } as never); }}
+              style={[styles.teaser, { borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'rgba(201,162,39,0.3)' }]}
+            >
+              <Ionicons name="lock-closed" size={14} color={GOLD} />
+              <Text style={[styles.teaserText, { color: isCompassTheme ? COMPASS_RICH.textDark : GOLD_SOFT, fontSize: f.sub }]}>
+                {triLang(lang, {
+                  ru: 'Полный разбор и план — в Premium', uk: 'Повний розбір і план — у Premium', es: 'Análisis completo y plan — en Premium',
+                  'pt-BR': 'Análise completa e plano — no Premium', vi: 'Phân tích đầy đủ và kế hoạch — trong Premium',
+                  id: 'Analisis lengkap dan rencana — di Premium', tr: 'Tam analiz ve plan — Premium\'de', pl: 'Pełna analiza i plan — w Premium',
+                })}
+              </Text>
+            </TouchableOpacity>
+          )}
+
+          {/* Рекомендованные уроки (только premium видит кликабельные) */}
+          {isPremium && review.recommendations.length > 0 && (
+            <View style={styles.recommendations}>
+              <Text style={[styles.recLabel, { color: t.textMuted, fontSize: f.label }]}>
+                {triLang(lang, {
+                  ru: 'НАД ЧЕМ ПОРАБОТАТЬ', uk: 'НАД ЧИМ ПОПРАЦЮВАТИ', es: 'EN QUÉ TRABAJAR',
+                  'pt-BR': 'NO QUE TRABALHAR', vi: 'CẦN LUYỆN GÌ', id: 'YANG PERLU DILATIH', tr: 'NE ÜZERİNDE ÇALIŞMALI', pl: 'NAD CZYM POPRACOWAĆ',
+                })}
+              </Text>
+              {review.recommendations.map((rec) => (
+                <TouchableOpacity
+                  key={rec.microDiagnosisId}
+                  activeOpacity={0.86}
+                  onPress={() => openLesson(rec.microDiagnosisId)}
+                  style={[styles.recRow, { borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border }]}
+                >
+                  <Ionicons name="school-outline" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
+                  <Text style={[styles.recText, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
+                    {rec.label}
+                  </Text>
+                  <Ionicons name="chevron-forward" size={14} color={t.textMuted} />
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+
+          {canManualRefresh ? (
+            <View style={[styles.footer, { borderTopColor: t.border }]}>
+              {state.kind === 'error' ? (
+                <Text style={[styles.footerText, { color: t.textMuted, fontSize: f.caption }]}>
+                  {triLang(lang, {
+                    ru: 'Не удалось обновить — показан прошлый разбор', uk: 'Не вдалося оновити — показано минулий розбір',
+                    es: 'No se pudo actualizar — se muestra el anterior', 'pt-BR': 'Não foi possível atualizar — exibindo o anterior',
+                    vi: 'Không thể cập nhật — hiển thị bản trước', id: 'Gagal memperbarui — menampilkan yang sebelumnya',
+                    tr: 'Güncellenemedi — önceki gösteriliyor', pl: 'Nie udało się odświeżyć — pokazano poprzednią',
+                  })}
+                </Text>
+              ) : <View style={{ flex: 1 }} />}
+              <TapScale onPress={onManualRefresh} disabled={busy} hitSlop={8}>
+                {busy
+                  ? <ActivityIndicator size="small" color={t.accent} />
+                  : <Ionicons name="refresh" size={16} color={t.accent} />}
+              </TapScale>
+            </View>
+          ) : null}
+        </>
+      )}
     </CardShell>
   );
 }
@@ -228,13 +246,19 @@ function Header({
   lang,
   t,
   f,
+  expanded,
+  busy,
+  onPress,
 }: {
   lang: ReturnType<typeof useLang>['lang'];
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
+  expanded: boolean;
+  busy: boolean;
+  onPress: () => void;
 }) {
   return (
-    <View style={styles.titleRow}>
+    <TouchableOpacity activeOpacity={0.86} onPress={onPress} style={styles.titleRow}>
       <LinearGradient
         colors={['rgba(42,36,28,0.95)', 'rgba(18,16,14,0.98)']}
         style={styles.iconBox}
@@ -245,13 +269,27 @@ function Header({
         <Text style={[styles.kicker, { color: GOLD }]}>PHRASEMAN</Text>
         <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: Math.max(16, f.h2 * 0.82) }]}>
           {triLang(lang, {
-            ru: 'Разбор недели', uk: 'Розбір тижня', es: 'Análisis de la semana',
-            'pt-BR': 'Análise da semana', vi: 'Phân tích tuần', id: 'Analisis minggu ini',
-            tr: 'Haftanın analizi', pl: 'Analiza tygodnia',
+            ru: 'Разбор ошибок', uk: 'Розбір помилок', es: 'Análisis de errores',
+            'pt-BR': 'Análise de erros', vi: 'Phân tích lỗi', id: 'Analisis kesalahan',
+            tr: 'Hata analizi', pl: 'Analiza błędów',
           })}
         </Text>
+        <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]}>
+          {busy
+            ? triLang(lang, {
+                ru: 'Обновляю по твоим ошибкам', uk: 'Оновлюю за твоїми помилками', es: 'Actualizando con tus errores',
+                'pt-BR': 'Atualizando com seus erros', vi: 'Đang cập nhật theo lỗi của bạn',
+                id: 'Memperbarui dari kesalahanmu', tr: 'Hatalarına göre güncelleniyor', pl: 'Aktualizacja z twoich błędów',
+              })
+            : triLang(lang, {
+                ru: 'Только по тем местам, где ты ошибался', uk: 'Тільки за місцями, де ти помилявся', es: 'Solo donde realmente fallaste',
+                'pt-BR': 'Só onde você realmente errou', vi: 'Chỉ những chỗ bạn thật sự sai',
+                id: 'Hanya dari bagian yang pernah salah', tr: 'Yalnızca gerçekten hata yaptığın yerler', pl: 'Tylko miejsca z realnymi błędami',
+              })}
+        </Text>
       </View>
-    </View>
+      <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={18} color={t.textMuted} />
+    </TouchableOpacity>
   );
 }
 
@@ -261,6 +299,7 @@ const styles = StyleSheet.create({
   iconBox: { width: 40, height: 40, borderRadius: 11, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(212,175,88,0.28)' },
   kicker: { fontSize: 9, fontWeight: '900', letterSpacing: 2, marginBottom: 3 },
   cardTitle: { fontWeight: '800', letterSpacing: -0.2 },
+  cardSub: { marginTop: 3, lineHeight: 17, fontWeight: '600' },
   greeting: { fontWeight: '800', letterSpacing: -0.3, lineHeight: 26 },
   paragraph: { lineHeight: 23, letterSpacing: 0.1 },
   loadingRow: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 8 },

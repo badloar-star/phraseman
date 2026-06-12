@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import CompassDepthSurface from '../components/CompassDepthSurface';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -17,7 +16,6 @@ import { hapticTap } from '../hooks/use-haptics';
 import { DEV_MODE, ENABLE_DEV_TOOLS } from './config';
 import { triLang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
-import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { safeRouterBack } from './navigation_back';
 
 type ThemeOption = {
@@ -42,15 +40,12 @@ type ThemeOption = {
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 
 const THEME_OPTIONS: ThemeOption[] = [
-  { mode: 'compass', labelRU: 'Компас', labelUK: 'Компас', labelES: 'Brújula', labelPtBr: 'Bússola', labelVi: 'La bàn', labelId: 'Kompas', labelTr: 'Pusula', labelPl: 'Kompas', bg: '#171719', accent: '#F2C48D', text: '#FFF8E8', preview2: '#FFE6B5', preview3: '#B4774E' },
   { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF', premiumOnly: true },
   { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn', bg: '#010101', accent: '#FFA245', text: '#FFFFFF', preview2: '#FF8A2A', preview3: '#FF3D6E', premiumOnly: true },
   { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', bg: '#010201', accent: '#3DE8A6', text: '#FFFFFF', preview2: '#2EE6A0', preview3: '#2E9DFF', premiumOnly: true },
   { mode: 'volt', labelRU: 'Вольт', labelUK: 'Вольт', labelES: 'Volt', labelPtBr: 'Volt', labelVi: 'Volt', labelId: 'Volt', labelTr: 'Volt', labelPl: 'Volt', bg: '#010200', accent: '#D6FF3D', text: '#FFFFFF', preview2: '#B8F222', preview3: '#2EE08C', premiumOnly: true },
   { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937' },
-  { mode: 'minimalLight', labelRU: 'Скетч', labelUK: 'Скетч', labelES: 'Sketch', labelPtBr: 'Sketch', labelVi: 'Phác thảo', labelId: 'Sketsa', labelTr: 'Eskiz', labelPl: 'Szkic', bg: '#F3ECDC', accent: '#343842', text: '#171615', preview2: '#BCA98E', preview3: '#DED4C0' },
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
-  { mode: 'neon', labelRU: 'Неон', labelUK: 'Неон', labelES: 'Neón', labelPtBr: 'Neon', labelVi: 'Neon', labelId: 'Neon', labelTr: 'Neon', labelPl: 'Neon', bg: '#202020', accent: '#C8FF00', text: '#F0F0F0', preview2: '#C8FF00', preview3: '#343434', premiumOnly: true },
   { mode: 'coral', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', labelPtBr: 'Coral', labelVi: 'San hô', labelId: 'Koral', labelTr: 'Mercan', labelPl: 'Koral', bg: '#1C1113', accent: '#FF6464', text: '#FFFFFF', preview2: '#FF6464', preview3: '#3A2A2E', premiumOnly: true },
   { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto', bg: '#050504', accent: '#D7AD56', text: '#FFF7E6', preview2: '#F1CC72', preview3: '#18140D', rewardOnly: true },
 ];
@@ -59,20 +54,13 @@ function themeSwatches(item: ThemeOption): [string, string, string] {
   switch (item.mode) {
     case 'minimalDark':
       return ['#A8CBFF', item.accent, '#2F5C9B'];
-    case 'compass':
-      return [COMPASS_RICH.cream, COMPASS_RICH.champagne, COMPASS_RICH.copperDark];
-    // «Чёрное кино»: свотчи = ядро блума, акцент, ореол блума.
     case 'midnight':
     case 'ember':
     case 'aurora':
     case 'volt':
       return [item.preview2, item.accent, item.preview3];
-    case 'minimalLight':
-      return ['#FFFDF6', item.bg, item.preview3];
     case 'dark':
       return ['#8AB49A', item.accent, '#1E6B3A'];
-    case 'neon':
-      return ['#E5FF66', item.accent, '#6C8A00'];
     case 'coral':
       return ['#FF9A9A', item.accent, '#8A2E3D'];
     case 'gold':
@@ -97,7 +85,7 @@ function themeRowColors(item: ThemeOption, active: boolean) {
   const topGlow = 'rgba(255,255,255,0.12)';
   const borderColor = active ? item.accent : rgba(item.accent, 0.30);
 
-  if (item.mode === 'minimalLight') {
+  if (false) {
     return {
       gradient: ['#3A3D43', '#282B31', '#1A1C21'] as const,
       shine: [topGlow, 'rgba(255,255,255,0.03)', 'rgba(255,255,255,0)'] as const,
@@ -127,7 +115,6 @@ export default function SettingsThemes() {
   const { theme: t, themeMode, setThemeMode, isGoldThemeUnlocked } = useTheme();
   const { lang } = useLang();
   const { hasPremiumAccess: isPremium } = usePremium();
-  const isCompassTheme = themeMode === 'compass';
   const themeRowRadius = 10;
   const themeRowHeight = 58;
 
@@ -141,17 +128,17 @@ export default function SettingsThemes() {
               style={{
                 width: 38,
                 height: 38,
-                borderRadius: isCompassTheme ? 8 : 19,
+                borderRadius: 19,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
-                borderWidth: isCompassTheme ? 0.5 : 0,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                backgroundColor: 'transparent',
+                borderWidth: 0,
+                borderColor: 'transparent',
                 overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(1) : {}),
+
               }}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TapScale>
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700', marginLeft: 8 }}>
@@ -185,11 +172,11 @@ export default function SettingsThemes() {
               style={{
                 width: 38,
                 height: 38,
-                borderRadius: isCompassTheme ? 8 : 19,
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard,
+                borderRadius: 19,
+                backgroundColor: t.bgCard,
                 borderWidth: 0.5,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
-                ...(isCompassTheme ? compassShadow(1) : {}),
+                borderColor: t.border,
+
               }}
             />
           </View>
@@ -221,7 +208,7 @@ export default function SettingsThemes() {
                       height: themeRowHeight,
                       marginBottom: 8,
                       overflow: 'hidden',
-                      ...compassShadow(active ? 2 : 1),
+
                       shadowColor: row.shadowColor,
                     },
                   ]}

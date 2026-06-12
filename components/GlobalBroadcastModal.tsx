@@ -65,7 +65,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
   const shardsAmount = payload?.rewardType === 'shards'
     ? Math.max(0, Math.floor(Number(payload.rewardAmount ?? 0)))
     : 0;
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const dimColor = 'rgba(0,0,0,0.62)';
 
   const closeOnce = async () => {

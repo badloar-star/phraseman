@@ -8,6 +8,7 @@ import { loadWeekLeaderboard } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 import { getCanonicalUserId } from './user_id_policy';
 import { rememberLeagueStateSnapshot } from './league_open_cache_policy';
+import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './remote_flags';
 
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 
@@ -628,8 +629,14 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   const zoneSize     = getLeagueResultZoneSize(total);
   const topCutoff    = hasValidGroup ? zoneSize : 0;
   const bottomCutoff = hasValidGroup ? total - zoneSize + 1 : total + 1;
-  const promoted     = hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
-  const demoted      = hasValidGroup && myRank >= bottomCutoff && state.leagueId > 0 && !promoted;
+  const xpPromotionMode = isLeagueXpPromotionEnabled();
+  const xpPromotionThreshold = getLeagueXpPromotionThreshold();
+  const promoted = xpPromotionMode
+    ? myWeekPoints >= xpPromotionThreshold && state.leagueId < CLUBS.length - 1
+    : hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
+  const demoted = xpPromotionMode
+    ? false
+    : hasValidGroup && myRank >= bottomCutoff && state.leagueId > 0 && !promoted;
 
   return {
     prevLeagueId: state.leagueId,

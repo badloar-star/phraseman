@@ -86,6 +86,7 @@ export type XPSource =
   | 'review_answer'
   | 'diagnostic_test'
   | 'daily_login_bonus'
+  | 'daily_phrase_quest'
   | 'exam_complete'
   | 'achievement_reward'
   | 'level_up_bonus'
@@ -147,7 +148,7 @@ export const registerXP = async (
 
     // 1. Множители применяются к заработку (уроки, квизы, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_task_reward', 'plan_task_complete'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest', 'daily_task_reward', 'plan_task_complete'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)

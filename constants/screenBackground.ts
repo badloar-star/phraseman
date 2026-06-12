@@ -1,4 +1,3 @@
-import { GOLD_GRADIENTS } from './goldTheme';
 import { CINEMA } from './cinemaThemes';
 import type { ThemeMode } from './theme';
 
@@ -8,15 +7,12 @@ import type { ThemeMode } from './theme';
  * без циклического импорта между компонентами.
  */
 const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
-  dark:   ['#112318', '#09150E', '#030805'],
-  neon:   ['#181818', '#0F0F0F', '#070707'],
-  gold:   GOLD_GRADIENTS.appBackground,
-  coral:  ['#342027', '#1C1012', '#070405'],
+  dark: ['#07120B', '#030805', '#010201'],
+  gold: ['#151005', '#090704', '#010101'],
+  coral: ['#17090C', '#0C0406', '#010101'],
   // Sketch light paper tone
-  minimalLight: ['#F1E8D7', '#E0D0B7', '#CDB99C'],
   // Graphite dark neutral tone
-  minimalDark: ['#191B1F', '#121316', '#0C0D0F'],
-  compass: ['#333335', '#303032', '#2D2D2F'],
+  minimalDark: ['#111318', '#08090D', '#010102'],
   // «Чёрное кино»: чистый чёрный; блум рисуется слоем CinemaBloom поверх.
   midnight: [...CINEMA.midnight.bgGradient3],
   ember: [...CINEMA.ember.bgGradient3],

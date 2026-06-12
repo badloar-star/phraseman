@@ -5,7 +5,8 @@ import sharp from 'sharp';
 const ROOT = path.join(__dirname, '..');
 
 const THEME_BUTTON_DIR = 'assets/images/header_glyphs/theme-accent-buttons';
-const THEME_MODES = ['dark', 'neon', 'gold', 'coral', 'minimalLight', 'minimalDark', 'compass'] as const;
+const THEME_BUTTON_VERSION = 'outline-v1';
+const THEME_MODES = ['dark', 'gold', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt'] as const;
 
 type AlphaBounds = {
   minX: number;
@@ -43,7 +44,7 @@ describe('header theme accent buttons', () => {
   test('provides transparent play and message buttons for every active theme', async () => {
     for (const themeMode of THEME_MODES) {
       for (const kind of ['play', 'message'] as const) {
-        const assetPath = path.join(ROOT, THEME_BUTTON_DIR, `${kind}-button-${themeMode}-dalle-v1.webp`);
+        const assetPath = path.join(ROOT, THEME_BUTTON_DIR, `${kind}-button-${themeMode}-${THEME_BUTTON_VERSION}.webp`);
         expect(fs.existsSync(assetPath)).toBe(true);
 
         const metadata = await sharp(assetPath).metadata();
@@ -59,8 +60,8 @@ describe('header theme accent buttons', () => {
     const inboxSource = fs.readFileSync(path.join(ROOT, 'components', 'AppMessagesInbox.tsx'), 'utf8');
 
     for (const themeMode of THEME_MODES) {
-      expect(lingmanSource).toContain(`${THEME_BUTTON_DIR}/play-button-${themeMode}-dalle-v1.webp`);
-      expect(inboxSource).toContain(`${THEME_BUTTON_DIR}/message-button-${themeMode}-dalle-v1.webp`);
+      expect(lingmanSource).toContain(`${THEME_BUTTON_DIR}/play-button-${themeMode}-${THEME_BUTTON_VERSION}.webp`);
+      expect(inboxSource).toContain(`${THEME_BUTTON_DIR}/message-button-${themeMode}-${THEME_BUTTON_VERSION}.webp`);
     }
   });
 
@@ -87,8 +88,8 @@ describe('header theme accent buttons', () => {
 
   test('play and message assets share a stable transparent visual frame', async () => {
     for (const themeMode of THEME_MODES) {
-      const playPath = path.join(ROOT, THEME_BUTTON_DIR, `play-button-${themeMode}-dalle-v1.webp`);
-      const messagePath = path.join(ROOT, THEME_BUTTON_DIR, `message-button-${themeMode}-dalle-v1.webp`);
+      const playPath = path.join(ROOT, THEME_BUTTON_DIR, `play-button-${themeMode}-${THEME_BUTTON_VERSION}.webp`);
+      const messagePath = path.join(ROOT, THEME_BUTTON_DIR, `message-button-${themeMode}-${THEME_BUTTON_VERSION}.webp`);
       const play = await alphaBounds(playPath);
       const message = await alphaBounds(messagePath);
 

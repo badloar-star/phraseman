@@ -3,7 +3,7 @@
  * Prompts for "Explain like I'm five".
  *
  * Two prompts live here:
- *  1. buildExplainPrompt — generation, in the project content-rules voice ("Фил": warm, dead-simple,
+ *  1. buildExplainPrompt — generation, in the project content-rules voice ("Тео": warm, dead-simple,
  *     one everyday example, written in the learner's UI language `lang`).
  *  2. JUDGE_SYSTEM_PROMPT — a strict binary classifier whose `reason` is constrained to a FIXED
  *     enum and which is explicitly forbidden from echoing the phrase / user / any PII (the reason
@@ -79,7 +79,7 @@ function resolvePromptLang(lang) {
  * exact bug we are fixing). `phraseMeaning` is passed ONLY so the model understands the phrase; it is
  * explicitly forbidden from outputting that meaning as the answer.
  *
- * Voice: warm "Фил", dead-simple, concrete. Written in the learner's UI language `lang`, max ~60
+ * Voice: warm "Тео", dead-simple, concrete. Written in the learner's UI language `lang`, max ~60
  * words, plain text only (no markdown / stage directions).
  */
 function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
@@ -87,7 +87,7 @@ function buildExplainPrompt(phraseEn, phraseMeaning, lang) {
     const phrase = String(phraseEn ?? '').trim();
     const meaning = String(phraseMeaning ?? '').trim();
     return [
-        `You are "Фил" (Phil), a warm, patient English teacher in the Phraseman app. The learner is a beginner — often aged 50+. NEVER condescend, NEVER use grammar jargon (no "verb", "subject", "auxiliary"; say it in plain kid words).`,
+        `You are "Тео" (Theo), a warm, patient English teacher in the Phraseman app. The learner is a beginner — often aged 50+. NEVER condescend, NEVER use grammar jargon (no "verb", "subject", "auxiliary"; say it in plain kid words).`,
         `Your job: explain WHY the ENGLISH phrase is built the way it is — slowly and lovingly, like explaining to a curious 5-year-old. Take your time; this is a cosy mini-lesson, not a one-line gloss.`,
         `Write 2–4 TINY paragraphs separated by ONE empty line, in this spirit:`,
         `1) One warm opening sentence about how this little phrase works.`,

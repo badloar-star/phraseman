@@ -112,16 +112,10 @@ const DETAIL_REWARD_ICON_SIZE = 58;
 
 const dualGiftModalPanelBackground = (themeMode: ThemeMode, t: Theme): string => {
   switch (themeMode) {
-    case 'minimalLight':
-      return '#FFFDF6';
     case 'gold':
       return '#140E06';
-    case 'neon':
-      return '#050A06';
     case 'coral':
       return '#1E0C10';
-    case 'compass':
-      return '#111318';
     case 'minimalDark':
       return '#070B11';
     case 'dark':
@@ -525,7 +519,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
   const canCloseWithIcon = !opening && (opened.size === 0 || opened.size === 2);
   const screenDim = USE_ELITE_DUAL_LEVEL_GIFT_MODAL
-    ? (themeMode === 'minimalLight' ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.48)')
+    ? (false ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.48)')
     : 'rgba(0,0,0,0.78)';
 
   const onRequestCloseModal = () => {

@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useMemo, useRef, memo } from 'react';
-import { View, Animated, StyleSheet, Dimensions, Easing, type ViewStyle } from 'react-native';
+import React, { useContext, useEffect, useMemo, useRef, useState, memo } from 'react';
+import { AccessibilityInfo, View, Animated, StyleSheet, Dimensions, Easing, type ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Svg, { Defs, RadialGradient as SvgRadialGradient, Stop, Rect, Circle } from 'react-native-svg';
+import Svg, { Defs, RadialGradient as SvgRadialGradient, Stop, Rect } from 'react-native-svg';
 import { useTheme } from './ThemeContext';
 import { GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';
-import { CINEMA, CINEMA_STARS, isCinemaMode, type CinemaMode } from '../constants/cinemaThemes';
+import { CINEMA, CINEMA_STARS } from '../constants/cinemaThemes';
 import { BG_GRADIENTS } from '../constants/screenBackground';
 import TopFadeMask, { type TopFadeMaskProps } from './TopFadeMask';
 import {
@@ -21,15 +21,13 @@ const GradientActiveCtx = React.createContext(false);
 const { width: W, height: H } = Dimensions.get('window');
 const SCREEN_GRADIENT_MOTION_ENABLED = true;
 const SCREEN_GRADIENT_USE_NATIVE_DRIVER = true;
+const CINEMA_PARTICLE_MOTION_PX = 10;
 
 const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
-  dark: 0.72,
-  neon: 0.68,
-  gold: 0.88,
-  coral: 0.66,
-  minimalLight: 0.34,
-  minimalDark: 0.48,
-  compass: 0,
+  dark: 1,
+  gold: 1,
+  coral: 1,
+  minimalDark: 1,
   // «Чёрное кино»: альфы зашиты в стопы CinemaBloom, слой не глушим.
   midnight: 1,
   ember: 1,
@@ -38,14 +36,26 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
 };
 
 type OrbSpec = { x: number; y: number; r: number; color: string; opacity: number };
+type BloomSpec = { bloomA: string; bloomB: string };
 type ScreenBgLayer = {
   key: string;
   backgroundColor: string;
   accent: string;
   isGold: boolean;
-  cinemaMode: CinemaMode | null;
+  bloomMode: ThemeMode;
   gradColors: string[];
   orbs: OrbSpec[];
+};
+
+const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
+  dark: { bloomA: '#2F8A42', bloomB: '#47C870' },
+  gold: { bloomA: '#D6B35A', bloomB: '#8A5A18' },
+  coral: { bloomA: '#FF6E6E', bloomB: '#D13D72' },
+  minimalDark: { bloomA: '#6EA8FF', bloomB: '#9CA3AF' },
+  midnight: { bloomA: CINEMA.midnight.bloomA, bloomB: CINEMA.midnight.bloomB },
+  ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
+  aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },
+  volt: { bloomA: CINEMA.volt.bloomA, bloomB: CINEMA.volt.bloomB },
 };
 
 const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
@@ -54,12 +64,6 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.1,  y: H * 0.42, r: 150, color: '#2A7A4A', opacity: 0.13 },
     { x: W * 0.6,  y: H * 0.78, r: 130, color: '#1A5C35', opacity: 0.10 },
     { x: W * 0.25, y: H * 0.22, r:  70, color: '#58CC89', opacity: 0.07 },
-  ],
-  neon: [
-    { x: W * 0.8,  y: 70,       r: 190, color: '#C8FF00', opacity: 0.13 },
-    { x: W * 0.1,  y: H * 0.52, r: 140, color: '#88BB00', opacity: 0.11 },
-    { x: W * 0.6,  y: H * 0.82, r: 110, color: '#C8FF00', opacity: 0.08 },
-    { x: W * 0.4,  y: H * 0.25, r:  60, color: '#AAFF00', opacity: 0.05 },
   ],
   gold: [
     { x: W * 0.82, y: 70,       r: 165, color: GOLD_RICH.champagne, opacity: 0.032 },
@@ -73,13 +77,6 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.58, y: H * 0.80, r: 140, color: '#B86A62', opacity: 0.07 },
     { x: W * 0.30, y: H * 0.20, r:  82, color: '#6E3F3F', opacity: 0.07 },
   ],
-  // Sketch (minimalLight): warm paper + graphite shading.
-  minimalLight: [
-    { x: W * 0.82, y: 84,       r: 210, color: '#8F8068', opacity: 0.20 },
-    { x: W * 0.08, y: H * 0.46, r: 165, color: '#A18F72', opacity: 0.16 },
-    { x: W * 0.58, y: H * 0.80, r: 145, color: '#8A7B65', opacity: 0.14 },
-    { x: W * 0.28, y: H * 0.20, r:  84, color: '#B8AA92', opacity: 0.13 },
-  ],
   // Graphite (minimalDark): monochrome cool-dark shading with blue accents.
   minimalDark: [
     { x: W * 0.82, y: 84,       r: 205, color: '#6B7280', opacity: 0.16 },
@@ -88,7 +85,6 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.28, y: H * 0.20, r:  80, color: '#9CA3AF', opacity: 0.08 },
   ],
   // Compass: reference-matched graphite field; warm amber is reserved for assets and CTA.
-  compass: [],
   // «Чёрное кино»: вместо орбов — слой CinemaBloom (двухцветный блум снизу + звёзды).
   midnight: [],
   ember: [],
@@ -421,8 +417,114 @@ function GoldFabricFlow() {
  * ореолом + слабый ответный отсвет сверху + звёздная пыль. Статичный SVG
  * (без анимаций): радиальные градиенты дёшевы и не дёргают UI-поток.
  */
-function CinemaBloom({ mode }: { mode: CinemaMode }) {
-  const p = CINEMA[mode];
+function useReduceMotionEnabled() {
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    void AccessibilityInfo.isReduceMotionEnabled()
+      .then(value => {
+        if (mounted) setReduceMotion(Boolean(value));
+      })
+      .catch(() => undefined);
+    const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
+    return () => {
+      mounted = false;
+      subscription.remove();
+    };
+  }, []);
+
+  return reduceMotion;
+}
+
+function CinemaParticle({
+  sx,
+  sy,
+  r,
+  opacity,
+  index,
+  reduceMotion,
+}: {
+  sx: number;
+  sy: number;
+  r: number;
+  opacity: number;
+  index: number;
+  reduceMotion: boolean;
+}) {
+  const drift = useRef(new Animated.Value(0)).current;
+  const left = W * sx - r;
+  const top = H * sy - r;
+  const motion = CINEMA_PARTICLE_MOTION_PX + (index % 3) * 3;
+  const directionX = index % 2 === 0 ? 1 : -1;
+  const directionY = index % 4 < 2 ? -1 : 1;
+
+  useEffect(() => {
+    if (!SCREEN_GRADIENT_MOTION_ENABLED || reduceMotion) {
+      drift.stopAnimation();
+      drift.setValue(0);
+      return undefined;
+    }
+
+    const duration = 12000 + (index % 5) * 1700;
+    const anim = Animated.loop(
+      Animated.sequence([
+        Animated.timing(drift, {
+          toValue: 1,
+          duration,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
+        }),
+        Animated.timing(drift, {
+          toValue: 0,
+          duration,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
+        }),
+      ]),
+    );
+    const delay = index * 420;
+    const timer = setTimeout(() => anim.start(), delay);
+    return () => {
+      clearTimeout(timer);
+      anim.stop();
+    };
+  }, [drift, index, reduceMotion]);
+
+  const translateX = drift.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-motion * 0.35 * directionX, motion * directionX],
+  });
+  const translateY = drift.interpolate({
+    inputRange: [0, 1],
+    outputRange: [motion * 0.25 * directionY, -motion * directionY],
+  });
+  const animatedOpacity = drift.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [opacity * 0.58, opacity, opacity * 0.70],
+  });
+
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        styles.cinemaParticle,
+        {
+          left,
+          top,
+          width: r * 2,
+          height: r * 2,
+          borderRadius: r,
+          opacity: reduceMotion ? opacity * 0.9 : animatedOpacity,
+          transform: reduceMotion ? undefined : [{ translateX }, { translateY }],
+        },
+      ]}
+    />
+  );
+}
+
+function CinemaBloom({ mode, reduceMotion }: { mode: ThemeMode; reduceMotion: boolean }) {
+  const p = THEME_BLOOMS[mode];
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
@@ -451,10 +553,18 @@ function CinemaBloom({ mode }: { mode: CinemaMode }) {
         <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-main-${mode})`} />
         <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-core-${mode})`} />
         <Rect x="0" y="0" width="100%" height="100%" fill={`url(#cinema-top-${mode})`} />
-        {CINEMA_STARS.map(([sx, sy, r, o], i) => (
-          <Circle key={`star-${i}`} cx={W * sx} cy={H * sy} r={r} fill="#FFFFFF" opacity={o * 0.9} />
-        ))}
       </Svg>
+      {CINEMA_STARS.map(([sx, sy, r, o], i) => (
+        <CinemaParticle
+          key={`particle-${i}`}
+          sx={sx}
+          sy={sy}
+          r={r}
+          opacity={o * 0.9}
+          index={i}
+          reduceMotion={reduceMotion}
+        />
+      ))}
     </View>
   );
 }
@@ -462,9 +572,11 @@ function CinemaBloom({ mode }: { mode: CinemaMode }) {
 function ScreenGradientBackgroundLayer({
   layer,
   effectsOnly = false,
+  reduceMotion = false,
 }: {
   layer: ScreenBgLayer;
   effectsOnly?: boolean;
+  reduceMotion?: boolean;
 }) {
   return (
     <View
@@ -486,10 +598,10 @@ function ScreenGradientBackgroundLayer({
       ) : null}
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { overflow: 'visible' }]}>
         {effectsOnly ? (
-          layer.isGold ? (
+          layer.bloomMode ? (
+            <CinemaBloom mode={layer.bloomMode} reduceMotion={reduceMotion} />
+          ) : layer.isGold ? (
             <GoldFabricFlow />
-          ) : layer.cinemaMode ? (
-            <CinemaBloom mode={layer.cinemaMode} />
           ) : (
             <>
               {layer.orbs.map((o, i) => (
@@ -500,9 +612,7 @@ function ScreenGradientBackgroundLayer({
                 width: 220,
                 height: 220,
                 borderRadius: 110,
-                backgroundColor: layer.key.startsWith('minimalLight:')
-                  ? 'rgba(52,56,66,0.13)'
-                  : `${layer.accent}18`,
+                backgroundColor: `${layer.accent}18`,
                 transform: [{ rotate: '30deg' }, { scaleX: 2.2 }],
               }} />
             </>
@@ -527,13 +637,14 @@ function renderBackgroundLayer(
   layer: PersistentBackgroundLayer<ScreenBgLayer>,
   effectsOnly = false,
   overlayOpacity = 1,
+  reduceMotion = false,
 ) {
   const key = effectsOnly ? `${layer.id}:effects` : layer.id;
 
   if (!FABRIC_BACKGROUND_TRANSITIONS_ENABLED) {
     return (
       <View key={key} pointerEvents="none" style={[StyleSheet.absoluteFill, effectsOnly ? { opacity: overlayOpacity } : null]}>
-        <ScreenGradientBackgroundLayer layer={layer.value} effectsOnly={effectsOnly} />
+        <ScreenGradientBackgroundLayer layer={layer.value} effectsOnly={effectsOnly} reduceMotion={reduceMotion} />
       </View>
     );
   }
@@ -544,7 +655,7 @@ function renderBackgroundLayer(
       pointerEvents="none"
       style={[StyleSheet.absoluteFill, { opacity: effectsOnly ? overlayOpacity : layer.opacity }]}
     >
-      <ScreenGradientBackgroundLayer layer={layer.value} effectsOnly={effectsOnly} />
+        <ScreenGradientBackgroundLayer layer={layer.value} effectsOnly={effectsOnly} reduceMotion={reduceMotion} />
     </Animated.View>
   );
 }
@@ -575,11 +686,12 @@ interface Props {
 
 function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed, artBackdrop, topFade }: Props) {
   const { theme: t, themeMode } = useTheme();
+  const reduceMotion = useReduceMotionEnabled();
   const isNested = useContext(GradientActiveCtx);
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
 
   const isGold = themeMode === 'gold';
-  const cinemaMode = isCinemaMode(themeMode) ? themeMode : null;
+  const bloomMode = themeMode;
   const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = useMemo(
     () => BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]],
@@ -591,10 +703,10 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
     backgroundColor: t.bgPrimary,
     accent: t.accent,
     isGold,
-    cinemaMode,
+    bloomMode,
     gradColors,
     orbs,
-  }), [activeBgKey, cinemaMode, gradColors, isGold, orbs, t.accent, t.bgPrimary]);
+  }), [activeBgKey, bloomMode, gradColors, isGold, orbs, t.accent, t.bgPrimary]);
   const { layers: bgLayers } = usePersistentBackgroundLayers({
     value: targetBgLayer,
     transitionKey: activeBgKey,
@@ -631,7 +743,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
     <>
       {bgLayers.map(layer => renderBackgroundLayer(layer))}
       {fixedArtBackdrop ? <AppArtBackdrop name={fixedArtBackdrop} /> : routeArtBackdropEnabled ? <AppRouteArtBackdrop /> : null}
-      {bgLayers.map(layer => renderBackgroundLayer(layer, true, MOTION_OVERLAY_OPACITY[themeMode]))}
+      {bgLayers.map(layer => renderBackgroundLayer(layer, true, MOTION_OVERLAY_OPACITY[themeMode], reduceMotion))}
     </>
   );
 
@@ -691,5 +803,9 @@ const styles = StyleSheet.create({
     top: -H * 0.20,
     bottom: -H * 0.18,
     width: W * 0.82,
+  },
+  cinemaParticle: {
+    position: 'absolute',
+    backgroundColor: '#FFFFFF',
   },
 });

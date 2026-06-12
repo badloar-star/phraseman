@@ -15,9 +15,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from openai_dev_guard import require_openai_dev_spend_guard
 
+
+# Requires PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 before any OpenAI batch spend.
 MODEL_ID = "gpt-4o-mini-tts"
 OUTPUT_FORMAT = "wav"
+OPENAI_TTS_ESTIMATE_USD_PER_1K_CHARS = 0.015
 ROLE_CONFIG: dict[str, dict[str, str]] = {
     "ru": {
         "voice": "marin",
@@ -217,8 +221,22 @@ def main() -> int:
     write_json(args.out_dir / "voice_config.json", {"model_id": MODEL_ID, "roles": ROLE_CONFIG})
     write_json(args.out_dir / "tts_manifest.planned.json", manifest)
     if args.dry_run:
-        print(json.dumps({"planned_files": len(manifest), "out_dir": args.out_dir.as_posix()}, ensure_ascii=False))
+        total_chars = sum(len(str(item["tts_text"])) for item in manifest)
+        estimated_cost = (total_chars / 1000) * OPENAI_TTS_ESTIMATE_USD_PER_1K_CHARS
+        print(json.dumps({
+            "planned_files": len(manifest),
+            "planned_chars": total_chars,
+            "estimated_cost_usd": round(estimated_cost, 4),
+            "out_dir": args.out_dir.as_posix(),
+        }, ensure_ascii=False))
         return 0
+
+    total_chars = sum(len(str(item["tts_text"])) for item in manifest)
+    require_openai_dev_spend_guard(
+        action="VENGA OpenAI TTS batch",
+        estimated_cost_usd=(total_chars / 1000) * OPENAI_TTS_ESTIMATE_USD_PER_1K_CHARS,
+        units=len(manifest),
+    )
 
     generated = 0
     cached = 0

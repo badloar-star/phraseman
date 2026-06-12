@@ -47,8 +47,8 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const isGold = themeMode === 'gold';
-  const isCompass = themeMode === 'compass';
-  const isPaperHomeTheme = themeMode === 'minimalLight';
+  const isCompass = false;
+  const isPaperHomeTheme = false;
   const copy = cardCopy(snapshot);
   const art = getPersonalPlanArt(snapshot.planId);
   const heroAsset = getPersonalPlanTaskVisualAsset('route_phrase', snapshot.planId);

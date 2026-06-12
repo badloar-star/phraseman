@@ -127,7 +127,7 @@ function ReleaseNotesModal({ visible, onClose }: Props) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const cardAnim = useRef(new Animated.Value(0)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
   const shineAnim = useRef(new Animated.Value(0)).current;

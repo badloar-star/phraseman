@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="224" viewBox="0 0 320 224">
+      
+    <defs>
+      <filter id="softInk" x="-18%" y="-28%" width="136%" height="156%" color-interpolation-filters="sRGB">
+        <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#120C02" flood-opacity="0.24"/>
+        <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#D6B35A" flood-opacity="0.26"/>
+      </filter>
+    </defs>
+  
+      
+    <g filter="url(#softInk)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g stroke="#120C02" stroke-opacity="0.38" stroke-width="13.5">
+    <rect x="47" y="43" width="226" height="138" rx="31"/>
+  </g>
+      <g stroke="#D6B35A" stroke-width="10">
+    <rect x="47" y="43" width="226" height="138" rx="31"/>
+  </g>
+      <g stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="3.2">
+    <rect x="47" y="43" width="226" height="138" rx="31"/>
+  </g>
+    </g>
+  
+      
+    <g filter="url(#softInk)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g stroke="#120C02" stroke-opacity="0.38" stroke-width="13.5">
+    <path d="M139 80 L204 112 L139 144 Z"/>
+  </g>
+      <g stroke="#D6B35A" stroke-width="10">
+    <path d="M139 80 L204 112 L139 144 Z"/>
+  </g>
+      <g stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="3.2">
+    <path d="M139 80 L204 112 L139 144 Z"/>
+  </g>
+    </g>
+  
+    </svg>
+  

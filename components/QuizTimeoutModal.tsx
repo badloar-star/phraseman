@@ -15,7 +15,7 @@ interface Props {
 function QuizTimeoutModal({ visible, hardMode, onClose }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const modalRadius = isCompassTheme ? 10 : 24;
   const buttonRadius = isCompassTheme ? 9 : 14;
 

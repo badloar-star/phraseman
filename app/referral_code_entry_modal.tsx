@@ -114,14 +114,14 @@ function feedbackForStatus(status: ReferralApplyStatus, L: L8): Feedback {
       return {
         kind: 'error',
         text: L(
-          'Код приглашения можно применить только в первые 3 дня после начала учёбы.',
-          'Код запрошення можна застосувати лише в перші 3 дні після початку навчання.',
-          'El código solo puede aplicarse en los primeros 3 días tras empezar.',
-          'O código só pode ser aplicado nos primeiros 3 dias após começar.',
-          'Chỉ áp dụng được mã trong 3 ngày đầu sau khi bắt đầu học.',
-          'Kode hanya bisa dipakai dalam 3 hari pertama setelah mulai.',
-          'Kod yalnızca başladıktan sonraki ilk 3 gün içinde uygulanabilir.',
-          'Kod można zastosować tylko w ciągu pierwszych 3 dni nauki.',
+          'Код уже не применится: этому аккаунту больше 3 дней.',
+          'Код уже не застосувати: цьому акаунту більше 3 днів.',
+          'El código ya no se puede aplicar: esta cuenta tiene más de 3 días.',
+          'O código já não pode ser aplicado: esta conta tem mais de 3 dias.',
+          'Không thể áp dụng mã nữa: tài khoản này đã hơn 3 ngày.',
+          'Kode sudah tidak bisa dipakai: akun ini sudah lebih dari 3 hari.',
+          'Kod artık uygulanamaz: bu hesap 3 günden eski.',
+          'Kodu nie można już zastosować: to konto ma ponad 3 dni.',
         ),
       };
     case 'self':
@@ -251,14 +251,14 @@ export function ReferralCodeEntryModal({
               <View style={{ paddingHorizontal: 20, paddingTop: 4, gap: 14 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.sub ?? 13, lineHeight: Math.round((f.sub ?? 13) * 1.45) }}>
                   {L(
-                    'Тебя пригласили в Phraseman? Введи код из ссылки-приглашения — когда пройдёшь первый урок, пригласивший получит 7 дней доступа. Это не код для добавления в друзья.',
-                    'Тебе запросили у Phraseman? Введи код із посилання-запрошення — коли пройдеш перший урок, той, хто запросив, отримає 7 днів доступу. Це не код для додавання в друзі.',
-                    '¿Te invitaron a Phraseman? Escribe el código del enlace de invitación: cuando completes la primera lección, quien te invitó recibirá 7 días de acceso. No es el código para agregar amigos.',
-                    'Foi convidado para o Phraseman? Digite o código do link de convite: quando concluir a primeira lição, quem convidou recebe 7 dias de acesso. Não é o código de adicionar amigos.',
-                    'Bạn được mời vào Phraseman? Nhập mã từ liên kết mời — khi bạn xong bài đầu, người mời sẽ nhận 7 ngày truy cập. Đây không phải mã kết bạn.',
-                    'Diundang ke Phraseman? Masukkan kode dari tautan undangan — saat kamu selesai pelajaran pertama, pengundang dapat 7 hari akses. Ini bukan kode tambah teman.',
-                    'Phraseman’e mi davet edildin? Davet bağlantısındaki kodu gir — ilk dersi bitirdiğinde davet eden 7 gün erişim kazanır. Bu, arkadaş ekleme kodu değildir.',
-                    'Zaproszono cię do Phraseman? Wpisz kod z linku z zaproszeniem — gdy ukończysz pierwszą lekcję, zapraszający dostanie 7 dni dostępu. To nie kod do dodawania znajomych.',
+                    'Тебя пригласили в Phraseman? Код связывает приглашение с твоим аккаунтом. После твоей первой сессии пригласивший откроет 7 дней доступа. Это не код для добавления в друзья.',
+                    'Тебе запросили в Phraseman? Код пов’язує запрошення з твоїм акаунтом. Після твоєї першої сесії той, хто запросив, відкриє 7 днів доступу. Це не код для додавання в друзі.',
+                    '¿Te invitaron a Phraseman? El código vincula la invitación con tu cuenta. Después de tu primera sesión, quien te invitó abrirá 7 días de acceso. No es el código para agregar amigos.',
+                    'Foi convidado para o Phraseman? O código vincula o convite à sua conta. Depois da primeira sessão, quem convidou abre 7 dias de acesso. Não é o código de adicionar amigos.',
+                    'Bạn được mời vào Phraseman? Mã sẽ liên kết lời mời với tài khoản của bạn. Sau phiên đầu tiên, người mời sẽ mở 7 ngày truy cập. Đây không phải mã kết bạn.',
+                    'Diundang ke Phraseman? Kode menghubungkan undangan dengan akunmu. Setelah sesi pertamamu, pengundang membuka 7 hari akses. Ini bukan kode tambah teman.',
+                    'Phraseman’e mi davet edildin? Kod, daveti hesabına bağlar. İlk oturumundan sonra davet eden 7 gün erişim açar. Bu, arkadaş ekleme kodu değildir.',
+                    'Zaproszono cię do Phraseman? Kod łączy zaproszenie z twoim kontem. Po twojej pierwszej sesji zapraszający otworzy 7 dni dostępu. To nie kod do dodawania znajomych.',
                   )}
                 </Text>
 
@@ -338,14 +338,14 @@ export function ReferralCodeEntryModal({
 
                 <Text style={{ color: t.textMuted, fontSize: (f.xs ?? 11), textAlign: 'center', lineHeight: Math.round((f.xs ?? 11) * 1.45) }}>
                   {L(
-                    'Работает в первые 3 дня после начала учёбы.',
-                    'Працює в перші 3 дні після початку навчання.',
-                    'Funciona durante los primeros 3 días tras empezar.',
-                    'Funciona nos primeiros 3 dias após começar.',
-                    'Có hiệu lực trong 3 ngày đầu sau khi bắt đầu.',
-                    'Berlaku dalam 3 hari pertama setelah mulai.',
-                    'Başladıktan sonraki ilk 3 gün geçerlidir.',
-                    'Działa przez pierwsze 3 dni od rozpoczęcia nauki.',
+                    'Код можно ввести в первые 3 дня после создания аккаунта.',
+                    'Код можна ввести в перші 3 дні після створення акаунта.',
+                    'Puedes escribir el código durante los primeros 3 días tras crear la cuenta.',
+                    'Você pode inserir o código nos primeiros 3 dias após criar a conta.',
+                    'Bạn có thể nhập mã trong 3 ngày đầu sau khi tạo tài khoản.',
+                    'Kode bisa dimasukkan dalam 3 hari pertama setelah akun dibuat.',
+                    'Kodu, hesap oluşturulduktan sonraki ilk 3 gün içinde girebilirsin.',
+                    'Kod możesz wpisać w ciągu pierwszych 3 dni po utworzeniu konta.',
                   )}
                 </Text>
               </View>

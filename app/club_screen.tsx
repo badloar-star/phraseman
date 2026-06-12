@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, PanResponder } from 'react-native';
 import { Image } from 'expo-image';
@@ -52,7 +53,7 @@ import {
   KEY_CLUB_PREV_RANK, RankDelta,
 } from './rank_change';
 import RankChangeBanner from '../components/RankChangeBanner';
-import { actionToastTri, emitAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { subscribeMyArenaClubWarEvent } from './services/arena_club_wars';
 import {
   LEAGUE_BONUS_ADMIN_PREVIEW_KEY,
@@ -78,6 +79,7 @@ import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { oskolokImageForPackShards } from './oskolok';
 import { tabSwipeLock } from './tabSwipeLock';
 import { getLeagueSwipePreviewState, swipeLeaguePreview } from './league_swipe_preview';
+import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './remote_flags';
 import { getShardsBalance, replaceShardsBalanceLocal } from './shards_system';
 import {
   LEAGUE_GROUP_BOOST_COST_SHARDS,
@@ -171,6 +173,20 @@ function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
     id: `Untuk naik ke liga berikutnya, pada akhir minggu kamu harus masuk top-${promotionCutoff} berdasarkan XP yang didapat minggu ini.`,
     tr: `Bir sonraki lige geçmek için hafta sonunda bu hafta kazandığın XP ile ilk ${promotionCutoff} içinde olman gerekir.`,
     pl: `Aby przejść do następnej ligi, na koniec tygodnia musisz być w top-${promotionCutoff} według XP zdobytego w tym tygodniu.`,
+  });
+}
+
+function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
+  const xp = Math.max(1, Math.floor(Number(threshold) || 1000)).toLocaleString();
+  return triLang(lang, {
+    ru: `В этом месяце переход проще: набери ${xp} XP за неделю — и перейдёшь в следующую лигу.`,
+    uk: `Цього місяця перехід простіший: набери ${xp} XP за тиждень — і перейдеш у наступну лігу.`,
+    es: `Este mes subir es más simple: consigue ${xp} XP esta semana y pasarás a la siguiente liga.`,
+    'pt-BR': `Neste mês a subida está mais simples: ganhe ${xp} XP na semana e vá para a próxima liga.`,
+    vi: `Tháng này việc thăng hạng dễ hiểu hơn: đạt ${xp} XP trong tuần để lên giải tiếp theo.`,
+    id: `Bulan ini naik liga lebih sederhana: kumpulkan ${xp} XP minggu ini untuk masuk liga berikutnya.`,
+    tr: `Bu ay yükselme daha basit: haftada ${xp} XP kazan, sonraki lige geç.`,
+    pl: `W tym miesiącu awans jest prostszy: zdobądź ${xp} XP w tygodniu i przejdź do następnej ligi.`,
   });
 }
 
@@ -428,6 +444,10 @@ export default function ClubScreen() {
   const [groupBoostLikeBusy, setGroupBoostLikeBusy] = useState(false);
   const [groupBoostLikedToday, setGroupBoostLikedToday] = useState(false);
   const [groupBoostLikeTotal, setGroupBoostLikeTotal] = useState(0);
+  const [leagueXpPromotionRemote, setLeagueXpPromotionRemote] = useState(() => ({
+    enabled: isLeagueXpPromotionEnabled(),
+    threshold: getLeagueXpPromotionThreshold(),
+  }));
   const activeGroupBoostRef = useRef<LeagueGroupBoostState | null>(null);
   const [leagueCrownsByUid, setLeagueCrownsByUid] = useState<Record<string, LeagueCrown>>({});
   const [leagueChestOpenModal, setLeagueChestOpenModal] = useState<{
@@ -437,6 +457,16 @@ export default function ClubScreen() {
   } | null>(null);
 
   const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    const sub = onAppEvent('remote_config_changed', () => {
+      setLeagueXpPromotionRemote({
+        enabled: isLeagueXpPromotionEnabled(),
+        threshold: getLeagueXpPromotionThreshold(),
+      });
+    });
+    return () => sub.remove();
+  }, []);
   const leagueChatUnreadCount = useLeagueChatUnread({
     initialRoom: leagueGroupMeta,
     myUid: arenaClubStableUid,
@@ -805,9 +835,11 @@ export default function ClubScreen() {
     localLeagueHydrated,
     participantCount: sortedGroup.length,
   });
+  const leagueXpPromotionMode = leagueXpPromotionRemote.enabled;
+  const leagueXpPromotionThreshold = leagueXpPromotionRemote.threshold;
   const zoneSize = getLeagueResultZoneSize(sortedGroup.length);
-  const promotionCutoff = sortedGroup.length >= 2 && myLeagueId < LEAGUES.length - 1 ? zoneSize : 0;
-  const relegationStartIndex = sortedGroup.length >= 2 ? Math.max(0, sortedGroup.length - zoneSize) : sortedGroup.length;
+  const promotionCutoff = !leagueXpPromotionMode && sortedGroup.length >= 2 && myLeagueId < LEAGUES.length - 1 ? zoneSize : 0;
+  const relegationStartIndex = !leagueXpPromotionMode && sortedGroup.length >= 2 ? Math.max(0, sortedGroup.length - zoneSize) : sortedGroup.length;
   const leagueBonusAdminActive = !!leagueBonusAdminPreview && Date.now() < leagueBonusAdminPreview.expiresAt;
   const leagueRaceVisible = localLeagueHydrated && (
     leagueBonusAdminActive || shouldShowLeagueRace(sortedGroup.length, userName)
@@ -1105,6 +1137,7 @@ export default function ClubScreen() {
     <ScreenGradient>
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       {/* Хедер */}
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, borderBottomWidth:0.5, borderBottomColor:t.border }}>
         <TapScale
@@ -1143,7 +1176,7 @@ export default function ClubScreen() {
         </Text>
       </View>
 
-      <BouncyWrap style={bouncyStyle}>
+      <BouncyWrap>
       <ScrollView
         ref={contentScrollRef}
         scrollEnabled
@@ -1171,6 +1204,28 @@ export default function ClubScreen() {
             lang={lang}
             onClose={() => setRankDelta(null)}
           />
+        )}
+
+        {leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && (
+          <View
+            testID="league-xp-promotion-banner"
+            style={{
+              borderRadius: 14,
+              paddingHorizontal: 14,
+              paddingVertical: 11,
+              backgroundColor: 'rgba(52, 199, 89, 0.12)',
+              borderWidth: 0.5,
+              borderColor: 'rgba(52, 199, 89, 0.34)',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 9,
+            }}
+          >
+            <Ionicons name="trending-up" size={18} color="#34C759" />
+            <Text style={{ color: t.textPrimary, fontSize: f.caption, lineHeight: Math.max(16, f.caption + 4), fontWeight: '800', flex: 1 }}>
+              {leagueXpPromotionBannerText(lang, leagueXpPromotionThreshold)}
+            </Text>
+          </View>
         )}
 
         <View
@@ -1567,7 +1622,8 @@ export default function ClubScreen() {
             </Text>
           ) : sortedGroup.length > 0 ? (
             sortedGroup.map((p, i) => {
-              const isPromotionZone = promotionCutoff > 0 && i < promotionCutoff;
+              const hasXpPromotion = leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && Math.max(0, Math.floor(Number(p.points) || 0)) >= leagueXpPromotionThreshold;
+              const isPromotionZone = hasXpPromotion || (promotionCutoff > 0 && i < promotionCutoff);
               const isRelegationZone = i >= relegationStartIndex;
               const rowXp = p.isMe ? playerXP : (p.totalXp ?? 0);
               const rowAvatar = p.isMe
@@ -1691,6 +1747,25 @@ export default function ClubScreen() {
                     </Text>
                   </View>
                 )}
+                {hasXpPromotion && (
+                  <View
+                    testID={`league-xp-promotion-badge-${p.uid || i}`}
+                    style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(52, 199, 89, 0.16)', borderWidth: 0.5, borderColor: 'rgba(52, 199, 89, 0.45)' }}
+                  >
+                    <Text style={{ color: '#34C759', fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }} numberOfLines={1}>
+                      {triLang(lang, {
+                        ru: 'Переход',
+                        uk: 'Перехід',
+                        es: 'Sube',
+                        'pt-BR': 'Sobe',
+                        vi: 'Lên hạng',
+                        id: 'Naik',
+                        tr: 'Yükselir',
+                        pl: 'Awans',
+                      })}
+                    </Text>
+                  </View>
+                )}
                 <View style={{ flexDirection:'row', alignItems:'center', gap:5, flexShrink: 0 }}>
                   <Ionicons name="star" size={11} color={i < 3 ? t.gold : t.textMuted} />
                   <Text style={{ color: i < 3 ? t.gold : t.textMuted, fontSize: f.body, fontWeight:'600' }}>
@@ -1726,6 +1801,7 @@ export default function ClubScreen() {
 
       </ScrollView>
       </BouncyWrap>
+      </Reanimated.View>
 
       </ContentWrap>
 

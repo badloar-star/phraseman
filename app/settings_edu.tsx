@@ -73,7 +73,7 @@ function formatVoiceLabel(voice: Voice): string {
 export default function SettingsEdu() {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { lang, s: loc } = useLang();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [s, setS] = useState<UserSettings>(() => getUserSettingsSnapshot());

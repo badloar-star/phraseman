@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import {
+  Animated,
+  Easing,
   Modal,
   Pressable,
   ScrollView,
@@ -18,6 +20,12 @@ import { triLang } from '../constants/i18n';
 import { checkAchievements } from '../app/achievements';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import {
+  awardDailyPhraseQuestXpOnce,
+  buildDailyPhraseQuestOptions,
+  DAILY_PHRASE_QUEST_XP,
+  isDailyPhraseQuestAnswerCorrect,
+} from '../app/daily_phrase_quest';
+import {
   dailyPhraseCopyForLang,
   getTodayPhraseForTarget,
   getTodayPhraseSyncForTarget,
@@ -25,8 +33,8 @@ import {
   DailyPhrase,
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
+import { IDIOMS } from '../app/idioms_data';
 import AddToFlashcard from './AddToFlashcard';
-import ExplainButton from './ExplainButton';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -34,18 +42,15 @@ import { useTheme } from './ThemeContext';
 const DAILY_PHRASE_IMAGES: Record<string, any> = {
   dark: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
   minimalDark: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
-  compass: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
-  minimalLight: require('../assets/images/home_menu/home-minimal-light-daily-phrase.webp'),
-  neon: require('../assets/images/home_menu/home-neon-daily-phrase.webp'),
   gold: require('../assets/images/home_menu/home-gold-daily-phrase.webp'),
   coral: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
   ocean: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
   sakura: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
   // «Чёрное кино»: своя картинка не отрисована — компасный премиум-глиф.
-  midnight: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
-  ember: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
-  aurora: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
-  volt: require('../assets/images/home_menu/compass-premium/home-compass-premium-daily-phrase.webp'),
+  midnight: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
+  ember: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
+  aurora: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
+  volt: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
 };
 
 const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;
@@ -68,6 +73,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     getTodayPhraseSyncForTarget(studyTarget)
   ));
   const [detailsVisible, setDetailsVisible] = useState(false);
+  const [questAnswered, setQuestAnswered] = useState(false);
+  const [showQuestExplanation, setShowQuestExplanation] = useState(false);
+  const [selectedQuestOptionId, setSelectedQuestOptionId] = useState<string | null>(null);
+  const [questXpDelta, setQuestXpDelta] = useState<number | null>(null);
+  const shakeAnim = useRef(new Animated.Value(0)).current;
+  const explanationAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (studyTarget === 'fr') {
@@ -120,6 +131,15 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     void syncWidgetData({ studyTarget, lang, themeMode });
   }, [studyTarget, lang, themeMode, phrase?.id]);
 
+  useEffect(() => {
+    setQuestAnswered(false);
+    setShowQuestExplanation(false);
+    setSelectedQuestOptionId(null);
+    setQuestXpDelta(null);
+    shakeAnim.setValue(0);
+    explanationAnim.setValue(0);
+  }, [phrase?.id, shakeAnim, explanationAnim]);
+
   if (studyTarget === 'fr') {
     return null;
   }
@@ -171,14 +191,76 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const homeAdditional = variant === 'homeAdditional';
   const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;
   const chrome = dailyPhraseChromeFor(themeMode);
+  const questOptions = buildDailyPhraseQuestOptions(phrase, IDIOMS);
+  const selectedQuestCorrect = selectedQuestOptionId
+    ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
+    : false;
+
+  const runWrongAnswerShake = () => {
+    shakeAnim.setValue(0);
+    Animated.sequence([
+      Animated.timing(shakeAnim, { toValue: -8, duration: 45, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 8, duration: 60, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: -6, duration: 50, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 6, duration: 50, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 0, duration: 55, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+    ]).start();
+  };
+
+  const resetQuest = () => {
+    setQuestAnswered(false);
+    setShowQuestExplanation(false);
+    setSelectedQuestOptionId(null);
+    setQuestXpDelta(null);
+    shakeAnim.setValue(0);
+    explanationAnim.setValue(0);
+  };
+
+  const revealQuestExplanation = () => {
+    explanationAnim.setValue(0);
+    setShowQuestExplanation(true);
+    Animated.timing(explanationAnim, {
+      toValue: 1,
+      duration: 230,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  };
 
   const openDetails = () => {
+    resetQuest();
     setDetailsVisible(true);
     updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
     checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
   };
 
-  const closeDetails = () => setDetailsVisible(false);
+  const closeDetails = () => {
+    setDetailsVisible(false);
+    resetQuest();
+  };
+
+  const handleQuestOptionPress = (optionId: string) => {
+    if (questAnswered) return;
+    setSelectedQuestOptionId(optionId);
+    setQuestAnswered(true);
+    revealQuestExplanation();
+
+    const correct = isDailyPhraseQuestAnswerCorrect(questOptions, optionId);
+    if (!correct) {
+      setQuestXpDelta(0);
+      runWrongAnswerShake();
+      return;
+    }
+
+    setQuestXpDelta(DAILY_PHRASE_QUEST_XP);
+    awardDailyPhraseQuestXpOnce({
+      phraseId: phrase.id || phrase.date,
+      date: phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!,
+      lang,
+    })
+      .then((result) => setQuestXpDelta(result.finalDelta))
+      .catch(() => setQuestXpDelta(0));
+  };
 
   return (
     <>
@@ -251,7 +333,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
       >
         <View style={styles.modalRoot}>
           <Pressable style={styles.backdrop} onPress={closeDetails} />
-          <View
+          <Animated.View
             style={[
               styles.sheet,
               {
@@ -259,6 +341,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                 borderColor: t.border,
                 shadowColor: t.accent,
               },
+              { transform: [{ translateX: shakeAnim }] },
             ]}
           >
             <View style={styles.sheetHeader}>
@@ -313,38 +396,97 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               contentContainerStyle={styles.sheetScrollContent}
               showsVerticalScrollIndicator={false}
             >
-              <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
-                <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                  {labelLiteral}
-                </Text>
-                <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
-                  {phraseCopy.literal}
-                </Text>
-              </View>
+              {!questAnswered && (
+                <View style={[styles.questBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                  <Text style={[styles.questQuestion, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
+                    Что это значит?
+                  </Text>
+                  <View style={styles.questOptions}>
+                    {questOptions.map((option) => (
+                        <Pressable
+                          key={option.id}
+                          onPress={() => handleQuestOptionPress(option.id)}
+                          accessibilityRole="button"
+                          accessibilityLabel={option.text}
+                          style={({ pressed }) => [
+                            styles.questOption,
+                            {
+                              backgroundColor: t.bgCard,
+                              borderColor: t.border,
+                            },
+                            pressed && styles.pressed,
+                          ]}
+                        >
+                          <Text
+                            style={[
+                              styles.questOptionText,
+                              { color: t.textPrimary, fontSize: f.body },
+                            ]}
+                          >
+                            {option.text}
+                          </Text>
+                        </Pressable>
+                      ))}
+                  </View>
+                </View>
+              )}
 
-              <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
-                <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                  {labelMeaning}
-                </Text>
-                <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
-                  {phraseCopy.meaning}
-                </Text>
-              </View>
+              {showQuestExplanation && (
+                <Animated.View
+                  style={[
+                    styles.explanationWrap,
+                    {
+                      opacity: explanationAnim,
+                      transform: [{
+                        translateY: explanationAnim.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [12, 0],
+                        }),
+                      }],
+                    },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.questResult,
+                      {
+                        color: selectedQuestCorrect ? t.correct : t.textMuted,
+                        fontSize: f.label,
+                      },
+                    ]}
+                  >
+                    {selectedQuestCorrect
+                      ? questXpDelta && questXpDelta > 0
+                        ? `+${questXpDelta} XP`
+                        : 'Верно. XP уже получен сегодня.'
+                      : 'Без опыта. Правильный смысл ниже.'}
+                  </Text>
+                  <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                    <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
+                      {labelLiteral}
+                    </Text>
+                    <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
+                      {phraseCopy.literal}
+                    </Text>
+                  </View>
 
-              {/* «Объясни как для 5-летнего» — self-hides когда флаг OFF (Фаза 5). */}
-              <ExplainButton
-                phraseEn={phrase.english}
-                phraseMeaning={phraseCopy.meaning || phrase.meaning}
-                lang={lang}
-                style={styles.explainButton}
-              />
+                  <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+                    <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
+                      {labelMeaning}
+                    </Text>
+                    <Text style={[styles.detailText, { color: t.textPrimary, fontSize: f.body }]}>
+                      {phraseCopy.meaning}
+                    </Text>
+                  </View>
 
-              <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
-                {phraseCopy.text}
-              </Text>
+                  <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
+                    {phraseCopy.text}
+                  </Text>
+                </Animated.View>
+              )}
             </ScrollView>
 
-            {phrase.allowSave !== false && (
+            {questAnswered && phrase.allowSave !== false && (
               <View style={[styles.saveRow, { borderTopColor: t.border }]}>
                 <AddToFlashcard
                   en={phrase.english}
@@ -368,7 +510,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                 />
               </View>
             )}
-          </View>
+          </Animated.View>
         </View>
       </Modal>
     </>
@@ -581,8 +723,38 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 23,
   },
-  explainButton: {
-    marginTop: 2,
+  questBlock: {
+    borderRadius: 16,
+    borderWidth: 1,
+    padding: 13,
+  },
+  questQuestion: {
+    fontWeight: '900',
+    lineHeight: 24,
+    marginBottom: 12,
+  },
+  questOptions: {
+    gap: 9,
+  },
+  questOption: {
+    minHeight: 48,
+    borderRadius: 14,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 11,
+    justifyContent: 'center',
+  },
+  questOptionText: {
+    fontWeight: '800',
+    lineHeight: 21,
+  },
+  questResult: {
+    fontWeight: '900',
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  explanationWrap: {
+    gap: 12,
   },
   saveRow: {
     borderTopWidth: 1,

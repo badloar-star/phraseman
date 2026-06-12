@@ -89,7 +89,7 @@ interface SwipeCardProps {
 function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const position = useRef(new Animated.ValueXY()).current;
 
   const rotate = position.x.interpolate({
@@ -228,7 +228,7 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardPr
 export default function TrainerWordsSession() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();

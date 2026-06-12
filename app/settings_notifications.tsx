@@ -55,7 +55,7 @@ function SimplePicker({ values, value, onChange }: {
   values: number[]; value: number; onChange: (v: number) => void;
 }) {
   const { theme: t, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const ref   = useRef<ScrollView>(null);
   const yRef  = useRef(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -105,7 +105,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
   onCancel: () => void;
 }) {
   const { theme: t, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const [h, setH] = useState(hour);
   const [m, setM] = useState(minute);
   useEffect(() => { if (visible) { setH(hour); setM(minute); } }, [hour, minute, visible]);
@@ -153,7 +153,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
 export default function SettingsNotifications() {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
 

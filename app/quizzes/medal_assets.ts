@@ -6,16 +6,13 @@ export type QuizCompletionMedalTheme = ThemeMode | 'forest' | 'neonGreen' | 'neo
 
 const QUIZ_COMPLETION_MEDALS: Record<Exclude<QuizCompletionMedalTheme, 'neon-green'>, ImageSourcePropType> = {
   dark: require('../../assets/images/quizzes/medals/quiz-completion-medal-dark-cutout.webp'),
-  neon: require('../../assets/images/quizzes/medals/quiz-completion-medal-neon-cutout.webp'),
   gold: require('../../assets/images/quizzes/medals/quiz-completion-medal-gold-cutout.webp'),
   coral: require('../../assets/images/quizzes/medals/quiz-completion-medal-coral-cutout.webp'),
-  minimalLight: require('../../assets/images/quizzes/medals/quiz-completion-medal-minimal-light-cutout.webp'),
   minimalDark: require('../../assets/images/quizzes/medals/quiz-completion-medal-minimal-dark-cutout.webp'),
-  compass: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
-  midnight: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
-  ember: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
-  aurora: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
-  volt: require('../../assets/images/quizzes/medals/quiz-completion-medal-compass-premium-cutout.webp'),
+  midnight: require('../../assets/images/quizzes/medals/quiz-completion-medal-midnight-cutout.webp'),
+  ember: require('../../assets/images/quizzes/medals/quiz-completion-medal-ember-cutout.webp'),
+  aurora: require('../../assets/images/quizzes/medals/quiz-completion-medal-aurora-cutout.webp'),
+  volt: require('../../assets/images/quizzes/medals/quiz-completion-medal-volt-cutout.webp'),
   forest: require('../../assets/images/quizzes/medals/quiz-completion-medal-forest-cutout.webp'),
   neonGreen: require('../../assets/images/quizzes/medals/quiz-completion-medal-neon-green-cutout.webp'),
 };

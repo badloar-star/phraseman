@@ -256,7 +256,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     onClose();
   }, [busy, onClose]);
 
-  const isLight = themeMode === 'minimalLight';
+  const isLight = false;
   const modalAccent = rewardModalAccentColor(themeMode, t);
 
   return (

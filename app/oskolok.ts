@@ -13,12 +13,6 @@ const THEMED_OSKOLOK_IMAGES: Record<OskolokThemeMode, Record<OskolokTier, ImageS
     '180': require('../assets/images/shards/dark-180.webp'),
     '420': require('../assets/images/shards/dark-420.webp'),
   },
-  neon: {
-    single: require('../assets/images/shards/neon-single.webp'),
-    '80': require('../assets/images/shards/neon-80.webp'),
-    '180': require('../assets/images/shards/neon-180.webp'),
-    '420': require('../assets/images/shards/neon-420.webp'),
-  },
   gold: {
     single: require('../assets/images/shards/gold-single.webp'),
     '80': require('../assets/images/shards/gold-80.webp'),
@@ -31,48 +25,36 @@ const THEMED_OSKOLOK_IMAGES: Record<OskolokThemeMode, Record<OskolokTier, ImageS
     '180': require('../assets/images/shards/coral-180.webp'),
     '420': require('../assets/images/shards/coral-420.webp'),
   },
-  minimalLight: {
-    single: require('../assets/images/shards/minimalLight-single.webp'),
-    '80': require('../assets/images/shards/minimalLight-80.webp'),
-    '180': require('../assets/images/shards/minimalLight-180.webp'),
-    '420': require('../assets/images/shards/minimalLight-420.webp'),
-  },
   minimalDark: {
     single: require('../assets/images/shards/minimalDark-single.webp'),
     '80': require('../assets/images/shards/minimalDark-80.webp'),
     '180': require('../assets/images/shards/minimalDark-180.webp'),
     '420': require('../assets/images/shards/minimalDark-420.webp'),
   },
-  compass: {
-    single: require('../assets/images/shards/compass-premium-single-session.webp'),
-    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
-    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
-    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
-  },
-  // «Чёрное кино»: свои спрайты осколков не отрисованы — компасные премиум.
+  // Cinema themes use DALL-E object-cutout shard foreground assets.
   midnight: {
-    single: require('../assets/images/shards/compass-premium-single-session.webp'),
-    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
-    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
-    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+    single: require('../assets/images/shards/midnight-single.webp'),
+    '80': require('../assets/images/shards/midnight-80.webp'),
+    '180': require('../assets/images/shards/midnight-180.webp'),
+    '420': require('../assets/images/shards/midnight-420.webp'),
   },
   ember: {
-    single: require('../assets/images/shards/compass-premium-single-session.webp'),
-    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
-    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
-    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+    single: require('../assets/images/shards/ember-single.webp'),
+    '80': require('../assets/images/shards/ember-80.webp'),
+    '180': require('../assets/images/shards/ember-180.webp'),
+    '420': require('../assets/images/shards/ember-420.webp'),
   },
   aurora: {
-    single: require('../assets/images/shards/compass-premium-single-session.webp'),
-    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
-    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
-    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+    single: require('../assets/images/shards/aurora-single.webp'),
+    '80': require('../assets/images/shards/aurora-80.webp'),
+    '180': require('../assets/images/shards/aurora-180.webp'),
+    '420': require('../assets/images/shards/aurora-420.webp'),
   },
   volt: {
-    single: require('../assets/images/shards/compass-premium-single-session.webp'),
-    '80': require('../assets/images/shards/compass-premium-80-session.webp'),
-    '180': require('../assets/images/shards/compass-premium-180-session.webp'),
-    '420': require('../assets/images/shards/compass-premium-420-session.webp'),
+    single: require('../assets/images/shards/volt-single.webp'),
+    '80': require('../assets/images/shards/volt-80.webp'),
+    '180': require('../assets/images/shards/volt-180.webp'),
+    '420': require('../assets/images/shards/volt-420.webp'),
   },
 };
 

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Reanimated from 'react-native-reanimated';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -41,11 +42,11 @@ function resolveChrome(themeMode: ThemeMode, t: ReturnType<typeof useTheme>['the
     muted: t.textMuted,
     surface: 'rgba(255,255,255,0.055)',
   };
-  if (themeMode === 'neon') return { ...base, bg: ['#202020', '#101010', '#050505'], card: ['#232522', '#0B0C0A'], accent: '#C8FF00', accent2: '#A6FF5D', accentSoft: 'rgba(200,255,0,0.13)', border: 'rgba(200,255,0,0.24)' };
+  if (false) return { ...base, bg: ['#202020', '#101010', '#050505'], card: ['#232522', '#0B0C0A'], accent: '#C8FF00', accent2: '#A6FF5D', accentSoft: 'rgba(200,255,0,0.13)', border: 'rgba(200,255,0,0.24)' };
   if (themeMode === 'gold') return { ...base, bg: ['#171008', '#0B0804', '#030201'], card: ['#211A10', '#080604'], accent: '#E8C46A', accent2: '#FFF0B8', accentSoft: 'rgba(232,196,106,0.15)', border: 'rgba(232,196,106,0.26)', muted: '#CBBE9A', surface: 'rgba(232,196,106,0.08)' };
   if (themeMode === 'coral') return { ...base, bg: ['#463036', '#251719', '#12090B'], card: ['#302126', '#10090B'], accent: '#FF7373', accent2: '#FFD060', accentSoft: 'rgba(255,115,115,0.14)', border: 'rgba(255,115,115,0.22)' };
-  if (themeMode === 'compass') return { ...base, bg: ['#343235', '#29292B', '#1E1E20'], card: ['#2D2D30', '#1F1F22'], accent: '#F6C78E', accent2: '#FFE1B5', accentSoft: 'rgba(246,199,142,0.14)', border: 'rgba(246,199,142,0.22)' };
-  if (themeMode === 'minimalLight') return { ...base, bg: ['#FFF8EA', '#F4E6CD', '#EBD8BC'], card: ['#FFFDF6', '#F2E1C8'], accent: '#B7791F', accent2: '#166E65', accentSoft: 'rgba(183,121,31,0.13)', border: 'rgba(91,63,25,0.18)', text: '#201811', muted: '#6A5C4D', surface: 'rgba(70,48,20,0.055)' };
+  if (false) return { ...base, bg: ['#343235', '#29292B', '#1E1E20'], card: ['#2D2D30', '#1F1F22'], accent: '#F6C78E', accent2: '#FFE1B5', accentSoft: 'rgba(246,199,142,0.14)', border: 'rgba(246,199,142,0.22)' };
+  if (false) return { ...base, bg: ['#FFF8EA', '#F4E6CD', '#EBD8BC'], card: ['#FFFDF6', '#F2E1C8'], accent: '#B7791F', accent2: '#166E65', accentSoft: 'rgba(183,121,31,0.13)', border: 'rgba(91,63,25,0.18)', text: '#201811', muted: '#6A5C4D', surface: 'rgba(70,48,20,0.055)' };
   if (themeMode === 'minimalDark') return { ...base, bg: ['#22252A', '#15171A', '#08090A'], card: ['#25282D', '#0E1012'], accent: '#D7DEE8', accent2: '#8EA7C6', accentSoft: 'rgba(215,222,232,0.12)', border: 'rgba(215,222,232,0.18)' };
   return base;
 }
@@ -175,6 +176,7 @@ export default function PersonalPlanStatsScreen() {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
       <LinearGradient colors={chrome.bg} style={styles.fill}>
+        <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
         <View style={styles.header}>
           <TapScale
             onPress={() => safeRouterBack(router, '/personal_plan')}
@@ -190,7 +192,7 @@ export default function PersonalPlanStatsScreen() {
           </View>
         </View>
 
-        <BouncyWrap style={bouncyStyle}>
+        <BouncyWrap>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
@@ -275,6 +277,7 @@ export default function PersonalPlanStatsScreen() {
           ) : null}
         </Animated.ScrollView>
         </BouncyWrap>
+        </Reanimated.View>
       </LinearGradient>
     </SafeAreaView>
   );

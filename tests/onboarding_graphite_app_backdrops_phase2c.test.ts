@@ -1,45 +1,27 @@
 import fs from 'fs';
 import path from 'path';
-import sharp from 'sharp';
+import { resolveAppArtBackdropName } from '../components/appArtBackdropRegistry';
 
 const ROOT = path.join(__dirname, '..');
 
-const PHASE_2C_BACKDROPS = [
-  'diagnosticTest',
-  'exam',
-  'flashcards',
-  'progressMap',
-  'shardsShop',
-  'levelGifts',
-  'statistics',
+const PHASE_2C_ROUTES = [
+  ['/diagnostic_test', 'diagnosticTest'],
+  ['/exam', 'exam'],
+  ['/flashcards', 'flashcards'],
+  ['/progress_map', 'progressMap'],
+  ['/shards_shop', 'shardsShop'],
+  ['/level_gifts_inventory', 'levelGifts'],
+  ['/streak_stats', 'statistics'],
 ] as const;
 
 describe('Onboarding Graphite app backdrops Phase 2C', () => {
-  test('final route backdrops exist as generated 1080x1920 WebP files', async () => {
-    for (const name of PHASE_2C_BACKDROPS) {
-      const file = path.join(
-        ROOT,
-        'assets/images/app_backdrops/onboarding-graphite',
-        `${name}-onboarding-graphite.webp`,
-      );
-      expect(fs.existsSync(file)).toBe(true);
-      const metadata = await sharp(file).metadata();
-      expect(metadata.width).toBe(1080);
-      expect(metadata.height).toBe(1920);
-      expect(metadata.format).toBe('webp');
-    }
-  });
+  test('final routes resolve to programmatic backdrop layers without bitmap assets', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'components/appArtBackdropRegistry.ts'), 'utf8');
 
-  test('minimalDark registry points final routes to generated onboarding-graphite backdrops', () => {
-    const source = fs.readFileSync(
-      path.join(ROOT, 'components/appArtBackdropRegistry.ts'),
-      'utf8',
-    );
+    expect(source).not.toContain('assets/images/app_backdrops');
 
-    for (const name of PHASE_2C_BACKDROPS) {
-      expect(source).toContain(
-        `require('../assets/images/app_backdrops/onboarding-graphite/${name}-onboarding-graphite.webp')`,
-      );
+    for (const [route, backdropName] of PHASE_2C_ROUTES) {
+      expect(resolveAppArtBackdropName(route)).toBe(backdropName);
     }
   });
 });

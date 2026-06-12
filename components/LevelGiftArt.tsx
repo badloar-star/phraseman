@@ -12,8 +12,8 @@ const isGiftTheme = (theme: string | null | undefined): theme is LevelGiftImageT
   theme === 'dark' ||
   theme === 'gold' ||
   theme === 'minimalDark' ||
-  theme === 'minimalLight' ||
-  theme === 'neon';
+  false ||
+  false;
 
 const isGiftVariant = (variant: string | null | undefined): variant is LevelGiftImageVariant =>
   variant === 'common' || variant === 'rare' || variant === 'epic' || variant === 'premium';

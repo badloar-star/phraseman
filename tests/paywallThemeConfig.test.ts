@@ -6,7 +6,7 @@ import {
 import type { ThemeMode } from '../constants/theme';
 
 const ALL_THEMES: ThemeMode[] = [
-  'dark', 'neon', 'gold', 'coral', 'minimalLight', 'minimalDark', 'compass',
+  'dark', 'gold', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt',
 ];
 
 const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [
@@ -91,10 +91,7 @@ describe('PAYWALL_THEME_CONFIG — тематическая корректнос
     expect(heroAccent.toLowerCase()).toMatch(/58cc89|47c870/i);
   });
 
-  it('neon: CTA неоново-лаймовый', () => {
-    const { ctaBg } = PAYWALL_THEME_CONFIG.neon;
-    expect(ctaBg.toLowerCase()).toContain('c8ff00');
-  });
+  
 
   it('gold: CTA золотой (из GOLD_RICH палитры)', () => {
     const { ctaBg } = PAYWALL_THEME_CONFIG.gold;
@@ -109,44 +106,26 @@ describe('PAYWALL_THEME_CONFIG — тематическая корректнос
     expect(ctaText.toLowerCase()).toContain('ffffff');
   });
 
-  it('minimalLight: CTA тёмный (не яркий акцент)', () => {
-    const { ctaBg, ctaText } = PAYWALL_THEME_CONFIG.minimalLight;
-    expect(ctaBg.toLowerCase()).toContain('273044');
-    expect(ctaText.toLowerCase()).toContain('ffffff');
-  });
+  
 
   it('minimalDark: CTA синий', () => {
     const { ctaBg } = PAYWALL_THEME_CONFIG.minimalDark;
     expect(ctaBg.toLowerCase()).toContain('6ea8ff');
   });
 
-  it('compass: CTA тёплый кремовый (из COMPASS_RICH)', () => {
-    const { ctaBg, ctaText } = PAYWALL_THEME_CONFIG.compass;
-    // creamSoft = #F8D7A3
-    expect(ctaBg.toLowerCase()).toContain('f8d7a3');
-    // textDark = #21170E
-    expect(ctaText.toLowerCase()).toContain('21170e');
-  });
+  
 });
 
 describe('PAYWALL_THEME_CONFIG — контрастность текста на CTA', () => {
   // Для тёмных CTA — текст должен быть светлым или тёмным в зависимости от фона
-  it('neon: текст на лаймовом CTA — тёмный (читаемость)', () => {
-    const { ctaText } = PAYWALL_THEME_CONFIG.neon;
-    // Лаймовый фон яркий — текст должен быть тёмным
-    expect(ctaText).not.toBe('#FFFFFF');
-    expect(ctaText).not.toBe('#fff');
-  });
+  
 
   it('gold: текст на золотом CTA — тёмный', () => {
     const { ctaText } = PAYWALL_THEME_CONFIG.gold;
     expect(ctaText.toLowerCase()).not.toBe('#ffffff');
   });
 
-  it('compass: текст на кремовом CTA — тёмный', () => {
-    const { ctaText } = PAYWALL_THEME_CONFIG.compass;
-    expect(ctaText.toLowerCase()).toContain('21170e');
-  });
+  
 });
 
 describe('PAYWALL_THEME_CONFIG — urgency блок', () => {

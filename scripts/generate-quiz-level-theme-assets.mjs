@@ -59,17 +59,6 @@ const THEMES = {
     accent2: '#FFB16A',
     foil: '#FFD7A0',
   },
-  minimalLight: {
-    file: 'minimal-light',
-    label: 'Ivory sketch',
-    source: 'minimalLight',
-    bg: ['#F5ECDD', '#D7C2A6'],
-    veil: '#F7EFDF',
-    ink: '#3F3426',
-    accent: '#8B6A3C',
-    accent2: '#B99A63',
-    foil: '#FFFFFF',
-  },
   minimalDark: {
     file: 'minimal-dark',
     label: 'Graphite study',
@@ -202,10 +191,6 @@ function themePatternSvg(themeKey, theme, level) {
       return `
         <path d="M411 192c42-82 28-117 94-166 68 51 47 96 94 166" stroke="${a}" stroke-width="2.6" fill="none"/>
         <path d="M430 124c40-30 108-30 148 0M453 158c30-19 72-19 102 0" stroke="${b}" stroke-width="2.1" fill="none"/>`;
-    case 'minimalLight':
-      return `
-        <path d="M382 38c60 22 122 14 196-6M380 80c67 17 132 12 206-9M388 174c62-17 122-14 188 8" stroke="${a}" stroke-width="1.3" fill="none"/>
-        <path d="M420 32l145 168M560 32L415 206" stroke="${f}" stroke-width="1.1" fill="none"/>`;
     case 'minimalDark':
       return `
         <path d="M388 34h182v150H388zM388 86h182M388 138h182M448 34v150M510 34v150" stroke="${a}" stroke-width="1.4" fill="none"/>
@@ -250,8 +235,6 @@ function logoPatternSvg(themeKey, theme, level) {
       return `<circle cx="130" cy="130" r="88" stroke="${b}" stroke-width="4" fill="none"/><path d="M130 42v176M42 130h176M68 68l124 124M192 68 68 192" stroke="${a}" stroke-width="3" stroke-linecap="round"/>`;
     case 'coral':
       return `<path d="M66 201c30-68 26-112 64-154 40 42 36 86 66 154" stroke="${a}" stroke-width="5" fill="none"/><path d="M70 95c28-18 92-18 120 0M62 157c35 22 100 22 136 0" stroke="${b}" stroke-width="4" fill="none"/>`;
-    case 'minimalLight':
-      return `<path d="M50 78c50-22 110-24 160-4M44 130c54-14 118-14 172 0M50 184c50 20 108 22 160 4" stroke="${a}" stroke-width="3" fill="none"/>`;
     case 'minimalDark':
       return `<path d="M54 54h152v152H54zM54 104h152M54 156h152M104 54v152M156 54v152" stroke="${a}" stroke-width="3" fill="none"/>`;
     case 'dark':
@@ -366,8 +349,8 @@ async function buildCard(themeKey, theme, levelKey, level, candidateSources, dal
       await fs.access(candidateSourcePath);
       base = await sharp(candidateSourcePath)
         .resize(CARD_W, CARD_H, { fit: 'cover', position: 'attention' })
-        .modulate({ brightness: themeKey === 'minimalLight' ? 1.04 : 0.78, saturation: themeKey === 'minimalDark' ? 0.68 : 0.94 })
-        .blur(themeKey === 'minimalLight' ? 0.6 : 0.35)
+        .modulate({ brightness: 0.78, saturation: themeKey === 'minimalDark' ? 0.68 : 0.94 })
+        .blur(0.35)
         .png()
         .toBuffer();
       source = candidateSourcePath;

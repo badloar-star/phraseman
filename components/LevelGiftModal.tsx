@@ -392,7 +392,7 @@ function LevelGiftModal({
       : rewardModalPrimaryButtonColors(themeMode);
   const canCloseWithIcon = phase !== 'opening' && !choiceBusy;
   const screenDim = USE_ELITE_LEVEL_GIFT_MODAL
-    ? (themeMode === 'minimalLight' ? 'rgba(24,18,10,0.30)' : 'rgba(0,0,0,0.46)')
+    ? (false ? 'rgba(24,18,10,0.30)' : 'rgba(0,0,0,0.46)')
     : 'rgba(0,0,0,0.75)';
 
   return (

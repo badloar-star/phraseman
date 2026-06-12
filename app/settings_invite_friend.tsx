@@ -277,7 +277,7 @@ export default function SettingsInviteFriend() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
 
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();

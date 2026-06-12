@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
+import CollectibleDropModal from '../components/CollectibleDropModal';
 import TapScale from '../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -18,6 +19,7 @@ import { updateMultipleTaskProgress } from './daily_tasks';
 import AvatarView from '../components/AvatarView';
 import { getLevelFromXP, screenTextOnGradient } from '../constants/theme';
 import { onArenaWin, addShards, loadShardsFromCloud } from './shards_system';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { checkAchievements } from './achievements';
 import { resolveRankedArenaWagerForMatchOutcome } from './arena_match_wager';
 import { canShowReview, markReviewPrompted, markReviewRated, requestNativeReview, getReviewVariant, ReviewVariant } from './review_utils';
@@ -245,9 +247,26 @@ export default function DuelResultsScreen() {
   const [shardsEarned, setShardsEarned] = useState(0);
   /** Проигрыш со ставкой: списание уже в resolveRankedArenaWager — только UI/анимация. */
   const [shardsLostWager, setShardsLostWager] = useState(0);
+  // Дроп карточки «Сокровищницы» за победу: сервер решает (шанс/кап/дедуп по
+  // arena:sessionId), показываем после анимаций наград и поверх ничего не лезем.
+  const [pendingCardDrop, setPendingCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const [shownCardDrop, setShownCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const rollArenaCardDrop = useCallback(() => {
+    if (!sessionId || isMockSession) return;
+    void maybeRollCollectibleDrop('arena', String(sessionId), { dailyScoped: false })
+      .then((drop) => { if (drop) setPendingCardDrop(drop); })
+      .catch(() => {});
+  }, [sessionId, isMockSession]);
   const [showReview, setShowReview] = useState(false);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [ratingVariant, setRatingVariant] = useState<ReviewVariant | null>(null);
+  useEffect(() => {
+    if (!pendingCardDrop || shownCardDrop) return;
+    if (showRatingModal || rankCinematic) return; // не лезем поверх других модалок
+    // Даём отыграть анимациям XP/осколков; смена модалок выше перезапускает таймер.
+    const timer = setTimeout(() => setShownCardDrop(pendingCardDrop), 3800);
+    return () => clearTimeout(timer);
+  }, [pendingCardDrop, shownCardDrop, showRatingModal, rankCinematic]);
   const [hillResult, setHillResult] = useState<ArenaHillAttemptResult | null>(null);
   const [clubWarResult, setClubWarResult] = useState<ArenaClubWarContributionResult | null>(null);
   const [xpGainedServer, setXpGainedServer] = useState<number | null>(null);
@@ -666,6 +685,7 @@ export default function DuelResultsScreen() {
           if (total > 0) {
             setShardsEarned(total);
           }
+          rollArenaCardDrop();
           await maybeShowArenaReviewPrompt();
 }
 
@@ -1085,9 +1105,10 @@ export default function DuelResultsScreen() {
       if (total > 0) {
         setShardsEarned(total);
       }
+      rollArenaCardDrop();
       await maybeShowArenaReviewPrompt();
     })().catch(() => {});
-  }, [isDraw, isForfeited, isMockSession, isRankedArenaSession, isSpecialChallenge, isWinner, recordArenaWinAchievementOnce, resultSaved, sessionId]);
+  }, [isDraw, isForfeited, isMockSession, isRankedArenaSession, isSpecialChallenge, isWinner, recordArenaWinAchievementOnce, resultSaved, rollArenaCardDrop, sessionId]);
 
   useEffect(() => {
     rewardsAnimPlayedRef.current = false;
@@ -1384,7 +1405,7 @@ export default function DuelResultsScreen() {
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
       <BouncyWrap style={bouncyStyle}>
-      <ScrollView
+      <Animated.ScrollView
         decelerationRate="normal"
         bounces
         alwaysBounceVertical
@@ -2219,7 +2240,7 @@ export default function DuelResultsScreen() {
             </TouchableOpacity>
           )}
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
       </BouncyWrap>
 
       {/* Модалка разбора вопросов */}
@@ -2320,6 +2341,19 @@ export default function DuelResultsScreen() {
           onClose={() => setRankCinematic(null)}
         />
       )}
+
+      <CollectibleDropModal
+        outcome={shownCardDrop}
+        onClose={() => {
+          setShownCardDrop(null);
+          setPendingCardDrop(null);
+        }}
+        onOpenCollection={() => {
+          setShownCardDrop(null);
+          setPendingCardDrop(null);
+          router.push('/collectibles_screen' as any);
+        }}
+      />
     </ScreenGradient>
   );
 }

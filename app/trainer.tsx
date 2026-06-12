@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import Reanimated from 'react-native-reanimated';
 import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import { Image } from 'expo-image';
 import TapScale from '../components/TapScale';
@@ -520,7 +521,7 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
             isWeak ? t.accent + '55' : t.border;
     const inner = (<View style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: rowBg, borderColor: rowBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
       {isCompassTheme ? <CompassTrainerSurface radius={8} quiet={!isWeak} selected={isWeak} physical /> : null}
-      <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]}>{stat.pct}%</Text>
+      <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>{stat.pct}%</Text>
       <View style={{ flex: 1 }}>
         <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '600' }} numberOfLines={1}>{label}</Text>
         <View style={styles.miniProgressBg}>
@@ -545,7 +546,7 @@ export default function TrainerScreen() {
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';
-    const isCompassTheme = themeMode === 'compass';
+    const isCompassTheme = false;
     const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
     const { lang } = useLang();
     const { studyTarget } = useStudyTarget();
@@ -651,6 +652,7 @@ export default function TrainerScreen() {
     return (<ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer">
         <ContentWrap>
+          <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
           <View style={styles.headerRow}>
             <TapScale accessibilityRole="button" accessibilityLabel="Back" onPress={() => safeRouterBack(router)} style={{ padding: 4, marginRight: 12 }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary}/>
@@ -691,7 +693,7 @@ export default function TrainerScreen() {
             />
           </View>
 
-          <BouncyWrap style={bouncyStyle}>
+          <BouncyWrap>
           <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
             {null}
 
@@ -790,6 +792,10 @@ export default function TrainerScreen() {
                   </View>
                 </TouchableOpacity>);
         })}
+
+            {personalPracticeCoachEnabled ? (
+              <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} />
+            ) : null}
 
             {/* ── Аналитика ошибок inline ── */}
             {hasPremium ? (<View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderRadius: trainerRadius }]}>
@@ -898,7 +904,7 @@ export default function TrainerScreen() {
                 {hasAnalyticsMistakes && analyticsTab === 'lessons' && (<View style={{ gap: 6 }}>
                     {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
                         {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
-                        <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]}>{stat.pct}%</Text>
+                        <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>{stat.pct}%</Text>
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                             {triLang(lang, {
@@ -978,11 +984,6 @@ export default function TrainerScreen() {
                 <Ionicons name="chevron-forward" size={20} color={t.textMuted}/>
               </TouchableOpacity>) : null}
 
-            {/* ── Разбор недели (ИИ) — отдельный контейнер внизу «Моей практики» ── */}
-            {personalPracticeCoachEnabled ? (
-              <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} />
-            ) : null}
-
             {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : '#1a1a2e', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#4A9EFF44', borderRadius: isCompassTheme ? 9 : 14 }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={9} quiet physical /> : null}
                 <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : isGoldTheme ? GOLD_RICH.metalGold : '#4A9EFF', fontSize: 11, fontWeight: '800', marginBottom: 8, letterSpacing: 1 }}>
@@ -1009,6 +1010,7 @@ export default function TrainerScreen() {
               </View>)}
             </ScrollView>
           </BouncyWrap>
+          </Reanimated.View>
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>);
@@ -1148,14 +1150,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 12,
         borderWidth: 0.5,
+        minHeight: 64,
         paddingVertical: 10,
         paddingHorizontal: 12,
         gap: 10,
     },
     analyticsRowPct: {
-        fontWeight: '700',
-        width: 42,
-        textAlign: 'right',
+        fontWeight: '800',
+        width: 58,
+        textAlign: 'center',
         flexShrink: 0,
     },
     miniProgressBg: {

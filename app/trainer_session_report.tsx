@@ -29,7 +29,7 @@ export default function TrainerSessionReport({
   onPracticeMore,
 }: TrainerSessionReportProps) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const reportAccent = isCompassTheme ? COMPASS_RICH.champagne : accent;
   const { lang } = useLang();
   const attempted = Math.max(total, correct + wrong);
@@ -169,7 +169,7 @@ export default function TrainerSessionReport({
 
 function Metric({ label, value, color }: { label: string; value: string; color: string }) {
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   return (
     <View style={[styles.metric, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 14, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
       {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}

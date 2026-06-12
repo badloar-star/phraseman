@@ -36,13 +36,6 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
         "iconPath": "assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-dark.webp"
       },
       {
-        "family": "neon",
-        "plaquePrompt": "Generate a neon theme card background for the Home and rooms quiz in existing Phraseman style, cozy room scene, no text.",
-        "iconPrompt": "Generate a neon compact theme logo for the Home and rooms quiz in existing Phraseman style, readable room icon, no text.",
-        "plaquePath": "assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-neon.webp",
-        "iconPath": "assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-neon.webp"
-      },
-      {
         "family": "neonGreen",
         "plaquePrompt": "Generate a neonGreen theme card background for the Home and rooms quiz in existing Phraseman style, cozy room scene, no text.",
         "iconPrompt": "Generate a neonGreen compact theme logo for the Home and rooms quiz in existing Phraseman style, readable room icon, no text.",
@@ -62,13 +55,6 @@ export const HOME_AND_ROOMS_SKYLER_PACK: SkylerThematicPack = {
         "iconPrompt": "Generate a coral compact theme logo for the Home and rooms quiz in existing Phraseman style, readable room icon, no text.",
         "plaquePath": "assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-coral.webp",
         "iconPath": "assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-coral.webp"
-      },
-      {
-        "family": "minimalLight",
-        "plaquePrompt": "Generate a minimalLight theme card background for the Home and rooms quiz in existing Phraseman style, cozy room scene, no text.",
-        "iconPrompt": "Generate a minimalLight compact theme logo for the Home and rooms quiz in existing Phraseman style, readable room icon, no text.",
-        "plaquePath": "assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-light.webp",
-        "iconPath": "assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-light.webp"
       },
       {
         "family": "minimalDark",

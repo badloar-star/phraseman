@@ -30,11 +30,12 @@ describe('onboarding responsive layout contract', () => {
     expect(source).toContain("AsyncStorage.setItem('onboarding_done', '1')");
   });
 
-  it('pins every onboarding step to the welcome background image', () => {
-    expect(source).toContain("const ONBOARDING_BG_WELCOME = require('../assets/images/onboarding/onboarding-bg-welcome-wide.webp')");
+  it('keeps onboarding free of bitmap background images', () => {
+    expect(source).toContain('const ONBOARDING_BG_WELCOME = null');
     for (const key of ['BETA', 'NAME', 'BUILDER', 'QUIZ', 'STREAK', 'AUTH']) {
-      expect(source).toContain(`const ONBOARDING_BG_${key} = ONBOARDING_BG_WELCOME;`);
+      expect(source).toContain(`const ONBOARDING_BG_${key} = null;`);
     }
-    expect(source).not.toMatch(/require\('\.\.\/assets\/images\/onboarding\/onboarding-bg-(beta|name|builder|quiz|streak|auth)-wide\.webp'\)/);
+    expect(source).not.toMatch(/require\('\.\.\/assets\/images\/onboarding\/onboarding-bg-[^']+\.webp'\)/);
+    expect(source).toContain("<LinearGradient\n          colors={['#101319', '#07090D', '#020304']}");
   });
 });

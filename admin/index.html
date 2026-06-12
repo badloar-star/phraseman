@@ -8354,6 +8354,7 @@
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Testers">Testers</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>
+  <div class="tab" onclick="switchTab('openai-budget')">OpenAI budget</div>
   <div class="tab" onclick="switchTab('reports')" data-i18n-es="Reportes">Reports</div>
   <div class="tab" onclick="switchTab('website-inbox')" data-i18n-es="Soporte (sitio)">Support (site)</div>
   <div class="tab" onclick="switchTab('user-reports')" data-i18n-es="Reportes de usuarios">User reports</div>
@@ -9000,9 +9001,8 @@
   </div>
   <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
     Жалобы «Непонятно объяснили» из шторки объяснения фразы. Источник: <code style="color:#a78bfa">explain_report_entries</code>
-    (каждая отправка) + счётчики <code style="color:#a78bfa">explain_reports</code> (разных юзеров на фразу; порог авто-отключения — 5).
-    <strong>«Сбросить объяснение»</strong> удаляет кэш фразы — следующий запрос сгенерирует объяснение заново
-    (так оживляются и фразы, убитые порогом жалоб или ложным вердиктом ИИ-судьи).
+    (каждая отправка) + счётчики <code style="color:#a78bfa">explain_reports</code> (разных юзеров на фразу). Жалоба сама не отключает кэш.
+    <strong>«Убрать из кэша»</strong> удаляет только cached explanation — следующий запрос сгенерирует объяснение заново.
   </p>
   <div id="xr-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
 </div>
@@ -10739,6 +10739,45 @@
   </div>
 </div>
 
+<!-- OPENAI BUDGET TAB -->
+<div id="tab-openai-budget" class="reports-tab">
+  <div class="reports-toolbar" style="padding:0 0 12px 0;align-items:flex-start">
+    <div style="flex:1;min-width:260px">
+      <h2 style="margin:0 0 4px;color:#fff;font-size:20px">OpenAI budget</h2>
+      <div class="tab-desc" style="font-size:13px;color:#888;line-height:1.45">Server-side estimate from billing logs. Cache hits are not billed, so they do not appear here.</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <select id="openai-budget-range" onchange="loadOpenAiBudgetDashboard(true)" title="Period">
+        <option value="1">1 day</option>
+        <option value="7">7 days</option>
+        <option value="30" selected>30 days</option>
+        <option value="90">90 days</option>
+      </select>
+      <select id="openai-dialog-model" title="Theo model">
+        <option value="gpt-4.1-nano">Theo: GPT-4.1 nano</option>
+        <option value="gpt-4.1-mini">Theo: GPT-4.1 mini</option>
+        <option value="gpt-4.1">Theo: GPT-4.1</option>
+        <option value="gpt-4o-mini">Theo: GPT-4o mini</option>
+      </select>
+      <button type="button" onclick="saveOpenAiDialogModel()">Save model</button>
+      <button type="button" onclick="loadOpenAiBudgetDashboard(true)">Refresh</button>
+    </div>
+  </div>
+  <div id="openai-dialog-model-status" class="reports-empty" style="margin-bottom:12px;padding:12px;text-align:left">Theo model config is loading...</div>
+  <div id="openai-budget-status" class="reports-empty" style="margin-bottom:12px">OpenAI estimated month loads when this tab is active.</div>
+  <div id="openai-budget-summary" class="stats" style="padding:0;margin-bottom:12px">
+    <div class="stat-card"><div class="label">OpenAI estimated month</div><div class="value">-</div></div>
+    <div class="stat-card"><div class="label">Selected period</div><div class="value">-</div></div>
+    <div class="stat-card"><div class="label">Paid calls</div><div class="value">-</div></div>
+    <div class="stat-card"><div class="label">Tokens</div><div class="value">-</div></div>
+    <div class="stat-card"><div class="label">Users</div><div class="value">-</div></div>
+  </div>
+  <div id="openai-budget-grid" class="analytics-grid">
+    <div class="chart-card"><h3>Feature costs</h3><div class="reports-empty" style="padding:12px 0">Waiting for Cloud Function data...</div></div>
+    <div class="chart-card"><h3>Model costs</h3><div class="reports-empty" style="padding:12px 0">Waiting for Cloud Function data...</div></div>
+  </div>
+</div>
+
 <!-- DETAIL PANEL -->
 <div class="detail" id="detail">
   <div class="detail-header">
@@ -10835,6 +10874,20 @@
     }
     return _fnCommunityAdminPack;
   }
+  let _fnOpenAiBudgetDashboard = null;
+  function getOpenAiBudgetDashboardCallable() {
+    if (!_fnOpenAiBudgetDashboard) {
+      _fnOpenAiBudgetDashboard = httpsCallable(functionsUs, 'openAiBudgetDashboard');
+    }
+    return _fnOpenAiBudgetDashboard;
+  }
+  let _fnOpenAiDialogModelConfig = null;
+  function getOpenAiDialogModelConfigCallable() {
+    if (!_fnOpenAiDialogModelConfig) {
+      _fnOpenAiDialogModelConfig = httpsCallable(functionsUs, 'openAiDialogModelConfig');
+    }
+    return _fnOpenAiDialogModelConfig;
+  }
 
   // ── Auth: email + custom claim admin (set via scripts/set_admin_claim.mjs) ─────
   const adminLoginEl = document.getElementById('admin-login');
@@ -10884,7 +10937,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -14360,6 +14413,8 @@
     if (modQueueTab) modQueueTab.classList.toggle('active', tab === 'mod-queue');
     document.getElementById('tab-users').classList.toggle('active',tab==='users');
     document.getElementById('tab-analytics').classList.toggle('active',tab==='analytics');
+    const openAiBudgetTab = document.getElementById('tab-openai-budget');
+    if (openAiBudgetTab) openAiBudgetTab.classList.toggle('active', tab === 'openai-budget');
     document.getElementById('tab-app-health').classList.toggle('active',tab==='app-health');
     document.getElementById('tab-reports').classList.toggle('active',tab==='reports');
     const wiTabInbox = document.getElementById('tab-website-inbox');
@@ -14429,6 +14484,9 @@
     }
     if (tab === 'analytics' && typeof window.loadRevenueAnalytics === 'function') {
       void window.loadRevenueAnalytics();
+    }
+    if (tab === 'openai-budget' && typeof window.loadOpenAiBudgetDashboard === 'function') {
+      void window.loadOpenAiBudgetDashboard();
     }
     if(tab==='reports' && !window._reportsLoaded) loadReports();
     if(tab==='reports' && typeof window.loadGlobalBroadcastStatus === 'function') window.loadGlobalBroadcastStatus();
@@ -14702,6 +14760,7 @@
   const ADMIN_TAB_GROUPS = {
     overview: 'core',
     analytics: 'core',
+    'openai-budget': 'revenue',
     'app-health': 'core',
     users: 'users',
     testers: 'users',
@@ -15562,6 +15621,7 @@
   // ── Cmd-K global command palette ──────────────────────────────────────────
   // Human-readable labels for tab navigation results (keys must be in ADMIN_TAB_KEYS).
   const CMDK_TAB_LABELS = {
+    'openai-budget': 'OpenAI budget',
     'overview': '📊 Overview', 'analytics': '📈 Analytics', 'app-health': '🩺 App Health',
     'users': '👥 Users', 'reports': '🐞 Content reports', 'website-inbox': '✉️ Support (site)',
     'user-reports': '🚩 User reports', 'explain-reports': '💡 Explain reports', 'ban-list': '🚫 Ban list', 'premium': '⭐ Premium',
@@ -19376,9 +19436,8 @@
 
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────
   // Лента: explain_report_entries (каждая отправка). Счётчики: explain_reports
-  // (РАЗНЫХ юзеров на фразу, порог авто-отключения 5). Кэш: phrase_explanations
-  // («Сбросить объяснение» = deleteDoc ⇒ следующий запрос генерирует заново —
-  // так оживляются фразы, убитые порогом или ложным вердиктом ИИ-судьи).
+  // (РАЗНЫХ юзеров на фразу). Жалоба сама не отключает кэш: админ вручную жмёт
+  // «Убрать из кэша» = deleteDoc ⇒ следующий запрос генерирует заново.
   window._explainReportsLoaded = false;
   window._explainEntries = [];
   window._explainCounters = {};
@@ -19459,6 +19518,13 @@
       const phrase = escapeHtml(items[0].phraseEn || counter.phraseEn || '(фраза неизвестна)');
       const lang = escapeHtml(items[0].lang || counter.lang || '?');
       const distinct = Number(counter.reportCount || 0);
+      const cache = window._explainCache[hash] || {};
+      const explanationText = items.find(e => e.explanationText)?.explanationText || cache.text || counter.latestExplanationText || '';
+      const explanationBlock = explanationText ? `
+        <div style="background:#111827;border:1px solid #273244;border-radius:8px;padding:10px 12px;margin:8px 0 6px">
+          <div style="color:#93c5fd;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px">Текст объяснения в кэше</div>
+          <div style="color:#dbeafe;font-size:13px;line-height:1.45;white-space:pre-wrap">${escapeHtml(String(explanationText))}</div>
+        </div>` : '';
       const rows = items.map((r) => {
         const date = r.createdAtMs ? new Date(r.createdAtMs).toISOString().slice(0, 16).replace('T', ' ') : '—';
         const reasonLabel = escapeHtml(XR_REASON_LABELS[r.reason] || r.reason || '—');
@@ -19488,9 +19554,10 @@
             ${xrCacheChip(hash)}
             <span style="color:#888;font-size:11px">${distinct} ${distinct === 1 ? 'юзер' : 'юзеров'} · порог 5</span>
             <span style="flex:1"></span>
-            <button data-xr-hash="${escapeHtml(hash)}" data-xr-action="reset" style="background:#1a2540;border:1px solid #5a8ad0;color:#93c5fd;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🔁 Сбросить объяснение</button>
+            <button data-xr-hash="${escapeHtml(hash)}" data-xr-action="reset" style="background:#1a2540;border:1px solid #5a8ad0;color:#93c5fd;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🗑 Убрать из кэша</button>
             <button data-xr-hash="${escapeHtml(hash)}" data-xr-action="clear-counter" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#aaa;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🧹 Сбросить счётчик</button>
           </div>
+          ${explanationBlock}
           ${rows}
         </div>`;
     }).join('');
@@ -19514,12 +19581,11 @@
       } else if (action === 'delete' && entryId) {
         await deleteDoc(doc(db, 'explain_report_entries', entryId));
       } else if (action === 'reset' && hash) {
-        if (!confirm('Сбросить объяснение этой фразы? Кэш и счётчик жалоб удалятся, следующий запрос сгенерирует объяснение заново.')) {
+        if (!confirm('Убрать объяснение этой фразы из кэша? Счётчик жалоб останется, следующий запрос сгенерирует объяснение заново.')) {
           btn.disabled = false; btn.textContent = prevText; return;
         }
         await deleteDoc(doc(db, 'phrase_explanations', hash));
-        await deleteDoc(doc(db, 'explain_reports', hash)).catch(() => {});
-        showToast('✅ Кэш сброшен — фраза перегенерируется', 'ok');
+        showToast('✅ Объяснение убрано из кэша — фраза перегенерируется при следующем запросе', 'ok');
       } else if (action === 'clear-counter' && hash) {
         await deleteDoc(doc(db, 'explain_reports', hash));
         showToast('✅ Счётчик жалоб очищен', 'ok');
@@ -19896,10 +19962,12 @@
     { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 100, min: 0, max: 100 },
     { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
     { key: 'paywall_v2_pct', label: 'Пейволл: доля v2 %', def: 50, min: 0, max: 100 },
+    { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
   ];
   const RC_BOOL_FIELDS = [
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
+    { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
   ];
 
   function rcSetStatus(msg, color) {
@@ -21334,10 +21402,11 @@
   // ── Tab badges: число «нового» после последнего захода на вкладку (localStorage) ─
   var ADMIN_TAB_SEEN_KEY = 'phraseman_admin_tab_seen_v7';
   var ADMIN_TAB_SEEN_BOOT_KEY = 'phraseman_admin_tab_seen_boot_v7';
-  var ADMIN_TAB_KEYS_ALL = ['users','analytics','app-health','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','app-messages','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','daily-phrases','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','referrals','push-notify'];
+  var ADMIN_TAB_KEYS_ALL = ['users','analytics','openai-budget','app-health','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','app-messages','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','daily-phrases','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','referrals','push-notify'];
   var ADMIN_TAB_BASE_HTML = {
     users: 'Users',
     analytics: 'Analytics',
+    'openai-budget': 'OpenAI budget',
     'app-health': 'App Health',
     reports: 'Reports',
     'website-inbox': 'Site support',
@@ -21365,6 +21434,7 @@
   ADMIN_TAB_BASE_HTML = {
     users: 'Users',
     analytics: 'Analytics',
+    'openai-budget': 'OpenAI budget',
     'app-health': 'App Health',
     reports: 'Reports',
     'website-inbox': 'Site support',
@@ -21481,6 +21551,200 @@
     ['best_app_screen_before_purchase', 'Best app screen before purchase', 'source/context before purchase'],
     ['cohort_onboarding_purchase', 'Cohort onboarding date -> purchase', '1 / 7 / 28 day purchase'],
   ];
+  const OPENAI_MODEL_PRICES = {
+    'gpt-4.1-nano': { input: 0.10, cachedInput: 0.025, output: 0.40 },
+    'gpt-4.1-mini': { input: 0.40, cachedInput: 0.10, output: 1.60 },
+    'gpt-4.1': { input: 2.00, cachedInput: 0.50, output: 8.00 },
+    'gpt-4o-mini': { input: 0.15, cachedInput: 0.075, output: 0.60 },
+  };
+  let _openAiBudgetLoaded = false;
+  let _openAiDialogModelLoaded = false;
+
+  function setOpenAiDialogModelStatus(text, tone = '') {
+    const el = document.getElementById('openai-dialog-model-status');
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = tone === 'err' ? '#f87171' : tone === 'ok' ? '#4ade80' : '#aaa';
+  }
+
+  window.loadOpenAiDialogModelConfig = async function loadOpenAiDialogModelConfig(force = false) {
+    if (_openAiDialogModelLoaded && !force) return;
+    _openAiDialogModelLoaded = true;
+    setOpenAiDialogModelStatus('Loading Theo model config...');
+    try {
+      const callable = getOpenAiDialogModelConfigCallable();
+      const res = await callable({ action: 'get' });
+      const data = res?.data || {};
+      const model = String(data.activeModel || data.defaultModel || 'gpt-4.1-nano');
+      const select = document.getElementById('openai-dialog-model');
+      if (select) select.value = model;
+      const configured = data.configuredModel ? 'saved in admin config' : 'fallback default/env';
+      setOpenAiDialogModelStatus(`Theo active model: ${model} (${configured}). Next Theo reply uses this model.`, 'ok');
+    } catch (e) {
+      _openAiDialogModelLoaded = false;
+      setOpenAiDialogModelStatus('Could not load Theo model config: ' + (e?.message || e), 'err');
+    }
+  };
+
+  window.saveOpenAiDialogModel = async function saveOpenAiDialogModel() {
+    const select = document.getElementById('openai-dialog-model');
+    const model = String(select?.value || '').trim();
+    if (!model) {
+      showToast('Choose Theo model first', 'err');
+      return;
+    }
+    setOpenAiDialogModelStatus('Saving Theo model...');
+    try {
+      const callable = getOpenAiDialogModelConfigCallable();
+      const res = await callable({ action: 'set', model });
+      const activeModel = String(res?.data?.activeModel || model);
+      if (select) select.value = activeModel;
+      _openAiDialogModelLoaded = true;
+      setOpenAiDialogModelStatus(`Theo active model: ${activeModel}. Saved. Next Theo reply uses it.`, 'ok');
+      showToast('Theo model saved: ' + activeModel);
+      _openAiBudgetLoaded = false;
+      void window.loadOpenAiBudgetDashboard(true);
+    } catch (e) {
+      const msg = e?.message || String(e);
+      setOpenAiDialogModelStatus('Could not save Theo model: ' + msg, 'err');
+      showToast('Theo model save error: ' + msg, 'err');
+    }
+  };
+
+  function openAiBudgetUsd(value, digits = 4) {
+    const n = Number(value || 0);
+    if (!Number.isFinite(n) || n <= 0) return '$0';
+    if (n >= 10) return '$' + n.toFixed(2);
+    if (n >= 1) return '$' + n.toFixed(3);
+    return '$' + n.toFixed(digits);
+  }
+
+  function openAiBudgetNum(value) {
+    const n = Number(value || 0);
+    return Number.isFinite(n) ? Math.round(n).toLocaleString('en-US') : '0';
+  }
+
+  function openAiBudgetSummaryCards(items) {
+    return items.map(([label, value, sub]) => `
+      <div class="stat-card">
+        <div class="label">${escapeHtml(label)}</div>
+        <div class="value">${escapeHtml(value)}</div>
+        ${sub ? `<div class="sub">${escapeHtml(sub)}</div>` : ''}
+      </div>`).join('');
+  }
+
+  function openAiBudgetRowsTable(title, hint, rows) {
+    const body = Array.isArray(rows) && rows.length
+      ? rows.map((r) => `
+        <tr>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border)">${escapeHtml(r.label || r.feature || r.model || '-')}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border);text-align:right">${openAiBudgetNum(r.calls)}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border);text-align:right">${openAiBudgetNum(r.inputTokens)}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border);text-align:right">${openAiBudgetNum(r.outputTokens)}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border);text-align:right;color:#fbbf24;font-weight:700">${openAiBudgetUsd(r.costUsd)}</td>
+        </tr>`).join('')
+      : '<tr><td colspan="5" style="padding:12px;color:#777">No paid calls in this period.</td></tr>';
+    return `<div class="chart-card">
+      <h3>${escapeHtml(title)}</h3>
+      <div class="tab-desc" style="font-size:12px;color:#888;margin-bottom:8px">${escapeHtml(hint)}</div>
+      <div class="table-wrap" style="max-height:360px;overflow:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <thead><tr>
+            <th style="padding:8px;text-align:left;color:#888;border-bottom:1px solid var(--panel-border)">Name</th>
+            <th style="padding:8px;text-align:right;color:#888;border-bottom:1px solid var(--panel-border)">Calls</th>
+            <th style="padding:8px;text-align:right;color:#888;border-bottom:1px solid var(--panel-border)">Input</th>
+            <th style="padding:8px;text-align:right;color:#888;border-bottom:1px solid var(--panel-border)">Output</th>
+            <th style="padding:8px;text-align:right;color:#888;border-bottom:1px solid var(--panel-border)">Cost</th>
+          </tr></thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }
+
+  function openAiBudgetRecentCard(rows) {
+    const body = Array.isArray(rows) && rows.length
+      ? rows.slice(0, 25).map((r) => {
+        const dt = r.createdAtMs ? new Date(r.createdAtMs).toLocaleString() : '-';
+        return `<tr>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border)">${escapeHtml(dt)}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border)">${escapeHtml(r.feature || '-')}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border)">${escapeHtml(r.model || '-')}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border);text-align:right">${openAiBudgetNum(r.totalTokens)}</td>
+          <td style="padding:8px;border-bottom:1px solid var(--panel-border);text-align:right;color:#fbbf24;font-weight:700">${openAiBudgetUsd(r.costUsd)}</td>
+        </tr>`;
+      }).join('')
+      : '<tr><td colspan="5" style="padding:12px;color:#777">No recent paid calls.</td></tr>';
+    return `<div class="chart-card" style="grid-column:1/-1">
+      <h3>Recent paid calls</h3>
+      <div class="table-wrap" style="max-height:420px;overflow:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <thead><tr>
+            <th style="padding:8px;text-align:left;color:#888;border-bottom:1px solid var(--panel-border)">Time</th>
+            <th style="padding:8px;text-align:left;color:#888;border-bottom:1px solid var(--panel-border)">Feature</th>
+            <th style="padding:8px;text-align:left;color:#888;border-bottom:1px solid var(--panel-border)">Model</th>
+            <th style="padding:8px;text-align:right;color:#888;border-bottom:1px solid var(--panel-border)">Tokens</th>
+            <th style="padding:8px;text-align:right;color:#888;border-bottom:1px solid var(--panel-border)">Cost</th>
+          </tr></thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }
+
+  window.loadOpenAiBudgetDashboard = async function loadOpenAiBudgetDashboard(force = false) {
+    const status = document.getElementById('openai-budget-status');
+    const summary = document.getElementById('openai-budget-summary');
+    const grid = document.getElementById('openai-budget-grid');
+    if (!summary || !grid) return;
+    if (_openAiBudgetLoaded && !force) return;
+    _openAiBudgetLoaded = true;
+    void window.loadOpenAiDialogModelConfig();
+    const rangeDays = Math.max(1, parseInt(document.getElementById('openai-budget-range')?.value || '30', 10) || 30);
+    if (status) status.textContent = 'Loading OpenAI budget from server...';
+    summary.innerHTML = openAiBudgetSummaryCards([
+      ['OpenAI estimated month', '-'],
+      ['Selected period', rangeDays + ' days'],
+      ['Paid calls', '-'],
+      ['Tokens', '-'],
+      ['Users', '-'],
+    ]);
+    grid.innerHTML = '<div class="chart-card"><h3>Loading</h3><div class="reports-empty" style="padding:12px 0">Waiting for Cloud Function...</div></div>';
+    try {
+      const callable = getOpenAiBudgetDashboardCallable();
+      const res = await callable({ rangeDays });
+      const data = res?.data || {};
+      const totals = data.totals || {};
+      const featureRows = Array.isArray(data.features) ? data.features : [];
+      const modelRows = Array.isArray(data.models) ? data.models : [];
+      const errors = Array.isArray(data.errors) ? data.errors : [];
+      const topFeature = featureRows[0]?.label ? `Top: ${featureRows[0].label}` : '';
+      summary.innerHTML = openAiBudgetSummaryCards([
+        ['OpenAI estimated month', openAiBudgetUsd(totals.estimatedMonthUsd, 3), `period: ${openAiBudgetUsd(totals.costUsd, 4)}`],
+        ['Selected period', String(data.rangeDays || rangeDays) + ' days', topFeature],
+        ['Paid calls', openAiBudgetNum(totals.calls), 'cache hits cost $0'],
+        ['Tokens', openAiBudgetNum(totals.totalTokens), `${openAiBudgetNum(totals.inputTokens)} in / ${openAiBudgetNum(totals.outputTokens)} out`],
+        ['Users', openAiBudgetNum(totals.uniqueUsers), 'unique uid/authUid in logs'],
+      ]);
+      if (status) {
+        status.textContent = errors.length
+          ? `Loaded with limited collections: ${errors.map((e) => e.collection).join(', ')}.`
+          : `OpenAI estimated month refreshed. Theo default price table includes gpt-4.1-nano.`;
+      }
+      grid.innerHTML = [
+        openAiBudgetRowsTable('Feature costs', 'Theo, explain misses, and legacy weekly/stats callables.', featureRows),
+        openAiBudgetRowsTable('Model costs', 'Prices per 1M tokens; exact invoice remains OpenAI billing source of truth.', modelRows),
+        openAiBudgetRecentCard(data.recent || []),
+      ].join('');
+    } catch (e) {
+      _openAiBudgetLoaded = false;
+      const msg = e?.message || String(e);
+      if (status) status.textContent = `OpenAI budget could not load: ${msg}`;
+      grid.innerHTML = `<div class="chart-card"><h3>Error</h3><div class="reports-empty" style="padding:12px 0;color:#f87171">${escapeHtml(msg)}</div></div>`;
+      showToast('OpenAI budget error: ' + msg, 'err');
+    }
+  };
+
   let _revenueAnalyticsLoaded = false;
 
   function revenueDays(rangeDays) {

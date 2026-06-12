@@ -14,7 +14,10 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+from openai_dev_guard import require_openai_dev_spend_guard
 
+
+# Requires PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 before any OpenAI batch spend.
 PACK = Path("exports/chains/phrase_packs/chains_800_unique_v3_20260604")
 ROWS_PATH = PACK / "chains_800_unique_phrases.json"
 AUDIO_ROOT = PACK / "openai_audio"
@@ -23,6 +26,7 @@ TIMING_PATH = AUDIO_ROOT / "chains_unique_v3_audio_timing_manifest.json"
 SUMMARY_PATH = AUDIO_ROOT / "openai_audio_generation_summary.json"
 MODEL_ID = "gpt-4o-mini-tts"
 OUTPUT_FORMAT = "wav"
+OPENAI_TTS_ESTIMATE_USD_PER_1K_CHARS = 0.015
 PAUSE_SEC = 0.75
 ROLES: dict[str, dict[str, str]] = {
     "en1": {
@@ -223,14 +227,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--separate-en2", action="store_true")
     parser.add_argument("--roles", nargs="+", choices=sorted(ROLES), default=list(ROLES))
+    parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
     api_key = load_env_file(Path.cwd()).get("OPENAI_API_KEY")
-    if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is required in .env.local")
     rows = load_json(ROWS_PATH)
     validate_unique_rows(rows)
     selected = [row for row in rows if args.start <= int(row["index"]) <= args.end]
@@ -252,6 +255,28 @@ def main() -> int:
                 cached += 1
             else:
                 tasks.append((row, role, path))
+
+    planned_chars = sum(len(text_for_role(row, role)) for row, role, _path in tasks)
+    estimated_cost = (planned_chars / 1000) * OPENAI_TTS_ESTIMATE_USD_PER_1K_CHARS
+    planned_summary = {
+        "selected_rows": len(selected),
+        "cached_files": cached,
+        "planned_files": len(tasks),
+        "planned_chars": planned_chars,
+        "estimated_cost_usd": round(estimated_cost, 4),
+    }
+    print(json.dumps(planned_summary, ensure_ascii=False), flush=True)
+    if args.dry_run:
+        write_json(SUMMARY_PATH, {**planned_summary, "dry_run": True})
+        return 0
+    if tasks:
+        if not api_key:
+            raise RuntimeError("OPENAI_API_KEY is required in .env.local")
+        require_openai_dev_spend_guard(
+            action="Chains unique v3 OpenAI TTS batch",
+            estimated_cost_usd=estimated_cost,
+            units=len(tasks),
+        )
 
     def generate_task(item: tuple[dict[str, Any], str, Path]) -> dict[str, Any]:
         row, role, path = item

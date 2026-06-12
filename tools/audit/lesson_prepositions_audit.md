@@ -1,6 +1,6 @@
 # Lesson Prepositions Audit
 
-Generated: 2026-05-22T19:46:46.032Z
+Generated: 2026-06-12T07:01:53.879Z
 
 This report models the app generator: tagged preposition slots plus auto-detected drill-worthy prepositions, while ignoring infinitive `to`, phrasal particles, and sentence-final place adverbs.
 
@@ -23,9 +23,9 @@ This report models the app generator: tagged preposition slots plus auto-detecte
 | 15 | 50 | 0 | 0 | 0 | 0 | 1 | NO PREP |
 | 16 | 50 | 0 | 6 | 6 | 6 | 37 | OK |
 | 17 | 50 | 5 | 5 | 5 | 0 | 4 | OK |
-| 18 | 50 | 2 | 2 | 2 | 0 | 5 | OK |
+| 18 | 49 | 2 | 2 | 2 | 0 | 5 | OK |
 | 19 | 50 | 50 | 12 | 50 | 0 | 0 | OK |
-| 20 | 50 | 18 | 12 | 18 | 0 | 0 | OK |
+| 20 | 49 | 17 | 12 | 17 | 0 | 0 | OK |
 | 21 | 50 | 0 | 1 | 1 | 1 | 4 | OK |
 | 22 | 50 | 0 | 8 | 8 | 8 | 0 | OK |
 | 23 | 50 | 0 | 9 | 9 | 9 | 2 | OK |
@@ -137,9 +137,9 @@ Ignored as grammar/particle, not a preposition drill target:
 ### Lesson 18
 
 Ignored as grammar/particle, not a preposition drill target:
-- phrasal-particle:off: 9: Please turn off your phone | 37: Can you turn off the lights?
+- phrasal-particle:off: 9: Please turn off your phone | 36: Can you turn off the lights?
 - phrasal-particle:on: 8: Please turn on your phone
-- phrasal-particle:up: 48: Let us clean up the room
+- phrasal-particle:up: 47: Let us clean up the room
 - place-adverb:outside: 21: Do not wait outside
 
 ### Lesson 21

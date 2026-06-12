@@ -16,11 +16,6 @@ const VARIANTS = {
 };
 
 const ROOTS = [
-  'assets/images/app_backdrops',
-  'assets/images/screen_backdrops',
-  'assets/images/theme_backdrops',
-  'assets/images/first_lesson_sheet',
-  'assets/images/paywalls/premium_hero',
   'assets/images/quizzes/level_cards',
   'assets/images/quizzes/theme_cards',
   'assets/images/statistics/cards',
@@ -53,13 +48,6 @@ function outputSizeForSource(relativePath, variantName) {
   if (normalized.includes('/statistics/cards/') || normalized.includes('/statistics/premium_snapshots/')) {
     const scale = variantName.startsWith('ultra') ? 2 : variantName.startsWith('tablet') ? 1.5 : 1;
     return { width: Math.round(900 * scale), height: Math.round(620 * scale), position: 'center' };
-  }
-
-  if (normalized.includes('/first_lesson_sheet/')) {
-    if (variantName.endsWith('Landscape')) {
-      return { width: Math.min(variant.width, 2200), height: Math.min(variant.height, 1400), position: 'center' };
-    }
-    return { width: Math.min(variant.width, 1536), height: Math.min(variant.height, 2200), position: 'center' };
   }
 
   return { ...variant, position: 'center' };

@@ -19,7 +19,7 @@ interface Props {
 
 function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, previewOnly = false }: Props) {
   const { theme: t, themeMode, f } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
 

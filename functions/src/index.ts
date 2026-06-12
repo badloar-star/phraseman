@@ -54,6 +54,13 @@ const { friendEnsureMyCode } = require('./friend_codes');
 const { friendLikeActivity } = require('./friend_activity_likes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
+  friendSendGift,
+  friendThankGift,
+  friendGetActiveQuest,
+  friendClaimQuestReward,
+} = require('./friend_gifts');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
   arenaRoomCreate,
   arenaRoomRecordRun,
   arenaPulsePublish,
@@ -93,6 +100,8 @@ const { statsInsightsGenerate } = require('./stats_insights');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { explainMistake } = require('./mistake_explain');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitExplainReport } = require('./explain/explain_reports');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { vipRevokeMine } = require('./vip_revoke');
@@ -130,6 +139,10 @@ exports.arenaHillGetDailyTop = arenaHillGetDailyTop;
 exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLikeActivity = friendLikeActivity;
+exports.friendSendGift = friendSendGift;
+exports.friendThankGift = friendThankGift;
+exports.friendGetActiveQuest = friendGetActiveQuest;
+exports.friendClaimQuestReward = friendClaimQuestReward;
 exports.arenaRoomCreate = arenaRoomCreate;
 exports.arenaRoomRecordRun = arenaRoomRecordRun;
 exports.arenaPulsePublish = arenaPulsePublish;
@@ -158,6 +171,7 @@ exports.premiumDialogSend = premiumDialogSend;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
+exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
@@ -1196,9 +1210,13 @@ export { friendSendGift } from './friend_gifts';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
+export { openAiBudgetDashboard } from './openai_budget_dashboard';
+export { openAiDialogModelConfig } from './openai_dialog_model_config';
 
 export { dailyPhraseSetSaved } from './daily_phrases';
 
 export { submitWebsiteContact } from './website_contact';
+
+export { siteStatsTrack } from './site_stats';
 
 export { revenueCatShardsWebhook } from './revenuecat_shards';

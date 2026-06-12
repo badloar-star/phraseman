@@ -81,7 +81,6 @@ import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { useAdaptiveBackgroundSource } from '../components/adaptiveBackgroundAssets';
 import { trackActivity } from './app_activity';
 import { rememberNavigationPath } from './navigation_back';
 import {
@@ -103,7 +102,6 @@ import {
   subscribeLeagueBonusAvailability,
   type LeagueBonusAvailability,
 } from './services/league_chest_rewards';
-import { FIRST_LESSON_SHEET_BACKGROUNDS } from '../components/firstLessonSheetAssets';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
@@ -181,12 +179,9 @@ const FIRST_LESSON_SHEET_START_OFFSET_Y = 520;
 const FIRST_LESSON_SHEET_BACKDROP_OPACITY = 0.58;
 const FIRST_LESSON_SHEET_PANEL_SCRIMS: Record<ThemeMode, string> = {
   dark: 'rgba(3,10,6,0.56)',
-  neon: 'rgba(3,12,3,0.50)',
   gold: 'rgba(5,5,5,0.52)',
   coral: 'rgba(28,8,5,0.50)',
-  minimalLight: 'rgba(255,250,237,0.86)',
   minimalDark: 'rgba(8,12,20,0.54)',
-  compass: 'rgba(12,10,7,0.54)',
   midnight: 'rgba(8,10,22,0.56)',
   ember: 'rgba(20,11,6,0.54)',
   aurora: 'rgba(6,16,12,0.54)',
@@ -194,12 +189,9 @@ const FIRST_LESSON_SHEET_PANEL_SCRIMS: Record<ThemeMode, string> = {
 };
 const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
   dark: '#F7FFF4',
-  neon: '#F8FFF1',
   gold: '#FFF7DF',
   coral: '#FFF7F2',
-  minimalLight: '#1B1712',
   minimalDark: '#F5F7FB',
-  compass: '#FFF8E8',
   midnight: '#FFFFFF',
   ember: '#FFFFFF',
   aurora: '#FFFFFF',
@@ -207,12 +199,9 @@ const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
 };
 const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
   dark: '#CFE7CF',
-  neon: '#DDF8C8',
   gold: '#EBD7A5',
   coral: '#FFD8CF',
-  minimalLight: '#635845',
   minimalDark: '#A7ABB3',
-  compass: '#D8D2C8',
   midnight: '#A9AECB',
   ember: '#C9B4A4',
   aurora: '#A7C0B5',
@@ -220,12 +209,9 @@ const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
 };
 const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
   dark: '#A8BFA6',
-  neon: '#BFDCA7',
   gold: '#BDAA7A',
   coral: '#D5A59B',
-  minimalLight: '#766B58',
   minimalDark: '#8FA2C2',
-  compass: '#F2C48D',
   midnight: '#B79CFF',
   ember: '#FFC894',
   aurora: '#9FF2D4',
@@ -233,12 +219,9 @@ const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
 };
 const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
   dark: 'rgba(189,255,143,0.26)',
-  neon: 'rgba(210,255,0,0.34)',
   gold: 'rgba(255,210,99,0.34)',
   coral: 'rgba(255,133,112,0.34)',
-  minimalLight: 'rgba(120,91,42,0.22)',
   minimalDark: 'rgba(110,168,255,0.28)',
-  compass: 'rgba(242,196,141,0.28)',
   midnight: 'rgba(143,160,255,0.30)',
   ember: 'rgba(255,162,69,0.30)',
   aurora: 'rgba(61,232,166,0.30)',
@@ -246,12 +229,9 @@ const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
 };
 const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
   dark: '#F6FFF2',
-  neon: '#172300',
   gold: '#FFE9A8',
   coral: '#350D08',
-  minimalLight: '#3F2C08',
   minimalDark: '#07101F',
-  compass: '#151008',
   midnight: '#0D1030',
   ember: '#2A1502',
   aurora: '#052A1C',
@@ -259,12 +239,9 @@ const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
 };
 const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, string]> = {
   dark: ['#2F8A42', '#155A2B'],
-  neon: ['#C8FF00', '#A7E600'],
   gold: ['#1D1910', '#4D3A16'],
   coral: ['#FF7A66', '#EF4F3D'],
-  minimalLight: ['#FFF2BF', '#E7B84E'],
   minimalDark: ['#D7E7FF', '#6EA8FF'],
-  compass: ['#FFD58A', '#E7B13F'],
   midnight: ['#C9D2FF', '#6E7FF5'],
   ember: ['#FFD9A8', '#F5801E'],
   aurora: ['#9FF2CF', '#1FC487'],
@@ -272,12 +249,9 @@ const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, stri
 };
 const FIRST_LESSON_SHEET_CTA_SHADOW_COLORS: Record<ThemeMode, string> = {
   dark: '#7CF05C',
-  neon: '#C8FF00',
   gold: '#D5A63D',
   coral: '#FF715F',
-  minimalLight: '#B78328',
   minimalDark: '#6EA8FF',
-  compass: '#F2C48D',
   midnight: '#8FA0FF',
   ember: '#FFA245',
   aurora: '#3DE8A6',
@@ -741,7 +715,7 @@ function GlobalLevelUpHandler() {
   const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
   const levelUpAccent = rewardModalAccentColor(themeMode, t);
   const levelUpScreenDim = USE_ELITE_LEVEL_UP_MODAL
-    ? (themeMode === 'minimalLight' ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.46)')
+    ? (false ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.46)')
     : 'rgba(0,0,0,0.6)';
 
   useEffect(() => {
@@ -1961,14 +1935,13 @@ function AppContent() {
       firstLessonSheetAnim.stopAnimation();
     };
   }, [firstLessonSheetAnim, firstLessonSheetVisible]);
-  const firstLessonSheetBackground = useAdaptiveBackgroundSource(FIRST_LESSON_SHEET_BACKGROUNDS[themeMode] ?? FIRST_LESSON_SHEET_BACKGROUNDS.minimalDark);
   const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode] ?? FIRST_LESSON_SHEET_PANEL_SCRIMS.minimalDark;
   const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode] ?? '#FFFFFF';
   const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode] ?? '#C5CAD0';
   const firstLessonSheetLaterColor = FIRST_LESSON_SHEET_LATER_COLORS[themeMode] ?? '#9298A1';
   const firstLessonSheetBorderColor = FIRST_LESSON_SHEET_BORDER_COLORS[themeMode] ?? 'rgba(255,255,255,0.16)';
   const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode] ?? '#FFFFFF';
-  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode] ?? FIRST_LESSON_SHEET_CTA_GRADIENTS.neon;
+  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode] ?? FIRST_LESSON_SHEET_CTA_GRADIENTS.minimalDark;
   const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode] ?? '#C8FF00';
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
     inputRange: [0, 1],
@@ -2267,10 +2240,12 @@ function AppContent() {
               },
             ]}
           >
-            <Image
-              source={firstLessonSheetBackground}
-              contentFit="cover"
-              style={styles.firstLessonSheetBackgroundImage}
+            <LinearGradient
+              pointerEvents="none"
+              colors={tTheme.bgGradient}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 1 }}
+              style={styles.firstLessonSheetBackground}
             />
             <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: firstLessonSheetScrim }]} />
             {postOnboardingGoldBridgeVisible && (
@@ -2471,10 +2446,8 @@ const styles = StyleSheet.create({
     shadowRadius: 24,
     elevation: 18,
   },
-  firstLessonSheetBackgroundImage: {
+  firstLessonSheetBackground: {
     ...StyleSheet.absoluteFillObject,
-    width: '100%',
-    height: '100%',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },

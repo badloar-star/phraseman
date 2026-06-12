@@ -33,11 +33,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revenueCatShardsWebhook = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.adminGrantReward = exports.friendSendGift = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
 const xp_levels_1 = require("./xp_levels");
+const arena_rank_progression_1 = require("./arena_rank_progression");
 admin.initializeApp();
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -77,7 +78,9 @@ const { friendEnsureMyCode } = require('./friend_codes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendLikeActivity } = require('./friend_activity_likes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish } = require('./arena_rooms');
+const { friendSendGift, friendThankGift, friendGetActiveQuest, friendClaimQuestReward, } = require('./friend_gifts');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish, arenaRoomJoin, arenaRoomLeave, arenaRoomSetReady, arenaRoomKick, arenaRoomClose, arenaRoomChatSend, } = require('./arena_rooms');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -95,9 +98,19 @@ const { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated, refe
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogSend } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { weeklyReviewGenerate } = require('./weekly_review');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { statsInsightsGenerate } = require('./stats_insights');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { explainMistake } = require('./mistake_explain');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitExplainReport } = require('./explain/explain_reports');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { vipRevokeMine } = require('./vip_revoke');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { adminAlertOnUserReport, adminAlertOnCriticalError, adminAlertOnContentReport, adminAlertContentReportDigest, adminAlertOnCancelSurvey, adminAlertOnUgcRefund, adminAlertOnConfigWritten, } = require('./admin_alerts');
 exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
@@ -121,9 +134,19 @@ exports.arenaHillGetDailyTop = arenaHillGetDailyTop;
 exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLikeActivity = friendLikeActivity;
+exports.friendSendGift = friendSendGift;
+exports.friendThankGift = friendThankGift;
+exports.friendGetActiveQuest = friendGetActiveQuest;
+exports.friendClaimQuestReward = friendClaimQuestReward;
 exports.arenaRoomCreate = arenaRoomCreate;
 exports.arenaRoomRecordRun = arenaRoomRecordRun;
 exports.arenaPulsePublish = arenaPulsePublish;
+exports.arenaRoomJoin = arenaRoomJoin;
+exports.arenaRoomLeave = arenaRoomLeave;
+exports.arenaRoomSetReady = arenaRoomSetReady;
+exports.arenaRoomKick = arenaRoomKick;
+exports.arenaRoomClose = arenaRoomClose;
+exports.arenaRoomChatSend = arenaRoomChatSend;
 exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
@@ -140,8 +163,13 @@ exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
+exports.weeklyReviewGenerate = weeklyReviewGenerate;
+exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
+exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
+exports.vipRevokeMine = vipRevokeMine;
+exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;
@@ -150,8 +178,6 @@ exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
-const LEVELS = ['I', 'II', 'III'];
-const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'];
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;
     const n = typeof raw === 'number' ? raw : typeof raw === 'string' ? parseInt(raw, 10) || 0 : 0;
@@ -317,7 +343,10 @@ async function pickArenaQuestions(count) {
 // ─── Leaderboard percentile stats cron ──────────────────────────────────────
 // Runs daily. Computes p1-p99 thresholds for XP/streak/time/arena
 // and writes them to leaderboard_stats/global for all clients to read.
-exports.computeLeaderboardStatsCron = functions.scheduler.onSchedule({ schedule: '0 3 * * *', timeZone: 'UTC' }, async () => { await computeLeaderboardStats(); });
+// memory: 1GiB + timeout 540s — крон агрегирует перцентили, держа в памяти XP/streak/time
+// всех eligible-юзеров (полный скан users + leaderboard постранично). На дефолтных 256MiB
+// падал OOM ежедневно (perсentile-статистика переставала обновляться).
+exports.computeLeaderboardStatsCron = functions.scheduler.onSchedule({ schedule: '0 3 * * *', timeZone: 'UTC', memory: '1GiB', timeoutSeconds: 540 }, async () => { await computeLeaderboardStats(); });
 // ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
 // Runs every Monday 00:00 UTC. Zeroes progress.weekly_xp for ALL users without
 // touching progress.user_total_xp. Cron expression '0 0 * * 1' = at 00:00 on Monday.
@@ -725,43 +754,14 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                     });
                 }
                 else {
-                    // Ничья — звёзды и ранг не меняются.
-                    newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
-                    newTier = oldTier;
-                    newLevel = oldLevel;
-                    if (newStars >= 3) {
-                        newStars = 0;
-                        const li = LEVELS.indexOf(oldLevel);
-                        if (li < LEVELS.length - 1 && li >= 0) {
-                            newLevel = LEVELS[li + 1];
-                        }
-                        else {
-                            newLevel = LEVELS[0];
-                            const ti = TIERS.indexOf(oldTier);
-                            if (ti < TIERS.length - 1 && ti >= 0)
-                                newTier = TIERS[ti + 1];
-                        }
-                    }
-                    else if (newStars < 0) {
-                        newStars = 2;
-                        const li = LEVELS.indexOf(oldLevel);
-                        if (li > 0) {
-                            newLevel = LEVELS[li - 1];
-                        }
-                        else {
-                            const ti = TIERS.indexOf(oldTier);
-                            if (ti > 0) {
-                                newTier = TIERS[ti - 1];
-                                newLevel = LEVELS[LEVELS.length - 1];
-                            }
-                            else {
-                                newStars = 0;
-                            }
-                        }
-                    }
+                    // Ничья — звёзды и ранг не меняются. Иначе: +1 за победу, -1 за последнее место.
+                    const starDelta = isDraw ? 0 : (won ? 1 : isLast ? -1 : 0);
+                    const progressed = (0, arena_rank_progression_1.applyStarDelta)({ tier: oldTier, level: oldLevel, stars: oldStars }, starDelta);
+                    newTier = progressed.tier;
+                    newLevel = progressed.level;
+                    newStars = progressed.stars;
                     rankChanged = newTier !== oldTier || newLevel !== oldLevel;
-                    promoted = rankChanged && (TIERS.indexOf(newTier) > TIERS.indexOf(oldTier)
-                        || (newTier === oldTier && LEVELS.indexOf(newLevel) > LEVELS.indexOf(oldLevel)));
+                    promoted = rankChanged && (0, arena_rank_progression_1.isPromotion)({ tier: oldTier, level: oldLevel }, { tier: newTier, level: newLevel });
                     // Ничья сохраняет победную серию (не удлиняет её). Поражение — обнуляет.
                     const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
                     const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
@@ -1054,15 +1054,24 @@ Object.defineProperty(exports, "communityListSellerInbox", { enumerable: true, g
 Object.defineProperty(exports, "communityMarkSellerInboxSeen", { enumerable: true, get: function () { return community_packs_1.communityMarkSellerInboxSeen; } });
 var friend_activity_mirror_1 = require("./friend_activity_mirror");
 Object.defineProperty(exports, "syncFriendActivityMirrorCron", { enumerable: true, get: function () { return friend_activity_mirror_1.syncFriendActivityMirrorCron; } });
+// ── Деактивация истёкшего премиума/VIP по сроку (бессрочное не трогает) ───────
+var premium_expiry_cron_1 = require("./premium_expiry_cron");
+Object.defineProperty(exports, "premiumExpiryCron", { enumerable: true, get: function () { return premium_expiry_cron_1.premiumExpiryCron; } });
 var friend_gifts_1 = require("./friend_gifts");
 Object.defineProperty(exports, "friendSendGift", { enumerable: true, get: function () { return friend_gifts_1.friendSendGift; } });
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 var admin_grant_1 = require("./admin_grant");
 Object.defineProperty(exports, "adminGrantReward", { enumerable: true, get: function () { return admin_grant_1.adminGrantReward; } });
+var openai_budget_dashboard_1 = require("./openai_budget_dashboard");
+Object.defineProperty(exports, "openAiBudgetDashboard", { enumerable: true, get: function () { return openai_budget_dashboard_1.openAiBudgetDashboard; } });
+var openai_dialog_model_config_1 = require("./openai_dialog_model_config");
+Object.defineProperty(exports, "openAiDialogModelConfig", { enumerable: true, get: function () { return openai_dialog_model_config_1.openAiDialogModelConfig; } });
 var daily_phrases_1 = require("./daily_phrases");
 Object.defineProperty(exports, "dailyPhraseSetSaved", { enumerable: true, get: function () { return daily_phrases_1.dailyPhraseSetSaved; } });
 var website_contact_1 = require("./website_contact");
 Object.defineProperty(exports, "submitWebsiteContact", { enumerable: true, get: function () { return website_contact_1.submitWebsiteContact; } });
+var site_stats_1 = require("./site_stats");
+Object.defineProperty(exports, "siteStatsTrack", { enumerable: true, get: function () { return site_stats_1.siteStatsTrack; } });
 var revenuecat_shards_1 = require("./revenuecat_shards");
 Object.defineProperty(exports, "revenueCatShardsWebhook", { enumerable: true, get: function () { return revenuecat_shards_1.revenueCatShardsWebhook; } });
 //# sourceMappingURL=index.js.map

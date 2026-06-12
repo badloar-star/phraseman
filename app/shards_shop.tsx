@@ -132,7 +132,7 @@ function ShopIconImageWithFallback({
 }
 
 function isPaywallAtmosphereMode(mode: ThemeMode): boolean {
-  return mode === 'dark' || mode === 'neon' || mode === 'gold';
+  return mode === 'dark' || false || mode === 'gold';
 }
 
 type Blob = {
@@ -386,7 +386,7 @@ export default function ShardsShopScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, themeMode, statusBarLight } = useTheme();
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const shopRadius = isCompassTheme ? 10 : 16;
   const shopSmallRadius = isCompassTheme ? 7 : 12;
   const shopIconRadius = isCompassTheme ? 9 : 14;
@@ -1539,7 +1539,7 @@ export default function ShardsShopScreen() {
                                     ? COMPASS_RICH.cream
                                     : voucherEligible
                                     ? `${t.gold}EB`
-                                    : themeMode === 'neon'
+                                    : false
                                     ? '#DFFF4A'
                                     : themeMode === 'dark'
                                     ? '#5DDC80'

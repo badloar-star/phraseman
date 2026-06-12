@@ -72,10 +72,8 @@ describe('lingman YouTube quality gate', () => {
     const messageDir = path.join(root, 'assets/images/messages');
     const assetPairs = [
       ['youtube-dark.webp', 'message-forest.webp'],
-      ['youtube-neon.webp', 'message-neon.webp'],
       ['youtube-gold.webp', 'message-gold.webp'],
       ['youtube-coral.webp', 'message-coral.webp'],
-      ['youtube-minimalLight.webp', 'message-minimal-light.webp'],
       ['youtube-minimalDark.webp', 'message-minimal-dark.webp'],
     ];
 

@@ -78,3 +78,20 @@ test('sendFriendGiftWithShards prepares auth before calling the gift function', 
     mockCallableInvoker.mock.invocationCallOrder[0],
   );
 });
+
+test('sendFriendGiftThanks calls the thanks function for the gift sender', async () => {
+  const { sendFriendGiftThanks } = require('../app/friend_gifts');
+
+  await sendFriendGiftThanks({
+    friendStableId: 'friend-123',
+    giftId: 'chain_shield_1',
+    senderDisplayName: 'Ada',
+  });
+
+  expect(mockCallableInvoker).toHaveBeenCalledWith({
+    senderStableId: 'stable-from-auth',
+    friendStableId: 'friend-123',
+    giftId: 'chain_shield_1',
+    senderDisplayName: 'Ada',
+  });
+});

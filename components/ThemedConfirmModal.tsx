@@ -38,7 +38,7 @@ function ThemedConfirmModal({
   const { theme: t, themeMode, f } = useTheme();
   const dim = 'rgba(0,0,0,0.60)';
   const isGoldTheme = themeMode === 'gold';
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const modalColors = isGoldTheme
     ? GOLD_GRADIENTS.premiumPanel
     : isCompassTheme

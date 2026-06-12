@@ -1,4 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  applyRemoteConfigSnapshot,
+  __resetRemoteFlagsForTest,
+} from '../app/remote_flags';
 
 jest.mock('../app/firestore_leagues', () => ({
   getOrCreateLeagueGroup: jest.fn(async () => null),
@@ -109,6 +113,7 @@ describe('league locale coverage', () => {
 describe('league weekly rollover', () => {
   beforeEach(() => {
     (AsyncStorage as any).__reset?.();
+    __resetRemoteFlagsForTest();
     jest.clearAllMocks();
   });
 
@@ -141,6 +146,98 @@ describe('league weekly rollover', () => {
       prevLeagueId: 0,
       newLeagueId: 0,
       myRank: 5,
+      totalInGroup: 16,
+      promoted: false,
+      demoted: false,
+    });
+  });
+
+  it('keeps the current percentage promotion logic when XP promotion mode is off', () => {
+    applyRemoteConfigSnapshot({
+      bools: { league_xp_promotion_enabled: false },
+      numbers: { league_xp_promotion_threshold: 1000 },
+    });
+    const { group, myPoints } = makeGroupWithMyRank(16, 5);
+
+    const result = calculateResult({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group,
+    }, myPoints);
+
+    expect(result).toMatchObject({
+      prevLeagueId: 0,
+      newLeagueId: 0,
+      myRank: 5,
+      totalInGroup: 16,
+      promoted: false,
+      demoted: false,
+    });
+  });
+
+  it('promotes any player with at least the remote XP threshold when XP promotion mode is on', () => {
+    applyRemoteConfigSnapshot({
+      bools: { league_xp_promotion_enabled: true },
+      numbers: { league_xp_promotion_threshold: 1000 },
+    });
+    const { group } = makeGroupWithMyRank(16, 5);
+
+    const result = calculateResult({
+      leagueId: 0,
+      weekId: '2026-W19',
+      group,
+    }, 1000);
+
+    expect(result).toMatchObject({
+      prevLeagueId: 0,
+      newLeagueId: 1,
+      myRank: 5,
+      totalInGroup: 16,
+      promoted: true,
+      demoted: false,
+    });
+  });
+
+  it('keeps players below the remote XP threshold in the same league when XP promotion mode is on', () => {
+    applyRemoteConfigSnapshot({
+      bools: { league_xp_promotion_enabled: true },
+      numbers: { league_xp_promotion_threshold: 1000 },
+    });
+    const { group } = makeGroupWithMyRank(16, 1);
+
+    const result = calculateResult({
+      leagueId: 2,
+      weekId: '2026-W19',
+      group,
+    }, 999);
+
+    expect(result).toMatchObject({
+      prevLeagueId: 2,
+      newLeagueId: 2,
+      myRank: 1,
+      totalInGroup: 16,
+      promoted: false,
+      demoted: false,
+    });
+  });
+
+  it('disables demotion while XP promotion mode is on', () => {
+    applyRemoteConfigSnapshot({
+      bools: { league_xp_promotion_enabled: true },
+      numbers: { league_xp_promotion_threshold: 1000 },
+    });
+    const { group } = makeGroupWithMyRank(16, 16);
+
+    const result = calculateResult({
+      leagueId: 2,
+      weekId: '2026-W19',
+      group,
+    }, 999);
+
+    expect(result).toMatchObject({
+      prevLeagueId: 2,
+      newLeagueId: 2,
+      myRank: 16,
       totalInGroup: 16,
       promoted: false,
       demoted: false,

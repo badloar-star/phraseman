@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phraseman Free SVG Glyphs</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page-bg: #08090b;
+      --text: #f6f7fb;
+      --muted: #9ba4b4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(143,160,255,0.14), transparent 34%),
+        radial-gradient(circle at 88% 8%, rgba(61,232,166,0.11), transparent 32%),
+        var(--page-bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    main {
+      width: min(1220px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 30px 0 48px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    .note {
+      max-width: 760px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .spec {
+      color: #d4d9e3;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: right;
+      min-width: 230px;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .theme-band {
+      position: relative;
+      min-height: 178px;
+      padding: 16px 16px 14px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 12%, color-mix(in srgb, var(--second) 22%, transparent), transparent 30%),
+        radial-gradient(circle at 18% 100%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 36%),
+        linear-gradient(135deg, color-mix(in srgb, var(--surface) 76%, var(--bg) 24%), var(--bg));
+    }
+
+    .theme-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, rgba(255,255,255,0.10), transparent 25%),
+        linear-gradient(180deg, transparent, rgba(0,0,0,0.20));
+      pointer-events: none;
+    }
+
+    .theme-band.light::before {
+      background:
+        linear-gradient(115deg, rgba(255,255,255,0.34), transparent 28%),
+        linear-gradient(180deg, transparent, rgba(44,36,24,0.09));
+    }
+
+    .theme-top {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      z-index: 1;
+    }
+
+    .theme-name {
+      margin: 0;
+      color: var(--label);
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .palette {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--c);
+      box-shadow: 0 0 16px color-mix(in srgb, var(--c) 42%, transparent);
+    }
+
+    .glyph-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .glyph-stage {
+      min-height: 106px;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      isolation: isolate;
+    }
+
+    .glyph-stage.message {
+      color: var(--second);
+    }
+
+    .glyph {
+      width: 74px;
+      height: 74px;
+      overflow: visible;
+      filter:
+        drop-shadow(0 0 10px color-mix(in srgb, currentColor 34%, transparent))
+        drop-shadow(0 10px 18px rgba(0,0,0,0.30));
+    }
+
+    .glyph-main,
+    .glyph-accent {
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .glyph-main {
+      stroke-width: 4;
+    }
+
+    .glyph-accent {
+      stroke-width: 2.45;
+      opacity: 0.64;
+    }
+
+    .glyph-label {
+      margin-top: -4px;
+      color: color-mix(in srgb, var(--label) 76%, transparent);
+      font-size: 11px;
+      font-weight: 850;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .scale-strip {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 22px;
+      margin-top: 3px;
+      opacity: 0.76;
+    }
+
+    .scale-strip svg {
+      width: 28px;
+      height: 28px;
+      color: var(--label);
+      overflow: visible;
+    }
+
+    .svg-symbols {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    @media (max-width: 720px) {
+      main { width: min(100vw - 20px, 520px); padding-top: 20px; }
+      header { display: block; }
+      .spec { text-align: left; margin-top: 10px; }
+      .board { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <svg class="svg-symbols" aria-hidden="true">
+    <symbol id="glyph-play" viewBox="0 0 80 80">
+      <path class="glyph-accent" d="M18 24c6.4-8.2 15.2-12.3 26.3-12.3 5.5 0 10.7 1 15.7 3" />
+      <path class="glyph-main" d="M30.5 22.5 58 40 30.5 57.5Z" />
+      <path class="glyph-accent" d="M18 56c6.4 8.2 15.2 12.3 26.3 12.3 5.5 0 10.7-1 15.7-3" />
+    </symbol>
+
+    <symbol id="glyph-message" viewBox="0 0 80 80">
+      <path class="glyph-main" d="M18 25.5c0-6 4.9-10.5 11.5-10.5h21c6.6 0 11.5 4.5 11.5 10.5v15c0 6-4.9 10.5-11.5 10.5H39.2L27 62.5V51h-1.5C22 51 18 46.5 18 40.5Z" />
+      <path class="glyph-accent" d="M26.5 27.5h27" />
+      <path class="glyph-accent" d="M28.5 39.5h12" />
+      <path class="glyph-accent" d="M48.5 39.5h3" />
+    </symbol>
+  </svg>
+
+  <main>
+    <header>
+      <div>
+        <h1>Free SVG Glyph Set</h1>
+        <p class="note">New direction: no bitmap, no outer frames, no app-header template. The icons are independent line glyphs with theme-specific stroke color, glow, and small secondary accents.</p>
+      </div>
+      <div class="spec">Glyph only<br />No container border<br />No icon fill</div>
+    </header>
+
+    <section class="board" id="board"></section>
+  </main>
+
+  <script>
+    const themes = [
+      { id: 'minimalLight', label: 'Minimal Light / Sketch', bg: '#F3ECDC', surface: '#FFFDF6', accent: '#343842', second: '#6F5B3E', text: '#171615', light: true },
+      { id: 'minimalDark', label: 'Minimal Dark / Graphite', bg: '#121212', surface: '#232428', accent: '#6EA8FF', second: '#9CA3AF', text: '#F5F5F5' },
+      { id: 'compass', label: 'Compass', bg: '#020304', surface: '#24211D', accent: '#F2C48D', second: '#D78C58', text: '#FFF8E8' },
+      { id: 'midnight', label: 'Midnight', bg: '#010102', surface: '#13151F', accent: '#8FA0FF', second: '#B79CFF', text: '#F6F7FF' },
+      { id: 'ember', label: 'Ember', bg: '#010101', surface: '#1A1410', accent: '#FFA245', second: '#FF3D6E', text: '#FFF4EA' },
+      { id: 'aurora', label: 'Aurora', bg: '#010201', surface: '#0F1915', accent: '#3DE8A6', second: '#2E9DFF', text: '#ECFFF8' },
+      { id: 'volt', label: 'Volt', bg: '#010200', surface: '#15170C', accent: '#D6FF3D', second: '#2EE08C', text: '#FBFFE8' },
+      { id: 'dark', label: 'Dark Forest', bg: '#07100A', surface: '#152019', accent: '#47C870', second: '#58CC89', text: '#F0F7F2' },
+      { id: 'neon', label: 'Neon', bg: '#0D0D0D', surface: '#202020', accent: '#C8FF00', second: '#FFE600', text: '#F0F0F0' },
+      { id: 'coral', label: 'Coral', bg: '#1C1113', surface: '#21181B', accent: '#FF6464', second: '#FFD060', text: '#FFFFFF' },
+      { id: 'gold', label: 'Gold', bg: '#050403', surface: '#17130D', accent: '#D6B35A', second: '#F7DA92', text: '#FFF8E8' },
+    ];
+
+    function icon(kind) {
+      return `<svg class="glyph" aria-hidden="true"><use href="#glyph-${kind}"></use></svg>`;
+    }
+
+    function tiny(kind) {
+      return `<svg aria-hidden="true"><use href="#glyph-${kind}"></use></svg>`;
+    }
+
+    function band(theme) {
+      const cls = theme.light ? 'theme-band light' : 'theme-band';
+      return `
+        <article class="${cls}" style="--bg:${theme.bg};--surface:${theme.surface};--accent:${theme.accent};--second:${theme.second};--label:${theme.text};">
+          <div class="theme-top">
+            <h2 class="theme-name">${theme.label}</h2>
+            <div class="palette">
+              <span class="dot" style="--c:${theme.accent}"></span>
+              <span class="dot" style="--c:${theme.second}"></span>
+            </div>
+          </div>
+
+          <div class="glyph-row">
+            <div>
+              <div class="glyph-stage">${icon('play')}</div>
+              <div class="glyph-label">YouTube</div>
+            </div>
+            <div>
+              <div class="glyph-stage message">${icon('message')}</div>
+              <div class="glyph-label">Messages</div>
+            </div>
+          </div>
+
+          <div class="scale-strip">
+            ${tiny('play')}
+            ${tiny('message')}
+          </div>
+        </article>
+      `;
+    }
+
+    document.getElementById('board').innerHTML = themes.map(band).join('');
+  </script>
+</body>
+</html>

@@ -3,7 +3,6 @@
 
 import { Platform } from 'react-native';
 import { GOLD_GRADIENTS, GOLD_RICH } from './goldTheme';
-import { COMPASS_GRADIENTS, COMPASS_RICH } from './compassTheme';
 import { CINEMA, cinemaAlpha, type CinemaPalette } from './cinemaThemes';
 
 export const DARK = {
@@ -52,53 +51,7 @@ export const DARK = {
   // Градиент карточки — усиленный контраст (светлее слева-сверху, темнее справа-снизу)
   cardGradient: ['#1F2E24', '#070F0A'] as [string, string],
   // Градиент фона экрана (сверху → снизу)
-  bgGradient: ['#1A3525', '#07100A'] as [string, string],
-};
-
-export const NEON = {
-  // Фоны — чуть светлее для лучшего контраста
-  bgPrimary:   '#0D0D0D',
-  bgCard:      '#202020',   // заметно светлее фона
-  bgSurface:   '#2A2A2A',
-  bgSurface2:  '#343434',
-  // Текст
-  textPrimary: '#F0F0F0',
-  textOnCard:  '#F0F0F0',   // = textPrimary
-  textSecond:  '#C8FF00',
-  textMuted:   '#A8A8A8',
-  textGhost:   '#606060',
-  heroTextPrimary: '#F0F0F0',
-  heroTextMuted:   '#A8A8A8',
-  // Разделители
-  border:      'rgba(200,255,0,0.12)',
-  borderLight: '#202020',
-  // Акценты
-  correct:     '#C8FF00',
-  correctBg:   'rgba(200,255,0,0.12)',
-  wrong:       '#FF4444',
-  wrongBg:     'rgba(255,68,68,0.12)',
-  // XP / Уровень
-  gold:        '#FFE600',
-  goldBg:      'rgba(255,230,0,0.14)',
-  textOnGold:  '#1A1A00',
-  // Прогресс / активный
-  accent:      '#C8FF00',
-  accentBg:    'rgba(200,255,0,0.10)',
-  // Текст/иконки на залитых CTA: t.accent, t.correct, t.textSecond (пейволл). На неоновом лайме — только тёмный, не #fff.
-  correctText: '#1A2400',
-  // ─── Объёмные тени (новое) ───────────────────────────────────────────────
-  shadowDark:       '#000000',                   // абсолютно чёрный — нижняя тень
-  shadowLight:      'rgba(200,255,0,0.35)',       // неоново-лаймовое свечение
-  borderHighlight:  'rgba(200,255,0,0.18)',       // имитация блика сверху-слева
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  // Тени (legacy)
-  btnShadow:   '#4A5C00',
-  cardShadow:  'rgba(0,0,0,0.65)',
-  glow:        'rgba(200,255,0,0.25)',
-  // Градиент карточки — максимальный контраст чёрного
-  cardGradient: ['#2E2E2E', '#0A0A0A'] as [string, string],
-  bgGradient: ['#1E1E1E', '#0A0A0A'] as [string, string],
+  bgGradient: ['#07120B', '#010201'] as [string, string],
 };
 
 export const GOLD = {
@@ -135,7 +88,7 @@ export const GOLD = {
   cardShadow:  'rgba(0,0,0,0.78)',
   glow:        GOLD_RICH.bronzeWash,
   cardGradient: [GOLD_GRADIENTS.premiumPanel[0], GOLD_GRADIENTS.premiumPanel[2]] as [string, string],
-  bgGradient: [GOLD_GRADIENTS.appBackground[0], GOLD_GRADIENTS.appBackground[2]] as [string, string],
+  bgGradient: ['#151005', '#010101'] as [string, string],
 };
 
 export const CORAL = {
@@ -172,7 +125,7 @@ export const CORAL = {
   cardShadow:  'rgba(0,0,0,0.60)',
   glow:        'rgba(255,100,100,0.22)',
   cardGradient: ['#2E2226', '#0B0708'] as [string, string],
-  bgGradient: ['#463036', '#251719'] as [string, string],
+  bgGradient: ['#17090C', '#010101'] as [string, string],
 };
 
 // ─── LIGHT OCEAN ─────────────────────────────────────────────────────────────
@@ -270,43 +223,6 @@ export const LIGHT_SAKURA = {
 
 // ─── MODERN MINIMAL (Apple-like) ─────────────────────────────────────────────
 // Neutral grayscale, generous whitespace, rounded cards, subtle contrast.
-export const MINIMAL_LIGHT = {
-  // "Sketch" light: paper background + graphite ink accents.
-  bgPrimary:   '#F3ECDC',
-  bgCard:      '#FFFDF6',
-  bgSurface:   '#DED4C0',
-  bgSurface2:  '#CFC2AD',
-  textPrimary: '#171615',
-  textOnCard:  '#171615',
-  textSecond:  '#273044',
-  textMuted:   '#48443C',
-  textGhost:   '#6A6256',
-  heroTextPrimary: '#171615',
-  heroTextMuted:   '#48443C',
-  border:      'rgba(45,39,30,0.24)',
-  borderLight: '#BCA98E',
-  correct:     '#33466F',
-  correctBg:   'rgba(51,70,111,0.16)',
-  wrong:       '#873434',
-  wrongBg:     'rgba(135,52,52,0.14)',
-  gold:        '#76531F',
-  goldBg:      'rgba(118,83,31,0.16)',
-  textOnGold:  '#171615',
-  accent:      '#343842',
-  accentBg:    'rgba(52,56,66,0.15)',
-  correctText: '#FFFFFF',
-  shadowDark:       'rgba(34,28,18,0.20)',
-  shadowLight:      'rgba(255,255,255,0.72)',
-  borderHighlight:  'rgba(255,255,255,0.50)',
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   'rgba(34,28,18,0.16)',
-  cardShadow:  'rgba(34,28,18,0.16)',
-  glow:        'rgba(52,56,66,0.16)',
-  cardGradient: ['#FFFDF6', '#EDE3D2'] as [string, string],
-  bgGradient: ['#F3ECDC', '#DED1BB'] as [string, string],
-};
-
 export const MINIMAL_DARK = {
   bgPrimary:   '#121212',
   bgCard:      '#232428',
@@ -340,43 +256,7 @@ export const MINIMAL_DARK = {
   cardShadow:  'rgba(0,0,0,0.42)',
   glow:        'rgba(110,168,255,0.16)',
   cardGradient: ['#31343B', '#23262C'] as [string, string],
-  bgGradient: ['#1A1A1A', '#121212'] as [string, string],
-};
-
-export const COMPASS = {
-  bgPrimary:   '#020304',
-  bgCard:      COMPASS_RICH.charcoalSoft,
-  bgSurface:   COMPASS_RICH.charcoalRaised,
-  bgSurface2:  COMPASS_RICH.charcoalWarm,
-  textPrimary: '#FFF8E8',
-  textOnCard:  '#FFF8E8',
-  textSecond:  COMPASS_RICH.champagne,
-  textMuted:   COMPASS_RICH.textMuted,
-  textGhost:   '#B8A895',
-  heroTextPrimary: '#FFF8E8',
-  heroTextMuted:   COMPASS_RICH.textMuted,
-  border:      COMPASS_RICH.hairlineQuiet,
-  borderLight: COMPASS_RICH.copperDark,
-  correct:     COMPASS_RICH.champagne,
-  correctBg:   COMPASS_RICH.wash,
-  wrong:       '#F26D6D',
-  wrongBg:     'rgba(242,109,109,0.16)',
-  gold:        COMPASS_RICH.champagne,
-  goldBg:      COMPASS_RICH.wash,
-  textOnGold:  COMPASS_RICH.textDark,
-  accent:      COMPASS_RICH.champagne,
-  accentBg:    COMPASS_RICH.washStrong,
-  correctText: COMPASS_RICH.textDark,
-  shadowDark:       'rgba(0,0,0,0.58)',
-  shadowLight:      COMPASS_RICH.mist,
-  borderHighlight:  COMPASS_RICH.edgeLight,
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   COMPASS_RICH.copperWash,
-  cardShadow:  'rgba(0,0,0,0.54)',
-  glow:        COMPASS_RICH.washStrong,
-  cardGradient: [COMPASS_GRADIENTS.premiumPanel[0], COMPASS_GRADIENTS.premiumPanel[2]] as [string, string],
-  bgGradient: [COMPASS_GRADIENTS.appBackground[0], COMPASS_GRADIENTS.appBackground[2]] as [string, string],
+  bgGradient: ['#111318', '#010102'] as [string, string],
 };
 
 // ─── «ЧЁРНОЕ КИНО» (midnight/ember/aurora/volt) ──────────────────────────────
@@ -426,7 +306,7 @@ export const EMBER    = buildCinemaTheme(CINEMA.ember);
 export const AURORA   = buildCinemaTheme(CINEMA.aurora);
 export const VOLT     = buildCinemaTheme(CINEMA.volt);
 
-export type ThemeMode = 'dark' | 'neon' | 'gold' | 'coral' | 'minimalLight' | 'minimalDark' | 'compass' | 'midnight' | 'ember' | 'aurora' | 'volt';
+export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -444,12 +324,9 @@ export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
 }
 
 // Убеждаемся, что все темы соответствуют одному типу (compile-time check)
-const _checkNEON:   Theme = NEON         as any;
 const _checkGOLD:   Theme = GOLD         as any;
 const _checkCORAL:  Theme = CORAL        as any;
-const _checkMINL:   Theme = MINIMAL_LIGHT as any;
 const _checkMIND:   Theme = MINIMAL_DARK  as any;
-const _checkCOMPASS: Theme = COMPASS       as any;
 const _checkMIDNIGHT: Theme = MIDNIGHT as any;
 const _checkEMBER:    Theme = EMBER    as any;
 const _checkAURORA:   Theme = AURORA   as any;

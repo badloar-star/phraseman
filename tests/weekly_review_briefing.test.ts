@@ -40,15 +40,27 @@ describe('weekly review briefing', () => {
     expect(briefing).not.toBeNull();
     expect(briefing!.totalMistakes).toBeGreaterThanOrEqual(5);
     expect(briefing!.weakCategories.length).toBeGreaterThan(0);
-    // Window is 7 days for premium, 14 for free.
-    expect(briefing!.windowDays).toBe(7);
+    // Window matches stats insights: premium regenerates every 3 days.
+    expect(briefing!.windowDays).toBe(3);
   });
 
-  it('uses a 14-day window for free users', async () => {
+  it('uses a 7-day window for free users', async () => {
     await seedMistakes(8, { phrase: 'I have a dog', token: 'have', rawCategory: 'verb', lessonId: 1 });
     const briefing = await buildWeeklyReviewBriefing({ lang: 'ru', studyTarget: 'en', isPremium: false, effort: EFFORT });
     expect(briefing).not.toBeNull();
-    expect(briefing!.windowDays).toBe(14);
+    expect(briefing!.windowDays).toBe(7);
+  });
+
+  it('passes only words that came from logged mistakes into weak categories', async () => {
+    await seedMistakes(5, { phrase: 'I have a dog', token: 'have', rawCategory: 'verb', lessonId: 1 });
+    await seedMistakes(5, { phrase: 'She has a cat', token: 'has', rawCategory: 'verb', lessonId: 1 });
+
+    const briefing = await buildWeeklyReviewBriefing({ lang: 'ru', studyTarget: 'en', isPremium: true, effort: EFFORT });
+
+    expect(briefing).not.toBeNull();
+    const allWords = briefing!.weakCategories.flatMap((category) => category.topWords.map((word) => word.toLowerCase()));
+    expect(allWords.length).toBeGreaterThan(0);
+    expect(new Set(allWords).isSubsetOf?.(new Set(['have', 'has'])) ?? allWords.every((word) => ['have', 'has'].includes(word))).toBe(true);
   });
 
   // ── SECURITY INVARIANT ──────────────────────────────────────────────────────

@@ -86,14 +86,13 @@
 </head>
 <body>
   <main>
-    <h1 data-i18n-key="heading">Open Phraseman</h1>
-    <p data-i18n-key="intro">We are opening the invitation in the app. If nothing happens, install Phraseman and come back to this page.</p>
+    <h1 data-i18n-key="heading">Install Phraseman</h1>
+    <p data-i18n-key="intro">Install Phraseman from this invitation. Referral rewards count only for new users.</p>
     <div id="code" class="code"></div>
     <div class="actions">
-      <a id="openApp" href="phraseman://invite" data-i18n-key="openApp">Open in Phraseman</a>
       <a id="store" class="secondary" href="https://play.google.com/store/apps/details?id=app.phraseman" data-i18n-key="install">Install Phraseman</a>
     </div>
-    <small id="hint" data-i18n-key="hint">After installing, tap "Open in Phraseman" again so the invite code is applied.</small>
+    <small id="hint" data-i18n-key="hint">On Android, Google Play carries the invitation code automatically. On iOS, copy or enter the code after installation.</small>
   </main>
 
   <script>
@@ -217,12 +216,10 @@
       var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       var isAndroid = /Android/i.test(navigator.userAgent);
-      var appUrl = 'phraseman://invite' + (ref ? '?ref=' + encodeURIComponent(ref) : '');
       var androidStore = 'https://play.google.com/store/apps/details?id=app.phraseman' +
         (ref ? '&referrer=' + encodeURIComponent('ref=' + ref) : '');
       var iosStore = 'https://apps.apple.com/app/id6764800879';
 
-      var openApp = document.getElementById('openApp');
       var store = document.getElementById('store');
       var code = document.getElementById('code');
       var hint = document.getElementById('hint');
@@ -240,7 +237,54 @@
         });
       }
 
-      openApp.href = appUrl;
+      var installCopy = {
+        ru: {
+          heading: 'Установи Phraseman',
+          intro: 'Это приглашение для нового пользователя. 7 дней доступа начисляются только если человек установит Phraseman впервые.',
+          hint: 'На Android Google Play передаст код приглашения автоматически. На iOS после установки скопируй или введи код вручную.'
+        },
+        uk: {
+          heading: 'Встанови Phraseman',
+          intro: 'Це запрошення для нового користувача. 7 днів доступу нараховуються лише якщо людина встановить Phraseman уперше.',
+          hint: 'На Android Google Play передасть код запрошення автоматично. На iOS після встановлення скопіюй або введи код вручну.'
+        },
+        es: {
+          heading: 'Instala Phraseman',
+          intro: 'Esta invitación es para una persona nueva. Los 7 días de acceso solo se conceden si instala Phraseman por primera vez.',
+          hint: 'En Android, Google Play lleva el código automáticamente. En iOS, copia o escribe el código después de instalar.'
+        },
+        'pt-BR': {
+          heading: 'Instale o Phraseman',
+          intro: 'Este convite é para uma pessoa nova. Os 7 dias de acesso só contam se ela instalar o Phraseman pela primeira vez.',
+          hint: 'No Android, o Google Play leva o código automaticamente. No iOS, copie ou digite o código depois de instalar.'
+        },
+        vi: {
+          heading: 'Cài đặt Phraseman',
+          intro: 'Lời mời này dành cho người dùng mới. 7 ngày truy cập chỉ được tính khi họ cài Phraseman lần đầu.',
+          hint: 'Trên Android, Google Play tự chuyển mã mời. Trên iOS, hãy sao chép hoặc nhập mã sau khi cài đặt.'
+        },
+        id: {
+          heading: 'Instal Phraseman',
+          intro: 'Undangan ini untuk pengguna baru. Akses 7 hari hanya dihitung jika mereka memasang Phraseman untuk pertama kali.',
+          hint: 'Di Android, Google Play membawa kode undangan otomatis. Di iOS, salin atau masukkan kode setelah memasang.'
+        },
+        tr: {
+          heading: 'Phraseman’i yükle',
+          intro: 'Bu davet yeni kullanıcı içindir. 7 günlük erişim yalnızca kişi Phraseman’i ilk kez yüklerse verilir.',
+          hint: 'Android’de Google Play davet kodunu otomatik taşır. iOS’ta yükledikten sonra kodu kopyala veya elle gir.'
+        },
+        pl: {
+          heading: 'Zainstaluj Phraseman',
+          intro: 'To zaproszenie jest dla nowej osoby. 7 dni dostępu nalicza się tylko wtedy, gdy instaluje Phraseman po raz pierwszy.',
+          hint: 'Na Androidzie Google Play przeniesie kod automatycznie. Na iOS skopiuj albo wpisz kod po instalacji.'
+        }
+      };
+      if (lang && installCopy[lang]) {
+        document.querySelector('[data-i18n-key="heading"]').textContent = installCopy[lang].heading;
+        document.querySelector('[data-i18n-key="intro"]').textContent = installCopy[lang].intro;
+        hint.textContent = installCopy[lang].hint;
+      }
+
       store.href = isiOS ? iosStore : androidStore;
       store.textContent = isiOS ? tr('installAppStore', 'Install from App Store') : tr('installGooglePlay', 'Install from Google Play');
 
@@ -278,9 +322,8 @@
         });
       }
 
-      window.location.href = appUrl;
       if (isAndroid) {
-        setTimeout(function () { window.location.href = androidStore; }, 1400);
+        setTimeout(function () { window.location.href = androidStore; }, 600);
       } else if (!isiOS) {
         setTimeout(function () { window.location.href = store.href; }, 1800);
       }

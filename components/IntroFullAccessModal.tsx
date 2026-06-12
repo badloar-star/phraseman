@@ -83,8 +83,8 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
   const accent = rewardModalAccentColor(themeMode, theme);
   const border = rewardModalPanelBorder(themeMode, theme);
   const softSurface = rewardModalSoftSurface(themeMode, theme);
-  const textPrimary = themeMode === 'minimalLight' ? '#171615' : '#FFFFFF';
-  const textSecondary = themeMode === 'minimalLight' ? 'rgba(23,22,21,0.72)' : 'rgba(255,255,255,0.78)';
+  const textPrimary = false ? '#171615' : '#FFFFFF';
+  const textSecondary = false ? 'rgba(23,22,21,0.72)' : 'rgba(255,255,255,0.78)';
 
   return (
     <Modal

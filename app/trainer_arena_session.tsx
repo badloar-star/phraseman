@@ -57,7 +57,7 @@ function shuffleArenaOptions(items: TrainerItem[]): TrainerItem[] {
 export default function TrainerArenaSession() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const trainerGateOpen = trainerSessionContentAvailableForTarget(studyTarget);

@@ -13,16 +13,10 @@ const CLUB_IMAGES = [
   require('../assets/images/levels/club icon base forest.webp'),
   require('../assets/images/levels/club base ocean.webp'),
   require('../assets/images/levels/club base corak.webp'),
-  require('../assets/images/levels/club base sacura.webp'),
-  require('../assets/images/levels/club base neon.webp'),
-  require('../assets/images/levels/club icon base forest.webp'),
+  require('../assets/images/levels/club base sacura.webp'),  require('../assets/images/levels/club icon base forest.webp'),
   require('../assets/images/levels/club base ocean.webp'),
   require('../assets/images/levels/club base corak.webp'),
-  require('../assets/images/levels/club base sacura.webp'),
-  require('../assets/images/levels/club base neon.webp'),
-  require('../assets/images/levels/club icon base forest.webp'),
-  require('../assets/images/levels/club base neon.webp'),
-];
+  require('../assets/images/levels/club base sacura.webp'),  require('../assets/images/levels/club icon base forest.webp'),];
 
 const MEDAL_IMAGES = [
   require('../assets/images/levels/bronza.webp'),
@@ -63,30 +57,18 @@ const ARENA_RANK_IMAGES = [
 const ARENA_ACTION_IMAGES = [
   require('../assets/images/arena_actions/arena-action-match-dark.webp'),
   require('../assets/images/arena_actions/arena-action-friend-dark.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-dark.webp'),
-  require('../assets/images/arena_actions/arena-action-match-neon.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-neon.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-neon.webp'),
-  require('../assets/images/arena_actions/arena-action-match-gold.webp'),
+  require('../assets/images/arena_actions/arena-action-throne-dark.webp'),  require('../assets/images/arena_actions/arena-action-match-gold.webp'),
   require('../assets/images/arena_actions/arena-action-friend-gold.webp'),
   require('../assets/images/arena_actions/arena-action-throne-gold.webp'),
   require('../assets/images/arena_actions/arena-action-match-coral.webp'),
   require('../assets/images/arena_actions/arena-action-friend-coral.webp'),
   require('../assets/images/arena_actions/arena-action-throne-coral.webp'),
-  require('../assets/images/arena_actions/arena-action-match-minimalLight.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-minimalLight.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-minimalLight.webp'),
-  require('../assets/images/arena_actions/arena-action-match-compass-premium-session.webp'),
-  require('../assets/images/arena_actions/arena-action-friend-compass-premium-session.webp'),
-  require('../assets/images/arena_actions/arena-action-throne-compass-premium-session.webp'),
 ];
 
 const LESSON_INTRO_CTA_IMAGES = [
   require('../assets/images/lesson_intro/intro-cta-dark.webp'),
-  require('../assets/images/lesson_intro/intro-cta-neon.webp'),
   require('../assets/images/lesson_intro/intro-cta-premium-gold.png'),
   require('../assets/images/lesson_intro/intro-cta-coral.webp'),
-  require('../assets/images/lesson_intro/intro-cta-minimal-light.webp'),
   require('../assets/images/lesson_intro/intro-cta-minimal-dark.webp'),
 ];
 

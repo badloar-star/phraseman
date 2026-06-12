@@ -49,14 +49,6 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#F4FFF7',
     subtitleColor: '#63E894',
   },
-  neon: {
-    glow: '#C8FF00',
-    borderColor: 'rgba(200,255,0,0.36)',
-    surfaceColors: ['rgba(30,36,16,0.88)', 'rgba(16,22,8,0.92)', 'rgba(5,8,3,0.94)'],
-    cardGlowColors: ['rgba(200,255,0,0.26)', 'rgba(0,255,170,0.10)', 'transparent'],
-    titleColor: '#FAFFE8',
-    subtitleColor: '#C8FF00',
-  },
   gold: {
     glow: '#D6B35A',
     borderColor: 'rgba(214,179,90,0.42)',
@@ -73,14 +65,6 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#FFF1EF',
     subtitleColor: '#FF9A8E',
   },
-  minimalLight: {
-    glow: '#D8C49C',
-    borderColor: 'rgba(106,83,52,0.34)',
-    surfaceColors: ['rgba(255,253,246,0.92)', 'rgba(243,236,220,0.94)', 'rgba(232,222,203,0.96)'],
-    cardGlowColors: ['rgba(255,246,220,0.34)', 'rgba(243,236,220,0.18)', 'transparent'],
-    titleColor: '#171615',
-    subtitleColor: '#273044',
-  },
   minimalDark: {
     glow: '#6EA8FF',
     borderColor: 'rgba(110,168,255,0.32)',
@@ -88,14 +72,6 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     cardGlowColors: ['rgba(110,168,255,0.20)', 'rgba(167,139,250,0.08)', 'transparent'],
     titleColor: '#F5F7FB',
     subtitleColor: '#A7C7FF',
-  },
-  compass: {
-    glow: '#F2C48D',
-    borderColor: 'rgba(242,196,141,0.34)',
-    surfaceColors: ['rgba(23,20,16,0.90)', 'rgba(12,10,7,0.94)', 'rgba(2,3,4,0.96)'],
-    cardGlowColors: ['rgba(242,196,141,0.22)', 'rgba(242,196,141,0.08)', 'transparent'],
-    titleColor: '#FFF8E8',
-    subtitleColor: '#D8D2C8',
   },
   midnight: {
     glow: '#8FA0FF',
@@ -214,7 +190,7 @@ function NoEnergyModal({
   const { theme: t, themeMode, f } = useTheme();
   const art = NO_ENERGY_MODAL_CHROME[themeMode] ?? NO_ENERGY_MODAL_CHROME.dark;
   const graphiteRadius = themeMode === 'minimalDark';
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const modalRadius = isCompassTheme ? 10 : graphiteRadius ? 8 : 22;
   const buttonRadius = isCompassTheme ? 9 : graphiteRadius ? 6 : 14;
   const paywallCardBg = t.bgCard;

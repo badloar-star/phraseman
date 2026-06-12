@@ -64,7 +64,7 @@ function RegistrationPromptModal({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
 
   const [appleAvail, setAppleAvail] = useState(false);
   const [googleAvail, setGoogleAvail] = useState(false);

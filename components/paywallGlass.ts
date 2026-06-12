@@ -18,7 +18,7 @@ export function withColorAlpha(color: string, alphaHex: string): string {
 }
 
 export function paywallGlassAlpha(themeMode: ThemeMode, role: PaywallGlassRole): string {
-  const isSketch = themeMode === 'minimalLight';
+  const isSketch = false;
   switch (role) {
     case 'surface':
       return isSketch ? 'F0' : 'E0';

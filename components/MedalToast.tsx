@@ -219,7 +219,7 @@ function MedalToast({
   const palette = TIER_PALETTES[tier];
 
   // Цвета фона/текста под тему
-  const visualTheme = getMedalToastThemeStyle(themeMode ?? (isLightTheme ? 'minimalLight' : 'minimalDark'));
+  const visualTheme = getMedalToastThemeStyle(themeMode ?? 'minimalDark');
   const tierAccent = visualTheme.tierAccents[tier] ?? palette.primary;
   const tierGlow = visualTheme.tierGlows[tier] ?? palette.glow;
   const accent = promoted ? tierAccent : visualTheme.badgeDownColor;

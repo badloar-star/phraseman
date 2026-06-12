@@ -688,8 +688,8 @@ function IntroBlockCard({
   const kind: LessonIntroBlockKind = richKindToLegacyKind(data.kind) ?? KIND_BY_INDEX[index] ?? 'tip';
   const km = KIND_MAP[kind];
   const accent = km.color(t);
-  const isLight = themeMode === 'minimalLight';
-  const isCompassTheme = themeMode === 'compass';
+  const isLight = false;
+  const isCompassTheme = false;
 
   const defaultTitle = defaultKindTitle(km, lang, studyTarget);
   const localizedTitle = richTitle(data, lang, studyTarget);
@@ -771,7 +771,7 @@ function IntroBlockCard({
   const iconBg = `${accent}28`;
   const iconBorder = `${accent}55`;
   const titleColor = isCompassTheme ? COMPASS_RICH.champagne : accent;
-  const cardBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : themeMode === 'minimalLight' ? '#FFFFFF' : t.bgCard;
+  const cardBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : false ? '#FFFFFF' : t.bgCard;
   const stripeBg = isCompassTheme ? COMPASS_RICH.champagne : `${accent}99`;
   const cardRadius = isCompassTheme ? 10 : 18;
 
@@ -959,8 +959,8 @@ export default function LessonIntroScreens({
   const { studyTarget } = useStudyTarget();
   const insets = useSafeAreaInsets();
   const { height: screenH } = useWindowDimensions();
-  const isLight = themeMode === 'minimalLight';
-  const isCompassTheme = themeMode === 'compass';
+  const isLight = false;
+  const isCompassTheme = false;
 
   const totalBlocks = introScreens.length;
   const [revealedCount, setRevealedCount] = useState(1); // первый блок виден сразу

@@ -1,130 +1,20 @@
 import React, { memo } from 'react';
 import {
-  ImageBackground,
   StyleSheet,
-  type ImageSourcePropType,
-  type ImageStyle,
+  View,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
-import { useTheme } from './ThemeContext';
-import { useAdaptiveBackgroundSource } from './adaptiveBackgroundAssets';
-import type { ThemeMode } from '../constants/theme';
 
-export const STATS_CARD_ART = {
-  streak: require('../assets/images/statistics/cards/stats-card-streak.webp'),
-  multipliers: require('../assets/images/statistics/cards/stats-card-multipliers.webp'),
-  practiceBalance: require('../assets/images/statistics/cards/stats-card-practice-balance.webp'),
-  weekRhythm: require('../assets/images/statistics/cards/stats-card-week-rhythm.webp'),
-  percentiles: require('../assets/images/statistics/cards/stats-card-percentiles.webp'),
-  archiveMap: require('../assets/images/statistics/cards/stats-card-archive-map.webp'),
-  wager: require('../assets/images/statistics/cards/stats-card-wager.webp'),
-} as const satisfies Record<string, ImageSourcePropType>;
-
-export type StatsCardArtName = keyof typeof STATS_CARD_ART;
-
-export const STATS_CARD_ART_BY_THEME = {
-  dark: {
-    streak: require('../assets/images/statistics/cards/dark/stats-card-streak-dark.webp'),
-    multipliers: require('../assets/images/statistics/cards/dark/stats-card-multipliers-dark.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/dark/stats-card-practice-balance-dark.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/dark/stats-card-week-rhythm-dark.webp'),
-    percentiles: require('../assets/images/statistics/cards/dark/stats-card-percentiles-dark.webp'),
-    archiveMap: require('../assets/images/statistics/cards/dark/stats-card-archive-map-dark.webp'),
-    wager: require('../assets/images/statistics/cards/dark/stats-card-wager-dark.webp'),
-  },
-  neon: {
-    streak: require('../assets/images/statistics/cards/neon/stats-card-streak-neon.webp'),
-    multipliers: require('../assets/images/statistics/cards/neon/stats-card-multipliers-neon.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/neon/stats-card-practice-balance-neon.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/neon/stats-card-week-rhythm-neon.webp'),
-    percentiles: require('../assets/images/statistics/cards/neon/stats-card-percentiles-neon.webp'),
-    archiveMap: require('../assets/images/statistics/cards/neon/stats-card-archive-map-neon.webp'),
-    wager: require('../assets/images/statistics/cards/neon/stats-card-wager-neon.webp'),
-  },
-  gold: {
-    streak: require('../assets/images/statistics/cards/gold/stats-card-streak-gold.webp'),
-    multipliers: require('../assets/images/statistics/cards/gold/stats-card-multipliers-gold.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/gold/stats-card-practice-balance-gold.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/gold/stats-card-week-rhythm-gold.webp'),
-    percentiles: require('../assets/images/statistics/cards/gold/stats-card-percentiles-gold.webp'),
-    archiveMap: require('../assets/images/statistics/cards/gold/stats-card-archive-map-gold.webp'),
-    wager: require('../assets/images/statistics/cards/gold/stats-card-wager-gold.webp'),
-  },
-  coral: {
-    streak: require('../assets/images/statistics/cards/coral/stats-card-streak-coral.webp'),
-    multipliers: require('../assets/images/statistics/cards/coral/stats-card-multipliers-coral.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/coral/stats-card-practice-balance-coral.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/coral/stats-card-week-rhythm-coral.webp'),
-    percentiles: require('../assets/images/statistics/cards/coral/stats-card-percentiles-coral.webp'),
-    archiveMap: require('../assets/images/statistics/cards/coral/stats-card-archive-map-coral.webp'),
-    wager: require('../assets/images/statistics/cards/coral/stats-card-wager-coral.webp'),
-  },
-  minimalLight: {
-    streak: require('../assets/images/statistics/cards/minimal-light/stats-card-streak-minimal-light.webp'),
-    multipliers: require('../assets/images/statistics/cards/minimal-light/stats-card-multipliers-minimal-light.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/minimal-light/stats-card-practice-balance-minimal-light.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/minimal-light/stats-card-week-rhythm-minimal-light.webp'),
-    percentiles: require('../assets/images/statistics/cards/minimal-light/stats-card-percentiles-minimal-light.webp'),
-    archiveMap: require('../assets/images/statistics/cards/minimal-light/stats-card-archive-map-minimal-light.webp'),
-    wager: require('../assets/images/statistics/cards/minimal-light/stats-card-wager-minimal-light.webp'),
-  },
-  minimalDark: {
-    streak: require('../assets/images/statistics/cards/minimal-dark/stats-card-streak-minimal-dark.webp'),
-    multipliers: require('../assets/images/statistics/cards/minimal-dark/stats-card-multipliers-minimal-dark.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/minimal-dark/stats-card-practice-balance-minimal-dark.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/minimal-dark/stats-card-week-rhythm-minimal-dark.webp'),
-    percentiles: require('../assets/images/statistics/cards/minimal-dark/stats-card-percentiles-minimal-dark.webp'),
-    archiveMap: require('../assets/images/statistics/cards/minimal-dark/stats-card-archive-map-minimal-dark.webp'),
-    wager: require('../assets/images/statistics/cards/minimal-dark/stats-card-wager-minimal-dark.webp'),
-  },
-  compass: {
-    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
-    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
-    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
-    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
-    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
-  },
-  midnight: {
-    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
-    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
-    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
-    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
-    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
-  },
-  ember: {
-    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
-    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
-    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
-    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
-    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
-  },
-  aurora: {
-    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
-    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
-    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
-    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
-    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
-  },
-  volt: {
-    streak: require('../assets/images/statistics/cards/compass-premium/stats-card-streak-compass-premium.webp'),
-    multipliers: require('../assets/images/statistics/cards/compass-premium/stats-card-multipliers-compass-premium.webp'),
-    practiceBalance: require('../assets/images/statistics/cards/compass-premium/stats-card-practice-balance-compass-premium.webp'),
-    weekRhythm: require('../assets/images/statistics/cards/compass-premium/stats-card-week-rhythm-compass-premium.webp'),
-    percentiles: require('../assets/images/statistics/cards/compass-premium/stats-card-percentiles-compass-premium.webp'),
-    archiveMap: require('../assets/images/statistics/cards/compass-premium/stats-card-archive-map-compass-premium.webp'),
-    wager: require('../assets/images/statistics/cards/compass-premium/stats-card-wager-compass-premium.webp'),
-  },
-} as const satisfies Record<ThemeMode, Record<StatsCardArtName, ImageSourcePropType>>;
+export type StatsCardArtName =
+  | 'streak'
+  | 'multipliers'
+  | 'practiceBalance'
+  | 'weekRhythm'
+  | 'percentiles'
+  | 'archiveMap'
+  | 'wager';
 
 type StatsArtTheme = {
   bgCard?: string;
@@ -139,7 +29,6 @@ type StatsCardArtSurfaceProps = {
   gradientColors?: readonly string[];
   gradientLocations?: readonly number[];
   gradientOpacity?: number;
-  imageStyle?: StyleProp<ImageStyle>;
   scrim?: 'soft' | 'medium' | 'strong';
   style?: StyleProp<ViewStyle>;
   testID?: string;
@@ -193,33 +82,21 @@ function defaultGradientOpacity(theme?: StatsArtTheme, isGoldTheme?: boolean): n
   return 0.36;
 }
 
-function resolveStatsCardArt(name: StatsCardArtName, themeMode: ThemeMode): ImageSourcePropType {
-  return STATS_CARD_ART_BY_THEME[themeMode]?.[name] ?? STATS_CARD_ART[name];
-}
-
 function StatsCardArtSurface({
   children,
-  name,
   radius,
   theme,
   isGoldTheme,
   gradientColors,
   gradientLocations,
   gradientOpacity,
-  imageStyle,
   scrim = 'medium',
   style,
   testID,
 }: StatsCardArtSurfaceProps) {
-  const { themeMode } = useTheme();
-  const backgroundSource = useAdaptiveBackgroundSource(resolveStatsCardArt(name, themeMode));
-
   return (
-    <ImageBackground
+    <View
       testID={testID}
-      source={backgroundSource}
-      resizeMode="cover"
-      imageStyle={[{ borderRadius: radius }, imageStyle]}
       style={[{ backgroundColor: theme?.bgCard, overflow: 'hidden' }, style]}
     >
       {gradientColors && gradientColors.length >= 2 ? (
@@ -240,7 +117,7 @@ function StatsCardArtSurface({
         style={[StyleSheet.absoluteFillObject, { borderRadius: radius }]}
       />
       {children}
-    </ImageBackground>
+    </View>
   );
 }
 

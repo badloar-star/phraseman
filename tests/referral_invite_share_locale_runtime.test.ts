@@ -23,10 +23,18 @@ describe('referral invite share planned locale runtime copy', () => {
   });
 
   it('requires complete localized share labels', () => {
+    expect(source).toContain("ru: 'Открой приглашение: '");
+    expect(source).toContain("uk: 'Відкрий запрошення: '");
     expect(source).toContain("'pt-BR': 'Abra o convite: '");
     expect(source).toContain("vi: 'Mở lời mời: '");
     expect(source).toContain("id: 'Buka undangan: '");
     expect(source).toContain("tr: 'Davet bağlantısını aç: '");
     expect(source).toContain("pl: 'Otwórz zaproszenie: '");
+    expect(source).not.toContain('ÐžÑ‚ÐºÑ€Ð¾Ð¹');
+    expect(source).not.toContain('Ð¿Ñ€Ð¸Ð³Ð»Ð°ÑˆÐµÐ½Ð¸Ðµ');
+  });
+  it('keeps referral share focused on one public invite link for new installs', () => {
+    expect(source).toContain('buildReferralInviteShare');
+    expect(source).toMatch(/return buildReferralInviteShare\(lang, inviteHttps\);\s+if \(Platform\.OS === 'android'\)/);
   });
 });

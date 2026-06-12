@@ -275,8 +275,8 @@ describe('submitExplainReport — per-hash counter', () => {
   });
 });
 
-describe('submitExplainReport — threshold auto-reject (NET-NEW logic)', () => {
-  test('flips cache status to rejected exactly on the Nth report, in the same tx', async () => {
+describe('submitExplainReport — admin moderation queue, no automatic cache removal', () => {
+  test('keeps cache live even when the complaint threshold is reached', async () => {
     // Сидируем готовый кэш, чтобы было что отклонять.
     docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
       status: 'ready',
@@ -286,32 +286,35 @@ describe('submitExplainReport — threshold auto-reject (NET-NEW logic)', () => 
 
     for (let i = 0; i < REPORT_REJECT_THRESHOLD - 1; i += 1) {
       const res = await callReport({ phraseEn: PHRASE }, `auth-r${i}`);
-      expect(res).toMatchObject({ flipped: false, rejected: false });
+      expect(res).toMatchObject({ queued: true, flipped: false, rejected: false });
       expect(cacheDoc()).toMatchObject({ status: 'ready' }); // ещё не отклонено
     }
 
-    // N-й (=REPORT_REJECT_THRESHOLD) репорт переключает статус В ТОЙ ЖЕ tx, что инкремент.
     const final = await callReport({ phraseEn: PHRASE }, `auth-r${REPORT_REJECT_THRESHOLD - 1}`);
-    expect(final).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD, flipped: true, rejected: true });
-    expect(cacheDoc()).toMatchObject({ status: 'rejected', reason: 'report_threshold' });
+    expect(final).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD, queued: true, flipped: false, rejected: false });
+    expect(cacheDoc()).toMatchObject({ status: 'ready', text: 'a fine explanation' });
   });
 
-  test('does NOT regenerate — rejected entry stays rejected on further reports', async () => {
+  test('further reports keep the cached explanation until admin removes it', async () => {
+    docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
+      status: 'ready',
+      schemaVersion: 2,
+      text: 'a fine explanation',
+    });
+
     for (let i = 0; i < REPORT_REJECT_THRESHOLD; i += 1) {
       await callReport({ phraseEn: PHRASE }, `auth-r${i}`);
     }
-    expect(cacheDoc()).toMatchObject({ status: 'rejected' });
+    expect(cacheDoc()).toMatchObject({ status: 'ready' });
 
-    // Ещё один репорт: счётчик растёт, статус остаётся rejected (никакого сброса в pending),
-    // повторного флипа НЕТ (flipped=false).
     const extra = await callReport({ phraseEn: PHRASE }, `auth-r${REPORT_REJECT_THRESHOLD}`);
-    expect(extra).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD + 1, flipped: false, rejected: true });
-    expect(cacheDoc()).toMatchObject({ status: 'rejected' });
+    expect(extra).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD + 1, queued: true, flipped: false, rejected: false });
+    expect(cacheDoc()).toMatchObject({ status: 'ready', text: 'a fine explanation' });
   });
 });
 
-describe('submitExplainReport — concurrency does not race past threshold', () => {
-  test('two concurrent reports crossing the threshold → exactly one flip, no lost update', async () => {
+describe('submitExplainReport — concurrency does not race the moderation queue', () => {
+  test('two concurrent reports crossing the old threshold keep cache live and do not lose updates', async () => {
     docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, { status: 'ready', schemaVersion: 2, text: 'ok' });
 
     // Доводим счётчик ровно до THRESHOLD-1: следующий репорт — порог.
@@ -334,11 +337,10 @@ describe('submitExplainReport — concurrency does not race past threshold', () 
     // Два репорта вернули РАЗНЫЕ последовательные значения счётчика (никто не затёр чужой инкремент).
     const reportCounts = results.map((r) => r.reportCount).sort((a, b) => a - b);
     expect(reportCounts).toEqual([REPORT_REJECT_THRESHOLD, REPORT_REJECT_THRESHOLD + 1]);
-    // Порог пересечён РОВНО один раз → ровно одна транзакция выполнила флип (flipped=true).
     const flips = results.filter((r) => r.flipped === true).length;
-    expect(flips).toBe(1);
-    // Кэш отклонён (и остаётся rejected, без двойного перезаписывания reason).
-    expect(cacheDoc()).toMatchObject({ status: 'rejected', reason: 'report_threshold' });
+    expect(flips).toBe(0);
+    expect(results.every((r) => r.queued === true && r.rejected === false)).toBe(true);
+    expect(cacheDoc()).toMatchObject({ status: 'ready', text: 'ok' });
   });
 });
 
@@ -363,6 +365,12 @@ describe('submitExplainReport — один юзер = ОДИН голос на �
 
 describe('submitExplainReport — лента explain_report_entries (раздел админки)', () => {
   test('каждая жалоба пишет полную запись: фраза, язык, причина, комментарий, кто, когда', async () => {
+    docs.set(`${EXPLAIN_COLLECTION}/${HASH}`, {
+      status: 'ready',
+      schemaVersion: 2,
+      text: 'Cached explanation visible to admin.',
+    });
+
     await callReport({
       phraseEn: PHRASE,
       lang: 'ru',
@@ -379,6 +387,8 @@ describe('submitExplainReport — лента explain_report_entries (разде�
       comment: 'Тут перепутано, "am" объяснили как прошедшее время.',
       stableUid: 'auth-r0',
       status: 'new',
+      cacheStatus: 'ready',
+      explanationText: 'Cached explanation visible to admin.',
     });
   });
 

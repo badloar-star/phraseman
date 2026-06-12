@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, InteractionManager, } from 'react-native';
@@ -33,6 +34,7 @@ import { arenaToasts } from '../constants/arena_i18n';
 import { arenaActionIconSource } from './arena_action_icons';
 import { ARENA_LOBBY_ACCEPT_MS, ARENA_PLAY_AGAIN_BOT_MAX_MS, ARENA_PLAY_AGAIN_BOT_MIN_MS, CLOUD_SYNC_ENABLED, ENABLE_ARENA_RANKED_WAGER, IS_EXPO_GO, } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
+import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import type { ArenaSession, LobbyChoice } from './types/arena';
 import { saveExpoPushTokenToUser, setSessionLobbyChoice, subscribeMatchmakingSearchingTotal, subscribeSession, subscribeSessionPlayers, } from './services/arena_db';
 import { ARENA_RANKED_WAGER_STAKES, clearPendingArenaRankedWager, getPendingArenaRankedWager, setPendingArenaRankedWager, winPayoutForStake, type ArenaRankedPendingWager, type ArenaRankedWagerStake, } from './arena_match_wager';
@@ -71,29 +73,23 @@ const ARENA_STAGE_BACKDROP_SCALE = 1.20;
 const ARENA_STAGE_BACKDROP_SHIFT_X = 26;
 const ARENA_STAGE_BACKDROPS = {
     dark: require('../assets/images/arena/knowledge-arena-dark.webp'),
-    neon: require('../assets/images/arena/knowledge-arena-neon.webp'),
     gold: require('../assets/images/arena/knowledge-arena-gold.webp'),
     coral: require('../assets/images/arena/knowledge-arena-coral.webp'),
-    minimalLight: require('../assets/images/arena/knowledge-arena-minimal-light.webp'),
     minimalDark: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
-    compass: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
-    midnight: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
-    ember: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
-    aurora: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
-    volt: require('../assets/images/arena/knowledge-arena-compass-premium-session.webp'),
+    midnight: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
+    ember: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
+    aurora: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
+    volt: require('../assets/images/arena/knowledge-arena-minimal-dark.webp'),
 } as const;
 const ARENA_TICKET_ICONS = {
     dark: require('../assets/images/arena_tickets/ticket-dark.webp'),
-    neon: require('../assets/images/arena_tickets/ticket-neon.webp'),
     gold: require('../assets/images/arena_tickets/ticket-gold.webp'),
     coral: require('../assets/images/arena_tickets/ticket-coral.webp'),
-    minimalLight: require('../assets/images/arena_tickets/ticket-minimal-light.webp'),
     minimalDark: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
-    compass: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
-    midnight: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
-    ember: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
-    aurora: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
-    volt: require('../assets/images/arena_tickets/ticket-compass-premium-session.webp'),
+    midnight: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
+    ember: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
+    aurora: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
+    volt: require('../assets/images/arena_tickets/ticket-minimal-dark.webp'),
 } as const;
 function alphaColor(color: string, alpha: number, defaultRgb = '255,255,255'): string {
     if (/^#[0-9a-f]{6}$/i.test(color)) {
@@ -155,6 +151,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
     isTab?: boolean;
 } = {}) {
     const { width: windowW, contentMaxW } = useScreen();
+    const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     const { goHome, activeIdx } = useTabNav();
     const { autoSearch, playAgainTs } = useLocalSearchParams<{
@@ -1499,11 +1496,6 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(10,38,36,0.72)', border: 'rgba(91,226,205,0.46)', shadow: '#5BE2CD' },
             throne: { bg: 'rgba(54,43,14,0.72)', border: 'rgba(245,217,122,0.48)', shadow: '#F5D97A' },
         };
-        const neon = {
-            match: { bg: 'rgba(8,34,38,0.78)', border: 'rgba(182,255,0,0.72)', shadow: '#B6FF00' },
-            friend: { bg: 'rgba(38,8,62,0.78)', border: 'rgba(217,70,239,0.64)', shadow: '#D946EF' },
-            throne: { bg: 'rgba(44,18,65,0.78)', border: 'rgba(255,202,40,0.62)', shadow: '#FFCA28' },
-        };
         const gold = {
             match: { bg: 'rgba(24,19,9,0.82)', border: GOLD_RICH.hairlineStrong, shadow: GOLD_RICH.champagne },
             friend: { bg: 'rgba(35,22,18,0.82)', border: 'rgba(244,196,154,0.56)', shadow: '#F4C49A' },
@@ -1514,20 +1506,10 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(58,21,40,0.76)', border: 'rgba(255,145,170,0.62)', shadow: '#FF91AA' },
             throne: { bg: 'rgba(63,24,22,0.80)', border: 'rgba(255,184,77,0.62)', shadow: '#FFB84D' },
         };
-        const minimalLight = {
-            match: { bg: 'rgba(255,252,246,0.92)', border: 'rgba(86,96,86,0.42)', shadow: '#7C8A7E' },
-            friend: { bg: 'rgba(255,252,246,0.92)', border: 'rgba(117,112,147,0.40)', shadow: '#757093' },
-            throne: { bg: 'rgba(255,252,246,0.94)', border: 'rgba(185,137,37,0.44)', shadow: '#B98925' },
-        };
         const minimalDark = {
             match: { bg: 'rgba(14,18,23,0.86)', border: 'rgba(116,168,214,0.42)', shadow: '#74A8D6' },
             friend: { bg: 'rgba(16,18,25,0.86)', border: 'rgba(133,151,196,0.42)', shadow: '#8597C4' },
             throne: { bg: 'rgba(20,19,17,0.88)', border: 'rgba(179,149,91,0.44)', shadow: '#B3955B' },
-        };
-        const compass = {
-            match: { bg: 'rgba(10,30,28,0.86)', border: 'rgba(242,196,141,0.44)', shadow: '#F2C48D' },
-            friend: { bg: 'rgba(8,24,23,0.86)', border: 'rgba(242,196,141,0.34)', shadow: '#8FEFE1' },
-            throne: { bg: 'rgba(18,16,10,0.88)', border: 'rgba(242,196,141,0.32)', shadow: '#F2C48D' },
         };
         const midnight = {
             match: { bg: 'rgba(26,29,44,0.86)', border: 'rgba(95,224,176,0.46)', shadow: '#5FE0B0' },
@@ -1549,14 +1531,14 @@ export default function DuelLobbyScreen({ isTab = false }: {
             friend: { bg: 'rgba(27,30,16,0.86)', border: 'rgba(214,255,61,0.44)', shadow: '#D6FF3D' },
             throne: { bg: 'rgba(12,14,6,0.88)', border: 'rgba(255,232,92,0.42)', shadow: '#FFE85C' },
         };
-        const byTheme = { dark, neon, gold, coral, minimalLight, minimalDark, compass, midnight, ember, aurora, volt } as const;
+        const byTheme = { dark, gold, coral, minimalDark, midnight, ember, aurora, volt } as const;
         return byTheme[themeMode] ?? dark;
     }, [themeMode]);
     const arenaGlass = useMemo(() => {
-        const light = themeMode === 'minimalLight';
-        const neon = themeMode === 'neon';
+        const light = false;
+        const neon = false;
         const gold = themeMode === 'gold';
-        const compass = themeMode === 'compass';
+        const compass = false;
         const accent = t.accent;
         const warm = compass ? '#F2C48D' : gold || light ? '#B98925' : '#F5D97A';
         const ctaBase = gold ? t.textSecond : light ? '#3B4A6B' : t.accent;
@@ -1634,6 +1616,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}
     /* В режиме таба верхний inset уже даёт (tabs)/_layout (paddingTop: insets.top). */
     edges={isTab ? [] : ['top', 'bottom']}>
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       {/* Шапка */}
       <View style={styles.header}>
         <TapScale testID="arena-header-back" accessibilityLabel="qa-arena-header-back" accessible onPress={() => {
@@ -1711,8 +1694,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
         </View>
       </View>
 
-      <BouncyWrap style={bouncyStyle}>
-      <ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={styles.bodyScrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled bounces alwaysBounceVertical overScrollMode="always" onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <BouncyWrap>
+      <ScrollView decelerationRate="normal" style={styles.bodyScroll} contentContainerStyle={[styles.bodyScrollContent, isTab ? { paddingBottom: tabContentBottomPad } : null]} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} nestedScrollEnabled bounces alwaysBounceVertical overScrollMode="always" onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {/* INFO-зона — фиксированная высота над actions. Любая поздняя
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
@@ -2387,6 +2370,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         </View>
       </ScrollView>
       </BouncyWrap>
+      </Reanimated.View>
       </SafeAreaView>
 
       <Modal visible={throneTopVisible} transparent animationType="fade" onRequestClose={() => setThroneTopVisible(false)}>
@@ -2396,7 +2380,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
             styles.throneModalCard,
             {
                 borderColor: arenaGlass.warmBorder,
-                backgroundColor: themeMode === 'minimalLight' ? 'rgba(255,252,246,0.98)' : 'rgba(13,14,18,0.98)',
+                backgroundColor: false ? 'rgba(255,252,246,0.98)' : 'rgba(13,14,18,0.98)',
                 shadowColor: arenaGlass.warm,
             },
         ]}>

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TapScale from '../components/TapScale';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Reanimated from 'react-native-reanimated';
 import {
   View, Text, TouchableOpacity, StyleSheet, ScrollView,
   Modal, Pressable, Dimensions, InteractionManager, Animated,
@@ -270,6 +271,7 @@ export default function DuelRatingScreen() {
 
   return (
     <ScreenGradient>
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       <View style={styles.header}>
         <TapScale onPress={() => safeRouterBack(router, '/(tabs)/home' as any)} style={styles.backBtn}>
           <Ionicons name="arrow-back" size={24} color={sx.primary} />
@@ -283,7 +285,7 @@ export default function DuelRatingScreen() {
         <View style={{ width: 32 }} />
       </View>
 
-      <BouncyWrap style={bouncyStyle}>
+      <BouncyWrap>
       <ScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false} bounces alwaysBounceVertical overScrollMode="always" onScroll={onBouncyScroll} scrollEventThrottle={16}>
         {/* Моя карточка */}
         <LinearGradient
@@ -518,6 +520,7 @@ export default function DuelRatingScreen() {
         </View>
       </ScrollView>
       </BouncyWrap>
+      </Reanimated.View>
     </ScreenGradient>
   );
 }

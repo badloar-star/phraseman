@@ -129,7 +129,7 @@ function StatsPremiumBlur({
   const [cachedBlurUri, setCachedBlurUri] = useState<string | null>(null);
   const [captureSize, setCaptureSize] = useState({ width: 0, height: 0 });
 
-  const isLight = themeMode === 'minimalLight';
+  const isLight = false;
   const titleCopy = CONTEXT_TITLES[context];
   const title = overrideTitle ?? triLang(lang, titleCopy);
   const ctaLabel = triLang(lang, {

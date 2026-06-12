@@ -119,6 +119,15 @@ async function runMatchmaking() {
         // non-fatal
     }
     try {
+        // Watchdog зависших вопросов ПЕРЕД stale-cleanup: завершает матчи нормально
+        // (с наградами), если игрок отвалился посреди вопроса. Иначе сессия дожила бы
+        // до 2ч stale-cleanup и оборвалась без наград.
+        await (0, arena_cleanup_1.advanceStuckQuestionSessions)();
+    }
+    catch (e) {
+        console.error('advanceStuckQuestionSessions', e);
+    }
+    try {
         await (0, arena_cleanup_1.cleanupStaleArenaSessions)();
     }
     catch (e) {

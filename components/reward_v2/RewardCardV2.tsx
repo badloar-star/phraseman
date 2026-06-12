@@ -17,11 +17,13 @@ import {
  * Семантика задаётся ТОЛЬКО цветом кикера/кольца, форма всегда одна.
  * Дизайн-контракт: docs/reports/MODALS_TOASTS_AUDIT_2026-06-10.md (раздел 5)
  * и docs/reports/modal_redesign_mockups_2026-06-10.html.
+ *
+ * RewardCardBody — презентационное тело без Modal/бэкдропа: его использует
+ * RewardStackV2 (очередь наград) и любые будущие встроенные сценарии.
  */
 export type RewardCardSemantic = 'gold' | 'shards' | 'danger' | 'warning' | 'social' | 'neutral';
 
-export type RewardCardV2Props = {
-  visible: boolean;
+export type RewardCardBodyProps = {
   /** Короткая строка-категория сверху, БЕЗ эмодзи: «Уровень 12 · Эпический». */
   kicker: string;
   /** Контент кольца: строка = эмодзи, иначе любой ReactNode (Image/SVG). */
@@ -37,10 +39,14 @@ export type RewardCardV2Props = {
   semantic?: RewardCardSemantic;
   /** Точечная подмена семантического цвета (hex). */
   accentColor?: string;
+  /** Доп. контент между значением и CTA (список наград, точки пейджера и т.п.). */
+  children?: React.ReactNode;
+};
+
+export type RewardCardV2Props = RewardCardBodyProps & {
+  visible: boolean;
   /** Что делает тап по фону. Награды: 'cta' (не теряются). Подтверждения: 'ghost'. */
   backdropAction?: 'cta' | 'ghost' | 'none';
-  /** Доп. контент между значением и CTA (список наград и т.п.). */
-  children?: React.ReactNode;
   testID?: string;
 };
 
@@ -49,7 +55,7 @@ function withAlpha(hex: string, alpha: string): string {
   return hex;
 }
 
-function semanticAccent(
+export function rewardSemanticAccent(
   semantic: RewardCardSemantic,
   t: ReturnType<typeof useTheme>['theme'],
   themeMode: ReturnType<typeof useTheme>['themeMode'],
@@ -66,8 +72,11 @@ function semanticAccent(
   }
 }
 
-function RewardCardV2({
-  visible,
+export function rewardCardBackdropColor(themeMode: ReturnType<typeof useTheme>['themeMode']): string {
+  return false ? 'rgba(24,18,10,0.38)' : 'rgba(2,4,8,0.55)';
+}
+
+export function RewardCardBody({
   kicker,
   icon,
   title,
@@ -80,10 +89,8 @@ function RewardCardV2({
   onGhost,
   semantic = 'neutral',
   accentColor,
-  backdropAction = 'cta',
   children,
-  testID,
-}: RewardCardV2Props) {
+}: RewardCardBodyProps) {
   const { theme: t, f, ds, themeMode } = useTheme();
   const scale = useRef(new Animated.Value(0.94)).current;
   const translateY = useRef(new Animated.Value(16)).current;
@@ -92,10 +99,6 @@ function RewardCardV2({
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!visible) return;
-    scale.setValue(0.94);
-    translateY.setValue(16);
-    opacity.setValue(0);
     /** Старт на следующем кадре — Fabric должен закоммитить Animated.View (см. ActionToast). */
     rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null;
@@ -126,16 +129,92 @@ function RewardCardV2({
       haloLoop.stop();
       if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
     };
-  }, [halo, opacity, scale, translateY, visible]);
+  }, [halo, opacity, scale, translateY]);
 
-  if (!visible) return null;
-
-  const accent = accentColor ?? semanticAccent(semantic, t, themeMode);
+  const accent = accentColor ?? rewardSemanticAccent(semantic, t, themeMode);
   const panelColors = rewardModalPanelColors(themeMode, t);
   const soft = rewardModalSoftSurface(themeMode, t);
   const panelBorder = rewardModalPanelBorder(themeMode, t, withAlpha(accent, '4D'));
-  const backdropColor = themeMode === 'minimalLight' ? 'rgba(24,18,10,0.38)' : 'rgba(2,4,8,0.55)';
   const cardRadius = ds.radius.xxl;
+
+  return (
+    <Animated.View
+      style={[
+        styles.card,
+        {
+          borderRadius: cardRadius,
+          borderColor: panelBorder,
+          backgroundColor: panelColors[1],
+          transform: [{ scale }, { translateY }],
+          opacity,
+        },
+      ]}
+      /** Тапы по карточке не закрывают её. */
+      onStartShouldSetResponder={() => true}
+    >
+      <LinearGradient
+        colors={panelColors}
+        start={{ x: 0.1, y: 0 }}
+        end={{ x: 0.6, y: 1 }}
+        style={StyleSheet.absoluteFill}
+        pointerEvents="none"
+      />
+      <LinearGradient
+        colors={['transparent', accent, 'transparent']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={styles.topline}
+        pointerEvents="none"
+      />
+      <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
+        {kicker.toUpperCase()}
+      </Text>
+      <View style={styles.ringWrap}>
+        <Animated.View
+          pointerEvents="none"
+          style={[styles.ringHalo, { borderColor: withAlpha(accent, '38'), opacity: halo }]}
+        />
+        <View style={[styles.ring, { borderColor: withAlpha(accent, '70'), backgroundColor: soft }]}>
+          {typeof icon === 'string' ? <Text style={styles.ringEmoji}>{icon}</Text> : icon}
+        </View>
+      </View>
+      <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 + 2 }]}>{title}</Text>
+      {value ? (
+        <Text style={[styles.value, { color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }]}>
+          {value}
+        </Text>
+      ) : null}
+      {reasonText ? (
+        <View style={[styles.reason, { backgroundColor: soft, borderColor: panelBorder }]}>
+          {reasonLabel ? (
+            <Text style={[styles.reasonLabel, { color: accent }]} numberOfLines={1}>
+              {reasonLabel.toUpperCase()}
+            </Text>
+          ) : null}
+          <Text style={[styles.reasonText, { color: t.textPrimary, fontSize: f.sub }]}>{reasonText}</Text>
+        </View>
+      ) : null}
+      {children}
+      <PrimaryButton label={ctaLabel} onPress={onCta} style={styles.cta} />
+      {ghostLabel && onGhost ? (
+        <TouchableOpacity onPress={onGhost} activeOpacity={0.7} style={styles.ghost}>
+          <Text style={[styles.ghostText, { color: t.textMuted, fontSize: f.sub }]}>{ghostLabel}</Text>
+        </TouchableOpacity>
+      ) : null}
+    </Animated.View>
+  );
+}
+
+function RewardCardV2({
+  visible,
+  backdropAction = 'cta',
+  testID,
+  onCta,
+  onGhost,
+  ...body
+}: RewardCardV2Props) {
+  const { themeMode } = useTheme();
+  if (!visible) return null;
 
   const handleBackdrop = () => {
     if (backdropAction === 'none') return;
@@ -155,71 +234,11 @@ function RewardCardV2({
       onRequestClose={onGhost ?? onCta}
       testID={testID}
     >
-      <Pressable style={[styles.backdrop, { backgroundColor: backdropColor }]} onPress={handleBackdrop}>
-        <Animated.View
-          style={[
-            styles.card,
-            {
-              borderRadius: cardRadius,
-              borderColor: panelBorder,
-              backgroundColor: panelColors[1],
-              transform: [{ scale }, { translateY }],
-              opacity,
-            },
-          ]}
-          /** Тапы по карточке не закрывают её. */
-          onStartShouldSetResponder={() => true}
-        >
-          <LinearGradient
-            colors={panelColors}
-            start={{ x: 0.1, y: 0 }}
-            end={{ x: 0.6, y: 1 }}
-            style={StyleSheet.absoluteFill}
-            pointerEvents="none"
-          />
-          <LinearGradient
-            colors={['transparent', accent, 'transparent']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.topline}
-            pointerEvents="none"
-          />
-          <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
-            {kicker.toUpperCase()}
-          </Text>
-          <View style={styles.ringWrap}>
-            <Animated.View
-              pointerEvents="none"
-              style={[styles.ringHalo, { borderColor: withAlpha(accent, '38'), opacity: halo }]}
-            />
-            <View style={[styles.ring, { borderColor: withAlpha(accent, '70'), backgroundColor: soft }]}>
-              {typeof icon === 'string' ? <Text style={styles.ringEmoji}>{icon}</Text> : icon}
-            </View>
-          </View>
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 + 2 }]}>{title}</Text>
-          {value ? (
-            <Text style={[styles.value, { color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }]}>
-              {value}
-            </Text>
-          ) : null}
-          {reasonText ? (
-            <View style={[styles.reason, { backgroundColor: soft, borderColor: panelBorder }]}>
-              {reasonLabel ? (
-                <Text style={[styles.reasonLabel, { color: accent }]} numberOfLines={1}>
-                  {reasonLabel.toUpperCase()}
-                </Text>
-              ) : null}
-              <Text style={[styles.reasonText, { color: t.textPrimary, fontSize: f.sub }]}>{reasonText}</Text>
-            </View>
-          ) : null}
-          {children}
-          <PrimaryButton label={ctaLabel} onPress={onCta} style={styles.cta} />
-          {ghostLabel && onGhost ? (
-            <TouchableOpacity onPress={onGhost} activeOpacity={0.7} style={styles.ghost}>
-              <Text style={[styles.ghostText, { color: t.textMuted, fontSize: f.sub }]}>{ghostLabel}</Text>
-            </TouchableOpacity>
-          ) : null}
-        </Animated.View>
+      <Pressable
+        style={[styles.backdrop, { backgroundColor: rewardCardBackdropColor(themeMode) }]}
+        onPress={handleBackdrop}
+      >
+        <RewardCardBody {...body} onCta={onCta} onGhost={onGhost} />
       </Pressable>
     </Modal>
   );

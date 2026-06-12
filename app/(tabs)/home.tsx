@@ -40,6 +40,7 @@ import { BRAND_SHARDS_ES } from '../../constants/terms_es';
 import PremiumCard from '../../components/PremiumCard';
 import VipGreenUserName from '../../components/VipGreenUserName';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import CircularProgress from '../../components/CircularProgress';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import AvatarView from '../../components/AvatarView';
@@ -284,15 +285,6 @@ type HomeMenuIconAlign = {
 };
 type HomeMenuIconAlignKey = 'lesson' | 'quizes' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice';
 const HOME_MENU_ICON_ALIGNMENT: Partial<Record<ThemeMode, Partial<Record<HomeMenuIconAlignKey, HomeMenuIconAlign>>>> = {
-    compass: {
-        lesson: { x: 0, y: 0 },
-        quizes: { x: 0, y: 0 },
-        cards: { x: 0, y: 0 },
-        dayTasks: { x: 0, y: 0 },
-        league: { x: 0, y: 0 },
-        test: { x: 0, y: 0 },
-        practice: { x: 0, y: 0 },
-    },
 };
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
     width: number;
@@ -367,6 +359,7 @@ function buildFallbackHomeLeagueChest(lang: Lang) {
     };
 }
 export default function HomeScreen() {
+  const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     const { theme: t, isDark, f, themeMode } = useTheme();
     const { s, lang } = useLang();
@@ -391,7 +384,7 @@ export default function HomeScreen() {
     }, [notifyFirstHomeFrameReady]);
     // ИИ-диалоги: impression карточки (CTR-знаменатель) — один раз при показе
     useEffect(() => {
-        if (isAiDialogEnabled() && studyTarget === 'en') {
+        if (isAiDialogEnabled()) {
             void trackAiDialogEvent('ai_dialog_card_shown');
         }
     }, [studyTarget]);
@@ -497,10 +490,10 @@ export default function HomeScreen() {
     const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
     const showHomeEnergy = !hasPremiumAccess;
     const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
-    const isSketchLightTheme = themeMode === 'minimalLight';
+    const isSketchLightTheme = false;
     const isLightTheme = isSketchLightTheme;
     const isGoldTheme = themeMode === 'gold';
-    const isCompassTheme = themeMode === 'compass';
+    const isCompassTheme = false;
     const goldMetal = GOLD_RICH.metalGold;
     const goldBright = GOLD_RICH.champagne;
     const goldHairline = GOLD_RICH.hairline;
@@ -529,7 +522,7 @@ export default function HomeScreen() {
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
     const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode);
     const BONUS_ENERGY_COLOR = isGoldTheme ? goldBright : '#FFD700';
-    const isPaperHomeTheme = themeMode === 'minimalLight';
+    const isPaperHomeTheme = false;
     const lightPanelBg = isSketchLightTheme ? 'rgba(255,252,246,0.94)' : 'rgba(255,255,255,0.50)';
     const lightPanelBorder = isSketchLightTheme ? 'rgba(52,45,35,0.28)' : 'rgba(255,255,255,0.48)';
     const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,55,44,0.13)' : 'rgba(255,255,255,0.28)';
@@ -1543,12 +1536,36 @@ export default function HomeScreen() {
     };
     if (!diagChecked)
         return <ScreenGradient><View /></ScreenGradient>;
+    const loginBonusAccent = isGoldTheme ? GOLD_RICH.champagne : (isLightTheme ? '#047857' : '#7AF0B2');
+    const loginBonusAccentSoft = isGoldTheme ? 'rgba(246,227,161,0.16)' : (isLightTheme ? 'rgba(4,120,87,0.12)' : 'rgba(122,240,178,0.13)');
+    const loginBonusBorder = isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(4,120,87,0.24)' : 'rgba(122,240,178,0.30)');
+    const loginBonusCardGradient = isGoldTheme
+        ? goldPremiumPanel
+        : isLightTheme
+            ? ['rgba(255,255,255,0.98)', 'rgba(240,253,244,0.96)', 'rgba(236,253,245,0.92)'] as [string, string, string]
+            : ['rgba(12,31,27,0.98)', 'rgba(7,22,21,0.96)', 'rgba(5,15,15,0.94)'] as [string, string, string];
+    const loginBonusIcon = loginBonus?.cycle === 7 ? 'gift-outline' : 'flash-outline';
+    const loginBonusCloseLabel = triLang(lang, {
+        ru: 'Закрыть бонус за вход',
+        uk: 'Закрити бонус за вхід',
+        es: 'Cerrar bono por entrar',
+        'pt-BR': 'Fechar bônus por entrar',
+        vi: 'Đóng thưởng đăng nhập',
+        id: 'Tutup bonus masuk',
+        tr: 'Giriş bonusunu kapat',
+        pl: 'Zamknij bonus za wejście',
+    });
     // ── Общие баннеры (используются в обоих стилях) ──────────────────────────
     const bannersJSX = (<>
-      {loginBonus && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: t.textSecond + '66' }}>
-          <Text style={{ fontSize: 28 }}>{loginBonus.cycle === 7 ? '🎁' : '🎉'}</Text>
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{triLang(lang, {
+      {loginBonus && (<View style={{ marginHorizontal: 16, marginBottom: 10, borderRadius: 18, overflow: 'hidden', ...(isGoldTheme ? goldShadow(1) : { shadowColor: loginBonusAccent, shadowOpacity: isLightTheme ? 0.10 : 0.20, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 7 }) }}>
+          <LinearGradient colors={loginBonusCardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 74, borderRadius: 18, paddingVertical: 13, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 1, borderColor: loginBonusBorder, overflow: 'hidden' }}>
+            {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
+            <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, backgroundColor: loginBonusAccent, opacity: isLightTheme ? 0.72 : 0.90 }}/>
+            <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusAccentSoft, borderWidth: 1, borderColor: loginBonusBorder }}>
+              <Ionicons name={loginBonusIcon} size={22} color={loginBonusAccent}/>
+            </View>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '800', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>{triLang(lang, {
                 ru: 'Бонус за вход!',
                 uk: 'Бонус за вхід!',
                 es: '¡Bono por entrar!',
@@ -1557,17 +1574,17 @@ export default function HomeScreen() {
                 id: "Bonus masuk!",
                 tr: "Giriş bonusu!",
                 pl: "Bonus za wejście!",
-            })}{loginBonus.cycle === 7 ? triLang(lang, {
-                ru: ' День 7 🔥',
-                uk: ' День 7 🔥',
-                es: ' · Día 7 🔥',
-                'pt-BR': " · Dia 7 🔥",
-                vi: " · Ngày 7 🔥",
-                id: " · Hari 7 🔥",
-                tr: " · 7. gün 🔥",
-                pl: " · Dzień 7 🔥",
+              })}{loginBonus.cycle === 7 ? triLang(lang, {
+                ru: ' День 7',
+                uk: ' День 7',
+                es: ' · Día 7',
+                'pt-BR': " · Dia 7",
+                vi: " · Ngày 7",
+                id: " · Hari 7",
+                tr: " · 7. gün",
+                pl: " · Dzień 7",
             }) : ''}</Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>+{loginBonus.xp} XP · {triLang(lang, {
+              <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.84}>+{loginBonus.xp} XP · {triLang(lang, {
                 ru: `день ${loginBonus.cycle}`,
                 uk: `день ${loginBonus.cycle}`,
                 es: `Día ${loginBonus.cycle}`,
@@ -1577,8 +1594,9 @@ export default function HomeScreen() {
                 tr: `${loginBonus.cycle}. gün`,
                 pl: `Dzień ${loginBonus.cycle}`,
             })}</Text>
-          </View>
-          <TapScale onPress={() => setLoginBonus(null)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
+            </View>
+            <TapScale onPress={() => setLoginBonus(null)} accessibilityLabel={loginBonusCloseLabel} style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: isLightTheme ? 'rgba(4,120,87,0.08)' : 'rgba(255,255,255,0.055)' }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
+          </LinearGradient>
         </View>)}
       {showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>
           <Text style={{ fontSize: 28 }}>🚀</Text>
@@ -1951,7 +1969,7 @@ export default function HomeScreen() {
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
-        return (<BouncyScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: 32, marginTop: -Math.max(0, insets.top - 8) }}>
+        return (<BouncyScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -Math.max(0, insets.top - 8) }}>
 
           {/* ХЕДЕР */}
           <Animated.View style={sectionStyle(0)}>
@@ -2811,7 +2829,7 @@ export default function HomeScreen() {
                             backgroundColor: tileIconBg,
                         }}>
                         {item.img
-                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
+                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
                             : <View style={{ width: homeQuickIconImageSize, height: homeQuickIconImageSize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>...</Text></View>}
                       </View>
                       <Text style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
@@ -2819,7 +2837,7 @@ export default function HomeScreen() {
                   {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
                   <View style={{ position: 'relative' }}>
                     {item.img
-                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
+                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
                             : <View style={{ width: homeQuickIconLegacySize, height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>}
                   </View>
                   <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
@@ -2854,7 +2872,7 @@ export default function HomeScreen() {
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
                 <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.practice} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
+                  <LightSketchMenuImage source={menuImages.practice} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
@@ -2899,20 +2917,20 @@ export default function HomeScreen() {
               </LinearGradient>
             </TouchableOpacity>
 
-            {isAiDialogEnabled() && studyTarget === 'en' ? (
+            {isAiDialogEnabled() ? (
             <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); void trackAiDialogEvent('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
                 <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Ionicons name="chatbubbles-outline" size={Math.round(homeTodayIconImageSize * 0.6)} color={homeThemePanelAccent}/>
+                  <LightSketchMenuImage source={menuImages.dialogs} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
-                    {triLang(lang, { ru: 'Разговор с Филом', uk: 'Розмова з Філом', es: 'Habla con Phil', 'pt-BR': 'Fale com Phil', vi: 'Nói chuyện với Phil', id: 'Bicara dengan Phil', tr: 'Phil ile konuş', pl: 'Rozmawiaj z Philem' })}
+                    {triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos', 'pt-BR': 'Diálogos', vi: 'Hội thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi' })}
                   </Text>
                   <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
-                    {triLang(lang, { ru: 'Говори по-английски без страха', uk: 'Говори англійською без страху', es: 'Habla inglés sin miedo', 'pt-BR': 'Fale inglês sem medo', vi: 'Nói tiếng Anh không sợ', id: 'Bicara bahasa Inggris tanpa takut', tr: 'İngilizce konuş korkusuzca', pl: 'Mów po angielsku bez strachu' })}
+                    {triLang(lang, { ru: '20 сценариев для разговора', uk: '20 сценаріїв для розмови', es: '20 escenarios para hablar', 'pt-BR': '20 cenários para conversar', vi: '20 tình huống để nói', id: '20 skenario percakapan', tr: 'Konuşma için 20 senaryo', pl: '20 scenariuszy rozmowy' })}
                   </Text>
                 </View>
                 <Ionicons name="chevron-forward" size={20} color={homeThemePanelAccent} style={{ marginRight: 2 }}/>
@@ -2925,7 +2943,7 @@ export default function HomeScreen() {
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
                 <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
+                  <LightSketchMenuImage source={menuImages.dayTasks} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
@@ -2947,21 +2965,21 @@ export default function HomeScreen() {
                             ? GOLD_RICH.agedGold
                             : themeMode === 'coral'
                                 ? '#FF5C6C'
-                                : themeMode === 'neon'
+                                : false
                                     ? '#7CFF00'
                                     : '#438CFF';
                         const fillMid = isGoldTheme
                             ? GOLD_RICH.champagne
                             : themeMode === 'coral'
                                 ? '#FF9270'
-                                : themeMode === 'neon'
+                                : false
                                     ? '#B7FF00'
                                     : '#76B5FF';
                         const fillEnd = isGoldTheme
                             ? GOLD_RICH.paleGold
                             : themeMode === 'coral'
                                 ? '#FFD06A'
-                                : themeMode === 'neon'
+                                : false
                                     ? '#E5FF67'
                                     : '#62F2B0';
                         return (<View key={ti} style={{
@@ -2975,7 +2993,7 @@ export default function HomeScreen() {
                                 : (isLightTheme ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.10)'),
                             borderWidth: 1,
                             borderColor: done
-                                ? (isGoldTheme ? 'rgba(255,232,168,0.60)' : themeMode === 'coral' ? 'rgba(255,146,112,0.62)' : themeMode === 'neon' ? 'rgba(183,255,0,0.58)' : 'rgba(118,181,255,0.58)')
+                                ? (isGoldTheme ? 'rgba(255,232,168,0.60)' : themeMode === 'coral' ? 'rgba(255,146,112,0.62)' : false ? 'rgba(183,255,0,0.58)' : 'rgba(118,181,255,0.58)')
                                 : (isLightTheme ? 'rgba(0,0,0,0.13)' : 'rgba(255,255,255,0.13)'),
                             shadowColor: done ? fillMid : '#000',
                             shadowOpacity: done ? 0.35 : 0.16,
@@ -3067,7 +3085,7 @@ export default function HomeScreen() {
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: isGoldTheme ? 14 : 16, padding: 14 }}>
               {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
               <View style={{ width: homePracticeIconSize, height: homePracticeIconSize, borderRadius: 12, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }}>
-                <LightSketchMenuImage source={menuImages.practice} width={homePracticeIconImageSize} height={homePracticeIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
+                <LightSketchMenuImage source={menuImages.practice} width={homePracticeIconImageSize} height={homePracticeIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
@@ -3184,7 +3202,7 @@ export default function HomeScreen() {
                             alignItems: 'center',
                             backgroundColor: tileIconBg,
                         }}>
-                      {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
+                      {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
                       {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
                         testID="home-league-chat-unread-badge"
                         style={{
@@ -3222,7 +3240,7 @@ export default function HomeScreen() {
                   </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
                       {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
                       <View style={{ position: 'relative', height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}>
-                        {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={themeMode === 'minimalLight'} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
+                        {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
                         {item.kind === 'league' && homeLeagueChatUnreadCount > 0 ? (<View
                           testID="home-league-chat-unread-badge"
                           style={{
@@ -3348,17 +3366,6 @@ export default function HomeScreen() {
           </View>
           {studyTarget !== 'fr' && <DailyPhraseCard variant="homeAdditional" />}
           </>) : studyTarget !== 'fr' ? <DailyPhraseCard /> : null}
-
-          <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog-debug" onPress={() => { hapticTap(); router.push('/ai_dialog_home'); }} style={{ marginHorizontal: 16, marginTop: 16, marginBottom: 8, borderRadius: 20, overflow: 'hidden' }}>
-            <LinearGradient colors={['#5B4AE8', '#8B5CF6']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 72, borderRadius: 20, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-              <Ionicons name="chatbubbles-outline" size={28} color="#fff"/>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: '#fff', fontSize: 18, fontWeight: '900' }}>Разговор с Филом</Text>
-                <Text style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, fontWeight: '700', marginTop: 2 }}>ИИ-диалог • тест</Text>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color="rgba(255,255,255,0.75)"/>
-            </LinearGradient>
-          </TouchableOpacity>
 
           {/* Подвал */}
           <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>

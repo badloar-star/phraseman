@@ -2011,7 +2011,7 @@ export default function FlashcardsSwipeScreen() {
   }, []);
 
   const renderSelect = () => (
-    <ScrollView
+    <Animated.ScrollView
       decelerationRate="normal"
       scrollEventThrottle={16}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: topFadeScrollY } } }], { useNativeDriver: true })}
@@ -2147,7 +2147,7 @@ export default function FlashcardsSwipeScreen() {
           })}
         </View>
       )}
-    </ScrollView>
+    </Animated.ScrollView>
   );
 
   const renderDone = () => {

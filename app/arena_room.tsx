@@ -546,7 +546,7 @@ export default function ArenaRoomScreen() {
   return (
     <ScreenGradient topFade={{ scrollY: topFadeScrollY }}>
       <BouncyWrap style={bouncyStyle}>
-      <ScrollView
+      <Animated.ScrollView
         testID="screen-arena-room"
         decelerationRate="normal"
         bounces
@@ -1073,7 +1073,7 @@ export default function ArenaRoomScreen() {
             })}
           </View>
         )}
-      </ScrollView>
+      </Animated.ScrollView>
       </BouncyWrap>
 
       {/* ─── Модалка чата ─────────────────────────────────────────────────────── */}

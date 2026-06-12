@@ -17,12 +17,9 @@ type StatsAccentPalette = Record<StatsChromeTone, string>;
 
 const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   dark: '#4EA3FF',
-  neon: '#2DF4FF',
   gold: GOLD_RICH.champagne,
   coral: '#FF7A7A',
-  minimalLight: '#33466F',
   minimalDark: '#6EA8FF',
-  compass: COMPASS_RICH.champagne,
   midnight: '#8FA0FF',
   ember: '#FFA245',
   aurora: '#3DE8A6',
@@ -40,17 +37,6 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     percentiles: '#B884FF',
     archiveMap: '#58CC89',
     wager: '#FFB13B',
-  },
-  neon: {
-    streak: '#FF48D2',
-    freeze: '#2DF4FF',
-    multipliers: '#D7FF2A',
-    practiceBalance: '#39FF88',
-    weekRhythm: '#00E5FF',
-    activity: '#C8FF00',
-    percentiles: '#B66DFF',
-    archiveMap: '#C8FF00',
-    wager: '#FF9F1C',
   },
   gold: {
     streak: GOLD_RICH.metalGold,
@@ -74,17 +60,6 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     archiveMap: '#FF7A7A',
     wager: '#FFAA6B',
   },
-  minimalLight: {
-    streak: '#D85A3D',
-    freeze: '#1976D2',
-    multipliers: '#B67600',
-    practiceBalance: '#128A52',
-    weekRhythm: '#087C8C',
-    activity: '#2C6E49',
-    percentiles: '#7C3FA6',
-    archiveMap: '#33466F',
-    wager: '#A65A22',
-  },
   minimalDark: {
     streak: '#6EA8FF',
     freeze: '#9CA3AF',
@@ -95,17 +70,6 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     percentiles: '#A78BFA',
     archiveMap: '#9CA3AF',
     wager: '#E9B949',
-  },
-  compass: {
-    streak: COMPASS_RICH.champagne,
-    freeze: COMPASS_RICH.creamSoft,
-    multipliers: COMPASS_RICH.cream,
-    practiceBalance: COMPASS_RICH.peach,
-    weekRhythm: COMPASS_RICH.champagne,
-    activity: COMPASS_RICH.creamSoft,
-    percentiles: COMPASS_RICH.peach,
-    archiveMap: COMPASS_RICH.champagne,
-    wager: COMPASS_RICH.copper,
   },
   midnight: {
     streak: '#FFD27A',
@@ -171,7 +135,7 @@ export function statsThemeSoftBg(themeMode: ThemeMode, strength: 'quiet' | 'norm
 }
 
 export function statsBorder(themeMode: ThemeMode, _tone: StatsChromeTone, strength: 'soft' | 'medium' | 'strong' = 'medium'): string {
-  if (themeMode === 'compass') {
+  if (false) {
     return strength === 'strong'
       ? COMPASS_RICH.hairlineStrong
       : strength === 'soft'
@@ -183,7 +147,7 @@ export function statsBorder(themeMode: ThemeMode, _tone: StatsChromeTone, streng
 }
 
 export function statsHairline(themeMode: ThemeMode, _tone: StatsChromeTone): string {
-  if (themeMode === 'compass') return COMPASS_RICH.hairlineQuiet;
+  if (false) return COMPASS_RICH.hairlineQuiet;
   return alphaColor(statsThemeAccent(themeMode), '3D');
 }
 
@@ -193,7 +157,7 @@ export function statsSoftBg(themeMode: ThemeMode, tone: StatsChromeTone, strengt
 }
 
 export function statsGlowStyle(themeMode: ThemeMode, _tone: StatsChromeTone, strength: 'soft' | 'medium' = 'soft') {
-  if (themeMode === 'compass') {
+  if (false) {
     return {
       shadowColor: '#000000',
       shadowOpacity: strength === 'medium' ? 0.46 : 0.34,

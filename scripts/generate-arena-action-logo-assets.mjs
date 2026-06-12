@@ -51,15 +51,6 @@ const THEMES = {
       [1, [255, 218, 142]],
     ],
   },
-  minimalLight: {
-    suffix: 'minimalLight',
-    label: 'minimal light',
-    palette: [
-      [0, [55, 53, 50]],
-      [0.5, [153, 147, 137]],
-      [1, [250, 242, 221]],
-    ],
-  },
   minimalDark: {
     suffix: 'minimalDark',
     label: 'minimal dark',

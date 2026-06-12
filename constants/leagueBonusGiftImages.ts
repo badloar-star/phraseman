@@ -5,9 +5,10 @@ export const LEAGUE_BONUS_GIFT_IMAGE_THEMES = [
   'dark',
   'gold',
   'minimalDark',
-  'compass',
-  'minimalLight',
-  'neon',
+  'midnight',
+  'ember',
+  'aurora',
+  'volt',
 ] as const;
 
 export type LeagueBonusGiftImageTheme = typeof LEAGUE_BONUS_GIFT_IMAGE_THEMES[number];
@@ -19,9 +20,10 @@ const LEAGUE_BONUS_GIFT_IMAGES: Record<LeagueBonusGiftImageTheme, ImageSourcePro
   dark: require('../assets/images/league_bonus/dark-chest.webp'),
   gold: require('../assets/images/league_bonus/gold-chest.webp'),
   minimalDark: require('../assets/images/league_bonus/minimalDark-chest.webp'),
-  compass: require('../assets/images/league_bonus/compass-premium-chest-session.webp'),
-  minimalLight: require('../assets/images/league_bonus/minimalLight-chest.webp'),
-  neon: require('../assets/images/league_bonus/neon-chest.webp'),
+  midnight: require('../assets/images/league_bonus/midnight-chest.webp'),
+  ember: require('../assets/images/league_bonus/ember-chest.webp'),
+  aurora: require('../assets/images/league_bonus/aurora-chest.webp'),
+  volt: require('../assets/images/league_bonus/volt-chest.webp'),
 };
 
 const isLeagueBonusGiftImageTheme = (

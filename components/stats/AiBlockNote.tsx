@@ -5,7 +5,7 @@ import Reanimated, { FadeIn } from 'react-native-reanimated';
 
 /**
  * Маленькая плашка ИИ-заметки под карточкой статистики. Premium видит текст
- * (заметку пишет Фил по этому конкретному блоку), free — мягкую заглушку
+ * (заметку пишет Тео по этому конкретному блоку), free — мягкую заглушку
  * «Открыть с Premium», которая ведёт на пейвол.
  *
  * Текст приходит из stats_insights_client (один CF-вызов на все блоки, кэш).
@@ -15,14 +15,14 @@ type AiBlockNoteProps = {
   /** Готовый текст заметки. Пусто/undefined → ничего не рендерим (premium). */
   note?: string;
   isPremium: boolean;
-  /** Идёт ли первичная генерация (показать «Фил пишет…»). */
+  /** Идёт ли первичная генерация (показать «Тео пишет…»). */
   loading?: boolean;
   accent: string;
   softBg: string;
   borderColor: string;
   textColor: string;
   mutedColor: string;
-  /** Подпись «Фил» / «Phil» на языке UI. */
+  /** Подпись «Тео» / «Theo» на языке UI. */
   authorLabel: string;
   /** Тексты заглушки/загрузки на языке UI. */
   lockedLabel: string;

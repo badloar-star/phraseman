@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Reanimated from 'react-native-reanimated';
 import { Animated, Easing, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -2179,7 +2180,7 @@ export default function DailyTasksScreen() {
     return (<ScreenGradient artBackdrop="dailyTasks">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <View style={{ flex: 1 }}>
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: sx.ghost }}>
         <TapScale onPress={() => safeRouterBack(router)} style={{ marginRight: 12, padding: 4 }}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
@@ -2224,7 +2225,7 @@ export default function DailyTasksScreen() {
           <XpGainBadge amount={claimedXP} visible={claimedXP !== null} style={{ color: rewardActionText, fontSize: f.h1, fontWeight: '800' }}/>
         </Animated.View>)}
 
-      <BouncyWrap style={bouncyStyle}>
+      <BouncyWrap>
       <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
 
         {/* Прогресс */}
@@ -2367,8 +2368,12 @@ export default function DailyTasksScreen() {
                 : { width: `${taskFillPct}%` as any };
             const taskFillColor = isGoldTheme
                 ? taskAccent
-                : `${taskAccent}${completed || claimed ? '38' : '1C'}`;
-            const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : 'rgba(18,16,20,0.92)';
+                : `${taskAccent}${completed || claimed ? '34' : '18'}`;
+            const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : 'rgba(15,14,18,0.90)';
+            const taskHairline = isGoldTheme ? goldHairline : `${taskAccent}${completed || claimed ? '8A' : '70'}`;
+            const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
+            const taskIconPlateBg = isGoldTheme ? goldSoftBg : `${taskAccent}18`;
+            const taskIconPlateBorder = isGoldTheme ? goldHairline : `${taskAccent}55`;
             const isExpanded = expandedTaskId === task.id && !completed && !claimed;
             const expandedDescriptionLineHeight = f.body * 1.28;
             const expandedDescriptionLines = Math.min(3, Math.max(1, Math.ceil(taskDesc.length / 32)));
@@ -2393,11 +2398,7 @@ export default function DailyTasksScreen() {
                     dailyTaskStyles.taskCapsuleCard,
                     {
                         height: expandedCardHeight as any,
-                        borderColor: claimed
-                            ? (isGoldTheme ? goldHairline : taskAccent + 'A0')
-                            : completed
-                                ? (isGoldTheme ? goldHairline : taskAccent + 'A0')
-                                : (isGoldTheme ? goldHairline : taskAccent + '72'),
+                        borderColor: taskHairline,
                         backgroundColor: taskTrackColor,
                     }]}
                 >
@@ -2409,6 +2410,11 @@ export default function DailyTasksScreen() {
                         opacity: 1,
                     },
                 ]}/>
+                <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]}/>
+                <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]}/>
+                <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleBottomTrack, { backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.07)' }]}>
+                  <View style={[dailyTaskStyles.taskCapsuleBottomFill, { ...taskFillSizeStyle, backgroundColor: claimed ? (isGoldTheme ? GOLD_RICH.agedGold : 'rgba(255,255,255,0.36)') : taskAccent }]}/>
+                </View>
                 {/* Плашка Premium */}
                 {isPremiumTask && (<Animated.View pointerEvents="box-none" style={{
                         position: 'absolute', bottom: -1, right: -1, zIndex: 10,
@@ -2431,7 +2437,9 @@ export default function DailyTasksScreen() {
 
                 {/* Верхняя строка: иконка + текст + XP */}
                 <View style={[dailyTaskStyles.taskMainRow, dailyTaskStyles.taskCapsuleRow]}>
-                  <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain"/>
+                  <View style={[dailyTaskStyles.taskCapsuleIconPlate, { backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }]}>
+                    <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain"/>
+                  </View>
                   <View style={dailyTaskStyles.taskCapsuleTextBlock}>
                     <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.86} style={[dailyTaskStyles.taskCapsuleTitle, { color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.h2 }]}>
                       {taskTitle}
@@ -2455,8 +2463,8 @@ export default function DailyTasksScreen() {
                     </TouchableOpacity>) : claimed ? (<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
                       <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
                     </View>) : (<View style={[dailyTaskStyles.taskProgressValuePill, {
-                          backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.18)' : 'rgba(255,255,255,0.06)',
-                          borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.10)',
+                          backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.24)' : 'rgba(255,255,255,0.085)',
+                          borderColor: isGoldTheme ? goldHairline : `${taskAccent}34`,
                       }]}>
                       <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.86} style={{ color: isGoldTheme ? t.textPrimary : 'rgba(255,255,255,0.78)', fontSize: f.body, fontWeight: '900' }}>{progressLabel}</Text>
                     </View>)}
@@ -2473,8 +2481,8 @@ export default function DailyTasksScreen() {
                         id: "Ganti tugas dengan fragmen",
                         tr: "Görevi parçalarla değiştir",
                         pl: "ZamieÅ„ zadanie za odÅ‚amki",
-                    })} style={[dailyTaskStyles.compactIconButton, dailyTaskStyles.taskCapsuleRefreshButton, { backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.08)', borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.15)' }]}>
-                      <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.55)'}/>
+                    })} style={[dailyTaskStyles.compactIconButton, dailyTaskStyles.taskCapsuleRefreshButton, { backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.07)', borderColor: isGoldTheme ? goldHairline : `${taskAccent}32` }]}>
+                      <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'}/>
                     </TouchableOpacity>)}
                   </View>
                 </View>
@@ -2625,7 +2633,7 @@ export default function DailyTasksScreen() {
         <View style={{ height: 16 }}/>
       </ScrollView>
       </BouncyWrap>
-      </View>
+      </Reanimated.View>
       </ContentWrap>
 
       {/* Confirm — заменить задание за осколки */}
@@ -2740,6 +2748,11 @@ const dailyTaskStyles = StyleSheet.create({
     },
     taskOuterAnim: {
         marginBottom: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.28,
+        shadowRadius: 18,
+        elevation: 9,
     },
     taskCard: {
         borderRadius: 18,
@@ -2753,8 +2766,8 @@ const dailyTaskStyles = StyleSheet.create({
     },
     taskCapsuleCard: {
         minHeight: 92,
-        borderRadius: 24,
-        paddingHorizontal: 26,
+        borderRadius: 22,
+        paddingHorizontal: 22,
         paddingVertical: 0,
         justifyContent: 'flex-start',
     },
@@ -2763,10 +2776,44 @@ const dailyTaskStyles = StyleSheet.create({
         left: 0,
         top: 0,
         bottom: 0,
-        borderTopLeftRadius: 24,
-        borderBottomLeftRadius: 24,
-        borderTopRightRadius: 24,
-        borderBottomRightRadius: 24,
+        borderTopLeftRadius: 22,
+        borderBottomLeftRadius: 22,
+        borderTopRightRadius: 22,
+        borderBottomRightRadius: 22,
+    },
+    taskCapsuleGlow: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 1,
+    },
+    taskCapsuleAccentBar: {
+        position: 'absolute',
+        left: 0,
+        top: 16,
+        bottom: 16,
+        width: 4,
+        borderTopRightRadius: 4,
+        borderBottomRightRadius: 4,
+        opacity: 0.88,
+    },
+    taskCapsuleBottomTrack: {
+        position: 'absolute',
+        left: 18,
+        right: 18,
+        bottom: 9,
+        height: 3,
+        borderRadius: 999,
+        overflow: 'hidden',
+    },
+    taskCapsuleBottomFill: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        borderRadius: 999,
     },
     taskMainRow: {
         flexDirection: 'row',
@@ -2777,7 +2824,7 @@ const dailyTaskStyles = StyleSheet.create({
     },
     taskCapsuleRow: {
         minHeight: 92,
-        gap: 12,
+        gap: 14,
     },
     taskCapsuleTextBlock: {
         flex: 1,
@@ -2786,10 +2833,20 @@ const dailyTaskStyles = StyleSheet.create({
     taskCapsuleTitle: {
         fontWeight: '900',
         lineHeight: 30,
+        letterSpacing: 0,
+    },
+    taskCapsuleIconPlate: {
+        width: 56,
+        height: 56,
+        borderRadius: 18,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
     },
     taskCapsuleHeroIcon: {
-        width: 48,
-        height: 48,
+        width: 45,
+        height: 45,
         flexShrink: 0,
     },
     taskCapsuleRight: {
@@ -2842,7 +2899,7 @@ const dailyTaskStyles = StyleSheet.create({
     taskProgressValuePill: {
         width: 66,
         height: 44,
-        borderRadius: 22,
+        borderRadius: 16,
         borderWidth: 1,
         paddingHorizontal: 10,
         flexDirection: 'row',
@@ -2852,7 +2909,7 @@ const dailyTaskStyles = StyleSheet.create({
     taskCapsuleRefreshButton: {
         width: 44,
         height: 44,
-        borderRadius: 22,
+        borderRadius: 16,
     },
     taskArtworkRow: {
         alignItems: 'center',

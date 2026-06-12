@@ -399,6 +399,7 @@ async function activateLeagueGroupBoostForStableUid(db, stableUid) {
     const now = Date.now();
     let createdBoost = null;
     let shardsBalance = 0;
+    let usedGiftVoucher = false;
     await db.runTransaction(async (tx) => {
         const [groupSnap, userSnap] = await Promise.all([tx.get(groupRef), tx.get(userRef)]);
         if (!groupSnap.exists)
@@ -419,11 +420,21 @@ async function activateLeagueGroupBoostForStableUid(db, stableUid) {
         if (active && readInt(active.expiresAt, 0) > now) {
             throw new https_1.HttpsError('failed-precondition', 'already-active');
         }
-        const before = Math.max(0, readInt(userSnap.data()?.shards, 0));
-        if (before < LEAGUE_GROUP_BOOST_COST_SHARDS) {
+        const userData = userSnap.data() || {};
+        const userProgress = userData.progress && typeof userData.progress === 'object' && !Array.isArray(userData.progress)
+            ? userData.progress
+            : {};
+        // Подарок уровня «Буст клуба бесплатно»: клиент хранит флаг в AsyncStorage
+        // (club_gift_free_boost_v1), cloud_sync зеркалит его в progress. Если ваучер
+        // есть — активация бесплатна, ваучер гасится в этой же транзакции, чтобы
+        // нельзя было использовать дважды.
+        usedGiftVoucher = userData.club_gift_free_boost_v1 === '1' || userProgress.club_gift_free_boost_v1 === '1';
+        const boostCost = usedGiftVoucher ? 0 : LEAGUE_GROUP_BOOST_COST_SHARDS;
+        const before = Math.max(0, readInt(userData.shards, 0));
+        if (before < boostCost) {
             throw new https_1.HttpsError('failed-precondition', 'insufficient-shards');
         }
-        const after = before - LEAGUE_GROUP_BOOST_COST_SHARDS;
+        const after = before - boostCost;
         const startedAt = now;
         const expiresAt = now + LEAGUE_GROUP_BOOST_DURATION_MS;
         const likeEventId = `league_group_boost_${groupWeekId}_${groupId}_${startedAt}`;
@@ -448,16 +459,21 @@ async function activateLeagueGroupBoostForStableUid(db, stableUid) {
             likeCount: 0,
         };
         shardsBalance = after;
-        tx.set(userRef, {
+        const userPatch = {
             shards: after,
             shards_updated_at_ms: now,
             shards_updated_op: 'spend',
-            shards_updated_reason: 'league_group_boost',
-        }, { merge: true });
+            shards_updated_reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
+        };
+        if (usedGiftVoucher) {
+            userPatch.club_gift_free_boost_v1 = admin.firestore.FieldValue.delete();
+            userPatch.progress = { club_gift_free_boost_v1: admin.firestore.FieldValue.delete() };
+        }
+        tx.set(userRef, userPatch, { merge: true });
         tx.create(logRef, {
             type: 'spend',
-            amount: LEAGUE_GROUP_BOOST_COST_SHARDS,
-            reason: 'league_group_boost',
+            amount: usedGiftVoucher ? 0 : LEAGUE_GROUP_BOOST_COST_SHARDS,
+            reason: usedGiftVoucher ? 'league_group_boost_gift' : 'league_group_boost',
             balanceBefore: before,
             balanceAfter: after,
             ts: new Date(now).toISOString(),
@@ -480,47 +496,19 @@ async function activateLeagueGroupBoostForStableUid(db, stableUid) {
             updatedAt: now,
         }, { merge: true });
     });
-    return { ok: true, groupId, boost: createdBoost, shardsBalance };
+    return { ok: true, groupId, boost: createdBoost, shardsBalance, usedGiftVoucher };
 }
-function callableErrorStatus(code) {
-    switch (code) {
-        case 'failed-precondition':
-            return 'FAILED_PRECONDITION';
-        case 'permission-denied':
-            return 'PERMISSION_DENIED';
-        case 'not-found':
-            return 'NOT_FOUND';
-        case 'unauthenticated':
-            return 'UNAUTHENTICATED';
-        default:
-            return 'INTERNAL';
-    }
-}
-exports.leagueActivateGroupBoost = (0, https_1.onRequest)({ region: 'us-central1', timeoutSeconds: 15, memory: '256MiB', maxInstances: 80, invoker: 'public' }, async (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, Firebase-Instance-ID-Token, X-Firebase-AppCheck');
-    if (req.method === 'OPTIONS') {
-        res.status(204).send('');
-        return;
-    }
-    if (req.method !== 'POST') {
-        res.status(405).json({ error: { status: 'INVALID_ARGUMENT', message: 'method-not-allowed' } });
-        return;
-    }
-    try {
-        const db = admin.firestore();
-        const data = req.body?.data && typeof req.body.data === 'object' ? req.body.data : req.body || {};
-        const stableUid = sanitizeString(data?.stableId, 128);
-        if (!stableUid)
-            throw new https_1.HttpsError('failed-precondition', 'missing-stable-id');
-        const result = await activateLeagueGroupBoostForStableUid(db, stableUid);
-        res.status(200).json({ result });
-    }
-    catch (e) {
-        const code = typeof e?.code === 'string' ? e.code : 'internal';
-        const message = sanitizeString(e?.message || code, 160) || 'internal';
-        res.status(200).json({ error: { status: callableErrorStatus(code), message } });
-    }
+// БЫЛО: onRequest с invoker:'public' и stableId из тела — кто угодно мог POST-запросом
+// списать 50 shards у ЛЮБОГО аккаунта (griefing) в обход App Check. Переведено на onCall:
+// uid берётся из request.auth, stableId резолвится через resolveStableUidForAuth — списать
+// можно только со своего аккаунта. Клиент уже зовёт это как callable (league_group_boosts.ts),
+// поэтому сигнатура вызова не меняется; поля ответа (ok/groupId/boost/shardsBalance) теперь
+// корректно ложатся в res.data (раньше клиент читал их из обёртки {result} и получал undefined).
+exports.leagueActivateGroupBoost = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    const db = admin.firestore();
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, request.auth.uid, request.data?.stableId, { requireKnownIdentity: true });
+    return activateLeagueGroupBoostForStableUid(db, stableUid);
 });
 //# sourceMappingURL=league_groups.js.map

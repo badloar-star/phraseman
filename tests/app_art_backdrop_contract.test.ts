@@ -2,11 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import {
   APP_ART_BACKDROP_NAMES,
-  APP_ART_BACKDROP_SOURCES,
   APP_ART_ROUTE_BACKDROPS,
-  APP_ART_THEME_MODES,
   assertAppArtBackdropRoute,
-  getAppArtBackdropSource,
   resolveAppArtBackdropName,
 } from '../components/appArtBackdropRegistry';
 
@@ -32,53 +29,52 @@ function routeFromAppFile(file: string): string {
   return `/${route || 'index'}`;
 }
 
-function routeSegmentFromRoute(route: string): string {
-  const segments = route
-    .split('/')
-    .map(segment => segment.trim())
-    .filter(segment => segment && !segment.startsWith('('));
-
-  return segments[segments.length - 1] ?? 'home';
-}
-
 describe('app art backdrop registry', () => {
-  it('only references bundled app art image files that exist on disk', () => {
-    const registryFile = path.join(__dirname, '..', 'components', 'appArtBackdropRegistry.ts');
-    const source = fs.readFileSync(registryFile, 'utf8');
-    const requirePathPattern = /require\(['"](\.\.\/assets\/images\/[^'"]+)['"]\)/g;
-    const missing: string[] = [];
-    let match: RegExpExecArray | null;
+  it('does not bundle bitmap app background assets', () => {
+    const files = [
+      path.join(__dirname, '..', 'components', 'appArtBackdropRegistry.ts'),
+      path.join(__dirname, '..', 'components', 'AppArtBackdrop.tsx'),
+      path.join(__dirname, '..', 'app', 'image_preload.ts'),
+    ];
 
-    while ((match = requirePathPattern.exec(source)) !== null) {
-      const assetPath = match[1].replace(/\//g, path.sep);
-      const resolved = path.resolve(path.dirname(registryFile), assetPath);
-
-      if (!fs.existsSync(resolved)) {
-        missing.push(match[1]);
-      }
-    }
-
-    expect(missing).toEqual([]);
-  });
-
-  it('has a bundled image for every generated backdrop and theme', () => {
-    for (const name of APP_ART_BACKDROP_NAMES) {
-      for (const themeMode of APP_ART_THEME_MODES) {
-        expect(APP_ART_BACKDROP_SOURCES[name][themeMode]).toBeTruthy();
-        expect(getAppArtBackdropSource(name, themeMode)).toBeTruthy();
-      }
+    for (const file of files) {
+      const source = fs.readFileSync(file, 'utf8');
+      expect(source).not.toMatch(/assets\/images\/(app_backdrops|theme_backdrops|screen_backdrops)/);
+      expect(source).not.toMatch(/APP_ART_BACKDROP_SOURCES|getAppArtBackdropSource/);
     }
   });
 
-  it('keeps backdrop registry helpers crash-free when a theme asset lookup misses', () => {
-    const registryFile = path.join(__dirname, '..', 'components', 'appArtBackdropRegistry.ts');
-    const source = fs.readFileSync(registryFile, 'utf8');
+  it('uses the cinema bloom background system for every theme mode', () => {
+    const screenGradient = fs.readFileSync(path.join(__dirname, '..', 'components', 'ScreenGradient.tsx'), 'utf8');
+    const screenBackground = fs.readFileSync(path.join(__dirname, '..', 'constants', 'screenBackground.ts'), 'utf8');
+    const premiumV2 = fs.readFileSync(path.join(__dirname, '..', 'app', 'premium_modal_v2.tsx'), 'utf8');
+    const paywallShared = fs.readFileSync(path.join(__dirname, '..', 'components', 'paywall', 'paywallShared.tsx'), 'utf8');
+    const modes = ['dark', 'gold', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt'];
+    const bloomRenderIndex = screenGradient.indexOf('<CinemaBloom mode={layer.bloomMode} reduceMotion={reduceMotion} />');
+    const goldFabricRenderIndex = screenGradient.indexOf('<GoldFabricFlow />');
 
-    expect(source).toContain('APP_ART_BACKDROP_SOURCES[name].dark');
-    expect(source).toMatch(/source\s*\?\?\s*APP_ART_BACKDROP_SOURCES\[name\]\.dark/);
+    expect(screenGradient).toContain('const THEME_BLOOMS: Record<ThemeMode, BloomSpec>');
+    expect(screenGradient).toContain('<CinemaBloom mode={layer.bloomMode} reduceMotion={reduceMotion} />');
+    expect(screenGradient).toContain('function CinemaParticle');
+    expect(screenGradient).toContain('AccessibilityInfo.isReduceMotionEnabled()');
+    expect(screenGradient).toContain("AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion)");
+    expect(screenGradient).toContain('useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER');
+    expect(screenGradient).toContain('styles.cinemaParticle');
+    expect(bloomRenderIndex).toBeGreaterThan(-1);
+    expect(goldFabricRenderIndex).toBeGreaterThan(-1);
+    expect(bloomRenderIndex).toBeLessThan(goldFabricRenderIndex);
+    for (const mode of modes) {
+      expect(screenGradient).toMatch(new RegExp(`${mode}: \\{ bloomA:`));
+      expect(screenBackground).toMatch(new RegExp(`${mode}: \\[`));
+    }
+
+    expect(premiumV2).toContain('BG_GRADIENTS as SCREEN_BG_GRADIENTS');
+    expect(premiumV2).not.toContain('const BG_GRADIENTS: Record<string, [string, string, string]>');
+    expect(paywallShared).toContain('BG_GRADIENTS as SCREEN_BG_GRADIENTS');
+    expect(paywallShared).not.toContain('const BG_GRADIENTS: Record<string, [string, string, string]>');
   });
 
-  it('maps the primary app routes to generated backgrounds', () => {
+  it('maps the primary app routes to programmatic backdrop layers', () => {
     const cases = [
       ['/(tabs)/home', 'home'],
       ['/(tabs)/lessons', 'lessons'],
@@ -97,12 +93,6 @@ describe('app art backdrop registry', () => {
       ['/exam', 'exam'],
       ['/level_exam', 'exam'],
       ['/flashcards', 'flashcards'],
-      ['/flashcards_audio', 'flashcards'],
-      ['/flashcards_collection', 'flashcards'],
-      ['/flashcards_swipe', 'flashcards'],
-      ['/flashcards_market_dev', 'flashcards'],
-      ['/community_pack_create', 'flashcards'],
-      ['/pack_opening', 'flashcards'],
       ['/progress_map', 'progressMap'],
       ['/shards_shop', 'shardsShop'],
       ['/level_gifts_inventory', 'levelGifts'],
@@ -115,7 +105,7 @@ describe('app art backdrop registry', () => {
     }
   });
 
-  it('keeps every ScreenGradient route covered by a generated backdrop', () => {
+  it('keeps every route-resolved ScreenGradient crash-free with a programmatic fallback', () => {
     const appDir = path.join(__dirname, '..', 'app');
     const screenGradientFiles = walk(appDir).filter(file => {
       const source = fs.readFileSync(file, 'utf8');
@@ -130,18 +120,13 @@ describe('app art backdrop registry', () => {
       const hasRouteResolvedGradient = /<ScreenGradient\b(?![^>]*\bartBackdrop=)/.test(source);
 
       if (hasRouteResolvedGradient) {
-        const segment = routeSegmentFromRoute(route);
-        expect(APP_ART_ROUTE_BACKDROPS[segment]).toBeTruthy();
-
-        const backdropName = resolveAppArtBackdropName(route);
-        for (const themeMode of APP_ART_THEME_MODES) {
-          expect(getAppArtBackdropSource(backdropName, themeMode)).toBeTruthy();
-        }
+        const resolved = resolveAppArtBackdropName(route);
+        expect(APP_ART_BACKDROP_NAMES).toContain(resolved);
       }
     }
   });
 
-  it('keeps a strict audit helper for missing generated backdrop route mappings', () => {
+  it('keeps a strict audit helper for missing route mappings', () => {
     expect(() => assertAppArtBackdropRoute('/definitely_missing_route_for_backdrop_audit')).toThrow(
       /Missing generated backdrop mapping/,
     );
@@ -149,48 +134,6 @@ describe('app art backdrop registry', () => {
 
   it('keeps runtime route art resolution crash-free for unknown paths', () => {
     expect(resolveAppArtBackdropName('/definitely_missing_route_for_backdrop_audit')).toBe('home');
-  });
-
-  it('keeps tab screens on the independent Fabric-safe backdrop layer', () => {
-    const tabLayoutFile = path.join(__dirname, '..', 'app', '(tabs)', '_layout.tsx');
-    const source = fs.readFileSync(tabLayoutFile, 'utf8');
-
-    expect(source).toContain('<ScreenGradient artBackdrop={false}');
-    expect(source).toMatch(/\b(HOME|LESSONS|ARENA|FRIENDS|SETTINGS)_THEME_BACKDROPS\b/);
-    expect(source).toContain('tabBackdropLayers');
-    expect(source).toContain('rememberAppArtBackdrop');
-  });
-
-  it('preloads app art backgrounds from the registry without duplicate tab/deep fallback lists', () => {
-    const preloadFile = path.join(__dirname, '..', 'app', 'image_preload.ts');
-    const source = fs.readFileSync(preloadFile, 'utf8');
-
-    expect(source).toContain('APP_ART_BACKDROP_NAMES.flatMap');
-    expect(source).toContain('APP_ART_BACKDROP_SOURCES[name]');
-    expect(source).not.toMatch(/\b(TAB_BACKGROUND_IMAGES|DEEP_BACKGROUND_IMAGES)\b/);
-  });
-
-  it('keeps arena hero art on the generated backdrop registry and persistent crossfade', () => {
-    const arenaLobbyFile = path.join(__dirname, '..', 'app', 'arena_lobby.tsx');
-    const source = fs.readFileSync(arenaLobbyFile, 'utf8');
-
-    expect(source).toContain("getAppArtBackdropSource('arena', themeMode)");
-    expect(source).toContain('usePersistentBackgroundLayers');
-    expect(source).not.toContain('ARENA_THEME_BACKDROPS');
-  });
-
-  it('does not use the old blur-switch background swapper in app screens', () => {
-    const roots = [
-      path.join(__dirname, '..', 'app'),
-      path.join(__dirname, '..', 'components'),
-    ];
-    const offenders = roots
-      .flatMap(root => walk(root))
-      .filter(file => !file.endsWith(`${path.sep}backgroundTransition.tsx`))
-      .filter(file => fs.readFileSync(file, 'utf8').includes('useBackgroundBlurSwitch'))
-      .map(file => path.relative(path.join(__dirname, '..'), file).replace(/\\/g, '/'));
-
-    expect(offenders).toEqual([]);
   });
 
   it('keeps runtime-owned background maps guarded for navigation-time theme races', () => {
@@ -201,12 +144,7 @@ describe('app art backdrop registry', () => {
           /ORBS\[themeMode\]\s*\?\?/,
           /BG_GRADIENTS\[themeMode\]\s*\?\?/,
         ],
-        forbidden: [
-          /autoReport/,
-          /hasReportErrorButton/,
-          /ReportErrorButton/,
-          /useGlobalBottomOverlayOffset/,
-        ],
+        forbidden: [/autoReport/, /hasReportErrorButton/, /ReportErrorButton/, /useGlobalBottomOverlayOffset/],
       },
       {
         file: path.join(__dirname, '..', 'components', 'RewardModalBackdrop.tsx'),
@@ -214,30 +152,11 @@ describe('app art backdrop registry', () => {
       },
       {
         file: path.join(__dirname, '..', 'app', 'premium_modal.tsx'),
-        forbidden: [/PREMIUM_HERO_BACKDROPS\[themeMode\]\s*\?\?/, /PREMIUM_HERO_ART\[ctx\]\s*\?\?/],
+        forbidden: [/PREMIUM_HERO_BACKDROPS/, /premium_hero/],
       },
       {
         file: path.join(__dirname, '..', 'app', '_layout.tsx'),
-        required: [/FIRST_LESSON_SHEET_[A-Z_]+\[themeMode\]\s*\?\?/],
-        forbidden: [],
-      },
-      {
-        file: path.join(__dirname, '..', 'app', 'quizzes.tsx'),
-        forbidden: [
-          /QUIZ_LEVEL_CARD_BACKGROUNDS\[themeMode\]\s*\?\?/,
-          /QUIZ_LEVEL_LOGOS\[themeMode\]\s*\?\?/,
-          /THEME_PALETTES\[themeMode\]\s*\?\?/,
-          /THEME_TEXT\[themeMode\]\s*\?\?/,
-        ],
-      },
-      {
-        file: path.join(__dirname, '..', 'app', '(tabs)', 'quizzes.tsx'),
-        forbidden: [
-          /QUIZ_LEVEL_CARD_BACKGROUNDS\[themeMode\]\s*\?\?/,
-          /QUIZ_LEVEL_LOGOS\[themeMode\]\s*\?\?/,
-          /THEME_PALETTES\[themeMode\]\s*\?\?/,
-          /THEME_TEXT\[themeMode\]\s*\?\?/,
-        ],
+        forbidden: [/FIRST_LESSON_SHEET_BACKGROUNDS/, /firstLessonSheetBackgroundImage/],
       },
     ];
 

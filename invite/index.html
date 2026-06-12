@@ -86,14 +86,13 @@
 </head>
 <body>
   <main>
-    <h1>Open Phraseman</h1>
-    <p>We are opening the invitation in the app. If nothing happens, install Phraseman and come back to this page.</p>
+    <h1>Install Phraseman</h1>
+    <p>This invitation is for a new user. Referral rewards count only when Phraseman is installed for the first time.</p>
     <div id="code" class="code"></div>
     <div class="actions">
-      <a id="openApp" href="phraseman://invite">Open in Phraseman</a>
       <a id="store" class="secondary" href="https://play.google.com/store/apps/details?id=app.phraseman">Install Phraseman</a>
     </div>
-    <small id="hint">After installing, tap "Open in Phraseman" again so the invite code is applied.</small>
+    <small id="hint">On Android, Google Play carries the invitation code automatically. On iOS, copy or enter the code after installation.</small>
   </main>
 
   <script>
@@ -103,17 +102,14 @@
       var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       var isAndroid = /Android/i.test(navigator.userAgent);
-      var appUrl = 'phraseman://invite' + (ref ? '?ref=' + encodeURIComponent(ref) : '');
       var androidStore = 'https://play.google.com/store/apps/details?id=app.phraseman' +
         (ref ? '&referrer=' + encodeURIComponent('ref=' + ref) : '');
       var iosStore = 'https://apps.apple.com/app/id6764800879';
 
-      var openApp = document.getElementById('openApp');
       var store = document.getElementById('store');
       var code = document.getElementById('code');
       var hint = document.getElementById('hint');
 
-      openApp.href = appUrl;
       store.href = isiOS ? iosStore : androidStore;
       store.textContent = isiOS ? 'Install from App Store' : 'Install from Google Play';
 
@@ -121,13 +117,12 @@
         code.style.display = 'block';
         code.textContent = ref;
         hint.textContent = isiOS
-          ? 'If the app does not open automatically, install it and enter this code in Friends.'
+          ? 'Install Phraseman, then enter this code in Friends.'
           : 'On Android the install link also carries the invite code through Google Play.';
       }
 
-      window.location.href = appUrl;
       if (isAndroid) {
-        setTimeout(function () { window.location.href = androidStore; }, 1400);
+        setTimeout(function () { window.location.href = androidStore; }, 600);
       } else if (!isiOS) {
         setTimeout(function () { window.location.href = store.href; }, 1800);
       }

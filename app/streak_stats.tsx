@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Animated, View, Text, ScrollView, Modal, Pressable, TouchableOpacity, Platform, Share, PanResponder, StyleSheet, } from 'react-native';
@@ -95,7 +96,7 @@ function statsCardGradient(t: {
     return [t.bgCard, t.bgCard, t.bgPrimary];
 }
 function statsSurfaceRadius(themeMode: ThemeMode, fallback: number): number {
-    return themeMode === 'compass' ? Math.min(fallback, 10) : fallback;
+    return false ? Math.min(fallback, 10) : fallback;
 }
 function pluralRu(n: number, one: string, few: string, many: string): string {
     const mod10 = Math.abs(n) % 10;
@@ -3310,6 +3311,7 @@ export default function StreakStats() {
       </Modal>
 
       <ContentWrap>
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       <View style={{ paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <TapScale
@@ -3416,7 +3418,7 @@ export default function StreakStats() {
         </View>
       </View>
 
-      <BouncyWrap style={bouncyStyle}>
+      <BouncyWrap>
       <ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
         <View style={{ gap: 12 }}>
         <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} reviveOffer={reviveOffer} onRevivePress={handleReviveStreak} percentilesStreak={percentiles.streak}/>
@@ -3991,6 +3993,7 @@ export default function StreakStats() {
         </View>
       </ScrollView>
       </BouncyWrap>
+      </Reanimated.View>
       </ContentWrap>
 
       {/* stationary_clubs feature удалён — модал описания клуба был мёртвым кодом

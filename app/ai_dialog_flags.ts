@@ -8,14 +8,14 @@
 export const FREE_DIALOGS_PER_DAY_DEFAULT = 1;
 
 function numFromEnv(name: string): number | undefined {
-  const raw = process.env[name];
+  const raw = name === 'EXPO_PUBLIC_FREE_DIALOGS' ? process.env.EXPO_PUBLIC_FREE_DIALOGS : undefined;
   if (raw == null || raw === '') return undefined;
   const n = Number(raw);
   return Number.isFinite(n) ? n : undefined;
 }
 
 function boolFromEnv(name: string): boolean | undefined {
-  const raw = process.env[name];
+  const raw = name === 'EXPO_PUBLIC_AI_DIALOG_ENABLED' ? process.env.EXPO_PUBLIC_AI_DIALOG_ENABLED : undefined;
   if (raw == null || raw === '') return undefined;
   return raw === 'true' || raw === '1';
 }
@@ -26,7 +26,7 @@ export function getFreeDialogsPerDay(): number {
   return v != null && v >= 0 ? Math.floor(v) : FREE_DIALOGS_PER_DAY_DEFAULT;
 }
 
-/** Включена ли фича (когортный rollout). Дефолт false. */
+/** Включена ли фича (когортный rollout). Дефолт true; env может выключить вход. */
 export function isAiDialogEnabled(): boolean {
-  return boolFromEnv('EXPO_PUBLIC_AI_DIALOG_ENABLED') ?? false;
+  return boolFromEnv('EXPO_PUBLIC_AI_DIALOG_ENABLED') ?? true;
 }

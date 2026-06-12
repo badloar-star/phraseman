@@ -12,17 +12,14 @@ import { getLingmanYoutubeChrome } from '../app/lingman_youtube_chrome';
 import type { ThemeMode } from '../constants/theme';
 
 const YOUTUBE_ICON_IMAGES: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-dark-dalle-v1.webp'),
-  neon: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-neon-dalle-v1.webp'),
-  gold: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-gold-dalle-v1.webp'),
-  coral: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-coral-dalle-v1.webp'),
-  minimalLight: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalLight-dalle-v1.webp'),
-  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalDark-dalle-v1.webp'),
-  compass: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
-  midnight: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
-  ember: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
-  aurora: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
-  volt: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-compass-dalle-v1.webp'),
+  dark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-dark-outline-v1.webp'),
+  gold: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-gold-outline-v1.webp'),
+  coral: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-coral-outline-v1.webp'),
+  minimalDark: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-minimalDark-outline-v1.webp'),
+  midnight: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-midnight-outline-v1.webp'),
+  ember: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-ember-outline-v1.webp'),
+  aurora: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-aurora-outline-v1.webp'),
+  volt: require('../assets/images/header_glyphs/theme-accent-buttons/play-button-volt-outline-v1.webp'),
 };
 
 function LingmanVideosButton() {

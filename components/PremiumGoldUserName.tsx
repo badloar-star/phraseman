@@ -46,7 +46,7 @@ function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
     return `premiumGold_${hash}`;
   }, [display, fontSize]);
 
-  const isSketch = themeMode === 'minimalLight';
+  const isSketch = false;
   const gradientStops = isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS;
   const safetyPad = Math.ceil(fontSize * 0.18);
   const w = (measuredW > 0 ? Math.ceil(measuredW) : fallbackW) + safetyPad;

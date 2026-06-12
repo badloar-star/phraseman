@@ -1627,6 +1627,28 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
     ],
   },
   {
+    id: 'lesson18_phrase_31',
+    english: "Can you reserve a table?",
+    russian: "Ð¢Ñ‹ Ð¼Ð¾Ð¶ÐµÑˆÑŒ Ð·Ð°Ð±Ñ€Ð¾Ð½Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ð¾Ð»Ð¸Ðº?",
+    ukrainian: "Ð¢Ð¸ Ð¼Ð¾Ð¶ÐµÑˆ Ð·Ð°Ð±Ñ€Ð¾Ð½ÑŽÐ²Ð°Ñ‚Ð¸ ÑÑ‚Ð¾Ð»Ð¸Ðº?",
+    spanish: "Â¿Puedes reservar una mesa?",
+    words: [
+      { text: 'Â¿', correct: 'Â¿', distractors: ['?', '.', ',', '!', ';'], category: 'puntuacion' },
+      { text: 'Puedes', correct: 'Puedes', distractors: ['Puedo', 'Puede', 'Podemos', 'Pueden', 'Quieres'], category: 'modal' },
+      { text: 'reservar', correct: 'reservar', distractors: ['llamar', 'enviar', 'revisar', 'abrir', 'esperar'], category: 'imperativo' },
+      { text: 'una', correct: 'una', distractors: ['un', 'el', 'la', 'los', 'las'], category: 'articulo' },
+      { text: 'mesa', correct: 'mesa', distractors: ['puerta', 'llave', 'luz', 'silla', 'cama'], category: 'sustantivo' },
+      { text: '?', correct: '?', distractors: ['.', ',', '!', ';', ':'], category: 'puntuacion' },
+    ],
+    wordsEn: [
+      { text: 'Can', correct: 'Can', distractors: ['Could', 'Should', 'Will', 'May', 'Shall'], category: 'modal' },
+      { text: 'you', correct: 'you', distractors: ['he', 'she', 'we', 'they', 'I'], category: 'pronombre' },
+      { text: 'reserve', correct: 'reserve', distractors: ['call', 'send', 'check', 'open', 'wait'], category: 'imperativo' },
+      { text: 'a', correct: 'a', distractors: ['an', 'the', 'my', 'this', 'that'], category: 'articulo' },
+      { text: 'table', correct: 'table', distractors: ['door', 'key', 'light', 'chair', 'bed'], category: 'sustantivo' },
+    ],
+  },
+  {
     id: 'lesson18_phrase_32',
     english: "Can you call me later?",
     russian: "Ты можешь позвонить мне позже?",
@@ -3227,6 +3249,23 @@ export const LESSON_19_PHRASES: LessonPhrase[] = [
 ];
 
 export const LESSON_20_PHRASES: LessonPhrase[] = [
+  {
+    id: 'lesson20_phrase_1',
+    english: "I have a bag.",
+    russian: "Ð£ Ð¼ÐµÐ½Ñ ÐµÑÑ‚ÑŒ ÑÑƒÐ¼ÐºÐ°.",
+    ukrainian: "Ð£ Ð¼ÐµÐ½Ðµ Ñ” ÑÑƒÐ¼ÐºÐ°.",
+    spanish: "Tengo una bolsa.",
+    words: [
+      { text: "Ð¼ÐµÐ½Ñ", correct: "Ð¼ÐµÐ½Ñ", distractors: ["Ñ‚ÐµÐ±Ñ", "Ð½ÐµÐ³Ð¾", "Ð½ÐµÑ‘", "Ð½Ð°Ñ", "Ð½Ð¸Ñ…"] },
+      { text: "ÑÑƒÐ¼ÐºÐ°", correct: "ÑÑƒÐ¼ÐºÐ°", distractors: ["Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½", "ÐºÐ»ÑŽÑ‡", "Ð±Ð¸Ð»ÐµÑ‚", "Ð¿Ð°ÑÐ¿Ð¾Ñ€Ñ‚", "Ð·Ð°Ñ€ÑÐ´ÐºÐ°"] },
+    ],
+    wordsEn: [
+      { text: "I", correct: "I", distractors: ["you", "he", "she", "we", "they"] },
+      { text: "have", correct: "have", distractors: ["has", "had", "want", "need", "use"] },
+      { text: "a", correct: "a", distractors: ["an", "the", "my", "this", "that"], category: "article" },
+      { text: "bag", correct: "bag", distractors: ["phone", "key", "ticket", "passport", "charger"] },
+    ],
+  },
   {
     id: 'lesson20_phrase_2',
     english: "I have a phone.",

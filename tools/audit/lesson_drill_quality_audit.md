@@ -1,6 +1,6 @@
 # Lesson Drill Quality Audit
 
-Generated: 2026-05-22T19:46:47.084Z
+Generated: 2026-06-12T07:01:55.134Z
 
 | Lesson | Phrases | Prep targets | Prep items | Theory |
 |---:|---:|---:|---:|---|
@@ -21,9 +21,9 @@ Generated: 2026-05-22T19:46:47.084Z
 | 15 | 50 | 0 | 0 | yes |
 | 16 | 50 | 2 | 6 | yes |
 | 17 | 50 | 2 | 5 | yes |
-| 18 | 50 | 2 | 2 | yes |
+| 18 | 49 | 2 | 2 | yes |
 | 19 | 50 | 11 | 12 | yes |
-| 20 | 50 | 6 | 12 | yes |
+| 20 | 49 | 6 | 12 | yes |
 | 21 | 50 | 1 | 1 | yes |
 | 22 | 50 | 6 | 8 | yes |
 | 23 | 50 | 4 | 9 | yes |

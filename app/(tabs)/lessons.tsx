@@ -20,6 +20,7 @@ import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, go
 import GoldBevel from '../../components/GoldBevel';
 import { DEV_MODE } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { getExamMedalTier, getEarnedDots } from '../medal_utils';
 import { prefetchLessonMenuCache } from '../lesson_menu';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -66,12 +67,6 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
         B1: '#C6D79B',
         B2: '#96BEA0',
     },
-    neon: {
-        A1: '#DDF58A',
-        A2: '#CDEC6E',
-        B1: '#E6F6A8',
-        B2: '#B8DF5D',
-    },
     gold: {
         A1: '#F2DFA5',
         A2: '#E6C878',
@@ -79,18 +74,11 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
         B2: '#B88A45',
     },
     coral: PALETTE_CORAL,
-    minimalLight: PALETTE_SKETCH,
     minimalDark: {
         A1: '#D7E7FF',
         A2: '#6EA8FF',
         B1: '#9CA3AF',
         B2: '#A78BFA',
-    },
-    compass: {
-        A1: '#F2C48D',
-        A2: '#F2C48D',
-        B1: '#F2C48D',
-        B2: '#F2C48D',
     },
 };
 const EXAM_META_SKETCH: Record<string, {
@@ -114,30 +102,17 @@ const EXAM_META_CORAL: Record<string, {
     B2: { bg: '#432C34', accent: '#F6DDE5', icon: 'trophy' },
 };
 const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
-    minimalLight: EXAM_META_SKETCH,
     minimalDark: {
         A1: { bg: '#1D2636', accent: '#D7E7FF', icon: 'school-outline' },
         A2: { bg: '#161F2E', accent: '#6EA8FF', icon: 'school-outline' },
         B1: { bg: '#171B24', accent: '#9CA3AF', icon: 'school-outline' },
         B2: { bg: '#151827', accent: '#A78BFA', icon: 'trophy' },
     },
-    compass: {
-        A1: { bg: '#1F1F21', accent: '#F2C48D', icon: 'school-outline' },
-        A2: { bg: '#172523', accent: '#F2C48D', icon: 'school-outline' },
-        B1: { bg: '#101817', accent: '#8FEFE1', icon: 'school-outline' },
-        B2: { bg: '#2A2521', accent: '#B4774E', icon: 'trophy' },
-    },
     dark: {
         A1: { bg: '#344637', accent: '#E2F4E3', icon: 'school-outline' },
         A2: { bg: '#304333', accent: '#DDF2E1', icon: 'school-outline' },
         B1: { bg: '#41472D', accent: '#F0F7D7', icon: 'school-outline' },
         B2: { bg: '#2F3F34', accent: '#D9EFDF', icon: 'trophy' },
-    },
-    neon: {
-        A1: { bg: '#303A16', accent: '#F0FBC3', icon: 'school-outline' },
-        A2: { bg: '#2B3711', accent: '#E8F8AD', icon: 'school-outline' },
-        B1: { bg: '#343D1D', accent: '#F5FBD1', icon: 'school-outline' },
-        B2: { bg: '#28320E', accent: '#DFF397', icon: 'trophy' },
     },
     coral: EXAM_META_CORAL,
 };
@@ -162,7 +137,7 @@ function lessonToneFactor(num: number): number {
     const [firstLesson] = COURSE_LEVEL_RANGES[level];
     return LESSON_TONE_STEPS[(num - firstLesson) % LESSON_TONE_STEPS.length] ?? 1;
 }
-function bookPalette(num: number, themeMode = 'minimalLight'): string {
+function bookPalette(num: number, themeMode = 'minimalDark'): string {
     const palette = LESSON_LEVEL_PALETTES[themeMode] ?? PALETTE_SKETCH;
     const base = palette[cefrKey(num)] ?? PALETTE_SKETCH[cefrKey(num)];
     return scaleHex(base, lessonToneFactor(num));
@@ -212,6 +187,32 @@ function MedalDots({ dots }: {
             }} contentFit="contain"/>))}
     </View>);
 }
+/**
+ * Маленькая золотая плашка «Premium» в правом верхнем углу карточки урока.
+ * Показывается только на уроках, закрытых именно за пейволом (premiumRequired),
+ * а не за прогрессом/уровнем — там остаётся обычный замочек.
+ */
+function PremiumBadge({ label }: {
+    label: string;
+}) {
+    return (<View style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 3,
+            paddingHorizontal: 8,
+            paddingVertical: 3,
+            borderRadius: 999,
+            overflow: 'hidden',
+            borderWidth: 0.5,
+            borderColor: GOLD_RICH.hairlineStrong,
+        }}>
+      <LinearGradient colors={GOLD_GRADIENTS.primaryButton} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>
+      <Ionicons name="diamond" size={9} color={GOLD_RICH.bronzeDark}/>
+      <Text style={{ color: GOLD_RICH.bronzeDark, fontSize: 10, fontWeight: '900', letterSpacing: 0.4 }} maxFontSizeMultiplier={1}>
+        {label}
+      </Text>
+    </View>);
+}
 // Высоты элементов (должны точно совпадать с реальным рендером)
 const HEADER_H = 66; // ListHeader
 const CEFR_H = 52; // CEFR divider item
@@ -221,6 +222,7 @@ const EXAM_H = 78 + 8; // examH + marginTop:8
 const ATTESTATION_H = 126 + 12; // attestation card + marginTop
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LessonsTab() {
+    const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     const insets = useSafeAreaInsets();
     const topFadeScroll = useTopFadeScroll();
@@ -458,7 +460,7 @@ export default function LessonsTab() {
         // Fabric + native-driver on ScrollView can crash with animated node
         // connect/disconnect races during rapid remount/navigation.
         { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } })}
-        contentContainerStyle={{ paddingBottom: 40, paddingTop: insets.top }}
+        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top }}
         decelerationRate="normal"
         bounces
         alwaysBounceVertical
@@ -941,9 +943,11 @@ export default function LessonsTab() {
                     pl: `LEKCJA ${num}`,
                 })}
                     </Text>
-                    {/* Right side: percentage / lock */}
+                    {/* Right side: premium badge / percentage / lock */}
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                      {!isUnlocked
+                      {premiumRequired
+                    ? <PremiumBadge label={triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}/>
+                    : !isUnlocked
                     ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : rgbaHex(lessonAccent, 0.46)}/>
                     : USE_ELITE_LESSONS_MAP && isComplete
                         ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : useSketchLessonVisual ? lessonOnAccentColor : 'rgba(255,255,255,0.86)'}/>

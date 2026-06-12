@@ -13,7 +13,7 @@ type EmptyStateProps = {
 
 function EmptyState({ title, subtitle, icon = 'sparkles-outline' }: EmptyStateProps) {
   const { theme: t, f, ds, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const radius = isCompassTheme ? 10 : ds.radius.xl;
   return (
     <View

@@ -62,16 +62,13 @@ const SHARD_GIFT_AMOUNTS: Partial<Record<LevelGiftRewardIconId, number>> = {
 
 const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   dark: require('../assets/images/shards/dark-80.webp'),
-  neon: require('../assets/images/shards/neon-80.webp'),
   gold: require('../assets/images/shards/gold-80.webp'),
   coral: require('../assets/images/shards/coral-80.webp'),
-  minimalLight: require('../assets/images/shards/minimalLight-80.webp'),
   minimalDark: require('../assets/images/shards/minimalDark-80.webp'),
-  compass: require('../assets/images/shards/compass-premium-80-session.webp'),
-  midnight: require('../assets/images/shards/compass-premium-80-session.webp'),
-  ember: require('../assets/images/shards/compass-premium-80-session.webp'),
-  aurora: require('../assets/images/shards/compass-premium-80-session.webp'),
-  volt: require('../assets/images/shards/compass-premium-80-session.webp'),
+  midnight: require('../assets/images/shards/midnight-80.webp'),
+  ember: require('../assets/images/shards/ember-80.webp'),
+  aurora: require('../assets/images/shards/aurora-80.webp'),
+  volt: require('../assets/images/shards/volt-80.webp'),
 };
 
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {

@@ -11,7 +11,9 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { createRequire } from 'module';
+import { requireOpenAiDevSpendGuard } from './openai-dev-guard.mjs';
 
+// Requires PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1 before any OpenAI batch spend.
 const require = createRequire(import.meta.url);
 
 const API_KEY = process.env.OPENAI_API_KEY;
@@ -129,6 +131,11 @@ if (toGenerate.length === 0) {
 const totalChars = toGenerate.reduce((s, t) => s + t.length, 0);
 const estimatedCost = (totalChars / 1000) * 0.030;
 console.log(`\nEstimated cost: $${estimatedCost.toFixed(2)} (${totalChars} chars at $0.030/1k)`);
+requireOpenAiDevSpendGuard({
+  action: 'OpenAI TTS generation for app audio',
+  estimatedCostUsd: estimatedCost,
+  units: toGenerate.length,
+});
 console.log('Starting in 3 seconds... Ctrl+C to cancel\n');
 await new Promise(r => setTimeout(r, 3000));
 

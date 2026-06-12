@@ -21,7 +21,7 @@ export default function SettingsLanguage() {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const { lang, setLang, s } = useLang();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
 
   return (
     <ScreenGradient>

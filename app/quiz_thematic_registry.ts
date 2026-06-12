@@ -44,49 +44,45 @@ const DEFAULT_THEMATIC_QUIZ_SESSION_SIZE = 10;
 const kitchenCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-forest.webp'),
   dark: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-gold.webp'),
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-kitchen-and-cooking-compass-premium.webp'),
 };
 
 const kitchenLogos: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-forest.webp'),
   dark: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-gold.webp'),
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-compass-premium.webp'),
+  midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-midnight.webp'),
+  ember: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-ember.webp'),
+  aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-aurora.webp'),
+  volt: require('../assets/images/quizzes/theme_logos/quiz-theme-kitchen-and-cooking-volt.webp'),
 };
 
 const homeCardBackgrounds: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-forest.webp'),
   dark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-gold.webp'),
   coral: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_cards/quiz-theme-home-and-rooms-compass-premium.webp'),
 };
 
 const homeLogos: ThemeAssetMap = {
   forest: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-forest.webp'),
   dark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-dark.webp'),
-  neon: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-neon.webp'),
   neonGreen: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-neon-green.webp'),
   gold: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-gold.webp'),
   coral: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-coral.webp'),
-  minimalLight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-light.webp'),
   minimalDark: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-minimal-dark.webp'),
-  compass: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-compass-premium.webp'),
+  midnight: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-midnight.webp'),
+  ember: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-ember.webp'),
+  aurora: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-aurora.webp'),
+  volt: require('../assets/images/quizzes/theme_logos/quiz-theme-home-and-rooms-volt.webp'),
 };
 
 const KITCHEN_AND_COOKING_CATEGORY: ThematicQuizCategory = {

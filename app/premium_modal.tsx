@@ -7,7 +7,6 @@ import {
   TextInput,
   InteractionManager,
   ActivityIndicator,
-  type ImageSourcePropType,
 } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -24,7 +23,6 @@ import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import ShineOverlay from '../components/ShineOverlay';
-import { useAdaptiveBackgroundSource } from '../components/adaptiveBackgroundAssets';
 import { paywallGlassColor } from '../components/paywallGlass';
 import MatchFoundToast from '../components/MatchFoundToast';
 import { DEV_IAP_BYPASS, IS_EXPO_GO, IS_STORE_RELEASE, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
@@ -145,23 +143,8 @@ type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage }
 // ./premium_context при слиянии веток ai-dialogue и speaking-mode.
 type PremiumContext = PremiumContextType;
 
-const PREMIUM_HERO_BACKDROPS: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/paywalls/premium_hero/premium-hero-dark.webp'),
-  neon: require('../assets/images/paywalls/premium_hero/premium-hero-neon.webp'),
-  gold: require('../assets/images/paywalls/premium_hero/premium-hero-gold.webp'),
-  coral: require('../assets/images/paywalls/premium_hero/premium-hero-coral.webp'),
-  minimalLight: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-light.webp'),
-  minimalDark: require('../assets/images/paywalls/premium_hero/premium-hero-minimal-dark.webp'),
-  compass: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
-  midnight: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
-  ember: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
-  aurora: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
-  volt: require('../assets/images/paywalls/premium_hero/premium-hero-compass-premium.webp'),
-};
-
-
 function premiumHeroScrim(themeMode: ThemeMode): string[] {
-  if (themeMode === 'minimalLight') {
+  if (false) {
     return ['rgba(255,255,255,0.72)', 'rgba(255,255,255,0.50)', 'rgba(255,255,255,0.78)'];
   }
   if (themeMode === 'gold') {
@@ -937,7 +920,7 @@ export default function PremiumModal() {
   const paywallSurface2Bg = paywallGlassColor(t.bgSurface2, themeMode, 'soft');
   const paywallPrimaryBg = paywallGlassColor(t.bgPrimary, themeMode, 'primary');
   const paywallChromeBg = paywallGlassColor(t.bgCard, themeMode, 'chrome');
-  const isCompassPaywall = themeMode === 'compass';
+  const isCompassPaywall = false;
   const compassRadius = isCompassPaywall ? 9 : 16;
   const compassPanelRadius = isCompassPaywall ? 10 : 22;
   const compassIconRadius = isCompassPaywall ? 8 : 18;
@@ -1219,11 +1202,10 @@ export default function PremiumModal() {
   const hero = getHero(ctx, streakDays, lessonsDone, savedCards);
   const heroPlanned = getHeroPlannedCopy(ctx, savedCards);
   const benefits = CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic;
-  const heroBackdrop = useAdaptiveBackgroundSource(PREMIUM_HERO_BACKDROPS[themeMode]);
   const heroArt = PREMIUM_HERO_ART[ctx];
   const heroScrim = premiumHeroScrim(themeMode);
   const paywallComparisonPremiumColor =
-    themeMode === 'compass' ? '#F2C48D' : PAYWALL_COMPARISON_PREMIUM_COLOR;
+    false ? '#F2C48D' : PAYWALL_COMPARISON_PREMIUM_COLOR;
   const personalValueLine = getPersonalValueLine(ctx, streakDays, lessonsDone, savedCards, lang as Lang);
 
   // План #5 «зеркало прогресса» + #4 перцентиль — асинхронно, не блокируем рендер.
@@ -3149,11 +3131,12 @@ export default function PremiumModal() {
               <View
                 style={{ width: '100%', alignSelf: 'stretch', borderRadius: isCompassPaywall ? 10 : 22, backgroundColor: paywallCardBg, borderWidth: 1, borderColor: isCompassPaywall ? 'rgba(255,231,182,0.16)' : heroArt.accent + '66', paddingVertical: 20, paddingHorizontal: 16, alignItems: 'center', overflow: 'hidden' }}
               >
-                <Image
-                  source={heroBackdrop}
-                  contentFit="cover"
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={t.bgGradient}
+                  start={{ x: 0.5, y: 0 }}
+                  end={{ x: 0.5, y: 1 }}
                   style={StyleSheet.absoluteFillObject}
-                  accessible={false}
                 />
                 <LinearGradient
                   pointerEvents="none"

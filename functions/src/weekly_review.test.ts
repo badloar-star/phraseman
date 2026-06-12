@@ -6,7 +6,7 @@ function baseBriefing(): WeeklyReviewBriefing {
   return {
     lang: 'ru',
     studyTarget: 'en',
-    windowDays: 7,
+    windowDays: 3,
     totalMistakes: 12,
     weakCategories: [
       { category: 'verb', label: 'Глаголы', pct: 40, priorityScore: 70, topWords: ['have', 'has'] },
@@ -81,7 +81,7 @@ describe('weekly_review sanitizeBriefing', () => {
     const hostile = {
       lang: 'xx', // invalid → falls back to ru
       studyTarget: 'zz', // invalid → en
-      windowDays: 999, // invalid → 7
+      windowDays: 999, // invalid → 3
       totalMistakes: -50,
       weakCategories: Array.from({ length: 50 }, (_, i) => ({
         category: 'verb',
@@ -96,7 +96,7 @@ describe('weekly_review sanitizeBriefing', () => {
     const clean = sanitizeBriefing(hostile);
     expect(clean.lang).toBe('ru');
     expect(clean.studyTarget).toBe('en');
-    expect(clean.windowDays).toBe(7);
+    expect(clean.windowDays).toBe(3);
     expect(clean.totalMistakes).toBe(0); // clamped to >= 0
     expect(clean.weakCategories.length).toBeLessThanOrEqual(5);
     expect(clean.weakCategories[0].label.length).toBeLessThanOrEqual(80);

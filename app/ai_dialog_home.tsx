@@ -1,40 +1,52 @@
-import React, { useMemo } from 'react';
-import { View, Text, TouchableOpacity, Animated } from 'react-native';
-import { useRouter } from 'expo-router';
+import React, { useMemo, useState } from 'react';
+import { Animated, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '../components/ThemeContext';
-import { usePremium } from '../components/PremiumContext';
-import ScreenGradient from '../components/ScreenGradient';
+import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { hapticTap } from '../hooks/use-haptics';
+import ScreenGradient from '../components/ScreenGradient';
 import EnergyBar from '../components/EnergyBar';
+import { usePremium } from '../components/PremiumContext';
+import { useTheme } from '../components/ThemeContext';
+import { hapticTap } from '../hooks/use-haptics';
 import {
   DIALOG_SCENARIO_GROUPS,
+  getPublicDialogScenarios,
   getScenariosByCategory,
   type DialogScenario,
+  type DialogScenarioCategory,
 } from './ai_dialog_scenarios';
 
-const CARD_H = 72;
-const CARD_RADIUS = 16;
+type CategoryFilter = 'all' | DialogScenarioCategory;
+
+const CARD_RADIUS = 18;
 
 export default function AiDialogHome() {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { hasPremiumAccess } = usePremium();
   const router = useRouter();
+  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
 
   const groups = useMemo(
     () =>
-      DIALOG_SCENARIO_GROUPS.map((g) => ({
-        ...g,
-        scenarios: getScenariosByCategory(g.category),
-      })).filter((g) => g.scenarios.length > 0),
-    [],
+      DIALOG_SCENARIO_GROUPS.map((group) => ({
+        ...group,
+        scenarios: getScenariosByCategory(group.category),
+      })).filter((group) => activeCategory === 'all' || group.category === activeCategory),
+    [activeCategory],
   );
+
+  const activeCount = getPublicDialogScenarios().length;
+  const accent = false ? '#F2C48D' : t.accent;
+  const progressColor = false ? '#7CFF00' : '#22C55E';
 
   const openScenario = (scenario: DialogScenario) => {
     hapticTap();
-    if (!scenario.active) return; // locked — пока ничего
     router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
+  };
+
+  const selectCategory = (category: CategoryFilter) => {
+    hapticTap();
+    setActiveCategory(category);
   };
 
   return (
@@ -42,219 +54,267 @@ export default function AiDialogHome() {
       <SafeAreaView style={{ flex: 1 }}>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 40 }}
+          contentContainerStyle={{ paddingBottom: 34 }}
         >
-          {/* Header — дословно как меню уроков */}
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
               paddingVertical: 12,
               paddingHorizontal: 14,
-              paddingBottom: 6,
+              paddingBottom: 8,
             }}
           >
             <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel="Назад"
+              onPress={() => {
+                hapticTap();
+                router.back();
+              }}
               style={{
-                width: 36,
-                height: 36,
-                borderRadius: 18,
+                width: 44,
+                height: 44,
+                borderRadius: 22,
                 backgroundColor: t.bgCard,
                 borderWidth: 0.5,
                 borderColor: t.border,
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginRight: 12,
-                flexShrink: 0,
-              }}
-              onPress={() => {
-                hapticTap();
-                router.back();
               }}
             >
-              <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+              <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
             </TouchableOpacity>
-            <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
+            <View style={{ flex: 1, minWidth: 0 }}>
               <Text
-                style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}
+                style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
                 numberOfLines={1}
                 adjustsFontSizeToFit
                 minimumFontScale={0.8}
               >
-                Разговор с Филом
+                Диалоги
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
+                {activeCount} сценариев с Тео
               </Text>
             </View>
-            <View style={{ flexShrink: 0 }}>
-              <EnergyBar size={30} />
+            <EnergyBar size={30} />
+          </View>
+
+          <View
+            style={{
+              marginTop: 6,
+              marginHorizontal: 14,
+              borderRadius: 22,
+              backgroundColor: t.bgCard,
+              borderWidth: 1,
+              borderColor: t.border,
+              padding: 16,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 5 },
+              shadowOpacity: 0.14,
+              shadowRadius: 12,
+              elevation: 5,
+            }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+              <View
+                style={{
+                  width: 52,
+                  height: 52,
+                  borderRadius: 16,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: accent,
+                }}
+              >
+                <Ionicons name="chatbubbles" size={27} color="#fff" />
+              </View>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }} numberOfLines={1}>
+                  Тренировка разговора
+                </Text>
+                <Text
+                  style={{
+                    color: t.textMuted,
+                    fontSize: f.sub,
+                    lineHeight: Math.round(f.sub * 1.35),
+                    marginTop: 3,
+                  }}
+                  numberOfLines={2}
+                  maxFontSizeMultiplier={1.15}
+                >
+                  Выбери ситуацию и отвечай своими словами.
+                </Text>
+              </View>
+            </View>
+
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel="Открыть свободный разговор с Тео"
+              activeOpacity={0.86}
+              onPress={() => {
+                hapticTap();
+                router.push({ pathname: '/ai_companion_session' } as never);
+              }}
+              style={{
+                minHeight: 50,
+                marginTop: 14,
+                borderRadius: 16,
+                backgroundColor: accent,
+                paddingHorizontal: 16,
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}
+            >
+              <Ionicons name="sparkles-outline" size={20} color="#fff" />
+              <Text
+                style={{ color: '#fff', fontSize: f.body, fontWeight: '900', marginLeft: 10, flex: 1 }}
+                numberOfLines={1}
+              >
+                Свободный разговор
+              </Text>
+              <Ionicons name="chevron-forward" size={20} color="#fff" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ paddingHorizontal: 14, paddingTop: 16 }}>
+            <View style={{ flexDirection: 'row', gap: 8 }}>
+              <CategoryChip
+                label="Все"
+                selected={activeCategory === 'all'}
+                onPress={() => selectCategory('all')}
+                textSize={f.caption}
+                accent={accent}
+                bg={t.bgCard}
+                border={t.border}
+                text={t.textPrimary}
+                muted={t.textMuted}
+              />
+              {DIALOG_SCENARIO_GROUPS.map((group) => (
+                <CategoryChip
+                  key={group.category}
+                  label={group.shortLabelRu}
+                  selected={activeCategory === group.category}
+                  onPress={() => selectCategory(group.category)}
+                  textSize={f.caption}
+                  accent={accent}
+                  bg={t.bgCard}
+                  border={t.border}
+                  text={t.textPrimary}
+                  muted={t.textMuted}
+                />
+              ))}
             </View>
           </View>
 
-          {/* Подзаголовок */}
-          <Text
-            style={{
-              color: t.textMuted,
-              fontSize: f.sub,
-              paddingHorizontal: 18,
-              paddingTop: 2,
-              lineHeight: Math.round(f.sub * 1.45),
-            }}
-            maxFontSizeMultiplier={1.2}
-          >
-            Безопасное место поговорить по-английски. Без оценок и спешки.
-          </Text>
-
-          {/* Главный вход — открытый разговор с Филом (MVP-1) */}
-          <TouchableOpacity
-            activeOpacity={0.85}
-            onPress={() => {
-              hapticTap();
-              router.push({ pathname: '/ai_companion_session' } as never);
-            }}
-            style={{
-              marginTop: 14,
-              marginHorizontal: 14,
-              borderRadius: CARD_RADIUS,
-              overflow: 'hidden',
-              backgroundColor: t.accent,
-              flexDirection: 'row',
-              alignItems: 'center',
-              paddingHorizontal: 18,
-              paddingVertical: 18,
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 4 },
-              shadowOpacity: 0.18,
-              shadowRadius: 9,
-              elevation: 6,
-            }}
-          >
-            <View
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 13,
-                backgroundColor: 'rgba(255,255,255,0.2)',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginRight: 14,
-              }}
-            >
-              <Ionicons name="chatbubbles" size={24} color="#fff" />
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
-                Поговори с Филом
-              </Text>
-              <Text style={{ color: 'rgba(255,255,255,0.85)', fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
-                Свободный разговор о чём угодно
-              </Text>
-            </View>
-            <Ionicons name="chevron-forward" size={20} color="#fff" />
-          </TouchableOpacity>
-
-          {/* Группы сценариев (вторичная полка) */}
-          {groups.map((g) => (
-            <View key={g.category}>
-              {/* Заголовок группы — как CEFR header */}
+          {groups.map((group) => (
+            <View key={group.category}>
               <View
                 style={{
                   paddingHorizontal: 18,
                   paddingTop: 18,
-                  paddingBottom: 7,
+                  paddingBottom: 8,
                   flexDirection: 'row',
                   alignItems: 'center',
                   gap: 10,
                 }}
               >
-                <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: t.accent }} />
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
-                  {g.labelRu}
+                <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: accent }} />
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+                  {group.labelRu}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
+                  {group.scenarios.length}
                 </Text>
               </View>
 
-              {/* Карточки сценариев */}
-              {g.scenarios.map((scenario) => {
-                const locked = !scenario.active;
-                const premiumLockHint = locked; // в Фазе 0 неактивные = «скоро»
-                return (
+              {group.scenarios.map((scenario, index) => (
+                <TouchableOpacity
+                  key={scenario.id}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Открыть сценарий ${scenario.titleRu}`}
+                  activeOpacity={0.84}
+                  onPress={() => openScenario(scenario)}
+                  style={{
+                    minHeight: 94,
+                    marginTop: index === 0 ? 0 : 8,
+                    marginHorizontal: 14,
+                    borderRadius: CARD_RADIUS,
+                    overflow: 'hidden',
+                    backgroundColor: t.bgCard,
+                    borderWidth: 1,
+                    borderColor: t.border,
+                    paddingHorizontal: 15,
+                    paddingVertical: 13,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 3 },
+                    shadowOpacity: 0.1,
+                    shadowRadius: 7,
+                    elevation: 3,
+                  }}
+                >
                   <View
-                    key={scenario.id}
                     style={{
-                      marginTop: 5,
-                      marginHorizontal: 14,
-                      borderRadius: CARD_RADIUS,
-                      shadowColor: '#000',
-                      shadowOffset: { width: 0, height: locked ? 2 : 4 },
-                      shadowOpacity: locked ? 0.08 : 0.18,
-                      shadowRadius: locked ? 4 : 9,
-                      elevation: locked ? 2 : 6,
+                      width: 46,
+                      height: 46,
+                      borderRadius: 15,
+                      backgroundColor: t.bgSurface,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: 13,
                     }}
                   >
-                    <TouchableOpacity
-                      activeOpacity={0.82}
-                      onPress={() => openScenario(scenario)}
-                      style={{
-                        height: CARD_H,
-                        borderRadius: CARD_RADIUS,
-                        overflow: 'hidden',
-                        backgroundColor: t.bgCard,
-                        borderWidth: 1,
-                        borderColor: t.border,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        paddingHorizontal: 18,
-                        opacity: locked ? 0.55 : 1,
-                      }}
-                    >
-                      {/* Иконка категории */}
+                    <Ionicons name={scenario.icon as never} size={23} color={accent} />
+                  </View>
+
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                      <Text
+                        style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }}
+                        numberOfLines={1}
+                      >
+                        {scenario.titleRu}
+                      </Text>
                       <View
                         style={{
-                          width: 40,
-                          height: 40,
+                          minWidth: 34,
+                          height: 24,
                           borderRadius: 12,
                           backgroundColor: t.bgSurface,
                           alignItems: 'center',
                           justifyContent: 'center',
-                          marginRight: 14,
+                          paddingHorizontal: 8,
                         }}
                       >
-                        <Ionicons name={scenario.icon as never} size={22} color={t.textSecond} />
-                      </View>
-
-                      {/* Тексты */}
-                      <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text
-                          style={{
-                            color: t.textMuted,
-                            fontSize: f.label,
-                            fontWeight: '700',
-                            letterSpacing: 0.8,
-                          }}
-                          numberOfLines={1}
-                        >
-                          {scenario.cefr} · СЦЕНАРИЙ
-                        </Text>
-                        <Text
-                          style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 2 }}
-                          numberOfLines={1}
-                        >
-                          {scenario.titleRu}
+                        <Text style={{ color: progressColor, fontSize: f.label, fontWeight: '900' }}>
+                          {scenario.cefr}
                         </Text>
                       </View>
-
-                      {/* Состояние справа */}
-                      {locked ? (
-                        <Ionicons name="lock-closed" size={16} color={t.textMuted} style={{ opacity: 0.75 }} />
-                      ) : (
-                        <Ionicons name="chevron-forward" size={18} color={t.textSecond} />
-                      )}
-                    </TouchableOpacity>
+                    </View>
+                    <Text
+                      style={{
+                        color: t.textMuted,
+                        fontSize: f.sub,
+                        lineHeight: Math.round(f.sub * 1.32),
+                        marginTop: 5,
+                      }}
+                      numberOfLines={2}
+                      maxFontSizeMultiplier={1.15}
+                    >
+                      {scenario.goalRu}
+                    </Text>
                   </View>
-                );
-              })}
+
+                  <Ionicons name="chevron-forward" size={19} color={t.textSecond} style={{ marginLeft: 8 }} />
+                </TouchableOpacity>
+              ))}
             </View>
           ))}
 
-          {/* Лимит free */}
           {!hasPremiumAccess && (
             <Text
               style={{
@@ -272,5 +332,50 @@ export default function AiDialogHome() {
         </Animated.ScrollView>
       </SafeAreaView>
     </ScreenGradient>
+  );
+}
+
+function CategoryChip(props: {
+  label: string;
+  selected: boolean;
+  onPress: () => void;
+  textSize: number;
+  accent: string;
+  bg: string;
+  border: string;
+  text: string;
+  muted: string;
+}) {
+  return (
+    <TouchableOpacity
+      accessibilityRole="button"
+      accessibilityState={{ selected: props.selected }}
+      activeOpacity={0.82}
+      onPress={props.onPress}
+      style={{
+        minHeight: 44,
+        flex: 1,
+        borderRadius: 15,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 8,
+        backgroundColor: props.selected ? props.accent : props.bg,
+        borderWidth: 1,
+        borderColor: props.selected ? props.accent : props.border,
+      }}
+    >
+      <Text
+        style={{
+          color: props.selected ? '#fff' : props.text || props.muted,
+          fontSize: props.textSize,
+          fontWeight: '900',
+        }}
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.82}
+      >
+        {props.label}
+      </Text>
+    </TouchableOpacity>
   );
 }

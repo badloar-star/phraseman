@@ -12,13 +12,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { DebugLogger } from './debug-logger';
-import type { Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { statsInsightsStorageKey, type RuntimeStudyTarget } from './target_storage_keys';
 
-const FUNCTIONS_REGION = 'us-central1';
 const DAY_MS = 24 * 60 * 60 * 1000;
 const PREMIUM_WINDOW_DAYS = 3;
 const FREE_WINDOW_DAYS = 7;
@@ -57,19 +54,6 @@ export type StatsInsightsErrorCode = 'offline' | 'not_ready' | 'insufficient_dat
 
 function emptyNotes(): StatsInsightsNotes {
   return { balance: '', rhythm: '', year: '', percentiles: '', lifetime: '' };
-}
-
-function callable<TReq, TRes>(name: string) {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getApp } = require('@react-native-firebase/app');
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
-    return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
-  } catch {
-    return null;
-  }
 }
 
 /** Приводит произвольный объект заметок к известной форме (5 строковых блоков). */
@@ -132,22 +116,6 @@ export async function getStatsInsightsState(
   return { kind: 'cached', notes: stored.notes, nextAllowedAtMs: stored.nextAllowedAtMs, lang: stored.lang };
 }
 
-function mapErrorCode(err: unknown): StatsInsightsErrorCode {
-  const message = String((err as { message?: unknown })?.message ?? '').toLowerCase();
-  const code = String((err as { code?: unknown })?.code ?? '').toLowerCase();
-  if (message.includes('stats_insights_not_ready')) return 'not_ready';
-  if (message.includes('stats_insights_insufficient_data')) return 'insufficient_data';
-  if (message.includes('stats_insights_provider_failed') || message.includes('stats_insights_bad_json') || message.includes('stats_insights_empty')) return 'provider_failed';
-  if (code.includes('unavailable') || message.includes('network') || message.includes('offline')) return 'offline';
-  return 'unknown';
-}
-
-function errorNextAllowedAtMs(err: unknown): number | null {
-  const details = (err as { details?: { nextAllowedAtMs?: unknown } })?.details;
-  const ms = Number(details?.nextAllowedAtMs);
-  return Number.isFinite(ms) && ms > 0 ? ms : null;
-}
-
 export interface GenerateStatsInsightsOptions {
   briefing: StatsInsightsBriefing;
   isPremium: boolean;
@@ -155,8 +123,83 @@ export interface GenerateStatsInsightsOptions {
   nowMs?: number;
 }
 
+function localText(lang: Lang, ru: string, uk: string, es: string): string {
+  return triLang(lang, { ru, uk, es });
+}
+
+function hasEnoughStatsSignal(briefing: StatsInsightsBriefing): boolean {
+  return (
+    briefing.rhythm.active7 >= 2 ||
+    briefing.lifetime.daysActive >= 3 ||
+    briefing.lifetime.words + briefing.lifetime.phrases >= 8 ||
+    briefing.balance.active7 >= 2
+  );
+}
+
+export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsInsightsNotes {
+  const weak = briefing.weakCategories[0];
+  const bestDay = briefing.rhythm.bestDay || '—';
+  const bestMonth = briefing.year.bestMonth || '—';
+  const totalItems = briefing.lifetime.words + briefing.lifetime.phrases;
+  const pct = briefing.percentiles.totalXp;
+
+  return {
+    balance: briefing.balance.isWarmup
+      ? localText(
+          briefing.lang,
+          'Баланс пока в режиме разогрева: нужно ещё немного практики, чтобы тренд стал честным.',
+          'Баланс поки в режимі розігріву: потрібно ще трохи практики, щоб тренд став чесним.',
+          'El balance aún está calentando: falta un poco más de práctica para ver una tendencia justa.',
+        )
+      : localText(
+          briefing.lang,
+          `Баланс ${Math.round(briefing.balance.score)}: держи короткие сессии и не растягивай практику без фокуса.`,
+          `Баланс ${Math.round(briefing.balance.score)}: тримай короткі сесії й не розтягуй практику без фокусу.`,
+          `Balance ${Math.round(briefing.balance.score)}: mantén sesiones cortas y evita practicar sin foco.`,
+        ),
+    rhythm: localText(
+      briefing.lang,
+      `За 7 дней: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} мин. Лучший день: ${bestDay}.`,
+      `За 7 днів: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} хв. Найкращий день: ${bestDay}.`,
+      `En 7 días: ${briefing.rhythm.active7} días activos, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Mejor día: ${bestDay}.`,
+    ),
+    year: localText(
+      briefing.lang,
+      `Годовой ритм: ${briefing.year.activeDays} активных дней, серия ${briefing.year.currentStreak}, рекорд ${briefing.year.longestStreak}. Лучший месяц: ${bestMonth}.`,
+      `Річний ритм: ${briefing.year.activeDays} активних днів, серія ${briefing.year.currentStreak}, рекорд ${briefing.year.longestStreak}. Найкращий місяць: ${bestMonth}.`,
+      `Ritmo anual: ${briefing.year.activeDays} días activos, racha ${briefing.year.currentStreak}, récord ${briefing.year.longestStreak}. Mejor mes: ${bestMonth}.`,
+    ),
+    percentiles: pct == null
+      ? localText(
+          briefing.lang,
+          'Процентили появятся после большего объёма. Пока сравнивай себя с прошлой неделей, а не с другими.',
+          'Процентилі зʼявляться після більшого обсягу. Поки порівнюй себе з минулим тижнем, а не з іншими.',
+          'Los percentiles aparecerán con más volumen. Por ahora compárate con tu semana anterior, no con otros.',
+        )
+      : localText(
+          briefing.lang,
+          `Ты примерно в топ-${100 - Math.round(pct)}% по общему XP. Следующий прирост даст стабильность, а не рывок.`,
+          `Ти приблизно в топ-${100 - Math.round(pct)}% за загальним XP. Наступний приріст дасть стабільність, а не ривок.`,
+          `Estás cerca del top-${100 - Math.round(pct)}% por XP total. El siguiente salto viene de la constancia.`,
+        ),
+    lifetime: weak
+      ? localText(
+          briefing.lang,
+          `Всего закреплено ${totalItems} слов/фраз. Слабая зона: ${weak.label} (${Math.round(weak.pct)}%) — начни с неё.`,
+          `Усього закріплено ${totalItems} слів/фраз. Слабка зона: ${weak.label} (${Math.round(weak.pct)}%) — почни з неї.`,
+          `Tienes ${totalItems} palabras/frases trabajadas. Zona débil: ${weak.label} (${Math.round(weak.pct)}%); empieza ahí.`,
+        )
+      : localText(
+          briefing.lang,
+          `Всего закреплено ${totalItems} слов/фраз и ${briefing.lifetime.quizzes} квизов. Продолжай маленькими повторениями.`,
+          `Усього закріплено ${totalItems} слів/фраз і ${briefing.lifetime.quizzes} квізів. Продовжуй малими повтореннями.`,
+          `Tienes ${totalItems} palabras/frases y ${briefing.lifetime.quizzes} quizzes. Sigue con repasos pequeños.`,
+        ),
+  };
+}
+
 /**
- * Генерирует заметки через CF (если окно позволяет). Возвращает обновлённое
+ * Генерирует заметки локальным шаблоном (если окно позволяет). Возвращает обновлённое
  * состояние. При ошибке отдаёт прошлые заметки + код.
  *
  * ВАЖНО: зовётся только для premium (на free фичу не показываем). Локальный
@@ -175,60 +218,19 @@ export async function generateStatsInsights(options: GenerateStatsInsightsOption
     return { kind: 'none' };
   }
 
-  const fn = callable<{ briefing: StatsInsightsBriefing; isPremium: boolean }, {
-    ok: boolean;
-    notes: StatsInsightsNotes;
-    nextAllowedAtMs: number;
-    model: string;
-  }>('statsInsightsGenerate');
-  if (!fn) {
+  if (!hasEnoughStatsSignal(briefing)) {
     return stored
-      ? { kind: 'error', code: 'offline', notes: stored.notes }
-      : { kind: 'error', code: 'offline', notes: null };
+      ? { kind: 'cached', notes: stored.notes, nextAllowedAtMs: stored.nextAllowedAtMs, lang: stored.lang }
+      : { kind: 'insufficient_data' };
   }
 
-  try {
-    const uid = await ensureAnonUser();
-    if (uid) await ensureStableAuthLinkForStableId(uid).catch(() => false);
-
-    const { data } = await fn({ briefing, isPremium });
-    const notes = data?.ok ? normalizeNotes(data.notes) : null;
-    if (!notes || !hasAnyNote(notes)) {
-      return stored
-        ? { kind: 'error', code: 'provider_failed', notes: stored.notes }
-        : { kind: 'error', code: 'provider_failed', notes: null };
-    }
-
-    const nextStored: StatsInsightsStored = {
-      notes,
-      generatedAtMs: nowMs,
-      nextAllowedAtMs: data.nextAllowedAtMs ?? nowMs + windowDaysFor(isPremium) * DAY_MS,
-      lang,
-    };
-    await saveStored(nextStored, studyTarget);
-    return { kind: 'cached', notes, nextAllowedAtMs: nextStored.nextAllowedAtMs, lang };
-  } catch (err) {
-    const code = mapErrorCode(err);
-    DebugLogger.error('stats_insights_client:generate', err, 'warning');
-
-    if (code === 'insufficient_data') {
-      return stored
-        ? { kind: 'cached', notes: stored.notes, nextAllowedAtMs: stored.nextAllowedAtMs, lang: stored.lang }
-        : { kind: 'insufficient_data' };
-    }
-
-    // not_ready: серверное окно не истекло (локальный гейт разошёлся). Синкаем
-    // локальный nextAllowedAtMs, чтобы не бить CF на каждый фокус экрана.
-    if (code === 'not_ready') {
-      const serverNext = errorNextAllowedAtMs(err);
-      if (stored) {
-        const synced: StatsInsightsStored = { ...stored, nextAllowedAtMs: serverNext ?? stored.nextAllowedAtMs };
-        await saveStored(synced, studyTarget);
-        return { kind: 'cached', notes: synced.notes, nextAllowedAtMs: synced.nextAllowedAtMs, lang: synced.lang };
-      }
-      return { kind: 'none' };
-    }
-
-    return { kind: 'error', code, notes: stored?.notes ?? null };
-  }
+  const notes = buildLocalStatsInsights(briefing);
+  const nextStored: StatsInsightsStored = {
+    notes,
+    generatedAtMs: nowMs,
+    nextAllowedAtMs: nowMs + windowDaysFor(isPremium) * DAY_MS,
+    lang,
+  };
+  await saveStored(nextStored, studyTarget);
+  return { kind: 'cached', notes, nextAllowedAtMs: nextStored.nextAllowedAtMs, lang };
 }

@@ -102,13 +102,13 @@ describe('Skyler thematic quiz registry', () => {
         expect(devCategory!.badge).toMatch(/^DEV\b/);
         expect(devCategory!.pack.items.length).toBeGreaterThan(0);
         expect(thematicQuizCategoryHasAllActiveLocaleCopy(devCategory!)).toBe(true);
-        for (const themeMode of ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark', 'compass']) {
+        for (const themeMode of ['forest', 'dark', 'neonGreen', 'gold', 'coral', 'minimalDark']) {
           expect(themedQuizAsset(devCategory!.cardBackgrounds, themeMode)).toBeTruthy();
           expect(themedQuizAsset(devCategory!.logos, themeMode)).toBeTruthy();
         }
       }
 
-      for (const themeMode of ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark', 'compass']) {
+      for (const themeMode of ['forest', 'dark', 'neonGreen', 'gold', 'coral', 'minimalDark']) {
         expect(themedQuizAsset(home!.cardBackgrounds, themeMode)).toBeTruthy();
         expect(themedQuizAsset(home!.logos, themeMode)).toBeTruthy();
       }
@@ -179,7 +179,7 @@ describe('Skyler thematic quiz registry', () => {
   it('has explicit per-theme generated assets for forest and neon green', () => {
     const category = THEMATIC_QUIZ_CATEGORIES[0]!;
 
-    for (const themeMode of ['forest', 'dark', 'neon', 'neonGreen', 'gold', 'coral', 'minimalLight', 'minimalDark']) {
+    for (const themeMode of ['forest', 'dark', 'neonGreen', 'gold', 'coral', 'minimalDark']) {
       expect(themedQuizAsset(category.cardBackgrounds, themeMode)).toBeTruthy();
       expect(themedQuizAsset(category.logos, themeMode)).toBeTruthy();
     }

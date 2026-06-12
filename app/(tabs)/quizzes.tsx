@@ -4,7 +4,9 @@ import { hapticError, hapticTap } from '../../hooks/use-haptics';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import BouncyScrollView, { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
+import Reanimated from 'react-native-reanimated';
 import TapScale from '../../components/TapScale';
+import CompassDepthSurface from '../../components/CompassDepthSurface';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -27,10 +29,8 @@ import {
 } from 'react-native';
 
 import AddToFlashcard from '../../components/AddToFlashcard';
-import SpeakingButton from '../../components/SpeakingButton';
 import BonusXPCard from '../../components/BonusXPCard';
 import CoachToast from '../../components/CoachToast';
-import CompassDepthSurface from '../../components/CompassDepthSurface';
 import ContentWrap from '../../components/ContentWrap';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../../components/LangContext';
@@ -40,7 +40,6 @@ import PremiumCard from '../../components/PremiumCard';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTheme } from '../../components/ThemeContext';
-import { useAdaptiveBackgroundSource } from '../../components/adaptiveBackgroundAssets';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../../constants/i18n';
 import XpGainBadge from '../../components/XpGainBadge';
 import { isCorrectAnswer } from '../../constants/contractions';
@@ -82,7 +81,6 @@ import { safeRouterBack } from '../navigation_back';
 import type { PhraseMistakeInput } from '../phrase_analytics';
 import {
   QUIZ_E2E_OPEN_RESULTS_KEY,
-  QUIZ_LEVEL_CARD_BACKGROUNDS,
   QUIZ_LEVEL_LOGOS,
 } from '../quizzes/constants';
 import { getQuizCompletionMedalSource } from '../quizzes/medal_assets';
@@ -112,8 +110,12 @@ import {
   type ThematicQuizCategoryId,
 } from '../quiz_thematic_registry';
 
-const QUIZ_ENTRY_REPEATING_MOTION_ENABLED = true;
 const QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER = true;
+const QUIZ_ENTRY_REPEATING_MOTION_ENABLED = true;
+const QUIZ_CARD_ICON_SLOT_WIDTH = 112;
+const QUIZ_CARD_ICON_SIZE = 96;
+const QUIZ_CARD_ICON_FALLBACK_SIZE = 64;
+const QUIZ_CARD_ICON_FALLBACK_ICON_SIZE = 32;
 
 const stripPunct = (w: string) => w.replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
 function diffWords(wrong: string, correct: string): { word: string; isWrong: boolean }[] {
@@ -169,93 +171,14 @@ function XpCounter({ anim, xpNeeded, textStyle }: { anim: Animated.Value; xpNeed
   return <Text style={textStyle}>{displayed} / {xpNeeded} XP</Text>;
 }
 
-// Палитра карточек — каждая тема имеет СВОИ 3 уникальных цвета
-// gradA = насыщенная сторона (слева), gradB = тёмная/светлая сторона (справа)
-// Палитра карточек — каждая тема имеет СВОИ 3 уникальных цвета
-const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: string; gradB: string; accent: string }>> = {
-  dark: {
-    easy:   { gradA: '#0A2840', gradB: '#040F1A', accent: '#38BDF8' },
-    medium: { gradA: '#3A0A14', gradB: '#180508', accent: '#F87171' },
-    hard:   { gradA: '#1A0A38', gradB: '#08041A', accent: '#A78BFA' },
-  },
-  light: {
-    easy:   { gradA: '#BAE6FD', gradB: '#E0F2FE', accent: '#0284C7' },
-    medium: { gradA: '#FECDD3', gradB: '#FFF1F2', accent: '#BE123C' },
-    hard:   { gradA: '#E9D5FF', gradB: '#F5F3FF', accent: '#6D28D9' },
-  },
-  neon: {
-    easy:   { gradA: '#082D1A', gradB: '#06140D', accent: '#73F7A2' },
-    medium: { gradA: '#0A3320', gradB: '#06150D', accent: '#45E889' },
-    hard:   { gradA: '#123019', gradB: '#07140D', accent: '#B8FF6A' },
-  },
-  gold: {
-    easy:   { gradA: '#2A210F', gradB: '#080705', accent: '#F1CC72' },
-    medium: { gradA: '#24180A', gradB: '#070504', accent: '#D7AD56' },
-    hard:   { gradA: '#191108', gradB: '#040403', accent: '#FFE3A0' },
-  },
-  coral: {
-    easy:   { gradA: '#2A2024', gradB: '#3A2A2E', accent: '#4A90FF' },
-    medium: { gradA: '#2B1E22', gradB: '#463036', accent: '#FF6464' },
-    hard:   { gradA: '#140D0F', gradB: '#3A2A2E', accent: '#FFD060' },
-  },
-  minimalLight: {
-    easy:   { gradA: '#F7EFDF', gradB: '#E6D4B6', accent: '#2F8C66' },
-    medium: { gradA: '#F3E8D9', gradB: '#E4C8A8', accent: '#B65E3A' },
-    hard:   { gradA: '#EFEAF7', gradB: '#D5C6EA', accent: '#6D5EBA' },
-  },
-  minimalDark: {
-    easy:   { gradA: '#1D2636', gradB: '#10141C', accent: '#6EA8FF' },
-    medium: { gradA: '#242A35', gradB: '#11151C', accent: '#9CA3AF' },
-    hard:   { gradA: '#161B2A', gradB: '#0C0E14', accent: '#A78BFA' },
-  },
-  compass: {
-    easy:   { gradA: '#1F1F21', gradB: '#171719', accent: '#F2C48D' },
-    medium: { gradA: '#172523', gradB: '#070A0A', accent: '#F2C48D' },
-    hard:   { gradA: '#101817', gradB: '#030505', accent: '#8FEFE1' },
-  },
-  midnight: {
-    easy:   { gradA: '#08221A', gradB: '#020D0A', accent: '#5FE0B0' },
-    medium: { gradA: '#0E1430', gradB: '#040714', accent: '#8FA0FF' },
-    hard:   { gradA: '#1C0E30', gradB: '#0A0414', accent: '#B070FF' },
-  },
-  ember: {
-    easy:   { gradA: '#082218', gradB: '#020D09', accent: '#5FE8A8' },
-    medium: { gradA: '#2A1606', gradB: '#100802', accent: '#FFA245' },
-    hard:   { gradA: '#2A0814', gradB: '#10030A', accent: '#FF4D6E' },
-  },
-  aurora: {
-    easy:   { gradA: '#08241B', gradB: '#02100B', accent: '#3DE8A6' },
-    medium: { gradA: '#08182B', gradB: '#020A12', accent: '#3FA9FF' },
-    hard:   { gradA: '#260C10', gradB: '#100406', accent: '#FF6470' },
-  },
-  volt: {
-    easy:   { gradA: '#08241B', gradB: '#02100B', accent: '#4FE8AC' },
-    medium: { gradA: '#1C2406', gradB: '#0B0F02', accent: '#D6FF3D' },
-    hard:   { gradA: '#2A1606', gradB: '#100802', accent: '#FF8A3D' },
-  },
-  ocean: {
-    easy:   { gradA: '#0C2840', gradB: '#1A6FA0', accent: '#30C0FF' },
-    medium: { gradA: '#081830', gradB: '#0E5090', accent: '#00B0F0' },
-    hard:   { gradA: '#040C20', gradB: '#083868', accent: '#00D8FF' },
-  },
-  sakura: {
-    easy:   { gradA: '#4A1A2E', gradB: '#A02050', accent: '#E01870' },
-    medium: { gradA: '#3A1425', gradB: '#802050', accent: '#E01870' },
-    hard:   { gradA: '#2A0C18', gradB: '#601040', accent: '#FF2D6A' },
-  },
-};
-
 // DEPRECATED: Use theme.textPrimary and theme.textMuted directly
 // Kept for backward compatibility with locked items
 const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondary: string }> = {
   dark:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   light:  { primary: '#0F172A', secondary: 'rgba(15,23,42,0.6)'   },
-  neon:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   gold:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral:  { primary: '#FFFFFF', secondary: '#D8C2C5' },
-  minimalLight: { primary: '#2E261B', secondary: 'rgba(46,38,27,0.66)' },
   minimalDark: { primary: '#F5F5F5', secondary: '#A7ABB3' },
-  compass: { primary: '#FFF8E8', secondary: '#D8D2C8' },
   midnight: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   ember:    { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   aurora:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
@@ -332,117 +255,24 @@ const thematicQuizFallbackIcon = (categoryId: ThematicQuizCategoryId): QuizIconN
   }
 };
 
-function QuizCardBackgroundImageWithFallback({
-  source,
-  accent,
-  opacity,
-  locked,
-  themeMode,
-  showFallbackDecor = true,
-}: {
-  source: ImageSourcePropType;
-  accent: string;
-  opacity: number;
-  locked: boolean;
-  themeMode: ThemeMode;
-  showFallbackDecor?: boolean;
-}) {
-  const [loaded, setLoaded] = useState(false);
-  const adaptiveSource = useAdaptiveBackgroundSource(source);
-
-  useEffect(() => {
-    setLoaded(false);
-  }, [adaptiveSource]);
-
-  const light = themeMode === 'minimalLight';
-  const fallbackOpacity = loaded ? (locked ? 0.08 : 0.18) : (locked ? 0.18 : 0.72);
-
-  return (
-    <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { zIndex: 0 }]}>
-      {showFallbackDecor && (
-        <>
-          <LinearGradient
-            colors={light
-              ? ['rgba(255,255,255,0.54)', `${accent}30`, 'rgba(255,255,255,0.10)']
-              : [`${accent}3D`, 'rgba(0,0,0,0.04)', `${accent}18`]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={[StyleSheet.absoluteFillObject, { opacity: fallbackOpacity }]}
-          />
-          <View
-            style={{
-              position: 'absolute',
-              right: -30,
-              top: -42,
-              width: 148,
-              height: 148,
-              borderRadius: 74,
-              backgroundColor: light ? 'rgba(255,255,255,0.30)' : `${accent}24`,
-              opacity: fallbackOpacity,
-            }}
-          />
-          <View
-            style={{
-              position: 'absolute',
-              left: -34,
-              bottom: -48,
-              width: 132,
-              height: 132,
-              borderRadius: 66,
-              backgroundColor: light ? `${accent}1F` : 'rgba(255,255,255,0.055)',
-              opacity: fallbackOpacity,
-            }}
-          />
-        </>
-      )}
-      <Image
-        pointerEvents="none"
-        source={adaptiveSource}
-        style={[StyleSheet.absoluteFillObject, { opacity }]}
-        contentFit="cover"
-        cachePolicy="memory-disk"
-        transition={0}
-        onLoad={() => setLoaded(true)}
-        onError={() => setLoaded(false)}
-      />
-    </View>
-  );
-}
-
-function QuizCardTextScrim({ themeMode }: { themeMode: ThemeMode }) {
-  const isCompassTheme = themeMode === 'compass';
-  return (
-    <LinearGradient
-      pointerEvents="none"
-      colors={isCompassTheme
-        ? ['rgba(0,0,0,0.86)', 'rgba(0,0,0,0.72)', 'rgba(0,0,0,0.34)', 'rgba(0,0,0,0.00)']
-        : ['rgba(0,0,0,0.64)', 'rgba(0,0,0,0.44)', 'rgba(0,0,0,0.00)']}
-      locations={isCompassTheme ? [0, 0.34, 0.72, 1] : [0, 0.46, 1]}
-      start={{ x: 0, y: 0.5 }}
-      end={{ x: 1, y: 0.5 }}
-      style={[StyleSheet.absoluteFillObject, { zIndex: 1 }]}
-    />
-  );
-}
-
-const quizCardTextShadow = {
-  textShadowColor: 'rgba(0,0,0,0.88)',
-  textShadowOffset: { width: 0, height: 1 },
-  textShadowRadius: 4,
-} as const;
-
 function QuizCardLogoImageWithFallback({
   source,
   fallbackName,
   accent,
   locked,
   showFallbackIcon = true,
+  size = 94,
+  fallbackSize = 66,
+  fallbackIconSize = 34,
 }: {
   source: ImageSourcePropType;
   fallbackName: QuizIconName;
   accent: string;
   locked: boolean;
   showFallbackIcon?: boolean;
+  size?: number;
+  fallbackSize?: number;
+  fallbackIconSize?: number;
 }) {
   const [loaded, setLoaded] = useState(false);
 
@@ -451,19 +281,19 @@ function QuizCardLogoImageWithFallback({
   }, [source]);
 
   return (
-    <View style={{ width: 94, height: 94, alignItems: 'center', justifyContent: 'center', opacity: locked ? 0.28 : 1 }}>
+    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center', opacity: locked ? 0.28 : 1 }}>
       {showFallbackIcon && !loaded && (
         <View style={{
-          width: 66,
-          height: 66,
-          borderRadius: 20,
+          width: fallbackSize,
+          height: fallbackSize,
+          borderRadius: Math.max(12, Math.round(fallbackSize * 0.3)),
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: `${accent}24`,
           borderWidth: 1,
           borderColor: `${accent}55`,
         }}>
-          <Ionicons name={fallbackName} size={34} color={accent} />
+          <Ionicons name={fallbackName} size={fallbackIconSize} color={accent} />
         </View>
       )}
       <Image
@@ -479,8 +309,261 @@ function QuizCardLogoImageWithFallback({
   );
 }
 
+function useQuizCardIconPulse(enabled: boolean) {
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (!enabled || !QUIZ_ENTRY_REPEATING_MOTION_ENABLED) {
+      pulseAnim.stopAnimation();
+      pulseAnim.setValue(1);
+      return undefined;
+    }
+
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, {
+          toValue: MOTION_SCALE.nudge,
+          duration: 740,
+          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
+        }),
+        Animated.timing(pulseAnim, {
+          toValue: 1,
+          duration: 740,
+          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
+        }),
+      ])
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [enabled, pulseAnim]);
+
+  return pulseAnim;
+}
+
 // Тип фразы для квиза — используем QuizPhrase из quiz_data
 // level передаётся из QuizGame
+
+function BaseQuizLevelCard({
+  level,
+  lang,
+  themeMode,
+  t,
+  f,
+  isSelected,
+  locked,
+  lockedLabel,
+  startTrackW,
+  onPick,
+  onLockedPress,
+  onStart,
+}: {
+  level: Level;
+  lang: Lang;
+  themeMode: QuizVisualThemeMode;
+  t: any;
+  f: any;
+  isSelected: boolean;
+  locked: boolean;
+  lockedLabel: string;
+  startTrackW: number;
+  onPick: () => void;
+  onLockedPress: () => void;
+  onStart: (level: Level, fillAnim: Animated.Value) => void;
+}) {
+  const fillAnim = useRef(new Animated.Value(0)).current;
+  const c = LEVEL_CONFIG[level];
+  const title = triLang(lang, {
+    ru: c.labelRU,
+    uk: c.labelUK,
+    es: c.labelES,
+    'pt-BR': c.labelPTBR,
+    vi: c.labelVI,
+    id: c.labelID,
+    tr: c.labelTR,
+    pl: c.labelPL,
+  });
+  const subtitle = triLang(lang, {
+    ru: c.tagRU,
+    uk: c.tagUK,
+    es: c.tagES,
+    'pt-BR': c.tagPTBR,
+    vi: c.tagVI,
+    id: c.tagID,
+    tr: c.tagTR,
+    pl: c.tagPL,
+  });
+  const accent = locked ? t.textMuted : c.color;
+  const isLightTheme = themeMode === 'light';
+  const isCompassTheme = false;
+  const pulseAnim = useQuizCardIconPulse(!locked);
+  const textCol = locked ? t.textSecond : isLightTheme ? '#1F2933' : '#FFFFFF';
+  const textCol2 = locked ? t.textMuted : isLightTheme ? 'rgba(31,41,51,0.66)' : 'rgba(226,232,240,0.78)';
+  const gradA = locked ? t.bgCard : isLightTheme ? `${accent}24` : `${accent}22`;
+  const gradB = locked ? t.bgSurface : isLightTheme ? 'rgba(255,255,255,0.92)' : 'rgba(15,23,42,0.88)';
+  const visualSelected = isSelected && !locked;
+  const compassRadius = 10;
+  const levelLogoMap = QUIZ_LEVEL_LOGOS as Record<string, Record<Level, ImageSourcePropType>>;
+  const levelLogo = levelLogoMap[themeMode]?.[level] ?? levelLogoMap.minimalDark[level];
+  const fillTx = fillAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-startTrackW, 0],
+  });
+
+  return (
+    <View collapsable={false} style={[{ borderRadius: isCompassTheme ? compassRadius : 18, overflow: 'hidden' }, isCompassTheme && compassShadow(visualSelected ? 2 : 1)]}>
+      <TapScale
+        testID={`quiz-level-card-${level}`}
+        accessibilityLabel={`qa-quiz-level-card-${level}`}
+        onPress={() => {
+          if (locked) { onLockedPress(); return; }
+          if (isSelected) { onStart(level, fillAnim); return; }
+          onPick();
+        }}
+        scaleTo={0.97}
+        withHaptic={false}
+      >
+        <LinearGradient
+          collapsable={false}
+          colors={[gradA, gradB]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{
+            borderTopLeftRadius: isCompassTheme ? compassRadius : 18,
+            borderTopRightRadius: isCompassTheme ? compassRadius : 18,
+            borderBottomLeftRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
+            borderBottomRightRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
+            borderWidth: visualSelected ? 2 : 1,
+            borderColor: isCompassTheme ? (visualSelected ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : visualSelected ? accent : (locked ? t.border : `${accent}40`),
+            borderBottomColor: visualSelected ? 'transparent' : undefined,
+            flexDirection: 'row',
+            alignItems: 'center',
+            minHeight: 108,
+            overflow: 'hidden',
+            position: 'relative',
+          }}
+        >
+          {isCompassTheme ? <CompassDepthSurface radius={compassRadius} selected={visualSelected} quiet={locked} /> : null}
+          <View
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              right: -36,
+              top: -32,
+              width: 172,
+              height: 172,
+              borderRadius: 86,
+              backgroundColor: locked ? t.border : `${accent}18`,
+              opacity: isLightTheme ? 0.8 : 1,
+            }}
+          />
+          <View collapsable={false} style={{ flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: QUIZ_CARD_ICON_SLOT_WIDTH + 18, zIndex: 2 }}>
+            <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
+              <View style={{
+                backgroundColor: `${accent}25`,
+                borderRadius: 6,
+                paddingHorizontal: 7,
+                paddingVertical: 2,
+                borderWidth: 1,
+                borderColor: `${accent}50`,
+              }}>
+                <Text style={{ color: accent, fontSize: f.label, fontWeight:'800', letterSpacing:0.8 }}>
+                  {c.sub}
+                </Text>
+              </View>
+              {locked && (
+                <View style={{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor: t.accentBg, borderRadius:6, paddingHorizontal:7, paddingVertical:2 }}>
+                  <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
+                  <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
+                    {lockedLabel}
+                  </Text>
+                </View>
+              )}
+            </View>
+            <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
+              <Text style={{ color: textCol, fontSize: f.h2, fontWeight:'900' }}>{title}</Text>
+              <Text style={{ color: textCol2, fontSize: f.sub, flexWrap:'wrap' }}>{subtitle}</Text>
+            </View>
+          </View>
+
+          <Animated.View
+            collapsable={false}
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              right: 10,
+              top: 0,
+              bottom: 0,
+              width: QUIZ_CARD_ICON_SLOT_WIDTH,
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 3,
+              transform: [{ scale: locked ? 1 : pulseAnim }],
+            }}
+          >
+            <QuizCardLogoImageWithFallback
+              source={levelLogo}
+              fallbackName={QUIZ_LEVEL_FALLBACK_ICONS[level]}
+              accent={accent}
+              locked={locked}
+              size={QUIZ_CARD_ICON_SIZE}
+              fallbackSize={QUIZ_CARD_ICON_FALLBACK_SIZE}
+              fallbackIconSize={QUIZ_CARD_ICON_FALLBACK_ICON_SIZE}
+            />
+          </Animated.View>
+        </LinearGradient>
+      </TapScale>
+
+      {visualSelected && (
+        <TapScale
+          testID={`quiz-level-start-${level}`}
+          accessibilityLabel={`qa-quiz-level-start-${level}`}
+          onPress={() => { onStart(level, fillAnim); }}
+          scaleTo={0.96}
+          withHaptic={false}
+          style={{
+            height: 46,
+            backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
+            borderWidth: 2,
+            borderTopWidth: 0,
+            borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent,
+            borderBottomLeftRadius: isCompassTheme ? compassRadius : 18,
+            borderBottomRightRadius: isCompassTheme ? compassRadius : 18,
+            overflow: 'hidden',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          {isCompassTheme ? <CompassDepthSurface radius={compassRadius} selected /> : null}
+          <Animated.View
+            collapsable={false}
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : accent,
+              transform: [{ translateX: fillTx }],
+            }}
+          />
+          <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
+            {triLang(lang, {
+  ru: 'Начать вызов',
+  uk: 'Почати квіз',
+  es: 'Empezar cuestionario',
+  "pt-BR": 'Começar quiz',
+  vi: 'Bắt đầu quiz',
+  id: 'Mulai kuis',
+  tr: 'Quize başla',
+  pl: 'Rozpocznij quiz',
+})} · {title}
+          </Text>
+        </TapScale>
+      )}
+    </View>
+  );
+}
 
 function ThematicQuizLevelCard({
   category,
@@ -498,7 +581,7 @@ function ThematicQuizLevelCard({
 }: {
   category: ThematicQuizCategory;
   lang: Lang;
-  themeMode: ThemeMode;
+  themeMode: QuizVisualThemeMode;
   t: any;
   f: any;
   isSelected: boolean;
@@ -510,52 +593,26 @@ function ThematicQuizLevelCard({
   onStart: (categoryId: ThematicQuizCategoryId, fillAnim: Animated.Value) => void;
 }) {
   const fillAnim = useRef(new Animated.Value(0)).current;
-  const pulseAnim = useRef(new Animated.Value(1)).current;
   const title = category.title[lang];
   const subtitle = category.subtitle[lang];
   const accent = locked ? t.textMuted : category.accent;
-  const textPalette = THEME_TEXT[themeMode];
-  const textCol = locked ? t.textSecond : textPalette.primary;
-  const textCol2 = locked ? t.textMuted : textPalette.secondary;
-  const gradA = locked ? t.bgCard : themeMode === 'minimalLight' ? '#F8EFE1' : '#10261F';
-  const gradB = locked ? t.bgSurface : themeMode === 'minimalLight' ? '#E3C9A9' : '#03100C';
-  const cardBackground = themedQuizAsset(category.cardBackgrounds, themeMode);
+  const isLightTheme = themeMode === 'light';
+  const textCol = locked ? t.textSecond : isLightTheme ? '#1F2933' : '#FFFFFF';
+  const textCol2 = locked ? t.textMuted : isLightTheme ? 'rgba(31,41,51,0.66)' : 'rgba(226,232,240,0.78)';
+  const gradA = locked ? t.bgCard : isLightTheme ? '#FFF8ED' : `${accent}24`;
+  const gradB = locked ? t.bgSurface : isLightTheme ? '#EFE1CA' : 'rgba(15,23,42,0.88)';
   const categoryLogo = themedQuizAsset(category.logos, themeMode);
   const visualSelected = isSelected && !locked;
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
+  const pulseAnim = useQuizCardIconPulse(!locked);
   const compassRadius = 10;
   const fillTx = fillAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [-startTrackW, 0],
   });
 
-  useEffect(() => {
-    if (!QUIZ_ENTRY_REPEATING_MOTION_ENABLED) {
-      pulseAnim.stopAnimation();
-      pulseAnim.setValue(1);
-      return undefined;
-    }
-
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulseAnim, {
-          toValue: MOTION_SCALE.nudge,
-          duration: 740,
-          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
-        }),
-        Animated.timing(pulseAnim, {
-          toValue: 1.0,
-          duration: 740,
-          useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
-        }),
-      ])
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [pulseAnim]);
-
   return (
-    <View collapsable={false} style={[{ borderRadius: isCompassTheme ? compassRadius : 20, overflow: 'hidden' }, isCompassTheme && compassShadow(visualSelected ? 2 : 1)]}>
+    <View collapsable={false} style={[{ borderRadius: isCompassTheme ? compassRadius : 18, overflow: 'hidden' }, isCompassTheme && compassShadow(visualSelected ? 2 : 1)]}>
       <TapScale
         onPress={() => {
           if (locked) { onLockedPress(); return; }
@@ -568,34 +625,37 @@ function ThematicQuizLevelCard({
         <LinearGradient
           collapsable={false}
           colors={[gradA, gradB]}
-          start={{ x: 0, y: 0.5 }}
-          end={{ x: 1, y: 0.5 }}
-                  style={{
-            borderTopLeftRadius: isCompassTheme ? compassRadius : 20,
-            borderTopRightRadius: isCompassTheme ? compassRadius : 20,
-            borderBottomLeftRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 20,
-            borderBottomRightRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 20,
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{
+            borderTopLeftRadius: isCompassTheme ? compassRadius : 18,
+            borderTopRightRadius: isCompassTheme ? compassRadius : 18,
+            borderBottomLeftRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
+            borderBottomRightRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 18,
             borderWidth: visualSelected ? 2 : 1,
             borderColor: isCompassTheme ? (visualSelected ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : visualSelected ? accent : (locked ? t.border : `${accent}40`),
             borderBottomColor: visualSelected ? 'transparent' : undefined,
             flexDirection: 'row',
             alignItems: 'center',
-            minHeight: 82,
+            minHeight: 108,
             overflow: 'hidden',
             position: 'relative',
           }}
         >
-          {isCompassTheme ? <CompassDepthSurface radius={compassRadius} selected={visualSelected} quiet={locked} /> : null}
-          <QuizCardBackgroundImageWithFallback
-            source={cardBackground}
-            accent={accent}
-            opacity={locked ? 0.16 : themeMode === 'minimalLight' ? 0.9 : 0.94}
-            locked={locked}
-            themeMode={themeMode}
-            showFallbackDecor={false}
+          <View
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              right: -36,
+              top: -32,
+              width: 172,
+              height: 172,
+              borderRadius: 86,
+              backgroundColor: locked ? t.border : `${accent}18`,
+              opacity: isLightTheme ? 0.8 : 1,
+            }}
           />
-          <QuizCardTextScrim themeMode={themeMode} />
-          <View collapsable={false} style={{ flex: 1, paddingTop: 24, paddingBottom: 14, paddingLeft: 16, paddingRight: 116, zIndex: 2 }}>
+          <View collapsable={false} style={{ flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: QUIZ_CARD_ICON_SLOT_WIDTH + 18, zIndex: 2 }}>
             <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
               <View style={{
                 backgroundColor: `${accent}25`,
@@ -619,8 +679,8 @@ function ThematicQuizLevelCard({
               )}
             </View>
             <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
-              <Text style={[quizCardTextShadow, { color: textCol, fontSize: f.h1, fontWeight:'900' }]}>{title}</Text>
-              <Text style={[quizCardTextShadow, { color: textCol2, fontSize: f.sub, flexWrap:'wrap' }]}>{subtitle}</Text>
+              <Text style={{ color: textCol, fontSize: f.h2, fontWeight:'900' }}>{title}</Text>
+              <Text style={{ color: textCol2, fontSize: f.sub, flexWrap:'wrap' }}>{subtitle}</Text>
             </View>
           </View>
 
@@ -629,10 +689,10 @@ function ThematicQuizLevelCard({
             pointerEvents="none"
             style={{
               position: 'absolute',
-              right: 8,
-              top: 10,
+              right: 10,
+              top: 0,
               bottom: 0,
-              width: 104,
+              width: QUIZ_CARD_ICON_SLOT_WIDTH,
               alignItems: 'center',
               justifyContent: 'center',
               zIndex: 3,
@@ -645,6 +705,9 @@ function ThematicQuizLevelCard({
               accent={accent}
               locked={locked}
               showFallbackIcon={false}
+              size={QUIZ_CARD_ICON_SIZE}
+              fallbackSize={QUIZ_CARD_ICON_FALLBACK_SIZE}
+              fallbackIconSize={QUIZ_CARD_ICON_FALLBACK_ICON_SIZE}
             />
           </Animated.View>
         </LinearGradient>
@@ -661,14 +724,13 @@ function ThematicQuizLevelCard({
             borderWidth: 2,
             borderTopWidth: 0,
             borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent,
-            borderBottomLeftRadius: isCompassTheme ? compassRadius : 20,
-            borderBottomRightRadius: isCompassTheme ? compassRadius : 20,
+            borderBottomLeftRadius: isCompassTheme ? compassRadius : 18,
+            borderBottomRightRadius: isCompassTheme ? compassRadius : 18,
             overflow: 'hidden',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          {isCompassTheme ? <CompassDepthSurface radius={compassRadius} selected /> : null}
           <Animated.View
             collapsable={false}
             pointerEvents="none"
@@ -768,7 +830,8 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
 function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>void }) {
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
-  const { theme:t , f, themeMode } = useTheme();
+  const { theme:t , f, themeMode: rawThemeMode } = useTheme();
+  const themeMode = rawThemeMode as QuizVisualThemeMode;
 
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -788,7 +851,6 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   });
   const startInFlightRef = useRef(false);
   const startInFlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [startLoading, setStartLoading] = useState(false);
   const screenTitleColor = t.textPrimary;
   const { width: windowWidth } = useWindowDimensions();
   /** Ширина трека полоски: translateX + native driver (без скачков interpolate от onLayout) */
@@ -808,64 +870,17 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       startInFlightTimeoutRef.current = null;
     }
     startInFlightRef.current = false;
-    setStartLoading(false);
   }, []);
 
   const armStartInFlightWatchdog = useCallback(() => {
-    setStartLoading(true);
     if (startInFlightTimeoutRef.current) clearTimeout(startInFlightTimeoutRef.current);
     startInFlightTimeoutRef.current = setTimeout(() => {
       startInFlightRef.current = false;
       startInFlightTimeoutRef.current = null;
-      setStartLoading(false);
     }, 2500);
   }, []);
 
   useEffect(() => releaseStartInFlight, [releaseStartInFlight]);
-
-  // Fill animation per level
-  const fillAnimsRef = useRef<Record<Level, Animated.Value> | null>(null);
-  if (!fillAnimsRef.current) {
-    fillAnimsRef.current = {
-      easy:   new Animated.Value(0),
-      medium: new Animated.Value(0),
-      hard:   new Animated.Value(0),
-    };
-  }
-  const fillAnims = fillAnimsRef.current;
-
-  // Pulse animation per level icon
-  const pulseAnimsRef = useRef<Record<Level, Animated.Value> | null>(null);
-  if (!pulseAnimsRef.current) {
-    pulseAnimsRef.current = {
-      easy:   new Animated.Value(1),
-      medium: new Animated.Value(1),
-      hard:   new Animated.Value(1),
-    };
-  }
-  const pulseAnims = pulseAnimsRef.current;
-
-  useEffect(() => {
-    if (!QUIZ_ENTRY_REPEATING_MOTION_ENABLED) {
-      (Object.keys(pulseAnims) as Level[]).forEach((lv) => {
-        pulseAnims[lv].stopAnimation();
-        pulseAnims[lv].setValue(1);
-      });
-      return undefined;
-    }
-
-    const loops = (Object.keys(pulseAnims) as Level[]).map((lv, i) => {
-      const anim = Animated.loop(
-        Animated.sequence([
-          Animated.timing(pulseAnims[lv], { toValue: MOTION_SCALE.nudge, duration: 680 + i * 90, useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER }),
-          Animated.timing(pulseAnims[lv], { toValue: 1.0, duration: 680 + i * 90, useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER }),
-        ])
-      );
-      anim.start();
-      return anim;
-    });
-    return () => loops.forEach(a => a.stop());
-  }, [pulseAnims]);
 
   useEffect(() => {
     let cancelled = false;
@@ -892,7 +907,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
   }, [router]);
 
-  const consumeFreeSlotForStart = async (selection: QuizMenuSelection): Promise<boolean> => {
+  const consumeFreeSlotForStart = useCallback(async (selection: QuizMenuSelection): Promise<boolean> => {
     if (DEV_MODE || isPremium) return true;
 
     const nextState = await consumeFreeDailyQuizStart();
@@ -904,9 +919,38 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     setFreeQuizState(await getFreeDailyQuizState());
     openQuizLimitPaywall();
     return false;
-  };
+  }, [isPremium, openQuizLimitPaywall]);
 
-  const handleStart = useCallback((lv: Level) => {
+  const runStartFill = useCallback((anim: Animated.Value, onDone: () => void) => {
+    let completed = false;
+    const finishStart = () => {
+      if (completed) return;
+      completed = true;
+      anim.setValue(0);
+      releaseStartInFlight();
+      onDone();
+    };
+    anim.setValue(0);
+    Animated.timing(anim, {
+      toValue: 1,
+      duration: 420,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
+    }).start(({ finished }) => {
+      if (completed) return;
+      if (!finished) {
+        releaseStartInFlight();
+        return;
+      }
+      finishStart();
+    });
+    setTimeout(() => {
+      anim.stopAnimation();
+      finishStart();
+    }, 520);
+  }, [releaseStartInFlight]);
+
+  const handleStartLevel = useCallback((level: Level, anim: Animated.Value) => {
     if (startInFlightRef.current) return;
     if (!energyUnlimited && energy + bonusEnergy <= 0) {
       logEnergyLimitHit('quiz');
@@ -916,43 +960,18 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     }
     startInFlightRef.current = true;
     armStartInFlightWatchdog();
-    void ensureQuizPhrasesLoaded().catch(() => {});
-    void consumeFreeSlotForStart(lv).then((canStart) => {
+    void (async () => {
+      const canStart = await consumeFreeSlotForStart(level);
       if (!canStart) {
         releaseStartInFlight();
         return;
       }
-      const anim = fillAnims[lv];
-      let completed = false;
-      const finishStart = () => {
-        if (completed) return;
-        completed = true;
-        anim.setValue(0);
-        releaseStartInFlight();
-        onSelect(lv);
-      };
-      anim.setValue(0);
-      Animated.timing(anim, {
-        toValue: 1,
-        duration: 420,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
-      }).start(({ finished }) => {
-        if (completed) return;
-        if (!finished) {
-          releaseStartInFlight();
-          return;
-        }
-        finishStart();
-      });
-      setTimeout(() => {
-        anim.stopAnimation();
-        finishStart();
-      }, 520);
-    }).catch(() => {
+      await ensureQuizPhrasesLoaded();
+      runStartFill(anim, () => onSelect(level));
+    })().catch(() => {
       releaseStartInFlight();
     });
-  }, [armStartInFlightWatchdog, bonusEnergy, energy, energyUnlimited, fillAnims, onSelect, releaseStartInFlight]);
+  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, onSelect, releaseStartInFlight, runStartFill]);
 
   const handleStartThematic = useCallback((categoryId: ThematicQuizCategoryId, anim: Animated.Value) => {
     if (startInFlightRef.current) return;
@@ -969,327 +988,146 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         releaseStartInFlight();
         return;
       }
-      let completed = false;
-      const finishStart = () => {
-        if (completed) return;
-        completed = true;
-        anim.setValue(0);
-        releaseStartInFlight();
-        onSelect(categoryId);
-      };
-      anim.setValue(0);
-      Animated.timing(anim, {
-        toValue: 1,
-        duration: 420,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: QUIZ_ENTRY_ANIMATION_USE_NATIVE_DRIVER,
-      }).start(({ finished }) => {
-        if (completed) return;
-        if (!finished) {
-          releaseStartInFlight();
-          return;
-        }
-        finishStart();
-      });
-      setTimeout(() => {
-        anim.stopAnimation();
-        finishStart();
-      }, 520);
+      runStartFill(anim, () => onSelect(categoryId));
     }).catch(() => {
       releaseStartInFlight();
     });
-  }, [armStartInFlightWatchdog, bonusEnergy, energy, energyUnlimited, onSelect, releaseStartInFlight]);
+  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, onSelect, releaseStartInFlight, runStartFill]);
 
+  const lockedByDailyLimit = !DEV_MODE && !isPremium && freeQuizState.exhausted;
+  const isLightEntryTheme = themeMode === 'light';
+  const sectionLabelColor = isLightEntryTheme ? 'rgba(31,41,51,0.58)' : 'rgba(226,232,240,0.64)';
   return (
     <ScreenGradient forceFullBleed artBackdrop="quizzes">
     <View testID="quiz-game-screen" accessibilityLabel="qa-quiz-game-screen" style={{ flex:1 }}>
       <ContentWrap>
-      <View style={{ flexDirection:'row', alignItems:'center', padding:16, paddingTop: 16 + insets.top, borderBottomWidth:0.5, borderBottomColor: t.border }}>
-        <TapScale
-          onPress={() => {
-            hapticTap();
-            safeRouterBack(router, '/(tabs)/home' as any);
-          }}
-          withHaptic={false}
-          style={{ width:38, height:38, borderRadius:19, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border, justifyContent:'center', alignItems:'center' }}
-        >
-          <Ionicons name="chevron-back" size={22} color={t.textPrimary}/>
-        </TapScale>
-        <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight:'700', marginLeft:12, flex:1 }} adjustsFontSizeToFit numberOfLines={1}>
-          {s.quizzes.selectLevel}
-        </Text>
-        <EnergyBar size={30} />
-        <PremiumCard
-          level={1}
-          testID="quiz-level-select-settings"
-          accessibilityLabel="qa-quiz-level-select-settings"
-          onPress={() => { hapticTap(); router.push('/settings_edu'); }}
-          style={{ width: 38, height: 38, borderRadius: 19, marginLeft: 8 }}
-          innerStyle={{ width: 38, height: 38, borderRadius: 19, justifyContent: 'center', alignItems: 'center' }}
-        >
-          <Ionicons name="settings-outline" size={20} color={t.textSecond} />
-        </PremiumCard>
-        <ReportErrorButton
-          screen="quizzes_tab"
-          dataId="quiz_level_select"
-          dataText={s.quizzes.selectLevel}
-          variant="icon-flag"
-          accessibilityLabel="Сообщить о баге на экране квизов"
-          style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, marginLeft: 8 }}
-        />
+      <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
+      <View style={{ paddingHorizontal: 16, paddingTop: 16 + insets.top, paddingBottom: 12, borderBottomWidth:0.5, borderBottomColor: t.border }}>
+        <View style={{ flexDirection:'row', alignItems:'center', gap: 10 }}>
+          <TapScale
+            onPress={() => {
+              hapticTap();
+              safeRouterBack(router, '/(tabs)/home' as any);
+            }}
+            withHaptic={false}
+            style={{ width:42, height:42, borderRadius:21, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border, justifyContent:'center', alignItems:'center' }}
+          >
+            <Ionicons name="chevron-back" size={24} color={t.textPrimary}/>
+          </TapScale>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight:'900' }} adjustsFontSizeToFit numberOfLines={1}>
+              {triLang(lang, {
+                ru: 'Вызовы',
+                uk: 'Квізи',
+                es: 'Cuestionarios',
+                "pt-BR": 'Quizzes',
+                vi: 'Quiz',
+                id: 'Kuis',
+                tr: 'Quizler',
+                pl: 'Quizy',
+              })}
+            </Text>
+          </View>
+          <EnergyBar size={30} />
+          <PremiumCard
+            level={1}
+            testID="quiz-level-select-settings"
+            accessibilityLabel="qa-quiz-level-select-settings"
+            onPress={() => { hapticTap(); router.push('/settings_edu'); }}
+            style={{ width: 42, height: 42, borderRadius: 21 }}
+            innerStyle={{ width: 42, height: 42, borderRadius: 21, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <Ionicons name="settings-outline" size={20} color={t.textSecond} />
+          </PremiumCard>
+          <ReportErrorButton
+            screen="quizzes_tab"
+            dataId="quiz_level_select"
+            dataText={s.quizzes.selectLevel}
+            variant="icon-flag"
+            accessibilityLabel="Сообщить о баге на экране квизов"
+            style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border }}
+          />
+        </View>
       </View>
 
-      <BouncyWrap style={bouncyStyle}>
+      <BouncyWrap>
       <ScrollView
         style={{ flex: 1 }}
         decelerationRate="normal"
         contentContainerStyle={{
           flexGrow: 1,
-          justifyContent: 'center',
           paddingHorizontal: 20,
-          paddingTop: 24,
+          paddingTop: 14,
           paddingBottom: Math.max(24, insets.bottom + 24),
-          gap: 8,
+          gap: 14,
         }}
         showsVerticalScrollIndicator
         persistentScrollbar
-        indicatorStyle={themeMode === 'minimalLight' ? 'black' : 'white'}
+        indicatorStyle={isLightEntryTheme ? 'black' : 'white'}
         bounces
         alwaysBounceVertical
         overScrollMode="always"
         onScroll={onBouncyScroll}
         scrollEventThrottle={16}
       >
-        {(Object.keys(LEVEL_CONFIG) as Level[]).map(lv => {
-          const c        = LEVEL_CONFIG[lv];
-          const lbl      = triLang(lang, {
-  ru: c.labelRU,
-  uk: c.labelUK,
-  es: c.labelES,
-  "pt-BR": c.labelPTBR,
-  vi: c.labelVI,
-  id: c.labelID,
-  tr: c.labelTR,
-  pl: c.labelPL,
-});
-          const tag      = triLang(lang, {
-  ru: c.tagRU,
-  uk: c.tagUK,
-  es: c.tagES,
-  "pt-BR": c.tagPTBR,
-  vi: c.tagVI,
-  id: c.tagID,
-  tr: c.tagTR,
-  pl: c.tagPL,
-});
-          const lockedByDailyLimit = !DEV_MODE && !isPremium && freeQuizState.exhausted;
-          const locked   = lockedByDailyLimit;
-          const palette  = THEME_PALETTES[themeMode][lv];
-          const txt      = THEME_TEXT[themeMode];
-          const gradA    = locked ? t.bgCard    : palette.gradA;
-          const gradB    = locked ? t.bgSurface : palette.gradB;
-          const accent   = locked ? t.textMuted : palette.accent;
-          const textCol  = locked ? t.textSecond : txt.primary;
-          const textCol2 = locked ? t.textMuted  : txt.secondary;
-          const isSelected = selected === lv;
-          const visualSelected = isSelected && !locked;
-          const cardBackground = QUIZ_LEVEL_CARD_BACKGROUNDS[themeMode]?.[lv] ?? QUIZ_LEVEL_CARD_BACKGROUNDS.minimalDark[lv];
-          const levelLogo = QUIZ_LEVEL_LOGOS[themeMode]?.[lv] ?? QUIZ_LEVEL_LOGOS.minimalDark[lv];
-          const isCompassTheme = themeMode === 'compass';
-          const compassRadius = 10;
-
-          return (
-            <View key={lv} style={[{ borderRadius: isCompassTheme ? compassRadius : 20, overflow: 'hidden' }, isCompassTheme && compassShadow(visualSelected ? 2 : 1)]}>
-              {/* ── Карточка уровня ── */}
-              <TapScale
-                testID={`quiz-level-card-${lv}`}
-                accessibilityLabel={`qa-quiz-level-card-${lv}`}
-                onPress={() => {
-                  if (locked) {
-                    openQuizLimitPaywall();
-                    return;
-                  }
-                  if (isSelected) { handleStart(lv); return; }
-                  releaseStartInFlight();
-                  setSelected(lv);
-                }}
-                scaleTo={0.97}
-                withHaptic={false}
-              >
-                <LinearGradient
-                  colors={[gradA, gradB]}
-                  start={{ x: 0, y: 0.5 }}
-                  end={{ x: 1, y: 0.5 }}
-                  style={{
-                    borderTopLeftRadius: isCompassTheme ? compassRadius : 20,
-                    borderTopRightRadius: isCompassTheme ? compassRadius : 20,
-                    borderBottomLeftRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 20,
-                    borderBottomRightRadius: visualSelected ? 0 : isCompassTheme ? compassRadius : 20,
-                    borderWidth: visualSelected ? 2 : 1,
-                    borderColor: isCompassTheme ? (visualSelected ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : visualSelected ? accent : (locked ? t.border : `${accent}40`),
-                    borderBottomColor: visualSelected ? 'transparent' : undefined,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    minHeight: 82,
-                    overflow: 'hidden',
-                    position: 'relative',
-                  }}
-                >
-                  {/* Контент */}
-                  {isCompassTheme ? <CompassDepthSurface radius={compassRadius} selected={visualSelected} quiet={locked} /> : null}
-                  <QuizCardBackgroundImageWithFallback
-                    source={cardBackground}
-                    accent={accent}
-                    opacity={locked ? 0.16 : themeMode === 'minimalLight' ? 0.86 : 0.92}
-                    locked={locked}
-                    themeMode={themeMode}
-                  />
-                  <QuizCardTextScrim themeMode={themeMode} />
-                  <View style={{ flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: 116, zIndex: 2 }}>
-                    <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom:4 }}>
-                      <View style={{
-                        backgroundColor: `${accent}25`, borderRadius: 6,
-                        paddingHorizontal: 7, paddingVertical: 2,
-                        borderWidth: 1, borderColor: `${accent}50`,
-                      }}>
-                        <Text style={{ color: accent, fontSize: f.label, fontWeight:'800', letterSpacing:0.8 }}>
-                          {c.sub}
-                        </Text>
-                      </View>
-                      {locked && (
-                        <View style={{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor: t.accentBg, borderRadius:6, paddingHorizontal:7, paddingVertical:2 }}>
-                          <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
-                          <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
-                            {lockedByDailyLimit
-                              ? triLang(lang, {
-  ru: 'Лимит',
-  uk: 'Ліміт',
-  es: 'Límite',
-  "pt-BR": 'Limite',
-  vi: 'Giới hạn',
-  id: 'Batas',
-  tr: 'Limit',
-  pl: 'Limit',
-})
-                              : 'Premium'}
-                          </Text>
-                        </View>
-                      )}
-                    </View>
-                    <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
-                      <Text style={[quizCardTextShadow, { color: textCol, fontSize: f.h1, fontWeight:'900' }]}>{lbl}</Text>
-                      <Text style={[quizCardTextShadow, { color: textCol2, fontSize: f.sub, flexWrap:'wrap' }]}>{tag}</Text>
-                    </View>
-                  </View>
-
-                  {/* Иконка справа */}
-                  <Animated.View
-                    pointerEvents="none"
-                    style={{
-                      position: 'absolute',
-                      right: 8,
-                      top: 0,
-                      bottom: 0,
-                      width: 104,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      zIndex: 3,
-                      transform: [{ scale: locked ? 1 : pulseAnims[lv] }],
-                    }}
-                  >
-                    <QuizCardLogoImageWithFallback
-                      source={levelLogo}
-                      fallbackName={QUIZ_LEVEL_FALLBACK_ICONS[lv]}
-                      accent={accent}
-                      locked={locked}
-                    />
-                  </Animated.View>
-                </LinearGradient>
-              </TapScale>
-
-              {/* ── Кнопка «Начать» прямо на карточке ── */}
-              {visualSelected && (() => {
-                const fillTx = fillAnims[lv].interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [-startTrackW, 0],
-                });
-                return (
-                  <TapScale
-                    testID={`quiz-level-start-${lv}`}
-                    accessibilityLabel={`qa-quiz-level-start-${lv}`}
-                    onPress={() => { handleStart(lv); }}
-                    disabled={startLoading}
-                    scaleTo={0.96}
-                    withHaptic={false}
-                    style={{
-                      height: 46,
-                      opacity: startLoading ? 0.6 : 1,
-                      backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
-                      borderWidth: 2,
-                      borderTopWidth: 0,
-                      borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : accent,
-                      borderBottomLeftRadius: isCompassTheme ? compassRadius : 20,
-                      borderBottomRightRadius: isCompassTheme ? compassRadius : 20,
-                      overflow: 'hidden',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    {isCompassTheme ? <CompassDepthSurface radius={compassRadius} selected /> : null}
-                    <Animated.View
-                      pointerEvents="none"
-                      style={{
-                        position: 'absolute', left: 0, right: 0, top: 0, bottom: 0,
-                        backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : accent,
-                        transform: [{ translateX: fillTx }],
-                      }}
-                    />
-                    {/* Text */}
-                    <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
-                      {triLang(lang, {
-  ru: 'Начать вызов',
-  uk: 'Почати квіз',
-  es: 'Empezar cuestionario',
-  "pt-BR": 'Começar quiz',
-  vi: 'Bắt đầu quiz',
-  id: 'Mulai kuis',
-  tr: 'Quize başla',
-  pl: 'Rozpocznij quiz',
-})} · {lbl}
-                    </Text>
-                  </TapScale>
-                );
-              })()}
-            </View>
-          );
-        })}
-        {thematicCategories.map(category => {
-          const thematicLockedByDailyLimit = !DEV_MODE && !isPremium && freeQuizState.exhausted;
-          return (
-            <ThematicQuizLevelCard
-              key={category.id}
-              category={category}
+        <View style={{ gap: 10 }}>
+          <Text style={{ color: sectionLabelColor, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
+            {triLang(lang, { ru: 'Уровни', uk: 'Рівні', es: 'Niveles', "pt-BR": 'Níveis', vi: 'Cấp độ', id: 'Level', tr: 'Seviyeler', pl: 'Poziomy' })}
+          </Text>
+          {(Object.keys(LEVEL_CONFIG) as Level[]).map(level => (
+            <BaseQuizLevelCard
+              key={level}
+              level={level}
               lang={lang}
               themeMode={themeMode}
               t={t}
               f={f}
-              isSelected={selected === category.id}
-              locked={thematicLockedByDailyLimit}
+              isSelected={selected === level}
+              locked={lockedByDailyLimit}
               lockedLabel={quizLimitLabel}
               startTrackW={startTrackW}
               onPick={() => {
                 releaseStartInFlight();
-                setSelected(category.id);
+                setSelected(level);
               }}
               onLockedPress={openQuizLimitPaywall}
-              onStart={handleStartThematic}
+              onStart={handleStartLevel}
             />
-          );
-        })}
+          ))}
+        </View>
+
+        <View style={{ gap: 10 }}>
+          <Text style={{ color: sectionLabelColor, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
+            {triLang(lang, { ru: 'Темы', uk: 'Теми', es: 'Temas', "pt-BR": 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Konular', pl: 'Tematy' })}
+          </Text>
+          {thematicCategories.map(category => {
+            return (
+              <ThematicQuizLevelCard
+                key={category.id}
+                category={category}
+                lang={lang}
+                themeMode={themeMode}
+                t={t}
+                f={f}
+                isSelected={selected === category.id}
+                locked={lockedByDailyLimit}
+                lockedLabel={quizLimitLabel}
+                startTrackW={startTrackW}
+                onPick={() => {
+                  releaseStartInFlight();
+                  setSelected(category.id);
+                }}
+                onLockedPress={openQuizLimitPaywall}
+                onStart={handleStartThematic}
+              />
+            );
+          })}
+        </View>
+
         {!DEV_MODE && !isPremium && (
           <View style={{
-            marginTop: 8,
-            borderRadius: 14,
+            marginTop: 2,
+            borderRadius: 16,
             borderWidth: 1,
             borderColor: freeQuizState.exhausted ? t.border : t.accent + '66',
             backgroundColor: freeQuizState.exhausted ? t.bgCard : t.accentBg,
@@ -1306,20 +1144,21 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             />
             <Text style={{ color: freeQuizState.exhausted ? t.textMuted : t.textSecond, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
               {triLang(lang, {
-  ru: `Осталось вызовов сегодня: ${freeQuizState.left} из ${freeQuizState.limit}`,
-  uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
-  es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
-  "pt-BR": `Quizzes grátis hoje: ${freeQuizState.left}/${freeQuizState.limit}`,
-  vi: `Quiz miễn phí hôm nay: ${freeQuizState.left}/${freeQuizState.limit}`,
-  id: `Kuis gratis hari ini: ${freeQuizState.left}/${freeQuizState.limit}`,
-  tr: `Bugünkü ücretsiz quizler: ${freeQuizState.left}/${freeQuizState.limit}`,
-  pl: `Darmowe quizy dzisiaj: ${freeQuizState.left}/${freeQuizState.limit}`,
-})}
+                ru: `Осталось вызовов сегодня: ${freeQuizState.left} из ${freeQuizState.limit}`,
+                uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
+                es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
+                "pt-BR": `Quizzes grátis hoje: ${freeQuizState.left}/${freeQuizState.limit}`,
+                vi: `Quiz miễn phí hôm nay: ${freeQuizState.left}/${freeQuizState.limit}`,
+                id: `Kuis gratis hari ini: ${freeQuizState.left}/${freeQuizState.limit}`,
+                tr: `Bugünkü ücretsiz quizler: ${freeQuizState.left}/${freeQuizState.limit}`,
+                pl: `Darmowe quizy dzisiaj: ${freeQuizState.left}/${freeQuizState.limit}`,
+              })}
             </Text>
           </View>
         )}
       </ScrollView>
       </BouncyWrap>
+      </Reanimated.View>
       </ContentWrap>
 
       <NoEnergyModal
@@ -1356,8 +1195,9 @@ function QuizGame({
   planDayIndex?: number;
 }) {
   const effectiveOs = useEffectivePlatformOS();
-  const { theme:t , f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const { theme:t , f, themeMode: rawThemeMode } = useTheme();
+  const themeMode = rawThemeMode as QuizVisualThemeMode;
+  const isCompassTheme = false;
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
 
@@ -1366,7 +1206,7 @@ function QuizGame({
   const { hasPremiumAccess: isPremium } = usePremium();
   const insets = useSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
-  const isLightTheme = false;
+  const isLightTheme = themeMode === 'light';
   /** Текст на тёмном градиенте (океан/сакура): не t.text* — они для светлых карточек */
   const quizGradTxt = THEME_TEXT[themeMode];
   const onGradPrimary = isLightTheme ? quizGradTxt.primary : t.textPrimary;
@@ -1983,7 +1823,6 @@ function QuizGame({
             style={{ width: 118, height: 118, marginBottom: 10 }}
           />
           <View style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${rankInfo.color}22`, borderRadius: isCompassTheme ? 9 : 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : `${rankInfo.color}55`, marginBottom:16, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}>
-            {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
           </View>
           <Text style={{ color:t.textPrimary, fontSize: f.numLg, fontWeight:'700', marginBottom:10 }} adjustsFontSizeToFit numberOfLines={1}>{s.quizzes.done}</Text>
@@ -2010,7 +1849,6 @@ function QuizGame({
             const { level: lv, xpNeeded } = getXPProgress(totalXP + score);
             return (
               <View style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderRadius: isCompassTheme ? 9 : 14, borderWidth:0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, padding:14, width:'100%', flexDirection:'row', alignItems:'center', gap:12, marginBottom:28, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}>
-                {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
                 <LevelBadge level={lv} size={40} />
                 <View style={{ flex:1 }}>
                   <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>
@@ -2048,7 +1886,6 @@ function QuizGame({
                   setReviewQ(wrongPhrases); setRIdx(0); setReviewing(true); setDone(false);
                 }}
               >
-                {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
                 <Text style={{ color: isCompassTheme ? COMPASS_RICH.peach : '#F87171', fontSize: f.bodyLg, fontWeight:'600' }}>
                   {triLang(lang, {
   ru: `🔄 Исправить ошибки (${wrongPhrases.length})`,
@@ -2094,7 +1931,6 @@ function QuizGame({
               setRetryCount(c => c + 1); // принудительно перезагружает вопросы
             }}
           >
-            {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : levelAccent, fontSize: f.bodyLg, fontWeight:'600' }}>{s.quizzes.again}</Text>
           </TouchableOpacity>
           <TapScale onPress={() => { hapticTap(); onBack(); }} withHaptic={false} style={{ padding:14 }}>
@@ -2331,7 +2167,6 @@ function QuizGame({
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
               <Text style={{ color: levelAccent, fontSize: f.label, fontWeight: '900', marginBottom: planQuizId ? 3 : 5 }}>
                 {planQuizTaskCopy.title}
               </Text>
@@ -2377,7 +2212,6 @@ function QuizGame({
               borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
               overflow: isCompassTheme ? 'hidden' : 'visible',
             }, isCompassTheme && compassShadow(1)]}>
-              {isCompassTheme ? <CompassDepthSurface radius={9} selected={isRight===true||typedOk===true} quiet={!(isRight===true||typedOk===true)} /> : null}
               {(isRight === false || typedOk === false) && (
                 <Text style={{ color: t.correct, fontSize: f.label, fontWeight: '700', marginBottom: 4, letterSpacing: 0.3 }}>
                   {triLang(lang, {
@@ -2403,10 +2237,6 @@ function QuizGame({
                 <View onStartShouldSetResponder={() => true}>
                   <AddToFlashcard en={shownCorrectEnglish} ru={current.ru} uk={current.uk} es={current.es} source="lesson" sourceId="quiz" studyTarget={studyTarget} />
                 </View>
-              </View>
-              {/* [SPEAKING] Произнести правильный ответ вслух (premium) */}
-              <View onStartShouldSetResponder={() => true} style={{ marginTop: 12 }}>
-                <SpeakingButton targetText={shownCorrectEnglish} lang={lang} variant="pill" />
               </View>
               {(isRight === false || typedOk === false) && displayAnswer && (
                 <>
@@ -2474,7 +2304,6 @@ function QuizGame({
                 borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }}>
-                {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
                 <Text style={{ color: correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
                   {triLang(lang, {
   ru: 'РАЗБОР',
@@ -2516,7 +2345,6 @@ function QuizGame({
                 overflow: isCompassTheme ? 'hidden' : 'visible',
               }, isCompassTheme && compassShadow(1)]}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
                 {triLang(lang, {
   ru: 'Далее',
@@ -2559,7 +2387,6 @@ function QuizGame({
                   style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : t.bgSurface, borderRadius: isCompassTheme ? 9 : 14, padding:18, alignItems:'center', borderWidth:0.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.border, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
                   onPress={() => { hapticTap(); handleTyped(); }} activeOpacity={0.8}
                 >
-                  {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
                   <Text style={{ color:t.textPrimary, fontSize: f.bodyLg, fontWeight:'600' }}>
                     {triLang(lang, {
   ru: 'Проверить',

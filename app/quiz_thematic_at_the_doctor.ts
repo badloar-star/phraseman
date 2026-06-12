@@ -40,11 +40,6 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
         "iconPrompt": "DALL-E prompt: At the Doctor compact topic icon for Phraseman dark visual family, silver stethoscope around a small dark clipboard, polished mobile game icon, graphite black palette with cool blue edge light, isolated readable object, no text, no letters, no numbers, no unsafe medical imagery."
       },
       {
-        "family": "neon",
-        "plaquePrompt": "DALL-E prompt: At the Doctor topic plaque for Phraseman neon visual family, friendly health-learning objects, stethoscope, prescription paper, calendar check, black background with lime neon edge light, premium glossy mobile game plaque, space for app text overlay, no text, no letters, no numbers, no blood or treatment claim.",
-        "iconPrompt": "DALL-E prompt: At the Doctor compact topic icon for Phraseman neon visual family, glowing lime stethoscope and small medical clipboard, glossy bevels, black and neon green palette, readable at 64 px, isolated object, no text, no letters, no numbers."
-      },
-      {
         "family": "neonGreen",
         "plaquePrompt": "DALL-E prompt: At the Doctor topic plaque for Phraseman neonGreen visual family, friendly health-learning objects, stethoscope, prescription paper, calendar check, deep black surface with vivid green neon glow, premium glossy mobile game plaque, room for app text overlay, no text, no letters, no numbers, no blood or treatment claim.",
         "iconPrompt": "DALL-E prompt: At the Doctor compact topic icon for Phraseman neonGreen visual family, vivid green stethoscope and small clinic clipboard, glossy bevels, black enamel base, readable at 64 px, isolated object, no text, no letters, no numbers."
@@ -58,11 +53,6 @@ export const AT_THE_DOCTOR_SKYLER_PACK: SkylerThematicPack = {
         "family": "coral",
         "plaquePrompt": "DALL-E prompt: At the Doctor topic plaque for Phraseman coral visual family, warm coral and navy learning-health objects, soft stethoscope, bandage, appointment card, glossy rounded mobile game plaque, coral rim light, room for app-rendered text, no text, no letters, no numbers, no graphic injury.",
         "iconPrompt": "DALL-E prompt: At the Doctor compact topic icon for Phraseman coral visual family, coral stethoscope and small bandage over navy enamel base, polished bevels, centered readable mobile icon, no text, no letters, no numbers, no blood."
-      },
-      {
-        "family": "minimalLight",
-        "plaquePrompt": "DALL-E prompt: At the Doctor topic plaque for Phraseman minimal-light visual family, cream sketch-like premium plaque, graphite pencil clinic objects, appointment card, stethoscope, warm beige surface, clean understated bevels, room for app text overlay, no text, no letters, no numbers.",
-        "iconPrompt": "DALL-E prompt: At the Doctor compact topic icon for Phraseman minimal-light visual family, graphite and cream stethoscope with small appointment clipboard, refined sketch-polished mobile icon, soft shadows, centered glyph, no text, no letters, no numbers."
       },
       {
         "family": "minimalDark",

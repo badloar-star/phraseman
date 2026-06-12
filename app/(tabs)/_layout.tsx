@@ -1,6 +1,6 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, StatusBar, Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BlurView } from 'expo-blur';
@@ -114,6 +114,10 @@ function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
 
 /** Доп. зазор между плавающей капсулой и зоной системных жестов снизу. */
 const FLOATING_PILL_BOTTOM_GAP = 6;
+const ENABLE_TAB_HIGHLIGHT_TRAVEL = true;
+const ENABLE_TAB_PRESS_LIFT = true;
+const TAB_ACTIVE_PILL_WIDTH = 48;
+const TAB_ACTIVE_PILL_HEIGHT = 36;
 
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
@@ -190,11 +194,78 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const insets = useSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
-  const isMinimal = themeMode === 'minimalLight' || themeMode === 'minimalDark';
+  const isMinimal = false || themeMode === 'minimalDark';
   /** Тон-подложка плавающей капсулы поверх blur: на тёмных темах — затемнение, на светлых — осветление.
    *  Берём bgCard и подмешиваем альфу, чтобы стекло читалось, но контент за ним просвечивал. */
-  const tabPillTintBg = withAlpha(t.bgCard, statusBarLight ? 0.55 : 0.72);
+  const tabPillTintBg = withAlpha(t.bgCard, 0.10);
+  const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
+  const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
+  const [tabPillWidth, setTabPillWidth] = useState(0);
+  const tabHighlightAnim = useRef(new Animated.Value(activeIdx)).current;
+  const tabPressAnim = useRef(new Animated.Value(0)).current;
+  const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   const firstContentReadyEmittedRef = useRef(false);
+  // Press feedback must not drive selection; otherwise release can restart the highlight spring.
+  const visualTabIdx = activeIdx;
+
+  useEffect(() => {
+    if (!ENABLE_TAB_HIGHLIGHT_TRAVEL) {
+      tabHighlightAnim.setValue(visualTabIdx);
+      return;
+    }
+    Animated.spring(tabHighlightAnim, {
+      toValue: visualTabIdx,
+      speed: 18,
+      bounciness: 4,
+      useNativeDriver: true,
+    }).start();
+  }, [tabHighlightAnim, visualTabIdx]);
+
+  const endTabPress = useCallback(() => {
+    if (!ENABLE_TAB_PRESS_LIFT) {
+      setPressedTabIdx(null);
+      return;
+    }
+    tabPressAnim.stopAnimation();
+    Animated.spring(tabPressAnim, {
+      toValue: 0,
+      speed: 28,
+      bounciness: 4,
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished) {
+        setPressedTabIdx(null);
+      }
+    });
+  }, [tabPressAnim]);
+
+  const beginTabPress = useCallback((idx: number) => {
+    setPressedTabIdx(idx);
+    hapticTap();
+    if (!ENABLE_TAB_PRESS_LIFT) return;
+    tabPressAnim.stopAnimation();
+    Animated.spring(tabPressAnim, {
+      toValue: 1,
+      speed: 34,
+      bounciness: 6,
+      useNativeDriver: true,
+    }).start();
+  }, [tabPressAnim]);
+
+  const tabPillPressScale = tabPressAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 0.992],
+  });
+
+  const tabActivePillPressScale = tabPressAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 1.1],
+  });
+
+  const tabActivePillPressOpacity = tabPressAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 0.92],
+  });
 
   const notifyFirstContentReady = useCallback(() => {
     if (!currentRouteIsTab || activeIdx === 0 || firstContentReadyEmittedRef.current) return;
@@ -222,7 +293,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
         style={{ flex: 1, paddingTop: insets.top }}
       >
         <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
-          {/* flex-колонка вместо absolute: таб-бар всегда снизу в дереве, его не перекрывает ScrollView/elevation */}
           <View style={s.tabContent}>
             <GestureHandlerRootView style={{ flex: 1 }}>
               <TabSlider activeIndex={activeIdx} onTabChange={goToTab} onSwipeStart={onSwipeStart} onSwipeComplete={onSwipeComplete} swipeEnabled={true}>
@@ -230,37 +300,74 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
               </TabSlider>
             </GestureHandlerRootView>
           </View>
-          {/* Плавающая «капсула» (Instagram/Telegram): отрывается от краёв, парит над контентом,
-              полупрозрачный blur-фон. Обёртка по-прежнему резервирует ту же высоту в потоке,
-              поэтому padding контента и use-global-bottom-overlay-offset не меняются. */}
+          {/* Плавающая капсула поверх контента: нижняя safe-area тоже блюрится, без отдельной полосы. */}
           <View
-            style={[s.tabBarWrap, { height: tabBarHeight + PB }]}
+            style={[s.tabBarWrap, { height: tabOverlayHeight }]}
             pointerEvents="box-none"
           >
-            <View
+            <Animated.View
+              onLayout={(event) => setTabPillWidth(event.nativeEvent.layout.width)}
               style={[
                 s.tabPill,
                 {
-                  bottom: Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP,
+                  bottom: tabPillBottom,
                   marginHorizontal: ds.spacing.lg,
                   height: tabBarHeight,
                   borderRadius: tabBarHeight / 2,
-                  borderColor: t.borderHighlight,
                   shadowColor: t.shadowDark,
+                  transform: [{ scale: tabPillPressScale }],
                 },
               ]}
             >
               <BlurView
-                intensity={isMinimal ? 40 : 60}
+                intensity={isMinimal ? 96 : 100}
+                tint={statusBarLight ? 'dark' : 'light'}
+                style={s.tabPillFill}
+              />
+              <BlurView
+                pointerEvents="none"
+                intensity={100}
+                tint={statusBarLight ? 'dark' : 'light'}
+                style={s.tabPillFill}
+              />
+              <BlurView
+                pointerEvents="none"
+                intensity={100}
                 tint={statusBarLight ? 'dark' : 'light'}
                 style={s.tabPillFill}
               />
               {/* Полупрозрачная подложка-тон поверх blur — стабильный вид на Android, где blur слабее. */}
               <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: tabPillTintBg }]} />
 
+              {ENABLE_TAB_HIGHLIGHT_TRAVEL && tabPillWidth > 0 && (
+                <Animated.View
+                  pointerEvents="none"
+                  style={[
+                    s.tabActivePill,
+                    {
+                      top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
+                      left: (tabPillWidth / TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
+                      backgroundColor: t.accentBg,
+                      borderColor: t.borderHighlight,
+                      opacity: tabActivePillPressOpacity,
+                      transform: [{
+                        translateX: tabHighlightAnim.interpolate({
+                          inputRange: TABS.map((_, i) => i),
+                          outputRange: TABS.map((_, i) => i * (tabPillWidth / TABS.length)),
+                          extrapolate: 'clamp',
+                        }),
+                      }, { scale: tabActivePillPressScale }],
+                    },
+                  ]}
+                />
+              )}
+
               {TABS.map((tab, i) => {
-                const focused = activeIdx === i;
-                const color = focused ? t.accent : t.textMuted;
+                const visuallyFocused = visualTabIdx === i;
+                const color = visuallyFocused ? t.accent : t.textMuted;
+                const iconScale = pressedTabIdx === i
+                  ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
+                  : 1;
                 return (
                   <TouchableOpacity
                     key={tab.key}
@@ -268,12 +375,13 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                     accessibilityLabel={`qa-tab-${tab.key}`}
                     accessible={true}
                     style={s.tabBtn}
-                    onPressIn={() => { hapticTap(); }}
+                    onPressIn={() => beginTabPress(i)}
+                    onPressOut={endTabPress}
                     onPress={() => { goToTab(i); }}
-                    activeOpacity={0.7}
+                    activeOpacity={1}
                   >
                     {/* Подсветка активного таба — мягкая «пилюля» под иконкой (как в Instagram). */}
-                    {focused && (
+                    {!ENABLE_TAB_HIGHLIGHT_TRAVEL && visuallyFocused && (
                       <View
                         style={[
                           s.tabActivePill,
@@ -281,15 +389,17 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                         ]}
                       />
                     )}
-                    <Ionicons
-                      name={focused ? tab.active : tab.icon}
-                      size={26}
-                      color={color}
-                    />
+                    <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+                      <Ionicons
+                        name={visuallyFocused ? tab.active : tab.icon}
+                        size={26}
+                        color={color}
+                      />
+                    </Animated.View>
                   </TouchableOpacity>
                 );
               })}
-            </View>
+            </Animated.View>
           </View>
         </View>
       </View>
@@ -441,9 +551,17 @@ const s = StyleSheet.create({
   },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },
-  /** Обёртка резервирует высоту бара в потоке (контент над ней не меняется); сама прозрачна,
-   *  капсула внутри позиционируется absolute снизу. box-none — тапы проходят мимо пустых зон. */
-  tabBarWrap: { width: '100%', flexShrink: 0, zIndex: 1, elevation: 8, position: 'relative', backgroundColor: 'transparent' },
+  /** Нижний overlay не резервирует место: контент уходит под него и блюрится всей safe-area зоной. */
+  tabBarWrap: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 20,
+    elevation: 20,
+    overflow: 'hidden',
+    backgroundColor: 'transparent',
+  },
   /** Плавающая капсула: отрывается от низа и краёв, полностью скруглена, со своим blur-фоном. */
   tabPill: {
     position: 'absolute',
@@ -452,7 +570,7 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 0,
     // Объёмная тень, чтобы капсула «парила» над контентом.
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.28,
@@ -464,9 +582,9 @@ const s = StyleSheet.create({
   /** Подсветка активного таба внутри капсулы — мягкая пилюля под иконкой. */
   tabActivePill: {
     position: 'absolute',
-    width: 48,
-    height: 36,
-    borderRadius: 18,
+    width: TAB_ACTIVE_PILL_WIDTH,
+    height: TAB_ACTIVE_PILL_HEIGHT,
+    borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
     borderWidth: StyleSheet.hairlineWidth,
   },
 

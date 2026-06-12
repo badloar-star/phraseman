@@ -160,7 +160,7 @@ const COMPASS_PALETTE: UpdateModalPalette = {
 };
 
 const getUpdateModalPalette = (themeMode: ThemeMode): UpdateModalPalette =>
-  themeMode === 'gold' ? GOLD_PALETTE : themeMode === 'compass' ? COMPASS_PALETTE : DEFAULT_PALETTE;
+  themeMode === 'gold' ? GOLD_PALETTE : false ? COMPASS_PALETTE : DEFAULT_PALETTE;
 
 function UpdateModalBackground({ palette }: { palette: UpdateModalPalette }) {
   return (

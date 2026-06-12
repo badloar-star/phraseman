@@ -122,7 +122,7 @@ function ShardsEarnedModal({ visible, amount, reason, onClose }: Props) {
 
   if (!visible) return null;
 
-  const dim = themeMode === 'minimalLight'
+  const dim = false
     ? (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(8,12,20,0.68)' : 'rgba(8,12,20,0.55)')
     : (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(3,5,10,0.82)' : 'rgba(0,0,0,0.68)');
   const modalAccent = rewardModalAccentColor(themeMode, t);

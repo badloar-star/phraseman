@@ -28,12 +28,14 @@ export type RemoteNumberKey =
   | 'trainer_ab_a_pct'
   | 'trainer_ab_b_pct'
   | 'trainer_ab_c_pct'
-  | 'paywall_v2_pct';
+  | 'paywall_v2_pct'
+  | 'league_xp_promotion_threshold';
 
 export type RemoteBoolKey =
   | 'referral_enabled'
   | 'speaking_enabled'
-  | 'collectibles_enabled';
+  | 'collectibles_enabled'
+  | 'league_xp_promotion_enabled';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -55,6 +57,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   trainer_ab_b_pct: 100,
   trainer_ab_c_pct: 0,
   paywall_v2_pct: 50,
+  league_xp_promotion_threshold: 1000,
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
@@ -64,6 +67,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // админка может экстренно выключить). Урок referral_enabled=false: фича,
   // спрятанная за выключенным флагом, «не работает» для всех.
   collectibles_enabled: true,
+  league_xp_promotion_enabled: false,
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -80,6 +84,7 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   trainer_ab_b_pct: { min: 0, max: 100 },
   trainer_ab_c_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },
+  league_xp_promotion_threshold: { min: 1, max: 1000000 },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
@@ -178,9 +183,11 @@ export const getMaxEnergy = () => getRemoteNumber('max_energy');
 export const getEnergyRecoveryIntervalMs = () => getRemoteNumber('energy_recovery_interval_ms');
 export const getFreeTrainerSessionsPerDay = () => getRemoteNumber('free_trainer_sessions_per_day');
 export const getPaywallV2Pct = () => getRemoteNumber('paywall_v2_pct');
+export const getLeagueXpPromotionThreshold = () => getRemoteNumber('league_xp_promotion_threshold');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
+export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 
 /**
  * Deterministic A/B group for a user (stable across launches unless the split

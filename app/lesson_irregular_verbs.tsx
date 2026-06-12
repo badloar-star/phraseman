@@ -734,7 +734,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
 
   return (
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
-      <ScrollView
+      <Animated.ScrollView
         horizontal
         decelerationRate="normal"
         nestedScrollEnabled
@@ -796,7 +796,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
             );
           })}
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
 
       {/* Кастомный индикатор горизонтального скролла */}
       {canScroll && (

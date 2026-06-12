@@ -92,6 +92,15 @@ function label(lang: InviteShareLang, copy: Record<InviteShareLang, string>): st
   return copy[lang];
 }
 
+function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string): ReferralInviteShare {
+  const body = pickBody(lang);
+  const line1 = label(lang, { ru: 'Открой приглашение: ', uk: 'Відкрий запрошення: ', es: 'Abre la invitación: ', 'pt-BR': 'Abra o convite: ', vi: 'Mở lời mời: ', id: 'Buka undangan: ', tr: 'Davet bağlantısını aç: ', pl: 'Otwórz zaproszenie: ' }) + inviteHttps;
+  return {
+    message: `${body}\n\n${line1}`,
+    url: inviteHttps,
+  };
+}
+
 /** Android: primary web invite for installed users, Play URL only for installation. */
 function buildAndroidInviteShare(
   lang: InviteShareLang,
@@ -138,6 +147,7 @@ export async function buildCloudReferralInviteShare(params: {
   if (!refCode) return null;
   const { https: inviteHttps, app: appDeepLink } = buildReferralShareLinks(refCode);
   const { lang } = params;
+  return buildReferralInviteShare(lang, inviteHttps);
 
   if (Platform.OS === 'android') {
     return buildAndroidInviteShare(lang, inviteHttps, appDeepLink, refCode);

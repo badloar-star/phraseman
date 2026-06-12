@@ -34,7 +34,7 @@ function alpha(hex: string, value: string): string {
 }
 
 export function getLingmanYoutubeChrome(theme: ThemeSlice, isDark: boolean, themeMode: ThemeMode): LingmanYoutubeChrome {
-  if (themeMode === 'compass') {
+  if (false) {
     return {
       accent: '#F2C48D',
       accentSoft: 'rgba(242,196,141,0.14)',
@@ -54,7 +54,7 @@ export function getLingmanYoutubeChrome(theme: ThemeSlice, isDark: boolean, them
 
   const accent = themeMode === 'gold'
     ? theme.gold ?? theme.accent
-    : themeMode === 'minimalLight'
+    : false
       ? theme.textSecond
       : theme.accent;
 

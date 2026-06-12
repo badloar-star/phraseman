@@ -4,10 +4,12 @@ import {
   getRemoteBool,
   getFreeLessonLimit,
   getPaywallV2Pct,
+  getLeagueXpPromotionThreshold,
   getTrainerAbGroup,
   getPaywallVariant,
   getRemoteConfigSignature,
   isReferralEnabled,
+  isLeagueXpPromotionEnabled,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -23,8 +25,10 @@ describe('remote_flags', () => {
       expect(getRemoteNumber('arena_daily_max')).toBe(5);
       expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getPaywallV2Pct()).toBe(50);
+      expect(getLeagueXpPromotionThreshold()).toBe(1000);
       expect(isReferralEnabled()).toBe(false);
       expect(getRemoteBool('speaking_enabled')).toBe(true);
+      expect(isLeagueXpPromotionEnabled()).toBe(false);
     });
   });
 
@@ -38,15 +42,17 @@ describe('remote_flags', () => {
     });
 
     it('applies boolean overrides', () => {
-      applyRemoteConfigSnapshot({ bools: { referral_enabled: true } });
+      applyRemoteConfigSnapshot({ bools: { referral_enabled: true, league_xp_promotion_enabled: true } });
       expect(isReferralEnabled()).toBe(true);
+      expect(isLeagueXpPromotionEnabled()).toBe(true);
     });
 
     it('clamps out-of-range values to bounds', () => {
-      applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 999, max_energy: 0, paywall_v2_pct: 250 } });
+      applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 999, max_energy: 0, paywall_v2_pct: 250, league_xp_promotion_threshold: 0 } });
       expect(getFreeLessonLimit()).toBe(32); // max bound
       expect(getRemoteNumber('max_energy')).toBe(1); // min bound
       expect(getPaywallV2Pct()).toBe(100); // max bound
+      expect(getLeagueXpPromotionThreshold()).toBe(1);
     });
 
     it('ignores wrong-typed values (keeps default)', () => {

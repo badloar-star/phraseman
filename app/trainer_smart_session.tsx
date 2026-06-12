@@ -495,7 +495,7 @@ export default function TrainerSmartSession() {
   }>();
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
-  const isCompassTheme = themeMode === 'compass';
+  const isCompassTheme = false;
   const { lang } = useLang();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 

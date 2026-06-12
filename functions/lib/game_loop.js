@@ -48,17 +48,23 @@ const BASE_MATCH_QUESTIONS = 10;
 /** Максимум додаткових питань при рівному рахунку (1v1). */
 const MAX_TIEBREAK_EXTRA_QUESTIONS = 25;
 // Триггер: когда session_player обновляет answers — проверяем можно ли двигаться
+/** Запас поверх questionTimeoutMs перед немедленным форсом таймаута (см. ниже). */
+const ANSWER_TIMEOUT_GRACE_MS = 20 * 1000;
 async function onPlayerAnswered(sessionId, questionId) {
     const sessionRef = db.collection('arena_sessions').doc(sessionId);
-    await db.runTransaction(async (tx) => {
+    // Результат транзакции: продвинулись ли в reveal, и (если нет) не пора ли уже
+    // форсировать таймаут вопроса — игрок ответил, но соперник молчит дольше лимита
+    // (типичный кейс: соперник закрыл приложение). currentQuestionIndex нужен для
+    // onQuestionTimeout.
+    const outcome = await db.runTransaction(async (tx) => {
         const sessionSnap = await tx.get(sessionRef);
         if (!sessionSnap.exists)
-            return;
+            return { advanced: false, forceTimeoutAt: null };
         const session = sessionSnap.data();
         if (session.state !== 'question')
-            return;
+            return { advanced: false, forceTimeoutAt: null };
         if (session.questions[session.currentQuestionIndex] !== questionId)
-            return;
+            return { advanced: false, forceTimeoutAt: null };
         const allPlayerIds = session.playerIds;
         const playerSnaps = await Promise.all(allPlayerIds.map(pid => tx.get(db.collection('session_players').doc(`${sessionId}_${pid}`))));
         const players = playerSnaps
@@ -70,14 +76,31 @@ async function onPlayerAnswered(sessionId, questionId) {
         // ошибочный draw/неизменение звёзд в финализации.
         const allAnswered = players.every((p) => p.answers
             .some((a) => a.questionId === questionId && a.serverScored === true));
-        if (!allAnswered)
-            return;
+        if (!allAnswered) {
+            // Не все ответили. Если время вопроса уже истекло (с запасом) — сигналим
+            // наружу форсировать таймаут немедленно, не дожидаясь watchdog-крона (до 5 мин).
+            const startedAt = typeof session.questionStartedAt === 'number' ? session.questionStartedAt : 0;
+            const timeoutMs = typeof session.questionTimeoutMs === 'number' && session.questionTimeoutMs > 0
+                ? session.questionTimeoutMs
+                : 40000;
+            const expired = startedAt > 0 && Date.now() - startedAt > timeoutMs + ANSWER_TIMEOUT_GRACE_MS;
+            return { advanced: false, forceTimeoutAt: expired ? session.currentQuestionIndex : null };
+        }
         // Все ответили → переходим в reveal
         tx.update(sessionRef, { state: 'reveal' });
+        return { advanced: true, forceTimeoutAt: null };
     });
-    // После reveal — переходим к следующему вопросу или финишу
-    await new Promise((r) => setTimeout(r, REVEAL_DURATION_MS));
-    await advanceSession(sessionId);
+    if (outcome.advanced) {
+        // После reveal — переходим к следующему вопросу или финишу
+        await new Promise((r) => setTimeout(r, REVEAL_DURATION_MS));
+        await advanceSession(sessionId);
+        return;
+    }
+    // Соперник молчит дольше лимита — форсируем таймаут вопроса прямо сейчас
+    // (расставит null-ответы не ответившим и продвинет сессию). Идемпотентно.
+    if (outcome.forceTimeoutAt !== null) {
+        await onQuestionTimeout(sessionId, outcome.forceTimeoutAt);
+    }
 }
 async function advanceSession(sessionId) {
     const sessionRef = db.collection('arena_sessions').doc(sessionId);

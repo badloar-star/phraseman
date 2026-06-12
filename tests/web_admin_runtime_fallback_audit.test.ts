@@ -61,6 +61,16 @@ describe('web and admin runtime locale fallback audit', () => {
     expect(unexpectedSignOut).toBeGreaterThan(forcedTokenRefresh);
   });
 
+  it('keeps the public referral invite page install-first for new users', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'knowly-www/phraseman/invite/index.html'), 'utf8');
+
+    expect(source).not.toContain('phraseman://invite');
+    expect(source).not.toContain('window.location.href = appUrl');
+    expect(source).not.toContain('id="openApp"');
+    expect(source).toContain('referrer=');
+    expect(source).toContain('installGooglePlay');
+  });
+
   it('does not label Firebase-authenticated users as anonymous when provider metadata is missing', () => {
     const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
 

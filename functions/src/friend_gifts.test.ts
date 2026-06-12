@@ -208,3 +208,5 @@ test('friendClaimQuestReward grants both users once when both reached the XP tar
     rewardClaimedByUid: { sender: true, recipient: true },
   });
 });
+
+export {};

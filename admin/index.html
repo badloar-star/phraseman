@@ -13160,7 +13160,7 @@
     // Заполняем фильтр версий
     const versSet = [...new Set(users.map(u=>u.appVersion||'—'))].sort().reverse();
     const verSel = document.getElementById('f-version');
-    verSel.innerHTML = '<option value="">Все версии</option>' + versSet.map(v=>`<option value="${v}">${v}</option>`).join('');
+    verSel.innerHTML = '<option value="">Все версии</option>' + versSet.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
   }
 
   window.setSort = function(f) {
@@ -20670,7 +20670,7 @@
       _archiveFiltered = _archiveAll;
       filterArchive();
     } catch(e) {
-      list.innerHTML = `<div class="reports-empty">❌ ${e.message}</div>`;
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
     }
   };
 

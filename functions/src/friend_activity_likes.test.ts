@@ -93,6 +93,7 @@ function seedUsersAndEvent() {
     progress: { user_name: 'Sender Progress' },
   });
   docs.set('users/target', { displayName: 'Target' });
+  docs.set('users/target/friends/sender', { createdAt: Date.now() - 2000 });
   docs.set('users/target/my_events/event-1', {
     uid: 'target',
     type: 'level_up',
@@ -272,6 +273,17 @@ describe('friendLikeActivity', () => {
     expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
   });
 
+  test('rejects likes when the sender is not a friend of the target', async () => {
+    docs.delete('users/target/friends/sender');
+
+    await expect(callLike()).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: 'Users are not friends',
+    });
+    expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
+    expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toBeUndefined();
+  });
+
   test('rejects path-like or overlong ids as invalid arguments', async () => {
     await expect(callLike({ eventId: 'event-1/child' })).rejects.toMatchObject({
       code: 'invalid-argument',
@@ -284,3 +296,5 @@ describe('friendLikeActivity', () => {
     expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
   });
 });
+
+export {};

@@ -138,10 +138,9 @@ export const siteStatsTrack = onRequest(
 
     const db = getFirestore();
 
-    // debug=true: ничего не пишет, возвращает текущие totals — для проверки проводки.
+    // debug=true: nothing is written. Do not expose internal totals from this public endpoint.
     if (body.debug === true) {
-      const totalsSnap = await db.collection(STATS_COLLECTION).doc('totals').get();
-      res.status(200).json({ ok: true, debug: true, totals: totalsSnap.data() || {} });
+      res.status(200).json({ ok: true, debug: true });
       return;
     }
 

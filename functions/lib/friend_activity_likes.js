@@ -73,6 +73,7 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
     const db = admin.firestore();
     const senderRef = db.collection('users').doc(senderStableId);
     const targetRef = db.collection('users').doc(targetStableId);
+    const targetFriendRef = targetRef.collection('friends').doc(senderStableId);
     const eventRef = targetRef.collection('my_events').doc(eventId);
     const statsRef = targetRef.collection('activity_like_stats').doc('summary');
     const today = todayStrUtc();
@@ -80,8 +81,9 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
     const now = Date.now();
     const nowIso = new Date(now).toISOString();
     return db.runTransaction(async (tx) => {
-        const [senderSnap, eventSnap, statsSnap, dailyLimitSnap] = await Promise.all([
+        const [senderSnap, targetFriendSnap, eventSnap, statsSnap, dailyLimitSnap] = await Promise.all([
             tx.get(senderRef),
+            tx.get(targetFriendRef),
             tx.get(eventRef),
             tx.get(statsRef),
             tx.get(dailyLimitRef),
@@ -92,13 +94,16 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
         if (!eventSnap.exists) {
             throw new https_1.HttpsError('not-found', 'Activity event not found');
         }
-        if (dailyLimitSnap.exists) {
-            throw new https_1.HttpsError('resource-exhausted', 'Daily activity like limit reached');
-        }
         const senderData = senderSnap.data() ?? {};
         const linkedAuthUid = typeof senderData.firebaseAuthUid === 'string' ? senderData.firebaseAuthUid : '';
         if (linkedAuthUid !== request.auth.uid && senderStableId !== request.auth.uid) {
             throw new https_1.HttpsError('permission-denied', 'Sender does not match auth user');
+        }
+        if (dailyLimitSnap.exists) {
+            throw new https_1.HttpsError('resource-exhausted', 'Daily activity like limit reached');
+        }
+        if (!targetFriendSnap.exists) {
+            throw new https_1.HttpsError('failed-precondition', 'Users are not friends');
         }
         const eventData = eventSnap.data() ?? {};
         const eventLikeCount = parseCount(eventData.activityLikeCount) + 1;

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const docs = new Map();
 let autoId = 0;
 function makeRef(path) {

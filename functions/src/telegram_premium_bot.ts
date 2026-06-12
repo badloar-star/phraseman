@@ -706,8 +706,13 @@ export const telegramPremiumWebhook = onRequest({
     res.status(405).send('Method Not Allowed');
     return;
   }
-  const expectedSecret = PHRASEMAN_PREMIUM_WEBHOOK_SECRET.value();
-  if (expectedSecret && req.get('X-Telegram-Bot-Api-Secret-Token') !== expectedSecret) {
+  const expectedSecret = PHRASEMAN_PREMIUM_WEBHOOK_SECRET.value().trim();
+  if (!expectedSecret) {
+    console.error('telegramPremiumWebhook missing PHRASEMAN_PREMIUM_WEBHOOK_SECRET');
+    res.status(500).send('Webhook secret is not configured');
+    return;
+  }
+  if (req.get('X-Telegram-Bot-Api-Secret-Token') !== expectedSecret) {
     res.status(401).send('Unauthorized');
     return;
   }

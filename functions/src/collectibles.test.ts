@@ -33,48 +33,48 @@ describe('parseDropState', () => {
 
 describe('rollCollectibleDrop', () => {
   test('детерминирован: один seed — один исход', () => {
-    const params = { seedBase: 'collect:u1:lesson:5:2026-06-11', owned: {}, state: freshState(), isPremium: false, pool: POOL };
+    const params = { seedBase: 'collect:u1:lesson:5:2026-06-11', kind: 'lesson', owned: {}, state: freshState(), isPremium: false, pool: POOL };
     const first = rollCollectibleDrop(params);
     const second = rollCollectibleDrop(params);
     expect(second).toEqual(first);
   });
 
   test('первый дроп дня гарантирован', () => {
-    const res = rollCollectibleDrop({ seedBase: 'x', owned: {}, state: freshState(), isPremium: false, pool: POOL });
+    const res = rollCollectibleDrop({ seedBase: 'x', kind: 'lesson', owned: {}, state: freshState(), isPremium: false, pool: POOL });
     expect(res.dropped).toBe(true);
   });
 
   test('дневной кап: 3 для free, 4 для premium', () => {
     const state = freshState({ drops: 3 });
-    expect(rollCollectibleDrop({ seedBase: 'x', owned: {}, state, isPremium: false, pool: POOL }))
+    expect(rollCollectibleDrop({ seedBase: 'x', kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL }))
       .toEqual({ dropped: false, reason: 'daily_cap' });
-    const prem = rollCollectibleDrop({ seedBase: 'x', owned: {}, state, isPremium: true, pool: POOL });
+    const prem = rollCollectibleDrop({ seedBase: 'x', kind: 'lesson', owned: {}, state, isPremium: true, pool: POOL });
     expect(prem.dropped ? true : prem.reason !== 'daily_cap').toBe(true);
   });
 
   test('потолок попыток в день', () => {
     const state = freshState({ attempts: 24 });
-    expect(rollCollectibleDrop({ seedBase: 'x', owned: {}, state, isPremium: false, pool: POOL }))
+    expect(rollCollectibleDrop({ seedBase: 'x', kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL }))
       .toEqual({ dropped: false, reason: 'attempt_cap' });
   });
 
   test('дубли не выпадают: owned-карточки исключены из пула', () => {
     const owned = { a1: 1, a2: 1, a3: 1, a4: 1, b1: 1 };
     for (let i = 0; i < 50; i += 1) {
-      const res = rollCollectibleDrop({ seedBase: `s${i}`, owned, state: freshState(), isPremium: false, pool: POOL });
+      const res = rollCollectibleDrop({ seedBase: `s${i}`, kind: 'lesson', owned, state: freshState(), isPremium: false, pool: POOL });
       if (res.dropped) expect(res.card.id).toBe('b2');
     }
   });
 
   test('пул вычерпан — pool_exhausted', () => {
     const owned = { a1: 1, a2: 1, a3: 1, a4: 1, b1: 1, b2: 1 };
-    expect(rollCollectibleDrop({ seedBase: 'x', owned, state: freshState(), isPremium: false, pool: POOL }))
+    expect(rollCollectibleDrop({ seedBase: 'x', kind: 'lesson', owned, state: freshState(), isPremium: false, pool: POOL }))
       .toEqual({ dropped: false, reason: 'pool_exhausted' });
   });
 
   test('pity epic: на 15-м дропе без epic+ выпадает epic', () => {
     const state = freshState({ sinceEpic: 14, sinceLegendary: 10 });
-    const res = rollCollectibleDrop({ seedBase: 'pity-e', owned: {}, state, isPremium: false, pool: POOL });
+    const res = rollCollectibleDrop({ seedBase: 'pity-e', kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL });
     expect(res.dropped).toBe(true);
     if (res.dropped) {
       expect(res.card.rarity).toBe('epic');
@@ -84,7 +84,7 @@ describe('rollCollectibleDrop', () => {
 
   test('pity legendary: на 35-м дропе без legendary выпадает legendary', () => {
     const state = freshState({ sinceEpic: 2, sinceLegendary: 34 });
-    const res = rollCollectibleDrop({ seedBase: 'pity-l', owned: {}, state, isPremium: false, pool: POOL });
+    const res = rollCollectibleDrop({ seedBase: 'pity-l', kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL });
     expect(res.dropped).toBe(true);
     if (res.dropped) {
       expect(res.card.rarity).toBe('legendary');
@@ -97,7 +97,7 @@ describe('rollCollectibleDrop', () => {
     const state = freshState({ sinceEpic: 3, sinceLegendary: 8 });
     // Гарантированный первый дроп дня; ищем seed с common/rare исходом.
     for (let i = 0; i < 30; i += 1) {
-      const res = rollCollectibleDrop({ seedBase: `grow${i}`, owned: {}, state, isPremium: false, pool: POOL });
+      const res = rollCollectibleDrop({ seedBase: `grow${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL });
       if (res.dropped && res.card.rarity !== 'epic' && res.card.rarity !== 'legendary') {
         expect(res.nextState.sinceEpic).toBe(4);
         expect(res.nextState.sinceLegendary).toBe(9);
@@ -112,7 +112,7 @@ describe('rollCollectibleDrop', () => {
     // Подберём seed, который дропает именно a4 (через pity epic он гарантирован).
     const state = freshState({ sinceEpic: 14 });
     const res = rollCollectibleDrop({
-      seedBase: 'finish-set', owned, state, isPremium: false,
+      seedBase: 'finish-set', kind: 'lesson', owned, state, isPremium: false,
       pool: POOL.filter((c) => c.setId === 'setA'),
     });
     expect(res.dropped).toBe(true);
@@ -138,7 +138,7 @@ describe('rollCollectibleDrop', () => {
     // Все карточки других сетов тоже «собраны», чтобы дроп был только из setId.
     for (const c of COLLECTIBLE_POOL) if (c.setId !== setId) owned[c.id] = 1;
 
-    const res = rollCollectibleDrop({ seedBase: 'real-set', owned, state: freshState(), isPremium: false });
+    const res = rollCollectibleDrop({ seedBase: 'real-set', kind: 'lesson', owned, state: freshState(), isPremium: false });
     expect(res.dropped).toBe(true);
     if (res.dropped) {
       expect(res.card.id).toBe(missing);
@@ -153,10 +153,29 @@ describe('rollCollectibleDrop', () => {
     let dropped = 0;
     const n = 400;
     for (let i = 0; i < n; i += 1) {
-      const res = rollCollectibleDrop({ seedBase: `chance${i}`, owned: {}, state, isPremium: false, pool: POOL });
+      const res = rollCollectibleDrop({ seedBase: `chance${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL });
       if (res.dropped) dropped += 1;
     }
     expect(dropped / n).toBeGreaterThan(0.18);
     expect(dropped / n).toBeLessThan(0.38);
+  });
+
+  test('pronounce/dialog дроп не дают — даже на «гарантированном» первом дропе дня', () => {
+    for (const kind of ['pronounce', 'dialog']) {
+      const res = rollCollectibleDrop({ seedBase: `${kind}-x`, kind, owned: {}, state: freshState(), isPremium: false, pool: POOL });
+      expect(res).toEqual({ dropped: false, reason: 'no_luck' });
+    }
+  });
+
+  test('экзамен даёт дроп чаще урока (kind-шанс) на одних и тех же сидах', () => {
+    const state = freshState({ drops: 1, attempts: 1 });
+    let exam = 0;
+    let lesson = 0;
+    const n = 400;
+    for (let i = 0; i < n; i += 1) {
+      if (rollCollectibleDrop({ seedBase: `k${i}`, kind: 'exam', owned: {}, state, isPremium: false, pool: POOL }).dropped) exam += 1;
+      if (rollCollectibleDrop({ seedBase: `k${i}`, kind: 'lesson', owned: {}, state, isPremium: false, pool: POOL }).dropped) lesson += 1;
+    }
+    expect(exam).toBeGreaterThan(lesson);
   });
 });

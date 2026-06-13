@@ -180,9 +180,8 @@ exports.explainPhrase = explainPhrase;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
-// ⚠️ WIP — НЕ ДЕПЛОИТЬ В ПРОД. Сокровищница в разработке.
-// CF экспортирована для dev, но имеет встроенный guard (COLLECTIBLES_DEV_ONLY).
-// Убрать комментарий + добавить в deploy:safe — только после завершения фичи.
+// Сокровищница (collectibles): фича в проде. CF в deploy:safe whitelist,
+// клиент защищён kill-switch'ом collectibles_enabled (Remote Config, default true).
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;

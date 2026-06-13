@@ -42,11 +42,21 @@ const auth_identity_1 = require("./auth_identity");
 const pronunciation_scoring_core_1 = require("./pronunciation_scoring_core");
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'pronunciation_score_rate_limits';
+const DAILY_COLLECTION = 'pronunciation_score_daily_quota';
+const GLOBAL_BUDGET_COLLECTION = 'pronunciation_global_budget';
 const MAX_AUDIO_BYTES = 1500000;
 const MAX_TARGET_TEXT = 220;
 const MAX_DURATION_MS = 15000;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 80;
+// Per-user daily ceiling: practising pronunciation is high-volume, but no real
+// learner needs hundreds of paid transcriptions/day. Caps a single farmed
+// account at MAX_PER_DAY even if it spreads calls across many hourly windows.
+const MAX_PER_DAY = 60;
+// Product-wide daily breaker — protects the OpenAI wallet from a viral spike or
+// coordinated account-farming (App Check is not enforced yet). Mirrors
+// stats_insights / explain_budget.
+const GLOBAL_DAILY_CAP = 8000;
 const OPENAI_TRANSCRIPTION_URL = 'https://api.openai.com/v1/audio/transcriptions';
 const OPENAI_TRANSCRIPTION_MODEL = 'gpt-4o-mini-transcribe';
 function text(value, max) {
@@ -94,6 +104,47 @@ async function enforceRateLimit(authUid, stableUid) {
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAtMs: now,
         }, { merge: true });
+    });
+}
+function utcDayKey(nowMs) {
+    return new Date(nowMs).toISOString().slice(0, 10);
+}
+/**
+ * Per-user daily quota. Atomic check+increment on a {YYYY-MM-DD} counter so
+ * concurrent calls can't bypass the cap. Counts attempts (not refunded on
+ * provider failure) — mirrors the rate limiter's accounting.
+ */
+async function enforceDailyQuota(authUid, stableUid, nowMs = Date.now()) {
+    const db = admin.firestore();
+    const dayKey = utcDayKey(nowMs);
+    const ref = db.collection(DAILY_COLLECTION).doc(`${rateDocId(authUid, stableUid)}_${dayKey}`);
+    await db.runTransaction(async (tx) => {
+        const count = Number((await tx.get(ref)).data()?.count ?? 0);
+        if (count >= MAX_PER_DAY) {
+            throw new https_1.HttpsError('resource-exhausted', 'pronunciation_daily_limit');
+        }
+        tx.set(ref, {
+            authUid,
+            stableUid,
+            dayKey,
+            count: count + 1,
+            updatedAtMs: nowMs,
+        }, { merge: true });
+    });
+}
+/**
+ * Product-wide daily generation breaker. Throws once the day's count would
+ * exceed GLOBAL_DAILY_CAP. Mirrors stats_insights / explain_budget.
+ */
+async function enforceGlobalBudget(nowMs = Date.now()) {
+    const db = admin.firestore();
+    const ref = db.collection(GLOBAL_BUDGET_COLLECTION).doc(utcDayKey(nowMs));
+    await db.runTransaction(async (tx) => {
+        const genCount = Number((await tx.get(ref)).data()?.genCount ?? 0);
+        if (genCount >= GLOBAL_DAILY_CAP) {
+            throw new https_1.HttpsError('resource-exhausted', 'pronunciation_global_budget_exceeded');
+        }
+        tx.set(ref, { genCount: genCount + 1, updatedAtMs: nowMs }, { merge: true });
     });
 }
 async function transcribeWithOpenAI(input) {
@@ -153,6 +204,8 @@ exports.scorePronunciationAttempt = (0, https_1.onCall)({
     const authUid = request.auth.uid;
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
     await enforceRateLimit(authUid, stableUid);
+    await enforceDailyQuota(authUid, stableUid);
+    await enforceGlobalBudget();
     const transcript = await transcribeWithOpenAI({
         apiKey,
         audio,

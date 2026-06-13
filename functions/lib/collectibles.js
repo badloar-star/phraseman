@@ -63,7 +63,18 @@ const premium_status_1 = require("./premium_status");
 const collectibles_catalog_1 = require("./collectibles_catalog");
 exports.COLLECTIBLES_OWNED_KEY = 'collectibles_owned_v1';
 exports.COLLECTIBLES_STATE_KEY = 'collectibles_state_v1';
-const DROP_CHANCE = 0.28; // шанс дропа за qualifying-активность
+// Шанс дропа зависит от типа активности (kind = префикс eventId до ':').
+// 0 — активность дроп не даёт. Тяжёлые/ценные = выше, фармибельные = ниже.
+const DROP_CHANCE_BY_KIND = {
+    lesson: 0.28, // урок — базовый
+    arena: 0.10, // победа в арене — навык + соревнование, но частит
+    plan: 0.10, // день персонального плана
+    quiz: 0.18, // квиз — быстрый, легко фармить
+    exam: 0.40, // экзамен уровня — редкое, тяжёлое событие
+    pronounce: 0, // произношение — дроп не даёт
+    dialog: 0, // диалог с Компасом — дроп не даёт
+};
+const DROP_CHANCE_DEFAULT = 0.28;
 const DAILY_DROP_CAP_FREE = 3;
 const DAILY_DROP_CAP_PREMIUM = 4;
 const DAILY_ATTEMPT_CAP = 24; // потолок попыток/день — отсекает перебор eventId
@@ -72,6 +83,10 @@ const PITY_LEGENDARY_AT = 35; // не больше 35 дропов без legend
 const SET_BONUS_SHARDS = 15;
 // Качественные активности; kind = префикс eventId до первого ':'.
 const EVENT_ID_RE = /^(lesson|plan|quiz|arena|exam|pronounce|dialog):[A-Za-z0-9_.:-]{1,80}$/;
+/** Шанс дропа для типа активности. Первый дроп дня всё равно гарантирован отдельно. */
+function dropChanceForKind(kind) {
+    return DROP_CHANCE_BY_KIND[kind] ?? DROP_CHANCE_DEFAULT;
+}
 /* ── детерминированный ролл (FNV-1a, как в league_chest) ──── */
 function hash32(seed) {
     let h = 2166136261;
@@ -183,8 +198,12 @@ function resolveRarity(params) {
  * seedBase должен включать uid и eventId — повтор даёт тот же исход.
  */
 function rollCollectibleDrop(params) {
-    const { seedBase, owned, state, isPremium } = params;
+    const { seedBase, kind, owned, state, isPremium } = params;
     const pool = params.pool ?? collectibles_catalog_1.COLLECTIBLE_POOL;
+    const dropChance = dropChanceForKind(kind);
+    // Активность типа pronounce/dialog дроп не даёт вовсе (шанс 0).
+    if (dropChance <= 0)
+        return { dropped: false, reason: 'no_luck' };
     if (state.attempts >= DAILY_ATTEMPT_CAP)
         return { dropped: false, reason: 'attempt_cap' };
     const cap = isPremium ? DAILY_DROP_CAP_PREMIUM : DAILY_DROP_CAP_FREE;
@@ -193,9 +212,9 @@ function rollCollectibleDrop(params) {
     const unowned = pool.filter((c) => owned[c.id] == null);
     if (unowned.length === 0)
         return { dropped: false, reason: 'pool_exhausted' };
-    // Первый дроп дня гарантирован, дальше — шанс.
+    // Первый дроп дня гарантирован, дальше — шанс по типу активности.
     const guaranteed = state.drops === 0;
-    if (!guaranteed && rollUnit(`${seedBase}:chance`) >= DROP_CHANCE) {
+    if (!guaranteed && rollUnit(`${seedBase}:chance`) >= dropChance) {
         return { dropped: false, reason: 'no_luck' };
     }
     const rarity = resolveRarity({ seed: `${seedBase}:rarity`, state, unowned });
@@ -275,6 +294,7 @@ exports.collectiblesClaimDrop = (0, https_1.onCall)(callable_options_1.HOT_CALLA
         const state = parseDropState(getExistingField(user, exports.COLLECTIBLES_STATE_KEY), today);
         const decision = rollCollectibleDrop({
             seedBase: `collect:${stableUid}:${eventIdRaw}`,
+            kind: eventIdRaw.split(':')[0],
             owned,
             state,
             isPremium,

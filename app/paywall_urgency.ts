@@ -12,8 +12,8 @@ import { DebugLogger } from './debug-logger';
 
 export const URGENCY_SHOWN_AT_KEY = 'paywall_urgency_shown_at_v1';
 const URGENCY_EXPIRED_AT_KEY = 'paywall_urgency_expired_at_v1';
-const URGENCY_DURATION_MS = 24 * 60 * 60 * 1000; // 24 часа
-const URGENCY_GRACE_MS = 14 * 24 * 60 * 60 * 1000; // 14 дней после истечения — показываем "зафиксировали цену"
+const URGENCY_DURATION_MS = 77 * 60 * 60 * 1000; // 77 часов — окно «старой цены»
+const URGENCY_GRACE_MS = 14 * 24 * 60 * 60 * 1000; // 14 дней после истечения — показываем "цена сохранена ещё ~2 недели"
 
 export interface UrgencyState {
   isActive: boolean;

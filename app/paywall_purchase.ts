@@ -24,6 +24,7 @@ import {
 } from './premium_revenuecat_state';
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { getTrialInfo, trialDaysOrDefault, type TrialInfo } from './paywall_trial_info';
+import { activateUrgencyIfNeeded, getUrgencyState, getDoubledPrice, type UrgencyState } from './paywall_urgency';
 import { logPaywallFunnel } from './paywall_funnel';
 import type { PaywallAbVariant } from './paywall_variant';
 import {
@@ -64,6 +65,21 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   const [loading, setLoading] = useState(false);
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
+  const [urgency, setUrgency] = useState<UrgencyState>({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' });
+
+  // Окно «старой цены» (77ч): активируем при первом показе пейвола и читаем
+  // состояние. Тик раз в секунду живёт в PaywallPriceUrgency — здесь только старт.
+  useEffect(() => {
+    let dead = false;
+    void (async () => {
+      try {
+        await activateUrgencyIfNeeded();
+        const s = await getUrgencyState();
+        if (!dead) setUrgency(s);
+      } catch { /* некритично */ }
+    })();
+    return () => { dead = true; };
+  }, []);
 
   useEffect(() => {
     if (DEV_IAP_BYPASS) return;
@@ -107,6 +123,11 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg), [selectedPkg]);
   const trialDays = trial.hasTrial ? trialDaysOrDefault(trial) : null;
   const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);
+
+  // «Будущая» цена выбранного плана (×2 из реальной цены стора) — ТОЛЬКО для
+  // отображения в PaywallPriceUrgency; в Purchases никогда не уходит.
+  const selectedPrice = selected === 'yearly' ? yearlyPrice : monthlyPrice;
+  const futurePrice = useMemo(() => (selectedPrice ? getDoubledPrice(selectedPrice) : null), [selectedPrice]);
 
   const selectPlan = useCallback((plan: PaywallPlan) => {
     hapticTap();
@@ -241,6 +262,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
     savingsPct, perDayLabel,
     trial, trialDays, ctaDisabled,
+    urgency, futurePrice,
     handlePurchase, handleRestore, handleClose,
   };
 }

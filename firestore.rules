@@ -35,6 +35,20 @@ service cloud.firestore {
       return resource.data.get('progressServerAuthoritative', false) == true;
     }
 
+    // Осколки (shards) пишутся только Admin SDK через Cloud Functions.
+    // Клиент НЕ должен менять баланс напрямую — обход возможен через updateDoc({shards: N}).
+    // Admin SDK игнорирует эти правила, поэтому блокировка не затрагивает CF-логику.
+    function hasNoShardWrites() {
+      return isAdmin()
+        || !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'shards',
+          'shards_updated_at_ms',
+          'shards_updated_op',
+          'shards_updated_reason',
+          'shards_admin_override_at',
+        ]);
+    }
+
     // Ключи внутри progress, которые клиент не имеет права записывать.
     // Пишутся только Admin SDK (RevenueCat webhook, Telegram активация, admin grant)
     // ИЛИ админом через admin-панель (custom claim admin==true).
@@ -919,9 +933,9 @@ service cloud.firestore {
     // ÐœÐ¾Ð´ÐµÑ€Ð°Ñ†Ð¸Ñ/Ð±Ð°Ð½/Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ isAdmin() (ÑÐ¼. admin/index.html, email+claim).
     match /users/{userId} {
       allow read, delete: if userDocOwnerMatchesAuth(userId);
-      // Клиент может обновлять свой документ, но не может трогать premium/VIP поля.
-      // Их пишет только Admin SDK (RevenueCat webhook, Telegram bot, admin grant).
-      allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites();
+      // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
+      // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
+      allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites() && hasNoShardWrites();
       allow create: if newUserDocOwnerMatchesAuth(userId);
 
       match /community_seller_inbox/{eventId} {

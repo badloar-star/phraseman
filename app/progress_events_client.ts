@@ -191,6 +191,9 @@ async function writeQueue(queue: QueuedProgressEvent[]): Promise<void> {
   await AsyncStorage.setItem(PROGRESS_EVENT_QUEUE_KEY, JSON.stringify(queue.slice(0, 100)));
 }
 
+// Prevents two concurrent flush loops from racing on the same queue.
+let flushInFlight: Promise<number> | null = null;
+
 async function enqueue(event: QueuedProgressEvent): Promise<void> {
   const queue = await readQueue();
   if (!queue.some((item) => item.eventId === event.eventId)) {
@@ -235,8 +238,7 @@ async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEv
   return res.data;
 }
 
-export async function flushPendingProgressEvents(): Promise<number> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return 0;
+async function doFlush(): Promise<number> {
   await ensureProgressSnapshotMigrated();
   const queue = await readQueue();
   if (queue.length === 0) return 0;
@@ -244,12 +246,24 @@ export async function flushPendingProgressEvents(): Promise<number> {
   let sent = 0;
   while (remaining.length > 0) {
     const next = remaining[0];
-    await submitQueuedEvent(next);
+    try {
+      await submitQueuedEvent(next);
+    } catch {
+      // Leave the poison event at the head and abort — it will retry next flush.
+      break;
+    }
     remaining.shift();
     sent += 1;
     await writeQueue(remaining);
   }
   return sent;
+}
+
+export function flushPendingProgressEvents(): Promise<number> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return Promise.resolve(0);
+  if (flushInFlight) return flushInFlight;
+  flushInFlight = doFlush().finally(() => { flushInFlight = null; });
+  return flushInFlight;
 }
 
 export async function submitProgressEvent(request: ProgressEventRequest): Promise<ProgressEventResult> {

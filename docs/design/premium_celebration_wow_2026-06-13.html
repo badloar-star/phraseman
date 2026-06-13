@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium / VIP — ВАУ-празднование · Phraseman</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  :root {
+    --gold: #FFD700;
+    --gold-bright: #FFE680;
+    --gold-deep: #B8860B;
+    --gold-text: #FFE9A8;
+  }
+  html, body {
+    background: #0a0a0f;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 36px;
+    padding: 28px 16px 60px;
+    flex-wrap: wrap;
+  }
+  .stage { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .stage h3 { font-size: 14px; font-weight: 700; letter-spacing: .5px; color: #8a8a9a; text-transform: uppercase; }
+
+  /* ── Phone frame ── */
+  .phone {
+    position: relative;
+    width: 380px;
+    height: 800px;
+    border-radius: 46px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 11px #16161c, 0 0 0 13px #2a2a32;
+    background: #000;
+  }
+  .notch {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 150px; height: 30px; background: #16161c;
+    border-radius: 0 0 18px 18px; z-index: 99;
+  }
+
+  /* ── Celebration root ── */
+  .celebration {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+  .bg-base { position: absolute; inset: 0; }
+  /* Premium: deep warm black */
+  .bg-premium { background: radial-gradient(140% 100% at 50% 0%, #1c1405 0%, #0d0a04 42%, #050402 100%); }
+  /* VIP: deep emerald */
+  .bg-vip { background: radial-gradient(140% 100% at 50% 0%, #06231a 0%, #04140d 45%, #020806 100%); }
+
+  canvas.aurora { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Vignette to seat content */
+  .vignette {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(120% 80% at 50% 38%, transparent 45%, rgba(0,0,0,.35) 100%);
+  }
+
+  /* ── Hero (fixed top zone) ── */
+  .hero {
+    position: absolute; top: 64px; left: 0; right: 0;
+    display: flex; flex-direction: column; align-items: center;
+    z-index: 10; pointer-events: none;
+    padding: 0 24px;
+  }
+  .emblem-ring {
+    width: 120px; height: 120px; border-radius: 60px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .emblem-ring::before {
+    content: ''; position: absolute; inset: -8px; border-radius: 70px;
+    background: conic-gradient(from 0deg, transparent, var(--gold), transparent, var(--gold-deep), transparent);
+    animation: spin 6s linear infinite; opacity: .8;
+  }
+  .emblem-ring::after {
+    content: ''; position: absolute; inset: 0; border-radius: 60px;
+    background: radial-gradient(circle, rgba(255,215,0,.35) 0%, rgba(255,215,0,.08) 55%, transparent 75%);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  .vip .emblem-ring::before { background: conic-gradient(from 0deg, transparent, #34D399, transparent, #047857, transparent); }
+  .vip .emblem-ring::after { background: radial-gradient(circle, rgba(52,211,153,.4) 0%, rgba(52,211,153,.1) 55%, transparent 75%); }
+  .emblem-disc {
+    width: 96px; height: 96px; border-radius: 48px;
+    background: radial-gradient(circle at 38% 30%, #2a1f08, #0f0b03);
+    border: 1.5px solid rgba(255,215,0,.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px; position: relative; z-index: 2;
+    box-shadow: inset 0 2px 12px rgba(255,215,0,.25);
+  }
+  .vip .emblem-disc {
+    background: radial-gradient(circle at 38% 30%, #08291d, #03140d);
+    border-color: rgba(52,211,153,.5);
+    box-shadow: inset 0 2px 12px rgba(52,211,153,.3);
+    font-size: 30px; font-weight: 900; letter-spacing: 1px;
+    color: #BBF7D0;
+  }
+  .title {
+    font-size: 27px; font-weight: 900; letter-spacing: .3px; text-align: center;
+    background: linear-gradient(180deg, #FFF6D6, var(--gold) 55%, var(--gold-deep));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(255,215,0,.35));
+  }
+  .vip .title {
+    background: linear-gradient(180deg, #F0FFF7, #34D399 55%, #047857);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(52,211,153,.4));
+  }
+  .subtitle {
+    font-size: 14.5px; font-weight: 600; text-align: center; margin-top: 7px;
+    color: var(--gold-text); opacity: .82; line-height: 1.4; max-width: 280px;
+  }
+  .vip .subtitle { color: #D6FFE9; }
+
+  /* ── Feature reel (scroll zone) ── */
+  .reel-mask {
+    position: absolute; top: 260px; bottom: 116px; left: 0; right: 0;
+    overflow: hidden; z-index: 8;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 11%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 11%, #000 86%, transparent 100%);
+  }
+  .reel {
+    position: absolute; left: 22px; right: 22px; top: 0;
+    display: flex; flex-direction: column; gap: 11px;
+    padding-top: 20px;
+    will-change: transform;
+  }
+  .frow {
+    display: flex; align-items: center; gap: 13px;
+    padding: 13px 15px; border-radius: 17px;
+    background: linear-gradient(100deg, rgba(255,215,0,.07), rgba(255,215,0,.02));
+    border: 1px solid rgba(255,215,0,.16);
+    opacity: .28; transform: translateX(-26px) scale(.95);
+    transition: opacity .42s cubic-bezier(.2,.7,.3,1), transform .42s cubic-bezier(.2,.7,.3,1);
+    position: relative; overflow: hidden;
+  }
+  .vip .frow {
+    background: linear-gradient(100deg, rgba(52,211,153,.08), rgba(52,211,153,.02));
+    border-color: rgba(52,211,153,.18);
+  }
+  .frow.lit { opacity: 1; transform: translateX(0) scale(1); }
+  .frow.lit::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.18), transparent);
+    transform: translateX(-120%); animation: sweep .8s ease-out;
+  }
+  .frow .ico {
+    width: 42px; height: 42px; border-radius: 21px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 21px;
+    background: radial-gradient(circle at 40% 35%, rgba(255,215,0,.22), rgba(255,215,0,.05));
+    border: 1px solid rgba(255,215,0,.3);
+  }
+  .vip .frow .ico {
+    background: radial-gradient(circle at 40% 35%, rgba(52,211,153,.25), rgba(52,211,153,.06));
+    border-color: rgba(52,211,153,.32);
+  }
+  .frow .ftxt { flex: 1; min-width: 0; }
+  .frow .ftitle { font-size: 15.5px; font-weight: 800; color: #FFF3CC; letter-spacing: .1px; }
+  .vip .frow .ftitle { color: #EAFFF4; }
+  .frow .fsub { font-size: 12.5px; font-weight: 500; color: rgba(255,233,168,.6); margin-top: 1px; }
+  .vip .frow .fsub { color: rgba(214,255,233,.6); }
+  .frow .check {
+    width: 22px; height: 22px; border-radius: 11px; flex-shrink: 0;
+    background: var(--gold); color: #1a1208; font-size: 13px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0);
+    transition: opacity .3s, transform .4s cubic-bezier(.3,1.6,.5,1);
+  }
+  .vip .frow .check { background: #34D399; color: #04140d; }
+  .frow.lit .check { opacity: 1; transform: scale(1); }
+
+  /* finale row */
+  .finale {
+    margin-top: 8px; padding: 20px; border-radius: 20px; text-align: center;
+    background: linear-gradient(135deg, rgba(255,215,0,.16), rgba(184,134,11,.08));
+    border: 1.5px solid rgba(255,215,0,.4);
+    opacity: .2; transform: scale(.9);
+    transition: opacity .5s, transform .6s cubic-bezier(.3,1.4,.5,1);
+  }
+  .vip .finale { background: linear-gradient(135deg, rgba(52,211,153,.18), rgba(4,120,87,.09)); border-color: rgba(52,211,153,.42); }
+  .finale.lit { opacity: 1; transform: scale(1); }
+  .finale .fbig {
+    font-size: 19px; font-weight: 900;
+    background: linear-gradient(180deg, #FFF6D6, var(--gold));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .vip .finale .fbig { background: linear-gradient(180deg, #F0FFF7, #34D399); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .finale .fsmall { font-size: 13px; color: var(--gold-text); opacity: .8; margin-top: 4px; }
+  .vip .finale .fsmall { color: #D6FFE9; }
+
+  /* ── CTA ── */
+  .cta-wrap {
+    position: absolute; bottom: 30px; left: 24px; right: 24px; z-index: 20;
+  }
+  .cta {
+    height: 58px; border-radius: 19px; width: 100%; border: none;
+    font-size: 17px; font-weight: 900; color: #1a1208; letter-spacing: .3px;
+    background: linear-gradient(100deg, var(--gold-deep), var(--gold) 50%, var(--gold-deep));
+    position: relative; overflow: hidden; cursor: pointer;
+    box-shadow: 0 8px 28px rgba(255,215,0,.35), inset 0 1px 0 rgba(255,255,255,.4);
+  }
+  .vip .cta { color: #04140d; background: linear-gradient(100deg, #047857, #34D399 50%, #047857); box-shadow: 0 8px 28px rgba(52,211,153,.4), inset 0 1px 0 rgba(255,255,255,.3); }
+  .cta::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.6), transparent);
+    transform: skewX(-20deg); left: -100px;
+    animation: shimmer 2.6s ease-in-out infinite;
+  }
+  .skip-hint {
+    position: absolute; top: 22px; right: 20px; z-index: 30;
+    font-size: 12.5px; color: rgba(255,255,255,.45); font-weight: 600;
+    background: rgba(0,0,0,.25); padding: 6px 12px; border-radius: 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* haptic pulse dot near right edge */
+  .haptic-dot {
+    position: absolute; right: 14px; top: 50%; width: 8px; height: 8px; border-radius: 4px;
+    background: var(--gold); opacity: 0; z-index: 40; pointer-events: none;
+    box-shadow: 0 0 12px var(--gold);
+  }
+  .haptic-dot.buzz { animation: buzz .35s ease-out; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes pulse { 0%,100% { opacity:.5; transform: scale(.92);} 50% { opacity:1; transform: scale(1.06);} }
+  @keyframes sweep { to { transform: translateX(120%); } }
+  @keyframes shimmer { 0%,100% { left: -100px; } 55%,100% { left: 120%; } }
+  @keyframes buzz { 0% { opacity:1; transform: scale(1.8);} 100% { opacity:0; transform: scale(.6);} }
+
+  /* controls */
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 380px; }
+  .controls button {
+    padding: 10px 16px; border-radius: 12px; border: 1px solid #33333d;
+    background: #1a1a22; color: #ddd; font-size: 13px; font-weight: 700; cursor: pointer;
+    transition: all .15s;
+  }
+  .controls button:hover { background: #26262f; border-color: #44444f; }
+  .controls button.active { background: var(--gold); color: #1a1208; border-color: var(--gold); }
+  .note { max-width: 360px; font-size: 12.5px; color: #777; line-height: 1.6; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <h3>Premium / VIP — ВАУ-празднование</h3>
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="celebration premium" id="celebration">
+      <div class="bg-base bg-premium" id="bgBase"></div>
+      <canvas class="aurora" id="aurora"></canvas>
+      <div class="vignette"></div>
+
+      <div class="skip-hint" id="skipHint">тапни, чтобы пропустить</div>
+
+      <div class="hero">
+        <div class="emblem-ring"><div class="emblem-disc" id="emblem">👑</div></div>
+        <div class="title" id="title">Premium активирован</div>
+        <div class="subtitle" id="subtitle">Всё открыто. Учи без лимитов — прямо сейчас</div>
+      </div>
+
+      <div class="reel-mask">
+        <div class="reel" id="reel"></div>
+      </div>
+
+      <div class="haptic-dot" id="hapticDot"></div>
+
+      <div class="cta-wrap">
+        <button class="cta" id="cta">Начать учиться</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="btnPremium" class="active" onclick="setVariant('premium')">👑 Premium</button>
+    <button id="btnVip" onclick="setVariant('vip')">💎 VIP</button>
+    <button onclick="replay()">↻ Проиграть заново</button>
+  </div>
+  <p class="note">Это макет в браузере. В приложении: тот же фон-аврора + золотые частицы (на Reanimated), авто-прокрутка списка вниз с вспышкой каждой строки и хаптиком (точка справа = вибрация). Можно перехватить пальцем. В конце — финальный аккорд «Всё твоё».</p>
+</div>
+
+<script>
+const FEATURES = [
+  { ico:'⚡', t:'Безлимитная энергия', s:'Учись сколько хочешь' },
+  { ico:'⏳', t:'Никакого ожидания', s:'Уроки без таймера' },
+  { ico:'📚', t:'Все уроки открыты', s:'Полный курс A1–B2' },
+  { ico:'🔁', t:'Безлимит повторов', s:'Переигрывай любой урок' },
+  { ico:'💎', t:'Повторы без осколков', s:'Бесплатно и сразу' },
+  { ico:'🎯', t:'Все сложности квизов', s:'Easy, Medium, Hard' },
+  { ico:'♾️', t:'Квизы без лимита', s:'Играй без «на сегодня всё»' },
+  { ico:'⭐', t:'Больше XP', s:'За каждый квиз' },
+  { ico:'🥇', t:'Сложные вызовы', s:'Для настоящего роста' },
+  { ico:'🃏', t:'Безлимит карточек', s:'Сохраняй все фразы' },
+  { ico:'⚔️', t:'Арена без лимита', s:'Дуэли без ограничений' },
+  { ico:'📊', t:'Детальная аналитика', s:'Весь прогресс на ладони' },
+  { ico:'🗓️', t:'Карта 365 дней', s:'Вся твоя активность' },
+  { ico:'🎯', t:'Паттерны ошибок', s:'Где именно слабые места' },
+  { ico:'📈', t:'Сравнение с другими', s:'Где ты в топе' },
+  { ico:'🧠', t:'Безлимит Тренера', s:'Практикуй без границ' },
+  { ico:'🎓', t:'Моя практика слабых мест', s:'Умный алгоритм' },
+  { ico:'🔬', t:'Персональный разбор', s:'Точное объяснение ошибок' },
+  { ico:'🎛️', t:'Smart Mix', s:'Все 6 режимов сразу' },
+  { ico:'🎤', t:'Режим речи', s:'Произноси вслух — приложение слышит' },
+  { ico:'💬', t:'Подсказка по словам', s:'Мгновенно' },
+  { ico:'🛡️', t:'Защита цепочки', s:'Серия не сгорит при пропуске' },
+  { ico:'🎨', t:'Тема Forest', s:'Хвойный лес' },
+  { ico:'🌃', t:'Тема Neon', s:'Неоновые огни' },
+  { ico:'👑', t:'Золотое имя', s:'В лидербордах' },
+  { ico:'✨', t:'Премиум-подсветка', s:'Твой профиль выделяется' },
+  { ico:'📋', t:'Персональный план', s:'Уроки, фразы и повторы каждый день' },
+];
+
+const VARIANTS = {
+  premium: { emblem:'👑', title:'Premium активирован', sub:'Всё открыто. Учи без лимитов — прямо сейчас', cta:'Начать учиться' },
+  vip:     { emblem:'VIP', title:'VIP активирован',      sub:'VIP-доступ открыт: энергия и все функции', cta:'Поехали' },
+};
+
+let variant = 'premium';
+let reelTimer = null;
+let auroraRAF = null;
+
+function buildReel() {
+  const reel = document.getElementById('reel');
+  reel.innerHTML = '';
+  FEATURES.forEach((f, i) => {
+    const row = document.createElement('div');
+    row.className = 'frow';
+    row.dataset.idx = i;
+    row.innerHTML = `<div class="ico">${f.ico}</div>
+      <div class="ftxt"><div class="ftitle">${f.t}</div><div class="fsub">${f.s}</div></div>
+      <div class="check">✓</div>`;
+    reel.appendChild(row);
+  });
+  const fin = document.createElement('div');
+  fin.className = 'finale';
+  fin.id = 'finale';
+  fin.innerHTML = `<div class="fbig">✨ Всё это теперь твоё ✨</div>
+    <div class="fsmall">${FEATURES.length}+ преимуществ разблокировано</div>`;
+  reel.appendChild(fin);
+}
+
+function buzzHaptic() {
+  const dot = document.getElementById('hapticDot');
+  dot.classList.remove('buzz');
+  void dot.offsetWidth;
+  dot.classList.add('buzz');
+  if (navigator.vibrate) navigator.vibrate(8);
+}
+
+function runReel() {
+  clearTimeout(reelTimer);
+  const reel = document.getElementById('reel');
+  const mask = document.querySelector('.reel-mask');
+  const rows = [...reel.querySelectorAll('.frow')];
+  const finale = document.getElementById('finale');
+  reel.style.transition = 'none';
+  reel.style.transform = 'translateY(0)';
+  rows.forEach(r => r.classList.remove('lit'));
+  finale.classList.remove('lit');
+
+  const maskH = mask.clientHeight;
+  const reelH = reel.scrollHeight;
+  const maxShift = Math.max(0, reelH - maskH + 30);
+
+  // light first couple rows immediately
+  let i = 0;
+  const litCenter = maskH * 0.46;
+
+  const STEP_MS = 360;       // time per row
+  const startDelay = 700;
+
+  function lightNext() {
+    if (i >= rows.length) {
+      // finale
+      reel.style.transition = 'transform 700ms cubic-bezier(.4,0,.2,1)';
+      reel.style.transform = `translateY(-${maxShift}px)`;
+      setTimeout(() => { finale.classList.add('lit'); buzzHaptic(); if(navigator.vibrate) navigator.vibrate([10,40,20]); }, 480);
+      return;
+    }
+    const row = rows[i];
+    row.classList.add('lit');
+    buzzHaptic();
+
+    // scroll so the lit row sits around center, but don't overscroll
+    const rowTop = row.offsetTop;
+    let shift = Math.min(maxShift, Math.max(0, rowTop - litCenter + 30));
+    reel.style.transition = `transform ${STEP_MS}ms cubic-bezier(.33,.1,.25,1)`;
+    reel.style.transform = `translateY(-${shift}px)`;
+
+    i++;
+    reelTimer = setTimeout(lightNext, STEP_MS);
+  }
+  reelTimer = setTimeout(lightNext, startDelay);
+}
+
+function applyVariant() {
+  const v = VARIANTS[variant];
+  const cel = document.getElementById('celebration');
+  cel.className = 'celebration ' + variant;
+  document.getElementById('bgBase').className = 'bg-base ' + (variant==='vip'?'bg-vip':'bg-premium');
+  document.getElementById('emblem').textContent = v.emblem;
+  document.getElementById('title').textContent = v.title;
+  document.getElementById('subtitle').textContent = v.sub;
+  document.getElementById('cta').textContent = v.cta;
+}
+
+function setVariant(v) {
+  variant = v;
+  document.getElementById('btnPremium').classList.toggle('active', v==='premium');
+  document.getElementById('btnVip').classList.toggle('active', v==='vip');
+  applyVariant();
+  replay();
+}
+
+function replay() {
+  buildReel();
+  applyVariant();
+  runReel();
+}
+
+// ── Aurora canvas ──
+function startAurora() {
+  const canvas = document.getElementById('aurora');
+  const ctx = canvas.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function resize() {
+    canvas.width = canvas.clientWidth * dpr;
+    canvas.height = canvas.clientHeight * dpr;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const W = () => canvas.width, H = () => canvas.height;
+  let t = 0;
+
+  // floating particles
+  const particles = Array.from({length: 34}, () => ({
+    x: Math.random(), y: Math.random(), r: (Math.random()*2+0.6)*dpr,
+    sp: Math.random()*0.0006+0.0002, drift: Math.random()*0.4-0.2, ph: Math.random()*6.28,
+  }));
+
+  function palette() {
+    if (variant === 'vip') return [['52,211,153'],['16,185,129'],['134,239,172']];
+    return [['255,215,0'],['184,134,11'],['255,230,128']];
+  }
+
+  function draw() {
+    const w = W(), h = H();
+    ctx.clearRect(0,0,w,h);
+    const pal = palette();
+
+    // aurora bands (3 sine ribbons)
+    for (let b=0; b<3; b++) {
+      const col = pal[b % pal.length][0];
+      const baseY = h*(0.22 + b*0.13);
+      const amp = h*0.05*(1+b*0.3);
+      const grad = ctx.createLinearGradient(0, baseY-amp*3, 0, baseY+amp*3);
+      grad.addColorStop(0, `rgba(${col},0)`);
+      grad.addColorStop(0.5, `rgba(${col},${0.10 - b*0.018})`);
+      grad.addColorStop(1, `rgba(${col},0)`);
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(0, h);
+      for (let x=0; x<=w; x+=8*dpr) {
+        const y = baseY
+          + Math.sin(x*0.004/dpr + t*0.6 + b*1.7)*amp
+          + Math.sin(x*0.011/dpr - t*0.4 + b)*amp*0.4;
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(w, h);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    // central glow
+    const gx = w/2, gy = h*0.30;
+    const glowCol = pal[0][0];
+    const rg = ctx.createRadialGradient(gx, gy, 0, gx, gy, w*0.55);
+    rg.addColorStop(0, `rgba(${glowCol},0.16)`);
+    rg.addColorStop(0.4, `rgba(${glowCol},0.05)`);
+    rg.addColorStop(1, `rgba(${glowCol},0)`);
+    ctx.fillStyle = rg;
+    ctx.fillRect(0,0,w,h);
+
+    // particles
+    const pcol = pal[2][0];
+    particles.forEach(p => {
+      p.y -= p.sp;
+      if (p.y < -0.05) { p.y = 1.05; p.x = Math.random(); }
+      const px = (p.x + Math.sin(t*0.5 + p.ph)*0.02*p.drift) * w;
+      const py = p.y * h;
+      const tw = 0.5 + 0.5*Math.sin(t*2 + p.ph);
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, 6.28);
+      ctx.fillStyle = `rgba(${pcol},${0.3 + tw*0.5})`;
+      ctx.shadowColor = `rgba(${pcol},0.8)`;
+      ctx.shadowBlur = 6*dpr;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    t += 0.016;
+    auroraRAF = requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// init
+buildReel();
+applyVariant();
+startAurora();
+setTimeout(runReel, 300);
+
+// tap to skip → reveal all
+document.getElementById('celebration').addEventListener('click', (e) => {
+  if (e.target.id === 'cta') return;
+  clearTimeout(reelTimer);
+  document.querySelectorAll('.frow').forEach(r => r.classList.add('lit'));
+  const reel = document.getElementById('reel');
+  const mask = document.querySelector('.reel-mask');
+  const maxShift = Math.max(0, reel.scrollHeight - mask.clientHeight + 30);
+  reel.style.transition = 'transform 500ms cubic-bezier(.4,0,.2,1)';
+  reel.style.transform = `translateY(-${maxShift}px)`;
+  setTimeout(() => document.getElementById('finale').classList.add('lit'), 300);
+});
+document.getElementById('cta').addEventListener('click', () => { replay(); });
+</script>
+</body>
+</html>

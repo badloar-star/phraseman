@@ -1,5 +1,17 @@
+/**
+ * PremiumCelebrationModal — ВАУ-празднование покупки Premium/VIP (2026-06-13).
+ *
+ * Переписано с нуля по ТЗ юзера: «дорогие» эффекты, уникальный аврора-фон,
+ * длинный динамичный список преимуществ который сам едет вниз (камера следует),
+ * каждая строка вспыхивает + хаптик, финальный аккорд, sticky CTA.
+ *
+ * Контракт props сохранён: { visible, onClose, variant } — VipCelebrationModal
+ * остаётся тонкой обёрткой (variant="vip").
+ *
+ * Хаптик: на каждую строку — hapticTap (cooldown 80мс, см. use-haptics);
+ * НЕ hapticSuccess/Impact — у них cooldown 4.5с, они бы «съелись».
+ */
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
 import {
   Animated as RNAnim,
   Modal,
@@ -12,11 +24,10 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
-import Animated, {
+import Reanimated, {
   Easing as REasing,
   cancelAnimation,
   interpolate,
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -25,334 +36,19 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import Svg, { Circle } from 'react-native-svg';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-const STAGE = {
-  GLOW: 0,
-  PARTICLES: 250,
-  CROWN: 850,
-  SHOCKWAVE: 1300,
-  LOCKS_START: 1500,
-  LOCKS_STAGGER: 250,
-  COUNTER: 3100,
-  CTA: 3400,
-} as const;
-
-// Уменьшено с 64 до 16 — каждая частица в reanimated = ~2 анимируемых значения.
-// 64 частицы = ~128 shared values → лаги на Android mid-range.
-const PARTICLE_COUNT = 16;
-
-type CelebrationVariant = 'premium' | 'vip';
-
-const CELEBRATION_PALETTES: Record<CelebrationVariant, {
-  backdrop: string;
-  main: string;
-  bright: string;
-  text: string;
-  dark: string;
-  cta: [string, string, string];
-  title: Record<string, string>;
-  subtitle: Record<string, string>;
-  emblem: string;
-}> = {
-  premium: {
-    backdrop: '#0b0700',
-    main: '#FFD700',
-    bright: '#FFE680',
-    text: '#FFE07A',
-    dark: '#1a1208',
-    cta: ['#B8860B', '#FFD700', '#B8860B'],
-    emblem: '👑',
-    title: {
-      ru: '👑 Premium активирован',
-      uk: '👑 Premium активовано',
-      es: '👑 Premium activado',
-      'pt-BR': '👑 Premium ativado',
-      vi: '👑 Đã kích hoạt Premium',
-      id: '👑 Premium aktif',
-      tr: '👑 Premium etkinleştirildi',
-      pl: '👑 Premium aktywowany',
-    },
-    subtitle: {
-      ru: 'Всё открыто. Учи без лимитов — прямо сейчас',
-      uk: 'Усі можливості розблоковано — поїхали',
-      es: 'Todo desbloqueado — empieza ahora',
-      'pt-BR': 'Tudo desbloqueado — vamos começar',
-      vi: 'Đã mở khóa mọi thứ — bắt đầu thôi',
-      id: 'Semua fitur terbuka — mulai',
-      tr: 'Tüm özellikler açıldı — başlayalım',
-      pl: 'Wszystko odblokowane — zaczynamy',
-    },
-  },
-  vip: {
-    backdrop: '#03120a',
-    main: '#22C55E',
-    bright: '#86EFAC',
-    text: '#BBF7D0',
-    dark: '#04140A',
-    cta: ['#047857', '#22C55E', '#065F46'],
-    emblem: 'VIP',
-    title: {
-      ru: 'VIP активирован',
-      uk: 'VIP активовано',
-      es: 'VIP activado',
-      'pt-BR': 'VIP ativado',
-      vi: 'Đã kích hoạt VIP',
-      id: 'VIP aktif',
-      tr: 'VIP etkinleştirildi',
-      pl: 'VIP aktywowany',
-    },
-    subtitle: {
-      ru: 'VIP-доступ открыт: энергия и все функции разблокированы',
-      uk: 'VIP-доступ відкрито: енергію й усі функції розблоковано',
-      es: 'Acceso VIP abierto: energía y funciones desbloqueadas',
-      'pt-BR': 'Acesso VIP aberto: energia e recursos desbloqueados',
-      vi: 'Đã mở VIP: năng lượng và tính năng đều mở khóa',
-      id: 'Akses VIP aktif: energi dan fitur terbuka',
-      tr: 'VIP erişim açık: enerji ve özellikler açıldı',
-      pl: 'Dostęp VIP otwarty: energia i funkcje odblokowane',
-    },
-  },
-};
-
-interface FeatureRow {
-  emoji: string;
-  ru: string;
-  uk: string;
-  es: string;
-  'pt-BR': string;
-  vi: string;
-  id: string;
-  tr: string;
-  pl: string;
-}
-
-const FEATURES: FeatureRow[] = [
-  { emoji: '⚡', ru: 'Безлимит энергии', uk: 'Безліміт енергії', es: 'Energía ilimitada', 'pt-BR': 'Energia ilimitada', vi: 'Năng lượng không giới hạn', id: 'Energi tanpa batas', tr: 'Sınırsız enerji', pl: 'Nielimitowana energia' },
-  { emoji: '🔁', ru: 'Повтор любого урока', uk: 'Повтор уроків необмежено', es: 'Lecciones sin límites', 'pt-BR': 'Repetição ilimitada de lições', vi: 'Ôn bài không giới hạn', id: 'Ulangi pelajaran tanpa batas', tr: 'Sınırsız ders tekrarı', pl: 'Nieograniczone powtórki lekcji' },
-  { emoji: '📊', ru: 'Моя практика слабых мест', uk: 'Моя практика слабких місць', es: 'Mi práctica de puntos débiles', 'pt-BR': 'Minha prática de pontos fracos', vi: 'Luyện điểm yếu của tôi', id: 'Latihan titik lemah saya', tr: 'Zayıf noktalar pratiğim', pl: 'Moja praktyka słabych miejsc' },
-  { emoji: '🧠', ru: 'Аналитика прогресса', uk: 'Аналітика прогресу', es: 'Analítica del progreso', 'pt-BR': 'Análise do progresso', vi: 'Phân tích tiến độ', id: 'Analitik kemajuan', tr: 'İlerleme analitiği', pl: 'Analityka postępów' },
-  { emoji: '🥇', ru: 'Сложные вызовы', uk: 'Складні квізи', es: 'Quizzes difíciles', 'pt-BR': 'Quizzes difíceis', vi: 'Quiz khó', id: 'Kuis sulit', tr: 'Zor quizler', pl: 'Trudne quizy' },
-  { emoji: '🛡️', ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha', 'pt-BR': 'Proteção da sequência', vi: 'Bảo vệ chuỗi', id: 'Perlindungan rangkaian', tr: 'Seri koruması', pl: 'Ochrona serii' },
-];
-
-interface ParticleSeed {
-  angle: number;
-  distance: number;
-  delay: number;
-  size: number;
-  duration: number;
-}
-
-function buildParticleSeeds(): ParticleSeed[] {
-  const seeds: ParticleSeed[] = [];
-  for (let i = 0; i < PARTICLE_COUNT; i += 1) {
-    const angle = (i / PARTICLE_COUNT) * Math.PI * 2 + (i % 3) * 0.2;
-    seeds.push({
-      angle,
-      distance: 80 + (i % 5) * 24,
-      delay: (i % 4) * 100,
-      size: 2 + (i % 3),
-      duration: 900 + (i % 4) * 150,
-    });
-  }
-  return seeds;
-}
-
-// Частицы через RN Animated (не reanimated) — намного дешевле на Android
-function Particle({ seed, started, color }: { seed: ParticleSeed; started: boolean; color: string }) {
-  const t = useRef(new RNAnim.Value(0)).current;
-  useEffect(() => {
-    if (!started) { t.setValue(0); return; }
-    const anim = RNAnim.timing(t, {
-      toValue: 1,
-      duration: seed.duration,
-      delay: seed.delay,
-      useNativeDriver: true,
-      easing: (x) => 1 - Math.pow(1 - x, 3),
-    });
-    anim.start();
-    return () => anim.stop();
-  }, [started, seed.delay, seed.duration, t]);
-
-  const x = t.interpolate({ inputRange: [0, 1], outputRange: [0, Math.cos(seed.angle) * seed.distance] });
-  const y = t.interpolate({ inputRange: [0, 1], outputRange: [0, Math.sin(seed.angle) * seed.distance] });
-  const opacity = t.interpolate({ inputRange: [0, 0.15, 0.85, 1], outputRange: [0, 1, 0.8, 0] });
-
-  return (
-    <RNAnim.View
-      style={[styles.particle, { opacity, transform: [{ translateX: x }, { translateY: y }] }]}
-      pointerEvents="none"
-    >
-      <View style={{ width: seed.size * 2, height: seed.size * 2, borderRadius: seed.size, backgroundColor: color }} />
-    </RNAnim.View>
-  );
-}
-
-function ShockWave({ active, color }: { active: boolean; color: string }) {
-  const t = useSharedValue(0);
-  useEffect(() => {
-    if (!active) { t.value = 0; return; }
-    t.value = 0;
-    t.value = withTiming(1, { duration: 700, easing: REasing.out(REasing.quad) });
-  }, [active, t]);
-  const props = useAnimatedStyle(() => ({
-    transform: [{ scale: interpolate(t.value, [0, 1], [0.4, 3.6]) }],
-    opacity: interpolate(t.value, [0, 0.05, 0.85, 1], [0, 0.9, 0.3, 0]),
-  }));
-  return (
-    <Animated.View pointerEvents="none" style={[styles.shockWave, props]}>
-      <Svg width={200} height={200} viewBox="0 0 200 200">
-        <Circle cx={100} cy={100} r={92} stroke={color} strokeWidth={4} fill="none" />
-      </Svg>
-    </Animated.View>
-  );
-}
-
-function Crown({ visible, emblem, color }: { visible: boolean; emblem: string; color: string }) {
-  const scale = useSharedValue(0);
-  const rot = useSharedValue(0);
-  useEffect(() => {
-    if (!visible) { scale.value = 0; rot.value = 0; return; }
-    scale.value = withSpring(1, { mass: 0.7, damping: 7, stiffness: 110 });
-    rot.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 2400, easing: REasing.inOut(REasing.sin) }),
-        withTiming(0, { duration: 2400, easing: REasing.inOut(REasing.sin) }),
-      ),
-      -1,
-      true,
-    );
-  }, [visible, scale, rot]);
-  const animStyle = useAnimatedStyle(() => ({
-    transform: [
-      { scale: scale.value },
-      { perspective: 600 },
-      { rotateY: `${interpolate(rot.value, [0, 1], [-12, 12])}deg` },
-    ],
-  }));
-  return (
-    <Animated.View style={[styles.crownWrap, animStyle]} pointerEvents="none">
-      <Text style={[emblem === 'VIP' ? styles.vipEmblem : styles.crownEmoji, { color }]}>{emblem}</Text>
-    </Animated.View>
-  );
-}
-
-function scheduleHaptic(delayMs: number): void {
-  setTimeout(() => { try { hapticTap(); } catch { /* noop */ } }, Math.max(0, delayMs));
-}
-
-function LockRow({
-  feature,
-  isUK,
-  isES,
-  index,
-  startedAt,
-  mainColor,
-  darkColor,
-  featureTextColor,
-  visible,
-  forceOpen,
-}: {
-  feature: FeatureRow;
-  isUK: boolean;
-  isES: boolean;
-  index: number;
-  startedAt: number;
-  mainColor: string;
-  darkColor: string;
-  featureTextColor: string;
-  visible: boolean;
-  forceOpen: boolean;
-}) {
-  const { theme: t, f } = useTheme();
-  const t1 = useSharedValue(0);
-  const flash = useSharedValue(0);
-  const iconPop = useSharedValue(0);
-  const [unlocked, setUnlocked] = useState(false);
-
-  useEffect(() => {
-    cancelAnimation(t1);
-    cancelAnimation(flash);
-    cancelAnimation(iconPop);
-    if (!visible) {
-      t1.value = 0;
-      flash.value = 0;
-      iconPop.value = 0;
-      setUnlocked(false);
-      return undefined;
-    }
-    if (forceOpen) {
-      setUnlocked(true);
-      t1.value = withTiming(1, { duration: 140, easing: REasing.out(REasing.quad) });
-      iconPop.value = withSpring(1, { mass: 0.45, damping: 7, stiffness: 160 });
-      flash.value = withTiming(1, { duration: 180, easing: REasing.out(REasing.quad) });
-      return undefined;
-    }
-
-    const delay = Math.max(0, STAGE.LOCKS_START - startedAt + index * STAGE.LOCKS_STAGGER);
-    t1.value = 0;
-    flash.value = 0;
-    iconPop.value = 0;
-    setUnlocked(false);
-    t1.value = withDelay(delay, withSpring(1, { mass: 0.6, damping: 11, stiffness: 130 }));
-    iconPop.value = withDelay(
-      delay + 130,
-      withSequence(
-        withTiming(0.35, { duration: 90, easing: REasing.out(REasing.quad) }),
-        withSpring(1, { mass: 0.45, damping: 7, stiffness: 160 }),
-      ),
-    );
-    flash.value = withDelay(delay + 130, withTiming(1, { duration: 420, easing: REasing.out(REasing.quad) }));
-    const unlockTimer = setTimeout(() => setUnlocked(true), delay + 120);
-    runOnJS(scheduleHaptic)(delay + 60);
-    return () => clearTimeout(unlockTimer);
-  }, [t1, flash, iconPop, index, startedAt, visible, forceOpen]);
-
-  const rowStyle = useAnimatedStyle(() => ({
-    opacity: t1.value,
-    transform: [{ translateX: interpolate(t1.value, [0, 1], [-32, 0]) }, { scale: interpolate(t1.value, [0, 1], [0.92, 1]) }],
-  }));
-  const iconStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: interpolate(iconPop.value, [0, 0.35, 1], [0, -6, 0]) },
-      { rotate: `${interpolate(iconPop.value, [0, 1], [0, -12])}deg` },
-      { scale: interpolate(iconPop.value, [0, 0.35, 1], [1, 0.82, 1.16]) },
-    ],
-  }));
-  const flashStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(flash.value, [0, 0.25, 1], [0, 1, 0]),
-    transform: [{ scale: interpolate(flash.value, [0, 1], [0.6, 1.6]) }],
-  }));
-
-  const label = isUK ? feature.uk : isES ? feature.es : feature.ru;
-
-  return (
-    <Animated.View style={[styles.row, rowStyle]}>
-      <View style={[styles.lockBadge, { backgroundColor: darkColor, borderColor: mainColor }]}>
-        <Animated.View style={[styles.lockIcon, iconStyle]}>
-          <Ionicons
-            name={unlocked ? 'lock-open' : 'lock-closed'}
-            size={22}
-            color={unlocked ? mainColor : featureTextColor}
-          />
-        </Animated.View>
-        <Animated.View pointerEvents="none" style={[styles.lockFlash, flashStyle]}>
-          <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: mainColor, opacity: 0.45 }} />
-        </Animated.View>
-      </View>
-      <View style={{ flex: 1 }}>
-        <Text style={[styles.featureEmoji, { fontSize: f.bodyLg }]}>{feature.emoji}</Text>
-        <Text style={[styles.featureLabel, { color: featureTextColor, fontSize: f.body }]}>{label}</Text>
-      </View>
-    </Animated.View>
-  );
-}
+import AuroraBackground from './premium_celebration/AuroraBackground';
+import {
+  CELEBRATION_FEATURES,
+  CELEBRATION_PALETTES,
+  VIP_EXTRA_FEATURE,
+  type CelebrationFeature,
+  type CelebrationVariant,
+} from './premium_celebration/celebrationContent';
 
 interface PremiumCelebrationModalProps {
   visible: boolean;
@@ -360,278 +56,347 @@ interface PremiumCelebrationModalProps {
   variant?: CelebrationVariant;
 }
 
+const ROW_HEIGHT = 70;            // высота строки + gap (для расчёта скролла)
+const ROW_STEP_MS = 360;          // время на одну строку авто-прокрутки
+const REEL_START_DELAY = 900;     // пауза перед стартом проезда (на hero-вступление)
+const HERO_OFFSET = 248;          // высота hero-зоны сверху
+
+function localeText(map: CelebrationFeature['title'], lang: ReturnType<typeof useLang>['lang']): string {
+  return (map as Record<string, string>)[lang] ?? map.ru;
+}
+
+/** Одна строка-преимущество: подсвечивается когда камера до неё доезжает. */
+function FeatureRow({ feature, lang, lit, palette, f }: {
+  feature: CelebrationFeature;
+  lang: ReturnType<typeof useLang>['lang'];
+  lit: boolean;
+  palette: typeof CELEBRATION_PALETTES['premium'];
+  f: ReturnType<typeof useTheme>['f'];
+}) {
+  const p = useSharedValue(0);
+  const flash = useSharedValue(0);
+  const check = useSharedValue(0);
+
+  useEffect(() => {
+    if (lit) {
+      p.value = withSpring(1, { mass: 0.6, damping: 13, stiffness: 130 });
+      flash.value = withSequence(
+        withTiming(1, { duration: 220, easing: REasing.out(REasing.quad) }),
+        withTiming(0, { duration: 360, easing: REasing.in(REasing.quad) }),
+      );
+      check.value = withDelay(120, withSpring(1, { mass: 0.5, damping: 8, stiffness: 170 }));
+    } else {
+      p.value = 0.28;
+      flash.value = 0;
+      check.value = 0;
+    }
+  }, [lit, p, flash, check]);
+
+  const rowStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(p.value, [0, 1], [0.28, 1]),
+    transform: [
+      { translateX: interpolate(p.value, [0, 1], [-26, 0]) },
+      { scale: interpolate(p.value, [0, 1], [0.95, 1]) },
+    ],
+  }));
+  const flashStyle = useAnimatedStyle(() => ({ opacity: interpolate(flash.value, [0, 1], [0, 0.22]) }));
+  const checkStyle = useAnimatedStyle(() => ({
+    opacity: check.value,
+    transform: [{ scale: check.value }],
+  }));
+
+  const sub = feature.sub ? localeText(feature.sub, lang) : null;
+
+  return (
+    <Reanimated.View
+      style={[
+        styles.row,
+        { borderColor: `${palette.main}29`, backgroundColor: `${palette.main}12` },
+        rowStyle,
+      ]}
+    >
+      <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.rowFlash, { backgroundColor: palette.main }, flashStyle]} />
+      <View style={[styles.rowIco, { borderColor: `${palette.main}4D`, backgroundColor: `${palette.main}1A` }]}>
+        <Text style={styles.rowEmoji}>{feature.emoji}</Text>
+      </View>
+      <View style={styles.rowText}>
+        <Text style={[styles.rowTitle, { color: palette.rowText, fontSize: f.bodyLg }]} numberOfLines={1}>
+          {localeText(feature.title, lang)}
+        </Text>
+        {sub ? (
+          <Text style={[styles.rowSub, { color: palette.rowSub, fontSize: f.caption }]} numberOfLines={1}>
+            {sub}
+          </Text>
+        ) : null}
+      </View>
+      <Reanimated.View style={[styles.checkBadge, { backgroundColor: palette.main }, checkStyle]}>
+        <Text style={[styles.checkMark, { color: palette.ctaText }]}>✓</Text>
+      </Reanimated.View>
+    </Reanimated.View>
+  );
+}
+
 function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: PremiumCelebrationModalProps) {
   const { width: winW, height: winH } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
-  const isES = lang === 'es';
   const palette = CELEBRATION_PALETTES[variant];
-  const isVip = variant === 'vip';
-  const headlineColor = isVip ? '#F7FFF9' : palette.main;
-  const subtitleColor = isVip ? '#E9FFF0' : palette.text;
-  const featureTextColor = isVip ? '#F4FFF7' : palette.main;
-  const counterTextColor = isVip ? '#FFFFFF' : palette.main;
-  const ctaTextColor = isVip ? '#FFFFFF' : palette.dark;
 
-  /** Кнопка снизу + отступ: на фолде/планшете окно низкое — список должен иметь реальную высоту и скролл. */
-  const ctaBottom = 24 + insets.bottom;
-  const featuresScrollBottom = ctaBottom + 80;
+  const features = useMemo<CelebrationFeature[]>(
+    () => (variant === 'vip' ? [VIP_EXTRA_FEATURE, ...CELEBRATION_FEATURES] : CELEBRATION_FEATURES),
+    [variant],
+  );
 
+  const scrollRef = useRef<ScrollView>(null);
+  const [litCount, setLitCount] = useState(0);
+  const [finaleLit, setFinaleLit] = useState(false);
   const [skipped, setSkipped] = useState(false);
-  const [startedAt] = useState<number>(0);
-  const particles = useMemo(buildParticleSeeds, []);
+  const stepTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const startTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const glow = useSharedValue(0);
-  const counterT = useSharedValue(0);
+  const ctaBottom = 28 + insets.bottom;
+  const reelBottom = ctaBottom + 78;
+  const reelTop = HERO_OFFSET;
+  const reelViewport = Math.max(180, winH - reelTop - reelBottom);
+
+  // hero / emblem / cta анимации
+  const ringSpin = useSharedValue(0);
+  const ringPulse = useSharedValue(0);
+  const heroIn = useSharedValue(0);
   const ctaT = useSharedValue(0);
   const ctaShimmer = useSharedValue(0);
-  const backdropT = useSharedValue(0);
+  const finaleScale = useSharedValue(0);
 
-  // Защита от повторного глюка: при каждом visible=true генерируем новый ключ
-  const [sessionKey, setSessionKey] = useState(0);
+  const clearTimers = useCallback(() => {
+    if (stepTimer.current) { clearTimeout(stepTimer.current); stepTimer.current = null; }
+    if (startTimer.current) { clearTimeout(startTimer.current); startTimer.current = null; }
+  }, []);
 
   useEffect(() => {
     if (!visible) {
-      cancelAnimation(glow);
-      cancelAnimation(counterT);
-      cancelAnimation(ctaT);
-      cancelAnimation(ctaShimmer);
-      cancelAnimation(backdropT);
-      glow.value = 0;
-      counterT.value = 0;
-      ctaT.value = 0;
-      ctaShimmer.value = 0;
-      backdropT.value = 0;
-      setSkipped(false);
+      clearTimers();
+      cancelAnimation(ringSpin); cancelAnimation(ringPulse); cancelAnimation(heroIn);
+      cancelAnimation(ctaT); cancelAnimation(ctaShimmer); cancelAnimation(finaleScale);
+      ringSpin.value = 0; ringPulse.value = 0; heroIn.value = 0;
+      ctaT.value = 0; ctaShimmer.value = 0; finaleScale.value = 0;
+      setLitCount(0); setFinaleLit(false); setSkipped(false);
       return;
     }
-    // Новая сессия — сбрасываем ключ чтобы LockRow-ы перемонтировались
-    setSessionKey(k => k + 1);
-    backdropT.value = withTiming(1, { duration: 320, easing: REasing.out(REasing.quad) });
-    glow.value = withTiming(1, { duration: 600, easing: REasing.out(REasing.quad) });
-    counterT.value = withDelay(STAGE.COUNTER, withSpring(1, { mass: 0.5, damping: 10, stiffness: 120 }));
-    ctaT.value = withDelay(STAGE.CTA, withSpring(1, { mass: 0.6, damping: 11, stiffness: 130 }));
-    ctaShimmer.value = withDelay(
-      STAGE.CTA + 200,
-      withRepeat(withTiming(1, { duration: 2200, easing: REasing.linear }), -1, false),
+
+    // вступление
+    hapticSuccess();
+    heroIn.value = withTiming(1, { duration: 520, easing: REasing.out(REasing.back(1.4)) });
+    ringSpin.value = withRepeat(withTiming(1, { duration: 6000, easing: REasing.linear }), -1, false);
+    ringPulse.value = withRepeat(
+      withSequence(
+        withTiming(1, { duration: 1300, easing: REasing.inOut(REasing.sin) }),
+        withTiming(0, { duration: 1300, easing: REasing.inOut(REasing.sin) }),
+      ),
+      -1, true,
     );
-    runOnJS(hapticSuccess)();
-  }, [visible, glow, counterT, ctaT, ctaShimmer, backdropT]);
+    ctaT.value = withDelay(REEL_START_DELAY, withSpring(1, { mass: 0.6, damping: 12, stiffness: 120 }));
+    ctaShimmer.value = withDelay(
+      REEL_START_DELAY + 300,
+      withRepeat(withTiming(1, { duration: 2400, easing: REasing.linear }), -1, false),
+    );
+
+    // авто-прокрутка: подсвечиваем по строке + двигаем камеру + хаптик
+    let i = 0;
+    const totalRows = features.length;
+    const fullHeight = totalRows * ROW_HEIGHT + 120; // + финал
+    const maxScroll = Math.max(0, fullHeight - reelViewport);
+
+    const lightNext = () => {
+      if (i >= totalRows) {
+        // финал
+        scrollRef.current?.scrollTo({ y: maxScroll, animated: true });
+        setFinaleLit(true);
+        finaleScale.value = withDelay(150, withSpring(1, { mass: 0.6, damping: 10, stiffness: 120 }));
+        setTimeout(() => { hapticSuccess(); }, 420);
+        return;
+      }
+      i += 1;
+      setLitCount(i);
+      hapticTap();
+      // камера держит подсвеченную строку около 46% вьюпорта
+      const target = Math.min(maxScroll, Math.max(0, (i - 1) * ROW_HEIGHT - reelViewport * 0.42));
+      scrollRef.current?.scrollTo({ y: target, animated: true });
+      stepTimer.current = setTimeout(lightNext, ROW_STEP_MS);
+    };
+
+    startTimer.current = setTimeout(lightNext, REEL_START_DELAY);
+
+    return () => clearTimers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible, variant]);
 
   const skip = useCallback(() => {
+    clearTimers();
     setSkipped(true);
-    counterT.value = withTiming(1, { duration: 180 });
+    setLitCount(features.length);
+    setFinaleLit(true);
+    finaleScale.value = withTiming(1, { duration: 220 });
     ctaT.value = withTiming(1, { duration: 180 });
-  }, [counterT, ctaT]);
+    requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }));
+  }, [clearTimers, features.length, finaleScale, ctaT]);
 
-  const handleClose = useCallback(() => {
-    onClose();
-  }, [onClose]);
+  const handleClose = useCallback(() => { onClose(); }, [onClose]);
 
-  const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropT.value }));
-  const glowStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(glow.value, [0, 1], [0, 0.7]),
-    transform: [{ scale: interpolate(glow.value, [0, 1], [0.6, 1]) }],
+  const heroStyle = useAnimatedStyle(() => ({
+    opacity: heroIn.value,
+    transform: [{ translateY: interpolate(heroIn.value, [0, 1], [-18, 0]) }, { scale: interpolate(heroIn.value, [0, 1], [0.9, 1]) }],
   }));
-  const counterStyle = useAnimatedStyle(() => ({
-    opacity: counterT.value,
-    transform: [{ translateY: interpolate(counterT.value, [0, 1], [12, 0]) }],
+  const ringSpinStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${interpolate(ringSpin.value, [0, 1], [0, 360])}deg` }] }));
+  const ringGlowStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(ringPulse.value, [0, 1], [0.4, 0.95]),
+    transform: [{ scale: interpolate(ringPulse.value, [0, 1], [0.92, 1.08]) }],
   }));
   const ctaStyle = useAnimatedStyle(() => ({
     opacity: ctaT.value,
     transform: [{ translateY: interpolate(ctaT.value, [0, 1], [16, 0]) }, { scale: interpolate(ctaT.value, [0, 1], [0.94, 1]) }],
   }));
-  const shimmerStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: interpolate(ctaShimmer.value, [0, 1], [-160, 320]) }],
+  const shimmerStyle = useAnimatedStyle(() => ({ transform: [{ translateX: interpolate(ctaShimmer.value, [0, 1], [-160, winW]) }] }));
+  const finaleStyle = useAnimatedStyle(() => ({
+    opacity: finaleScale.value,
+    transform: [{ scale: interpolate(finaleScale.value, [0, 1], [0.9, 1]) }],
   }));
 
+  if (!visible) return null;
+
   return (
-    <Modal visible={visible} transparent animationType="none" onRequestClose={handleClose}>
+    <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleClose}>
       <View style={styles.root}>
-        <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, { backgroundColor: palette.backdrop }, backdropStyle]} />
+        <AuroraBackground
+          active={visible}
+          width={winW}
+          height={winH}
+          bg={palette.bg}
+          auroraRgb={palette.auroraRgb}
+          main={palette.main}
+        />
+
+        {/* тап по фону = пропустить (раскрыть всё), затем закрыть */}
         <Pressable
-          style={[StyleSheet.absoluteFill, styles.skipLayer]}
+          style={StyleSheet.absoluteFill}
           onPress={skipped ? handleClose : skip}
           accessibilityRole="button"
         />
 
-        <Animated.View pointerEvents="none" style={[styles.glowWrap, glowStyle, { top: winH / 2 - winW / 2, width: winW, height: winW }]}>
-          <Svg width={winW} height={winW} viewBox="0 0 100 100">
-            <Circle cx={50} cy={50} r={48} fill={palette.main} opacity={0.18} />
-            <Circle cx={50} cy={50} r={32} fill={palette.main} opacity={0.32} />
-            <Circle cx={50} cy={50} r={18} fill={palette.bright} opacity={0.55} />
-          </Svg>
-        </Animated.View>
-
-        <View pointerEvents="none" style={[styles.particleField, { top: winH / 2, left: winW / 2 }]}>
-          {particles.map((seed, i) => (
-            <Particle key={`p_${sessionKey}_${i}`} seed={seed} started={visible} color={palette.main} />
-          ))}
-        </View>
-
-        <View pointerEvents="none" style={[styles.shockWaveWrap, { top: winH / 2 - 100, left: winW / 2 - 100 }]}>
-          <ShockWave active={visible} color={palette.main} />
-        </View>
-
-        <View pointerEvents="none" style={[styles.crownAnchor, { top: winH / 2 - 200, width: winW }]}>
-          <Crown visible={visible} emblem={palette.emblem} color={palette.main} />
-        </View>
-
-        <View pointerEvents="none" style={[styles.headlineWrap, { top: winH / 2 - 90, left: 24, right: 24 }]}>
-          <Text
-            style={[
-              styles.headline,
-              isVip && styles.vipReadableText,
-              { color: headlineColor, fontSize: Math.max(24, f.h1) },
-            ]}
-          >
-            {variant === 'vip'
-              ? triLang(lang, {
-                ru: 'VIP активирован',
-                uk: 'VIP активовано',
-                es: 'VIP activado',
-                'pt-BR': 'VIP ativado',
-                vi: 'Đã kích hoạt VIP',
-                id: 'VIP aktif',
-                tr: 'VIP etkinleştirildi',
-                pl: 'VIP aktywowany',
-              })
-              : triLang(lang, {
-                ru: '👑 Premium активирован',
-                uk: '👑 Premium активовано',
-                es: '👑 Premium activado',
-                'pt-BR': '👑 Premium ativado',
-                vi: '👑 Đã kích hoạt Premium',
-                id: '👑 Premium aktif',
-                tr: '👑 Premium etkinleştirildi',
-                pl: '👑 Premium aktywowany',
-              })}
-          </Text>
-          <Text
-            style={[
-              styles.subtitle,
-              isVip && styles.vipReadableText,
-              { color: subtitleColor, fontSize: f.body },
-            ]}
-          >
-            {variant === 'vip'
-              ? triLang(lang, {
-                ru: 'VIP-доступ открыт: энергия и все функции разблокированы',
-                uk: 'VIP-доступ відкрито: енергію й усі функції розблоковано',
-                es: 'Acceso VIP abierto: energía y funciones desbloqueadas',
-                'pt-BR': 'Acesso VIP aberto: energia e recursos desbloqueados',
-                vi: 'Đã mở VIP: năng lượng và tính năng đều mở khóa',
-                id: 'Akses VIP aktif: energi dan fitur terbuka',
-                tr: 'VIP erişim açık: enerji ve özellikler açıldı',
-                pl: 'Dostęp VIP otwarty: energia i funkcje odblokowane',
-              })
-              : triLang(lang, {
-                ru: 'Всё открыто. Учи без лимитов — прямо сейчас',
-                uk: 'Усі можливості розблоковано — поїхали',
-                es: 'Todo desbloqueado — empieza ahora',
-                'pt-BR': 'Tudo desbloqueado — vamos começar',
-                vi: 'Đã mở khóa mọi thứ — bắt đầu thôi',
-                id: 'Semua fitur terbuka — mulai',
-                tr: 'Tüm özellikler açıldı — başlayalım',
-                pl: 'Wszystko odblokowane — zaczynamy',
-              })}
-          </Text>
-        </View>
-
-        <ScrollView
-          key={`locks_${sessionKey}`}
-          style={[styles.featuresScroll, { top: winH / 2 + 10, bottom: featuresScrollBottom }]}
-          contentContainerStyle={styles.featuresScrollContent}
-          showsVerticalScrollIndicator
-          keyboardShouldPersistTaps="handled"
-          nestedScrollEnabled
-          bounces
-        >
-          {FEATURES.map((fe, idx) => (
-            <LockRow
-              key={`${sessionKey}_${fe.ru}`}
-              feature={fe}
-              isUK={isUK}
-              isES={isES}
-              index={idx}
-              startedAt={startedAt}
-              mainColor={palette.main}
-              darkColor={palette.dark}
-              featureTextColor={featureTextColor}
-              visible={visible}
-              forceOpen={skipped}
-            />
-          ))}
-          <Animated.View style={[styles.counterWrap, counterStyle]} pointerEvents="none">
-            <Text
-              style={[
-                styles.counterText,
-                isVip && styles.vipReadableText,
-                { color: counterTextColor, fontSize: f.label },
-              ]}
-            >
-              ✨ {triLang(lang, {
-                ru: `${FEATURES.length}/${FEATURES.length} разблокировано`,
-                uk: `${FEATURES.length}/${FEATURES.length} розблоковано`,
-                es: `${FEATURES.length}/${FEATURES.length} desbloqueado`,
-                'pt-BR': `${FEATURES.length}/${FEATURES.length} desbloqueado`,
-                vi: `${FEATURES.length}/${FEATURES.length} đã mở khóa`,
-                id: `${FEATURES.length}/${FEATURES.length} terbuka`,
-                tr: `${FEATURES.length}/${FEATURES.length} açıldı`,
-                pl: `${FEATURES.length}/${FEATURES.length} odblokowano`,
-              })} ✨
+        {/* skip-подсказка */}
+        {!skipped ? (
+          <View pointerEvents="none" style={[styles.skipHint, { top: insets.top + 14 }]}>
+            <Text style={styles.skipHintText}>
+              {triLang(lang, { ru: 'тапни, чтобы пропустить', uk: 'тапни, щоб пропустити', es: 'toca para saltar', 'pt-BR': 'toque para pular', vi: 'chạm để bỏ qua', id: 'ketuk untuk lewati', tr: 'geçmek için dokun', pl: 'dotknij, by pominąć' })}
             </Text>
-          </Animated.View>
-        </ScrollView>
+          </View>
+        ) : null}
 
-        <Animated.View style={[styles.ctaWrap, styles.ctaLayer, ctaStyle, { bottom: ctaBottom }]}>
+        {/* ── HERO ── */}
+        <Reanimated.View pointerEvents="none" style={[styles.hero, { top: insets.top + 36 }, heroStyle]}>
+          <View style={styles.emblemRing}>
+            <Reanimated.View style={[styles.ringConic, ringSpinStyle]}>
+              <LinearGradient
+                colors={[`${palette.main}00`, palette.main, `${palette.main}00`, palette.cta[0], `${palette.main}00`]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+            </Reanimated.View>
+            <Reanimated.View style={[styles.ringGlow, { backgroundColor: palette.main }, ringGlowStyle]} />
+            <View style={[styles.emblemDisc, { borderColor: `${palette.main}80` }]}>
+              <LinearGradient
+                colors={[`${palette.main}26`, '#0f0b03']}
+                start={{ x: 0.4, y: 0.2 }}
+                end={{ x: 0.6, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              {palette.emblem === 'VIP'
+                ? <Text style={[styles.emblemVip, { color: palette.bright }]}>VIP</Text>
+                : <Text style={styles.emblemEmoji}>{palette.emblem}</Text>}
+            </View>
+          </View>
+
+          <Text style={[styles.title, { color: palette.bright, fontSize: Math.max(25, f.h1 + 3), textShadowColor: `${palette.main}80` }]}>
+            {variant === 'vip'
+              ? triLang(lang, { ru: 'VIP активирован', uk: 'VIP активовано', es: 'VIP activado', 'pt-BR': 'VIP ativado', vi: 'Đã kích hoạt VIP', id: 'VIP aktif', tr: 'VIP etkinleştirildi', pl: 'VIP aktywowany' })
+              : triLang(lang, { ru: 'Premium активирован', uk: 'Premium активовано', es: 'Premium activado', 'pt-BR': 'Premium ativado', vi: 'Đã kích hoạt Premium', id: 'Premium aktif', tr: 'Premium etkin', pl: 'Premium aktywowany' })}
+          </Text>
+          <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>
+            {variant === 'vip'
+              ? triLang(lang, { ru: 'VIP-доступ открыт: энергия и все функции', uk: 'VIP-доступ відкрито: енергія й усі функції', es: 'Acceso VIP: energía y todo desbloqueado', 'pt-BR': 'Acesso VIP: energia e tudo liberado', vi: 'VIP: năng lượng và mọi tính năng', id: 'Akses VIP: energi dan semua fitur', tr: 'VIP: enerji ve tüm özellikler', pl: 'Dostęp VIP: energia i wszystkie funkcje' })
+              : triLang(lang, { ru: 'Всё открыто. Учи без лимитов — прямо сейчас', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora', 'pt-BR': 'Tudo desbloqueado — comece agora', vi: 'Đã mở mọi thứ — bắt đầu ngay', id: 'Semua terbuka — mulai sekarang', tr: 'Her şey açıldı — hemen başla', pl: 'Wszystko odblokowane — zaczynamy' })}
+          </Text>
+        </Reanimated.View>
+
+        {/* ── REEL ── */}
+        <View style={[styles.reelMask, { top: reelTop, bottom: reelBottom }]} pointerEvents="box-none">
+          <ScrollView
+            ref={scrollRef}
+            style={StyleSheet.absoluteFill}
+            contentContainerStyle={styles.reelContent}
+            showsVerticalScrollIndicator={false}
+            scrollEnabled={skipped}
+            pointerEvents="box-none"
+          >
+            {features.map((fe, idx) => (
+              <FeatureRow
+                key={`${variant}_${idx}`}
+                feature={fe}
+                lang={lang}
+                lit={skipped || idx < litCount}
+                palette={palette}
+                f={f}
+              />
+            ))}
+            <Reanimated.View style={[styles.finale, { borderColor: `${palette.main}66`, backgroundColor: `${palette.main}1F` }, finaleStyle]}>
+              <Text style={[styles.finaleBig, { color: palette.bright }]}>
+                {triLang(lang, { ru: '✨ Всё это теперь твоё ✨', uk: '✨ Усе це тепер твоє ✨', es: '✨ Todo esto ahora es tuyo ✨', 'pt-BR': '✨ Tudo isso agora é seu ✨', vi: '✨ Tất cả giờ là của bạn ✨', id: '✨ Semua ini milikmu ✨', tr: '✨ Hepsi artık senin ✨', pl: '✨ To wszystko teraz twoje ✨' })}
+              </Text>
+              <Text style={[styles.finaleSmall, { color: palette.text }]}>
+                {triLang(lang, {
+                  ru: `${features.length}+ преимуществ разблокировано`,
+                  uk: `${features.length}+ переваг розблоковано`,
+                  es: `${features.length}+ ventajas desbloqueadas`,
+                  'pt-BR': `${features.length}+ vantagens desbloqueadas`,
+                  vi: `Đã mở ${features.length}+ đặc quyền`,
+                  id: `${features.length}+ keuntungan terbuka`,
+                  tr: `${features.length}+ ayrıcalık açıldı`,
+                  pl: `${features.length}+ korzyści odblokowano`,
+                })}
+              </Text>
+            </Reanimated.View>
+          </ScrollView>
+        </View>
+
+        {/* ── CTA ── */}
+        <Reanimated.View style={[styles.ctaWrap, { bottom: ctaBottom }, ctaStyle]}>
           <TouchableOpacity
             testID={`${variant}-celebration-cta`}
             accessibilityRole="button"
-            hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
             activeOpacity={0.88}
             onPress={() => { hapticSuccess(); handleClose(); }}
             style={styles.ctaTouch}
           >
-            <LinearGradient
-              colors={palette.cta}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-                style={styles.ctaGradient}
-            >
-              <Text
-                style={[
-                  styles.ctaText,
-                  isVip && styles.vipCtaText,
-                  { color: ctaTextColor, fontSize: f.bodyLg },
-                ]}
-              >
-                {triLang(lang, {
-                  ru: 'Начать',
-                  uk: 'Розпочати',
-                  es: 'Comenzar',
-                  'pt-BR': 'Começar',
-                  vi: 'Bắt đầu',
-                  id: 'Mulai',
-                  tr: 'Başla',
-                  pl: 'Zacznij',
-                })}
+            <LinearGradient colors={palette.cta} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ctaGradient}>
+              <Text style={[styles.ctaText, { color: palette.ctaText, fontSize: f.bodyLg + 1 }]}>
+                {variant === 'vip'
+                  ? triLang(lang, { ru: 'Поехали', uk: 'Поїхали', es: 'Vamos', 'pt-BR': 'Vamos', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi', pl: 'Zaczynamy' })
+                  : triLang(lang, { ru: 'Начать учиться', uk: 'Почати вчитися', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu học', id: 'Mulai belajar', tr: 'Öğrenmeye başla', pl: 'Zacznij naukę' })}
               </Text>
-              <View style={styles.ctaShimmerMask} pointerEvents="none">
-                <Animated.View style={[styles.ctaShimmer, shimmerStyle]}>
+              <View style={styles.shimmerMask} pointerEvents="none">
+                <Reanimated.View style={[styles.shimmer, shimmerStyle]}>
                   <LinearGradient
-                    colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.7)', 'rgba(255,255,255,0)']}
+                    colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.65)', 'rgba(255,255,255,0)']}
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
-                    style={{ flex: 1, width: 140 }}
+                    style={{ flex: 1, width: 120 }}
                   />
-                </Animated.View>
+                </Reanimated.View>
               </View>
             </LinearGradient>
           </TouchableOpacity>
-        </Animated.View>
+        </Reanimated.View>
       </View>
     </Modal>
   );
@@ -640,103 +405,50 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
 export default memo(PremiumCelebrationModal);
 
 const styles = StyleSheet.create({
-  root: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  backdrop: { backgroundColor: '#0b0700' },
-  skipLayer: { zIndex: 0, elevation: 0 },
-  glowWrap: {
-    position: 'absolute',
-    left: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+  root: { flex: 1 },
+  skipHint: { position: 'absolute', right: 18, paddingVertical: 6, paddingHorizontal: 12, borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.28)' },
+  skipHintText: { color: 'rgba(255,255,255,0.5)', fontSize: 12.5, fontWeight: '600' },
+
+  hero: { position: 'absolute', left: 24, right: 24, alignItems: 'center' },
+  emblemRing: { width: 120, height: 120, borderRadius: 60, alignItems: 'center', justifyContent: 'center', marginBottom: 14 },
+  ringConic: { position: 'absolute', width: 136, height: 136, borderRadius: 68, opacity: 0.8, overflow: 'hidden' },
+  ringGlow: { position: 'absolute', width: 120, height: 120, borderRadius: 60, opacity: 0.5 },
+  emblemDisc: {
+    width: 96, height: 96, borderRadius: 48, borderWidth: 1.5,
+    alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
   },
-  particleField: { position: 'absolute', width: 0, height: 0 },
-  particle: { position: 'absolute', top: 0, left: 0 },
-  shockWaveWrap: {
-    position: 'absolute',
-    width: 200,
-    height: 200,
-    alignItems: 'center',
-    justifyContent: 'center',
+  emblemEmoji: { fontSize: 52 },
+  emblemVip: { fontSize: 30, fontWeight: '900', letterSpacing: 1 },
+  title: {
+    fontWeight: '900', textAlign: 'center', letterSpacing: 0.3,
+    textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 12,
   },
-  shockWave: { width: 200, height: 200, alignItems: 'center', justifyContent: 'center' },
-  crownAnchor: {
-    position: 'absolute',
-    left: 0,
-    alignItems: 'center',
-  },
-  crownWrap: { alignItems: 'center' },
-  crownEmoji: { fontSize: 80 },
-  vipEmblem: { fontSize: 54, fontWeight: '900', letterSpacing: 0 },
-  headlineWrap: {
-    position: 'absolute',
-    alignItems: 'center',
-  },
-  headline: { color: '#FFD700', fontWeight: '900', textAlign: 'center', letterSpacing: 0 },
-  subtitle: { color: '#FFE07A', textAlign: 'center', marginTop: 6, opacity: 0.85 },
-  vipReadableText: {
-    textShadowColor: 'rgba(0,0,0,0.9)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 10,
-  },
-  /** Список + счётчик в одном столбце (счётчик не абсолютный — не наезжает на последний пункт) */
-  featuresScroll: {
-    position: 'absolute',
-    left: 28,
-    right: 28,
-    zIndex: 12,
-    elevation: 12,
-  },
-  featuresScrollContent: {
-    gap: 10,
-    paddingBottom: 4,
-    /** Запас под въезд рядов с translateX −32 — иначе замки/эмодзи обрезает ScrollView */
-    paddingLeft: 40,
-    paddingRight: 8,
-  },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  lockBadge: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    borderWidth: 1.5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
+  subtitle: { textAlign: 'center', marginTop: 7, opacity: 0.85, fontWeight: '600', lineHeight: 20 },
+
+  reelMask: { position: 'absolute', left: 0, right: 0, overflow: 'hidden' },
+  reelContent: { paddingHorizontal: 22, paddingTop: 14, paddingBottom: 30, gap: 11 },
+  row: {
+    flexDirection: 'row', alignItems: 'center', gap: 13,
+    paddingVertical: 13, paddingHorizontal: 15, borderRadius: 17, borderWidth: 1,
     overflow: 'hidden',
   },
-  lockIcon: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
-  lockFlash: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
-  featureEmoji: { fontSize: 18, marginBottom: 0 },
-  featureLabel: {
-    fontWeight: '800',
-    lineHeight: 20,
-    textShadowColor: 'rgba(0,0,0,0.75)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 4,
-  },
-  counterWrap: { alignItems: 'center', marginTop: 6, paddingTop: 2 },
-  counterText: { color: '#FFD700', fontWeight: '700', textAlign: 'center' },
-  ctaWrap: { position: 'absolute', left: 28, right: 28 },
-  ctaLayer: { zIndex: 30, elevation: 30 },
-  ctaTouch: { borderRadius: 18, overflow: 'hidden' },
-  ctaGradient: {
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    minHeight: 56,
-  },
-  ctaText: { color: '#1a1208', fontWeight: '900', letterSpacing: 0 },
-  vipCtaText: {
-    textShadowColor: 'rgba(0,0,0,0.65)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 3,
-  },
-  ctaShimmerMask: {
-    ...StyleSheet.absoluteFillObject,
-    overflow: 'hidden',
-    borderRadius: 18,
-  },
-  ctaShimmer: { position: 'absolute', top: 0, bottom: 0, width: 140 },
+  rowFlash: { borderRadius: 17 },
+  rowIco: { width: 42, height: 42, borderRadius: 21, borderWidth: 1, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  rowEmoji: { fontSize: 21 },
+  rowText: { flex: 1, minWidth: 0 },
+  rowTitle: { fontWeight: '800', letterSpacing: 0.1 },
+  rowSub: { fontWeight: '500', marginTop: 1 },
+  checkBadge: { width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  checkMark: { fontSize: 13, fontWeight: '900' },
+
+  finale: { marginTop: 8, padding: 20, borderRadius: 20, borderWidth: 1.5, alignItems: 'center' },
+  finaleBig: { fontSize: 19, fontWeight: '900', textAlign: 'center' },
+  finaleSmall: { fontSize: 13, marginTop: 4, opacity: 0.8, textAlign: 'center', fontWeight: '600' },
+
+  ctaWrap: { position: 'absolute', left: 24, right: 24 },
+  ctaTouch: { borderRadius: 19, overflow: 'hidden' },
+  ctaGradient: { height: 58, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', overflow: 'hidden' },
+  ctaText: { fontWeight: '900', letterSpacing: 0.3 },
+  shimmerMask: { ...StyleSheet.absoluteFillObject, overflow: 'hidden', borderRadius: 19 },
+  shimmer: { position: 'absolute', top: 0, bottom: 0, width: 120 },
 });

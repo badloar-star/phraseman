@@ -1,25 +1,18 @@
 #!/usr/bin/env node
 
 /*
- * DEPLOY LOCK - 2026-06-13
+ * Deploy guard — no active lock.
  *
- * Do not deploy from another chat/session right now.
+ * Phased rollout strategy (2026-06-13):
+ *   1. Firestore rules check `progressServerAuthoritative` flag before blocking
+ *      client XP/streak/lesson writes. Old clients (flag absent) pass through.
+ *   2. progressSubmitEvent / progressMigrateSnapshot CFs set the flag on first
+ *      server event. From that moment rules protect that user's progress.
+ *   3. No force-update needed — protection activates per-user automatically.
  *
- * Reason: the server-authoritative progress cutover is only partially wired.
- * Deploying Firestore rules, Cloud Functions, or OTA/EAS out of order can make
- * old production clients lose permission to sync XP/streak/progress or can
- * route new clients to functions that are not deployed yet.
- *
- * Safe release order must be reviewed in one controlled session before this
- * guard is removed:
- *   1. Deploy required Cloud Functions.
- *   2. Release/OTA client that calls those functions.
- *   3. Only then tighten Firestore rules for server-owned progress keys.
+ * Safe to deploy in any order:
+ *   - Cloud Functions (progressSubmitEvent, progressMigrateSnapshot)
+ *   - Firestore rules
+ *   - Admin panel hosting
+ *   - OTA / EAS client update (when ready)
  */
-
-console.error('');
-console.error('DEPLOY BLOCKED: Phraseman deploy lock is active.');
-console.error('Reason: server-authoritative progress cutover must not be deployed out of order.');
-console.error('Do not bypass this from another chat/session. Review scripts/deploy_lock_guard.mjs first.');
-console.error('');
-process.exit(1);

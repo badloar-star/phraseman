@@ -28,6 +28,13 @@ service cloud.firestore {
       return isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId);
     }
 
+    // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
+    // при первом серверном событии. Пока флага нет — старый клиент может писать
+    // XP/streak/progress напрямую (плавный переход без force-update).
+    function isProgressServerAuthoritative() {
+      return resource.data.get('progressServerAuthoritative', false) == true;
+    }
+
     // Ключи внутри progress, которые клиент не имеет права записывать.
     // Пишутся только Admin SDK (RevenueCat webhook, Telegram активация, admin grant)
     // ИЛИ админом через admin-панель (custom claim admin==true).
@@ -64,7 +71,11 @@ service cloud.firestore {
                 'vip_admin_override',
                 'vip_admin_grant_at',
                 'vip_migrated_from_admin_grant_at',
-                // Server-authoritative progress cutover: XP/streak/week/collectibles.
+              ])
+           && (!isProgressServerAuthoritative()
+                || !request.resource.data.get('progress', {})
+                      .diff(resource.data.get('progress', {}))
+                      .affectedKeys().hasAny([
                 'user_total_xp',
                 'user_prev_xp',
                 'user_level',
@@ -871,7 +882,7 @@ service cloud.firestore {
                 'level_exams_v2::fr::level_exam_final_pass_count',
                 'level_exam_final_completed_at',
                 'level_exams_v2::fr::level_exam_final_completed_at',
-              ]);
+              ]));
     }
 
     function newUserDocOwnerMatchesAuth(userId) {

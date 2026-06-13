@@ -1582,6 +1582,21 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Произношение (scorePronunciationAttempt): лимиты/квоты/бюджет — только сервер (Admin SDK).
+    // Защищают OpenAI-кошелёк: часовой rate-limit, дневная квота на юзера, глобальный потолок.
+    match /pronunciation_score_rate_limits/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+    match /pronunciation_score_daily_quota/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+    match /pronunciation_global_budget/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
     // Жалобы «Непонятно объяснили»: ПИШЕТ только CF submitExplainReport (Admin SDK), а
     // админ-панель ЧИТАЕТ и разбирает их (раздел «Непонятно объяснили») — паттерн user_reports.
     // explain_reports — счётчик «сколько РАЗНЫХ юзеров пожаловались» по фразе

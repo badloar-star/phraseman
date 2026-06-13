@@ -8797,70 +8797,119 @@
 
 <!-- ══ Paywall A/B эксперимент ══ -->
 <div id="tab-paywall-ab" class="reports-tab">
-  <div style="padding:4px 0 16px;max-width:1080px">
-    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🧪 Paywall A/B эксперимент</h2>
-    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.55">
-      Три новых пейвола (<b>A — Компакт</b>, <b>B — Стори</b>, <b>C — Атриум</b>) против контроля <b>v1</b>.
-      Вариант закрепляется за пользователем по хэшу его ID (никакой ротации по времени — она портит чистоту теста).
-      Доли пишутся в <code style="color:#818cf8">remote_config/paywall_ab</code>, клиенты подхватывают за секунды.
-      Сумма A+B+C ≤ 100; остаток трафика видит v1. Все нули = эксперимент выключен (kill-switch).
+  <div style="padding:4px 0 14px;max-width:980px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">Какой экран оплаты показывать</h2>
+    <p style="margin:0;font-size:13.5px;color:#9ca3af;line-height:1.6">
+      У нас 4 версии экрана оплаты. Можно показывать их разным людям одновременно и смотреть,
+      с какой покупают чаще. Выбери режим ниже и нажми «Сохранить» — приложение подхватит за пару секунд,
+      переустановка и обновление не нужны. У одного человека версия не меняется со временем — так сравнение честное.
     </p>
   </div>
 
-  <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
-    <button type="button" onclick="loadPaywallAb(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 14px;border-radius:8px;cursor:pointer">🔄 Перечитать</button>
-    <button type="button" onclick="savePaywallAb()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить доли</button>
-    <span id="pab-status" style="align-self:center;font-size:13px;color:#9ca3af"></span>
+  <!-- ШАГ 1: режим показа -->
+  <div style="max-width:980px;background:#11131c;border:1px solid #222633;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:11px;font-weight:800;color:#6b7280;letter-spacing:1px;margin-bottom:4px">ШАГ 1</div>
+    <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:14px">Кому что показываем</div>
+
+    <div id="pab-presets" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px">
+      <button type="button" data-preset="off" onclick="pabPreset('off')" class="pab-card">
+        <div class="pab-card-t">⏸️ Пока ничего не меняем</div>
+        <div class="pab-card-s">Все видят текущий экран. Тест выключен.</div>
+      </button>
+      <button type="button" data-preset="soft" onclick="pabPreset('soft')" class="pab-card">
+        <div class="pab-card-t">🐣 Осторожный тест</div>
+        <div class="pab-card-s">По 10% на каждую новую версию, 70% — текущий.</div>
+      </button>
+      <button type="button" data-preset="even" onclick="pabPreset('even')" class="pab-card">
+        <div class="pab-card-t">⚖️ Поровну</div>
+        <div class="pab-card-s">Каждый получает свою версию: 25 / 25 / 25 / 25.</div>
+      </button>
+      <button type="button" data-preset="atrium" onclick="pabPreset('atrium')" class="pab-card">
+        <div class="pab-card-t">★ Только «Атриум»</div>
+        <div class="pab-card-s">Все видят рекомендованную версию. Без сравнения.</div>
+      </button>
+    </div>
+
+    <button type="button" id="pab-custom-toggle" onclick="pabToggleCustom()" style="margin-top:12px;background:none;border:none;color:#818cf8;cursor:pointer;font-size:12.5px;padding:4px 0">⚙️ Настроить проценты вручную</button>
+
+    <!-- ручные проценты — скрыто по умолчанию -->
+    <div id="pab-custom" style="display:none;margin-top:8px;padding:14px;background:#0d0f17;border:1px solid #1f2330;border-radius:10px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>A · Компакт <span style="color:#6b7280">(коротко)</span></span>
+          <input type="number" id="pab-a" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>B · Стори <span style="color:#6b7280">(длинно)</span></span>
+          <input type="number" id="pab-b" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>C · Атриум <span style="color:#6b7280">★ совет</span></span>
+          <input type="number" id="pab-c" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#6b7280"><span>Текущий <span style="color:#555">(остаток)</span></span>
+          <input type="text" id="pab-v1" disabled style="background:#0c0c16;border:1px solid #222;color:#9ca3af;padding:9px;border-radius:7px"/></label>
+      </div>
+      <div style="font-size:11.5px;color:#6b7280;margin-top:8px">Сумма трёх ≤ 100. Сколько не хватает до 100 — столько людей увидят текущий экран.</div>
+    </div>
+
+    <!-- что выбрано сейчас -->
+    <div id="pab-summary" style="margin-top:14px;padding:12px 14px;background:#0d0f17;border:1px solid #1f2330;border-radius:10px;font-size:13px;color:#cbd5e1;line-height:1.6"></div>
   </div>
 
-  <!-- Доли вариантов -->
-  <div style="max-width:920px;background:#11131c;border:1px solid #222633;border-radius:12px;padding:16px;margin-bottom:18px">
-    <div style="font-size:13px;font-weight:700;color:#e2e8f0;margin-bottom:12px">Доли трафика, %</div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
-      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>A — Компакт</span>
-        <input type="number" id="pab-a" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
-      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>B — Стори</span>
-        <input type="number" id="pab-b" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
-      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>C — Атриум</span>
-        <input type="number" id="pab-c" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
-      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#6b7280"><span>v1 — контроль (авто)</span>
-        <input type="text" id="pab-v1" disabled style="background:#0c0c16;border:1px solid #222;color:#9ca3af;padding:8px;border-radius:6px"/></label>
-    </div>
-    <div id="pab-sum-warn" style="font-size:12px;color:#f59e0b;margin-top:8px;min-height:16px"></div>
-    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:6px">
-      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Соль (смена = пересев бакетов)</span>
-        <input type="text" id="pab-salt" maxlength="40" placeholder="v3" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;width:160px"/></label>
-      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Рейтинг ×10 (50 = 5.0; 0 = скрыть)</span>
-        <input type="number" id="pab-rating" min="0" max="50" placeholder="0" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;width:160px"/></label>
-      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Число оценок (0 = не показывать)</span>
-        <input type="number" id="pab-count" min="0" placeholder="0" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;width:160px"/></label>
-    </div>
-    <p style="font-size:11px;color:#6b7280;margin:12px 0 0;line-height:1.5">
-      ⚠️ Рейтинг и число оценок показываются на пейволе как реальное соцдоказательство — вводи <b>только подтверждённые сторовые числа</b>.
-      Сейчас в сторе оценка 5.0 → ставь <code>50</code>.
+  <!-- ШАГ 2: оценка -->
+  <div style="max-width:980px;background:#11131c;border:1px solid #222633;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:11px;font-weight:800;color:#6b7280;letter-spacing:1px;margin-bottom:4px">ШАГ 2</div>
+    <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:6px">Оценка магазина на экране</div>
+    <p style="font-size:12.5px;color:#9ca3af;line-height:1.55;margin:0 0 14px">
+      Звёзды и оценка показываются людям как доказательство — поэтому вводи только настоящие цифры из магазина.
+      Сейчас в магазине <b style="color:#e2e8f0">5,0</b>.
     </p>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end">
+      <label style="display:flex;align-items:center;gap:9px;font-size:13px;color:#cbd5e1;cursor:pointer">
+        <input type="checkbox" id="pab-rating-on" onchange="pabRatingToggle()" style="width:17px;height:17px"/> Показывать оценку на экране оплаты</label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Оценка (1,0–5,0)</span>
+        <input type="number" id="pab-rating" min="1" max="5" step="0.1" placeholder="5.0" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px;width:120px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Сколько оценок <span style="color:#6b7280">(0 — не писать)</span></span>
+        <input type="number" id="pab-count" min="0" placeholder="0" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px;width:150px"/></label>
+    </div>
   </div>
 
-  <!-- Воронка -->
-  <div style="max-width:1080px;background:#11131c;border:1px solid #222633;border-radius:12px;padding:16px">
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
-      <div style="font-size:13px;font-weight:700;color:#e2e8f0">Воронка по вариантам</div>
-      <label style="font-size:12px;color:#9ca3af">с
-        <input type="date" id="pab-from" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 8px;border-radius:6px;margin-left:4px"/></label>
-      <label style="font-size:12px;color:#9ca3af">по
-        <input type="date" id="pab-to" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 8px;border-radius:6px;margin-left:4px"/></label>
-      <label style="font-size:12px;color:#9ca3af;display:flex;align-items:center;gap:5px">
-        <input type="checkbox" id="pab-include-dev" style="width:15px;height:15px"/> учитывать dev</label>
-      <button type="button" onclick="loadPaywallFunnel()" style="background:#1f2937;border:1px solid #374151;color:#e5e7eb;padding:7px 13px;border-radius:8px;cursor:pointer;font-weight:600">📊 Загрузить</button>
+  <!-- сохранить -->
+  <div style="max-width:980px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:26px">
+    <button type="button" onclick="savePaywallAb()" style="background:#16a34a;border:none;color:#fff;padding:12px 26px;border-radius:10px;cursor:pointer;font-weight:800;font-size:14px">💾 Сохранить и включить</button>
+    <button type="button" onclick="loadPaywallAb(true)" style="background:#1a1d27;border:1px solid #2a2f3a;color:#9ca3af;padding:12px 18px;border-radius:10px;cursor:pointer;font-size:13px">↻ Отменить мои правки</button>
+    <span id="pab-status" style="font-size:13px;color:#9ca3af"></span>
+  </div>
+
+  <!-- РЕЗУЛЬТАТЫ -->
+  <div style="max-width:980px;background:#11131c;border:1px solid #222633;border-radius:14px;padding:18px">
+    <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:4px">📊 Результаты — где покупают чаще</div>
+    <p style="font-size:12.5px;color:#9ca3af;line-height:1.55;margin:0 0 14px">
+      За выбранный период: сколько раз показали каждую версию и сколько раз с неё купили.
+      Главная колонка — <b style="color:#e2e8f0">«покупают»</b> (доля купивших из увидевших). У кого выше при похожем числе показов — тот и победил.
+    </p>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+      <button type="button" onclick="pabFunnelRange(7)" class="pab-range">Неделя</button>
+      <button type="button" onclick="pabFunnelRange(30)" class="pab-range">Месяц</button>
+      <button type="button" onclick="pabFunnelRange(90)" class="pab-range">3 месяца</button>
+      <span style="font-size:12px;color:#6b7280">или вручную:</span>
+      <input type="date" id="pab-from" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:6px 8px;border-radius:7px"/>
+      <span style="color:#6b7280">—</span>
+      <input type="date" id="pab-to" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:6px 8px;border-radius:7px"/>
+      <button type="button" onclick="loadPaywallFunnel()" style="background:#1f2937;border:1px solid #374151;color:#e5e7eb;padding:7px 15px;border-radius:8px;cursor:pointer;font-weight:600">Показать</button>
+      <label style="font-size:12px;color:#6b7280;display:flex;align-items:center;gap:5px;margin-left:4px">
+        <input type="checkbox" id="pab-include-dev" style="width:14px;height:14px"/> со мной/тестами</label>
       <span id="pab-funnel-status" style="font-size:12px;color:#9ca3af"></span>
     </div>
-    <div id="pab-funnel"><div style="font-size:12px;color:#6b7280">Выбери диапазон и нажми «Загрузить».</div></div>
-    <p style="font-size:11px;color:#6b7280;margin:14px 0 0;line-height:1.5">
-      CR покупки = покупки / показы. CR триала = старты триала / показы. % скролла — доля видевших, кто долистал галерею (B/C).
-      События пишутся клиентом в <code>paywall_funnel</code> (TTL 90 дней). Это независимый счётчик для сравнения вариантов, не основная аналитика.
-    </p>
+    <div id="pab-funnel"><div style="font-size:12.5px;color:#6b7280">Выбери период (Неделя / Месяц) — покажу таблицу.</div></div>
   </div>
 </div>
+
+<style>
+  #pab-presets .pab-card{text-align:left;background:#0d0f17;border:1px solid #232838;border-radius:11px;padding:13px 14px;cursor:pointer;transition:border-color .12s,background .12s}
+  #pab-presets .pab-card:hover{border-color:#3a4150;background:#10131d}
+  #pab-presets .pab-card.pab-active{border-color:#16a34a;background:#0f1a12}
+  #pab-presets .pab-card-t{font-size:13.5px;font-weight:700;color:#e8eaed;margin-bottom:3px}
+  #pab-presets .pab-card-s{font-size:11.5px;color:#8b919c;line-height:1.45}
+  .pab-range{background:#1a1d27;border:1px solid #2a2f3a;color:#cbd5e1;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:12.5px}
+  .pab-range:hover{border-color:#3a4150}
+  .pab-range.pab-active{background:#1e2a3a;border-color:#3b82f6;color:#fff}
+</style>
 
 <div id="tab-alerts" class="reports-tab">
   <div style="padding:4px 0 16px;max-width:1080px">
@@ -20278,7 +20327,12 @@
     }
   };
 
-  // ══ Paywall A/B эксперимент (remote_config/paywall_ab + paywall_funnel) ════
+  // ══ Paywall A/B — простой человеческий интерфейс выбора экрана оплаты ══════
+  // Внутри по-прежнему пишем remote_config/paywall_ab { a_pct,b_pct,c_pct,salt,
+  // rating_x10,ratings_count }. UI прячет проценты за пресетами, оценку даёт в
+  // привычной шкале 1–5 (в базе ×10), соль не показываем — храним прежнюю.
+  let _pabSalt = 'v3'; // сохраняем как было; UI её не трогает
+
   function pabSetStatus(msg, color) {
     const el = document.getElementById('pab-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
@@ -20288,16 +20342,75 @@
     const v = el && el.value !== '' ? Number(el.value) : 0;
     return Number.isFinite(v) ? v : 0;
   }
-  window.pabRecalc = function() {
-    const sum = pabNum('pab-a') + pabNum('pab-b') + pabNum('pab-c');
-    const v1 = document.getElementById('pab-v1');
-    if (v1) v1.value = sum > 100 ? '0 (доли > 100)' : String(Math.max(0, 100 - sum)) + '%';
-    const warn = document.getElementById('pab-sum-warn');
-    if (warn) {
-      if (sum > 100) warn.textContent = `⚠️ Сумма ${sum}% > 100 — приложение пропорционально ужмёт A/B/C, v1 = 0.`;
-      else if (sum === 0) warn.textContent = '⏸️ Все нули — эксперимент выключен, все видят v1.';
-      else warn.textContent = '';
+  function pabShares() {
+    return {
+      a: Math.max(0, Math.min(100, Math.round(pabNum('pab-a')))),
+      b: Math.max(0, Math.min(100, Math.round(pabNum('pab-b')))),
+      c: Math.max(0, Math.min(100, Math.round(pabNum('pab-c')))),
+    };
+  }
+  // Какой пресет соответствует текущим долям (для подсветки карточки).
+  function pabDetectPreset(a, b, c) {
+    if (a === 0 && b === 0 && c === 0) return 'off';
+    if (a === 10 && b === 10 && c === 10) return 'soft';
+    if (a === 25 && b === 25 && c === 25) return 'even';
+    if (a === 0 && b === 0 && c === 100) return 'atrium';
+    return 'custom';
+  }
+  function pabHighlightPreset(name) {
+    document.querySelectorAll('#pab-presets .pab-card').forEach(el => {
+      el.classList.toggle('pab-active', el.getAttribute('data-preset') === name);
+    });
+  }
+  // Человеческая сводка «что произойдёт».
+  function pabRenderSummary() {
+    const { a, b, c } = pabShares();
+    const sum = a + b + c;
+    const rest = Math.max(0, 100 - sum);
+    const box = document.getElementById('pab-summary');
+    if (!box) return;
+    if (sum === 0) {
+      box.innerHTML = '<b style="color:#fbbf24">Сейчас тест выключен.</b> Все пользователи видят текущий экран оплаты.';
+      return;
     }
+    const parts = [];
+    if (a) parts.push(`<b style="color:#60a5fa">${a}%</b> — Компакт`);
+    if (b) parts.push(`<b style="color:#a78bfa">${b}%</b> — Стори`);
+    if (c) parts.push(`<b style="color:#fbbf24">${c}%</b> — Атриум`);
+    if (rest) parts.push(`<b style="color:#cbd5e1">${rest}%</b> — текущий`);
+    let warn = '';
+    if (sum > 100) warn = '<div style="color:#f87171;margin-top:6px">⚠️ Сумма больше 100% — приложение само ужмёт до 100%. Лучше поправь.</div>';
+    box.innerHTML = 'Из 100 человек: ' + parts.join(' · ') + '.' + warn;
+  }
+  window.pabRecalc = function() {
+    const { a, b, c } = pabShares();
+    const sum = a + b + c;
+    const v1 = document.getElementById('pab-v1');
+    if (v1) v1.value = sum > 100 ? '0 (>100)' : String(Math.max(0, 100 - sum)) + '%';
+    pabHighlightPreset(pabDetectPreset(a, b, c));
+    pabRenderSummary();
+  };
+  // Нажатие на карточку-пресет.
+  window.pabPreset = function(name) {
+    const map = { off:[0,0,0], soft:[10,10,10], even:[25,25,25], atrium:[0,0,100] };
+    const v = map[name] || [0,0,0];
+    const set = (id, x) => { const el = document.getElementById(id); if (el) el.value = String(x); };
+    set('pab-a', v[0]); set('pab-b', v[1]); set('pab-c', v[2]);
+    // Пресет — это просто; ручные поля прячем.
+    const custom = document.getElementById('pab-custom');
+    if (custom) custom.style.display = 'none';
+    pabRecalc();
+  };
+  window.pabToggleCustom = function() {
+    const custom = document.getElementById('pab-custom');
+    if (custom) custom.style.display = custom.style.display === 'none' ? 'block' : 'none';
+  };
+  // Оценка: галочка вкл/выкл + поле 1–5.
+  window.pabRatingToggle = function() {
+    const on = !!(document.getElementById('pab-rating-on') || {}).checked;
+    const field = document.getElementById('pab-rating');
+    if (field && on && (!field.value || Number(field.value) <= 0)) field.value = '5.0';
+    if (field && !on) field.value = '';
   };
 
   window.loadPaywallAb = async function() {
@@ -20308,34 +20421,34 @@
       const d = snap.exists() ? (snap.data() || {}) : {};
       const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.value = v; };
       set('pab-a', d.a_pct ?? 0); set('pab-b', d.b_pct ?? 0); set('pab-c', d.c_pct ?? 0);
-      set('pab-salt', d.salt ?? 'v3'); set('pab-rating', d.rating_x10 ?? 0); set('pab-count', d.ratings_count ?? 0);
+      _pabSalt = (typeof d.salt === 'string' && d.salt) ? d.salt : 'v3';
+      // Оценка ×10 → шкала 1–5; 0 = выключено.
+      const rx10 = Number(d.rating_x10 || 0);
+      const ratingOn = document.getElementById('pab-rating-on');
+      if (ratingOn) ratingOn.checked = rx10 > 0;
+      set('pab-rating', rx10 > 0 ? (rx10 / 10).toFixed(1) : '');
+      set('pab-count', d.ratings_count ?? 0);
       pabRecalc();
-      pabSetStatus(snap.exists() ? ('Загружено. Обновлено: ' + (d.updatedBy || '—')) : 'Документа ещё нет — заполни и сохрани (по умолчанию все на v1).', '#4ade80');
-      // Предзаполнить диапазон воронки: последние 14 дней.
-      const today = new Date(); const from = new Date(today.getTime() - 13 * 86400000);
-      const iso = (x) => x.toISOString().slice(0, 10);
-      const fEl = document.getElementById('pab-from'); const tEl = document.getElementById('pab-to');
-      if (fEl && !fEl.value) fEl.value = iso(from);
-      if (tEl && !tEl.value) tEl.value = iso(today);
+      pabSetStatus(snap.exists() ? ('Загружено · последнее изменение: ' + (d.updatedBy || '—')) : 'Пока ничего не настроено — все видят текущий экран.', '#4ade80');
+      // Период результатов по умолчанию — последняя неделя.
+      pabFunnelRange(7, true);
     } catch (e) {
-      pabSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
+      pabSetStatus('Не удалось загрузить: ' + (e && e.message ? e.message : e), '#f87171');
     }
   };
 
   window.savePaywallAb = async function() {
-    pabSetStatus('Сохранение…');
+    pabSetStatus('Сохраняю…');
     try {
-      const a = Math.max(0, Math.min(100, Math.round(pabNum('pab-a'))));
-      const b = Math.max(0, Math.min(100, Math.round(pabNum('pab-b'))));
-      const c = Math.max(0, Math.min(100, Math.round(pabNum('pab-c'))));
-      const saltEl = document.getElementById('pab-salt');
-      const salt = (saltEl && saltEl.value.trim()) ? saltEl.value.trim().slice(0, 40) : 'v3';
-      const rating = Math.max(0, Math.min(50, Math.round(pabNum('pab-rating'))));
+      const { a, b, c } = pabShares();
+      const ratingOn = !!(document.getElementById('pab-rating-on') || {}).checked;
+      const ratingVal = pabNum('pab-rating'); // 1..5
+      const rating = ratingOn ? Math.max(0, Math.min(50, Math.round(ratingVal * 10))) : 0;
       const count = Math.max(0, Math.round(pabNum('pab-count')));
       const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
       let prev = {};
       try { const ps = await getDoc(doc(db, 'remote_config', 'paywall_ab')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
-      const next = { a_pct: a, b_pct: b, c_pct: c, salt, rating_x10: rating, ratings_count: count, updatedAt: Date.now(), updatedBy: who };
+      const next = { a_pct: a, b_pct: b, c_pct: c, salt: _pabSalt, rating_x10: rating, ratings_count: count, updatedAt: Date.now(), updatedBy: who };
       const changes = [];
       for (const k of ['a_pct','b_pct','c_pct','salt','rating_x10','ratings_count']) {
         if (String(prev[k]) !== String(next[k])) changes.push(`${k}: ${prev[k] ?? '∅'} → ${next[k]}`);
@@ -20345,10 +20458,23 @@
         try { await addDoc(collection(db, 'remote_config_history'), { changes, by: who, at: new Date().toISOString(), doc: 'paywall_ab' }); } catch (_) {}
         if (typeof logAction === 'function') logAction('paywall_ab_save', 'remote_config/paywall_ab', { changes: changes.length });
       }
-      pabSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят за секунды.`, '#4ade80');
+      pabSetStatus('✅ Сохранено. Приложение подхватит за пару секунд.', '#4ade80');
     } catch (e) {
-      pabSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+      pabSetStatus('Не удалось сохранить: ' + (e && e.message ? e.message : e), '#f87171');
     }
+  };
+
+  // Быстрый период результатов: N дней назад → сегодня.
+  window.pabFunnelRange = function(days, silent) {
+    const today = new Date(); const from = new Date(today.getTime() - (days - 1) * 86400000);
+    const iso = (x) => x.toISOString().slice(0, 10);
+    const fEl = document.getElementById('pab-from'); const tEl = document.getElementById('pab-to');
+    if (fEl) fEl.value = iso(from);
+    if (tEl) tEl.value = iso(today);
+    document.querySelectorAll('.pab-range').forEach(el => {
+      el.classList.toggle('pab-active', el.getAttribute('onclick') === `pabFunnelRange(${days})`);
+    });
+    if (!silent) window.loadPaywallFunnel();
   };
 
   window.loadPaywallFunnel = async function() {
@@ -20357,15 +20483,13 @@
     if (!box) return;
     const fromV = (document.getElementById('pab-from') || {}).value || '';
     const toV = (document.getElementById('pab-to') || {}).value || '';
-    if (!fromV || !toV) { if (status) status.textContent = 'Укажи обе даты.'; return; }
+    if (!fromV || !toV) { if (status) status.textContent = 'Выбери период.'; return; }
     const includeDev = !!(document.getElementById('pab-include-dev') || {}).checked;
-    if (status) status.textContent = 'Загрузка…';
+    if (status) status.textContent = 'Считаю…';
     box.innerHTML = '';
     try {
-      // day — строка YYYY-MM-DD, лексикографически сравнима → range-запрос без индекса по ts.
       const qy = query(collection(db, 'paywall_funnel'), where('day', '>=', fromV), where('day', '<=', toV));
       const snap = await getDocs(qy);
-      // variant → step → count; + множества uidh для уников показов; + контексты.
       const VAR = ['A','B','C','v1'];
       const STEPS = ['shown','cta_click','trial_started','purchase_completed','close'];
       const agg = {}; const ctxAgg = {}; let dropped = 0, total = 0;
@@ -20385,54 +20509,56 @@
         }
       });
       const pct = (num, den) => den > 0 ? (num / den * 100).toFixed(1) + '%' : '—';
-      const varName = { A:'A · Компакт', B:'B · Стори', C:'C · Атриум', v1:'v1 · контроль' };
+      // лучший вариант по доле покупок (минимум показов, чтобы не выстрелил случайный 1/1)
+      let best = null, bestRate = -1;
+      VAR.forEach(v => { const x = agg[v]; if (x.shown >= 30) { const rate = x.purchase_completed / x.shown; if (rate > bestRate) { bestRate = rate; best = v; } } });
+      const varName = { A:'Компакт', B:'Стори', C:'Атриум ★', v1:'Текущий' };
       const varColor = { A:'#60a5fa', B:'#a78bfa', C:'#fbbf24', v1:'#9ca3af' };
       const rows = VAR.map(v => {
         const x = agg[v];
         const crBuy = pct(x.purchase_completed, x.shown);
-        const crTrial = pct(x.trial_started, x.shown);
-        return `<tr style="border-bottom:1px solid #1e2230">
-          <td style="padding:8px 10px;font-weight:700;color:${varColor[v]}">${varName[v]}</td>
-          <td style="padding:8px 10px;text-align:right;color:#e5e7eb">${x.shown}</td>
-          <td style="padding:8px 10px;text-align:right;color:#9ca3af">${x.users.size}</td>
-          <td style="padding:8px 10px;text-align:right;color:#9ca3af">${x.cta_click}</td>
-          <td style="padding:8px 10px;text-align:right;color:#a78bfa">${x.trial_started}</td>
-          <td style="padding:8px 10px;text-align:right;color:#4ade80;font-weight:700">${x.purchase_completed}</td>
-          <td style="padding:8px 10px;text-align:right;color:#fbbf24;font-weight:700">${crBuy}</td>
-          <td style="padding:8px 10px;text-align:right;color:#c4b5fd">${crTrial}</td>
+        const isBest = v === best;
+        return `<tr style="border-bottom:1px solid #1e2230;${isBest ? 'background:#0f1a12' : ''}">
+          <td style="padding:9px 10px;font-weight:700;color:${varColor[v]}">${varName[v]}${isBest ? ' <span style="color:#4ade80;font-size:11px">🏆 лидер</span>' : ''}</td>
+          <td style="padding:9px 10px;text-align:right;color:#e5e7eb">${x.shown.toLocaleString('ru-RU')}</td>
+          <td style="padding:9px 10px;text-align:right;color:#a78bfa">${x.trial_started.toLocaleString('ru-RU')}</td>
+          <td style="padding:9px 10px;text-align:right;color:#4ade80;font-weight:700">${x.purchase_completed.toLocaleString('ru-RU')}</td>
+          <td style="padding:9px 10px;text-align:right;color:#fbbf24;font-weight:800;font-size:14px">${crBuy}</td>
         </tr>`;
       }).join('');
+      // контексты — по-русски, только где были покупки
+      const CTX_RU = { no_energy:'Кончилась энергия', arena:'Арена', course_after_lesson3:'Дальше по курсу', quiz_limit:'Лимит квизов', quiz_hard:'Сложный квиз', flashcard_limit:'Лимит карточек', streak:'Серия', personal_plan:'Личный план', intro_ended:'Конец пробного доступа', speaking:'Говорение', trainer:'Тренажёр', dialog_limit:'Лимит диалогов', generic:'Просто Premium', level_up:'Новый уровень', smart_trainer:'Умный микс' };
       const ctxKeys = Object.keys(ctxAgg).sort();
       const ctxRows = ctxKeys.length ? ctxKeys.map(ck => `<tr style="border-bottom:1px solid #1e2230">
-          <td style="padding:6px 10px;color:#cbd5e1;font-family:ui-monospace,monospace;font-size:11px">${escapeHtml(ck)}</td>
-          <td style="padding:6px 10px;text-align:right;color:#60a5fa">${ctxAgg[ck].A}</td>
-          <td style="padding:6px 10px;text-align:right;color:#a78bfa">${ctxAgg[ck].B}</td>
-          <td style="padding:6px 10px;text-align:right;color:#fbbf24">${ctxAgg[ck].C}</td>
-          <td style="padding:6px 10px;text-align:right;color:#9ca3af">${ctxAgg[ck].v1}</td>
-        </tr>`).join('') : '<tr><td colspan="5" style="padding:8px 10px;color:#6b7280;font-size:12px">Покупок в периоде нет.</td></tr>';
-      box.innerHTML = `
-        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
-          <thead><tr style="border-bottom:2px solid #2a2f40;color:#6b7280;font-size:11px;text-transform:uppercase">
-            <th style="padding:8px 10px;text-align:left">Вариант</th>
-            <th style="padding:8px 10px;text-align:right">Показы</th>
-            <th style="padding:8px 10px;text-align:right">Уники</th>
-            <th style="padding:8px 10px;text-align:right">CTA</th>
-            <th style="padding:8px 10px;text-align:right">Триалы</th>
-            <th style="padding:8px 10px;text-align:right">Покупки</th>
-            <th style="padding:8px 10px;text-align:right">CR покупки</th>
-            <th style="padding:8px 10px;text-align:right">CR триала</th>
+          <td style="padding:7px 10px;color:#cbd5e1">${escapeHtml(CTX_RU[ck] || ck)}</td>
+          <td style="padding:7px 10px;text-align:right;color:#60a5fa">${ctxAgg[ck].A}</td>
+          <td style="padding:7px 10px;text-align:right;color:#a78bfa">${ctxAgg[ck].B}</td>
+          <td style="padding:7px 10px;text-align:right;color:#fbbf24">${ctxAgg[ck].C}</td>
+          <td style="padding:7px 10px;text-align:right;color:#9ca3af">${ctxAgg[ck].v1}</td>
+        </tr>`).join('') : '<tr><td colspan="5" style="padding:8px 10px;color:#6b7280;font-size:12px">За этот период покупок ещё не было.</td></tr>';
+      const noData = total === 0;
+      box.innerHTML = noData
+        ? '<div style="font-size:13px;color:#9ca3af;padding:8px 0">За этот период данных пока нет. Запусти тест (Шаг 1) и подожди — цифры появятся по мере того, как люди открывают экран оплаты.</div>'
+        : `
+        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px">
+          <thead><tr style="border-bottom:2px solid #2a2f40;color:#8b919c;font-size:11.5px">
+            <th style="padding:8px 10px;text-align:left">Версия экрана</th>
+            <th style="padding:8px 10px;text-align:right">показали</th>
+            <th style="padding:8px 10px;text-align:right">начали пробный</th>
+            <th style="padding:8px 10px;text-align:right">купили</th>
+            <th style="padding:8px 10px;text-align:right">% покупок</th>
           </tr></thead><tbody>${rows}</tbody>
         </table></div>
-        <div style="font-size:11px;color:#6b7280;margin:10px 0 14px">Событий: ${total}${dropped ? ` · скрыто dev: ${dropped}` : ''}. Победитель — наибольший CR покупки при сопоставимых показах.</div>
-        <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">Покупки по контекстам</div>
-        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px">
-          <thead><tr style="border-bottom:1px solid #2a2f40;color:#6b7280;font-size:10px;text-transform:uppercase">
-            <th style="padding:6px 10px;text-align:left">Контекст</th><th style="padding:6px 10px;text-align:right">A</th><th style="padding:6px 10px;text-align:right">B</th><th style="padding:6px 10px;text-align:right">C</th><th style="padding:6px 10px;text-align:right">v1</th>
+        <div style="font-size:11.5px;color:#6b7280;margin:10px 0 16px">Всего событий за период: ${total.toLocaleString('ru-RU')}${dropped ? ` · скрыто моих/тестовых: ${dropped}` : ''}. «% покупок» считается надёжно от 30 показов.</div>
+        <div style="font-size:12px;color:#8b919c;margin-bottom:6px">Откуда люди приходили на экран (число покупок):</div>
+        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12.5px">
+          <thead><tr style="border-bottom:1px solid #2a2f40;color:#6b7280;font-size:11px">
+            <th style="padding:6px 10px;text-align:left">Ситуация в приложении</th><th style="padding:6px 10px;text-align:right;color:#60a5fa">Компакт</th><th style="padding:6px 10px;text-align:right;color:#a78bfa">Стори</th><th style="padding:6px 10px;text-align:right;color:#fbbf24">Атриум</th><th style="padding:6px 10px;text-align:right">Текущий</th>
           </tr></thead><tbody>${ctxRows}</tbody>
         </table></div>`;
-      if (status) status.textContent = `Готово · ${snap.size} событий`;
+      if (status) status.textContent = '';
     } catch (e) {
-      box.innerHTML = `<div style="font-size:12px;color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+      box.innerHTML = `<div style="font-size:12.5px;color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
       if (status) status.textContent = '';
     }
   };

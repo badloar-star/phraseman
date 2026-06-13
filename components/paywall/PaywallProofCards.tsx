@@ -20,7 +20,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 function ProofCard({ title, chrome, children }: { title: string; chrome: PaywallChrome; children: React.ReactNode }) {
   return (
     <View style={[S.card, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
-      <Text style={[S.cardTitle, { color: chrome.tc.heroAccent }]}>{title.toUpperCase()}</Text>
+      <Text style={[S.cardTitle, { color: chrome.textMuted }]}>{title.toUpperCase()}</Text>
       {children}
     </View>
   );
@@ -38,8 +38,8 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
     <ProofCard title={triLang(lang, { ru: 'Уже твоё', uk: 'Вже твоє', es: 'Ya es tuyo' })} chrome={chrome}>
       <View style={S.mirrorRow}>
         {stats.slice(0, 4).map((s) => (
-          <View key={s.label} style={[S.mirrorStat, { backgroundColor: `${chrome.tc.heroAccent}0D`, borderColor: chrome.cardBorder }]}>
-            <Text style={[S.mirrorValue, { color: chrome.tc.heroAccent }]}>{s.value.toLocaleString('ru-RU')}</Text>
+          <View key={s.label} style={[S.mirrorStat, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
+            <Text style={[S.mirrorValue, { color: chrome.textPrimary }]}>{s.value.toLocaleString('ru-RU')}</Text>
             <Text style={[S.mirrorLabel, { color: chrome.textMuted }]}>{s.label}</Text>
           </View>
         ))}
@@ -56,7 +56,7 @@ export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: Pay
   return (
     <ProofCard title={triLang(lang, { ru: 'Твоё место', uk: 'Твоє місце', es: 'Tu lugar' })} chrome={chrome}>
       <View style={S.pctRow}>
-        <Ionicons name="trending-up" size={22} color={chrome.tc.heroAccent} />
+        <Ionicons name="trending-up" size={22} color={chrome.textMuted} />
         <Text style={[S.pctText, { color: chrome.textPrimary }]}>{line}</Text>
       </View>
     </ProofCard>

@@ -31,7 +31,6 @@ import {
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
-import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
@@ -164,21 +163,13 @@ export default function PaywallA() {
               period={period}
             />
 
-            {/* Таймлайн триала — компактный, только если стор реально даёт триал. */}
-            {p.trialDays && (
-              <PaywallTrialTimeline
-                lang={lang as Lang}
-                chrome={chrome}
-                days={p.trialDays}
-                priceLabel={price || '…'}
-                periodLabel={period}
-              />
-            )}
+            {/* На «Компакт» триал объяснён прямо в карточке плана (trialDays выше) —
+                полный таймлайн НЕ дублируем, чтобы экран помещался без скролла (P0-4). */}
 
             <View style={S.benefits}>
               {benefits.map((b, i) => (
                 <View key={i} style={S.benefitRow}>
-                  <Ionicons name="checkmark-circle" size={17} color={chrome.tc.heroAccent} />
+                  <Ionicons name="checkmark-circle" size={17} color={chrome.textMuted} />
                   <Text style={[S.benefitText, { color: chrome.textMuted }]} numberOfLines={2}>
                     {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
                   </Text>

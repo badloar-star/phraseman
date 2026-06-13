@@ -103,21 +103,22 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
         <Text style={[S.timer, { color: tc.urgencyTimerText }]}>{timer}</Text>
       </View>
 
+      {/* Доминанта = твоя цена («Сейчас», крупно+акцент). Будущая — заметно мельче
+          и приглушённая (P0-3): сразу читается, какая цена выгодная и твоя. */}
       <View style={[S.priceRow, { borderTopColor: cardBorder }]}>
-        <View style={S.priceCol}>
-          <Text style={[S.priceCap, { color: textMuted }]}>
-            {triLang(lang, { ru: 'Сейчас', uk: 'Зараз', es: 'Ahora', 'pt-BR': 'Agora', vi: 'Bây giờ', id: 'Sekarang', tr: 'Şimdi', pl: 'Teraz' })}
+        <View style={S.priceColNow}>
+          <Text style={[S.priceCapNow, { color: tc.urgencyCurrentPriceText }]}>
+            {triLang(lang, { ru: 'СЕЙЧАС', uk: 'ЗАРАЗ', es: 'AHORA', 'pt-BR': 'AGORA', vi: 'BÂY GIỜ', id: 'SEKARANG', tr: 'ŞİMDİ', pl: 'TERAZ' })}
           </Text>
           <Text style={[S.priceNow, { color: tc.urgencyCurrentPriceText }]} numberOfLines={1} adjustsFontSizeToFit>
             {currentPrice}<Text style={[S.pricePer, { color: textMuted }]}>{period}</Text>
           </Text>
         </View>
-        <Ionicons name="arrow-forward" size={15} color={textMuted} style={{ marginHorizontal: 8 }} />
-        <View style={S.priceCol}>
-          <Text style={[S.priceCap, { color: textMuted }]}>
-            {triLang(lang, { ru: 'Скоро будет', uk: 'Скоро буде', es: 'Pronto será', 'pt-BR': 'Em breve será', vi: 'Sắp thành', id: 'Segera jadi', tr: 'Yakında olacak', pl: 'Wkrótce będzie' })}
+        <View style={S.priceColFuture}>
+          <Text style={[S.priceCapFuture, { color: textMuted }]}>
+            {triLang(lang, { ru: 'скоро', uk: 'скоро', es: 'pronto', 'pt-BR': 'em breve', vi: 'sắp tới', id: 'segera', tr: 'yakında', pl: 'wkrótce' })}
           </Text>
-          <Text style={[S.priceFuture, { color: tc.urgencyStrikethroughColor }]} numberOfLines={1} adjustsFontSizeToFit>
+          <Text style={[S.priceFuture, { color: textMuted }]} numberOfLines={1}>
             {futurePrice}<Text style={S.pricePer}>{period}</Text>
           </Text>
         </View>
@@ -145,13 +146,17 @@ const S = StyleSheet.create({
   headline: { fontSize: 12.5, fontWeight: '800', lineHeight: 17 },
   timerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
   timerLabel: { fontSize: 11.5, flex: 1 },
-  timer: { fontSize: 18, fontWeight: '900', letterSpacing: 1.5, fontVariant: ['tabular-nums'] },
-  priceRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },
-  priceCol: { alignItems: 'center', minWidth: 0, flexShrink: 1 },
-  priceCap: { fontSize: 9.5, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 },
-  priceNow: { fontSize: 18, fontWeight: '900', letterSpacing: -0.3 },
-  priceFuture: { fontSize: 15, fontWeight: '700', textDecorationLine: 'line-through' },
+  // P0-1: таймер мельче CTA (17.5/900) — кнопка остаётся главной.
+  timer: { fontSize: 15, fontWeight: '800', letterSpacing: 1.2, fontVariant: ['tabular-nums'] },
+  // P0-3: «Сейчас» доминирует, «Скоро» приглушено и мельче.
+  priceRow: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: 12, marginTop: 10, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },
+  priceColNow: { alignItems: 'flex-start', minWidth: 0, flexShrink: 1 },
+  priceColFuture: { alignItems: 'flex-start', minWidth: 0, flexShrink: 1, opacity: 0.85, paddingBottom: 1 },
+  priceCapNow: { fontSize: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 2 },
+  priceCapFuture: { fontSize: 9.5, fontWeight: '600', letterSpacing: 0.3, marginBottom: 2 },
+  priceNow: { fontSize: 16, fontWeight: '900', letterSpacing: -0.3 },
+  priceFuture: { fontSize: 12.5, fontWeight: '600', textDecorationLine: 'line-through' },
   pricePer: { fontSize: 10, fontWeight: '500' },
-  lockNote: { fontSize: 11, lineHeight: 15.5, marginTop: 10 },
+  lockNote: { fontSize: 11.5, lineHeight: 16, marginTop: 10 },
   graceText: { flex: 1, fontSize: 11.5, lineHeight: 16 },
 });

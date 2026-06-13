@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
@@ -27,7 +28,7 @@ function cleanDisplayName(value: unknown): string {
   return String(value ?? '').trim().replace(/\s+/g, ' ').slice(0, 80);
 }
 
-export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
+export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }

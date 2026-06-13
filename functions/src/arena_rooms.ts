@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const ROOM_TTL_MS = 24 * 60 * 60 * 1000;
@@ -125,7 +126,7 @@ async function fetchRoomQuestions(db: FirebaseFirestore.Firestore) {
   return questions.length > 0 ? questions : FALLBACK_ROOM_QUESTIONS;
 }
 
-export const arenaRoomCreate = onCall({ region: REGION }, async (request) => {
+export const arenaRoomCreate = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -163,7 +164,7 @@ export const arenaRoomCreate = onCall({ region: REGION }, async (request) => {
   throw new HttpsError('resource-exhausted', 'room_code_collision');
 });
 
-export const arenaRoomRecordRun = onCall({ region: REGION }, async (request) => {
+export const arenaRoomRecordRun = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -209,7 +210,7 @@ export const arenaRoomRecordRun = onCall({ region: REGION }, async (request) => 
   });
 });
 
-export const arenaPulsePublish = onCall({ region: REGION }, async (request) => {
+export const arenaPulsePublish = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -249,7 +250,7 @@ async function getRoomOrThrow(db: FirebaseFirestore.Firestore, code: string) {
 }
 
 // ─── arenaRoomJoin — войти в комнату ─────────────────────────────────────────
-export const arenaRoomJoin = onCall({ region: REGION }, async (request) => {
+export const arenaRoomJoin = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -266,33 +267,43 @@ export const arenaRoomJoin = onCall({ region: REGION }, async (request) => {
   const membersRef = db.collection('arena_room_members');
   const memberRef = membersRef.doc(`${code}_${authUid}`);
 
-  // Проверяем количество участников
-  const countSnap = await membersRef.where('code', '==', code).where('active', '==', true).count().get();
-  const activeMemberCount = countSnap.data().count;
-  if (activeMemberCount >= MAX_ROOM_MEMBERS) throw new HttpsError('resource-exhausted', 'room_full');
-
   const now = Date.now();
-  await memberRef.set({
-    code,
-    authUid,
-    stableUid,
-    userName,
-    userAvatar,
-    isHost: room.ownerUid === authUid,
-    ready: false,
-    active: true,
-    joinedAt: now,
-    updatedAt: now,
-  }, { merge: true });
+  await db.runTransaction(async (tx) => {
+    // Re-read member doc inside transaction to prevent double-join races.
+    const existingSnap = await tx.get(memberRef);
+    if (existingSnap.exists && existingSnap.data()?.active === true) {
+      // Already active member — idempotent: refresh updatedAt only.
+      tx.set(memberRef, { updatedAt: now }, { merge: true });
+      return;
+    }
 
-  // Обновляем updatedAt на комнате (для idle TTL)
-  await roomRef.set({ updatedAt: now, memberCount: admin.firestore.FieldValue.increment(0) }, { merge: true });
+    // Count active members only when we are actually about to add a new one.
+    const countSnap = await membersRef.where('code', '==', code).where('active', '==', true).count().get();
+    if (countSnap.data().count >= MAX_ROOM_MEMBERS) {
+      throw new HttpsError('resource-exhausted', 'room_full');
+    }
+
+    tx.set(memberRef, {
+      code,
+      authUid,
+      stableUid,
+      userName,
+      userAvatar,
+      isHost: room.ownerUid === authUid,
+      ready: false,
+      active: true,
+      joinedAt: existingSnap.exists ? (existingSnap.data()?.joinedAt ?? now) : now,
+      updatedAt: now,
+    }, { merge: true });
+
+    tx.set(roomRef, { updatedAt: now }, { merge: true });
+  });
 
   return { ok: true };
 });
 
 // ─── arenaRoomLeave — выйти из комнаты ───────────────────────────────────────
-export const arenaRoomLeave = onCall({ region: REGION }, async (request) => {
+export const arenaRoomLeave = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -305,7 +316,7 @@ export const arenaRoomLeave = onCall({ region: REGION }, async (request) => {
 });
 
 // ─── arenaRoomSetReady — переключить готовность ──────────────────────────────
-export const arenaRoomSetReady = onCall({ region: REGION }, async (request) => {
+export const arenaRoomSetReady = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -324,7 +335,7 @@ export const arenaRoomSetReady = onCall({ region: REGION }, async (request) => {
 });
 
 // ─── arenaRoomKick — кикнуть участника (только хост) ────────────────────────
-export const arenaRoomKick = onCall({ region: REGION }, async (request) => {
+export const arenaRoomKick = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -342,7 +353,7 @@ export const arenaRoomKick = onCall({ region: REGION }, async (request) => {
 });
 
 // ─── arenaRoomClose — закрыть комнату (только хост) ─────────────────────────
-export const arenaRoomClose = onCall({ region: REGION }, async (request) => {
+export const arenaRoomClose = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -365,7 +376,7 @@ export const arenaRoomClose = onCall({ region: REGION }, async (request) => {
 });
 
 // ─── arenaRoomChatSend — отправить сообщение в чат комнаты ──────────────────
-export const arenaRoomChatSend = onCall({ region: REGION }, async (request) => {
+export const arenaRoomChatSend = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;

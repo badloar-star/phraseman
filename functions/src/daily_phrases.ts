@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 const DAILY_PHRASES = 'daily_phrases';
@@ -23,7 +24,7 @@ async function resolveStableUid(authUid: string): Promise<string> {
   return authUid;
 }
 
-export const dailyPhraseSetSaved = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
+export const dailyPhraseSetSaved = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   const authUid = request.auth?.uid;
   if (!authUid) throw new HttpsError('unauthenticated', 'Auth required');
 

@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
 
 const REGION = 'us-central1';
 
@@ -273,7 +274,7 @@ function buildRecipientGiftPatch(
   };
 }
 
-export const friendSendGift = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
+export const friendSendGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
@@ -650,7 +651,7 @@ function buildQuestStatus(
   };
 }
 
-export const friendGetActiveQuest = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
+export const friendGetActiveQuest = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
@@ -707,7 +708,7 @@ export const friendGetActiveQuest = onCall({ region: REGION, enforceAppCheck: fa
   });
 });
 
-export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
+export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }
@@ -840,7 +841,7 @@ export const friendClaimQuestReward = onCall({ region: REGION, enforceAppCheck: 
   });
 });
 
-export const friendThankGift = onCall({ region: REGION, enforceAppCheck: false }, async (request) => {
+export const friendThankGift = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) {
     throw new HttpsError('unauthenticated', 'Auth required');
   }

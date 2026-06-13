@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import {
   cleanupLegacyAuthIdentityDuplicates,
+  describeAppCheckHeader,
   linkStableAuthUid,
   readAnonMergeClaim,
   resolveStableUidForAuth,
@@ -447,6 +448,14 @@ export async function mergeStableAccounts(
 
 export const authMergeStableAccounts = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  if (!request.app) {
+    // App Check warm-up (H9): observe attestation token presence before enforcing.
+    console.warn(JSON.stringify({
+      event: 'app_check_header_shape',
+      function: 'authMergeStableAccounts',
+      header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
+    }));
+  }
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableIdA = cleanStr(request.data?.stableIdA);

@@ -25,7 +25,7 @@ function readHeaderValue(value: unknown): string {
   return typeof value === 'string' ? value : '';
 }
 
-function describeAppCheckHeader(value: unknown): Record<string, unknown> {
+export function describeAppCheckHeader(value: unknown): Record<string, unknown> {
   const token = readHeaderValue(value).trim();
   const dotCount = token ? token.split('.').length - 1 : 0;
   let kind = 'missing';
@@ -576,6 +576,15 @@ export function readAnonMergeClaim(
 
 export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  if (!request.app) {
+    // App Check warm-up (H9): see whether clients attach a valid attestation token
+    // BEFORE enforcing. Не энфорсим здесь — только наблюдаем форму заголовка.
+    console.warn(JSON.stringify({
+      event: 'app_check_header_shape',
+      function: 'authStampAnonOwnership',
+      header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
+    }));
+  }
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableId = normalizeStableId(request.data?.stableId);

@@ -69,9 +69,8 @@ const CardCell = React.memo(function CardCell({
 
   return (
     <TouchableOpacity
-      activeOpacity={owned ? 0.85 : 1}
-      onPress={owned ? onPress : undefined}
-      disabled={!owned}
+      activeOpacity={0.75}
+      onPress={onPress}
       style={{ width: '31%', marginBottom: 10 }}
     >
       <View
@@ -87,8 +86,13 @@ const CardCell = React.memo(function CardCell({
         }}
       >
         {xml ? (
-          <View style={{ opacity: owned ? 1 : 0.6 }}>
-            <SvgXml xml={xml} width="92%" height="92%" viewBox="0 0 200 160" />
+          <View style={{ opacity: owned ? 1 : 0.6, width: '92%', aspectRatio: 200 / 160 }}>
+            <SvgXml
+              xml={xml}
+              width="100%"
+              height="100%"
+              onError={(e) => console.warn('[CollectibleSVG]', card.id, e.message)}
+            />
           </View>
         ) : (
           <Text style={{ color: owned ? rarityColor : textMuted, fontSize: 24, fontWeight: '900' }}>
@@ -145,9 +149,8 @@ const SecretCell = React.memo(function SecretCell({
 }) {
   return (
     <TouchableOpacity
-      activeOpacity={owned ? 0.85 : 1}
-      onPress={owned ? onPress : undefined}
-      disabled={!owned}
+      activeOpacity={0.75}
+      onPress={onPress}
       style={{ width: '31%', marginBottom: 10 }}
     >
       <View
@@ -165,7 +168,9 @@ const SecretCell = React.memo(function SecretCell({
       >
         {owned ? (
           secret.svg ? (
-            <SvgXml xml={secret.svg} width="92%" height="92%" viewBox="0 0 200 160" />
+            <View style={{ width: '92%', aspectRatio: 200 / 160 }}>
+              <SvgXml xml={secret.svg} width="100%" height="100%" />
+            </View>
           ) : (
             <Ionicons name="star" size={26} color={SECRET_GOLD} />
           )

@@ -307,6 +307,24 @@ export const registerXP = async (
       : Math.max(0, currentTotal + finalDelta);
     if (!serverAward) {
       await storageSetString('user_total_xp', String(newTotal));
+      // Offline: streak_count не приходит через mirrorProgressResultToLocal —
+      // обновляем локально сами чтобы UI показывал правильный стрик сразу.
+      if (finalDelta > 0) {
+        const todayKey = new Date().toISOString().slice(0, 10);
+        const lastDate = await AsyncStorage.getItem('last_active_date');
+        if (lastDate !== todayKey) {
+          const prevStreak = Number((await AsyncStorage.getItem('streak_count')) ?? '0') || 0;
+          const yesterday = new Date();
+          yesterday.setDate(yesterday.getDate() - 1);
+          const yKey = yesterday.toISOString().slice(0, 10);
+          const next = lastDate === yKey ? prevStreak + 1 : 1;
+          await AsyncStorage.multiSet([
+            ['streak_count', String(next)],
+            ['last_active_date', todayKey],
+            ['streak_last_date', todayKey],
+          ]);
+        }
+      }
     }
     // XP-01: Track weekly XP in lockstep with total XP. addWeeklyXp internally
     // ignores delta <= 0 and self-heals stale week period. Synced to Firestore

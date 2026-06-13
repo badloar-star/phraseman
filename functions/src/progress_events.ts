@@ -551,6 +551,8 @@ export function buildMigrationPatch(snapshot: ProgressMap, existing: ProgressMap
   return patch;
 }
 
+const DAILY_EVENT_LIMIT = 500;
+
 export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -564,14 +566,25 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   const userRef = db.collection('users').doc(stableUid);
   const ledgerRef = userRef.collection('progress_events').doc(safeDocId(event.eventId));
   const now = new Date();
+  const todayKey = isoDateUtc(now);
+  const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
 
   return db.runTransaction(async (tx) => {
-    const [userSnap, ledgerSnap] = await Promise.all([tx.get(userRef), tx.get(ledgerRef)]);
+    const [userSnap, ledgerSnap, counterSnap] = await Promise.all([
+      tx.get(userRef),
+      tx.get(ledgerRef),
+      tx.get(dailyCounterRef),
+    ]);
     if (ledgerSnap.exists) {
       const result = ledgerSnap.data()?.result as ProgressEventResult | undefined;
       if (result) return { ...result, duplicate: true };
       throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
     }
+    const dailyCount = (counterSnap.data()?.count as number | undefined) ?? 0;
+    if (dailyCount >= DAILY_EVENT_LIMIT) {
+      throw new HttpsError('resource-exhausted', 'daily_progress_event_limit_reached');
+    }
+    tx.set(dailyCounterRef, { count: dailyCount + 1, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
 
     const progress = getProgress(userSnap.data());
     const applied = applyProgressEvent(progress, event, now);

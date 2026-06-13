@@ -58,13 +58,32 @@ describe('auth provider stable-id linking', () => {
     expect(source).not.toContain('`lesson${i + 1}_intro_shown`');
   });
 
-  test('remote stable-id swap carries real paid Premium into the winning account before local wipe', () => {
-    expect(source).toContain('copyLocalRealPremiumToStableId');
-    expect(source).toContain('REAL_PREMIUM_TRANSFER_KEYS');
-    expect(source).toContain("plan === 'monthly' || plan === 'yearly' || plan === 'annual'");
-    expect(mergeSwapSource).toContain('await copyLocalRealPremiumToStableId(db, outcome.remoteStableId)');
-    expect(mergeSwapSource.indexOf('await copyLocalRealPremiumToStableId(db, outcome.remoteStableId)')).toBeLessThan(
-      mergeSwapSource.indexOf('await wipeLocalAccountData();'),
+  test('remote stable-id swap merges accounts on the server (no client-side premium copy / dup)', () => {
+    // Premium is carried by the server merge (mergeUserProgress), NOT by copying
+    // local premium onto the other account — that produced a duplicate premium and
+    // an un-expirable "forever" premium without rc_expiry_ms.
+    expect(source).not.toContain('copyLocalRealPremiumToStableId');
+    expect(source).not.toContain('REAL_PREMIUM_TRANSFER_KEYS');
+    expect(mergeSwapSource).toContain('await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId)');
+  });
+
+  test('remote stable-id swap aborts (no swap) when the server merge fails — never creates a third profile', () => {
+    expect(mergeSwapSource).toContain("captureAuthSignInFailure(provider, 'merge', 'server_merge_failed')");
+    expect(mergeSwapSource).toContain("return { result: 'error', error: 'merge_failed' }");
+    // Server merge must run BEFORE setStableId — we only swap to the canonical winner.
+    expect(mergeSwapSource.indexOf('await mergeStableAccountsViaServer(')).toBeLessThan(
+      mergeSwapSource.indexOf('await setStableId('),
+    );
+    // setStableId uses the canonical result, not blindly the remote id.
+    expect(mergeSwapSource).toContain('await setStableId(canonicalStableId)');
+  });
+
+  test('remote stable-id swap clears the premium cache so the previous account status is not shown', () => {
+    expect(source).toContain("import { invalidatePremiumCache } from './premium_guard'");
+    expect(mergeSwapSource).toContain('invalidatePremiumCache()');
+    // Cache must be cleared AFTER the stable id is swapped.
+    expect(mergeSwapSource.indexOf('await setStableId(canonicalStableId)')).toBeLessThan(
+      mergeSwapSource.indexOf('invalidatePremiumCache()'),
     );
   });
 

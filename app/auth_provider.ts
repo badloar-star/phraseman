@@ -40,7 +40,9 @@ import {
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
   ensureStableAuthLinkForStableId,
+  mergeStableAccountsViaServer,
 } from './cloud_sync';
+import { invalidatePremiumCache } from './premium_guard';
 import { loadShardsFromCloud } from './shards_system';
 import { logEvent, recordError } from './firebase';
 import { logAppCritical } from './app_health';
@@ -69,50 +71,12 @@ async function syncRevenueCatAfterAuthLink(): Promise<void> {
     .catch(() => {});
 }
 
-const REAL_PREMIUM_TRANSFER_KEYS = [
-  'premium_active',
-  'premium_plan',
-  'premium_expiry',
-  'premium_rc_product_id',
-  'premium_rc_period_type',
-  'premium_rc_store',
-  'premium_rc_expiry_ms',
-  'premium_rc_purchased_at_ms',
-  'premium_rc_updated_at',
-  'premium_admin_grant_at',
-  'had_premium_ever',
-] as const;
-
-async function copyLocalRealPremiumToStableId(
-  db: ReturnType<typeof getFirestore>,
-  targetStableId: string,
-): Promise<void> {
-  if (!db || !targetStableId) return;
-  const rows = await AsyncStorage.multiGet([...REAL_PREMIUM_TRANSFER_KEYS, 'admin_premium_override']);
-  const get = (key: string) => String(rows.find((row) => row[0] === key)?.[1] ?? '').trim();
-  const plan = get('premium_plan').toLowerCase();
-  const expiry = Number(get('premium_expiry') || '0');
-  const adminOverride = get('admin_premium_override').toLowerCase();
-  const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual';
-  const active = get('premium_active') === 'true';
-  const notExpired = !Number.isFinite(expiry) || expiry <= 0 || expiry > Date.now();
-  if (!active || !isStorePlan || !notExpired || adminOverride === 'true') return;
-
-  const progress: Record<string, string> = {};
-  for (const key of REAL_PREMIUM_TRANSFER_KEYS) {
-    const value = get(key);
-    if (value) progress[key] = value;
-  }
-  progress.premium_active = 'true';
-  progress.premium_plan = plan === 'annual' ? 'yearly' : plan;
-  progress.premium_expiry = progress.premium_expiry || '0';
-  progress.had_premium_ever = '1';
-
-  await db.collection('users').doc(targetStableId).set({
-    progress,
-    updatedAt: Date.now(),
-  }, { merge: true });
-}
+// Премиум при свапе аккаунта НЕ копируется клиентом: это создавало дубль премиума
+// (премиум уходящего аккаунта попадал в облако нового) и «вечный» премиум без
+// rc_expiry_ms, который крон не гасил. Теперь премиум переносит серверный merge
+// (mergeStableAccountsViaServer → mergeUserProgress) от «сильной» по entitlement
+// стороны, а RevenueCat App User ID переустанавливается на canonical stable_id,
+// поэтому магазин сам пришлёт событие на верный аккаунт.
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -995,10 +959,26 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       // Здесь нельзя оставлять обычный debounce: дальше мы меняем stable_id и чистим локальные
       // progress-ключи, поэтому свежий локальный прогресс должен быть отправлен прямо сейчас.
       await syncToCloud({ forceNow: true });
-      await copyLocalRealPremiumToStableId(db, outcome.remoteStableId).catch(() => {});
 
-      // Подменяем stable_id локально
-      await setStableId(outcome.remoteStableId);
+      // СЛИЯНИЕ НА СЕРВЕРЕ (Admin SDK, best-of-field). Заменяет старую клиентскую
+      // склейку, которая (а) теряла прогресс проигравшей стороны и (б) копировала
+      // локальный премиум на чужой аккаунт (дубль). Сервер сливает progress/shards
+      // корректно и переносит премиум-блок целиком от «сильной» стороны.
+      // Если merge недоступен/упал — НЕ свапаем (лучше остаться как есть, чем создать
+      // третий профиль или потерять данные). canonicalStableId — победитель по XP.
+      const merge = await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId);
+      if (!merge?.ok || !merge.canonicalStableId) {
+        captureAuthSignInFailure(provider, 'merge', 'server_merge_failed');
+        return { result: 'error', error: 'merge_failed' };
+      }
+      const canonicalStableId = merge.canonicalStableId;
+
+      // Подменяем stable_id локально на канонический результат слияния.
+      await setStableId(canonicalStableId);
+
+      // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.
+      // Без сброса до 5 минут после свапа в UI виден чужой премиум-статус.
+      invalidatePremiumCache();
 
       // Чистим локальные account/progress-ключи, чтобы restoreFromCloud записал данные нового аккаунта.
       // wipeLocalAccountData() держит единый список cloud + local-only target buckets (lesson runtime,
@@ -1012,7 +992,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       // до того, как PremiumContext перечитает entitlement.
       await syncRevenueCatAfterAuthLink();
 
-      // Тащим прогресс с remote stable_id
+      // Тащим прогресс с canonical stable_id
       await restoreFromCloud();
 
       // КРИТИЧНО: шарды лежат в users/{uid}.shards (отдельно от SYNC_KEYS),
@@ -1027,7 +1007,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       logAuthEvent('auth_signin_merged', {
         provider,
         from: outcome.mergedFromStableId.slice(0, 8),
-        to: outcome.remoteStableId.slice(0, 8),
+        to: canonicalStableId.slice(0, 8),
       });
       scheduleReferralApplyAfterLink();
       emitAuthProviderLinked();

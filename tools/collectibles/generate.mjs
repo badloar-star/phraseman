@@ -452,9 +452,22 @@ function isLiveSet(s) {
     && statusAtLeast(s.secret.status, 'texts_done');
 }
 
+/**
+ * Конвертировать rgba(r,g,b,a) → rgb(r,g,b) + fill-opacity/stroke-opacity.
+ * react-native-svg не понимает rgba() в атрибутах fill/stroke.
+ */
+function fixRgba(svg) {
+  // fill="rgba(r,g,b,a)" → fill="rgb(r,g,b)" fill-opacity="a"
+  return svg
+    .replace(/\bfill="rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)"/g,
+      (_, r, g, b, a) => `fill="rgb(${r},${g},${b})" fill-opacity="${a}"`)
+    .replace(/\bstroke="rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)"/g,
+      (_, r, g, b, a) => `stroke="rgb(${r},${g},${b})" stroke-opacity="${a}"`);
+}
+
 /** Сжать SVG без изменения разметки: убрать межтеговые переводы строк и двойные пробелы. */
 function compactSvg(svg) {
-  return svg.replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').trim();
+  return fixRgba(svg.replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').trim());
 }
 
 function readArtSvg(artRef) {

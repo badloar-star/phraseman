@@ -154,6 +154,10 @@ const PLAN_LOADING_METER_KEYFRAMES = {
 const PLAN_LOADING_BUTTON_REVEAL = { delay: 3350, duration: 350 };
 const PLAN_DAYS_COUNT_DURATION_MS = 950;
 const PLAN_DAYS_COUNT_TICK_MS = 24;
+// H-ENTER: верхняя граница на весь провайдер-вход (Google/Apple) в онбординге.
+// Реальный вход с merge на медленной сети может занять 10–20с, поэтому рубим только
+// на 45с — но рубим обязательно, чтобы кнопки (включая «Позже») не залипли навсегда.
+const SIGN_IN_OVERALL_TIMEOUT_MS = 45_000;
 const PLAN_LOADING_BUILD_ITEMS: Array<{
   title: string;
   iconAsset: PlanIconSource;
@@ -2753,8 +2757,17 @@ function AuthOnboardingStep({
   const handleSignIn = async (provider: AuthProviderId) => {
     setLoadingProvider(provider);
     try {
-      const result = await signInWithProvider(provider);
-      setLoadingProvider(null);
+      // H-ENTER: общий таймаут на весь вход. Если сеть оборвалась сразу после выбора
+      // аккаунта, внутренние Firestore-await могли бы висеть вечно → loadingProvider
+      // не сбрасывался → interactionLocked запирал И кнопки входа, И «Позже».
+      // Гонка с дедлайном гарантирует, что промис всегда завершится за конечное время,
+      // а finally ниже всегда снимет блокировку кнопок.
+      const result = await Promise.race([
+        signInWithProvider(provider),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('signin_deadline-exceeded')), SIGN_IN_OVERALL_TIMEOUT_MS),
+        ),
+      ]);
       if (result.result === 'cancelled') {
         AppInfoDialog.alert(
           authPick('Вход не завершён', 'Вхід не завершено', 'Acceso sin terminar'),
@@ -2803,6 +2816,19 @@ function AuthOnboardingStep({
       await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
       await onComplete();
     } catch {
+      // Сюда попадает в т.ч. срабатывание общего таймаута (signin_deadline-exceeded).
+      // Показываем человеческое сообщение про сеть — экран остаётся рабочим, можно
+      // повторить или пропустить шаг.
+      AppInfoDialog.alert(
+        authPick('Вход не получился', 'Не вдалося увійти', 'No se pudo iniciar sesión'),
+        authPick(
+          'Проблема с сетью. Проверь интернет и попробуй ещё раз или пропусти шаг.',
+          'Проблема з мережею. Перевір інтернет і спробуй ще раз або пропусти крок.',
+          'Problema de red. Comprueba Internet e inténtalo otra vez u omite el paso.',
+        ),
+      );
+    } finally {
+      // H-ENTER: блокировка кнопок (включая «Позже») снимается ВСЕГДА.
       setLoadingProvider(null);
     }
   };

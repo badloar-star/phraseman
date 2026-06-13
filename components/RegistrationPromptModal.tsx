@@ -40,6 +40,9 @@ import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
 const AUTH_QUICK_START_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
+// H-ENTER: верхняя граница на весь провайдер-вход, чтобы кнопки модалки (включая
+// «Позже»/закрытие) не залипли навсегда, если сеть оборвалась после выбора аккаунта.
+const SIGN_IN_OVERALL_TIMEOUT_MS = 45_000;
 
 interface Props {
   visible: boolean;
@@ -210,8 +213,15 @@ function RegistrationPromptModal({
       logEvent('auth_prompt_click', { context, provider });
       if (__DEV__) console.log('[RegistrationPromptModal] handleSignIn start, provider=', provider);
       try {
-        const result = await signInWithProvider(provider);
-        setLoadingProvider(null);
+        // H-ENTER: общий таймаут на весь вход (см. SIGN_IN_OVERALL_TIMEOUT_MS).
+        // Без него зависший Firestore-await внутри signInWithProvider навсегда запирал
+        // модалку (loadingProvider не сбрасывался → все кнопки disabled).
+        const result = await Promise.race([
+          signInWithProvider(provider),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error('signin_deadline-exceeded')), SIGN_IN_OVERALL_TIMEOUT_MS),
+          ),
+        ]);
         if (__DEV__) console.log('[RegistrationPromptModal] signInWithProvider returned', result);
 
         if (result.result === 'cancelled') {
@@ -304,9 +314,9 @@ function RegistrationPromptModal({
         onSignedIn?.(result);
         onClose();
       } catch (e: any) {
-        setLoadingProvider(null);
         if (__DEV__) console.warn('[RegistrationPromptModal] unexpected error', e);
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
+        // Сюда же попадает срабатывание общего таймаута (signin_deadline-exceeded).
         const detail = String(e?.message ?? e ?? 'unknown');
         showInlineError(
           triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
@@ -321,6 +331,9 @@ function RegistrationPromptModal({
             pl: 'Coś poszło nie tak podczas logowania.',
           })}\n\n${detail.slice(0, 200)}`,
         );
+      } finally {
+        // H-ENTER: блокировка кнопок снимается ВСЕГДА (включая «Позже»/закрытие).
+        setLoadingProvider(null);
       }
     },
     [context, lang, onClose, onSignedIn, showInlineError],

@@ -561,6 +561,7 @@ const STABLE_AUTH_LINK_CACHE_TTL_MS = 24 * 60 * 60_000;
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
 const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
+const RESTORE_FIRESTORE_READ_MS = 15_000;
 const ANON_AUTH_READY_TIMEOUT_MS = 8_000;
 const SYNC_DEBOUNCE_MS = 5 * 60_000;
 const SYNC_HEARTBEAT_MS = 60 * 60_000;
@@ -1677,7 +1678,11 @@ export async function restoreAndMigrateFromCloud(): Promise<boolean> {
   if (!uid) return false;
   try {
     await ensureStableAuthLinkForStableId(uid).catch(() => false);
-    const doc = await db.collection('users').doc(uid).get();
+    const doc = await withTimeout<any>(
+      db.collection('users').doc(uid).get(),
+      RESTORE_FIRESTORE_READ_MS,
+      'restore_user_doc',
+    );
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
     if (!migrated) {
       if (!doc.exists) {

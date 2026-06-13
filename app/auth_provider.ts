@@ -293,6 +293,14 @@ export async function isGoogleSignInAvailable(): Promise<boolean> {
 /** Чтение users/{stableId} не должно блокировать настройки бесконечно при «зависшем» клиенте Firestore. */
 const LINKED_AUTH_FIRESTORE_TIMEOUT_MS = 12_000;
 
+/**
+ * Пост-транзакционный restore/sync прогресса (полная склейка облака) может быть тяжелее
+ * одного link-lookup, поэтому даём ему больше времени — но НЕ бесконечность. Без этого
+ * таймаута оборванная сеть сразу после выбора аккаунта вешала весь вход (H-ENTER):
+ * await restoreFromCloud/syncToCloud не разрешался → onboarding блокировал даже «Позже».
+ */
+const SIGNIN_CLOUD_SYNC_TIMEOUT_MS = 20_000;
+
 function coerceFirebaseMetaTime(raw: unknown, defaultTime: number): number {
   if (raw == null) return defaultTime;
   if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
@@ -689,7 +697,11 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         : cred.appleNonce
           ? authMod.default.AppleAuthProvider.credential(cred.idToken, cred.appleNonce)
           : authMod.default.AppleAuthProvider.credential(cred.idToken);
-    const userCredential = await auth.signInWithCredential(credential);
+    const userCredential = await withTimeout<any>(
+      auth.signInWithCredential(credential),
+      LINKED_AUTH_FIRESTORE_TIMEOUT_MS,
+      'signin_credential',
+    );
     const fbUser = userCredential?.user ?? auth.currentUser;
     firebaseProviderUid = fbUser?.uid ?? '';
     if (!firebaseEmail) firebaseEmail = fbUser?.email ?? null;
@@ -717,7 +729,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
 
   let remoteStableId: string | null = null;
   try {
-    const linkSnap = await linkRef.get();
+    const linkSnap = await withTimeout<any>(linkRef.get(), LINKED_AUTH_FIRESTORE_TIMEOUT_MS, 'link_lookup');
     const linkedStableId = linkSnap.exists ? linkSnap.data()?.stable_id : null;
     if (typeof linkedStableId === 'string' && linkedStableId.trim() && linkedStableId !== localStableId) {
       remoteStableId = linkedStableId.trim();
@@ -757,7 +769,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     }
 
     try {
-      outcome = await db.runTransaction(async (tx: any) => {
+      outcome = await withTimeout(db.runTransaction(async (tx: any) => {
       const linkSnap = await tx.get(linkRef);
 
       if (linkSnap.exists) {
@@ -940,7 +952,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         { merge: true },
       );
       return { kind: 'created_new' as const };
-    });
+    }), LINKED_AUTH_FIRESTORE_TIMEOUT_MS, 'signin_transaction');
   } catch (e: any) {
     if (__DEV__) console.warn('[auth_provider] transaction failed', e);
     logAuthEvent('auth_signin_error', { provider, stage: 'transaction', error: String(e?.message ?? e).slice(0, 80) });
@@ -958,7 +970,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       // syncToCloud у нас пишет в users/{currentLocalStableId} — это корректно ДО swap.
       // Здесь нельзя оставлять обычный debounce: дальше мы меняем stable_id и чистим локальные
       // progress-ключи, поэтому свежий локальный прогресс должен быть отправлен прямо сейчас.
-      await syncToCloud({ forceNow: true });
+      await withTimeout(syncToCloud({ forceNow: true }), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'swap_presync');
 
       // СЛИЯНИЕ НА СЕРВЕРЕ (Admin SDK, best-of-field). Заменяет старую клиентскую
       // склейку, которая (а) теряла прогресс проигравшей стороны и (б) копировала
@@ -996,7 +1008,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       await syncRevenueCatAfterAuthLink();
 
       // Тащим прогресс с canonical stable_id
-      await restoreFromCloud();
+      await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'swap_restore');
 
       // КРИТИЧНО: шарды лежат в users/{uid}.shards (отдельно от SYNC_KEYS),
       // и после свапа stable_id локальный баланс соответствует СТАРОМУ аккаунту.
@@ -1056,7 +1068,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     // Поэтому сначала тащим cloud → local. Если local имеет существенный прогресс —
     // тогда можно sync. Иначе — пропускаем sync, чтобы не пере-затереть облако null\'ами.
     try {
-      await restoreFromCloud();
+      await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'linked_restore');
     } catch (e) {
       if (__DEV__) console.warn('[auth_provider] linked_existing restoreFromCloud failed', e);
     }
@@ -1079,7 +1091,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   // outcome.kind === 'created_new'
   // Тот же подход: сначала restore, потом sync только если local не пустой.
   try {
-    await restoreFromCloud();
+    await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'created_restore');
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] created_new restoreFromCloud failed', e);
   }

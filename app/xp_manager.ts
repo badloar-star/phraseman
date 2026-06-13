@@ -241,9 +241,42 @@ export const registerXP = async (
       const eventType = progressEventTypeForSource(source);
       if (progressServerRequired() && eventType && finalDelta > 0) {
         const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
+        try {
+          serverAward = await submitProgressEvent({
+            eventId: options?.eventId,
+            type: eventType,
+            payload: {
+              xpDelta: finalDelta,
+              baseAmount: amount,
+              source,
+              lessonId: lessonNumber ?? null,
+              lessonNumber: lessonNumber ?? null,
+              localTotalBeforeServer,
+              multiplier: totalMultiplier,
+              ...(options?.payload ?? {}),
+            },
+          });
+          finalDelta = serverAward.xpDelta;
+        } catch (serverError) {
+          // Событие встало в очередь (offline/network). Продолжаем с локальным XP —
+          // сервер синхронизируется при следующем запросе через flushPendingProgressEvents.
+          DebugLogger.warn('xp_manager.ts:registerXP', serverError, 'server_queued');
+        }
+      }
+      if (giftState.consumeBank && finalDelta > 0) {
+        await consumeGiftXpBank(amount).catch(() => 0);
+      }
+    }
+
+    // 2. Обновляем основные структуры данных через hall_of_fame_utils
+    // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку
+    const fallbackEventType = progressEventTypeForSource(source);
+    if (progressServerRequired() && fallbackEventType && finalDelta > 0 && !serverAward) {
+      const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
+      try {
         serverAward = await submitProgressEvent({
           eventId: options?.eventId,
-          type: eventType,
+          type: fallbackEventType,
           payload: {
             xpDelta: finalDelta,
             baseAmount: amount,
@@ -256,32 +289,9 @@ export const registerXP = async (
           },
         });
         finalDelta = serverAward.xpDelta;
+      } catch (serverError) {
+        DebugLogger.warn('xp_manager.ts:registerXP', serverError, 'server_queued_fallback');
       }
-      if (giftState.consumeBank && finalDelta > 0) {
-        await consumeGiftXpBank(amount).catch(() => 0);
-      }
-    }
-
-    // 2. Обновляем основные структуры данных через hall_of_fame_utils
-    // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку
-    const fallbackEventType = progressEventTypeForSource(source);
-    if (progressServerRequired() && fallbackEventType && finalDelta > 0 && !serverAward) {
-      const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
-      serverAward = await submitProgressEvent({
-        eventId: options?.eventId,
-        type: fallbackEventType,
-        payload: {
-          xpDelta: finalDelta,
-          baseAmount: amount,
-          source,
-          lessonId: lessonNumber ?? null,
-          lessonNumber: lessonNumber ?? null,
-          localTotalBeforeServer,
-          multiplier: totalMultiplier,
-          ...(options?.payload ?? {}),
-        },
-      });
-      finalDelta = serverAward.xpDelta;
     }
     await addOrUpdateScore(resolvedName, finalDelta, lang);
     if (serverAward) {
@@ -399,10 +409,8 @@ export const registerXP = async (
     if (serverAward) {
       return { finalDelta: serverAward.xpDelta, multiplier: 1, isBonus: serverAward.xpDelta !== amount };
     }
-    if (progressServerRequired()) {
-      return { finalDelta: 0, multiplier: 1, isBonus: false };
-    }
-    // Fallback: пишем как есть в случае критического сбоя
+    // Fallback: пишем как есть в случае критического сбоя (не сетевая ошибка —
+    // сетевые перехвачены раньше и событие уже в очереди).
     try { await addOrUpdateScore(resolvedName, amount, lang); } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
     return { finalDelta: amount, multiplier: 1, isBonus: false };
   }

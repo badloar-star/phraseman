@@ -417,9 +417,10 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
 });
 
 /**
- * Когда в users/{stableId} появляется progress.unlocked_lessons с "2" (урок 1 с бронзой) —
- * помечаем attribution referee как 'qualified' + начисляем referee шарды. referrer'у НИЧЕГО
- * не пишем (pull): он обналичит VIP по кнопке. onDocumentWritten: и create, и update.
+ * Когда referee РЕАЛЬНО проходит урок 1 (lesson1_pass_count >= 1, для fr — scoped-ключ) —
+ * помечаем attribution referee как 'qualified' + начисляем приглашённому его 7 дней VIP.
+ * referrer'у НИЧЕГО не пишем (pull): он обналичит свои 7 дней по кнопке. Отсекаем запись
+ * миграции снапшота (isSnapshotMigrationWrite). onDocumentWritten: и create, и update.
  */
 export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritten(
   { document: `${USERS}/{userId}`, region: REGION },

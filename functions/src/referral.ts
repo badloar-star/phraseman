@@ -41,6 +41,15 @@ const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
 const MAX_CLAIMS_PER_CALL = 20;
 
 /**
+ * Квалифицировать ли referee СРАЗУ при apply по уже имеющемуся прогрессу.
+ * false (строго): нет — прогресс на момент apply мог быть подсунут миграцией снапшота
+ * (клиентский lesson1_pass_count), что давало бы free-премиум без прохождения. Квалификацию
+ * делает только триггер на ЖИВОМ событии урока (с отсевом миграции). Цена строгого режима:
+ * редкий честный кейс «прошёл урок 1 ДО ввода кода» квалифицируется на следующем событии урока.
+ */
+const REFEREE_QUALIFY_ON_APPLY = false;
+
+/**
  * Антифрод: код принимаем только от «нового» пользователя — того, у кого, по сути,
  * раньше не было приложения. Точный device-level признак «было/не было приложение»
  * недоступен (App Store/Play запрещают аппам стабильные device-id: IDFV сбрасывается,
@@ -101,6 +110,25 @@ function hasLesson1DoneProgress(
   if (!root) return false;
   const p = (root as { progress?: Record<string, unknown> })?.progress;
   return hasCompletedFirstLesson(p);
+}
+
+/**
+ * Был ли это записью МИГРАЦИИ снапшота прогресса (progressMigrateSnapshot), а не живым
+ * событием урока. Миграция доверяет клиентскому lesson1_pass_count (progress_events.ts:
+ * buildMigrationPatch) и могла бы фиктивно «зачесть» урок 1 → выдать 7 дней без прохождения.
+ * Реальное прохождение приходит через progressSubmitEvent и НЕ трогает progressMigratedAt.
+ * Отличаем по появлению/изменению поля progressMigratedAt в корне users/{id}.
+ * Экспортируется для тестов. `beforeRoot`/`afterRoot` — корневые данные документа.
+ */
+export function isSnapshotMigrationWrite(
+  beforeRoot: Record<string, unknown> | undefined,
+  afterRoot: Record<string, unknown> | undefined,
+): boolean {
+  const a = afterRoot?.progressMigratedAt;
+  if (a == null) return false;
+  const b = beforeRoot?.progressMigratedAt;
+  // Сравниваем по строковому виду — serverTimestamp материализуется в Timestamp/число.
+  return String(a) !== String(b ?? '');
 }
 
 /** Текущее VIP-окно referrer'а из users/{id}.progress (ms). Не активные/пустые → 0. */
@@ -212,7 +240,7 @@ async function markRefereeQualified(
       {
         status: 'qualified' as AttributionStatus,
         qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
-        qualifiedBy: 'unlocked_lesson_2',
+        qualifiedBy: 'lesson1_pass_count',
         refereeVipDays: REFEREE_VIP_DAYS,
         refereeRewardedAtMs: nowMs,
         rewardKind: 'vip_days_both',
@@ -376,7 +404,11 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
     });
     return { ok: true, already: false, referrerStableId: ownerStableId, refCode };
   });
-  if (result?.ok) {
+  // НЕ квалифицируем сразу по факту уже существующего прогресса: его мог подсунуть
+  // progressMigrateSnapshot (клиентский lesson1_pass_count) → free-премиум без прохождения.
+  // Квалификацию делает ТОЛЬКО триггер referralOnUserProgressUpdated на ЖИВОМ событии урока
+  // (там же отсев миграции). Это «строгий» режим: см. REFEREE_QUALIFY_ON_APPLY.
+  if (result?.ok && REFEREE_QUALIFY_ON_APPLY) {
     await markRefereeQualified(db, refereeStableId).catch((e) => {
       console.warn('[referral] qualify after apply failed', e);
     });
@@ -397,6 +429,13 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
     if (!after) return;
     const beforeExists = event.data?.before?.exists;
     const before = beforeExists ? event.data?.before.data() : undefined;
+    // Анти-обход: миграция снапшота (progressMigrateSnapshot) доверяет клиентскому
+    // lesson1_pass_count и могла бы зачесть урок 1 без реального прохождения. Реальное
+    // прохождение идёт через progressSubmitEvent и не трогает progressMigratedAt.
+    if (isSnapshotMigrationWrite(
+      before as Record<string, unknown> | undefined,
+      after as Record<string, unknown> | undefined,
+    )) return;
     const pA = (after as { progress?: Record<string, unknown> })?.progress;
     const pB = (before as { progress?: Record<string, unknown> } | undefined)?.progress;
     // Дёшево выходим, если сигнал «урок 1 пройден» не изменился (любой из pass-ключей).

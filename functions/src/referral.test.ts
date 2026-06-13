@@ -2,9 +2,27 @@ import {
   REFERRAL_REWARD_DAYS,
   buildReferralVipProgressPatch,
   hasCompletedFirstLesson,
+  isSnapshotMigrationWrite,
   stackVipUntilMs,
   vipUntilFromProgress,
 } from './referral';
+
+describe('isSnapshotMigrationWrite — миграция снапшота НЕ должна квалифицировать реферал', () => {
+  // Дыра: progressMigrateSnapshot доверяет клиентскому lesson1_pass_count и пишет его серверно
+  // (progress_events.ts buildMigrationPatch) → раньше это срабатывало как «урок пройден» и
+  // выдавало 7 дней без реального прохождения. Отличаем миграцию по полю progressMigratedAt.
+  it('true когда появился/изменился progressMigratedAt (это миграция, не живое событие урока)', () => {
+    expect(isSnapshotMigrationWrite(undefined, { progressMigratedAt: 111 })).toBe(true);
+    expect(isSnapshotMigrationWrite({ progressMigratedAt: 100 }, { progressMigratedAt: 222 })).toBe(true);
+  });
+
+  it('false для обычного живого события урока (progressMigratedAt не менялся)', () => {
+    expect(isSnapshotMigrationWrite({ progressMigratedAt: 100 }, { progressMigratedAt: 100 })).toBe(false);
+    expect(isSnapshotMigrationWrite({ lesson1_pass_count: '0' }, { lesson1_pass_count: '1' })).toBe(false);
+    expect(isSnapshotMigrationWrite(undefined, { lesson1_pass_count: '1' })).toBe(false);
+    expect(isSnapshotMigrationWrite(undefined, {})).toBe(false);
+  });
+});
 
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1_700_000_000_000; // фиксированный «сейчас» для детерминизма

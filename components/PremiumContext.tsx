@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, InteractionManager } from 'react-native';
 import Purchases from 'react-native-purchases';
@@ -90,6 +90,11 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [trialEligible, setTrialEligible] = useState(false);
   const backgroundedAtRef = useRef<number | null>(null);
   const vipSnapshotStateRef = useRef<boolean | null>(null);
+  // H-VIPCHURN: зеркало isPremium в ref, чтобы onSnapshot-эффект мог читать актуальное
+  // значение БЕЗ isPremium в своём dep-массиве. Иначе эффект пересоздавал Firestore-
+  // подписку (отписка+переподписка) на каждый переход premium/VIP.
+  const isPremiumRef = useRef(isPremium);
+  isPremiumRef.current = isPremium;
   const reloadRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const cloudRefreshRunnerRef = useRef<(() => Promise<void>) | null>(null);
   const [premiumListenerRevision, setPremiumListenerRevision] = useState(0);
@@ -263,12 +268,13 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
                 emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
                 void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
               } else {
+                const premiumNow = isPremiumRef.current;
                 setIsVip(false);
-                setHasPremiumAccess(isPremium);
+                setHasPremiumAccess(premiumNow);
                 void reloadTrialEligible();
                 emitAppEvent('vip_deactivated');
-                emitAppEvent('premium_access_changed', { active: isPremium, source: isPremium ? 'premium' : 'none' });
-                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium });
+                emitAppEvent('premium_access_changed', { active: premiumNow, source: premiumNow ? 'premium' : 'none' });
+                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium: premiumNow });
               }
             })();
           },
@@ -292,7 +298,10 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       if (unsubscribe) unsubscribe();
       unsubscribe = null;
     };
-  }, [isPremium, reloadTrialEligible, premiumListenerRevision]);
+    // H-VIPCHURN: isPremium намеренно НЕ в deps — читаем его через isPremiumRef внутри
+    // колбэка. Подписка переустанавливается только при реальной смене аккаунта
+    // (premiumListenerRevision) или reloadTrialEligible, а не на каждом тике premium/VIP.
+  }, [reloadTrialEligible, premiumListenerRevision]);
 
   // Reload when app comes to foreground; after a background round-trip, refresh cloud admin grants first.
   useEffect(() => {
@@ -408,8 +417,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     return () => sub.remove();
   }, [isVip, reload]);
 
+  // H-VIPCHURN: мемоизируем value, иначе любой ре-рендер провайдера слал новую ссылку
+  // во все usePremium()-потребители по всему приложению (home, arena, inbox, friends…),
+  // умножая работу на каждом тике premium/VIP.
+  const contextValue = useMemo<PremiumContextValue>(
+    () => ({ isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
+    [isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
+  );
+
   return (
-    <PremiumContext.Provider value={{ isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }}>
+    <PremiumContext.Provider value={contextValue}>
       {children}
     </PremiumContext.Provider>
   );

@@ -1,7 +1,3 @@
-// ⚠️  WIP — НЕ ПУСКАТЬ В ПРОД. Сокровищница в разработке.
-// Экран доступен только при EXPO_PUBLIC_COLLECTIBLES_ENABLED=true (dev/.env.local).
-// В релизной сборке навигация сюда невозможна — entry-point в Статистике скрыт флагом.
-//
 // «Сокровищница» — коллекция карточек-фраз (идиомы/сленг/пословицы).
 // Концепция v2 (утв. 2026-06-10): 30 сетов × 10 + секретная 11-я; залоченные
 // карточки видны, но «чисто серые» (grayscale-арт + замок, НЕ «?»); открытые
@@ -39,7 +35,7 @@ import {
   type CollectiblesOwnedMap,
 } from './collectibles/storage';
 import { grayscaleSvg } from './collectibles/svg_gray';
-import { isCollectiblesEnabled } from './collectibles_flags';
+import { isCollectiblesEnabled } from './remote_flags';
 
 const SECRET_GOLD = '#FBBF24';
 
@@ -419,7 +415,7 @@ function CardDetailModal({
 
 /* ── экран ────────────────────────────────────────────────── */
 export default function CollectiblesScreen() {
-  // ⚠️ WIP guard: экран недоступен в не-dev сборках.
+  // Kill-switch из Remote Config (collectibles_enabled, дефолт true).
   if (!isCollectiblesEnabled()) {
     return null;
   }

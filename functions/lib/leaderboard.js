@@ -41,6 +41,7 @@ const auth_identity_1 = require("./auth_identity");
 const MAX_DAILY7_XP = 500000;
 const MAX_DAILY7_TIME_MS = 7 * 24 * 60 * 60 * 1000;
 const NAME_INDEX = 'name_index';
+const NICKNAME_CHANGE_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
 function sanitizeString(value, max) {
     return String(value ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, max);
 }
@@ -51,6 +52,15 @@ function readInt(value, fallback = 0) {
 function normalizeName(value) {
     const name = sanitizeString(value, 32);
     return { name, nameLower: name.toLowerCase() };
+}
+function readProgressString(data, key) {
+    const value = data?.progress?.[key];
+    return typeof value === 'string' ? value.trim() : '';
+}
+function readProgressMs(data, key) {
+    const raw = data?.progress?.[key];
+    const value = typeof raw === 'string' ? Number(raw) : Number(raw ?? 0);
+    return Number.isFinite(value) && value > 0 ? value : 0;
 }
 function assertValidName(name) {
     if (name.length < 2 || name.length > 32) {
@@ -116,6 +126,42 @@ async function txNameOwnerIsLive(tx, db, uid) {
 function nameIndexDocIsHidden(data) {
     return data?.identityHidden === true;
 }
+async function txAssertNoLiveLegacyNameOwner(tx, db, stableUid, name, nameLower) {
+    const queries = [
+        db.collection('users').where('progress.user_name_lower', '==', nameLower).limit(5),
+        db.collection('users').where('progress.user_name', '==', name).limit(5),
+        db.collection('leaderboard').where('nameLower', '==', nameLower).limit(5),
+    ];
+    for (const query of queries) {
+        const snap = await tx.get(query);
+        for (const doc of snap.docs) {
+            const ownerUid = sanitizeString(doc.id, 180);
+            if (!ownerUid || ownerUid === stableUid)
+                continue;
+            if (await txNameOwnerIsLive(tx, db, ownerUid)) {
+                throw new https_1.HttpsError('already-exists', 'name_taken');
+            }
+        }
+    }
+}
+async function legacyNameHasLiveOwner(db, stableUid, name, nameLower) {
+    const queries = [
+        db.collection('users').where('progress.user_name_lower', '==', nameLower).limit(5),
+        db.collection('users').where('progress.user_name', '==', name).limit(5),
+        db.collection('leaderboard').where('nameLower', '==', nameLower).limit(5),
+    ];
+    for (const query of queries) {
+        const snap = await query.get();
+        for (const doc of snap.docs) {
+            const ownerUid = sanitizeString(doc.id, 180);
+            if (!ownerUid || ownerUid === stableUid)
+                continue;
+            if (await nameOwnerIsLive(db, ownerUid))
+                return true;
+        }
+    }
+    return false;
+}
 exports.leaderboardUpdateDailyAnalytics = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
@@ -151,6 +197,9 @@ exports.nameCheckAvailability = (0, https_1.onCall)(callable_options_1.HOT_CALLA
         (await nameOwnerIsLive(db, indexOwner))) {
         return { ok: true, available: false };
     }
+    if (await legacyNameHasLiveOwner(db, stableUid, name, nameLower)) {
+        return { ok: true, available: false };
+    }
     return { ok: true, available: true };
 });
 exports.nameReserve = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
@@ -173,12 +222,31 @@ exports.nameReserve = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTION
     // The single legitimate takeover is a genuinely DEAD reservation — the owner's
     // users/{uid} doc is missing or tombstoned (identityHidden/banned). That is
     // checked transactionally via txNameOwnerIsLive, keyed on the owner's USER doc.
+    let cooldownUntil = 0;
     try {
         await db.runTransaction(async (tx) => {
+            const now = Date.now();
             const nameRef = db.collection(NAME_INDEX).doc(nameLower);
+            const userRef = db.collection('users').doc(stableUid);
+            const profileRef = db.collection('public_profiles').doc(stableUid);
             const nameSnap = await tx.get(nameRef);
+            const userSnap = await tx.get(userRef);
             const oldRef = oldNameLower && oldNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldNameLower) : null;
             const oldSnap = oldRef ? await tx.get(oldRef) : null;
+            const userData = userSnap.data();
+            const currentNameLower = readProgressString(userData, 'user_name_lower') ||
+                readProgressString(userData, 'user_name').toLowerCase() ||
+                oldNameLower;
+            const previousChangeAt = readProgressMs(userData, 'nickname_changed_at');
+            const isNameChange = Boolean(currentNameLower && currentNameLower !== nameLower);
+            const nicknameChangedAt = isNameChange || previousChangeAt <= 0 ? now : previousChangeAt;
+            if (isNameChange && previousChangeAt > 0) {
+                const nextChangeAt = previousChangeAt + NICKNAME_CHANGE_COOLDOWN_MS;
+                if (now < nextChangeAt) {
+                    cooldownUntil = nextChangeAt;
+                    throw new https_1.HttpsError('failed-precondition', 'name_change_cooldown');
+                }
+            }
             if (nameSnap.exists && !nameIndexDocIsHidden(nameSnap.data())) {
                 const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);
                 if (indexOwner && indexOwner !== stableUid) {
@@ -190,13 +258,18 @@ exports.nameReserve = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTION
                     // Dead owner → reclaim is allowed; fall through to overwrite below.
                 }
             }
+            // Legacy protection until the full backfill has run: older accounts may
+            // still have names only in users.progress / leaderboard, not name_index.
+            // This path only blocks live owners; it never treats a missing leaderboard
+            // row as proof that a name can be reclaimed.
+            await txAssertNoLiveLegacyNameOwner(tx, db, stableUid, name, nameLower);
             tx.set(nameRef, {
                 uid: stableUid,
                 authUid,
                 name,
                 nameLower,
                 identityHidden: admin.firestore.FieldValue.delete(),
-                updatedAt: Date.now(),
+                updatedAt: now,
             }, { merge: true });
             if (oldRef && oldSnap?.exists && oldSnap.data()?.uid === stableUid) {
                 tx.delete(oldRef);
@@ -205,13 +278,31 @@ exports.nameReserve = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTION
                 name,
                 nameLower,
                 firebaseAuthUid: authUid,
-                updatedAt: Date.now(),
+                updatedAt: now,
+            }, { merge: true });
+            tx.set(userRef, {
+                progress: {
+                    user_name: name,
+                    user_name_lower: nameLower,
+                    nickname_changed_at: String(nicknameChangedAt),
+                    nickname_change_available_at: String(nicknameChangedAt + NICKNAME_CHANGE_COOLDOWN_MS),
+                },
+                updatedAt: now,
+            }, { merge: true });
+            tx.set(profileRef, {
+                uid: stableUid,
+                name,
+                nameLower,
+                updatedAt: now,
             }, { merge: true });
         });
     }
     catch (e) {
         if (e instanceof https_1.HttpsError && e.code === 'already-exists') {
             return { ok: true, status: 'taken' };
+        }
+        if (e instanceof https_1.HttpsError && e.message === 'name_change_cooldown') {
+            return { ok: true, status: 'cooldown', nextChangeAt: cooldownUntil };
         }
         throw e;
     }

@@ -4,7 +4,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { openTreasureChest, canOpenTreasureChest } from '../app/variable_reward_system';
+import { commitTreasureChestOpen, prepareTreasureChestOpen, canOpenTreasureChest } from '../app/variable_reward_system';
 import { registerXP } from '../app/xp_manager';
 import { emitAppEvent } from '../app/events';
 import XpGainBadge from './XpGainBadge';
@@ -13,6 +13,14 @@ interface Props {
   onBonusXPEarned?: (bonusXP: number) => void;
   isPremium?: boolean;
 }
+
+const safeTreasureEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
+const treasureDateKey = (): string => {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+};
 
 function DailyTreasureChest({ onBonusXPEarned, isPremium = false }: Props) {
   const { theme: t, f } = useTheme();
@@ -66,8 +74,9 @@ function DailyTreasureChest({ onBonusXPEarned, isPremium = false }: Props) {
       ]),
     ]).start();
 
-    // Try to open the chest
-    const result = await openTreasureChest(isPremium);
+    // Try to prepare the chest opening. The local "opened" state is committed
+    // only after XP is confirmed, so a network/server failure does not burn it.
+    const result = await prepareTreasureChestOpen(isPremium);
 
     if (result) {
       setBonusXPResult(result.bonusXP);
@@ -80,17 +89,50 @@ function DailyTreasureChest({ onBonusXPEarned, isPremium = false }: Props) {
             AsyncStorage.getItem('user_name'),
             AsyncStorage.getItem('app_lang'),
           ]);
-          if (nameRaw) {
-            await registerXP(
-              result.bonusXP,
-              'bonus_chest',
-              nameRaw,
-              langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru',
-            );
+          const dayKey = treasureDateKey();
+          const xpResult = await registerXP(
+            result.bonusXP,
+            'bonus_chest',
+            nameRaw ?? '',
+            langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru',
+            undefined,
+            {
+              eventId: [
+                'bonus_chest',
+                'daily_treasure',
+                safeTreasureEventPart(dayKey, 20),
+                safeTreasureEventPart(result.openSlot, 20),
+              ].join(':'),
+              payload: {
+                surface: 'daily_treasure',
+                dayKey,
+                openSlot: result.openSlot,
+                premium: isPremium,
+              },
+            },
+          );
+          if (xpResult.finalDelta <= 0) {
+            throw new Error('daily_treasure_xp_not_confirmed');
           }
+          await commitTreasureChestOpen(result);
           onBonusXPEarned?.(result.bonusXP);
         } catch {
+          emitAppEvent('action_toast', {
+            type: 'error',
+            messageRu: 'Не удалось начислить XP. Сундук не потрачен, попробуй ещё раз.',
+            messageUk: 'Не вдалося нарахувати XP. Скриню не витрачено, спробуй ще раз.',
+            messageEs: 'No se pudo sumar XP. El cofre no se gastó, inténtalo otra vez.',
+          });
+          Animated.timing(lidRotation, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: true,
+          }).start();
+          setIsOpening(false);
+          return;
         }
+      } else {
+        await commitTreasureChestOpen(result);
       }
 
       // Show bonus animation

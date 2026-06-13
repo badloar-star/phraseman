@@ -907,25 +907,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const AUTO_NAME_WORDS = [
-    // Языковая / литературная тема
-    'Syntax', 'Lexis', 'Prose', 'Verse', 'Quill', 'Glyph', 'Script', 'Riddle',
-    'Fable', 'Rhyme', 'Serif', 'Sonnet', 'Clause', 'Motif', 'Trope', 'Parable',
-    'Thesis', 'Corpus', 'Lore', 'Rune', 'Lyric', 'Gloss', 'Tome', 'Epics',
-    // Греческий алфавит
-    'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Theta', 'Iota',
-    'Kappa', 'Lambda', 'Sigma', 'Omega', 'Phi', 'Psi', 'Tau', 'Rho',
-    // "Умные" короткие слова
-    'Axiom', 'Cipher', 'Sage', 'Totem', 'Omen', 'Nexus', 'Prism', 'Vector',
-    'Quantum', 'Ethos', 'Logos', 'Kairos', 'Telos', 'Aporia', 'Datum',
-  ];
-
-  const generateAutoName = (): string => {
-    const word = AUTO_NAME_WORDS[Math.floor(Math.random() * AUTO_NAME_WORDS.length)];
-    const suffix = Math.floor(1000 + Math.random() * 9000);
-    return `${word}${suffix}`;
-  };
-
   const handleNameDone = async () => {
     if (nameBusy) return;
     setNameFieldError(null);
@@ -972,7 +953,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       ));
       return;
     }
-    if (result === 'error') {
+    if (result !== 'ok') {
       setNameBusy(false);
       setNameFieldError(pick(
         'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
@@ -1004,37 +985,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       setNameBusy(false);
     }
   };
-
-  const handleSkipName = async () => {
-    if (nameBusy) return;
-    setNameFieldError(null);
-    setNameBusy(true);
-    try {
-      let autoName = generateAutoName();
-      setName(autoName);
-      nameForProfileRef.current = autoName;
-      Keyboard.dismiss();
-      goToStep('streak');
-      // retry до 5 раз чтобы найти свободный ник
-      for (let i = 0; i < 5; i++) {
-        const result = await reserveName(autoName, '');
-        if (result !== 'taken') break;
-        autoName = generateAutoName();
-      }
-      setName(autoName);
-      nameForProfileRef.current = autoName;
-      await AsyncStorage.multiSet([
-        ['app_lang', lang],
-        ['user_name', autoName],
-      ]);
-      await import('../app/firestore_leagues')
-        .then((m) => m.registerInLeagueGroupSilently())
-        .catch(() => {});
-    } finally {
-      setNameBusy(false);
-    }
-  };
-
 
   const saveUserProfile = async () => {
     if (!goal || !minutesPerDay || !currentLevel) return;
@@ -1090,22 +1040,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     Keyboard.dismiss();
     try {
       let finalName = nameForProfileRef.current.trim();
-      const generatedName = !finalName;
-      if (generatedName) {
-        finalName = generateAutoName();
-        setName(finalName);
+      if (!finalName) {
+        setNameFieldError(pick('Введи имя, чтобы продолжить', 'Введіть ім\'я щоб продовжити', 'Escribe tu nombre para continuar'));
+        goToStep('name');
+        return;
       }
       nameForProfileRef.current = finalName;
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         ['user_name', finalName],
       ]);
-      if (generatedName) {
-        void reserveName(finalName, '').catch(() => {});
-        void import('../app/firestore_leagues')
-          .then((m) => m.registerInLeagueGroupSilently())
-          .catch(() => {});
-      }
       await handleFinishOnboarding();
     } finally {
       closingRef.current = false;
@@ -2606,24 +2550,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   {pick('Продолжить', 'Продовжити', 'Continuar')}
                 </Text>
               )}
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="onboarding-name-skip"
-              style={{ paddingVertical: compactOnboarding ? 8 : 12, paddingHorizontal: 10, alignItems: 'center', marginTop: compactOnboarding ? 4 : 8 }}
-              onPress={handleSkipName}
-              activeOpacity={0.8}
-              disabled={nameBusy}
-            >
-              <Text
-                maxFontSizeMultiplier={1.05}
-                style={{ color: DARK.textGhost, fontSize: scaleOnboarding(14, 12), fontWeight: '600', textAlign: 'center' }}
-              >
-                {pick(
-                  'Пропустить (имя можно сменить позже)',
-                  'Пропустити (ім\'я можна змінити пізніше)',
-                  'Omitir (podrás cambiar el nombre después)',
-                )}
-              </Text>
             </TouchableOpacity>
           </BouncyScrollView>
         </KeyboardAvoidingView>

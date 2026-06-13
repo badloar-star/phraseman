@@ -121,7 +121,22 @@ async function warmImageSources(sources: readonly ImageSourcePropType[]) {
   ]);
 }
 
-export const preloadStartupImages = async () => {
+export const preloadPrimaryTabImages = async () => {
+  try {
+    await warmImageSources([
+      ...CLUB_IMAGES,
+      ...MEDAL_IMAGES,
+      ...ARENA_RANK_IMAGES,
+      ...ARENA_ACTION_IMAGES,
+      ...FIRST_LESSON_SHEET_IMAGES,
+      ...LESSON_INTRO_CTA_IMAGES,
+    ]);
+  } catch {
+    // Silently fail - preloading is entirely optional.
+  }
+};
+
+export const preloadDeferredNonPrimaryImages = async () => {
   try {
     await warmImageSources([
       ...LEVEL_GIFT_IMAGE_SOURCES,

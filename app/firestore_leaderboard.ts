@@ -88,25 +88,40 @@ function callable<TReq, TRes>(name: string) {
 
 const COL = 'leaderboard';
 
+export type ReserveNameStatus = 'ok' | 'taken' | 'cooldown' | 'error';
+export type ReserveNameResult = {
+  status: ReserveNameStatus;
+  nextChangeAt?: number;
+};
+
 // ── Атомарно зарезервировать ник через транзакцию ───────────────────────────
 // Возвращает 'ok' | 'taken' | 'error'
 // oldName — прежний ник пользователя (для освобождения старого слота)
+export async function reserveNameDetailed(
+  name: string,
+  oldName: string,
+): Promise<ReserveNameResult> {
+  if (!CLOUD_SYNC_ENABLED) return { status: 'ok' };
+  try {
+    const stableId = await ensureAnonUser();
+    if (!stableId) return { status: 'error' };
+    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
+    const { data } = await fn({ stableId, name: name.trim(), oldName: oldName.trim() });
+    if (data.status === 'taken') return { status: 'taken' };
+    if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
+    return { status: 'ok', nextChangeAt: data.nextChangeAt };
+  } catch (e: any) {
+    if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) return { status: 'taken' };
+    return { status: 'error' };
+  }
+}
+
 export async function reserveName(
   name: string,
   oldName: string,
-): Promise<'ok' | 'taken' | 'error'> {
-  if (!CLOUD_SYNC_ENABLED) return 'ok';
-  try {
-    const stableId = await ensureAnonUser();
-    if (!stableId) return 'error';
-    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
-    const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: 'ok' | 'taken' }>('nameReserve');
-    const { data } = await fn({ stableId, name: name.trim(), oldName: oldName.trim() });
-    return data.status === 'taken' ? 'taken' : 'ok';
-  } catch (e: any) {
-    if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) return 'taken';
-    return 'error';
-  }
+): Promise<ReserveNameStatus> {
+  return (await reserveNameDetailed(name, oldName)).status;
 }
 
 // ── Проверить уникальность ника (без резервации, только read-only) ───────────

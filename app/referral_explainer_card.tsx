@@ -1,11 +1,11 @@
 /**
  * ReferralExplainerCard — карточка реферальной программы на экране «Друзья».
  *
- * Объясняет механику (7 дней полного доступа за друга) и предоставляет действия:
+ * Объясняет механику (7 дней другу + 7 дней пригласившему) и предоставляет действия:
  *  1. «Пригласить друга» — всегда видна.
  *  2. «Открыть N дней доступа» — всегда видна: активная при claimableDays > 0,
  *     иначе серая «Получить 7 дней» → onClaimHint (подсказка, почему пока нельзя).
- *  3. «Мои рефералы (N)» — список приглашённых (ReferralsListModal).
+ *  3. «Мои рефералы (N)» — список приглашённых на отдельном экране.
  *  4. «Ввести код» — ручной ввод реферального кода приглашённым (фолбэк для iOS).
  *
  * Чисто презентационный компонент: никаких сетевых вызовов, только пропсы.
@@ -156,26 +156,14 @@ export function ReferralExplainerCard({
       <View style={[styles.bodyBlock, { backgroundColor: t.bgSurface2 }]}>
         <Text style={[styles.bodyText, { color: t.textMuted }]}>
           {L(
-            'Друг прошёл первую сессию — ты открываешь 7 дней полного доступа.',
-            'Друг пройшов першу сесію — ти відкриваєш 7 днів повного доступу.',
-            'Tu amigo completó la primera sesión: abres 7 días de acceso completo.',
-            'Seu amigo completou a primeira sessão: você abre 7 dias de acesso completo.',
-            'Bạn của bạn xong phiên đầu — bạn mở 7 ngày truy cập đầy đủ.',
-            'Temanmu selesai sesi pertama — kamu buka 7 hari akses penuh.',
-            'Arkadaşın ilk oturumu bitirdi — 7 günlük tam erişim açarsın.',
-            'Znajomy ukończył pierwszą sesję — otwierasz 7 dni pełnego dostępu.',
-          )}
-        </Text>
-        <Text style={[styles.bodyText, styles.bodyTextSecond, { color: t.textMuted }]}>
-          {L(
-            'Дни копятся — зови больше, открывай больше.',
-            'Дні накопичуються — запрошуй більше, відкривай більше.',
-            'Los días se acumulan — invita más, abre más.',
-            'Os dias se acumulam — convide mais, abra mais.',
-            'Ngày cộng dồn — mời thêm, mở thêm.',
-            'Hari bertambah — undang lebih banyak, buka lebih banyak.',
-            'Günler birikir — daha fazla davet et, daha fazla aç.',
-            'Dni się sumują — zapraszaj więcej, otwieraj więcej.',
+            'Друг установит приложение, введёт ваш код и пройдёт один урок полностью — вы оба получите по 7 дней полного доступа.',
+            'Друг встановить застосунок, введе ваш код і повністю пройде один урок — ви обоє отримаєте по 7 днів повного доступу.',
+            'Tu amigo instala la app, introduce tu código y completa una lección: ambos reciben 7 días de acceso completo.',
+            'Seu amigo instala o app, insere seu código e conclui uma lição: vocês dois recebem 7 dias de acesso completo.',
+            'Bạn của bạn cài ứng dụng, nhập mã của bạn và hoàn thành một bài học: cả hai nhận 7 ngày truy cập đầy đủ.',
+            'Temanmu memasang aplikasi, memasukkan kodemu, dan menyelesaikan satu pelajaran: kalian berdua mendapat 7 hari akses penuh.',
+            'Arkadaşın uygulamayı kurar, kodunu girer ve bir dersi tamamen bitirir: ikiniz de 7 gün tam erişim alırsınız.',
+            'Znajomy instaluje aplikację, wpisuje twój kod i kończy jedną lekcję: oboje dostajecie po 7 dni pełnego dostępu.',
           )}
         </Text>
       </View>

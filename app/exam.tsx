@@ -58,6 +58,12 @@ import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 const LINGMAN_EXAM_ENERGY = 8;
 
+const safeExamEventPart = (value: unknown): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
+
+const makeExamAttemptId = (): string =>
+  `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+
 type ExamQType = 'fill' | 'choice4' | 'error';
 interface ExamQuestion {
   lessonNum: number;
@@ -468,6 +474,7 @@ export default function ExamScreen() {
   const [countdownNum, setCountdownNum] = useState(3);
   const timerRef = useRef<ReturnType<typeof setInterval>|null>(null);
   const countdownTimerRef = useRef<ReturnType<typeof setTimeout>|null>(null);
+  const examAttemptIdRef = useRef<string>(makeExamAttemptId());
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(()=>{
@@ -586,6 +593,7 @@ export default function ExamScreen() {
       void trackFeatureBlocked('exam', 'start', 'french_exam_source_gate', { studyTarget }, 'exam');
       return;
     }
+    examAttemptIdRef.current = makeExamAttemptId();
     void trackFeatureStart('exam', 'start', { questions: questions.length }, 'exam');
     if (!isUnlimited) {
       if (energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
@@ -628,7 +636,25 @@ export default function ExamScreen() {
       storedName = (raw || '').trim();
     } catch {}
     if (storedName) {
-      registerXP(xp, 'exam_complete', storedName, lang).catch(() => {});
+      registerXP(xp, 'exam_complete', storedName, lang, undefined, {
+        eventId: [
+          'exam',
+          'final',
+          safeExamEventPart(studyTarget),
+          safeExamEventPart(examAttemptIdRef.current),
+          'complete',
+        ].join(':'),
+        payload: {
+          level: 'final',
+          studyTarget,
+          pct: p,
+          percent: p,
+          passed: p >= LINGMAN_CERT_MIN_PCT,
+          score: s,
+          total: questions.length,
+          answered: choices.filter(c => c !== null).length,
+        },
+      }).catch(() => {});
     }
     if (p >= LINGMAN_CERT_MIN_PCT) {
       // ВАЖНО: при первой сдаче сертификат создаётся БЕЗ имени и сразу

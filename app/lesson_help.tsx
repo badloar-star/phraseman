@@ -19776,13 +19776,30 @@ export default function LessonHelp() {
   const handleClaimXP = async () => {
     if (xpClaimed || !canClaimTheoryXp) return;
     const key = lessonTheoryXpClaimedKey(lessonId, studyTarget);
-    await AsyncStorage.setItem(key, '1');
     setXpClaimed(true);
     // Показываем previewXP сразу, потом обновим на реальный finalDelta
     setEarnedXP(previewXP);
     const userName = await AsyncStorage.getItem('user_name') ?? '';
-    registerXP(25, 'vocabulary_learned', userName, lang, lessonId)
+    registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
+      eventId: [
+        'vocabulary',
+        String(studyTarget ?? 'na').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 40) || 'na',
+        String(lessonId),
+        'theory',
+        'claim',
+      ].join(':'),
+      payload: {
+        lessonId,
+        studyTarget,
+        surface: 'lesson_theory',
+      },
+    })
       .then(result => {
+        if (Math.max(0, Math.round(result.finalDelta || 0)) <= 0) {
+          setXpClaimed(false);
+          return;
+        }
+        AsyncStorage.setItem(key, '1').catch(() => {});
         setEarnedXP(result.finalDelta);
         setXpShown(true);
         xpAnim.setValue(0);
@@ -19793,6 +19810,7 @@ export default function LessonHelp() {
         ]).start(() => setXpShown(false));
       })
       .catch(() => {
+        setXpClaimed(false);
         // Показать с previewXP если registerXP упал
         setXpShown(true);
         xpAnim.setValue(0);

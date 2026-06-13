@@ -8367,6 +8367,7 @@
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>
   <div class="tab" onclick="switchTab('onboarding-qa')">Onboarding QA</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
+  <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('refunds')">↩️ Refunds</div>
@@ -8436,6 +8437,40 @@
       <div class="admin-overview-kicker">Delivery</div>
       <div class="admin-overview-value" id="overview-delivery-state">Ready</div>
       <div class="admin-overview-note">Push jobs, app messages, and daily content.</div>
+    </div>
+  </section>
+
+  <!-- Site Stats -->
+  <section class="admin-overview-grid" aria-label="Site traffic" style="margin-top:0">
+    <div class="admin-overview-card">
+      <div class="admin-overview-kicker">Visits today</div>
+      <div class="admin-overview-value" id="overview-site-visits-today">-</div>
+      <div class="admin-overview-note">Unique sessions on knowlyapps.com today (UTC).</div>
+    </div>
+    <div class="admin-overview-card">
+      <div class="admin-overview-kicker">Total visits</div>
+      <div class="admin-overview-value" id="overview-site-visits-total">-</div>
+      <div class="admin-overview-note">All-time unique sessions since tracking started.</div>
+    </div>
+    <div class="admin-overview-card">
+      <div class="admin-overview-kicker">iOS downloads today</div>
+      <div class="admin-overview-value" id="overview-site-ios-today">-</div>
+      <div class="admin-overview-note">Clicks on App Store badge today.</div>
+    </div>
+    <div class="admin-overview-card">
+      <div class="admin-overview-kicker">iOS downloads total</div>
+      <div class="admin-overview-value" id="overview-site-ios-total">-</div>
+      <div class="admin-overview-note">All-time App Store badge clicks.</div>
+    </div>
+    <div class="admin-overview-card">
+      <div class="admin-overview-kicker">Android downloads today</div>
+      <div class="admin-overview-value" id="overview-site-android-today">-</div>
+      <div class="admin-overview-note">Clicks on Google Play badge today.</div>
+    </div>
+    <div class="admin-overview-card">
+      <div class="admin-overview-kicker">Android downloads total</div>
+      <div class="admin-overview-value" id="overview-site-android-total">-</div>
+      <div class="admin-overview-note">All-time Google Play badge clicks.</div>
     </div>
   </section>
 
@@ -8757,6 +8792,73 @@
   <div style="max-width:920px;margin-top:20px">
     <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">🕓 История изменений</div>
     <div id="rc-history"><div style="font-size:12px;color:#6b7280">—</div></div>
+  </div>
+</div>
+
+<!-- ══ Paywall A/B эксперимент ══ -->
+<div id="tab-paywall-ab" class="reports-tab">
+  <div style="padding:4px 0 16px;max-width:1080px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🧪 Paywall A/B эксперимент</h2>
+    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.55">
+      Три новых пейвола (<b>A — Компакт</b>, <b>B — Стори</b>, <b>C — Атриум</b>) против контроля <b>v1</b>.
+      Вариант закрепляется за пользователем по хэшу его ID (никакой ротации по времени — она портит чистоту теста).
+      Доли пишутся в <code style="color:#818cf8">remote_config/paywall_ab</code>, клиенты подхватывают за секунды.
+      Сумма A+B+C ≤ 100; остаток трафика видит v1. Все нули = эксперимент выключен (kill-switch).
+    </p>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap">
+    <button type="button" onclick="loadPaywallAb(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 14px;border-radius:8px;cursor:pointer">🔄 Перечитать</button>
+    <button type="button" onclick="savePaywallAb()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить доли</button>
+    <span id="pab-status" style="align-self:center;font-size:13px;color:#9ca3af"></span>
+  </div>
+
+  <!-- Доли вариантов -->
+  <div style="max-width:920px;background:#11131c;border:1px solid #222633;border-radius:12px;padding:16px;margin-bottom:18px">
+    <div style="font-size:13px;font-weight:700;color:#e2e8f0;margin-bottom:12px">Доли трафика, %</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>A — Компакт</span>
+        <input type="number" id="pab-a" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>B — Стори</span>
+        <input type="number" id="pab-b" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>C — Атриум</span>
+        <input type="number" id="pab-c" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#6b7280"><span>v1 — контроль (авто)</span>
+        <input type="text" id="pab-v1" disabled style="background:#0c0c16;border:1px solid #222;color:#9ca3af;padding:8px;border-radius:6px"/></label>
+    </div>
+    <div id="pab-sum-warn" style="font-size:12px;color:#f59e0b;margin-top:8px;min-height:16px"></div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:6px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Соль (смена = пересев бакетов)</span>
+        <input type="text" id="pab-salt" maxlength="40" placeholder="v3" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;width:160px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Рейтинг ×10 (50 = 5.0; 0 = скрыть)</span>
+        <input type="number" id="pab-rating" min="0" max="50" placeholder="0" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;width:160px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>Число оценок (0 = не показывать)</span>
+        <input type="number" id="pab-count" min="0" placeholder="0" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;width:160px"/></label>
+    </div>
+    <p style="font-size:11px;color:#6b7280;margin:12px 0 0;line-height:1.5">
+      ⚠️ Рейтинг и число оценок показываются на пейволе как реальное соцдоказательство — вводи <b>только подтверждённые сторовые числа</b>.
+      Сейчас в сторе оценка 5.0 → ставь <code>50</code>.
+    </p>
+  </div>
+
+  <!-- Воронка -->
+  <div style="max-width:1080px;background:#11131c;border:1px solid #222633;border-radius:12px;padding:16px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:700;color:#e2e8f0">Воронка по вариантам</div>
+      <label style="font-size:12px;color:#9ca3af">с
+        <input type="date" id="pab-from" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 8px;border-radius:6px;margin-left:4px"/></label>
+      <label style="font-size:12px;color:#9ca3af">по
+        <input type="date" id="pab-to" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 8px;border-radius:6px;margin-left:4px"/></label>
+      <label style="font-size:12px;color:#9ca3af;display:flex;align-items:center;gap:5px">
+        <input type="checkbox" id="pab-include-dev" style="width:15px;height:15px"/> учитывать dev</label>
+      <button type="button" onclick="loadPaywallFunnel()" style="background:#1f2937;border:1px solid #374151;color:#e5e7eb;padding:7px 13px;border-radius:8px;cursor:pointer;font-weight:600">📊 Загрузить</button>
+      <span id="pab-funnel-status" style="font-size:12px;color:#9ca3af"></span>
+    </div>
+    <div id="pab-funnel"><div style="font-size:12px;color:#6b7280">Выбери диапазон и нажми «Загрузить».</div></div>
+    <p style="font-size:11px;color:#6b7280;margin:14px 0 0;line-height:1.5">
+      CR покупки = покупки / показы. CR триала = старты триала / показы. % скролла — доля видевших, кто долистал галерею (B/C).
+      События пишутся клиентом в <code>paywall_funnel</code> (TTL 90 дней). Это независимый счётчик для сравнения вариантов, не основная аналитика.
+    </p>
   </div>
 </div>
 
@@ -10764,6 +10866,21 @@
     </div>
   </div>
   <div id="openai-dialog-model-status" class="reports-empty" style="margin-bottom:12px;padding:12px;text-align:left">Theo model config is loading...</div>
+  <div class="reports-empty" style="margin-bottom:12px;padding:12px;text-align:left">
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end">
+      <label style="display:grid;gap:5px;min-width:170px;color:#aaa;font-size:12px;font-weight:700">
+        Free tier replies/day
+        <input id="openai-dialog-free-daily-replies" type="number" min="0" max="10000" step="1" value="10" style="min-height:38px">
+      </label>
+      <label style="display:grid;gap:5px;min-width:190px;color:#aaa;font-size:12px;font-weight:700">
+        Premium tier replies/day
+        <input id="openai-dialog-premium-daily-replies" type="number" min="0" max="10000" step="1" value="100" style="min-height:38px">
+      </label>
+      <button type="button" onclick="saveOpenAiDialogQuota()">Save quota</button>
+      <button type="button" onclick="loadOpenAiDialogQuotaConfig(true)">Reload quota</button>
+    </div>
+    <div id="openai-dialog-quota-status" style="margin-top:10px;color:#aaa;font-size:12px;line-height:1.4">Theo quota config is loading...</div>
+  </div>
   <div id="openai-budget-status" class="reports-empty" style="margin-bottom:12px">OpenAI estimated month loads when this tab is active.</div>
   <div id="openai-budget-summary" class="stats" style="padding:0;margin-bottom:12px">
     <div class="stat-card"><div class="label">OpenAI estimated month</div><div class="value">-</div></div>
@@ -10888,6 +11005,13 @@
     }
     return _fnOpenAiDialogModelConfig;
   }
+  let _fnOpenAiDialogQuotaConfig = null;
+  function getOpenAiDialogQuotaConfigCallable() {
+    if (!_fnOpenAiDialogQuotaConfig) {
+      _fnOpenAiDialogQuotaConfig = httpsCallable(functionsUs, 'openAiDialogQuotaConfig');
+    }
+    return _fnOpenAiDialogQuotaConfig;
+  }
 
   // ── Auth: email + custom claim admin (set via scripts/set_admin_claim.mjs) ─────
   const adminLoginEl = document.getElementById('admin-login');
@@ -10937,7 +11061,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -14447,6 +14571,8 @@
     if (appMessagesTab) appMessagesTab.classList.toggle('active', tab === 'app-messages');
     const remoteConfigTab = document.getElementById('tab-remote-config');
     if (remoteConfigTab) remoteConfigTab.classList.toggle('active', tab === 'remote-config');
+    const paywallAbTab = document.getElementById('tab-paywall-ab');
+    if (paywallAbTab) paywallAbTab.classList.toggle('active', tab === 'paywall-ab');
     const alertsTab = document.getElementById('tab-alerts');
     if (alertsTab) alertsTab.classList.toggle('active', tab === 'alerts');
     const changelogTab = document.getElementById('tab-changelog-0608');
@@ -14504,6 +14630,9 @@
     }
     if (tab === 'remote-config' && typeof window.loadRemoteConfig === 'function' && !window._remoteConfigLoaded) {
       void window.loadRemoteConfig(false);
+    }
+    if (tab === 'paywall-ab' && typeof window.loadPaywallAb === 'function' && !window._paywallAbLoaded) {
+      void window.loadPaywallAb(false);
     }
     if (tab === 'alerts' && typeof window.loadAlertsConfig === 'function' && !window._alertsLoaded) {
       void window.loadAlertsConfig(false);
@@ -14648,6 +14777,34 @@
     adminOverviewSet('overview-moderation-state', reportsText.trim() || 'Queues');
     const pushJobs = document.querySelectorAll('#push-jobs-list .push-job-card, #push-jobs-list .report-card').length;
     adminOverviewSet('overview-delivery-state', pushJobs ? `${pushJobs} jobs` : 'Ready');
+    // Load site stats from Firestore (once per overview render, fire-and-forget)
+    if (!window._siteStatsLoading) {
+      window._siteStatsLoading = true;
+      (async () => {
+        try {
+          const todayKey = new Date().toISOString().slice(0, 10);
+          const [totalsSnap, todaySnap] = await Promise.all([
+            getDoc(doc(db, 'site_stats', 'totals')),
+            getDoc(doc(db, 'site_stats', `daily_${todayKey}`)),
+          ]);
+          const t = totalsSnap.exists() ? totalsSnap.data() : {};
+          const d = todaySnap.exists() ? todaySnap.data() : {};
+          const fmt = (v) => (v != null && Number.isFinite(Number(v)) ? Number(v).toLocaleString() : '0');
+          adminOverviewSet('overview-site-visits-today', fmt(d.visits));
+          adminOverviewSet('overview-site-visits-total', fmt(t.visits));
+          adminOverviewSet('overview-site-ios-today', fmt(d.clicks_ios));
+          adminOverviewSet('overview-site-ios-total', fmt(t.clicks_ios));
+          adminOverviewSet('overview-site-android-today', fmt(d.clicks_android));
+          adminOverviewSet('overview-site-android-total', fmt(t.clicks_android));
+        } catch (e) {
+          console.warn('site_stats load failed', e);
+          ['overview-site-visits-today','overview-site-visits-total','overview-site-ios-today','overview-site-ios-total','overview-site-android-today','overview-site-android-total']
+            .forEach((id) => adminOverviewSet(id, 'err'));
+        } finally {
+          window._siteStatsLoading = false;
+        }
+      })();
+    }
   };
 
   function adminStateHtml(kind, title, note, actionLabel, actionTab) {
@@ -21559,9 +21716,17 @@
   };
   let _openAiBudgetLoaded = false;
   let _openAiDialogModelLoaded = false;
+  let _openAiDialogQuotaLoaded = false;
 
   function setOpenAiDialogModelStatus(text, tone = '') {
     const el = document.getElementById('openai-dialog-model-status');
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = tone === 'err' ? '#f87171' : tone === 'ok' ? '#4ade80' : '#aaa';
+  }
+
+  function setOpenAiDialogQuotaStatus(text, tone = '') {
+    const el = document.getElementById('openai-dialog-quota-status');
     if (!el) return;
     el.textContent = text;
     el.style.color = tone === 'err' ? '#f87171' : tone === 'ok' ? '#4ade80' : '#aaa';
@@ -21608,6 +21773,68 @@
       const msg = e?.message || String(e);
       setOpenAiDialogModelStatus('Could not save Theo model: ' + msg, 'err');
       showToast('Theo model save error: ' + msg, 'err');
+    }
+  };
+
+  function readOpenAiDialogQuotaInput(id) {
+    const raw = String(document.getElementById(id)?.value || '').trim();
+    const n = Number(raw);
+    if (!Number.isFinite(n) || n < 0 || n > 10000) return null;
+    return Math.floor(n);
+  }
+
+  window.loadOpenAiDialogQuotaConfig = async function loadOpenAiDialogQuotaConfig(force = false) {
+    if (_openAiDialogQuotaLoaded && !force) return;
+    _openAiDialogQuotaLoaded = true;
+    setOpenAiDialogQuotaStatus('Loading Theo quota config...');
+    try {
+      const callable = getOpenAiDialogQuotaConfigCallable();
+      const res = await callable({ action: 'get' });
+      const data = res?.data || {};
+      const freeDailyReplies = Number(data.freeDailyReplies ?? data.defaultFreeDailyReplies ?? 10);
+      const premiumDailyReplies = Number(data.premiumDailyReplies ?? data.defaultPremiumDailyReplies ?? 100);
+      const freeInput = document.getElementById('openai-dialog-free-daily-replies');
+      const premiumInput = document.getElementById('openai-dialog-premium-daily-replies');
+      if (freeInput) freeInput.value = String(Number.isFinite(freeDailyReplies) ? freeDailyReplies : 10);
+      if (premiumInput) premiumInput.value = String(Number.isFinite(premiumDailyReplies) ? premiumDailyReplies : 100);
+      const updated = Number(data.updatedAtMs || 0) > 0
+        ? ` Updated: ${new Date(Number(data.updatedAtMs)).toLocaleString()}.`
+        : ' Using default until saved.';
+      setOpenAiDialogQuotaStatus(
+        `Theo quota active: free ${freeDailyReplies}/day, premium ${premiumDailyReplies}/day.${updated}`,
+        'ok',
+      );
+    } catch (e) {
+      _openAiDialogQuotaLoaded = false;
+      setOpenAiDialogQuotaStatus('Could not load Theo quota config: ' + (e?.message || e), 'err');
+    }
+  };
+
+  window.saveOpenAiDialogQuota = async function saveOpenAiDialogQuota() {
+    const freeDailyReplies = readOpenAiDialogQuotaInput('openai-dialog-free-daily-replies');
+    const premiumDailyReplies = readOpenAiDialogQuotaInput('openai-dialog-premium-daily-replies');
+    if (freeDailyReplies == null || premiumDailyReplies == null) {
+      showToast('Quota must be a whole number from 0 to 10000', 'err');
+      return;
+    }
+    setOpenAiDialogQuotaStatus('Saving Theo quota...');
+    try {
+      const callable = getOpenAiDialogQuotaConfigCallable();
+      const res = await callable({ action: 'set', freeDailyReplies, premiumDailyReplies });
+      const data = res?.data || {};
+      const savedFree = Number(data.freeDailyReplies ?? freeDailyReplies);
+      const savedPremium = Number(data.premiumDailyReplies ?? premiumDailyReplies);
+      const freeInput = document.getElementById('openai-dialog-free-daily-replies');
+      const premiumInput = document.getElementById('openai-dialog-premium-daily-replies');
+      if (freeInput) freeInput.value = String(savedFree);
+      if (premiumInput) premiumInput.value = String(savedPremium);
+      _openAiDialogQuotaLoaded = true;
+      setOpenAiDialogQuotaStatus(`Theo quota active: free ${savedFree}/day, premium ${savedPremium}/day. Saved.`, 'ok');
+      showToast(`Theo quota saved: free ${savedFree}/day, premium ${savedPremium}/day`);
+    } catch (e) {
+      const msg = e?.message || String(e);
+      setOpenAiDialogQuotaStatus('Could not save Theo quota: ' + msg, 'err');
+      showToast('Theo quota save error: ' + msg, 'err');
     }
   };
 
@@ -21700,6 +21927,7 @@
     if (_openAiBudgetLoaded && !force) return;
     _openAiBudgetLoaded = true;
     void window.loadOpenAiDialogModelConfig();
+    void window.loadOpenAiDialogQuotaConfig();
     const rangeDays = Math.max(1, parseInt(document.getElementById('openai-budget-range')?.value || '30', 10) || 30);
     if (status) status.textContent = 'Loading OpenAI budget from server...';
     summary.innerHTML = openAiBudgetSummaryCards([

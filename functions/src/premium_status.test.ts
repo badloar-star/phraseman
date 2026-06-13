@@ -1,4 +1,4 @@
-import { isPremiumAccessActive, isVipActive, parseProgressMs } from './premium_status';
+import { isPremiumAccessActive, isVipActive, parseProgressMs, resolvePremiumAccess } from './premium_status';
 
 const NOW = 1_700_000_000_000;
 const FUTURE = NOW + 86_400_000;
@@ -67,6 +67,75 @@ describe('premium_status — серверный источник правды п
       expect(parseProgressMs({ seconds: 2 })).toBe(2000);
       expect(parseProgressMs('')).toBe(0);
       expect(parseProgressMs(null)).toBe(0);
+    });
+  });
+
+  describe('resolvePremiumAccess', () => {
+    function fakeDb(users: Record<string, Record<string, unknown>>, links: Record<string, Record<string, unknown>> = {}) {
+      return {
+        collection(name: string) {
+          if (name === 'auth_links') {
+            return {
+              doc(id: string) {
+                return {
+                  async get() {
+                    const data = links[id];
+                    return { exists: !!data, data: () => data };
+                  },
+                };
+              },
+            };
+          }
+          return {
+            doc(id: string) {
+              return {
+                async get() {
+                  const data = users[id];
+                  return { exists: !!data, data: () => data };
+                },
+              };
+            },
+            where(_field: string, _op: string, value: string) {
+              return {
+                limit(_n: number) {
+                  return {
+                    async get() {
+                      const docs = Object.entries(users)
+                        .filter(([, data]) => data.firebaseAuthUid === value)
+                        .map(([id, data]) => ({ id, data: () => data }));
+                      return { docs };
+                    },
+                  };
+                },
+              };
+            },
+          };
+        },
+      };
+    }
+
+    it('finds premium on the stable user linked to the current auth uid', async () => {
+      const db = fakeDb({
+        auth_1: { progress: {} },
+        stable_1: {
+          firebaseAuthUid: 'auth_1',
+          progress: { premium_plan: 'monthly', premium_expiry: '0' },
+        },
+      }) as any;
+
+      await expect(resolvePremiumAccess(db, 'auth_1', NOW, 'auth_1')).resolves.toBe(true);
+    });
+
+    it('follows auth_links when the callable resolved a legacy direct auth doc first', async () => {
+      const db = fakeDb(
+        {
+          auth_2: { progress: {} },
+          stable_2: { progress: { vip_active: 'true', vip_until: String(FUTURE) } },
+        },
+        { auth_2: { stable_id: 'stable_2' } },
+      ) as any;
+
+      await expect(resolvePremiumAccess(db, 'auth_2', NOW, 'auth_2')).resolves.toBe(true);
     });
   });
 });

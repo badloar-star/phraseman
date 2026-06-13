@@ -1,6 +1,6 @@
 # Lesson Sections Audit
 
-Generated: 2026-06-12T08:09:54.900Z
+Generated: 2026-06-12T13:02:44.297Z
 
 | Lesson | Phrases | Vocab | Irregular | Prep slots | Prep drill | Status |
 |---:|---:|---:|---:|---:|---:|---|

@@ -27,7 +27,14 @@ describe('awardPlanTaskCompletion', () => {
     await awardPlanTaskCompletion({ lang: 'uk', studyTarget: 'en', phrasesPracticed: 3 });
 
     expect(registerXP).toHaveBeenCalledTimes(1);
-    expect(registerXP).toHaveBeenCalledWith(PLAN_TASK_XP, 'plan_task_complete', 'Navigator #1234', 'uk');
+    expect(registerXP).toHaveBeenCalledWith(
+      PLAN_TASK_XP,
+      'plan_task_complete',
+      'Navigator #1234',
+      'uk',
+      undefined,
+      expect.objectContaining({ eventId: expect.stringMatching(/^plan:/) }),
+    );
 
     expect(bumpStatsDaily).toHaveBeenCalledTimes(1);
     expect(bumpStatsDaily).toHaveBeenCalledWith('phrases_learned', 3, 'en');
@@ -36,7 +43,14 @@ describe('awardPlanTaskCompletion', () => {
   it('still awards XP when no user_name is stored', async () => {
     await awardPlanTaskCompletion({ lang: 'ru', phrasesPracticed: 1 });
 
-    expect(registerXP).toHaveBeenCalledWith(PLAN_TASK_XP, 'plan_task_complete', '', 'ru');
+    expect(registerXP).toHaveBeenCalledWith(
+      PLAN_TASK_XP,
+      'plan_task_complete',
+      '',
+      'ru',
+      undefined,
+      expect.objectContaining({ eventId: expect.stringMatching(/^plan:/) }),
+    );
     expect(bumpStatsDaily).toHaveBeenCalledWith('phrases_learned', 1, undefined);
   });
 

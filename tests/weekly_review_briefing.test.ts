@@ -40,15 +40,14 @@ describe('weekly review briefing', () => {
     expect(briefing).not.toBeNull();
     expect(briefing!.totalMistakes).toBeGreaterThanOrEqual(5);
     expect(briefing!.weakCategories.length).toBeGreaterThan(0);
-    // Window matches stats insights: premium regenerates every 3 days.
-    expect(briefing!.windowDays).toBe(3);
+    expect(briefing!.windowDays).toBe(30);
   });
 
-  it('uses a 7-day window for free users', async () => {
+  it('uses the same mistake analytics window for free users too', async () => {
     await seedMistakes(8, { phrase: 'I have a dog', token: 'have', rawCategory: 'verb', lessonId: 1 });
     const briefing = await buildWeeklyReviewBriefing({ lang: 'ru', studyTarget: 'en', isPremium: false, effort: EFFORT });
     expect(briefing).not.toBeNull();
-    expect(briefing!.windowDays).toBe(7);
+    expect(briefing!.windowDays).toBe(30);
   });
 
   it('passes only words that came from logged mistakes into weak categories', async () => {

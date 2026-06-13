@@ -101,6 +101,9 @@ const KEY = 'streak_wager_v2';
 
 const today = () => new Date().toISOString().split('T')[0];
 
+const safeWagerEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
 const chargeLegacyZeroStakeWager = async (wager: WagerState): Promise<WagerState> => {
   if (!wager.active || wager.result !== 'pending' || (Number(wager.betShards) || 0) > 0) {
     return wager;
@@ -308,11 +311,29 @@ export const checkWagerProgress = async (
 
     if (daysKept >= wager.daysRequired) {
       const winUserName = await AsyncStorage.getItem('user_name') || '';
+      const xpResult = await registerXP(wager.rewardXP, 'wager_win', winUserName, 'ru', undefined, {
+        eventId: [
+          'wager',
+          safeWagerEventPart(wager.startDate, 20),
+          String(wager.tierIdx),
+          String(wager.daysRequired),
+          'win',
+        ].join(':'),
+        payload: {
+          tierIdx: wager.tierIdx,
+          startDate: wager.startDate,
+          daysRequired: wager.daysRequired,
+          daysKept,
+          rewardShards: wager.rewardShards,
+        },
+      });
+      if (Math.max(0, Math.round(xpResult.finalDelta || 0)) <= 0) {
+        throw new Error('wager_win_xp_not_confirmed');
+      }
       await addShardsRaw(wager.rewardShards, 'streak_wager_win', {
         showEarnModal: true,
         earnModalKey: 'streak_wager_win',
       });
-      await registerXP(wager.rewardXP, 'wager_win', winUserName);
       await saveWager({ ...wager, active: false, result: 'won', daysKept, lastChecked: t });
       return 'won';
     }

@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
@@ -72,6 +72,7 @@ import { oskolokImageForPackShards } from '../oskolok';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration } from '../home_screen_hydration';
 import AppMessagesInbox from '../../components/AppMessagesInbox';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
+import HomeTheoAdvisorCard from '../../components/HomeTheoAdvisorCard';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
@@ -95,6 +96,9 @@ import { formatLeagueChatUnreadBadge } from '../league_chat_unread';
 import { useLeagueChatUnread } from '../use_league_chat_unread';
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
+import { themedToastChrome } from '../../constants/themedToastChrome';
+import { themedWeekDot } from '../../constants/weekDotTheme';
+import { getHomeTheoAdvice, type HomeTheoAction } from '../home_theo_advisor';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -429,7 +433,7 @@ export default function HomeScreen() {
     const freeHomePlanCtaSwipedRef = useRef(false);
     // Початкове значення підбираємо за поточною мовою інтерфейсу,
     // щоб юзер з UK не бачив миготливе російське «Привет,» до завантаження `loadData`.
-    const [greeting, setGreeting] = useState(() => triLang(lang, {
+    const [, setGreeting] = useState(() => triLang(lang, {
         ru: 'Привет,',
         uk: 'Привіт,',
         es: 'Hola,',
@@ -467,7 +471,6 @@ export default function HomeScreen() {
     const [reviveModalVisible, setReviveModalVisible] = useState(false);
     const reviveOverlayVisible = useOverlayVisible('streakRevive', reviveModalVisible);
     const [titleModalVisible, setTitleModalVisible] = useState(false);
-    const [titleModalTab, setTitleModalTab] = useState<'earned' | 'all'>('earned');
     const [selectedTitleKey, setSelectedTitleKey] = useState<string | null>(null);
     const selectedTitleHydratedRef = useRef(false);
     const [specialTitleStats, setSpecialTitleStats] = useState<HomeSpecialTitleStats>({
@@ -484,6 +487,9 @@ export default function HomeScreen() {
     const vipCelebrationQueuedMarkerRef = useRef<string | null>(null);
     const vipCelebrationOverlayVisible = useOverlayVisible('vipCelebration', vipCelebrationVisible);
     const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(() => hh?.premiumFreezeUsed ?? false);
+    const [lessonsCompleted, setLessonsCompleted] = useState(() => hh?.lessonsCompleted ?? 0);
+    const [onboardingPlanBilling, setOnboardingPlanBilling] = useState<string | null>(null);
+    const [hadPremiumEver, setHadPremiumEver] = useState(false);
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
     const [totalXPMulti, setTotalXPMulti] = useState(() => hh?.totalXPMulti ?? 1);
@@ -1043,7 +1049,7 @@ export default function HomeScreen() {
         streakScaleAnim.setValue(1);
         const endPerf = perfMark('home:loadData');
         try {
-            const [name, streakVal, weekData, currentWeekMarkers, weekPts, xpStored, shardsBal, storedTitleKey, activePlanState, planSnapshot] = await Promise.all([
+            const [name, streakVal, weekData, currentWeekMarkers, weekPts, xpStored, shardsBal, storedTitleKey, activePlanState, planSnapshot, premiumSignalPairs] = await Promise.all([
                 AsyncStorage.getItem('user_name'),
                 AsyncStorage.getItem('streak_count'),
                 AsyncStorage.getItem('week_days_done'),
@@ -1059,7 +1065,13 @@ export default function HomeScreen() {
                     dueTrainerCount: dueCount,
                 }))
                     .catch(() => readPersonalPlanSnapshot()),
+                AsyncStorage.multiGet(['onboarding_plan_billing', 'had_premium_ever', 'premium_active']),
             ]);
+            const premiumSignals = new Map(premiumSignalPairs);
+            if (mountedRef.current) {
+                setOnboardingPlanBilling(premiumSignals.get('onboarding_plan_billing') || null);
+                setHadPremiumEver(premiumSignals.get('had_premium_ever') === '1' || premiumSignals.get('premium_active') === 'true');
+            }
             setWeekMarkers(currentWeekMarkers);
             setShardsBalance(shardsBal);
             if (mountedRef.current) {
@@ -1172,6 +1184,8 @@ export default function HomeScreen() {
                         done++;
                 }
             }
+            if (mountedRef.current)
+                setLessonsCompleted(done);
             let snapLastLessonId: number | null = null;
             let snapLastLessonProgress = 0;
             let snapLastLessonScore = '0.0';
@@ -1503,20 +1517,119 @@ export default function HomeScreen() {
         perfNavStart(screenName);
         router.push(path as any);
     };
-    const dotActive = t.textSecond;
-    const dotToday = t.textPrimary;
-    const dotEmpty = t.bgSurface2;
-    const dayLblColor = t.textMuted;
+    const handleHomeTheoAction = useCallback((action: HomeTheoAction) => {
+        if (action === 'none') return;
+        hapticTap();
+        switch (action) {
+            case 'lesson':
+                if (lastLesson?.id) {
+                    router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
+                }
+                else {
+                    goToTab(1);
+                }
+                break;
+            case 'lessons':
+                goToTab(1);
+                break;
+            case 'trainer':
+                router.push('/trainer' as any);
+                break;
+            case 'dailyTasks':
+                router.push('/daily_tasks_screen' as any);
+                break;
+            case 'personalPlan':
+                router.push('/personal_plan' as any);
+                break;
+            case 'personalPlanSetup':
+                router.push('/personal_plan_setup' as any);
+                break;
+            case 'stats':
+                router.push('/streak_stats' as any);
+                break;
+            case 'aiDialog':
+                void trackAiDialogEvent('ai_dialog_card_tapped');
+                router.push('/ai_dialog_home' as any);
+                break;
+            case 'flashcards':
+                router.push('/flashcards' as any);
+                break;
+        }
+    }, [goToTab, lastLesson?.id, router]);
+    const homeTheoAdvice = useMemo(() => getHomeTheoAdvice({
+        lang,
+        totalXP,
+        level,
+        streak: displayStreak,
+        weekPoints,
+        lessonsCompleted,
+        lastLessonId: lastLesson?.id ?? null,
+        lastLessonProgress: lastLesson?.progress ?? 0,
+        tasksCompleted,
+        dailyTaskBarCount,
+        dueCount,
+        energyCount,
+        energyMax,
+        hasPremiumAccess,
+        isPremium,
+        isVip,
+        onboardingPlanBilling,
+        hadPremiumEver,
+        freezeActive,
+        streakAtRisk,
+        showRepairCard,
+        repairProgress,
+        hasActivePersonalPlan: hasActivePersonalPlanState,
+        personalPlanSnapshot,
+        homeXpPercentile,
+        homeLeagueRaceVisible,
+        medalTotal: medalCounts.bronze + medalCounts.silver + medalCounts.gold,
+        weekDone,
+        totalXPMulti,
+    }), [
+        lang,
+        totalXP,
+        level,
+        displayStreak,
+        weekPoints,
+        lessonsCompleted,
+        lastLesson?.id,
+        lastLesson?.progress,
+        tasksCompleted,
+        dailyTaskBarCount,
+        dueCount,
+        energyCount,
+        energyMax,
+        hasPremiumAccess,
+        isPremium,
+        isVip,
+        onboardingPlanBilling,
+        hadPremiumEver,
+        freezeActive,
+        streakAtRisk,
+        showRepairCard,
+        repairProgress,
+        hasActivePersonalPlanState,
+        personalPlanSnapshot,
+        homeXpPercentile,
+        homeLeagueRaceVisible,
+        medalCounts.bronze,
+        medalCounts.silver,
+        medalCounts.gold,
+        weekDone,
+        totalXPMulti,
+    ]);
     const markerForWeekDay = (index: number): StreakWeekDayMarkerKind | null => weekMarkers[index] ?? null;
     const isWeekDayMarked = (index: number): boolean => weekDone[index] || markerForWeekDay(index) !== null;
+    const weekDotTheme = themedWeekDot(themeMode, t);
     const weekDotFill = (index: number, marker: StreakWeekDayMarkerKind | null, fallback: string) => {
-        if (marker === 'freeze') return 'rgba(196,239,255,0.24)';
-        if (marker === 'revive' || marker === 'repair' || weekDone[index]) return t.correct;
+        if (marker === 'freeze') return weekDotTheme.freezeBg;
+        if (marker === 'revive' || marker === 'repair' || weekDone[index]) return weekDotTheme.completeBg;
         return fallback;
     };
     const weekDotBorder = (index: number, marker: StreakWeekDayMarkerKind | null, fallback: string) => {
-        if (marker === 'freeze') return 'rgba(190,240,255,0.78)';
-        if (marker === 'revive' || marker === 'repair' || weekDone[index]) return t.correct;
+        if (marker === 'freeze') return weekDotTheme.freezeBorder;
+        if (marker === 'revive' || marker === 'repair' || weekDone[index]) return weekDotTheme.completeBorder;
         return fallback;
     };
     const renderWeekMarkerContent = (
@@ -1536,14 +1649,11 @@ export default function HomeScreen() {
     };
     if (!diagChecked)
         return <ScreenGradient><View /></ScreenGradient>;
-    const loginBonusAccent = isGoldTheme ? GOLD_RICH.champagne : (isLightTheme ? '#047857' : '#7AF0B2');
-    const loginBonusAccentSoft = isGoldTheme ? 'rgba(246,227,161,0.16)' : (isLightTheme ? 'rgba(4,120,87,0.12)' : 'rgba(122,240,178,0.13)');
-    const loginBonusBorder = isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(4,120,87,0.24)' : 'rgba(122,240,178,0.30)');
-    const loginBonusCardGradient = isGoldTheme
-        ? goldPremiumPanel
-        : isLightTheme
-            ? ['rgba(255,255,255,0.98)', 'rgba(240,253,244,0.96)', 'rgba(236,253,245,0.92)'] as [string, string, string]
-            : ['rgba(12,31,27,0.98)', 'rgba(7,22,21,0.96)', 'rgba(5,15,15,0.94)'] as [string, string, string];
+    const loginBonusChrome = themedToastChrome(themeMode, t);
+    const loginBonusAccent = loginBonusChrome.accent;
+    const loginBonusAccentSoft = loginBonusChrome.accentSoft;
+    const loginBonusBorder = loginBonusChrome.border;
+    const loginBonusCardGradient = loginBonusChrome.cardColors;
     const loginBonusIcon = loginBonus?.cycle === 7 ? 'gift-outline' : 'flash-outline';
     const loginBonusCloseLabel = triLang(lang, {
         ru: 'Закрыть бонус за вход',
@@ -1557,8 +1667,8 @@ export default function HomeScreen() {
     });
     // ── Общие баннеры (используются в обоих стилях) ──────────────────────────
     const bannersJSX = (<>
-      {loginBonus && (<View style={{ marginHorizontal: 16, marginBottom: 10, borderRadius: 18, overflow: 'hidden', ...(isGoldTheme ? goldShadow(1) : { shadowColor: loginBonusAccent, shadowOpacity: isLightTheme ? 0.10 : 0.20, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 7 }) }}>
-          <LinearGradient colors={loginBonusCardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 74, borderRadius: 18, paddingVertical: 13, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 1, borderColor: loginBonusBorder, overflow: 'hidden' }}>
+      {loginBonus && (<View style={{ marginHorizontal: 16, marginBottom: 10, borderRadius: loginBonusChrome.radius, overflow: 'hidden', ...(isGoldTheme ? goldShadow(1) : { shadowColor: loginBonusChrome.shadowColor, shadowOpacity: isLightTheme ? 0.10 : 0.22, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 7 }) }}>
+          <LinearGradient colors={loginBonusCardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 74, borderRadius: loginBonusChrome.radius, paddingVertical: 13, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 1, borderColor: loginBonusBorder, overflow: 'hidden' }}>
             {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
             <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, backgroundColor: loginBonusAccent, opacity: isLightTheme ? 0.72 : 0.90 }}/>
             <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusAccentSoft, borderWidth: 1, borderColor: loginBonusBorder }}>
@@ -1595,7 +1705,7 @@ export default function HomeScreen() {
                 pl: `Dzień ${loginBonus.cycle}`,
             })}</Text>
             </View>
-            <TapScale onPress={() => setLoginBonus(null)} accessibilityLabel={loginBonusCloseLabel} style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: isLightTheme ? 'rgba(4,120,87,0.08)' : 'rgba(255,255,255,0.055)' }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
+            <TapScale onPress={() => setLoginBonus(null)} accessibilityLabel={loginBonusCloseLabel} style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusChrome.closeBg }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
           </LinearGradient>
         </View>)}
       {showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>
@@ -1669,8 +1779,13 @@ export default function HomeScreen() {
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
         const homePracticeIconSize = 64;
         const homePracticeIconImageSize = homePracticeIconSize;
-        const homeTodayIconSize = 96;
+        const homeTodayIconSize = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 84 : 96;
         const homeTodayIconImageSize = homeTodayIconSize;
+        const homeTodayCardMinHeight = 112;
+        const homeTodayLeagueCardMinHeight = 120;
+        const homeTodayCardPadX = 16;
+        const homeTodayCardPadY = 12;
+        const homeTodayCardGap = 14;
         const quickItems = [
             { key: 'lessons', iconKey: 'lesson' as const, testID: 'home-quick-lessons', img: menuImages.lesson, label: s.tabs.lessons, sub: triLang(lang, {
                     ru: '32 урока',
@@ -1776,9 +1891,6 @@ export default function HomeScreen() {
         const eliteXpBadgeFontSize = Math.max(12, f.label - 1);
         const eliteWeekDotSize = eliteStatsCompact ? 25 : 27;
         const eliteWeekDayFontSize = Math.max(12, f.label - 1);
-        const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : isCompassTheme ? compassHairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
-        const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : isCompassTheme ? 'rgba(242,196,141,0.12)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
-        const titleButtonShadowColor = isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : (isLightTheme ? '#CA8A04' : '#FCD34D');
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
@@ -1821,7 +1933,6 @@ export default function HomeScreen() {
             tr: "Seviye",
             pl: "Poziom",
         });
-        const experimentalStatusTitleLabel = currentHomeTitle?.titleEN ?? getTitleString(level, lang);
         const renderExperimentalHomeStatus = () => (<Animated.View style={{
                 opacity: eliteStatusEntrance,
                 transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
@@ -1849,41 +1960,6 @@ export default function HomeScreen() {
                         {experimentalStatusLevelLabel} {level}
                       </Text>
                     </View>
-                    <TouchableOpacity activeOpacity={0.82} hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    setTitleModalTab('earned');
-                    setTitleModalVisible(true);
-                }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                    ru: 'Титулы',
-                    uk: 'Титули',
-                    es: 'Titulos',
-                    'pt-BR': "Titulos",
-                    vi: "Danh hieu",
-                    id: "Gelar",
-                    tr: "Unvanlar",
-                    pl: "Tytuly",
-                })} style={{
-                    minHeight: 30,
-                    maxWidth: eliteStatsCompact ? 94 : 122,
-                    borderRadius: 999,
-                    paddingHorizontal: 10,
-                    paddingVertical: 4,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: titleModalButtonBg,
-                    borderWidth: 1,
-                    borderColor: titleModalButtonBorderColor,
-                    shadowColor: titleButtonShadowColor,
-                    shadowOpacity: 0.14,
-                    shadowRadius: 5,
-                    shadowOffset: { width: 0, height: 2 },
-                    elevation: 2,
-                }}>
-                      <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
-                        {experimentalStatusTitleLabel}
-                      </Text>
-                    </TouchableOpacity>
                   </View>
 
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 10 }}>
@@ -1943,13 +2019,11 @@ export default function HomeScreen() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     overflow: 'hidden',
-                    backgroundColor: weekDotFill(i, marker, isPaperHomeTheme
-                        ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
-                        : (i === todayIdx ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)')),
+                    backgroundColor: weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
                     borderWidth: marker === 'freeze' ? 1 : marked ? 0 : 1,
-                    borderColor: weekDotBorder(i, marker, i === todayIdx ? homeThemePanelAccent : (isPaperHomeTheme ? 'rgba(60,54,44,0.30)' : 'rgba(255,255,255,0.11)')),
+                    borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
                 }}>
-                      {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 16 : 18, isSketchLightTheme ? t.correctText : '#101214') ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={isSketchLightTheme ? t.correctText : '#101214'}/>)}
+                      {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 16 : 18, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={weekDotTheme.checkColor}/>)}
                     </View>
                     <Text style={{ color: marked || i === todayIdx ? homeThemePanelText : homeThemePanelMuted, fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16 }} numberOfLines={1}>
                       {d}
@@ -1976,7 +2050,6 @@ export default function HomeScreen() {
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
               <View pointerEvents="box-none" style={[{ paddingRight: homeHeaderAccessTitleRightReserve }, homeHeaderAccessLayout ? { transform: [{ translateY: homeHeaderAccessTitleShiftY }] } : null]}>
-                <Text style={{ color: t.heroTextMuted, fontSize: f.caption }}>{greeting}</Text>
                 {homeLeagueRaceVisible && (homeLeagueCrownCount > 0 || homeLeagueCrownExpiresAt > Date.now()) ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
                     <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1} count={Math.max(1, homeLeagueCrownCount)}/>
                   </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>)}
@@ -2089,45 +2162,6 @@ export default function HomeScreen() {
                 })} {level}
                           </Text>
                         </View>
-                        <TouchableOpacity activeOpacity={0.82} hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    setTitleModalTab('earned');
-                    setTitleModalVisible(true);
-                }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                    ru: 'Титулы',
-                    uk: 'Титули',
-                    es: 'Titulos',
-                    'pt-BR': "Titulos",
-                    vi: "Danh hieu",
-                    id: "Gelar",
-                    tr: "Unvanlar",
-                    pl: "Tytuly",
-                })} style={{
-                    alignSelf: 'flex-start',
-                    maxWidth: '100%',
-                    borderRadius: 999,
-                    paddingLeft: 9,
-                    paddingRight: 7,
-                    paddingVertical: 3,
-                    marginTop: 0,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 4,
-                    backgroundColor: titleModalButtonBg,
-                    borderWidth: 1,
-                    borderColor: titleModalButtonBorderColor,
-                    shadowColor: titleButtonShadowColor,
-                    shadowOpacity: 0.14,
-                    shadowRadius: 5,
-                    shadowOffset: { width: 0, height: 2 },
-                    elevation: 2,
-                }}>
-                          <Text allowFontScaling={false} style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: eliteLevelBadgeFontSize, fontWeight: '900', lineHeight: eliteLevelBadgeFontSize + 4, maxWidth: eliteStatsCompact ? 96 : 150, includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
-                            {currentHomeTitle?.titleEN ?? getTitleString(level, lang)}
-                          </Text>
-                          <Ionicons name="chevron-forward" size={13} color={isLightTheme ? t.textSecond : t.gold}/>
-                        </TouchableOpacity>
                       </View>
                     </View>
 
@@ -2206,19 +2240,17 @@ export default function HomeScreen() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         overflow: 'hidden',
-                        backgroundColor: marker === 'freeze' ? weekDotFill(i, marker, 'rgba(196,239,255,0.24)') : isGoldTheme && !marker ? 'transparent' : weekDotFill(i, marker, isLightTheme
-                            ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
-                            : (i === todayIdx ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)')),
+                        backgroundColor: marker === 'freeze' ? weekDotFill(i, marker, weekDotTheme.freezeBg) : isGoldTheme && !marker ? 'transparent' : weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
                         borderWidth: marker === 'freeze' ? 1 : marked && !isGoldTheme ? 0 : 1,
                         borderColor: isGoldTheme
-                            ? weekDotBorder(i, marker, i === todayIdx ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
-                            : weekDotBorder(i, marker, i === todayIdx ? (isLightTheme ? t.textSecond : t.gold) : (isLightTheme ? 'rgba(60,54,44,0.30)' : 'rgba(255,255,255,0.10)')),
+                            ? weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder)
+                            : weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
                     }}>
                           {isGoldTheme && !marker && (<>
                               <LinearGradient colors={weekDone[i] ? GOLD_GRADIENTS.metallicFill : ['rgba(23,23,23,0.66)', 'rgba(10,10,10,0.58)', 'rgba(7,7,7,0.50)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
                               <GoldBevel radius={eliteWeekDotSize / 2} intensity={marked ? 'normal' : 'quiet'}/>
                             </>)}
-                          {renderWeekMarkerContent(marker, eliteWeekDotSize, eliteStatsCompact ? 15 : 16, isGoldTheme ? t.textOnGold : isSketchLightTheme ? t.correctText : t.textPrimary) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={isGoldTheme ? t.textOnGold : isSketchLightTheme ? t.correctText : t.textPrimary}/>)}
+                          {renderWeekMarkerContent(marker, eliteWeekDotSize, eliteStatsCompact ? 15 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={weekDotTheme.checkColor}/>)}
                         </View>
                         <Text style={{ color: marked || i === todayIdx ? t.textPrimary : t.textMuted, fontSize: eliteWeekDayFontSize, fontWeight: '800' }}>{d}</Text>
                       </View>);
@@ -2270,45 +2302,6 @@ export default function HomeScreen() {
                     pl: "Poz.",
                 })} {level}
                       </Text>
-                      <TouchableOpacity activeOpacity={0.82} hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    setTitleModalTab('earned');
-                    setTitleModalVisible(true);
-                }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                    ru: 'Титулы',
-                    uk: 'Титули',
-                    es: 'Titulos',
-                    'pt-BR': "Titulos",
-                    vi: "Danh hieu",
-                    id: "Gelar",
-                    tr: "Unvanlar",
-                    pl: "Tytuly",
-                })} style={{
-                    alignSelf: 'flex-start',
-                    maxWidth: '100%',
-                    borderRadius: 999,
-                    paddingLeft: 9,
-                    paddingRight: 7,
-                    paddingVertical: 3,
-                    marginTop: 3,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 4,
-                    backgroundColor: titleModalButtonBg,
-                    borderWidth: 1,
-                    borderColor: titleModalButtonBorderColor,
-                    shadowColor: titleButtonShadowColor,
-                    shadowOpacity: 0.14,
-                    shadowRadius: 5,
-                    shadowOffset: { width: 0, height: 2 },
-                    elevation: 2,
-                }}>
-                        <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize: 12, fontWeight: '900', lineHeight: 16, maxWidth: 120 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
-                          {currentHomeTitle?.titleEN ?? getTitleString(level, lang)}
-                        </Text>
-                        <Ionicons name="chevron-forward" size={13} color={isLightTheme ? t.textSecond : t.gold}/>
-                      </TouchableOpacity>
                     </View>
                   </View>
                 </View>
@@ -2370,13 +2363,11 @@ export default function HomeScreen() {
                         width: 22, height: 22, borderRadius: 11,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: weekDotFill(i, marker, isLightTheme
-                            ? (i === todayIdx ? 'rgba(52,56,66,0.14)' : 'rgba(60,54,44,0.10)')
-                            : (i === todayIdx ? t.textPrimary + '66' : t.bgSurface2)),
+                        backgroundColor: weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
                         borderWidth: marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),
-                        borderColor: weekDotBorder(i, marker, isGoldTheme ? goldHairline : isLightTheme ? t.textMuted : t.textPrimary),
+                        borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
                     }}>
-                      {renderWeekMarkerContent(marker, 22, 14, isSketchLightTheme ? t.correctText : '#101214') ?? (weekDone[i] && <Ionicons name="checkmark" size={14} color={isSketchLightTheme ? t.correctText : '#101214'}/>)}
+                      {renderWeekMarkerContent(marker, 22, 14, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={14} color={weekDotTheme.checkColor}/>)}
                     </View>
                     <Text style={{ color: marked ? t.textPrimary : t.textMuted, fontSize: 12, fontWeight: '600' }}>{d}</Text>
                   </View>);
@@ -2396,6 +2387,7 @@ export default function HomeScreen() {
               </>)}
             </LinearGradient>
           </TouchableOpacity>
+          <HomeTheoAdvisorCard advice={homeTheoAdvice} onAction={handleHomeTheoAction}/>
           </Animated.View>
 
           {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
@@ -2866,9 +2858,9 @@ export default function HomeScreen() {
                 })}
             </Text>
           </View>
-          <View style={{ marginHorizontal: 8, marginBottom: 12, gap: 10 }}>
+          <View style={{ marginHorizontal: 8, marginBottom: 12, gap: 8 }}>
             <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); router.push('/trainer'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
                 <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -2919,7 +2911,7 @@ export default function HomeScreen() {
 
             {isAiDialogEnabled() ? (
             <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); void trackAiDialogEvent('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
                 <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -2939,7 +2931,7 @@ export default function HomeScreen() {
             ) : null}
 
             <TouchableOpacity activeOpacity={0.85} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 128, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', gap: 18, overflow: 'hidden' }}>
+              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
                 {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
                 {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
                 <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -3032,9 +3024,9 @@ export default function HomeScreen() {
                     tr: "Lig hedefi",
                     pl: "Cel ligi",
                 })}>
-              <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 132, borderRadius: 24, borderWidth: 1, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: 18, paddingVertical: 16, overflow: 'hidden' }}>
-                <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -18, width: 142, height: 142, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false} />
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13, marginBottom: 14 }}>
+              <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayLeagueCardMinHeight, borderRadius: 24, borderWidth: 1, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, overflow: 'hidden' }}>
+                <Image pointerEvents="none" source={leagueBonusGiftImage} style={{ position: 'absolute', right: -2, top: -16, width: 126, height: 126, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false} />
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                   <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги" />
                   </View>
@@ -3059,7 +3051,7 @@ export default function HomeScreen() {
                     {homeLeagueChestPct}%
                   </Text>
                 </View>
-                <View style={{ height: 10, borderRadius: 6, overflow: 'hidden', backgroundColor: leagueBonusPalette.track, borderWidth: 0.5, borderColor: leagueBonusPalette.trackBorder }}>
+                <View style={{ height: 9, borderRadius: 6, overflow: 'hidden', backgroundColor: leagueBonusPalette.track, borderWidth: 0.5, borderColor: leagueBonusPalette.trackBorder }}>
                   <LinearGradient colors={homeLeagueChestFill} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ height: '100%', width: `${homeLeagueChestPct}%` as any, borderRadius: 6 }}/>
                 </View>
               </LinearGradient>
@@ -3466,13 +3458,13 @@ export default function HomeScreen() {
     const earnedTitles = [
         ...allTitles.filter((title) => title.unlocked),
     ];
-    const visibleTitles = titleModalTab === 'earned' ? earnedTitles : allTitles;
-    const currentHomeTitle = allTitles.find((title) => title.current) ?? allTitles[0];
+    const visibleTitles = earnedTitles;
     const selectHomeTitle = (item: TitleModalRow) => {
         if (!item.unlocked)
             return;
         hapticTap();
         setSelectedTitleKey(item.key);
+        setTitleModalVisible(false);
         void AsyncStorage.setItem(HOME_SELECTED_TITLE_KEY, item.key);
     };
     const titleModalHeading = triLang(lang, {
@@ -3495,18 +3487,7 @@ export default function HomeScreen() {
         tr: "Kazanilan",
         pl: "Zdobyte",
     });
-    const titleModalAllLabel = triLang(lang, {
-        ru: 'Все титулы',
-        uk: 'Усі титули',
-        es: 'Todos',
-        'pt-BR': "Todos",
-        vi: "Tat ca",
-        id: "Semua",
-        tr: "Tumu",
-        pl: "Wszystkie",
-    });
-    const titleModalSubtitle = titleModalTab === 'earned'
-        ? triLang(lang, {
+    const titleModalSubtitle = triLang(lang, {
             ru: `${earnedTitles.length} из ${allTitles.length} уже открыто`,
             uk: `${earnedTitles.length} з ${allTitles.length} вже відкрито`,
             es: `${earnedTitles.length} de ${allTitles.length} desbloqueados`,
@@ -3515,16 +3496,6 @@ export default function HomeScreen() {
             id: `${earnedTitles.length} dari ${allTitles.length} terbuka`,
             tr: `${earnedTitles.length}/${allTitles.length} acildi`,
             pl: `${earnedTitles.length} z ${allTitles.length} odblokowane`,
-        })
-        : triLang(lang, {
-            ru: 'Полная лестница титулов',
-            uk: 'Повна драбина титулів',
-            es: 'Escalera completa de titulos',
-            'pt-BR': "Lista completa de titulos",
-            vi: "Day du cac danh hieu",
-            id: "Daftar lengkap gelar",
-            tr: "Tum unvan sirasi",
-            pl: "Pelna lista tytulow",
         });
     return (<View testID="screen-home" style={{ flex: 1 }} onLayout={notifyFirstHomeFrameReady}>
       <ScreenGradient>
@@ -3630,12 +3601,11 @@ export default function HomeScreen() {
       </Modal>
 
       <Modal visible={titleModalVisible} transparent animationType="fade" onRequestClose={() => setTitleModalVisible(false)}>
-        <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.56)' }}>
+        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>
           <Pressable style={StyleSheet.absoluteFillObject} onPress={() => setTitleModalVisible(false)} />
-          <View style={{ maxHeight: Math.min(SCREEN_H * 0.82, 660), paddingHorizontal: 16, paddingBottom: Math.max(insets.bottom, 14) + 10 }}>
-            <LinearGradient colors={isGoldTheme ? goldPremiumPanel : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 22, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border, overflow: 'hidden', padding: 16 }}>
-              {isGoldTheme && <GoldBevel radius={22} intensity="strong"/>}
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 14 }}>
+          <View style={{ maxHeight: Math.min(SCREEN_H * 0.74, 620), width: '100%', maxWidth: 560, alignSelf: 'center' }}>
+            <View style={{ borderRadius: 22, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, elevation: 24 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: f.h2 + 5 }} numberOfLines={1}>
                     {titleModalHeading}
@@ -3644,34 +3614,23 @@ export default function HomeScreen() {
                     {titleModalSubtitle}
                   </Text>
                 </View>
-                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: isCompassTheme ? compassHomeRadius : 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : isCompassTheme ? COMPASS_RICH.wash : 'rgba(255,255,255,0.10)', borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? compassHairline : t.border }}>
+                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: isCompassTheme ? compassHomeRadius : 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : isCompassTheme ? COMPASS_RICH.wash : t.bgSurface2, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : isCompassTheme ? compassHairline : t.border }}>
                   <Ionicons name="close" size={22} color={t.textPrimary}/>
                 </TouchableOpacity>
               </View>
 
-              <View style={{ flexDirection: 'row', gap: 8, marginBottom: 14 }}>
-                {([
-                    ['earned', titleModalEarnedLabel],
-                    ['all', titleModalAllLabel],
-                ] as const).map(([tab, label]) => {
-                    const active = titleModalTab === tab;
-                    return (<TouchableOpacity key={tab} activeOpacity={0.8} onPress={() => {
-                            hapticTap();
-                            setTitleModalTab(tab);
-                        }} accessibilityRole="button" style={{ flex: 1, minHeight: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: active ? (isGoldTheme ? 'rgba(246,227,161,0.18)' : titleModalButtonBg) : (isGoldTheme ? 'rgba(255,255,255,0.045)' : 'rgba(255,255,255,0.06)'), borderWidth: 1, borderColor: active ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>
-                        <Text style={{ color: active ? (isLightTheme ? t.textSecond : t.gold) : t.textMuted, fontSize: f.label, fontWeight: '900' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
-                          {label}
-                        </Text>
-                      </TouchableOpacity>);
-                })}
+              <View style={{ borderRadius: 16, backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.08)' : t.bgSurface2, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 12 }}>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} numberOfLines={2}>
+                  {titleModalEarnedLabel}
+                </Text>
               </View>
 
-              <ScrollView decelerationRate="normal" style={{ maxHeight: Math.min(SCREEN_H * 0.58, 480) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator contentContainerStyle={{ paddingBottom: 8 }}>
+              <ScrollView decelerationRate="normal" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
-                    return (<TouchableOpacity key={item.key} activeOpacity={item.unlocked ? 0.82 : 1} disabled={!item.unlocked} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 64, borderRadius: 16, padding: 12, marginBottom: 9, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.055)'), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (item.unlocked ? titleColor + '55' : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border)) }}>
-                        <View style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: item.unlocked ? titleColor + '22' : 'rgba(142,142,147,0.13)', borderWidth: 1, borderColor: item.unlocked ? titleColor + '66' : 'rgba(142,142,147,0.26)' }}>
-                          <Ionicons name={item.unlocked ? (item.current ? 'ribbon' : 'checkmark-circle') : 'lock-closed'} size={20} color={item.unlocked ? titleColor : t.textMuted}/>
+                    return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), borderWidth: 1, borderColor: item.current ? titleModalButtonBorderColor : (isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border) }}>
+                        <View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: titleColor + '20', borderWidth: 1, borderColor: titleColor + '55' }}>
+                          <Ionicons name={item.current ? 'ribbon' : 'checkmark-circle'} size={20} color={titleColor}/>
                         </View>
                         <View style={{ flex: 1, minWidth: 0 }}>
                           <Text allowFontScaling={false} style={{ color: item.unlocked ? titleColor : t.textSecond, fontSize: Math.max(15, f.body), fontWeight: '900', lineHeight: Math.max(15, f.body) + 5, letterSpacing: 0 }} numberOfLines={1} ellipsizeMode="tail">
@@ -3698,7 +3657,7 @@ export default function HomeScreen() {
                       </TouchableOpacity>);
                 })}
               </ScrollView>
-            </LinearGradient>
+            </View>
           </View>
         </View>
       </Modal>

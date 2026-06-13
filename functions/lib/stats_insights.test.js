@@ -28,6 +28,14 @@ describe('stats_insights parseAndGuardResult', () => {
         expect(result.notes.percentiles).toBe('');
         expect(result.notes.lifetime).toBe('');
     });
+    it('hides internal score wording in the learner-facing practice note', () => {
+        const result = parseAndGuardResult(JSON.stringify({
+            balance: 'У вас 44 балла за баланс. Это начало, продолжайте так же.',
+            rhythm: 'На этой неделе 4 дня практики — это уже понятный ритм.',
+        }));
+        expect(result.notes.balance).toBe('');
+        expect(result.notes.rhythm).toContain('4 дня практики');
+    });
     it('throws on non-JSON model output', () => {
         expect(() => parseAndGuardResult('not json at all')).toThrow();
     });
@@ -97,6 +105,12 @@ describe('stats_insights buildSystemPrompt', () => {
         for (const key of ['balance', 'rhythm', 'year', 'percentiles', 'lifetime']) {
             expect(prompt).toContain(`"${key}"`);
         }
+    });
+    it('keeps the balance block framed as practice consistency, not visible scoring', () => {
+        const prompt = buildSystemPrompt('ru');
+        expect(prompt).toContain('practice consistency card');
+        expect(prompt).toContain('Do NOT mention the score');
+        expect(prompt).not.toContain('practice balance score');
     });
 });
 //# sourceMappingURL=stats_insights.test.js.map

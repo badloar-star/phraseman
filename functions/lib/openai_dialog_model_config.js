@@ -33,14 +33,19 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.openAiDialogModelConfig = exports.ALLOWED_DIALOG_MODELS = void 0;
+exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.ALLOWED_DIALOG_MODELS = exports.DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = exports.DIALOG_FREE_DAILY_REPLIES_DEFAULT = void 0;
 exports.resolveConfiguredDialogModel = resolveConfiguredDialogModel;
+exports.resolveConfiguredDialogQuota = resolveConfiguredDialogQuota;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_dialog_model';
+const QUOTA_CONFIG_DOC = 'openai_dialog_quota';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
+exports.DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10;
+exports.DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 100;
+const DIALOG_DAILY_REPLIES_MAX = 10000;
 exports.ALLOWED_DIALOG_MODELS = [
     'gpt-4.1-nano',
     'gpt-4.1-mini',
@@ -57,6 +62,22 @@ function normalizeDialogModel(value) {
     const model = text(value, 80);
     return isAllowedDialogModel(model) ? model : null;
 }
+function normalizeDailyReplies(value) {
+    const raw = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
+    const n = typeof raw === 'number' ? raw : NaN;
+    if (!Number.isFinite(n))
+        return null;
+    const clean = Math.floor(n);
+    if (clean < 0 || clean > DIALOG_DAILY_REPLIES_MAX)
+        return null;
+    return clean;
+}
+function quotaFromData(data) {
+    return {
+        freeDailyReplies: normalizeDailyReplies(data?.freeDailyReplies) ?? exports.DIALOG_FREE_DAILY_REPLIES_DEFAULT,
+        premiumDailyReplies: normalizeDailyReplies(data?.premiumDailyReplies) ?? exports.DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT,
+    };
+}
 async function resolveConfiguredDialogModel(db, envModel) {
     try {
         const snap = await db.collection(CONFIG_COLLECTION).doc(CONFIG_DOC).get();
@@ -68,6 +89,16 @@ async function resolveConfiguredDialogModel(db, envModel) {
         console.warn('resolveConfiguredDialogModel failed, using fallback', e);
     }
     return normalizeDialogModel(envModel) || MODEL_DEFAULT;
+}
+async function resolveConfiguredDialogQuota(db) {
+    try {
+        const snap = await db.collection(CONFIG_COLLECTION).doc(QUOTA_CONFIG_DOC).get();
+        return quotaFromData(snap.data());
+    }
+    catch (e) {
+        console.warn('resolveConfiguredDialogQuota failed, using fallback', e);
+        return quotaFromData(undefined);
+    }
 }
 exports.openAiDialogModelConfig = (0, https_1.onCall)({ region: REGION }, async (request) => {
     if (!request.auth?.token?.admin) {
@@ -101,6 +132,49 @@ exports.openAiDialogModelConfig = (0, https_1.onCall)({ region: REGION }, async 
         configuredModel: configured,
         defaultModel: MODEL_DEFAULT,
         allowedModels: exports.ALLOWED_DIALOG_MODELS,
+        updatedAtMs: Number(snap.data()?.updatedAtMs || 0),
+    };
+});
+exports.openAiDialogQuotaConfig = (0, https_1.onCall)({ region: REGION }, async (request) => {
+    if (!request.auth?.token?.admin) {
+        throw new https_1.HttpsError('permission-denied', 'Admin only');
+    }
+    const db = admin.firestore();
+    const ref = db.collection(CONFIG_COLLECTION).doc(QUOTA_CONFIG_DOC);
+    const action = text(request.data?.action, 20) || 'get';
+    if (action === 'set') {
+        const current = quotaFromData((await ref.get()).data());
+        const freeDailyReplies = request.data?.freeDailyReplies == null
+            ? current.freeDailyReplies
+            : normalizeDailyReplies(request.data.freeDailyReplies);
+        const premiumDailyReplies = request.data?.premiumDailyReplies == null
+            ? current.premiumDailyReplies
+            : normalizeDailyReplies(request.data.premiumDailyReplies);
+        if (freeDailyReplies == null || premiumDailyReplies == null) {
+            throw new https_1.HttpsError('invalid-argument', 'unsupported_dialog_quota');
+        }
+        await ref.set({
+            freeDailyReplies,
+            premiumDailyReplies,
+            defaultFreeDailyReplies: exports.DIALOG_FREE_DAILY_REPLIES_DEFAULT,
+            defaultPremiumDailyReplies: exports.DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT,
+            maxDailyReplies: DIALOG_DAILY_REPLIES_MAX,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedAtMs: Date.now(),
+            updatedBy: text(request.auth?.token?.email, 200) || 'admin',
+        }, { merge: true });
+    }
+    else if (action !== 'get') {
+        throw new https_1.HttpsError('invalid-argument', 'unsupported_action');
+    }
+    const snap = await ref.get();
+    const activeQuota = quotaFromData(snap.data());
+    return {
+        ok: true,
+        ...activeQuota,
+        defaultFreeDailyReplies: exports.DIALOG_FREE_DAILY_REPLIES_DEFAULT,
+        defaultPremiumDailyReplies: exports.DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT,
+        maxDailyReplies: DIALOG_DAILY_REPLIES_MAX,
         updatedAtMs: Number(snap.data()?.updatedAtMs || 0),
     };
 });

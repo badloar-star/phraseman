@@ -1,0 +1,89 @@
+[
+  {
+    "post_id": "001",
+    "scheduled_at": "2026-06-14T08:07:00+01:00",
+    "job_id": "6a2d16edc1f50598dff01df2",
+    "status": {
+      "status": "complete",
+      "payload": {
+        "failures": {}
+      },
+      "plan": {
+        "bulks": 5,
+        "signature": 5,
+        "watermarking": 5,
+        "callbacks": 5,
+        "multiphoto": 10,
+        "video": 10,
+        "hashtags": 8,
+        "library": 20,
+        "recurring": 1,
+        "recycling": 2,
+        "vista_photos": 10,
+        "vista_videos": 10,
+        "analytics_reports": 20,
+        "ai": 30,
+        "rate": "business",
+        "locked": false
+      }
+    }
+  },
+  {
+    "post_id": "002",
+    "scheduled_at": "2026-06-14T10:19:00+01:00",
+    "job_id": "6a2d16edff6172f57429eede",
+    "status": {
+      "status": "complete",
+      "payload": {
+        "failures": {}
+      },
+      "plan": {
+        "bulks": 5,
+        "signature": 5,
+        "watermarking": 5,
+        "callbacks": 5,
+        "multiphoto": 10,
+        "video": 10,
+        "hashtags": 8,
+        "library": 20,
+        "recurring": 1,
+        "recycling": 2,
+        "vista_photos": 10,
+        "vista_videos": 10,
+        "analytics_reports": 20,
+        "ai": 30,
+        "rate": "business",
+        "locked": false
+      }
+    }
+  },
+  {
+    "post_id": "003",
+    "scheduled_at": "2026-06-14T12:31:00+01:00",
+    "job_id": "6a2d16ef5b0ab86e9059bb71",
+    "status": {
+      "status": "complete",
+      "payload": {
+        "failures": {}
+      },
+      "plan": {
+        "bulks": 5,
+        "signature": 5,
+        "watermarking": 5,
+        "callbacks": 5,
+        "multiphoto": 10,
+        "video": 10,
+        "hashtags": 8,
+        "library": 20,
+        "recurring": 1,
+        "recycling": 2,
+        "vista_photos": 10,
+        "vista_videos": 10,
+        "analytics_reports": 20,
+        "ai": 30,
+        "rate": "business",
+        "locked": false
+      }
+    }
+  }
+]

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { generateRandomCode, isValidFriendCode, isValidInviteCodeLookup, normalizeInviteCodeInput } from './friend_code';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
@@ -67,7 +67,7 @@ export function peekMemoryInviteCodeForFriends(): string | null {
 /** Firestore collection name for code → uid reverse index. Indexed by code (doc id). */
 export const FRIEND_CODE_INDEX_COLLECTION = 'friend_code_index';
 
-export type InviteCodeLookupSource = 'friend_code_index' | 'legacy_friend_code';
+export type InviteCodeLookupSource = 'friend_code_index' | 'legacy_friend_code' | 'name_index';
 export type InviteCodeLookupResult = { uid: string; source: InviteCodeLookupSource };
 
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
@@ -293,6 +293,25 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
   }
 
   return null;
+}
+
+export async function lookupUserByNickname(query: string): Promise<InviteCodeLookupResult | null> {
+  const normalized = String(query ?? '').normalize('NFKC').replace(/^@+/, '').replace(/\s+/g, ' ').trim();
+  if (normalized.length < 2 || normalized.length > 32) return null;
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
+
+  const stableId = await ensureAnonUser();
+  if (!stableId) return null;
+  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+
+  try {
+    const fn = callable<{ stableId?: string; query: string }, { ok: boolean; user: { uid: string; source?: 'name_index'; name?: string } | null }>('friendLookupUser');
+    const { data } = await fn({ stableId, query: normalized });
+    const uid = data?.user?.uid;
+    return typeof uid === 'string' && uid.trim() ? { uid: uid.trim(), source: 'name_index' } : null;
+  } catch {
+    return null;
+  }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

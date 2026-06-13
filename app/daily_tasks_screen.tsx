@@ -36,6 +36,10 @@ import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from '.
 import { getDailyTaskCardPressIntent } from './daily_task_card_press_intent';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
+
+const safeDailyTaskEventPart = (value: unknown): string =>
+    String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
+
 type DailyTaskUiMeta = {
     stage: string;
     label: string;
@@ -1874,12 +1878,29 @@ export default function DailyTasksScreen() {
                 // Раньше тут был ранний return при !userName — это и был баг "опыт не начислен"
                 // когда пользователь жмёт Забрать до того, как AsyncStorage.getItem('user_name') резолвится.
                 try {
-                    const result = await registerXP(xpBase, 'daily_task_reward', userName || '', lang);
-                    return Math.max(0, Math.round(result.finalDelta || xpBase));
+                    const dayKey = getTodayKey();
+                    const result = await registerXP(xpBase, 'daily_task_reward', userName || '', lang, undefined, {
+                        eventId: [
+                            'daily_task',
+                            safeDailyTaskEventPart(dayKey),
+                            safeDailyTaskEventPart(studyTarget),
+                            safeDailyTaskEventPart(taskId),
+                            'claim',
+                        ].join(':'),
+                        payload: {
+                            taskId,
+                            dayKey,
+                            studyTarget,
+                            xpBase,
+                        },
+                    });
+                    const awarded = Math.max(0, Math.round(result.finalDelta || 0));
+                    if (awarded <= 0) throw new Error('daily_task_xp_not_confirmed');
+                    return awarded;
                 }
                 catch {
                     // Не блокируем выдачу награды из-за transient-сбоя XP-пайплайна.
-                    return xpBase;
+                    throw new Error('daily_task_reward_failed');
                 }
             }, { tasksForClaim, studyTarget });
             // Снимаем спиннер сразу после клейма: дальше могут быть медленные getTodayTasksSafe/loadTodayProgress.

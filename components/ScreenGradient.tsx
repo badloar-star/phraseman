@@ -516,7 +516,7 @@ function CinemaParticle({
           height: r * 2,
           borderRadius: r,
           opacity: reduceMotion ? opacity * 0.9 : animatedOpacity,
-          transform: reduceMotion ? undefined : [{ translateX }, { translateY }],
+          transform: reduceMotion ? [] : [{ translateX }, { translateY }],
         },
       ]}
     />

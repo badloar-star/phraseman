@@ -23,8 +23,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import { weeklyReviewStorageKey, type RuntimeStudyTarget } from './target_storage_keys';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
-const PREMIUM_WINDOW_DAYS = 3;
-const FREE_WINDOW_DAYS = 7;
+const PREMIUM_WINDOW_DAYS = 1;
+const FREE_WINDOW_DAYS = 1;
 
 export interface WeeklyReview {
   greeting: string;

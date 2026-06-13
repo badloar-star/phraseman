@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { View, Text, TouchableOpacity, Animated, useWindowDimensions, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { Image } from 'expo-image';
 import TapScale from '../../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -214,12 +214,7 @@ function PremiumBadge({ label }: {
     </View>);
 }
 // Высоты элементов (должны точно совпадать с реальным рендером)
-const HEADER_H = 66; // ListHeader
-const CEFR_H = 52; // CEFR divider item
 const BOOK_H = 72; // высота книги
-const LESSON_H = BOOK_H + 5; // marginTop:5 + BOOK_H
-const EXAM_H = 78 + 8; // examH + marginTop:8
-const ATTESTATION_H = 126 + 12; // attestation card + marginTop
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LessonsTab() {
     const tabContentBottomPad = useTabContentBottomPad();
@@ -238,8 +233,6 @@ export default function LessonsTab() {
     const screenTitleColor = t.textPrimary;
     const { lang, s } = useLang();
     const { studyTarget } = useStudyTarget();
-    const { height: SCREEN_H } = useWindowDimensions();
-    const VIEWPORT_H = SCREEN_H - 90; // approx tab bar + status bar
     const lessonCacheTarget = storageStudyTarget(studyTarget);
     const lessonCacheTargetRef = useRef(lessonCacheTarget);
     lessonCacheTargetRef.current = lessonCacheTarget;
@@ -262,7 +255,6 @@ export default function LessonsTab() {
         passed: boolean;
     }>>(() => boot?.examResults ?? {});
     const scrollRef = useRef<any>(null);
-    const scrollY = useRef(new Animated.Value(0)).current;
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const { activeIdx, focusTick } = useTabNav();
@@ -425,41 +417,17 @@ export default function LessonsTab() {
         const idx = unlockedLessons.findIndex((unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50);
         return idx >= 0 ? idx + 1 : null;
     }, [progCounts, unlockedLessons]);
-    // ── Per-item scale animations based on scroll position ───────────────────
-    const itemAnims = useMemo(() => {
-        let y = 0;
-        return listData.map(item => {
-            const absY = y;
-            let h: number;
-            if (item.kind === 'header')
-                h = CEFR_H;
-            else if (item.kind === 'lesson')
-                h = LESSON_H;
-            else if (item.kind === 'exam')
-                h = EXAM_H;
-            else
-                h = ATTESTATION_H;
-            y += h;
-            if (item.kind === 'header')
-                return null;
-            const itemCenterY = absY + h / 2;
-            const peakScroll = itemCenterY - VIEWPORT_H / 2;
-            const scale = scrollY.interpolate({
-                inputRange: [peakScroll - 140, peakScroll, peakScroll + 140],
-                outputRange: [1, 1.04, 1],
-                extrapolate: 'clamp',
-            });
-            return scale;
-        });
-    }, [listData, scrollY, VIEWPORT_H]);
+    // Keep this dense list stable: JS-driven per-card scroll scale made cards jitter.
+    const itemAnims = useMemo(() => listData.map(() => null), [listData]);
+    const handleLessonsScroll = useCallback((e: any) => {
+        topFadeScroll?.onScroll?.(e);
+        onBouncyScroll(e);
+    }, [onBouncyScroll, topFadeScroll]);
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
       <BouncyWrap style={bouncyStyle}>
-      <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }],
-        // Fabric + native-driver on ScrollView can crash with animated node
-        // connect/disconnect races during rapid remount/navigation.
-        { useNativeDriver: false, listener: (e: any) => { topFadeScroll?.onScroll?.(e); onBouncyScroll(e); } })}
+      <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
         contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top }}
         decelerationRate="normal"
         bounces

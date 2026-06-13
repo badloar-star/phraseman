@@ -58,6 +58,40 @@ describe('firestore.rules security baseline', () => {
     'vip_migrated_from_admin_grant_at',
   ] as const;
 
+  const SERVER_OWNED_PROGRESS_KEYS = [
+    'user_total_xp',
+    'user_prev_xp',
+    'user_level',
+    'weekly_xp',
+    'weekly_xp_period_start',
+    'week_points',
+    'week_points_v2',
+    'streak_count',
+    'last_active_date',
+    'streak_last_date',
+    'collectibles_owned_v1',
+    'collectibles_state_v1',
+    'unlocked_lessons',
+    'lesson_progress_v2::fr::unlocked_lessons',
+    ...Array.from({ length: 80 }, (_, index) => index + 1).flatMap((lessonId) => [
+      `lesson${lessonId}_best_score`,
+      `lesson${lessonId}_pass_count`,
+      `lesson${lessonId}_progress`,
+      `lesson${lessonId}_cellIndex`,
+      `lesson_progress_v2::fr::${lessonId}`,
+      `lesson_progress_v2::fr::lesson${lessonId}_best_score`,
+      `lesson_progress_v2::fr::lesson${lessonId}_pass_count`,
+      `lesson_progress_v2::fr::lesson${lessonId}_progress`,
+      `lesson_progress_v2::fr::lesson${lessonId}_cellIndex`,
+    ]),
+    ...(['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'final'] as const).flatMap((level) =>
+      (['pct', 'best_pct', 'passed', 'pass_count', 'completed_at'] as const).flatMap((field) => [
+        `level_exam_${level}_${field}`,
+        `level_exams_v2::fr::level_exam_${level}_${field}`,
+      ]),
+    ),
+  ] as const;
+
   test('users update rule is gated on progressHasNoPremiumWrites() (paywall self-grant guard)', () => {
     // The guard must be wired into the update rule, not merely defined.
     expect(rules).toContain('function progressHasNoPremiumWrites() {');
@@ -80,6 +114,41 @@ describe('firestore.rules security baseline', () => {
       // client diff touching it is rejected.
       expect(guardBlock![0]).toContain(`'${key}'`);
     }
+  });
+
+  test('progressHasNoPremiumWrites() blocks every server-owned progress key', () => {
+    const guardBlock = rules.match(
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\n    \}/,
+    );
+    expect(guardBlock).not.toBeNull();
+    for (const key of SERVER_OWNED_PROGRESS_KEYS) {
+      // During server-authoritative progress cutover, clients must not be able
+      // to overwrite XP, streaks, lessons, exams, or collectibles directly.
+      expect(guardBlock![0]).toContain(`'${key}'`);
+    }
+  });
+
+  test('cloud_sync filters representative server-owned progress keys blocked by rules', () => {
+    const cloudSync = readFileSync(path.join(process.cwd(), 'app/cloud_sync.ts'), 'utf8');
+    const representativeKeys = [
+      'user_total_xp',
+      'lesson1_progress',
+      'lesson_progress_v2::fr::1',
+      'lesson_progress_v2::fr::lesson1_progress',
+      'lesson_progress_v2::fr::lesson1_best_score',
+      'level_exam_A1_pct',
+      'level_exams_v2::fr::level_exam_A1_pct',
+    ];
+
+    for (const key of representativeKeys) {
+      expect(rules).toContain(`'${key}'`);
+    }
+    expect(cloudSync).toMatch(
+      /lesson_progress_v2::fr::\(\?:\\d\+\|lesson\\d\+_\(\?:best_score\|pass_count\|progress\|cellIndex\)\|unlocked_lessons\)/,
+    );
+    expect(cloudSync).toMatch(
+      /level_exams_v2::fr::level_exam_\[A-Za-z0-9_-\]\+_\(\?:pct\|best_pct\|passed\|pass_count\|completed_at\)/,
+    );
   });
 
   test('progressHasNoPremiumWrites() preserves the deliberate admin escape hatch', () => {

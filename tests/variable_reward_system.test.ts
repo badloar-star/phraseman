@@ -10,10 +10,19 @@
 import {
   calculateRandomBonus,
   calculateRewardWithBonus,
+  commitTreasureChestOpen,
   getTierLabel,
+  openTreasureChest,
+  prepareTreasureChestOpen,
 } from '../app/variable_reward_system';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 describe('Variable Reward System', () => {
+  beforeEach(async () => {
+    await AsyncStorage.clear();
+    jest.restoreAllMocks();
+  });
+
   describe('calculateRandomBonus()', () => {
     it('should return a number', () => {
       const result = calculateRandomBonus();
@@ -186,6 +195,31 @@ describe('Variable Reward System', () => {
       expect(getTierLabel(21)).toBe('large');
       expect(getTierLabel(25)).toBe('large');
       expect(getTierLabel(30)).toBe('large');
+    });
+  });
+
+  describe('daily treasure chest commit flow', () => {
+    it('prepare does not mark the chest opened until commit', async () => {
+      jest.spyOn(Math, 'random').mockReturnValue(0.5);
+
+      const prepared = await prepareTreasureChestOpen(false);
+      expect(prepared).not.toBeNull();
+      expect(prepared?.openSlot).toBe('free');
+      expect(await AsyncStorage.getItem('daily_treasure_state')).toBeNull();
+      expect(await prepareTreasureChestOpen(false)).not.toBeNull();
+
+      await commitTreasureChestOpen(prepared!);
+      expect(await AsyncStorage.getItem('daily_treasure_state')).not.toBeNull();
+      expect(await prepareTreasureChestOpen(false)).toBeNull();
+    });
+
+    it('openTreasureChest keeps the legacy one-step commit behavior', async () => {
+      jest.spyOn(Math, 'random').mockReturnValue(0.5);
+
+      const result = await openTreasureChest(false);
+      expect(result?.openSlot).toBe('free');
+      expect(await AsyncStorage.getItem('daily_treasure_state')).not.toBeNull();
+      expect(await openTreasureChest(false)).toBeNull();
     });
   });
 

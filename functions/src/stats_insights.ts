@@ -316,12 +316,13 @@ ABSOLUTE RULES:
 - You receive a JSON briefing of ALREADY-COMPUTED numbers. Describe ONLY what is in it.
 - NEVER invent numbers, streaks, words, categories, or facts not present in the briefing.
 - Each note is 1–2 short sentences. Be specific: refer to the actual numbers for that block.
+- Never expose internal product metrics or labels to the learner: do not mention numeric ratings, points, scoring labels, or the internal block name as a learner-visible rating.
 - Do NOT claim that effort (streak, time, XP) causes language knowledge. Use effort only for warm acknowledgement.
 - Tone: a supportive coach. Plain, kind, concrete. Learners are often beginners and 50+. Never condescend, never shame.
 - If a block has almost no data (zeros / warmup), write a gentle one-line nudge instead of pretending there is progress.
 
 THE FIVE BLOCKS (write a note for each):
-- "balance": practice balance score ${'{score}'}/100 (warmup if isWarmup), active7 days, avgMinutes per session. Comment on consistency and session length.
+- "balance": learner-facing practice consistency card. Use active7 days and avgMinutes per active day. If isWarmup is true, say there is not enough practice yet for a fair pattern. Do NOT mention the score, points, or the internal word "balance".
 - "rhythm": this week — active7/7 days, xp7 XP, minutes7 minutes, best day. Comment on the weekly pattern.
 - "year": activeDays active days this year, currentStreak / longestStreak, bestMonth, goalPct% toward the yearly goal. Comment on the long-term picture.
 - "percentiles": how the learner ranks vs others (totalXp%, week%, daily7% — each may be null/absent). If all null, give a neutral encouraging line about focusing on their own pace. Otherwise highlight the best ranking.
@@ -362,7 +363,7 @@ function parseAndGuardResult(rawContent: string): StatsInsightsResult {
   const notes = {} as StatsInsightsNotes;
   let nonEmpty = 0;
   for (const key of BLOCK_KEYS) {
-    const note = text(parsed[key], MAX_NOTE_CHARS);
+    const note = guardLearnerFacingNote(key, text(parsed[key], MAX_NOTE_CHARS));
     notes[key] = note;
     if (note) nonEmpty += 1;
   }
@@ -372,6 +373,20 @@ function parseAndGuardResult(rawContent: string): StatsInsightsResult {
   }
 
   return { notes };
+}
+
+function guardLearnerFacingNote(key: BlockKey, note: string): string {
+  if (!note) return '';
+  const lower = note.toLocaleLowerCase();
+  const hasInternalBalancePhrase =
+    /\d+\s*(?:\/\s*100\s*)?(?:балл|балла|баллов|points?|pts?|score)/i.test(note) ||
+    /\b(?:score|points?|pts?)\s*\d+\b/i.test(note) ||
+    /(?:балл|балла|баллов|points?|pts?|score).{0,24}(?:баланс|balance)/i.test(note) ||
+    /(?:баланс|balance).{0,24}(?:балл|балла|баллов|points?|pts?|score)/i.test(note) ||
+    lower.includes('practice balance score') ||
+    lower.includes('balance score');
+  if (key === 'balance' && hasInternalBalancePhrase) return '';
+  return note;
 }
 
 // ── Callable ──────────────────────────────────────────────────────────────────

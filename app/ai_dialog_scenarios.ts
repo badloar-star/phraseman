@@ -2,6 +2,7 @@
  * Каталог сценариев ИИ-диалогов.
  * Данные используются меню диалогов, сценарной сессией и промптом premiumDialogSend.
  */
+import { triLang, type Lang } from '../constants/i18n';
 
 export type DialogScenarioCategory = 'everyday' | 'travel' | 'social';
 
@@ -33,6 +34,167 @@ export const DIALOG_SCENARIO_GROUPS: readonly DialogScenarioGroup[] = [
   { category: 'travel', labelRu: 'Путешествия', shortLabelRu: 'Поездки' },
   { category: 'social', labelRu: 'Общение', shortLabelRu: 'Люди' },
 ];
+
+type ScenarioUiCopy = {
+  title: string;
+  goal: string;
+  nextStepHint: string;
+};
+
+const DIALOG_SCENARIO_COPY_UK: Record<string, ScenarioUiCopy> = {
+  coffee: {
+    title: 'Замов каву',
+    goal: 'Замов капучино, уточни розмір і запитай ціну',
+    nextStepHint: 'Попроси капучино, уточни розмір або запитай ціну своїми словами.',
+  },
+  grocery: {
+    title: 'У продуктовому',
+    goal: 'Знайди молоко, запитай про свіжий хліб і оплати покупку',
+    nextStepHint: 'Запитай, де молоко, або уточни, чи є свіжий хліб.',
+  },
+  clothes_shop: {
+    title: 'Магазин одягу',
+    goal: 'Попроси інший розмір, примірювальну і дізнайся ціну',
+    nextStepHint: 'Попроси інший розмір або запитай, чи можна приміряти річ.',
+  },
+  pharmacy: {
+    title: 'В аптеці',
+    goal: 'Поясни просту проблему і запитай, як приймати ліки',
+    nextStepHint: 'Опиши просту проблему і запитай, як часто приймати ліки.',
+  },
+  restaurant: {
+    title: 'У ресторані',
+    goal: 'Попроси столик, замов страву і уточни рахунок',
+    nextStepHint: 'Попроси столик, замов страву або попроси рахунок.',
+  },
+  doctor_visit: {
+    title: 'У лікаря',
+    goal: 'Розкажи про симптоми, відповідай на питання і уточни наступний крок',
+    nextStepHint: 'Розкажи, що болить і як давно, потім запитай, що робити далі.',
+  },
+  phone_delivery: {
+    title: 'Доставка',
+    goal: 'Подзвони кур’єру, уточни адресу і час доставки',
+    nextStepHint: 'Назви адресу і уточни, коли кур’єр приїде.',
+  },
+  hotel_checkin: {
+    title: 'Заселення в готель',
+    goal: 'Зареєструйся, запитай про сніданок і Wi-Fi',
+    nextStepHint: 'Скажи, що маєш бронювання, і запитай про сніданок або Wi-Fi.',
+  },
+  airport_checkin: {
+    title: 'В аеропорту',
+    goal: 'Зареєструйся на рейс, здай багаж і запитай про вихід',
+    nextStepHint: 'Покажи паспорт, запитай про багаж або номер виходу.',
+  },
+  taxi: {
+    title: 'Таксі',
+    goal: 'Назви адресу, уточни ціну і попроси їхати повільніше',
+    nextStepHint: 'Назви адресу і запитай приблизну ціну поїздки.',
+  },
+  train_station: {
+    title: 'На вокзалі',
+    goal: 'Купи квиток, уточни платформу і час відправлення',
+    nextStepHint: 'Попроси квиток і уточни платформу або час відправлення.',
+  },
+  lost_luggage: {
+    title: 'Втрачений багаж',
+    goal: 'Опиши валізу, залиш контакти і запитай, коли чекати відповідь',
+    nextStepHint: 'Скажи, що багаж зник, і опиши валізу.',
+  },
+  tourist_info: {
+    title: 'Туристичний центр',
+    goal: 'Запитай дорогу, години роботи музею і найкращий маршрут',
+    nextStepHint: 'Запитай дорогу до місця або години роботи.',
+  },
+  car_rental: {
+    title: 'Оренда авто',
+    goal: 'Забронюй авто, уточни страховку і час повернення',
+    nextStepHint: 'Скажи про бронювання авто і запитай, чи включена страховка.',
+  },
+  first_meeting: {
+    title: 'Знайомство',
+    goal: 'Привітайся, розкажи про себе і постав просте питання',
+    nextStepHint: 'Привітайся, назви своє ім’я і постав просте питання.',
+  },
+  small_talk_neighbor: {
+    title: 'Сусід',
+    goal: 'Підтримай коротку розмову про погоду, дім і район',
+    nextStepHint: 'Підтримай small talk: погода, дім або район.',
+  },
+  work_call: {
+    title: 'Робочий дзвінок',
+    goal: 'Привітайся, поясни статус задачі і домовся про наступний крок',
+    nextStepHint: 'Скажи статус задачі і запропонуй наступний крок.',
+  },
+  ask_for_help: {
+    title: 'Попросити допомогу',
+    goal: 'Ввічливо попроси допомогти, поясни проблему і подякуй',
+    nextStepHint: 'Ввічливо попроси допомогти і коротко поясни проблему.',
+  },
+  invite_friend: {
+    title: 'Запросити друга',
+    goal: 'Запроси людину зустрітися, запропонуй час і місце',
+    nextStepHint: 'Запроси зустрітися і запропонуй час або місце.',
+  },
+  complaint_order: {
+    title: 'Проблема із замовленням',
+    goal: 'Спокійно поясни проблему, попроси заміну або повернення',
+    nextStepHint: 'Спокійно поясни, що не так із замовленням, і попроси рішення.',
+  },
+  lesson18_restaurant_table: {
+    title: 'Столик у ресторані',
+    goal: 'Забронюй столик, уточни час і відповідай на коротке питання',
+    nextStepHint: 'Попроси столик і уточни час одним коротким реченням.',
+  },
+  lesson20_lost_bag: {
+    title: 'Втрачена сумка',
+    goal: 'Скажи, що маєш сумку, де вона була, і уточни варіант',
+    nextStepHint: 'Скажи, яка річ загубилася і де вона була.',
+  },
+};
+
+export function dialogScenarioTitle(scenario: DialogScenario, lang: Lang): string {
+  return triLang(lang, {
+    ru: scenario.titleRu,
+    uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.title ?? scenario.titleRu,
+    es: scenario.titleRu,
+  });
+}
+
+export function dialogScenarioGoal(scenario: DialogScenario, lang: Lang): string {
+  return triLang(lang, {
+    ru: scenario.goalRu,
+    uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.goal ?? scenario.goalRu,
+    es: scenario.goalRu,
+  });
+}
+
+export function dialogScenarioNextStepHint(scenario: DialogScenario, lang: Lang): string {
+  return triLang(lang, {
+    ru: scenario.nextStepHintRu,
+    uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.nextStepHint ?? scenario.nextStepHintRu,
+    es: scenario.nextStepHintRu,
+  });
+}
+
+export function dialogScenarioGroupLabel(group: DialogScenarioGroup, lang: Lang): string {
+  const uk: Record<DialogScenarioCategory, string> = {
+    everyday: 'Щодня',
+    travel: 'Подорожі',
+    social: 'Спілкування',
+  };
+  return triLang(lang, { ru: group.labelRu, uk: uk[group.category], es: group.labelRu });
+}
+
+export function dialogScenarioGroupShortLabel(group: DialogScenarioGroup, lang: Lang): string {
+  const uk: Record<DialogScenarioCategory, string> = {
+    everyday: 'День',
+    travel: 'Поїздки',
+    social: 'Люди',
+  };
+  return triLang(lang, { ru: group.shortLabelRu, uk: uk[group.category], es: group.shortLabelRu });
+}
 
 export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
   {

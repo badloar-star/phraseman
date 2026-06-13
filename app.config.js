@@ -11,6 +11,7 @@ const MINIMAL_OTA_ASSET_PATTERNS = [
   'assets/images/quizzes/level_logos/*',
   'assets/images/quizzes/theme_cards/*',
   'assets/images/quizzes/theme_logos/*',
+  'assets/images/theo/*',
 ];
 const STORE_RELEASE_DEV_ONLY_QUIZ_THEME_SLUGS = new Set([
   'at-the-doctor',

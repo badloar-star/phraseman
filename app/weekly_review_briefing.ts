@@ -39,7 +39,7 @@ export interface WeeklyReviewRecommendation {
 export interface WeeklyReviewBriefing {
   lang: Lang;
   studyTarget: 'en' | 'fr';
-  windowDays: 3 | 7;
+  windowDays: number;
   totalMistakes: number;
   weakCategories: WeeklyReviewWeakCategory[];
   strongCategories: Array<{ category: string; label: string }>;
@@ -124,10 +124,9 @@ function lessonTitleForBriefing(lessonId: number, lang: Lang): string {
 export async function buildWeeklyReviewBriefing(
   options: BuildBriefingOptions,
 ): Promise<WeeklyReviewBriefing | null> {
-  const { lang, isPremium } = options;
+  const { lang } = options;
   const studyTarget = options.studyTarget;
   const target = storageStudyTarget(studyTarget);
-  const windowDays: 3 | 7 = isPremium ? 3 : 7;
   const maxWeak = options.maxWeakCategories ?? 3;
 
   try {
@@ -196,7 +195,7 @@ export async function buildWeeklyReviewBriefing(
     return {
       lang,
       studyTarget: target,
-      windowDays,
+      windowDays: analytics.windowDays,
       totalMistakes: analytics.totalMistakes,
       weakCategories,
       strongCategories,

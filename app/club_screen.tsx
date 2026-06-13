@@ -1363,10 +1363,14 @@ export default function ClubScreen() {
               </View>
               <View style={{ flex:1, minWidth:0 }}>
                 <Text style={{ color:t.textPrimary, fontSize:f.caption, lineHeight:Math.max(15, f.caption + 3), fontWeight:'900' }} numberOfLines={2}>
-                  {activeGroupBoost ? 'Общий буст лиги ×2' : '×2 XP для всей лиги'}
+                  {activeGroupBoost
+                    ? triLang(lang, { ru: 'Общий буст лиги ×2', uk: 'Спільний буст ліги ×2', es: 'Impulso de liga común ×2' })
+                    : triLang(lang, { ru: '×2 XP для всей лиги', uk: '×2 XP для всієї ліги', es: '×2 XP para toda la liga' })}
                 </Text>
                 <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), lineHeight:Math.max(13, f.caption + 1), fontWeight:'700', marginTop:2 }} numberOfLines={2}>
-                  {activeGroupBoost ? `Осталось ${groupBoostTimeLeft || '...'}` : '3 часа для всех участников'}
+                  {activeGroupBoost
+                    ? triLang(lang, { ru: `Осталось ${groupBoostTimeLeft || '...'}`, uk: `Залишилось ${groupBoostTimeLeft || '...'}`, es: `Quedan ${groupBoostTimeLeft || '...'}` })
+                    : triLang(lang, { ru: '3 часа для всех участников', uk: '3 години для всіх учасників', es: '3 horas para todos los participantes' })}
                 </Text>
               </View>
             </View>
@@ -1391,12 +1395,16 @@ export default function ClubScreen() {
               }}
             >
               <Text adjustsFontSizeToFit numberOfLines={1} style={{ color:activeGroupBoost ? t.textMuted : t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                {activeGroupBoost ? 'Активен' : (groupBoostBuying ? 'Включаем...' : 'Купить')}
+                {activeGroupBoost
+                  ? triLang(lang, { ru: 'Активен', uk: 'Активний', es: 'Activo' })
+                  : (groupBoostBuying
+                    ? triLang(lang, { ru: 'Включаем...', uk: 'Вмикаємо...', es: 'Activando...' })
+                    : triLang(lang, { ru: 'Купить', uk: 'Купити', es: 'Comprar' }))}
               </Text>
               {!activeGroupBoost && (
                 freeBoostGiftReady ? (
                   <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'900' }}>
-                    🎁 бесплатно
+                    {triLang(lang, { ru: '🎁 бесплатно', uk: '🎁 безкоштовно', es: '🎁 gratis' })}
                   </Text>
                 ) : (
                   <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
@@ -1445,7 +1453,7 @@ export default function ClubScreen() {
                       {activeGroupBoost.buyerName}
                     </Text>
                     <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), fontWeight:'700' }} numberOfLines={1}>
-                      Купил буст для лиги
+                      {triLang(lang, { ru: 'Купил буст для лиги', uk: 'Купив буст для ліги', es: 'Compró un impulso para la liga' })}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -1865,19 +1873,27 @@ export default function ClubScreen() {
 
       <ThemedConfirmModal
         visible={groupBoostConfirmVisible}
-        title="Включить буст лиги?"
+        title={triLang(lang, { ru: 'Включить буст лиги?', uk: 'Увімкнути буст ліги?', es: '¿Activar impulso de liga?' })}
         messageNode={(
           <View style={{ gap:10 }}>
             <Text style={{ color:t.textMuted, fontSize:f.body, lineHeight:f.body * 1.45, fontWeight:'700' }}>
-              Все участники лиги будут получать ×2 XP в течение 3 часов.
+              {triLang(lang, {
+                ru: 'Все участники лиги будут получать ×2 XP в течение 3 часов.',
+                uk: 'Усі учасники ліги отримуватимуть ×2 XP протягом 3 годин.',
+                es: 'Todos los participantes de la liga recibirán ×2 XP durante 3 horas.',
+              })}
             </Text>
             <View style={{ flexDirection:'row', alignItems:'center', gap:7 }}>
               <Text style={{ color:t.textMuted, fontSize:f.body, fontWeight:'800' }}>
-                Стоимость:
+                {triLang(lang, { ru: 'Стоимость:', uk: 'Вартість:', es: 'Precio:' })}
               </Text>
               {freeBoostGiftReady ? (
                 <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }}>
-                  Бесплатно — подарок за уровень 🎁
+                  {triLang(lang, {
+                    ru: 'Бесплатно — подарок за уровень 🎁',
+                    uk: 'Безкоштовно — подарунок за рівень 🎁',
+                    es: 'Gratis, regalo de nivel 🎁',
+                  })}
                 </Text>
               ) : (
                 <>
@@ -1894,8 +1910,16 @@ export default function ClubScreen() {
             </View>
           </View>
         )}
-        cancelLabel="Отмена"
-        confirmLabel={groupBoostBuying ? 'Включаем...' : (freeBoostGiftReady ? 'Включить бесплатно' : `Включить за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`)}
+        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
+        confirmLabel={groupBoostBuying
+          ? triLang(lang, { ru: 'Включаем...', uk: 'Вмикаємо...', es: 'Activando...' })
+          : (freeBoostGiftReady
+            ? triLang(lang, { ru: 'Включить бесплатно', uk: 'Увімкнути безкоштовно', es: 'Activar gratis' })
+            : triLang(lang, {
+              ru: `Включить за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+              uk: `Увімкнути за ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+              es: `Activar por ${LEAGUE_GROUP_BOOST_COST_SHARDS}`,
+            }))}
         confirmVariant="accent"
         testIDPrefix="league-group-boost-confirm"
         onCancel={() => {

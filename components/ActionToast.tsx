@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from './SafeLinearGradient';
 import { onAppEvent } from '../app/events';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -13,6 +14,7 @@ import {
   scheduleTrackedAnimatedStateUpdate,
   type ScheduledAnimatedStateUpdate,
 } from './animationScheduling';
+import { themedToastChrome } from '../constants/themedToastChrome';
 
 type ToastPayload = {
   type: ToastType;
@@ -120,7 +122,7 @@ function toastKey(p: ToastPayload): string {
 
 function ActionToast() {
   const { lang } = useLang();
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [overlayWanted, setOverlayWanted] = useState(false);
@@ -274,6 +276,7 @@ function ActionToast() {
                   : toast.messageRu;
   const tone = TOAST_TONES[toast.type];
   const toneLabel = tone.label[lang] ?? tone.label.ru;
+  const chrome = themedToastChrome(themeMode, t);
 
   return (
     <Animated.View
@@ -287,36 +290,40 @@ function ActionToast() {
       ]}
       pointerEvents="none"
     >
-      <View
+      <LinearGradient
+        colors={chrome.cardColors}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
         style={[
           styles.toast,
           {
-            backgroundColor: t.bgCard,
-            borderColor: tone.border,
+            borderColor: chrome.border,
+            borderRadius: chrome.radius,
+            shadowColor: chrome.shadowColor,
           },
         ]}
       >
-        <View style={[styles.accentRail, { backgroundColor: tone.accent }]} />
+        <View style={[styles.accentRail, { backgroundColor: chrome.accent }]} />
         <View
           style={[
             styles.iconBadge,
             {
-              backgroundColor: tone.accentSoft,
-              borderColor: tone.border,
+              backgroundColor: chrome.accentSoft,
+              borderColor: chrome.border,
             },
           ]}
         >
-          <Ionicons name={tone.icon} size={21} color={tone.accent} />
+          <Ionicons name={tone.icon} size={21} color={chrome.accent} />
         </View>
         <View style={styles.copy}>
-          <Text style={[styles.label, { color: tone.accent }]} numberOfLines={1}>
+          <Text style={[styles.label, { color: chrome.accent }]} numberOfLines={1}>
             {toneLabel}
           </Text>
-          <Text style={[styles.message, { color: t.textPrimary }]} numberOfLines={3}>
+          <Text style={[styles.message, { color: chrome.title }]} numberOfLines={3}>
             {message}
           </Text>
         </View>
-      </View>
+      </LinearGradient>
     </Animated.View>
   );
 }

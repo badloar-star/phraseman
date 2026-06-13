@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Animated, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,14 +8,21 @@ import ScreenGradient from '../components/ScreenGradient';
 import EnergyBar from '../components/EnergyBar';
 import { usePremium } from '../components/PremiumContext';
 import { useTheme } from '../components/ThemeContext';
+import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import {
   DIALOG_SCENARIO_GROUPS,
+  dialogScenarioGoal,
+  dialogScenarioGroupLabel,
+  dialogScenarioGroupShortLabel,
+  dialogScenarioTitle,
   getPublicDialogScenarios,
   getScenariosByCategory,
   type DialogScenario,
   type DialogScenarioCategory,
 } from './ai_dialog_scenarios';
+import { compassIconSource } from '../constants/weeklyCompassIcons';
+import { triLang } from '../constants/i18n';
 
 type CategoryFilter = 'all' | DialogScenarioCategory;
 
@@ -22,6 +30,7 @@ const CARD_RADIUS = 18;
 
 export default function AiDialogHome() {
   const { theme: t, f, themeMode } = useTheme();
+  const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const router = useRouter();
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
@@ -38,6 +47,7 @@ export default function AiDialogHome() {
   const activeCount = getPublicDialogScenarios().length;
   const accent = false ? '#F2C48D' : t.accent;
   const progressColor = false ? '#7CFF00' : '#22C55E';
+  const aiCompassIcon = compassIconSource(themeMode);
 
   const openScenario = (scenario: DialogScenario) => {
     hapticTap();
@@ -93,10 +103,14 @@ export default function AiDialogHome() {
                 adjustsFontSizeToFit
                 minimumFontScale={0.8}
               >
-                Диалоги
+                {triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos' })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
-                {activeCount} сценариев с Тео
+                {triLang(lang, {
+                  ru: `${activeCount} сценариев с Компасом`,
+                  uk: `${activeCount} сценаріїв із Компасом`,
+                  es: `${activeCount} escenarios con Compass`,
+                })}
               </Text>
             </View>
             <EnergyBar size={30} />
@@ -126,14 +140,17 @@ export default function AiDialogHome() {
                   borderRadius: 16,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: accent,
+                  backgroundColor: t.bgSurface,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                  overflow: 'hidden',
                 }}
               >
-                <Ionicons name="chatbubbles" size={27} color="#fff" />
+                <Image source={aiCompassIcon} style={{ width: 46, height: 46 }} contentFit="contain" />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }} numberOfLines={1}>
-                  Тренировка разговора
+                  {triLang(lang, { ru: 'Тренировка разговора', uk: 'Тренування розмови', es: 'Práctica de conversación' })}
                 </Text>
                 <Text
                   style={{
@@ -145,14 +162,22 @@ export default function AiDialogHome() {
                   numberOfLines={2}
                   maxFontSizeMultiplier={1.15}
                 >
-                  Выбери ситуацию и отвечай своими словами.
+                  {triLang(lang, {
+                    ru: 'Выбери ситуацию и отвечай своими словами.',
+                    uk: 'Вибери ситуацію і відповідай своїми словами.',
+                    es: 'Elige una situación y responde con tus palabras.',
+                  })}
                 </Text>
               </View>
             </View>
 
             <TouchableOpacity
               accessibilityRole="button"
-              accessibilityLabel="Открыть свободный разговор с Тео"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Открыть свободный разговор с Компасом',
+                uk: 'Відкрити вільну розмову з Компасом',
+                es: 'Abrir conversación libre con Compass',
+              })}
               activeOpacity={0.86}
               onPress={() => {
                 hapticTap();
@@ -168,12 +193,24 @@ export default function AiDialogHome() {
                 alignItems: 'center',
               }}
             >
-              <Ionicons name="sparkles-outline" size={20} color="#fff" />
+              <View
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: 8,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'rgba(255,255,255,0.16)',
+                  overflow: 'hidden',
+                }}
+              >
+                <Image source={aiCompassIcon} style={{ width: 22, height: 22 }} contentFit="contain" />
+              </View>
               <Text
                 style={{ color: '#fff', fontSize: f.body, fontWeight: '900', marginLeft: 10, flex: 1 }}
                 numberOfLines={1}
               >
-                Свободный разговор
+                {triLang(lang, { ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre' })}
               </Text>
               <Ionicons name="chevron-forward" size={20} color="#fff" />
             </TouchableOpacity>
@@ -182,7 +219,7 @@ export default function AiDialogHome() {
           <View style={{ paddingHorizontal: 14, paddingTop: 16 }}>
             <View style={{ flexDirection: 'row', gap: 8 }}>
               <CategoryChip
-                label="Все"
+                label={triLang(lang, { ru: 'Все', uk: 'Усі', es: 'Todo' })}
                 selected={activeCategory === 'all'}
                 onPress={() => selectCategory('all')}
                 textSize={f.caption}
@@ -195,7 +232,7 @@ export default function AiDialogHome() {
               {DIALOG_SCENARIO_GROUPS.map((group) => (
                 <CategoryChip
                   key={group.category}
-                  label={group.shortLabelRu}
+                  label={dialogScenarioGroupShortLabel(group, lang)}
                   selected={activeCategory === group.category}
                   onPress={() => selectCategory(group.category)}
                   textSize={f.caption}
@@ -223,7 +260,7 @@ export default function AiDialogHome() {
               >
                 <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: accent }} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
-                  {group.labelRu}
+                  {dialogScenarioGroupLabel(group, lang)}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
                   {group.scenarios.length}
@@ -234,7 +271,11 @@ export default function AiDialogHome() {
                 <TouchableOpacity
                   key={scenario.id}
                   accessibilityRole="button"
-                  accessibilityLabel={`Открыть сценарий ${scenario.titleRu}`}
+                  accessibilityLabel={triLang(lang, {
+                    ru: `Открыть сценарий ${scenario.titleRu}`,
+                    uk: `Відкрити сценарій ${dialogScenarioTitle(scenario, lang)}`,
+                    es: `Abrir escenario ${dialogScenarioTitle(scenario, lang)}`,
+                  })}
                   activeOpacity={0.84}
                   onPress={() => openScenario(scenario)}
                   style={{
@@ -277,7 +318,7 @@ export default function AiDialogHome() {
                         style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }}
                         numberOfLines={1}
                       >
-                        {scenario.titleRu}
+                        {dialogScenarioTitle(scenario, lang)}
                       </Text>
                       <View
                         style={{
@@ -305,7 +346,7 @@ export default function AiDialogHome() {
                       numberOfLines={2}
                       maxFontSizeMultiplier={1.15}
                     >
-                      {scenario.goalRu}
+                      {dialogScenarioGoal(scenario, lang)}
                     </Text>
                   </View>
 
@@ -326,7 +367,11 @@ export default function AiDialogHome() {
               }}
               maxFontSizeMultiplier={1.2}
             >
-              Сегодня бесплатно: 1 разговор
+              {triLang(lang, {
+                ru: 'Сегодня бесплатно: 1 разговор',
+                uk: 'Сьогодні безкоштовно: 1 розмова',
+                es: 'Gratis hoy: 1 conversación',
+              })}
             </Text>
           )}
         </Animated.ScrollView>

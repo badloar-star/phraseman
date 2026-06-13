@@ -46,6 +46,18 @@ describe('plan day completion reward', () => {
     expect(await planDayRewardAlreadyGranted('inst_1', 1)).toBe(true);
   });
 
+  it('does not mark a day rewarded when shards are not granted', async () => {
+    addShards.mockResolvedValueOnce(0);
+
+    const failed = await awardPlanDayCompletionReward('inst_1', 1);
+    expect(failed).toEqual({ awarded: false, shards: 0 });
+    expect(await planDayRewardAlreadyGranted('inst_1', 1)).toBe(false);
+
+    addShards.mockResolvedValueOnce(2);
+    const retried = await awardPlanDayCompletionReward('inst_1', 1);
+    expect(retried).toEqual({ awarded: true, shards: 2 });
+  });
+
   it('ignores invalid input', async () => {
     expect((await awardPlanDayCompletionReward('', 1)).awarded).toBe(false);
     expect((await awardPlanDayCompletionReward('inst_1', 0)).awarded).toBe(false);

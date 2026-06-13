@@ -1,0 +1,281 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
+import Constants from 'expo-constants';
+import { getApp } from '@react-native-firebase/app';
+import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { ensureAnonUser } from './cloud_sync';
+import { getCanonicalUserId } from './user_id_policy';
+import { getCurrentWeekStartIso } from './weekly_xp';
+
+export type ProgressEventType =
+  | 'lesson_answer'
+  | 'lesson_complete'
+  | 'quiz_answer'
+  | 'dialog_complete'
+  | 'exam_complete'
+  | 'daily_task_reward'
+  | 'achievement_reward'
+  | 'level_up_bonus'
+  | 'daily_login_bonus'
+  | 'daily_phrase_quest'
+  | 'bonus_chest'
+  | 'vocabulary_learned'
+  | 'verb_learned'
+  | 'preposition_drill_answer'
+  | 'preposition_drill_perfect'
+  | 'review_answer'
+  | 'diagnostic_test'
+  | 'plan_task_complete'
+  | 'wager_win';
+
+export type ProgressEventRequest = {
+  eventId?: string;
+  type: ProgressEventType;
+  payload: Record<string, unknown>;
+};
+
+export type ProgressEventResult = {
+  ok: true;
+  stableUid: string;
+  eventId: string;
+  type: ProgressEventType;
+  duplicate: boolean;
+  xpDelta: number;
+  totalXp: number;
+  level: number;
+  streakCount: number;
+  activeDate: string;
+  weekKey: string;
+  weekXp: number;
+};
+
+type QueuedProgressEvent = {
+  eventId: string;
+  type: ProgressEventType;
+  clientLocalDate: string;
+  clientCreatedAt: number;
+  appVersion: string;
+  platform: string;
+  stableId: string;
+  payload: Record<string, unknown>;
+};
+
+const FUNCTIONS_REGION = 'us-central1';
+const PROGRESS_EVENT_QUEUE_KEY = 'progress_server_event_queue_v1';
+const PROGRESS_MIGRATED_KEY = 'progress_server_snapshot_migrated_v1';
+const CALLABLE_TIMEOUT_MS = 15000;
+
+const SERVER_PROGRESS_BASE_KEYS = [
+  'user_total_xp',
+  'user_prev_xp',
+  'user_level',
+  'weekly_xp',
+  'weekly_xp_period_start',
+  'week_points',
+  'week_points_v2',
+  'streak_count',
+  'last_active_date',
+  'streak_last_date',
+  'unlocked_lessons',
+];
+
+const LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1', 'c2', 'final'];
+const TARGETS = ['en', 'fr'] as const;
+
+function targetScopedKey(domain: 'lesson_progress' | 'level_exams', target: 'en' | 'fr', id: string | number): string {
+  return target === 'fr' ? `${domain}_v2::fr::${encodeURIComponent(String(id))}` : String(id);
+}
+
+function lessonProgressKey(lessonId: number, target: 'en' | 'fr'): string {
+  return target === 'fr' ? targetScopedKey('lesson_progress', target, lessonId) : `lesson${lessonId}_progress`;
+}
+
+function lessonFieldKey(lessonId: number, field: 'best_score' | 'pass_count' | 'cellIndex', target: 'en' | 'fr'): string {
+  return targetScopedKey('lesson_progress', target, `lesson${lessonId}_${field}`);
+}
+
+function unlockedLessonsKey(target: 'en' | 'fr'): string {
+  return targetScopedKey('lesson_progress', target, 'unlocked_lessons');
+}
+
+function levelExamFieldKey(level: string, field: 'pct' | 'best_pct' | 'passed' | 'pass_count' | 'completed_at', target: 'en' | 'fr'): string {
+  const normalized = level === 'final' ? 'final' : level.toUpperCase();
+  return targetScopedKey('level_exams', target, `level_exam_${normalized}_${field}`);
+}
+
+function localDateKey(date = new Date()): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function appVersion(): string {
+  return String(Constants.expoConfig?.version || Constants.manifest2?.extra?.expoClient?.version || 'unknown');
+}
+
+function eventPrefix(type: ProgressEventType): string {
+  if (type.includes('exam')) return 'exam';
+  if (type.includes('quiz')) return 'quiz';
+  if (type.includes('lesson') || type.includes('vocabulary') || type.includes('verb')) return 'lesson';
+  if (type.includes('plan')) return 'plan';
+  return 'progress';
+}
+
+function makeEventId(type: ProgressEventType): string {
+  const rand = Math.random().toString(36).slice(2, 10);
+  return `${eventPrefix(type)}:${type}:${Date.now()}:${rand}`;
+}
+
+function callable<TReq, TRes>(name: string) {
+  return httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name, { timeout: CALLABLE_TIMEOUT_MS });
+}
+
+async function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<T>((_, reject) => {
+        timer = setTimeout(() => reject(new Error(`${label}_timeout`)), ms);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+function progressSnapshotKeys(): string[] {
+  const keys = new Set<string>(SERVER_PROGRESS_BASE_KEYS);
+  for (const target of TARGETS) {
+    keys.add(unlockedLessonsKey(target));
+    for (let i = 1; i <= 80; i += 1) {
+      keys.add(lessonFieldKey(i, 'best_score', target));
+      keys.add(lessonFieldKey(i, 'pass_count', target));
+      keys.add(lessonProgressKey(i, target));
+      keys.add(lessonFieldKey(i, 'cellIndex', target));
+    }
+    for (const level of LEVELS) {
+      keys.add(levelExamFieldKey(level, 'pct', target));
+      keys.add(levelExamFieldKey(level, 'best_pct', target));
+      keys.add(levelExamFieldKey(level, 'passed', target));
+      keys.add(levelExamFieldKey(level, 'pass_count', target));
+      keys.add(levelExamFieldKey(level, 'completed_at', target));
+    }
+  }
+  return Array.from(keys);
+}
+
+async function readLocalProgressSnapshot(): Promise<Record<string, string>> {
+  const pairs = await AsyncStorage.multiGet(progressSnapshotKeys());
+  const out: Record<string, string> = {};
+  for (const [key, value] of pairs) {
+    if (value != null && value !== '') out[key] = value;
+  }
+  return out;
+}
+
+async function readQueue(): Promise<QueuedProgressEvent[]> {
+  try {
+    const raw = await AsyncStorage.getItem(PROGRESS_EVENT_QUEUE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.filter((item) => item && typeof item.eventId === 'string') : [];
+  } catch {
+    return [];
+  }
+}
+
+async function writeQueue(queue: QueuedProgressEvent[]): Promise<void> {
+  await AsyncStorage.setItem(PROGRESS_EVENT_QUEUE_KEY, JSON.stringify(queue.slice(0, 100)));
+}
+
+async function enqueue(event: QueuedProgressEvent): Promise<void> {
+  const queue = await readQueue();
+  if (!queue.some((item) => item.eventId === event.eventId)) {
+    queue.push(event);
+    await writeQueue(queue);
+  }
+}
+
+export async function ensureProgressSnapshotMigrated(): Promise<void> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  if (await AsyncStorage.getItem(PROGRESS_MIGRATED_KEY)) return;
+  const stableId = await ensureAnonUser();
+  if (!stableId) throw new Error('progress_stable_id_unavailable');
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const progress = await readLocalProgressSnapshot();
+  const fn = callable<{ stableId: string; progress: Record<string, string> }, { ok: true; migrated: boolean }>('progressMigrateSnapshot');
+  await withTimeout(fn({ stableId, progress }), CALLABLE_TIMEOUT_MS, 'progress_migrate_snapshot');
+  await AsyncStorage.setItem(PROGRESS_MIGRATED_KEY, '1');
+}
+
+export async function mirrorProgressResultToLocal(result: ProgressEventResult): Promise<void> {
+  const weekStart = getCurrentWeekStartIso(new Date(`${result.activeDate}T00:00:00.000Z`));
+  await AsyncStorage.multiSet([
+    ['user_total_xp', String(result.totalXp)],
+    ['user_prev_xp', String(result.totalXp)],
+    ['user_level', String(result.level)],
+    ['weekly_xp', String(result.weekXp)],
+    ['weekly_xp_period_start', weekStart],
+    ['week_points', String(Math.round(result.weekXp))],
+    ['week_points_v2', JSON.stringify({ weekKey: result.weekKey, points: result.weekXp })],
+    ['streak_count', String(result.streakCount)],
+    ['last_active_date', result.activeDate],
+    ['streak_last_date', result.activeDate],
+  ]);
+}
+
+async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEventResult> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<QueuedProgressEvent, ProgressEventResult>('progressSubmitEvent');
+  const res = await withTimeout(fn(event), CALLABLE_TIMEOUT_MS, 'progress_submit_event');
+  await mirrorProgressResultToLocal(res.data);
+  return res.data;
+}
+
+export async function flushPendingProgressEvents(): Promise<number> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return 0;
+  await ensureProgressSnapshotMigrated();
+  const queue = await readQueue();
+  if (queue.length === 0) return 0;
+  const remaining = [...queue];
+  let sent = 0;
+  while (remaining.length > 0) {
+    const next = remaining[0];
+    await submitQueuedEvent(next);
+    remaining.shift();
+    sent += 1;
+    await writeQueue(remaining);
+  }
+  return sent;
+}
+
+export async function submitProgressEvent(request: ProgressEventRequest): Promise<ProgressEventResult> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    throw new Error('progress_server_unavailable');
+  }
+  await ensureProgressSnapshotMigrated();
+  const stableId = await getCanonicalUserId();
+  if (!stableId) throw new Error('progress_stable_id_unavailable');
+  const event: QueuedProgressEvent = {
+    eventId: request.eventId || makeEventId(request.type),
+    type: request.type,
+    clientLocalDate: localDateKey(),
+    clientCreatedAt: Date.now(),
+    appVersion: appVersion(),
+    platform: Platform.OS,
+    stableId,
+    payload: request.payload,
+  };
+  try {
+    await flushPendingProgressEvents();
+    return await submitQueuedEvent(event);
+  } catch (error) {
+    await enqueue(event).catch(() => {});
+    throw error;
+  }
+}
+
+export default function __RouteShim() { return null; }

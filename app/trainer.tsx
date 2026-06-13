@@ -12,6 +12,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
+import { TrainerLoadingView } from '../components/TrainerLoadStates';
 import CompassBevel from '../components/CompassBevel';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
@@ -553,6 +554,7 @@ export default function TrainerScreen() {
     const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
     const [dashboard, setDashboard] = useState<TrainerDashboard>(EMPTY_TRAINER_DASHBOARD);
     const [loading, setLoading] = useState(true);
+    const [initialDataReady, setInitialDataReady] = useState(false);
     const [seeding, setSeeding] = useState(false);
     const [hasPremium, setHasPremium] = useState(false);
     const [freeLeft, setFreeLeft] = useState(1);
@@ -566,23 +568,31 @@ export default function TrainerScreen() {
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const loadData = useCallback(async () => {
         setLoading(true);
-        const [dash, premium, left, analyticsResult, resolved] = await Promise.all([
-            getTrainerDashboard(studyTarget, sourceLocale),
-            getVerifiedPremiumStatus().catch(() => false),
-            getFreeSessionsLeftToday(studyTarget),
-            trainerSessionEnabled
-                ? studyTarget === 'fr'
-                    ? computeFrenchPhraseAnalytics({ sourceLocale }).catch(() => null)
-                    : computePhraseAnalytics().catch(() => null)
-                : Promise.resolve(null),
-            personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
-        ]);
-        setDashboard(dash);
-        setHasPremium(premium);
-        setFreeLeft(left);
-        setAnalytics(analyticsResult);
-        setResolvedPersonalTrainings(resolved);
-        setLoading(false);
+        try {
+            const [dash, premium, left, analyticsResult, resolved] = await Promise.all([
+                getTrainerDashboard(studyTarget, sourceLocale),
+                getVerifiedPremiumStatus().catch(() => false),
+                getFreeSessionsLeftToday(studyTarget),
+                trainerSessionEnabled
+                    ? studyTarget === 'fr'
+                        ? computeFrenchPhraseAnalytics({ sourceLocale }).catch(() => null)
+                        : computePhraseAnalytics().catch(() => null)
+                    : Promise.resolve(null),
+                personalPracticeCoachEnabled ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale }) : Promise.resolve(null),
+            ]);
+            setDashboard(dash);
+            setHasPremium(premium);
+            setFreeLeft(left);
+            setAnalytics(analyticsResult);
+            setResolvedPersonalTrainings(resolved);
+        }
+        catch {
+            // Keep the previous dashboard on refresh failure so the scroll layout does not collapse.
+        }
+        finally {
+            setInitialDataReady(true);
+            setLoading(false);
+        }
     }, [personalPracticeCoachEnabled, sourceLocale, studyTarget, trainerSessionEnabled]);
     useFocusEffect(useCallback(() => { void loadData(); }, [loadData]));
     const total = dashboard?.totalDue ?? 0;
@@ -649,6 +659,9 @@ export default function TrainerScreen() {
         hapticTap();
         router.push('/(tabs)/lessons' as any);
     }, [router]);
+    if (loading && !initialDataReady) {
+        return <TrainerLoadingView lang={lang} accent={trainerAccent}/>;
+    }
     return (<ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} testID="screen-trainer">
         <ContentWrap>
@@ -793,8 +806,8 @@ export default function TrainerScreen() {
                 </TouchableOpacity>);
         })}
 
-            {personalPracticeCoachEnabled ? (
-              <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} />
+            {personalPracticeCoachEnabled && !hasPremium ? (
+              <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} stableLayout />
             ) : null}
 
             {/* ── Аналитика ошибок inline ── */}
@@ -834,6 +847,10 @@ export default function TrainerScreen() {
                     <Ionicons name="expand-outline" size={18} color={t.textMuted}/>
                   </TouchableOpacity>
                 </View>
+
+                {personalPracticeCoachEnabled ? (
+                  <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} stableLayout embedded />
+                ) : null}
 
                 {/* Вкладки */}
                 <View style={[styles.analyticsTabs, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderRadius: isCompassTheme ? 8 : 10, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>

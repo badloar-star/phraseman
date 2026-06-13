@@ -48,8 +48,6 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
-import { isAiDialogEnabled } from './ai_dialog_flags';
-import { getLessonDialogScenarioId, lessonDialogLockedHint } from './lesson_dialog_scenarios';
 import {
   lastOpenedLessonKey,
   irregularVerbsGlobalKey,
@@ -574,9 +572,6 @@ export default function LessonMenu() {
   useFocusEffect(loadLockState);
 
   const isStarted = progress > 0;
-  const lessonDialogScenarioId = getLessonDialogScenarioId(lessonId);
-  const lessonDialogUnlocked = progress >= 50 && getMedalTier(score) === 'gold';
-  const showLessonDialogRow = !!lessonDialogScenarioId && isAiDialogEnabled();
 
   type IconName = React.ComponentProps<typeof Ionicons>['name'];
   const menuItems: {
@@ -652,57 +647,6 @@ export default function LessonMenu() {
       onLongPress: isStarted && !frenchLessonSourceGated && !isLessonLocked && !showReplayCta ? handleReplayIntroAndContinue : undefined,
       disabled: isLessonLocked,
       unavailable: frenchLessonSourceGated,
-    },
-    {
-      testID: 'lesson-menu-dialog',
-      hidden: !showLessonDialogRow,
-      label: triLang(lang, {
-        ru: 'Диалог',
-        uk: 'Діалог',
-        es: 'Diálogo',
-        'pt-BR': 'Diálogo',
-        vi: 'Hội thoại',
-        id: 'Dialog',
-        tr: 'Diyalog',
-        pl: 'Dialog',
-      }),
-      sub: lessonDialogUnlocked
-        ? triLang(lang, {
-            ru: 'Сцена из фраз урока',
-            uk: 'Сцена з фраз уроку',
-            es: 'Escena con frases de la lección',
-            'pt-BR': 'Cena com frases da lição',
-            vi: 'Tình huống từ cụm trong bài',
-            id: 'Adegan dari frasa pelajaran',
-            tr: 'Dersteki ifadelerle sahne',
-            pl: 'Scenka z fraz lekcji',
-          })
-        : triLang(lang, {
-            ru: 'Откроется после золота',
-            uk: 'Відкриється після золота',
-            es: 'Se abre después del oro',
-            'pt-BR': 'Abre depois do ouro',
-            vi: 'Mở sau huy chương vàng',
-            id: 'Terbuka setelah emas',
-            tr: 'Altından sonra açılır',
-            pl: 'Otwiera się po złocie',
-          }),
-      icon: lessonDialogUnlocked ? 'chatbubbles-outline' as const : 'lock-closed-outline' as const,
-      unavailable: !lessonDialogUnlocked,
-      onPress: () => {
-        hapticTap();
-        if (!lessonDialogUnlocked || !lessonDialogScenarioId) {
-          const hint = lessonDialogLockedHint(lang);
-          emitAppEvent('action_toast', {
-            type: 'info',
-            messageRu: hint,
-            messageUk: hint,
-            messageEs: hint,
-          });
-          return;
-        }
-        router.push({ pathname: '/ai_dialog_session', params: { scenarioId: lessonDialogScenarioId } } as any);
-      },
     },
     {
       testID: 'lesson-menu-words',
@@ -1207,8 +1151,8 @@ export default function LessonMenu() {
 
       {/* Меню */}
       <View style={{paddingHorizontal:16,gap:10}}>
-        {menuItems.filter(item => !item.hidden).map((item,i)=>(
-          <PremiumCard key={i} testID={item.testID} level={2} onPress={() => {
+        {menuItems.filter(item => !item.hidden).map((item)=>(
+          <PremiumCard key={item.testID} testID={item.testID} level={2} onPress={() => {
             if (item.disabled) return;
             hapticTap();
             item.onPress();

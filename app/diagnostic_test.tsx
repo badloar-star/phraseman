@@ -46,6 +46,12 @@ import { getHomeMenuImages } from './home_menu_icons';
 
 const TIMER_SEC = 30;
 
+const safeDiagnosticEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
+const makeDiagnosticAttemptId = (): string =>
+  `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+
 function examMenuImage(themeMode: ThemeMode) {
   return getHomeMenuImages(themeMode).exam;
 }
@@ -979,6 +985,28 @@ export default function DiagnosticTest() {
   const timeUpFired = useRef(false);
   const answersRef  = useRef<boolean[]>([]);
   const userNameRef = useRef<string>('');
+  const diagnosticAttemptIdRef = useRef<string>(makeDiagnosticAttemptId());
+
+  const awardDiagnosticAnswerXp = (question: Question, questionIndex: number, mode: string) => {
+    if (!userNameRef.current) return;
+    registerXP(2, 'diagnostic_test', userNameRef.current, lang, undefined, {
+      eventId: [
+        'diagnostic',
+        safeDiagnosticEventPart(studyTarget),
+        safeDiagnosticEventPart(diagnosticAttemptIdRef.current),
+        'answer',
+        questionIndex,
+        safeDiagnosticEventPart(question.phrase, 40),
+      ].join(':'),
+      payload: {
+        studyTarget,
+        questionIndex,
+        mode,
+        level: question.level,
+        question: question.phrase,
+      },
+    }).catch(() => {});
+  };
 
   const clearAutoAdvanceTimer = () => {
     if (autoAdvanceTimerRef.current) {
@@ -1003,6 +1031,7 @@ export default function DiagnosticTest() {
         return;
       }
     }
+    diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
     setPhase('quiz');
     locked.current = false;
   };
@@ -1028,6 +1057,7 @@ export default function DiagnosticTest() {
     setChosen(null);
     setTypedAnswer('');
     setTypeSubmitted(false);
+    diagnosticAttemptIdRef.current = makeDiagnosticAttemptId();
     setPhase('quiz');
     locked.current = false;
   };
@@ -1228,9 +1258,7 @@ export default function DiagnosticTest() {
     if (isRight) {
       setScore(ns);
       playCorrect();
-      if (userNameRef.current) {
-        registerXP(2, 'diagnostic_test', userNameRef.current, lang);
-      }
+      awardDiagnosticAnswerXp(cur, idx, 'choice');
     } else if (hapticsOn) {
       void hapticError();
     }
@@ -1257,7 +1285,7 @@ export default function DiagnosticTest() {
     if (isRight) {
       setScore(ns);
       playCorrect();
-      if (userNameRef.current) registerXP(2, 'diagnostic_test', userNameRef.current, lang);
+      if (q) awardDiagnosticAnswerXp(q, idx, 'type');
     } else if (hapticsOn) {
       void hapticError();
     }
@@ -1283,7 +1311,7 @@ export default function DiagnosticTest() {
     if (isRight) {
       setScore(ns);
       playCorrect();
-      if (userNameRef.current) registerXP(2, 'diagnostic_test', userNameRef.current, lang);
+      awardDiagnosticAnswerXp(cur, idx, 'build');
     } else if (hapticsOn) {
       void hapticError();
     }

@@ -905,6 +905,7 @@ export default function PersonalPlanExerciseScreen() {
       studyTarget,
       phrasesPracticed: nextCorrectIds.length,
       planInstanceId,
+      planTaskId,
     });
     setCompleted(true);
   };
@@ -960,6 +961,7 @@ export default function PersonalPlanExerciseScreen() {
       studyTarget,
       phrasesPracticed: nextCorrectIds.length,
       planInstanceId,
+      planTaskId,
     });
     setCompleted(true);
     setSaving(false);

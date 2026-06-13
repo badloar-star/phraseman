@@ -1,0 +1,920 @@
+{
+  "batch_name": "viral_reel_pattern_posts_30_2026-06-12",
+  "generated_at": "2026-06-12T19:06:51.395Z",
+  "research_model": "public Russian-language Instagram/Facebook/Threads samples + Meta ranking docs + adult-use-case heuristics",
+  "audience": "Russian-speaking adults 30+ learning English for real life",
+  "items": [
+    {
+      "id": "vr_001",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"врач\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"врач\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: I have pain.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• It hurts here.\n• It started yesterday.\n• It gets worse when I move.\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: врач. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: I have pain.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "It hurts here.",
+          "It started yesterday.",
+          "It gets worse when I move."
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_002",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"small talk\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"small talk\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: Normal.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• Pretty good, thanks.\n• Can't complain.\n• How about you?\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: small talk. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: Normal.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "Pretty good, thanks.",
+          "Can't complain.",
+          "How about you?"
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_003",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"возврат денег\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"возврат денег\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: Give me my money back.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• I'd like to request a refund.\n• The issue hasn't been resolved.\n• Could you explain my options?\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: возврат денег. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: Give me my money back.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "I'd like to request a refund.",
+          "The issue hasn't been resolved.",
+          "Could you explain my options?"
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_004",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"рабочий звонок\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"рабочий звонок\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: I don't know.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• Let me check that.\n• I need a minute to think.\n• What I mean is...\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: рабочий звонок. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: I don't know.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "Let me check that.",
+          "I need a minute to think.",
+          "What I mean is..."
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_005",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"аренда\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"аренда\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: Fix it now.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• The heating stopped working.\n• Could someone take a look?\n• It's quite urgent.\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: аренда. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: Fix it now.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "The heating stopped working.",
+          "Could someone take a look?",
+          "It's quite urgent."
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_006",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"дедлайн на работе\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"дедлайн на работе\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: This is impossible.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• I'm concerned about the timeline.\n• To do it properly, we'll need more time.\n• Can we adjust the deadline?\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: дедлайн на работе. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: This is impossible.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "I'm concerned about the timeline.",
+          "To do it properly, we'll need more time.",
+          "Can we adjust the deadline?"
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_007",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"презентация\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"презентация\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: I will tell about...\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• Today I'd like to walk you through...\n• The main point is...\n• Let me give you an example.\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: презентация. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: I will tell about...",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "Today I'd like to walk you through...",
+          "The main point is...",
+          "Let me give you an example."
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_008",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"школа ребёнка\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"школа ребёнка\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: My child has problem.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• I'd like to talk about something I'm concerned about.\n• Could you tell me what you've noticed?\n• What can we do at home?\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: школа ребёнка. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: My child has problem.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "I'd like to talk about something I'm concerned about.",
+          "Could you tell me what you've noticed?",
+          "What can we do at home?"
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_009",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"ресторан\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"ресторан\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: This is wrong.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• Sorry, I think there was a mix-up.\n• I ordered it without cheese.\n• Could you change it, please?\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: ресторан. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: This is wrong.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "Sorry, I think there was a mix-up.",
+          "I ordered it without cheese.",
+          "Could you change it, please?"
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_010",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "reel_script",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "POV: ты реально попал в ситуацию \"несогласие на встрече\" и английский нужен сейчас",
+      "text": "POV: ты реально попал в ситуацию \"несогласие на встрече\" и английский нужен сейчас\n\nФормат видео:\n1. первый кадр — реальная взрослая ситуация, не студийная лекция\n2. плохой вариант на экране: You are wrong.\n3. короткая пауза/реакция лицом\n4. живой вариант:\n• I see your point.\n• I'm not sure I agree with that part.\n• My concern is...\n5. финал: одна фраза, которую хочется сохранить\n\nСмысл: не объяснять английский с доски, а показать момент, где он нужен.",
+      "video_script": {
+        "duration_sec": 28,
+        "opening_frame": "Крупный живой кадр: несогласие на встрече. Текст: \"Английский нужен не потом, а сейчас\"",
+        "beat_1": "Показать дословный вариант: You are wrong.",
+        "beat_2": "Реакция: человек понимает, что звучит резко/странно.",
+        "beat_3": [
+          "I see your point.",
+          "I'm not sure I agree with that part.",
+          "My concern is..."
+        ],
+        "retention_device": "каждая следующая фраза закрывает реальную проблему в сцене"
+      },
+      "why_viral": [
+        "реальная сцена вместо урока",
+        "лицо/эмоция",
+        "польза встроена в сюжет"
+      ]
+    },
+    {
+      "id": "vr_011",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда аэропорт, а ты переводишь с русского",
+      "text": "Тот самый момент, когда аэропорт, а ты переводишь с русского\n\nСкетч:\nРусская мысль: Where I go?\nВнутренний голос: звучит слишком резко.\nНормальный английский: Has the gate changed?\nЕсли нужно мягче: Is the flight delayed?\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"Where I go?\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "Has the gate changed?",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_012",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда отель, а ты переводишь с русского",
+      "text": "Тот самый момент, когда отель, а ты переводишь с русского\n\nСкетч:\nРусская мысль: My room is bad.\nВнутренний голос: звучит слишком резко.\nНормальный английский: There seems to be a problem with my room.\nЕсли нужно мягче: The key card isn't working.\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"My room is bad.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "There seems to be a problem with my room.",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_013",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда телефонный звонок, а ты переводишь с русского",
+      "text": "Тот самый момент, когда телефонный звонок, а ты переводишь с русского\n\nСкетч:\nРусская мысль: I don't hear.\nВнутренний голос: звучит слишком резко.\nНормальный английский: Sorry, the line is breaking up.\nЕсли нужно мягче: Could you repeat the last part?\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"I don't hear.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "Sorry, the line is breaking up.",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_014",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда банк, а ты переводишь с русского",
+      "text": "Тот самый момент, когда банк, а ты переводишь с русского\n\nСкетч:\nРусская мысль: You took my money.\nВнутренний голос: звучит слишком резко.\nНормальный английский: I don't recognize this charge.\nЕсли нужно мягче: Could you check the details?\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"You took my money.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "I don't recognize this charge.",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_015",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда собеседование, а ты переводишь с русского",
+      "text": "Тот самый момент, когда собеседование, а ты переводишь с русского\n\nСкетч:\nРусская мысль: I have experience.\nВнутренний голос: звучит слишком резко.\nНормальный английский: My main experience is in...\nЕсли нужно мягче: I was responsible for...\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"I have experience.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "My main experience is in...",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_016",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда документы, а ты переводишь с русского",
+      "text": "Тот самый момент, когда документы, а ты переводишь с русского\n\nСкетч:\nРусская мысль: What papers need?\nВнутренний голос: звучит слишком резко.\nНормальный английский: Which documents do I need to provide?\nЕсли нужно мягче: Is a copy enough?\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"What papers need?\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "Which documents do I need to provide?",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_017",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда врач, а ты переводишь с русского",
+      "text": "Тот самый момент, когда врач, а ты переводишь с русского\n\nСкетч:\nРусская мысль: I have pain.\nВнутренний голос: звучит слишком резко.\nНормальный английский: It hurts here.\nЕсли нужно мягче: It started yesterday.\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"I have pain.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "It hurts here.",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_018",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда small talk, а ты переводишь с русского",
+      "text": "Тот самый момент, когда small talk, а ты переводишь с русского\n\nСкетч:\nРусская мысль: Normal.\nВнутренний голос: звучит слишком резко.\nНормальный английский: Pretty good, thanks.\nЕсли нужно мягче: Can't complain.\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"Normal.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "Pretty good, thanks.",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_019",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда возврат денег, а ты переводишь с русского",
+      "text": "Тот самый момент, когда возврат денег, а ты переводишь с русского\n\nСкетч:\nРусская мысль: Give me my money back.\nВнутренний голос: звучит слишком резко.\nНормальный английский: I'd like to request a refund.\nЕсли нужно мягче: The issue hasn't been resolved.\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"Give me my money back.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "I'd like to request a refund.",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_020",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "roleplay_sketch",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Тот самый момент, когда рабочий звонок, а ты переводишь с русского",
+      "text": "Тот самый момент, когда рабочий звонок, а ты переводишь с русского\n\nСкетч:\nРусская мысль: I don't know.\nВнутренний голос: звучит слишком резко.\nНормальный английский: Let me check that.\nЕсли нужно мягче: I need a minute to think.\n\nТакой формат цепляет не потому, что он смешной сам по себе.\nОн цепляет, потому что человек узнаёт свой стыд и получает выход.",
+      "video_script": {
+        "duration_sec": 35,
+        "opening_frame": "Низко-полированный живой кадр, подпись: \"I don't know.\"",
+        "roles": [
+          "русская мысль",
+          "взрослый английский",
+          "реакция собеседника"
+        ],
+        "payoff": "Let me check that.",
+        "comment_prompt": "А как бы ты сказал это мягче?"
+      },
+      "why_viral": [
+        "узнавание",
+        "комедийная роль",
+        "легко отправить другу"
+      ]
+    },
+    {
+      "id": "vr_021",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"I very like it\", а \"I really like it.\"?",
+      "text": "Английский странный: почему не \"I very like it\", а \"I really like it.\"?\n\nРусская логика говорит: I very like it\nЖивой английский говорит: I really like it.\n\nПочему: very не усиливает глагол напрямую.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"I very like it\" зачёркнуто",
+        "reveal": "I really like it.",
+        "explanation": "very не усиливает глагол напрямую",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "I very like it\nне равно\nI really like it.",
+      "image_body": "very не усиливает глагол напрямую",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_022",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"I wait you\", а \"I'll wait for you.\"?",
+      "text": "Английский странный: почему не \"I wait you\", а \"I'll wait for you.\"?\n\nРусская логика говорит: I wait you\nЖивой английский говорит: I'll wait for you.\n\nПочему: wait почти всегда требует for перед человеком.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"I wait you\" зачёркнуто",
+        "reveal": "I'll wait for you.",
+        "explanation": "wait почти всегда требует for перед человеком",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "I wait you\nне равно\nI'll wait for you.",
+      "image_body": "wait почти всегда требует for перед человеком",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_023",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"Open me the door\", а \"Open the door for me.\"?",
+      "text": "Английский странный: почему не \"Open me the door\", а \"Open the door for me.\"?\n\nРусская логика говорит: Open me the door\nЖивой английский говорит: Open the door for me.\n\nПочему: for me уходит в конец.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"Open me the door\" зачёркнуто",
+        "reveal": "Open the door for me.",
+        "explanation": "for me уходит в конец",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "Open me the door\nне равно\nOpen the door for me.",
+      "image_body": "for me уходит в конец",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_024",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"Discuss about it\", а \"Discuss it.\"?",
+      "text": "Английский странный: почему не \"Discuss about it\", а \"Discuss it.\"?\n\nРусская логика говорит: Discuss about it\nЖивой английский говорит: Discuss it.\n\nПочему: discuss уже включает идею about.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"Discuss about it\" зачёркнуто",
+        "reveal": "Discuss it.",
+        "explanation": "discuss уже включает идею about",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "Discuss about it\nне равно\nDiscuss it.",
+      "image_body": "discuss уже включает идею about",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_025",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"I didn't went\", а \"I didn't go.\"?",
+      "text": "Английский странный: почему не \"I didn't went\", а \"I didn't go.\"?\n\nРусская логика говорит: I didn't went\nЖивой английский говорит: I didn't go.\n\nПочему: после didn't глагол возвращается в базовую форму.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"I didn't went\" зачёркнуто",
+        "reveal": "I didn't go.",
+        "explanation": "после didn't глагол возвращается в базовую форму",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "I didn't went\nне равно\nI didn't go.",
+      "image_body": "после didn't глагол возвращается в базовую форму",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_026",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"Advices\", а \"Advice.\"?",
+      "text": "Английский странный: почему не \"Advices\", а \"Advice.\"?\n\nРусская логика говорит: Advices\nЖивой английский говорит: Advice.\n\nПочему: advice обычно неисчисляемое.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"Advices\" зачёркнуто",
+        "reveal": "Advice.",
+        "explanation": "advice обычно неисчисляемое",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "Advices\nне равно\nAdvice.",
+      "image_body": "advice обычно неисчисляемое",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_027",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"How is it called?\", а \"What is it called?\"?",
+      "text": "Английский странный: почему не \"How is it called?\", а \"What is it called?\"?\n\nРусская логика говорит: How is it called?\nЖивой английский говорит: What is it called?\n\nПочему: русская конструкция переносится в английский.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"How is it called?\" зачёркнуто",
+        "reveal": "What is it called?",
+        "explanation": "русская конструкция переносится в английский",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "How is it called?\nне равно\nWhat is it called?",
+      "image_body": "русская конструкция переносится в английский",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_028",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"Make a photo\", а \"Take a photo.\"?",
+      "text": "Английский странный: почему не \"Make a photo\", а \"Take a photo.\"?\n\nРусская логика говорит: Make a photo\nЖивой английский говорит: Take a photo.\n\nПочему: фото по-английски не делают, а берут.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"Make a photo\" зачёркнуто",
+        "reveal": "Take a photo.",
+        "explanation": "фото по-английски не делают, а берут",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "Make a photo\nне равно\nTake a photo.",
+      "image_body": "фото по-английски не делают, а берут",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_029",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"I have 30 years\", а \"I'm 30.\"?",
+      "text": "Английский странный: почему не \"I have 30 years\", а \"I'm 30.\"?\n\nРусская логика говорит: I have 30 years\nЖивой английский говорит: I'm 30.\n\nПочему: возраст в английском — состояние, а не possession.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"I have 30 years\" зачёркнуто",
+        "reveal": "I'm 30.",
+        "explanation": "возраст в английском — состояние, а не possession",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "I have 30 years\nне равно\nI'm 30.",
+      "image_body": "возраст в английском — состояние, а не possession",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    },
+    {
+      "id": "vr_030",
+      "audience": "30+ Russian-speaking English learners",
+      "created_for": "Instagram Reels + Facebook Reels + Threads",
+      "type": "native_surprise",
+      "platform_priority": [
+        "instagram",
+        "threads",
+        "facebook"
+      ],
+      "hook": "Английский странный: почему не \"I live here 5 years\", а \"I've lived here for 5 years.\"?",
+      "text": "Английский странный: почему не \"I live here 5 years\", а \"I've lived here for 5 years.\"?\n\nРусская логика говорит: I live here 5 years\nЖивой английский говорит: I've lived here for 5 years.\n\nПочему: срок до настоящего момента требует present perfect.\n\nЭто тот тип поста, который хочется переслать: вроде мелочь, но мозг щёлкает.",
+      "video_script": {
+        "duration_sec": 18,
+        "opening_frame": "Крупный текст: \"I live here 5 years\" зачёркнуто",
+        "reveal": "I've lived here for 5 years.",
+        "explanation": "срок до настоящего момента требует present perfect",
+        "retention_device": "сначала конфликт с русской логикой, потом быстрый ответ"
+      },
+      "image_title": "I live here 5 years\nне равно\nI've lived here for 5 years.",
+      "image_body": "срок до настоящего момента требует present perfect",
+      "why_viral": [
+        "когнитивный щелчок",
+        "английский кажется нелогичным",
+        "короткое объяснение"
+      ]
+    }
+  ],
+  "media": {
+    "vr_021": {
+      "file": "media/vr_021.png",
+      "palette": "adult-ink-lime",
+      "size": "1080x1350"
+    },
+    "vr_022": {
+      "file": "media/vr_022.png",
+      "palette": "workday-cream-blue",
+      "size": "1080x1350"
+    },
+    "vr_023": {
+      "file": "media/vr_023.png",
+      "palette": "airport-navy-orange",
+      "size": "1080x1350"
+    },
+    "vr_024": {
+      "file": "media/vr_024.png",
+      "palette": "clinic-sage-coral",
+      "size": "1080x1350"
+    },
+    "vr_025": {
+      "file": "media/vr_025.png",
+      "palette": "adult-ink-lime",
+      "size": "1080x1350"
+    },
+    "vr_026": {
+      "file": "media/vr_026.png",
+      "palette": "workday-cream-blue",
+      "size": "1080x1350"
+    },
+    "vr_027": {
+      "file": "media/vr_027.png",
+      "palette": "airport-navy-orange",
+      "size": "1080x1350"
+    },
+    "vr_028": {
+      "file": "media/vr_028.png",
+      "palette": "clinic-sage-coral",
+      "size": "1080x1350"
+    },
+    "vr_029": {
+      "file": "media/vr_029.png",
+      "palette": "adult-ink-lime",
+      "size": "1080x1350"
+    },
+    "vr_030": {
+      "file": "media/vr_030.png",
+      "palette": "workday-cream-blue",
+      "size": "1080x1350"
+    }
+  }
+}

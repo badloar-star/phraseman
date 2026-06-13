@@ -1,0 +1,265 @@
+import React, { useCallback, useEffect, useState } from 'react';
+import {
+  ActivityIndicator,
+  RefreshControl,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import ScreenGradient from '../components/ScreenGradient';
+import TapScale from '../components/TapScale';
+import { useTheme } from '../components/ThemeContext';
+import { useLang } from '../components/LangContext';
+import { triLang, type Lang } from '../constants/i18n';
+import { hapticTap } from '../hooks/use-haptics';
+import {
+  claimReferralVipDays,
+  getClaimableReferralState,
+  type ReferralInvite,
+} from './referral_vip';
+
+function makeL(lang: Lang) {
+  return (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+}
+
+function shortInviteName(invite: ReferralInvite): string {
+  const id = String(invite.refereeStableId || '').trim();
+  if (!id) return '----';
+  return id.length <= 6 ? id : id.slice(-6).toUpperCase();
+}
+
+export default function ReferralsScreen() {
+  const router = useRouter();
+  const { theme: t, f } = useTheme();
+  const { lang } = useLang();
+  const L = makeL(lang as Lang);
+  const [invites, setInvites] = useState<ReferralInvite[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [claiming, setClaiming] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    const state = await getClaimableReferralState();
+    setInvites(state.invites);
+  }, []);
+
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    load()
+      .catch(() => {})
+      .finally(() => {
+        if (alive) setLoading(false);
+      });
+    return () => { alive = false; };
+  }, [load]);
+
+  const refresh = useCallback(async () => {
+    setRefreshing(true);
+    await load().catch(() => {});
+    setRefreshing(false);
+  }, [load]);
+
+  const showNotReady = useCallback(() => {
+    hapticTap();
+    setMessage(L(
+      'друг не выполнил условие',
+      'друг не виконав умову',
+      'tu amigo aún no cumplió la condición',
+      'o amigo ainda não cumpriu a condição',
+      'bạn của bạn chưa hoàn thành điều kiện',
+      'teman belum memenuhi syarat',
+      'arkadaşın şartı tamamlamadı',
+      'znajomy nie spełnił warunku',
+    ));
+  }, [L]);
+
+  const claim = useCallback(async () => {
+    if (claiming) return;
+    hapticTap();
+    setClaiming(true);
+    setMessage(null);
+    const result = await claimReferralVipDays();
+    if (result.ok) {
+      setMessage(L(
+        `Готово: вы получили ${result.granted} дней полного доступа.`,
+        `Готово: ви отримали ${result.granted} днів повного доступу.`,
+        `Listo: recibiste ${result.granted} días de acceso completo.`,
+        `Pronto: você recebeu ${result.granted} dias de acesso completo.`,
+        `Xong: bạn đã nhận ${result.granted} ngày truy cập đầy đủ.`,
+        `Selesai: kamu mendapat ${result.granted} hari akses penuh.`,
+        `Hazır: ${result.granted} gün tam erişim aldın.`,
+        `Gotowe: masz ${result.granted} dni pełnego dostępu.`,
+      ));
+      await load().catch(() => {});
+    } else if (result.reason === 'nothing') {
+      showNotReady();
+    } else {
+      setMessage(L(
+        'Не получилось получить VIP. Попробуйте ещё раз.',
+        'Не вдалося отримати VIP. Спробуйте ще раз.',
+        'No pudimos entregar el VIP. Inténtalo de nuevo.',
+        'Não foi possível receber VIP. Tente de novo.',
+        'Chưa nhận được VIP. Hãy thử lại.',
+        'VIP belum bisa diambil. Coba lagi.',
+        'VIP alınamadı. Tekrar dene.',
+        'Nie udało się odebrać VIP. Spróbuj ponownie.',
+      ));
+    }
+    setClaiming(false);
+  }, [L, claiming, load, showNotReady]);
+
+  const renderInvite = (invite: ReferralInvite, index: number) => {
+    const qualified = invite.status === 'qualified';
+    const rewarded = invite.status === 'rewarded';
+    const skipped = invite.status === 'skipped_referrer_cap';
+    const statusText = rewarded
+      ? L('VIP уже получен', 'VIP уже отримано', 'VIP recibido', 'VIP recebido', 'Đã nhận VIP', 'VIP sudah diambil', 'VIP alındı', 'VIP odebrany')
+      : qualified
+        ? L('Условие выполнено', 'Умову виконано', 'Condición cumplida', 'Condição cumprida', 'Đã hoàn thành điều kiện', 'Syarat terpenuhi', 'Şart tamamlandı', 'Warunek spełniony')
+        : skipped
+          ? L('Лимит месяца', 'Ліміт місяця', 'Límite mensual', 'Limite mensal', 'Giới hạn tháng', 'Batas bulanan', 'Aylık limit', 'Limit miesiąca')
+          : L('Ждём полный урок', 'Чекаємо повний урок', 'Esperando una lección completa', 'Aguardando uma lição completa', 'Đang chờ một bài học hoàn chỉnh', 'Menunggu satu pelajaran selesai', 'Tam ders bekleniyor', 'Czekamy na ukończoną lekcję');
+    const buttonText = rewarded
+      ? L('Получено', 'Отримано', 'Recibido', 'Recebido', 'Đã nhận', 'Diterima', 'Alındı', 'Odebrano')
+      : L('Получить VIP', 'Отримати VIP', 'Recibir VIP', 'Receber VIP', 'Nhận VIP', 'Ambil VIP', 'VIP al', 'Odbierz VIP');
+
+    return (
+      <View
+        key={`${invite.refereeStableId}-${index}`}
+        testID={`referrals-row-${invite.refereeStableId || index}`}
+        style={{
+          borderRadius: 18,
+          padding: 14,
+          backgroundColor: t.bgCard,
+          borderWidth: 1,
+          borderColor: qualified ? t.accent : t.border,
+          gap: 12,
+        }}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+          <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
+            <Ionicons name={qualified ? 'sparkles-outline' : 'person-outline'} size={22} color={qualified ? t.accent : t.textMuted} />
+          </View>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900' }} numberOfLines={1}>
+              {L(`Друг #${shortInviteName(invite)}`, `Друг #${shortInviteName(invite)}`, `Amigo #${shortInviteName(invite)}`, `Amigo #${shortInviteName(invite)}`, `Bạn #${shortInviteName(invite)}`, `Teman #${shortInviteName(invite)}`, `Arkadaş #${shortInviteName(invite)}`, `Znajomy #${shortInviteName(invite)}`)}
+            </Text>
+            <Text style={{ color: qualified ? t.accent : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '800', marginTop: 2 }}>
+              {statusText}
+            </Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          testID={`referrals-row-claim-${invite.refereeStableId || index}`}
+          accessibilityRole="button"
+          activeOpacity={0.82}
+          disabled={claiming || rewarded}
+          onPress={qualified ? claim : showNotReady}
+          style={{
+            minHeight: 48,
+            borderRadius: 14,
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            gap: 8,
+            backgroundColor: qualified && !rewarded ? t.accent : t.bgSurface,
+            opacity: rewarded ? 0.62 : 1,
+          }}
+        >
+          {claiming && qualified ? <ActivityIndicator color={t.correctText} /> : <Ionicons name="diamond-outline" size={18} color={qualified && !rewarded ? t.correctText : t.textMuted} />}
+          <Text style={{ color: qualified && !rewarded ? t.correctText : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '900' }}>
+            {buttonText}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  return (
+    <ScreenGradient artBackdrop="friends">
+      <SafeAreaView testID="screen-referrals" style={{ flex: 1 }}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor={t.accent} />}
+          contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: 34, gap: 16 }}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TapScale
+              accessibilityRole="button"
+              accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
+              onPress={() => router.back()}
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 22,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: t.bgSurface,
+                borderWidth: 1,
+                borderColor: t.border,
+                marginRight: 12,
+              }}
+            >
+              <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+            </TapScale>
+            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900' }}>
+              {L('Рефералы', 'Реферали', 'Referidos', 'Indicados', 'Giới thiệu', 'Referal', 'Davetler', 'Polecenia')}
+            </Text>
+          </View>
+
+          <View style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, gap: 10 }}>
+            <View style={{ width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
+              <Ionicons name="people-outline" size={24} color={t.accent} />
+            </View>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2 ?? 22, lineHeight: 28, fontWeight: '900' }}>
+              {L('Твои приглашения', 'Твої запрошення', 'Tus invitaciones', 'Seus convites', 'Lời mời của bạn', 'Undanganmu', 'Davetlerin', 'Twoje zaproszenia')}
+            </Text>
+            <Text testID="referrals-condition-hint" style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '700' }}>
+              {L(
+                'Здесь появятся друзья, которым ты отправил приглашение. Как только друг поставит приложение, введёт твой код и закончит первый урок — VIP можно забирать.',
+                'Тут з’являться друзі, яким ти надіслав запрошення. Щойно друг встановить застосунок, введе твій код і закінчить перший урок — VIP можна забирати.',
+                'Aquí aparecerán los amigos a quienes invitaste. Cuando instalen la app, usen tu código y terminen la primera lección, podrás reclamar el VIP.',
+                'Aqui aparecem os amigos que você convidou. Quando instalarem o app, usarem seu código e terminarem a primeira lição, o VIP fica pronto.',
+                'Bạn bè bạn mời sẽ xuất hiện ở đây. Khi họ cài ứng dụng, nhập mã của bạn và học xong bài đầu tiên, bạn có thể nhận VIP.',
+                'Teman yang kamu undang muncul di sini. Setelah mereka memasang aplikasi, memasukkan kodemu, dan menyelesaikan pelajaran pertama, VIP bisa diambil.',
+                'Davet ettiğin arkadaşlar burada görünür. Uygulamayı kurup kodunu girer ve ilk dersi bitirirlerse VIP alınır.',
+                'Tutaj pojawią się znajomi, których zaprosisz. Gdy zainstalują aplikację, wpiszą twój kod i skończą pierwszą lekcję, VIP będzie do odebrania.',
+              )}
+            </Text>
+          </View>
+
+          {message && (
+            <View style={{ borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }}>
+              <Text testID="referrals-feedback" style={{ color: t.textPrimary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '800' }}>{message}</Text>
+            </View>
+          )}
+
+          {loading ? (
+            <View style={{ paddingVertical: 36, alignItems: 'center' }}>
+              <ActivityIndicator color={t.accent} />
+            </View>
+          ) : invites.length > 0 ? (
+            <View style={{ gap: 12 }}>
+              {invites.map(renderInvite)}
+            </View>
+          ) : null}
+        </ScrollView>
+      </SafeAreaView>
+    </ScreenGradient>
+  );
+}

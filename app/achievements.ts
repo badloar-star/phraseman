@@ -39,6 +39,9 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 
+const safeAchievementEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
 /**
  * Достижения: ru/uk здесь; es — achievements_es_locale.ts.
  *
@@ -3156,7 +3159,17 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
           // Нельзя await registerXP отсюда: вызывающий registerXP (урок/задание) уже держит xp-lock —
           // вложенный await навсегда висит на цепочке _xpLock (мертвая блокировка, «Забрать» крутится).
           setTimeout(() => {
-            void registerXP(xpAmt, 'achievement_reward', safeUser, safeLang).catch(() => {});
+            void registerXP(xpAmt, 'achievement_reward', safeUser, safeLang, undefined, {
+              eventId: [
+                'achievement',
+                safeAchievementEventPart(ach.id, 80),
+                'reward',
+              ].join(':'),
+              payload: {
+                achievementId: ach.id,
+                nameRu: ach.nameRu,
+              },
+            }).catch(() => {});
           }, 0);
         }
         writeFriendEvent('achievement', { id: ach.id, nameRu: ach.nameRu, icon: ach.icon }).catch(() => {});

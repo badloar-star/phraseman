@@ -2951,11 +2951,11 @@ export default function StreakStats() {
     useFocusEffect(React.useCallback(() => {
         let cancelled = false;
         void (async () => {
-            const cached = await getStatsInsightsState(studyTarget);
+            const cached = await getStatsInsightsState(studyTarget, Date.now(), lang);
             if (!cancelled && cached.kind === 'cached') setAiNotes(cached.notes);
         })();
         return () => { cancelled = true; };
-    }, [studyTarget]));
+    }, [studyTarget, lang]));
     React.useEffect(() => {
         if (!isPremium || !lifetimeStats) return; // фича premium-only; ждём данные
         let cancelled = false;
@@ -3222,9 +3222,9 @@ export default function StreakStats() {
           borderColor={isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, tone)}
           textColor={t.textPrimary}
           mutedColor={t.textMuted}
-          authorLabel={triLang(lang, { ru: 'Тео · ИИ-разбор', uk: 'Тео · ШІ-розбір', es: 'Theo · análisis IA', 'pt-BR': 'Theo · análise IA', vi: 'Theo · phân tích AI', id: 'Theo · analisis AI', tr: 'Theo · AI analizi', pl: 'Theo · analiza AI' })}
-          lockedLabel={triLang(lang, { ru: 'Открой ИИ-разбор твоей статистики с Premium', uk: 'Відкрий ШІ-розбір твоєї статистики з Premium', es: 'Desbloquea el análisis IA de tus estadísticas con Premium', 'pt-BR': 'Desbloqueie a análise IA das suas estatísticas com Premium', vi: 'Mở khóa phân tích AI thống kê của bạn với Premium', id: 'Buka analisis AI statistikmu dengan Premium', tr: 'İstatistiklerinin AI analizini Premium ile aç', pl: 'Odblokuj analizę AI swoich statystyk z Premium' })}
-          loadingLabel={triLang(lang, { ru: 'Тео анализирует…', uk: 'Тео аналізує…', es: 'Theo está analizando…', 'pt-BR': 'Theo está analisando…', vi: 'Theo đang phân tích…', id: 'Theo sedang menganalisis…', tr: 'Theo analiz ediyor…', pl: 'Theo analizuje…' })}
+          authorLabel={triLang(lang, { ru: 'Компас', uk: 'Компас', es: 'Compass', 'pt-BR': 'Compass', vi: 'Compass', id: 'Compass', tr: 'Compass', pl: 'Compass' })}
+          lockedLabel={triLang(lang, { ru: 'Открой подсказки Компаса с Premium', uk: 'Відкрий підказки Компаса з Premium', es: 'Desbloquea las pistas de Compass con Premium', 'pt-BR': 'Desbloqueie as dicas do Compass com Premium', vi: 'Mở gợi ý Compass với Premium', id: 'Buka petunjuk Compass dengan Premium', tr: 'Compass ipuçlarını Premium ile aç', pl: 'Odblokuj wskazówki Compass z Premium' })}
+          loadingLabel={triLang(lang, { ru: 'Компас готовит подсказку…', uk: 'Компас готує підказку…', es: 'Compass está preparando una pista…', 'pt-BR': 'Compass está preparando uma dica…', vi: 'Compass đang chuẩn bị gợi ý…', id: 'Compass sedang menyiapkan petunjuk…', tr: 'Compass ipucu hazırlıyor…', pl: 'Compass przygotowuje wskazówkę…' })}
           onUnlock={() => { hapticTap(); router.push('/premium_modal' as any); }}
         />);
     };

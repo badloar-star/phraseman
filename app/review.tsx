@@ -98,6 +98,8 @@ const CONTENT_W = Math.min(SCREEN_W, 640);
 /** Одна страница свайпа подсказки (padding по 16 px у родительского ScrollView). */
 const CUE_PAGER_PAGE_W = SCREEN_W - 32;
 const REVIEW_BURN_HINT_SHOWN_KEY = 'review_burn_hint_shown_v1';
+const safeReviewEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 const REVIEW_TRANSLATION_UNAVAILABLE_HINT: Record<PlannedInterfaceLang, string> = {
   'pt-BR': 'Tradução ainda indisponível para esta frase',
@@ -922,7 +924,21 @@ export default function ReviewScreen() {
       const elapsed = Date.now() - cardStartTime.current;
       if (elapsed <= 20_000) setCanBurn(true);
       if (userNameRef.current) {
-        registerXP(5, 'review_answer', userNameRef.current, lang).then(result => {
+        registerXP(5, 'review_answer', userNameRef.current, lang, item.lessonId, {
+          eventId: [
+            'review',
+            safeReviewEventPart(studyTarget),
+            String(item.lessonId),
+            safeReviewEventPart(index),
+            safeReviewEventPart(englishRecallSurface(item.phrase), 50),
+          ].join(':'),
+          payload: {
+            studyTarget,
+            lessonId: item.lessonId,
+            phrase: englishRecallSurface(item.phrase),
+            mode,
+          },
+        }).then(result => {
           setTotalXP(prev => prev + result.finalDelta);
         }).catch(() => { setTotalXP(prev => prev + 5); });
       }

@@ -1397,7 +1397,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 let totalXp = readNum(data.progress?.user_total_xp ?? data.progress?.totalXp ?? data.totalXp);
                 let avatarRaw = readStr(data.progress?.user_avatar ?? data.avatar);
                 let auraRaw = readStr(data.progress?.user_avatar_aura ?? data.aura);
-                let name = readStr(data.displayName) || readStr(data.name) || readStr(data.progress?.displayName) || readStr(data.progress?.user_name);
+                let name = readStr(data.progress?.user_name) || readStr(data.name);
                 if (!name && totalXp <= 0 && !avatarRaw && !auraRaw) {
                     const leaderboardSnap = await db.collection('leaderboard').doc(f.uid).get();
                     if (leaderboardSnap.exists) {
@@ -1405,7 +1405,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                         totalXp = readNum(data.points);
                         avatarRaw = readStr(data.avatar);
                         auraRaw = readStr(data.aura);
-                        name = readStr(data.name) || readStr(data.displayName);
+                        name = readStr(data.name);
                     }
                 }
                 if (!name && totalXp <= 0 && !avatarRaw && !auraRaw) {
@@ -1421,7 +1421,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 }
                 return {
                     uid: f.uid,
-                    name: (data.displayName as string) || (data.name as string) || (data.progress?.displayName as string) || (data.progress?.user_name as string) || 'Игрок',
+                    name: name || '?????',
                     totalXp,
                     avatar: avatarRaw || undefined,
                     aura: auraRaw || undefined,

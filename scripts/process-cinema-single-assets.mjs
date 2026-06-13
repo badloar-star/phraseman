@@ -227,6 +227,7 @@ async function matteSource(inputPath, background) {
 async function renderTarget(target) {
   const inputPath = path.join(SOURCE_ROOT, target.source);
   const outputPath = path.join(ROOT, target.output);
+  const tempOutputPath = `${outputPath}.tmp-${process.pid}-${Date.now()}.webp`;
   const source = await matteSource(inputPath, target.background);
 
   const cropBuffer = await sharp(source.buffer)
@@ -274,11 +275,15 @@ async function renderTarget(target) {
   })
     .composite([{ input: resized, left, top }])
     .webp({ quality: 95, effort: 6 })
-    .toFile(outputPath);
+    .toFile(tempOutputPath);
 
-  const rendered = await sharp(outputPath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const rendered = await sharp(tempOutputPath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const outBBox = alphaBBox(rendered.data, rendered.info);
-  if (!outBBox) throw new Error(`No visible pixels in output: ${outputPath}`);
+  if (!outBBox) {
+    await fs.rm(tempOutputPath, { force: true });
+    throw new Error(`No visible pixels in output: ${outputPath}`);
+  }
+  await fs.rename(tempOutputPath, outputPath);
   const centerDelta = {
     x: (outBBox.minX + outBBox.maxX + 1) / 2 - target.size / 2,
     y: (outBBox.minY + outBBox.maxY + 1) / 2 - target.size / 2,

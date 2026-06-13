@@ -9,7 +9,10 @@ import {
   DAILY_PHRASE_QUEST_XP,
   awardDailyPhraseQuestXpOnce,
   buildDailyPhraseQuestOptions,
+  hasDailyPhraseQuestAnswered,
+  hasDailyPhraseQuestXpAwarded,
   isDailyPhraseQuestAnswerCorrect,
+  markDailyPhraseQuestAnswered,
 } from '../app/daily_phrase_quest';
 import { registerXP as registerXPMock } from '../app/xp_manager';
 import type { DailyPhrase } from '../app/daily_phrase_system';
@@ -52,6 +55,22 @@ describe('Daily Phrase Quest', () => {
     expect(new Set(options.map((option) => option.text)).size).toBe(3);
   });
 
+  it('builds Ukrainian meaning options when interface language is Ukrainian', () => {
+    const target = { ...phrase('local-11', 'Правильный смысл.'), meaning_uk: 'Правильний сенс.' };
+    const options = buildDailyPhraseQuestOptions(target, [
+      target,
+      { ...phrase('local-12', 'Неверный смысл 1.'), meaning_uk: 'Неправильний сенс 1.' },
+      { ...phrase('local-13', 'Неверный смысл 2.'), meaning_uk: 'Неправильний сенс 2.' },
+    ], 'uk');
+
+    expect(options).toHaveLength(3);
+    expect(options.some((option) => option.correct && option.text === 'Правильний сенс.')).toBe(true);
+    expect(options.map((option) => option.text)).toEqual(
+      expect.arrayContaining(['Неправильний сенс 1.', 'Неправильний сенс 2.']),
+    );
+    expect(options.map((option) => option.text).join(' ')).not.toContain('Правильный смысл');
+  });
+
   it('recognizes the selected correct answer by option id', () => {
     const options = buildDailyPhraseQuestOptions(phrase('local-11', 'Правильный смысл.'), [
       phrase('local-11', 'Правильный смысл.'),
@@ -69,14 +88,55 @@ describe('Daily Phrase Quest', () => {
     await AsyncStorage.setItem('user_name', 'Navigator #1234');
 
     await expect(
+      hasDailyPhraseQuestXpAwarded({ phraseId: 'local-11', date: '2026-06-12' }),
+    ).resolves.toBe(false);
+
+    await expect(
       awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-12', lang: 'ru' }),
     ).resolves.toEqual({ awarded: true, finalDelta: DAILY_PHRASE_QUEST_XP });
+    await expect(
+      hasDailyPhraseQuestXpAwarded({ phraseId: 'local-11', date: '2026-06-12' }),
+    ).resolves.toBe(true);
     await expect(
       awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-12', lang: 'ru' }),
     ).resolves.toEqual({ awarded: false, finalDelta: 0 });
 
     expect(registerXP).toHaveBeenCalledTimes(1);
-    expect(registerXP).toHaveBeenCalledWith(DAILY_PHRASE_QUEST_XP, 'daily_phrase_quest', 'Navigator #1234', 'ru');
+    expect(registerXP).toHaveBeenCalledWith(
+      DAILY_PHRASE_QUEST_XP,
+      'daily_phrase_quest',
+      'Navigator #1234',
+      'ru',
+      undefined,
+      expect.objectContaining({
+        eventId: 'daily_phrase_quest:2026-06-12:local-11:award',
+        payload: { phraseId: 'local-11', date: '2026-06-12' },
+      }),
+    );
+  });
+
+  it('records that the quest was answered without awarding XP', async () => {
+    await expect(
+      hasDailyPhraseQuestAnswered({ phraseId: 'local-11', date: '2026-06-12' }),
+    ).resolves.toBe(false);
+
+    await markDailyPhraseQuestAnswered({ phraseId: 'local-11', date: '2026-06-12' });
+
+    await expect(
+      hasDailyPhraseQuestAnswered({ phraseId: 'local-11', date: '2026-06-12' }),
+    ).resolves.toBe(true);
+    await expect(
+      hasDailyPhraseQuestXpAwarded({ phraseId: 'local-11', date: '2026-06-12' }),
+    ).resolves.toBe(false);
+    expect(registerXP).not.toHaveBeenCalled();
+  });
+
+  it('treats an existing XP award as an answered quest for older app states', async () => {
+    await awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-12', lang: 'ru' });
+
+    await expect(
+      hasDailyPhraseQuestAnswered({ phraseId: 'local-11', date: '2026-06-12' }),
+    ).resolves.toBe(true);
   });
 
   it('allows a new reward on a different daily phrase date', async () => {

@@ -37,6 +37,9 @@ import { safeRouterBack } from './navigation_back';
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
 
+const safePrepositionEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
 type PrepositionProgress = {
   answeredIds: string[];
   wrongIds: string[];
@@ -245,12 +248,28 @@ export default function PrepositionDrillScreen() {
       try {
         const already = await AsyncStorage.getItem(key);
         if (already) return;
-        if (userNameRef.current) {
-          await registerXP(POINTS_PER_PERFECT, 'preposition_drill_perfect', userNameRef.current, lang).catch(() => {});
+        const xpResult = await registerXP(POINTS_PER_PERFECT, 'preposition_drill_perfect', userNameRef.current || '', lang, lessonId, {
+          eventId: [
+            'preposition',
+            safePrepositionEventPart(studyTarget),
+            String(lessonId),
+            'perfect',
+          ].join(':'),
+          payload: {
+            lessonId,
+            studyTarget,
+            total,
+          },
+        });
+        if (Math.max(0, Math.round(xpResult.finalDelta || 0)) <= 0) {
+          perfectAwardedRef.current = false;
+          return;
         }
         await addShards('preposition_drill_perfect').catch(() => {});
         await AsyncStorage.setItem(key, '1').catch(() => {});
-      } catch {}
+      } catch {
+        perfectAwardedRef.current = false;
+      }
     })();
   }, [done, reviewMode, total, wrongIds.length, lessonId, lang, studyTarget]);
 
@@ -370,7 +389,21 @@ export default function PrepositionDrillScreen() {
       setWrongIds(nextWrong);
       saveProgress(nextAnswered, nextWrong);
       if (userNameRef.current) {
-        registerXP(POINTS_PER_CORRECT, 'preposition_drill_answer', userNameRef.current, lang)
+        registerXP(POINTS_PER_CORRECT, 'preposition_drill_answer', userNameRef.current, lang, lessonId, {
+          eventId: [
+            'preposition',
+            safePrepositionEventPart(studyTarget),
+            String(lessonId),
+            'answer',
+            safePrepositionEventPart(item.id, 40),
+          ].join(':'),
+          payload: {
+            lessonId,
+            studyTarget,
+            itemId: item.id,
+            reviewMode,
+          },
+        })
           .then(r => setXpToastAmount(r.finalDelta))
           .catch(() => {});
       }

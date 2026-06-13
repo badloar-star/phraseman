@@ -118,6 +118,10 @@ const QUIZ_CARD_ICON_FALLBACK_SIZE = 64;
 const QUIZ_CARD_ICON_FALLBACK_ICON_SIZE = 32;
 
 const stripPunct = (w: string) => w.replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
+const safeQuizEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+const makeQuizAttemptId = (): string =>
+  `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
 function diffWords(wrong: string, correct: string): { word: string; isWrong: boolean }[] {
   const wWords = wrong.trim().split(/\s+/);
   const cWords = correct.trim().split(/\s+/);
@@ -1366,6 +1370,7 @@ function QuizGame({
 
   // ── Имя пользователя загружаем ОДИН РАЗ в ref — нет race condition ──────
   const userNameRef = useRef<string>('');
+  const quizAttemptIdRef = useRef<string>(makeQuizAttemptId());
   // streak тоже в ref — всегда актуальное значение в замыканиях
   const streakRef   = useRef(0);
   // results в ref — чтобы handleTap не читал устаревший стейт из замыкания
@@ -1555,7 +1560,26 @@ function QuizGame({
           if (reward.hasBonusWon) {
             setBonusXP(reward.bonusXP);
             setShowBonus(true);
-            if (userNameRef.current) { registerXP(reward.bonusXP, 'bonus_chest', userNameRef.current, lang).catch(() => {}); }
+            if (userNameRef.current) {
+              registerXP(reward.bonusXP, 'bonus_chest', userNameRef.current, lang, undefined, {
+                eventId: [
+                  'bonus_chest',
+                  'quiz',
+                  safeQuizEventPart(studyTarget),
+                  safeQuizEventPart(level),
+                  safeQuizEventPart(quizAttemptIdRef.current),
+                  'complete',
+                ].join(':'),
+                payload: {
+                  surface: 'quiz',
+                  studyTarget,
+                  quizLevel: level,
+                  total,
+                  right,
+                  pct,
+                },
+              }).catch(() => {});
+            }
           }
         }
       } catch (error) {
@@ -1564,7 +1588,7 @@ function QuizGame({
     };
 
     processDoneQuiz();
-  }, [done, score, results, phrases.length, lang, reviewing]);
+  }, [done, score, results, phrases.length, lang, reviewing, studyTarget, level]);
 
   const current = reviewing ? reviewQ[rIdx] : (idx < phrases.length ? phrases[idx] : undefined);
 
@@ -1689,7 +1713,30 @@ function QuizGame({
         setScore(p => p + pts);
 
         // Начисляем баллы — имя уже в ref, нет асинхронного запроса
-        if (userNameRef.current) { registerXP(pts, 'quiz_answer', userNameRef.current, lang).then(xpResult => { setEarnedXP(p => p + xpResult.finalDelta); }).catch(() => {}); }
+        if (userNameRef.current) {
+          const questionId = current?.questionId ?? current?.answer ?? idx;
+          registerXP(pts, 'quiz_answer', userNameRef.current, lang, undefined, {
+            eventId: [
+              'quiz',
+              safeQuizEventPart(studyTarget),
+              safeQuizEventPart(level),
+              safeQuizEventPart(quizAttemptIdRef.current),
+              'answer',
+              idx,
+              safeQuizEventPart(questionId, 40),
+            ].join(':'),
+            payload: {
+              studyTarget,
+              quizLevel: level,
+              questionIndex: idx,
+              questionId,
+              streak: ns,
+              points: pts,
+              thematicCategoryId: thematicCategoryId ?? null,
+              planQuizId: planQuizId ?? null,
+            },
+          }).then(xpResult => { setEarnedXP(p => p + xpResult.finalDelta); }).catch(() => {});
+        }
         // Триггеры заданий — quiz_score обновляется в done useEffect (один раз с итогом сессии)
         const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [];
         if (!thematicCategoryId && level === 'hard') updates.push({ type: 'quiz_hard' });

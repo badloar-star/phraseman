@@ -17,6 +17,7 @@ import {
   DAILY_TASK_REROLL_MAX_PER_DAY,
   claimTaskWithReward,
   getDailyRerollsLeftToday,
+  getTodayKey,
   getTodayTasksSafe,
   loadTodayProgress,
   type DailyTask,
@@ -27,6 +28,9 @@ import type { ThemeMode } from '../constants/theme';
 
 const AUTO_DISMISS_MS = 12_000;
 const MAX_QUEUE = 3;
+
+const safeDailyTaskToastEventPart = (value: unknown): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
 
 type DailyTaskRewardToastItem = {
   taskId: string;
@@ -520,8 +524,26 @@ function DailyTaskRewardToast() {
       }
 
       const { claimed, awardedXp } = await claimTaskWithReward(current.taskId, async () => {
-        const result = await registerXP(taskForXp.xp, 'daily_task_reward', '', lang);
-        return Math.max(0, Math.round(result.finalDelta || taskForXp.xp));
+        const dayKey = getTodayKey();
+        const result = await registerXP(taskForXp.xp, 'daily_task_reward', '', lang, undefined, {
+          eventId: [
+            'daily_task',
+            safeDailyTaskToastEventPart(dayKey),
+            safeDailyTaskToastEventPart(current.studyTarget),
+            safeDailyTaskToastEventPart(current.taskId),
+            'claim',
+          ].join(':'),
+          payload: {
+            taskId: current.taskId,
+            dayKey,
+            studyTarget: current.studyTarget ?? null,
+            xpBase: taskForXp.xp,
+            surface: 'toast',
+          },
+        });
+        const awarded = Math.max(0, Math.round(result.finalDelta || 0));
+        if (awarded <= 0) throw new Error('daily_task_xp_not_confirmed');
+        return awarded;
       }, { tasksForClaim, studyTarget: current.studyTarget });
 
       if (!claimed) {

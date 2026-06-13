@@ -1,6 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
-import type { DailyPhrase } from './daily_phrase_system';
+import {
+  dailyPhraseCopyForLang,
+  type DailyPhrase,
+  type DailyPhraseInterfaceLang,
+} from './daily_phrase_system';
 import { registerXP } from './xp_manager';
 
 export const DAILY_PHRASE_QUEST_XP = 50;
@@ -22,6 +26,7 @@ type DailyPhraseQuestOptionSource = {
 };
 
 const AWARD_KEY_PREFIX = 'daily_phrase_quest_xp_awarded_v1';
+const ANSWER_KEY_PREFIX = 'daily_phrase_quest_answered_v1';
 
 function hashString(value: string): number {
   let hash = 2166136261;
@@ -36,17 +41,22 @@ function cleanText(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+function safeDailyPhraseEventPart(value: unknown, max = 60): string {
+  return String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+}
+
 export function buildDailyPhraseQuestOptions(
   phrase: DailyPhrase,
   pool: readonly DailyPhraseQuestOptionSource[],
+  lang: DailyPhraseInterfaceLang = 'ru',
 ): DailyPhraseQuestOption[] {
-  const correctText = cleanText(phrase.meaning);
+  const correctText = cleanText(dailyPhraseCopyForLang(phrase, lang).meaning);
   const seed = `${phrase.id}:${phrase.date}:${phrase.english}`;
   const distractors = pool
     .filter((candidate) => String(candidate.id) !== phrase.id)
     .map((candidate) => ({
       id: `distractor:${candidate.id}`,
-      text: cleanText(candidate.meaning),
+      text: cleanText(dailyPhraseCopyForLang(candidate as DailyPhrase, lang).meaning || candidate.meaning),
       correct: false,
       rank: hashString(`${seed}:${candidate.id}`),
     }))
@@ -83,6 +93,36 @@ function awardKey(phraseId: string, date: string): string {
   return `${AWARD_KEY_PREFIX}:${date}:${phraseId}`;
 }
 
+function answerKey(phraseId: string, date: string): string {
+  return `${ANSWER_KEY_PREFIX}:${date}:${phraseId}`;
+}
+
+export async function markDailyPhraseQuestAnswered(params: {
+  phraseId: string;
+  date: string;
+}): Promise<void> {
+  const phraseId = cleanText(params.phraseId);
+  const date = cleanText(params.date);
+  if (!phraseId || !date) return;
+
+  await AsyncStorage.setItem(answerKey(phraseId, date), '1');
+}
+
+export async function hasDailyPhraseQuestAnswered(params: {
+  phraseId: string;
+  date: string;
+}): Promise<boolean> {
+  const phraseId = cleanText(params.phraseId);
+  const date = cleanText(params.date);
+  if (!phraseId || !date) return false;
+
+  const [answered, awarded] = await Promise.all([
+    AsyncStorage.getItem(answerKey(phraseId, date)),
+    AsyncStorage.getItem(awardKey(phraseId, date)),
+  ]);
+  return Boolean(answered || awarded);
+}
+
 export async function awardDailyPhraseQuestXpOnce(params: {
   phraseId: string;
   date: string;
@@ -97,7 +137,32 @@ export async function awardDailyPhraseQuestXpOnce(params: {
   if (alreadyAwarded) return { awarded: false, finalDelta: 0 };
 
   const userName = (await AsyncStorage.getItem('user_name')) || '';
-  const result = await registerXP(DAILY_PHRASE_QUEST_XP, 'daily_phrase_quest', userName, params.lang);
+  const result = await registerXP(DAILY_PHRASE_QUEST_XP, 'daily_phrase_quest', userName, params.lang, undefined, {
+    eventId: [
+      'daily_phrase_quest',
+      safeDailyPhraseEventPart(date, 20),
+      safeDailyPhraseEventPart(phraseId, 80),
+      'award',
+    ].join(':'),
+    payload: {
+      phraseId,
+      date,
+    },
+  });
+  if (Math.max(0, Math.round(result.finalDelta || 0)) <= 0) {
+    throw new Error('daily_phrase_quest_xp_not_confirmed');
+  }
   await AsyncStorage.setItem(key, '1');
   return { awarded: true, finalDelta: result.finalDelta };
+}
+
+export async function hasDailyPhraseQuestXpAwarded(params: {
+  phraseId: string;
+  date: string;
+}): Promise<boolean> {
+  const phraseId = cleanText(params.phraseId);
+  const date = cleanText(params.date);
+  if (!phraseId || !date) return false;
+
+  return Boolean(await AsyncStorage.getItem(awardKey(phraseId, date)));
 }

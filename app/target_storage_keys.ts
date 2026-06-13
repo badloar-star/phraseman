@@ -226,7 +226,7 @@ export function lessonIntroShownKey(lessonId: string | number, studyTarget?: Run
 
 export function lessonSessionKey(
   lessonId: string | number,
-  field: 'cellIndex' | 'phraseOrder' | 'contentSignature' | 'errorReplayQueue' | 'errorReplaySince' | 'errorReplayOverride',
+  field: 'cellIndex' | 'phraseOrder' | 'contentSignature' | 'errorReplayQueue' | 'errorReplaySince' | 'errorReplayOverride' | 'serverAttemptId',
   studyTarget?: RuntimeStudyTarget,
 ): string {
   const raw = `lesson${lessonId}_${field}`;

@@ -1,0 +1,9 @@
+{
+  "checked": 200,
+  "counts": {
+    "complete": 200
+  },
+  "samples": [],
+  "checked_at": "2026-06-12T17:32:09.153Z",
+  "note": "One previous job_status check hit Publer rate limit; targeted recheck returned complete with empty failures."
+}

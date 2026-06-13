@@ -36,11 +36,16 @@ export interface TreasureOpenResult {
   bonusXP: number;
   canOpenMore: boolean;
   requiresPremium: boolean;
+  openSlot: 'free' | `premium_${number}`;
   bonusInfo?: {
     tier: 'small' | 'medium' | 'large';
     percentage: number;
     range: string;
   };
+}
+
+export interface PreparedTreasureOpen extends TreasureOpenResult {
+  stateAfterOpen: DailyTreasureState;
 }
 
 /**
@@ -178,7 +183,7 @@ export async function canOpenTreasureChest(): Promise<boolean> {
  * Открывает ежедневный сундук и возвращает бонус XP
  * Бесплатно один раз в день, премиум пользователи могут открыть до 2 раз (3-й требует платежа)
  */
-export async function openTreasureChest(isPremium: boolean = false): Promise<TreasureOpenResult | null> {
+export async function prepareTreasureChestOpen(isPremium: boolean = false): Promise<PreparedTreasureOpen | null> {
   const state = await getTreasureChestState();
   const today = getTodayString();
 
@@ -204,6 +209,9 @@ export async function openTreasureChest(isPremium: boolean = false): Promise<Tre
   // Генерируем бонус
   const bonusXP = calculateRandomBonus();
   const bonusInfo = getBonusTierInfo(bonusXP);
+  const openSlot: TreasureOpenResult['openSlot'] = isFirstFreeOpen
+    ? 'free'
+    : `premium_${state.premiumChestsUsed + 1}`;
 
   // Обновляем состояние
   state.lastOpenDate = today;
@@ -214,17 +222,29 @@ export async function openTreasureChest(isPremium: boolean = false): Promise<Tre
     state.premiumChestsUsed += 1;
   }
 
-  try {
-    await AsyncStorage.setItem('daily_treasure_state', JSON.stringify(state));
-  } catch {
-  }
-
   return {
     bonusXP,
     canOpenMore: isPremium && state.premiumChestsUsed < 2,
     requiresPremium: !isFirstFreeOpen,
+    openSlot,
     bonusInfo,
+    stateAfterOpen: state,
   };
+}
+
+export async function commitTreasureChestOpen(prepared: PreparedTreasureOpen): Promise<void> {
+  try {
+    await AsyncStorage.setItem('daily_treasure_state', JSON.stringify(prepared.stateAfterOpen));
+  } catch {
+  }
+}
+
+export async function openTreasureChest(isPremium: boolean = false): Promise<TreasureOpenResult | null> {
+  const prepared = await prepareTreasureChestOpen(isPremium);
+  if (!prepared) return null;
+  await commitTreasureChestOpen(prepared);
+  const { stateAfterOpen: _stateAfterOpen, ...result } = prepared;
+  return result;
 }
 
 /**

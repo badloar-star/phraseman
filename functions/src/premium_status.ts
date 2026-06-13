@@ -136,10 +136,44 @@ export async function resolvePremiumAccess(
   db: FirebaseFirestore.Firestore,
   stableUid: string,
   now: number = Date.now(),
+  authUid?: string,
 ): Promise<boolean> {
-  if (!stableUid) return false;
-  const snap = await db.collection('users').doc(stableUid).get();
-  if (!snap.exists) return false;
-  const progress = (snap.data()?.progress ?? {}) as Record<string, unknown>;
-  return isPremiumAccessActive(progress, now);
+  const candidates = new Set<string>();
+  const add = (value: unknown) => {
+    const id = cleanStr(value);
+    if (id) candidates.add(id);
+  };
+
+  add(stableUid);
+  add(authUid);
+
+  if (authUid) {
+    const [linkSnap, byAuth] = await Promise.all([
+      db.collection('auth_links').doc(authUid).get().catch(() => null),
+      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
+    ]);
+    add(linkSnap?.data()?.stable_id);
+    byAuth?.docs?.forEach((doc) => add(doc.id));
+  }
+
+  const checked = new Set<string>();
+  for (;;) {
+    const ids = [...candidates].filter((id) => !checked.has(id));
+    if (ids.length === 0) break;
+    let premiumActive = false;
+    await Promise.all(ids.map(async (id) => {
+      checked.add(id);
+      const snap = await db.collection('users').doc(id).get().catch(() => null);
+      if (!snap?.exists) return;
+      const data = snap.data() ?? {};
+      add(data.canonicalStableId);
+      const progress = (data.progress ?? {}) as Record<string, unknown>;
+      if (isPremiumAccessActive(progress, now)) {
+        premiumActive = true;
+      }
+    }));
+    if (premiumActive) return true;
+  }
+
+  return false;
 }

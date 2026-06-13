@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
@@ -436,8 +436,18 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
   const formattedTime = energy < dynMaxRef.current && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs) : '';
 
+  const value = useMemo<EnergyContextValue>(() => ({
+    energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs,
+    timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
+    spendOne, spendAmount, reload, energyReady,
+  }), [
+    energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs,
+    timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
+    spendOne, spendAmount, reload, energyReady,
+  ]);
+
   return (
-    <EnergyContext.Provider value={{ energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, timeUntilNextMs, formattedTime, isUnlimited, restoringPremium, spendOne, spendAmount, reload, energyReady }}>
+    <EnergyContext.Provider value={value}>
       {children}
     </EnergyContext.Provider>
   );

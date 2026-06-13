@@ -662,9 +662,28 @@ const PREMIUM_PROGRESS_KEYS = new Set([
 // (нет аналога hasLocalPremiumSyncState). Локальная копия обновляется из ответа
 // CF и при restoreFromCloud — поэтому ключи ОБЯЗАНЫ оставаться в SYNC_KEYS.
 export const SERVER_OWNED_PROGRESS_KEYS = new Set([
+  'user_total_xp',
+  'user_prev_xp',
+  'user_level',
+  'weekly_xp',
+  'weekly_xp_period_start',
+  'week_points',
+  'week_points_v2',
+  'streak_count',
+  'last_active_date',
+  'streak_last_date',
   'collectibles_owned_v1',
   'collectibles_state_v1',
 ]);
+
+export const isServerOwnedProgressKey = (key: string): boolean => {
+  if (SERVER_OWNED_PROGRESS_KEYS.has(key)) return true;
+  if (/^lesson\d+_(?:best_score|pass_count|progress|cellIndex)$/.test(key)) return true;
+  if (/^level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
+  if (/^lesson_progress_v2::fr::(?:\d+|lesson\d+_(?:best_score|pass_count|progress|cellIndex)|unlocked_lessons)$/.test(key)) return true;
+  if (/^level_exams_v2::fr::level_exam_[A-Za-z0-9_-]+_(?:pct|best_pct|passed|pass_count|completed_at)$/.test(key)) return true;
+  return false;
+};
 
 const premiumValuePresent = (value: unknown): boolean => {
   if (value === null || value === undefined) return false;
@@ -1307,7 +1326,7 @@ async function doSyncToCloud(): Promise<void> {
       if (PREMIUM_PROGRESS_KEYS.has(key)) continue;
       // Server-owned ключи (Сокровищница): пишет только CF, исходящая запись
       // была бы отклонена rules и уронила бы весь set.
-      if (SERVER_OWNED_PROGRESS_KEYS.has(key)) continue;
+      if (isServerOwnedProgressKey(key)) continue;
       if (previousSnapshot[key] !== value) progressPatch[key] = value;
     }
 
@@ -1382,7 +1401,7 @@ async function doSyncToCloud(): Promise<void> {
     }
     const snapshotData: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
-      if (SERVER_OWNED_PROGRESS_KEYS.has(key)) continue;
+      if (isServerOwnedProgressKey(key)) continue;
       if (shouldSyncPremiumProgressField(key, value, data)) snapshotData[key] = value;
     }
     await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(() => {});
@@ -1740,7 +1759,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
       // и юзер не сможет завершить миграцию прогресса. См. progressHasNoPremiumWrites.
       else if (PREMIUM_PROGRESS_KEYS.has(key)) delete data[key];
       // Server-owned ключи (Сокровищница) — та же причина: пишет только CF.
-      else if (SERVER_OWNED_PROGRESS_KEYS.has(key)) delete data[key];
+      else if (isServerOwnedProgressKey(key)) delete data[key];
     }
 
     const now = Date.now();

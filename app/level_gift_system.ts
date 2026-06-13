@@ -1181,6 +1181,9 @@ const applyEnergyBonusN = async (
   return { success: true, energyBoostAlreadyActive };
 };
 
+const safeLevelGiftEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
 export const applyGift = async (
   gift: GiftDef,
   userName: string,
@@ -1210,13 +1213,22 @@ export const applyGift = async (
         break;
       }
       case 'xp_50':
-        await registerXP(50, 'achievement_reward', userName);
+        await registerXP(50, 'achievement_reward', userName, 'ru', undefined, {
+          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
+          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
+        });
         break;
       case 'xp_100':
-        await registerXP(100, 'achievement_reward', userName);
+        await registerXP(100, 'achievement_reward', userName, 'ru', undefined, {
+          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
+          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
+        });
         break;
       case 'xp_250':
-        await registerXP(250, 'achievement_reward', userName);
+        await registerXP(250, 'achievement_reward', userName, 'ru', undefined, {
+          eventId: ['achievement', 'level_gift', safeLevelGiftEventPart(opts?.studyTarget), safeLevelGiftEventPart(id), safeLevelGiftEventPart(today, 20)].join(':'),
+          payload: { giftId: id, surface: 'level_gift', studyTarget: opts?.studyTarget ?? null },
+        });
         break;
       case 'hint_1':
       case 'hint_3': {

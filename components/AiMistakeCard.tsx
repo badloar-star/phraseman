@@ -1,7 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { triLang, type Lang } from '../constants/i18n';
+import { compassIconSource } from '../constants/weeklyCompassIcons';
 import { useTheme } from './ThemeContext';
 
 export type AiMistakeCardState = 'idle' | 'loading' | 'ready' | 'error' | 'limit';
@@ -46,10 +48,11 @@ export default function AiMistakeCard({
   remaining,
   onExplain,
 }: AiMistakeCardProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const isBusy = state === 'loading';
   const isBlocked = state === 'limit';
   const canPress = !isBusy && !isBlocked;
+  const aiCompassIcon = compassIconSource(themeMode);
 
   const title = triLang(lang, {
     ru: 'Разобрать ошибку',
@@ -106,7 +109,7 @@ export default function AiMistakeCard({
     >
       <View style={styles.header}>
         <View style={[styles.icon, { backgroundColor: t.accent + '18' }]}>
-          <Ionicons name="sparkles-outline" size={18} color={t.accent} />
+          <Image source={aiCompassIcon} style={styles.iconImage} contentFit="contain" />
         </View>
         <View style={styles.headerText}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
@@ -173,6 +176,10 @@ const styles = StyleSheet.create({
     height: 34,
     justifyContent: 'center',
     width: 34,
+  },
+  iconImage: {
+    height: 30,
+    width: 30,
   },
   button: {
     alignItems: 'center',

@@ -39,6 +39,10 @@ import { levelExamKey } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { safeRouterBack } from './navigation_back';
+import { submitProgressEvent } from './progress_events_client';
+
+const safeLevelExamEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -747,6 +751,27 @@ export default function LevelExam() {
       }
       if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});
       const { newTier, prevTier, newPassCount } = await saveExamProgress(lvl, pct, studyTarget);
+      submitProgressEvent({
+        eventId: [
+          'exam',
+          safeLevelExamEventPart(studyTarget),
+          safeLevelExamEventPart(lvl),
+          String(attemptNumber),
+          'complete',
+        ].join(':'),
+        type: 'exam_complete',
+        payload: {
+          level: lvl,
+          studyTarget,
+          pct,
+          percent: pct,
+          passed,
+          score: correct,
+          total,
+          attemptNumber,
+          xpDelta: 0,
+        },
+      }).catch(() => {});
       setExamMedalTier(newTier);
       setExamPassCount(newPassCount);
       setMedalImproved(newTier !== prevTier && newTier !== 'none');

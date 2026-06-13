@@ -144,6 +144,17 @@ describe('DailyPhraseCard runtime locale wiring', () => {
     expect(source).toContain('styles.homeAdditionalSub, { color: chrome.sub, fontSize: Math.max(14, f.label) }]} numberOfLines={2}');
     expect(source).toContain('minHeight: 38');
   });
+
+  it('uses the phrases theme icon for Daily Phrase instead of a home-menu image from another topic', () => {
+    const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
+    const source = fs.readFileSync(componentPath, 'utf8');
+
+    expect(source).toContain("import { trainerThemeIconSource } from '../constants/trainerThemeIcons';");
+    expect(source).toContain("const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');");
+    expect(source).not.toContain('DAILY_PHRASE_IMAGES');
+    expect(source).not.toContain('home_menu/home-forest-daily-phrase.webp');
+    expect(source).not.toContain('home_menu/home-minimal-dark-daily-phrase.webp');
+  });
 });
 
 describe('Spanish Daily Phrase content coverage', () => {

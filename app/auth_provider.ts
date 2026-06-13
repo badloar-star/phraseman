@@ -40,9 +40,7 @@ import {
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
   ensureStableAuthLinkForStableId,
-  mergeStableAccountsViaServer,
 } from './cloud_sync';
-import { reserveName } from './firestore_leaderboard';
 import { loadShardsFromCloud } from './shards_system';
 import { logEvent, recordError } from './firebase';
 import { logAppCritical } from './app_health';
@@ -373,7 +371,7 @@ function getLinkedAuthFromCurrentUser(): LinkedAuth | null {
     provider: authProv,
     providerUid,
     email: u.email ?? null,
-    displayName: u.displayName ?? null,
+    displayName: null,
     linkedAt,
     lastSignInAt,
     devicePlatform,
@@ -402,7 +400,7 @@ export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
     if (doc == null) return fromAuth();
     if (!doc.exists) return fromAuth();
     const linked = doc.data()?.linkedAuth as LinkedAuth | undefined;
-    if (linked?.provider) return linked;
+    if (linked?.provider) return { ...linked, displayName: null };
     return fromAuth();
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] getLinkedAuthInfo failed', e);
@@ -748,15 +746,10 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   const now = Date.now();
   const devicePlatform: 'ios' | 'android' | 'web' =
     Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web';
+  const providerDisplayName: string | null = null;
 
   const linkRef = db.collection('auth_links').doc(firebaseProviderUid);
   const usersRef = db.collection('users');
-
-  const localAuthLinked = await ensureStableAuthLinkForStableId(localStableId);
-  if (!localAuthLinked) {
-    captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_failed');
-    return { result: 'error', error: 'auth_link_failed' };
-  }
 
   let remoteStableId: string | null = null;
   try {
@@ -778,36 +771,27 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   let outcome: Outcome;
 
   if (remoteStableId) {
-    // ── Cross-device merge: provider already maps to a DIFFERENT stable_id. ────
-    // Раньше здесь крутилась клиентская транзакция, читавшая users/{remoteStableId};
-    // это запрещено Firestore rules (read требует firebaseAuthUid == auth.uid у
-    // ДРУГОГО устройства) → транзакция падала → merge не происходил → ДВА аккаунта.
-    // Теперь слияние делает Cloud Function authMergeStableAccounts (Admin SDK,
-    // обходит правила, политика «лучшее по каждому полю», premium/VIP сохраняются).
-    const merge = await mergeStableAccountsViaServer(localStableId, remoteStableId);
-    if (!merge || !merge.ok || !merge.canonicalStableId) {
-      // Серверный merge недоступен/упал — НЕ плодим третий профиль и НЕ свапаем
-      // stable_id вслепую. Лучше явная ошибка входа, чем потеря/дублирование данных.
-      captureAuthSignInFailure(provider, 'merge', 'server_merge_failed');
-      return { result: 'error', error: 'merge_failed' };
+    // Provider is already linked to another stable_id. This is the normal
+    // returning-user/new-device path. Do not try to relink the local anonymous
+    // stable_id first: authEnsureStableLink correctly rejects that as
+    // stable_id_mismatch because auth_links/{providerUid} points to remoteStableId.
+    const remoteAuthLinked = await ensureStableAuthLinkForStableId(remoteStableId);
+    if (!remoteAuthLinked) {
+      captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed');
+      return { result: 'error', error: 'auth_link_failed' };
+    }
+    outcome = {
+      kind: 'merged_swap_to_remote',
+      remoteStableId,
+      mergedFromStableId: localStableId,
+    };
+  } else {
+    const localAuthLinked = await ensureStableAuthLinkForStableId(localStableId);
+    if (!localAuthLinked) {
+      captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_failed');
+      return { result: 'error', error: 'auth_link_failed' };
     }
 
-    const canonical = merge.canonicalStableId.trim();
-    if (canonical === localStableId) {
-      // Данные remote влиты в локальный аккаунт на сервере — просто остаёмся здесь.
-      outcome = merge.mergedFromStableId
-        ? { kind: 'merged_keep_local', mergedFromStableId: merge.mergedFromStableId }
-        : { kind: 'linked_existing' };
-    } else {
-      // Canonical — другой stable_id (обычно remote): свапаем на него.
-      outcome = {
-        kind: 'merged_swap_to_remote',
-        remoteStableId: canonical,
-        mergedFromStableId: merge.mergedFromStableId ?? localStableId,
-      };
-    }
-    // Падаем в общий post-transaction обработчик ниже (swap/restore/RevenueCat).
-  } else {
     try {
       outcome = await db.runTransaction(async (tx: any) => {
       const linkSnap = await tx.get(linkRef);
@@ -819,7 +803,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           tx.update(linkRef, {
             stable_id: localStableId,
             email: firebaseEmail,
-            displayName: cred.displayName,
+            displayName: providerDisplayName,
             lastSignInAt: now,
             devicePlatform,
           });
@@ -838,7 +822,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           if (!localUserSnap.exists) {
             tx.update(linkRef, {
               email: firebaseEmail,
-              displayName: cred.displayName,
+              displayName: providerDisplayName,
               lastSignInAt: now,
               devicePlatform,
             });
@@ -846,7 +830,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
               provider,
               providerUid: firebaseProviderUid,
               email: firebaseEmail,
-              displayName: cred.displayName,
+              displayName: providerDisplayName,
               linkedAt: now,
               lastSignInAt: now,
               devicePlatform,
@@ -860,7 +844,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           }
           tx.update(linkRef, {
             email: firebaseEmail,
-            displayName: cred.displayName,
+            displayName: providerDisplayName,
             lastSignInAt: now,
             devicePlatform,
           });
@@ -883,7 +867,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           tx.update(linkRef, {
             stable_id: localStableId,
             email: firebaseEmail,
-            displayName: cred.displayName,
+            displayName: providerDisplayName,
             lastSignInAt: now,
             devicePlatform,
           });
@@ -892,7 +876,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
             provider,
             providerUid: firebaseProviderUid,
             email: firebaseEmail,
-            displayName: cred.displayName,
+            displayName: providerDisplayName,
             linkedAt: now,
             lastSignInAt: now,
             devicePlatform,
@@ -913,7 +897,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           provider,
           providerUid: firebaseProviderUid,
           email: firebaseEmail,
-          displayName: cred.displayName,
+          displayName: providerDisplayName,
           linkedAt: now,
           lastSignInAt: now,
           devicePlatform,
@@ -923,7 +907,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           // Remote (existing) wins — клиент после транзакции свапнет stable_id
           tx.update(linkRef, {
             email: firebaseEmail,
-            displayName: cred.displayName,
+            displayName: providerDisplayName,
             lastSignInAt: now,
             devicePlatform,
           });
@@ -948,7 +932,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         tx.update(linkRef, {
           stable_id: localStableId,
           email: firebaseEmail,
-          displayName: cred.displayName,
+          displayName: providerDisplayName,
           lastSignInAt: now,
           devicePlatform,
         });
@@ -969,7 +953,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         provider,
         stable_id: localStableId,
         email: firebaseEmail,
-        displayName: cred.displayName,
+        displayName: providerDisplayName,
         linkedAt: now,
         lastSignInAt: now,
         devicePlatform,
@@ -981,7 +965,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
         provider,
         providerUid: firebaseProviderUid,
         email: firebaseEmail,
-        displayName: cred.displayName,
+        displayName: providerDisplayName,
         linkedAt: now,
         lastSignInAt: now,
         devicePlatform,
@@ -1038,7 +1022,6 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       await loadShardsFromCloud().catch(() => {});
 
       // Если в облаке тоже автоген/пусто — попробуем дать человеческий ник из Google.
-      await maybeAdoptDisplayNameAsUserName(cred.displayName).catch(() => {});
       await markOnboardedAfterSignIn();
 
       logAuthEvent('auth_signin_merged', {
@@ -1051,7 +1034,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       return {
         result: 'merged_devices',
         email: firebaseEmail,
-        displayName: cred.displayName,
+        displayName: providerDisplayName,
         mergedFromStableId: outcome.mergedFromStableId,
       };
     } catch (e: any) {
@@ -1066,7 +1049,6 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   if (outcome.kind === 'merged_keep_local') {
     // Local выиграл → попробуем подставить человеческий ник из Google если локальный — автоген,
     // ПОТОМ синкаем (чтобы новый ник тоже ушёл в облако одним пакетом).
-    await maybeAdoptDisplayNameAsUserName(cred.displayName).catch(() => {});
     await markOnboardedAfterSignIn();
     await syncRevenueCatAfterAuthLink();
     syncToCloud().catch(() => {});
@@ -1079,7 +1061,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     return {
       result: 'merged_devices',
       email: firebaseEmail,
-      displayName: cred.displayName,
+      displayName: providerDisplayName,
       mergedFromStableId: outcome.mergedFromStableId,
     };
   }
@@ -1098,7 +1080,6 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     // Шарды отдельным каналом (users/{uid}.shards): подтягиваем под актуальный stable_id.
     await loadShardsFromCloud().catch(() => {});
     // Если в облаке/локально оказался автоген — попробуем подставить displayName из Google.
-    await maybeAdoptDisplayNameAsUserName(cred.displayName).catch(() => {});
     await markOnboardedAfterSignIn();
     await syncRevenueCatAfterAuthLink();
     if (await hasMeaningfulLocalProgress()) {
@@ -1109,7 +1090,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     logAuthEvent('auth_signin_linked', { provider });
     scheduleReferralApplyAfterLink();
     emitAuthProviderLinked();
-    return { result: 'linked_existing', email: firebaseEmail, displayName: cred.displayName };
+    return { result: 'linked_existing', email: firebaseEmail, displayName: providerDisplayName };
   }
 
   // outcome.kind === 'created_new'
@@ -1122,7 +1103,6 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   // Шарды: для нового аккаунта в облаке их ещё нет — функция просто вернётся,
   // но лучше явный вызов для симметрии и на случай pre-seeding из бэкенда.
   await loadShardsFromCloud().catch(() => {});
-  await maybeAdoptDisplayNameAsUserName(cred.displayName).catch(() => {});
   await markOnboardedAfterSignIn();
   await syncRevenueCatAfterAuthLink();
   if (await hasMeaningfulLocalProgress()) {
@@ -1133,44 +1113,13 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   logAuthEvent('auth_signin_created', { provider });
   scheduleReferralApplyAfterLink();
   emitAuthProviderLinked();
-  return { result: 'created_new', email: firebaseEmail, displayName: cred.displayName };
+  return { result: 'created_new', email: firebaseEmail, displayName: providerDisplayName };
 }
 
-/**
- * Распознавание авто-сгенерированного ника из онбординга
- * (паттерн «<Слово><4 цифры>», слово из AUTO_NAME_WORDS в components/onboarding.tsx).
- * Если ник руками введён в онбординге — пользователю он значим, не трогаем.
- */
-const AUTO_NAME_WORDS_LOWER = new Set([
-  'syntax', 'lexis', 'prose', 'verse', 'quill', 'glyph', 'script', 'riddle',
-  'fable', 'rhyme', 'serif', 'sonnet', 'clause', 'motif', 'trope', 'parable',
-  'thesis', 'corpus', 'lore', 'rune', 'lyric', 'gloss', 'tome', 'epics',
-  'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'theta', 'iota',
-  'kappa', 'lambda', 'sigma', 'omega', 'phi', 'psi', 'tau', 'rho',
-  'axiom', 'cipher', 'sage', 'totem', 'omen', 'nexus', 'prism', 'vector',
-  'quantum', 'ethos', 'logos', 'kairos', 'telos', 'aporia', 'datum',
-]);
-
-function isAutoGeneratedName(name: string): boolean {
-  const trimmed = name.trim();
-  if (!trimmed) return false;
-  const m = trimmed.match(/^([A-Z][a-z]+)(\d{4})$/);
-  if (!m) return false;
-  return AUTO_NAME_WORDS_LOWER.has(m[1].toLowerCase());
-}
-
-/**
- * После успешного sign-in считаем что юзер уже "onboarded" даже если он только что
- * создан (created_new). У него есть Google/Apple displayName → авто-ник + язык
- * интерфейса уже выбран на устройстве. Показывать классический онбординг повторно
- * (привет/выбор уровня/имя) не нужно.
- *
- * Особенно важно для flow "Сменить аккаунт" (Variant 2 в settings.tsx):
- * там мы стираем onboarding_done из локалки. Без этой пометки при следующем
- * запуске app покажется онбординг.
- */
 async function markOnboardedAfterSignIn(): Promise<void> {
   try {
+    const userName = (await AsyncStorage.getItem('user_name'))?.trim();
+    if (!userName) return;
     const cur = await AsyncStorage.getItem('onboarding_done');
     if (cur !== '1') {
       await AsyncStorage.setItem('onboarding_done', '1');
@@ -1180,65 +1129,6 @@ async function markOnboardedAfterSignIn(): Promise<void> {
   }
 }
 
-/**
- * После успешного sign-in: если у юзера локально пустой ник или
- * авто-сгенерированный «Psi5552»-стиль — попробуем подставить displayName из Google/Apple
- * как обычный человеческий ник (только первое слово, очищенное от спецсимволов,
- * не длиннее 20 символов; коллизии ника решаются числовым суффиксом).
- *
- * Не перезаписывает ник, который пользователь явно вводил руками в онбординге.
- */
-async function maybeAdoptDisplayNameAsUserName(displayName: string | null): Promise<void> {
-  if (!CLOUD_SYNC_ENABLED) return;
-  if (!displayName) return;
-  const firstWord = displayName.trim().split(/\s+/)[0] ?? '';
-  // Оставляем латиницу/кириллицу/цифры/_; всё прочее (точки, скобки, эмодзи) убираем.
-  const cleaned = firstWord.replace(/[^A-Za-zА-Яа-яЇїІіЄєҐґЁё0-9_]/g, '').slice(0, 18);
-  if (cleaned.length < 2) return;
-
-  const oldNameRaw = await AsyncStorage.getItem('user_name');
-  const oldName = (oldNameRaw ?? '').trim();
-  if (oldName && !isAutoGeneratedName(oldName)) return;
-
-  let candidate = cleaned;
-  for (let i = 0; i < 5; i++) {
-    let result: 'ok' | 'taken' | 'error';
-    try {
-      result = await reserveName(candidate, oldName);
-    } catch {
-      return;
-    }
-    if (result === 'ok') {
-      try {
-        await AsyncStorage.setItem('user_name', candidate);
-        await syncToCloud({ forceNow: true });
-        logAuthEvent('auth_user_name_adopted', {
-          had_old: oldName ? 1 : 0,
-          attempt: i,
-          len: candidate.length,
-        });
-      } catch { /* ignore */ }
-      return;
-    }
-    if (result === 'error') return;
-    // 'taken' → пробуем суффикс «Maksym2», «Maksym3», ...
-    const suffix = String(2 + i);
-    const maxLen = Math.max(2, 20 - suffix.length);
-    candidate = `${cleaned.slice(0, maxLen)}${suffix}`;
-  }
-}
-
-/**
- * Признак что у локального юзера есть значимый прогресс.
- * Используется чтобы не запускать syncToCloud сразу после login на переустановленном
- * устройстве, когда AsyncStorage пуст и любой sync затрёт облако null\'ами.
- *
- * Считаем что есть прогресс если:
- *   • user_total_xp > 0, ИЛИ
- *   • streak_count > 0, ИЛИ
- *   • unlocked_lessons непустой массив для English или French, ИЛИ
- *   • user_name установлен (не пустая строка).
- */
 async function hasMeaningfulLocalProgress(): Promise<boolean> {
   try {
     const [[, xp], [, streak], [, englishLessons], [, frenchLessons], [, name]] = await AsyncStorage.multiGet([

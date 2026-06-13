@@ -59,6 +59,9 @@ import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from '.
 
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 
+const safeVocabularyEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
 function parseLessonWordCounts(raw: string | null, lessonId: number): Record<string, number> {
   if (!raw) return {};
   try {
@@ -2832,7 +2835,23 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         const xpThisStep = vocabularyStepBaseXP(prevCount);
         if (xpThisStep > 0) {
           setTotalPts(p => p + xpThisStep);
-          void registerXP(xpThisStep, 'vocabulary_learned', userName, lang)
+          void registerXP(xpThisStep, 'vocabulary_learned', userName, lang, lessonId, {
+            eventId: [
+              'vocabulary',
+              safeVocabularyEventPart(studyTarget),
+              String(lessonId),
+              safeVocabularyEventPart(wordEn, 50),
+              String(newCount),
+            ].join(':'),
+            payload: {
+              lessonId,
+              studyTarget,
+              word: wordEn,
+              previousCount: prevCount,
+              newCount,
+              completed: wordJustCompleted,
+            },
+          })
             .then((result) => {
               if (wordJustCompleted) showXpToast(result.finalDelta);
             })
@@ -2854,8 +2873,13 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
               // Осколок за завершение раздела слов (единоразово)
               AsyncStorage.getItem(wordsShardGrantKey).then(done => {
                 if (!done) {
-                  addShards('lesson_completed').catch(() => {});
-                  AsyncStorage.setItem(wordsShardGrantKey, '1').catch(() => {});
+                  addShards('lesson_completed')
+                    .then(n => {
+                      if (n > 0) {
+                        AsyncStorage.setItem(wordsShardGrantKey, '1').catch(() => {});
+                      }
+                    })
+                    .catch(() => {});
                 }
               }).catch(() => {});
               return;

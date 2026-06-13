@@ -1,0 +1,12 @@
+{
+  "slide": 1,
+  "file": "slide_01.png",
+  "title": "Английский есть.\nОтвета нет.",
+  "body": "Ты всё понял, но рот не запускается. Это не тупость. Это отсутствие готового первого хода.",
+  "hero_object": "orb",
+  "text_safe_zone_px": 76,
+  "renderer": "local-svg-sharp-pseudo-3d",
+  "palette": "aurora-lime-cobalt",
+  "style_mode": "Emergence",
+  "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D orb object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Английский есть. Ответа нет.\" Body: \"Ты всё понял, но рот не запускается. Это не тупость. Это отсутствие готового первого хода.\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 1 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+}

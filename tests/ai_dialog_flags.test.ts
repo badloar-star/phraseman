@@ -1,4 +1,4 @@
-import { isAiDialogEnabled } from '../app/ai_dialog_flags';
+import { FREE_DIALOGS_PER_DAY_DEFAULT, isAiDialogEnabled } from '../app/ai_dialog_flags';
 
 describe('ai_dialog_flags', () => {
   const originalValue = process.env.EXPO_PUBLIC_AI_DIALOG_ENABLED;
@@ -17,5 +17,9 @@ describe('ai_dialog_flags', () => {
 
     process.env.EXPO_PUBLIC_AI_DIALOG_ENABLED = 'false';
     expect(isAiDialogEnabled()).toBe(false);
+  });
+
+  it('defaults free AI dialogue UX allowance to 10 per day', () => {
+    expect(FREE_DIALOGS_PER_DAY_DEFAULT).toBe(10);
   });
 });

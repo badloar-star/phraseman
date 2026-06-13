@@ -5,7 +5,7 @@ import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
-import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
+import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota } from './openai_dialog_model_config';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -28,9 +28,6 @@ const MAX_HISTORY_TURNS = 8;
 const MAX_OUTPUT_TOKENS = 200;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
-
-const FREE_DAILY_CAP = 1;
-const PREMIUM_DAILY_CAP = 100;
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
@@ -128,6 +125,7 @@ async function enforceRateLimit(authUid: string, stableUid: string): Promise<voi
     const count = Number(data.count ?? 0);
     const sameWindow = now - windowStartMs < WINDOW_MS;
     if (sameWindow && count >= MAX_PER_WINDOW) {
+      console.warn('premium_dialog rejected', { reason: 'dialog_rate_limited' });
       throw new HttpsError('resource-exhausted', 'dialog_rate_limited');
     }
     tx.set(ref, {
@@ -144,10 +142,14 @@ async function enforceRateLimit(authUid: string, stableUid: string): Promise<voi
  * Daily quota — SERVER is the source of truth (client gate is bypassable).
  * Returns remaining quota after consuming one.
  */
-async function enforceDailyQuota(authUid: string, stableUid: string, isPremium: boolean): Promise<number> {
+async function enforceDailyQuota(
+  authUid: string,
+  stableUid: string,
+  isPremium: boolean,
+  dailyCap: number,
+): Promise<number> {
   const db = admin.firestore();
   const now = Date.now();
-  const dailyCap = isPremium ? PREMIUM_DAILY_CAP : FREE_DAILY_CAP;
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
   return db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
@@ -155,17 +157,39 @@ async function enforceDailyQuota(authUid: string, stableUid: string, isPremium: 
     const fresh = now >= resetAtMs;
     const used = fresh ? 0 : Number(data.dailyCount ?? 0);
     if (used >= dailyCap) {
+      console.warn('premium_dialog rejected', {
+        reason: isPremium ? 'dialog_premium_cap' : 'dialog_free_limit',
+        isPremium,
+        used,
+        dailyCap,
+      });
       throw new HttpsError('resource-exhausted', isPremium ? 'dialog_premium_cap' : 'dialog_free_limit');
     }
     tx.set(ref, {
       authUid,
       stableUid,
       isPremium,
+      dailyCap,
+      quotaTier: isPremium ? 'premium' : 'free',
       dailyCount: used + 1,
       resetAtMs: fresh ? startOfNextUtcDay(now) : resetAtMs,
       updatedAtMs: now,
     }, { merge: true });
     return dailyCap - (used + 1);
+  });
+}
+
+async function releaseDailyQuota(authUid: string, stableUid: string): Promise<void> {
+  const db = admin.firestore();
+  const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const dailyCount = Number(data.dailyCount ?? 0);
+    if (dailyCount <= 0) return;
+    tx.set(ref, {
+      dailyCount: dailyCount - 1,
+      updatedAtMs: Date.now(),
+    }, { merge: true });
   });
 }
 
@@ -244,35 +268,47 @@ export const premiumDialogSend = onCall({
   maxInstances: 20,
   secrets: [OPENAI_API_KEY],
 }, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  if (!request.auth?.uid) {
+    console.warn('premium_dialog rejected', { reason: 'auth_required' });
+    throw new HttpsError('unauthenticated', 'auth_required');
+  }
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
-  if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
+  if (!apiKey) {
+    console.error('premium_dialog rejected', { reason: 'openai_key_missing' });
+    throw new HttpsError('failed-precondition', 'openai_key_missing');
+  }
 
   const data = (request.data ?? {}) as PremiumDialogRequest;
 
   // MVP-1: scenario (роль-ролёвка) ИЛИ companion (открытый разговор-друг + память).
   const mode = text(data.mode, 20) || 'scenario';
   if (mode !== 'scenario' && mode !== 'companion') {
+    console.warn('premium_dialog rejected', { reason: 'unsupported_mode', mode });
     throw new HttpsError('invalid-argument', 'unsupported_mode');
   }
 
   const cefr = asCefr(data.cefr);
   const userText = text(data.userText, MAX_USER_TEXT);
-  if (!userText) throw new HttpsError('invalid-argument', 'user_text_required');
+  if (!userText) {
+    console.warn('premium_dialog rejected', { reason: 'user_text_required', mode });
+    throw new HttpsError('invalid-argument', 'user_text_required');
+  }
 
   const db = admin.firestore();
   const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);
+  const dialogQuota = await resolveConfiguredDialogQuota(db);
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
   // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
   // free-юзер прислал бы isPremium:true и получил премиум-квоту (100/день
   // вместо 1/день) — ×100 к дневному бюджету OpenAI на одного абьюзера.
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
 
   // Limits BEFORE the paid API call.
   await enforceRateLimit(authUid, stableUid);
-  const remaining = await enforceDailyQuota(authUid, stableUid, isPremium);
+  const dailyCap = isPremium ? dialogQuota.premiumDailyReplies : dialogQuota.freeDailyReplies;
+  const remaining = await enforceDailyQuota(authUid, stableUid, isPremium, dailyCap);
 
   const systemPrompt =
     mode === 'companion'
@@ -285,29 +321,61 @@ export const premiumDialogSend = onCall({
     { role: 'user', content: userText },
   ];
 
-  const response = await fetch(OPENAI_CHAT_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: dialogModel,
-      messages,
-      max_tokens: MAX_OUTPUT_TOKENS,
-      temperature: 0.8,
-    }),
-  });
+  let json: OpenAIChatResponse;
+  let assistantMessage: string;
+  try {
+    const response = await fetch(OPENAI_CHAT_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: dialogModel,
+        messages,
+        max_tokens: MAX_OUTPUT_TOKENS,
+        temperature: 0.8,
+      }),
+    });
 
-  if (!response.ok) {
-    const detail = await response.text().catch(() => '');
-    console.error('premium_dialog chat failed', response.status, detail.slice(0, 500));
+    if (!response.ok) {
+      const detail = await response.text().catch(() => '');
+      console.error('premium_dialog chat failed', {
+        status: response.status,
+        model: dialogModel,
+        mode,
+        scenarioId: text(data.scenarioId, 80) || null,
+        detail: detail.slice(0, 500),
+      });
+      throw new HttpsError('unavailable', 'dialog_provider_failed');
+    }
+
+    json = (await response.json()) as OpenAIChatResponse;
+    assistantMessage = text(json.choices?.[0]?.message?.content, 1500);
+    if (!assistantMessage) {
+      console.error('premium_dialog empty reply', {
+        model: dialogModel,
+        mode,
+        scenarioId: text(data.scenarioId, 80) || null,
+      });
+      throw new HttpsError('unavailable', 'dialog_empty_reply');
+    }
+  } catch (error) {
+    await releaseDailyQuota(authUid, stableUid).catch((releaseError) => {
+      console.error('premium_dialog quota release failed', {
+        reason: error instanceof HttpsError ? error.message : 'provider_exception',
+        releaseError: String((releaseError as Error)?.message ?? releaseError).slice(0, 300),
+      });
+    });
+    if (error instanceof HttpsError) throw error;
+    console.error('premium_dialog provider exception', {
+      model: dialogModel,
+      mode,
+      scenarioId: text(data.scenarioId, 80) || null,
+      error: String((error as Error)?.message ?? error).slice(0, 500),
+    });
     throw new HttpsError('unavailable', 'dialog_provider_failed');
   }
-
-  const json = (await response.json()) as OpenAIChatResponse;
-  const assistantMessage = text(json.choices?.[0]?.message?.content, 1500);
-  if (!assistantMessage) throw new HttpsError('unavailable', 'dialog_empty_reply');
 
   const usage = json.usage ?? {};
   await db.collection(BILLING_COLLECTION).doc().set({

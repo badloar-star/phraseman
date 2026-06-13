@@ -123,13 +123,44 @@ function isPremiumAccessActive(progress, now = Date.now()) {
  * Читает users/{stableUid}.progress и возвращает реальный премиум-статус.
  * Источник правды для серверного гейтинга ИИ-фич. Никогда не доверяй телу запроса.
  */
-async function resolvePremiumAccess(db, stableUid, now = Date.now()) {
-    if (!stableUid)
-        return false;
-    const snap = await db.collection('users').doc(stableUid).get();
-    if (!snap.exists)
-        return false;
-    const progress = (snap.data()?.progress ?? {});
-    return isPremiumAccessActive(progress, now);
+async function resolvePremiumAccess(db, stableUid, now = Date.now(), authUid) {
+    const candidates = new Set();
+    const add = (value) => {
+        const id = cleanStr(value);
+        if (id)
+            candidates.add(id);
+    };
+    add(stableUid);
+    add(authUid);
+    if (authUid) {
+        const [linkSnap, byAuth] = await Promise.all([
+            db.collection('auth_links').doc(authUid).get().catch(() => null),
+            db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
+        ]);
+        add(linkSnap?.data()?.stable_id);
+        byAuth?.docs?.forEach((doc) => add(doc.id));
+    }
+    const checked = new Set();
+    for (;;) {
+        const ids = [...candidates].filter((id) => !checked.has(id));
+        if (ids.length === 0)
+            break;
+        let premiumActive = false;
+        await Promise.all(ids.map(async (id) => {
+            checked.add(id);
+            const snap = await db.collection('users').doc(id).get().catch(() => null);
+            if (!snap?.exists)
+                return;
+            const data = snap.data() ?? {};
+            add(data.canonicalStableId);
+            const progress = (data.progress ?? {});
+            if (isPremiumAccessActive(progress, now)) {
+                premiumActive = true;
+            }
+        }));
+        if (premiumActive)
+            return true;
+    }
+    return false;
 }
 //# sourceMappingURL=premium_status.js.map

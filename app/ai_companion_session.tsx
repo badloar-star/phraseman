@@ -1,10 +1,10 @@
 /**
- * Голосовой ИИ-компаньон — открытый разговор с Тео (MVP-1, Wave 2).
+ * Голосовой ИИ-компаньон — открытый разговор с Компасом (MVP-1, Wave 2).
  * План: docs/reports/ai_companion_mvp1_plan_2026-06-10.md
  *
  * Отличия от сценарного ai_dialog_session.tsx:
  * - режим 'companion' (открытый разговор, без роли/цели сценария);
- * - Тео «знает» ученика — память (профиль + слабые слова из SRS) собирается
+ * - Компас «знает» ученика — память (профиль + слабые слова из SRS) собирается
  *   на первом ходу через buildCompanionMemory и уходит в premium_dialog;
  * - НЕТ teaser-обрыва на N ходов (это друг, а не задание) — лимит держит
  *   free-счётчик диалогов/день, как и раньше;
@@ -20,7 +20,6 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
@@ -29,15 +28,23 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
-import { callPremiumDialogSend, type DialogChatTurn, type DialogMemory } from './ai_dialog_client';
+import {
+  callPremiumDialogSend,
+  getPremiumDialogErrorMessage,
+  type DialogChatTurn,
+  type DialogMemory,
+} from './ai_dialog_client';
 import { buildCompanionMemory } from './ai_companion_memory';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
 import { getFreeDialogsLeftToday, markFreeDialogUsed } from './dialogs_limit_session';
 import { trackEvent } from './analytics';
+import { triLang } from '../constants/i18n';
 
 const DEFAULT_CEFR = 'A2';
 const LOCAL_COMPANION_GREETING = 'Let\'s practice in English! What did you do today?';
@@ -51,6 +58,7 @@ export default function AiCompanionSession() {
   const { theme: t, f } = useTheme();
   const { hasPremiumAccess } = usePremium();
   const { studyTarget } = useStudyTarget();
+  const { lang } = useLang();
   const router = useRouter();
   const { speak } = useAudio();
 
@@ -118,13 +126,16 @@ export default function AiCompanionSession() {
         const res = await sendToTheo(trimmed, history);
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
         if (!hasPremiumAccess && exchangeIndex === 1) void markFreeDialogUsed();
-      } catch {
-        setMessages((prev) => [...prev, { role: 'assistant', text: 'Связь прервалась. Попробуй ещё раз.' }]);
+      } catch (error) {
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', text: getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }) },
+        ]);
       } finally {
         setSending(false);
       }
     },
-    [sending, messages.length, hasPremiumAccess, userTurns, buildHistory, sendToTheo, router],
+    [sending, messages.length, hasPremiumAccess, userTurns, buildHistory, sendToTheo, router, lang],
   );
 
   // Локальное приветствие: OpenAI зовём только после первой реплики пользователя.
@@ -172,7 +183,7 @@ export default function AiCompanionSession() {
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body }} numberOfLines={1}>
-            Свободный разговор
+            {triLang(lang, { ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre' })}
           </Text>
           <View style={{ width: 32 }} />
         </View>
@@ -256,7 +267,7 @@ export default function AiCompanionSession() {
                         }}
                         activeOpacity={0.6}
                         accessibilityRole="button"
-                        accessibilityLabel="Озвучить реплику"
+                        accessibilityLabel={triLang(lang, { ru: 'Озвучить реплику', uk: 'Озвучити репліку', es: 'Reproducir frase' })}
                         style={{
                           width: 44,
                           minHeight: 44,
@@ -276,9 +287,12 @@ export default function AiCompanionSession() {
             })}
 
             {sending && (
-              <View style={{ paddingVertical: 10, alignItems: 'flex-start' }}>
-                <ActivityIndicator color={t.textSecond} />
-              </View>
+              <AiTypingBubble
+                bubbleColor={t.bgCard}
+                borderColor={t.border}
+                dotColor={t.accent}
+                glowColor={t.accent + '18'}
+              />
             )}
           </ScrollView>
 
@@ -310,7 +324,7 @@ export default function AiCompanionSession() {
                     }}
                     maxFontSizeMultiplier={1.2}
                   >
-                    Что можно спросить
+                    {triLang(lang, { ru: 'Что можно спросить', uk: 'Що можна запитати', es: 'Qué puedes preguntar' })}
                   </Text>
                   <Text
                     style={{
@@ -320,7 +334,11 @@ export default function AiCompanionSession() {
                     }}
                     maxFontSizeMultiplier={1.2}
                   >
-                    Спроси про фразу, прогресс или свой следующий шаг. Можно ответить Тео по-английски одной короткой фразой.
+                    {triLang(lang, {
+                      ru: 'Спроси про фразу, прогресс или свой следующий шаг. Можно ответить Компасу по-английски одной короткой фразой.',
+                      uk: 'Запитай про фразу, прогрес або свій наступний крок. Можна відповісти Компасу англійською однією короткою фразою.',
+                      es: 'Pregunta por una frase, tu progreso o el siguiente paso. También puedes responder a Compass en inglés con una frase corta.',
+                    })}
                   </Text>
                 </View>
               </View>
@@ -341,7 +359,11 @@ export default function AiCompanionSession() {
             <TextInput
               value={input}
               onChangeText={setInput}
-              placeholder="Спроси о фразе или прогрессе"
+              placeholder={triLang(lang, {
+                ru: 'Спроси о фразе или прогрессе',
+                uk: 'Запитай про фразу або прогрес',
+                es: 'Pregunta por una frase o tu progreso',
+              })}
               placeholderTextColor={t.textMuted}
               editable={!sending}
               onSubmitEditing={() => send(input)}

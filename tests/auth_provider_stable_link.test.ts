@@ -16,21 +16,24 @@ describe('auth provider stable-id linking', () => {
   const mergeSwapEnd = source.indexOf("if (outcome.kind === 'merged_keep_local')", mergeSwapStart);
   const mergeSwapSource = source.slice(mergeSwapStart, mergeSwapEnd);
 
-  test('signInWithProvider links the local stable id through the auth callable before Firestore transaction writes', () => {
+  test('signInWithProvider checks an existing provider link before relinking the local stable id', () => {
     expect(source).toContain('ensureStableAuthLinkForStableId');
+    expect(preTransactionSource).toMatch(/const linkedStableId = linkSnap\.exists \? linkSnap\.data\(\)\?\.stable_id : null/);
+    expect(preTransactionSource).toMatch(/ensureStableAuthLinkForStableId\(remoteStableId\)/);
     expect(preTransactionSource).toMatch(/ensureStableAuthLinkForStableId\(localStableId\)/);
+    expect(preTransactionSource.indexOf('const linkedStableId = linkSnap.exists')).toBeLessThan(
+      preTransactionSource.indexOf('ensureStableAuthLinkForStableId(localStableId)'),
+    );
   });
 
-  test('cross-device merge (different remote stable id) is delegated to the server CF, not a client transaction', () => {
-    // Root cause of the account-split bug: the client transaction read the OTHER
-    // device's users/{remoteStableId}, which Firestore rules deny → transaction
-    // failed → no merge → two accounts. The merge now runs server-side (Admin SDK)
-    // via authMergeStableAccounts, and the client only swaps to the canonical id.
-    expect(source).toContain('mergeStableAccountsViaServer(localStableId, remoteStableId)');
+  test('cross-device sign-in swaps to the provider-linked stable id before client transactions', () => {
+    // Root cause of this sign-in outage: auth_links/{providerUid} can already
+    // point at remoteStableId. Relinking localStableId first is then correctly
+    // rejected as stable_id_mismatch, so the app must swap to remoteStableId.
+    expect(preTransactionSource).toContain("captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed')");
+    expect(preTransactionSource).toContain("remoteStableId,\n      mergedFromStableId: localStableId");
     expect(cloudSyncSource).toContain('export async function mergeStableAccountsViaServer');
     expect(cloudSyncSource).toContain("'authMergeStableAccounts'");
-    // On a failed server merge we must NOT blindly swap / create a third profile.
-    expect(source).toContain("captureAuthSignInFailure(provider, 'merge', 'server_merge_failed')");
   });
 
   test('linkedAuth user patches carry firebaseAuthUid for Firestore owner rules', () => {

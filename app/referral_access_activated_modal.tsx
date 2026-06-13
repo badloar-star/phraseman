@@ -19,7 +19,7 @@ import {
 
 export interface ReferralAccessActivatedModalProps {
   visible: boolean;
-  /** Сколько дней полного доступа только что открылось (напр. 7, 14) */
+  /** Сколько дней полного доступа только что открылось у пригласившего */
   grantedDays: number;
   /** Сколько друзей выполнили условие и запустили начисление */
   friendsCount: number;
@@ -143,32 +143,43 @@ export function ReferralAccessActivatedModal({
   // Подзаголовок зависит от количества друзей
   const subtitleRu =
     friendsCount === 1
-      ? 'Твой друг прошёл первую сессию. Полный доступ — твой.'
-      : `${friendsCount} ${pluralFriendsRu(friendsCount)} прошли первую сессию. Полный доступ — твой.`;
+      ? 'Друг выполнил условие: установил приложение, ввёл ваш код и прошёл один урок полностью. Вы получили свои 7 дней.'
+      : `${friendsCount} ${pluralFriendsRu(friendsCount)} выполнили условие. Вы получили свои дни полного доступа.`;
 
   const subtitle = L(
     subtitleRu,
     friendsCount === 1
-      ? 'Твій друг пройшов першу сесію. Повний доступ — твій.'
-      : `${friendsCount} друзів пройшли першу сесію. Повний доступ — твій.`,
+      ? 'Друг виконав умову: встановив застосунок, ввів ваш код і повністю пройшов один урок. Ви отримали свої 7 днів.'
+      : `${friendsCount} друзів виконали умову. Ви отримали свої дні повного доступу.`,
     friendsCount === 1
-      ? 'Tu amigo completó la primera sesión. El acceso completo es tuyo.'
-      : `${friendsCount} amigos completaron la primera sesión. El acceso completo es tuyo.`,
+      ? 'Tu amigo cumplió la condición: instaló la app, introdujo tu código y completó una lección. Recibiste tus 7 días.'
+      : `${friendsCount} amigos cumplieron la condición. Recibiste tus días de acceso completo.`,
     friendsCount === 1
-      ? 'Seu amigo completou a primeira sessão. O acesso completo é seu.'
-      : `${friendsCount} amigos completaram a primeira sessão. O acesso completo é seu.`,
+      ? 'Seu amigo cumpriu a condição: instalou o app, inseriu seu código e concluiu uma lição. Você recebeu seus 7 dias.'
+      : `${friendsCount} amigos cumpriram a condição. Você recebeu seus dias de acesso completo.`,
     friendsCount === 1
-      ? 'Bạn bè của bạn đã hoàn thành buổi đầu tiên. Quyền truy cập đầy đủ là của bạn.'
-      : `${friendsCount} người bạn đã hoàn thành buổi đầu tiên. Quyền truy cập đầy đủ là của bạn.`,
+      ? 'Bạn của bạn đã hoàn thành điều kiện: cài ứng dụng, nhập mã và hoàn thành một bài học. Bạn đã nhận 7 ngày.'
+      : `${friendsCount} người bạn đã hoàn thành điều kiện. Bạn đã nhận ngày truy cập đầy đủ.`,
     friendsCount === 1
-      ? 'Temanmu menyelesaikan sesi pertama. Akses penuh milikmu.'
-      : `${friendsCount} teman menyelesaikan sesi pertama. Akses penuh milikmu.`,
+      ? 'Temanmu memenuhi syarat: memasang aplikasi, memasukkan kodemu, dan menyelesaikan satu pelajaran. Kamu mendapat 7 hari.'
+      : `${friendsCount} teman memenuhi syarat. Kamu mendapat hari akses penuh.`,
     friendsCount === 1
-      ? 'Arkadaşın ilk oturumu tamamladı. Tam erişim senin.'
-      : `${friendsCount} arkadaşın ilk oturumu tamamladı. Tam erişim senin.`,
+      ? 'Arkadaşın şartı tamamladı: uygulamayı kurdu, kodunu girdi ve bir dersi bitirdi. 7 gününü aldın.'
+      : `${friendsCount} arkadaşın şartı tamamladı. Tam erişim günlerini aldın.`,
     friendsCount === 1
-      ? 'Twój znajomy ukończył pierwszą sesję. Pełny dostęp jest twój.'
-      : `${friendsCount} znajomych ukończyło pierwszą sesję. Pełny dostęp jest twój.`,
+      ? 'Znajomy spełnił warunek: zainstalował aplikację, wpisał twój kod i ukończył jedną lekcję. Masz swoje 7 dni.'
+      : `${friendsCount} znajomych spełniło warunek. Masz swoje dni pełnego dostępu.`,
+  );
+
+  const splitRewardNote = L(
+    '7+7 не равно 14: друг получил свои 7 дней отдельно.',
+    '7+7 не дорівнює 14: друг отримав свої 7 днів окремо.',
+    '7+7 no son 14: tu amigo recibió sus 7 días por separado.',
+    '7+7 não vira 14: o amigo recebeu os 7 dias separadamente.',
+    '7+7 không phải 14: bạn của bạn đã nhận 7 ngày riêng.',
+    '7+7 bukan 14: temanmu mendapat 7 harinya secara terpisah.',
+    '7+7, 14 değildir: arkadaşın kendi 7 gününü ayrı aldı.',
+    '7+7 to nie 14: znajomy dostał swoje 7 dni osobno.',
   );
 
   // Строка срока действия (опционально)
@@ -236,6 +247,10 @@ export function ReferralAccessActivatedModal({
           {/* Подзаголовок */}
           <Text style={[styles.subtitle, { color: t.textSecond }]}>
             {subtitle}
+          </Text>
+
+          <Text style={[styles.until, { color: t.accent, fontWeight: '800' }]}>
+            {splitRewardNote}
           </Text>
 
           {/* Срок действия (если передан) */}

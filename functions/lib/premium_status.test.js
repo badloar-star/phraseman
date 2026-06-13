@@ -65,5 +65,66 @@ describe('premium_status — серверный источник правды п
             expect((0, premium_status_1.parseProgressMs)(null)).toBe(0);
         });
     });
+    describe('resolvePremiumAccess', () => {
+        function fakeDb(users, links = {}) {
+            return {
+                collection(name) {
+                    if (name === 'auth_links') {
+                        return {
+                            doc(id) {
+                                return {
+                                    async get() {
+                                        const data = links[id];
+                                        return { exists: !!data, data: () => data };
+                                    },
+                                };
+                            },
+                        };
+                    }
+                    return {
+                        doc(id) {
+                            return {
+                                async get() {
+                                    const data = users[id];
+                                    return { exists: !!data, data: () => data };
+                                },
+                            };
+                        },
+                        where(_field, _op, value) {
+                            return {
+                                limit(_n) {
+                                    return {
+                                        async get() {
+                                            const docs = Object.entries(users)
+                                                .filter(([, data]) => data.firebaseAuthUid === value)
+                                                .map(([id, data]) => ({ id, data: () => data }));
+                                            return { docs };
+                                        },
+                                    };
+                                },
+                            };
+                        },
+                    };
+                },
+            };
+        }
+        it('finds premium on the stable user linked to the current auth uid', async () => {
+            const db = fakeDb({
+                auth_1: { progress: {} },
+                stable_1: {
+                    firebaseAuthUid: 'auth_1',
+                    progress: { premium_plan: 'monthly', premium_expiry: '0' },
+                },
+            });
+            await expect((0, premium_status_1.resolvePremiumAccess)(db, 'auth_1', NOW, 'auth_1')).resolves.toBe(true);
+        });
+        it('follows auth_links when the callable resolved a legacy direct auth doc first', async () => {
+            const db = fakeDb({
+                auth_2: { progress: {} },
+                stable_2: { progress: { vip_active: 'true', vip_until: String(FUTURE) } },
+            }, { auth_2: { stable_id: 'stable_2' } });
+            await expect((0, premium_status_1.resolvePremiumAccess)(db, 'auth_2', NOW, 'auth_2')).resolves.toBe(true);
+        });
+    });
 });
 //# sourceMappingURL=premium_status.test.js.map

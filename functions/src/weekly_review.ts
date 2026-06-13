@@ -31,10 +31,10 @@ const BILLING_COLLECTION = 'weekly_review_billing';
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_HOUR = 10;
 
-// One generation per window (premium every 3 days, free every 7 days). Server is the
+// One generation per day for everyone. Server is the
 // source of truth — the client gate is bypassable.
-const PREMIUM_WINDOW_DAYS = 3;
-const FREE_WINDOW_DAYS = 7;
+const PREMIUM_WINDOW_DAYS = 1;
+const FREE_WINDOW_DAYS = 1;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 const MAX_OUTPUT_TOKENS = 700;
@@ -65,7 +65,7 @@ interface BriefingWeakCategory {
 interface WeeklyReviewBriefing {
   lang: SupportedLang;
   studyTarget: 'en' | 'fr';
-  windowDays: 3 | 7;
+  windowDays: number;
   totalMistakes: number;
   weakCategories: BriefingWeakCategory[];
   strongCategories: Array<{ category: string; label: string }>;
@@ -163,7 +163,7 @@ function sanitizeBriefing(raw: unknown): WeeklyReviewBriefing {
   return {
     lang: asLang(data.lang),
     studyTarget: data.studyTarget === 'fr' ? 'fr' : 'en',
-    windowDays: data.windowDays === 7 ? 7 : 3,
+    windowDays: clampInt(data.windowDays, 1, 365),
     totalMistakes: clampInt(data.totalMistakes, 0, 1000000),
     weakCategories,
     strongCategories: labelPairs(data.strongCategories, 2),
@@ -207,11 +207,11 @@ async function enforceRateLimit(authUid: string, stableUid: string): Promise<voi
 }
 
 /**
- * Window quota — premium can regenerate every 3 days, free every 7.
+ * Window quota — everyone can regenerate once per day.
  * SERVER is the source of truth (client gate is bypassable).
  *
  * Split into a READ-ONLY check (before the paid call) and a COMMIT (after a
- * successful generation). This avoids burning the 7/14-day window when OpenAI
+ * successful generation). This avoids burning the daily window when OpenAI
  * fails — otherwise one provider hiccup would lock the user out for a week.
  * Throws 'weekly_review_not_ready' with nextAllowedAtMs in details if too soon.
  */

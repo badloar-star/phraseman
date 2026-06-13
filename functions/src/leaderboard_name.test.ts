@@ -41,6 +41,15 @@ function makeDbStub(initial: LbStore = {}) {
     data: () => data,
   });
 
+  const readField = (data: LbDocData, path: string) => {
+    let cur: unknown = data;
+    for (const part of path.split('.')) {
+      if (cur == null || typeof cur !== 'object') return undefined;
+      cur = (cur as Record<string, unknown>)[part];
+    }
+    return cur;
+  };
+
   const docApi = (name: string, id: string) => ({
     id,
     __coll: name,
@@ -73,7 +82,7 @@ function makeDbStub(initial: LbStore = {}) {
         limit: () => ({
           get: async () => {
             const docs = Object.entries(store[name] ?? {})
-              .filter(([, data]) => data && op === '==' && (data as LbDocData)[field] === value)
+              .filter(([, data]) => data && op === '==' && readField(data as LbDocData, field) === value)
               .map(([id, data]) => snapFor(id, data));
             return { empty: docs.length === 0, docs };
           },
@@ -149,6 +158,17 @@ describe('nameReserve — atomic uniqueness', () => {
     expect(r2.status).toBe('taken');
   });
 
+  it('blocks a legacy live owner whose name is only in users.progress', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-owner': { firebaseAuthUid: 'auth-owner', progress: { user_name: 'Civi', user_name_lower: 'civi' } },
+        'stable-thief': { firebaseAuthUid: 'auth-thief' },
+      },
+    });
+    const res: any = await callableRun(nameReserve, { stableId: 'stable-thief', name: 'Civi' }, 'auth-thief');
+    expect(res.status).toBe('taken');
+  });
+
   it('lets the SAME owner re-reserve their own name (idempotent)', async () => {
     const { db } = makeDbStub({
       users: { 'stable-a': { firebaseAuthUid: 'auth-a' } },
@@ -156,6 +176,35 @@ describe('nameReserve — atomic uniqueness', () => {
     });
     const res: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Civi' }, 'auth-a');
     expect(res.status).toBe('ok');
+  });
+
+  it('writes the reserved name back to users progress and public profile', async () => {
+    const { db, store } = makeDbStub({
+      users: { 'stable-a': { firebaseAuthUid: 'auth-a' } },
+    });
+    const res: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Civi' }, 'auth-a');
+    expect(res.status).toBe('ok');
+    expect(store.users['stable-a']?.progress).toMatchObject({
+      user_name: 'Civi',
+      user_name_lower: 'civi',
+      nickname_changed_at: '1777000000000',
+    });
+    expect(store.public_profiles['stable-a']).toMatchObject({ uid: 'stable-a', name: 'Civi', nameLower: 'civi' });
+  });
+
+  it('blocks changing a reserved name again before 14 days', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: { user_name: 'Civi', user_name_lower: 'civi', nickname_changed_at: '1776999999000' },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+    const res: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Nova', oldName: 'Civi' }, 'auth-a');
+    expect(res.status).toBe('cooldown');
+    expect(res.nextChangeAt).toBe(1778209599000);
   });
 
   it('reclaims a name whose owner account is GONE (no users doc)', async () => {
@@ -206,6 +255,17 @@ describe('nameCheckAvailability — mirrors reservation logic', () => {
         'stable-me': { firebaseAuthUid: 'auth-me' },
       },
       name_index: { taken: { uid: 'stable-owner', name: 'Taken', nameLower: 'taken' } },
+    });
+    const res: any = await callableRun(nameCheckAvailability, { stableId: 'stable-me', name: 'Taken' }, 'auth-me');
+    expect(res.available).toBe(false);
+  });
+
+  it('reports a legacy users.progress-owned name as unavailable', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-owner': { firebaseAuthUid: 'auth-owner', progress: { user_name: 'Taken', user_name_lower: 'taken' } },
+        'stable-me': { firebaseAuthUid: 'auth-me' },
+      },
     });
     const res: any = await callableRun(nameCheckAvailability, { stableId: 'stable-me', name: 'Taken' }, 'auth-me');
     expect(res.available).toBe(false);

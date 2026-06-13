@@ -1,6 +1,6 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, TouchableOpacity, StyleSheet, StatusBar, Animated } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BlurView } from 'expo-blur';
@@ -118,6 +118,23 @@ const ENABLE_TAB_HIGHLIGHT_TRAVEL = true;
 const ENABLE_TAB_PRESS_LIFT = true;
 const TAB_ACTIVE_PILL_WIDTH = 48;
 const TAB_ACTIVE_PILL_HEIGHT = 36;
+const DEFERRED_TAB_PREWARM_FALLBACK_MS = 4000;
+// Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this directional,
+// native-driven mode so the tabbar can shrink/grow without per-pixel JS scaling.
+const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
+const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
+const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;
+const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
+const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
+const TAB_SCROLL_DIRECTION_EPSILON = 5;
+const TAB_SCROLL_COLLAPSE_MS = 220;
+const TAB_SCROLL_EXPAND_MS = 260;
+const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
+const TAB_DARK_CHROME_BG_ALPHA = 0.78;
+const TAB_DARK_CHROME_BORDER_ALPHA = 0.34;
+const TAB_DARK_ICON_MUTED_ALPHA = 0.74;
+const TAB_DARK_ACTIVE_BG_ALPHA = 0.18;
+const TAB_DARK_ACTIVE_BORDER_ALPHA = 0.32;
 
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
@@ -195,14 +212,22 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
   const isMinimal = false || themeMode === 'minimalDark';
-  /** Тон-подложка плавающей капсулы поверх blur: на тёмных темах — затемнение, на светлых — осветление.
-   *  Берём bgCard и подмешиваем альфу, чтобы стекло читалось, но контент за ним просвечивал. */
-  const tabPillTintBg = withAlpha(t.bgCard, 0.10);
+  /** Тон-подложка плавающей капсулы поверх blur: тёмный стеклянный chrome,
+   *  но с цветной обводкой/иконками от текущей темы интерфейса. */
+  const tabPillTintBg = withAlpha(t.bgCard, TAB_DARK_CHROME_BG_ALPHA);
+  const tabPillBorder = withAlpha(t.accent, TAB_DARK_CHROME_BORDER_ALPHA);
+  const tabIconMuted = withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
+  const tabActiveBg = withAlpha(t.accent, TAB_DARK_ACTIVE_BG_ALPHA);
+  const tabActiveBorder = withAlpha(t.accent, TAB_DARK_ACTIVE_BORDER_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
   const [tabPillWidth, setTabPillWidth] = useState(0);
   const tabHighlightAnim = useRef(new Animated.Value(activeIdx)).current;
   const tabPressAnim = useRef(new Animated.Value(0)).current;
+  const tabScrollProgress = useRef(new Animated.Value(0)).current;
+  const tabScrollCollapsedRef = useRef(false);
+  const tabScrollLastYRef = useRef(0);
+  const tabScrollLastToggleAtRef = useRef(0);
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   const firstContentReadyEmittedRef = useRef(false);
   // Press feedback must not drive selection; otherwise release can restart the highlight spring.
@@ -267,6 +292,71 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
     outputRange: [1, 0.92],
   });
 
+  useEffect(() => {
+    const scrollY = topFadeScroll?.scrollY;
+    if (!scrollY) return undefined;
+
+    const animateTo = (collapsed: boolean, immediate = false) => {
+      if (tabScrollCollapsedRef.current === collapsed) return;
+      const now = Date.now();
+      if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) {
+        return;
+      }
+      tabScrollLastToggleAtRef.current = now;
+      tabScrollCollapsedRef.current = collapsed;
+      tabScrollProgress.stopAnimation();
+      Animated.timing(tabScrollProgress, {
+        toValue: collapsed ? 1 : 0,
+        duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start();
+    };
+
+    const id = scrollY.addListener(({ value }) => {
+      const y = Math.max(0, value);
+      const delta = y - tabScrollLastYRef.current;
+      tabScrollLastYRef.current = y;
+
+      if (y <= TAB_SCROLL_EXPAND_TRIGGER_Y) {
+        animateTo(false, true);
+        return;
+      }
+
+      if (delta >= TAB_SCROLL_DIRECTION_EPSILON && y >= TAB_SCROLL_COLLAPSE_TRIGGER_Y) {
+        animateTo(true);
+        return;
+      }
+
+      if (delta <= -TAB_SCROLL_DIRECTION_EPSILON) {
+        animateTo(false);
+      }
+    });
+
+    return () => {
+      scrollY.removeListener(id);
+      tabScrollProgress.stopAnimation();
+    };
+  }, [activeIdx, tabScrollProgress, topFadeScroll?.scrollY]);
+
+  const tabScrollScale = tabScrollProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, TAB_SCROLL_COLLAPSED_SCALE],
+    extrapolate: 'clamp',
+  });
+
+  const tabScrollTranslateY = tabScrollProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, TAB_SCROLL_COLLAPSED_TRANSLATE_Y],
+    extrapolate: 'clamp',
+  });
+
+  const tabScrollOpacity = tabScrollProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, TAB_SCROLL_COLLAPSED_OPACITY],
+    extrapolate: 'clamp',
+  });
+
   const notifyFirstContentReady = useCallback(() => {
     if (!currentRouteIsTab || activeIdx === 0 || firstContentReadyEmittedRef.current) return;
     firstContentReadyEmittedRef.current = true;
@@ -314,26 +404,32 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                   marginHorizontal: ds.spacing.lg,
                   height: tabBarHeight,
                   borderRadius: tabBarHeight / 2,
+                  borderColor: tabPillBorder,
                   shadowColor: t.shadowDark,
-                  transform: [{ scale: tabPillPressScale }],
+                  opacity: tabScrollOpacity,
+                  transform: [
+                    { translateY: tabScrollTranslateY },
+                    { scale: tabScrollScale },
+                    { scale: tabPillPressScale },
+                  ],
                 },
               ]}
             >
               <BlurView
                 intensity={isMinimal ? 96 : 100}
-                tint={statusBarLight ? 'dark' : 'light'}
+                tint="dark"
                 style={s.tabPillFill}
               />
               <BlurView
                 pointerEvents="none"
                 intensity={100}
-                tint={statusBarLight ? 'dark' : 'light'}
+                tint="dark"
                 style={s.tabPillFill}
               />
               <BlurView
                 pointerEvents="none"
                 intensity={100}
-                tint={statusBarLight ? 'dark' : 'light'}
+                tint="dark"
                 style={s.tabPillFill}
               />
               {/* Полупрозрачная подложка-тон поверх blur — стабильный вид на Android, где blur слабее. */}
@@ -347,8 +443,8 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                     {
                       top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
                       left: (tabPillWidth / TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
-                      backgroundColor: t.accentBg,
-                      borderColor: t.borderHighlight,
+                      backgroundColor: tabActiveBg,
+                      borderColor: tabActiveBorder,
                       opacity: tabActivePillPressOpacity,
                       transform: [{
                         translateX: tabHighlightAnim.interpolate({
@@ -364,7 +460,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
 
               {TABS.map((tab, i) => {
                 const visuallyFocused = visualTabIdx === i;
-                const color = visuallyFocused ? t.accent : t.textMuted;
+                const color = visuallyFocused ? t.accent : tabIconMuted;
                 const iconScale = pressedTabIdx === i
                   ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })
                   : 1;
@@ -385,7 +481,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
                       <View
                         style={[
                           s.tabActivePill,
-                          { backgroundColor: t.accentBg, borderColor: t.borderHighlight },
+                          { backgroundColor: tabActiveBg, borderColor: tabActiveBorder },
                         ]}
                       />
                     )}
@@ -451,18 +547,24 @@ export default function TabLayout() {
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 
   useEffect(() => {
+    let prewarmTimer: ReturnType<typeof setTimeout> | null = null;
     const startPrewarm = () => {
+      prewarmTimer = null;
       if (deferredTabPrewarmStartedRef.current) return;
       deferredTabPrewarmStartedRef.current = true;
       setTimeout(() => {
         requestAnimationFrame(prewarmDeferredTabScreens);
       }, 120);
     };
+    const schedulePrewarm = () => {
+      if (deferredTabPrewarmStartedRef.current || prewarmTimer) return;
+      prewarmTimer = setTimeout(startPrewarm, DEFERRED_TAB_PREWARM_FALLBACK_MS);
+    };
 
-    const sub = onAppEvent('app_first_content_ready', startPrewarm);
-    const fallbackTimer = setTimeout(startPrewarm, 900);
+    const sub = onAppEvent('app_first_content_ready', schedulePrewarm);
+    schedulePrewarm();
     return () => {
-      clearTimeout(fallbackTimer);
+      if (prewarmTimer) clearTimeout(prewarmTimer);
       sub.remove();
     };
   }, []);
@@ -570,7 +672,7 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
-    borderWidth: 0,
+    borderWidth: StyleSheet.hairlineWidth,
     // Объёмная тень, чтобы капсула «парила» над контентом.
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.28,

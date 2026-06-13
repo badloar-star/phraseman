@@ -145,6 +145,12 @@ const stripMarkers = (word: string): string => {
   return stripped === '-' ? '' : stripped;
 };
 
+const safeProgressEventPart = (value: unknown, max = 40): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
+const makeLessonServerAttemptId = (): string =>
+  `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+
 // Clean phrase.english for display: strip article markers, remove empty tokens
 // e.g. 'I bought a new - phone.' → 'I bought a new phone.'
 const cleanPhraseForDisplay = (english: string): string =>
@@ -816,9 +822,9 @@ const LessonContent = React.memo(function LessonContent({
     return () => { cancelled = true; };
   }, [phraseEnterKey, status, wasWrong]);
 
-  const explainCurrentMistake = useCallback(async () => {
+  const explainCurrentMistake = useCallback(async (withHaptic = true) => {
     if (!phrase || status !== 'result' || !wasWrong || aiMistakeState === 'loading') return;
-    hapticTap();
+    if (withHaptic) hapticTap();
     const left = await getAiMistakeExplainsLeftToday().catch(() => 0);
     setAiMistakeRemaining(left);
     if (left <= 0) {
@@ -867,6 +873,11 @@ const LessonContent = React.memo(function LessonContent({
     lang,
     sourcePromptLine,
   ]);
+
+  useEffect(() => {
+    if (!phrase || status !== 'result' || !wasWrong || aiMistakeState !== 'idle') return;
+    void explainCurrentMistake(false);
+  }, [phrase, phraseEnterKey, status, wasWrong, aiMistakeState, explainCurrentMistake]);
 
   if (!introGateReady) {
     return <View style={{ flex: 1 }} />;
@@ -1661,6 +1672,7 @@ export default function LessonScreen() {
   const ERROR_REPLAY_QUEUE_KEY   = lessonSessionKey(lessonStorageId, 'errorReplayQueue', studyTarget);
   const ERROR_REPLAY_SINCE_KEY   = lessonSessionKey(lessonStorageId, 'errorReplaySince', studyTarget);
   const ERROR_REPLAY_OVERRIDE_KEY = lessonSessionKey(lessonStorageId, 'errorReplayOverride', studyTarget);
+  const SERVER_ATTEMPT_KEY = lessonSessionKey(lessonStorageId, 'serverAttemptId', studyTarget);
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
@@ -1760,6 +1772,7 @@ export default function LessonScreen() {
   const replayAudioTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textInputRef = useRef<any>(null);
   const sessionAnswerCount = useRef(0);   // кол-во ответов в текущей сессии
+  const serverAttemptIdRef = useRef<string>('');
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
@@ -2165,7 +2178,7 @@ export default function LessonScreen() {
       // energy state comes from EnergyContext — no local load needed
 
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
-      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw] = await Promise.all([
+      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
         AsyncStorage.getItem(SETTINGS_KEY),
         AsyncStorage.getItem(CELL_KEY),
@@ -2173,7 +2186,13 @@ export default function LessonScreen() {
         AsyncStorage.getItem(ERROR_REPLAY_QUEUE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_SINCE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_OVERRIDE_KEY),
+        AsyncStorage.getItem(SERVER_ATTEMPT_KEY),
       ]);
+      const serverAttemptId = serverAttemptRaw || makeLessonServerAttemptId();
+      serverAttemptIdRef.current = serverAttemptId;
+      if (!serverAttemptRaw) {
+        AsyncStorage.setItem(SERVER_ATTEMPT_KEY, serverAttemptId).catch(() => {});
+      }
 
       let restoredProgress = new Array(effectiveTotal).fill('empty');
       if (sp) {
@@ -2549,8 +2568,32 @@ export default function LessonScreen() {
       const xpAmount = Math.round(5 * comboM);
       
       if (userNameRef.current) {
+        const answerCell = overridePhraseCell ?? cellIndex;
+        const answerOrdinal = sessionAnswerCount.current;
+        const answerEventId = [
+          'lesson',
+          safeProgressEventPart(lessonStorageId, 40),
+          safeProgressEventPart(studyTargetRef.current),
+          safeProgressEventPart(serverAttemptIdRef.current || 'attempt'),
+          'answer',
+          answerCell,
+          safeProgressEventPart(phrase.id ?? answerCell, 32),
+          answerOrdinal,
+        ].join(':');
         // Run XP registration in background — do NOT await (blocks JS thread on every answer → ANR)
-        registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang, lessonId)
+        registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang, lessonId, {
+          eventId: answerEventId,
+          payload: {
+            lessonStorageId: String(lessonStorageId),
+            studyTarget: studyTargetRef.current,
+            cellIndex: answerCell,
+            phraseId: phrase.id ?? null,
+            answerOrdinal,
+            replay: overridePhraseCell !== null,
+            combo: correctStreakRef.current,
+            progress: np,
+          },
+        })
           .then(xpResult => {
             if (xpResult.finalDelta > 0) {
               setXpToastAmount(xpResult.finalDelta);
@@ -2633,6 +2676,9 @@ export default function LessonScreen() {
     // Ошибки, replay и очередь ошибок влияют только на оценку/модалку, но не блокируют финал.
     if (nextCell === 0) {
       if (isPlanPhraseLessonTask) return;
+      const nextAttemptId = makeLessonServerAttemptId();
+      serverAttemptIdRef.current = nextAttemptId;
+      AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(() => {});
       void trackFeatureStart('lesson', 'complete', { lessonId, effectiveTotal }, 'lesson1');
       sessionAnswerCount.current = 0; // сброс для следующего повтора
       isReplayRef.current = true;
@@ -2721,7 +2767,7 @@ export default function LessonScreen() {
     if (settings.autoAdvance && isRight) {
       autoTimer.current = setTimeout(() => goNext(np), 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage, studyTarget, isPlanLessonTask, planRequiredPhrases, isPlanPhraseLessonTask, lessonStorageId, SERVER_ATTEMPT_KEY]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);

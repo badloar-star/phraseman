@@ -8,17 +8,19 @@
 // Вынесена отдельным компонентом, чтобы не раздувать phrase_analytics_screen.tsx.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { AccessibilityInfo, ActivityIndicator, Animated, StyleSheet, Text, TouchableOpacity, View, type StyleProp, type ViewStyle } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import TapScale from '../components/TapScale';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { weeklyCompassIconSource } from '../constants/weeklyCompassIcons';
 import { triLang } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import {
   generateWeeklyReview,
@@ -31,12 +33,14 @@ import type { RuntimeStudyTarget } from './target_storage_keys';
 interface WeeklyReviewCardProps {
   isPremium: boolean;
   studyTarget?: RuntimeStudyTarget;
+  stableLayout?: boolean;
+  embedded?: boolean;
 }
 
 const GOLD = '#C9A227';
 const GOLD_SOFT = '#E8D5A3';
 
-export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyReviewCardProps) {
+export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout = false, embedded = false }: WeeklyReviewCardProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
@@ -79,7 +83,35 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   }, [router]);
 
   // Ничего не показываем, пока не знаем состояние или данных мало (без шума).
-  if (!state) return null;
+  const stableCardStyle = stableLayout ? (embedded ? styles.stableEmbeddedSlot : styles.stableCardSlot) : null;
+
+  if (!state) {
+    if (!stableLayout) return null;
+    return (
+      <CardShell isCompassTheme={isCompassTheme} t={t} style={stableCardStyle} embedded={embedded}>
+        <Header
+          lang={lang}
+          t={t}
+          f={f}
+          themeMode={themeMode}
+          iconAccent={t.accent}
+          expanded={expanded}
+          busy
+          onPress={() => setExpanded((value) => !value)}
+        />
+        <View style={styles.loadingRow}>
+          <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.champagne : GOLD} />
+          <Text style={[styles.loadingText, { color: t.textMuted, fontSize: f.body }]}>
+            {triLang(lang, {
+              ru: 'Компас готовит подсказки…', uk: 'Компас готує підказки…', es: 'Compass está preparando pistas…',
+              'pt-BR': 'Compass está preparando dicas…', vi: 'Compass đang chuẩn bị gợi ý…',
+              id: 'Compass sedang menyiapkan arahan…', tr: 'Compass ipuçlarını hazırlıyor…', pl: 'Compass przygotowuje wskazówki…',
+            })}
+          </Text>
+        </View>
+      </CardShell>
+    );
+  }
   if (state.kind === 'insufficient_data') return null;
   if (state.kind === 'none' && !busy) return null;
 
@@ -89,11 +121,13 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   // Состояние «генерируем впервые».
   if (!stored && busy) {
     return (
-      <CardShell isCompassTheme={isCompassTheme} t={t}>
+      <CardShell isCompassTheme={isCompassTheme} t={t} style={stableCardStyle} embedded={embedded}>
         <Header
           lang={lang}
           t={t}
           f={f}
+          themeMode={themeMode}
+          iconAccent={t.accent}
           expanded={expanded}
           busy={busy}
           onPress={() => setExpanded((value) => !value)}
@@ -102,9 +136,9 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
           <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.champagne : GOLD} />
           <Text style={[styles.loadingText, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
-              ru: 'Готовлю твой разбор ошибок…', uk: 'Готую твій розбір помилок…', es: 'Preparando tu análisis de errores…',
-              'pt-BR': 'Preparando sua análise de erros…', vi: 'Đang chuẩn bị bản phân tích lỗi của bạn…',
-              id: 'Menyiapkan analisis kesalahanmu…', tr: 'Hata analizini hazırlıyorum…', pl: 'Przygotowuję twoją analizę błędów…',
+              ru: 'Компас готовит подсказки…', uk: 'Компас готує підказки…', es: 'Compass está preparando pistas…',
+              'pt-BR': 'Compass está preparando dicas…', vi: 'Compass đang chuẩn bị gợi ý…',
+              id: 'Compass sedang menyiapkan arahan…', tr: 'Compass ipuçlarını hazırlıyor…', pl: 'Compass przygotowuje wskazówki…',
             })}
           </Text>
         </View>
@@ -121,11 +155,13 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
   const canManualRefresh = (state.kind === 'cached' && state.canRefresh) || state.kind === 'error';
 
   return (
-    <CardShell isCompassTheme={isCompassTheme} t={t}>
+    <CardShell isCompassTheme={isCompassTheme} t={t} style={stableCardStyle} embedded={embedded}>
       <Header
         lang={lang}
         t={t}
         f={f}
+        themeMode={themeMode}
+        iconAccent={t.accent}
         expanded={expanded}
         busy={busy}
         onPress={() => setExpanded((value) => !value)}
@@ -153,9 +189,9 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
               <Ionicons name="lock-closed" size={14} color={GOLD} />
               <Text style={[styles.teaserText, { color: isCompassTheme ? COMPASS_RICH.textDark : GOLD_SOFT, fontSize: f.sub }]}>
                 {triLang(lang, {
-                  ru: 'Полный разбор и план — в Premium', uk: 'Повний розбір і план — у Premium', es: 'Análisis completo y plan — en Premium',
-                  'pt-BR': 'Análise completa e plano — no Premium', vi: 'Phân tích đầy đủ và kế hoạch — trong Premium',
-                  id: 'Analisis lengkap dan rencana — di Premium', tr: 'Tam analiz ve plan — Premium\'de', pl: 'Pełna analiza i plan — w Premium',
+                  ru: 'Полные подсказки и план — в Premium', uk: 'Повні підказки й план — у Premium', es: 'Guía completa y plan — en Premium',
+                  'pt-BR': 'Orientação completa e plano — no Premium', vi: 'Gợi ý đầy đủ và kế hoạch — trong Premium',
+                  id: 'Panduan lengkap dan rencana — di Premium', tr: 'Tam rehber ve plan — Premium\'de', pl: 'Pełne wskazówki i plan — w Premium',
                 })}
               </Text>
             </TouchableOpacity>
@@ -178,7 +214,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
                   style={[styles.recRow, { borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border }]}
                 >
                   <Ionicons name="school-outline" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
-                  <Text style={[styles.recText, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>
+                  <Text style={[styles.recText, { color: t.textPrimary, fontSize: f.body }]}>
                     {rec.label}
                   </Text>
                   <Ionicons name="chevron-forward" size={14} color={t.textMuted} />
@@ -192,7 +228,7 @@ export default function WeeklyReviewCard({ isPremium, studyTarget }: WeeklyRevie
               {state.kind === 'error' ? (
                 <Text style={[styles.footerText, { color: t.textMuted, fontSize: f.caption }]}>
                   {triLang(lang, {
-                    ru: 'Не удалось обновить — показан прошлый разбор', uk: 'Не вдалося оновити — показано минулий розбір',
+                    ru: 'Не удалось обновить — показаны прошлые подсказки', uk: 'Не вдалося оновити — показано попередні підказки',
                     es: 'No se pudo actualizar — se muestra el anterior', 'pt-BR': 'Não foi possível atualizar — exibindo o anterior',
                     vi: 'Không thể cập nhật — hiển thị bản trước', id: 'Gagal memperbarui — menampilkan yang sebelumnya',
                     tr: 'Güncellenemedi — önceki gösteriliyor', pl: 'Nie udało się odświeżyć — pokazano poprzednią',
@@ -218,11 +254,23 @@ function CardShell({
   children,
   isCompassTheme,
   t,
+  style,
+  embedded = false,
 }: {
   children: React.ReactNode;
   isCompassTheme: boolean;
   t: ReturnType<typeof useTheme>['theme'];
+  style?: StyleProp<ViewStyle>;
+  embedded?: boolean;
 }) {
+  if (embedded) {
+    return (
+      <View style={[styles.embeddedSection, style]}>
+        {children}
+      </View>
+    );
+  }
+
   return (
     <View
       style={[
@@ -234,6 +282,7 @@ function CardShell({
           overflow: 'hidden',
         },
         isCompassTheme && compassShadow(2),
+        style,
       ]}
     >
       {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
@@ -242,10 +291,69 @@ function CardShell({
   );
 }
 
+function WeeklyCompassIcon({
+  themeMode,
+  accent,
+}: {
+  themeMode: ThemeMode;
+  accent: string;
+}) {
+  const float = useRef(new Animated.Value(0)).current;
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const iconSource = weeklyCompassIconSource(themeMode);
+
+  useEffect(() => {
+    let cancelled = false;
+    AccessibilityInfo.isReduceMotionEnabled()
+      .then((enabled) => {
+        if (!cancelled) setReduceMotion(Boolean(enabled));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      float.stopAnimation();
+      float.setValue(0);
+      return;
+    }
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(float, { toValue: 1, duration: 1650, useNativeDriver: true }),
+        Animated.timing(float, { toValue: 0, duration: 1650, useNativeDriver: true }),
+      ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [float, reduceMotion]);
+
+  const translateY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -3] });
+  const rotate = float.interpolate({ inputRange: [0, 1], outputRange: ['-2deg', '2deg'] });
+  const shadowScale = float.interpolate({ inputRange: [0, 1], outputRange: [1, 0.84] });
+  const shadowOpacity = float.interpolate({ inputRange: [0, 1], outputRange: [0.32, 0.18] });
+  const glowScale = float.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1.08] });
+  const glowOpacity = float.interpolate({ inputRange: [0, 1], outputRange: [0.24, 0.42] });
+
+  return (
+    <View style={styles.iconBox} pointerEvents="none">
+      <Animated.View style={[styles.iconGlow, { backgroundColor: accent, opacity: glowOpacity, transform: [{ scale: glowScale }] }]} />
+      <Animated.View style={[styles.iconShadow, { opacity: shadowOpacity, transform: [{ scaleX: shadowScale }] }]} />
+      <Animated.View style={[styles.compassImageLayer, { transform: [{ translateY }, { rotate }] }]}>
+        <Image source={iconSource} style={styles.compassImage} contentFit="contain" transition={140} accessible={false} />
+      </Animated.View>
+    </View>
+  );
+}
+
 function Header({
   lang,
   t,
   f,
+  themeMode,
+  iconAccent,
   expanded,
   busy,
   onPress,
@@ -253,38 +361,34 @@ function Header({
   lang: ReturnType<typeof useLang>['lang'];
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
+  themeMode: ThemeMode;
+  iconAccent: string;
   expanded: boolean;
   busy: boolean;
   onPress: () => void;
 }) {
   return (
     <TouchableOpacity activeOpacity={0.86} onPress={onPress} style={styles.titleRow}>
-      <LinearGradient
-        colors={['rgba(42,36,28,0.95)', 'rgba(18,16,14,0.98)']}
-        style={styles.iconBox}
-      >
-        <Ionicons name="sparkles" size={16} color={GOLD_SOFT} />
-      </LinearGradient>
+      <WeeklyCompassIcon themeMode={themeMode} accent={iconAccent} />
       <View style={{ flex: 1 }}>
-        <Text style={[styles.kicker, { color: GOLD }]}>PHRASEMAN</Text>
         <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: Math.max(16, f.h2 * 0.82) }]}>
           {triLang(lang, {
-            ru: 'Разбор ошибок', uk: 'Розбір помилок', es: 'Análisis de errores',
-            'pt-BR': 'Análise de erros', vi: 'Phân tích lỗi', id: 'Analisis kesalahan',
-            tr: 'Hata analizi', pl: 'Analiza błędów',
+            ru: 'Компас', uk: 'Компас', es: 'Compass',
+            'pt-BR': 'Compass', vi: 'Compass', id: 'Compass',
+            tr: 'Compass', pl: 'Compass',
           })}
         </Text>
         <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]}>
           {busy
             ? triLang(lang, {
-                ru: 'Обновляю по твоим ошибкам', uk: 'Оновлюю за твоїми помилками', es: 'Actualizando con tus errores',
-                'pt-BR': 'Atualizando com seus erros', vi: 'Đang cập nhật theo lỗi của bạn',
-                id: 'Memperbarui dari kesalahanmu', tr: 'Hatalarına göre güncelleniyor', pl: 'Aktualizacja z twoich błędów',
+                ru: 'Смотрю, что поможет тебе дальше', uk: 'Дивлюся, що допоможе тобі далі', es: 'Buscando qué te ayuda ahora',
+                'pt-BR': 'Vendo o que mais te ajuda agora', vi: 'Đang tìm phần giúp bạn tiếp theo',
+                id: 'Mencari latihan yang paling membantumu', tr: 'Şimdi sana ne yardım eder bakıyorum', pl: 'Sprawdzam, co pomoże ci dalej',
               })
             : triLang(lang, {
-                ru: 'Только по тем местам, где ты ошибался', uk: 'Тільки за місцями, де ти помилявся', es: 'Solo donde realmente fallaste',
-                'pt-BR': 'Só onde você realmente errou', vi: 'Chỉ những chỗ bạn thật sự sai',
-                id: 'Hanya dari bagian yang pernah salah', tr: 'Yalnızca gerçekten hata yaptığın yerler', pl: 'Tylko miejsca z realnymi błędami',
+                ru: 'Ежедневный разбор ошибок', uk: 'Щоденний розбір помилок', es: 'Análisis diario de errores',
+                'pt-BR': 'Análise diária de erros', vi: 'Phân tích lỗi hằng ngày',
+                id: 'Analisis kesalahan harian', tr: 'Günlük hata analizi', pl: 'Codzienna analiza błędów',
               })}
         </Text>
       </View>
@@ -295,9 +399,29 @@ function Header({
 
 const styles = StyleSheet.create({
   card: { padding: 18, borderWidth: 1, marginBottom: 20, gap: 12 },
+  stableCardSlot: { minHeight: 150 },
+  stableEmbeddedSlot: { minHeight: 88 },
+  embeddedSection: { gap: 10, paddingTop: 2, paddingBottom: 2 },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  iconBox: { width: 40, height: 40, borderRadius: 11, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(212,175,88,0.28)' },
-  kicker: { fontSize: 9, fontWeight: '900', letterSpacing: 2, marginBottom: 3 },
+  iconBox: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center', overflow: 'visible' },
+  compassImageLayer: { width: 52, height: 52, zIndex: 3 },
+  compassImage: { width: 52, height: 52 },
+  iconGlow: {
+    position: 'absolute',
+    width: 32,
+    height: 32,
+    borderRadius: 999,
+    zIndex: 1,
+  },
+  iconShadow: {
+    position: 'absolute',
+    bottom: 1,
+    width: 32,
+    height: 7,
+    borderRadius: 999,
+    backgroundColor: '#000',
+    zIndex: 2,
+  },
   cardTitle: { fontWeight: '800', letterSpacing: -0.2 },
   cardSub: { marginTop: 3, lineHeight: 17, fontWeight: '600' },
   greeting: { fontWeight: '800', letterSpacing: -0.3, lineHeight: 26 },
@@ -308,8 +432,8 @@ const styles = StyleSheet.create({
   teaserText: { flex: 1, fontWeight: '600' },
   recommendations: { gap: 8, marginTop: 4 },
   recLabel: { fontWeight: '700', letterSpacing: 1.1 },
-  recRow: { flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 0.5, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 12 },
-  recText: { flex: 1, fontWeight: '600' },
+  recRow: { flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 0.5, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 12, minHeight: 58 },
+  recText: { flex: 1, flexShrink: 1, fontWeight: '600', lineHeight: 22 },
   footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, paddingTop: 10, borderTopWidth: 0.5 },
   footerText: { flex: 1, lineHeight: 18 },
 });

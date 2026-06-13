@@ -24,6 +24,7 @@ describe('app typography contract', () => {
     expect(typographySource).toContain('[APP_FONT_FAMILY]');
     expect(rootLayoutSource).toContain('useFonts');
     expect(rootLayoutSource).toContain('APP_FONT_ASSETS');
+    expect(rootLayoutSource).not.toContain('!fontsLoaded && !fontsError');
     expect(rootLayoutSource).toContain('fontFamily: APP_FONT_FAMILY');
     expect(themeContextSource).toContain('APP_FONT_FAMILY');
     expect(appJsonSource).toContain('assets/fonts/*.ttf');

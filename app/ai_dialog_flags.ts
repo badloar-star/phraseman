@@ -5,7 +5,7 @@
  * параллельной сессией; при слиянии можно переехать в него без смены сигнатур.
  */
 
-export const FREE_DIALOGS_PER_DAY_DEFAULT = 1;
+export const FREE_DIALOGS_PER_DAY_DEFAULT = 10;
 
 function numFromEnv(name: string): number | undefined {
   const raw = name === 'EXPO_PUBLIC_FREE_DIALOGS' ? process.env.EXPO_PUBLIC_FREE_DIALOGS : undefined;

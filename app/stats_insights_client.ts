@@ -62,9 +62,24 @@ function normalizeNotes(raw: Partial<StatsInsightsNotes> | undefined): StatsInsi
   if (!raw) return notes;
   for (const key of STATS_INSIGHT_BLOCKS) {
     const v = (raw as Record<string, unknown>)[key];
-    notes[key] = typeof v === 'string' ? v : '';
+    notes[key] = typeof v === 'string' ? guardLearnerFacingNote(key, v) : '';
   }
   return notes;
+}
+
+function guardLearnerFacingNote(key: StatsInsightBlock, note: string): string {
+  const clean = note.trim();
+  if (!clean) return '';
+  if (key !== 'balance') return clean;
+  const lower = clean.toLocaleLowerCase();
+  const hasInternalBalancePhrase =
+    /\d+\s*(?:\/\s*100\s*)?(?:балл|балла|баллов|points?|pts?|score)/i.test(clean) ||
+    /(?:score|points?|pts?)\s*\d+/i.test(clean) ||
+    /(?:балл|балла|баллов|points?|pts?|score).{0,24}(?:баланс|balance)/i.test(clean) ||
+    /(?:баланс|balance).{0,24}(?:балл|балла|баллов|points?|pts?|score)/i.test(clean) ||
+    lower.includes('practice balance score') ||
+    lower.includes('balance score');
+  return hasInternalBalancePhrase ? '' : clean;
 }
 
 function hasAnyNote(notes: StatsInsightsNotes): boolean {
@@ -106,13 +121,20 @@ function canGenerateNow(stored: StatsInsightsStored | null, nowMs: number): bool
   return nowMs >= stored.nextAllowedAtMs;
 }
 
+function isStoredForLang(stored: StatsInsightsStored | null, lang: Lang): stored is StatsInsightsStored {
+  return !!stored && stored.lang === lang;
+}
+
 /** Состояние для UI без сети — показать кэш мгновенно. */
 export async function getStatsInsightsState(
   studyTarget?: RuntimeStudyTarget,
   nowMs: number = Date.now(),
+  lang?: Lang,
 ): Promise<StatsInsightsState> {
+  void nowMs;
   const stored = await loadStored(studyTarget);
   if (!stored) return { kind: 'none' };
+  if (lang && !isStoredForLang(stored, lang)) return { kind: 'none' };
   return { kind: 'cached', notes: stored.notes, nextAllowedAtMs: stored.nextAllowedAtMs, lang: stored.lang };
 }
 
@@ -147,15 +169,15 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
     balance: briefing.balance.isWarmup
       ? localText(
           briefing.lang,
-          'Баланс пока в режиме разогрева: нужно ещё немного практики, чтобы тренд стал честным.',
-          'Баланс поки в режимі розігріву: потрібно ще трохи практики, щоб тренд став чесним.',
-          'El balance aún está calentando: falta un poco más de práctica para ver una tendencia justa.',
+          `Пока мало данных для честного вывода: за 7 дней было ${briefing.balance.active7} активных дн. Продолжай короткими сессиями.`,
+          `Поки мало даних для чесного висновку: за 7 днів було ${briefing.balance.active7} активних дн. Продовжуй короткими сесіями.`,
+          `Aún hay pocos datos: en 7 días tuviste ${briefing.balance.active7} días activos. Sigue con sesiones cortas.`,
         )
       : localText(
           briefing.lang,
-          `Баланс ${Math.round(briefing.balance.score)}: держи короткие сессии и не растягивай практику без фокуса.`,
-          `Баланс ${Math.round(briefing.balance.score)}: тримай короткі сесії й не розтягуй практику без фокусу.`,
-          `Balance ${Math.round(briefing.balance.score)}: mantén sesiones cortas y evita practicar sin foco.`,
+          `За 7 дней у тебя ${briefing.balance.active7} активных дн., средняя сессия — ${Math.round(briefing.balance.avgMinutes)} мин. Лучше держать короткий фокус, чем растягивать практику.`,
+          `За 7 днів у тебе ${briefing.balance.active7} активних дн., середня сесія — ${Math.round(briefing.balance.avgMinutes)} хв. Краще тримати короткий фокус, ніж розтягувати практику.`,
+          `En 7 días tuviste ${briefing.balance.active7} días activos; sesión media: ${Math.round(briefing.balance.avgMinutes)} min. Mejor foco corto que práctica alargada.`,
         ),
     rhythm: localText(
       briefing.lang,
@@ -211,16 +233,17 @@ export async function generateStatsInsights(options: GenerateStatsInsightsOption
   const lang = briefing.lang;
   const nowMs = options.nowMs ?? Date.now();
   const stored = await loadStored(studyTarget);
+  const storedForCurrentLang = isStoredForLang(stored, lang) ? stored : null;
 
   // Локальный гейт: рано — отдаём кэш, CF не трогаем.
-  if (!options.force && !canGenerateNow(stored, nowMs)) {
-    if (stored) return { kind: 'cached', notes: stored.notes, nextAllowedAtMs: stored.nextAllowedAtMs, lang: stored.lang };
+  if (!options.force && !canGenerateNow(storedForCurrentLang, nowMs) && storedForCurrentLang?.notes.balance) {
+    if (storedForCurrentLang) return { kind: 'cached', notes: storedForCurrentLang.notes, nextAllowedAtMs: storedForCurrentLang.nextAllowedAtMs, lang: storedForCurrentLang.lang };
     return { kind: 'none' };
   }
 
   if (!hasEnoughStatsSignal(briefing)) {
-    return stored
-      ? { kind: 'cached', notes: stored.notes, nextAllowedAtMs: stored.nextAllowedAtMs, lang: stored.lang }
+    return storedForCurrentLang
+      ? { kind: 'cached', notes: storedForCurrentLang.notes, nextAllowedAtMs: storedForCurrentLang.nextAllowedAtMs, lang: storedForCurrentLang.lang }
       : { kind: 'insufficient_data' };
   }
 

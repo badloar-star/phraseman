@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "carousel_id": "001",
+    "slug": "english-freeze-poster",
+    "title": "Английский исчезает в разговоре",
+    "renderer": "local-svg-sharp-pseudo-3d",
+    "style_mode": "Emergence",
+    "palette": "aurora-lime-cobalt",
+    "size": "1080x1350",
+    "critical_rules": [
+      "Do not copy the sample palettes literally.",
+      "Use text-safe zones.",
+      "Keep all text horizontal and readable.",
+      "Use a 3D object or hero visual on every slide.",
+      "Product name must be exactly Phraseman."
+    ]
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "file": "slide_01.png",
+      "title": "Английский есть.\nОтвета нет.",
+      "body": "Ты всё понял, но рот не запускается. Это не тупость. Это отсутствие готового первого хода.",
+      "hero_object": "orb",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D orb object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Английский есть. Ответа нет.\" Body: \"Ты всё понял, но рот не запускается. Это не тупость. Это отсутствие готового первого хода.\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 1 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    },
+    {
+      "slide": 2,
+      "file": "slide_02.png",
+      "title": "Ты не забываешь слова.\nТы ищешь вход.",
+      "body": "В разговоре нужен не словарь, а фраза-мост: короткая, живая, уже готовая.",
+      "hero_object": "cube",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D cube object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Ты не забываешь слова. Ты ищешь вход.\" Body: \"В разговоре нужен не словарь, а фраза-мост: короткая, живая, уже готовая.\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 2 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    },
+    {
+      "slide": 3,
+      "file": "slide_03.png",
+      "title": "Перевод с русского\nсъедает секунды",
+      "body": "Пока мозг собирает идеальную грамматику, собеседник уже ждёт реакцию.",
+      "hero_object": "clock",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D clock object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Перевод с русского съедает секунды\" Body: \"Пока мозг собирает идеальную грамматику, собеседник уже ждёт реакцию.\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 3 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    },
+    {
+      "slide": 4,
+      "file": "slide_04.png",
+      "title": "Начинай не с ответа,\nа с паузы",
+      "body": "That's a good question.\nLet me think for a second.\nWhat I mean is...",
+      "hero_object": "chat",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D chat object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Начинай не с ответа, а с паузы\" Body: \"That's a good question. Let me think for a second. What I mean is...\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 4 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    },
+    {
+      "slide": 5,
+      "file": "slide_05.png",
+      "title": "Фразы надо\nпроговаривать",
+      "body": "Пассивный английский узнаёт. Активный английский достаёт фразу в нужную секунду.",
+      "hero_object": "phone",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D phone object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Фразы надо проговаривать\" Body: \"Пассивный английский узнаёт. Активный английский достаёт фразу в нужную секунду.\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 5 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    },
+    {
+      "slide": 6,
+      "file": "slide_06.png",
+      "title": "Тренируй момент,\nа не правило",
+      "body": "Правило помогает после разговора. Фраза помогает внутри разговора.",
+      "hero_object": "rocket",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D rocket object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Тренируй момент, а не правило\" Body: \"Правило помогает после разговора. Фраза помогает внутри разговора.\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 6 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    },
+    {
+      "slide": 7,
+      "file": "slide_07.png",
+      "title": "Твой минимум\nна любой вопрос",
+      "body": "Let me check.\nI’m not sure yet.\nCould you explain that?\nI’d say...",
+      "hero_object": "cube",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D cube object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Твой минимум на любой вопрос\" Body: \"Let me check. I’m not sure yet. Could you explain that? I’d say...\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 7 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    },
+    {
+      "slide": 8,
+      "file": "slide_08.png",
+      "title": "Нужны готовые\nпервые ходы",
+      "body": "Phraseman — мобильное приложение с живыми фразами, озвучкой и короткой практикой. Скачивай бесплатно по ссылке в шапке профиля.",
+      "hero_object": "orb",
+      "text_safe_zone_px": 76,
+      "renderer": "local-svg-sharp-pseudo-3d",
+      "palette": "aurora-lime-cobalt",
+      "style_mode": "Emergence",
+      "prompt": "[CRITICAL INSTRUCTION - TEXT SAFE ZONES] 1080x1350 vertical Instagram carousel poster. Keep all readable text inside a 76px left/right safe zone and 76px top/bottom safe zone. Text must be horizontal, crisp, and readable.\n\n[STYLE MODE] Emergence. Palette: aurora-lime-cobalt; background #081018/#101a2b; accent #d9f056, #22d3ee, #7c3aed. Do not copy a black-white-red reference literally; use this palette.\n\n[TYPOGRAPHY] Condensed heavy poster typography, bold editorial hierarchy, high contrast, no tiny decorative labels except one short category label.\n\n[HERO VISUAL] Large premium pseudo-3D orb object, glossy material, cinematic shadows, positioned so it does not cover headline.\n\n[SLIDE CONTENT] Title: \"Нужны готовые первые ходы\" Body: \"Phraseman — мобильное приложение с живыми фразами, озвучкой и короткой практикой. Скачивай бесплатно по ссылке в шапке профиля.\"\n\n[BRAND RULE] Product name is exactly Phraseman. No logo needed. No slide counters. No footer slogans.\n\n[OUTPUT] Slide 8 of a cohesive carousel, poster-quality, suitable for Russian-speaking English learners."
+    }
+  ]
+}

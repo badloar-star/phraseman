@@ -51,11 +51,11 @@ export async function awardPlanDayCompletionReward(
     const rewarded = await readRewardedDays();
     if (rewarded.has(key)) return { awarded: false, shards: 0 };
 
-    // Mark first to keep the reward idempotent even if shard write is retried.
+    const shards = await addShards('plan_day_complete').catch(() => 0);
+    if (shards <= 0) return { awarded: false, shards: 0 };
+
     rewarded.add(key);
     await AsyncStorage.setItem(REWARDED_DAYS_KEY, JSON.stringify([...rewarded]));
-
-    const shards = await addShards('plan_day_complete').catch(() => 0);
     return { awarded: true, shards };
   } catch {
     return { awarded: false, shards: 0 };

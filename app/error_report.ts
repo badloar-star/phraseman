@@ -10,6 +10,8 @@ import { submitClientReport } from './client_reports';
 
 const THROTTLE_KEY = 'last_error_report_ts';
 const THROTTLE_MS = 60_000;
+const safeReportEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 /**
  * Structured bug report.
@@ -186,7 +188,18 @@ export const submitErrorReport = async (
   }
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
-  void registerXP(10, 'achievement_reward', userName, lang).catch(() => {});
+  void registerXP(10, 'achievement_reward', userName, lang, undefined, {
+    eventId: [
+      'achievement',
+      'error_report',
+      safeReportEventPart(Math.floor(now / THROTTLE_MS)),
+      safeReportEventPart(payload.dataId, 50),
+    ].join(':'),
+    payload: {
+      surface: 'error_report',
+      dataId: payload.dataId,
+    },
+  }).catch(() => {});
 
   return 'sent';
 };

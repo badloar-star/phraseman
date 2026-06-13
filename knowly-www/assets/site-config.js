@@ -13,4 +13,13 @@ window.KNOWLY_SITE = {
     } catch (_) { /* noop */ }
     return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/submitWebsiteContact';
   })(),
+  statsEndpoint: (function () {
+    try {
+      var h = window.location.hostname;
+      if (h === 'localhost' || h === '127.0.0.1') {
+        return 'http://127.0.0.1:5001/phraseman-ea0b3/us-central1/siteStatsTrack';
+      }
+    } catch (_) { /* noop */ }
+    return 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/siteStatsTrack';
+  })(),
 };

@@ -52,10 +52,17 @@ describe('stackVipUntilMs — «копить на потом»', () => {
         expect((0, referral_1.stackVipUntilMs)(0, NOW, 0)).toBe(NOW);
         expect((0, referral_1.stackVipUntilMs)(0, NOW, -5)).toBe(NOW);
     });
-    it('referrer-only grant: 7 days from a clean window', () => {
-        // награду получает только referrer (по кнопке); другу VIP не даём — у него intro-доступ
-        const referrerUntil = (0, referral_1.stackVipUntilMs)(0, NOW, 7);
-        expect(referrerUntil).toBe(NOW + 7 * DAY);
+    it('grants 7 days to the invited friend and 7 separate days to the referrer', () => {
+        const referee = (0, referral_1.buildReferralVipProgressPatch)(undefined, NOW, referral_1.REFERRAL_REWARD_DAYS, 'referee');
+        const referrer = (0, referral_1.buildReferralVipProgressPatch)(undefined, NOW, referral_1.REFERRAL_REWARD_DAYS, 'referrer');
+        expect(referee.vip_until).toBe(String(NOW + 7 * DAY));
+        expect(referrer.vip_until).toBe(String(NOW + 7 * DAY));
+        expect(referee.referral_vip_last_source).toBe('referee');
+        expect(referrer.referral_vip_last_source).toBe('referrer');
+    });
+    it('keeps 7+7 as two people, not 14 days on one clean account', () => {
+        const referee = (0, referral_1.buildReferralVipProgressPatch)(undefined, NOW, referral_1.REFERRAL_REWARD_DAYS, 'referee');
+        expect(referee.vip_until).not.toBe(String(NOW + 14 * DAY));
     });
 });
 //# sourceMappingURL=referral.test.js.map

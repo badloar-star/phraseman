@@ -41,16 +41,25 @@ describe('OpenAI runtime cost controls', () => {
   test('Theo runtime defaults to the cheapest GPT-4.1 nano model and records the exact model billed', () => {
     const premiumDialog = read('functions/src/premium_dialog.ts');
     const modelConfig = read('functions/src/openai_dialog_model_config.ts');
+    const functionsIndex = read('functions/src/index.ts');
 
     expect(premiumDialog).toContain("const MODEL_DEFAULT = 'gpt-4.1-nano'");
     expect(premiumDialog).toContain('process.env.OPENAI_DIALOG_MODEL');
     expect(premiumDialog).toContain('resolveConfiguredDialogModel');
     expect(premiumDialog).toContain('const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);');
+    expect(premiumDialog).toContain('resolveConfiguredDialogQuota');
+    expect(premiumDialog).toContain('const dialogQuota = await resolveConfiguredDialogQuota(db);');
+    expect(premiumDialog).toContain('dialogQuota.freeDailyReplies');
+    expect(premiumDialog).toContain('dialogQuota.premiumDailyReplies');
     expect(premiumDialog).toContain('model: dialogModel');
     expect(modelConfig).toContain('ALLOWED_DIALOG_MODELS');
+    expect(modelConfig).toContain('DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10');
+    expect(modelConfig).toContain('DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 100');
     expect(modelConfig).toContain('admin_runtime_config');
     expect(modelConfig).toContain('openAiDialogModelConfig');
+    expect(modelConfig).toContain('openAiDialogQuotaConfig');
     expect(modelConfig).toContain('request.auth?.token?.admin');
+    expect(functionsIndex).toContain('openAiDialogQuotaConfig');
   });
 
   test('high-risk dev OpenAI batch scripts require an explicit spend guard', () => {
@@ -74,8 +83,12 @@ describe('OpenAI runtime cost controls', () => {
     expect(adminHtml).toContain('loadOpenAiBudgetDashboard');
     expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiBudgetDashboard')");
     expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
+    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
     expect(adminHtml).toContain('id="openai-dialog-model"');
+    expect(adminHtml).toContain('id="openai-dialog-free-daily-replies"');
+    expect(adminHtml).toContain('id="openai-dialog-premium-daily-replies"');
     expect(adminHtml).toContain('saveOpenAiDialogModel');
+    expect(adminHtml).toContain('saveOpenAiDialogQuota');
     expect(budgetFn).toContain("request.auth?.token?.admin");
     expect(budgetFn).toContain("openAiBudgetSafeGetDocs('premium_dialog_billing'");
     expect(budgetFn).toContain("openAiBudgetSafeGetDocs('explain_billing'");

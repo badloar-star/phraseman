@@ -6,11 +6,11 @@ describe('weekly review client contract', () => {
   const cardSource = fs.readFileSync(path.join(__dirname, '../app/WeeklyReviewCard.tsx'), 'utf8');
   const serverSource = fs.readFileSync(path.join(__dirname, '../functions/src/weekly_review.ts'), 'utf8');
 
-  it('uses the same 3/7 day generation window as stats insights', () => {
-    expect(clientSource).toContain('const PREMIUM_WINDOW_DAYS = 3');
-    expect(clientSource).toContain('const FREE_WINDOW_DAYS = 7');
-    expect(serverSource).toContain('const PREMIUM_WINDOW_DAYS = 3');
-    expect(serverSource).toContain('const FREE_WINDOW_DAYS = 7');
+  it('uses a daily generation window for everyone', () => {
+    expect(clientSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
+    expect(clientSource).toContain('const FREE_WINDOW_DAYS = 1');
+    expect(serverSource).toContain('const PREMIUM_WINDOW_DAYS = 1');
+    expect(serverSource).toContain('const FREE_WINDOW_DAYS = 1');
   });
 
   it('renders collapsed by default and expands only after a tap', () => {
@@ -21,5 +21,31 @@ describe('weekly review client contract', () => {
 
   it('does not show a next-review countdown footer', () => {
     expect(cardSource).not.toContain('nextReviewCopy(');
+  });
+
+  it('does not truncate recommended lesson titles in the work-on list', () => {
+    const recommendationTextIndex = cardSource.indexOf('{rec.label}');
+    const nearbySource = cardSource.slice(Math.max(0, recommendationTextIndex - 180), recommendationTextIndex + 80);
+
+    expect(recommendationTextIndex).toBeGreaterThan(0);
+    expect(nearbySource).not.toContain('numberOfLines={1}');
+    expect(cardSource).toContain('recText: { flex: 1, flexShrink: 1');
+    expect(cardSource).toContain('recRow: { flexDirection:');
+    expect(cardSource).toContain('minHeight: 58');
+  });
+
+  it('brands the weekly guidance as Compass instead of an error analysis', () => {
+    expect(cardSource).toContain("import { weeklyCompassIconSource } from '../constants/weeklyCompassIcons'");
+    expect(cardSource).toContain('function WeeklyCompassIcon({');
+    expect(cardSource).toContain('Animated.loop(');
+    expect(cardSource).not.toContain('name="compass-outline"');
+    expect(cardSource).not.toContain('AI REHBER');
+    expect(cardSource).toContain("ru: 'Компас'");
+    expect(cardSource).toContain("ru: 'Ежедневный разбор ошибок'");
+    expect(cardSource).not.toContain("ru: 'Подсказывает, что потренировать дальше'");
+    expect(cardSource).toContain("ru: 'Компас готовит подсказки…'");
+    expect(cardSource).not.toContain("ru: 'Разбор ошибок'");
+    expect(cardSource).not.toContain("ru: 'Только по тем местам, где ты ошибался'");
+    expect(cardSource).not.toContain("ru: 'Готовлю твой разбор ошибок…'");
   });
 });

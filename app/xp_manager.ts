@@ -23,6 +23,13 @@ import { addWeeklyXp } from './weekly_xp';
 import { consumeLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import {
+  mirrorProgressResultToLocal,
+  submitProgressEvent,
+  type ProgressEventResult,
+  type ProgressEventType,
+} from './progress_events_client';
 import {
   restoredXPForOld250VisibleLevel,
   XP_LEVEL_RESTORE_250_TO_400_KEY,
@@ -98,6 +105,44 @@ interface XPResult {
   isBonus: boolean;
 }
 
+export type RegisterXPOptions = {
+  eventId?: string;
+  payload?: Record<string, unknown>;
+};
+
+function progressEventTypeForSource(source: XPSource): ProgressEventType | null {
+  switch (source) {
+    case 'lesson_complete':
+    case 'lesson_answer':
+    case 'quiz_answer':
+    case 'daily_task_reward':
+    case 'bonus_chest':
+    case 'dialog_complete':
+    case 'vocabulary_learned':
+    case 'verb_learned':
+    case 'preposition_drill_answer':
+    case 'preposition_drill_perfect':
+    case 'review_answer':
+    case 'diagnostic_test':
+    case 'daily_login_bonus':
+    case 'daily_phrase_quest':
+    case 'exam_complete':
+    case 'achievement_reward':
+    case 'level_up_bonus':
+    case 'plan_task_complete':
+    case 'wager_win':
+      return source;
+    case 'wager_bet':
+      return null;
+    default:
+      return null;
+  }
+}
+
+function progressServerRequired(): boolean {
+  return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+}
+
 /**
  * ЕДИНЫЙ МЕНЕДЖЕР ОПЫТА (XP Manager)
  * Центральный узел для всех изменений XP в приложении.
@@ -127,11 +172,13 @@ export const registerXP = async (
   source: XPSource,
   userName: string,
   lang: Lang = 'ru',
-  lessonNumber?: number
+  lessonNumber?: number,
+  options?: RegisterXPOptions,
 ): Promise<XPResult> => {
   if (amount === 0) return { finalDelta: 0, multiplier: 1, isBonus: false };
   const result = _xpLock.then(async () => {
   let resolvedName = userName;
+  let serverAward: ProgressEventResult | null = null;
   try {
     if (!resolvedName) {
       const [canonicalUid, xpStored] = await Promise.all([
@@ -178,10 +225,6 @@ export const registerXP = async (
 
       totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1);
       finalDelta = Math.round(amount * totalMultiplier);
-      if (giftState.consumeBank) {
-        await consumeGiftXpBank(amount).catch(() => 0);
-      }
-
       // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам
       try {
         const db = firestore();
@@ -194,21 +237,74 @@ export const registerXP = async (
       } catch (e) {
         if (__DEV__) console.warn('[xp_manager]', e);
       }
+
+      const eventType = progressEventTypeForSource(source);
+      if (progressServerRequired() && eventType && finalDelta > 0) {
+        const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
+        serverAward = await submitProgressEvent({
+          eventId: options?.eventId,
+          type: eventType,
+          payload: {
+            xpDelta: finalDelta,
+            baseAmount: amount,
+            source,
+            lessonId: lessonNumber ?? null,
+            lessonNumber: lessonNumber ?? null,
+            localTotalBeforeServer,
+            multiplier: totalMultiplier,
+            ...(options?.payload ?? {}),
+          },
+        });
+        finalDelta = serverAward.xpDelta;
+      }
+      if (giftState.consumeBank && finalDelta > 0) {
+        await consumeGiftXpBank(amount).catch(() => 0);
+      }
     }
 
     // 2. Обновляем основные структуры данных через hall_of_fame_utils
     // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку
+    const fallbackEventType = progressEventTypeForSource(source);
+    if (progressServerRequired() && fallbackEventType && finalDelta > 0 && !serverAward) {
+      const localTotalBeforeServer = await storageGetNumber('user_total_xp', 0);
+      serverAward = await submitProgressEvent({
+        eventId: options?.eventId,
+        type: fallbackEventType,
+        payload: {
+          xpDelta: finalDelta,
+          baseAmount: amount,
+          source,
+          lessonId: lessonNumber ?? null,
+          lessonNumber: lessonNumber ?? null,
+          localTotalBeforeServer,
+          multiplier: totalMultiplier,
+          ...(options?.payload ?? {}),
+        },
+      });
+      finalDelta = serverAward.xpDelta;
+    }
     await addOrUpdateScore(resolvedName, finalDelta, lang);
+    if (serverAward) {
+      await mirrorProgressResultToLocal(serverAward);
+    }
 
     // 3. Обновляем глобальный счетчик user_total_xp (XP никогда не уходит в минус)
-    const currentTotal = await storageGetNumber('user_total_xp', 0);
-    const newTotal = Math.max(0, currentTotal + finalDelta);
-    await storageSetString('user_total_xp', String(newTotal));
+    const currentTotal = serverAward
+      ? Math.max(0, serverAward.totalXp - finalDelta)
+      : await storageGetNumber('user_total_xp', 0);
+    const newTotal = serverAward
+      ? serverAward.totalXp
+      : Math.max(0, currentTotal + finalDelta);
+    if (!serverAward) {
+      await storageSetString('user_total_xp', String(newTotal));
+    }
     // XP-01: Track weekly XP in lockstep with total XP. addWeeklyXp internally
     // ignores delta <= 0 and self-heals stale week period. Synced to Firestore
     // via SYNC_KEYS in cloud_sync.ts → users/{canonicalUid}.progress.weekly_xp.
-    if (finalDelta > 0) {
+    if (finalDelta > 0 && !serverAward) {
       await addWeeklyXp(finalDelta);
+      refreshWeeklyRecapNotificationAfterXpChange(lang);
+    } else if (finalDelta > 0) {
       refreshWeeklyRecapNotificationAfterXpChange(lang);
     }
 
@@ -300,6 +396,12 @@ export const registerXP = async (
     };
   } catch (error) {
     DebugLogger.error('xp_manager.ts:registerXP', error, 'critical');
+    if (serverAward) {
+      return { finalDelta: serverAward.xpDelta, multiplier: 1, isBonus: serverAward.xpDelta !== amount };
+    }
+    if (progressServerRequired()) {
+      return { finalDelta: 0, multiplier: 1, isBonus: false };
+    }
     // Fallback: пишем как есть в случае критического сбоя
     try { await addOrUpdateScore(resolvedName, amount, lang); } catch (e) { if (__DEV__) console.warn('[xp_manager]', e); }
     return { finalDelta: amount, multiplier: 1, isBonus: false };

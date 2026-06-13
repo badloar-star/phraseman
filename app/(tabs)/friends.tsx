@@ -37,8 +37,8 @@ import {
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
 } from '../profile_card_system';
-import { normalizeInviteCodeInput } from '../friend_code';
-import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, readCachedMyInviteCodeForFriends } from '../firestore_friends';
+import { isValidInviteCodeLookup, normalizeInviteCodeInput } from '../friend_code';
+import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends } from '../firestore_friends';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -101,14 +101,9 @@ import {
   type FriendQuest,
 } from '../friend_quests';
 import { checkAchievements } from '../achievements';
-import { ReferralExplainerCard } from '../referral_explainer_card';
-import { ReferralAccessActivatedModal } from '../referral_access_activated_modal';
 import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
-import { ReferralsListModal } from '../referrals_list_modal';
-import { ReferralCodeEntryModal } from '../referral_code_entry_modal';
 import {
   getClaimableReferralState,
-  claimReferralVipDays,
   summarizeInvites,
   type ReferralInvite,
 } from '../referral_vip';
@@ -119,6 +114,7 @@ import {
   markReferralAccessEndedSeen,
   getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
+import { buildReferralShareLinks } from '../referral_bootstrap';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -444,7 +440,7 @@ async function fetchMyProfile() {
       : (typeof p.user_frame === 'string' ? p.user_frame.trim() : '');
     const auraRaw = typeof p.user_avatar_aura === 'string' ? p.user_avatar_aura.trim() : '';
     return {
-      name: (d.displayName as string) || (p.displayName as string) || (p.user_name as string) || 'Я',
+      name: (p.user_name as string) || (d.name as string) || '?',
       avatar: avatarRaw || String(getBestAvatarForLevel(level)),
       frame: frameRaw || String(getBestFrameForLevel(level).id),
       aura: normalizeAvatarAuraId(auraRaw),
@@ -765,21 +761,21 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
   return (
     <View testID="friends-my-code-card" style={{
       backgroundColor: chrome.card,
-      borderRadius: 20,
-      borderTopLeftRadius: topFlat ? 0 : 20,
-      borderTopRightRadius: topFlat ? 0 : 20,
-      borderBottomLeftRadius: bottomFlat ? 0 : 20,
-      borderBottomRightRadius: bottomFlat ? 0 : 20,
-      padding: 20,
-      alignItems: 'center', gap: 14,
+      borderRadius: 16,
+      borderTopLeftRadius: topFlat ? 0 : 16,
+      borderTopRightRadius: topFlat ? 0 : 16,
+      borderBottomLeftRadius: bottomFlat ? 0 : 16,
+      borderBottomRightRadius: bottomFlat ? 0 : 16,
+      padding: 14,
+      gap: 12,
       borderWidth: inSheet ? 0 : 0.5,
       borderBottomWidth: inSheet ? StyleSheet.hairlineWidth : 0.5,
       borderColor: chrome.border,
       marginBottom,
     }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        <Ionicons name="qr-code-outline" size={18} color={t.textSecond} />
-        <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', letterSpacing: 1.2, textTransform: 'uppercase' }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Ionicons name="ticket-outline" size={18} color={t.textSecond} />
+        <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8, flex: 1 }}>
           {triLang(lang as any, {
             ru: 'Мой код',
             uk: 'Мій код',
@@ -794,18 +790,30 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
       </View>
       {code ? (
         <>
-          <Text
-            testID="friends-my-code-text"
-            style={{
-            fontSize: 36, fontWeight: '900', letterSpacing: 8,
-            color: t.textPrimary, fontVariant: ['tabular-nums'],
-          }}
-            adjustsFontSizeToFit
-            numberOfLines={1}
-            minimumFontScale={0.65}
-          >
-            {code}
-          </Text>
+          <View style={{
+            alignSelf: 'stretch',
+            minHeight: 56,
+            borderRadius: 14,
+            backgroundColor: chrome.surface,
+            borderWidth: 0.5,
+            borderColor: chrome.border,
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingHorizontal: 12,
+          }}>
+            <Text
+              testID="friends-my-code-text"
+              style={{
+                fontSize: 30, fontWeight: '900', letterSpacing: 6,
+                color: t.textPrimary, fontVariant: ['tabular-nums'],
+              }}
+              adjustsFontSizeToFit
+              numberOfLines={1}
+              minimumFontScale={0.65}
+            >
+              {code}
+            </Text>
+          </View>
           <View style={{ flexDirection: 'row', gap: 10 }}>
             <TapScale
               testID="friends-copy-code"
@@ -814,7 +822,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: copied ? '#34C759' : chrome.button,
-                borderRadius: 12, paddingVertical: 12, gap: 6,
+                minHeight: 46, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 10, gap: 6,
                 borderWidth: 0.5, borderColor: copied ? '#34C759' : chrome.border,
               }}
             >
@@ -849,7 +857,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 
               scaleTo={0.96}
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: chrome.button, borderRadius: 12, paddingVertical: 12, gap: 6,
+                backgroundColor: chrome.button, minHeight: 46, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 10, gap: 6,
                 borderWidth: 0.5, borderColor: chrome.border,
               }}
             >
@@ -1358,6 +1366,26 @@ function ActivityTab({
 
 // ── Add Friend Modal ──────────────────────────────────────────────────────────
 
+const FRIEND_SEARCH_MAX_LENGTH = 32;
+
+function normalizeFriendSearchInput(value: string): string {
+  return String(value ?? '').normalize('NFKC').replace(/[\r\n\t]/g, ' ').replace(/\s+/g, ' ').slice(0, FRIEND_SEARCH_MAX_LENGTH);
+}
+
+function getFriendSearchQuery(value: string): string {
+  return normalizeFriendSearchInput(value).trim();
+}
+
+function isFriendCodeQuery(value: string): boolean {
+  const query = getFriendSearchQuery(value);
+  return query.length === 6 && isValidInviteCodeLookup(query);
+}
+
+function isFriendSearchReady(value: string): boolean {
+  const query = getFriendSearchQuery(value);
+  return query.length >= 2 && query.length <= FRIEND_SEARCH_MAX_LENGTH;
+}
+
 function AddFriendModal({
   visible, onClose, myCode, onCopy, onShare, copied,
   codeInput, setCodeInput, isSearching, foundUser, searchError,
@@ -1384,26 +1412,92 @@ function AddFriendModal({
     tr: string,
     pl: string,
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const searchReady = isFriendSearchReady(codeInput);
+  const codeMode = isFriendCodeQuery(codeInput);
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <ScreenGradient forceFullBleed artBackdrop="friends">
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'right', 'bottom', 'left']}>
           <View style={{ flex: 1 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 10 }}>
             <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
               {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
             </Text>
-            <TapScale onPress={onClose} hitSlop={8}>
-              <Ionicons name="close" size={26} color={t.textMuted} />
+            <TapScale
+              onPress={onClose}
+              hitSlop={8}
+              style={{
+                width: 44, height: 44, borderRadius: 22,
+                alignItems: 'center', justifyContent: 'center',
+                backgroundColor: chrome.button,
+                borderWidth: 0.5, borderColor: chrome.border,
+              }}
+            >
+              <Ionicons name="close" size={24} color={t.textMuted} />
             </TapScale>
           </View>
 
           <ScrollView
             keyboardShouldPersistTaps="handled"
             decelerationRate="normal"
-            contentContainerStyle={{ padding: 20, gap: 16 }}
+            contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 28, gap: 14 }}
           >
+            <View
+              testID="friends-code-search-card"
+              style={{
+                paddingTop: 2,
+                gap: 10,
+              }}
+            >
+              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
+                {L('Введите имя или код друга', 'Введіть імʼя або код друга', 'Ingresa el nombre o código de tu amigo', 'Digite o nome ou código do amigo', 'Nhập tên hoặc mã bạn bè', 'Masukkan nama atau kode teman', 'Arkadaşının adını veya kodunu gir', 'Wpisz imię lub kod znajomego')}
+              </Text>
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                <TextInput
+                  testID="friends-code-input"
+                  accessibilityLabel="Friend code input"
+                  style={{
+                    flex: 1, backgroundColor: chrome.surface, borderRadius: 14,
+                    minHeight: 58,
+                    paddingHorizontal: 16, paddingVertical: 12,
+                    fontSize: 20, fontWeight: '900', color: t.textPrimary,
+                    letterSpacing: codeMode ? 4 : 0, borderWidth: 0.5, borderColor: chrome.border,
+                  }}
+                  placeholder=""
+                  maxLength={FRIEND_SEARCH_MAX_LENGTH}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  value={codeInput}
+                  onChangeText={v => {
+                    setCodeInput(normalizeFriendSearchInput(v));
+                    onCloseFoundUser();
+                  }}
+                  onSubmitEditing={onSearch}
+                />
+                <TapScale
+                  testID="friends-search"
+                  onPress={onSearch}
+                  disabled={!searchReady || isSearching}
+                  accessibilityRole="button"
+                  accessibilityLabel={L('Найти друга по коду', 'Знайти друга за кодом', 'Buscar amigo por código', 'Encontrar amigo por código', 'Tìm bạn bằng mã', 'Cari teman dengan kode', 'Kodla arkadaş bul', 'Znajdź znajomego po kodzie')}
+                  style={{
+                    minWidth: 58,
+                    minHeight: 58,
+                    backgroundColor: searchReady ? t.accent : chrome.button,
+                    borderRadius: 14,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderWidth: 0.5,
+                    borderColor: searchReady ? t.accent : chrome.border,
+                    opacity: isSearching ? 0.6 : 1,
+                  }}
+                >
+                  <Ionicons name={isSearching ? 'hourglass-outline' : 'search'} size={22} color={searchReady ? t.correctText : t.textMuted} />
+                </TapScale>
+              </View>
+            </View>
+
             <CodeCard
               code={myCode} onCopy={onCopy} onShare={onShare}
               copied={copied} lang={lang} t={t} f={f} chrome={chrome}
@@ -1411,45 +1505,6 @@ function AddFriendModal({
               loadError={loadError}
               onRetryLoad={onRetryLoad}
             />
-            <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-              {L('Введи код друга', 'Введіть код друга', 'Ingresa el código del amigo', 'Digite o código do amigo', 'Nhập mã bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
-            </Text>
-            <View style={{ flexDirection: 'row', gap: 10 }}>
-            <TextInput
-                testID="friends-code-input"
-                accessibilityLabel="Friend code input"
-                style={{
-                  flex: 1, backgroundColor: chrome.surface, borderRadius: 12,
-                  paddingHorizontal: 16, paddingVertical: 13,
-                  fontSize: 20, fontWeight: '800', color: t.textPrimary,
-                  letterSpacing: 4, borderWidth: 0.5, borderColor: chrome.border,
-                }}
-                placeholder=""
-                placeholderTextColor={t.textMuted}
-                maxLength={6}
-                autoCapitalize="characters"
-                autoCorrect={false}
-                value={codeInput}
-                onChangeText={v => {
-                  setCodeInput(normalizeInviteCodeInput(v));
-                  onCloseFoundUser();
-                }}
-                onSubmitEditing={onSearch}
-              />
-              <TapScale
-                testID="friends-search"
-                onPress={onSearch}
-                disabled={codeInput.length !== 6 || isSearching}
-                style={{
-                  backgroundColor: codeInput.length === 6 ? t.accent : chrome.button,
-                  borderRadius: 12, paddingHorizontal: 18, justifyContent: 'center', alignItems: 'center',
-                  borderWidth: 0.5, borderColor: codeInput.length === 6 ? t.accent : chrome.border,
-                  opacity: isSearching ? 0.6 : 1,
-                }}
-              >
-                <Ionicons name="search" size={22} color={codeInput.length === 6 ? t.correctText : t.textMuted} />
-              </TapScale>
-            </View>
 
             {searchError && (
               <View testID="friends-search-error" style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
@@ -1546,6 +1601,7 @@ export default function FriendsTabScreen() {
 
   /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
+  const myCodeLabel = useMemo(() => (myCode ?? '').trim().toUpperCase(), [myCode]);
   const [friendCodeLoadError, setFriendCodeLoadError] = useState(false);
   const [myProfile, setMyProfile] = useState<{
     name: string; avatar: string; frame: string; aura?: string; totalXP: number; streak: number | null;
@@ -1553,18 +1609,12 @@ export default function FriendsTabScreen() {
 
   // ── Реферал: накопленные дни доступа + модалки активации/окончания ──────────
   const [referralInvites, setReferralInvites] = useState<ReferralInvite[]>([]);
-  const [claimableDays, setClaimableDays] = useState(0);
-  const [isClaiming, setIsClaiming] = useState(false);
-  const [activatedModal, setActivatedModal] = useState<{ days: number; friends: number } | null>(null);
   const [accessEndedOpen, setAccessEndedOpen] = useState(false);
-  const [referralsModalOpen, setReferralsModalOpen] = useState(false);
-  const [refCodeEntryOpen, setRefCodeEntryOpen] = useState(false);
 
   const refreshReferralState = useCallback(async () => {
     if (!isReferralCloudEnabled()) return;
     const state = await getClaimableReferralState();
     setReferralInvites(state.invites);
-    setClaimableDays(state.claimableVipDays);
 
     // Модал окончания: трекер сам определяет «реферальность» окна (стикки-маркер переживает
     // зануление vip_plan при истечении). Гейт по текущему плану здесь НЕ нужен — это и был баг.
@@ -1591,79 +1641,6 @@ export default function FriendsTabScreen() {
       await Share.share({ message: share.message, url: share.url });
     }
   }, [lang, myProfile?.name]);
-
-  const showReferralFeedback = useCallback((msg: string) => {
-    setAddFeedback(msg);
-    if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
-    feedbackTimerRef.current = setTimeout(() => setAddFeedback(null), 2500);
-  }, []);
-
-  const handleReferralClaim = useCallback(async () => {
-    if (isClaiming) return;
-    hapticTap();
-    setIsClaiming(true);
-    try {
-      const outcome = await claimReferralVipDays();
-      if (outcome.ok && outcome.granted > 0) {
-        setActivatedModal({ days: outcome.granted, friends: outcome.friends });
-        if (outcome.cappedThisMonth) {
-          showReferralFeedback(L(
-            'Лимит на этот месяц достигнут — остальное откроется в следующем.',
-            'Ліміт на цей місяць досягнуто — решта відкриється наступного.',
-            'Límite del mes alcanzado — el resto se abrirá el próximo.',
-            'Limite do mês atingido — o resto abre no próximo.',
-            'Đã đạt giới hạn tháng này — phần còn lại mở tháng sau.',
-            'Batas bulan ini tercapai — sisanya buka bulan depan.',
-            'Bu ayki sınıra ulaşıldı — kalanı önümüzdeki ay açılır.',
-            'Limit na ten miesiąc osiągnięty — reszta otworzy się w następnym.',
-          ));
-        }
-      } else if (!outcome.ok && outcome.reason === 'error') {
-        // Сетевая/серверная ошибка — мягко по Библии (Стиль 5), без техкодов.
-        showReferralFeedback(L(
-          'Что-то пошло не так. Попробуй снова.',
-          'Щось пішло не так. Спробуй ще раз.',
-          'Algo salió mal. Inténtalo de nuevo.',
-          'Algo deu errado. Tente de novo.',
-          'Có gì đó không ổn. Thử lại nhé.',
-          'Ada yang salah. Coba lagi.',
-          'Bir şeyler ters gitti. Tekrar dene.',
-          'Coś poszło nie tak. Spróbuj jeszcze raz.',
-        ));
-      }
-    } finally {
-      setIsClaiming(false);
-      // Пере-синк состояния даже после ошибки/пустого результата — бейджи/счётчик актуальны.
-      await refreshReferralState();
-    }
-  }, [isClaiming, refreshReferralState, showReferralFeedback, L]);
-
-  // Тап по серой кнопке «Получить 7 дней» (нечего открывать): объясняем, чего не хватает.
-  const handleReferralClaimHint = useCallback(() => {
-    hapticTap();
-    const hasPending = referralInvites.some((inv) => inv.status === 'pending');
-    showReferralFeedback(hasPending
-      ? L(
-          'Друг установил приложение, но ещё не прошёл первый урок. Дни откроются после этого.',
-          'Друг встановив застосунок, але ще не пройшов перший урок. Дні відкриються після цього.',
-          'Tu amigo instaló la app pero aún no completó la primera lección. Los días se abrirán después.',
-          'Seu amigo instalou o app, mas ainda não fez a primeira lição. Os dias abrem depois disso.',
-          'Bạn của bạn đã cài ứng dụng nhưng chưa xong bài đầu. Sau đó ngày sẽ mở.',
-          'Temanmu sudah memasang aplikasi tapi belum selesai pelajaran pertama. Hari terbuka setelah itu.',
-          'Arkadaşın uygulamayı yükledi ama ilk dersi bitirmedi. Günler ondan sonra açılır.',
-          'Znajomy zainstalował aplikację, ale nie ukończył pierwszej lekcji. Dni otworzą się po tym.',
-        )
-      : L(
-          'Пригласи друга — как только он пройдёт первый урок, получишь 7 дней доступа.',
-          'Запроси друга — щойно він пройде перший урок, отримаєш 7 днів доступу.',
-          'Invita a un amigo: en cuanto complete la primera lección, recibirás 7 días de acceso.',
-          'Convide um amigo — assim que ele fizer a primeira lição, você ganha 7 dias de acesso.',
-          'Mời một người bạn — khi họ xong bài đầu, bạn nhận 7 ngày truy cập.',
-          'Undang teman — begitu ia selesai pelajaran pertama, kamu dapat 7 hari akses.',
-          'Bir arkadaşını davet et — ilk dersi bitirince 7 gün erişim kazanırsın.',
-          'Zaproś znajomego — gdy ukończy pierwszą lekcję, dostaniesz 7 dni dostępu.',
-        ));
-  }, [referralInvites, showReferralFeedback, L]);
 
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
@@ -1954,34 +1931,36 @@ export default function FriendsTabScreen() {
   }, []);
 
   const handleSearch = useCallback(async () => {
-    if (codeInput.length !== 6 || isSearching) return;
+    const query = getFriendSearchQuery(codeInput);
+    if (!isFriendSearchReady(query) || isSearching) return;
     hapticTap();
     Keyboard.dismiss();
     setIsSearching(true);
     setFoundUser(null);
     setSearchError(null);
     try {
-      const codeUpper = codeInput.toUpperCase();
+      const isCode = isFriendCodeQuery(query);
+      const codeUpper = normalizeInviteCodeInput(query);
       await trackActivity('friends:search_start', {
         feature: 'friends',
         screen: 'friends',
         result: 'start',
-        tags: { codeLength: codeUpper.length },
+        tags: { queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
       });
-      const result = await lookupUserByFriendCode(codeUpper);
+      const result = isCode ? await lookupUserByFriendCode(codeUpper) : await lookupUserByNickname(query);
       if (!result) {
         await trackActivity('friends:search_result', {
           feature: 'friends',
           screen: 'friends',
           result: 'blocked',
-          tags: { reason: 'not_found', codeLength: codeUpper.length },
+          tags: { reason: 'not_found', queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
         });
-        setSearchError(L('Пользователь с таким кодом не найден', 'Користувача з таким кодом не знайдено', 'No se encontró usuario con ese código', 'Nenhum usuário encontrado com esse código', 'Không tìm thấy người dùng với mã này', 'Pengguna dengan kode ini tidak ditemukan', 'Bu kodla kullanıcı bulunamadı', 'Nie znaleziono użytkownika z tym kodem'));
+        setSearchError(L('Пользователь с таким кодом или ником не найден', 'Користувача з таким кодом або ніком не знайдено', 'No se encontró usuario con ese código o nick', 'Nenhum usuário encontrado com esse código ou nick', 'Không tìm thấy người dùng với mã hoặc tên này', 'Pengguna dengan kode atau nama ini tidak ditemukan', 'Bu kod veya adla kullanıcı bulunamadı', 'Nie znaleziono użytkownika z tym kodem lub nickiem'));
         return;
       }
       const myUid = await ensureAnonUser();
       const isSelf =
-        (myCode != null && codeUpper === myCode.toUpperCase()) ||
+        (isCode && myCode != null && codeUpper === myCode.toUpperCase()) ||
         (myUid != null && result.uid === myUid);
       if (isSelf) {
         await trackActivity('friends:search_result', {
@@ -2004,12 +1983,12 @@ export default function FriendsTabScreen() {
         setSearchError(L(
           'Профиль найден, но ещё не синхронизирован. Открой профиль на втором устройстве и попробуй снова.',
           'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
-          'Perfil encontrado, pero aun no esta sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
-          'Perfil encontrado, mas ainda não está sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
+          'Perfil encontrado, pero a?n no est? sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
+          'Perfil encontrado, mas ainda n?o est? sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
           'Hồ sơ đã được tìm thấy, nhưng chưa đồng bộ. Hãy mở hồ sơ trên thiết bị thứ hai rồi thử lại.',
           'Profil ditemukan, tetapi belum tersinkron. Buka profil di perangkat kedua lalu coba lagi.',
-          'Profil bulundu, ama henüz senkronize edilmedi. Profili ikinci cihazda açıp tekrar dene.',
-          'Profil znaleziony, ale nie jest jeszcze zsynchronizowany. Otwórz profil na drugim urządzeniu i spróbuj ponownie.',
+          'Profil bulundu, ama hen?z senkronize edilmedi. Profili ikinci cihazda a??p tekrar dene.',
+          'Profil znaleziony, ale nie jest jeszcze zsynchronizowany. Otw?rz profil na drugim urz?dzeniu i spr?buj ponownie.',
         ));
         return;
       }
@@ -2018,7 +1997,7 @@ export default function FriendsTabScreen() {
         feature: 'friends',
         screen: 'friends',
         result: 'success',
-        tags: { targetUid: result.uid, profileLoaded: true },
+        tags: { targetUid: result.uid, profileLoaded: true, queryType: isCode ? 'code' : 'nickname' },
       });
     } catch (e) {
       void import('../app_health')
@@ -2027,7 +2006,7 @@ export default function FriendsTabScreen() {
             feature: 'friends',
             screen: 'friends',
             writeToFirestore: true,
-            tags: { codeLength: codeInput.length },
+            tags: { queryLength: codeInput.length },
           }),
         )
         .catch(() => {});
@@ -2035,7 +2014,7 @@ export default function FriendsTabScreen() {
         feature: 'friends',
         screen: 'friends',
         result: 'error',
-        tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
+        tags: { queryLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
       setSearchError(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
@@ -2113,10 +2092,30 @@ export default function FriendsTabScreen() {
   const handleShare = useCallback(async () => {
     if (!myCode) return;
     hapticTap();
+    const inviteUrl = buildReferralShareLinks(myCode).https;
     await Share.share({
-      message: L('Мой код в PhraseMan:', 'Мій код у PhraseMan:', 'Mi código en PhraseMan:', 'Meu código no PhraseMan:', 'Mã của tôi trong PhraseMan:', 'Kode saya di PhraseMan:', 'PhraseMan kodum:', 'Mój kod w PhraseMan:') + ' ' + myCode,
+      message: inviteUrl,
+      url: inviteUrl,
     });
-  }, [myCode]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [myCode]);
+
+  const handleShareFriendCode = useCallback(async () => {
+    if (!myCode) return;
+    hapticTap();
+    const label = triLang(lang as any, {
+      ru: 'Мой код в Phraseman:',
+      uk: 'Мій код у Phraseman:',
+      es: 'Mi código en Phraseman:',
+      'pt-BR': 'Meu código no Phraseman:',
+      vi: 'Mã của tôi trong Phraseman:',
+      id: 'Kode saya di Phraseman:',
+      tr: 'Phraseman kodum:',
+      pl: 'Mój kod w Phraseman:',
+    });
+    await Share.share({
+      message: `${label} ${myCode}`,
+    });
+  }, [lang, myCode]);
 
   const handleDeleteConfirm = useCallback((uid: string, name: string) => {
     hapticTap();
@@ -2437,15 +2436,24 @@ export default function FriendsTabScreen() {
               accessibilityRole="button"
               accessibilityLabel={L('Мои рефералы', 'Мої реферали', 'Mis referidos', 'Meus indicados', 'Lời mời của tôi', 'Referal saya', 'Davetlerim', 'Moje polecenia')}
               onPressIn={() => hapticTap()}
-              onPress={() => setReferralsModalOpen(true)}
+              onPress={() => router.push('/referrals' as any)}
               activeOpacity={0.8}
               style={{
-                width: 40, height: 40, borderRadius: 20,
+                minWidth: 108, height: 40, borderRadius: 20,
                 backgroundColor: chrome.button, borderWidth: 0.5, borderColor: chrome.border,
                 justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 10,
+                flexDirection: 'row', gap: 6, paddingHorizontal: 12,
               }}
             >
               <Ionicons name="gift-outline" size={18} color={t.textPrimary} />
+              <Text
+                style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', includeFontPadding: false }}
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.78}
+              >
+                {L('Рефералы', 'Реферали', 'Referidos', 'Indicados', 'Giới thiệu', 'Referal', 'Davetler', 'Polecenia')}
+              </Text>
               {referralSummary.qualified > 0 && (
                 <View
                   style={{
@@ -2473,20 +2481,6 @@ export default function FriendsTabScreen() {
             <Ionicons name="person-add" size={18} color={t.correctText} />
           </TouchableOpacity>
         </View>
-        {isReferralCloudEnabled() && (
-          <ReferralExplainerCard
-            claimableDays={claimableDays}
-            invitesTotal={referralInvites.length}
-            onInvite={handleReferralInvite}
-            onClaim={handleReferralClaim}
-            onClaimHint={handleReferralClaimHint}
-            onOpenReferrals={() => { hapticTap(); setReferralsModalOpen(true); }}
-            onEnterCode={() => { hapticTap(); setRefCodeEntryOpen(true); }}
-            claiming={isClaiming}
-            L={L}
-            t={t}
-          />
-        )}
         <View style={{
           flexDirection: 'row', backgroundColor: chrome.card,
           borderRadius: 14, padding: 3, marginBottom: 20,
@@ -2642,14 +2636,29 @@ export default function FriendsTabScreen() {
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
                   {L(
-                    'Друзья видят твой прогресс, соревнуются с тобой и шлют подарки. Пригласи первого — вместе держать цепочку проще.',
-                    'Друзі бачать твій прогрес, змагаються з тобою та надсилають подарунки. Запроси першого — разом тримати серію простіше.',
-                    'Tus amigos ven tu progreso, compiten contigo y envían regalos. Invita al primero: juntos es más fácil mantener la racha.',
-                    'Seus amigos veem seu progresso, competem com você e enviam presentes. Convide o primeiro: juntos é mais fácil manter a sequência.',
-                    'Bạn bè thấy tiến độ của bạn, thi đua và gửi quà. Mời người đầu tiên — cùng nhau giữ chuỗi dễ hơn.',
-                    'Teman melihat progresmu, bersaing denganmu, dan mengirim hadiah. Undang yang pertama — bersama lebih mudah menjaga streak.',
-                    'Arkadaşların ilerlemeni görür, seninle yarışır ve hediye gönderir. İlkini davet et — seriyi birlikte korumak daha kolay.',
-                    'Znajomi widzą twój postęp, rywalizują z tobą i wysyłają prezenty. Zaproś pierwszego — razem łatwiej utrzymać serię.',
+                    'Получите 7 дней полного Premium-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
+                    'Отримайте 7 днів повного Premium-доступу до всього за одного запрошеного друга, який встановить застосунок, введе ваш код',
+                    'Recibe 7 días de acceso Premium completo a todo por cada amigo invitado que instale la app, introduzca tu código',
+                    'Receba 7 dias de acesso Premium completo a tudo por um amigo convidado que instalar o app, inserir seu código',
+                    'Nhận 7 ngày Premium đầy đủ khi bạn mời một người bạn cài ứng dụng, nhập mã của bạn',
+                    'Dapatkan 7 hari Premium penuh saat teman yang kamu undang memasang aplikasi, memasukkan kodemu',
+                    'Davet ettiğin arkadaş uygulamayı kurup kodunu girerse',
+                    'Otrzymasz 7 dni pełnego Premium za znajomego, który zainstaluje aplikację i wpisze twój kod',
+                  )}
+                  {myCodeLabel ? (
+                    <Text testID="friends-empty-invite-code" style={{ color: t.accent, fontWeight: '900', letterSpacing: 0.8 }}>
+                      {` ${myCodeLabel}`}
+                    </Text>
+                  ) : null}
+                  {L(
+                    ' и пройдёт один урок полностью. Друг тоже получит 7 дней полного доступа.',
+                    ' і повністю пройде один урок. Друг теж отримає 7 днів повного доступу.',
+                    ' y complete una lección. Tu amigo también recibirá 7 días.',
+                    ' e concluir uma lição. Ele também recebe 7 dias.',
+                    ' và hoàn thành một bài học. Bạn ấy cũng nhận 7 ngày.',
+                    ' dan menyelesaikan satu pelajaran. Temanmu juga dapat 7 hari.',
+                    ' ve bir dersi tamamen bitirirse 7 gün tam Premium erişim kazanırsın. Arkadaşın da 7 gün alır.',
+                    ' i ukończy jedną lekcję. Znajomy też dostanie 7 dni.',
                   )}
                 </Text>
                 <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
@@ -2658,22 +2667,24 @@ export default function FriendsTabScreen() {
                     onPress={() => { void handleShare(); }}
                     edgeColor={t.accent}
                     wrapStyle={{ flex: 1 }}
-                    style={{ flexDirection: 'row', justifyContent: 'center', gap: 6, backgroundColor: t.accent, borderRadius: 14, paddingVertical: 13 }}
+                    style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
                   >
-                    <Ionicons name="share-social" size={17} color={t.correctText} />
-                    <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>
+                    <Ionicons name="share-social" size={20} color={t.correctText} />
+                    <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
                       {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
                     </Text>
                   </DuoPressable>
                   <TapScale
-                    testID="friends-empty-addcode"
-                    onPress={() => { hapticTap(); setAddModalOpen(true); }}
-                    style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, backgroundColor: 'transparent', borderRadius: 14, paddingVertical: 13, borderWidth: 1, borderColor: t.border }}
+                    testID="friends-empty-enter-code"
+                    onPress={() => { hapticTap(); router.push('/referral_code_entry' as any); }}
+                    style={{ flex: 1, height: 58, backgroundColor: 'transparent', borderRadius: 14, borderWidth: 1, borderColor: t.border }}
                   >
-                    <Ionicons name="person-add" size={17} color={t.textPrimary} />
-                    <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
-                      {L('По коду', 'За кодом', 'Por código', 'Por código', 'Bằng mã', 'Pakai kode', 'Kodla', 'Kodem')}
-                    </Text>
+                    <View style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
+                      <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
+                      <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                        {L('Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod')}
+                      </Text>
+                    </View>
                   </TapScale>
                 </View>
               </View>
@@ -2724,7 +2735,7 @@ export default function FriendsTabScreen() {
         onClose={() => setAddModalOpen(false)}
         myCode={myCode}
         onCopy={handleCopy}
-        onShare={handleShare}
+        onShare={handleShareFriendCode}
         copied={copied}
         codeInput={codeInput}
         setCodeInput={setCodeInput}
@@ -3164,15 +3175,6 @@ export default function FriendsTabScreen() {
         f={f}
       />
 
-      <ReferralAccessActivatedModal
-        visible={activatedModal !== null}
-        grantedDays={activatedModal?.days ?? 0}
-        friendsCount={activatedModal?.friends ?? 0}
-        onClose={() => setActivatedModal(null)}
-        L={L}
-        t={t}
-      />
-
       <ReferralAccessEndedModal
         visible={accessEndedOpen}
         onInviteFriend={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); void handleReferralInvite(); }}
@@ -3184,30 +3186,6 @@ export default function FriendsTabScreen() {
         onClose={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); }}
         L={L}
         t={t}
-      />
-
-      <ReferralsListModal
-        visible={referralsModalOpen}
-        onClose={() => setReferralsModalOpen(false)}
-        invites={referralInvites}
-        claimableDays={claimableDays}
-        claiming={isClaiming}
-        onClaim={() => { setReferralsModalOpen(false); void handleReferralClaim(); }}
-        onInvite={() => { setReferralsModalOpen(false); void handleReferralInvite(); }}
-        lang={lang}
-        t={t}
-        f={f}
-        chrome={chrome}
-      />
-
-      <ReferralCodeEntryModal
-        visible={refCodeEntryOpen}
-        onClose={() => setRefCodeEntryOpen(false)}
-        onApplied={() => { void refreshReferralState(); }}
-        lang={lang}
-        t={t}
-        f={f}
-        chrome={chrome}
       />
 
       <UnifiedPlayerModal

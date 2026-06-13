@@ -1,0 +1,3846 @@
+{
+  "created_at": "2026-06-12T18:32:56.341Z",
+  "batch": "social_mix_30plus_2026-06-12",
+  "mode": "apply-resume",
+  "per_day": 5,
+  "scheduled": [
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_001",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-13T07:45:00+01:00",
+      "job_id": "6a2c50d91d5af6919bd098e3",
+      "result": {
+        "job_id": "6a2c50d91d5af6919bd098e3"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_002",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T11:30:00+01:00",
+      "job_id": "6a2c50daa9c10826a36f8274",
+      "result": {
+        "job_id": "6a2c50daa9c10826a36f8274"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_003",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T15:30:00+01:00",
+      "job_id": "6a2c50dbc1f50598dfeeecfa",
+      "result": {
+        "job_id": "6a2c50dbc1f50598dfeeecfa"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_004",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-13T18:45:00+01:00",
+      "job_id": "6a2c50db8c8f78f139c02db4",
+      "result": {
+        "job_id": "6a2c50db8c8f78f139c02db4"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_005",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-13T21:30:00+01:00",
+      "job_id": "6a2c50db8c8f78f139c02db5",
+      "result": {
+        "job_id": "6a2c50db8c8f78f139c02db5"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_006",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T07:45:00+01:00",
+      "job_id": "6a2c50dbc1f50598dfeeecfc",
+      "result": {
+        "job_id": "6a2c50dbc1f50598dfeeecfc"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_007",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-14T11:30:00+01:00",
+      "job_id": "6a2c50db1d5af6919bd098e9",
+      "result": {
+        "job_id": "6a2c50db1d5af6919bd098e9"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_008",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T15:30:00+01:00",
+      "job_id": "6a2c50dcff6172f57428bdff",
+      "result": {
+        "job_id": "6a2c50dcff6172f57428bdff"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_009",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T18:45:00+01:00",
+      "job_id": "6a2c50ddc1f50598dfeeed01",
+      "result": {
+        "job_id": "6a2c50ddc1f50598dfeeed01"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_010",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-14T21:30:00+01:00",
+      "job_id": "6a2c50dd8c8f78f139c02dbb",
+      "result": {
+        "job_id": "6a2c50dd8c8f78f139c02dbb"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_011",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-15T07:45:00+01:00",
+      "job_id": "6a2c50dd8c8f78f139c02dbd",
+      "result": {
+        "job_id": "6a2c50dd8c8f78f139c02dbd"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_012",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T11:30:00+01:00",
+      "job_id": "6a2c50ddc1f50598dfeeed04",
+      "result": {
+        "job_id": "6a2c50ddc1f50598dfeeed04"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_013",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-15T15:30:00+01:00",
+      "job_id": "6a2c50ddc1f50598dfeeed05",
+      "result": {
+        "job_id": "6a2c50ddc1f50598dfeeed05"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_014",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T18:45:00+01:00",
+      "job_id": "6a2c50dea9c10826a36f8281",
+      "result": {
+        "job_id": "6a2c50dea9c10826a36f8281"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_015",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T21:30:00+01:00",
+      "job_id": "6a2c50df6969091c189d5196",
+      "result": {
+        "job_id": "6a2c50df6969091c189d5196"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_016",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-16T07:45:00+01:00",
+      "job_id": "6a2c50dfa9c10826a36f8285",
+      "result": {
+        "job_id": "6a2c50dfa9c10826a36f8285"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_017",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-16T11:30:00+01:00",
+      "job_id": "6a2c50dfc1f50598dfeeed0d",
+      "result": {
+        "job_id": "6a2c50dfc1f50598dfeeed0d"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_018",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T15:30:00+01:00",
+      "job_id": "6a2c50dfc1f50598dfeeed11",
+      "result": {
+        "job_id": "6a2c50dfc1f50598dfeeed11"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_019",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-16T18:45:00+01:00",
+      "job_id": "6a2c50dfc1f50598dfeeed12",
+      "result": {
+        "job_id": "6a2c50dfc1f50598dfeeed12"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_020",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T21:30:00+01:00",
+      "job_id": "6a2c50e08c8f78f139c02dc5",
+      "result": {
+        "job_id": "6a2c50e08c8f78f139c02dc5"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_021",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T07:45:00+01:00",
+      "job_id": "6a2c50e01d5af6919bd098f1",
+      "result": {
+        "job_id": "6a2c50e01d5af6919bd098f1"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_022",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-17T11:30:00+01:00",
+      "job_id": "6a2c50e11d5af6919bd098f2",
+      "result": {
+        "job_id": "6a2c50e11d5af6919bd098f2"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_023",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-17T15:30:00+01:00",
+      "job_id": "6a2c50e16969091c189d519f",
+      "result": {
+        "job_id": "6a2c50e16969091c189d519f"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_024",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T18:45:00+01:00",
+      "job_id": "6a2c50e18c8f78f139c02dca",
+      "result": {
+        "job_id": "6a2c50e18c8f78f139c02dca"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_025",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-17T21:30:00+01:00",
+      "job_id": "6a2c50e16969091c189d51a4",
+      "result": {
+        "job_id": "6a2c50e16969091c189d51a4"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_026",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T07:45:00+01:00",
+      "job_id": "6a2c50e21d5af6919bd098f6",
+      "result": {
+        "job_id": "6a2c50e21d5af6919bd098f6"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_027",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T11:30:00+01:00",
+      "job_id": "6a2c50e2ff6172f57428be17",
+      "result": {
+        "job_id": "6a2c50e2ff6172f57428be17"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_028",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-18T15:30:00+01:00",
+      "job_id": "6a2c50e28c8f78f139c02dd1",
+      "result": {
+        "job_id": "6a2c50e28c8f78f139c02dd1"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_029",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-18T18:45:00+01:00",
+      "job_id": "6a2c50e36969091c189d51a8",
+      "result": {
+        "job_id": "6a2c50e36969091c189d51a8"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_030",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T21:30:00+01:00",
+      "job_id": "6a2c50e3ff6172f57428be1b",
+      "result": {
+        "job_id": "6a2c50e3ff6172f57428be1b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_031",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-19T07:45:00+01:00",
+      "job_id": "6a2c50e31d5af6919bd098f9",
+      "result": {
+        "job_id": "6a2c50e31d5af6919bd098f9"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_032",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T11:30:00+01:00",
+      "job_id": "6a2c50e463ef9f8028bdc951",
+      "result": {
+        "job_id": "6a2c50e463ef9f8028bdc951"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_033",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T15:30:00+01:00",
+      "job_id": "6a2c50e4c1f50598dfeeed1b",
+      "result": {
+        "job_id": "6a2c50e4c1f50598dfeeed1b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_034",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-19T18:45:00+01:00",
+      "job_id": "6a2c50e48c8f78f139c02dd4",
+      "result": {
+        "job_id": "6a2c50e48c8f78f139c02dd4"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_035",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-19T21:30:00+01:00",
+      "job_id": "6a2c50e4a9c10826a36f8294",
+      "result": {
+        "job_id": "6a2c50e4a9c10826a36f8294"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_036",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T07:45:00+01:00",
+      "job_id": "6a2c50e56969091c189d51af",
+      "result": {
+        "job_id": "6a2c50e56969091c189d51af"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_037",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-20T11:30:00+01:00",
+      "job_id": "6a2c50e59248d30851eceb69",
+      "result": {
+        "job_id": "6a2c50e59248d30851eceb69"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_038",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T15:30:00+01:00",
+      "job_id": "6a2c50e69248d30851eceb6b",
+      "result": {
+        "job_id": "6a2c50e69248d30851eceb6b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_039",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T18:45:00+01:00",
+      "job_id": "6a2c50e69248d30851eceb6f",
+      "result": {
+        "job_id": "6a2c50e69248d30851eceb6f"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_040",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-20T21:30:00+01:00",
+      "job_id": "6a2c50e6ff6172f57428be24",
+      "result": {
+        "job_id": "6a2c50e6ff6172f57428be24"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_041",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-21T07:45:00+01:00",
+      "job_id": "6a2c50e69248d30851eceb70",
+      "result": {
+        "job_id": "6a2c50e69248d30851eceb70"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_042",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T11:30:00+01:00",
+      "job_id": "6a2c50e71d5af6919bd09906",
+      "result": {
+        "job_id": "6a2c50e71d5af6919bd09906"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_043",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-21T15:30:00+01:00",
+      "job_id": "6a2c50e7a9c10826a36f829d",
+      "result": {
+        "job_id": "6a2c50e7a9c10826a36f829d"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_044",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T18:45:00+01:00",
+      "job_id": "6a2c50e7a9c10826a36f82a1",
+      "result": {
+        "job_id": "6a2c50e7a9c10826a36f82a1"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_045",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T21:30:00+01:00",
+      "job_id": "6a2c50e89248d30851eceb77",
+      "result": {
+        "job_id": "6a2c50e89248d30851eceb77"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_046",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-22T07:45:00+01:00",
+      "job_id": "6a2c50e8a9c10826a36f82a5",
+      "result": {
+        "job_id": "6a2c50e8a9c10826a36f82a5"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_047",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-22T11:30:00+01:00",
+      "job_id": "6a2c50e89248d30851eceb78",
+      "result": {
+        "job_id": "6a2c50e89248d30851eceb78"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_048",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T15:30:00+01:00",
+      "job_id": "6a2c50e98c8f78f139c02dda",
+      "result": {
+        "job_id": "6a2c50e98c8f78f139c02dda"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_049",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-22T18:45:00+01:00",
+      "job_id": "6a2c50e9c1c0a5407f4d2770",
+      "result": {
+        "job_id": "6a2c50e9c1c0a5407f4d2770"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_050",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T21:30:00+01:00",
+      "job_id": "6a2c50ea9248d30851eceb7b",
+      "result": {
+        "job_id": "6a2c50ea9248d30851eceb7b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_051",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T07:45:00+01:00",
+      "job_id": "6a2c50eac1f50598dfeeed39",
+      "result": {
+        "job_id": "6a2c50eac1f50598dfeeed39"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_052",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-23T11:30:00+01:00",
+      "job_id": "6a2c50eac1f50598dfeeed3a",
+      "result": {
+        "job_id": "6a2c50eac1f50598dfeeed3a"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_053",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-23T15:30:00+01:00",
+      "job_id": "6a2c50ea8c8f78f139c02de0",
+      "result": {
+        "job_id": "6a2c50ea8c8f78f139c02de0"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_054",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T18:45:00+01:00",
+      "job_id": "6a2c50ebff6172f57428be36",
+      "result": {
+        "job_id": "6a2c50ebff6172f57428be36"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_055",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-23T21:30:00+01:00",
+      "job_id": "6a2c50eb6969091c189d51bd",
+      "result": {
+        "job_id": "6a2c50eb6969091c189d51bd"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_056",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T07:45:00+01:00",
+      "job_id": "6a2c50ec6969091c189d51bf",
+      "result": {
+        "job_id": "6a2c50ec6969091c189d51bf"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_057",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T11:30:00+01:00",
+      "job_id": "6a2c50ecc1c0a5407f4d2782",
+      "result": {
+        "job_id": "6a2c50ecc1c0a5407f4d2782"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_058",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-24T15:30:00+01:00",
+      "job_id": "6a2c50ec8c8f78f139c02de8",
+      "result": {
+        "job_id": "6a2c50ec8c8f78f139c02de8"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_059",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-24T18:45:00+01:00",
+      "job_id": "6a2c50ecc1c0a5407f4d2784",
+      "result": {
+        "job_id": "6a2c50ecc1c0a5407f4d2784"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_060",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T21:30:00+01:00",
+      "job_id": "6a2c50ed63ef9f8028bdc962",
+      "result": {
+        "job_id": "6a2c50ed63ef9f8028bdc962"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_061",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-25T07:45:00+01:00",
+      "job_id": "6a2c512e63ef9f8028bdca16",
+      "result": {
+        "job_id": "6a2c512e63ef9f8028bdca16"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_062",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-25T11:30:00+01:00",
+      "job_id": "6a2c512f8c8f78f139c02ebc",
+      "result": {
+        "job_id": "6a2c512f8c8f78f139c02ebc"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_063",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-25T15:30:00+01:00",
+      "job_id": "6a2c512f1d5af6919bd09969",
+      "result": {
+        "job_id": "6a2c512f1d5af6919bd09969"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_064",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-25T18:45:00+01:00",
+      "job_id": "6a2c512fa9c10826a36f834f",
+      "result": {
+        "job_id": "6a2c512fa9c10826a36f834f"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_065",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-25T21:30:00+01:00",
+      "job_id": "6a2c51308c8f78f139c02ec0",
+      "result": {
+        "job_id": "6a2c51308c8f78f139c02ec0"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_066",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-26T07:45:00+01:00",
+      "job_id": "6a2c51309248d30851ecec1d",
+      "result": {
+        "job_id": "6a2c51309248d30851ecec1d"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_067",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-26T11:30:00+01:00",
+      "job_id": "6a2c51301d5af6919bd0996b",
+      "result": {
+        "job_id": "6a2c51301d5af6919bd0996b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_068",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-26T15:30:00+01:00",
+      "job_id": "6a2c5131a9c10826a36f8357",
+      "result": {
+        "job_id": "6a2c5131a9c10826a36f8357"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_069",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-26T18:45:00+01:00",
+      "job_id": "6a2c51319248d30851ecec23",
+      "result": {
+        "job_id": "6a2c51319248d30851ecec23"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_070",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-26T21:30:00+01:00",
+      "job_id": "6a2c513163ef9f8028bdca1b",
+      "result": {
+        "job_id": "6a2c513163ef9f8028bdca1b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_071",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-27T07:45:00+01:00",
+      "job_id": "6a2c513163ef9f8028bdca1c",
+      "result": {
+        "job_id": "6a2c513163ef9f8028bdca1c"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_072",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-27T11:30:00+01:00",
+      "job_id": "6a2c5132c1f50598dfeeede9",
+      "result": {
+        "job_id": "6a2c5132c1f50598dfeeede9"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_073",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-27T15:30:00+01:00",
+      "job_id": "6a2c51329248d30851ecec29",
+      "result": {
+        "job_id": "6a2c51329248d30851ecec29"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_074",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-27T18:45:00+01:00",
+      "job_id": "6a2c51338c8f78f139c02ece",
+      "result": {
+        "job_id": "6a2c51338c8f78f139c02ece"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_075",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-27T21:30:00+01:00",
+      "job_id": "6a2c51335b0ab86e90588d2b",
+      "result": {
+        "job_id": "6a2c51335b0ab86e90588d2b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_076",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-28T07:45:00+01:00",
+      "job_id": "6a2c5133c1c0a5407f4d281a",
+      "result": {
+        "job_id": "6a2c5133c1c0a5407f4d281a"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_077",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-28T11:30:00+01:00",
+      "job_id": "6a2c51335b0ab86e90588d2c",
+      "result": {
+        "job_id": "6a2c51335b0ab86e90588d2c"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_078",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-28T15:30:00+01:00",
+      "job_id": "6a2c513463ef9f8028bdca27",
+      "result": {
+        "job_id": "6a2c513463ef9f8028bdca27"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_079",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-28T18:45:00+01:00",
+      "job_id": "6a2c5134c1f50598dfeeedf6",
+      "result": {
+        "job_id": "6a2c5134c1f50598dfeeedf6"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_080",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-28T21:30:00+01:00",
+      "job_id": "6a2c5135a9c10826a36f8369",
+      "result": {
+        "job_id": "6a2c5135a9c10826a36f8369"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_081",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-29T07:45:00+01:00",
+      "job_id": "6a2c5135c1c0a5407f4d281f",
+      "result": {
+        "job_id": "6a2c5135c1c0a5407f4d281f"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_082",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-29T11:30:00+01:00",
+      "job_id": "6a2c5135c1c0a5407f4d2820",
+      "result": {
+        "job_id": "6a2c5135c1c0a5407f4d2820"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_083",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-29T15:30:00+01:00",
+      "job_id": "6a2c51355b0ab86e90588d33",
+      "result": {
+        "job_id": "6a2c51355b0ab86e90588d33"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_084",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-29T18:45:00+01:00",
+      "job_id": "6a2c5136c1f50598dfeeee02",
+      "result": {
+        "job_id": "6a2c5136c1f50598dfeeee02"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_085",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-29T21:30:00+01:00",
+      "job_id": "6a2c5136a9c10826a36f8376",
+      "result": {
+        "job_id": "6a2c5136a9c10826a36f8376"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_086",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-30T07:45:00+01:00",
+      "job_id": "6a2c5136c1f50598dfeeee03",
+      "result": {
+        "job_id": "6a2c5136c1f50598dfeeee03"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_087",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-30T11:30:00+01:00",
+      "job_id": "6a2c5137c1f50598dfeeee06",
+      "result": {
+        "job_id": "6a2c5137c1f50598dfeeee06"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_088",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-30T15:30:00+01:00",
+      "job_id": "6a2c51375b0ab86e90588d3c",
+      "result": {
+        "job_id": "6a2c51375b0ab86e90588d3c"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_089",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-30T18:45:00+01:00",
+      "job_id": "6a2c513763ef9f8028bdca30",
+      "result": {
+        "job_id": "6a2c513763ef9f8028bdca30"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_090",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-30T21:30:00+01:00",
+      "job_id": "6a2c5138a9c10826a36f837d",
+      "result": {
+        "job_id": "6a2c5138a9c10826a36f837d"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_091",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-07-01T07:45:00+01:00",
+      "job_id": "6a2c51381d5af6919bd0997c",
+      "result": {
+        "job_id": "6a2c51381d5af6919bd0997c"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_092",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-07-01T11:30:00+01:00",
+      "job_id": "6a2c513863ef9f8028bdca3e",
+      "result": {
+        "job_id": "6a2c513863ef9f8028bdca3e"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_093",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-07-01T15:30:00+01:00",
+      "job_id": "6a2c51395b0ab86e90588d43",
+      "result": {
+        "job_id": "6a2c51395b0ab86e90588d43"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_094",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-07-01T18:45:00+01:00",
+      "job_id": "6a2c5139c1c0a5407f4d2828",
+      "result": {
+        "job_id": "6a2c5139c1c0a5407f4d2828"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_095",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-07-01T21:30:00+01:00",
+      "job_id": "6a2c51398c8f78f139c02ee3",
+      "result": {
+        "job_id": "6a2c51398c8f78f139c02ee3"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_096",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-07-02T07:45:00+01:00",
+      "job_id": "6a2c513ac1c0a5407f4d282a",
+      "result": {
+        "job_id": "6a2c513ac1c0a5407f4d282a"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_097",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-07-02T11:30:00+01:00",
+      "job_id": "6a2c513a5b0ab86e90588d47",
+      "result": {
+        "job_id": "6a2c513a5b0ab86e90588d47"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_098",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-07-02T15:30:00+01:00",
+      "job_id": "6a2c513a63ef9f8028bdca47",
+      "result": {
+        "job_id": "6a2c513a63ef9f8028bdca47"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_099",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-07-02T18:45:00+01:00",
+      "job_id": "6a2c513b63ef9f8028bdca4a",
+      "result": {
+        "job_id": "6a2c513b63ef9f8028bdca4a"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_100",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-07-02T21:30:00+01:00",
+      "job_id": "6a2c513b63ef9f8028bdca4b",
+      "result": {
+        "job_id": "6a2c513b63ef9f8028bdca4b"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_101",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-07-03T07:45:00+01:00",
+      "job_id": "6a2c513b1d5af6919bd09982",
+      "result": {
+        "job_id": "6a2c513b1d5af6919bd09982"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_102",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-07-03T11:30:00+01:00",
+      "job_id": "6a2c513ca9c10826a36f8384",
+      "result": {
+        "job_id": "6a2c513ca9c10826a36f8384"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_103",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-07-03T15:30:00+01:00",
+      "job_id": "6a2c513c5b0ab86e90588d50",
+      "result": {
+        "job_id": "6a2c513c5b0ab86e90588d50"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_104",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-07-03T18:45:00+01:00",
+      "job_id": "6a2c513da9c10826a36f8387",
+      "result": {
+        "job_id": "6a2c513da9c10826a36f8387"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_105",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-07-03T21:30:00+01:00",
+      "job_id": "6a2c513e1d5af6919bd09988",
+      "result": {
+        "job_id": "6a2c513e1d5af6919bd09988"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_106",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-07-04T07:45:00+01:00",
+      "job_id": "6a2c513e63ef9f8028bdca54",
+      "result": {
+        "job_id": "6a2c513e63ef9f8028bdca54"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_107",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-07-04T11:30:00+01:00",
+      "job_id": "6a2c513e5b0ab86e90588d5c",
+      "result": {
+        "job_id": "6a2c513e5b0ab86e90588d5c"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_108",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-07-04T15:30:00+01:00",
+      "job_id": "6a2c513ec1f50598dfeeee1a",
+      "result": {
+        "job_id": "6a2c513ec1f50598dfeeee1a"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_109",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-07-04T18:45:00+01:00",
+      "job_id": "6a2c513e63ef9f8028bdca56",
+      "result": {
+        "job_id": "6a2c513e63ef9f8028bdca56"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_110",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-07-04T21:30:00+01:00",
+      "job_id": "6a2c513f8c8f78f139c02efa",
+      "result": {
+        "job_id": "6a2c513f8c8f78f139c02efa"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_111",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-07-05T07:45:00+01:00",
+      "job_id": "6a2c5140c1c0a5407f4d2834",
+      "result": {
+        "job_id": "6a2c5140c1c0a5407f4d2834"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_112",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-07-05T11:30:00+01:00",
+      "job_id": "6a2c51406969091c189d51e1",
+      "result": {
+        "job_id": "6a2c51406969091c189d51e1"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_113",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-07-05T15:30:00+01:00",
+      "job_id": "6a2c51408c8f78f139c02efb",
+      "result": {
+        "job_id": "6a2c51408c8f78f139c02efb"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_114",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-07-05T18:45:00+01:00",
+      "job_id": "6a2c5140c1f50598dfeeee1c",
+      "result": {
+        "job_id": "6a2c5140c1f50598dfeeee1c"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_115",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-07-05T21:30:00+01:00",
+      "job_id": "6a2c51408c8f78f139c02efd",
+      "result": {
+        "job_id": "6a2c51408c8f78f139c02efd"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_116",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-07-06T07:45:00+01:00",
+      "job_id": "6a2c51418c8f78f139c02eff",
+      "result": {
+        "job_id": "6a2c51418c8f78f139c02eff"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_117",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-07-06T11:30:00+01:00",
+      "job_id": "6a2c51418c8f78f139c02f02",
+      "result": {
+        "job_id": "6a2c51418c8f78f139c02f02"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_118",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-07-06T15:30:00+01:00",
+      "job_id": "6a2c51421d5af6919bd09992",
+      "result": {
+        "job_id": "6a2c51421d5af6919bd09992"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_119",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-07-06T18:45:00+01:00",
+      "job_id": "6a2c51428c8f78f139c02f03",
+      "result": {
+        "job_id": "6a2c51428c8f78f139c02f03"
+      }
+    },
+    {
+      "account_id": "698c36b7837446e65776927c",
+      "provider": "facebook",
+      "account_name": "English HUB",
+      "item_id": "sm_120",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-07-06T21:30:00+01:00",
+      "job_id": "6a2c5142c1f50598dfeeee24",
+      "result": {
+        "job_id": "6a2c5142c1f50598dfeeee24"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_002",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T07:45:00+01:00",
+      "job_id": "6a2c51428c8f78f139c02f06",
+      "result": {
+        "job_id": "6a2c51428c8f78f139c02f06"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_003",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T11:30:00+01:00",
+      "job_id": "6a2c5142c1c0a5407f4d283a",
+      "result": {
+        "job_id": "6a2c5142c1c0a5407f4d283a"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_006",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T15:30:00+01:00",
+      "job_id": "6a2c5143c1c0a5407f4d283d",
+      "result": {
+        "job_id": "6a2c5143c1c0a5407f4d283d"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_008",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T18:45:00+01:00",
+      "job_id": "6a2c5143c1c0a5407f4d283f",
+      "result": {
+        "job_id": "6a2c5143c1c0a5407f4d283f"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_009",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T21:30:00+01:00",
+      "job_id": "6a2c5143c1c0a5407f4d2840",
+      "result": {
+        "job_id": "6a2c5143c1c0a5407f4d2840"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_012",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T07:45:00+01:00",
+      "job_id": "6a2c51438c8f78f139c02f0a",
+      "result": {
+        "job_id": "6a2c51438c8f78f139c02f0a"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_014",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T11:30:00+01:00",
+      "job_id": "6a2c5143c1f50598dfeeee25",
+      "result": {
+        "job_id": "6a2c5143c1f50598dfeeee25"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_015",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T15:30:00+01:00",
+      "job_id": "6a2c51431d5af6919bd09997",
+      "result": {
+        "job_id": "6a2c51431d5af6919bd09997"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_018",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T18:45:00+01:00",
+      "job_id": "6a2c51431d5af6919bd09998",
+      "result": {
+        "job_id": "6a2c51431d5af6919bd09998"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_020",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T21:30:00+01:00",
+      "job_id": "6a2c51431d5af6919bd09999",
+      "result": {
+        "job_id": "6a2c51431d5af6919bd09999"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_021",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T07:45:00+01:00",
+      "job_id": "6a2c51c61d5af6919bd09a3b",
+      "result": {
+        "job_id": "6a2c51c61d5af6919bd09a3b"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_024",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T11:30:00+01:00",
+      "job_id": "6a2c51c66969091c189d52fb",
+      "result": {
+        "job_id": "6a2c51c66969091c189d52fb"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_026",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T15:30:00+01:00",
+      "job_id": "6a2c51c6ff6172f57428bf6b",
+      "result": {
+        "job_id": "6a2c51c6ff6172f57428bf6b"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_027",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T18:45:00+01:00",
+      "job_id": "6a2c51c6c1f50598dfeeeefb",
+      "result": {
+        "job_id": "6a2c51c6c1f50598dfeeeefb"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_030",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T21:30:00+01:00",
+      "job_id": "6a2c51c61d5af6919bd09a3d",
+      "result": {
+        "job_id": "6a2c51c61d5af6919bd09a3d"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_032",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T07:45:00+01:00",
+      "job_id": "6a2c51c6c1c0a5407f4d298e",
+      "result": {
+        "job_id": "6a2c51c6c1c0a5407f4d298e"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_033",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T11:30:00+01:00",
+      "job_id": "6a2c51c6ff6172f57428bf6c",
+      "result": {
+        "job_id": "6a2c51c6ff6172f57428bf6c"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_036",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T15:30:00+01:00",
+      "job_id": "6a2c51c71d5af6919bd09a3f",
+      "result": {
+        "job_id": "6a2c51c71d5af6919bd09a3f"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_038",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T18:45:00+01:00",
+      "job_id": "6a2c51c76969091c189d5300",
+      "result": {
+        "job_id": "6a2c51c76969091c189d5300"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_039",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T21:30:00+01:00",
+      "job_id": "6a2c51c78c8f78f139c0304f",
+      "result": {
+        "job_id": "6a2c51c78c8f78f139c0304f"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_042",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T07:45:00+01:00",
+      "job_id": "6a2c51c7c1c0a5407f4d298f",
+      "result": {
+        "job_id": "6a2c51c7c1c0a5407f4d298f"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_044",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T11:30:00+01:00",
+      "job_id": "6a2c51c763ef9f8028bdcbe0",
+      "result": {
+        "job_id": "6a2c51c763ef9f8028bdcbe0"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_045",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T15:30:00+01:00",
+      "job_id": "6a2c51c7c1c0a5407f4d2991",
+      "result": {
+        "job_id": "6a2c51c7c1c0a5407f4d2991"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_048",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T18:45:00+01:00",
+      "job_id": "6a2c51c79248d30851ecedc0",
+      "result": {
+        "job_id": "6a2c51c79248d30851ecedc0"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_050",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T21:30:00+01:00",
+      "job_id": "6a2c51c7ff6172f57428bf6d",
+      "result": {
+        "job_id": "6a2c51c7ff6172f57428bf6d"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_051",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T07:45:00+01:00",
+      "job_id": "6a2c51c7c1c0a5407f4d2992",
+      "result": {
+        "job_id": "6a2c51c7c1c0a5407f4d2992"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_054",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T11:30:00+01:00",
+      "job_id": "6a2c51c7a9c10826a36f849f",
+      "result": {
+        "job_id": "6a2c51c7a9c10826a36f849f"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_056",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T15:30:00+01:00",
+      "job_id": "6a2c51c863ef9f8028bdcbe1",
+      "result": {
+        "job_id": "6a2c51c863ef9f8028bdcbe1"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_057",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T18:45:00+01:00",
+      "job_id": "6a2c51c863ef9f8028bdcbe3",
+      "result": {
+        "job_id": "6a2c51c863ef9f8028bdcbe3"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_060",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T21:30:00+01:00",
+      "job_id": "6a2c51c8ff6172f57428bf73",
+      "result": {
+        "job_id": "6a2c51c8ff6172f57428bf73"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_062",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T07:45:00+01:00",
+      "job_id": "6a2c51c86969091c189d5304",
+      "result": {
+        "job_id": "6a2c51c86969091c189d5304"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_063",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T11:30:00+01:00",
+      "job_id": "6a2c51c88c8f78f139c03054",
+      "result": {
+        "job_id": "6a2c51c88c8f78f139c03054"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_066",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T15:30:00+01:00",
+      "job_id": "6a2c51c863ef9f8028bdcbe5",
+      "result": {
+        "job_id": "6a2c51c863ef9f8028bdcbe5"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_068",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T18:45:00+01:00",
+      "job_id": "6a2c51c89248d30851ecedc5",
+      "result": {
+        "job_id": "6a2c51c89248d30851ecedc5"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_069",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T21:30:00+01:00",
+      "job_id": "6a2c51c89248d30851ecedc7",
+      "result": {
+        "job_id": "6a2c51c89248d30851ecedc7"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_072",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T07:45:00+01:00",
+      "job_id": "6a2c51c99248d30851ecedc8",
+      "result": {
+        "job_id": "6a2c51c99248d30851ecedc8"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_074",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T11:30:00+01:00",
+      "job_id": "6a2c51c96969091c189d5305",
+      "result": {
+        "job_id": "6a2c51c96969091c189d5305"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_075",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T15:30:00+01:00",
+      "job_id": "6a2c51c9a9c10826a36f84a5",
+      "result": {
+        "job_id": "6a2c51c9a9c10826a36f84a5"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_078",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T18:45:00+01:00",
+      "job_id": "6a2c51c95b0ab86e90588e88",
+      "result": {
+        "job_id": "6a2c51c95b0ab86e90588e88"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_080",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T21:30:00+01:00",
+      "job_id": "6a2c51c99248d30851ecedca",
+      "result": {
+        "job_id": "6a2c51c99248d30851ecedca"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_081",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T07:45:00+01:00",
+      "job_id": "6a2c51c9c1f50598dfeeeefe",
+      "result": {
+        "job_id": "6a2c51c9c1f50598dfeeeefe"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_084",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T11:30:00+01:00",
+      "job_id": "6a2c51c9a9c10826a36f84a8",
+      "result": {
+        "job_id": "6a2c51c9a9c10826a36f84a8"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_086",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T15:30:00+01:00",
+      "job_id": "6a2c51c9c1f50598dfeeeeff",
+      "result": {
+        "job_id": "6a2c51c9c1f50598dfeeeeff"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_087",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T18:45:00+01:00",
+      "job_id": "6a2c51c99248d30851ecedcb",
+      "result": {
+        "job_id": "6a2c51c99248d30851ecedcb"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_090",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T21:30:00+01:00",
+      "job_id": "6a2c51cac1c0a5407f4d2996",
+      "result": {
+        "job_id": "6a2c51cac1c0a5407f4d2996"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_092",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T07:45:00+01:00",
+      "job_id": "6a2c51cac1c0a5407f4d2997",
+      "result": {
+        "job_id": "6a2c51cac1c0a5407f4d2997"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_093",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T11:30:00+01:00",
+      "job_id": "6a2c51ca63ef9f8028bdcbea",
+      "result": {
+        "job_id": "6a2c51ca63ef9f8028bdcbea"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_096",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T15:30:00+01:00",
+      "job_id": "6a2c51ca1d5af6919bd09a47",
+      "result": {
+        "job_id": "6a2c51ca1d5af6919bd09a47"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_098",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T18:45:00+01:00",
+      "job_id": "6a2c51cac1f50598dfeeef00",
+      "result": {
+        "job_id": "6a2c51cac1f50598dfeeef00"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_099",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T21:30:00+01:00",
+      "job_id": "6a2c51cac1c0a5407f4d2998",
+      "result": {
+        "job_id": "6a2c51cac1c0a5407f4d2998"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_102",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T07:45:00+01:00",
+      "job_id": "6a2c51caa9c10826a36f84ab",
+      "result": {
+        "job_id": "6a2c51caa9c10826a36f84ab"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_104",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T11:30:00+01:00",
+      "job_id": "6a2c51cac1f50598dfeeef01",
+      "result": {
+        "job_id": "6a2c51cac1f50598dfeeef01"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_105",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T15:30:00+01:00",
+      "job_id": "6a2c51cac1c0a5407f4d299c",
+      "result": {
+        "job_id": "6a2c51cac1c0a5407f4d299c"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_108",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T18:45:00+01:00",
+      "job_id": "6a2c51cbff6172f57428bf77",
+      "result": {
+        "job_id": "6a2c51cbff6172f57428bf77"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_110",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T21:30:00+01:00",
+      "job_id": "6a2c51cbc1f50598dfeeef03",
+      "result": {
+        "job_id": "6a2c51cbc1f50598dfeeef03"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_111",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T07:45:00+01:00",
+      "job_id": "6a2c51cbc1f50598dfeeef04",
+      "result": {
+        "job_id": "6a2c51cbc1f50598dfeeef04"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_114",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T11:30:00+01:00",
+      "job_id": "6a2c51cb63ef9f8028bdcbef",
+      "result": {
+        "job_id": "6a2c51cb63ef9f8028bdcbef"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_116",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T15:30:00+01:00",
+      "job_id": "6a2c51cb1d5af6919bd09a49",
+      "result": {
+        "job_id": "6a2c51cb1d5af6919bd09a49"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_117",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T18:45:00+01:00",
+      "job_id": "6a2c51cb9248d30851ecedce",
+      "result": {
+        "job_id": "6a2c51cb9248d30851ecedce"
+      }
+    },
+    {
+      "account_id": "698c38e39306fb29210332f2",
+      "provider": "instagram",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_120",
+      "type": "carousel_seed",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T21:30:00+01:00",
+      "job_id": "6a2c51cb5b0ab86e90588e8a",
+      "result": {
+        "job_id": "6a2c51cb5b0ab86e90588e8a"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_001",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-13T07:45:00+01:00",
+      "job_id": "6a2c51cbff6172f57428bf79",
+      "result": {
+        "job_id": "6a2c51cbff6172f57428bf79"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_002",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T11:30:00+01:00",
+      "job_id": "6a2c51cba9c10826a36f84b1",
+      "result": {
+        "job_id": "6a2c51cba9c10826a36f84b1"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_003",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-13T15:30:00+01:00",
+      "job_id": "6a2c51ccc1c0a5407f4d29a1",
+      "result": {
+        "job_id": "6a2c51ccc1c0a5407f4d29a1"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_004",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-13T18:45:00+01:00",
+      "job_id": "6a2c51cc63ef9f8028bdcbf4",
+      "result": {
+        "job_id": "6a2c51cc63ef9f8028bdcbf4"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_005",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-13T21:30:00+01:00",
+      "job_id": "6a2c51cc63ef9f8028bdcbf5",
+      "result": {
+        "job_id": "6a2c51cc63ef9f8028bdcbf5"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_007",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-14T07:45:00+01:00",
+      "job_id": "6a2c51cc6969091c189d5317",
+      "result": {
+        "job_id": "6a2c51cc6969091c189d5317"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_008",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T11:30:00+01:00",
+      "job_id": "6a2c51cc1d5af6919bd09a4b",
+      "result": {
+        "job_id": "6a2c51cc1d5af6919bd09a4b"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_009",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-14T15:30:00+01:00",
+      "job_id": "6a2c51ccc1f50598dfeeef08",
+      "result": {
+        "job_id": "6a2c51ccc1f50598dfeeef08"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_010",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-14T18:45:00+01:00",
+      "job_id": "6a2c51cc63ef9f8028bdcbf6",
+      "result": {
+        "job_id": "6a2c51cc63ef9f8028bdcbf6"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_011",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-14T21:30:00+01:00",
+      "job_id": "6a2c51ccc1c0a5407f4d29a4",
+      "result": {
+        "job_id": "6a2c51ccc1c0a5407f4d29a4"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_013",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-15T07:45:00+01:00",
+      "job_id": "6a2c51cc1d5af6919bd09a4e",
+      "result": {
+        "job_id": "6a2c51cc1d5af6919bd09a4e"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_014",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T11:30:00+01:00",
+      "job_id": "6a2c51cd1d5af6919bd09a4f",
+      "result": {
+        "job_id": "6a2c51cd1d5af6919bd09a4f"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_015",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-15T15:30:00+01:00",
+      "job_id": "6a2c51cda9c10826a36f84b5",
+      "result": {
+        "job_id": "6a2c51cda9c10826a36f84b5"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_016",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-15T18:45:00+01:00",
+      "job_id": "6a2c51cd1d5af6919bd09a51",
+      "result": {
+        "job_id": "6a2c51cd1d5af6919bd09a51"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_017",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-15T21:30:00+01:00",
+      "job_id": "6a2c51cd1d5af6919bd09a52",
+      "result": {
+        "job_id": "6a2c51cd1d5af6919bd09a52"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_019",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-16T07:45:00+01:00",
+      "job_id": "6a2c51cd9248d30851ecedd0",
+      "result": {
+        "job_id": "6a2c51cd9248d30851ecedd0"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_020",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T11:30:00+01:00",
+      "job_id": "6a2c51cd6969091c189d531e",
+      "result": {
+        "job_id": "6a2c51cd6969091c189d531e"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_021",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-16T15:30:00+01:00",
+      "job_id": "6a2c51cd9248d30851ecedd2",
+      "result": {
+        "job_id": "6a2c51cd9248d30851ecedd2"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_022",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-16T18:45:00+01:00",
+      "job_id": "6a2c51cd6969091c189d531f",
+      "result": {
+        "job_id": "6a2c51cd6969091c189d531f"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_023",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-16T21:30:00+01:00",
+      "job_id": "6a2c51cda9c10826a36f84b9",
+      "result": {
+        "job_id": "6a2c51cda9c10826a36f84b9"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_025",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-17T07:45:00+01:00",
+      "job_id": "6a2c51cda9c10826a36f84ba",
+      "result": {
+        "job_id": "6a2c51cda9c10826a36f84ba"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_026",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T11:30:00+01:00",
+      "job_id": "6a2c51ce6969091c189d5320",
+      "result": {
+        "job_id": "6a2c51ce6969091c189d5320"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_027",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-17T15:30:00+01:00",
+      "job_id": "6a2c51cea9c10826a36f84be",
+      "result": {
+        "job_id": "6a2c51cea9c10826a36f84be"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_028",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-17T18:45:00+01:00",
+      "job_id": "6a2c51cea9c10826a36f84c1",
+      "result": {
+        "job_id": "6a2c51cea9c10826a36f84c1"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_029",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-17T21:30:00+01:00",
+      "job_id": "6a2c51cea9c10826a36f84c2",
+      "result": {
+        "job_id": "6a2c51cea9c10826a36f84c2"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_031",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-18T07:45:00+01:00",
+      "job_id": "6a2c51cec1f50598dfeeef0d",
+      "result": {
+        "job_id": "6a2c51cec1f50598dfeeef0d"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_032",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T11:30:00+01:00",
+      "job_id": "6a2c51ce6969091c189d5323",
+      "result": {
+        "job_id": "6a2c51ce6969091c189d5323"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_033",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-18T15:30:00+01:00",
+      "job_id": "6a2c51ce9248d30851ecedd9",
+      "result": {
+        "job_id": "6a2c51ce9248d30851ecedd9"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_034",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-18T18:45:00+01:00",
+      "job_id": "6a2c51ce6969091c189d5324",
+      "result": {
+        "job_id": "6a2c51ce6969091c189d5324"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_035",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-18T21:30:00+01:00",
+      "job_id": "6a2c51ce5b0ab86e90588e97",
+      "result": {
+        "job_id": "6a2c51ce5b0ab86e90588e97"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_037",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-19T07:45:00+01:00",
+      "job_id": "6a2c51cea9c10826a36f84c6",
+      "result": {
+        "job_id": "6a2c51cea9c10826a36f84c6"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_038",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T11:30:00+01:00",
+      "job_id": "6a2c51cf63ef9f8028bdcbfd",
+      "result": {
+        "job_id": "6a2c51cf63ef9f8028bdcbfd"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_039",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-19T15:30:00+01:00",
+      "job_id": "6a2c51cf63ef9f8028bdcbfe",
+      "result": {
+        "job_id": "6a2c51cf63ef9f8028bdcbfe"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_040",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-19T18:45:00+01:00",
+      "job_id": "6a2c51cfa9c10826a36f84c9",
+      "result": {
+        "job_id": "6a2c51cfa9c10826a36f84c9"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_041",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-19T21:30:00+01:00",
+      "job_id": "6a2c51cf6969091c189d5326",
+      "result": {
+        "job_id": "6a2c51cf6969091c189d5326"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_043",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-20T07:45:00+01:00",
+      "job_id": "6a2c51cf5b0ab86e90588e9a",
+      "result": {
+        "job_id": "6a2c51cf5b0ab86e90588e9a"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_044",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T11:30:00+01:00",
+      "job_id": "6a2c51cfa9c10826a36f84ca",
+      "result": {
+        "job_id": "6a2c51cfa9c10826a36f84ca"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_045",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-20T15:30:00+01:00",
+      "job_id": "6a2c51cfc1c0a5407f4d29a7",
+      "result": {
+        "job_id": "6a2c51cfc1c0a5407f4d29a7"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_046",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-20T18:45:00+01:00",
+      "job_id": "6a2c51cfc1f50598dfeeef0f",
+      "result": {
+        "job_id": "6a2c51cfc1f50598dfeeef0f"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_047",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-20T21:30:00+01:00",
+      "job_id": "6a2c51cfc1f50598dfeeef10",
+      "result": {
+        "job_id": "6a2c51cfc1f50598dfeeef10"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_049",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-21T07:45:00+01:00",
+      "job_id": "6a2c51cfc1f50598dfeeef12",
+      "result": {
+        "job_id": "6a2c51cfc1f50598dfeeef12"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_050",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T11:30:00+01:00",
+      "job_id": "6a2c51d01d5af6919bd09a58",
+      "result": {
+        "job_id": "6a2c51d01d5af6919bd09a58"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_051",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-21T15:30:00+01:00",
+      "job_id": "6a2c51d063ef9f8028bdcc03",
+      "result": {
+        "job_id": "6a2c51d063ef9f8028bdcc03"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_052",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-21T18:45:00+01:00",
+      "job_id": "6a2c51d063ef9f8028bdcc04",
+      "result": {
+        "job_id": "6a2c51d063ef9f8028bdcc04"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_053",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-21T21:30:00+01:00",
+      "job_id": "6a2c51d0a9c10826a36f84cf",
+      "result": {
+        "job_id": "6a2c51d0a9c10826a36f84cf"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_055",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-22T07:45:00+01:00",
+      "job_id": "6a2c51d06969091c189d532b",
+      "result": {
+        "job_id": "6a2c51d06969091c189d532b"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_056",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T11:30:00+01:00",
+      "job_id": "6a2c51d01d5af6919bd09a5b",
+      "result": {
+        "job_id": "6a2c51d01d5af6919bd09a5b"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_057",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-22T15:30:00+01:00",
+      "job_id": "6a2c51d0a9c10826a36f84d2",
+      "result": {
+        "job_id": "6a2c51d0a9c10826a36f84d2"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_058",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-22T18:45:00+01:00",
+      "job_id": "6a2c51d0a9c10826a36f84d3",
+      "result": {
+        "job_id": "6a2c51d0a9c10826a36f84d3"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_059",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-22T21:30:00+01:00",
+      "job_id": "6a2c51d0a9c10826a36f84d4",
+      "result": {
+        "job_id": "6a2c51d0a9c10826a36f84d4"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_061",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-23T07:45:00+01:00",
+      "job_id": "6a2c52128c8f78f139c030b3",
+      "result": {
+        "job_id": "6a2c52128c8f78f139c030b3"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_062",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T11:30:00+01:00",
+      "job_id": "6a2c521263ef9f8028bdcc87",
+      "result": {
+        "job_id": "6a2c521263ef9f8028bdcc87"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_063",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-23T15:30:00+01:00",
+      "job_id": "6a2c52125b0ab86e90588f4a",
+      "result": {
+        "job_id": "6a2c52125b0ab86e90588f4a"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_064",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-23T18:45:00+01:00",
+      "job_id": "6a2c5212c1f50598dfeeef96",
+      "result": {
+        "job_id": "6a2c5212c1f50598dfeeef96"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_065",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-23T21:30:00+01:00",
+      "job_id": "6a2c52128c8f78f139c030b4",
+      "result": {
+        "job_id": "6a2c52128c8f78f139c030b4"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_067",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-24T07:45:00+01:00",
+      "job_id": "6a2c52121d5af6919bd09ae1",
+      "result": {
+        "job_id": "6a2c52121d5af6919bd09ae1"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_068",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T11:30:00+01:00",
+      "job_id": "6a2c5212c1f50598dfeeef9b",
+      "result": {
+        "job_id": "6a2c5212c1f50598dfeeef9b"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_069",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-24T15:30:00+01:00",
+      "job_id": "6a2c52126969091c189d53a5",
+      "result": {
+        "job_id": "6a2c52126969091c189d53a5"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_070",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-24T18:45:00+01:00",
+      "job_id": "6a2c52138c8f78f139c030b7",
+      "result": {
+        "job_id": "6a2c52138c8f78f139c030b7"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_071",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-24T21:30:00+01:00",
+      "job_id": "6a2c5213c1f50598dfeeef9d",
+      "result": {
+        "job_id": "6a2c5213c1f50598dfeeef9d"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_073",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-25T07:45:00+01:00",
+      "job_id": "6a2c52136969091c189d53a7",
+      "result": {
+        "job_id": "6a2c52136969091c189d53a7"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_074",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-25T11:30:00+01:00",
+      "job_id": "6a2c5213c1f50598dfeeef9e",
+      "result": {
+        "job_id": "6a2c5213c1f50598dfeeef9e"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_075",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-25T15:30:00+01:00",
+      "job_id": "6a2c52136969091c189d53a9",
+      "result": {
+        "job_id": "6a2c52136969091c189d53a9"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_076",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-25T18:45:00+01:00",
+      "job_id": "6a2c52136969091c189d53ab",
+      "result": {
+        "job_id": "6a2c52136969091c189d53ab"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_077",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-25T21:30:00+01:00",
+      "job_id": "6a2c52131d5af6919bd09ae6",
+      "result": {
+        "job_id": "6a2c52131d5af6919bd09ae6"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_079",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-26T07:45:00+01:00",
+      "job_id": "6a2c52139248d30851ecee8e",
+      "result": {
+        "job_id": "6a2c52139248d30851ecee8e"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_080",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-26T11:30:00+01:00",
+      "job_id": "6a2c5213ff6172f57428c014",
+      "result": {
+        "job_id": "6a2c5213ff6172f57428c014"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_081",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-26T15:30:00+01:00",
+      "job_id": "6a2c521363ef9f8028bdcc8a",
+      "result": {
+        "job_id": "6a2c521363ef9f8028bdcc8a"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_082",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-26T18:45:00+01:00",
+      "job_id": "6a2c521363ef9f8028bdcc8b",
+      "result": {
+        "job_id": "6a2c521363ef9f8028bdcc8b"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_083",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-26T21:30:00+01:00",
+      "job_id": "6a2c52141d5af6919bd09ae9",
+      "result": {
+        "job_id": "6a2c52141d5af6919bd09ae9"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_085",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-27T07:45:00+01:00",
+      "job_id": "6a2c52141d5af6919bd09aea",
+      "result": {
+        "job_id": "6a2c52141d5af6919bd09aea"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_086",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-27T11:30:00+01:00",
+      "job_id": "6a2c52141d5af6919bd09aec",
+      "result": {
+        "job_id": "6a2c52141d5af6919bd09aec"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_087",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-27T15:30:00+01:00",
+      "job_id": "6a2c52146969091c189d53ae",
+      "result": {
+        "job_id": "6a2c52146969091c189d53ae"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_088",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-27T18:45:00+01:00",
+      "job_id": "6a2c5214c1f50598dfeeefa4",
+      "result": {
+        "job_id": "6a2c5214c1f50598dfeeefa4"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_089",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-27T21:30:00+01:00",
+      "job_id": "6a2c5214c1f50598dfeeefa6",
+      "result": {
+        "job_id": "6a2c5214c1f50598dfeeefa6"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_091",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-28T07:45:00+01:00",
+      "job_id": "6a2c521463ef9f8028bdcc8d",
+      "result": {
+        "job_id": "6a2c521463ef9f8028bdcc8d"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_092",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-28T11:30:00+01:00",
+      "job_id": "6a2c52141d5af6919bd09af0",
+      "result": {
+        "job_id": "6a2c52141d5af6919bd09af0"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_093",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-28T15:30:00+01:00",
+      "job_id": "6a2c521463ef9f8028bdcc8e",
+      "result": {
+        "job_id": "6a2c521463ef9f8028bdcc8e"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_094",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-28T18:45:00+01:00",
+      "job_id": "6a2c521463ef9f8028bdcc8f",
+      "result": {
+        "job_id": "6a2c521463ef9f8028bdcc8f"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_095",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-28T21:30:00+01:00",
+      "job_id": "6a2c52149248d30851ecee8f",
+      "result": {
+        "job_id": "6a2c52149248d30851ecee8f"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_097",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-29T07:45:00+01:00",
+      "job_id": "6a2c521563ef9f8028bdcc90",
+      "result": {
+        "job_id": "6a2c521563ef9f8028bdcc90"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_098",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-29T11:30:00+01:00",
+      "job_id": "6a2c52151d5af6919bd09af7",
+      "result": {
+        "job_id": "6a2c52151d5af6919bd09af7"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_099",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-29T15:30:00+01:00",
+      "job_id": "6a2c52151d5af6919bd09afa",
+      "result": {
+        "job_id": "6a2c52151d5af6919bd09afa"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_100",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-29T18:45:00+01:00",
+      "job_id": "6a2c521563ef9f8028bdcc92",
+      "result": {
+        "job_id": "6a2c521563ef9f8028bdcc92"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_101",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-29T21:30:00+01:00",
+      "job_id": "6a2c521563ef9f8028bdcc93",
+      "result": {
+        "job_id": "6a2c521563ef9f8028bdcc93"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_103",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-06-30T07:45:00+01:00",
+      "job_id": "6a2c52151d5af6919bd09afc",
+      "result": {
+        "job_id": "6a2c52151d5af6919bd09afc"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_104",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-06-30T11:30:00+01:00",
+      "job_id": "6a2c52156969091c189d53af",
+      "result": {
+        "job_id": "6a2c52156969091c189d53af"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_105",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-06-30T15:30:00+01:00",
+      "job_id": "6a2c521563ef9f8028bdcc94",
+      "result": {
+        "job_id": "6a2c521563ef9f8028bdcc94"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_106",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-06-30T18:45:00+01:00",
+      "job_id": "6a2c52151d5af6919bd09afe",
+      "result": {
+        "job_id": "6a2c52151d5af6919bd09afe"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_107",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-06-30T21:30:00+01:00",
+      "job_id": "6a2c52156969091c189d53b0",
+      "result": {
+        "job_id": "6a2c52156969091c189d53b0"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_109",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-07-01T07:45:00+01:00",
+      "job_id": "6a2c521563ef9f8028bdcc98",
+      "result": {
+        "job_id": "6a2c521563ef9f8028bdcc98"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_110",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-07-01T11:30:00+01:00",
+      "job_id": "6a2c52166969091c189d53b1",
+      "result": {
+        "job_id": "6a2c52166969091c189d53b1"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_111",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-07-01T15:30:00+01:00",
+      "job_id": "6a2c5216ff6172f57428c017",
+      "result": {
+        "job_id": "6a2c5216ff6172f57428c017"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_112",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-07-01T18:45:00+01:00",
+      "job_id": "6a2c52166969091c189d53b2",
+      "result": {
+        "job_id": "6a2c52166969091c189d53b2"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_113",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-07-01T21:30:00+01:00",
+      "job_id": "6a2c52168c8f78f139c030c1",
+      "result": {
+        "job_id": "6a2c52168c8f78f139c030c1"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_115",
+      "type": "text_thread",
+      "has_media": false,
+      "scheduled_at": "2026-07-02T07:45:00+01:00",
+      "job_id": "6a2c52166969091c189d53b3",
+      "result": {
+        "job_id": "6a2c52166969091c189d53b3"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_116",
+      "type": "saveable_phrase_bank",
+      "has_media": true,
+      "scheduled_at": "2026-07-02T11:30:00+01:00",
+      "job_id": "6a2c52168c8f78f139c030c2",
+      "result": {
+        "job_id": "6a2c52168c8f78f139c030c2"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_117",
+      "type": "mistake_fix",
+      "has_media": true,
+      "scheduled_at": "2026-07-02T15:30:00+01:00",
+      "job_id": "6a2c5216c1c0a5407f4d2a25",
+      "result": {
+        "job_id": "6a2c5216c1c0a5407f4d2a25"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_118",
+      "type": "comment_prompt",
+      "has_media": false,
+      "scheduled_at": "2026-07-02T18:45:00+01:00",
+      "job_id": "6a2c5216ff6172f57428c019",
+      "result": {
+        "job_id": "6a2c5216ff6172f57428c019"
+      }
+    },
+    {
+      "account_id": "69a1fa4d57328b037f815567",
+      "provider": "threads",
+      "account_name": "Языковая Академия Лингмана",
+      "item_id": "sm_119",
+      "type": "adult_micro_story",
+      "has_media": false,
+      "scheduled_at": "2026-07-02T21:30:00+01:00",
+      "job_id": "6a2c5216ff6172f57428c01a",
+      "result": {
+        "job_id": "6a2c5216ff6172f57428c01a"
+      }
+    }
+  ],
+  "failures": [],
+  "workspaces": [
+    {
+      "id": "697b3433117be0476621e598",
+      "name": "MyTheo",
+      "plan": "business",
+      "accounts": [
+        {
+          "id": "698c36b7837446e65776927c",
+          "provider": "facebook",
+          "name": "English HUB",
+          "type": "fb_page"
+        },
+        {
+          "id": "698c38e39306fb29210332f2",
+          "provider": "instagram",
+          "name": "Языковая Академия Лингмана",
+          "type": "ig_business"
+        },
+        {
+          "id": "69a1fa4d57328b037f815567",
+          "provider": "threads",
+          "name": "Языковая Академия Лингмана",
+          "type": "threads"
+        }
+      ]
+    }
+  ],
+  "best_times": {
+    "698c36b7837446e65776927c": {
+      "provider": "facebook",
+      "name": "English HUB",
+      "ok": true,
+      "top_slots": {
+        "Sunday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Monday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Tuesday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Wednesday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Thursday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Friday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Saturday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ]
+      }
+    },
+    "698c38e39306fb29210332f2": {
+      "provider": "instagram",
+      "name": "Языковая Академия Лингмана",
+      "ok": true,
+      "top_slots": {
+        "Sunday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Monday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Tuesday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Wednesday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Thursday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Friday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Saturday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ]
+      }
+    },
+    "69a1fa4d57328b037f815567": {
+      "provider": "threads",
+      "name": "Языковая Академия Лингмана",
+      "ok": true,
+      "top_slots": {
+        "Sunday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Monday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Tuesday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Wednesday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Thursday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Friday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ],
+        "Saturday": [
+          7,
+          11,
+          15,
+          18,
+          21
+        ]
+      }
+    }
+  }
+}

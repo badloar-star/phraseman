@@ -1,0 +1,226 @@
+{
+  "post_id": "050",
+  "format": "textbook_vs_real_english",
+  "style": "cream_editorial",
+  "problem_angle": "На английском I need to go on job выдаёт перевод с русского.",
+  "core_insight": "Натуральность появляется, когда фраза учится целиком.",
+  "relevant_app_features": [
+    "живые альтернативы",
+    "русские объяснения",
+    "озвучка"
+  ],
+  "visual_variant": {
+    "accent": "#0f9f6e",
+    "background": "#f2efe5"
+  },
+  "caption": "На английском I need to go on job выдаёт перевод с русского. Главный сдвиг: не переводи конструкцию дословно, запоминай живую формулу целиком. Phraseman — мобильное приложение для живого английского: готовые фразы по реальным ситуациям, озвучка, короткие уроки и объяснения по-русски. Не игра ради очков — практика для разговора. Скачивай бесплатно по ссылке в шапке профиля.",
+  "slides": [
+    {
+      "title": "На английском I need to go on job\nзвучит как русский шаблон",
+      "body": "Смысл могут понять. Но фраза сразу выдаёт перевод в голове. Проверь себя: возможно, ты тоже переводишь эту фразу с русского."
+    },
+    {
+      "title": "Школьный вариант",
+      "body": "I need to go on job"
+    },
+    {
+      "title": "Нормальный вариант",
+      "body": "I need to go to work."
+    },
+    {
+      "title": "Живее в разговоре",
+      "body": "I have to head to work."
+    },
+    {
+      "title": "Почему русскоязычные так говорят",
+      "body": "Work без артикля и без job, когда речь о месте/процессе работы."
+    },
+    {
+      "title": "Мини-правило",
+      "body": "Если фраза собрана из русских кирпичиков, проверь её как готовую английскую формулу."
+    },
+    {
+      "title": "Повтори вслух",
+      "body": "I need to go to work.\nI have to head to work."
+    },
+    {
+      "title": "Чтобы говорить не учебником,\nа живыми фразами",
+      "body": "Phraseman — мобильное приложение для живого английского: живые альтернативы, русские объяснения и озвучка. Оно заменяет дословный перевод живыми фразами, которые звучат естественно в разговоре. Не игра ради очков. Скачивай бесплатно по ссылке в шапке профиля."
+    }
+  ],
+  "research_upgrade": {
+    "source": "carousel pattern audit",
+    "principles": [
+      "first slide names a real adult situation or painful translation mistake",
+      "early retention bridge tells why to keep swiping",
+      "middle slides deliver ready phrases, not abstract grammar",
+      "final slide explains Phraseman as a mobile app and ties the CTA to the carousel's exact pain"
+    ],
+    "locked_styles": [
+      "dark_drama",
+      "cream_editorial"
+    ]
+  },
+  "audience_validation": [
+    {
+      "id": "adult_work_call",
+      "audience": "30+ работа и звонки",
+      "threshold": 76,
+      "score": 98,
+      "should_hits": 2,
+      "passed": true
+    },
+    {
+      "id": "busy_parent",
+      "audience": "родители 30+",
+      "threshold": 74,
+      "score": 91,
+      "should_hits": 1,
+      "passed": true
+    },
+    {
+      "id": "relocation_adult",
+      "audience": "переезд/жизнь за границей",
+      "threshold": 75,
+      "score": 84,
+      "should_hits": 0,
+      "passed": true
+    },
+    {
+      "id": "travel_practical",
+      "audience": "путешествия 30+",
+      "threshold": 74,
+      "score": 84,
+      "should_hits": 0,
+      "passed": true
+    },
+    {
+      "id": "medical_safety",
+      "audience": "медицина и безопасность",
+      "threshold": 73,
+      "score": 84,
+      "should_hits": 0,
+      "passed": true
+    },
+    {
+      "id": "service_conflict",
+      "audience": "сервис/поддержка",
+      "threshold": 75,
+      "score": 84,
+      "should_hits": 0,
+      "passed": true
+    },
+    {
+      "id": "beginner_a2",
+      "audience": "A2 боится говорить",
+      "threshold": 78,
+      "score": 100,
+      "should_hits": 3,
+      "passed": true
+    },
+    {
+      "id": "intermediate_b1",
+      "audience": "B1 хочет звучать взрослее",
+      "threshold": 78,
+      "score": 98,
+      "should_hits": 2,
+      "passed": true
+    },
+    {
+      "id": "skeptical_adult",
+      "audience": "скептик устал от инфоцыганства",
+      "threshold": 80,
+      "score": 100,
+      "should_hits": 3,
+      "passed": true
+    },
+    {
+      "id": "save_collector",
+      "audience": "сохраняет полезные карусели",
+      "threshold": 82,
+      "score": 100,
+      "should_hits": 3,
+      "passed": true
+    },
+    {
+      "id": "commenter_prompt",
+      "audience": "комментирует свои варианты",
+      "threshold": 70,
+      "score": 91,
+      "should_hits": 1,
+      "passed": true
+    },
+    {
+      "id": "instagram_scanner",
+      "audience": "быстро сканирует первый слайд",
+      "threshold": 82,
+      "score": 100,
+      "should_hits": 4,
+      "passed": true
+    },
+    {
+      "id": "facebook_reader",
+      "audience": "читает длиннее в Facebook",
+      "threshold": 74,
+      "score": 100,
+      "should_hits": 3,
+      "passed": true
+    },
+    {
+      "id": "threads_text_mindset",
+      "audience": "любит узнаваемую мысль",
+      "threshold": 72,
+      "score": 91,
+      "should_hits": 1,
+      "passed": true
+    },
+    {
+      "id": "anti_schoolbook",
+      "audience": "не хочет школьный английский",
+      "threshold": 80,
+      "score": 100,
+      "should_hits": 4,
+      "passed": true
+    },
+    {
+      "id": "tone_politeness",
+      "audience": "боится звучать грубо",
+      "threshold": 80,
+      "score": 84,
+      "should_hits": 0,
+      "passed": true
+    },
+    {
+      "id": "retention_editor",
+      "audience": "редактор удержания",
+      "threshold": 84,
+      "score": 98,
+      "should_hits": 2,
+      "passed": true
+    },
+    {
+      "id": "product_fit",
+      "audience": "потенциальный пользователь Phraseman",
+      "threshold": 86,
+      "score": 100,
+      "should_hits": 5,
+      "passed": true
+    },
+    {
+      "id": "no_generic_lessons",
+      "audience": "устал от общих уроков",
+      "threshold": 82,
+      "score": 100,
+      "should_hits": 4,
+      "passed": true
+    },
+    {
+      "id": "share_to_friend",
+      "audience": "отправляет другу",
+      "threshold": 76,
+      "score": 100,
+      "should_hits": 3,
+      "passed": true
+    }
+  ]
+}

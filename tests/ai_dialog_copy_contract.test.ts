@@ -19,16 +19,16 @@ describe('ai dialog Phraseman copy contract', () => {
     expect(scenarioSource).not.toContain('Отличный разговор!');
     expect(scenarioSource).toContain('userExchanges > 0');
     expect(scenarioSource).toContain('Разговор завершён');
-    expect(scenarioSource).toContain('Твоих реплик: {userExchanges}');
+    expect(scenarioSource).toContain('Твоїх реплік: ${userExchanges}');
   });
 
   it('labels companion as an open learning conversation, not a fixed scenario', () => {
-    expect(companionSource).toContain('Свободный разговор');
-    expect(companionSource).toContain('Спроси про фразу, прогресс или свой следующий шаг');
-    expect(companionSource).toContain('Спроси о фразе или прогрессе');
+    expect(companionSource).toContain('Вільна розмова');
+    expect(companionSource).toContain('Запитай про фразу, прогрес або свій наступний крок');
+    expect(companionSource).toContain('Запитай про фразу або прогрес');
     expect(companionSource).not.toContain('Tell me more.');
     expect(companionSource).not.toContain('I’m not sure');
-    expect(homeSource).toContain('сценариев с Тео');
-    expect(homeSource).toContain('Открыть свободный разговор с Тео');
+    expect(homeSource).toContain('сценаріїв із Компасом');
+    expect(homeSource).toContain('Відкрити вільну розмову з Компасом');
   });
 });

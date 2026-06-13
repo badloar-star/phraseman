@@ -268,6 +268,15 @@ functions/scripts/diag_*
 
 # Maestro is not used in this project workspace anymore.
 /maestro/
+!/maestro/
+/maestro/*
+!/maestro/flows/
+/maestro/flows/*
+!/maestro/flows/dev_only/
+/maestro/flows/dev_only/*
+!/maestro/flows/dev_only/admin_premium_delivery_e2e.yaml
+!/maestro/flows/dev_only/admin_premium_delivery_e2e_active.yaml
+!/maestro/flows/dev_only/admin_premium_delivery_external_grant.yaml
 /.maestro-tmp/
 /maestro-tmp/
 /maestro*.xml

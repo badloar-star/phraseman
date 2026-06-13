@@ -51,6 +51,8 @@ const { arenaHillDailyRewardCron } = require('./arena_hill_daily_reward');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendEnsureMyCode } = require('./friend_codes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { friendLookupUser } = require('./friend_lookup');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendLikeActivity } = require('./friend_activity_likes');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
@@ -108,6 +110,8 @@ const { vipRevokeMine } = require('./vip_revoke');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   adminAlertOnUserReport,
   adminAlertOnCriticalError,
@@ -138,6 +142,7 @@ exports.arenaHillRecordAttempt = arenaHillRecordAttempt;
 exports.arenaHillGetDailyTop = arenaHillGetDailyTop;
 exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
+exports.friendLookupUser = friendLookupUser;
 exports.friendLikeActivity = friendLikeActivity;
 exports.friendSendGift = friendSendGift;
 exports.friendThankGift = friendThankGift;
@@ -175,6 +180,8 @@ exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
+exports.progressSubmitEvent = progressSubmitEvent;
+exports.progressMigrateSnapshot = progressMigrateSnapshot;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;
@@ -1211,7 +1218,7 @@ export { friendSendGift } from './friend_gifts';
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
-export { openAiDialogModelConfig } from './openai_dialog_model_config';
+export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 
 export { dailyPhraseSetSaved } from './daily_phrases';
 

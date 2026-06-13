@@ -27,7 +27,8 @@ import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { normalizeAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
-import { ensureMyInviteCodeForFriends, lookupUserByFriendCode } from './firestore_friends';
+import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname } from './firestore_friends';
+import { isValidInviteCodeLookup, normalizeInviteCodeInput } from './friend_code';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -55,8 +56,29 @@ import {
 } from './friend_gifts';
 import { checkAchievements } from './achievements';
 import { safeRouterBack } from './navigation_back';
+import { buildReferralShareLinks } from './referral_bootstrap';
 
 // ── Types ────────────────────────────────────────────────────────────────────
+
+const FRIEND_SEARCH_MAX_LENGTH = 32;
+
+function normalizeFriendSearchInput(value: string): string {
+  return String(value ?? '').normalize('NFKC').replace(/[\r\n\t]/g, ' ').replace(/\s+/g, ' ').slice(0, FRIEND_SEARCH_MAX_LENGTH);
+}
+
+function getFriendSearchQuery(value: string): string {
+  return normalizeFriendSearchInput(value).trim();
+}
+
+function isFriendCodeQuery(value: string): boolean {
+  const query = getFriendSearchQuery(value);
+  return query.length === 6 && isValidInviteCodeLookup(query);
+}
+
+function isFriendSearchReady(value: string): boolean {
+  const query = getFriendSearchQuery(value);
+  return query.length >= 2 && query.length <= FRIEND_SEARCH_MAX_LENGTH;
+}
 
 interface UserProfile {
   uid: string;
@@ -275,31 +297,33 @@ export default function FriendsScreen() {
   };
 
   const handleAdd = async () => {
-    if (codeInput.length !== 6 || isAdding) return;
+    const query = getFriendSearchQuery(codeInput);
+    if (!isFriendSearchReady(query) || isAdding) return;
     doHaptic();
     setIsAdding(true);
     try {
-      const codeNorm = codeInput.toUpperCase();
+      const isCode = isFriendCodeQuery(query);
+      const codeNorm = normalizeInviteCodeInput(query);
       await trackActivity('friends:add_by_code_start', {
         feature: 'friends',
         screen: 'friends',
         result: 'start',
-        tags: { codeLength: codeNorm.length },
+        tags: { queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
       });
-      const lookup = await lookupUserByFriendCode(codeInput);
+      const lookup = isCode ? await lookupUserByFriendCode(codeNorm) : await lookupUserByNickname(query);
       if (!lookup) {
         await trackActivity('friends:add_by_code_result', {
           feature: 'friends',
           screen: 'friends',
           result: 'blocked',
-          tags: { reason: 'not_found', codeLength: codeNorm.length },
+          tags: { reason: 'not_found', queryLength: query.length, queryType: isCode ? 'code' : 'nickname' },
         });
         showFeedback(L('Пользователь не найден', 'Користувача не знайдено', 'Usuario no encontrado', 'Usuário não encontrado', 'Không tìm thấy người dùng', 'Pengguna tidak ditemukan', 'Kullanıcı bulunamadı', 'Nie znaleziono użytkownika'));
         return;
       }
       const myUid = await getCanonicalUserId();
       const isSelf =
-        (myCode != null && codeNorm === myCode.toUpperCase()) ||
+        (isCode && myCode != null && codeNorm === myCode.toUpperCase()) ||
         (myUid != null && lookup.uid === myUid);
       if (isSelf) {
         await trackActivity('friends:add_by_code_result', {
@@ -316,7 +340,7 @@ export default function FriendsScreen() {
         feature: 'friends',
         screen: 'friends',
         result: result === 'sent' ? 'success' : result === 'error' ? 'error' : 'blocked',
-        tags: { targetUid: lookup.uid, requestResult: result },
+        tags: { targetUid: lookup.uid, requestResult: result, queryType: isCode ? 'code' : 'nickname' },
       });
       if (result === 'sent') {
         showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
@@ -337,7 +361,7 @@ export default function FriendsScreen() {
             feature: 'friends',
             screen: 'friends',
             writeToFirestore: true,
-            tags: { codeLength: codeInput.length },
+            tags: { queryLength: codeInput.length },
           }),
         )
         .catch(() => {});
@@ -345,7 +369,7 @@ export default function FriendsScreen() {
         feature: 'friends',
         screen: 'friends',
         result: 'error',
-        tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
+        tags: { queryLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
       showFeedback(L('Ошибка. Попробуй ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
@@ -365,11 +389,10 @@ export default function FriendsScreen() {
   const handleShare = async () => {
     if (!myCode) return;
     doHaptic();
+    const inviteUrl = buildReferralShareLinks(myCode).https;
     await Share.share({
-      message:
-        L('Мой код в PhraseMan:', 'Мій код у PhraseMan:', 'Mi código en PhraseMan:', 'Meu código no PhraseMan:', 'Mã của tôi trong PhraseMan:', 'Kode saya di PhraseMan:', 'PhraseMan kodum:', 'Mój kod w PhraseMan:') +
-        ' ' +
-        myCode,
+      message: inviteUrl,
+      url: inviteUrl,
     });
   };
 
@@ -911,32 +934,32 @@ export default function FriendsScreen() {
                 accessibilityLabel={L('Код друга', 'Код друга', 'Código de amigo', 'Código do amigo', 'Mã bạn bè', 'Kode teman', 'Arkadaş kodu', 'Kod znajomego')}
                 style={styles.textInput}
                 placeholder={L(
-                  'Код друга (6 символов)',
-                  'Код друга (6 символів)',
-                  'Código de amigo (6 símbolos)',
-                  'Código do amigo (6 caracteres)',
-                  'Mã bạn bè (6 ký tự)',
-                  'Kode teman (6 karakter)',
-                  'Arkadaş kodu (6 karakter)',
-                  'Kod znajomego (6 znaków)',
+                  'Код или ник друга',
+                  'Код або нік друга',
+                  'Código o nick del amigo',
+                  'Código ou nick do amigo',
+                  'Mã hoặc tên bạn bè',
+                  'Kode atau nama teman',
+                  'Arkadaş kodu veya adı',
+                  'Kod lub nick znajomego',
                 )}
                 placeholderTextColor={t.textSecond}
-                maxLength={6}
-                autoCapitalize="characters"
+                maxLength={FRIEND_SEARCH_MAX_LENGTH}
+                autoCapitalize="none"
                 autoCorrect={false}
                 value={codeInput}
                 onChangeText={v =>
-                  setCodeInput(v.toUpperCase().replace(/[^A-Z2-9]/g, ''))
+                  setCodeInput(normalizeFriendSearchInput(v))
                 }
               />
               <TouchableOpacity
                 testID="friends-search"
                 style={[
                   styles.addButton,
-                  (codeInput.length !== 6 || isAdding) && styles.addButtonDisabled,
+                  (!isFriendSearchReady(codeInput) || isAdding) && styles.addButtonDisabled,
                 ]}
                 onPress={() => void handleAdd()}
-                disabled={codeInput.length !== 6 || isAdding}
+                disabled={!isFriendSearchReady(codeInput) || isAdding}
               >
                 {isAdding ? (
                   <Text style={styles.addButtonText}>

@@ -7,7 +7,6 @@ import {
   TextInput,
   Animated,
   Easing,
-  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
@@ -15,14 +14,26 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
+import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import AiTypingBubble from '../components/AiTypingBubble';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
-import { getScenarioById } from './ai_dialog_scenarios';
+import {
+  dialogScenarioGoal,
+  dialogScenarioNextStepHint,
+  dialogScenarioTitle,
+  getScenarioById,
+  type DialogScenario,
+} from './ai_dialog_scenarios';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
+import { triLang } from '../constants/i18n';
+import { getLessonData } from './lesson_data_all';
+import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
 import {
   callPremiumDialogSend,
+  getPremiumDialogErrorMessage,
   type DialogChatTurn,
 } from './ai_dialog_client';
 import {
@@ -34,6 +45,35 @@ import { trackEvent } from './analytics';
 const RECOMMENDED_EXCHANGES = 8;
 const LOCAL_SCENARIO_GREETING = 'Hi! Let\'s practice. Start with one short English sentence, and I will keep the conversation going.';
 
+function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
+  const scenarioId = getLessonDialogScenarioId(lessonId);
+  if (!scenarioId) return null;
+  const lessonPhrases = getLessonData(lessonId)
+    .map((phrase) => String(phrase.english ?? '').trim())
+    .filter(Boolean)
+    .slice(0, 12);
+  if (lessonPhrases.length === 0) return null;
+  const usefulPhrases = lessonPhrases.join('; ');
+  return {
+    id: scenarioId,
+    category: 'everyday',
+    titleRu: `Диалог урока ${lessonId}`,
+    goalRu: `Используй фразы и конструкции урока ${lessonId} в короткой живой сцене`,
+    role: 'a patient English practice partner',
+    setting: `a simple real-life scene based on lesson ${lessonId}`,
+    goalEn:
+      `Practice a realistic short conversation using phrases and grammar from lesson ${lessonId}. ` +
+      `Useful lesson phrases: ${usefulPhrases}. ` +
+      'Steer the learner to reuse these phrases naturally. Keep replies short and beginner-friendly.',
+    cefr: lessonId <= 8 ? 'A1' : lessonId <= 20 ? 'A2' : 'B1',
+    icon: 'compass-outline',
+    active: true,
+    sourceLessonId: lessonId,
+    requiredPhraseIds: [],
+    nextStepHintRu: 'Ответь одной короткой фразой из урока или похожей конструкцией.',
+  };
+}
+
 interface UiMessage {
   role: 'user' | 'assistant';
   text: string;
@@ -41,14 +81,20 @@ interface UiMessage {
 
 export default function AiDialogSession() {
   const { theme: t, f } = useTheme();
+  const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
   const router = useRouter();
   const { speak } = useAudio();
-  const params = useLocalSearchParams<{ scenarioId?: string }>();
+  const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
 
   const scenario = useMemo(
-    () => getScenarioById(String(params.scenarioId ?? 'coffee')) ?? getScenarioById('coffee')!,
-    [params.scenarioId],
+    () => {
+      const lessonId = parseInt(String(params.lessonId ?? ''), 10);
+      const lessonScenario = buildLessonDialogScenario(lessonId);
+      if (lessonScenario && String(params.scenarioId ?? '') === lessonScenario.id) return lessonScenario;
+      return getScenarioById(String(params.scenarioId ?? 'coffee')) ?? getScenarioById('coffee')!;
+    },
+    [params.scenarioId, params.lessonId],
   );
 
   const [messages, setMessages] = useState<UiMessage[]>([]);
@@ -112,16 +158,16 @@ export default function AiDialogSession() {
           isPremium: hasPremiumAccess,
         });
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
-      } catch {
+      } catch (error) {
         setMessages((prev) => [
           ...prev,
-          { role: 'assistant', text: 'Связь прервалась. Попробуй ещё раз.' },
+          { role: 'assistant', text: getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }) },
         ]);
       } finally {
         setSending(false);
       }
     },
-    [sending, ended, messages.length, hasPremiumAccess, userExchanges, buildHistory, scenario, router],
+    [sending, ended, messages.length, hasPremiumAccess, userExchanges, buildHistory, scenario, router, lang],
   );
 
   // Локальное приветствие: OpenAI зовём только после первой реплики пользователя.
@@ -181,14 +227,14 @@ export default function AiDialogSession() {
             style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flex: 1, textAlign: 'center' }}
             numberOfLines={1}
           >
-            {scenario.titleRu}
+            {dialogScenarioTitle(scenario, lang)}
           </Text>
           {!ended && userExchanges > 0 ? (
             <TouchableOpacity
               onPress={finishDialog}
               activeOpacity={0.82}
               accessibilityRole="button"
-              accessibilityLabel="Завершить диалог"
+              accessibilityLabel={triLang(lang, { ru: 'Завершить диалог', uk: 'Завершити діалог', es: 'Terminar diálogo' })}
               style={{
                 minHeight: 44,
                 minWidth: 96,
@@ -202,7 +248,7 @@ export default function AiDialogSession() {
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
-                Завершить
+                {triLang(lang, { ru: 'Завершить', uk: 'Завершити', es: 'Terminar' })}
               </Text>
             </TouchableOpacity>
           ) : (
@@ -220,7 +266,7 @@ export default function AiDialogSession() {
           }}
           maxFontSizeMultiplier={1.2}
         >
-          Цель: {scenario.goalRu}
+          {triLang(lang, { ru: 'Цель', uk: 'Ціль', es: 'Objetivo' })}: {dialogScenarioGoal(scenario, lang)}
         </Text>
         {!ended && (
           <Text
@@ -232,7 +278,11 @@ export default function AiDialogSession() {
             }}
             maxFontSizeMultiplier={1.2}
           >
-            Ориентир: около {RECOMMENDED_EXCHANGES} реплик, но можно продолжать.
+            {triLang(lang, {
+              ru: `Ориентир: около ${RECOMMENDED_EXCHANGES} реплик, но можно продолжать.`,
+              uk: `Орієнтир: близько ${RECOMMENDED_EXCHANGES} реплік, але можна продовжувати.`,
+              es: `Guía: unas ${RECOMMENDED_EXCHANGES} respuestas, pero puedes continuar.`,
+            })}
           </Text>
         )}
 
@@ -340,7 +390,7 @@ export default function AiDialogSession() {
                             }}
                             activeOpacity={0.6}
                             accessibilityRole="button"
-                            accessibilityLabel="Озвучить реплику"
+                            accessibilityLabel={triLang(lang, { ru: 'Озвучить реплику', uk: 'Озвучити репліку', es: 'Reproducir frase' })}
                             style={{
                               width: 44,
                               minHeight: 44,
@@ -364,7 +414,9 @@ export default function AiDialogSession() {
                         >
                           <Ionicons name="language-outline" size={16} color={t.textMuted} />
                           <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                            {showTr ? 'Скрыть перевод' : 'Перевод'}
+                            {showTr
+                              ? triLang(lang, { ru: 'Скрыть перевод', uk: 'Сховати переклад', es: 'Ocultar traducción' })
+                              : triLang(lang, { ru: 'Перевод', uk: 'Переклад', es: 'Traducción' })}
                           </Text>
                         </TouchableOpacity>
                         {showTr && (
@@ -377,7 +429,7 @@ export default function AiDialogSession() {
                             }}
                             maxFontSizeMultiplier={1.2}
                           >
-                            Перевод появится здесь.
+                            {triLang(lang, { ru: 'Перевод появится здесь.', uk: 'Переклад з’явиться тут.', es: 'La traducción aparecerá aquí.' })}
                           </Text>
                         )}
                       </>
@@ -388,9 +440,12 @@ export default function AiDialogSession() {
             })}
 
             {sending && (
-              <View style={{ paddingVertical: 10, alignItems: 'flex-start' }}>
-                <ActivityIndicator color={t.textSecond} />
-              </View>
+              <AiTypingBubble
+                bubbleColor={t.bgCard}
+                borderColor={t.border}
+                dotColor={t.accent}
+                glowColor={t.accent + '18'}
+              />
             )}
 
             {ended && (
@@ -408,10 +463,14 @@ export default function AiDialogSession() {
                   style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}
                   maxFontSizeMultiplier={1.2}
                 >
-                  Разговор завершён
+                  {triLang(lang, { ru: 'Разговор завершён', uk: 'Розмову завершено', es: 'Conversación terminada' })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6 }}>
-                  Твоих реплик: {userExchanges}. Хороший шаг: ты не просто читаешь, а пробуешь говорить.
+                  {triLang(lang, {
+                    ru: `Твоих реплик: ${userExchanges}. Хороший шаг: ты не просто читаешь, а пробуешь говорить.`,
+                    uk: `Твоїх реплік: ${userExchanges}. Хороший крок: ти не просто читаєш, а пробуєш говорити.`,
+                    es: `Tus respuestas: ${userExchanges}. Buen paso: no solo lees, también intentas hablar.`,
+                  })}
                 </Text>
                 {!hasPremiumAccess && (
                   <TouchableOpacity
@@ -432,7 +491,7 @@ export default function AiDialogSession() {
                     }}
                   >
                     <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.body }}>
-                      Продолжить без лимита
+                      {triLang(lang, { ru: 'Продолжить без лимита', uk: 'Продовжити без ліміту', es: 'Continuar sin límite' })}
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -459,7 +518,7 @@ export default function AiDialogSession() {
                 <Ionicons name="bulb-outline" size={18} color={t.textSecond} style={{ marginTop: 1 }} />
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>
-                    Что сделать дальше
+                    {triLang(lang, { ru: 'Что сделать дальше', uk: 'Що зробити далі', es: 'Qué hacer ahora' })}
                   </Text>
                   <Text
                     style={{
@@ -470,7 +529,7 @@ export default function AiDialogSession() {
                     }}
                     maxFontSizeMultiplier={1.15}
                   >
-                    {scenario.nextStepHintRu}
+                    {dialogScenarioNextStepHint(scenario, lang)}
                   </Text>
                 </View>
               </View>
@@ -492,7 +551,7 @@ export default function AiDialogSession() {
               <TextInput
                 value={input}
                 onChangeText={setInput}
-                placeholder="…или напиши свой ответ"
+                placeholder={triLang(lang, { ru: '…или напиши свой ответ', uk: '…або напиши свою відповідь', es: '…o escribe tu respuesta' })}
                 placeholderTextColor={t.textMuted}
                 editable={!sending}
                 onSubmitEditing={() => send(input)}

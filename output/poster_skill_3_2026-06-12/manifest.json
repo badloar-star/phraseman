@@ -1,0 +1,26 @@
+[
+  {
+    "id": "001",
+    "slug": "english-freeze-poster",
+    "slides": 8,
+    "style_mode": "Emergence",
+    "palette": "aurora-lime-cobalt",
+    "dir": "post_001_english-freeze-poster"
+  },
+  {
+    "id": "002",
+    "slug": "sounds-rude-poster",
+    "slides": 8,
+    "style_mode": "Fever Dream Editorial",
+    "palette": "warm-editorial-emerald-coral",
+    "dir": "post_002_sounds-rude-poster"
+  },
+  {
+    "id": "003",
+    "slug": "hearing-native-poster",
+    "slides": 8,
+    "style_mode": "Video Game Emergency Kit",
+    "palette": "electric-blue-orange",
+    "dir": "post_003_hearing-native-poster"
+  }
+]

@@ -10,6 +10,7 @@ describe('lesson AI mistake card integration', () => {
     expect(source).toContain('callExplainMistake');
     expect(source).toContain('getAiMistakeExplainsLeftToday');
     expect(source).toContain('markAiMistakeExplainUsed');
+    expect(source).toContain('explainCurrentMistake(false)');
   });
 
   it('keeps the footer explain button as the pre-answer 3+gift credit path', () => {

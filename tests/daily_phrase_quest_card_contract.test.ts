@@ -9,7 +9,7 @@ describe('DailyPhraseCard quest contract', () => {
   it('opens daily phrase details as a meaning quiz before explanation', () => {
     expect(source).toContain('buildDailyPhraseQuestOptions');
     expect(source).toContain('questAnswered');
-    expect(source).toContain('Что это значит?');
+    expect(source).toContain('Що це означає?');
     expect(source).toContain('questOptions.map');
   });
 
@@ -25,6 +25,31 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('awardDailyPhraseQuestXpOnce');
     expect(source).toContain('runWrongAnswerShake');
     expect(source).toContain('Animated.sequence');
+  });
+
+  it('shows an animated success state for a correct daily phrase answer', () => {
+    expect(source).toContain('successAnim');
+    expect(source).toContain('runCorrectAnswerAnimation');
+    expect(source).toContain('successOverlay');
+    expect(source).toContain('questResultPill');
+    expect(source.indexOf('setQuestXpDelta(DAILY_PHRASE_QUEST_XP)')).toBeLessThan(
+      source.indexOf('runCorrectAnswerAnimation()'),
+    );
+  });
+
+  it('skips the quiz after any daily phrase answer was already recorded', () => {
+    expect(source).toContain('hasDailyPhraseQuestAnswered');
+    expect(source).toContain('markDailyPhraseQuestAnswered');
+    expect(source).toContain('questPreviouslyAnswered');
+    expect(source).toContain('setQuestPreviouslyAnswered(true)');
+    expect(source).toContain('selectedQuestCorrect && !questPreviouslyAnswered');
+  });
+
+  it('hides the pronunciation button until the explanation is visible', () => {
+    expect(source).toContain('{showQuestExplanation && (');
+    expect(source.indexOf('{showQuestExplanation && (')).toBeLessThan(
+      source.indexOf('name="volume-high"'),
+    );
   });
 
   it('does not show the AI explain button inside the daily phrase quest flow', () => {

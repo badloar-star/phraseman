@@ -1,6 +1,8 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, StyleSheet, Text } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { LinearGradient } from './SafeLinearGradient';
+import { themedToastChrome } from '../constants/themedToastChrome';
 
 interface Props {
   message: string | null;
@@ -10,7 +12,7 @@ interface Props {
 }
 
 function InGameToast({ message, onHide, duration = 3000, type = 'info' }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -36,16 +38,17 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info' }: Props)
 
   if (!message) return null;
 
-  const bg = type === 'error' ? t.wrongBg : t.bgCard;
-  const border = type === 'error' ? t.wrong : t.border;
+  void type;
+  const chrome = themedToastChrome(themeMode, t);
 
   return (
     <Animated.View style={[
       styles.toast,
-      { backgroundColor: bg, borderColor: border, opacity: anim,
+      { borderColor: chrome.border, shadowColor: chrome.shadowColor, opacity: anim,
         transform: [{ translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [-20, 0] }) }] },
     ]}>
-      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+      <LinearGradient colors={chrome.cardColors} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFillObject} />
+      <Text style={{ color: chrome.title, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
         {message}
       </Text>
     </Animated.View>
@@ -63,9 +66,9 @@ const styles = StyleSheet.create({
     zIndex: 999999,
     borderRadius: 16,
     borderWidth: 1,
+    overflow: 'hidden',
     paddingVertical: 14,
     paddingHorizontal: 20,
-    shadowColor: '#000',
     shadowOpacity: 0.25,
     shadowRadius: 10,
     elevation: 28,

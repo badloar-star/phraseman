@@ -23,6 +23,8 @@ export type AwardPlanTaskParams = {
   phrasesPracticed?: number;
   /** Plan instance, so the per-plan XP ledger can attribute this task's XP. */
   planInstanceId?: string;
+  /** Task id, so server-side progress XP can be idempotent per completed task. */
+  planTaskId?: string;
 };
 
 /**
@@ -36,12 +38,27 @@ export type AwardPlanTaskParams = {
  * Errors are swallowed: stats must never block the learner's progress through a task.
  */
 export async function awardPlanTaskCompletion(params: AwardPlanTaskParams): Promise<void> {
-  const { lang, studyTarget, phrasesPracticed = 1, planInstanceId } = params;
+  const { lang, studyTarget, phrasesPracticed = 1, planInstanceId, planTaskId } = params;
   const learned = Math.max(0, Math.floor(phrasesPracticed));
 
   try {
     const userName = (await AsyncStorage.getItem('user_name')) ?? '';
-    await registerXP(PLAN_TASK_XP, 'plan_task_complete', userName, lang);
+    const eventTaskId = String(planTaskId || planInstanceId || 'task');
+    await registerXP(PLAN_TASK_XP, 'plan_task_complete', userName, lang, undefined, {
+      eventId: [
+        'plan',
+        String(studyTarget || 'na').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 40) || 'na',
+        String(planInstanceId || 'instance').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 36) || 'instance',
+        String(eventTaskId).replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 36) || 'task',
+        'complete',
+      ].join(':'),
+      payload: {
+        studyTarget: studyTarget ?? null,
+        planInstanceId: planInstanceId ?? null,
+        planTaskId: planTaskId ?? null,
+        phrasesPracticed: learned,
+      },
+    });
   } catch {
     // ignore — XP/streak update is best-effort
   }

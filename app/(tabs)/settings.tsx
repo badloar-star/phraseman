@@ -64,7 +64,7 @@ import type { ThemeMode } from '../../constants/theme';
 import { SETTINGS_TESTERS_ROUTE } from '../../constants/devRoutes';
 import { COMPASS_RICH, compassShadow } from '../../constants/compassTheme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
-import { reserveName } from '../firestore_leaderboard';
+import { reserveNameDetailed } from '../firestore_leaderboard';
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
@@ -506,19 +506,32 @@ export default function SettingsMain() {
     // Жёсткая проверка уникальности: бронируем имя на сервере СНАЧАЛА и применяем
     // локально только при 'ok'. Раньше имя применялось до ответа сервера (и при
     // 'taken' откатывалось «как получится») — из-за чего дубликаты просачивались.
-    let reservation: Awaited<ReturnType<typeof reserveName>>;
+    let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
     try {
-      reservation = await reserveName(trimmed, oldName);
+      reservation = await reserveNameDetailed(trimmed, oldName);
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
-      reservation = 'error';
+      reservation = { status: 'error' };
     }
 
-    if (reservation === 'taken') {
+    if (reservation.status === 'taken') {
       showInfoAlert('', L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
       return;
     }
-    if (reservation !== 'ok') {
+    if (reservation.status === 'cooldown') {
+      showInfoAlert('', L(
+        'Ник можно менять не чаще одного раза в 14 дней.',
+        'Нік можна змінювати не частіше одного разу на 14 днів.',
+        'Puedes cambiar el nombre solo una vez cada 14 días.',
+        'Você só pode mudar o nome uma vez a cada 14 dias.',
+        'Bạn chỉ có thể đổi tên 14 ngày một lần.',
+        'Nama hanya bisa diganti sekali setiap 14 hari.',
+        'Adı en fazla 14 günde bir değiştirebilirsin.',
+        'Nazwę można zmieniać najwyżej raz na 14 dni.',
+      ));
+      return;
+    }
+    if (reservation.status !== 'ok') {
       showInfoAlert('', L(
         'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
         'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',

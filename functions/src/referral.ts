@@ -1,7 +1,7 @@
 /**
- * Вирусный реферал (односторонний VIP, экономия Firebase-лимитов).
- * Крючок: «позови друга — неделя полного доступа тебе». Другу VIP не даём — у него и так
- * свои 72ч intro-доступа (intro_full_access), а VIP — награда именно за приведение.
+ * Вирусный реферал (7 дней другу + 7 дней пригласившему, экономия Firebase-лимитов).
+ * Крючок: «друг установил приложение, ввёл код и прошёл первый урок — вы оба получаете
+ * по 7 дней полного доступа». 7+7 не равно 14: это две отдельные награды двум людям.
  *
  * Поток:
  *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
@@ -9,9 +9,9 @@
  *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
  *   3. referee проходит урок 1 (>= бронзы ⇒ unlocked_lessons содержит 2). Его cloud_sync и так
  *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated помечает attribution
- *      status='qualified' — БЕЗ начисления (никаких фоновых записей).
+ *      status='qualified' и сразу начисляет приглашённому его 7 дней.
  *   4. referrer в /friends видит qualified-друга и сам жмёт «Открыть» → referralClaimVipReward:
- *      одна транзакция, +7 дней VIP (стак vip_until), attribution → 'rewarded'. 1 write на клик.
+ *      одна транзакция, +7 дней VIP пригласившему (стак vip_until), attribution → 'rewarded'.
  *
  * VIP-механику НЕ меняем: пишем те же поля vip_* в users/{id}.progress, что и admin-grant.
  * Авторитетный источник premium/vip — только Admin SDK (firestore.rules: progressHasNoPremiumWrites).
@@ -28,8 +28,10 @@ const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_CODE_ATTEMPTS = 12;
 
-/** Односторонний VIP: 7 дней получает только referrer, по кнопке (pull), стакается. */
-const REFERRER_VIP_DAYS = 7;
+/** Referral reward: 7 days for the invited friend and 7 days for the referrer. */
+export const REFERRAL_REWARD_DAYS = 7;
+const REFERRER_VIP_DAYS = REFERRAL_REWARD_DAYS;
+const REFEREE_VIP_DAYS = REFERRAL_REWARD_DAYS;
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
 const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
@@ -119,6 +121,25 @@ export function stackVipUntilMs(
   return base + Math.max(0, Math.floor(addDays)) * dayMs;
 }
 
+export function buildReferralVipProgressPatch(
+  currentProgress: Record<string, unknown> | undefined,
+  nowMs: number,
+  addDays: number,
+  source: 'referee' | 'referrer',
+): Record<string, string> {
+  const currentUntil = vipUntilFromProgress(currentProgress);
+  const vipUntil = stackVipUntilMs(currentUntil, nowMs, addDays);
+  return {
+    vip_active: 'true',
+    vip_plan: 'referral',
+    vip_from: String(Math.min(currentUntil || nowMs, nowMs)),
+    vip_until: String(vipUntil),
+    vip_admin_override: 'true',
+    vip_admin_grant_at: String(nowMs),
+    referral_vip_last_source: source,
+  };
+}
+
 
 function randomCode(): string {
   let s = '';
@@ -136,11 +157,9 @@ function yyyymmNow(): string {
 /**
  * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified'.
  *
- * referee'у НИЧЕГО не начисляем: у него и так свои 72ч intro-доступа (intro_full_access),
- * VIP бережём как награду именно за приведение. referrer'у в фоне тоже не пишем — он обналичит
- * свои 7 дней по кнопке (pull), чтобы не делать запись в чужой документ на каждого друга.
- *
- * Односторонний VIP: 7 дней получает только referrer, по кнопке.
+ * Приглашённый получает свои 7 дней сразу после выполнения условия.
+ * Пригласивший получает отдельные 7 дней по кнопке, чтобы не писать в чужой документ
+ * на каждое обновление прогресса. 7+7 — это два отдельных человека, не 14 дней одному.
  */
 async function markRefereeQualified(
   db: admin.firestore.Firestore,
@@ -165,13 +184,35 @@ async function markRefereeQualified(
     const row = attR.data() as { status?: string };
     if (row?.status && row.status !== 'pending') return;
 
-    // Помечаем attribution готовым к обналичиванию referrer'ом. referee ничего не пишем.
+    const nowMs = Date.now();
+    const refereeData = refeeSnap.data() ?? {};
+    const refereeProgress = (refereeData as { progress?: Record<string, unknown> }).progress ?? {};
+    const refereeVipPatch = buildReferralVipProgressPatch(
+      refereeProgress,
+      nowMs,
+      REFEREE_VIP_DAYS,
+      'referee',
+    );
+
+    // Помечаем attribution готовым к обналичиванию referrer'ом.
+    // Приглашённый получает свои 7 дней сразу; пригласивший забирает свои 7 дней по кнопке.
     tx.set(
       attRef,
       {
         status: 'qualified' as AttributionStatus,
         qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
         qualifiedBy: 'unlocked_lesson_2',
+        refereeVipDays: REFEREE_VIP_DAYS,
+        refereeRewardedAtMs: nowMs,
+        rewardKind: 'vip_days_both',
+      },
+      { merge: true },
+    );
+    tx.set(
+      uref(userId),
+      {
+        progress: refereeVipPatch,
+        updatedAt: nowMs,
       },
       { merge: true },
     );
@@ -505,7 +546,7 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
           status: 'rewarded' as AttributionStatus,
           rewardedAt: admin.firestore.FieldValue.serverTimestamp(),
           referrerVipDays: REFERRER_VIP_DAYS,
-          rewardKind: 'vip_days',
+          rewardKind: 'vip_days_both',
         },
         { merge: true },
       );
@@ -514,16 +555,17 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
     if (claimed.length > 0) {
       // Пишем VIP теми же полями, что admin-grant — премиум-механику не меняем.
       // vip_admin_grant_at — маркер для клиентской анимации (vip_celebration_state).
+      const referrerVipPatch = buildReferralVipProgressPatch(
+        (userData as { progress?: Record<string, unknown> }).progress,
+        nowMs,
+        claimed.length * REFERRER_VIP_DAYS,
+        'referrer',
+      );
       tx.set(
         userRef,
         {
           progress: {
-            vip_active: 'true',
-            vip_plan: 'referral',
-            vip_from: String(Math.min(parseVipUntilMs(userData) || nowMs, nowMs)),
-            vip_until: String(vipUntil),
-            vip_admin_override: 'true',
-            vip_admin_grant_at: String(nowMs),
+            ...referrerVipPatch,
             referral_vip_claims_monthly: { ...monthly, [ym]: usedThisMonth },
           },
           updatedAt: nowMs,

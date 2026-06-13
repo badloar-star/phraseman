@@ -13,7 +13,8 @@
     "updates": {
       "enabled": true,
       "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
-      "checkAutomatically": "ON_LOAD",
+      "checkAutomatically": "ON_ERROR_RECOVERY",
+      "fallbackToCacheTimeout": 0,
       "assetPatternsToBeBundled": [
         "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/*",
         "assets/fonts/*.ttf",
@@ -58,6 +59,7 @@
         "assets/images/statistics/cards/**/*",
         "assets/images/splash-icon.png",
         "assets/images/streak_overlays/*",
+        "assets/images/theo/*",
         "assets/images/trainer_theme_icons/**/*"
       ]
     },

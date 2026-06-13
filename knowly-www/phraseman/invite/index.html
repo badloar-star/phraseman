@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n-key="title">Phraseman Invite</title>
+  <script>
+    (function () {
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var params = new URLSearchParams(window.location.search);
+      var ref = String(params.get('ref') || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12);
+      var androidStore = 'https://play.google.com/store/apps/details?id=app.phraseman' +
+        (ref ? '&referrer=' + encodeURIComponent('ref=' + ref) : '');
+      var iosStore = 'https://apps.apple.com/app/id6764800879';
+      window.location.replace(isiOS ? iosStore : androidStore);
+    })();
+  </script>
   <style>
     :root {
       color-scheme: dark;
@@ -15,6 +28,10 @@
       --blue: #6aa7ff;
     }
     * { box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
     body {
       margin: 0;
       min-height: 100vh;
@@ -27,7 +44,8 @@
       padding: 24px;
     }
     main {
-      width: min(440px, 100%);
+      width: 100%;
+      max-width: 440px;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -81,6 +99,9 @@
       margin-top: 14px;
       color: var(--muted);
       line-height: 1.4;
+    }
+    @media (max-width: 420px) {
+      body { padding: 16px; }
     }
   </style>
 </head>
@@ -322,9 +343,7 @@
         });
       }
 
-      if (isAndroid) {
-        setTimeout(function () { window.location.href = androidStore; }, 600);
-      } else if (!isiOS) {
+      if (!isiOS && !ref) {
         setTimeout(function () { window.location.href = store.href; }, 1800);
       }
     })();

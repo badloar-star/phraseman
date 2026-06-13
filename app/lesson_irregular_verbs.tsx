@@ -50,6 +50,8 @@ export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './
 
 const REQUIRED = 3;
 const POINTS_PER_VERB = 3;
+const safeVerbEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 /** Как в «Словаре»: короткая пауза на подсветку; озвучка правильного ответа — сразу при тапе (не после таймера). */
 const ANSWER_FEEDBACK_MS = { correct: 800, wrong: 400 } as const;
 export const GLOBAL_IRREGULAR_KEY = irregularVerbsGlobalKey();
@@ -305,8 +307,13 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       const key = lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget);
       void AsyncStorage.getItem(key).then(done => {
         if (!done) {
-          void addShards('lesson_completed').catch(() => {});
-          void AsyncStorage.setItem(key, '1');
+          void addShards('lesson_completed')
+            .then(n => {
+              if (n > 0) {
+                void AsyncStorage.setItem(key, '1');
+              }
+            })
+            .catch(() => {});
         }
       }).catch(() => {});
       return;
@@ -403,7 +410,20 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
           setLearnedCnt(c => c + 1);
           updateMultipleTaskProgress([{ type: 'verb_learned' }], { studyTarget });
           if (userName) {
-            registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang)
+            registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang, lessonId, {
+              eventId: [
+                'verb',
+                safeVerbEventPart(studyTarget),
+                String(lessonId ?? 0),
+                safeVerbEventPart(verb.base, 50),
+                'learned',
+              ].join(':'),
+              payload: {
+                lessonId: lessonId ?? null,
+                studyTarget,
+                verb: verb.base,
+              },
+            })
               .then((r) => {
                 const finalDelta = r?.finalDelta;
                 const earned = typeof finalDelta === 'number' && Number.isFinite(finalDelta) && finalDelta >= 0

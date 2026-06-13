@@ -23,7 +23,9 @@ import {
   awardDailyPhraseQuestXpOnce,
   buildDailyPhraseQuestOptions,
   DAILY_PHRASE_QUEST_XP,
+  hasDailyPhraseQuestAnswered,
   isDailyPhraseQuestAnswerCorrect,
+  markDailyPhraseQuestAnswered,
 } from '../app/daily_phrase_quest';
 import {
   dailyPhraseCopyForLang,
@@ -34,26 +36,11 @@ import {
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
 import { IDIOMS } from '../app/idioms_data';
+import { trainerThemeIconSource } from '../constants/trainerThemeIcons';
 import AddToFlashcard from './AddToFlashcard';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
-
-const DAILY_PHRASE_IMAGES: Record<string, any> = {
-  dark: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
-  minimalDark: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
-  gold: require('../assets/images/home_menu/home-gold-daily-phrase.webp'),
-  coral: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
-  ocean: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
-  sakura: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
-  // «Чёрное кино»: своя картинка не отрисована — компасный премиум-глиф.
-  midnight: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
-  ember: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
-  aurora: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
-  volt: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
-};
-
-const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -75,10 +62,13 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [questAnswered, setQuestAnswered] = useState(false);
   const [showQuestExplanation, setShowQuestExplanation] = useState(false);
+  const [questPreviouslyAnswered, setQuestPreviouslyAnswered] = useState(false);
   const [selectedQuestOptionId, setSelectedQuestOptionId] = useState<string | null>(null);
   const [questXpDelta, setQuestXpDelta] = useState<number | null>(null);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const explanationAnim = useRef(new Animated.Value(0)).current;
+  const successAnim = useRef(new Animated.Value(0)).current;
+  const answeredQuestKeysRef = useRef(new Set<string>()).current;
 
   useEffect(() => {
     if (studyTarget === 'fr') {
@@ -134,11 +124,47 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
   useEffect(() => {
     setQuestAnswered(false);
     setShowQuestExplanation(false);
+    setQuestPreviouslyAnswered(false);
     setSelectedQuestOptionId(null);
     setQuestXpDelta(null);
     shakeAnim.setValue(0);
     explanationAnim.setValue(0);
-  }, [phrase?.id, shakeAnim, explanationAnim]);
+    successAnim.setValue(0);
+  }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
+
+  useEffect(() => {
+    if (studyTarget === 'fr' || !detailsVisible || !phrase || questAnswered || showQuestExplanation) return;
+
+    let cancelled = false;
+    const phraseId = phrase.id || phrase.date;
+    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
+
+    hasDailyPhraseQuestAnswered({ phraseId, date })
+      .then((alreadyAnswered) => {
+        if (cancelled || !alreadyAnswered) return;
+        setQuestAnswered(true);
+        setShowQuestExplanation(true);
+        setQuestPreviouslyAnswered(true);
+        setSelectedQuestOptionId(null);
+        setQuestXpDelta(null);
+        explanationAnim.setValue(1);
+        successAnim.setValue(0);
+      })
+      .catch(() => {});
+
+    return () => { cancelled = true; };
+  }, [
+    detailsVisible,
+    explanationAnim,
+    phrase,
+    phrase?.date,
+    phrase?.id,
+    phrase?.scheduledDate,
+    questAnswered,
+    showQuestExplanation,
+    studyTarget,
+    successAnim,
+  ]);
 
   if (studyTarget === 'fr') {
     return null;
@@ -187,14 +213,39 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     tr: phrase.sourceLocales?.tr?.meaning,
     pl: phrase.sourceLocales?.pl?.meaning,
   };
-  const dailyPhraseImage = DAILY_PHRASE_IMAGES[themeMode] ?? DAILY_PHRASE_FALLBACK_IMAGE;
+  const dailyPhraseImage = trainerThemeIconSource(themeMode, 'phrases');
   const homeAdditional = variant === 'homeAdditional';
   const homeAdditionalMeaning = phraseCopy.meaning || phrase.meaning;
   const chrome = dailyPhraseChromeFor(themeMode);
-  const questOptions = buildDailyPhraseQuestOptions(phrase, IDIOMS);
+  const questOptions = buildDailyPhraseQuestOptions(phrase, IDIOMS, phraseLang);
   const selectedQuestCorrect = selectedQuestOptionId
     ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
     : false;
+  const successOverlayOpacity = successAnim.interpolate({
+    inputRange: [0, 0.08, 0.78, 1],
+    outputRange: [0, 1, 1, 0],
+    extrapolate: 'clamp',
+  });
+  const successCheckScale = successAnim.interpolate({
+    inputRange: [0, 0.34, 0.78, 1],
+    outputRange: [0.72, 1.08, 1, 1.12],
+    extrapolate: 'clamp',
+  });
+  const successRingScale = successAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.52, 1.9],
+    extrapolate: 'clamp',
+  });
+  const successRingOpacity = successAnim.interpolate({
+    inputRange: [0, 0.16, 0.66, 1],
+    outputRange: [0, 0.54, 0.22, 0],
+    extrapolate: 'clamp',
+  });
+  const successResultScale = successAnim.interpolate({
+    inputRange: [0, 0.35, 1],
+    outputRange: [0.96, 1.02, 1],
+    extrapolate: 'clamp',
+  });
 
   const runWrongAnswerShake = () => {
     shakeAnim.setValue(0);
@@ -207,13 +258,33 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     ]).start();
   };
 
+  const runCorrectAnswerAnimation = () => {
+    successAnim.setValue(0);
+    Animated.sequence([
+      Animated.timing(successAnim, {
+        toValue: 0.78,
+        duration: 340,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }),
+      Animated.timing(successAnim, {
+        toValue: 1,
+        duration: 260,
+        easing: Easing.in(Easing.quad),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
   const resetQuest = () => {
     setQuestAnswered(false);
     setShowQuestExplanation(false);
+    setQuestPreviouslyAnswered(false);
     setSelectedQuestOptionId(null);
     setQuestXpDelta(null);
     shakeAnim.setValue(0);
     explanationAnim.setValue(0);
+    successAnim.setValue(0);
   };
 
   const revealQuestExplanation = () => {
@@ -227,8 +298,24 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     }).start();
   };
 
-  const openDetails = () => {
+  const openDetails = async () => {
     resetQuest();
+    const phraseId = phrase.id || phrase.date;
+    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
+    const questKey = `${date}:${phraseId}`;
+    const alreadyAnswered = answeredQuestKeysRef.has(questKey)
+      || await hasDailyPhraseQuestAnswered({ phraseId, date }).catch(() => false);
+
+    if (alreadyAnswered) {
+      setQuestAnswered(true);
+      setShowQuestExplanation(true);
+      setQuestPreviouslyAnswered(true);
+      setSelectedQuestOptionId(null);
+      setQuestXpDelta(null);
+      explanationAnim.setValue(1);
+      successAnim.setValue(0);
+    }
+
     setDetailsVisible(true);
     updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }], { studyTarget }).catch(() => {});
     checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
@@ -241,9 +328,15 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
 
   const handleQuestOptionPress = (optionId: string) => {
     if (questAnswered) return;
+    const phraseId = phrase.id || phrase.date;
+    const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
+    const questKey = `${date}:${phraseId}`;
+    answeredQuestKeysRef.add(questKey);
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
+    setQuestPreviouslyAnswered(false);
     revealQuestExplanation();
+    markDailyPhraseQuestAnswered({ phraseId, date }).catch(() => {});
 
     const correct = isDailyPhraseQuestAnswerCorrect(questOptions, optionId);
     if (!correct) {
@@ -253,9 +346,10 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
     }
 
     setQuestXpDelta(DAILY_PHRASE_QUEST_XP);
+    runCorrectAnswerAnimation();
     awardDailyPhraseQuestXpOnce({
-      phraseId: phrase.id || phrase.date,
-      date: phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!,
+      phraseId,
+      date,
       lang,
     })
       .then((result) => setQuestXpDelta(result.finalDelta))
@@ -344,6 +438,33 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               { transform: [{ translateX: shakeAnim }] },
             ]}
           >
+            {questAnswered && selectedQuestCorrect && !questPreviouslyAnswered && (
+              <Animated.View
+                pointerEvents="none"
+                style={[
+                  styles.successOverlay,
+                  {
+                    opacity: successOverlayOpacity,
+                    transform: [{ scale: successCheckScale }],
+                  },
+                ]}
+              >
+                <Animated.View
+                  style={[
+                    styles.successRing,
+                    {
+                      borderColor: t.correct,
+                      opacity: successRingOpacity,
+                      transform: [{ scale: successRingScale }],
+                    },
+                  ]}
+                />
+                <View style={[styles.successBadge, { backgroundColor: t.correct, shadowColor: t.correct }]}>
+                  <Ionicons name="checkmark" size={44} color={t.correctText} />
+                </View>
+              </Animated.View>
+            )}
+
             <View style={styles.sheetHeader}>
               <View style={[styles.sheetIcon, { backgroundColor: t.bgSurface2 }]}>
                 {dailyPhraseImage ? (
@@ -360,22 +481,24 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   {phrase.english}
                 </Text>
               </View>
-              <Pressable
-                onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, {
-                  uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
-                  'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
-                })}
-                style={({ pressed }) => [
-                  styles.closeButton,
-                  { backgroundColor: t.bgSurface2 },
-                  pressed && styles.pressed,
-                ]}
-              >
-                <Ionicons name="volume-high" size={20} color={t.accent} />
-              </Pressable>
+              {showQuestExplanation && (
+                <Pressable
+                  onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, {
+                    uk: 'Озвучити', ru: 'Озвучить', es: 'Reproducir',
+                    'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz',
+                  })}
+                  style={({ pressed }) => [
+                    styles.closeButton,
+                    { backgroundColor: t.bgSurface2 },
+                    pressed && styles.pressed,
+                  ]}
+                >
+                  <Ionicons name="volume-high" size={20} color={t.accent} />
+                </Pressable>
+              )}
               <Pressable
                 onPress={closeDetails}
                 hitSlop={8}
@@ -399,7 +522,16 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
               {!questAnswered && (
                 <View style={[styles.questBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
                   <Text style={[styles.questQuestion, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
-                    Что это значит?
+                    {triLang(lang, {
+                      ru: 'Что это значит?',
+                      uk: 'Що це означає?',
+                      es: '¿Qué significa?',
+                      'pt-BR': 'O que isso significa?',
+                      vi: 'Nghĩa là gì?',
+                      id: 'Apa artinya?',
+                      tr: 'Bu ne anlama geliyor?',
+                      pl: 'Co to znaczy?',
+                    })}
                   </Text>
                   <View style={styles.questOptions}>
                     {questOptions.map((option) => (
@@ -446,21 +578,28 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                     },
                   ]}
                 >
-                  <Text
-                    style={[
-                      styles.questResult,
-                      {
-                        color: selectedQuestCorrect ? t.correct : t.textMuted,
-                        fontSize: f.label,
-                      },
-                    ]}
-                  >
-                    {selectedQuestCorrect
-                      ? questXpDelta && questXpDelta > 0
-                        ? `+${questXpDelta} XP`
-                        : 'Верно. XP уже получен сегодня.'
-                      : 'Без опыта. Правильный смысл ниже.'}
-                  </Text>
+                  {selectedQuestCorrect && !questPreviouslyAnswered && (
+                    <Animated.View
+                      style={[
+                        styles.questResultPill,
+                        {
+                          borderColor: t.correct,
+                          backgroundColor: `${t.correct}1F`,
+                          opacity: explanationAnim,
+                          transform: [{ scale: successResultScale }],
+                        },
+                      ]}
+                    >
+                      <View style={[styles.questResultIcon, { backgroundColor: t.correct }]}>
+                        <Ionicons name="checkmark" size={17} color={t.correctText} />
+                      </View>
+                      <Text style={[styles.questResultText, { color: t.correct, fontSize: f.label }]}>
+                        {questXpDelta && questXpDelta > 0
+                          ? `+${questXpDelta} XP`
+                          : 'Верно. XP уже получен сегодня.'}
+                      </Text>
+                    </Animated.View>
+                  )}
                   <View style={[styles.detailBlock, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelLiteral}
@@ -657,6 +796,34 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 12 },
     elevation: 16,
   },
+  successOverlay: {
+    position: 'absolute',
+    top: '34%',
+    left: 0,
+    right: 0,
+    zIndex: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  successRing: {
+    position: 'absolute',
+    width: 94,
+    height: 94,
+    borderRadius: 47,
+    borderWidth: 2,
+  },
+  successBadge: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#22C55E',
+    shadowOpacity: 0.38,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 9,
+  },
   sheetHeader: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -748,9 +915,29 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 21,
   },
-  questResult: {
-    fontWeight: '900',
+  questResultPill: {
+    minHeight: 42,
+    alignSelf: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 9,
+    borderRadius: 21,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
     marginBottom: 12,
+  },
+  questResultIcon: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  questResultText: {
+    fontWeight: '900',
+    lineHeight: 20,
     textAlign: 'center',
   },
   explanationWrap: {

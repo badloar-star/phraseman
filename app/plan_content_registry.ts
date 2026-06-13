@@ -2,6 +2,8 @@ import type { PlanContentDay } from './plan_content_schema';
 import { MITAP_CONTENT_DAYS } from './plan_content_mitap';
 import { GAVAN_CONTENT_DAYS } from './plan_content_gavan';
 import { IMPULS_CONTENT_DAYS } from './plan_content_impuls';
+import { ECHO_CONTENT_DAYS } from './plan_content_echo';
+import { VOYAZH_CONTENT_DAYS } from './plan_content_voyazh';
 
 /**
  * Registry of authored PlanContentDay content from the new pipeline, keyed by
@@ -18,13 +20,12 @@ function keyFor(planId: string, dayIndex: number): string {
   return `${planId}:${dayIndex}`;
 }
 
-// 2026-06-10: voyazh authored content (84 days, old concept) deleted by owner
-// decision — Компас gets fully regenerated content in Ф4. Until then voyazh days
-// fall back to the template path like the other non-authored plans.
 const ALL_CONTENT_DAYS: readonly PlanContentDay[] = [
   ...MITAP_CONTENT_DAYS,
   ...GAVAN_CONTENT_DAYS,
   ...IMPULS_CONTENT_DAYS,
+  ...ECHO_CONTENT_DAYS,
+  ...VOYAZH_CONTENT_DAYS,
 ];
 
 const CONTENT_BY_KEY: ReadonlyMap<string, PlanContentDay> = new Map(

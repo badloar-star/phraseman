@@ -47,6 +47,7 @@ import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
 import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
 import { syncToCloud } from './cloud_sync';
+import { submitProgressEvent } from './progress_events_client';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
@@ -65,6 +66,9 @@ const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
 };
 
 const BONUS = 500;
+
+const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onClose }: {
   visible: boolean; context: ReviewContext; t: any; f: any; themeMode: string; bottomInset: number; lang: Lang; onClose: () => void;
@@ -586,8 +590,26 @@ export default function LessonComplete() {
         // Рассчитываем переменную награду
         const reward = calculateRewardWithBonus(BONUS);
         
-        if (name) {
-          try { await registerXP(reward.totalXP, 'bonus_chest', name, lang); } catch {}
+        const xpResult = await registerXP(reward.totalXP, 'bonus_chest', name || '', lang, lessonId, {
+          eventId: [
+            'bonus_chest',
+            'lesson',
+            safeLessonCompleteEventPart(studyTarget),
+            String(lessonId),
+            'first_complete',
+          ].join(':'),
+          payload: {
+            surface: 'lesson_complete',
+            studyTarget,
+            lessonId,
+            baseBonus: BONUS,
+            totalReward: reward.totalXP,
+            hasBonusWon: reward.hasBonusWon,
+            bonusXP: reward.bonusXP,
+          },
+        });
+        if (Math.max(0, Math.round(xpResult.finalDelta || 0)) <= 0) {
+          throw new Error('lesson_bonus_xp_not_confirmed');
         }
 
         // Показываем карточку бонуса если был выигран
@@ -637,8 +659,10 @@ export default function LessonComplete() {
         const alreadyPerfect = await AsyncStorage.getItem(perfKey);
         if (!alreadyPerfect) {
           const n5 = await addShards('lessons_5_perfect', suppress);
-          if (n5 > 0) shardKeys.push('lessons_5_perfect');
-          AsyncStorage.setItem(perfKey, '1').catch(() => {});
+          if (n5 > 0) {
+            shardKeys.push('lessons_5_perfect');
+            AsyncStorage.setItem(perfKey, '1').catch(() => {});
+          }
         }
       }
 
@@ -660,8 +684,10 @@ export default function LessonComplete() {
         const alreadyTopic = await AsyncStorage.getItem(topicKey);
         if (!alreadyTopic) {
           const nT = await addShards('topic_completed', suppress);
-          if (nT > 0) shardKeys.push('topic_completed');
-          AsyncStorage.setItem(topicKey, '1').catch(() => {});
+          if (nT > 0) {
+            shardKeys.push('topic_completed');
+            AsyncStorage.setItem(topicKey, '1').catch(() => {});
+          }
         }
       }
 
@@ -752,6 +778,25 @@ export default function LessonComplete() {
         const score = parseFloat(((Math.min(correct, totalAnswers) / totalAnswers) * 5).toFixed(1));
         setLessonScore(score);
         const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p, studyTarget);
+        submitProgressEvent({
+          eventId: [
+            'lesson',
+            safeLessonCompleteEventPart(studyTarget),
+            String(lessonId),
+            'complete',
+            String(Math.max(1, newPassCount)),
+          ].join(':'),
+          type: 'lesson_complete',
+          payload: {
+            lessonId,
+            studyTarget,
+            score,
+            passed: correct >= 45,
+            progress: p,
+            cellIndex: p.length,
+            xpDelta: 0,
+          },
+        }).catch(() => {});
         void syncToCloud({ forceNow: true }).catch(() => {});
         setMedalTier(newTier);
         const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';

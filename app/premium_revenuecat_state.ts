@@ -59,6 +59,19 @@ export function revenueCatPremiumMetadata(
   };
 }
 
+/**
+ * Дата обнаружения проблемы с платежом (grace-период) в мс, или null.
+ * RC ставит billingIssueDetectedAtMillis на активный entitlement, когда списание
+ * не прошло; доступ ещё активен (isActive=true), но через ~16 дней пропадёт.
+ * Немое место №2: предупредить юзера обновить способ оплаты.
+ */
+export function revenueCatBillingIssueAtMs(info: CustomerInfo | null | undefined): number | null {
+  const ent = activePremiumEntitlement(info);
+  const ms = ent?.billingIssueDetectedAtMillis;
+  if (typeof ms === 'number' && Number.isFinite(ms) && ms > 0) return ms;
+  return null;
+}
+
 export async function persistStorePremiumLocally(
   plan: PremiumStorePlan,
   metadata: RevenueCatPremiumMetadata = {},

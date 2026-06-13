@@ -329,15 +329,16 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
           </Text>
         </Reanimated.View>
 
-        {/* ── REEL ── */}
-        <View style={[styles.reelMask, { top: reelTop, bottom: reelBottom }]} pointerEvents="box-none">
+        {/* ── REEL ──
+            До skip лента не ловит тапы (pointerEvents none) — тап проваливается
+            на бэкдроп → skip. После skip включаем скролл и тачи. */}
+        <View style={[styles.reelMask, { top: reelTop, bottom: reelBottom }]} pointerEvents={skipped ? 'box-none' : 'none'}>
           <ScrollView
             ref={scrollRef}
             style={StyleSheet.absoluteFill}
             contentContainerStyle={styles.reelContent}
             showsVerticalScrollIndicator={false}
             scrollEnabled={skipped}
-            pointerEvents="box-none"
           >
             {features.map((fe, idx) => (
               <FeatureRow

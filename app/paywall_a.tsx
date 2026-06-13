@@ -7,8 +7,8 @@
 // конфига), годовой default + честный −N% + цена/день, CTA с ценой под ним.
 // Без таймлайна и галереи доказательств — это дифференциаторы C.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, TouchableOpacity, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -24,11 +24,15 @@ import {
 import { usePaywallPurchase } from './paywall_purchase';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
+import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
+import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
+import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
+import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -44,10 +48,29 @@ export default function PaywallA() {
   const insets = useSafeAreaInsets();
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang });
 
+  const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
+  const [mirror, setMirror] = useState<ProgressMirror | null>(null);
+
   useEffect(() => {
     void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT });
     logPaywallFunnel('shown', { variant: VARIANT, context: ctx });
   }, [ctx, source]);
+
+  useEffect(() => {
+    let dead = false;
+    void (async () => {
+      try {
+        const stats = await collectPaywallStats();
+        const tags = pickPaywallTags(stats, 1);
+        if (!dead && tags.length > 0) setPersonalTag(tags[0]);
+      } catch { /* некритично */ }
+      try {
+        const m = await readProgressMirror();
+        if (!dead && isMirrorWorthShowing(m)) setMirror(m);
+      } catch { /* некритично */ }
+    })();
+    return () => { dead = true; };
+  }, []);
 
   // вход — как у v2: мягкое появление
   const opacity = useRef(new Animated.Value(0)).current;
@@ -80,53 +103,104 @@ export default function PaywallA() {
             <Ionicons name="close" size={14} color={chrome.textMuted} />
           </TouchableOpacity>
 
-          <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
+          {/* На обычных телефонах помещается без скролла (flexGrow:1 + спейсер
+              прижимает CTA вниз); на маленьких — мягко скроллится. */}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            decelerationRate="normal"
+            contentContainerStyle={S.scroll}
+          >
+            <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
 
-          <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
-          <Text style={[S.subtitle, { color: chrome.textMuted }]} numberOfLines={2}>{subtitle}</Text>
+            <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
+            <Text style={[S.subtitle, { color: chrome.textMuted }]} numberOfLines={2}>{subtitle}</Text>
 
-          <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
-
-          <PaywallPlanCards
-            lang={lang as Lang}
-            chrome={chrome}
-            selected={p.selected}
-            onSelect={p.selectPlan}
-            yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
-            yearlyFull={p.yearlyPrice}
-            monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
-            savingsPct={p.savingsPct}
-            perDayLabel={p.perDayLabel}
-            trialDays={p.trialDays}
-            loading={p.loading}
-            disabled={p.purchasing}
-          />
-
-          <View style={S.benefits}>
-            {benefits.map((b, i) => (
-              <View key={i} style={S.benefitRow}>
-                <Ionicons name="checkmark-circle" size={17} color={chrome.tc.heroAccent} />
-                <Text style={[S.benefitText, { color: chrome.textMuted }]} numberOfLines={2}>
-                  {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
+            {/* Личный «болевой» тег (1 шт.) — персонализация под ситуацию. */}
+            {personalTag && (
+              <View style={[S.tagChip, { backgroundColor: `${chrome.tc.heroAccent}14`, borderColor: `${chrome.tc.heroAccent}33` }]}>
+                <Ionicons name="sparkles" size={12} color={chrome.tc.heroAccent} />
+                <Text style={[S.tagText, { color: chrome.textPrimary }]} numberOfLines={1}>
+                  {LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)}
                 </Text>
               </View>
-            ))}
-          </View>
+            )}
 
-          <View style={S.spacer} />
+            <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
 
-          <PaywallCtaBlock
-            lang={lang as Lang}
-            chrome={chrome}
-            label={ctaLabelFor(lang as Lang, p.trialDays)}
-            subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays })}
-            disabled={p.ctaDisabled}
-            busy={p.purchasing}
-            onPress={() => { void p.handlePurchase(); }}
-            onRestore={() => { void p.handleRestore(); }}
-            restoring={p.restoring}
-            onContinueFree={() => p.handleClose('continue_free')}
-          />
+            {/* «Уже твоё» — компактной строкой, без полной карточки (экономим высоту). */}
+            {mirror && (
+              <Text style={[S.mirrorLine, { color: chrome.textMuted }]} numberOfLines={1}>
+                {LP('Уже твоё:', 'Вже твоє:', 'Ya es tuyo:', { 'pt-BR': 'Já é seu:', vi: 'Đã là của bạn:', id: 'Sudah jadi milikmu:', tr: 'Artık senin:', pl: 'Już twoje:' })}{' '}
+                <Text style={{ color: chrome.tc.heroAccent, fontWeight: '800' }}>
+                  {[
+                    mirror.phrases > 0 ? `${mirror.phrases} ${LP('фраз', 'фраз', 'frases', { 'pt-BR': 'frases', vi: 'cụm', id: 'frasa', tr: 'ifade', pl: 'fraz' })}` : '',
+                    mirror.streak > 0 ? `${mirror.streak} ${LP('дн. серия', 'дн. серія', 'días', { 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}` : '',
+                  ].filter(Boolean).join(' · ')}
+                </Text>
+              </Text>
+            )}
+
+            <PaywallPlanCards
+              lang={lang as Lang}
+              chrome={chrome}
+              selected={p.selected}
+              onSelect={p.selectPlan}
+              yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
+              yearlyFull={p.yearlyPrice}
+              monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
+              savingsPct={p.savingsPct}
+              perDayLabel={p.perDayLabel}
+              trialDays={p.trialDays}
+              loading={p.loading}
+              disabled={p.purchasing}
+            />
+
+            <PaywallPriceUrgency
+              lang={lang as Lang}
+              chrome={chrome}
+              urgency={p.urgency}
+              currentPrice={price}
+              futurePrice={p.futurePrice}
+              period={period}
+            />
+
+            {/* Таймлайн триала — компактный, только если стор реально даёт триал. */}
+            {p.trialDays && (
+              <PaywallTrialTimeline
+                lang={lang as Lang}
+                chrome={chrome}
+                days={p.trialDays}
+                priceLabel={price || '…'}
+                periodLabel={period}
+              />
+            )}
+
+            <View style={S.benefits}>
+              {benefits.map((b, i) => (
+                <View key={i} style={S.benefitRow}>
+                  <Ionicons name="checkmark-circle" size={17} color={chrome.tc.heroAccent} />
+                  <Text style={[S.benefitText, { color: chrome.textMuted }]} numberOfLines={2}>
+                    {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
+                  </Text>
+                </View>
+              ))}
+            </View>
+
+            <View style={S.spacer} />
+
+            <PaywallCtaBlock
+              lang={lang as Lang}
+              chrome={chrome}
+              label={ctaLabelFor(lang as Lang, p.trialDays)}
+              subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays })}
+              disabled={p.ctaDisabled}
+              busy={p.purchasing}
+              onPress={() => { void p.handlePurchase(); }}
+              onRestore={() => { void p.handleRestore(); }}
+              restoring={p.restoring}
+              onContinueFree={() => p.handleClose('continue_free')}
+            />
+          </ScrollView>
         </Animated.View>
       </SafeAreaView>
     </LinearGradient>
@@ -137,6 +211,7 @@ const S = StyleSheet.create({
   root: { flex: 1 },
   safe: { flex: 1 },
   wrap: { flex: 1, paddingHorizontal: 20, paddingBottom: 12 },
+  scroll: { flexGrow: 1, paddingBottom: 4 },
   closeBtn: {
     alignSelf: 'flex-end', marginBottom: 6,
     width: 28, height: 28, borderRadius: 14, borderWidth: 1,
@@ -147,6 +222,12 @@ const S = StyleSheet.create({
     lineHeight: 31, textAlign: 'center', marginTop: 14,
   },
   subtitle: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
+  tagChip: {
+    flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center',
+    paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16, borderWidth: 1, marginTop: 10,
+  },
+  tagText: { fontSize: 11.5, fontWeight: '600', maxWidth: 280 },
+  mirrorLine: { fontSize: 11.5, textAlign: 'center', marginTop: 10 },
   benefits: { gap: 8, marginTop: 14 },
   benefitRow: { flexDirection: 'row', alignItems: 'center', gap: 9 },
   benefitText: { flex: 1, fontSize: 12.5, lineHeight: 17 },

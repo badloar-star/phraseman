@@ -31,6 +31,8 @@ import {
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import { MirrorCard, CompareCard } from '../components/paywall/PaywallProofCards';
+import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
+import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -170,6 +172,16 @@ export default function PaywallB() {
               </View>
             )}
 
+            {p.trialDays && (
+              <PaywallTrialTimeline
+                lang={lang as Lang}
+                chrome={chrome}
+                days={p.trialDays}
+                priceLabel={price || '…'}
+                periodLabel={period}
+              />
+            )}
+
             <PaywallPlanCards
               lang={lang as Lang}
               chrome={chrome}
@@ -180,9 +192,18 @@ export default function PaywallB() {
               monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
               savingsPct={p.savingsPct}
               perDayLabel={p.perDayLabel}
-              trialDays={p.trialDays}
+              trialDays={null /* триал объяснён лентой выше — без дубля */}
               loading={p.loading}
               disabled={p.purchasing}
+            />
+
+            <PaywallPriceUrgency
+              lang={lang as Lang}
+              chrome={chrome}
+              urgency={p.urgency}
+              currentPrice={price}
+              futurePrice={p.futurePrice}
+              period={period}
             />
 
             <View style={S.ctaWrap} onLayout={sticky.onCtaLayout}>

@@ -32,6 +32,7 @@ import {
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
+import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import { MirrorCard, PercentileCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
 import {
   ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor, doubtersDividerLabel,
@@ -177,6 +178,15 @@ export default function PaywallC() {
               trialDays={null /* триал уже объяснён таймлайном — без дубля */}
               loading={p.loading}
               disabled={p.purchasing}
+            />
+
+            <PaywallPriceUrgency
+              lang={lang as Lang}
+              chrome={chrome}
+              urgency={p.urgency}
+              currentPrice={price}
+              futurePrice={p.futurePrice}
+              period={period}
             />
 
             <View style={S.ctaWrap} onLayout={sticky.onCtaLayout}>

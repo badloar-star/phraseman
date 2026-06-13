@@ -36,11 +36,21 @@ describe('friends tab locale runtime', () => {
 
     expect(source).toContain('testID="friends-code-input"');
     expect(source).toContain('placeholder=""');
-    expect(source).toContain('Введите имя или код друга');
-    expect(source).toContain('Введіть імʼя або код друга');
+    // Добавление в друзья — только по имени (поиск по коду остаётся молчаливым fallback,
+    // но в UI код больше не показываем и не предлагаем вводить, чтобы не путать с реф-кодом).
+    expect(source).toContain('Введите имя друга');
+    expect(source).toContain('Введіть імʼя друга');
     expect(source).not.toContain('PKVQGP / Nick');
     expect(source).not.toContain('Введите код или ник');
     expect(source).not.toContain('Введіть код або нік');
+  });
+
+  it('no longer renders the friend code card inside the add-friend modal (single code policy)', () => {
+    const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
+
+    // Карточка «Мой код» (friend-код) больше не РЕНДЕРИТСЯ в модалке добавления друга:
+    // показываем пользователю только ОДИН код — реферальный — чтобы не путать два разных кода.
+    expect(source).not.toContain('<CodeCard');
   });
 
   it('shows the empty-friends referral premium offer instead of generic progress copy', () => {

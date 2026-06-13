@@ -9,7 +9,6 @@ import Reanimated from 'react-native-reanimated';
 import TapScale from '../../components/TapScale';
 import DuoPressable from '../../components/DuoPressable';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaInsets } from 'react-native-safe-area-context';
-import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -741,195 +740,6 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f, chrome }
   );
 }
 
-// ── Code card ─────────────────────────────────────────────────────────────────
-
-function CodeCard({ code, onCopy, onShare, copied, lang, t, f, chrome, layout = 'standalone', loadError, onRetryLoad }: {
-  code: string | null; onCopy: () => void; onShare: () => void;
-  copied: boolean; lang: string; t: any; f: any;
-  chrome: FriendsChrome;
-  /** standalone — отдельная карточка; underButton — примыкает снизу к кнопке; inSheet — внутри выпадающей панели (плоские низ/верх для стыковки). */
-  layout?: 'standalone' | 'underButton' | 'inSheet';
-  loadError?: boolean;
-  onRetryLoad?: () => void;
-}) {
-  const under = layout === 'underButton';
-  const inSheet = layout === 'inSheet';
-  const topFlat = under || inSheet;
-  const bottomFlat = inSheet;
-  const marginBottom = layout === 'standalone' ? 24 : under ? 24 : 0;
-
-  return (
-    <View testID="friends-my-code-card" style={{
-      backgroundColor: chrome.card,
-      borderRadius: 16,
-      borderTopLeftRadius: topFlat ? 0 : 16,
-      borderTopRightRadius: topFlat ? 0 : 16,
-      borderBottomLeftRadius: bottomFlat ? 0 : 16,
-      borderBottomRightRadius: bottomFlat ? 0 : 16,
-      padding: 14,
-      gap: 12,
-      borderWidth: inSheet ? 0 : 0.5,
-      borderBottomWidth: inSheet ? StyleSheet.hairlineWidth : 0.5,
-      borderColor: chrome.border,
-      marginBottom,
-    }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-        <Ionicons name="ticket-outline" size={18} color={t.textSecond} />
-        <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8, flex: 1 }}>
-          {triLang(lang as any, {
-            ru: 'Мой код',
-            uk: 'Мій код',
-            es: 'Mi código',
-            'pt-BR': 'Meu código',
-            vi: 'Mã của tôi',
-            id: 'Kode saya',
-            tr: 'Kodum',
-            pl: 'Mój kod',
-          })}
-        </Text>
-      </View>
-      {code ? (
-        <>
-          <View style={{
-            alignSelf: 'stretch',
-            minHeight: 56,
-            borderRadius: 14,
-            backgroundColor: chrome.surface,
-            borderWidth: 0.5,
-            borderColor: chrome.border,
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingHorizontal: 12,
-          }}>
-            <Text
-              testID="friends-my-code-text"
-              style={{
-                fontSize: 30, fontWeight: '900', letterSpacing: 6,
-                color: t.textPrimary, fontVariant: ['tabular-nums'],
-              }}
-              adjustsFontSizeToFit
-              numberOfLines={1}
-              minimumFontScale={0.65}
-            >
-              {code}
-            </Text>
-          </View>
-          <View style={{ flexDirection: 'row', gap: 10 }}>
-            <TapScale
-              testID="friends-copy-code"
-              onPress={onCopy}
-              scaleTo={0.96}
-              style={{
-                flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: copied ? '#34C759' : chrome.button,
-                minHeight: 46, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 10, gap: 6,
-                borderWidth: 0.5, borderColor: copied ? '#34C759' : chrome.border,
-              }}
-            >
-              <Ionicons name={copied ? 'checkmark' : 'copy-outline'} size={16} color={copied ? '#fff' : t.textPrimary} />
-              <Text style={{ color: copied ? '#fff' : t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
-                {copied
-                  ? triLang(lang as any, {
-                    ru: 'Скопировано!',
-                    uk: 'Скопійовано!',
-                    es: '¡Copiado!',
-                    'pt-BR': 'Copiado!',
-                    vi: 'Đã sao chép!',
-                    id: 'Tersalin!',
-                    tr: 'Kopyalandı!',
-                    pl: 'Skopiowano!',
-                  })
-                  : triLang(lang as any, {
-                    ru: 'Копировать',
-                    uk: 'Копіювати',
-                    es: 'Copiar',
-                    'pt-BR': 'Copiar',
-                    vi: 'Sao chép',
-                    id: 'Salin',
-                    tr: 'Kopyala',
-                    pl: 'Kopiuj',
-                  })}
-              </Text>
-            </TapScale>
-            <TapScale
-              testID="friends-share-code"
-              onPress={onShare}
-              scaleTo={0.96}
-              style={{
-                flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-                backgroundColor: chrome.button, minHeight: 46, borderRadius: 12, paddingVertical: 10, paddingHorizontal: 10, gap: 6,
-                borderWidth: 0.5, borderColor: chrome.border,
-              }}
-            >
-              <Ionicons name="share-outline" size={16} color={t.textPrimary} />
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
-                {triLang(lang as any, {
-                  ru: 'Поделиться',
-                  uk: 'Поділитись',
-                  es: 'Compartir',
-                  'pt-BR': 'Compartilhar',
-                  vi: 'Chia sẻ',
-                  id: 'Bagikan',
-                  tr: 'Paylaş',
-                  pl: 'Udostępnij',
-                })}
-              </Text>
-            </TapScale>
-          </View>
-        </>
-      ) : loadError ? (
-        <View style={{ alignItems: 'center', gap: 10, alignSelf: 'stretch' }}>
-          <Text style={{ color: '#FF9F0A', fontSize: f.sub, textAlign: 'center', fontWeight: '600' }}>
-            {triLang(lang as any, {
-              ru: 'Код не загрузился. Проверь сеть и попробуй снова.',
-              uk: 'Не вдалося отримати код. Перевірте мережу й спробуйте ще.',
-              es: 'No se pudo obtener el código. Comprueba la red e inténtalo de nuevo.',
-              'pt-BR': 'Não foi possível obter o código. Verifique a rede e tente de novo.',
-              vi: 'Không thể lấy mã. Hãy kiểm tra mạng và thử lại.',
-              id: 'Tidak dapat mengambil kode. Periksa jaringan dan coba lagi.',
-              tr: 'Kod alınamadı. Ağı kontrol edip tekrar dene.',
-              pl: 'Nie udało się pobrać kodu. Sprawdź sieć i spróbuj ponownie.',
-            })}
-          </Text>
-          {onRetryLoad && (
-            <TapScale
-              testID="friends-retry-code"
-              onPress={onRetryLoad}
-              scaleTo={0.96}
-              style={{
-                backgroundColor: t.accent,
-                borderRadius: 12,
-                paddingVertical: 10,
-                paddingHorizontal: 20,
-              }}
-            >
-              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang as any, {
-                  ru: 'Повторить',
-                  uk: 'Повторити',
-                  es: 'Reintentar',
-                  'pt-BR': 'Tentar de novo',
-                  vi: 'Thử lại',
-                  id: 'Coba lagi',
-                  tr: 'Tekrar dene',
-                  pl: 'Spróbuj ponownie',
-                })}
-              </Text>
-            </TapScale>
-          )}
-        </View>
-      ) : (
-        <Text style={{
-          fontSize: 36, fontWeight: '900', letterSpacing: 8,
-          color: t.textMuted, fontVariant: ['tabular-nums'],
-        }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.65}>
-          ······
-        </Text>
-      )}
-    </View>
-  );
-}
-
 // ── Activity feed helpers ─────────────────────────────────────────────────────
 
 function formatEventTime(ts: number, lang: string): string {
@@ -1387,18 +1197,16 @@ function isFriendSearchReady(value: string): boolean {
 }
 
 function AddFriendModal({
-  visible, onClose, myCode, onCopy, onShare, copied,
+  visible, onClose,
   codeInput, setCodeInput, isSearching, foundUser, searchError,
   isAdding, addFeedback, onSearch, onAddFound, onCloseFoundUser,
-  loadError, onRetryLoad, lang, t, f, chrome,
+  lang, t, f, chrome,
 }: {
   visible: boolean; onClose: () => void;
-  myCode: string | null; onCopy: () => void; onShare: () => void; copied: boolean;
   codeInput: string; setCodeInput: (v: string) => void;
   isSearching: boolean; foundUser: FriendProfile | null; searchError: string | null;
   isAdding: boolean; addFeedback: string | null;
   onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
-  loadError: boolean; onRetryLoad: () => void;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
 }) {
@@ -1451,12 +1259,12 @@ function AddFriendModal({
               }}
             >
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
-                {L('Введите имя или код друга', 'Введіть імʼя або код друга', 'Ingresa el nombre o código de tu amigo', 'Digite o nome ou código do amigo', 'Nhập tên hoặc mã bạn bè', 'Masukkan nama atau kode teman', 'Arkadaşının adını veya kodunu gir', 'Wpisz imię lub kod znajomego')}
+                {L('Введите имя друга', 'Введіть імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TextInput
                   testID="friends-code-input"
-                  accessibilityLabel="Friend code input"
+                  accessibilityLabel="Friend name input"
                   style={{
                     flex: 1, backgroundColor: chrome.surface, borderRadius: 14,
                     minHeight: 58,
@@ -1480,7 +1288,7 @@ function AddFriendModal({
                   onPress={onSearch}
                   disabled={!searchReady || isSearching}
                   accessibilityRole="button"
-                  accessibilityLabel={L('Найти друга по коду', 'Знайти друга за кодом', 'Buscar amigo por código', 'Encontrar amigo por código', 'Tìm bạn bằng mã', 'Cari teman dengan kode', 'Kodla arkadaş bul', 'Znajdź znajomego po kodzie')}
+                  accessibilityLabel={L('Найти друга по имени', 'Знайти друга за імʼям', 'Buscar amigo por nombre', 'Encontrar amigo por nome', 'Tìm bạn theo tên', 'Cari teman dengan nama', 'Adıyla arkadaş bul', 'Znajdź znajomego po imieniu')}
                   style={{
                     minWidth: 58,
                     minHeight: 58,
@@ -1497,14 +1305,6 @@ function AddFriendModal({
                 </TapScale>
               </View>
             </View>
-
-            <CodeCard
-              code={myCode} onCopy={onCopy} onShare={onShare}
-              copied={copied} lang={lang} t={t} f={f} chrome={chrome}
-              layout="standalone"
-              loadError={loadError}
-              onRetryLoad={onRetryLoad}
-            />
 
             {searchError && (
               <View testID="friends-search-error" style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
@@ -1658,8 +1458,6 @@ export default function FriendsTabScreen() {
   const [isAdding, setIsAdding] = useState(false);
   const [addFeedback, setAddFeedback] = useState<string | null>(null);
 
-  const [copied, setCopied] = useState(false);
-  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [friends, setFriends] = useState<FriendEntry[]>(() => peekFriendsTabSwrWarm()?.friends ?? []);
@@ -1927,7 +1725,6 @@ export default function FriendsTabScreen() {
   // ── Cleanup ────────────────────────────────────────────────────────────────
 
   useEffect(() => () => {
-    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
     if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
   }, []);
 
@@ -2088,33 +1885,6 @@ export default function FriendsTabScreen() {
       setIsAdding(false);
     }
   }, [L, foundUser, isAdding, showFeedback]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleCopy = useCallback(() => {
-    if (!myCode) return;
-    hapticTap();
-    void Clipboard.setStringAsync(myCode);
-    setCopied(true);
-    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
-    copyTimerRef.current = setTimeout(() => setCopied(false), 1800);
-  }, [myCode]);
-
-  const handleShareFriendCode = useCallback(async () => {
-    if (!myCode) return;
-    hapticTap();
-    const label = triLang(lang as any, {
-      ru: 'Мой код в Phraseman:',
-      uk: 'Мій код у Phraseman:',
-      es: 'Mi código en Phraseman:',
-      'pt-BR': 'Meu código no Phraseman:',
-      vi: 'Mã của tôi trong Phraseman:',
-      id: 'Kode saya di Phraseman:',
-      tr: 'Phraseman kodum:',
-      pl: 'Mój kod w Phraseman:',
-    });
-    await Share.share({
-      message: `${label} ${myCode}`,
-    });
-  }, [lang, myCode]);
 
   const handleDeleteConfirm = useCallback((uid: string, name: string) => {
     hapticTap();
@@ -2765,10 +2535,6 @@ export default function FriendsTabScreen() {
       <AddFriendModal
         visible={addModalOpen}
         onClose={() => setAddModalOpen(false)}
-        myCode={myCode}
-        onCopy={handleCopy}
-        onShare={handleShareFriendCode}
-        copied={copied}
         codeInput={codeInput}
         setCodeInput={setCodeInput}
         isSearching={isSearching}
@@ -2779,8 +2545,6 @@ export default function FriendsTabScreen() {
         onSearch={handleSearch}
         onAddFound={handleAddFound}
         onCloseFoundUser={() => setFoundUser(null)}
-        loadError={friendCodeLoadError}
-        onRetryLoad={retryFriendCode}
         lang={lang} t={t} f={f} chrome={chrome}
       />
 

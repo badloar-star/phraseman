@@ -1,4 +1,15 @@
 // ═══════════════════════════════════════════════════════════════════════════
+// ⚠️  WIP — НЕ ДЕПЛОИТЬ В ПРОД. Сокровищница в разработке.
+//
+// Что не готово к проду:
+//   - collectiblesClaimDrop НЕ должен быть в deploy:safe whitelist
+//   - collectibles_owned_v1 / collectibles_state_v1 не в blocklist firestore.rules
+//   - UI (экран, entry-point, дроп-модалка) не готов
+//   - Локализация только RU; TTS не подключён
+//
+// Dev-guard: CF возвращает NOT_DEPLOYED в не-dev окружении (COLLECTIBLES_DEV_ONLY=true).
+// Снять guard и добавить в deploy:safe — только после завершения всех пунктов выше.
+// ─────────────────────────────────────────────────────────────────────────
 // collectibles.ts — серверный движок дропов «Сокровищницы» (коллекционные
 // карточки-фразы). Единственный источник выдачи: клиент НЕ может писать
 // collectibles_owned_v1 / collectibles_state_v1 (blocklist в firestore.rules).
@@ -248,7 +259,15 @@ async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: strin
   }
 }
 
+// ⚠️ WIP guard: CF недоступна в проде, пока фича не завершена.
+// Убрать эту проверку + добавить в deploy:safe — только после полного релиза.
+const COLLECTIBLES_DEV_ONLY = process.env.COLLECTIBLES_DEV_ONLY !== 'false';
+
 export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  if (COLLECTIBLES_DEV_ONLY) {
+    throw new HttpsError('not-found', 'collectibles_not_deployed');
+  }
+
   const authUid = request.auth?.uid;
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
 

@@ -1498,7 +1498,14 @@ function AppContent() {
         await updateStreakOnActivity().catch(() => {});
         await runSessionChecks(studyTarget).catch(() => {});
         await flushPendingProgressEvents().catch(() => {});
-        await syncToCloud().catch(() => {});
+        await syncToCloud().catch(() => {
+          emitAppEvent('action_toast', {
+            type: 'error',
+            messageRu: 'Не удалось синхронизировать данные — проверь соединение',
+            messageUk: "Не вдалося синхронізувати дані — перевір з'єднання",
+            messageEs: 'Error al sincronizar — revisa tu conexión',
+          });
+        });
         await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
         Promise.all([

@@ -756,6 +756,35 @@ const LESSON_RESTORE_MERGE_KEYS = Array.from({ length: 32 }, (_, i) => {
 }).flat();
 const LESSON_RESTORE_MERGE_KEY_SET = new Set<string>(LESSON_RESTORE_MERGE_KEYS);
 
+// #10 multi-device: strictly-additive lifetime counters (bumpStoredCounter only
+// ever increases them). On restore they take the max of cloud/local so a
+// concurrent lower-value push on another device cannot permanently lose progress.
+// EXPLICIT allowlist — deliberately excludes streaks (*_streak_v1, streak_count —
+// can reset to 0), dates (streak_last_date, *_period_start), and current-state
+// values (gift_xp_multiplier, wager_discount, weekly_xp which resets weekly).
+export const MONOTONIC_COUNTER_RESTORE_KEYS = [
+  'achievement_quiz_total_count',
+  'achievement_quiz_hard_perfect_count',
+  'quiz_hard_count',
+  'achievement_trainer_correct_count',
+  'achievement_trainer_perfect_session_count',
+  'achievement_active_recall_correct_count',
+  'achievement_arena_win_count',
+  'achievement_arena_wager_win_count',
+  'achievement_flashcards_flip_count',
+  'achievement_flashcards_saved_count',
+  'achievement_daily_phrase_read_count',
+  'achievement_daily_phrase_save_count',
+  'achievement_energy_refill_count',
+  'achievement_gift_sent_count',
+  'achievement_league_boost_count',
+  'achievement_league_chat_message_count',
+  'achievement_shards_spent_total',
+  'shards_arena_wins_total',
+  'shards_lifetime_earned_v1',
+] as const;
+const MONOTONIC_COUNTER_RESTORE_KEY_SET = new Set<string>(MONOTONIC_COUNTER_RESTORE_KEYS);
+
 function parseLessonProgressArray(raw: unknown): string[] | null {
   if (typeof raw !== 'string' || raw.trim() === '') return null;
   try {
@@ -813,6 +842,12 @@ function mergeLessonRestoreValue(
   cloudValue: string,
   localValue: string | null | undefined,
 ): string {
+  // #10 multi-device: strictly-additive lifetime counters take the max so a
+  // concurrent push of a lower value on another device can't lose progress.
+  // Allowlist only (never streaks/dates/multipliers — those can legitimately drop).
+  if (MONOTONIC_COUNTER_RESTORE_KEY_SET.has(key)) {
+    return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
+  }
   const scoped = targetScopedRestoreInfo(key);
   const restoreId = scoped?.id ?? key;
   const isScopedLessonProgress = scoped?.domain === 'lesson_progress';
@@ -1507,6 +1542,18 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     if (!localName && cloudName != null && String(cloudName).trim() !== '') {
       stickyPairs.push(['user_name', String(cloudName).trim()]);
     }
+    // #10 multi-device: even when local XP ≥ cloud, a strictly-additive lifetime
+    // counter may be higher in cloud (the other device bumped it). Pull the max so
+    // the counter never regresses on this device.
+    const localCounterMap = Object.fromEntries(
+      await AsyncStorage.multiGet([...MONOTONIC_COUNTER_RESTORE_KEYS]),
+    ) as Record<string, string | null>;
+    for (const key of MONOTONIC_COUNTER_RESTORE_KEYS) {
+      const cloudVal = cloudData[key];
+      if (cloudVal === null || cloudVal === undefined) continue;
+      const merged = mergeLessonRestoreValue(key, cloudProgressStorageValue(key, cloudVal), localCounterMap[key]);
+      if (merged !== localCounterMap[key]) stickyPairs.push([key, merged]);
+    }
     const cloudLastActive = cloudData['last_active_date'];
     const localLastActive = await AsyncStorage.getItem('last_active_date');
     const mergedLastActive = newerDateKeyValue(localLastActive, cloudLastActive);
@@ -1589,7 +1636,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
 
   const pairs: [string, string][] = [];
   const localLessonRestoreMap = Object.fromEntries(
-    await AsyncStorage.multiGet(LESSON_RESTORE_MERGE_KEYS),
+    await AsyncStorage.multiGet([...LESSON_RESTORE_MERGE_KEYS, ...MONOTONIC_COUNTER_RESTORE_KEYS]),
   ) as Record<string, string | null>;
   const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
   const cloudConsumedSig = cloudData['league_result_consumed_sig'];
@@ -1707,6 +1754,7 @@ export async function restoreFromCloud(): Promise<boolean> {
 
 export const __cloudSyncTestHooks = {
   applyRestoreFromUserDoc,
+  mergeLessonRestoreValue,
 };
 
 // ── Одноразовая миграция локального прогресса в облако ──────────────────────

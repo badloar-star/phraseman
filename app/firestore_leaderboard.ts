@@ -10,7 +10,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableId, waitForAnonAuth } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
 import { normalizeAvatarAuraId } from '../constants/avatar_auras';
 import {
@@ -102,6 +102,10 @@ export async function reserveNameDetailed(
   oldName: string,
 ): Promise<ReserveNameResult> {
   if (!CLOUD_SYNC_ENABLED) return { status: 'ok' };
+  // На холодном старте signInAnonymously может занять >8с (GMS init, slow network).
+  // Ждём токен явно перед вызовом CF — иначе callable уходит без auth → 401 →
+  // юзер видит ложное «проверь интернет».
+  await waitForAnonAuth();
   try {
     const stableId = await ensureAnonUser();
     if (!stableId) return { status: 'error' };
@@ -113,6 +117,23 @@ export async function reserveNameDetailed(
     return { status: 'ok', nextChangeAt: data.nextChangeAt };
   } catch (e: any) {
     if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) return { status: 'taken' };
+    // Если auth ещё не готов (401/unauthenticated) — один автоповтор после ожидания токена
+    const isAuthError = String(e?.code ?? '').includes('unauthenticated') || String(e?.message ?? '').includes('auth_required');
+    if (isAuthError) {
+      const authReady = await waitForAnonAuth(15_000);
+      if (!authReady) return { status: 'error' };
+      try {
+        const stableId = await ensureAnonUser();
+        if (!stableId) return { status: 'error' };
+        const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
+        const { data } = await fn({ stableId, name: name.trim(), oldName: oldName.trim() });
+        if (data.status === 'taken') return { status: 'taken' };
+        if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
+        return { status: 'ok', nextChangeAt: data.nextChangeAt };
+      } catch {
+        return { status: 'error' };
+      }
+    }
     return { status: 'error' };
   }
 }

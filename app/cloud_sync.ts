@@ -562,7 +562,7 @@ const STABLE_AUTH_LINK_CACHE_TTL_MS = 24 * 60 * 60_000;
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
 const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
 const RESTORE_FIRESTORE_READ_MS = 15_000;
-const ANON_AUTH_READY_TIMEOUT_MS = 8_000;
+const ANON_AUTH_READY_TIMEOUT_MS = 20_000;
 const SYNC_DEBOUNCE_MS = 5 * 60_000;
 const SYNC_HEARTBEAT_MS = 60 * 60_000;
 const ACTIVITY_STAMP_INTERVAL_MS = 45 * 60_000;
@@ -1017,6 +1017,19 @@ function ensureAnonAuthReady(): Promise<void> {
     }
   })();
   return _anonAuthReady;
+}
+
+export async function waitForAnonAuth(timeoutMs = 20_000): Promise<boolean> {
+  const auth = getAuth();
+  if (!auth) return false;
+  if (auth.currentUser) return true;
+  const step = 250;
+  const steps = Math.ceil(timeoutMs / step);
+  for (let i = 0; i < steps; i++) {
+    await new Promise<void>((r) => setTimeout(r, step));
+    if (auth.currentUser) return true;
+  }
+  return false;
 }
 
 export async function ensureAnonUser(): Promise<string | null> {

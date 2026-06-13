@@ -73,33 +73,47 @@ describe('getUrgencyState', () => {
     const state = await getUrgencyState();
 
     expect(state.isActive).toBe(true);
-    expect(state.remainingMs).toBeGreaterThan(23 * 60 * 60 * 1000); // > 23 ч
-    expect(state.remainingMs).toBeLessThanOrEqual(24 * 60 * 60 * 1000);
+    expect(state.remainingMs).toBeGreaterThan(76 * 60 * 60 * 1000); // > 76 ч (окно 77ч)
+    expect(state.remainingMs).toBeLessThanOrEqual(77 * 60 * 60 * 1000);
   });
 
   it('возвращает isActive: false и чистит storage когда время истекло', async () => {
-    // Записываем timestamp 25 часов назад
-    const expiredTs = Date.now() - 25 * 60 * 60 * 1000;
+    // Записываем timestamp 78 часов назад (окно 77ч уже прошло).
+    // remainingMs > 0 → активен grace-период «цена сохранена ещё ~2 недели».
+    const expiredTs = Date.now() - 78 * 60 * 60 * 1000;
     mockStorage['paywall_urgency_shown_at_v1'] = String(expiredTs);
 
     const state = await getUrgencyState();
 
     expect(state.isActive).toBe(false);
-    expect(state.remainingMs).toBe(0);
-    // После истечения — storage должен быть очищен
+    expect(state.remainingMs).toBeGreaterThan(0); // grace-окно ещё идёт
+    // shown_at очищается (новый цикл при следующем открытии не запустится)
     expect(mockStorage['paywall_urgency_shown_at_v1']).toBeUndefined();
   });
 
-  it('корректно считает оставшееся время (12 часов назад)', async () => {
+  it('grace полностью истёк (> 77ч + 14 дней) → всё сброшено', async () => {
+    const longAgo = Date.now() - (77 + 14 * 24 + 1) * 60 * 60 * 1000;
+    mockStorage['paywall_urgency_shown_at_v1'] = String(longAgo);
+    // Истёкший expired-маркер тоже за пределами grace.
+    mockStorage['paywall_urgency_expired_at_v1'] = String(Date.now() - 15 * 24 * 60 * 60 * 1000);
+
+    const state = await getUrgencyState();
+
+    expect(state.isActive).toBe(false);
+    expect(state.remainingMs).toBe(0);
+  });
+
+  it('корректно считает оставшееся время (12 часов назад, окно 77ч)', async () => {
     const twelveHoursAgo = Date.now() - 12 * 60 * 60 * 1000;
     mockStorage['paywall_urgency_shown_at_v1'] = String(twelveHoursAgo);
 
     const state = await getUrgencyState();
 
     expect(state.isActive).toBe(true);
-    // Должно остаться ~12 часов (±5 секунд на выполнение теста)
-    expect(state.remainingMs).toBeGreaterThan(12 * 60 * 60 * 1000 - 5000);
-    expect(state.remainingMs).toBeLessThanOrEqual(12 * 60 * 60 * 1000);
+    // 77ч окно − 12ч прошло = ~65ч осталось (±5 секунд на выполнение теста).
+    const expected = (77 - 12) * 60 * 60 * 1000;
+    expect(state.remainingMs).toBeGreaterThan(expected - 5000);
+    expect(state.remainingMs).toBeLessThanOrEqual(expected);
   });
 
   it('возвращает isActive: false при невалидном timestamp', async () => {

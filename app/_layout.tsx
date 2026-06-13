@@ -65,6 +65,7 @@ import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
 import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
+import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
@@ -2591,6 +2592,7 @@ export default function RootLayout() {
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
+                    <GlobalFriendGiftHost />
                     <ThemedBlockingAlertHost />
                   </OverlayArbiterProvider>
                 </MatchmakingProvider>

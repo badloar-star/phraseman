@@ -8,6 +8,7 @@ import {
   View, Text, Platform, StyleSheet, TouchableOpacity,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useTheme } from '../ThemeContext';
@@ -16,6 +17,8 @@ import { getPaywallSocialProof } from '../../app/paywall_variant';
 import type { PremiumContext } from '../../app/premium_context';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackground';
+import type { ThemeMode } from '../../constants/theme';
+import { compassIconSource } from '../../constants/weeklyCompassIcons';
 
 // ── фоновые градиенты (как в premium_modal_v2; незнакомая тема → dark) ───────
 function screenBgTuple(themeMode: string): [string, string, string] {
@@ -73,7 +76,7 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   trainer: 'barbell',
   trainer_limit: 'barbell',
   smart_trainer: 'sparkles',
-  dialog_limit: 'chatbubbles',
+  dialog_limit: 'compass-outline',
   speaking: 'mic',
   diagnosis_training: 'pulse',
   mastery: 'ribbon',
@@ -94,9 +97,14 @@ export function contextGlyph(ctx: PremiumContext): keyof typeof Ionicons.glyphMa
 /** Капсула с глифом контекста + тёплое свечение акцента. */
 export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chrome: PaywallChrome }) {
   const { tc, cardBorder } = chrome;
+  const isDialogLimit = ctx === 'dialog_limit';
   return (
     <View style={[S.glyphCap, { borderColor: cardBorder, shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
-      <Ionicons name={contextGlyph(ctx)} size={28} color={tc.heroAccent} />
+      {isDialogLimit ? (
+        <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
+      ) : (
+        <Ionicons name={contextGlyph(ctx)} size={28} color={tc.heroAccent} />
+      )}
     </View>
   );
 }
@@ -204,6 +212,7 @@ const S = StyleSheet.create({
     alignItems: 'center', justifyContent: 'center',
     shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.35, shadowRadius: 18, elevation: 6,
   },
+  glyphCompassImage: { height: 54, width: 54 },
   socialRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, marginTop: 12 },
   starsRow: { flexDirection: 'row', gap: 1.5 },
   socialText: { fontSize: 11.5, fontWeight: '600' },

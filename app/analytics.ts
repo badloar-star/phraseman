@@ -84,12 +84,14 @@ export type AnalyticsEvent =
   | 'paywall_cta_click'
   | 'paywall_close'
   | 'paywall_continue_free'
+  | 'paywall_scroll_depth'        // эксперимент v3: глубина чтения галереи доказательств (B/C)
   | 'purchase_started'            // нажат CTA, открывается диалог стора
   | 'purchase_completed'
   | 'purchase_failed'
   | 'purchase_cancelled'
   | 'subscription_restored'
   | 'trial_started'
+  | 'trial_reminder_scheduled'    // поставлен локальный пуш «триал кончается завтра»
   // ── after-win апсейл / re-engagement (план #3, #7) ────────────────────────
   | 'afterwin_upsell_shown'
   | 'afterwin_upsell_cta'

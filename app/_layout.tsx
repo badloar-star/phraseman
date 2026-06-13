@@ -43,7 +43,7 @@ import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
-import { preloadImages, preloadStartupImages } from './image_preload';
+import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import {
   checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
 } from './notifications';
@@ -56,6 +56,7 @@ import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { registerXP, migrateXPFormulaV2 } from './xp_manager';
+import { flushPendingProgressEvents } from './progress_events_client';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import { MatchmakingProvider } from '../contexts/MatchmakingContext';
 import MatchFoundToast from '../components/MatchFoundToast';
@@ -67,6 +68,7 @@ import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
+import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
@@ -265,6 +267,9 @@ const DAILY_LOGIN_BONUS_XP_BY_DAY = [
   600, 750,
 ] as const;
 
+const safeProgressEventPart = (value: unknown, max = 60): string =>
+  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
 function normalizeWarmDeepLink(url: string): string | null {
   const rawInput = String(url || '').trim();
   if (!rawInput) return null;
@@ -427,8 +432,21 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
       const bonusXP = DAILY_LOGIN_BONUS_XP_BY_DAY[bonusDay - 1] ?? DAILY_LOGIN_BONUS_XP_BY_DAY[0];
 
       const name = await AsyncStorage.getItem('user_name');
-      if (name) {
-        await registerXP(bonusXP, 'daily_login_bonus', name);
+      const loginBonusResult = await registerXP(bonusXP, 'daily_login_bonus', name ?? '', 'ru', undefined, {
+        eventId: [
+          'login',
+          safeProgressEventPart(today, 20),
+          String(bonusDay),
+          'bonus',
+        ].join(':'),
+        payload: {
+          dayKey: today,
+          bonusDay,
+          consecutiveDays: consecutive,
+        },
+      });
+      if (Math.max(0, Math.round(loginBonusResult.finalDelta || 0)) <= 0) {
+        return;
       }
 
       // Сохранить бонус для отображения на Home
@@ -657,7 +675,16 @@ function GlobalLevelUpHandler() {
           try {
             const name = (await AsyncStorage.getItem('user_name')) || userName;
             const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-            await registerXP(100, 'level_up_bonus', name, l);
+            await registerXP(100, 'level_up_bonus', name, l, undefined, {
+              eventId: [
+                'level_up',
+                safeProgressEventPart(currentLevel),
+                'bonus',
+              ].join(':'),
+              payload: {
+                level: currentLevel,
+              },
+            });
             await tryGrantPremiumMonthlyWagerFromLevelUp();
             const prem = await getVerifiedPremiumStatus().catch(() => false);
             setLevelGiftDualMode(!!prem);
@@ -1469,6 +1496,7 @@ function AppContent() {
         await migrateWeekPointsIfNeeded().catch(() => {});
         await updateStreakOnActivity().catch(() => {});
         await runSessionChecks(studyTarget).catch(() => {});
+        await flushPendingProgressEvents().catch(() => {});
         await syncToCloud().catch(() => {});
         await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
@@ -1501,7 +1529,11 @@ function AppContent() {
       }).catch(() => {});
 
       incrementSessionCount().catch(() => {});
-      preloadImages().catch(() => {});
+      InteractionManager.runAfterInteractions(() => {
+        setTimeout(() => {
+          preloadDeferredNonPrimaryImages().catch(() => {});
+        }, 2500);
+      });
       InteractionManager.runAfterInteractions(() => {
         void import('./flashcards_swipe').catch(() => {});
         import('./flashcards_collection')
@@ -1509,6 +1541,7 @@ function AppContent() {
           .catch(() => {});
       });
       checkForUpdate().then(u => { if (u) setUpdateInfo(u); }).catch(() => {});
+      prefetchEasUpdateAfterStartup().catch(() => {});
     };
 
     const bootstrap = async () => {
@@ -1578,9 +1611,15 @@ function AppContent() {
                   const duelMatch = ir.match(/^duel_([A-Za-z0-9]+)$/);
                   if (duelMatch) {
                     const roomId = duelMatch[1];
-                    AsyncStorage.setItem('onboarding_done', '1').then(() => {
-                      setPendingRoute(`/arena_join?roomId=${roomId}`);
-                    }).finally(() => resolve(true));
+                    AsyncStorage.getItem('user_name')
+                      .then((name) => {
+                        if (name?.trim()) return AsyncStorage.setItem('onboarding_done', '1');
+                        return undefined;
+                      })
+                      .then(() => {
+                        setPendingRoute(`/arena_join?roomId=${roomId}`);
+                      })
+                      .finally(() => resolve(true));
                     return;
                   }
                   const refM = ir.match(/(?:^|[&])ref=([A-Z0-9]{4,12})/i);
@@ -1616,7 +1655,7 @@ function AppContent() {
 
       const iconFontsReady = preloadVectorIconFonts();
       void iconFontsReady.catch(() => {});
-      void preloadStartupImages().catch(() => {});
+      void preloadPrimaryTabImages().catch(() => {});
 
       clearTimeout(safetyTimer);
       setReady(true);
@@ -2055,6 +2094,12 @@ function AppContent() {
       <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
+      {/* Эксперимент пейволов v3: варианты A/B/C (диспетчер — premium_modal). Та же modal-презентация. */}
+      <Stack.Screen name="paywall_a" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
+      <Stack.Screen name="paywall_b" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
+      <Stack.Screen name="paywall_c" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
+      <Stack.Screen name="referral_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
+      <Stack.Screen name="referrals" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_audio" />
@@ -2521,11 +2566,9 @@ const styles = StyleSheet.create({
 });
 
 export default function RootLayout() {
-  const [fontsLoaded, fontsError] = useFonts(APP_FONT_ASSETS);
-
-  if (!fontsLoaded && !fontsError) {
-    return null;
-  }
+  // Fonts are embedded through the expo-font config plugin in native builds.
+  // Keep this as an Expo Go/dev fallback, but do not block the first app frame on it.
+  useFonts(APP_FONT_ASSETS);
 
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>

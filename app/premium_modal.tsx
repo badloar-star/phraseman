@@ -84,6 +84,8 @@ import { pickPercentileLine } from './paywall_percentile_line';
 import { loadPercentileData } from './daily_analytics_sync';
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
+import { resolvePaywallAbVariant } from './paywall_variant';
+import { logPaywallFunnel } from './paywall_funnel';
 import {
   activateUrgencyIfNeeded,
   getUrgencyState,
@@ -870,22 +872,29 @@ export default function PremiumModal() {
 
   const ctx = normalizePremiumContext(params.context);
 
-  // A/B: 50% новых пользователей видят высококонверсионный v2-пейвол.
-  // manage-режим всегда остаётся на v1 (там управление подпиской, v2 его не реализует).
+  // Эксперимент пейволов v3: детерминированный вариант по хэшу stableId
+  // (paywall_variant.ts), доли A/B/C из remote_config/paywall_ab. Этот экран —
+  // КОНТРОЛЬ v1. При попадании в A/B/C редиректим на соответствующий экран.
+  // manage-режим (управление подпиской) всегда остаётся на v1 — у новых экранов
+  // его нет. `redirecting` гасит рендер и `paywall_shown` v1, пока решаем —
+  // иначе при попадании в A/B/C v1 успел бы мигнуть и залогировать показ.
+  const [redirecting, setRedirecting] = useState(!openManageFromSettings);
   useEffect(() => {
-    if (openManageFromSettings) return;
-    void AsyncStorage.getItem('paywall_variant').then((stored) => {
-      if (stored === 'v2') {
-        router.replace('/premium_modal_v2' as any);
-      } else if (stored === null) {
-        // Первое открытие — назначаем вариант детерминированно по userId-hash,
-        // fallback: Math.random() для скорости (не нужна воспроизводимость между сессиями).
-        const variant = Math.random() < 0.5 ? 'v2' : 'v1';
-        void AsyncStorage.setItem('paywall_variant', variant);
-        if (variant === 'v2') router.replace('/premium_modal_v2' as any);
-      }
-      // stored === 'v1' → остаёмся здесь
-    });
+    if (openManageFromSettings) { setRedirecting(false); return; }
+    let cancelled = false;
+    void resolvePaywallAbVariant()
+      .then(({ variant }) => {
+        if (cancelled) return;
+        const route =
+          variant === 'A' ? '/paywall_a'
+          : variant === 'B' ? '/paywall_b'
+          : variant === 'C' ? '/paywall_c'
+          : null;
+        if (route) { router.replace(route as any); return; }
+        setRedirecting(false); // v1 — остаёмся, ниже логируем показ
+      })
+      .catch(() => { if (!cancelled) setRedirecting(false); });
+    return () => { cancelled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -904,16 +913,20 @@ export default function PremiumModal() {
   }, [revenueContext]);
 
   useEffect(() => {
+    // Пока решаем вариант (redirecting) — НЕ логируем показ: иначе при попадании
+    // в A/B/C v1 двойно засчитает paywall_shown ещё до редиректа.
+    if (redirecting) return;
     lastPaywallPlanSelectLoggedRef.current = null;
     logPremiumModalOpened(ctx);
     logPaywallView(revenueContext);
-    // Единое имя события для сквозной воронки v1+v2 (PostHog/Firebase-фасад).
+    // Единое имя события для сквозной воронки (PostHog/Firebase-фасад).
     // Старые logPaywall* остаются для обратной совместимости дашбордов.
     void trackEvent('paywall_shown', { context: ctx, source: paywallOpenOrigin, paywall: 'v1' });
+    logPaywallFunnel('shown', { variant: 'v1', context: ctx });
     if (ctx === 'course_after_lesson3') {
       logCoursePaywallAfterLesson3(lessonsDone);
     }
-  }, [ctx, lessonsDone, revenueContext, paywallOpenOrigin]);
+  }, [redirecting, ctx, lessonsDone, revenueContext, paywallOpenOrigin]);
   const { theme: t, themeMode, f } = useTheme();
   const paywallCardBg = paywallGlassColor(t.bgCard, themeMode, 'card');
   const paywallSurfaceBg = paywallGlassColor(t.bgSurface, themeMode, 'surface');
@@ -1879,6 +1892,12 @@ export default function PremiumModal() {
     });
     Linking.openURL(getSubscriptionManageUrl());
   };
+
+  // Пока решается A/B-вариант — пустой фон-шелл (без белой вспышки и без рендера
+  // тяжёлого v1, который при попадании в A/B/C тут же сменится редиректом).
+  if (redirecting) {
+    return <PremiumScreenShell><SafeAreaView style={{ flex: 1 }} /></PremiumScreenShell>;
+  }
 
   // ── Manage view ─────────────────────────────────────────────────────────────
   if (viewMode === 'manage' && !activePlan) {

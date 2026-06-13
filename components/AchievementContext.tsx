@@ -1,5 +1,14 @@
-import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Achievement } from '../app/achievements';
+
+// H-TOASTQ: верхняя граница жизни одного тоста-достижения. showingRef сбрасывается
+// в false ТОЛЬКО через dismissCurrent → showNext, а dismissCurrent зовёт рендерер
+// (AchievementToast) при авто-дисмиссе. Если оверлей-слот так и не выдали
+// (OverlayArbiter занят зависшей модалкой), авто-дисмисс не срабатывает → showingRef
+// навсегда true → новые достижения только копятся в очереди и не показываются.
+// Этот сторож гарантирует, что тост рано или поздно «закроется» и очередь продолжит
+// движение даже без участия рендерера.
+const TOAST_MAX_LIFETIME_MS = 12_000;
 
 interface AchievementContextValue {
   /** Показать тост с ачивкой (может быть очередь) */
@@ -73,8 +82,25 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
     }
   }, [queue, showNext]);
 
+  // H-TOASTQ: страховочный сторож. Пока есть текущий тост, держим таймер; если за
+  // TOAST_MAX_LIFETIME_MS его никто не закрыл (рендерер не получил оверлей-слот),
+  // закрываем сами — это разблокирует showingRef и двигает очередь дальше.
+  useEffect(() => {
+    if (!currentToast) return;
+    const t = setTimeout(() => {
+      dismissCurrent();
+    }, TOAST_MAX_LIFETIME_MS);
+    return () => clearTimeout(t);
+  }, [currentToast, dismissCurrent]);
+
+  // Мемоизируем value, чтобы не дёргать ре-рендером всех useAchievement()-потребителей.
+  const contextValue = useMemo<AchievementContextValue>(
+    () => ({ showAchievement, currentToast, dismissCurrent }),
+    [showAchievement, currentToast, dismissCurrent],
+  );
+
   return (
-    <AchievementContext.Provider value={{ showAchievement, currentToast, dismissCurrent }}>
+    <AchievementContext.Provider value={contextValue}>
       {children}
     </AchievementContext.Provider>
   );

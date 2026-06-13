@@ -29,13 +29,22 @@ import React, {
 } from 'react';
 import {
   EMPTY_OVERLAY_WANTS,
+  hasOtherWaiters,
   resolveNextOverlay,
+  resolveNextOverlayExcluding,
   type OverlayKey,
   type WantsMap,
 } from './overlay_arbiter_core';
 
 export type { OverlayKey };
 export { resolveNextOverlay };
+
+// H-ARBITER: если владелец слота держит его дольше этого времени, ПОКА в очереди ждут
+// другие оверлеи, сторож принудительно передаёт слот следующему. Защита от залипшей
+// модалки, чей ownState по ошибке не сбросился в false (иначе она навсегда голодила бы
+// тосты/алерты ниже по приоритету). Срабатывает только при наличии очереди — модалку,
+// которую юзер просто долго читает в одиночестве, не трогаем.
+const OVERLAY_MAX_HOLD_WITH_WAITERS_MS = 15_000;
 
 type Ctx = {
   active: OverlayKey | null;
@@ -61,6 +70,22 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
       return next === prev ? prev : next;
     });
   }, [wantsMap]);
+
+  // H-ARBITER: сторож от залипшего владельца слота. Пока активный оверлей держит слот
+  // И есть другие желающие, держим таймер; если за OVERLAY_MAX_HOLD_WITH_WAITERS_MS
+  // владелец так и не освободил слот (его ownState завис true), принудительно передаём
+  // слот следующему по приоритету — иначе тосты/алерты ниже навсегда заморожены.
+  useEffect(() => {
+    if (!active || !hasOtherWaiters(active, wantsMap)) return;
+    const t = setTimeout(() => {
+      setActive((prev) => {
+        if (!prev) return prev;
+        const next = resolveNextOverlayExcluding(prev, wantsMap);
+        return next && next !== prev ? next : prev;
+      });
+    }, OVERLAY_MAX_HOLD_WITH_WAITERS_MS);
+    return () => clearTimeout(t);
+  }, [active, wantsMap]);
 
   const value = useMemo<Ctx>(() => ({ active, setWants }), [active, setWants]);
 

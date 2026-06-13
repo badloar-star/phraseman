@@ -1,4 +1,9 @@
-import { resolveNextOverlay, type OverlayKey } from '../components/overlay_arbiter_core';
+import {
+  hasOtherWaiters,
+  resolveNextOverlay,
+  resolveNextOverlayExcluding,
+  type OverlayKey,
+} from '../components/overlay_arbiter_core';
 
 function wants(...keys: OverlayKey[]): Partial<Record<OverlayKey, boolean>> {
   return Object.fromEntries(keys.map((key) => [key, true])) as Partial<Record<OverlayKey, boolean>>;
@@ -32,5 +37,30 @@ describe('OverlayArbiter queue resolution', () => {
     expect(resolveNextOverlay(null, wants('entitlementExpired', 'streakRevive'))).toBe('streakRevive');
     expect(resolveNextOverlay(null, wants('entitlementExpired', 'actionToast', 'achievementToast'))).toBe('entitlementExpired');
     expect(resolveNextOverlay('entitlementExpired', wants('entitlementExpired', 'update'))).toBe('entitlementExpired');
+  });
+});
+
+describe('OverlayArbiter starvation watchdog (H-ARBITER)', () => {
+  it('hasOtherWaiters is false when only the active overlay wants the slot', () => {
+    expect(hasOtherWaiters('update', wants('update'))).toBe(false);
+    expect(hasOtherWaiters('update', {})).toBe(false);
+    expect(hasOtherWaiters(null, {})).toBe(false);
+  });
+
+  it('hasOtherWaiters is true when something else is queued behind the holder', () => {
+    expect(hasOtherWaiters('update', wants('update', 'achievementToast'))).toBe(true);
+    // даже если активного нет, но кто-то ждёт — это «другие желающие»
+    expect(hasOtherWaiters(null, wants('achievementToast'))).toBe(true);
+  });
+
+  it('resolveNextOverlayExcluding hands the slot to the next waiter past a stuck holder', () => {
+    // update залип, но в очереди ждут achievementToast и actionToast → берём по приоритету
+    expect(resolveNextOverlayExcluding('update', wants('update', 'achievementToast', 'actionToast'))).toBe('achievementToast');
+  });
+
+  it('resolveNextOverlayExcluding returns null when the holder is the only waiter', () => {
+    // форсить нечего — владельца не трогаем (solo-модалку юзер просто долго читает)
+    expect(resolveNextOverlayExcluding('update', wants('update'))).toBeNull();
+    expect(resolveNextOverlayExcluding('update', {})).toBeNull();
   });
 });

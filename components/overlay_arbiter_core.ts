@@ -90,3 +90,34 @@ export function resolveNextOverlay(
   }
   return null;
 }
+
+/**
+ * Есть ли среди желающих кто-то, КРОМЕ текущего владельца слота. Используется
+ * сторожем (H-ARBITER), чтобы понять, голодают ли нижеприоритетные оверлеи из-за
+ * залипшего владельца.
+ */
+export function hasOtherWaiters(
+  current: OverlayKey | null,
+  wantsMap: Partial<Record<OverlayKey, boolean>>,
+): boolean {
+  for (const k of OVERLAY_PRIORITY) {
+    if (k !== current && wantsMap[k]) return true;
+  }
+  return false;
+}
+
+/**
+ * Следующий желающий оверлей, ИСКЛЮЧАЯ текущего владельца. Сторож вызывает это, когда
+ * владелец держит слот слишком долго при наличии очереди — чтобы принудительно
+ * передать слот дальше и не заморозить показ остальных. Возвращает null, если других
+ * желающих нет (тогда форсить нечего — владельца не трогаем).
+ */
+export function resolveNextOverlayExcluding(
+  current: OverlayKey | null,
+  wantsMap: Partial<Record<OverlayKey, boolean>>,
+): OverlayKey | null {
+  for (const k of OVERLAY_PRIORITY) {
+    if (k !== current && wantsMap[k]) return k;
+  }
+  return null;
+}

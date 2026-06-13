@@ -20278,6 +20278,165 @@
     }
   };
 
+  // ══ Paywall A/B эксперимент (remote_config/paywall_ab + paywall_funnel) ════
+  function pabSetStatus(msg, color) {
+    const el = document.getElementById('pab-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
+  }
+  function pabNum(id) {
+    const el = document.getElementById(id);
+    const v = el && el.value !== '' ? Number(el.value) : 0;
+    return Number.isFinite(v) ? v : 0;
+  }
+  window.pabRecalc = function() {
+    const sum = pabNum('pab-a') + pabNum('pab-b') + pabNum('pab-c');
+    const v1 = document.getElementById('pab-v1');
+    if (v1) v1.value = sum > 100 ? '0 (доли > 100)' : String(Math.max(0, 100 - sum)) + '%';
+    const warn = document.getElementById('pab-sum-warn');
+    if (warn) {
+      if (sum > 100) warn.textContent = `⚠️ Сумма ${sum}% > 100 — приложение пропорционально ужмёт A/B/C, v1 = 0.`;
+      else if (sum === 0) warn.textContent = '⏸️ Все нули — эксперимент выключен, все видят v1.';
+      else warn.textContent = '';
+    }
+  };
+
+  window.loadPaywallAb = async function() {
+    window._paywallAbLoaded = true;
+    pabSetStatus('Загрузка…');
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'paywall_ab'));
+      const d = snap.exists() ? (snap.data() || {}) : {};
+      const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.value = v; };
+      set('pab-a', d.a_pct ?? 0); set('pab-b', d.b_pct ?? 0); set('pab-c', d.c_pct ?? 0);
+      set('pab-salt', d.salt ?? 'v3'); set('pab-rating', d.rating_x10 ?? 0); set('pab-count', d.ratings_count ?? 0);
+      pabRecalc();
+      pabSetStatus(snap.exists() ? ('Загружено. Обновлено: ' + (d.updatedBy || '—')) : 'Документа ещё нет — заполни и сохрани (по умолчанию все на v1).', '#4ade80');
+      // Предзаполнить диапазон воронки: последние 14 дней.
+      const today = new Date(); const from = new Date(today.getTime() - 13 * 86400000);
+      const iso = (x) => x.toISOString().slice(0, 10);
+      const fEl = document.getElementById('pab-from'); const tEl = document.getElementById('pab-to');
+      if (fEl && !fEl.value) fEl.value = iso(from);
+      if (tEl && !tEl.value) tEl.value = iso(today);
+    } catch (e) {
+      pabSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  window.savePaywallAb = async function() {
+    pabSetStatus('Сохранение…');
+    try {
+      const a = Math.max(0, Math.min(100, Math.round(pabNum('pab-a'))));
+      const b = Math.max(0, Math.min(100, Math.round(pabNum('pab-b'))));
+      const c = Math.max(0, Math.min(100, Math.round(pabNum('pab-c'))));
+      const saltEl = document.getElementById('pab-salt');
+      const salt = (saltEl && saltEl.value.trim()) ? saltEl.value.trim().slice(0, 40) : 'v3';
+      const rating = Math.max(0, Math.min(50, Math.round(pabNum('pab-rating'))));
+      const count = Math.max(0, Math.round(pabNum('pab-count')));
+      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      let prev = {};
+      try { const ps = await getDoc(doc(db, 'remote_config', 'paywall_ab')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      const next = { a_pct: a, b_pct: b, c_pct: c, salt, rating_x10: rating, ratings_count: count, updatedAt: Date.now(), updatedBy: who };
+      const changes = [];
+      for (const k of ['a_pct','b_pct','c_pct','salt','rating_x10','ratings_count']) {
+        if (String(prev[k]) !== String(next[k])) changes.push(`${k}: ${prev[k] ?? '∅'} → ${next[k]}`);
+      }
+      await setDoc(doc(db, 'remote_config', 'paywall_ab'), next, { merge: false });
+      if (changes.length) {
+        try { await addDoc(collection(db, 'remote_config_history'), { changes, by: who, at: new Date().toISOString(), doc: 'paywall_ab' }); } catch (_) {}
+        if (typeof logAction === 'function') logAction('paywall_ab_save', 'remote_config/paywall_ab', { changes: changes.length });
+      }
+      pabSetStatus(`✅ Сохранено${changes.length ? ' (' + changes.length + ' изм.)' : ''}. Клиенты подхватят за секунды.`, '#4ade80');
+    } catch (e) {
+      pabSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  window.loadPaywallFunnel = async function() {
+    const box = document.getElementById('pab-funnel');
+    const status = document.getElementById('pab-funnel-status');
+    if (!box) return;
+    const fromV = (document.getElementById('pab-from') || {}).value || '';
+    const toV = (document.getElementById('pab-to') || {}).value || '';
+    if (!fromV || !toV) { if (status) status.textContent = 'Укажи обе даты.'; return; }
+    const includeDev = !!(document.getElementById('pab-include-dev') || {}).checked;
+    if (status) status.textContent = 'Загрузка…';
+    box.innerHTML = '';
+    try {
+      // day — строка YYYY-MM-DD, лексикографически сравнима → range-запрос без индекса по ts.
+      const qy = query(collection(db, 'paywall_funnel'), where('day', '>=', fromV), where('day', '<=', toV));
+      const snap = await getDocs(qy);
+      // variant → step → count; + множества uidh для уников показов; + контексты.
+      const VAR = ['A','B','C','v1'];
+      const STEPS = ['shown','cta_click','trial_started','purchase_completed','close'];
+      const agg = {}; const ctxAgg = {}; let dropped = 0, total = 0;
+      for (const v of VAR) { agg[v] = { shown:0, cta_click:0, trial_started:0, purchase_completed:0, close:0, users:new Set() }; }
+      snap.forEach(docSnap => {
+        const r = docSnap.data() || {};
+        total++;
+        if (!includeDev && r.dev === true) { dropped++; return; }
+        const v = VAR.includes(r.variant) ? r.variant : null;
+        if (!v || !STEPS.includes(r.step)) return;
+        agg[v][r.step]++;
+        if (r.step === 'shown' && r.uidh) agg[v].users.add(r.uidh);
+        if (r.step === 'purchase_completed') {
+          const ck = String(r.context || 'generic');
+          ctxAgg[ck] = ctxAgg[ck] || { A:0, B:0, C:0, v1:0 };
+          if (ctxAgg[ck][v] != null) ctxAgg[ck][v]++;
+        }
+      });
+      const pct = (num, den) => den > 0 ? (num / den * 100).toFixed(1) + '%' : '—';
+      const varName = { A:'A · Компакт', B:'B · Стори', C:'C · Атриум', v1:'v1 · контроль' };
+      const varColor = { A:'#60a5fa', B:'#a78bfa', C:'#fbbf24', v1:'#9ca3af' };
+      const rows = VAR.map(v => {
+        const x = agg[v];
+        const crBuy = pct(x.purchase_completed, x.shown);
+        const crTrial = pct(x.trial_started, x.shown);
+        return `<tr style="border-bottom:1px solid #1e2230">
+          <td style="padding:8px 10px;font-weight:700;color:${varColor[v]}">${varName[v]}</td>
+          <td style="padding:8px 10px;text-align:right;color:#e5e7eb">${x.shown}</td>
+          <td style="padding:8px 10px;text-align:right;color:#9ca3af">${x.users.size}</td>
+          <td style="padding:8px 10px;text-align:right;color:#9ca3af">${x.cta_click}</td>
+          <td style="padding:8px 10px;text-align:right;color:#a78bfa">${x.trial_started}</td>
+          <td style="padding:8px 10px;text-align:right;color:#4ade80;font-weight:700">${x.purchase_completed}</td>
+          <td style="padding:8px 10px;text-align:right;color:#fbbf24;font-weight:700">${crBuy}</td>
+          <td style="padding:8px 10px;text-align:right;color:#c4b5fd">${crTrial}</td>
+        </tr>`;
+      }).join('');
+      const ctxKeys = Object.keys(ctxAgg).sort();
+      const ctxRows = ctxKeys.length ? ctxKeys.map(ck => `<tr style="border-bottom:1px solid #1e2230">
+          <td style="padding:6px 10px;color:#cbd5e1;font-family:ui-monospace,monospace;font-size:11px">${escapeHtml(ck)}</td>
+          <td style="padding:6px 10px;text-align:right;color:#60a5fa">${ctxAgg[ck].A}</td>
+          <td style="padding:6px 10px;text-align:right;color:#a78bfa">${ctxAgg[ck].B}</td>
+          <td style="padding:6px 10px;text-align:right;color:#fbbf24">${ctxAgg[ck].C}</td>
+          <td style="padding:6px 10px;text-align:right;color:#9ca3af">${ctxAgg[ck].v1}</td>
+        </tr>`).join('') : '<tr><td colspan="5" style="padding:8px 10px;color:#6b7280;font-size:12px">Покупок в периоде нет.</td></tr>';
+      box.innerHTML = `
+        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
+          <thead><tr style="border-bottom:2px solid #2a2f40;color:#6b7280;font-size:11px;text-transform:uppercase">
+            <th style="padding:8px 10px;text-align:left">Вариант</th>
+            <th style="padding:8px 10px;text-align:right">Показы</th>
+            <th style="padding:8px 10px;text-align:right">Уники</th>
+            <th style="padding:8px 10px;text-align:right">CTA</th>
+            <th style="padding:8px 10px;text-align:right">Триалы</th>
+            <th style="padding:8px 10px;text-align:right">Покупки</th>
+            <th style="padding:8px 10px;text-align:right">CR покупки</th>
+            <th style="padding:8px 10px;text-align:right">CR триала</th>
+          </tr></thead><tbody>${rows}</tbody>
+        </table></div>
+        <div style="font-size:11px;color:#6b7280;margin:10px 0 14px">Событий: ${total}${dropped ? ` · скрыто dev: ${dropped}` : ''}. Победитель — наибольший CR покупки при сопоставимых показах.</div>
+        <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">Покупки по контекстам</div>
+        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px">
+          <thead><tr style="border-bottom:1px solid #2a2f40;color:#6b7280;font-size:10px;text-transform:uppercase">
+            <th style="padding:6px 10px;text-align:left">Контекст</th><th style="padding:6px 10px;text-align:right">A</th><th style="padding:6px 10px;text-align:right">B</th><th style="padding:6px 10px;text-align:right">C</th><th style="padding:6px 10px;text-align:right">v1</th>
+          </tr></thead><tbody>${ctxRows}</tbody>
+        </table></div>`;
+      if (status) status.textContent = `Готово · ${snap.size} событий`;
+    } catch (e) {
+      box.innerHTML = `<div style="font-size:12px;color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+      if (status) status.textContent = '';
+    }
+  };
+
   // ── Telegram alerts config (admin_config/alerts) ──────────────────────────
   function alertsSetStatus(msg, color) {
     const el = document.getElementById('alerts-status');

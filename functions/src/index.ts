@@ -179,6 +179,9 @@ exports.explainPhrase = explainPhrase;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
+// ⚠️ WIP — НЕ ДЕПЛОИТЬ В ПРОД. Сокровищница в разработке.
+// CF экспортирована для dev, но имеет встроенный guard (COLLECTIBLES_DEV_ONLY).
+// Убрать комментарий + добавить в deploy:safe — только после завершения фичи.
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;

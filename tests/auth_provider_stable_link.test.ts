@@ -67,10 +67,15 @@ describe('auth provider stable-id linking', () => {
     expect(mergeSwapSource).toContain('await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId)');
   });
 
-  test('remote stable-id swap aborts (no swap) when the server merge fails — never creates a third profile', () => {
-    expect(mergeSwapSource).toContain("captureAuthSignInFailure(provider, 'merge', 'server_merge_failed')");
-    expect(mergeSwapSource).toContain("return { result: 'error', error: 'merge_failed' }");
-    // Server merge must run BEFORE setStableId — we only swap to the canonical winner.
+  test('remote stable-id swap degrades to plain swap when server merge cannot own both accounts', () => {
+    // Server merge only succeeds when it can prove ownership of BOTH accounts
+    // (XP-merge branch). On the returning-user branch the local anonymous account
+    // is not owned by the new uid, so merge returns null — we must fall back to a
+    // plain swap to remote, NOT error out (that branch worked before this change).
+    expect(mergeSwapSource).toContain('merge?.ok && merge.canonicalStableId');
+    expect(mergeSwapSource).toContain(': outcome.remoteStableId');
+    expect(mergeSwapSource).not.toContain("return { result: 'error', error: 'merge_failed' }");
+    // Server merge must run BEFORE setStableId — we swap to the canonical winner.
     expect(mergeSwapSource.indexOf('await mergeStableAccountsViaServer(')).toBeLessThan(
       mergeSwapSource.indexOf('await setStableId('),
     );

@@ -964,16 +964,19 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       // склейку, которая (а) теряла прогресс проигравшей стороны и (б) копировала
       // локальный премиум на чужой аккаунт (дубль). Сервер сливает progress/shards
       // корректно и переносит премиум-блок целиком от «сильной» стороны.
-      // Если merge недоступен/упал — НЕ свапаем (лучше остаться как есть, чем создать
-      // третий профиль или потерять данные). canonicalStableId — победитель по XP.
+      //
+      // Merge удаётся, только когда сервер может доказать владение ОБОИМИ аккаунтами
+      // (XP-merge ветка: и local, и remote привязаны к этому auth uid). В ветке
+      // «провайдер уже привязан к remote» (returning user / новое устройство) локальный
+      // анонимный аккаунт НЕ принадлежит новому uid — merge тогда вернёт null. Это НЕ
+      // ошибка: деградируем до простого свапа на remote (прежнее поведение), а не рвём
+      // вход. canonicalStableId = победитель слияния, иначе сам remote.
       const merge = await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId);
-      if (!merge?.ok || !merge.canonicalStableId) {
-        captureAuthSignInFailure(provider, 'merge', 'server_merge_failed');
-        return { result: 'error', error: 'merge_failed' };
-      }
-      const canonicalStableId = merge.canonicalStableId;
+      const canonicalStableId = merge?.ok && merge.canonicalStableId
+        ? merge.canonicalStableId
+        : outcome.remoteStableId;
 
-      // Подменяем stable_id локально на канонический результат слияния.
+      // Подменяем stable_id локально на канонический результат (слияние или remote).
       await setStableId(canonicalStableId);
 
       // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.

@@ -71,6 +71,31 @@ async function syncRevenueCatAfterAuthLink(): Promise<void> {
     .catch(() => {});
 }
 
+/**
+ * Ставит на users/{localStableId} короткоживущую метку владения, ПОКА клиент ещё
+ * анонимный (до signInWithCredential, который уничтожит анонимную сессию). Сервер
+ * пишет метку под проверенным анонимным request.auth.uid. После входа серверный
+ * merge поглощает этот локальный анонимный аккаунт только при наличии свежей метки
+ * — что безопасно доказывает «то же устройство». Закрывает потерю анонимного
+ * прогресса на 2-м устройстве (#11). Best-effort: ошибка не должна ломать вход.
+ *
+ * NB: вызывается ДО signInWithCredential. На этом этапе auth.currentUser — анонимный
+ * пользователь (ensureAnonUser отработал на старте приложения).
+ */
+async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<void> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !localStableId) return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getApp } = require('@react-native-firebase/app');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+    const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership');
+    await fn({ stableId: localStableId });
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] stampAnonOwnershipBeforeSignIn failed', e);
+  }
+}
+
 // Премиум при свапе аккаунта НЕ копируется клиентом: это создавало дубль премиума
 // (премиум уходящего аккаунта попадал в облако нового) и «вечный» премиум без
 // rc_expiry_ms, который крон не гасил. Теперь премиум переносит серверный merge
@@ -684,6 +709,12 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     logAuthEvent('auth_signin_cancelled', { provider });
     return { result: 'cancelled' };
   }
+
+  // 1b. ДО signInWithCredential (пока ещё анонимны) ставим метку владения локальным
+  // анонимным аккаунтом — иначе серверный merge не сможет безопасно поглотить его
+  // после входа (анонимная сессия будет уничтожена). См. #11.
+  const preSignInStableId = await getStableId();
+  await stampAnonOwnershipBeforeSignIn(preSignInStableId);
 
   // 2. Sign in to Firebase via credential
   let firebaseProviderUid: string;

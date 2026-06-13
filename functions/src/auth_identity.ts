@@ -549,3 +549,52 @@ export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request)
   const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink });
   return { ok: true, stableUid, authUid };
 });
+
+// ── Anonymous-ownership claim (closes #11 safely) ────────────────────────────
+// Перед входом через Google/Apple клиент (ещё анонимный) ставит на свой
+// users/{localStableId} короткоживущую метку anon_merge_claim. После входа
+// authMergeStableAccounts (под новым provider uid) поглощает локальный анонимный
+// аккаунт ТОЛЬКО при наличии этой свежей метки — что доказывает «то же устройство,
+// что держало анонимный аккаунт, прямо сейчас делает merge». Атакующий с утёкшим
+// чужим stable_id метку поставить НЕ может (нет анонимного токена жертвы), поэтому
+// чужой аккаунт поглотить нельзя. Метка пишется только владельцем дока.
+export const ANON_MERGE_CLAIM_TTL_MS = 10 * 60 * 1000;
+
+export function readAnonMergeClaim(
+  userData: FirebaseFirestore.DocumentData | undefined,
+  now: number,
+  ttlMs: number = ANON_MERGE_CLAIM_TTL_MS,
+): { authUid: string } | null {
+  const claim = (userData ?? {}).anon_merge_claim;
+  if (!claim || typeof claim !== 'object') return null;
+  const authUid = String((claim as { authUid?: unknown }).authUid ?? '').trim();
+  const at = Number((claim as { at?: unknown }).at);
+  if (!authUid || !Number.isFinite(at) || at <= 0) return null;
+  if (now - at > ttlMs) return null; // stale → not a valid proof
+  return { authUid };
+}
+
+export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  const db = admin.firestore();
+  const authUid = request.auth.uid;
+  const stableId = normalizeStableId(request.data?.stableId);
+  if (!stableId || stableId.length > 160) {
+    throw new HttpsError('invalid-argument', 'stable_id_required');
+  }
+  // Метку можно ставить ТОЛЬКО на собственный анонимный аккаунт: либо
+  // stableId == authUid (legacy), либо users/{stableId}.firebaseAuthUid == authUid.
+  // Иначе кто угодно мог бы «застолбить» чужой stableId под слияние.
+  const userRef = db.collection(USERS).doc(stableId);
+  const userSnap = await userRef.get().catch(() => null);
+  const ownerAuthUid = String(userSnap?.data()?.firebaseAuthUid ?? '').trim();
+  if (stableId !== authUid && ownerAuthUid && ownerAuthUid !== authUid) {
+    throw new HttpsError('permission-denied', 'not_owner');
+  }
+  const now = Date.now();
+  await userRef.set(
+    { anon_merge_claim: { authUid, at: now }, updatedAt: now },
+    { merge: true },
+  );
+  return { ok: true };
+});

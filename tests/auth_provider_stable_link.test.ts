@@ -83,6 +83,18 @@ describe('auth provider stable-id linking', () => {
     expect(mergeSwapSource).toContain('await setStableId(canonicalStableId)');
   });
 
+  test('stamps anonymous-ownership claim BEFORE signInWithCredential (closes #11 safely)', () => {
+    // The claim must be stamped while still anonymous — signInWithCredential
+    // destroys the anonymous session, so the server can only verify ownership of
+    // the local anonymous account if the claim was written beforehand.
+    const stampIdx = source.indexOf('stampAnonOwnershipBeforeSignIn(preSignInStableId)');
+    const credentialIdx = source.indexOf('auth.signInWithCredential(credential)');
+    expect(stampIdx).toBeGreaterThan(0);
+    expect(credentialIdx).toBeGreaterThan(0);
+    expect(stampIdx).toBeLessThan(credentialIdx); // stamp happens first
+    expect(source).toContain("httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership')");
+  });
+
   test('remote stable-id swap clears the premium cache so the previous account status is not shown', () => {
     expect(source).toContain("import { invalidatePremiumCache } from './premium_guard'");
     expect(mergeSwapSource).toContain('invalidatePremiumCache()');

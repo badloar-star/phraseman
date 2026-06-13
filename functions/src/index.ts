@@ -28,7 +28,7 @@ const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { authEnsureStableLink } = require('./auth_identity');
+const { authEnsureStableLink, authStampAnonOwnership } = require('./auth_identity');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authMergeStableAccounts } = require('./auth_merge');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -130,6 +130,7 @@ exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
 exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
+exports.authStampAnonOwnership = authStampAnonOwnership;
 exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;

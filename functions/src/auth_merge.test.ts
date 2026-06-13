@@ -354,4 +354,94 @@ describe('mergeStableAccounts', () => {
       mergeStableAccounts(db as any, 'google-5', 'stable-mine', 'stable-someone-else', NOW),
     ).rejects.toMatchObject({ code: 'permission-denied' });
   });
+
+  // ── #11: absorb a device-held anonymous account via a fresh self-stamped claim ──
+  it('absorbs an unowned anonymous LOSER that carries a fresh anon_merge_claim', async () => {
+    // 2nd device played anonymously as anon-uid-2; it stamped anon_merge_claim
+    // while still anonymous, then signed into the existing account (owned by
+    // google-11, higher XP). The anon progress must merge in, not orphan.
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-mine': { firebaseAuthUid: 'google-11', progress: { user_total_xp: '5000' }, shards: 100 },
+        'stable-anon': {
+          firebaseAuthUid: 'anon-uid-2',
+          anon_merge_claim: { authUid: 'anon-uid-2', at: NOW - 60_000 }, // 1 min ago = fresh
+          progress: { user_total_xp: '300', streak_count: '7' },
+          shards: 40,
+        },
+      },
+    });
+
+    const res = await mergeStableAccounts(db as any, 'google-11', 'stable-anon', 'stable-mine', NOW);
+
+    expect(res.canonicalStableId).toBe('stable-mine'); // owned + higher XP wins
+    expect(res.mergedFromStableId).toBe('stable-anon');
+    const winner = store.users['stable-mine']!;
+    expect((winner.progress as DocData).streak_count).toBe('7'); // absorbed from anon
+    expect(winner.shards).toBe(100); // max(100,40)
+    expect(store.users['stable-anon']!.identityHidden).toBe(true);
+  });
+
+  it('rejects absorbing an unowned account with NO claim', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-mine': { firebaseAuthUid: 'google-12', progress: { user_total_xp: '5000' } },
+        'stable-anon': { firebaseAuthUid: 'anon-x', progress: { user_total_xp: '300' } }, // no claim
+      },
+    });
+    await expect(
+      mergeStableAccounts(db as any, 'google-12', 'stable-anon', 'stable-mine', NOW),
+    ).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+
+  it('rejects a STALE anon_merge_claim (older than the TTL)', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-mine': { firebaseAuthUid: 'google-13', progress: { user_total_xp: '5000' } },
+        'stable-anon': {
+          firebaseAuthUid: 'anon-y',
+          anon_merge_claim: { authUid: 'anon-y', at: NOW - 60 * 60 * 1000 }, // 1h ago = stale
+          progress: { user_total_xp: '300' },
+        },
+      },
+    });
+    await expect(
+      mergeStableAccounts(db as any, 'google-13', 'stable-anon', 'stable-mine', NOW),
+    ).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+
+  it('rejects a claim whose authUid does NOT match the loser doc owner', async () => {
+    // An attacker who learned a stable_id could try to forge a claim, but the
+    // claim.authUid must equal the loser doc's firebaseAuthUid (the anon uid that
+    // truly held it). A mismatch is rejected.
+    const { db } = makeDbStub({
+      users: {
+        'stable-mine': { firebaseAuthUid: 'google-14', progress: { user_total_xp: '5000' } },
+        'stable-anon': {
+          firebaseAuthUid: 'anon-real-owner',
+          anon_merge_claim: { authUid: 'attacker-uid', at: NOW - 1000 }, // mismatched
+          progress: { user_total_xp: '300' },
+        },
+      },
+    });
+    await expect(
+      mergeStableAccounts(db as any, 'google-14', 'stable-anon', 'stable-mine', NOW),
+    ).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+
+  it('still rejects when the unowned side would WIN even with a claim (never overwrite owned)', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-mine': { firebaseAuthUid: 'google-15', progress: { user_total_xp: '10' } },
+        'stable-anon-rich': {
+          firebaseAuthUid: 'anon-z',
+          anon_merge_claim: { authUid: 'anon-z', at: NOW - 1000 },
+          progress: { user_total_xp: '99999' }, // higher XP → would be winner
+        },
+      },
+    });
+    await expect(
+      mergeStableAccounts(db as any, 'google-15', 'stable-anon-rich', 'stable-mine', NOW),
+    ).rejects.toMatchObject({ code: 'permission-denied' });
+  });
 });

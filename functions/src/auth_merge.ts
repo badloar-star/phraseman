@@ -4,6 +4,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import {
   cleanupLegacyAuthIdentityDuplicates,
   linkStableAuthUid,
+  readAnonMergeClaim,
   resolveStableUidForAuth,
 } from './auth_identity';
 
@@ -318,35 +319,66 @@ export async function mergeStableAccounts(
     return { canonicalStableId: canonA, mergedFromStableId: null, alreadyMerged: true };
   }
 
-  // Ownership: caller must own BOTH (provider just signed in → allowProviderRelink).
-  // assertStableOwner is invoked indirectly via resolveStableUidForAuth, which also
-  // self-heals firebaseAuthUid. Reject (permission-denied) if either is not ownable.
+  // Ownership: the SURVIVING (winner) account must be owned by the caller. The
+  // loser may be a device-held anonymous account the caller doesn't formally own
+  // yet (scenario #11), but ONLY if it carries a fresh anon_merge_claim it stamped
+  // itself moments ago while still anonymous (see authStampAnonOwnership). That
+  // proves the same device held it — an attacker with a leaked stable_id has no
+  // anonymous token to stamp with, so cannot absorb a stranger's account.
+  // resolveStableUidForAuth self-heals firebaseAuthUid; here we tolerate a mismatch
+  // and defer the decision until the XP winner is known.
   const opts = { allowProviderRelink: true };
-  const ownedA = await resolveStableUidForAuth(db, authUid, canonA, opts);
-  const ownedB = await resolveStableUidForAuth(db, authUid, canonB, opts);
+  const resolveOwnershipSafe = async (id: string): Promise<{ owned: boolean; id: string }> => {
+    try {
+      return { owned: true, id: await resolveStableUidForAuth(db, authUid, id, opts) };
+    } catch {
+      return { owned: false, id };
+    }
+  };
+  const resA = await resolveOwnershipSafe(canonA);
+  const resB = await resolveOwnershipSafe(canonB);
 
-  const liveA = (await db.collection(USERS).doc(ownedA).get()).data() ?? {};
-  const liveB = (await db.collection(USERS).doc(ownedB).get()).data() ?? {};
+  const liveA = (await db.collection(USERS).doc(resA.id).get()).data() ?? {};
+  const liveB = (await db.collection(USERS).doc(resB.id).get()).data() ?? {};
 
   const xpA = asCleanInt((liveA.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
   const xpB = asCleanInt((liveB.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
 
-  // Winner = higher XP. Tie → keep the one already linked to this auth uid if any,
-  // else A.
-  let winnerId = ownedA;
-  let loserId = ownedB;
+  // Winner = higher XP. Tie → A.
+  let winnerId = resA.id;
+  let loserId = resB.id;
   let winnerData = liveA as Record<string, unknown>;
   let loserData = liveB as Record<string, unknown>;
+  let winnerOwned = resA.owned;
+  let loserOwned = resB.owned;
   if (xpB > xpA) {
-    winnerId = ownedB;
-    loserId = ownedA;
+    winnerId = resB.id;
+    loserId = resA.id;
     winnerData = liveB as Record<string, unknown>;
     loserData = liveA as Record<string, unknown>;
+    winnerOwned = resB.owned;
+    loserOwned = resA.owned;
   }
 
   if (winnerId === loserId) {
     await linkStableAuthUid(db, winnerId, authUid);
     return { canonicalStableId: winnerId, mergedFromStableId: null, alreadyMerged: true };
+  }
+
+  // The surviving account MUST be owned — never let an unowned account become the
+  // canonical survivor, and never overwrite an owned account with an unowned one.
+  if (!winnerOwned) {
+    throw new HttpsError('permission-denied', 'stable_id_mismatch');
+  }
+  // The loser, if not owned, is only absorbable with a fresh self-stamped anon
+  // claim whose authUid matches the loser doc's own firebaseAuthUid (the anon uid
+  // that held it). No claim / stale / mismatched → reject.
+  if (!loserOwned) {
+    const claim = readAnonMergeClaim(loserData, now);
+    const loserAuthUid = cleanStr((loserData as { firebaseAuthUid?: unknown }).firebaseAuthUid);
+    if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
+      throw new HttpsError('permission-denied', 'stable_id_mismatch');
+    }
   }
 
   const mergedProgress = mergeUserProgress(
@@ -365,6 +397,8 @@ export async function mergeStableAccounts(
       firebaseAuthUid: authUid,
       updatedAt: now,
       identityMergedAt: now,
+      // Consume any claim on the survivor so it can't be replayed.
+      anon_merge_claim: admin.firestore.FieldValue.delete(),
     };
     if (mergedShards !== undefined) update.shards = mergedShards;
     tx.set(winnerRef, update, { merge: true });
@@ -377,6 +411,7 @@ export async function mergeStableAccounts(
         duplicateOfStableId: winnerId,
         identityMergedAt: now,
         updatedAt: now,
+        anon_merge_claim: admin.firestore.FieldValue.delete(),
       },
       { merge: true },
     );

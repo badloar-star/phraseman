@@ -736,6 +736,8 @@ export default function SettingsTestersFunctions() {
   const RANK_LEVELS = ['I', 'II', 'III'];
 
   const [openSection, setOpenSection] = useState<string | null>(null);
+  // QA-превью новых пейволов: выбранный сценарий (context) для просмотра A/B/C.
+  const [paywallPreviewCtx, setPaywallPreviewCtx] = useState('intro_ended');
   // Навигация панели: активная глава (категория разделов) + поисковый запрос.
   const [navChapter, setNavChapter] = useState<AdminChapterId>('all');
   const [navQuery, setNavQuery] = useState('');
@@ -2574,25 +2576,83 @@ export default function SettingsTestersFunctions() {
           </View>
           </>)}
 
-          {/* ── NEW PAYWALL v2 preview ── */}
+          {/* ── НОВЫЕ ПЕЙВОЛЫ A/B/C (макеты для ревью) ── */}
           <AccordionSection
-            id="new_paywall_v2"
+            id="new_paywalls_abc"
             icon="card-outline"
-            title="🆕 Новый пейвол (макет v2)"
-            badge={1}
-            open={openSection === 'new_paywall_v2'}
+            title="🆕 Новые пейволы (A / B / C)"
+            badge={3}
+            open={openSection === 'new_paywalls_abc'}
             onToggle={(id) => setOpenSection(openSection === id ? null : id)}
           >
-            <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12, gap: 10 }}>
+            <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 14, gap: 12 }}>
               <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 16 }}>
-                {'Новый дизайн пейвола: стиль референса, русский язык, urgency-таймер (22ч), маппинг по темам. Не заменяет текущие пейволы — только макет для ревью.'}
+                {'Три варианта для A/B-теста. A — Компакт (всё на одном экране, без скролла). B — Стори (длинная страница убеждения). C — Атриум (первый экран + галерея ниже, рекомендован). Открываются как макеты — покупку не оформляют.'}
               </Text>
+
+              {/* Выбор сценария — чтобы видеть персонализацию под ситуацию */}
+              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 10, fontWeight: '800', letterSpacing: 0.5, textTransform: 'uppercase' }}>
+                Сценарий (откуда открыт)
+              </Text>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+                {([
+                  ['intro_ended', 'Конец триала'],
+                  ['no_energy', 'Нет энергии'],
+                  ['arena', 'Арена'],
+                  ['quiz_hard', 'Сложный квиз'],
+                  ['personal_plan', 'Личный план'],
+                  ['streak', 'Серия'],
+                  ['speaking', 'Говорение'],
+                  ['generic', 'Общий'],
+                ] as const).map(([key, label]) => {
+                  const on = paywallPreviewCtx === key;
+                  return (
+                    <TouchableOpacity
+                      key={key}
+                      onPress={() => { doHaptic(); setPaywallPreviewCtx(key); }}
+                      activeOpacity={0.8}
+                      style={{
+                        paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16, borderWidth: 1,
+                        backgroundColor: on ? ACCENT_DARK : 'transparent',
+                        borderColor: on ? ACCENT_DARK : ADMIN_TEXT_MUTED + '44',
+                      }}
+                    >
+                      <Text style={{ color: on ? '#fff' : ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: on ? '800' : '600' }}>{label}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+
+              {/* Три кнопки — каждая открывает свой вариант с выбранным сценарием.
+                  Передаём реалистичные stats, чтобы видеть персонализацию (теги/прогресс). */}
+              {([
+                ['/paywall_a', '🅰️ Открыть A — Компакт'],
+                ['/paywall_b', '🅱️ Открыть B — Стори'],
+                ['/paywall_c', '🅲 Открыть C — Атриум ★'],
+              ] as const).map(([path, label]) => (
+                <TouchableOpacity
+                  key={path}
+                  onPress={() => {
+                    doHaptic();
+                    router.push({
+                      pathname: path,
+                      params: { context: paywallPreviewCtx, source: 'qa_preview', streak: '12', lessons_done: '34', saved: '15' },
+                    } as any);
+                  }}
+                  activeOpacity={0.8}
+                  style={{ backgroundColor: ACCENT_DARK, borderRadius: 10, paddingVertical: 12, paddingHorizontal: 14, alignItems: 'center' }}
+                >
+                  <Text style={{ color: '#fff', fontSize: 13, fontWeight: '900' }}>{label}</Text>
+                </TouchableOpacity>
+              ))}
+
+              {/* Старый макет v2 — оставлен для сравнения. */}
               <TouchableOpacity
                 onPress={() => { doHaptic(); router.push({ pathname: '/premium_modal_v2' } as any); }}
                 activeOpacity={0.8}
-                style={{ backgroundColor: ACCENT_DARK, borderRadius: 10, paddingVertical: 12, paddingHorizontal: 14, alignItems: 'center' }}
+                style={{ borderRadius: 10, paddingVertical: 10, paddingHorizontal: 14, alignItems: 'center', borderWidth: 1, borderColor: ADMIN_TEXT_MUTED + '44' }}
               >
-                <Text style={{ color: '#fff', fontSize: 13, fontWeight: '900' }}>🆕 Открыть новый пейвол</Text>
+                <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 12, fontWeight: '700' }}>Старый макет v2 (для сравнения)</Text>
               </TouchableOpacity>
             </View>
           </AccordionSection>

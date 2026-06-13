@@ -37,7 +37,9 @@ export function grayscaleSvg(cacheKey: string, svg: string): string {
       (_m, r: string, g: string, b: string, a?: string) => {
         const grayHex = lumaGrayHex(Number(r), Number(g), Number(b));
         const rr = parseInt(grayHex.slice(1, 3), 16);
-        return a !== undefined ? `rgba(${rr},${rr},${rr},${a})` : `rgb(${rr},${rr},${rr})`;
+        // react-native-svg не поддерживает rgba() — используем rgb + opacity атрибут не можем тут,
+        // поэтому возвращаем просто rgb (opacity уже была заменена на fill-opacity при build-app).
+        return `rgb(${rr},${rr},${rr})`;
       },
     );
   grayCache.set(cacheKey, gray);

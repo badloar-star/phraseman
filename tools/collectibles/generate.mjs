@@ -465,9 +465,18 @@ function fixRgba(svg) {
       (_, r, g, b, a) => `stroke="rgb(${r},${g},${b})" stroke-opacity="${a}"`);
 }
 
+/**
+ * Убрать role/aria-label из <svg> тега — react-native-svg парсер может падать
+ * на кириллице в атрибутах (нет XML-заголовка с encoding).
+ */
+function stripAriaFromSvgTag(svg) {
+  return svg.replace(/(<svg\b[^>]*?)\s+role="[^"]*"/g, '$1')
+            .replace(/(<svg\b[^>]*?)\s+aria-label="[^"]*"/g, '$1');
+}
+
 /** Сжать SVG без изменения разметки: убрать межтеговые переводы строк и двойные пробелы. */
 function compactSvg(svg) {
-  return fixRgba(svg.replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').trim());
+  return fixRgba(stripAriaFromSvgTag(svg.replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').trim()));
 }
 
 function readArtSvg(artRef) {

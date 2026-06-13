@@ -53,7 +53,7 @@ import Animated, {
  */
 
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import { rubberBand, BOUNCE_SPRING } from './bounceMath';
+import { edgePull, BOUNCE_SPRING } from './bounceMath';
 
 export interface BouncyScrollViewProps extends ScrollViewProps {
   /** Высота вьюпорта для формулы сопротивления. По умолчанию — высота экрана. */
@@ -94,11 +94,27 @@ function updateScrollMetrics(
   }
 }
 
+/**
+ * Edge-pull резинка для Android.
+ *
+ * КЛЮЧЕВОЕ ОТЛИЧИЕ от наивной версии: оттяжку считаем ОТ МОМЕНТА КАСАНИЯ КРАЯ,
+ * а не от начала жеста. Pan активен одновременно с нативным скроллом
+ * (Gesture.Simultaneous), поэтому к моменту, когда список упёрся в верх/низ,
+ * `translationY` уже накопил весь путь пальца по экрану (сотни px). Если подать
+ * это накопленное значение прямо в rubberBand — резинка ПРЫГАЕТ скачком в
+ * большое смещение. Поэтому при первом пересечении края запоминаем
+ * `edgeAnchor = translationY` и далее тянем только на `translationY - edgeAnchor`
+ * — оттяжка плавно растёт с нуля от края.
+ *
+ * Якорь сбрасывается (NaN), как только палец уходит обратно внутрь скролла или
+ * меняет сторону, чтобы следующее упирание снова стартовало с нуля.
+ */
 function applyEdgePull(
   stretch: SharedValue<number>,
   scrollY: SharedValue<number>,
   layoutHeight: SharedValue<number>,
   contentHeight: SharedValue<number>,
+  edgeAnchor: SharedValue<number>,
   translationY: number,
   dim: number,
 ) {
@@ -107,17 +123,21 @@ function applyEdgePull(
   const atTop = scrollY.value <= 1;
   const atBottom = maxScroll <= 0 || scrollY.value >= maxScroll - 1;
 
-  if (translationY > 0 && atTop) {
-    stretch.value = rubberBand(translationY, dim);
-    return;
-  }
+  const { stretch: target, anchor } = edgePull(
+    translationY,
+    edgeAnchor.value,
+    atTop,
+    atBottom,
+    dim,
+  );
+  edgeAnchor.value = anchor;
 
-  if (translationY < 0 && atBottom) {
-    stretch.value = -rubberBand(-translationY, dim);
-    return;
-  }
-
-  if (stretch.value !== 0) {
+  if (target !== 0) {
+    // У края: rubberBand уже даёт плавную кривую от нуля — ставим напрямую, чтобы
+    // резинка шла ровно за пальцем (spring здесь только добавил бы лаг).
+    stretch.value = target;
+  } else if (stretch.value !== 0) {
+    // Палец внутри тела / отпустил край — мягко гасим остаточную оттяжку.
     stretch.value = withSpring(0, BOUNCE_SPRING);
   }
 }
@@ -130,6 +150,8 @@ export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScr
   const scrollY = useSharedValue(0);
   const layoutHeight = useSharedValue(0);
   const contentHeight = useSharedValue(0);
+  // Палец в момент касания края (см. applyEdgePull). NaN = край ещё не касались.
+  const edgeAnchor = useSharedValue(NaN);
 
   const nativeGesture = useMemo(() => Gesture.Native(), []);
   const pan = useMemo(
@@ -141,17 +163,19 @@ export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScr
         .failOffsetX([-18, 18])
         .onUpdate((e) => {
           'worklet';
-          applyEdgePull(stretch, scrollY, layoutHeight, contentHeight, e.translationY, dim);
+          applyEdgePull(stretch, scrollY, layoutHeight, contentHeight, edgeAnchor, e.translationY, dim);
         })
         .onEnd(() => {
           'worklet';
+          edgeAnchor.value = NaN;
           stretch.value = withSpring(0, BOUNCE_SPRING);
         })
         .onFinalize(() => {
           'worklet';
+          edgeAnchor.value = NaN;
           stretch.value = withSpring(0, BOUNCE_SPRING);
         }),
-    [contentHeight, dim, isAndroid, layoutHeight, nativeGesture, scrollY, stretch],
+    [contentHeight, dim, edgeAnchor, isAndroid, layoutHeight, nativeGesture, scrollY, stretch],
   );
   const scrollGesture = useMemo(
     () => Gesture.Simultaneous(nativeGesture, pan),
@@ -179,8 +203,9 @@ export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScr
     () => () => {
       cancelAnimation(stretch);
       stretch.value = 0;
+      edgeAnchor.value = NaN;
     },
-    [stretch],
+    [stretch, edgeAnchor],
   );
 
   const GestureWrap = useCallback(

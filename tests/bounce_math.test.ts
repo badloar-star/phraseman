@@ -1,4 +1,4 @@
-import { rubberBand, bounceOffset, APPLE_C } from '../components/bounceMath';
+import { rubberBand, bounceOffset, edgePull, APPLE_C } from '../components/bounceMath';
 
 // Высота вьюпорта для тестов (типичный экран).
 const DIM = 800;
@@ -78,5 +78,65 @@ describe('bounceOffset (двунаправленная резинка)', () => {
     expect(bounceOffset(50, LAYOUT, 400, DIM)).toBeNull();
     // но оверскролл сверху всё ещё работает
     expect(bounceOffset(-50, LAYOUT, 400, DIM)!).toBeGreaterThan(0);
+  });
+});
+
+describe('edgePull (анти-скачок Android edge-pull)', () => {
+  const NA = NaN;
+
+  it('первое касание края НЕ прыгает: stretch=0, якорь = текущий палец', () => {
+    // Палец уже прошёл 300px (накоплено нативным скроллом), но мы только что
+    // упёрлись в верх. Резинка обязана стартовать с НУЛЯ, а не прыгнуть.
+    const r = edgePull(300, NA, /*atTop*/ true, /*atBottom*/ false, DIM);
+    expect(r.stretch).toBe(0);
+    expect(r.anchor).toBe(300);
+  });
+
+  it('после касания тянем дальше → плавный рост ОТ якоря, не от начала жеста', () => {
+    // Якорь зафиксирован на 300, палец ушёл до 380 → реальная оттяжка = 80.
+    const r = edgePull(380, 300, true, false, DIM);
+    expect(r.anchor).toBe(300);
+    expect(r.stretch).toBeCloseTo(rubberBand(80, DIM), 5);
+  });
+
+  it('АНТИ-СКАЧОК: оттяжка от якоря намного меньше наивной от начала жеста', () => {
+    // Наивная (баг v9): rubberBand(380). Наша: rubberBand(380-300)=rubberBand(80).
+    const fixed = edgePull(380, 300, true, false, DIM).stretch;
+    const naive = rubberBand(380, DIM);
+    expect(fixed).toBeLessThan(naive);
+    expect(fixed).toBeCloseTo(rubberBand(80, DIM), 5);
+  });
+
+  it('нижний край: тянем вверх → отрицательный stretch, симметрично', () => {
+    const first = edgePull(-300, NA, false, true, DIM);
+    expect(first.stretch).toBe(0);
+    expect(first.anchor).toBe(-300);
+    const pulled = edgePull(-380, -300, false, true, DIM);
+    expect(pulled.stretch).toBeCloseTo(-rubberBand(80, DIM), 5);
+  });
+
+  it('не у края → резинки нет и якорь сброшен в NaN', () => {
+    const r = edgePull(120, 50, /*atTop*/ false, /*atBottom*/ false, DIM);
+    expect(r.stretch).toBe(0);
+    expect(Number.isNaN(r.anchor)).toBe(true);
+  });
+
+  it('палец откатился НИЖЕ якоря у верха → оттяжка не уходит в минус, якорь сброшен', () => {
+    // У верхнего края тянем вниз, но палец откатился назад (280 < якоря 300):
+    // считаем это «отпустил край» → stretch 0, якорь NaN (следующий тяг с нуля).
+    const r = edgePull(280, 300, true, false, DIM);
+    expect(r.stretch).toBe(0);
+    expect(Number.isNaN(r.anchor)).toBe(true);
+  });
+
+  it('переход верх→низ проходит через тело: middle-кадр обнуляет якорь до нижнего края', () => {
+    // Реальная траектория пальца top→bottom ВСЕГДА пересекает прокручиваемое тело
+    // (atTop=atBottom=false), и этот кадр сбрасывает якорь в NaN…
+    const middle = edgePull(120, 300, /*atTop*/ false, /*atBottom*/ false, DIM);
+    expect(Number.isNaN(middle.anchor)).toBe(true);
+    // …поэтому у нижнего края якорь уже чистый и резинка стартует с нуля.
+    const bottom = edgePull(-10, middle.anchor, false, true, DIM);
+    expect(bottom.anchor).toBe(-10);
+    expect(bottom.stretch).toBe(0);
   });
 });

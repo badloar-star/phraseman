@@ -44,3 +44,51 @@ export function bounceOffset(
   if (maxScroll > 0 && y > maxScroll) return -rubberBand(y - maxScroll, dim);
   return null;
 }
+
+/** Результат edge-pull шага: сколько тянуть (stretch) и куда сдвинулся якорь. */
+export interface EdgePull {
+  /** translateY резинки: >0 тянем вниз (верхний край), <0 вверх (нижний). */
+  stretch: number;
+  /** Новое значение якоря пальца. NaN = край отпущен/не касались. */
+  anchor: number;
+}
+
+/**
+ * Анти-скачок edge-pull для Android.
+ *
+ * `translationY` у Pan накапливается с НАЧАЛА жеста (он одновременен с нативным
+ * скроллом), поэтому к моменту касания края там уже сотни px. Чтобы резинка не
+ * прыгнула скачком, тянем только на дельту ОТ ЗАФИКСИРОВАННОГО У КРАЯ значения:
+ *   • первое касание края → anchor = translationY, stretch = 0 (старт с нуля);
+ *   • далее stretch = rubberBand(|translationY − anchor|), знак по краю;
+ *   • палец пошёл обратно внутрь / сменил сторону → anchor = NaN, stretch = 0.
+ *
+ * Чистая функция (worklet): принимает текущий якорь, возвращает новый — никакого
+ * скрытого состояния, легко тестировать.
+ */
+export function edgePull(
+  translationY: number,
+  edgeAnchor: number,
+  atTop: boolean,
+  atBottom: boolean,
+  dim: number,
+): EdgePull {
+  'worklet';
+  // Верхняя резинка: упёрлись в верх и тянем вниз (translationY растёт от якоря).
+  // Перезахватываем якорь, если его нет ИЛИ палец оказался «позади» (translationY
+  // < anchor — например, якорь остался от прошлого края или палец откатился):
+  // оттяжка всегда стартует с нуля у края, без скачка.
+  if (translationY > 0 && atTop && !(translationY < edgeAnchor)) {
+    const anchor = Number.isNaN(edgeAnchor) ? translationY : edgeAnchor;
+    return { stretch: rubberBand(translationY - anchor, dim), anchor };
+  }
+  // Нижняя резинка: упёрлись в низ и тянем вверх (translationY убывает от якоря).
+  if (translationY < 0 && atBottom && !(translationY > edgeAnchor)) {
+    const anchor = Number.isNaN(edgeAnchor) ? translationY : edgeAnchor;
+    // `+ 0` сворачивает −0 (от rubberBand(0)) в обычный 0.
+    return { stretch: -rubberBand(anchor - translationY, dim) + 0, anchor };
+  }
+  // Внутри скролла, палец пошёл обратно, или якорь с другого края — резинки нет,
+  // якорь сброшен. Следующее упирание стартует заново с нуля.
+  return { stretch: 0, anchor: NaN };
+}

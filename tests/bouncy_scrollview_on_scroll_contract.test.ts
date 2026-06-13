@@ -17,10 +17,10 @@ describe('BouncyScrollView onScroll contract', () => {
   });
 
   it('does not depend on Android overscroll contentOffset escaping the scroll bounds', () => {
-    expect(source).toContain("import { rubberBand, BOUNCE_SPRING } from './bounceMath';");
+    expect(source).toContain("import { edgePull, BOUNCE_SPRING } from './bounceMath';");
     expect(sourceWithoutComments).toContain("Gesture.Pan()");
     expect(sourceWithoutComments).toContain('.enabled(isAndroid)');
-    expect(sourceWithoutComments).toContain('applyEdgePull(stretch, scrollY, layoutHeight, contentHeight, e.translationY, dim);');
+    expect(sourceWithoutComments).toContain('applyEdgePull(stretch, scrollY, layoutHeight, contentHeight, edgeAnchor, e.translationY, dim);');
     expect(sourceWithoutComments).toContain("React.cloneElement(child as React.ReactElement<any>, { overScrollMode: 'never' })");
     expect(sourceWithoutComments).not.toContain('const target = bounceOffset(y, layoutH, contentH, dim);');
     expect(sourceWithoutComments).not.toContain("overScrollMode={Platform.OS === 'android' ? 'always' : 'never'}");

@@ -15,6 +15,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 import Reanimated, {
+  cancelAnimation,
   Easing,
   FadeInDown,
   useAnimatedStyle,
@@ -204,6 +205,7 @@ function UnownedMarketPackCard({
       -1,
       true
     );
+    return () => cancelAnimation(ctaScale);
   }, [reduceMotion, ctaScale]);
 
   const ctaStyle = useAnimatedStyle(() => ({

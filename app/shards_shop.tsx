@@ -16,6 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Animated, {
+  cancelAnimation,
   Easing,
   interpolate,
   useAnimatedStyle,
@@ -244,6 +245,7 @@ function PulsingShardFrame({
       -1,
       true,
     );
+    return () => cancelAnimation(p);
   }, [p]);
   const childScale = useAnimatedStyle(() => ({
     transform: [{ scale: interpolate(p.value, [0, 1], [1, big ? 1.05 : 1.06]) }],
@@ -266,6 +268,7 @@ function HitBadgeShell({ children, style }: { children: React.ReactNode; style?:
       -1,
       true,
     );
+    return () => cancelAnimation(hb);
   }, [hb]);
   const beat = useAnimatedStyle(() => ({
     transform: [{ scale: interpolate(hb.value, [0, 1], [1, 1.08]) }],
@@ -306,6 +309,7 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
       -1,
       false,
     );
+    return () => cancelAnimation(sh);
   }, [boxW, sh]);
 
   const onLayoutCta = (e: LayoutChangeEvent) => {

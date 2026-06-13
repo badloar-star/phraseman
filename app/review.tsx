@@ -42,6 +42,7 @@ import {
   type NativeSyntheticEvent,
 } from 'react-native';
 import Reanimated, {
+  cancelAnimation,
   Easing,
   useAnimatedStyle,
   useSharedValue,
@@ -355,6 +356,12 @@ function FlameLickParticle({ x, startY, delay, size, color }: {
       -1,
       true,
     ));
+    // rotate крутится бесконечно (-1) — гасим на анмаунте, чтобы ворклет не пережил
+    // компонент (консистентность с остальным кодом; не баг сам по себе).
+    return () => {
+      cancelAnimation(rotate);
+      cancelAnimation(translateX);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps -- one-shot particle choreography per mount
   }, [delay, startY]);
 
@@ -522,6 +529,8 @@ function BurnCardEffect({
       withDelay(50, withTiming(1, { duration: 400, easing: Easing.out(Easing.quad) })),
       withTiming(0.85, { duration: 1200 }),
     );
+    // emberFlicker крутится бесконечно (-1) — гасим на анмаунте.
+    return () => cancelAnimation(emberFlicker);
   // eslint-disable-next-line react-hooks/exhaustive-deps -- mount-only; shared values are stable refs
   }, []);
 

@@ -108,13 +108,13 @@ import {
   type ReferralInvite,
 } from '../referral_vip';
 import { buildCloudReferralInviteShare } from '../referral_invite_share';
+import { generateReferralCode, getReferralCode } from '../referral_system';
 import { isReferralCloudEnabled } from '../referral_flags';
 import {
   shouldShowReferralAccessEnded,
   markReferralAccessEndedSeen,
   getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
-import { buildReferralShareLinks } from '../referral_bootstrap';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -1601,7 +1601,6 @@ export default function FriendsTabScreen() {
 
   /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
-  const myCodeLabel = useMemo(() => (myCode ?? '').trim().toUpperCase(), [myCode]);
   const [friendCodeLoadError, setFriendCodeLoadError] = useState(false);
   const [myProfile, setMyProfile] = useState<{
     name: string; avatar: string; frame: string; aura?: string; totalXP: number; streak: number | null;
@@ -1610,9 +1609,19 @@ export default function FriendsTabScreen() {
   // ── Реферал: накопленные дни доступа + модалки активации/окончания ──────────
   const [referralInvites, setReferralInvites] = useState<ReferralInvite[]>([]);
   const [accessEndedOpen, setAccessEndedOpen] = useState(false);
+  /** РЕФЕРАЛЬНЫЙ код (referral_codes) — отдельный от friend-кода (myCode). Для «Пригласить». */
+  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const referralEnabled = isReferralCloudEnabled();
 
   const refreshReferralState = useCallback(async () => {
     if (!isReferralCloudEnabled()) return;
+    // Реферальный код (ensure на сервере). Без него «Пригласить» делилась бы friend-кодом,
+    // которого нет в referral_codes → друг получал «код не найден» и наград не было (C1).
+    try {
+      await generateReferralCode(myProfile?.name ?? 'User');
+      const rc = await getReferralCode();
+      if (rc && rc.trim().length >= 4) setReferralCode(rc.trim().toUpperCase());
+    } catch { /* нет auth_links / сети — попробуем при следующем фокусе */ }
     const state = await getClaimableReferralState();
     setReferralInvites(state.invites);
 
@@ -1625,7 +1634,7 @@ export default function FriendsTabScreen() {
       const show = await shouldShowReferralAccessEnded(plan, until);
       if (show) setAccessEndedOpen(true);
     } catch { /* нет данных — пропускаем */ }
-  }, []);
+  }, [myProfile?.name]);
 
   /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
   const dismissReferralAccessEnded = useCallback(async () => {
@@ -2087,16 +2096,6 @@ export default function FriendsTabScreen() {
     setCopied(true);
     if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
     copyTimerRef.current = setTimeout(() => setCopied(false), 1800);
-  }, [myCode]);
-
-  const handleShare = useCallback(async () => {
-    if (!myCode) return;
-    hapticTap();
-    const inviteUrl = buildReferralShareLinks(myCode).https;
-    await Share.share({
-      message: inviteUrl,
-      url: inviteUrl,
-    });
   }, [myCode]);
 
   const handleShareFriendCode = useCallback(async () => {
@@ -2634,59 +2633,92 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
-                  {L(
-                    'Получите 7 дней полного Premium-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
-                    'Отримайте 7 днів повного Premium-доступу до всього за одного запрошеного друга, який встановить застосунок, введе ваш код',
-                    'Recibe 7 días de acceso Premium completo a todo por cada amigo invitado que instale la app, introduzca tu código',
-                    'Receba 7 dias de acesso Premium completo a tudo por um amigo convidado que instalar o app, inserir seu código',
-                    'Nhận 7 ngày Premium đầy đủ khi bạn mời một người bạn cài ứng dụng, nhập mã của bạn',
-                    'Dapatkan 7 hari Premium penuh saat teman yang kamu undang memasang aplikasi, memasukkan kodemu',
-                    'Davet ettiğin arkadaş uygulamayı kurup kodunu girerse',
-                    'Otrzymasz 7 dni pełnego Premium za znajomego, który zainstaluje aplikację i wpisze twój kod',
-                  )}
-                  {myCodeLabel ? (
-                    <Text testID="friends-empty-invite-code" style={{ color: t.accent, fontWeight: '900', letterSpacing: 0.8 }}>
-                      {` ${myCodeLabel}`}
+                {referralEnabled ? (
+                  <>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
+                      {L(
+                        'Получите 7 дней полного Premium-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
+                        'Отримайте 7 днів повного Premium-доступу до всього за одного запрошеного друга, який встановить застосунок, введе ваш код',
+                        'Recibe 7 días de acceso Premium completo a todo por cada amigo invitado que instale la app, introduzca tu código',
+                        'Receba 7 dias de acesso Premium completo a tudo por um amigo convidado que instalar o app, inserir seu código',
+                        'Nhận 7 ngày Premium đầy đủ khi bạn mời một người bạn cài ứng dụng, nhập mã của bạn',
+                        'Dapatkan 7 hari Premium penuh saat teman yang kamu undang memasang aplikasi, memasukkan kodemu',
+                        'Davet ettiğin arkadaş uygulamayı kurup kodunu girerse',
+                        'Otrzymasz 7 dni pełnego Premium za znajomego, który zainstaluje aplikację i wpisze twój kod',
+                      )}
+                      {referralCode ? (
+                        <Text testID="friends-empty-invite-code" style={{ color: t.accent, fontWeight: '900', letterSpacing: 0.8 }}>
+                          {` ${referralCode}`}
+                        </Text>
+                      ) : null}
+                      {L(
+                        ' и пройдёт один урок полностью. Друг тоже получит 7 дней полного доступа.',
+                        ' і повністю пройде один урок. Друг теж отримає 7 днів повного доступу.',
+                        ' y complete una lección. Tu amigo también recibirá 7 días.',
+                        ' e concluir uma lição. Ele também recebe 7 dias.',
+                        ' và hoàn thành một bài học. Bạn ấy cũng nhận 7 ngày.',
+                        ' dan menyelesaikan satu pelajaran. Temanmu juga dapat 7 hari.',
+                        ' ve bir dersi tamamen bitirirse 7 gün tam Premium erişim kazanırsın. Arkadaşın da 7 gün alır.',
+                        ' i ukończy jedną lekcję. Znajomy też dostanie 7 dni.',
+                      )}
                     </Text>
-                  ) : null}
-                  {L(
-                    ' и пройдёт один урок полностью. Друг тоже получит 7 дней полного доступа.',
-                    ' і повністю пройде один урок. Друг теж отримає 7 днів повного доступу.',
-                    ' y complete una lección. Tu amigo también recibirá 7 días.',
-                    ' e concluir uma lição. Ele também recebe 7 dias.',
-                    ' và hoàn thành một bài học. Bạn ấy cũng nhận 7 ngày.',
-                    ' dan menyelesaikan satu pelajaran. Temanmu juga dapat 7 hari.',
-                    ' ve bir dersi tamamen bitirirse 7 gün tam Premium erişim kazanırsın. Arkadaşın da 7 gün alır.',
-                    ' i ukończy jedną lekcję. Znajomy też dostanie 7 dni.',
-                  )}
-                </Text>
-                <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
-                  <DuoPressable
-                    testID="friends-empty-invite"
-                    onPress={() => { void handleShare(); }}
-                    edgeColor={t.accent}
-                    wrapStyle={{ flex: 1 }}
-                    style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
-                  >
-                    <Ionicons name="share-social" size={20} color={t.correctText} />
-                    <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
-                      {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
-                    </Text>
-                  </DuoPressable>
-                  <TapScale
-                    testID="friends-empty-enter-code"
-                    onPress={() => { hapticTap(); router.push('/referral_code_entry' as any); }}
-                    style={{ flex: 1, height: 58, backgroundColor: 'transparent', borderRadius: 14, borderWidth: 1, borderColor: t.border }}
-                  >
-                    <View style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
-                      <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
-                      <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
-                        {L('Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod')}
-                      </Text>
+                    <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
+                      <DuoPressable
+                        testID="friends-empty-invite"
+                        onPress={() => { void handleReferralInvite(); }}
+                        edgeColor={t.accent}
+                        wrapStyle={{ flex: 1 }}
+                        style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
+                      >
+                        <Ionicons name="share-social" size={20} color={t.correctText} />
+                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                          {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
+                        </Text>
+                      </DuoPressable>
+                      <TapScale
+                        testID="friends-empty-enter-code"
+                        onPress={() => { hapticTap(); router.push('/referral_code_entry' as any); }}
+                        style={{ flex: 1, height: 58, backgroundColor: 'transparent', borderRadius: 14, borderWidth: 1, borderColor: t.border }}
+                      >
+                        <View style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
+                          <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
+                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                            {L('Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod')}
+                          </Text>
+                        </View>
+                      </TapScale>
                     </View>
-                  </TapScale>
-                </View>
+                  </>
+                ) : (
+                  <>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
+                      {L(
+                        'Добавьте друзей по коду или нику — соревнуйтесь в лигах и дарите подарки.',
+                        'Додайте друзів за кодом або ніком — змагайтеся в лігах і даруйте подарунки.',
+                        'Agrega amigos por código o apodo: compitan en ligas y envíen regalos.',
+                        'Adicione amigos por código ou apelido — compita em ligas e troque presentes.',
+                        'Thêm bạn bằng mã hoặc biệt danh — thi đua trong giải và tặng quà.',
+                        'Tambahkan teman lewat kode atau nama — berkompetisi di liga dan beri hadiah.',
+                        'Kod veya takma adla arkadaş ekle — liglerde yarış ve hediye gönder.',
+                        'Dodaj znajomych po kodzie lub nicku — rywalizujcie w ligach i dawajcie prezenty.',
+                      )}
+                    </Text>
+                    <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
+                      <DuoPressable
+                        testID="friends-empty-add"
+                        onPress={() => { hapticTap(); setAddModalOpen(true); }}
+                        edgeColor={t.accent}
+                        wrapStyle={{ flex: 1 }}
+                        style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
+                      >
+                        <Ionicons name="person-add" size={20} color={t.correctText} />
+                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                          {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
+                        </Text>
+                      </DuoPressable>
+                    </View>
+                  </>
+                )}
               </View>
             ) : sortedFriends.map((profile, i) => (
                 <FriendRow

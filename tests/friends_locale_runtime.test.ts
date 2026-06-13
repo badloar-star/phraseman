@@ -49,11 +49,16 @@ describe('friends tab locale runtime', () => {
     expect(source).toContain(
       'Получите 7 дней полного Premium-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
     );
-    expect(source).toContain("const myCodeLabel = useMemo(() => (myCode ?? '').trim().toUpperCase(), [myCode]);");
+    // На карточке показываем РЕФЕРАЛЬНЫЙ код (referral_codes), не friend-код — иначе друг
+    // ввёл бы friend-код, которого нет в referral_codes, и наград не было бы (C1).
+    expect(source).toContain('const [referralCode, setReferralCode]');
     expect(source).toContain('testID="friends-empty-invite-code"');
+    expect(source).toContain('{` ${referralCode}`}');
     expect(source).toContain("style={{ color: t.accent, fontWeight: '900', letterSpacing: 0.8 }}");
     expect(source).toContain(' і повністю пройде один урок.');
     expect(source).not.toContain('testID="friends-referral-seven-plus-seven-note"');
+    // «Запросити» делится реферальной ссылкой через handleReferralInvite (не friend-кодом).
+    expect(source).toContain('void handleReferralInvite()');
     expect(source).toContain("router.push('/referral_code_entry' as any)");
     expect(source).toContain("router.push('/referrals' as any)");
     expect(source).toContain('Рефералы');

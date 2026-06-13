@@ -21,6 +21,7 @@ import {
   getClaimableReferralState,
   type ReferralInvite,
 } from './referral_vip';
+import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
 
 function makeL(lang: Lang) {
   return (
@@ -41,6 +42,27 @@ function shortInviteName(invite: ReferralInvite): string {
   return id.length <= 6 ? id : id.slice(-6).toUpperCase();
 }
 
+const UNTIL_LOCALE: Record<Lang, string> = {
+  ru: 'ru-RU', uk: 'uk-UA', es: 'es-ES', 'pt-BR': 'pt-BR',
+  vi: 'vi-VN', id: 'id-ID', tr: 'tr-TR', pl: 'pl-PL',
+};
+
+/** «до 20 июня» из vip_until (ms). Пусто, если даты нет. */
+function formatUntilLabel(untilMs: number, lang: Lang): string | undefined {
+  if (!Number.isFinite(untilMs) || untilMs <= 0) return undefined;
+  try {
+    const d = new Date(untilMs);
+    const formatted = d.toLocaleDateString(UNTIL_LOCALE[lang] ?? 'en-US', { day: 'numeric', month: 'long' });
+    return triLang(lang, {
+      ru: `до ${formatted}`, uk: `до ${formatted}`, es: `hasta el ${formatted}`,
+      'pt-BR': `até ${formatted}`, vi: `đến ${formatted}`, id: `sampai ${formatted}`,
+      tr: `${formatted} tarihine kadar`, pl: `do ${formatted}`,
+    });
+  } catch {
+    return undefined;
+  }
+}
+
 export default function ReferralsScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
@@ -51,6 +73,8 @@ export default function ReferralsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  /** Праздничный модал после успешного начисления (раньше показывался только в QA-лабе). */
+  const [activated, setActivated] = useState<{ grantedDays: number; friendsCount: number; untilLabel?: string } | null>(null);
 
   const load = useCallback(async () => {
     const state = await getClaimableReferralState();
@@ -95,16 +119,12 @@ export default function ReferralsScreen() {
     setMessage(null);
     const result = await claimReferralVipDays();
     if (result.ok) {
-      setMessage(L(
-        `Готово: вы получили ${result.granted} дней полного доступа.`,
-        `Готово: ви отримали ${result.granted} днів повного доступу.`,
-        `Listo: recibiste ${result.granted} días de acceso completo.`,
-        `Pronto: você recebeu ${result.granted} dias de acesso completo.`,
-        `Xong: bạn đã nhận ${result.granted} ngày truy cập đầy đủ.`,
-        `Selesai: kamu mendapat ${result.granted} hari akses penuh.`,
-        `Hazır: ${result.granted} gün tam erişim aldın.`,
-        `Gotowe: masz ${result.granted} dni pełnego dostępu.`,
-      ));
+      // Праздничный модал вместо сухой строки (раньше показывался только в QA-лабе).
+      setActivated({
+        grantedDays: result.granted,
+        friendsCount: result.friends,
+        untilLabel: formatUntilLabel(result.vipUntilMs, lang as Lang),
+      });
       await load().catch(() => {});
     } else if (result.reason === 'nothing') {
       showNotReady();
@@ -121,12 +141,14 @@ export default function ReferralsScreen() {
       ));
     }
     setClaiming(false);
-  }, [L, claiming, load, showNotReady]);
+  }, [L, claiming, lang, load, showNotReady]);
 
   const renderInvite = (invite: ReferralInvite, index: number) => {
     const qualified = invite.status === 'qualified';
     const rewarded = invite.status === 'rewarded';
     const skipped = invite.status === 'skipped_referrer_cap';
+    // skipped (legacy «лимит месяца») теперь тоже claimable — сервер принимает эти строки (M1).
+    const claimable = qualified || skipped;
     const statusText = rewarded
       ? L('VIP уже получен', 'VIP уже отримано', 'VIP recibido', 'VIP recebido', 'Đã nhận VIP', 'VIP sudah diambil', 'VIP alındı', 'VIP odebrany')
       : qualified
@@ -147,19 +169,19 @@ export default function ReferralsScreen() {
           padding: 14,
           backgroundColor: t.bgCard,
           borderWidth: 1,
-          borderColor: qualified ? t.accent : t.border,
+          borderColor: claimable ? t.accent : t.border,
           gap: 12,
         }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
-            <Ionicons name={qualified ? 'sparkles-outline' : 'person-outline'} size={22} color={qualified ? t.accent : t.textMuted} />
+            <Ionicons name={claimable ? 'sparkles-outline' : 'person-outline'} size={22} color={claimable ? t.accent : t.textMuted} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900' }} numberOfLines={1}>
               {L(`Друг #${shortInviteName(invite)}`, `Друг #${shortInviteName(invite)}`, `Amigo #${shortInviteName(invite)}`, `Amigo #${shortInviteName(invite)}`, `Bạn #${shortInviteName(invite)}`, `Teman #${shortInviteName(invite)}`, `Arkadaş #${shortInviteName(invite)}`, `Znajomy #${shortInviteName(invite)}`)}
             </Text>
-            <Text style={{ color: qualified ? t.accent : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '800', marginTop: 2 }}>
+            <Text style={{ color: claimable ? t.accent : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '800', marginTop: 2 }}>
               {statusText}
             </Text>
           </View>
@@ -169,7 +191,7 @@ export default function ReferralsScreen() {
           accessibilityRole="button"
           activeOpacity={0.82}
           disabled={claiming || rewarded}
-          onPress={qualified ? claim : showNotReady}
+          onPress={claimable ? claim : showNotReady}
           style={{
             minHeight: 48,
             borderRadius: 14,
@@ -177,12 +199,12 @@ export default function ReferralsScreen() {
             justifyContent: 'center',
             flexDirection: 'row',
             gap: 8,
-            backgroundColor: qualified && !rewarded ? t.accent : t.bgSurface,
+            backgroundColor: claimable && !rewarded ? t.accent : t.bgSurface,
             opacity: rewarded ? 0.62 : 1,
           }}
         >
-          {claiming && qualified ? <ActivityIndicator color={t.correctText} /> : <Ionicons name="diamond-outline" size={18} color={qualified && !rewarded ? t.correctText : t.textMuted} />}
-          <Text style={{ color: qualified && !rewarded ? t.correctText : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '900' }}>
+          {claiming && claimable ? <ActivityIndicator color={t.correctText} /> : <Ionicons name="diamond-outline" size={18} color={claimable && !rewarded ? t.correctText : t.textMuted} />}
+          <Text style={{ color: claimable && !rewarded ? t.correctText : t.textMuted, fontSize: f.sub ?? 13, fontWeight: '900' }}>
             {buttonText}
           </Text>
         </TouchableOpacity>
@@ -259,6 +281,16 @@ export default function ReferralsScreen() {
             </View>
           ) : null}
         </ScrollView>
+
+        <ReferralAccessActivatedModal
+          visible={activated !== null}
+          grantedDays={activated?.grantedDays ?? 0}
+          friendsCount={activated?.friendsCount ?? 0}
+          untilLabel={activated?.untilLabel}
+          onClose={() => setActivated(null)}
+          L={L}
+          t={t}
+        />
       </SafeAreaView>
     </ScreenGradient>
   );

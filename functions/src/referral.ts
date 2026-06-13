@@ -7,9 +7,11 @@
  *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
  *   2. referralApply — referee вводит код (deeplink/manual). Идемпотентно, антифрод по возрасту аккаунта.
  *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
- *   3. referee проходит урок 1 (>= бронзы ⇒ unlocked_lessons содержит 2). Его cloud_sync и так
- *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated помечает attribution
- *      status='qualified' и сразу начисляет приглашённому его 7 дней.
+ *   3. referee РЕАЛЬНО проходит урок 1 (>= бронзы ⇒ lesson1_pass_count >= 1, для fr —
+ *      scoped-ключ lesson_progress_v2::fr::lesson1_pass_count). Сервер пишет pass_count только
+ *      при passed; триггер referralOnUserProgressUpdated помечает attribution status='qualified'
+ *      и сразу начисляет приглашённому его 7 дней. НЕ по unlocked_lessons (урок открывается и без
+ *      прохождения — premium/intro/зачёт), иначе ложная квалификация и невидимый fr-курс.
  *   4. referrer в /friends видит qualified-друга и сам жмёт «Открыть» → referralClaimVipReward:
  *      одна транзакция, +7 дней VIP пригласившему (стак vip_until), attribution → 'rewarded'.
  *
@@ -67,29 +69,38 @@ type AttributionStatus =
   | 'rewarded'
   | 'skipped_referrer_cap';
 
-function parseUnlockedLessons(raw: unknown): number[] {
-  if (raw == null) return [];
-  if (Array.isArray(raw)) {
-    return raw.map((n) => Number(n)).filter((n) => Number.isFinite(n));
+/**
+ * Ключи «урок 1 реально пройден» (pass_count >= 1), которые сервер пишет ТОЛЬКО при
+ * passed (score >= 2.5) — см. functions/src/progress_events.ts:applyLessonFields.
+ *  - EN/legacy:  lesson1_pass_count
+ *  - FR (scoped): lesson_progress_v2::fr::lesson1_pass_count
+ * НЕ используем unlocked_lessons: урок 2 открывается и без прохождения (premium/intro-триал
+ * открывает весь уровень, сдача зачёта уровня, fallback-открытие) — это давало ложную
+ * квалификацию (C2) и не видело fr-курс (C3).
+ */
+const LESSON1_PASS_KEYS = ['lesson1_pass_count', 'lesson_progress_v2::fr::lesson1_pass_count'] as const;
+
+/**
+ * Чистая функция: пройден ли РЕАЛЬНО первый урок (любого курса). Экспортируется для тестов.
+ * `progress` — это users/{id}.progress (map строк).
+ */
+export function hasCompletedFirstLesson(
+  progress: Record<string, unknown> | undefined,
+): boolean {
+  if (!progress) return false;
+  for (const key of LESSON1_PASS_KEYS) {
+    const n = Number(progress[key]);
+    if (Number.isFinite(n) && n >= 1) return true;
   }
-  if (typeof raw === 'string') {
-    try {
-      const j = JSON.parse(raw) as unknown;
-      return Array.isArray(j) ? j.map((n) => Number(n)).filter((n) => Number.isFinite(n)) : [];
-    } catch {
-      return [];
-    }
-  }
-  return [];
+  return false;
 }
 
 function hasLesson1DoneProgress(
   root: admin.firestore.DocumentData | undefined,
 ): boolean {
   if (!root) return false;
-  const p = (root as { progress?: Record<string, string> })?.progress;
-  const u = p?.unlocked_lessons;
-  return parseUnlockedLessons(u).includes(2);
+  const p = (root as { progress?: Record<string, unknown> })?.progress;
+  return hasCompletedFirstLesson(p);
 }
 
 /** Текущее VIP-окно referrer'а из users/{id}.progress (ms). Не активные/пустые → 0. */
@@ -386,9 +397,11 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
     if (!after) return;
     const beforeExists = event.data?.before?.exists;
     const before = beforeExists ? event.data?.before.data() : undefined;
-    const pA = (after as { progress?: Record<string, string> })?.progress;
-    const pB = (before as { progress?: Record<string, string> } | undefined)?.progress;
-    if (pA?.unlocked_lessons === pB?.unlocked_lessons) return;
+    const pA = (after as { progress?: Record<string, unknown> })?.progress;
+    const pB = (before as { progress?: Record<string, unknown> } | undefined)?.progress;
+    // Дёшево выходим, если сигнал «урок 1 пройден» не изменился (любой из pass-ключей).
+    const unchanged = LESSON1_PASS_KEYS.every((k) => pA?.[k] === pB?.[k]);
+    if (unchanged) return;
     if (!hasLesson1DoneProgress(after)) return;
 
     const db = admin.firestore();
@@ -473,11 +486,13 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
   const db = admin.firestore();
   await assertAuthStableLink(db, authUid, referrerStableId);
 
-  // Какие приглашения этого referrer'а готовы к обналичиванию (qualified, ещё не rewarded).
+  // Какие приглашения этого referrer'а готовы к обналичиванию (ещё не rewarded).
+  // Включаем и legacy 'skipped_referrer_cap' — раньше эти строки застревали навсегда (M1);
+  // теперь они тоже claimable (восстановление ранее потерянных наград).
   const qualifiedSnap = await db
     .collection(REFERRAL_ATTRIBUTIONS)
     .where('referrerStableId', '==', referrerStableId)
-    .where('status', '==', 'qualified')
+    .where('status', 'in', ['qualified', 'skipped_referrer_cap'])
     .limit(MAX_CLAIMS_PER_CALL)
     .get();
 
@@ -520,19 +535,20 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
       const snap = attSnaps[i];
       if (!snap.exists) continue;
       const row = snap.data() as { status?: string } | undefined;
-      if (row?.status !== 'qualified') continue; // уже обналичено в гонке — пропускаем
+      // Принимаем qualified и legacy skipped_referrer_cap; 'rewarded'/прочее — пропуск (гонка).
+      if (row?.status !== 'qualified' && row?.status !== 'skipped_referrer_cap') continue;
 
       if (usedThisMonth >= MAX_REFERRER_CLAIMS_PER_MONTH) {
+        // Достигнут месячный кап. НЕ понижаем статус (раньше ставили 'skipped_referrer_cap',
+        // и эти 7 дней терялись НАВСЕГДА — UI же обещает «откроется в следующем месяце»).
+        // Оставляем 'qualified': в следующем месяце пользователь дожмёт «Открыть» и получит их.
         cappedThisMonth = true;
         tx.set(
           attRefs[i],
-          {
-            status: 'skipped_referrer_cap' as AttributionStatus,
-            cappedAt: admin.firestore.FieldValue.serverTimestamp(),
-          },
+          { lastCappedAt: admin.firestore.FieldValue.serverTimestamp() },
           { merge: true },
         );
-        continue;
+        break; // остаток qualified-друзей в этом месяце тоже за капом — выходим.
       }
 
       // Стак: +7 дней от текущего конца окна (или от now, если окна не было).

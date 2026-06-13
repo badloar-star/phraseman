@@ -1,12 +1,54 @@
 import {
   REFERRAL_REWARD_DAYS,
   buildReferralVipProgressPatch,
+  hasCompletedFirstLesson,
   stackVipUntilMs,
   vipUntilFromProgress,
 } from './referral';
 
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1_700_000_000_000; // фиксированный «сейчас» для детерминизма
+
+describe('hasCompletedFirstLesson — квалификация = РЕАЛЬНО пройден урок 1, не «открыт»', () => {
+  it('false для пустого/отсутствующего прогресса', () => {
+    expect(hasCompletedFirstLesson(undefined)).toBe(false);
+    expect(hasCompletedFirstLesson({})).toBe(false);
+  });
+
+  // C2: «открыт урок 2» НЕ значит «пройден урок 1». Premium/intro-триал/сдача зачёта
+  // открывают уроки без прохождения — это НЕ должно квалифицировать друга.
+  it('false когда урок 2 лишь ОТКРЫТ, но урок 1 не пройден (premium/intro/exam-unlock)', () => {
+    expect(hasCompletedFirstLesson({ unlocked_lessons: '[1,2,3]' })).toBe(false);
+    expect(hasCompletedFirstLesson({ unlocked_lessons: JSON.stringify([1, 2]) })).toBe(false);
+    // весь уровень открыт премиумом — но ни одного pass_count
+    const premiumUnlockAll: Record<string, string> = { unlocked_lessons: JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8]) };
+    expect(hasCompletedFirstLesson(premiumUnlockAll)).toBe(false);
+  });
+
+  it('true когда урок 1 реально пройден (EN: lesson1_pass_count >= 1)', () => {
+    expect(hasCompletedFirstLesson({ lesson1_pass_count: '1' })).toBe(true);
+    expect(hasCompletedFirstLesson({ lesson1_pass_count: '3', unlocked_lessons: '[1,2]' })).toBe(true);
+  });
+
+  it('false когда pass_count нулевой/мусорный', () => {
+    expect(hasCompletedFirstLesson({ lesson1_pass_count: '0' })).toBe(false);
+    expect(hasCompletedFirstLesson({ lesson1_pass_count: 'abc' })).toBe(false);
+  });
+
+  // C3: французский курс пишет scoped-ключ. Раньше триггер его не видел → fr никогда не квалифицировался.
+  it('true когда урок 1 пройден на ФРАНЦУЗСКОМ (scoped key lesson_progress_v2::fr::lesson1_pass_count)', () => {
+    expect(hasCompletedFirstLesson({ 'lesson_progress_v2::fr::lesson1_pass_count': '1' })).toBe(true);
+  });
+
+  it('false когда на fr урок 2 лишь открыт, но урок 1 не пройден', () => {
+    expect(hasCompletedFirstLesson({ 'lesson_progress_v2::fr::unlocked_lessons': '[1,2]' })).toBe(false);
+  });
+
+  it('поддерживает number и string значения pass_count', () => {
+    expect(hasCompletedFirstLesson({ lesson1_pass_count: 1 as unknown as string })).toBe(true);
+    expect(hasCompletedFirstLesson({ lesson1_pass_count: 0 as unknown as string })).toBe(false);
+  });
+});
 
 describe('vipUntilFromProgress', () => {
   it('returns 0 for empty/missing progress', () => {

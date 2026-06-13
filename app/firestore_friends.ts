@@ -151,10 +151,10 @@ export async function readCachedMyInviteCodeForFriends(): Promise<string | null>
 }
 
 /**
- * Код для экрана «Друзья»: тот же 6-символьный, что и реферальный (если облако + аккаунт привязан),
- * иначе — legacy friend_code / локальная генерация (как ensureMyFriendCode).
- *
- * referral_system подгружается лениво, чтобы тесты без Firebase могли импортировать этот файл.
+ * FRIEND-код для экрана «Друзья» (добавление в друзья по коду / поиск). Это НЕ реферальный код:
+ * friend-код живёт в friend_code_index, а реферальный — в referral_codes (functions/src/referral.ts).
+ * Для «Пригласить ради 7 дней» используйте generateReferralCode/getReferralCode (referral_system.ts),
+ * иначе друг введёт friend-код, которого нет в referral_codes, и получит «код не найден».
  */
 export async function ensureMyInviteCodeForFriends(_displayNameForReferralDefault: string): Promise<string | null> {
   return ensureMyFriendCode();

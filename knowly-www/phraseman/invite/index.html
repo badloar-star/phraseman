@@ -6,7 +6,6 @@
   <title data-i18n-key="title">Phraseman Invite</title>
   <script>
     (function () {
-      var isAndroid = /Android/i.test(navigator.userAgent);
       var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       var params = new URLSearchParams(window.location.search);
@@ -14,6 +13,12 @@
       var androidStore = 'https://play.google.com/store/apps/details?id=app.phraseman' +
         (ref ? '&referrer=' + encodeURIComponent('ref=' + ref) : '');
       var iosStore = 'https://apps.apple.com/app/id6764800879';
+      // НЕ редиректим автоматически на iOS, когда есть код приглашения: код кладётся в буфер
+      // только по клику пользователя (clipboard.writeText требует жеста), а ранний replace
+      // уводил в App Store ДО копирования — автоподстановка кода ломалась. Пусть пользователь
+      // нажмёт кнопку (она и скопирует, и перейдёт). Android (Install Referrer) и iOS-без-кода
+      // редиректим сразу как раньше.
+      if (isiOS && ref) return;
       window.location.replace(isiOS ? iosStore : androidStore);
     })();
   </script>

@@ -84,7 +84,7 @@ function planReason(planId: PersonalPlanId): string {
 
 function planTagline(planId: PersonalPlanId): string {
   switch (planId) {
-    case 'voyazh': return '✈️ Путешествия и дорога';
+    case 'voyazh': return '🗺️ Путешествия и дорога';
     case 'mitap': return '🧠 Язык для ума';
     case 'gavan': return '📦 Запас нужных слов';
     case 'impuls': return '💬 Живое общение';

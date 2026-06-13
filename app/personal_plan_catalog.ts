@@ -1862,7 +1862,7 @@ const echoDay7Generated: PlanDay = {
 export const PERSONAL_PLAN_CATALOG: PersonalPlanDefinition[] = [
   {
     id: 'voyazh',
-    name: 'Компас',
+    name: 'Атлас',
     goal: 'Спокойно объясняться в любой поездке.',
     horizonWeeks: 12,
     recommendedLevel: 'A2',

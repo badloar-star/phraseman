@@ -3,7 +3,7 @@
 // контекста, соцстрока (рейтинг ТОЛЬКО из конфига), sticky-CTA и разделитель.
 // Дизайн-язык «Атриум»: один акцент темы, hairline-линии, медленный свет.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
   View, Text, Platform, StyleSheet, TouchableOpacity,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
@@ -150,30 +150,43 @@ export function PaywallSectionDivider({ label, chrome }: { label: string; chrome
 // Правило без исключений во всех гайдах: CTA+цена видны всегда; на длинных
 // экранах это решает закреплённый бар (+31% конверсии в сопоставимых замерах).
 export function useStickyCta() {
-  const [ctaTop, setCtaTop] = useState(0);
-  const [ctaBottom, setCtaBottom] = useState(0);
-  const [viewportH, setViewportH] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
+  // H-PAYSCROLL: раньше onScroll делал setScrollY на КАЖДЫЙ кадр скролла (~30/с при
+  // scrollEventThrottle=32), перерисовывая всё дерево пейвола → джанк на слабом Android.
+  // Теперь геометрия (scrollY и layout-метрики) живёт в ref, а в state попадает ТОЛЬКО
+  // булево `visible` и только когда оно реально меняется (1–2 раза за показ/скрытие).
+  const [visible, setVisible] = useState(false);
+  const metricsRef = useRef({ ctaTop: 0, ctaBottom: 0, viewportH: 0, scrollY: 0 });
+  const visibleRef = useRef(false);
+
+  const recompute = useCallback(() => {
+    const { ctaTop, ctaBottom, viewportH, scrollY } = metricsRef.current;
+    const measured = ctaBottom > 0 && viewportH > 0;
+    const ctaAboveViewport = measured && ctaBottom < scrollY + 36;
+    const ctaBelowViewport = measured && ctaTop > scrollY + viewportH - 36;
+    const next = measured && (ctaAboveViewport || ctaBelowViewport);
+    if (next !== visibleRef.current) {
+      visibleRef.current = next;
+      setVisible(next);
+    }
+  }, []);
 
   /** Повесить на обёртку CTA, лежащую ПРЯМЫМ ребёнком scroll-контента. */
   const onCtaLayout = useCallback((e: LayoutChangeEvent) => {
     const { y, height } = e.nativeEvent.layout;
-    setCtaTop(y);
-    setCtaBottom(y + height);
-  }, []);
+    metricsRef.current.ctaTop = y;
+    metricsRef.current.ctaBottom = y + height;
+    recompute();
+  }, [recompute]);
 
   const onScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setScrollY(e.nativeEvent.contentOffset.y);
-  }, []);
+    metricsRef.current.scrollY = e.nativeEvent.contentOffset.y;
+    recompute();
+  }, [recompute]);
 
   const onViewportLayout = useCallback((e: LayoutChangeEvent) => {
-    setViewportH(e.nativeEvent.layout.height);
-  }, []);
-
-  const measured = ctaBottom > 0 && viewportH > 0;
-  const ctaAboveViewport = measured && ctaBottom < scrollY + 36;
-  const ctaBelowViewport = measured && ctaTop > scrollY + viewportH - 36;
-  const visible = measured && (ctaAboveViewport || ctaBelowViewport);
+    metricsRef.current.viewportH = e.nativeEvent.layout.height;
+    recompute();
+  }, [recompute]);
 
   return { visible, onCtaLayout, onScroll, onViewportLayout };
 }

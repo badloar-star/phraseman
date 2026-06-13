@@ -496,6 +496,15 @@ export default function LessonComplete() {
   const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
   const activeNotifVisible = useOverlayVisible('lessonCompleteNotif', activeNotif != null);
 
+  // ReviewModal показывается только когда очередь нотификаций опустела — без конфликта.
+  // pendingReview хранит намерение «показать ревью», а useEffect ждёт тишины.
+  const pendingReview = useRef(false);
+  useEffect(() => {
+    if (activeNotif || !pendingReview.current) return;
+    pendingReview.current = false;
+    setShowReview(true);
+  }, [activeNotif]);
+
   // Дроп карточки «Сокровищницы»: сервер решает (шанс/кап/без дублей), мы лишь
   // показываем сюрприз ПОСЛЕ всей очереди наград — никогда поверх других модалок.
   const [pendingCardDrop, setPendingCardDrop] = useState<CollectibleDropOutcome | null>(null);
@@ -651,7 +660,7 @@ export default function LessonComplete() {
       const eligible = await canShowReview();
       if (eligible) {
         setReviewContext(wasPerfect ? 'perfect_lesson' : 'general');
-        setShowReview(true);
+        pendingReview.current = true;
       }
 // [SHARDS] 5 уроков подряд без ошибок
       if (perfectCount > 0 && perfectCount % 5 === 0) {

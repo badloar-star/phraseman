@@ -1,0 +1,1218 @@
+import type { PlanContentDay } from './plan_content_schema';
+
+export const IMPULS_DAY_1: PlanContentDay = {
+  planId: 'impuls',
+  dayIndex: 1,
+  topic: { ru: 'Тебя спросили How are you, а ты завис', uk: 'Тебе запитали How are you, а ти завис', es: 'Te preguntaron How are you y te quedaste en blanco' },
+  outcome: {
+    ru: 'Ты отвечаешь на How are you легко и естественно, не теряясь',
+    uk: 'Ти відповідаєш на How are you легко і природно, не гублячись',
+    es: 'Puedes responder a How are you de forma fácil y natural, sin quedarte en blanco',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1],
+  intro: [
+    {
+      kind: 'tip',
+      title: { ru: 'Один вопрос — и ты завис', uk: 'Одне питання — і ти завис', es: 'Una pregunta y te quedaste en blanco' },
+      body: {
+        ru: 'Тебя спрашивают How are you? — и ты молчишь. Это бывает со всеми. Сегодня ты научишься отвечать сразу, без паузы. Главное: не нужно говорить идеально. Нужно просто сказать что-то живое.',
+        uk: 'Тебе питають How are you? — і ти мовчиш. Це буває з усіма. Сьогодні ти навчишся відповідати одразу, без паузи. Головне: не треба говорити ідеально. Треба просто сказати щось живе.',
+        es: 'Te preguntan How are you? y te quedas en silencio. Le pasa a todo el mundo. Hoy aprenderás a responder de inmediato, sin pausa. Lo importante: no tienes que hablar perfecto. Solo di algo natural.',
+      },
+      examples: [
+        { en: 'I\'m good, you?', gloss: { ru: 'Всё хорошо, а ты?', uk: 'Все добре, а ти?', es: 'Bien, ¿y tú?' } },
+        { en: 'I\'m fine, thanks.', gloss: { ru: 'Я в порядке, спасибо.', uk: 'Я в порядку, дякую.', es: 'Estoy bien, gracias.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Почему I\'m, а не I are?', uk: 'Чому I\'m, а не I are?', es: '¿Por qué I\'m y no I are?' },
+      body: {
+        ru: 'В английском перед каждым именем или «я/ты/он» всегда стоит маленькое слово-связка: am, is или are. Для «я» это всегда am. I\'m — это просто короткая форма I am. Именно так говорят живые люди, не учебники.',
+        uk: 'В англійській перед кожним іменем або «я/ти/він» завжди стоїть маленьке слово-зв\'язка: am, is або are. Для «я» це завжди am. I\'m — це просто коротка форма I am. Саме так говорять живі люди, не підручники.',
+        es: 'En inglés, antes de cada nombre o «yo/tú/él» siempre va una pequeña palabra de enlace: am, is o are. Para «yo» siempre es am. I\'m es simplemente la forma corta de I am. Así habla la gente real, no los libros de texto.',
+      },
+      examples: [
+        { en: 'I am good. → I\'m good.', gloss: { ru: 'Я в порядке. → Я в порядке. (коротко)', uk: 'Я в порядку. → Я в порядку. (коротко)', es: 'Estoy bien. → Estoy bien. (forma corta)' } },
+        { en: 'She is tired. → She\'s tired.', gloss: { ru: 'Она устала. → Она устала. (коротко)', uk: 'Вона втомилася. → Вона втомилася. (коротко)', es: 'Ella está cansada. → Ella está cansada. (forma corta)' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Перебрось мяч обратно', uk: 'Кинь м\'яч назад', es: 'Devuelve la pelota' },
+      body: {
+        ru: 'После ответа добавь «you?» — и разговор продолжается сам. Ты ничего не придумываешь, просто возвращаешь вопрос. Это работает всегда и звучит совершенно естественно.',
+        uk: 'Після відповіді додай «you?» — і розмова продовжується сама. Ти нічого не вигадуєш, просто повертаєш питання. Це працює завжди і звучить цілком природно.',
+        es: 'Después de responder, añade «you?» y la conversación continúa sola. No tienes que inventar nada, solo devuelves la pregunta. Funciona siempre y suena completamente natural.',
+      },
+      examples: [
+        { en: 'I\'m good, you?', gloss: { ru: 'Всё хорошо, а ты?', uk: 'Все добре, а ти?', es: 'Bien, ¿y tú?' } },
+        { en: 'I\'m tired. And you?', gloss: { ru: 'Я устал. А ты?', uk: 'Я втомився. А ти?', es: 'Estoy cansado. ¿Y tú?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'impuls_d1_p1',
+      english: 'I\'m good, you?',
+      meaning: { ru: 'Всё хорошо, а ты?', uk: 'Все добре, а ти?', es: 'Bien, ¿y tú?' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Самый живой ответ', uk: 'Найживіша відповідь', es: 'La respuesta más natural' },
+        rule: { ru: 'I\'m = я есть. Good = хорошо. You? в конце — перебрасываешь вопрос обратно.', uk: 'I\'m = я є. Good = добре. You? в кінці — повертаєш питання назад.', es: 'I\'m = yo estoy. Good = bien. You? al final devuelves la pregunta.' },
+        why: { ru: 'Так говорят все живые носители. Не I am fine, thank you — это слишком официально.', uk: 'Так говорять усі живі носії. Не I am fine, thank you — це занадто офіційно.', es: 'Así hablan todos los nativos. No I am fine, thank you — eso suena demasiado formal.' },
+        commonMistake: { ru: 'Не говори «I am good» без сокращения — звучит как робот.', uk: 'Не кажи «I am good» без скорочення — звучить як робот.', es: 'No digas «I am good» sin contracción — suena como un robot.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['He\'s', 'She\'s', 'We\'re', 'They\'re', 'You\'re'] },
+        { text: 'good', partOfSpeech: 'adjective', distractors: ['bad', 'tired', 'sick', 'busy', 'sad'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+      ],
+    },
+    {
+      id: 'impuls_d1_p2',
+      english: 'I\'m fine, thanks.',
+      meaning: { ru: 'Я в порядке, спасибо.', uk: 'Я в порядку, дякую.', es: 'Estoy bien, gracias.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Короткий и вежливый', uk: 'Короткий і ввічливий', es: 'Corto y educado' },
+        rule: { ru: 'Fine = в порядке. Thanks — короткое спасибо. Вместе — готовый вежливый ответ.', uk: 'Fine = в порядку. Thanks — коротке дякую. Разом — готова ввічлива відповідь.', es: 'Fine = bien. Thanks = gracias en forma corta. Juntas forman una respuesta educada.' },
+        why: { ru: 'Thanks звучит теплее и живее, чем thank you в быстром разговоре.', uk: 'Thanks звучить тепліше і живіше, ніж thank you у швидкій розмові.', es: 'Thanks suena más cálido y natural que thank you en una conversación rápida.' },
+        commonMistake: { ru: 'Не путай fine (в порядке) и find (найти) — произносятся похоже.', uk: 'Не плутай fine (в порядку) і find (знайти) — вимовляються схоже.', es: 'No confundas fine (bien) con find (encontrar) — se pronuncian parecido.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['He\'s', 'She\'s', 'We\'re', 'They\'re', 'You\'re'] },
+        { text: 'fine', partOfSpeech: 'adjective', distractors: ['bad', 'tired', 'sick', 'angry', 'sad'] },
+        { text: 'thanks', partOfSpeech: 'other', distractors: ['sorry', 'please', 'hello', 'goodbye', 'maybe'] },
+      ],
+    },
+    {
+      id: 'impuls_d1_p3',
+      english: 'I\'m tired today.',
+      meaning: { ru: 'Я сегодня устал.', uk: 'Я сьогодні втомився.', es: 'Hoy estoy cansado.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Когда всё не так хорошо', uk: 'Коли все не так добре', es: 'Cuando no estás tan bien' },
+        rule: { ru: 'Tired = устал. Today = сегодня. Можно честно сказать как ты себя чувствуешь.', uk: 'Tired = втомився. Today = сьогодні. Можна чесно сказати, як ти себе почуваєш.', es: 'Tired = cansado. Today = hoy. Puedes decir honestamente cómo te sientes.' },
+        why: { ru: 'Не обязательно всегда отвечать good. Честный ответ звучит живо и человечно.', uk: 'Не обов\'язково завжди відповідати good. Чесна відповідь звучить живо і по-людськи.', es: 'No tienes que responder siempre good. Una respuesta honesta suena viva y humana.' },
+        commonMistake: { ru: 'Не говори «I tired» без I\'m — без него фраза не работает в английском.', uk: 'Не кажи «I tired» без I\'m — без нього фраза не працює в англійській.', es: 'No digas «I tired» sin I\'m — sin esa palabra la frase no funciona en inglés.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['He\'s', 'She\'s', 'We\'re', 'They\'re', 'You\'re'] },
+        { text: 'tired', partOfSpeech: 'adjective', distractors: ['happy', 'hungry', 'busy', 'ready', 'sick'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['tomorrow', 'yesterday', 'here', 'always', 'never'] },
+      ],
+    },
+    {
+      id: 'impuls_d1_p4',
+      english: 'She is very busy.',
+      meaning: { ru: 'Она очень занята.', uk: 'Вона дуже зайнята.', es: 'Ella está muy ocupada.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Рассказать о другом человеке', uk: 'Розповісти про іншу людину', es: 'Hablar de otra persona' },
+        rule: { ru: 'She = она, is = есть. Для «она» и «он» всегда is, не am и не are.', uk: 'She = вона, is = є. Для «вона» і «він» завжди is, не am і не are.', es: 'She = ella, is = está/es. Para «ella» y «él» siempre is, nunca am ni are.' },
+        why: { ru: 'Very = очень — усиливает любое слово. Very busy = очень занята.', uk: 'Very = дуже — підсилює будь-яке слово. Very busy = дуже зайнята.', es: 'Very = muy, intensifica cualquier palabra. Very busy = muy ocupada.' },
+        commonMistake: { ru: 'Не говори «She are» — are только для you и множественного числа.', uk: 'Не кажи «She are» — are тільки для you і множини.', es: 'No digas «She are» — are solo va con you y el plural.' },
+      },
+      words: [
+        { text: 'She', partOfSpeech: 'pronoun', distractors: ['He', 'We', 'They', 'I', 'You'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'very', partOfSpeech: 'adverb', distractors: ['here', 'now', 'soon', 'always', 'never'] },
+        { text: 'busy', partOfSpeech: 'adjective', distractors: ['free', 'tired', 'happy', 'sick', 'ready'] },
+      ],
+    },
+    {
+      id: 'impuls_d1_p5',
+      english: 'We are all okay.',
+      meaning: { ru: 'Мы все в порядке.', uk: 'Ми всі в порядку.', es: 'Todos estamos bien.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Ответить за всю семью', uk: 'Відповісти за всю сім\'ю', es: 'Responder por toda la familia' },
+        rule: { ru: 'We = мы, are = есть (для «мы»). Okay = в порядке, чуть менее формально, чем fine.', uk: 'We = ми, are = є (для «ми»). Okay = в порядку, трохи менш формально, ніж fine.', es: 'We = nosotros, are = estamos. Okay = bien, un poco menos formal que fine.' },
+        why: { ru: 'All = все — маленькое слово, которое сразу включает всех в ответ.', uk: 'All = всі — маленьке слово, яке одразу включає всіх у відповідь.', es: 'All = todos — una palabra pequeña que incluye a todos en la respuesta.' },
+        commonMistake: { ru: 'Не говори «We is» — is только для he/she/it, не для we.', uk: 'Не кажи «We is» — is тільки для he/she/it, не для we.', es: 'No digas «We is» — is solo va con he/she/it, no con we.' },
+      },
+      words: [
+        { text: 'We', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'I', 'They', 'You'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['am', 'is', 'was', 'were', 'be'] },
+        { text: 'all', partOfSpeech: 'determiner', distractors: ['some', 'no', 'every', 'any', 'few'] },
+        { text: 'okay', partOfSpeech: 'adjective', distractors: ['bad', 'sick', 'tired', 'busy', 'sad'] },
+      ],
+    },
+    {
+      id: 'impuls_d1_p6',
+      english: 'He is not here.',
+      meaning: { ru: 'Его здесь нет.', uk: 'Його тут немає.', es: 'Él no está aquí.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Объяснить, что кого-то нет', uk: 'Пояснити, що когось немає', es: 'Explicar que alguien no está' },
+        rule: { ru: 'Not после is делает фразу отрицательной. He is not = его нет, он не есть здесь.', uk: 'Not після is робить фразу заперечною. He is not = його немає, він не є тут.', es: 'Not después de is hace la frase negativa. He is not = él no está.' },
+        why: { ru: 'Here = здесь. Коротко, понятно, без лишних слов — именно так говорят в жизни.', uk: 'Here = тут. Коротко, зрозуміло, без зайвих слів — саме так говорять у житті.', es: 'Here = aquí. Corto, claro, sin palabras de más — así se habla en la vida real.' },
+        commonMistake: { ru: 'Не говори «He not is here» — not стоит ПОСЛЕ is, а не до.', uk: 'Не кажи «He not is here» — not стоїть ПІСЛЯ is, а не до.', es: 'No digas «He not is here» — not va DESPUÉS de is, no antes.' },
+      },
+      words: [
+        { text: 'He', partOfSpeech: 'pronoun', distractors: ['She', 'We', 'They', 'I', 'You'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'other', distractors: ['very', 'so', 'just', 'only', 'too'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['there', 'now', 'soon', 'always', 'never'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'good', partOfSpeech: 'adjective', translation: { ru: 'хорошо / в порядке', uk: 'добре / в порядку', es: 'bien / bueno' }, example: 'I\'m good, you?' },
+    { word: 'fine', partOfSpeech: 'adjective', translation: { ru: 'в порядке', uk: 'в порядку', es: 'bien' }, example: 'I\'m fine, thanks.' },
+    { word: 'tired', partOfSpeech: 'adjective', translation: { ru: 'уставший / устал', uk: 'втомлений / втомився', es: 'cansado' }, example: 'I\'m tired today.' },
+    { word: 'busy', partOfSpeech: 'adjective', translation: { ru: 'занятый / занята', uk: 'зайнятий / зайнята', es: 'ocupado / ocupada' }, example: 'She is very busy.' },
+    { word: 'okay', partOfSpeech: 'adjective', translation: { ru: 'в порядке / окей', uk: 'в порядку / окей', es: 'bien / está bien' }, example: 'We are all okay.' },
+    { word: 'here', partOfSpeech: 'adverb', translation: { ru: 'здесь / тут', uk: 'тут / тут', es: 'aquí' }, example: 'He is not here.' },
+  ],
+};
+
+export const IMPULS_DAY_2: PlanContentDay = {
+  planId: 'impuls',
+  dayIndex: 2,
+  topic: { ru: 'Тебе сказали Hi, и ты замолчал', uk: 'Тобі сказали Hi, і ти замовк', es: 'Te dijeron Hi y te quedaste en silencio' },
+  outcome: {
+    ru: 'Ты умеешь ответить на приветствие и не молчать в ответ',
+    uk: 'Ти вмієш відповісти на привітання і не мовчати у відповідь',
+    es: 'Puedes responder a un saludo y no quedarte sin palabras',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1],
+  intro: [
+    {
+      kind: 'tip',
+      title: { ru: 'Два способа сказать привет', uk: 'Два способи сказати привіт', es: 'Dos formas de saludar' },
+      body: {
+        ru: 'Hey! и Hi there. — оба значат «привет». Hey! — чуть теплее и живее. Hi there. — спокойно и дружелюбно. Оба подходят любому незнакомому или знакомому человеку.',
+        uk: 'Hey! і Hi there. — обидва означають «привіт». Hey! — трохи тепліше й живіше. Hi there. — спокійно і по-дружньому. Обидва підходять будь-якій незнайомій або знайомій людині.',
+        es: 'Hey! y Hi there. significan los dos «hola». Hey! es un poco más cálido y vivo. Hi there. es tranquilo y amigable. Los dos funcionan con cualquier persona, conocida o desconocida.',
+      },
+      examples: [
+        { en: 'Hey! Good to see you.', gloss: { ru: 'Привет! Рад тебя видеть.', uk: 'Привіт! Радий тебе бачити.', es: 'Hola! Me alegra verte.' } },
+        { en: 'Hi there. How are you?', gloss: { ru: 'Привет. Как дела?', uk: 'Привіт. Як справи?', es: 'Hola. ¿Cómo estás?' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Good to see you — что это значит', uk: 'Good to see you — що це означає', es: 'Good to see you — qué significa' },
+      body: {
+        ru: 'Good to see you буквально — «хорошо видеть тебя». Это короткая тёплая фраза, которую говорят при встрече. Ты просто говоришь, что рад человека видеть — и этого достаточно.',
+        uk: 'Good to see you буквально — «добре бачити тебе». Це коротка тепла фраза, яку кажуть при зустрічі. Ти просто кажеш, що радий бачити людину — і цього достатньо.',
+        es: 'Good to see you significa literalmente «es bueno verte». Es una frase corta y cálida que se dice al encontrarse con alguien. Solo dices que te alegra ver a esa persona, y con eso basta.',
+      },
+      examples: [
+        { en: 'Good to see you!', gloss: { ru: 'Рад тебя видеть!', uk: 'Радий тебе бачити!', es: 'Me alegra verte!' } },
+        { en: 'It is good to see you.', gloss: { ru: 'Рад тебя видеть.', uk: 'Радий тебе бачити.', es: 'Me alegra verte.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Почему ты замолкаешь — и что с этим делать', uk: 'Чому ти замовкаєш — і що з цим робити', es: 'Por qué te quedas sin palabras y qué hacer al respecto' },
+      body: {
+        ru: 'Мозг ищет идеальный ответ и не находит — ты молчишь. Но собеседнику не нужен идеальный ответ. Ему нужно любое слово. Hey! или Good to see you — уже полноценный ответ.',
+        uk: 'Мозок шукає ідеальну відповідь і не знаходить — ти мовчиш. Але співрозмовнику не потрібна ідеальна відповідь. Йому потрібне будь-яке слово. Hey! або Good to see you — вже повноцінна відповідь.',
+        es: 'El cerebro busca la respuesta perfecta y no la encuentra, y te quedas callado. Pero la otra persona no necesita una respuesta perfecta. Necesita cualquier palabra. Hey! o Good to see you ya es una respuesta completa.',
+      },
+      examples: [
+        { en: 'Hey! Good to see you.', gloss: { ru: 'Привет! Рад тебя видеть.', uk: 'Привіт! Радий тебе бачити.', es: 'Hola! Me alegra verte.' } },
+        { en: 'Hi there. I am happy to see you.', gloss: { ru: 'Привет. Я рад тебя видеть.', uk: 'Привіт. Я радий тебе бачити.', es: 'Hola. Me alegra verte.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'impuls_d2_p1',
+      english: 'Hi there. I am happy.',
+      meaning: { ru: 'Привет. Я рад.', uk: 'Привіт. Я радий.', es: 'Hola. Estoy contento.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Как сказать «я рад»', uk: 'Як сказати «я радий»', es: 'Cómo decir «estoy contento»' },
+        rule: { ru: 'I am = я есть. Говоришь I am + слово о себе — и готово.', uk: 'I am = я є. Кажеш I am + слово про себе — і готово.', es: 'I am = yo soy/estoy. Dices I am + una palabra sobre ti, y listo.' },
+        why: { ru: 'Am — это слово «есть» для I. Без него фраза не работает.', uk: 'Am — це слово «є» для I. Без нього фраза не працює.', es: 'Am es la palabra «soy/estoy» para I. Sin ella la frase no funciona.' },
+        commonMistake: { ru: 'Не говори I happy — нужно слово «есть» (am) между I и happy.', uk: 'Не кажи I happy — потрібне слово «є» (am) між I і happy.', es: 'No digas I happy — necesitas la palabra «estoy» (am) entre I y happy.' },
+      },
+      words: [
+        { text: 'Hi', partOfSpeech: 'other', distractors: ['Bye', 'Hey', 'Hello', 'Thanks', 'Sorry'] },
+        { text: 'there', partOfSpeech: 'adverb', distractors: ['here', 'now', 'today', 'soon', 'away'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['You', 'She', 'He', 'We', 'They'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'happy', partOfSpeech: 'adjective', distractors: ['sad', 'tired', 'angry', 'busy', 'sick'] },
+      ],
+    },
+    {
+      id: 'impuls_d2_p2',
+      english: 'It is good to see you.',
+      meaning: { ru: 'Рад тебя видеть.', uk: 'Радий тебе бачити.', es: 'Me alegra verte.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Рад тебя видеть — по-английски', uk: 'Радий тебе бачити — по-англійськи', es: 'Me alegra verte — en inglés' },
+        rule: { ru: 'It is good to see you — буквально «это хорошо — видеть тебя». It is = это есть.', uk: 'It is good to see you — буквально «це добре — бачити тебе». It is = це є.', es: 'It is good to see you significa literalmente «es bueno verte». It is = eso es.' },
+        why: { ru: 'It is держит фразу вместе. Без него звучит не по-английски.', uk: 'It is тримає фразу разом. Без нього звучить не по-англійськи.', es: 'It is une la frase. Sin él no suena natural en inglés.' },
+        commonMistake: { ru: 'Не говори Is good to see you — нужно It is в начале.', uk: 'Не кажи Is good to see you — потрібне It is на початку.', es: 'No digas Is good to see you — necesitas It is al principio.' },
+      },
+      words: [
+        { text: 'It', partOfSpeech: 'pronoun', distractors: ['This', 'That', 'He', 'She', 'They'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'good', partOfSpeech: 'adjective', distractors: ['bad', 'nice', 'hard', 'easy', 'wrong'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'by', 'of', 'at', 'on'] },
+        { text: 'see', partOfSpeech: 'verb', distractors: ['meet', 'hear', 'find', 'leave', 'help'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'us', 'them'] },
+      ],
+    },
+    {
+      id: 'impuls_d2_p3',
+      english: 'Hey! I am glad to meet you.',
+      meaning: { ru: 'Привет! Рад познакомиться.', uk: 'Привіт! Радий познайомитися.', es: 'Hola! Encantado de conocerte.' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Рад познакомиться', uk: 'Радий познайомитися', es: 'Encantado de conocerte' },
+        rule: { ru: 'I am glad = я рад. Это та же схема: I + am + слово о своём чувстве.', uk: 'I am glad = я радий. Це та сама схема: I + am + слово про своє відчуття.', es: 'I am glad = estoy contento. Es el mismo esquema: I + am + palabra sobre tu sentimiento.' },
+        why: { ru: 'Glad и happy — оба значат «рад». Glad звучит чуть теплее при знакомстве.', uk: 'Glad і happy — обидва означають «радий». Glad звучить трохи тепліше при знайомстві.', es: 'Glad y happy significan los dos «contento». Glad suena un poco más cálido al conocer a alguien.' },
+        commonMistake: { ru: 'Не говори I am glad meet you — нужно to перед meet.', uk: 'Не кажи I am glad meet you — потрібне to перед meet.', es: 'No digas I am glad meet you — necesitas to antes de meet.' },
+      },
+      words: [
+        { text: 'Hey', partOfSpeech: 'other', distractors: ['Bye', 'Hi', 'Oh', 'Well', 'So'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['You', 'He', 'She', 'We', 'They'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'glad', partOfSpeech: 'adjective', distractors: ['sad', 'tired', 'scared', 'angry', 'bored'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'by', 'of', 'at', 'on'] },
+        { text: 'meet', partOfSpeech: 'verb', distractors: ['see', 'leave', 'find', 'call', 'join'] },
+      ],
+    },
+    {
+      id: 'impuls_d2_p4',
+      english: 'Hi there. Are you Tom?',
+      meaning: { ru: 'Привет. Ты Том?', uk: 'Привіт. Ти Том?', es: 'Hola. ¿Eres Tom?' },
+      constructions: ['to-be-questions', 'pronouns'],
+      explanation: {
+        title: { ru: 'Как задать простой вопрос', uk: 'Як поставити просте запитання', es: 'Cómo hacer una pregunta simple' },
+        rule: { ru: 'Чтобы спросить, ставь Are в начало: Are you...? = Ты...?', uk: 'Щоб запитати, постав Are на початок: Are you...? = Ти...?', es: 'Para preguntar, pon Are al principio: Are you...? = ¿Eres tú...?' },
+        why: { ru: 'В вопросе Are идёт перед you. Порядок слов меняется.', uk: 'У запитанні Are стоїть перед you. Порядок слів змінюється.', es: 'En la pregunta Are va antes de you. El orden de las palabras cambia.' },
+        commonMistake: { ru: 'Не говори You are Tom? — это звучит как утверждение, не вопрос.', uk: 'Не кажи You are Tom? — це звучить як твердження, не запитання.', es: 'No digas You are Tom? — suena como afirmación, no como pregunta.' },
+      },
+      words: [
+        { text: 'Hi', partOfSpeech: 'other', distractors: ['Bye', 'Hey', 'Hello', 'Thanks', 'Sorry'] },
+        { text: 'there', partOfSpeech: 'adverb', distractors: ['here', 'now', 'away', 'soon', 'today'] },
+        { text: 'Are', partOfSpeech: 'to-be', distractors: ['Am', 'Is', 'Was', 'Were', 'Be'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
+      ],
+    },
+    {
+      id: 'impuls_d2_p5',
+      english: 'I am not shy. I am ready.',
+      meaning: { ru: 'Я не стеснительный. Я готов.', uk: 'Я не сором\'язливий. Я готовий.', es: 'No soy tímido. Estoy listo.' },
+      constructions: ['to-be', 'to-be-negation', 'pronouns'],
+      explanation: {
+        title: { ru: 'Как сказать «я не...»', uk: 'Як сказати «я не...»', es: 'Cómo decir «no soy/no estoy...»' },
+        rule: { ru: 'I am not = я не. Добавь not после am — и фраза становится отрицанием.', uk: 'I am not = я не. Додай not після am — і фраза стає запереченням.', es: 'I am not = yo no soy/no estoy. Añade not después de am y la frase se vuelve negativa.' },
+        why: { ru: 'Not стоит сразу после am. Это единственное место для него.', uk: 'Not стоїть одразу після am. Це єдине місце для нього.', es: 'Not va justo después de am. Es el único lugar donde va.' },
+        commonMistake: { ru: 'Не говори I not am shy — not идёт после am, не перед ним.', uk: 'Не кажи I not am shy — not стоїть після am, а не перед ним.', es: 'No digas I not am shy — not va después de am, no antes.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['You', 'He', 'She', 'We', 'They'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'always', 'very', 'so', 'too'] },
+        { text: 'shy', partOfSpeech: 'adjective', distractors: ['loud', 'brave', 'kind', 'tired', 'rude'] },
+        { text: 'ready', partOfSpeech: 'adjective', distractors: ['busy', 'late', 'tired', 'lost', 'wrong'] },
+      ],
+    },
+    {
+      id: 'impuls_d2_p6',
+      english: 'He is my friend. Hi!',
+      meaning: { ru: 'Он мой друг. Привет!', uk: 'Він мій друг. Привіт!', es: 'Es mi amigo. Hola!' },
+      constructions: ['to-be', 'pronouns'],
+      explanation: {
+        title: { ru: 'Представить кого-то одним словом', uk: 'Представити когось одним словом', es: 'Presentar a alguien con una palabra' },
+        rule: { ru: 'He is = он есть. He is my friend = он мой друг. Is — слово «есть» для he/she.', uk: 'He is = він є. He is my friend = він мій друг. Is — слово «є» для he/she.', es: 'He is = él es. He is my friend = es mi amigo. Is es la palabra «es» para he/she.' },
+        why: { ru: 'Для he и she нужно is, а не am или are.', uk: 'Для he і she потрібне is, а не am або are.', es: 'Para he y she se usa is, no am ni are.' },
+        commonMistake: { ru: 'Не говори He are my friend — для he нужно is, а не are.', uk: 'Не кажи He are my friend — для he потрібне is, а не are.', es: 'No digas He are my friend — para he se necesita is, no are.' },
+      },
+      words: [
+        { text: 'He', partOfSpeech: 'pronoun', distractors: ['I', 'You', 'She', 'We', 'They'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'my', partOfSpeech: 'pronoun', distractors: ['your', 'his', 'her', 'our', 'their'] },
+        { text: 'friend', partOfSpeech: 'noun', distractors: ['teacher', 'doctor', 'boss', 'enemy', 'stranger'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'happy', partOfSpeech: 'adjective', translation: { ru: 'радостный, довольный', uk: 'радісний, задоволений', es: 'contento, alegre' }, example: 'Hi there. I am happy.' },
+    { word: 'glad', partOfSpeech: 'adjective', translation: { ru: 'рад, доволен', uk: 'радий, задоволений', es: 'contento, encantado' }, example: 'Hey! I am glad to meet you.' },
+    { word: 'shy', partOfSpeech: 'adjective', translation: { ru: 'стеснительный', uk: 'сором\'язливий', es: 'tímido' }, example: 'I am not shy. I am ready.' },
+    { word: 'ready', partOfSpeech: 'adjective', translation: { ru: 'готовый', uk: 'готовий', es: 'listo' }, example: 'I am not shy. I am ready.' },
+    { word: 'friend', partOfSpeech: 'noun', translation: { ru: 'друг', uk: 'друг', es: 'amigo' }, example: 'He is my friend. Hi!' },
+    { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'знакомиться, встречать', uk: 'знайомитися, зустрічати', es: 'conocer, encontrar' }, example: 'Hey! I am glad to meet you.' },
+  ],
+};
+
+export const IMPULS_DAY_3: PlanContentDay = {
+  planId: 'impuls',
+  dayIndex: 3,
+  topic: { ru: 'Спросили твоё имя — ты выдал паузу', uk: 'Тебе поставили запитання про ім\'я — ти замовк', es: 'Te preguntaron tu nombre y te quedaste en silencio' },
+  outcome: {
+    ru: 'Ты уверенно называешь себя и узнаёшь имя собеседника',
+    uk: 'Ти впевнено називаєш себе та дізнаєшся ім\'я співрозмовника',
+    es: 'Puedes presentarte con confianza y preguntar el nombre de la otra persona',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1, 2],
+  intro: [
+    {
+      kind: 'tip',
+      title: { ru: 'Как это работает', uk: 'Як це працює', es: 'Cómo funciona' },
+      body: {
+        ru: 'Тебя спрашивают имя — ты отвечаешь коротко и сразу перекидываешь мяч обратно. I\'m Anna. And you? — вот весь шаблон. Слово I\'m — это «я есть», сжатое в одно слово. Запомни его как целый блок, не разбирай на части.',
+        uk: 'Тебе запитують ім\'я — ти відповідаєш коротко й одразу повертаєш питання. I\'m Anna. And you? — ось увесь шаблон. Слово I\'m — це «я є», стиснуте в одне слово. Запам\'ятай його як цілий блок, не розбирай на частини.',
+        es: 'Te preguntan el nombre y respondes brevemente, devolviendo la pregunta de inmediato. I\'m Anna. And you? — ese es todo el esquema. La palabra I\'m significa «yo soy», comprimida en una sola palabra. Memorízala como un bloque completo.',
+      },
+      examples: [
+        { en: 'I\'m Anna. And you?', gloss: { ru: 'Я Анна. А ты?', uk: 'Я Анна. А ти?', es: 'Soy Anna. ¿Y tú?' } },
+        { en: 'My name is Tom.', gloss: { ru: 'Меня зовут Том.', uk: 'Мене звати Том.', es: 'Mi nombre es Tom.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Почему And you? — это не грубо', uk: 'Чому And you? — це не грубо', es: 'Por qué And you? no es una grosería' },
+      body: {
+        ru: 'В разговорном английском And you? звучит мягко и естественно. Полная версия — And what is your name? — слишком официальная. Используй короткую форму — так и делают носители.',
+        uk: 'У розмовній англійській And you? звучить м\'яко і природно. Повна версія — And what is your name? — занадто офіційна. Використовуй коротку форму — так роблять носії.',
+        es: 'En inglés conversacional, And you? suena suave y natural. La versión completa — And what is your name? — es demasiado formal. Usa la forma corta, así lo hacen los hablantes nativos.',
+      },
+      examples: [
+        { en: 'I\'m Mike. And you?', gloss: { ru: 'Я Майк. А ты?', uk: 'Я Майк. А ти?', es: 'Soy Mike. ¿Y tú?' } },
+        { en: 'Nice to meet you.', gloss: { ru: 'Приятно познакомиться.', uk: 'Приємно познайомитися.', es: 'Encantado de conocerte.' } },
+      ],
+    },
+    {
+      kind: 'trap',
+      title: { ru: 'Частая ловушка', uk: 'Часта пастка', es: 'Error frecuente' },
+      body: {
+        ru: 'Многие говорят I am Anna с паузой между словами — это формально и неловко. В живой речи I\'m произносится как одно целое слово. Потренируй вслух три раза подряд.',
+        uk: 'Багато хто каже I am Anna з паузою між словами — це формально і незручно. У живій мові I\'m вимовляється як одне ціле слово. Потренуй вголос три рази поспіль.',
+        es: 'Muchos dicen I am Anna con pausa entre palabras — suena formal y torpe. En el habla natural, I\'m se pronuncia como una sola palabra. Practica en voz alta tres veces seguidas.',
+      },
+      examples: [
+        { en: 'I\'m Sara, not I am Sara.', gloss: { ru: 'Я Сара — именно I\'m, не I am (с паузой).', uk: 'Я Сара — саме I\'m, не I am (з паузою).', es: 'Soy Sara — di I\'m, no I am (con pausa).' } },
+        { en: 'What is your name?', gloss: { ru: 'Как тебя зовут?', uk: 'Як тебе звати?', es: '¿Cuál es tu nombre?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'impuls_d3_p1',
+      english: 'I\'m Anna.',
+      meaning: { ru: 'Я Анна.', uk: 'Я Анна.', es: 'Soy Anna.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'I\'m = я есть', uk: 'I\'m = я є', es: 'I\'m = yo soy' },
+        rule: { ru: 'I\'m — это сжатое «я есть». Ставишь его перед именем — и представляешься.', uk: 'I\'m — це стиснуте «я є». Ставиш його перед іменем — і представляєшся.', es: 'I\'m es la forma corta de «yo soy». Ponla antes del nombre para presentarte.' },
+        why: { ru: 'В живой речи говорят I\'m, а не I am — короче и звучит естественно.', uk: 'У живій мові кажуть I\'m, а не I am — коротше і звучить природно.', es: 'En el habla natural se dice I\'m, no I am — es más corto y suena natural.' },
+        commonMistake: { ru: 'Не говори My name Anna — без I\'m фраза незаконченная.', uk: 'Не кажи My name Anna — без I\'m фраза незакінчена.', es: 'No digas My name Anna — sin I\'m la frase está incompleta.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['He\'s', 'She\'s', 'We\'re', 'You\'re', 'They\'re'] },
+        { text: 'Anna', partOfSpeech: 'noun', distractors: ['Tom', 'Mike', 'Sara', 'Peter', 'Lisa'] },
+      ],
+    },
+    {
+      id: 'impuls_d3_p2',
+      english: 'And you?',
+      meaning: { ru: 'А ты?', uk: 'А ти?', es: '¿Y tú?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Перекинь мяч обратно', uk: 'Перекинь м\'яч назад', es: 'Devuelve la pregunta' },
+        rule: { ru: 'And you? — мгновенный способ узнать имя собеседника после своего ответа.', uk: 'And you? — миттєвий спосіб дізнатися ім\'я співрозмовника після своєї відповіді.', es: 'And you? es la forma rápida de preguntar el nombre después de presentarte.' },
+        why: { ru: 'Это вежливо и коротко. Разговор не останавливается, а продолжается.', uk: 'Це ввічливо і коротко. Розмова не зупиняється, а продовжується.', es: 'Es cortés y breve. La conversación no se detiene, sino que continúa.' },
+        commonMistake: { ru: 'Не говори And your name? — звучит обрывисто. Лучше And you?', uk: 'Не кажи And your name? — звучить обривисто. Краще And you?', es: 'No digas And your name? — suena brusco. Es mejor And you?' },
+      },
+      words: [
+        { text: 'And', partOfSpeech: 'other', distractors: ['But', 'Or', 'So', 'Because', 'If'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+      ],
+    },
+    {
+      id: 'impuls_d3_p3',
+      english: 'My name is Tom.',
+      meaning: { ru: 'Меня зовут Том.', uk: 'Мене звати Том.', es: 'Mi nombre es Tom.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Второй способ назвать себя', uk: 'Другий спосіб назвати себе', es: 'Segunda forma de presentarse' },
+        rule: { ru: 'My name is — чуть формальнее I\'m, но тоже часто звучит в живой речи.', uk: 'My name is — трохи формальніше за I\'m, але теж часто звучить у живій мові.', es: 'My name is es algo más formal que I\'m, pero también se usa en la conversación.' },
+        why: { ru: 'Иногда хочется сказать полнее — особенно если шумно и имя надо чётко выделить.', uk: 'Іноді хочеться сказати повніше — особливо якщо галасно і ім\'я треба чітко виділити.', es: 'A veces se prefiere la forma completa, especialmente si hay ruido y el nombre debe quedar claro.' },
+        commonMistake: { ru: 'Не говори My name Tom — нужно is между name и именем.', uk: 'Не кажи My name Tom — потрібно is між name та іменем.', es: 'No digas My name Tom — se necesita is entre name y el nombre.' },
+      },
+      words: [
+        { text: 'My', partOfSpeech: 'pronoun', distractors: ['Your', 'His', 'Her', 'Our', 'Their'] },
+        { text: 'name', partOfSpeech: 'noun', distractors: ['age', 'job', 'city', 'number', 'address'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'Tom', partOfSpeech: 'noun', distractors: ['Anna', 'Mike', 'Sara', 'Peter', 'Lisa'] },
+      ],
+    },
+    {
+      id: 'impuls_d3_p4',
+      english: 'What is your name?',
+      meaning: { ru: 'Как тебя зовут?', uk: 'Як тебе звати?', es: '¿Cuál es tu nombre?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Спроси имя напрямую', uk: 'Запитай ім\'я напряму', es: 'Pregunta el nombre directamente' },
+        rule: { ru: 'What is your name? — полный вопрос. Используй, когда хочешь спросить первым.', uk: 'What is your name? — повне запитання. Використовуй, коли хочеш запитати першим.', es: 'What is your name? es la pregunta completa. Úsala cuando quieras preguntar primero.' },
+        why: { ru: 'В вопросе is ставят перед your — порядок слов меняется, это сигнал вопроса.', uk: 'У запитанні is ставлять перед your — порядок слів змінюється, це сигнал питання.', es: 'En la pregunta, is va antes de your — el orden cambia y eso indica que es una pregunta.' },
+        commonMistake: { ru: 'Не говори What your name? — без is вопрос звучит незаконченным.', uk: 'Не кажи What your name? — без is питання звучить незакінченим.', es: 'No digas What your name? — sin is la pregunta suena incompleta.' },
+      },
+      words: [
+        { text: 'What', partOfSpeech: 'adverb', distractors: ['Where', 'When', 'How', 'Which', 'Who'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'your', partOfSpeech: 'pronoun', distractors: ['my', 'his', 'her', 'our', 'their'] },
+        { text: 'name', partOfSpeech: 'noun', distractors: ['age', 'job', 'city', 'number', 'address'] },
+      ],
+    },
+    {
+      id: 'impuls_d3_p5',
+      english: 'Nice to meet you.',
+      meaning: { ru: 'Приятно познакомиться.', uk: 'Приємно познайомитися.', es: 'Encantado de conocerte.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Закрой знакомство тепло', uk: 'Завершуй знайомство тепло', es: 'Cierra la presentación con calidez' },
+        rule: { ru: 'Nice to meet you — обязательная фраза после обмена именами. Это как пожать руку словами.', uk: 'Nice to meet you — обов\'язкова фраза після обміну іменами. Це як потиснути руку словами.', es: 'Nice to meet you es la frase obligatoria tras intercambiar los nombres. Es como dar un apretón de manos con palabras.' },
+        why: { ru: 'Без этой фразы знакомство кажется оборванным. Она завершает момент вежливо.', uk: 'Без цієї фрази знайомство здається обірваним. Вона завершує момент ввічливо.', es: 'Sin esta frase, la presentación parece cortada. La cierra de forma cortés.' },
+        commonMistake: { ru: 'Не путай с Nice to see you — это говорят, когда встречают уже знакомого человека.', uk: 'Не плутай з Nice to see you — це кажуть, коли зустрічають вже знайому людину.', es: 'No confundas con Nice to see you — eso se dice cuando encuentras a alguien que ya conoces.' },
+      },
+      words: [
+        { text: 'Nice', partOfSpeech: 'adjective', distractors: ['Good', 'Bad', 'Hard', 'Cold', 'Late'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['from', 'for', 'with', 'by', 'at'] },
+        { text: 'meet', partOfSpeech: 'verb', distractors: ['see', 'call', 'find', 'leave', 'forget'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'me'] },
+      ],
+    },
+    {
+      id: 'impuls_d3_p6',
+      english: 'I am not sure.',
+      meaning: { ru: 'Я не уверен.', uk: 'Я не впевнений.', es: 'No estoy seguro.' },
+      constructions: ['to-be', 'to-be-questions'],
+      explanation: {
+        title: { ru: 'Когда не понял — скажи честно', uk: 'Коли не зрозумів — скажи чесно', es: 'Cuando no entiendes — sé honesto' },
+        rule: { ru: 'I am not sure — говоришь, когда не понял вопрос или не знаешь, что ответить.', uk: 'I am not sure — кажеш, коли не зрозумів питання або не знаєш, що відповісти.', es: 'I am not sure — lo dices cuando no entendiste la pregunta o no sabes qué responder.' },
+        why: { ru: 'Это лучше паузы. Собеседник понимает тебя и помогает продолжить разговор.', uk: 'Це краще за паузу. Співрозмовник розуміє тебе і допомагає продовжити розмову.', es: 'Es mejor que el silencio. La otra persona te entiende y ayuda a continuar la conversación.' },
+        commonMistake: { ru: 'Не молчи — даже I am not sure лучше, чем пауза без слов.', uk: 'Не мовчи — навіть I am not sure краще, ніж пауза без слів.', es: 'No te quedes en silencio — incluso I am not sure es mejor que una pausa sin palabras.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'You', 'They'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['very', 'so', 'just', 'also', 'here'] },
+        { text: 'sure', partOfSpeech: 'adjective', distractors: ['ready', 'right', 'wrong', 'happy', 'free'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'name', partOfSpeech: 'noun', translation: { ru: 'имя', uk: 'ім\'я', es: 'nombre' }, example: 'My name is Tom.' },
+    { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'познакомиться, встретить', uk: 'познайомитися, зустріти', es: 'conocer, encontrar' }, example: 'Nice to meet you.' },
+    { word: 'nice', partOfSpeech: 'adjective', translation: { ru: 'приятный', uk: 'приємний', es: 'agradable' }, example: 'Nice to meet you.' },
+    { word: 'sure', partOfSpeech: 'adjective', translation: { ru: 'уверенный', uk: 'впевнений', es: 'seguro' }, example: 'I am not sure.' },
+    { word: 'what', partOfSpeech: 'adverb', translation: { ru: 'что, как (в вопросе)', uk: 'що, як (у питанні)', es: 'qué, cuál' }, example: 'What is your name?' },
+    { word: 'and', partOfSpeech: 'other', translation: { ru: 'и, а', uk: 'і, а', es: 'y, ¿y?' }, example: 'And you?' },
+  ],
+};
+
+export const IMPULS_DAY_4: PlanContentDay = {
+  planId: 'impuls',
+  dayIndex: 4,
+  topic: { ru: 'Что ответить на «What\'s up»', uk: 'Що відповісти на «What\'s up»', es: 'Qué responder cuando te dicen «What\'s up»' },
+  outcome: {
+    ru: 'Ты спокойно отвечаешь на «Как дела» и сам задаёшь тот же вопрос в ответ',
+    uk: 'Ти спокійно відповідаєш на «Як справи» і сам ставиш те саме питання у відповідь',
+    es: 'Puedes responder con calma a «What\'s up» y hacer la misma pregunta',
+  },
+  level: 'A1',
+  prerequisiteLessons: [3, 1],
+  intro: [
+    {
+      kind: 'tip',
+      title: { ru: 'Почему ступор — это нормально', uk: 'Чому ступор — це нормально', es: 'Por qué quedarse sin palabras es normal' },
+      body: {
+        ru: '«What\'s up?» — короткий вопрос, но в голове сразу пусто. Сегодня учим две фразы, которые всегда работают. Их говорят миллионы людей каждый день.',
+        uk: '«What\'s up?» — короткe питання, але в голові одразу порожньо. Сьогодні вчимо дві фрази, які завжди працюють. Їх кажуть мільйони людей щодня.',
+        es: '«What\'s up?» es una pregunta corta, pero la mente se queda en blanco. Hoy aprendemos dos frases que siempre funcionan. Las dicen millones de personas cada día.',
+      },
+      examples: [
+        { en: 'Not much. You?', gloss: { ru: 'Ничего особенного. А ты?', uk: 'Нічого особливого. А ти?', es: 'No mucho. ¿Y tú?' } },
+        { en: 'Same as always.', gloss: { ru: 'Как всегда.', uk: 'Як завжди.', es: 'Como siempre.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Как работает «Not much»', uk: 'Як працює «Not much»', es: 'Cómo funciona «Not much»' },
+      body: {
+        ru: '«Not much» дословно — «не много». Ты говоришь: ничего особенного не происходит. Это самый частый ответ на «What\'s up» — его используют и в офисе, и в магазине, и на улице. После него сразу добавляй «You?» — и мяч на стороне собеседника.',
+        uk: '«Not much» дослівно — «не багато». Ти кажеш: нічого особливого не відбувається. Це найчастіша відповідь на «What\'s up» — її вживають і в офісі, і в магазині, і на вулиці. Після неї одразу додавай «You?» — і м\'яч на боці співрозмовника.',
+        es: '«Not much» significa literalmente «no mucho». Quiere decir: no pasa nada especial. Es la respuesta más común a «What\'s up», se usa en la oficina, en la tienda y en la calle. Después añade «You?» y la pelota pasa al otro lado.',
+      },
+      examples: [
+        { en: 'Not much. You?', gloss: { ru: 'Ничего особенного. А ты?', uk: 'Нічого особливого. А ти?', es: 'No mucho. ¿Y tú?' } },
+        { en: 'Same as always.', gloss: { ru: 'Как всегда.', uk: 'Як завжди.', es: 'Como siempre.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: '«You?» — это не грубость', uk: '«You?» — це не грубість', es: '«You?» no es mala educación' },
+      body: {
+        ru: 'По-русски коротко ответить «Ничего особенного. А ты?» звучит нормально. По-английски то же самое — «Not much. You?» — тоже нормально и даже вежливо. Это показывает, что тебе интересен собеседник. Не нужно длинных объяснений.',
+        uk: 'По-українськи коротко відповісти «Нічого особливого. А ти?» звучить нормально. По-англійськи те саме — «Not much. You?» — теж нормально і навіть ввічливо. Це показує, що тобі цікавий співрозмовник. Не потрібно довгих пояснень.',
+        es: 'En español responder «No mucho. ¿Y tú?» de forma breve suena normal. En inglés «Not much. You?» también es normal e incluso cortés. Muestra que te interesa la otra persona. No hacen falta explicaciones largas.',
+      },
+      examples: [
+        { en: 'What\'s up? — Not much. You?', gloss: { ru: 'Как дела? — Ничего особенного. А ты?', uk: 'Як справи? — Нічого особливого. А ти?', es: '¿Qué tal? — No mucho. ¿Y tú?' } },
+        { en: 'What\'s up? — Same as always.', gloss: { ru: 'Как дела? — Как всегда.', uk: 'Як справи? — Як завжди.', es: '¿Qué tal? — Como siempre.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'impuls_d4_p1',
+      english: 'Not much. You?',
+      meaning: { ru: 'Ничего особенного. А ты?', uk: 'Нічого особливого. А ти?', es: 'No mucho. ¿Y tú?' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Самый простой ответ на «Как дела»', uk: 'Найпростіша відповідь на «Як справи»', es: 'La respuesta más sencilla a «¿Qué tal?»' },
+        rule: { ru: '«Not much» — значит «ничего особенного». «You?» — возвращаешь вопрос собеседнику.', uk: '«Not much» — означає «нічого особливого». «You?» — повертаєш питання співрозмовнику.', es: '«Not much» significa «no mucho». «You?» devuelve la pregunta a quien habla contigo.' },
+        why: { ru: 'Эту фразу говорят в любой ситуации — она всегда уместна и не требует объяснений.', uk: 'Цю фразу кажуть у будь-якій ситуації — вона завжди доречна й не потребує пояснень.', es: 'Esta frase funciona en cualquier situación: es siempre adecuada y no necesita explicación.' },
+        commonMistake: { ru: 'Не говори «Nothing» — звучит слишком резко. «Not much» мягче и естественнее.', uk: 'Не кажи «Nothing» — звучить занадто різко. «Not much» м\'якше й природніше.', es: 'No digas «Nothing»: suena demasiado seco. «Not much» es más suave y natural.' },
+      },
+      words: [
+        { text: 'Not', partOfSpeech: 'adverb', distractors: ['Very', 'So', 'Too', 'Just', 'Really'] },
+        { text: 'much', partOfSpeech: 'adverb', distractors: ['always', 'often', 'never', 'still', 'soon'] },
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'It'] },
+      ],
+    },
+    {
+      id: 'impuls_d4_p2',
+      english: 'Same as always.',
+      meaning: { ru: 'Как всегда.', uk: 'Як завжди.', es: 'Como siempre.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Когда всё идёт своим чередом', uk: 'Коли все йде своєю чергою', es: 'Cuando todo sigue igual' },
+        rule: { ru: '«Same» — «то же самое», «as always» — «как всегда». Вместе: ничего не изменилось.', uk: '«Same» — «те саме», «as always» — «як завжди». Разом: нічого не змінилося.', es: '«Same» significa «lo mismo», «as always» significa «como siempre». Juntos: nada ha cambiado.' },
+        why: { ru: 'Короткий и честный ответ. Не нужно придумывать — просто скажи это.', uk: 'Коротка й чесна відповідь. Не потрібно нічого вигадувати — просто скажи це.', es: 'Es una respuesta breve y honesta. No hay que inventar nada: simplemente dila.' },
+        commonMistake: { ru: 'Не говори «Same like always» — по-английски здесь нужно «as», не «like».', uk: 'Не кажи «Same like always» — по-англійськи тут потрібно «as», а не «like».', es: 'No digas «Same like always»: en inglés aquí va «as», no «like».' },
+      },
+      words: [
+        { text: 'Same', partOfSpeech: 'adjective', distractors: ['Good', 'Bad', 'New', 'Different', 'Fine'] },
+        { text: 'as', partOfSpeech: 'other', distractors: ['like', 'than', 'from', 'of', 'with'] },
+        { text: 'always', partOfSpeech: 'adverb', distractors: ['never', 'sometimes', 'often', 'soon', 'already'] },
+      ],
+    },
+    {
+      id: 'impuls_d4_p3',
+      english: 'I work and sleep.',
+      meaning: { ru: 'Работаю и сплю.', uk: 'Працюю і сплю.', es: 'Trabajo y duermo.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Короткий и смешной ответ', uk: 'Коротка й смішна відповідь', es: 'Una respuesta breve y divertida' },
+        rule: { ru: '«I work» — я работаю, «I sleep» — я сплю. Два простых действия через «and».', uk: '«I work» — я працюю, «I sleep» — я сплю. Дві прості дії через «and».', es: '«I work» es «yo trabajo», «I sleep» es «yo duermo». Dos acciones simples unidas con «and».' },
+        why: { ru: 'Такой ответ — живой и понятный. Люди так и говорят, когда заняты рутиной.', uk: 'Така відповідь — жива й зрозуміла. Люди так і кажуть, коли зайняті рутиною.', es: 'Esta respuesta es natural y clara. La gente la usa cuando está en la rutina diaria.' },
+        commonMistake: { ru: 'Не пропускай «I» — без него фраза звучит обрывисто и странно.', uk: 'Не пропускай «I» — без нього фраза звучить уривчасто й дивно.', es: 'No omitas «I»: sin él la frase suena incompleta y extraña.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['You', 'He', 'She', 'We', 'They'] },
+        { text: 'work', partOfSpeech: 'verb', distractors: ['rest', 'eat', 'read', 'travel', 'study'] },
+        { text: 'and', partOfSpeech: 'other', distractors: ['but', 'or', 'so', 'yet', 'then'] },
+        { text: 'sleep', partOfSpeech: 'verb', distractors: ['run', 'cook', 'write', 'walk', 'drive'] },
+      ],
+    },
+    {
+      id: 'impuls_d4_p4',
+      english: 'Everything is fine, thanks.',
+      meaning: { ru: 'Всё хорошо, спасибо.', uk: 'Все добре, дякую.', es: 'Todo bien, gracias.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Спокойный стандартный ответ', uk: 'Спокійна стандартна відповідь', es: 'Una respuesta tranquila y estándar' },
+        rule: { ru: '«Everything is fine» — всё хорошо. «Is» соединяет «всё» и «хорошо».', uk: '«Everything is fine» — все добре. «Is» з\'єднує «все» і «добре».', es: '«Everything is fine» significa «todo está bien». «Is» une «everything» y «fine».' },
+        why: { ru: 'Это нейтральный вежливый ответ. Его поймут везде — в любой стране.', uk: 'Це нейтральна ввічлива відповідь. Її зрозуміють скрізь — у будь-якій країні.', es: 'Es una respuesta neutra y educada que entienden en cualquier país.' },
+        commonMistake: { ru: 'Не говори «Everything are fine» — слово «всё» всегда идёт с «is», не «are».', uk: 'Не кажи «Everything are fine» — слово «все» завжди йде з «is», а не «are».', es: 'No digas «Everything are fine»: «everything» siempre va con «is», no con «are».' },
+      },
+      words: [
+        { text: 'Everything', partOfSpeech: 'pronoun', distractors: ['Nothing', 'Something', 'Anything', 'Everyone', 'No one'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
+        { text: 'fine', partOfSpeech: 'adjective', distractors: ['terrible', 'difficult', 'wrong', 'boring', 'strange'] },
+        { text: 'thanks', partOfSpeech: 'other', distractors: ['sorry', 'please', 'hello', 'goodbye', 'excuse'] },
+      ],
+    },
+    {
+      id: 'impuls_d4_p5',
+      english: 'I do not work today.',
+      meaning: { ru: 'Сегодня я не работаю.', uk: 'Сьогодні я не працюю.', es: 'Hoy no trabajo.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Сказать, что сейчас выходной', uk: 'Сказати, що зараз вихідний', es: 'Decir que hoy es día libre' },
+        rule: { ru: '«Do not» + глагол — говоришь, что чего-то не делаешь. «Do not work» — не работаю.', uk: '«Do not» + дієслово — кажеш, що чогось не робиш. «Do not work» — не працюю.', es: '«Do not» + verbo indica que no haces algo. «Do not work» significa «no trabajo».' },
+        why: { ru: 'Такой ответ объясняет, почему у тебя есть время на разговор. Это естественно.', uk: 'Така відповідь пояснює, чому в тебе є час на розмову. Це природно.', es: 'Esta respuesta explica por qué tienes tiempo para hablar. Es muy natural.' },
+        commonMistake: { ru: 'Не говори «I not work» — нужно вставить «do not» перед глаголом.', uk: 'Не кажи «I not work» — потрібно вставити «do not» перед дієсловом.', es: 'No digas «I not work»: hay que poner «do not» antes del verbo.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['You', 'He', 'She', 'We', 'They'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['am', 'is', 'are', 'was', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['very', 'so', 'always', 'still', 'just'] },
+        { text: 'work', partOfSpeech: 'verb', distractors: ['rest', 'sleep', 'travel', 'cook', 'run'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['tomorrow', 'yesterday', 'always', 'often', 'soon'] },
+      ],
+    },
+    {
+      id: 'impuls_d4_p6',
+      english: 'Life is good. And you?',
+      meaning: { ru: 'Жизнь хороша. А ты?', uk: 'Життя чудове. А ти?', es: 'La vida va bien. ¿Y tú?' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Тёплый ответ с вопросом в ответ', uk: 'Тепла відповідь із зустрічним питанням', es: 'Una respuesta cálida con pregunta de vuelta' },
+        rule: { ru: '«Life is good» — жизнь хороша. «And you?» — возвращаешь интерес к собеседнику.', uk: '«Life is good» — життя чудове. «And you?» — повертаєш інтерес до співрозмовника.', es: '«Life is good» significa «la vida va bien». «And you?» muestra interés por la otra persona.' },
+        why: { ru: 'Это позитивно и дружелюбно. Показываешь хорошее настроение и продолжаешь разговор.', uk: 'Це позитивно й дружньо. Показуєш гарний настрій і продовжуєш розмову.', es: 'Es positivo y amigable. Transmites buen ánimo y mantienes la conversación.' },
+        commonMistake: { ru: 'Не говори «Life is good. And yours?» в этом контексте — «you» достаточно и звучит естественно.', uk: 'Не кажи «Life is good. And yours?» у цьому контексті — «you» достатньо й звучить природно.', es: 'No digas «Life is good. And yours?» en este contexto: «you» es suficiente y suena natural.' },
+      },
+      words: [
+        { text: 'Life', partOfSpeech: 'noun', distractors: ['Work', 'Day', 'Time', 'Week', 'Morning'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
+        { text: 'good', partOfSpeech: 'adjective', distractors: ['bad', 'hard', 'boring', 'strange', 'short'] },
+        { text: 'And', partOfSpeech: 'other', distractors: ['But', 'Or', 'So', 'Yet', 'Because'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'much', partOfSpeech: 'adverb', translation: { ru: 'много, особенного', uk: 'багато, особливого', es: 'mucho' }, example: 'Not much. You?' },
+    { word: 'same', partOfSpeech: 'adjective', translation: { ru: 'то же самое, одинаково', uk: 'те саме, однаково', es: 'lo mismo, igual' }, example: 'Same as always.' },
+    { word: 'always', partOfSpeech: 'adverb', translation: { ru: 'всегда', uk: 'завжди', es: 'siempre' }, example: 'Same as always.' },
+    { word: 'everything', partOfSpeech: 'pronoun', translation: { ru: 'всё', uk: 'все', es: 'todo' }, example: 'Everything is fine, thanks.' },
+    { word: 'fine', partOfSpeech: 'adjective', translation: { ru: 'хорошо, в порядке', uk: 'добре, гаразд', es: 'bien, estupendo' }, example: 'Everything is fine, thanks.' },
+    { word: 'today', partOfSpeech: 'adverb', translation: { ru: 'сегодня', uk: 'сьогодні', es: 'hoy' }, example: 'I do not work today.' },
+  ],
+};
+
+export const IMPULS_DAY_5: PlanContentDay = {
+  planId: 'impuls',
+  dayIndex: 5,
+  topic: { ru: 'Тебя спросили Are you okay, ты покраснел', uk: 'Тебе запитали Are you okay, ти почервонів', es: 'Te preguntaron Are you okay y te sonrojaste' },
+  outcome: {
+    ru: 'Ты спокойно ответишь на вопрос «Всё в порядке?» и объяснишь, что просто устал',
+    uk: 'Ти спокійно відповіси на запитання «Все гаразд?» і пояснишь, що просто втомився',
+    es: 'Podrás responder con calma a «¿Estás bien?» y explicar que solo estás cansado',
+  },
+  level: 'A1',
+  prerequisiteLessons: [4, 1],
+  intro: [
+    {
+      kind: 'tip',
+      title: { ru: 'Когда тебя спрашивают Are you okay?', uk: 'Коли тебе питають Are you okay?', es: 'Cuando te preguntan Are you okay?' },
+      body: {
+        ru: 'Это простой вопрос «Всё в порядке?» или «Ты в порядке?». Его задают, когда видят, что ты смутился или выглядишь не очень. Не нужно объяснять всё подробно — одной короткой фразы достаточно.',
+        uk: 'Це простe запитання «Все гаразд?» або «Ти в порядку?». Його задають, коли бачать, що ти збентежився або виглядаєш не дуже добре. Не треба пояснювати все докладно — однієї короткої фрази досить.',
+        es: 'Es la pregunta sencilla «¿Estás bien?». La hacen cuando notan que te sonrojaste o que no pareces del todo bien. No tienes que explicar todo — con una frase corta es suficiente.',
+      },
+      examples: [
+        { en: 'Are you okay?', gloss: { ru: 'Ты в порядке?', uk: 'Ти в порядку?', es: '¿Estás bien?' } },
+        { en: 'Yeah, I\'m fine.', gloss: { ru: 'Да, всё хорошо.', uk: 'Так, все добре.', es: 'Sí, estoy bien.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Два простых ответа, которые работают всегда', uk: 'Дві прості відповіді, які працюють завжди', es: 'Dos respuestas sencillas que siempre funcionan' },
+      body: {
+        ru: 'Когда не хочется объяснять, используй одну из двух фраз: «I\'m fine» — всё хорошо, или «I\'m just tired» — просто устал. Yeah в начале звучит мягко и естественно, как «ну да» или «да, всё нормально».',
+        uk: 'Коли не хочеться пояснювати, використовуй одну з двох фраз: «I\'m fine» — все добре, або «I\'m just tired» — просто втомився. Yeah на початку звучить м\'яко й природно, як «ну так» або «так, все нормально».',
+        es: 'Cuando no quieres explicar mucho, usa una de estas dos frases: «I\'m fine» — estoy bien, o «I\'m just tired» — solo estoy cansado. Yeah al principio suena natural y tranquilo, como «sí, todo bien».',
+      },
+      examples: [
+        { en: 'I\'m just tired.', gloss: { ru: 'Я просто устал.', uk: 'Я просто втомився.', es: 'Solo estoy cansado.' } },
+        { en: 'Yeah, I\'m fine.', gloss: { ru: 'Да, всё хорошо.', uk: 'Так, все добре.', es: 'Sí, estoy bien.' } },
+      ],
+    },
+    {
+      kind: 'trap',
+      title: { ru: 'Как сказать «я не...» по-английски', uk: 'Як сказати «я не...» англійською', es: 'Cómo decir «no estoy...» en inglés' },
+      body: {
+        ru: 'Чтобы сказать «я не болен» или «я не сердитый», добавь слово «not» после «am»: I am not sick. Это как русское «не» — ставится рядом с «am/is/are». I am not = I\'m not.',
+        uk: 'Щоб сказати «я не хворий» або «я не сердитий», додай слово «not» після «am»: I am not sick. Це як українське «не» — ставиться поруч з «am/is/are». I am not = I\'m not.',
+        es: 'Para decir «no estoy enfermo» o «no estoy enojado», añade «not» después de «am»: I am not sick. Es como el «no» en español — va junto a «am/is/are». I am not = I\'m not.',
+      },
+      examples: [
+        { en: 'I am not sick.', gloss: { ru: 'Я не болен.', uk: 'Я не хворий.', es: 'No estoy enfermo.' } },
+        { en: 'She is worried about me.', gloss: { ru: 'Она переживает за меня.', uk: 'Вона переживає за мене.', es: 'Ella está preocupada por mí.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'impuls_d5_p1',
+      english: 'Are you okay?',
+      meaning: { ru: 'Ты в порядке?', uk: 'Ти в порядку?', es: '¿Estás bien?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Вопрос с «are»', uk: 'Запитання з «are»', es: 'Pregunta con «are»' },
+        rule: { ru: 'Чтобы спросить о состоянии, «are» ставится перед «you»: Are you okay?', uk: 'Щоб запитати про стан, «are» ставиться перед «you»: Are you okay?', es: 'Para preguntar por el estado, «are» va antes de «you»: Are you okay?' },
+        why: { ru: 'В вопросе «are» и «you» меняются местами. Это основное правило вопроса в английском.', uk: 'У запитанні «are» і «you» міняються місцями. Це основне правило питання.', es: 'En la pregunta, «are» y «you» se invierten. Así funciona el inglés.' },
+        commonMistake: { ru: 'You are okay? — так тоже понятно, но правильно: Are you okay?', uk: 'You are okay? — так теж зрозуміло, але правильно: Are you okay?', es: 'You are okay? — se entiende, pero lo correcto es: Are you okay?' },
+      },
+      words: [
+        { text: 'Are', partOfSpeech: 'to-be', distractors: ['Am', 'Is', 'Was', 'Were', 'Be'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
+        { text: 'okay', partOfSpeech: 'adjective', distractors: ['bad', 'ready', 'wrong', 'busy', 'late'] },
+      ],
+    },
+    {
+      id: 'impuls_d5_p2',
+      english: 'Yeah, I\'m fine.',
+      meaning: { ru: 'Да, всё хорошо.', uk: 'Так, все добре.', es: 'Sí, estoy bien.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Самый простой ответ', uk: 'Найпростіша відповідь', es: 'La respuesta más sencilla' },
+        rule: { ru: 'I\'m = I am. Дальше — слово-состояние. I\'m fine = Я в порядке.', uk: 'I\'m = I am. Далі — слово-стан. I\'m fine = Я в порядку.', es: 'I\'m = I am. Después va la palabra de estado. I\'m fine = Estoy bien.' },
+        why: { ru: '«Fine» описывает твоё состояние. «I\'m» — это быстрая форма «I am» в разговоре.', uk: '«Fine» описує твій стан. «I\'m» — це швидка форма «I am» у розмові.', es: '«Fine» describe tu estado. «I\'m» es la forma rápida de «I am» en la conversación.' },
+        commonMistake: { ru: 'I fine. — нельзя пропускать «am». Правильно: I\'m fine.', uk: 'I fine. — не можна пропускати «am». Правильно: I\'m fine.', es: 'I fine. — no se puede omitir «am». Lo correcto: I\'m fine.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['He\'s', 'She\'s', 'We\'re', 'They\'re', 'You\'re'] },
+        { text: 'fine', partOfSpeech: 'adjective', distractors: ['angry', 'ill', 'sad', 'lost', 'scared'] },
+      ],
+    },
+    {
+      id: 'impuls_d5_p3',
+      english: 'I\'m just tired.',
+      meaning: { ru: 'Я просто устал.', uk: 'Я просто втомився.', es: 'Solo estoy cansado.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Объяснить причину коротко', uk: 'Пояснити причину коротко', es: 'Explicar la razón brevemente' },
+        rule: { ru: 'Just = просто. Ставь его перед словом-состоянием: I\'m just tired.', uk: 'Just = просто. Ставиш його перед словом-станом: I\'m just tired.', es: 'Just = solo/simplemente. Va antes de la palabra de estado: I\'m just tired.' },
+        why: { ru: '«Just» смягчает фразу — говорит, что ничего серьёзного, просто усталость.', uk: '«Just» пом\'якшує фразу — каже, що нічого серйозного, просто втома.', es: '«Just» suaviza la frase — indica que no es nada grave, solo cansancio.' },
+        commonMistake: { ru: 'I\'m just tire. — нужна форма tired. Правильно: I\'m just tired.', uk: 'I\'m just tire. — потрібна форма tired. Правильно: I\'m just tired.', es: 'I\'m just tire. — se necesita la forma tired. Lo correcto: I\'m just tired.' },
+      },
+      words: [
+        { text: 'I\'m', partOfSpeech: 'to-be', distractors: ['He\'s', 'She\'s', 'We\'re', 'They\'re', 'You\'re'] },
+        { text: 'just', partOfSpeech: 'adverb', distractors: ['always', 'never', 'often', 'already', 'still'] },
+        { text: 'tired', partOfSpeech: 'adjective', distractors: ['happy', 'hungry', 'cold', 'bored', 'calm'] },
+      ],
+    },
+    {
+      id: 'impuls_d5_p4',
+      english: 'I am not sick.',
+      meaning: { ru: 'Я не болен.', uk: 'Я не хворий.', es: 'No estoy enfermo.' },
+      constructions: ['to-be-negation'],
+      explanation: {
+        title: { ru: 'Сказать «нет» о своём состоянии', uk: 'Сказати «ні» про свій стан', es: 'Decir «no» sobre tu estado' },
+        rule: { ru: 'Добавь «not» после «am»: I am not sick. Это значит «я не болен».', uk: 'Додай «not» після «am»: I am not sick. Це значить «я не хворий».', es: 'Añade «not» después de «am»: I am not sick. Significa «no estoy enfermo».' },
+        why: { ru: '«Not» отменяет слово после него. Am not — стандартная форма отрицания для «I».', uk: '«Not» скасовує слово після нього. Am not — стандартна форма заперечення для «I».', es: '«Not» niega la palabra que le sigue. Am not es la forma estándar de negación para «I».' },
+        commonMistake: { ru: 'I not sick. — нельзя пропускать «am». Правильно: I am not sick.', uk: 'I not sick. — не можна пропускати «am». Правильно: I am not sick.', es: 'I not sick. — no se puede omitir «am». Lo correcto: I am not sick.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['You', 'He', 'She', 'We', 'They'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'also', 'just', 'always', 'very'] },
+        { text: 'sick', partOfSpeech: 'adjective', distractors: ['well', 'strong', 'tall', 'safe', 'calm'] },
+      ],
+    },
+    {
+      id: 'impuls_d5_p5',
+      english: 'Are you sure?',
+      meaning: { ru: 'Ты уверен?', uk: 'Ти впевнений?', es: '¿Estás seguro?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Переспросить с заботой', uk: 'Перепитати з турботою', es: 'Preguntar de nuevo con cuidado' },
+        rule: { ru: 'Are you + слово-состояние + знак вопроса. Are you sure? = Ты уверен?', uk: 'Are you + слово-стан + знак питання. Are you sure? = Ти впевнений?', es: 'Are you + palabra de estado + signo de pregunta. Are you sure? = ¿Estás seguro?' },
+        why: { ru: 'Та же модель, что Are you okay? — «are» первым, потом «you», потом слово.', uk: 'Та сама модель, що Are you okay? — «are» першим, потім «you», потім слово.', es: 'Es el mismo patrón que Are you okay? — «are» primero, luego «you», luego la palabra.' },
+        commonMistake: { ru: 'You are sure? — понятно, но звучит неловко. Лучше: Are you sure?', uk: 'You are sure? — зрозуміло, але звучить незручно. Краще: Are you sure?', es: 'You are sure? — se entiende, pero suena raro. Mejor: Are you sure?' },
+      },
+      words: [
+        { text: 'Are', partOfSpeech: 'to-be', distractors: ['Am', 'Is', 'Was', 'Were', 'Be'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
+        { text: 'sure', partOfSpeech: 'adjective', distractors: ['sorry', 'afraid', 'confused', 'wrong', 'upset'] },
+      ],
+    },
+    {
+      id: 'impuls_d5_p6',
+      english: 'She is worried about me.',
+      meaning: { ru: 'Она переживает за меня.', uk: 'Вона переживає за мене.', es: 'Ella está preocupada por mí.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Рассказать, что кто-то беспокоится', uk: 'Розповісти, що хтось хвилюється', es: 'Contar que alguien se preocupa' },
+        rule: { ru: 'She is + слово-состояние. She is worried = Она переживает / она обеспокоена.', uk: 'She is + слово-стан. She is worried = Вона переживає / вона стурбована.', es: 'She is + palabra de estado. She is worried = Ella está preocupada.' },
+        why: { ru: 'Для «she» используют «is», не «am» или «are». Это отличие только для he/she/it.', uk: 'Для «she» використовують «is», не «am» або «are». Це відмінність лише для he/she/it.', es: 'Para «she» se usa «is», no «am» ni «are». Esa diferencia es solo para he/she/it.' },
+        commonMistake: { ru: 'She are worried. — нельзя. Для she — только is. She is worried.', uk: 'She are worried. — не можна. Для she — тільки is. She is worried.', es: 'She are worried. — incorrecto. Para she solo se usa is. She is worried.' },
+      },
+      words: [
+        { text: 'She', partOfSpeech: 'pronoun', distractors: ['I', 'You', 'He', 'We', 'They'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'worried', partOfSpeech: 'adjective', distractors: ['relaxed', 'angry', 'excited', 'bored', 'upset'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['you', 'him', 'her', 'us', 'them'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'okay', partOfSpeech: 'adjective', translation: { ru: 'в порядке, нормально', uk: 'в порядку, нормально', es: 'bien, de acuerdo' }, example: 'Are you okay?' },
+    { word: 'fine', partOfSpeech: 'adjective', translation: { ru: 'хорошо, всё в порядке', uk: 'добре, все в порядку', es: 'bien, estupendo' }, example: 'Yeah, I\'m fine.' },
+    { word: 'tired', partOfSpeech: 'adjective', translation: { ru: 'усталый, уставший', uk: 'втомлений', es: 'cansado' }, example: 'I\'m just tired.' },
+    { word: 'sick', partOfSpeech: 'adjective', translation: { ru: 'больной, заболевший', uk: 'хворий', es: 'enfermo' }, example: 'I am not sick.' },
+    { word: 'sure', partOfSpeech: 'adjective', translation: { ru: 'уверенный', uk: 'впевнений', es: 'seguro' }, example: 'Are you sure?' },
+    { word: 'worried', partOfSpeech: 'adjective', translation: { ru: 'обеспокоенный, переживающий', uk: 'стурбований, той, що хвилюється', es: 'preocupado' }, example: 'She is worried about me.' },
+  ],
+};
+
+export const IMPULS_DAY_6: PlanContentDay = {
+  planId: 'impuls',
+  dayIndex: 6,
+  topic: { ru: 'Кто-то сказал Thank you, ты завис', uk: 'Хтось сказав Thank you, ти завис', es: 'Alguien dijo Thank you y te quedaste paralizado' },
+  outcome: {
+    ru: 'Ты не завнёшь на «спасибо» — у тебя готовы два лёгких ответа',
+    uk: 'Ти не зависнеш на «дякую» — у тебе є два легкі відповіді',
+    es: 'No te quedarás paralizado ante un «gracias» — tienes dos respuestas listas',
+  },
+  level: 'A1',
+  prerequisiteLessons: [5, 1],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Что происходит', uk: 'Що відбувається', es: 'Qué pasa' },
+      body: {
+        ru: 'Кто-то говорит тебе «Thank you» — и ты молчишь. Не потому что грубишь, а просто не знаешь что сказать. Сегодня учим два простых ответа, которые работают всегда: «No worries» и «Anytime». Их говорят все — в магазине, на работе, с соседями.',
+        uk: 'Хтось каже тобі «Thank you» — і ти мовчиш. Не тому що грубіянишz, а просто не знаєш що сказати. Сьогодні вчимо дві прості відповіді, які працюють завжди: «No worries» і «Anytime». Їх кажуть усі — у магазині, на роботі, з сусідами.',
+        es: 'Alguien te dice «Thank you» y te quedas en silencio. No porque seas maleducado, sino porque no sabes qué decir. Hoy aprendemos dos respuestas sencillas que funcionan siempre: «No worries» y «Anytime». Las usan todos: en la tienda, en el trabajo, con los vecinos.',
+      },
+      examples: [
+        { en: 'Thank you! — No worries.', gloss: { ru: 'Спасибо! — Не за что (всё нормально).', uk: 'Дякую! — Нема за що (все гаразд).', es: '¡Gracias! — No hay problema.' } },
+        { en: 'Thank you so much! — Anytime.', gloss: { ru: 'Большое спасибо! — Всегда пожалуйста.', uk: 'Велике спасибо! — Завжди будь ласка.', es: '¡Muchas gracias! — Cuando quieras.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Два слова — два смысла', uk: 'Два слова — два сенси', es: 'Dos palabras, dos significados' },
+      body: {
+        ru: '«No worries» буквально «никаких беспокойств» — то есть «всё в порядке, мне не сложно». «Anytime» — «в любое время» — то есть «обращайся когда угодно». Оба звучат тепло и естественно. Не надо выбирать правильный — оба подходят в любой ситуации.',
+        uk: '«No worries» буквально «жодних турбот» — тобто «все гаразд, мені не складно». «Anytime» — «в будь-який час» — тобто «звертайся коли завгодно». Обидва звучать тепло і природно. Не треба вибирати правильне — обидва підходять у будь-якій ситуації.',
+        es: '«No worries» literalmente significa «ninguna preocupación», es decir, «todo bien, no me molesta». «Anytime» significa «en cualquier momento», es decir, «puedes pedirme cuando quieras». Los dos suenan cálidos y naturales. No hace falta elegir el correcto: los dos funcionan en cualquier situación.',
+      },
+      examples: [
+        { en: 'It is no problem at all.', gloss: { ru: 'Это совсем не проблема.', uk: 'Це зовсім не проблема.', es: 'No es ningún problema en absoluto.' } },
+        { en: 'I am happy to help.', gloss: { ru: 'Я рад помочь.', uk: 'Я радий допомогти.', es: 'Me alegra ayudar.' } },
+      ],
+    },
+    {
+      kind: 'trap',
+      title: { ru: 'Как это устроено', uk: 'Як це влаштовано', es: 'Cómo funciona' },
+      body: {
+        ru: 'В ответах на «спасибо» мы используем «I am» (я есть / я являюсь) и «I do not mind» (мне не мешает). Слово «am» здесь — это просто связка между «я» и тем, что про меня говорится. Запомни: I + am, you/we/they + are, he/she/it + is.',
+        uk: 'У відповідях на «дякую» ми використовуємо «I am» (я є / я являюся) і «I do not mind» (мені не заважає). Слово «am» тут — це просто зв\'язка між «я» і тим, що про мене говориться. Запам\'ятай: I + am, you/we/they + are, he/she/it + is.',
+        es: 'En las respuestas a «gracias» usamos «I am» (yo soy / yo estoy) e «I do not mind» (no me importa). La palabra «am» es simplemente el enlace entre «yo» y lo que se dice de mí. Recuerda: I + am, you/we/they + are, he/she/it + is.',
+      },
+      examples: [
+        { en: 'I am glad to help you.', gloss: { ru: 'Я рад помочь тебе.', uk: 'Я радий допомогти тобі.', es: 'Me alegra ayudarte.' } },
+        { en: 'It is not a problem.', gloss: { ru: 'Это не проблема.', uk: 'Це не проблема.', es: 'No es un problema.' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'impuls_d6_p1',
+      english: 'No worries, I am glad to help.',
+      meaning: { ru: 'Не за что, я рад помочь.', uk: 'Нема за що, я радий допомогти.', es: 'No hay problema, me alegra ayudar.' },
+      constructions: ['to-be', 'present-simple'],
+      explanation: {
+        title: { ru: 'Тёплый ответ на спасибо', uk: 'Теплий відповідь на дякую', es: 'Respuesta cálida al «gracias»' },
+        rule: { ru: '«I am glad» — я рад. «Am» стоит после «I» всегда, когда описываешь своё состояние.', uk: '«I am glad» — я радий. «Am» стоїть після «I» завжди, коли описуєш свій стан.', es: '«I am glad» significa «estoy contento». «Am» siempre va después de «I» al describir un estado.' },
+        why: { ru: 'Так звучит естественно и тепло — не сухое «you are welcome», а живое.', uk: 'Так звучить природно і тепло — не сухе «you are welcome», а живе.', es: 'Suena natural y cálido, más vivo que el formal «you are welcome».' },
+        commonMistake: { ru: 'Не говори «I is glad» — после I всегда только am.', uk: 'Не кажи «I is glad» — після I завжди тільки am.', es: 'No digas «I is glad»: después de I siempre va am.' },
+      },
+      words: [
+        { text: 'No', partOfSpeech: 'determiner', distractors: ['Any', 'Every', 'Some', 'Each', 'All'] },
+        { text: 'worries', partOfSpeech: 'noun', distractors: ['problems', 'fears', 'doubts', 'troubles', 'questions'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'glad', partOfSpeech: 'adjective', distractors: ['sad', 'tired', 'angry', 'bored', 'nervous'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'of', 'in', 'at', 'by'] },
+        { text: 'help', partOfSpeech: 'verb', distractors: ['leave', 'ignore', 'refuse', 'forget', 'avoid'] },
+      ],
+    },
+    {
+      id: 'impuls_d6_p2',
+      english: 'Anytime, it is not a problem.',
+      meaning: { ru: 'Всегда пожалуйста, это не проблема.', uk: 'Завжди будь ласка, це не проблема.', es: 'Cuando quieras, no es un problema.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Короткий и уверенный ответ', uk: 'Короткий і впевнений відповідь', es: 'Respuesta corta y segura' },
+        rule: { ru: '«It is» — это есть. После «it» ставим «is», а не «am» или «are».', uk: '«It is» — це є. Після «it» ставимо «is», а не «am» або «are».', es: '«It is» significa «esto es». Después de «it» siempre va «is», no «am» ni «are».' },
+        why: { ru: '«It» — не я и не ты, поэтому нужен «is».', uk: '«It» — не я і не ти, тому потрібен «is».', es: '«It» no es ni yo ni tú, por eso necesita «is».' },
+        commonMistake: { ru: 'Не говори «it are» или «it am» — только «it is».', uk: 'Не кажи «it are» або «it am» — тільки «it is».', es: 'No digas «it are» ni «it am»: siempre «it is».' },
+      },
+      words: [
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'you'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['very', 'quite', 'really', 'always', 'never'] },
+        { text: 'a', partOfSpeech: 'determiner', distractors: ['an', 'the', 'this', 'that', 'these'] },
+        { text: 'problem', partOfSpeech: 'noun', distractors: ['solution', 'success', 'gift', 'answer', 'result'] },
+      ],
+    },
+    {
+      id: 'impuls_d6_p3',
+      english: 'I do not mind at all.',
+      meaning: { ru: 'Мне совсем не мешает.', uk: 'Мені зовсім не заважає.', es: 'No me importa en absoluto.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Сказать «мне не мешает»', uk: 'Сказати «мені не заважає»', es: 'Decir «no me importa»' },
+        rule: { ru: '«Do not» отрицает действие. «I do not mind» — буквально «я не возражаю».', uk: '«Do not» заперечує дію. «I do not mind» — буквально «я не заперечую».', es: '«Do not» niega una acción. «I do not mind» literalmente significa «no me molesta».' },
+        why: { ru: '«At all» добавляет смысл «совсем, вообще» — звучит убедительно и дружелюбно.', uk: '«At all» додає сенс «зовсім, взагалі» — звучить переконливо і дружньо.', es: '«At all» añade el sentido de «en absoluto»: suena convincente y amable.' },
+        commonMistake: { ru: 'Не говори «I not mind» — нужно «do not» перед глаголом.', uk: 'Не кажи «I not mind» — потрібен «do not» перед дієсловом.', es: 'No digas «I not mind»: necesitas «do not» antes del verbo.' },
+      },
+      words: [
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'is', 'are', 'have'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['very', 'quite', 'really', 'always', 'often'] },
+        { text: 'mind', partOfSpeech: 'verb', distractors: ['care', 'want', 'love', 'hate', 'need'] },
+        { text: 'at', partOfSpeech: 'other', distractors: ['in', 'on', 'by', 'for', 'with'] },
+        { text: 'all', partOfSpeech: 'adverb', distractors: ['once', 'now', 'soon', 'here', 'then'] },
+      ],
+    },
+    {
+      id: 'impuls_d6_p4',
+      english: 'You are welcome, it is fine.',
+      meaning: { ru: 'Пожалуйста, всё хорошо.', uk: 'Будь ласка, все добре.', es: 'De nada, está bien.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Классический ответ на спасибо', uk: 'Класична відповідь на дякую', es: 'Respuesta clásica al «gracias»' },
+        rule: { ru: '«You are welcome» — дословно «тебе рады». «Are» идёт после you всегда.', uk: '«You are welcome» — дослівно «тобі раді». «Are» йде після you завжди.', es: '«You are welcome» literalmente significa «eres bienvenido». «Are» siempre va después de you.' },
+        why: { ru: 'Это самый известный ответ на «thank you» — хорошо знать его тоже.', uk: 'Це найвідоміша відповідь на «thank you» — добре знати її теж.', es: 'Es la respuesta más conocida al «thank you»: vale la pena conocerla también.' },
+        commonMistake: { ru: 'Не говори «You is welcome» — после you только are.', uk: 'Не кажи «You is welcome» — після you тільки are.', es: 'No digas «You is welcome»: después de you siempre va are.' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['I', 'He', 'She', 'We', 'They'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['is', 'am', 'was', 'were', 'be'] },
+        { text: 'welcome', partOfSpeech: 'adjective', distractors: ['late', 'wrong', 'lost', 'quiet', 'rude'] },
+        { text: 'fine', partOfSpeech: 'adjective', distractors: ['bad', 'wrong', 'hard', 'slow', 'dull'] },
+      ],
+    },
+    {
+      id: 'impuls_d6_p5',
+      english: 'I am happy to help you.',
+      meaning: { ru: 'Я рад помочь тебе.', uk: 'Я радий допомогти тобі.', es: 'Me alegra ayudarte.' },
+      constructions: ['to-be', 'present-simple'],
+      explanation: {
+        title: { ru: 'Сказать что рад помочь', uk: 'Сказати що радий допомогти', es: 'Decir que te alegra ayudar' },
+        rule: { ru: '«I am happy» — я рад/счастлив. «Happy» описывает моё состояние, «am» его соединяет с «I».', uk: '«I am happy» — я радий/щасливий. «Happy» описує мій стан, «am» його з\'єднує з «I».', es: '«I am happy» significa «estoy contento». «Happy» describe mi estado; «am» lo une a «I».' },
+        why: { ru: 'Звучит искренне — человек чувствует, что ты правда рад, а не говоришь «по обязанности».', uk: 'Звучить щиро — людина відчуває, що ти справді радий, а не кажеш «по обов\'язку».', es: 'Suena sincero: la otra persona siente que realmente estás contento, no que lo dices por obligación.' },
+        commonMistake: { ru: 'Не говори «I happy» без «am» — без него предложение не работает.', uk: 'Не кажи «I happy» без «am» — без нього речення не працює.', es: 'No digas «I happy» sin «am»: sin ese enlace la frase no funciona.' },
+      },
+      words: [
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'happy', partOfSpeech: 'adjective', distractors: ['sad', 'tired', 'angry', 'bored', 'upset'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'of', 'in', 'at', 'by'] },
+        { text: 'help', partOfSpeech: 'verb', distractors: ['leave', 'ignore', 'refuse', 'forget', 'avoid'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'us', 'them'] },
+      ],
+    },
+    {
+      id: 'impuls_d6_p6',
+      english: 'That is what friends are for.',
+      meaning: { ru: 'Для этого и нужны друзья.', uk: 'Для цього і потрібні друзі.', es: 'Para eso están los amigos.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Живой ответ с теплотой', uk: 'Живий відповідь з теплотою', es: 'Respuesta viva y cálida' },
+        rule: { ru: '«That is» — это есть. «Are for» — нужны для. «Are» стоит после «friends» (множественное).', uk: '«That is» — це є. «Are for» — потрібні для. «Are» стоїть після «friends» (множина).', es: '«That is» significa «eso es». «Are for» indica «sirven para». «Are» va después de «friends» (plural).' },
+        why: { ru: 'Эта фраза звучит по-человечески тепло — идеально в ответ на искреннее «спасибо».', uk: 'Ця фраза звучить по-людськи тепло — ідеально у відповідь на щире «дякую».', es: 'Esta frase suena humana y cálida: perfecta como respuesta a un «gracias» sincero.' },
+        commonMistake: { ru: 'Не говори «friends is for» — после множественного слова всегда are.', uk: 'Не кажи «friends is for» — після множинного слова завжди are.', es: 'No digas «friends is for»: después de una palabra en plural siempre va are.' },
+      },
+      words: [
+        { text: 'That', partOfSpeech: 'pronoun', distractors: ['This', 'It', 'He', 'She', 'Which'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'was', 'was', 'were', 'be'] },
+        { text: 'what', partOfSpeech: 'pronoun', distractors: ['when', 'where', 'how', 'who', 'why'] },
+        { text: 'friends', partOfSpeech: 'noun', distractors: ['enemies', 'strangers', 'bosses', 'teachers', 'doctors'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['were', 'am', 'was', 'were', 'be'] },
+        { text: 'for', partOfSpeech: 'other', distractors: ['to', 'of', 'in', 'by', 'with'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'worries', partOfSpeech: 'noun', translation: { ru: 'беспокойства, проблемы', uk: 'турботи, проблеми', es: 'preocupaciones, problemas' }, example: 'No worries, I am glad to help.' },
+    { word: 'glad', partOfSpeech: 'adjective', translation: { ru: 'рад, доволен', uk: 'радий, задоволений', es: 'contento, alegre' }, example: 'No worries, I am glad to help.' },
+    { word: 'mind', partOfSpeech: 'verb', translation: { ru: 'возражать, иметь против', uk: 'заперечувати, мати проти', es: 'importar, molestar' }, example: 'I do not mind at all.' },
+    { word: 'welcome', partOfSpeech: 'adjective', translation: { ru: 'пожалуйста (в ответ на спасибо)', uk: 'будь ласка (у відповідь на дякую)', es: 'de nada, bienvenido' }, example: 'You are welcome, it is fine.' },
+    { word: 'happy', partOfSpeech: 'adjective', translation: { ru: 'рад, счастлив', uk: 'радий, щасливий', es: 'contento, feliz' }, example: 'I am happy to help you.' },
+    { word: 'friends', partOfSpeech: 'noun', translation: { ru: 'друзья', uk: 'друзі', es: 'amigos' }, example: 'That is what friends are for.' },
+  ],
+};
+
+export const IMPULS_DAY_7: PlanContentDay = {
+  planId: 'impuls',
+  dayIndex: 7,
+  topic: { ru: 'Первое привет без ступора', uk: 'Перше привіт без ступору', es: 'El primer saludo sin miedo' },
+  outcome: {
+    ru: 'Ты легко говоришь привет, называешь имя, спрашиваешь как дела и отвечаешь — без паники',
+    uk: 'Ти легко вітаєшся, називаєш ім\'я, питаєш як справи і відповідаєш — без паніки',
+    es: 'Podrás saludar, decir tu nombre, preguntar cómo está alguien y responder, sin miedo',
+  },
+  level: 'A1',
+  prerequisiteLessons: [6, 1],
+  intro: [
+    {
+      kind: 'why',
+      title: { ru: 'Неделя позади — ты уже умеешь', uk: 'Тиждень позаду — ти вже вмієш', es: 'La semana ha pasado y ya sabes' },
+      body: {
+        ru: 'Сегодня повторяем всё, что ты уже знаешь. Привет, имя, как дела, спасибо — это и есть живой разговор. Ты знаешь эти слова. Теперь скажи их без паузы.',
+        uk: 'Сьогодні повторюємо все, що ти вже знаєш. Привіт, ім\'я, як справи, дякую — це і є живе спілкування. Ти знаєш ці слова. Тепер скажи їх без паузи.',
+        es: 'Hoy repasamos todo lo que ya sabes. Hola, nombre, cómo estás, gracias — eso es una conversación real. Ya conoces estas palabras. Ahora dícelas sin pausa.',
+      },
+      examples: [
+        { en: 'Hi, I am Anna.', gloss: { ru: 'Привет, я Анна.', uk: 'Привіт, я Анна.', es: 'Hola, soy Ana.' } },
+        { en: 'Nice to meet you.', gloss: { ru: 'Приятно познакомиться.', uk: 'Приємно познайомитись.', es: 'Encantado de conocerte.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Три шага, которые работают всегда', uk: 'Три кроки, які працюють завжди', es: 'Tres pasos que siempre funcionan' },
+      body: {
+        ru: 'Шаг 1: скажи привет. Шаг 2: назови своё имя. Шаг 3: спроси как дела. Вот и весь первый разговор. Не надо ничего сложного — просто три шага.',
+        uk: 'Крок 1: привітайся. Крок 2: назви своє ім\'я. Крок 3: запитай як справи. Ось і вся перша розмова. Не потрібно нічого складного — просто три кроки.',
+        es: 'Paso 1: saluda. Paso 2: di tu nombre. Paso 3: pregunta cómo está. Eso es toda la primera conversación. No necesitas nada complicado, solo tres pasos.',
+      },
+      examples: [
+        { en: 'I am fine, thank you.', gloss: { ru: 'Я в порядке, спасибо.', uk: 'Я добре, дякую.', es: 'Estoy bien, gracias.' } },
+        { en: 'Are you from Russia?', gloss: { ru: 'Ты из России?', uk: 'Ти з Росії?', es: '¿Eres de Rusia?' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Ступор — это нормально, но он проходит', uk: 'Ступор — це нормально, але він минає', es: 'El miedo es normal, pero pasa' },
+      body: {
+        ru: 'Если ты чувствуешь ступор — сделай паузу и скажи хотя бы одно слово. Hi. Потом имя. Потом остальное. Маленький шаг лучше молчания.',
+        uk: 'Якщо відчуваєш ступор — зроби паузу і скажи хоча б одне слово. Hi. Потім ім\'я. Потім решту. Маленький крок кращий за мовчання.',
+        es: 'Si sientes miedo, haz una pausa y di al menos una palabra. Hi. Luego el nombre. Luego el resto. Un pequeño paso es mejor que el silencio.',
+      },
+      examples: [
+        { en: 'My name is Maria.', gloss: { ru: 'Меня зовут Мария.', uk: 'Мене звуть Марія.', es: 'Mi nombre es María.' } },
+        { en: 'How are you?', gloss: { ru: 'Как дела?', uk: 'Як справи?', es: '¿Cómo estás?' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'impuls_d7_p1',
+      english: 'Hi, my name is Tom.',
+      meaning: { ru: 'Привет, меня зовут Том.', uk: 'Привіт, мене звуть Том.', es: 'Hola, mi nombre es Tom.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Как сказать своё имя', uk: 'Як сказати своє ім\'я', es: 'Cómo decir tu nombre' },
+        rule: { ru: 'Говоришь «my name is» — и сразу имя. Это самый простой способ представиться.', uk: 'Кажеш «my name is» — і одразу ім\'я. Це найпростіший спосіб представитись.', es: 'Dices «my name is» y luego tu nombre. Es la forma más sencilla de presentarte.' },
+        why: { ru: 'Эта фраза работает всегда — в любом месте и с любым человеком.', uk: 'Ця фраза працює завжди — у будь-якому місці та з будь-якою людиною.', es: 'Esta frase funciona siempre, en cualquier lugar y con cualquier persona.' },
+        commonMistake: { ru: 'Не говори «I name Tom» — так не говорят. Нужно «my name is Tom».', uk: 'Не кажи «I name Tom» — так не кажуть. Потрібно «my name is Tom».', es: 'No digas «I name Tom», eso no se usa. Debes decir «my name is Tom».' },
+      },
+      words: [
+        { text: 'Hi', partOfSpeech: 'other', distractors: ['Bye', 'Sorry', 'Please', 'Yes', 'No'] },
+        { text: 'my', partOfSpeech: 'determiner', distractors: ['your', 'her', 'his', 'their', 'our'] },
+        { text: 'name', partOfSpeech: 'noun', distractors: ['age', 'job', 'city', 'number', 'address'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
+        { text: 'Tom', partOfSpeech: 'noun', distractors: ['Anna', 'Maria', 'John', 'Kate', 'Alex'] },
+      ],
+    },
+    {
+      id: 'impuls_d7_p2',
+      english: 'I am from Russia.',
+      meaning: { ru: 'Я из России.', uk: 'Я з Росії.', es: 'Soy de Rusia.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Откуда ты', uk: 'Звідки ти', es: 'De dónde eres' },
+        rule: { ru: '«I am from» — и называешь страну. Коротко и понятно.', uk: '«I am from» — і називаєш країну. Коротко і зрозуміло.', es: 'Dices «I am from» y nombras el país. Corto y claro.' },
+        why: { ru: 'Люди часто спрашивают откуда ты — эта фраза всегда нужна.', uk: 'Люди часто питають звідки ти — ця фраза завжди потрібна.', es: 'La gente suele preguntar de dónde eres, y esta frase siempre sirve.' },
+        commonMistake: { ru: 'Не говори «I is from» — для «я» всегда «I am».', uk: 'Не кажи «I is from» — для «я» завжди «I am».', es: 'No digas «I is from». Para «yo» siempre usas «I am».' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'You'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'from', partOfSpeech: 'preposition', distractors: ['in', 'at', 'on', 'near', 'by'] },
+        { text: 'Russia', partOfSpeech: 'noun', distractors: ['France', 'Spain', 'Germany', 'Italy', 'China'] },
+      ],
+    },
+    {
+      id: 'impuls_d7_p3',
+      english: 'How are you today?',
+      meaning: { ru: 'Как ты сегодня?', uk: 'Як ти сьогодні?', es: '¿Cómo estás hoy?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Спросить как дела', uk: 'Запитати як справи', es: 'Preguntar cómo está alguien' },
+        rule: { ru: '«How are you» — это вопрос о состоянии. Можно добавить «today» — «сегодня».', uk: '«How are you» — це питання про стан. Можна додати «today» — «сьогодні».', es: '«How are you» pregunta cómo está alguien. Puedes añadir «today» para decir «hoy».' },
+        why: { ru: 'Это самый частый вопрос в разговоре — его слышишь каждый день.', uk: 'Це найпоширеніше питання в розмові — його чуєш щодня.', es: 'Es la pregunta más frecuente en una conversación y la escucharás todos los días.' },
+        commonMistake: { ru: 'Не говори «How you are» — слово «are» идёт сразу после «How».', uk: 'Не кажи «How you are» — слово «are» йде одразу після «How».', es: 'No digas «How you are». La palabra «are» va justo después de «How».' },
+      },
+      words: [
+        { text: 'How', partOfSpeech: 'adverb', distractors: ['Where', 'When', 'Why', 'What', 'Who'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['is', 'am', 'was', 'were', 'be'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'today', partOfSpeech: 'adverb', distractors: ['yesterday', 'tomorrow', 'always', 'never', 'often'] },
+      ],
+    },
+    {
+      id: 'impuls_d7_p4',
+      english: 'I am fine, thank you.',
+      meaning: { ru: 'Я в порядке, спасибо.', uk: 'Я добре, дякую.', es: 'Estoy bien, gracias.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Ответить на вопрос как дела', uk: 'Відповісти на питання як справи', es: 'Responder a cómo estás' },
+        rule: { ru: '«I am fine» — ты в порядке. «Thank you» — спасибо. Вместе это вежливый ответ.', uk: '«I am fine» — ти в порядку. «Thank you» — дякую. Разом це ввічлива відповідь.', es: '«I am fine» significa que estás bien. «Thank you» es gracias. Juntos forman una respuesta educada.' },
+        why: { ru: 'После вопроса «как дела» нужно ответить — эта фраза подходит всегда.', uk: 'Після питання «як справи» треба відповісти — ця фраза підходить завжди.', es: 'Después de que te pregunten cómo estás, necesitas responder y esta frase siempre funciona.' },
+        commonMistake: { ru: 'Не говори только «fine» — добавь «I am» в начале, это звучит полно.', uk: 'Не кажи лише «fine» — додай «I am» на початку, це звучить повно.', es: 'No digas solo «fine». Añade «I am» al inicio para que suene completo y natural.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'She'] },
+        { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
+        { text: 'fine', partOfSpeech: 'adjective', distractors: ['tired', 'sad', 'sick', 'busy', 'late'] },
+        { text: 'thank', partOfSpeech: 'verb', distractors: ['help', 'know', 'want', 'need', 'like'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'us', 'them'] },
+      ],
+    },
+    {
+      id: 'impuls_d7_p5',
+      english: 'Nice to meet you.',
+      meaning: { ru: 'Приятно познакомиться.', uk: 'Приємно познайомитись.', es: 'Encantado de conocerte.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Сказать приятно познакомиться', uk: 'Сказати приємно познайомитись', es: 'Decir encantado de conocerte' },
+        rule: { ru: '«Nice to meet you» говоришь сразу после того, как узнал имя человека.', uk: '«Nice to meet you» кажеш одразу після того, як дізнався ім\'я людини.', es: 'Dices «Nice to meet you» justo después de conocer el nombre de alguien.' },
+        why: { ru: 'Это вежливо и тепло — человек сразу чувствует, что ты рад знакомству.', uk: 'Це ввічливо й тепло — людина одразу відчуває, що ти рада знайомству.', es: 'Es educado y cálido: la otra persona siente enseguida que te alegra conocerla.' },
+        commonMistake: { ru: 'Не говори «Nice meet you» — маленькое «to» в середине очень важно.', uk: 'Не кажи «Nice meet you» — маленьке «to» в середині дуже важливе.', es: 'No digas «Nice meet you». El pequeño «to» en el medio es muy importante.' },
+      },
+      words: [
+        { text: 'Nice', partOfSpeech: 'adjective', distractors: ['Hard', 'Strange', 'Boring', 'Difficult', 'Sad'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'of', 'in', 'at', 'on'] },
+        { text: 'meet', partOfSpeech: 'verb', distractors: ['see', 'call', 'leave', 'forget', 'know'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'us', 'them'] },
+      ],
+    },
+    {
+      id: 'impuls_d7_p6',
+      english: 'Are you from Spain?',
+      meaning: { ru: 'Ты из Испании?', uk: 'Ти з Іспанії?', es: '¿Eres de España?' },
+      constructions: ['to-be-questions'],
+      explanation: {
+        title: { ru: 'Спросить откуда человек', uk: 'Запитати звідки людина', es: 'Preguntar de dónde es alguien' },
+        rule: { ru: 'Чтобы задать вопрос, ставишь «Are» в начало: «Are you from...» — и называешь страну.', uk: 'Щоб поставити питання, ставиш «Are» на початок: «Are you from...» — і називаєш країну.', es: 'Para hacer una pregunta, pones «Are» al inicio: «Are you from...» y nombras el país.' },
+        why: { ru: 'Знание откуда человек помогает начать тему и поддержать разговор.', uk: 'Знання звідки людина допомагає почати тему і підтримати розмову.', es: 'Saber de dónde es alguien ayuda a empezar un tema y mantener la conversación.' },
+        commonMistake: { ru: 'Не говори «You are from Spain?» в вопросе — «Are» должно стоять первым.', uk: 'Не кажи «You are from Spain?» у питанні — «Are» має стояти першим.', es: 'No digas «You are from Spain?» en una pregunta. «Are» debe ir primero.' },
+      },
+      words: [
+        { text: 'Are', partOfSpeech: 'to-be', distractors: ['Is', 'Am', 'Was', 'Were', 'Be'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
+        { text: 'from', partOfSpeech: 'preposition', distractors: ['in', 'at', 'on', 'near', 'by'] },
+        { text: 'Spain', partOfSpeech: 'noun', distractors: ['France', 'Italy', 'Russia', 'Germany', 'China'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'name', partOfSpeech: 'noun', translation: { ru: 'имя', uk: 'ім\'я', es: 'nombre' }, example: 'Hi, my name is Tom.' },
+    { word: 'fine', partOfSpeech: 'adjective', translation: { ru: 'в порядке, хорошо', uk: 'добре, в порядку', es: 'bien' }, example: 'I am fine, thank you.' },
+    { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'знакомиться, встречать', uk: 'знайомитись, зустрічати', es: 'conocer' }, example: 'Nice to meet you.' },
+    { word: 'today', partOfSpeech: 'adverb', translation: { ru: 'сегодня', uk: 'сьогодні', es: 'hoy' }, example: 'How are you today?' },
+    { word: 'from', partOfSpeech: 'preposition', translation: { ru: 'из, откуда', uk: 'з, звідки', es: 'de' }, example: 'I am from Russia.' },
+    { word: 'nice', partOfSpeech: 'adjective', translation: { ru: 'приятный, хороший', uk: 'приємний, гарний', es: 'agradable, bien' }, example: 'Nice to meet you.' },
+  ],
+};
+
+export const IMPULS_CONTENT_DAYS: PlanContentDay[] = [
+  IMPULS_DAY_1,
+  IMPULS_DAY_2,
+  IMPULS_DAY_3,
+  IMPULS_DAY_4,
+  IMPULS_DAY_5,
+  IMPULS_DAY_6,
+  IMPULS_DAY_7,
+];

@@ -884,13 +884,8 @@ export default function SettingsMain() {
             sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')}
             onPress={() => router.push('/settings_notifications')}
           />
-          <SettingsRow
-            icon="gift"
-            color="purple"
-            label={L('Все подарки', 'Всі подарунки', 'Todos los regalos', 'Todos os presentes', 'Tất cả quà', 'Semua hadiah', 'Tüm hediyeler', 'Wszystkie nagrody')}
-            sub={L('Что можно получить в игре', 'Що можна отримати в грі', 'Lo que puedes ganar', 'O que você pode ganhar', 'Những gì có thể nhận', 'Apa yang bisa didapat', 'Kazanabileceklerin', 'Co możesz zdobyć')}
-            onPress={() => router.push('/settings_gifts' as any)}
-          />
+          {/* «Все подарки» — только в админ-панели (Справочник подарков), не в проде.
+              Каталог живёт в components/admin_panel/sections/GiftsCatalogSection.tsx. */}
         </SettingsGroup>
 
 

@@ -2089,7 +2089,6 @@ function AppContent() {
       <Stack.Screen name="settings_notifications" />
       <Stack.Screen name="settings_themes" />
       <Stack.Screen name="settings_language" />
-      <Stack.Screen name="settings_gifts" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="streak_stats" />

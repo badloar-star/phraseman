@@ -8,7 +8,7 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-import { onAppEvent } from '../app/events';
+import { emitAppEvent, onAppEvent } from '../app/events';
 import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from '../app/premium_guard';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
@@ -234,6 +234,35 @@ function EntitlementExpiredHost() {
       cancelled = true;
     };
   }, [maybeShow]);
+
+  /** #3 немое место: предупреждение «триал кончается через 2 ч» (только тост, без модалки). */
+  useEffect(() => {
+    const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+    const WARN_SHOWN_KEY = 'entitlement_trial_ending_shown';
+    (async () => {
+      try {
+        const rcExpiryRaw = await AsyncStorage.getItem('premium_rc_expiry_ms').catch(() => null);
+        const rcExpiry = rcExpiryRaw ? Number(rcExpiryRaw) : 0;
+        if (!Number.isFinite(rcExpiry) || rcExpiry <= 0) return;
+        const remaining = rcExpiry - Date.now();
+        if (remaining <= 0 || remaining > TWO_HOURS_MS) return;
+        const alreadyShown = await AsyncStorage.getItem(WARN_SHOWN_KEY).catch(() => null);
+        if (alreadyShown === '1') return;
+        await AsyncStorage.setItem(WARN_SHOWN_KEY, '1').catch(() => {});
+        const msgRu = remaining < 30 * 60 * 1000
+          ? 'Триал заканчивается менее чем через 30 мин ⏳'
+          : 'Триал заканчивается менее чем через 2 ч ⏳';
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: msgRu,
+          messageUk: msgRu,
+          messageEs: remaining < 30 * 60 * 1000 ? 'El trial termina en menos de 30 min ⏳' : 'El trial termina en menos de 2 h ⏳',
+        });
+      } catch {
+        /* ignore */
+      }
+    })();
+  }, [lang]);
 
   const markShownAndClose = useCallback(() => {
     if (kind) void AsyncStorage.setItem(LAST_SHOWN_KEY[kind], String(Date.now())).catch(() => {});

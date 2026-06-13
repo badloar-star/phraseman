@@ -29,7 +29,9 @@ describe('Premium modal planned locale coverage', () => {
   });
 
   it('keeps store-price placeholder localized', () => {
-    expect(source).toContain('Цена магазина появится перед покупкой.');
+    // RU-формулировку переписали на «Точная сумма появится перед покупкой.»;
+    // planned-локали (pt-BR/vi) остались прежними — проверяем текущую правду.
+    expect(source).toContain('Точная сумма появится перед покупкой.');
     expect(source).toContain('O preço da loja aparecerá antes da compra.');
     expect(source).toContain('Giá trong cửa hàng sẽ xuất hiện trước khi mua.');
     expect(source).not.toContain('Store price appears before purchase.');

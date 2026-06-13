@@ -117,14 +117,20 @@ export async function reserveNameDetailed(
     return { status: 'ok', nextChangeAt: data.nextChangeAt };
   } catch (e: any) {
     if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) return { status: 'taken' };
-    // Если auth ещё не готов (401/unauthenticated) — один автоповтор после ожидания токена
-    const isAuthError = String(e?.code ?? '').includes('unauthenticated') || String(e?.message ?? '').includes('auth_required');
-    if (isAuthError) {
+    const errCode = String(e?.code ?? '');
+    const errMsg = String(e?.message ?? '');
+    const isAuthError = errCode.includes('unauthenticated') || errMsg.includes('auth_required');
+    // CF returns failed-precondition/stable_id_required when users/{stableId} doc
+    // doesn't exist yet (first install, ensureStableAuthLinkForStableId was still in flight).
+    const isIdentityError = errCode.includes('failed-precondition') || errMsg.includes('stable_id_required');
+    if (isAuthError || isIdentityError) {
       const authReady = await waitForAnonAuth(15_000);
       if (!authReady) return { status: 'error' };
       try {
         const stableId = await ensureAnonUser();
         if (!stableId) return { status: 'error' };
+        // Force the identity link before retrying — this creates users/{stableId} if missing.
+        await ensureStableAuthLinkForStableId(stableId).catch(() => false);
         const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
         const { data } = await fn({ stableId, name: name.trim(), oldName: oldName.trim() });
         if (data.status === 'taken') return { status: 'taken' };

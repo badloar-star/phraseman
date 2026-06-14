@@ -20,8 +20,12 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');
     expect(rules).toContain('function newUserDocOwnerMatchesAuth(userId) {');
     // Read/delete stay owner/admin; update is owner/admin AND must not touch premium fields.
+    // The update rule may AND additional guards (e.g. hasNoShardWrites()), so match the
+    // owner + premium-guard prefix instead of pinning the exact (and growing) full line.
     expect(rules).toContain('allow read, delete: if userDocOwnerMatchesAuth(userId);');
-    expect(rules).toContain('allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites();');
+    expect(rules).toMatch(
+      /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?progressHasNoPremiumWrites\(\)/,
+    );
     expect(rules).toContain('allow create: if newUserDocOwnerMatchesAuth(userId);');
   });
 
@@ -94,9 +98,12 @@ describe('firestore.rules security baseline', () => {
 
   test('users update rule is gated on progressHasNoPremiumWrites() (paywall self-grant guard)', () => {
     // The guard must be wired into the update rule, not merely defined.
+    // We assert the gate is PRESENT in the users update rule rather than pinning the
+    // exact full line — the rule legitimately ANDs further guards (e.g. hasNoShardWrites()),
+    // and a strict string match would break every time a new guard is added.
     expect(rules).toContain('function progressHasNoPremiumWrites() {');
-    expect(rules).toContain(
-      'allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites();',
+    expect(rules).toMatch(
+      /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?progressHasNoPremiumWrites\(\)/,
     );
     // It must inspect the diff of the progress map's affected keys.
     expect(rules).toMatch(

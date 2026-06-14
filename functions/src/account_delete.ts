@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
 import { createHash } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
@@ -11,7 +11,7 @@ const MAX_ID_LEN = 180;
 
 const ACCOUNT_DELETE_OPTIONS = {
   region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
+  enforceAppCheck: ENFORCE_APP_CHECK_SENSITIVE,
   timeoutSeconds: ACCOUNT_DELETE_TIMEOUT_SECONDS,
   memory: '1GiB' as const,
   maxInstances: 20,

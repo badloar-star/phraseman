@@ -37,16 +37,30 @@
   `missing`/`short_non_jwt` (старые клиенты). Включать энфорс, только когда `jwt_like`
   ≈ почти весь живой трафик (старые версии вымылись).
 
-### 4. Включить энфорс ПОЭТАПНО
-- Начать с наименее used / наиболее опасной функции: `accountDeleteMine` (разрушительная),
-  затем `authMergeStableAccounts`, `authStampAnonOwnership`.
-- Способ: выставить `ENFORCE_APP_CHECK=true` в окружении этих функций (или сделать
-  per-function флаг, если нужен частичный rollout) и задеплоить через `deploy:safe`.
-- Мониторить рост `unauthenticated`-ошибок. При всплеске — откатить (`ENFORCE_APP_CHECK` unset).
+### 4. Включить энфорс ПОЭТАПНО  ✅ КОД ГОТОВ К ЧАСТИЧНОМУ ROLLOUT
+Добавлены **per-group флаги** в `functions/src/callable_options.ts` (2026-06-14, B-audit),
+чтобы включать энфорс по группам, а не «всё или ничего». Каждый флаг по умолчанию
+наследует глобальный `ENFORCE_APP_CHECK` (т.е. сейчас все = false, поведение не изменилось):
+
+| Env-переменная | Группа функций | Когда включать |
+|---|---|---|
+| `ENFORCE_APP_CHECK_SENSITIVE` | `accountDeleteMine`, `vipRevokeMine` (разрушительные) | ПЕРВЫМИ |
+| `ENFORCE_APP_CHECK_OPENAI` | `explainPhrase`, `explainMistake`, `premiumDialogSend`, `weeklyReviewGenerate`, `statsInsightsGenerate` (платный OpenAI) | ПОСЛЕДНИМИ, после прогрева |
+| `ENFORCE_APP_CHECK` | всё остальное (`HOT_CALLABLE_OPTIONS`: auth/league/leaderboard/…) | в конце, общим махом |
+
+Порядок раската:
+1. Сначала `ENFORCE_APP_CHECK_SENSITIVE=true` (мало трафика, высокий риск) → `deploy:safe`,
+   мониторить `unauthenticated`. Каждый флаг = `'true'` включает, `'false'` принудительно
+   выключает (даже если глобальный true), отсутствие = следует глобальному.
+2. Затем общий `ENFORCE_APP_CHECK=true` для остальных `HOT_CALLABLE_OPTIONS`-функций.
+3. В последнюю очередь `ENFORCE_APP_CHECK_OPENAI=true` (анонимные платные вызовы — самый
+   хрупкий кейс: анонимная сессия тоже должна получать App Check-токен).
+- При всплеске `unauthenticated` — откатить соответствующий флаг (unset / `false`).
 
 ### 5. Полный энфорс
-- Когда критичные функции стабильны под App Check — распространить на остальные
-  `HOT_CALLABLE_OPTIONS`-функции и OpenAI-функции.
+- Когда все группы стабильны под App Check — оставить все три флага в `true`.
+- ВАЖНО: код уже разведён по группам; вручную в коде менять ничего не нужно — только env
+  переменные функций и `deploy:safe`.
 
 ## Что НЕ делать
 - Не включать `ENFORCE_APP_CHECK=true` глобально одним махом до прогрева — гарантированный

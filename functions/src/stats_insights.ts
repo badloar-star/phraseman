@@ -2,7 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { createHash } from 'crypto';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 
@@ -393,7 +393,7 @@ function guardLearnerFacingNote(key: BlockKey, note: string): string {
 
 export const statsInsightsGenerate = onCall({
   region: REGION,
-  enforceAppCheck: ENFORCE_APP_CHECK,
+  enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 30,
   memory: '512MiB',
   maxInstances: 10,

@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 
 const REGION = 'us-central1';
@@ -28,7 +28,7 @@ export function vipRevokeProgressFields(nowMs: number): Record<string, string> {
 }
 
 export const vipRevokeMine = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK_SENSITIVE },
   async (request) => {
     if (!request.auth?.uid) {
       throw new HttpsError('unauthenticated', 'auth_required');

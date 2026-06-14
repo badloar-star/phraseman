@@ -20,16 +20,19 @@ export type PersonalPlanPhraseLesson = {
 };
 
 type NoteTranslations = {
+  titleUk?: string;
+  titleEs?: string;
   correctUk?: string;
   correctEs?: string;
   wrongUk?: string;
   wrongEs?: string;
 };
 
-// correctUk/correctEs/wrongUk/wrongEs are all optional on LessonTeachingNote, and the
-// UI falls back to the russian note when they are absent. Do NOT default them to the
-// russian text — that masquerades russian as a real uk/es translation. Pass real
-// translations via `translations` when available; otherwise leave them undefined.
+// titleUk/titleEs/correctUk/correctEs/wrongUk/wrongEs are all optional on
+// LessonTeachingNote, and the UI falls back to the russian note when they are
+// absent. Do NOT default them to the russian text — that masquerades russian as a
+// real uk/es translation. Pass real translations via `translations` when
+// available; otherwise leave them undefined.
 function note(
   id: string,
   titleRu: string,
@@ -42,6 +45,8 @@ function note(
     titleRu,
     correctRu,
     wrongRu,
+    ...(translations.titleUk ? { titleUk: translations.titleUk } : {}),
+    ...(translations.titleEs ? { titleEs: translations.titleEs } : {}),
     ...(translations.correctUk ? { correctUk: translations.correctUk } : {}),
     ...(translations.correctEs ? { correctEs: translations.correctEs } : {}),
     ...(translations.wrongUk ? { wrongUk: translations.wrongUk } : {}),
@@ -731,9 +736,17 @@ function generatedWordsForPhrase(phrase: GeneratedPhraseTemplate, noteId: string
   const explanation = buildPhraseExplanation(phrase.english, phrase.russian);
   const teachingNote = note(
     noteId,
-    explanation.titleRu,
-    explanation.correctRu,
-    explanation.wrongRu,
+    explanation.title.ru,
+    explanation.correct.ru,
+    explanation.wrong.ru,
+    {
+      titleUk: explanation.title.uk,
+      titleEs: explanation.title.es,
+      correctUk: explanation.correct.uk,
+      correctEs: explanation.correct.es,
+      wrongUk: explanation.wrong.uk,
+      wrongEs: explanation.wrong.es,
+    },
   );
 
   return targetWords.map((word, index) => {

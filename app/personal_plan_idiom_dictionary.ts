@@ -7,12 +7,16 @@
  * Each entry returns a ready explanation. Pure data + pure matchers, testable.
  */
 
+/** Одна строка во всех активных языках интерфейса (RU / UK / ES). */
+export type LocalizedText = { ru: string; uk: string; es: string };
+
 export type IdiomExplanation = {
   /** Stable id of the matched construction (for analytics / dedup). */
   id: string;
-  /** Short title shown above the explanation. */
-  titleRu: string;
-  /** Why the translation is not literal (the teaching point). */
+  /** Short title shown above the explanation (RU / UK / ES). */
+  title: LocalizedText;
+  /** Why the translation is not literal (the teaching point). RU-only — uk/es
+   * получают обобщённую корректную подсказку на стороне билдера. */
   explanationRu: string;
 };
 
@@ -167,6 +171,38 @@ const IDIOM_ENTRIES: IdiomEntry[] = [
   },
 ];
 
+// Заголовки идиом в словаре написаны по-русски и следуют нескольким шаблонам
+// («Фразовый глагол: X», «Устойчивое: X», «Оборот X», «Слово owner …»).
+// Английский термин внутри заголовка не переводим — переводим только русскую
+// обёртку-ярлык, чтобы uk/es пользователь не видел русский текст.
+function localizeIdiomTitle(titleRu: string): LocalizedText {
+  const phrasal = titleRu.match(/^Фразовый глагол:\s*(.+)$/);
+  if (phrasal) {
+    const term = phrasal[1];
+    return { ru: titleRu, uk: `Фразове дієслово: ${term}`, es: `Verbo compuesto: ${term}` };
+  }
+  const fixed = titleRu.match(/^Устойчивое:\s*(.+)$/);
+  if (fixed) {
+    const term = fixed[1];
+    return { ru: titleRu, uk: `Стійкий вислів: ${term}`, es: `Expresión fija: ${term}` };
+  }
+  const turn = titleRu.match(/^Оборот\s+(.+)$/);
+  if (turn) {
+    const term = turn[1];
+    return { ru: titleRu, uk: `Зворот ${term}`, es: `Construcción ${term}` };
+  }
+  if (titleRu === 'Слово owner в рабочем контексте') {
+    return {
+      ru: titleRu,
+      uk: 'Слово owner у робочому контексті',
+      es: 'La palabra owner en el contexto laboral',
+    };
+  }
+  // Неизвестный шаблон: показываем русский заголовок во всех языках (лучше, чем
+  // пустой), но это запасной путь — все текущие заголовки покрыты выше.
+  return { ru: titleRu, uk: titleRu, es: titleRu };
+}
+
 /**
  * Returns the first matching idiom explanation for the phrase, or null.
  */
@@ -176,7 +212,7 @@ export function findIdiomExplanation(english: string): IdiomExplanation | null {
     if (entry.pattern.test(lower)) {
       return {
         id: entry.id,
-        titleRu: entry.titleRu,
+        title: localizeIdiomTitle(entry.titleRu),
         explanationRu: entry.explanationRu,
       };
     }

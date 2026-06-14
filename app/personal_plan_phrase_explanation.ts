@@ -12,13 +12,16 @@
 
 import { findIdiomExplanation } from './personal_plan_idiom_dictionary';
 
+/** Одна строка во всех активных языках интерфейса (RU / UK / ES). */
+export type LocalizedText = { ru: string; uk: string; es: string };
+
 export type PhraseExplanation = {
   /** Short title shown above the explanation. */
-  titleRu: string;
+  title: LocalizedText;
   /** What the learner should assemble + why (shown on correct/intro). */
-  correctRu: string;
+  correct: LocalizedText;
   /** Gentle recovery hint (shown on a wrong attempt). */
-  wrongRu: string;
+  wrong: LocalizedText;
 };
 
 // Small RU<->EN literal gloss table to estimate how literal a translation is.
@@ -61,8 +64,8 @@ function literalCoverage(englishWords: string[], russianLower: string): number {
 
 type GrammarPattern = {
   match: (englishLower: string, words: string[]) => boolean;
-  title: string;
-  why: (english: string) => string;
+  title: LocalizedText;
+  why: (english: string) => LocalizedText;
 };
 
 function words(english: string): string[] {
@@ -81,45 +84,87 @@ const PATTERNS: GrammarPattern[] = [
   {
     // Wh-questions: Where / What / Which / When / How / Who
     match: (lower) => /^(where|what|which|when|how|who|why)\b/.test(lower) && lower.includes('?'),
-    title: 'Вопрос со словом-вопросом',
-    why: (en) =>
-      `«${en}» начинается с вопросительного слова, а дальше идёт глагол. Это обычный порядок для вопросов: сначала «что/где/как», потом действие.`,
+    title: {
+      ru: 'Вопрос со словом-вопросом',
+      uk: 'Питання зі словом-питанням',
+      es: 'Pregunta con palabra interrogativa',
+    },
+    why: (en) => ({
+      ru: `«${en}» начинается с вопросительного слова, а дальше идёт глагол. Это обычный порядок для вопросов: сначала «что/где/как», потом действие.`,
+      uk: `«${en}» починається з питального слова, а далі йде дієслово. Це звичайний порядок для питань: спершу «що/де/як», потім дія.`,
+      es: `«${en}» empieza con una palabra interrogativa y luego viene el verbo. Es el orden normal de las preguntas: primero «qué/dónde/cómo», después la acción.`,
+    }),
   },
   {
     // Yes/no questions starting with can/could/do/does/is/are/will/should
     match: (lower) => /^(can|could|do|does|did|is|are|am|will|would|should|may|have|has)\b/.test(lower) && lower.includes('?'),
-    title: 'Да/нет вопрос',
-    why: (en) =>
-      `«${en}» — вопрос, где вспомогательный глагол стоит первым. Поэтому фраза начинается не с «я», а со слова вроде can/do/is.`,
+    title: {
+      ru: 'Да/нет вопрос',
+      uk: 'Так/ні питання',
+      es: 'Pregunta de sí o no',
+    },
+    why: (en) => ({
+      ru: `«${en}» — вопрос, где вспомогательный глагол стоит первым. Поэтому фраза начинается не с «я», а со слова вроде can/do/is.`,
+      uk: `«${en}» — питання, де допоміжне дієслово стоїть першим. Тому фраза починається не з «я», а зі слова на кшталт can/do/is.`,
+      es: `«${en}» es una pregunta donde el verbo auxiliar va primero. Por eso la frase no empieza con «yo», sino con una palabra como can/do/is.`,
+    }),
   },
   {
     // Negation
     match: (lower) => /\b(not|n't|no)\b/.test(lower) || /n't/.test(lower),
-    title: 'Отрицание',
-    why: (en) =>
-      `«${en}» содержит отрицание (not / don't). Частица отрицания ставится после вспомогательного глагола, а не в конец фразы.`,
+    title: {
+      ru: 'Отрицание',
+      uk: 'Заперечення',
+      es: 'Negación',
+    },
+    why: (en) => ({
+      ru: `«${en}» содержит отрицание (not / don't). Частица отрицания ставится после вспомогательного глагола, а не в конец фразы.`,
+      uk: `«${en}» містить заперечення (not / don't). Частка заперечення ставиться після допоміжного дієслова, а не в кінець фрази.`,
+      es: `«${en}» contiene una negación (not / don't). La negación va después del verbo auxiliar, no al final de la frase.`,
+    }),
   },
   {
     // Modal-driven (need / can / will / should / have to)
     match: (lower) => /^(i|we|you|they|he|she)\s+(need|can|will|should|must|have to|want)\b/.test(lower),
-    title: 'Намерение или необходимость',
-    why: (en) =>
-      `«${en}» строится по схеме «кто + need/can/will + действие». Сначала кто, потом модальное слово, потом что сделать.`,
+    title: {
+      ru: 'Намерение или необходимость',
+      uk: 'Намір або необхідність',
+      es: 'Intención o necesidad',
+    },
+    why: (en) => ({
+      ru: `«${en}» строится по схеме «кто + need/can/will + действие». Сначала кто, потом модальное слово, потом что сделать.`,
+      uk: `«${en}» будується за схемою «хто + need/can/will + дія». Спершу хто, потім модальне слово, потім що зробити.`,
+      es: `«${en}» sigue el esquema «quién + need/can/will + acción». Primero quién, luego la palabra modal y después qué hacer.`,
+    }),
   },
   {
     // "There is / there are"
     match: (lower) => /^there\s+(is|are|was|were)\b/.test(lower),
-    title: 'Есть / имеется',
-    why: (en) =>
-      `«${en}» использует оборот there is/are — так по-английски говорят «есть / имеется». Он всегда стоит в начале.`,
+    title: {
+      ru: 'Есть / имеется',
+      uk: 'Є / наявне',
+      es: 'Hay / existe',
+    },
+    why: (en) => ({
+      ru: `«${en}» использует оборот there is/are — так по-английски говорят «есть / имеется». Он всегда стоит в начале.`,
+      uk: `«${en}» використовує зворот there is/are — так англійською кажуть «є / наявне». Він завжди стоїть на початку.`,
+      es: `«${en}» usa la construcción there is/are — así se dice «hay / existe» en inglés. Siempre va al principio.`,
+    }),
   },
 ];
 
 const DEFAULT_PATTERN: GrammarPattern = {
   match: () => true,
-  title: 'Утвердительная фраза',
-  why: (en) =>
-    `«${en}» построена по базовой схеме «кто → действие → остальное». Держи этот порядок слов, когда собираешь фразу.`,
+  title: {
+    ru: 'Утвердительная фраза',
+    uk: 'Стверджувальна фраза',
+    es: 'Frase afirmativa',
+  },
+  why: (en) => ({
+    ru: `«${en}» построена по базовой схеме «кто → действие → остальное». Держи этот порядок слов, когда собираешь фразу.`,
+    uk: `«${en}» побудована за базовою схемою «хто → дія → решта». Тримай цей порядок слів, коли збираєш фразу.`,
+    es: `«${en}» se construye con el esquema básico «quién → acción → lo demás». Mantén ese orden de palabras al armar la frase.`,
+  }),
 };
 
 function firstWord(english: string): string {
@@ -135,7 +180,7 @@ export function detectPhrasePattern(english: string): GrammarPattern {
   // Question patterns take priority when the phrase is a question.
   const ordered = isQuestion(english)
     ? PATTERNS
-    : PATTERNS.filter((p) => p.title !== 'Вопрос со словом-вопросом' && p.title !== 'Да/нет вопрос');
+    : PATTERNS.filter((p) => p.title.ru !== 'Вопрос со словом-вопросом' && p.title.ru !== 'Да/нет вопрос');
   for (const pattern of ordered) {
     if (pattern.match(lower, tokens)) return pattern;
   }
@@ -150,27 +195,55 @@ export function detectPhrasePattern(english: string): GrammarPattern {
 // (non-literal) and the learner gets a heads-up even if no idiom matched.
 const DIVERGENCE_THRESHOLD = 0.5;
 
+// «Что собрать»: одна и та же подводка к фразе во всех трёх языках.
+function assembleLine(english: string, russian: string): LocalizedText {
+  return {
+    ru: `Нужно собрать: «${russian}» → «${english}».`,
+    uk: `Треба зібрати: «${russian}» → «${english}».`,
+    es: `Hay que armar: «${russian}» → «${english}».`,
+  };
+}
+
 export function buildPhraseExplanation(english: string, russian: string): PhraseExplanation {
   const wordCount = words(english).length;
   const first = firstWord(english);
+  const assemble = assembleLine(english, russian);
 
-  const wrongRu = [
-    `Соберём заново спокойно. Смысл: «${russian}».`,
-    wordCount > 1
-      ? `Начни со слова «${first}» и держи порядок слов как в английской фразе.`
-      : 'Выбери слово, которое точнее всего передаёт смысл.',
-  ].join(' ');
+  const wrong: LocalizedText = {
+    ru: [
+      `Соберём заново спокойно. Смысл: «${russian}».`,
+      wordCount > 1
+        ? `Начни со слова «${first}» и держи порядок слов как в английской фразе.`
+        : 'Выбери слово, которое точнее всего передаёт смысл.',
+    ].join(' '),
+    uk: [
+      `Зберемо заново спокійно. Сенс: «${russian}».`,
+      wordCount > 1
+        ? `Почни зі слова «${first}» і тримай порядок слів як в англійській фразі.`
+        : 'Обери слово, яке найточніше передає сенс.',
+    ].join(' '),
+    es: [
+      `Vamos a armarla de nuevo con calma. Significado: «${russian}».`,
+      wordCount > 1
+        ? `Empieza por la palabra «${first}» y mantén el orden de palabras como en la frase en inglés.`
+        : 'Elige la palabra que mejor transmita el significado.',
+    ].join(' '),
+  };
 
   // 1. Highest priority: a known fixed/idiomatic construction.
   const idiom = findIdiomExplanation(english);
   if (idiom) {
+    // Словарь идиом содержит развёрнутое объяснение только по-русски. Для uk/es
+    // НЕ показываем русский: даём корректную обобщённую подсказку «это устойчивое
+    // выражение, запомни его целиком» на нужном языке.
     return {
-      titleRu: idiom.titleRu,
-      correctRu: [
-        `Нужно собрать: «${russian}» → «${english}».`,
-        idiom.explanationRu,
-      ].join(' '),
-      wrongRu,
+      title: idiom.title,
+      correct: {
+        ru: [assemble.ru, idiom.explanationRu].join(' '),
+        uk: [assemble.uk, 'Це стійкий вислів — запам’ятай його цілком, не по окремих словах.'].join(' '),
+        es: [assemble.es, 'Es una expresión fija: memorízala entera, no palabra por palabra.'].join(' '),
+      },
+      wrong,
     };
   }
 
@@ -178,23 +251,39 @@ export function buildPhraseExplanation(english: string, russian: string): Phrase
   const coverage = literalCoverage(words(english), russian.toLowerCase());
   if (wordCount >= 3 && coverage < DIVERGENCE_THRESHOLD) {
     return {
-      titleRu: 'Перевод по смыслу',
-      correctRu: [
-        `Нужно собрать: «${russian}» → «${english}».`,
-        'Здесь перевод по смыслу, а не слово-в-слово: русская и английская фразы передают одно и то же, но строятся по-разному. Ориентируйся на смысл всей фразы, а не на отдельные слова.',
-      ].join(' '),
-      wrongRu,
+      title: {
+        ru: 'Перевод по смыслу',
+        uk: 'Переклад за змістом',
+        es: 'Traducción por sentido',
+      },
+      correct: {
+        ru: [
+          assemble.ru,
+          'Здесь перевод по смыслу, а не слово-в-слово: русская и английская фразы передают одно и то же, но строятся по-разному. Ориентируйся на смысл всей фразы, а не на отдельные слова.',
+        ].join(' '),
+        uk: [
+          assemble.uk,
+          'Тут переклад за змістом, а не слово в слово: фрази передають те саме, але будуються по-різному. Орієнтуйся на сенс усієї фрази, а не на окремі слова.',
+        ].join(' '),
+        es: [
+          assemble.es,
+          'Aquí la traducción es por sentido, no palabra por palabra: las frases dicen lo mismo, pero se construyen de forma distinta. Guíate por el significado de toda la frase, no por las palabras sueltas.',
+        ].join(' '),
+      },
+      wrong,
     };
   }
 
   // 3. Fallback: grammatical pattern of the phrase.
   const pattern = detectPhrasePattern(english);
+  const why = pattern.why(english);
   return {
-    titleRu: pattern.title,
-    correctRu: [
-      `Нужно собрать: «${russian}» → «${english}».`,
-      pattern.why(english),
-    ].join(' '),
-    wrongRu,
+    title: pattern.title,
+    correct: {
+      ru: [assemble.ru, why.ru].join(' '),
+      uk: [assemble.uk, why.uk].join(' '),
+      es: [assemble.es, why.es].join(' '),
+    },
+    wrong,
   };
 }

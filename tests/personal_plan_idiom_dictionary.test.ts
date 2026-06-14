@@ -21,24 +21,38 @@ describe('idiom dictionary', () => {
 describe('priority chain in buildPhraseExplanation', () => {
   it('idiom wins: We need one owner', () => {
     const e = buildPhraseExplanation('We need one owner.', 'Нам нужен один ответственный.');
-    console.log('OWNER TITLE:', e.titleRu);
-    console.log('OWNER:', e.correctRu);
-    expect(e.titleRu).toContain('owner');
-    expect(e.correctRu).toContain('ответственный');
-    expect(e.correctRu).toContain('не «владелец»');
+    console.log('OWNER TITLE:', e.title.ru);
+    console.log('OWNER:', e.correct.ru);
+    expect(e.title.ru).toContain('owner');
+    expect(e.correct.ru).toContain('ответственный');
+    expect(e.correct.ru).toContain('не «владелец»');
   });
 
   it('idiom wins: follow up', () => {
     const e = buildPhraseExplanation('I will follow up after the call.', 'Я вернусь с ответом после звонка.');
-    console.log('FOLLOWUP TITLE:', e.titleRu);
-    console.log('FOLLOWUP:', e.correctRu);
-    expect(e.titleRu).toContain('follow up');
-    expect(e.correctRu).toContain('вернуться к вопросу');
+    console.log('FOLLOWUP TITLE:', e.title.ru);
+    console.log('FOLLOWUP:', e.correct.ru);
+    expect(e.title.ru).toContain('follow up');
+    expect(e.correct.ru).toContain('вернуться к вопросу');
+  });
+
+  it('idiom branch localizes uk/es without leaking russian', () => {
+    const e = buildPhraseExplanation('I will follow up after the call.', 'Я вернусь с ответом после звонка.');
+    // English construction name stays; only the russian label is translated.
+    expect(e.title.uk).toContain('follow up');
+    expect(e.title.es).toContain('follow up');
+    expect(e.title.uk).toBe('Фразове дієслово: follow up');
+    expect(e.title.es).toBe('Verbo compuesto: follow up');
+    // uk/es get a generic-but-correct sentence, not the russian explanation.
+    expect(e.correct.uk).toContain('стійкий вислів');
+    expect(e.correct.es).toContain('expresión fija');
+    expect(e.correct.uk).not.toContain('вернуться к вопросу');
+    expect(e.correct.es).not.toContain('вернуться к вопросу');
   });
 
   it('grammar fallback for plain phrase', () => {
     const e = buildPhraseExplanation('I can answer now.', 'Я могу ответить сейчас.');
-    console.log('PLAIN TITLE:', e.titleRu);
-    expect(['Намерение или необходимость','Утвердительная фраза']).toContain(e.titleRu);
+    console.log('PLAIN TITLE:', e.title.ru);
+    expect(['Намерение или необходимость','Утвердительная фраза']).toContain(e.title.ru);
   });
 });

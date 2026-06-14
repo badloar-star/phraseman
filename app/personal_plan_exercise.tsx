@@ -76,20 +76,49 @@ function normalizePlanAnswer(value: string): string {
   return value.trim().toLowerCase().replace(/[.!?]+$/g, '').replace(/\s+/g, ' ');
 }
 
+// Одна строка во всех активных языках интерфейса (RU / UK / ES).
+type LocalizedText = { ru: string; uk: string; es: string };
+
 type PlanExerciseExplanation = {
-  titleRu?: string;
-  correctRu: string;
-  wrongRu: string;
+  title?: LocalizedText;
+  correct: LocalizedText;
+  wrong: LocalizedText;
 };
+
+// Сырой источник — runtime LessonTeachingNote: ru обязателен, uk/es опциональны.
+type RawTeachingNote = {
+  titleRu?: unknown;
+  titleUk?: unknown;
+  titleEs?: unknown;
+  correctRu?: unknown;
+  correctUk?: unknown;
+  correctEs?: unknown;
+  wrongRu?: unknown;
+  wrongUk?: unknown;
+  wrongEs?: unknown;
+};
+
+// Собираем LocalizedText из ru + опциональных uk/es. Если перевода нет — uk/es
+// падают в ru (а не в undefined), чтобы у украино-/испаноязычного пользователя
+// в модалке всегда был текст, а не пустота.
+function localizedFromNote(ru: string, uk: unknown, es: unknown): LocalizedText {
+  return {
+    ru,
+    uk: typeof uk === 'string' && uk ? uk : ru,
+    es: typeof es === 'string' && es ? es : ru,
+  };
+}
 
 function planExerciseExplanation(item: unknown): PlanExerciseExplanation | null {
   if (!item || typeof item !== 'object' || !('explanation' in item)) return null;
-  const explanation = (item as { explanation?: Partial<PlanExerciseExplanation> }).explanation;
-  if (!explanation || typeof explanation.correctRu !== 'string' || typeof explanation.wrongRu !== 'string') return null;
+  const note = (item as { explanation?: RawTeachingNote }).explanation;
+  if (!note || typeof note.correctRu !== 'string' || typeof note.wrongRu !== 'string') return null;
   return {
-    titleRu: typeof explanation.titleRu === 'string' ? explanation.titleRu : undefined,
-    correctRu: explanation.correctRu,
-    wrongRu: explanation.wrongRu,
+    title: typeof note.titleRu === 'string'
+      ? localizedFromNote(note.titleRu, note.titleUk, note.titleEs)
+      : undefined,
+    correct: localizedFromNote(note.correctRu, note.correctUk, note.correctEs),
+    wrong: localizedFromNote(note.wrongRu, note.wrongUk, note.wrongEs),
   };
 }
 
@@ -777,15 +806,25 @@ export default function PersonalPlanExerciseScreen() {
   const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode || isPhraseBuildMode) && Boolean(session) && !listeningBlocked;
   const explanation = planExerciseExplanation(item);
   const resultModalTitle = lastResult === 'correct'
-    ? (explanation?.titleRu ?? 'Почему так')
+    ? (explanation?.title
+        ? triLang(lang, explanation.title)
+        : triLang(lang, { ru: 'Почему так', uk: 'Чому так', es: 'Por qué es así' }))
     : isRecallMode
-      ? 'Еще один заход'
+      ? triLang(lang, { ru: 'Еще один заход', uk: 'Ще одна спроба', es: 'Otro intento' })
       : isListenBuildMode
-        ? 'Еще раз спокойно'
-        : 'Разберем спокойно';
+        ? triLang(lang, { ru: 'Еще раз спокойно', uk: 'Ще раз спокійно', es: 'Otra vez con calma' })
+        : triLang(lang, { ru: 'Разберем спокойно', uk: 'Розберемо спокійно', es: 'Vamos a verlo con calma' });
   const resultModalBody = lastResult === 'correct'
-    ? (explanation?.correctRu ?? 'Так звучит естественно.')
-    : (explanation?.wrongRu ?? 'Попробуй ещё раз спокойно: ошибка уйдёт в повторение.');
+    ? (explanation?.correct
+        ? triLang(lang, explanation.correct)
+        : triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', es: 'Así suena natural.' }))
+    : (explanation?.wrong
+        ? triLang(lang, explanation.wrong)
+        : triLang(lang, {
+            ru: 'Попробуй ещё раз спокойно: ошибка уйдёт в повторение.',
+            uk: 'Спробуй ще раз спокійно: помилка піде в повторення.',
+            es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
+          }));
 
   const submit = async (answer: string) => {
     if (!item || !session || saving || done) return;

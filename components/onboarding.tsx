@@ -116,11 +116,72 @@ type OnboardingParticleSpec = {
   opacity: number;
 };
 const USE_ELITE_ONBOARDING_WELCOME = true;
-const ONBOARDING_ACCENT = '#F2B84B';
-const ONBOARDING_GOLD_2 = '#FFD472';
-const ONBOARDING_TEAL = '#63E6D2';
-const ONBOARDING_ACCENT_BG = 'rgba(242,184,75,0.16)';
-const ONBOARDING_TEXT_MUTED = '#D8CCB5';
+
+// ── Тема онбординга (A/B-цвет) ──────────────────────────────────────────────
+// Онбординг существует в двух неоновых палитрах (синяя/зелёная) — детерминирован-
+// ный 50/50 A/B-тест (см. getOnboardingColorVariant). Палитры взяты один-в-один
+// из макетов docs/design/onboarding_neon_*_2026-06-14.html. Раньше акцент был
+// золотой и одинаковый для всех; теперь акцент-несущие значения резолвятся через
+// OnboardingTheme по obColor, а стили собираются фабрикой makeOnboardingStyles().
+export interface OnboardingTheme {
+  accent: string;       // основной неон (кнопки, прогресс, бренд)
+  accent2: string;      // мягкий вторичный неон (градиенты, иконки-акценты)
+  accentDeep: string;   // глубокий неон (край кнопок DuoPressable edgeColor)
+  accentIce: string;    // ледяной акцент для второстепенного текста
+  accentBg: string;     // полупрозрачная заливка акцентом (rgba ~0.16)
+  accentBgSoft: string; // ещё мягче (rgba ~0.10) для невыбранных карточек
+  accentBorder: string; // граница акцентом (rgba ~0.42)
+  accentBorderSoft: string; // граница мягче (rgba ~0.30)
+  textPrimary: string;  // основной светлый текст
+  textMuted: string;    // приглушённый текст
+  ctaText: string;      // текст на залитой акцентом CTA (тёмный)
+  bgEdge: string;       // самый тёмный фон (края радиального градиента)
+  bgTop: string;        // верх фонового градиента
+  bgBottom: string;     // низ фонового градиента (с цветным подтоном)
+  heroGradient: [string, string, string]; // заливка hero-CTA/бренд-градиент
+}
+
+const ONBOARDING_THEME_BLUE: OnboardingTheme = {
+  accent: '#2f6bff',
+  accent2: '#6D99FF',
+  accentDeep: '#134BCD',
+  accentIce: '#9cc0ff',
+  accentBg: 'rgba(47,107,255,0.16)',
+  accentBgSoft: 'rgba(47,107,255,0.10)',
+  accentBorder: 'rgba(47,107,255,0.42)',
+  accentBorderSoft: 'rgba(109,153,255,0.30)',
+  textPrimary: '#eaf1ff',
+  textMuted: '#93a6c8',
+  ctaText: '#04122e',
+  bgEdge: '#05080f',
+  bgTop: '#0B0909',
+  bgBottom: '#091120',
+  heroGradient: ['#6D99FF', '#9cc0ff', '#2f6bff'],
+};
+
+const ONBOARDING_THEME_GREEN: OnboardingTheme = {
+  accent: '#22c55e',
+  accent2: '#5BE9A6',
+  accentDeep: '#0f7a43',
+  accentIce: '#9ff5cf',
+  accentBg: 'rgba(34,197,94,0.16)',
+  accentBgSoft: 'rgba(34,197,94,0.10)',
+  accentBorder: 'rgba(34,197,94,0.42)',
+  accentBorderSoft: 'rgba(91,233,166,0.30)',
+  textPrimary: '#e9fff4',
+  textMuted: '#8fc7ac',
+  ctaText: '#03130b',
+  bgEdge: '#03100a',
+  bgTop: '#06140d',
+  bgBottom: '#08251a',
+  heroGradient: ['#5BE9A6', '#9ff5cf', '#22c55e'],
+};
+
+function resolveOnboardingTheme(color: 'blue' | 'green'): OnboardingTheme {
+  return color === 'green' ? ONBOARDING_THEME_GREEN : ONBOARDING_THEME_BLUE;
+}
+
+type OnboardingStyles = ReturnType<typeof makeOnboardingStyles>;
 const ONBOARDING_BG_WELCOME = null;
 const ONBOARDING_BG_BETA = null;
 const ONBOARDING_BG_NAME = null;
@@ -239,9 +300,11 @@ function OnboardingBundledImage({
 function PlanFlowIcon({
   source,
   small = false,
+  styles,
 }: {
   source: ImageSourcePropType;
   small?: boolean;
+  styles: OnboardingStyles;
 }) {
   return (
     <View style={[styles.planFlowIconSlot, small && styles.planFlowIconSlotSmall]}>
@@ -518,6 +581,12 @@ const PLAN_PAYWALL_BENEFITS: Array<{
 function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPlanPaywallStart }: Props) {
   const insets = useSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
+  // A/B-цвет онбординга (blue|green). Дефолт 'blue' до асинхронного резолва на
+  // маунте; theme/styles пересобираются при смене obColor. Объявлено здесь, до
+  // любых style-объектов и фабрики стилей, которые на них ссылаются.
+  const [obColor, setObColor] = useState<'blue' | 'green'>('blue');
+  const theme = React.useMemo(() => resolveOnboardingTheme(obColor), [obColor]);
+  const styles = React.useMemo(() => makeOnboardingStyles(theme), [theme]);
   const { width: viewportW, height: viewportH, uiScale } = useScreen();
   const progressTopPadding = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
   const narrowViewport = Math.min(viewportW, viewportH);
@@ -623,7 +692,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   const btnSlide   = useRef(new Animated.Value(30)).current;
   const btnFade    = useRef(new Animated.Value(0)).current;
   const [lang]       = useState<Lang>(detectLang);
-  const [obColor, setObColor] = useState<'blue' | 'green'>('blue');
   const [name, setName]       = useState('');
   const [nameBusy, setNameBusy] = useState(false);
   const [nameFieldError, setNameFieldError] = useState<string | null>(null);
@@ -732,7 +800,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         <View style={styles.progressRow}>
           {prev ? (
             <TouchableOpacity onPress={() => goToStep(prev)} activeOpacity={0.7} style={{ padding: 8, marginRight: 8 }}>
-              <Text style={{ color: ONBOARDING_ACCENT, fontSize: 20 }}>←</Text>
+              <Text style={{ color: theme.accent, fontSize: 20 }}>←</Text>
             </TouchableOpacity>
           ) : (
             <View style={{ width: 44 }} />
@@ -1368,6 +1436,8 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       contentStyle={contentStyle}
       hideClose={hideClose}
       onClose={handleCloseOnboarding}
+      styles={styles}
+      theme={theme}
     >
       {children}
     </OnboardingScreenShell>
@@ -1465,7 +1535,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         </View>
         <View style={styles.planMockupDaysTrack}>
           <AnimatedLinearGradient
-            colors={['#FFD66B', '#FFF1B6', '#F2B84B']}
+            colors={theme.heroGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={[styles.planMockupDaysFill, { transform: [{ scaleX: daysFillScale }] }]}
@@ -1555,7 +1625,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           <View style={styles.planEntryMain}>
             <Animated.View style={styles.planEntryMark}>
               <LinearGradient
-                colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', 'rgba(242,184,75,0.11)']}
+                colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', theme.accentBgSoft]}
                 locations={[0, 0.46, 1]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
@@ -1587,7 +1657,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <DuoPressable
               testID="onboarding-create-personal-plan"
               style={[styles.eliteWelcomeCta, styles.planEntryCta]}
-              edgeColor="#C4922A"
+              edgeColor={theme.accentDeep}
               onPress={() => goToStep('planGoal')}
             >
               <Text style={[styles.eliteWelcomeCtaText, styles.planEntryCtaText]}>
@@ -1638,7 +1708,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 goToStep('planLevel');
               }}
             >
-              <PlanFlowIcon source={choice.iconAsset} />
+              <PlanFlowIcon source={choice.iconAsset} styles={styles} />
               <View style={styles.planFlowOptionCopy}>
                 <Text style={styles.planFlowOptionTitle}>{choice.title}</Text>
                 <Text style={styles.planFlowOptionSub}>{choice.subtitle}</Text>
@@ -1671,7 +1741,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 goToStep('planMinutes');
               }}
             >
-              <PlanFlowIcon source={choice.iconAsset} />
+              <PlanFlowIcon source={choice.iconAsset} styles={styles} />
               <View style={styles.planFlowOptionCopy}>
                 <Text style={styles.planFlowOptionTitle}>{choice.title}</Text>
                 <Text style={styles.planFlowOptionSub}>{choice.subtitle}</Text>
@@ -1705,7 +1775,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 goToStep('planPhrase');
               }}
             >
-              <PlanFlowIcon source={ONBOARDING_PLAN_ICONS.time} />
+              <PlanFlowIcon source={ONBOARDING_PLAN_ICONS.time} styles={styles} />
               <View style={styles.planFlowOptionCopy}>
                 <Text style={styles.planFlowOptionTitle}>{choice === 20 ? '20+ минут в день' : `${choice} минут в день`}</Text>
                 <Text style={styles.planFlowOptionSub}>
@@ -1768,7 +1838,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             styles.eliteWelcomeCta,
             styles.planMockupPrimaryButton,
           ]}
-          edgeColor="#C4922A"
+          edgeColor={theme.accentDeep}
           onPress={() => {
             setPlanPhraseWasCorrect(!planPhraseHasError);
             void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_plan_phrase_done', { correct: !planPhraseHasError }));
@@ -1795,7 +1865,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       <View style={styles.planFlowStack}>
         <View style={styles.planProgressRail}>
           <AnimatedLinearGradient
-            colors={['#F2B84B', '#63E6D2']}
+            colors={[theme.accent, theme.accent2]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={[styles.planProgressFill, { transform: [{ scaleX: meterScaleX }] }]}
@@ -1831,7 +1901,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           pointerEvents={planLoadingCtaReady ? 'auto' : 'none'}
           style={{ opacity: planLoadingButtonAnim }}
         >
-          <DuoPressable style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]} edgeColor="#C4922A" onPress={() => goToStep('planResult')}>
+          <DuoPressable style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]} edgeColor={theme.accentDeep} onPress={() => goToStep('planResult')}>
             <Text style={styles.planMockupPrimaryButtonText}>План готов</Text>
           </DuoPressable>
         </Animated.View>
@@ -1851,7 +1921,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         <DuoPressable
           testID="data-plan-result-cta"
           style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]}
-          edgeColor="#C4922A"
+          edgeColor={theme.accentDeep}
           onPress={() => goToStep('planPaywall')}
         >
           <Text style={styles.planMockupPrimaryButtonText}>Это мой план — вперёд</Text>
@@ -1920,14 +1990,14 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             {/* Превью плана: нед.1 открыта, остальное заблокировано */}
             <View style={styles.planPaywallPreview}>
               <View style={styles.planPaywallPreviewWeek}>
-                <PlanFlowIcon source={selectedPlan.iconAsset} small />
+                <PlanFlowIcon source={selectedPlan.iconAsset} small styles={styles} />
                 <View style={styles.planFlowOptionCopy}>
                   <Text style={styles.planFlowOptionTitle}>Неделя 1 — открыта сейчас</Text>
                   <Text style={styles.planFlowOptionSub}>Старт с уровня {selectedPlan.recommendedLevel}, {selectedPlanMinutes} мин/день</Text>
                 </View>
               </View>
               <View style={styles.planPaywallPreviewLocked}>
-                <Ionicons name="lock-closed" size={14} color={ONBOARDING_TEXT_MUTED} />
+                <Ionicons name="lock-closed" size={14} color={theme.textMuted} />
                 <Text style={styles.planPaywallPreviewLockedText}>Недели 2–12 откроются после подписки</Text>
               </View>
             </View>
@@ -1998,7 +2068,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <DuoPressable
               testID="data-plan-paywall-trial-cta"
               style={[styles.eliteWelcomeCta, paywallPurchasing && { opacity: 0.6 }]}
-              edgeColor="#C4922A"
+              edgeColor={theme.accentDeep}
               onPress={handlePaywallPurchase}
             >
               <Text style={styles.eliteWelcomeCtaText}>
@@ -2037,7 +2107,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   Персональный план открыт в Premium. Остальное работает в полном доступе. Разбор слабых мест и маршрут под цель — с планом.
                 </Text>
                 <View style={styles.planFreeConfirmActions}>
-                  <DuoPressable style={styles.eliteWelcomeCta} edgeColor="#C4922A" onPress={() => setShowPlanFreeConfirm(false)}>
+                  <DuoPressable style={styles.eliteWelcomeCta} edgeColor={theme.accentDeep} onPress={() => setShowPlanFreeConfirm(false)}>
                     <Text style={styles.eliteWelcomeCtaText}>Оставить план</Text>
                   </DuoPressable>
                   <TouchableOpacity
@@ -2108,7 +2178,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         <>
         <DuoPressable
           style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]}
-          edgeColor="#C4922A"
+          edgeColor={theme.accentDeep}
           onPress={() => goToStep('planResult')}
         >
           <Text style={styles.planMockupPrimaryButtonText}>Выбрать этот план</Text>
@@ -2213,7 +2283,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           <DuoPressable
             testID="onboarding-beta-continue"
             style={[styles.continueBtn, { width: '100%' }]}
-            edgeColor="#C4922A"
+            edgeColor={theme.accentDeep}
             onPress={() => goToStep('demo2')}
           >
             <Text style={styles.continueBtnText}>{pick('Понятно 👍', 'Зрозуміло 👍', 'Entendido 👍')}</Text>
@@ -2242,7 +2312,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             >
               <Animated.View style={[styles.eliteWelcomeMark, { transform: [{ scale: lingmanScale }] }]}>
                 <LinearGradient
-                  colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', 'rgba(242,184,75,0.11)']}
+                  colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', theme.accentBgSoft]}
                   locations={[0, 0.46, 1]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
@@ -2275,7 +2345,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               <DuoPressable
                 testID="onboarding-welcome-continue"
                 style={styles.eliteWelcomeCta}
-                edgeColor="#C4922A"
+                edgeColor={theme.accentDeep}
                 onPress={() => goToStep('name')}
               >
                 <Text style={styles.eliteWelcomeCtaText}>
@@ -2316,7 +2386,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           <DuoPressable
             testID="onboarding-welcome-continue"
             style={[styles.continueBtn, { width: '100%' }]}
-            edgeColor="#C4922A"
+            edgeColor={theme.accentDeep}
             onPress={() => goToStep('name')}
           >
             <Text style={styles.continueBtnText}>
@@ -2389,7 +2459,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <Text style={{ color: DARK.textMuted, fontSize: 12, marginBottom: 10, textTransform: 'uppercase', letterSpacing: 1 }}>
               {demoQuestion}
             </Text>
-            <Text style={{ color: ONBOARDING_ACCENT, fontSize: 22, fontWeight: '700', lineHeight: 30 }}>
+            <Text style={{ color: theme.accent, fontSize: 22, fontWeight: '700', lineHeight: 30 }}>
               {demoPhrase}
             </Text>
           </View>
@@ -2401,8 +2471,8 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               let iconStroke = DARK.textGhost;
               if (demoAnswered) {
                 if (i === correctIndex) {
-                  borderColor = ONBOARDING_ACCENT; bg = ONBOARDING_ACCENT_BG;
-                  textColor = ONBOARDING_ACCENT; iconStroke = ONBOARDING_ACCENT;
+                  borderColor = theme.accent; bg = theme.accentBg;
+                  textColor = theme.accent; iconStroke = theme.accent;
                 } else if (i === demoSelected) {
                   borderColor = '#FF453A'; bg = 'rgba(255,69,58,0.08)';
                   textColor = '#FF453A'; iconStroke = '#FF453A';
@@ -2431,7 +2501,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   }}
                   activeOpacity={demoAnswered ? 1 : 0.8}
                 >
-                  <View style={{ width: 30, height: 30, borderRadius: 8, backgroundColor: demoAnswered && i === correctIndex ? ONBOARDING_ACCENT_BG : demoAnswered && i === demoSelected ? 'rgba(255,69,58,0.15)' : DARK.bgSurface2, alignItems: 'center', justifyContent: 'center' }}>
+                  <View style={{ width: 30, height: 30, borderRadius: 8, backgroundColor: demoAnswered && i === correctIndex ? theme.accentBg : demoAnswered && i === demoSelected ? 'rgba(255,69,58,0.15)' : DARK.bgSurface2, alignItems: 'center', justifyContent: 'center' }}>
                     <DemoIcon />
                   </View>
                   <Text style={{ color: textColor, fontSize: 16, fontWeight: '500', flex: 1 }}>{opt}</Text>
@@ -2540,7 +2610,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           {/* Подсказка-инструкция (fade-in с задержкой) */}
           <Animated.View style={{ opacity: demo2HintFade, marginBottom: 20 }}>
             <View style={{ backgroundColor: DARK.bgSurface, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: DARK.borderHighlight }}>
-              <Text style={{ color: ONBOARDING_ACCENT, fontSize: 13, fontWeight: '600', textAlign: 'center' }}>
+              <Text style={{ color: theme.accent, fontSize: 13, fontWeight: '600', textAlign: 'center' }}>
                 {pick(
                   'Попробуй собрать фразу из этих слов:',
                   'Спробуй скласти фразу з цих слів:',
@@ -2560,7 +2630,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           {/* Сама игра (fade-in последним) */}
           <Animated.View style={{ opacity: demo2QuizFade }}>
             {/* Область ответа */}
-            <View style={{ minHeight: 56, backgroundColor: DARK.bgPrimary, borderRadius: 14, borderWidth: 1.5, borderColor: demo2Answered ? (demo2Correct ? ONBOARDING_ACCENT : '#FF4444') : 'rgba(255,91,91,0.28)', padding: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+            <View style={{ minHeight: 56, backgroundColor: DARK.bgPrimary, borderRadius: 14, borderWidth: 1.5, borderColor: demo2Answered ? (demo2Correct ? theme.accent : '#FF4444') : 'rgba(255,91,91,0.28)', padding: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
               {currentPhrase.length === 0
                 ? <Text style={{ color: DARK.textGhost, fontSize: 15 }}>{pick('здесь появится фраза…', 'тут з\'явиться фраза…', 'aquí aparecerá la frase…')}</Text>
                 : currentPhrase.map((w, pos) => {
@@ -2618,7 +2688,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             {/* Результат + кнопка */}
             {demo2Answered && (
               <Animated.View style={{ marginTop: 4, opacity: btnFade, transform: [{ translateY: btnSlide }] }}>
-                <Text style={{ color: demo2Correct ? ONBOARDING_ACCENT : '#FF8888', fontSize: 15, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
+                <Text style={{ color: demo2Correct ? theme.accent : '#FF8888', fontSize: 15, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
                   {demo2Correct
                     ? pick('🎉 Отлично! Всё правильно!', '🎉 Відмінно! Усе вірно!', '🎉 ¡Genial! ¡Todo correcto!')
                     : `${pick('✅ Правильно: ', '✅ Правильно: ', '✅ Correcto: ')}${demo2Answer.join(' ')}`}
@@ -2704,7 +2774,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           >
             <View style={styles.regularNameMark}>
               <LinearGradient
-                colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', 'rgba(242,184,75,0.11)']}
+                colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', theme.accentBgSoft]}
                 locations={[0, 0.46, 1]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
@@ -2740,7 +2810,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   if (nameFieldError) setNameFieldError(null);
                 }}
                 placeholder=""
-                placeholderTextColor={ONBOARDING_GOLD_2}
+                placeholderTextColor={theme.accent2}
                 autoFocus={false}
                 maxLength={20}
                 editable={!nameBusy}
@@ -2752,7 +2822,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <DuoPressable
               testID="onboarding-name-continue"
               style={[styles.eliteWelcomeCta, styles.regularNameCta, nameBusy && { opacity: 0.75 }]}
-              edgeColor="#C4922A"
+              edgeColor={theme.accentDeep}
               onPress={handleNameDone}
               disabled={nameBusy}
             >
@@ -2916,7 +2986,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           ]}
         >
           <View style={[styles.streakHeroIconWrap, compactOnboarding && styles.streakHeroIconWrapCompact]}>
-            <OnboardingStreakIcon kind="flame" size={streakHeroIconSize} hero />
+            <OnboardingStreakIcon kind="flame" size={streakHeroIconSize} hero styles={styles} />
           </View>
           <Text
             style={[styles.title, onboardingTitleStyle, { marginBottom: compactOnboarding ? 6 : 8 }]}
@@ -2968,7 +3038,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                     },
                   ]}
                 >
-                  <OnboardingStreakIcon kind={m.icon} size={streakMilestoneIconSize} />
+                  <OnboardingStreakIcon kind={m.icon} size={streakMilestoneIconSize} styles={styles} />
                 </View>
                 <View style={styles.streakMilestoneTextWrap}>
                   <Text
@@ -2998,7 +3068,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           <DuoPressable
             testID="onboarding-streak-continue"
             style={[styles.continueBtn, onboardingPrimaryButtonStyle, { width: '100%' }]}
-            edgeColor="#C4922A"
+            edgeColor={theme.accentDeep}
             onPress={() => goToStep('auth')}
           >
             <Text style={[styles.continueBtnText, onboardingPrimaryButtonTextStyle]} maxFontSizeMultiplier={1.05}>
@@ -3022,6 +3092,8 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           lang={lang}
           renderProgressBar={renderProgressBar}
           onComplete={handleFinishOnboarding}
+          styles={styles}
+          theme={theme}
         />
       ),
     );
@@ -3041,11 +3113,15 @@ function AuthOnboardingStep({
   lang,
   renderProgressBar,
   onComplete,
+  styles,
+  theme,
 }: {
   isUK: boolean;
   lang: Lang;
   renderProgressBar: () => React.ReactNode;
   onComplete: () => Promise<void> | void;
+  styles: OnboardingStyles;
+  theme: OnboardingTheme;
 }) {
   const authPick = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
@@ -3205,7 +3281,7 @@ function AuthOnboardingStep({
           <Text
             maxFontSizeMultiplier={1.08}
             style={{
-              color: ONBOARDING_TEXT_MUTED,
+              color: theme.textMuted,
               fontSize: scaleAuth(14, 12),
               textAlign: 'center',
               lineHeight: scaleAuth(22, 18),
@@ -3286,6 +3362,8 @@ function OnboardingScreenShell({
   contentStyle,
   hideClose = false,
   onClose,
+  styles,
+  theme,
   children,
 }: {
   testID?: string;
@@ -3293,13 +3371,15 @@ function OnboardingScreenShell({
   contentStyle?: StyleProp<ViewStyle>;
   hideClose?: boolean;
   onClose: () => void | Promise<void>;
+  styles: OnboardingStyles;
+  theme: OnboardingTheme;
   children: React.ReactNode;
 }) {
   const insets = useSafeAreaInsets();
   const closeTop = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
   return (
     <SafeAreaView edges={[]} style={styles.container} testID={testID}>
-      <OnboardingArtBackground motion="zoomOut" />
+      <OnboardingArtBackground motion="zoomOut" styles={styles} theme={theme} />
       <Animated.View style={[styles.onboardingContentLayer, contentStyle, { opacity: screenFade }]}>
         {children}
       </Animated.View>
@@ -3324,10 +3404,12 @@ function OnboardingStreakIcon({
   kind,
   size = 52,
   hero = false,
+  styles,
 }: {
   kind: StreakMilestoneIconKind;
   size?: number;
   hero?: boolean;
+  styles: OnboardingStyles;
 }) {
   return (
     <View
@@ -3347,13 +3429,13 @@ function OnboardingStreakIcon({
 
 export default memo(Onboarding);
 
-const styles = StyleSheet.create({
-  container:       { flex: 1, backgroundColor: '#020304', overflow: 'hidden' },
+const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
+  container:       { flex: 1, backgroundColor: t.bgEdge, overflow: 'hidden' },
   onboardingContentLayer: { flex: 1 },
   onboardingScroll: { flex: 1 },
   center:          { flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
-  appName:         { color: ONBOARDING_ACCENT, fontSize: 15, fontWeight: '800', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
-  title:           { color: '#FFF8E8', fontSize: 24, fontWeight: '800', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
+  appName:         { color: t.accent, fontSize: 15, fontWeight: '800', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
+  title:           { color: t.textPrimary, fontSize: 24, fontWeight: '800', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
   authQuickStartIcon: {
     width: 132,
     height: 132,
@@ -3378,9 +3460,9 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: 5,
-    backgroundColor: ONBOARDING_ACCENT,
+    backgroundColor: t.accent,
     borderRadius: 999,
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.5,
     shadowRadius: 8,
   },
@@ -3409,8 +3491,8 @@ const styles = StyleSheet.create({
   },
   onboardingParticle: {
     position: 'absolute',
-    backgroundColor: 'rgba(242,184,75,0.92)',
-    shadowColor: ONBOARDING_ACCENT,
+    backgroundColor: t.accent,
+    shadowColor: t.accent,
     shadowOpacity: 0.72,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 0 },
@@ -3449,7 +3531,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   streakMilestoneTitle: {
-    color: ONBOARDING_ACCENT,
+    color: t.accent,
     fontSize: 13,
     fontWeight: '800',
     marginBottom: 4,
@@ -3460,7 +3542,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   streakMilestoneReward: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 13,
     fontWeight: '700',
     textAlign: 'center',
@@ -3472,7 +3554,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   streakIconShadow: {
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.28,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 6 },
@@ -3504,7 +3586,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   regularNameBrand: {
-    color: ONBOARDING_GOLD_2,
+    color: t.accent2,
     fontSize: 12,
     lineHeight: 14,
     fontWeight: '900',
@@ -3521,7 +3603,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 29,
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.2,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
@@ -3544,7 +3626,7 @@ const styles = StyleSheet.create({
   },
   regularNameTitle: {
     width: '100%',
-    color: '#FFF7E5',
+    color: t.textPrimary,
     fontSize: 29,
     lineHeight: 35,
     fontWeight: '900',
@@ -3554,7 +3636,7 @@ const styles = StyleSheet.create({
   regularNameSub: {
     width: '100%',
     maxWidth: 338,
-    color: '#FFF0D7',
+    color: t.textPrimary,
     fontSize: 15,
     lineHeight: 22,
     fontWeight: '600',
@@ -3585,10 +3667,10 @@ const styles = StyleSheet.create({
     minHeight: 48,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: 'rgba(242,184,75,0.64)',
+    borderColor: t.accentBorder,
     borderStyle: 'dashed',
-    backgroundColor: 'rgba(242,184,75,0.08)',
-    color: ONBOARDING_GOLD_2,
+    backgroundColor: t.accentBg,
+    color: t.accent2,
     fontSize: 16,
     lineHeight: 20,
     fontWeight: '900',
@@ -3609,7 +3691,7 @@ const styles = StyleSheet.create({
   },
   planEntryBrand: {
     height: 42,
-    color: ONBOARDING_GOLD_2,
+    color: t.accent2,
     fontSize: 12,
     lineHeight: 14,
     fontWeight: '900',
@@ -3631,7 +3713,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 18,
     marginBottom: 10,
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.2,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
@@ -3680,7 +3762,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.16)',
   },
   planEntrySecondaryCtaText: {
-    color: '#FFF7E8',
+    color: t.textPrimary,
     fontSize: 16,
     lineHeight: 20,
   },
@@ -3704,7 +3786,7 @@ const styles = StyleSheet.create({
     height: 34,
   },
   eliteWelcomeBrand: {
-    color: ONBOARDING_GOLD_2,
+    color: t.accent2,
     fontSize: 14,
     fontWeight: '900',
     letterSpacing: 1.4,
@@ -3726,7 +3808,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginBottom: 30,
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.2,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
@@ -3839,7 +3921,7 @@ const styles = StyleSheet.create({
   },
   eliteWelcomeTitle: {
     width: '100%',
-    color: '#FFF7E5',
+    color: t.textPrimary,
     fontSize: 31,
     lineHeight: 36,
     fontWeight: '900',
@@ -3848,7 +3930,7 @@ const styles = StyleSheet.create({
   },
   eliteWelcomeSub: {
     width: '100%',
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 16,
     lineHeight: 24,
     fontWeight: '700',
@@ -3865,21 +3947,21 @@ const styles = StyleSheet.create({
   eliteWelcomeCta: {
     width: '100%',
     minHeight: 56,
-    backgroundColor: ONBOARDING_ACCENT,
+    backgroundColor: t.accent,
     paddingVertical: 17,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: 'rgba(255,244,205,0.38)',
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.36,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
     elevation: 8,
   },
   eliteWelcomeCtaText: {
-    color: '#1D1202',
+    color: t.ctaText,
     fontSize: 18,
     fontWeight: '900',
   },
@@ -3895,7 +3977,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.055)',
   },
   eliteWelcomeSecondaryCtaText: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 16,
     fontWeight: '900',
     textAlign: 'center',
@@ -3917,7 +3999,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     backgroundColor: 'rgba(18,16,13,0.62)',
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 20,
     padding: 16,
     borderRadius: 16,
@@ -3927,19 +4009,19 @@ const styles = StyleSheet.create({
   },
   continueBtn: {
     width: '100%',
-    backgroundColor: ONBOARDING_ACCENT,
+    backgroundColor: t.accent,
     padding: 18,
     borderRadius: 18,
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'rgba(255,244,205,0.36)',
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.34,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
     elevation: 8,
   },
-  continueBtnText: { color: '#1D1202', fontSize: 18, fontWeight: '900' },
+  continueBtnText: { color: t.ctaText, fontSize: 18, fontWeight: '900' },
   langHint:        { color: DARK.textGhost, fontSize: 14, fontWeight: '500', letterSpacing: 0.5, marginBottom: 32 },
   // Premium step
   premiumScroll:   { padding: 24, paddingBottom: 40, alignItems: 'center' },
@@ -4065,7 +4147,7 @@ const styles = StyleSheet.create({
   },
   planMockupBrand: {
     marginLeft: 'auto',
-    color: ONBOARDING_GOLD_2,
+    color: t.accent2,
     fontSize: 12,
     lineHeight: 14,
     fontWeight: '900',
@@ -4083,7 +4165,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   planFlowBackGlyph: {
-    color: '#FFD264',
+    color: t.accent2,
     fontSize: 42,
     lineHeight: 44,
     fontWeight: '900',
@@ -4103,7 +4185,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,248,232,0.18)',
   },
   planFlowProgressSegmentActive: {
-    backgroundColor: ONBOARDING_ACCENT,
+    backgroundColor: t.accent,
   },
   planFlowQuestionBlock: {
     width: '100%',
@@ -4111,7 +4193,7 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
   planFlowTitle: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 38,
     lineHeight: 45,
     fontWeight: '900',
@@ -4119,7 +4201,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   planFlowLead: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 18,
     lineHeight: 27,
     fontWeight: '700',
@@ -4145,7 +4227,7 @@ const styles = StyleSheet.create({
   },
   planMockupResultTitle: {
     margin: 0,
-    color: '#FFF7E8',
+    color: t.textPrimary,
     fontSize: 29,
     lineHeight: 33,
     fontWeight: '900',
@@ -4154,12 +4236,12 @@ const styles = StyleSheet.create({
   planMockupPitchCard: {
     borderRadius: 8,
     padding: 12,
-    backgroundColor: 'rgba(242,184,75,0.10)',
+    backgroundColor: t.accentBg,
     borderWidth: 1,
-    borderColor: 'rgba(242,184,75,0.42)',
+    borderColor: t.accentBorder,
   },
   planMockupPitchText: {
-    color: '#FFF7E8',
+    color: t.textPrimary,
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
@@ -4171,7 +4253,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(12,15,21,0.68)',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.12)',
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.08,
     shadowRadius: 22,
     shadowOffset: { width: 0, height: 0 },
@@ -4185,7 +4267,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   planMockupDaysLabel: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 11,
     lineHeight: 14,
     fontWeight: '800',
@@ -4202,7 +4284,7 @@ const styles = StyleSheet.create({
   planMockupDaysValue: {
     minWidth: 58,
     textAlign: 'right',
-    color: ONBOARDING_GOLD_2,
+    color: t.accent2,
     fontSize: 24,
     lineHeight: 24,
     fontWeight: '900',
@@ -4215,7 +4297,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     paddingBottom: 1,
     width: 30,
-    color: '#FFE4A3',
+    color: t.accent2,
     fontSize: 11,
     lineHeight: 12,
     fontWeight: '800',
@@ -4232,7 +4314,7 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 999,
     transformOrigin: 'left center',
-    shadowColor: ONBOARDING_ACCENT,
+    shadowColor: t.accent,
     shadowOpacity: 0.52,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 0 },
@@ -4256,8 +4338,8 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,244,205,0.15)',
   },
   planFlowOptionSelected: {
-    borderColor: 'rgba(242,184,75,0.72)',
-    backgroundColor: 'rgba(242,184,75,0.18)',
+    borderColor: t.accentBorder,
+    backgroundColor: t.accentBg,
   },
   planMockupPickerCard: {
     width: '100%',
@@ -4272,8 +4354,8 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.13)',
   },
   planMockupPickerCardRecommended: {
-    backgroundColor: 'rgba(242,184,75,0.14)',
-    borderColor: 'rgba(242,184,75,0.42)',
+    backgroundColor: t.accentBg,
+    borderColor: t.accentBorder,
   },
   planMockupPickerIcon: {
     width: 42,
@@ -4281,21 +4363,21 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   planMockupPickerTitle: {
-    color: '#FFF7E8',
+    color: t.textPrimary,
     fontSize: 15,
     lineHeight: 17,
     fontWeight: '900',
   },
   planMockupPickerSub: {
     marginTop: 4,
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 11,
     lineHeight: 14,
     fontWeight: '700',
   },
   planMockupPickerMeta: {
     marginTop: 5,
-    color: ONBOARDING_GOLD_2,
+    color: t.accent2,
     fontSize: 10,
     lineHeight: 11,
     fontWeight: '900',
@@ -4327,9 +4409,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: ONBOARDING_ACCENT_BG,
+    backgroundColor: t.accentBg,
     borderWidth: 1,
-    borderColor: 'rgba(242,184,75,0.38)',
+    borderColor: t.accentBorder,
   },
   planFlowLevelBadge: {
     width: 48,
@@ -4337,12 +4419,12 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: ONBOARDING_ACCENT_BG,
+    backgroundColor: t.accentBg,
     borderWidth: 1,
-    borderColor: 'rgba(242,184,75,0.38)',
+    borderColor: t.accentBorder,
   },
   planFlowLevelBadgeText: {
-    color: ONBOARDING_ACCENT,
+    color: t.accent,
     fontSize: 16,
     fontWeight: '900',
   },
@@ -4351,21 +4433,21 @@ const styles = StyleSheet.create({
     minWidth: 0,
   },
   planFlowOptionTitle: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 18,
     lineHeight: 23,
     fontWeight: '900',
     marginBottom: 4,
   },
   planFlowOptionSub: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '700',
   },
   planFlowCheckmark: {
     width: 22,
-    color: ONBOARDING_ACCENT,
+    color: t.accent,
     fontSize: 20,
     lineHeight: 22,
     fontWeight: '900',
@@ -4399,14 +4481,14 @@ const styles = StyleSheet.create({
   },
   planMockupRowTitle: {
     margin: 0,
-    color: '#FFF7E8',
+    color: t.textPrimary,
     fontSize: 14,
     lineHeight: 17,
     fontWeight: '900',
   },
   planMockupRowSub: {
     marginTop: 3,
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 12,
     lineHeight: 15,
     fontWeight: '700',
@@ -4415,19 +4497,19 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     padding: 16,
-    backgroundColor: 'rgba(242,184,75,0.16)',
+    backgroundColor: t.accentBg,
     borderWidth: 1,
-    borderColor: 'rgba(242,184,75,0.42)',
+    borderColor: t.accentBorder,
   },
   planMockupBigNum: {
-    color: ONBOARDING_GOLD_2,
+    color: t.accent2,
     fontSize: 36,
     lineHeight: 38,
     fontWeight: '900',
   },
   planMockupHeroSub: {
     marginTop: 4,
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 12,
     lineHeight: 15,
     fontWeight: '700',
@@ -4442,10 +4524,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 13,
     paddingHorizontal: 16,
-    backgroundColor: ONBOARDING_ACCENT,
+    backgroundColor: t.accent,
   },
   planMockupPrimaryButtonText: {
-    color: '#12100A',
+    color: t.ctaText,
     fontSize: 16,
     lineHeight: 20,
     fontWeight: '900',
@@ -4461,7 +4543,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.16)',
   },
   planMockupSecondaryButtonText: {
-    color: '#FFF7E8',
+    color: t.textPrimary,
     fontSize: 16,
     lineHeight: 20,
     fontWeight: '900',
@@ -4490,21 +4572,21 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   planPaywallBrand: {
-    color: ONBOARDING_ACCENT,
+    color: t.accent,
     fontSize: 12,
     fontWeight: '900',
     letterSpacing: 1.4,
     textTransform: 'uppercase',
   },
   planPaywallTitle: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 28,
     lineHeight: 31,
     fontWeight: '900',
     textAlign: 'center',
   },
   planPaywallLead: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '700',
@@ -4561,13 +4643,13 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   planPaywallBenefitTitle: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 13,
     lineHeight: 15,
     fontWeight: '900',
   },
   planPaywallBenefitSub: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 10,
     lineHeight: 12,
     fontWeight: '700',
@@ -4590,17 +4672,17 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.15)',
   },
   planPaywallBuyCardSelected: {
-    backgroundColor: 'rgba(242,184,75,0.18)',
-    borderColor: 'rgba(242,184,75,0.72)',
+    backgroundColor: t.accentBg,
+    borderColor: t.accentBorder,
   },
   planPaywallBuyTitle: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 14,
     lineHeight: 18,
     fontWeight: '900',
   },
   planPaywallBuyPrice: {
-    color: '#FFD66B',
+    color: t.accent2,
     fontSize: 22,
     lineHeight: 24,
     fontWeight: '900',
@@ -4618,12 +4700,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 20,
-    backgroundColor: 'rgba(242,184,75,0.15)',
+    backgroundColor: t.accentBg,
     borderWidth: 1,
-    borderColor: 'rgba(242,184,75,0.35)',
+    borderColor: t.accentBorder,
   },
   planPaywallPillText: {
-    color: ONBOARDING_ACCENT,
+    color: t.accent,
     fontSize: 12,
     fontWeight: '600',
   },
@@ -4652,7 +4734,7 @@ const styles = StyleSheet.create({
     borderTopColor: 'rgba(255,255,255,0.08)',
   },
   planPaywallPreviewLockedText: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 12,
   },
   // Таймлайн триала
@@ -4675,7 +4757,7 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   planPaywallTimelineDotActive: {
-    backgroundColor: ONBOARDING_ACCENT,
+    backgroundColor: t.accent,
   },
   planPaywallTimelineLine: {
     width: 1,
@@ -4688,12 +4770,12 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   planPaywallTimelineTitle: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 13,
     fontWeight: '700',
   },
   planPaywallTimelineSub: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 12,
     marginTop: 1,
   },
@@ -4704,13 +4786,13 @@ const styles = StyleSheet.create({
   planPaywallBuyBadge: {
     marginTop: 6,
     alignSelf: 'flex-start',
-    backgroundColor: 'rgba(242,184,75,0.22)',
+    backgroundColor: t.accentBg,
     borderRadius: 4,
     paddingHorizontal: 6,
     paddingVertical: 2,
   },
   planPaywallBuyBadgeText: {
-    color: ONBOARDING_ACCENT,
+    color: t.accent,
     fontSize: 10,
     fontWeight: '700',
   },
@@ -4724,7 +4806,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   planPaywallTrustItem: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 12,
   },
   planPaywallTrustSep: {
@@ -4753,7 +4835,7 @@ const styles = StyleSheet.create({
     elevation: 18,
   },
   planFreeConfirmTitle: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 20,
     lineHeight: 24,
     fontWeight: '900',
@@ -4761,7 +4843,7 @@ const styles = StyleSheet.create({
     marginBottom: 9,
   },
   planFreeConfirmText: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 13,
     lineHeight: 19,
     fontWeight: '700',
@@ -4777,7 +4859,7 @@ const styles = StyleSheet.create({
     gap: 18,
   },
   planPhraseRu: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 28,
     lineHeight: 36,
     fontWeight: '900',
@@ -4795,7 +4877,7 @@ const styles = StyleSheet.create({
     borderColor: '#FF5A5F',
   },
   planPhraseAnswer: {
-    color: ONBOARDING_ACCENT,
+    color: t.accent,
     fontSize: 24,
     fontWeight: '900',
   },
@@ -4821,10 +4903,10 @@ const styles = StyleSheet.create({
   },
   planPhraseTokenSelected: {
     opacity: 0.42,
-    borderColor: 'rgba(242,184,75,0.36)',
+    borderColor: t.accentBorder,
   },
   planPhraseTokenText: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 18,
     fontWeight: '900',
   },
@@ -4857,7 +4939,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   planFlowChecklistText: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 16,
     fontWeight: '800',
   },
@@ -4865,19 +4947,19 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 18,
     borderRadius: 8,
-    backgroundColor: ONBOARDING_ACCENT_BG,
+    backgroundColor: t.accentBg,
     borderWidth: 1,
-    borderColor: 'rgba(242,184,75,0.34)',
+    borderColor: t.accentBorder,
   },
   planResultNumber: {
-    color: '#FFF8E8',
+    color: t.textPrimary,
     fontSize: 26,
     lineHeight: 32,
     fontWeight: '900',
     marginBottom: 6,
   },
   planResultSub: {
-    color: ONBOARDING_TEXT_MUTED,
+    color: t.textMuted,
     fontSize: 14,
     lineHeight: 20,
     fontWeight: '800',
@@ -4886,8 +4968,12 @@ const styles = StyleSheet.create({
 
 function OnboardingArtBackground({
   motion = 'zoomOut',
+  styles,
+  theme,
 }: {
   motion?: 'zoomIn' | 'zoomOut';
+  styles: OnboardingStyles;
+  theme: OnboardingTheme;
 }) {
   void motion;
   const particleAnims = useRef(ONBOARDING_BACKGROUND_PARTICLES.map(() => new Animated.Value(0))).current;
@@ -4925,7 +5011,7 @@ function OnboardingArtBackground({
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View pointerEvents="none" style={styles.onboardingBg}>
         <LinearGradient
-          colors={['#101319', '#07090D', '#020304']}
+          colors={[theme.bgBottom, theme.bgTop, theme.bgEdge]}
           locations={[0, 0.45, 1]}
           style={styles.onboardingBgDim}
         />

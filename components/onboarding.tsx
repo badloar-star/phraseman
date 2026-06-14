@@ -1038,8 +1038,8 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         .catch(() => {});
       if (nicknameMode === 'personal_plan') {
         await AsyncStorage.removeItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
-        await handleFinishOnboarding();
-        return;
+        // После покупки ведём через streak → auth так же как обычного юзера,
+        // чтобы покупатель не оставался анонимом и не терял прогресс на 2-м устройстве.
       }
       goToStep('streak');
     } finally {

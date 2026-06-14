@@ -43,6 +43,22 @@ beforeEach(() => {
     mockStorage[key] = value;
     return Promise.resolve();
   });
+  (AsyncStorage.removeItem as jest.Mock).mockImplementation((key: string) => {
+    delete mockStorage[key];
+    return Promise.resolve();
+  });
+  // Some code paths read/write via the multi* APIs — wire them to the same store
+  // so save→load round-trips hit one source of truth (the firestore mock only
+  // backs getItem/setItem otherwise, leaving multi* on a separate object).
+  (AsyncStorage.multiGet as jest.Mock).mockImplementation((keys: string[]) =>
+    Promise.resolve(keys.map((key) => [key, mockStorage[key] ?? null])),
+  );
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation((pairs: [string, string][]) => {
+    pairs.forEach(([key, value]) => {
+      mockStorage[key] = value;
+    });
+    return Promise.resolve();
+  });
 });
 
 describe('level gift inventory', () => {

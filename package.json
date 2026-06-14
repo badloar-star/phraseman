@@ -241,6 +241,8 @@
       "^@react-native-async-storage/async-storage$": "<rootDir>/tests/__mocks__/async-storage.js",
       "^react-native$": "<rootDir>/tests/__mocks__/react-native.js",
       "^@react-native-firebase/firestore$": "<rootDir>/tests/__mocks__/react-native-firebase-firestore.js",
+      "^@react-native-firebase/app$": "<rootDir>/tests/__mocks__/react-native-firebase-app.js",
+      "^@react-native-firebase/functions$": "<rootDir>/tests/__mocks__/react-native-firebase-functions.js",
       "^react-native-purchases$": "<rootDir>/tests/__mocks__/react-native-purchases.js"
     },
     "modulePathIgnorePatterns": [

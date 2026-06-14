@@ -260,7 +260,8 @@ export const registerXP = async (
         } catch (serverError) {
           // Событие встало в очередь (offline/network). Продолжаем с локальным XP —
           // сервер синхронизируется при следующем запросе через flushPendingProgressEvents.
-          DebugLogger.warn('xp_manager.ts:registerXP', serverError, 'server_queued');
+          // severity 'warning' → НЕ пишется в Firestore (это ожидаемый offline-кейс).
+          DebugLogger.error('xp_manager.ts:registerXP:server_queued', serverError, 'warning');
         }
       }
       if (giftState.consumeBank && finalDelta > 0) {
@@ -290,7 +291,7 @@ export const registerXP = async (
         });
         finalDelta = serverAward.xpDelta;
       } catch (serverError) {
-        DebugLogger.warn('xp_manager.ts:registerXP', serverError, 'server_queued_fallback');
+        DebugLogger.error('xp_manager.ts:registerXP:server_queued_fallback', serverError, 'warning');
       }
     }
     await addOrUpdateScore(resolvedName, finalDelta, lang);

@@ -1815,7 +1815,10 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         <TouchableOpacity style={[styles.eliteWelcomeSecondaryCta, styles.planMockupSecondaryButton]} activeOpacity={0.82} onPress={() => goToStep('planPicker')}>
           <Text style={styles.planMockupSecondaryButtonText}>Другие планы</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep('name')}>
+        <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => {
+          void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_result' }));
+          goToStep('name');
+        }}>
           <Text style={styles.freeBtnText}>Продолжить без плана</Text>
         </TouchableOpacity>
         </>
@@ -1997,7 +2000,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                     style={styles.eliteWelcomeSecondaryCta}
                     activeOpacity={0.82}
                     onPress={() => {
-                      void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', {}));
+                      void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_paywall' }));
                       goToStep('name');
                     }}
                   >
@@ -2609,17 +2612,15 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   // ── Шаг 3: Имя ──────────────────────────────────────────────────────────────
   if (step === 'name') {
     const keyboardVisible = keyboardPad > 0;
+    // Покупатель с уже подключённым планом видит контекст под заголовком;
+    // обычный (бесплатный) онбординг — без подписи (пустая строка не рендерится).
     const nameBranchSubtitle = nicknameMode === 'personal_plan'
       ? pick(
           'Личный план подключён. Осталось подписать профиль.',
           'Особистий план підключено. Залишилось підписати профіль.',
           'Tu plan personal está listo. Solo falta nombrar el perfil.',
         )
-      : ''; /*
-          'Текущая ветка onboarding приложения без личного плана.',
-          'Поточна гілка onboarding застосунку без особистого плану.',
-
-*/
+      : '';
     return renderScreen(
       'onboarding-name-screen',
       ONBOARDING_BG_NAME,
@@ -2674,6 +2675,11 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <Text style={styles.regularNameTitle} maxFontSizeMultiplier={1.08}>
               {pick('Как тебя зовут?', 'Як тебе звати?', '¿Cómo te llamas?')}
             </Text>
+            {nameBranchSubtitle ? (
+              <Text style={styles.regularNameSub} maxFontSizeMultiplier={1.08}>
+                {nameBranchSubtitle}
+              </Text>
+            ) : null}
             {nameFieldError ? (
               <Text style={styles.regularNameError} maxFontSizeMultiplier={1.08}>
                 {nameFieldError}

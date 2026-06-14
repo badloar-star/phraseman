@@ -68,7 +68,7 @@ export default function PaywallPlanCards({
         onPress={() => onSelect(plan)}
         style={[S.card, {
           borderColor: sel ? tc.selectedCardBorder : cardBorder,
-          backgroundColor: sel ? tc.selectedCardBg : cardBg,
+          backgroundColor: 'transparent',
           shadowColor: sel ? tc.selectedCardShadow : 'transparent',
         }]}
       >

@@ -2559,8 +2559,12 @@ export default function LessonScreen() {
         : correctStreakRef.current >= 5  ? 1.5
         : 1.0;
       const xpAmount = Math.round(5 * comboM);
-      
-      if (userNameRef.current) {
+
+      // XP начисляем только за «настоящее» прохождение, НЕ за повтор уже пройденного урока.
+      // Иначе повтор фармил XP: eventId на повторе свежий (новый attemptId + сброс ordinal),
+      // поэтому серверный дедуп его не ловил. Ветка неправильного ответа уже так гардит.
+      // Задачи дня / комбо / ачивки ниже срабатывают и на повторе — это намеренно.
+      if (userNameRef.current && !isReplayRef.current) {
         const answerCell = overridePhraseCell ?? cellIndex;
         const answerOrdinal = sessionAnswerCount.current;
         const answerEventId = [

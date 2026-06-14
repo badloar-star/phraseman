@@ -39,15 +39,13 @@ export type ShardSource =
   | 'arena_rank_up_streak'  // +1 Повышение ранга при серии 3+ побед (только новый пик)
   | 'daily_tasks_all'       // +1 Все 3 дневных задания (кнопка «Забрать» на экране заданий)
   | 'topic_completed'       // +3 Все уроки темы (разово)
-  | 'league_1st'            // +3 1-е место в лиге
-  | 'league_2nd'            // +2 2-е место в лиге
-  | 'league_3rd'            // +1 3-е место в лиге
   | 'exam_excellent'        // +3 Экзамен 90%+ (единоразово)
   | 'diagnostic_test'       // +1 Диагностический тест (единоразово)
   | 'lessons_5_perfect'     // +3 5 уроков подряд без ошибок
   | 'level_gift'            // +1 из подарка за уровень (×3 = +3)
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
   | 'plan_day_complete'     // +2 Завершён день персонального плана (разово на день плана)
+  | 'trainer_perfect_session' // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
   | 'bug_report';           // +1 Отправил репорт об ошибке
 
 export const SHARD_REWARDS: Record<ShardSource, number> = {
@@ -62,15 +60,13 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   arena_rank_up_streak: 1,
   daily_tasks_all: 1,
   topic_completed: 3,
-  league_1st: 3,
-  league_2nd: 2,
-  league_3rd: 1,
   exam_excellent: 3,
   diagnostic_test: 1,
   lessons_5_perfect: 3,
   level_gift: 1,
   preposition_drill_perfect: 1,
   plan_day_complete: 2,
+  trainer_perfect_session: 1,
   bug_report: 1,
 };
 

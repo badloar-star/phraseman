@@ -20,6 +20,9 @@ import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
+import { registerXP } from './xp_manager';
+import { addShards } from './shards_system';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { logMistake } from './mistake_log';
 import {
   getTrainerPremiumItems,
@@ -482,6 +485,27 @@ function logSmartTrainerMistake(card: SmartCard, picked: string): void {
   });
 }
 
+/** Дневной лимит осколков за идеальные сессии умной тренировки (анти-фарм). */
+const TRAINER_PERFECT_SHARD_DAILY_CAP = 3;
+
+/**
+ * +1 осколок за идеальную сессию умной тренировки, не чаще TRAINER_PERFECT_SHARD_DAILY_CAP в день.
+ * Счётчик хранится локально по календарному дню; превышение лимита — тихо ничего не делаем.
+ */
+async function awardTrainerPerfectShard(): Promise<void> {
+  try {
+    const dayKey = new Date().toISOString().slice(0, 10);
+    const storageKey = `trainer_perfect_shard_${dayKey}`;
+    const raw = await AsyncStorage.getItem(storageKey);
+    const usedToday = raw ? parseInt(raw, 10) || 0 : 0;
+    if (usedToday >= TRAINER_PERFECT_SHARD_DAILY_CAP) return;
+    const got = await addShards('trainer_perfect_session');
+    if (got > 0) await AsyncStorage.setItem(storageKey, String(usedToday + 1));
+  } catch {
+    // Награда необязательна — сбой записи не должен ломать экран результатов.
+  }
+}
+
 export default function TrainerSmartSession() {
   const params = useLocalSearchParams<{
     mode?: string;
@@ -513,6 +537,12 @@ export default function TrainerSmartSession() {
   const planTrainerDayIndex = parseInt(params.planDayIndex ?? '1', 10) || 1;
   const planTrainerRequiredItems = Math.max(1, Math.min(12, parseInt(params.requiredItems ?? '3', 10) || 3));
   const planTrainerCompletionTracked = useRef(false);
+  // Идемпотентность наград умной тренировки: уникальный id сессии + порядковый номер
+  // правильного ответа дают стабильный eventId (серверный дедуп XP). Сбрасываются при
+  // загрузке новой сессии (loadSession).
+  const sessionRewardIdRef = useRef<string>(`tss_${Date.now().toString(36)}_${Math.floor(Math.random() * 1e6).toString(36)}`);
+  const correctXpOrdinalRef = useRef(0);
+  const perfectShardAwardedRef = useRef(false);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
   const [cards, setCards] = useState<SmartCard[]>([]);
@@ -546,6 +576,10 @@ export default function TrainerSmartSession() {
       setPicked(null);
       setAttempts([]);
       setMistakeInsight(null);
+      // Новая сессия — новый id наград, обнуляем счётчики идемпотентности.
+      sessionRewardIdRef.current = `tss_${Date.now().toString(36)}_${Math.floor(Math.random() * 1e6).toString(36)}`;
+      correctXpOrdinalRef.current = 0;
+      perfectShardAwardedRef.current = false;
       setLoading(false);
     } catch {
       // Сбой загрузки (сеть/Firestore/premium-проверка) → экран ошибки с retry
@@ -614,6 +648,17 @@ export default function TrainerSmartSession() {
     if (correct) await checkAchievements({ type: 'trainer_correct', correct: 1 });
     if (!correct) logSmartTrainerMistake(current, option);
 
+    // Награда за работу в умной тренировке (раньше экран не давал ни XP, ни осколков).
+    // +5 XP за каждый правильный ответ (источник review_answer — recall-механика, серверный
+    // кап 150/событие и 500 событий/сутки уже защищают от фарма). eventId идемпотентен.
+    if (correct) {
+      correctXpOrdinalRef.current += 1;
+      void registerXP(5, 'review_answer', '', lang, undefined, {
+        eventId: `trainer:${sessionRewardIdRef.current}:ans:${correctXpOrdinalRef.current}`,
+        payload: { source: 'smart_session', mode, itemKey: current.item.key },
+      }).catch(() => {});
+    }
+
     const attempt = {
       key: current.item.key,
       queue: current.item.queue,
@@ -632,6 +677,14 @@ export default function TrainerSmartSession() {
         wrong: nextAttempts.length - sessionCorrect,
         total: cards.length,
       });
+      // +1 осколок за идеальную сессию (0 ошибок). Дневной кап 3 — сессии повторяемы,
+      // без кэпа осколки фармились бы. preview/план-сессии не вознаграждаем шардом.
+      const isPerfect = sessionCorrect === cards.length && cards.length >= 3;
+      const isPreview = params.preview === 'report' || params.preview === 'mistake';
+      if (isPerfect && !isPreview && !perfectShardAwardedRef.current) {
+        perfectShardAwardedRef.current = true;
+        void awardTrainerPerfectShard();
+      }
     }
 
     if (!correct) {

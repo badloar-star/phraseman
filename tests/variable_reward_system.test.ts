@@ -1,175 +1,98 @@
 /**
- * Тесты для Variable Reward System
+ * Тесты Variable Reward System (бонус-сундук в конце урока/квиза).
  *
- * Проверяют:
- * 1. Базовый XP не меняется при расчёте
- * 2. Вероятности бонусов соответствуют требованиям
- * 3. Диапазоны значений корректны
+ * Новая спецификация (после ухода от 82%-нуля):
+ *  - бонус всегда ≥ 1 (никаких «пустых» сундуков)
+ *  - бонус ≤ 30
+ *  - тиеры: large (20–30) ~3%, medium (10–20) ~10%, остальное — small/минимум (1–5)
+ *  - baseXP не меняется; totalXP = baseXP + bonusXP
+ *
+ * «Сундук дня» (openTreasureChest/prepareTreasureChestOpen/commitTreasureChestOpen,
+ * DailyTreasureState) удалён как мёртвый код — отдельного действия «открыть сундук»
+ * в приложении нет, бонус начисляется в конце урока/квиза.
  */
 
 import {
   calculateRandomBonus,
   calculateRewardWithBonus,
-  commitTreasureChestOpen,
   getTierLabel,
-  openTreasureChest,
-  prepareTreasureChestOpen,
 } from '../app/variable_reward_system';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 describe('Variable Reward System', () => {
-  beforeEach(async () => {
-    await AsyncStorage.clear();
-    jest.restoreAllMocks();
-  });
-
   describe('calculateRandomBonus()', () => {
     it('should return a number', () => {
-      const result = calculateRandomBonus();
-      expect(typeof result).toBe('number');
+      expect(typeof calculateRandomBonus()).toBe('number');
     });
 
-    it('should return value >= 0', () => {
-      for (let i = 0; i < 100; i++) {
-        const result = calculateRandomBonus();
-        expect(result).toBeGreaterThanOrEqual(0);
+    it('should always return >= 1 (no empty chests)', () => {
+      for (let i = 0; i < 1000; i++) {
+        expect(calculateRandomBonus()).toBeGreaterThanOrEqual(1);
       }
     });
 
     it('should return value <= 30', () => {
-      for (let i = 0; i < 100; i++) {
-        const result = calculateRandomBonus();
-        expect(result).toBeLessThanOrEqual(30);
+      for (let i = 0; i < 1000; i++) {
+        expect(calculateRandomBonus()).toBeLessThanOrEqual(30);
       }
     });
 
-    it('should return 0 most of the time (82%)', () => {
-      const runs = 10000;
-      let zeroCount = 0;
-
-      for (let i = 0; i < runs; i++) {
-        if (calculateRandomBonus() === 0) zeroCount++;
-      }
-
-      const percentage = (zeroCount / runs) * 100;
-      // Проверяем что в диапазоне 78-86% (80% +/- 6%)
-      expect(percentage).toBeGreaterThan(78);
-      expect(percentage).toBeLessThan(86);
-    });
-
-    it('should respect tier distribution', () => {
-      const runs = 10000;
-      let tier1Count = 0; // 0-10: 10%
-      let tier2Count = 0; // 10-20: 5%
-      let tier3Count = 0; // 20-30: 3%
+    it('should respect tier distribution (large ~3%, medium ~10%)', () => {
+      const runs = 20000;
+      let largeCount = 0; // 20–30
+      let mediumCount = 0; // 10–20
 
       for (let i = 0; i < runs; i++) {
         const bonus = calculateRandomBonus();
-        if (bonus > 0 && bonus <= 10) tier1Count++;
-        if (bonus > 10 && bonus <= 20) tier2Count++;
-        if (bonus > 20 && bonus <= 30) tier3Count++;
+        if (bonus > 20 && bonus <= 30) largeCount++;
+        else if (bonus > 10 && bonus <= 20) mediumCount++;
       }
 
-      const tier1Pct = (tier1Count / runs) * 100;
-      const tier2Pct = (tier2Count / runs) * 100;
-      const tier3Pct = (tier3Count / runs) * 100;
+      const largePct = (largeCount / runs) * 100;
+      const mediumPct = (mediumCount / runs) * 100;
 
-      // Проверяем что распределение близко к ожидаемому (с допуском 1%)
-      expect(tier1Pct).toBeGreaterThan(8.5);
-      expect(tier1Pct).toBeLessThan(11.5);
-
-      expect(tier2Pct).toBeGreaterThan(3.5);
-      expect(tier2Pct).toBeLessThan(6.5);
-
-      expect(tier3Pct).toBeGreaterThan(1.5);
-      expect(tier3Pct).toBeLessThan(4.5);
+      // large ~3% (±1.5), medium ~10% (±2)
+      expect(largePct).toBeGreaterThan(1.5);
+      expect(largePct).toBeLessThan(4.5);
+      expect(mediumPct).toBeGreaterThan(8);
+      expect(mediumPct).toBeLessThan(12);
     });
   });
 
   describe('calculateRewardWithBonus()', () => {
     it('should preserve baseXP unchanged', () => {
       const baseXP = 100;
-      const result = calculateRewardWithBonus(baseXP);
-      expect(result.baseXP).toBe(baseXP);
+      expect(calculateRewardWithBonus(baseXP).baseXP).toBe(baseXP);
     });
 
     it('should calculate totalXP correctly', () => {
-      const baseXP = 100;
-      const result = calculateRewardWithBonus(baseXP);
+      const result = calculateRewardWithBonus(100);
       expect(result.totalXP).toBe(result.baseXP + result.bonusXP);
     });
 
-    it('should set hasBonusWon correctly when bonus is 0', () => {
-      // Может потребоваться несколько попыток из-за случайности
-      let hasBonusResult = false;
-
-      for (let i = 0; i < 100; i++) {
+    it('should always set hasBonusWon true (bonus is always >= 1)', () => {
+      for (let i = 0; i < 200; i++) {
         const result = calculateRewardWithBonus(100);
-        if (result.bonusXP === 0) {
-          expect(result.hasBonusWon).toBe(false);
-          hasBonusResult = true;
-          break;
-        }
+        expect(result.bonusXP).toBeGreaterThanOrEqual(1);
+        expect(result.hasBonusWon).toBe(true);
       }
-
-      expect(hasBonusResult).toBe(true);
     });
 
-    it('should set hasBonusWon correctly when bonus > 0', () => {
-      let hasBonusResult = false;
-
-      for (let i = 0; i < 100; i++) {
+    it('should include valid bonusInfo whenever bonus is won', () => {
+      for (let i = 0; i < 200; i++) {
         const result = calculateRewardWithBonus(100);
-        if (result.bonusXP > 0) {
-          expect(result.hasBonusWon).toBe(true);
-          hasBonusResult = true;
-          break;
-        }
+        expect(result.hasBonusWon).toBe(true);
+        expect(result.bonusInfo).toBeDefined();
+        expect(result.bonusInfo?.tier).toMatch(/^(small|medium|large)$/);
+        expect(result.bonusInfo?.percentage).toBeGreaterThan(0);
+        expect(result.bonusInfo?.range).toBeDefined();
       }
-
-      expect(hasBonusResult).toBe(true);
     });
 
-    it('should include bonusInfo when bonus is won', () => {
-      let hasBonusInfo = false;
-
-      for (let i = 0; i < 100; i++) {
-        const result = calculateRewardWithBonus(100);
-        if (result.hasBonusWon) {
-          expect(result.bonusInfo).toBeDefined();
-          expect(result.bonusInfo?.tier).toMatch(/^(small|medium|large)$/);
-          expect(result.bonusInfo?.percentage).toBeGreaterThan(0);
-          expect(result.bonusInfo?.range).toBeDefined();
-          hasBonusInfo = true;
-          break;
-        }
-      }
-
-      expect(hasBonusInfo).toBe(true);
-    });
-
-    it('should not include bonusInfo when bonus is not won', () => {
-      let noBonusInfo = false;
-
-      for (let i = 0; i < 100; i++) {
-        const result = calculateRewardWithBonus(100);
-        if (!result.hasBonusWon) {
-          expect(result.bonusInfo).toBeUndefined();
-          noBonusInfo = true;
-          break;
-        }
-      }
-
-      expect(noBonusInfo).toBe(true);
-    });
-
-    it('should work with various base XP amounts', () => {
-      const amounts = [10, 50, 100, 200, 500];
-
-      amounts.forEach((baseXP) => {
+    it('should work with various base XP amounts (total within base+30)', () => {
+      [10, 50, 100, 200, 500].forEach((baseXP) => {
         const result = calculateRewardWithBonus(baseXP);
         expect(result.baseXP).toBe(baseXP);
-        expect(result.totalXP).toBeGreaterThanOrEqual(baseXP);
+        expect(result.totalXP).toBeGreaterThanOrEqual(baseXP + 1);
         expect(result.totalXP).toBeLessThanOrEqual(baseXP + 30);
       });
     });
@@ -180,81 +103,34 @@ describe('Variable Reward System', () => {
       expect(getTierLabel(0)).toBe('none');
     });
 
-    it('should return "small" for bonus <= 10', () => {
+    it('should return "small" for bonus <= 5', () => {
+      expect(getTierLabel(1)).toBe('small');
       expect(getTierLabel(5)).toBe('small');
-      expect(getTierLabel(10)).toBe('small');
     });
 
-    it('should return "medium" for 10 < bonus <= 20', () => {
-      expect(getTierLabel(11)).toBe('medium');
-      expect(getTierLabel(15)).toBe('medium');
+    it('should return "medium" for 5 < bonus <= 20', () => {
+      expect(getTierLabel(10)).toBe('medium');
       expect(getTierLabel(20)).toBe('medium');
     });
 
     it('should return "large" for bonus > 20', () => {
       expect(getTierLabel(21)).toBe('large');
-      expect(getTierLabel(25)).toBe('large');
       expect(getTierLabel(30)).toBe('large');
     });
   });
 
-  describe('daily treasure chest commit flow', () => {
-    it('prepare does not mark the chest opened until commit', async () => {
-      jest.spyOn(Math, 'random').mockReturnValue(0.5);
-
-      const prepared = await prepareTreasureChestOpen(false);
-      expect(prepared).not.toBeNull();
-      expect(prepared?.openSlot).toBe('free');
-      expect(await AsyncStorage.getItem('daily_treasure_state')).toBeNull();
-      expect(await prepareTreasureChestOpen(false)).not.toBeNull();
-
-      await commitTreasureChestOpen(prepared!);
-      expect(await AsyncStorage.getItem('daily_treasure_state')).not.toBeNull();
-      expect(await prepareTreasureChestOpen(false)).toBeNull();
-    });
-
-    it('openTreasureChest keeps the legacy one-step commit behavior', async () => {
-      jest.spyOn(Math, 'random').mockReturnValue(0.5);
-
-      const result = await openTreasureChest(false);
-      expect(result?.openSlot).toBe('free');
-      expect(await AsyncStorage.getItem('daily_treasure_state')).not.toBeNull();
-      expect(await openTreasureChest(false)).toBeNull();
-    });
-  });
-
   describe('Statistical validation', () => {
-    it('should maintain ~18% bonus win rate', () => {
-      const runs = 10000;
-      let winCount = 0;
-
-      for (let i = 0; i < runs; i++) {
-        if (calculateRandomBonus() > 0) winCount++;
-      }
-
-      const winRate = (winCount / runs) * 100;
-      // 18% +/- 2% (allowing for statistical variance)
-      expect(winRate).toBeGreaterThan(16);
-      expect(winRate).toBeLessThan(20);
-    });
-
-    it('all bonuses should be within valid ranges', () => {
-      const runs = 1000;
+    it('all bonuses should be within valid ranges and never zero', () => {
       const bonuses = new Set<number>();
-
-      for (let i = 0; i < runs; i++) {
+      for (let i = 0; i < 2000; i++) {
         const bonus = calculateRandomBonus();
         bonuses.add(bonus);
-        expect(bonus).toBeGreaterThanOrEqual(0);
+        expect(bonus).toBeGreaterThanOrEqual(1);
         expect(bonus).toBeLessThanOrEqual(30);
       }
-
-      // Должны быть значения из разных тиеров
-      const hasSmall = Array.from(bonuses).some((b) => b > 0 && b <= 10);
-      const hasMedium = Array.from(bonuses).some((b) => b > 10 && b <= 20);
-      const hasLarge = Array.from(bonuses).some((b) => b > 20 && b <= 30);
-
-      expect(hasSmall || hasMedium || hasLarge).toBe(true);
+      // Должны встречаться значения хотя бы одного из тиеров.
+      const hasAny = Array.from(bonuses).some((b) => b >= 1 && b <= 30);
+      expect(hasAny).toBe(true);
     });
   });
 });

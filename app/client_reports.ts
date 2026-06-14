@@ -16,6 +16,8 @@ type SubmitClientReportResult = {
   ok: boolean;
   id?: string;
   collection?: string;
+  /** +1 осколок за содержательный баг-репорт (сервер, ≤3/сутки). 0 если не начислен. */
+  shardAwarded?: number;
 };
 
 function callable<TReq, TRes>(name: string) {
@@ -36,6 +38,21 @@ export async function submitClientReport(
     'submitClientReport',
   );
   const res = await fn({ kind, payload });
+  // Сервер мог начислить +1 осколок за содержательный баг-репорт. Подтягиваем облачный
+  // баланс в локальный и показываем модалку награды (динамический импорт — без циклов).
+  const shardAwarded = Number(res.data?.shardAwarded) || 0;
+  if (shardAwarded > 0) {
+    void (async () => {
+      try {
+        const shards = await import('./shards_system');
+        await shards.loadShardsFromCloud();
+        const { emitAppEvent } = await import('./events');
+        emitAppEvent('shards_earned', { amount: shardAwarded, reasonKey: 'bug_report' });
+      } catch {
+        // Награда необязательна для успеха репорта — молчим при сбое подтяжки баланса.
+      }
+    })();
+  }
   return res.data;
 }
 

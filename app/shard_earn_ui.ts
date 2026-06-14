@@ -237,6 +237,16 @@ const LABELS: Record<string, ShardEarnLabel> = {
     tr: "Edat alıştırması tek hatasız",
     pl: "Trening przyimków bez ani jednego błędu",
   },
+  trainer_perfect_session: {
+    ru: 'Умная тренировка без ошибок — слабые места под контролем',
+    uk: 'Розумне тренування без помилок — слабкі місця під контролем',
+    es: 'Sesión inteligente sin fallos: tus puntos débiles bajo control',
+    'pt-BR': "Sessão inteligente sem erros: pontos fracos sob controle",
+    vi: "Phiên luyện thông minh không lỗi: điểm yếu trong tầm kiểm soát",
+    id: "Sesi pintar tanpa salah: titik lemah terkendali",
+    tr: "Hatasız akıllı seans: zayıf yönler kontrol altında",
+    pl: "Inteligentna sesja bez błędów: słabe punkty pod kontrolą",
+  },
   pos_mastery_level: {
     ru: 'Уровень части речи повышен — персональная отработка принесла награду',
     uk: 'Рівень частини мови підвищено — персональне тренування принесло нагороду',
@@ -256,6 +266,16 @@ const LABELS: Record<string, ShardEarnLabel> = {
     id: "Diagnosis sempurna: titik lemah kini jauh lebih kuat",
     tr: "Mükemmel tanı: zayıf nokta belirgin biçimde güçlendi",
     pl: "Diagnoza idealna: słaby punkt jest wyraźnie mocniejszy",
+  },
+  bug_report: {
+    ru: 'Спасибо за репорт об ошибке — осколок в благодарность',
+    uk: 'Дякуємо за репорт про помилку — осколок на подяку',
+    es: 'Gracias por reportar el error: un fragmento de agradecimiento',
+    'pt-BR': "Obrigado por relatar o erro: um fragmento de agradecimento",
+    vi: "Cảm ơn đã báo lỗi: tặng bạn một mảnh tri thức",
+    id: "Terima kasih sudah melaporkan bug: satu shard sebagai terima kasih",
+    tr: "Hata bildirimin için teşekkürler: teşekkür olarak bir parça",
+    pl: "Dzięki za zgłoszenie błędu: odłamek w podziękowaniu",
   },
   generic_raw: {
     ru: 'Начисление осколков знаний',

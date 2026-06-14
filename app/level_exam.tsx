@@ -39,7 +39,7 @@ import { levelExamKey } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { safeRouterBack } from './navigation_back';
-import { submitProgressEvent } from './progress_events_client';
+import { registerXP } from './xp_manager';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
@@ -747,11 +747,24 @@ export default function LevelExam() {
           await markPremiumCourseLevelReached(nextLevel, studyTarget);
           await unlockLesson(getFirstLessonForLevel(nextLevel), studyTarget);
         }
-        addShards('lesson_quiz_passed').catch(() => {});
+        // +1 осколок за сдачу — только ПЕРВЫЙ раз на уровень (иначе пересдача фармила осколки).
+        const quizShardKey = `level_exam_quiz_shard_${studyTarget}_${lvl}`;
+        const quizShardClaimed = await AsyncStorage.getItem(quizShardKey);
+        if (quizShardClaimed !== '1') {
+          const got = await addShards('lesson_quiz_passed').catch(() => 0);
+          if (got > 0) await AsyncStorage.setItem(quizShardKey, '1').catch(() => {});
+        }
       }
       if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});
       const { newTier, prevTier, newPassCount } = await saveExamProgress(lvl, pct, studyTarget);
-      submitProgressEvent({
+      // XP за зачёт: сдача = 50 + бонус за % (как у финального экзамена), провал = небольшая
+      // награда за участие (раньше зачёт давал 0 XP — полноценная работа без награды).
+      // registerXP сам шлёт серверное событие exam_complete с правильным xpDelta и применяет
+      // множители/цепочку — поэтому прежний прямой submitProgressEvent с xpDelta:0 убран.
+      const examXp = passed ? 50 + Math.round(pct / 2) : Math.max(10, Math.round(pct / 4));
+      let storedName = '';
+      try { storedName = ((await AsyncStorage.getItem('user_name')) || '').trim(); } catch {}
+      registerXP(examXp, 'exam_complete', storedName, lang, undefined, {
         eventId: [
           'exam',
           safeLevelExamEventPart(studyTarget),
@@ -759,7 +772,6 @@ export default function LevelExam() {
           String(attemptNumber),
           'complete',
         ].join(':'),
-        type: 'exam_complete',
         payload: {
           level: lvl,
           studyTarget,
@@ -769,7 +781,6 @@ export default function LevelExam() {
           score: correct,
           total,
           attemptNumber,
-          xpDelta: 0,
         },
       }).catch(() => {});
       setExamMedalTier(newTier);

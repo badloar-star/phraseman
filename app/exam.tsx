@@ -626,8 +626,11 @@ export default function ExamScreen() {
         const { phrase, ...meta } = signal;
         logMistake(phrase, lessonId, 'exam', what, meta, studyTarget);
       });
-    // XP: 10000 за золото (≥90%), иначе 50 + бонус за %
-    const xp = p >= 90 ? 10000 : 50 + Math.round(p / 2);
+    // XP: 10000 за золото (≥90%) — НО только в ПЕРВЫЙ раз (когда сертификата ещё нет).
+    // На пересдаче (сертификат уже есть) ≥90% платит как обычная сдача: 50 + бонус за %.
+    // Иначе registerXP с новым eventId каждой попытки давал бы 10000 XP за каждую пересдачу.
+    const alreadyCertified = !!(await loadLingmanCertificate(studyTarget).catch(() => null));
+    const xp = (p >= 90 && !alreadyCertified) ? 10000 : 50 + Math.round(p / 2);
     if (p >= 90) awardOneTime('exam_excellent').catch(() => {});
     checkAchievements({ type: 'exam', pct: p, studyTarget }).catch(() => {});
     let storedName = '';

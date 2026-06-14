@@ -3225,7 +3225,7 @@ export default function StreakStats() {
           authorLabel={triLang(lang, { ru: 'Компас', uk: 'Компас', es: 'Compass', 'pt-BR': 'Compass', vi: 'Compass', id: 'Compass', tr: 'Compass', pl: 'Compass' })}
           lockedLabel={triLang(lang, { ru: 'Открой подсказки Компаса с Premium', uk: 'Відкрий підказки Компаса з Premium', es: 'Desbloquea las pistas de Compass con Premium', 'pt-BR': 'Desbloqueie as dicas do Compass com Premium', vi: 'Mở gợi ý Compass với Premium', id: 'Buka petunjuk Compass dengan Premium', tr: 'Compass ipuçlarını Premium ile aç', pl: 'Odblokuj wskazówki Compass z Premium' })}
           loadingLabel={triLang(lang, { ru: 'Компас готовит подсказку…', uk: 'Компас готує підказку…', es: 'Compass está preparando una pista…', 'pt-BR': 'Compass está preparando uma dica…', vi: 'Compass đang chuẩn bị gợi ý…', id: 'Compass sedang menyiapkan petunjuk…', tr: 'Compass ipucu hazırlıyor…', pl: 'Compass przygotowuje wskazówkę…' })}
-          onUnlock={() => { hapticTap(); router.push('/premium_modal' as any); }}
+          onUnlock={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'stats' } } as any); }}
         />);
     };
     return (<ScreenGradient artBackdrop={false}>
@@ -3368,7 +3368,7 @@ export default function StreakStats() {
         })}
           </Text>
         </TouchableOpacity>
-        {isCollectiblesEnabled() && (
+        {isCollectiblesEnabled() && collectiblesOwned > 0 && (
         <TouchableOpacity testID="stats-header-collectibles" accessibilityHint={triLang(lang, {
             ru: `Сокровищница: ${collectiblesOwned} из ${collectiblesTotalCount()}`,
             uk: `Скарбниця: ${collectiblesOwned} з ${collectiblesTotalCount()}`,

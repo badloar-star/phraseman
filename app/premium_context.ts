@@ -45,8 +45,12 @@ export type PremiumContext =
   | 'level_up'
   /** Умный микс тренажёра — lock-preview вместо мгновенного редиректа (план #11). */
   | 'smart_trainer'
-  /** AI dialogue daily free limit reached. */
-  | 'dialog_limit'
+  /** Истёк платный Premium — карточка возврата (EntitlementExpiredHost). */
+  | 'premium_expired'
+  /** Истёк VIP (реферальный/подарочный) — карточка возврата. */
+  | 'vip_expired'
+  /** Re-engage пуш-апсейл (intro_expiring / upsell_d4/d7/d14). */
+  | 'notification_upsell'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
@@ -76,7 +80,9 @@ export const PREMIUM_CONTEXT_VALUES = [
   'intro_ended',
   'level_up',
   'smart_trainer',
-  'dialog_limit',
+  'premium_expired',
+  'vip_expired',
+  'notification_upsell',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 

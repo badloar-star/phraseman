@@ -56,6 +56,9 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   level_up: { accent: '#FACC15', accent2: '#A78BFA', shardAmount: 180 },
   smart_trainer: { accent: '#A78BFA', accent2: '#5EEAD4', shardAmount: 180 },
   speaking: { accent: '#5EEAD4', accent2: '#A78BFA', shardAmount: 180 },
+  premium_expired: { accent: '#FFB020', accent2: '#66A8FF', shardAmount: 420 },
+  vip_expired: { accent: '#FACC15', accent2: '#F0ABFC', shardAmount: 420 },
+  notification_upsell: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 180 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
 
@@ -545,6 +548,138 @@ PAYWALL_PLANNED_COPY.personal_plan = {
   },
 };
 
+PAYWALL_PLANNED_COPY.premium_expired = {
+  title: {
+    'pt-BR': 'Recupere o acesso Premium completo',
+    vi: 'Lấy lại quyền truy cập Premium đầy đủ',
+    id: 'Pulihkan akses Premium penuh',
+    tr: 'Tam Premium erişimini geri al',
+    pl: 'Odzyskaj pełny dostęp Premium',
+  },
+  subtitle: {
+    'pt-BR': 'Seu Premium acabou. Reative e continue estudando sem limites nem pausas, exatamente de onde parou.',
+    vi: 'Premium của bạn đã hết. Kích hoạt lại và học tiếp không giới hạn, ngay từ chỗ bạn dừng.',
+    id: 'Premium-mu sudah habis. Aktifkan lagi dan lanjut belajar tanpa batas, tepat dari tempat terakhir.',
+    tr: 'Premium’un bitti. Yeniden etkinleştir ve kaldığın yerden sınırsız öğrenmeye devam et.',
+    pl: 'Twój Premium się skończył. Włącz ponownie i ucz się dalej bez limitów, dokładnie od miejsca, gdzie skończyłeś.',
+  },
+};
+PAYWALL_PLANNED_COPY.vip_expired = {
+  title: {
+    'pt-BR': 'Seu acesso VIP terminou',
+    vi: 'Quyền VIP của bạn đã kết thúc',
+    id: 'Akses VIP-mu telah berakhir',
+    tr: 'VIP erişimin sona erdi',
+    pl: 'Twój dostęp VIP się skończył',
+  },
+  subtitle: {
+    'pt-BR': 'Gostou de tudo sem limites? Ative o Premium e mantenha o acesso completo para sempre, sem pausas.',
+    vi: 'Thích mọi thứ không giới hạn? Kích hoạt Premium để giữ toàn bộ quyền truy cập mãi mãi, không gián đoạn.',
+    id: 'Suka semuanya tanpa batas? Aktifkan Premium dan pertahankan akses penuh selamanya, tanpa jeda.',
+    tr: 'Sınırsız her şeyi sevdin mi? Premium’u aç ve tüm erişimi sonsuza dek koru, arasız.',
+    pl: 'Spodobało ci się wszystko bez limitów? Włącz Premium i zachowaj pełny dostęp na zawsze, bez przerw.',
+  },
+};
+PAYWALL_PLANNED_COPY.notification_upsell = {
+  title: {
+    'pt-BR': 'Continue seu progresso',
+    vi: 'Tiếp tục tiến bộ của bạn',
+    id: 'Lanjutkan progresmu',
+    tr: 'İlerlemene devam et',
+    pl: 'Kontynuuj swój postęp',
+  },
+  subtitle: {
+    'pt-BR': 'O Premium abre tudo: lições sem barreiras, prática ilimitada e ritmo estável. O momento perfeito para voltar.',
+    vi: 'Premium mở tất cả: bài học không rào cản, luyện tập không giới hạn và nhịp đều. Thời điểm hoàn hảo để quay lại.',
+    id: 'Premium membuka semuanya: pelajaran tanpa hambatan, latihan tanpa batas, ritme stabil. Saat tepat untuk kembali.',
+    tr: 'Premium her şeyi açar: engelsiz dersler, sınırsız pratik ve istikrarlı ritim. Dönmek için mükemmel an.',
+    pl: 'Premium otwiera wszystko: lekcje bez barier, nieograniczona praktyka i stabilny rytm. Idealny moment, by wrócić.',
+  },
+};
+
+// Пред-существующие контексты, у которых не было planned-hero-copy → не-RU/UK/ES
+// языки падали в generic. Закрываем, чтобы каждый контекст был персональным на всех 8.
+PAYWALL_PLANNED_COPY.dialog_limit = {
+  title: {
+    'pt-BR': 'Fale com o Theo sem limite',
+    vi: 'Trò chuyện với Theo không giới hạn',
+    id: 'Bicara dengan Theo tanpa batas',
+    tr: 'Theo ile sınırsız konuş',
+    pl: 'Rozmawiaj z Theo bez limitu',
+  },
+  subtitle: {
+    'pt-BR': 'Grátis: uma conversa por dia. O Premium abre prática real de inglês sem limites: novos cenários, análise de cada fala e suas palavras dos cartões.',
+    vi: 'Miễn phí: một cuộc trò chuyện mỗi ngày. Premium mở luyện nói tiếng Anh thật không giới hạn: kịch bản mới, phân tích từng câu và từ vựng của bạn từ thẻ.',
+    id: 'Gratis: satu percakapan per hari. Premium membuka latihan bahasa Inggris nyata tanpa batas: skenario baru, analisis tiap ucapan, dan katamu dari kartu.',
+    tr: 'Ücretsiz: günde bir konuşma. Premium sınırsız gerçek İngilizce pratiğini açar: yeni senaryolar, her cümlenin analizi ve kartlarındaki kelimeler.',
+    pl: 'Za darmo: jedna rozmowa dziennie. Premium otwiera prawdziwą praktykę angielskiego bez limitów: nowe scenariusze, analiza każdej wypowiedzi i twoje słowa z fiszek.',
+  },
+};
+PAYWALL_PLANNED_COPY.speaking = {
+  title: {
+    'pt-BR': 'Comece a falar em voz alta',
+    vi: 'Bắt đầu nói thành tiếng',
+    id: 'Mulai bicara dengan lantang',
+    tr: 'Sesli konuşmaya başla',
+    pl: 'Zacznij mówić na głos',
+  },
+  subtitle: {
+    'pt-BR': 'O Premium abre o modo de voz: diga as frases em voz alta e o app escuta e orienta. O caminho mais rápido para falar com confiança.',
+    vi: 'Premium mở chế độ nói: đọc câu thành tiếng, ứng dụng lắng nghe và gợi ý. Cách nhanh nhất để nói tự tin.',
+    id: 'Premium membuka mode bicara: ucapkan frasa dengan lantang, aplikasi mendengarkan dan memandu. Cara tercepat untuk bicara percaya diri.',
+    tr: 'Premium konuşma modunu açar: cümleleri sesli söyle, uygulama dinler ve yönlendirir. Kendinden emin konuşmanın en hızlı yolu.',
+    pl: 'Premium otwiera tryb mówienia: wymawiaj frazy na głos, a aplikacja słucha i podpowiada. Najszybsza droga, by mówić pewnie.',
+  },
+};
+PAYWALL_PLANNED_COPY.intro_ended = {
+  title: {
+    'pt-BR': 'Continue com acesso completo',
+    vi: 'Tiếp tục với quyền truy cập đầy đủ',
+    id: 'Lanjutkan dengan akses penuh',
+    tr: 'Tam erişimle devam et',
+    pl: 'Kontynuuj z pełnym dostępem',
+  },
+  subtitle: {
+    'pt-BR': 'Você já sentiu o acesso completo. O Premium o abre para sempre — sem pausas nem bloqueios.',
+    vi: 'Bạn đã trải nghiệm quyền truy cập đầy đủ. Premium mở nó vĩnh viễn — không dừng, không khoá.',
+    id: 'Kamu sudah merasakan akses penuh. Premium membukanya selamanya — tanpa jeda dan tanpa blokir.',
+    tr: 'Tam erişimi zaten hissettin. Premium onu kalıcı açar — arasız ve engelsiz.',
+    pl: 'Już poczułeś pełny dostęp. Premium otwiera go na zawsze — bez przerw i blokad.',
+  },
+};
+PAYWALL_PLANNED_COPY.level_up = {
+  title: {
+    'pt-BR': 'Você está crescendo rápido',
+    vi: 'Bạn đang tiến bộ nhanh',
+    id: 'Kamu berkembang cepat',
+    tr: 'Hızlı ilerliyorsun',
+    pl: 'Rozwijasz się szybko',
+  },
+  subtitle: {
+    'pt-BR': 'Novo nível desbloqueado. O Premium remove todos os limites do caminho.',
+    vi: 'Mở khoá cấp mới. Premium gỡ mọi giới hạn trên đường đi.',
+    id: 'Level baru terbuka. Premium menghapus semua batas di jalanmu.',
+    tr: 'Yeni seviye açıldı. Premium yoldaki tüm sınırları kaldırır.',
+    pl: 'Odblokowano nowy poziom. Premium usuwa wszystkie limity po drodze.',
+  },
+};
+PAYWALL_PLANNED_COPY.smart_trainer = {
+  title: {
+    'pt-BR': 'Mistura inteligente — seu treinador',
+    vi: 'Mix thông minh — huấn luyện viên của bạn',
+    id: 'Mix pintar — pelatihmu',
+    tr: 'Akıllı miks — antrenörün',
+    pl: 'Inteligentny miks — twój trener',
+  },
+  subtitle: {
+    'pt-BR': 'Escolhe sozinho o que reforçar. Cada sessão é do seu jeito.',
+    vi: 'Tự chọn điều cần cải thiện. Mỗi phiên đều hợp với bạn.',
+    id: 'Memilih sendiri yang perlu diperkuat. Tiap sesi sesuai dirimu.',
+    tr: 'Neyi güçlendireceğini kendi seçer. Her seans sana göre.',
+    pl: 'Sam wybiera, co wzmocnić. Każda sesja jest pod ciebie.',
+  },
+};
+
 export function getHeroPlannedCopy(ctx: PremiumContext, savedCards: number): PremiumPlannedHeroCopy {
   const planned = PAYWALL_PLANNED_COPY[ctx] ?? PAYWALL_PLANNED_COPY.generic;
   if (ctx !== 'flashcard_limit' || savedCards <= 0) return planned;
@@ -564,6 +699,32 @@ export function getPaywallCopy(context?: string): PaywallCopy {
   if (!context) return PAYWALL_COPY.generic;
   return (PAYWALL_COPY as Record<string, PaywallCopy>)[context] ?? PAYWALL_COPY.generic;
 }
+
+// ── Контексты возврата/ре-энгейджа: заголовки под ситуацию (а не generic) ─────
+PAYWALL_COPY.premium_expired = {
+  titleRu: 'Верни полный доступ Premium',
+  titleUk: 'Поверни повний доступ Premium',
+  titleEs: 'Recupera tu acceso Premium completo',
+  subtitleRu: 'Твой Premium закончился. Подключи снова — и продолжай учиться без лимитов и пауз, ровно с того места, где остановился.',
+  subtitleUk: 'Твій Premium завершився. Підключи знову — і вчись далі без лімітів і пауз, саме з того місця, де зупинився.',
+  subtitleEs: 'Tu Premium terminó. Reactívalo y sigue aprendiendo sin límites ni pausas, justo donde lo dejaste.',
+};
+PAYWALL_COPY.vip_expired = {
+  titleRu: 'Твой VIP-доступ закончился',
+  titleUk: 'Твій VIP-доступ завершився',
+  titleEs: 'Tu acceso VIP ha terminado',
+  subtitleRu: 'Тебе понравились возможности без ограничений? Оформи Premium — и сохрани весь доступ навсегда, без пауз в прогрессе.',
+  subtitleUk: 'Сподобались можливості без обмежень? Оформи Premium — і збережи весь доступ назавжди, без пауз у прогресі.',
+  subtitleEs: '¿Te gustó todo sin límites? Activa Premium y conserva el acceso completo para siempre, sin pausas.',
+};
+PAYWALL_COPY.notification_upsell = {
+  titleRu: 'Продолжи свой прогресс',
+  titleUk: 'Продовжуй свій прогрес',
+  titleEs: 'Continúa tu progreso',
+  subtitleRu: 'Premium открывает всё сразу: уроки без барьеров, безлимит практики и стабильный ритм. Идеальный момент вернуться.',
+  subtitleUk: 'Premium відкриває все одразу: уроки без бар\'єрів, безліміт практики і стабільний ритм. Ідеальний момент повернутися.',
+  subtitleEs: 'Premium lo abre todo: lecciones sin barreras, práctica ilimitada y ritmo estable. El momento perfecto para volver.',
+};
 
 export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[]>> & { generic: ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[] } = {
   arena: [
@@ -692,6 +853,48 @@ CONTEXT_BENEFITS.speaking = [
   { ru: 'Самый быстрый путь заговорить уверенно', uk: 'Найшвидший шлях заговорити впевнено', es: 'El camino más rápido para hablar con seguridad', 'pt-BR': 'O caminho mais rápido para falar com confiança', vi: 'Cách nhanh nhất để nói tự tin', id: 'Cara tercepat untuk bicara percaya diri', tr: 'Kendinden emin konuşmanın en hızlı yolu', pl: 'Najszybsza droga, by mówić pewnie' },
 ];
 
+CONTEXT_BENEFITS.dialog_limit = [
+  { ru: 'Диалоги с ИИ-наставником без дневного лимита', uk: 'Діалоги з ШІ-наставником без денного ліміту', es: 'Diálogos con el tutor de IA sin límite diario', 'pt-BR': 'Diálogos com o tutor de IA sem limite diário', vi: 'Trò chuyện với gia sư AI không giới hạn mỗi ngày', id: 'Dialog dengan tutor AI tanpa batas harian', tr: 'Yapay zekâ koçuyla günlük sınır olmadan diyalog', pl: 'Dialogi z mentorem AI bez dziennego limitu' },
+  { ru: 'Живая практика разговора в любое время', uk: 'Жива практика розмови будь-коли', es: 'Práctica de conversación real cuando quieras', 'pt-BR': 'Prática de conversa real a qualquer hora', vi: 'Luyện hội thoại thật bất cứ lúc nào', id: 'Latihan percakapan nyata kapan saja', tr: 'İstediğin an canlı konuşma pratiği', pl: 'Żywa praktyka rozmowy o każdej porze' },
+  { ru: 'Разбор ошибок и подсказки прямо в диалоге', uk: 'Розбір помилок і підказки прямо в діалозі', es: 'Corrección de errores y pistas en el diálogo', 'pt-BR': 'Correção de erros e dicas dentro do diálogo', vi: 'Sửa lỗi và gợi ý ngay trong hội thoại', id: 'Koreksi kesalahan dan petunjuk langsung di dialog', tr: 'Diyalog içinde hata düzeltme ve ipuçları', pl: 'Korekta błędów i podpowiedzi wprost w dialogu' },
+];
+
+CONTEXT_BENEFITS.intro_ended = [
+  { ru: 'Полный доступ возвращается целиком', uk: 'Повний доступ повертається повністю', es: 'Recuperas el acceso completo entero', 'pt-BR': 'O acesso completo volta inteiro', vi: 'Toàn bộ quyền truy cập đầy đủ trở lại', id: 'Akses penuh kembali seutuhnya', tr: 'Tam erişim eksiksiz geri gelir', pl: 'Pełny dostęp wraca w całości' },
+  { ru: 'Уроки, квизы и тренажёр без пауз и лимитов', uk: 'Уроки, квізи і тренажер без пауз і лімітів', es: 'Lecciones, quizzes y entrenador sin pausas ni límites', 'pt-BR': 'Lições, quizzes e treinador sem pausas nem limites', vi: 'Bài học, quiz và huấn luyện không dừng, không giới hạn', id: 'Pelajaran, kuis, dan trainer tanpa jeda dan batas', tr: 'Dersler, quizler ve antrenör arasız ve sınırsız', pl: 'Lekcje, quizy i trener bez przerw i limitów' },
+  { ru: 'Сохрани темп, набранный за пробный период', uk: 'Збережи темп, набраний за пробний період', es: 'Mantén el ritmo que lograste en la prueba', 'pt-BR': 'Mantenha o ritmo que você ganhou no teste', vi: 'Giữ nhịp bạn đã có trong thời gian dùng thử', id: 'Pertahankan ritme yang kamu dapat saat masa coba', tr: 'Deneme sürecinde kazandığın ritmi koru', pl: 'Zachowaj tempo zdobyte w okresie próbnym' },
+];
+
+CONTEXT_BENEFITS.level_up = [
+  { ru: 'Ты на подъёме — открой всё и не сбавляй темп', uk: 'Ти на підйомі — відкрий усе й не збавляй темп', es: 'Estás en racha: abre todo y no bajes el ritmo', 'pt-BR': 'Você está em alta: abra tudo e não perca o ritmo', vi: 'Bạn đang lên phong độ — mở hết và giữ nhịp', id: 'Kamu sedang naik: buka semua dan jaga ritme', tr: 'Yükseliştesin — her şeyi aç ve hızını düşürme', pl: 'Jesteś na fali — otwórz wszystko i nie zwalniaj' },
+  { ru: 'Следующие уровни без барьеров и ожиданий', uk: 'Наступні рівні без бар\'єрів і очікувань', es: 'Los siguientes niveles sin barreras ni esperas', 'pt-BR': 'Os próximos níveis sem barreiras nem esperas', vi: 'Các cấp tiếp theo không rào cản, không chờ đợi', id: 'Level berikutnya tanpa hambatan dan menunggu', tr: 'Sonraki seviyeler engelsiz ve beklemesiz', pl: 'Kolejne poziomy bez barier i czekania' },
+  { ru: 'XP-бусты и больше пользы с каждой сессии', uk: 'XP-бусти й більше користі з кожної сесії', es: 'Bonus de XP y más valor en cada sesión', 'pt-BR': 'Boosts de XP e mais valor por sessão', vi: 'Boost XP và mỗi phiên học có ích hơn', id: 'Boost XP dan manfaat lebih besar tiap sesi', tr: 'XP boostları ve her seanstan daha fazla fayda', pl: 'Boosty XP i więcej wartości z każdej sesji' },
+];
+
+CONTEXT_BENEFITS.smart_trainer = [
+  { ru: 'Smart Mix: алгоритм собирает идеальный набор', uk: 'Smart Mix: алгоритм збирає ідеальний набір', es: 'Smart Mix: el algoritmo arma el set ideal', 'pt-BR': 'Smart Mix: o algoritmo monta o conjunto ideal', vi: 'Smart Mix: thuật toán tạo bộ luyện hoàn hảo', id: 'Smart Mix: algoritme menyusun set ideal', tr: 'Smart Mix: algoritma ideal seti kurar', pl: 'Smart Mix: algorytm składa idealny zestaw' },
+  { ru: 'Упор на твои слабые места и частые ошибки', uk: 'Акцент на твоїх слабких місцях і частих помилках', es: 'Enfoque en tus puntos débiles y errores frecuentes', 'pt-BR': 'Foco nos seus pontos fracos e erros frequentes', vi: 'Tập trung vào điểm yếu và lỗi hay gặp của bạn', id: 'Fokus pada titik lemah dan kesalahan seringmu', tr: 'Zayıf noktalarına ve sık hatalarına odak', pl: 'Nacisk na twoje słabe punkty i częste błędy' },
+  { ru: 'Тренировки без дневного лимита сессий', uk: 'Тренування без денного ліміту сесій', es: 'Entrenamientos sin límite diario de sesiones', 'pt-BR': 'Treinos sem limite diário de sessões', vi: 'Luyện tập không giới hạn phiên mỗi ngày', id: 'Latihan tanpa batas sesi harian', tr: 'Günlük seans sınırı olmadan antrenman', pl: 'Treningi bez dziennego limitu sesji' },
+];
+
+CONTEXT_BENEFITS.premium_expired = [
+  { ru: 'Продолжаешь ровно с того места, где остановился', uk: 'Продовжуєш саме з того місця, де зупинився', es: 'Sigues justo donde lo dejaste', 'pt-BR': 'Você continua exatamente de onde parou', vi: 'Tiếp tục đúng chỗ bạn đã dừng', id: 'Lanjut tepat dari tempat terakhir', tr: 'Tam kaldığın yerden devam edersin', pl: 'Kontynuujesz dokładnie tam, gdzie skończyłeś' },
+  { ru: 'Снова без лимитов и вынужденных пауз', uk: 'Знову без лімітів і вимушених пауз', es: 'De nuevo sin límites ni pausas forzadas', 'pt-BR': 'De novo sem limites nem pausas forçadas', vi: 'Lại không giới hạn và không bị dừng ép buộc', id: 'Lagi tanpa batas dan jeda paksa', tr: 'Yeniden sınırsız ve zorunlu arasız', pl: 'Znów bez limitów i wymuszonych przerw' },
+  { ru: 'Весь твой прогресс и материалы на месте', uk: 'Весь твій прогрес і матеріали на місці', es: 'Todo tu progreso y materiales siguen ahí', 'pt-BR': 'Todo o seu progresso e materiais continuam lá', vi: 'Toàn bộ tiến trình và tài liệu vẫn còn đó', id: 'Semua progres dan materimu tetap ada', tr: 'Tüm ilerlemen ve materyallerin yerinde', pl: 'Cały twój postęp i materiały są na miejscu' },
+];
+
+CONTEXT_BENEFITS.vip_expired = [
+  { ru: 'Сохрани всё, что открыл VIP, — теперь навсегда', uk: 'Збережи все, що відкрив VIP, — тепер назавжди', es: 'Conserva todo lo del VIP, ahora para siempre', 'pt-BR': 'Mantenha tudo do VIP, agora para sempre', vi: 'Giữ mọi thứ VIP đã mở — giờ là mãi mãi', id: 'Pertahankan semua dari VIP, kini selamanya', tr: 'VIP’nin açtığı her şeyi koru — artık kalıcı', pl: 'Zachowaj wszystko z VIP — teraz na zawsze' },
+  { ru: 'Без лимитов на уроки, квизы и практику', uk: 'Без лімітів на уроки, квізи і практику', es: 'Sin límites en lecciones, quizzes y práctica', 'pt-BR': 'Sem limites em lições, quizzes e prática', vi: 'Không giới hạn bài học, quiz và luyện tập', id: 'Tanpa batas pelajaran, kuis, dan latihan', tr: 'Derslerde, quizlerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje, quizy i praktykę' },
+  { ru: 'Стабильный прогресс без пауз', uk: 'Стабільний прогрес без пауз', es: 'Progreso estable sin pausas', 'pt-BR': 'Progresso estável sem pausas', vi: 'Tiến bộ ổn định không gián đoạn', id: 'Progres stabil tanpa jeda', tr: 'Arasız istikrarlı ilerleme', pl: 'Stabilny postęp bez przerw' },
+];
+
+CONTEXT_BENEFITS.notification_upsell = [
+  { ru: 'Весь курс открывается без барьеров', uk: 'Весь курс відкривається без бар\'єрів', es: 'Todo el curso se abre sin barreras', 'pt-BR': 'O curso inteiro abre sem barreiras', vi: 'Toàn bộ khoá học mở không rào cản', id: 'Seluruh kursus terbuka tanpa hambatan', tr: 'Tüm kurs engelsiz açılır', pl: 'Cały kurs otwiera się bez barier' },
+  { ru: 'Безлимит практики каждый день', uk: 'Безліміт практики щодня', es: 'Práctica ilimitada cada día', 'pt-BR': 'Prática ilimitada todos os dias', vi: 'Luyện tập không giới hạn mỗi ngày', id: 'Latihan tanpa batas setiap hari', tr: 'Her gün sınırsız pratik', pl: 'Nielimitowana praktyka każdego dnia' },
+  { ru: 'Идеальный момент вернуться к цели', uk: 'Ідеальний момент повернутися до мети', es: 'El momento perfecto para volver a tu meta', 'pt-BR': 'O momento perfeito para voltar à sua meta', vi: 'Thời điểm hoàn hảo để quay lại mục tiêu', id: 'Saat tepat untuk kembali ke tujuanmu', tr: 'Hedefine dönmek için mükemmel an', pl: 'Idealny moment, by wrócić do celu' },
+];
+
 export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPlannedCopy[]>> & { generic: PremiumPlannedCopy[] } = {
   arena: [
     { 'pt-BR': 'O teto diário de partidas é removido', vi: 'Gỡ giới hạn trận hằng ngày', id: 'Batas pertandingan harian dihapus', tr: 'Günlük maç tavanı kalkar', pl: 'Dzienny limit meczów znika' },
@@ -805,6 +1008,54 @@ CONTEXT_BENEFITS_PLANNED.personal_plan = [
   { 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
   { 'pt-BR': 'Lições, frases, revisão e quizzes do plano', vi: 'Bài học, câu, ôn tập và quiz của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan kuis rencana', tr: 'Dersler, ifadeler, tekrar ve plan quizleri', pl: 'Lekcje, frazy, powtórki i quizy planu' },
   { 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
+];
+
+CONTEXT_BENEFITS_PLANNED.speaking = [
+  { 'pt-BR': 'Diga as frases em voz alta — o app escuta', vi: 'Nói câu thành tiếng — ứng dụng lắng nghe', id: 'Ucapkan frasa dengan lantang — aplikasi mendengarkan', tr: 'Cümleleri sesli söyle — uygulama dinler', pl: 'Mów frazy na głos — aplikacja słucha' },
+  { 'pt-BR': 'Dica instantânea em cada palavra', vi: 'Gợi ý tức thì cho từng từ', id: 'Petunjuk instan untuk tiap kata', tr: 'Her kelime için anında ipucu', pl: 'Natychmiastowa podpowiedź dla każdego słowa' },
+  { 'pt-BR': 'O caminho mais rápido para falar com confiança', vi: 'Cách nhanh nhất để nói tự tin', id: 'Cara tercepat untuk bicara percaya diri', tr: 'Kendinden emin konuşmanın en hızlı yolu', pl: 'Najszybsza droga, by mówić pewnie' },
+];
+
+CONTEXT_BENEFITS_PLANNED.dialog_limit = [
+  { 'pt-BR': 'Diálogos com o tutor de IA sem limite diário', vi: 'Trò chuyện với gia sư AI không giới hạn mỗi ngày', id: 'Dialog dengan tutor AI tanpa batas harian', tr: 'Yapay zekâ koçuyla günlük sınır olmadan diyalog', pl: 'Dialogi z mentorem AI bez dziennego limitu' },
+  { 'pt-BR': 'Prática de conversa real a qualquer hora', vi: 'Luyện hội thoại thật bất cứ lúc nào', id: 'Latihan percakapan nyata kapan saja', tr: 'İstediğin an canlı konuşma pratiği', pl: 'Żywa praktyka rozmowy o każdej porze' },
+  { 'pt-BR': 'Correção de erros e dicas dentro do diálogo', vi: 'Sửa lỗi và gợi ý ngay trong hội thoại', id: 'Koreksi kesalahan dan petunjuk langsung di dialog', tr: 'Diyalog içinde hata düzeltme ve ipuçları', pl: 'Korekta błędów i podpowiedzi wprost w dialogu' },
+];
+
+CONTEXT_BENEFITS_PLANNED.intro_ended = [
+  { 'pt-BR': 'O acesso completo volta inteiro', vi: 'Toàn bộ quyền truy cập đầy đủ trở lại', id: 'Akses penuh kembali seutuhnya', tr: 'Tam erişim eksiksiz geri gelir', pl: 'Pełny dostęp wraca w całości' },
+  { 'pt-BR': 'Lições, quizzes e treinador sem pausas nem limites', vi: 'Bài học, quiz và huấn luyện không dừng, không giới hạn', id: 'Pelajaran, kuis, dan trainer tanpa jeda dan batas', tr: 'Dersler, quizler ve antrenör arasız ve sınırsız', pl: 'Lekcje, quizy i trener bez przerw i limitów' },
+  { 'pt-BR': 'Mantenha o ritmo que você ganhou no teste', vi: 'Giữ nhịp bạn đã có trong thời gian dùng thử', id: 'Pertahankan ritme yang kamu dapat saat masa coba', tr: 'Deneme sürecinde kazandığın ritmi koru', pl: 'Zachowaj tempo zdobyte w okresie próbnym' },
+];
+
+CONTEXT_BENEFITS_PLANNED.level_up = [
+  { 'pt-BR': 'Você está em alta: abra tudo e não perca o ritmo', vi: 'Bạn đang lên phong độ — mở hết và giữ nhịp', id: 'Kamu sedang naik: buka semua dan jaga ritme', tr: 'Yükseliştesin — her şeyi aç ve hızını düşürme', pl: 'Jesteś na fali — otwórz wszystko i nie zwalniaj' },
+  { 'pt-BR': 'Os próximos níveis sem barreiras nem esperas', vi: 'Các cấp tiếp theo không rào cản, không chờ đợi', id: 'Level berikutnya tanpa hambatan dan menunggu', tr: 'Sonraki seviyeler engelsiz ve beklemesiz', pl: 'Kolejne poziomy bez barier i czekania' },
+  { 'pt-BR': 'Boosts de XP e mais valor por sessão', vi: 'Boost XP và mỗi phiên học có ích hơn', id: 'Boost XP dan manfaat lebih besar tiap sesi', tr: 'XP boostları ve her seanstan daha fazla fayda', pl: 'Boosty XP i więcej wartości z każdej sesji' },
+];
+
+CONTEXT_BENEFITS_PLANNED.smart_trainer = [
+  { 'pt-BR': 'Smart Mix: o algoritmo monta o conjunto ideal', vi: 'Smart Mix: thuật toán tạo bộ luyện hoàn hảo', id: 'Smart Mix: algoritme menyusun set ideal', tr: 'Smart Mix: algoritma ideal seti kurar', pl: 'Smart Mix: algorytm składa idealny zestaw' },
+  { 'pt-BR': 'Foco nos seus pontos fracos e erros frequentes', vi: 'Tập trung vào điểm yếu và lỗi hay gặp của bạn', id: 'Fokus pada titik lemah dan kesalahan seringmu', tr: 'Zayıf noktalarına ve sık hatalarına odak', pl: 'Nacisk na twoje słabe punkty i częste błędy' },
+  { 'pt-BR': 'Treinos sem limite diário de sessões', vi: 'Luyện tập không giới hạn phiên mỗi ngày', id: 'Latihan tanpa batas sesi harian', tr: 'Günlük seans sınırı olmadan antrenman', pl: 'Treningi bez dziennego limitu sesji' },
+];
+
+CONTEXT_BENEFITS_PLANNED.premium_expired = [
+  { 'pt-BR': 'Você continua exatamente de onde parou', vi: 'Tiếp tục đúng chỗ bạn đã dừng', id: 'Lanjut tepat dari tempat terakhir', tr: 'Tam kaldığın yerden devam edersin', pl: 'Kontynuujesz dokładnie tam, gdzie skończyłeś' },
+  { 'pt-BR': 'De novo sem limites nem pausas forçadas', vi: 'Lại không giới hạn và không bị dừng ép buộc', id: 'Lagi tanpa batas dan jeda paksa', tr: 'Yeniden sınırsız ve zorunlu arasız', pl: 'Znów bez limitów i wymuszonych przerw' },
+  { 'pt-BR': 'Todo o seu progresso e materiais continuam lá', vi: 'Toàn bộ tiến trình và tài liệu vẫn còn đó', id: 'Semua progres dan materimu tetap ada', tr: 'Tüm ilerlemen ve materyallerin yerinde', pl: 'Cały twój postęp i materiały są na miejscu' },
+];
+
+CONTEXT_BENEFITS_PLANNED.vip_expired = [
+  { 'pt-BR': 'Mantenha tudo do VIP, agora para sempre', vi: 'Giữ mọi thứ VIP đã mở — giờ là mãi mãi', id: 'Pertahankan semua dari VIP, kini selamanya', tr: 'VIP’nin açtığı her şeyi koru — artık kalıcı', pl: 'Zachowaj wszystko z VIP — teraz na zawsze' },
+  { 'pt-BR': 'Sem limites em lições, quizzes e prática', vi: 'Không giới hạn bài học, quiz và luyện tập', id: 'Tanpa batas pelajaran, kuis, dan latihan', tr: 'Derslerde, quizlerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje, quizy i praktykę' },
+  { 'pt-BR': 'Progresso estável sem pausas', vi: 'Tiến bộ ổn định không gián đoạn', id: 'Progres stabil tanpa jeda', tr: 'Arasız istikrarlı ilerleme', pl: 'Stabilny postęp bez przerw' },
+];
+
+CONTEXT_BENEFITS_PLANNED.notification_upsell = [
+  { 'pt-BR': 'O curso inteiro abre sem barreiras', vi: 'Toàn bộ khoá học mở không rào cản', id: 'Seluruh kursus terbuka tanpa hambatan', tr: 'Tüm kurs engelsiz açılır', pl: 'Cały kurs otwiera się bez barier' },
+  { 'pt-BR': 'Prática ilimitada todos os dias', vi: 'Luyện tập không giới hạn mỗi ngày', id: 'Latihan tanpa batas setiap hari', tr: 'Her gün sınırsız pratik', pl: 'Nielimitowana praktyka każdego dnia' },
+  { 'pt-BR': 'O momento perfeito para voltar à sua meta', vi: 'Thời điểm hoàn hảo để quay lại mục tiêu', id: 'Saat tepat untuk kembali ke tujuanmu', tr: 'Hedefine dönmek için mükemmel an', pl: 'Idealny moment, by wrócić do celu' },
 ];
 
 export function getContextBenefitPlanned(ctx: PremiumContext, index: number): PremiumPlannedCopy {

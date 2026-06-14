@@ -57,6 +57,7 @@ import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { registerXP, migrateXPFormulaV2 } from './xp_manager';
 import { flushPendingProgressEvents } from './progress_events_client';
+import { flushPendingBotArenaMatch } from './arena_bot_profile_write';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import { MatchmakingProvider } from '../contexts/MatchmakingContext';
 import MatchFoundToast from '../components/MatchFoundToast';
@@ -1500,6 +1501,12 @@ function AppContent() {
         await updateStreakOnActivity().catch(() => {});
         await runSessionChecks(studyTarget).catch(() => {});
         await flushPendingProgressEvents().catch(() => {});
+        // ARENA-005: добиваем зависшую запись результата бот-матча даже если игрок больше не
+        // открывал экран результатов арены — иначе показанные «+50 XP / повышение ранга» молча
+        // теряются при провале фоновой записи.
+        getCanonicalUserId()
+          .then((uid) => flushPendingBotArenaMatch(uid))
+          .catch(() => {});
         await syncToCloud().catch(() => {
           emitAppEvent('action_toast', {
             type: 'error',

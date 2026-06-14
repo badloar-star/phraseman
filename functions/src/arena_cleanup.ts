@@ -7,8 +7,11 @@ const db = admin.firestore();
 const STALE_ACTIVE_SESSION_MS = 2 * 60 * 60 * 1000;
 /**
  * Запас на acceptance, если expireStaleAcceptanceSessions не отработал (битый дедлайн и т.п.).
+ * ARENA-003: было 30 мин — игрок с обрывом сети на экране принятия молча ждал полчаса, занимая
+ * слот очереди. Снижено до 5 мин (совпадает с частотой matchmakingCron), чтобы окно ущерба совпадало
+ * с обычным watchdog зависших вопросов.
  */
-const STALE_ACCEPTANCE_FALLBACK_MS = 30 * 60 * 1000;
+const STALE_ACCEPTANCE_FALLBACK_MS = 5 * 60 * 1000;
 
 const ACTIVE_IN_PROGRESS_STATES = ['get_ready', 'countdown', 'question', 'reveal'] as const;
 

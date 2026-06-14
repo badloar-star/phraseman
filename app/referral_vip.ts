@@ -104,7 +104,9 @@ export function summarizeInvites(invites: ReferralInvite[]): {
   let rewarded = 0;
   for (const inv of invites) {
     if (inv.status === 'pending') pending += 1;
-    else if (inv.status === 'qualified') qualified += 1;
+    // skipped_referrer_cap (legacy «лимит месяца») снова claimable (M1) — считаем как qualified,
+    // чтобы бейдж на вкладке «Друзья» совпадал с экраном /referrals (там тоже claimable).
+    else if (inv.status === 'qualified' || inv.status === 'skipped_referrer_cap') qualified += 1;
     else if (inv.status === 'rewarded') rewarded += 1;
   }
   return { pending, qualified, rewarded };

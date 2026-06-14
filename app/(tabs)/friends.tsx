@@ -2135,6 +2135,9 @@ export default function FriendsTabScreen() {
     for (const inv of referralInvites) {
       if (inv.status === 'pending' || inv.status === 'qualified' || inv.status === 'rewarded') {
         map.set(inv.refereeStableId, inv.status);
+      } else if (inv.status === 'skipped_referrer_cap') {
+        // legacy «лимит месяца» снова claimable (M1) — показываем как qualified.
+        map.set(inv.refereeStableId, 'qualified');
       }
     }
     return map;

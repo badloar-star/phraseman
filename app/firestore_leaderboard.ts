@@ -86,6 +86,21 @@ function callable<TReq, TRes>(name: string) {
   return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
 }
 
+// Бьёт по зависанию онбординга (audit C2): httpsCallable не имеет клиентского
+// таймаута, поэтому на плохой сети «Продолжить» висит до серверного дефолта (~70с).
+// Гонка с таймаутом → reserveName отдаёт 'error' за разумное время, а онбординг
+// уже показывает «проверь интернет» и снимает busy.
+const NAME_RESERVE_TIMEOUT_MS = 15_000;
+
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(`${label}_timeout`)), ms),
+    ),
+  ]);
+}
+
 const COL = 'leaderboard';
 
 export type ReserveNameStatus = 'ok' | 'taken' | 'cooldown' | 'error';
@@ -104,14 +119,14 @@ export async function reserveNameDetailed(
   if (!CLOUD_SYNC_ENABLED) return { status: 'ok' };
   // На холодном старте signInAnonymously может занять >8с (GMS init, slow network).
   // Ждём токен явно перед вызовом CF — иначе callable уходит без auth → 401 →
-  // юзер видит ложное «проверь интернет».
-  await waitForAnonAuth();
+  // юзер видит ложное «проверь интернет». Таймаут не даёт зависнуть навсегда.
+  await waitForAnonAuth(NAME_RESERVE_TIMEOUT_MS);
   try {
     const stableId = await ensureAnonUser();
     if (!stableId) return { status: 'error' };
     await ensureStableAuthLinkForStableId(stableId).catch(() => false);
     const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
-    const { data } = await fn({ stableId, name: name.trim(), oldName: oldName.trim() });
+    const { data } = await withTimeout(fn({ stableId, name: name.trim(), oldName: oldName.trim() }), NAME_RESERVE_TIMEOUT_MS, 'name_reserve');
     if (data.status === 'taken') return { status: 'taken' };
     if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
     return { status: 'ok', nextChangeAt: data.nextChangeAt };
@@ -132,7 +147,7 @@ export async function reserveNameDetailed(
         // Force the identity link before retrying — this creates users/{stableId} if missing.
         await ensureStableAuthLinkForStableId(stableId).catch(() => false);
         const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
-        const { data } = await fn({ stableId, name: name.trim(), oldName: oldName.trim() });
+        const { data } = await withTimeout(fn({ stableId, name: name.trim(), oldName: oldName.trim() }), NAME_RESERVE_TIMEOUT_MS, 'name_reserve');
         if (data.status === 'taken') return { status: 'taken' };
         if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
         return { status: 'ok', nextChangeAt: data.nextChangeAt };

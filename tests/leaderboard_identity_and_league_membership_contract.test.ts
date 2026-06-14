@@ -12,8 +12,11 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(source).toMatch(/const stableId = await ensureAnonUser\(\);[\s\S]*?ensureStableAuthLinkForStableId\(stableId\)/);
     expect(source).not.toContain('leaderboardPushMyScore');
     expect(source).not.toContain('leaderboardUpdatePremium');
-    expect(source).toMatch(/>\('nameReserve'\);[\s\S]*?await fn\(\{ stableId, name:/);
-    expect(source).toMatch(/>\('nameCheckAvailability'\);[\s\S]*?await fn\(\{ stableId, name:/);
+    // nameReserve is wrapped in withTimeout() to bound the call on flaky networks
+    // (audit C2: no client timeout → onboarding "Продолжить" could hang). The contract
+    // is still "callable invoked with { stableId, name: ... }".
+    expect(source).toMatch(/>\('nameReserve'\);[\s\S]*?await (withTimeout\()?fn\(\{ stableId, name:/);
+    expect(source).toMatch(/>\('nameCheckAvailability'\);[\s\S]*?await (withTimeout\()?fn\(\{ stableId, name:/);
     expect(source).toMatch(/>\('nameReleaseMine'\);[\s\S]*?await fn\(\{ stableId: canonicalUid, names:/);
   });
 

@@ -276,7 +276,7 @@ const S = StyleSheet.create({
   },
   tagText: { flexShrink: 1, fontSize: 11.5, fontWeight: '600' },
   glyphCap: {
-    alignSelf: 'center', width: 62, height: 62, borderRadius: 18, borderWidth: 1,
+    alignSelf: 'center', width: 60, height: 60, borderRadius: 30, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
     shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.35, shadowRadius: 18, elevation: 6,
   },

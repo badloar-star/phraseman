@@ -149,9 +149,9 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
   if (!stored) return null;
 
   const { review } = stored;
-  // Daily review is free for everyone — cheap gpt-4o-mini, 1-day window for all users.
-  const visibleParagraphs = review.paragraphs;
-  const hiddenCount = 0;
+  // Full review visible for premium only; free users see greeting + 1 paragraph.
+  const visibleParagraphs = isPremium ? review.paragraphs : review.paragraphs.slice(0, 1);
+  const hiddenCount = isPremium ? 0 : Math.max(0, review.paragraphs.length - 1);
   const canManualRefresh = (state.kind === 'cached' && state.canRefresh) || state.kind === 'error';
 
   return (
@@ -197,8 +197,8 @@ export default function WeeklyReviewCard({ isPremium, studyTarget, stableLayout 
             </TouchableOpacity>
           )}
 
-          {/* Рекомендованные уроки */}
-          {review.recommendations.length > 0 && (
+          {/* Рекомендованные уроки (только premium видит кликабельные) */}
+          {isPremium && review.recommendations.length > 0 && (
             <View style={styles.recommendations}>
               <Text style={[styles.recLabel, { color: t.textMuted, fontSize: f.label }]}>
                 {triLang(lang, {

@@ -1,4 +1,5 @@
 import { loadPercentileData } from './daily_analytics_sync';
+import { triLang, type Lang } from '../constants/i18n';
 
 /**
  * "Compare with other learners" for the plan day-done screen.
@@ -42,7 +43,12 @@ export async function loadPlanDayComparison(): Promise<PlanDayComparison | null>
   }
 }
 
-/** Short, encouraging RU line for the comparison (Bible tone: numbers, no fluff). */
-export function planDayComparisonLine(comparison: PlanDayComparison): string {
-  return `Ты в топ ${comparison.topPercent}% за сегодня`;
+/** Short, encouraging localized line for the comparison (Bible tone: numbers, no fluff). */
+export function planDayComparisonLine(comparison: PlanDayComparison, lang: Lang = 'ru'): string {
+  const top = comparison.topPercent;
+  return triLang(lang, {
+    ru: `Ты в топ ${top}% за сегодня`,
+    uk: `Ти в топ ${top}% за сьогодні`,
+    es: `Estás en el top ${top}% de hoy`,
+  });
 }

@@ -1050,7 +1050,7 @@ export default function SettingsMain() {
               withHaptic={false}
             >
               <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
-                Privacy Policy
+                {L('Политика конфиденциальности', 'Політика конфіденційності', 'Política de privacidad', 'Política de privacidade', 'Chính sách bảo mật', 'Kebijakan privasi', 'Gizlilik politikası', 'Polityka prywatności')}
               </Text>
             </TapScale>
             <TapScale
@@ -1061,7 +1061,7 @@ export default function SettingsMain() {
               withHaptic={false}
             >
               <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
-                Terms of Use
+                {L('Условия использования', 'Умови використання', 'Términos de uso', 'Termos de uso', 'Điều khoản sử dụng', 'Ketentuan penggunaan', 'Kullanım koşulları', 'Regulamin')}
               </Text>
             </TapScale>
           </View>

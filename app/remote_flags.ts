@@ -61,11 +61,13 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
-  referral_enabled: false,
+  // Дефолт true = kill-switch семантика (фича едет с релизом, админка может
+  // экстренно выключить). ВНИМАНИЕ: для рабочих ссылок-приглашений нужна
+  // задеплоенная invite-страница — иначе ссылки будут битыми.
+  referral_enabled: true,
   speaking_enabled: true,
   // «Сокровищница»: дефолт true = kill-switch семантика (фича едет с релизом,
-  // админка может экстренно выключить). Урок referral_enabled=false: фича,
-  // спрятанная за выключенным флагом, «не работает» для всех.
+  // админка может экстренно выключить).
   collectibles_enabled: true,
   league_xp_promotion_enabled: false,
 };

@@ -1789,12 +1789,12 @@ export default function FriendsTabScreen() {
         setSearchError(L(
           'Профиль найден, но ещё не синхронизирован. Открой профиль на втором устройстве и попробуй снова.',
           'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
-          'Perfil encontrado, pero a?n no est? sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
-          'Perfil encontrado, mas ainda n?o est? sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
+          'Perfil encontrado, pero aún no está sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
+          'Perfil encontrado, mas ainda não está sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
           'Hồ sơ đã được tìm thấy, nhưng chưa đồng bộ. Hãy mở hồ sơ trên thiết bị thứ hai rồi thử lại.',
           'Profil ditemukan, tetapi belum tersinkron. Buka profil di perangkat kedua lalu coba lagi.',
-          'Profil bulundu, ama hen?z senkronize edilmedi. Profili ikinci cihazda a??p tekrar dene.',
-          'Profil znaleziony, ale nie jest jeszcze zsynchronizowany. Otw?rz profil na drugim urz?dzeniu i spr?buj ponownie.',
+          'Profil bulundu, ama henüz senkronize edilmedi. Profili ikinci cihazda açıp tekrar dene.',
+          'Profil znaleziony, ale nie jest jeszcze zsynchronizowany. Otwórz profil na drugim urządzeniu i spróbuj ponownie.',
         ));
         return;
       }

@@ -26,7 +26,7 @@ describe('remote_flags', () => {
       expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getPaywallV2Pct()).toBe(50);
       expect(getLeagueXpPromotionThreshold()).toBe(1000);
-      expect(isReferralEnabled()).toBe(false);
+      expect(isReferralEnabled()).toBe(true);
       expect(getRemoteBool('speaking_enabled')).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
     });
@@ -56,9 +56,10 @@ describe('remote_flags', () => {
     });
 
     it('ignores wrong-typed values (keeps default)', () => {
-      applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 'lots' as unknown as number }, bools: { referral_enabled: 'yes' as unknown as boolean } });
+      applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 'lots' as unknown as number }, bools: { league_xp_promotion_enabled: 'yes' as unknown as boolean } });
       expect(getFreeLessonLimit()).toBe(8);
-      expect(isReferralEnabled()).toBe(false);
+      // wrong-typed bool ignored -> keeps default (league promo defaults false)
+      expect(isLeagueXpPromotionEnabled()).toBe(false);
     });
 
     it('a later snapshot fully replaces an earlier one', () => {

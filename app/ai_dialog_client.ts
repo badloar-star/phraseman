@@ -90,9 +90,9 @@ export function getPremiumDialogErrorMessage(
         });
       }
       return triLang(lang, {
-        ru: 'Бесплатный диалог на сегодня уже использован. Завтра снова будет доступен.',
-        uk: 'Безкоштовний діалог на сьогодні вже використано. Завтра він знову буде доступний.',
-        es: 'Ya usaste el diálogo gratis de hoy. Mañana estará disponible de nuevo.',
+        ru: 'Бесплатный лимит диалога на сегодня исчерпан. Завтра снова будет доступен.',
+        uk: 'Безкоштовний ліміт діалогу на сьогодні вичерпано. Завтра він знову буде доступний.',
+        es: 'Alcanzaste el límite gratuito de diálogo de hoy. Mañana estará disponible de nuevo.',
       });
     case 'premium_limit':
       return triLang(lang, {

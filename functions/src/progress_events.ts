@@ -99,6 +99,44 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   wager_win: 20000,
 };
 
+/**
+ * ECON-2: дневной потолок суммарного XP по «гриндабельным» источникам (ответы в уроках/квизах,
+ * тренажёр предлогов, повторение). Множитель сложности урока + стрик + подарки применяются к
+ * КАЖДОМУ ответу на клиенте, и при гринде отдельных вопросов в поздних уроках это даёт сотни тысяч
+ * XP в день. Per-event cap (EVENT_XP_CAP) не ограничивает фарм количеством — нужен суточный потолок
+ * по сумме. Источники, не входящие сюда (lesson_complete, exam_complete, награды), ограничены своими
+ * разовыми/механическими лимитами и сюда не попадают.
+ */
+const EVENT_DAILY_XP_CAP: Partial<Record<ProgressEventType, number>> = {
+  lesson_answer: 8000,
+  quiz_answer: 8000,
+  preposition_drill_answer: 2000,
+  review_answer: 4000,
+};
+
+/**
+ * ECON-3: суточный лимит попыток экзамена. XP начисляется за каждую попытку, осколок — только за
+ * первую, поэтому без лимита экзамен становится бесплатным бесконечным фармом XP. После лимита
+ * exam_complete принимается (прогресс/проценты пишутся), но XP не начисляется.
+ */
+const EXAM_DAILY_ATTEMPT_LIMIT = 5;
+
+/**
+ * ECON-11: минимальный процент экзамена, при котором начисляется XP. Ниже порога спам-клик не
+ * вознаграждается (раньше пол Math.max(10, …) давал XP даже за 1%).
+ */
+const EXAM_MIN_XP_PCT = 25;
+
+/**
+ * Серверный авторитетный пересчёт XP за экзамен (ECON-11). Клиентский examXp игнорируется: сервер
+ * считает по фактическому проценту, без нижнего пола за провал.
+ */
+function serverExamXp(pct: number, passed: boolean): number {
+  if (pct < EXAM_MIN_XP_PCT) return 0;
+  if (passed) return 50 + Math.round(pct / 2);
+  return Math.round(pct / 4);
+}
+
 const MIGRATABLE_NUMERIC_KEYS = [
   'user_total_xp',
   'user_prev_xp',
@@ -311,14 +349,60 @@ function setUnlocked(progress: ProgressMap, patch: ProgressMap, lessonId: number
   patch[key] = JSON.stringify(Array.from(merged).sort((a, b) => a - b));
 }
 
-function xpFromPayload(event: ProgressEventInput): number {
+/**
+ * Контекст одного дня для серверных лимитов (ECON-2/3/11). Передаётся из транзакции, где читается
+ * progress_daily_counters/{day}. Чистая функция остаётся тестируемой.
+ */
+export type ProgressDailyContext = {
+  /** Уже начисленный сегодня XP по каждому источнику (до текущего события). */
+  sourceXpToday?: Partial<Record<ProgressEventType, number>>;
+  /** Сколько попыток экзамена уже зачтено сегодня (любого уровня). */
+  examAttemptsToday?: number;
+};
+
+function xpFromPayload(event: ProgressEventInput, daily?: ProgressDailyContext): number {
   const payload = event.payload;
+
+  // ECON-3/11: XP за экзамен ограничивает сервер.
+  if (event.type === 'exam_complete') {
+    const level = cleanString(payload.level ?? payload.examLevel, 12).toLowerCase();
+    const isFinalExam = level === 'final';
+    const attemptsSoFar = Math.max(0, daily?.examAttemptsToday ?? 0);
+
+    // Финальный экзамен даёт золотую награду (10000 XP) и гейтится «первым сертификатом» на клиенте —
+    // его НЕ пересчитываем и не режем суточным лимитом попыток (это разовое событие). ECON-3/11
+    // касаются только уровневых зачётов (a1..c2), которые можно бесконечно пересдавать ради XP.
+    if (isFinalExam) {
+      const requestedFinal = clampInt(
+        payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp,
+        0,
+        EVENT_XP_CAP.exam_complete,
+      );
+      return requestedFinal;
+    }
+
+    if (attemptsSoFar >= EXAM_DAILY_ATTEMPT_LIMIT) return 0;
+    const pct = clampInt(payload.pct ?? payload.percent ?? payload.scorePct, 0, 100);
+    const passed = boolish(payload.passed) || pct >= 70;
+    const computed = serverExamXp(pct, passed);
+    return Math.max(0, Math.min(EVENT_XP_CAP.exam_complete, computed));
+  }
+
   const requested = clampInt(
     payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp,
     0,
     EVENT_XP_CAP[event.type],
   );
   if (requested <= 0) return 0;
+
+  // ECON-2: суточный потолок по гриндабельным источникам — обрезаем по остатку дневного лимита.
+  const dailyCap = EVENT_DAILY_XP_CAP[event.type];
+  if (dailyCap != null) {
+    const usedToday = Math.max(0, daily?.sourceXpToday?.[event.type] ?? 0);
+    const remaining = Math.max(0, dailyCap - usedToday);
+    return Math.min(requested, remaining);
+  }
+
   return requested;
 }
 
@@ -399,6 +483,7 @@ export function applyProgressEvent(
   progress: ProgressMap,
   event: ProgressEventInput,
   now: Date = new Date(),
+  daily?: ProgressDailyContext,
 ): ApplyResult {
   const activeDate = resolveClientDateKey(event.clientLocalDate, now);
   const weekKey = getWeekKey(activeDate);
@@ -406,7 +491,7 @@ export function applyProgressEvent(
   const patch: ProgressMap = {};
 
   const previousTotal = Math.max(0, readInt(progress.user_total_xp, 0));
-  const xpDelta = xpFromPayload(event);
+  const xpDelta = xpFromPayload(event, daily);
   const totalXp = previousTotal + xpDelta;
   const level = getLevelFromXP(totalXp);
   const previousWeeklyStart = cleanString(progress.weekly_xp_period_start, 10);
@@ -580,14 +665,37 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       if (result) return { ...result, duplicate: true };
       throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
     }
-    const dailyCount = (counterSnap.data()?.count as number | undefined) ?? 0;
+    const counterData = counterSnap.data() ?? {};
+    const dailyCount = (counterData.count as number | undefined) ?? 0;
     if (dailyCount >= DAILY_EVENT_LIMIT) {
       throw new HttpsError('resource-exhausted', 'daily_progress_event_limit_reached');
     }
-    tx.set(dailyCounterRef, { count: dailyCount + 1, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+
+    // ECON-2/3/11: серверные суточные лимиты. Читаем уже накопленные сегодня значения, считаем XP с
+    // их учётом, затем записываем обновлённые счётчики в той же транзакции (идемпотентно с ledger).
+    const sourceXpToday = (counterData.sourceXp as Partial<Record<ProgressEventType, number>> | undefined) ?? {};
+    const examAttemptsToday = (counterData.examAttempts as number | undefined) ?? 0;
 
     const progress = getProgress(userSnap.data());
-    const applied = applyProgressEvent(progress, event, now);
+    const applied = applyProgressEvent(progress, event, now, { sourceXpToday, examAttemptsToday });
+
+    const counterPatch: Record<string, unknown> = {
+      count: dailyCount + 1,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    };
+    // Вложенный sourceXp нельзя дописывать через {merge:true} с точечным ключом (создаст литеральное
+    // поле "sourceXp.x"), поэтому собираем объект sourceXp целиком с FieldValue.increment.
+    if (EVENT_DAILY_XP_CAP[event.type] != null && applied.xpDelta > 0) {
+      counterPatch.sourceXp = { [event.type]: admin.firestore.FieldValue.increment(applied.xpDelta) };
+    }
+    // Считаем только попытки уровневых зачётов (a1..c2) — финальный экзамен разовый и под лимит не идёт.
+    if (event.type === 'exam_complete') {
+      const examLevel = cleanString(event.payload.level ?? event.payload.examLevel, 12).toLowerCase();
+      if (examLevel !== 'final') {
+        counterPatch.examAttempts = admin.firestore.FieldValue.increment(1);
+      }
+    }
+    tx.set(dailyCounterRef, counterPatch, { merge: true });
     const result: ProgressEventResult = {
       ok: true,
       stableUid,

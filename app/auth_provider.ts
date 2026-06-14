@@ -1258,9 +1258,13 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
  *   1. deleteCloudData() calls accountDeleteMine on the backend. The Cloud Function
  *      removes users/{stable_id}, subcollections, public/social docs, indexes,
  *      auth_links, analytics/error records and the Firebase Auth user.
- *   2. Only after the server confirms deletion do we sign out and wipe local
- *      state. A local-only wipe is not account deletion: cloud data could come
- *      back on the next sync/login.
+ *   2. Это удаление запускается, но НЕ ожидается синхронно: ждать ответа сервера
+ *      нельзя — раньше при медленном/упавшем бэкенде Google-вход после удаления
+ *      висел в "loading" навсегда. Поэтому локальный wipe идёт сразу, а серверное
+ *      удаление продолжается в фоне; его исход логируется событиями
+ *      auth_account_delete_cloud_late_success / _failed (по ним сервер дочищает
+ *      «зависшие» удаления). Возвращаемый cloudDeleted всегда false — фон ещё идёт,
+ *      мы не утверждаем, что облако уже стёрто.
  *   3. wipeLocalAccountData() + AsyncStorage.clear() remove local cache.
  *   4. clearStableId() removes the UUID from SecureStore + AsyncStorage + memory.
  *   5. ensureAnonUser() creates a clean anonymous session with a new stable_id.

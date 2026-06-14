@@ -92,8 +92,8 @@ const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 const { submitClientReport } = require('./client_reports');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('./telegram_premium_bot');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { scorePronunciationAttempt } = require('./pronunciation_scoring');
+// Legacy paid pronunciation-scoring callable удалён: 0 клиентских вызовов, OpenAI-эндпоинт
+// без App Check был доступен любому. Оценка произношения теперь on-device. (B1 audit)
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   referralEnsureMyCode,
@@ -180,7 +180,6 @@ exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 exports.submitClientReport = submitClientReport;
 exports.telegramPremiumWebhook = telegramPremiumWebhook;
 exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
-exports.scorePronunciationAttempt = scorePronunciationAttempt;
 exports.referralEnsureMyCode = referralEnsureMyCode;
 exports.referralApply = referralApply;
 exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;

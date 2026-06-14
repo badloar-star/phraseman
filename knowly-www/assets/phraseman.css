@@ -802,6 +802,142 @@ h2 {
   margin: 0 auto 30px;
 }
 
+/* ===== Страница /russia/ ===== */
+.russia-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 32px 0 30px;
+}
+.russia-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+}
+.russia-step-num {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gold-grad);
+  color: #0a0a0e;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.russia-step strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.russia-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.russia-step a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.russia-step a:hover {
+  text-decoration: underline;
+}
+.tg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: #2AABEE;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  transition: filter 0.18s, transform 0.18s;
+  box-shadow: 0 10px 36px rgba(42, 171, 238, 0.28);
+}
+.tg-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+.tg-btn svg {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+.russia-note {
+  margin-top: 28px;
+  padding: 16px 20px;
+  background: rgba(232, 197, 102, 0.07);
+  border: 1px solid rgba(232, 197, 102, 0.2);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--muted);
+}
+.russia-note p {
+  margin: 0 0 6px;
+}
+.russia-note p:last-child {
+  margin-bottom: 0;
+}
+.russia-note a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.russia-note a:hover {
+  text-decoration: underline;
+}
+.russia-faq {
+  margin-top: 36px;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+.russia-faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.russia-faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.russia-faq summary::-webkit-details-marker { display: none; }
+.russia-faq summary::after {
+  content: "+";
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.russia-faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+.russia-faq p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.russia-faq a {
+  color: var(--gold);
+  text-decoration: none;
+}
+.russia-faq a:hover {
+  text-decoration: underline;
+}
+
 /* Появление при скролле */
 .reveal {
   opacity: 0;

@@ -117,6 +117,18 @@ const MANUAL_ACTIVATION_MESSAGE_RU = [
   'Если доступ появился не сразу, не переживайте: иногда это занимает несколько часов.',
 ].join('\n');
 
+function userActivatedMessageRu(order: FirebaseFirestore.DocumentData): string {
+  const until = activationUntilLabel(order);
+  return [
+    'Premium активирован! 🎉',
+    '',
+    'Откройте Phraseman и перезайдите в приложение — доступ уже открыт.',
+    until && until !== '-' ? `Действует до: ${until}` : null,
+    '',
+    'Если доступа всё ещё нет, нажмите «Связаться с поддержкой» ниже.',
+  ].filter(Boolean).join('\n');
+}
+
 function monthlyStars(): number {
   const value = Number(process.env.PHRASEMAN_PREMIUM_MONTHLY_STARS || 300);
   return Number.isSafeInteger(value) && value > 0 ? value : 300;
@@ -481,6 +493,17 @@ function activationUntilLabel(order: FirebaseFirestore.DocumentData): string {
   return Number.isNaN(date.getTime()) ? String(value) : date.toLocaleString('ru-RU');
 }
 
+async function notifyUserActivated(token: string, order: FirebaseFirestore.DocumentData): Promise<boolean> {
+  const userId = order.telegramUserId;
+  if (!userId) return false;
+  await sendMessage(token, userId, userActivatedMessageRu(order), {
+    reply_markup: {
+      inline_keyboard: [[{ text: SUPPORT_BUTTON_TEXT_RU, callback_data: SUPPORT_CALLBACK_START }]],
+    },
+  });
+  return true;
+}
+
 async function notifyTesterActivationAdmins(token: string, order: FirebaseFirestore.DocumentData): Promise<void> {
   const adminIds = await readAdminUserIds();
   const text = [
@@ -738,11 +761,28 @@ export const telegramPremiumActivationNotifier = onDocumentUpdated({
   if (!(after.testerActivationStatus === 'activated')) return;
   if (after.activationNotificationStatus === 'sent') return;
 
+  const token = PHRASEMAN_PREMIUM_BOT_TOKEN.value();
+
+  // 1) Сообщаем ПОЛЬЗОВАТЕЛЮ, что Premium выдан (best-effort — сбой не должен
+  //    блокировать админ-уведомление; статус пишем отдельным полем).
+  let userNotified: 'sent' | 'skipped' | 'error' = 'skipped';
+  let userNotifyError: string | null = null;
   try {
-    await notifyTesterActivationAdmins(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), after);
+    userNotified = (await notifyUserActivated(token, after)) ? 'sent' : 'skipped';
+  } catch (error) {
+    userNotified = 'error';
+    userNotifyError = error instanceof Error ? error.message : String(error);
+    console.error('telegramPremiumActivationNotifier user notify failed', error);
+  }
+
+  // 2) Отчёт админам + отметка, что весь нотификатор отработал.
+  try {
+    await notifyTesterActivationAdmins(token, after);
     await change.after.ref.set({
       activationNotificationStatus: 'sent',
       activationNotificationSentAt: admin.firestore.FieldValue.serverTimestamp(),
+      userActivationNotifyStatus: userNotified,
+      ...(userNotifyError ? { userActivationNotifyError: userNotifyError } : {}),
     }, { merge: true });
   } catch (error) {
     console.error('telegramPremiumActivationNotifier failed', error);
@@ -750,6 +790,8 @@ export const telegramPremiumActivationNotifier = onDocumentUpdated({
       activationNotificationStatus: 'error',
       activationNotificationError: error instanceof Error ? error.message : String(error),
       activationNotificationErrorAt: admin.firestore.FieldValue.serverTimestamp(),
+      userActivationNotifyStatus: userNotified,
+      ...(userNotifyError ? { userActivationNotifyError: userNotifyError } : {}),
     }, { merge: true });
   }
 });

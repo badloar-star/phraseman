@@ -17,6 +17,7 @@ import { useRouter } from 'expo-router';
 import Purchases, { type PurchasesPackage } from 'react-native-purchases';
 
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
+import { isLifetimeButtonEnabled } from './remote_flags';
 import {
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
@@ -40,8 +41,8 @@ import { emitAppEvent } from './events';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
 
-export type PaywallPlan = 'monthly' | 'yearly';
-type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage };
+export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
+type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
 
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
@@ -107,8 +108,12 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   // ── цены (только стор) ─────────────────────────────────────────────────────
   const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString);
   const monthlyPrice = storePriceTrim(packages.monthly?.product?.priceString);
+  const lifetimePrice = storePriceTrim(packages.lifetime?.product?.priceString);
   const yearlyPerMonth = storePricePerMonthTrim(packages.yearly);
   const monthlyPerMonth = storePricePerMonthTrim(packages.monthly);
+  // Кнопка «Навсегда» показывается, только когда админ-флаг включён И пакет
+  // lifetime реально пришёл из RevenueCat (продукт заведён). Иначе — скрыта.
+  const lifetimeAvailable = isLifetimeButtonEnabled() && !!packages.lifetime;
 
   const savingsPct = useMemo(() => computeSavingsPct({
     yearlyPerMonth: (packages.yearly?.product as { pricePerMonth?: number } | undefined)?.pricePerMonth ?? null,
@@ -122,14 +127,14 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     (packages.yearly?.product as { price?: number } | undefined)?.price ?? null,
   ), [packages, yearlyPrice]);
 
-  const selectedPkg = selected === 'yearly' ? packages.yearly : packages.monthly;
+  const selectedPkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
   const trial: TrialInfo = useMemo(() => getTrialInfo(selectedPkg), [selectedPkg]);
   const trialDays = trial.hasTrial ? trialDaysOrDefault(trial) : null;
   const ctaDisabled = purchasing || loading || restoring || (!DEV_IAP_BYPASS && !selectedPkg);
 
   // «Будущая» цена выбранного плана (×2 из реальной цены стора) — ТОЛЬКО для
   // отображения в PaywallPriceUrgency; в Purchases никогда не уходит.
-  const selectedPrice = selected === 'yearly' ? yearlyPrice : monthlyPrice;
+  const selectedPrice = selected === 'lifetime' ? lifetimePrice : selected === 'yearly' ? yearlyPrice : monthlyPrice;
   const futurePrice = useMemo(() => (selectedPrice ? getDoubledPrice(selectedPrice) : null), [selectedPrice]);
 
   const selectPlan = useCallback((plan: PaywallPlan) => {
@@ -144,7 +149,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant });
     logPaywallFunnel('cta_click', { variant, context, plan: selected });
     if (DEV_IAP_BYPASS) { safeRouterBack(router); return; }
-    const pkg = selected === 'yearly' ? packages.yearly : packages.monthly;
+    const pkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
     if (!pkg || purchasing) return;
     setPurchasing(true);
     void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant });
@@ -266,6 +271,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     selected, selectPlan,
     packages, loading, purchasing, restoring,
     yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
+    lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
     trial, trialDays, ctaDisabled,
     urgency, futurePrice,

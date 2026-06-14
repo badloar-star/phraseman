@@ -53,7 +53,7 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
 export interface PaywallFunnelPayload {
   variant: PaywallAbVariant;
   context: string;
-  plan?: 'monthly' | 'yearly' | null;
+  plan?: 'monthly' | 'yearly' | 'lifetime' | null;
   obColor?: 'blue' | 'green';
 }
 

@@ -35,7 +35,10 @@ function hasMeaningfulPlan(plan: string): boolean {
 }
 
 function isStorePremiumPlan(plan: string): boolean {
-  return plan === 'monthly' || plan === 'yearly' || plan === 'annual';
+  // 'lifetime' — non-consumable «навсегда»: premium_expiry='0' (бессрочный).
+  // Без этой ветки сервер счёл бы синхронизированный premium_plan='lifetime'
+  // не-store-планом и отрезал бы платящему доступ.
+  return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
 }
 
 function isTruthyFlag(value: unknown): boolean {

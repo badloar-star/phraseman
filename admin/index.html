@@ -8349,6 +8349,7 @@
     <input id="admin-tab-search" type="search" autocomplete="off" placeholder="Search sections" aria-label="Search admin sections" />
     <div class="admin-tab-empty">No sections found</div>
   </div>
+  <div class="tab" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
   <div class="tab active" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
@@ -8399,6 +8400,67 @@
     <div class="stat-card"><div class="label">Language</div><div class="value" id="s-lang">—</div></div>
     <div class="stat-card"><div class="label">Platform</div><div class="value" id="s-plat">—</div></div>
     <div class="stat-card"><div class="label" data-i18n-es="Fragmentos medios">Avg shards</div><div class="value" id="s-shards">—</div></div>
+  </div>
+</div>
+
+<!-- CONTROL PANEL TAB (Пульт управления): живые рычаги управления приложением -->
+<div id="tab-control-panel" class="reports-tab">
+  <section class="admin-overview-hero" style="margin-bottom:18px">
+    <div>
+      <div class="admin-overview-title">🎛 Пульт управления</div>
+      <div class="admin-overview-sub" style="color:#9ca3af;font-size:13px;margin-top:4px">
+        Рычаги, которые меняют приложение у пользователей <b>без релиза и OTA</b>. Изменения подхватываются за секунды.
+      </div>
+    </div>
+  </section>
+
+  <!-- Главный тумблер: кнопка «Навсегда» (lifetime) на пейволах -->
+  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
+      <div style="flex:1;min-width:260px">
+        <div style="font-size:15px;font-weight:800;color:#fbbf24">Кнопка «Навсегда» (lifetime) на пейволах</div>
+        <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+          Показывает разовую покупку «навсегда» на всех пейволах. Выключение <b>прячет кнопку у всех</b> без обновления приложения.
+          Уже купившие сохраняют доступ — премиум держится на покупке в сторе, а не на кнопке.
+          <br><span style="color:#6b7280">Кнопка реально появится, только когда продукт lifetime заведён в RevenueCat (см. LIFETIME_SETUP_GUIDE).</span>
+        </div>
+        <div id="cp-lifetime-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+      </div>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none">
+        <input type="checkbox" id="cp-lifetime-toggle" onchange="saveControlPanelLifetime(this.checked)" disabled
+          style="width:46px;height:26px;cursor:pointer"/>
+        <span id="cp-lifetime-label" style="font-size:13px;font-weight:700;color:#cbd5e1;min-width:54px">…</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Хаб: переходы к остальным живым рычагам -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+      <div style="font-size:14px;font-weight:700;color:#e5e7eb">⚙️ Remote Config</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Лимиты free-тарифа, экономика, энергия, A/B-сплиты, флаги (рефералка, «Устно», лиги).</div>
+      <button type="button" onclick="switchTab('remote-config')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+    </div>
+    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+      <div style="font-size:14px;font-weight:700;color:#e5e7eb">🧪 Paywall A/B</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Сплит трафика по вариантам пейвола (v1 / A / B / C) и рейтинг в шапке.</div>
+      <button type="button" onclick="switchTab('paywall-ab')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+    </div>
+    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+      <div style="font-size:14px;font-weight:700;color:#e5e7eb">💬 Сообщения в приложении</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Баннеры/уведомления внутри приложения с включением и выключением на лету.</div>
+      <button type="button" onclick="switchTab('app-messages')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+    </div>
+    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+      <div style="font-size:14px;font-weight:700;color:#e5e7eb">🔔 Alerts</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Настройка админских оповещений (Telegram-бот).</div>
+      <button type="button" onclick="switchTab('alerts')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+    </div>
+    <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
+      <div style="font-size:14px;font-weight:700;color:#e5e7eb">📣 Push</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Массовая отправка push-уведомлений пользователям.</div>
+      <button type="button" onclick="switchTab('push-notify')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
+    </div>
   </div>
 </div>
 
@@ -11120,8 +11182,8 @@
     }
   }
 
-  const ADMIN_DEFAULT_TAB = 'overview';
-  const ADMIN_TAB_KEYS = ['overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_DEFAULT_TAB = 'control-panel';
+  const ADMIN_TAB_KEYS = ['control-panel','overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -14629,6 +14691,8 @@
     if (reviewPromoTab) reviewPromoTab.classList.toggle('active', tab === 'review-promo');
     const appMessagesTab = document.getElementById('tab-app-messages');
     if (appMessagesTab) appMessagesTab.classList.toggle('active', tab === 'app-messages');
+    const controlPanelTab = document.getElementById('tab-control-panel');
+    if (controlPanelTab) controlPanelTab.classList.toggle('active', tab === 'control-panel');
     const remoteConfigTab = document.getElementById('tab-remote-config');
     if (remoteConfigTab) remoteConfigTab.classList.toggle('active', tab === 'remote-config');
     const paywallAbTab = document.getElementById('tab-paywall-ab');
@@ -14687,6 +14751,9 @@
     if(tab==='ops-log' && !window._opsLoaded) loadOpsLog();
     if (tab === 'community-packs' && typeof window.setCommunityPacksSubtab === 'function') {
       window.setCommunityPacksSubtab(window._cpSubTab || 'queue');
+    }
+    if (tab === 'control-panel' && typeof window.loadControlPanel === 'function') {
+      void window.loadControlPanel();
     }
     if (tab === 'remote-config' && typeof window.loadRemoteConfig === 'function' && !window._remoteConfigLoaded) {
       void window.loadRemoteConfig(false);
@@ -15839,6 +15906,7 @@
   // Human-readable labels for tab navigation results (keys must be in ADMIN_TAB_KEYS).
   const CMDK_TAB_LABELS = {
     'openai-budget': 'OpenAI budget',
+    'control-panel': '🎛 Пульт управления',
     'overview': '📊 Overview', 'analytics': '📈 Analytics', 'app-health': '🩺 App Health',
     'users': '👥 Users', 'reports': '🐞 Content reports', 'website-inbox': '✉️ Support (site)',
     'user-reports': '🚩 User reports', 'explain-reports': '💡 Explain reports', 'ban-list': '🚫 Ban list', 'premium': '⭐ Premium',
@@ -20185,6 +20253,7 @@
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
+    { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: false },
   ];
 
   function rcSetStatus(msg, color) {
@@ -20315,6 +20384,72 @@
       rcLoadHistory();
     } catch (e) {
       rcSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  // ── Пульт управления (Control Panel) ──────────────────────────────────────
+  // Кнопка «Навсегда» (lifetime) на пейволах: тот же флаг remote_config/app
+  // bools.lifetime_button_enabled, что и в Remote Config — здесь крупным тумблером.
+  function cpRenderLifetime(on) {
+    const cb = document.getElementById('cp-lifetime-toggle');
+    const lbl = document.getElementById('cp-lifetime-label');
+    if (cb) { cb.checked = !!on; cb.disabled = false; }
+    if (lbl) { lbl.textContent = on ? 'Включена' : 'Выключена'; lbl.style.color = on ? '#4ade80' : '#9ca3af'; }
+  }
+  function cpSetLifetimeStatus(msg, color) {
+    const el = document.getElementById('cp-lifetime-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+
+  window.loadControlPanel = async function() {
+    window._controlPanelLoaded = true;
+    cpSetLifetimeStatus('Загрузка…');
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const on = !!(data.bools && data.bools.lifetime_button_enabled === true);
+      cpRenderLifetime(on);
+      cpSetLifetimeStatus(snap.exists()
+        ? ('Сейчас: ' + (on ? 'показывается' : 'скрыта') + ' · обновлял: ' + (data.updatedBy || '—'))
+        : 'Документа ещё нет — переключатель создаст его.', on ? '#4ade80' : '#9ca3af');
+    } catch (e) {
+      cpSetLifetimeStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
+      const cb = document.getElementById('cp-lifetime-toggle');
+      if (cb) cb.disabled = false;
+    }
+  };
+
+  // Пишем ТОЛЬКО поле lifetime_button_enabled, сохраняя остальной remote_config
+  // (numbers + прочие bools) — чтобы не затереть лимиты/экономику/A-B.
+  window.saveControlPanelLifetime = async function(checked) {
+    const cb = document.getElementById('cp-lifetime-toggle');
+    if (cb) cb.disabled = true;
+    cpSetLifetimeStatus('Сохранение…');
+    try {
+      let prev = {};
+      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      const numbers = (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {};
+      const bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
+      const was = bools.lifetime_button_enabled === true;
+      bools.lifetime_button_enabled = !!checked;
+      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      await setDoc(doc(db, 'remote_config', 'app'), {
+        numbers, bools, updatedAt: Date.now(), updatedBy: who,
+      }, { merge: false });
+      if (was !== !!checked) {
+        try {
+          await addDoc(collection(db, 'remote_config_history'), {
+            changes: ['lifetime_button_enabled: ' + was + ' → ' + !!checked], by: who, at: new Date().toISOString(), numbers, bools,
+          });
+        } catch (_) {}
+        if (typeof logAction === 'function') logAction('control_panel_lifetime_toggle', 'remote_config/app', { enabled: !!checked });
+      }
+      cpRenderLifetime(!!checked);
+      cpSetLifetimeStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false; // пусть Remote Config перечитает
+    } catch (e) {
+      cpSetLifetimeStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+      if (cb) cb.disabled = false;
     }
   };
 

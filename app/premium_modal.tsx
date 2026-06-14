@@ -27,6 +27,7 @@ import { paywallGlassColor } from '../components/paywallGlass';
 import MatchFoundToast from '../components/MatchFoundToast';
 import { DEV_IAP_BYPASS, IS_EXPO_GO, IS_STORE_RELEASE, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
+import { isLifetimeButtonEnabled } from './remote_flags';
 import { getVerifiedRealPremiumStatus, getVerifiedVipStatus, invalidatePremiumCache } from './premium_guard';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import {
@@ -138,8 +139,8 @@ function routeParamString(raw: string | string[] | undefined): string {
 
 const isEnergyGlyph = (value: string) => value.codePointAt(0) === 0x26A1;
 
-type Plan = 'monthly' | 'yearly';
-type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage };
+type Plan = 'monthly' | 'yearly' | 'lifetime';
+type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
 // PremiumContext вынесен в ./premium_context, чтобы вспомогательные модули
 // (percentile-строка, зеркало прогресса) типизировались без импорта этого экрана.
 // 'dialog_limit' (AI-диалог) и 'speaking' (Speaking mode) добавлены в
@@ -165,6 +166,7 @@ const normalizePlan = (raw: string | null | undefined): Plan | null => {
   const p = String(raw).trim().toLowerCase();
   if (p === 'monthly') return 'monthly';
   if (p === 'yearly' || p === 'annual') return 'yearly';
+  if (p === 'lifetime') return 'lifetime';
   return null;
 };
 
@@ -1352,6 +1354,10 @@ export default function PremiumModal() {
   const storePricesRequired = !IS_EXPO_GO && !DEV_IAP_BYPASS;
   const yearlyPrice = storePriceTrim(packages.yearly?.product.priceString) || mockYearlyPrice;
   const monthlyPrice = storePriceTrim(packages.monthly?.product.priceString) || mockMonthlyPrice;
+  // lifetime — цена ТОЛЬКО из стора (без mock-фоллбэка): карточка показывается
+  // лишь когда пакет реально пришёл. Гейт = админ-флаг И наличие пакета.
+  const lifetimePrice = storePriceTrim(packages.lifetime?.product.priceString);
+  const lifetimeAvailable = isLifetimeButtonEnabled() && !!packages.lifetime;
   const yearlyMonthlyEquivalent = storePricePerMonthTrim(packages.yearly?.product) || mockYearlyMonthlyEquivalent;
   const selectedMonthlyEquivalent = selected === 'yearly' ? yearlyMonthlyEquivalent : '';
   // План #9: процент экономии. Сначала точно из pricePerMonth, иначе fallback из строк
@@ -1472,6 +1478,13 @@ export default function PremiumModal() {
     });
     return () => task.cancel();
   }, []);
+
+  // Защита: если выбран план 'lifetime' (например, из route-param), но кнопка
+  // недоступна (флаг выключен или пакета нет) — откатываем на 'yearly', чтобы
+  // CTA не указывал на отсутствующий пакет.
+  useEffect(() => {
+    if (selected === 'lifetime' && !lifetimeAvailable) setSelected('yearly');
+  }, [selected, lifetimeAvailable]);
 
   useEffect(() => {
     getTrialReofferBlockedByCooldown().then(setTrialReofferBlocked);
@@ -1631,12 +1644,14 @@ export default function PremiumModal() {
       return;
     }
     let currentPackages = packages;
-    let pkg = plan === 'yearly' ? currentPackages.yearly : currentPackages.monthly;
+    const pickPkg = (pkgs: PremiumPackages): PurchasesPackage | undefined =>
+      plan === 'lifetime' ? pkgs.lifetime : plan === 'yearly' ? pkgs.yearly : pkgs.monthly;
+    let pkg = pickPkg(currentPackages);
     const hadVisibleStorePrice = !!storePriceTrim(pkg?.product.priceString);
     if (!pkg || !hadVisibleStorePrice) {
       // Fallback: пользователь мог нажать CTA раньше, чем завершился initial getOfferings.
       currentPackages = await loadPremiumPackages();
-      pkg = plan === 'yearly' ? currentPackages.yearly : currentPackages.monthly;
+      pkg = pickPkg(currentPackages);
       if (pkg && storePriceTrim(pkg.product.priceString)) {
         emitAppEvent('action_toast', {
           type: 'info',
@@ -3856,13 +3871,112 @@ export default function PremiumModal() {
               )}
             </TouchableOpacity>
 
+            {/* Навсегда (lifetime) — показываем ТОЛЬКО когда продукт заведён в RC
+                и админ-флаг включён. Цена строго из стора (lifetimePrice). */}
+            {lifetimeAvailable && (
+            <TouchableOpacity
+              style={{
+                borderRadius: compassRadius, padding: 18, marginBottom: 20,
+                borderWidth: 1,
+                borderColor: isCompassPaywall ? (selected === 'lifetime' ? 'rgba(255,231,182,0.46)' : 'rgba(255,255,255,0.08)') : selected === 'lifetime' ? t.textSecond : t.border,
+                backgroundColor: isCompassPaywall ? (selected === 'lifetime' ? COMPASS_RICH.creamSoft : '#74726E') : (selected === 'lifetime' ? paywallSurfaceBg : paywallCardBg),
+                opacity: purchasing && selected !== 'lifetime' ? 0.5 : 1,
+                shadowColor: isCompassPaywall ? 'transparent' : selected === 'lifetime' ? t.textSecond : '#000',
+                shadowOffset: { width: 0, height: isCompassPaywall ? 0 : 4 },
+                shadowOpacity: isCompassPaywall ? 0 : selected === 'lifetime' ? 0.24 : 0.06,
+                shadowRadius: isCompassPaywall ? 0 : selected === 'lifetime' ? 8 : 4,
+                elevation: isCompassPaywall ? 0 : selected === 'lifetime' ? 6 : 1,
+              }}
+              onPress={() => {
+                hapticTap();
+                logPaywallPlanSelectDeduped('lifetime');
+                setSelected('lifetime');
+              }}
+              activeOpacity={0.85}
+              disabled={purchasing}
+            >
+              {(() => {
+                const priceStr = lifetimePrice;
+                return (
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                    <View style={{ flex: 1, minWidth: 0, paddingRight: 4 }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' }}>
+                        <Text style={{ color: isCompassPaywall && selected === 'lifetime' ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={1}>
+                          {LP('Навсегда', 'Назавжди', 'Para siempre', {
+                            'pt-BR': 'Para sempre',
+                            vi: 'Trọn đời',
+                            id: 'Selamanya',
+                            tr: 'Sonsuza dek',
+                            pl: 'Na zawsze',
+                          })}
+                        </Text>
+                        <View style={{ backgroundColor: t.correct + '22', borderRadius: 6, paddingHorizontal: 6, paddingVertical: 2, borderWidth: 1, borderColor: t.correct + '55' }}>
+                          <Text style={{ color: t.correct, fontSize: f.label, fontWeight: '800' }}>
+                            {LP('разовый', 'разовий', 'único', { 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek', pl: 'jednorazowo' })}
+                          </Text>
+                        </View>
+                      </View>
+                      <Text style={{ color: isCompassPaywall && selected === 'lifetime' ? 'rgba(33,23,14,0.72)' : t.textMuted, fontSize: f.sub, marginTop: 3 }} numberOfLines={3}>
+                        {LP(
+                          'Один платёж — доступ ко всему Premium навсегда',
+                          'Один платіж — доступ до всього Premium назавжди',
+                          'Un solo pago: acceso a todo Premium para siempre',
+                          {
+                            'pt-BR': 'Pagamento único — acesso a tudo Premium para sempre',
+                            vi: 'Thanh toán một lần — truy cập trọn đời tất cả Premium',
+                            id: 'Sekali bayar — akses semua Premium selamanya',
+                            tr: 'Tek ödeme — tüm Premium’a sonsuza dek erişim',
+                            pl: 'Jedna płatność — dostęp do całego Premium na zawsze',
+                          },
+                        )}
+                      </Text>
+                    </View>
+                    <View style={{ alignItems: 'flex-end', maxWidth: '44%', minWidth: 92 }}>
+                      {priceStr ? (
+                        <>
+                          <Text style={{ color: isCompassPaywall && selected === 'lifetime' ? COMPASS_RICH.textDark : t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
+                            {priceStr}
+                          </Text>
+                          <Text style={{ color: isCompassPaywall && selected === 'lifetime' ? 'rgba(33,23,14,0.72)' : t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>
+                            {LP('один раз', 'один раз', 'una vez', { 'pt-BR': 'uma vez', vi: 'một lần', id: 'sekali', tr: 'bir kez', pl: 'raz' })}
+                          </Text>
+                        </>
+                      ) : (
+                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'right' }} numberOfLines={2}>
+                          {missingStorePriceLabel}
+                        </Text>
+                      )}
+                    </View>
+                  </View>
+                );
+              })()}
+              {selected === 'lifetime' && (
+                <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                  <Ionicons name="checkmark-circle" size={16} color={isCompassPaywall ? COMPASS_RICH.textDark : t.correct} />
+                  <Text style={{ flex: 1, minWidth: 0, color: isCompassPaywall ? COMPASS_RICH.textDark : t.correct, fontSize: f.caption, fontWeight: '700' }} numberOfLines={2}>
+                    {LP('Доступ навсегда, без подписки', 'Доступ назавжди, без підписки', 'Acceso para siempre, sin suscripción', {
+                      'pt-BR': 'Acesso para sempre, sem assinatura',
+                      vi: 'Truy cập trọn đời, không cần đăng ký',
+                      id: 'Akses selamanya, tanpa langganan',
+                      tr: 'Sonsuza dek erişim, abonelik yok',
+                      pl: 'Dostęp na zawsze, bez subskrypcji',
+                    })}
+                  </Text>
+                </View>
+              )}
+            </TouchableOpacity>
+            )}
+
             {/* CTA */}
             {(() => {
-              const selectedPkg = selected === 'yearly' ? packages.yearly : packages.monthly;
-              const ctaPrice = selected === 'yearly' ? yearlyPrice : monthlyPrice;
-              const hasTrial = (selected === 'yearly' ? primaryYearlyHasTrial : primaryMonthlyHasTrial) && !!ctaPrice;
+              const isLifetimeSel = selected === 'lifetime';
+              const selectedPkg = isLifetimeSel ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
+              const ctaPrice = isLifetimeSel ? lifetimePrice : selected === 'yearly' ? yearlyPrice : monthlyPrice;
+              const hasTrial = !isLifetimeSel && (selected === 'yearly' ? primaryYearlyHasTrial : primaryMonthlyHasTrial) && !!ctaPrice;
               const canPurchaseSelectedPlan = !storePricesRequired || (!!selectedPkg && !!ctaPrice);
-              const periodStr = selected === 'yearly'
+              const periodStr = isLifetimeSel
+                ? ''
+                : selected === 'yearly'
                 ? LP('/год', '/рік', '/año', {
                     'pt-BR': '/ano',
                     vi: '/năm',
@@ -3906,6 +4020,14 @@ export default function PremiumModal() {
                         pl: `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'pl')} — potem ${ctaPrice}${periodStr}`,
                       },
                     )
+                  : isLifetimeSel
+                    ? LP('🚀 Купить навсегда', '🚀 Купити назавжди', '🚀 Comprar para siempre', {
+                        'pt-BR': '🚀 Comprar para sempre',
+                        vi: '🚀 Mua trọn đời',
+                        id: '🚀 Beli selamanya',
+                        tr: '🚀 Sonsuza dek satın al',
+                        pl: '🚀 Kup na zawsze',
+                      })
                   : selected === 'yearly'
                     ? LP('🚀 Получить Premium', '🚀 Отримати Premium', '🚀 Obtener Premium', {
                         'pt-BR': '🚀 Obter Premium',
@@ -3947,7 +4069,7 @@ export default function PremiumModal() {
                     logPaywallCtaClick(revenueContext, selected);
                     if (!canPurchaseSelectedPlan) {
                       void loadPremiumPackages().then((nextPackages) => {
-                        const nextPkg = selected === 'yearly' ? nextPackages.yearly : nextPackages.monthly;
+                        const nextPkg = isLifetimeSel ? nextPackages.lifetime : selected === 'yearly' ? nextPackages.yearly : nextPackages.monthly;
                         if (!storePriceTrim(nextPkg?.product.priceString)) {
                           emitAppEvent('action_toast', {
                             type: 'error',
@@ -4052,7 +4174,8 @@ export default function PremiumModal() {
             </TouchableOpacity>
 
             {(() => {
-              const footerPrice = selected === 'yearly' ? yearlyPrice : monthlyPrice;
+              const isLifetimeFooter = selected === 'lifetime';
+              const footerPrice = isLifetimeFooter ? lifetimePrice : selected === 'yearly' ? yearlyPrice : monthlyPrice;
               if (!footerPrice) {
                 return (
                   <View style={{ marginTop: 12 }}>
@@ -4073,7 +4196,7 @@ export default function PremiumModal() {
                   </View>
                 );
               }
-              const footerHasTrial = (selected === 'yearly' ? primaryYearlyHasTrial : primaryMonthlyHasTrial) && !!footerPrice;
+              const footerHasTrial = !isLifetimeFooter && (selected === 'yearly' ? primaryYearlyHasTrial : primaryMonthlyHasTrial) && !!footerPrice;
               const footerPeriodUk =
                 selected === 'yearly'
                   ? 'річну підписку PhraseMan Premium'
@@ -4119,16 +4242,49 @@ export default function PremiumModal() {
                 ? `Si este plan ofrece ${esDays} sin cargo: al terminar la prueba, tu Apple ID cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Ajustes → Apple ID → Suscripciones).`
                 : `Si este plan ofrece ${esDays} sin cargo: al terminar la prueba, tu cuenta Google cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Google Play → Suscripciones).`;
 
-              const legalRu = ios
+              // Lifetime — НЕ подписка: одноразовая покупка без автопродления.
+              // Юридически нельзя описывать как «подписку с автопродлением»
+              // (App Store 3.1.2 / EULA). Поэтому отдельная честная формулировка.
+              const legalRu = isLifetimeFooter
+                ? (ios
+                    ? `Разовая покупка «Навсегда»: единоразовое списание ${footerPrice} с вашего Apple ID по тарифам App Store для вашего региона. Без подписки и автопродления.`
+                    : `Разовая покупка «Навсегда»: единоразовая оплата ${footerPrice} через Google Play для вашего региона. Без подписки и автопродления.`)
+                : ios
                 ? `Оформляется ${footerPeriodRu} с автопродлением. Списание с Apple ID по тарифам App Store для вашего региона: ${footerPrice}. Отменить можно в любой момент: Настройки → Apple ID → Подписки.`
                 : `Оформляется ${footerPeriodRu} с автопродлением. Оплата через Google Play для вашего региона: ${footerPrice}. Отмена: Google Play → Подписки.`;
-              const legalUk = ios
+              const legalUk = isLifetimeFooter
+                ? (ios
+                    ? `Разова покупка «Назавжди»: одноразове списання ${footerPrice} з вашого Apple ID за тарифами App Store для вашого регіону. Без підписки та автопоновлення.`
+                    : `Разова покупка «Назавжди»: одноразова оплата ${footerPrice} через Google Play для вашого регіону. Без підписки та автопоновлення.`)
+                : ios
                 ? `Оформлюється ${footerPeriodUk} із автоматичним поновленням. Оплата знімається з Apple ID за тарифами App Store для вашого регіону: ${footerPrice}. Скасувати можна в будь-який момент: Налаштування → Apple ID → Підписки.`
                 : `Оформлюється ${footerPeriodUk} із автоматичним поновленням. Оплата через Google Play для вашого регіону: ${footerPrice}. Скасувати: Google Play → Підписки.`;
-              const legalEs = ios
+              const legalEs = isLifetimeFooter
+                ? (ios
+                    ? `Compra única «Para siempre»: un solo cobro de ${footerPrice} en tu Apple ID según los precios del App Store de tu zona. Sin suscripción ni renovación automática.`
+                    : `Compra única «Para siempre»: un solo pago de ${footerPrice} vía Google Play en tu zona. Sin suscripción ni renovación automática.`)
+                : ios
                 ? `Contratas la ${footerPeriodEs} con renovación automática. El cobro se hace en tu Apple ID según los precios del App Store de tu zona: ${footerPrice}. Puedes cancelar cuando quieras: Ajustes → Apple ID → Suscripciones.`
                 : `Contratas la ${footerPeriodEs} con renovación automática. Pago vía Google Play en tu zona: ${footerPrice}. Cancelación: Google Play → Suscripciones.`;
-              const legalPlanned: PremiumPlannedCopy = {
+              const legalPlanned: PremiumPlannedCopy = isLifetimeFooter
+                ? {
+                    'pt-BR': ios
+                      ? `Compra única «Para sempre»: cobrança única de ${footerPrice} no seu Apple ID conforme os preços da App Store da sua região. Sem assinatura nem renovação automática.`
+                      : `Compra única «Para sempre»: pagamento único de ${footerPrice} pelo Google Play na sua região. Sem assinatura nem renovação automática.`,
+                    vi: ios
+                      ? `Mua một lần «Trọn đời»: tính phí một lần ${footerPrice} vào Apple ID theo giá App Store tại khu vực của bạn. Không đăng ký, không tự động gia hạn.`
+                      : `Mua một lần «Trọn đời»: thanh toán một lần ${footerPrice} qua Google Play tại khu vực của bạn. Không đăng ký, không tự động gia hạn.`,
+                    id: ios
+                      ? `Pembelian sekali «Selamanya»: penagihan satu kali ${footerPrice} ke Apple ID sesuai harga App Store di wilayahmu. Tanpa langganan dan perpanjangan otomatis.`
+                      : `Pembelian sekali «Selamanya»: pembayaran satu kali ${footerPrice} melalui Google Play di wilayahmu. Tanpa langganan dan perpanjangan otomatis.`,
+                    tr: ios
+                      ? `Tek seferlik «Sonsuza dek» satın alma: bölgenizdeki App Store fiyatlarına göre Apple ID hesabınızdan tek seferlik ${footerPrice} alınır. Abonelik ve otomatik yenileme yok.`
+                      : `Tek seferlik «Sonsuza dek» satın alma: bölgenizdeki Google Play üzerinden tek seferlik ${footerPrice} ödenir. Abonelik ve otomatik yenileme yok.`,
+                    pl: ios
+                      ? `Zakup jednorazowy «Na zawsze»: jednorazowa opłata ${footerPrice} z Apple ID według cen App Store w twoim regionie. Bez subskrypcji i automatycznego odnawiania.`
+                      : `Zakup jednorazowy «Na zawsze»: jednorazowa płatność ${footerPrice} przez Google Play w twoim regionie. Bez subskrypcji i automatycznego odnawiania.`,
+                  }
+                : {
                 'pt-BR': ios
                   ? `Você assina a ${footerPeriodPlanned['pt-BR']} com renovação automática. A cobrança é feita no Apple ID conforme os preços da App Store da sua região: ${footerPrice}. Você pode cancelar quando quiser: Ajustes → Apple ID → Assinaturas.`
                   : `Você assina a ${footerPeriodPlanned['pt-BR']} com renovação automática. O pagamento é feito pelo Google Play na sua região: ${footerPrice}. Cancelamento: Google Play → Assinaturas.`,

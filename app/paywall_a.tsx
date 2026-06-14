@@ -87,8 +87,9 @@ export default function PaywallA() {
   const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
   const benefits = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic).slice(0, 4);
 
-  const price = p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
+  const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
+  const isLifetimeSel = p.selected === 'lifetime';
 
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
@@ -145,6 +146,8 @@ export default function PaywallA() {
               trialDays={p.trialDays}
               loading={p.loading}
               disabled={p.purchasing}
+              lifetimePrice={p.lifetimePrice}
+              lifetimeAvailable={p.lifetimeAvailable}
             />
 
             <PaywallPriceUrgency
@@ -176,8 +179,8 @@ export default function PaywallA() {
             <PaywallCtaBlock
               lang={lang as Lang}
               chrome={chrome}
-              label={ctaLabelFor(lang as Lang, p.trialDays)}
-              subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays })}
+              label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel)}
+              subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel })}
               disabled={p.ctaDisabled}
               busy={p.purchasing}
               onPress={() => { void p.handlePurchase(); }}

@@ -3,7 +3,7 @@ import type { CustomerInfo } from 'react-native-purchases';
 import { syncToCloud } from './cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
 
-export type PremiumStorePlan = 'monthly' | 'yearly';
+export type PremiumStorePlan = 'monthly' | 'yearly' | 'lifetime';
 
 export type RevenueCatPremiumMetadata = {
   productId?: string;
@@ -27,6 +27,9 @@ export function inferPremiumPlanFromProductId(
   defaultPlan: PremiumStorePlan = 'monthly',
 ): PremiumStorePlan {
   const id = clean(productId).toLowerCase();
+  // Lifetime (non-consumable) проверяем ПЕРВЫМ: его id может содержать слова,
+  // которые иначе матчатся как подписка, а семантика «навсегда» важнее.
+  if (/lifetime|forever|one.?time|onetime|perpetual/.test(id)) return 'lifetime';
   if (/year|yearly|annual|12.?month/.test(id)) return 'yearly';
   if (/month|monthly|1.?month/.test(id)) return 'monthly';
   return defaultPlan;

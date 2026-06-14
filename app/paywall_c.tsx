@@ -103,11 +103,12 @@ export default function PaywallC() {
   const planned = getHeroPlannedCopy(ctx, 0);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
 
-  const price = p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
+  const isLifetimeSel = p.selected === 'lifetime';
+  const price = isLifetimeSel ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
-  const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays);
-  const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays });
-  const stickyStrings = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period });
+  const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel);
+  const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel });
+  const stickyStrings = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
   const priceLine = price ? `${price}${period}` : '';
 
   return (
@@ -172,6 +173,8 @@ export default function PaywallC() {
               trialDays={null /* триал уже объяснён таймлайном — без дубля */}
               loading={p.loading}
               disabled={p.purchasing}
+              lifetimePrice={p.lifetimePrice}
+              lifetimeAvailable={p.lifetimeAvailable}
             />
 
             <PaywallPriceUrgency

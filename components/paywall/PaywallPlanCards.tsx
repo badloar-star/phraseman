@@ -26,12 +26,17 @@ interface Props {
   trialDays: number | null;
   loading: boolean;
   disabled?: boolean;
+  /** Цена lifetime из стора (priceString). Показываем третью карточку «Навсегда»
+   *  ТОЛЬКО когда lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
+  lifetimePrice?: string | null;
+  lifetimeAvailable?: boolean;
 }
 
 export default function PaywallPlanCards({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, trialDays, loading, disabled,
+  lifetimePrice, lifetimeAvailable,
 }: Props) {
   const { tc, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
   const perMonthLabel = triLang(lang, { ru: '/ мес', uk: '/ міс', es: '/ mes' });
@@ -59,7 +64,14 @@ export default function PaywallPlanCards({
     }));
   }
 
-  const renderCard = (plan: PaywallPlan, name: string, price: string, sub: string | null, badge: string | null) => {
+  const renderCard = (
+    plan: PaywallPlan,
+    name: string,
+    price: string,
+    sub: string | null,
+    badge: string | null,
+    hidePerMonth = false,
+  ) => {
     const sel = selected === plan;
     return (
       <TouchableOpacity
@@ -88,7 +100,7 @@ export default function PaywallPlanCards({
             <Text style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textMuted }]}>
               {price || (loading ? '…' : '—')}
             </Text>
-            <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>
+            {!hidePerMonth && <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>}
           </View>
         </View>
         {sub ? <Text style={[S.sub, { color: textMuted }]}>{sub}</Text> : null}
@@ -111,6 +123,23 @@ export default function PaywallPlanCards({
         monthlyPrice,
         null,
         null,
+      )}
+      {lifetimeAvailable && renderCard(
+        'lifetime',
+        triLang(lang, { ru: 'Навсегда', uk: 'Назавжди', es: 'Para siempre', 'pt-BR': 'Para sempre', vi: 'Trọn đời', id: 'Selamanya', tr: 'Sonsuza dek', pl: 'Na zawsze' }),
+        lifetimePrice || '',
+        triLang(lang, {
+          ru: 'Один платёж · доступ навсегда',
+          uk: 'Один платіж · доступ назавжди',
+          es: 'Un solo pago · acceso para siempre',
+          'pt-BR': 'Pagamento único · acesso para sempre',
+          vi: 'Thanh toán một lần · truy cập trọn đời',
+          id: 'Sekali bayar · akses selamanya',
+          tr: 'Tek ödeme · sonsuza dek erişim',
+          pl: 'Jedna płatność · dostęp na zawsze',
+        }),
+        triLang(lang, { ru: 'разовый', uk: 'разовий', es: 'único', 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek', pl: 'jednorazowo' }),
+        true, // hidePerMonth — lifetime это не /мес
       )}
     </View>
   );

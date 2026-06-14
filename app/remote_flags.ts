@@ -40,7 +40,8 @@ export type RemoteBoolKey =
   | 'referral_enabled'
   | 'speaking_enabled'
   | 'collectibles_enabled'
-  | 'league_xp_promotion_enabled';
+  | 'league_xp_promotion_enabled'
+  | 'lifetime_button_enabled';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -80,6 +81,13 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // админка может экстренно выключить).
   collectibles_enabled: true,
   league_xp_promotion_enabled: false,
+  // Кнопка «Навсегда» (lifetime) на пейволах. Дефолт FALSE — это «sell-switch»,
+  // а НЕ kill-switch: продукт lifetime сначала надо завести в RevenueCat
+  // (LIFETIME_SETUP_GUIDE.md). До этого кнопка скрыта; админ включает её в
+  // «Пульте управления», когда продукт готов. Выключение прячет кнопку у всех
+  // без релиза/OTA — уже купившие сохраняют доступ (премиум держится на
+  // entitlement RevenueCat, а не на видимости кнопки).
+  lifetime_button_enabled: false,
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -210,6 +218,8 @@ export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
+/** Кнопка «Навсегда» (lifetime) показывается на пейволах. Дефолт false. */
+export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 
 /**
  * Deterministic A/B group for a user (stable across launches unless the split

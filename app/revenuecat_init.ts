@@ -13,12 +13,17 @@ import {
 } from './premium_revenuecat_state';
 
 /**
- * Из общего `availablePackages` возвращает monthly + yearly.
+ * Из общего `availablePackages` возвращает monthly + yearly + (опционально) lifetime.
  * Один источник правды для premium_modal и PremiumContext.
+ *
+ * lifetime — это non-consumable (`$rc_lifetime` / `phraseman_lifetime`), который
+ * появляется в Offering только после того, как продукт заведён в RevenueCat
+ * (см. docs/guides/LIFETIME_SETUP_GUIDE.md). Пока продукта нет — `lifetime`
+ * просто `undefined`, и кнопка «Навсегда» на пейволах не показывается.
  */
 export function resolvePremiumPackages(
   availablePackages: PurchasesPackage[],
-): { monthly?: PurchasesPackage; yearly?: PurchasesPackage } {
+): { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage } {
   const byType = (needle: string) =>
     availablePackages.find((p: any) => String(p?.packageType || '').toUpperCase() === needle);
   const byId = (rx: RegExp) => availablePackages.find(p => rx.test(p.product.identifier));
@@ -32,8 +37,12 @@ export function resolvePremiumPackages(
     byType('$RC_ANNUAL') ??
     byType('YEARLY') ??
     byId(/year|yearly|annual|12.?month/i);
+  const lifetime =
+    byType('LIFETIME') ??
+    byType('$RC_LIFETIME') ??
+    byId(/lifetime|forever|one.?time|onetime|perpetual/i);
 
-  return { monthly, yearly };
+  return { monthly, yearly, lifetime };
 }
 
 function trimKey(raw: unknown): string {

@@ -90,11 +90,12 @@ export default function PaywallB() {
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
   const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
 
-  const price = p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
+  const isLifetimeSel = p.selected === 'lifetime';
+  const price = isLifetimeSel ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
-  const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays);
-  const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays });
-  const stickyStrings = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period });
+  const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel);
+  const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel });
+  const stickyStrings = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
 
   return (
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
@@ -164,6 +165,8 @@ export default function PaywallB() {
               trialDays={null /* триал объяснён лентой выше — без дубля */}
               loading={p.loading}
               disabled={p.purchasing}
+              lifetimePrice={p.lifetimePrice}
+              lifetimeAvailable={p.lifetimeAvailable}
             />
 
             <PaywallPriceUrgency

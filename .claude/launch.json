@@ -18,6 +18,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8841", "--directory", "C:/appsprojects/phraseman/knowly-www"],
       "port": 8841
+    },
+    {
+      "name": "admin-preview",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8842", "--directory", "C:/appsprojects/phraseman/admin"],
+      "port": 8842
     }
   ]
 }

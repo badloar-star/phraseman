@@ -7,12 +7,26 @@ import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 
 export function periodLabelFor(lang: Lang, plan: PaywallPlan): string {
+  // lifetime — разовый платёж, без периода.
+  if (plan === 'lifetime') return '';
   return plan === 'yearly'
     ? triLang(lang, { ru: '/год', uk: '/рік', es: '/año', 'pt-BR': '/ano', vi: '/năm', id: '/tahun', tr: '/yıl', pl: '/rok' })
     : triLang(lang, { ru: '/мес', uk: '/міс', es: '/mes', 'pt-BR': '/mês', vi: '/tháng', id: '/bulan', tr: '/ay', pl: '/mies.' });
 }
 
-export function ctaLabelFor(lang: Lang, trialDays: number | null): string {
+export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = false): string {
+  if (isLifetime) {
+    return triLang(lang, {
+      ru: 'Купить навсегда',
+      uk: 'Купити назавжди',
+      es: 'Comprar para siempre',
+      'pt-BR': 'Comprar para sempre',
+      vi: 'Mua trọn đời',
+      id: 'Beli selamanya',
+      tr: 'Sonsuza dek satın al',
+      pl: 'Kup na zawsze',
+    });
+  }
   if (trialDays) {
     return triLang(lang, {
       ru: `Попробовать ${trialDays} дн. бесплатно`,
@@ -39,8 +53,33 @@ export function ctaLabelFor(lang: Lang, trialDays: number | null): string {
 
 export function ctaSubLineFor(
   lang: Lang,
-  args: { price: string; period: string; hasTrial: boolean },
+  args: { price: string; period: string; hasTrial: boolean; isLifetime?: boolean },
 ): string {
+  // lifetime — разовый платёж: «отмена в любой момент» неуместна.
+  if (args.isLifetime) {
+    if (!args.price) {
+      return triLang(lang, {
+        ru: 'Точная сумма появится перед покупкой.',
+        uk: 'Точна сума з’явиться перед покупкою.',
+        es: 'El precio exacto aparecerá antes de comprar.',
+        'pt-BR': 'O preço exato aparecerá antes da compra.',
+        vi: 'Giá chính xác sẽ hiện trước khi mua.',
+        id: 'Harga pasti muncul sebelum pembelian.',
+        tr: 'Kesin tutar satın almadan önce görünür.',
+        pl: 'Dokładna kwota pojawi się przed zakupem.',
+      });
+    }
+    return triLang(lang, {
+      ru: `${args.price} · один платёж, доступ навсегда`,
+      uk: `${args.price} · один платіж, доступ назавжди`,
+      es: `${args.price} · un pago, acceso para siempre`,
+      'pt-BR': `${args.price} · pagamento único, acesso para sempre`,
+      vi: `${args.price} · thanh toán một lần, truy cập trọn đời`,
+      id: `${args.price} · sekali bayar, akses selamanya`,
+      tr: `${args.price} · tek ödeme, sonsuza dek erişim`,
+      pl: `${args.price} · jedna płatność, dostęp na zawsze`,
+    });
+  }
   const cancel = triLang(lang, {
     ru: 'отмена в любой момент',
     uk: 'скасування будь-коли',
@@ -75,9 +114,11 @@ export function ctaSubLineFor(
 
 export function stickyStringsFor(
   lang: Lang,
-  args: { trialDays: number | null; price: string; period: string },
+  args: { trialDays: number | null; price: string; period: string; isLifetime?: boolean },
 ): { title: string; sub: string; button: string } {
-  const title = args.trialDays
+  const title = args.isLifetime
+    ? triLang(lang, { ru: 'Навсегда', uk: 'Назавжди', es: 'Para siempre', 'pt-BR': 'Para sempre', vi: 'Trọn đời', id: 'Selamanya', tr: 'Sonsuza dek', pl: 'Na zawsze' })
+    : args.trialDays
     ? triLang(lang, {
         ru: `${args.trialDays} дн. бесплатно`,
         uk: `${args.trialDays} дн. безкоштовно`,
@@ -89,10 +130,12 @@ export function stickyStringsFor(
         pl: `${args.trialDays} dni za darmo`,
       })
     : triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium' });
-  const sub = args.price ? ctaSubLineFor(lang, { price: args.price, period: args.period, hasTrial: !!args.trialDays }) : '';
-  const button = triLang(lang, {
-    ru: 'Начать', uk: 'Почати', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij',
-  });
+  const sub = args.price ? ctaSubLineFor(lang, { price: args.price, period: args.period, hasTrial: !!args.trialDays, isLifetime: args.isLifetime }) : '';
+  const button = args.isLifetime
+    ? triLang(lang, { ru: 'Купить', uk: 'Купити', es: 'Comprar', 'pt-BR': 'Comprar', vi: 'Mua', id: 'Beli', tr: 'Satın al', pl: 'Kup' })
+    : triLang(lang, {
+        ru: 'Начать', uk: 'Почати', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij',
+      });
   return { title, sub, button };
 }
 

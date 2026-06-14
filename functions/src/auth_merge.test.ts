@@ -1,8 +1,75 @@
-import { mergeShards, mergeStableAccounts, mergeUserProgress } from './auth_merge';
+import {
+  chooseSurvivingAttribution,
+  mergeShards,
+  mergeStableAccounts,
+  mergeUserProgress,
+  repointReferralOnMerge,
+} from './auth_merge';
 
 const NOW = 1_777_000_000_000;
 const FUTURE = NOW + 30 * 24 * 60 * 60 * 1000; // +30d
 const PAST = NOW - 30 * 24 * 60 * 60 * 1000; // -30d
+
+// ── Referral repoint on merge ───────────────────────────────────────────────────
+
+describe('mergeUserProgress — referral claim counters (анти-сброс капа через мерж)', () => {
+  it('СУММИРУЕТ месячные счётчики наград по месяцам (не теряет счёт лузера)', () => {
+    const out = mergeUserProgress(
+      { referral_vip_claims_monthly: { '2026-06': 20 } as unknown as string },
+      { referral_vip_claims_monthly: { '2026-06': 15, '2026-05': 7 } as unknown as string },
+      NOW,
+    );
+    const m = out.referral_vip_claims_monthly as unknown as Record<string, number>;
+    expect(m['2026-06']).toBe(35); // 20 + 15 — иначе мерж сбрасывал бы кап
+    expect(m['2026-05']).toBe(7);
+  });
+
+  it('суммирует дневные счётчики по дням', () => {
+    const out = mergeUserProgress(
+      { referral_vip_claims_daily: { '2026-06-14': 3 } as unknown as string },
+      { referral_vip_claims_daily: { '2026-06-14': 2, '2026-06-13': 1 } as unknown as string },
+      NOW,
+    );
+    const d = out.referral_vip_claims_daily as unknown as Record<string, number>;
+    expect(d['2026-06-14']).toBe(5);
+    expect(d['2026-06-13']).toBe(1);
+  });
+
+  it('берёт сторону, где есть данные, если у другой пусто', () => {
+    const out = mergeUserProgress(
+      {},
+      { referral_vip_claims_monthly: { '2026-06': 9 } as unknown as string },
+      NOW,
+    );
+    expect((out.referral_vip_claims_monthly as unknown as Record<string, number>)['2026-06']).toBe(9);
+  });
+});
+
+describe('chooseSurvivingAttribution — какой referee-attribution оставить при коллизии', () => {
+  // На новый id (winner) переезжает attribution лузера; если у winner уже есть свой —
+  // оставляем «дальше прошедший» по статусу, чтобы НЕ потерять награду и НЕ выдать дважды.
+  const att = (status: string, extra: Record<string, unknown> = {}): { status: string; refCode?: string } => ({ status, ...extra });
+
+  it('rewarded побеждает qualified и pending', () => {
+    expect(chooseSurvivingAttribution(att('rewarded'), att('qualified')).status).toBe('rewarded');
+    expect(chooseSurvivingAttribution(att('pending'), att('rewarded')).status).toBe('rewarded');
+  });
+
+  it('qualified побеждает pending', () => {
+    expect(chooseSurvivingAttribution(att('qualified'), att('pending')).status).toBe('qualified');
+  });
+
+  it('при равном статусе берёт существующий у winner (a)', () => {
+    const a = att('qualified', { refCode: 'AAA' });
+    const b = att('qualified', { refCode: 'BBB' });
+    expect(chooseSurvivingAttribution(a, b).refCode).toBe('AAA');
+  });
+
+  it('если одна сторона отсутствует — берёт имеющуюся', () => {
+    expect(chooseSurvivingAttribution(undefined, att('pending')).status).toBe('pending');
+    expect(chooseSurvivingAttribution(att('qualified'), undefined).status).toBe('qualified');
+  });
+});
 
 // ── Pure merge math ───────────────────────────────────────────────────────────
 
@@ -174,16 +241,9 @@ function makeDbStub(initial: Store = {}) {
     identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
   };
 
-  const snapFor = (id: string, data: DocData | undefined) => ({
-    id,
-    ref: { id },
-    exists: !!data,
-    data: () => data,
-  });
-
   const docApi = (name: string, id: string) => ({
     id,
-    get: async () => snapFor(id, store[name]?.[id]),
+    get: async () => snapFor(name, id, store[name]?.[id]),
     set: async (data: DocData) => {
       store[name] = store[name] ?? {};
       store[name][id] = { ...(store[name][id] ?? {}), ...data };
@@ -191,6 +251,14 @@ function makeDbStub(initial: Store = {}) {
     delete: async () => {
       if (store[name]) delete store[name][id];
     },
+  });
+
+  // ref carries a functional handle (set/delete) so query-result .ref works in repoint logic.
+  const snapFor = (name: string, id: string, data: DocData | undefined) => ({
+    id,
+    ref: docApi(name, id),
+    exists: !!data,
+    data: () => data,
   });
 
   const matches = (data: DocData | undefined, field: unknown, op: string, value: unknown): boolean => {
@@ -204,7 +272,7 @@ function makeDbStub(initial: Store = {}) {
     get: async () => {
       const docs = Object.entries(store[name] ?? {})
         .filter(([, data]) => matches(data, field, op, value))
-        .map(([id, data]) => snapFor(id, data));
+        .map(([id, data]) => snapFor(name, id, data));
       return { empty: docs.length === 0, docs, size: docs.length };
     },
   });
@@ -443,5 +511,69 @@ describe('mergeStableAccounts', () => {
     await expect(
       mergeStableAccounts(db as any, 'google-15', 'stable-anon-rich', 'stable-mine', NOW),
     ).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+});
+
+// ── Integration: repointReferralOnMerge ──────────────────────────────────────
+describe('repointReferralOnMerge — перенос реферальных данных loser → winner', () => {
+  it('переносит attribution-роль REFEREE (doc loser → winner) и удаляет лузерский', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_attributions = {
+      loser: { referrerStableId: 'someoneElse', status: 'qualified', refCode: 'ABC123' },
+    };
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+    expect(store.referral_attributions.loser).toBeUndefined();
+    expect(store.referral_attributions.winner).toMatchObject({ referrerStableId: 'someoneElse', status: 'qualified' });
+  });
+
+  it('переносит роль REFERRER (referrerStableId loser → winner) на всех приглашённых', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_attributions = {
+      friendA: { referrerStableId: 'loser', status: 'qualified' },
+      friendB: { referrerStableId: 'loser', status: 'pending' },
+      other: { referrerStableId: 'unrelated', status: 'qualified' },
+    };
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+    expect(store.referral_attributions.friendA?.referrerStableId).toBe('winner');
+    expect(store.referral_attributions.friendB?.referrerStableId).toBe('winner');
+    expect(store.referral_attributions.other?.referrerStableId).toBe('unrelated');
+  });
+
+  it('НЕ создаёт self-referral: удаляет запись, где referrer стал бы == referee', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_attributions = {
+      // loser пригласил winner → после слияния это сам себя пригласил
+      winner: { referrerStableId: 'loser', status: 'pending' },
+    };
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+    expect(store.referral_attributions.winner).toBeUndefined();
+  });
+
+  it('при коллизии referee-доков оставляет дальше прошедший статус (rewarded > pending)', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_attributions = {
+      winner: { referrerStableId: 'refX', status: 'pending' },
+      loser: { referrerStableId: 'refY', status: 'rewarded' },
+    };
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+    expect(store.referral_attributions.loser).toBeUndefined();
+    expect(store.referral_attributions.winner?.status).toBe('rewarded');
+  });
+
+  it('переносит владение кодом (referral_codes.ownerStableId + referral_owners)', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_codes = { ZZZ999: { ownerStableId: 'loser', normalized: 'ZZZ999' } };
+    store.referral_owners = { loser: { code: 'ZZZ999', ownerStableId: 'loser' } };
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+    expect(store.referral_codes.ZZZ999?.ownerStableId).toBe('winner');
+    expect(store.referral_owners.loser).toBeUndefined();
+    expect(store.referral_owners.winner).toMatchObject({ ownerStableId: 'winner', code: 'ZZZ999' });
+  });
+
+  it('no-op при winner === loser', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_attributions = { x: { referrerStableId: 'x', status: 'pending' } };
+    await repointReferralOnMerge(db as any, 'same', 'same');
+    expect(store.referral_attributions.x).toBeDefined();
   });
 });

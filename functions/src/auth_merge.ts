@@ -61,7 +61,61 @@ const VIP_KEYS = [
 
 const PREMIUM_AND_VIP_KEYS = new Set<string>([...PREMIUM_KEYS, ...VIP_KEYS, 'had_premium_ever']);
 
+/**
+ * Реферальные счётчики наград — вложенные map {период: число} в progress. Их НЕЛЬЗЯ
+ * брать «целиком от победителя» (generic-логика так и делает для объектов) — иначе мерж
+ * СБРАСЫВАЛ БЫ анти-фарм кап (лузерский счёт терялся). Суммируем по периодам.
+ */
+const REFERRAL_CLAIM_COUNTER_KEYS = ['referral_vip_claims_monthly', 'referral_vip_claims_daily'] as const;
+
 type ProgressMap = Record<string, unknown>;
+
+/** Парсит вложенный счётчик {период: число} из значения progress (объект или JSON-строка). */
+function asClaimCounter(value: unknown): Record<string, number> {
+  let obj: unknown = value;
+  if (typeof value === 'string') {
+    try { obj = JSON.parse(value); } catch { return {}; }
+  }
+  if (!obj || typeof obj !== 'object') return {};
+  const out: Record<string, number> = {};
+  for (const [k, v] of Object.entries(obj as Record<string, unknown>)) {
+    const n = Number(v);
+    if (Number.isFinite(n) && n > 0) out[k] = Math.floor(n);
+  }
+  return out;
+}
+
+/** Сумма двух реферальных счётчиков по периодам (объединение ключей, сложение значений). */
+function mergeClaimCounters(a: unknown, b: unknown): Record<string, number> | undefined {
+  const ca = asClaimCounter(a);
+  const cb = asClaimCounter(b);
+  const keys = new Set([...Object.keys(ca), ...Object.keys(cb)]);
+  if (keys.size === 0) return undefined;
+  const out: Record<string, number> = {};
+  for (const k of keys) out[k] = (ca[k] ?? 0) + (cb[k] ?? 0);
+  return out;
+}
+
+/**
+ * Выбирает, какой referee-attribution оставить при коллизии на merge (у winner уже есть свой).
+ * Порядок «дальше прошёл»: rewarded > qualified/skipped > pending. Ничья → существующий (a).
+ * Это НЕ выдаёт награду повторно (refereeRewardedAtMs/статус сохраняются) и НЕ теряет её.
+ * Экспортируется для тестов.
+ */
+export function chooseSurvivingAttribution<T extends { status?: string }>(
+  a: T | undefined,
+  b: T | undefined,
+): T {
+  if (!a) return b as T;
+  if (!b) return a;
+  const rank = (s: string | undefined): number => {
+    if (s === 'rewarded' || s === 'revoked') return 3;
+    if (s === 'qualified' || s === 'skipped_referrer_cap') return 2;
+    if (s === 'pending') return 1;
+    return 0;
+  };
+  return rank(b.status) > rank(a.status) ? b : a;
+}
 
 function cleanStr(value: unknown): string {
   return String(value ?? '').trim();
@@ -194,6 +248,7 @@ export function mergeUserProgress(
 
   for (const key of allKeys) {
     if (PREMIUM_AND_VIP_KEYS.has(key)) continue; // handled as whole blocks below
+    if ((REFERRAL_CLAIM_COUNTER_KEYS as readonly string[]).includes(key)) continue; // summed below
 
     const wv = w[key];
     const lv = l[key];
@@ -251,6 +306,13 @@ export function mergeUserProgress(
     out.had_premium_ever = w.had_premium_ever;
   } else if (l.had_premium_ever !== undefined) {
     out.had_premium_ever = l.had_premium_ever;
+  }
+
+  // ── Реферальные счётчики наград: СУММИРУЕМ по периодам (не сбрасываем кап мержем). ──
+  for (const key of REFERRAL_CLAIM_COUNTER_KEYS) {
+    const merged = mergeClaimCounters(w[key], l[key]);
+    if (merged) out[key] = merged;
+    else delete out[key];
   }
 
   return out;
@@ -433,6 +495,20 @@ export async function mergeStableAccounts(
     );
   });
 
+  // Re-point referral data (attributions as referee/referrer + owned code) from loser to
+  // winner — иначе приглашённые друзья и незабранные награды «терялись» после входа на
+  // новом телефоне. Best-effort: сбой не валит merge (как и cleanup выше).
+  await repointReferralOnMerge(db, winnerId, loserId).catch((e) => {
+    console.warn(
+      JSON.stringify({
+        event: 'account_merge_referral_repoint_failed',
+        winnerId,
+        loserId,
+        message: String((e as { message?: unknown })?.message ?? e).slice(0, 160),
+      }),
+    );
+  });
+
   console.log(
     JSON.stringify({
       event: 'account_merged',
@@ -444,6 +520,84 @@ export async function mergeStableAccounts(
   );
 
   return { canonicalStableId: winnerId, mergedFromStableId: loserId, alreadyMerged: false };
+}
+
+const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
+const REFERRAL_CODES = 'referral_codes';
+const REFERRAL_OWNERS = 'referral_owners';
+
+/**
+ * Переносит реферальные данные с loser-аккаунта на winner после merge.
+ * Документы attribution заведены по REFEREE id (doc id) и хранят REFERRER id в поле.
+ * Переносим обе роли + владение кодом. Идемпотентно, защищено от self-referral и
+ * двойной выдачи (статус/refereeRewardedAtMs не пересчитываем). Best-effort, без транзакции
+ * на весь объём (могут быть сотни строк) — каждый кусок атомарен сам по себе.
+ */
+export async function repointReferralOnMerge(
+  db: admin.firestore.Firestore,
+  winnerId: string,
+  loserId: string,
+): Promise<void> {
+  if (!winnerId || !loserId || winnerId === loserId) return;
+
+  // (1) Роль REFEREE: referral_attributions/{loserId} → /{winnerId} (rename = copy+delete).
+  const loserAttrRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(loserId);
+  const loserAttrSnap = await loserAttrRef.get();
+  if (loserAttrSnap.exists) {
+    const loserAttr = loserAttrSnap.data() as { referrerStableId?: string; status?: string };
+    // Self-referral после слияния (winner пригласил loser или наоборот) — такая запись бессмысленна.
+    if (String(loserAttr?.referrerStableId ?? '') === winnerId) {
+      await loserAttrRef.delete().catch(() => {});
+    } else {
+      const winnerAttrRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(winnerId);
+      const winnerAttrSnap = await winnerAttrRef.get();
+      const survivor = chooseSurvivingAttribution(
+        winnerAttrSnap.exists ? (winnerAttrSnap.data() as { status?: string }) : undefined,
+        loserAttr,
+      );
+      await winnerAttrRef.set(survivor as Record<string, unknown>, { merge: true });
+      await loserAttrRef.delete().catch(() => {});
+    }
+  }
+
+  // (2) Роль REFERRER: все attribution, где referrerStableId == loserId → winnerId.
+  // Доки, ставшие self-referral (referee doc id == winnerId), удаляем.
+  const asReferrer = await db
+    .collection(REFERRAL_ATTRIBUTIONS)
+    .where('referrerStableId', '==', loserId)
+    .limit(500)
+    .get();
+  for (const d of asReferrer.docs) {
+    if (d.id === winnerId) {
+      await d.ref.delete().catch(() => {});
+    } else {
+      await d.ref.set({ referrerStableId: winnerId }, { merge: true }).catch(() => {});
+    }
+  }
+
+  // (3) Владение КОДОМ: referral_codes где ownerStableId == loserId → winnerId.
+  const ownedCodes = await db
+    .collection(REFERRAL_CODES)
+    .where('ownerStableId', '==', loserId)
+    .limit(50)
+    .get();
+  for (const d of ownedCodes.docs) {
+    await d.ref.set({ ownerStableId: winnerId }, { merge: true }).catch(() => {});
+  }
+
+  // (4) referral_owners/{loserId}: если у winner ещё нет своего кода — переносим, иначе
+  // лузерский owner-док убираем (его referral_codes уже перенаправлены на winner в (3)).
+  const loserOwnerRef = db.collection(REFERRAL_OWNERS).doc(loserId);
+  const loserOwnerSnap = await loserOwnerRef.get();
+  if (loserOwnerSnap.exists) {
+    const winnerOwnerRef = db.collection(REFERRAL_OWNERS).doc(winnerId);
+    const winnerOwnerSnap = await winnerOwnerRef.get();
+    if (!winnerOwnerSnap.exists) {
+      const data = loserOwnerSnap.data() as Record<string, unknown>;
+      await winnerOwnerRef.set({ ...data, ownerStableId: winnerId }, { merge: true }).catch(() => {});
+    }
+    await loserOwnerRef.delete().catch(() => {});
+  }
 }
 
 export const authMergeStableAccounts = onCall(HOT_CALLABLE_OPTIONS, async (request) => {

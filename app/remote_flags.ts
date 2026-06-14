@@ -29,7 +29,11 @@ export type RemoteNumberKey =
   | 'trainer_ab_b_pct'
   | 'trainer_ab_c_pct'
   | 'paywall_v2_pct'
-  | 'league_xp_promotion_threshold';
+  | 'league_xp_promotion_threshold'
+  | 'arena_sr_win'
+  | 'arena_sr_loss'
+  | 'arena_sr_bot_win'
+  | 'arena_season_rollback_steps';
 
 export type RemoteBoolKey =
   | 'referral_enabled'
@@ -58,6 +62,10 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   trainer_ab_c_pct: 0,
   paywall_v2_pct: 50,
   league_xp_promotion_threshold: 1000,
+  arena_sr_win: 25,
+  arena_sr_loss: 20,
+  arena_sr_bot_win: 12,
+  arena_season_rollback_steps: 3,
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
@@ -87,6 +95,10 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   trainer_ab_c_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },
   league_xp_promotion_threshold: { min: 1, max: 1000000 },
+  arena_sr_win: { min: 0, max: 999 },
+  arena_sr_loss: { min: 0, max: 999 },
+  arena_sr_bot_win: { min: 0, max: 999 },
+  arena_season_rollback_steps: { min: 0, max: 23 },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
@@ -186,6 +198,10 @@ export const getEnergyRecoveryIntervalMs = () => getRemoteNumber('energy_recover
 export const getFreeTrainerSessionsPerDay = () => getRemoteNumber('free_trainer_sessions_per_day');
 export const getPaywallV2Pct = () => getRemoteNumber('paywall_v2_pct');
 export const getLeagueXpPromotionThreshold = () => getRemoteNumber('league_xp_promotion_threshold');
+export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
+export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
+export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
+export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_rollback_steps');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');

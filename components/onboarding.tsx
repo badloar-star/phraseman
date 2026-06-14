@@ -1108,13 +1108,27 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     // `result = 'ok'` + fire-and-forget reserveName — поэтому дубликаты имён
     // проходили насквозь. Теперь имя резервируется на сервере атомарно и не
     // принимается, пока бронь не подтверждена.
+    //
+    // Анти-петля «имя занято после краша»: если приложение упало ПОСЛЕ брони имени,
+    // но ДО onboarding_done, юзер заходит снова и вводит ТО ЖЕ имя. Передаём ранее
+    // сохранённое user_name как oldName, чтобы сервер освободил/узнал свой же слот
+    // (на сервере self-owner → 'ok'). А если идентичность всё же дрейфанула и сервер
+    // вернул 'taken', но вводимое имя == уже сохранённому на ЭТОМ устройстве — это
+    // провабельно собственное имя юзера, пропускаем (иначе вечный тупик).
+    let priorReservedName = '';
+    try {
+      priorReservedName = (await AsyncStorage.getItem('user_name'))?.trim() ?? '';
+    } catch { /* ignore */ }
+    const reusingOwnName = priorReservedName.length > 0
+      && priorReservedName.toLowerCase() === trimmed.toLowerCase();
+
     let result: Awaited<ReturnType<typeof reserveName>>;
     try {
-      result = await reserveName(trimmed, '');
+      result = await reserveName(trimmed, priorReservedName);
     } catch {
       result = 'error';
     }
-    if (result === 'taken') {
+    if (result === 'taken' && !reusingOwnName) {
       setNameBusy(false);
       setNameFieldError(pick(
         'Это имя уже занято — придумай другой ник.',
@@ -1123,7 +1137,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       ));
       return;
     }
-    if (result !== 'ok') {
+    if (result !== 'ok' && !reusingOwnName) {
       setNameBusy(false);
       setNameFieldError(pick(
         'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
@@ -1133,7 +1147,8 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       return;
     }
 
-    // Бронь подтверждена ('ok') — теперь можно применить имя.
+    // Бронь подтверждена ('ok') ИЛИ юзер повторно вводит уже зарезервированное им же
+    // имя (анти-петля после краша) — применяем имя.
     setName(trimmed);
     nameForProfileRef.current = trimmed;
     try {

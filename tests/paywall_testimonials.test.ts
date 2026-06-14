@@ -65,10 +65,23 @@ describe('paywall_testimonials — pickTestimonials', () => {
     }
   });
 
-  it('прод-выборка пуста пока нет verified-отзывов (безопасный дефолт)', () => {
-    // сейчас все отзывы — черновики → в проде блок не покажется (нет фейка)
+  it('ru: прод-выборка содержит только РЕАЛЬНЫЕ (verified) отзывы', () => {
+    // ru теперь имеет verified-отзывы (реальные Google Play) → блок показывается,
+    // но строго без черновиков.
     const prod = pickTestimonials('ru', 'generic', 0, 2, false);
-    expect(prod).toHaveLength(0);
+    expect(prod.length).toBeGreaterThan(0);
+    expect(prod.every(t => t.verified)).toBe(true);
+    expect(prod.some(t => t.author.includes(DRAFT_MARKER))).toBe(false);
+  });
+
+  it('язык без verified-отзывов даёт пустую прод-выборку (нет фейка)', () => {
+    // у языков, где есть только черновики, прод-блок не рендерится (безопасный дефолт).
+    const langWithOnlyDrafts = (Object.entries(TESTIMONIALS) as [Lang, Testimonial[]][])
+      .find(([, list]) => list.length > 0 && list.every(t => !t.verified));
+    if (langWithOnlyDrafts) {
+      const prod = pickTestimonials(langWithOnlyDrafts[0], 'generic', 0, 2, false);
+      expect(prod).toHaveLength(0);
+    }
   });
 
   it('fallback на ru для неизвестного языка', () => {

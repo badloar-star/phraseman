@@ -38,13 +38,19 @@ export interface Testimonial {
 // TODO(before release): заменить на РЕАЛЬНЫЕ отзывы и выставить verified:true.
 // ────────────────────────────────────────────────────────────────────────────
 const D = DRAFT_MARKER;
+// РЕАЛЬНЫЕ отзывы Google Play (verified:true) — те же, что на лендинге knowlyapps.com
+// (commit 0338417a). Атрибуция «Отзыв в Google Play» честная: на витрине отзывы
+// показаны без имён. Текст — сжатые цитаты из реальных отзывов, без искажения смысла.
+const GP = 'Отзыв в Google Play';
 export const TESTIMONIALS: Record<Lang, Testimonial[]> = {
   ru: [
-    { text: 'За месяц поняла первый сериал без субтитров.', author: `Анна ${D}`, verified: false, goalTag: 'course_after_lesson3' },
-    { text: 'Наконец заговорил на встречах с иностранцами.', author: `Игорь ${D}`, verified: false },
+    { text: 'Пробовал Duolingo, Puzzle English, Anki — только это приложение реально мотивирует и учит понимать живой английский.', author: GP, verified: true, goalTag: 'course_after_lesson3' },
+    { text: 'Учишь не отдельные слова, а целые фразы носителей. За месяц заметно улучшилось понимание на слух.', author: GP, verified: true },
+    { text: 'С первого урока увлекает и хочется продолжать. Короткие, очень понятные подсказки при ошибках. Рекомендую 👍', author: GP, verified: true },
+    { text: 'Фразы хорошо запоминаются, грамматика чётко и кратко, а значения слов — с комментарием, часто с юмором.', author: GP, verified: true },
+    // Черновики (verified:false) — только для dev/preview, в прод не попадают.
     { text: '15 минут утром — и словарь растёт сам.', author: `Мария ${D}`, verified: false },
     { text: 'Серия держит меня в тонусе каждый день.', author: `Дмитрий ${D}`, verified: false, goalTag: 'streak' },
-    { text: 'Фразы из жизни, а не из учебника. Это цепляет.', author: `Лена ${D}`, verified: false },
   ],
   uk: [
     { text: 'За місяць зрозуміла перший серіал без субтитрів.', author: `Анна ${D}`, verified: false, goalTag: 'course_after_lesson3' },

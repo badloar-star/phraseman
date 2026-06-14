@@ -233,22 +233,10 @@ interface TabUnderlineButtonProps {
     badgeLabel?: string;
 }
 
-/** Полупрозрачная заливка из hex-цвета акцента (для «капли» под активной вкладкой). */
-function withHexAlpha(hex: string, alpha: number): string {
-    if (hex[0] !== '#') return hex;
-    let h = hex.slice(1);
-    if (h.length === 3) h = h.split('').map((c) => c + c).join('');
-    if (h.length === 8) h = h.slice(0, 6);
-    if (h.length !== 6) return hex;
-    const a = Math.max(0, Math.min(1, alpha));
-    const hh = Math.round(a * 255).toString(16).padStart(2, '0');
-    return `#${h}${hh}`;
-}
-
 /**
- * Вкладка-надпись переключателя «Уроки | Диалоги», вариант «капля с выгибом»:
- * у активной вкладки — мягкая плашка-капля под текстом + золотая дуга-«улыбка» снизу
- * (выгиб вниз). Цвет акцента приходит от темы (золото / accent). Неактивная — чистый текст.
+ * Вкладка-надпись переключателя «Уроки | Диалоги»: у активной вкладки снизу —
+ * золотая полоска-дуга с выгибом вниз («улыбка»), без отдельной плашки.
+ * Цвет акцента приходит от темы (золото / accent). Неактивная — чистый текст.
  */
 function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize, onPress, badge, badgeColor, badgeTextColor, badgeLabel }: TabUnderlineButtonProps) {
     // Дуга шириной по содержимому: оцениваем по длине надписи (моноширинного API нет).
@@ -262,23 +250,9 @@ function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize
             accessibilityState={{ selected: active }}
             activeOpacity={0.7}
             onPress={onPress}
-            style={{ paddingTop: 8, paddingBottom: 12, alignItems: 'center', position: 'relative' }}
+            style={{ paddingTop: 10, paddingBottom: 12, alignItems: 'center', position: 'relative' }}
         >
-            <View
-                style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 6,
-                    paddingHorizontal: active ? 10 : 0,
-                    paddingVertical: active ? 4 : 4,
-                    borderRadius: 11,
-                    borderTopLeftRadius: 11,
-                    borderTopRightRadius: 11,
-                    borderBottomLeftRadius: 4,
-                    borderBottomRightRadius: 4,
-                    backgroundColor: active ? withHexAlpha(accent, 0.12) : 'transparent',
-                }}
-            >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                 <Text style={{ color: active ? color : mutedColor, fontSize: Math.max(14, fontSize), fontWeight: active ? '800' : '600' }} numberOfLines={1}>
                     {label}
                 </Text>

@@ -1590,6 +1590,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               onPress={() => {
                 setSelectedPlanGoal(choice.id);
                 setSelectedPlanOverride(null);
+                void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_plan_goal_select', { goal: choice.id }));
                 goToStep('planLevel');
               }}
             >
@@ -1622,6 +1623,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               onPress={() => {
                 setSelectedPlanLevel(choice.id);
                 setSelectedPlanOverride(null);
+                void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_plan_level_select', { level: choice.id }));
                 goToStep('planMinutes');
               }}
             >
@@ -1654,6 +1656,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               onPress={() => {
                 setSelectedPlanMinutes(choice);
                 setSelectedPlanOverride(null);
+                void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_plan_minutes_select', { minutes: choice }));
                 scheduleDailyReminder(20, 0, lang, { requestPermission: false }).catch(() => {});
                 goToStep('planPhrase');
               }}
@@ -1724,6 +1727,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           edgeColor="#C4922A"
           onPress={() => {
             setPlanPhraseWasCorrect(!planPhraseHasError);
+            void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_plan_phrase_done', { correct: !planPhraseHasError }));
             goToStep('planLoading');
           }}
         >

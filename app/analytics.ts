@@ -70,6 +70,10 @@ export type AnalyticsEvent =
   // ── ВОРОНКА КОНВЕРСИИ ──────────────────────────────────────────────────
   | 'onboarding_step_view'        // показан шаг онбординга (props.step)
   | 'onboarding_complete'
+  | 'onboarding_plan_goal_select'    // выбрана цель плана (props.goal)
+  | 'onboarding_plan_level_select'   // выбран уровень (props.level)
+  | 'onboarding_plan_minutes_select' // выбраны минуты/день (props.minutes)
+  | 'onboarding_plan_phrase_done'    // собрал первую фразу (props.correct) — сигнал активации
   | 'onboarding_plan_paywall_view'
   | 'onboarding_plan_trial_cta'   // нажата CTA триала/подписки в онбординге
   | 'onboarding_continue_free'    // «Продолжить без плана»

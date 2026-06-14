@@ -20578,7 +20578,7 @@ export const GAVAN_DAY_114: PlanContentDay = {
       },
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['Me', 'My', 'We', 'He', 'She'] },
-        { text: 'worked', partOfSpeech: 'verb', distractors: ['work', 'working', 'works', 'did', 'worke'] },
+        { text: 'worked', partOfSpeech: 'verb', distractors: ['work', 'working', 'works', 'studied', 'stayed'] },
         { text: 'at', partOfSpeech: 'preposition', distractors: ['in', 'on', 'did', 'by', 'near'] },
         { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'one', 'this', 'that'] },
         { text: 'bank', partOfSpeech: 'noun', distractors: ['school', 'hotel', 'shop', 'office', 'store'] },

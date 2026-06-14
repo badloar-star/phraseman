@@ -53,7 +53,7 @@ async function assertStableOwner(
   db: admin.firestore.Firestore,
   authUid: string,
   stableId: string,
-  options?: { allowProviderRelink?: boolean },
+  options?: { allowProviderRelink?: boolean; allowAnonRelink?: boolean },
 ): Promise<void> {
   if (!stableId || stableId.length > 160) {
     throw new HttpsError('invalid-argument', 'stable_id_required');
@@ -82,7 +82,11 @@ async function assertStableOwner(
     : '';
   if (linkedAuthUid === authUid) return;
 
-  if (options?.allowProviderRelink === true && !linkedStableId && !linkedAuthUid) {
+  // Переустановка приложения пересоздаёт анонимный Firebase uid, но stable_id
+  // остаётся в Keychain/AsyncStorage. Разрешаем перепривязать анонимный uid к тому
+  // же stable_id, если: (а) аккаунт не имеет provider-привязки (чисто анонимный),
+  // (б) новый uid ещё не занят другим stable_id, (в) явно запрошен allowAnonRelink.
+  if ((options?.allowAnonRelink === true || options?.allowProviderRelink === true) && !linkedStableId && !linkedAuthUid) {
     const existingByAuth = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get().catch(() => null);
     const existingStableId = String(existingByAuth?.docs?.[0]?.id ?? '').trim();
     if (!existingStableId || existingStableId === stableId) return;
@@ -505,7 +509,7 @@ export async function resolveStableUidForAuth(
   db: admin.firestore.Firestore,
   authUid: string,
   requestedStableId?: unknown,
-  options?: { requireKnownIdentity?: boolean; allowProviderRelink?: boolean },
+  options?: { requireKnownIdentity?: boolean; allowProviderRelink?: boolean; allowAnonRelink?: boolean },
 ): Promise<string> {
   const stableId = normalizeStableId(requestedStableId);
   if (stableId) {
@@ -546,7 +550,8 @@ export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request)
   const stableId = normalizeStableId(request.data?.stableId);
   const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
   const allowProviderRelink = signInProvider.length > 0 && signInProvider !== 'anonymous';
-  const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink });
+  const allowAnonRelink = !allowProviderRelink;
+  const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink, allowAnonRelink });
   return { ok: true, stableUid, authUid };
 });
 

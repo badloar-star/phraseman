@@ -87,6 +87,7 @@ export type AnalyticsEvent =
   | 'intro_ended_cta'             // нажата «Открыть полный доступ»
   | 'intro_ended_dismiss'         // «Продолжить бесплатно»
   | 'paywall_shown'
+  | 'paywall_personalization_tag_shown'
   | 'paywall_plan_select'
   | 'paywall_cta_click'
   | 'paywall_close'

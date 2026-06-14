@@ -95,7 +95,7 @@ import {
   formatCountdown,
   type UrgencyState,
 } from './paywall_urgency';
-import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
+import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import {
   shouldShowExitTrialOffer,
   shouldShowPrimaryTrialUi,
@@ -1473,7 +1473,9 @@ export default function PremiumModal() {
   React.useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
       void collectPaywallStats().then((stats) => {
-        setPersonalizedTags(pickPaywallTags(stats, 3));
+        const tags = pickPaywallTags(stats, 3);
+        setPersonalizedTags(tags);
+        trackPaywallTagsShown(tags, 'v1', paywallOpenOrigin);
       });
     });
     return () => task.cancel();

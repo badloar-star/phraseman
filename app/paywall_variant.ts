@@ -122,7 +122,13 @@ export async function loadPaywallAbConfig(): Promise<PaywallAbConfig> {
   const factory = await getFirestoreModule();
   if (factory) {
     try {
-      const snap = await factory().collection(CONFIG_DOC_COLLECTION).doc(CONFIG_DOC_ID).get();
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('paywall_config_timeout')), 3000),
+      );
+      const snap = await Promise.race([
+        factory().collection(CONFIG_DOC_COLLECTION).doc(CONFIG_DOC_ID).get(),
+        timeout,
+      ]);
       if (snap.exists) {
         _config = sanitizeConfig(snap.data());
         void AsyncStorage.setItem(CONFIG_CACHE_KEY, JSON.stringify({

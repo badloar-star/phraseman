@@ -24,7 +24,7 @@ import {
 import { usePaywallPurchase } from './paywall_purchase';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
-import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
+import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
@@ -61,7 +61,10 @@ export default function PaywallA() {
       try {
         const stats = await collectPaywallStats();
         const tags = pickPaywallTags(stats, 1);
-        if (!dead && tags.length > 0) setPersonalTag(tags[0]);
+        if (!dead) {
+          if (tags.length > 0) setPersonalTag(tags[0]);
+          trackPaywallTagsShown(tags, VARIANT, source);
+        }
       } catch { /* некритично */ }
       try {
         const m = await readProgressMirror();
@@ -69,7 +72,7 @@ export default function PaywallA() {
       } catch { /* некритично */ }
     })();
     return () => { dead = true; };
-  }, []);
+  }, [source]);
 
   // вход — как у v2: мягкое появление
   const opacity = useRef(new Animated.Value(0)).current;

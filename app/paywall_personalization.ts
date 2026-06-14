@@ -17,6 +17,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getForegroundUsageMs } from './foreground_usage_ms';
 import { DebugLogger } from './debug-logger';
+import { trackEvent } from './analytics';
 
 // ── Storage keys (атомарные счётчики) ────────────────────────────────────────
 export const ENERGY_ZERO_COUNT_KEY = 'energy_zero_count_v1';
@@ -320,6 +321,23 @@ function uk_hours(h: number): string {
 
 function es_hours(h: number): string {
   return h === 1 ? 'hora' : 'horas';
+}
+
+/**
+ * Emit analytics after tags are rendered on screen.
+ * Call once per paywall open, after pickPaywallTags().
+ */
+export function trackPaywallTagsShown(
+  tags: PersonalizedTag[],
+  paywallVariant: string,
+  context: string,
+): void {
+  void trackEvent('paywall_personalization_tag_shown', {
+    paywall: paywallVariant,
+    context,
+    tag_keys: tags.map((t) => t.key).join(','),
+    tag_count: tags.length,
+  }).catch(() => {});
 }
 
 /* expo-router route shim */

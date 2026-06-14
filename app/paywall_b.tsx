@@ -19,7 +19,7 @@ import { normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy, makeLP } f
 import { usePaywallPurchase } from './paywall_purchase';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
-import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
+import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
@@ -61,7 +61,11 @@ export default function PaywallB() {
     void (async () => {
       try {
         const stats = await collectPaywallStats();
-        if (!dead) setTags(pickPaywallTags(stats, 2));
+        if (!dead) {
+          const tags = pickPaywallTags(stats, 2);
+          setTags(tags);
+          trackPaywallTagsShown(tags, VARIANT, source);
+        }
       } catch { /* некритично */ }
       try {
         const m = await readProgressMirror();

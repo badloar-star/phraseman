@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { Image } from 'expo-image';
+import Svg, { Path } from 'react-native-svg';
 import TapScale from '../../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -232,25 +233,67 @@ interface TabUnderlineButtonProps {
     badgeLabel?: string;
 }
 
-/** Вкладка-надпись с золотой полоской снизу для переключателя «Уроки | Диалоги». */
+/** Полупрозрачная заливка из hex-цвета акцента (для «капли» под активной вкладкой). */
+function withHexAlpha(hex: string, alpha: number): string {
+    if (hex[0] !== '#') return hex;
+    let h = hex.slice(1);
+    if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+    if (h.length === 8) h = h.slice(0, 6);
+    if (h.length !== 6) return hex;
+    const a = Math.max(0, Math.min(1, alpha));
+    const hh = Math.round(a * 255).toString(16).padStart(2, '0');
+    return `#${h}${hh}`;
+}
+
+/**
+ * Вкладка-надпись переключателя «Уроки | Диалоги», вариант «капля с выгибом»:
+ * у активной вкладки — мягкая плашка-капля под текстом + золотая дуга-«улыбка» снизу
+ * (выгиб вниз). Цвет акцента приходит от темы (золото / accent). Неактивная — чистый текст.
+ */
 function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize, onPress, badge, badgeColor, badgeTextColor, badgeLabel }: TabUnderlineButtonProps) {
+    // Дуга шириной по содержимому: оцениваем по длине надписи (моноширинного API нет).
+    const arcWidth = Math.max(44, Math.round(label.length * Math.max(14, fontSize) * 0.62));
+    const arcHeight = 9;
+    // Квадратичная кривая, прогнутая вниз: концы выше центра → «улыбка».
+    const arcPath = `M2 2 Q${arcWidth / 2} ${arcHeight - 1} ${arcWidth - 2} 2`;
     return (
         <TouchableOpacity
             accessibilityRole="tab"
             accessibilityState={{ selected: active }}
             activeOpacity={0.7}
             onPress={onPress}
-            style={{ paddingTop: 10, paddingBottom: 9, flexDirection: 'row', alignItems: 'center', gap: 6, borderBottomWidth: 2, borderBottomColor: active ? accent : 'transparent', marginBottom: -1 }}
+            style={{ paddingTop: 8, paddingBottom: 12, alignItems: 'center', position: 'relative' }}
         >
-            <Text style={{ color: active ? color : mutedColor, fontSize: Math.max(14, fontSize), fontWeight: active ? '800' : '600' }} numberOfLines={1}>
-                {label}
-            </Text>
-            {badge && badgeLabel ? (
-                <View style={{ borderRadius: 8, paddingHorizontal: 6, paddingVertical: 1, backgroundColor: badgeColor ?? accent }}>
-                    <Text style={{ color: badgeTextColor ?? '#fff', fontSize: 10, fontWeight: '900' }} maxFontSizeMultiplier={1}>
-                        {badgeLabel}
-                    </Text>
-                </View>
+            <View
+                style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 6,
+                    paddingHorizontal: active ? 10 : 0,
+                    paddingVertical: active ? 4 : 4,
+                    borderRadius: 11,
+                    borderTopLeftRadius: 11,
+                    borderTopRightRadius: 11,
+                    borderBottomLeftRadius: 4,
+                    borderBottomRightRadius: 4,
+                    backgroundColor: active ? withHexAlpha(accent, 0.12) : 'transparent',
+                }}
+            >
+                <Text style={{ color: active ? color : mutedColor, fontSize: Math.max(14, fontSize), fontWeight: active ? '800' : '600' }} numberOfLines={1}>
+                    {label}
+                </Text>
+                {badge && badgeLabel ? (
+                    <View style={{ borderRadius: 8, paddingHorizontal: 6, paddingVertical: 1, backgroundColor: badgeColor ?? accent }}>
+                        <Text style={{ color: badgeTextColor ?? '#fff', fontSize: 10, fontWeight: '900' }} maxFontSizeMultiplier={1}>
+                            {badgeLabel}
+                        </Text>
+                    </View>
+                ) : null}
+            </View>
+            {active ? (
+                <Svg width={arcWidth} height={arcHeight} viewBox={`0 0 ${arcWidth} ${arcHeight}`} style={{ position: 'absolute', bottom: 2 }}>
+                    <Path d={arcPath} stroke={accent} strokeWidth={2.6} strokeLinecap="round" fill="none" />
+                </Svg>
             ) : null}
         </TouchableOpacity>
     );

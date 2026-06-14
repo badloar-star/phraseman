@@ -23,6 +23,7 @@ import {
   rememberArenaLobbyProfile,
 } from './arena_rating_cache';
 import { ArenaProfile, RankTier, RankLevel, RANK_TIERS, RANK_LEVELS, rankToIndex } from './types/arena';
+import { rankIndex as seasonRankIndex } from './arena_season_math';
 import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank';
 import { emitAppEvent } from './events';
 import { useLang } from '../components/LangContext';
@@ -357,19 +358,34 @@ export default function DuelRatingScreen() {
             </Pressable>
           </View>
           <View style={styles.myCardRight}>
-            <Stars count={myStars} color={t.gold} />
-            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }}>
-              {triLang(lang, {
-                ru: `${myStars}/3 до повышения`,
-                uk: `${myStars}/3 до підвищення`,
-                es: `${myStars}/3 para subir de rango`,
-                'pt-BR': `${myStars}/3 para subir de ranque`,
-                vi: `${myStars}/3 để lên hạng`,
-                id: `${myStars}/3 untuk naik rank`,
-                tr: `Yükselmek için ${myStars}/3`,
-                pl: `${myStars}/3 do awansu`,
-              })}
-            </Text>
+            {myRankIdx >= seasonRankIndex('legend', 'III') ? (
+              <>
+                <Text style={{ color: '#FFD24A', fontSize: f.h2, fontWeight: '800' }}>
+                  {myProfile?.sr ?? 0} SR
+                </Text>
+                <TapScale onPress={() => { hapticTap(); router.push('/arena_season_leaderboard' as any); }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4, textDecorationLine: 'underline' }}>
+                    {triLang(lang, { ru: 'Топ сезона', uk: 'Топ сезону', es: 'Top temporada', 'pt-BR': 'Top temporada', vi: 'Top mùa', id: 'Top musim', tr: 'Sezon topları', pl: 'Top sezonu' })}
+                  </Text>
+                </TapScale>
+              </>
+            ) : (
+              <>
+                <Stars count={myStars} color={t.gold} />
+                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }}>
+                  {triLang(lang, {
+                    ru: `${myStars}/3 до повышения`,
+                    uk: `${myStars}/3 до підвищення`,
+                    es: `${myStars}/3 para subir de rango`,
+                    'pt-BR': `${myStars}/3 para subir de ranque`,
+                    vi: `${myStars}/3 để lên hạng`,
+                    id: `${myStars}/3 untuk naik rank`,
+                    tr: `Yükselmek için ${myStars}/3`,
+                    pl: `${myStars}/3 do awansu`,
+                  })}
+                </Text>
+              </>
+            )}
           </View>
         </LinearGradient>
 

@@ -47,6 +47,8 @@ export const AVATAR_AURAS: AvatarAuraDef[] = [
   { id: 'aura-violet', nameRu: 'Виолет', nameUk: 'Віолет', nameEs: 'Violeta', namePtBr: 'Violeta', nameVi: 'Tím', nameId: 'Violet', nameTr: 'Mor', namePl: 'Fiolet', color: '#A78BFA', softColor: 'rgba(167,139,250,0.22)' },
   { id: 'aura-coral', nameRu: 'Коралл', nameUk: 'Корал', nameEs: 'Coral', namePtBr: 'Coral', nameVi: 'San hô', nameId: 'Koral', nameTr: 'Mercan', namePl: 'Koral', color: '#F97316', softColor: 'rgba(249,115,22,0.22)' },
   { id: 'aura-flame-51', nameRu: 'Пламя', nameUk: 'Полумʼя', nameEs: 'Llama', namePtBr: 'Chama', nameVi: 'Ngọn lửa', nameId: 'Api', nameTr: 'Alev', namePl: 'Płomień', color: '#F97316', color2: '#FACC15', color3: '#FDBA74', softColor: 'rgba(249,115,22,0.23)', unlockLevel: 51, effect: 'flame' },
+  { id: 'aura-season', nameRu: 'Сезонная', nameUk: 'Сезонна', nameEs: 'De temporada', namePtBr: 'Da temporada', nameVi: 'Theo mùa', nameId: 'Musiman', nameTr: 'Sezonluk', namePl: 'Sezonowa', color: '#FFD24A', color2: '#FFAE00', color3: '#FDE68A', softColor: 'rgba(255,210,74,0.28)', effect: 'plasma' },
+  { id: 'aura-season-champion', nameRu: 'Чемпион сезона', nameUk: 'Чемпіон сезону', nameEs: 'Campeón de temporada', namePtBr: 'Campeão da temporada', nameVi: 'Quán quân mùa', nameId: 'Juara musim', nameTr: 'Sezon şampiyonu', namePl: 'Mistrz sezonu', color: '#F59E0B', color2: '#FBBF24', color3: '#FEF3C7', softColor: 'rgba(245,158,11,0.32)', effect: 'absolute' },
 ];
 
 export function getAvatarAuraById(id?: string | null): AvatarAuraDef | undefined {

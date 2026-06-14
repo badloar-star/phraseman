@@ -843,6 +843,8 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
         let newLevel = 'I';
         let rankChanged = false;
         let promoted = false;
+        let resultSr: number | undefined;
+        let resultAtCeiling = false;
 
         if (!profileSnap.exists) {
           newStars = (!isFriendDuel && won) ? 1 : 0;
@@ -970,6 +972,8 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
 
             // Сезонный лидерборд (топ-100): пишем строку только когда игрок на потолке.
             if (wasCeiling) {
+              resultAtCeiling = true;
+              resultSr = srResult.sr;
               const seasonLbRef = db
                 .collection('arena_season_leaderboard').doc(nowSeasonId)
                 .collection('entries').doc(uid);
@@ -1025,6 +1029,7 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
             const streakShardReady = Date.now() - lastStreakShardAt > STREAK_SHARD_COOLDOWN_MS;
             return promoted && newStreak >= 3 && streakShardReady;
           })(),
+          ...(resultAtCeiling ? { sr: resultSr, atCeiling: true } : {}),
           updatedAt: Date.now(),
         }, { merge: true });
       }

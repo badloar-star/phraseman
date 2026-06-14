@@ -187,6 +187,13 @@ export interface ArenaProfile {
   courseDisplayAt?: number;
   /** Тот же id, что users/{id} / лидерборд — для слияния дублей arena_profiles по разным Auth uid. */
   mirrorStableId?: string | null;
+  /** Сезонный рейтинг — начисляется только на потолке Legend III. */
+  sr?: number;
+  peakSR?: number;
+  seasonId?: string | null;
+  seasonPeakRankIndex?: number;
+  /** Бейдж за финальное место в сезоне. */
+  seasonBadge?: { seasonId: string; tier: 'champion' | 'top10' | 'top100' } | null;
 }
 
 export interface ArenaStats {

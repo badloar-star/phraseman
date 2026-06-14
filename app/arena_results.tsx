@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView,
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
 import CollectibleDropModal from '../components/CollectibleDropModal';
+import SeasonResultModal from '../components/SeasonResultModal';
 import TapScale from '../components/TapScale';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -258,6 +259,7 @@ export default function DuelResultsScreen() {
       .catch(() => {});
   }, [sessionId, isMockSession]);
   const [showReview, setShowReview] = useState(false);
+  const [seasonCeilingModal, setSeasonCeilingModal] = useState<{ sr: number } | null>(null);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [ratingVariant, setRatingVariant] = useState<ReviewVariant | null>(null);
   useEffect(() => {
@@ -604,6 +606,8 @@ export default function DuelResultsScreen() {
           /** Повышение ранга (лига вверх или уровень вверх в той же лиге), не понижение */
           promoted?: boolean;
           rankUpStreakShardAwarded?: boolean;
+          sr?: number;
+          atCeiling?: boolean;
         };
         setXpGainedServer(data.xpGained ?? 0);
         setIsDrawServer(!!data.isDraw);
@@ -629,6 +633,10 @@ export default function DuelResultsScreen() {
               newTier: data.newTier ?? 'bronze',
               newLevel: data.newLevel ?? 'I',
             }), 700);
+          }
+          // Показать SR-модал когда игрок на потолке Legend III и выиграл
+          if (data.atCeiling && data.won && data.sr != null) {
+            setTimeout(() => setSeasonCeilingModal({ sr: data.sr ?? 0 }), 1200);
           }
         }, 200);
 
@@ -2353,6 +2361,13 @@ export default function DuelResultsScreen() {
           setPendingCardDrop(null);
           router.push('/collectibles_screen' as any);
         }}
+      />
+
+      <SeasonResultModal
+        visible={!!seasonCeilingModal}
+        kind="ceiling_reached"
+        sr={seasonCeilingModal?.sr ?? 0}
+        onClose={() => setSeasonCeilingModal(null)}
       />
     </ScreenGradient>
   );

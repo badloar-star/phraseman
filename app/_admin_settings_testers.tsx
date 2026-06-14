@@ -2590,38 +2590,72 @@ export default function SettingsTestersFunctions() {
                 {'Три варианта для A/B-теста. A — Компакт (всё на одном экране, без скролла). B — Стори (длинная страница убеждения). C — Атриум (первый экран + галерея ниже, рекомендован). Открываются как макеты — покупку не оформляют.'}
               </Text>
 
-              {/* Выбор сценария — чтобы видеть персонализацию под ситуацию */}
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 10, fontWeight: '800', letterSpacing: 0.5, textTransform: 'uppercase' }}>
-                Сценарий (откуда открыт)
-              </Text>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-                {([
-                  ['intro_ended', 'Конец триала'],
+              {/* Выбор сценария — все 26 уникальных триггеров, разбиты по группам */}
+              {([
+                ['⚡ Энергия / доступ', [
                   ['no_energy', 'Нет энергии'],
-                  ['arena', 'Арена'],
+                  ['quiz_limit', 'Лимит квизов'],
+                  ['flashcard_limit', 'Лимит карточек'],
+                  ['trainer_limit', 'Лимит тренера'],
+                  ['dialog_limit', 'Лимит диалогов'],
+                ]],
+                ['📚 Уроки / квизы', [
                   ['quiz_hard', 'Сложный квиз'],
-                  ['personal_plan', 'Личный план'],
-                  ['streak', 'Серия'],
+                  ['quiz_medium', 'Средний квиз'],
+                  ['quiz_level', 'Квиз уровня'],
+                  ['trainer', 'Тренер'],
+                  ['smart_trainer', 'Умный тренер'],
                   ['speaking', 'Говорение'],
+                ]],
+                ['🏆 Прогресс / мотивация', [
+                  ['streak', 'Серия'],
+                  ['level_up', 'Новый уровень'],
+                  ['mastery', 'Мастерство'],
+                  ['arena', 'Арена'],
+                  ['club', 'Клуб'],
+                ]],
+                ['📊 Аналитика / план', [
+                  ['stats', 'Статистика'],
+                  ['heatmap', 'Тепловая карта'],
+                  ['patterns', 'Паттерны'],
+                  ['percentiles', 'Перцентили'],
+                  ['personal_plan', 'Личный план'],
+                  ['diagnosis_training', 'Диагностика'],
+                ]],
+                ['🎨 Прочее', [
+                  ['theme', 'Тема'],
+                  ['intro_ended', 'Конец триала'],
+                  ['premium_expired', 'Премиум истёк'],
+                  ['vip_expired', 'VIP истёк'],
+                  ['notification_upsell', 'Пуш-апсел'],
                   ['generic', 'Общий'],
-                ] as const).map(([key, label]) => {
-                  const on = paywallPreviewCtx === key;
-                  return (
-                    <TouchableOpacity
-                      key={key}
-                      onPress={() => { doHaptic(); setPaywallPreviewCtx(key); }}
-                      activeOpacity={0.8}
-                      style={{
-                        paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16, borderWidth: 1,
-                        backgroundColor: on ? ACCENT_DARK : 'transparent',
-                        borderColor: on ? ACCENT_DARK : ADMIN_TEXT_MUTED + '44',
-                      }}
-                    >
-                      <Text style={{ color: on ? '#fff' : ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: on ? '800' : '600' }}>{label}</Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
+                ]],
+              ] as const).map(([groupLabel, items]) => (
+                <View key={groupLabel} style={{ gap: 4 }}>
+                  <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 9.5, fontWeight: '800', letterSpacing: 0.8, textTransform: 'uppercase', marginTop: 6 }}>
+                    {groupLabel}
+                  </Text>
+                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 5 }}>
+                    {(items as ReadonlyArray<readonly [string, string]>).map(([key, label]) => {
+                      const on = paywallPreviewCtx === key;
+                      return (
+                        <TouchableOpacity
+                          key={key}
+                          onPress={() => { doHaptic(); setPaywallPreviewCtx(key); }}
+                          activeOpacity={0.8}
+                          style={{
+                            paddingHorizontal: 10, paddingVertical: 5, borderRadius: 14, borderWidth: 1,
+                            backgroundColor: on ? ACCENT_DARK : 'transparent',
+                            borderColor: on ? ACCENT_DARK : ADMIN_TEXT_MUTED + '44',
+                          }}
+                        >
+                          <Text style={{ color: on ? '#fff' : ADMIN_TEXT_MUTED, fontSize: 10.5, fontWeight: on ? '800' : '500' }}>{label}</Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </View>
+                </View>
+              ))}
 
               {/* Три кнопки — каждая открывает свой вариант с выбранным сценарием.
                   Передаём реалистичные stats, чтобы видеть персонализацию (теги/прогресс). */}

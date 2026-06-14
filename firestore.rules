@@ -970,7 +970,10 @@ service cloud.firestore {
     // â”€â”€ Arena profiles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /arena_profiles/{userId} {
       allow read:  if request.auth != null;
-      allow write: if isOwner(userId);
+      // Профиль арены (rank.tier/stars, xp, displayName) пишет ТОЛЬКО Cloud Function (Admin SDK):
+      // matchmaking.ts / arena_hill.ts / compute_leaderboard_stats.ts. Клиент сюда не пишет вообще
+      // (проверено: ни одного setDoc('arena_profiles') в app/). Открытая запись = накрутка ранга/XP.
+      allow write: if false;
 
       // Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ Ð¼Ð°Ñ‚Ñ‡ÐµÐ¹: Ð¿Ð¸ÑˆÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Cloud Function (Admin); ÐºÐ»Ð¸ÐµÐ½Ñ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‡Ð¸Ñ‚Ð°ÐµÑ‚.
       // Ð‘ÐµÐ· Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ match Ð¿Ð¾Ð´ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ñ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ Ð·Ð°Ð¿Ñ€ÐµÑ‰ÐµÐ½Ð° â†’ ÑÐºÑ€Ð°Ð½ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð° Ð¿Ð°Ð´Ð°Ð» Ñ PERMISSION_DENIED.

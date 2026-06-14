@@ -55,6 +55,7 @@ import { trackEvent } from './analytics';
 import { useLocalSearchParams } from 'expo-router';
 import { emitAppEvent } from './events';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../constants/screenBackground';
+import { getTrialInfo, trialDaysOrDefault } from './paywall_trial_info';
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 type Plan = 'monthly' | 'yearly';
@@ -208,6 +209,18 @@ export default function PremiumModalV2() {
     ?? (selectedPkg?.product as { introductoryPrice?: unknown } | undefined)?.introductoryPrice);
   // Библия: «подписка» запрещена → «Открыть полный доступ» (глагол + ценность).
   const ctaLabel = hasTrial ? 'Начать бесплатно' : 'Открыть полный доступ';
+
+  // ── Apple 3.2.1(vii): обязательное текстовое раскрытие условий автопродления ──
+  // Под CTA должно быть видно: длина триала, цена ПОСЛЕ него, период списания.
+  // Цена и дни берутся из стора (никогда не хардкод).
+  const ctaPriceString = storePriceTrim(selectedPkg?.product?.priceString);
+  const ctaPeriodWord  = selected === 'yearly' ? 'год' : 'мес';
+  const ctaTrialDays   = trialDaysOrDefault(getTrialInfo(selectedPkg));
+  const ctaDisclosure: string | null = !ctaPriceString
+    ? null
+    : hasTrial
+      ? `Бесплатно ${ctaTrialDays} ${ctaTrialDays === 1 ? 'день' : ctaTrialDays < 5 ? 'дня' : 'дней'}, затем ${ctaPriceString}/${ctaPeriodWord}. Автопродление — отмени в любой момент до конца пробного периода.`
+      : `${ctaPriceString}/${ctaPeriodWord}, автопродление. Отмена в любой момент.`;
 
   // ── purchase ─────────────────────────────────────────────────────────────
   const handlePurchase = useCallback(async () => {
@@ -478,8 +491,10 @@ export default function PremiumModalV2() {
             }
           </TouchableOpacity>
 
-          {/* ── Microcopy — risk reversal (T-19, T-34) ───────────────── */}
-          <Text style={[S.cancelNote, { color: textMuted }]}>Отмена в любой момент · Без вопросов</Text>
+          {/* ── Disclosure — Apple 3.2.1(vii): цена/период/триал текстом ── */}
+          {ctaDisclosure
+            ? <Text style={[S.cancelNote, { color: textMuted }]}>{ctaDisclosure}</Text>
+            : <Text style={[S.cancelNote, { color: textMuted }]}>Отмена в любой момент · Без вопросов</Text>}
 
           {/* ── Footer (T-48, T-34 Apple requirement) ────────────────── */}
           <View style={S.footer}>
@@ -599,7 +614,7 @@ const S = StyleSheet.create({
   ctaText: { fontSize: 17, fontWeight: '700', letterSpacing: -0.2 },
 
   // microcopy — risk reversal
-  cancelNote: { textAlign: 'center', fontSize: 11, marginBottom: 12 },
+  cancelNote: { textAlign: 'center', fontSize: 11, lineHeight: 16, marginBottom: 12, paddingHorizontal: 8 },
 
   // footer
   footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },

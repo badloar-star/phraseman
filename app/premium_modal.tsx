@@ -34,6 +34,7 @@ import {
   markSubscriptionOrTrialFlowConsumedNow,
 } from './premium_trial_eligibility';
 import { storeProductHasTrialIntro } from './premium_trial_signal';
+import { getTrialInfo, trialDaysOrDefault } from './paywall_trial_info';
 import { safeRouterBack } from './navigation_back';
 import {
   inferPremiumPlanFromProductId,
@@ -834,6 +835,48 @@ const formatDate = (ts: number, lang: Lang) =>
  * проверки реального intro phase из App Store / Google Play.
  */
 
+// ── Локализованная фраза длительности триала ────────────────────────────────────
+// Дни приходят из стора (getTrialInfo), НЕ хардкодятся. Склонение по языку с
+// падежами там, где они есть (ru/uk/pl: 1 день / 2-4 дня / 5+ дней).
+function slavicDayWord(n: number, one: string, few: string, many: string): string {
+  const mod100 = n % 100;
+  const mod10 = n % 10;
+  if (mod100 >= 11 && mod100 <= 14) return many;
+  if (mod10 === 1) return one;
+  if (mod10 >= 2 && mod10 <= 4) return few;
+  return many;
+}
+
+/** «на 3 дня» / «durante 3 días» — длительность под ценником плана. */
+function trialDaysPhrase(days: number, lang: Lang): string {
+  switch (lang) {
+    case 'uk': return `на ${days} ${slavicDayWord(days, 'день', 'дні', 'днів')}`;
+    case 'pl': return `przez ${days} ${slavicDayWord(days, 'dzień', 'dni', 'dni')}`;
+    case 'es': return `durante ${days} ${days === 1 ? 'día' : 'días'}`;
+    case 'pt-BR': return `por ${days} ${days === 1 ? 'dia' : 'dias'}`;
+    case 'vi': return `trong ${days} ngày`;
+    case 'id': return `selama ${days} hari`;
+    case 'tr': return `${days} gün boyunca`;
+    case 'ru':
+    default: return `на ${days} ${slavicDayWord(days, 'день', 'дня', 'дней')}`;
+  }
+}
+
+/** «3 дня бесплатно» / «3 días gratis» — для CTA и заголовков. */
+function trialDaysFreePhrase(days: number, lang: Lang): string {
+  switch (lang) {
+    case 'uk': return `${days} ${slavicDayWord(days, 'день', 'дні', 'днів')} безкоштовно`;
+    case 'pl': return `${days} ${slavicDayWord(days, 'dzień', 'dni', 'dni')} za darmo`;
+    case 'es': return `${days} ${days === 1 ? 'día' : 'días'} gratis`;
+    case 'pt-BR': return `${days} ${days === 1 ? 'dia' : 'dias'} grátis`;
+    case 'vi': return `${days} ngày miễn phí`;
+    case 'id': return `${days} hari gratis`;
+    case 'tr': return `${days} gün ücretsiz`;
+    case 'ru':
+    default: return `${days} ${slavicDayWord(days, 'день', 'дня', 'дней')} бесплатно`;
+  }
+}
+
 // ── Компонент ─────────────────────────────────────────────────────────────────
 export default function PremiumModal() {
   const router = useRouter();
@@ -1299,6 +1342,12 @@ export default function PremiumModal() {
   const primaryYearlyHasTrial = showPrimaryTrialUi && (forceTrialUI || yearlyStoreHasTrial);
   const primaryMonthlyHasTrial = showPrimaryTrialUi && (forceTrialUI || monthlyStoreHasTrial);
   const primaryHasTrialOffer = primaryYearlyHasTrial || primaryMonthlyHasTrial;
+  // Длительность триала из стора (не хардкод): App Store Connect / Google Play.
+  // Если стор не отдал период — fallback 3 дня (текущая настройка). Меняется сама,
+  // если поменять триал в сторе — пейвол не соврёт «3 дня» при реальных 7.
+  const yearlyTrialDays = trialDaysOrDefault(getTrialInfo(packages.yearly));
+  const monthlyTrialDays = trialDaysOrDefault(getTrialInfo(packages.monthly));
+  const selectedTrialDays = selected === 'yearly' ? yearlyTrialDays : monthlyTrialDays;
   const exitTrialPlan: Plan = yearlyStoreHasTrial ? 'yearly' : 'monthly';
   const storePricesRequired = !IS_EXPO_GO && !DEV_IAP_BYPASS;
   const yearlyPrice = storePriceTrim(packages.yearly?.product.priceString) || mockYearlyPrice;
@@ -2787,13 +2836,18 @@ export default function PremiumModal() {
                       paddingHorizontal: 28,
                     }}
                   >
-                    {LP('3 дня Premium бесплатно', '3 дні Premium безкоштовно', '3 dias de Premium gratis', {
-                      'pt-BR': '3 dias de Premium grátis',
-                      vi: '3 ngày Premium miễn phí',
-                      id: 'Premium gratis 3 hari',
-                      tr: '3 gün Premium ücretsiz',
-                      pl: '3 dni Premium za darmo',
-                    })}
+                    {LP(
+                      `${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'день', 'дня', 'дней')} Premium бесплатно`,
+                      `${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'день', 'дні', 'днів')} Premium безкоштовно`,
+                      `${selectedTrialDays} ${selectedTrialDays === 1 ? 'día' : 'días'} de Premium gratis`,
+                      {
+                        'pt-BR': `${selectedTrialDays} ${selectedTrialDays === 1 ? 'dia' : 'dias'} de Premium grátis`,
+                        vi: `${selectedTrialDays} ngày Premium miễn phí`,
+                        id: `Premium gratis ${selectedTrialDays} hari`,
+                        tr: `${selectedTrialDays} gün Premium ücretsiz`,
+                        pl: `${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'dzień', 'dni', 'dni')} Premium za darmo`,
+                      },
+                    )}
                   </Text>
                   <Text
                     style={{
@@ -2952,13 +3006,18 @@ export default function PremiumModal() {
                     <Ionicons name="sparkles" size={25} color="#FFD700" />
                   </View>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
-                    {LP('Попробовать 3 дня бесплатно?', 'Спробувати 3 дні безкоштовно?', 'Probar 3 días gratis?', {
-                      'pt-BR': 'Experimentar 3 dias grátis?',
-                      vi: 'Dùng thử miễn phí 3 ngày?',
-                      id: 'Coba gratis 3 hari?',
-                      tr: '3 gün ücretsiz denemek ister misin?',
-                      pl: 'Wypróbować 3 dni za darmo?',
-                    })}
+                    {LP(
+                      `Попробовать ${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'день', 'дня', 'дней')} бесплатно?`,
+                      `Спробувати ${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'день', 'дні', 'днів')} безкоштовно?`,
+                      `Probar ${selectedTrialDays} ${selectedTrialDays === 1 ? 'día' : 'días'} gratis?`,
+                      {
+                        'pt-BR': `Experimentar ${selectedTrialDays} ${selectedTrialDays === 1 ? 'dia' : 'dias'} grátis?`,
+                        vi: `Dùng thử miễn phí ${selectedTrialDays} ngày?`,
+                        id: `Coba gratis ${selectedTrialDays} hari?`,
+                        tr: `${selectedTrialDays} gün ücretsiz denemek ister misin?`,
+                        pl: `Wypróbować ${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'dzień', 'dni', 'dni')} za darmo?`,
+                      },
+                    )}
                   </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: 22, marginTop: 10, textAlign: 'center' }}>
                     {LP(
@@ -2996,13 +3055,18 @@ export default function PremiumModal() {
                   }}
                 >
                   <Text style={{ color: '#1F1A08', fontSize: f.bodyLg, fontWeight: '900' }}>
-                    {LP('Начать 3 дня бесплатно', 'Почати 3 дні безкоштовно', 'Empezar 3 días gratis', {
-                      'pt-BR': 'Começar 3 dias grátis',
-                      vi: 'Bắt đầu 3 ngày miễn phí',
-                      id: 'Mulai 3 hari gratis',
-                      tr: '3 gün ücretsiz başla',
-                      pl: 'Zacznij 3 dni za darmo',
-                    })}
+                    {LP(
+                      `Начать ${trialDaysFreePhrase(selectedTrialDays, 'ru')}`,
+                      `Почати ${trialDaysFreePhrase(selectedTrialDays, 'uk')}`,
+                      `Empezar ${trialDaysFreePhrase(selectedTrialDays, 'es')}`,
+                      {
+                        'pt-BR': `Começar ${trialDaysFreePhrase(selectedTrialDays, 'pt-BR')}`,
+                        vi: `Bắt đầu ${trialDaysFreePhrase(selectedTrialDays, 'vi')}`,
+                        id: `Mulai ${trialDaysFreePhrase(selectedTrialDays, 'id')}`,
+                        tr: `${selectedTrialDays} gün ücretsiz başla`,
+                        pl: `Zacznij ${trialDaysFreePhrase(selectedTrialDays, 'pl')}`,
+                      },
+                    )}
                   </Text>
                 </TouchableOpacity>
 
@@ -3090,13 +3154,18 @@ export default function PremiumModal() {
                     adjustsFontSizeToFit
                     minimumFontScale={0.7}
                   >
-                    {LP('Попробуй Premium 3 дня бесплатно', 'Спробуй Premium 3 дні безкоштовно', 'Prueba Premium 3 días gratis', {
-                      'pt-BR': 'Experimente Premium 3 dias grátis',
-                      vi: 'Dùng thử Premium miễn phí 3 ngày',
-                      id: 'Coba Premium gratis 3 hari',
-                      tr: 'Premiumu 3 gün ücretsiz dene',
-                      pl: 'Wypróbuj Premium 3 dni za darmo',
-                    })}
+                    {LP(
+                      `Попробуй Premium ${trialDaysFreePhrase(selectedTrialDays, 'ru')}`,
+                      `Спробуй Premium ${trialDaysFreePhrase(selectedTrialDays, 'uk')}`,
+                      `Prueba Premium ${trialDaysFreePhrase(selectedTrialDays, 'es')}`,
+                      {
+                        'pt-BR': `Experimente Premium ${trialDaysFreePhrase(selectedTrialDays, 'pt-BR')}`,
+                        vi: `Dùng thử Premium miễn phí ${selectedTrialDays} ngày`,
+                        id: `Coba Premium gratis ${selectedTrialDays} hari`,
+                        tr: `Premiumu ${selectedTrialDays} gün ücretsiz dene`,
+                        pl: `Wypróbuj Premium ${trialDaysFreePhrase(selectedTrialDays, 'pl')}`,
+                      },
+                    )}
                   </Text>
                 </View>
                 <Text
@@ -3590,13 +3659,7 @@ export default function PremiumModal() {
                             })}
                           </Text>
                            <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', marginTop: 1, textAlign: 'right' }} numberOfLines={1}>
-                            {LP('на 3 дня', 'на 3 дні', 'durante 3 días', {
-                              'pt-BR': 'por 3 dias',
-                              vi: 'trong 3 ngày',
-                              id: 'selama 3 hari',
-                              tr: '3 gün boyunca',
-                              pl: 'przez 3 dni',
-                            })}
+                            {trialDaysPhrase(selectedTrialDays, lang as Lang)}
                           </Text>
                           <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 5, textAlign: 'right' }} numberOfLines={2}>
                             {LP(`затем ${priceStr} ${periodLabel}`, `потім ${priceStr} ${periodLabel}`, `luego ${priceStr} ${periodLabel}`, {
@@ -3749,13 +3812,7 @@ export default function PremiumModal() {
                             })}
                           </Text>
                           <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', marginTop: 1, textAlign: 'right' }} numberOfLines={1}>
-                            {LP('на 3 дня', 'на 3 дні', 'durante 3 días', {
-                              'pt-BR': 'por 3 dias',
-                              vi: 'trong 3 ngày',
-                              id: 'selama 3 hari',
-                              tr: '3 gün boyunca',
-                              pl: 'przez 3 dni',
-                            })}
+                            {trialDaysPhrase(selectedTrialDays, lang as Lang)}
                           </Text>
                           <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 5, textAlign: 'right' }} numberOfLines={2}>
                             {LP(`затем ${priceStr} / месяц`, `потім ${priceStr} / місяць`, `luego ${priceStr} / mes`, {
@@ -3838,15 +3895,15 @@ export default function PremiumModal() {
                     })
                 : hasTrial
                   ? LP(
-                      `🚀 3 дня бесплатно — затем ${ctaPrice}${periodStr}`,
-                      `🚀 3 дні безкоштовно — потім ${ctaPrice}${periodStr}`,
-                      `🚀 3 días gratis — luego ${ctaPrice}${periodStr}`,
+                      `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'ru')} — затем ${ctaPrice}${periodStr}`,
+                      `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'uk')} — потім ${ctaPrice}${periodStr}`,
+                      `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'es')} — luego ${ctaPrice}${periodStr}`,
                       {
-                        'pt-BR': `🚀 3 dias grátis — depois ${ctaPrice}${periodStr}`,
-                        vi: `🚀 3 ngày miễn phí — sau đó ${ctaPrice}${periodStr}`,
-                        id: `🚀 3 hari gratis — lalu ${ctaPrice}${periodStr}`,
-                        tr: `🚀 3 gün ücretsiz — sonra ${ctaPrice}${periodStr}`,
-                        pl: `🚀 3 dni za darmo — potem ${ctaPrice}${periodStr}`,
+                        'pt-BR': `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'pt-BR')} — depois ${ctaPrice}${periodStr}`,
+                        vi: `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'vi')} — sau đó ${ctaPrice}${periodStr}`,
+                        id: `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'id')} — lalu ${ctaPrice}${periodStr}`,
+                        tr: `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'tr')} — sonra ${ctaPrice}${periodStr}`,
+                        pl: `🚀 ${trialDaysFreePhrase(selectedTrialDays, 'pl')} — potem ${ctaPrice}${periodStr}`,
                       },
                     )
                   : selected === 'yearly'
@@ -4046,17 +4103,21 @@ export default function PremiumModal() {
                   };
               const ios = effectiveOs === 'ios';
 
+              const ukDays = `${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'день', 'дні', 'днів')}`;
+              const ruDays = `${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'день', 'дня', 'дней')}`;
+              const esDays = `${selectedTrialDays} ${selectedTrialDays === 1 ? 'día' : 'días'}`;
+
               const trialUk = ios
-                ? `Якщо для цього плану доступні 3 дні без оплати: після закінчення пробного періоду з вашого Apple ID буде списано ${footerPrice} за обраний термін, якщо ви не скасуєте принаймні за 24 години до його закінчення (Налаштування → Apple ID → Підписки).`
-                : `Якщо для цього плану доступні 3 дні без оплати: після закінчення пробного періоду з вашого облікового запису Google буде списано ${footerPrice} за обраний термін, якщо ви не скасуєте принаймні за 24 години до його закінчення (Google Play → Підписки).`;
+                ? `Якщо для цього плану доступні ${ukDays} без оплати: після закінчення пробного періоду з вашого Apple ID буде списано ${footerPrice} за обраний термін, якщо ви не скасуєте принаймні за 24 години до його закінчення (Налаштування → Apple ID → Підписки).`
+                : `Якщо для цього плану доступні ${ukDays} без оплати: після закінчення пробного періоду з вашого облікового запису Google буде списано ${footerPrice} за обраний термін, якщо ви не скасуєте принаймні за 24 години до його закінчення (Google Play → Підписки).`;
 
               const trialRu = ios
-                ? `Если для этого плана доступны 3 дня без оплаты: после окончания пробного периода с вашего Apple ID будет списана сумма ${footerPrice} за выбранный срок, если вы не отмените подписку как минимум за 24 часа до его окончания (Настройки → Apple ID → Подписки).`
-                : `Если для этого плана доступны 3 дня без оплаты: после окончания пробного периода с вашего аккаунта Google будет списана сумма ${footerPrice} за выбранный срок, если вы не отмените подписку как минимум за 24 часа до его окончания (Google Play → Подписки).`;
+                ? `Если для этого плана доступны ${ruDays} без оплаты: после окончания пробного периода с вашего Apple ID будет списана сумма ${footerPrice} за выбранный срок, если вы не отмените подписку как минимум за 24 часа до его окончания (Настройки → Apple ID → Подписки).`
+                : `Если для этого плана доступны ${ruDays} без оплаты: после окончания пробного периода с вашего аккаунта Google будет списана сумма ${footerPrice} за выбранный срок, если вы не отмените подписку как минимум за 24 часа до его окончания (Google Play → Подписки).`;
 
               const trialEs = ios
-                ? `Si este plan ofrece 3 días sin cargo: al terminar la prueba, tu Apple ID cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Ajustes → Apple ID → Suscripciones).`
-                : `Si este plan ofrece 3 días sin cargo: al terminar la prueba, tu cuenta Google cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Google Play → Suscripciones).`;
+                ? `Si este plan ofrece ${esDays} sin cargo: al terminar la prueba, tu Apple ID cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Ajustes → Apple ID → Suscripciones).`
+                : `Si este plan ofrece ${esDays} sin cargo: al terminar la prueba, tu cuenta Google cargará ${footerPrice} por el período elegido si no cancelas al menos 24 horas antes (Google Play → Suscripciones).`;
 
               const legalRu = ios
                 ? `Оформляется ${footerPeriodRu} с автопродлением. Списание с Apple ID по тарифам App Store для вашего региона: ${footerPrice}. Отменить можно в любой момент: Настройки → Apple ID → Подписки.`
@@ -4118,20 +4179,20 @@ export default function PremiumModal() {
                   >
                       {LP(trialRu, trialUk, trialEs, {
                         'pt-BR': ios
-                          ? `Se este plano oferecer 3 dias grátis: ao fim do teste, seu Apple ID cobrará ${footerPrice} pelo período escolhido se você não cancelar pelo menos 24 horas antes (Ajustes → Apple ID → Assinaturas).`
-                          : `Se este plano oferecer 3 dias grátis: ao fim do teste, sua conta Google cobrará ${footerPrice} pelo período escolhido se você não cancelar pelo menos 24 horas antes (Google Play → Assinaturas).`,
+                          ? `Se este plano oferecer ${selectedTrialDays} ${selectedTrialDays === 1 ? 'dia' : 'dias'} grátis: ao fim do teste, seu Apple ID cobrará ${footerPrice} pelo período escolhido se você não cancelar pelo menos 24 horas antes (Ajustes → Apple ID → Assinaturas).`
+                          : `Se este plano oferecer ${selectedTrialDays} ${selectedTrialDays === 1 ? 'dia' : 'dias'} grátis: ao fim do teste, sua conta Google cobrará ${footerPrice} pelo período escolhido se você não cancelar pelo menos 24 horas antes (Google Play → Assinaturas).`,
                         vi: ios
-                          ? `Nếu gói này có 3 ngày miễn phí: sau khi hết dùng thử, Apple ID của bạn sẽ bị tính ${footerPrice} cho kỳ đã chọn nếu bạn không hủy trước ít nhất 24 giờ (Cài đặt → Apple ID → Đăng ký).`
-                          : `Nếu gói này có 3 ngày miễn phí: sau khi hết dùng thử, tài khoản Google của bạn sẽ bị tính ${footerPrice} cho kỳ đã chọn nếu bạn không hủy trước ít nhất 24 giờ (Google Play → Gói đăng ký).`,
+                          ? `Nếu gói này có ${selectedTrialDays} ngày miễn phí: sau khi hết dùng thử, Apple ID của bạn sẽ bị tính ${footerPrice} cho kỳ đã chọn nếu bạn không hủy trước ít nhất 24 giờ (Cài đặt → Apple ID → Đăng ký).`
+                          : `Nếu gói này có ${selectedTrialDays} ngày miễn phí: sau khi hết dùng thử, tài khoản Google của bạn sẽ bị tính ${footerPrice} cho kỳ đã chọn nếu bạn không hủy trước ít nhất 24 giờ (Google Play → Gói đăng ký).`,
                         id: ios
-                          ? `Jika paket ini menawarkan 3 hari gratis: setelah uji coba berakhir, Apple ID kamu akan dikenai ${footerPrice} untuk periode yang dipilih jika tidak dibatalkan setidaknya 24 jam sebelumnya (Pengaturan → Apple ID → Langganan).`
-                          : `Jika paket ini menawarkan 3 hari gratis: setelah uji coba berakhir, akun Google kamu akan dikenai ${footerPrice} untuk periode yang dipilih jika tidak dibatalkan setidaknya 24 jam sebelumnya (Google Play → Langganan).`,
+                          ? `Jika paket ini menawarkan ${selectedTrialDays} hari gratis: setelah uji coba berakhir, Apple ID kamu akan dikenai ${footerPrice} untuk periode yang dipilih jika tidak dibatalkan setidaknya 24 jam sebelumnya (Pengaturan → Apple ID → Langganan).`
+                          : `Jika paket ini menawarkan ${selectedTrialDays} hari gratis: setelah uji coba berakhir, akun Google kamu akan dikenai ${footerPrice} untuk periode yang dipilih jika tidak dibatalkan setidaknya 24 jam sebelumnya (Google Play → Langganan).`,
                         tr: ios
-                          ? `Bu plan 3 gün ücretsiz deneme sunuyorsa: deneme bitince en az 24 saat önce iptal etmezsen seçilen dönem için Apple ID hesabından ${footerPrice} alınır (Ayarlar → Apple ID → Abonelikler).`
-                          : `Bu plan 3 gün ücretsiz deneme sunuyorsa: deneme bitince en az 24 saat önce iptal etmezsen seçilen dönem için Google hesabından ${footerPrice} alınır (Google Play → Abonelikler).`,
+                          ? `Bu plan ${selectedTrialDays} gün ücretsiz deneme sunuyorsa: deneme bitince en az 24 saat önce iptal etmezsen seçilen dönem için Apple ID hesabından ${footerPrice} alınır (Ayarlar → Apple ID → Abonelikler).`
+                          : `Bu plan ${selectedTrialDays} gün ücretsiz deneme sunuyorsa: deneme bitince en az 24 saat önce iptal etmezsen seçilen dönem için Google hesabından ${footerPrice} alınır (Google Play → Abonelikler).`,
                         pl: ios
-                          ? `Jeśli ten plan oferuje 3 dni bez opłaty: po zakończeniu okresu próbnego Apple ID pobierze ${footerPrice} za wybrany okres, jeśli nie anulujesz co najmniej 24 godziny wcześniej (Ustawienia → Apple ID → Subskrypcje).`
-                          : `Jeśli ten plan oferuje 3 dni bez opłaty: po zakończeniu okresu próbnego konto Google pobierze ${footerPrice} za wybrany okres, jeśli nie anulujesz co najmniej 24 godziny wcześniej (Google Play → Subskrypcje).`,
+                          ? `Jeśli ten plan oferuje ${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'dzień', 'dni', 'dni')} bez opłaty: po zakończeniu okresu próbnego Apple ID pobierze ${footerPrice} za wybrany okres, jeśli nie anulujesz co najmniej 24 godziny wcześniej (Ustawienia → Apple ID → Subskrypcje).`
+                          : `Jeśli ten plan oferuje ${selectedTrialDays} ${slavicDayWord(selectedTrialDays, 'dzień', 'dni', 'dni')} bez opłaty: po zakończeniu okresu próbnego konto Google pobierze ${footerPrice} za wybrany okres, jeśli nie anulujesz co najmniej 24 godziny wcześniej (Google Play → Subskrypcje).`,
                       })}
                     </Text>
                   ) : null}

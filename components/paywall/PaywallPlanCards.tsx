@@ -73,12 +73,11 @@ export default function PaywallPlanCards({
         }]}
       >
         <View style={S.row1}>
-          <View style={[S.radio, {
-            borderColor: sel ? tc.selectedCardBorder : uncheckedBorder,
-            backgroundColor: sel ? tc.heroAccent : 'transparent',
-          }]}>
-            {sel && <Ionicons name="checkmark" size={11} color="#050505" />}
-          </View>
+          <Ionicons
+            name={sel ? 'checkmark-circle' : 'ellipse-outline'}
+            size={20}
+            color={sel ? tc.heroAccent : uncheckedBorder}
+          />
           <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>{name}</Text>
           {badge !== null && (
             <View style={[S.saveBadge, { backgroundColor: tc.savingsBadgeBg }]}>
@@ -124,10 +123,6 @@ const S = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.28, shadowRadius: 10, elevation: 4,
   },
   row1: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  radio: {
-    width: 20, height: 20, borderRadius: 10, borderWidth: 2,
-    alignItems: 'center', justifyContent: 'center',
-  },
   name: { fontSize: 14.5, fontWeight: '700' },
   saveBadge: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8, marginLeft: 2 },
   saveBadgeText: { fontSize: 10.5, fontWeight: '800', letterSpacing: 0.3 },

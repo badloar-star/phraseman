@@ -890,7 +890,16 @@ export default function PremiumModal() {
           : variant === 'B' ? '/paywall_b'
           : variant === 'C' ? '/paywall_c'
           : null;
-        if (route) { router.replace(route as any); return; }
+        if (route) {
+          // ВАЖНО: пробрасываем ВСЕ исходные params (context, source, streak,
+          // lessons_done, saved…). Без этого вариант открывался бы голым →
+          // normalizePremiumContext(undefined)='generic', и для всей когорты
+          // A/B/C любой из 38 триггеров схлопывался бы в дженерик-пейвол, а
+          // source терялся для воронки. Каждый триггер должен донести свой
+          // контекст до КАЖДОГО варианта.
+          router.replace({ pathname: route, params: { ...params } } as any);
+          return;
+        }
         setRedirecting(false); // v1 — остаёмся, ниже логируем показ
       })
       .catch(() => { if (!cancelled) setRedirecting(false); });

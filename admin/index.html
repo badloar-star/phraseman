@@ -8822,7 +8822,7 @@
       </button>
       <button type="button" data-preset="even" onclick="pabPreset('even')" class="pab-card">
         <div class="pab-card-t">⚖️ Поровну</div>
-        <div class="pab-card-s">Каждый получает свою версию: 25 / 25 / 25 / 25.</div>
+        <div class="pab-card-s">Все три новых экрана: 33 / 33 / 34.</div>
       </button>
       <button type="button" data-preset="atrium" onclick="pabPreset('atrium')" class="pab-card">
         <div class="pab-card-t">★ Только «Атриум»</div>
@@ -20353,7 +20353,7 @@
   function pabDetectPreset(a, b, c) {
     if (a === 0 && b === 0 && c === 0) return 'off';
     if (a === 10 && b === 10 && c === 10) return 'soft';
-    if (a === 25 && b === 25 && c === 25) return 'even';
+    if (a === 33 && b === 33 && c === 34) return 'even';
     if (a === 0 && b === 0 && c === 100) return 'atrium';
     return 'custom';
   }
@@ -20392,7 +20392,7 @@
   };
   // Нажатие на карточку-пресет.
   window.pabPreset = function(name) {
-    const map = { off:[0,0,0], soft:[10,10,10], even:[25,25,25], atrium:[0,0,100] };
+    const map = { off:[0,0,0], soft:[10,10,10], even:[33,33,34], atrium:[0,0,100] };
     const v = map[name] || [0,0,0];
     const set = (id, x) => { const el = document.getElementById(id); if (el) el.value = String(x); };
     set('pab-a', v[0]); set('pab-b', v[1]); set('pab-c', v[2]);

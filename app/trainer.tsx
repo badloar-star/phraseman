@@ -22,10 +22,10 @@ import { clearTrainerStore, devSeedTrainer, getTrainerDashboard, type TrainerDas
 import { ENABLE_DEV_TOOLS } from './config';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { getVerifiedPremiumStatus } from './premium_guard';
-import { getFreeSessionsLeftToday, reserveTrainerSessionEntry } from './trainer_session';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
 import { computePhraseAnalytics, type LessonMistakeStat, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
 import WeeklyReviewCard from './WeeklyReviewCard';
+import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import { getDiagnosisTraining } from './diagnosis_trainings';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
@@ -557,7 +557,6 @@ export default function TrainerScreen() {
     const [initialDataReady, setInitialDataReady] = useState(false);
     const [seeding, setSeeding] = useState(false);
     const [hasPremium, setHasPremium] = useState(false);
-    const [freeLeft, setFreeLeft] = useState(1);
     const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(null);
     const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(null);
     const [analyticsTab, setAnalyticsTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
@@ -569,10 +568,9 @@ export default function TrainerScreen() {
     const loadData = useCallback(async () => {
         setLoading(true);
         try {
-            const [dash, premium, left, analyticsResult, resolved] = await Promise.all([
+            const [dash, premium, analyticsResult, resolved] = await Promise.all([
                 getTrainerDashboard(studyTarget, sourceLocale),
                 getVerifiedPremiumStatus().catch(() => false),
-                getFreeSessionsLeftToday(studyTarget),
                 trainerSessionEnabled
                     ? studyTarget === 'fr'
                         ? computeFrenchPhraseAnalytics({ sourceLocale }).catch(() => null)
@@ -582,7 +580,6 @@ export default function TrainerScreen() {
             ]);
             setDashboard(dash);
             setHasPremium(premium);
-            setFreeLeft(left);
             setAnalytics(analyticsResult);
             setResolvedPersonalTrainings(resolved);
         }
@@ -630,19 +627,8 @@ export default function TrainerScreen() {
         hapticTap();
         if (count <= 0)
             return;
-        if (!hasPremium && freeLeft <= 0) {
-            openPremium('trainer_limit');
-            return;
-        }
-        const reserved = await reserveTrainerSessionEntry(section.route, hasPremium, studyTarget);
-        if (!reserved) {
-            openPremium('trainer_limit');
-            return;
-        }
-        if (!hasPremium)
-            setFreeLeft(0);
         router.push(section.route as any);
-    }, [dashboard, freeLeft, hasPremium, openPremium, router, studyTarget]);
+    }, [dashboard, router]);
     const startPracticeOption = useCallback(async (option: PracticeOption) => {
         const recommendedQueue = dashboard.nextQueue && option.queues.includes(dashboard.nextQueue) && (dashboard.due[dashboard.nextQueue] ?? 0) > 0
             ? dashboard.nextQueue
@@ -811,7 +797,8 @@ export default function TrainerScreen() {
             ) : null}
 
             {/* ── Аналитика ошибок inline ── */}
-            {hasPremium ? (<View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderRadius: trainerRadius }]}>
+            <StatsPremiumBlur isPremium={hasPremium} context="patterns">
+            <View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderRadius: trainerRadius }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.analyticsHeader}>
                   <View style={styles.cardIcon}>
@@ -967,39 +954,8 @@ export default function TrainerScreen() {
                         </View>
                       </View>))}
                   </View>)}
-              </View>) : !hasPremium ? (<TouchableOpacity accessibilityRole="button" accessibilityLabel="Mistake analytics" onPress={() => { hapticTap(); router.push('/phrase_analytics_screen' as any); }} activeOpacity={0.86} style={[styles.card, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerCardBg, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairline : '#FACC1566', borderRadius: trainerRadius }]}>
-                {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} selected physical /> : null}
-                <View style={styles.cardIcon}>
-                  <TrainerThemeIcon kind="analytics" themeMode={themeMode}/>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
-                    {triLang(lang, {
-                ru: 'Аналитика ошибок',
-                uk: 'Аналітика помилок',
-                es: 'Análisis de errores',
-                'pt-BR': "Análise de erros",
-                vi: "Phân tích lỗi",
-                id: "Analitik kesalahan",
-                tr: "Hata analizi",
-                pl: "Analiza błędów",
-            })}
-                  </Text>
-                  <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={2}>
-                    {triLang(lang, {
-                ru: 'Где ошибаешься чаще всего - по темам и фразам',
-                uk: 'Де помиляєшся найчастіше - за темами й фразами',
-                es: 'Dónde fallas más: temas y frases concretas',
-                'pt-BR': "Onde você erra com mais frequência: por temas e frases",
-                vi: "Bạn hay sai nhất ở đâu: theo chủ đề và cụm câu",
-                id: "Di mana kamu paling sering salah: berdasarkan topik dan frasa",
-                tr: "En çok nerede hata yapıyorsun: konu ve ifadelere göre",
-                pl: "Gdzie najczęściej się mylisz: według tematów i fraz",
-            })}
-                  </Text>
-                </View>
-                <Ionicons name="chevron-forward" size={20} color={t.textMuted}/>
-              </TouchableOpacity>) : null}
+              </View>
+            </StatsPremiumBlur>
 
             {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : '#1a1a2e', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#4A9EFF44', borderRadius: isCompassTheme ? 9 : 14 }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={9} quiet physical /> : null}

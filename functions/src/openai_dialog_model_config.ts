@@ -6,7 +6,7 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_dialog_model';
 const QUOTA_CONFIG_DOC = 'openai_dialog_quota';
 const MODEL_DEFAULT = 'gpt-4.1-nano';
-export const DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10;
+export const DIALOG_FREE_DAILY_REPLIES_DEFAULT = 3;
 export const DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 100;
 const DIALOG_DAILY_REPLIES_MAX = 10000;
 

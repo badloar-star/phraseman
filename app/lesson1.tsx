@@ -605,18 +605,15 @@ const LessonContent = React.memo(function LessonContent({
     setSpeakingOpen(true);
   }, [speakingIsPremium, router]);
 
-  // [EXPLAIN] «Объясни проще» (Фаза 5). Заменяет 50/50 и тратит тот же дневной лимит:
-  // 3 базовые подсказки + подарочные бонусы. Объясняет английскую фразу, НЕ русский смысл.
+  // [50/50] Затемняет неправильные плитки до ответа. Тратит тот же дневной кредит, что и «Объясни».
+  const [fiftyFiftyActive, setFiftyFiftyActive] = useState(false);
+  useEffect(() => { if (status === 'playing') setFiftyFiftyActive(false); }, [status]);
+  // [EXPLAIN] «Объясни проще» — только ПОСЛЕ ответа. Тот же дневной лимит (fifty_fifty_* счётчик).
   const [explainOpen, setExplainOpen] = useState(false);
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
   // До ответа: открыть, только если ещё есть кредиты. Кредит НЕ списываем здесь —
   // только когда шторка реально сгенерит (cache MISS) в onExplainResolved: бесплатный
   // кэш-хит или сетевая ошибка кредит НЕ тратят.
-  const openExplainPreAnswer = useCallback(() => {
-    if (explainHintsLeft <= 0) return;
-    hapticTap();
-    setExplainOpen(true);
-  }, [explainHintsLeft]);
   // Резолв запроса шторки. Списываем кредит только за live-генерацию без ошибки.
   const onExplainResolved = useCallback(
     (info: { fromCache: boolean; status: string; error: boolean }) => {
@@ -1247,7 +1244,7 @@ const LessonContent = React.memo(function LessonContent({
                     style={{
                     width: '48%',
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
-                    opacity: shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] })
+                    opacity: (fiftyFiftyActive && !isCorrectOption) ? 0.22 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
                     {(() => {
                       // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
@@ -1345,46 +1342,31 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* ФУТЕР */}
         <View style={{ flexDirection: 'row', paddingVertical: linkedSliceCompact ? 8 : 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
-          {/* «Объясни проще» — заменяет 50/50. До ответа: 3/день (+ «подарок»), списывает кредит. */}
+          {/* 50/50 — затемнить неверные плитки до ответа. Тот же дневной кредит, что и «Объясни». */}
           {!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && (
             (() => {
-              const canUse = explainHintsLeft > 0;
+              const canUse = explainHintsLeft > 0 && !fiftyFiftyActive;
               return (
                 <LessonPressable
-                  testID="lesson1-explain"
+                  testID="lesson1-fifty-fifty"
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, {
-                    ru: 'Объяснить простыми словами',
-                    uk: 'Пояснити простими словами',
-                    es: 'Explicar en palabras simples',
-                    'pt-BR': 'Explicar em palavras simples',
-                    vi: 'Giải thích bằng lời đơn giản',
-                    id: 'Jelaskan dengan kata sederhana',
-                    tr: 'Basit kelimelerle açıkla',
-                    pl: 'Wyjaśnij prościej',
-                  })}
+                  accessibilityLabel="50/50"
                   style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
                   disabled={!canUse}
-                  onPress={openExplainPreAnswer}
+                  onPress={() => {
+                    if (!canUse) return;
+                    hapticTap();
+                    setFiftyFiftyActive(true);
+                    onConsumeExplainCredit();
+                  }}
                 >
                   <View style={{ position: 'relative' }}>
-                    <Ionicons name="bulb-outline" size={26} color={canUse ? t.accent : sx.second} />
+                    <Ionicons name="cut-outline" size={26} color={canUse ? t.accent : sx.second} />
                     <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
                       <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
                     </View>
                   </View>
-                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
-                    {triLang(lang, {
-                      ru: 'Объясни',
-                      uk: 'Поясни',
-                      es: 'Explica',
-                      'pt-BR': 'Explica',
-                      vi: 'Giải thích',
-                      id: 'Jelaskan',
-                      tr: 'Açıkla',
-                      pl: 'Wyjaśnij',
-                    })}
-                  </Text>
+                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>50/50</Text>
                 </LessonPressable>
               );
             })()
@@ -1435,6 +1417,55 @@ const LessonContent = React.memo(function LessonContent({
                 })}
               </Text>
             </LessonPressable>
+          )}
+
+          {/* «Объясни проще» — только после ответа. 3/день (+ «подарок»), тот же кредит. */}
+          {!isPlanPhraseRecallTask && status === 'result' && (
+            (() => {
+              const canUse = explainHintsLeft > 0;
+              return (
+                <LessonPressable
+                  testID="lesson1-explain"
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, {
+                    ru: 'Объяснить простыми словами',
+                    uk: 'Пояснити простими словами',
+                    es: 'Explicar en palabras simples',
+                    'pt-BR': 'Explicar em palavras simples',
+                    vi: 'Giải thích bằng lời đơn giản',
+                    id: 'Jelaskan dengan kata sederhana',
+                    tr: 'Basit kelimelerle açıkla',
+                    pl: 'Wyjaśnij prościej',
+                  })}
+                  style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
+                  disabled={!canUse}
+                  onPress={() => {
+                    if (!canUse) return;
+                    hapticTap();
+                    setExplainOpen(true);
+                  }}
+                >
+                  <View style={{ position: 'relative' }}>
+                    <Ionicons name="bulb-outline" size={26} color={canUse ? t.accent : sx.second} />
+                    <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
+                      <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
+                    </View>
+                  </View>
+                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+                    {triLang(lang, {
+                      ru: 'Объясни',
+                      uk: 'Поясни',
+                      es: 'Explica',
+                      'pt-BR': 'Explica',
+                      vi: 'Giải thích',
+                      id: 'Jelaskan',
+                      tr: 'Açıkla',
+                      pl: 'Wyjaśnij',
+                    })}
+                  </Text>
+                </LessonPressable>
+              );
+            })()
           )}
 
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}

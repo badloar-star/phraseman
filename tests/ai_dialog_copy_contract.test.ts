@@ -7,11 +7,13 @@ describe('ai dialog Phraseman copy contract', () => {
   const scenarioSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_dialog_session.tsx'), 'utf8');
   const companionSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_companion_session.tsx'), 'utf8');
   const homeSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_dialog_home.tsx'), 'utf8');
+  const dialogsContentSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'DialogsTabContent.tsx'), 'utf8');
 
   it('keeps dialog UI copy emoji-free', () => {
     expect(scenarioSource).not.toMatch(EMOJI_RE);
     expect(companionSource).not.toMatch(EMOJI_RE);
     expect(homeSource).not.toMatch(EMOJI_RE);
+    expect(dialogsContentSource).not.toMatch(EMOJI_RE);
   });
 
   it('does not show an empty-dialog success summary', () => {
@@ -29,6 +31,6 @@ describe('ai dialog Phraseman copy contract', () => {
     expect(companionSource).not.toContain('Tell me more.');
     expect(companionSource).not.toContain('I’m not sure');
     expect(homeSource).toContain('сценаріїв із Компасом');
-    expect(homeSource).toContain('Відкрити вільну розмову з Компасом');
+    expect(dialogsContentSource).toContain('Відкрити вільну розмову з Компасом');
   });
 });

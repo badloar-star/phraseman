@@ -56,8 +56,6 @@ import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
-import { isAiDialogEnabled } from '../ai_dialog_flags';
-import { trackEvent as trackAiDialogEvent } from '../analytics';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
@@ -386,12 +384,6 @@ export default function HomeScreen() {
     useEffect(() => {
         notifyFirstHomeFrameReady();
     }, [notifyFirstHomeFrameReady]);
-    // ИИ-диалоги: impression карточки (CTR-знаменатель) — один раз при показе
-    useEffect(() => {
-        if (isAiDialogEnabled()) {
-            void trackAiDialogEvent('ai_dialog_card_shown');
-        }
-    }, [studyTarget]);
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const [userName, setUserName] = useState(() => hh?.userName ?? '');
     const [streak, setStreak] = useState(() => hh?.streak ?? 0);
@@ -1547,10 +1539,6 @@ export default function HomeScreen() {
             case 'stats':
                 router.push('/streak_stats' as any);
                 break;
-            case 'aiDialog':
-                void trackAiDialogEvent('ai_dialog_card_tapped');
-                router.push('/ai_dialog_home' as any);
-                break;
             case 'flashcards':
                 router.push('/flashcards' as any);
                 break;
@@ -2397,20 +2385,20 @@ export default function HomeScreen() {
                         marginHorizontal: 16,
                         marginBottom: 12,
                         borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 16,
-                        backgroundColor: isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : '#1A3A5C',
+                        backgroundColor: isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : t.bgCard,
                         borderWidth: 1,
-                        borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairlineStrong : '#4FC3F7',
+                        borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairlineStrong : (t.accent + '55'),
                         padding: 16,
                         flexDirection: 'row',
                         alignItems: 'center',
                         gap: 12,
                         ...({}),
                     }}>
-              <View style={{ width: 42, height: 42, borderRadius: isCompassTheme ? compassHomeRadius : 21, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : 'rgba(79,195,247,0.14)', borderWidth: 1, borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : 'rgba(79,195,247,0.36)' }}>
-                <Ionicons name="snow-outline" size={24} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : '#4FC3F7'}/>
+              <View style={{ width: 42, height: 42, borderRadius: isCompassTheme ? compassHomeRadius : 21, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : (t.accent + '24'), borderWidth: 1, borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : (t.accent + '5C') }}>
+                <Ionicons name="snow-outline" size={24} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent}/>
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : '#4FC3F7', fontSize: 13, fontWeight: '700' }}>
+                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 13, fontWeight: '700' }}>
                   {triLang(lang, {
                         ru: `Цепочка ${streak} дней под угрозой`,
                         uk: `Ланцюжок ${streak} днів під загрозою`,
@@ -2422,7 +2410,7 @@ export default function HomeScreen() {
                         pl: `Masz serię ${streak} dni: nie strać jej dziś`,
                     })}
                 </Text>
-                <Text style={{ color: isGoldTheme ? t.textMuted : '#90CAF9', fontSize: 12, marginTop: 2 }}>
+                <Text style={{ color: t.textMuted, fontSize: 12, marginTop: 2 }}>
                   {!hasPremiumAccess
                         ? triLang(lang, {
                             ru: 'Доступно только для Premium',
@@ -2461,7 +2449,7 @@ export default function HomeScreen() {
                 {!hasPremiumAccess
                         ? <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : '#FFB74D', fontSize: 11, fontWeight: '700' }}>Premium</Text>
                         : hasPremiumAccess && !premiumFreezeUsed
-                            ? <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : '#4FC3F7', fontSize: 12, fontWeight: '700' }}>
+                            ? <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 12, fontWeight: '700' }}>
                         {triLang(lang, {
                                     ru: 'Бесплатно',
                                     uk: 'Безкоштовно',
@@ -2473,10 +2461,10 @@ export default function HomeScreen() {
                                     pl: "Gratis",
                                 })}
                       </Text>
-                            : <Text style={{ color: shardsBalance >= FREEZE_COST_SHARDS ? (isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : '#4FC3F7') : t.textGhost, fontSize: 12, fontWeight: '700' }}>
+                            : <Text style={{ color: shardsBalance >= FREEZE_COST_SHARDS ? (isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent) : t.textGhost, fontSize: 12, fontWeight: '700' }}>
                         {FREEZE_COST_SHARDS} 💎
                       </Text>}
-                <Ionicons name="chevron-forward" size={16} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : '#4FC3F7'}/>
+                <Ionicons name="chevron-forward" size={16} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent}/>
               </View>
             </TouchableOpacity>)}
 
@@ -2908,27 +2896,6 @@ export default function HomeScreen() {
                   </View>) : null}
               </LinearGradient>
             </TouchableOpacity>
-
-            {isAiDialogEnabled() ? (
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-ai-dialog" onPress={() => { hapticTap(); void trackAiDialogEvent('ai_dialog_card_tapped'); router.push('/ai_dialog_home'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>
-                {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
-                {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="normal"/>}
-                <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.dialogs} width={homeTodayIconImageSize} height={homeTodayIconImageSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
-                </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg), fontWeight: '900', lineHeight: Math.max(26, f.bodyLg + 5) }} numberOfLines={1}>
-                    {triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos', 'pt-BR': 'Diálogos', vi: 'Hội thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi' })}
-                  </Text>
-                  <Text style={{ color: homeThemePanelAccent, fontSize: Math.max(14, f.label), fontWeight: '800', lineHeight: Math.max(18, f.label + 4), marginTop: 2 }} numberOfLines={1}>
-                    {triLang(lang, { ru: '20 сценариев для разговора', uk: '20 сценаріїв для розмови', es: '20 escenarios para hablar', 'pt-BR': '20 cenários para conversar', vi: '20 tình huống để nói', id: '20 skenario percakapan', tr: 'Konuşma için 20 senaryo', pl: '20 scenariuszy rozmowy' })}
-                  </Text>
-                </View>
-                <Ionicons name="chevron-forward" size={20} color={homeThemePanelAccent} style={{ marginRight: 2 }}/>
-              </LinearGradient>
-            </TouchableOpacity>
-            ) : null}
 
             <TouchableOpacity activeOpacity={0.85} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ borderRadius: isCompassTheme ? compassHomeRadius : 24, overflow: 'hidden', ...(isCompassTheme ? compassShadow(2) : {}) }}>
               <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayCardMinHeight, borderRadius: isCompassTheme ? compassHomeRadius : 24, borderWidth: 1, borderColor: homeThemePanelBorder, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, flexDirection: 'row', alignItems: 'center', gap: homeTodayCardGap, overflow: 'hidden' }}>

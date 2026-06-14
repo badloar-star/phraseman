@@ -59,9 +59,9 @@ describe('cinema home foreground assets', () => {
     }
   });
 
-  it('uses themed artwork for the Theo dialogs card instead of a line icon', () => {
-    const homeSource = fs.readFileSync(path.join(ROOT, 'app/(tabs)/home.tsx'), 'utf8');
-    expect(homeSource).toContain('source={menuImages.dialogs}');
-    expect(homeSource).not.toContain('<Ionicons name="chatbubbles-outline" size={Math.round(homeTodayIconImageSize * 0.6)}');
+  it('uses themed artwork for the dialogs entry instead of a line icon', () => {
+    const dialogsSource = fs.readFileSync(path.join(ROOT, 'components/DialogsTabContent.tsx'), 'utf8');
+    expect(dialogsSource).toContain('compassIconSource(themeMode)');
+    expect(dialogsSource).not.toContain('<Ionicons name="chatbubbles-outline"');
   });
 });

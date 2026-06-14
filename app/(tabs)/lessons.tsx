@@ -26,6 +26,8 @@ import { prefetchLessonMenuCache } from '../lesson_menu';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import EnergyBar from '../../components/EnergyBar';
+import DialogsTabContent from '../../components/DialogsTabContent';
+import { isAiDialogEnabled } from '../ai_dialog_flags';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
@@ -215,6 +217,45 @@ function PremiumBadge({ label }: {
 }
 // Высоты элементов (должны точно совпадать с реальным рендером)
 const BOOK_H = 72; // высота книги
+
+interface TabUnderlineButtonProps {
+    label: string;
+    active: boolean;
+    color: string;
+    mutedColor: string;
+    accent: string;
+    fontSize: number;
+    onPress: () => void;
+    badge?: boolean;
+    badgeColor?: string;
+    badgeTextColor?: string;
+    badgeLabel?: string;
+}
+
+/** Вкладка-надпись с золотой полоской снизу для переключателя «Уроки | Диалоги». */
+function TabUnderlineButton({ label, active, color, mutedColor, accent, fontSize, onPress, badge, badgeColor, badgeTextColor, badgeLabel }: TabUnderlineButtonProps) {
+    return (
+        <TouchableOpacity
+            accessibilityRole="tab"
+            accessibilityState={{ selected: active }}
+            activeOpacity={0.7}
+            onPress={onPress}
+            style={{ paddingTop: 10, paddingBottom: 9, flexDirection: 'row', alignItems: 'center', gap: 6, borderBottomWidth: 2, borderBottomColor: active ? accent : 'transparent', marginBottom: -1 }}
+        >
+            <Text style={{ color: active ? color : mutedColor, fontSize: Math.max(14, fontSize), fontWeight: active ? '800' : '600' }} numberOfLines={1}>
+                {label}
+            </Text>
+            {badge && badgeLabel ? (
+                <View style={{ borderRadius: 8, paddingHorizontal: 6, paddingVertical: 1, backgroundColor: badgeColor ?? accent }}>
+                    <Text style={{ color: badgeTextColor ?? '#fff', fontSize: 10, fontWeight: '900' }} maxFontSizeMultiplier={1}>
+                        {badgeLabel}
+                    </Text>
+                </View>
+            ) : null}
+        </TouchableOpacity>
+    );
+}
+
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LessonsTab() {
     const tabContentBottomPad = useTabContentBottomPad();
@@ -258,6 +299,9 @@ export default function LessonsTab() {
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const { activeIdx, focusTick } = useTabNav();
+    // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
+    const dialogsEnabled = isAiDialogEnabled();
+    const [page, setPage] = useState<'lessons' | 'dialogs'>('lessons');
     const [gateModal, setGateModal] = useState<null | {
         kind: 'exam';
         level: string;
@@ -426,16 +470,8 @@ export default function LessonsTab() {
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
-      <BouncyWrap style={bouncyStyle}>
-      <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
-        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingTop: insets.top }}
-        decelerationRate="normal"
-        bounces
-        alwaysBounceVertical
-        overScrollMode="always"
-      >
-
-        {/* Хедер */}
+      {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия */}
+      <View style={{ paddingTop: insets.top }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 }}>
           <TapScale
             onPress={() => goHome()}
@@ -446,13 +482,65 @@ export default function LessonsTab() {
           </TapScale>
           <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
             <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
-              {s.tabs.lessons}
+              {dialogsEnabled
+                ? triLang(lang, { ru: 'Обучение', uk: 'Навчання', es: 'Aprender', 'pt-BR': 'Aprender', vi: 'Học', id: 'Belajar', tr: 'Öğren', pl: 'Nauka' })
+                : s.tabs.lessons}
             </Text>
           </View>
           <View style={{ flexShrink: 0 }}>
             <EnergyBar size={30}/>
           </View>
         </View>
+
+        {/* Переключатель страниц: Уроки | Диалоги (подчёркивание) */}
+        {dialogsEnabled ? (
+          <View style={{ flexDirection: 'row', gap: 22, paddingHorizontal: 18, borderBottomWidth: 1, borderBottomColor: t.border, marginBottom: 2 }}>
+            <TabUnderlineButton
+              label={s.tabs.lessons}
+              active={page === 'lessons'}
+              color={t.textPrimary}
+              mutedColor={t.textMuted}
+              accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+              fontSize={f.body}
+              onPress={() => { if (page !== 'lessons') { hapticTap(); setPage('lessons'); } }}
+            />
+            <TabUnderlineButton
+              label={triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos', 'pt-BR': 'Diálogos', vi: 'Hội thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi' })}
+              active={page === 'dialogs'}
+              color={t.textPrimary}
+              mutedColor={t.textMuted}
+              accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+              fontSize={f.body}
+              badge={!isPremium}
+              badgeColor={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+              badgeTextColor={isGoldTheme ? (t.textOnGold ?? '#2A2410') : '#fff'}
+              badgeLabel={triLang(lang, { ru: '1 free', uk: '1 free', es: '1 free', 'pt-BR': '1 free', vi: '1 free', id: '1 free', tr: '1 free', pl: '1 free' })}
+              onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
+            />
+          </View>
+        ) : null}
+      </View>
+
+      {/* Страница «Диалоги» */}
+      {dialogsEnabled && page === 'dialogs' ? (
+        <View style={{ flex: 1 }}>
+          <DialogsTabContent
+            bottomPadding={tabContentBottomPad}
+            onScroll={(e) => { topFadeScroll?.onScroll?.(e); }}
+          />
+        </View>
+      ) : null}
+
+      {/* Страница «Уроки» (держим смонтированной, прячем при показе диалогов) */}
+      <View style={{ flex: 1, display: dialogsEnabled && page === 'dialogs' ? 'none' : 'flex' }}>
+      <BouncyWrap style={bouncyStyle}>
+      <Animated.ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
+        contentContainerStyle={{ paddingBottom: tabContentBottomPad }}
+        decelerationRate="normal"
+        bounces
+        alwaysBounceVertical
+        overScrollMode="always"
+      >
 
         {/* Items */}
         {listData.map((item, i) => {
@@ -970,6 +1058,7 @@ export default function LessonsTab() {
         </View>
       </Animated.ScrollView>
       </BouncyWrap>
+      </View>
 
     </ScreenGradient>
     <ThemedChoiceModal visible={gateModal !== null} title={gateModal?.kind === 'frenchExam'

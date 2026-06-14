@@ -1342,27 +1342,27 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* ФУТЕР */}
         <View style={{ flexDirection: 'row', paddingVertical: linkedSliceCompact ? 8 : 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
-          {/* 50/50 — затемнить неверные плитки до ответа. Тот же дневной кредит, что и «Объясни». */}
+          {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик). */}
           {!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && (
             (() => {
-              const canUse = explainHintsLeft > 0 && !fiftyFiftyActive;
+              const canUse50 = explainHintsLeft > 0 && !fiftyFiftyActive;
               return (
                 <LessonPressable
                   testID="lesson1-fifty-fifty"
                   accessibilityRole="button"
                   accessibilityLabel="50/50"
-                  style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
-                  disabled={!canUse}
+                  style={{ flex: 1, alignItems: 'center', opacity: canUse50 ? 1 : 0.35 }}
+                  disabled={!canUse50}
                   onPress={() => {
-                    if (!canUse) return;
+                    if (!canUse50) return;
                     hapticTap();
                     setFiftyFiftyActive(true);
                     onConsumeExplainCredit();
                   }}
                 >
                   <View style={{ position: 'relative' }}>
-                    <Ionicons name="cut-outline" size={26} color={canUse ? t.accent : sx.second} />
-                    <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
+                    <Ionicons name="cut-outline" size={26} color={canUse50 ? t.accent : sx.second} />
+                    <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse50 ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
                       <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
                     </View>
                   </View>
@@ -1371,6 +1371,7 @@ const LessonContent = React.memo(function LessonContent({
               );
             })()
           )}
+
 
           {/* Theory Button */}
           <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
@@ -1417,55 +1418,6 @@ const LessonContent = React.memo(function LessonContent({
                 })}
               </Text>
             </LessonPressable>
-          )}
-
-          {/* «Объясни проще» — только после ответа. 3/день (+ «подарок»), тот же кредит. */}
-          {!isPlanPhraseRecallTask && status === 'result' && (
-            (() => {
-              const canUse = explainHintsLeft > 0;
-              return (
-                <LessonPressable
-                  testID="lesson1-explain"
-                  accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, {
-                    ru: 'Объяснить простыми словами',
-                    uk: 'Пояснити простими словами',
-                    es: 'Explicar en palabras simples',
-                    'pt-BR': 'Explicar em palavras simples',
-                    vi: 'Giải thích bằng lời đơn giản',
-                    id: 'Jelaskan dengan kata sederhana',
-                    tr: 'Basit kelimelerle açıkla',
-                    pl: 'Wyjaśnij prościej',
-                  })}
-                  style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
-                  disabled={!canUse}
-                  onPress={() => {
-                    if (!canUse) return;
-                    hapticTap();
-                    setExplainOpen(true);
-                  }}
-                >
-                  <View style={{ position: 'relative' }}>
-                    <Ionicons name="bulb-outline" size={26} color={canUse ? t.accent : sx.second} />
-                    <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
-                      <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
-                    </View>
-                  </View>
-                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
-                    {triLang(lang, {
-                      ru: 'Объясни',
-                      uk: 'Поясни',
-                      es: 'Explica',
-                      'pt-BR': 'Explica',
-                      vi: 'Giải thích',
-                      id: 'Jelaskan',
-                      tr: 'Açıkla',
-                      pl: 'Wyjaśnij',
-                    })}
-                  </Text>
-                </LessonPressable>
-              );
-            })()
           )}
 
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}

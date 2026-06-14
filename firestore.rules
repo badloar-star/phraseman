@@ -1505,6 +1505,28 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // ── Сезоны Арены ───────────────────────────────────────────────────────────
+    // Сезонный лидерборд (топ-100): читать всем, ПИСАТЬ только сервер (Admin SDK —
+    // и PvP onArenaSessionFinished, и бот-CF arenaBotMatchRecord). Клиент не пишет
+    // вообще — как и в arena_profiles (анти-накрутка SR/ранга).
+    match /arena_season_leaderboard/{seasonId}/entries/{uid} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    // Мета сезона, источники наград (claims), зал славы — только сервер.
+    match /arena_seasons/{seasonId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /arena_season_claims/{claimId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /arena_season_hall/{seasonId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
     match /arena_club_events/{eventId} {
       allow read: if request.auth != null;
       allow create, update, delete: if isAdmin();

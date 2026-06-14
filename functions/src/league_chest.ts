@@ -48,7 +48,7 @@ type RewardKind =
   | 'gold_theme'
   | 'gold_theme_duplicate';
 
-type RewardDrop = {
+export type RewardDrop = {
   id: string;
   kind: RewardKind;
   rarity: RewardRarity;
@@ -285,7 +285,7 @@ function buildLeagueRewardDrops(params: {
   return drops;
 }
 
-function buildRewardProgressPatch(params: {
+export function buildRewardProgressPatch(params: {
   drops: RewardDrop[];
   user: FirebaseFirestore.DocumentData | undefined;
   now: number;

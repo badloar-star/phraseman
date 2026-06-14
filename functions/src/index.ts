@@ -50,6 +50,12 @@ const { arenaClubWarContribute } = require('./arena_club_wars');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaHillRecordAttempt, arenaHillGetDailyTop } = require('./arena_hill');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaBotMatchRecord } = require('./arena_bot_match');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaSeasonRolloverCron } = require('./arena_season_cron');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaSeasonGetTop, arenaSeasonClaimReward } = require('./arena_season_rewards');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaHillDailyRewardCron } = require('./arena_hill_daily_reward');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendEnsureMyCode } = require('./friend_codes');
@@ -144,6 +150,10 @@ exports.leagueChestClaim = leagueChestClaim;
 exports.arenaClubWarContribute = arenaClubWarContribute;
 exports.arenaHillRecordAttempt = arenaHillRecordAttempt;
 exports.arenaHillGetDailyTop = arenaHillGetDailyTop;
+exports.arenaBotMatchRecord = arenaBotMatchRecord;
+exports.arenaSeasonRolloverCron = arenaSeasonRolloverCron;
+exports.arenaSeasonGetTop = arenaSeasonGetTop;
+exports.arenaSeasonClaimReward = arenaSeasonClaimReward;
 exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;

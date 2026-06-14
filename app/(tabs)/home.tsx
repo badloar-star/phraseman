@@ -403,6 +403,9 @@ export default function HomeScreen() {
     const streakScaleAnim = useRef(new Animated.Value(1)).current;
     const [totalXP, setTotalXP] = useState(() => hh?.totalXP ?? 0);
     const [homeStatsReady, setHomeStatsReady] = useState(() => !!(homeStatsLoadedOnce && hh));
+    // true только когда загрузка ОБОРВАЛАСЬ и показывать нечего (первый запуск + оффлайн).
+    // Если есть кэш/hydration — баннер НЕ показываем: экран деградирует до кэша молча.
+    const [loadFailedNoData, setLoadFailedNoData] = useState(false);
     const level = getLevelFromXP(totalXP);
     const [weekDone, setWeekDone] = useState<boolean[]>(() => {
         const w = hh?.weekDone;
@@ -1060,6 +1063,8 @@ export default function HomeScreen() {
                 AsyncStorage.multiGet(['onboarding_plan_billing', 'had_premium_ever', 'premium_active']),
             ]);
             const premiumSignals = new Map(premiumSignalPairs);
+            // Данные успешно прочитаны — снимаем баннер ошибки, если он был после прошлого сбоя.
+            if (mountedRef.current && loadFailedNoData) setLoadFailedNoData(false);
             if (mountedRef.current) {
                 setOnboardingPlanBilling(premiumSignals.get('onboarding_plan_billing') || null);
                 setHadPremiumEver(premiumSignals.get('had_premium_ever') === '1' || premiumSignals.get('premium_active') === 'true');
@@ -1408,6 +1413,10 @@ export default function HomeScreen() {
         }
         catch (error) {
             DebugLogger.error('home.tsx:checkDailyReward', error, 'warning');
+            // Если это ПЕРВАЯ загрузка (ещё ни разу не было успешной) и она упала —
+            // показывать нечего (нет кэша/hydration). Включаем баннер «Обновить».
+            // Когда кэш уже есть (homeStatsLoadedOnce) — молча остаёмся на нём.
+            if (mountedRef.current && !homeStatsLoadedOnce) setLoadFailedNoData(true);
         }
         finally {
             endPerf();
@@ -3470,6 +3479,38 @@ export default function HomeScreen() {
       {renderNewHome()}
 
       </View>
+
+      {/* Баннер сбоя — только когда грузить было нечего (первый запуск + оффлайн). */}
+      {loadFailedNoData ? (
+        <View pointerEvents="box-none" style={{ position: 'absolute', left: 16, right: 16, bottom: 24 + insets.bottom, alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, maxWidth: 420, backgroundColor: t.bgCard, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: t.accent + '40' }}>
+            <Ionicons name="cloud-offline-outline" size={22} color={t.textMuted} />
+            <Text style={{ flex: 1, color: t.textPrimary, fontSize: 13, fontWeight: '600' }}>
+              {triLang(lang, {
+                ru: 'Не удалось загрузить данные. Проверь соединение.',
+                uk: 'Не вдалося завантажити дані. Перевір з’єднання.',
+                es: 'No se pudieron cargar los datos. Revisa tu conexión.',
+                'pt-BR': 'Não foi possível carregar os dados. Verifique sua conexão.',
+                vi: 'Không tải được dữ liệu. Kiểm tra kết nối của bạn.',
+                id: 'Gagal memuat data. Periksa koneksimu.',
+                tr: 'Veriler yüklenemedi. Bağlantını kontrol et.',
+                pl: 'Nie udało się wczytać danych. Sprawdź połączenie.',
+              })}
+            </Text>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, { ru: 'Обновить', uk: 'Оновити', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
+              activeOpacity={0.82}
+              onPress={() => { setLoadFailedNoData(false); void loadData(); }}
+              style={{ paddingVertical: 6, paddingHorizontal: 12, borderRadius: 10, backgroundColor: t.accent + '22' }}
+            >
+              <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700' }}>
+                {triLang(lang, { ru: 'Обновить', uk: 'Оновити', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : null}
 
       {/* Energy Tooltip — Modal чтобы не обрезался */}
       <Modal visible={showHomeEnergy && energyTooltip.visible} transparent animationType="none" onRequestClose={() => setEnergyTooltip((p) => ({ ...p, visible: false }))}>

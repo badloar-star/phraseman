@@ -160,6 +160,26 @@ function installDevRuntimePerformanceGuards(): void {
 
 installDevRuntimePerformanceGuards();
 
+// Global unhandled-promise-rejection handler (CLIENT-001).
+// Hermes surfaces these as uncaught promise rejections; without this they are
+// silently swallowed in release builds, making async bugs invisible.
+if (typeof globalThis !== 'undefined') {
+  const g = globalThis as Record<string, unknown>;
+  const prevHandler = g.onunhandledrejection as ((e: PromiseRejectionEvent) => void) | undefined;
+  g.onunhandledrejection = (event: PromiseRejectionEvent) => {
+    prevHandler?.(event);
+    if (__DEV__) {
+      console.warn('[unhandledRejection]', event?.reason);
+    } else {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const health = require('./app_health');
+        health?.logAppWarning?.('promise:unhandled_rejection', event?.reason, { feature: 'async' });
+      } catch { /* best-effort */ }
+    }
+  };
+}
+
 /** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
 // Нативный сплэш из app.json — скрываем только когда AppContent сообщает ready (см. hideAsync в useEffect).
 void SplashScreen.preventAutoHideAsync().catch(() => {});

@@ -77,16 +77,24 @@ async function applyCachedConfig(): Promise<void> {
  * One-shot load at startup: apply cache immediately (so flags are right before
  * the network responds), then fetch the live doc once. Safe to call always.
  */
+const REMOTE_CONFIG_FETCH_TIMEOUT_MS = 3000;
+
 export async function loadRemoteConfig(): Promise<void> {
   await applyCachedConfig();
   const factory = await getFirestoreModule();
   if (!factory) return;
   try {
     const db = factory();
-    const snap = await db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get();
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('remote_config_timeout')), REMOTE_CONFIG_FETCH_TIMEOUT_MS),
+    );
+    const snap = await Promise.race([
+      db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get(),
+      timeout,
+    ]);
     if (snap.exists) applyAndCache(snap.data());
   } catch {
-    // Keep cache/defaults on any failure.
+    // Keep cache/defaults on any failure (offline, timeout, permission).
   }
 }
 

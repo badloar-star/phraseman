@@ -1216,7 +1216,7 @@ export async function syncToCloud(options?: { forceNow?: boolean; deferMs?: numb
 async function runSyncNow(): Promise<void> {
   if (syncInFlight) return syncInFlight;
   syncInFlight = doSyncToCloud()
-    .catch(() => {})
+    .catch((e) => { if (__DEV__) console.warn('[cloud_sync] runSyncNow: sync failed', e); })
     .finally(() => {
       syncInFlight = null;
       if (pendingSync) {
@@ -1461,8 +1461,8 @@ async function doSyncToCloud(): Promise<void> {
     // leaderboard/{uid} обновляется только через firestore_leaderboard.ts (pushMyScore)
     // + backend reconcile в functions/src/sync_leaderboard.ts.
     // Здесь сознательно НЕ пишем leaderboard, чтобы исключить dual-writer гонки.
-  } catch {
-    // Синхронизация fire-and-forget: ошибки не ломают основной флоу
+  } catch (e) {
+    if (__DEV__) console.warn('[cloud_sync] doSyncToCloud failed', e);
   }
 }
 

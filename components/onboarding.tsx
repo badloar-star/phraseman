@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
+import React, { memo, useState, useEffect, useRef, useCallback, forwardRef } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
   TextInput, KeyboardAvoidingView, ScrollView,
@@ -10,6 +10,7 @@ import {
   type ImageSourcePropType,
   type StyleProp,
   type ViewStyle,
+  type ScrollViewProps,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from './SafeLinearGradient';
@@ -54,8 +55,32 @@ import {
 import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
 import { resolvePersonalPlanForGoal, type PersonalPlanSetupGoal } from '../app/personal_plan_recommendation';
 import { usePremium } from './PremiumContext';
-import BouncyScrollView from './BouncyScrollView';
 import DuoPressable from './DuoPressable';
+
+/**
+ * Скролл онбординга — БЕЗ резинки/overscroll.
+ *
+ * На остальных ~58 экранах используется `BouncyScrollView` (iOS native bounce +
+ * Android edge-pull). В онбординге резинка не нужна: экраны почти всегда влезают
+ * без прокрутки, а упругий отскок на первом запуске выглядит как глюк. Поэтому
+ * здесь — обычный <ScrollView> с явно выключенным bounce в обе стороны и на обеих
+ * платформах (`bounces`/`alwaysBounceVertical` для iOS, `overScrollMode="never"`
+ * для Android). Drop-in: принимает те же ScrollViewProps, что и BouncyScrollView.
+ */
+const OnboardingScroll = forwardRef<ScrollView, ScrollViewProps>(function OnboardingScroll(
+  props,
+  ref,
+) {
+  return (
+    <ScrollView
+      ref={ref}
+      bounces={false}
+      alwaysBounceVertical={false}
+      overScrollMode="never"
+      {...props}
+    />
+  );
+});
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -604,8 +629,12 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     monthly: string;
     yearly: string;
     hasTrial: boolean;
+    trialDays: number;
     loaded: boolean;
-  }>({ monthly: '', yearly: '', hasTrial: false, loaded: false });
+  }>({ monthly: '', yearly: '', hasTrial: false, trialDays: 3, loaded: false });
+  // RC-пакеты для inline-покупки на пейволе (грузятся вместе с ценами).
+  const storePackagesRef = useRef<{ monthly?: unknown; yearly?: unknown }>({});
+  const [paywallPurchasing, setPaywallPurchasing] = useState(false);
   const [nicknameMode, setNicknameMode] = useState<OnboardingNicknameMode>('regular');
   const [planPhraseWasCorrect, setPlanPhraseWasCorrect] = useState(true);
   const [showPlanFreeConfirm, setShowPlanFreeConfirm] = useState(false);
@@ -615,10 +644,32 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   const planLoadingBuildAnims = useRef(PLAN_LOADING_BUILD_ITEMS.map(() => new Animated.Value(0))).current;
   const planLoadingButtonAnim = useRef(new Animated.Value(0)).current;
   const planDaysProgress = useRef(new Animated.Value(0)).current;
-  // Дефолтные значения — экраны выбора удалены, профиль сохраняется с базовыми настройками
-  const goal: LearningGoal       = 'hobby';
-  const minutesPerDay: MinutesPerDay = 15;
-  const currentLevel: CurrentLevel   = 'a1';
+  // Профиль берётся из ответов юзера в онбординге — никаких хардкодов.
+  const goal: LearningGoal = ((): LearningGoal => {
+    // PersonalPlanSetupGoal → LearningGoal
+    const map: Record<string, LearningGoal> = {
+      travel: 'tourism',
+      words: 'hobby',
+      everyday: 'work',
+      series: 'hobby',
+      mind: 'hobby',
+    };
+    return map[selectedPlanGoal] ?? 'hobby';
+  })();
+  const minutesPerDay: MinutesPerDay = ((): MinutesPerDay => {
+    // PlanMinutesChoice 5|10|15|20 → MinutesPerDay 5|15|30|60
+    if (selectedPlanMinutes <= 5) return 5;
+    if (selectedPlanMinutes <= 15) return 15;
+    if (selectedPlanMinutes <= 20) return 30;
+    return 60;
+  })();
+  const currentLevel: CurrentLevel = ((): CurrentLevel => {
+    // OnboardingPlanLevel 'a0'|'a1'|'a2'|'b1' → CurrentLevel 'a1'|'a2'|'b1'|'b2'
+    if (selectedPlanLevel === 'a0') return 'a1';
+    if (selectedPlanLevel === 'a1') return 'a1';
+    if (selectedPlanLevel === 'a2') return 'a2';
+    return 'b1';
+  })();
   const [notificationTime] = useState<string>('08:00');
 
   const isUK = lang === 'uk';
@@ -726,11 +777,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         const offerings = await Purchases.getOfferings();
         const { monthly, yearly } = resolvePremiumPackages(offerings.current?.availablePackages ?? []);
         if (cancelled) return;
+        storePackagesRef.current = { monthly, yearly };
+        const { getTrialInfo, trialDaysOrDefault } = await import('../app/paywall_trial_info');
+        const yearlyTrial = getTrialInfo(yearly ?? null);
+        const monthlyTrial = getTrialInfo(monthly ?? null);
+        const trialInfo = yearlyTrial.hasTrial ? yearlyTrial : monthlyTrial;
         setStorePrices({
           monthly: monthly?.product?.priceString ?? '',
           yearly: yearly?.product?.priceString ?? '',
           hasTrial:
             storeProductHasTrialIntro(monthly?.product) || storeProductHasTrialIntro(yearly?.product),
+          trialDays: trialDaysOrDefault(trialInfo),
           loaded: true,
         });
       } catch {
@@ -1060,51 +1117,197 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     }
   };
 
-  const handleStartPersonalPlanFromOnboarding = async () => {
-    if (finishingRef.current || closingRef.current) return;
-    finishingRef.current = true;
-    Keyboard.dismiss();
+  // Вызывается при нажатии CTA на inline-пейволе.
+  // Если юзер уже Premium (или только что получил intro-доступ) — сразу к имени.
+  // Иначе — покупка RevenueCat прямо здесь, без перехода на /premium_modal.
+  const handlePaywallPurchase = async () => {
+    if (paywallPurchasing) return;
+
     void import('../app/analytics').then(({ trackEvent }) =>
       trackEvent('onboarding_plan_trial_cta', { plan: selectedPlanBilling, has_trial: storePrices.hasTrial }),
     );
-    try {
+
+    // Путь 1: уже Premium / intro-доступ — активируем план и идём к имени
+    const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);
+    if (hasPremiumAccess || introFullAccessStarted) {
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
         ['onboarding_step', 'name'],
-        // Пробрасываем выбор плана (monthly/annual) в пейвол, чтобы он открылся
-        // с предвыбранной пользователем картой, а не дефолтом. Раньше выбор терялся.
-        ['onboarding_plan_billing', selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly'],
       ]);
       await queuePendingPersonalPlanActivation({
         planId: selectedPlanId,
         minutesPerDay: selectedPlanMinutes,
         source: 'onboarding',
       });
-      const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);
-      if (hasPremiumAccess || introFullAccessStarted) {
+      await activatePendingPersonalPlanAfterPremium();
+      setNicknameMode('personal_plan');
+      goToStep('name');
+      return;
+    }
+
+    // Путь 2: inline-покупка RC
+    setPaywallPurchasing(true);
+    try {
+      const [
+        Purchases,
+        { initRevenueCat, syncRevenueCatIdentity },
+        { inferPremiumPlanFromProductId, persistStorePremiumLocally, revenueCatPremiumMetadata },
+        { getTrialInfo, trialDaysOrDefault },
+        { scheduleTrialEndReminder, requestNotificationPermission },
+        { emitAppEvent },
+        { trackEvent },
+        { hapticTap: hap },
+      ] = await Promise.all([
+        import('react-native-purchases').then((m) => m.default),
+        import('../app/revenuecat_init'),
+        import('../app/premium_revenuecat_state'),
+        import('../app/paywall_trial_info'),
+        import('../app/notifications'),
+        import('../app/events'),
+        import('../app/analytics').then((m) => ({ trackEvent: m.trackEvent })),
+        import('../hooks/use-haptics'),
+      ]);
+
+      await initRevenueCat();
+      if (!(await syncRevenueCatIdentity())) {
+        AppInfoDialog.alert(
+          pick('Ошибка подключения', 'Помилка з\'єднання', 'Error de conexión'),
+          pick('Не удалось связаться с магазином. Попробуй позже.', 'Не вдалося зв\'язатися з магазином.', 'No pudimos contactar la tienda.'),
+        );
+        return;
+      }
+
+      const pkgs = storePackagesRef.current as { monthly?: import('react-native-purchases').PurchasesPackage; yearly?: import('react-native-purchases').PurchasesPackage };
+      const pkg = selectedPlanBilling === 'monthly' ? pkgs.monthly : pkgs.yearly;
+
+      if (!pkg) {
+        // пакеты ещё не загрузились — загружаем сейчас
+        const { resolvePremiumPackages } = await import('../app/revenuecat_init');
+        const o = await Purchases.getOfferings();
+        const resolved = resolvePremiumPackages(o.current?.availablePackages ?? []);
+        storePackagesRef.current = resolved;
+        const freshPkg = selectedPlanBilling === 'monthly' ? resolved.monthly : resolved.yearly;
+        if (!freshPkg) {
+          AppInfoDialog.alert(
+            pick('Магазин недоступен', 'Магазин недоступний', 'Tienda no disponible'),
+            pick('Попробуй позже.', 'Спробуй пізніше.', 'Inténtalo más tarde.'),
+          );
+          return;
+        }
+        storePackagesRef.current = { ...resolved };
+      }
+
+      const finalPkg = (storePackagesRef.current as { monthly?: import('react-native-purchases').PurchasesPackage; yearly?: import('react-native-purchases').PurchasesPackage })[selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly'];
+      if (!finalPkg) return;
+
+      void trackEvent('purchase_started', { context: 'onboarding', plan: selectedPlanBilling, product_id: finalPkg.product.identifier });
+
+      const pkgTrial = getTrialInfo(finalPkg);
+      const { customerInfo } = await Purchases.purchasePackage(finalPkg);
+      const metadata = revenueCatPremiumMetadata(customerInfo, finalPkg.product.identifier);
+      const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly');
+      await persistStorePremiumLocally(confirmedPlan, metadata);
+      emitAppEvent('premium_activated');
+      hap();
+      void trackEvent('purchase_completed', { context: 'onboarding', plan: selectedPlanBilling, with_trial: pkgTrial.hasTrial });
+
+      if (pkgTrial.hasTrial) {
+        void trackEvent('trial_started', { context: 'onboarding', plan: selectedPlanBilling });
+        // Запрашиваем пуш-разрешение ПОСЛЕ покупки — момент Blinkist
+        void (async () => {
+          try {
+            const granted = await requestNotificationPermission();
+            if (!granted) return;
+            const days = trialDaysOrDefault(pkgTrial);
+            const price = finalPkg.product.priceString ?? '';
+            await scheduleTrialEndReminder(
+              days,
+              pick('Триал заканчивается завтра', 'Тріал закінчується завтра', 'Tu prueba termina mañana'),
+              pick(`Дальше — ${price}. Отменить можно в два тапа.`, `Далі — ${price}. Скасувати у два тапи.`, `Luego: ${price}. Cancelar en dos toques.`),
+            );
+          } catch { /* best-effort */ }
+        })();
+      }
+
+      // Покупка прошла — активируем план и идём к имени
+      await AsyncStorage.multiSet([
+        ['app_lang', lang],
+        [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+        ['onboarding_step', 'name'],
+      ]);
+      await queuePendingPersonalPlanActivation({
+        planId: selectedPlanId,
+        minutesPerDay: selectedPlanMinutes,
+        source: 'onboarding',
+      });
+      await activatePendingPersonalPlanAfterPremium();
+      setNicknameMode('personal_plan');
+      goToStep('name');
+    } catch (err: unknown) {
+      if ((err as { userCancelled?: boolean })?.userCancelled) {
+        void import('../app/analytics').then(({ trackEvent }) =>
+          trackEvent('purchase_cancelled', { context: 'onboarding', plan: selectedPlanBilling }),
+        );
+      } else {
+        AppInfoDialog.alert(
+          pick('Не удалось оформить', 'Не вдалося оформити', 'No se pudo completar'),
+          pick('Попробуй ещё раз или восстанови покупки.', 'Спробуй ще раз або віднови покупки.', 'Inténtalo de nuevo o restaura tus compras.'),
+        );
+      }
+    } finally {
+      setPaywallPurchasing(false);
+    }
+  };
+
+  // Восстановление покупок с inline-пейвола
+  const handlePaywallRestore = async () => {
+    if (paywallPurchasing) return;
+    setPaywallPurchasing(true);
+    try {
+      const [
+        Purchases,
+        { initRevenueCat, syncRevenueCatIdentity },
+        { inferPremiumPlanFromProductId, persistStorePremiumLocally, revenueCatPremiumMetadata },
+        { emitAppEvent },
+      ] = await Promise.all([
+        import('react-native-purchases').then((m) => m.default),
+        import('../app/revenuecat_init'),
+        import('../app/premium_revenuecat_state'),
+        import('../app/events'),
+      ]);
+      await initRevenueCat();
+      if (!(await syncRevenueCatIdentity())) {
+        AppInfoDialog.alert(pick('Ошибка', 'Помилка', 'Error'), pick('Попробуй позже.', 'Спробуй пізніше.', 'Inténtalo más tarde.'));
+        return;
+      }
+      const info = await Purchases.restorePurchases();
+      if (Object.keys(info.entitlements.active).length > 0 || (info.activeSubscriptions ?? []).length > 0) {
+        const metadata = revenueCatPremiumMetadata(info);
+        const plan = inferPremiumPlanFromProductId(metadata.productId,
+          (info.activeSubscriptions ?? []).some((s: string) => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly',
+        );
+        await persistStorePremiumLocally(plan, metadata);
+        emitAppEvent('premium_activated');
+        await AsyncStorage.multiSet([
+          ['app_lang', lang],
+          [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+          ['onboarding_step', 'name'],
+        ]);
+        await queuePendingPersonalPlanActivation({ planId: selectedPlanId, minutesPerDay: selectedPlanMinutes, source: 'onboarding' });
         await activatePendingPersonalPlanAfterPremium();
         setNicknameMode('personal_plan');
         goToStep('name');
-        return;
+      } else {
+        AppInfoDialog.alert(
+          pick('Покупки не найдены', 'Покупки не знайдено', 'No se encontraron compras'),
+          pick('Активных подписок не обнаружено.', 'Активних підписок не знайдено.', 'No hay suscripciones activas.'),
+        );
       }
-      await Promise.race([
-        onPersonalPlanPaywallStart?.(),
-        new Promise<void>((_, reject) =>
-          setTimeout(() => reject(new Error('paywall_timeout')), 15000),
-        ),
-      ]);
     } catch {
-      AppInfoDialog.alert(
-        pick('Не получилось открыть план', 'Не вдалося відкрити план', 'No se pudo abrir el plan'),
-        pick(
-          'Проверь интернет и попробуй ещё раз.',
-          'Перевір інтернет і спробуй ще раз.',
-          'Revisa Internet e inténtalo otra vez.',
-        ),
-      );
+      AppInfoDialog.alert(pick('Ошибка', 'Помилка', 'Error'), pick('Не удалось восстановить покупки.', 'Не вдалося відновити покупки.', 'No se pudieron restaurar.'));
     } finally {
-      finishingRef.current = false;
+      setPaywallPurchasing(false);
     }
   };
 
@@ -1166,7 +1369,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           </TouchableOpacity>
           {renderPlanSegmentProgress()}
         </View>
-        <BouncyScrollView
+        <OnboardingScroll
           style={styles.onboardingScroll}
           decelerationRate="normal"
           contentContainerStyle={styles.planFlowScroll}
@@ -1177,7 +1380,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             {lead ? <Text style={styles.planFlowLead}>{lead}</Text> : null}
           </View>
           {children}
-        </BouncyScrollView>
+        </OnboardingScroll>
       </View>
     ),
     undefined,
@@ -1271,7 +1474,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     testID,
     ONBOARDING_BG_WELCOME,
     (
-      <BouncyScrollView
+      <OnboardingScroll
         style={styles.onboardingScroll}
         decelerationRate="normal"
         contentContainerStyle={styles.planMockupResultScroll}
@@ -1291,7 +1494,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           {renderPlanRows(plan, todayIconAsset)}
           <View style={styles.planMockupCtaStack}>{actions}</View>
         </View>
-      </BouncyScrollView>
+      </OnboardingScroll>
     ),
     undefined,
     true,
@@ -1451,7 +1654,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               onPress={() => {
                 setSelectedPlanMinutes(choice);
                 setSelectedPlanOverride(null);
-                scheduleDailyReminder(20, 0, lang, { requestPermission: true }).catch(() => {});
+                scheduleDailyReminder(20, 0, lang, { requestPermission: false }).catch(() => {});
                 goToStep('planPhrase');
               }}
             >
@@ -1617,18 +1820,29 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   }
 
   if (step === 'planPaywall') {
+    const goalLabel = PLAN_GOAL_CHOICES.find((c) => c.id === selectedPlanGoal)?.title ?? selectedPlanGoal;
+    const levelLabel = PLAN_LEVEL_CHOICES.find((c) => c.id === selectedPlanLevel)?.title ?? selectedPlanLevel;
+    const minutesLabel = `${selectedPlanMinutes === 20 ? '20+' : selectedPlanMinutes} мин/день`;
+    const userName = (nameForProfileRef.current || name).trim();
+    const heroTitle = userName ? `${userName}, твой план готов` : 'Твой план готов';
+    const trialDays = storePrices.trialDays;
+    const ctaLabel = storePrices.hasTrial
+      ? `Попробовать ${trialDays} ${trialDays === 1 ? 'день' : trialDays < 5 ? 'дня' : 'дней'} бесплатно`
+      : 'Открыть полный доступ';
+
     return renderScreen(
       'onboarding-plan-paywall-screen',
       ONBOARDING_BG_WELCOME,
       (
         <>
-          <BouncyScrollView
+          <OnboardingScroll
             style={styles.onboardingScroll}
             decelerationRate="normal"
             contentContainerStyle={styles.planPaywallScroll}
             showsVerticalScrollIndicator={false}
             nestedScrollEnabled
           >
+            {/* Назад */}
             <View style={styles.planPaywallTop}>
               <TouchableOpacity
                 accessibilityRole="button"
@@ -1640,76 +1854,118 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 <Text style={styles.planFlowBackGlyph}>‹</Text>
               </TouchableOpacity>
             </View>
-            <Text style={styles.planPaywallTitle}>Получить {selectedPlan.name}</Text>
-            <Text style={styles.planPaywallLead}>Открой личный маршрут под цель: {selectedPlan.goal}.</Text>
 
-            <View style={styles.planPaywallPanel}>
-              <View style={styles.planPaywallStartRow}>
+            {/* Герой: имя + план */}
+            <Text style={styles.planPaywallTitle}>{heroTitle}</Text>
+            <Text style={styles.planPaywallLead}>{selectedPlan.name} · {selectedPlan.horizon}</Text>
+
+            {/* Пилюли с ответами юзера */}
+            <View style={styles.planPaywallPills}>
+              <View style={styles.planPaywallPill}><Text style={styles.planPaywallPillText}>{goalLabel}</Text></View>
+              <View style={styles.planPaywallPill}><Text style={styles.planPaywallPillText}>{levelLabel}</Text></View>
+              <View style={styles.planPaywallPill}><Text style={styles.planPaywallPillText}>{minutesLabel}</Text></View>
+            </View>
+
+            {/* Превью плана: нед.1 открыта, остальное заблокировано */}
+            <View style={styles.planPaywallPreview}>
+              <View style={styles.planPaywallPreviewWeek}>
                 <PlanFlowIcon source={selectedPlan.iconAsset} small />
                 <View style={styles.planFlowOptionCopy}>
-                  <Text style={styles.planFlowOptionTitle}>Старт с {selectedPlan.recommendedLevel} открыт</Text>
-                  <Text style={styles.planFlowOptionSub}>Сразу переходишь к подходящим урокам</Text>
+                  <Text style={styles.planFlowOptionTitle}>Неделя 1 — открыта сейчас</Text>
+                  <Text style={styles.planFlowOptionSub}>Старт с уровня {selectedPlan.recommendedLevel}, {selectedPlanMinutes} мин/день</Text>
                 </View>
               </View>
-
-              <View style={styles.planPaywallBenefitGrid}>
-                {PLAN_PAYWALL_BENEFITS.map((benefit) => (
-                  <View
-                    key={benefit.key}
-                    style={[styles.planPaywallBenefit, benefit.featured && styles.planPaywallBenefitFeatured]}
-                  >
-                    <OnboardingBundledImage
-                      source={benefit.iconAsset}
-                      style={styles.planPaywallBenefitIcon}
-                    />
-                    <View style={styles.planFlowOptionCopy}>
-                      <Text style={styles.planPaywallBenefitTitle}>{benefit.title}</Text>
-                      <Text style={styles.planPaywallBenefitSub}>{benefit.subtitle}</Text>
-                    </View>
-                  </View>
-                ))}
+              <View style={styles.planPaywallPreviewLocked}>
+                <Ionicons name="lock-closed" size={14} color={ONBOARDING_TEXT_MUTED} />
+                <Text style={styles.planPaywallPreviewLockedText}>Недели 2–12 откроются после подписки</Text>
               </View>
             </View>
 
+            {/* Таймлайн триала (только если есть триал) */}
+            {storePrices.hasTrial ? (
+              <View style={styles.planPaywallTimeline}>
+                <View style={styles.planPaywallTimelineRow}>
+                  <View style={[styles.planPaywallTimelineDot, styles.planPaywallTimelineDotActive]} />
+                  <View style={styles.planPaywallTimelineCopy}>
+                    <Text style={styles.planPaywallTimelineTitle}>Сегодня — полный доступ</Text>
+                    <Text style={styles.planPaywallTimelineSub}>Карта не списывается</Text>
+                  </View>
+                </View>
+                <View style={styles.planPaywallTimelineLine} />
+                <View style={styles.planPaywallTimelineRow}>
+                  <View style={styles.planPaywallTimelineDot} />
+                  <View style={styles.planPaywallTimelineCopy}>
+                    <Text style={styles.planPaywallTimelineTitle}>День {Math.max(trialDays - 1, 1)} — напомним</Text>
+                    <Text style={styles.planPaywallTimelineSub}>Пуш за день до конца триала</Text>
+                  </View>
+                </View>
+                <View style={styles.planPaywallTimelineLine} />
+                <View style={styles.planPaywallTimelineRow}>
+                  <View style={styles.planPaywallTimelineDot} />
+                  <View style={styles.planPaywallTimelineCopy}>
+                    <Text style={styles.planPaywallTimelineTitle}>День {trialDays} — начало подписки</Text>
+                    <Text style={styles.planPaywallTimelineSub}>
+                      {storePrices.yearly && selectedPlanBilling === 'annual'
+                        ? `${storePrices.yearly} / год · отменить можно в любой момент`
+                        : storePrices.monthly
+                          ? `${storePrices.monthly} / месяц · отменить можно в любой момент`
+                          : 'Отменить можно в любой момент'}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            ) : null}
+
+            {/* Выбор плана */}
             <View style={styles.planPaywallOptions}>
               <TouchableOpacity
-                style={[
-                  styles.planPaywallBuyCard,
-                  selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected,
-                ]}
-                activeOpacity={0.84}
-                onPress={() => setSelectedPlanBilling('monthly')}
-              >
-                <Text style={styles.planPaywallBuyTitle}>Месячный план</Text>
-                <Text style={styles.planPaywallBuyPrice}>
-                  {storePrices.monthly ? `${storePrices.monthly} / месяц` : 'Загружаем…'}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.planPaywallBuyCard,
-                  selectedPlanBilling === 'annual' && styles.planPaywallBuyCardSelected,
-                ]}
+                style={[styles.planPaywallBuyCard, selectedPlanBilling === 'annual' && styles.planPaywallBuyCardSelected]}
                 activeOpacity={0.84}
                 onPress={() => setSelectedPlanBilling('annual')}
               >
-                <Text style={styles.planPaywallBuyTitle}>Годовой план</Text>
+                <View style={styles.planPaywallBuyCardInner}>
+                  <Text style={styles.planPaywallBuyTitle}>Годовой</Text>
+                  <Text style={styles.planPaywallBuyPrice}>
+                    {storePrices.yearly ? storePrices.yearly : 'Загружаем…'}
+                  </Text>
+                </View>
+                <View style={styles.planPaywallBuyBadge}><Text style={styles.planPaywallBuyBadgeText}>Лучшая цена</Text></View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.planPaywallBuyCard, selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected]}
+                activeOpacity={0.84}
+                onPress={() => setSelectedPlanBilling('monthly')}
+              >
+                <Text style={styles.planPaywallBuyTitle}>Месячный</Text>
                 <Text style={styles.planPaywallBuyPrice}>
-                  {storePrices.yearly ? `${storePrices.yearly} / год` : 'Загружаем…'}
+                  {storePrices.monthly ? storePrices.monthly : 'Загружаем…'}
                 </Text>
               </TouchableOpacity>
             </View>
 
+            {/* CTA */}
             <DuoPressable
               testID="data-plan-paywall-trial-cta"
-              style={styles.eliteWelcomeCta}
+              style={[styles.eliteWelcomeCta, paywallPurchasing && { opacity: 0.6 }]}
               edgeColor="#C4922A"
-              onPress={handleStartPersonalPlanFromOnboarding}
+              onPress={handlePaywallPurchase}
             >
               <Text style={styles.eliteWelcomeCtaText}>
-                {storePrices.hasTrial ? 'Попробовать 3 дня бесплатно' : 'Открыть полный доступ'}
+                {paywallPurchasing ? 'Оформляем…' : ctaLabel}
               </Text>
             </DuoPressable>
+
+            {/* Доверие */}
+            <View style={styles.planPaywallTrustRow}>
+              <Text style={styles.planPaywallTrustItem}>★ 4,3</Text>
+              <Text style={styles.planPaywallTrustSep}>·</Text>
+              <TouchableOpacity onPress={handlePaywallRestore} activeOpacity={0.7}>
+                <Text style={styles.planPaywallTrustItem}>Восстановить</Text>
+              </TouchableOpacity>
+              <Text style={styles.planPaywallTrustSep}>·</Text>
+              <Text style={styles.planPaywallTrustItem}>Отменить всегда</Text>
+            </View>
+
             <TouchableOpacity
               style={styles.eliteWelcomeSecondaryCta}
               activeOpacity={0.82}
@@ -1718,9 +1974,9 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               <Text style={styles.eliteWelcomeSecondaryCtaText}>Продолжить без плана</Text>
             </TouchableOpacity>
             <Text style={styles.legal}>
-              Trial, цена после trial и период подписки берутся из App Store или Google Play. После trial подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления. Terms of Use и Privacy Policy доступны до покупки.
+              Trial, цена после trial и период подписки берутся из App Store или Google Play. После trial подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления.
             </Text>
-          </BouncyScrollView>
+          </OnboardingScroll>
 
           {showPlanFreeConfirm ? (
             <View style={styles.planFreeConfirmOverlay}>
@@ -1843,7 +2099,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       'onboarding-beta-screen',
       ONBOARDING_BG_BETA,
       (
-        <BouncyScrollView
+        <OnboardingScroll
           {...onboardingScrollProps}
           contentContainerStyle={{
             alignItems: 'center',
@@ -1910,7 +2166,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           >
             <Text style={styles.continueBtnText}>{pick('Понятно 👍', 'Зрозуміло 👍', 'Entendido 👍')}</Text>
           </DuoPressable>
-        </BouncyScrollView>
+        </OnboardingScroll>
       ),
     );
   }
@@ -2057,7 +2313,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       (
         <>
           {renderProgressBar()}
-        <BouncyScrollView
+        <OnboardingScroll
           {...onboardingScrollProps}
           contentContainerStyle={[
             styles.center,
@@ -2147,7 +2403,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               </TouchableOpacity>
             </Animated.View>
           )}
-        </BouncyScrollView>
+        </OnboardingScroll>
         </>
       ),
     );
@@ -2198,7 +2454,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       (
         <>
           {renderProgressBar()}
-        <BouncyScrollView
+        <OnboardingScroll
           {...onboardingScrollProps}
           contentContainerStyle={{
             flexGrow: 1,
@@ -2340,7 +2596,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               </TouchableOpacity>
             )}
           </Animated.View>
-        </BouncyScrollView>
+        </OnboardingScroll>
         </>
       ),
     );
@@ -2380,7 +2636,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               <Text style={styles.planFlowBackGlyph}>‹</Text>
             </TouchableOpacity>
           </View>
-          <BouncyScrollView
+          <OnboardingScroll
             style={styles.onboardingScroll}
             decelerationRate="normal"
             contentContainerStyle={[
@@ -2449,7 +2705,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 {pick('Продолжить', 'Продовжити', 'Continuar')}
               </Text>
             </DuoPressable>
-          </BouncyScrollView>
+          </OnboardingScroll>
         </KeyboardAvoidingView>
       ),
       undefined,
@@ -2470,7 +2726,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={Platform.OS === 'ios' ? 8 : 0}
         >
-          <BouncyScrollView
+          <OnboardingScroll
             style={styles.onboardingScroll}
             decelerationRate="normal"
             contentContainerStyle={{
@@ -2555,7 +2811,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 </Text>
               )}
             </TouchableOpacity>
-          </BouncyScrollView>
+          </OnboardingScroll>
         </KeyboardAvoidingView>
         </>
       ),
@@ -2591,7 +2847,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       (
         <>
           {renderProgressBar()}
-        <BouncyScrollView
+        <OnboardingScroll
           {...onboardingScrollProps}
           contentContainerStyle={[
             styles.center,
@@ -2694,7 +2950,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               {pick('Поехали', 'Погнали', 'Vamos')}
             </Text>
           </DuoPressable>
-        </BouncyScrollView>
+        </OnboardingScroll>
         </>
       ),
     );
@@ -2848,7 +3104,7 @@ function AuthOnboardingStep({
   return (
     <>
       {renderProgressBar()}
-        <BouncyScrollView
+        <OnboardingScroll
           style={styles.onboardingScroll}
           decelerationRate="normal"
           keyboardShouldPersistTaps="handled"
@@ -2964,7 +3220,7 @@ function AuthOnboardingStep({
               'No publicamos tu correo ni enviamos spam.',
             )}
           </Text>
-        </BouncyScrollView>
+        </OnboardingScroll>
     </>
   );
 }
@@ -4294,6 +4550,131 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontWeight: '900',
     marginTop: 6,
+  },
+  // Пилюли с ответами юзера
+  planPaywallPills: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginTop: 10,
+    marginBottom: 16,
+  },
+  planPaywallPill: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 20,
+    backgroundColor: 'rgba(242,184,75,0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(242,184,75,0.35)',
+  },
+  planPaywallPillText: {
+    color: ONBOARDING_ACCENT,
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  // Превью плана
+  planPaywallPreview: {
+    width: '100%',
+    borderRadius: 10,
+    backgroundColor: 'rgba(14,18,25,0.7)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+    padding: 14,
+    gap: 8,
+    marginBottom: 16,
+  },
+  planPaywallPreviewWeek: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  planPaywallPreviewLocked: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingTop: 6,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255,255,255,0.08)',
+  },
+  planPaywallPreviewLockedText: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 12,
+  },
+  // Таймлайн триала
+  planPaywallTimeline: {
+    width: '100%',
+    marginBottom: 16,
+    paddingHorizontal: 4,
+  },
+  planPaywallTimelineRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  planPaywallTimelineDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: 'rgba(255,255,255,0.25)',
+    marginTop: 4,
+    flexShrink: 0,
+  },
+  planPaywallTimelineDotActive: {
+    backgroundColor: ONBOARDING_ACCENT,
+  },
+  planPaywallTimelineLine: {
+    width: 1,
+    height: 16,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    marginLeft: 4,
+  },
+  planPaywallTimelineCopy: {
+    flex: 1,
+    paddingBottom: 4,
+  },
+  planPaywallTimelineTitle: {
+    color: '#FFF8E8',
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  planPaywallTimelineSub: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 12,
+    marginTop: 1,
+  },
+  // Карточки планов — обёртка для бейджа
+  planPaywallBuyCardInner: {
+    flex: 1,
+  },
+  planPaywallBuyBadge: {
+    marginTop: 6,
+    alignSelf: 'flex-start',
+    backgroundColor: 'rgba(242,184,75,0.22)',
+    borderRadius: 4,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  planPaywallBuyBadgeText: {
+    color: ONBOARDING_ACCENT,
+    fontSize: 10,
+    fontWeight: '700',
+  },
+  // Строка доверия под CTA
+  planPaywallTrustRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  planPaywallTrustItem: {
+    color: ONBOARDING_TEXT_MUTED,
+    fontSize: 12,
+  },
+  planPaywallTrustSep: {
+    color: 'rgba(255,255,255,0.2)',
+    fontSize: 12,
   },
   planFreeConfirmOverlay: {
     ...StyleSheet.absoluteFillObject,

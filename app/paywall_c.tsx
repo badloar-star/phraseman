@@ -27,7 +27,7 @@ import { pickPercentileLine } from './paywall_percentile_line';
 import { loadPercentileData } from './daily_analytics_sync';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSectionDivider,
-  PaywallStickyBar, useStickyCta,
+  PaywallStickyBar, useStickyCta, PaywallPersonalTags,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -145,14 +145,13 @@ export default function PaywallC() {
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
 
-            {personalTag ? (
-              <Text style={[S.personal, { color: chrome.textMuted }]} numberOfLines={2}>
-                {LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)}
-              </Text>
-            ) : (
-              <Text style={[S.personal, { color: chrome.textMuted }]} numberOfLines={2}>
-                {LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle)}
-              </Text>
+            <Text style={[S.personal, { color: chrome.textMuted }]} numberOfLines={2}>
+              {LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle)}
+            </Text>
+
+            {/* Личный тег — отдельным chip, не сливается с подзаголовком (P1-4). */}
+            {personalTag && (
+              <PaywallPersonalTags texts={[LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)]} chrome={chrome} />
             )}
 
             {p.trialDays && (
@@ -187,6 +186,7 @@ export default function PaywallC() {
               currentPrice={price}
               futurePrice={p.futurePrice}
               period={period}
+              compact
             />
 
             <View style={S.ctaWrap} onLayout={sticky.onCtaLayout}>

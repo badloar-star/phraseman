@@ -50,7 +50,9 @@ export function usePaywallChrome(): PaywallChrome {
       isLight,
       bgColors: screenBgTuple(themeMode),
       textPrimary: isLight ? '#0c0c18' : '#FFFFFF',
-      textMuted: isLight ? 'rgba(12,12,24,0.55)' : 'rgba(255,255,255,0.55)',
+      // P1-3: 0.55 → 0.62 — мелкий приглушённый текст (цены-капсы, подписи,
+      // юр.строка) был на грани читаемости на тёмном фоне.
+      textMuted: isLight ? 'rgba(12,12,24,0.62)' : 'rgba(255,255,255,0.62)',
       divider: isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)',
       cardBg: isLight ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.035)',
       cardBorder: isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)',
@@ -219,7 +221,31 @@ export function PaywallStickyBar({
   );
 }
 
+// ── личный «болевой» тег: единый chip-вид во всех вариантах (P1-4) ───────────
+// Принимает уже локализованный текст (компонент остаётся dumb, без импорта
+// paywall_copy). Несколько тегов — просто колонка чипов.
+export function PaywallPersonalTags({ texts, chrome }: { texts: string[]; chrome: PaywallChrome }) {
+  if (!texts.length) return null;
+  const { tc, textPrimary } = chrome;
+  return (
+    <View style={S.tagWrap}>
+      {texts.map((t, i) => (
+        <View key={i} style={[S.tagChip, { backgroundColor: `${tc.heroAccent}14`, borderColor: `${tc.heroAccent}33` }]}>
+          <Ionicons name="sparkles" size={12} color={tc.heroAccent} style={{ marginRight: 6 }} />
+          <Text style={[S.tagText, { color: textPrimary }]} numberOfLines={2}>{t}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
 const S = StyleSheet.create({
+  tagWrap: { gap: 7, marginTop: 12, alignSelf: 'stretch' },
+  tagChip: {
+    flexDirection: 'row', alignItems: 'center', alignSelf: 'center',
+    maxWidth: '100%', paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16, borderWidth: 1,
+  },
+  tagText: { flexShrink: 1, fontSize: 11.5, fontWeight: '600' },
   glyphCap: {
     alignSelf: 'center', width: 62, height: 62, borderRadius: 18, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',

@@ -26,7 +26,7 @@ import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from '.
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
-  PaywallStickyBar, useStickyCta,
+  PaywallStickyBar, useStickyCta, PaywallPersonalTags,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -117,25 +117,8 @@ export default function PaywallB() {
               <Ionicons name="close" size={14} color={chrome.textMuted} />
             </TouchableOpacity>
 
-            {p.trialDays && (
-              <View style={[S.ribbon, { borderColor: chrome.tc.selectedCardBorder, backgroundColor: `${chrome.tc.heroAccent}14` }]}>
-                <Text style={[S.ribbonTitle, { color: chrome.tc.heroAccent }]}>
-                  {triLang(lang as Lang, {
-                    ru: `${p.trialDays} дн. Premium бесплатно`,
-                    uk: `${p.trialDays} дн. Premium безкоштовно`,
-                    es: `${p.trialDays} días de Premium gratis`,
-                  })}
-                </Text>
-                <Text style={[S.ribbonSub, { color: chrome.textMuted }]}>
-                  {triLang(lang as Lang, {
-                    ru: 'Без списания сейчас · Отмена в любой момент',
-                    uk: 'Без списання зараз · Скасування будь-коли',
-                    es: 'Sin cargo ahora · Cancela cuando quieras',
-                  })}
-                </Text>
-              </View>
-            )}
-
+            {/* Про триал говорит таймлайн ниже (честный «сегодня→напомним→списание»);
+                верхний ribbon убран, чтобы не дублировать (P1-5). */}
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
             <Text style={[S.subtitle, { color: chrome.textMuted }]}>{subtitle}</Text>
@@ -143,16 +126,7 @@ export default function PaywallB() {
             <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
 
             {tags.length > 0 && (
-              <View style={S.tags}>
-                {tags.map((tag) => (
-                  <View key={tag.key} style={[S.tagRow, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
-                    <Ionicons name="sparkles" size={14} color={chrome.tc.heroAccent} />
-                    <Text style={[S.tagText, { color: chrome.textPrimary }]} numberOfLines={2}>
-                      {LP(tag.ru, tag.uk, tag.es, tag)}
-                    </Text>
-                  </View>
-                ))}
-              </View>
+              <PaywallPersonalTags texts={tags.map((tag) => LP(tag.ru, tag.uk, tag.es, tag))} chrome={chrome} />
             )}
 
             {mirror && <MirrorCard lang={lang as Lang} chrome={chrome} mirror={mirror} />}
@@ -247,20 +221,11 @@ const S = StyleSheet.create({
     width: 28, height: 28, borderRadius: 14, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
   },
-  ribbon: { borderRadius: 14, borderWidth: 1, paddingVertical: 11, paddingHorizontal: 12, alignItems: 'center', marginBottom: 14 },
-  ribbonTitle: { fontSize: 13.5, fontWeight: '800' },
-  ribbonSub: { fontSize: 10.5, marginTop: 3 },
   title: {
     fontSize: 27, fontWeight: '800', letterSpacing: -1.1,
     lineHeight: 32, textAlign: 'center', marginTop: 14,
   },
   subtitle: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
-  tags: { gap: 8, marginTop: 14 },
-  tagRow: {
-    flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderRadius: 13, borderWidth: 1, paddingVertical: 10, paddingHorizontal: 13,
-  },
-  tagText: { flex: 1, fontSize: 12.5, fontWeight: '600', lineHeight: 17 },
   testimonialCard: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 15, paddingVertical: 13, marginTop: 12 },
   testimonialTitle: { fontSize: 10.5, fontWeight: '800', letterSpacing: 1.2, marginBottom: 9 },
   testimonialText: { fontSize: 12.5, lineHeight: 18, fontStyle: 'italic' },

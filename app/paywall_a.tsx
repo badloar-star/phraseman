@@ -27,7 +27,7 @@ import { trackEvent } from './analytics';
 import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -114,14 +114,9 @@ export default function PaywallA() {
             <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
             <Text style={[S.subtitle, { color: chrome.textMuted }]} numberOfLines={2}>{subtitle}</Text>
 
-            {/* Личный «болевой» тег (1 шт.) — персонализация под ситуацию. */}
+            {/* Личный «болевой» тег (1 шт.) — единый chip-вид (P1-4). */}
             {personalTag && (
-              <View style={[S.tagChip, { backgroundColor: `${chrome.tc.heroAccent}14`, borderColor: `${chrome.tc.heroAccent}33` }]}>
-                <Ionicons name="sparkles" size={12} color={chrome.tc.heroAccent} />
-                <Text style={[S.tagText, { color: chrome.textPrimary }]} numberOfLines={1}>
-                  {LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)}
-                </Text>
-              </View>
+              <PaywallPersonalTags texts={[LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)]} chrome={chrome} />
             )}
 
             <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
@@ -161,6 +156,7 @@ export default function PaywallA() {
               currentPrice={price}
               futurePrice={p.futurePrice}
               period={period}
+              compact
             />
 
             {/* На «Компакт» триал объяснён прямо в карточке плана (trialDays выше) —
@@ -213,11 +209,6 @@ const S = StyleSheet.create({
     lineHeight: 31, textAlign: 'center', marginTop: 14,
   },
   subtitle: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
-  tagChip: {
-    flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center',
-    paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16, borderWidth: 1, marginTop: 10,
-  },
-  tagText: { fontSize: 11.5, fontWeight: '600', maxWidth: 280 },
   mirrorLine: { fontSize: 11.5, textAlign: 'center', marginTop: 10 },
   benefits: { gap: 8, marginTop: 14 },
   benefitRow: { flexDirection: 'row', alignItems: 'center', gap: 9 },

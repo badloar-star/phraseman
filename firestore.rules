@@ -1146,12 +1146,13 @@ service cloud.firestore {
     // Клиент только создаёт компактные события фиксированной формы; читает админ.
     match /paywall_funnel/{docId} {
       allow create: if request.auth != null
-        && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'day', 'ts', 'uidh', 'dev', 'expireAt'])
+        && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'obColor', 'day', 'ts', 'uidh', 'dev', 'expireAt'])
         && request.resource.data.step in ['shown', 'cta_click', 'trial_started', 'purchase_completed', 'close']
         && request.resource.data.variant in ['v1', 'v2', 'A', 'B', 'C']
         && request.resource.data.context is string
         && request.resource.data.context.size() <= 40
         && (request.resource.data.plan == null || request.resource.data.plan in ['monthly', 'yearly'])
+        && (request.resource.data.obColor == null || request.resource.data.obColor in ['blue', 'green'])
         && request.resource.data.day is string
         && request.resource.data.day.size() == 10
         && (request.resource.data.ts is int || request.resource.data.ts is float)

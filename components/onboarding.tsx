@@ -757,6 +757,33 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     }).catch(() => {});
   }, []);
 
+  // Единая запись шага воронки пейвола из онбординга в Firestore (paywall_funnel).
+  // Тащит за собой A/B-вариант пейвола + цвет онбординга (obColor) + план — чтобы
+  // дашборд мог сравнить конверсию по цвету. Fire-and-forget, никогда не бросает.
+  //
+  // Цвет резолвим ЗАНОВО внутри (getStableId→getOnboardingColorVariant), а не
+  // берём из state: state дефолтит в 'blue' и до асинхронного резолва на маунте
+  // мог бы записать ложный 'blue' для зелёной группы (однобокий перекос выборки).
+  // Свежий резолв здесь = цвет в воронке всегда настоящий, без гонки.
+  const logOnboardingFunnel = useCallback((funnelStep: 'shown' | 'cta_click' | 'trial_started' | 'purchase_completed' | 'close') => {
+    void (async () => {
+      try {
+        const [{ logPaywallFunnel }, { resolvePaywallAbVariant }, { getStableId }, { getOnboardingColorVariant }] = await Promise.all([
+          import('../app/paywall_funnel'),
+          import('../app/paywall_variant'),
+          import('../app/stable_id'),
+          import('../app/remote_flags'),
+        ]);
+        const [{ variant }, stableId] = await Promise.all([resolvePaywallAbVariant(), getStableId()]);
+        const resolvedColor = getOnboardingColorVariant(stableId);
+        const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
+        logPaywallFunnel(funnelStep, { variant, context: 'onboarding', plan: planForFunnel, obColor: resolvedColor });
+      } catch {
+        /* fire-and-forget */
+      }
+    })();
+  }, [selectedPlanBilling]);
+
   // Fade-in экрана при каждой смене шага
   useEffect(() => {
     Animated.timing(screenFade, { toValue: 1, duration: 300, useNativeDriver: true }).start();
@@ -766,17 +793,10 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       void trackEvent('onboarding_step_view', { step, ob_color: obColor });
       if (step === 'planPaywall') {
         void trackEvent('onboarding_plan_paywall_view', { plan: selectedPlanBilling, ob_color: obColor });
-        void import('../app/paywall_funnel').then(({ logPaywallFunnel }) => {
-          void import('../app/paywall_variant').then(({ resolvePaywallAbVariant }) => {
-            void resolvePaywallAbVariant().then(({ variant }) => {
-              const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
-              logPaywallFunnel('shown', { variant, context: 'onboarding', plan: planForFunnel, obColor });
-            });
-          });
-        });
+        logOnboardingFunnel('shown');
       }
     });
-  }, [step, screenFade, selectedPlanBilling, obColor]);
+  }, [step, screenFade, selectedPlanBilling, obColor, logOnboardingFunnel]);
 
   // Реальные цены из RevenueCat для онбординг-пейвола. Грузим при входе на planResult,
   // чтобы к planPaywall цены и сигнал триала уже были готовы. НЕТ хардкода цен/валюты/триала.
@@ -1147,6 +1167,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     void import('../app/analytics').then(({ trackEvent }) =>
       trackEvent('onboarding_plan_trial_cta', { plan: selectedPlanBilling, has_trial: storePrices.hasTrial, ob_color: obColor }),
     );
+    void logOnboardingFunnel('cta_click');
 
     // Путь 1: уже Premium / intro-доступ — активируем план и идём к имени
     const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);
@@ -1232,25 +1253,11 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       emitAppEvent('premium_activated');
       hap();
       void trackEvent('purchase_completed', { context: 'onboarding', plan: selectedPlanBilling, with_trial: pkgTrial.hasTrial, ob_color: obColor });
-      void import('../app/paywall_funnel').then(({ logPaywallFunnel }) => {
-        void import('../app/paywall_variant').then(({ resolvePaywallAbVariant }) => {
-          void resolvePaywallAbVariant().then(({ variant }) => {
-            const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
-            logPaywallFunnel('purchase_completed', { variant, context: 'onboarding', plan: planForFunnel, obColor });
-          });
-        });
-      });
+      logOnboardingFunnel('purchase_completed');
 
       if (pkgTrial.hasTrial) {
         void trackEvent('trial_started', { context: 'onboarding', plan: selectedPlanBilling, ob_color: obColor });
-        void import('../app/paywall_funnel').then(({ logPaywallFunnel }) => {
-          void import('../app/paywall_variant').then(({ resolvePaywallAbVariant }) => {
-            void resolvePaywallAbVariant().then(({ variant }) => {
-              const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
-              logPaywallFunnel('trial_started', { variant, context: 'onboarding', plan: planForFunnel, obColor });
-            });
-          });
-        });
+        logOnboardingFunnel('trial_started');
         // Запрашиваем пуш-разрешение ПОСЛЕ покупки — момент Blinkist
         void (async () => {
           try {
@@ -1853,7 +1860,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           <Text style={styles.planMockupSecondaryButtonText}>Другие планы</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.freeBtn, styles.planMockupGhostButton]} activeOpacity={0.72} onPress={() => {
-          void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_result' }));
+          void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_result', ob_color: obColor }));
           goToStep('name');
         }}>
           <Text style={styles.freeBtnText}>Продолжить без плана</Text>
@@ -2037,7 +2044,8 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                     style={styles.eliteWelcomeSecondaryCta}
                     activeOpacity={0.82}
                     onPress={() => {
-                      void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_paywall' }));
+                      void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_continue_free', { from: 'plan_paywall', ob_color: obColor }));
+                      logOnboardingFunnel('close');
                       goToStep('name');
                     }}
                   >

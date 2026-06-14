@@ -9,11 +9,6 @@ const RATE_COLLECTION = 'client_report_rate_limits';
 const HOUR_MS = 60 * 60 * 1000;
 const DAY_MS = 24 * HOUR_MS;
 
-// Награда за баг-репорт: +1 осколок за содержательный error_report, не больше N в сутки (анти-фарм).
-const BUG_REPORT_SHARD_AMOUNT = 1;
-const BUG_REPORT_SHARD_DAILY_CAP = 3;
-const BUG_REPORT_MIN_COMMENT_LEN = 10;
-
 type ClientReportKind =
   | 'user_report'
   | 'community_pack_report'
@@ -242,19 +237,8 @@ export const submitClientReport = onCall({
   const rateRef = db.collection(RATE_COLLECTION).doc(rateDocId(kind, authUid, stableUid));
   const reportRef = db.collection(config.collection).doc();
 
-  // Награда осколком положена только содержательному баг-репорту (error_report с комментарием).
-  const dayKey = new Date(now).toISOString().slice(0, 10);
-  const rewardEligible =
-    kind === 'error_report' && text(payload.comment, 2000).length >= BUG_REPORT_MIN_COMMENT_LEN;
-  const userRef = db.collection('users').doc(stableUid);
-  const rewardCounterRef = userRef.collection('reward_claims').doc(`bug_report_shard_${dayKey}`);
-
   return db.runTransaction(async (tx) => {
-    // ВСЕ чтения до записей (требование Firestore-транзакций).
     const rateSnap = await tx.get(rateRef);
-    const rewardCounterSnap = rewardEligible ? await tx.get(rewardCounterRef) : null;
-    const userSnap = rewardEligible ? await tx.get(userRef) : null;
-
     const rate = rateSnap.data() || {};
     const windowStartMs = numeric(rate.windowStartMs);
     const sameWindow = now - windowStartMs < config.windowMs;
@@ -273,32 +257,10 @@ export const submitClientReport = onCall({
       updatedAtMs: now,
     }, { merge: true });
     tx.create(reportRef, doc);
-
-    // Начисляем +1 осколок (≤ BUG_REPORT_SHARD_DAILY_CAP в сутки). Пишем в users/{uid}.shards
-    // тем же контрактом, что клиентский shards_system (shards + shards_updated_*), чтобы
-    // loadShardsFromCloud забрал баланс при следующем входе.
-    let shardAwarded = 0;
-    if (rewardEligible && rewardCounterSnap && userSnap) {
-      const rewardedToday = numeric(rewardCounterSnap.data()?.count);
-      if (rewardedToday < BUG_REPORT_SHARD_DAILY_CAP) {
-        const currentShards = Math.max(0, Math.floor(numeric(userSnap.data()?.shards)));
-        const nextShards = currentShards + BUG_REPORT_SHARD_AMOUNT;
-        tx.set(userRef, {
-          shards: nextShards,
-          shards_updated_at_ms: now,
-          shards_updated_op: 'earn',
-          shards_updated_reason: 'bug_report',
-        }, { merge: true });
-        tx.set(rewardCounterRef, {
-          count: rewardedToday + 1,
-          dayKey,
-          source: 'bug_report',
-          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-        }, { merge: true });
-        shardAwarded = BUG_REPORT_SHARD_AMOUNT;
-      }
-    }
-
-    return { ok: true, id: reportRef.id, collection: config.collection, shardAwarded };
+    // Осколок за баг-репорт начисляет АДМИН вручную при подтверждении («пофикшено»)
+    // в admin/index.html → applyReportStatusFix (shards += 1, reason 'bug_fixed',
+    // helpful_error_reports_confirmed_v1). Автоначисления при отправке НЕТ намеренно —
+    // награда только за подтверждённую/полезную жалобу.
+    return { ok: true, id: reportRef.id, collection: config.collection };
   });
 });

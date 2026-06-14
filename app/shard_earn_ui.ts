@@ -267,16 +267,6 @@ const LABELS: Record<string, ShardEarnLabel> = {
     tr: "Mükemmel tanı: zayıf nokta belirgin biçimde güçlendi",
     pl: "Diagnoza idealna: słaby punkt jest wyraźnie mocniejszy",
   },
-  bug_report: {
-    ru: 'Спасибо за репорт об ошибке — осколок в благодарность',
-    uk: 'Дякуємо за репорт про помилку — осколок на подяку',
-    es: 'Gracias por reportar el error: un fragmento de agradecimiento',
-    'pt-BR': "Obrigado por relatar o erro: um fragmento de agradecimento",
-    vi: "Cảm ơn đã báo lỗi: tặng bạn một mảnh tri thức",
-    id: "Terima kasih sudah melaporkan bug: satu shard sebagai terima kasih",
-    tr: "Hata bildirimin için teşekkürler: teşekkür olarak bir parça",
-    pl: "Dzięki za zgłoszenie błędu: odłamek w podziękowaniu",
-  },
   generic_raw: {
     ru: 'Начисление осколков знаний',
     uk: 'Нарахування осколків знань',

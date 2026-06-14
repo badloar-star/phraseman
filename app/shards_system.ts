@@ -45,8 +45,9 @@ export type ShardSource =
   | 'level_gift'            // +1 из подарка за уровень (×3 = +3)
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
   | 'plan_day_complete'     // +2 Завершён день персонального плана (разово на день плана)
-  | 'trainer_perfect_session' // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
-  | 'bug_report';           // +1 Отправил репорт об ошибке
+  | 'trainer_perfect_session'; // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
+  // Награда за баг-репорт начисляется админом вручную при подтверждении (admin/index.html,
+  // reason 'bug_fixed', shards += 1) — отдельного ShardSource в каталоге для неё нет.
 
 export const SHARD_REWARDS: Record<ShardSource, number> = {
   lesson_first: 1,
@@ -67,7 +68,6 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   preposition_drill_perfect: 1,
   plan_day_complete: 2,
   trainer_perfect_session: 1,
-  bug_report: 1,
 };
 
 const STORAGE_KEY = 'shards_balance';

@@ -3,6 +3,9 @@ import * as functions from 'firebase-functions/v2';
 import { calculateArenaPoints } from './arena_scoring';
 import { getLevelFromXP } from './xp_levels';
 import { applyStarDelta, isPromotion } from './arena_rank_progression';
+import {
+  applySeasonRatingDelta, seasonIdForDate, rankIndex, type MatchOutcome,
+} from './arena_season';
 
 admin.initializeApp();
 
@@ -857,6 +860,10 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
             rank?: { stars?: number; tier?: string; level?: string };
             xp?: number;
             lastStreakShardAt?: number;
+            sr?: number;
+            peakSR?: number;
+            seasonId?: string;
+            seasonPeakRankIndex?: number;
             stats?: {
               matchesPlayed?: number;
               matchesWon?: number;
@@ -887,11 +894,17 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
               updatedAt: Date.now(),
             });
           } else {
+            // SR живёт ТОЛЬКО на потолке (Легенда III). Ниже потолка — обычные звёзды.
+            const wasCeiling = oldTier === 'legend' && oldLevel === 'III';
+            const nowSeasonId = seasonIdForDate(new Date());
+            const outcome: MatchOutcome = isDraw ? 'draw' : won ? 'win' : isLast ? 'loss' : 'neutral';
+
             // Ничья — звёзды и ранг не меняются. Иначе: +1 за победу, -1 за последнее место.
+            // На потолке звёзды НЕ трогаем (starDelta=0) — там работает SR.
             const starDelta = isDraw ? 0 : (won ? 1 : isLast ? -1 : 0);
             const progressed = applyStarDelta(
               { tier: oldTier, level: oldLevel, stars: oldStars },
-              starDelta,
+              wasCeiling ? 0 : starDelta,
             );
             newTier = progressed.tier;
             newLevel = progressed.level;
@@ -902,6 +915,17 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
               { tier: oldTier, level: oldLevel },
               { tier: newTier, level: newLevel },
             );
+
+            // SR: лениво сбрасываем при новом сезоне; начисляем только если был на потолке.
+            const staleSeason = data.seasonId !== nowSeasonId;
+            const curSr = staleSeason ? 0 : (data.sr ?? 0);
+            const curPeak = staleSeason ? 0 : (data.peakSR ?? 0);
+            const curPeakRankIdx = staleSeason ? 0 : (data.seasonPeakRankIndex ?? 0);
+            const srResult = wasCeiling
+              ? applySeasonRatingDelta(curSr, curPeak, outcome, false)
+              : { sr: curSr, peakSR: curPeak };
+            const newPeakRankIdx = Math.max(curPeakRankIdx, rankIndex(newTier, newLevel));
+
             // Ничья сохраняет победную серию (не удлиняет её). Поражение — обнуляет.
             const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
             const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
@@ -919,6 +943,10 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
               'rank.tier': newTier,
               'rank.level': newLevel,
               'rank.stars': newStars,
+              sr: srResult.sr,
+              peakSR: srResult.peakSR,
+              seasonId: nowSeasonId,
+              seasonPeakRankIndex: newPeakRankIdx,
               xp: (data.xp ?? 0) + xpDelta,
               'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
               'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
@@ -929,6 +957,19 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
               ...(rankUpStreakShardAwarded ? { lastStreakShardAt: Date.now() } : {}),
               updatedAt: Date.now(),
             });
+
+            // Сезонный лидерборд (топ-100): пишем строку только когда игрок на потолке.
+            if (wasCeiling) {
+              const seasonLbRef = db
+                .collection('arena_season_leaderboard').doc(nowSeasonId)
+                .collection('entries').doc(uid);
+              tx.set(seasonLbRef, {
+                uid,
+                sr: srResult.sr,
+                peakSR: srResult.peakSR,
+                updatedAt: Date.now(),
+              }, { merge: true });
+            }
           }
         }
 

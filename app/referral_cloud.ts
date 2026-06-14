@@ -72,6 +72,8 @@ export type ClaimVipRewardResult = {
   claimed: ClaimedFriend[];
   vipUntilMs: number;
   cappedThisMonth: boolean;
+  /** Достигнут дневной анти-фарм лимит (награды не потеряны — доступны завтра). */
+  cappedToday?: boolean;
 };
 
 /** Обналичивание накопленных дней доступа: +7 дней за каждого qualified-друга (стакается). */

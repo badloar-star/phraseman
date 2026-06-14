@@ -36,7 +36,25 @@ const REFERRER_VIP_DAYS = REFERRAL_REWARD_DAYS;
 const REFEREE_VIP_DAYS = REFERRAL_REWARD_DAYS;
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
-const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
+export const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
+/**
+ * Анти-фарм: сколько наград можно обналичить за КАЛЕНДАРНЫЙ ДЕНЬ. Главная защита от накрутки
+ * свежими аккаунтами (created_at клиентоперезаписываем, stableId сбрасывается отключением
+ * бэкапа — см. referralApply). created_at правилами до конца не закрыть; дневной throttle
+ * ограничивает СКОРОСТЬ фарма при любом сбросе личности. Награды не теряются: за капом
+ * остаются 'qualified' и обналичиваются на следующий день. Честный юзер редко зовёт >3/день.
+ */
+export const MAX_REFERRER_CLAIMS_PER_DAY = 3;
+
+/**
+ * Чистая функция: сколько наград можно выдать прямо сейчас с учётом дневного И месячного капов.
+ * Берёт минимум из остатков, не уходит в минус. Экспортируется для тестов.
+ */
+export function referralClaimSlotsLeft(usedThisMonth: number, usedToday: number): number {
+  const monthLeft = MAX_REFERRER_CLAIMS_PER_MONTH - Math.max(0, Math.floor(usedThisMonth));
+  const dayLeft = MAX_REFERRER_CLAIMS_PER_DAY - Math.max(0, Math.floor(usedToday));
+  return Math.max(0, Math.min(monthLeft, dayLeft));
+}
 /** Сколько qualified-друзей обрабатываем за один claim-вызов (защита от гигантских транзакций). */
 const MAX_CLAIMS_PER_CALL = 20;
 
@@ -191,6 +209,19 @@ function randomCode(): string {
 function yyyymmNow(): string {
   const d = new Date();
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+}
+
+function yyyymmddNow(): string {
+  const d = new Date();
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+}
+
+/** Оставляет только N самых свежих дней (ключи YYYY-MM-DD сортируются лексикографически = хронологически). */
+function pruneDailyCounter(map: Record<string, number>, keepDays = 10): Record<string, number> {
+  const keys = Object.keys(map).sort().reverse().slice(0, keepDays);
+  const out: Record<string, number> = {};
+  for (const k of keys) out[k] = map[k];
+  return out;
 }
 
 /**
@@ -545,10 +576,12 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
       claimed: [] as ClaimedFriend[],
       vipUntilMs: parseVipUntilMs(u.data()),
       cappedThisMonth: false,
+      cappedToday: false,
     };
   }
 
   const ym = yyyymmNow();
+  const ymd = yyyymmddNow();
   const userRef = db.collection(USERS).doc(referrerStableId);
 
   return db.runTransaction(async (tx) => {
@@ -560,16 +593,21 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
     const attSnaps = await Promise.all(attRefs.map((r) => tx.get(r)));
 
     const userData = userSnap.data() ?? {};
-    const monthly =
-      (userData.progress as { referral_vip_claims_monthly?: Record<string, number> } | undefined)
-        ?.referral_vip_claims_monthly ?? {};
+    const progressData = userData.progress as {
+      referral_vip_claims_monthly?: Record<string, number>;
+      referral_vip_claims_daily?: Record<string, number>;
+    } | undefined;
+    const monthly = progressData?.referral_vip_claims_monthly ?? {};
+    const daily = progressData?.referral_vip_claims_daily ?? {};
     let usedThisMonth = Math.max(0, Math.floor(Number(monthly[ym] ?? 0)));
+    let usedToday = Math.max(0, Math.floor(Number(daily[ymd] ?? 0)));
 
     const nowMs = Date.now();
     const nowIso = new Date(nowMs).toISOString();
     let vipUntil = Math.max(parseVipUntilMs(userData), nowMs);
     const claimed: ClaimedFriend[] = [];
     let cappedThisMonth = false;
+    let cappedToday = false;
 
     for (let i = 0; i < attSnaps.length; i += 1) {
       const snap = attSnaps[i];
@@ -578,22 +616,24 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
       // Принимаем qualified и legacy skipped_referrer_cap; 'rewarded'/прочее — пропуск (гонка).
       if (row?.status !== 'qualified' && row?.status !== 'skipped_referrer_cap') continue;
 
-      if (usedThisMonth >= MAX_REFERRER_CLAIMS_PER_MONTH) {
-        // Достигнут месячный кап. НЕ понижаем статус (раньше ставили 'skipped_referrer_cap',
-        // и эти 7 дней терялись НАВСЕГДА — UI же обещает «откроется в следующем месяце»).
-        // Оставляем 'qualified': в следующем месяце пользователь дожмёт «Открыть» и получит их.
-        cappedThisMonth = true;
+      if (referralClaimSlotsLeft(usedThisMonth, usedToday) <= 0) {
+        // Достигнут кап (день или месяц). НЕ понижаем статус — оставляем 'qualified',
+        // эти 7 дней не теряются: дожмёт «Открыть» позже (на след. день / след. месяц).
+        // Раньше ставили 'skipped_referrer_cap' и они терялись НАВСЕГДА (M1).
+        if (usedThisMonth >= MAX_REFERRER_CLAIMS_PER_MONTH) cappedThisMonth = true;
+        else cappedToday = true; // дневной throttle (анти-фарм свежими аккаунтами)
         tx.set(
           attRefs[i],
           { lastCappedAt: admin.firestore.FieldValue.serverTimestamp() },
           { merge: true },
         );
-        break; // остаток qualified-друзей в этом месяце тоже за капом — выходим.
+        break; // остаток qualified-друзей сейчас тоже за капом — выходим.
       }
 
       // Стак: +7 дней от текущего конца окна (или от now, если окна не было).
       vipUntil = stackVipUntilMs(vipUntil, nowMs, REFERRER_VIP_DAYS);
       usedThisMonth += 1;
+      usedToday += 1;
       claimed.push({ refereeStableId: snap.id, daysGranted: REFERRER_VIP_DAYS });
 
       tx.set(
@@ -623,6 +663,8 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
           progress: {
             ...referrerVipPatch,
             referral_vip_claims_monthly: { ...monthly, [ym]: usedThisMonth },
+            // Дневной счётчик: чистим старые дни, чтобы map не рос бесконечно (храним ~10 последних).
+            referral_vip_claims_daily: pruneDailyCounter({ ...daily, [ymd]: usedToday }),
           },
           updatedAt: nowMs,
         },
@@ -648,6 +690,7 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
       claimed,
       vipUntilMs: vipUntil,
       cappedThisMonth,
+      cappedToday,
     };
   });
 });

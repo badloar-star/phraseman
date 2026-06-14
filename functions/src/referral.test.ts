@@ -1,11 +1,47 @@
 import {
+  MAX_REFERRER_CLAIMS_PER_DAY,
+  MAX_REFERRER_CLAIMS_PER_MONTH,
   REFERRAL_REWARD_DAYS,
   buildReferralVipProgressPatch,
   hasCompletedFirstLesson,
   isSnapshotMigrationWrite,
+  referralClaimSlotsLeft,
   stackVipUntilMs,
   vipUntilFromProgress,
 } from './referral';
+
+describe('referralClaimSlotsLeft — анти-фарм: сколько наград можно выдать (день+месяц кап)', () => {
+  // Защита от фарминга свежими аккаунтами: даже при бесконечных «новых» рефералах
+  // пригласивший выбирает не больше дневного лимита в день и месячного — в месяц.
+  it('ограничено дневным капом, когда месячный ещё далеко', () => {
+    expect(referralClaimSlotsLeft(0, 0)).toBe(MAX_REFERRER_CLAIMS_PER_DAY);
+    expect(referralClaimSlotsLeft(0, 1)).toBe(MAX_REFERRER_CLAIMS_PER_DAY - 1);
+  });
+
+  it('0 когда дневной кап исчерпан', () => {
+    expect(referralClaimSlotsLeft(0, MAX_REFERRER_CLAIMS_PER_DAY)).toBe(0);
+    expect(referralClaimSlotsLeft(5, MAX_REFERRER_CLAIMS_PER_DAY + 3)).toBe(0);
+  });
+
+  it('0 когда месячный кап исчерпан (даже если день свободен)', () => {
+    expect(referralClaimSlotsLeft(MAX_REFERRER_CLAIMS_PER_MONTH, 0)).toBe(0);
+    expect(referralClaimSlotsLeft(MAX_REFERRER_CLAIMS_PER_MONTH + 2, 0)).toBe(0);
+  });
+
+  it('берёт МИНИМУМ из оставшегося дневного и месячного остатка', () => {
+    // месяц почти полон: остался 1 слот, хотя день позволяет больше
+    expect(referralClaimSlotsLeft(MAX_REFERRER_CLAIMS_PER_MONTH - 1, 0)).toBe(1);
+  });
+
+  it('не уходит в минус при «грязных» счётчиках', () => {
+    expect(referralClaimSlotsLeft(-5, -5)).toBe(MAX_REFERRER_CLAIMS_PER_DAY);
+    expect(referralClaimSlotsLeft(999, 999)).toBe(0);
+  });
+
+  it('дневной кап строго меньше месячного (иначе бессмысленно)', () => {
+    expect(MAX_REFERRER_CLAIMS_PER_DAY).toBeLessThan(MAX_REFERRER_CLAIMS_PER_MONTH);
+  });
+});
 
 describe('isSnapshotMigrationWrite — миграция снапшота НЕ должна квалифицировать реферал', () => {
   // Дыра: progressMigrateSnapshot доверяет клиентскому lesson1_pass_count и пишет его серверно

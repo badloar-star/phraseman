@@ -48,7 +48,7 @@ export async function getClaimableReferralState(): Promise<ListMyInvitesResult> 
 }
 
 export type ClaimReferralOutcome =
-  | { ok: true; granted: number; friends: number; vipUntilMs: number; cappedThisMonth: boolean }
+  | { ok: true; granted: number; friends: number; vipUntilMs: number; cappedThisMonth: boolean; cappedToday: boolean }
   | { ok: false; reason: 'disabled' | 'no_user' | 'nothing' | 'error'; code?: string };
 
 /**
@@ -89,6 +89,7 @@ export async function claimReferralVipDays(): Promise<ClaimReferralOutcome> {
     friends,
     vipUntilMs: Math.max(0, Math.floor(res.vipUntilMs ?? 0)),
     cappedThisMonth: !!res.cappedThisMonth,
+    cappedToday: !!res.cappedToday,
   };
 }
 

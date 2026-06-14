@@ -37,6 +37,8 @@ import { DEV_IAP_BYPASS } from './config';
 import { trackEvent } from './analytics';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
+import { markCelebrationPending } from './premium_celebration_state';
+import { useEnergy } from '../components/EnergyContext';
 
 export type PaywallPlan = 'monthly' | 'yearly';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage };
@@ -60,6 +62,7 @@ export interface PaywallPurchaseArgs {
 
 export function usePaywallPurchase({ variant, context, source, lang }: PaywallPurchaseArgs) {
   const router = useRouter();
+  const { reload: reloadEnergy } = useEnergy();
   const [selected, setSelected] = useState<PaywallPlan>('yearly');
   const [packages, setPackages] = useState<PremiumPackages>({});
   const [loading, setLoading] = useState(false);
@@ -160,7 +163,9 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
       await persistStorePremiumLocally(confirmedPlan, metadata);
+      await markCelebrationPending();      // покажем празднование при возврате на экран
       emitAppEvent('premium_activated');
+      void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
       void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant });
       logPaywallFunnel('purchase_completed', { variant, context, plan: selected });
       if (pkgTrial.hasTrial) {
@@ -204,7 +209,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     } finally {
       setPurchasing(false);
     }
-  }, [selected, packages, purchasing, router, context, source, variant, lang]);
+  }, [selected, packages, purchasing, router, context, source, variant, lang, reloadEnergy]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
@@ -230,6 +235,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
         );
         await persistStorePremiumLocally(plan, metadata);
         emitAppEvent('premium_activated');
+        void reloadEnergy().catch(() => {}); // восстановленный премиум сразу видим в энергии
         void trackEvent('subscription_restored', { context, paywall: variant });
         safeRouterBack(router);
       } else {
@@ -246,7 +252,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     } finally {
       setRestoring(false);
     }
-  }, [router, restoring, context, variant, lang]);
+  }, [router, restoring, context, variant, lang, reloadEnergy]);
 
   // ── закрытие ───────────────────────────────────────────────────────────────
   const handleClose = useCallback((reason: 'close' | 'continue_free') => {

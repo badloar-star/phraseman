@@ -23,6 +23,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import SpeakingButton from '../components/SpeakingButton';
+import { trackEvent } from './analytics';
 import ScreenGradient from '../components/ScreenGradient';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import ContentWrap from '../components/ContentWrap';
@@ -269,8 +270,17 @@ function WordBankMode({ item, onResult }: WordBankProps) {
         </Text>
       </TouchableOpacity>
 
-      {/* [SPEAKING] Произнести фразу вслух (premium) */}
-      <SpeakingButton targetText={correctTokens.join(' ')} lang={lang} variant="pill" />
+      {/* [SPEAKING] Произнести фразу вслух (premium). Говорение — необязательная
+          надстройка над уже отвеченной фразой, поэтому XP не начисляем (нет двойного
+          счёта и обещания XP на пейволе); фиксируем успех только в аналитике. */}
+      <SpeakingButton
+        targetText={correctTokens.join(' ')}
+        lang={lang}
+        variant="pill"
+        onPass={({ score }) => {
+          void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
+        }}
+      />
     </View>
   );
 }

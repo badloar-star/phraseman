@@ -47,6 +47,7 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
+import { isSpeakingEnabled } from './remote_flags';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -594,7 +595,10 @@ const LessonContent = React.memo(function LessonContent({
 
   // [SPEAKING] Premium "say it out loud" mode. Free users hit the paywall;
   // premium users get the SpeakingPanel (mic + waveform + 90% scoring).
+  // Remote kill-switch (default ON): ops can disable speaking app-wide without a
+  // release if the on-device recognizer misbehaves in production.
   const { hasPremiumAccess: speakingIsPremium } = usePremium();
+  const speakingFeatureEnabled = isSpeakingEnabled();
   const [speakingOpen, setSpeakingOpen] = useState(false);
   const openSpeaking = useCallback(() => {
     hapticTap();
@@ -1380,7 +1384,7 @@ const LessonContent = React.memo(function LessonContent({
           </LessonPressable>
 
           {/* [SPEAKING] "Устно" — premium: произнести фразу вслух (микрофон + эквалайзер) */}
-          {status === 'playing' && !!gradeTarget && (
+          {speakingFeatureEnabled && status === 'playing' && !!gradeTarget && (
             <LessonPressable
               testID="lesson1-speaking"
               accessibilityRole="button"
@@ -1522,12 +1526,18 @@ const LessonContent = React.memo(function LessonContent({
           </TapScale>
         )}
 
-        {/* [SPEAKING] Premium speaking panel overlay */}
-        {speakingOpen && !!gradeTarget && (
+        {/* [SPEAKING] Premium speaking panel overlay. Говорение — необязательная
+            надстройка над уже отвеченной фразой урока, поэтому отдельный XP не
+            начисляем (нет двойного счёта, на пейволе XP не обещан); успешную
+            попытку только фиксируем в аналитике фич. */}
+        {speakingOpen && speakingFeatureEnabled && !!gradeTarget && (
           <SpeakingPanel
             targetText={cleanPhraseForDisplay(gradeTarget)}
             lang={lang}
             theme={buildSpeakingPanelTheme(t)}
+            onPass={({ score }) => {
+              void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');
+            }}
             onClose={() => setSpeakingOpen(false)}
           />
         )}

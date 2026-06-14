@@ -29,9 +29,18 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     expect(SOURCE).toContain('speakAudio(targetText, 0.86');
 
     // Completion is gated on a real passing score, not on "I recorded something".
+    // Exception: when speech genuinely can't run here (no recognizer on the
+    // device, or the user declined mic access) the learner may advance without a
+    // score so a free in-plan exercise never traps them — gated on `blocked`.
     expect(SOURCE).toContain('enabled={pronunciationHeardTarget && !pronunciationSpeakingTarget}');
-    expect(SOURCE).toContain('disabled={saving || pronunciationScoring || !pronunciationScore?.passed}');
+    expect(SOURCE).toContain('disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}');
     expect(SOURCE).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');
+
+    // The escape is only for genuine "speech unavailable / denied" states, not a
+    // free skip: the two block kinds, and nothing wider.
+    expect(SOURCE).toContain("type PronunciationBlock = 'denied' | 'unavailable' | null");
+    // And the escape is recorded HONESTLY — never a fabricated pass.
+    expect(SOURCE).toContain('passed: scored?.passed ?? false');
 
     // The fake "record 12 seconds + listen to yourself = pass" path must be gone.
     expect(SOURCE).not.toContain('Запись до 12 секунд');

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
+import { Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -15,9 +15,11 @@ import { useAudio } from '../hooks/use-audio';
 import {
   scorePlanPronunciationTranscript,
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
+  PLAN_PRONUNCIATION_SCORING_VERSION,
   type PlanPronunciationScoringResult,
 } from './personal_plan_pronunciation_scoring_client';
-import { ExpoSpeechRecognitionModule as speechModule } from 'expo-speech-recognition';
+import { loadPlanSpeechModule } from './personal_plan_speech_module';
+import { isSpeakingEnabled } from './remote_flags';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
@@ -342,6 +344,8 @@ function PronunciationSpeakButton({
  * scorePlanPronunciationTranscript compares the transcript to the target and the learner
  * passes at PLAN_PRONUNCIATION_PASS_THRESHOLD (90% word coverage). We never score accent.
  */
+type PronunciationBlock = 'denied' | 'unavailable' | null;
+
 function PlanPronunciationRecorder({
   accent,
   actionText,
@@ -349,6 +353,7 @@ function PlanPronunciationRecorder({
   targetText,
   onScored,
   onScoringChange,
+  onBlocked,
 }: {
   accent: string;
   actionText: string;
@@ -356,13 +361,20 @@ function PlanPronunciationRecorder({
   targetText: string;
   onScored: (result: PlanPronunciationScoringResult) => void;
   onScoringChange: (scoring: boolean) => void;
+  /** Speech can't run here (no recognizer / mic denied) → host lets the user advance. */
+  onBlocked: (blocked: PronunciationBlock) => void;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  // Guarded native module: null on a binary/device without the recognizer, OR
+  // when the remote kill-switch turns speaking off app-wide. Resolved once so the
+  // whole exercise degrades (escape path) instead of crashing on mount.
+  const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
   const [pronunciationHeardTarget, setPronunciationHeardTarget] = useState(false);
   const [pronunciationSpeakingTarget, setPronunciationSpeakingTarget] = useState(false);
   const [pronunciationListening, setPronunciationListening] = useState(false);
   const [pronunciationScoringLocal, setPronunciationScoringLocal] = useState(false);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
+  const [blocked, setBlockedLocal] = useState<PronunciationBlock>(null);
   const targetTextRef = useRef(targetText);
   targetTextRef.current = targetText;
   const pronunciationScoring = pronunciationScoringLocal;
@@ -372,17 +384,27 @@ function PlanPronunciationRecorder({
     onScoringChange(scoring);
   }, [onScoringChange]);
 
-  // Reset state when the practiced phrase changes.
+  const setBlocked = useCallback((next: PronunciationBlock) => {
+    setBlockedLocal(next);
+    onBlocked(next);
+  }, [onBlocked]);
+
+  // Reset state when the practiced phrase changes. The device-unavailable block
+  // is sticky (it can't change between phrases); a denied block resets so the
+  // user gets a fresh chance after granting permission in Settings.
   useEffect(() => {
     setPronunciationHeardTarget(false);
     setPronunciationSpeakingTarget(false);
     setPronunciationListening(false);
     setPronunciationScoring(false);
     setPronunciationScore(null);
-  }, [targetText, setPronunciationScoring]);
+    setBlocked(speechModule ? null : 'unavailable');
+  }, [targetText, setPronunciationScoring, setBlocked, speechModule]);
 
   // Recognition result → score it locally and report up.
   useEffect(() => {
+    if (!speechModule) return undefined; // no recognizer: nothing to listen to
+
     const applyResult = (event: { results?: { transcript?: string; confidence?: number }[] }) => {
       const best = event?.results?.[0];
       const transcript = (best?.transcript ?? '').trim();
@@ -424,7 +446,7 @@ function PlanPronunciationRecorder({
         // recognizer may be unavailable in some builds — safe to ignore on unmount
       }
     };
-  }, [onScored]);
+  }, [onScored, speechModule]);
 
   const listenPronunciationTarget = useCallback(() => {
     hapticTap();
@@ -447,9 +469,20 @@ function PlanPronunciationRecorder({
     hapticTap();
     stopAudio();
     setPronunciationScore(null);
+    if (!speechModule) {
+      setBlocked('unavailable');
+      return;
+    }
     try {
       const permission = await speechModule.requestPermissionsAsync();
-      if (!permission.granted) return;
+      if (!permission?.granted) {
+        setPronunciationListening(false);
+        setPronunciationScoring(false);
+        setBlocked('denied');
+        hapticError();
+        return;
+      }
+      setBlocked(null);
       setPronunciationListening(true);
       setPronunciationScoring(true);
       speechModule.start({
@@ -462,22 +495,35 @@ function PlanPronunciationRecorder({
       setPronunciationListening(false);
       setPronunciationScoring(false);
     }
-  }, [stopAudio]);
+  }, [stopAudio, speechModule, setBlocked]);
 
   const stopSpeaking = useCallback(() => {
     try {
-      speechModule.stop();
+      speechModule?.stop();
     } catch {
       // end/error listener will settle state
     }
+  }, [speechModule]);
+
+  const openMicSettings = useCallback(() => {
+    hapticTap();
+    Linking.openSettings().catch(() => {
+      // some platforms/contexts can't open settings — harmless
+    });
   }, []);
 
-  const scoreColor = pronunciationScore?.passed
+  const scoreColor = blocked
+    ? mutedText
+    : pronunciationScore?.passed
     ? '#3FD68C'
     : pronunciationScore
     ? '#FF6E78'
     : mutedText;
-  const statusHint = pronunciationScoring
+  const statusHint = blocked === 'unavailable'
+    ? '\u042d\u0442\u043e \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043d\u0435 \u0443\u043c\u0435\u0435\u0442 \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0432\u0430\u0442\u044c \u0440\u0435\u0447\u044c. \u041c\u043e\u0436\u0435\u0448\u044c \u043f\u0440\u043e\u0441\u0442\u043e \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438\u0442\u044c \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0442\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
+    : blocked === 'denied'
+    ? '\u041d\u0443\u0436\u0435\u043d \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u043c\u0438\u043a\u0440\u043e\u0444\u043e\u043d\u0443. \u0420\u0430\u0437\u0440\u0435\u0448\u0438 \u0435\u0433\u043e \u0432 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430\u0445 \u2014 \u0438\u043b\u0438 \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438 \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
+    : pronunciationScoring
     ? '\u25cf\u25cf\u25cf \u25cf\u25cf\u25cf \u25cf\u25cf\u25cf'
     : pronunciationScore
     ? pronunciationScore.passed
@@ -521,15 +567,36 @@ function PlanPronunciationRecorder({
         </LinearGradient>
       </TouchableOpacity>
 
-      <PronunciationSpeakButton
-        enabled={pronunciationHeardTarget && !pronunciationSpeakingTarget}
-        listening={pronunciationListening}
-        accent={accent}
-        actionText={actionText}
-        onPress={() => (pronunciationListening ? stopSpeaking() : void startSpeaking())}
-      />
+      {blocked !== 'unavailable' && (
+        <PronunciationSpeakButton
+          enabled={pronunciationHeardTarget && !pronunciationSpeakingTarget}
+          listening={pronunciationListening}
+          accent={accent}
+          actionText={actionText}
+          onPress={() => (pronunciationListening ? stopSpeaking() : void startSpeaking())}
+        />
+      )}
 
       <Text style={[styles.panelText, { color: scoreColor, fontWeight: '800' }]}>{statusHint}</Text>
+
+      {blocked === 'denied' && (
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Открыть настройки"
+          activeOpacity={0.84}
+          onPress={openMicSettings}
+          style={[styles.primaryButton, { borderColor: accent + '55', shadowColor: accent, marginTop: 10 }]}
+        >
+          <LinearGradient
+            colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.primaryButtonGradient}
+          >
+            <Text style={[styles.primaryButtonText, { color: accent }]}>Открыть настройки</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -715,6 +782,9 @@ export default function PersonalPlanExerciseScreen() {
   const [recallItems, setRecallItems] = useState<PersonalPlanPhraseRecallItem[]>([]);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
   const [pronunciationScoring, setPronunciationScoring] = useState(false);
+  // Set when the recorder can't run speech here (no recognizer / mic denied) so
+  // a free in-plan exercise is never a dead end — the user can still advance.
+  const [pronunciationBlocked, setPronunciationBlocked] = useState<PronunciationBlock>(null);
   const { flashKey, flash } = useWordFlash();
   const isMissingWordMode = rendererType === 'plan_missing_word';
   const isChoiceMode = rendererType === 'plan_choose_natural_phrase';
@@ -951,8 +1021,14 @@ export default function PersonalPlanExerciseScreen() {
 
   const completePronunciation = async () => {
     if (!item || !session || saving || done || !('targetText' in item)) return;
-    // Completion is gated on a real on-device score that reached the pass threshold.
-    if (!pronunciationScore || !pronunciationScore.passed) return;
+    // Normal path: completion is gated on a real on-device score that reached the
+    // pass threshold. Escape hatch: when speech genuinely can't run here (no
+    // recognizer on the device, or the user declined mic access), we let the
+    // learner advance without a score — a free in-plan exercise must never trap
+    // them. We record that honestly (passed:false, the real provider state).
+    const speechBlocked = pronunciationBlocked != null;
+    const scored = pronunciationScore;
+    if (!speechBlocked && (!scored || !scored.passed)) return;
     setSaving(true);
     hapticSuccess();
 
@@ -960,19 +1036,19 @@ export default function PersonalPlanExerciseScreen() {
       result: 'completed',
       contentUnitId: item.id,
       expectedAnswer: item.targetText,
-      selectedAnswer: pronunciationScore.transcript,
+      selectedAnswer: scored?.transcript ?? '',
       grammarTags: item.grammarTags,
       vocabularyTags: item.vocabularyTags,
       mistakeTags: [],
       payload: buildPlanPronunciationAttemptPayload({
         durationMs: 1,
         userPlayedRecording: false,
-        transcript: pronunciationScore.transcript,
-        score: pronunciationScore.score,
-        passed: pronunciationScore.passed,
+        transcript: scored?.transcript ?? '',
+        score: scored?.score ?? 0,
+        passed: scored?.passed ?? false,
         provider: 'device_speech_recognition',
-        scoringVersion: pronunciationScore.scoringVersion,
-        recognitionConfidence: pronunciationScore.recognitionConfidence,
+        scoringVersion: scored?.scoringVersion ?? PLAN_PRONUNCIATION_SCORING_VERSION,
+        recognitionConfidence: scored?.recognitionConfidence ?? 0,
       }),
     }, {
       recoveryWrite,
@@ -1217,13 +1293,14 @@ export default function PersonalPlanExerciseScreen() {
                 targetText={item.targetText}
                 onScored={handlePronunciationScored}
                 onScoringChange={setPronunciationScoring}
+                onBlocked={setPronunciationBlocked}
               />
 
               <PlanGradientButton
-                label={item.completionLabel}
+                label={pronunciationBlocked ? 'Продолжить' : item.completionLabel}
                 accent={accent}
                 actionText={actionText}
-                disabled={saving || pronunciationScoring || !pronunciationScore?.passed}
+                disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}
                 onPress={() => void completePronunciation()}
                 style={{ marginTop: 18 }}
               />

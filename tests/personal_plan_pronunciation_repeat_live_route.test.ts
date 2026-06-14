@@ -126,10 +126,11 @@ describe('personal plan pronunciation-repeat live route', () => {
     expect(source).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');
     expect(source).toContain("speechModule.addListener('nomatch'");
     expect(source).toContain("Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}");
-    expect(source).toContain('disabled={saving || pronunciationScoring || !pronunciationScore?.passed}');
+    expect(source).toContain('disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}');
     expect(source).toContain('payload: buildPlanPronunciationAttemptPayload({');
-    expect(source).toContain('score: pronunciationScore.score');
-    expect(source).toContain('transcript: pronunciationScore.transcript');
+    expect(source).toContain('score: scored?.score ?? 0');
+    expect(source).toContain("transcript: scored?.transcript ?? ''");
+    expect(source).toContain('passed: scored?.passed ?? false');
     expect(source).toContain("result: 'completed'");
     expect(source).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD}%');
     expect(clientSource).toContain("PLAN_PRONUNCIATION_SCORING_PROVIDER = 'device_speech_recognition'");

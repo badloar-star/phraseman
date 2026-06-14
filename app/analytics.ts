@@ -48,6 +48,9 @@ export type AnalyticsEvent =
   | 'ai_dialog_tts_used'
   | 'ai_dialog_phrase_tapped'
   | 'ai_dialog_translation_used'
+  | 'ai_dialog_locked_scenario_tapped'
+  // Говорение («Устно»): успешная попытка проговорить фразу вслух (premium).
+  | 'speaking_attempt_passed'
   // «Объясни как для 5-летнего» (Фаза 5 — adoption/cohort + health кэш-хитов)
   | 'explain_button_shown'
   | 'explain_sheet_opened'

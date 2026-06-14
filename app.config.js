@@ -152,6 +152,9 @@ module.exports = function buildExpoConfig({ config } = {}) {
       androidSpeechServicePackages: ['com.google.android.googlequicksearchbox'],
     },
   ];
+  // Speaking mode (premium): on-device speech recognition for pronunciation
+  // practice. The plugin injects the mic + speech-recognition usage descriptions
+  // at prebuild. Added once, guarded so a plugin already present in app.json wins.
   expoConfig.plugins = [...(expoConfig.plugins || []), 'expo-audio'];
   if (!expoConfig.plugins.some((plugin) => (
     Array.isArray(plugin)
@@ -159,27 +162,6 @@ module.exports = function buildExpoConfig({ config } = {}) {
       : plugin === 'expo-speech-recognition'
   ))) {
     expoConfig.plugins.push(speechRecognitionPlugin);
-  }
-
-  // Speaking mode (premium): on-device speech recognition for pronunciation practice.
-  // Plugin injects mic + speech-recognition usage descriptions; only added once.
-  const hasSpeechRecognitionPlugin = (expoConfig.plugins || []).some((p) =>
-    Array.isArray(p) ? p[0] === 'expo-speech-recognition' : p === 'expo-speech-recognition',
-  );
-  if (!hasSpeechRecognitionPlugin) {
-    expoConfig.plugins = [
-      ...(expoConfig.plugins || []),
-      [
-        'expo-speech-recognition',
-        {
-          microphonePermission:
-            'Phraseman слушает, пока ты произносишь фразу вслух.',
-          speechRecognitionPermission:
-            'Phraseman распознаёт твою речь, чтобы проверить произношение.',
-          androidSpeechServicePackages: ['com.google.android.googlequicksearchbox'],
-        },
-      ],
-    ];
   }
 
   if (expoConfig.updates) {

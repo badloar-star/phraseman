@@ -7,6 +7,7 @@ import {
   getLeagueXpPromotionThreshold,
   getTrainerAbGroup,
   getPaywallVariant,
+  getOnboardingColorVariant,
   getRemoteConfigSignature,
   isReferralEnabled,
   isLeagueXpPromotionEnabled,
@@ -125,6 +126,51 @@ describe('remote_flags', () => {
       expect(getPaywallVariant('x')).toBe('v1');
       applyRemoteConfigSnapshot({ numbers: { paywall_v2_pct: 100 } });
       expect(getPaywallVariant('x')).toBe('v2');
+    });
+  });
+
+  describe('getOnboardingColorVariant', () => {
+    it('defaults to 50% green when no snapshot applied', () => {
+      // default onboarding_green_pct = 50 → both colors appear across users
+      const colors = new Set<string>();
+      for (let i = 0; i < 200; i += 1) colors.add(getOnboardingColorVariant(`user-${i}`));
+      expect(colors.has('blue')).toBe(true);
+      expect(colors.has('green')).toBe(true);
+    });
+
+    it('is deterministic per user (same color across calls)', () => {
+      applyRemoteConfigSnapshot({ numbers: { onboarding_green_pct: 50 } });
+      expect(getOnboardingColorVariant('u1')).toBe(getOnboardingColorVariant('u1'));
+      expect(['blue', 'green']).toContain(getOnboardingColorVariant('u1'));
+    });
+
+    it('all blue at 0%, all green at 100%', () => {
+      applyRemoteConfigSnapshot({ numbers: { onboarding_green_pct: 0 } });
+      expect(getOnboardingColorVariant('x')).toBe('blue');
+      expect(getOnboardingColorVariant('y')).toBe('blue');
+      applyRemoteConfigSnapshot({ numbers: { onboarding_green_pct: 100 } });
+      expect(getOnboardingColorVariant('x')).toBe('green');
+      expect(getOnboardingColorVariant('y')).toBe('green');
+    });
+
+    it('roughly honors a 50/50 split across many users', () => {
+      applyRemoteConfigSnapshot({ numbers: { onboarding_green_pct: 50 } });
+      let blue = 0;
+      let green = 0;
+      for (let i = 0; i < 2000; i += 1) {
+        const c = getOnboardingColorVariant(`user-${i}`);
+        if (c === 'blue') blue += 1;
+        else green += 1;
+      }
+      // each near 1000; generous tolerance for hash distribution
+      expect(blue).toBeGreaterThan(800);
+      expect(green).toBeGreaterThan(800);
+    });
+
+    it('clamps an out-of-range green pct to bounds', () => {
+      applyRemoteConfigSnapshot({ numbers: { onboarding_green_pct: 250 } });
+      // 250 clamps to 100 → everyone green
+      expect(getOnboardingColorVariant('z')).toBe('green');
     });
   });
 });

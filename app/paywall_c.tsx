@@ -8,11 +8,9 @@
 // не покидают экран: sticky-бар появляется, как только CTA уходит из вьюпорта.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
@@ -27,7 +25,7 @@ import { pickPercentileLine } from './paywall_percentile_line';
 import { loadPercentileData } from './daily_analytics_sync';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSectionDivider,
-  PaywallStickyBar, useStickyCta, PaywallPersonalTags,
+  PaywallStickyBar, useStickyCta, PaywallPersonalTags, PaywallCloseButton,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -134,13 +132,10 @@ export default function PaywallC() {
             }}
             scrollEventThrottle={32}
           >
-            <TouchableOpacity
+            <PaywallCloseButton
               onPress={() => { hapticTap(); p.handleClose('close'); }}
-              style={[S.closeBtn, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}
-              hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
-            >
-              <Ionicons name="close" size={14} color={chrome.textMuted} />
-            </TouchableOpacity>
+              chrome={chrome}
+            />
 
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
@@ -247,11 +242,6 @@ const S = StyleSheet.create({
   safe: { flex: 1 },
   wrap: { flex: 1 },
   scrollContent: { paddingHorizontal: 20, paddingBottom: 12 },
-  closeBtn: {
-    alignSelf: 'flex-end', marginTop: 6, marginBottom: 6,
-    width: 28, height: 28, borderRadius: 14, borderWidth: 1,
-    alignItems: 'center', justifyContent: 'center',
-  },
   title: {
     fontSize: 27, fontWeight: '800', letterSpacing: -1.1,
     lineHeight: 32, textAlign: 'center', marginTop: 14,

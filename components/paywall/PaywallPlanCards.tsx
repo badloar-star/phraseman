@@ -33,7 +33,7 @@ export default function PaywallPlanCards({
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, trialDays, loading, disabled,
 }: Props) {
-  const { tc, isLight, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
+  const { tc, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
   const perMonthLabel = triLang(lang, { ru: '/ мес', uk: '/ міс', es: '/ mes' });
 
   const yearSubParts: string[] = [];
@@ -77,7 +77,7 @@ export default function PaywallPlanCards({
             borderColor: sel ? tc.selectedCardBorder : uncheckedBorder,
             backgroundColor: sel ? tc.heroAccent : 'transparent',
           }]}>
-            {sel && <Ionicons name="checkmark" size={11} color={isLight ? '#fff' : '#050505'} />}
+            {sel && <Ionicons name="checkmark" size={11} color="#050505" />}
           </View>
           <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>{name}</Text>
           {badge !== null && (

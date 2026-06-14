@@ -8,11 +8,9 @@
 // никогда не покидают экран.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -26,7 +24,7 @@ import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from '.
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
-  PaywallStickyBar, useStickyCta, PaywallPersonalTags,
+  PaywallStickyBar, useStickyCta, PaywallPersonalTags, PaywallCloseButton,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -109,13 +107,10 @@ export default function PaywallB() {
             onScroll={sticky.onScroll}
             scrollEventThrottle={32}
           >
-            <TouchableOpacity
+            <PaywallCloseButton
               onPress={() => { hapticTap(); p.handleClose('close'); }}
-              style={[S.closeBtn, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}
-              hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
-            >
-              <Ionicons name="close" size={14} color={chrome.textMuted} />
-            </TouchableOpacity>
+              chrome={chrome}
+            />
 
             {/* Про триал говорит таймлайн ниже (честный «сегодня→напомним→списание»);
                 верхний ribbon убран, чтобы не дублировать (P1-5). */}
@@ -216,11 +211,6 @@ const S = StyleSheet.create({
   safe: { flex: 1 },
   wrap: { flex: 1 },
   scrollContent: { paddingHorizontal: 20, paddingBottom: 12 },
-  closeBtn: {
-    alignSelf: 'flex-end', marginTop: 6, marginBottom: 6,
-    width: 28, height: 28, borderRadius: 14, borderWidth: 1,
-    alignItems: 'center', justifyContent: 'center',
-  },
   title: {
     fontSize: 27, fontWeight: '800', letterSpacing: -1.1,
     lineHeight: 32, textAlign: 'center', marginTop: 14,

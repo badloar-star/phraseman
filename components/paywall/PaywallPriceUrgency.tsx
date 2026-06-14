@@ -183,7 +183,7 @@ const S = StyleSheet.create({
   headerRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 8 },
   headline: { flex: 1, fontSize: 12.5, fontWeight: '800', lineHeight: 17 },
   // компактный режим — одна строка
-  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 12, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 9, marginTop: 14 },
+  compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 14, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 9, marginTop: 14 },
   compactTimer: { fontSize: 13, fontWeight: '800', letterSpacing: 0.8, fontVariant: ['tabular-nums'] },
   compactMid: { flex: 1, fontSize: 11.5, flexShrink: 1 },
   compactStrike: { textDecorationLine: 'line-through' },

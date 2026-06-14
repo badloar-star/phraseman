@@ -8,7 +8,7 @@
 // Без таймлайна и галереи доказательств — это дифференциаторы C.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -27,7 +27,7 @@ import { trackEvent } from './analytics';
 import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -94,13 +94,11 @@ export default function PaywallA() {
     <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
       <SafeAreaView style={S.safe}>
         <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]}>
-          <TouchableOpacity
+          <PaywallCloseButton
             onPress={() => { hapticTap(); p.handleClose('close'); }}
-            style={[S.closeBtn, { marginTop: Math.max(insets.top - 38, 6), backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}
-            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
-          >
-            <Ionicons name="close" size={14} color={chrome.textMuted} />
-          </TouchableOpacity>
+            chrome={chrome}
+            style={{ marginTop: Math.max(insets.top - 38, 6) }}
+          />
 
           {/* На обычных телефонах помещается без скролла (flexGrow:1 + спейсер
               прижимает CTA вниз); на маленьких — мягко скроллится. */}
@@ -199,11 +197,6 @@ const S = StyleSheet.create({
   safe: { flex: 1 },
   wrap: { flex: 1, paddingHorizontal: 20, paddingBottom: 12 },
   scroll: { flexGrow: 1, paddingBottom: 4 },
-  closeBtn: {
-    alignSelf: 'flex-end', marginBottom: 6,
-    width: 28, height: 28, borderRadius: 14, borderWidth: 1,
-    alignItems: 'center', justifyContent: 'center',
-  },
   title: {
     fontSize: 26, fontWeight: '800', letterSpacing: -1,
     lineHeight: 31, textAlign: 'center', marginTop: 14,

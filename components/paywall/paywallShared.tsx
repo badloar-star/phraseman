@@ -29,7 +29,6 @@ function screenBgTuple(themeMode: string): [string, string, string] {
 export interface PaywallChrome {
   tc: ThemePaywallConfig;
   themeMode: string;
-  isLight: boolean;
   bgColors: [string, string, string];
   textPrimary: string;
   textMuted: string;
@@ -42,23 +41,17 @@ export interface PaywallChrome {
 /** Цветовая обвязка пейвола, адаптивная к теме (паттерн v2). */
 export function usePaywallChrome(): PaywallChrome {
   const { themeMode } = useTheme();
-  return useMemo(() => {
-    const isLight = false;
-    return {
-      tc: getPaywallThemeConfig(themeMode),
-      themeMode,
-      isLight,
-      bgColors: screenBgTuple(themeMode),
-      textPrimary: isLight ? '#0c0c18' : '#FFFFFF',
-      // P1-3: 0.55 → 0.62 — мелкий приглушённый текст (цены-капсы, подписи,
-      // юр.строка) был на грани читаемости на тёмном фоне.
-      textMuted: isLight ? 'rgba(12,12,24,0.62)' : 'rgba(255,255,255,0.62)',
-      divider: isLight ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)',
-      cardBg: isLight ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.035)',
-      cardBorder: isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)',
-      uncheckedBorder: isLight ? 'rgba(0,0,0,0.18)' : 'rgba(255,255,255,0.22)',
-    };
-  }, [themeMode]);
+  return useMemo(() => ({
+    tc: getPaywallThemeConfig(themeMode),
+    themeMode,
+    bgColors: screenBgTuple(themeMode),
+    textPrimary: '#FFFFFF',
+    textMuted: 'rgba(255,255,255,0.62)',
+    divider: 'rgba(255,255,255,0.06)',
+    cardBg: 'rgba(255,255,255,0.035)',
+    cardBorder: 'rgba(255,255,255,0.08)',
+    uncheckedBorder: 'rgba(255,255,255,0.22)',
+  }), [themeMode]);
 }
 
 // ── глиф контекста (SVG-иконки Ionicons вместо эмодзи-зоопарка) ──────────────
@@ -89,6 +82,9 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   personal_plan: 'map',
   intro_ended: 'hourglass',
   level_up: 'trending-up',
+  premium_expired: 'refresh-circle',
+  vip_expired: 'star',
+  notification_upsell: 'notifications',
   generic: 'diamond',
 };
 
@@ -148,6 +144,23 @@ export function PaywallSectionDivider({ label, chrome }: { label: string; chrome
   );
 }
 
+/** Кнопка закрытия пейвола — единый вид на A/B/C. */
+export function PaywallCloseButton({ onPress, chrome, style }: {
+  onPress: () => void;
+  chrome: PaywallChrome;
+  style?: object;
+}) {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[S.closeBtn, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }, style]}
+      hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
+    >
+      <Ionicons name="close" size={14} color={chrome.textMuted} />
+    </TouchableOpacity>
+  );
+}
+
 // ── sticky-CTA: цена и кнопка не покидают экран при скролле ──────────────────
 // Правило без исключений во всех гайдах: CTA+цена видны всегда; на длинных
 // экранах это решает закреплённый бар (+31% конверсии в сопоставимых замерах).
@@ -166,9 +179,20 @@ export function useStickyCta() {
     const ctaAboveViewport = measured && ctaBottom < scrollY + 36;
     const ctaBelowViewport = measured && ctaTop > scrollY + viewportH - 36;
     const next = measured && (ctaAboveViewport || ctaBelowViewport);
-    if (next !== visibleRef.current) {
-      visibleRef.current = next;
-      setVisible(next);
+    // P2-5: гистерезис ±12px — sticky-бар не мерцает на границе вьюпорта.
+    // Показываем если вышли за порог, скрываем только когда вернулись с запасом.
+    if (next && !visibleRef.current) {
+      visibleRef.current = true;
+      setVisible(true);
+    } else if (!next && visibleRef.current) {
+      const { ctaTop: cTop, ctaBottom: cBot, viewportH: vH, scrollY: sY } = metricsRef.current;
+      const safeAbove = cBot < sY + 36 - 12;
+      const safeBelow = cTop > sY + vH - 36 + 12;
+      const stillOut = (cBot > 0 && vH > 0) && (safeAbove || safeBelow);
+      if (!stillOut) {
+        visibleRef.current = false;
+        setVisible(false);
+      }
     }
   }, []);
 
@@ -204,10 +228,10 @@ export function PaywallStickyBar({
   chrome: PaywallChrome;
 }) {
   if (!visible) return null;
-  const { tc, isLight } = chrome;
+  const { tc } = chrome;
   return (
     <View style={[S.sticky, {
-      backgroundColor: isLight ? 'rgba(244,244,250,0.97)' : 'rgba(22,20,15,0.94)',
+      backgroundColor: 'rgba(22,20,15,0.94)',
       borderColor: tc.selectedCardBorder,
     }]}>
       <View style={S.stickyTextWrap}>
@@ -240,6 +264,11 @@ export function PaywallPersonalTags({ texts, chrome }: { texts: string[]; chrome
 }
 
 const S = StyleSheet.create({
+  closeBtn: {
+    alignSelf: 'flex-end', marginBottom: 6,
+    width: 28, height: 28, borderRadius: 14, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center',
+  },
   tagWrap: { gap: 7, marginTop: 12, alignSelf: 'stretch' },
   tagChip: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'center',

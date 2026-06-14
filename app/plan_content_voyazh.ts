@@ -7343,7 +7343,7 @@ export const VOYAZH_DAY_41: PlanContentDay = {
         commonMistake: { ru: 'Не говори «Have you a jacket?» — нужно «Do you have a jacket?».', uk: 'Не кажи «Have you a jacket?» — потрібно «Do you have a jacket?».', es: 'No digas «Have you a jacket?»; lo correcto es «Do you have a jacket?».' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['did', 'Are', 'Is', 'Can', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['did', 'Are', 'Is', 'Can', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['need', 'want', 'sell', 'like', 'buy'] },
         { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'this', 'my', 'one'] },
@@ -8820,7 +8820,7 @@ export const VOYAZH_DAY_51: PlanContentDay = {
       words: [
         { text: 'Is', partOfSpeech: 'to-be', distractors: ['Are', 'Was', 'Be', 'Am', 'Were'] },
         { text: 'it', partOfSpeech: 'pronoun', distractors: ['this', 'that', 'he', 'she', 'they'] },
-        { text: 'far', partOfSpeech: 'adjective', distractors: ['near', 'close', 'long', 'near', 'wide'] },
+        { text: 'far', partOfSpeech: 'adjective', distractors: ['near', 'close', 'long', 'wide', 'big'] },
         { text: 'from', partOfSpeech: 'preposition', distractors: ['to', 'at', 'in', 'of', 'by'] },
         { text: 'here', partOfSpeech: 'adverb', distractors: ['there', 'near', 'close', 'now', 'then'] },
       ],
@@ -10961,7 +10961,7 @@ export const VOYAZH_DAY_61: PlanContentDay = {
         commonMistake: { ru: 'Не говори Have you a map — порядок слов неверный в таком вопросе', uk: 'Не кажи Have you a map — порядок слів неправильний у такому питанні', es: 'No digas Have you a map — el orden de palabras es incorrecto en esta pregunta' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Can', 'Are', 'Is', 'did', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Can', 'Are', 'Is', 'did', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['need', 'want', 'give', 'take', 'sell'] },
         { text: 'a', partOfSpeech: 'article', distractors: ['the', 'this', 'any', 'one', 'that'] },
@@ -11297,7 +11297,7 @@ export const VOYAZH_DAY_63: PlanContentDay = {
   ],
   phrases: [
     {
-      id: 'voyazh_d63_phrase_1',
+      id: 'voyazh_d63_p1',
       english: 'Can I join this tour?',
       meaning: { ru: 'Можно мне присоединиться к этой экскурсии?', uk: 'Можна мені приєднатися до цієї екскурсії?', es: '¿Puedo unirme a esta excursión?' },
       constructions: ['modals', 'wh-questions'],
@@ -11316,7 +11316,7 @@ export const VOYAZH_DAY_63: PlanContentDay = {
       ],
     },
     {
-      id: 'voyazh_d63_phrase_2',
+      id: 'voyazh_d63_p2',
       english: 'When does the tour start?',
       meaning: { ru: 'Когда начинается экскурсия?', uk: 'Коли починається екскурсія?', es: '¿Cuándo empieza la excursión?' },
       constructions: ['wh-questions'],
@@ -11335,7 +11335,7 @@ export const VOYAZH_DAY_63: PlanContentDay = {
       ],
     },
     {
-      id: 'voyazh_d63_phrase_3',
+      id: 'voyazh_d63_p3',
       english: 'Where can we meet the guide?',
       meaning: { ru: 'Где мы можем встретить гида?', uk: 'Де ми можемо зустріти гіда?', es: '¿Dónde podemos encontrar al guía?' },
       constructions: ['modals', 'wh-questions'],
@@ -11354,7 +11354,7 @@ export const VOYAZH_DAY_63: PlanContentDay = {
       ],
     },
     {
-      id: 'voyazh_d63_phrase_4',
+      id: 'voyazh_d63_p4',
       english: 'How long does the tour last?',
       meaning: { ru: 'Сколько длится экскурсия?', uk: 'Скільки триває екскурсія?', es: '¿Cuánto dura la excursión?' },
       constructions: ['wh-questions'],
@@ -11373,7 +11373,7 @@ export const VOYAZH_DAY_63: PlanContentDay = {
       ],
     },
     {
-      id: 'voyazh_d63_phrase_5',
+      id: 'voyazh_d63_p5',
       english: 'Can you speak more slowly please?',
       meaning: { ru: 'Можете говорить помедленнее, пожалуйста?', uk: 'Можете говорити повільніше, будь ласка?', es: '¿Puede hablar más despacio, por favor?' },
       constructions: ['modals'],
@@ -11392,7 +11392,7 @@ export const VOYAZH_DAY_63: PlanContentDay = {
       ],
     },
     {
-      id: 'voyazh_d63_phrase_6',
+      id: 'voyazh_d63_p6',
       english: 'What time does it finish?',
       meaning: { ru: 'В какое время это заканчивается?', uk: 'О котрій годині це закінчується?', es: '¿A qué hora termina?' },
       constructions: ['wh-questions'],

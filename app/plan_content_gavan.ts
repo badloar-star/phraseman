@@ -1720,7 +1720,7 @@ export const GAVAN_DAY_10: PlanContentDay = {
       },
       words: [
         { text: 'Can', partOfSpeech: 'modal', distractors: ['Must', 'Should', 'Would', 'Shall', 'Might'] },
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'She'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'It'] },
         { text: 'get', partOfSpeech: 'verb', distractors: ['eat', 'drink', 'cook', 'buy', 'make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'us', 'them'] },
         { text: 'tea', partOfSpeech: 'noun', distractors: ['coffee', 'juice', 'milk', 'water', 'soup'] },
@@ -3300,9 +3300,9 @@ export const GAVAN_DAY_19: PlanContentDay = {
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'You'] },
         { text: 'rest', partOfSpeech: 'verb', distractors: ['work', 'cook', 'read', 'walk', 'sleep'] },
-        { text: 'at', partOfSpeech: 'preposition', distractors: ['by', 'on', 'by', 'for', 'from'] },
+        { text: 'at', partOfSpeech: 'preposition', distractors: ['by', 'on', 'for', 'from', 'in'] },
         { text: 'home', partOfSpeech: 'noun', distractors: ['work', 'school', 'park', 'kitchen', 'garden'] },
-        { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'on', 'by', 'after', 'before'] },
+        { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'by', 'after', 'before', 'at'] },
         { text: 'evening', partOfSpeech: 'noun', distractors: ['morning', 'afternoon', 'night', 'weekend', 'summer'] },
       ],
     },
@@ -3503,7 +3503,7 @@ export const GAVAN_DAY_20: PlanContentDay = {
         { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
         { text: 'a', partOfSpeech: 'determiner', distractors: ['the', 'an', 'this', 'these', 'those'] },
         { text: 'lamp', partOfSpeech: 'noun', distractors: ['book', 'clock', 'phone', 'glass', 'pillow'] },
-        { text: 'next', partOfSpeech: 'adverb', distractors: ['far', 'here', 'here', 'inside', 'outside'] },
+        { text: 'next', partOfSpeech: 'adverb', distractors: ['far', 'here', 'inside', 'outside', 'now'] },
         { text: 'my', partOfSpeech: 'pronoun', distractors: ['your', 'his', 'her', 'our', 'their'] },
       ],
     },
@@ -3721,7 +3721,7 @@ export const GAVAN_DAY_21: PlanContentDay = {
         commonMistake: { ru: 'Не говорят You have breakfast? Нужно Do you have breakfast?', uk: 'Не кажуть You have breakfast? Потрібно Do you have breakfast?', es: 'No se dice You have breakfast? Se dice Do you have breakfast?' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Is', 'Are', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Is', 'Are', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['make', 'take', 'cook', 'eat', 'buy'] },
         { text: 'breakfast', partOfSpeech: 'noun', distractors: ['lunch', 'dinner', 'coffee', 'tea', 'snack'] },
@@ -3877,7 +3877,7 @@ export const GAVAN_DAY_22: PlanContentDay = {
         commonMistake: { ru: 'Не говори «You have a sister?» как вопрос — нужно «Do you have a sister?»', uk: 'Не кажи «You have a sister?» як запитання — потрібно «Do you have a sister?»', es: 'No digas «You have a sister?» como pregunta — hay que decir «Do you have a sister?»' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Are', 'Is', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Are', 'Is', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['she', 'he', 'we', 'they', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'want', 'like', 'need'] },
         { text: 'sister', partOfSpeech: 'noun', distractors: ['brother', 'daughter', 'mother', 'aunt', 'cousin'] },
@@ -4433,7 +4433,7 @@ export const GAVAN_DAY_25: PlanContentDay = {
       },
       words: [
         { text: 'Can', partOfSpeech: 'modal', distractors: ['Must', 'Should', 'Will', 'Shall', 'Would'] },
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['She', 'he', 'she', 'we', 'they'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['She', 'he', 'we', 'they', 'It'] },
         { text: 'help', partOfSpeech: 'verb', distractors: ['watch', 'stop', 'leave', 'ask', 'forget'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'them', 'me', 'us'] },
         { text: 'with', partOfSpeech: 'preposition', distractors: ['in', 'at', 'on', 'for', 'by'] },
@@ -4551,7 +4551,7 @@ export const GAVAN_DAY_26: PlanContentDay = {
         commonMistake: { ru: 'Не путай: miss — скучать, не «промахнуться»; контекст всегда помогает.', uk: 'Не плутай: miss — сумувати, а не «промахнутися»; контекст завжди допомагає.', es: 'No confundas: miss significa «echar de menos», no «fallar»; el contexto siempre ayuda.' },
       },
       words: [
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['She', 'He', 'She', 'We', 'They'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['She', 'He', 'We', 'They', 'It'] },
         { text: 'miss', partOfSpeech: 'verb', distractors: ['love', 'call', 'hear', 'need', 'forget'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'me'] },
         { text: 'so', partOfSpeech: 'adverb', distractors: ['very', 'just', 'quite', 'too', 'more'] },
@@ -4588,7 +4588,7 @@ export const GAVAN_DAY_26: PlanContentDay = {
         commonMistake: { ru: 'Не говори «I think you» — нужен предлог about: think about you.', uk: 'Не кажи «I think you» — потрібен прийменник about: think about you.', es: 'No digas «I think you»: necesitas la preposición about: think about you.' },
       },
       words: [
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['She', 'He', 'She', 'We', 'They'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['She', 'He', 'We', 'They', 'It'] },
         { text: 'think', partOfSpeech: 'verb', distractors: ['talk', 'worry', 'dream', 'hear', 'say'] },
         { text: 'about', partOfSpeech: 'other', distractors: ['of', 'for', 'with', 'from', 'after'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'me'] },
@@ -4694,7 +4694,7 @@ export const GAVAN_DAY_27: PlanContentDay = {
       words: [
         { text: 'have', partOfSpeech: 'verb', distractors: ['need', 'want', 'like', 'know', 'see'] },
         { text: 'brother', partOfSpeech: 'noun', distractors: ['cousin', 'mother', 'father', 'uncle', 'friend'] },
-        { text: 'sister', partOfSpeech: 'noun', distractors: ['aunt', 'daughter', 'aunt', 'wife', 'teacher'] },
+        { text: 'sister', partOfSpeech: 'noun', distractors: ['aunt', 'daughter', 'wife', 'teacher', 'day'] },
       ],
     },
     {
@@ -9641,11 +9641,11 @@ export const GAVAN_DAY_54: PlanContentDay = {
       words: [
         { text: 'If', partOfSpeech: 'other', distractors: ['Although', 'Because', 'When', 'Since', 'Until'] },
         { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'she', 'he', 'I', 'it'] },
-        { text: 'had', partOfSpeech: 'to-be', distractors: ['did', 'has', 'was', 'were', 'did'] },
+        { text: 'had', partOfSpeech: 'to-be', distractors: ['did', 'has', 'was', 'were', 'is'] },
         { text: 'planned', partOfSpeech: 'verb', distractors: ['started', 'finished', 'rushed', 'ignored', 'delayed'] },
         { text: 'better', partOfSpeech: 'adverb', distractors: ['faster', 'earlier', 'harder', 'later', 'longer'] },
         { text: 'would', partOfSpeech: 'modal', distractors: ['could', 'should', 'might', 'must', 'will'] },
-        { text: 'have', partOfSpeech: 'verb', distractors: ['did', 'has', 'was', 'were', 'did'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['did', 'has', 'was', 'were', 'make'] },
         { text: 'saved', partOfSpeech: 'verb', distractors: ['wasted', 'spent', 'lost', 'used', 'found'] },
         { text: 'time', partOfSpeech: 'noun', distractors: ['money', 'energy', 'effort', 'budget', 'space'] },
       ],
@@ -9686,12 +9686,12 @@ export const GAVAN_DAY_54: PlanContentDay = {
       words: [
         { text: 'If', partOfSpeech: 'other', distractors: ['Although', 'Because', 'When', 'Since', 'Until'] },
         { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'she', 'he', 'I', 'it'] },
-        { text: 'had', partOfSpeech: 'to-be', distractors: ['did', 'has', 'was', 'were', 'did'] },
+        { text: 'had', partOfSpeech: 'to-be', distractors: ['did', 'has', 'was', 'were', 'is'] },
         { text: 'checked', partOfSpeech: 'verb', distractors: ['ignored', 'skipped', 'approved', 'sent', 'delayed'] },
         { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'this', 'every', 'some'] },
         { text: 'budget', partOfSpeech: 'noun', distractors: ['report', 'schedule', 'meeting', 'deadline', 'result'] },
         { text: 'would', partOfSpeech: 'modal', distractors: ['could', 'should', 'might', 'must', 'will'] },
-        { text: 'have', partOfSpeech: 'verb', distractors: ['did', 'has', 'was', 'were', 'did'] },
+        { text: 'have', partOfSpeech: 'verb', distractors: ['did', 'has', 'was', 'were', 'make'] },
         { text: 'avoided', partOfSpeech: 'verb', distractors: ['created', 'caused', 'found', 'solved', 'missed'] },
         { text: 'problems', partOfSpeech: 'noun', distractors: ['delays', 'meetings', 'reports', 'decisions', 'costs'] },
       ],
@@ -12991,7 +12991,7 @@ export const GAVAN_DAY_72: PlanContentDay = {
         commonMistake: { ru: 'Не говори Do you have a special hobby? — any звучит мягче и лучше в вопросе.', uk: 'Не кажи Do you have a special hobby? — any звучить м\'якше і краще у питанні.', es: 'No digas Do you have a special hobby? — any suena más natural en preguntas.' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Are', 'Is', 'did', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Are', 'Is', 'did', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['need', 'want', 'like', 'know', 'did'] },
         { text: 'any', partOfSpeech: 'pronoun', distractors: ['some', 'many', 'much', 'few', 'one'] },
@@ -16413,7 +16413,7 @@ export const GAVAN_DAY_91: PlanContentDay = {
       },
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'You'] },
-        { text: 'went', partOfSpeech: 'verb', distractors: ['go', 'goes', 'gone', 'going', 'go'] },
+        { text: 'went', partOfSpeech: 'verb', distractors: ['go', 'goes', 'gone', 'going', 'make'] },
         { text: 'hiking', partOfSpeech: 'noun', distractors: ['swimming', 'running', 'cycling', 'climbing', 'skating'] },
         { text: 'in', partOfSpeech: 'preposition', distractors: ['on', 'at', 'by', 'near', 'from'] },
         { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'my', 'some', 'this'] },
@@ -16454,7 +16454,7 @@ export const GAVAN_DAY_91: PlanContentDay = {
       words: [
         { text: 'The', partOfSpeech: 'article', distractors: ['A', 'An', 'This', 'That', 'My'] },
         { text: 'trail', partOfSpeech: 'noun', distractors: ['road', 'river', 'park', 'bridge', 'hill'] },
-        { text: 'took', partOfSpeech: 'verb', distractors: ['take', 'takes', 'taken', 'take', 'taked'] },
+        { text: 'took', partOfSpeech: 'verb', distractors: ['take', 'takes', 'taken', 'taked', 'make'] },
         { text: 'us', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'them', 'you'] },
         { text: 'three', partOfSpeech: 'determiner', distractors: ['two', 'four', 'five', 'six', 'many'] },
         { text: 'hours', partOfSpeech: 'noun', distractors: ['minutes', 'days', 'weeks', 'steps', 'miles'] },
@@ -18834,7 +18834,7 @@ export const GAVAN_DAY_104: PlanContentDay = {
         commonMistake: { ru: 'Не говори «Have you my reservation» — нужно Do в начале.', uk: 'Не кажи «Have you my reservation» — потрібне Do на початку.', es: 'No digas «Have you my reservation»: Do es obligatorio al inicio de la pregunta.' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['did', 'Are', 'Is', 'Can', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['did', 'Are', 'Is', 'Can', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['see', 'find', 'get', 'keep', 'need'] },
         { text: 'my', partOfSpeech: 'pronoun', distractors: ['your', 'our', 'his', 'her', 'their'] },
@@ -19143,7 +19143,7 @@ export const GAVAN_DAY_106: PlanContentDay = {
         { text: 'shower', partOfSpeech: 'noun', distractors: ['window', 'bed', 'door', 'light', 'heater'] },
         { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'were', 'be', 'am'] },
         { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'no', 'very', 'also', 'now'] },
-        { text: 'working', partOfSpeech: 'verb', distractors: ['works', 'worked', 'work', 'worker', 'works'] },
+        { text: 'working', partOfSpeech: 'verb', distractors: ['works', 'worked', 'work', 'worker', 'make'] },
       ],
     },
     {

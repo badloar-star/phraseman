@@ -12592,7 +12592,7 @@ export const MITAP_DAY_57: PlanContentDay = {
       words: [
         { text: 'slides', partOfSpeech: 'noun', distractors: ['video', 'audio', 'camera', 'window', 'cable'] },
         { text: 'are', partOfSpeech: 'to-be', distractors: ['is', 'was', 'were', 'am', 'be'] },
-        { text: 'not', partOfSpeech: 'adverb', distractors: ['still', 'just', 'still', 'also', 'even'] },
+        { text: 'not', partOfSpeech: 'adverb', distractors: ['still', 'just', 'also', 'even', 'now'] },
         { text: 'loading', partOfSpeech: 'verb', distractors: ['working', 'opening', 'running', 'saving', 'closing'] },
         { text: 'right', partOfSpeech: 'adverb', distractors: ['far', 'long', 'almost', 'quite', 'very'] },
         { text: 'now', partOfSpeech: 'adverb', distractors: ['tomorrow', 'later', 'soon', 'yesterday', 'before'] },
@@ -13117,7 +13117,7 @@ export const MITAP_DAY_60: PlanContentDay = {
       },
       words: [
         { text: 'Tell', partOfSpeech: 'verb', distractors: ['Ask', 'Show', 'Give', 'Write', 'Send'] },
-        { text: 'me', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'her'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'he'] },
         { text: 'what', partOfSpeech: 'adverb', distractors: ['where', 'when', 'how', 'why', 'which'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'it'] },
         { text: 'think', partOfSpeech: 'verb', distractors: ['know', 'want', 'need', 'feel', 'say'] },
@@ -13378,7 +13378,7 @@ export const MITAP_DAY_61: PlanContentDay = {
       },
       words: [
         { text: 'Can', partOfSpeech: 'modal', distractors: ['Must', 'Should', 'Would', 'Will', 'Shall'] },
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'She'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'It'] },
         { text: 'get', partOfSpeech: 'verb', distractors: ['go', 'come', 'look', 'send', 'find'] },
         { text: 'back', partOfSpeech: 'adverb', distractors: ['now', 'here', 'soon', 'away', 'again'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'me'] },
@@ -13819,6 +13819,15 @@ export const MITAP_DAY_64: PlanContentDay = {
       examples: [
         { en: 'Let\'s just throw out anything.', gloss: { ru: 'Просто выкидываем всё, что приходит в голову.', uk: 'Просто викидаємо все, що спадає на думку.', es: 'Simplemente lanzamos todo lo que se nos ocurra.' } },
         { en: 'You could start by sharing one idea.', gloss: { ru: 'Ты мог бы начать с одной идеи.', uk: 'Ти міг би почати з однієї ідеї.', es: 'Podrías empezar compartiendo una idea.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Скажи, что не против, и спроси, что мешает', uk: 'Скажи, що не проти, і запитай, що заважає', es: 'Di que no te importa y pregunta qué lo impide' },
+      body: { ru: 'Когда хочешь вызваться первым, не обязательно кричать «Я хочу!». Спокойнее звучит «I don\'t mind going first» — будто говоришь «да мне не сложно, давай я». А чтобы мягко расшевелить остальных, не дави на людей, а спроси у самой тишины: «What is stopping everyone from talking?» — «что же всем мешает заговорить?». Это не упрёк, а честный вопрос вслух, и людям становится легче открыть рот.', uk: 'Коли хочеш зголоситися першим, не треба голосно вигукувати «Я хочу!». Спокійніше звучить «I don\'t mind going first» — наче кажеш «та мені неважко, давай я». А щоб м\'яко розворушити решту, не тисни на людей, а запитай саму тишу: «What is stopping everyone from talking?» — «що ж усім заважає заговорити?». Це не докір, а щире питання вголос, і людям стає легше розтулити рота.', es: 'Cuando quieras ofrecerte el primero, no hace falta gritar «¡Yo quiero!». Suena más tranquilo decir «I don\'t mind going first», como si dijeras «no me cuesta nada, empiezo yo». Y para animar con suavidad a los demás, no presiones a la gente: pregúntale al propio silencio «What is stopping everyone from talking?», o sea «¿qué les impide a todos hablar?». No es un reproche, sino una pregunta sincera en voz alta, y así a la gente le cuesta menos abrir la boca.' },
+      examples: [
+        { en: 'I don\'t mind going first today.', gloss: { ru: 'Я не против сегодня начать первым.', uk: 'Я не проти сьогодні почати першим.', es: 'No me importa empezar yo hoy.' } },
+        { en: 'What is stopping everyone from talking?', gloss: { ru: 'Что мешает всем заговорить?', uk: 'Що заважає всім заговорити?', es: '¿Qué les impide a todos hablar?' } },
       ],
     },
   ],

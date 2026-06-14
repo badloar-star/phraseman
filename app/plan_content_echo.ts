@@ -5061,7 +5061,7 @@ export const ECHO_DAY_28: PlanContentDay = {
         commonMistake: { ru: 'Не говори Have you this — нужно Do you have, иначе звучит неверно.', uk: 'Не кажи Have you this — потрібно Do you have, інакше звучить неправильно.', es: 'No digas Have you this: se dice Do you have, de lo contrario suena incorrecto.' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['did', 'Are', 'Is', 'Did', 'Can'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['did', 'Are', 'Is', 'Can', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['sell', 'keep', 'need', 'want', 'show'] },
         { text: 'this', partOfSpeech: 'determiner', distractors: ['these', 'those', 'that', 'any', 'some'] },
@@ -11835,7 +11835,7 @@ export const ECHO_DAY_66: PlanContentDay = {
         commonMistake: { ru: 'Не говори \'Have you card?\' — нужно \'Do you have\' для таких вопросов.', uk: 'Не кажи \'Have you card?\' — потрібно \'Do you have\' для таких питань.', es: 'No digas \'Have you card?\': usa \'Do you have\' para este tipo de preguntas.' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Can', 'did', 'Are', 'Will', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Can', 'did', 'Are', 'Will', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['take', 'get', 'want', 'need', 'use'] },
         { text: 'card', partOfSpeech: 'noun', distractors: ['cash', 'bill', 'coin', 'money', 'check'] },

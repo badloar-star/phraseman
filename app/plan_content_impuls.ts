@@ -1015,10 +1015,10 @@ export const IMPULS_DAY_6: PlanContentDay = {
       },
       words: [
         { text: 'That', partOfSpeech: 'pronoun', distractors: ['This', 'It', 'He', 'She', 'Which'] },
-        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'was', 'was', 'were', 'be'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'was', 'were', 'be', 'are'] },
         { text: 'what', partOfSpeech: 'pronoun', distractors: ['when', 'where', 'how', 'who', 'why'] },
         { text: 'friends', partOfSpeech: 'noun', distractors: ['enemies', 'strangers', 'bosses', 'teachers', 'doctors'] },
-        { text: 'are', partOfSpeech: 'to-be', distractors: ['were', 'am', 'was', 'were', 'be'] },
+        { text: 'are', partOfSpeech: 'to-be', distractors: ['were', 'am', 'was', 'be', 'is'] },
         { text: 'for', partOfSpeech: 'other', distractors: ['to', 'of', 'in', 'by', 'with'] },
       ],
     },
@@ -1153,7 +1153,7 @@ export const IMPULS_DAY_7: PlanContentDay = {
         commonMistake: { ru: 'Не говори только «fine» — добавь «I am» в начале, это звучит полно.', uk: 'Не кажи лише «fine» — додай «I am» на початку, це звучить повно.', es: 'No digas solo «fine». Añade «I am» al inicio para que suene completo y natural.' },
       },
       words: [
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'She'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'It'] },
         { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'was', 'were', 'be'] },
         { text: 'fine', partOfSpeech: 'adjective', distractors: ['tired', 'sad', 'sick', 'busy', 'late'] },
         { text: 'thank', partOfSpeech: 'verb', distractors: ['help', 'know', 'want', 'need', 'like'] },
@@ -1644,7 +1644,7 @@ export const IMPULS_DAY_10: PlanContentDay = {
         commonMistake: { ru: 'Не «I works with you» — с «I» нет окончания -s.', uk: 'Не «I works with you» — з «I» немає закінчення -s.', es: 'No digas «I works with you»: con «I» no se añade -s.' },
       },
       words: [
-        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'She'] },
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'They', 'It'] },
         { text: 'work', partOfSpeech: 'verb', distractors: ['live', 'study', 'travel', 'sleep', 'rest'] },
         { text: 'with', partOfSpeech: 'other', distractors: ['for', 'near', 'after', 'before', 'without'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'them', 'us', 'me'] },
@@ -1809,7 +1809,7 @@ export const IMPULS_DAY_11: PlanContentDay = {
         { text: 'What', partOfSpeech: 'adverb', distractors: ['Where', 'When', 'How', 'Which', 'Who'] },
         { text: 'time', partOfSpeech: 'noun', distractors: ['day', 'year', 'place', 'hour', 'week'] },
         { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'am', 'was', 'were', 'be'] },
-        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'She'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'you'] },
         { text: 'for', partOfSpeech: 'other', distractors: ['at', 'in', 'on', 'by', 'with'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'them', 'us'] },
       ],
@@ -2055,7 +2055,7 @@ export const IMPULS_DAY_12: PlanContentDay = {
         commonMistake: { ru: 'Не говори "Have you a moment" — в разговоре правильно: Do you have.', uk: 'Не кажи "Have you a moment" — у розмові правильно: Do you have.', es: 'No digas "Have you a moment": en la conversación lo correcto es Do you have.' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Is', 'Did', 'Can'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Does', 'Did', 'Is', 'Can', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'they', 'we'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['need', 'want', 'like', 'get', 'see'] },
         { text: 'moment', partOfSpeech: 'noun', distractors: ['hour', 'day', 'week', 'problem', 'place'] },
@@ -9867,7 +9867,7 @@ export const IMPULS_DAY_55: PlanContentDay = {
         commonMistake: { ru: 'Не говори «Have you a scooter» — нужно «Do you have a scooter».', uk: 'Не кажи «Have you a scooter» — потрібно «Do you have a scooter».', es: 'No digas «Have you a scooter» — lo correcto es «Do you have a scooter».' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Are', 'did', 'Did', 'Can', 'Is'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Are', 'did', 'Can', 'Is', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'it'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['rent', 'want', 'get', 'need', 'use'] },
         { text: 'a', partOfSpeech: 'article', distractors: ['the', 'this', 'one', 'any', 'my'] },
@@ -10447,7 +10447,7 @@ export const IMPULS_DAY_58: PlanContentDay = {
       },
       words: [
         { text: 'What', partOfSpeech: 'adverb', distractors: ['How', 'Where', 'When', 'Why', 'Which'] },
-        { text: 'does', partOfSpeech: 'verb', distractors: ['did', 'is', 'was', 'did', 'will'] },
+        { text: 'does', partOfSpeech: 'verb', distractors: ['did', 'is', 'was', 'will', 'make'] },
         { text: 'this', partOfSpeech: 'determiner', distractors: ['that', 'these', 'those', 'a', 'the'] },
         { text: 'button', partOfSpeech: 'noun', distractors: ['key', 'switch', 'lever', 'knob', 'screen'] },
         { text: 'do', partOfSpeech: 'verb', distractors: ['mean', 'make', 'open', 'turn', 'show'] },
@@ -10940,7 +10940,7 @@ export const IMPULS_DAY_61: PlanContentDay = {
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'we', 'you', 'they', 'she'] },
         { text: 'am', partOfSpeech: 'to-be', distractors: ['is', 'are', 'be', 'was', 'were'] },
-        { text: 'working', partOfSpeech: 'verb', distractors: ['work', 'works', 'worked', 'worker', 'works'] },
+        { text: 'working', partOfSpeech: 'verb', distractors: ['work', 'works', 'worked', 'worker', 'make'] },
         { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'to', 'of', 'for'] },
         { text: 'a', partOfSpeech: 'article', distractors: ['an', 'the', 'one', 'any', 'some'] },
         { text: 'new', partOfSpeech: 'adjective', distractors: ['old', 'big', 'small', 'good', 'long'] },
@@ -11188,7 +11188,7 @@ export const IMPULS_DAY_62: PlanContentDay = {
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'you'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'am', 'do', 'was'] },
-        { text: 'done', partOfSpeech: 'verb', distractors: ['did', 'do', 'doing', 'made', 'made'] },
+        { text: 'done', partOfSpeech: 'verb', distractors: ['did', 'do', 'doing', 'made', 'make'] },
         { text: 'all', partOfSpeech: 'determiner', distractors: ['some', 'any', 'each', 'every', 'most'] },
         { text: 'my', partOfSpeech: 'pronoun', distractors: ['your', 'his', 'her', 'our', 'their'] },
         { text: 'work', partOfSpeech: 'noun', distractors: ['task', 'job', 'report', 'plan', 'file'] },
@@ -17659,7 +17659,7 @@ export const IMPULS_DAY_98: PlanContentDay = {
         commonMistake: { ru: 'Не говори \'Have you a discount?\' — это устарело и звучит странно.', uk: 'Не кажи \'Have you a discount?\' — це застаріло і звучить дивно.', es: 'No digas \'Have you a discount?\': está anticuado y suena extraño.' },
       },
       words: [
-        { text: 'Do', partOfSpeech: 'verb', distractors: ['Can', 'Are', 'did', 'Will', 'Did'] },
+        { text: 'Do', partOfSpeech: 'verb', distractors: ['Can', 'Are', 'did', 'Will', 'Make'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'I'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['give', 'show', 'sell', 'offer', 'need'] },
         { text: 'a', partOfSpeech: 'article', distractors: ['the', 'any', 'no', 'some', 'that'] },
@@ -24562,7 +24562,7 @@ export const IMPULS_DAY_136: PlanContentDay = {
         { text: 'we', partOfSpeech: 'pronoun', distractors: ['you', 'they', 'he', 'she', 'I'] },
         { text: 'meet', partOfSpeech: 'verb', distractors: ['see', 'call', 'talk', 'start', 'leave'] },
         { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'one', 'some', 'this'] },
-        { text: 'bit', partOfSpeech: 'noun', distractors: ['lot', 'while', 'while', 'piece', 'touch'] },
+        { text: 'bit', partOfSpeech: 'noun', distractors: ['lot', 'while', 'piece', 'touch', 'day'] },
         { text: 'later', partOfSpeech: 'adverb', distractors: ['earlier', 'sooner', 'now', 'today', 'tomorrow'] },
       ],
     },

@@ -1,9 +1,10 @@
 /**
- * Запись результатов бот-матча в arena_profiles с ретраями и отложенным flush,
- * чтобы игрок не терял награды при временных сбоях сети.
+ * Запись результатов бот-матча через CF arenaBotMatchRecord (Admin SDK — обходит
+ * firestore.rules allow write: if false). Клиент вызывает CF, всё хранится на сервере.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
+
+const FUNCTIONS_REGION = 'us-central1';
 
 const DRAW_XP = 30;
 
@@ -26,16 +27,7 @@ export type BotArenaMatchArgs = {
   myName?: string;
 };
 
-const PLACEHOLDER_NAMES: ReadonlySet<string> = new Set([
-  'Игрок', 'Гравець', 'Jugador', 'Player', 'Соперник', 'Суперник', 'Opponent',
-]);
 
-function pickIncomingDisplayName(raw: string | null | undefined): string | null {
-  const dn = String(raw ?? '').trim();
-  if (!dn) return null;
-  if (PLACEHOLDER_NAMES.has(dn)) return null;
-  return dn.slice(0, 120);
-}
 
 export type BotArenaMatchResult = {
   xpDelta: number;
@@ -72,9 +64,17 @@ export function computeBotMatchRankDelta(
     if (li < LEVELS.length - 1 && li >= 0) {
       newLevel = LEVELS[li + 1];
     } else {
-      newLevel = LEVELS[0];
       const ti = TIERS.indexOf(oldTier as (typeof TIERS)[number]);
-      if (ti < TIERS.length - 1 && ti >= 0) newTier = TIERS[ti + 1];
+      if (ti < TIERS.length - 1 && ti >= 0) {
+        // Переход в следующий ранг — уровень с начала.
+        newTier = TIERS[ti + 1];
+        newLevel = LEVELS[0];
+      } else {
+        // Уже на вершине (Легенда III) — потолок: ранг не меняется,
+        // звёзды держим на максимуме (2). Иначе победа откатывала на Легенда I.
+        // Должно совпадать с applyStarDelta в functions/src/arena_rank_progression.ts.
+        newStars = 2;
+      }
     }
   } else if (newStars < 0) {
     newStars = 2;
@@ -87,6 +87,7 @@ export function computeBotMatchRankDelta(
         newTier = TIERS[ti - 1];
         newLevel = LEVELS[LEVELS.length - 1];
       } else {
+        // Уже на дне (Бронза I) — пол: ранг не меняется, звёзды на 0.
         newStars = 0;
       }
     }
@@ -137,121 +138,13 @@ export function startSilentArenaPersistLoop(args: BotArenaMatchArgs): void {
 export async function runBotArenaProfileTransaction(
   args: BotArenaMatchArgs,
 ): Promise<BotArenaMatchResult> {
-  const { sessionId, uid, won, isLast, isDraw, myScore, oppScore, oppName, myName } = args;
-  const xpDelta = isDraw ? DRAW_XP : (won ? 50 : 15);
-  const cleanName = pickIncomingDisplayName(myName);
-
-  let oldStars = 0;
-  let newStars = 0;
-  let oldTier = 'bronze';
-  let newTier = 'bronze';
-  let oldLevel = 'I';
-  let newLevel = 'I';
-  let rankChanged = false;
-  let promoted = false;
-
-  await firestore().runTransaction(async (tx) => {
-    const profileRef = firestore().collection('arena_profiles').doc(uid);
-    const profileSnap = await tx.get(profileRef);
-    const data = profileSnap.exists
-      ? (profileSnap.data() as {
-          rank?: { stars?: number; tier?: string; level?: string };
-          xp?: number;
-          stats?: {
-            matchesPlayed?: number; matchesWon?: number; totalScore?: number;
-            winStreak?: number; bestWinStreak?: number;
-          };
-        })
-      : {};
-    oldStars = data.rank?.stars ?? 0;
-    oldTier = data.rank?.tier ?? 'bronze';
-    oldLevel = data.rank?.level ?? 'I';
-    const curStreak = data.stats?.winStreak ?? 0;
-    const bestStreak = data.stats?.bestWinStreak ?? 0;
-
-    const delta = computeBotMatchRankDelta(oldStars, oldTier, oldLevel, won, isLast, isDraw);
-    newStars = delta.newStars;
-    newTier = delta.newTier;
-    newLevel = delta.newLevel;
-    rankChanged = delta.rankChanged;
-    promoted = delta.promoted;
-    const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
-
-    const profileUpdate: Record<string, unknown> = {
-      'rank.tier': newTier,
-      'rank.level': newLevel,
-      'rank.stars': newStars,
-      xp: (data.xp ?? 0) + xpDelta,
-      'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-      'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-      'stats.totalScore': (data.stats?.totalScore ?? 0) + myScore,
-      'stats.winStreak': newStreak,
-      'stats.bestWinStreak': Math.max(bestStreak, newStreak),
-      updatedAt: Date.now(),
-    };
-    if (cleanName) profileUpdate.displayName = cleanName;
-    if (profileSnap.exists) {
-      tx.update(profileRef, profileUpdate);
-    } else {
-      // Новый профиль — ВАЖНО использовать nested object (не dot-notation), потому что
-      // `tx.set` с merge:true НЕ разворачивает ключи вида `'rank.tier'` в nested поля.
-      // Раньше создавались плоские поля с литеральной точкой в имени (`"rank.tier": "bronze"`),
-      // и `useArenaRank` читал `data.rank?.tier` → undefined → всегда «Бронза I, 0 ХР».
-      const initialDn = cleanName ?? (myName?.trim() || 'Игрок');
-      tx.set(profileRef, {
-        userId: uid,
-        displayName: initialDn,
-        rank: { tier: newTier, level: newLevel, stars: newStars },
-        xp: xpDelta,
-        stats: {
-          matchesPlayed: 1,
-          matchesWon: won ? 1 : 0,
-          totalScore: myScore,
-          winStreak: newStreak,
-          bestWinStreak: Math.max(bestStreak, newStreak),
-        },
-        updatedAt: Date.now(),
-      }, { merge: true });
-    }
-
-  });
-
-  // История пишется ОТДЕЛЬНО от транзакции: если правила ещё не задеплоены или
-  // write упадёт по любой причине — rank/xp/stats уже сохранены выше.
-  // Поля совпадают с тем, что ожидает sanitizeMatchRecordForRating / fetchAndCacheArenaRating.
-  firestore()
-    .collection('arena_profiles')
-    .doc(uid)
-    .collection('match_history')
-    .doc(sessionId)
-    .set({
-      createdAt: Date.now(),   // orderBy('createdAt') в fetchAndCacheArenaRating
-      oppName,
-      myScore,
-      oppScore,
-      won,
-      isDraw,
-      xpGained: xpDelta,       // поле xpGained, не xpDelta
-      // При ранг-апе newStars сбрасывается в 0 (2→0), но семантически это +1 (добыл 3-ю звезду).
-      // При дауне с 0 звёзд newStars становится 2 следующего уровня — семантически -1.
-      starsChange: rankChanged ? (promoted ? 1 : -1) : newStars - oldStars,
-      rankBefore: { tier: oldTier, level: oldLevel, stars: oldStars },
-      rankAfter: { tier: newTier, level: newLevel, stars: newStars },
-      isBot: true,
-    })
-    .catch(() => { /* non-critical */ });
-
-  return {
-    xpDelta,
-    oldStars,
-    newStars,
-    oldTier,
-    newTier,
-    oldLevel,
-    newLevel,
-    rankChanged,
-    promoted,
-  };
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const { getApp } = require('@react-native-firebase/app');
+  const callCf = httpsCallable(
+    getFunctions(getApp(), FUNCTIONS_REGION), 'arenaBotMatchRecord',
+  ) as (data: BotArenaMatchArgs) => Promise<{ data: BotArenaMatchResult }>;
+  const res = await callCf(args);
+  return res.data;
 }
 
 type PendingPayload = BotArenaMatchArgs & { ts?: number };

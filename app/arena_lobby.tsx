@@ -61,6 +61,9 @@ import { subscribeArenaFeatureFlags, type ArenaFeatureFlags, } from './services/
 import { safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
 import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
+import SeasonResultModal from '../components/SeasonResultModal';
+import { detectSeasonChange, markSeasonSeen, claimSeasonReward, getMySeasonState } from './services/arena_season_client';
+import { quarterEndMs } from './arena_season_math';
 import {
     getOrRefreshIdleQueueHintCount,
     IDLE_QUEUE_HINT_TTL_MS,
@@ -182,6 +185,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const { status, sessionId, elapsedMs, searchStartedAt, startSearching, cancelSearching, stopSearchTimer, updateQueueWithPushToken, setLobbyActive, markMatchHandled, clearFoundMatch, resumeSearchAfterLobbyAbort, forgetSearchResumeSnapshot, } = useMatchmakingContext();
     const [arenaLimitModal, setArenaLimitModal] = useState<ArenaLimitMode | null>(null);
     const [noEnergyModal, setNoEnergyModal] = useState(false);
+    const [seasonEndedModal, setSeasonEndedModal] = useState<{ sr: number } | null>(null);
+    const [seasonEndingSoonModal, setSeasonEndingSoonModal] = useState(false);
+    const seasonEndingSoonShownRef = useRef(false);
     const [dailyCount, setDailyCount] = useState(0);
     const [dailyMax, setDailyMax] = useState(ARENA_DAILY_MAX);
     /** non-null = открыт inline-блок вызова другу. */
@@ -357,6 +363,32 @@ export default function DuelLobbyScreen({ isTab = false }: {
     }, [bonusEnergy, defaultPlayerName, energy, isUnlimited, myRank.isHydrated, myRank.level, myRank.rankIndex, myRank.tier, size, startSearching, updateQueueWithPushToken, userId]);
     useEffect(() => subscribeTodayArenaHillThrone(setHillThrone), []);
     useEffect(() => subscribeArenaFeatureFlags(setArenaFeatureFlags), []);
+    useFocusEffect(useCallback(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                // Season ended: detect prev season change, auto-claim + show modal
+                const endedSeasonId = await detectSeasonChange();
+                if (endedSeasonId && !cancelled) {
+                    // Grab peak SR before claim zeroes it out
+                    const state = await getMySeasonState().catch(() => null);
+                    const peakSr = state?.peakSR ?? 0;
+                    try { await claimSeasonReward(endedSeasonId); } catch { /* best-effort */ }
+                    await markSeasonSeen();
+                    if (!cancelled) setSeasonEndedModal({ sr: peakSr });
+                }
+                // Season ending soon: warn once per app session if < 7 days left
+                if (!seasonEndingSoonShownRef.current) {
+                    const msLeft = quarterEndMs(new Date()) - Date.now();
+                    if (msLeft > 0 && msLeft < 7 * 24 * 60 * 60 * 1000) {
+                        seasonEndingSoonShownRef.current = true;
+                        if (!cancelled) setSeasonEndingSoonModal(true);
+                    }
+                }
+            } catch { /* silent */ }
+        })();
+        return () => { cancelled = true; };
+    }, []));
     useEffect(() => {
         let cancelled = false;
         (async () => {
@@ -2520,6 +2552,18 @@ export default function DuelLobbyScreen({ isTab = false }: {
             });
         }} onClose={() => setArenaLimitModal(null)}/>
       <NoEnergyModal visible={noEnergyModal} onClose={() => setNoEnergyModal(false)} paywallContext="arena"/>
+      <SeasonResultModal
+        visible={!!seasonEndedModal}
+        kind="season_ended"
+        sr={seasonEndedModal?.sr ?? 0}
+        onClose={() => setSeasonEndedModal(null)}
+      />
+      <SeasonResultModal
+        visible={seasonEndingSoonModal}
+        kind="ending_soon"
+        sr={0}
+        onClose={() => setSeasonEndingSoonModal(false)}
+      />
     </ScreenGradient>);
 }
 const styles = StyleSheet.create({

@@ -217,6 +217,7 @@ type BodyProps = {
   onBackdropPress: () => void;
   onClose: () => void;
   duelRank: { tier: string; level: string; xp: number } | null;
+  seasonBadge: { seasonId: string; tier: 'champion' | 'top10' | 'top100' } | null;
   multipliers: MultiplierBreakdown | null;
   onFriendRequestToast: (message: string, toastType?: 'error' | 'info') => void;
 };
@@ -231,6 +232,7 @@ function PlayerProfileModalBody({
   onBackdropPress,
   onClose,
   duelRank,
+  seasonBadge,
   multipliers,
   onFriendRequestToast,
 }: BodyProps) {
@@ -1386,6 +1388,28 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
+        {seasonBadge && (
+          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
+            <Text style={{ fontSize: f.numLg }}>
+              {seasonBadge.tier === 'champion' ? '🏆' : seasonBadge.tier === 'top10' ? '🥇' : '⭐'}
+            </Text>
+            <View>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                {triLang(lang as Lang, {
+                  ru: seasonBadge.tier === 'champion' ? 'Чемпион сезона' : seasonBadge.tier === 'top10' ? 'Топ-10 сезона' : 'Топ-100 сезона',
+                  uk: seasonBadge.tier === 'champion' ? 'Чемпіон сезону' : seasonBadge.tier === 'top10' ? 'Топ-10 сезону' : 'Топ-100 сезону',
+                  es: seasonBadge.tier === 'champion' ? 'Campeón de temporada' : seasonBadge.tier === 'top10' ? 'Top 10 de temporada' : 'Top 100 de temporada',
+                  'pt-BR': seasonBadge.tier === 'champion' ? 'Campeão da temporada' : seasonBadge.tier === 'top10' ? 'Top 10 da temporada' : 'Top 100 da temporada',
+                  vi: seasonBadge.tier === 'champion' ? 'Quán quân mùa' : seasonBadge.tier === 'top10' ? 'Top 10 mùa' : 'Top 100 mùa',
+                  id: seasonBadge.tier === 'champion' ? 'Juara musim' : seasonBadge.tier === 'top10' ? 'Top 10 musim' : 'Top 100 musim',
+                  tr: seasonBadge.tier === 'champion' ? 'Sezon şampiyonu' : seasonBadge.tier === 'top10' ? 'Sezon ilk 10' : 'Sezon ilk 100',
+                  pl: seasonBadge.tier === 'champion' ? 'Mistrz sezonu' : seasonBadge.tier === 'top10' ? 'Top 10 sezonu' : 'Top 100 sezonu',
+                })}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub }}>{seasonBadge.seasonId}</Text>
+            </View>
+          </View>
+        )}
         {isMe && showProfileCardDevTools && (
           <TouchableOpacity
             testID="player-profile-card-upgrade-open"
@@ -1497,6 +1521,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   const shimmerAnim = useRef(new Animated.Value(0)).current;
 
   const [duelRank, setDuelRank] = useState<{ tier: string; level: string; xp: number } | null>(null);
+  const [seasonBadge, setSeasonBadge] = useState<{ seasonId: string; tier: 'champion' | 'top10' | 'top100' } | null>(null);
   const [multipliers, setMultipliers] = useState<MultiplierBreakdown | null>(null);
   const [resolvedTotalXp, setResolvedTotalXp] = useState<number | null>(null);
   const [friendToast, setFriendToast] = useState<string | null>(null);
@@ -1527,6 +1552,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     slideAnim.setValue(500);
     fadeAnim.setValue(0);
     setDuelRank(null);
+    setSeasonBadge(null);
     setMultipliers(null);
     setResolvedTotalXp(null);
     setFriendToast(null);
@@ -1542,6 +1568,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     if (!player) return;
 
     setDuelRank(null);
+    setSeasonBadge(null);
     setMultipliers(null);
     const initialTotalXp = Number.isFinite(Number(player.totalXp))
       ? Math.max(0, Math.floor(Number(player.totalXp)))
@@ -1594,6 +1621,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
                 courseProfileCardLevel?: number;
                 stats?: { matchesPlayed?: number };
                 multipliers?: unknown;
+                seasonBadge?: { seasonId: string; tier: 'champion' | 'top10' | 'top100' } | null;
               };
               if (Number.isFinite(Number(d.courseTotalXp)) && Number(d.courseTotalXp) >= 0) {
                 bestTotalXp = Math.max(bestTotalXp ?? 0, Math.floor(Number(d.courseTotalXp)));
@@ -1605,6 +1633,9 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
                   : (d.stats === undefined ? (d.xp ?? 0) > 0 : false);
               if (hasPlayedAtLeastOne && d?.rank) {
                 setDuelRank({ tier: d.rank.tier, level: d.rank.level, xp: d.xp ?? 0 });
+              }
+              if (d?.seasonBadge?.seasonId) {
+                setSeasonBadge(d.seasonBadge);
               }
               if (!player.isMe && d?.multipliers) {
                 const norm = normalizeArenaMultipliersFirestore(d.multipliers);
@@ -1651,6 +1682,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
             onBackdropPress={handleClose}
             onClose={handleClose}
             duelRank={duelRank}
+            seasonBadge={seasonBadge}
             multipliers={multipliers}
             onFriendRequestToast={showFriendRequestToast}
           />

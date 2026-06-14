@@ -54,6 +54,7 @@ export interface PaywallFunnelPayload {
   variant: PaywallAbVariant;
   context: string;
   plan?: 'monthly' | 'yearly' | null;
+  obColor?: 'blue' | 'green';
 }
 
 /**
@@ -76,6 +77,7 @@ export function logPaywallFunnel(step: PaywallFunnelStep, payload: PaywallFunnel
         variant: payload.variant,
         context: String(payload.context || 'generic').slice(0, 40),
         plan: payload.plan ?? null,
+        obColor: payload.obColor ?? null,
         day: utcDayKey(ts),
         ts,
         uidh: Math.round(hashToUnit(`${stableId}:funnel`) * 1e9).toString(36),

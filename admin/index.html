@@ -8898,6 +8898,17 @@
     </div>
     <div id="pab-funnel"><div style="font-size:12.5px;color:#6b7280">Выбери период (Неделя / Месяц) — покажу таблицу.</div></div>
   </div>
+
+  <!-- ОНБОРДИНГ ЦВЕТ -->
+  <div style="max-width:980px;background:#11131c;border:1px solid #222633;border-radius:14px;padding:18px;margin-top:16px">
+    <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:4px">🎨 Цвет онбординга — синий vs зелёный</div>
+    <p style="font-size:12.5px;color:#9ca3af;line-height:1.55;margin:0 0 14px">
+      50/50 тест: половина новых пользователей видит синий онбординг, другая половина — зелёный.
+      Смотрим, с какого цвета люди чаще покупают подписку прямо во время прохождения онбординга.
+    </p>
+    <p style="font-size:12px;color:#6b7280;margin:0 0 14px">Используй тот же период, что выбран выше — данные обновятся автоматически при нажатии «Показать».</p>
+    <div id="pab-ob-color"><div style="font-size:12.5px;color:#6b7280">Выбери период выше и нажми «Показать».</div></div>
+  </div>
 </div>
 
 <style>
@@ -20493,7 +20504,10 @@
       const VAR = ['A','B','C','v1'];
       const STEPS = ['shown','cta_click','trial_started','purchase_completed','close'];
       const agg = {}; const ctxAgg = {}; let dropped = 0, total = 0;
+      const COLORS = ['blue', 'green'];
+      const colorAgg = {};
       for (const v of VAR) { agg[v] = { shown:0, cta_click:0, trial_started:0, purchase_completed:0, close:0, users:new Set() }; }
+      for (const c of COLORS) { colorAgg[c] = { shown:0, trial_started:0, purchase_completed:0, users:new Set() }; }
       snap.forEach(docSnap => {
         const r = docSnap.data() || {};
         total++;
@@ -20506,6 +20520,15 @@
           const ck = String(r.context || 'generic');
           ctxAgg[ck] = ctxAgg[ck] || { A:0, B:0, C:0, v1:0 };
           if (ctxAgg[ck][v] != null) ctxAgg[ck][v]++;
+        }
+        // Онбординг цвет — агрегируем только события из онбординга
+        if (r.context === 'onboarding') {
+          const col = COLORS.includes(r.obColor) ? r.obColor : null;
+          if (col) {
+            if (r.step === 'shown') { colorAgg[col].shown++; if (r.uidh) colorAgg[col].users.add(r.uidh); }
+            if (r.step === 'trial_started') colorAgg[col].trial_started++;
+            if (r.step === 'purchase_completed') colorAgg[col].purchase_completed++;
+          }
         }
       });
       const pct = (num, den) => den > 0 ? (num / den * 100).toFixed(1) + '%' : '—';
@@ -20557,6 +20580,45 @@
           </tr></thead><tbody>${ctxRows}</tbody>
         </table></div>`;
       if (status) status.textContent = '';
+
+      // ── Онбординг цвет ───────────────────────────────────────────────────────
+      const colorBox = document.getElementById('pab-ob-color');
+      if (colorBox) {
+        const totalObShown = colorAgg.blue.shown + colorAgg.green.shown;
+        if (totalObShown === 0) {
+          colorBox.innerHTML = '<div style="font-size:12.5px;color:#6b7280">За этот период данных по онбординг-цвету пока нет. Они появятся после следующего обновления приложения.</div>';
+        } else {
+          let bestColor = null;
+          const blueRate = colorAgg.blue.shown >= 10 ? colorAgg.blue.purchase_completed / colorAgg.blue.shown : -1;
+          const greenRate = colorAgg.green.shown >= 10 ? colorAgg.green.purchase_completed / colorAgg.green.shown : -1;
+          if (blueRate >= 0 && greenRate >= 0) bestColor = blueRate >= greenRate ? 'blue' : 'green';
+          const colorName = { blue: '🔵 Синий', green: '🟢 Зелёный' };
+          const colorHex  = { blue: '#60a5fa', green: '#4ade80' };
+          const colorRows = COLORS.map(c => {
+            const x = colorAgg[c];
+            const cr = x.shown > 0 ? (x.purchase_completed / x.shown * 100).toFixed(1) + '%' : '—';
+            const trialCr = x.shown > 0 ? (x.trial_started / x.shown * 100).toFixed(1) + '%' : '—';
+            const isWin = c === bestColor;
+            return `<tr style="border-bottom:1px solid #1e2230;${isWin ? 'background:#0f1a12' : ''}">
+              <td style="padding:9px 10px;font-weight:700;color:${colorHex[c]}">${colorName[c]}${isWin ? ' <span style="color:#4ade80;font-size:11px">🏆 лидер</span>' : ''}</td>
+              <td style="padding:9px 10px;text-align:right;color:#e5e7eb">${x.shown.toLocaleString('ru-RU')}</td>
+              <td style="padding:9px 10px;text-align:right;color:#a78bfa">${x.trial_started.toLocaleString('ru-RU')} <span style="color:#6b7280;font-size:11px">(${trialCr})</span></td>
+              <td style="padding:9px 10px;text-align:right;color:#4ade80;font-weight:700">${x.purchase_completed.toLocaleString('ru-RU')}</td>
+              <td style="padding:9px 10px;text-align:right;color:#fbbf24;font-weight:800;font-size:14px">${cr}</td>
+            </tr>`;
+          }).join('');
+          colorBox.innerHTML = `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px">
+            <thead><tr style="border-bottom:2px solid #2a2f40;color:#8b919c;font-size:11.5px">
+              <th style="padding:8px 10px;text-align:left">Цвет онбординга</th>
+              <th style="padding:8px 10px;text-align:right">Показов пейвола</th>
+              <th style="padding:8px 10px;text-align:right">Начали триал</th>
+              <th style="padding:8px 10px;text-align:right">Купили</th>
+              <th style="padding:8px 10px;text-align:right">% покупок</th>
+            </tr></thead><tbody>${colorRows}</tbody>
+          </table></div>
+          <div style="font-size:11.5px;color:#6b7280;margin-top:10px">Только пользователи, дошедшие до экрана оплаты в онбординге. «% покупок» надёжен от 10 показов.</div>`;
+        }
+      }
     } catch (e) {
       box.innerHTML = `<div style="font-size:12.5px;color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
       if (status) status.textContent = '';

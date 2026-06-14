@@ -564,6 +564,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   useEffect(() => {
     warmOnboardingBundledImages();
   }, []);
+
+  useEffect(() => {
+    void import('../app/stable_id').then(({ getStableId }) =>
+      getStableId().then((id) => {
+        void import('../app/remote_flags').then(({ getOnboardingColorVariant }) => {
+          setObColor(getOnboardingColorVariant(id));
+        });
+      }),
+    );
+  }, []);
   const streakHeroIconSize = scaleOnboarding(compactOnboarding ? 52 : 76, 44);
   const streakMilestoneIconSize = scaleOnboarding(compactOnboarding ? 38 : 52, 34);
 
@@ -613,6 +623,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   const btnSlide   = useRef(new Animated.Value(30)).current;
   const btnFade    = useRef(new Animated.Value(0)).current;
   const [lang]       = useState<Lang>(detectLang);
+  const [obColor, setObColor] = useState<'blue' | 'green'>('blue');
   const [name, setName]       = useState('');
   const [nameBusy, setNameBusy] = useState(false);
   const [nameFieldError, setNameFieldError] = useState<string | null>(null);
@@ -752,10 +763,20 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     // Воронка онбординга: трекаем просмотр каждого шага — раньше онбординг был
     // полностью невидим в аналитике (нельзя было увидеть drop-off по шагам).
     void import('../app/analytics').then(({ trackEvent }) => {
-      void trackEvent('onboarding_step_view', { step });
-      if (step === 'planPaywall') void trackEvent('onboarding_plan_paywall_view', { plan: selectedPlanBilling });
+      void trackEvent('onboarding_step_view', { step, ob_color: obColor });
+      if (step === 'planPaywall') {
+        void trackEvent('onboarding_plan_paywall_view', { plan: selectedPlanBilling, ob_color: obColor });
+        void import('../app/paywall_funnel').then(({ logPaywallFunnel }) => {
+          void import('../app/paywall_variant').then(({ resolvePaywallAbVariant }) => {
+            void resolvePaywallAbVariant().then(({ variant }) => {
+              const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
+              logPaywallFunnel('shown', { variant, context: 'onboarding', plan: planForFunnel, obColor });
+            });
+          });
+        });
+      }
     });
-  }, [step, screenFade, selectedPlanBilling]);
+  }, [step, screenFade, selectedPlanBilling, obColor]);
 
   // Реальные цены из RevenueCat для онбординг-пейвола. Грузим при входе на planResult,
   // чтобы к planPaywall цены и сигнал триала уже были готовы. НЕТ хардкода цен/валюты/триала.
@@ -1124,7 +1145,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     if (paywallPurchasing) return;
 
     void import('../app/analytics').then(({ trackEvent }) =>
-      trackEvent('onboarding_plan_trial_cta', { plan: selectedPlanBilling, has_trial: storePrices.hasTrial }),
+      trackEvent('onboarding_plan_trial_cta', { plan: selectedPlanBilling, has_trial: storePrices.hasTrial, ob_color: obColor }),
     );
 
     // Путь 1: уже Premium / intro-доступ — активируем план и идём к имени
@@ -1201,7 +1222,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       const finalPkg = (storePackagesRef.current as { monthly?: import('react-native-purchases').PurchasesPackage; yearly?: import('react-native-purchases').PurchasesPackage })[selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly'];
       if (!finalPkg) return;
 
-      void trackEvent('purchase_started', { context: 'onboarding', plan: selectedPlanBilling, product_id: finalPkg.product.identifier });
+      void trackEvent('purchase_started', { context: 'onboarding', plan: selectedPlanBilling, product_id: finalPkg.product.identifier, ob_color: obColor });
 
       const pkgTrial = getTrialInfo(finalPkg);
       const { customerInfo } = await Purchases.purchasePackage(finalPkg);
@@ -1210,10 +1231,26 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       await persistStorePremiumLocally(confirmedPlan, metadata);
       emitAppEvent('premium_activated');
       hap();
-      void trackEvent('purchase_completed', { context: 'onboarding', plan: selectedPlanBilling, with_trial: pkgTrial.hasTrial });
+      void trackEvent('purchase_completed', { context: 'onboarding', plan: selectedPlanBilling, with_trial: pkgTrial.hasTrial, ob_color: obColor });
+      void import('../app/paywall_funnel').then(({ logPaywallFunnel }) => {
+        void import('../app/paywall_variant').then(({ resolvePaywallAbVariant }) => {
+          void resolvePaywallAbVariant().then(({ variant }) => {
+            const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
+            logPaywallFunnel('purchase_completed', { variant, context: 'onboarding', plan: planForFunnel, obColor });
+          });
+        });
+      });
 
       if (pkgTrial.hasTrial) {
-        void trackEvent('trial_started', { context: 'onboarding', plan: selectedPlanBilling });
+        void trackEvent('trial_started', { context: 'onboarding', plan: selectedPlanBilling, ob_color: obColor });
+        void import('../app/paywall_funnel').then(({ logPaywallFunnel }) => {
+          void import('../app/paywall_variant').then(({ resolvePaywallAbVariant }) => {
+            void resolvePaywallAbVariant().then(({ variant }) => {
+              const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
+              logPaywallFunnel('trial_started', { variant, context: 'onboarding', plan: planForFunnel, obColor });
+            });
+          });
+        });
         // Запрашиваем пуш-разрешение ПОСЛЕ покупки — момент Blinkist
         void (async () => {
           try {

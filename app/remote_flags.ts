@@ -33,7 +33,8 @@ export type RemoteNumberKey =
   | 'arena_sr_win'
   | 'arena_sr_loss'
   | 'arena_sr_bot_win'
-  | 'arena_season_rollback_steps';
+  | 'arena_season_rollback_steps'
+  | 'onboarding_green_pct';
 
 export type RemoteBoolKey =
   | 'referral_enabled'
@@ -66,6 +67,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   arena_sr_loss: 20,
   arena_sr_bot_win: 12,
   arena_season_rollback_steps: 3,
+  onboarding_green_pct: 50,
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
@@ -99,6 +101,7 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   arena_sr_loss: { min: 0, max: 999 },
   arena_sr_bot_win: { min: 0, max: 999 },
   arena_season_rollback_steps: { min: 0, max: 23 },
+  onboarding_green_pct: { min: 0, max: 100 },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
@@ -202,6 +205,7 @@ export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
 export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
 export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
 export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_rollback_steps');
+export const getOnboardingGreenPct = () => getRemoteNumber('onboarding_green_pct');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
@@ -224,6 +228,14 @@ export function getTrainerAbGroup(userId: string): TrainerAbGroup {
   if (bucket < a) return 'A';
   if (bucket < a + b) return 'B';
   return 'C';
+}
+
+/** Deterministic onboarding color for a user: 'blue' | 'green' by onboarding_green_pct. */
+export function getOnboardingColorVariant(userId: string): 'blue' | 'green' {
+  const greenPct = getRemoteNumber('onboarding_green_pct');
+  if (greenPct <= 0) return 'blue';
+  if (greenPct >= 100) return 'green';
+  return hashToUnit(`${userId}:onboarding_color`) * 100 < greenPct ? 'green' : 'blue';
 }
 
 /** Deterministic paywall variant for a user: 'v1' | 'v2' by paywall_v2_pct. */

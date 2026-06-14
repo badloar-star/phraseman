@@ -14756,6 +14756,348 @@ export const ECHO_DAY_82: PlanContentDay = {
   ],
 };
 
+export const ECHO_DAY_83: PlanContentDay = {
+  planId: 'echo',
+  dayIndex: 83,
+  topic: { ru: 'Попрощаться и пожелать удачи', uk: 'Попрощатися і побажати удачі', es: 'Despedirse y desear buena suerte' },
+  outcome: {
+    ru: 'Ты умеешь попрощаться по-английски и пожелать человеку удачи',
+    uk: 'Ти вмієш попрощатися англійською і побажати людині удачі',
+    es: 'Puedes despedirte en inglés y desearle buena suerte a alguien',
+  },
+  level: 'A1',
+  prerequisiteLessons: [1, 3],
+  intro: [
+    {
+      kind: 'tip',
+      title: { ru: 'Сегодня мы прощаемся', uk: 'Сьогодні ми прощаємося', es: 'Hoy nos despedimos' },
+      body: {
+        ru: 'Последний день этой части пути. Ты уже умеешь много говорить по-английски. Сегодня научишься красиво завершить разговор и пожелать человеку всего хорошего.',
+        uk: 'Останній день цієї частини шляху. Ти вже вмієш багато говорити англійською. Сьогодні навчишся гарно завершити розмову і побажати людині всього найкращого.',
+        es: 'Es el último día de esta etapa. Ya sabes decir muchas cosas en inglés. Hoy aprenderás a terminar una conversación de forma agradable y desearle lo mejor a alguien.',
+      },
+    },
+    {
+      kind: 'trap',
+      title: { ru: 'Как говорить о прошедшем моменте', uk: 'Як говорити про минулу мить', es: 'Cómo hablar de un momento pasado' },
+      body: {
+        ru: 'Когда ты говоришь «было приятно», ты описываешь ощущение из прошлого. Для этого используешь слово was — это «было» для одного человека. Например: It was nice. Это значит «Это было приятно».',
+        uk: 'Коли ти кажеш «було приємно», ти описуєш відчуття з минулого. Для цього використовуєш слово was — це «було» для однієї людини. Наприклад: It was nice. Це означає «Це було приємно».',
+        es: 'Cuando dices «fue agradable», describes una sensación del pasado. Para eso usas la palabra was, que significa «fue» o «era» para una persona. Por ejemplo: It was nice. Eso significa «Fue agradable».',
+      },
+      examples: [
+        { en: 'It was nice to meet you.', gloss: { ru: 'Было приятно познакомиться.', uk: 'Було приємно познайомитися.', es: 'Fue agradable conocerte.' } },
+      ],
+    },
+    {
+      kind: 'tip',
+      title: { ru: 'Пожелание удачи — просто и тепло', uk: 'Побажання удачі — просто і тепло', es: 'Desear suerte — de forma sencilla y cálida' },
+      body: {
+        ru: 'Good luck — это «удачи». Можно добавить with everything — «во всём». Получится тёплое пожелание на прощание: Good luck with everything! Никаких сложных слов — только доброе напутствие.',
+        uk: 'Good luck — це «удачі». Можна додати with everything — «у всьому». Вийде тепле побажання на прощання: Good luck with everything! Жодних складних слів — лише добре напуття.',
+        es: 'Good luck significa «buena suerte». Puedes añadir with everything, que significa «en todo». Así queda un deseo cálido de despedida: Good luck with everything! Sin palabras difíciles, solo un buen deseo.',
+      },
+      examples: [
+        { en: 'Good luck with everything!', gloss: { ru: 'Удачи во всём!', uk: 'Удачі у всьому!', es: '¡Buena suerte en todo!' } },
+      ],
+    },
+  ],
+  phrases: [
+    {
+      id: 'echo_d83_p1',
+      english: 'It was nice to meet you.',
+      meaning: { ru: 'Было приятно познакомиться.', uk: 'Було приємно познайомитися.', es: 'Fue agradable conocerte.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Тёплое прощание', uk: 'Тепле прощання', es: 'Una despedida cálida' },
+        rule: { ru: 'Was — это «было» в прошлом для одного.', uk: 'Was — це «було» в минулому для одного.', es: 'Was significa «fue» en pasado para una persona.' },
+        why: { ru: 'Встреча уже позади, поэтому говорим «было».', uk: 'Зустріч вже позаду, тому кажемо «було».', es: 'El encuentro ya pasó, por eso usamos «fue».' },
+        commonMistake: { ru: 'Не говори is вместо was — встреча уже в прошлом.', uk: 'Не кажи is замість was — зустріч вже в минулому.', es: 'No digas is en lugar de was: el encuentro ya terminó.' },
+      },
+      words: [
+        { text: 'It', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'They', 'We', 'did'] },
+        { text: 'was', partOfSpeech: 'to-be', distractors: ['is', 'are', 'were', 'am', 'be'] },
+        { text: 'nice', partOfSpeech: 'adjective', distractors: ['good', 'bad', 'hard', 'slow', 'sad'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'of', 'in', 'at', 'by'] },
+        { text: 'meet', partOfSpeech: 'verb', distractors: ['see', 'know', 'find', 'call', 'help'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'us', 'them'] },
+      ],
+    },
+    {
+      id: 'echo_d83_p2',
+      english: 'Good luck with everything!',
+      meaning: { ru: 'Удачи во всём!', uk: 'Удачі у всьому!', es: '¡Buena suerte en todo!' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Пожелание на прощание', uk: 'Побажання на прощання', es: 'Un deseo de despedida' },
+        rule: { ru: 'Good luck — устойчивое пожелание, не переводи дословно.', uk: 'Good luck — стійке побажання, не перекладай дослівно.', es: 'Good luck es una expresión fija; no la traduzcas palabra por palabra.' },
+        why: { ru: 'Это стандартная тёплая формула прощания на английском.', uk: 'Це стандартна тепла формула прощання англійською.', es: 'Es la fórmula habitual y cálida para despedirse en inglés.' },
+        commonMistake: { ru: 'Не говори Good lucky — это не слово.', uk: 'Не кажи Good lucky — такого слова немає.', es: 'No digas Good lucky: esa palabra no existe.' },
+      },
+      words: [
+        { text: 'Good', partOfSpeech: 'adjective', distractors: ['Bad', 'Big', 'New', 'Old', 'Hard'] },
+        { text: 'luck', partOfSpeech: 'noun', distractors: ['time', 'work', 'day', 'life', 'way'] },
+        { text: 'with', partOfSpeech: 'preposition', distractors: ['for', 'in', 'on', 'at', 'by'] },
+        { text: 'everything', partOfSpeech: 'pronoun', distractors: ['nothing', 'something', 'anything', 'everyone', 'someone'] },
+      ],
+    },
+    {
+      id: 'echo_d83_p3',
+      english: 'It is time to say goodbye.',
+      meaning: { ru: 'Пора прощаться.', uk: 'Час прощатися.', es: 'Es hora de decir adiós.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Момент расставания', uk: 'Момент розставання', es: 'El momento de la despedida' },
+        rule: { ru: 'It is time to — значит «пора сделать что-то».', uk: 'It is time to — означає «час зробити щось».', es: 'It is time to significa «es hora de hacer algo».' },
+        why: { ru: 'Так говорят, когда настал момент уходить.', uk: 'Так кажуть, коли настав момент іти.', es: 'Se usa cuando ha llegado el momento de irse.' },
+        commonMistake: { ru: 'Не пропускай It в начале — предложение без него неверно.', uk: 'Не пропускай It на початку — речення без нього неправильне.', es: 'No omitas It al principio: sin él la frase es incorrecta.' },
+      },
+      words: [
+        { text: 'It', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'This', 'That', 'There'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['was', 'are', 'am', 'be', 'were'] },
+        { text: 'time', partOfSpeech: 'noun', distractors: ['place', 'day', 'way', 'hour', 'turn'] },
+        { text: 'to', partOfSpeech: 'other', distractors: ['for', 'of', 'and', 'in', 'at'] },
+        { text: 'say', partOfSpeech: 'verb', distractors: ['do', 'go', 'see', 'ask', 'tell'] },
+        { text: 'goodbye', partOfSpeech: 'other', distractors: ['hello', 'thanks', 'sorry', 'yes', 'please'] },
+      ],
+    },
+    {
+      id: 'echo_d83_p4',
+      english: 'I hope everything goes well.',
+      meaning: { ru: 'Надеюсь, у тебя всё будет хорошо.', uk: 'Сподіваюся, у тебе все буде добре.', es: 'Espero que todo te vaya bien.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Искреннее пожелание', uk: 'Щире побажання', es: 'Un deseo sincero' },
+        rule: { ru: 'I hope — говорит о желании. Goes well — значит «идёт хорошо».', uk: 'I hope — говорить про бажання. Goes well — означає «йде добре».', es: 'I hope expresa un deseo. Goes well significa «va bien».' },
+        why: { ru: 'Это настоящее время, потому что говорим о постоянном желании.', uk: 'Це теперішній час, бо говоримо про постійне бажання.', es: 'Usamos presente porque hablamos de un deseo que tenemos ahora.' },
+        commonMistake: { ru: 'Не говори go вместо goes — после everything нужна -s.', uk: 'Не кажи go замість goes — після everything потрібна -s.', es: 'No digas go en lugar de goes: después de everything se necesita la -s.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['He', 'She', 'We', 'You', 'They'] },
+        { text: 'hope', partOfSpeech: 'verb', distractors: ['know', 'think', 'want', 'need', 'like'] },
+        { text: 'everything', partOfSpeech: 'pronoun', distractors: ['nothing', 'something', 'anything', 'everyone', 'somewhere'] },
+        { text: 'goes', partOfSpeech: 'verb', distractors: ['go', 'went', 'come', 'works', 'gets'] },
+        { text: 'well', partOfSpeech: 'adverb', distractors: ['good', 'bad', 'fast', 'late', 'hard'] },
+      ],
+    },
+    {
+      id: 'echo_d83_p5',
+      english: 'This is a great start.',
+      meaning: { ru: 'Это отличное начало.', uk: 'Це чудовий початок.', es: 'Este es un gran comienzo.' },
+      constructions: ['to-be'],
+      explanation: {
+        title: { ru: 'Подводим итог', uk: 'Підводимо підсумок', es: 'Resumimos lo aprendido' },
+        rule: { ru: 'This is — означает «это есть», описывает что-то прямо сейчас.', uk: 'This is — означає «це є», описує щось прямо зараз.', es: 'This is significa «esto es» y describe algo en este momento.' },
+        why: { ru: 'Говорим о результате, который виден сейчас.', uk: 'Говоримо про результат, який видно зараз.', es: 'Hablamos de un resultado que se ve ahora mismo.' },
+        commonMistake: { ru: 'Не говори This are — is для одного предмета.', uk: 'Не кажи This are — is для одного предмета.', es: 'No digas This are: is se usa para una sola cosa.' },
+      },
+      words: [
+        { text: 'This', partOfSpeech: 'pronoun', distractors: ['That', 'It', 'He', 'She', 'There'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'am', 'be', 'were'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'some', 'one', 'any'] },
+        { text: 'great', partOfSpeech: 'adjective', distractors: ['good', 'bad', 'small', 'short', 'hard'] },
+        { text: 'start', partOfSpeech: 'noun', distractors: ['end', 'day', 'time', 'step', 'way'] },
+      ],
+    },
+    {
+      id: 'echo_d83_p6',
+      english: 'You do a great job.',
+      meaning: { ru: 'Ты отлично справляешься.', uk: 'Ти чудово справляєшся.', es: 'Lo haces muy bien.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Похвала напоследок', uk: 'Похвала наостанок', es: 'Un elogio final' },
+        rule: { ru: 'Do a great job — значит «делаешь отличную работу», хвалят так.', uk: 'Do a great job — означає «робиш чудову роботу», так хвалять.', es: 'Do a great job significa «haces un trabajo excelente» y se usa para elogiar.' },
+        why: { ru: 'Настоящее время описывает, что человек умеет делать хорошо.', uk: 'Теперішній час описує, що людина вміє робити добре.', es: 'El presente describe lo que alguien sabe hacer bien.' },
+        commonMistake: { ru: 'Не говори You does — с you всегда do, без -s.', uk: 'Не кажи You does — з you завжди do, без -s.', es: 'No digas You does: con you siempre se usa do, sin -s.' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['I', 'He', 'She', 'We', 'They'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'make', 'have', 'are'] },
+        { text: 'a', partOfSpeech: 'article', distractors: ['the', 'an', 'some', 'one', 'this'] },
+        { text: 'great', partOfSpeech: 'adjective', distractors: ['good', 'bad', 'old', 'fast', 'big'] },
+        { text: 'job', partOfSpeech: 'noun', distractors: ['work', 'day', 'time', 'life', 'way'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'nice', partOfSpeech: 'adjective', translation: { ru: 'приятный, хороший', uk: 'приємний, хороший', es: 'agradable, bueno' }, example: 'It was nice to meet you.' },
+    { word: 'meet', partOfSpeech: 'verb', translation: { ru: 'встречать, знакомиться', uk: 'зустрічати, знайомитися', es: 'conocer, encontrar' }, example: 'It was nice to meet you.' },
+    { word: 'luck', partOfSpeech: 'noun', translation: { ru: 'удача', uk: 'удача', es: 'suerte' }, example: 'Good luck with everything!' },
+    { word: 'everything', partOfSpeech: 'pronoun', translation: { ru: 'всё', uk: 'все', es: 'todo' }, example: 'Good luck with everything!' },
+    { word: 'goodbye', partOfSpeech: 'other', translation: { ru: 'до свидания, прощай', uk: 'до побачення, прощай', es: 'adiós' }, example: 'It is time to say goodbye.' },
+    { word: 'hope', partOfSpeech: 'verb', translation: { ru: 'надеяться', uk: 'сподіватися', es: 'esperar' }, example: 'I hope everything goes well.' },
+  ],
+};
+
+export const ECHO_DAY_84: PlanContentDay = {
+  planId: 'echo',
+  dayIndex: 84,
+  topic: { ru: 'Повторение курса: лучшие фразы', uk: 'Повторення курсу: найкращі фрази', es: 'Repaso del curso: las mejores frases' },
+  outcome: {
+    ru: 'Ты вспомнил все ключевые фразы курса и готов говорить по-английски',
+    uk: 'Ти пригадав усі ключові фрази курсу і готовий говорити англійською',
+    es: 'Repasaste todas las frases clave del curso y estás listo para hablar en inglés',
+  },
+  level: 'A1',
+  prerequisiteLessons: [3, 10],
+  intro: [
+    {
+      kind: 'how',
+      title: { ru: 'Финальный день', uk: 'Фінальний день', es: 'El día final' },
+      body: {
+        ru: 'Сегодня последний день курса. Ты прошёл долгий путь и выучил сотни фраз. Давай вспомним самые важные из них — те, что помогут тебе говорить по-английски в любой ситуации.',
+        uk: 'Сьогодні останній день курсу. Ти пройшов довгий шлях і вивчив сотні фраз. Давай пригадаємо найважливіші з них — ті, що допоможуть тобі говорити англійською в будь-якій ситуації.',
+        es: 'Hoy es el último día del curso. Has recorrido un largo camino y aprendido cientos de frases. Repasemos las más importantes: las que te ayudarán a hablar inglés en cualquier situación.',
+      },
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Что ты умеешь', uk: 'Що ти вмієш', es: 'Lo que sabes hacer' },
+      body: {
+        ru: 'За эти месяцы ты научился рассказывать о себе, задавать вопросы, говорить о прошлом и будущем, просить о помощи и понимать других. Это очень много. Сегодня повторяем и закрепляем.',
+        uk: 'За ці місяці ти навчився розповідати про себе, ставити запитання, говорити про минуле та майбутнє, просити про допомогу та розуміти інших. Це дуже багато. Сьогодні повторюємо і закріплюємо.',
+        es: 'En estos meses aprendiste a hablar de ti mismo, hacer preguntas, hablar del pasado y del futuro, pedir ayuda y entender a los demás. Eso es mucho. Hoy repasamos y consolidamos.',
+      },
+      examples: [
+        { en: 'I can speak English now.', gloss: { ru: 'Теперь я могу говорить по-английски.', uk: 'Тепер я можу говорити англійською.', es: 'Ahora puedo hablar inglés.' } },
+      ],
+    },
+    {
+      kind: 'how',
+      title: { ru: 'Как работать с этим днём', uk: 'Як працювати з цим днем', es: 'Cómo trabajar con este día' },
+      body: {
+        ru: 'Читай каждую фразу вслух. Представь, что говоришь её живому человеку. Если фраза кажется лёгкой — отлично, ты её усвоил. Если нет — это сигнал вернуться к тому уроку и повторить.',
+        uk: 'Читай кожну фразу вголос. Уяви, що говориш її живій людині. Якщо фраза здається легкою — чудово, ти її засвоїв. Якщо ні — це сигнал повернутися до того уроку і повторити.',
+        es: 'Lee cada frase en voz alta. Imagina que se la dices a una persona real. Si la frase te parece fácil, la has asimilado bien. Si no, es señal de volver a esa lección y repasar.',
+      },
+    },
+  ],
+  phrases: [
+    {
+      id: 'echo_d84_p1',
+      english: 'I speak English every day.',
+      meaning: { ru: 'Я говорю по-английски каждый день.', uk: 'Я говорю англійською кожного дня.', es: 'Hablo inglés todos los días.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Настоящее время — привычка', uk: 'Теперішній час — звичка', es: 'Presente simple: hábito' },
+        rule: { ru: 'Когда говоришь о том, что делаешь регулярно, глагол стоит в простой форме.', uk: 'Коли говориш про те, що робиш регулярно, дієслово стоїть у простій формі.', es: 'Cuando hablas de algo que haces regularmente, el verbo va en su forma simple.' },
+        why: { ru: '«Every day» — сигнал, что это привычное действие, не разовое.', uk: '«Every day» — сигнал, що це звична дія, не одноразова.', es: '«Every day» indica que es una acción habitual, no puntual.' },
+        commonMistake: { ru: 'Не говори «I am speak» — здесь не нужно «am».', uk: 'Не кажи «I am speak» — тут не потрібне «am».', es: 'No digas «I am speak»: aquí no se usa «am».' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['We', 'They', 'He', 'She', 'You'] },
+        { text: 'speak', partOfSpeech: 'verb', distractors: ['speaks', 'spoken', 'spoke', 'speaking', 'to'] },
+        { text: 'English', partOfSpeech: 'noun', distractors: ['French', 'Spanish', 'German', 'Russian', 'Italian'] },
+        { text: 'every', partOfSpeech: 'determiner', distractors: ['some', 'any', 'all', 'many', 'few'] },
+        { text: 'day', partOfSpeech: 'noun', distractors: ['night', 'week', 'month', 'year', 'hour'] },
+      ],
+    },
+    {
+      id: 'echo_d84_p2',
+      english: 'Can you help me please?',
+      meaning: { ru: 'Ты можешь мне помочь, пожалуйста?', uk: 'Ти можеш мені допомогти, будь ласка?', es: '¿Puedes ayudarme, por favor?' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Вежливая просьба', uk: 'Ввічливе прохання', es: 'Petición educada' },
+        rule: { ru: 'Слово «can» в начале вопроса превращает его в вежливую просьбу.', uk: 'Слово «can» на початку питання перетворює його на ввічливе прохання.', es: 'La palabra «can» al inicio convierte la oración en una petición educada.' },
+        why: { ru: '«Can you...?» — самый простой и понятный способ попросить о помощи.', uk: '«Can you...?» — найпростіший і зрозумілий спосіб попросити про допомогу.', es: '«Can you...?» es la forma más sencilla de pedir ayuda.' },
+        commonMistake: { ru: 'Не говори «Can you to help» — после «can» глагол без «to».', uk: 'Не кажи «Can you to help» — після «can» дієслово без «to».', es: 'No digas «Can you to help»: tras «can» el verbo va sin «to».' },
+      },
+      words: [
+        { text: 'Can', partOfSpeech: 'modal', distractors: ['Should', 'Will', 'Must', 'May', 'Would'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'I'] },
+        { text: 'help', partOfSpeech: 'verb', distractors: ['helps', 'helped', 'helping', 'ask', 'tell'] },
+        { text: 'me', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'it'] },
+        { text: 'please', partOfSpeech: 'adverb', distractors: ['thanks', 'sorry', 'now', 'here', 'again'] },
+      ],
+    },
+    {
+      id: 'echo_d84_p3',
+      english: 'Where do you live now?',
+      meaning: { ru: 'Где ты сейчас живёшь?', uk: 'Де ти зараз живеш?', es: '¿Dónde vives ahora?' },
+      constructions: ['wh-questions', 'present-simple'],
+      explanation: {
+        title: { ru: 'Вопрос про место', uk: 'Питання про місце', es: 'Pregunta sobre el lugar' },
+        rule: { ru: '«Where» — слово для вопроса о месте. После него идёт «do you» и глагол.', uk: '«Where» — слово для питання про місце. Після нього йде «do you» і дієслово.', es: '«Where» es la palabra para preguntar sobre el lugar. Después viene «do you» y el verbo.' },
+        why: { ru: '«Do» нужно для построения вопроса в настоящем времени с «you».', uk: '«Do» потрібне для побудови питання в теперішньому часі з «you».', es: '«Do» es necesario para formar preguntas en presente con «you».' },
+        commonMistake: { ru: 'Не говори «Where you live?» — без «do» вопрос неправильный.', uk: 'Не кажи «Where you live?» — без «do» питання неправильне.', es: 'No digas «Where you live?»: sin «do» la pregunta es incorrecta.' },
+      },
+      words: [
+        { text: 'Where', partOfSpeech: 'adverb', distractors: ['When', 'What', 'Who', 'Why', 'How'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'will', 'are', 'is'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'I'] },
+        { text: 'live', partOfSpeech: 'verb', distractors: ['lives', 'lived', 'living', 'go', 'work'] },
+        { text: 'now', partOfSpeech: 'adverb', distractors: ['here', 'today', 'always', 'often', 'soon'] },
+      ],
+    },
+    {
+      id: 'echo_d84_p4',
+      english: 'I know what you mean.',
+      meaning: { ru: 'Я понимаю, что ты имеешь в виду.', uk: 'Я розумію, що ти маєш на увазі.', es: 'Sé lo que quieres decir.' },
+      constructions: ['present-simple'],
+      explanation: {
+        title: { ru: 'Я понимаю тебя', uk: 'Я розумію тебе', es: 'Te entiendo' },
+        rule: { ru: '«I know» — это простое настоящее время. Используй его когда говоришь о том, что знаешь прямо сейчас.', uk: '«I know» — це простий теперішній час. Використовуй його коли говориш про те, що знаєш прямо зараз.', es: '«I know» es presente simple. Úsalo cuando hablas de algo que sabes en este momento.' },
+        why: { ru: '«Know» и «mean» — глаголы состояния, они не меняют форму в разговоре о сейчас.', uk: '«Know» і «mean» — дієслова стану, вони не змінюють форму в розмові про зараз.', es: '«Know» y «mean» son verbos de estado y no cambian su forma al hablar del presente.' },
+        commonMistake: { ru: 'Не говори «I am knowing» — с «know» форму на -ing не используют.', uk: 'Не кажи «I am knowing» — з «know» форму на -ing не вживають.', es: 'No digas «I am knowing»: con «know» no se usa la forma en -ing.' },
+      },
+      words: [
+        { text: 'I', partOfSpeech: 'pronoun', distractors: ['did', 'We', 'They', 'He', 'She'] },
+        { text: 'know', partOfSpeech: 'verb', distractors: ['think', 'want', 'need', 'like', 'feel'] },
+        { text: 'what', partOfSpeech: 'adverb', distractors: ['who', 'where', 'when', 'why', 'how'] },
+        { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'it'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['say', 'tell', 'think', 'feel', 'want'] },
+      ],
+    },
+    {
+      id: 'echo_d84_p5',
+      english: 'What time does it start?',
+      meaning: { ru: 'В котором часу это начинается?', uk: 'О котрій годині це починається?', es: '¿A qué hora empieza?' },
+      constructions: ['wh-questions', 'present-simple'],
+      explanation: {
+        title: { ru: 'Спрашиваем о времени', uk: 'Питаємо про час', es: 'Preguntamos sobre la hora' },
+        rule: { ru: '«What time» — это вопрос про время начала. После идёт «does it» и глагол без -s.', uk: '«What time» — це питання про час початку. Після йде «does it» і дієслово без -s.', es: '«What time» es la pregunta sobre la hora. Después va «does it» y el verbo sin -s.' },
+        why: { ru: '«Does» нужен когда предмет разговора — «it», «he» или «she».', uk: '«Does» потрібен коли предмет розмови — «it», «he» або «she».', es: '«Does» se usa cuando el sujeto es «it», «he» o «she».' },
+        commonMistake: { ru: 'Не говори «What time it starts?» — нужен «does» для вопроса.', uk: 'Не кажи «What time it starts?» — потрібен «does» для питання.', es: 'No digas «What time it starts?»: se necesita «does» para la pregunta.' },
+      },
+      words: [
+        { text: 'What', partOfSpeech: 'adverb', distractors: ['When', 'Where', 'Who', 'Why', 'How'] },
+        { text: 'time', partOfSpeech: 'noun', distractors: ['day', 'hour', 'week', 'place', 'name'] },
+        { text: 'does', partOfSpeech: 'verb', distractors: ['do', 'did', 'is', 'will', 'has'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'they', 'we', 'this'] },
+        { text: 'start', partOfSpeech: 'verb', distractors: ['starts', 'started', 'finish', 'end', 'stop'] },
+      ],
+    },
+    {
+      id: 'echo_d84_p6',
+      english: 'You can do it well.',
+      meaning: { ru: 'Ты можешь сделать это хорошо.', uk: 'Ти можеш зробити це добре.', es: 'Puedes hacerlo bien.' },
+      constructions: ['modals'],
+      explanation: {
+        title: { ru: 'Слова поддержки', uk: 'Слова підтримки', es: 'Palabras de aliento' },
+        rule: { ru: '«Can» говорит о возможности или способности что-то сделать.', uk: '«Can» говорить про можливість або здатність щось зробити.', es: '«Can» expresa posibilidad o capacidad para hacer algo.' },
+        why: { ru: 'После «can» всегда простая форма глагола — без -s и без -ing.', uk: 'Після «can» завжди проста форма дієслова — без -s і без -ing.', es: 'Tras «can» siempre va la forma simple del verbo, sin -s ni -ing.' },
+        commonMistake: { ru: 'Не говори «You can to do» — «to» после «can» не нужен.', uk: 'Не кажи «You can to do» — «to» після «can» не потрібен.', es: 'No digas «You can to do»: el «to» no se usa después de «can».' },
+      },
+      words: [
+        { text: 'You', partOfSpeech: 'pronoun', distractors: ['I', 'We', 'He', 'She', 'They'] },
+        { text: 'can', partOfSpeech: 'modal', distractors: ['must', 'will', 'should', 'may', 'would'] },
+        { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'make', 'get', 'take'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['this', 'that', 'them', 'him', 'her'] },
+        { text: 'well', partOfSpeech: 'adverb', distractors: ['good', 'fast', 'hard', 'soon', 'again'] },
+      ],
+    },
+  ],
+  vocabulary: [
+    { word: 'speak', partOfSpeech: 'verb', translation: { ru: 'говорить', uk: 'говорити', es: 'hablar' }, example: 'I speak English every day.' },
+    { word: 'help', partOfSpeech: 'verb', translation: { ru: 'помогать', uk: 'допомагати', es: 'ayudar' }, example: 'Can you help me please?' },
+    { word: 'live', partOfSpeech: 'verb', translation: { ru: 'жить', uk: 'жити', es: 'vivir' }, example: 'Where do you live now?' },
+    { word: 'mean', partOfSpeech: 'verb', translation: { ru: 'иметь в виду', uk: 'мати на увазі', es: 'querer decir' }, example: 'I know what you mean.' },
+    { word: 'start', partOfSpeech: 'verb', translation: { ru: 'начинаться', uk: 'починатися', es: 'empezar' }, example: 'What time does it start?' },
+    { word: 'well', partOfSpeech: 'adverb', translation: { ru: 'хорошо', uk: 'добре', es: 'bien' }, example: 'You can do it well.' },
+  ],
+};
+
 export const ECHO_CONTENT_DAYS: PlanContentDay[] = [
   ECHO_DAY_1,
   ECHO_DAY_2,
@@ -14839,4 +15181,6 @@ export const ECHO_CONTENT_DAYS: PlanContentDay[] = [
   ECHO_DAY_80,
   ECHO_DAY_81,
   ECHO_DAY_82,
+  ECHO_DAY_83,
+  ECHO_DAY_84,
 ];

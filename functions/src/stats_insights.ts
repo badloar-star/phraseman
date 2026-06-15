@@ -5,6 +5,7 @@ import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
+import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -242,12 +243,14 @@ async function enforceRateLimit(authUid: string, stableUid: string): Promise<voi
  * Product-wide daily generation breaker. Throws once the day's count would
  * exceed GLOBAL_DAILY_CAP. Mirrors explain/explain_budget.ts.
  */
-async function enforceGlobalBudget(nowMs: number = Date.now()): Promise<void> {
+async function enforceGlobalBudget(cap: number = GLOBAL_DAILY_CAP, nowMs: number = Date.now()): Promise<void> {
+  // cap=0 → глобального дневного капа нет (админ может снять ограничение).
+  if (cap <= 0) return;
   const db = admin.firestore();
   const ref = db.collection(GLOBAL_BUDGET_COLLECTION).doc(utcDayKey(nowMs));
   await db.runTransaction(async (tx) => {
     const genCount = Number((await tx.get(ref)).data()?.genCount ?? 0);
-    if (genCount >= GLOBAL_DAILY_CAP) {
+    if (genCount >= cap) {
       throw new HttpsError('resource-exhausted', 'stats_insights_global_budget_exceeded');
     }
     tx.set(ref, { genCount: genCount + 1, updatedAtMs: nowMs }, { merge: true });
@@ -415,6 +418,9 @@ export const statsInsightsGenerate = onCall({
   }
 
   const db = admin.firestore();
+  // Админ-конфиг (модель/глобальный кап/выключатель). Fallback = текущие дефолты.
+  const jobCfg = await resolveJobConfig(db, 'stats');
+  assertJobEnabled(jobCfg, 'stats'); // kill-switch: enabled=false → resource-exhausted
   const authUid = request.auth.uid;
   // uid from auth identity — NEVER from request body (security invariant).
   const stableUid = await resolveStableUidForAuth(db, authUid);
@@ -427,7 +433,7 @@ export const statsInsightsGenerate = onCall({
   // the user out for the whole window.
   await enforceRateLimit(authUid, stableUid);
   await assertWindowOpen(authUid, stableUid);
-  await enforceGlobalBudget();
+  await enforceGlobalBudget(jobCfg.globalDailyCap);
 
   const messages = [
     { role: 'system' as const, content: buildSystemPrompt(briefing.lang) },
@@ -441,7 +447,7 @@ export const statsInsightsGenerate = onCall({
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: MODEL_DEFAULT,
+      model: jobCfg.model,
       messages,
       max_tokens: MAX_OUTPUT_TOKENS,
       temperature: 0.7,
@@ -468,7 +474,7 @@ export const statsInsightsGenerate = onCall({
   await db.collection(BILLING_COLLECTION).doc().set({
     uid: stableUid,
     authUid,
-    model: MODEL_DEFAULT,
+    model: jobCfg.model,
     lang: briefing.lang,
     studyTarget: briefing.studyTarget,
     promptTokens: Number(usage.prompt_tokens ?? 0),
@@ -483,7 +489,7 @@ export const statsInsightsGenerate = onCall({
     ok: true,
     notes: result.notes,
     nextAllowedAtMs,
-    model: MODEL_DEFAULT,
+    model: jobCfg.model,
   };
 });
 

@@ -6,6 +6,7 @@ import { applyStarDelta, isPromotion } from './arena_rank_progression';
 import {
   applySeasonRatingDelta, seasonIdForDate, rankIndex, type MatchOutcome,
 } from './arena_season';
+import { resolveArenaSeasonConfig } from './arena_season_config';
 
 admin.initializeApp();
 
@@ -741,6 +742,9 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
     // как «ранговый результат» — там нет звёзд.
     const outcomes: Array<{ uid: string; won: boolean; isDraw: boolean; xpDelta: number; isFriendDuel: boolean }> = [];
 
+    // Тюнинг SR из Firestore (fallback = дефолты). Один раз до транзакции.
+    const seasonCfg = await resolveArenaSeasonConfig(db);
+
     await db.runTransaction(async (tx) => {
       const freshSession = await tx.get(sessionRef);
       const freshData = freshSession.data() as {
@@ -933,7 +937,7 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
             const curPeak = staleSeason ? 0 : (data.peakSR ?? 0);
             const curPeakRankIdx = staleSeason ? 0 : (data.seasonPeakRankIndex ?? 0);
             const srResult = wasCeiling
-              ? applySeasonRatingDelta(curSr, curPeak, outcome, false)
+              ? applySeasonRatingDelta(curSr, curPeak, outcome, false, seasonCfg)
               : { sr: curSr, peakSR: curPeak };
             const newPeakRankIdx = Math.max(curPeakRankIdx, rankIndex(newTier, newLevel));
 
@@ -1277,6 +1281,7 @@ export { friendSendGift } from './friend_gifts';
 export { adminGrantReward } from './admin_grant';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
+export { openAiJobsConfig } from './openai_jobs_config';
 
 export { dailyPhraseSetSaved } from './daily_phrases';
 

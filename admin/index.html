@@ -8477,6 +8477,20 @@
       <button type="button" onclick="loadControlPanelAi()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
       <button type="button" onclick="switchTab('openai-budget')" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📊 Бюджет OpenAI →</button>
     </div>
+
+    <!-- AI-джобы: weekly_review / stats_insights / explain — модель + дневной кап + выключатель -->
+    <div style="margin-top:16px;border-top:1px solid #2a2a3a;padding-top:14px">
+      <div style="font-size:13px;font-weight:800;color:#cbd5e1">Фоновые ИИ-функции (модель · кап/день · вкл)</div>
+      <div id="cp-aijobs-status" style="font-size:12px;color:#6b7280;margin-top:6px">Загрузка…</div>
+      <div id="cp-aijobs-rows" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;color:#cbd5e1;font-size:12.5px;font-weight:700">
+          <input type="checkbox" id="cp-aijob-dialog-enabled" style="width:38px;height:22px;cursor:pointer"/> ИИ-диалог (Theo) включён
+        </label>
+        <button type="button" onclick="saveControlPanelAiJobs()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;min-height:38px">💾 Сохранить функции</button>
+        <button type="button" onclick="loadControlPanelAiJobs()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
+      </div>
+    </div>
   </div>
 
   <!-- 🚨 Режим обслуживания: глобальный баннер (мягкий) + жёсткий блок-экран -->
@@ -11210,6 +11224,13 @@
       _fnOpenAiDialogQuotaConfig = httpsCallable(functionsUs, 'openAiDialogQuotaConfig');
     }
     return _fnOpenAiDialogQuotaConfig;
+  }
+  let _fnOpenAiJobsConfig = null;
+  function getOpenAiJobsConfigCallable() {
+    if (!_fnOpenAiJobsConfig) {
+      _fnOpenAiJobsConfig = httpsCallable(functionsUs, 'openAiJobsConfig');
+    }
+    return _fnOpenAiJobsConfig;
   }
 
   // ── Auth: email + custom claim admin (set via scripts/set_admin_claim.mjs) ─────
@@ -20514,6 +20535,7 @@
       for (const f of CP_FEATURE_TOGGLES) { const cb = document.getElementById('cp-bool-' + f.key); if (cb) cb.disabled = false; }
     }
     if (typeof window.loadControlPanelAi === 'function') void window.loadControlPanelAi();
+    if (typeof window.loadControlPanelAiJobs === 'function') void window.loadControlPanelAiJobs();
     if (typeof window.loadControlPanelMaintenance === 'function') void window.loadControlPanelMaintenance();
   };
 
@@ -20596,6 +20618,67 @@
       void window.loadControlPanelAi();
     } catch (e) {
       cpAiSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  // ── Пульт: фоновые ИИ-джобы (weekly/stats/explain) — openAiJobsConfig ──────
+  const CP_AI_JOB_MODELS = ['gpt-4.1-nano','gpt-4.1-mini','gpt-4.1','gpt-4o-mini'];
+  const CP_AI_JOBS = [
+    { key: 'weekly',  label: 'Недельный разбор' },
+    { key: 'stats',   label: 'Инсайты статистики' },
+    { key: 'explain', label: 'Объяснение фразы' },
+  ];
+  function cpAiJobsSetStatus(msg, color) {
+    const el = document.getElementById('cp-aijobs-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  window.loadControlPanelAiJobs = async function() {
+    cpAiJobsSetStatus('Загрузка…');
+    const box = document.getElementById('cp-aijobs-rows');
+    try {
+      const res = await getOpenAiJobsConfigCallable()({ action: 'get' });
+      const jobs = (res && res.data && res.data.jobs) || {};
+      if (box) {
+        box.innerHTML = CP_AI_JOBS.map(function(j) {
+          const cfg = jobs[j.key] || {};
+          const opts = CP_AI_JOB_MODELS.map(function(m){ return '<option value="'+m+'"'+(cfg.model===m?' selected':'')+'>'+m+'</option>'; }).join('');
+          return '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid #23232f;padding-top:8px">'
+            + '<div style="flex:1;min-width:150px;font-size:12.5px;font-weight:700;color:#e5e7eb">'+j.label+'</div>'
+            + '<select id="cp-aijob-'+j.key+'-model" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:6px;border-radius:6px">'+opts+'</select>'
+            + '<input id="cp-aijob-'+j.key+'-cap" type="number" min="0" max="1000000" step="1" value="'+(cfg.globalDailyCap!=null?cfg.globalDailyCap:0)+'" title="0 = без капа" style="width:110px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:6px;border-radius:6px">'
+            + '<label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:#cbd5e1;font-size:12px;font-weight:700"><input type="checkbox" id="cp-aijob-'+j.key+'-enabled"'+(cfg.enabled===false?'':' checked')+' style="width:34px;height:20px;cursor:pointer"> вкл</label>'
+            + '</div>';
+        }).join('');
+      }
+      const dlg = (jobs.dialog || {});
+      const dlgEl = document.getElementById('cp-aijob-dialog-enabled');
+      if (dlgEl) dlgEl.checked = dlg.enabled !== false;
+      cpAiJobsSetStatus('Загружено. 0 в «кап/день» = без глобального ограничения.', '#4ade80');
+    } catch (e) {
+      cpAiJobsSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e) + ' (нужны права admin)', '#f87171');
+    }
+  };
+  window.saveControlPanelAiJobs = async function() {
+    cpAiJobsSetStatus('Сохранение…');
+    try {
+      for (const j of CP_AI_JOBS) {
+        const sel = document.getElementById('cp-aijob-' + j.key + '-model');
+        const cap = document.getElementById('cp-aijob-' + j.key + '-cap');
+        const en = document.getElementById('cp-aijob-' + j.key + '-enabled');
+        await getOpenAiJobsConfigCallable()({
+          action: 'set', job: j.key,
+          model: sel ? sel.value : undefined,
+          globalDailyCap: cap && cap.value !== '' ? Math.max(0, Math.round(Number(cap.value))) : undefined,
+          enabled: en ? !!en.checked : undefined,
+        });
+      }
+      const dlgEl = document.getElementById('cp-aijob-dialog-enabled');
+      await getOpenAiJobsConfigCallable()({ action: 'set', job: 'dialog', enabled: dlgEl ? !!dlgEl.checked : undefined });
+      if (typeof logAction === 'function') logAction('control_panel_ai_jobs_save', 'admin_runtime_config/openai_jobs', {});
+      cpAiJobsSetStatus('✅ Сохранено. Сервер применит за секунды.', '#4ade80');
+      void window.loadControlPanelAiJobs();
+    } catch (e) {
+      cpAiJobsSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
     }
   };
 

@@ -5,6 +5,7 @@ import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
+import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -364,6 +365,9 @@ export const weeklyReviewGenerate = onCall({
   }
 
   const db = admin.firestore();
+  // Админ-конфиг (модель/выключатель). Fallback = текущие дефолты.
+  const jobCfg = await resolveJobConfig(db, 'weekly');
+  assertJobEnabled(jobCfg, 'weekly'); // kill-switch: enabled=false → resource-exhausted
   const authUid = request.auth.uid;
   // uid from auth identity — NEVER from request body (security invariant).
   const stableUid = await resolveStableUidForAuth(db, authUid);
@@ -389,7 +393,7 @@ export const weeklyReviewGenerate = onCall({
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: MODEL_DEFAULT,
+      model: jobCfg.model,
       messages,
       max_tokens: MAX_OUTPUT_TOKENS,
       temperature: 0.7,
@@ -416,7 +420,7 @@ export const weeklyReviewGenerate = onCall({
   await db.collection(BILLING_COLLECTION).doc().set({
     uid: stableUid,
     authUid,
-    model: MODEL_DEFAULT,
+    model: jobCfg.model,
     lang: briefing.lang,
     studyTarget: briefing.studyTarget,
     windowDays: briefing.windowDays,
@@ -433,7 +437,7 @@ export const weeklyReviewGenerate = onCall({
     ok: true,
     review: result,
     nextAllowedAtMs,
-    model: MODEL_DEFAULT,
+    model: jobCfg.model,
   };
 });
 

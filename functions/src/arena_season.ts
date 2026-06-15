@@ -20,13 +20,52 @@ export type RankTier = (typeof RANK_TIERS)[number];
 
 export type MatchOutcome = 'win' | 'loss' | 'draw' | 'neutral';
 
-// Базовые величины (дефолты). На клиенте могут переопределяться Remote Config;
-// сервер использует эти константы детерминированно.
+// Базовые величины (дефолты). Это ЕДИНЫЙ источник правды и одновременно
+// fallback: админ может переопределить их в Firestore (admin_runtime_config/
+// arena_season), читаемом и сервером (resolveArenaSeasonConfig), и клиентом
+// (app/remote_flags arena_sr_*). При отсутствии дока поведение НЕ меняется.
 export const SR_WIN = 25;
 export const SR_LOSS = 20;
 export const SR_BOT_WIN = 12;
 export const SEASON_ROLLBACK_STEPS = 3;
 export const SEASON_FLOOR_INDEX = 2; // bronze III
+
+/** Тюнингуемые величины арены/сезона (всё опционально → fallback на дефолты выше). */
+export interface ArenaSeasonConfig {
+  srWin: number;
+  srLoss: number;
+  srBotWin: number;
+  rollbackSteps: number;
+  floorIndex: number;
+}
+export const ARENA_SEASON_DEFAULTS: ArenaSeasonConfig = {
+  srWin: SR_WIN,
+  srLoss: SR_LOSS,
+  srBotWin: SR_BOT_WIN,
+  rollbackSteps: SEASON_ROLLBACK_STEPS,
+  floorIndex: SEASON_FLOOR_INDEX,
+};
+
+function cleanInt(value: unknown, fallback: number, min: number, max: number): number {
+  const raw = typeof value === 'string' && value.trim() !== '' ? Number(value) : value;
+  const n = typeof raw === 'number' ? raw : NaN;
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(max, Math.max(min, Math.floor(n)));
+}
+
+/** Нормализует сырой Firestore-док в полный конфиг (каждое поле — с fallback). */
+export function arenaSeasonConfigFromData(
+  data: Record<string, unknown> | undefined,
+): ArenaSeasonConfig {
+  const d = data ?? {};
+  return {
+    srWin: cleanInt(d.arena_sr_win, SR_WIN, 0, 999),
+    srLoss: cleanInt(d.arena_sr_loss, SR_LOSS, 0, 999),
+    srBotWin: cleanInt(d.arena_sr_bot_win, SR_BOT_WIN, 0, 999),
+    rollbackSteps: cleanInt(d.arena_season_rollback_steps, SEASON_ROLLBACK_STEPS, 0, 23),
+    floorIndex: cleanInt(d.arena_season_floor_index, SEASON_FLOOR_INDEX, 0, 23),
+  };
+}
 
 /** Плоский индекс ранга 0–23 (Бронза I = 0 … Легенда III = 23). */
 export function rankIndex(tier: string, level: string): number {
@@ -61,11 +100,12 @@ export function applySeasonRollback(
  */
 export function applySeasonRatingDelta(
   sr: number, peakSR: number, outcome: MatchOutcome, isBot: boolean,
+  cfg: Pick<ArenaSeasonConfig, 'srWin' | 'srLoss' | 'srBotWin'> = ARENA_SEASON_DEFAULTS,
 ): { sr: number; peakSR: number } {
   const base = Number.isFinite(sr) ? sr : 0;
   let next = base;
-  if (outcome === 'win') next = base + (isBot ? SR_BOT_WIN : SR_WIN);
-  else if (outcome === 'loss') next = Math.max(0, base - SR_LOSS);
+  if (outcome === 'win') next = base + (isBot ? cfg.srBotWin : cfg.srWin);
+  else if (outcome === 'loss') next = Math.max(0, base - cfg.srLoss);
   const safePeak = Number.isFinite(peakSR) ? peakSR : 0;
   return { sr: next, peakSR: Math.max(safePeak, next) };
 }

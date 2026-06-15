@@ -98,10 +98,11 @@ describe('enforceUserGenLimit — per-user daily cap, atomic', () => {
 });
 
 describe('enforceGlobalBudget — product-wide daily breaker, atomic', () => {
+  // enforceGlobalBudget(cap, nowMs) — cap по умолчанию = GLOBAL_DAILY_CAP.
   async function callGlobal(n: number, now = NOW): Promise<number> {
     let thrown = 0;
     for (let i = 0; i < n; i++) {
-      try { await enforceGlobalBudget(now); } catch { thrown++; }
+      try { await enforceGlobalBudget(GLOBAL_DAILY_CAP, now); } catch { thrown++; }
     }
     return thrown;
   }
@@ -111,11 +112,18 @@ describe('enforceGlobalBudget — product-wide daily breaker, atomic', () => {
     expect(thrown).toBe(1);
   });
 
+  it('cap=0 disables the breaker (admin removed the cap)', async () => {
+    // С cap=0 даже выше дефолтного капа ничего не бросает.
+    let threw = false;
+    try { await enforceGlobalBudget(0, NOW); } catch { threw = true; }
+    expect(threw).toBe(false);
+  });
+
   it('resets on the next UTC day', async () => {
     await callGlobal(GLOBAL_DAILY_CAP); // exhaust
     const nextDay = NOW + 24 * 60 * 60 * 1000;
     let threw = false;
-    try { await enforceGlobalBudget(nextDay); } catch { threw = true; }
+    try { await enforceGlobalBudget(GLOBAL_DAILY_CAP, nextDay); } catch { threw = true; }
     expect(threw).toBe(false);
   });
 });

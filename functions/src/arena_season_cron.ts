@@ -16,8 +16,8 @@ import * as functions from 'firebase-functions/v2';
 import * as admin from 'firebase-admin';
 import {
   applySeasonRollback, seasonIdForDate,
-  SEASON_ROLLBACK_STEPS, SEASON_FLOOR_INDEX,
 } from './arena_season';
+import { resolveArenaSeasonConfig } from './arena_season_config';
 
 const REGION = 'us-central1';
 const BATCH = 300;
@@ -30,6 +30,9 @@ export const arenaSeasonRolloverCron = functions.scheduler.onSchedule(
     const seasonRef = db.collection('arena_seasons').doc(nowSeasonId);
     const seasonSnap = await seasonRef.get();
     if (seasonSnap.exists) return; // этот сезон уже открыт → откат уже сделан, no-op
+
+    // Тюнинг отката из Firestore (fallback = дефолты).
+    const seasonCfg = await resolveArenaSeasonConfig(db);
 
     // Финальная таблица прошлого сезона: uid → место. Прошлый сезон вычисляем по
     // профилям (у них seasonId != nowSeasonId). Берём один общий «прошлый» id из топа.
@@ -86,7 +89,7 @@ export const arenaSeasonRolloverCron = functions.scheduler.onSchedule(
 
         const rolled = applySeasonRollback(
           dd.rank?.tier ?? 'bronze', dd.rank?.level ?? 'I',
-          SEASON_ROLLBACK_STEPS, SEASON_FLOOR_INDEX,
+          seasonCfg.rollbackSteps, seasonCfg.floorIndex,
         );
         writer.set(doc.ref, {
           'rank.tier': rolled.tier,

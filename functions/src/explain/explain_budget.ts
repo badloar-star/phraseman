@@ -77,12 +77,14 @@ export async function enforceUserGenLimit(authUid: string, stableUid: string, no
  * Throws resource-exhausted once the day's generation count would exceed GLOBAL_DAILY_CAP.
  * (Read-then-throw-else-increment inside one tx — NOT increment-then-read, which races.)
  */
-export async function enforceGlobalBudget(nowMs: number = Date.now()): Promise<void> {
+export async function enforceGlobalBudget(cap: number = GLOBAL_DAILY_CAP, nowMs: number = Date.now()): Promise<void> {
+  // cap=0 → глобального дневного капа нет (админ может снять ограничение).
+  if (cap <= 0) return;
   const ref = admin.firestore().collection(GLOBAL_BUDGET_COLLECTION).doc(utcDateKey(nowMs));
   await admin.firestore().runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const genCount = Number(data.genCount ?? 0);
-    if (genCount >= GLOBAL_DAILY_CAP) {
+    if (genCount >= cap) {
       throw new HttpsError('resource-exhausted', 'explain_global_budget');
     }
     tx.set(ref, {

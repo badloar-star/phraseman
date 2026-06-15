@@ -1,6 +1,7 @@
 import {
   rankIndex, indexToRank, applySeasonRollback,
   applySeasonRatingDelta, seasonIdForDate, quarterEndMs,
+  arenaSeasonConfigFromData, ARENA_SEASON_DEFAULTS,
 } from './arena_season';
 
 describe('rankIndex / indexToRank', () => {
@@ -55,6 +56,38 @@ describe('applySeasonRatingDelta — SR at ceiling', () => {
   });
   it('peakSR only ever rises', () => {
     expect(applySeasonRatingDelta(200, 180, 'win', false)).toEqual({ sr: 225, peakSR: 225 });
+  });
+  it('uses admin config when passed (win/loss/bot overrides)', () => {
+    const cfg = { srWin: 40, srLoss: 10, srBotWin: 5 };
+    expect(applySeasonRatingDelta(100, 100, 'win', false, cfg)).toEqual({ sr: 140, peakSR: 140 });
+    expect(applySeasonRatingDelta(100, 130, 'loss', false, cfg)).toEqual({ sr: 90, peakSR: 130 });
+    expect(applySeasonRatingDelta(100, 100, 'win', true, cfg)).toEqual({ sr: 105, peakSR: 105 });
+  });
+  it('omitting config == defaults (behaviour unchanged when no doc)', () => {
+    expect(applySeasonRatingDelta(100, 100, 'win', false)).toEqual({ sr: 125, peakSR: 125 });
+  });
+});
+
+describe('arenaSeasonConfigFromData — Firestore → config (with fallback)', () => {
+  it('empty/undefined → defaults', () => {
+    expect(arenaSeasonConfigFromData(undefined)).toEqual(ARENA_SEASON_DEFAULTS);
+    expect(arenaSeasonConfigFromData({})).toEqual(ARENA_SEASON_DEFAULTS);
+  });
+  it('reads numbers from remote_config-style keys', () => {
+    expect(arenaSeasonConfigFromData({
+      arena_sr_win: 30, arena_sr_loss: 15, arena_sr_bot_win: 8,
+      arena_season_rollback_steps: 5, arena_season_floor_index: 4,
+    })).toEqual({ srWin: 30, srLoss: 15, srBotWin: 8, rollbackSteps: 5, floorIndex: 4 });
+  });
+  it('per-field fallback: bad value keeps default', () => {
+    const out = arenaSeasonConfigFromData({ arena_sr_win: 'nope', arena_sr_loss: 15 });
+    expect(out.srWin).toBe(ARENA_SEASON_DEFAULTS.srWin); // fallback
+    expect(out.srLoss).toBe(15);
+  });
+  it('clamps out-of-range to bounds', () => {
+    const out = arenaSeasonConfigFromData({ arena_sr_win: 99999, arena_season_rollback_steps: 999 });
+    expect(out.srWin).toBe(999); // max 999
+    expect(out.rollbackSteps).toBe(23); // max 23
   });
 });
 

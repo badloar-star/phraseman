@@ -26,6 +26,7 @@ import {
   isRetryableRejected,
 } from './explain/explain_cache';
 import { enforceUserGenLimit, enforceGlobalBudget } from './explain/explain_budget';
+import { resolveJobConfig } from './openai_jobs_config';
 import { validateExplainInput, sanitizeExplanationOutput } from './explain/explain_gates';
 import { buildExplainPrompt, resolvePromptLangKey } from './explain/explain_prompts';
 import { openAiChat } from './explain/explain_provider';
@@ -94,6 +95,8 @@ export const explainPhrase = onCall({
   const lang = asText(data.lang, 12) || 'ru';
 
   const db = admin.firestore();
+  // Админ-конфиг (модель/глобальный кап/выключатель). Fallback = текущие дефолты.
+  const jobCfg = await resolveJobConfig(db, 'explain');
   const authUid = request.auth.uid;
   // SECURITY: resolve the stable identity from auth ONLY. Two args — request.data is NOT passed.
   const stableUid = await resolveStableUidForAuth(db, authUid);
@@ -120,11 +123,17 @@ export const explainPhrase = onCall({
     return { ok: true, text: buildFallback(phraseMeaning), status: 'rejected', fromCache: true };
   }
 
+  // Kill-switch: если explain выключен админом — НЕ генерируем (экономим OpenAI),
+  // отдаём бесплатный fallback (как при exhausted). Кэш выше уже обслужен бесплатно.
+  if (!jobCfg.enabled) {
+    return { ok: true, text: buildFallback(phraseMeaning), status: 'exhausted', fromCache: false };
+  }
+
   // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
   //    exhausted, degrade gracefully to the fallback — do NOT 500 the user.
   try {
     await enforceUserGenLimit(authUid, stableUid);
-    await enforceGlobalBudget();
+    await enforceGlobalBudget(jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
       return { ok: true, text: buildFallback(phraseMeaning), status: 'exhausted', fromCache: false };
@@ -142,7 +151,7 @@ export const explainPhrase = onCall({
   // 6. Generate the full explanation (v1: no streaming — see CONTEXT "Streaming: explicit status").
   const gen = await openAiChat({
     apiKey,
-    model: MODEL_DEFAULT,
+    model: jobCfg.model,
     messages: [{ role: 'user', content: buildExplainPrompt(phraseEn, phraseMeaning, lang) }],
     maxTokens: GEN_MAX_TOKENS,
     temperature: GEN_TEMPERATURE,
@@ -155,7 +164,7 @@ export const explainPhrase = onCall({
   // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
   //    text regardless of verdict — we risk showing raw text to one user, never to all.
   if (verdict.ok) {
-    await writeReadyExplanation(phraseHash, sanitized, { lang, phraseEn, model: MODEL_DEFAULT });
+    await writeReadyExplanation(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model });
   } else {
     await writeRejectedExplanation(phraseHash, verdict.reason);
   }
@@ -166,7 +175,7 @@ export const explainPhrase = onCall({
     authUid,
     phraseHash,
     lang,
-    model: MODEL_DEFAULT,
+    model: jobCfg.model,
     genPromptTokens: gen.promptTokens,
     genCompletionTokens: gen.completionTokens,
     judgePromptTokens: verdict.promptTokens,

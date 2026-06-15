@@ -13,6 +13,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import * as admin from 'firebase-admin';
 import { applyStarDelta } from './arena_rank_progression';
 import { applySeasonRatingDelta, seasonIdForDate, rankIndex, type MatchOutcome } from './arena_season';
+import { resolveArenaSeasonConfig } from './arena_season_config';
 
 const REGION = 'us-central1';
 const DRAW_XP = 30;
@@ -45,6 +46,8 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
   const xpDelta = isDraw ? DRAW_XP : (won ? 50 : 15);
   const nowSeasonId = seasonIdForDate(new Date());
   const outcome: MatchOutcome = isDraw ? 'draw' : won ? 'win' : isLast ? 'loss' : 'neutral';
+  // Тюнинг SR из Firestore (fallback = дефолты). Читаем до транзакции.
+  const seasonCfg = await resolveArenaSeasonConfig(db);
 
   const result = await db.runTransaction(async (tx) => {
     const snap = await tx.get(profileRef);
@@ -77,7 +80,7 @@ export const arenaBotMatchRecord = onCall({ region: REGION }, async (request) =>
     const curPeak = staleSeason ? 0 : (data.peakSR ?? 0);
     const curPeakRankIdx = staleSeason ? 0 : (data.seasonPeakRankIndex ?? 0);
     const sr = wasCeiling
-      ? applySeasonRatingDelta(curSr, curPeak, outcome, true) // бот = половина победы
+      ? applySeasonRatingDelta(curSr, curPeak, outcome, true, seasonCfg) // бот = половина победы
       : { sr: curSr, peakSR: curPeak };
     const newPeakRankIdx = Math.max(curPeakRankIdx, rankIndex(newTier, newLevel));
 

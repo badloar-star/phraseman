@@ -1,6 +1,6 @@
 import {
   applySeasonRatingDelta, applySeasonRollback, seasonIdForDate, rankIndex,
-  quarterEndMs, seasonNumberFromId,
+  quarterEndMs, seasonNumberFromId, ARENA_SR_DEFAULTS,
 } from '../app/arena_season_math';
 
 describe('client season math mirrors server', () => {
@@ -9,6 +9,17 @@ describe('client season math mirrors server', () => {
     expect(applySeasonRatingDelta(100, 100, 'win', true)).toEqual({ sr: 112, peakSR: 112 });
     expect(applySeasonRatingDelta(10, 50, 'loss', false)).toEqual({ sr: 0, peakSR: 50 });
     expect(applySeasonRatingDelta(100, 120, 'draw', false)).toEqual({ sr: 100, peakSR: 120 });
+  });
+  it('optional config overrides SR (mirrors server signature)', () => {
+    const cfg = { srWin: 40, srLoss: 10, srBotWin: 5 };
+    expect(applySeasonRatingDelta(100, 100, 'win', false, cfg)).toEqual({ sr: 140, peakSR: 140 });
+    expect(applySeasonRatingDelta(100, 130, 'loss', false, cfg)).toEqual({ sr: 90, peakSR: 130 });
+    expect(applySeasonRatingDelta(100, 100, 'win', true, cfg)).toEqual({ sr: 105, peakSR: 105 });
+  });
+  it('ARENA_SR_DEFAULTS match the server defaults', () => {
+    expect(ARENA_SR_DEFAULTS).toEqual({ srWin: 25, srLoss: 20, srBotWin: 12 });
+    // omitting config == defaults (parity preserved)
+    expect(applySeasonRatingDelta(100, 100, 'win', false, ARENA_SR_DEFAULTS)).toEqual({ sr: 125, peakSR: 125 });
   });
   it('rollback floor = bronze III', () => {
     expect(applySeasonRollback('legend', 'III', 3, 2))

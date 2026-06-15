@@ -41,7 +41,16 @@ export type RemoteBoolKey =
   | 'speaking_enabled'
   | 'collectibles_enabled'
   | 'league_xp_promotion_enabled'
-  | 'lifetime_button_enabled';
+  | 'lifetime_button_enabled'
+  | 'explain_enabled'
+  | 'maintenance_banner'
+  | 'maintenance_block';
+
+/** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
+export type RemoteTextKey =
+  | 'maintenance_ru'
+  | 'maintenance_uk'
+  | 'maintenance_es';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -88,6 +97,20 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // без релиза/OTA — уже купившие сохраняют доступ (премиум держится на
   // entitlement RevenueCat, а не на видимости кнопки).
   lifetime_button_enabled: false,
+  // «Объясни как для 5-летнего»: дефолт FALSE (когортный rollout). Firestore-
+  // override имеет приоритет над env EXPO_PUBLIC_EXPLAIN_ENABLED.
+  explain_enabled: false,
+  // Режим обслуживания (управляется из «Пульта»). Дефолт FALSE — приложение
+  // работает. banner = мягкая плашка сверху; block = жёсткий полноэкранный
+  // блок-экран. Включается у всех живьём (onSnapshot), без релиза.
+  maintenance_banner: false,
+  maintenance_block: false,
+};
+
+const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
+  maintenance_ru: '',
+  maintenance_uk: '',
+  maintenance_es: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -123,6 +146,7 @@ const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
 // Firestore-fed overrides. Filled by remote_config_client; empty until then.
 let _numberOverrides: Partial<Record<RemoteNumberKey, number>> = {};
 let _boolOverrides: Partial<Record<RemoteBoolKey, boolean>> = {};
+let _textOverrides: Partial<Record<RemoteTextKey, string>> = {};
 let _configSignature = 'defaults';
 
 function clampNumber(key: RemoteNumberKey, value: number): number {
@@ -153,6 +177,13 @@ export function getRemoteBool(key: RemoteBoolKey): boolean {
   return DEFAULT_FLAGS[key];
 }
 
+/** Resolve a text value (override → default ''). */
+export function getRemoteText(key: RemoteTextKey): string {
+  const override = _textOverrides[key];
+  if (typeof override === 'string') return override;
+  return DEFAULT_TEXTS[key];
+}
+
 /**
  * Apply a fresh config snapshot from Firestore. Unknown keys are ignored;
  * out-of-type values are dropped. Returns the new signature (changes when any
@@ -161,9 +192,11 @@ export function getRemoteBool(key: RemoteBoolKey): boolean {
 export function applyRemoteConfigSnapshot(snapshot: {
   numbers?: Partial<Record<string, unknown>>;
   bools?: Partial<Record<string, unknown>>;
+  texts?: Partial<Record<string, unknown>>;
 }): string {
   const nextNumbers: Partial<Record<RemoteNumberKey, number>> = {};
   const nextBools: Partial<Record<RemoteBoolKey, boolean>> = {};
+  const nextTexts: Partial<Record<RemoteTextKey, string>> = {};
 
   for (const key of Object.keys(DEFAULT_NUMBERS) as RemoteNumberKey[]) {
     const raw = snapshot.numbers?.[key];
@@ -175,9 +208,14 @@ export function applyRemoteConfigSnapshot(snapshot: {
     const raw = snapshot.bools?.[key];
     if (typeof raw === 'boolean') nextBools[key] = raw;
   }
+  for (const key of Object.keys(DEFAULT_TEXTS) as RemoteTextKey[]) {
+    const raw = snapshot.texts?.[key];
+    if (typeof raw === 'string') nextTexts[key] = raw;
+  }
 
   _numberOverrides = nextNumbers;
   _boolOverrides = nextBools;
+  _textOverrides = nextTexts;
   _configSignature = buildSignature();
   return _configSignature;
 }
@@ -220,6 +258,16 @@ export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled')
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 /** Кнопка «Навсегда» (lifetime) показывается на пейволах. Дефолт false. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
+/** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
+export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
+export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');
+/** Локализованный текст режима обслуживания (ru/uk/es; пусто = дефолт компонента). */
+export function getMaintenanceText(lang: string): string {
+  const l = String(lang || '').toLowerCase();
+  if (l.startsWith('uk')) return getRemoteText('maintenance_uk');
+  if (l.startsWith('es')) return getRemoteText('maintenance_es');
+  return getRemoteText('maintenance_ru');
+}
 
 /**
  * Deterministic A/B group for a user (stable across launches unless the split
@@ -315,6 +363,7 @@ export async function getEffectiveFreeTrainerSessions(userId: string | null): Pr
 export function __resetRemoteFlagsForTest(): void {
   _numberOverrides = {};
   _boolOverrides = {};
+  _textOverrides = {};
   _configSignature = 'defaults';
 }
 

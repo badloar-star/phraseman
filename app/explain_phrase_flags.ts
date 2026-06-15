@@ -25,7 +25,14 @@ function boolFromEnv(name: string): boolean | undefined {
   return raw === 'true' || raw === '1';
 }
 
-/** Включена ли фича (когортный rollout). Дефолт false. */
+/** Включена ли фича (когортный rollout). Дефолт false.
+ *  Источники (любой включает): Remote Config (admin «Пульт») ИЛИ env QA-флаг. */
 export function isExplainEnabled(): boolean {
+  // Remote Config имеет приоритет: если админ включил — фича включена.
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { getRemoteBool } = require('./remote_flags') as { getRemoteBool: (k: string) => boolean };
+    if (getRemoteBool('explain_enabled')) return true;
+  } catch { /* remote_flags недоступен — падаем на env */ }
   return boolFromEnv('EXPO_PUBLIC_EXPLAIN_ENABLED') ?? EXPLAIN_ENABLED_DEFAULT;
 }

@@ -26,6 +26,32 @@ export const SR_BOT_WIN = 12;
 export const SEASON_ROLLBACK_STEPS = 3;
 export const SEASON_FLOOR_INDEX = 2; // bronze III
 
+/** Тюнингуемые величины SR (зеркало серверного ArenaSeasonConfig). */
+export interface ArenaSrConfig {
+  srWin: number;
+  srLoss: number;
+  srBotWin: number;
+}
+export const ARENA_SR_DEFAULTS: ArenaSrConfig = { srWin: SR_WIN, srLoss: SR_LOSS, srBotWin: SR_BOT_WIN };
+
+/**
+ * Тюнинг SR из Remote Config (те же ключи arena_sr_*, что читает сервер из
+ * remote_config/app.numbers) с fallback на дефолты. Для оптимистичного показа,
+ * чтобы клиент совпадал с сервером, если админ изменил SR. Импортируется лениво,
+ * чтобы arena_season_math оставался чистым модулем для парных тестов.
+ */
+export function arenaSrConfigFromFlags(): ArenaSrConfig {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const flags = require('./remote_flags') as {
+      getArenaSrWin: () => number; getArenaSrLoss: () => number; getArenaSrBotWin: () => number;
+    };
+    return { srWin: flags.getArenaSrWin(), srLoss: flags.getArenaSrLoss(), srBotWin: flags.getArenaSrBotWin() };
+  } catch {
+    return { ...ARENA_SR_DEFAULTS };
+  }
+}
+
 export function rankIndex(tier: string, level: string): number {
   const ti = RANK_TIERS.indexOf(tier as RankTier);
   const li = RANK_LEVELS.indexOf(level as RankLevel);
@@ -49,11 +75,12 @@ export function applySeasonRollback(
 
 export function applySeasonRatingDelta(
   sr: number, peakSR: number, outcome: MatchOutcome, isBot: boolean,
+  cfg: ArenaSrConfig = ARENA_SR_DEFAULTS,
 ): { sr: number; peakSR: number } {
   const base = Number.isFinite(sr) ? sr : 0;
   let next = base;
-  if (outcome === 'win') next = base + (isBot ? SR_BOT_WIN : SR_WIN);
-  else if (outcome === 'loss') next = Math.max(0, base - SR_LOSS);
+  if (outcome === 'win') next = base + (isBot ? cfg.srBotWin : cfg.srWin);
+  else if (outcome === 'loss') next = Math.max(0, base - cfg.srLoss);
   const safePeak = Number.isFinite(peakSR) ? peakSR : 0;
   return { sr: next, peakSR: Math.max(safePeak, next) };
 }

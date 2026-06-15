@@ -8433,6 +8433,10 @@
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-collectibles_enabled" onchange="saveControlPanelBool('collectibles_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-collectibles_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
       </div>
       <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">«Объясни как для 5-летнего»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Кнопка объяснения фразы (платный ИИ).</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-explain_enabled" onchange="saveControlPanelBool('explain_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-explain_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Реферальная программа</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Нужна задеплоенная invite-страница.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-referral_enabled" onchange="saveControlPanelBool('referral_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-referral_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
       </div>
@@ -20356,6 +20360,7 @@
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
     { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
+    { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: false },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: false },
   ];
@@ -20500,6 +20505,7 @@
   const CP_FEATURE_TOGGLES = [
     { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
     { key: 'collectibles_enabled',     label: '«Сокровищница» (коллекционные)', def: true,  hint: 'Дроп коллекционных фраз из уроков и арены.' },
+    { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: false, hint: 'Кнопка объяснения фразы (платный ИИ).' },
     { key: 'referral_enabled',         label: 'Реферальная программа',          def: false, hint: 'Нужна задеплоенная invite-страница.' },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
     { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'Покажется только когда продукт заведён в RevenueCat.' },

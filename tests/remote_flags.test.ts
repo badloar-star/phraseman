@@ -11,6 +11,9 @@ import {
   getRemoteConfigSignature,
   isReferralEnabled,
   isLeagueXpPromotionEnabled,
+  isMaintenanceBanner,
+  isMaintenanceBlock,
+  getMaintenanceText,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -78,6 +81,44 @@ describe('remote_flags', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 20 } });
       const after = getRemoteConfigSignature();
       expect(after).not.toBe(before);
+    });
+  });
+
+  describe('maintenance + texts (wave 3)', () => {
+    it('maintenance flags default off, texts default empty', () => {
+      expect(isMaintenanceBanner()).toBe(false);
+      expect(isMaintenanceBlock()).toBe(false);
+      expect(getMaintenanceText('ru')).toBe('');
+      expect(getMaintenanceText('uk')).toBe('');
+      expect(getMaintenanceText('es')).toBe('');
+    });
+    it('snapshot turns on block + applies localized text', () => {
+      applyRemoteConfigSnapshot({
+        bools: { maintenance_block: true },
+        texts: { maintenance_ru: 'Тех. работы', maintenance_uk: 'Тех. роботи', maintenance_es: 'Mantenimiento' },
+      });
+      expect(isMaintenanceBlock()).toBe(true);
+      expect(getMaintenanceText('ru')).toBe('Тех. работы');
+      expect(getMaintenanceText('uk-UA')).toBe('Тех. роботи');
+      expect(getMaintenanceText('es')).toBe('Mantenimiento');
+      // unknown lang → ru
+      expect(getMaintenanceText('pl')).toBe('Тех. работы');
+    });
+    it('a later snapshot without texts reverts to empty (full replace)', () => {
+      applyRemoteConfigSnapshot({ texts: { maintenance_ru: 'X' } });
+      expect(getMaintenanceText('ru')).toBe('X');
+      applyRemoteConfigSnapshot({ bools: { maintenance_banner: true } });
+      expect(getMaintenanceText('ru')).toBe('');
+      expect(isMaintenanceBanner()).toBe(true);
+    });
+    it('non-string text values are ignored', () => {
+      applyRemoteConfigSnapshot({ texts: { maintenance_ru: 123 as unknown as string } });
+      expect(getMaintenanceText('ru')).toBe('');
+    });
+    it('explain_enabled defaults false, snapshot enables', () => {
+      expect(getRemoteBool('explain_enabled')).toBe(false);
+      applyRemoteConfigSnapshot({ bools: { explain_enabled: true } });
+      expect(getRemoteBool('explain_enabled')).toBe(true);
     });
   });
 

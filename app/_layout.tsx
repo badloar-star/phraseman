@@ -30,6 +30,7 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
+import MaintenanceGate from '../components/MaintenanceGate';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import { getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
@@ -2498,6 +2499,9 @@ function AppContent() {
     )}
 
     <StartupSplashHold visible={startupSplashVisible} />
+
+    {/* Режим обслуживания — самый верхний слой (поверх всего, даже сплеша). */}
+    <MaintenanceGate />
 
     </View>
   );

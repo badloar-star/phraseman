@@ -24,6 +24,7 @@ const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
 type RawConfig = {
   numbers?: Record<string, unknown>;
   bools?: Record<string, unknown>;
+  texts?: Record<string, unknown>;
 };
 
 type FirestoreFactory = () => {
@@ -52,7 +53,8 @@ function sanitizeRaw(raw: RawConfig | undefined): RawConfig {
   if (!raw || typeof raw !== 'object') return {};
   const numbers = raw.numbers && typeof raw.numbers === 'object' ? raw.numbers : {};
   const bools = raw.bools && typeof raw.bools === 'object' ? raw.bools : {};
-  return { numbers, bools };
+  const texts = raw.texts && typeof raw.texts === 'object' ? raw.texts : {};
+  return { numbers, bools, texts };
 }
 
 function applyAndCache(raw: RawConfig | undefined): void {

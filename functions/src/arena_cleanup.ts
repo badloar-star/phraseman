@@ -146,3 +146,30 @@ export async function cleanupStaleArenaSessions(): Promise<number> {
 
   return nAborted;
 }
+
+/**
+ * Deletes expired arena_rooms_live documents. Rooms get expiresAt=+24h on
+ * creation and are rejected on join once expired, but stale docs accumulate
+ * without a cleanup pass. Runs in matchmakingCron (every 5 min) to bound
+ * collection growth. (ARENA-006)
+ */
+export async function cleanupExpiredArenaRooms(): Promise<number> {
+  const now = Date.now();
+  let nDeleted = 0;
+  try {
+    const snap = await db
+      .collection('arena_rooms_live')
+      .where('expiresAt', '<', now)
+      .limit(100)
+      .get();
+    const writer = db.bulkWriter();
+    for (const doc of snap.docs) {
+      writer.delete(doc.ref);
+      nDeleted += 1;
+    }
+    await writer.close();
+  } catch (e) {
+    console.error('cleanupExpiredArenaRooms', e);
+  }
+  return nDeleted;
+}

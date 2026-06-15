@@ -8414,24 +8414,101 @@
     </div>
   </section>
 
-  <!-- Главный тумблер: кнопка «Навсегда» (lifetime) на пейволах -->
+  <!-- Рубильники фич: булевы флаги remote_config/app.bools (живой kill-switch) -->
   <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
-      <div style="flex:1;min-width:260px">
-        <div style="font-size:15px;font-weight:800;color:#fbbf24">Кнопка «Навсегда» (lifetime) на пейволах</div>
-        <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
-          Показывает разовую покупку «навсегда» на всех пейволах. Выключение <b>прячет кнопку у всех</b> без обновления приложения.
-          Уже купившие сохраняют доступ — премиум держится на покупке в сторе, а не на кнопке.
-          <br><span style="color:#6b7280">Кнопка реально появится, только когда продукт lifetime заведён в RevenueCat (см. LIFETIME_SETUP_GUIDE).</span>
-        </div>
-        <div id="cp-lifetime-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
-      </div>
-      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none">
-        <input type="checkbox" id="cp-lifetime-toggle" onchange="saveControlPanelLifetime(this.checked)" disabled
-          style="width:46px;height:26px;cursor:pointer"/>
-        <span id="cp-lifetime-label" style="font-size:13px;font-weight:700;color:#cbd5e1;min-width:54px">…</span>
-      </label>
+    <div style="font-size:15px;font-weight:800;color:#fbbf24">🎛 Рубильники фич</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      Аварийное включение/выключение функций <b>без релиза и OTA</b> — изменения подхватываются клиентами за секунды.
+      Уже начатые покупки/доступы не отзываются.
     </div>
+    <div id="cp-toggles-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Режим «Устно»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Произношение/говорение в уроках и тренере.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-speaking_enabled" onchange="saveControlPanelBool('speaking_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-speaking_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">«Сокровищница» (коллекционные)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Дроп коллекционных фраз из уроков и арены.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-collectibles_enabled" onchange="saveControlPanelBool('collectibles_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-collectibles_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Реферальная программа</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Нужна задеплоенная invite-страница.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-referral_enabled" onchange="saveControlPanelBool('referral_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-referral_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Лиги: переход по XP</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Временный переход вверх по порогу XP.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-league_xp_promotion_enabled" onchange="saveControlPanelBool('league_xp_promotion_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-league_xp_promotion_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Кнопка «Навсегда» (lifetime)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Покажется только когда продукт заведён в RevenueCat. Купившие сохраняют доступ.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-lifetime_button_enabled" onchange="saveControlPanelBool('lifetime_button_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-lifetime_button_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🤖 ИИ: модель и дневные лимиты диалога (Theo). Бэкенд admin_runtime_config. -->
+  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:15px;font-weight:800;color:#a78bfa">🤖 Управление ИИ</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      Модель и дневные лимиты ИИ-диалога (Theo) — прямой контроль расходов OpenAI <b>без релиза</b>. Применяется на сервере за секунды.
+    </div>
+    <div id="cp-ai-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+
+    <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">
+      <label style="display:grid;gap:5px;min-width:200px;color:#cbd5e1;font-size:12px;font-weight:700">
+        Модель диалога
+        <select id="cp-ai-dialog-model" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;min-height:38px">
+          <option value="gpt-4.1-nano">GPT-4.1 nano</option>
+          <option value="gpt-4.1-mini">GPT-4.1 mini</option>
+          <option value="gpt-4.1">GPT-4.1</option>
+          <option value="gpt-4o-mini">GPT-4o mini</option>
+        </select>
+      </label>
+      <label style="display:grid;gap:5px;min-width:160px;color:#cbd5e1;font-size:12px;font-weight:700">
+        Free: ответов/день
+        <input id="cp-ai-free-daily" type="number" min="0" max="10000" step="1" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;min-height:38px">
+      </label>
+      <label style="display:grid;gap:5px;min-width:180px;color:#cbd5e1;font-size:12px;font-weight:700">
+        Premium: ответов/день
+        <input id="cp-ai-premium-daily" type="number" min="0" max="10000" step="1" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;min-height:38px">
+      </label>
+      <button type="button" onclick="saveControlPanelAi()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;min-height:38px">💾 Сохранить</button>
+      <button type="button" onclick="loadControlPanelAi()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
+      <button type="button" onclick="switchTab('openai-budget')" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">📊 Бюджет OpenAI →</button>
+    </div>
+  </div>
+
+  <!-- 🚨 Режим обслуживания: глобальный баннер (мягкий) + жёсткий блок-экран -->
+  <div style="background:#1a1414;border:1px solid #3a2a2a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:15px;font-weight:800;color:#f87171">🚨 Режим обслуживания</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      На случай инцидента/срочного объявления. <b>Баннер</b> — мягкая плашка сверху (приложение работает).
+      <b>Блок</b> — полноэкранный «идёт обслуживание» (приложение недоступно). Включается у всех <b>без релиза</b>.
+      <br><span style="color:#fbbf24">Жёсткий блок делает приложение недоступным — используйте осознанно.</span>
+    </div>
+    <div id="cp-maint-status" style="font-size:12px;color:#6b7280;margin-top:8px">Загрузка…</div>
+
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #3a2a2a">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Мягкий баннер</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Плашка сверху, приложение работает.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-maint-banner" onchange="saveControlPanelMaintenance()" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-maint-banner-label" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #3a2a2a">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#f87171">Жёсткий блок</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Полноэкранный «идёт обслуживание», приложение недоступно.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-maint-block" onchange="saveControlPanelMaintenance()" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-maint-block-label" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+      <label style="display:grid;gap:5px;color:#cbd5e1;font-size:12px;font-weight:700">Текст (RU)
+        <textarea id="cp-maint-text-ru" rows="2" placeholder="Идут технические работы. Скоро вернёмся." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+      <label style="display:grid;gap:5px;color:#cbd5e1;font-size:12px;font-weight:700">Текст (UK)
+        <textarea id="cp-maint-text-uk" rows="2" placeholder="Тривають технічні роботи. Скоро повернемось." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+      <label style="display:grid;gap:5px;color:#cbd5e1;font-size:12px;font-weight:700">Текст (ES)
+        <textarea id="cp-maint-text-es" rows="2" placeholder="Estamos en mantenimiento. Volvemos pronto." style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;resize:vertical"></textarea></label>
+    </div>
+    <button type="button" onclick="saveControlPanelMaintenance()" style="margin-top:10px;background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700">💾 Сохранить текст</button>
   </div>
 
   <!-- Хаб: переходы к остальным живым рычагам -->
@@ -20248,10 +20325,16 @@
     { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
     { key: 'paywall_v2_pct', label: 'Пейволл: доля v2 %', def: 50, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
+    { key: 'onboarding_green_pct', label: 'Онбординг: доля зелёного A/B %', def: 50, min: 0, max: 100 },
+    { key: 'arena_sr_win', label: 'Арена: SR за победу', def: 25, min: 0, max: 999 },
+    { key: 'arena_sr_loss', label: 'Арена: SR за поражение', def: 20, min: 0, max: 999 },
+    { key: 'arena_sr_bot_win', label: 'Арена: SR за победу над ботом', def: 12, min: 0, max: 999 },
+    { key: 'arena_season_rollback_steps', label: 'Арена: откат рангов за сезон', def: 3, min: 0, max: 23 },
   ];
   const RC_BOOL_FIELDS = [
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
+    { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: false },
   ];
@@ -20348,7 +20431,12 @@
   window.saveRemoteConfig = async function() {
     rcSetStatus('Сохранение…');
     try {
-      const numbers = {};
+      // Capture previous doc FIRST so we preserve keys this form doesn't manage
+      // (maintenance_* bools, texts, и любые будущие поля Пульта). Иначе merge:false
+      // затёр бы их при сохранении на вкладке Remote Config.
+      let prev = {};
+      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      const numbers = Object.assign({}, (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {});
       for (const f of RC_NUMBER_FIELDS) {
         const el = document.getElementById('rc-num-' + f.key);
         const raw = el && el.value !== '' ? Number(el.value) : null;
@@ -20356,20 +20444,18 @@
           numbers[f.key] = Math.max(f.min, Math.min(f.max, raw));
         }
       }
-      const bools = {};
+      const bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
       for (const f of RC_BOOL_FIELDS) {
         const el = document.getElementById('rc-bool-' + f.key);
         if (el) bools[f.key] = !!el.checked;
       }
+      const texts = (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {};
       const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
-      // Capture previous values to record what changed (changelog).
-      let prev = {};
-      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
       const changes = [];
-      for (const k of Object.keys(numbers)) { const o = prev.numbers ? prev.numbers[k] : undefined; if (String(o) !== String(numbers[k])) changes.push(`${k}: ${o ?? '∅'} → ${numbers[k]}`); }
-      for (const k of Object.keys(bools)) { const o = prev.bools ? prev.bools[k] : undefined; if (Boolean(o) !== Boolean(bools[k])) changes.push(`${k}: ${o ?? '∅'} → ${bools[k]}`); }
+      for (const f of RC_NUMBER_FIELDS) { const k = f.key; const o = prev.numbers ? prev.numbers[k] : undefined; if (String(o) !== String(numbers[k])) changes.push(`${k}: ${o ?? '∅'} → ${numbers[k]}`); }
+      for (const f of RC_BOOL_FIELDS) { const k = f.key; const o = prev.bools ? prev.bools[k] : undefined; if (Boolean(o) !== Boolean(bools[k])) changes.push(`${k}: ${o ?? '∅'} → ${bools[k]}`); }
       await setDoc(doc(db, 'remote_config', 'app'), {
-        numbers, bools, updatedAt: Date.now(), updatedBy: who,
+        numbers, bools, texts, updatedAt: Date.now(), updatedBy: who,
       }, { merge: false });
       // Write a changelog entry (best-effort; doesn't block the save).
       if (changes.length) {
@@ -20388,68 +20474,195 @@
   };
 
   // ── Пульт управления (Control Panel) ──────────────────────────────────────
-  // Кнопка «Навсегда» (lifetime) на пейволах: тот же флаг remote_config/app
-  // bools.lifetime_button_enabled, что и в Remote Config — здесь крупным тумблером.
-  function cpRenderLifetime(on) {
-    const cb = document.getElementById('cp-lifetime-toggle');
-    const lbl = document.getElementById('cp-lifetime-label');
-    if (cb) { cb.checked = !!on; cb.disabled = false; }
-    if (lbl) { lbl.textContent = on ? 'Включена' : 'Выключена'; lbl.style.color = on ? '#4ade80' : '#9ca3af'; }
-  }
-  function cpSetLifetimeStatus(msg, color) {
-    const el = document.getElementById('cp-lifetime-status');
+  // Рубильники фич: булевы флаги remote_config/app.bools, читаемые клиентом
+  // онлайн (onSnapshot). Дефолты держим в синхроне с app/remote_flags.ts.
+  const CP_FEATURE_TOGGLES = [
+    { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
+    { key: 'collectibles_enabled',     label: '«Сокровищница» (коллекционные)', def: true,  hint: 'Дроп коллекционных фраз из уроков и арены.' },
+    { key: 'referral_enabled',         label: 'Реферальная программа',          def: false, hint: 'Нужна задеплоенная invite-страница.' },
+    { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
+    { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'Покажется только когда продукт заведён в RevenueCat.' },
+  ];
+
+  function cpSetStatus(msg, color) {
+    const el = document.getElementById('cp-toggles-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  function cpRenderToggle(key, on) {
+    const cb = document.getElementById('cp-bool-' + key);
+    const lbl = document.getElementById('cp-bool-label-' + key);
+    if (cb) { cb.checked = !!on; cb.disabled = false; }
+    if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#4ade80' : '#9ca3af'; }
   }
 
   window.loadControlPanel = async function() {
     window._controlPanelLoaded = true;
-    cpSetLifetimeStatus('Загрузка…');
+    cpSetStatus('Загрузка…');
     try {
       const snap = await getDoc(doc(db, 'remote_config', 'app'));
       const data = snap.exists() ? (snap.data() || {}) : {};
-      const on = !!(data.bools && data.bools.lifetime_button_enabled === true);
-      cpRenderLifetime(on);
-      cpSetLifetimeStatus(snap.exists()
-        ? ('Сейчас: ' + (on ? 'показывается' : 'скрыта') + ' · обновлял: ' + (data.updatedBy || '—'))
-        : 'Документа ещё нет — переключатель создаст его.', on ? '#4ade80' : '#9ca3af');
+      const bools = (data && data.bools && typeof data.bools === 'object') ? data.bools : {};
+      for (const f of CP_FEATURE_TOGGLES) {
+        const on = (typeof bools[f.key] === 'boolean') ? bools[f.key] : f.def;
+        cpRenderToggle(f.key, on);
+      }
+      cpSetStatus(snap.exists()
+        ? ('Загружено · обновлял: ' + (data.updatedBy || '—'))
+        : 'Документа ещё нет — переключатель создаст его.', '#4ade80');
     } catch (e) {
-      cpSetLifetimeStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
-      const cb = document.getElementById('cp-lifetime-toggle');
-      if (cb) cb.disabled = false;
+      cpSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
+      for (const f of CP_FEATURE_TOGGLES) { const cb = document.getElementById('cp-bool-' + f.key); if (cb) cb.disabled = false; }
     }
+    if (typeof window.loadControlPanelAi === 'function') void window.loadControlPanelAi();
+    if (typeof window.loadControlPanelMaintenance === 'function') void window.loadControlPanelMaintenance();
   };
 
-  // Пишем ТОЛЬКО поле lifetime_button_enabled, сохраняя остальной remote_config
-  // (numbers + прочие bools) — чтобы не затереть лимиты/экономику/A-B.
-  window.saveControlPanelLifetime = async function(checked) {
-    const cb = document.getElementById('cp-lifetime-toggle');
+  // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя
+  // остальной документ (numbers + прочие bools) — чтобы не затереть лимиты/A-B.
+  window.saveControlPanelBool = async function(key, checked) {
+    const cb = document.getElementById('cp-bool-' + key);
     if (cb) cb.disabled = true;
-    cpSetLifetimeStatus('Сохранение…');
+    cpSetStatus('Сохранение…');
     try {
       let prev = {};
       try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
       const numbers = (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {};
       const bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
-      const was = bools.lifetime_button_enabled === true;
-      bools.lifetime_button_enabled = !!checked;
+      const texts = (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {};
+      const was = bools[key] === true;
+      bools[key] = !!checked;
       const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
       await setDoc(doc(db, 'remote_config', 'app'), {
-        numbers, bools, updatedAt: Date.now(), updatedBy: who,
+        numbers, bools, texts, updatedAt: Date.now(), updatedBy: who,
       }, { merge: false });
       if (was !== !!checked) {
         try {
           await addDoc(collection(db, 'remote_config_history'), {
-            changes: ['lifetime_button_enabled: ' + was + ' → ' + !!checked], by: who, at: new Date().toISOString(), numbers, bools,
+            changes: [key + ': ' + was + ' → ' + !!checked], by: who, at: new Date().toISOString(), numbers, bools,
           });
         } catch (_) {}
-        if (typeof logAction === 'function') logAction('control_panel_lifetime_toggle', 'remote_config/app', { enabled: !!checked });
+        if (typeof logAction === 'function') logAction('control_panel_toggle', 'remote_config/app', { key: key, enabled: !!checked });
       }
-      cpRenderLifetime(!!checked);
-      cpSetLifetimeStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      cpRenderToggle(key, !!checked);
+      cpSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
       if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false; // пусть Remote Config перечитает
     } catch (e) {
-      cpSetLifetimeStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+      cpSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
       if (cb) cb.disabled = false;
+    }
+  };
+
+  // Совместимость: старый онколл lifetime-тумблера → общий обработчик.
+  window.saveControlPanelLifetime = function(checked) { return window.saveControlPanelBool('lifetime_button_enabled', checked); };
+
+  // ── Пульт: управление ИИ (Theo) — те же CF, что во вкладке OpenAI budget ───
+  function cpAiSetStatus(msg, color) {
+    const el = document.getElementById('cp-ai-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  window.loadControlPanelAi = async function() {
+    cpAiSetStatus('Загрузка…');
+    try {
+      const modelRes = await getOpenAiDialogModelConfigCallable()({ action: 'get' });
+      const m = (modelRes && modelRes.data) || {};
+      const sel = document.getElementById('cp-ai-dialog-model');
+      if (sel && m.activeModel) sel.value = m.activeModel;
+      const quotaRes = await getOpenAiDialogQuotaConfigCallable()({ action: 'get' });
+      const q = (quotaRes && quotaRes.data) || {};
+      const free = document.getElementById('cp-ai-free-daily');
+      const prem = document.getElementById('cp-ai-premium-daily');
+      if (free && q.freeDailyReplies != null) free.value = q.freeDailyReplies;
+      if (prem && q.premiumDailyReplies != null) prem.value = q.premiumDailyReplies;
+      cpAiSetStatus('Модель: ' + (m.activeModel || '—') + ' · free ' + (q.freeDailyReplies ?? '—') + '/день · premium ' + (q.premiumDailyReplies ?? '—') + '/день (макс ' + (q.maxDailyReplies ?? '—') + ')', '#4ade80');
+    } catch (e) {
+      cpAiSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e) + ' (нужны права admin)', '#f87171');
+    }
+  };
+  window.saveControlPanelAi = async function() {
+    cpAiSetStatus('Сохранение…');
+    try {
+      const sel = document.getElementById('cp-ai-dialog-model');
+      const free = document.getElementById('cp-ai-free-daily');
+      const prem = document.getElementById('cp-ai-premium-daily');
+      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      // Модель
+      await getOpenAiDialogModelConfigCallable()({ action: 'set', model: sel ? sel.value : undefined });
+      // Квоты (сервер сам валидирует/клампит до maxDailyReplies)
+      const freeVal = free && free.value !== '' ? Math.max(0, Math.round(Number(free.value))) : undefined;
+      const premVal = prem && prem.value !== '' ? Math.max(0, Math.round(Number(prem.value))) : undefined;
+      await getOpenAiDialogQuotaConfigCallable()({ action: 'set', freeDailyReplies: freeVal, premiumDailyReplies: premVal });
+      if (typeof logAction === 'function') logAction('control_panel_ai_save', 'admin_runtime_config', { model: sel ? sel.value : null, free: freeVal, premium: premVal });
+      cpAiSetStatus('✅ Сохранено. Сервер применит за секунды.', '#4ade80');
+      void window.loadControlPanelAi();
+    } catch (e) {
+      cpAiSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  // ── Пульт: режим обслуживания (флаги + текст в remote_config/app) ──────────
+  function cpMaintSetStatus(msg, color) {
+    const el = document.getElementById('cp-maint-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  function cpMaintRenderToggle(id, on) {
+    const cb = document.getElementById(id);
+    const lbl = document.getElementById(id + '-label');
+    if (cb) { cb.checked = !!on; cb.disabled = false; }
+    if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#f87171' : '#9ca3af'; }
+  }
+  window.loadControlPanelMaintenance = async function() {
+    cpMaintSetStatus('Загрузка…');
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const bools = (data && data.bools && typeof data.bools === 'object') ? data.bools : {};
+      const texts = (data && data.texts && typeof data.texts === 'object') ? data.texts : {};
+      cpMaintRenderToggle('cp-maint-banner', bools.maintenance_banner === true);
+      cpMaintRenderToggle('cp-maint-block', bools.maintenance_block === true);
+      const ru = document.getElementById('cp-maint-text-ru'); if (ru) ru.value = texts.maintenance_ru || '';
+      const uk = document.getElementById('cp-maint-text-uk'); if (uk) uk.value = texts.maintenance_uk || '';
+      const es = document.getElementById('cp-maint-text-es'); if (es) es.value = texts.maintenance_es || '';
+      const active = bools.maintenance_block === true ? 'ЖЁСТКИЙ БЛОК активен' : bools.maintenance_banner === true ? 'баннер активен' : 'выключен';
+      cpMaintSetStatus('Сейчас: ' + active + ' · обновлял: ' + (data.updatedBy || '—'), bools.maintenance_block ? '#f87171' : bools.maintenance_banner ? '#fbbf24' : '#9ca3af');
+    } catch (e) {
+      cpMaintSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e), '#f87171');
+      ['cp-maint-banner','cp-maint-block'].forEach((id) => { const cb = document.getElementById(id); if (cb) cb.disabled = false; });
+    }
+  };
+  window.saveControlPanelMaintenance = async function() {
+    cpMaintSetStatus('Сохранение…');
+    try {
+      let prev = {};
+      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      const numbers = (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {};
+      const bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
+      const texts = Object.assign({}, (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {});
+      const bannerEl = document.getElementById('cp-maint-banner');
+      const blockEl = document.getElementById('cp-maint-block');
+      const wasBlock = bools.maintenance_block === true;
+      bools.maintenance_banner = !!(bannerEl && bannerEl.checked);
+      bools.maintenance_block = !!(blockEl && blockEl.checked);
+      const ru = document.getElementById('cp-maint-text-ru'); if (ru) texts.maintenance_ru = String(ru.value || '').slice(0, 500);
+      const uk = document.getElementById('cp-maint-text-uk'); if (uk) texts.maintenance_uk = String(uk.value || '').slice(0, 500);
+      const es = document.getElementById('cp-maint-text-es'); if (es) texts.maintenance_es = String(es.value || '').slice(0, 500);
+      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
+      await setDoc(doc(db, 'remote_config', 'app'), {
+        numbers, bools, texts, updatedAt: Date.now(), updatedBy: who,
+      }, { merge: false });
+      // Жёсткий блок — критичное действие: всегда в аудит и историю.
+      try {
+        await addDoc(collection(db, 'remote_config_history'), {
+          changes: ['maintenance_banner=' + bools.maintenance_banner + ', maintenance_block=' + bools.maintenance_block], by: who, at: new Date().toISOString(), numbers, bools,
+        });
+      } catch (_) {}
+      if (typeof logAction === 'function') logAction('control_panel_maintenance', 'remote_config/app', { banner: bools.maintenance_banner, block: bools.maintenance_block });
+      cpMaintRenderToggle('cp-maint-banner', bools.maintenance_banner);
+      cpMaintRenderToggle('cp-maint-block', bools.maintenance_block);
+      if (!wasBlock && bools.maintenance_block) cpMaintSetStatus('⚠️ ЖЁСТКИЙ БЛОК ВКЛЮЧЁН — приложение недоступно у всех.', '#f87171');
+      else cpMaintSetStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+      if (typeof window.loadRemoteConfig === 'function') window._remoteConfigLoaded = false;
+    } catch (e) {
+      cpMaintSetStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
     }
   };
 

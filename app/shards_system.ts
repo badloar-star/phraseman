@@ -378,50 +378,24 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
       return true;
     }
 
-    const localBalance = await getShardsBalance();
-    const db = firestore();
-
+    // Выдача через Cloud Function — обходит Firestore-правило hasNoShardWrites()
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions') as {
+      getFunctions: (...args: unknown[]) => unknown;
+      httpsCallable: (
+        fns: unknown,
+        name: string,
+      ) => (data: unknown) => Promise<{ data: { alreadyClaimed: boolean; newBalance: number } }>;
+    };
+    const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
+    const cfCall = httpsCallable(getFunctions(getApp(), 'us-central1'), 'dailyTasksAllShardsClaim');
     const updatedAtMs = Date.now();
-    const newBalance = await db.runTransaction(async (transaction) => {
-      const claimRef = db
-        .collection('users')
-        .doc(uid)
-        .collection(REWARD_CLAIMS_COLLECTION)
-        .doc(`daily_tasks_all_${dayKey}`);
-      const claimSnap = await transaction.get(claimRef);
-      if (claimSnap.exists) {
-        return null as number | null;
-      }
+    const cfResult = await cfCall({ dayKey });
+    const { alreadyClaimed, newBalance } = cfResult.data;
 
-      const userRef = db.collection('users').doc(uid);
-      const userSnap = await transaction.get(userRef);
-      const cloudShards = userSnap.exists ? parseShardBalance(userSnap.data()?.shards) : null;
-      const cloudVal = cloudShards ?? 0;
-      const base = Math.max(localBalance, cloudVal);
-      const next = base + amount;
-
-      transaction.set(claimRef, {
-        source: 'daily_tasks_all',
-        dayKey,
-        amount,
-        createdAt: firestore.FieldValue.serverTimestamp(),
-      });
-
-      transaction.set(userRef, {
-        shards: next,
-        shards_updated_at_ms: updatedAtMs,
-        shards_updated_op: 'earn',
-        shards_updated_reason: 'daily_tasks_all',
-      }, { merge: true });
-      return next;
-    });
-
-    if (newBalance === null || newBalance === undefined) {
+    if (alreadyClaimed) {
       return false;
     }
 
-    // После успешной Firestore-транзакции обязаны записать локально: ранний return внутри lock
-    // (если ключ уже есть) оставлял облако с новым балансом, а модалка всё равно шла по emit ниже.
     await withStorageLock(async () => {
       const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: 'daily_tasks_all' };
       await AsyncStorage.multiSet([

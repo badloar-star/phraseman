@@ -120,6 +120,10 @@ const { vipRevokeMine } = require('./vip_revoke');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { leagueFinalizeCron } = require('./league_finalize_cron');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
@@ -205,6 +209,8 @@ exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
 exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
+exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
+exports.leagueFinalizeCron = leagueFinalizeCron;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 

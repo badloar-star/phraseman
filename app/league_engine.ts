@@ -9,6 +9,7 @@ import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues
 import { getCanonicalUserId } from './user_id_policy';
 import { rememberLeagueStateSnapshot } from './league_open_cache_policy';
 import { getLeagueXpPromotionThreshold, isLeagueXpPromotionEnabled } from './remote_flags';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 
@@ -659,6 +660,43 @@ const getStoredMyPointsFromLeagueState = (
   return readMemberPoints(me, 0);
 };
 
+type ServerLeagueWeekResult = {
+  rank: number;
+  total: number;
+  promoted: boolean;
+  demoted: boolean;
+  prevLeagueId: number;
+  newLeagueId: number;
+  points: number;
+};
+
+/**
+ * Читает финализированный результат за прошлую неделю из Firestore
+ * (записывается leagueFinalizeCron каждый понедельник в 00:05 UTC).
+ * Возвращает null если документ ещё не готов или облако недоступно.
+ */
+const fetchServerLeagueResult = async (
+  uid: string,
+  weekId: string,
+): Promise<ServerLeagueWeekResult | null> => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    const firestore = require('@react-native-firebase/firestore').default;
+    const snap = await firestore()
+      .collection('users')
+      .doc(uid)
+      .collection('league_week_results')
+      .doc(weekId)
+      .get();
+    if (!snap.exists) return null;
+    const d = snap.data();
+    if (!d || typeof d.rank !== 'number' || typeof d.total !== 'number') return null;
+    return d as ServerLeagueWeekResult;
+  } catch {
+    return null;
+  }
+};
+
 export const checkLeagueOnAppOpen = async (
   myName: string,
   myWeekPoints: number, // передаём НЕДЕЛЬНЫЕ очки
@@ -711,7 +749,24 @@ export const checkLeagueOnAppOpen = async (
   if (currentWeekId !== state.weekId) {
     const storedMyPoints = getStoredMyPointsFromLeagueState(state, myName, myUid);
     const rolloverGroup = ensureCurrentUserInGroup(state.group, myName, storedMyPoints, myUid, 'stored-points');
-    const result = calculateResult({ ...state, group: rolloverGroup }, storedMyPoints);
+
+    // Предпочитаем серверный результат (leagueFinalizeCron) — он авторитетен,
+    // потому что считался по реальным очкам всех участников, а не по кэшу клиента.
+    let result: LeagueResult;
+    const serverResult = myUid ? await fetchServerLeagueResult(myUid, state.weekId) : null;
+    if (serverResult) {
+      result = {
+        prevLeagueId: serverResult.prevLeagueId,
+        newLeagueId: serverResult.newLeagueId,
+        myRank: serverResult.rank,
+        totalInGroup: serverResult.total,
+        promoted: serverResult.promoted,
+        demoted: serverResult.demoted,
+        group: rolloverGroup,
+      };
+    } else {
+      result = calculateResult({ ...state, group: rolloverGroup }, storedMyPoints);
+    }
     await savePendingResult(result);
 
     // КРИТИЧНО: state.weekId надо двинуть на новую неделю СРАЗУ, иначе при сбое

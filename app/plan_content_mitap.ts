@@ -6711,57 +6711,27 @@ export const MITAP_DAY_26: PlanContentDay = {
         {
           "text": "Thank",
           "partOfSpeech": "verb",
-          "distractors": [
-            "read",
-            "write",
-            "drive",
-            "cook",
-            "run"
-          ]
+          "distractors": ["read", "write", "drive", "cook", "run"]
         },
         {
           "text": "you",
           "partOfSpeech": "pronoun",
-          "distractors": [
-            "we",
-            "they",
-            "he",
-            "she",
-            "it"
-          ]
+          "distractors": ["we", "they", "he", "she", "it"]
         },
         {
           "text": "for",
           "partOfSpeech": "preposition",
-          "distractors": [
-            "with",
-            "near",
-            "from",
-            "by",
-            "of"
-          ]
+          "distractors": ["with", "near", "from", "by", "of"]
         },
         {
           "text": "your",
           "partOfSpeech": "pronoun",
-          "distractors": [
-            "my",
-            "his",
-            "her",
-            "their",
-            "our"
-          ]
+          "distractors": ["my", "his", "her", "their", "our"]
         },
         {
           "text": "help",
           "partOfSpeech": "noun",
-          "distractors": [
-            "call",
-            "desk",
-            "room",
-            "box",
-            "door"
-          ]
+          "distractors": ["floor", "desk", "room", "box", "door"]
         }
       ]
     }
@@ -7084,7 +7054,7 @@ export const MITAP_DAY_28: PlanContentDay = {
         { text: 'working', partOfSpeech: 'verb', distractors: ['checking', 'reading', 'writing', 'calling', 'planning'] },
         { text: 'on', partOfSpeech: 'preposition', distractors: ['at', 'in', 'of', 'for', 'with'] },
         { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'this', 'that', 'my'] },
-        { text: 'report', partOfSpeech: 'noun', distractors: ['budget', 'email', 'screen', 'client', 'meeting'] },
+        { text: 'report', partOfSpeech: 'noun', distractors: ['window', 'ceiling', 'weather', 'sunset', 'ocean'] },
         { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'yesterday', 'again', 'then'] },
       ],
     },
@@ -7142,7 +7112,7 @@ export const MITAP_DAY_28: PlanContentDay = {
       },
       words: [
         { text: 'One', partOfSpeech: 'determiner', distractors: ['two', 'three', 'some', 'many', 'few'] },
-        { text: 'thing', partOfSpeech: 'noun', distractors: ['task', 'step', 'part', 'point', 'issue'] },
+        { text: 'thing', partOfSpeech: 'noun', distractors: ['moment', 'reason', 'feeling', 'place', 'sound'] },
         { text: 'is', partOfSpeech: 'to-be', distractors: ['am', 'are', 'was', 'were', 'be'] },
         { text: 'blocking', partOfSpeech: 'verb', distractors: ['reading', 'sending', 'calling', 'planning', 'checking'] },
         { text: 'me', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'you'] },
@@ -8212,7 +8182,7 @@ export const MITAP_DAY_34: PlanContentDay = {
         commonMistake: { ru: 'Не меняй порядок: говори count me in, а не count in me.', uk: 'Не змінюй порядок: кажи count me in, а не count in me.', es: 'No cambies el orden: di count me in, no count in me.' },
       },
       words: [
-        { text: 'Sounds', partOfSpeech: 'verb', distractors: ['looks', 'feels', 'seems', 'goes', 'stays'] },
+        { text: 'Sounds', partOfSpeech: 'verb', distractors: ['wants', 'needs', 'brings', 'goes', 'stays'] },
         { text: 'good', partOfSpeech: 'adjective', distractors: ['tall', 'red', 'empty', 'round', 'cold'] },
         { text: 'count', partOfSpeech: 'verb', distractors: ['keep', 'put', 'let', 'bring', 'take'] },
         { text: 'me', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'us', 'them', 'you'] },
@@ -8645,7 +8615,7 @@ export const MITAP_DAY_36: PlanContentDay = {
       words: [
         { text: 'We', partOfSpeech: 'pronoun', distractors: ['They', 'You', 'He', 'She', 'It'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'are', 'were', 'do'] },
-        { text: 'only', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'never', 'maybe', 'almost'] },
+        { text: 'only', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'never', 'maybe', 'yet'] },
         { text: 'thirty', partOfSpeech: 'determiner', distractors: ['twenty', 'forty', 'fifty', 'sixty', 'ninety'] },
         { text: 'minutes', partOfSpeech: 'noun', distractors: ['reports', 'screens', 'desks', 'emails', 'plans'] },
         { text: 'today', partOfSpeech: 'adverb', distractors: ['soon', 'later', 'never', 'always', 'maybe'] },
@@ -8771,7 +8741,7 @@ export const MITAP_DAY_37: PlanContentDay = {
         { text: 'we', partOfSpeech: 'pronoun', distractors: ['they', 'he', 'she', 'you', 'it'] },
         { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'may', 'could'] },
         { text: 'look', partOfSpeech: 'verb', distractors: ['jump', 'cook', 'sleep', 'sing', 'paint'] },
-        { text: 'at', partOfSpeech: 'preposition', distractors: ['off', 'into', 'under', 'across', 'behind'] },
+        { text: 'at', partOfSpeech: 'preposition', distractors: ['off', 'for', 'under', 'across', 'behind'] },
         { text: 'numbers', partOfSpeech: 'noun', distractors: ['windows', 'gardens', 'bottles', 'clouds', 'stones'] },
       ],
     },
@@ -8809,7 +8779,7 @@ export const MITAP_DAY_37: PlanContentDay = {
       words: [
         { text: 'This', partOfSpeech: 'determiner', distractors: ['Each', 'Every', 'Some', 'Any', 'These'] },
         { text: 'meeting', partOfSpeech: 'noun', distractors: ['kitchen', 'forest', 'ticket', 'jacket', 'window'] },
-        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'were', 'am', 'be'] },
+        { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'been', 'were', 'am', 'be'] },
         { text: 'about', partOfSpeech: 'preposition', distractors: ['under', 'near', 'across', 'beyond', 'onto'] },
         { text: 'planning', partOfSpeech: 'verb', distractors: ['cooking', 'running', 'singing', 'driving', 'reading'] },
         { text: 'launch', partOfSpeech: 'noun', distractors: ['garden', 'bridge', 'spoon', 'jacket', 'river'] },
@@ -9120,7 +9090,7 @@ export const MITAP_DAY_39: PlanContentDay = {
         commonMistake: { ru: 'Говори over to you, не over for you. Здесь нужно слово to.', uk: 'Кажи over to you, не over for you. Тут потрібне слово to.', es: 'Di over to you, no over for you. Aquí va la palabra to.' },
       },
       words: [
-        { text: 'Over', partOfSpeech: 'other', distractors: ['Down', 'Off', 'Out', 'Up', 'Back'] },
+        { text: 'Over', partOfSpeech: 'other', distractors: ['Down', 'Off', 'Out', 'Up', 'Around'] },
         { text: 'to', partOfSpeech: 'preposition', distractors: ['for', 'of', 'at', 'in', 'on'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'him', 'her', 'them', 'us'] },
         { text: 'Mark', partOfSpeech: 'other', distractors: ['Monday', 'London', 'blue', 'seven', 'door'] },
@@ -9340,7 +9310,7 @@ export const MITAP_DAY_40: PlanContentDay = {
         commonMistake: { ru: 'В вопросе Can идёт первым: Can we focus. Не We can focus.', uk: 'У питанні Can іде першим: Can we focus. Не We can focus.', es: 'En la pregunta Can va primero: ¿Can we focus? No ¿We can focus?' },
       },
       words: [
-        { text: 'Can', partOfSpeech: 'modal', distractors: ['could', 'will', 'should', 'must', 'may'] },
+        { text: 'Can', partOfSpeech: 'modal', distractors: ['will', 'must', 'would', 'might', 'shall'] },
         { text: 'we', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'they', 'you'] },
         { text: 'focus', partOfSpeech: 'verb', distractors: ['open', 'close', 'read', 'write', 'draw'] },
         { text: 'on', partOfSpeech: 'preposition', distractors: ['at', 'in', 'by', 'for', 'of'] },
@@ -9695,7 +9665,7 @@ export const MITAP_DAY_42: PlanContentDay = {
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'get', 'hold', 'keep'] },
         { text: 'shared', partOfSpeech: 'verb', distractors: ['cooked', 'painted', 'cleaned', 'walked', 'driven'] },
         { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'my', 'this', 'that', 'each'] },
-        { text: 'agenda', partOfSpeech: 'noun', distractors: ['garden', 'river', 'kitchen', 'window', 'ladder'] },
+        { text: 'agenda', partOfSpeech: 'noun', distractors: ['river', 'window', 'ladder', 'engine', 'mirror'] },
         { text: 'with', partOfSpeech: 'preposition', distractors: ['about', 'from', 'near', 'over', 'under'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['they', 'we', 'he', 'she', 'it'] },
       ],
@@ -9755,7 +9725,7 @@ export const MITAP_DAY_42: PlanContentDay = {
         { text: 'Thanks', partOfSpeech: 'noun', distractors: ['sorry', 'hello', 'please', 'welcome', 'goodbye'] },
         { text: 'for', partOfSpeech: 'preposition', distractors: ['with', 'about', 'near', 'over', 'under'] },
         { text: 'sharing', partOfSpeech: 'verb', distractors: ['cooking', 'painting', 'cleaning', 'walking', 'driving'] },
-        { text: 'your', partOfSpeech: 'determiner', distractors: ['a', 'this', 'that', 'each', 'the'] },
+        { text: 'your', partOfSpeech: 'determiner', distractors: ['these', 'those', 'many', 'few', 'several'] },
         { text: 'update', partOfSpeech: 'noun', distractors: ['garden', 'river', 'kitchen', 'window', 'ladder'] },
       ],
     },
@@ -9858,7 +9828,7 @@ export const MITAP_DAY_43: PlanContentDay = {
         { text: 'Sorry', partOfSpeech: 'other', distractors: ['Hello', 'Goodbye', 'Welcome', 'Congrats', 'Cheers'] },
         { text: 'could', partOfSpeech: 'modal', distractors: ['should', 'must', 'might', 'shall', 'may'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['I', 'he', 'she', 'we', 'they'] },
-        { text: 'repeat', partOfSpeech: 'verb', distractors: ['check', 'send', 'plan', 'book', 'close'] },
+        { text: 'repeat', partOfSpeech: 'verb', distractors: ['wait', 'arrive', 'belong', 'happen', 'remain'] },
         { text: 'that', partOfSpeech: 'pronoun', distractors: ['who', 'what', 'one', 'here', 'there'] },
         { text: 'please', partOfSpeech: 'other', distractors: ['maybe', 'hardly', 'indeed', 'quite', 'rather'] },
       ],
@@ -10317,7 +10287,7 @@ export const MITAP_DAY_45: PlanContentDay = {
         { text: 'So', partOfSpeech: 'adverb', distractors: ['Rarely', 'Almost', 'Soon', 'Maybe', 'Often'] },
         { text: 'we', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'it', 'you', 'they'] },
         { text: 'will', partOfSpeech: 'modal', distractors: ['can', 'must', 'should', 'may', 'would'] },
-        { text: 'start', partOfSpeech: 'verb', distractors: ['close', 'leave', 'build', 'throw', 'carry'] },
+        { text: 'start', partOfSpeech: 'verb', distractors: ['wear', 'cook', 'drive', 'throw', 'carry'] },
         { text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'my', 'this', 'some'] },
         { text: 'project', partOfSpeech: 'noun', distractors: ['river', 'spoon', 'cloud', 'ticket', 'bridge'] },
         { text: 'on', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'to', 'of'] },
@@ -10425,7 +10395,7 @@ export const MITAP_DAY_46: PlanContentDay = {
       words: [
         { text: 'Can', partOfSpeech: 'modal', distractors: ['Will', 'Did', 'Does', 'Do', 'Are'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
-        { text: 'give', partOfSpeech: 'verb', distractors: ['read', 'plan', 'check', 'write', 'close'] },
+        { text: 'give', partOfSpeech: 'verb', distractors: ['open', 'plan', 'check', 'finish', 'repeat'] },
         { text: 'me', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
         { text: 'an', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
         { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
@@ -10445,7 +10415,7 @@ export const MITAP_DAY_46: PlanContentDay = {
       words: [
         { text: 'Could', partOfSpeech: 'modal', distractors: ['Will', 'Did', 'Does', 'Do', 'Are'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
-        { text: 'show', partOfSpeech: 'verb', distractors: ['read', 'plan', 'check', 'write', 'close'] },
+        { text: 'show', partOfSpeech: 'verb', distractors: ['explain', 'plan', 'check', 'describe', 'close'] },
         { text: 'me', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'I'] },
         { text: 'an', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
         { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
@@ -10468,7 +10438,7 @@ export const MITAP_DAY_46: PlanContentDay = {
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'having', 'be', 'being', 'get'] },
         { text: 'an', partOfSpeech: 'article', distractors: ['its', 'some', 'no', 'each', 'both'] },
         { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
-        { text: 'for', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'on', 'of'] },
+        { text: 'for', partOfSpeech: 'preposition', distractors: ['in', 'at', 'by', 'on', 'with'] },
         { text: 'this', partOfSpeech: 'determiner', distractors: ['its', 'his', 'whose', 'few', 'both'] },
       ],
     },
@@ -10486,7 +10456,7 @@ export const MITAP_DAY_46: PlanContentDay = {
       words: [
         { text: 'Can', partOfSpeech: 'modal', distractors: ['Will', 'Did', 'Does', 'Do', 'Are'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['he', 'she', 'we', 'they', 'it'] },
-        { text: 'give', partOfSpeech: 'verb', distractors: ['read', 'plan', 'check', 'write', 'close'] },
+        { text: 'give', partOfSpeech: 'verb', distractors: ['wash', 'plan', 'check', 'drive', 'close'] },
         { text: 'one', partOfSpeech: 'determiner', distractors: ['its', 'his', 'whose', 'each', 'both'] },
         { text: 'more', partOfSpeech: 'adjective', distractors: ['red', 'cold', 'tall', 'round', 'empty'] },
         { text: 'example', partOfSpeech: 'noun', distractors: ['desk', 'room', 'week', 'date', 'chair'] },
@@ -10633,7 +10603,7 @@ export const MITAP_DAY_47: PlanContentDay = {
         { text: 'do', partOfSpeech: 'verb', distractors: ['does', 'did', 'am', 'is', 'was'] },
         { text: 'not', partOfSpeech: 'adverb', distractors: ['never', 'quite', 'also', 'still', 'just'] },
         { text: 'understand', partOfSpeech: 'verb', distractors: ['remember', 'explain', 'believe', 'notice', 'accept'] },
-        { text: 'this', partOfSpeech: 'determiner', distractors: ['a', 'each', 'every', 'its', 'some'] },
+        { text: 'this', partOfSpeech: 'determiner', distractors: ['my', 'your', 'their', 'its', 'our'] },
         { text: 'part', partOfSpeech: 'noun', distractors: ['desk', 'room', 'chair', 'door', 'floor'] },
       ],
     },
@@ -10653,7 +10623,7 @@ export const MITAP_DAY_47: PlanContentDay = {
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'do', 'am', 'was'] },
         { text: 'lost', partOfSpeech: 'verb', distractors: ['cooked', 'painted', 'cleaned', 'walked', 'driven'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['me', 'us', 'them', 'him', 'her'] },
-        { text: 'here', partOfSpeech: 'adverb', distractors: ['twice', 'alone', 'badly', 'loudly', 'slowly'] },
+        { text: 'here', partOfSpeech: 'adverb', distractors: ['quietly', 'alone', 'badly', 'loudly', 'slowly'] },
         { text: 'sorry', partOfSpeech: 'other', distractors: ['please', 'hello', 'thanks', 'maybe', 'okay'] },
       ],
     },
@@ -10671,7 +10641,7 @@ export const MITAP_DAY_47: PlanContentDay = {
       words: [
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'we', 'they', 'he', 'she'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'do', 'am', 'was'] },
-        { text: 'missed', partOfSpeech: 'verb', distractors: ['dropped', 'skipped', 'ignored', 'refused', 'delayed'] },
+        { text: 'missed', partOfSpeech: 'verb', distractors: ['dropped', 'blocked', 'repeated', 'refused', 'delayed'] },
         { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'this', 'that', 'some', 'any'] },
         { text: 'last', partOfSpeech: 'adjective', distractors: ['early', 'late', 'wide', 'deep', 'round'] },
         { text: 'point', partOfSpeech: 'noun', distractors: ['desk', 'door', 'floor', 'wall', 'window'] },
@@ -10691,9 +10661,9 @@ export const MITAP_DAY_47: PlanContentDay = {
       words: [
         { text: 'Can', partOfSpeech: 'modal', distractors: ['may', 'will', 'must', 'should', 'would'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
-        { text: 'say', partOfSpeech: 'verb', distractors: ['read', 'write', 'show', 'ask', 'call'] },
+        { text: 'say', partOfSpeech: 'verb', distractors: ['buy', 'eat', 'break', 'lose', 'drop'] },
         { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'us', 'me', 'him', 'her'] },
-        { text: 'again', partOfSpeech: 'adverb', distractors: ['twice', 'alone', 'badly', 'loudly', 'quietly'] },
+        { text: 'again', partOfSpeech: 'adverb', distractors: ['badly', 'alone', 'never', 'always', 'forever'] },
         { text: 'please', partOfSpeech: 'other', distractors: ['sorry', 'thanks', 'hello', 'maybe', 'okay'] },
       ],
     },
@@ -10714,7 +10684,7 @@ export const MITAP_DAY_47: PlanContentDay = {
         { text: 'to', partOfSpeech: 'other', distractors: ['for', 'of', 'at', 'in', 'on'] },
         { text: 'be', partOfSpeech: 'to-be', distractors: ['am', 'is', 'are', 'was', 'been'] },
         { text: 'sure', partOfSpeech: 'adjective', distractors: ['empty', 'round', 'wooden', 'square', 'metal'] },
-        { text: 'understand', partOfSpeech: 'verb', distractors: ['remember', 'explain', 'believe', 'notice', 'accept'] },
+        { text: 'understand', partOfSpeech: 'verb', distractors: ['agree', 'listen', 'win', 'arrive', 'belong'] },
       ],
     },
   ],
@@ -10814,7 +10784,7 @@ export const MITAP_DAY_48: PlanContentDay = {
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'I', 'she'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['has', 'had', 'keep', 'hold', 'own'] },
         { text: 'any', partOfSpeech: 'determiner', distractors: ['a', 'each', 'its', 'this', 'my'] },
-        { text: 'questions', partOfSpeech: 'noun', distractors: ['answers', 'points', 'topics', 'ideas', 'notes'] },
+        { text: 'questions', partOfSpeech: 'noun', distractors: ['question', 'questioned', 'questioning', 'questionable', 'asking'] },
         { text: 'for', partOfSpeech: 'preposition', distractors: ['to', 'with', 'at', 'of', 'by'] },
       ],
     },
@@ -10835,8 +10805,8 @@ export const MITAP_DAY_48: PlanContentDay = {
         { text: 'explained', partOfSpeech: 'verb', distractors: ['explain', 'explains', 'showed', 'told', 'said'] },
         { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'this', 'my', 'some'] },
         { text: 'main', partOfSpeech: 'adjective', distractors: ['big', 'small', 'next', 'last', 'new'] },
-        { text: 'steps', partOfSpeech: 'noun', distractors: ['parts', 'points', 'tasks', 'stages', 'ideas'] },
-        { text: 'already', partOfSpeech: 'adverb', distractors: ['twice', 'once', 'rarely', 'barely', 'hardly'] },
+        { text: 'steps', partOfSpeech: 'noun', distractors: ['step', 'stepped', 'stepping', 'walks', 'moves'] },
+        { text: 'already', partOfSpeech: 'adverb', distractors: ['yet', 'ever', 'rarely', 'barely', 'hardly'] },
       ],
     },
     {
@@ -10851,13 +10821,13 @@ export const MITAP_DAY_48: PlanContentDay = {
         commonMistake: { ru: 'В просьбе не нужен you: говори «Please tell me», а не «Please you tell me».', uk: 'У проханні не потрібен you: кажи «Please tell me», а не «Please you tell me».', es: 'En la petición no va you: di «Please tell me», no «Please you tell me».' },
       },
       words: [
-        { text: 'Please', partOfSpeech: 'other', distractors: ['Kindly', 'Maybe', 'Just', 'Now', 'Well'] },
+        { text: 'Please', partOfSpeech: 'other', distractors: ['Often', 'Maybe', 'Just', 'Now', 'Well'] },
         { text: 'tell', partOfSpeech: 'verb', distractors: ['cook', 'drive', 'sleep', 'walk', 'swim'] },
         { text: 'me', partOfSpeech: 'pronoun', distractors: ['us', 'you', 'him', 'her', 'them'] },
-        { text: 'if', partOfSpeech: 'conjunction', distractors: ['when', 'that', 'so', 'as', 'unless'] },
+        { text: 'if', partOfSpeech: 'conjunction', distractors: ['because', 'that', 'so', 'as', 'unless'] },
         { text: 'something', partOfSpeech: 'pronoun', distractors: ['someone', 'nothing', 'everybody', 'myself', 'itself'] },
         { text: 'is', partOfSpeech: 'to-be', distractors: ['are', 'was', 'be', 'am', 'were'] },
-        { text: 'unclear', partOfSpeech: 'adjective', distractors: ['hard', 'strange', 'wrong', 'missing', 'new'] },
+        { text: 'unclear', partOfSpeech: 'adjective', distractors: ['wooden', 'square', 'blue', 'asleep', 'frozen'] },
       ],
     },
     {
@@ -10873,8 +10843,8 @@ export const MITAP_DAY_48: PlanContentDay = {
       },
       words: [
         { text: 'Has', partOfSpeech: 'verb', distractors: ['Have', 'Had', 'Does', 'Is', 'Was'] },
-        { text: 'everyone', partOfSpeech: 'pronoun', distractors: ['someone', 'anyone', 'nobody', 'each', 'all'] },
-        { text: 'understood', partOfSpeech: 'verb', distractors: ['understand', 'understands', 'heard', 'learned', 'seen'] },
+        { text: 'everyone', partOfSpeech: 'pronoun', distractors: ['they', 'all', 'nobody', 'each', 'we'] },
+        { text: 'understood', partOfSpeech: 'verb', distractors: ['understand', 'understands', 'understanding', 'forgotten', 'misunderstood'] },
         { text: 'the', partOfSpeech: 'determiner', distractors: ['a', 'an', 'this', 'my', 'some'] },
         { text: 'plan', partOfSpeech: 'noun', distractors: ['task', 'goal', 'idea', 'step', 'note'] },
         { text: 'now', partOfSpeech: 'adverb', distractors: ['soon', 'then', 'again', 'still', 'once'] },
@@ -10895,10 +10865,10 @@ export const MITAP_DAY_48: PlanContentDay = {
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'you', 'they', 'he', 'she'] },
         { text: 'can', partOfSpeech: 'modal', distractors: ['must', 'shall', 'dare', 'need', 'ought'] },
         { text: 'explain', partOfSpeech: 'verb', distractors: ['explains', 'explained', 'show', 'tell', 'repeat'] },
-        { text: 'it', partOfSpeech: 'pronoun', distractors: ['that', 'this', 'them', 'one', 'us'] },
+        { text: 'it', partOfSpeech: 'pronoun', distractors: ['them', 'one', 'us', 'him', 'her'] },
         { text: 'again', partOfSpeech: 'adverb', distractors: ['once', 'twice', 'more', 'still', 'back'] },
         { text: 'if', partOfSpeech: 'conjunction', distractors: ['when', 'that', 'so', 'as', 'unless'] },
-        { text: 'want', partOfSpeech: 'verb', distractors: ['wants', 'wanted', 'like', 'wish', 'prefer'] },
+        { text: 'want', partOfSpeech: 'verb', distractors: ['wants', 'wanted', 'wanting', 'bring', 'give'] },
       ],
     },
   ],
@@ -10980,7 +10950,7 @@ export const MITAP_DAY_49: PlanContentDay = {
         { text: 'Sorry', partOfSpeech: 'other', distractors: ['Please', 'Maybe', 'Almost', 'Really', 'Quite'] },
         { text: 'I', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'you', 'he', 'she'] },
         { text: 'have', partOfSpeech: 'verb', distractors: ['am', 'do', 'was', 'will', 'can'] },
-        { text: 'not', partOfSpeech: 'other', distractors: ['never', 'also', 'just', 'still', 'yet'] },
+        { text: 'not', partOfSpeech: 'other', distractors: ['soon', 'too', 'very', 'quite', 'really'] },
         { text: 'understood', partOfSpeech: 'verb', distractors: ['heard', 'noticed', 'believed', 'remembered', 'decided'] },
         { text: 'your', partOfSpeech: 'determiner', distractors: ['their', 'our', 'his', 'her', 'its'] },
         { text: 'point', partOfSpeech: 'noun', distractors: ['plan', 'goal', 'fact', 'rule', 'task'] },
@@ -11001,10 +10971,10 @@ export const MITAP_DAY_49: PlanContentDay = {
         { text: 'What', partOfSpeech: 'pronoun', distractors: ['Why', 'When', 'Where', 'How', 'Who'] },
         { text: 'did', partOfSpeech: 'verb', distractors: ['do', 'does', 'was', 'has', 'will'] },
         { text: 'you', partOfSpeech: 'pronoun', distractors: ['we', 'they', 'he', 'she', 'it'] },
-        { text: 'mean', partOfSpeech: 'verb', distractors: ['say', 'ask', 'write', 'call', 'read'] },
-        { text: 'by', partOfSpeech: 'other', distractors: ['for', 'with', 'at', 'on', 'of'] },
-        { text: 'that', partOfSpeech: 'determiner', distractors: ['this', 'each', 'any', 'some', 'every'] },
-        { text: 'word', partOfSpeech: 'noun', distractors: ['line', 'name', 'rule', 'term', 'note'] },
+        { text: 'mean', partOfSpeech: 'verb', distractors: ['send', 'ask', 'write', 'call', 'read'] },
+        { text: 'by', partOfSpeech: 'other', distractors: ['for', 'from', 'at', 'on', 'of'] },
+        { text: 'that', partOfSpeech: 'determiner', distractors: ['these', 'those', 'whose', 'any', 'no'] },
+        { text: 'word', partOfSpeech: 'noun', distractors: ['line', 'name', 'rule', 'sign', 'note'] },
       ],
     },
     {

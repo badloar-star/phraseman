@@ -1898,6 +1898,16 @@ function AppContent() {
     setShow(false);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
+    // UX-003: Запрашиваем пуш-разрешение в конце онбординга (не раньше — иначе система не даст
+    // повторного шанса). Делаем до paywall/welcome, но с небольшой задержкой, чтобы анимация
+    // закрытия онбординга завершилась до появления системного диалога.
+    void (async () => {
+      const already = await isNotificationPermissionGranted().catch(() => false);
+      if (!already) {
+        await new Promise<void>((r) => setTimeout(r, 600));
+        await requestNotificationPermissionWithFallback().catch(() => {});
+      }
+    })();
     // Небольшая задержка чтобы анимация закрытия онбординга успела завершиться
     const showWelcome = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
     if (showWelcome) {

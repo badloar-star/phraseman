@@ -40,13 +40,46 @@ function formatStreakDays(count: number, lang: Lang): string {
   });
 }
 
+function formatCountdown(msLeft: number, lang: Lang): string {
+  const totalSec = Math.max(0, Math.floor(msLeft / 1000));
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const time = h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`;
+  return triLang(lang, {
+    ru: `Истекает через ${time}`,
+    uk: `Спливає через ${time}`,
+    es: `Expira en ${time}`,
+    'pt-BR': `Expira em ${time}`,
+    vi: `Hết hạn sau ${time}`,
+    id: `Kedaluwarsa dalam ${time}`,
+    tr: `${time} içinde sona erer`,
+    pl: `Wygasa za ${time}`,
+  });
+}
+
 function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 'home' }: StreakReviveModalProps) {
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const [busy, setBusy] = useState(false);
+  const [msLeft, setMsLeft] = useState(0);
 
   useEffect(() => { if (!visible) setBusy(false); }, [visible]);
+
+  // Countdown timer — auto-closes when offer expires
+  useEffect(() => {
+    if (!visible || !offer?.expiresAt) return;
+    const tick = () => {
+      const remaining = offer.expiresAt - Date.now();
+      setMsLeft(remaining);
+      if (remaining <= 0) onClose();
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [visible, offer?.expiresAt, onClose]);
 
   const cost = offer?.costShards ?? 0;
   const lostStreak = offer?.lostStreak ?? 0;
@@ -128,7 +161,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
       visible={visible}
       semantic="warning"
       backdropAction="ghost"
-      kicker={triLang(lang, { ru: 'Стрик', uk: 'Стрик', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Streak', tr: 'Seri', pl: 'Seria' })}
+      kicker={triLang(lang, { ru: '', uk: '', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Streak', tr: 'Seri', pl: 'Seria' })}
       icon="🔥"
       title={triLang(lang, { ru: 'Цепочка прервалась', uk: 'Ланцюжок перервався', es: 'La racha se interrumpió', 'pt-BR': 'A sequência foi interrompida', vi: 'Chuỗi của bạn đã bị gián đoạn', id: 'Rangkaian terputus', tr: 'Serin kesildi', pl: 'Seria została przerwana' })}
       value={triLang(lang, {
@@ -155,6 +188,11 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
         <Image source={oskolokImageForPackShards(cost)} style={styles.priceIcon} contentFit="contain" />
         <Text style={[styles.priceValue, { color: accent, fontSize: f.body }]}>{cost}</Text>
       </View>
+      {msLeft > 0 && (
+        <Text style={[styles.countdown, { color: t.textSecond, fontSize: f.sub }]}>
+          {formatCountdown(msLeft, lang)}
+        </Text>
+      )}
     </RewardCardV2>
   );
 }
@@ -187,4 +225,5 @@ const styles = StyleSheet.create({
   },
   priceIcon: { width: 28, height: 28, flexShrink: 0 },
   priceValue: { fontWeight: '900' },
+  countdown: { marginTop: 10, textAlign: 'center', opacity: 0.7 },
 });

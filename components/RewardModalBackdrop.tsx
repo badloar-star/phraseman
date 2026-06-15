@@ -146,6 +146,50 @@ export function rewardModalPrimaryButtonText(themeMode: ThemeMode): string {
   return false ? '#FFFDF6' : '#101214';
 }
 
+/**
+ * Премиальная глубина карточки (стандарт 2026-06, «дорогая» версия).
+ * Возвращает слои свечения, выстроенные от АКЦЕНТА семантики — так каждая
+ * модалка получает один и тот же дорогой материал (двойное кольцо, верхний
+ * блик, нижняя цветная вуаль), но «жар» задаётся цветом: огонь у стрика,
+ * золото у наград, сапфир у осколков. Цвета — функция accent, не темы, чтобы
+ * не плодить ветки.
+ */
+export type RewardModalGlowLayers = {
+  /** Верхний световой блик панели (имитация света сверху). */
+  topHighlight: [string, string];
+  /** Нижняя цветная вуаль — свечение акцента «из глубины». */
+  bottomVeil: [string, string, string];
+  /** Внешнее гало кольца (мягкое, пульсирует). */
+  ringHaloOuter: string;
+  ringHaloInner: string;
+  /** Градиент обводки кольца (живой металл/пламя). */
+  ringStroke: [string, string, string];
+  /** Заливка-свечение под иконкой внутри кольца. */
+  ringInnerGlow: [string, string];
+};
+
+export function rewardModalGlowLayers(accent: string, warmShift?: string): RewardModalGlowLayers {
+  const a = (alpha: string) => withAccentAlpha(accent, alpha);
+  // warmShift = вторая горячая нота (например, для пламени стрика): обводка
+  // кольца тогда переливается от яркого акцента к более насыщенному «углю».
+  const w = warmShift
+    ? (alpha: string) => withAccentAlpha(warmShift, alpha)
+    : a;
+  return {
+    topHighlight: ['rgba(255,255,255,0.10)', 'rgba(255,255,255,0)'],
+    bottomVeil: ['rgba(0,0,0,0)', warmShift ? w('1A') : a('14'), warmShift ? w('38') : a('30')],
+    ringHaloOuter: a('22'),
+    ringHaloInner: a('4D'),
+    ringStroke: [a('FF'), w('CC'), w('40')],
+    ringInnerGlow: [a('33'), 'rgba(0,0,0,0)'],
+  };
+}
+
+function withAccentAlpha(hex: string, alpha: string): string {
+  if (hex.startsWith('#') && hex.length === 7) return `${hex}${alpha}`;
+  return hex;
+}
+
 function rewardModalImageOpacity(themeMode: ThemeMode): number {
   if (false) return 0.94;
   if (themeMode === 'gold') return 0.96;

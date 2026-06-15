@@ -6,6 +6,7 @@ import PrimaryButton from '../ui/PrimaryButton';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY } from '../../constants/motion';
 import {
   rewardModalAccentColor,
+  rewardModalGlowLayers,
   rewardModalPanelBorder,
   rewardModalPanelColors,
   rewardModalSoftSurface,
@@ -21,7 +22,7 @@ import {
  * RewardCardBody — презентационное тело без Modal/бэкдропа: его использует
  * RewardStackV2 (очередь наград) и любые будущие встроенные сценарии.
  */
-export type RewardCardSemantic = 'gold' | 'shards' | 'danger' | 'warning' | 'social' | 'neutral';
+export type RewardCardSemantic = 'gold' | 'shards' | 'danger' | 'warning' | 'social' | 'neutral' | 'fire';
 
 export type RewardCardBodyProps = {
   /** Короткая строка-категория сверху, БЕЗ эмодзи: «Уровень 12 · Эпический». */
@@ -65,6 +66,7 @@ export function rewardSemanticAccent(
     case 'shards': return '#6FB1FF';
     case 'danger': return t.wrong;
     case 'warning': return '#FFC857';
+    case 'fire': return '#FF7A1A';
     case 'social': return '#D8A6FF';
     case 'neutral':
     default:
@@ -136,6 +138,9 @@ export function RewardCardBody({
   const soft = rewardModalSoftSurface(themeMode, t);
   const panelBorder = rewardModalPanelBorder(themeMode, t, withAlpha(accent, '4D'));
   const cardRadius = ds.radius.xxl;
+  // Огненная семантика стрика переливается углём; остальные — чистым акцентом.
+  const warmShift = semantic === 'fire' ? '#E23A2E' : undefined;
+  const glow = rewardModalGlowLayers(accent, warmShift);
 
   return (
     <Animated.View
@@ -152,6 +157,7 @@ export function RewardCardBody({
       /** Тапы по карточке не закрывают её. */
       onStartShouldSetResponder={() => true}
     >
+      {/* Базовый материал панели — глубокий многослойный градиент. */}
       <LinearGradient
         colors={panelColors}
         start={{ x: 0.1, y: 0 }}
@@ -159,6 +165,23 @@ export function RewardCardBody({
         style={StyleSheet.absoluteFill}
         pointerEvents="none"
       />
+      {/* Верхний световой блик — имитация мягкого света сверху. */}
+      <LinearGradient
+        colors={glow.topHighlight}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={styles.topHighlight}
+        pointerEvents="none"
+      />
+      {/* Нижняя цветная вуаль — свечение акцента «из глубины» карточки. */}
+      <LinearGradient
+        colors={glow.bottomVeil}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={styles.bottomVeil}
+        pointerEvents="none"
+      />
+      {/* Тонкая акцентная нить сверху — благородная засечка. */}
       <LinearGradient
         colors={['transparent', accent, 'transparent']}
         start={{ x: 0, y: 0 }}
@@ -166,16 +189,62 @@ export function RewardCardBody({
         style={styles.topline}
         pointerEvents="none"
       />
-      <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
-        {kicker.toUpperCase()}
-      </Text>
+      {!!kicker && (
+        <View style={styles.kickerRow}>
+          <View style={[styles.kickerRule, { backgroundColor: withAlpha(accent, '00') }]} />
+          <LinearGradient
+            colors={['transparent', withAlpha(accent, '88')]}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={styles.kickerRuleGrad}
+            pointerEvents="none"
+          />
+          <Text style={[styles.kicker, { color: accent, fontSize: Math.max(11, f.label - 1) }]} numberOfLines={1}>
+            {kicker.toUpperCase()}
+          </Text>
+          <LinearGradient
+            colors={[withAlpha(accent, '88'), 'transparent']}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={styles.kickerRuleGrad}
+            pointerEvents="none"
+          />
+          <View style={[styles.kickerRule, { backgroundColor: withAlpha(accent, '00') }]} />
+        </View>
+      )}
       <View style={styles.ringWrap}>
+        {/* Внешнее мягкое гало — пульсирует. */}
         <Animated.View
           pointerEvents="none"
-          style={[styles.ringHalo, { borderColor: withAlpha(accent, '38'), opacity: halo }]}
+          style={[styles.ringHalo, { borderColor: glow.ringHaloOuter, opacity: halo }]}
         />
-        <View style={[styles.ring, { borderColor: withAlpha(accent, '70'), backgroundColor: soft }]}>
-          {typeof icon === 'string' ? <Text style={styles.ringEmoji}>{icon}</Text> : icon}
+        {/* Среднее свечение акцента вокруг кольца. */}
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            styles.ringGlowMid,
+            { borderColor: glow.ringHaloInner, opacity: halo.interpolate({ inputRange: [0.4, 1], outputRange: [0.55, 0.9] }) },
+          ]}
+        />
+        {/* Кольцо с градиентной обводкой (живой металл/пламя) — двойная стенка. */}
+        <View style={styles.ringOuter}>
+          <LinearGradient
+            colors={glow.ringStroke}
+            start={{ x: 0.2, y: 0 }}
+            end={{ x: 0.8, y: 1 }}
+            style={StyleSheet.absoluteFill}
+            pointerEvents="none"
+          />
+          <View style={[styles.ring, { backgroundColor: panelColors[1] }]}>
+            <LinearGradient
+              colors={glow.ringInnerGlow}
+              start={{ x: 0.5, y: 0.1 }}
+              end={{ x: 0.5, y: 1 }}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+            {typeof icon === 'string' ? <Text style={styles.ringEmoji}>{icon}</Text> : icon}
+          </View>
         </View>
       </View>
       <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 + 2 }]}>{title}</Text>
@@ -263,48 +332,93 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     overflow: 'hidden',
   },
+  topHighlight: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 120,
+  },
+  bottomVeil: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 220,
+  },
   topline: {
     position: 'absolute',
     top: 0,
     left: 26,
     right: 26,
+    height: 1.5,
+    opacity: 0.9,
+  },
+  kickerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    alignSelf: 'stretch',
+    paddingHorizontal: 8,
+  },
+  kickerRule: {
+    width: 0,
+  },
+  kickerRuleGrad: {
+    flex: 1,
     height: 1,
-    opacity: 0.8,
+    maxWidth: 48,
   },
   kicker: {
     fontWeight: '900',
-    letterSpacing: 2,
+    letterSpacing: 2.5,
     textAlign: 'center',
   },
   ringWrap: {
-    marginTop: 18,
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
   ringHalo: {
     position: 'absolute',
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 134,
+    height: 134,
+    borderRadius: 67,
     borderWidth: 1.5,
   },
+  ringGlowMid: {
+    position: 'absolute',
+    width: 118,
+    height: 118,
+    borderRadius: 59,
+    borderWidth: 2.5,
+  },
+  ringOuter: {
+    width: 106,
+    height: 106,
+    borderRadius: 53,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    padding: 2,
+  },
   ring: {
-    width: 104,
-    height: 104,
-    borderRadius: 52,
-    borderWidth: 1,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
   },
   ringEmoji: {
-    fontSize: 40,
+    fontSize: 42,
   },
   title: {
     fontWeight: '900',
     letterSpacing: -0.2,
     textAlign: 'center',
-    marginTop: 16,
+    marginTop: 18,
   },
   value: {
     fontWeight: '600',

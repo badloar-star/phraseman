@@ -16,7 +16,7 @@ import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { triLang, type Lang } from '../constants/i18n';
-import { rewardModalSoftSurface, rewardModalPanelBorder, rewardModalAccentColor } from './RewardModalBackdrop';
+import { rewardModalSoftSurface, rewardModalPanelBorder } from './RewardModalBackdrop';
 
 interface StreakReviveModalProps {
   visible: boolean;
@@ -152,14 +152,15 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     onClose();
   }, [busy, onClose]);
 
-  const accent = rewardModalAccentColor(themeMode, t);
+  // Огненный акцент стрика — совпадает с semantic="fire" кольца карточки.
+  const accent = '#FF7A1A';
   const soft = rewardModalSoftSurface(themeMode, t);
   const border = rewardModalPanelBorder(themeMode, t);
 
   return (
     <RewardCardV2
       visible={visible}
-      semantic="warning"
+      semantic="fire"
       backdropAction="ghost"
       kicker={triLang(lang, { ru: '', uk: '', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Streak', tr: 'Seri', pl: 'Seria' })}
       icon="🔥"

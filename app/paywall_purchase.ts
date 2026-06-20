@@ -5,7 +5,7 @@
 // никаких хардкодов), честного триала, покупки/восстановления, событий воронки
 // (trackEvent + paywall_funnel) и пуш-напоминания о конце триала.
 //
-// Портировано с premium_modal_v2 (чистая реализация) + добавлено:
+// Общая покупка для активных A/B/C paywall-экранов:
 //  - funnel-лог для админ-дашборда A/B
 //  - запрос разрешения на пуш СРАЗУ после старта триала (момент Blinkist:
 //    «напомним за день до списания» — лучший повод дать разрешение)
@@ -13,6 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Alert, InteractionManager } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import Purchases, { type PurchasesPackage } from 'react-native-purchases';
 
@@ -40,6 +41,11 @@ import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { markCelebrationPending } from './premium_celebration_state';
 import { useEnergy } from '../components/EnergyContext';
+import { invalidatePremiumCache } from './premium_guard';
+import {
+  activatePendingPersonalPlanAfterPremium,
+  PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
+} from './personal_plan_activation';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
@@ -144,11 +150,44 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   }, [context, source, variant]);
 
   // ── покупка ────────────────────────────────────────────────────────────────
+  const finishPersonalPlanActivationFlow = useCallback(async () => {
+    await activatePendingPersonalPlanAfterPremium();
+    invalidatePremiumCache();
+    await AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
+    emitAppEvent('premium_activated');
+    void reloadEnergy().catch(() => {});
+
+    try {
+      const pendingNickname = await AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
+      if (pendingNickname === '1') {
+        await AsyncStorage.multiSet([
+          ['onboarding_step', 'name'],
+          [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+        ]);
+        await AsyncStorage.removeItem('onboarding_done');
+        emitAppEvent('personal_plan_onboarding_nickname_ready');
+        router.replace('/(tabs)/home' as any);
+        return;
+      }
+    } catch {
+      // Fall through to the deterministic thank-you route.
+    }
+
+    router.replace('/personal_plan_thank_you' as any);
+  }, [reloadEnergy, router]);
+
   const handlePurchase = useCallback(async () => {
     hapticTap();
     void trackEvent('paywall_cta_click', { context, source, plan: selected, paywall: variant });
     logPaywallFunnel('cta_click', { variant, context, plan: selected });
-    if (DEV_IAP_BYPASS) { safeRouterBack(router); return; }
+    if (DEV_IAP_BYPASS) {
+      if (context === 'personal_plan') {
+        await finishPersonalPlanActivationFlow();
+        return;
+      }
+      safeRouterBack(router);
+      return;
+    }
     const pkg = selected === 'lifetime' ? packages.lifetime : selected === 'yearly' ? packages.yearly : packages.monthly;
     if (!pkg || purchasing) return;
     setPurchasing(true);
@@ -168,9 +207,11 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
       const confirmedPlan = inferPremiumPlanFromProductId(metadata.productId, selected);
       await persistStorePremiumLocally(confirmedPlan, metadata);
-      await markCelebrationPending();      // покажем празднование при возврате на экран
-      emitAppEvent('premium_activated');
-      void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
+      if (context !== 'personal_plan') {
+        await markCelebrationPending();      // покажем празднование при возврате на экран
+        emitAppEvent('premium_activated');
+        void reloadEnergy().catch(() => {}); // премиум-бонус энергии виден сразу, без рестарта
+      }
       void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant });
       logPaywallFunnel('purchase_completed', { variant, context, plan: selected });
       if (pkgTrial.hasTrial) {
@@ -197,6 +238,10 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
           } catch { /* напоминание — best-effort */ }
         })();
       }
+      if (context === 'personal_plan') {
+        await finishPersonalPlanActivationFlow();
+        return;
+      }
       safeRouterBack(router);
     } catch (err: unknown) {
       if ((err as { userCancelled?: boolean })?.userCancelled) {
@@ -214,7 +259,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     } finally {
       setPurchasing(false);
     }
-  }, [selected, packages, purchasing, router, context, source, variant, lang, reloadEnergy]);
+  }, [selected, packages, purchasing, router, context, source, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
@@ -232,16 +277,25 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       }
       const info = await Purchases.restorePurchases();
       const activeSubscriptions = info.activeSubscriptions ?? [];
-      if (Object.keys(info.entitlements.active).length > 0 || activeSubscriptions.length > 0) {
+      const hasActiveEntitlement = Object.keys(info.entitlements.active).length > 0;
+      // Entitlements — авторитетный источник; activeSubscriptions используем только
+      // как запасной (RC иногда задерживает entitlement при первом restore).
+      if (hasActiveEntitlement || activeSubscriptions.length > 0) {
         const metadata = revenueCatPremiumMetadata(info);
         const plan = inferPremiumPlanFromProductId(
           metadata.productId,
           activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly',
         );
         await persistStorePremiumLocally(plan, metadata);
-        emitAppEvent('premium_activated');
-        void reloadEnergy().catch(() => {}); // восстановленный премиум сразу видим в энергии
+        if (context !== 'personal_plan') {
+          emitAppEvent('premium_activated');
+          void reloadEnergy().catch(() => {}); // восстановленный премиум сразу видим в энергии
+        }
         void trackEvent('subscription_restored', { context, paywall: variant });
+        if (context === 'personal_plan') {
+          await finishPersonalPlanActivationFlow();
+          return;
+        }
         safeRouterBack(router);
       } else {
         Alert.alert(
@@ -257,7 +311,7 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     } finally {
       setRestoring(false);
     }
-  }, [router, restoring, context, variant, lang, reloadEnergy]);
+  }, [router, restoring, context, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
 
   // ── закрытие ───────────────────────────────────────────────────────────────
   const handleClose = useCallback((reason: 'close' | 'continue_free') => {

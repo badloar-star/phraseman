@@ -86,8 +86,10 @@ async function readAndRecoverState(dynMax: number, recoveryMs: number): Promise<
 
   if (raw) {
     state = JSON.parse(raw) as StoredEnergy;
-    // Если уровень повысился и current меньше нового макса — не обрезаем,
-    // просто даём восстановиться до нового макса естественно
+    // Guard against corrupt/stale storage (NaN, negative, above cap)
+    if (!Number.isFinite(state.current) || state.current < 0) state.current = dynMax;
+    else if (state.current > dynMax) state.current = dynMax;
+    if (!Number.isFinite(state.lastRecoveryTime) || state.lastRecoveryTime <= 0) state.lastRecoveryTime = Date.now();
   } else {
     await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
     return state;

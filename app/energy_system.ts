@@ -57,6 +57,9 @@ export async function getEnergyState(): Promise<EnergyState> {
       return initialState;
     }
     const parsed = JSON.parse(stored) as EnergyState;
+    const maxE = MAX_ENERGY_VALUE();
+    if (!Number.isFinite(parsed.current) || parsed.current < 0) parsed.current = maxE;
+    else if (parsed.current > maxE) parsed.current = maxE;
     return parsed;
   } catch (error) {
     DebugLogger.error('energy_system.ts:getEnergyState', error, 'critical');

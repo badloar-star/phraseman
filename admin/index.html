@@ -8365,6 +8365,7 @@
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
+  <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Testers">Testers</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>
@@ -8461,6 +8462,10 @@
       <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Кнопка «Навсегда» (lifetime)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Покажется только когда продукт заведён в RevenueCat. Купившие сохраняют доступ.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-lifetime_button_enabled" onchange="saveControlPanelBool('lifetime_button_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-lifetime_button_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Раздел «Идеи»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Юзер шлёт идею → год премиума при одобрении (вкладка «Идеи»). Sell-switch: включай на время акции.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-ideas_enabled" onchange="saveControlPanelBool('ideas_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-ideas_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
       </div>
     </div>
   </div>
@@ -9312,6 +9317,29 @@
     <span class="reports-count" id="ur-count"></span>
   </div>
   <div id="ur-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
+</div>
+
+<!-- IDEAS TAB (Идеи пользователей — год премиума за принятую идею) -->
+<div id="tab-ideas" class="reports-tab">
+  <div class="reports-toolbar">
+    <select id="idea-filter-status" onchange="filterUserIdeas()">
+      <option value="pending" data-i18n-es="Pendientes">На рассмотрении</option>
+      <option value="approved" data-i18n-es="Aprobadas">Принятые</option>
+      <option value="rejected" data-i18n-es="Rechazadas">Отклонённые</option>
+      <option value="" data-i18n-es="Todas">Все</option>
+    </select>
+    <select id="idea-filter-category" onchange="filterUserIdeas()">
+      <option value="" data-i18n-es="Todas las categorías">Все категории</option>
+      <option value="feature">Новая фича</option>
+      <option value="improvement">Улучшение</option>
+      <option value="monetization">Монетизация</option>
+      <option value="content">Контент</option>
+      <option value="other">Другое</option>
+    </select>
+    <button onclick="loadUserIdeas()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <span class="reports-count" id="idea-count"></span>
+  </div>
+  <div id="idea-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
 </div>
 
 <!-- EXPLAIN REPORTS TAB («Непонятно объяснили») -->
@@ -11320,7 +11348,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','explain-cache','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','explain-cache','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -14921,6 +14949,8 @@
     if (overviewTab) overviewTab.classList.toggle('active', tab === 'overview');
     const modQueueTab = document.getElementById('tab-mod-queue');
     if (modQueueTab) modQueueTab.classList.toggle('active', tab === 'mod-queue');
+    const ideasTab = document.getElementById('tab-ideas');
+    if (ideasTab) ideasTab.classList.toggle('active', tab === 'ideas');
     document.getElementById('tab-users').classList.toggle('active',tab==='users');
     document.getElementById('tab-analytics').classList.toggle('active',tab==='analytics');
     const openAiBudgetTab = document.getElementById('tab-openai-budget');
@@ -14988,6 +15018,9 @@
     }
     if (tab === 'mod-queue' && !window._modQueueLoaded && typeof window.loadModQueue === 'function') {
       void window.loadModQueue(false);
+    }
+    if (tab === 'ideas' && typeof window.loadUserIdeas === 'function') {
+      void window.loadUserIdeas();
     }
     if (tab === 'refunds' && !window._refundsLoaded && typeof window.loadRefunds === 'function') {
       void window.loadRefunds(false);
@@ -20068,6 +20101,154 @@
     }
   };
 
+  // ── ИДЕИ — креативные идеи пользователей (год премиума за принятую) ──────────
+  // Лента: user_ideas. Принять = callable adminDecideUserIdea(decision:'approve')
+  // → юзеру 1 год полного доступа + модалка-поздравление. Отклонить = decision:'reject'
+  // → модалка с объяснением (текст редактируется прямо в карточке перед отправкой).
+  window._userIdeasLoaded = false;
+  window._allUserIdeas = [];
+
+  const IDEA_CATEGORY_LABELS = {
+    feature: 'Новая фича',
+    improvement: 'Улучшение',
+    monetization: 'Монетизация',
+    content: 'Контент',
+    other: 'Другое',
+  };
+
+  const IDEA_DEFAULT_REJECT_RU =
+    'Мы внимательно прочитали твою идею, но пока не берём её в работу.\n\nЭто не повод останавливаться — присылай ещё. Каждая идея помогает нам расти.';
+  const IDEA_DEFAULT_APPROVE_RU =
+    'Твоя идея одобрена и взята в разработку.\n\nВ благодарность мы открываем тебе полный доступ на целый год. Спасибо, что делаешь Phraseman лучше.';
+
+  let _fnDecideUserIdea = null;
+  function getDecideUserIdeaCallable() {
+    if (!_fnDecideUserIdea) {
+      _fnDecideUserIdea = httpsCallable(functionsUs, 'adminDecideUserIdea');
+    }
+    return _fnDecideUserIdea;
+  }
+
+  window.loadUserIdeas = async function() {
+    window._userIdeasLoaded = true;
+    const list = document.getElementById('idea-list');
+    if (!list) return;
+    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      const snap = await getDocs(query(collection(db, 'user_ideas'), orderBy('createdAtMs', 'desc'), limit(500)));
+      window._allUserIdeas = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      filterUserIdeas();
+    } catch (e) {
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.filterUserIdeas = function() {
+    const status = document.getElementById('idea-filter-status').value;
+    const category = document.getElementById('idea-filter-category').value;
+    let arr = window._allUserIdeas;
+    if (status) arr = arr.filter(r => (r.status || 'pending') === status);
+    if (category) arr = arr.filter(r => (r.category || 'other') === category);
+    renderUserIdeas(arr);
+  };
+
+  function renderUserIdeas(ideas) {
+    const list = document.getElementById('idea-list');
+    const countEl = document.getElementById('idea-count');
+    if (countEl) countEl.textContent = `${ideas.length} идей`;
+    if (!ideas.length) { list.innerHTML = '<div class="reports-empty">💡 Идей нет</div>'; return; }
+
+    window._ideaMap = {};
+    ideas.forEach(r => { window._ideaMap[r.id] = r; });
+
+    list.innerHTML = ideas.map(r => {
+      const status = r.status || 'pending';
+      const statusColor = status === 'approved' ? '#4ade80' : status === 'rejected' ? '#6b7280' : '#fbbf24';
+      const statusTxt = status === 'approved' ? 'принята' : status === 'rejected' ? 'отклонена' : 'на рассмотрении';
+      const decided = status === 'approved' || status === 'rejected';
+      const catLabel = escapeHtml(IDEA_CATEGORY_LABELS[r.category] || r.category || '—');
+      const title = escapeHtml(r.title || '—');
+      const desc = escapeHtml(r.description || '');
+      const benefit = escapeHtml(r.benefit || '');
+      const date = escapeHtml(r.createdAt ? String(r.createdAt).slice(0, 10) : '—');
+      const uShort = r.uid ? escapeHtml(String(r.uid).slice(-8)) : '—';
+      const uName = escapeHtml(r.userName || '?');
+      const plat = escapeHtml(r.platform || '—');
+      const id = r.id;
+      const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '';
+
+      const actions = decided
+        ? `<div style="font-size:11px;color:#666;margin-top:6px">${status === 'approved' ? '✅ год премиума выдан' : '✖️ отклонена'}${decidedBy ? ' · ' + decidedBy : ''}</div>`
+        : `<div style="margin-top:10px">
+             <textarea id="idea-msg-${id}" placeholder="Текст модалки для пользователя (можно изменить). Пусто = стандартный текст." style="width:100%;min-height:64px;background:#0f1320;border:1px solid #2a3550;color:#dbe3f4;border-radius:8px;padding:8px 10px;font-size:12px;resize:vertical;box-sizing:border-box"></textarea>
+             <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+               <button data-idea="${id}" data-decision="approve" style="background:#0d2a12;border:1px solid #1f5a2a;color:#4ade80;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">🎉 Принять (год премиума)</button>
+               <button data-idea="${id}" data-decision="reject" style="background:#2a0d0d;border:1px solid #5a1f1f;color:#f87171;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">✖️ Отклонить</button>
+               <button data-idea-fill="${id}" data-which="approve" type="button" style="background:#1a2330;border:1px solid #2a3550;color:#8ab4f8;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer">вставить текст «принято»</button>
+               <button data-idea-fill="${id}" data-which="reject" type="button" style="background:#1a2330;border:1px solid #2a3550;color:#8ab4f8;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer">вставить текст «отклонено»</button>
+             </div>
+           </div>`;
+
+      return `
+        <div class="report-card" style="border-left:3px solid ${statusColor};display:block">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:18px">💡</span>
+            <div style="flex:1">
+              <div style="color:#fff;font-weight:700;font-size:15px">${title}</div>
+              <div style="color:#666;font-size:11px">${uName} · uid ${uShort} · ${plat} · ${date}</div>
+            </div>
+            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${catLabel}</span>
+            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${statusColor}">${statusTxt}</span>
+          </div>
+          <div style="font-size:13px;color:#cbd5e1;white-space:pre-wrap;line-height:1.5;margin-bottom:${benefit ? '8px' : '0'}">${desc}</div>
+          ${benefit ? `<div style="font-size:12px;color:#93a4bd;white-space:pre-wrap;line-height:1.5"><b style="color:#7c93b4">Польза:</b> ${benefit}</div>` : ''}
+          ${actions}
+        </div>`;
+    }).join('');
+
+    list.querySelectorAll('button[data-idea]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        decideUserIdea(btn.dataset.idea, btn.dataset.decision, btn);
+      });
+    });
+    list.querySelectorAll('button[data-idea-fill]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById('idea-msg-' + btn.dataset.ideaFill);
+        if (target) target.value = btn.dataset.which === 'approve' ? IDEA_DEFAULT_APPROVE_RU : IDEA_DEFAULT_REJECT_RU;
+      });
+    });
+  }
+
+  async function decideUserIdea(ideaId, decision, btn) {
+    const idea = window._ideaMap[ideaId];
+    if (!idea) return;
+    if (decision === 'approve' && !confirm('Принять идею и выдать пользователю ГОД полного доступа?')) return;
+    const ta = document.getElementById('idea-msg-' + ideaId);
+    const customRu = ta ? String(ta.value || '').trim() : '';
+    const card = btn.closest('.report-card');
+    const buttons = card ? card.querySelectorAll('button') : [];
+    buttons.forEach(b => { b.disabled = true; });
+    if (btn) btn.textContent = '⏳';
+    try {
+      const payload = { ideaId, decision };
+      // messageUk дублируем из messageRu, если админ переопределил (прод-UI ru/uk).
+      if (customRu) { payload.messageRu = customRu; payload.messageUk = customRu; }
+      await getDecideUserIdeaCallable()(payload);
+      idea.status = decision === 'approve' ? 'approved' : 'rejected';
+      idea.decidedBy = 'you';
+      if (typeof showToast === 'function') {
+        showToast(decision === 'approve' ? '🎉 Принято, год премиума выдан' : '✖️ Идея отклонена', 'ok');
+      }
+      filterUserIdeas();
+    } catch (e) {
+      buttons.forEach(b => { b.disabled = false; });
+      const msg = (e && (e.message || e.code)) || String(e);
+      if (typeof showToast === 'function') showToast('❌ ' + msg, 'err');
+      else alert('Ошибка: ' + msg);
+      filterUserIdeas();
+    }
+  }
+
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────
   // Лента: explain_report_entries (каждая отправка). Счётчики: explain_reports
   // (РАЗНЫХ юзеров на фразу). Жалоба сама не отключает кэш: админ вручную жмёт
@@ -20733,6 +20914,7 @@
     { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: false },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: false },
+    { key: 'ideas_enabled', label: 'Раздел «Идеи» (год премиума за идею)', def: false },
   ];
 
   function rcSetStatus(msg, color) {
@@ -20879,6 +21061,7 @@
     { key: 'referral_enabled',         label: 'Реферальная программа',          def: false, hint: 'Нужна задеплоенная invite-страница.' },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
     { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'Покажется только когда продукт заведён в RevenueCat.' },
+    { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год премиума при одобрении (вкладка «Идеи»).' },
   ];
 
   function cpSetStatus(msg, color) {

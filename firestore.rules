@@ -943,6 +943,16 @@ service cloud.firestore {
         allow read, write: if false;
       }
 
+      // Инбокс решений по идеям. Создаёт только сервер (adminDecideUserIdea, Admin SDK).
+      // Владелец читает свои решения (приложение показывает модалку на старте) и может
+      // пометить seen — но не создавать/удалять и не подменять текст/решение.
+      match /idea_inbox/{eventId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow update: if userDocOwnerMatchesAuth(userId)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['seen', 'seenAt']);
+        allow create, delete: if false;
+      }
+
       match /shard_log/{logId} {
         allow read, create: if userDocOwnerMatchesAuth(userId);
         allow update, delete: if false;
@@ -1114,6 +1124,16 @@ service cloud.firestore {
     }
 
     match /client_report_rate_limits/{docId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    // User ideas: created only via submitUserIdea (Admin SDK), moderated by admin.
+    match /user_ideas/{docId} {
+      allow create: if false;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /user_idea_rate_limits/{docId} {
       allow read, create, update, delete: if isAdmin();
     }
 

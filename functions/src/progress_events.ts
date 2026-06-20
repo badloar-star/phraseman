@@ -112,6 +112,9 @@ const EVENT_DAILY_XP_CAP: Partial<Record<ProgressEventType, number>> = {
   quiz_answer: 8000,
   preposition_drill_answer: 2000,
   review_answer: 4000,
+  // ECON-8: cap lesson_complete XP — 500/event × 3 real lessons/day = 1500 headroom.
+  // Prevents replay-forged events from farming unlimited XP at 500/shot.
+  lesson_complete: 1500,
 };
 
 /**

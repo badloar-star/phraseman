@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
 import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
+import { isLoyaltyGiftActive } from './loyalty_gift';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
@@ -179,6 +180,13 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
 }
 
 export async function getVerifiedVipStatus(): Promise<boolean> {
+  // Тестер «Снять премиум» (tester_no_premium) — жёсткий kill-switch: должен
+  // гасить и VIP, а не только real-премиум. Иначе админ-VIP-грант (или его
+  // воскрешение из облака) возвращал доступ, и кнопка «Снять премиум» «не
+  // работала». Проверяем ПЕРЕД кэшем, чтобы снятие срабатывало мгновенно.
+  const noPremiumVip = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+  if (noPremiumVip === 'true') return cacheVip(false);
+
   if (_cachedVipResult !== null && Date.now() - _vipCacheTime < CACHE_TTL_MS) {
     return _cachedVipResult;
   }
@@ -229,6 +237,14 @@ export async function getVerifiedVipStatus(): Promise<boolean> {
 }
 
 export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
+  // Тестер «Снять премиум» — единый kill-switch на ВЕСЬ премиум-доступ:
+  // real + VIP + intro-доступ + воскрешение из облака. Раньше флаг гасил только
+  // real, а доступ оставался через VIP/intro (и cloud-refresh тянул его назад),
+  // поэтому кнопка «Снять премиум» не снимала. Проверяем самым первым, до кэша
+  // и до любого облачного обновления.
+  const noPremiumAccess = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+  if (noPremiumAccess === 'true') return cacheAccess(false);
+
   if (_cachedAccessResult !== null && Date.now() - _accessCacheTime < CACHE_TTL_MS) {
     return _cachedAccessResult;
   }
@@ -243,6 +259,13 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
   if (realPremium || vip) return cacheAccess(true);
 
   if (await isIntroFullAccessActive().catch(() => false)) {
+    return cacheAccess(true);
+  }
+
+  // Подарок лояльности (72ч для существующих free-юзеров). Производный доступ,
+  // как и intro: удаление ключей подарка мгновенно убирает доступ. Kill-switch
+  // tester_no_premium выше уже гасит и его. Платных/VIP не касается (им подарок не выдаётся).
+  if (await isLoyaltyGiftActive().catch(() => false)) {
     return cacheAccess(true);
   }
 

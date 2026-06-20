@@ -29,8 +29,11 @@ import { calculateResult, LeagueResult, loadLeagueState, savePendingResult, getW
 import {
   clearDailyTasksAdminOverride,
   getDailyTaskAdminPacks,
+  getDailyTaskAdminPreviewTasks,
   getTodayKey,
+  getTodayTasksSafe,
   seedDailyTasksAdminPack,
+  type DailyTask,
   type DailyTaskAdminPack,
   type DailyTaskSeedMode,
 } from './daily_tasks';
@@ -69,7 +72,7 @@ import {
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { actionToastTri, emitAppEvent } from './events';
-import { getFreeDialogsPerDay, isAiDialogEnabled } from './ai_dialog_flags';
+import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ArenaLimitModal from '../components/ArenaLimitModal';
@@ -81,6 +84,7 @@ import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
+import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
 import CertificatePreviewAdminModal from '../components/CertificatePreviewAdminModal';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
@@ -169,6 +173,11 @@ import {
   resetIntroFullAccessForAdmin,
   getIntroFullAccessState,
 } from './intro_full_access';
+import {
+  activateLoyaltyGiftForAdmin,
+  expireLoyaltyGiftForAdmin,
+  resetLoyaltyGiftForAdmin,
+} from './loyalty_gift';
 import { callVipRevokeMine } from './vip_revoke_client';
 import {
   ACCENT, ACCENT_BG, ACCENT_BORDER, ACCENT_BORDER_SOFT, ACCENT_DARK, ACCENT_DIM,
@@ -185,6 +194,7 @@ import BannersToastsExtraSection from '../components/admin_panel/sections/Banner
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
 import GiftsCatalogSection from '../components/admin_panel/sections/GiftsCatalogSection';
+import CompassSection from '../components/admin_panel/sections/CompassSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -695,6 +705,8 @@ export default function SettingsTestersFunctions() {
   const [notifPermissionPreviewVisible, setNotifPermissionPreviewVisible] = useState(false);
   const [certificatePreviewVisible, setCertificatePreviewVisible] = useState(false);
   const [releaseNotesPreviewVisible, setReleaseNotesPreviewVisible] = useState(false);
+  const [dailyPlanPreviewVisible, setDailyPlanPreviewVisible] = useState(false);
+  const [dailyPlanPreviewTasks, setDailyPlanPreviewTasks] = useState<DailyTask[]>([]);
   const [globalBroadcastPreview, setGlobalBroadcastPreview] = useState<GlobalBroadcastModalPayload | null>(null);
   const [leagueChestPreview, setLeagueChestPreview] = useState<{
     crownName?: string;
@@ -1054,6 +1066,31 @@ export default function SettingsTestersFunctions() {
     await resetIntroFullAccessForAdmin();
     await refreshIntroFullAccessQaState();
     AppInfoDialog.alert('Intro Full Access', 'Подарочный доступ и seen-флаги сброшены.');
+  };
+
+  // ── Подарок лояльности (72ч существующим free-юзерам) ──
+  const refreshLoyaltyGiftQaState = async () => {
+    invalidatePremiumCache();
+    emitAppEvent('loyalty_gift_changed');
+    await reloadEnergy().catch(() => {});
+  };
+
+  const activateLoyaltyGiftQa = async () => {
+    await activateLoyaltyGiftForAdmin();
+    await refreshLoyaltyGiftQaState();
+    AppInfoDialog.alert('Подарок лояльности', 'Подарок включён на 3 дня. Premium/VIP не тронуты. WOW-анимацию запускай через VIP celebration.');
+  };
+
+  const expireLoyaltyGiftQa = async () => {
+    await expireLoyaltyGiftForAdmin();
+    await refreshLoyaltyGiftQaState();
+    AppInfoDialog.alert('Подарок лояльности', 'Подарок истёк. При следующем входе появится мягкая модалка окончания.');
+  };
+
+  const resetLoyaltyGiftQa = async () => {
+    await resetLoyaltyGiftForAdmin();
+    await refreshLoyaltyGiftQaState();
+    AppInfoDialog.alert('Подарок лояльности', 'Подарок, одноразовость и метки показа сброшены (предложение покажется снова).');
   };
 
   const activateVipOnCurrentProfile = async () => {
@@ -2011,6 +2048,16 @@ export default function SettingsTestersFunctions() {
     );
   };
 
+  const openDailyPlanPreview = async () => {
+    doHaptic();
+    const todayTasks = await getTodayTasksSafe(studyTarget).catch(() => []);
+    const seen = new Set(todayTasks.map((task) => task.id));
+    const previewPool = getDailyTaskAdminPreviewTasks(studyTarget).filter((task) => !seen.has(task.id));
+    setDailyPlanPreviewTasks([...todayTasks, ...previewPool]);
+    setDailyPlanPreviewVisible(true);
+    markQa('dailyPlanModal');
+  };
+
   const seedFirestoreWeeklyRolloverScenario = async () => {
     doHaptic();
     try {
@@ -2680,14 +2727,6 @@ export default function SettingsTestersFunctions() {
                 </TouchableOpacity>
               ))}
 
-              {/* Старый макет v2 — оставлен для сравнения. */}
-              <TouchableOpacity
-                onPress={() => { doHaptic(); router.push({ pathname: '/premium_modal_v2' } as any); }}
-                activeOpacity={0.8}
-                style={{ borderRadius: 10, paddingVertical: 10, paddingHorizontal: 14, alignItems: 'center', borderWidth: 1, borderColor: ADMIN_TEXT_MUTED + '44' }}
-              >
-                <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 12, fontWeight: '700' }}>Старый макет v2 (для сравнения)</Text>
-              </TouchableOpacity>
             </View>
           </AccordionSection>
 
@@ -3329,8 +3368,8 @@ export default function SettingsTestersFunctions() {
               onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'ai_dialog', source: 'admin_preview' } } as any)}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="information-circle-outline"
-              label={`ℹ️ Лимит: ${getFreeDialogsPerDay()}/день · диалоги ${isAiDialogEnabled() ? 'вкл' : 'выкл'}`}
-              sub="Счётчик дневного лимита считается на сервере (Cloud Function), сбросить из приложения нельзя"
+              label={`ℹ️ Free: ${getFreeDialogsLifetime()} диалог навсегда · диалоги ${isAiDialogEnabled() ? 'вкл' : 'выкл'}`}
+              sub="Бесплатно даётся один пробный диалог на всю жизнь аккаунта; учёт на сервере (Cloud Function), сбросить из приложения нельзя"
               onPress={() => {
                 emitAppEvent('action_toast', actionToastTri('info', {
                   ru: 'Лимит ИИ-диалога серверный. Для сброса используй админ-веб (Cloud Function).',
@@ -4426,6 +4465,30 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
+              testID="admin-loyalty-gift-activate"
+              icon="gift-outline"
+              label="Подарок лояльности - включить 3 дня"
+              sub="Подарок существующим free-юзерам: открывает hasPremiumAccess, Premium/VIP не трогает."
+              onPress={() => { void activateLoyaltyGiftQa(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-loyalty-gift-expire"
+              icon="timer-outline"
+              label="Подарок лояльности - завершить сейчас"
+              sub="Истекший таймер + сброс seen окончания — проверить мягкую модалку конца."
+              onPress={() => { void expireLoyaltyGiftQa(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="admin-loyalty-gift-reset"
+              icon="refresh-circle-outline"
+              label="Подарок лояльности - сбросить (откат)"
+              sub="Удаляет все ключи подарка (включая одноразовость) — доступ снимается, предложение покажется снова."
+              onPress={() => { void resetLoyaltyGiftQa(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
               testID="admin-intro-full-access-preview-welcome"
               icon="sparkles-outline"
               label="Превью модалки подарка"
@@ -4680,6 +4743,13 @@ export default function SettingsTestersFunctions() {
           <AccordionSection id="daily_tasks_qa" icon="checkbox-outline" title="Daily tasks QA" badge={DAILY_TASK_QA_PACKS.length + 5}
             open={openSection === 'daily_tasks_qa'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow
+              icon="calendar-outline"
+              label="Daily plan modal preview"
+              sub="Первый дневной вход · реальные иконки · заменить все задания"
+              onPress={() => { void openDailyPlanPreview(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
               icon="open-outline"
               label="Open Daily Tasks"
               sub="Use after any pack seed to test card taps and reward buttons"
@@ -4908,6 +4978,7 @@ export default function SettingsTestersFunctions() {
             onToggle={toggleSection}
             onOpenReviewBench={() => { void runAdminReviewTestBench(); }}
           />
+          <CompassSection open={openSection === 'compass'} onToggle={toggleSection} />
 
         </ScrollView>
         </AdminNavContext.Provider>
@@ -4944,6 +5015,13 @@ export default function SettingsTestersFunctions() {
         paywallContext={noEnergyPreview?.paywallContext ?? 'no_energy'}
         qaForceShardCta={noEnergyPreview?.qaForceShardCta === true}
         qaIgnorePremiumAccess
+      />
+      <DailyTasksFirstVisitModal
+        visible={dailyPlanPreviewVisible}
+        onClose={() => setDailyPlanPreviewVisible(false)}
+        studyTarget={studyTarget}
+        previewOnly
+        initialTasks={dailyPlanPreviewTasks}
       />
       <ArenaLimitModal
         visible={arenaLimitMode !== null}

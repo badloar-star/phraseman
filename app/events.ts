@@ -25,6 +25,8 @@ export type AppEventMap = {
   vip_deactivated: undefined;
   premium_access_changed: { active: boolean; source: 'premium' | 'vip' | 'none' };
   intro_full_access_changed: undefined;
+  /** Подарок лояльности (72ч для существующих free-юзеров) активирован/откатан — пересчитать доступ. */
+  loyalty_gift_changed: undefined;
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   account_deleted: undefined;
@@ -70,6 +72,8 @@ export type AppEventMap = {
   daily_task_reward_toast_preview: { themeMode: ThemeMode; taskTitle?: string; xpBase?: number };
   /** Пользователь сменил дневное задание за осколки — UI обязан перечитать список и прогресс. */
   daily_task_rerolled: { oldTaskId: string; newTaskId: string };
+  /** Пользователь сменил весь сегодняшний набор дневных заданий из утреннего модала. */
+  daily_tasks_set_rerolled: { oldTaskIds: string[]; newTaskIds: string[]; studyTarget?: RuntimeStudyTarget };
   energy_purchased_shards: undefined;
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
   streak_revive_offer: { lostStreak: number; missedDays?: number };
@@ -106,6 +110,8 @@ export type AppEventMap = {
    */
   bug_hunt_eligible_check: undefined;
   notif_permission_nudge: { missedDays: number };
+  /** Диалог завершён (или прогресс сброшен) — список диалогов обновляет состояния «Пройдено» и hero «Продолжить». */
+  dialogs_progress_changed: undefined;
 };
 
 /** RU + UK + ES для `action_toast` без дублирования полей. */

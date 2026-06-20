@@ -26,6 +26,8 @@ import { processVipGrantForCelebration } from '../app/vip_celebration_state';
 import { getVipProgressState } from '../app/premium_progress';
 import { ensureAnonUser, ensureStableAuthLinkForStableId, restoreFromCloud } from '../app/cloud_sync';
 import { getIntroFullAccessState } from '../app/intro_full_access';
+import { getLoyaltyGiftState } from '../app/loyalty_gift';
+import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -55,6 +57,27 @@ const PremiumContext = createContext<PremiumContextValue>({
 
 export function usePremium(): PremiumContextValue {
   return useContext(PremiumContext);
+}
+
+/**
+ * Эффективный доступ к КОНКРЕТНОЙ фиче с учётом «Пульта». Возвращает true, если
+ * у пользователя есть премиум-доступ ИЛИ админ перевёл фичу в «Фри»
+ * (gate_<feature>_premium=false). Гейт-сайты должны спрашивать именно это вместо
+ * сырого hasPremiumAccess, чтобы перевод фичи в «Фри» снимал пейвол живьём.
+ *
+ * Пересчитывается на событие 'remote_config_changed' (onSnapshot remote_config/app),
+ * поэтому смена тумблера в админке отражается в открытом приложении за секунды.
+ */
+export function useFeatureAccess(feature: FeatureGate): boolean {
+  const { hasPremiumAccess } = usePremium();
+  const [freeForAll, setFreeForAll] = useState(() => isFeatureFreeForEveryone(feature));
+  useEffect(() => {
+    const recompute = () => setFreeForAll(isFeatureFreeForEveryone(feature));
+    recompute();
+    const sub = onAppEvent('remote_config_changed', recompute);
+    return () => sub.remove();
+  }, [feature]);
+  return hasPremiumAccess || freeForAll;
 }
 
 function getFirestoreForPremiumListener(): unknown | null {
@@ -130,12 +153,23 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         ]);
       }
     }
-    const introState = await getIntroFullAccessState();
+    // Тестер «Снять премиум» гасит и intro-доступ (3 дня) — иначе он
+    // переживал бы снятие и hasPremiumAccess оставался true.
+    const noPremiumTester =
+      (await AsyncStorage.getItem('tester_no_premium').catch(() => null)) === 'true';
+    const introState = noPremiumTester
+      ? { active: false, endsAt: null }
+      : await getIntroFullAccessState();
+    // Подарок лояльности (72ч для существующих free-юзеров) — производный доступ,
+    // как и intro; так же гасится тестерским «Снять премиум».
+    const loyaltyState = noPremiumTester
+      ? { active: false }
+      : await getLoyaltyGiftState().catch(() => ({ active: false }));
     setIsPremium(realPremium);
     setIsVip(vip);
     setIsIntroFullAccess(introState.active);
     setIntroFullAccessEndsAt(introState.endsAt);
-    setHasPremiumAccess(realPremium || vip || introState.active);
+    setHasPremiumAccess(realPremium || vip || introState.active || loyaltyState.active);
     if (realPremium) {
       setTrialEligible(false);
     } else {
@@ -395,6 +429,15 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const sub = onAppEvent('intro_full_access_changed', () => {
+      invalidatePremiumCache();
+      void reload();
+    });
+    return () => sub.remove();
+  }, [reload]);
+
+  // Подарок лояльности активирован/откатан — мгновенно пересчитываем доступ.
+  useEffect(() => {
+    const sub = onAppEvent('loyalty_gift_changed', () => {
       invalidatePremiumCache();
       void reload();
     });

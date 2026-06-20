@@ -19,6 +19,7 @@ import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
+import LoyaltyGiftModal from '../components/LoyaltyGiftModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
@@ -124,6 +125,14 @@ import {
   shouldShowIntroFullAccessWelcome,
   startIntroFullAccessAfterOnboarding,
 } from './intro_full_access';
+import {
+  getLoyaltyGiftState,
+  isLoyaltyGiftClaimed,
+  isLoyaltyGiftOfferSeen,
+  markLoyaltyGiftEndedSeen,
+  markLoyaltyGiftOfferSeen,
+  startLoyaltyGift,
+} from './loyalty_gift';
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
 // Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
@@ -877,6 +886,9 @@ function AppContent() {
   const [showOnboarding, setShow]   = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
+  // Подарок лояльности: 'offer' = модал обновления с кнопкой «Получить 3 дня»,
+  // 'ended' = переиспользуем intro-модал «3 дня позади» (ведёт на пейвол).
+  const [loyaltyGiftModal, setLoyaltyGiftModal] = useState<'offer' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
@@ -1751,6 +1763,97 @@ function AppContent() {
     };
   }, [checkIntroFullAccessEndedModal]);
 
+  // ── Подарок лояльности (72ч полного доступа существующим free-юзерам) ──
+  // Нажата «Получить 3 дня премиум»: стартуем подарок, эмитим событие пересчёта
+  // доступа, ставим pending VIP-celebration (WOW-анимация проиграется на главной),
+  // закрываем модал-предложение.
+  const claimLoyaltyGift = useCallback(async () => {
+    await markLoyaltyGiftOfferSeen().catch(() => {});
+    const started = await startLoyaltyGift(Date.now(), lang).catch(() => false);
+    setLoyaltyGiftModal(null);
+    if (started) {
+      emitAppEvent('loyalty_gift_changed');
+      // WOW-анимация ВИП (aurora + benefit reel) на главной — пользователь увидит её сразу после получения.
+      void import('./vip_celebration_state')
+        .then(({ markVipCelebrationPending }) => markVipCelebrationPending(`loyalty_${Date.now()}`))
+        .catch(() => {});
+    }
+  }, [lang]);
+
+  // «Может позже»: помечаем предложение показанным (больше не покажем), доступ не выдаём.
+  const dismissLoyaltyGiftOffer = useCallback(async () => {
+    await markLoyaltyGiftOfferSeen().catch(() => {});
+    setLoyaltyGiftModal(null);
+  }, []);
+
+  // Финальный модал после истечения подарка лояльности — переиспользуем intro-модал
+  // 'ended' (та же логика: ведёт на пейвол / «продолжить бесплатно»). Закрытие обрабатывает
+  // closeLoyaltyEndedModal, который помечает loyalty_gift_ended_seen.
+  const closeLoyaltyEndedModal = useCallback(async (action: 'primary' | 'secondary') => {
+    await markLoyaltyGiftEndedSeen().catch(() => {});
+    setIntroFullAccessModal(null);
+    if (action === 'primary') {
+      void import('./analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_ended_cta', {})).catch(() => {});
+      const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(() => null)) || '0', 10) || 0;
+      router.replace({
+        pathname: '/premium_modal',
+        params: { context: 'intro_ended', streak: String(streakCount) },
+      } as any);
+    } else {
+      void import('./analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_ended_dismiss', {})).catch(() => {});
+    }
+  }, [router]);
+
+  // Маршрутизатор закрытия модала 'ended': источник определяет, чей это финал —
+  // intro новичка или подарок лояльности (loyaltyEndedActiveRef).
+  const loyaltyEndedActiveRef = useRef(false);
+
+  const checkLoyaltyGiftFlow = useCallback(async () => {
+    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    // Платным/VIP подарок не нужен — выходим (и гасим возможный «хвост» истечения).
+    if (await hasVerifiedRealPremiumOrVip()) {
+      const st = await getLoyaltyGiftState().catch(() => null);
+      if (st?.expiredUnseen) await markLoyaltyGiftEndedSeen().catch(() => {});
+      return;
+    }
+
+    // 1) Финал: подарок истёк, но финальный модал ещё не показан.
+    const state = await getLoyaltyGiftState().catch(() => null);
+    if (state?.expiredUnseen) {
+      loyaltyEndedActiveRef.current = true;
+      setIntroFullAccessModal('ended');
+      void import('./analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_ended_shown', {})).catch(() => {});
+      return;
+    }
+
+    // 2) Предложение: только существующим (прошёл онбординг до обновления),
+    //    кто ещё не получал подарок и кому предложение ещё не показывали.
+    if (state?.active) return; // подарок уже идёт — предложение не нужно
+    const onboardingDone = (await AsyncStorage.getItem('onboarding_done').catch(() => null)) === '1';
+    if (!onboardingDone) return; // новый юзер — подарок не для него
+    if (await isLoyaltyGiftClaimed().catch(() => false)) return; // уже получал
+    if (await isLoyaltyGiftOfferSeen().catch(() => false)) return; // уже показывали
+    // Не показываем поверх модала конца intro новичка.
+    if (introFullAccessModal !== null) return;
+    const introState = await getIntroFullAccessState().catch(() => null);
+    if (introState?.active) return; // у новичка ещё идёт его подарок — не дублируем
+    setLoyaltyGiftModal('offer');
+  }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, introFullAccessModal, isBanned, ready]);
+
+  useEffect(() => {
+    void checkLoyaltyGiftFlow();
+    const loyaltySub = onAppEvent('loyalty_gift_changed', () => {
+      void checkLoyaltyGiftFlow();
+    });
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') void checkLoyaltyGiftFlow();
+    });
+    return () => {
+      loyaltySub.remove();
+      appSub.remove();
+    };
+  }, [checkLoyaltyGiftFlow]);
+
   // План #7: winback-оффер вернувшимся после 7+ дней неактивности.
   // ВАЖНО: сначала ОЦЕНИВАЕМ по сохранённой активности, ПОТОМ записываем свежую —
   // иначе разрыв всегда ~0. Не показываем одновременно с intro_ended (не два пейвола разом).
@@ -2036,11 +2139,13 @@ function AppContent() {
       <Stack.Screen name="personal_plan_exercise_transition" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="personal_plan_stats_screen" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, animation: 'slide_from_right' }} />
-      <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
-      {/* Эксперимент пейволов v3: варианты A/B/C (диспетчер — premium_modal). Та же modal-презентация. */}
-      <Stack.Screen name="paywall_a" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
-      <Stack.Screen name="paywall_b" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
-      <Stack.Screen name="paywall_c" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
+      {/* Диспетчер прозрачный и мгновенно (useLayoutEffect) делает replace на нужный пейвол —
+          поэтому сам он без анимации, а выезд снизу даёт целевой пейвол ниже. */}
+      <Stack.Screen name="premium_modal" options={{ presentation: 'transparentModal', animation: 'none', animationDuration: 0 }} />
+      {/* Эксперимент пейволов v3: варианты A/B/C (диспетчер — premium_modal). Выезжают снизу как модал. */}
+      <Stack.Screen name="paywall_a" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+      <Stack.Screen name="paywall_b" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+      <Stack.Screen name="paywall_c" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
       <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
       <Stack.Screen name="referral_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="referrals" options={{ headerShown: false, animation: 'slide_from_right' }} />
@@ -2186,8 +2291,30 @@ function AppContent() {
     <IntroFullAccessModal
       visible={appOverlaysEnabled && introFullAccessModal !== null}
       variant={introFullAccessModal ?? 'welcome'}
-      onPrimaryPress={() => { void closeIntroFullAccessModal('primary'); }}
-      onSecondaryPress={() => { void closeIntroFullAccessModal('secondary'); }}
+      onPrimaryPress={() => {
+        // Один и тот же модал 'ended' обслуживает и intro новичка, и подарок лояльности —
+        // маршрутизируем по флагу, выставленному в checkLoyaltyGiftFlow.
+        if (introFullAccessModal === 'ended' && loyaltyEndedActiveRef.current) {
+          loyaltyEndedActiveRef.current = false;
+          void closeLoyaltyEndedModal('primary');
+        } else {
+          void closeIntroFullAccessModal('primary');
+        }
+      }}
+      onSecondaryPress={() => {
+        if (introFullAccessModal === 'ended' && loyaltyEndedActiveRef.current) {
+          loyaltyEndedActiveRef.current = false;
+          void closeLoyaltyEndedModal('secondary');
+        } else {
+          void closeIntroFullAccessModal('secondary');
+        }
+      }}
+    />
+
+    <LoyaltyGiftModal
+      visible={appOverlaysEnabled && loyaltyGiftModal === 'offer'}
+      onPrimaryPress={() => { void claimLoyaltyGift(); }}
+      onSecondaryPress={() => { void dismissLoyaltyGiftOffer(); }}
     />
 
     <DailyTasksFirstVisitModal

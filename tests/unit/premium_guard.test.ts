@@ -84,9 +84,12 @@ describe('getVerifiedPremiumStatus', () => {
       ['premium_expiry', '0'],
     ]);
     await getVerifiedPremiumStatus();
+    const callsAfterFirst = mockMultiGet.mock.calls.length;
     await getVerifiedPremiumStatus();
-    // multiGet called only once due to cache
-    expect(mockMultiGet).toHaveBeenCalledTimes(1);
+    // Второй вызов берёт результат из кэша — НИ ОДНОГО нового чтения хранилища.
+    // (Точное число чтений за первый проход — деталь реализации: real/vip/intro/loyalty
+    // читают разные ключи; важно лишь, что кэш гасит повторный проход.)
+    expect(mockMultiGet).toHaveBeenCalledTimes(callsAfterFirst);
   });
 
   it('invalidatePremiumCache forces re-check', async () => {
@@ -97,8 +100,11 @@ describe('getVerifiedPremiumStatus', () => {
       ['premium_expiry', '0'],
     ]);
     await getVerifiedPremiumStatus();
+    const callsAfterFirst = mockMultiGet.mock.calls.length;
     invalidatePremiumCache();
     await getVerifiedPremiumStatus();
-    expect(mockMultiGet).toHaveBeenCalledTimes(2);
+    // После сброса кэша второй проход снова читает хранилище — счётчик растёт
+    // (число дополнительных чтений = деталь реализации, важен сам факт re-check).
+    expect(mockMultiGet.mock.calls.length).toBeGreaterThan(callsAfterFirst);
   });
 });

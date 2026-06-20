@@ -88,6 +88,14 @@ export type AnalyticsEvent =
   | 'intro_ended_shown'           // показана модалка «3 дня закончились»
   | 'intro_ended_cta'             // нажата «Открыть полный доступ»
   | 'intro_ended_dismiss'         // «Продолжить бесплатно»
+  // ── Подарок лояльности (72ч существующим free-юзерам в честь обновления) ──
+  | 'loyalty_gift_offer_shown'    // показан модал «обновление + подарок»
+  | 'loyalty_gift_offer_cta'      // нажата «Получить 3 дня премиум»
+  | 'loyalty_gift_offer_dismiss'  // «Может позже»
+  | 'loyalty_gift_started'        // активирован 72ч подарок лояльности
+  | 'loyalty_gift_ended_shown'    // показана модалка «подарок закончился»
+  | 'loyalty_gift_ended_cta'      // нажата «Открыть полный доступ» после истечения
+  | 'loyalty_gift_ended_dismiss'  // «Продолжить бесплатно» после истечения
   | 'paywall_shown'
   | 'paywall_personalization_tag_shown'
   | 'paywall_plan_select'

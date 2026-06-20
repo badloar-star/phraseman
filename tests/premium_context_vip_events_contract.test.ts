@@ -29,7 +29,13 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain('isIntroFullAccess');
     expect(source).toContain('introFullAccessEndsAt');
     expect(source).toContain('getIntroFullAccessState');
-    expect(source).toContain('setHasPremiumAccess(realPremium || vip || introState.active)');
+    // Доступ собирается из real/vip/intro и подарка лояльности (loyaltyState.active).
+    expect(source).toContain('setHasPremiumAccess(realPremium || vip || introState.active || loyaltyState.active)');
     expect(source).toContain("onAppEvent('intro_full_access_changed'");
+  });
+
+  it('exposes loyalty gift as a separate derived access source', () => {
+    expect(source).toContain('getLoyaltyGiftState');
+    expect(source).toContain("onAppEvent('loyalty_gift_changed'");
   });
 });

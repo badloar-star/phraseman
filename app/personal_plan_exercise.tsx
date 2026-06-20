@@ -1,3 +1,15 @@
+// ════════════════════════════════════════════════════════════════════════════
+// ПРАВИЛО UX (важно, действует во ВСЁМ этом экране):
+// Разбор ответа («почему так» / «разберём спокойно» / подтверждение) показывается
+// ИНЛАЙН прямо на экране — плашкой в пустоте по центру, под фразой, как teaching
+// note в обычном уроке (см. компонент PlanExerciseFeedbackInline). НИКАКИХ отдельных
+// всплывающих модалов для разбора ответа быть НЕ должно: модал = «двойной контейнер»
+// и закрывает экран. Любой НОВЫЙ режим упражнения с вариантами на экране обязан
+// добавить себя в `usesOptionFeedback` и рендерить разбор инлайн, а НЕ модалом.
+// Единственный оставшийся модал — это «Задание закрыто» (конец задания), он НЕ про
+// разбор ответа. Старый PlanExerciseFeedbackModal оставлен только как fallback для
+// режимов без места на экране и постепенно выпиливается — не использовать в новом коде.
+// ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
@@ -543,8 +555,10 @@ function PlanPronunciationRecorder({
     ? '\u042d\u0442\u043e \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043d\u0435 \u0443\u043c\u0435\u0435\u0442 \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0432\u0430\u0442\u044c \u0440\u0435\u0447\u044c. \u041c\u043e\u0436\u0435\u0448\u044c \u043f\u0440\u043e\u0441\u0442\u043e \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438\u0442\u044c \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0442\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
     : blocked === 'denied'
     ? '\u041d\u0443\u0436\u0435\u043d \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u043c\u0438\u043a\u0440\u043e\u0444\u043e\u043d\u0443. \u0420\u0430\u0437\u0440\u0435\u0448\u0438 \u0435\u0433\u043e \u0432 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0430\u0445 \u2014 \u0438\u043b\u0438 \u043f\u0440\u043e\u0433\u043e\u0432\u043e\u0440\u0438 \u0444\u0440\u0430\u0437\u0443 \u0432\u0441\u043b\u0443\u0445 \u0438 \u0438\u0434\u0438 \u0434\u0430\u043b\u044c\u0448\u0435.'
+    : pronunciationListening
+    ? '\u0421\u043b\u0443\u0448\u0430\u044e\u2026 \u0433\u043e\u0432\u043e\u0440\u0438'
     : pronunciationScoring
-    ? '\u25cf\u25cf\u25cf \u25cf\u25cf\u25cf \u25cf\u25cf\u25cf'
+    ? '\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u044e\u2026'
     : pronunciationScore
     ? pronunciationScore.passed
       ? `Засчитано: ${pronunciationScore.score}% ✓`
@@ -592,6 +606,20 @@ function PlanPronunciationRecorder({
           actionText={actionText}
           onPress={() => (pronunciationListening ? stopSpeaking() : void startSpeaking())}
         />
+      )}
+
+      {/* Live equalizer while the mic is recording — reacts to the voice so the
+          user can see they're being heard (loudness + tone). Only mounted while
+          listening to avoid a permanent empty band. */}
+      {pronunciationListening && (
+        <View style={styles.recorderEqualizer}>
+          <VoiceEqualizer
+            active={pronunciationListening}
+            color={accent}
+            idleColor={mutedText}
+            rawSample={voiceSample}
+          />
+        </View>
       )}
 
       <Text style={[styles.recorderStatus, { color: scoreColor }]}>{statusHint}</Text>
@@ -768,6 +796,12 @@ function PlanExerciseFeedbackSurface({
   );
 }
 
+// ⚠️ DEPRECATED для разбора ответа. Это всплывающий модал = «двойной контейнер» поверх
+// экрана. По правилу (см. шапку файла) разбор ответа ВЕЗДЕ должен быть ИНЛАЙН на экране
+// (PlanExerciseFeedbackInline), а не модалом. Оставлен ТОЛЬКО как временный fallback для
+// режимов без места на экране (вспомни фразу / собери на слух) и для модала «Задание
+// закрыто». НЕ использовать для нового режима с вариантами — добавляй его в
+// `usesOptionFeedback` и рендерь разбор инлайн.
 function PlanExerciseFeedbackModal({
   visible,
   tone,
@@ -932,6 +966,10 @@ export default function PersonalPlanExerciseScreen() {
   const isPhraseBuildMode = rendererType === 'plan_phrase_build';
   // Режимы с экранными вариантами-ответами (плитки) показывают разбор ИНЛАЙН (плашка под
   // вариантами), а НЕ модалом: choose / вставь слово / на слух. У них есть место на экране.
+  // ⚠️ ПРАВИЛО (см. шапку файла): разбор ВЕЗДЕ должен быть инлайн, без отдельных модалов.
+  // Добавляешь новый режим с вариантами — ДОБАВЬ его сюда (тогда разбор пойдёт в плашку, а
+  // модал автоматически отключится через `!usesOptionFeedback` ниже). Модал — это «двойной
+  // контейнер» поверх экрана, его быть не должно.
   const usesOptionFeedback = isChoiceMode || isMissingWordMode || isListeningMode;
   const currentExerciseType = (
     isRecallMode
@@ -1595,6 +1633,9 @@ export default function PersonalPlanExerciseScreen() {
                 ) : null}
               </View>
 
+              {/* Разбор ответа — ИНЛАЙН прямо здесь, в пустоте между фразой и вариантами
+                  (правило файла: НЕ модалом). Сюда же подставляется ИИ-объяснение, когда
+                  подгрузится. Если делаешь новый режим — рендери разбор так же, не модалом. */}
               {lastResult && usesOptionFeedback ? (
                 <View style={styles.inlineFeedbackHost}>
                   <PlanExerciseFeedbackInline
@@ -1697,9 +1738,11 @@ export default function PersonalPlanExerciseScreen() {
             <Text style={[styles.footerLabel, { color: t.textMuted, fontSize: f.label }]}>Отменить</Text>
           </TouchableOpacity>
         </View>
-        {/* Режимы с экранными вариантами показывают разбор ИНЛАЙН (см. выше, без модала
-            и двойного контейнера). Модал остаётся только для режимов без места на экране
-            (вспомни фразу / собери на слух). */}
+        {/* ⚠️ ПРАВИЛО (см. шапку файла): разбор ответа ВЕЗДЕ должен быть ИНЛАЙН (плашка на
+            экране, см. блок выше) — НЕ этим модалом. Модал = «двойной контейнер» поверх
+            экрана. Он гасится для всех режимов с вариантами через `!usesOptionFeedback` и
+            доживает лишь как временный fallback для режимов без места на экране (вспомни
+            фразу / собери на слух). Новый режим — добавляй в usesOptionFeedback, не сюда. */}
         <PlanExerciseFeedbackModal
           visible={Boolean(lastResult && explanation) && !usesOptionFeedback}
           tone={lastResult === 'correct' ? 'success' : 'error'}
@@ -1812,6 +1855,7 @@ type PersonalPlanExerciseStyles = {
   recorderHintText: TextStyle;
   recorderButton: ViewStyle;
   recorderButtonText: TextStyle;
+  recorderEqualizer: ViewStyle;
   recorderStatus: TextStyle;
   recallInput: TextStyle;
   recallAnswer: TextStyle;
@@ -2091,6 +2135,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     paddingHorizontal: 18,
   },
   recorderButtonText: { fontSize: 16, fontWeight: '800' },
+  recorderEqualizer: { alignItems: 'center', justifyContent: 'center', marginTop: 4 },
   recorderStatus: { fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center', paddingHorizontal: 4 },
   recallInput: {
     minHeight: 60,

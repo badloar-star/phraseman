@@ -4,13 +4,16 @@
  * Вынесен отдельно, т.к. общий remote_flags.ts в этой ветке ещё не закоммичен
  * параллельной сессией; при слиянии можно переехать в него без смены сигнатур.
  *
- * Дефолт OFF — когортный rollout: фича скрыта, пока EXPO_PUBLIC_EXPLAIN_ENABLED не
- * выставлен явно в 'true'/'1'. Клиент НИКОГДА не решает «годен/не годен» контент —
- * флаг лишь показывает/прячет кнопку.
+ * Дефолт ON (kill-switch): фича едет с релизом во всех сборках. Remote Config
+ * (admin «Пульт») или env EXPO_PUBLIC_EXPLAIN_ENABLED='0'/'false' могут выключить
+ * её явно. Клиент НИКОГДА не решает «годен/не годен» контент — флаг лишь
+ * показывает/прячет кнопку.
  */
 
-/** Дефолт видимости фичи: выключена, пока env явно не включит. */
-export const EXPLAIN_ENABLED_DEFAULT = false;
+/** Дефолт видимости фичи: ВКЛЮЧЕНА (kill-switch). Раньше была false и пропадала
+ *  в dev/preview EAS-сборках без EXPO_PUBLIC_EXPLAIN_ENABLED. Remote Config
+ *  (admin «Пульт») и env могут выключить её явно. */
+export const EXPLAIN_ENABLED_DEFAULT = true;
 
 function numFromEnv(name: string): number | undefined {
   const raw = process.env[name];

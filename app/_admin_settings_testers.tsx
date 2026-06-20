@@ -4424,6 +4424,9 @@ export default function SettingsTestersFunctions() {
             <ButtonRow icon="play-circle-outline" label="👋 Онбординг — просмотреть повторно"
               onPress={async () => {
                 await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step']);
+                // Стираем отметку о подарочных 3 днях, чтобы повторный онбординг
+                // выдал свежий 72ч-доступ, а не показал «3 дня закончились».
+                await resetIntroFullAccessForAdmin().catch(() => {});
                 emitAppEvent('account_deleted');
                 router.replace('/(tabs)/home' as any);
               }}

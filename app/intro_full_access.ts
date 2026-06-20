@@ -40,8 +40,16 @@ export async function startIntroFullAccessAfterOnboarding(
   nowMs: number = Date.now(),
   lang: Lang = 'ru',
 ): Promise<void> {
+  // Не выдаём повторно ТОЛЬКО пока прошлое окно ещё живо. Если 72ч уже истекли
+  // (например, пользователь проходит онбординг повторно или после частичного
+  // сброса данных, где intro-ключи не стираются), выдаём свежий подарок заново —
+  // иначе ранний return оставлял просроченную отметку, и пользователь видел
+  // модалку «3 дня закончились» без активации доступа.
   const existingStart = parsePositiveMs(await AsyncStorage.getItem(INTRO_FULL_ACCESS_STARTED_AT_KEY));
-  if (existingStart) return;
+  if (existingStart) {
+    const existingEnds = parsePositiveMs(await AsyncStorage.getItem(INTRO_FULL_ACCESS_ENDS_AT_KEY));
+    if (existingEnds && existingEnds > nowMs) return;
+  }
 
   const endsAt = nowMs + INTRO_FULL_ACCESS_DURATION_MS;
 

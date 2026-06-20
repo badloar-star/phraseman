@@ -638,7 +638,13 @@ const LessonContent = React.memo(function LessonContent({
 
   // [50/50] Затемняет неправильные плитки до ответа. Тратит тот же дневной кредит, что и «Объясни».
   const [fiftyFiftyActive, setFiftyFiftyActive] = useState(false);
-  useEffect(() => { if (status === 'playing') setFiftyFiftyActive(false); }, [status]);
+  // Индексы неверных плиток, затемнённых 50/50. Раньше затемнялись ВСЕ неверные —
+  // оставалась одна яркая, что = показ правильного ответа. Настоящее 50/50 убирает
+  // лишь половину неверных, оставляя правильный среди ещё нескольких бликующих.
+  const [fiftyFiftyDimmed, setFiftyFiftyDimmed] = useState<Set<number>>(() => new Set());
+  useEffect(() => {
+    if (status === 'playing') { setFiftyFiftyActive(false); setFiftyFiftyDimmed(new Set()); }
+  }, [status]);
   // [EXPLAIN] «Объясни проще» — только ПОСЛЕ ответа. Тот же дневной лимит (fifty_fifty_* счётчик).
   const [explainOpen, setExplainOpen] = useState(false);
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
@@ -1276,7 +1282,7 @@ const LessonContent = React.memo(function LessonContent({
                     style={{
                     width: '48%',
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
-                    opacity: (fiftyFiftyActive && !isCorrectOption) ? 0.22 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
+                    opacity: (fiftyFiftyActive && fiftyFiftyDimmed.has(i)) ? 0.22 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
                     {(() => {
                       // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
@@ -1388,6 +1394,16 @@ const LessonContent = React.memo(function LessonContent({
                   onPress={() => {
                     if (!canUse50) return;
                     hapticTap();
+                    // Настоящее 50/50: затемняем ровно половину НЕВЕРНЫХ плиток (округление
+                    // вверх), правильная всегда остаётся видимой среди других бликующих.
+                    const wrongIdx = wordOptionItems.filter(o => !o.isCorrectOption).map(o => o.index);
+                    const dimCount = Math.ceil(wrongIdx.length / 2);
+                    const shuffledWrong = [...wrongIdx];
+                    for (let k = shuffledWrong.length - 1; k > 0; k -= 1) {
+                      const j = Math.floor(Math.random() * (k + 1));
+                      [shuffledWrong[k], shuffledWrong[j]] = [shuffledWrong[j], shuffledWrong[k]];
+                    }
+                    setFiftyFiftyDimmed(new Set(shuffledWrong.slice(0, dimCount)));
                     setFiftyFiftyActive(true);
                     onConsumeExplainCredit();
                   }}

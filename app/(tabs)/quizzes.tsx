@@ -521,14 +521,11 @@ function BaseQuizLevelCard({
       </TapScale>
 
       {visualSelected && (
-        <TapScale
+        <Pressable
           testID={`quiz-level-start-${level}`}
           accessibilityLabel={`qa-quiz-level-start-${level}`}
+          accessibilityRole="button"
           onPress={() => { onStart(level, fillAnim); }}
-          // scaleTo=1: нижняя полоска не сжимается отдельно — читается как подвал
-          // карточки, а не как самостоятельная кнопка («они не вместе»).
-          scaleTo={1}
-          withHaptic={false}
           style={{
             height: 46,
             backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
@@ -568,7 +565,7 @@ function BaseQuizLevelCard({
   pl: 'Rozpocznij quiz',
 })} · {title}
           </Text>
-        </TapScale>
+        </Pressable>
       )}
     </View>
   );
@@ -723,12 +720,9 @@ function ThematicQuizLevelCard({
       </TapScale>
 
       {visualSelected && (
-        <TapScale
+        <Pressable
+          accessibilityRole="button"
           onPress={() => { onStart(category.id, fillAnim); }}
-          // scaleTo=1: нижняя полоска не сжимается отдельно — читается как подвал
-          // карточки, а не как самостоятельная кнопка («они не вместе»).
-          scaleTo={1}
-          withHaptic={false}
           style={{
             height: 46,
             backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${accent}22`,
@@ -767,7 +761,7 @@ function ThematicQuizLevelCard({
   pl: 'Rozpocznij quiz',
 })} · {title}
           </Text>
-        </TapScale>
+        </Pressable>
       )}
     </View>
   );

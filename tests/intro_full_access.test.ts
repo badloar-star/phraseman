@@ -49,44 +49,32 @@ describe('intro full access gift', () => {
     expect(state.endsAt).toBe(1000 + 72 * 60 * 60 * 1000);
   });
 
-  it('re-grants a fresh 72h gift when the previous window has expired (re-onboarding / partial reset)', async () => {
+  it('never re-grants after expiry (gift is once per install), but re-grants after admin reset', async () => {
     const access = require('../app/intro_full_access');
     const firstStart = 1000;
     const firstEnd = firstStart + 72 * 60 * 60 * 1000;
 
-    // Первый подарок выдан и истёк, финальную модалку уже видели.
+    // Первый подарок выдан и истёк.
     await access.startIntroFullAccessAfterOnboarding(firstStart);
-    await access.markIntroFullAccessWelcomeSeen();
     await access.markIntroFullAccessEndedSeen();
-    await expect(access.getIntroFullAccessState(firstEnd + 1)).resolves.toMatchObject({
+
+    // Повторное прохождение онбординга ПОСЛЕ истечения НЕ выдаёт подарок снова —
+    // отметка о старте сохраняется (один раз на установку).
+    await access.startIntroFullAccessAfterOnboarding(firstEnd + 10_000);
+    await expect(access.getIntroFullAccessState(firstEnd + 70_000)).resolves.toMatchObject({
       active: false,
-      expiredUnseen: false,
+      startedAt: firstStart,
     });
 
-    // Повторный онбординг ПОСЛЕ истечения — старые ключи не стёрты, но окно мертво.
-    const secondStart = firstEnd + 10_000;
-    await access.startIntroFullAccessAfterOnboarding(secondStart);
-
-    const state = await access.getIntroFullAccessState(secondStart + 60_000);
-    expect(state.active).toBe(true);
-    expect(state.startedAt).toBe(secondStart);
-    expect(state.endsAt).toBe(secondStart + 72 * 60 * 60 * 1000);
-    // Свежий грант сбрасывает отметки — пользователь снова увидит приветствие, не «ended».
-    expect(state.welcomeUnseen).toBe(true);
-    expect(state.expiredUnseen).toBe(false);
-  });
-
-  it('does NOT re-grant while the existing window is still live', async () => {
-    const access = require('../app/intro_full_access');
-    const start = 1000;
-
-    await access.startIntroFullAccessAfterOnboarding(start);
-    // Повторный вызов в середине живого окна не должен сдвигать started/ends.
-    await access.startIntroFullAccessAfterOnboarding(start + 60 * 60 * 1000);
-
-    const state = await access.getIntroFullAccessState(start + 60 * 60 * 1000);
-    expect(state.startedAt).toBe(start);
-    expect(state.endsAt).toBe(start + 72 * 60 * 60 * 1000);
+    // Только админский сброс (для проверки в разработке) очищает отметку → подарок выдаётся заново.
+    await access.resetIntroFullAccessForAdmin();
+    const reStart = firstEnd + 20_000;
+    await access.startIntroFullAccessAfterOnboarding(reStart);
+    await expect(access.getIntroFullAccessState(reStart + 60_000)).resolves.toMatchObject({
+      active: true,
+      startedAt: reStart,
+      welcomeUnseen: true,
+    });
   });
 
   it('expires exactly after 72 hours and reports unseen expiration once', async () => {

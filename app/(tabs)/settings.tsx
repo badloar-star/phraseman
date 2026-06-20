@@ -17,7 +17,6 @@ import { useTabNav } from '../TabContext';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme, FontSize, FONT_SIZE_LABELS, FONT_SCALE } from '../../components/ThemeContext';
-import ReportErrorButton from '../../components/ReportErrorButton';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
@@ -508,7 +507,7 @@ export default function SettingsMain() {
     // 'taken' откатывалось «как получится») — из-за чего дубликаты просачивались.
     let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
     try {
-      reservation = await reserveNameDetailed(trimmed, oldName);
+      reservation = await reserveNameDetailed(trimmed, oldName, { source: 'settings' });
     } catch (error) {
       DebugLogger.error('settings.tsx:renameName:reserveName', error, 'warning');
       reservation = { status: 'error' };
@@ -1041,7 +1040,7 @@ export default function SettingsMain() {
 
         {/* Подвал */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
-          <View style={{ flexDirection:'row', gap:16, marginBottom:20 }}>
+          <View style={{ flexDirection:'row', flexWrap:'wrap', justifyContent:'center', alignItems:'center', gap:16, marginBottom:20, paddingHorizontal:16 }}>
             <TapScale
               onPress={() => {
                 doHaptic();
@@ -1049,8 +1048,8 @@ export default function SettingsMain() {
               }}
               withHaptic={false}
             >
-              <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
-                {L('Политика конфиденциальности', 'Політика конфіденційності', 'Política de privacidad', 'Política de privacidade', 'Chính sách bảo mật', 'Kebijakan privasi', 'Gizlilik politikası', 'Polityka prywatności')}
+              <Text numberOfLines={1} style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
+                Privacy Policy
               </Text>
             </TapScale>
             <TapScale
@@ -1060,8 +1059,8 @@ export default function SettingsMain() {
               }}
               withHaptic={false}
             >
-              <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
-                {L('Условия использования', 'Умови використання', 'Términos de uso', 'Termos de uso', 'Điều khoản sử dụng', 'Ketentuan penggunaan', 'Kullanım koşulları', 'Regulamin')}
+              <Text numberOfLines={1} style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
+                Terms of Use
               </Text>
             </TapScale>
           </View>
@@ -1073,22 +1072,6 @@ export default function SettingsMain() {
               by Knowly
             </Text>
           </TouchableOpacity>
-          <View style={{ alignItems: 'center', marginTop: 16 }}>
-            <ReportErrorButton
-              screen="settings_tab"
-              dataId="settings_main"
-              dataText={triLang(lang, {
-                ru: 'Настройки',
-                uk: 'Налаштування',
-                es: 'Ajustes',
-                'pt-BR': 'Configurações',
-                vi: 'Cài đặt',
-                id: 'Pengaturan',
-                tr: 'Ayarlar',
-                pl: 'Ustawienia',
-              })}
-            />
-          </View>
         </View>
 
       </Animated.ScrollView>

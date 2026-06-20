@@ -3,6 +3,27 @@ import firestore from '@react-native-firebase/firestore';
 import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, loadShardsFromCloud } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');
+jest.mock('@react-native-firebase/functions', () => ({
+  getFunctions: jest.fn(() => ({})),
+  httpsCallable: jest.fn((_functions, name: string) => {
+    if (name !== 'dailyTasksAllShardsClaim') {
+      return jest.fn(async () => ({ data: {} }));
+    }
+    return jest.fn(async () => {
+      const fs = require('@react-native-firebase/firestore').default as any;
+      if (fs.__testState.rewardClaimExists) {
+        return { data: { alreadyClaimed: true, newBalance: fs.__testState.userShards ?? 0 } };
+      }
+      const next = (fs.__testState.userShards ?? 0) + 1;
+      fs.__testState.rewardClaimExists = true;
+      fs.__testState.userShards = next;
+      fs.__testState.userShardsUpdatedAtMs = Date.now();
+      fs.__testState.userShardsUpdatedOp = 'earn';
+      fs.__testState.userShardsUpdatedReason = 'daily_tasks_all';
+      return { data: { alreadyClaimed: false, newBalance: next } };
+    });
+  }),
+}));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/user_id_policy', () => ({
   getCanonicalUserId: jest.fn(async () => 'uid-1'),
@@ -46,7 +67,9 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
     expect(mockStorage.shards_balance).toBe('5');
   });
 
-  it('returns false when reward claim already exists on server', async () => {
+  it('returns false but writes the local marker when the server already has the claim', async () => {
+    // Регрессия: без локального маркера кнопка «Забрать» зависала активной и
+    // каждый повтор показывал «Осколки не загрузились» (баг-репорты daily_tasks).
     const fs = firestore as any;
     fs.__testState.rewardClaimExists = true;
     fs.__testState.userDocExists = true;
@@ -55,7 +78,9 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
     mockStorage.shards_balance = '1';
 
     await expect(claimDailyTasksAllShardsReward('2026-08-11')).resolves.toBe(false);
-    expect(mockStorage['daily_tasks_all_shards_2026-08-11']).toBeUndefined();
+    // Маркер выставлен → UI садится в «получено», повторов больше нет.
+    expect(mockStorage['daily_tasks_all_shards_2026-08-11']).toBe('1');
+    // Баланс не трогаем — осколок уже был начислен на сервере.
     expect(mockStorage.shards_balance).toBe('1');
   });
 });

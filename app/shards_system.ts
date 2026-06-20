@@ -393,6 +393,11 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
     const { alreadyClaimed, newBalance } = cfResult.data;
 
     if (alreadyClaimed) {
+      // Сервер уже выдал осколок (другое устройство / прерванный прошлый вызов
+      // после успеха CF). Локальный маркер мог не записаться — ставим его, иначе
+      // кнопка «Забрать» зависает в активном состоянии и каждый повтор снова даёт
+      // «Осколки не загрузились. Попробуй ещё раз.» (см. баг-репорты daily_tasks).
+      await AsyncStorage.setItem(rewardKey, '1').catch(() => {});
       return false;
     }
 

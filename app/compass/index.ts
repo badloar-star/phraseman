@@ -21,3 +21,7 @@ export { canActivatePlan, decidePlanAccess } from './compass_access';
 // Крыло «Экономика»: справедливый вес дня + анти-фарм (рекомендации, не начисление).
 export { computeCompassDayWeight, shouldCreditTopic } from './compass_economy';
 export { compassEconomyOn } from './compass_flags';
+// Крыло «Мотивация»: тёплый возврат, защита серии, выбор пуша (решения, не отправка).
+export { decideRetentionPush, needsComebackDay } from './compass_retention';
+export type { CompassPushDecision, CompassPushKind } from './compass_retention';
+export { compassRetentionOn } from './compass_flags';

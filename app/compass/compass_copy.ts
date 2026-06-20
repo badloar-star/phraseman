@@ -223,3 +223,57 @@ export const COMPASS_OPEN_ACCESS: CompassText = {
   tr: 'Tam erişimi aç',
   pl: 'Otwórz pełny dostęp',
 };
+
+// ── Крыло «Мотивация»: пуши и серия (Библия: без запугивания и фальшивой срочности) ──
+
+/** Пуш-возврат после паузы (Человек + Тренер). gain-framing: всё на месте. */
+export const COMPASS_PUSH_COMEBACK: CompassText = {
+  ru: 'Давно не виделись. Всё твоё на месте.',
+  uk: 'Давно не бачились. Усе твоє на місці.',
+  es: 'Cuánto tiempo. Todo lo tuyo sigue aquí.',
+  'pt-BR': 'Quanto tempo. Tudo seu continua aqui.',
+  vi: 'Lâu rồi không gặp. Mọi thứ của bạn vẫn còn.',
+  id: 'Lama tak jumpa. Semua milikmu masih ada.',
+  tr: 'Görüşmeyeli uzun oldu. Her şeyin yerinde.',
+  pl: 'Dawno się nie widzieliśmy. Wszystko twoje czeka.',
+};
+
+/** Пуш «новые фразы в твоей теме» (Игра). */
+export const COMPASS_PUSH_NEW_PHRASES: CompassText = {
+  ru: 'В твоей теме — новые фразы. Откроем?',
+  uk: 'У твоїй темі — нові фрази. Відкриємо?',
+  es: 'Hay frases nuevas en tu tema. ¿Las abrimos?',
+  'pt-BR': 'Há frases novas no seu tema. Abrimos?',
+  vi: 'Có câu mới trong chủ đề của bạn. Mở nhé?',
+  id: 'Ada frasa baru di topikmu. Buka, yuk?',
+  tr: 'Konunda yeni ifadeler var. Açalım mı?',
+  pl: 'W twoim temacie są nowe frazy. Otworzymy?',
+};
+
+/**
+ * Пуш защиты серии. ВНИМАНИЕ (Библия, правило 2): лёгкий loss-framing «серия
+ * ждёт» допустим ТОЛЬКО для активных с серией 7+ дней. Для новых — только gain.
+ * Здесь даём gain-вариант; loss-вариант выбирает compass_retention по правилу.
+ */
+export const COMPASS_PUSH_STREAK_GAIN: CompassText = {
+  ru: 'Пять минут — и серия растёт дальше.',
+  uk: 'П’ять хвилин — і серія росте далі.',
+  es: 'Cinco minutos y tu racha sigue creciendo.',
+  'pt-BR': 'Cinco minutos e sua sequência continua.',
+  vi: 'Năm phút và chuỗi của bạn dài thêm.',
+  id: 'Lima menit dan rangkaianmu makin panjang.',
+  tr: 'Beş dakika ve serin uzamaya devam eder.',
+  pl: 'Pięć minut i seria rośnie dalej.',
+};
+
+/** Пуш защиты серии для активных 7+ дней (мягкий loss-framing, по правилу Библии). */
+export const COMPASS_PUSH_STREAK_KEEP: CompassText = {
+  ru: 'Серия {days} дней ждёт тебя сегодня.',
+  uk: 'Серія {days} днів чекає на тебе сьогодні.',
+  es: 'Tu racha de {days} días te espera hoy.',
+  'pt-BR': 'Sua sequência de {days} dias espera hoje.',
+  vi: 'Chuỗi {days} ngày đang đợi bạn hôm nay.',
+  id: 'Rangkaian {days} hari menunggumu hari ini.',
+  tr: '{days} günlük serin bugün seni bekliyor.',
+  pl: 'Seria {days} dni czeka na ciebie dziś.',
+};

@@ -625,9 +625,6 @@ export default function PersonalPlanScreen() {
                   <Ionicons name="time-outline" size={14} color={chrome.accent} />
                   <Text style={[styles.timePillText, { color: chrome.accent }]}>{totalMinutes} мин сегодня</Text>
                 </View>
-                <Text style={[styles.heroFocus, { color: chrome.muted }]} numberOfLines={3}>
-                  {day.focus}
-                </Text>
                 {/* numberOfLines обязателен: heroCopy стоит в строке рядом с кольцом
                     прогресса; без клампа узкая колонка рвёт заголовок по буквам. */}
                 <Text style={[styles.heroTitle, { color: chrome.text }]} numberOfLines={4}>
@@ -971,7 +968,7 @@ const styles = StyleSheet.create({
   },
   timePillText: { fontSize: 12, lineHeight: 15, fontWeight: '900' },
   heroFocus: { marginTop: 8, fontSize: 11, lineHeight: 14, fontWeight: '800', textTransform: 'uppercase' },
-  heroTitle: { marginTop: 4, fontSize: 19, lineHeight: 24, fontWeight: '900' },
+  heroTitle: { marginTop: 6, fontSize: 20, lineHeight: 25, fontWeight: '900' },
   heroDivider: { height: 1, marginVertical: 16 },
   heroStats: { flexDirection: 'row', alignItems: 'center' },
   heroStatItem: { flex: 1, alignItems: 'center', gap: 2 },

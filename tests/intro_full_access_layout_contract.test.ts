@@ -12,11 +12,13 @@ describe('intro full access layout orchestration', () => {
     expect(source).toContain("setIntroFullAccessModal('welcome')");
   });
 
-  it('shows the expired gift modal without stacking it over onboarding or first lesson sheet', () => {
+  it('shows the expired gift modal without stacking it over onboarding', () => {
     expect(source).toContain('getIntroFullAccessState');
     expect(source).toContain('expiredUnseen');
     expect(source).toContain('IntroFullAccessModal');
-    expect(source).toContain('!introFullAccessModal && showFirstLessonSheet');
+    // FirstLessonSheet был удалён отдельной сессией — гейт стэкинга к нему больше
+    // не относится; достаточно проверить, что модал интро рисуется по состоянию.
+    expect(source).toContain('setIntroFullAccessModal');
   });
 
   it('suppresses intro gift modals for users who already have real Premium or VIP', () => {
@@ -37,7 +39,7 @@ describe('intro full access layout orchestration', () => {
     expect(source).toContain('handleOnboardingIntroFullAccessStart');
     expect(source).toContain('onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}');
     expect(onboardingSource).toContain('onIntroFullAccessStart?: () => Promise<boolean> | boolean');
-    expect(onboardingSource).toContain('const introFullAccessStarted = await onIntroFullAccessStart?.().catch(() => false);');
+    expect(onboardingSource).toContain('const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);');
     expect(onboardingSource).toContain('if (hasPremiumAccess || introFullAccessStarted)');
   });
 });

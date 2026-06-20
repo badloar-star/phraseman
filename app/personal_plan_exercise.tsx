@@ -22,6 +22,8 @@ import {
 import { loadPlanSpeechModule } from './personal_plan_speech_module';
 import { isSpeakingEnabled } from './remote_flags';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useRecordStartCue } from '../hooks/use-record-start-cue';
+import { VoiceEqualizer } from './voice_equalizer';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import type { PersonalPlanId } from './personal_plan_catalog';
@@ -365,6 +367,7 @@ function PlanPronunciationRecorder({
   onBlocked: (blocked: PronunciationBlock) => void;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const { playRecordStart } = useRecordStartCue();
   // Guarded native module: null on a binary/device without the recognizer, OR
   // when the remote kill-switch turns speaking off app-wide. Resolved once so the
   // whole exercise degrades (escape path) instead of crashing on mount.
@@ -372,6 +375,9 @@ function PlanPronunciationRecorder({
   const [pronunciationHeardTarget, setPronunciationHeardTarget] = useState(false);
   const [pronunciationSpeakingTarget, setPronunciationSpeakingTarget] = useState(false);
   const [pronunciationListening, setPronunciationListening] = useState(false);
+  // Latest raw `volumechange` sample for the live equalizer (same component the
+  // lesson "Устно" panel uses, so feedback is identical across modes).
+  const [voiceSample, setVoiceSample] = useState(0);
   const [pronunciationScoringLocal, setPronunciationScoringLocal] = useState(false);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
   const [blocked, setBlockedLocal] = useState<PronunciationBlock>(null);
@@ -429,10 +435,17 @@ function PlanPronunciationRecorder({
     });
     const endSub = speechModule.addListener('end', () => {
       setPronunciationListening(false);
+      setVoiceSample(0);
     });
     const errorSub = speechModule.addListener('error', () => {
       setPronunciationListening(false);
       setPronunciationScoring(false);
+      setVoiceSample(0);
+    });
+    // Live volume -> equalizer. The VoiceEqualizer turns the raw sample into
+    // loudness + tone-driven bars itself.
+    const volumeSub = speechModule.addListener('volumechange', (event: any) => {
+      setVoiceSample(Number(event?.value));
     });
 
     return () => {
@@ -440,6 +453,7 @@ function PlanPronunciationRecorder({
       noMatchSub?.remove?.();
       endSub?.remove?.();
       errorSub?.remove?.();
+      volumeSub?.remove?.();
       try {
         speechModule.abort();
       } catch {
@@ -483,19 +497,25 @@ function PlanPronunciationRecorder({
         return;
       }
       setBlocked(null);
+      setVoiceSample(0);
       setPronunciationListening(true);
       setPronunciationScoring(true);
       speechModule.start({
         lang: 'en-US',
         interimResults: false,
         continuous: false,
+        // Real-time volume metering feeds the live equalizer (value in
+        // `volumechange`, ~ -2..10). ~100ms cadence is smooth enough.
+        volumeChangeEventOptions: { enabled: true, intervalMillis: 100 },
         ...(Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}),
       });
+      // Mic is live -> canonical "recording started" cue (sound + haptic).
+      playRecordStart();
     } catch {
       setPronunciationListening(false);
       setPronunciationScoring(false);
     }
-  }, [stopAudio, speechModule, setBlocked]);
+  }, [stopAudio, speechModule, setBlocked, playRecordStart]);
 
   const stopSpeaking = useCallback(() => {
     try {
@@ -910,6 +930,9 @@ export default function PersonalPlanExerciseScreen() {
   const isPronunciationMode = rendererType === 'plan_pronunciation_repeat';
   const isRecallMode = rendererType === 'plan_phrase_recall';
   const isPhraseBuildMode = rendererType === 'plan_phrase_build';
+  // Режимы с экранными вариантами-ответами (плитки) показывают разбор ИНЛАЙН (плашка под
+  // вариантами), а НЕ модалом: choose / вставь слово / на слух. У них есть место на экране.
+  const usesOptionFeedback = isChoiceMode || isMissingWordMode || isListeningMode;
   const currentExerciseType = (
     isRecallMode
       ? 'plan_phrase_recall'
@@ -1034,7 +1057,7 @@ export default function PersonalPlanExerciseScreen() {
     ? (explanation?.correct
         ? triLang(lang, explanation.correct)
         : triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', es: 'Así suena natural.' }))
-    : (isChoiceMode
+    : (usesOptionFeedback
         ? wrongSelectedBody
         : explanation?.wrong
           ? triLang(lang, explanation.wrong)
@@ -1572,7 +1595,7 @@ export default function PersonalPlanExerciseScreen() {
                 ) : null}
               </View>
 
-              {lastResult && isChoiceMode ? (
+              {lastResult && usesOptionFeedback ? (
                 <View style={styles.inlineFeedbackHost}>
                   <PlanExerciseFeedbackInline
                     tone={lastResult === 'correct' ? 'success' : 'error'}
@@ -1674,10 +1697,11 @@ export default function PersonalPlanExerciseScreen() {
             <Text style={[styles.footerLabel, { color: t.textMuted, fontSize: f.label }]}>Отменить</Text>
           </TouchableOpacity>
         </View>
-        {/* Choice-режим теперь показывает разбор ИНЛАЙН (см. выше, без модала и
-            двойного контейнера). Модал остаётся только для остальных режимов. */}
+        {/* Режимы с экранными вариантами показывают разбор ИНЛАЙН (см. выше, без модала
+            и двойного контейнера). Модал остаётся только для режимов без места на экране
+            (вспомни фразу / собери на слух). */}
         <PlanExerciseFeedbackModal
-          visible={Boolean(lastResult && explanation) && !isChoiceMode}
+          visible={Boolean(lastResult && explanation) && !usesOptionFeedback}
           tone={lastResult === 'correct' ? 'success' : 'error'}
           title={resultModalTitle}
           body={resultModalBody}

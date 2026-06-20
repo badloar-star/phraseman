@@ -24,6 +24,7 @@ import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
 import { callExplainChoice } from './explain_choice_client';
+import { CompassLessonInvite } from './compass';
 import { useAudio } from '../hooks/use-audio';
 import {
   scorePlanPronunciationTranscript,
@@ -1653,6 +1654,14 @@ export default function PersonalPlanExerciseScreen() {
                     textPrimaryColor={t.textPrimary}
                     loading={choiceFeedbackLoading}
                   />
+                  {/* Компас: при неверном ответе — зов в сессию за глубиной. Сам
+                      компонент null-safe (выключенный Компас ничего не рендерит). */}
+                  <View style={{ marginTop: 12 }}>
+                    <CompassLessonInvite
+                      visible={lastResult === 'wrong'}
+                      onOpenSession={() => { hapticTap(); router.push('/lessons' as any); }}
+                    />
+                  </View>
                 </View>
               ) : (
                 <View style={styles.optionsSpacer} />

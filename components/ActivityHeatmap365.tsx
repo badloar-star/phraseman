@@ -55,9 +55,10 @@ const YEAR_GRID_COLS = Math.ceil(WINDOW_DAYS / YEAR_GRID_ROWS);
 
 const EMPTY_GOAL = {
   goal: 120,
+  chosen: false,
   activeDays: 0,
   remainingDays: 120,
-  forecastDate: null,
+  forecastDate: null as string | null,
   requiredDaysPerWeek: 0,
   onTrack: false,
 };
@@ -892,7 +893,18 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
                   })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
-                  {safeAnalytics.goal.forecastDate
+                  {!safeAnalytics.goal.chosen
+                    ? triLang(lang, {
+                      ru: 'Выбери свою цель на год — и появится прогноз.',
+                      uk: 'Обери свою ціль на рік — і з\'явиться прогноз.',
+                      es: 'Elige tu objetivo anual y aparecerá la previsión.',
+                      'pt-BR': "Escolha seu objetivo anual e a previsão aparecerá.",
+                      vi: "Chọn mục tiêu năm của bạn và dự báo sẽ xuất hiện.",
+                      id: "Pilih target tahunanmu dan perkiraan akan muncul.",
+                      tr: "Yıllık hedefini seç, tahmin görünecek.",
+                      pl: "Wybierz swój cel roczny, a pojawi się prognoza.",
+                    })
+                    : safeAnalytics.goal.forecastDate
                     ? triLang(lang, {
                       ru: `Прогноз: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/нед.`,
                       uk: `Прогноз: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/тиж.`,
@@ -915,24 +927,29 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
                     })}
                 </Text>
               </View>
-              <Text style={{ color: safeAnalytics.goal.onTrack ? activeAccent : weakAccent, fontSize: f.body, fontWeight: '900' }}>
-                {safeAnalytics.goal.activeDays}/{safeAnalytics.goal.goal}
+              <Text style={{ color: !safeAnalytics.goal.chosen ? t.textMuted : safeAnalytics.goal.onTrack ? activeAccent : weakAccent, fontSize: f.body, fontWeight: '900' }}>
+                {safeAnalytics.goal.chosen ? `${safeAnalytics.goal.activeDays}/${safeAnalytics.goal.goal}` : safeAnalytics.goal.activeDays}
               </Text>
             </View>
             <View style={[styles.goalTrack, { backgroundColor: t.bgSurface2 }]}>
-              <View style={[styles.goalFill, { width: `${goalProgress}%`, backgroundColor: safeAnalytics.goal.onTrack ? activeAccent : weakAccent }]} />
+              {/* Пока цель не выбрана — трек пустой, чтобы не выглядело как навязанный прогресс. */}
+              <View style={[styles.goalFill, { width: safeAnalytics.goal.chosen ? `${goalProgress}%` : '0%', backgroundColor: safeAnalytics.goal.onTrack ? activeAccent : weakAccent }]} />
             </View>
             <View style={styles.goalOptions}>
-              {GOALS.map(goal => (
-                <TouchableOpacity
-                  key={goal}
-                  activeOpacity={0.82}
-                  onPress={() => void updateGoal(goal)}
-                  style={[styles.goalBtn, { backgroundColor: safeAnalytics.goal.goal === goal ? (isGoldTheme ? GOLD_RICH.paleGold : activeAccent) : 'transparent', borderColor: safeAnalytics.goal.goal === goal ? activeAccent : activityHairline }]}
-                >
-                  <Text style={{ color: safeAnalytics.goal.goal === goal ? t.correctText : t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{goal}</Text>
-                </TouchableOpacity>
-              ))}
+              {GOALS.map(goal => {
+                // Подсветка пресета только когда юзер реально выбрал цель.
+                const selected = safeAnalytics.goal.chosen && safeAnalytics.goal.goal === goal;
+                return (
+                  <TouchableOpacity
+                    key={goal}
+                    activeOpacity={0.82}
+                    onPress={() => void updateGoal(goal)}
+                    style={[styles.goalBtn, { backgroundColor: selected ? (isGoldTheme ? GOLD_RICH.paleGold : activeAccent) : 'transparent', borderColor: selected ? activeAccent : activityHairline }]}
+                  >
+                    <Text style={{ color: selected ? t.correctText : t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{goal}</Text>
+                  </TouchableOpacity>
+                );
+              })}
             </View>
           </View>
 

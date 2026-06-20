@@ -29,6 +29,7 @@ describe('activity 365 analytics', () => {
       fgDaily,
       breakdown,
       goal: 100,
+      goalChosen: true,
       now: new Date('2026-05-10T12:00:00Z'),
     });
 
@@ -56,12 +57,36 @@ describe('activity 365 analytics', () => {
       fgDaily: {},
       breakdown: {},
       goal: 100,
+      goalChosen: true,
       now: new Date('2026-05-05T12:00:00Z'),
     });
 
     expect(analytics.activeDays).toBe(5);
     expect(analytics.goal.forecastDate).toBe('2026-08-08');
     expect(analytics.goal.requiredDaysPerWeek).toBe(1.8);
+  });
+
+  it('hides the forecast until the user explicitly picks a year goal', () => {
+    const base = {
+      statsMap: {
+        '2026-05-01': { points: 20 },
+        '2026-05-02': { points: 20 },
+        '2026-05-03': { points: 20 },
+        '2026-05-04': { points: 20 },
+        '2026-05-05': { points: 20 },
+      },
+      fgDaily: {},
+      breakdown: {},
+      goal: 100,
+      now: new Date('2026-05-05T12:00:00Z'),
+    };
+    const notChosen = computeActivity365Analytics(base);
+    expect(notChosen.goal.chosen).toBe(false);
+    expect(notChosen.goal.forecastDate).toBeNull();
+
+    const chosen = computeActivity365Analytics({ ...base, goalChosen: true });
+    expect(chosen.goal.chosen).toBe(true);
+    expect(chosen.goal.forecastDate).toBe('2026-08-08');
   });
 
   it('treats a fresh one-day account as warmup instead of a missed-rhythm state', () => {

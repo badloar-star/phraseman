@@ -61,6 +61,9 @@ export function activity365NextStepKind(activeDays: number, currentStreak: numbe
 
 export type Activity365GoalAnalytics = {
   goal: number;
+  /** true только если юзер сам выбрал цель (в сторе валидное значение). При false
+   *  `goal` = дефолтный пресет, прогноз показывать НЕ нужно (баг «цель уже стоит»). */
+  chosen: boolean;
   activeDays: number;
   remainingDays: number;
   forecastDate: string | null;
@@ -376,7 +379,7 @@ function buildInsights(days: Activity365Day[], todayKey: string, currentStreak: 
   return insights.slice(0, 2);
 }
 
-function buildGoal(goal: number, activeDays: number, todayKey: string, observedDays: number): Activity365GoalAnalytics {
+function buildGoal(goal: number, chosen: boolean, activeDays: number, todayKey: string, observedDays: number): Activity365GoalAnalytics {
   const remainingDays = Math.max(0, goal - activeDays);
   const elapsedDays = Math.max(1, Math.min(WINDOW_DAYS, Math.floor(observedDays)));
   const pace = activeDays / elapsedDays;
@@ -385,9 +388,11 @@ function buildGoal(goal: number, activeDays: number, todayKey: string, observedD
   const daysUntilGoal = pace > 0 && remainingDays > 0 ? Math.ceil(remainingDays / pace) : 0;
   return {
     goal,
+    chosen,
     activeDays,
     remainingDays,
-    forecastDate: remainingDays === 0 ? todayKey : pace > 0 ? addDaysUtcKey(todayKey, daysUntilGoal) : null,
+    // Прогноз держим пустым, пока цель не выбрана юзером — иначе выглядит как навязанная.
+    forecastDate: !chosen ? null : remainingDays === 0 ? todayKey : pace > 0 ? addDaysUtcKey(todayKey, daysUntilGoal) : null,
     requiredDaysPerWeek: Math.round(requiredDaysPerWeek * 10) / 10,
     onTrack: remainingDays === 0 || remainingDays <= Math.ceil(daysLeftInWindow * pace),
   };
@@ -410,6 +415,8 @@ export function computeActivity365Analytics(params: {
   fgDaily: Record<string, number>;
   breakdown: DailyBreakdownStore;
   goal: number;
+  /** Юзер выбрал цель явно? Если не передан — считаем дефолтом (не выбрана). */
+  goalChosen?: boolean;
   now?: Date;
 }): Activity365Analytics {
   const now = params.now ?? new Date();
@@ -454,7 +461,7 @@ export function computeActivity365Analytics(params: {
   const months = summarizeMonths(days, todayKey);
   const insights = buildInsights(days, todayKey, streaks.currentStreak);
   const observedDays = inclusiveDaySpan(timelineStart, todayKey);
-  const goal = buildGoal(params.goal, streaks.activeDays, todayKey, observedDays);
+  const goal = buildGoal(params.goal, params.goalChosen ?? false, streaks.activeDays, todayKey, observedDays);
 
   return {
     days,
@@ -489,12 +496,14 @@ export async function loadActivity365Analytics(): Promise<Activity365Analytics> 
         AsyncStorage.getItem(STATS_DAILY_BREAKDOWN_KEY),
         AsyncStorage.getItem(ACTIVITY_365_GOAL_KEY),
       ]);
-      const goal = [100, 180, 365].includes(Number(goalRaw)) ? Number(goalRaw) : 180;
+      const goalChosen = [100, 180, 365].includes(Number(goalRaw));
+      const goal = goalChosen ? Number(goalRaw) : 180;
       const result = computeActivity365Analytics({
         statsMap: parseObject<Record<string, unknown>>(statsRaw),
         fgDaily,
         breakdown: parseObject<DailyBreakdownStore>(breakdownRaw),
         goal,
+        goalChosen,
       });
       _analyticsCache = { result, expiresAt: Date.now() + ANALYTICS_CACHE_TTL_MS };
       return result;

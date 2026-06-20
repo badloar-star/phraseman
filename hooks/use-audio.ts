@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
+import { hasPhraseAudio, playPhraseByText, stopPhraseAudio } from './phrase_audio_player';
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
@@ -90,6 +91,7 @@ export function useAudio() {
     lastTextRef.current = '';
     lastSpeakAtRef.current = 0;
     safeSpeechStop();
+    stopPhraseAudio();
   }, []);
 
   const speak = useCallback((text: string, rate?: number, opts?: SpeakOpts) => {
@@ -102,6 +104,7 @@ export function useAudio() {
     if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
     pendingTimerRef.current = null;
     safeSpeechStop();
+    stopPhraseAudio();
 
     lastTextRef.current = normalized;
     lastSpeakAtRef.current = now;
@@ -114,7 +117,27 @@ export function useAudio() {
       ? (opts.voice ?? '').trim()
       : settings.speechVoiceId.trim();
 
-    pendingTimerRef.current = setTimeout(() => {
+    // Prefer the high-quality OpenAI "fable" clip when one exists for this exact
+    // text, the language is English (clips are EN-only), and the caller did not
+    // force a specific system voice. Falls back to expo-speech on any miss/error.
+    const isEnglish = language.toLowerCase().startsWith('en');
+    const canUseClip = isEnglish && !requestedVoice && hasPhraseAudio(normalized);
+    if (canUseClip) {
+      playPhraseByText(normalized, {
+        onStart: opts?.onStart,
+        onDone: opts?.onDone,
+        onError: () => speakWithSystemTts(),
+      }).then((played) => {
+        if (!played) speakWithSystemTts();
+      });
+      return;
+    }
+
+    speakWithSystemTts();
+
+    function speakWithSystemTts() {
+      if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+      pendingTimerRef.current = setTimeout(() => {
       pendingTimerRef.current = null;
       const speechOptions: SpeechOptions = {
         language,
@@ -139,7 +162,8 @@ export function useAudio() {
           opts?.onError?.(e instanceof Error ? e : new Error(String(e)));
         }
       }
-    }, STOP_SETTLE_MS);
+      }, STOP_SETTLE_MS);
+    }
   }, []);
 
   return { speak, stop };

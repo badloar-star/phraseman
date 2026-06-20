@@ -5,7 +5,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, Platform, StyleSheet, TouchableOpacity, Modal,
+  View, Text, Platform, StyleSheet, TouchableOpacity,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
 } from 'react-native';
 import { Image } from 'expo-image';
@@ -279,74 +279,6 @@ export function PaywallStickyBar({
   );
 }
 
-// ── exit-intent оффер «3 дня бесплатно» при попытке закрыть пейвол ──────────
-// Перехват «0–30 сек»: самый высокий ROI среди re-engagement-механик. Решение
-// показывать — в paywall_trial_offer; здесь только presentational-модал.
-export function PaywallExitTrialModal({
-  visible, lang, chrome, trialDays, onAccept, onDismiss,
-}: {
-  visible: boolean;
-  lang: Lang;
-  chrome: PaywallChrome;
-  trialDays: number;
-  onAccept: () => void;
-  onDismiss: () => void;
-}) {
-  const { tc, bgColors, textPrimary, textMuted, cardBorder } = chrome;
-  return (
-    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onDismiss}>
-      <View style={S.exitOverlay}>
-        <View style={[S.exitPanel, { backgroundColor: bgColors[1] ?? '#11151a', borderColor: cardBorder }]}>
-          <View style={[S.exitGlyph, { backgroundColor: `${tc.heroAccent}1A`, borderColor: `${tc.heroAccent}40` }]}>
-            <Ionicons name="gift" size={26} color={tc.heroAccent} />
-          </View>
-          <Text style={[S.exitTitle, { color: textPrimary }]}>
-            {triLang(lang, {
-              ru: `Постой — ${trialDays} дня бесплатно`,
-              uk: `Зачекай — ${trialDays} дні безкоштовно`,
-              es: `Espera: ${trialDays} días gratis`,
-              'pt-BR': `Espera: ${trialDays} dias grátis`,
-              vi: `Khoan đã — ${trialDays} ngày miễn phí`,
-              id: `Tunggu — ${trialDays} hari gratis`,
-              tr: `Dur — ${trialDays} gün ücretsiz`,
-              pl: `Zaczekaj — ${trialDays} dni za darmo`,
-            })}
-          </Text>
-          <Text style={[S.exitBody, { color: textMuted }]}>
-            {triLang(lang, {
-              ru: 'Попробуй всё без ограничений. Ноль списаний, отменить можно в два тапа.',
-              uk: 'Спробуй усе без обмежень. Нуль списань, скасувати — у два тапи.',
-              es: 'Pruébalo todo sin límites. Cero cargos, cancelas en dos toques.',
-              'pt-BR': 'Experimente tudo sem limites. Zero cobranças, cancela em dois toques.',
-              vi: 'Thử mọi thứ không giới hạn. Không mất phí, hủy chỉ hai chạm.',
-              id: 'Coba semuanya tanpa batas. Tanpa biaya, batal cukup dua ketuk.',
-              tr: 'Her şeyi sınırsız dene. Sıfır ücret, iki dokunuşla iptal.',
-              pl: 'Wypróbuj wszystko bez limitów. Zero opłat, anulujesz w dwa dotknięcia.',
-            })}
-          </Text>
-          <TouchableOpacity activeOpacity={0.86} onPress={onAccept} style={[S.exitPrimary, { backgroundColor: tc.ctaBg }]}>
-            <Text style={[S.exitPrimaryText, { color: tc.ctaText }]}>
-              {triLang(lang, {
-                ru: 'Начать бесплатно', uk: 'Почати безкоштовно', es: 'Empezar gratis',
-                'pt-BR': 'Começar grátis', vi: 'Bắt đầu miễn phí', id: 'Mulai gratis',
-                tr: 'Ücretsiz başla', pl: 'Zacznij za darmo',
-              })}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.7} onPress={onDismiss} style={S.exitSecondary}>
-            <Text style={[S.exitSecondaryText, { color: textMuted }]}>
-              {triLang(lang, {
-                ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no',
-                'pt-BR': 'Agora não', vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
-              })}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Modal>
-  );
-}
-
 // ── отзывы учеников: единый вид во всех вариантах A/B/C ──────────────────────
 // Раньше блок жил только в B. Теперь общий компонент: A/C тоже показывают
 // verified-отзывы. Анти-фейк гард — в pickTestimonials (прод отдаёт только
@@ -421,24 +353,6 @@ const S = StyleSheet.create({
   testimonialTitle: { fontSize: 10.5, fontWeight: '800', letterSpacing: 1.2, marginBottom: 9 },
   testimonialText: { fontSize: 12.5, lineHeight: 18, fontStyle: 'italic' },
   testimonialAuthor: { fontSize: 10.5, marginTop: 4 },
-  exitOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', padding: 28 },
-  exitPanel: {
-    width: '100%', maxWidth: 360, borderRadius: 24, borderWidth: 1,
-    paddingHorizontal: 22, paddingVertical: 26, alignItems: 'center', gap: 13,
-  },
-  exitGlyph: {
-    width: 56, height: 56, borderRadius: 18, borderWidth: 1,
-    alignItems: 'center', justifyContent: 'center',
-  },
-  exitTitle: { fontSize: 22, fontWeight: '900', textAlign: 'center', letterSpacing: -0.5 },
-  exitBody: { fontSize: 14, lineHeight: 20, textAlign: 'center', fontWeight: '600' },
-  exitPrimary: {
-    alignSelf: 'stretch', minHeight: 54, borderRadius: 16,
-    alignItems: 'center', justifyContent: 'center', marginTop: 4,
-  },
-  exitPrimaryText: { fontSize: 16, fontWeight: '900' },
-  exitSecondary: { minHeight: 40, alignItems: 'center', justifyContent: 'center' },
-  exitSecondaryText: { fontSize: 14, fontWeight: '700' },
   glyphCap: {
     alignSelf: 'center', width: 60, height: 60, borderRadius: 30, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',

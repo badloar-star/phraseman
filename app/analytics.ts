@@ -106,9 +106,6 @@ export type AnalyticsEvent =
   | 'afterwin_upsell_shown'
   | 'afterwin_upsell_cta'
   | 'paywall_abandoned_push_sent'
-  | 'exit_trial_offer_shown'       // exit-intent оффер «3 дня бесплатно» показан
-  | 'exit_trial_offer_accepted'
-  | 'exit_trial_offer_declined'
   // ── управление подпиской ──────────────────────────────────────────────────
   | 'subscription_cancel_survey'   // отправлен опрос «почему уходишь»
   | 'change_plan_started'          // нажал «перейти на годовой»

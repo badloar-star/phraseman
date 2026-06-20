@@ -27,7 +27,6 @@ import {
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { getTrialInfo, trialDaysOrDefault, type TrialInfo } from './paywall_trial_info';
 import { activateUrgencyIfNeeded, getUrgencyState, getDoubledPrice, type UrgencyState } from './paywall_urgency';
-import { shouldShowExitTrialOffer, type PaywallCloseReason } from './paywall_trial_offer';
 import { logPaywallFunnel } from './paywall_funnel';
 import type { PaywallAbVariant } from './paywall_variant';
 import {
@@ -35,11 +34,6 @@ import {
   schedulePaywallAbandonedNotification,
   requestNotificationPermission,
 } from './notifications';
-import {
-  logExitTrialOfferShown,
-  logExitTrialOfferAccepted,
-  logExitTrialOfferDeclined,
-} from './firebase';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { DEV_IAP_BYPASS } from './config';
@@ -56,9 +50,6 @@ import {
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
-
-/** Маркер «exit-оффер уже показан» — один раз на устройство, без повторов. */
-const EXIT_TRIAL_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
 
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
@@ -89,8 +80,6 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
   const [urgency, setUrgency] = useState<UrgencyState>({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' });
-  // Exit-intent: при закрытии с доступным стор-триалом перехватываем «3 дня бесплатно».
-  const [exitOfferVisible, setExitOfferVisible] = useState(false);
 
   // Окно «старой цены» (77ч): активируем при первом показе пейвола и читаем
   // состояние. Тик раз в секунду живёт в PaywallPriceUrgency — здесь только старт.
@@ -351,67 +340,17 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     }
   }, [router, restoring, context, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
 
-  // ── exit-intent оффер «3 дня бесплатно» ─────────────────────────────────────
-  // Самый высокий ROI среди re-engagement-механик (Superwall: 17% revenue от
-  // abandon). Показываем максимум один раз, только в high-value контекстах и
-  // только когда стор реально отдаёт бесплатный триал. Решает paywall_trial_offer.
-  const acceptExitOffer = useCallback(() => {
-    hapticTap();
-    void logExitTrialOfferAccepted(context, selected);
-    void trackEvent('exit_trial_offer_accepted', { context, plan: selected, paywall: variant });
-    setExitOfferVisible(false);
-    void handlePurchase();
-  }, [context, selected, variant, handlePurchase]);
-
-  const dismissExitOffer = useCallback((reason: PaywallCloseReason) => {
-    hapticTap();
-    void logExitTrialOfferDeclined(context, selected);
-    void trackEvent('exit_trial_offer_declined', { context, plan: selected, paywall: variant });
-    setExitOfferVisible(false);
-    void trackEvent('paywall_close', { context, source, paywall: variant, reason });
-    logPaywallFunnel('close', { variant, context, plan: selected });
-    void schedulePaywallAbandonedNotification(lang).catch(() => {});
-    safeRouterBack(router);
-  }, [context, selected, source, variant, lang, router]);
-
   // ── закрытие ───────────────────────────────────────────────────────────────
+  // Без exit-intent оффера: триал и так виден на самом пейволе (таймлайн/ribbon),
+  // дублировать всплывашкой не нужно. При закрытии планируем мягкое re-engage
+  // напоминание через ~1ч (один раз за окно, кулдаун 23ч — не спамит).
   const handleClose = useCallback((reason: 'close' | 'continue_free') => {
     hapticTap();
-    if (DEV_IAP_BYPASS) {
-      void trackEvent('paywall_close', { context, source, paywall: variant, reason });
-      logPaywallFunnel('close', { variant, context, plan: selected });
-      safeRouterBack(router);
-      return;
-    }
-    void (async () => {
-      let alreadySeen = true;
-      try {
-        alreadySeen = (await AsyncStorage.getItem(EXIT_TRIAL_SEEN_KEY)) === '1';
-      } catch { /* при сбое чтения — считаем показанным, не назойливы */ }
-      const showOffer = shouldShowExitTrialOffer({
-        context,
-        closeReason: reason,
-        viewMode: 'purchase',
-        openManageFromSettings: false,
-        purchasing,
-        restoring,
-        hasStoreTrial: trial.hasTrial,
-        alreadySeen,
-        forceTrialUI: false,
-      });
-      if (showOffer) {
-        try { await AsyncStorage.setItem(EXIT_TRIAL_SEEN_KEY, '1'); } catch { /* best-effort */ }
-        void logExitTrialOfferShown(context, selected);
-        void trackEvent('exit_trial_offer_shown', { context, plan: selected, paywall: variant });
-        setExitOfferVisible(true);
-        return;
-      }
-      void trackEvent('paywall_close', { context, source, paywall: variant, reason });
-      logPaywallFunnel('close', { variant, context, plan: selected });
-      void schedulePaywallAbandonedNotification(lang).catch(() => {});
-      safeRouterBack(router);
-    })();
-  }, [router, context, source, variant, selected, purchasing, restoring, trial.hasTrial, lang]);
+    void trackEvent('paywall_close', { context, source, paywall: variant, reason });
+    logPaywallFunnel('close', { variant, context, plan: selected });
+    if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(() => {});
+    safeRouterBack(router);
+  }, [router, context, source, variant, selected, lang]);
 
   return {
     selected, selectPlan,
@@ -423,7 +362,6 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     trial, trialDays, ctaDisabled,
     urgency, futurePrice,
     handlePurchase, handleRestore, handleClose,
-    exitOfferVisible, acceptExitOffer, dismissExitOffer,
   };
 }
 

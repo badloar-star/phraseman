@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// Firebase Storage security rules for Phraseman.
+//
+// Audio for in-app phrase pronunciation (OpenAI TTS, voice "fable") lives under
+// /phrase-audio/**. These clips are public learning content (not secret), so any
+// client may READ them. WRITES are denied to all clients — audio is uploaded only
+// by the offline generator script / admin tooling via the Firebase Admin SDK,
+// which bypasses these rules. This prevents users from injecting or overwriting
+// audio assets.
+//
+// Everything else is locked down by default.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Public, read-only phrase pronunciation audio.
+    match /phrase-audio/{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Default deny for any other path.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

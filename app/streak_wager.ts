@@ -104,53 +104,10 @@ const today = () => new Date().toISOString().split('T')[0];
 const safeWagerEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
-const chargeLegacyZeroStakeWager = async (wager: WagerState): Promise<WagerState> => {
-  if (!wager.active || wager.result !== 'pending' || (Number(wager.betShards) || 0) > 0) {
-    return wager;
-  }
-  const tier = WAGER_TIERS[wager.tierIdx];
-  if (!tier) return wager;
-
-  const [discRaw, legacyPremiumFreeToken] = await Promise.all([
-    AsyncStorage.getItem(WAGER_DISCOUNT_KEY),
-    AsyncStorage.getItem(PREM_WAGER_TOKEN_KEY),
-  ]);
-  const hasDisc = discRaw === '0.25';
-  const toSpend = hasDisc
-    ? Math.max(1, Math.floor(tier.betShards * 0.75))
-    : tier.betShards;
-
-  const spent = await spendShards(toSpend, 'wager_bet');
-  if (!spent) {
-    logWagerHealth('streak_wager:legacy_zero_stake_spend_failed', new Error('spendShards returned false'), {
-      tierIdx: wager.tierIdx,
-      toSpend,
-      hasDisc,
-    });
-    return wager;
-  }
-
-  const chargedWager: WagerState = { ...wager, betShards: toSpend };
-  await AsyncStorage.setItem(KEY, JSON.stringify(chargedWager));
-  if (legacyPremiumFreeToken === '1') {
-    await AsyncStorage.multiRemove([PREM_WAGER_TOKEN_KEY, PREM_WAGER_MONTH_KEY]);
-  }
-  if (hasDisc) {
-    await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
-  }
-  await trackActivity('streak_wager:legacy_zero_stake_charged', {
-    feature: 'streak_wager',
-    screen: 'streak_stats',
-    result: 'success',
-    tags: { tierIdx: wager.tierIdx, toSpend, hasDisc, premiumFree: false },
-  });
-  return chargedWager;
-};
-
 export const loadWager = async (): Promise<WagerState | null> => {
   try {
     const raw = await AsyncStorage.getItem(KEY);
-    return raw ? chargeLegacyZeroStakeWager(JSON.parse(raw)) : null;
+    return raw ? (JSON.parse(raw) as WagerState) : null;
   } catch { return null; }
 };
 

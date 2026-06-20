@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getEffectiveWagerStake, placeWager } from '../app/streak_wager';
+import { getEffectiveWagerStake, loadWager, placeWager } from '../app/streak_wager';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
 import { spendShards } from '../app/shards_system';
 
@@ -54,16 +54,17 @@ describe('streak_wager effective stake', () => {
     });
   });
 
-  it('makes the visible stake free when a premium wager token is active', async () => {
+  it('still charges the discounted stake even with a legacy premium wager token (premium-free path removed)', async () => {
     (getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(true);
     mockStorage.premium_wager_free_after_levelup_v1 = '1';
     mockStorage.wager_discount = '0.25';
 
+    // Premium-free ставки больше нет: токен игнорируется, действует только скидка 25%.
     await expect(getEffectiveWagerStake(3)).resolves.toEqual({
       nominalStake: 5,
-      stakeToSpend: 0,
+      stakeToSpend: 3,
       hasDiscount: true,
-      premiumFree: true,
+      premiumFree: false,
     });
   });
 
@@ -93,21 +94,45 @@ describe('streak_wager effective stake', () => {
     expect(mockStorage.streak_wager_v2).toBeUndefined();
   });
 
-  it('does not consume the gift discount when a premium free wager token pays the stake', async () => {
+  it('charges the discounted stake and clears the legacy premium token when placing a wager', async () => {
     (getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(true);
     mockStorage.premium_wager_free_after_levelup_v1 = '1';
     mockStorage.wager_discount = '0.25';
 
     await expect(placeWager(12, 3)).resolves.toBe(true);
 
-    expect(spendShards).not.toHaveBeenCalled();
-    expect(mockStorage.premium_wager_free_after_levelup_v1).toBeUndefined();
-    expect(mockStorage.wager_discount).toBe('0.25');
+    // Премиум-токен больше не делает ставку бесплатной — списываем со скидкой 25%.
+    expect(spendShards).toHaveBeenCalledWith(3, 'wager_bet');
     expect(JSON.parse(mockStorage.streak_wager_v2)).toEqual(expect.objectContaining({
       active: true,
       tierIdx: 3,
-      betShards: 0,
+      betShards: 3,
       rewardShards: 20,
     }));
+  });
+
+  it('loadWager is a pure read and never spends shards (no silent legacy charge)', async () => {
+    // Регрессия багов «осколки списались сами за ночь»: чтение состояния пари
+    // не должно тратить осколки. Legacy zero-stake пари грандфазерятся как есть.
+    mockStorage.streak_wager_v2 = JSON.stringify({
+      active: true,
+      startDate: '2026-01-01',
+      startStreak: 5,
+      tierIdx: 4,
+      betShards: 0,
+      daysRequired: 50,
+      rewardShards: 32,
+      rewardXP: 7500,
+      daysKept: 10,
+      lastChecked: '2026-01-10',
+      result: 'pending',
+    });
+
+    const w = await loadWager();
+
+    expect(spendShards).not.toHaveBeenCalled();
+    expect(w?.betShards).toBe(0);
+    // Маркер не перезаписан чтением.
+    expect(JSON.parse(mockStorage.streak_wager_v2).betShards).toBe(0);
   });
 });

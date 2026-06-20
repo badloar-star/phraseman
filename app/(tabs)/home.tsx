@@ -6,7 +6,7 @@ import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
-import { usePremium } from '../../components/PremiumContext';
+import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -443,6 +443,10 @@ export default function HomeScreen() {
     const [dailyTaskBarCount, setDailyTaskBarCount] = useState(3);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, hasPremiumAccess } = usePremium();
+    // Доступ именно к «Личному плану» с учётом «Пульта»: true = премиум ИЛИ фича
+    // переведена в «Фри». Раньше уже СОЗДАННЫЙ план открывался фри-юзеру без замка
+    // (карточка вела прямо в /personal_plan) — дыра в пейволе после снятия премиума.
+    const planAccess = useFeatureAccess('personal_plan');
     // [SRS] Количество фраз, готовых к повторению сегодня (из локального стора).
     // Показывается в подписи «Моя практика»: >0 → «N ждут сегодня», иначе
     // «Ошибки под контролем». Считается и в проде (запрос локальный, без сети).
@@ -912,6 +916,16 @@ export default function HomeScreen() {
         hapticTap();
         router.push('/personal_plan_setup' as any);
     }, [router]);
+    // Открыть «Личный план» с проверкой доступа: фри без премиума → пейвол (не сам план).
+    // Сам экран плана тоже защищён входным замком — это лишь чтобы не мелькал экран.
+    const openPersonalPlan = useCallback(() => {
+        hapticTap();
+        if (planAccess) {
+            router.push('/personal_plan' as any);
+        } else {
+            router.push({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
+        }
+    }, [planAccess, router]);
     const handleFreeHomeContinueLessonPress = useCallback(() => {
         if (freeHomePlanCtaSwipedRef.current || lastLesson == null) return;
         hapticTap();
@@ -1573,7 +1587,7 @@ export default function HomeScreen() {
               <Ionicons name={loginBonusIcon} size={22} color={loginBonusAccent}/>
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '800', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>{triLang(lang, {
+              <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '800', letterSpacing: 0 }} numberOfLines={1}>{triLang(lang, {
                 ru: 'Бонус за вход!',
                 uk: 'Бонус за вхід!',
                 es: '¡Bono por entrar!',
@@ -1592,7 +1606,7 @@ export default function HomeScreen() {
                 tr: " · 7. gün",
                 pl: " · Dzień 7",
             }) : ''}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.84}>+{loginBonus.xp} XP · {triLang(lang, {
+              <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2, fontWeight: '700' }} numberOfLines={1}>+{loginBonus.xp} XP · {triLang(lang, {
                 ru: `день ${loginBonus.cycle}`,
                 uk: `день ${loginBonus.cycle}`,
                 es: `Día ${loginBonus.cycle}`,
@@ -1660,7 +1674,7 @@ export default function HomeScreen() {
             <TapScale onPress={() => setShowRepairCard(false)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
           </View>
           <View style={{ height: 6, backgroundColor: t.bgSurface2, borderRadius: 3 }}>
-            <View style={{ height: 6, width: `${repairProgress / 2 * 100}%` as any, backgroundColor: '#FF9500', borderRadius: 3 }}/>
+            <View style={{ height: 6, width: `${Math.min(1, repairProgress) * 100}%` as any, backgroundColor: '#FF9500', borderRadius: 3 }}/>
           </View>
         </View>)}
     </>);
@@ -1796,8 +1810,6 @@ export default function HomeScreen() {
         const homeHeaderShardIconSize = 38;
         const homeHeaderShardIconWidth = isCompassTheme ? 48 : homeHeaderShardIconSize;
         const homeHeaderAccessLayout = !showHomeEnergy;
-        const homeHeaderAccessTitleShiftY = homeHeaderAccessLayout ? 46 : 0;
-        const homeHeaderAccessTitleRightReserve = homeHeaderAccessLayout ? 132 : 0;
         const homeHeaderEnergyClusterMaxWidth = Math.max(112, CONTENT_W - 184);
         const homeHeaderEnergySlots = Math.max(1, energyMax + Math.max(0, energyBonus));
         const homeEnergyLayout = getAdaptiveEnergyIconLayout({
@@ -1897,7 +1909,7 @@ export default function HomeScreen() {
                   <Animated.Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 34 : 42, fontWeight: '900', lineHeight: eliteStatsCompact ? 38 : 46, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }} numberOfLines={1}>
                     {displayStreak}
                   </Animated.Text>
-                  <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                  <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={1}>
                     {homeStreakDaysLabel}
                   </Text>
                 </TouchableOpacity>
@@ -1947,10 +1959,26 @@ export default function HomeScreen() {
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <View pointerEvents="box-none" style={[{ paddingRight: homeHeaderAccessTitleRightReserve }, homeHeaderAccessLayout ? { transform: [{ translateY: homeHeaderAccessTitleShiftY }] } : null]}>
+              {/* Иконки (шарды+видео+инбокс) — при отсутствии энергии выходят отдельной строкой наверху */}
+              {homeHeaderAccessLayout && (
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 10, marginBottom: 6 }}>
+                  <TouchableOpacity activeOpacity={0.75} onPress={() => {
+                    hapticTap();
+                    router.push('/shards_shop');
+                  }} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                    <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                      <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
+                      <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
+                    </Animated.View>
+                  </TouchableOpacity>
+                  <LingmanVideosButton />
+                  <AppMessagesInbox />
+                </View>
+              )}
+              <View pointerEvents="box-none">
                 {homeLeagueRaceVisible && (homeLeagueCrownCount > 0 || homeLeagueCrownExpiresAt > Date.now()) ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
                     <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1} count={Math.max(1, homeLeagueCrownCount)}/>
-                  </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>)}
+                  </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1}>{userName || 'Phraseman'}</Text>)}
               </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
@@ -1959,7 +1987,8 @@ export default function HomeScreen() {
                 opacity: shardsBonusAnim,
                 transform: [{ translateY: shardsBonusAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }],
             }}>{shardsBonusText}</Animated.Text>
-              {/* Energy + shards — в одной строке */}
+              {/* Energy + shards — в одной строке (только когда энергия видна) */}
+              {!homeHeaderAccessLayout && (
               <View style={{ flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'space-between', marginTop: 6, gap: 8 }}>
                 {showHomeEnergy && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
                   <View ref={energyIconRef} collapsable={false} style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
@@ -1972,7 +2001,7 @@ export default function HomeScreen() {
                         <EnergyIcon filled={true} themeColor={BONUS_ENERGY_COLOR} size={homeEnergyIconSize} animateChange={false} shouldShake={false} themeMode={themeMode} tintColor={BONUS_ENERGY_COLOR}/>
                       </View>))}
                   </View>
-                  {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (<Text style={{ fontSize: homeEnergyHeaderStacked ? Math.max(10, f.label - 1) : f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: homeEnergyHeaderStacked ? 0 : 6, flexShrink: 1, maxWidth: '100%', textAlign: 'right' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
+                  {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (<Text style={{ fontSize: homeEnergyHeaderStacked ? Math.max(10, f.label - 1) : f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: homeEnergyHeaderStacked ? 0 : 6, flexShrink: 1, maxWidth: '100%', textAlign: 'right' }} numberOfLines={1}>
                       {`+1 ${triLang(lang, {
                     ru: 'через',
                     uk: 'через',
@@ -2002,6 +2031,7 @@ export default function HomeScreen() {
                   <AppMessagesInbox />
                 </View>
               </View>
+              )}
 
             </View>
           </View>
@@ -2077,7 +2107,7 @@ export default function HomeScreen() {
                           <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStreakIconSize}/>
                         </View>
                       </View>
-                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={1}>
                         {homeStreakDaysLabel}
                       </Text>
                     </View>
@@ -2188,7 +2218,7 @@ export default function HomeScreen() {
                       <AvatarView avatar={userAvatar} level={level} size={44} auraId={effectiveUserAvatarAura}/>
                     </TouchableOpacity>
                     <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: 20, fontWeight: '800', lineHeight: 24 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
+                      <Text style={{ color: t.textPrimary, fontSize: 20, fontWeight: '800', lineHeight: 24 }} numberOfLines={1}>
                         {triLang(lang, {
                     ru: 'Ур.',
                     uk: 'Рів.',
@@ -2380,8 +2410,8 @@ export default function HomeScreen() {
           {/* ПРОДОЛЖИТЬ УРОК */}
 
           {personalPlanSnapshot ? (
-            <PersonalPlanHomeRouteCard snapshot={personalPlanSnapshot} compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT} />
-          ) : hasActivePersonalPlan ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-personal-plan-card" activeOpacity={0.88} onPress={() => { hapticTap(); router.push('/personal_plan' as any); }} style={{
+            <PersonalPlanHomeRouteCard snapshot={personalPlanSnapshot} compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT} onPress={openPersonalPlan} />
+          ) : hasActivePersonalPlan ? (USE_ELITE_HOME_STATUS ? (<TouchableOpacity testID="home-personal-plan-card" activeOpacity={0.88} onPress={openPersonalPlan} style={{
                         marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
                         marginBottom: 12,
                         borderRadius: isGoldTheme ? 18 : 24,
@@ -2408,7 +2438,7 @@ export default function HomeScreen() {
                       <Text style={{ color: homeThemePanelMuted, fontSize: 12, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.7, lineHeight: 15 }} numberOfLines={1}>
                         {s.home.continueBtn}
                       </Text>
-                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={2}>
                         {triLang(lang, {
                         ru: 'Твой персональный план',
                         uk: 'Твій персональний план',
@@ -2420,7 +2450,7 @@ export default function HomeScreen() {
                         pl: "Twój osobisty plan",
                     })}
                       </Text>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={2}>
                         {triLang(lang, {
                         ru: 'Открыть маршрут на сегодня',
                         uk: 'Відкрити маршрут на сьогодні',
@@ -2435,7 +2465,7 @@ export default function HomeScreen() {
                     </View>
                   </View>
                 </LinearGradient>
-              </TouchableOpacity>) : (<PremiumCard testID="home-personal-plan-card" level={3} onPress={() => { hapticTap(); router.push('/personal_plan' as any); }} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+              </TouchableOpacity>) : (<PremiumCard testID="home-personal-plan-card" level={3} onPress={openPersonalPlan} style={{ marginHorizontal: 16, marginBottom: 12 }} innerStyle={{ padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
                 <View style={{ width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(18,14,8,0.92)' : t.bgSurface2, borderWidth: 1, borderColor: t.border }}>
                   <Ionicons name="map-outline" size={25} color={isGoldTheme ? GOLD_RICH.champagne : t.accent}/>
 
@@ -2508,7 +2538,7 @@ export default function HomeScreen() {
                         pl: "Mój plan",
                     })}
                       </Text>
-                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.78}>
+                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={2}>
                         {triLang(lang, {
                         ru: 'Составь свой маршрут',
                         uk: 'Вибрати свій план навчання',
@@ -2520,7 +2550,7 @@ export default function HomeScreen() {
                         pl: "Wybierz mój plan nauki",
                     })}
                       </Text>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={2}>
                         {triLang(lang, {
                         ru: '3 вопроса — и план под тебя',
                         uk: '3 питання — і маршрут готовий',
@@ -2621,7 +2651,7 @@ export default function HomeScreen() {
                         pl: "Lekcja",
                     })} ${lastLesson.id}`}
                       </Text>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: Math.max(13, f.label), fontWeight: '800', lineHeight: Math.max(17, f.label + 4), marginTop: 2 }} numberOfLines={2}>
                         {lessonNameForStudyTarget(lang, studyTarget, lastLesson.id) ?? lastLesson.name}
                       </Text>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 9 }}>
@@ -3628,6 +3658,6 @@ export default function HomeScreen() {
             }}/>)}
       {/* Компас: брифинг дня при входе (заменяет модалку заданий дня). Сам null-safe —
           выключенный Компас (флаг compass_enabled) и не-премиум ничего не рендерят. */}
-      <CompassBriefingHost onStartDay={() => { router.push('/personal_plan' as any); }} />
+      <CompassBriefingHost onStartDay={openPersonalPlan} />
     </View>);
 }

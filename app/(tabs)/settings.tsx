@@ -68,6 +68,7 @@ import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
+import { isIdeasEnabled } from '../remote_flags';
 
 function parseStoredExpiryMs(value: string | null | undefined): number {
   const n = Number(value || 0);
@@ -293,6 +294,7 @@ export default function SettingsMain() {
   const { isPremium, isVip, hasPremiumAccess } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [vipUntilMs, setVipUntilMs] = useState(0);
+  const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -363,6 +365,7 @@ export default function SettingsMain() {
       .catch(() => {
         if (!cancelled) setNameReady(true);
       });
+    setIdeasOn(isIdeasEnabled());
     return () => { cancelled = true; };
   }, [activeIdx]); // обновляем при переключении на этот таб
 
@@ -886,6 +889,22 @@ export default function SettingsMain() {
           {/* «Все подарки» — только в админ-панели (Справочник подарков), не в проде.
               Каталог живёт в components/admin_panel/sections/GiftsCatalogSection.tsx. */}
         </SettingsGroup>
+
+        {ideasOn ? (
+          <>
+            <SettingsSectionTitle title={L('Сообщество', 'Спільнота', 'Comunidad', 'Comunidade', 'Cộng đồng', 'Komunitas', 'Topluluk', 'Społeczność')} />
+            <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+              <SettingsRow
+                testID="settings-ideas-row"
+                icon="bulb"
+                color="yellow"
+                label={L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
+                sub={L('Твоя идея — год доступа', 'Твоя ідея — рік доступу', 'Tu idea — un año de acceso', 'Sua ideia — um ano de acesso', 'Ý tưởng của bạn — một năm truy cập', 'Idemu — setahun akses', 'Fikrin — bir yıl erişim', 'Twój pomysł — rok dostępu')}
+                onPress={() => router.push('/ideas_submit' as any)}
+              />
+            </SettingsGroup>
+          </>
+        ) : null}
 
 
         <SettingsSectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />

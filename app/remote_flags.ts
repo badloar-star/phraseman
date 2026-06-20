@@ -28,13 +28,15 @@ export type RemoteNumberKey =
   | 'trainer_ab_a_pct'
   | 'trainer_ab_b_pct'
   | 'trainer_ab_c_pct'
+  | 'onboarding_ab_welcome_pct'
+  | 'onboarding_ab_builder_pct'
+  | 'onboarding_ab_quiz_pct'
   | 'paywall_v2_pct'
   | 'league_xp_promotion_threshold'
   | 'arena_sr_win'
   | 'arena_sr_loss'
   | 'arena_sr_bot_win'
-  | 'arena_season_rollback_steps'
-  | 'onboarding_green_pct';
+  | 'arena_season_rollback_steps';
 
 export type RemoteBoolKey =
   | 'referral_enabled'
@@ -43,6 +45,7 @@ export type RemoteBoolKey =
   | 'league_xp_promotion_enabled'
   | 'lifetime_button_enabled'
   | 'explain_enabled'
+  | 'ideas_enabled'
   | 'maintenance_banner'
   | 'maintenance_block';
 
@@ -71,13 +74,15 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   trainer_ab_a_pct: 0,
   trainer_ab_b_pct: 100,
   trainer_ab_c_pct: 0,
-  paywall_v2_pct: 50,
+  onboarding_ab_welcome_pct: 34,
+  onboarding_ab_builder_pct: 33,
+  onboarding_ab_quiz_pct: 33,
+  paywall_v2_pct: 100,
   league_xp_promotion_threshold: 1000,
   arena_sr_win: 25,
   arena_sr_loss: 20,
   arena_sr_bot_win: 12,
   arena_season_rollback_steps: 3,
-  onboarding_green_pct: 50,
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
@@ -97,9 +102,17 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // без релиза/OTA — уже купившие сохраняют доступ (премиум держится на
   // entitlement RevenueCat, а не на видимости кнопки).
   lifetime_button_enabled: false,
-  // «Объясни как для 5-летнего»: дефолт FALSE (когортный rollout). Firestore-
-  // override имеет приоритет над env EXPO_PUBLIC_EXPLAIN_ENABLED.
-  explain_enabled: false,
+  // «Объясни как для 5-летнего»: дефолт TRUE = kill-switch семантика (фича едет
+  // с релизом во ВСЕХ сборках, не завязана на env-профиль EAS — раньше дефолт был
+  // FALSE и фича пропадала в dev/preview-сборках без EXPO_PUBLIC_EXPLAIN_ENABLED).
+  // Firestore-override (админ «Пульт») может экстренно выключить её у всех живьём.
+  explain_enabled: true,
+  // Раздел «Идеи» (пользователь присылает идею → год полного доступа при одобрении).
+  // Дефолт FALSE = sell-switch: это акция с дорогой наградой (год премиума), поэтому
+  // раздел скрыт, пока админ намеренно не включит его в «Пульте». Выключение прячет
+  // раздел у всех живьём (onSnapshot), без релиза — уже поданные идеи в админ-очереди
+  // остаются, и адмін может их закрыть.
+  ideas_enabled: false,
   // Режим обслуживания (управляется из «Пульта»). Дефолт FALSE — приложение
   // работает. banner = мягкая плашка сверху; block = жёсткий полноэкранный
   // блок-экран. Включается у всех живьём (onSnapshot), без релиза.
@@ -126,13 +139,15 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   trainer_ab_a_pct: { min: 0, max: 100 },
   trainer_ab_b_pct: { min: 0, max: 100 },
   trainer_ab_c_pct: { min: 0, max: 100 },
+  onboarding_ab_welcome_pct: { min: 0, max: 100 },
+  onboarding_ab_builder_pct: { min: 0, max: 100 },
+  onboarding_ab_quiz_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },
   league_xp_promotion_threshold: { min: 1, max: 1000000 },
   arena_sr_win: { min: 0, max: 999 },
   arena_sr_loss: { min: 0, max: 999 },
   arena_sr_bot_win: { min: 0, max: 999 },
   arena_season_rollback_steps: { min: 0, max: 23 },
-  onboarding_green_pct: { min: 0, max: 100 },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
@@ -140,6 +155,9 @@ const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
   trainer_ab_a_pct: process.env.EXPO_PUBLIC_TRAINER_AB_A,
   trainer_ab_b_pct: process.env.EXPO_PUBLIC_TRAINER_AB_B,
   trainer_ab_c_pct: process.env.EXPO_PUBLIC_TRAINER_AB_C,
+  onboarding_ab_welcome_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_WELCOME,
+  onboarding_ab_builder_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_BUILDER,
+  onboarding_ab_quiz_pct: process.env.EXPO_PUBLIC_ONBOARDING_AB_QUIZ,
   paywall_v2_pct: process.env.EXPO_PUBLIC_PAYWALL_V2_PCT,
 };
 
@@ -251,13 +269,14 @@ export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
 export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
 export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
 export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_rollback_steps');
-export const getOnboardingGreenPct = () => getRemoteNumber('onboarding_green_pct');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 /** Кнопка «Навсегда» (lifetime) показывается на пейволах. Дефолт false. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
+/** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
+export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
 /** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
 export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
 export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');
@@ -275,6 +294,7 @@ export function getMaintenanceText(lang: string): string {
  * Groups: 'A' | 'B' | 'C'. Defaults to 'B' (2 sessions) if all pcts are zero.
  */
 export type TrainerAbGroup = 'A' | 'B' | 'C';
+export type OnboardingAbVariant = 'welcome' | 'builder' | 'quiz';
 
 export function getTrainerAbGroup(userId: string): TrainerAbGroup {
   const a = getRemoteNumber('trainer_ab_a_pct');
@@ -288,20 +308,25 @@ export function getTrainerAbGroup(userId: string): TrainerAbGroup {
   return 'C';
 }
 
-/** Deterministic onboarding color for a user: 'blue' | 'green' by onboarding_green_pct. */
-export function getOnboardingColorVariant(userId: string): 'blue' | 'green' {
-  const greenPct = getRemoteNumber('onboarding_green_pct');
-  if (greenPct <= 0) return 'blue';
-  if (greenPct >= 100) return 'green';
-  return hashToUnit(`${userId}:onboarding_color`) * 100 < greenPct ? 'green' : 'blue';
+/** Deterministic first onboarding variant for a user. Variants: welcome | builder | quiz. */
+export function getOnboardingAbVariant(userId: string): OnboardingAbVariant {
+  const welcome = getRemoteNumber('onboarding_ab_welcome_pct');
+  const builder = getRemoteNumber('onboarding_ab_builder_pct');
+  const quiz = getRemoteNumber('onboarding_ab_quiz_pct');
+  const total = welcome + builder + quiz;
+  if (total <= 0) return 'welcome';
+  const bucket = hashToUnit(`${userId}:onboarding_ab:v1`) * total;
+  if (bucket < welcome) return 'welcome';
+  if (bucket < welcome + builder) return 'builder';
+  return 'quiz';
 }
 
-/** Deterministic paywall variant for a user: 'v1' | 'v2' by paywall_v2_pct. */
-export function getPaywallVariant(userId: string): 'v1' | 'v2' {
-  const v2pct = getRemoteNumber('paywall_v2_pct');
-  if (v2pct <= 0) return 'v1';
-  if (v2pct >= 100) return 'v2';
-  return hashToUnit(`${userId}:paywall_variant`) * 100 < v2pct ? 'v2' : 'v1';
+/**
+ * Legacy helper kept only for old imports/tests. The old v1 paywall is retired,
+ * so this must never route traffic back to it.
+ */
+export function getPaywallVariant(_userId: string): 'v2' {
+  return 'v2';
 }
 
 function hashToUnit(input: string): number {

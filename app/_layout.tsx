@@ -1559,6 +1559,9 @@ function AppContent() {
         void import('./community_packs/communityModerationAlerts')
           .then((m) => m.flushCommunityModerationAlertsFromInbox())
           .catch(() => {});
+        void import('./idea_decision_modals')
+          .then((m) => m.flushIdeaDecisionModals())
+          .catch(() => {});
         void import('./referral_bootstrap')
           .then((m) => m.tryApplyPendingReferral())
           .catch(() => {});
@@ -1934,18 +1937,21 @@ function AppContent() {
     setShowFirstLessonSheet(false);
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
     setShow(false);
-    router.replace('/(tabs)/home' as any);
     const planBilling = await AsyncStorage.getItem('onboarding_plan_billing').catch(() => null);
-    setTimeout(() => {
-      router.replace({
-        pathname: '/premium_modal',
-        params: {
-          context: 'personal_plan',
-          source: 'onboarding_plan',
-          ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
-        },
-      } as any);
-    }, 120);
+    // Идём ПРЯМО на пейвол личного плана, без промежуточного перехода на home.
+    // Раньше был home → setTimeout(120) → premium_modal: при гонке/сворачивании
+    // приложения второй replace мог не сработать, и новичок молча оставался на
+    // home без пейвола (а также мигал экраном home — риск Apple 5.6).
+    // premium_modal сам диспатчит на нужный A/B/C-вариант и обрабатывает
+    // случай «уже premium», поэтому промежуточный home не нужен.
+    router.replace({
+      pathname: '/premium_modal',
+      params: {
+        context: 'personal_plan',
+        source: 'onboarding_plan',
+        ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
+      },
+    } as any);
   }, [router]);
 
   const handleOnboardingIntroFullAccessStart = useCallback(async () => {

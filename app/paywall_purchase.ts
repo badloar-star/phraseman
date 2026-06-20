@@ -349,6 +349,26 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     void trackEvent('paywall_close', { context, source, paywall: variant, reason });
     logPaywallFunnel('close', { variant, context, plan: selected });
     if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(() => {});
+    // Онбординг: закрытие пейвола (без покупки) НЕ выкидывает на home, а возвращает
+    // на следующий шаг онбординга — ввод имени. Раньше safeRouterBack уводил на home
+    // (premium_modal — транзитный редирект, в стек не кладётся → fallback=home), и
+    // онбординг в этой сессии не продолжался. Эмитим тот же ивент, что и успешная
+    // покупка плана: _layout слушает его, ставит onboarding_step='name' и снова
+    // показывает онбординг-оверлей на шаге имени.
+    if (source === 'onboarding_plan') {
+      void (async () => {
+        try {
+          await AsyncStorage.multiSet([
+            ['onboarding_step', 'name'],
+            [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+          ]);
+          await AsyncStorage.removeItem('onboarding_done');
+        } catch { /* best-effort */ }
+        emitAppEvent('personal_plan_onboarding_nickname_ready');
+        router.replace('/(tabs)/home' as any);
+      })();
+      return;
+    }
     safeRouterBack(router);
   }, [router, context, source, variant, selected, lang]);
 

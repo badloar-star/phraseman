@@ -1970,28 +1970,51 @@ function AppContent() {
     }
     setFirstContentReady(true);
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
-    setShow(false);
     const planBilling = await AsyncStorage.getItem('onboarding_plan_billing').catch(() => null);
-    // Идём ПРЯМО на пейвол личного плана, без промежуточного перехода на home.
-    // Раньше был home → setTimeout(120) → premium_modal: при гонке/сворачивании
-    // приложения второй replace мог не сработать, и новичок молча оставался на
-    // home без пейвола (а также мигал экраном home — риск Apple 5.6).
-    // premium_modal сам диспатчит на нужный A/B/C-вариант и обрабатывает
-    // случай «уже premium», поэтому промежуточный home не нужен.
     // «Пульт»: если персональный план переведён в «Фри» — пейвол не показываем,
     // новичок сразу попадает домой (план активируется без оплаты).
     if (isFeatureFreeForEveryone('personal_plan')) {
+      setShow(false);
       router.replace('/(tabs)/home' as any);
       return;
     }
-    router.replace({
-      pathname: '/premium_modal',
-      params: {
-        context: 'personal_plan',
-        source: 'onboarding_plan',
-        ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
-      },
-    } as any);
+    // ОНБОРДИНГ: идём ПРЯМО на нужный A/B/C-пейвол, минуя прозрачный диспетчер
+    // premium_modal. Диспетчер — transparentModal: пока он на один кадр висит
+    // прозрачным до своего replace, за ним видна «Главная» — отсюда «мелькание
+    // home перед пейволом» (и риск Apple 5.6). Вариант резолвится синхронно из
+    // кэша (как это делает сам диспетчер), а ветку «уже premium» онбординг
+    // отсекает ВЫШЕ (openSelectedPlanAbPaywall проверяет hasPremiumAccess до
+    // вызова этого хендлера), поэтому диспетчер тут не нужен.
+    //
+    // Пейвол с source=onboarding_plan открывается как обычный экран (card,
+    // animation:'none' — см. paywallScreenStackOptions): непрозрачный онбординг-фон
+    // мгновенно перекрывает «Главную». СНАЧАЛА навигация (пейвол монтируется под
+    // оверлеем онбординга), ПОТОМ setShow(false) — оверлей снимается, а под
+    // ним уже непрозрачный пейвол. Кадра с «Главной» нет.
+    try {
+      const { resolvePaywallAbVariantSync } = await import('./paywall_variant');
+      const { variant } = resolvePaywallAbVariantSync();
+      const route = variant === 'A' ? '/paywall_a' : variant === 'B' ? '/paywall_b' : '/paywall_c';
+      router.replace({
+        pathname: route,
+        params: {
+          context: 'personal_plan',
+          source: 'onboarding_plan',
+          ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
+        },
+      } as any);
+    } catch {
+      // Если резолвер не загрузился — безопасный фолбэк через диспетчер.
+      router.replace({
+        pathname: '/premium_modal',
+        params: {
+          context: 'personal_plan',
+          source: 'onboarding_plan',
+          ...(planBilling === 'monthly' || planBilling === 'yearly' ? { plan: planBilling } : {}),
+        },
+      } as any);
+    }
+    setShow(false);
   }, [router]);
 
   const handleOnboardingIntroFullAccessStart = useCallback(async () => {

@@ -10,7 +10,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useLang } from '../components/LangContext';
@@ -30,7 +30,8 @@ import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from '.
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
-  PaywallPriceRetry, PaywallTestimonials, PaywallBackground,
+  PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
+  paywallScreenStackOptions,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -56,6 +57,17 @@ export default function PaywallA() {
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+
+  // Онбординг: перед уходом на следующий шаг (закрытие/«продолжить бесплатно»)
+  // проигрываем обратное осветление фона, затем навигируем.
+  const bgRef = useRef<PaywallBackgroundHandle>(null);
+  const closeWithDim = (reason: 'close' | 'continue_free') => {
+    if (isOnboarding && bgRef.current) {
+      bgRef.current.animateExit(() => p.handleClose(reason));
+    } else {
+      p.handleClose(reason);
+    }
+  };
 
   useEffect(() => {
     void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT });
@@ -110,11 +122,12 @@ export default function PaywallA() {
   const isLifetimeSel = p.selected === 'lifetime';
 
   return (
-    <PaywallBackground isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
+    <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
+      <Stack.Screen options={paywallScreenStackOptions(isOnboarding)} />
       <SafeAreaView style={S.safe}>
         <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]}>
           <PaywallCloseButton
-            onPress={() => { hapticTap(); p.handleClose('close'); }}
+            onPress={() => { hapticTap(); closeWithDim('close'); }}
             chrome={chrome}
             style={{ marginTop: Math.max(insets.top - 38, 6) }}
           />
@@ -219,7 +232,7 @@ export default function PaywallA() {
               onPress={() => { void p.handlePurchase(); }}
               onRestore={() => { void p.handleRestore(); }}
               restoring={p.restoring}
-              onContinueFree={() => p.handleClose('continue_free')}
+              onContinueFree={() => closeWithDim('continue_free')}
             />
 
             <PaywallLegalDisclosure

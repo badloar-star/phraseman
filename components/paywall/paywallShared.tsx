@@ -3,9 +3,9 @@
 // контекста, соцстрока (рейтинг ТОЛЬКО из конфига), sticky-CTA и разделитель.
 // Дизайн-язык «Атриум»: один акцент темы, hairline-линии, медленный свет.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, Platform, StyleSheet, TouchableOpacity, ImageBackground,
+  View, Text, Platform, StyleSheet, TouchableOpacity, ImageBackground, Animated, Easing,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
   type ViewStyle, type StyleProp,
 } from 'react-native';
@@ -58,21 +58,87 @@ export function usePaywallChrome(): PaywallChrome {
 
 const ONBOARDING_BG = require('../../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
 
-/** Фон пейвола: онбординг-картинка (source=onboarding_plan) или тёмный градиент. */
-export function PaywallBackground({
-  isOnboarding,
-  gradientColors,
-  style,
-  children,
-}: {
+/**
+ * Опции навигации экрана пейвола, зависящие от источника.
+ *
+ *  - Из приложения (winback/intro/level_up/…): модал «выезжает снизу» — привычный
+ *    in-app upsell-жест.
+ *  - С ОНБОРДИНГА: открывается как обычный экран — МГНОВЕННО (animation:'none'),
+ *    БЕЗ выезда снизу и без мелькания «Главной». Раньше слайд-модал на ~300 мс
+ *    показывал «Главную» за прозрачным диспетчером (риск Apple 5.6 + некрасиво).
+ *    Непрозрачный онбординг-фон пейвола мгновенно перекрывает «Главную», а всю
+ *    «анимацию открытия» даёт JS: плавное затемнение фона до 90% + проявление
+ *    контента (см. PaywallBackground/opacity-slideY в экранах). Поэтому screen-fade
+ *    НЕ нужен — он бы кратко показал «Главную» сквозь полупрозрачный кадр.
+ *
+ * Рендерится ВНУТРИ экрана пейвола (<Stack.Screen options={…} />) — это
+ * документированный способ expo-router задать опции на конкретный инстанс,
+ * не плодя отдельные маршруты под онбординг.
+ */
+export function paywallScreenStackOptions(isOnboarding: boolean) {
+  if (isOnboarding) {
+    return { presentation: 'card', animation: 'none', animationDuration: 0 } as const;
+  }
+  return { presentation: 'modal', animation: 'slide_from_bottom' } as const;
+}
+
+// Плавное затемнение фона онбординг-пейвола: вход 0→90%, выход обратно. Затемнение
+// убирает отвлекающий фон, чтобы текст пейвола читался. Длительность совпадает с
+// прочими переходами онбординга (screenFade 300, welcome-задержка 320).
+const ONBOARDING_DIM_OPACITY = 0.9;
+const ONBOARDING_DIM_DURATION = 320;
+
+/** Императивный хэндл, который экран пейвола использует для проигрывания обратного
+ *  затемнения ПЕРЕД уходом на следующий экран онбординга. */
+export interface PaywallBackgroundHandle {
+  /** Проиграть обратное затемнение (0.9→0), затем вызвать done(). Если затемнения
+   *  нет (не онбординг) — done() вызывается сразу. */
+  animateExit: (done: () => void) => void;
+}
+
+/** Фон пейвола: онбординг-картинка (source=onboarding_plan) или тёмный градиент.
+ *  На онбординге поверх картинки плавно проявляется затемнение до 90%. */
+export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
   isOnboarding: boolean;
   gradientColors: [string, string, string];
   style?: StyleProp<ViewStyle>;
   children: React.ReactNode;
-}) {
+}>(function PaywallBackground({ isOnboarding, gradientColors, style, children }, ref) {
+  const dim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (!isOnboarding) return;
+    // Вход: плавно затемняем фон до 90%.
+    const anim = Animated.timing(dim, {
+      toValue: ONBOARDING_DIM_OPACITY,
+      duration: ONBOARDING_DIM_DURATION,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    });
+    anim.start();
+    return () => anim.stop();
+  }, [isOnboarding, dim]);
+
+  useImperativeHandle(ref, () => ({
+    animateExit: (done: () => void) => {
+      if (!isOnboarding) { done(); return; }
+      // Выход: плавно осветляем фон обратно, затем уводим на следующий экран.
+      Animated.timing(dim, {
+        toValue: 0,
+        duration: ONBOARDING_DIM_DURATION,
+        easing: Easing.in(Easing.cubic),
+        useNativeDriver: true,
+      }).start(() => done());
+    },
+  }), [isOnboarding, dim]);
+
   if (isOnboarding) {
     return (
       <ImageBackground source={ONBOARDING_BG} style={[{ flex: 1 }, style]} resizeMode="cover">
+        <Animated.View
+          pointerEvents="none"
+          style={[StyleSheet.absoluteFill, { backgroundColor: '#000', opacity: dim }]}
+        />
         {children}
       </ImageBackground>
     );
@@ -82,7 +148,7 @@ export function PaywallBackground({
       {children}
     </LinearGradient>
   );
-}
+});
 
 // ── глиф контекста (SVG-иконки Ionicons вместо эмодзи-зоопарка) ──────────────
 const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphMap>> = {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -754,6 +754,68 @@ function PlanExerciseFeedbackModal({
   );
 }
 
+// Инлайн-плашка обратной связи (без модала и без двойного контейнера).
+// Показывается в пустоте по центру, под английским текстом — как teaching note
+// в обычном уроке. Сюда же ляжет ИИ-объяснение, когда оно подгрузится.
+function PlanExerciseFeedbackInline({
+  tone,
+  title,
+  body,
+  accent,
+  actionText,
+  mutedText,
+  surfaceColor,
+  textPrimaryColor,
+  actionLabel,
+  onAction,
+  loading,
+  children,
+}: {
+  tone: PlanExerciseFeedbackTone;
+  title: string;
+  body: string;
+  accent: string;
+  actionText: string;
+  mutedText: string;
+  surfaceColor: string;
+  textPrimaryColor: string;
+  actionLabel: string;
+  onAction: () => void;
+  loading?: boolean;
+  children?: React.ReactNode;
+}) {
+  const isSuccess = tone === 'success';
+  const isError = tone === 'error';
+  const toneColor = isError ? '#FF8A92' : accent;
+  const borderColor = isError ? '#FF6E7866' : accent + '55';
+  const buttonTextColor = isSuccess ? actionText : toneColor;
+
+  return (
+    <View style={[styles.inlineFeedback, { borderLeftColor: toneColor, backgroundColor: surfaceColor }]}>
+      <View style={styles.inlineFeedbackHeader}>
+        <Ionicons name={feedbackIconForTone(tone)} size={18} color={toneColor} />
+        <Text style={[styles.inlineFeedbackTitle, { color: toneColor }]}>{title}</Text>
+      </View>
+      {loading ? (
+        <View style={styles.inlineFeedbackLoading}>
+          <ActivityIndicator size="small" color={toneColor} />
+          <Text style={[styles.inlineFeedbackBody, { color: mutedText }]}>{body}</Text>
+        </View>
+      ) : (
+        <Text style={[styles.inlineFeedbackBody, { color: textPrimaryColor }]}>{body}</Text>
+      )}
+      {children}
+      <TouchableOpacity
+        activeOpacity={0.85}
+        onPress={onAction}
+        style={[styles.inlineFeedbackButton, { borderColor, backgroundColor: isSuccess ? accent : 'transparent' }]}
+      >
+        <Text style={[styles.inlineFeedbackButtonText, { color: buttonTextColor }]}>{actionLabel}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 export default function PersonalPlanExerciseScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -884,17 +946,40 @@ export default function PersonalPlanExerciseScreen() {
       : isListenBuildMode
         ? triLang(lang, { ru: 'Еще раз спокойно', uk: 'Ще раз спокійно', es: 'Otra vez con calma' })
         : triLang(lang, { ru: 'Разберем спокойно', uk: 'Розберемо спокійно', es: 'Vamos a verlo con calma' });
+  // Для НЕВЕРНОГО ответа объяснение должно относиться к ВЫБРАННОМУ варианту,
+  // а не к правильному (иначе «выбрал I'm fine — объясняет I'm good»). Пока ИИ-
+  // объяснение конкретного дистрактора не подгрузилось (Stage C), показываем
+  // связный текст, который называет и выбор, и правильный ответ.
+  const wrongSelectedBody = (() => {
+    const picked = (selected ?? '').trim();
+    const right = (currentCorrectAnswer ?? '').trim();
+    if (picked && right) {
+      return triLang(lang, {
+        ru: `«${picked}» не подходит здесь. По смыслу нужен вариант «${right}».`,
+        uk: `«${picked}» тут не підходить. За змістом потрібен варіант «${right}».`,
+        es: `«${picked}» no encaja aquí. Por significado, la opción correcta es «${right}».`,
+        'pt-BR': `«${picked}» não encaixa aqui. Pelo sentido, a opção certa é «${right}».`,
+        vi: `«${picked}» không hợp ở đây. Theo nghĩa, đáp án đúng là «${right}».`,
+        id: `«${picked}» tidak cocok di sini. Berdasarkan makna, jawaban yang benar adalah «${right}».`,
+        tr: `«${picked}» burada uymuyor. Anlam olarak doğru seçenek «${right}».`,
+        pl: `«${picked}» tu nie pasuje. Sensownie poprawna opcja to «${right}».`,
+      });
+    }
+    return triLang(lang, {
+      ru: 'Попробуй ещё раз спокойно: ошибка уйдёт в повторение.',
+      uk: 'Спробуй ще раз спокійно: помилка піде в повторення.',
+      es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
+    });
+  })();
   const resultModalBody = lastResult === 'correct'
     ? (explanation?.correct
         ? triLang(lang, explanation.correct)
         : triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', es: 'Así suena natural.' }))
-    : (explanation?.wrong
-        ? triLang(lang, explanation.wrong)
-        : triLang(lang, {
-            ru: 'Попробуй ещё раз спокойно: ошибка уйдёт в повторение.',
-            uk: 'Спробуй ще раз спокійно: помилка піде в повторення.',
-            es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
-          }));
+    : (isChoiceMode
+        ? wrongSelectedBody
+        : explanation?.wrong
+          ? triLang(lang, explanation.wrong)
+          : wrongSelectedBody);
 
   const submit = async (answer: string) => {
     if (!item || !session || saving || done) return;
@@ -1381,7 +1466,26 @@ export default function PersonalPlanExerciseScreen() {
                 ) : null}
               </View>
 
-              <View style={styles.optionsSpacer} />
+              {lastResult && isChoiceMode ? (
+                <View style={styles.inlineFeedbackHost}>
+                  <PlanExerciseFeedbackInline
+                    tone={lastResult === 'correct' ? 'success' : 'error'}
+                    title={resultModalTitle}
+                    body={resultModalBody}
+                    actionLabel={lastResult === 'correct'
+                      ? triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })
+                      : triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
+                    onAction={() => void next()}
+                    accent={accent}
+                    actionText={actionText}
+                    mutedText={t.textMuted}
+                    surfaceColor={t.bgCard}
+                    textPrimaryColor={t.textPrimary}
+                  />
+                </View>
+              ) : (
+                <View style={styles.optionsSpacer} />
+              )}
 
               <View style={useGridOptions ? styles.optionsGrid : styles.options}>
                 {choiceOptions.map((option: string) => {
@@ -1463,8 +1567,10 @@ export default function PersonalPlanExerciseScreen() {
             <Text style={[styles.footerLabel, { color: t.textMuted, fontSize: f.label }]}>Отменить</Text>
           </TouchableOpacity>
         </View>
+        {/* Choice-режим теперь показывает разбор ИНЛАЙН (см. выше, без модала и
+            двойного контейнера). Модал остаётся только для остальных режимов. */}
         <PlanExerciseFeedbackModal
-          visible={Boolean(lastResult && explanation)}
+          visible={Boolean(lastResult && explanation) && !isChoiceMode}
           tone={lastResult === 'correct' ? 'success' : 'error'}
           title={resultModalTitle}
           body={resultModalBody}
@@ -1556,6 +1662,14 @@ type PersonalPlanExerciseStyles = {
   feedbackIcon: ViewStyle;
   feedbackTitle: TextStyle;
   feedbackBody: TextStyle;
+  inlineFeedbackHost: ViewStyle;
+  inlineFeedback: ViewStyle;
+  inlineFeedbackHeader: ViewStyle;
+  inlineFeedbackTitle: TextStyle;
+  inlineFeedbackBody: TextStyle;
+  inlineFeedbackLoading: ViewStyle;
+  inlineFeedbackButton: ViewStyle;
+  inlineFeedbackButtonText: TextStyle;
   doneSpacer: ViewStyle;
   recorderStack: ViewStyle;
   recorderHintPill: ViewStyle;
@@ -1783,6 +1897,27 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   },
   feedbackTitle: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
   feedbackBody: { fontSize: 15, lineHeight: 22, fontWeight: '700' },
+  inlineFeedbackHost: { flex: 1, minHeight: 12, justifyContent: 'center', paddingVertical: 16 },
+  inlineFeedback: {
+    width: '100%',
+    borderRadius: 14,
+    borderLeftWidth: 3,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    gap: 10,
+  },
+  inlineFeedbackHeader: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  inlineFeedbackTitle: { flex: 1, fontSize: 16, lineHeight: 20, fontWeight: '800' },
+  inlineFeedbackBody: { fontSize: 15, lineHeight: 22, fontWeight: '600' },
+  inlineFeedbackLoading: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  inlineFeedbackButton: {
+    marginTop: 2,
+    borderRadius: 12,
+    borderWidth: 1,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  inlineFeedbackButtonText: { fontSize: 15, fontWeight: '800' },
   doneSpacer: { minHeight: 18 },
   recorderStack: {
     marginTop: 18,

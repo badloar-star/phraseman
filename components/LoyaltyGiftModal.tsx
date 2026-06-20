@@ -66,7 +66,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
     highlights: [
       { icon: 'compass', title: 'Подскажет, что учить сегодня', body: 'Больше не надо думать, с чего начать. Приложение само смотрит, что у тебя получается, а что ещё хромает — и каждый день предлагает именно то, что нужно тебе.' },
       { icon: 'sparkles', title: 'Очень много новых занятий', body: 'Добавлены тысячи новых фраз на каждый день: работа, дом, здоровье, путешествия, чувства. Хватит надолго — и всё про реальную жизнь, а не из учебника.' },
-      { icon: 'chatbubbles', title: 'Живое общение, как в чате', body: 'Теперь можно переписываться с собеседником прямо в приложении — как в обычном мессенджере. Он отвечает по-разному, с характером. Отличный способ заговорить без страха.' },
+      { icon: 'chatbubbles', title: 'Диалоги: живая переписка по ролям', body: 'Выбираешь ситуацию — кафе, врач, собеседование — и переписываешься с её героем прямо в приложении, как в мессенджере. Каждый герой отвечает по-своему, с характером. Отличный способ заговорить без страха.' },
       { icon: 'volume-high', title: 'Приятный живой голос', body: 'Фразы озвучивает приятный голос, а не робот. Не успел расслышать? Замедли — и повтори в удобном темпе.' },
       { icon: 'trophy', title: 'Соревнуйся с другими', body: 'Хочешь азарта — сыграй против реального соперника. Подбор за секунды, таблица лучших и красивые награды за победы.' },
       { icon: 'bulb', title: 'Понятно объясняет промахи', body: 'Ответил неправильно — приложение спокойно покажет, почему. А если что-то всё ещё непонятно, одна кнопка объяснит совсем простыми словами.' },
@@ -94,7 +94,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
     highlights: [
       { icon: 'compass', title: 'Підкаже, що вчити сьогодні', body: 'Більше не треба думати, з чого почати. Застосунок сам бачить, що в тебе виходить, а що ще кульгає — і щодня пропонує саме те, що потрібно тобі.' },
       { icon: 'sparkles', title: 'Дуже багато нових занять', body: 'Додано тисячі нових фраз на щодень: робота, дім, здоров’я, подорожі, почуття. Вистачить надовго — і все про реальне життя, а не з підручника.' },
-      { icon: 'chatbubbles', title: 'Живе спілкування, як у чаті', body: 'Тепер можна листуватися зі співрозмовником прямо в застосунку — як у звичайному месенджері. Він відповідає по-різному, з характером. Чудовий спосіб заговорити без страху.' },
+      { icon: 'chatbubbles', title: 'Діалоги: жива переписка за ролями', body: 'Обираєш ситуацію — кафе, лікар, співбесіда — і листуєшся з її героєм прямо в застосунку, як у месенджері. Кожен герой відповідає по-своєму, з характером. Чудовий спосіб заговорити без страху.' },
       { icon: 'volume-high', title: 'Приємний живий голос', body: 'Фрази озвучує приємний голос, а не робот. Не встиг розчути? Сповільни — і повтори у зручному темпі.' },
       { icon: 'trophy', title: 'Змагайся з іншими', body: 'Хочеш азарту — зіграй проти реального суперника. Підбір за секунди, таблиця найкращих і гарні нагороди за перемоги.' },
       { icon: 'bulb', title: 'Зрозуміло пояснює промахи', body: 'Відповів неправильно — застосунок спокійно покаже, чому. А якщо щось усе ще незрозуміло, одна кнопка пояснить зовсім простими словами.' },
@@ -122,7 +122,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
     highlights: [
       { icon: 'compass', title: 'Te dice qué estudiar hoy', body: 'Ya no tienes que pensar por dónde empezar. La app ve qué se te da bien y qué aún cojea — y cada día te propone justo lo que necesitas.' },
       { icon: 'sparkles', title: 'Muchísimas prácticas nuevas', body: 'Miles de frases nuevas para el día a día: trabajo, casa, salud, viajes, sentimientos. Da para rato — y todo de la vida real, no de un libro de texto.' },
-      { icon: 'chatbubbles', title: 'Conversación viva, como un chat', body: 'Ahora puedes chatear con un interlocutor dentro de la app — como en tu mensajería de siempre. Responde distinto, con carácter. Ideal para soltarte a hablar sin miedo.' },
+      { icon: 'chatbubbles', title: 'Diálogos: chatea según el rol', body: 'Eliges una situación — café, médico, entrevista — y chateas con su personaje dentro de la app, como en tu mensajería. Cada personaje responde a su manera, con carácter. Ideal para soltarte a hablar sin miedo.' },
       { icon: 'volume-high', title: 'Una voz humana y agradable', body: 'Las frases las dice una voz agradable, no un robot. ¿No la pillaste? Bájala — y repite a tu ritmo.' },
       { icon: 'trophy', title: 'Compite con otros', body: '¿Quieres emoción? Juega contra un rival real. Te emparejan en segundos, con tabla de mejores y bonitos premios al ganar.' },
       { icon: 'bulb', title: 'Explica los fallos con claridad', body: 'Si respondes mal, la app te muestra con calma por qué. Y si aún no lo ves, un botón te lo explica con palabras muy simples.' },

@@ -4,7 +4,7 @@ import { Animated, Dimensions, Easing, ScrollView, StyleSheet, Text, TouchableOp
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import Svg, { Circle, Defs, LinearGradient as SvgGradient, Stop } from 'react-native-svg';
@@ -20,9 +20,11 @@ import {
   tasksForMinutes,
   visibleTasksForMinutes,
   type PersonalPlanDefinition,
+  type PersonalPlanId,
   type PlanDailyTask,
 } from './personal_plan_catalog';
 import { planTaskCompletionKey, readCompletedPlanTasks, type PersonalPlanCompletedTask } from './personal_plan_progress';
+import { activeDayKeys, trailingStreak } from './personal_plan_stats';
 import {
   getPlanDayLessonRecommendation,
   type PlanDayLessonRecommendation,
@@ -160,8 +162,18 @@ function ProgressRing({ pct, chrome }: { pct: number; chrome: PlanChrome }) {
 }
 
 // ─── StreakBadge ────────────────────────────────────────────────────────────
-function StreakBadge({ dayIndex, chrome }: { dayIndex: number; chrome: PlanChrome }) {
-  const streakDays = Math.min(dayIndex, 7);
+// `streakDays` is the REAL "days in a row" streak (same source the stats screen
+// uses): derived from completed-task timestamps via trailingStreak(), not the
+// plan day number. A 0-streak shows a neutral "День N" label without the flame
+// so we never imply an active streak that doesn't exist.
+function StreakBadge({ streakDays, dayIndex, chrome }: { streakDays: number; dayIndex: number; chrome: PlanChrome }) {
+  if (streakDays <= 0) {
+    return (
+      <View style={[styles.streakBadge, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
+        <Text style={[styles.streakText, { color: chrome.accent }]}>День {dayIndex}</Text>
+      </View>
+    );
+  }
   return (
     <View style={[styles.streakBadge, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
       <Ionicons name="flame" size={14} color={chrome.accent} />
@@ -173,18 +185,22 @@ function StreakBadge({ dayIndex, chrome }: { dayIndex: number; chrome: PlanChrom
 // ─── TaskRow ────────────────────────────────────────────────────────────────
 function TaskRow({
   task,
+  planId,
+  themeMode,
   completed,
   isNext,
   chrome,
   onPress,
 }: {
   task: PlanDailyTask;
+  planId: PersonalPlanId;
+  themeMode: ThemeMode;
   completed: boolean;
   isNext: boolean;
   chrome: PlanChrome;
   onPress: () => void;
 }) {
-  const visual = getPersonalPlanTaskVisual(task);
+  const visual = getPersonalPlanTaskVisual(task, planId, themeMode);
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
   const handlePress = () => {
@@ -210,33 +226,32 @@ function TaskRow({
           },
         ]}
       >
-        {/* Left icon */}
-        <View
-          style={[
-            styles.taskIcon,
-            {
-              borderColor: completed ? chrome.accent2 + '88' : isNext ? chrome.accent + '55' : chrome.border,
-              backgroundColor: completed ? chrome.accent2 + '18' : chrome.accentSoft,
-              overflow: 'hidden',
-            },
-          ]}
-        >
-          {completed ? (
+        {/* Left icon.
+            Выполненная задача — галочка в рамке (нужны border+фон).
+            Активная задача — ассет уже ГОТОВАЯ иконка-плитка со своим скруглённым
+            тёмным фоном; вторую рамку/фон/scrim вокруг неё не добавляем, иначе углы
+            плитки торчат «рамкой в рамке». Только клипуем картинку по радиусу. */}
+        {completed ? (
+          <View
+            style={[
+              styles.taskIcon,
+              { borderWidth: 1, borderColor: chrome.accent2 + '88', backgroundColor: chrome.accent2 + '18' },
+            ]}
+          >
             <Ionicons name="checkmark" size={22} color={chrome.accent2} />
-          ) : (
-            <>
-              <Image source={visual.asset} style={styles.taskImage} contentFit="cover" transition={120} />
-              <View style={styles.taskImageScrim} />
-            </>
-          )}
-        </View>
+          </View>
+        ) : (
+          <View style={[styles.taskIcon, styles.taskIconImageWrap]}>
+            <Image source={visual.asset} style={styles.taskImage} contentFit="cover" transition={120} />
+          </View>
+        )}
 
         {/* Copy */}
         <View style={styles.taskCopy}>
           <Text style={[styles.taskTitle, { color: chrome.text }]} numberOfLines={2}>
             {task.title}
           </Text>
-          <Text style={[styles.taskSub, { color: completed ? chrome.accent2 : chrome.muted }]} numberOfLines={1}>
+          <Text style={[styles.taskSub, { color: completed ? chrome.accent2 : chrome.muted }]} numberOfLines={2}>
             {completed ? '✓ Выполнено' : task.subtitle}
           </Text>
         </View>
@@ -262,11 +277,13 @@ function TaskRow({
 // ─── Main screen ───────────────────────────────────────────────────────────
 export default function PersonalPlanScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
   const { studyTarget } = useStudyTarget();
   const [loaded, setLoaded] = useState<LoadedPlan | null>(null);
   const [extraVisibleTaskCount, setExtraVisibleTaskCount] = useState(0);
-  const [tasksExpanded, setTasksExpanded] = useState(true);
+  // Задачи дня по умолчанию СВЁРНУТЫ — пользователь раскрывает их сам по тапу на заголовок.
+  const [tasksExpanded, setTasksExpanded] = useState(false);
   const [lessonRecommendation, setLessonRecommendation] = useState<PlanDayLessonRecommendation | null>(null);
   const [dayComparison, setDayComparison] = useState<PlanDayComparison | null>(null);
   const dayRailRef = useRef<ScrollView | null>(null);
@@ -456,10 +473,20 @@ export default function PersonalPlanScreen() {
     openPersonalPlanTask(router, loaded.plan, loaded.runtime.visibleDay, task, loaded.state.planInstanceId);
   };
 
+  // Тап по баннеру «Сначала пройди урок N» открывает рекомендованный урок
+  // (раньше баннер был неинтерактивный — нажатие ничего не делало, юзер не мог
+  // найти этот урок). Открываем меню первого незакрытого урока-предпосылки.
+  const openRecommendedLesson = () => {
+    const firstId = lessonRecommendation?.recommendedLessonIds?.[0];
+    if (firstId == null) return;
+    hapticTap();
+    router.push({ pathname: '/lesson_menu', params: { id: String(firstId) } });
+  };
+
   // Loading state
   if (!loaded) {
     return (
-      <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
+      <View style={[styles.safe, { backgroundColor: screenBg, paddingTop: insets.top }]}>
         <LinearGradient colors={chrome.bg} style={styles.fill}>
           <View style={styles.loadingCenter}>
             <View style={[styles.loadingRing, { borderColor: chrome.accent + '33' }]}>
@@ -467,7 +494,7 @@ export default function PersonalPlanScreen() {
             </View>
           </View>
         </LinearGradient>
-      </SafeAreaView>
+      </View>
     );
   }
 
@@ -484,15 +511,23 @@ export default function PersonalPlanScreen() {
     ?? (visibleTasksDone && addMoreTask ? addMoreTask : visibleTasks[0])
     ?? null;
 
+  // Real "days in a row" streak — same source the stats screen uses
+  // (completed-task timestamps), not the plan day number. UTC todayKey to match
+  // completedAt (new Date().toISOString()).
+  const realStreakDays = trailingStreak(
+    activeDayKeys(completedTasks as Record<string, PersonalPlanCompletedTask | unknown>, loaded.state.planInstanceId),
+    new Date().toISOString().slice(0, 10),
+  );
+
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
+    <View style={[styles.safe, { backgroundColor: screenBg, paddingTop: insets.top }]}>
       <LinearGradient colors={chrome.bg} style={styles.fill}>
         <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
 
         {/* ── Header ── */}
         <View style={styles.header}>
           <TapScale
-            onPress={() => safeRouterBack(router, '/personal_plan')}
+            onPress={() => safeRouterBack(router, '/(tabs)/home' as any)}
             accessibilityRole="button"
             accessibilityLabel="Назад"
             style={[styles.back, { backgroundColor: chrome.taskSurface, borderColor: chrome.border }]}
@@ -500,10 +535,10 @@ export default function PersonalPlanScreen() {
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </TapScale>
           <View style={styles.headerCopy}>
-            <Text style={[styles.headerKicker, { color: chrome.accent }]} numberOfLines={1}>
+            <Text style={[styles.headerKicker, { color: chrome.accent }]} numberOfLines={2}>
               {plan.name} · Неделя {Math.ceil(day.dayIndex / 7)}
             </Text>
-            <Text style={[styles.headerTitle, { color: chrome.text }]} numberOfLines={1}>
+            <Text style={[styles.headerTitle, { color: chrome.text }]} numberOfLines={2}>
               {day.title}
             </Text>
           </View>
@@ -526,7 +561,7 @@ export default function PersonalPlanScreen() {
           >
             <Ionicons name="stats-chart" size={20} color={chrome.accent} />
           </TouchableOpacity>
-          <StreakBadge dayIndex={day.dayIndex} chrome={chrome} />
+          <StreakBadge streakDays={realStreakDays} dayIndex={day.dayIndex} chrome={chrome} />
         </View>
 
         <BouncyWrap>
@@ -551,7 +586,7 @@ export default function PersonalPlanScreen() {
                   <Ionicons name="time-outline" size={14} color={chrome.accent} />
                   <Text style={[styles.timePillText, { color: chrome.accent }]}>{totalMinutes} мин сегодня</Text>
                 </View>
-                <Text style={[styles.heroFocus, { color: chrome.muted }]} numberOfLines={1}>
+                <Text style={[styles.heroFocus, { color: chrome.muted }]} numberOfLines={2}>
                   {day.focus}
                 </Text>
                 <Text style={[styles.heroTitle, { color: chrome.text }]} numberOfLines={3}>
@@ -624,9 +659,15 @@ export default function PersonalPlanScreen() {
             </TouchableOpacity>
           ) : null}
 
-          {/* ── Recommended lessons banner ── */}
+          {/* ── Recommended lessons banner (tappable → opens the first lesson) ── */}
           {lessonRecommendation && lessonRecommendation.recommendedLessonIds.length > 0 ? (
-            <View style={[styles.recommendBanner, { borderColor: chrome.border, backgroundColor: chrome.accentSoft }]}>
+            <TouchableOpacity
+              activeOpacity={0.82}
+              onPress={openRecommendedLesson}
+              accessibilityRole="button"
+              accessibilityLabel={`Открыть урок ${lessonRecommendation.recommendedLessonIds[0]}`}
+              style={[styles.recommendBanner, { borderColor: chrome.border, backgroundColor: chrome.accentSoft }]}
+            >
               <View style={[styles.recommendIconWrap, { backgroundColor: chrome.accent + '18', borderColor: chrome.accent + '33' }]}>
                 <Ionicons name="school-outline" size={22} color={chrome.accent} />
               </View>
@@ -634,11 +675,12 @@ export default function PersonalPlanScreen() {
                 <Text style={[styles.recommendTitle, { color: chrome.text }]}>
                   Сначала пройди {lessonRecommendation.recommendedLessonIds.length === 1 ? 'урок' : 'уроки'} {formatLessonList(lessonRecommendation.recommendedLessonIds)}
                 </Text>
-                <Text style={[styles.recommendText, { color: chrome.muted }]} numberOfLines={2}>
-                  Так конструкции в фразах этого дня будут понятнее.
+                <Text style={[styles.recommendText, { color: chrome.accent }]} numberOfLines={2}>
+                  {lessonRecommendation.recommendedLessonIds.length === 1 ? 'Нажми, чтобы открыть урок →' : 'Нажми, чтобы открыть первый урок →'}
                 </Text>
               </View>
-            </View>
+              <Ionicons name="chevron-forward" size={20} color={chrome.accent} style={{ alignSelf: 'center' }} />
+            </TouchableOpacity>
           ) : null}
 
           {/* ── All done banner ── */}
@@ -688,6 +730,8 @@ export default function PersonalPlanScreen() {
                     <TaskRow
                       key={task.id}
                       task={task}
+                      planId={loaded.plan.id}
+                      themeMode={themeMode}
                       completed={completed}
                       isNext={isNext}
                       chrome={chrome}
@@ -753,27 +797,6 @@ export default function PersonalPlanScreen() {
             </ScrollView>
           </LinearGradient>
 
-          {/* ── Focus for today ── */}
-          <LinearGradient colors={chrome.card} style={[styles.sectionCard, { borderColor: chrome.border }]}>
-            <View style={styles.focusBlock}>
-              <View style={[styles.focusIconWrap, { backgroundColor: chrome.accentSoft, borderColor: chrome.border }]}>
-                <Ionicons name="telescope-outline" size={26} color={chrome.accent} />
-              </View>
-              <View style={styles.focusCopy}>
-                <Text style={[styles.focusKicker, { color: chrome.accent }]}>Фокус дня</Text>
-                <Text style={[styles.focusTitle, { color: chrome.text }]}>{day.focus}</Text>
-                {day.phraseGoal ? (
-                  <Text style={[styles.focusSub, { color: chrome.muted }]}>{day.phraseGoal}</Text>
-                ) : null}
-              </View>
-            </View>
-            {day.theory ? (
-              <View style={[styles.theoryBox, { backgroundColor: chrome.taskSurface, borderColor: chrome.border }]}>
-                <Text style={[styles.theoryText, { color: chrome.muted }]}>{day.theory}</Text>
-              </View>
-            ) : null}
-          </LinearGradient>
-
           {/* ── DEV ── */}
           {__DEV__ ? (
             <TouchableOpacity
@@ -789,7 +812,7 @@ export default function PersonalPlanScreen() {
         </BouncyWrap>
         </Reanimated.View>
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -919,14 +942,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12, paddingVertical: 10, gap: 12,
   },
   taskIcon: {
-    width: 48, height: 48, borderRadius: 14, borderWidth: 1,
+    width: 48, height: 48, borderRadius: 14,
     alignItems: 'center', justifyContent: 'center', flexShrink: 0,
   },
+  // Обёртка для готовой иконки-плитки: без рамки/фона, только клип по радиусу,
+  // чтобы плитка садилась ровно, а не «рамкой в рамке».
+  taskIconImageWrap: { overflow: 'hidden', backgroundColor: 'transparent' },
   taskImage: { width: '100%', height: '100%' },
-  taskImageScrim: {
-    position: 'absolute', left: 0, right: 0, top: 0, bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.18)', borderRadius: 14,
-  },
   taskCopy: { flex: 1, minWidth: 0 },
   taskTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
   taskSub: { marginTop: 2, fontSize: 12, lineHeight: 16, fontWeight: '700' },
@@ -956,21 +978,6 @@ const styles = StyleSheet.create({
   dayCardLabel: { fontSize: 10, lineHeight: 13, fontWeight: '900', textTransform: 'uppercase' },
   dayMiniBar: { width: '80%', height: 4, borderRadius: 2, overflow: 'hidden', marginTop: 6 },
   dayMiniProgress: { height: '100%', borderRadius: 2 },
-
-  // Focus
-  focusBlock: { flexDirection: 'row', gap: 14, alignItems: 'flex-start' },
-  focusIconWrap: {
-    width: 52, height: 52, borderRadius: 14, borderWidth: 1,
-    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-  },
-  focusCopy: { flex: 1, minWidth: 0 },
-  focusKicker: { fontSize: 11, lineHeight: 14, fontWeight: '900', textTransform: 'uppercase' },
-  focusTitle: { fontSize: 18, lineHeight: 23, fontWeight: '900', marginTop: 2 },
-  focusSub: { marginTop: 5, fontSize: 14, lineHeight: 20, fontWeight: '700' },
-  theoryBox: {
-    marginTop: 14, padding: 14, borderRadius: 14, borderWidth: 1,
-  },
-  theoryText: { fontSize: 14, lineHeight: 22, fontWeight: '700' },
 
   // Dev
   devLink: {

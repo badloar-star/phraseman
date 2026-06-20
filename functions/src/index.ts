@@ -123,6 +123,8 @@ const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
@@ -212,6 +214,8 @@ exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
+exports.submitUserIdea = submitUserIdea;
+exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;

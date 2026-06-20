@@ -58,9 +58,6 @@ import { loadActivity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
-import { collectiblesTotalCount } from './collectibles/catalog';
-import { getCollectiblesProgress, getCollectiblesUnseenCount } from './collectibles/storage';
-import { isCollectiblesEnabled } from './remote_flags';
 import { shouldUsePracticeWarmup } from './streak_stats_practice_balance';
 import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
@@ -2005,7 +2002,76 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                     `¡Cuidado, que quemo! 🔥 ${totalStreak} días de racha en Phraseman. El inglés ya es mi buen hábito.`,
                     `Maratón de inglés: día ${totalStreak} en Phraseman sin parar. 🏃 ¿Quién se une?`,
                 ];
-                const _p = lang === 'uk' ? _uk : lang === 'es' ? _es : _ru;
+                const _ptBR = [
+                    `Minha sequência no Phraseman: ${totalStreak} dias! 🔥 Mais forte que o café da manhã. Quem me alcança?`,
+                    `${totalStreak} dias seguidos no Phraseman! 🏆 Constância é meu sobrenome. O inglês já flui! 🔥`,
+                    `Tá vendo esse fogo? 🔥 É minha sequência de ${totalStreak} dias no Phraseman. Nenhum dia sem inglês, nenhum dia sem vitória!`,
+                    `${totalStreak} dias seguidos no Phraseman! Minha disciplina subiu de nível. Não me segura! 🔥`,
+                    `Dizem que um hábito leva 21 dias. Eu já estou em ${totalStreak}! Phraseman virou estilo de vida. ☕️📖`,
+                    `Minha sequência no Phraseman queima mais que minha vontade de tirar férias! 🔥 ${totalStreak} dias em ação!`,
+                    `Minha sequência no Phraseman brilha mais que o sol! 🔥 ${totalStreak} dias seguidos. Quem bate meu recorde?`,
+                    `${totalStreak} dias no Phraseman! 🏆 Passo a passo rumo à meta. Meu inglês agradece!`,
+                    `Sem perder o ritmo! 🔥 ${totalStreak} dias estudando no Phraseman. Constância é maestria!`,
+                    `Cuidado, tô pegando fogo! 🔥 ${totalStreak} dias de sequência no Phraseman. O inglês já é meu bom hábito.`,
+                    `Maratona de inglês: dia ${totalStreak} no Phraseman sem parar! 🏃 Quem vem comigo?`,
+                ];
+                const _vi = [
+                    `Chuỗi ngày của tôi trên Phraseman: ${totalStreak} ngày! 🔥 Mạnh hơn cả ly cà phê sáng. Ai đuổi kịp nào?`,
+                    `${totalStreak} ngày liên tiếp trên Phraseman! 🏆 Kiên trì là tên đệm của tôi. Tiếng Anh đã thành tự nhiên! 🔥`,
+                    `Thấy ngọn lửa này chứ? 🔥 Đó là chuỗi ${totalStreak} ngày của tôi trên Phraseman. Không ngày nào thiếu tiếng Anh!`,
+                    `${totalStreak} ngày liên tiếp trên Phraseman! Kỷ luật của tôi đã lên một tầm cao mới. Đừng cản tôi! 🔥`,
+                    `Người ta nói thói quen cần 21 ngày. Tôi đã ${totalStreak} ngày! Phraseman giờ là phong cách sống. ☕️📖`,
+                    `Chuỗi ngày trên Phraseman của tôi cháy hơn cả mong muốn đi nghỉ! 🔥 ${totalStreak} ngày rồi!`,
+                    `Chuỗi ngày của tôi trên Phraseman sáng hơn mặt trời! 🔥 ${totalStreak} ngày liên tiếp. Ai phá được kỷ lục của tôi?`,
+                    `${totalStreak} ngày trên Phraseman! 🏆 Từng bước nhỏ đến mục tiêu lớn. Tiếng Anh của tôi cảm ơn tôi!`,
+                    `Không giảm tốc! 🔥 ${totalStreak} ngày học trên Phraseman. Kiên trì là dấu hiệu của bậc thầy!`,
+                    `Cẩn thận, tôi đang nóng đây! 🔥 ${totalStreak} ngày liên tiếp trên Phraseman. Tiếng Anh đã thành thói quen tốt.`,
+                    `Chạy marathon tiếng Anh. Đã sang ngày ${totalStreak} trên Phraseman không nghỉ! 🏃 Ai cùng tôi nào?`,
+                ];
+                const _id = [
+                    `Rentetan harianku di Phraseman: ${totalStreak} hari! 🔥 Lebih kuat dari kopi pagi. Siapa yang bisa menyusul?`,
+                    `${totalStreak} hari berturut-turut di Phraseman! 🏆 Konsistensi nama tengahku. Bahasa Inggris terasa makin natural! 🔥`,
+                    `Lihat api ini? 🔥 Itu rentetan ${totalStreak} hariku di Phraseman. Tak ada hari tanpa bahasa Inggris!`,
+                    `${totalStreak} hari berturut-turut di Phraseman! Disiplinku naik level. Jangan hentikan aku! 🔥`,
+                    `Katanya kebiasaan terbentuk dalam 21 hari. Aku sudah ${totalStreak}! Phraseman jadi gaya hidup. ☕️📖`,
+                    `Rentetanku di Phraseman menyala lebih panas dari keinginanku berlibur! 🔥 ${totalStreak} hari beraksi!`,
+                    `Rentetanku di Phraseman bersinar lebih terang dari matahari! 🔥 ${totalStreak} hari berturut-turut. Siapa yang bisa mengalahkan rekorku?`,
+                    `${totalStreak} hari di Phraseman! 🏆 Langkah demi langkah menuju tujuan. Bahasa Inggrisku berterima kasih!`,
+                    `Tak mengendurkan tempo! 🔥 ${totalStreak} hari belajar di Phraseman. Konsistensi tanda keahlian!`,
+                    `Hati-hati, aku lagi panas! 🔥 ${totalStreak} hari beruntun di Phraseman. Bahasa Inggris jadi kebiasaan baikku.`,
+                    `Maraton bahasa Inggris. Sudah hari ke-${totalStreak} di Phraseman tanpa henti! 🏃 Siapa ikut?`,
+                ];
+                const _tr = [
+                    `Phraseman'deki serim: ${totalStreak} gün! 🔥 Sabah kahvesinden bile güçlü. Yetişebilen var mı?`,
+                    `${totalStreak} gün üst üste Phraseman'de! 🏆 İstikrar benim ikinci adım. İngilizce artık ana dilim gibi! 🔥`,
+                    `Bu ateşi görüyor musun? 🔥 Phraseman'de ${totalStreak} günlük serim! İngilizcesiz bir gün yok, zafersiz bir gün yok!`,
+                    `${totalStreak} gün üst üste Phraseman'de! Disiplinim resmen yeni bir seviyeye çıktı. Beni durdurmayın! 🔥`,
+                    `Alışkanlık 21 günde oluşur derler. Bende çoktan ${totalStreak} oldu! Phraseman artık bir yaşam tarzı. ☕️📖`,
+                    `Phraseman'deki serim tatile çıkma isteğimden bile parlak yanıyor! 🔥 ${totalStreak} gündür iş başında!`,
+                    `Phraseman'deki serim güneşten bile parlak! 🔥 ${totalStreak} gün üst üste. Rekorumu kim kırabilir?`,
+                    `Phraseman'de ${totalStreak} gün! 🏆 Küçük adımlarla büyük hedefe. İngilizcem bana teşekkür ediyor!`,
+                    `Tempoyu düşürmüyorum! 🔥 Phraseman'de ${totalStreak} gün çalışma. İstikrar ustalığın işaretidir!`,
+                    `Yaklaşma, yanıyorum! 🔥 Phraseman'de ${totalStreak} gün üst üste. İngilizce artık iyi bir alışkanlığım.`,
+                    `İngilizce maratonu. Phraseman'de durmadan ${totalStreak}. gün! 🏃 Benimle gelen?`,
+                ];
+                const _pl = [
+                    `Moja seria w Phraseman: ${totalStreak} dni! 🔥 Mocniejsza niż poranna kawa. Kto mnie dogoni?`,
+                    `${totalStreak} dni z rzędu w Phraseman! 🏆 Konsekwencja to moje drugie imię. Angielski wchodzi naturalnie! 🔥`,
+                    `Widzisz ten ogień? 🔥 To moja seria ${totalStreak} dni w Phraseman! Ani dnia bez angielskiego, ani dnia bez zwycięstwa!`,
+                    `${totalStreak} dni z rzędu w Phraseman! Moja dyscyplina oficjalnie weszła na wyższy poziom. Nie zatrzymujcie mnie! 🔥`,
+                    `Mówią, że nawyk tworzy się przez 21 dni. Ja mam już ${totalStreak}! Phraseman to już styl życia. ☕️📖`,
+                    `Moja seria w Phraseman płonie mocniej niż chęć urlopu! 🔥 ${totalStreak} dni w akcji!`,
+                    `Moja seria w Phraseman świeci jaśniej niż słońce! 🔥 ${totalStreak} dni z rzędu. Kto pobije mój rekord?`,
+                    `${totalStreak} dni w Phraseman! 🏆 Małymi krokami do wielkiego celu. Mój angielski mi dziękuje!`,
+                    `Nie zwalniam tempa! 🔥 ${totalStreak} dni nauki w Phraseman. Konsekwencja to oznaka mistrzostwa!`,
+                    `Nie podchodź — jestem rozgrzany! 🔥 ${totalStreak} dni serii w Phraseman. Angielski stał się moim dobrym nawykiem.`,
+                    `Biegnę maraton z angielskiego. Już ${totalStreak}. dzień w Phraseman bez przerwy! 🏃 Kto ze mną?`,
+                ];
+                const _byLang: Record<string, string[]> = {
+                    ru: _ru, uk: _uk, es: _es,
+                    'pt-BR': _ptBR, vi: _vi, id: _id, tr: _tr, pl: _pl,
+                };
+                const _p = _byLang[lang] ?? _ru;
                 const msg = _p[Math.floor(Math.random() * _p.length)] + `\n${STORE_URL}`;
                 await Share.share({ message: msg }).catch(() => { });
             }}>
@@ -2501,7 +2567,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
               <Ionicons name={item.icon} size={18} color={scoreAccent}/>
             </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.55}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2}>
               {item.value}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 'auto', textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
@@ -2639,7 +2705,7 @@ function RhythmWeekCard({ t, f, lang, metrics, isGoldTheme, themeMode, }: {
             <View style={{ width: 34, height: 34, borderRadius: 12, backgroundColor: scoreSoftBg, alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
               <Ionicons name={item.icon} size={18} color={scoreAccent}/>
             </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.55}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2}>
               {item.value}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 'auto', textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
@@ -2712,8 +2778,6 @@ export default function StreakStats() {
     const [trainerPracticeDue, setTrainerPracticeDue] = useState(_sc.trainerPracticeDue);
     const [achievementCount, setAchievementCount] = useState(0);
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
-    const [collectiblesOwned, setCollectiblesOwned] = useState(0);
-    const [collectiblesUnseen, setCollectiblesUnseen] = useState(0);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
     const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
@@ -2780,18 +2844,8 @@ export default function StreakStats() {
         });
         return () => { cancelled = true; };
     }, []));
-    useFocusEffect(useCallback(() => {
-        let cancelled = false;
-        void getCollectiblesProgress()
-            .then(({ owned }) => { if (!cancelled) setCollectiblesOwned(owned); })
-            .catch(() => { });
-        void getCollectiblesUnseenCount()
-            .then(count => { if (!cancelled) setCollectiblesUnseen(count); })
-            .catch(() => { });
-        return () => { cancelled = true; };
-    }, []));
     const scrollRef = useRef<any>(null);
-    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
+    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const chartScrollRef = useRef<any>(null);
     /** «Опыт» | «Время» — один блок графика по дням. */
@@ -3325,8 +3379,6 @@ export default function StreakStats() {
         <Text
           style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }}
           numberOfLines={1}
-          adjustsFontSizeToFit
-          minimumFontScale={0.82}
         >
           {triLang(lang, {
             ru: 'Статистика',
@@ -3355,7 +3407,7 @@ export default function StreakStats() {
             router.push('/achievements_screen' as any);
         }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap') }}>
           <Ionicons name="trophy-outline" size={19} color={t.textSecond}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1}>
             {triLang(lang, {
             ru: ruAchievementRewardPhrase(achievementCount),
             uk: ukAchievementRewardPhrase(achievementCount),
@@ -3368,26 +3420,6 @@ export default function StreakStats() {
         })}
           </Text>
         </TouchableOpacity>
-        {isCollectiblesEnabled() && collectiblesOwned > 0 && (
-        <TouchableOpacity testID="stats-header-collectibles" accessibilityHint={triLang(lang, {
-            ru: `Сокровищница: ${collectiblesOwned} из ${collectiblesTotalCount()}`,
-            uk: `Скарбниця: ${collectiblesOwned} з ${collectiblesTotalCount()}`,
-            es: `Colección: ${collectiblesOwned}/${collectiblesTotalCount()}`,
-            'pt-BR': `Coleção: ${collectiblesOwned}/${collectiblesTotalCount()}`,
-            vi: `Bộ sưu tập: ${collectiblesOwned}/${collectiblesTotalCount()}`,
-            id: `Koleksi: ${collectiblesOwned}/${collectiblesTotalCount()}`,
-            tr: `Koleksiyon: ${collectiblesOwned}/${collectiblesTotalCount()}`,
-            pl: `Kolekcja: ${collectiblesOwned}/${collectiblesTotalCount()}`,
-        })} activeOpacity={0.82} onPress={() => {
-            hapticTap();
-            router.push('/collectibles_screen' as any);
-        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 1, borderColor: collectiblesUnseen > 0 ? statsBorder(themeMode, 'multipliers', 'strong') : (isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'multipliers')) }}>
-          <Ionicons name="albums-outline" size={19} color={collectiblesUnseen > 0 ? t.textSecond : t.textMuted}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
-            {collectiblesOwned}/{collectiblesTotalCount()}
-          </Text>
-        </TouchableOpacity>
-        )}
         <TouchableOpacity testID="stats-header-gifts" accessibilityHint={triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
             uk: ukGiftPhrase(pendingGiftCount),
@@ -3402,7 +3434,7 @@ export default function StreakStats() {
             router.push('/level_gifts_inventory' as any);
         }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 1, borderColor: pendingGiftCount > 0 ? statsBorder(themeMode, 'multipliers', 'strong') : (isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'multipliers')) }}>
           <Ionicons name="gift-outline" size={19} color={pendingGiftCount > 0 ? t.textSecond : t.textMuted}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1}>
             {triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
             uk: ukGiftPhrase(pendingGiftCount),
@@ -3419,7 +3451,7 @@ export default function StreakStats() {
       </View>
 
       <BouncyWrap>
-      <ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         <View style={{ gap: 12 }}>
         <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} reviveOffer={reviveOffer} onRevivePress={handleReviveStreak} percentilesStreak={percentiles.streak}/>
 
@@ -3859,7 +3891,7 @@ export default function StreakStats() {
                                     fontSize: 7,
                                     fontWeight: '700',
                                     textAlign: 'center',
-                                }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.55}>
+                                }} numberOfLines={1}>
                               {ptsLabel}
                             </Text>
                           </View>
@@ -3892,7 +3924,7 @@ export default function StreakStats() {
                                     fontSize: 7,
                                     fontWeight: '700',
                                     textAlign: 'center',
-                                }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.55}>
+                                }} numberOfLines={1}>
                               {timeLabel}
                             </Text>
                           </View>
@@ -3991,7 +4023,7 @@ export default function StreakStats() {
 
         <View style={{ height: 8 }}/>
         </View>
-      </ScrollView>
+      </Reanimated.ScrollView>
       </BouncyWrap>
       </Reanimated.View>
       </ContentWrap>

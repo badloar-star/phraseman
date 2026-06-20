@@ -10,6 +10,7 @@ import {
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
+  useAnimatedScrollHandler,
   withSpring,
   cancelAnimation,
   type SharedValue,
@@ -69,6 +70,8 @@ type BouncyScroll = {
   pan: ReturnType<typeof Gesture.Pan>;
   /** Прокинуть в onScroll скролл-вью (или в listener у Animated.event). */
   onBouncyScroll: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  /** UI-поток вариант onScroll для Animated.ScrollView (Reanimated). Избегает JS-моста. */
+  onAnimatedScroll: ReturnType<typeof useAnimatedScrollHandler>;
   /** Обёртка translateY. <GestureWrap style={bouncyStyle}>{scroll}</GestureWrap> */
   GestureWrap: (props: { children: React.ReactNode; style?: any }) => React.ReactElement;
 };
@@ -199,6 +202,22 @@ export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScr
     [],
   );
 
+  // UI-поток вариант — без JS-моста. Использовать с Animated.ScrollView (Reanimated)
+  // вместо обычного ScrollView на тяжёлых экранах, где throttle=16 вызывает jank.
+  const onAnimatedScroll = useAnimatedScrollHandler({
+    onScroll(e) {
+      updateScrollMetrics(
+        stretch,
+        scrollY,
+        layoutHeight,
+        contentHeight,
+        e.contentOffset.y,
+        e.layoutMeasurement.height,
+        e.contentSize.height,
+      );
+    },
+  });
+
   useEffect(
     () => () => {
       cancelAnimation(stretch);
@@ -228,7 +247,7 @@ export function useBouncy({ dimension }: { dimension?: number } = {}): BouncyScr
     [isAndroid, scrollGesture],
   );
 
-  return { stretch, scrollY, pan, onBouncyScroll, GestureWrap };
+  return { stretch, scrollY, pan, onBouncyScroll, onAnimatedScroll, GestureWrap };
 }
 
 /** animatedStyle для translateY-обёртки. Вызывать В КОМПОНЕНТЕ. */

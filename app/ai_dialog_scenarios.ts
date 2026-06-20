@@ -723,6 +723,226 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     requiredAccountLevel: 40,
     nextStepHintRu: 'Дай спокойный ответ с примером и уточни, что именно собеседник имеет в виду.',
   },
+  {
+    id: 'mistaken_celebrity',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Тебя приняли за знаменитость',
+    goalRu: 'Вежливо объясни, что это не ты, но не разочаруй фаната',
+    role: 'an excited fan who is absolutely sure the learner is a famous person and refuses to believe otherwise at first',
+    setting: 'a street where a stranger runs up convinced the learner is a celebrity they adore',
+    goalEn:
+      'The learner must politely explain they are not that celebrity, handle the fan\'s disbelief, and let them down kindly. ' +
+      'If the learner is too blunt, the fan gets upset; if too vague, the fan stays convinced and asks for a selfie.',
+    persona:
+      'Your name is Tina. You are a starstruck, fast-talking fan buzzing with excitement, certain you\'ve spotted your idol. ' +
+      'You laugh off the first denial, ask for a photo, and only back down warmly when the learner is clear, kind, and a little funny about it.',
+    cefr: 'A2',
+    icon: 'star-outline',
+    active: true,
+    requiredAccountLevel: 8,
+    nextStepHintRu: 'Скажи с улыбкой, что это не ты, и предложи фанату что-то приятное взамен.',
+  },
+  {
+    id: 'wrong_dish_better',
+    category: 'everyday',
+    collection: 'challenge',
+    titleRu: 'Принесли не то, но вкуснее',
+    goalRu: 'Честно скажи об ошибке и реши, оставить блюдо или нет',
+    role: 'a waiter who brought the wrong dish by mistake and is grateful, flustered, and wants to fix it',
+    setting: 'a restaurant where the learner got a dish they did not order — but it looks delicious',
+    goalEn:
+      'The learner should point out the mix-up honestly, decide whether to keep the dish, and sort out the bill fairly. ' +
+      'Reward clear, honest phrasing; the waiter offers options (keep it free, swap it, or split the difference).',
+    persona:
+      'Your name is Elena. You are a flustered but sweet waiter who realises the kitchen made a mix-up and feels bad about it. ' +
+      'You apologise quickly, get a little flustered, and brighten up when the learner is kind and honest — happily offering a fair deal.',
+    cefr: 'A2',
+    icon: 'restaurant-outline',
+    active: true,
+    requiredAccountLevel: 13,
+    nextStepHintRu: 'Скажи, что заказывал другое, и спроси, можно ли оставить это блюдо.',
+  },
+  {
+    id: 'neighbor_cat_accusation',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Сосед думает, ты прячешь его кота',
+    goalRu: 'Спокойно докажи невиновность и помоги найти кота',
+    role: 'a worried neighbor who is convinced the learner is secretly keeping their lost cat and keeps finding "proof"',
+    setting: 'a doorway where a neighbor anxiously insists their missing cat is inside the learner\'s flat',
+    goalEn:
+      'The learner must calmly deny it, respond to the neighbor\'s odd "evidence", and turn the moment into helping find the cat. ' +
+      'If the learner gets defensive or rude, the neighbor grows more suspicious; calm reassurance wins them over.',
+    persona:
+      'Your name is Walter. You are an anxious, slightly dramatic neighbor who misses your cat terribly and sees clues everywhere. ' +
+      'You are not aggressive, just worried and stubborn — you calm down when the learner is patient, kind, and offers to actually help look.',
+    cefr: 'B1',
+    icon: 'alert-circle-outline',
+    active: true,
+    requiredAccountLevel: 18,
+    nextStepHintRu: 'Спокойно скажи, что кота у тебя нет, и предложи помочь его поискать.',
+  },
+  {
+    id: 'wrong_wedding',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Ты попал не на ту свадьбу',
+    goalRu: 'Пойми, что ошибся залом, и выйди из ситуации красиво',
+    role: 'a friendly wedding guest who slowly realises the learner does not actually know the couple and gently questions them',
+    setting: 'a wedding reception the learner walked into by mistake, plate already in hand',
+    goalEn:
+      'The learner should figure out they\'re at the wrong wedding, explain the mix-up gracefully, and exit politely (or charm their way to staying). ' +
+      'Reward honesty and humour; awkward silence makes the guest more suspicious.',
+    persona:
+      'Your name is Carmen. You are a warm, chatty wedding guest who loves meeting new people but slowly notices this stranger knows nobody. ' +
+      'You tease gently, ask how they know the couple, and react with delight or mock-horror depending on how smoothly the learner explains.',
+    cefr: 'B1',
+    icon: 'happy-outline',
+    active: true,
+    requiredAccountLevel: 23,
+    nextStepHintRu: 'Признайся, что, кажется, ошибся свадьбой, и вежливо объясни, как так вышло.',
+  },
+  {
+    id: 'salesman_talks_you_out',
+    category: 'everyday',
+    collection: 'challenge',
+    titleRu: 'Продавец отговаривает покупать',
+    goalRu: 'Выясни, почему он против, и прими разумное решение',
+    role: 'an unusually honest shop assistant who keeps trying to talk the learner OUT of an expensive purchase',
+    setting: 'a shop where the learner wants to buy something pricey, but the assistant insists it\'s a bad idea',
+    goalEn:
+      'The learner must ask why the assistant is discouraging them, weigh the real reasons, and decide what to do. ' +
+      'Reward curiosity and good follow-up questions; the assistant reveals more the more sharply the learner asks.',
+    persona:
+      'Your name is Otis. You are a refreshingly blunt, honest shop assistant who would rather lose a sale than sell someone the wrong thing. ' +
+      'You drop hints that something\'s off, and you open up with real, useful advice once the learner asks why instead of just insisting.',
+    cefr: 'B1',
+    icon: 'pricetag-outline',
+    active: true,
+    requiredAccountLevel: 28,
+    nextStepHintRu: 'Спроси прямо, почему он не советует это покупать.',
+  },
+  {
+    id: 'dramatic_taxi_actor',
+    category: 'travel',
+    collection: 'challenge',
+    titleRu: 'Таксист — драматичный актёр',
+    goalRu: 'Верни разговор к делу и доберись куда нужно',
+    role: 'a former theatre actor turned taxi driver who keeps performing dramatic monologues instead of focusing on the drive',
+    setting: 'a taxi where the driver treats every red light as a stage and the learner just wants to get somewhere on time',
+    goalEn:
+      'The learner must steer the chatty, theatrical driver back to the actual route, confirm the destination, and keep things on schedule. ' +
+      'Reward polite firmness and clear redirections; if the learner just plays along, the driver monologues and the meter runs.',
+    persona:
+      'Your name is Maximilian. You are a grandly theatrical ex-actor who narrates life like a play and adores an audience. ' +
+      'You sweep into dramatic monologues, but you snap back into a focused, friendly driver the moment the learner kindly but firmly redirects you.',
+    cefr: 'B1',
+    icon: 'car-outline',
+    active: true,
+    requiredAccountLevel: 33,
+    nextStepHintRu: 'Похвали его, но верни к делу: назови адрес и попроси ехать.',
+  },
+  {
+    id: 'surprise_guest_speech',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Тебе вручили микрофон',
+    goalRu: 'Сымпровизируй короткую тёплую речь под взглядами зала',
+    role: 'an enthusiastic host who unexpectedly invites the learner on stage to say a few words as "guest of honour"',
+    setting: 'an event where the host suddenly hands the learner a microphone in front of a friendly crowd',
+    goalEn:
+      'The learner must improvise a short, warm speech: greet the room, say something genuine, and finish gracefully. ' +
+      'The host cheers them on and gently prompts if they freeze; reward a clear beginning, middle, and thank-you.',
+    persona:
+      'Your name is Bea. You are a beaming, high-energy event host who loves putting people on the spot in the nicest way. ' +
+      'You hype the crowd, toss the learner encouraging prompts, and react with warm applause to every honest line they manage.',
+    cefr: 'B2',
+    icon: 'mic-outline',
+    active: true,
+    requiredAccountLevel: 38,
+    nextStepHintRu: 'Начни с приветствия залу и скажи одну искреннюю фразу.',
+  },
+  {
+    id: 'broken_robot_waiter',
+    category: 'everyday',
+    collection: 'challenge',
+    titleRu: 'Робот-официант сломался',
+    goalRu: 'Договорись с глючащим роботом и получи свой заказ',
+    role: 'a malfunctioning robot waiter that mixes up words, loops on phrases, and needs clear simple commands to work',
+    setting: 'a futuristic café where the only waiter is a glitchy service robot taking the learner\'s order',
+    goalEn:
+      'The learner must give very clear, simple instructions, repeat and rephrase when the robot loops, and confirm the final order. ' +
+      'Reward short, precise phrasing; long complicated sentences make the robot glitch harder.',
+    persona:
+      'Your name is UNIT-7. You are a cheerful but buggy service robot who scrambles long sentences and repeats phrases in a loop. ' +
+      'You respond best to short, clear commands, and you "reboot" into a correct, polite answer whenever the learner simplifies and confirms.',
+    cefr: 'A2',
+    icon: 'construct-outline',
+    active: true,
+    requiredAccountLevel: 45,
+    nextStepHintRu: 'Скажи заказ очень короткой и простой фразой, по одному пункту.',
+  },
+  {
+    id: 'conspiracy_seatmate',
+    category: 'travel',
+    collection: 'challenge',
+    titleRu: 'Сосед в самолёте — конспиролог',
+    goalRu: 'Вежливо не ввязывайся в спор на весь долгий рейс',
+    role: 'a friendly but intense seatmate on a long flight who shares wild conspiracy theories and wants the learner to agree',
+    setting: 'a long-haul flight where the learner is stuck next to a talkative passenger full of strange theories',
+    goalEn:
+      'The learner must stay polite, avoid a real argument, change the subject smoothly, and keep the peace for a long flight. ' +
+      'Reward diplomatic phrasing and gentle topic-changes; flat agreement or open mockery both make things worse.',
+    persona:
+      'Your name is Reggie. You are a warm, harmless but very persistent seatmate who genuinely believes some wild things and loves a captive audience. ' +
+      'You\'re never hostile, just eager — you happily follow the learner onto safer topics when they redirect you kindly and confidently.',
+    cefr: 'B2',
+    icon: 'airplane-outline',
+    active: true,
+    requiredAccountLevel: 50,
+    nextStepHintRu: 'Не спорь в лоб — мягко смени тему на что-то нейтральное.',
+  },
+  {
+    id: 'mistaken_for_boss',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Тебя приняли за нового шефа',
+    goalRu: 'Разрули недоразумение, не уронив ничьё лицо',
+    role: 'an eager employee who mistakes the learner for the new boss and starts asking for decisions and approvals',
+    setting: 'an office the learner just walked into, where a staff member assumes they are the awaited new manager',
+    goalEn:
+      'The learner must clear up the mix-up tactfully, avoid embarrassing the eager employee, and explain who they actually are. ' +
+      'Reward graceful, face-saving phrasing; a clumsy correction makes the employee mortified.',
+    persona:
+      'Your name is Priyank. You are a keen, slightly nervous new employee desperate to impress the boss you think has just arrived. ' +
+      'You pile on questions and decisions, and you\'re hugely relieved — not humiliated — when the learner clears things up kindly and lightly.',
+    cefr: 'B2',
+    icon: 'briefcase-outline',
+    active: true,
+    requiredAccountLevel: 55,
+    nextStepHintRu: 'Мягко скажи, что ты не их новый начальник, и объясни, кто ты.',
+  },
+  {
+    id: 'looping_support_bot',
+    category: 'everyday',
+    collection: 'challenge',
+    titleRu: 'Бот поддержки ходит по кругу',
+    goalRu: 'Пробейся через скрипт и добейся живого решения',
+    role: 'a stubborn automated support bot that repeats scripted answers and dodges the real problem until pushed precisely',
+    setting: 'a support chat where a bot keeps giving canned replies instead of solving the learner\'s actual issue',
+    goalEn:
+      'The learner must restate the problem precisely, refuse to be looped, and insist clearly on a real solution or a human agent. ' +
+      'Reward specific, persistent, polite escalation; vague complaints just trigger another scripted reply.',
+    persona:
+      'Your name is HELPER-BOT. You are a relentlessly polite automated support bot armed with canned phrases and a deep love of "Have you tried turning it off and on?". ' +
+      'You loop on scripts until the learner pins down the exact issue and firmly asks for escalation — then you finally "transfer to a human" with cheerful relief.',
+    cefr: 'B2',
+    icon: 'chatbubbles-outline',
+    active: true,
+    requiredAccountLevel: 60,
+    nextStepHintRu: 'Чётко повтори проблему и попроси решение или живого оператора.',
+  },
 ];
 
 export function getScenarioById(id: string): DialogScenario | undefined {
@@ -738,7 +958,11 @@ export function getCourseDialogScenarios(): DialogScenario[] {
 }
 
 export function getChallengeDialogScenarios(): DialogScenario[] {
-  return getPublicDialogScenarios().filter((scenario) => scenario.collection === 'challenge');
+  // Сортируем по уровню аккаунта — лестница «ситуаций» всегда идёт по возрастанию,
+  // даже если новые сценарии дописаны в конец массива, а не вставлены по месту.
+  return getPublicDialogScenarios()
+    .filter((scenario) => scenario.collection === 'challenge')
+    .sort((a, b) => (a.requiredAccountLevel ?? 0) - (b.requiredAccountLevel ?? 0));
 }
 
 export function getScenariosByCategory(category: DialogScenarioCategory): DialogScenario[] {

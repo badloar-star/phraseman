@@ -248,10 +248,10 @@ function TaskRow({
 
         {/* Copy */}
         <View style={styles.taskCopy}>
-          <Text style={[styles.taskTitle, { color: chrome.text }]} numberOfLines={2}>
+          <Text style={[styles.taskTitle, { color: chrome.text }]}>
             {task.title}
           </Text>
-          <Text style={[styles.taskSub, { color: completed ? chrome.accent2 : chrome.muted }]} numberOfLines={2}>
+          <Text style={[styles.taskSub, { color: completed ? chrome.accent2 : chrome.muted }]} numberOfLines={3}>
             {completed ? '✓ Выполнено' : task.subtitle}
           </Text>
         </View>
@@ -535,10 +535,10 @@ export default function PersonalPlanScreen() {
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </TapScale>
           <View style={styles.headerCopy}>
-            <Text style={[styles.headerKicker, { color: chrome.accent }]} numberOfLines={2}>
+            <Text style={[styles.headerKicker, { color: chrome.accent }]}>
               {plan.name} · Неделя {Math.ceil(day.dayIndex / 7)}
             </Text>
-            <Text style={[styles.headerTitle, { color: chrome.text }]} numberOfLines={2}>
+            <Text style={[styles.headerTitle, { color: chrome.text }]}>
               {day.title}
             </Text>
           </View>
@@ -586,10 +586,10 @@ export default function PersonalPlanScreen() {
                   <Ionicons name="time-outline" size={14} color={chrome.accent} />
                   <Text style={[styles.timePillText, { color: chrome.accent }]}>{totalMinutes} мин сегодня</Text>
                 </View>
-                <Text style={[styles.heroFocus, { color: chrome.muted }]} numberOfLines={2}>
+                <Text style={[styles.heroFocus, { color: chrome.muted }]}>
                   {day.focus}
                 </Text>
-                <Text style={[styles.heroTitle, { color: chrome.text }]} numberOfLines={3}>
+                <Text style={[styles.heroTitle, { color: chrome.text }]}>
                   {nextTask ? nextTask.title : day.title}
                 </Text>
               </View>

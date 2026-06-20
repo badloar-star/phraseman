@@ -122,7 +122,8 @@ jest.mock('firebase-admin', () => {
 });
 // Хэш считаем тем же каноническим способом, что и CF — чтобы проверять doc id'ы кэша/счётчика.
 const { phraseHashFor } = require('./explain_cache');
-const { submitExplainReport, REPORT_REJECT_THRESHOLD, REPORT_RATE_MAX, REPORTS_COLLECTION, REPORT_ENTRIES_COLLECTION, REPORT_COMMENT_MAX_LEN, normalizeReportReason, sanitizeReportComment, } = require('./explain_reports');
+const { mistakeHashFor, MISTAKE_COLLECTION } = require('./mistake_explain_cache');
+const { submitExplainReport, REPORT_REJECT_THRESHOLD, REPORT_RATE_MAX, REPORTS_COLLECTION, REPORT_ENTRIES_COLLECTION, REPORT_COMMENT_MAX_LEN, normalizeReportReason, normalizeReportKind, sanitizeReportComment, } = require('./explain_reports');
 const EXPLAIN_COLLECTION = 'phrase_explanations';
 function entryDocs() {
     return collectionDocs(REPORT_ENTRIES_COLLECTION).map((d) => d.data);
@@ -347,6 +348,66 @@ describe('submitExplainReport — server derives hash, ignores client-supplied h
         expect(docs.get(`${REPORTS_COLLECTION}/${HASH}`)).toMatchObject({ reportCount: 1 });
         expect(docs.get(`${REPORTS_COLLECTION}/totally-bogus-client-hash`)).toBeUndefined();
         expect(docs.get(`${REPORTS_COLLECTION}/also-bogus`)).toBeUndefined();
+    });
+});
+describe('normalizeReportKind — чистый хелпер', () => {
+    test('пропускает только phrase/mistake, всё чужое → phrase', () => {
+        expect(normalizeReportKind('phrase')).toBe('phrase');
+        expect(normalizeReportKind('mistake')).toBe('mistake');
+        expect(normalizeReportKind(undefined)).toBe('phrase'); // старые клиенты
+        expect(normalizeReportKind('')).toBe('phrase');
+        expect(normalizeReportKind('nonsense')).toBe('phrase');
+    });
+});
+describe('submitExplainReport — kind="mistake" (разбор ошибки)', () => {
+    const TARGET = 'I have a cat';
+    const WRONG = 'I has a cat';
+    // Хэш разбора ошибки учитывает И целевой ответ, И неправильный — другой неправильный = другой док.
+    const MISTAKE_HASH = mistakeHashFor(TARGET, WRONG, 'ru');
+    test('требует userAnswer для mistake-репорта', async () => {
+        await expect(callReport({ kind: 'mistake', phraseEn: TARGET, lang: 'ru' })).rejects.toMatchObject({
+            code: 'invalid-argument',
+            message: 'user_answer_required',
+        });
+    });
+    test('счётчик и кэш-ссылка бьют в mistake_explanations под mistakeHash', async () => {
+        // Кэш-док разбора лежит в mistake_explanations, текст в поле full.
+        docs.set(`${MISTAKE_COLLECTION}/${MISTAKE_HASH}`, {
+            status: 'ready', schemaVersion: 2, full: 'Тут разбор: has→have.',
+        });
+        const res = await callReport({ kind: 'mistake', phraseEn: TARGET, userAnswer: WRONG, lang: 'ru', reason: 'incorrect' }, 'auth-r0');
+        expect(res).toMatchObject({ ok: true, reportCount: 1, kind: 'mistake' });
+        // Счётчик — под mistakeHash, НЕ под phraseHash.
+        const counter = docs.get(`${REPORTS_COLLECTION}/${MISTAKE_HASH}`);
+        expect(counter).toMatchObject({
+            reportCount: 1,
+            kind: 'mistake',
+            cacheCollection: MISTAKE_COLLECTION,
+            userAnswer: WRONG,
+            // Снимок текста кэша — из поля full (не text).
+            latestExplanationText: 'Тут разбор: has→have.',
+        });
+        expect(docs.get(`${REPORTS_COLLECTION}/${phraseHashFor(TARGET, 'ru')}`)).toBeUndefined();
+        // Лента: запись с kind/cacheCollection/userAnswer + снимком текста.
+        const entries = entryDocs();
+        expect(entries).toHaveLength(1);
+        expect(entries[0]).toMatchObject({
+            kind: 'mistake',
+            cacheCollection: MISTAKE_COLLECTION,
+            phraseHash: MISTAKE_HASH,
+            userAnswer: WRONG,
+            explanationText: 'Тут разбор: has→have.',
+        });
+        // Кэш-док НЕ удаляется автоматически (как и для фраз).
+        expect(docs.get(`${MISTAKE_COLLECTION}/${MISTAKE_HASH}`)).toMatchObject({ status: 'ready' });
+    });
+    test('разные неправильные ответы на одну фразу = разные счётчики', async () => {
+        await callReport({ kind: 'mistake', phraseEn: TARGET, userAnswer: WRONG, lang: 'ru' }, 'auth-r0');
+        await callReport({ kind: 'mistake', phraseEn: TARGET, userAnswer: 'I have cat', lang: 'ru' }, 'auth-r1');
+        const otherHash = mistakeHashFor(TARGET, 'I have cat', 'ru');
+        expect(otherHash).not.toBe(MISTAKE_HASH);
+        expect(docs.get(`${REPORTS_COLLECTION}/${MISTAKE_HASH}`)).toMatchObject({ reportCount: 1 });
+        expect(docs.get(`${REPORTS_COLLECTION}/${otherHash}`)).toMatchObject({ reportCount: 1 });
     });
 });
 //# sourceMappingURL=explain_reports.test.js.map

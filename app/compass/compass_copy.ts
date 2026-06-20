@@ -69,6 +69,16 @@ export const COMPASS_LATER: CompassText = {
  * Стиль Тренер + Человек. gain-framing, поддержка. ≤10 слов.
  */
 export const COMPASS_DAY_COMMENT: Record<CompassDayType, CompassText> = {
+  first_day: {
+    ru: 'Рад тебя видеть. Начнём с малого — одна фраза.',
+    uk: 'Радий тебе бачити. Почнімо з малого — одна фраза.',
+    es: 'Me alegra verte. Empezamos con poco: una frase.',
+    'pt-BR': 'Que bom te ver. Começamos com pouco: uma frase.',
+    vi: 'Rất vui được gặp bạn. Bắt đầu nhẹ nhàng — một câu.',
+    id: 'Senang bertemu kamu. Mulai dari yang kecil — satu frasa.',
+    tr: 'Seni görmek güzel. Küçükten başlayalım — bir ifade.',
+    pl: 'Miło cię widzieć. Zacznijmy od małego — jedna fraza.',
+  },
   easy: {
     ru: 'Сегодня без спешки. Закрепим вчерашнее.',
     uk: 'Сьогодні без поспіху. Закріпимо вчорашнє.',

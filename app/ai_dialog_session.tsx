@@ -71,7 +71,9 @@ function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
     id: scenarioId,
     category: 'everyday',
     titleRu: `Диалог урока ${lessonId}`,
+    titleEs: `Diálogo de la lección ${lessonId}`,
     goalRu: `Используй фразы и конструкции урока ${lessonId} в короткой живой сцене`,
+    goalEs: `Usa las frases y construcciones de la lección ${lessonId} en una escena breve y realista`,
     role: 'a patient English practice partner',
     setting: `a simple real-life scene based on lesson ${lessonId}`,
     persona:
@@ -87,6 +89,7 @@ function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
     sourceLessonId: lessonId,
     requiredPhraseIds: [],
     nextStepHintRu: 'Ответь одной короткой фразой из урока или похожей конструкцией.',
+    nextStepHintEs: 'Responde con una frase corta de la lección o una construcción parecida.',
   };
 }
 
@@ -349,7 +352,16 @@ export default function AiDialogSession() {
             onPress={onBack}
             style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás' })}
+            accessibilityLabel={triLang(lang, {
+              ru: 'Назад',
+              uk: 'Назад',
+              es: 'Atrás',
+              'pt-BR': 'Voltar',
+              vi: 'Quay lại',
+              id: 'Kembali',
+              tr: 'Geri',
+              pl: 'Wstecz',
+            })}
           >
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
@@ -392,7 +404,16 @@ export default function AiDialogSession() {
             <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 1 }} numberOfLines={1}>
               {personaName
                 ? dialogScenarioTitle(scenario, lang)
-                : triLang(lang, { ru: 'на связи', uk: 'на зв’язку', es: 'en línea' })}
+                : triLang(lang, {
+                  ru: 'на связи',
+                  uk: 'на зв’язку',
+                  es: 'en línea',
+                  'pt-BR': 'online',
+                  vi: 'đang trực tuyến',
+                  id: 'online',
+                  tr: 'çevrim içi',
+                  pl: 'online',
+                })}
             </Text>
           </View>
 
@@ -401,7 +422,16 @@ export default function AiDialogSession() {
               onPress={finishDialog}
               activeOpacity={0.82}
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Завершить диалог', uk: 'Завершити діалог', es: 'Terminar diálogo' })}
+              accessibilityLabel={triLang(lang, {
+                ru: 'Завершить диалог',
+                uk: 'Завершити діалог',
+                es: 'Terminar diálogo',
+                'pt-BR': 'Encerrar diálogo',
+                vi: 'Kết thúc cuộc đối thoại',
+                id: 'Akhiri dialog',
+                tr: 'Diyaloğu bitir',
+                pl: 'Zakończ dialog',
+              })}
               style={{
                 minHeight: 36,
                 borderRadius: 18,
@@ -414,7 +444,16 @@ export default function AiDialogSession() {
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'Завершить', uk: 'Завершити', es: 'Terminar' })}
+                {triLang(lang, {
+                  ru: 'Завершить',
+                  uk: 'Завершити',
+                  es: 'Terminar',
+                  'pt-BR': 'Encerrar',
+                  vi: 'Kết thúc',
+                  id: 'Akhiri',
+                  tr: 'Bitir',
+                  pl: 'Zakończ',
+                })}
               </Text>
             </TouchableOpacity>
           ) : (
@@ -446,6 +485,11 @@ export default function AiDialogSession() {
                 ru: 'Пробный диалог — бесплатно',
                 uk: 'Пробний діалог — безкоштовно',
                 es: 'Diálogo de prueba — gratis',
+                'pt-BR': 'Diálogo de teste — grátis',
+                vi: 'Đối thoại dùng thử — miễn phí',
+                id: 'Dialog uji coba — gratis',
+                tr: 'Deneme diyaloğu — ücretsiz',
+                pl: 'Dialog próbny — gratis',
               })}
             </Text>
           </View>
@@ -606,18 +650,27 @@ export default function AiDialogSession() {
                           }}
                           activeOpacity={0.6}
                           accessibilityRole="button"
-                          accessibilityLabel={triLang(lang, { ru: 'Озвучить реплику', uk: 'Озвучити репліку', es: 'Reproducir frase' })}
+                          accessibilityLabel={triLang(lang, {
+                            ru: 'Озвучить реплику',
+                            uk: 'Озвучити репліку',
+                            es: 'Reproducir frase',
+                            'pt-BR': 'Reproduzir fala',
+                            vi: 'Phát câu trả lời',
+                            id: 'Putar ucapan',
+                            tr: 'Repliği seslendir',
+                            pl: 'Odtwórz kwestię',
+                          })}
                           style={{
-                            width: 30,
-                            minHeight: 30,
+                            width: 44,
+                            minHeight: 44,
                             flexShrink: 0,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            marginTop: -4,
-                            marginRight: -6,
+                            marginTop: -8,
+                            marginRight: -10,
                           }}
                         >
-                          <Ionicons name="volume-medium-outline" size={18} color={t.textSecond} />
+                          <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
                         </TouchableOpacity>
                       </View>
                     </View>
@@ -715,13 +768,27 @@ export default function AiDialogSession() {
                   style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}
                   maxFontSizeMultiplier={1.2}
                 >
-                  {triLang(lang, { ru: 'Разговор завершён', uk: 'Розмову завершено', es: 'Conversación terminada' })}
+                  {triLang(lang, {
+                    ru: 'Разговор завершён',
+                    uk: 'Розмову завершено',
+                    es: 'Conversación terminada',
+                    'pt-BR': 'Conversa encerrada',
+                    vi: 'Cuộc trò chuyện đã kết thúc',
+                    id: 'Percakapan selesai',
+                    tr: 'Sohbet tamamlandı',
+                    pl: 'Rozmowa zakończona',
+                  })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6 }}>
                   {triLang(lang, {
                     ru: `Твоих реплик: ${userExchanges}. Хороший шаг: ты не просто читаешь, а пробуешь говорить.`,
                     uk: `Твоїх реплік: ${userExchanges}. Хороший крок: ти не просто читаєш, а пробуєш говорити.`,
                     es: `Tus respuestas: ${userExchanges}. Buen paso: no solo lees, también intentas hablar.`,
+                    'pt-BR': `Suas respostas: ${userExchanges}. Bom passo: você não só lê, também tenta falar.`,
+                    vi: `Lượt trả lời của bạn: ${userExchanges}. Bước tiến tốt: bạn không chỉ đọc mà còn thử nói.`,
+                    id: `Jawabanmu: ${userExchanges}. Langkah bagus: kamu tidak hanya membaca, tapi juga mencoba berbicara.`,
+                    tr: `${userExchanges} yanıt verdin. Güzel adım: sadece okumuyor, konuşmayı da deniyorsun.`,
+                    pl: `Twoje odpowiedzi: ${userExchanges}. Dobry krok: nie tylko czytasz, ale też próbujesz mówić.`,
                   })}
                 </Text>
                 {!hasPremiumAccess && (
@@ -743,7 +810,16 @@ export default function AiDialogSession() {
                     }}
                   >
                     <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.body }}>
-                      {triLang(lang, { ru: 'Продолжить без лимита', uk: 'Продовжити без ліміту', es: 'Continuar sin límite' })}
+                      {triLang(lang, {
+                        ru: 'Продолжить без лимита',
+                        uk: 'Продовжити без ліміту',
+                        es: 'Continuar sin límite',
+                        'pt-BR': 'Continuar sem limite',
+                        vi: 'Tiếp tục không giới hạn',
+                        id: 'Lanjut tanpa batas',
+                        tr: 'Sınırsız devam et',
+                        pl: 'Kontynuuj bez limitu',
+                      })}
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -773,7 +849,16 @@ export default function AiDialogSession() {
                 <Ionicons name="bulb-outline" size={18} color={t.textSecond} style={{ marginTop: 1 }} />
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900' }}>
-                    {triLang(lang, { ru: 'Что сделать дальше', uk: 'Що зробити далі', es: 'Qué hacer ahora' })}
+                    {triLang(lang, {
+                      ru: 'Что сделать дальше',
+                      uk: 'Що зробити далі',
+                      es: 'Qué hacer ahora',
+                      'pt-BR': 'O que fazer agora',
+                      vi: 'Làm gì tiếp theo',
+                      id: 'Apa langkah berikutnya',
+                      tr: 'Şimdi ne yapmalı',
+                      pl: 'Co zrobić dalej',
+                    })}
                   </Text>
                   <Text
                     style={{
@@ -809,7 +894,16 @@ export default function AiDialogSession() {
                   setInput(v);
                   if (lastError) setLastError(false);
                 }}
-                placeholder={triLang(lang, { ru: 'Напиши ответ…', uk: 'Напиши відповідь…', es: 'Escribe tu respuesta…' })}
+                placeholder={triLang(lang, {
+                  ru: 'Напиши ответ…',
+                  uk: 'Напиши відповідь…',
+                  es: 'Escribe tu respuesta…',
+                  'pt-BR': 'Escreva uma resposta…',
+                  vi: 'Viết câu trả lời…',
+                  id: 'Tulis jawaban…',
+                  tr: 'Yanıt yaz…',
+                  pl: 'Napisz odpowiedź…',
+                })}
                 placeholderTextColor={t.textMuted}
                 editable={!sending}
                 multiline
@@ -838,7 +932,16 @@ export default function AiDialogSession() {
                 disabled={!input.trim() || sending}
                 activeOpacity={0.82}
                 accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar' })}
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Отправить',
+                  uk: 'Надіслати',
+                  es: 'Enviar',
+                  'pt-BR': 'Enviar',
+                  vi: 'Gửi',
+                  id: 'Kirim',
+                  tr: 'Gönder',
+                  pl: 'Wyślij',
+                })}
                 style={{
                   width: 44,
                   height: 44,

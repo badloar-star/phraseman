@@ -20,6 +20,7 @@ import {
 } from './personal_plan_missing_word_items';
 
 export const PERSONAL_PLAN_GENERATION_STANDARDS_VERSION = '2026-05-31.after-answer-recall-v1';
+export const PERSONAL_PLAN_QUIZ_ES_FIELD_MARKERS = ['es', 'explanationsES'] as const;
 
 export type PersonalPlanDayQualityCode =
   | 'missing_day_copy'

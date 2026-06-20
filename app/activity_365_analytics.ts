@@ -555,6 +555,9 @@ export async function devSeedActivity365Scenario(
     [STATS_DAILY_BREAKDOWN_KEY, JSON.stringify(breakdown)],
     [ACTIVITY_365_GOAL_KEY, '180'],
   ]);
+  // Сбрасываем in-memory кэш аналитики, иначе экран статистики/ИИ-разбор
+  // подтянут СТАРЫЕ числа (год), если analytics уже грузились до сида.
+  invalidateActivity365Cache();
   return computeActivity365Analytics({ statsMap: stats, fgDaily: fg, breakdown, goal: 180 });
 }
 

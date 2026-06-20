@@ -8472,6 +8472,10 @@
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Арена: боты-соперники</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию. Выкл → матчатся только реальные игроки, при пустой очереди соперник не подставляется.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-arena_bots_enabled" onchange="saveControlPanelBool('arena_bots_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-arena_bots_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
       </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid #23232f">
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Онбординг: первый экран «только план»</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — первый экран с двумя кнопками (составить план / просто посмотреть). Вкл → одна кнопка «Составить мой план» (ведёт в поток плана) и слегка иной текст. Меняется у всех живьём.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-onboarding_plan_only_enabled" onchange="saveControlPanelBool('onboarding_plan_only_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-onboarding_plan_only_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+      </div>
     </div>
   </div>
 
@@ -21263,6 +21267,7 @@
     { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) на пейволах', def: false },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год премиума за идею)', def: false },
     { key: 'arena_bots_enabled', label: 'Арена: боты-соперники (выкл = только реальные игроки)', def: true },
+    { key: 'onboarding_plan_only_enabled', label: 'Онбординг: первый экран «только план» (вкл = одна кнопка)', def: false },
   ];
 
   function rcSetStatus(msg, color) {
@@ -21411,6 +21416,7 @@
     { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'Покажется только когда продукт заведён в RevenueCat.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год премиума при одобрении (вкладка «Идеи»).' },
     { key: 'arena_bots_enabled',       label: 'Арена: боты-соперники',          def: true,  hint: 'Вкл по умолчанию. Выкл → только реальные игроки матчатся друг с другом, при пустой очереди соперник не подставляется.' },
+    { key: 'onboarding_plan_only_enabled', label: 'Онбординг: первый экран «только план»', def: false, hint: 'Выкл = две кнопки (план / просто посмотреть). Вкл → одна кнопка «Составить мой план» + иной текст.' },
   ];
 
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),

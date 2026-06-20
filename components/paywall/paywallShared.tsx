@@ -229,6 +229,11 @@ export function PaywallSocialRow({ lang, chrome }: { lang: Lang; chrome: Paywall
         ru: `${count.toLocaleString('ru-RU')} оценок`,
         uk: `${count.toLocaleString('uk-UA')} оцінок`,
         es: `${count.toLocaleString('es-ES')} reseñas`,
+        'pt-BR': `${count.toLocaleString('pt-BR')} avaliações`,
+        vi: `${count.toLocaleString('vi-VN')} đánh giá`,
+        id: `${count.toLocaleString('id-ID')} ulasan`,
+        tr: `${count.toLocaleString('tr-TR')} değerlendirme`,
+        pl: `${count.toLocaleString('pl-PL')} ocen`,
       })
     : '';
   return (
@@ -274,6 +279,11 @@ export function PaywallPriceRetry({ lang, chrome, onRetry }: {
           ru: 'Не удалось загрузить цены из магазина. Проверь интернет и попробуй ещё раз.',
           uk: 'Не вдалося завантажити ціни з магазину. Перевір інтернет і спробуй ще раз.',
           es: 'No se pudieron cargar los precios. Revisa tu conexión e inténtalo de nuevo.',
+          'pt-BR': 'Não foi possível carregar os preços da loja. Verifique sua internet e tente novamente.',
+          vi: 'Không tải được giá từ cửa hàng. Hãy kiểm tra internet rồi thử lại.',
+          id: 'Tidak bisa memuat harga dari toko. Periksa internet lalu coba lagi.',
+          tr: 'Mağaza fiyatları yüklenemedi. İnternetini kontrol edip tekrar dene.',
+          pl: 'Nie udało się załadować cen ze sklepu. Sprawdź internet i spróbuj ponownie.',
         })}
       </Text>
       <TouchableOpacity
@@ -283,7 +293,16 @@ export function PaywallPriceRetry({ lang, chrome, onRetry }: {
         activeOpacity={0.82}
       >
         <Text style={[S.priceRetryBtnText, { color: chrome.tc.ctaText }]}>
-          {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar' })}
+          {triLang(lang, {
+            ru: 'Повторить',
+            uk: 'Повторити',
+            es: 'Reintentar',
+            'pt-BR': 'Tentar de novo',
+            vi: 'Thử lại',
+            id: 'Coba lagi',
+            tr: 'Tekrar dene',
+            pl: 'Spróbuj ponownie',
+          })}
         </Text>
       </TouchableOpacity>
     </View>

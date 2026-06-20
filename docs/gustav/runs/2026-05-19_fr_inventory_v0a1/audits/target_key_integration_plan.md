@@ -4,17 +4,17 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `HOLD`
 
-Generated at: 2026-05-20T18:32:20.557Z
+Generated at: 2026-06-20T22:00:54.261Z
 
 ## Summary
 
 - Domains: 14
-- Files with target storage touchpoints: 56
-- Raw target storage records: 330
-- Cloud target mappings: 52
-- Local/cloud decisions: 28
-- Blocker domains: 14
-- Blockers: 20
+- Files with target storage touchpoints: 0
+- Raw target storage records: 0
+- Cloud target mappings: 39
+- Local/cloud decisions: 0
+- Blocker domains: 13
+- Blockers: 19
 
 ## Existing Dev Study Target Warning
 
@@ -124,7 +124,7 @@ Storage shape:
 - `<domain>_v2::{studyTarget}::{sourceLocale}::{id}`
 
 Blockers:
-- 330 target-sensitive storage records still depend on raw keys or scattered templates.
+- 0 target-sensitive storage records still depend on raw keys or scattered templates.
 - No single production key builder exists for study target storage.
 
 Required before French:
@@ -152,9 +152,6 @@ Storage shape:
 - `lesson_progress_v2::{studyTarget}::{lessonId}`
 - `lesson_words_v2::{studyTarget}::{lessonId}`
 - `unlocked_lessons_v2::{studyTarget}`
-
-Top file touchpoints:
-- `scripts/gustav_migration_adapter_plan.ts`: 1 records; example `lesson${...}_progress` at line 785
 
 Blockers:
 - Lesson progress, words, pass counts and unlocks are currently represented by legacy English flat keys.
@@ -237,9 +234,6 @@ Storage shape:
 - `level_exam_v2::{studyTarget}::{level}`
 - `certificate_v2::{studyTarget}`
 
-Top file touchpoints:
-- `app/exam_certificate.ts`: 1 records; example `lingman_certificate_v1` at line 17
-
 Blockers:
 - Level exam and certificate keys are target-language proof state and cannot remain shared.
 
@@ -267,11 +261,6 @@ Storage shape:
 - `trainer_store_v2::{studyTarget}`
 - `mistake_log_v2::{studyTarget}`
 - `active_recall_v2::{studyTarget}`
-
-Top file touchpoints:
-- `app/achievements_screen.tsx`: 1 records; example `achievement_active_recall_correct_count` at line 165
-- `app/achievements.ts`: 1 records; example `achievement_active_recall_correct_count` at line 1224
-- `app/streak_safety.ts`: 1 records; example `achievement_active_recall_correct_count` at line 101
 
 Blockers:
 - Trainer, active recall and mistake log carry target words, phrases and grammar categories.
@@ -328,14 +317,8 @@ Storage shape:
 - `achievements_target_v2::{studyTarget}`
 - `progress/targets/{studyTarget}/achievements`
 
-Top file touchpoints:
-- `app/achievements.ts`: 22 records; example `achievement_trainer_correct_count` at line 1223
-- `app/achievements_screen.tsx`: 10 records; example `achievement_trainer_correct_count` at line 166
-- `app/(tabs)/quizzes.tsx`: 2 records; example `achievement_quiz_total_count` at line 753
-- `app/quizzes.tsx`: 2 records; example `achievement_quiz_total_count` at line 650
-
 Blockers:
-- Achievement taxonomy has 101 target achievements and 57 mixed-policy achievements.
+- Achievement taxonomy has 116 target achievements and 42 mixed-policy achievements.
 - Flat achievements_state cannot be reused for French.
 
 Required before French:
@@ -363,12 +346,9 @@ Storage shape:
 - `progress/targets/{studyTarget}/*`
 - `progress/sourceLocales/{sourceLocale}/*`
 
-Top file touchpoints:
-- `app/cloud_sync.ts`: 52 records; example `achievement_active_recall_correct_count` at line 1
-
 Blockers:
-- 40 cloud keys require target buckets.
-- 12 cloud payloads remain blocked by mixed field policy.
+- 39 cloud keys require target buckets.
+- 0 cloud payloads remain blocked by mixed field policy.
 
 Required before French:
 - Make cloud restore/merge target-aware before any French content apply.
@@ -394,9 +374,6 @@ Storage shape:
 - `flashcards_v2::{studyTarget}`
 - `custom_flashcards_v2::{studyTarget}`
 - `flashcards_progress_v2::{studyTarget}`
-
-Top file touchpoints:
-- `hooks/use-flashcards.ts`: 1 records; example `flashcards_v1` at line 40
 
 Blockers:
 - Flashcard cards/progress can contain target-language fronts, translations and sourceLocale explanations.
@@ -425,11 +402,6 @@ Storage shape:
 - `stats_global_v2`
 - `stats_target_v2::{studyTarget}`
 - `daily_stats_target_v2::{studyTarget}`
-
-Top file touchpoints:
-- `app/lifetime_profile_stats.ts`: 4 records; example `lifetime_quiz_counters_migrated_v1` at line 65
-- `app/achievements.ts`: 3 records; example `quiz_hard_count` at line 1319
-- `app/achievements_screen.tsx`: 1 records; example `quiz_hard_count` at line 171
 
 Blockers:
 - daily_stats, user_stats_v1 and stats_daily_breakdown_v1 mix product/global and target-learning metrics.
@@ -470,8 +442,8 @@ Tests:
 
 ### unknown_target_storage
 
-Status: `HOLD`
-Risk: `blocker`
+Status: `PASS`
+Risk: `medium`
 Product module: `no product module until classified`
 
 Proposed API:
@@ -479,19 +451,6 @@ Proposed API:
 
 Storage shape:
 - `blocked until each unknown receives a reviewed target/global/source scope`
-
-Top file touchpoints:
-- `app/lesson1.tsx`: 23 records; example `` at line 576
-- `app/release_wave_bonus.ts`: 13 records; example `` at line 31
-- `app/lesson_complete.tsx`: 11 records; example `` at line 449
-- `app/daily_tasks.ts`: 9 records; example `` at line 1258
-- `app/lesson_menu.tsx`: 9 records; example `` at line 160
-- `app/(tabs)/lessons.tsx`: 8 records; example `` at line 270
-- `app/(tabs)/quizzes.tsx`: 7 records; example `` at line 1964
-- `app/diagnosis_training_progress.ts`: 7 records; example `` at line 37
-
-Blockers:
-- Any target-sensitive unknown storage record blocks French generation.
 
 Required before French:
 - Classify all unknown target storage records or add explicit reviewed exceptions.

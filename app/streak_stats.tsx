@@ -53,7 +53,7 @@ import { StatBars, type StatBar } from '../components/stats/StatBars';
 import { StatProgressRow } from '../components/stats/StatProgressRow';
 import { StatCountUpText } from '../components/stats/StatCountUpText';
 import { AiBlockNote } from '../components/stats/AiBlockNote';
-import { getStatsInsightsState, generateStatsInsights, type StatsInsightsNotes, type StatsInsightsBriefing } from './stats_insights_client';
+import { getStatsInsightsState, generateStatsInsights, buildLocalStatsInsights, type StatsInsightsNotes, type StatsInsightsBriefing } from './stats_insights_client';
 import { loadActivity365Analytics } from './activity_365_analytics';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
@@ -3054,19 +3054,27 @@ export default function StreakStats() {
                 };
                 if (!cancelled) setAiNotesLoading(true);
                 // QA-сценарий (qa365=1) форсит регенерацию, минуя локальный гейт.
-                const state = await generateStatsInsights({ briefing, isPremium, force: params.qa365 === '1' });
+                const forceQa = params.qa365 === '1';
+                const state = await generateStatsInsights({ briefing, isPremium, force: forceQa });
                 if (cancelled) return;
                 if (state.kind === 'cached') setAiNotes(state.notes);
                 else if (state.kind === 'error' && state.notes) setAiNotes(state.notes);
+                else if (forceQa) {
+                    // Форс минует серверное окно и гейт сигнала, но если briefing
+                    // ещё не успел подтянуть данные (insufficient_data / none),
+                    // показываем локальный разбор сразу, чтобы QA увидел результат.
+                    setAiNotes(buildLocalStatsInsights(briefing));
+                }
             } finally {
                 if (!cancelled) setAiNotesLoading(false);
             }
         })();
         return () => { cancelled = true; };
     // Намеренно зависим только от ключевых сигналов, не от каждого числа —
-    // генерацию всё равно гейтит серверное окно.
+    // генерацию всё равно гейтит серверное окно. qa365 добавлен, чтобы
+    // форс-регенерация QA гарантированно перезапустила эффект.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isPremium, !!lifetimeStats, studyTarget, lang]);
+    }, [isPremium, !!lifetimeStats, studyTarget, lang, params.qa365]);
     const randomizeLifetimeChartsForDev = React.useCallback(async () => {
         if (!ENABLE_DEV_TOOLS)
             return;

@@ -15,6 +15,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePremium } from '../../components/PremiumContext';
+import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { compassOn } from './compass_flags';
 import { useCompassDay } from './use_compass_day';
 import { compassTaskRoute } from './compass_task_route';
@@ -49,6 +50,9 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
   const { day, loading } = useCompassDay(now);
   const [visible, setVisible] = useState(false);
   const [checkedSeen, setCheckedSeen] = useState(false);
+  // Онбординг должен быть завершён: иначе брифинг всплывает поверх онбординга
+  // (экран home смонтирован под оверлеем). null = ещё не проверили.
+  const [onboardingDone, setOnboardingDone] = useState<boolean | null>(null);
 
   // Один показ в день: проверяем локальный маркер.
   useEffect(() => {
@@ -64,12 +68,34 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     };
   }, [now, hasPremiumAccess]);
 
-  // Показываем, когда день готов и сегодня ещё не показывали.
+  // Завершён ли онбординг (читаем один раз).
   useEffect(() => {
-    if (compassOn() && hasPremiumAccess && checkedSeen && !loading && day) {
+    if (!compassOn() || !hasPremiumAccess) return;
+    let cancelled = false;
+    void (async () => {
+      const done = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+      if (!cancelled) setOnboardingDone(done === '1');
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [hasPremiumAccess]);
+
+  // Показываем, только когда: онбординг завершён, день готов, есть реальная история
+  // (тип ≠ first_day) и сегодня ещё не показывали. Чистый лист брифингом не дёргаем.
+  useEffect(() => {
+    if (
+      compassOn() &&
+      hasPremiumAccess &&
+      onboardingDone === true &&
+      checkedSeen &&
+      !loading &&
+      day &&
+      day.type !== 'first_day'
+    ) {
       setVisible(true);
     }
-  }, [checkedSeen, loading, day, hasPremiumAccess]);
+  }, [checkedSeen, loading, day, hasPremiumAccess, onboardingDone]);
 
   const markSeen = useCallback(() => {
     void AsyncStorage.setItem(todayKey(now), '1').catch(() => {});
@@ -102,11 +128,18 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     })();
   }, [markSeen, router, day]);
 
+  // Пропускаем показ через OverlayArbiter: на главной несколько `Modal` со
+  // statusBarTranslucent (празднование премиума/VIP и т.п.) одновременно подвешивают
+  // System UI на Android (см. OverlayArbiter.tsx) — это и был фриз каскада после
+  // онбординга (Компас всплывал ПОВЕРХ празднования). Арбитр держит ровно одну
+  // модалку: брифинг ждёт своей очереди и не стекается с другими.
+  const arbitratedVisible = useOverlayVisible('compassBriefing', visible);
+
   if (!compassOn() || !hasPremiumAccess) return null;
 
   return (
     <CompassBriefingModal
-      visible={visible}
+      visible={arbitratedVisible}
       day={day}
       onStart={handleStart}
       onLater={handleLater}

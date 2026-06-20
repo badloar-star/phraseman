@@ -39,7 +39,10 @@ describe('personal plan exercise audio and recorder UI contract', () => {
     // Exception: when speech genuinely can't run here (no recognizer on the
     // device, or the user declined mic access) the learner may advance without a
     // score so a free in-plan exercise never traps them — gated on `blocked`.
-    expect(SOURCE).toContain('enabled={pronunciationHeardTarget && !pronunciationSpeakingTarget}');
+    // Прослушивание фразы НЕ обязательно — юзер может произнести сразу (если сам хочет).
+    // Кнопка «Сказать» заблокирована ТОЛЬКО пока звучит target-аудио (иначе микрофон
+    // поймал бы озвучку), но НЕ требует предварительного прослушивания.
+    expect(SOURCE).toContain('enabled={!pronunciationSpeakingTarget}');
     expect(SOURCE).toContain('disabled={saving || pronunciationScoring || (!pronunciationBlocked && !pronunciationScore?.passed)}');
     expect(SOURCE).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');
 

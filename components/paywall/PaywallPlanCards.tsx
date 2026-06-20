@@ -39,7 +39,16 @@ export default function PaywallPlanCards({
   lifetimePrice, lifetimeAvailable,
 }: Props) {
   const { tc, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
-  const perMonthLabel = triLang(lang, { ru: '/ мес', uk: '/ міс', es: '/ mes' });
+  const perMonthLabel = triLang(lang, {
+    ru: '/ мес',
+    uk: '/ міс',
+    es: '/ mes',
+    'pt-BR': '/ mês',
+    vi: '/ tháng',
+    id: '/ bln',
+    tr: '/ ay',
+    pl: '/ mies.',
+  });
 
   const yearSubParts: string[] = [];
   if (trialDays) {
@@ -47,6 +56,11 @@ export default function PaywallPlanCards({
       ru: `Сначала ${trialDays} дн. бесплатно`,
       uk: `Спершу ${trialDays} дн. безкоштовно`,
       es: `Primero ${trialDays} días gratis`,
+      'pt-BR': `Primeiro ${trialDays} dias grátis`,
+      vi: `${trialDays} ngày đầu miễn phí`,
+      id: `${trialDays} hari pertama gratis`,
+      tr: `Önce ${trialDays} gün ücretsiz`,
+      pl: `Najpierw ${trialDays} dni za darmo`,
     }));
   }
   if (yearlyFull) {
@@ -54,6 +68,11 @@ export default function PaywallPlanCards({
       ru: `${yearlyFull} раз в год`,
       uk: `${yearlyFull} раз на рік`,
       es: `${yearlyFull} al año`,
+      'pt-BR': `${yearlyFull} por ano`,
+      vi: `${yearlyFull} mỗi năm`,
+      id: `${yearlyFull} per tahun`,
+      tr: `Yılda ${yearlyFull}`,
+      pl: `${yearlyFull} rocznie`,
     }));
   }
   if (perDayLabel) {
@@ -61,6 +80,11 @@ export default function PaywallPlanCards({
       ru: `${perDayLabel} в день`,
       uk: `${perDayLabel} на день`,
       es: `${perDayLabel} al día`,
+      'pt-BR': `${perDayLabel} por dia`,
+      vi: `${perDayLabel} mỗi ngày`,
+      id: `${perDayLabel} per hari`,
+      tr: `Günde ${perDayLabel}`,
+      pl: `${perDayLabel} dziennie`,
     }));
   }
 
@@ -112,14 +136,32 @@ export default function PaywallPlanCards({
     <View style={S.wrap}>
       {renderCard(
         'yearly',
-        triLang(lang, { ru: 'Год', uk: 'Рік', es: 'Año' }),
+        triLang(lang, {
+          ru: 'Год',
+          uk: 'Рік',
+          es: 'Año',
+          'pt-BR': 'Ano',
+          vi: 'Năm',
+          id: 'Tahun',
+          tr: 'Yıl',
+          pl: 'Rok',
+        }),
         yearlyPerMonth,
         yearSubParts.length ? yearSubParts.join(' · ') : null,
         savingsPct !== null && savingsPct > 0 ? `−${savingsPct}%` : null,
       )}
       {renderCard(
         'monthly',
-        triLang(lang, { ru: 'Месяц', uk: 'Місяць', es: 'Mes' }),
+        triLang(lang, {
+          ru: 'Месяц',
+          uk: 'Місяць',
+          es: 'Mes',
+          'pt-BR': 'Mês',
+          vi: 'Tháng',
+          id: 'Bulan',
+          tr: 'Ay',
+          pl: 'Miesiąc',
+        }),
         monthlyPrice,
         null,
         null,

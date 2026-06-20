@@ -54,7 +54,8 @@ import {
 } from '../app/personal_plan_activation';
 import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
 import { resolvePersonalPlanForGoal, type PersonalPlanSetupGoal } from '../app/personal_plan_recommendation';
-import { getOnboardingAbVariant, type OnboardingAbVariant } from '../app/remote_flags';
+import { getOnboardingAbVariant, isOnboardingPlanOnly, type OnboardingAbVariant } from '../app/remote_flags';
+import { onAppEvent } from '../app/events';
 import { getStableId } from '../app/stable_id';
 import { usePremium } from './PremiumContext';
 import DuoPressable from './DuoPressable';
@@ -636,10 +637,20 @@ const PLAN_PAYWALL_BENEFITS: Array<{
   },
 ];
 
-function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPlanPaywallStart }: Props) {
+function Onboarding({ onDone, onLangSelect, onPersonalPlanPaywallStart }: Props) {
   const insets = useSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
   const [onboardingAbVariant, setOnboardingAbVariant] = useState<OnboardingAbVariant>('welcome');
+  // Первый экран онбординга «только план» (управляется из «Пульта» админки →
+  // remote_config/app.bools.onboarding_plan_only_enabled). false = два варианта
+  // (план / просто посмотреть), true = одна кнопка «Составить мой план». Читаем
+  // живьём и перечитываем по событию remote_config_changed (onSnapshot).
+  const [planOnlyEntry, setPlanOnlyEntry] = useState<boolean>(() => isOnboardingPlanOnly());
+  useEffect(() => {
+    setPlanOnlyEntry(isOnboardingPlanOnly());
+    const sub = onAppEvent('remote_config_changed', () => setPlanOnlyEntry(isOnboardingPlanOnly()));
+    return () => sub.remove();
+  }, []);
   // Analytics color bucket for the current one-theme onboarding skin.
   const obColor = 'main' as const;
   const theme = ONBOARDING_THEME;
@@ -1341,6 +1352,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     }
     const trimmed = validation.trimmed;
     const availabilityMatches = nameAvailability.value.trim().toLowerCase() === trimmed.toLowerCase();
+
+    // ОПТИМИСТИЧНЫЙ переход. Раньше «Продолжить» ЖДАЛ серверную бронь имени
+    // (reserveNameDetailed), и на холодном старте авторизация не успевала за
+    // таймаут → ложное «Имя не проверилось» + долгое ожидание. На ОНБОРДИНГЕ
+    // ждать сеть не нужно: имя принимаем СРАЗУ (локально), а бронь на сервере
+    // дорезервируем в ФОНЕ. Если введённое имя уже помечено фоновой live-проверкой
+    // как 'taken' — блокируем мгновенно (это уже готовое состояние, без ожидания).
+    // Состояние 'checking' НЕ блокирует: фоновая проверка не должна задерживать
+    // переход. Настоящая серверная уникальность остаётся за фоновым
+    // reserveNameDetailed + проверкой/сменой имени в Настройках; для онбординга
+    // важнее НОЛЬ ожидания.
     if (availabilityMatches && nameAvailability.status === 'taken') {
       const message = pickNameText(
         'Это имя уже занято — придумай другой ник.',
@@ -1351,76 +1373,8 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       setNameAvailability({ status: 'taken', value: trimmed, message });
       return;
     }
-    if (availabilityMatches && nameAvailability.status === 'checking') {
-      setNameFieldError(pickNameText(
-        'Подожди секунду — проверяем имя.',
-        'Зачекай секунду — перевіряємо ім\'я.',
-        'Espera un segundo; estamos comprobando el nombre.',
-      ));
-      return;
-    }
 
-    setNameBusy(true);
-    // Жёсткая проверка уникальности ДО применения имени. Раньше здесь был хардкод
-    // `result = 'ok'` + fire-and-forget reserveName — поэтому дубликаты имён
-    // проходили насквозь. Теперь имя резервируется на сервере атомарно и не
-    // принимается, пока бронь не подтверждена.
-    //
-    // Анти-петля «имя занято после краша»: если приложение упало ПОСЛЕ брони имени,
-    // но ДО onboarding_done, юзер заходит снова и вводит ТО ЖЕ имя. Передаём ранее
-    // сохранённое user_name как oldName, чтобы сервер освободил/узнал свой же слот
-    // (на сервере self-owner → 'ok'). А если идентичность всё же дрейфанула и сервер
-    // вернул 'taken', но вводимое имя == уже сохранённому на ЭТОМ устройстве — это
-    // провабельно собственное имя юзера, пропускаем (иначе вечный тупик).
-    let priorReservedName = '';
-    try {
-      priorReservedName = (await AsyncStorage.getItem('user_name'))?.trim() ?? '';
-    } catch { /* ignore */ }
-    const reusingOwnName = priorReservedName.length > 0
-      && priorReservedName.toLowerCase() === trimmed.toLowerCase();
-
-    let result: Awaited<ReturnType<typeof reserveNameDetailed>>;
-    try {
-      result = await reserveNameDetailed(trimmed, priorReservedName, { source: 'onboarding' });
-    } catch {
-      result = { status: 'error' };
-    }
-    if (result.status === 'taken' && !reusingOwnName) {
-      setNameBusy(false);
-      const message = pickNameText(
-        'Это имя уже занято — придумай другой ник.',
-        'Це ім\'я вже зайняте — вигадай інший нік.',
-        'Este nombre ya está en uso; prueba con otro.',
-      );
-      setNameFieldError(message);
-      setNameAvailability({ status: 'taken', value: trimmed, message });
-      return;
-    }
-    if (result.status === 'cooldown' && !reusingOwnName) {
-      setNameBusy(false);
-      const message = pickNameText(
-        'Имя уже закреплено за этим профилем. Продолжи с ним или попробуй позже.',
-        'Ім\'я вже закріплене за цим профілем. Продовж із ним або спробуй пізніше.',
-        'El nombre ya está fijado para este perfil. Continúa con él o inténtalo más tarde.',
-      );
-      setNameFieldError(message);
-      setNameAvailability({ status: 'error', value: trimmed, message });
-      return;
-    }
-    if (result.status !== 'ok' && !reusingOwnName) {
-      setNameBusy(false);
-      const message = pickNameText(
-        'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
-        'Не вдалося перевірити ім\'я. Перевір мережу й спробуй ще раз.',
-        'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
-      );
-      setNameFieldError(message);
-      setNameAvailability({ status: 'error', value: trimmed, message });
-      return;
-    }
-
-    // Бронь подтверждена ('ok') ИЛИ юзер повторно вводит уже зарезервированное им же
-    // имя (анти-петля после краша) — применяем имя.
+    // Имя применяем немедленно — переход мгновенный, без ожидания сети.
     setName(trimmed);
     setNameAvailability({
       status: 'available',
@@ -1428,24 +1382,33 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       message: pickNameText('Имя свободно', 'Ім\'я вільне', 'Nombre disponible'),
     });
     nameForProfileRef.current = trimmed;
-    try {
-      Keyboard.dismiss();
-      await AsyncStorage.multiSet([
-        ['app_lang', lang],
-        ['user_name', trimmed],
-      ]);
-      void import('../app/firestore_leagues')
-        .then((m) => m.registerInLeagueGroupSilently())
-        .catch(() => {});
-      if (nicknameMode === 'personal_plan') {
-        await AsyncStorage.removeItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
-        // После покупки ведём через streak → auth так же как обычного юзера,
-        // чтобы покупатель не оставался анонимом и не терял прогресс на 2-м устройстве.
-      }
-      goToStep('streak');
-    } finally {
-      setNameBusy(false);
-    }
+    Keyboard.dismiss();
+
+    // Серверная бронь имени — В ФОНЕ (переход НЕ ждёт её). Анти-петля «имя занято
+    // после краша»: читаем ранее сохранённое user_name как oldName ДО перезаписи,
+    // чтобы сервер узнал свой же слот (self-owner → 'ok'). Бронь не блокирует
+    // переход; если на сервере имя реально занято, это всплывёт позже в
+    // Настройках/лидерборде (фоновая live-проверка имени и без того гоняется).
+    void (async () => {
+      try {
+        const priorReservedName = (await AsyncStorage.getItem('user_name'))?.trim() ?? '';
+        await AsyncStorage.multiSet([
+          ['app_lang', lang],
+          ['user_name', trimmed],
+        ]);
+        if (nicknameMode === 'personal_plan') {
+          // После покупки ведём через streak → auth так же как обычного юзера,
+          // чтобы покупатель не оставался анонимом и не терял прогресс на 2-м устройстве.
+          await AsyncStorage.removeItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY);
+        }
+        await reserveNameDetailed(trimmed, priorReservedName, { source: 'onboarding' });
+      } catch { /* ignore — онбординг уже идёт дальше */ }
+    })();
+    void import('../app/firestore_leagues')
+      .then((m) => m.registerInLeagueGroupSilently())
+      .catch(() => {});
+
+    goToStep('streak');
   };
 
   const saveUserProfile = async () => {
@@ -1539,6 +1502,25 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
 
       await AsyncStorage.setItem('onboarding_plan_billing', paywallPlan);
 
+      // Запоминаем выбранный план В ОЧЕРЕДЬ pending-активации ДО любой развилки.
+      // Раньше это делалось только в ветке уже-премиум (ниже), а путь через
+      // A/B/C пейвол (onPersonalPlanPaywallStart) план НЕ запоминал → после
+      // покупки/«продолжить бесплатно» activatePendingPersonalPlanAfterPremium
+      // не находил pending и план не активировался (на главной показывалось
+      // «Составь свой маршрут»). В деве с FORCE_PREMIUM=true премиум-ветка
+      // пропускается, поэтому без этого плана план терялся всегда. Лишний pending
+      // безвреден: его подберёт и очистит первая же activate.
+      try {
+        await queuePendingPersonalPlanActivation({
+          planId: selectedPlanId,
+          minutesPerDay: selectedPlanMinutesForPlan,
+          source: 'onboarding',
+        });
+      } catch {
+        // invalid_personal_plan_pending_activation не должен валить весь переход —
+        // selectedPlanId/minutes валидны by construction, но на всякий случай тихо.
+      }
+
       if (hasPremiumAccess && !FORCE_PREMIUM) {
         // Реальный Premium (не dev-форс) уже есть — платить незачем, активируем план и идём к имени.
         await AsyncStorage.multiSet([
@@ -1546,11 +1528,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
           ['onboarding_step', 'name'],
         ]);
-        await queuePendingPersonalPlanActivation({
-          planId: selectedPlanId,
-          minutesPerDay: selectedPlanMinutesForPlan,
-          source: 'onboarding',
-        });
         await activatePendingPersonalPlanAfterPremium();
         setNicknameMode('personal_plan');
         goToStep('name');
@@ -1558,6 +1535,9 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       }
 
       // Premium нет — переходим на A/B/C пейвол (с фоном онбординга).
+      // План уже в pending-очереди (выше), поэтому любой исход пейвола
+      // (покупка / «продолжить бесплатно» / dev-bypass) активирует его через
+      // finishPersonalPlanActivationFlow → activatePendingPersonalPlanAfterPremium.
       setNicknameMode('personal_plan');
       await onPersonalPlanPaywallStart?.();
     } finally {
@@ -1579,9 +1559,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     );
     void logOnboardingFunnel('cta_click');
 
-    // Путь 1: уже Premium / intro-доступ — активируем план и идём к имени
-    const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);
-    if (hasPremiumAccess || introFullAccessStarted) {
+    // Путь 1: уже РЕАЛЬНЫЙ Premium — платить незачем, активируем план и идём к имени.
+    //
+    // ВАЖНО: НЕ звать здесь onIntroFullAccessStart() для определения «есть ли доступ».
+    // onIntroFullAccessStart() — это СТАРТ «3 подарочных дней», он ВСЕГДА возвращает true
+    // у нового онбординг-юзера. Если завязать на него ветку «доступ уже есть», то нажатие
+    // CTA «Попробовать N дней бесплатно / Открыть полный доступ» НИКОГДА не запускало
+    // реальную покупку — просто стартовало подарочные дни и перекидывало на ввод имени.
+    // Именно это видел пользователь. Пропускаем покупку ТОЛЬКО при реальном Premium
+    // (hasPremiumAccess; при dev-форсе FORCE_PREMIUM всё равно даём пройти покупку).
+    if (hasPremiumAccess && !FORCE_PREMIUM) {
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
@@ -2026,14 +2013,22 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               style={[styles.eliteWelcomeTitle, styles.planEntryTitle]}
               numberOfLines={1}
             >
-              {triOb('Начнём с твоей цели', 'Почнемо з твоєї мети', '¿Por dónde empezamos?')}
+              {planOnlyEntry
+                ? triOb('Твой личный план', 'Твій особистий план', 'Tu plan personal')
+                : triOb('Начнём с твоей цели', 'Почнемо з твоєї мети', '¿Por dónde empezamos?')}
             </Text>
             <Text style={[styles.eliteWelcomeSub, styles.planEntrySub]}>
-              {triOb(
-                'Составим план под твою цель — или сразу начнём знакомиться с приложением.',
-                'Зберемо короткий план під твою ціль або одразу почнемо знайомитися з застосунком?',
-                'Creamos un plan corto para tu objetivo o empezamos a conocer la app.',
-              )}
+              {planOnlyEntry
+                ? triOb(
+                    'Соберём короткий план под твою цель — и сразу начнём.',
+                    'Зберемо короткий план під твою ціль — і одразу почнемо.',
+                    'Creamos un plan corto para tu objetivo y empezamos.',
+                  )
+                : triOb(
+                    'Составим план под твою цель — или сразу начнём знакомиться с приложением.',
+                    'Зберемо короткий план під твою ціль або одразу почнемо знайомитися з застосунком?',
+                    'Creamos un plan corto para tu objetivo o empezamos a conocer la app.',
+                  )}
             </Text>
             <View style={styles.planEntryCtas}>
             <DuoPressable
@@ -2043,9 +2038,12 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               onPress={() => goToStep('planGoal')}
             >
               <Text style={[styles.eliteWelcomeCtaText, styles.planEntryCtaText]}>
-                {triOb('Составить план под мою цель', 'Скласти план під мою ціль', 'Crear mi plan')}
+                {planOnlyEntry
+                  ? triOb('Составить мой план', 'Скласти мій план', 'Crear mi plan')
+                  : triOb('Составить план под мою цель', 'Скласти план під мою ціль', 'Crear mi plan')}
               </Text>
             </DuoPressable>
+            {!planOnlyEntry && (
             <TouchableOpacity
               testID="onboarding-continue-independently"
               style={[styles.eliteWelcomeSecondaryCta, styles.planEntrySecondaryCta]}
@@ -2060,6 +2058,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 {triOb('Просто посмотреть приложение', 'Просто подивитися застосунок', 'Explorar la app')}
               </Text>
             </TouchableOpacity>
+            )}
             </View>
           </View>
         </View>
@@ -3217,7 +3216,12 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   maxLength={20}
                   editable={!nameBusy}
                   returnKeyType="done"
-                  onSubmitEditing={handleNameDone}
+                  // «ОК»/«Done» на клавиатуре ТОЛЬКО прячет клавиатуру (открывая
+                  // кнопку «Продолжить»), но НЕ переходит дальше сам — переход
+                  // только по явному нажатию кнопки. Раньше тут был handleNameDone,
+                  // из-за чего онбординг проскакивал имя по нажатию «ОК».
+                  blurOnSubmit
+                  onSubmitEditing={() => Keyboard.dismiss()}
                   maxFontSizeMultiplier={1.08}
                 />
                 {nameAvailabilityStatus === 'checking' ? (

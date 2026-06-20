@@ -64,13 +64,27 @@ export default function AiDialogHome() {
                   style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
                   numberOfLines={1}
                 >
-                  {triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos' })}
+                  {triLang(lang, {
+                    ru: 'Диалоги',
+                    uk: 'Діалоги',
+                    es: 'Diálogos',
+                    'pt-BR': 'Diálogos',
+                    vi: 'Đối thoại',
+                    id: 'Dialog',
+                    tr: 'Diyaloglar',
+                    pl: 'Dialogi',
+                  })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }} numberOfLines={1}>
                   {triLang(lang, {
                     ru: `${activeCount} сценариев с Компасом`,
                     uk: `${activeCount} сценаріїв із Компасом`,
                     es: `${activeCount} escenarios con Compass`,
+                    'pt-BR': `${activeCount} cenários com Compass`,
+                    vi: `${activeCount} kịch bản với Compass`,
+                    id: `${activeCount} skenario dengan Compass`,
+                    tr: `Compass ile ${activeCount} senaryo`,
+                    pl: `${activeCount} scenariuszy z Compass`,
                   })}
                 </Text>
               </View>

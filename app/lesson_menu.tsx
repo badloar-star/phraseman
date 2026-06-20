@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
@@ -305,6 +305,24 @@ export default function LessonMenu() {
   const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   const [showLockModal, setShowLockModal] = useState(false);
+  // Гард: премиум-пейвол открываем один раз, чтобы не зациклить редирект.
+  const premiumPaywallDispatchedRef = useRef(false);
+
+  // Премиум-урок: вместо промежуточной «заглушки про Premium» сразу открываем пейвол.
+  // Сюда сходятся все in-screen guard'ы уроков (openLessonAccessGate → /lesson_menu),
+  // поэтому это единая точка, где премиум-лок превращается в открытие пейвола.
+  useEffect(() => {
+    if (!lockStateLoaded || !isLessonLocked || lockReason !== 'premium') return;
+    if (premiumPaywallDispatchedRef.current) return;
+    premiumPaywallDispatchedRef.current = true;
+    router.replace({
+      pathname: '/premium_modal',
+      params: {
+        context: lessonPaywallContext(lessonId),
+        lessons_done: String(Math.max(0, lessonId - 1)),
+      },
+    } as any);
+  }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, router]);
 
   // Служебный флаг первого завершения: после него основной CTA подписывается как replay.
   const [finishedOnce, setFinishedOnce] = useState(false);
@@ -858,7 +876,17 @@ export default function LessonMenu() {
     },
   ];
 
-  // Заглушка для заблокированного урока
+  // Премиум-лок: заглушку не рисуем — редирект-эффект уже уводит на пейвол.
+  // Возвращаем пустой фон, чтобы не мелькал промежуточный экран «доступно в Premium».
+  if (isLessonLocked && lockReason === 'premium') {
+    return (
+      <ScreenGradient>
+        <LessonArtBackdrop variant="menu" />
+      </ScreenGradient>
+    );
+  }
+
+  // Заглушка для заблокированного урока (уровень / прогресс)
   if (isLessonLocked) {
     const prevId = Math.max(1, lessonId - 1);
     const lessonLevel = getCourseLevelForLesson(lessonId);

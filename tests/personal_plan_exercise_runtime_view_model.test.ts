@@ -24,6 +24,7 @@ const block: PlanExerciseBlock = {
   dayIndex: 1,
   type: 'plan_choose_natural_phrase',
   title: 'Фразы дня',
+  titleEs: 'Frases del día',
   contentUnitIds: [herePhrase.id, minutePhrase.id],
   estimatedMinutes: 5,
   requiredFor: [5, 10, 15, 20],
@@ -35,7 +36,9 @@ const block: PlanExerciseBlock = {
 function item(phrase = herePhrase): PlanRuntimeItem {
   return buildPlanRuntimeItem({
     block,
-    phrase,
+    phrase: phrase.id === herePhrase.id
+      ? { ...phrase, spanish: 'Estoy aquí.' }
+      : { ...phrase, spanish: 'Necesito un minuto.' },
     exerciseType: 'plan_choose_natural_phrase',
     distractors: phrase.id === herePhrase.id
       ? ['I here.', "I'm at here."]
@@ -80,6 +83,7 @@ describe('personal plan exercise runtime view model', () => {
     expect(viewModel.current).toEqual(expect.objectContaining({
       itemId: `gavan-week1-day1:block-runtime-view:plan_choose_natural_phrase:${herePhrase.id}`,
       targetRu: 'Я здесь.',
+      targetEs: 'Estoy aquí.',
       displayEnglish: "I'm here.",
       hintsEnabled: false,
       correctWordHighlighting: false,
@@ -89,6 +93,21 @@ describe('personal plan exercise runtime view model', () => {
       'I here.',
       "I'm at here.",
     ]);
+    expect(validatePlanRuntimeExerciseViewModel(viewModel)).toEqual([]);
+  });
+
+  it('builds Spanish chrome when the runtime view model receives es lang', () => {
+    const viewModel = buildPlanRuntimeExerciseViewModel(startSession(), { lang: 'es' });
+
+    expect(viewModel).toEqual(expect.objectContaining({
+      title: 'Frases del día',
+      instruction: 'Elige la frase más natural.',
+      primaryActionLabel: 'Comprobar',
+    }));
+    expect(viewModel.progress.label).toBe('0 de 2');
+    expect(viewModel.current).toEqual(expect.objectContaining({
+      targetEs: 'Estoy aquí.',
+    }));
     expect(validatePlanRuntimeExerciseViewModel(viewModel)).toEqual([]);
   });
 

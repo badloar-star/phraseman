@@ -63,6 +63,7 @@ export type PlanExerciseBlock = {
   dayIndex: number;
   type: PlanExerciseType;
   title: string;
+  titleEs?: string;
   contentUnitIds: string[];
   estimatedMinutes: number;
   requiredFor: PlanMinutesChoice[];

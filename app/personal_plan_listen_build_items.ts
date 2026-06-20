@@ -15,6 +15,7 @@ export type PersonalPlanListenBuildItem = {
   id: string;
   promptRu: string;
   promptUk: string;
+  promptEs?: string;
   correctAnswer: string;
   targetWords: string[];
   wordOptions: string[];
@@ -124,8 +125,11 @@ function fallbackExplanation(correctAnswer: string): LessonTeachingNote {
   return {
     id: `listen_build_${correctAnswer.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
     titleRu: 'Собираем то, что услышали',
+    titleEs: 'Construimos lo que escuchaste',
     correctRu: `${correctAnswer} звучит коротко, поэтому слова должны лечь в том же порядке. Здесь тренируем не угадывание, а связь слуха и готовой фразы.`,
+    correctEs: `${correctAnswer} suena como una frase corta, así que las palabras deben quedar en el mismo orden. Aquí entrenamos no adivinar, sino conectar lo que oyes con la frase completa.`,
     wrongRu: 'Послушай ещё раз и собери фразу в том порядке, в котором она звучит. Не нужно вспоминать правило отдельно: сначала поймай общий звук, потом слова.',
+    wrongEs: 'Escucha otra vez y arma la frase en el orden en que suena. No necesitas recordar una regla aparte: primero capta el sonido general y luego las palabras.',
   };
 }
 
@@ -134,7 +138,9 @@ function explanationForPhrase(correctAnswer: string, note?: LessonTeachingNote):
   return {
     ...note,
     titleRu: 'Слух плюс сборка',
+    titleEs: 'Oído más construcción',
     wrongRu: 'Послушай ещё раз и собери фразу по порядку. Если одно слово знакомое, но вся фраза не складывается, лучше начать заново с общего звучания.',
+    wrongEs: 'Escucha otra vez y arma la frase en orden. Si una palabra te suena familiar, pero la frase completa no encaja, es mejor volver al sonido general.',
   };
 }
 
@@ -177,6 +183,7 @@ export function getPersonalPlanListenBuildItems(
         id,
         promptRu: phrase.russian,
         promptUk: phrase.ukrainian,
+        ...(phrase.spanish ? { promptEs: phrase.spanish } : {}),
         correctAnswer: phrase.english,
         targetWords,
         wordOptions,

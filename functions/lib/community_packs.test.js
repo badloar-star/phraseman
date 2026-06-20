@@ -157,7 +157,7 @@ function seedPublishedPack() {
         studyTarget: 'en',
         priceShards: 50,
         salesCount: 0,
-        cards: [{ id: 'c1', en: 'hello', ru: 'privet' }],
+        cards: [{ id: 'c1', en: 'hello', ru: 'privet', es: 'hola' }],
     });
     mockDocs.set('users/author', { firebaseAuthUid: 'auth-author', shards: 0 });
 }
@@ -171,6 +171,7 @@ function submissionPayload() {
             id: `card-${i + 1}`,
             en: `word ${i + 1}`,
             ru: `slovo ${i + 1}`,
+            es: `palabra ${i + 1}`,
         })),
     };
 }

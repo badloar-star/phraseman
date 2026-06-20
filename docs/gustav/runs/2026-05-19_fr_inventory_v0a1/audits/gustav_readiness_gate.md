@@ -4,7 +4,7 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Decision: `HOLD`
 
-Generated at: 2026-05-22T14:02:49.239Z
+Generated at: 2026-06-20T22:03:31.979Z
 
 ## Readiness
 
@@ -21,12 +21,12 @@ Next recommended work:
 ## Summary
 
 - Checks: 57
-- Passed: 50
-- Failed: 7
-- Blockers: 7
+- Passed: 51
+- Failed: 6
+- Blockers: 6
 - Warnings: 0
-- Generation blockers: 5
-- Apply blockers: 7
+- Generation blockers: 4
+- Apply blockers: 6
 
 ## Failed Checks
 
@@ -52,24 +52,13 @@ Achievement taxonomy is HOLD with 42 blockers, 116 target achievements and 42 mi
 Required before work:
 - Implement achievement state split or policy decisions before French can affect achievements.
 
-### RDY-040: Local-only and cloud-synced target keys are decided
-
-Severity: `blocker`
-Blocks: `generation`, `apply`
-Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\local_cloud_decision_table.json`
-
-Local/cloud decision table is HOLD with 22 blockers.
-
-Required before work:
-- Implement target-scoped local-only keys and target cloud buckets according to the decision table.
-
 ### RDY-050: Production target key architecture exists
 
 Severity: `blocker`
 Blocks: `generation`, `apply`
 Artifact: `docs\gustav\runs\2026-05-19_fr_inventory_v0a1\audits\target_key_integration_plan.json`
 
-Target key integration plan is HOLD with 14 blocker domains and 330 raw target-sensitive storage records.
+Target key integration plan is HOLD with 13 blocker domains and 0 raw target-sensitive storage records.
 
 Required before work:
 - Create production StudyTarget model.
@@ -116,6 +105,7 @@ Required before work:
 - `RDY-010`: Storage is target-safe
 - `RDY-020`: Cloud sync is target-safe
 - `RDY-021`: Mixed cloud payloads are split
+- `RDY-040`: Local-only and cloud-synced target keys are decided
 - `RDY-055`: Migration adapter plan exists
 - `RDY-070`: Source graph is extracted and approved
 - `RDY-071`: Source graph quality audit approves generation input

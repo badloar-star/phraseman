@@ -144,15 +144,19 @@ function defaultDecisionTexts(decision) {
         return {
             titleRu: 'Поздравляем — твоя идея принята! 🎉',
             titleUk: 'Вітаємо — твою ідею прийнято! 🎉',
+            titleEs: '¡Felicidades! Tu idea ha sido aceptada 🎉',
             messageRu: 'Твоя идея одобрена и взята в разработку.\n\nВ благодарность мы открываем тебе Premium на целый год. Спасибо, что делаешь Phraseman лучше.',
             messageUk: 'Твою ідею схвалено та взято в розробку.\n\nНа подяку ми відкриваємо тобі Premium на цілий рік. Дякуємо, що робиш Phraseman кращим.',
+            messageEs: 'Tu idea ha sido aprobada y pasa a desarrollo.\n\nComo agradecimiento, te abrimos Premium durante todo un año. Gracias por ayudar a mejorar Phraseman.',
         };
     }
     return {
         titleRu: 'Спасибо за идею',
         titleUk: 'Дякуємо за ідею',
+        titleEs: 'Gracias por la idea',
         messageRu: 'Мы внимательно прочитали твою идею, но пока не берём её в работу.\n\nЭто не повод останавливаться — присылай ещё. Каждая идея помогает нам расти.',
         messageUk: 'Ми уважно прочитали твою ідею, але поки не беремо її в роботу.\n\nЦе не привід зупинятися — надсилай ще. Кожна ідея допомагає нам зростати.',
+        messageEs: 'Leímos tu idea con atención, pero por ahora no la vamos a tomar en desarrollo.\n\nNo es motivo para detenerse: envíanos más. Cada idea nos ayuda a crecer.',
     };
 }
 /**
@@ -167,8 +171,10 @@ function writeIdeaInbox(tx, db, uid, decision, texts, ideaId, now) {
         ideaId,
         titleRu: texts.titleRu,
         titleUk: texts.titleUk,
+        titleEs: texts.titleEs,
         messageRu: texts.messageRu,
         messageUk: texts.messageUk,
+        messageEs: texts.messageEs,
         createdAt: now,
         seen: false,
     });
@@ -203,8 +209,10 @@ exports.adminDecideUserIdea = (0, https_1.onCall)({
     const texts = {
         titleRu: text(request.data?.titleRu, 200) || def.titleRu,
         titleUk: text(request.data?.titleUk, 200) || def.titleUk,
+        titleEs: text(request.data?.titleEs, 200) || def.titleEs,
         messageRu: text(request.data?.messageRu, 2000) || def.messageRu,
         messageUk: text(request.data?.messageUk, 2000) || def.messageUk,
+        messageEs: text(request.data?.messageEs, 2000) || def.messageEs,
     };
     await db.runTransaction(async (tx) => {
         const snap = await tx.get(ideaRef);

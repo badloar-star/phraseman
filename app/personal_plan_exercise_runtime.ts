@@ -25,7 +25,9 @@ export type PlanRuntimeItem = {
   exerciseType: PlanRuntimeExerciseType;
   phraseId: string;
   promptRu: string;
+  promptEs: string;
   targetRu: string;
+  targetEs: string;
   displayEnglish: string;
   correctAnswer: string;
   choices: PlanRuntimeChoice[];
@@ -140,34 +142,56 @@ function choice(id: string, text: string, isCorrect: boolean): PlanRuntimeChoice
   return { id, text, isCorrect };
 }
 
-const PROMPT_FOR_COPY: Record<PlanRuntimeExerciseType, { ru: string; uk: string; es: string }> = {
+type PlanRuntimePromptLocale = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+type PlanRuntimePromptCopy = Record<PlanRuntimePromptLocale, string>;
+
+const PROMPT_FOR_COPY: Record<PlanRuntimeExerciseType, PlanRuntimePromptCopy> = {
   plan_phrase_build: {
     ru: 'Соберите фразу из слов.',
     uk: 'Зберіть фразу зі слів.',
     es: 'Construye la frase con las palabras.',
+    'pt-BR': 'Monte a frase com as palavras.',
+    vi: 'Sắp xếp câu từ các từ.',
+    id: 'Susun frasa dari kata-kata.',
+    tr: 'Kelimelerden ifadeyi kur.',
+    pl: 'Ułóż frazę ze słów.',
   },
   plan_choose_natural_phrase: {
     ru: 'Выбери естественную фразу.',
     uk: 'Обери природну фразу.',
     es: 'Elige la frase más natural.',
+    'pt-BR': 'Escolha a frase natural.',
+    vi: 'Chọn câu tự nhiên.',
+    id: 'Pilih frasa yang alami.',
+    tr: 'Doğal ifadeyi seç.',
+    pl: 'Wybierz naturalną frazę.',
   },
   plan_missing_word: {
     ru: 'Вставьте пропущенное слово.',
     uk: 'Вставте пропущене слово.',
     es: 'Inserta la palabra que falta.',
+    'pt-BR': 'Insira a palavra que falta.',
+    vi: 'Điền từ còn thiếu.',
+    id: 'Masukkan kata yang hilang.',
+    tr: 'Eksik kelimeyi ekle.',
+    pl: 'Wstaw brakujące słowo.',
   },
   plan_phrase_recall: {
     ru: 'Вспомните фразу без подсказок.',
     uk: 'Пригадайте фразу без підказок.',
     es: 'Recuerda la frase sin pistas.',
+    'pt-BR': 'Lembre a frase sem pistas.',
+    vi: 'Nhớ lại câu không cần gợi ý.',
+    id: 'Ingat frasa tanpa petunjuk.',
+    tr: 'İpucu olmadan ifadeyi hatırla.',
+    pl: 'Przypomnij sobie frazę bez podpowiedzi.',
   },
 };
 
 function promptFor(exerciseType: PlanRuntimeExerciseType, lang: string): string {
   const copy = PROMPT_FOR_COPY[exerciseType];
   if (!copy) return 'Вспомните фразу без подсказок.';
-  if (lang === 'uk') return copy.uk;
-  if (lang === 'es') return copy.es;
+  if (lang in copy) return copy[lang as PlanRuntimePromptLocale];
   return copy.ru;
 }
 
@@ -216,7 +240,9 @@ function choicesFor(
 function itemCopy(item: PlanRuntimeItem): string {
   return [
     item.promptRu,
+    item.promptEs,
     item.targetRu,
+    item.targetEs,
     item.displayEnglish,
     item.correctAnswer,
     ...item.choices.map((itemChoice) => itemChoice.text),
@@ -234,6 +260,7 @@ function blocked(code: PlanRuntimeIssueCode, detail: string): PlanRuntimeSubmiss
 
 export function buildPlanRuntimeItem(input: PlanRuntimeItemInput): PlanRuntimeItem {
   const { block, phrase, exerciseType } = input;
+  const lang = input.lang ?? 'ru';
   const correctAnswer = correctAnswerFor(phrase, exerciseType, input.missingWord);
   const wordTiles = exerciseType === 'plan_phrase_build'
     ? wordTilesFor(phrase.english)
@@ -247,8 +274,10 @@ export function buildPlanRuntimeItem(input: PlanRuntimeItemInput): PlanRuntimeIt
     id: `${block.id}:${exerciseType}:${phrase.id}`,
     exerciseType,
     phraseId: phrase.id,
-    promptRu: promptFor(exerciseType, input.lang ?? 'ru'),
+    promptRu: promptFor(exerciseType, lang),
+    promptEs: promptFor(exerciseType, 'es'),
     targetRu: phrase.russian,
+    targetEs: phrase.spanish ?? phrase.russian,
     displayEnglish: displayEnglishFor(phrase, exerciseType, input.missingWord),
     correctAnswer,
     choices: choicesFor(correctAnswer, exerciseType, input.distractors),

@@ -39,7 +39,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import AddToFlashcard from '../components/AddToFlashcard';
 import { recordWordMistake, activateWordForTrainer } from './trainer_store';
 import { logMistake } from './mistake_log';
-import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { irregularVerbsGlobalKey, lessonIrregularShardsGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
 import {
   frenchVocabularyGateCopy,
@@ -917,7 +917,7 @@ export default function LessonIrregularVerbs() {
   useEffect(() => {
     let cancelled = false;
     void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
     });
     return () => { cancelled = true; };
   }, [lessonId, router, studyTarget]);

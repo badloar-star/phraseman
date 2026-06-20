@@ -262,18 +262,31 @@ describe('adminDecideUserIdea', () => {
     expect(inbox).toHaveLength(1);
     expect(inbox[0]).toMatchObject({ type: 'idea_decision', decision: 'approve', seen: false });
     expect(String(inbox[0].titleRu)).toContain('принята');
+    expect(String(inbox[0].titleEs)).toContain('idea');
+    expect(String(inbox[0].messageEs)).toContain('Premium');
   });
 
   test('reject writes an explanation modal with admin custom text and grants no premium', async () => {
     const ideaId = await seedIdea();
-    await callDecide({ ideaId, decision: 'reject', messageRu: 'Слишком похоже на существующее', messageUk: 'Надто схоже' });
+    await callDecide({
+      ideaId,
+      decision: 'reject',
+      messageRu: 'Слишком похоже на существующее',
+      messageUk: 'Надто схоже',
+      messageEs: 'Se parece demasiado a algo existente',
+    });
 
     const user = docs.get('users/stable-user') as DocData;
     expect(user.progress).toBeUndefined();
 
     expect(ideaDocs()[0].data).toMatchObject({ status: 'rejected', premiumGranted: false });
     const inbox = inboxDocs('stable-user');
-    expect(inbox[0]).toMatchObject({ type: 'idea_decision', decision: 'reject', messageRu: 'Слишком похоже на существующее' });
+    expect(inbox[0]).toMatchObject({
+      type: 'idea_decision',
+      decision: 'reject',
+      messageRu: 'Слишком похоже на существующее',
+      messageEs: 'Se parece demasiado a algo existente',
+    });
   });
 
   test('refuses a non-admin caller', async () => {

@@ -384,6 +384,10 @@ async function main(): Promise<void> {
   const records = storage.records ?? [];
   const targetRecords = records.filter((record) => record.targetNamespaceRequired);
   const targetFiles = new Set(targetRecords.map((record) => record.sourcePath));
+  const unknownTargetTouchpoints = touchpoints(records, 'unknown_target_storage');
+  const unknownTargetBlockers = unknownTargetTouchpoints.length > 0
+    ? ['Any target-sensitive unknown storage record blocks French generation.']
+    : [];
   const cloudTargetMappings = (cloud.entries ?? []).filter((entry) => (
     entry.action === 'map_to_target' ||
     entry.action === 'map_to_source_and_target' ||
@@ -754,16 +758,14 @@ async function main(): Promise<void> {
       storageShape: [
         'blocked until each unknown receives a reviewed target/global/source scope',
       ],
-      blockers: [
-        'Any target-sensitive unknown storage record blocks French generation.',
-      ],
+      blockers: unknownTargetBlockers,
       requiredBeforeFrench: [
         'Classify all unknown target storage records or add explicit reviewed exceptions.',
       ],
       tests: [
         'Storage inventory reports zero unknown target-sensitive learning keys.',
       ],
-      risk: touchpoints(records, 'unknown_target_storage').length > 0 ? 'blocker' : 'medium',
+      risk: unknownTargetTouchpoints.length > 0 ? 'blocker' : 'medium',
     }),
   ];
 

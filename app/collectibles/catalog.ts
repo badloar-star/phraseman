@@ -8,6 +8,8 @@ import {
   CollectibleSecretData,
   CollectibleSetData,
 } from './catalog_data';
+import { COLLECTIBLE_CARD_ES, COLLECTIBLE_SET_ES } from './collectibles_es_locale';
+import type { Lang } from '../../constants/i18n';
 
 export type {
   CollectibleCardData,
@@ -20,6 +22,14 @@ export { COLLECTIBLE_SETS };
 export type CollectibleAnyCard =
   | { kind: 'card'; setId: string; card: CollectibleCardData }
   | { kind: 'secret'; setId: string; card: CollectibleSecretData };
+
+export type CollectibleLocalizedCardText = {
+  translation: string;
+  literal: string;
+  meaning: string;
+  example: string;
+  origin: string;
+};
 
 const cardIndex: Map<string, CollectibleAnyCard> = new Map();
 for (const set of COLLECTIBLE_SETS) {
@@ -44,6 +54,29 @@ export function findCollectibleSet(setId: string): CollectibleSetData | null {
 /** Всего видимых позиций коллекции: карточки + секретки live-сетов. */
 export function collectiblesTotalCount(): number {
   return COLLECTIBLE_SETS.reduce((sum, s) => sum + s.cards.length + 1, 0);
+}
+
+function isSpanish(lang: Lang | string): boolean {
+  return String(lang).toLowerCase() === 'es';
+}
+
+export function collectibleSetTitleForLang(set: CollectibleSetData, lang: Lang | string): string {
+  if (isSpanish(lang)) return COLLECTIBLE_SET_ES[set.setId]?.titleEs ?? set.titleEn ?? set.titleRu;
+  return set.titleRu;
+}
+
+export function collectibleCardTextForLang(
+  card: CollectibleCardData | CollectibleSecretData,
+  lang: Lang | string,
+): CollectibleLocalizedCardText {
+  const es = isSpanish(lang) ? COLLECTIBLE_CARD_ES[card.id] : null;
+  return {
+    translation: es?.translationEs ?? card.ru,
+    literal: es?.literalEs ?? card.literalRu,
+    meaning: es?.meaningEs ?? card.meaningRu,
+    example: es?.exampleEs ?? card.exampleRu,
+    origin: es?.originEs ?? card.originRu,
+  };
 }
 
 export const COLLECTIBLE_RARITY_ORDER: CollectibleRarity[] = ['common', 'rare', 'epic', 'legendary'];

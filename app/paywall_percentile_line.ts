@@ -23,14 +23,10 @@ export interface PercentileLineStats {
   streak: number;
 }
 
-type TriCopy = { ru: string; uk: string; es: string };
+type TriCopy = Record<Lang, string>;
 
-// TODO(i18n): пока покрыты ru/uk/es; pt-BR/vi/id/tr/pl осознанно падают в ru-фоллбэк
-// (строка опциональна и показывается только при хорошем перцентиле). Доперевести при расширении рынков.
 function tri(lang: Lang, copy: TriCopy): string {
-  if (lang === 'uk') return copy.uk;
-  if (lang === 'es') return copy.es;
-  return copy.ru;
+  return copy[lang] ?? copy.ru;
 }
 
 /**
@@ -54,6 +50,11 @@ export function pickPercentileLine(
       ru: `Твоя серия ${stats.streak} дн. — лучше, чем у ${p}% учеников.`,
       uk: `Твоя серія ${stats.streak} дн. — краще, ніж у ${p}% учнів.`,
       es: `Tu racha de ${stats.streak} días supera al ${p}% de los alumnos.`,
+      'pt-BR': `Sua sequência de ${stats.streak} dias supera ${p}% dos alunos.`,
+      vi: `Chuỗi ${stats.streak} ngày của bạn vượt ${p}% học viên.`,
+      id: `Runtutan ${stats.streak} harimu lebih baik dari ${p}% murid.`,
+      tr: `${stats.streak} günlük serin öğrencilerin %${p}'inden daha iyi.`,
+      pl: `Twoja seria ${stats.streak} dni jest lepsza niż u ${p}% uczniów.`,
     });
   }
 
@@ -66,6 +67,11 @@ export function pickPercentileLine(
       ru: `Твой темп за неделю — в топ-${top}% учеников.`,
       uk: `Твій темп за тиждень — у топ-${top}% учнів.`,
       es: `Tu ritmo semanal está en el top-${top}% de los alumnos.`,
+      'pt-BR': `Seu ritmo da semana está no top-${top}% dos alunos.`,
+      vi: `Nhịp học tuần này của bạn nằm trong top-${top}% học viên.`,
+      id: `Ritme mingguanmu ada di top-${top}% murid.`,
+      tr: `Haftalık tempon öğrenciler arasında ilk %${top} içinde.`,
+      pl: `Twoje tempo w tym tygodniu jest w top-${top}% uczniów.`,
     });
   }
 

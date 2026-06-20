@@ -23,9 +23,11 @@ import {
 } from '../app/daily_tasks';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from '../app/daily_task_achievement_icons';
 import { navigateDailyTask } from '../app/daily_task_navigation';
+import { localizedDailyTaskStrings } from '../app/daily_tasks_es_locale';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { hapticTap } from '../hooks/use-haptics';
 import type { ThemeMode } from '../constants/theme';
+import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { LinearGradient } from './SafeLinearGradient';
@@ -122,23 +124,52 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
 };
 
 const TITLE_VARIANTS = [
-  'Вот что можно сделать сегодня',
-  'Вот твой маленький план на сегодня',
+  {
+    ru: 'Вот что можно сделать сегодня',
+    uk: 'Ось що можна зробити сьогодні',
+    es: 'Esto puedes hacer hoy',
+    'pt-BR': 'Veja o que dá para fazer hoje',
+    vi: 'Hôm nay bạn có thể làm thế này',
+    id: 'Ini yang bisa kamu lakukan hari ini',
+    tr: 'Bugün yapabileceklerin',
+    pl: 'Co możesz zrobić dzisiaj',
+  },
+  {
+    ru: 'Вот твой маленький план на сегодня',
+    uk: 'Ось твій маленький план на сьогодні',
+    es: 'Tu pequeño plan para hoy',
+    'pt-BR': 'Seu pequeno plano para hoje',
+    vi: 'Kế hoạch nhỏ của bạn cho hôm nay',
+    id: 'Rencana kecilmu untuk hari ini',
+    tr: 'Bugünkü küçük planın',
+    pl: 'Twój mały plan na dziś',
+  },
 ] as const;
 
 const CARD_ANIMATION_MS = 230;
 
-function getDailyTitle(): string {
+function getDailyTitle(lang: Lang): string {
   const dayNumber = Math.floor(Date.now() / 86_400_000);
-  return TITLE_VARIANTS[dayNumber % TITLE_VARIANTS.length];
+  return triLang(lang, TITLE_VARIANTS[dayNumber % TITLE_VARIANTS.length]);
 }
 
 function getTaskIcon(task: DailyTask) {
   return DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
 }
 
-function taskTitle(task: DailyTask): string {
-  return task.titleRU || task.titleUK || 'Задание дня';
+function taskTitle(task: DailyTask, lang: Lang): string {
+  const titleEs = lang === 'es' ? task.titleES : undefined;
+  const localized = localizedDailyTaskStrings(lang, task).title;
+  return localized || titleEs || task.titleRU || task.titleUK || triLang(lang, {
+    ru: 'Задание дня',
+    uk: 'Завдання дня',
+    es: 'Tarea del día',
+    'pt-BR': 'Tarefa do dia',
+    vi: 'Nhiệm vụ trong ngày',
+    id: 'Tugas hari ini',
+    tr: 'Günün görevi',
+    pl: 'Zadanie dnia',
+  });
 }
 
 function taskProgressText(task: DailyTask, progress?: TaskProgress): string {
@@ -167,7 +198,119 @@ export default function DailyTasksFirstVisitModal({
   const [errorText, setErrorText] = useState<string | null>(null);
   const [previewShift, setPreviewShift] = useState(0);
 
-  const title = useMemo(getDailyTitle, [visible]);
+  const title = useMemo(() => getDailyTitle(lang), [lang, visible]);
+  const copy = useMemo(() => ({
+    closeA11y: triLang(lang, {
+      ru: 'Закрыть задания дня',
+      uk: 'Закрити завдання дня',
+      es: 'Cerrar tareas del día',
+      'pt-BR': 'Fechar tarefas do dia',
+      vi: 'Đóng nhiệm vụ hôm nay',
+      id: 'Tutup tugas hari ini',
+      tr: 'Günün görevlerini kapat',
+      pl: 'Zamknij zadania dnia',
+    }),
+    close: triLang(lang, {
+      ru: 'Закрыть',
+      uk: 'Закрити',
+      es: 'Cerrar',
+      'pt-BR': 'Fechar',
+      vi: 'Đóng',
+      id: 'Tutup',
+      tr: 'Kapat',
+      pl: 'Zamknij',
+    }),
+    chip: triLang(lang, {
+      ru: 'Задания дня',
+      uk: 'Завдання дня',
+      es: 'Tareas del día',
+      'pt-BR': 'Tarefas do dia',
+      vi: 'Nhiệm vụ hôm nay',
+      id: 'Tugas hari ini',
+      tr: 'Günün görevleri',
+      pl: 'Zadania dnia',
+    }),
+    loadError: triLang(lang, {
+      ru: 'Не получилось открыть задания. Попробуй ещё раз.',
+      uk: 'Не вдалося відкрити завдання. Спробуй ще раз.',
+      es: 'No se pudieron abrir las tareas. Inténtalo de nuevo.',
+      'pt-BR': 'Não foi possível abrir as tarefas. Tente de novo.',
+      vi: 'Không mở được nhiệm vụ. Hãy thử lại.',
+      id: 'Tugas tidak bisa dibuka. Coba lagi.',
+      tr: 'Görevler açılamadı. Tekrar dene.',
+      pl: 'Nie udało się otworzyć zadań. Spróbuj ponownie.',
+    }),
+    replaceLimit: triLang(lang, {
+      ru: 'Сегодня задания уже заменены.',
+      uk: 'Сьогодні завдання вже замінені.',
+      es: 'Hoy las tareas ya fueron reemplazadas.',
+      'pt-BR': 'As tarefas de hoje já foram trocadas.',
+      vi: 'Hôm nay nhiệm vụ đã được đổi rồi.',
+      id: 'Tugas hari ini sudah diganti.',
+      tr: 'Bugünün görevleri zaten değiştirildi.',
+      pl: 'Dzisiejsze zadania już wymieniono.',
+    }),
+    taskStarted: triLang(lang, {
+      ru: 'Ты уже начал одно из заданий. Сейчас лучше оставить их как есть.',
+      uk: 'Ти вже почав одне із завдань. Зараз краще залишити їх як є.',
+      es: 'Ya empezaste una de las tareas. Ahora es mejor dejarlas como están.',
+      'pt-BR': 'Você já começou uma das tarefas. Agora é melhor deixá-las como estão.',
+      vi: 'Bạn đã bắt đầu một nhiệm vụ. Lúc này nên giữ nguyên.',
+      id: 'Kamu sudah memulai salah satu tugas. Sebaiknya biarkan apa adanya.',
+      tr: 'Görevlerden birine zaten başladın. Şimdilik oldukları gibi kalsınlar.',
+      pl: 'Jedno z zadań już rozpoczęto. Teraz lepiej zostawić je bez zmian.',
+    }),
+    replaceError: triLang(lang, {
+      ru: 'Не получилось заменить задания.',
+      uk: 'Не вдалося замінити завдання.',
+      es: 'No se pudieron reemplazar las tareas.',
+      'pt-BR': 'Não foi possível trocar as tarefas.',
+      vi: 'Không đổi được nhiệm vụ.',
+      id: 'Tugas tidak bisa diganti.',
+      tr: 'Görevler değiştirilemedi.',
+      pl: 'Nie udało się wymienić zadań.',
+    }),
+    loading: triLang(lang, {
+      ru: 'Открываю задания…',
+      uk: 'Відкриваю завдання…',
+      es: 'Abriendo tareas…',
+      'pt-BR': 'Abrindo tarefas…',
+      vi: 'Đang mở nhiệm vụ…',
+      id: 'Membuka tugas…',
+      tr: 'Görevler açılıyor…',
+      pl: 'Otwieram zadania…',
+    }),
+    start: triLang(lang, {
+      ru: 'Начать',
+      uk: 'Почати',
+      es: 'Empezar',
+      'pt-BR': 'Começar',
+      vi: 'Bắt đầu',
+      id: 'Mulai',
+      tr: 'Başla',
+      pl: 'Zacznij',
+    }),
+    replacing: triLang(lang, {
+      ru: 'Меняю задания…',
+      uk: 'Міняю завдання…',
+      es: 'Cambiando tareas…',
+      'pt-BR': 'Trocando tarefas…',
+      vi: 'Đang đổi nhiệm vụ…',
+      id: 'Mengganti tugas…',
+      tr: 'Görevler değiştiriliyor…',
+      pl: 'Zmieniam zadania…',
+    }),
+    replace: triLang(lang, {
+      ru: 'Заменить задания',
+      uk: 'Замінити завдання',
+      es: 'Reemplazar tareas',
+      'pt-BR': 'Trocar tarefas',
+      vi: 'Đổi nhiệm vụ',
+      id: 'Ganti tugas',
+      tr: 'Görevleri değiştir',
+      pl: 'Wymień zadania',
+    }),
+  }), [lang]);
   const panelColors = rewardModalPanelColors(themeMode, theme);
   const primaryColors = rewardModalPrimaryButtonColors(themeMode);
   const primaryTextColor = rewardModalPrimaryButtonText(themeMode);
@@ -208,11 +351,11 @@ export default function DailyTasksFirstVisitModal({
       setTasks(nextTasks);
       setProgress(nextProgress);
     } catch {
-      setErrorText('Не получилось открыть задания. Попробуй ещё раз.');
+      setErrorText(copy.loadError);
     } finally {
       setLoading(false);
     }
-  }, [initialTasks, studyTarget]);
+  }, [copy.loadError, initialTasks, studyTarget]);
 
   useEffect(() => {
     if (!visible) {
@@ -256,10 +399,10 @@ export default function DailyTasksFirstVisitModal({
       const result = await rerollTodayDailyTaskSet(studyTarget);
       if (!result.ok) {
         const message = result.reason === 'limit_reached'
-          ? 'Сегодня задания уже заменены.'
+          ? copy.replaceLimit
           : result.reason === 'task_already_completed'
-            ? 'Ты уже начал одно из заданий. Сейчас лучше оставить их как есть.'
-            : 'Не получилось заменить задания.';
+            ? copy.taskStarted
+            : copy.replaceError;
         setErrorText(message);
         animateCardsIn();
         return;
@@ -273,6 +416,9 @@ export default function DailyTasksFirstVisitModal({
   }, [
     animateCardsIn,
     animateCardsOut,
+    copy.replaceError,
+    copy.replaceLimit,
+    copy.taskStarted,
     initialTasks,
     loading,
     previewOnly,
@@ -305,7 +451,7 @@ export default function DailyTasksFirstVisitModal({
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
       <View style={styles.root}>
-        <Pressable style={StyleSheet.absoluteFillObject} onPress={onClose} accessibilityLabel="Закрыть задания дня" />
+        <Pressable style={StyleSheet.absoluteFillObject} onPress={onClose} accessibilityLabel={copy.closeA11y} />
         <Animated.View
           style={[
             styles.panelWrap,
@@ -326,7 +472,7 @@ export default function DailyTasksFirstVisitModal({
             <View pointerEvents="none" style={[styles.panelAccentGlow, { backgroundColor: chrome.accentSoft }]} />
             <TouchableOpacity
               accessibilityRole="button"
-              accessibilityLabel="Закрыть"
+              accessibilityLabel={copy.close}
               onPress={onClose}
               activeOpacity={0.75}
               style={[styles.closeButton, { borderColor: chrome.taskBorder, backgroundColor: rewardModalSoftSurface(themeMode, theme) }]}
@@ -336,7 +482,7 @@ export default function DailyTasksFirstVisitModal({
 
             <View style={[styles.chip, { backgroundColor: chrome.chipBg, borderColor: chrome.taskBorder }]}>
               <Ionicons name="calendar-outline" size={15} color={chrome.accent} />
-              <Text style={[styles.chipText, { color: chrome.chipText, fontSize: f.caption }]}>Задания дня</Text>
+              <Text style={[styles.chipText, { color: chrome.chipText, fontSize: f.caption }]}>{copy.chip}</Text>
             </View>
 
             <Text style={[styles.title, { color: theme.textPrimary, fontSize: f.h2 }]}>{title}</Text>
@@ -374,7 +520,7 @@ export default function DailyTasksFirstVisitModal({
                       </View>
                       <View style={styles.taskTextBlock}>
                         <Text style={[styles.taskTitle, { color: theme.textPrimary, fontSize: f.body }]} numberOfLines={2}>
-                          {taskTitle(task)}
+                          {taskTitle(task, lang)}
                         </Text>
                         <Text style={[styles.taskMeta, { color: theme.textSecond, fontSize: f.caption }]}>
                           {taskProgressText(task, rowProgress)}
@@ -385,7 +531,7 @@ export default function DailyTasksFirstVisitModal({
                 );
               })}
               {loading && (
-                <Text style={[styles.loadingText, { color: theme.textSecond, fontSize: f.sub }]}>Открываю задания…</Text>
+                <Text style={[styles.loadingText, { color: theme.textSecond, fontSize: f.sub }]}>{copy.loading}</Text>
               )}
             </View>
 
@@ -399,7 +545,7 @@ export default function DailyTasksFirstVisitModal({
               style={styles.primaryButtonWrap}
             >
               <LinearGradient colors={primaryColors} style={styles.primaryButton}>
-                <Text style={[styles.primaryButtonText, { color: primaryTextColor, fontSize: f.bodyLg }]}>Начать</Text>
+                <Text style={[styles.primaryButtonText, { color: primaryTextColor, fontSize: f.bodyLg }]}>{copy.start}</Text>
               </LinearGradient>
             </TouchableOpacity>
 
@@ -412,7 +558,7 @@ export default function DailyTasksFirstVisitModal({
             >
               <Ionicons name="shuffle-outline" size={18} color={chrome.accent} />
               <Text style={[styles.secondaryButtonText, { color: chrome.chipText, fontSize: f.sub }]}>
-                {replacing ? 'Меняю задания…' : 'Заменить задания'}
+                {replacing ? copy.replacing : copy.replace}
               </Text>
             </TouchableOpacity>
           </View>

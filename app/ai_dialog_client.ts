@@ -89,42 +89,77 @@ export function getPremiumDialogErrorMessage(
           ru: 'Premium активен в приложении, но сервер ещё не видит его для ИИ-диалога. Обнови статус подписки и попробуй ещё раз.',
           uk: 'Premium активний у застосунку, але сервер ще не бачить його для AI-діалогу. Онови статус підписки і спробуй ще раз.',
           es: 'Premium está activo en la app, pero el servidor aún no lo ve para el diálogo con IA. Actualiza la suscripción e inténtalo otra vez.',
+          'pt-BR': 'Premium está ativo no app, mas o servidor ainda não o vê para o diálogo com IA. Atualize o status da assinatura e tente novamente.',
+          vi: 'Premium đã hoạt động trong ứng dụng, nhưng máy chủ chưa nhận ra quyền này cho cuộc đối thoại AI. Hãy cập nhật trạng thái đăng ký rồi thử lại.',
+          id: 'Premium sudah aktif di aplikasi, tetapi server belum melihatnya untuk dialog AI. Perbarui status langganan lalu coba lagi.',
+          tr: 'Premium uygulamada aktif, ancak sunucu AI diyaloğu için bunu henüz görmüyor. Abonelik durumunu yenileyip tekrar dene.',
+          pl: 'Premium jest aktywny w aplikacji, ale serwer jeszcze nie widzi go dla dialogu AI. Odśwież status subskrypcji i spróbuj ponownie.',
         });
       }
       return triLang(lang, {
         ru: 'Бесплатный диалог уже использован. Открой все диалоги с Premium.',
         uk: 'Безкоштовний діалог уже використано. Відкрий усі діалоги з Premium.',
         es: 'Ya usaste tu diálogo gratis. Abre todos los diálogos con Premium.',
+        'pt-BR': 'Você já usou o diálogo grátis. Desbloqueie todos os diálogos com Premium.',
+        vi: 'Bạn đã dùng cuộc đối thoại miễn phí. Mở tất cả cuộc đối thoại với Premium.',
+        id: 'Dialog gratis sudah digunakan. Buka semua dialog dengan Premium.',
+        tr: 'Ücretsiz diyaloğu zaten kullandın. Premium ile tüm diyalogları aç.',
+        pl: 'Darmowy dialog został już wykorzystany. Otwórz wszystkie dialogi z Premium.',
       });
     case 'premium_limit':
       return triLang(lang, {
         ru: 'Лимит диалогов на сегодня исчерпан. Попробуй завтра.',
         uk: 'Ліміт діалогів на сьогодні вичерпано. Спробуй завтра.',
         es: 'Se agotó el límite de diálogos de hoy. Inténtalo mañana.',
+        'pt-BR': 'O limite de diálogos de hoje acabou. Tente amanhã.',
+        vi: 'Bạn đã hết giới hạn đối thoại hôm nay. Hãy thử lại vào ngày mai.',
+        id: 'Batas dialog hari ini sudah habis. Coba lagi besok.',
+        tr: 'Bugünkü diyalog limiti doldu. Yarın tekrar dene.',
+        pl: 'Dzisiejszy limit dialogów został wyczerpany. Spróbuj jutro.',
       });
     case 'rate_limited':
       return triLang(lang, {
         ru: 'Слишком много сообщений подряд. Подожди немного и попробуй ещё раз.',
         uk: 'Забагато повідомлень поспіль. Почекай трохи і спробуй ще раз.',
         es: 'Demasiados mensajes seguidos. Espera un poco e inténtalo otra vez.',
+        'pt-BR': 'Muitas mensagens seguidas. Espere um pouco e tente novamente.',
+        vi: 'Bạn gửi quá nhiều tin nhắn liên tiếp. Hãy đợi một chút rồi thử lại.',
+        id: 'Terlalu banyak pesan berturut-turut. Tunggu sebentar lalu coba lagi.',
+        tr: 'Arka arkaya çok fazla mesaj gönderdin. Biraz bekleyip tekrar dene.',
+        pl: 'Za dużo wiadomości z rzędu. Poczekaj chwilę i spróbuj ponownie.',
       });
     case 'auth_required':
       return triLang(lang, {
         ru: 'Нужно войти в аккаунт, чтобы продолжить диалог.',
         uk: 'Потрібно увійти в акаунт, щоб продовжити діалог.',
         es: 'Necesitas iniciar sesión para continuar el diálogo.',
+        'pt-BR': 'Você precisa entrar na conta para continuar o diálogo.',
+        vi: 'Bạn cần đăng nhập để tiếp tục cuộc đối thoại.',
+        id: 'Kamu perlu masuk ke akun untuk melanjutkan dialog.',
+        tr: 'Diyaloğa devam etmek için hesaba giriş yapman gerekiyor.',
+        pl: 'Musisz zalogować się na konto, aby kontynuować dialog.',
       });
     case 'provider_unavailable':
       return triLang(lang, {
         ru: 'ИИ-сервис сейчас не отвечает. Попробуй ещё раз чуть позже.',
         uk: 'AI-сервіс зараз не відповідає. Спробуй ще раз трохи пізніше.',
         es: 'El servicio de IA no responde ahora. Inténtalo un poco más tarde.',
+        'pt-BR': 'O serviço de IA não está respondendo agora. Tente de novo um pouco mais tarde.',
+        vi: 'Dịch vụ AI hiện không phản hồi. Hãy thử lại sau một chút.',
+        id: 'Layanan AI sedang tidak merespons. Coba lagi beberapa saat nanti.',
+        tr: 'AI servisi şu anda yanıt vermiyor. Biraz sonra tekrar dene.',
+        pl: 'Usługa AI teraz nie odpowiada. Spróbuj ponownie trochę później.',
       });
     case 'network':
       return triLang(lang, {
         ru: 'Связь прервалась. Проверь интернет и попробуй ещё раз.',
         uk: 'Зв’язок перервався. Перевір інтернет і спробуй ще раз.',
         es: 'Se cortó la conexión. Revisa internet e inténtalo otra vez.',
+        'pt-BR': 'A conexão caiu. Verifique a internet e tente novamente.',
+        vi: 'Kết nối bị gián đoạn. Hãy kiểm tra internet rồi thử lại.',
+        id: 'Koneksi terputus. Periksa internet lalu coba lagi.',
+        tr: 'Bağlantı kesildi. İnternetini kontrol edip tekrar dene.',
+        pl: 'Połączenie zostało przerwane. Sprawdź internet i spróbuj ponownie.',
       });
     case 'unknown':
     default:
@@ -132,6 +167,11 @@ export function getPremiumDialogErrorMessage(
         ru: 'Не получилось получить ответ. Попробуй ещё раз.',
         uk: 'Не вдалося отримати відповідь. Спробуй ще раз.',
         es: 'No se pudo obtener la respuesta. Inténtalo otra vez.',
+        'pt-BR': 'Não foi possível receber a resposta. Tente novamente.',
+        vi: 'Không lấy được câu trả lời. Hãy thử lại.',
+        id: 'Tidak bisa mendapatkan jawaban. Coba lagi.',
+        tr: 'Yanıt alınamadı. Tekrar dene.',
+        pl: 'Nie udało się uzyskać odpowiedzi. Spróbuj ponownie.',
       });
   }
 }

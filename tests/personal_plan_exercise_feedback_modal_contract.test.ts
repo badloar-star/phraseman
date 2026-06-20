@@ -7,23 +7,43 @@ describe('personal plan exercise feedback modal contract', () => {
   const source = fs.readFileSync(path.join(ROOT, 'app', 'personal_plan_exercise.tsx'), 'utf8');
 
   it('renders the answer breakdown INLINE (plashka), not in a popup modal', () => {
-    // Верный ответ → короткая ИНЛАЙН-плашка с кнопкой «Дальше» под фразой. Неверный →
-    // ИИ-разбор (AiMistakeCard) + «Объяснить проще». Никаких всплывающих модалов для
-    // разбора: единственный модал — «Задание закрыто». Старый авто-текст «Почему так» убран.
+    // Верный ответ → только кнопка «Дальше» под фразой (плашку «Так звучит естественно»
+    // убрали: PlanExerciseFeedbackInline получает hideBody). Неверный → ИИ-разбор
+    // (AiMistakeCard) + «Объяснить проще». Никаких всплывающих модалов для разбора.
     expect(source).toContain('nonOptionInlineFeedback');
     expect(source).toContain('<PlanExerciseFeedbackInline');
     // «Дальше» теперь локализуется через triLang (а не хардкод-литерал).
     expect(source).toMatch(/ru:\s*'Дальше'/);
+    // Плашку «Так звучит естественно» при верном ответе скрываем (hideBody), кнопка остаётся.
+    expect(source).toContain('hideBody');
     expect(source).toContain('<AiMistakeCard');
-    expect(source).toContain('<MistakeEli5Modal');
     expect(source).not.toContain("ru: 'Почему так'");
-    expect(source).toContain('title="Задание закрыто"');
-    expect(source).toContain('actionLabel="К плану"');
     expect(source).not.toMatch(/[ÐÑÂ]/);
   });
 
-  it('keeps the remaining "Задание закрыто" modal product-grade: centered, large touch targets', () => {
-    // Стиль самого модала (только «Задание закрыто») — остаётся продуктовым.
+  it('после задания нет модала «Задание закрыто» — сразу следующее задание', () => {
+    // Завершение ОБЫЧНОГО задания не показывает «Задание закрыто»/«К плану»: вычисляем
+    // следующее незавершённое задание и открываем его через replace. Модал остаётся
+    // только финалом ДНЯ («День пройден»), когда заданий дня больше нет.
+    expect(source).not.toContain('title="Задание закрыто"');
+    expect(source).not.toContain('actionLabel="К плану"');
+    expect(source).toContain('finishTaskAndAdvance');
+    expect(source).toContain('resolveNextPlanTask');
+    expect(source).toContain('openPersonalPlanTask');
+    // Финал дня — локализованный заголовок «День пройден».
+    expect(source).toMatch(/ru:\s*'День пройден'/);
+  });
+
+  it('сохраняет прогресс внутри задания для resume посреди прохождения', () => {
+    // Пошаговое сохранение позиции (index + correctIds) и восстановление при входе,
+    // плюс очистка по завершении задания.
+    expect(source).toContain('savePlanTaskProgress');
+    expect(source).toContain('readPlanTaskProgress');
+    expect(source).toContain('clearPlanTaskProgress');
+  });
+
+  it('keeps the day-finish modal product-grade: centered, large touch targets', () => {
+    // Стиль самого модала (теперь финал дня) — остаётся продуктовым.
     expect(source).toContain("justifyContent: 'center'");
     expect(source).toContain("alignSelf: 'center'");
     expect(source).toContain('maxWidth: 520');

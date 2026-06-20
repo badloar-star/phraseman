@@ -111,10 +111,14 @@ function FeatureRow({ feature, lang, lit, palette, f }: {
     <Reanimated.View
       style={[
         styles.row,
-        { borderColor: `${palette.main}29`, backgroundColor: `${palette.main}12` },
+        { borderColor: `${palette.main}29` },
         rowStyle,
       ]}
     >
+      {/* Плотная тёмная база строки + акцентная вуаль: гасит движущийся фон под
+          текстом, чтобы строка читалась, а не «плыла» поверх анимации. */}
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.rowBase]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.rowTint, { backgroundColor: `${palette.main}1F` }]} />
       <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.rowFlash, { backgroundColor: palette.main }, flashStyle]} />
       <View style={[styles.rowIco, { borderColor: `${palette.main}4D`, backgroundColor: `${palette.main}1A` }]}>
         <Text style={styles.rowEmoji}>{feature.emoji}</Text>
@@ -276,6 +280,19 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
           main={palette.main}
         />
 
+        {/* Scrim: затемняющая вуаль между живым фоном и текстом — возвращает
+            читаемость. Плотнее сверху (под HERO) и снизу (под CTA), легче в
+            центре (где лента уже со своей подложкой). Анимация остаётся видна
+            сквозь полупрозрачные зоны, но не «мешается» с текстом. */}
+        <LinearGradient
+          pointerEvents="none"
+          style={StyleSheet.absoluteFill}
+          colors={['rgba(0,0,0,0.62)', 'rgba(0,0,0,0.30)', 'rgba(0,0,0,0.34)', 'rgba(0,0,0,0.70)']}
+          locations={[0, 0.34, 0.66, 1]}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+        />
+
         {/* тап по фону = пропустить (раскрыть всё), затем закрыть */}
         <Pressable
           style={StyleSheet.absoluteFill}
@@ -317,16 +334,20 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium' }: Prem
             </View>
           </View>
 
-          <Text style={[styles.title, { color: palette.bright, fontSize: Math.max(25, f.h1 + 3), textShadowColor: `${palette.main}80` }]}>
-            {variant === 'vip'
-              ? triLang(lang, { ru: 'VIP активирован', uk: 'VIP активовано', es: 'VIP activado', 'pt-BR': 'VIP ativado', vi: 'Đã kích hoạt VIP', id: 'VIP aktif', tr: 'VIP etkinleştirildi', pl: 'VIP aktywowany' })
-              : triLang(lang, { ru: 'Premium активирован', uk: 'Premium активовано', es: 'Premium activado', 'pt-BR': 'Premium ativado', vi: 'Đã kích hoạt Premium', id: 'Premium aktif', tr: 'Premium etkin', pl: 'Premium aktywowany' })}
-          </Text>
-          <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>
-            {variant === 'vip'
-              ? triLang(lang, { ru: 'VIP-доступ открыт: энергия и все функции', uk: 'VIP-доступ відкрито: енергія й усі функції', es: 'Acceso VIP: energía y todo desbloqueado', 'pt-BR': 'Acesso VIP: energia e tudo liberado', vi: 'VIP: năng lượng và mọi tính năng', id: 'Akses VIP: energi dan semua fitur', tr: 'VIP: enerji ve tüm özellikler', pl: 'Dostęp VIP: energia i wszystkie funkcje' })
-              : triLang(lang, { ru: 'Всё открыто. Учи без лимитов — прямо сейчас', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora', 'pt-BR': 'Tudo desbloqueado — comece agora', vi: 'Đã mở mọi thứ — bắt đầu ngay', id: 'Semua terbuka — mulai sekarang', tr: 'Her şey açıldı — hemen başla', pl: 'Wszystko odblokowane — zaczynamy' })}
-          </Text>
+          {/* Подложка-«таблетка» под текстом заголовка: гасит светлые частицы,
+              всплывающие за буквами, чтобы текст не «кашился» с анимацией. */}
+          <View style={styles.heroTextPlate}>
+            <Text style={[styles.title, { color: palette.bright, fontSize: Math.max(25, f.h1 + 3), textShadowColor: `${palette.main}80` }]}>
+              {variant === 'vip'
+                ? triLang(lang, { ru: 'VIP активирован', uk: 'VIP активовано', es: 'VIP activado', 'pt-BR': 'VIP ativado', vi: 'Đã kích hoạt VIP', id: 'VIP aktif', tr: 'VIP etkinleştirildi', pl: 'VIP aktywowany' })
+                : triLang(lang, { ru: 'Premium активирован', uk: 'Premium активовано', es: 'Premium activado', 'pt-BR': 'Premium ativado', vi: 'Đã kích hoạt Premium', id: 'Premium aktif', tr: 'Premium etkin', pl: 'Premium aktywowany' })}
+            </Text>
+            <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>
+              {variant === 'vip'
+                ? triLang(lang, { ru: 'VIP-доступ открыт: энергия и все функции', uk: 'VIP-доступ відкрито: енергія й усі функції', es: 'Acceso VIP: energía y todo desbloqueado', 'pt-BR': 'Acesso VIP: energia e tudo liberado', vi: 'VIP: năng lượng và mọi tính năng', id: 'Akses VIP: energi dan semua fitur', tr: 'VIP: enerji ve tüm özellikler', pl: 'Dostęp VIP: energia i wszystkie funkcje' })
+                : triLang(lang, { ru: 'Всё открыто. Учи без лимитов — прямо сейчас', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora', 'pt-BR': 'Tudo desbloqueado — comece agora', vi: 'Đã mở mọi thứ — bắt đầu ngay', id: 'Semua terbuka — mulai sekarang', tr: 'Her şey açıldı — hemen başla', pl: 'Wszystko odblokowane — zaczynamy' })}
+            </Text>
+          </View>
         </Reanimated.View>
 
         {/* ── REEL ──
@@ -425,6 +446,11 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 12,
   },
   subtitle: { textAlign: 'center', marginTop: 7, opacity: 0.85, fontWeight: '600', lineHeight: 20 },
+  heroTextPlate: {
+    marginTop: 2, alignSelf: 'stretch', alignItems: 'center',
+    paddingHorizontal: 18, paddingVertical: 12, borderRadius: 22,
+    backgroundColor: 'rgba(0,0,0,0.40)',
+  },
 
   reelMask: { position: 'absolute', left: 0, right: 0, overflow: 'hidden' },
   reelContent: { paddingHorizontal: 22, paddingTop: 14, paddingBottom: 30, gap: 11 },
@@ -433,6 +459,8 @@ const styles = StyleSheet.create({
     paddingVertical: 13, paddingHorizontal: 15, borderRadius: 17, borderWidth: 1,
     overflow: 'hidden',
   },
+  rowBase: { borderRadius: 17, backgroundColor: 'rgba(8,10,9,0.82)' },
+  rowTint: { borderRadius: 17 },
   rowFlash: { borderRadius: 17 },
   rowIco: { width: 42, height: 42, borderRadius: 21, borderWidth: 1, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
   rowEmoji: { fontSize: 21 },

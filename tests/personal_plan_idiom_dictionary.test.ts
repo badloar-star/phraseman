@@ -43,9 +43,10 @@ describe('priority chain in buildPhraseExplanation', () => {
     expect(e.title.es).toContain('follow up');
     expect(e.title.uk).toBe('Фразове дієслово: follow up');
     expect(e.title.es).toBe('Verbo compuesto: follow up');
-    // uk/es get a generic-but-correct sentence, not the russian explanation.
+    // uk still gets a generic fallback; es now gets the specific localized explanation.
     expect(e.correct.uk).toContain('стійкий вислів');
-    expect(e.correct.es).toContain('expresión fija');
+    expect(e.correct.es).toContain('verbo compuesto');
+    expect(e.correct.es).toContain('volveré con una respuesta');
     expect(e.correct.uk).not.toContain('вернуться к вопросу');
     expect(e.correct.es).not.toContain('вернуться к вопросу');
   });

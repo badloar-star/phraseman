@@ -20,6 +20,7 @@ export type PlanRuntimeCurrentItemViewModel = {
   itemId: string;
   exerciseType: PlanRuntimeItem['exerciseType'];
   targetRu: string;
+  targetEs: string;
   displayEnglish: string;
   choices: PlanRuntimeChoiceViewModel[];
   freeInputExpected: boolean;
@@ -54,6 +55,7 @@ export type PlanRuntimeExerciseCompletionViewModel = {
 
 export type BuildPlanRuntimeExerciseViewModelOptions = {
   selectedAnswer?: string | null;
+  lang?: string;
 };
 
 export type PlanRuntimeExerciseViewModel = {
@@ -80,11 +82,16 @@ function cleanSelectedAnswer(value: string | null | undefined): string | undefin
   return trimmed ? trimmed : undefined;
 }
 
-function eyebrowFor(session: PlanRuntimeExerciseSession): string {
+function isSpanishLang(lang: string | undefined): boolean {
+  return lang === 'es';
+}
+
+function eyebrowFor(session: PlanRuntimeExerciseSession, lang?: string): string {
   // Display name comes from the catalog so a plan rename never leaves a stale
   // hardcoded label here; unknown ids fall back to the raw id.
   const planName = PERSONAL_PLAN_CATALOG.find((plan) => plan.id === session.block.planId)?.name
     ?? session.block.planId;
+  if (isSpanishLang(lang)) return `${planName} · día ${session.block.dayIndex}`;
   return `${planName} · день ${session.block.dayIndex}`;
 }
 
@@ -112,6 +119,7 @@ function currentItemViewModel(
     itemId: item.id,
     exerciseType: item.exerciseType,
     targetRu: item.targetRu,
+    targetEs: item.targetEs,
     displayEnglish: item.displayEnglish,
     choices: item.choices.map((choice) => choiceViewModel(choice, selectedAnswer, completed)),
     freeInputExpected: item.exerciseType === 'plan_phrase_recall',
@@ -124,8 +132,19 @@ function currentItemViewModel(
   };
 }
 
-function feedbackFor(session: PlanRuntimeExerciseSession): PlanRuntimeExerciseFeedbackViewModel | undefined {
+function feedbackFor(
+  session: PlanRuntimeExerciseSession,
+  lang?: string,
+): PlanRuntimeExerciseFeedbackViewModel | undefined {
   if (session.openMissedPhraseIds.length === 0 || session.progress.completedAll) return undefined;
+
+  if (isSpanishLang(lang)) {
+    return {
+      tone: 'recovery',
+      title: 'La frase volverá una vez más',
+      text: 'Seguimos. Al final de la ronda reforzaremos con calma lo que no salió a la primera.',
+    };
+  }
 
   return {
     tone: 'recovery',
@@ -134,8 +153,20 @@ function feedbackFor(session: PlanRuntimeExerciseSession): PlanRuntimeExerciseFe
   };
 }
 
-function completionFor(session: PlanRuntimeExerciseSession): PlanRuntimeExerciseCompletionViewModel | undefined {
+function completionFor(
+  session: PlanRuntimeExerciseSession,
+  lang?: string,
+): PlanRuntimeExerciseCompletionViewModel | undefined {
   if (!session.progress.completedAll) return undefined;
+
+  if (isSpanishLang(lang)) {
+    return {
+      title: 'Listo por hoy',
+      text: 'Las frases del día están cerradas. Puedes volver a las tareas o practicar un poco más si quieres reforzarlas.',
+      primaryActionLabel: 'A las tareas',
+      secondaryActionLabel: 'Practicar más',
+    };
+  }
 
   return {
     title: 'Готово на сегодня',
@@ -154,6 +185,7 @@ function viewModelCopy(viewModel: PlanRuntimeExerciseViewModel): string {
     viewModel.selectedAnswer,
     viewModel.progress.label,
     viewModel.current?.targetRu,
+    viewModel.current?.targetEs,
     viewModel.current?.displayEnglish,
     ...(viewModel.current?.choices.map((choice) => choice.text) ?? []),
     ...(viewModel.current?.wordTiles ?? []),
@@ -174,27 +206,34 @@ export function buildPlanRuntimeExerciseViewModel(
   const selectedAnswer = cleanSelectedAnswer(options.selectedAnswer);
   const completed = session.progress.completedAll;
   const current = currentItemViewModel(session.currentItem, selectedAnswer, completed);
+  const spanish = isSpanishLang(options.lang);
 
   return {
     sessionId: session.id,
     blockId: session.block.id,
-    title: session.block.title,
-    eyebrow: eyebrowFor(session),
-    instruction: session.currentItem?.promptRu ?? 'Задание выполнено.',
+    title: spanish ? session.block.titleEs ?? session.block.title : session.block.title,
+    eyebrow: eyebrowFor(session, options.lang),
+    instruction: spanish
+      ? session.currentItem?.promptEs ?? 'Ejercicio completado.'
+      : session.currentItem?.promptRu ?? 'Задание выполнено.',
     selectedAnswer,
     canSubmit: Boolean(session.currentItem && selectedAnswer && !completed),
     completed,
-    primaryActionLabel: completed ? 'Готово' : 'Проверить',
+    primaryActionLabel: completed
+      ? (spanish ? 'Listo' : 'Готово')
+      : (spanish ? 'Comprobar' : 'Проверить'),
     progress: {
       completed: session.progress.completed,
       total: session.progress.total,
       wrong: session.progress.wrong,
       percent: session.progress.percent,
-      label: `${session.progress.completed} из ${session.progress.total}`,
+      label: spanish
+        ? `${session.progress.completed} de ${session.progress.total}`
+        : `${session.progress.completed} из ${session.progress.total}`,
     },
     current,
-    feedback: feedbackFor(session),
-    completion: completionFor(session),
+    feedback: feedbackFor(session, options.lang),
+    completion: completionFor(session, options.lang),
   };
 }
 

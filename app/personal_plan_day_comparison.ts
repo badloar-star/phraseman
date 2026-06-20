@@ -50,5 +50,10 @@ export function planDayComparisonLine(comparison: PlanDayComparison, lang: Lang 
     ru: `Ты в топ ${top}% за сегодня`,
     uk: `Ти в топ ${top}% за сьогодні`,
     es: `Estás en el top ${top}% de hoy`,
+    'pt-BR': `Você está no top ${top}% de hoje`,
+    vi: `Hôm nay bạn thuộc top ${top}%`,
+    id: `Kamu masuk top ${top}% hari ini`,
+    tr: `Bugün ilk %${top} içindesin`,
+    pl: `Dziś jesteś w top ${top}%`,
   });
 }

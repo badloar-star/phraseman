@@ -14,7 +14,7 @@
 import type { CompassSnapshot } from './signal_bus';
 
 /** Тип дня — выбирается правилами по снимку. */
-export type CompassDayType = 'easy' | 'deep_dive' | 'repair' | 'comeback';
+export type CompassDayType = 'first_day' | 'easy' | 'deep_dive' | 'repair' | 'comeback';
 
 /** Вид задачи дня — ссылается на реальные части приложения (куда зовёт Компас). */
 export type CompassTaskKind =
@@ -66,6 +66,23 @@ function totalMistakes(snapshot: CompassSnapshot): number {
 }
 
 /**
+ * «Чистый лист»: у ученика ещё нет НИКАКОЙ истории, на которую опирается Компас —
+ * ни пройденных сессий, ни мастерства по темам, ни накопленных ошибок, ни активного
+ * плана, ни очереди повторений. Для такого профиля «закрепим вчерашнее» — ложь
+ * (вчера не было): отдаём отдельный приветственный тип дня `first_day`.
+ */
+function hasNoHistory(snapshot: CompassSnapshot): boolean {
+  const srsDue = snapshot.trainer?.totalDue ?? 0;
+  return (
+    snapshot.passedLessons.length === 0 &&
+    snapshot.posMastery.length === 0 &&
+    totalMistakes(snapshot) === 0 &&
+    snapshot.planDay == null &&
+    srsDue === 0
+  );
+}
+
+/**
  * Выбрать тип дня правилами. Приоритет: возврат → ремонт → погружение → лёгкий.
  *  - возврат: давно не заходил (пауза);
  *  - ремонт: накопились ошибки;
@@ -73,6 +90,9 @@ function totalMistakes(snapshot: CompassSnapshot): number {
  *  - лёгкий: всё спокойно.
  */
 export function decideDayType(snapshot: CompassSnapshot, nowMs: number): CompassDayType {
+  // Чистый лист (новый аккаунт, ещё ничего не делал) — раньше падал в `easy`
+  // с текстом «закрепим вчерашнее». Теперь это собственный приветственный тип.
+  if (hasNoHistory(snapshot)) return 'first_day';
   const sinceSeen = nowMs - (snapshot.collectedAtMs ?? nowMs);
   // Пауза измеряется по последнему дню активности плана/стора; в снимке нет
   // отдельного lastSeenAt — приближаем через carryover плана (стоит на месте).
@@ -110,7 +130,12 @@ export function buildCompassDay(snapshot: CompassSnapshot, nowMs: number): Compa
   const srsDue = snapshot.trainer?.totalDue ?? 0;
   const tasks: CompassTask[] = [];
 
-  if (type === 'comeback') {
+  if (type === 'first_day') {
+    // Чистый лист: мягкий первый шаг. Если план уже выбран — зовём в него,
+    // иначе одна короткая задача «скажи вслух», чтобы сразу начать без давления.
+    if (planDayIndex) tasks.push({ kind: 'plan_continue', minutes: 4 });
+    tasks.push({ kind: 'pronunciation', minutes: 1 });
+  } else if (type === 'comeback') {
     // Тёплый короткий день: чуть-чуть почти забытого.
     tasks.push({ kind: 'flashcards_review', minutes: 2, focus: 'recall' });
     if (srsDue > 0) tasks.push({ kind: 'mistake_repair', minutes: 2, weakTopic });

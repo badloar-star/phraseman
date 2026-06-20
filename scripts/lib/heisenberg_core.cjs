@@ -140,6 +140,7 @@ const AMBIGUOUS_EXACT_LOCALE_KEYS = new Set(['id']);
 
 const ES_SIDECAR_COVERAGE_FILES = {
   'app/achievements.ts': ['app/achievements_es_locale.ts'],
+  'app/collectibles/catalog_data.ts': ['app/collectibles/collectibles_es_locale.ts'],
   'app/daily_tasks.ts': ['app/daily_tasks_es_locale.ts'],
   'app/flashcards/bundles/official_peaky_blinders_en.json': [
     'app/flashcards/bundles/esOverlays/peakyBlinders.ts',
@@ -213,6 +214,7 @@ const SKIP_DIRS = new Set([
   '.git',
   '.gradle',
   '.claude',
+  '.codex-tmp',
   '.next',
   '.turbo',
   '.vscode',
@@ -421,8 +423,11 @@ const SPANISH_STUDY_TARGET_ISOLATED_FILES = new Set([
   'app/lesson1.tsx',
   'app/lesson1_smart_options.ts',
   'app/lesson_data_all.ts',
+  'app/lesson_hard_mode_answer_tolerance.ts',
   'app/lesson_intro_screens.tsx',
   'app/lesson_locale_utils.ts',
+  'app/lesson_teaching_notes.ts',
+  'app/personal_plan_mistake_context.ts',
   'app/lesson_titles_for_study_target.ts',
   'app/pack_opening.tsx',
   'app/phrase_analytics_screen.tsx',

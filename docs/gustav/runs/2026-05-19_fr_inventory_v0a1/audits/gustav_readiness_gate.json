@@ -1,7 +1,7 @@
 {
   "schemaVersion": "gustav-readiness-gate-v0",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-05-22T14:02:49.239Z",
+  "generatedAt": "2026-06-20T22:03:31.979Z",
   "decision": "HOLD",
   "command": {
     "argv": [
@@ -26,12 +26,12 @@
   },
   "summary": {
     "checks": 57,
-    "passed": 50,
-    "failed": 7,
-    "blockers": 7,
+    "passed": 51,
+    "failed": 6,
+    "blockers": 6,
     "warnings": 0,
-    "generationBlockers": 5,
-    "applyBlockers": 7
+    "generationBlockers": 4,
+    "applyBlockers": 6
   },
   "inputStatuses": {
     "verdict": {
@@ -41,7 +41,7 @@
     "validator": {
       "status": "PASS",
       "summary": {
-        "checks": 27376,
+        "checks": 27102,
         "blockers": 0,
         "warnings": 0
       }
@@ -49,13 +49,13 @@
     "storage": {
       "status": "PASS",
       "summary": {
-        "filesScanned": 1193,
-        "records": 2175,
+        "filesScanned": 1247,
+        "records": 2183,
         "uniqueKeys": 360,
-        "keyPatterns": 20,
-        "unknownExpressions": 552,
+        "keyPatterns": 23,
+        "unknownExpressions": 542,
         "cloudSyncKeys": 139,
-        "learningStateRecords": 328,
+        "learningStateRecords": 314,
         "targetNamespaceRequired": 0,
         "blockers": 0,
         "highRisks": 0,
@@ -115,27 +115,27 @@
       }
     },
     "localCloud": {
-      "status": "HOLD",
+      "status": "PASS",
       "summary": {
-        "entries": 28,
-        "syncUnderTarget": 15,
-        "keepLocalTargetScoped": 7,
-        "coveredByExistingCloudPattern": 6,
+        "entries": 0,
+        "syncUnderTarget": 0,
+        "keepLocalTargetScoped": 0,
+        "coveredByExistingCloudPattern": 0,
         "blockUnknown": 0,
-        "blockers": 22,
-        "highRisks": 6
+        "blockers": 0,
+        "highRisks": 0
       }
     },
     "targetKeys": {
       "status": "HOLD",
       "summary": {
         "domains": 14,
-        "files": 56,
-        "rawTargetStorageRecords": 330,
-        "cloudTargetMappings": 52,
-        "localCloudDecisions": 28,
-        "blockerDomains": 14,
-        "blockers": 20,
+        "files": 0,
+        "rawTargetStorageRecords": 0,
+        "cloudTargetMappings": 39,
+        "localCloudDecisions": 0,
+        "blockerDomains": 13,
+        "blockers": 19,
         "existingDevStudyTargetFiles": 8
       }
     },
@@ -1328,11 +1328,9 @@
         "apply"
       ],
       "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\local_cloud_decision_table.json",
-      "detail": "Local/cloud decision table is HOLD with 22 blockers.",
-      "requiredBeforeWork": [
-        "Implement target-scoped local-only keys and target cloud buckets according to the decision table."
-      ],
-      "status": "FAIL"
+      "detail": "Local/cloud decision table has no blockers.",
+      "requiredBeforeWork": [],
+      "status": "PASS"
     },
     {
       "id": "RDY-050",
@@ -1343,7 +1341,7 @@
         "apply"
       ],
       "sourceArtifact": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\target_key_integration_plan.json",
-      "detail": "Target key integration plan is HOLD with 14 blocker domains and 330 raw target-sensitive storage records.",
+      "detail": "Target key integration plan is HOLD with 13 blocker domains and 0 raw target-sensitive storage records.",
       "requiredBeforeWork": [
         "Create production StudyTarget model.",
         "Create target_storage_keys builder.",

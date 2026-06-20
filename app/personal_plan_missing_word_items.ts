@@ -6,6 +6,7 @@ export type PersonalPlanMissingWordItem = {
   id: string;
   promptRu: string;
   promptUk: string;
+  promptEs?: string;
   displayEnglish: string;
   correctAnswer: string;
   options: string[];
@@ -114,8 +115,11 @@ function fallbackExplanation(correctAnswer: string): LessonTeachingNote {
   return {
     id: `missing_word_${correctAnswer.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
     titleRu: 'Почему так',
+    titleEs: 'Por qué es así',
     correctRu: `${correctAnswer} здесь держит смысл фразы. В этом упражнении важно выбрать слово, которое естественно подходит к остальной части предложения.`,
+    correctEs: `${correctAnswer} sostiene el sentido de la frase aquí. En este ejercicio importa elegir la palabra que encaja de forma natural con el resto de la oración.`,
     wrongRu: 'Посмотри на всю фразу целиком: нужное слово должно звучать естественно рядом с остальными словами. Мы не угадываем твой выбранный вариант, а спокойно возвращаем к правильной фразе.',
+    wrongEs: 'Mira la frase completa: la palabra correcta debe sonar natural junto a las demás. No adivinamos tu opción; volvemos con calma a la frase correcta.',
   };
 }
 
@@ -204,6 +208,7 @@ export function getPersonalPlanMissingWordItems(
         id: String(phrase.id),
         promptRu: phrase.russian,
         promptUk: phrase.ukrainian,
+        ...(phrase.spanish ? { promptEs: phrase.spanish } : {}),
         displayEnglish: blankTargetToken(phrase.english, correctAnswer),
         correctAnswer,
         options,

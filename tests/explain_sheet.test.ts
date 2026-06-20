@@ -190,11 +190,15 @@ describe('ExplainButton: флаг-гейтинг и аналитика', () => {
 describe('Lesson explain footer contract', () => {
   const src = stripComments(read(path.join(APP_DIR, 'lesson1.tsx')));
 
-  it('uses one limited footer explain flow instead of a post-answer unlimited button', () => {
-    expect(src).toContain('const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday)');
-    expect(src).toContain('onPress={openExplainPreAnswer}');
-    expect(src).not.toContain('explainModeRef');
-    expect(src).not.toContain('openExplainResult');
+  it('shows the footer explain button on the RESULT screen regardless of right/wrong answer', () => {
+    // Кнопка «Объяснить» живёт в ряду футера и видна на экране результата —
+    // НЕЗАВИСИМО от того, верно ответил юзер или нет (объясняет САМУ фразу).
+    expect(src).toContain('testID="lesson1-explain"');
+    // Гейт показа — статус результата + флаг фичи (kill-switch), НЕ wasWrong.
+    expect(src).toContain("status === 'result' && explainFeatureOn");
+    expect(src).toContain('const explainFeatureOn = isExplainEnabled()');
+    // Тап открывает общую шторку ExplainSheet (кэш на сервере), без pre-answer-режима.
+    expect(src).toContain('setExplainOpen(true)');
     expect(src).not.toContain('lesson1-explain-result');
   });
 

@@ -44,6 +44,7 @@ exports.PROMPT_LANGUAGES = {
     uk: { name: 'Ukrainian', writeIn: 'Пиши пояснення ЛИШЕ українською мовою.' },
     es: { name: 'Spanish', writeIn: 'Escribe la explicación SOLO en español.' },
     pt: { name: 'Portuguese', writeIn: 'Escreva a explicação SOMENTE em português.' },
+    'pt-BR': { name: 'Brazilian Portuguese', writeIn: 'Escreva a explicação SOMENTE em português do Brasil.' },
     vi: { name: 'Vietnamese', writeIn: 'Viết lời giải thích CHỈ bằng tiếng Việt.' },
     id: { name: 'Indonesian', writeIn: 'Tulis penjelasan HANYA dalam bahasa Indonesia.' },
     tr: { name: 'Turkish', writeIn: 'Açıklamayı YALNIZCA Türkçe yaz.' },

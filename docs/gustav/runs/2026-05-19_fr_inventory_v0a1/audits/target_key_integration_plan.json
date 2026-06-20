@@ -1,26 +1,26 @@
 {
   "schemaVersion": "gustav-target-key-integration-plan-v0",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-05-20T18:32:20.557Z",
+  "generatedAt": "2026-06-20T22:00:54.261Z",
   "status": "HOLD",
   "command": {
     "argv": [
-      "/usr/local/bin/node",
-      "/Users/maksymbabiev/Documents/phraseman/scripts/gustav_target_key_integration_plan.ts",
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\appsprojects\\phraseman\\scripts\\gustav_target_key_integration_plan.ts",
       "--run",
       "docs/gustav/runs/2026-05-19_fr_inventory_v0a1"
     ],
-    "cwd": "/Users/maksymbabiev/Documents/phraseman",
-    "nodeVersion": "v24.14.1"
+    "cwd": "C:\\appsprojects\\phraseman",
+    "nodeVersion": "v24.14.0"
   },
   "summary": {
     "domains": 14,
-    "files": 56,
-    "rawTargetStorageRecords": 330,
-    "cloudTargetMappings": 52,
-    "localCloudDecisions": 28,
-    "blockerDomains": 14,
-    "blockers": 20,
+    "files": 0,
+    "rawTargetStorageRecords": 0,
+    "cloudTargetMappings": 39,
+    "localCloudDecisions": 0,
+    "blockerDomains": 13,
+    "blockers": 19,
     "existingDevStudyTargetFiles": 8
   },
   "existingDevStudyTargetWarning": {
@@ -141,7 +141,7 @@
       ],
       "fileTouchpoints": [],
       "blockers": [
-        "330 target-sensitive storage records still depend on raw keys or scattered templates.",
+        "0 target-sensitive storage records still depend on raw keys or scattered templates.",
         "No single production key builder exists for study target storage."
       ],
       "requiredBeforeFrench": [
@@ -171,19 +171,7 @@
         "lesson_words_v2::{studyTarget}::{lessonId}",
         "unlocked_lessons_v2::{studyTarget}"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "scripts/gustav_migration_adapter_plan.ts",
-          "records": 1,
-          "examples": [
-            {
-              "key": "lesson${...}_progress",
-              "line": 785,
-              "operation": "get"
-            }
-          ]
-        }
-      ],
+      "fileTouchpoints": [],
       "blockers": [
         "Lesson progress, words, pass counts and unlocks are currently represented by legacy English flat keys.",
         "Cloud mapping says lesson state must move under progress/targets/{studyTarget}."
@@ -270,19 +258,7 @@
         "level_exam_v2::{studyTarget}::{level}",
         "certificate_v2::{studyTarget}"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "app/exam_certificate.ts",
-          "records": 1,
-          "examples": [
-            {
-              "key": "lingman_certificate_v1",
-              "line": 17,
-              "operation": "constant"
-            }
-          ]
-        }
-      ],
+      "fileTouchpoints": [],
       "blockers": [
         "Level exam and certificate keys are target-language proof state and cannot remain shared."
       ],
@@ -312,41 +288,7 @@
         "mistake_log_v2::{studyTarget}",
         "active_recall_v2::{studyTarget}"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "app/achievements_screen.tsx",
-          "records": 1,
-          "examples": [
-            {
-              "key": "achievement_active_recall_correct_count",
-              "line": 165,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/achievements.ts",
-          "records": 1,
-          "examples": [
-            {
-              "key": "achievement_active_recall_correct_count",
-              "line": 1224,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/streak_safety.ts",
-          "records": 1,
-          "examples": [
-            {
-              "key": "achievement_active_recall_correct_count",
-              "line": 101,
-              "operation": "multiGet"
-            }
-          ]
-        }
-      ],
+      "fileTouchpoints": [],
       "blockers": [
         "Trainer, active recall and mistake log carry target words, phrases and grammar categories.",
         "My Practice depends on this store and would otherwise mix English and French diagnosis data."
@@ -405,94 +347,9 @@
         "achievements_target_v2::{studyTarget}",
         "progress/targets/{studyTarget}/achievements"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "app/achievements.ts",
-          "records": 22,
-          "examples": [
-            {
-              "key": "achievement_trainer_correct_count",
-              "line": 1223,
-              "operation": "get"
-            },
-            {
-              "key": "achievement_flashcards_source_set_v1",
-              "line": 1257,
-              "operation": "set"
-            },
-            {
-              "key": "achievement_quiz_total_count",
-              "line": 1313,
-              "operation": "get"
-            },
-            {
-              "key": "achievement_quiz_hard_perfect_count",
-              "line": 1324,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/achievements_screen.tsx",
-          "records": 10,
-          "examples": [
-            {
-              "key": "achievement_trainer_correct_count",
-              "line": 166,
-              "operation": "get"
-            },
-            {
-              "key": "achievement_quiz_total_count",
-              "line": 170,
-              "operation": "get"
-            },
-            {
-              "key": "achievement_quiz_hard_perfect_count",
-              "line": 172,
-              "operation": "get"
-            },
-            {
-              "key": "achievement_quiz_perfect_streak_v1",
-              "line": 173,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/(tabs)/quizzes.tsx",
-          "records": 2,
-          "examples": [
-            {
-              "key": "achievement_quiz_total_count",
-              "line": 753,
-              "operation": "get"
-            },
-            {
-              "key": "achievement_quiz_total_count",
-              "line": 755,
-              "operation": "set"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/quizzes.tsx",
-          "records": 2,
-          "examples": [
-            {
-              "key": "achievement_quiz_total_count",
-              "line": 650,
-              "operation": "get"
-            },
-            {
-              "key": "achievement_quiz_total_count",
-              "line": 652,
-              "operation": "set"
-            }
-          ]
-        }
-      ],
+      "fileTouchpoints": [],
       "blockers": [
-        "Achievement taxonomy has 101 target achievements and 57 mixed-policy achievements.",
+        "Achievement taxonomy has 116 target achievements and 42 mixed-policy achievements.",
         "Flat achievements_state cannot be reused for French."
       ],
       "requiredBeforeFrench": [
@@ -521,37 +378,10 @@
         "progress/targets/{studyTarget}/*",
         "progress/sourceLocales/{sourceLocale}/*"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "app/cloud_sync.ts",
-          "records": 52,
-          "examples": [
-            {
-              "key": "achievement_active_recall_correct_count",
-              "line": 1,
-              "operation": "cloudSync"
-            },
-            {
-              "key": "achievement_flashcards_flip_count",
-              "line": 1,
-              "operation": "cloudSync"
-            },
-            {
-              "key": "achievement_flashcards_saved_count",
-              "line": 1,
-              "operation": "cloudSync"
-            },
-            {
-              "key": "achievement_flashcards_source_set_v1",
-              "line": 1,
-              "operation": "cloudSync"
-            }
-          ]
-        }
-      ],
+      "fileTouchpoints": [],
       "blockers": [
-        "40 cloud keys require target buckets.",
-        "12 cloud payloads remain blocked by mixed field policy."
+        "39 cloud keys require target buckets.",
+        "0 cloud payloads remain blocked by mixed field policy."
       ],
       "requiredBeforeFrench": [
         "Make cloud restore/merge target-aware before any French content apply.",
@@ -579,19 +409,7 @@
         "custom_flashcards_v2::{studyTarget}",
         "flashcards_progress_v2::{studyTarget}"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "hooks/use-flashcards.ts",
-          "records": 1,
-          "examples": [
-            {
-              "key": "flashcards_v1",
-              "line": 40,
-              "operation": "constant"
-            }
-          ]
-        }
-      ],
+      "fileTouchpoints": [],
       "blockers": [
         "Flashcard cards/progress can contain target-language fronts, translations and sourceLocale explanations."
       ],
@@ -621,66 +439,7 @@
         "stats_target_v2::{studyTarget}",
         "daily_stats_target_v2::{studyTarget}"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "app/lifetime_profile_stats.ts",
-          "records": 4,
-          "examples": [
-            {
-              "key": "lifetime_quiz_counters_migrated_v1",
-              "line": 65,
-              "operation": "get"
-            },
-            {
-              "key": "quiz_hard_count",
-              "line": 66,
-              "operation": "get"
-            },
-            {
-              "key": "lifetime_quiz_hard_v1",
-              "line": 69,
-              "operation": "set"
-            },
-            {
-              "key": "lifetime_quiz_counters_migrated_v1",
-              "line": 71,
-              "operation": "set"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/achievements.ts",
-          "records": 3,
-          "examples": [
-            {
-              "key": "quiz_hard_count",
-              "line": 1319,
-              "operation": "get"
-            },
-            {
-              "key": "quiz_hard_count",
-              "line": 1597,
-              "operation": "get"
-            },
-            {
-              "key": "quiz_hard_count",
-              "line": 1598,
-              "operation": "set"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/achievements_screen.tsx",
-          "records": 1,
-          "examples": [
-            {
-              "key": "quiz_hard_count",
-              "line": 171,
-              "operation": "get"
-            }
-          ]
-        }
-      ],
+      "fileTouchpoints": [],
       "blockers": [
         "daily_stats, user_stats_v1 and stats_daily_breakdown_v1 mix product/global and target-learning metrics."
       ],
@@ -724,8 +483,8 @@
     },
     {
       "domain": "unknown_target_storage",
-      "status": "HOLD",
-      "risk": "blocker",
+      "status": "PASS",
+      "risk": "medium",
       "productModule": "no product module until classified",
       "proposedApi": [
         "classifyUnknownTargetStorage(record)"
@@ -733,323 +492,8 @@
       "storageShape": [
         "blocked until each unknown receives a reviewed target/global/source scope"
       ],
-      "fileTouchpoints": [
-        {
-          "sourcePath": "app/lesson1.tsx",
-          "records": 23,
-          "examples": [
-            {
-              "key": "",
-              "line": 576,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 578,
-              "operation": "set"
-            },
-            {
-              "key": "",
-              "line": 1311,
-              "operation": "multiSet"
-            },
-            {
-              "key": "",
-              "line": 1399,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/release_wave_bonus.ts",
-          "records": 13,
-          "examples": [
-            {
-              "key": "",
-              "line": 31,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 44,
-              "operation": "set"
-            },
-            {
-              "key": "",
-              "line": 116,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 120,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/lesson_complete.tsx",
-          "records": 11,
-          "examples": [
-            {
-              "key": "",
-              "line": 449,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 475,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 497,
-              "operation": "set"
-            },
-            {
-              "key": "",
-              "line": 505,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/daily_tasks.ts",
-          "records": 9,
-          "examples": [
-            {
-              "key": "",
-              "line": 1258,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 1275,
-              "operation": "set"
-            },
-            {
-              "key": "",
-              "line": 1435,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 1500,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/lesson_menu.tsx",
-          "records": 9,
-          "examples": [
-            {
-              "key": "",
-              "line": 160,
-              "operation": "multiGet"
-            },
-            {
-              "key": "",
-              "line": 318,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 323,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 351,
-              "operation": "multiGet"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/(tabs)/lessons.tsx",
-          "records": 8,
-          "examples": [
-            {
-              "key": "",
-              "line": 270,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 287,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 288,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 299,
-              "operation": "get"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/(tabs)/quizzes.tsx",
-          "records": 7,
-          "examples": [
-            {
-              "key": "",
-              "line": 1964,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 1970,
-              "operation": "remove"
-            },
-            {
-              "key": "",
-              "line": 1974,
-              "operation": "remove"
-            },
-            {
-              "key": "",
-              "line": 1979,
-              "operation": "remove"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/diagnosis_training_progress.ts",
-          "records": 7,
-          "examples": [
-            {
-              "key": "",
-              "line": 37,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 48,
-              "operation": "set"
-            },
-            {
-              "key": "",
-              "line": 55,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 71,
-              "operation": "set"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/lesson_lock_system.ts",
-          "records": 7,
-          "examples": [
-            {
-              "key": "",
-              "line": 129,
-              "operation": "multiGet"
-            },
-            {
-              "key": "",
-              "line": 225,
-              "operation": "multiGet"
-            },
-            {
-              "key": "",
-              "line": 263,
-              "operation": "multiGet"
-            },
-            {
-              "key": "",
-              "line": 308,
-              "operation": "multiGet"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/quizzes.tsx",
-          "records": 7,
-          "examples": [
-            {
-              "key": "",
-              "line": 1589,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 1593,
-              "operation": "remove"
-            },
-            {
-              "key": "",
-              "line": 1597,
-              "operation": "remove"
-            },
-            {
-              "key": "",
-              "line": 1602,
-              "operation": "remove"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/services/league_chest_rewards.ts",
-          "records": 7,
-          "examples": [
-            {
-              "key": "",
-              "line": 284,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 339,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 422,
-              "operation": "multiSet"
-            },
-            {
-              "key": "",
-              "line": 441,
-              "operation": "multiSet"
-            }
-          ]
-        },
-        {
-          "sourcePath": "app/daily_tasks_screen.tsx",
-          "records": 6,
-          "examples": [
-            {
-              "key": "",
-              "line": 1968,
-              "operation": "get"
-            },
-            {
-              "key": "",
-              "line": 1999,
-              "operation": "set"
-            },
-            {
-              "key": "",
-              "line": 2004,
-              "operation": "set"
-            },
-            {
-              "key": "",
-              "line": 2008,
-              "operation": "set"
-            }
-          ]
-        }
-      ],
-      "blockers": [
-        "Any target-sensitive unknown storage record blocks French generation."
-      ],
+      "fileTouchpoints": [],
+      "blockers": [],
       "requiredBeforeFrench": [
         "Classify all unknown target storage records or add explicit reviewed exceptions."
       ],

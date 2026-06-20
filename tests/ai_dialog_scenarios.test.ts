@@ -1,6 +1,11 @@
 import {
   DIALOG_SCENARIO_GROUPS,
   DIALOG_SCENARIOS,
+  dialogScenarioGoal,
+  dialogScenarioGroupLabel,
+  dialogScenarioGroupShortLabel,
+  dialogScenarioNextStepHint,
+  dialogScenarioTitle,
   getScenarioById,
   getPublicDialogScenarios,
   getScenariosByCategory,
@@ -9,6 +14,8 @@ import {
 } from '../app/ai_dialog_scenarios';
 
 const MOJIBAKE_PATTERN = /[ÐÑ]|â[€”™€œ]/;
+
+const CYRILLIC_PATTERN = /[\u0400-\u04FF]/;
 
 describe('ai_dialog_scenarios', () => {
   it('exposes only active, non-hidden scenarios publicly', () => {
@@ -71,6 +78,35 @@ describe('ai_dialog_scenarios', () => {
     for (const group of DIALOG_SCENARIO_GROUPS) {
       expect(group.labelRu).not.toMatch(MOJIBAKE_PATTERN);
       expect(getScenariosByCategory(group.category).length).toBeGreaterThanOrEqual(5);
+    }
+  });
+
+  it('localizes scenario menu copy into Spanish without Russian fallbacks', () => {
+    for (const scenario of DIALOG_SCENARIOS) {
+      const title = dialogScenarioTitle(scenario, 'es');
+      const goal = dialogScenarioGoal(scenario, 'es');
+      const nextStepHint = dialogScenarioNextStepHint(scenario, 'es');
+
+      expect(title).not.toMatch(CYRILLIC_PATTERN);
+      expect(goal).not.toMatch(CYRILLIC_PATTERN);
+      expect(nextStepHint).not.toMatch(CYRILLIC_PATTERN);
+      expect(title).not.toBe(scenario.titleRu);
+      expect(goal).not.toBe(scenario.goalRu);
+      expect(nextStepHint).not.toBe(scenario.nextStepHintRu);
+      expect(title.length).toBeGreaterThanOrEqual(4);
+      expect(goal.length).toBeGreaterThan(12);
+      expect(nextStepHint.length).toBeGreaterThan(18);
+    }
+
+    expect(dialogScenarioTitle(DIALOG_SCENARIOS[0], 'es')).toBe('Pide un café');
+
+    for (const group of DIALOG_SCENARIO_GROUPS) {
+      const label = dialogScenarioGroupLabel(group, 'es');
+      const shortLabel = dialogScenarioGroupShortLabel(group, 'es');
+      expect(label).not.toMatch(CYRILLIC_PATTERN);
+      expect(shortLabel).not.toMatch(CYRILLIC_PATTERN);
+      expect(label).not.toBe(group.labelRu);
+      expect(shortLabel).not.toBe(group.shortLabelRu);
     }
   });
 });

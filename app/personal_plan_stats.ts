@@ -13,6 +13,14 @@ export type PersonalPlanWeekStat = {
   isCurrent: boolean;
 };
 
+export type PersonalPlanDayStat = {
+  dayIndex: number;
+  progressPct: number;
+  isCurrent: boolean;
+  isUnlocked: boolean;
+  isCompleted: boolean;
+};
+
 export type PersonalPlanStatsSummary = {
   planId: string;
   planName: string;
@@ -27,6 +35,7 @@ export type PersonalPlanStatsSummary = {
   minutesPerDay: PlanMinutesChoice;
   estimatedMinutesInvested: number;
   weeks: PersonalPlanWeekStat[];
+  days: PersonalPlanDayStat[];
 };
 
 type CompletedRecord = PersonalPlanCompletedTask | unknown;
@@ -182,6 +191,36 @@ export function buildPersonalPlanStats(
         : 0,
     }));
 
+  // Per-day route progress (moved here from the plan screen so the day-by-day
+  // breakdown lives in stats, not on the plan). isUnlocked mirrors the plan's
+  // gating: any day up to the current one, plus the next day once today is ≥50%.
+  const currentDay = plan.days.find((day) => day.dayIndex === currentDayIndex);
+  const currentDayTasks = currentDay ? tasksForMinutes(currentDay, minutesPerDay) : [];
+  const currentDayDone = currentDayTasks.filter((task) =>
+    isCompleted(completedTasks, planInstanceId, task.id),
+  ).length;
+  const currentDayProgressPct = currentDayTasks.length > 0
+    ? Math.round((currentDayDone / currentDayTasks.length) * 100)
+    : 0;
+
+  const days: PersonalPlanDayStat[] = plan.days.map((day) => {
+    const dayTasks = tasksForMinutes(day, minutesPerDay);
+    const completedInDay = dayTasks.filter((task) =>
+      isCompleted(completedTasks, planInstanceId, task.id),
+    ).length;
+    const progressPct = dayTasks.length > 0
+      ? Math.round((completedInDay / dayTasks.length) * 100)
+      : 0;
+    return {
+      dayIndex: day.dayIndex,
+      progressPct,
+      isCurrent: day.dayIndex === currentDayIndex,
+      isUnlocked: day.dayIndex <= currentDayIndex
+        || (day.dayIndex === currentDayIndex + 1 && currentDayProgressPct >= 50),
+      isCompleted: dayTasks.length > 0 && completedInDay >= dayTasks.length,
+    };
+  });
+
   const dayKeys = activeDayKeys(completedTasks, planInstanceId);
   const overallProgressPct = totalTasksTotal > 0
     ? Math.round((completedTasksTotal / totalTasksTotal) * 100)
@@ -209,5 +248,6 @@ export function buildPersonalPlanStats(
     minutesPerDay,
     estimatedMinutesInvested: Math.round(completedTasksTotal * avgMinutesPerTask),
     weeks,
+    days,
   };
 }

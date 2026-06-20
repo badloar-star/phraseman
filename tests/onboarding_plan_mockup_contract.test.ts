@@ -249,8 +249,16 @@ describe('personal plan onboarding mockup contract', () => {
     expect(activeNameBlock).toContain('Ionicons name="checkmark"');
     expect(activeNameBlock).toContain('Ionicons name="close"');
     expect(activeNameBlock).toContain('disabled={nameContinueDisabled}');
+    // ОПТИМИСТИЧНЫЙ онбординг: имя принимается мгновенно, серверная бронь идёт
+    // В ФОНЕ (handleNameDone не ждёт reserveNameDetailed) — отсюда переход без
+    // ожидания сети и без ложного «Имя не проверилось». Бронь обёрнута в
+    // fire-and-forget `void (async () => { ... reserveNameDetailed(...) ... })()`
+    // и переход `goToStep('streak')` происходит сразу после неё, не дожидаясь
+    // результата. Раньше тут жёстко проверялся result.status (taken/cooldown/ok)
+    // ДО перехода — это поведение намеренно убрано.
     expect(source).toContain("reserveNameDetailed(trimmed, priorReservedName, { source: 'onboarding' })");
-    expect(source).toContain("result.status === 'cooldown'");
+    expect(source).toContain('void (async () => {');
+    expect(source).not.toContain("if (result.status === 'cooldown'");
     expect(source).toContain("setNameAvailability({ status: 'idle', value: '', message: null });");
     expect(source.indexOf("setNameAvailability({ status: 'idle', value: '', message: null });"))
       .toBeLessThan(source.indexOf("message: pickNameText('Проверяем имя...'"));

@@ -83,6 +83,35 @@ const LESSON_LEVEL_PALETTES: Record<string, Record<string, string>> = {
         B1: '#9CA3AF',
         B2: '#A78BFA',
     },
+    // ─── «Чёрное кино» (midnight/ember/aurora/volt) ──────────────────────────
+    // Обложки уроков в тон спектру каждой темы (см. constants/cinemaThemes.ts):
+    // 4 «голоса» спектра на A1→B2, светлые и насыщенные (далее darkenHex красит
+    // фон карточки, lessonAccent=bg — обводку/текст/прогресс). Та же логика, что
+    // у dark (Форест) / coral (Корал) / minimalDark (Графит).
+    midnight: {
+        A1: '#8FA0FF', // accent — электрик-синий
+        A2: '#B79CFF', // second — сине-фиолетовый
+        B1: '#FFD27A', // gold   — тёплый контраст (как у Форест на B1)
+        B2: '#A95BFF', // bloomB — финальный фиолет
+    },
+    ember: {
+        A1: '#FFA245', // accent — янтарь
+        A2: '#FFC894', // second — светлый янтарь
+        B1: '#5FE8A8', // correct — мятный контраст
+        B2: '#FF3D6E', // bloomB — малиновый закат
+    },
+    aurora: {
+        A1: '#3DE8A6', // accent — мята
+        A2: '#9FF2D4', // second — светлая мята
+        B1: '#F2D27A', // gold   — тёплый контраст
+        B2: '#2E9DFF', // bloomB — лазурь
+    },
+    volt: {
+        A1: '#D6FF3D', // accent — лайм
+        A2: '#EAFF8C', // second — светлый лайм
+        B1: '#4FE8AC', // correct — изумрудный контраст
+        B2: '#2EE08C', // bloomB — зелёный
+    },
 };
 const EXAM_META_SKETCH: Record<string, {
     bg: string;
@@ -118,6 +147,32 @@ const EXAM_META_BY_THEME: Record<string, typeof EXAM_META_SKETCH> = {
         B2: { bg: '#2F3F34', accent: '#D9EFDF', icon: 'trophy' },
     },
     coral: EXAM_META_CORAL,
+    // ─── «Чёрное кино» — плашки зачётов в тон спектру (см. cinemaThemes.ts) ───
+    // bg: тёмная подложка с подтоном спектра; accent: светлый голос спектра.
+    midnight: {
+        A1: { bg: '#1B1F36', accent: '#C9D2FF', icon: 'school-outline' },
+        A2: { bg: '#232948', accent: '#D8CCFF', icon: 'school-outline' },
+        B1: { bg: '#2A2B3F', accent: '#FFE3B0', icon: 'school-outline' },
+        B2: { bg: '#26203F', accent: '#D9B5FF', icon: 'trophy' },
+    },
+    ember: {
+        A1: { bg: '#281B10', accent: '#FFD9A8', icon: 'school-outline' },
+        A2: { bg: '#332215', accent: '#FFE6C9', icon: 'school-outline' },
+        B1: { bg: '#1F2A1C', accent: '#BFF5DA', icon: 'school-outline' },
+        B2: { bg: '#33161F', accent: '#FFB5C4', icon: 'trophy' },
+    },
+    aurora: {
+        A1: { bg: '#15241C', accent: '#9FF2CF', icon: 'school-outline' },
+        A2: { bg: '#1C2F24', accent: '#C7F7E5', icon: 'school-outline' },
+        B1: { bg: '#2A2A1C', accent: '#F7E6B0', icon: 'school-outline' },
+        B2: { bg: '#162636', accent: '#A8D8FF', icon: 'trophy' },
+    },
+    volt: {
+        A1: { bg: '#20250E', accent: '#EFFF9E', icon: 'school-outline' },
+        A2: { bg: '#2A3013', accent: '#F4FFC4', icon: 'school-outline' },
+        B1: { bg: '#16251C', accent: '#B5F5D8', icon: 'school-outline' },
+        B2: { bg: '#1A2A1E', accent: '#A8F0C8', icon: 'trophy' },
+    },
 };
 function cefrKey(num: number): string {
     if (num <= 8)
@@ -853,7 +908,6 @@ export default function LessonsTab() {
             const lessonLevel = getCourseLevelForLesson(num);
             const lessonGoldLevel = goldCefrAccent(lessonLevel);
             const lessonAccent = bg;
-            const lessonOnAccentColor = isCoralTheme ? '#FFF8F4' : darkenHex(bg, 0.34);
             const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
             const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
             // Плашка «Premium» на премиум-уроках для фри-юзера. НАМЕРЕННО без !DEV_CONTENT_UNLOCK:
@@ -889,8 +943,10 @@ export default function LessonsTab() {
                             : (lockedCardHasLightFill ? 'rgba(42,34,24,0.76)' : 'rgba(255,255,255,0.35)')
                         : isCoralTheme
                             ? '#FFF8F4'
-                            : useSketchLessonVisual
-                            ? 'rgba(22,28,26,0.94)'
+                            // Единый стандарт: фон плашки тёмный (darkenHex) во ВСЕХ
+                            // не-gold/не-coral темах → заголовок урока всегда белый.
+                            // (cinema + sketch: Форест/Графит и пр. — раньше sketch был
+                            // почти чёрным rgba(22,28,26) и плохо читался.)
                             : 'rgba(255,255,255,0.97)';
             const lessonMetaColor = isGoldTheme
                 ? (isUnlocked ? t.textMuted : 'rgba(184,173,146,0.36)')
@@ -903,9 +959,11 @@ export default function LessonsTab() {
                             : (lockedCardHasLightFill ? 'rgba(42,34,24,0.62)' : 'rgba(255,255,255,0.30)')
                         : isCoralTheme
                             ? 'rgba(255,214,204,0.72)'
-                            : useSketchLessonVisual
-                            ? darkenHex(bg, 0.43)
-                            : 'rgba(255,255,255,0.70)';
+                            // Единый стандарт: подпись «УРОК N» — светлый акцент темы
+                            // (зелёный у Форест, голубой у Графит, синий у Полночи…),
+                            // читается на тёмном фоне плашки. Раньше sketch давал тёмный
+                            // darkenHex(bg) → сливался с фоном.
+                            : rgbaHex(lessonAccent, 0.82);
             return (<Animated.View key={`l-${num}`} style={{
                     marginTop: 5,
                     marginHorizontal: 14,
@@ -1040,7 +1098,7 @@ export default function LessonsTab() {
                     : !isUnlocked
                     ? <Ionicons name="lock-closed" size={14} color={isGoldTheme ? rgbaHex(lessonAccent, 0.64) : isCoralTheme ? rgbaHex(lessonAccent, 0.60) : lockedCardHasLightFill ? darkenHex(bg, 0.40) : rgbaHex(lessonAccent, 0.46)}/>
                     : USE_ELITE_LESSONS_MAP && isComplete
-                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : useSketchLessonVisual ? lessonOnAccentColor : 'rgba(255,255,255,0.86)'}/>
+                        ? <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? lessonAccent : isCoralTheme ? 'rgba(255,236,230,0.86)' : lessonAccent}/>
                         : progPct > 0
                             ? (<Text style={{
                                     color: isGoldTheme
@@ -1048,9 +1106,8 @@ export default function LessonsTab() {
                                         :
                                             isCoralTheme
                                                 ? (isComplete ? '#FFF8F4' : 'rgba(255,236,230,0.82)')
-                                                : useSketchLessonVisual
-                                                ? (isComplete ? lessonOnAccentColor : darkenHex(bg, 0.42))
-                                                : (isComplete ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.75)'),
+                                                // Единый стандарт: процент — светлый акцент темы.
+                                                : (isComplete ? lessonAccent : rgbaHex(lessonAccent, 0.82)),
                                     fontSize: f.label,
                                     fontWeight: '800',
                                 }} maxFontSizeMultiplier={1}>

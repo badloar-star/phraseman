@@ -196,6 +196,7 @@ import BannersToastsExtraSection from '../components/admin_panel/sections/Banner
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
 import GiftsCatalogSection from '../components/admin_panel/sections/GiftsCatalogSection';
+import CollectibleDropModalsSection from '../components/admin_panel/sections/CollectibleDropModalsSection';
 import CompassSection from '../components/admin_panel/sections/CompassSection';
 
 const AppInfoDialog = {
@@ -4982,6 +4983,7 @@ export default function SettingsTestersFunctions() {
           />
           <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
           <GiftsCatalogSection open={openSection === 'gifts_catalog'} onToggle={toggleSection} />
+          <CollectibleDropModalsSection open={openSection === 'collectible_drop_modals'} onToggle={toggleSection} />
           <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
           <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />
           <VipSurveyExtraSection open={openSection === 'vip_survey_extra'} onToggle={toggleSection} />

@@ -55,6 +55,12 @@ export type RemoteBoolKey =
   | 'compass_topic_map_enabled'
   | 'maintenance_banner'
   | 'maintenance_block'
+  // Первый экран онбординга: дефолт FALSE = текущий экран с ДВУМЯ кнопками
+  // («Составить план под мою цель» / «Просто посмотреть приложение»). Админ
+  // ставит true в «Пульте» → первый экран превращается в ОДНУ кнопку
+  // («Составить мой план», ведёт в поток плана) + слегка иной текст. Меняется
+  // у всех живьём (onSnapshot), без релиза. Кнопки «просто посмотреть» нет.
+  | 'onboarding_plan_only_enabled'
   // Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт TRUE =
   // kill-switch: боты работают как сейчас, админ может выключить их в «Пульте»
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
@@ -179,6 +185,10 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // ставит false в «Пульте» → бот-фолбэк отключается у всех живьём (onSnapshot),
   // остаётся только реальный матчмейкинг; true возвращает ботов.
   arena_bots_enabled: true,
+  // Первый экран онбординга «только план»: дефолт FALSE = старый экран с двумя
+  // кнопками. true → одна кнопка «Составить мой план» + иной текст (см. описание
+  // ключа выше). Меняется у всех живьём из «Пульта».
+  onboarding_plan_only_enabled: false,
   // Премиум-гейты: дефолт TRUE = фича за премиум-замком (текущее поведение).
   // Админ ставит false в «Пульте» → фича становится бесплатной у всех живьём.
   gate_lessons_premium: true,
@@ -357,6 +367,12 @@ export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
 export const isArenaBotsEnabled = () => getRemoteBool('arena_bots_enabled');
+/**
+ * Первый экран онбординга «только план»: дефолт false = экран с двумя кнопками
+ * (план / просто посмотреть). true → одна кнопка «Составить мой план» в поток
+ * плана + иной текст. Управляется из «Пульта» (remote_config/app.bools).
+ */
+export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 /** Кнопка «Навсегда» (lifetime) показывается на пейволах. Дефолт false. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');

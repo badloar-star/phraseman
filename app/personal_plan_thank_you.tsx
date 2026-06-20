@@ -32,13 +32,18 @@ export default function PersonalPlanThankYouScreen() {
           </View>
 
           <Text style={[styles.kicker, { color: t.textGhost }]}>
-            {triLang(lang, { ru: 'PREMIUM', uk: 'PREMIUM', es: 'PREMIUM' })}
+            {triLang(lang, { ru: 'PREMIUM', uk: 'PREMIUM', es: 'PREMIUM', 'pt-BR': 'PREMIUM', vi: 'PREMIUM', id: 'PREMIUM', tr: 'PREMIUM', pl: 'PREMIUM' })}
           </Text>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
             {triLang(lang, {
               ru: 'План включён',
               uk: 'План увімкнено',
               es: 'Plan activado',
+              'pt-BR': 'Plano ativado',
+              vi: 'Kế hoạch đã bật',
+              id: 'Rencana aktif',
+              tr: 'Plan açıldı',
+              pl: 'Plan włączony',
             })}
           </Text>
           <Text style={[styles.subtitle, { color: t.textMuted }]}>
@@ -46,6 +51,11 @@ export default function PersonalPlanThankYouScreen() {
               ru: 'Premium активен, личный план сохранён. Осталось привязать аккаунт, чтобы прогресс не потерялся при смене телефона.',
               uk: 'Premium активний, особистий план збережено. Залишилося прив’язати акаунт, щоб прогрес не загубився після зміни телефона.',
               es: 'Premium está activo y tu plan personal está guardado. Vincula una cuenta para no perder el progreso si cambias de teléfono.',
+              'pt-BR': 'Premium está ativo e seu plano pessoal foi salvo. Falta vincular uma conta para não perder o progresso ao trocar de telefone.',
+              vi: 'Premium đã hoạt động và kế hoạch cá nhân đã được lưu. Hãy liên kết tài khoản để không mất tiến độ khi đổi điện thoại.',
+              id: 'Premium aktif dan rencana pribadimu tersimpan. Tautkan akun agar progres tidak hilang saat ganti ponsel.',
+              tr: 'Premium aktif, kişisel planın kaydedildi. Telefon değiştirince ilerlemen kaybolmasın diye hesabını bağla.',
+              pl: 'Premium jest aktywny, a plan osobisty zapisany. Połącz konto, aby nie stracić postępów po zmianie telefonu.',
             })}
           </Text>
 
@@ -56,6 +66,11 @@ export default function PersonalPlanThankYouScreen() {
                 ru: 'Если покупка не подтянется, поддержка поможет по чеку из магазина.',
                 uk: 'Якщо покупка не підтягнеться, підтримка допоможе за чеком із магазину.',
                 es: 'Si la compra no aparece, soporte puede ayudarte con el recibo de la tienda.',
+                'pt-BR': 'Se a compra não aparecer, o suporte ajuda com o recibo da loja.',
+                vi: 'Nếu giao dịch mua chưa hiện, hỗ trợ có thể giúp bằng hóa đơn từ cửa hàng.',
+                id: 'Jika pembelian belum muncul, dukungan bisa membantu lewat struk dari toko.',
+                tr: 'Satın alma görünmezse destek, mağaza fişiyle yardımcı olur.',
+                pl: 'Jeśli zakup się nie pojawi, pomoc techniczna pomoże na podstawie rachunku ze sklepu.',
               })}
             </Text>
           </View>
@@ -71,6 +86,11 @@ export default function PersonalPlanThankYouScreen() {
                 ru: 'Сохранить прогресс',
                 uk: 'Зберегти прогрес',
                 es: 'Guardar progreso',
+                'pt-BR': 'Salvar progresso',
+                vi: 'Lưu tiến độ',
+                id: 'Simpan progres',
+                tr: 'İlerlemeyi kaydet',
+                pl: 'Zapisz postępy',
               })}
             </Text>
             <Ionicons name="arrow-forward" size={20} color={t.correctText} />
@@ -83,7 +103,7 @@ export default function PersonalPlanThankYouScreen() {
             onPress={goToPlan}
           >
             <Text style={[styles.secondaryText, { color: t.textGhost }]}>
-              {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde' })}
+              {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Depois', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
             </Text>
           </TouchableOpacity>
         </View>
@@ -97,11 +117,21 @@ export default function PersonalPlanThankYouScreen() {
           ru: 'Сохраним твой план',
           uk: 'Збережемо твій план',
           es: 'Guarda tu plan',
+          'pt-BR': 'Vamos salvar seu plano',
+          vi: 'Lưu kế hoạch của bạn',
+          id: 'Simpan rencanamu',
+          tr: 'Planını kaydedelim',
+          pl: 'Zapiszemy twój plan',
         })}
         subtitle={triLang(lang, {
           ru: 'Войди через Google или Apple, чтобы Premium, план и прогресс были привязаны к аккаунту.',
           uk: 'Увійди через Google або Apple, щоб Premium, план і прогрес були прив’язані до акаунта.',
           es: 'Accede con Google o Apple para vincular Premium, el plan y el progreso a tu cuenta.',
+          'pt-BR': 'Entre com Google ou Apple para vincular Premium, o plano e o progresso à sua conta.',
+          vi: 'Đăng nhập bằng Google hoặc Apple để gắn Premium, kế hoạch và tiến độ với tài khoản của bạn.',
+          id: 'Masuk dengan Google atau Apple agar Premium, rencana, dan progres tertaut ke akunmu.',
+          tr: 'Premium, plan ve ilerlemenin hesabına bağlanması için Google veya Apple ile giriş yap.',
+          pl: 'Zaloguj się przez Google albo Apple, aby Premium, plan i postępy były przypisane do konta.',
         })}
         onClose={goToPlan}
         onSignedIn={goToPlan}

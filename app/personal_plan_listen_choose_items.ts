@@ -15,6 +15,7 @@ export type PersonalPlanListenChooseItem = {
   id: string;
   promptRu: string;
   promptUk: string;
+  promptEs?: string;
   correctAnswer: string;
   options: string[];
   grammarTags: string[];
@@ -45,8 +46,11 @@ function fallbackExplanation(correctAnswer: string): LessonTeachingNote {
   return {
     id: `listen_choose_${correctAnswer.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
     titleRu: 'Сначала звук, потом смысл',
+    titleEs: 'Primero el sonido, luego el sentido',
     correctRu: `${correctAnswer} звучит коротко и цельно. В задании на слух важно узнать всю фразу, а не собирать её по отдельным словам.`,
+    correctEs: `${correctAnswer} suena breve y completa. En una tarea de escucha importa reconocer toda la frase, no armarla palabra por palabra.`,
     wrongRu: 'Послушай ещё раз и поймай общий смысл фразы. Здесь не нужно угадывать по знакомому слову: выбирай вариант, который передаёт всю услышанную реплику.',
+    wrongEs: 'Escucha otra vez y capta el sentido general de la frase. Aquí no hay que adivinar por una palabra conocida: elige la opción que transmite toda la frase escuchada.',
   };
 }
 
@@ -55,7 +59,9 @@ function chooseExplanationForPhrase(correctAnswer: string, note?: LessonTeaching
   return {
     ...note,
     titleRu: 'Слышим фразу целиком',
+    titleEs: 'Escuchamos la frase completa',
     wrongRu: 'Послушай ещё раз и сравни смысл целиком. Ошибка здесь обычно не в одном слове: похожая фраза может звучать знакомо, но говорить другое.',
+    wrongEs: 'Escucha otra vez y compara el sentido completo. Aquí el error normalmente no está en una sola palabra: una frase parecida puede sonar conocida, pero decir otra cosa.',
   };
 }
 
@@ -105,6 +111,7 @@ export function getPersonalPlanListenChooseItems(
         id,
         promptRu: phrase.russian,
         promptUk: phrase.ukrainian,
+        ...(phrase.spanish ? { promptEs: phrase.spanish } : {}),
         correctAnswer: phrase.english,
         options: stableShuffleAwayFromFirst(
           compactUnique([phrase.english, ...optionDistractors(allAnswers, phrase.english)]).slice(0, 8),

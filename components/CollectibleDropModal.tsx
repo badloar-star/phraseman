@@ -6,6 +6,7 @@ import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
 import { GiftOpenBurst, type GiftAnimTier } from './GiftOpenEffects';
+import HoloFoilCard from './HoloFoilCard';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
@@ -13,6 +14,9 @@ import { hapticSuccess } from '../hooks/use-haptics';
 import {
   COLLECTIBLE_RARITY_COLORS,
   COLLECTIBLE_RARITY_LABEL_RU,
+  COLLECTIBLE_RARITY_LABELS,
+  collectibleCardTextForLang,
+  collectibleSetTitleForLang,
   findCollectibleCard,
   findCollectibleSet,
 } from '../app/collectibles/catalog';
@@ -23,6 +27,12 @@ function dropAnimTier(rarity: string): GiftAnimTier {
   if (rarity === 'epic') return 'epic';
   if (rarity === 'rare') return 'confetti';
   return 'sparkle';
+}
+
+function rarityLabelForLang(rarity: string, lang: string): string {
+  const labels = COLLECTIBLE_RARITY_LABELS[rarity as keyof typeof COLLECTIBLE_RARITY_LABELS];
+  const labelEs = labels?.es;
+  return String(labels?.[lang] ?? labelEs ?? COLLECTIBLE_RARITY_LABEL_RU[rarity as keyof typeof COLLECTIBLE_RARITY_LABEL_RU] ?? rarity);
 }
 
 interface CollectibleDropModalProps {
@@ -48,6 +58,8 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
 
   if (!outcome || !found) return null;
   const card = found.card;
+  const cardText = collectibleCardTextForLang(card, lang);
+  const setTitle = set ? collectibleSetTitleForLang(set, lang) : '';
 
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
@@ -58,7 +70,13 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
           </Text>
 
           <View style={styles.artWrap}>
-            <View style={[styles.artFrame, { backgroundColor: `${rarityColor}1C`, borderColor: `${rarityColor}55` }]}>
+            <HoloFoilCard
+              rarity={outcome.rarity}
+              rarityColor={rarityColor}
+              width={200}
+              height={160}
+              style={{ backgroundColor: `${rarityColor}1C`, borderRadius: 18 }}
+            >
               {card.svg ? (
                 <SvgXml xml={card.svg} width={184} height={147} />
               ) : (
@@ -66,21 +84,21 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
                   {card.en.slice(0, 1).toUpperCase()}
                 </Text>
               )}
-            </View>
+            </HoloFoilCard>
             <GiftOpenBurst tier={tier} size={210} />
           </View>
 
           <View style={[styles.rarityBadge, { backgroundColor: `${rarityColor}26`, borderColor: `${rarityColor}66` }]}>
             <Text style={[styles.rarityText, { color: rarityColor }]}>
-              {COLLECTIBLE_RARITY_LABEL_RU[outcome.rarity] ?? outcome.rarity}
+              {rarityLabelForLang(outcome.rarity, lang)}
             </Text>
           </View>
 
           <Text style={[styles.cardName, { color: t.textPrimary, fontSize: f.h2 }]}>{card.en}</Text>
-          <Text style={[styles.cardTranslation, { color: t.textSecond, fontSize: f.body }]}>{card.ru}</Text>
+          <Text style={[styles.cardTranslation, { color: t.textSecond, fontSize: f.body }]}>{cardText.translation}</Text>
 
           {!!set && (
-            <Text style={[styles.setName, { color: t.textMuted, fontSize: f.sub }]}>{set.titleRu}</Text>
+            <Text style={[styles.setName, { color: t.textMuted, fontSize: f.sub }]}>{setTitle}</Text>
           )}
 
           {outcome.setCompleted && (
@@ -145,15 +163,6 @@ const styles = StyleSheet.create({
   },
   kicker: { fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.1 },
   artWrap: { marginTop: 14, alignItems: 'center', justifyContent: 'center' },
-  artFrame: {
-    width: 200,
-    height: 160,
-    borderRadius: 18,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
   artFallback: { fontSize: 44, fontWeight: '900' },
   rarityBadge: {
     marginTop: 12,

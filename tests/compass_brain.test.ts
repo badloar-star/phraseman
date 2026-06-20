@@ -17,8 +17,16 @@ function snap(partial: Partial<CompassSnapshot>): CompassSnapshot {
 const NOW = 1_000_000;
 
 describe('compass_brain — выбор типа дня (правила)', () => {
-  it('всё спокойно → лёгкий день', () => {
-    expect(decideDayType(snap({}), NOW)).toBe('easy');
+  it('чистый лист (нет истории) → приветственный первый день', () => {
+    // Полностью пустой снимок = новый аккаунт. Раньше падал в easy с текстом
+    // «закрепим вчерашнее» (ложь — вчера не было). Теперь это first_day.
+    expect(decideDayType(snap({}), NOW)).toBe('first_day');
+  });
+
+  it('всё спокойно у активного ученика → лёгкий день', () => {
+    // Есть история (пройденная сессия) → это НЕ чистый лист, но и без срочного:
+    // спокойный лёгкий день.
+    expect(decideDayType(snap({ passedLessons: [1] }), NOW)).toBe('easy');
   });
 
   it('план застрял (carryover) → день-возврат', () => {
@@ -84,5 +92,17 @@ describe('compass_brain — сборка дня', () => {
     const day = buildCompassDay(s, NOW);
     expect(day.type).toBe('repair');
     expect(day.tasks[0].kind).toBe('mistake_repair');
+  });
+
+  it('первый день (чистый лист, нет плана) → одна мягкая задача «вслух»', () => {
+    const day = buildCompassDay(snap({}), NOW);
+    expect(day.type).toBe('first_day');
+    expect(day.tasks).toHaveLength(1);
+    expect(day.tasks[0].kind).toBe('pronunciation');
+  });
+
+  it('наличие активного плана отменяет first_day (это уже история)', () => {
+    const s = snap({ planDay: { dayIndex: 1, isCarryover: false } as any });
+    expect(buildCompassDay(s, NOW).type).not.toBe('first_day');
   });
 });

@@ -233,15 +233,12 @@ export function buildPhraseExplanation(english: string, russian: string): Phrase
   // 1. Highest priority: a known fixed/idiomatic construction.
   const idiom = findIdiomExplanation(english);
   if (idiom) {
-    // Словарь идиом содержит развёрнутое объяснение только по-русски. Для uk/es
-    // НЕ показываем русский: даём корректную обобщённую подсказку «это устойчивое
-    // выражение, запомни его целиком» на нужном языке.
     return {
       title: idiom.title,
       correct: {
         ru: [assemble.ru, idiom.explanationRu].join(' '),
         uk: [assemble.uk, 'Це стійкий вислів — запам’ятай його цілком, не по окремих словах.'].join(' '),
-        es: [assemble.es, 'Es una expresión fija: memorízala entera, no palabra por palabra.'].join(' '),
+        es: [assemble.es, idiom.explanationEs].join(' '),
       },
       wrong,
     };

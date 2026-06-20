@@ -38,4 +38,14 @@ describe('ai dialog callable error mapping', () => {
       .toBe('provider_unavailable');
     expect(classifyPremiumDialogError(new Error('network request failed'))).toBe('network');
   });
+
+  it('serves planned locale error messages without falling back to Russian', () => {
+    const freeLimit = { code: 'functions/resource-exhausted', message: 'dialog_free_limit' };
+    const network = new Error('network request failed');
+
+    expect(getPremiumDialogErrorMessage(freeLimit, { lang: 'pt-BR' })).toContain('diálogo grátis');
+    expect(getPremiumDialogErrorMessage(freeLimit, { hasPremiumAccess: true, lang: 'vi' }))
+      .toContain('máy chủ chưa nhận ra quyền này');
+    expect(getPremiumDialogErrorMessage(network, { lang: 'pl' })).toContain('Połączenie');
+  });
 });

@@ -11,7 +11,9 @@ export interface DialogScenario {
   category: DialogScenarioCategory;
   collection?: 'course' | 'challenge';
   titleRu: string;
+  titleEs?: string;
   goalRu: string;
+  goalEs?: string;
   role: string;
   setting: string;
   goalEn: string;
@@ -25,6 +27,7 @@ export interface DialogScenario {
   icon: string;
   active: boolean;
   nextStepHintRu: string;
+  nextStepHintEs?: string;
   requiredAccountLevel?: number;
   sourceLessonId?: number;
   hiddenFromHome?: boolean;
@@ -162,27 +165,263 @@ const DIALOG_SCENARIO_COPY_UK: Record<string, ScenarioUiCopy> = {
   },
 };
 
+type ScenarioUiCopyEs = {
+  titleEs: string;
+  goalEs: string;
+  nextStepHintEs: string;
+};
+
+const DIALOG_SCENARIO_COPY_ES: Record<string, ScenarioUiCopyEs> = {
+  coffee: {
+    titleEs: 'Pide un café',
+    goalEs: 'Pide un capuchino, aclara el tamaño y pregunta el precio',
+    nextStepHintEs: 'Pide un capuchino, aclara el tamaño o pregunta el precio con tus propias palabras.',
+  },
+  grocery: {
+    titleEs: 'En el supermercado',
+    goalEs: 'Encuentra leche, pregunta por pan fresco y paga la compra',
+    nextStepHintEs: 'Pregunta dónde está la leche o si hay pan fresco.',
+  },
+  clothes_shop: {
+    titleEs: 'Tienda de ropa',
+    goalEs: 'Pide otra talla, el probador y pregunta el precio',
+    nextStepHintEs: 'Pide otra talla o pregunta si puedes probarte la prenda.',
+  },
+  pharmacy: {
+    titleEs: 'En la farmacia',
+    goalEs: 'Explica un problema sencillo y pregunta cómo tomar el medicamento',
+    nextStepHintEs: 'Describe un problema sencillo y pregunta con qué frecuencia tomar el medicamento.',
+  },
+  restaurant: {
+    titleEs: 'En el restaurante',
+    goalEs: 'Pide una mesa, ordena un plato y pregunta por la cuenta',
+    nextStepHintEs: 'Pide una mesa, ordena un plato o pide la cuenta.',
+  },
+  doctor_visit: {
+    titleEs: 'En el médico',
+    goalEs: 'Cuenta tus síntomas, responde preguntas y aclara el siguiente paso',
+    nextStepHintEs: 'Cuenta qué te duele y desde cuándo; luego pregunta qué hacer después.',
+  },
+  phone_delivery: {
+    titleEs: 'Entrega',
+    goalEs: 'Llama al repartidor, confirma la dirección y la hora de entrega',
+    nextStepHintEs: 'Da la dirección y confirma cuándo llegará el repartidor.',
+  },
+  hotel_checkin: {
+    titleEs: 'Check-in en el hotel',
+    goalEs: 'Regístrate, pregunta por el desayuno y el Wi-Fi',
+    nextStepHintEs: 'Di que tienes una reserva y pregunta por el desayuno o el Wi-Fi.',
+  },
+  airport_checkin: {
+    titleEs: 'En el aeropuerto',
+    goalEs: 'Haz el check-in del vuelo, factura el equipaje y pregunta por la puerta',
+    nextStepHintEs: 'Muestra el pasaporte, pregunta por el equipaje o por el número de puerta.',
+  },
+  taxi: {
+    titleEs: 'Taxi',
+    goalEs: 'Da la dirección, aclara el precio y pide ir más despacio',
+    nextStepHintEs: 'Da la dirección y pregunta el precio aproximado del viaje.',
+  },
+  train_station: {
+    titleEs: 'En la estación',
+    goalEs: 'Compra un billete, aclara el andén y la hora de salida',
+    nextStepHintEs: 'Pide un billete y aclara el andén o la hora de salida.',
+  },
+  lost_luggage: {
+    titleEs: 'Equipaje perdido',
+    goalEs: 'Describe la maleta, deja tus datos y pregunta cuándo esperar respuesta',
+    nextStepHintEs: 'Di que el equipaje se perdió y describe la maleta.',
+  },
+  tourist_info: {
+    titleEs: 'Centro turístico',
+    goalEs: 'Pregunta cómo llegar, los horarios del museo y la mejor ruta',
+    nextStepHintEs: 'Pregunta cómo llegar al lugar o cuáles son los horarios.',
+  },
+  car_rental: {
+    titleEs: 'Alquiler de coche',
+    goalEs: 'Reserva un coche, aclara el seguro y la hora de devolución',
+    nextStepHintEs: 'Menciona la reserva del coche y pregunta si el seguro está incluido.',
+  },
+  first_meeting: {
+    titleEs: 'Presentarse',
+    goalEs: 'Saluda, habla de ti y haz una pregunta sencilla',
+    nextStepHintEs: 'Saluda, di tu nombre y haz una pregunta sencilla.',
+  },
+  small_talk_neighbor: {
+    titleEs: 'Vecino',
+    goalEs: 'Mantén una charla breve sobre el tiempo, la casa y el barrio',
+    nextStepHintEs: 'Mantén una conversación ligera: tiempo, casa o barrio.',
+  },
+  work_call: {
+    titleEs: 'Llamada de trabajo',
+    goalEs: 'Saluda, explica el estado de la tarea y acuerda el siguiente paso',
+    nextStepHintEs: 'Di el estado de la tarea y propone el siguiente paso.',
+  },
+  ask_for_help: {
+    titleEs: 'Pedir ayuda',
+    goalEs: 'Pide ayuda con educación, explica el problema y da las gracias',
+    nextStepHintEs: 'Pide ayuda con educación y explica brevemente el problema.',
+  },
+  invite_friend: {
+    titleEs: 'Invitar a un amigo',
+    goalEs: 'Invita a alguien a quedar, propone una hora y un lugar',
+    nextStepHintEs: 'Invita a quedar y propone una hora o un lugar.',
+  },
+  complaint_order: {
+    titleEs: 'Problema con el pedido',
+    goalEs: 'Explica el problema con calma y pide un cambio o un reembolso',
+    nextStepHintEs: 'Explica con calma qué está mal con el pedido y pide una solución.',
+  },
+  lesson18_restaurant_table: {
+    titleEs: 'Mesa en un restaurante',
+    goalEs: 'Reserva una mesa, confirma la hora y responde una pregunta breve',
+    nextStepHintEs: 'Pide una mesa y confirma la hora con una frase corta.',
+  },
+  lesson20_lost_bag: {
+    titleEs: 'Bolso perdido',
+    goalEs: 'Di que has perdido una bolsa, dónde estaba y aclara una opción',
+    nextStepHintEs: 'Di qué objeto se perdió y dónde estaba.',
+  },
+  seat_stolen_cafe: {
+    titleEs: 'Te ocuparon la mesa',
+    goalEs: 'Explica con calma que la mesa era tuya y propone una solución razonable',
+    nextStepHintEs: 'Di que ya estabas sentado aquí y pide resolverlo con calma.',
+  },
+  taxi_wrong_way: {
+    titleEs: 'El taxista va por otro camino',
+    goalEs: 'Aclara la ruta, detén el error y no dejes que te confundan',
+    nextStepHintEs: 'Pregunta por qué van hacia allí y pide volver a la ruta correcta.',
+  },
+  party_fast_talk: {
+    titleEs: 'Todos hablan demasiado rápido',
+    goalEs: 'Entra en la conversación, pide que repitan y haz una buena pregunta',
+    nextStepHintEs: 'Pide que repitan, reacciona brevemente y haz una pregunta sobre el tema.',
+  },
+  late_excuse_meeting: {
+    titleEs: 'Llegaste tarde y todos están molestos',
+    goalEs: 'Discúlpate, explica la razón y propone cómo ponerte al día',
+    nextStepHintEs: 'Discúlpate, explica brevemente la razón y di qué harás después.',
+  },
+  bill_argument: {
+    titleEs: 'Discusión por la cuenta',
+    goalEs: 'Aclara el error en la cuenta y pide corregirlo sin conflicto',
+    nextStepHintEs: 'Di exactamente qué está mal en la cuenta y pide que la revisen otra vez.',
+  },
+  upsell_trap: {
+    titleEs: 'Te intentan vender algo innecesario',
+    goalEs: 'Haz preguntas aclaratorias y rechaza con educación',
+    nextStepHintEs: 'Pregunta qué incluye el precio y rechaza con calma lo innecesario.',
+  },
+  neighbor_noise: {
+    titleEs: 'El vecino vino a quejarse',
+    goalEs: 'No te pelees: escucha, explícate y acuerda algo',
+    nextStepHintEs: 'Escucha al vecino, explícate y ofrece un compromiso concreto.',
+  },
+  condescending_interviewer: {
+    titleEs: 'El interlocutor te menosprecia',
+    goalEs: 'Responde con seguridad, aclara su postura y no pierdas la calma',
+    nextStepHintEs: 'Da una respuesta tranquila con un ejemplo y aclara qué quiere decir exactamente.',
+  },
+  mistaken_celebrity: {
+    titleEs: 'Te confundieron con una celebridad',
+    goalEs: 'Explica con educación que no eres tú, sin decepcionar al fan',
+    nextStepHintEs: 'Di con una sonrisa que no eres esa persona y ofrece al fan algo amable a cambio.',
+  },
+  wrong_dish_better: {
+    titleEs: 'Trajeron otra cosa, pero está más rica',
+    goalEs: 'Di honestamente que hubo un error y decide si quedarte con el plato o no',
+    nextStepHintEs: 'Di que pediste otra cosa y pregunta si puedes quedarte con este plato.',
+  },
+  neighbor_cat_accusation: {
+    titleEs: 'El vecino cree que escondes a su gato',
+    goalEs: 'Demuestra con calma que eres inocente y ayuda a encontrar al gato',
+    nextStepHintEs: 'Di con calma que no tienes al gato y ofrece ayudar a buscarlo.',
+  },
+  wrong_wedding: {
+    titleEs: 'Entraste en la boda equivocada',
+    goalEs: 'Date cuenta de que te equivocaste de salón y sal de la situación con elegancia',
+    nextStepHintEs: 'Reconoce que parece que te equivocaste de boda y explica con educación cómo pasó.',
+  },
+  salesman_talks_you_out: {
+    titleEs: 'El vendedor te disuade de comprar',
+    goalEs: 'Averigua por qué está en contra y toma una decisión sensata',
+    nextStepHintEs: 'Pregunta directamente por qué no recomienda comprarlo.',
+  },
+  dramatic_taxi_actor: {
+    titleEs: 'El taxista es un actor dramático',
+    goalEs: 'Devuelve la conversación al asunto y llega a donde necesitas',
+    nextStepHintEs: 'Elógialo, pero vuelve al asunto: da la dirección y pide que conduzca.',
+  },
+  surprise_guest_speech: {
+    titleEs: 'Te dieron el micrófono',
+    goalEs: 'Improvisa un discurso breve y cálido ante las miradas del público',
+    nextStepHintEs: 'Empieza saludando al público y di una frase sincera.',
+  },
+  broken_robot_waiter: {
+    titleEs: 'El robot camarero se averió',
+    goalEs: 'Entiéndete con el robot fallando y consigue tu pedido',
+    nextStepHintEs: 'Di el pedido con una frase muy corta y simple, punto por punto.',
+  },
+  conspiracy_seatmate: {
+    titleEs: 'Compañero de asiento conspiranoico',
+    goalEs: 'Evita con educación meterte en una discusión durante todo el vuelo',
+    nextStepHintEs: 'No discutas de frente; cambia suavemente a un tema neutral.',
+  },
+  mistaken_for_boss: {
+    titleEs: 'Te confundieron con el nuevo jefe',
+    goalEs: 'Aclara el malentendido sin hacer quedar mal a nadie',
+    nextStepHintEs: 'Di con suavidad que no eres su nuevo jefe y explica quién eres.',
+  },
+  looping_support_bot: {
+    titleEs: 'El bot de soporte da vueltas',
+    goalEs: 'Rompe el guion y consigue una solución real',
+    nextStepHintEs: 'Repite claramente el problema y pide una solución o un operador humano.',
+  },
+};
+
+const FALLBACK_DIALOG_SCENARIO_COPY_ES: ScenarioUiCopyEs = {
+  titleEs: 'Diálogo',
+  goalEs: 'Practica esta situación en inglés.',
+  nextStepHintEs: 'Responde con una frase sencilla y pide aclaración si hace falta.',
+};
+
+const DIALOG_SCENARIO_GROUP_COPY_ES: Record<
+  DialogScenarioCategory,
+  { labelEs: string; shortLabelEs: string }
+> = {
+  everyday: { labelEs: 'Cada día', shortLabelEs: 'Día' },
+  travel: { labelEs: 'Viajes', shortLabelEs: 'Viajes' },
+  social: { labelEs: 'Conversación', shortLabelEs: 'Gente' },
+};
+
+function dialogScenarioCopyEs(scenario: DialogScenario): ScenarioUiCopyEs {
+  return DIALOG_SCENARIO_COPY_ES[scenario.id] ?? FALLBACK_DIALOG_SCENARIO_COPY_ES;
+}
+
 export function dialogScenarioTitle(scenario: DialogScenario, lang: Lang): string {
+  const esCopy = dialogScenarioCopyEs(scenario);
   return triLang(lang, {
     ru: scenario.titleRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.title ?? scenario.titleRu,
-    es: scenario.titleRu,
+    es: scenario.titleEs ?? esCopy.titleEs,
   });
 }
 
 export function dialogScenarioGoal(scenario: DialogScenario, lang: Lang): string {
+  const esCopy = dialogScenarioCopyEs(scenario);
   return triLang(lang, {
     ru: scenario.goalRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.goal ?? scenario.goalRu,
-    es: scenario.goalRu,
+    es: scenario.goalEs ?? esCopy.goalEs,
   });
 }
 
 export function dialogScenarioNextStepHint(scenario: DialogScenario, lang: Lang): string {
+  const esCopy = dialogScenarioCopyEs(scenario);
   return triLang(lang, {
     ru: scenario.nextStepHintRu,
     uk: DIALOG_SCENARIO_COPY_UK[scenario.id]?.nextStepHint ?? scenario.nextStepHintRu,
-    es: scenario.nextStepHintRu,
+    es: scenario.nextStepHintEs ?? esCopy.nextStepHintEs,
   });
 }
 
@@ -192,7 +431,41 @@ export function dialogScenarioGroupLabel(group: DialogScenarioGroup, lang: Lang)
     travel: 'Подорожі',
     social: 'Спілкування',
   };
-  return triLang(lang, { ru: group.labelRu, uk: uk[group.category], es: group.labelRu });
+  const ptBR: Record<DialogScenarioCategory, string> = {
+    everyday: 'Todo dia',
+    travel: 'Viagens',
+    social: 'Conversa',
+  };
+  const vi: Record<DialogScenarioCategory, string> = {
+    everyday: 'Hằng ngày',
+    travel: 'Du lịch',
+    social: 'Giao tiếp',
+  };
+  const id: Record<DialogScenarioCategory, string> = {
+    everyday: 'Sehari-hari',
+    travel: 'Perjalanan',
+    social: 'Percakapan',
+  };
+  const tr: Record<DialogScenarioCategory, string> = {
+    everyday: 'Günlük',
+    travel: 'Seyahat',
+    social: 'Sohbet',
+  };
+  const pl: Record<DialogScenarioCategory, string> = {
+    everyday: 'Na co dzień',
+    travel: 'Podróże',
+    social: 'Rozmowa',
+  };
+  return triLang(lang, {
+    ru: group.labelRu,
+    uk: uk[group.category],
+    es: DIALOG_SCENARIO_GROUP_COPY_ES[group.category].labelEs,
+    'pt-BR': ptBR[group.category],
+    vi: vi[group.category],
+    id: id[group.category],
+    tr: tr[group.category],
+    pl: pl[group.category],
+  });
 }
 
 export function dialogScenarioGroupShortLabel(group: DialogScenarioGroup, lang: Lang): string {
@@ -201,7 +474,41 @@ export function dialogScenarioGroupShortLabel(group: DialogScenarioGroup, lang: 
     travel: 'Поїздки',
     social: 'Люди',
   };
-  return triLang(lang, { ru: group.shortLabelRu, uk: uk[group.category], es: group.shortLabelRu });
+  const ptBR: Record<DialogScenarioCategory, string> = {
+    everyday: 'Dia',
+    travel: 'Viagens',
+    social: 'Pessoas',
+  };
+  const vi: Record<DialogScenarioCategory, string> = {
+    everyday: 'Ngày',
+    travel: 'Đi lại',
+    social: 'Người',
+  };
+  const id: Record<DialogScenarioCategory, string> = {
+    everyday: 'Harian',
+    travel: 'Trip',
+    social: 'Orang',
+  };
+  const tr: Record<DialogScenarioCategory, string> = {
+    everyday: 'Gün',
+    travel: 'Gezi',
+    social: 'İnsan',
+  };
+  const pl: Record<DialogScenarioCategory, string> = {
+    everyday: 'Dzień',
+    travel: 'Wyjazdy',
+    social: 'Ludzie',
+  };
+  return triLang(lang, {
+    ru: group.shortLabelRu,
+    uk: uk[group.category],
+    es: DIALOG_SCENARIO_GROUP_COPY_ES[group.category].shortLabelEs,
+    'pt-BR': ptBR[group.category],
+    vi: vi[group.category],
+    id: id[group.category],
+    tr: tr[group.category],
+    pl: pl[group.category],
+  });
 }
 
 export const DIALOG_SCENARIOS: readonly DialogScenario[] = [

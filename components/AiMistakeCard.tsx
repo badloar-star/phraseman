@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   },
   reportRow: {
     alignItems: 'flex-start',
-    marginLeft: -10, // компенсируем внутренний padding кнопки, чтобы флажок встал по левому краю
+    marginTop: 12, // отделяем кнопку-репорт от текста разбора (теперь это кнопка с контейнером)
   },
   simpleButton: {
     alignItems: 'center',

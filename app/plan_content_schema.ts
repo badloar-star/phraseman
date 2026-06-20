@@ -27,6 +27,8 @@ export type LocalizedText = {
   es?: string;
 };
 
+export const PLAN_CONTENT_SPANISH_FIELD_MARKER = 'spanish' as const;
+
 /**
  * Full, friendly-coach explanation for one phrase or construction.
  * rule = what the construction is, why = why it works that way, commonMistake = the
@@ -180,6 +182,15 @@ export type PlanContentIssue = {
 
 function hasRu(text: LocalizedText | undefined): boolean {
   return Boolean(text && typeof text.ru === 'string' && text.ru.trim().length > 0);
+}
+
+export function hasEs(text: LocalizedText | undefined): boolean {
+  return Boolean(text && typeof text.es === 'string' && text.es.trim().length > 0);
+}
+
+export function spanishText(text: LocalizedText | undefined): string | undefined {
+  const value = text?.es?.trim();
+  return value ? value : undefined;
 }
 
 function wordCount(text: string): number {

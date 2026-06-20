@@ -35,7 +35,7 @@ jest.mock('../app/mistake_log', () => ({ logMistake: jest.fn() }));
 jest.mock('../app/trainer_store', () => ({ activateWordForTrainer: jest.fn(), recordWordMistake: jest.fn() }));
 jest.mock('../app/coach_toast_trigger', () => ({ checkCoachToastNeededWithAnalytics: jest.fn() }));
 jest.mock('../app/stats_daily_breakdown', () => ({ bumpStatsDaily: jest.fn() }));
-jest.mock('../app/lesson_premium_gate', () => ({ openLessonAccessGate: jest.fn(), shouldBlockLessonAccess: jest.fn() }));
+jest.mock('../app/lesson_premium_gate', () => ({ openLessonAccessGate: jest.fn(), openLessonGateByRuntime: jest.fn(), shouldBlockLessonAccess: jest.fn() }));
 jest.mock('../app/vocabulary_target_gate', () => ({
   frenchVocabularyGateCopy: jest.fn(),
   vocabularyContentAvailableForTarget: jest.fn(() => true),

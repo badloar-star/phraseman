@@ -57,6 +57,13 @@ import {
   buildPlanPronunciationAttemptPayload,
 } from './personal_plan_pronunciation_recording_contract';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
+import {
+  readPlanTaskProgress,
+  savePlanTaskProgress,
+  clearPlanTaskProgress,
+} from './personal_plan_task_progress';
+import { resolveNextPlanTask } from './personal_plan_next_task';
+import { openPersonalPlanTask } from './personal_plan_navigation';
 import { startPlanExerciseSession } from './personal_plan_exercise_session';
 import { submitAndStorePlanExerciseAnswer } from './personal_plan_exercise_submission_store';
 import { createPlanRecoveryDefaultHandlers } from './personal_plan_recovery_default_handlers';
@@ -106,7 +113,9 @@ function normalizePlanAnswer(value: string): string {
 
 type PlanExerciseModeChrome = {
   title: string;
+  titleEs: string;
   instruction: string;
+  instructionEs: string;
   iconName: React.ComponentProps<typeof Ionicons>['name'];
   visualShell: PlanExerciseVisualShell;
 };
@@ -128,42 +137,54 @@ function chromeForExerciseType(type: PlanExerciseType): PlanExerciseModeChrome {
     case 'plan_listen_choose':
       return {
         title: 'На слух',
+        titleEs: 'De oído',
         instruction: 'Сначала слушай, потом выбирай смысл. Без угадайки по виду фразы.',
+        instructionEs: 'Escucha primero y luego elige el significado. Sin adivinar por la forma de la frase.',
         iconName,
         visualShell,
       };
     case 'plan_listen_build':
       return {
         title: 'Собери на слух',
+        titleEs: 'Ordena de oído',
         instruction: 'Послушай фразу и собери ее по порядку. Слова не подсвечиваются.',
+        instructionEs: 'Escucha la frase y ordénala. Las palabras no se resaltan.',
         iconName,
         visualShell,
       };
     case 'plan_pronunciation_repeat':
       return {
         title: 'Повтори вслух',
+        titleEs: 'Repite en voz alta',
         instruction: 'Запиши короткую фразу, послушай себя и только потом засчитывай.',
+        instructionEs: 'Graba una frase corta, escúchate y solo después márcala como hecha.',
         iconName,
         visualShell,
       };
     case 'plan_phrase_recall':
       return {
         title: 'Вспомни фразу',
+        titleEs: 'Recuerda la frase',
         instruction: 'Без подсказок: достаем фразу из памяти, а не узнаем ее глазами.',
+        instructionEs: 'Sin pistas: recupera la frase de memoria, no la reconozcas con los ojos.',
         iconName,
         visualShell,
       };
     case 'plan_choose_natural_phrase':
       return {
         title: 'Выбери фразу',
+        titleEs: 'Elige la frase',
         instruction: 'Ищи живой вариант, который нормально звучит в разговоре.',
+        instructionEs: 'Busca la opción viva que suena normal en conversación.',
         iconName,
         visualShell,
       };
     case 'plan_phrase_build':
       return {
         title: 'Собери фразу',
+        titleEs: 'Construye la frase',
         instruction: 'Фраза маршрута собирается как обычный урок, но под цель дня.',
+        instructionEs: 'La frase de la ruta se arma como una lección normal, pero para el objetivo del día.',
         iconName,
         visualShell,
       };
@@ -171,7 +192,9 @@ function chromeForExerciseType(type: PlanExerciseType): PlanExerciseModeChrome {
     default:
       return {
         title: 'Вставь слово',
+        titleEs: 'Completa la palabra',
         instruction: 'Заполни один точный пропуск. Варианты должны отличаться по смыслу.',
+        instructionEs: 'Rellena un único hueco exacto. Las opciones deben distinguirse por sentido.',
         iconName,
         visualShell,
       };
@@ -588,7 +611,7 @@ function PlanPronunciationRecorder({
       : `Услышал: «${pronunciationScore.transcript}» — ${pronunciationScore.score}%. Нужно ${PLAN_PRONUNCIATION_PASS_THRESHOLD}%.`
     : pronunciationHeardTarget
     ? 'Теперь скажи фразу вслух.'
-    : 'Сначала послушай фразу, потом повтори.';
+    : 'Скажи фразу вслух. Можешь сначала послушать — но это не обязательно.';
 
   const listenDisabled = pronunciationSpeakingTarget || pronunciationListening;
   const showRing = Boolean(pronunciationScore) && !pronunciationListening && !pronunciationScoring;
@@ -638,7 +661,10 @@ function PlanPronunciationRecorder({
 
       {blocked !== 'unavailable' && (
         <PronunciationSpeakButton
-          enabled={pronunciationHeardTarget && !pronunciationSpeakingTarget}
+          // Прослушивание фразы — НЕ обязательно: юзер может произнести сразу, если хочет.
+          // Единственное ограничение — нельзя говорить, ПОКА звучит фраза (микрофон поймал бы
+          // озвучку), поэтому блокируем только на время проигрывания target-аудио.
+          enabled={!pronunciationSpeakingTarget}
           listening={pronunciationListening}
           accent={accent}
           actionText={actionText}
@@ -921,6 +947,7 @@ function PlanExerciseFeedbackInline({
   actionLabel,
   onAction,
   loading,
+  hideBody,
   children,
 }: {
   tone: PlanExerciseFeedbackTone;
@@ -934,6 +961,12 @@ function PlanExerciseFeedbackInline({
   actionLabel: string;
   onAction: () => void;
   loading?: boolean;
+  /**
+   * Скрыть «плашку» подтверждения (заголовок + тело-текст), оставив только эхо
+   * правильного ответа (children) и кнопку действия. Для верного ответа в плане
+   * убрали «Так звучит естественно» — нужна только кнопка «Дальше».
+   */
+  hideBody?: boolean;
   children?: React.ReactNode;
 }) {
   const isSuccess = tone === 'success';
@@ -944,17 +977,21 @@ function PlanExerciseFeedbackInline({
 
   return (
     <View style={[styles.inlineFeedback, { borderLeftColor: toneColor, backgroundColor: surfaceColor }]}>
-      <View style={styles.inlineFeedbackHeader}>
-        <Ionicons name={feedbackIconForTone(tone)} size={18} color={toneColor} />
-        <Text style={[styles.inlineFeedbackTitle, { color: toneColor }]}>{title}</Text>
-      </View>
-      {loading ? (
-        <View style={styles.inlineFeedbackLoading}>
-          <ActivityIndicator size="small" color={toneColor} />
-          <Text style={[styles.inlineFeedbackBody, { color: mutedText }]}>{body}</Text>
+      {!hideBody && (
+        <View style={styles.inlineFeedbackHeader}>
+          <Ionicons name={feedbackIconForTone(tone)} size={18} color={toneColor} />
+          <Text style={[styles.inlineFeedbackTitle, { color: toneColor }]}>{title}</Text>
         </View>
-      ) : (
-        <Text style={[styles.inlineFeedbackBody, { color: textPrimaryColor }]}>{body}</Text>
+      )}
+      {!hideBody && (
+        loading ? (
+          <View style={styles.inlineFeedbackLoading}>
+            <ActivityIndicator size="small" color={toneColor} />
+            <Text style={[styles.inlineFeedbackBody, { color: mutedText }]}>{body}</Text>
+          </View>
+        ) : (
+          <Text style={[styles.inlineFeedbackBody, { color: textPrimaryColor }]}>{body}</Text>
+        )
       )}
       {children}
       <TouchableOpacity
@@ -997,6 +1034,9 @@ export default function PersonalPlanExerciseScreen() {
   const [lastResult, setLastResult] = useState<'correct' | 'wrong' | null>(null);
   const [saving, setSaving] = useState(false);
   const [completed, setCompleted] = useState(false);
+  // Идёт авто-переход на следующее задание (replace) — подавляем финал-модал дня,
+  // чтобы он не мелькнул между завершением и навигацией.
+  const [advancing, setAdvancing] = useState(false);
   const [typedAnswer, setTypedAnswer] = useState('');
   const [buildWords, setBuildWords] = useState<string[]>([]);
   const [recallItems, setRecallItems] = useState<PersonalPlanPhraseRecallItem[]>([]);
@@ -1036,6 +1076,7 @@ export default function PersonalPlanExerciseScreen() {
                 : 'plan_missing_word'
   ) as PlanExerciseType;
   const chrome = useMemo(() => chromeForExerciseType(currentExerciseType), [currentExerciseType]);
+  const chromeTitle = lang === 'es' ? chrome.titleEs : chrome.title;
   const handlePronunciationScored = useCallback((result: PlanPronunciationScoringResult) => {
     setPronunciationScore(result);
   }, []);
@@ -1076,13 +1117,14 @@ export default function PersonalPlanExerciseScreen() {
     dayIndex,
     type: currentExerciseType,
     title: chrome.title,
+    titleEs: chrome.titleEs,
     contentUnitIds,
     estimatedMinutes: isListeningMode || isListenBuildMode || isChoiceMode ? 4 : 3,
     requiredFor: [5, 10, 15, 20],
     prerequisiteLessonIds: [1],
     progressPolicy: isPronunciationMode ? 'completion_only' : 'correct_only',
     recoveryPolicy: isPronunciationMode ? 'none' : 'return_wrong_to_recall',
-  }), [chrome.title, contentUnitIds, currentExerciseType, dayIndex, isChoiceMode, isListenBuildMode, isListeningMode, isPronunciationMode, lessonId, planId, planTaskId, rendererType]);
+  }), [chrome.title, chrome.titleEs, contentUnitIds, currentExerciseType, dayIndex, isChoiceMode, isListenBuildMode, isListeningMode, isPronunciationMode, lessonId, planId, planTaskId, rendererType]);
 
   const session = useMemo(() => (
     startPlanExerciseSession(block, { planInstanceId }).session
@@ -1092,13 +1134,38 @@ export default function PersonalPlanExerciseScreen() {
     handlers: createPlanRecoveryDefaultHandlers({ studyTarget }),
   }), [studyTarget]);
 
+  // Resume посреди задания: однажды, когда вопросы загружены, восстанавливаем
+  // позицию (индекс текущего вопроса + уже верно отвеченные). Сам незавершённый
+  // вопрос проходится заново — это безопасно. Флаг гарантирует разовое
+  // применение, чтобы не затирать живой прогресс пользователя.
+  const resumeAppliedRef = useRef(false);
+  useEffect(() => {
+    if (resumeAppliedRef.current) return;
+    if (!planTaskId || items.length === 0 || completed) return;
+    resumeAppliedRef.current = true;
+    let alive = true;
+    void readPlanTaskProgress(planInstanceId, planTaskId)
+      .then((saved) => {
+        if (!alive || !saved) return;
+        const validIds = new Set(items.map((it) => it.id));
+        const restoredCorrect = saved.correctIds.filter((id) => validIds.has(id));
+        const restoredIndex = Math.min(Math.max(0, saved.index), items.length - 1);
+        if (restoredCorrect.length > 0) setCorrectIds(restoredCorrect);
+        if (restoredIndex > 0) setIndex(restoredIndex);
+      })
+      .catch(() => undefined);
+    return () => {
+      alive = false;
+    };
+  }, [completed, items, planInstanceId, planTaskId]);
+
   const item = items[index];
   const choiceOptions = item && 'options' in item ? item.options : [];
   // Авто-раскладка дистракторов (эталон урока): короткие варианты → сетка 2 кол., длинные → список на всю ширину.
   const useGridOptions = choiceOptions.length > 0 && choiceOptions.every((opt: string) => opt.trim().length <= 14);
   const currentCorrectAnswer = item && 'correctAnswer' in item ? item.correctAnswer : '';
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
-  const done = completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult);
+  const done = !advancing && (completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult));
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
   const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode || isPhraseBuildMode) && Boolean(session) && !listeningBlocked;
 
@@ -1156,6 +1223,11 @@ export default function PersonalPlanExerciseScreen() {
       ru: 'Попробуй ещё раз спокойно: ошибка уйдёт в повторение.',
       uk: 'Спробуй ще раз спокійно: помилка піде в повторення.',
       es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
+      'pt-BR': 'Tente de novo com calma: o erro voltará na revisão.',
+      vi: 'Hãy thử lại bình tĩnh: lỗi này sẽ quay lại trong phần ôn tập.',
+      id: 'Coba lagi dengan tenang: kesalahan ini akan masuk ke pengulangan.',
+      tr: 'Sakin şekilde tekrar dene: hata tekrar çalışmaya dönecek.',
+      pl: 'Spróbuj jeszcze raz spokojnie: błąd wróci do powtórki.',
     });
   }, [selected, currentCorrectAnswer, lang]);
   // Текст короткой плашки при ВЕРНОМ ответе — короткое нейтральное подтверждение.
@@ -1175,6 +1247,7 @@ export default function PersonalPlanExerciseScreen() {
           tone="success"
           title={resultModalTitle}
           body={staticBody}
+          hideBody
           actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
           onAction={() => void next()}
           accent={accent}
@@ -1303,6 +1376,41 @@ export default function PersonalPlanExerciseScreen() {
     setSaving(false);
   };
 
+  // Завершение всего задания: отметить выполненным, начислить XP, стереть resume
+  // и СРАЗУ открыть следующее задание дня (без модала «Задание закрыто»). Если
+  // следующего нет — оставляем экран, чтобы показался финал дня (done-плашка).
+  const finishTaskAndAdvance = async (phrasesPracticed: number) => {
+    // Подавляем финал-модал дня на время вычисления/перехода — иначе он мелькнёт.
+    setAdvancing(true);
+    await markPersonalPlanTaskCompleted({
+      taskId: planTaskId,
+      planId,
+      planInstanceId,
+      dayIndex,
+    }).catch(() => undefined);
+    await awardPlanTaskCompletion({
+      lang,
+      studyTarget,
+      phrasesPracticed,
+      planInstanceId,
+      planTaskId,
+    });
+    // resume этому заданию больше не нужен — оно закрыто.
+    await clearPlanTaskProgress(planInstanceId, planTaskId).catch(() => undefined);
+
+    const nextTask = await resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget }).catch(() => null);
+    if (nextTask) {
+      // Свап текущего экрана на следующее задание: «назад» из него ведёт в меню
+      // плана, а не в только что закрытое задание. advancing оставляем true —
+      // экран всё равно уходит, мелькание финал-модала исключено.
+      openPersonalPlanTask(router, nextTask.plan, nextTask.day, nextTask.task, nextTask.planInstanceId, 'replace');
+      return;
+    }
+    // Заданий дня больше нет — показываем финал дня на этом экране.
+    setAdvancing(false);
+    setCompleted(true);
+  };
+
   const next = async () => {
     if (!item) return;
     if (lastResult === 'wrong') {
@@ -1323,23 +1431,12 @@ export default function PersonalPlanExerciseScreen() {
 
     if (nextIndex < items.length && nextCorrectIds.length < targetCorrect) {
       setIndex(nextIndex);
+      // Пошагово сохраняем позицию: выход посреди задания вернёт на этот вопрос.
+      void savePlanTaskProgress(planInstanceId, planTaskId, { index: nextIndex, correctIds: nextCorrectIds });
       return;
     }
 
-    await markPersonalPlanTaskCompleted({
-      taskId: planTaskId,
-      planId,
-      planInstanceId,
-      dayIndex,
-    }).catch(() => undefined);
-    await awardPlanTaskCompletion({
-      lang,
-      studyTarget,
-      phrasesPracticed: nextCorrectIds.length,
-      planInstanceId,
-      planTaskId,
-    });
-    setCompleted(true);
+    await finishTaskAndAdvance(nextCorrectIds.length);
   };
 
   const completePronunciation = async () => {
@@ -1385,24 +1482,13 @@ export default function PersonalPlanExerciseScreen() {
     if (nextIndex < items.length && nextCorrectIds.length < targetCorrect) {
       setIndex(nextIndex);
       setPronunciationScore(null);
+      // Пошагово сохраняем позицию: выход посреди задания вернёт на этот вопрос.
+      void savePlanTaskProgress(planInstanceId, planTaskId, { index: nextIndex, correctIds: nextCorrectIds });
       setSaving(false);
       return;
     }
 
-    await markPersonalPlanTaskCompleted({
-      taskId: planTaskId,
-      planId,
-      planInstanceId,
-      dayIndex,
-    }).catch(() => undefined);
-    await awardPlanTaskCompletion({
-      lang,
-      studyTarget,
-      phrasesPracticed: nextCorrectIds.length,
-      planInstanceId,
-      planTaskId,
-    });
-    setCompleted(true);
+    await finishTaskAndAdvance(nextCorrectIds.length);
     setSaving(false);
   };
 
@@ -1420,7 +1506,7 @@ export default function PersonalPlanExerciseScreen() {
             style={[styles.back, { backgroundColor: t.bgCard, borderColor: t.border }]}
           >
             <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
-            <Text numberOfLines={1} style={[styles.backText, { color: t.textPrimary, fontSize: f.bodyLg }]}>{chrome.title}</Text>
+            <Text numberOfLines={1} style={[styles.backText, { color: t.textPrimary, fontSize: f.bodyLg }]}>{chromeTitle}</Text>
           </TouchableOpacity>
           <View style={styles.headerStats}>
             <Text style={[styles.statText, { color: t.correct, fontSize: f.label }]}>●{correctIds.length}</Text>
@@ -1430,7 +1516,7 @@ export default function PersonalPlanExerciseScreen() {
                 variant="icon-flag"
                 screen="personal_plan_exercise"
                 dataId={`${planId}_day_${dayIndex}_${item?.id ?? 'unit'}`}
-                dataText={`${chrome.title} · ${currentExerciseType}`}
+                dataText={`${chromeTitle} · ${currentExerciseType}`}
                 style={styles.reportFlag}
               />
             ) : null}
@@ -1716,6 +1802,7 @@ export default function PersonalPlanExerciseScreen() {
                     tone="success"
                     title={resultModalTitle}
                     body={staticBody}
+                    hideBody
                     actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
                     onAction={() => void next()}
                     accent={accent}
@@ -1822,14 +1909,16 @@ export default function PersonalPlanExerciseScreen() {
               (вместо модала в пустоте). Для option-режимов разбор рендерится выше. */}
           {nonOptionInlineFeedback}
         </BouncyScrollView>
-        {/* Разбор/объяснение не-option режимов теперь рендерится ИНЛАЙН внутри скролла
-            под фразой (nonOptionInlineFeedback), а не модалом/плашкой в подвале экрана. */}
+        {/* Финал ДНЯ. После каждого ОБЫЧНОГО задания модала больше нет — сразу
+            открывается следующее задание (finishTaskAndAdvance → replace). Этот
+            экран показывается ТОЛЬКО когда заданий дня больше не осталось.
+            TODO: заменить на экран «День пройден» с коротким ИИ-разбором ошибок. */}
         <PlanExerciseFeedbackModal
           visible={done}
           tone="success"
-          title="Задание закрыто"
-          body="Нужная часть готова. Можно вернуться к плану или продолжить тренировку по желанию."
-          actionLabel="К плану"
+          title={triLang(lang, { ru: 'День пройден', uk: 'День пройдено', es: 'Día completado', 'pt-BR': 'Dia concluído', vi: 'Hoàn thành ngày', id: 'Hari selesai', tr: 'Gün tamamlandı', pl: 'Dzień ukończony' })}
+          body={triLang(lang, { ru: 'Все задания на сегодня выполнены. Возвращайся завтра за новой порцией.', uk: 'Усі завдання на сьогодні виконано. Повертайся завтра по нову порцію.', es: 'Has completado todas las tareas de hoy. Vuelve mañana por más.', 'pt-BR': 'Você concluiu todas as tarefas de hoje. Volte amanhã para mais.', vi: 'Bạn đã hoàn thành mọi nhiệm vụ hôm nay. Quay lại vào ngày mai nhé.', id: 'Semua tugas hari ini selesai. Kembali besok untuk lanjut.', tr: 'Bugünkü tüm görevleri tamamladın. Yarın yenileri için geri dön.', pl: 'Ukończono wszystkie dzisiejsze zadania. Wróć jutro po więcej.' })}
+          actionLabel={triLang(lang, { ru: 'К плану', uk: 'До плану', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Về kế hoạch', id: 'Ke rencana', tr: 'Plana dön', pl: 'Do planu' })}
           onAction={() => safeRouterBack(router, '/personal_plan')}
           accent={accent}
           actionText={actionText}

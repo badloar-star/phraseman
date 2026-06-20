@@ -9,6 +9,7 @@ export type PersonalPlanPhraseRecallItem = {
   id: string;
   promptRu: string;
   promptUk: string;
+  promptEs?: string;
   targetText: string;
   source: PersonalPlanPhraseRecallItemSource;
   contentUnitId?: string;
@@ -37,8 +38,11 @@ function recallExplanation(targetText: string): LessonTeachingNote {
   return {
     id: `plan_phrase_recall_${id}`,
     titleRu: 'Вспомни без подсказки',
+    titleEs: 'Recuerda sin pista',
     correctRu: 'Да, так фраза начинает вспоминаться сама. Коротко, понятно, без вариантов перед глазами.',
+    correctEs: 'Sí, así la frase empieza a recordarse sola. Breve, clara y sin opciones delante de los ojos.',
     wrongRu: 'Сейчас не сравниваем с прошлым ответом и не угадываем по кнопкам. Посмотри на смысл, проговори фразу медленнее и набери ее снова.',
+    wrongEs: 'Ahora no comparamos con la respuesta anterior ni adivinamos por botones. Mira el sentido, di la frase más despacio y escríbela de nuevo.',
   };
 }
 
@@ -100,6 +104,7 @@ export async function getPersonalPlanPhraseRecallItems(
       id: `recall:${contentUnitId ?? targetText.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
       promptRu: phrase?.russian ?? 'Вспомни фразу.',
       promptUk: phrase?.ukrainian ?? phrase?.russian ?? 'Вспомни фразу.',
+      ...(phrase?.spanish ? { promptEs: phrase.spanish } : { promptEs: 'Recuerda la frase.' }),
       targetText,
       source: 'wrong_attempt',
       contentUnitId,
@@ -124,6 +129,7 @@ export async function getPersonalPlanPhraseRecallItems(
       id: `fallback:${phrase.id}`,
       promptRu: phrase.russian,
       promptUk: phrase.ukrainian,
+      ...(phrase.spanish ? { promptEs: phrase.spanish } : {}),
       targetText: phrase.english,
       source: 'fallback',
       contentUnitId: String(phrase.id),

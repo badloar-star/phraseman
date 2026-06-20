@@ -17,7 +17,7 @@ import { updateTaskProgress } from './daily_tasks';
 import { registerXP, getCurrentMultiplier } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { screenTextOnGradient } from '../constants/theme';
-import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { getLessonIntroScreens } from './lesson_data_all';
 import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
 import type { IntroLine, LessonIntroScreen } from './lesson_data_types';
@@ -19739,7 +19739,7 @@ export default function LessonHelp() {
   useEffect(() => {
     let cancelled = false;
     void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
     });
     return () => { cancelled = true; };
   }, [lessonId, router, studyTarget]);

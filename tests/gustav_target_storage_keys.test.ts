@@ -72,6 +72,7 @@ import {
   resolvedPersonalTrainingsKey,
   shareAchievementCounterKey,
   sourceTargetKey,
+  statsDailyBreakdownKey,
   storageSourceLocale,
   storageStudyTarget,
   targetKey,
@@ -81,6 +82,7 @@ import {
   trainerStoreKey,
   type TargetKeyDomain,
   unlockedLessonsKey,
+  userStatsKey,
 } from '../app/target_storage_keys';
 
 describe('target storage key contract', () => {
@@ -231,6 +233,10 @@ describe('target storage key contract', () => {
     expect(quizPerfectStreakKey('fr')).toBe('quiz_achievements_v2::fr::achievement_quiz_perfect_streak_v1');
     expect(comboAchievementCounterKey('en')).toBe('achievement_combo_best_count');
     expect(comboAchievementCounterKey('fr')).toBe('achievements_v2::fr::achievement_combo_best_count');
+    expect(userStatsKey('en')).toBe('user_stats_v1');
+    expect(userStatsKey('fr')).toBe('target_stats_v2::fr::user_stats_v1');
+    expect(statsDailyBreakdownKey('en')).toBe('stats_daily_breakdown_v1');
+    expect(statsDailyBreakdownKey('fr')).toBe('target_stats_v2::fr::stats_daily_breakdown_v1');
     expect(diagnosticLastKey('en')).toBe('diagnostic_last');
     expect(diagnosticLastKey('fr')).toBe('level_exams_v2::fr::diagnostic_last');
     expect(diagnosticOpenFlagKey('en')).toBe('open_diagnostic');

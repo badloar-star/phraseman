@@ -35,6 +35,11 @@ const SPEAKING_A11Y: Record<string, string> = {
   ru: 'Сказать фразу вслух',
   uk: 'Сказати фразу вголос',
   es: 'Decir la frase en voz alta',
+  'pt-BR': 'Dizer a frase em voz alta',
+  vi: 'Nói cụm từ thành tiếng',
+  id: 'Ucapkan frasa dengan lantang',
+  tr: 'Cümleyi sesli söyle',
+  pl: 'Powiedz frazę na głos',
 };
 
 export interface SpeakingButtonProps {

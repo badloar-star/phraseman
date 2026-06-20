@@ -19,6 +19,7 @@ export type PlanRuntimeBlockSpec = {
   id: string;
   type: PlanRuntimeExerciseType;
   title: string;
+  titleEs?: string;
   phraseIds: string[];
   estimatedMinutes: number;
   requiredFor: PlanMinutesChoice[];
@@ -133,6 +134,7 @@ function makeBlock(
     dayIndex,
     type: spec.type,
     title: spec.title,
+    ...(spec.titleEs ? { titleEs: spec.titleEs } : {}),
     contentUnitIds: phraseIds,
     estimatedMinutes: spec.estimatedMinutes,
     requiredFor: [...spec.requiredFor],

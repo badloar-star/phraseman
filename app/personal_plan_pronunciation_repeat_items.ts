@@ -7,6 +7,7 @@ export type PersonalPlanPronunciationRepeatItem = {
   id: string;
   promptRu: string;
   promptUk: string;
+  promptEs?: string;
   targetText: string;
   completionLabel: string;
   scoringAvailable: true;
@@ -45,8 +46,11 @@ function fallbackExplanation(targetText: string): LessonTeachingNote {
   return {
     id: `pronunciation_repeat_${targetText.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
     titleRu: 'Произнеси на 90%',
+    titleEs: 'Pronuncia al 90%',
     correctRu: `Фраза проверена: ${targetText}. Результат 90% или выше засчитывает упражнение.`,
+    correctEs: `Frase comprobada: ${targetText}. Un resultado del 90% o más cuenta el ejercicio como superado.`,
     wrongRu: 'Повтори фразу ещё раз медленнее: маленькая пауза между словами помогает распознать каждое слово.',
+    wrongEs: 'Repite la frase un poco más despacio: una pequeña pausa entre palabras ayuda a reconocer cada palabra.',
   };
 }
 
@@ -55,8 +59,11 @@ function explanationForPhrase(targetText: string, note?: LessonTeachingNote): Le
   return {
     ...note,
     titleRu: 'Произнеси на 90%',
+    titleEs: 'Pronuncia al 90%',
     correctRu: `Фраза проверена: ${targetText}. Держи коротко и ровно: сначала смысл, потом скорость.`,
+    correctEs: `Frase comprobada: ${targetText}. Mantenla breve y clara: primero el sentido, después la velocidad.`,
     wrongRu: 'Повтори фразу медленнее и проверь, что короткие слова прозвучали отдельно.',
+    wrongEs: 'Repite la frase más despacio y comprueba que las palabras cortas suenen por separado.',
   };
 }
 
@@ -140,6 +147,7 @@ export function getPersonalPlanPronunciationRepeatItems(
         id: String(phrase.id),
         promptRu: phrase.russian,
         promptUk: phrase.ukrainian,
+        ...(phrase.spanish ? { promptEs: phrase.spanish } : {}),
         targetText: phrase.english,
         completionLabel: 'Продолжить',
         scoringAvailable: true,

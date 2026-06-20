@@ -129,10 +129,11 @@ export function ReferralAccessActivatedModal({
 
   // Заголовок: «7 дней доступа открыто»
   const titleRu = `${grantedDays} ${pluralDaysRu(grantedDays)} доступа открыто`;
+  const titleEs = `${grantedDays} días de acceso abiertos`;
   const title = L(
     titleRu,
     `${grantedDays} ${pluralDaysRu(grantedDays)} доступу відкрито`,
-    `${grantedDays} días de acceso abiertos`,
+    titleEs,
     `${grantedDays} dias de acesso abertos`,
     `${grantedDays} ngày truy cập đã mở`,
     `${grantedDays} hari akses terbuka`,
@@ -145,15 +146,17 @@ export function ReferralAccessActivatedModal({
     friendsCount === 1
       ? 'Друг выполнил условие: установил приложение, ввёл ваш код и прошёл один урок полностью. Вы получили свои 7 дней.'
       : `${friendsCount} ${pluralFriendsRu(friendsCount)} выполнили условие. Вы получили свои дни полного доступа.`;
+  const subtitleEs =
+    friendsCount === 1
+      ? 'Tu amigo cumplió la condición: instaló la app, introdujo tu código y completó una lección. Recibiste tus 7 días.'
+      : `${friendsCount} amigos cumplieron la condición. Recibiste tus días de acceso completo.`;
 
   const subtitle = L(
     subtitleRu,
     friendsCount === 1
       ? 'Друг виконав умову: встановив застосунок, ввів ваш код і повністю пройшов один урок. Ви отримали свої 7 днів.'
       : `${friendsCount} друзів виконали умову. Ви отримали свої дні повного доступу.`,
-    friendsCount === 1
-      ? 'Tu amigo cumplió la condición: instaló la app, introdujo tu código y completó una lección. Recibiste tus 7 días.'
-      : `${friendsCount} amigos cumplieron la condición. Recibiste tus días de acceso completo.`,
+    subtitleEs,
     friendsCount === 1
       ? 'Seu amigo cumpriu a condição: instalou o app, inseriu seu código e concluiu uma lição. Você recebeu seus 7 dias.'
       : `${friendsCount} amigos cumpriram a condição. Você recebeu seus dias de acesso completo.`,
@@ -171,10 +174,11 @@ export function ReferralAccessActivatedModal({
       : `${friendsCount} znajomych spełniło warunek. Masz swoje dni pełnego dostępu.`,
   );
 
+  const splitRewardNoteEs = '7+7 no son 14: tu amigo recibió sus 7 días por separado.';
   const splitRewardNote = L(
     '7+7 не равно 14: друг получил свои 7 дней отдельно.',
     '7+7 не дорівнює 14: друг отримав свої 7 днів окремо.',
-    '7+7 no son 14: tu amigo recibió sus 7 días por separado.',
+    splitRewardNoteEs,
     '7+7 não vira 14: o amigo recebeu os 7 dias separadamente.',
     '7+7 không phải 14: bạn của bạn đã nhận 7 ngày riêng.',
     '7+7 bukan 14: temanmu mendapat 7 harinya secara terpisah.',
@@ -183,11 +187,12 @@ export function ReferralAccessActivatedModal({
   );
 
   // Строка срока действия (опционально)
+  const untilTextEs = untilLabel ? `Abierto hasta ${untilLabel}.` : null;
   const untilText = untilLabel
     ? L(
         `Открыто до ${untilLabel}.`,
         `Відкрито до ${untilLabel}.`,
-        `Abierto hasta ${untilLabel}.`,
+        untilTextEs ?? '',
         `Aberto até ${untilLabel}.`,
         `Mở đến ${untilLabel}.`,
         `Terbuka hingga ${untilLabel}.`,
@@ -197,10 +202,11 @@ export function ReferralAccessActivatedModal({
     : null;
 
   // Кнопка подтверждения — по Библии: глагол завершения «Готово» (не «Отлично»)
+  const buttonLabelEs = 'Listo';
   const buttonLabel = L(
     'Готово',
     'Готово',
-    'Listo',
+    buttonLabelEs,
     'Pronto',
     'Xong',
     'Selesai',

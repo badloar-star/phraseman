@@ -115,14 +115,17 @@ for (const { id, payload, prompt } of latestById.values()) {
   records.push(record);
 }
 
-console.log(JSON.stringify({
+const successfulRecords = records.filter((record) => record.status !== 'skipped');
+const summary = {
   rollout: rolloutPath,
   queue: queuePath,
   sourceRoot,
   wroteWebp: shouldWriteWebp,
-  count: records.filter((record) => record.status !== 'skipped').length,
-  records,
-}, null, 2));
+  count: successfulRecords.length,
+  bySet: countBy(successfulRecords, 'setId'),
+};
+
+console.log(JSON.stringify(args.summary ? summary : { ...summary, records }, null, 2));
 
 function parseArgs(rawArgs) {
   const parsed = {};
@@ -130,6 +133,10 @@ function parseArgs(rawArgs) {
     const arg = rawArgs[i];
     if (arg === '--webp') {
       parsed.webp = true;
+      continue;
+    }
+    if (arg === '--summary') {
+      parsed.summary = true;
       continue;
     }
     if (!arg.startsWith('--')) continue;
@@ -189,4 +196,11 @@ function matchFirst(text, regex) {
 function inferSetId(id) {
   const prefix = id.split('_')[0] || 'unknown';
   return `unknown_${prefix}`;
+}
+
+function countBy(items, key) {
+  return items.reduce((counts, item) => {
+    counts[item[key]] = (counts[item[key]] || 0) + 1;
+    return counts;
+  }, {});
 }

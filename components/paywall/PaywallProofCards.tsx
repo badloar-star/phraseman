@@ -29,13 +29,49 @@ function ProofCard({ title, chrome, children }: { title: string; chrome: Paywall
 // ── «Уже твоё» ────────────────────────────────────────────────────────────────
 export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: PaywallChrome; mirror: ProgressMirror }) {
   const stats: { value: number; label: string }[] = [];
-  if (mirror.phrases > 0) stats.push({ value: mirror.phrases, label: triLang(lang, { ru: 'фраз', uk: 'фраз', es: 'frases' }) });
-  if (mirror.words > 0) stats.push({ value: mirror.words, label: triLang(lang, { ru: 'слов', uk: 'слів', es: 'palabras' }) });
+  if (mirror.phrases > 0) stats.push({ value: mirror.phrases, label: triLang(lang, {
+    ru: 'фраз',
+    uk: 'фраз',
+    es: 'frases',
+    'pt-BR': 'frases',
+    vi: 'cụm từ',
+    id: 'frasa',
+    tr: 'ifade',
+    pl: 'fraz',
+  }) });
+  if (mirror.words > 0) stats.push({ value: mirror.words, label: triLang(lang, {
+    ru: 'слов',
+    uk: 'слів',
+    es: 'palabras',
+    'pt-BR': 'palavras',
+    vi: 'từ',
+    id: 'kata',
+    tr: 'kelime',
+    pl: 'słów',
+  }) });
   if (mirror.xp > 0) stats.push({ value: mirror.xp, label: 'XP' });
-  if (mirror.streak > 0) stats.push({ value: mirror.streak, label: triLang(lang, { ru: 'дн. серия', uk: 'дн. серія', es: 'días racha' }) });
+  if (mirror.streak > 0) stats.push({ value: mirror.streak, label: triLang(lang, {
+    ru: 'дн. серия',
+    uk: 'дн. серія',
+    es: 'días racha',
+    'pt-BR': 'dias seguidos',
+    vi: 'ngày chuỗi',
+    id: 'hari runtutan',
+    tr: 'gün seri',
+    pl: 'dni serii',
+  }) });
   if (!stats.length) return null;
   return (
-    <ProofCard title={triLang(lang, { ru: 'Уже твоё', uk: 'Вже твоє', es: 'Ya es tuyo' })} chrome={chrome}>
+    <ProofCard title={triLang(lang, {
+      ru: 'Уже твоё',
+      uk: 'Вже твоє',
+      es: 'Ya es tuyo',
+      'pt-BR': 'Já é seu',
+      vi: 'Đã là của bạn',
+      id: 'Sudah milikmu',
+      tr: 'Zaten senin',
+      pl: 'Już twoje',
+    })} chrome={chrome}>
       <View style={S.mirrorRow}>
         {stats.slice(0, 4).map((s) => (
           <View key={s.label} style={[S.mirrorStat, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
@@ -45,7 +81,16 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
         ))}
       </View>
       <Text style={[S.mirrorLine, { color: chrome.textPrimary }]}>
-        {triLang(lang, { ru: 'Premium держит этот темп.', uk: 'Premium тримає цей темп.', es: 'Premium mantiene este ritmo.' })}
+        {triLang(lang, {
+          ru: 'Premium держит этот темп.',
+          uk: 'Premium тримає цей темп.',
+          es: 'Premium mantiene este ritmo.',
+          'pt-BR': 'Premium mantém esse ritmo.',
+          vi: 'Premium giữ nhịp này.',
+          id: 'Premium menjaga ritme ini.',
+          tr: 'Premium bu tempoyu korur.',
+          pl: 'Premium utrzymuje to tempo.',
+        })}
       </Text>
     </ProofCard>
   );
@@ -54,7 +99,16 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
 // ── перцентиль ────────────────────────────────────────────────────────────────
 export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: PaywallChrome; line: string }) {
   return (
-    <ProofCard title={triLang(lang, { ru: 'Твоё место', uk: 'Твоє місце', es: 'Tu lugar' })} chrome={chrome}>
+    <ProofCard title={triLang(lang, {
+      ru: 'Твоё место',
+      uk: 'Твоє місце',
+      es: 'Tu lugar',
+      'pt-BR': 'Seu lugar',
+      vi: 'Vị trí của bạn',
+      id: 'Posisimu',
+      tr: 'Yeriniz',
+      pl: 'Twoje miejsce',
+    })} chrome={chrome}>
       <View style={S.pctRow}>
         <Ionicons name="trending-up" size={22} color={chrome.textMuted} />
         <Text style={[S.pctText, { color: chrome.textPrimary }]}>{line}</Text>
@@ -118,7 +172,16 @@ const COMPARE_ROWS: CompareRow[] = [
 export function CompareCard({ lang, chrome }: { lang: Lang; chrome: PaywallChrome }) {
   const pick = (d: CompareCell) => triLang(lang, d);
   return (
-    <ProofCard title={triLang(lang, { ru: 'Что меняется с Premium', uk: 'Що змінюється з Premium', es: 'Qué cambia con Premium' })} chrome={chrome}>
+    <ProofCard title={triLang(lang, {
+      ru: 'Что меняется с Premium',
+      uk: 'Що змінюється з Premium',
+      es: 'Qué cambia con Premium',
+      'pt-BR': 'O que muda com Premium',
+      vi: 'Premium thay đổi điều gì',
+      id: 'Apa yang berubah dengan Premium',
+      tr: 'Premium ile ne değişir',
+      pl: 'Co zmienia Premium',
+    })} chrome={chrome}>
       {COMPARE_ROWS.map((row, i) => (
         <View key={row.t.ru} style={[S.cmpRow, i < COMPARE_ROWS.length - 1 && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: chrome.cardBorder }]}>
           <View style={S.cmpLeft}>
@@ -144,32 +207,83 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
   const [open, setOpen] = useState(0);
   const qa: { q: string; a: string }[] = [
     ...(trialDays ? [{
-      q: triLang(lang, { ru: 'Что будет после триала?', uk: 'Що буде після тріалу?', es: '¿Qué pasa tras la prueba?' }),
+      q: triLang(lang, {
+        ru: 'Что будет после триала?',
+        uk: 'Що буде після тріалу?',
+        es: '¿Qué pasa tras la prueba?',
+        'pt-BR': 'O que acontece depois do teste?',
+        vi: 'Sau thời gian dùng thử thì sao?',
+        id: 'Apa yang terjadi setelah uji coba?',
+        tr: 'Denemeden sonra ne olur?',
+        pl: 'Co będzie po okresie próbnym?',
+      }),
       a: triLang(lang, {
         ru: `${trialDays} дн. всё открыто бесплатно. За день до конца пришлём пуш. Спишется только если не отменишь — ${priceLine}.`,
         uk: `${trialDays} дн. усе відкрито безкоштовно. За день до кінця надішлемо пуш. Спишеться лише якщо не скасуєш — ${priceLine}.`,
         es: `${trialDays} días todo gratis. Un día antes te avisamos. Solo se cobra si no cancelas: ${priceLine}.`,
+        'pt-BR': `${trialDays} dias com tudo liberado grátis. Um dia antes, enviaremos um aviso. Só cobraremos se você não cancelar: ${priceLine}.`,
+        vi: `${trialDays} ngày mở tất cả miễn phí. Trước khi kết thúc một ngày, chúng tôi sẽ gửi nhắc nhở. Chỉ tính phí nếu bạn không hủy: ${priceLine}.`,
+        id: `${trialDays} hari semua terbuka gratis. Sehari sebelum berakhir, kami kirim notifikasi. Hanya ditagih jika kamu tidak membatalkan: ${priceLine}.`,
+        tr: `${trialDays} gün boyunca her şey ücretsiz açık. Bitmeden bir gün önce bildirim göndeririz. Yalnızca iptal etmezsen ücret alınır: ${priceLine}.`,
+        pl: `${trialDays} dni wszystko jest otwarte za darmo. Dzień przed końcem wyślemy powiadomienie. Opłata pojawi się tylko, jeśli nie anulujesz: ${priceLine}.`,
       }),
     }] : []),
     {
-      q: triLang(lang, { ru: 'Как отменить?', uk: 'Як скасувати?', es: '¿Cómo cancelo?' }),
+      q: triLang(lang, {
+        ru: 'Как отменить?',
+        uk: 'Як скасувати?',
+        es: '¿Cómo cancelo?',
+        'pt-BR': 'Como cancelar?',
+        vi: 'Hủy bằng cách nào?',
+        id: 'Bagaimana cara membatalkan?',
+        tr: 'Nasıl iptal ederim?',
+        pl: 'Jak anulować?',
+      }),
       a: triLang(lang, {
         ru: 'Настройки телефона → Подписки → Phraseman → Отменить. Две минуты, без писем и звонков. Доступ останется до конца оплаченного срока.',
         uk: 'Налаштування телефона → Підписки → Phraseman → Скасувати. Дві хвилини, без листів і дзвінків. Доступ лишиться до кінця оплаченого строку.',
         es: 'Ajustes del teléfono → Suscripciones → Phraseman → Cancelar. Dos minutos, sin correos ni llamadas. El acceso sigue hasta el final del período pagado.',
+        'pt-BR': 'Ajustes do telefone → Assinaturas → Phraseman → Cancelar. Dois minutos, sem e-mails nem ligações. O acesso continua até o fim do período pago.',
+        vi: 'Cài đặt điện thoại → Đăng ký → Phraseman → Hủy. Hai phút, không email hay cuộc gọi. Quyền truy cập vẫn còn đến hết kỳ đã thanh toán.',
+        id: 'Pengaturan ponsel → Langganan → Phraseman → Batalkan. Dua menit, tanpa email atau telepon. Akses tetap aktif sampai periode berbayar berakhir.',
+        tr: 'Telefon ayarları → Abonelikler → Phraseman → İptal et. İki dakika, e-posta veya arama yok. Erişim ücretli dönem bitene kadar sürer.',
+        pl: 'Ustawienia telefonu → Subskrypcje → Phraseman → Anuluj. Dwie minuty, bez maili i telefonów. Dostęp zostaje do końca opłaconego okresu.',
       }),
     },
     {
-      q: triLang(lang, { ru: 'Что входит в Premium?', uk: 'Що входить у Premium?', es: '¿Qué incluye Premium?' }),
+      q: triLang(lang, {
+        ru: 'Что входит в Premium?',
+        uk: 'Що входить у Premium?',
+        es: '¿Qué incluye Premium?',
+        'pt-BR': 'O que inclui o Premium?',
+        vi: 'Premium bao gồm những gì?',
+        id: 'Apa saja isi Premium?',
+        tr: 'Premium neleri içerir?',
+        pl: 'Co zawiera Premium?',
+      }),
       a: triLang(lang, {
         ru: 'Все уроки и уровни, безлимит энергии и карточек, все квизы, заморозка серии, занятия офлайн.',
         uk: 'Усі уроки й рівні, безліміт енергії та карток, усі квізи, заморозка серії, заняття офлайн.',
         es: 'Todas las lecciones y niveles, energía y tarjetas sin límite, todos los quizzes, protección de racha y modo offline.',
+        'pt-BR': 'Todas as lições e níveis, energia e cartões sem limite, todos os quizzes, proteção de sequência e modo offline.',
+        vi: 'Tất cả bài học và cấp độ, năng lượng và thẻ không giới hạn, mọi quiz, bảo vệ chuỗi và học offline.',
+        id: 'Semua pelajaran dan level, energi dan kartu tanpa batas, semua kuis, perlindungan runtutan, dan mode offline.',
+        tr: 'Tüm dersler ve seviyeler, sınırsız enerji ve kartlar, tüm quizler, seri koruması ve offline çalışma.',
+        pl: 'Wszystkie lekcje i poziomy, energia i fiszki bez limitu, wszystkie quizy, ochrona serii i nauka offline.',
       }),
     },
   ];
   return (
-    <ProofCard title={triLang(lang, { ru: 'Частые вопросы', uk: 'Часті питання', es: 'Preguntas frecuentes' })} chrome={chrome}>
+    <ProofCard title={triLang(lang, {
+      ru: 'Частые вопросы',
+      uk: 'Часті питання',
+      es: 'Preguntas frecuentes',
+      'pt-BR': 'Perguntas frequentes',
+      vi: 'Câu hỏi thường gặp',
+      id: 'Pertanyaan umum',
+      tr: 'Sık sorulan sorular',
+      pl: 'Częste pytania',
+    })} chrome={chrome}>
       {qa.map((item, i) => {
         const isOpen = open === i;
         return (

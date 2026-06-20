@@ -42,6 +42,20 @@ function getFirestore(): any | null {
   }
 }
 
+/**
+ * permission-denied при записи пуш-токена — ожидаемый «шум» на холодном старте:
+ * anon-auth / стабильный auth-линк ещё не подтверждены, и правила Firestore
+ * временно запрещают запись в users/{stableId}. Регистрация токена работает по
+ * принципу «выстрелил и забыл» (починится при следующем запуске), поэтому такую
+ * ошибку глушим — не краснит дев-оверлей и не пишем её в лог. Прочие ошибки важны.
+ */
+function isFirestorePermissionDenied(error: unknown): boolean {
+  const code = (error as { code?: string } | null | undefined)?.code;
+  if (code === 'firestore/permission-denied' || code === 'permission-denied') return true;
+  const message = error instanceof Error ? error.message : String(error ?? '');
+  return message.includes('permission-denied');
+}
+
 /** Promise с таймаутом: reject, если не успел за ms. */
 function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   return new Promise<T>((resolve, reject) => {
@@ -126,6 +140,8 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
     await AsyncStorage.setItem(PUSH_TOKEN_LOCAL_KEY, cacheKey);
     return true;
   } catch (error) {
+    // Ожидаемый шум на холодном старте — тихо выходим, не краснит дев-оверлей.
+    if (isFirestorePermissionDenied(error)) return false;
     DebugLogger.error('push_token_registration.ts:registerPushTokenForServerPush', error, 'warning');
     return false;
   }
@@ -164,6 +180,8 @@ export async function clearPushTokenForServerPush(): Promise<void> {
     }
     await AsyncStorage.removeItem(PUSH_TOKEN_LOCAL_KEY);
   } catch (error) {
+    // Тот же ожидаемый шум — глушим только permission-denied.
+    if (isFirestorePermissionDenied(error)) return;
     DebugLogger.error('push_token_registration.ts:clearPushTokenForServerPush', error, 'warning');
   }
 }

@@ -18,6 +18,7 @@ import {
   getStructuredQuizSourceLocalePayload,
   QUIZ_SOURCE_LOCALE_PAYLOADS,
   type QuizSourceLocalePayload,
+  type QuizSourceLocalePayloadMap,
 } from '../app/quiz_source_locale_payloads';
 import {
   HEISENBERG_BATCH_SOURCE_LOCALES,
@@ -333,6 +334,36 @@ function auditQuizSourceLocaleCoverage(findings: SemanticFinding[]): void {
   }
 }
 
+function normalizeEnglishForPayloadMatch(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function primaryCorrectChoice(entry: QuizPoolAuditEntry): string {
+  const index = Array.isArray(entry.correct) ? entry.correct[0] : entry.correct;
+  return entry.choices[index] ?? '';
+}
+
+function allPayloadEnglishText(payloads: QuizSourceLocalePayloadMap): string {
+  return Object.values(payloads)
+    .filter((payload): payload is QuizSourceLocalePayload => Boolean(payload))
+    .flatMap((payload) => [payload.prompt, ...payload.explanations])
+    .map(normalizeEnglishForPayloadMatch)
+    .join(' ');
+}
+
+function findPayloadMatchingQuizEntry(
+  entries: QuizPoolAuditEntry[],
+  payloads: QuizSourceLocalePayloadMap,
+): QuizPoolAuditEntry | null {
+  const payloadText = allPayloadEnglishText(payloads);
+  if (!payloadText) return null;
+
+  return entries.find((entry) => {
+    const answer = normalizeEnglishForPayloadMatch(primaryCorrectChoice(entry));
+    return answer.length >= 8 && payloadText.includes(answer);
+  }) ?? null;
+}
+
 function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
   auditQuizSourceLocaleCoverage(findings);
   for (const difficulty of DIFFICULTIES) {
@@ -356,6 +387,21 @@ function auditStructuredQuizPayloads(findings: SemanticFinding[]): void {
     for (const ordinal of payloadOrdinals) {
       const entry = entries[ordinal - 1];
       if (!entry) {
+        const matchingEntry = findPayloadMatchingQuizEntry(
+          entries,
+          QUIZ_SOURCE_LOCALE_PAYLOADS[difficulty]?.[ordinal] ?? {},
+        );
+        if (matchingEntry) {
+          pushFinding(findings, {
+            severity: 'warning',
+            code: 'quiz-payload-ordinal-drift',
+            surface: 'quiz',
+            difficulty,
+            ordinal,
+            message: `Structured payload key has no entry at this ordinal, but matches quiz pool entry #${matchingEntry.ordinal}; renumber payloads before relying on this block.`,
+          });
+          continue;
+        }
         pushFinding(findings, {
           severity: 'blocker',
           code: 'quiz-payload-without-source-entry',

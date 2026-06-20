@@ -20,6 +20,7 @@ export type GavanWeek1RuntimeDeferredBlock = {
   blockId: string;
   canonicalExerciseType: string;
   titleRu: string;
+  titleEs: string;
   reason: 'renderer_not_built_yet' | 'media_asset_not_ready_yet';
 };
 
@@ -29,6 +30,7 @@ export type GavanWeek1CanonicalRuntimeBridge = {
   dayIndex: GavanWeek1RuntimeBridgeDayIndex;
   status: 'runtime_bridge_ready_partial';
   dayTitleRu: string;
+  dayTitleEs: string;
   linkedLessonBlocks: PlanExerciseBlock[];
   mediaRendererBlocks: PlanExerciseBlock[];
   bundles: PlanRuntimeBlockBundle[];
@@ -49,6 +51,7 @@ function toRuntimePhrase(phrase: GavanCanonicalPhrase): PersonalPlanPhraseDraft 
     id: phrase.id,
     english: phrase.english,
     russian: phrase.ru,
+    spanish: phrase.es,
     newWords: [...phrase.newWords],
     firstSeenConstructions: [...phrase.firstSeenConstructions],
     visibleOptions: [phrase.english],
@@ -150,11 +153,39 @@ function allMinuteChoices(): Array<5 | 10 | 15 | 20> {
   return [5, 10, 15, 20];
 }
 
+const GAVAN_DAY_TITLE_ES: Record<GavanWeek1RuntimeBridgeDayIndex, string> = {
+  1: 'Inicio sin bloqueo',
+  2: 'Pedir que repitan',
+  3: 'Decir qué necesitas',
+  4: 'Comprobar que entendiste',
+  5: 'Pedirlo más simple',
+  6: 'Responder brevemente',
+  7: 'Armar una conversación',
+};
+
+const GAVAN_EXERCISE_TITLE_ES: Record<GavanCanonicalExerciseBlock['exerciseType'], string> = {
+  lesson_bridge: 'Base antes de practicar',
+  phrase_build: 'Construye la frase',
+  missing_word: 'Completa la palabra clave',
+  natural_choice: 'Elige la opción natural',
+  listening_choice: 'Reconoce de oído',
+  phrase_recall: 'Recuerda sin pistas',
+  quick_reply: 'Respuesta rápida',
+  mistake_repair: 'Corrige el orden',
+  micro_dialogue: 'Microdiálogo',
+  pronunciation_shadow: 'Repite en voz alta',
+};
+
+function gavanExerciseTitleEs(block: GavanCanonicalExerciseBlock): string {
+  return GAVAN_EXERCISE_TITLE_ES[block.exerciseType];
+}
+
 function canonicalBridgeSpec(day: GavanCanonicalDay): PlanRuntimeBlockSpec {
   return {
     id: `gavan-week1-day${day.dayIndex}:canonical-bridge`,
     type: 'plan_choose_natural_phrase',
     title: 'База дня',
+    titleEs: 'Base del día',
     phraseIds: day.phrases.slice(0, 2).map((phrase) => phrase.id),
     estimatedMinutes: 4,
     requiredFor: allMinuteChoices(),
@@ -172,6 +203,7 @@ function specForSupportedBlock(
       id: block.id,
       type: 'plan_choose_natural_phrase',
       title: block.titleRu,
+      titleEs: gavanExerciseTitleEs(block),
       phraseIds: [...block.phraseIds],
       estimatedMinutes: block.estimatedMinutes,
       requiredFor: [10, 15, 20],
@@ -185,6 +217,7 @@ function specForSupportedBlock(
       id: block.id,
       type: 'plan_choose_natural_phrase',
       title: block.titleRu,
+      titleEs: gavanExerciseTitleEs(block),
       phraseIds: [...block.phraseIds],
       estimatedMinutes: block.estimatedMinutes,
       requiredFor: block.exerciseType === 'micro_dialogue' ? [15, 20] : [10, 15, 20],
@@ -198,6 +231,7 @@ function specForSupportedBlock(
       id: block.id,
       type: 'plan_phrase_build',
       title: block.titleRu,
+      titleEs: gavanExerciseTitleEs(block),
       phraseIds: [...block.phraseIds],
       estimatedMinutes: block.estimatedMinutes,
       requiredFor: allMinuteChoices(),
@@ -211,6 +245,7 @@ function specForSupportedBlock(
       id: block.id,
       type: 'plan_missing_word',
       title: block.titleRu,
+      titleEs: gavanExerciseTitleEs(block),
       phraseIds: [...block.phraseIds],
       estimatedMinutes: block.estimatedMinutes,
       requiredFor: [10, 15, 20],
@@ -225,6 +260,7 @@ function specForSupportedBlock(
       id: block.id,
       type: 'plan_phrase_recall',
       title: block.titleRu,
+      titleEs: gavanExerciseTitleEs(block),
       phraseIds: [...block.phraseIds].reverse(),
       estimatedMinutes: block.estimatedMinutes,
       requiredFor: [15, 20],
@@ -255,6 +291,7 @@ function linkedLessonSliceBlock(
     dayIndex: day.dayIndex,
     type: 'linked_lesson_slice',
     title: block.titleRu,
+    titleEs: gavanExerciseTitleEs(block),
     contentUnitIds: [...block.phraseIds],
     estimatedMinutes: block.estimatedMinutes,
     requiredFor: allMinuteChoices(),
@@ -289,6 +326,7 @@ function mediaRendererBlock(
     dayIndex: day.dayIndex,
     type: exerciseType,
     title: block.titleRu,
+    titleEs: gavanExerciseTitleEs(block),
     contentUnitIds: [...block.phraseIds],
     estimatedMinutes: block.estimatedMinutes,
     requiredFor: [15, 20],
@@ -312,6 +350,7 @@ function deferredBlock(block: GavanCanonicalExerciseBlock): GavanWeek1RuntimeDef
     blockId: block.id,
     canonicalExerciseType: block.exerciseType,
     titleRu: block.titleRu,
+    titleEs: gavanExerciseTitleEs(block),
     reason: deferredReason(block),
   };
 }
@@ -391,6 +430,7 @@ export function buildGavanWeek1CanonicalRuntimeBridge(
     dayIndex: input.dayIndex,
     status: 'runtime_bridge_ready_partial',
     dayTitleRu: day.titleRu,
+    dayTitleEs: GAVAN_DAY_TITLE_ES[day.dayIndex],
     linkedLessonBlocks,
     mediaRendererBlocks,
     bundles,

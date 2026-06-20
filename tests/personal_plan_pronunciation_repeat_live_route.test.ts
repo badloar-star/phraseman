@@ -120,7 +120,8 @@ describe('personal plan pronunciation-repeat live route', () => {
     expect(source).toContain('useAudio()');
     expect(source).toContain('listenPronunciationTarget');
     expect(source).toContain('speakAudio(targetText, 0.86');
-    expect(source).toContain('enabled={pronunciationHeardTarget && !pronunciationSpeakingTarget}');
+    // Прослушивание фразы НЕ обязательно — запись доступна сразу; блок только пока звучит target.
+    expect(source).toContain('enabled={!pronunciationSpeakingTarget}');
     expect(source).toContain('\\u25cf\\u25cf\\u25cf \\u25cf\\u25cf\\u25cf \\u25cf\\u25cf\\u25cf');
     expect(source).toContain('scorePlanPronunciationTranscript({');
     expect(source).toContain('PLAN_PRONUNCIATION_PASS_THRESHOLD');

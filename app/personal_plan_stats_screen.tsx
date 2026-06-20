@@ -19,6 +19,10 @@ import { readPlanWeakSpotView, type PlanWeakSpotView } from './personal_plan_wea
 import { readPlanXpLedger, type PlanXpLedgerEntry } from './personal_plan_xp_ledger';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 
+const DAY_CARD_WIDTH = 88;
+const DAY_CARD_GAP = 10;
+const DAY_CARD_STRIDE = DAY_CARD_WIDTH + DAY_CARD_GAP;
+
 type StatsChrome = {
   bg: [string, string, string];
   card: [string, string];
@@ -126,6 +130,7 @@ export default function PersonalPlanStatsScreen() {
   const fadeScrollY = useRef(new Animated.Value(0)).current;
   const fade = useRef(new Animated.Value(0)).current;
   const slide = useRef(new Animated.Value(20)).current;
+  const dayRailRef = useRef<ScrollView | null>(null);
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
 
@@ -164,6 +169,18 @@ export default function PersonalPlanStatsScreen() {
     () => (stats ? Math.max(1, ...stats.weeks.map((w) => w.totalTasks)) : 1),
     [stats],
   );
+
+  // Auto-center the current day in the horizontal day rail when stats load.
+  const currentDayIndex = stats?.currentDayIndex ?? 0;
+  useEffect(() => {
+    if (!stats || stats.days.length === 0) return;
+    const idx = Math.max(0, currentDayIndex - 1);
+    const offset = idx * DAY_CARD_STRIDE - 120;
+    const timer = setTimeout(() => {
+      dayRailRef.current?.scrollTo({ x: Math.max(0, offset), animated: true });
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [stats, currentDayIndex]);
 
   if (!stats) {
     return (
@@ -258,6 +275,50 @@ export default function PersonalPlanStatsScreen() {
             </View>
           </LinearGradient>
 
+          {/* Day-by-day route — moved here from the plan screen. Horizontal rail
+              of day cards with a mini progress bar; the current day is auto-centered. */}
+          {stats.days.length > 0 ? (
+            <LinearGradient colors={chrome.card} style={[styles.sectionCard, { borderColor: chrome.border }]}>
+              <View style={styles.sectionHeader}>
+                <Text style={[styles.sectionKicker, { color: chrome.accent }]}>По дням</Text>
+                <Text style={[styles.sectionTitle, { color: chrome.text }]}>Прогресс по дням</Text>
+              </View>
+              <ScrollView
+                ref={dayRailRef}
+                horizontal
+                decelerationRate="normal"
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.dayRail}
+              >
+                {stats.days.map((item) => (
+                  <View
+                    key={`day-${item.dayIndex}`}
+                    style={[
+                      styles.dayCard,
+                      {
+                        borderColor: item.isCurrent ? chrome.accent : item.isCompleted ? chrome.accent2 + '55' : chrome.border,
+                        backgroundColor: item.isCurrent ? chrome.accentSoft : 'transparent',
+                        opacity: item.isUnlocked ? 1 : 0.38,
+                      },
+                    ]}
+                  >
+                    {item.isCompleted ? (
+                      <Ionicons name="checkmark" size={20} color={chrome.accent2} />
+                    ) : (
+                      <Text style={[styles.dayCardNum, { color: item.isCurrent ? chrome.accent : chrome.text }]}>
+                        {item.dayIndex}
+                      </Text>
+                    )}
+                    <Text style={[styles.dayCardLabel, { color: item.isCurrent ? chrome.accent : chrome.muted }]}>день</Text>
+                    <View style={[styles.dayMiniBar, { backgroundColor: chrome.surface }]}>
+                      <View style={[styles.dayMiniProgress, { width: `${item.progressPct}%`, backgroundColor: item.isCompleted ? chrome.accent2 : chrome.accent }]} />
+                    </View>
+                  </View>
+                ))}
+              </ScrollView>
+            </LinearGradient>
+          ) : null}
+
           {/* Weak spots — where the learner struggles, from plan attempt events */}
           {weakSpots && weakSpots.rows.length > 0 ? (
             <LinearGradient colors={chrome.card} style={[styles.sectionCard, { borderColor: chrome.border }]}>
@@ -340,4 +401,14 @@ const styles = StyleSheet.create({
   weekTrack: { flex: 1, height: 14, borderRadius: 7, overflow: 'hidden' },
   weekFill: { height: '100%', borderRadius: 7 },
   weekPct: { width: 42, textAlign: 'right', fontSize: 13, lineHeight: 16, fontWeight: '900' },
+
+  dayRail: { paddingVertical: 4, gap: DAY_CARD_GAP },
+  dayCard: {
+    width: DAY_CARD_WIDTH, height: 96, borderRadius: 14, borderWidth: 1,
+    alignItems: 'center', justifyContent: 'center', gap: 2, paddingHorizontal: 8,
+  },
+  dayCardNum: { fontSize: 24, lineHeight: 28, fontWeight: '900' },
+  dayCardLabel: { fontSize: 10, lineHeight: 13, fontWeight: '900', textTransform: 'uppercase' },
+  dayMiniBar: { width: '80%', height: 4, borderRadius: 2, overflow: 'hidden', marginTop: 6 },
+  dayMiniProgress: { height: '100%', borderRadius: 2 },
 });

@@ -6,6 +6,7 @@ export type PersonalPlanChooseNaturalPhraseItem = {
   id: string;
   promptRu: string;
   promptUk: string;
+  promptEs?: string;
   correctAnswer: string;
   options: string[];
   grammarTags: string[];
@@ -26,8 +27,11 @@ function fallbackExplanation(correctAnswer: string): LessonTeachingNote {
   return {
     id: `choose_natural_${correctAnswer.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`,
     titleRu: 'Почему этот вариант',
+    titleEs: 'Por qué esta opción',
     correctRu: `${correctAnswer} подходит по смыслу и звучит как обычная короткая фраза. Здесь важно выбрать не красивость, а точное спокойное значение.`,
+    correctEs: `${correctAnswer} encaja por sentido y suena como una frase corta normal. Aquí importa elegir no la opción más bonita, sino el significado exacto y tranquilo.`,
     wrongRu: 'Смотри на русский смысл целиком. Нужна фраза, которая передает именно эту мысль, а не просто похожие знакомые слова.',
+    wrongEs: 'Mira el sentido completo. Necesitamos una frase que transmita justo esa idea, no solo palabras conocidas parecidas.',
   };
 }
 
@@ -36,6 +40,7 @@ function choiceExplanationForPhrase(phraseEnglish: string, note?: LessonTeaching
   return {
     ...note,
     titleRu: note.titleRu ?? 'Почему этот вариант',
+    titleEs: note.titleEs ?? 'Por qué esta opción',
     correctRu: note.correctRu,
     wrongRu: note.wrongRu,
   };
@@ -73,6 +78,7 @@ export function getPersonalPlanChooseNaturalPhraseItems(
         id: String(phrase.id),
         promptRu: phrase.russian,
         promptUk: phrase.ukrainian,
+        ...(phrase.spanish ? { promptEs: phrase.spanish } : {}),
         correctAnswer: phrase.english,
         options,
         grammarTags: phrase.words.map((word) => word.category).filter(Boolean) as string[],

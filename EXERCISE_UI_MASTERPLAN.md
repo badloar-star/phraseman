@@ -1025,3 +1025,6 @@ hintPanel: {
 | 8 | 2071–2077 | Добавить gap:10 в staticScroll |
 | 8 | 2265–2273 | Добавить paddingVertical:10 в hintPanel |
 | 8 | Мёртвые стили | Опциональная очистка phraseBuildCard, missingWordCard, etc. |
+# Localization Note
+
+Historical examples in this plan that reference `item.promptRu` must be read with the current runtime mirror `item.promptEs`: production UI chooses `item.promptEs` for `lang === 'es'` and falls back to `item.promptRu` only when Spanish copy is intentionally absent.

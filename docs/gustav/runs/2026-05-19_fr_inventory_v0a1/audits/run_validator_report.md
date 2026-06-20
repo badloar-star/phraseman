@@ -4,11 +4,11 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `PASS`
 
-Generated at: 2026-05-23T10:19:00.260Z
+Generated at: 2026-06-20T22:03:28.292Z
 
 ## Summary
 
-- Checks/findings: 27376
+- Checks/findings: 27102
 - Blockers: 0
 - Warnings: 0
 

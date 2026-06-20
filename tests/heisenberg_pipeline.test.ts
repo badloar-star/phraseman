@@ -56,6 +56,7 @@ describe('heisenberg localization pipeline core', () => {
     expect(core.shouldSkipRelative('docs/heisenberg/es/manifest.json')).toBe(true);
     expect(core.shouldSkipRelative('docs/HEISENBERG_LOCALIZATION_PIPELINE.md')).toBe(false);
     expect(core.shouldSkipRelative('.claude/settings.local.json')).toBe(true);
+    expect(core.shouldSkipRelative('.codex-tmp/edge-profile/domains_config.json')).toBe(true);
   });
 
   it('generates a mandatory agent review board with stable reviewer roles', () => {
@@ -621,7 +622,7 @@ describe('heisenberg localization pipeline core', () => {
   it('keeps French study-target curriculum out of existing Spanish UI blockers', () => {
     const inventory = {
       totals: {
-        filesScanned: 5,
+        filesScanned: 8,
         localizedItems: 4,
         byLocale: { ru: 2, uk: 2 },
         bySurface: { 'app-other': 4 },
@@ -652,6 +653,24 @@ describe('heisenberg localization pipeline core', () => {
           markers: { studyTargetLang: 1 },
         },
         {
+          file: 'app/lesson_hard_mode_answer_tolerance.ts',
+          surface: 'app-other',
+          localizedItems: 0,
+          markers: { studyTargetLang: 1 },
+        },
+        {
+          file: 'app/lesson_teaching_notes.ts',
+          surface: 'app-other',
+          localizedItems: 0,
+          markers: { studyTargetLang: 1 },
+        },
+        {
+          file: 'app/personal_plan_mistake_context.ts',
+          surface: 'app-other',
+          localizedItems: 0,
+          markers: { studyTargetLang: 1 },
+        },
+        {
           file: 'components/MasteryReplayModal.tsx',
           surface: 'app-other',
           localizedItems: 0,
@@ -670,7 +689,7 @@ describe('heisenberg localization pipeline core', () => {
 
     expect(audit.summary.fieldCoverageGapFiles).toBe(0);
     expect(audit.summary.itemCoverageGapFiles).toBe(0);
-    expect(audit.summary.isolatedStudyTargetFiles).toBe(5);
+    expect(audit.summary.isolatedStudyTargetFiles).toBe(8);
     expect(audit.summary.studyTargetRiskFiles).toBe(0);
     expect(audit.blockers).toEqual([]);
   });

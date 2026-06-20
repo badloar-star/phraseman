@@ -105,12 +105,13 @@ import ExplainSheet from '../components/ExplainSheet';
 import AiMistakeCard from '../components/AiMistakeCard';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
-import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
 import { lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
 import { useMistakeExplain } from './use_mistake_explain';
+import { isExplainEnabled } from './explain_phrase_flags';
 
 const GRAMMAR_HINTS = [
   {
@@ -656,6 +657,10 @@ const LessonContent = React.memo(function LessonContent({
   }, [status, phraseWordIdx, contrExpanded, shuffled]);
   // [EXPLAIN] «Объясни проще» — только ПОСЛЕ ответа. Тот же дневной лимит (fifty_fifty_* счётчик).
   const [explainOpen, setExplainOpen] = useState(false);
+  // Флаг-гейт фичи «Объясни проще» (kill-switch из «Пульта»/env). Кнопка в футере
+  // видна на экране результата НЕЗАВИСИМО от того, верно ответил юзер или нет —
+  // объясняет САМУ фразу простыми словами (CF explainPhrase, кэш per-(фраза+язык)).
+  const explainFeatureOn = isExplainEnabled();
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
   // До ответа: открыть, только если ещё есть кредиты. Кредит НЕ списываем здесь —
   // только когда шторка реально сгенерит (cache MISS) в onExplainResolved: бесплатный
@@ -1436,6 +1441,45 @@ const LessonContent = React.memo(function LessonContent({
             </LessonPressable>
           )}
 
+          {/* [EXPLAIN] «Объясни проще» — в футере на экране результата, НЕЗАВИСИМО от того,
+              верно ответил юзер или нет. Объясняет саму фразу простыми словами через общую
+              шторку ExplainSheet (CF explainPhrase, глобальный кэш per-(фраза+язык)). */}
+          {status === 'result' && explainFeatureOn && (
+            <LessonPressable
+              testID="lesson1-explain"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Объяснить фразу простыми словами',
+                uk: 'Пояснити фразу простими словами',
+                es: 'Explicar la frase con palabras simples',
+                'pt-BR': 'Explicar a frase em palavras simples',
+                vi: 'Giải thích câu bằng lời đơn giản',
+                id: 'Jelaskan frasa dengan kata sederhana',
+                tr: 'Cümleyi basit kelimelerle açıkla',
+                pl: 'Wyjaśnij frazę prościej',
+              })}
+              style={{ flex: 1, alignItems: 'center' }}
+              onPress={() => {
+                hapticTap();
+                setExplainOpen(true);
+              }}
+            >
+              <Ionicons name="bulb-outline" size={26} color={sx.second} />
+              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
+                {triLang(lang, {
+                  ru: 'Объяснить',
+                  uk: 'Пояснити',
+                  es: 'Explicar',
+                  'pt-BR': 'Explicar',
+                  vi: 'Giải thích',
+                  id: 'Jelaskan',
+                  tr: 'Açıkla',
+                  pl: 'Wyjaśnij',
+                })}
+              </Text>
+            </LessonPressable>
+          )}
+
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}
           {status === 'result' && (
             <LessonPressable
@@ -1561,7 +1605,7 @@ const LessonContent = React.memo(function LessonContent({
             visible={explainOpen}
             onClose={() => setExplainOpen(false)}
             onResolved={onExplainResolved}
-            phraseEn={(status === 'result' && resultCorrectLine) ? resultCorrectLine : phraseAnswerDisplayLine(phrase, studyTarget, lang)}
+            phraseEn={aiMistakeTargetLine || ((status === 'result' && resultCorrectLine) ? resultCorrectLine : phraseAnswerDisplayLine(phrase, studyTarget, lang))}
             phraseMeaning={lang === 'uk' ? (phrase.ukrainian || phrase.russian) : (lang === 'es' && phrase.spanish ? phrase.spanish : phrase.russian)}
             lang={lang}
           />
@@ -1702,7 +1746,7 @@ export default function LessonScreen() {
     let cancelled = false;
     void (async () => {
       const blocked = !isPlanPhraseLessonTask && await shouldBlockLessonAccess(lessonId, studyTarget);
-      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+      if (!cancelled && blocked) await openLessonGateByRuntime(router, lessonId, studyTarget);
     })();
     return () => { cancelled = true; };
   }, [lessonId, router, isPlanPhraseLessonTask]);

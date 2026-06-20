@@ -55,4 +55,15 @@ describe('paywall_percentile_line — pickPercentileLine', () => {
     const es = pickPercentileLine('streak', p, { streak: 12 }, 'es');
     expect(ru).not.toEqual(es);
   });
+
+  it('поддерживает planned locale ветки без русского fallback', () => {
+    const p = makePercentiles({ weekXp: 75 });
+    const pt = pickPercentileLine('intro_ended', p, { streak: 3 }, 'pt-BR');
+    const pl = pickPercentileLine('intro_ended', p, { streak: 3 }, 'pl');
+
+    expect(pt).toContain('top-25%');
+    expect(pt).toContain('alunos');
+    expect(pl).toContain('top-25%');
+    expect(pl).toContain('uczniów');
+  });
 });

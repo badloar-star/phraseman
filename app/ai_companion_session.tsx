@@ -183,7 +183,16 @@ export default function AiCompanionSession() {
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flex: 1, textAlign: 'center' }} numberOfLines={1}>
-            {triLang(lang, { ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre' })}
+            {triLang(lang, {
+              ru: 'Свободный разговор',
+              uk: 'Вільна розмова',
+              es: 'Conversación libre',
+              'pt-BR': 'Conversa livre',
+              vi: 'Trò chuyện tự do',
+              id: 'Percakapan bebas',
+              tr: 'Serbest sohbet',
+              pl: 'Swobodna rozmowa',
+            })}
           </Text>
           {/* Пробный бесплатный диалог — без счётчика реплик, он один. */}
           {!hasPremiumAccess ? (
@@ -203,11 +212,25 @@ export default function AiCompanionSession() {
                 ru: 'Пробный бесплатный диалог',
                 uk: 'Пробний безкоштовний діалог',
                 es: 'Diálogo de prueba gratis',
+                'pt-BR': 'Diálogo grátis de teste',
+                vi: 'Cuộc đối thoại dùng thử miễn phí',
+                id: 'Dialog uji coba gratis',
+                tr: 'Ücretsiz deneme diyaloğu',
+                pl: 'Darmowy dialog próbny',
               })}
             >
               <Ionicons name="gift-outline" size={13} color={t.accent} />
               <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'проба', uk: 'проба', es: 'prueba' })}
+                {triLang(lang, {
+                  ru: 'проба',
+                  uk: 'проба',
+                  es: 'prueba',
+                  'pt-BR': 'teste',
+                  vi: 'thử',
+                  id: 'coba',
+                  tr: 'deneme',
+                  pl: 'próba',
+                })}
               </Text>
             </View>
           ) : (
@@ -294,7 +317,16 @@ export default function AiCompanionSession() {
                         }}
                         activeOpacity={0.6}
                         accessibilityRole="button"
-                        accessibilityLabel={triLang(lang, { ru: 'Озвучить реплику', uk: 'Озвучити репліку', es: 'Reproducir frase' })}
+                        accessibilityLabel={triLang(lang, {
+                          ru: 'Озвучить реплику',
+                          uk: 'Озвучити репліку',
+                          es: 'Reproducir frase',
+                          'pt-BR': 'Reproduzir fala',
+                          vi: 'Phát câu trả lời',
+                          id: 'Putar ucapan',
+                          tr: 'Repliği seslendir',
+                          pl: 'Odtwórz kwestię',
+                        })}
                         style={{
                           width: 44,
                           minHeight: 44,
@@ -351,7 +383,16 @@ export default function AiCompanionSession() {
                     }}
                     maxFontSizeMultiplier={1.2}
                   >
-                    {triLang(lang, { ru: 'Что можно спросить', uk: 'Що можна запитати', es: 'Qué puedes preguntar' })}
+                    {triLang(lang, {
+                      ru: 'Что можно спросить',
+                      uk: 'Що можна запитати',
+                      es: 'Qué puedes preguntar',
+                      'pt-BR': 'O que você pode perguntar',
+                      vi: 'Bạn có thể hỏi gì',
+                      id: 'Yang bisa kamu tanyakan',
+                      tr: 'Ne sorabilirsin',
+                      pl: 'O co możesz zapytać',
+                    })}
                   </Text>
                   <Text
                     style={{
@@ -365,6 +406,11 @@ export default function AiCompanionSession() {
                       ru: 'Спроси про фразу, прогресс или свой следующий шаг. Можно ответить Компасу по-английски одной короткой фразой.',
                       uk: 'Запитай про фразу, прогрес або свій наступний крок. Можна відповісти Компасу англійською однією короткою фразою.',
                       es: 'Pregunta por una frase, tu progreso o el siguiente paso. También puedes responder a Compass en inglés con una frase corta.',
+                      'pt-BR': 'Pergunte sobre uma frase, seu progresso ou o próximo passo. Você também pode responder ao Compass em inglês com uma frase curta.',
+                      vi: 'Hãy hỏi về một cụm từ, tiến độ của bạn hoặc bước tiếp theo. Bạn cũng có thể trả lời Compass bằng tiếng Anh bằng một câu ngắn.',
+                      id: 'Tanyakan tentang frasa, progresmu, atau langkah berikutnya. Kamu juga bisa menjawab Compass dalam bahasa Inggris dengan satu kalimat pendek.',
+                      tr: 'Bir ifade, ilerlemen veya sonraki adımın hakkında sor. Compass\'a İngilizce kısa bir cümleyle de yanıt verebilirsin.',
+                      pl: 'Zapytaj o frazę, postęp albo następny krok. Możesz też odpowiedzieć Compassowi po angielsku jednym krótkim zdaniem.',
                     })}
                   </Text>
                 </View>
@@ -390,6 +436,11 @@ export default function AiCompanionSession() {
                 ru: 'Спроси о фразе или прогрессе',
                 uk: 'Запитай про фразу або прогрес',
                 es: 'Pregunta por una frase o tu progreso',
+                'pt-BR': 'Pergunte sobre uma frase ou seu progresso',
+                vi: 'Hỏi về một cụm từ hoặc tiến độ',
+                id: 'Tanyakan frasa atau progresmu',
+                tr: 'Bir ifade veya ilerlemen hakkında sor',
+                pl: 'Zapytaj o frazę albo postęp',
               })}
               placeholderTextColor={t.textMuted}
               editable={!sending}

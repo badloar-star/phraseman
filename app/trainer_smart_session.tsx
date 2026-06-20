@@ -138,46 +138,71 @@ const MODE_META: Record<TrainerPremiumMode, { icon: keyof typeof Ionicons.glyphM
   smart_mix: {
     icon: 'sparkles',
     accent: '#FACC15',
-    title: { ru: 'Smart Mix', uk: 'Smart Mix', es: 'Smart Mix' },
+    title: { ru: 'Smart Mix', uk: 'Smart Mix', es: 'Smart Mix', 'pt-BR': 'Smart Mix', vi: 'Smart Mix', id: 'Smart Mix', tr: 'Smart Mix', pl: 'Smart Mix' },
     sub: {
       ru: 'Короткая тренировка по тому, что стоит повторить сейчас.',
       uk: 'Коротке тренування того, що варто повторити зараз.',
       es: 'Entrenamiento corto con lo que conviene repasar ahora.',
+      'pt-BR': 'Treino curto com o que vale revisar agora.',
+      vi: 'Bài luyện ngắn với những gì nên ôn ngay bây giờ.',
+      id: 'Latihan singkat untuk hal yang perlu diulang sekarang.',
+      tr: 'Şimdi tekrar edilmesi gerekenlerle kısa bir antrenman.',
+      pl: 'Krótki trening z tym, co warto teraz powtórzyć.',
     },
   },
   weak: {
     icon: 'pulse',
     accent: '#A78BFA',
-    title: { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos debiles' },
+    title: { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos debiles', 'pt-BR': 'Pontos fracos', vi: 'Điểm yếu', id: 'Titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe miejsca' },
     sub: {
       ru: 'Карточки, которые еще не стали стабильными.',
       uk: 'Картки, які ще не стали стабільними.',
       es: 'Tarjetas que aun no son estables.',
+      'pt-BR': 'Cartões que ainda não ficaram estáveis.',
+      vi: 'Những thẻ vẫn chưa ổn định.',
+      id: 'Kartu yang belum stabil.',
+      tr: 'Henüz kalıcı hale gelmeyen kartlar.',
+      pl: 'Karty, które nie są jeszcze stabilne.',
     },
   },
   hard: {
     icon: 'flame',
     accent: '#FB7185',
-    title: { ru: 'Тяжелые ошибки', uk: 'Важкі помилки', es: 'Errores duros' },
+    title: { ru: 'Тяжелые ошибки', uk: 'Важкі помилки', es: 'Errores duros', 'pt-BR': 'Erros difíceis', vi: 'Lỗi khó', id: 'Kesalahan sulit', tr: 'Zor hatalar', pl: 'Trudne błędy' },
     sub: {
       ru: 'Самые повторяющиеся ошибки идут первыми.',
       uk: 'Найчастіші помилки йдуть першими.',
       es: 'Los errores repetidos van primero.',
+      'pt-BR': 'Os erros mais repetidos vêm primeiro.',
+      vi: 'Những lỗi lặp lại nhiều nhất sẽ xuất hiện trước.',
+      id: 'Kesalahan yang paling sering terulang muncul lebih dulu.',
+      tr: 'En çok tekrarlanan hatalar önce gelir.',
+      pl: 'Najczęściej powtarzające się błędy idą pierwsze.',
     },
   },
 };
 
 const SESSION_COACH: Record<TrainerPremiumMode, Partial<Record<Lang, string>>> = {
-  smart_mix: { ru: '', uk: '', es: '' },
+  smart_mix: { ru: '', uk: '', es: '', 'pt-BR': '', vi: '', id: '', tr: '', pl: '' },
   weak: {
     ru: 'Сейчас важна не скорость, а честная попытка вспомнить до выбора.',
     uk: 'Зараз важлива не швидкість, а чесна спроба згадати до вибору.',
     es: 'Ahora importa recordar antes de elegir.',
+    'pt-BR': 'Agora o importante não é a velocidade, mas tentar lembrar antes de escolher.',
+    vi: 'Lúc này không cần nhanh, quan trọng là thật sự cố nhớ trước khi chọn.',
+    id: 'Sekarang yang penting bukan kecepatan, tetapi usaha jujur untuk mengingat sebelum memilih.',
+    tr: 'Şimdi hız değil, seçmeden önce dürüstçe hatırlamaya çalışmak önemli.',
+    pl: 'Teraz liczy się nie szybkość, tylko uczciwa próba przypomnienia sobie przed wyborem.',
   },
   hard: {
     ru: 'Тяжелые ошибки идут первыми: именно они дают самый заметный рост.',
     uk: 'Важкі помилки йдуть першими: саме вони дають найпомітніший ріст.',
     es: 'Los errores duros van primero: ahi esta el progreso.',
+    'pt-BR': 'Os erros difíceis vêm primeiro: é neles que o progresso aparece mais.',
+    vi: 'Các lỗi khó lên trước: chính chúng tạo ra tiến bộ rõ nhất.',
+    id: 'Kesalahan sulit muncul lebih dulu: di situlah perkembangan paling terasa.',
+    tr: 'Zor hatalar önce gelir: en görünür ilerleme tam orada olur.',
+    pl: 'Trudne błędy idą pierwsze: to one dają najbardziej widoczny postęp.',
   },
 };
 
@@ -995,7 +1020,7 @@ export default function TrainerSmartSession() {
                         vi: `${current.item.mistakeCount} lỗi`,
                         id: `${current.item.mistakeCount} kes.`,
                         tr: `${current.item.mistakeCount} hata`,
-                        pl: `${current.item.mistakeCount} b?.`,
+                        pl: `${current.item.mistakeCount} bł.`,
                       })}
                     </Text>
                   </View>

@@ -183,7 +183,11 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
       <TouchableOpacity
         onPress={openForm}
         disabled={sent}
-        style={[styles.trigger, sent && styles.triggerMuted]}
+        style={[
+          styles.trigger,
+          { borderColor: sent ? t.border : `${t.wrong}55`, backgroundColor: t.bgSurface2 },
+          sent && styles.triggerMuted,
+        ]}
         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         accessibilityRole="button"
         accessibilityLabel={triLang(uiLang, {
@@ -325,12 +329,15 @@ export default memo(ExplainReportButton);
 
 const styles = StyleSheet.create({
   trigger: {
+    alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 7,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    opacity: 0.92,
+    borderRadius: 10,
+    borderWidth: 1,
+    minHeight: 34,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
   },
   triggerMuted: {
     opacity: 0.7,

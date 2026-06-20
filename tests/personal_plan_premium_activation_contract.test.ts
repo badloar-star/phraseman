@@ -113,7 +113,12 @@ describe('personal plan premium activation contract', () => {
     expect(onboarding).toContain('queuePendingPersonalPlanActivation');
     expect(onboarding).toContain('activatePendingPersonalPlanAfterPremium');
     expect(onboarding).toContain('hasPremiumAccess');
-    expect(onboarding).toContain('if (hasPremiumAccess || introFullAccessStarted)');
+    // CTA пейвола ДОЛЖЕН делать реальную покупку, а не подменять её стартом intro-доступа.
+    // Раньше ветка `if (hasPremiumAccess || introFullAccessStarted)` всегда срабатывала
+    // (onIntroFullAccessStart всегда true) → покупка пропускалась, экран просто перекидывал
+    // на ввод имени. Покупку пропускаем ТОЛЬКО при реальном Premium.
+    expect(onboarding).toContain('if (hasPremiumAccess && !FORCE_PREMIUM)');
+    expect(onboarding).not.toContain('if (hasPremiumAccess || introFullAccessStarted)');
     expect(onboarding).toContain("source: 'onboarding'");
     expect(onboarding).toContain('onPersonalPlanPaywallStart');
     expect(onboarding).toContain('openSelectedPlanAbPaywall');

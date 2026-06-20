@@ -67,19 +67,46 @@ export default function PaywallCtaBlock({
           {restoring
             ? <ActivityIndicator size="small" color={textMuted} style={{ width: 80 }} />
             : <Text style={[S.footerLink, { color: textMuted }]}>
-                {triLang(lang, { ru: 'Восстановить', uk: 'Відновити', es: 'Restaurar' })}
+                {triLang(lang, {
+                  ru: 'Восстановить',
+                  uk: 'Відновити',
+                  es: 'Restaurar',
+                  'pt-BR': 'Restaurar',
+                  vi: 'Khôi phục',
+                  id: 'Pulihkan',
+                  tr: 'Geri yükle',
+                  pl: 'Przywróć',
+                })}
               </Text>}
         </TouchableOpacity>
         <Text style={[S.footerDot, { color: textMuted }]}>·</Text>
         <TouchableOpacity onPress={() => Linking.openURL('https://phraseman.app/terms').catch(() => {})}>
           <Text style={[S.footerLink, { color: textMuted }]}>
-            {triLang(lang, { ru: 'Условия', uk: 'Умови', es: 'Términos' })}
+            {triLang(lang, {
+              ru: 'Условия',
+              uk: 'Умови',
+              es: 'Términos',
+              'pt-BR': 'Termos',
+              vi: 'Điều khoản',
+              id: 'Syarat',
+              tr: 'Şartlar',
+              pl: 'Warunki',
+            })}
           </Text>
         </TouchableOpacity>
         <Text style={[S.footerDot, { color: textMuted }]}>·</Text>
         <TouchableOpacity onPress={() => Linking.openURL('https://phraseman.app/privacy').catch(() => {})}>
           <Text style={[S.footerLink, { color: textMuted }]}>
-            {triLang(lang, { ru: 'Конфиденциальность', uk: 'Конфіденційність', es: 'Privacidad' })}
+            {triLang(lang, {
+              ru: 'Конфиденциальность',
+              uk: 'Конфіденційність',
+              es: 'Privacidad',
+              'pt-BR': 'Privacidade',
+              vi: 'Quyền riêng tư',
+              id: 'Privasi',
+              tr: 'Gizlilik',
+              pl: 'Prywatność',
+            })}
           </Text>
         </TouchableOpacity>
       </View>
@@ -88,7 +115,16 @@ export default function PaywallCtaBlock({
       {!hideFooter && onContinueFree && (
         <TouchableOpacity onPress={onContinueFree} style={S.ghost}>
           <Text style={[S.ghostText, { color: textMuted }]}>
-            {triLang(lang, { ru: 'Продолжить бесплатно', uk: 'Продовжити безкоштовно', es: 'Continuar gratis' })}
+            {triLang(lang, {
+              ru: 'Продолжить бесплатно',
+              uk: 'Продовжити безкоштовно',
+              es: 'Continuar gratis',
+              'pt-BR': 'Continuar grátis',
+              vi: 'Tiếp tục miễn phí',
+              id: 'Lanjut gratis',
+              tr: 'Ücretsiz devam et',
+              pl: 'Kontynuuj za darmo',
+            })}
           </Text>
         </TouchableOpacity>
       )}

@@ -129,7 +129,7 @@ export function stickyStringsFor(
         tr: `${args.trialDays} gün ücretsiz`,
         pl: `${args.trialDays} dni za darmo`,
       })
-    : triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium' });
+    : triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' });
   const sub = args.price ? ctaSubLineFor(lang, { price: args.price, period: args.period, hasTrial: !!args.trialDays, isLifetime: args.isLifetime }) : '';
   // Кнопка sticky-бара повторяет смысл главной CTA, а не безликое «Начать»:
   // при триале — «Попробовать бесплатно», иначе — «Открыть доступ» (lifetime — «Купить навсегда»).

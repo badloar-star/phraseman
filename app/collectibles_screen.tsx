@@ -24,6 +24,8 @@ import {
   COLLECTIBLE_RARITY_COLORS,
   COLLECTIBLE_RARITY_LABELS,
   COLLECTIBLE_SETS,
+  collectibleCardTextForLang,
+  collectibleSetTitleForLang,
   collectiblesTotalCount,
   type CollectibleCardData,
   type CollectibleSecretData,
@@ -157,12 +159,14 @@ function SetSection({
   onOpenCard,
   t,
   f,
+  lang,
 }: {
   set: CollectibleSetData;
   ownedMap: CollectiblesOwnedMap;
   onOpenCard: (target: DetailTarget) => void;
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
+  lang: string;
 }) {
   // Показываем ТОЛЬКО собранные карточки — коллекция, а не чек-лист.
   const ownedCards = set.cards.filter((c) => ownedMap[c.id] != null);
@@ -172,6 +176,7 @@ function SetSection({
   if (totalOwned === 0) return null;
 
   const complete = totalOwned >= set.cards.length + 1;
+  const setTitle = collectibleSetTitleForLang(set, lang);
 
   return (
     <View
@@ -188,7 +193,7 @@ function SetSection({
     >
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, gap: 8 }}>
         <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }} numberOfLines={1}>
-          {set.titleRu}
+          {setTitle}
         </Text>
         {complete && <Ionicons name="checkmark-circle" size={16} color={SECRET_GOLD} />}
         <Text style={{ color: complete ? SECRET_GOLD : t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
@@ -232,6 +237,8 @@ function CardDetailModal({
 
   if (!target) return null;
   const { card, set } = target;
+  const setTitle = collectibleSetTitleForLang(set, lang);
+  const cardText = collectibleCardTextForLang(card, lang);
   const isSecret = target.kind === 'secret';
   const rarityColor = isSecret
     ? SECRET_GOLD
@@ -285,7 +292,7 @@ function CardDetailModal({
               <Text style={{ color: rarityColor, fontSize: 11.5, fontWeight: '900' }}>{rarityLabel}</Text>
             </View>
             <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginLeft: 10, flex: 1 }} numberOfLines={1}>
-              {set.titleRu}
+              {setTitle}
             </Text>
             <TapScale onPress={onClose} hitSlop={12}>
               <Ionicons name="close" size={26} color={t.textPrimary} />
@@ -339,7 +346,7 @@ function CardDetailModal({
               </Text>
             )}
             <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 8 }}>
-              {card.ru}
+              {cardText.translation}
             </Text>
 
             {section(triLang(lang, {
@@ -351,7 +358,7 @@ function CardDetailModal({
               id: 'Secara harfiah',
               tr: 'Kelime kelime',
               pl: 'Dosłownie',
-            }), card.literalRu)}
+            }), cardText.literal)}
             {section(triLang(lang, {
               ru: 'Что значит',
               uk: 'Що означає',
@@ -361,7 +368,7 @@ function CardDetailModal({
               id: 'Apa artinya',
               tr: 'Ne anlama gelir',
               pl: 'Co oznacza',
-            }), card.meaningRu)}
+            }), cardText.meaning)}
             {!!card.exampleEn && (
               <View style={{ marginTop: 14 }}>
                 <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
@@ -380,7 +387,7 @@ function CardDetailModal({
                   {card.exampleEn}
                 </Text>
                 <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 21, marginTop: 2 }}>
-                  {card.exampleRu}
+                  {cardText.example}
                 </Text>
               </View>
             )}
@@ -393,7 +400,7 @@ function CardDetailModal({
               id: 'Asal usul',
               tr: 'Kökeni',
               pl: 'Pochodzenie',
-            }), card.originRu)}
+            }), cardText.origin)}
           </ScrollView>
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 22, paddingBottom: 14 }}>
@@ -538,7 +545,7 @@ export default function CollectiblesScreen() {
               data={COLLECTIBLE_SETS}
               keyExtractor={(s) => s.setId}
               renderItem={({ item }) => (
-                <SetSection set={item} ownedMap={ownedMap} onOpenCard={openDetail} t={t} f={f} />
+                <SetSection set={item} ownedMap={ownedMap} onOpenCard={openDetail} t={t} f={f} lang={lang} />
               )}
               contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
               showsVerticalScrollIndicator={false}

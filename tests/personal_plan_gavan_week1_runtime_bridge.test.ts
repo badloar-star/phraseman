@@ -12,6 +12,7 @@ describe('Gavan week 1 canonical runtime bridge', () => {
 
       expect(bridge.status).toBe('runtime_bridge_ready_partial');
       expect(bridge.dayIndex).toBe(dayIndex);
+      expect(bridge.dayTitleEs).toBeTruthy();
       expect(bridge.bundles.length).toBeGreaterThan(0);
       expect(bridge.linkedLessonBlocks.length).toBeGreaterThan(0);
       expect(Array.isArray(bridge.mediaRendererBlocks)).toBe(true);
@@ -64,6 +65,9 @@ describe('Gavan week 1 canonical runtime bridge', () => {
 
     expect(day1.bundles[0].block.id).toBe('gavan-week1-day1:canonical-bridge');
     expect(day1.bundles[0].block.title).toBe('База дня');
+    expect(day1.bundles[0].block.titleEs).toBe('Base del día');
+    expect(bridge1.dayTitleEs).toBe('Inicio sin bloqueo');
+    expect(bridge1.linkedLessonBlocks[0].titleEs).toBe('Base antes de practicar');
     expect(day1.bundles.map((bundle) => bundle.block.type)).toEqual([
       'plan_choose_natural_phrase',
       'plan_phrase_build',

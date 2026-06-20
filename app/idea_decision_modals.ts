@@ -26,10 +26,12 @@ async function readAppLang(): Promise<string> {
 }
 
 function okButtonLabel(lang: string): string {
+  if (lang.startsWith('es')) return 'Listo';
   return lang.startsWith('uk') ? 'Зрозуміло' : 'Понятно';
 }
 
-function pickByLang(ru: string, uk: string, lang: string): string {
+function pickByLang(ru: string, uk: string, es: string, lang: string): string {
+  if (lang.startsWith('es')) return es || ru || uk;
   return lang.startsWith('uk') ? uk || ru : ru || uk;
 }
 
@@ -70,8 +72,8 @@ export async function flushIdeaDecisionModals(): Promise<void> {
       .sort((a, b) => Number(a.createdAt ?? 0) - Number(b.createdAt ?? 0));
 
     for (const r of rows) {
-      const title = pickByLang(String(r.titleRu || ''), String(r.titleUk || ''), lang);
-      const message = pickByLang(String(r.messageRu || ''), String(r.messageUk || ''), lang);
+      const title = pickByLang(String(r.titleRu || ''), String(r.titleUk || ''), String(r.titleEs || ''), lang);
+      const message = pickByLang(String(r.messageRu || ''), String(r.messageUk || ''), String(r.messageEs || ''), lang);
       if (!title && !message) {
         // нечего показывать — но всё равно гасим, чтобы не зациклиться
       } else {

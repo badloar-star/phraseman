@@ -35,6 +35,13 @@ function q(
     ru,
     uk,
     es: es ?? ru,
+    sourceLocales: {
+      'pt-BR': { prompt: es ?? ru, explanations },
+      vi: { prompt: es ?? ru, explanations },
+      id: { prompt: es ?? ru, explanations },
+      tr: { prompt: es ?? ru, explanations },
+      pl: { prompt: es ?? ru, explanations },
+    },
     choices,
     correct,
     answer,

@@ -57,6 +57,8 @@ import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
+import { activatePendingPersonalPlanAfterPremium, clearPendingPersonalPlanActivation, readPendingPersonalPlanActivation } from '../personal_plan_activation';
+import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
@@ -1057,6 +1059,29 @@ export default function HomeScreen() {
         streakScaleAnim.setValue(1);
         const endPerf = perfMark('home:loadData');
         try {
+            // Самовосстановление личного плана: на онбординге выбранный план кладётся в
+            // очередь pending-активации ДО пейвола. Если активация не доехала (план не
+            // активировался → на главной снова «Составь свой маршрут»), дожимаем её здесь,
+            // ДО чтения состояния плана. ВАЖНО: активируем ТОЛЬКО при реальном премиум-доступе
+            // — иначе фри-юзер, нажавший «продолжить бесплатно» на пейволе, получил бы готовый
+            // план бесплатно (pending ставится до развилки покупки). Премиум читаем из storage
+            // (getVerifiedRealPremiumStatus), а не из React-стейта: при холодном старте стейт
+            // ещё может не подтянуться. Нет премиума → чистим очередь (план не положен).
+            // activate сама чистит очередь, так что для уже-активного плана это no-op.
+            try {
+                const existingPlanState = await readPersonalPlanState();
+                if (existingPlanState == null) {
+                    const pendingPlan = await readPendingPersonalPlanActivation();
+                    if (pendingPlan != null) {
+                        const hasRealPremium = await getVerifiedRealPremiumStatus().catch(() => false);
+                        if (hasRealPremium) {
+                            await activatePendingPersonalPlanAfterPremium();
+                        } else {
+                            await clearPendingPersonalPlanActivation();
+                        }
+                    }
+                }
+            } catch { /* best-effort: не блокируем загрузку главной */ }
             const [name, streakVal, weekData, currentWeekMarkers, weekPts, xpStored, shardsBal, storedTitleKey, activePlanState, planSnapshot, premiumSignalPairs] = await Promise.all([
                 AsyncStorage.getItem('user_name'),
                 AsyncStorage.getItem('streak_count'),
@@ -1975,22 +2000,14 @@ export default function HomeScreen() {
                   <AppMessagesInbox />
                 </View>
               )}
-              <View pointerEvents="box-none">
-                {homeLeagueRaceVisible && (homeLeagueCrownCount > 0 || homeLeagueCrownExpiresAt > Date.now()) ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
-                    <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1} count={Math.max(1, homeLeagueCrownCount)}/>
-                  </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1}>{userName || 'Phraseman'}</Text>)}
-              </View>
-              {/* Анимация начисления осколков */}
-              <Animated.Text style={{
-                position: 'absolute', top: -18, right: 0,
-                color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 13, fontWeight: '700',
-                opacity: shardsBonusAnim,
-                transform: [{ translateY: shardsBonusAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }],
-            }}>{shardsBonusText}</Animated.Text>
-              {/* Energy + shards — в одной строке (только когда энергия видна) */}
-              {!homeHeaderAccessLayout && (
-              <View style={{ flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'space-between', marginTop: 6, gap: 8 }}>
-                {showHomeEnergy && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
+              {/* Строка 1: имя (ник) + энергия на одном уровне (когда энергия видна) */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <View pointerEvents="box-none" style={{ flex: 1, minWidth: 0 }}>
+                  {homeLeagueRaceVisible && (homeLeagueCrownCount > 0 || homeLeagueCrownExpiresAt > Date.now()) ? (<View style={{ marginTop: 2, alignSelf: 'flex-start', maxWidth: '100%' }}>
+                      <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1} count={Math.max(1, homeLeagueCrownCount)}/>
+                    </View>) : isPremium ? (<PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient/>) : isVip ? (<VipGreenUserName text={userName || 'Phraseman'} fontSize={f.h1}/>) : (<Text style={{ color: t.heroTextPrimary, fontSize: f.h1, fontWeight: '700', marginTop: 2 }} numberOfLines={1}>{userName || 'Phraseman'}</Text>)}
+                </View>
+                {!homeHeaderAccessLayout && showHomeEnergy && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
                   <View ref={energyIconRef} collapsable={false} style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
                 <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ flexDirection: homeEnergyHeaderStacked ? 'column' : 'row', alignItems: homeEnergyHeaderStacked ? 'flex-end' : 'center', gap: homeEnergyHeaderStacked ? 2 : 4, flexShrink: 1, minWidth: 0, maxWidth: homeHeaderEnergyClusterMaxWidth }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 0, width: homeEnergyIconsWidth, maxWidth: '100%' }}>
@@ -2016,20 +2033,28 @@ export default function HomeScreen() {
                 </TouchableOpacity>
                   </View>
                 </View>)}
-
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-                  <TouchableOpacity activeOpacity={0.75} onPress={() => {
+              </View>
+              {/* Анимация начисления осколков */}
+              <Animated.Text style={{
+                position: 'absolute', top: -18, right: 0,
+                color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 13, fontWeight: '700',
+                opacity: shardsBonusAnim,
+                transform: [{ translateY: shardsBonusAnim.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }],
+            }}>{shardsBonusText}</Animated.Text>
+              {/* Строка 2: шарды + видео + инбокс — отдельной строкой ниже (когда энергия видна) */}
+              {!homeHeaderAccessLayout && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 10, marginTop: 6 }}>
+                <TouchableOpacity activeOpacity={0.75} onPress={() => {
                 hapticTap();
                 router.push('/shards_shop');
             }} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                    <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                      <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
-                      <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
-                    </Animated.View>
-                  </TouchableOpacity>
-                  <LingmanVideosButton />
-                  <AppMessagesInbox />
-                </View>
+                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
+                    <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900' }}>{shardsBalance}</Text>
+                  </Animated.View>
+                </TouchableOpacity>
+                <LingmanVideosButton />
+                <AppMessagesInbox />
               </View>
               )}
 
@@ -2538,7 +2563,7 @@ export default function HomeScreen() {
                         pl: "Mój plan",
                     })}
                       </Text>
-                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(25, f.h2), fontWeight: '900', lineHeight: Math.max(29, f.h2 + 4), marginTop: 3 }} numberOfLines={2}>
+                      <Text style={{ color: homeThemePanelText, fontSize: Math.max(21, f.h2), fontWeight: '900', lineHeight: Math.max(25, f.h2 + 4), marginTop: 3 }} numberOfLines={3}>
                         {triLang(lang, {
                         ru: 'Составь свой маршрут',
                         uk: 'Вибрати свій план навчання',
@@ -2585,7 +2610,7 @@ export default function HomeScreen() {
                         pl: "Mój plan",
                     })}
                   </Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', marginTop: 3 }} numberOfLines={2}>
                     {triLang(lang, {
                         ru: 'Составь свой маршрут',
                         uk: 'Вибрати свій план навчання',

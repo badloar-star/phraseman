@@ -34,27 +34,49 @@ import { hapticTap } from '../hooks/use-haptics';
 import { emitAppEvent } from './events';
 import { invalidatePremiumCache } from './premium_guard';
 
+type ManageSubscriptionCopy = {
+  ru: string;
+  uk: string;
+  es: string;
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+};
+
 // Восемь пунктов «что включено» — сжатые формулировки по Библии Phraseman.
-const INCLUDED: { ru: string; uk: string; es: string }[] = [
-  { ru: 'Безлимитная энергия — уроки, квизы и экзамены без ожидания', uk: 'Безлімітна енергія — уроки, квізи та іспити без очікування', es: 'Energía ilimitada: lecciones, quizzes y exámenes sin esperas' },
-  { ru: 'Арена без дневного лимита и без затрат энергии', uk: 'Арена без денного ліміту й без витрат енергії', es: 'Arena sin límite diario ni gasto de energía' },
-  { ru: 'Все уроки текущего уровня открыты полностью', uk: 'Усі уроки поточного рівня відкриті повністю', es: 'Todas las lecciones del nivel actual abiertas' },
-  { ru: 'Квизы без дневного лимита', uk: 'Квізи без денного ліміту', es: 'Cuestionarios sin límite diario' },
-  { ru: 'Неограниченные сохранённые карточки', uk: 'Необмежені збережені картки', es: 'Tarjetas guardadas ilimitadas' },
-  { ru: 'Защита серии и заморозка', uk: 'Захист серії та заморозка', es: 'Protección de racha y congelación' },
-  { ru: 'Премиум-темы оформления', uk: 'Преміум-теми оформлення', es: 'Temas premium' },
-  { ru: 'Премиальная подсветка профиля в лидербордах', uk: 'Преміальне підсвічування профілю в лідербордах', es: 'Perfil destacado en las clasificaciones' },
+const INCLUDED: ManageSubscriptionCopy[] = [
+  { ru: 'Безлимитная энергия — уроки, квизы и экзамены без ожидания', uk: 'Безлімітна енергія — уроки, квізи та іспити без очікування', es: 'Energía ilimitada: lecciones, quizzes y exámenes sin esperas', 'pt-BR': 'Energia ilimitada: aulas, quizzes e exames sem espera', vi: 'Năng lượng không giới hạn: bài học, quiz và bài kiểm tra không phải chờ', id: 'Energi tak terbatas: pelajaran, kuis, dan ujian tanpa menunggu', tr: 'Sınırsız enerji: dersler, quizler ve sınavlar beklemeden', pl: 'Nielimitowana energia: lekcje, quizy i egzaminy bez czekania' },
+  { ru: 'Арена без дневного лимита и без затрат энергии', uk: 'Арена без денного ліміту й без витрат енергії', es: 'Arena sin límite diario ni gasto de energía', 'pt-BR': 'Arena sem limite diário nem gasto de energia', vi: 'Arena không giới hạn ngày và không tốn năng lượng', id: 'Arena tanpa batas harian dan tanpa biaya energi', tr: 'Günlük limitsiz ve enerji harcamayan arena', pl: 'Arena bez dziennego limitu i bez zużycia energii' },
+  { ru: 'Все уроки текущего уровня открыты полностью', uk: 'Усі уроки поточного рівня відкриті повністю', es: 'Todas las lecciones del nivel actual abiertas', 'pt-BR': 'Todas as aulas do nível atual totalmente abertas', vi: 'Tất cả bài học của cấp hiện tại được mở đầy đủ', id: 'Semua pelajaran level saat ini terbuka penuh', tr: 'Mevcut seviyedeki tüm dersler tamamen açık', pl: 'Wszystkie lekcje bieżącego poziomu są w pełni otwarte' },
+  { ru: 'Квизы без дневного лимита', uk: 'Квізи без денного ліміту', es: 'Cuestionarios sin límite diario', 'pt-BR': 'Quizzes sem limite diário', vi: 'Quiz không giới hạn ngày', id: 'Kuis tanpa batas harian', tr: 'Günlük limitsiz quizler', pl: 'Quizy bez dziennego limitu' },
+  { ru: 'Неограниченные сохранённые карточки', uk: 'Необмежені збережені картки', es: 'Tarjetas guardadas ilimitadas', 'pt-BR': 'Cartões salvos ilimitados', vi: 'Thẻ đã lưu không giới hạn', id: 'Kartu tersimpan tak terbatas', tr: 'Sınırsız kayıtlı kart', pl: 'Nielimitowane zapisane fiszki' },
+  { ru: 'Защита серии и заморозка', uk: 'Захист серії та заморозка', es: 'Protección de racha y congelación', 'pt-BR': 'Proteção de sequência e congelamento', vi: 'Bảo vệ chuỗi ngày và đóng băng', id: 'Perlindungan streak dan pembekuan', tr: 'Seri koruması ve dondurma', pl: 'Ochrona serii i zamrożenie' },
+  { ru: 'Премиум-темы оформления', uk: 'Преміум-теми оформлення', es: 'Temas premium', 'pt-BR': 'Temas premium', vi: 'Giao diện premium', id: 'Tema premium', tr: 'Premium temalar', pl: 'Motywy premium' },
+  { ru: 'Премиальная подсветка профиля в лидербордах', uk: 'Преміальне підсвічування профілю в лідербордах', es: 'Perfil destacado en las clasificaciones', 'pt-BR': 'Perfil premium destacado nos rankings', vi: 'Hồ sơ Premium nổi bật trên bảng xếp hạng', id: 'Sorotan profil premium di papan peringkat', tr: 'Liderlik tablolarında premium profil vurgusu', pl: 'Wyróżnienie profilu Premium w rankingach' },
 ];
 
 // Причины отмены для шит-опроса (logCancelSurvey).
-const CANCEL_REASONS: { key: string; ru: string; uk: string; es: string }[] = [
-  { key: 'too_expensive', ru: 'Слишком дорого', uk: 'Занадто дорого', es: 'Demasiado caro' },
-  { key: 'not_using', ru: 'Не пользуюсь достаточно', uk: 'Не користуюся достатньо', es: 'No lo uso lo suficiente' },
-  { key: 'missing_features', ru: 'Не хватает функций', uk: 'Бракує функцій', es: 'Faltan funciones' },
-  { key: 'technical', ru: 'Технические проблемы', uk: 'Технічні проблеми', es: 'Problemas técnicos' },
-  { key: 'temporary', ru: 'Временно, вернусь позже', uk: 'Тимчасово, повернусь пізніше', es: 'Temporal, vuelvo luego' },
-  { key: 'other', ru: 'Другое', uk: 'Інше', es: 'Otro' },
+const CANCEL_REASONS: ({ key: string } & ManageSubscriptionCopy)[] = [
+  { key: 'too_expensive', ru: 'Слишком дорого', uk: 'Занадто дорого', es: 'Demasiado caro', 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo' },
+  { key: 'not_using', ru: 'Не пользуюсь достаточно', uk: 'Не користуюся достатньо', es: 'No lo uso lo suficiente', 'pt-BR': 'Não uso o suficiente', vi: 'Tôi không dùng đủ nhiều', id: 'Saya tidak cukup sering memakainya', tr: 'Yeterince kullanmıyorum', pl: 'Nie korzystam wystarczająco' },
+  { key: 'missing_features', ru: 'Не хватает функций', uk: 'Бракує функцій', es: 'Faltan funciones', 'pt-BR': 'Faltam recursos', vi: 'Thiếu tính năng', id: 'Fitur kurang', tr: 'Özellikler eksik', pl: 'Brakuje funkcji' },
+  { key: 'technical', ru: 'Технические проблемы', uk: 'Технічні проблеми', es: 'Problemas técnicos', 'pt-BR': 'Problemas técnicos', vi: 'Sự cố kỹ thuật', id: 'Masalah teknis', tr: 'Teknik sorunlar', pl: 'Problemy techniczne' },
+  { key: 'temporary', ru: 'Временно, вернусь позже', uk: 'Тимчасово, повернусь пізніше', es: 'Temporal, vuelvo luego', 'pt-BR': 'Temporário, volto depois', vi: 'Tạm thời, tôi sẽ quay lại sau', id: 'Sementara, nanti saya kembali', tr: 'Geçici, sonra döneceğim', pl: 'Tymczasowo, wrócę później' },
+  { key: 'other', ru: 'Другое', uk: 'Інше', es: 'Otro', 'pt-BR': 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
 ];
+
+const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
+  ru: 'ru-RU',
+  uk: 'uk-UA',
+  es: 'es-ES',
+  'pt-BR': 'pt-BR',
+  vi: 'vi-VN',
+  id: 'id-ID',
+  tr: 'tr-TR',
+  pl: 'pl-PL',
+};
 
 function getStoreManageUrl(): string {
   return Platform.OS === 'ios'
@@ -65,7 +87,7 @@ function getStoreManageUrl(): string {
 function formatDate(ms: number | null, lang: Lang): string | null {
   if (!ms || !Number.isFinite(ms)) return null;
   try {
-    const locale = lang === 'ru' ? 'ru-RU' : lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'en-US';
+    const locale = DATE_LOCALE_BY_LANG[lang] ?? 'en-US';
     return new Date(ms).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
   } catch {
     return null;
@@ -77,7 +99,16 @@ export default function ManageSubscription() {
   const { lang } = useLang();
   const L = lang as Lang;
   const chrome = usePaywallChrome();
-  const LP = (ru: string, uk: string, es: string) => triLang(L, { ru, uk, es });
+  const LP = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBR: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(L, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
 
   const [info, setInfo] = useState<CustomerInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -115,10 +146,10 @@ export default function ManageSubscription() {
   const isMonthly = currentPlan === 'monthly';
 
   const planLabel = isLifetime
-    ? LP('Навсегда', 'Назавжди', 'De por vida')
+    ? LP('Навсегда', 'Назавжди', 'De por vida', 'Para sempre', 'Trọn đời', 'Selamanya', 'Ömür boyu', 'Na zawsze')
     : currentPlan === 'yearly'
-      ? LP('Годовая подписка', 'Річна підписка', 'Suscripción anual')
-      : LP('Месячная подписка', 'Місячна підписка', 'Suscripción mensual');
+      ? LP('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
+      : LP('Месячная подписка', 'Місячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna');
 
   // ── смена плана: месячный → годовой (DEFERRED-проплейшн на Android) ──────────
   const handleChangePlan = useCallback(async () => {
@@ -165,7 +196,7 @@ export default function ManageSubscription() {
           <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A`, borderColor: `${chrome.tc.heroAccent}40` }]}>
             <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} />
             <Text style={[S.statusText, { color: chrome.tc.heroAccent }]}>
-              {LP('Premium активирован', 'Premium активовано', 'Premium activado')}
+              {LP('Premium активирован', 'Premium активовано', 'Premium activado', 'Premium ativado', 'Premium đã kích hoạt', 'Premium aktif', 'Premium etkinleştirildi', 'Premium aktywowany')}
             </Text>
           </View>
 
@@ -179,7 +210,7 @@ export default function ManageSubscription() {
                 <View style={[S.infoCard, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
                   <View style={S.infoRow}>
                     <Text style={[S.infoLabel, { color: chrome.textMuted }]}>
-                      {LP('Следующее списание', 'Наступне списання', 'Próximo cobro')}
+                      {LP('Следующее списание', 'Наступне списання', 'Próximo cobro', 'Próxima cobrança', 'Lần thanh toán tiếp theo', 'Tagihan berikutnya', 'Sonraki ödeme', 'Następna płatność')}
                     </Text>
                     <Text style={[S.infoValue, { color: chrome.textPrimary }]}>{nextDate}</Text>
                   </View>
@@ -187,18 +218,18 @@ export default function ManageSubscription() {
               )}
               {isLifetime && (
                 <Text style={[S.lifetimeNote, { color: chrome.textMuted }]}>
-                  {LP('Разовая покупка — без списаний и автопродления.', 'Разова покупка — без списань і автопродовження.', 'Compra única, sin cobros ni renovación.')}
+                  {LP('Разовая покупка — без списаний и автопродления.', 'Разова покупка — без списань і автопродовження.', 'Compra única, sin cobros ni renovación.', 'Compra única, sem cobranças nem renovação automática.', 'Mua một lần, không thu phí và không tự gia hạn.', 'Pembelian sekali, tanpa tagihan dan perpanjangan otomatis.', 'Tek seferlik satın alma, ödeme ve otomatik yenileme yok.', 'Jednorazowy zakup, bez opłat i automatycznego odnawiania.')}
                 </Text>
               )}
 
               <Text style={[S.sectionTitle, { color: chrome.textMuted }]}>
-                {LP('ЧТО ВКЛЮЧЕНО', 'ЩО ВКЛЮЧЕНО', 'QUÉ INCLUYE')}
+                {LP('ЧТО ВКЛЮЧЕНО', 'ЩО ВКЛЮЧЕНО', 'QUÉ INCLUYE', 'O QUE INCLUI', 'BAO GỒM', 'YANG TERMASUK', 'NELER DAHİL', 'CO ZAWIERA')}
               </Text>
               <View style={[S.infoCard, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
                 {INCLUDED.map((b, i) => (
                   <View key={i} style={[S.benefitRow, i > 0 && { marginTop: 10 }]}>
                     <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} style={{ marginTop: 1 }} />
-                    <Text style={[S.benefitText, { color: chrome.textPrimary }]}>{LP(b.ru, b.uk, b.es)}</Text>
+                    <Text style={[S.benefitText, { color: chrome.textPrimary }]}>{LP(b.ru, b.uk, b.es, b['pt-BR'], b.vi, b.id, b.tr, b.pl)}</Text>
                   </View>
                 ))}
               </View>
@@ -213,12 +244,12 @@ export default function ManageSubscription() {
                 >
                   <View style={{ flex: 1 }}>
                     <Text style={[S.changeTitle, { color: chrome.textPrimary }]}>
-                      {LP('Перейти на годовой план', 'Перейти на річний план', 'Cambiar al plan anual')}
+                      {LP('Перейти на годовой план', 'Перейти на річний план', 'Cambiar al plan anual', 'Mudar para o plano anual', 'Chuyển sang gói năm', 'Beralih ke paket tahunan', 'Yıllık plana geç', 'Przejdź na plan roczny')}
                     </Text>
                     <Text style={[S.changeSub, { color: chrome.textMuted }]}>
                       {yearlyPriceStr
-                        ? LP(`Дешевле в пересчёте — ${yearlyPriceStr}/год`, `Дешевше в перерахунку — ${yearlyPriceStr}/рік`, `Más barato al año — ${yearlyPriceStr}/año`)
-                        : LP('Дешевле в пересчёте на месяц', 'Дешевше в перерахунку на місяць', 'Más barato por mes')}
+                        ? LP(`Дешевле в пересчёте — ${yearlyPriceStr}/год`, `Дешевше в перерахунку — ${yearlyPriceStr}/рік`, `Más barato al año — ${yearlyPriceStr}/año`, `Mais barato no ano — ${yearlyPriceStr}/ano`, `Rẻ hơn tính theo năm — ${yearlyPriceStr}/năm`, `Lebih murah per tahun — ${yearlyPriceStr}/tahun`, `Yıllık daha ucuz — ${yearlyPriceStr}/yıl`, `Taniej rocznie — ${yearlyPriceStr}/rok`)
+                        : LP('Дешевле в пересчёте на месяц', 'Дешевше в перерахунку на місяць', 'Más barato por mes', 'Mais barato por mês', 'Rẻ hơn tính theo tháng', 'Lebih murah per bulan', 'Aylık hesapta daha ucuz', 'Taniej w przeliczeniu na miesiąc')}
                     </Text>
                   </View>
                   {changing
@@ -231,7 +262,7 @@ export default function ManageSubscription() {
               {!isLifetime && (
                 <TouchableOpacity onPress={() => { hapticTap(); setShowCancelSheet(true); }} style={S.cancelBtn}>
                   <Text style={[S.cancelText, { color: chrome.textMuted }]}>
-                    {LP('Отменить подписку', 'Скасувати підписку', 'Cancelar suscripción')}
+                    {LP('Отменить подписку', 'Скасувати підписку', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -244,10 +275,10 @@ export default function ManageSubscription() {
           <View style={S.sheetOverlay}>
             <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a', borderColor: chrome.cardBorder }]}>
               <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
-                {LP('Почему уходишь?', 'Чому йдеш?', '¿Por qué te vas?')}
+                {LP('Почему уходишь?', 'Чому йдеш?', '¿Por qué te vas?', 'Por que você vai sair?', 'Vì sao bạn rời đi?', 'Mengapa kamu pergi?', 'Neden ayrılıyorsun?', 'Dlaczego odchodzisz?')}
               </Text>
               <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
-                {LP('Это поможет нам стать лучше.', 'Це допоможе нам стати кращими.', 'Nos ayuda a mejorar.')}
+                {LP('Это поможет нам стать лучше.', 'Це допоможе нам стати кращими.', 'Nos ayuda a mejorar.', 'Isso nos ajuda a melhorar.', 'Điều này giúp chúng tôi cải thiện.', 'Ini membantu kami menjadi lebih baik.', 'Bu, daha iyi olmamıza yardımcı olur.', 'To pomoże nam się poprawić.')}
               </Text>
               {CANCEL_REASONS.map((r) => {
                 const sel = cancelReason === r.key;
@@ -258,7 +289,7 @@ export default function ManageSubscription() {
                     style={[S.reasonRow, { borderColor: sel ? chrome.tc.heroAccent : chrome.cardBorder, backgroundColor: sel ? `${chrome.tc.heroAccent}14` : 'transparent' }]}
                   >
                     <Ionicons name={sel ? 'radio-button-on' : 'radio-button-off'} size={18} color={sel ? chrome.tc.heroAccent : chrome.textMuted} />
-                    <Text style={[S.reasonText, { color: chrome.textPrimary }]}>{LP(r.ru, r.uk, r.es)}</Text>
+                    <Text style={[S.reasonText, { color: chrome.textPrimary }]}>{LP(r.ru, r.uk, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
                   </TouchableOpacity>
                 );
               })}
@@ -266,7 +297,7 @@ export default function ManageSubscription() {
                 <TextInput
                   value={cancelText}
                   onChangeText={setCancelText}
-                  placeholder={LP('Расскажи подробнее…', 'Розкажи детальніше…', 'Cuéntanos más…')}
+                  placeholder={LP('Расскажи подробнее…', 'Розкажи детальніше…', 'Cuéntanos más…', 'Conte mais…', 'Nói rõ hơn…', 'Ceritakan lebih lanjut…', 'Biraz daha anlat…', 'Napisz więcej…')}
                   placeholderTextColor={chrome.textMuted}
                   style={[S.input, { color: chrome.textPrimary, borderColor: chrome.cardBorder }]}
                   multiline
@@ -278,12 +309,12 @@ export default function ManageSubscription() {
                 style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg, opacity: cancelReason ? 1 : 0.5 }]}
               >
                 <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
-                  {LP('Перейти к отмене', 'Перейти до скасування', 'Ir a cancelar')}
+                  {LP('Перейти к отмене', 'Перейти до скасування', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania')}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => { hapticTap(); setShowCancelSheet(false); }} style={S.sheetSecondary}>
                 <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
-                  {LP('Остаться в Premium', 'Залишитися в Premium', 'Quedarme en Premium')}
+                  {LP('Остаться в Premium', 'Залишитися в Premium', 'Quedarme en Premium', 'Ficar no Premium', 'Ở lại Premium', 'Tetap di Premium', "Premium'da kal", 'Zostań w Premium')}
                 </Text>
               </TouchableOpacity>
             </View>

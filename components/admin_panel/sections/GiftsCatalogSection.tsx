@@ -13,7 +13,9 @@ import {
   GIFT_POOL,
   LEVEL_GIFT_MILESTONE_LEVELS,
   PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE,
+  giftDescForLang,
   getMilestoneLevelGift,
+  giftTitleForLang,
   giftRarityUiLabel,
   type GiftDef,
   type GiftRarity,
@@ -69,6 +71,10 @@ function GroupHeader({ label, count }: { label: string; count?: number }) {
 
 function LevelGiftRow({ gift, milestoneLevels }: { gift: GiftDef; milestoneLevels: number[] }) {
   const artVariant = gift.id.startsWith('prem_') || gift.id.startsWith('premium_') ? 'premium' : gift.rarity;
+  const giftTitleRu = giftTitleForLang(gift, 'ru');
+  const giftTitleEs = giftTitleForLang(gift, 'es');
+  const giftDescRu = giftDescForLang(gift, 'ru');
+  const giftDescEs = giftDescForLang(gift, 'es');
   const metaParts: string[] = [`вес ${gift.weight}`];
   if (milestoneLevels.length > 0) metaParts.push(`веха: ур. ${milestoneLevels.join(', ')}`);
   if (gift.choices?.length) metaParts.push(`выбор из ${gift.choices.length}`);
@@ -79,15 +85,20 @@ function LevelGiftRow({ gift, milestoneLevels }: { gift: GiftDef; milestoneLevel
       <View style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
           <Text style={{ color: ADMIN_TEXT, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
-            {gift.icon} {gift.titleRU}
+            {gift.icon} {giftTitleRu}
           </Text>
           <Text style={{ color: RARITY_COLOR[gift.rarity], fontSize: 10, fontWeight: '800' }}>
             {giftRarityUiLabel(gift.rarity, 'ru')}
           </Text>
         </View>
-        {!!gift.descRU && (
+        {!!giftDescRu && (
           <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 15, marginTop: 1 }}>
-            {gift.descRU}
+            {giftDescRu}
+          </Text>
+        )}
+        {(giftTitleEs !== giftTitleRu || giftDescEs !== giftDescRu) && (
+          <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 10, lineHeight: 14, marginTop: 1, opacity: 0.82 }}>
+            ES: {giftTitleEs}{giftDescEs ? ` — ${giftDescEs}` : ''}
           </Text>
         )}
         <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 10, marginTop: 2, opacity: 0.8 }}>
@@ -130,7 +141,7 @@ export default function GiftsCatalogSection({ open, onToggle }: {
       const gift = getMilestoneLevelGift(level);
       if (!gift) continue;
       (byGift[gift.id] ??= []).push(level);
-      rows.push({ level, title: `${gift.icon} ${gift.titleRU}` });
+      rows.push({ level, title: `${gift.icon} ${giftTitleForLang(gift, 'ru')} / ${giftTitleForLang(gift, 'es')}` });
     }
 
     const grouped = RARITY_ORDER.map((rarity) => ({
@@ -199,8 +210,8 @@ export default function GiftsCatalogSection({ open, onToggle }: {
         <IconRow
           key={gift.id}
           icon={gift.icon}
-          title={gift.labelRu}
-          desc={gift.descRu}
+          title={`${gift.labelRu} / ${gift.labelEs}`}
+          desc={`${gift.descRu} / ${gift.descEs}`}
           right={`${gift.costShards} оск.`}
         />
       ))}

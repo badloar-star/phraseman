@@ -1,6 +1,6 @@
 {
   "schemaVersion": "gustav-run-validator-report-v0",
-  "generatedAt": "2026-05-23T10:19:00.260Z",
+  "generatedAt": "2026-06-20T22:03:28.292Z",
   "command": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -15,7 +15,7 @@
   "runId": "2026-05-19_fr_inventory_v0a1",
   "status": "PASS",
   "summary": {
-    "checks": 27376,
+    "checks": 27102,
     "blockers": 0,
     "warnings": 0
   },

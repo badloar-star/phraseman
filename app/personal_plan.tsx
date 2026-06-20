@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
-import { Animated, Dimensions, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
 import TapScale from '../components/TapScale';
@@ -19,7 +19,6 @@ import { safeRouterBack } from './navigation_back';
 import {
   getPlanById,
   nextTaskAfterVisibleSlice,
-  tasksForMinutes,
   visibleTasksForMinutes,
   type PersonalPlanDefinition,
   type PersonalPlanId,
@@ -39,6 +38,7 @@ import {
   buildPersonalPlanSnapshot,
   buildTodayPlanRuntime,
   readPersonalPlanState,
+  getCachedPersonalPlanState,
   advancePersonalPlanStateForToday,
   savePersonalPlanState,
   type PersonalPlanHomeSnapshot,
@@ -61,9 +61,6 @@ type LoadedPlan = {
   duePlanTrainerWeakSpotCount: number;
 };
 
-const DAY_CARD_WIDTH = 88;
-const DAY_CARD_GAP = 10;
-const DAY_CARD_STRIDE = DAY_CARD_WIDTH + DAY_CARD_GAP;
 const INSTANT_PLAN_DUE_COUNT = 999;
 const RING_SIZE = 90;
 const RING_STROKE = 8;
@@ -289,7 +286,30 @@ export default function PersonalPlanScreen() {
   const insets = useSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
   const { studyTarget } = useStudyTarget();
-  const [loaded, setLoaded] = useState<LoadedPlan | null>(null);
+  const [loaded, setLoaded] = useState<LoadedPlan | null>(() => {
+    const cached = getCachedPersonalPlanState();
+    if (!cached) return null;
+    const plan = getPlanById(cached.planId);
+    const completedTasks = {};
+    const instantInput = {
+      plan,
+      state: cached,
+      completedTasks,
+      duePracticeCount: INSTANT_PLAN_DUE_COUNT,
+      duePracticeWordCount: INSTANT_PLAN_DUE_COUNT,
+      dueTrainerCount: INSTANT_PLAN_DUE_COUNT,
+      duePlanTrainerWeakSpotCount: INSTANT_PLAN_DUE_COUNT,
+      dueFlashcardsCount: INSTANT_PLAN_DUE_COUNT,
+    };
+    return {
+      plan,
+      state: cached,
+      runtime: buildTodayPlanRuntime(instantInput),
+      snapshot: buildPersonalPlanSnapshot(instantInput),
+      completedTasks,
+      duePlanTrainerWeakSpotCount: 0,
+    };
+  });
   const [extraVisibleTaskCount, setExtraVisibleTaskCount] = useState(0);
   // Задачи дня по умолчанию СВЁРНУТЫ — пользователь раскрывает их сам по тапу на заголовок.
   const [tasksExpanded, setTasksExpanded] = useState(false);
@@ -297,7 +317,6 @@ export default function PersonalPlanScreen() {
   const [dayComparison, setDayComparison] = useState<PlanDayComparison | null>(null);
   // Подтверждение смены плана (новый план начинается с дня 1 — прогресс сбрасывается).
   const [changePlanConfirmVisible, setChangePlanConfirmVisible] = useState(false);
-  const dayRailRef = useRef<ScrollView | null>(null);
   const isGold = themeMode === 'gold';
   const screenBg = isGold ? '#090704' : t.bgPrimary;
   const chrome = useMemo(() => resolvePlanChrome(themeMode, t), [themeMode, t]);
@@ -455,44 +474,10 @@ export default function PersonalPlanScreen() {
     return visibleTasks.reduce((sum, task) => sum + task.minutes, 0);
   }, [extraVisibleTaskCount, loaded]);
 
-  const dayRailItems = useMemo(() => {
-    if (!loaded) return [];
-    const currentDayIndex = loaded.runtime.visibleDay.dayIndex;
-    const currentTasks = tasksForMinutes(loaded.runtime.visibleDay, loaded.state.minutesPerDay);
-    const currentDone = currentTasks.filter((task) =>
-      Boolean(loaded.completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
-    ).length;
-    const currentProgressPct = currentTasks.length > 0 ? Math.round((currentDone / currentTasks.length) * 100) : 0;
-
-    return loaded.plan.days.map((planDay) => {
-      const tasks = tasksForMinutes(planDay, loaded.state.minutesPerDay);
-      const completedCount = tasks.filter((task) =>
-        Boolean(loaded.completedTasks[planTaskCompletionKey(loaded.state.planInstanceId, task.id)])
-      ).length;
-      const progressPct = tasks.length > 0 ? Math.round((completedCount / tasks.length) * 100) : 0;
-      const isCurrent = planDay.dayIndex === currentDayIndex;
-      const isUnlocked = planDay.dayIndex <= currentDayIndex
-        || (planDay.dayIndex === currentDayIndex + 1 && currentProgressPct >= 50);
-      return {
-        dayIndex: planDay.dayIndex,
-        progressPct,
-        isCurrent,
-        isUnlocked,
-        isCompleted: tasks.length > 0 && completedCount >= tasks.length,
-      };
-    });
-  }, [loaded]);
-
+  // Reset the "show more tasks" expansion whenever the visible day changes.
   useEffect(() => {
     if (!loaded) return;
     setExtraVisibleTaskCount(0);
-    const currentIndex = Math.max(0, loaded.runtime.visibleDay.dayIndex - 1);
-    const viewportWidth = Dimensions.get('window').width;
-    const centeredOffset = (currentIndex * DAY_CARD_STRIDE) - ((viewportWidth - DAY_CARD_WIDTH) / 2) + 16;
-    const timer = setTimeout(() => {
-      dayRailRef.current?.scrollTo({ x: Math.max(0, centeredOffset), animated: true });
-    }, 60);
-    return () => clearTimeout(timer);
   }, [loaded?.runtime.visibleDay.dayIndex]);
 
   const openTask = (task: PlanDailyTask) => {
@@ -705,10 +690,12 @@ export default function PersonalPlanScreen() {
               </View>
               <View style={styles.recommendCopy}>
                 <Text style={[styles.recommendTitle, { color: chrome.text }]}>
-                  Сначала пройди {lessonRecommendation.recommendedLessonIds.length === 1 ? 'урок' : 'уроки'} {formatLessonList(lessonRecommendation.recommendedLessonIds)}
+                  Рекомендуем {lessonRecommendation.recommendedLessonIds.length === 1 ? 'урок' : 'уроки'} {formatLessonList(lessonRecommendation.recommendedLessonIds)}
                 </Text>
                 <Text style={[styles.recommendText, { color: chrome.accent }]} numberOfLines={2}>
-                  {lessonRecommendation.recommendedLessonIds.length === 1 ? 'Нажми, чтобы открыть урок →' : 'Нажми, чтобы открыть первый урок →'}
+                  {lessonRecommendation.recommendedLessonIds.length === 1
+                    ? 'Можно начать план сразу или сперва пройти урок →'
+                    : 'Можно начать план сразу или сперва пройти уроки →'}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={20} color={chrome.accent} style={{ alignSelf: 'center' }} />
@@ -783,50 +770,6 @@ export default function PersonalPlanScreen() {
                 ) : null}
               </View>
             ) : null}
-          </LinearGradient>
-
-          {/* ── Day route ── */}
-          <LinearGradient colors={chrome.card} style={[styles.sectionCard, { borderColor: chrome.border }]}>
-            <View style={styles.sectionHeader}>
-              <View>
-                <Text style={[styles.sectionKicker, { color: chrome.accent }]}>Маршрут</Text>
-                <Text style={[styles.sectionTitle, { color: chrome.text }]}>Прогресс по плану</Text>
-              </View>
-              <Text style={[styles.sectionMeta, { color: chrome.muted }]}>{plan.horizonWeeks} нед</Text>
-            </View>
-            <ScrollView
-              ref={dayRailRef}
-              horizontal
-              decelerationRate="normal"
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.dayRail}
-            >
-              {dayRailItems.map((item) => (
-                <View
-                  key={`day-${item.dayIndex}`}
-                  style={[
-                    styles.dayCard,
-                    {
-                      borderColor: item.isCurrent ? chrome.accent : item.isCompleted ? chrome.accent2 + '55' : chrome.border,
-                      backgroundColor: item.isCurrent ? chrome.accentSoft : 'transparent',
-                      opacity: item.isUnlocked ? 1 : 0.38,
-                    },
-                  ]}
-                >
-                  {item.isCompleted ? (
-                    <Ionicons name="checkmark" size={20} color={chrome.accent2} />
-                  ) : (
-                    <Text style={[styles.dayCardNum, { color: item.isCurrent ? chrome.accent : chrome.text }]}>
-                      {item.dayIndex}
-                    </Text>
-                  )}
-                  <Text style={[styles.dayCardLabel, { color: item.isCurrent ? chrome.accent : chrome.muted }]}>день</Text>
-                  <View style={[styles.dayMiniBar, { backgroundColor: chrome.taskSurface }]}>
-                    <View style={[styles.dayMiniProgress, { width: `${item.progressPct}%`, backgroundColor: item.isCompleted ? chrome.accent2 : chrome.accent }]} />
-                  </View>
-                </View>
-              ))}
-            </ScrollView>
           </LinearGradient>
 
           {/* ── DEV ── */}
@@ -1016,7 +959,6 @@ const styles = StyleSheet.create({
   },
   sectionKicker: { fontSize: 11, lineHeight: 14, fontWeight: '900', textTransform: 'uppercase' },
   sectionTitle: { fontSize: 20, lineHeight: 25, fontWeight: '900', marginTop: 2 },
-  sectionMeta: { fontSize: 13, lineHeight: 16, fontWeight: '900' },
   sectionHeaderRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   countBadge: {
     minWidth: 36, height: 36, borderRadius: 18, borderWidth: 1,
@@ -1059,15 +1001,6 @@ const styles = StyleSheet.create({
   addMoreText: { fontSize: 14, lineHeight: 18, fontWeight: '900' },
 
   // Day rail
-  dayRail: { paddingVertical: 4, gap: DAY_CARD_GAP },
-  dayCard: {
-    width: DAY_CARD_WIDTH, height: 96, borderRadius: 14, borderWidth: 1,
-    alignItems: 'center', justifyContent: 'center', gap: 2, paddingHorizontal: 8,
-  },
-  dayCardNum: { fontSize: 24, lineHeight: 28, fontWeight: '900' },
-  dayCardLabel: { fontSize: 10, lineHeight: 13, fontWeight: '900', textTransform: 'uppercase' },
-  dayMiniBar: { width: '80%', height: 4, borderRadius: 2, overflow: 'hidden', marginTop: 6 },
-  dayMiniProgress: { height: '100%', borderRadius: 2 },
 
   // Dev
   devLink: {

@@ -43,7 +43,7 @@ describe('personal plan exercise runtime', () => {
     };
     const item = buildPlanRuntimeItem({
       block,
-      phrase: herePhrase,
+      phrase: { ...herePhrase, spanish: 'Estoy aquí.' },
       exerciseType: 'plan_choose_natural_phrase',
       distractors: ['I here.', "I'm at here."],
     });
@@ -52,7 +52,9 @@ describe('personal plan exercise runtime', () => {
       exerciseType: 'plan_choose_natural_phrase',
       phraseId: herePhrase.id,
       promptRu: 'Выбери естественную фразу.',
+      promptEs: 'Elige la frase más natural.',
       targetRu: 'Я здесь.',
+      targetEs: 'Estoy aquí.',
       correctAnswer: "I'm here.",
       hintsEnabled: false,
       correctWordHighlighting: false,
@@ -147,6 +149,25 @@ describe('personal plan exercise runtime', () => {
       grammarTags: ['I need'],
       vocabularyTags: ['need', 'minute'],
     });
+  });
+
+  it('builds planned-locale prompts without falling back to Russian', () => {
+    const block: PlanExerciseBlock = {
+      ...baseBlock,
+      id: 'gavan-week1-day1:block-planned-locale',
+      type: 'plan_phrase_build',
+    };
+    const item = buildPlanRuntimeItem({
+      block,
+      phrase: herePhrase,
+      exerciseType: 'plan_phrase_build',
+      lang: 'pt-BR',
+      distractors: ['ready', 'busy'],
+    });
+
+    expect(item.promptRu).toBe('Monte a frase com as palavras.');
+    expect(item.promptEs).toBe('Construye la frase con las palabras.');
+    expect(validatePlanRuntimeItem(item, block)).toEqual([]);
   });
 
   it('builds a lesson-style phrase-build item with exact word tiles and honest recovery', () => {

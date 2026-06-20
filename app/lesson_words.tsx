@@ -47,7 +47,7 @@ import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './c
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { LESSON_DATA } from './lesson_data_all';
-import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { buildLessonWordOptions } from './lesson_word_options';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import {
@@ -3348,7 +3348,7 @@ export default function LessonWords() {
   useEffect(() => {
     let cancelled = false;
     void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
     });
     return () => { cancelled = true; };
   }, [lessonId, router, studyTarget]);

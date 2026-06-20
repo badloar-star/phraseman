@@ -33,30 +33,34 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.submitExplainReport = exports.REPORT_REPORTERS_CAP = exports.REPORT_COMMENT_MAX_LEN = exports.REPORT_REASONS = exports.REPORT_REJECT_THRESHOLD = exports.REPORT_RATE_WINDOW_MS = exports.REPORT_RATE_MAX = exports.REPORT_RATE_COLLECTION = exports.REPORT_ENTRIES_COLLECTION = exports.REPORTS_COLLECTION = void 0;
+exports.submitExplainReport = exports.REPORT_REPORTERS_CAP = exports.REPORT_COMMENT_MAX_LEN = exports.REPORT_KINDS = exports.REPORT_REASONS = exports.REPORT_REJECT_THRESHOLD = exports.REPORT_RATE_WINDOW_MS = exports.REPORT_RATE_MAX = exports.REPORT_RATE_COLLECTION = exports.REPORT_ENTRIES_COLLECTION = exports.REPORTS_COLLECTION = void 0;
+exports.normalizeReportKind = normalizeReportKind;
 exports.normalizeReportReason = normalizeReportReason;
 exports.sanitizeReportComment = sanitizeReportComment;
 /**
  * Бэкстоп-модерация (уровень 4) для «Объясни как для 5-летнего».
  *
- * submitExplainReport: юзер жалуется на объяснение фразы. Каркас (auth + per-user rate-doc
+ * submitExplainReport: юзер жалуется на объяснение. Каркас (auth + per-user rate-doc
  * через транзакцию) скопирован с submitClientReport (functions/src/client_reports.ts:218).
+ *
+ * ДВЕ фичи, ОДИН CF (kind): объяснение фразы ('phrase') и разбор ошибки ('mistake').
+ * Лента и счётчики у них ОБЩИЕ — различается только кэш-коллекция и схема хэша (см. REPORT_KINDS).
  *
  * Что пишет (всё в ОДНОЙ транзакции):
  *  1) explain_report_entries/{auto} — КАЖДАЯ жалоба целиком (фраза, причина, комментарий,
- *     кто, когда) — это лента для раздела админки «Непонятно объяснили».
- *  2) explain_reports/{phraseHash} — счётчик РАЗНЫХ юзеров на фразу. ДЕДУП: повторная жалоба
- *     того же stableUid НЕ инкрементит счётчик (иначе один юзер в одиночку добивал порог —
+ *     кто, когда, kind, cacheCollection) — это лента для раздела админки «Непонятно объяснили».
+ *  2) explain_reports/{cacheHash} — счётчик РАЗНЫХ юзеров на фразу/ошибку. ДЕДУП: повторная
+ *     жалоба того же stableUid НЕ инкрементит счётчик (иначе один юзер в одиночку добивал порог —
  *     rate-limit 5/час == порогу 5). Запись жалобы в ленту при этом всё равно создаётся.
- *  3) phrase_explanations/{phraseHash} НЕ меняется автоматически. Жалоба только попадает
- *     в очередь админки вместе с текущим текстом cached explanation. Удалить кэш может
+ *  3) Кэш-док ({phrase|mistake}_explanations/{cacheHash}) НЕ меняется автоматически. Жалоба
+ *     лишь попадает в очередь админки вместе с текущим текстом объяснения. Удалить кэш может
  *     только админ вручную: «Непонятно объяснили» → «Убрать из кэша».
  *
  * SECURITY (инварианты phraseman):
  *  - App Check enforced (ENFORCE_APP_CHECK из callable_options).
  *  - Идентичность из request.auth.uid через resolveStableUidForAuth(db, authUid) — НЕ из body.
- *  - phraseHash считает сервер (explain_cache.phraseHashFor); поле 'hash' из body игнорируется.
- *  - reason — только из белого списка; comment режется по длине и чистится от control-символов.
+ *  - cacheHash считает сервер (phraseHashFor / mistakeHashFor); поле 'hash' из body игнорируется.
+ *  - kind/reason — только из белого списка; comment режется по длине и чистится от control-символов.
  */
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
@@ -64,6 +68,7 @@ const crypto_1 = require("crypto");
 const callable_options_1 = require("../callable_options");
 const auth_identity_1 = require("../auth_identity");
 const explain_cache_1 = require("./explain_cache");
+const mistake_explain_cache_1 = require("./mistake_explain_cache");
 const explain_prompts_1 = require("./explain_prompts");
 const REGION = 'us-central1';
 /** Per-hash счётчики репортов. Серверная коллекция; админка читает (isAdmin в rules). */
@@ -83,6 +88,23 @@ exports.REPORT_RATE_WINDOW_MS = HOUR_MS;
 exports.REPORT_REJECT_THRESHOLD = 5;
 /** Белый список причин жалобы (меню в шторке). Неизвестное/пустое значение → 'unclear'. */
 exports.REPORT_REASONS = ['unclear', 'incorrect', 'wrong_language', 'other'];
+/**
+ * На какой кэш жалуется юзер. Один CF обслуживает обе фичи, потому что лента и счётчики
+ * (explain_report_entries / explain_reports) у них общие — различаются только КЭШ-коллекция
+ * и схема ключа:
+ *  - 'phrase'  → объяснение фразы («Объясни просто»), кэш phrase_explanations,
+ *               ключ = phraseHashFor(phraseEn, langKey).
+ *  - 'mistake' → разбор ошибки (упражнение «Собери фразу»), кэш mistake_explanations,
+ *               ключ = mistakeHashFor(targetEn, userAnswer, langKey) — учитывает И целевую
+ *               фразу, И конкретный неправильный ответ.
+ * Дефолт 'phrase' — старые клиенты без поля шлют жалобу на объяснение фразы как раньше.
+ */
+exports.REPORT_KINDS = ['phrase', 'mistake'];
+/** kind строго из enum; чужое/пустое → 'phrase' (обратная совместимость со старыми клиентами). */
+function normalizeReportKind(value) {
+    const s = String(value ?? '').trim();
+    return exports.REPORT_KINDS.includes(s) ? s : 'phrase';
+}
 /** Максимум символов свободного комментария юзера. */
 exports.REPORT_COMMENT_MAX_LEN = 300;
 /** Максимум ключей в карте reporters (ограничение размера дока; порог=5, так что с запасом). */
@@ -118,10 +140,15 @@ exports.submitExplainReport = (0, https_1.onCall)({
 }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    const kind = normalizeReportKind(request.data?.kind);
     const phraseEn = String(request.data?.phraseEn ?? '').trim();
     if (!phraseEn)
         throw new https_1.HttpsError('invalid-argument', 'phrase_required');
-    // Язык объяснения, на которое жалуются. Кэш per-(phrase,lang) — репорт должен бить в
+    // Для разбора ошибки kind='mistake' нужен и неправильный ответ — кэш per-(target,userAnswer,lang).
+    const userAnswer = String(request.data?.userAnswer ?? '').trim();
+    if (kind === 'mistake' && !userAnswer)
+        throw new https_1.HttpsError('invalid-argument', 'user_answer_required');
+    // Язык объяснения, на которое жалуются. Кэш per-(…,lang) — репорт должен бить в
     // ТОТ ЖЕ док, что генерация. Тот же резолвер (unknown → ru), хэш всё равно считает сервер.
     const lang = String(request.data?.lang ?? '').trim();
     const reason = normalizeReportReason(request.data?.reason);
@@ -129,13 +156,18 @@ exports.submitExplainReport = (0, https_1.onCall)({
     const db = admin.firestore();
     const authUid = request.auth.uid;
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
-    // Хэш ВСЕГДА выводится сервером из (phraseEn, langKey) — любой клиентский 'hash' игнорируется.
+    // Хэш ВСЕГДА выводится сервером — любой клиентский 'hash' игнорируется.
+    //  - phrase:  phraseHashFor(phraseEn, langKey)            в phrase_explanations
+    //  - mistake: mistakeHashFor(phraseEn=target, userAnswer, langKey) в mistake_explanations
     const langKey = (0, explain_prompts_1.resolvePromptLangKey)(lang);
-    const phraseHash = (0, explain_cache_1.phraseHashFor)(phraseEn, langKey);
+    const cacheCollection = kind === 'mistake' ? mistake_explain_cache_1.MISTAKE_COLLECTION : explain_cache_1.EXPLAIN_COLLECTION;
+    const cacheHash = kind === 'mistake'
+        ? (0, mistake_explain_cache_1.mistakeHashFor)(phraseEn, userAnswer, langKey)
+        : (0, explain_cache_1.phraseHashFor)(phraseEn, langKey);
     const now = Date.now();
     const rateRef = db.collection(exports.REPORT_RATE_COLLECTION).doc(rateDocId(authUid, stableUid));
-    const counterRef = db.collection(exports.REPORTS_COLLECTION).doc(phraseHash);
-    const cacheRef = db.collection(explain_cache_1.EXPLAIN_COLLECTION).doc(phraseHash);
+    const counterRef = db.collection(exports.REPORTS_COLLECTION).doc(cacheHash);
+    const cacheRef = db.collection(cacheCollection).doc(cacheHash);
     // Запись ленты создаётся в ТОЙ ЖЕ tx (ref с auto-id готовим заранее — reads-before-writes).
     const entryRef = db.collection(exports.REPORT_ENTRIES_COLLECTION).doc();
     return db.runTransaction(async (tx) => {
@@ -163,7 +195,9 @@ exports.submitExplainReport = (0, https_1.onCall)({
         const reportCount = isNewReporter ? prevReports + 1 : prevReports;
         const cache = cacheSnap.data() || {};
         const cacheStatus = String(cache.status ?? '');
-        const explanationText = typeof cache.text === 'string' ? cache.text.slice(0, 4000) : '';
+        // Текст объяснения хранится в разных полях: фраза → 'text', разбор ошибки → 'full'.
+        const rawCacheText = kind === 'mistake' ? cache.full : cache.text;
+        const explanationText = typeof rawCacheText === 'string' ? rawCacheText.slice(0, 4000) : '';
         // rate-doc
         tx.set(rateRef, {
             authUid,
@@ -176,8 +210,13 @@ exports.submitExplainReport = (0, https_1.onCall)({
         // Лента для админки: КАЖДАЯ отправка (включая повторную от того же юзера —
         // комментарии разные, админу важны все).
         tx.set(entryRef, {
-            phraseHash,
+            // phraseHash оставлен под старым именем (его читает админка/ленты) = cacheHash для обоих kind.
+            phraseHash: cacheHash,
+            kind,
+            cacheCollection,
             phraseEn: phraseEn.slice(0, 200),
+            // userAnswer пишем только для разбора ошибки — чтобы админ видел КОНКРЕТНЫЙ неправильный ответ.
+            userAnswer: kind === 'mistake' ? userAnswer.slice(0, 200) : null,
             lang: langKey,
             reason,
             comment,
@@ -191,10 +230,13 @@ exports.submitExplainReport = (0, https_1.onCall)({
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             createdAtMs: now,
         });
-        // per-hash counter doc (+ фраза/язык, чтобы админка показывала текст, а не только хэш)
+        // per-hash counter doc (+ фраза/язык/kind, чтобы админка показывала текст и знала кэш-коллекцию)
         tx.set(counterRef, {
-            phraseHash,
+            phraseHash: cacheHash,
+            kind,
+            cacheCollection,
             phraseEn: phraseEn.slice(0, 200),
+            userAnswer: kind === 'mistake' ? userAnswer.slice(0, 200) : null,
             lang: langKey,
             reportCount,
             reporters,
@@ -205,7 +247,7 @@ exports.submitExplainReport = (0, https_1.onCall)({
             latestExplanationText: explanationText,
             updatedAtMs: now,
         }, { merge: true });
-        return { ok: true, reportCount, queued: true, flipped: false, rejected: false };
+        return { ok: true, reportCount, queued: true, flipped: false, rejected: false, kind };
     });
 });
 //# sourceMappingURL=explain_reports.js.map

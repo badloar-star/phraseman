@@ -25,7 +25,7 @@ import { getLessonPrepositionPack } from './lesson_prepositions';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import { useEffectivePlatformOS } from './platform_ui_preview';
-import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { loadSettings } from './settings_edu';
 import { lessonPrepositionProgressKey, prepositionDrillPerfectKey } from './target_storage_keys';
 import {
@@ -84,7 +84,7 @@ export default function PrepositionDrillScreen() {
   useEffect(() => {
     let cancelled = false;
     void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
     });
     return () => { cancelled = true; };
   }, [lessonId, router, studyTarget]);

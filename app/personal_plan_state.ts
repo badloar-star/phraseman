@@ -257,15 +257,22 @@ export function buildPersonalPlanSnapshot(input: BuildTodayPlanRuntimeInput): Pe
   };
 }
 
+let _planStateCache: PersonalPlanState | null | undefined = undefined;
+
+export function getCachedPersonalPlanState(): PersonalPlanState | null | undefined {
+  return _planStateCache;
+}
+
 export async function readPersonalPlanState(): Promise<PersonalPlanState | null> {
+  if (_planStateCache !== undefined) return _planStateCache;
   try {
     const raw = await AsyncStorage.getItem(PERSONAL_PLAN_STATE_KEY);
-    if (!raw) return null;
+    if (!raw) { _planStateCache = null; return null; }
     const parsed = JSON.parse(raw) as Partial<PersonalPlanState>;
     if (!parsed || parsed.status !== 'active') return null;
     if (!parsed.planId || !parsed.minutesPerDay) return null;
     const plan = getPlanById(parsed.planId);
-    return {
+    const result: PersonalPlanState = {
       id: String(parsed.id || `${parsed.planId}_active`),
       planInstanceId: String(parsed.planInstanceId || parsed.id || `${parsed.planId}_active`),
       planId: parsed.planId,
@@ -277,12 +284,15 @@ export async function readPersonalPlanState(): Promise<PersonalPlanState | null>
       activatedAt: String(parsed.activatedAt || parsed.createdAt || nowIso()),
       updatedAt: String(parsed.updatedAt || parsed.activatedAt || parsed.createdAt || nowIso()),
     };
+    _planStateCache = result;
+    return result;
   } catch {
     return null;
   }
 }
 
 export async function savePersonalPlanState(state: PersonalPlanState): Promise<void> {
+  _planStateCache = state;
   await AsyncStorage.setItem(PERSONAL_PLAN_STATE_KEY, JSON.stringify({
     ...state,
     updatedAt: nowIso(),

@@ -29,17 +29,22 @@ export type PersonalPlanContentQualityScope = {
 
 export type PersonalPlanExplanationDraft = {
   title?: string;
+  titleEs?: string;
   body: string;
+  bodyEs?: string;
   covers?: string[];
   mentionedOptions?: string[];
+  mentionedOptionsEs?: string[];
 };
 
 export type PersonalPlanPhraseDraft = {
   id: string;
   english: string;
   russian: string;
+  spanish?: string;
   explanations?: PersonalPlanExplanationDraft[];
   visibleOptions?: string[];
+  visibleOptionsEs?: string[];
   newWords?: string[];
   firstSeenConstructions?: string[];
 };
@@ -149,8 +154,11 @@ function explanationText(explanations: PersonalPlanExplanationDraft[]): string {
   return explanations
     .flatMap((explanation) => [
       explanation.title ?? '',
+      explanation.titleEs ?? '',
       explanation.body,
+      explanation.bodyEs ?? '',
       ...(explanation.covers ?? []),
+      ...(explanation.mentionedOptionsEs ?? []),
     ])
     .join(' ')
     .toLowerCase();
@@ -160,12 +168,17 @@ function fullPhraseText(phrase: PersonalPlanPhraseDraft): string {
   return [
     phrase.english,
     phrase.russian,
+    phrase.spanish ?? '',
     ...(phrase.visibleOptions ?? []),
+    ...(phrase.visibleOptionsEs ?? []),
     ...(phrase.explanations ?? []).flatMap((explanation) => [
       explanation.title ?? '',
+      explanation.titleEs ?? '',
       explanation.body,
+      explanation.bodyEs ?? '',
       ...(explanation.covers ?? []),
       ...(explanation.mentionedOptions ?? []),
+      ...(explanation.mentionedOptionsEs ?? []),
     ]),
     ...(phrase.newWords ?? []),
     ...(phrase.firstSeenConstructions ?? []),

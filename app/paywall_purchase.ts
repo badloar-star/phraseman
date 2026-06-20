@@ -223,8 +223,26 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       await initRevenueCat();
       if (!(await syncRevenueCatIdentity())) {
         Alert.alert(
-          triLang(lang, { ru: 'Ошибка подключения', uk: 'Помилка з’єднання', es: 'Error de conexión' }),
-          triLang(lang, { ru: 'Не удалось связаться с магазином. Попробуй позже.', uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.', es: 'No pudimos contactar la tienda. Inténtalo más tarde.' }),
+          triLang(lang, {
+            ru: 'Ошибка подключения',
+            uk: 'Помилка з’єднання',
+            es: 'Error de conexión',
+            'pt-BR': 'Erro de conexão',
+            vi: 'Lỗi kết nối',
+            id: 'Kesalahan koneksi',
+            tr: 'Bağlantı hatası',
+            pl: 'Błąd połączenia',
+          }),
+          triLang(lang, {
+            ru: 'Не удалось связаться с магазином. Попробуй позже.',
+            uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
+            es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
+            'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
+            vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
+            id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
+            tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
+            pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
+          }),
         );
         void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync' });
         return;
@@ -254,11 +272,25 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
             const price = storePriceTrim(pkg.product.priceString);
             const ok = await scheduleTrialEndReminder(
               days,
-              triLang(lang, { ru: 'Триал заканчивается завтра', uk: 'Тріал закінчується завтра', es: 'Tu prueba termina mañana' }),
+              triLang(lang, {
+                ru: 'Триал заканчивается завтра',
+                uk: 'Тріал закінчується завтра',
+                es: 'Tu prueba termina mañana',
+                'pt-BR': 'Seu teste termina amanhã',
+                vi: 'Dùng thử kết thúc vào ngày mai',
+                id: 'Uji cobamu berakhir besok',
+                tr: 'Denemen yarın bitiyor',
+                pl: 'Okres próbny kończy się jutro',
+              }),
               triLang(lang, {
                 ru: `Дальше — ${price}. Останешься? Отменить можно в два тапа.`,
                 uk: `Далі — ${price}. Залишишся? Скасувати можна у два тапи.`,
                 es: `Luego: ${price}. ¿Te quedas? Cancelar toma dos toques.`,
+                'pt-BR': `Depois: ${price}. Vai continuar? Cancelar leva dois toques.`,
+                vi: `Sau đó: ${price}. Bạn tiếp tục chứ? Hủy chỉ mất hai lần chạm.`,
+                id: `Berikutnya: ${price}. Tetap lanjut? Batal hanya dua ketukan.`,
+                tr: `Sonra: ${price}. Devam edecek misin? İptal iki dokunuş.`,
+                pl: `Dalej: ${price}. Zostajesz? Anulowanie to dwa stuknięcia.`,
               }),
             );
             if (ok) void trackEvent('trial_reminder_scheduled', { context, plan: selected, paywall: variant, days });
@@ -279,8 +311,26 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
           error: String((err as { message?: string })?.message ?? '').slice(0, 100),
         });
         Alert.alert(
-          triLang(lang, { ru: 'Не удалось оформить', uk: 'Не вдалося оформити', es: 'No se pudo completar' }),
-          triLang(lang, { ru: 'Попробуй ещё раз или восстанови покупки.', uk: 'Спробуй ще раз або віднови покупки.', es: 'Inténtalo de nuevo o restaura tus compras.' }),
+          triLang(lang, {
+            ru: 'Не удалось оформить',
+            uk: 'Не вдалося оформити',
+            es: 'No se pudo completar',
+            'pt-BR': 'Não foi possível concluir',
+            vi: 'Không hoàn tất được',
+            id: 'Tidak bisa menyelesaikan',
+            tr: 'Tamamlanamadı',
+            pl: 'Nie udało się dokończyć',
+          }),
+          triLang(lang, {
+            ru: 'Попробуй ещё раз или восстанови покупки.',
+            uk: 'Спробуй ще раз або віднови покупки.',
+            es: 'Inténtalo de nuevo o restaura tus compras.',
+            'pt-BR': 'Tente de novo ou restaure suas compras.',
+            vi: 'Hãy thử lại hoặc khôi phục giao dịch mua.',
+            id: 'Coba lagi atau pulihkan pembelianmu.',
+            tr: 'Tekrar dene veya satın alımları geri yükle.',
+            pl: 'Spróbuj ponownie albo przywróć zakupy.',
+          }),
         );
       }
     } finally {
@@ -297,8 +347,26 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       await initRevenueCat();
       if (!(await syncRevenueCatIdentity())) {
         Alert.alert(
-          triLang(lang, { ru: 'Ошибка подключения', uk: 'Помилка з’єднання', es: 'Error de conexión' }),
-          triLang(lang, { ru: 'Не удалось связаться с магазином. Попробуй позже.', uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.', es: 'No pudimos contactar la tienda. Inténtalo más tarde.' }),
+          triLang(lang, {
+            ru: 'Ошибка подключения',
+            uk: 'Помилка з’єднання',
+            es: 'Error de conexión',
+            'pt-BR': 'Erro de conexão',
+            vi: 'Lỗi kết nối',
+            id: 'Kesalahan koneksi',
+            tr: 'Bağlantı hatası',
+            pl: 'Błąd połączenia',
+          }),
+          triLang(lang, {
+            ru: 'Не удалось связаться с магазином. Попробуй позже.',
+            uk: 'Не вдалося зв’язатися з магазином. Спробуй пізніше.',
+            es: 'No pudimos contactar la tienda. Inténtalo más tarde.',
+            'pt-BR': 'Não foi possível contactar a loja. Tente mais tarde.',
+            vi: 'Không liên hệ được với cửa hàng. Hãy thử lại sau.',
+            id: 'Tidak bisa menghubungi toko. Coba lagi nanti.',
+            tr: 'Mağazaya bağlanılamadı. Daha sonra tekrar dene.',
+            pl: 'Nie udało się połączyć ze sklepem. Spróbuj później.',
+          }),
         );
         return;
       }
@@ -326,14 +394,50 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
         safeRouterBack(router);
       } else {
         Alert.alert(
-          triLang(lang, { ru: 'Покупки не найдены', uk: 'Покупки не знайдено', es: 'No se encontraron compras' }),
-          triLang(lang, { ru: 'Активных подписок не обнаружено.', uk: 'Активних підписок не знайдено.', es: 'No hay suscripciones activas.' }),
+          triLang(lang, {
+            ru: 'Покупки не найдены',
+            uk: 'Покупки не знайдено',
+            es: 'No se encontraron compras',
+            'pt-BR': 'Compras não encontradas',
+            vi: 'Không tìm thấy giao dịch mua',
+            id: 'Pembelian tidak ditemukan',
+            tr: 'Satın alma bulunamadı',
+            pl: 'Nie znaleziono zakupów',
+          }),
+          triLang(lang, {
+            ru: 'Активных подписок не обнаружено.',
+            uk: 'Активних підписок не знайдено.',
+            es: 'No hay suscripciones activas.',
+            'pt-BR': 'Nenhuma assinatura ativa encontrada.',
+            vi: 'Không có gói đăng ký đang hoạt động.',
+            id: 'Tidak ada langganan aktif.',
+            tr: 'Aktif abonelik bulunamadı.',
+            pl: 'Nie znaleziono aktywnych subskrypcji.',
+          }),
         );
       }
     } catch {
       Alert.alert(
-        triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error' }),
-        triLang(lang, { ru: 'Не удалось восстановить покупки. Попробуй позже.', uk: 'Не вдалося відновити покупки. Спробуй пізніше.', es: 'No se pudieron restaurar las compras. Inténtalo más tarde.' }),
+        triLang(lang, {
+          ru: 'Ошибка',
+          uk: 'Помилка',
+          es: 'Error',
+          'pt-BR': 'Erro',
+          vi: 'Lỗi',
+          id: 'Error',
+          tr: 'Hata',
+          pl: 'Błąd',
+        }),
+        triLang(lang, {
+          ru: 'Не удалось восстановить покупки. Попробуй позже.',
+          uk: 'Не вдалося відновити покупки. Спробуй пізніше.',
+          es: 'No se pudieron restaurar las compras. Inténtalo más tarde.',
+          'pt-BR': 'Não foi possível restaurar as compras. Tente mais tarde.',
+          vi: 'Không khôi phục được giao dịch mua. Hãy thử lại sau.',
+          id: 'Tidak bisa memulihkan pembelian. Coba lagi nanti.',
+          tr: 'Satın alımlar geri yüklenemedi. Daha sonra tekrar dene.',
+          pl: 'Nie udało się przywrócić zakupów. Spróbuj później.',
+        }),
       );
     } finally {
       setRestoring(false);

@@ -540,6 +540,10 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     'week_leaderboard',
     // Прочее account-level
     'last_active_date',
+    // Производный display-флаг реального премиума (НЕ в SYNC_KEYS, пересчитывается
+    // резолвером). Чистим при смене/сбросе аккаунта, чтобы старое premium_active='true'
+    // не перетекло к новому аккаунту до первого пересчёта доступа.
+    'premium_active',
     'comeback_active',
     'comeback_pending',
     'bug_hunt_shown',

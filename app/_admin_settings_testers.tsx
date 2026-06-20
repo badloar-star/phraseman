@@ -172,11 +172,13 @@ import {
   expireIntroFullAccessForAdmin,
   resetIntroFullAccessForAdmin,
   getIntroFullAccessState,
+  INTRO_FULL_ACCESS_STORAGE_KEYS,
 } from './intro_full_access';
 import {
   activateLoyaltyGiftForAdmin,
   expireLoyaltyGiftForAdmin,
   resetLoyaltyGiftForAdmin,
+  LOYALTY_GIFT_ALL_KEYS,
 } from './loyalty_gift';
 import { callVipRevokeMine } from './vip_revoke_client';
 import {
@@ -321,6 +323,13 @@ function buildAdminResetAllDataKeys(): string[] {
     ...buildAdminResetEnglishExamKeys(),
     ...ADMIN_RESET_TESTER_KEYS,
     ...FRENCH_TARGET_SYNC_KEYS,
+    // Подарочные доступы (3 дня новичку / лояльность) живут в собственных
+    // локальных ключах, которых нет в SYNC_KEYS. Без явного добавления
+    // «Сброс всех данных» оставлял активный подарок → у «обнулённого» аккаунта
+    // сохранялся премиум-доступ. (premium_active чистится через
+    // accountLocalDataKeysForToday выше.)
+    ...INTRO_FULL_ACCESS_STORAGE_KEYS,
+    ...LOYALTY_GIFT_ALL_KEYS,
   ]));
 }
 

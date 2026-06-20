@@ -33,6 +33,7 @@ import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getCourseLevelIndex, getFirstLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { usePremium } from '../components/PremiumContext';
 import { lessonPaywallContext } from './monetization_policy';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { levelExamKey } from './target_storage_keys';
@@ -527,6 +528,7 @@ export default function LevelExam() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { hasPremiumAccess } = usePremium();
   const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
   const { level } = useLocalSearchParams<{ level: string }>();
   const validLevels = ['A1', 'A2', 'B1', 'B2'];
@@ -981,8 +983,10 @@ export default function LevelExam() {
       tr: `${lvl} seviyesinin ana konularından ${INTRO_Q_COUNT} soru. Devam etmek için en az %${PASS_PCT} alman gerekir. Sonucunu iyileştirmek istersen sınavı cezasız tekrar edebilirsin; en iyi sonucun saklanır.`,
       pl: `${INTRO_Q_COUNT} pytań z głównych tematów poziomu ${lvl}. Aby przejść dalej, potrzebujesz co najmniej ${PASS_PCT}%. Jeśli chcesz poprawić wynik, możesz powtórzyć test bez kary; zapiszemy najlepszy rezultat.`,
     });
+    // Подсказка про Premium объясняет ФРИ-юзеру, зачем гейт уровней. Для premium-юзера
+    // она бессмысленна («у нас и так премиум») — не показываем её, когда доступ уже есть.
     const premiumNote =
-      lvl !== 'B2'
+      lvl !== 'B2' && !hasPremiumAccess
         ? triLang(lang, {
           ru: 'С Premium все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
           uk: 'З Premium усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',

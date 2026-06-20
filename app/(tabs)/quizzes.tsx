@@ -522,7 +522,9 @@ function BaseQuizLevelCard({
           testID={`quiz-level-start-${level}`}
           accessibilityLabel={`qa-quiz-level-start-${level}`}
           onPress={() => { onStart(level, fillAnim); }}
-          scaleTo={0.96}
+          // scaleTo=1: нижняя полоска не сжимается отдельно — читается как подвал
+          // карточки, а не как самостоятельная кнопка («они не вместе»).
+          scaleTo={1}
           withHaptic={false}
           style={{
             height: 46,
@@ -720,7 +722,9 @@ function ThematicQuizLevelCard({
       {visualSelected && (
         <TapScale
           onPress={() => { onStart(category.id, fillAnim); }}
-          scaleTo={0.96}
+          // scaleTo=1: нижняя полоска не сжимается отдельно — читается как подвал
+          // карточки, а не как самостоятельная кнопка («они не вместе»).
+          scaleTo={1}
           withHaptic={false}
           style={{
             height: 46,

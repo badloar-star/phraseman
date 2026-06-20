@@ -282,9 +282,16 @@ describe('ExplainReportButton: контракт репорта', () => {
     expect(src).toContain('maxLength={COMMENT_MAX_LEN}');
   });
 
-  it('шлёт reason и comment вместе с phraseEn/lang', () => {
+  it('шлёт kind/phraseEn/lang/reason/comment (+ userAnswer для разбора ошибки)', () => {
     const code = stripComments(src);
-    expect(code).toMatch(/callSubmitExplainReport\(\{\s*phraseEn,\s*lang,\s*reason,\s*comment/);
+    // Контракт после добавления kind='mistake': в вызове присутствуют ключевые поля.
+    expect(code).toMatch(/callSubmitExplainReport\(\{[\s\S]*?kind,/);
+    expect(code).toMatch(/callSubmitExplainReport\(\{[\s\S]*?phraseEn,/);
+    expect(code).toMatch(/callSubmitExplainReport\(\{[\s\S]*?lang,/);
+    expect(code).toMatch(/callSubmitExplainReport\(\{[\s\S]*?reason,/);
+    expect(code).toMatch(/callSubmitExplainReport\(\{[\s\S]*?comment:/);
+    // userAnswer прокидывается для mistake-режима.
+    expect(code).toMatch(/userAnswer:\s*kind === 'mistake'/);
   });
 
   it('форма — вложенный Modal с KeyboardAvoidingView (клавиатура не перекрывает ввод)', () => {

@@ -1149,6 +1149,8 @@ const LessonContent = React.memo(function LessonContent({
                     explanation={aiMistakeText}
                     remaining={aiMistakeRemaining}
                     onExplain={explainCurrentMistake}
+                    targetAnswer={aiMistakeTargetLine}
+                    userAnswer={aiMistakeAnswerLine}
                   />
                 </View>
               )}
@@ -3010,6 +3012,7 @@ export default function LessonScreen() {
     if (!clean) return;
     if (settings.hardMode) {
       setTypedText(clean);
+      checkAnswer(clean);
       return;
     }
     const phraseWords = getPhraseTokens(phrase, studyTargetRef.current);
@@ -3017,7 +3020,8 @@ export default function LessonScreen() {
     setShuffled([]);
     setSelectedWords(phraseWords);
     setPhraseWordIdx(phraseWords.length);
-  }, [phrase, status, settings.hardMode]);
+    checkAnswer(phraseWords.join(' '));
+  }, [phrase, status, settings.hardMode, checkAnswer]);
 
 
   const correctCount = useMemo(() => progress.filter(p => p === 'correct' || p === 'replay_correct').length, [progress]);

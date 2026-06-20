@@ -4,6 +4,7 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-nati
 import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from './ThemeContext';
 import BilingualMistakeText from './BilingualMistakeText';
+import ExplainReportButton from './ExplainReportButton';
 
 export type AiMistakeCardState = 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
@@ -14,6 +15,13 @@ type AiMistakeCardProps = {
   /** Kept for back-compat; no longer rendered (no daily cap). */
   remaining?: number | null;
   onExplain: () => void;
+  /**
+   * Правильный (целевой) ответ и неправильный ответ юзера. Нужны кнопке «Непонятно объяснили»,
+   * чтобы жалоба попала в ТУ ЖЕ кэш-запись разбора (mistake_explanations per-(target,userAnswer,lang)).
+   * Если не переданы — кнопка репорта не показывается (старые вызовы остаются как были).
+   */
+  targetAnswer?: string;
+  userAnswer?: string;
 };
 
 export default function AiMistakeCard({
@@ -21,6 +29,8 @@ export default function AiMistakeCard({
   state,
   explanation,
   onExplain,
+  targetAnswer,
+  userAnswer,
 }: AiMistakeCardProps) {
   const { theme: t, f } = useTheme();
   const isBusy = state === 'loading';
@@ -110,6 +120,19 @@ export default function AiMistakeCard({
         </Text>
       )}
 
+      {/* «Непонятно объяснили» — только на ГОТОВОМ разборе и если есть оба ответа (нужны для хэша).
+          Жалоба летит в админку и удаляется из кэша mistake_explanations кнопкой там. */}
+      {isReadyExplanation && targetAnswer && userAnswer ? (
+        <View style={styles.reportRow}>
+          <ExplainReportButton
+            kind="mistake"
+            phraseEn={targetAnswer}
+            userAnswer={userAnswer}
+            lang={lang}
+          />
+        </View>
+      ) : null}
+
 
       {state === 'error' ? (
         <Pressable
@@ -163,6 +186,10 @@ const styles = StyleSheet.create({
   busyRow: {
     alignItems: 'flex-start',
     paddingVertical: 4,
+  },
+  reportRow: {
+    alignItems: 'flex-start',
+    marginLeft: -10, // компенсируем внутренний padding кнопки, чтобы флажок встал по левому краю
   },
   simpleButton: {
     alignItems: 'center',

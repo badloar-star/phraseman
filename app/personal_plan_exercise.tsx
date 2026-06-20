@@ -1197,6 +1197,8 @@ export default function PersonalPlanExerciseScreen() {
           explanation={mistakeExplain.aiMistakeText}
           remaining={mistakeExplain.aiMistakeRemaining}
           onExplain={mistakeExplain.explain}
+          targetAnswer={mistakeTargetAnswer}
+          userAnswer={mistakeUserAnswer}
         />
         <TouchableOpacity
           onPress={() => void next()}
@@ -1732,6 +1734,8 @@ export default function PersonalPlanExerciseScreen() {
                     explanation={mistakeExplain.aiMistakeText}
                     remaining={mistakeExplain.aiMistakeRemaining}
                     onExplain={mistakeExplain.explain}
+                    targetAnswer={mistakeTargetAnswer}
+                    userAnswer={mistakeUserAnswer}
                   />
                   <TouchableOpacity
                     onPress={() => void next()}

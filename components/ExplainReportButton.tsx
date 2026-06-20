@@ -35,9 +35,19 @@ import { callSubmitExplainReport } from '../app/explain_phrase_client';
 import { asLang } from '../app/explain_phrase_request';
 
 interface Props {
-  /** Английская фраза — сервер сам выведет phraseHash; клиент хэш НЕ шлёт. */
+  /**
+   * Какой кэш репортим: 'phrase' (объяснение фразы, дефолт) или 'mistake' (разбор ошибки).
+   * От kind зависит, какую кэш-запись на сервере затронет жалоба.
+   */
+  kind?: 'phrase' | 'mistake';
+  /**
+   * Для kind='phrase' — английская фраза. Для kind='mistake' — ПРАВИЛЬНЫЙ (целевой) ответ.
+   * Сервер сам выведет хэш; клиент хэш НЕ шлёт.
+   */
   phraseEn: string;
-  /** Язык объяснения, на которое жалуемся (кэш per-(phrase,lang)). Дефолт — язык интерфейса. */
+  /** Только для kind='mistake': неправильный ответ юзера (кэш per-(target,userAnswer,lang)). */
+  userAnswer?: string;
+  /** Язык объяснения, на которое жалуемся (кэш per-(…,lang)). Дефолт — язык интерфейса. */
   lang?: string;
 }
 
@@ -96,7 +106,7 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
   }
 }
 
-function ExplainReportButton({ phraseEn, lang: langProp }: Props) {
+function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: langProp }: Props) {
   const { theme: t, f } = useTheme();
   const { lang: ctxLang } = useLang();
   const insets = useSafeAreaInsets();
@@ -126,7 +136,10 @@ function ExplainReportButton({ phraseEn, lang: langProp }: Props) {
     setSending(true);
     try {
       await callSubmitExplainReport({
+        kind,
         phraseEn,
+        // userAnswer нужен только для разбора ошибки (per-(target,userAnswer,lang)).
+        userAnswer: kind === 'mistake' ? userAnswer : undefined,
         lang,
         reason,
         comment: comment.trim().slice(0, COMMENT_MAX_LEN),

@@ -49,10 +49,21 @@ export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<Expl
 }
 
 export interface SubmitExplainReportRequest {
-  /** Английская фраза — сервер сам выведет phraseHash; клиент хэш НЕ шлёт. */
-  phraseEn: string;
   /**
-   * Язык объяснения, на которое жалуемся. Кэш per-(phrase,lang) — без языка репорт попал бы
+   * На какой кэш жалуемся. 'phrase' (дефолт) — объяснение фразы, 'mistake' — разбор ошибки.
+   * Сервер сверяет с белым списком (неизвестное → 'phrase'). От kind зависит кэш-коллекция
+   * и схема хэша на сервере.
+   */
+  kind?: 'phrase' | 'mistake';
+  /**
+   * Для kind='phrase' — английская фраза. Для kind='mistake' — ПРАВИЛЬНЫЙ (целевой) ответ.
+   * Сервер сам выведет хэш; клиент хэш НЕ шлёт.
+   */
+  phraseEn: string;
+  /** Только для kind='mistake': неправильный ответ юзера (кэш per-(target,userAnswer,lang)). */
+  userAnswer?: string;
+  /**
+   * Язык объяснения, на которое жалуемся. Кэш per-(…,lang) — без языка репорт попал бы
    * не в тот док. Сервер нормализует тем же резолвером (unknown → ru); хэш всё равно считает он.
    */
   lang: string;

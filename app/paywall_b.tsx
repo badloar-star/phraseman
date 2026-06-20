@@ -4,8 +4,8 @@
 // Гипотеза B: длинная страница убеждения (кейс OMENA: лендинг-пейвол удвоил
 // старты триала) — лента триала, контекст-герой, личные теги, зеркало
 // прогресса, сравнение, отзывы (ТОЛЬКО verified — пока их нет, секции нет),
-// планы и CTA внизу. Обязательная страховка: sticky-CTA, цена и кнопка
-// никогда не покидают экран.
+// планы и CTA внизу. (Плавающий sticky-CTA убран — основной кнопки «открыть
+// полный доступ» достаточно, дублирующая плашка мешала.)
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
@@ -24,9 +24,9 @@ import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from '.
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
-  PaywallStickyBar, useStickyCta, PaywallPersonalTags, PaywallCloseButton,
+  PaywallPersonalTags, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
-  paywallScreenStackOptions,
+  usePaywallScreenStackOptions,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -34,7 +34,7 @@ import { MirrorCard, CompareCard } from '../components/paywall/PaywallProofCards
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
-import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
+import { ctaLabelFor, ctaSubLineFor, periodLabelFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
 const VARIANT = 'B' as const;
@@ -44,12 +44,13 @@ export default function PaywallB() {
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
   const isOnboarding = source === 'onboarding_plan';
+  // Стабильная ссылка опций экрана — иначе <Stack.Screen> зацикливает setOptions.
+  const screenOptions = usePaywallScreenStackOptions(isOnboarding);
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome();
   const insets = useSafeAreaInsets();
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang });
-  const sticky = useStickyCta();
 
   const [tags, setTags] = useState<PersonalizedTag[]>([]);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
@@ -114,19 +115,16 @@ export default function PaywallB() {
   const period = periodLabelFor(lang as Lang, p.selected);
   const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel);
   const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel });
-  const stickyStrings = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
-      <Stack.Screen options={paywallScreenStackOptions(isOnboarding)} />
+      <Stack.Screen options={screenOptions} />
       <SafeAreaView style={S.safe}>
-        <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]} onLayout={sticky.onViewportLayout}>
+        <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             decelerationRate="normal"
             contentContainerStyle={S.scrollContent}
-            onScroll={sticky.onScroll}
-            scrollEventThrottle={32}
           >
             <PaywallCloseButton
               onPress={() => { hapticTap(); closeWithDim('close'); }}
@@ -190,7 +188,7 @@ export default function PaywallB() {
               period={period}
             />
 
-            <View style={S.ctaWrap} onLayout={sticky.onCtaLayout}>
+            <View style={S.ctaWrap}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -214,17 +212,8 @@ export default function PaywallB() {
               trialDays={p.trialDays}
               isLifetime={isLifetimeSel}
             />
-            <View style={{ height: Math.max(insets.bottom, 10) + 64 }} />
+            <View style={{ height: Math.max(insets.bottom, 10) }} />
           </ScrollView>
-
-          <PaywallStickyBar
-            visible={sticky.visible && !p.purchasing}
-            title={stickyStrings.title}
-            sub={stickyStrings.sub}
-            button={stickyStrings.button}
-            onPress={() => { void p.handlePurchase(); }}
-            chrome={chrome}
-          />
         </Animated.View>
       </SafeAreaView>
     </PaywallBackground>

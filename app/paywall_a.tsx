@@ -31,7 +31,7 @@ import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
-  paywallScreenStackOptions,
+  usePaywallScreenStackOptions,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -48,6 +48,8 @@ export default function PaywallA() {
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
   const isOnboarding = source === 'onboarding_plan';
+  // Стабильная ссылка опций экрана — иначе <Stack.Screen> зацикливает setOptions.
+  const screenOptions = usePaywallScreenStackOptions(isOnboarding);
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome();
@@ -123,7 +125,7 @@ export default function PaywallA() {
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
-      <Stack.Screen options={paywallScreenStackOptions(isOnboarding)} />
+      <Stack.Screen options={screenOptions} />
       <SafeAreaView style={S.safe}>
         <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]}>
           <PaywallCloseButton

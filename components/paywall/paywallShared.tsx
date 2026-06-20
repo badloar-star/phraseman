@@ -82,11 +82,27 @@ export function paywallScreenStackOptions(isOnboarding: boolean) {
   return { presentation: 'modal', animation: 'slide_from_bottom' } as const;
 }
 
-// Плавное затемнение фона онбординг-пейвола: вход 0→90%, выход обратно. Затемнение
-// убирает отвлекающий фон, чтобы текст пейвола читался. Длительность совпадает с
-// прочими переходами онбординга (screenFade 300, welcome-задержка 320).
-const ONBOARDING_DIM_OPACITY = 0.9;
-const ONBOARDING_DIM_DURATION = 320;
+/**
+ * Стабильная ссылка на опции <Stack.Screen> для экранов пейвола.
+ *
+ * КРИТИЧНО: expo-router `<Screen options={…}>` вызывает navigation.setOptions в
+ * layout-эффекте с зависимостью от `options`. Если передавать НОВЫЙ объект на
+ * каждый рендер (как `paywallScreenStackOptions(...)` напрямую в JSX), эффект
+ * срабатывает каждый рендер → setOptions → апдейт навигатора → ре-рендер → … →
+ * «Maximum update depth exceeded». Мемоизация по isOnboarding даёт постоянную
+ * ссылку, и эффект отрабатывает один раз.
+ */
+export function usePaywallScreenStackOptions(isOnboarding: boolean) {
+  return useMemo(() => paywallScreenStackOptions(isOnboarding), [isOnboarding]);
+}
+
+// Плавное затемнение фона онбординг-пейвола: вход 0→80%, выход обратно. Затемнение
+// убирает отвлекающий фон, чтобы текст пейвола читался. Намеренно медленное (4с),
+// чтобы фон не «вспыхивал» чёрным, а плавно темнел при открытии и так же плавно
+// светлел при переходе на следующий экран онбординга.
+const ONBOARDING_DIM_OPACITY = 0.8;
+const ONBOARDING_DIM_ENTER_DURATION = 4000;
+const ONBOARDING_DIM_EXIT_DURATION = 4000;
 
 /** Императивный хэндл, который экран пейвола использует для проигрывания обратного
  *  затемнения ПЕРЕД уходом на следующий экран онбординга. */
@@ -108,10 +124,10 @@ export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
 
   useEffect(() => {
     if (!isOnboarding) return;
-    // Вход: плавно затемняем фон до 90%.
+    // Вход: плавно (4с) затемняем фон до 80%.
     const anim = Animated.timing(dim, {
       toValue: ONBOARDING_DIM_OPACITY,
-      duration: ONBOARDING_DIM_DURATION,
+      duration: ONBOARDING_DIM_ENTER_DURATION,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     });
@@ -122,10 +138,10 @@ export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
   useImperativeHandle(ref, () => ({
     animateExit: (done: () => void) => {
       if (!isOnboarding) { done(); return; }
-      // Выход: плавно осветляем фон обратно, затем уводим на следующий экран.
+      // Выход: плавно (4с) осветляем фон обратно, затем уводим на следующий экран.
       Animated.timing(dim, {
         toValue: 0,
-        duration: ONBOARDING_DIM_DURATION,
+        duration: ONBOARDING_DIM_EXIT_DURATION,
         easing: Easing.in(Easing.cubic),
         useNativeDriver: true,
       }).start(() => done());

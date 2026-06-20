@@ -8375,6 +8375,7 @@
   <div class="tab" onclick="switchTab('user-reports')" data-i18n-es="Reportes de usuarios">User reports</div>
   <div class="tab" onclick="switchTab('explain-reports')" data-i18n-es="Explicaciones">Explain reports</div>
   <div class="tab" onclick="switchTab('explain-cache')" data-i18n-es="Caché de explicaciones">Explain cache</div>
+  <div class="tab" onclick="switchTab('compass')" data-i18n-es="Brújula">🧭 Компас</div>
   <div class="tab" onclick="switchTab('ban-list')" data-i18n-es="Lista de bloqueos">Ban list</div>
   <div class="tab" onclick="switchTab('premium')" data-i18n-es="Premium">Premium</div>
   <div class="tab" onclick="switchTab('vip')" data-i18n-es="VIP">VIP</div>
@@ -9389,6 +9390,52 @@
     сгенерируется заново при следующем ответе пользователя.
   </p>
   <div id="xc-list" style="padding:0 24px 32px"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
+</div>
+
+<!-- COMPASS TAB (🧭 управление + аналитика + статистика) -->
+<div id="tab-compass" class="reports-tab">
+  <div class="reports-toolbar">
+    <button onclick="loadCompassAdmin()" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <span class="reports-count" id="cm-status"></span>
+  </div>
+
+  <div style="padding:0 24px 8px;max-width:1000px">
+    <h3 style="color:#a78bfa;font-size:15px;margin:8px 0 6px">Аналитика</h3>
+    <div id="cm-analytics" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+      <div class="reports-empty" style="grid-column:1/-1">Открой вкладку для загрузки.</div>
+    </div>
+    <p style="font-size:12px;color:#888;margin-top:8px;line-height:1.5">
+      Дешевизна видна по <strong>cache-hit</strong>: один тёплый комментарий генерится на всю «подпись дня»
+      (тип+темы+уровень) и переиспользуется у тысяч учеников. Источник: <code style="color:#a78bfa">compass_briefings</code> +
+      биллинг <code style="color:#a78bfa">compass_billing</code>.
+    </p>
+  </div>
+
+  <div style="padding:8px 24px;max-width:1000px">
+    <h3 style="color:#a78bfa;font-size:15px;margin:8px 0 6px">Управление</h3>
+    <p style="font-size:12px;color:#888;margin-bottom:10px;line-height:1.5">
+      Рубильники пишутся в <code style="color:#818cf8">remote_config/app.bools</code> (клиенты подхватывают за секунды).
+      Модель и дневные капы ИИ-голоса — в разделе <strong>«Пульт → ИИ-джобы»</strong>, джоб <code style="color:#818cf8">compass</code>
+      (<code>gpt-4.1-nano</code>). Главный выключатель гасит весь Компас; под-рычаги — отдельные крылья.
+    </p>
+    <div id="cm-toggles" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div id="cm-toggles-status" style="font-size:12px;margin-top:8px;color:#6b7280"></div>
+  </div>
+
+  <div style="padding:8px 24px 32px;max-width:1000px">
+    <h3 style="color:#a78bfa;font-size:15px;margin:8px 0 6px">Кэш комментариев дня</h3>
+    <p style="font-size:12px;color:#888;margin-bottom:10px">Удаление сбрасывает комментарий — он сгенерится заново при следующем показе. Удаляем по статусу или один.</p>
+    <div class="reports-toolbar" style="padding:0 0 10px">
+      <select id="cm-cache-status" onchange="renderCompassCache()">
+        <option value="">Все статусы</option>
+        <option value="ready">ready</option>
+        <option value="pending">pending</option>
+        <option value="rejected">rejected</option>
+      </select>
+      <span class="reports-count" id="cm-cache-count"></span>
+    </div>
+    <div id="cm-cache-list"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
+  </div>
 </div>
 
 <!-- BAN LIST TAB -->
@@ -11348,7 +11395,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','explain-cache','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -14964,6 +15011,8 @@
     if (explainRepTab) explainRepTab.classList.toggle('active', tab === 'explain-reports');
     const explainCacheTab = document.getElementById('tab-explain-cache');
     if (explainCacheTab) explainCacheTab.classList.toggle('active', tab === 'explain-cache');
+    const compassTab = document.getElementById('tab-compass');
+    if (compassTab) compassTab.classList.toggle('active', tab === 'compass');
     document.getElementById('tab-archive').classList.toggle('active',tab==='archive');
     document.getElementById('tab-audit').classList.toggle('active',tab==='audit');
     document.getElementById('tab-ops-log').classList.toggle('active',tab==='ops-log');
@@ -15045,6 +15094,7 @@
     if(tab==='user-reports' && !window._userReportsLoaded) loadUserReports();
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
     if(tab==='explain-cache' && !window._explainCacheLoaded) loadExplainCache();
+    if(tab==='compass' && !window._compassAdminLoaded) loadCompassAdmin();
     if(tab==='archive' && !window._archiveLoaded) loadArchive();
     if(tab==='audit' && !window._auditLoaded) loadAuditLog();
     if(tab==='app-health' && !window._appHealthLoaded) loadAppHealth();
@@ -20537,6 +20587,151 @@
     }
   }
 
+  // ── КОМПАС: управление + аналитика + статистика + кэш ─────────────────────────
+  window._compassAdminLoaded = false;
+  window._compassCacheDocs = [];
+
+  function cmStatus(msg, color) {
+    const el = document.getElementById('cm-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+
+  window.loadCompassAdmin = async function() {
+    window._compassAdminLoaded = true;
+    cmStatus('Загрузка…');
+    renderCompassToggles();
+    await Promise.all([loadCompassToggleStates(), loadCompassAnalytics(), loadCompassCache()]);
+    cmStatus('Загружено', '#4ade80');
+  };
+
+  function renderCompassToggles() {
+    const box = document.getElementById('cm-toggles');
+    if (!box || typeof COMPASS_TOGGLES === 'undefined') return;
+    box.innerHTML = COMPASS_TOGGLES.map((f) => {
+      const main = f.key === 'compass_enabled';
+      return `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:${main?'#1a1430':'#141925'};border:1px solid ${main?'#5b21b6':'#26304a'};border-radius:11px;padding:11px 14px">
+        <div style="min-width:0">
+          <div style="font-size:13px;font-weight:700;color:${main?'#c4b5fd':'#e5e7eb'}">${escapeHtml(f.label)}</div>
+          <div style="font-size:11px;color:#888;margin-top:2px">${escapeHtml(f.hint)}</div>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0">
+          <input type="checkbox" id="cm-bool-${f.key}" onchange="saveCompassBool('${f.key}', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/>
+          <span id="cm-bool-label-${f.key}" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span>
+        </label>
+      </div>`;
+    }).join('');
+  }
+
+  async function loadCompassToggleStates() {
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const bools = (data && data.bools && typeof data.bools === 'object') ? data.bools : {};
+      for (const f of COMPASS_TOGGLES) {
+        const on = (typeof bools[f.key] === 'boolean') ? bools[f.key] : f.def;
+        const cb = document.getElementById('cm-bool-' + f.key);
+        const lbl = document.getElementById('cm-bool-label-' + f.key);
+        if (cb) { cb.checked = !!on; cb.disabled = false; }
+        if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#4ade80' : '#9ca3af'; }
+      }
+    } catch (e) {
+      cmStatus('Ошибка флагов: ' + (e.message || e), '#f87171');
+    }
+  }
+
+  // Переиспользуем общий писатель флагов «Пульта» (remote_config/app.bools).
+  window.saveCompassBool = function(key, value) {
+    if (typeof saveControlPanelBool === 'function') return saveControlPanelBool(key, value);
+    showToast('❌ Писатель флагов недоступен', 'err');
+  };
+
+  async function loadCompassAnalytics() {
+    const box = document.getElementById('cm-analytics');
+    if (!box) return;
+    try {
+      const cacheSnap = await getDocs(query(collection(db, 'compass_briefings'), limit(1000)));
+      let ready = 0, pending = 0, rejected = 0;
+      cacheSnap.forEach((d) => {
+        const st = (d.data() || {}).status;
+        if (st === 'ready') ready++; else if (st === 'pending') pending++; else if (st === 'rejected') rejected++;
+      });
+      const uniqueSignatures = cacheSnap.size;
+      // cache-hit ≈ доля «промахов» (генераций) к показам недоступна без счётчика показов,
+      // поэтому показываем число уникальных подписей (чем меньше — тем дешевле).
+      const cards = [
+        ['Уникальных подписей дня', String(uniqueSignatures), '#a78bfa'],
+        ['ready (готовы)', String(ready), '#4ade80'],
+        ['pending', String(pending), '#fbbf24'],
+        ['rejected', String(rejected), '#f87171'],
+      ];
+      box.innerHTML = cards.map(([l, v, c]) =>
+        `<div style="background:#1b2233;border:1px solid #26304a;border-radius:13px;padding:14px">
+          <div style="font-size:24px;font-weight:800;color:${c}">${v}</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:2px">${l}</div></div>`).join('');
+    } catch (e) {
+      box.innerHTML = `<div class="reports-empty" style="grid-column:1/-1">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  }
+
+  window.loadCompassCache = async function() {
+    const list = document.getElementById('cm-cache-list');
+    if (list) list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      let snap;
+      try {
+        snap = await getDocs(query(collection(db, 'compass_briefings'), orderBy('updatedAtMs', 'desc'), limit(300)));
+      } catch { snap = await getDocs(query(collection(db, 'compass_briefings'), limit(300))); }
+      window._compassCacheDocs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      renderCompassCache();
+    } catch (e) {
+      if (list) list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.renderCompassCache = function() {
+    const list = document.getElementById('cm-cache-list');
+    const status = document.getElementById('cm-cache-status')?.value || '';
+    let arr = window._compassCacheDocs;
+    if (status) arr = arr.filter((d) => (d.status || '?') === status);
+    const cnt = document.getElementById('cm-cache-count');
+    if (cnt) cnt.textContent = `${arr.length} комментариев`;
+    if (!arr.length) { if (list) list.innerHTML = '<div class="reports-empty">Пусто.</div>'; return; }
+    list.innerHTML = arr.map((d) => {
+      const txt = escapeHtml(String(d.comment || d.reason || '—'));
+      const lang = escapeHtml(d.lang || '?');
+      const st = escapeHtml(d.status || '?');
+      const date = d.updatedAtMs ? new Date(d.updatedAtMs).toISOString().slice(0,16).replace('T',' ') : '—';
+      return `<div class="report-card" style="display:block;border-left:3px solid #a78bfa;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
+          <span style="font-size:15px">🧭</span>
+          <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a1a3a;color:#a78bfa">${lang}</span>
+          <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a2a3a;color:#9ca3af">${st}</span>
+          <span style="color:#666;font-size:11px">${date}</span>
+          <span style="color:#666;font-size:11px;font-family:monospace">${escapeHtml(String(d.id).slice(0,10))}…</span>
+          <span style="flex:1"></span>
+          <button data-cm-hash="${escapeHtml(String(d.id))}" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#f87171;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🗑 Удалить</button>
+        </div>
+        <div style="color:#dbeafe;font-size:13px;line-height:1.45">${txt}</div>
+      </div>`;
+    }).join('');
+    list.querySelectorAll('button[data-cm-hash]').forEach((btn) => btn.addEventListener('click', () => cmDelete(btn)));
+  };
+
+  async function cmDelete(btn) {
+    const hash = btn.dataset.cmHash;
+    const ok = await showConfirmModal({ title: 'Удалить комментарий дня?', desc: 'Сгенерится заново при следующем показе.', confirmLabel: 'Удалить', danger: true });
+    if (!ok) return;
+    btn.disabled = true; const prev = btn.textContent; btn.textContent = '⏳';
+    try {
+      await deleteDoc(doc(db, 'compass_briefings', hash));
+      showToast('✅ Удалено — сгенерится заново', 'ok');
+      loadCompassCache();
+    } catch(e) {
+      btn.disabled = false; btn.textContent = prev;
+      showToast('❌ Ошибка: ' + (e.message || e), 'err');
+    }
+  }
+
   // ── APP MESSAGES INBOX ──────────────────────────────────────────────────────
   window._appMessagesLoaded = false;
   window._appMessages = [];
@@ -21062,6 +21257,18 @@
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
     { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'Покажется только когда продукт заведён в RevenueCat.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год премиума при одобрении (вкладка «Идеи»).' },
+  ];
+
+  // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),
+  // но пишутся тем же saveControlPanelBool в remote_config/app.bools.
+  const COMPASS_TOGGLES = [
+    { key: 'compass_enabled',               label: 'Компас (главный выключатель)', def: false, hint: 'Выкл → весь Компас исчезает, приложение не страдает.' },
+    { key: 'compass_ai_voice_enabled',      label: 'ИИ-голос дня',                 def: true,  hint: 'Тёплый ИИ-комментарий (job compass). Выкл → текст по Библии.' },
+    { key: 'compass_deep_dive_enabled',     label: 'Дни-погружения',               def: true,  hint: 'Зов в сессию за глубиной.' },
+    { key: 'compass_lesson_invite_enabled', label: 'Плашка-зов в сессию',          def: true,  hint: 'Зов в сессию в момент ошибки.' },
+    { key: 'compass_economy_enabled',       label: 'Вес наград (единый вес дня)',  def: true,  hint: 'Чинит перекос план/сессия.' },
+    { key: 'compass_retention_enabled',     label: 'Возврат и защита серии',       def: true,  hint: 'Умный возврат после паузы, забота о серии.' },
+    { key: 'compass_topic_map_enabled',     label: 'Карта тем в результатах',      def: true,  hint: 'Блок «Твой Компас».' },
   ];
 
   function cpSetStatus(msg, color) {

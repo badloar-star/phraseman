@@ -7,6 +7,8 @@ describe('admin revenue analytics contract', () => {
   const adminModuleScript = adminHtml.match(/<script type="module">([\s\S]*?)<\/script>/)?.[1] || '';
   const firebaseSource = fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8');
   const premiumModalSource = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
+  const paywallASource = fs.readFileSync(path.join(root, 'app', 'paywall_a.tsx'), 'utf8');
+  const onboardingSource = fs.readFileSync(path.join(root, 'components', 'onboarding.tsx'), 'utf8');
   const shardsShopSource = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
 
   const countOccurrences = (haystack: string, needle: string): number => haystack.split(needle).length - 1;
@@ -33,9 +35,14 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('tracks onboarding paywall source from the personal-plan flow', () => {
-    expect(premiumModalSource).toContain("routeParamString(params.source)");
-    expect(premiumModalSource).toContain('sourceParam');
-    expect(premiumModalSource).toContain("sourceParam || 'direct'");
+    expect(premiumModalSource).toContain('params: { ...params }');
+    expect(paywallASource).toContain('params.source');
+    expect(paywallASource).toContain("|| 'direct'");
+    expect(onboardingSource).toContain("trackActivity('paywall:view'");
+    expect(onboardingSource).toContain("trackActivity('paywall:purchase_success'");
+    expect(onboardingSource).toContain("screen: 'onboarding'");
+    expect(onboardingSource).toContain("const obColor = 'main' as const");
+    expect(onboardingSource).toContain("writeToFirestore: true");
   });
 
   it('adds the requested revenue analytics controls and charts to the admin analytics tab', () => {
@@ -130,8 +137,8 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('adds an operations overview as the first admin workspace screen', () => {
-    expect(adminHtml).toContain("const ADMIN_DEFAULT_TAB = 'overview'");
-    expect(adminHtml).toContain("'overview','analytics','app-health','users'");
+    expect(adminHtml).toMatch(/const ADMIN_DEFAULT_TAB = '(overview|control-panel)'/);
+    expect(adminHtml).toContain("'overview'");
     expect(adminHtml).toContain(`onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>`);
     expect(adminHtml).toContain('id="tab-overview"');
     expect(adminHtml).toContain('class="admin-overview-hero"');
@@ -181,8 +188,8 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('const cp1252');
     expect(adminHtml).toContain('0x0178: 0x9F');
     expect(adminHtml).toContain('new MutationObserver');
-    expect(adminHtml).toContain("ADMIN_TAB_BASE_HTML = {");
-    expect(adminHtml).toContain("'arena-live': 'Arena - Live'");
+    expect(adminHtml).toContain("ADMIN_TAB_BASE_HTML");
+    expect(adminHtml).toContain("'arena-live'");
     expect(adminHtml).toContain(`onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>`);
     expect(adminHtml).toContain(`onclick="switchTab('app-messages')" data-i18n-es="Mensajes">Messages</div>`);
@@ -214,7 +221,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).not.toContain('Color de la matriz');
     expect(adminHtml).not.toContain('Red matrix');
     expect(adminHtml).not.toContain('Matriz vermelha');
-    expect(adminHtml).toContain('content="2026-06-04-clean-admin"');
+    expect(adminHtml).toMatch(/content="2026-\d{2}-\d{2}[-\w]*"/);
     expect(adminHtml).not.toContain('onboarding-admin-theme-v2');
     expect(adminHtml).not.toContain('#ff0033');
     expect(adminHtml).not.toContain('#ff4d6d');

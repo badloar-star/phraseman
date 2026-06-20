@@ -526,7 +526,8 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
     const lessonCount = new Map<number, number>();
 
     // ── Топ фраз ──────────────────────────────────────────────────────────
-    const phraseCount = new Map<string, { count: number; lessonId: number }>();
+    // display — оригинальный регистр фразы (key — нижний, нужен только для дедупа).
+    const phraseCount = new Map<string, { count: number; lessonId: number; display: string }>();
     let totalCategoryMistakes = 0;
     let activeMistakeCount = 0;
 
@@ -548,12 +549,13 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
       }
       activeMistakeCount += 1;
 
-      // Фразы
+      // Фразы. Храним оригинальный регистр первой встреченной записи —
+      // ключ нижнего регистра нужен только для дедупа одинаковых фраз.
       const existing = phraseCount.get(key);
       if (existing) {
         existing.count += 1;
       } else {
-        phraseCount.set(key, { count: 1, lessonId: entry.lessonId });
+        phraseCount.set(key, { count: 1, lessonId: entry.lessonId, display: entry.phrase.trim() });
       }
 
       // Уроки. Diagnostic entries can use lessonId=0: они влияют на POS/phrase
@@ -650,10 +652,12 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
       }));
 
     // ── Топ фраз ──────────────────────────────────────────────────────────
-    const topMistakePhrases = Array.from(phraseCount.entries())
-      .sort((a, b) => b[1].count - a[1].count)
+    // Показываем фразу в оригинальном регистре с заглавной первой буквой
+    // (английское предложение всегда начинается с большой буквы, в т.ч. «I»).
+    const topMistakePhrases = Array.from(phraseCount.values())
+      .sort((a, b) => b.count - a.count)
       .slice(0, 5)
-      .map(([phrase, { count, lessonId }]) => ({ phrase, lessonId, count }));
+      .map(({ display, lessonId, count }) => ({ phrase: capitalizePhrase(display), lessonId, count }));
 
     // ── Инсайты ──────────────────────────────────────────────────────────
     const insights = buildInsights(categoryStats, lessonStats, totalMistakes);
@@ -806,6 +810,18 @@ function buildInsights(
 function displayWord(word: string): string {
   if (!word) return word;
   return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+/**
+ * Причёсывает английскую фразу к читаемому виду: заглавная первая буква
+ * предложения + английское местоимение «I» всегда с заглавной. Часть
+ * старых записей лога хранилась в нижнем регистре (фразы матчились по
+ * lowercase-ключу), поэтому чиним это на presentation-слое.
+ */
+function capitalizePhrase(phrase: string): string {
+  if (!phrase) return phrase;
+  const standaloneIFixed = phrase.replace(/\bi\b/g, 'I');
+  return standaloneIFixed.charAt(0).toUpperCase() + standaloneIFixed.slice(1);
 }
 
 /** Нейтральный ободряющий инсайт, когда конкретных выводов ещё нет. */

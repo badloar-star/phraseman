@@ -779,6 +779,23 @@ describe('mistake_log analytics', () => {
     expect(analytics.categoryStats).toEqual([
       expect.objectContaining({ category: 'to-be', mistakeCount: 1, pct: 100 }),
     ]);
+    // Фраза остаётся в списке «Фразы» с lessonId 0 — экран покажет
+    // «Из диагностики» вместо несуществующего «Урок 0».
+    expect(analytics.topMistakePhrases).toEqual([
+      expect.objectContaining({ phrase: 'She is a teacher', lessonId: 0, count: 1 }),
+    ]);
+  });
+
+  it('capitalizes the sentence and the pronoun "I" in the phrases list', async () => {
+    logMistake('rarely have i heard such news', 0, 'diagnostic', 'wrong_pick', {
+      tokenText: 'have',
+      expected: 'have',
+      rawCategory: 'verb',
+    });
+    await flushMistakeLog();
+
+    const analytics = await computePhraseAnalytics();
+    expect(analytics.topMistakePhrases[0]?.phrase).toBe('Rarely have I heard such news');
   });
 
   it('counts coach exercise misses as POS analytics without lesson zero noise', async () => {
@@ -883,7 +900,7 @@ describe('mistake_log analytics', () => {
       expect.objectContaining({ lessonId: 1 }),
     ]);
     expect(before.topMistakePhrases).toEqual([
-      expect.objectContaining({ phrase: 'i am a teacher' }),
+      expect.objectContaining({ phrase: 'I am a teacher' }),
     ]);
 
     await markPersonalTrainingResolved({ category: 'article' });
@@ -913,7 +930,7 @@ describe('mistake_log analytics', () => {
       expect.objectContaining({ lessonId: 7 }),
     ]);
     expect(reopened.topMistakePhrases).toEqual([
-      expect.objectContaining({ phrase: 'he bought a car' }),
+      expect.objectContaining({ phrase: 'He bought a car' }),
     ]);
   });
 

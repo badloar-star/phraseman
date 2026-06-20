@@ -716,7 +716,9 @@ export default function PhraseAnalyticsScreen() {
                       <View style={{ flex: 1 }}>
                         <Text style={[styles.phraseText, { color: t.textPrimary, fontSize: f.body }]}>{phrase}</Text>
                         <Text style={[styles.phraseLesson, { color: t.textMuted, fontSize: f.caption }]}>
-                          {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} {lessonId}
+                          {lessonId > 0
+                            ? `${triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`
+                            : triLang(lang, { ru: 'Из диагностики', uk: 'З діагностики', es: 'Del diagnóstico', 'pt-BR': 'Do diagnóstico', vi: 'Từ bài kiểm tra', id: 'Dari diagnostik', tr: 'Tanı testinden', pl: 'Z diagnozy' })}
                         </Text>
                       </View>
                     </View>

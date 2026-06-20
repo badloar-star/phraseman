@@ -49,6 +49,8 @@ export type AnalyticsEvent =
   | 'ai_dialog_phrase_tapped'
   | 'ai_dialog_translation_used'
   | 'ai_dialog_locked_scenario_tapped'
+  | 'ai_dialog_send_error'
+  | 'ai_dialog_retry'
   // Говорение («Устно»): успешная попытка проговорить фразу вслух (premium).
   | 'speaking_attempt_passed'
   // «Объясни как для 5-летнего» (Фаза 5 — adoption/cohort + health кэш-хитов)
@@ -104,6 +106,9 @@ export type AnalyticsEvent =
   | 'afterwin_upsell_shown'
   | 'afterwin_upsell_cta'
   | 'paywall_abandoned_push_sent'
+  | 'exit_trial_offer_shown'       // exit-intent оффер «3 дня бесплатно» показан
+  | 'exit_trial_offer_accepted'
+  | 'exit_trial_offer_declined'
   | 'winback_shown';
 
 interface EventRecord {

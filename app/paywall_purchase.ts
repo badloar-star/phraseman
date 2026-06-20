@@ -27,12 +27,19 @@ import {
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { getTrialInfo, trialDaysOrDefault, type TrialInfo } from './paywall_trial_info';
 import { activateUrgencyIfNeeded, getUrgencyState, getDoubledPrice, type UrgencyState } from './paywall_urgency';
+import { shouldShowExitTrialOffer, type PaywallCloseReason } from './paywall_trial_offer';
 import { logPaywallFunnel } from './paywall_funnel';
 import type { PaywallAbVariant } from './paywall_variant';
 import {
   scheduleTrialEndReminder,
+  schedulePaywallAbandonedNotification,
   requestNotificationPermission,
 } from './notifications';
+import {
+  logExitTrialOfferShown,
+  logExitTrialOfferAccepted,
+  logExitTrialOfferDeclined,
+} from './firebase';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { DEV_IAP_BYPASS } from './config';
@@ -49,6 +56,9 @@ import {
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
+
+/** Маркер «exit-оффер уже показан» — один раз на устройство, без повторов. */
+const EXIT_TRIAL_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
 
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
@@ -73,9 +83,14 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
   const [selected, setSelected] = useState<PaywallPlan>('yearly');
   const [packages, setPackages] = useState<PremiumPackages>({});
   const [loading, setLoading] = useState(false);
+  // Сбой загрузки офферингов (сеть/стор). Влияет на видимость всех кнопок,
+  // включая «Навсегда» — поэтому даём ретрай, а не молча скрываем.
+  const [offeringsFailed, setOfferingsFailed] = useState(false);
   const [purchasing, setPurchasing] = useState(false);
   const [restoring, setRestoring] = useState(false);
   const [urgency, setUrgency] = useState<UrgencyState>({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' });
+  // Exit-intent: при закрытии с доступным стор-триалом перехватываем «3 дня бесплатно».
+  const [exitOfferVisible, setExitOfferVisible] = useState(false);
 
   // Окно «старой цены» (77ч): активируем при первом показе пейвола и читаем
   // состояние. Тик раз в секунду живёт в PaywallPriceUrgency — здесь только старт.
@@ -91,25 +106,48 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     return () => { dead = true; };
   }, []);
 
+  // Загрузка офферингов с одним авто-ретраем при сбое: транзиентный сбой сети
+  // не должен навсегда прятать кнопки (в т.ч. «Навсегда»). `dead` гасит гонку.
+  const loadOfferings = useCallback(async (deadRef: { dead: boolean }): Promise<void> => {
+    if (DEV_IAP_BYPASS) return;
+    setLoading(true);
+    setOfferingsFailed(false);
+    const attempt = async (): Promise<boolean> => {
+      try {
+        await initRevenueCat();
+        const o = await Purchases.getOfferings();
+        if (!deadRef.dead) setPackages(resolvePremiumPackages(o.current?.availablePackages ?? []));
+        return true;
+      } catch {
+        return false;
+      }
+    };
+    try {
+      let ok = await attempt();
+      if (!ok && !deadRef.dead) {
+        await new Promise((r) => setTimeout(r, 1500));
+        if (!deadRef.dead) ok = await attempt();
+      }
+      if (!deadRef.dead && !ok) setOfferingsFailed(true);
+    } finally {
+      if (!deadRef.dead) setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     if (DEV_IAP_BYPASS) return;
-    let dead = false;
+    const deadRef = { dead: false };
     const task = InteractionManager.runAfterInteractions(() => {
-      void (async () => {
-        setLoading(true);
-        try {
-          await initRevenueCat();
-          const o = await Purchases.getOfferings();
-          if (!dead) setPackages(resolvePremiumPackages(o.current?.availablePackages ?? []));
-        } catch {
-          // retry произойдёт при тапе на CTA
-        } finally {
-          if (!dead) setLoading(false);
-        }
-      })();
+      void loadOfferings(deadRef);
     });
-    return () => { dead = true; task.cancel(); };
-  }, []);
+    return () => { deadRef.dead = true; task.cancel(); };
+  }, [loadOfferings]);
+
+  // Ручной ретрай для UI (кнопка «Повторить» при offeringsFailed).
+  const reloadOfferings = useCallback(() => {
+    const deadRef = { dead: false };
+    void loadOfferings(deadRef);
+  }, [loadOfferings]);
 
   // ── цены (только стор) ─────────────────────────────────────────────────────
   const yearlyPrice = storePriceTrim(packages.yearly?.product?.priceString);
@@ -313,23 +351,79 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
     }
   }, [router, restoring, context, variant, lang, reloadEnergy, finishPersonalPlanActivationFlow]);
 
+  // ── exit-intent оффер «3 дня бесплатно» ─────────────────────────────────────
+  // Самый высокий ROI среди re-engagement-механик (Superwall: 17% revenue от
+  // abandon). Показываем максимум один раз, только в high-value контекстах и
+  // только когда стор реально отдаёт бесплатный триал. Решает paywall_trial_offer.
+  const acceptExitOffer = useCallback(() => {
+    hapticTap();
+    void logExitTrialOfferAccepted(context, selected);
+    void trackEvent('exit_trial_offer_accepted', { context, plan: selected, paywall: variant });
+    setExitOfferVisible(false);
+    void handlePurchase();
+  }, [context, selected, variant, handlePurchase]);
+
+  const dismissExitOffer = useCallback((reason: PaywallCloseReason) => {
+    hapticTap();
+    void logExitTrialOfferDeclined(context, selected);
+    void trackEvent('exit_trial_offer_declined', { context, plan: selected, paywall: variant });
+    setExitOfferVisible(false);
+    void trackEvent('paywall_close', { context, source, paywall: variant, reason });
+    logPaywallFunnel('close', { variant, context, plan: selected });
+    void schedulePaywallAbandonedNotification(lang).catch(() => {});
+    safeRouterBack(router);
+  }, [context, selected, source, variant, lang, router]);
+
   // ── закрытие ───────────────────────────────────────────────────────────────
   const handleClose = useCallback((reason: 'close' | 'continue_free') => {
     hapticTap();
-    void trackEvent('paywall_close', { context, source, paywall: variant, reason });
-    logPaywallFunnel('close', { variant, context, plan: selected });
-    safeRouterBack(router);
-  }, [router, context, source, variant, selected]);
+    if (DEV_IAP_BYPASS) {
+      void trackEvent('paywall_close', { context, source, paywall: variant, reason });
+      logPaywallFunnel('close', { variant, context, plan: selected });
+      safeRouterBack(router);
+      return;
+    }
+    void (async () => {
+      let alreadySeen = true;
+      try {
+        alreadySeen = (await AsyncStorage.getItem(EXIT_TRIAL_SEEN_KEY)) === '1';
+      } catch { /* при сбое чтения — считаем показанным, не назойливы */ }
+      const showOffer = shouldShowExitTrialOffer({
+        context,
+        closeReason: reason,
+        viewMode: 'purchase',
+        openManageFromSettings: false,
+        purchasing,
+        restoring,
+        hasStoreTrial: trial.hasTrial,
+        alreadySeen,
+        forceTrialUI: false,
+      });
+      if (showOffer) {
+        try { await AsyncStorage.setItem(EXIT_TRIAL_SEEN_KEY, '1'); } catch { /* best-effort */ }
+        void logExitTrialOfferShown(context, selected);
+        void trackEvent('exit_trial_offer_shown', { context, plan: selected, paywall: variant });
+        setExitOfferVisible(true);
+        return;
+      }
+      void trackEvent('paywall_close', { context, source, paywall: variant, reason });
+      logPaywallFunnel('close', { variant, context, plan: selected });
+      void schedulePaywallAbandonedNotification(lang).catch(() => {});
+      safeRouterBack(router);
+    })();
+  }, [router, context, source, variant, selected, purchasing, restoring, trial.hasTrial, lang]);
 
   return {
     selected, selectPlan,
     packages, loading, purchasing, restoring,
+    offeringsFailed, reloadOfferings,
     yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
     trial, trialDays, ctaDisabled,
     urgency, futurePrice,
     handlePurchase, handleRestore, handleClose,
+    exitOfferVisible, acceptExitOffer, dismissExitOffer,
   };
 }
 

@@ -29,7 +29,7 @@ import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from '.
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
-  PaywallPriceRetry, PaywallTestimonials,
+  PaywallPriceRetry, PaywallTestimonials, PaywallExitTrialModal,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -217,6 +217,14 @@ export default function PaywallA() {
             />
           </ScrollView>
         </Animated.View>
+        <PaywallExitTrialModal
+          visible={p.exitOfferVisible}
+          lang={lang as Lang}
+          chrome={chrome}
+          trialDays={p.trialDays ?? 3}
+          onAccept={p.acceptExitOffer}
+          onDismiss={() => p.dismissExitOffer('close')}
+        />
       </SafeAreaView>
     </LinearGradient>
   );

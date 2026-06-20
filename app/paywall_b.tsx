@@ -25,7 +25,7 @@ import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
   PaywallStickyBar, useStickyCta, PaywallPersonalTags, PaywallCloseButton,
-  PaywallPriceRetry, PaywallTestimonials,
+  PaywallPriceRetry, PaywallTestimonials, PaywallExitTrialModal,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -201,6 +201,14 @@ export default function PaywallB() {
             chrome={chrome}
           />
         </Animated.View>
+        <PaywallExitTrialModal
+          visible={p.exitOfferVisible}
+          lang={lang as Lang}
+          chrome={chrome}
+          trialDays={p.trialDays ?? 3}
+          onAccept={p.acceptExitOffer}
+          onDismiss={() => p.dismissExitOffer('close')}
+        />
       </SafeAreaView>
     </LinearGradient>
   );

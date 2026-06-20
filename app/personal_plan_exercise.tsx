@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -592,31 +592,89 @@ function PlanPronunciationRecorder({
 }
 
 
+// Прогресс «как в уроках»: ячейки со статусом (пройдено/текущая/впереди),
+// скользящая стрелка ▼ над текущей ячейкой и счётчик N/N справа.
 function PlanExerciseProgressRail({
   correct,
+  current,
   target,
   accent,
+  mutedColor,
+  correctColor,
+  trackColor,
 }: {
   correct: number;
+  current: number;
   target: number;
   accent: string;
+  mutedColor: string;
+  correctColor: string;
+  trackColor: string;
 }) {
   const cellCount = Math.max(1, target);
+  const displayCell = Math.min(Math.max(0, current), cellCount - 1);
+  const [barWidth, setBarWidth] = useState(0);
+  const arrowAnim = useRef(new Animated.Value(0)).current;
+  const prevCell = useRef(displayCell);
+
+  useEffect(() => {
+    if (barWidth === 0) return;
+    const cellW = (barWidth - (cellCount - 1) * 4) / cellCount;
+    const targetX = displayCell * (cellW + 4);
+    const isBack = displayCell < prevCell.current;
+    prevCell.current = displayCell;
+    Animated.spring(arrowAnim, {
+      toValue: targetX,
+      useNativeDriver: true,
+      tension: isBack ? 280 : 140,
+      friction: isBack ? 10 : 12,
+    }).start();
+  }, [displayCell, barWidth, cellCount, arrowAnim]);
+
   return (
-    <View
-      accessibilityRole="progressbar"
-      accessibilityLabel={`Прогресс задания: ${correct} из ${target}`}
-      style={styles.progressRail}
-    >
-      {Array.from({ length: cellCount }).map((_, i) => (
-        <View
-          key={i}
-          style={[
-            styles.progressCell,
-            { backgroundColor: i < correct ? accent : 'rgba(255,255,255,0.10)' },
-          ]}
-        />
-      ))}
+    <View style={styles.progressRailRow}>
+      <View
+        accessibilityRole="progressbar"
+        accessibilityLabel={`Прогресс задания: ${correct} из ${target}`}
+        style={styles.progressRailTrack}
+        onLayout={(e) => setBarWidth(e.nativeEvent.layout.width)}
+      >
+        {barWidth > 0 ? (
+          <View style={styles.progressArrowRow}>
+            <Animated.View style={{ position: 'absolute', top: 0, transform: [{ translateX: arrowAnim }] }}>
+              <Text
+                style={{
+                  color: correctColor,
+                  fontSize: 8,
+                  lineHeight: 10,
+                  textAlign: 'center',
+                  width: (barWidth - (cellCount - 1) * 4) / cellCount,
+                }}
+              >
+                ▼
+              </Text>
+            </Animated.View>
+          </View>
+        ) : null}
+        <View style={styles.progressCellsRow}>
+          {Array.from({ length: cellCount }).map((_, i) => (
+            <View
+              key={i}
+              style={[
+                styles.progressCell,
+                {
+                  backgroundColor: i < correct
+                    ? correctColor
+                    : i === displayCell
+                    ? 'rgba(255,255,255,0.85)'
+                    : trackColor,
+                },
+              ]}
+            />
+          ))}
+        </View>
+      </View>
+      <Text style={[styles.progressCounter, { color: mutedColor }]}>{displayCell + 1}/{cellCount}</Text>
     </View>
   );
 }
@@ -1235,7 +1293,15 @@ export default function PersonalPlanExerciseScreen() {
             ) : null}
           </View>
         </View>
-        <PlanExerciseProgressRail correct={correctIds.length} target={targetCorrect} accent={accent} />
+        <PlanExerciseProgressRail
+          correct={correctIds.length}
+          current={correctIds.length}
+          target={targetCorrect}
+          accent={accent}
+          mutedColor={t.textMuted}
+          correctColor={t.correct}
+          trackColor={t.bgSurface2 ?? 'rgba(255,255,255,0.10)'}
+        />
 
         <BouncyScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
           {!item || !modeReady ? (
@@ -1660,6 +1726,11 @@ type PersonalPlanExerciseStyles = {
   h1: TextStyle;
   progress: TextStyle;
   progressRail: ViewStyle;
+  progressRailRow: ViewStyle;
+  progressRailTrack: ViewStyle;
+  progressArrowRow: ViewStyle;
+  progressCellsRow: ViewStyle;
+  progressCounter: TextStyle;
   progressCell: ViewStyle;
   scroll: ViewStyle;
   questionBlock: ViewStyle;
@@ -1793,6 +1864,17 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     marginHorizontal: 14,
     marginBottom: 8,
   },
+  progressRailRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginHorizontal: 14,
+    marginBottom: 8,
+  },
+  progressRailTrack: { flex: 1, flexDirection: 'column', gap: 2 },
+  progressArrowRow: { height: 10, position: 'relative' },
+  progressCellsRow: { flexDirection: 'row', gap: 4 },
+  progressCounter: { fontSize: 12, minWidth: 34, textAlign: 'right', fontWeight: '600' },
   progressCell: {
     flex: 1,
     height: 8,

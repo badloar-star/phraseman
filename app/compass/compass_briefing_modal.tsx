@@ -17,11 +17,11 @@ import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
 import { compassOn } from './compass_flags';
 import type { CompassDay, CompassTaskKind } from './compass_brain';
+import { useCompassVoice } from './use_compass_voice';
 import {
   COMPASS_BRIEFING_TITLE,
   COMPASS_START_DAY,
   COMPASS_LATER,
-  COMPASS_DAY_COMMENT,
   COMPASS_TASK_TITLE,
 } from './compass_copy';
 
@@ -43,12 +43,14 @@ interface CompassBriefingModalProps {
 export default function CompassBriefingModal({ visible, day, onStart, onLater }: CompassBriefingModalProps) {
   const { theme: t } = useTheme();
   const { lang } = useLang();
+  // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
+  // Хук вызывается всегда (правила хуков) и сам безопасно обрабатывает day=null.
+  const comment = useCompassVoice(day);
 
   if (!compassOn() || !day) return null;
 
   const title = triLang(lang, COMPASS_BRIEFING_TITLE);
   const dayLabel = day.planDayIndex ? `${title} · ${dayWord(lang)} ${day.planDayIndex}` : title;
-  const comment = triLang(lang, COMPASS_DAY_COMMENT[day.type]);
 
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onLater}>

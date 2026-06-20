@@ -30,3 +30,6 @@ export { buildTopicMap, summarizeTopicMap } from './compass_memory';
 export type { TopicCard, TopicStatus, TopicMapSummary } from './compass_memory';
 export { compassTopicMapOn } from './compass_flags';
 export { default as CompassStatsBlock } from './compass_stats_block';
+// Крыло «ИИ-голос»: тёплый комментарий дня (ИИ + fallback по Библии).
+export { useCompassVoice } from './use_compass_voice';
+export { compassAiVoiceOn } from './compass_flags';

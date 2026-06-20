@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
-import { Animated, Dimensions, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Dimensions, Easing, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import TopFadeMask from '../components/TopFadeMask';
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -12,6 +13,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import type { ThemeMode } from '../constants/theme';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -63,7 +65,7 @@ const DAY_CARD_WIDTH = 88;
 const DAY_CARD_GAP = 10;
 const DAY_CARD_STRIDE = DAY_CARD_WIDTH + DAY_CARD_GAP;
 const INSTANT_PLAN_DUE_COUNT = 999;
-const RING_SIZE = 110;
+const RING_SIZE = 90;
 const RING_STROKE = 8;
 
 // ─── PlanChrome ────────────────────────────────────────────────────────────
@@ -242,13 +244,15 @@ function TaskRow({
           </View>
         ) : (
           <View style={[styles.taskIcon, styles.taskIconImageWrap]}>
-            <Image source={visual.asset} style={styles.taskImage} contentFit="cover" transition={120} />
+            <Image source={visual.asset} style={styles.taskImage} contentFit="contain" transition={120} />
           </View>
         )}
 
         {/* Copy */}
         <View style={styles.taskCopy}>
-          <Text style={[styles.taskTitle, { color: chrome.text }]}>
+          {/* numberOfLines обязателен: колонка стоит в строке рядом с иконкой и
+              правым блоком; без клампа узкая колонка рвёт заголовок по буквам. */}
+          <Text style={[styles.taskTitle, { color: chrome.text }]} numberOfLines={2}>
             {task.title}
           </Text>
           <Text style={[styles.taskSub, { color: completed ? chrome.accent2 : chrome.muted }]} numberOfLines={3}>
@@ -277,6 +281,11 @@ function TaskRow({
 // ─── Main screen ───────────────────────────────────────────────────────────
 export default function PersonalPlanScreen() {
   const router = useRouter();
+  // Входной премиум-замок «Личного плана». Перехватывает ВСЕ пути входа (карточка на
+  // главной, snapshot-карточка, Compass «начать день», прямой диплинк): фри-юзер без
+  // доступа улетает на пейвол, а не открывает уже созданный план. С учётом «Пульта»
+  // (перевод фичи в «Фри» снимает замок живьём).
+  const planAccess = useFeatureAccess('personal_plan');
   const insets = useSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
   const { studyTarget } = useStudyTarget();
@@ -286,16 +295,35 @@ export default function PersonalPlanScreen() {
   const [tasksExpanded, setTasksExpanded] = useState(false);
   const [lessonRecommendation, setLessonRecommendation] = useState<PlanDayLessonRecommendation | null>(null);
   const [dayComparison, setDayComparison] = useState<PlanDayComparison | null>(null);
+  // Подтверждение смены плана (новый план начинается с дня 1 — прогресс сбрасывается).
+  const [changePlanConfirmVisible, setChangePlanConfirmVisible] = useState(false);
   const dayRailRef = useRef<ScrollView | null>(null);
   const isGold = themeMode === 'gold';
   const screenBg = isGold ? '#090704' : t.bgPrimary;
   const chrome = useMemo(() => resolvePlanChrome(themeMode, t), [themeMode, t]);
+
+  // Премиум-замок: нет доступа → на пейвол (replace, чтобы «Назад» не возвращал в план).
+  // Реагирует и на потерю доступа в открытом экране (снятие премиума/VIP).
+  useEffect(() => {
+    if (!planAccess) {
+      router.replace({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
+    }
+  }, [planAccess, router]);
 
   // Entrance animation
   const entranceFade = useRef(new Animated.Value(0)).current;
   const entranceSlide = useRef(new Animated.Value(24)).current;
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
+  // Классический Animated.Value для TopFadeMask (он не умеет в Reanimated SharedValue,
+  // что отдаёт useBouncy). Обновляем из onScroll вместе с bounce-обработчиком, чтобы
+  // верхний фейд под статус-баром был такой же, как на главной/табах.
+  const fadeScrollY = useRef(new Animated.Value(0)).current;
+  const handlePlanScroll = useCallback((e: any) => {
+    onBouncyScroll(e);
+    const y = e?.nativeEvent?.contentOffset?.y ?? 0;
+    fadeScrollY.setValue(y);
+  }, [onBouncyScroll, fadeScrollY]);
 
   const load = useCallback(async () => {
     const state = await readPersonalPlanState();
@@ -520,11 +548,28 @@ export default function PersonalPlanScreen() {
   );
 
   return (
-    <View style={[styles.safe, { backgroundColor: screenBg, paddingTop: insets.top }]}>
+    // paddingTop НЕ ставим на корень — контент скроллится ПОД статус-баром (как на
+    // главной/табах), а верхний фейд-маск рисует затухание под чёлкой.
+    <View style={[styles.safe, { backgroundColor: screenBg }]}>
       <LinearGradient colors={chrome.bg} style={styles.fill}>
+        {/* Тот же верхний фейд под safe-area, что на главной/табах. */}
+        <TopFadeMask scrollY={fadeScrollY} zIndex={2} />
         <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
 
-        {/* ── Header ── */}
+        <BouncyWrap>
+        <Animated.ScrollView
+          showsVerticalScrollIndicator={false}
+          decelerationRate="normal"
+          bounces
+          alwaysBounceVertical
+          overScrollMode="always"
+          contentContainerStyle={[styles.scroll, { paddingTop: insets.top + 4 }]}
+          style={{ opacity: entranceFade, transform: [{ translateY: entranceSlide }] }}
+          scrollEventThrottle={16}
+          onScroll={handlePlanScroll}
+        >
+
+        {/* ── Header (теперь внутри скролла — скроллится вся страница) ── */}
         <View style={styles.header}>
           <TapScale
             onPress={() => safeRouterBack(router, '/(tabs)/home' as any)}
@@ -534,14 +579,11 @@ export default function PersonalPlanScreen() {
           >
             <Ionicons name="chevron-back" size={22} color={chrome.text} />
           </TapScale>
-          <View style={styles.headerCopy}>
-            <Text style={[styles.headerKicker, { color: chrome.accent }]}>
-              {plan.name} · Неделя {Math.ceil(day.dayIndex / 7)}
-            </Text>
-            <Text style={[styles.headerTitle, { color: chrome.text }]}>
-              {day.title}
-            </Text>
-          </View>
+          {/* Тексты названия плана и заголовка дня убраны из шапки — рядом с 4-5
+              кнопками они уродливо ужимались/обрезались («АТЛА…», «Аэр о…»).
+              Оставляем только кнопки и «День N». Пустой flex-разделитель держит
+              кнопку «назад» слева, а блок кнопок — справа. */}
+          <View style={styles.headerCopy} />
           {hasAuthoredPlanContent(loaded.plan.id, day.dayIndex) ? (
             <ReportErrorButton
               variant="icon-flag"
@@ -554,6 +596,15 @@ export default function PersonalPlanScreen() {
           ) : null}
           <TouchableOpacity
             activeOpacity={0.78}
+            onPress={() => { hapticTap(); setChangePlanConfirmVisible(true); }}
+            accessibilityRole="button"
+            accessibilityLabel="Сменить план"
+            style={[styles.statsButton, { backgroundColor: chrome.taskSurface, borderColor: chrome.border, marginRight: 8 }]}
+          >
+            <Ionicons name="swap-horizontal" size={20} color={chrome.accent} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.78}
             onPress={() => { hapticTap(); router.push('/personal_plan_stats_screen' as any); }}
             accessibilityRole="button"
             accessibilityLabel="Статистика плана"
@@ -564,18 +615,6 @@ export default function PersonalPlanScreen() {
           <StreakBadge streakDays={realStreakDays} dayIndex={day.dayIndex} chrome={chrome} />
         </View>
 
-        <BouncyWrap>
-        <Animated.ScrollView
-          showsVerticalScrollIndicator={false}
-          decelerationRate="normal"
-          bounces
-          alwaysBounceVertical
-          overScrollMode="always"
-          contentContainerStyle={styles.scroll}
-          style={{ opacity: entranceFade, transform: [{ translateY: entranceSlide }] }}
-          scrollEventThrottle={16}
-          onScroll={onBouncyScroll}
-        >
           {/* ── Hero card ── */}
           <LinearGradient colors={chrome.hero} style={[styles.heroCard, { borderColor: chrome.border }]}>
             {/* Top row */}
@@ -586,10 +625,12 @@ export default function PersonalPlanScreen() {
                   <Ionicons name="time-outline" size={14} color={chrome.accent} />
                   <Text style={[styles.timePillText, { color: chrome.accent }]}>{totalMinutes} мин сегодня</Text>
                 </View>
-                <Text style={[styles.heroFocus, { color: chrome.muted }]}>
+                <Text style={[styles.heroFocus, { color: chrome.muted }]} numberOfLines={3}>
                   {day.focus}
                 </Text>
-                <Text style={[styles.heroTitle, { color: chrome.text }]}>
+                {/* numberOfLines обязателен: heroCopy стоит в строке рядом с кольцом
+                    прогресса; без клампа узкая колонка рвёт заголовок по буквам. */}
+                <Text style={[styles.heroTitle, { color: chrome.text }]} numberOfLines={4}>
                   {nextTask ? nextTask.title : day.title}
                 </Text>
               </View>
@@ -641,7 +682,18 @@ export default function PersonalPlanScreen() {
               activeOpacity={0.85}
               onPress={() => {
                 hapticTap();
-                router.push({ pathname: '/personal_plan_theory', params: { planId: loaded.plan.id, dayIndex: String(day.dayIndex) } } as any);
+                // Передаём первое незавершённое задание дня (nextTask) и planInstanceId,
+                // чтобы кнопка в конце теории запускала задание с первого упражнения,
+                // а не возвращала в меню плана.
+                router.push({
+                  pathname: '/personal_plan_theory',
+                  params: {
+                    planId: loaded.plan.id,
+                    dayIndex: String(day.dayIndex),
+                    ...(nextTask ? { startTaskId: nextTask.id } : {}),
+                    ...(loaded.state.planInstanceId ? { planInstanceId: loaded.state.planInstanceId } : {}),
+                  },
+                } as any);
               }}
               accessibilityRole="button"
               style={[styles.recommendBanner, { borderColor: chrome.border, backgroundColor: chrome.accentSoft }]}
@@ -810,6 +862,53 @@ export default function PersonalPlanScreen() {
           ) : null}
         </Animated.ScrollView>
         </BouncyWrap>
+
+        {/* Подтверждение смены плана: новый план стартует с дня 1, прогресс текущего сбрасывается. */}
+        <Modal
+          visible={changePlanConfirmVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setChangePlanConfirmVisible(false)}
+        >
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => setChangePlanConfirmVisible(false)}
+            style={styles.changePlanBackdrop}
+          >
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => {}}
+              style={[styles.changePlanCard, { backgroundColor: chrome.card[0], borderColor: chrome.border }]}
+            >
+              <View style={[styles.changePlanIconWrap, { backgroundColor: chrome.accent + '18', borderColor: chrome.accent + '33' }]}>
+                <Ionicons name="swap-horizontal" size={24} color={chrome.accent} />
+              </View>
+              <Text style={[styles.changePlanTitle, { color: chrome.text }]}>Сменить план?</Text>
+              <Text style={[styles.changePlanBody, { color: chrome.muted }]}>
+                Весь прогресс текущего плана будет потерян — новый план придётся начинать сначала, с первого дня.
+              </Text>
+              <TouchableOpacity
+                activeOpacity={0.85}
+                onPress={() => {
+                  hapticTap();
+                  setChangePlanConfirmVisible(false);
+                  // directToPlans=1 → сразу список планов, без повторного опроса.
+                  router.push({ pathname: '/personal_plan_setup', params: { directToPlans: '1' } } as any);
+                }}
+                style={[styles.changePlanPrimary, { backgroundColor: chrome.accent }]}
+              >
+                <Text style={[styles.changePlanPrimaryText, { color: chrome.buttonText }]}>Выбрать другой план</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => { hapticTap(); setChangePlanConfirmVisible(false); }}
+                style={styles.changePlanSecondary}
+              >
+                <Text style={[styles.changePlanSecondaryText, { color: chrome.muted }]}>Отмена</Text>
+              </TouchableOpacity>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </Modal>
         </Reanimated.View>
       </LinearGradient>
     </View>
@@ -819,14 +918,25 @@ export default function PersonalPlanScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1 },
   fill: { flex: 1 },
+  changePlanBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', alignItems: 'center', justifyContent: 'center', padding: 24 },
+  changePlanCard: { width: '100%', maxWidth: 420, borderRadius: 22, borderWidth: 1, padding: 22, alignItems: 'center' },
+  changePlanIconWrap: { width: 52, height: 52, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 14 },
+  changePlanTitle: { fontSize: 19, fontWeight: '800', textAlign: 'center', marginBottom: 8 },
+  changePlanBody: { fontSize: 14, lineHeight: 20, textAlign: 'center', marginBottom: 20 },
+  changePlanPrimary: { width: '100%', borderRadius: 14, paddingVertical: 14, alignItems: 'center' },
+  changePlanPrimaryText: { fontSize: 15, fontWeight: '800' },
+  changePlanSecondary: { paddingVertical: 12, alignItems: 'center', marginTop: 4 },
+  changePlanSecondaryText: { fontSize: 14, fontWeight: '600' },
   loadingCenter: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   loadingRing: {
     width: 80, height: 80, borderRadius: 40,
     borderWidth: 1.5, alignItems: 'center', justifyContent: 'center',
   },
   header: {
-    paddingHorizontal: 12,
-    paddingTop: 10,
+    // Горизонтальный отступ даёт контейнер скролла (styles.scroll), здесь 0,
+    // иначе двойной паддинг. Header теперь часть скролла.
+    paddingHorizontal: 0,
+    paddingTop: 2,
     paddingBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
@@ -878,7 +988,7 @@ const styles = StyleSheet.create({
   },
   timePillText: { fontSize: 12, lineHeight: 15, fontWeight: '900' },
   heroFocus: { marginTop: 8, fontSize: 11, lineHeight: 14, fontWeight: '800', textTransform: 'uppercase' },
-  heroTitle: { marginTop: 4, fontSize: 22, lineHeight: 27, fontWeight: '900' },
+  heroTitle: { marginTop: 4, fontSize: 19, lineHeight: 24, fontWeight: '900' },
   heroDivider: { height: 1, marginVertical: 16 },
   heroStats: { flexDirection: 'row', alignItems: 'center' },
   heroStatItem: { flex: 1, alignItems: 'center', gap: 2 },
@@ -947,8 +1057,8 @@ const styles = StyleSheet.create({
   },
   // Обёртка для готовой иконки-плитки: без рамки/фона, только клип по радиусу,
   // чтобы плитка садилась ровно, а не «рамкой в рамке».
-  taskIconImageWrap: { overflow: 'hidden', backgroundColor: 'transparent' },
-  taskImage: { width: '100%', height: '100%' },
+  taskIconImageWrap: { overflow: 'visible', backgroundColor: 'transparent' },
+  taskImage: { width: 44, height: 44 },
   taskCopy: { flex: 1, minWidth: 0 },
   taskTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
   taskSub: { marginTop: 2, fontSize: 12, lineHeight: 16, fontWeight: '700' },

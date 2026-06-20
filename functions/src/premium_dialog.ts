@@ -47,6 +47,7 @@ interface PremiumDialogRequest {
   role?: unknown;
   setting?: unknown;
   goalEn?: unknown;
+  persona?: unknown;
   scenarioId?: unknown;
   isPremium?: unknown;
   /** Память коуча (режим companion): профиль + слабые слова из SRS + резюме прошлых бесед. */
@@ -193,6 +194,57 @@ async function releaseDailyQuota(authUid: string, stableUid: string): Promise<vo
   });
 }
 
+/**
+ * Пожизненный free-гейт (запрос пользователя 2026-06-20): не-premium получает
+ * РОВНО ОДИН полный бесплатный диалог за всю жизнь аккаунта, без лимита реплик
+ * внутри него. Дальше — полный замок (paywall).
+ *
+ * Сигнал «начался НОВЫЙ диалог» = пустая история (`isNewDialog`): первая реплика
+ * сессии. Тогда:
+ *   • если бесплатный диалог уже потрачен -> resource-exhausted (полный замок);
+ *   • иначе помечаем потраченным и пропускаем.
+ * Продолжение того же диалога (история не пустая) НЕ гейтим — это всё ещё тот
+ * единственный бесплатный диалог, его реплики не лимитируем.
+ *
+ * `markedRef`/возврат нужны вызывающему, чтобы откатить отметку, если платный
+ * вызов провайдера упал (иначе юзер потеряет единственный бесплатный диалог
+ * из-за нашей ошибки).
+ */
+async function enforceLifetimeFreeDialog(
+  authUid: string,
+  stableUid: string,
+  isNewDialog: boolean,
+): Promise<{ markedNow: boolean }> {
+  if (!isNewDialog) return { markedNow: false };
+  const db = admin.firestore();
+  const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
+  return db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    if (data.freeDialogUsed === true) {
+      console.warn('premium_dialog rejected', { reason: 'dialog_free_lifetime_used' });
+      throw new HttpsError('resource-exhausted', 'dialog_free_limit');
+    }
+    tx.set(ref, {
+      authUid,
+      stableUid,
+      freeDialogUsed: true,
+      usedAtMs: Date.now(),
+    }, { merge: true });
+    return { markedNow: true };
+  });
+}
+
+/** Откат пожизненной отметки, если платный вызов провайдера не удался. */
+async function releaseLifetimeFreeDialog(authUid: string, stableUid: string): Promise<void> {
+  const db = admin.firestore();
+  const ref = db.collection(QUOTA_COLLECTION).doc(docId('free1', authUid, stableUid));
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    if (data.freeDialogUsed !== true) return;
+    tx.set(ref, { freeDialogUsed: false, releasedAtMs: Date.now() }, { merge: true });
+  });
+}
+
 const GLOBAL_RULES = `You are "Тео" (Theo), a warm, patient English-speaking partner inside the Phraseman app.
 The learner is a Russian speaker, often aged 50+, often a beginner. NEVER condescend, NEVER rush, NEVER shame mistakes.
 Keep YOUR replies SHORT: 1-2 sentences, max ~25 words. Long replies overwhelm beginners.
@@ -207,18 +259,25 @@ Output ONLY your spoken reply. No stage directions and no markdown, EXCEPT the [
 
 const SCENARIO_BLOCK = `MODE: SCENARIO ROLEPLAY.
 You are playing the role of: {ROLE}.
-The setting: {SETTING}.
+The setting: {SETTING}.{PERSONA}
 The learner's goal in this scenario: {GOAL_EN}.
 - Open with a short, warm in-character greeting that invites the first exchange.
-- Stay in character. React naturally as that role would.
+- Stay in character. React naturally as that role would. Let your specific personality, mood, and quirks show through your word choice and reactions — you are a real individual, not a generic role.
 - Drive toward the goal in 5-8 exchanges, then bring the scene to a satisfying close. Do NOT drag it out.
 - If the learner gets stuck or silent, offer a gentle in-character hint that models a possible answer.
-- Keep difficulty at {CEFR}.`;
+- Keep difficulty at {CEFR}. Personality must NEVER raise the language level: stay simple even when the character is lively.`;
+
+/** Блок характера персонажа. Пусто, если у сценария нет персоны. */
+function personaBlock(persona: string): string {
+  if (!persona) return '';
+  return `\nYour character: ${persona}`;
+}
 
 function buildScenarioSystemPrompt(cefr: string, data: PremiumDialogRequest): string {
   const block = SCENARIO_BLOCK
     .replace('{ROLE}', text(data.role, 120) || 'a friendly barista')
     .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
+    .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
     .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price')
     .replace('{CEFR}', cefr);
   return `${GLOBAL_RULES.replace('{CEFR}', cefr)}\n\n${block}${cefrReinjection(cefr)}`;
@@ -305,10 +364,27 @@ export const premiumDialogSend = onCall({
   // вместо 1/день) — ×100 к дневному бюджету OpenAI на одного абьюзера.
   const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
 
+  const history = sanitizeHistory(data.history);
+  // Пустая история = это ПЕРВАЯ реплика нового диалога. По ней решаем, тратит ли
+  // free-юзер свой единственный пожизненный бесплатный диалог.
+  const isNewDialog = history.length === 0;
+
   // Limits BEFORE the paid API call.
   await enforceRateLimit(authUid, stableUid);
-  const dailyCap = isPremium ? dialogQuota.premiumDailyReplies : dialogQuota.freeDailyReplies;
-  const remaining = await enforceDailyQuota(authUid, stableUid, isPremium, dailyCap);
+
+  // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри).
+  // Premium: дневной кап реплик (защита бюджета OpenAI от абьюза).
+  let remaining: number;
+  let freeMarkedNow = false;
+  if (isPremium) {
+    remaining = await enforceDailyQuota(authUid, stableUid, true, dialogQuota.premiumDailyReplies);
+  } else {
+    const gate = await enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog);
+    freeMarkedNow = gate.markedNow;
+    // Для не-premium «остаток» бессмысленен (диалог один) — отдаём 0, чтобы клиент
+    // не показывал дневной счётчик.
+    remaining = 0;
+  }
 
   const systemPrompt =
     mode === 'companion'
@@ -317,7 +393,7 @@ export const premiumDialogSend = onCall({
 
   const messages: ChatMessage[] = [
     { role: 'system', content: systemPrompt },
-    ...sanitizeHistory(data.history),
+    ...history,
     { role: 'user', content: userText },
   ];
 
@@ -361,7 +437,15 @@ export const premiumDialogSend = onCall({
       throw new HttpsError('unavailable', 'dialog_empty_reply');
     }
   } catch (error) {
-    await releaseDailyQuota(authUid, stableUid).catch((releaseError) => {
+    // Откатываем то, что списали ДО провайдера, чтобы его сбой не съел попытку:
+    // premium — дневную квоту; free — пожизненную отметку (только если её
+    // поставили ИМЕННО сейчас, на этой первой реплике).
+    const rollback = isPremium
+      ? releaseDailyQuota(authUid, stableUid)
+      : freeMarkedNow
+        ? releaseLifetimeFreeDialog(authUid, stableUid)
+        : Promise.resolve();
+    await rollback.catch((releaseError) => {
       console.error('premium_dialog quota release failed', {
         reason: error instanceof HttpsError ? error.message : 'provider_exception',
         releaseError: String((releaseError as Error)?.message ?? releaseError).slice(0, 300),

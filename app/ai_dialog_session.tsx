@@ -60,6 +60,9 @@ function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
     goalRu: `Используй фразы и конструкции урока ${lessonId} в короткой живой сцене`,
     role: 'a patient English practice partner',
     setting: `a simple real-life scene based on lesson ${lessonId}`,
+    persona:
+      'Your name is Leo. You are a warm, encouraging language buddy who is genuinely happy to practise with the learner. ' +
+      'You celebrate small wins, keep the mood light, and gently nudge them to reuse the lesson phrases.',
     goalEn:
       `Practice a realistic short conversation using phrases and grammar from lesson ${lessonId}. ` +
       `Useful lesson phrases: ${usefulPhrases}. ` +
@@ -159,6 +162,7 @@ export default function AiDialogSession() {
           role: scenario.role,
           setting: scenario.setting,
           goalEn: scenario.goalEn,
+          persona: scenario.persona,
           scenarioId: scenario.id,
           isPremium: hasPremiumAccess,
         });

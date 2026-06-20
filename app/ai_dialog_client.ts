@@ -32,6 +32,8 @@ export interface PremiumDialogRequest {
   role?: string;
   setting?: string;
   goalEn?: string;
+  /** Характер персонажа (имя, манера речи, настроение) — задаёт живой голос. */
+  persona?: string;
   scenarioId?: string;
   /** companion-режим */
   memory?: DialogMemory;
@@ -90,9 +92,9 @@ export function getPremiumDialogErrorMessage(
         });
       }
       return triLang(lang, {
-        ru: 'Бесплатный лимит диалога на сегодня исчерпан. Завтра снова будет доступен.',
-        uk: 'Безкоштовний ліміт діалогу на сьогодні вичерпано. Завтра він знову буде доступний.',
-        es: 'Alcanzaste el límite gratuito de diálogo de hoy. Mañana estará disponible de nuevo.',
+        ru: 'Бесплатный диалог уже использован. Открой все диалоги с Premium.',
+        uk: 'Безкоштовний діалог уже використано. Відкрий усі діалоги з Premium.',
+        es: 'Ya usaste tu diálogo gratis. Abre todos los diálogos con Premium.',
       });
     case 'premium_limit':
       return triLang(lang, {

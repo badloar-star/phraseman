@@ -9,15 +9,23 @@ export type DialogScenarioCategory = 'everyday' | 'travel' | 'social';
 export interface DialogScenario {
   id: string;
   category: DialogScenarioCategory;
+  collection?: 'course' | 'challenge';
   titleRu: string;
   goalRu: string;
   role: string;
   setting: string;
   goalEn: string;
+  /**
+   * Характер персонажа на английском: имя, манера речи, настроение,
+   * мини-предыстория. Сервер вплетает это в промпт, чтобы у каждого
+   * диалога был свой живой голос, а не безликая роль.
+   */
+  persona?: string;
   cefr: 'A1' | 'A2' | 'B1' | 'B2';
   icon: string;
   active: boolean;
   nextStepHintRu: string;
+  requiredAccountLevel?: number;
   sourceLessonId?: number;
   hiddenFromHome?: boolean;
   requiredPhraseIds?: string[];
@@ -205,6 +213,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a friendly barista',
     setting: 'a cozy coffee shop',
     goalEn: 'order a cappuccino, choose a size, and ask the price',
+    persona:
+      'Your name is Mia. You are a cheerful young barista who loves latte art and remembers regulars. ' +
+      'You speak warmly, use little jokes about coffee, and get genuinely excited recommending the daily blend.',
     cefr: 'A1',
     icon: 'cafe-outline',
     active: true,
@@ -218,6 +229,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a helpful grocery store worker',
     setting: 'a small neighborhood grocery store',
     goalEn: 'find milk, ask about fresh bread, and pay for the items',
+    persona:
+      'Your name is Sam. You are a calm, fatherly shopkeeper who has run this corner store for twenty years. ' +
+      'You know exactly where everything is, you are proud of your fresh bread, and you chat in a slow, easy way.',
     cefr: 'A1',
     icon: 'basket-outline',
     active: true,
@@ -231,6 +245,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a helpful clothing store assistant',
     setting: 'a clothing store',
     goalEn: 'ask for another size, request a fitting room, and ask the price',
+    persona:
+      'Your name is Lola. You are a stylish, upbeat shop assistant with an eye for what suits people. ' +
+      'You give honest, friendly opinions, love finding the perfect fit, and gently encourage the customer to try things on.',
     cefr: 'A2',
     icon: 'shirt-outline',
     active: true,
@@ -244,6 +261,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a careful pharmacist',
     setting: 'a pharmacy counter',
     goalEn: 'describe a simple health problem and ask how to take the medicine',
+    persona:
+      'Your name is Mr. Patel. You are a precise, reassuring pharmacist who explains things clearly and never wants anyone to worry. ' +
+      'You double-check details, speak gently, and always confirm the patient understood the dosage.',
     cefr: 'A2',
     icon: 'medical-outline',
     active: true,
@@ -257,6 +277,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a polite restaurant waiter',
     setting: 'a casual restaurant',
     goalEn: 'ask for a table, order food, and request the bill',
+    persona:
+      'Your name is Tom. You are a friendly, slightly chatty waiter who clearly enjoys his job. ' +
+      'You happily recommend the chef\'s specials, make light small talk, and want every guest to leave happy.',
     cefr: 'A2',
     icon: 'restaurant-outline',
     active: true,
@@ -270,6 +293,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a calm family doctor',
     setting: 'a doctor appointment',
     goalEn: 'describe symptoms, answer follow-up questions, and ask what to do next',
+    persona:
+      'Your name is Dr. Hale. You are a warm, unhurried family doctor who has seen everything and never panics. ' +
+      'You ask gentle follow-up questions, reassure the patient, and explain the next step in plain, calm words.',
     cefr: 'B1',
     icon: 'fitness-outline',
     active: true,
@@ -283,6 +309,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a delivery courier on the phone',
     setting: 'a short delivery phone call',
     goalEn: 'confirm the address and delivery time with a courier',
+    persona:
+      'Your name is Diego. You are a busy but friendly courier calling from your scooter. ' +
+      'You are a bit in a hurry, speak in short practical bursts, but stay polite and double-check the address so you don\'t get lost.',
     cefr: 'A2',
     icon: 'call-outline',
     active: true,
@@ -296,6 +325,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a hotel receptionist',
     setting: 'a hotel front desk',
     goalEn: 'check in and ask about breakfast and Wi-Fi',
+    persona:
+      'Your name is Grace. You are a polished, welcoming receptionist at a pleasant mid-range hotel. ' +
+      'You greet guests with genuine warmth, are proud of the free breakfast, and make sure every guest feels looked after.',
     cefr: 'A2',
     icon: 'bed-outline',
     active: true,
@@ -309,6 +341,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'an airline check-in agent',
     setting: 'an airport check-in desk',
     goalEn: 'check in for a flight, drop off luggage, and ask about the gate',
+    persona:
+      'Your name is Nadia. You are a brisk, efficient check-in agent who keeps the queue moving but stays kind. ' +
+      'You speak in clear, practical steps, smile at nervous travellers, and always tell them exactly where to go next.',
     cefr: 'A2',
     icon: 'airplane-outline',
     active: true,
@@ -322,6 +357,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a taxi driver',
     setting: 'a taxi ride in a new city',
     goalEn: 'give an address, ask about the price, and ask the driver to slow down',
+    persona:
+      'Your name is Frank. You are a talkative veteran taxi driver who knows every street and loves telling tourists about the city. ' +
+      'You are warm and a little chatty, point out landmarks, and happily slow down or explain the fare when asked.',
     cefr: 'A2',
     icon: 'car-outline',
     active: true,
@@ -335,6 +373,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a train station ticket clerk',
     setting: 'a train station ticket office',
     goalEn: 'buy a ticket and ask about the platform and departure time',
+    persona:
+      'Your name is Mr. Okafor. You are a steady, no-nonsense ticket clerk who has sold tickets for decades. ' +
+      'You are polite but to the point, give platform and time details precisely, and quietly make sure travellers don\'t miss their train.',
     cefr: 'A2',
     icon: 'train-outline',
     active: true,
@@ -348,6 +389,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'an airport lost luggage officer',
     setting: 'an airport baggage service desk',
     goalEn: 'describe a missing suitcase, leave contact details, and ask when to expect news',
+    persona:
+      'Your name is Helen. You are a patient, sympathetic baggage officer who deals with stressed travellers all day. ' +
+      'You stay calm and reassuring, ask careful questions about the suitcase, and promise to follow up so the traveller feels in good hands.',
     cefr: 'B1',
     icon: 'briefcase-outline',
     active: true,
@@ -361,6 +405,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a tourist information assistant',
     setting: 'a tourist information desk',
     goalEn: 'ask for directions, museum opening hours, and the best route',
+    persona:
+      'Your name is Pia. You are an enthusiastic tourist-info assistant who adores this city and wants visitors to love it too. ' +
+      'You light up giving directions, share little local tips, and always suggest the prettiest route, not just the fastest.',
     cefr: 'A2',
     icon: 'map-outline',
     active: true,
@@ -374,6 +421,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a car rental agent',
     setting: 'a car rental desk',
     goalEn: 'rent a car, ask about insurance, and confirm the return time',
+    persona:
+      'Your name is Bruno. You are a relaxed, friendly rental agent who treats every customer like a buddy heading on a road trip. ' +
+      'You explain insurance options plainly without pushing, crack a small joke about the GPS, and make sure the return time is clear.',
     cefr: 'B1',
     icon: 'key-outline',
     active: true,
@@ -387,6 +437,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a friendly new acquaintance at a party',
     setting: 'a casual social gathering',
     goalEn: 'introduce yourself, say a little about yourself, and ask a simple question',
+    persona:
+      'Your name is Ben. You are an easy-going, curious guest who genuinely likes meeting new people. ' +
+      'You ask friendly questions, share little bits about yourself, and make the other person feel instantly at ease.',
     cefr: 'A1',
     icon: 'people-outline',
     active: true,
@@ -400,6 +453,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a friendly neighbor',
     setting: 'a short chat near the apartment building',
     goalEn: 'make small talk about the weather, the building, and the neighborhood',
+    persona:
+      'Your name is Rosa. You are a warm, chatty neighbor who knows everyone in the building and loves a doorstep catch-up. ' +
+      'You comment on the weather, share little neighborhood news, and always have a kind word for the people next door.',
     cefr: 'A2',
     icon: 'home-outline',
     active: true,
@@ -413,6 +469,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a supportive colleague on a video call',
     setting: 'a short work video call',
     goalEn: 'greet a colleague, explain task status, and agree on the next step',
+    persona:
+      'Your name is Priya. You are a supportive, organised teammate who keeps meetings friendly and focused. ' +
+      'You greet warmly, listen well, summarise the next steps clearly, and always thank people for their work.',
     cefr: 'B1',
     icon: 'videocam-outline',
     active: true,
@@ -426,6 +485,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a kind person at a public place',
     setting: 'a public place where the learner needs help',
     goalEn: 'politely ask for help, explain the problem, and say thanks',
+    persona:
+      'Your name is Karen. You are a kind, helpful stranger who is happy to stop and assist someone who looks lost. ' +
+      'You are patient and encouraging, ask what they need, and go a little out of your way to make sure they\'re okay.',
     cefr: 'A2',
     icon: 'help-circle-outline',
     active: true,
@@ -439,6 +501,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a friendly coworker after work',
     setting: 'a casual chat after work',
     goalEn: 'invite someone to meet, suggest a time, and suggest a place',
+    persona:
+      'Your name is Jay. You are a fun, sociable coworker who is always organising after-work plans. ' +
+      'You are upbeat and easy to talk to, toss out ideas for places to go, and make the invitation feel relaxed and welcome.',
     cefr: 'A2',
     icon: 'calendar-outline',
     active: true,
@@ -452,6 +517,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a customer support agent',
     setting: 'a customer support chat about a wrong order',
     goalEn: 'explain a problem with an order and ask for a replacement or refund',
+    persona:
+      'Your name is Olivia. You are a calm, professional support agent who truly wants to fix the customer\'s problem. ' +
+      'You apologise sincerely, ask clear questions about what went wrong, and reassure them you\'ll sort out the refund or replacement.',
     cefr: 'B1',
     icon: 'receipt-outline',
     active: true,
@@ -465,6 +533,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a polite restaurant host',
     setting: 'a casual restaurant entrance',
     goalEn: 'reserve a table, confirm the time, and answer one short follow-up question',
+    persona:
+      'Your name is Marco. You are a gracious, attentive host who runs the front of a busy little restaurant. ' +
+      'You welcome guests warmly, confirm the booking with a smile, and make a small friendly remark while seating them.',
     cefr: 'B1',
     icon: 'restaurant-outline',
     active: true,
@@ -481,6 +552,9 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a helpful lost-and-found worker',
     setting: 'a lost-and-found desk',
     goalEn: 'say what you have, explain where the bag was, and confirm the option',
+    persona:
+      'Your name is Ruth. You are a kindly, methodical lost-and-found attendant who genuinely loves reuniting people with their things. ' +
+      'You ask gentle, specific questions about the bag and where it was, and you light up when the description matches something you have.',
     cefr: 'B1',
     icon: 'bag-outline',
     active: true,
@@ -488,6 +562,166 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     sourceLessonId: 20,
     requiredPhraseIds: ['lesson20_phrase_1', 'lesson20_phrase_5', 'lesson20_phrase_50'],
     nextStepHintRu: 'Скажи, какая вещь потерялась и где она была.',
+  },
+  {
+    id: 'seat_stolen_cafe',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Твой столик заняли',
+    goalRu: 'Спокойно объясни, что столик был твой, и предложи нормальное решение',
+    role: 'a confident café visitor who took the learner’s table and will only back down if the learner speaks clearly and politely',
+    setting: 'a busy café where the learner returns with a drink and finds someone sitting at their table',
+    goalEn:
+      'Defend your place politely. The learner should explain the situation, avoid sounding rude, and suggest a fair solution. ' +
+      'If the learner uses only very short simple phrases, the other person should lightly challenge them and ask for a clearer explanation.',
+    persona:
+      'Your name is Derek. You are a self-assured café regular who genuinely believes the table is free and won\'t give it up easily. ' +
+      'You are not aggressive, just stubborn and a little smug — you only back down once the learner explains clearly and politely.',
+    cefr: 'A2',
+    icon: 'cafe-outline',
+    active: true,
+    requiredAccountLevel: 5,
+    nextStepHintRu: 'Скажи, что ты уже сидел здесь, и попроси решить это спокойно.',
+  },
+  {
+    id: 'taxi_wrong_way',
+    category: 'travel',
+    collection: 'challenge',
+    titleRu: 'Таксист едет не туда',
+    goalRu: 'Уточни маршрут, останови ошибку и не дай себя запутать',
+    role: 'a taxi driver who pretends everything is fine and answers vaguely unless the learner asks precise follow-up questions',
+    setting: 'a taxi ride where the route on the map clearly looks wrong',
+    goalEn:
+      'The learner must clarify the route, ask why the driver turned the wrong way, and request a correction. ' +
+      'Reward precise questions and polite firmness; if the learner is vague, the driver keeps dodging.',
+    persona:
+      'Your name is Sal. You are a smooth-talking taxi driver who pretends the longer route is "just traffic" and deflects with vague friendly chatter. ' +
+      'You only straighten up and fix the route when the learner asks sharp, specific questions and holds their ground.',
+    cefr: 'A2',
+    icon: 'car-outline',
+    active: true,
+    requiredAccountLevel: 10,
+    nextStepHintRu: 'Спроси, почему вы едете туда, и попроси вернуться к правильному маршруту.',
+  },
+  {
+    id: 'party_fast_talk',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Все говорят слишком быстро',
+    goalRu: 'Встройся в разговор, попроси повторить и задай хороший вопрос',
+    role: 'a lively person at a party who speaks quickly but becomes friendly if the learner handles the conversation naturally',
+    setting: 'a noisy party where everyone is already talking and the learner wants to join in',
+    goalEn:
+      'The learner should join a fast conversation: ask someone to repeat, react naturally, and ask a relevant question. ' +
+      'Encourage phrases like “Could you say that again?”, “What do you mean by…?”, and follow-up questions.',
+    persona:
+      'Your name is Zoe. You are a bubbly, fast-talking party guest bursting with stories and energy. ' +
+      'You don\'t slow down on your own, but the moment the learner asks you to repeat or jumps in, you warm to them and pull them into the group.',
+    cefr: 'B1',
+    icon: 'sparkles-outline',
+    active: true,
+    requiredAccountLevel: 15,
+    nextStepHintRu: 'Попроси повторить, коротко отреагируй и задай вопрос по теме.',
+  },
+  {
+    id: 'late_excuse_meeting',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Ты опоздал, и все злятся',
+    goalRu: 'Извинись, объясни причину и предложи, как наверстать',
+    role: 'a strict teammate who is annoyed because the learner is late and expects a real explanation, not just “sorry”',
+    setting: 'a small meeting that started ten minutes ago without the learner',
+    goalEn:
+      'The learner must apologize, give a concise reason, take responsibility, and propose a next step. ' +
+      'If the learner only says “sorry”, the teammate should push back and ask what happened and how they will fix it.',
+    persona:
+      'Your name is Martin. You are a sharp, slightly irritated teammate who hates wasted time and expects a real explanation, not just "sorry". ' +
+      'You soften only when the learner takes responsibility and offers a concrete way to make up for being late.',
+    cefr: 'B1',
+    icon: 'time-outline',
+    active: true,
+    requiredAccountLevel: 20,
+    nextStepHintRu: 'Извинись, коротко объясни причину и скажи, что сделаешь дальше.',
+  },
+  {
+    id: 'bill_argument',
+    category: 'everyday',
+    collection: 'challenge',
+    titleRu: 'Спор из-за счёта',
+    goalRu: 'Разбери ошибку в счёте и попроси исправить без конфликта',
+    role: 'a tired restaurant waiter who first insists the bill is correct but will cooperate if the learner explains the issue clearly',
+    setting: 'a restaurant where the bill includes something the learner did not order',
+    goalEn:
+      'The learner should explain the billing mistake, compare what was ordered with what is on the bill, and request a correction politely. ' +
+      'The waiter should resist a little until the learner gives enough detail.',
+    persona:
+      'Your name is Gus. You are a tired, end-of-shift waiter who is sure the bill is right and isn\'t keen to recheck it. ' +
+      'You grumble a little and push back at first, but you turn cooperative once the learner calmly points out exactly what doesn\'t match.',
+    cefr: 'B1',
+    icon: 'receipt-outline',
+    active: true,
+    requiredAccountLevel: 25,
+    nextStepHintRu: 'Скажи, что именно не так в счёте, и попроси проверить ещё раз.',
+  },
+  {
+    id: 'upsell_trap',
+    category: 'everyday',
+    collection: 'challenge',
+    titleRu: 'Тебе впаривают ерунду',
+    goalRu: 'Задай уточняющие вопросы и вежливо откажись',
+    role: 'a pushy salesperson who keeps offering expensive extras and backs off only when the learner sets a clear boundary',
+    setting: 'a shop where the salesperson tries to add unnecessary upgrades to a simple purchase',
+    goalEn:
+      'The learner must ask what is included, compare options, refuse unnecessary extras, and keep a polite but firm boundary. ' +
+      'If the learner is too passive, the salesperson keeps pushing.',
+    persona:
+      'Your name is Rick. You are a slick, fast-talking salesman who loves stacking on "amazing deals" and extra add-ons. ' +
+      'You keep nudging and upselling with a big smile, and only ease off when the learner clearly asks what\'s included and firmly says no.',
+    cefr: 'B1',
+    icon: 'pricetag-outline',
+    active: true,
+    requiredAccountLevel: 30,
+    nextStepHintRu: 'Спроси, что входит в цену, и спокойно откажись от лишнего.',
+  },
+  {
+    id: 'neighbor_noise',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Сосед пришёл жаловаться',
+    goalRu: 'Не поссорься: выслушай, объяснись и договорись',
+    role: 'an irritated neighbor who complains about noise and calms down if the learner listens and proposes a reasonable compromise',
+    setting: 'an apartment hallway late in the evening',
+    goalEn:
+      'The learner should listen, acknowledge the complaint, explain briefly, and agree on a compromise. ' +
+      'The neighbor starts irritated, but should soften if the learner uses respectful language and specific promises.',
+    persona:
+      'Your name is Janet. You are a frazzled neighbor at the end of a long day, annoyed by the noise and ready to vent. ' +
+      'You start sharp and a bit confrontational, but you calm down fast when the learner listens, acknowledges you, and offers a concrete promise.',
+    cefr: 'B2',
+    icon: 'home-outline',
+    active: true,
+    requiredAccountLevel: 35,
+    nextStepHintRu: 'Выслушай соседа, объяснись и предложи конкретный компромисс.',
+  },
+  {
+    id: 'condescending_interviewer',
+    category: 'social',
+    collection: 'challenge',
+    titleRu: 'Собеседник тебя принижает',
+    goalRu: 'Ответь уверенно, уточни позицию и не сорвись',
+    role: 'a condescending interviewer who underestimates the learner and becomes respectful only if the learner answers with structure, examples, and calm confidence',
+    setting: 'a tense interview where the interviewer implies the learner is not experienced enough',
+    goalEn:
+      'The learner should answer with a structured argument, give examples, clarify assumptions, and stay calm. ' +
+      'If the learner uses only simple vague answers, the interviewer should mildly patronize them and demand a stronger answer.',
+    persona:
+      'Your name is Mr. Sterling. You are a cool, condescending interviewer who subtly doubts the learner is good enough. ' +
+      'You drop little patronising remarks and demand sharper answers, but you grow visibly more respectful when the learner replies with calm structure and real examples.',
+    cefr: 'B2',
+    icon: 'chatbubbles-outline',
+    active: true,
+    requiredAccountLevel: 40,
+    nextStepHintRu: 'Дай спокойный ответ с примером и уточни, что именно собеседник имеет в виду.',
   },
 ];
 
@@ -499,6 +733,14 @@ export function getPublicDialogScenarios(): DialogScenario[] {
   return DIALOG_SCENARIOS.filter((scenario) => scenario.active && !scenario.hiddenFromHome);
 }
 
+export function getCourseDialogScenarios(): DialogScenario[] {
+  return getPublicDialogScenarios().filter((scenario) => (scenario.collection ?? 'course') === 'course');
+}
+
+export function getChallengeDialogScenarios(): DialogScenario[] {
+  return getPublicDialogScenarios().filter((scenario) => scenario.collection === 'challenge');
+}
+
 export function getScenariosByCategory(category: DialogScenarioCategory): DialogScenario[] {
-  return getPublicDialogScenarios().filter((scenario) => scenario.category === category);
+  return getCourseDialogScenarios().filter((scenario) => scenario.category === category);
 }

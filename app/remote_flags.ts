@@ -46,6 +46,13 @@ export type RemoteBoolKey =
   | 'lifetime_button_enabled'
   | 'explain_enabled'
   | 'ideas_enabled'
+  | 'compass_enabled'
+  | 'compass_ai_voice_enabled'
+  | 'compass_deep_dive_enabled'
+  | 'compass_lesson_invite_enabled'
+  | 'compass_economy_enabled'
+  | 'compass_retention_enabled'
+  | 'compass_topic_map_enabled'
   | 'maintenance_banner'
   | 'maintenance_block';
 
@@ -53,7 +60,12 @@ export type RemoteBoolKey =
 export type RemoteTextKey =
   | 'maintenance_ru'
   | 'maintenance_uk'
-  | 'maintenance_es';
+  | 'maintenance_es'
+  // Компас: переопределяемый из «Пульта» fallback-комментарий дня (когда ИИ-голос
+  // выключен или бюджет исчёрпан). Пусто = берётся встроенный текст по Библии.
+  | 'compass_voice_fallback_ru'
+  | 'compass_voice_fallback_uk'
+  | 'compass_voice_fallback_es';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -113,6 +125,20 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // раздел у всех живьём (onSnapshot), без релиза — уже поданные идеи в админ-очереди
   // остаются, и адмін может их закрыть.
   ideas_enabled: false,
+  // ── Компас (глобальный обучающий оркестратор) ──────────────────────────────
+  // compass_enabled — ГЛАВНЫЙ выключатель всей фичи. Дефолт FALSE = sell-switch:
+  // Компас включается намеренно из «Пульта», когда готов. Выключение мгновенно
+  // (onSnapshot) убирает ВЕСЬ Компас у всех без релиза, и НИЧЕГО в основном
+  // приложении не страдает — весь код Компаса изолирован в app/compass/ и за
+  // этим флагом. Под-флаги ниже — точечные рычаги отдельных крыльев (дефолт TRUE,
+  // но работают только если включён главный compass_enabled).
+  compass_enabled: false,
+  compass_ai_voice_enabled: true,
+  compass_deep_dive_enabled: true,
+  compass_lesson_invite_enabled: true,
+  compass_economy_enabled: true,
+  compass_retention_enabled: true,
+  compass_topic_map_enabled: true,
   // Режим обслуживания (управляется из «Пульта»). Дефолт FALSE — приложение
   // работает. banner = мягкая плашка сверху; block = жёсткий полноэкранный
   // блок-экран. Включается у всех живьём (onSnapshot), без релиза.
@@ -124,6 +150,9 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   maintenance_ru: '',
   maintenance_uk: '',
   maintenance_es: '',
+  compass_voice_fallback_ru: '',
+  compass_voice_fallback_uk: '',
+  compass_voice_fallback_es: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -277,6 +306,18 @@ export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promoti
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
 export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
+/**
+ * Компас — ГЛАВНЫЙ выключатель всей фичи. Дефолт false (sell-switch). Если false —
+ * весь Компас отсутствует, основное приложение работает как раньше. Под-флаги ниже
+ * имеют силу ТОЛЬКО когда главный включён (см. app/compass/compass_flags.ts).
+ */
+export const isCompassEnabled = () => getRemoteBool('compass_enabled');
+export const isCompassAiVoiceEnabled = () => getRemoteBool('compass_ai_voice_enabled');
+export const isCompassDeepDiveEnabled = () => getRemoteBool('compass_deep_dive_enabled');
+export const isCompassLessonInviteEnabled = () => getRemoteBool('compass_lesson_invite_enabled');
+export const isCompassEconomyEnabled = () => getRemoteBool('compass_economy_enabled');
+export const isCompassRetentionEnabled = () => getRemoteBool('compass_retention_enabled');
+export const isCompassTopicMapEnabled = () => getRemoteBool('compass_topic_map_enabled');
 /** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
 export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
 export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');

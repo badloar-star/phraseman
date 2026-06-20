@@ -271,10 +271,6 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
     setBusy(true);
     try {
       const result = await upgradeProfileCardLevel();
-      if (typeof __DEV__ !== 'undefined' && __DEV__) {
-        const localBal = await getShardsBalance().catch(() => -1);
-        notify('info', `DEBUG: ${JSON.stringify(result)} | local=${localBal} | need=${nextDef?.cost}`);
-      }
       if (result.ok) {
         setShards(result.balance);
         const nextSnapshot = await getProfileCardSnapshot();

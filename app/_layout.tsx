@@ -26,6 +26,7 @@ import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import Onboarding from '../components/onboarding';
+import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
 import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from './personal_plan_activation';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
@@ -885,6 +886,12 @@ function AppContent() {
   const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
+  // true, пока активен онбординг-пейвол (роут paywall_a/b/c, source=onboarding_plan).
+  // Управляет presentation статических <Stack.Screen> ниже: онбординг открывает пейвол
+  // как ОБЫЧНЫЙ экран (card, без выезда снизу), все прочие источники — modal slide_from_bottom.
+  // Per-instance <Stack.Screen options> внутри пейвола НЕ перебивает mount-presentation —
+  // нативный стек читает presentation при push, до тела экрана, поэтому флаг тут, в навигаторе.
+  const [onboardingPaywallActive, setOnboardingPaywallActive] = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   // Подарок лояльности:
@@ -1991,6 +1998,10 @@ function AppContent() {
     // мгновенно перекрывает «Главную». СНАЧАЛА навигация (пейвол монтируется под
     // оверлеем онбординга), ПОТОМ setShow(false) — оверлей снимается, а под
     // ним уже непрозрачный пейвол. Кадра с «Главной» нет.
+    // Помечаем онбординг-пейвол активным ДО навигации — статические <Stack.Screen>
+    // (paywall_a/b/c) переключаются на card/none, и пейвол монтируется как обычный
+    // экран онбординга, без выезда снизу. Сбрасываем флаг при уходе с пейвола.
+    setOnboardingPaywallActive(true);
     try {
       const { resolvePaywallAbVariantSync } = await import('./paywall_variant');
       const { variant } = resolvePaywallAbVariantSync();
@@ -2027,6 +2038,10 @@ function AppContent() {
   useEffect(() => {
     const sub = onAppEvent('personal_plan_onboarding_nickname_ready', async () => {
       onboardingDoneHandledRef.current = false;
+      // Онбординг-пейвол отыграл (continue-free / покупка) → возвращаемся в оверлей
+      // онбординга на шаг «Имя». Снимаем флаг, чтобы будущие открытия пейвола
+      // (winback и т.п.) снова были модалкой с выездом снизу.
+      setOnboardingPaywallActive(false);
       await AsyncStorage.setItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1');
       await AsyncStorage.setItem('onboarding_step', 'name');
       await AsyncStorage.removeItem('onboarding_done');
@@ -2197,10 +2212,13 @@ function AppContent() {
       {/* Диспетчер прозрачный и мгновенно (useLayoutEffect) делает replace на нужный пейвол —
           поэтому сам он без анимации, а выезд снизу даёт целевой пейвол ниже. */}
       <Stack.Screen name="premium_modal" options={{ presentation: 'transparentModal', animation: 'none', animationDuration: 0 }} />
-      {/* Эксперимент пейволов v3: варианты A/B/C (диспетчер — premium_modal). Выезжают снизу как модал. */}
-      <Stack.Screen name="paywall_a" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
-      <Stack.Screen name="paywall_b" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
-      <Stack.Screen name="paywall_c" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+      {/* Эксперимент пейволов v3: варианты A/B/C (диспетчер — premium_modal). По умолчанию
+          выезжают снизу как модал. НА ОНБОРДИНГЕ (onboardingPaywallActive) — открываются как
+          обычный экран онбординга (card, без анимации/выезда снизу); presentation задаётся
+          на статическом <Stack.Screen>, т.к. mount-presentation нативный стек читает при push. */}
+      <Stack.Screen name="paywall_a" options={paywallScreenStackOptions(onboardingPaywallActive)} />
+      <Stack.Screen name="paywall_b" options={paywallScreenStackOptions(onboardingPaywallActive)} />
+      <Stack.Screen name="paywall_c" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
       <Stack.Screen name="referral_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="referrals" options={{ headerShown: false, animation: 'slide_from_right' }} />

@@ -11,7 +11,7 @@ import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, Easing, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, InteractionManager, LogBox, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
@@ -53,6 +53,7 @@ import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { prefetchArenaRatingCache } from './arena_rating_cache';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
+import { isFeatureFreeForEveryone } from './feature_gates';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
@@ -78,7 +79,7 @@ import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
-import { markWentToFirstLessonFromAfterOnboardingSheet, setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
+import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
@@ -204,89 +205,6 @@ const POST_ONBOARDING_GOLD_BRIDGE_SCREEN = ['rgba(255,224,144,0.34)', 'rgba(163,
 const POST_ONBOARDING_GOLD_BRIDGE_PANEL = ['rgba(122,75,12,0.44)', 'rgba(54,34,8,0.30)', 'rgba(11,9,5,0.12)'] as const;
 const POST_ONBOARDING_GOLD_BRIDGE_CTA = ['#FFF0B5', '#E2A923'] as const;
 const POST_ONBOARDING_GOLD_BRIDGE_TEXT = '#3F2C08';
-const FIRST_LESSON_SHEET_ENTER_MS = 280;
-const FIRST_LESSON_SHEET_START_OFFSET_Y = 520;
-const FIRST_LESSON_SHEET_BACKDROP_OPACITY = 0.58;
-const FIRST_LESSON_SHEET_PANEL_SCRIMS: Record<ThemeMode, string> = {
-  dark: 'rgba(3,10,6,0.56)',
-  gold: 'rgba(5,5,5,0.52)',
-  coral: 'rgba(28,8,5,0.50)',
-  minimalDark: 'rgba(8,12,20,0.54)',
-  midnight: 'rgba(8,10,22,0.56)',
-  ember: 'rgba(20,11,6,0.54)',
-  aurora: 'rgba(6,16,12,0.54)',
-  volt: 'rgba(12,14,5,0.54)',
-};
-const FIRST_LESSON_SHEET_TITLE_COLORS: Record<ThemeMode, string> = {
-  dark: '#F7FFF4',
-  gold: '#FFF7DF',
-  coral: '#FFF7F2',
-  minimalDark: '#F5F7FB',
-  midnight: '#FFFFFF',
-  ember: '#FFFFFF',
-  aurora: '#FFFFFF',
-  volt: '#FFFFFF',
-};
-const FIRST_LESSON_SHEET_SUBTITLE_COLORS: Record<ThemeMode, string> = {
-  dark: '#CFE7CF',
-  gold: '#EBD7A5',
-  coral: '#FFD8CF',
-  minimalDark: '#A7ABB3',
-  midnight: '#A9AECB',
-  ember: '#C9B4A4',
-  aurora: '#A7C0B5',
-  volt: '#BFC6A3',
-};
-const FIRST_LESSON_SHEET_LATER_COLORS: Record<ThemeMode, string> = {
-  dark: '#A8BFA6',
-  gold: '#BDAA7A',
-  coral: '#D5A59B',
-  minimalDark: '#8FA2C2',
-  midnight: '#B79CFF',
-  ember: '#FFC894',
-  aurora: '#9FF2D4',
-  volt: '#EAFF8C',
-};
-const FIRST_LESSON_SHEET_BORDER_COLORS: Record<ThemeMode, string> = {
-  dark: 'rgba(189,255,143,0.26)',
-  gold: 'rgba(255,210,99,0.34)',
-  coral: 'rgba(255,133,112,0.34)',
-  minimalDark: 'rgba(110,168,255,0.28)',
-  midnight: 'rgba(143,160,255,0.30)',
-  ember: 'rgba(255,162,69,0.30)',
-  aurora: 'rgba(61,232,166,0.30)',
-  volt: 'rgba(214,255,61,0.32)',
-};
-const FIRST_LESSON_SHEET_CTA_TEXT_COLORS: Record<ThemeMode, string> = {
-  dark: '#F6FFF2',
-  gold: '#FFE9A8',
-  coral: '#350D08',
-  minimalDark: '#07101F',
-  midnight: '#0D1030',
-  ember: '#2A1502',
-  aurora: '#052A1C',
-  volt: '#1A2002',
-};
-const FIRST_LESSON_SHEET_CTA_GRADIENTS: Record<ThemeMode, readonly [string, string]> = {
-  dark: ['#2F8A42', '#155A2B'],
-  gold: ['#1D1910', '#4D3A16'],
-  coral: ['#FF7A66', '#EF4F3D'],
-  minimalDark: ['#D7E7FF', '#6EA8FF'],
-  midnight: ['#C9D2FF', '#6E7FF5'],
-  ember: ['#FFD9A8', '#F5801E'],
-  aurora: ['#9FF2CF', '#1FC487'],
-  volt: ['#EFFF9E', '#A8D414'],
-};
-const FIRST_LESSON_SHEET_CTA_SHADOW_COLORS: Record<ThemeMode, string> = {
-  dark: '#7CF05C',
-  gold: '#D5A63D',
-  coral: '#FF715F',
-  minimalDark: '#6EA8FF',
-  midnight: '#8FA0FF',
-  ember: '#FFA245',
-  aurora: '#3DE8A6',
-  volt: '#D6FF3D',
-};
 const DAILY_LOGIN_BONUS_XP_BY_DAY = [
   20, 25, 30, 40, 50, 75, 120,
   130, 140, 150, 160, 170, 180, 220,
@@ -958,7 +876,6 @@ function AppContent() {
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
-  const [showFirstLessonSheet, setShowFirstLessonSheet] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
@@ -975,11 +892,7 @@ function AppContent() {
   const firstContentReadyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const runHeavyInitRef = useRef<(() => void) | null>(null);
   const heavyInitStartedRef = useRef(false);
-  const pendingFirstLessonSheetAfterIntroRef = useRef(false);
-  /** Гард от повторного тапа «Поехали» в листе первого урока (router.replace + push не должны исполняться дважды). */
-  const firstLessonStartHandledRef = useRef(false);
   const postOnboardingGoldBridgeAnim = useRef(new Animated.Value(0)).current;
-  const firstLessonSheetAnim = useRef(new Animated.Value(0)).current;
   const [postOnboardingGoldBridgeVisible, setPostOnboardingGoldBridgeVisible] = useState(false);
   const [postOnboardingGoldBridgeArmed, setPostOnboardingGoldBridgeArmed] = useState(false);
 
@@ -1734,7 +1647,6 @@ function AppContent() {
       // После первого онбординга refs = true; без сброса повторное завершение
       // (Apple/Google/«Позже» на шаге auth) вызывает handleOnboardingDone → ранний return → экран не уходит.
       onboardingDoneHandledRef.current = false;
-      firstLessonStartHandledRef.current = false;
       setShow(true);
     });
     return () => {
@@ -1769,12 +1681,6 @@ function AppContent() {
     await setLang(lng);
   }, [setLang]);
 
-  // Навигация после онбординга — показываем bottomsheet первого урока
-  const showDeferredFirstLessonSheet = useCallback(() => {
-    pendingFirstLessonSheetAfterIntroRef.current = false;
-    setTimeout(() => setShowFirstLessonSheet(true), 240);
-  }, []);
-
   const hasVerifiedRealPremiumOrVip = useCallback(async () => {
     if (isPremium || isVip) return true;
     const [realPremium, vip] = await Promise.all([
@@ -1790,9 +1696,6 @@ function AppContent() {
     if (variant === 'welcome') {
       await markIntroFullAccessWelcomeSeen().catch(() => {});
       setIntroFullAccessModal(null);
-      if (pendingFirstLessonSheetAfterIntroRef.current) {
-        showDeferredFirstLessonSheet();
-      }
       return;
     }
 
@@ -1814,7 +1717,7 @@ function AppContent() {
       void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_dismiss', {})).catch(() => {});
       void import('./firebase').then(({ logIntroEndedDismiss }) => logIntroEndedDismiss()).catch(() => {});
     }
-  }, [introFullAccessModal, router, showDeferredFirstLessonSheet]);
+  }, [introFullAccessModal, router]);
 
   const checkIntroFullAccessEndedModal = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
@@ -1917,11 +1820,8 @@ function AppContent() {
     // Небольшая задержка чтобы анимация закрытия онбординга успела завершиться
     const showWelcome = !hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome().catch(() => false);
     if (showWelcome) {
-      pendingFirstLessonSheetAfterIntroRef.current = true;
       setTimeout(() => setIntroFullAccessModal('welcome'), 320);
-      return;
     }
-    setTimeout(() => setShowFirstLessonSheet(true), 400);
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, router]);
 
   const handleOnboardingPersonalPlanPaywall = useCallback(async () => {
@@ -1934,7 +1834,6 @@ function AppContent() {
       firstContentReadyTimerRef.current = null;
     }
     setFirstContentReady(true);
-    setShowFirstLessonSheet(false);
     setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
     setShow(false);
     const planBilling = await AsyncStorage.getItem('onboarding_plan_billing').catch(() => null);
@@ -1944,6 +1843,12 @@ function AppContent() {
     // home без пейвола (а также мигал экраном home — риск Apple 5.6).
     // premium_modal сам диспатчит на нужный A/B/C-вариант и обрабатывает
     // случай «уже premium», поэтому промежуточный home не нужен.
+    // «Пульт»: если персональный план переведён в «Фри» — пейвол не показываем,
+    // новичок сразу попадает домой (план активируется без оплаты).
+    if (isFeatureFreeForEveryone('personal_plan')) {
+      router.replace('/(tabs)/home' as any);
+      return;
+    }
     router.replace({
       pathname: '/premium_modal',
       params: {
@@ -1967,7 +1872,6 @@ function AppContent() {
       await AsyncStorage.setItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1');
       await AsyncStorage.setItem('onboarding_step', 'name');
       await AsyncStorage.removeItem('onboarding_done');
-      setShowFirstLessonSheet(false);
       setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
       setShow(true);
     });
@@ -2033,39 +1937,7 @@ function AppContent() {
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
-  const firstLessonSheetVisible = useOverlayVisible('firstLessonSheet', showFirstLessonSheet);
   const dailyPlanModalVisible = useOverlayVisible('dailyPlan', dailyPlanModalDue);
-  useEffect(() => {
-    if (!firstLessonSheetVisible) {
-      firstLessonSheetAnim.stopAnimation();
-      firstLessonSheetAnim.setValue(0);
-      return;
-    }
-
-    firstLessonSheetAnim.stopAnimation();
-    firstLessonSheetAnim.setValue(0);
-    const frame = requestAnimationFrame(() => {
-      Animated.timing(firstLessonSheetAnim, {
-        toValue: 1,
-        duration: FIRST_LESSON_SHEET_ENTER_MS,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }).start();
-    });
-
-    return () => {
-      cancelAnimationFrame(frame);
-      firstLessonSheetAnim.stopAnimation();
-    };
-  }, [firstLessonSheetAnim, firstLessonSheetVisible]);
-  const firstLessonSheetScrim = FIRST_LESSON_SHEET_PANEL_SCRIMS[themeMode] ?? FIRST_LESSON_SHEET_PANEL_SCRIMS.minimalDark;
-  const firstLessonSheetTitleColor = FIRST_LESSON_SHEET_TITLE_COLORS[themeMode] ?? '#FFFFFF';
-  const firstLessonSheetSubtitleColor = FIRST_LESSON_SHEET_SUBTITLE_COLORS[themeMode] ?? '#C5CAD0';
-  const firstLessonSheetLaterColor = FIRST_LESSON_SHEET_LATER_COLORS[themeMode] ?? '#9298A1';
-  const firstLessonSheetBorderColor = FIRST_LESSON_SHEET_BORDER_COLORS[themeMode] ?? 'rgba(255,255,255,0.16)';
-  const firstLessonSheetCtaTextColor = FIRST_LESSON_SHEET_CTA_TEXT_COLORS[themeMode] ?? '#FFFFFF';
-  const firstLessonSheetCtaGradient = FIRST_LESSON_SHEET_CTA_GRADIENTS[themeMode] ?? FIRST_LESSON_SHEET_CTA_GRADIENTS.minimalDark;
-  const firstLessonSheetCtaShadowColor = FIRST_LESSON_SHEET_CTA_SHADOW_COLORS[themeMode] ?? '#C8FF00';
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [0, 1],
@@ -2078,20 +1950,7 @@ function AppContent() {
     inputRange: [0, 1],
     outputRange: [0, 1],
   });
-  const firstLessonSheetCtaLabel = lang === 'es'
-    ? '¡Vamos! 🔥'
-    : lang === 'uk'
-      ? 'Так, поїхали! 🔥'
-      : 'Да, поехали! 🔥';
 
-  const firstLessonSheetBackdropOpacity = firstLessonSheetAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, FIRST_LESSON_SHEET_BACKDROP_OPACITY],
-  });
-  const firstLessonSheetTranslateY = firstLessonSheetAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [FIRST_LESSON_SHEET_START_OFFSET_Y, 0],
-  });
 
   if (!ready) {
     return (
@@ -2182,6 +2041,7 @@ function AppContent() {
       <Stack.Screen name="paywall_a" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="paywall_b" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
       <Stack.Screen name="paywall_c" options={{ presentation: 'modal', animation: 'none', animationDuration: 0 }} />
+      <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
       <Stack.Screen name="referral_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="referrals" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="avatar_select" />
@@ -2330,179 +2190,6 @@ function AppContent() {
       onSecondaryPress={() => { void closeIntroFullAccessModal('secondary'); }}
     />
 
-    {appOverlaysEnabled && !introFullAccessModal && showFirstLessonSheet && (
-      <Modal
-        transparent
-        visible={firstLessonSheetVisible}
-        animationType="none"
-        statusBarTranslucent
-        onRequestClose={() => {
-          setShowFirstLessonSheet(false);
-          setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
-          emitAppEvent('energy_onboarding_may_show');
-        }}
-      >
-        <View style={styles.firstLessonSheetOverlay}>
-          <Animated.View
-            pointerEvents="none"
-            style={[
-              styles.firstLessonSheetBackdrop,
-              { opacity: firstLessonSheetBackdropOpacity },
-            ]}
-          />
-          <TouchableOpacity
-            style={{ flex: 1 }}
-            activeOpacity={1}
-            onPress={() => {
-              setShowFirstLessonSheet(false);
-              setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
-              emitAppEvent('energy_onboarding_may_show');
-            }}
-          />
-          <Animated.View
-            style={[
-              styles.firstLessonSheetPanel,
-              {
-                borderColor: firstLessonSheetBorderColor,
-                shadowColor: firstLessonSheetCtaShadowColor,
-                transform: [{ translateY: firstLessonSheetTranslateY }],
-              },
-            ]}
-          >
-            <LinearGradient
-              pointerEvents="none"
-              colors={tTheme.bgGradient}
-              start={{ x: 0.5, y: 0 }}
-              end={{ x: 0.5, y: 1 }}
-              style={styles.firstLessonSheetBackground}
-            />
-            <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: firstLessonSheetScrim }]} />
-            {postOnboardingGoldBridgeVisible && (
-              <Animated.View
-                pointerEvents="none"
-                style={[StyleSheet.absoluteFillObject, { opacity: postOnboardingPanelTintOpacity }]}
-              >
-                <LinearGradient
-                  pointerEvents="none"
-                  colors={POST_ONBOARDING_GOLD_BRIDGE_PANEL}
-                  locations={[0, 0.62, 1]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={StyleSheet.absoluteFillObject}
-                />
-              </Animated.View>
-            )}
-            <View
-              style={[
-                styles.firstLessonSheetContent,
-                { paddingBottom: Math.max(insets.bottom + 18, 46) },
-              ]}
-            >
-              <Text style={[styles.firstLessonSheetTitle, { color: firstLessonSheetTitleColor }]}>
-                {lang === 'es' ? '¿Empezamos la primera lección?' : lang === 'uk' ? 'Почнемо перший урок?' : 'Начнём первый урок?'}
-              </Text>
-              <Text style={[styles.firstLessonSheetSubtitle, { color: firstLessonSheetSubtitleColor }]}>
-                {lang === 'es'
-                  ? 'La primera lección dura unos 10 minutos. Después ya sabrás 50 frases útiles.'
-                  : lang === 'uk'
-                  ? 'Перший урок займе ~10 хвилин. Вже після нього ти знатимеш 50 живих фраз.'
-                  : 'Первый урок займёт ~10 минут. Уже после него ты будешь знать 50 живых фраз.'}
-              </Text>
-              <TouchableOpacity
-                style={[styles.firstLessonSheetCtaTouchable, { shadowColor: firstLessonSheetCtaShadowColor }]}
-                onPress={() => {
-                  if (firstLessonStartHandledRef.current) return;
-                  firstLessonStartHandledRef.current = true;
-                  setShowFirstLessonSheet(false);
-                  setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
-                  void markWentToFirstLessonFromAfterOnboardingSheet();
-                  // Сначала фиксируем (tabs)/home как корень стека, затем кладём поверх lesson_menu
-                  // и lesson1 — чтобы из урока можно было вернуться в меню урока, а из меню — на главную.
-                  // Раньше один router.replace('/lesson1') оставлял пустой стек: кнопка «назад» в lesson_menu
-                  // не срабатывала, юзер застревал.
-                  router.replace('/(tabs)/home' as any);
-                  setTimeout(() => {
-                    router.push({ pathname: '/lesson_menu', params: { id: 1 } } as any);
-                    setTimeout(() => {
-                      router.push({ pathname: '/lesson1', params: { id: 1, from: 'lesson_menu' } } as any);
-                    }, 30);
-                  }, 30);
-                }}
-                activeOpacity={0.85}
-              >
-                <LinearGradient
-                  colors={firstLessonSheetCtaGradient}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={[
-                    styles.firstLessonSheetCta,
-                    {
-                      borderColor: firstLessonSheetBorderColor,
-                    },
-                  ]}
-                >
-                  {postOnboardingGoldBridgeVisible && (
-                    <Animated.View
-                      pointerEvents="none"
-                      style={[StyleSheet.absoluteFillObject, { opacity: postOnboardingCtaTintOpacity }]}
-                    >
-                      <LinearGradient
-                        pointerEvents="none"
-                        colors={POST_ONBOARDING_GOLD_BRIDGE_CTA}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 1 }}
-                        style={StyleSheet.absoluteFillObject}
-                      />
-                    </Animated.View>
-                  )}
-                  <Text
-                    numberOfLines={1}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.78}
-                    style={[styles.firstLessonSheetCtaText, { color: firstLessonSheetCtaTextColor }]}
-                  >
-                    {firstLessonSheetCtaLabel}
-                  </Text>
-                  {postOnboardingGoldBridgeVisible && (
-                    <Animated.Text
-                      pointerEvents="none"
-                      numberOfLines={1}
-                      adjustsFontSizeToFit
-                      minimumFontScale={0.78}
-                      style={[
-                        styles.firstLessonSheetCtaText,
-                        styles.firstLessonSheetCtaTextBridge,
-                        {
-                          color: POST_ONBOARDING_GOLD_BRIDGE_TEXT,
-                          opacity: postOnboardingCtaTintOpacity,
-                        },
-                      ]}
-                    >
-                      {firstLessonSheetCtaLabel}
-                    </Animated.Text>
-                  )}
-                </LinearGradient>
-              </TouchableOpacity>
-              <TouchableOpacity
-                testID="first-lesson-later"
-                style={styles.firstLessonSheetLaterButton}
-                onPress={() => {
-                  setShowFirstLessonSheet(false);
-                  setDeferEnergyOnboardingForPostOnboardingFirstLesson(false);
-                  emitAppEvent('energy_onboarding_may_show');
-                }}
-                activeOpacity={0.7}
-              >
-                <Text style={[styles.firstLessonSheetLaterText, { color: firstLessonSheetLaterColor }]}>
-                  {lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </Animated.View>
-        </View>
-      </Modal>
-    )}
-
     <DailyTasksFirstVisitModal
       visible={appOverlaysEnabled && dailyPlanModalVisible}
       studyTarget={studyTarget}
@@ -2560,101 +2247,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     zIndex: 8,
     elevation: 8,
-  },
-  firstLessonSheetOverlay: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'stretch',
-    backgroundColor: 'transparent',
-  },
-  firstLessonSheetBackdrop: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#000000',
-  },
-  firstLessonSheetPanel: {
-    width: '100%',
-    alignSelf: 'stretch',
-    overflow: 'hidden',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    borderTopWidth: 1,
-    backgroundColor: '#111315',
-    shadowOffset: { width: 0, height: -10 },
-    shadowOpacity: 0.28,
-    shadowRadius: 24,
-    elevation: 18,
-  },
-  firstLessonSheetBackground: {
-    ...StyleSheet.absoluteFillObject,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-  },
-  firstLessonSheetContent: {
-    width: '100%',
-    paddingHorizontal: 28,
-    paddingTop: 44,
-    alignItems: 'center',
-  },
-  firstLessonSheetTitle: {
-    fontSize: 24,
-    lineHeight: 30,
-    fontWeight: '800',
-    textAlign: 'center',
-    letterSpacing: 0,
-    marginBottom: 12,
-  },
-  firstLessonSheetSubtitle: {
-    fontSize: 16,
-    lineHeight: 24,
-    textAlign: 'center',
-    letterSpacing: 0,
-    marginBottom: 32,
-    maxWidth: 360,
-  },
-  firstLessonSheetCtaTouchable: {
-    width: '100%',
-    minHeight: 64,
-    borderRadius: 18,
-    marginBottom: 16,
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.18,
-    shadowRadius: 18,
-    elevation: 8,
-  },
-  firstLessonSheetCta: {
-    width: '100%',
-    minHeight: 64,
-    borderRadius: 18,
-    overflow: 'hidden',
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-  },
-  firstLessonSheetCtaText: {
-    fontSize: 18,
-    lineHeight: 24,
-    fontWeight: '800',
-    textAlign: 'center',
-    letterSpacing: 0,
-  },
-  firstLessonSheetCtaTextBridge: {
-    position: 'absolute',
-    left: 24,
-    right: 24,
-  },
-  firstLessonSheetLaterButton: {
-    minHeight: 48,
-    paddingVertical: 12,
-    paddingHorizontal: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  firstLessonSheetLaterText: {
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '600',
-    letterSpacing: 0,
   },
 });
 

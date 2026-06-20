@@ -109,6 +109,11 @@ export type AnalyticsEvent =
   | 'exit_trial_offer_shown'       // exit-intent оффер «3 дня бесплатно» показан
   | 'exit_trial_offer_accepted'
   | 'exit_trial_offer_declined'
+  // ── управление подпиской ──────────────────────────────────────────────────
+  | 'subscription_cancel_survey'   // отправлен опрос «почему уходишь»
+  | 'change_plan_started'          // нажал «перейти на годовой»
+  | 'change_plan_completed'
+  | 'change_plan_failed'
   | 'winback_shown';
 
 interface EventRecord {

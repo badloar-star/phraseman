@@ -223,6 +223,12 @@ export function logCancelSurvey(reason: string, reasonText = '', context = 'mana
   })();
 }
 
+// ── Change plan (monthly → yearly) ────────────────────────────────────────────
+
+export function logChangePlanStarted(from: string, to: string) {
+  logEvent('change_plan_started', { from, to });
+}
+
 // ── Lesson drop-off ───────────────────────────────────────────────────────────
 
 export function logLessonAbandoned(lessonId: number, phraseIndex: number, totalPhrases: number) {

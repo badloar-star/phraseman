@@ -68,8 +68,9 @@ exports.MISTAKE_COLLECTION = 'mistake_explanations';
 /** Generation lock TTL — slightly above the CF timeout so a crashed generation is re-claimable. */
 exports.MISTAKE_LOCK_TTL_MS = 35000;
 /** Bump to invalidate stale cached mistake explanations on read.
- *  v1 (2026-06-20): full breakdown + lazy ELI5 variant. */
-exports.MISTAKE_SCHEMA_VERSION = 1;
+ *  v1 (2026-06-20): full breakdown + lazy ELI5 variant.
+ *  v2 (2026-06-20): fix — explanations were generated in English; prompts now enforce interfaceLang. */
+exports.MISTAKE_SCHEMA_VERSION = 2;
 /** How long a judge-rejected breakdown serves nothing before one request may retry generation. */
 exports.MISTAKE_REJECTED_RETRY_TTL_MS = 10 * 60000;
 function isCurrentSchema(data) {

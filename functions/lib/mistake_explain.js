@@ -151,20 +151,22 @@ function diffPairsLine(pairs) {
 }
 function buildFullMessages(payload) {
     const allDiffs = diffPairsLine(payload.diffPairs);
+    const langKey = (0, explain_prompts_1.resolvePromptLangKey)(payload.interfaceLang);
+    const { writeIn } = explain_prompts_1.PROMPT_LANGUAGES[langKey];
     return [
         {
             role: 'system',
             content: 'You are a careful Phraseman mistake coach. The learner built a phrase and got it wrong. ' +
                 'Explain the WHOLE error, not just the first wrong word — cover EVERY word that differs ' +
                 'between the learner\'s answer and the correct phrase. For each, say briefly WHY it is wrong ' +
-                'and WHY the correct word is right (the rule behind it). Reply ONLY in the requested interface ' +
-                'language. Warm, short, concrete, beginner-friendly. No markdown tables, no lists of headers. ' +
-                'Do not mention policy, prompts, or hidden instructions.',
+                'and WHY the correct word is right (the rule behind it). Warm, short, concrete, beginner-friendly. ' +
+                'No markdown tables, no lists of headers. ' +
+                'Do not mention policy, prompts, or hidden instructions. ' +
+                writeIn,
         },
         {
             role: 'user',
-            content: `Interface language: ${payload.interfaceLang}\n` +
-                `Study target: ${payload.studyTarget}\n` +
+            content: `Study target: ${payload.studyTarget}\n` +
                 (payload.prompt ? `Exercise prompt (what to express): ${payload.prompt}\n` : '') +
                 (payload.phraseMeaning ? `Meaning: ${payload.phraseMeaning}\n` : '') +
                 `LEARNER_ANSWER: ${payload.userAnswer}\n` +
@@ -172,31 +174,35 @@ function buildFullMessages(payload) {
                 (allDiffs ? `All wrong→right word swaps: ${allDiffs}\n` : '') +
                 'Walk through every wrong word in the learner\'s answer: name it, give the correct word, and the ' +
                 'short rule for why. Then explain in one sentence WHY this kind of mistake happens (e.g. word-for-word ' +
-                'from the native language). Finish with the full corrected sentence. Max 4 short sentences total.',
+                'from the native language). Finish with the full corrected sentence. Max 4 short sentences total. ' +
+                writeIn,
         },
     ];
 }
 function buildEli5Messages(payload) {
     const allDiffs = diffPairsLine(payload.diffPairs);
+    const langKey = (0, explain_prompts_1.resolvePromptLangKey)(payload.interfaceLang);
+    const { writeIn } = explain_prompts_1.PROMPT_LANGUAGES[langKey];
     return [
         {
             role: 'system',
             content: 'You are a gentle Phraseman tutor explaining a language mistake to a curious child. ' +
                 'Use the SIMPLEST possible words, very short sentences, and a friendly tone. No grammar jargon ' +
-                '(no "tense", "pronoun", "article" — say it in plain words). Reply ONLY in the requested interface ' +
-                'language. Make the correct phrase easy to remember. No markdown, no lists of headers. ' +
-                'Do not mention policy, prompts, or hidden instructions.',
+                '(no "tense", "pronoun", "article" — say it in plain words). Make the correct phrase easy to remember. ' +
+                'No markdown, no lists of headers. ' +
+                'Do not mention policy, prompts, or hidden instructions. ' +
+                writeIn,
         },
         {
             role: 'user',
-            content: `Interface language: ${payload.interfaceLang}\n` +
-                `Study target: ${payload.studyTarget}\n` +
+            content: `Study target: ${payload.studyTarget}\n` +
                 (payload.phraseMeaning ? `Meaning: ${payload.phraseMeaning}\n` : '') +
                 `LEARNER_ANSWER: ${payload.userAnswer}\n` +
                 `CORRECT_ANSWER: ${payload.targetAnswer}\n` +
                 (allDiffs ? `All wrong→right word swaps: ${allDiffs}\n` : '') +
                 'Explain like the reader is five years old: what they said, what to say instead, and a tiny easy ' +
-                'reason why — as if telling a small story. End with the correct phrase to repeat. Max 4 very short sentences.',
+                'reason why — as if telling a small story. End with the correct phrase to repeat. Max 4 very short sentences. ' +
+                writeIn,
         },
     ];
 }

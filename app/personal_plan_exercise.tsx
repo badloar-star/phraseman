@@ -23,9 +23,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
-import { CompassLessonInvite } from './compass';
 import AiMistakeCard from '../components/AiMistakeCard';
-import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { useAudio } from '../hooks/use-audio';
 import {
@@ -1744,12 +1742,6 @@ export default function PersonalPlanExerciseScreen() {
                       {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
                     </Text>
                   </TouchableOpacity>
-                  <View style={{ marginTop: 12 }}>
-                    <CompassLessonInvite
-                      visible
-                      onOpenSession={() => { hapticTap(); router.push('/lessons' as any); }}
-                    />
-                  </View>
                 </View>
               ) : (
                 <View style={styles.optionsSpacer} />

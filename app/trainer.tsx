@@ -24,7 +24,6 @@ import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
 import { computePhraseAnalytics, type LessonMistakeStat, type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
-import WeeklyReviewCard from './WeeklyReviewCard';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import { getDiagnosisTraining } from './diagnosis_trainings';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
@@ -792,10 +791,6 @@ export default function TrainerScreen() {
                 </TouchableOpacity>);
         })}
 
-            {personalPracticeCoachEnabled && !hasPremium ? (
-              <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} stableLayout />
-            ) : null}
-
             {/* ── Аналитика ошибок inline ── */}
             <StatsPremiumBlur isPremium={hasPremium} context="patterns">
             <View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderRadius: trainerRadius }]}>
@@ -834,10 +829,6 @@ export default function TrainerScreen() {
                     <Ionicons name="expand-outline" size={18} color={t.textMuted}/>
                   </TouchableOpacity>
                 </View>
-
-                {personalPracticeCoachEnabled ? (
-                  <WeeklyReviewCard isPremium={hasPremium} studyTarget={studyTarget} stableLayout embedded />
-                ) : null}
 
                 {/* Вкладки */}
                 <View style={[styles.analyticsTabs, { backgroundColor: isCompassTheme ? COMPASS_RICH.void : isGoldTheme ? 'rgba(14,12,8,0.92)' : t.bgSurface, borderRadius: isCompassTheme ? 8 : 10, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent' }]}>

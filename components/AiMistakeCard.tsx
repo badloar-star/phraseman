@@ -88,9 +88,6 @@ export default function AiMistakeCard({
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
             {title}
           </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }} numberOfLines={1}>
-            {subtitle}
-          </Text>
         </View>
       </View>
 

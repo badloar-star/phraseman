@@ -7,6 +7,7 @@ import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalR
 import { Ionicons } from '@expo/vector-icons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
+import { setAudioModeAsync } from 'expo-audio';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
@@ -966,6 +967,16 @@ function AppContent() {
     setRootNavigationReady(true);
   }, []);
 
+  // Глобальная аудио-сессия на старте: озвучка должна играть ДАЖЕ при включённом
+  // беззвучном режиме (mute-switch) на iPhone и независимо от того, какой путь
+  // (OpenAI-клип или системный TTS) зазвучит первым. Раньше playsInSilentMode
+  // выставлялся лениво и только в клип-пути, а expo-speech на iOS работает в
+  // отдельной сессии — поэтому при беззвучном режиме звука не было совсем.
+  useEffect(() => {
+    void setAudioModeAsync({ playsInSilentMode: true, shouldPlayInBackground: false })
+      .catch(() => { /* не критично: воспроизведение возможно и с дефолтным режимом */ });
+  }, []);
+
   useEffect(() => {
     rememberNavigationPath(navigationPathSignature);
   }, [navigationPathSignature]);
@@ -1794,6 +1805,13 @@ function AppContent() {
     setLoyaltyGiftModal(null);
   }, []);
 
+  // Тап по блоку «год доступа за идею» — закрываем модал (как показанный) и ведём в Идеи.
+  const openLoyaltyIdeas = useCallback(async () => {
+    await markLoyaltyGiftOfferSeen().catch(() => {});
+    setLoyaltyGiftModal(null);
+    router.push('/ideas_submit' as any);
+  }, [router]);
+
   // Финальный модал после истечения подарка лояльности — переиспользуем intro-модал
   // 'ended' (та же логика: ведёт на пейвол / «продолжить бесплатно»). Закрытие обрабатывает
   // closeLoyaltyEndedModal, который помечает loyalty_gift_ended_seen.
@@ -2334,6 +2352,7 @@ function AppContent() {
         else { void claimLoyaltyGift(); }
       }}
       onSecondaryPress={() => { void dismissLoyaltyGiftOffer(); }}
+      onIdeasPress={() => { void openLoyaltyIdeas(); }}
     />
 
     <DailyTasksFirstVisitModal

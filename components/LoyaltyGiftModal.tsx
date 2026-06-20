@@ -25,6 +25,8 @@ type Props = {
   variant?: LoyaltyGiftModalVariant;
   onPrimaryPress: () => void;
   onSecondaryPress?: () => void;
+  // Тап по блоку «год доступа за идею» — ведёт в Настройки → Идеи (закрывает модал).
+  onIdeasPress?: () => void;
 };
 
 type HighlightCopy = { icon: keyof typeof Ionicons.glyphMap; title: string; body: string };
@@ -45,6 +47,12 @@ type ModalCopy = {
   // Тексты для премиум/VIP (без подарка) — благодарим и закрываем.
   announcePrimaryCta: string;
   announceFooter: string;
+  // Личная заметка от автора (одиночный разработчик за «мы»).
+  personalNoteTitle: string;
+  personalNoteBody: string;
+  // Блок «год полного доступа за идею» (раздел Идеи в настройках).
+  ideasTitle: string;
+  ideasBody: string;
 };
 
 // Текст обновления + подарок за лояльность. Намеренно «мощный»: сначала вау-фичи,
@@ -53,21 +61,25 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
   ru: {
     eyebrow: 'Большое обновление',
     title: 'Ты застал момент, когда Phraseman стал другим',
-    intro: 'Мы переписали половину приложения. Не косметика — новые системы, сотни новых уроков, живые голоса и умный помощник, который ведёт тебя сам.',
+    intro: 'Переписана половина приложения. Не косметика — новые системы, сотни новых раундов, живые голоса и умный помощник, который ведёт тебя сам.',
     highlightsTitle: 'Что нового',
     highlights: [
-      { icon: 'compass', title: 'Компас — личный наставник', body: 'Каждый день сам решает, что тебе полезнее: закрепить ошибки, копнуть глубже или вернуться после паузы. Утром встречает брифингом, рисует карту твоих сильных и слабых тем.' },
+      { icon: 'compass', title: 'Компас — личный наставник', body: 'Каждый день сам решает, что тебе полезнее: закрепить слабые места, копнуть глубже или вернуться после паузы. Утром встречает брифингом, рисует карту твоих сильных и слабых тем.' },
       { icon: 'sparkles', title: 'Сотни новых дней практики', body: 'Пять планов заполнены до конца — работа, дом, здоровье, путешествия, эмоции. Месяцы живого контента.' },
-      { icon: 'chatbubbles', title: 'Живые ИИ-диалоги', body: 'У каждого собеседника свой характер. Экран как современный мессенджер: аватары, статус «онлайн», пузыри с хвостиками. 11 новых ситуаций.' },
+      { icon: 'chatbubbles', title: 'Живые диалоги', body: 'У каждого собеседника свой характер. Экран как современный мессенджер: аватары, статус «онлайн», пузыри с хвостиками. 11 новых ситуаций.' },
       { icon: 'volume-high', title: 'Человеческая озвучка', body: 'Все фразы теперь звучат живым голосом, а не роботом. Слайдер скорости — разбирай произношение в комфортном темпе.' },
       { icon: 'trophy', title: 'Арена: сезоны и рейтинг', body: 'Сезоны с рейтингом мастерства, таблица лидеров, светящиеся ауры ранга. Соперник находится всегда быстро.' },
-      { icon: 'bulb', title: 'Разбор ошибок от ИИ', body: 'После ошибки приложение по-человечески объясняет, в чём дело. Не понял — кнопка «Объяснить проще».' },
-      { icon: 'diamond', title: 'Сокровищница идиом', body: '330 коллекционных карточек с уникальными иллюстрациями выпадают как награда за уроки. Собирай и открывай.' },
+      { icon: 'bulb', title: 'Разбор стал точнее', body: 'Когда что-то не сошлось — приложение по-человечески объясняет, в чём дело. Не понял — кнопка «Объяснить проще».' },
+      { icon: 'diamond', title: 'Сокровищница идиом', body: '330 коллекционных карточек с уникальными иллюстрациями выпадают как награда за раунды. Собирай и открывай.' },
     ],
+    personalNoteTitle: 'Честно про «мы»',
+    personalNoteBody: 'Я всё ещё говорю «мы», когда рассказываю про обновления — потому что для одного человека это неадекватный объём. Но по правде всем этим занимается один человек, который пожертвовал сном и личным временем, чтобы донести это обновление до тебя.',
+    ideasTitle: 'Целый год полного доступа — за идею',
+    ideasBody: 'Год полного доступа можно получить очень легко: предложи свою креативную и оригинальную идею, которая сделает приложение лучше. Загляни в Настройки → раздел «Идеи».',
     giftEyebrow: 'Подарок за лояльность',
     giftTitle: 'Ты с нами не первый день — держи 3 дня всего премиума',
-    giftBody: 'Ты был с Phraseman до этого обновления, и это правда ценно. В знак благодарности дарим тебе 3 дня полного доступа: все уроки, все планы, темы, аналитика и безлимит. Без оплаты, без автопродления — просто подарок. Загляни в обновлённое приложение во всю силу.',
-    giftChips: ['Все уроки', 'Все планы', 'Без энергии', 'Темы', 'Аналитика', 'Компас'],
+    giftBody: 'Ты был с Phraseman до этого обновления, и это правда ценно. В знак благодарности дарю тебе 3 дня полного доступа: все раунды, все планы, темы, твои результаты и безлимит. Без оплаты, без автопродления — просто подарок. Загляни в обновлённое приложение во всю силу.',
+    giftChips: ['Все раунды', 'Все планы', 'Без энергии', 'Темы', 'Результаты', 'Компас'],
     primaryCta: 'Получить 3 дня премиум',
     secondaryCta: 'Может позже',
     footer: 'Это подарок. Подписка не включается автоматически.',
@@ -77,21 +89,25 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
   uk: {
     eyebrow: 'Велике оновлення',
     title: 'Ти застав момент, коли Phraseman став іншим',
-    intro: 'Ми переписали половину застосунку. Не косметика — нові системи, сотні нових уроків, живі голоси й розумний помічник, що веде тебе сам.',
+    intro: 'Переписано половину застосунку. Не косметика — нові системи, сотні нових раундів, живі голоси й розумний помічник, що веде тебе сам.',
     highlightsTitle: 'Що нового',
     highlights: [
-      { icon: 'compass', title: 'Компас — особистий наставник', body: 'Щодня сам вирішує, що тобі корисніше: закріпити помилки, копнути глибше чи повернутися після паузи. Зранку зустрічає брифінгом, малює карту твоїх сильних і слабких тем.' },
+      { icon: 'compass', title: 'Компас — особистий наставник', body: 'Щодня сам вирішує, що тобі корисніше: закріпити слабкі місця, копнути глибше чи повернутися після паузи. Зранку зустрічає брифінгом, малює карту твоїх сильних і слабких тем.' },
       { icon: 'sparkles', title: 'Сотні нових днів практики', body: "П'ять планів заповнені до кінця — робота, дім, здоров'я, подорожі, емоції. Місяці живого контенту." },
-      { icon: 'chatbubbles', title: 'Живі ШІ-діалоги', body: 'У кожного співрозмовника свій характер. Екран як сучасний месенджер: аватари, статус «онлайн», бульбашки з хвостиками. 11 нових ситуацій.' },
+      { icon: 'chatbubbles', title: 'Живі діалоги', body: 'У кожного співрозмовника свій характер. Екран як сучасний месенджер: аватари, статус «онлайн», бульбашки з хвостиками. 11 нових ситуацій.' },
       { icon: 'volume-high', title: 'Людська озвучка', body: 'Усі фрази тепер звучать живим голосом, а не роботом. Слайдер швидкості — розбирай вимову у комфортному темпі.' },
       { icon: 'trophy', title: 'Арена: сезони та рейтинг', body: 'Сезони з рейтингом майстерності, таблиця лідерів, сяючі аури рангу. Суперник знаходиться завжди швидко.' },
-      { icon: 'bulb', title: 'Розбір помилок від ШІ', body: 'Після помилки застосунок по-людськи пояснює, у чому річ. Не зрозумів — кнопка «Пояснити простіше».' },
-      { icon: 'diamond', title: 'Скарбниця ідіом', body: '330 колекційних карток з унікальними ілюстраціями випадають як нагорода за уроки. Збирай і відкривай.' },
+      { icon: 'bulb', title: 'Розбір став точнішим', body: 'Коли щось не зійшлося — застосунок по-людськи пояснює, у чому річ. Не зрозумів — кнопка «Пояснити простіше».' },
+      { icon: 'diamond', title: 'Скарбниця ідіом', body: '330 колекційних карток з унікальними ілюстраціями випадають як нагорода за раунди. Збирай і відкривай.' },
     ],
+    personalNoteTitle: 'Чесно про «ми»',
+    personalNoteBody: 'Я досі кажу «ми», коли розповідаю про оновлення — бо для однієї людини це неадекватний обсяг. Та насправді всім цим займається одна людина, яка пожертвувала сном і особистим часом, щоб донести це оновлення до тебе.',
+    ideasTitle: 'Цілий рік повного доступу — за ідею',
+    ideasBody: 'Рік повного доступу можна отримати дуже легко: запропонуй свою креативну й оригінальну ідею, яка зробить застосунок кращим. Зазирни в Налаштування → розділ «Ідеї».',
     giftEyebrow: 'Подарунок за лояльність',
     giftTitle: 'Ти з нами не перший день — тримай 3 дні всього преміуму',
-    giftBody: 'Ти був з Phraseman до цього оновлення, і це справді цінно. На знак подяки даруємо тобі 3 дні повного доступу: усі уроки, усі плани, теми, аналітика й безліміт. Без оплати, без автопродовження — просто подарунок. Зазирни в оновлений застосунок на повну силу.',
-    giftChips: ['Усі уроки', 'Усі плани', 'Без енергії', 'Теми', 'Аналітика', 'Компас'],
+    giftBody: 'Ти був з Phraseman до цього оновлення, і це справді цінно. На знак подяки дарую тобі 3 дні повного доступу: усі раунди, усі плани, теми, твої результати й безліміт. Без оплати, без автопродовження — просто подарунок. Зазирни в оновлений застосунок на повну силу.',
+    giftChips: ['Усі раунди', 'Усі плани', 'Без енергії', 'Теми', 'Результати', 'Компас'],
     primaryCta: 'Отримати 3 дні преміум',
     secondaryCta: 'Можливо пізніше',
     footer: 'Це подарунок. Підписка не вмикається автоматично.',
@@ -101,21 +117,25 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
   es: {
     eyebrow: 'Gran actualización',
     title: 'Llegaste justo cuando Phraseman cambió por completo',
-    intro: 'Reescribimos media app. No es estética — nuevos sistemas, cientos de lecciones nuevas, voces reales y un asistente inteligente que te guía solo.',
+    intro: 'Se reescribió media app. No es estética — nuevos sistemas, cientos de rondas nuevas, voces reales y un asistente inteligente que te guía solo.',
     highlightsTitle: 'Lo nuevo',
     highlights: [
-      { icon: 'compass', title: 'Brújula — tu mentor personal', body: 'Cada día decide qué te conviene más: reforzar errores, profundizar o volver tras una pausa. Te recibe con un resumen y dibuja el mapa de tus temas fuertes y débiles.' },
+      { icon: 'compass', title: 'Brújula — tu mentor personal', body: 'Cada día decide qué te conviene más: reforzar puntos débiles, profundizar o volver tras una pausa. Te recibe con un resumen y dibuja el mapa de tus temas fuertes y débiles.' },
       { icon: 'sparkles', title: 'Cientos de días nuevos', body: 'Cinco planes completos — trabajo, casa, salud, viajes, emociones. Meses de contenido real.' },
-      { icon: 'chatbubbles', title: 'Diálogos con IA vivos', body: 'Cada interlocutor tiene su carácter. Pantalla tipo mensajería moderna: avatares, estado «en línea», burbujas. 11 situaciones nuevas.' },
+      { icon: 'chatbubbles', title: 'Diálogos vivos', body: 'Cada interlocutor tiene su carácter. Pantalla tipo mensajería moderna: avatares, estado «en línea», burbujas. 11 situaciones nuevas.' },
       { icon: 'volume-high', title: 'Voz humana', body: 'Todas las frases suenan con voz real, no robótica. Control de velocidad para estudiar la pronunciación a tu ritmo.' },
       { icon: 'trophy', title: 'Arena: temporadas y ranking', body: 'Temporadas con rating de maestría, tabla de líderes, auras de rango brillantes. Siempre encuentras rival rápido.' },
-      { icon: 'bulb', title: 'Análisis de errores con IA', body: 'Tras un error, la app te explica con naturalidad qué pasó. ¿No lo pillas? Botón «Explícalo más fácil».' },
+      { icon: 'bulb', title: 'El análisis es más preciso', body: 'Cuando algo no cuadra, la app te explica con naturalidad qué pasó. ¿No lo pillas? Botón «Explícalo más fácil».' },
       { icon: 'diamond', title: 'Tesoro de modismos', body: '330 cartas coleccionables con ilustraciones únicas caen como recompensa. Colecciónalas y ábrelas.' },
     ],
+    personalNoteTitle: 'Honesto sobre el «nosotros»',
+    personalNoteBody: 'Sigo diciendo «nosotros» al hablar de las actualizaciones, porque para una sola persona es un volumen desproporcionado. Pero la verdad es que todo esto lo hace una persona que ha sacrificado su sueño y su tiempo personal para traerte esta actualización.',
+    ideasTitle: 'Un año entero de acceso completo — por una idea',
+    ideasBody: 'Un año de acceso completo se consigue muy fácil: propón tu idea creativa y original que mejore la app. Mira en Ajustes → sección «Ideas».',
     giftEyebrow: 'Regalo por tu lealtad',
     giftTitle: 'No eres de ayer con nosotros — toma 3 días de todo premium',
-    giftBody: 'Estuviste con Phraseman antes de esta actualización, y eso vale mucho. Como agradecimiento te regalamos 3 días de acceso completo: todas las lecciones, planes, temas, análisis y sin límites. Sin pago, sin renovación automática — solo un regalo. Disfruta la app renovada al máximo.',
-    giftChips: ['Lecciones', 'Planes', 'Sin energía', 'Temas', 'Análisis', 'Brújula'],
+    giftBody: 'Estuviste con Phraseman antes de esta actualización, y eso vale mucho. Como agradecimiento te regalo 3 días de acceso completo: todas las rondas, planes, temas, tus resultados y sin límites. Sin pago, sin renovación automática — solo un regalo. Disfruta la app renovada al máximo.',
+    giftChips: ['Rondas', 'Planes', 'Sin energía', 'Temas', 'Resultados', 'Brújula'],
     primaryCta: 'Recibir 3 días premium',
     secondaryCta: 'Quizá luego',
     footer: 'Es un regalo. La suscripción no se activa automáticamente.',
@@ -124,7 +144,7 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
   },
 };
 
-function LoyaltyGiftModal({ visible, variant = 'gift', onPrimaryPress, onSecondaryPress }: Props) {
+function LoyaltyGiftModal({ visible, variant = 'gift', onPrimaryPress, onSecondaryPress, onIdeasPress }: Props) {
   const { lang } = useLang();
   const { theme, themeMode } = useTheme();
   const copy = lang === 'uk' ? COPY.uk : lang === 'es' ? COPY.es : COPY.ru;
@@ -191,6 +211,33 @@ function LoyaltyGiftModal({ visible, variant = 'gift', onPrimaryPress, onSeconda
                   </View>
                 ))}
               </View>
+
+              <View style={[styles.noteCard, { borderColor: border, backgroundColor: softSurface }]}>
+                <View style={styles.noteHeader}>
+                  <Ionicons name="heart" size={16} color={accent} />
+                  <Text style={[styles.noteTitle, { color: textPrimary }]}>{copy.personalNoteTitle}</Text>
+                </View>
+                <Text style={[styles.noteBody, { color: textSecondary }]}>{copy.personalNoteBody}</Text>
+              </View>
+
+              <Pressable
+                testID="loyalty-ideas-block"
+                accessibilityRole="button"
+                onPress={() => {
+                  void import('../app/analytics').then(({ trackEvent }) => trackEvent('loyalty_ideas_block_tapped', {}));
+                  onIdeasPress?.();
+                }}
+                style={[styles.ideasCard, { borderColor: accent, backgroundColor: softSurface }]}
+              >
+                <View style={styles.ideasHeader}>
+                  <Ionicons name="bulb" size={17} color={accent} />
+                  <Text style={[styles.ideasTitle, { color: textPrimary }]}>{copy.ideasTitle}</Text>
+                </View>
+                <Text style={[styles.ideasBody, { color: textSecondary }]}>{copy.ideasBody}</Text>
+                <View style={styles.ideasArrowRow}>
+                  <Ionicons name="arrow-forward" size={15} color={accent} />
+                </View>
+              </Pressable>
 
               {isGift ? (
                 <View style={[styles.giftCard, { borderColor: accent, backgroundColor: softSurface }]}>
@@ -359,8 +406,61 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     letterSpacing: 0,
   },
+  noteCard: {
+    marginTop: 14,
+    padding: 16,
+    borderRadius: 18,
+    borderWidth: 1,
+    gap: 8,
+  },
+  noteHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  noteTitle: {
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '900',
+    letterSpacing: 0,
+  },
+  noteBody: {
+    fontSize: 14,
+    lineHeight: 21,
+    fontWeight: '700',
+    letterSpacing: 0,
+  },
+  ideasCard: {
+    marginTop: 12,
+    padding: 16,
+    borderRadius: 18,
+    borderWidth: 1.5,
+    gap: 8,
+  },
+  ideasHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  ideasTitle: {
+    flex: 1,
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: '900',
+    letterSpacing: 0,
+  },
+  ideasBody: {
+    fontSize: 14,
+    lineHeight: 21,
+    fontWeight: '700',
+    letterSpacing: 0,
+  },
+  ideasArrowRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
   giftCard: {
-    marginTop: 10,
+    marginTop: 12,
     padding: 18,
     borderRadius: 20,
     borderWidth: 1.5,

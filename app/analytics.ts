@@ -94,6 +94,7 @@ export type AnalyticsEvent =
   | 'loyalty_gift_offer_dismiss'  // «Может позже»
   | 'loyalty_update_announce_shown' // показан модал обновления премиум/VIP (без подарка)
   | 'loyalty_update_announce_cta'   // премиум/VIP закрыл анонс кнопкой «Посмотреть»
+  | 'loyalty_ideas_block_tapped'    // тап по блоку «год доступа за идею» → Настройки → Идеи
   | 'loyalty_gift_started'        // активирован 72ч подарок лояльности
   | 'loyalty_gift_ended_shown'    // показана модалка «подарок закончился»
   | 'loyalty_gift_ended_cta'      // нажата «Открыть полный доступ» после истечения

@@ -1,7 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SETTINGS_KEY = 'user_settings';
-const MIN_SPEECH_RATE = 0.5;
+// Lower bound raised from 0.5 to 0.8: at 0.5 the pre-generated voice clips slow
+// down so much the voice distorts/garbles. 0.8 stays clear. Upper bound kept
+// generous for system TTS; the settings slider exposes the usable 0.8–1.3 range.
+const MIN_SPEECH_RATE = 0.8;
 const MAX_SPEECH_RATE = 2.5;
 
 export const DEFAULT_SETTINGS = {

@@ -19,11 +19,14 @@ type PlayCallbacks = {
   onError?: (e: Error) => void;
 };
 
-// expo-audio playbackRate range is [0, 32] on iOS / [0, 16] on Android; keep it
-// in the sane TTS range the speed slider exposes.
+// Clamp the clip playback rate to the slider's usable range. Below ~0.8 the
+// pre-generated voice distorts/garbles; above ~1.3 it gets too fast for a
+// learner. The clips are recorded at a calm pace, so 1.0 already sounds natural.
+const MIN_CLIP_RATE = 0.8;
+const MAX_CLIP_RATE = 1.3;
 function clampPlaybackRate(rate: number | undefined): number {
   if (typeof rate !== 'number' || !isFinite(rate)) return 1;
-  return Math.min(2.5, Math.max(0.5, rate));
+  return Math.min(MAX_CLIP_RATE, Math.max(MIN_CLIP_RATE, rate));
 }
 
 let currentPlayer: AudioPlayer | null = null;

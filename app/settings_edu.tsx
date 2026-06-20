@@ -23,6 +23,7 @@ import {
   normalizeSpeechRate,
   type UserSettings,
 } from './user_settings_store';
+import { safeRouterBack } from './navigation_back';
 
 export {
   DEFAULT_SETTINGS,
@@ -173,8 +174,7 @@ export default function SettingsEdu() {
             <TouchableOpacity
               onPress={() => {
                 hapticTap();
-                if (router.canGoBack()) router.back();
-                else router.replace('/(tabs)/home' as any);
+                safeRouterBack(router, '/(tabs)/settings' as any);
               }}
               style={{
                 width: 38,
@@ -274,8 +274,8 @@ export default function SettingsEdu() {
                 </Text>
                 <Slider
                   style={{ width: '100%', height: 44 }}
-                  minimumValue={0.5}
-                  maximumValue={1.0}
+                  minimumValue={0.8}
+                  maximumValue={1.3}
                   step={0.1}
                   value={normalizeSpeechRate(s.speechRate)}
                   onValueChange={v => setS(prev => ({ ...prev, speechRate: normalizeSpeechRate(v) }))}

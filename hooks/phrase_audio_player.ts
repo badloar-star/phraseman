@@ -23,6 +23,11 @@ let currentPlayer: AudioPlayer | null = null;
 let audioModeReady = false;
 const inFlightDownloads = new Map<string, Promise<string | null>>();
 
+// Monotonic token: every stopPhraseAudio() / new playPhraseByText() bumps it.
+// Async work captures the token before awaiting and bails if it changed, so a
+// download that resolves after the user stopped or moved on never starts audio.
+let playGeneration = 0;
+
 function cacheDir(): Directory {
   return new Directory(Paths.cache, CACHE_DIR_NAME);
 }
@@ -77,6 +82,8 @@ async function getCachedOrDownload(key: string, url: string): Promise<string | n
 }
 
 export function stopPhraseAudio(): void {
+  // Invalidate any in-flight playPhraseByText so a pending download won't start.
+  playGeneration += 1;
   if (currentPlayer) {
     try {
       currentPlayer.pause();
@@ -98,14 +105,20 @@ export async function playPhraseByText(text: string, cb?: PlayCallbacks): Promis
   if (!url) return false;
 
   const key = normalizePhraseAudioKey(text);
+  // Claim this playback: stop whatever was playing and capture the new token.
+  stopPhraseAudio();
+  const myGeneration = playGeneration;
+  const superseded = () => playGeneration !== myGeneration;
+
   await ensureAudioMode();
+  if (superseded()) return true; // stop()/another play() happened during await
 
   // Prefer the on-disk cached file; if caching failed, stream from the URL once.
   const cachedUri = await getCachedOrDownload(key, url);
+  if (superseded()) return true; // user moved on while downloading — do not play
   const source: string = cachedUri ?? url;
 
   try {
-    stopPhraseAudio();
     const player = createAudioPlayer(source);
     currentPlayer = player;
     cb?.onStart?.();
@@ -114,7 +127,9 @@ export async function playPhraseByText(text: string, cb?: PlayCallbacks): Promis
       if (finished) return;
       if (status.didJustFinish) {
         finished = true;
-        cb?.onDone?.();
+        // Only report completion if this play is still the active one — a
+        // superseded clip's late finish must not re-trigger caller auto-advance.
+        if (!superseded()) cb?.onDone?.();
         try { sub?.remove(); } catch {}
         if (currentPlayer === player) {
           try { player.remove(); } catch {}

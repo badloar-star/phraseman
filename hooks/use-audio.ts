@@ -82,6 +82,7 @@ export function useAudio() {
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = null;
       safeSpeechStop();
+      stopPhraseAudio();
     };
   }, []);
 
@@ -123,13 +124,24 @@ export function useAudio() {
     const isEnglish = language.toLowerCase().startsWith('en');
     const canUseClip = isEnglish && !requestedVoice && hasPhraseAudio(normalized);
     if (canUseClip) {
+      // Single fallback trigger: the promise resolves false on any failure
+      // (including the internal catch that also reports onError), so we fall
+      // back here exactly once and never double-speak.
+      let fellBack = false;
+      const fallbackOnce = () => {
+        if (fellBack) return;
+        fellBack = true;
+        speakWithSystemTts();
+      };
       playPhraseByText(normalized, {
         onStart: opts?.onStart,
         onDone: opts?.onDone,
-        onError: () => speakWithSystemTts(),
-      }).then((played) => {
-        if (!played) speakWithSystemTts();
-      });
+        onError: fallbackOnce,
+      })
+        .then((played) => {
+          if (!played) fallbackOnce();
+        })
+        .catch(fallbackOnce);
       return;
     }
 

@@ -111,6 +111,7 @@ const { weeklyReviewGenerate } = require('./weekly_review');
 const { statsInsightsGenerate } = require('./stats_insights');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
+const { explainChoice } = require('./explain_choice');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -194,6 +195,7 @@ exports.premiumDialogSend = premiumDialogSend;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
+exports.explainChoice = explainChoice;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;

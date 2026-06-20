@@ -1615,6 +1615,19 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // Объяснения вариантов упражнения «Выбери фразу» (explainChoice). Та же модель:
+    // публичное чтение прогретого кэша ($0), запись только сервер (Admin SDK), удаление —
+    // только админ (удаление дока ⇒ следующий ответ сгенерирует батч заново).
+    match /choice_explanations/{choiceHash} {
+      allow read: if true;
+      allow create, update: if false;
+      allow delete: if isAdmin();
+    }
+    match /choice_explain_billing/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
     // Внутренние CF-only коллекции фичи: бюджет/лимиты/биллинг. Всё пишет и читает только
     // сервер (Admin SDK). НЕ через isAdmin(): эти коллекции НЕ открыты admin-панели
     // (в отличие от referral_owners), поэтому read И write = false.

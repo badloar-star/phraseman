@@ -20,8 +20,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -47,6 +47,7 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   stats: { model: 'gpt-4o-mini', globalDailyCap: 5000 },
   explain: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
   dialog: { model: 'gpt-4.1-nano', globalDailyCap: 0 },
+  choice: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
 };
 
 export interface JobConfig {

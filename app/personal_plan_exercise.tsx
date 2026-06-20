@@ -11,6 +11,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
+import { callExplainChoice } from './explain_choice_client';
 import { useAudio } from '../hooks/use-audio';
 import {
   scorePlanPronunciationTranscript,
@@ -837,6 +838,13 @@ export default function PersonalPlanExerciseScreen() {
   // a free in-plan exercise is never a dead end — the user can still advance.
   const [pronunciationBlocked, setPronunciationBlocked] = useState<PronunciationBlock>(null);
   const { flashKey, flash } = useWordFlash();
+  // ИИ-объяснения вариантов (choice). Карта дистрактор→текст + подтверждение для
+  // правильного. Прогревается одним батч-вызовом сразу после ответа; следующий юзер
+  // получит готовый текст из кэша мгновенно. Пока не подгрузилось — показываем
+  // статичный связный текст (wrongSelectedBody), не пустоту.
+  const [aiChoice, setAiChoice] = useState<{ confirm: string; distractors: Record<string, string> } | null>(null);
+  const [aiChoiceLoading, setAiChoiceLoading] = useState(false);
+  const aiChoiceItemRef = useRef<string | null>(null);
   const isMissingWordMode = rendererType === 'plan_missing_word';
   const isChoiceMode = rendererType === 'plan_choose_natural_phrase';
   const isListeningMode = rendererType === 'plan_listen_choose';
@@ -960,7 +968,11 @@ export default function PersonalPlanExerciseScreen() {
       es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
     });
   })();
-  const resultModalBody = lastResult === 'correct'
+  // ИИ-объяснение конкретного выбора, если уже подгрузилось (иначе статичный текст).
+  const aiChoiceBody = lastResult === 'correct'
+    ? (aiChoice?.confirm || '')
+    : (aiChoice?.distractors?.[(selected ?? '').trim()] || '');
+  const staticBody = lastResult === 'correct'
     ? (explanation?.correct
         ? triLang(lang, explanation.correct)
         : triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', es: 'Así suena natural.' }))
@@ -969,6 +981,36 @@ export default function PersonalPlanExerciseScreen() {
         : explanation?.wrong
           ? triLang(lang, explanation.wrong)
           : wrongSelectedBody);
+  const resultModalBody = isChoiceMode && aiChoiceBody ? aiChoiceBody : staticBody;
+  // Показ спиннера в плашке, пока ИИ-объяснение ещё генерируется (текст при этом статичный).
+  const choiceFeedbackLoading = isChoiceMode && aiChoiceLoading && !aiChoiceBody;
+
+  // Прогрев + получение ИИ-объяснений вариантов для choice. Один батч-вызов: подтверждение
+  // правильного + «почему не этот» для каждого дистрактора. Текущему юзеру показываем сразу,
+  // как только пришло; параллельно это пишется в общий кэш — следующий получит из кэша.
+  const warmChoiceExplanations = useCallback((
+    correctEn: string,
+    meaning: string,
+    options: string[],
+    itemId: string,
+  ) => {
+    const distractors = options.filter((opt) => opt !== correctEn);
+    if (!correctEn || distractors.length === 0) return;
+    aiChoiceItemRef.current = itemId;
+    setAiChoiceLoading(true);
+    callExplainChoice({ correctEn, phraseMeaning: meaning, distractors, lang })
+      .then((res) => {
+        // Игнорируем, если пользователь уже ушёл на следующий вопрос.
+        if (aiChoiceItemRef.current !== itemId) return;
+        if (res.status === 'ok' && (res.confirm || Object.keys(res.distractors ?? {}).length > 0)) {
+          setAiChoice({ confirm: res.confirm, distractors: res.distractors ?? {} });
+        }
+      })
+      .catch(() => { /* сеть/бюджет — остаётся статичный текст */ })
+      .finally(() => {
+        if (aiChoiceItemRef.current === itemId) setAiChoiceLoading(false);
+      });
+  }, [lang]);
 
   const submit = async (answer: string) => {
     if (!item || !session || saving || done) return;
@@ -979,6 +1021,11 @@ export default function PersonalPlanExerciseScreen() {
     setLastResult(isCorrect ? 'correct' : 'wrong');
     if (isCorrect) hapticSuccess();
     else hapticError();
+
+    if (isChoiceMode && 'options' in item) {
+      setAiChoice(null);
+      warmChoiceExplanations(item.correctAnswer, item.promptRu ?? '', item.options, item.id);
+    }
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -1061,6 +1108,8 @@ export default function PersonalPlanExerciseScreen() {
       setTypedAnswer('');
       setBuildWords([]);
       setLastResult(null);
+      setAiChoice(null);
+      aiChoiceItemRef.current = null;
       return;
     }
 
@@ -1071,6 +1120,8 @@ export default function PersonalPlanExerciseScreen() {
     setBuildWords([]);
     setPronunciationScore(null);
     setLastResult(null);
+    setAiChoice(null);
+    aiChoiceItemRef.current = null;
 
     if (nextIndex < items.length && nextCorrectIds.length < targetCorrect) {
       setIndex(nextIndex);
@@ -1470,6 +1521,7 @@ export default function PersonalPlanExerciseScreen() {
                     mutedText={t.textMuted}
                     surfaceColor={t.bgCard}
                     textPrimaryColor={t.textPrimary}
+                    loading={choiceFeedbackLoading}
                   />
                 </View>
               ) : (

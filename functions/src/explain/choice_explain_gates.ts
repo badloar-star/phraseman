@@ -1,0 +1,113 @@
+/**
+ * Deterministic input gate + output parser for CHOICE-exercise explanations.
+ * PURE logic, no firebase-admin — unit-testable. NO AI here; this is the cheap layer
+ * that runs before the paid judge. Reuses the explain-feature length limits.
+ */
+import { MAX_PHRASE_LEN, MAX_MEANING_LEN } from './explain_gates';
+
+/** Max number of distractors we will explain in one batch (matches the exercise option cap). */
+export const MAX_CHOICE_DISTRACTORS = 8;
+
+export interface ChoiceInput {
+  correctEn: string;
+  phraseMeaning: string;
+  distractors: string[];
+  lang: string;
+}
+
+export interface ChoiceInputValidation {
+  ok: boolean;
+  reason?:
+    | 'correct_empty'
+    | 'correct_too_long'
+    | 'meaning_empty'
+    | 'meaning_too_long'
+    | 'no_distractors'
+    | 'distractor_too_long';
+  /** Cleaned distractor list (trimmed, de-duped, capped) when ok. */
+  distractors?: string[];
+}
+
+function asString(value: unknown): string {
+  return typeof value === 'string' ? value : '';
+}
+
+export function validateChoiceInput(input: Partial<ChoiceInput>): ChoiceInputValidation {
+  const correctEn = asString(input.correctEn).trim();
+  if (!correctEn) return { ok: false, reason: 'correct_empty' };
+  if (correctEn.length > MAX_PHRASE_LEN) return { ok: false, reason: 'correct_too_long' };
+
+  const meaning = asString(input.phraseMeaning).trim();
+  if (!meaning) return { ok: false, reason: 'meaning_empty' };
+  if (meaning.length > MAX_MEANING_LEN) return { ok: false, reason: 'meaning_too_long' };
+
+  const raw = Array.isArray(input.distractors) ? input.distractors : [];
+  const cleaned: string[] = [];
+  const seen = new Set<string>();
+  for (const d of raw) {
+    const text = asString(d).trim();
+    if (!text) continue;
+    if (text.length > MAX_PHRASE_LEN) return { ok: false, reason: 'distractor_too_long' };
+    const key = text.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    cleaned.push(text);
+    if (cleaned.length >= MAX_CHOICE_DISTRACTORS) break;
+  }
+  if (cleaned.length === 0) return { ok: false, reason: 'no_distractors' };
+
+  return { ok: true, distractors: cleaned };
+}
+
+export interface ParsedChoiceBatch {
+  ok: boolean;
+  confirm: string;
+  /** Keyed by the EXACT distractor strings requested (subset that the model returned). */
+  distractors: Record<string, string>;
+}
+
+function clampLine(text: unknown): string {
+  return asString(text).replace(/\s+/g, ' ').trim().slice(0, 400);
+}
+
+/**
+ * Parse the model's STRICT-JSON batch reply into { confirm, distractors }.
+ * Tolerates code-fenced JSON. Returns ok=false if JSON is unrecoverable or confirm is empty.
+ * Keys are matched to the requested distractors case-insensitively so minor casing drift in
+ * the model output still maps back to the canonical option string.
+ */
+export function parseChoiceBatch(raw: string, requestedDistractors: string[]): ParsedChoiceBatch {
+  let body = asString(raw).trim();
+  // strip a leading/trailing ```json fence if present
+  const fence = body.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fence) body = fence[1].trim();
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(body);
+  } catch {
+    return { ok: false, confirm: '', distractors: {} };
+  }
+  if (!parsed || typeof parsed !== 'object') return { ok: false, confirm: '', distractors: {} };
+
+  const obj = parsed as { confirm?: unknown; distractors?: unknown };
+  const confirm = clampLine(obj.confirm);
+  const rawMap = (obj.distractors && typeof obj.distractors === 'object'
+    ? (obj.distractors as Record<string, unknown>)
+    : {});
+
+  // Build a case-insensitive lookup of what the model returned, then map onto requested keys.
+  const lower = new Map<string, string>();
+  for (const [k, v] of Object.entries(rawMap)) {
+    const line = clampLine(v);
+    if (line) lower.set(k.trim().toLowerCase(), line);
+  }
+  const distractors: Record<string, string> = {};
+  for (const d of requestedDistractors) {
+    const hit = lower.get(d.trim().toLowerCase());
+    if (hit) distractors[d] = hit;
+  }
+
+  if (!confirm) return { ok: false, confirm: '', distractors };
+  return { ok: true, confirm, distractors };
+}

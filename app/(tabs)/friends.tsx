@@ -1421,7 +1421,7 @@ export default function FriendsTabScreen() {
       await generateReferralCode(myProfile?.name ?? 'User');
       const rc = await getReferralCode();
       if (rc && rc.trim().length >= 4) setReferralCode(rc.trim().toUpperCase());
-    } catch { /* нет auth_links / сети — попробуем при следующем фокусе */ }
+    } catch { /* нет auth_links / сети — добьём ретраем ниже (useEffect) */ }
     const state = await getClaimableReferralState();
     setReferralInvites(state.invites);
 
@@ -1602,6 +1602,33 @@ export default function FriendsTabScreen() {
       return () => { cancelled.current = true; };
     }, [pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]),
   );
+
+  // Реф-код на свежей установке часто пуст: ensure-CF падает, пока auth_links не готовы
+  // (та же холодная гонка, что и при резервации имени) — и в тексте «введёт ваш код __»
+  // зияет пустота. refreshReferralState бьёт лишь раз на фокус, поэтому добиваем код
+  // ограниченным ретраем с бэкоффом, пока он не появится (auth готовится за пару секунд).
+  useEffect(() => {
+    if (!referralEnabled || referralCode) return;
+    let cancelled = false;
+    let attempt = 0;
+    const tick = async () => {
+      if (cancelled) return;
+      attempt += 1;
+      try {
+        await generateReferralCode(myProfile?.name ?? 'User');
+        const rc = await getReferralCode();
+        if (!cancelled && rc && rc.trim().length >= 4) {
+          setReferralCode(rc.trim().toUpperCase());
+          return;
+        }
+      } catch { /* ещё не готово — повторим */ }
+      if (!cancelled && attempt < 5) {
+        timer = setTimeout(() => { void tick(); }, 1500 * attempt);
+      }
+    };
+    let timer = setTimeout(() => { void tick(); }, 1500);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [referralEnabled, referralCode, myProfile?.name]);
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
   // ──

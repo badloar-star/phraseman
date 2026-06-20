@@ -25,3 +25,7 @@ export { compassEconomyOn } from './compass_flags';
 export { decideRetentionPush, needsComebackDay } from './compass_retention';
 export type { CompassPushDecision, CompassPushKind } from './compass_retention';
 export { compassRetentionOn } from './compass_flags';
+// Крыло «Память»: карта тем (читает всё, агрегирует; только она — сущность Компаса).
+export { buildTopicMap, summarizeTopicMap } from './compass_memory';
+export type { TopicCard, TopicStatus, TopicMapSummary } from './compass_memory';
+export { compassTopicMapOn } from './compass_flags';

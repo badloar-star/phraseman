@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta name="google" content="notranslate" />
-  <meta name="phraseman-admin-build" content="2026-06-04-clean-admin" />
+  <meta name="phraseman-admin-build" content="2026-06-19-admin-a11y-audit" />
   <title data-i18n-es="PhraseMan Admin">PhraseMan Admin</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -3792,12 +3792,15 @@
         margin-left: 0;
       }
       body[data-admin-skin="onboarding"] .tabs {
+        position: relative;
         top: auto;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
+        left: auto;
+        right: auto;
+        bottom: auto;
         width: auto;
+        max-width: none;
         max-height: 42vh;
+        margin: 10px 12px 12px;
       }
     }
   </style>
@@ -8112,35 +8115,45 @@
     }
     function assignAdminTabGroups() {
       const groups = {
+        'control-panel': 'core',
         overview: 'core',
+        'mod-queue': 'users',
         users: 'users',
         testers: 'users',
         analytics: 'core',
+        'openai-budget': 'revenue',
         'app-health': 'core',
         reports: 'users',
         'website-inbox': 'users',
         'user-reports': 'users',
+        'explain-reports': 'users',
         'ban-list': 'users',
         premium: 'revenue',
         vip: 'revenue',
         'cancel-surveys': 'revenue',
         'review-promo': 'revenue',
+        referrals: 'revenue',
         'app-messages': 'community',
+        'onboarding-qa': 'system',
         'ugc-purchases': 'community',
+        refunds: 'revenue',
         archive: 'system',
         audit: 'system',
         'ops-log': 'system',
+        'remote-config': 'system',
+        'paywall-ab': 'revenue',
+        alerts: 'system',
         'community-packs': 'community',
         'card-packs': 'community',
-        'daily-phrases': 'core',
+        'daily-phrases': 'community',
         clubs: 'arena',
         'league-chat': 'arena',
         'arena-ranks': 'arena',
         'arena-live': 'arena',
         'arena-bets': 'arena',
         'arena-rooms': 'arena',
-        referrals: 'revenue',
         'push-notify': 'community',
+        'changelog-0608': 'system',
       };
       document.querySelectorAll('.tab').forEach(tab => {
         const tabId = tab.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
@@ -8167,12 +8180,12 @@
 
 <!-- UNIVERSAL INPUT MODAL -->
 <div class="umodal-overlay" id="umodal-overlay">
-  <div class="umodal">
+  <div class="umodal" role="dialog" aria-modal="true" aria-labelledby="umodal-title" aria-describedby="umodal-desc">
     <h3 id="umodal-title"></h3>
     <p id="umodal-desc" style="display:none"></p>
     <div id="umodal-presets" style="display:none;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
-    <input type="text" id="umodal-input" style="display:none" />
-    <textarea id="umodal-textarea" style="display:none"></textarea>
+    <input type="text" id="umodal-input" aria-label="Modal input" style="display:none" />
+    <textarea id="umodal-textarea" aria-label="Modal text" style="display:none"></textarea>
     <div class="umodal-btns">
       <button class="umodal-cancel" onclick="window._umodalResolve(null)" data-i18n-es="Cancelar">Отмена</button>
       <button id="umodal-confirm-btn" onclick="window._umodalConfirm()">OK</button>
@@ -8182,7 +8195,7 @@
 
 <!-- UNIVERSAL CONFIRM MODAL -->
 <div class="umodal-overlay" id="ucmodal-overlay">
-  <div class="umodal">
+  <div class="umodal" role="dialog" aria-modal="true" aria-labelledby="ucmodal-title" aria-describedby="ucmodal-desc">
     <h3 id="ucmodal-title"></h3>
     <p id="ucmodal-desc"></p>
     <div class="umodal-btns">
@@ -8283,7 +8296,7 @@
 </div>
 
 <!-- TOAST CONTAINER -->
-<div id="toast-wrap"></div>
+<div id="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
 
 <div id="lc-thread-overlay" aria-hidden="true">
   <div id="lc-thread-backdrop" title="Закрыть" data-i18n-es="Cerrar"></div>
@@ -8337,7 +8350,7 @@
   <div class="header-right">
     <span id="status-text" data-i18n-es="Cargando...">Загрузка...</span>
     <div style="position:relative;display:inline-block">
-      <input type="text" id="uid-lookup" placeholder="UID or name" data-i18n-es="UID o nombre" autocomplete="off" style="width:200px;font-size:12px;padding:5px 10px" title="UID, name, or part of name" data-i18n-es-title="UID, nombre o parte del nombre" />
+      <input type="text" id="uid-lookup" placeholder="UID or name" data-i18n-es="UID o nombre" autocomplete="off" aria-label="Lookup user by UID or name" style="width:200px;font-size:12px;padding:5px 10px" title="UID, name, or part of name" data-i18n-es-title="UID, nombre o parte del nombre" />
       <div id="uid-lookup-dropdown" style="display:none;position:absolute;top:100%;left:0;width:320px;background:#1a1a2e;border:1px solid #3a3a5a;border-radius:8px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.7);max-height:280px;overflow-y:auto;margin-top:4px"></div>
     </div>
     <button type="button" onclick="adminSignOut()" style="background:#2a2a3a;color:#888" data-i18n-es="Salir">Sign out</button>
@@ -8349,8 +8362,8 @@
     <input id="admin-tab-search" type="search" autocomplete="off" placeholder="Search sections" aria-label="Search admin sections" />
     <div class="admin-tab-empty">No sections found</div>
   </div>
-  <div class="tab" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
-  <div class="tab active" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
+  <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
+  <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Testers">Testers</div>
@@ -8360,6 +8373,7 @@
   <div class="tab" onclick="switchTab('website-inbox')" data-i18n-es="Soporte (sitio)">Support (site)</div>
   <div class="tab" onclick="switchTab('user-reports')" data-i18n-es="Reportes de usuarios">User reports</div>
   <div class="tab" onclick="switchTab('explain-reports')" data-i18n-es="Explicaciones">Explain reports</div>
+  <div class="tab" onclick="switchTab('explain-cache')" data-i18n-es="Caché de explicaciones">Explain cache</div>
   <div class="tab" onclick="switchTab('ban-list')" data-i18n-es="Lista de bloqueos">Ban list</div>
   <div class="tab" onclick="switchTab('premium')" data-i18n-es="Premium">Premium</div>
   <div class="tab" onclick="switchTab('vip')" data-i18n-es="VIP">VIP</div>
@@ -8387,7 +8401,7 @@
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
   <div class="tab" onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>
-  <div class="tab" onclick="switchTab('changelog-0608')" style="background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.35);color:#a5b4fc;font-weight:700">📋 08.06</div>
+  <div class="tab" onclick="switchTab('changelog-0608')" title="Archived audit checklist from June 8, 2026" style="background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.35);color:#a5b4fc;font-weight:700">Audit archive</div>
 </div>
 
 <div id="stats-bar" style="display:none">
@@ -8404,7 +8418,7 @@
 </div>
 
 <!-- CONTROL PANEL TAB (Пульт управления): живые рычаги управления приложением -->
-<div id="tab-control-panel" class="reports-tab">
+<div id="tab-control-panel" class="reports-tab active">
   <section class="admin-overview-hero" style="margin-bottom:18px">
     <div>
       <div class="admin-overview-title">🎛 Пульт управления</div>
@@ -8538,7 +8552,7 @@
     </div>
     <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
       <div style="font-size:14px;font-weight:700;color:#e5e7eb">🧪 Paywall A/B</div>
-      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Сплит трафика по вариантам пейвола (v1 / A / B / C) и рейтинг в шапке.</div>
+      <div style="font-size:12px;color:#9ca3af;margin-top:6px;line-height:1.45">Сплит трафика по новым вариантам пейвола (A / B / C) и рейтинг в шапке. Старый экран больше не показывается.</div>
       <button type="button" onclick="switchTab('paywall-ab')" style="margin-top:10px;background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:600">Открыть →</button>
     </div>
     <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:12px;padding:16px">
@@ -8560,7 +8574,7 @@
 </div>
 
 <!-- OVERVIEW TAB -->
-<div id="tab-overview" class="reports-tab active">
+<div id="tab-overview" class="reports-tab">
   <section class="admin-overview-hero">
     <div>
       <div class="admin-overview-title">Operations overview</div>
@@ -8957,7 +8971,7 @@
   <div style="padding:4px 0 14px;max-width:980px">
     <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">Какой экран оплаты показывать</h2>
     <p style="margin:0;font-size:13.5px;color:#9ca3af;line-height:1.6">
-      У нас 4 версии экрана оплаты. Можно показывать их разным людям одновременно и смотреть,
+      У нас 3 новые версии экрана оплаты. Можно показывать их разным людям одновременно и смотреть,
       с какой покупают чаще. Выбери режим ниже и нажми «Сохранить» — приложение подхватит за пару секунд,
       переустановка и обновление не нужны. У одного человека версия не меняется со временем — так сравнение честное.
     </p>
@@ -8970,12 +8984,12 @@
 
     <div id="pab-presets" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px">
       <button type="button" data-preset="off" onclick="pabPreset('off')" class="pab-card">
-        <div class="pab-card-t">⏸️ Пока ничего не меняем</div>
-        <div class="pab-card-s">Все видят текущий экран. Тест выключен.</div>
+        <div class="pab-card-t">⏸️ Без A/B</div>
+        <div class="pab-card-s">Все видят новый «Атриум». Старый экран не включается.</div>
       </button>
       <button type="button" data-preset="soft" onclick="pabPreset('soft')" class="pab-card">
         <div class="pab-card-t">🐣 Осторожный тест</div>
-        <div class="pab-card-s">По 10% на каждую новую версию, 70% — текущий.</div>
+        <div class="pab-card-s">10% A, 10% B, 80% C. Только новые экраны.</div>
       </button>
       <button type="button" data-preset="even" onclick="pabPreset('even')" class="pab-card">
         <div class="pab-card-t">⚖️ Поровну</div>
@@ -8998,10 +9012,10 @@
           <input type="number" id="pab-b" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
         <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>C · Атриум <span style="color:#6b7280">★ совет</span></span>
           <input type="number" id="pab-c" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#6b7280"><span>Текущий <span style="color:#555">(остаток)</span></span>
+        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#6b7280"><span>Остаток <span style="color:#555">(тоже Атриум)</span></span>
           <input type="text" id="pab-v1" disabled style="background:#0c0c16;border:1px solid #222;color:#9ca3af;padding:9px;border-radius:7px"/></label>
       </div>
-      <div style="font-size:11.5px;color:#6b7280;margin-top:8px">Сумма трёх ≤ 100. Сколько не хватает до 100 — столько людей увидят текущий экран.</div>
+      <div style="font-size:11.5px;color:#6b7280;margin-top:8px">Сумма трёх ≤ 100. Остаток не включает старый экран — он добавляется к «Атриуму» как безопасный новый fallback.</div>
     </div>
 
     <!-- что выбрано сейчас -->
@@ -9099,11 +9113,11 @@
       <h3 style="margin:0 0 14px;font-size:13px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px">Подключение</h3>
       <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:6px">Master-тумблер</label>
       <label style="display:flex;align-items:center;gap:8px;margin-bottom:16px;cursor:pointer">
-        <input type="checkbox" id="alerts-enabled" style="width:18px;height:18px;cursor:pointer">
+        <input type="checkbox" id="alerts-enabled" aria-label="Enable Telegram alerts" style="width:18px;height:18px;cursor:pointer">
         <span style="font-size:14px;color:#e5e7eb">Алерты включены</span>
       </label>
       <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:6px">Chat ID (куда слать)</label>
-      <input type="text" id="alerts-chatid" placeholder="напр. 123456789" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:14px;width:100%;font-family:ui-monospace,monospace">
+      <input type="text" id="alerts-chatid" aria-label="Telegram chat ID" placeholder="напр. 123456789" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:14px;width:100%;font-family:ui-monospace,monospace">
       <p style="margin:8px 0 0;font-size:11px;color:#6b7280;line-height:1.5">
         Напиши боту <b>@codex_reportbot</b> любое сообщение, затем нажми «Тест» — если chat_id верный, бот пришлёт подтверждение.
         Не знаешь свой chat_id? Напиши боту, потом открой
@@ -9113,23 +9127,23 @@
     <div style="background:#13131c;border:1px solid #23232f;border-radius:12px;padding:18px">
       <h3 style="margin:0 0 14px;font-size:13px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px">Типы событий</h3>
       <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
-        <input type="checkbox" id="alerts-type-userReport" style="width:16px;height:16px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-userReport" aria-label="Alert on user reports" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#e5e7eb">🚩 Жалобы на пользователей</span>
       </label>
       <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
-        <input type="checkbox" id="alerts-type-criticalError" style="width:16px;height:16px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-criticalError" aria-label="Alert on critical errors" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#e5e7eb">🔴 Critical errors</span>
       </label>
       <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer">
-        <input type="checkbox" id="alerts-type-contentReportDigest" style="width:16px;height:16px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-contentReportDigest" aria-label="Alert on content report digest" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#e5e7eb">📝 Content-репорты (полный текст сразу, при флуде — сводка раз в час)</span>
       </label>
       <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer">
-        <input type="checkbox" id="alerts-type-cancelRefundSpike" style="width:16px;height:16px;cursor:pointer">
+        <input type="checkbox" id="alerts-type-cancelRefundSpike" aria-label="Alert on cancellation and refund spikes" style="width:16px;height:16px;cursor:pointer">
         <span style="font-size:13px;color:#e5e7eb">📉 Всплеск отмен/рефандов</span>
       </label>
       <label style="display:block;font-size:12px;color:#9ca3af;margin-bottom:6px">Порог всплеска (событий/час)</label>
-      <input type="number" id="alerts-spike" min="1" max="100" placeholder="5" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:14px;width:120px">
+      <input type="number" id="alerts-spike" min="1" max="100" aria-label="Cancellation and refund spike threshold per hour" placeholder="5" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:14px;width:120px">
     </div>
   </div>
   <div id="alerts-meta" style="margin-top:16px;max-width:920px;font-size:12px;color:#6b7280;line-height:1.6"></div>
@@ -9159,21 +9173,21 @@
       <div class="app-msg-grid">
         <div class="app-msg-field">
           <label data-i18n-es="Formato">Формат</label>
-          <select id="am-kind" oninput="updateAppMessagePreview()">
+          <select id="am-kind" aria-label="App message format" oninput="updateAppMessagePreview()">
             <option value="message" data-i18n-es="Mensaje">Сообщение</option>
             <option value="poll" data-i18n-es="Mensaje + encuesta">Сообщение + опрос</option>
           </select>
         </div>
         <div class="app-msg-field">
           <label data-i18n-es="Estado">Статус</label>
-          <select id="am-active" oninput="updateAppMessagePreview()">
+          <select id="am-active" aria-label="App message status" oninput="updateAppMessagePreview()">
             <option value="true" data-i18n-es="Activo">Активно</option>
             <option value="false" data-i18n-es="Borrador / apagado">Черновик / выключено</option>
           </select>
         </div>
         <div class="app-msg-field">
           <label data-i18n-es="Audiencia">Аудитория</label>
-          <select id="am-audience" oninput="updateAppMessagePreview()">
+          <select id="am-audience" aria-label="App message audience" oninput="updateAppMessagePreview()">
             <option value="all" data-i18n-es="Todos los usuarios">Все пользователи</option>
             <option value="free" data-i18n-es="Solo Free">Только Free</option>
             <option value="premium" data-i18n-es="Solo Premium">Только Premium</option>
@@ -9181,30 +9195,30 @@
         </div>
         <div class="app-msg-field">
           <label data-i18n-es="Prioridad">Приоритет</label>
-          <input id="am-priority" type="number" min="0" max="99" step="1" value="0" oninput="updateAppMessagePreview()">
+          <input id="am-priority" type="number" min="0" max="99" step="1" value="0" aria-label="App message priority" oninput="updateAppMessagePreview()">
         </div>
         <div class="app-msg-field">
           <label data-i18n-es="Retención">Срок хранения</label>
-          <input id="am-days" type="number" min="1" max="30" step="1" value="30" oninput="updateAppMessagePreview()">
+          <input id="am-days" type="number" min="1" max="30" step="1" value="30" aria-label="App message retention days" oninput="updateAppMessagePreview()">
         </div>
       </div>
       <div class="app-msg-field">
         <label data-i18n-es="Asunto">Тема</label>
-        <input id="am-title-ru" type="text" placeholder="Например: Новое упражнение уже в Phraseman" data-i18n-es="Ejemplo: Ya hay un nuevo ejercicio en Phraseman" oninput="updateAppMessagePreview()">
+        <input id="am-title-ru" type="text" aria-label="App message title" placeholder="Например: Новое упражнение уже в Phraseman" data-i18n-es="Ejemplo: Ya hay un nuevo ejercicio en Phraseman" oninput="updateAppMessagePreview()">
       </div>
       <div class="app-msg-field">
         <label data-i18n-es="Mensaje">Сообщение</label>
-        <textarea id="am-message-ru" placeholder="Текст письма для пользователя" data-i18n-es="Texto del mensaje para el usuario" oninput="updateAppMessagePreview()"></textarea>
+        <textarea id="am-message-ru" aria-label="App message body" placeholder="Текст письма для пользователя" data-i18n-es="Texto del mensaje para el usuario" oninput="updateAppMessagePreview()"></textarea>
       </div>
       <div id="am-poll-fields" class="app-msg-poll-box" style="display:none">
         <div class="app-msg-field">
           <label data-i18n-es="Pregunta de la encuesta">Вопрос голосования</label>
-          <input id="am-poll-question-ru" type="text" placeholder="Например: Какой формат тренировки добавить следующим?" data-i18n-es="Ejemplo: ¿Qué formato de entrenamiento añadimos después?" oninput="updateAppMessagePreview()">
+          <input id="am-poll-question-ru" type="text" aria-label="App message poll question" placeholder="Например: Какой формат тренировки добавить следующим?" data-i18n-es="Ejemplo: ¿Qué formato de entrenamiento añadimos después?" oninput="updateAppMessagePreview()">
         </div>
         <div class="app-msg-poll-toolbar">
           <div class="app-msg-field">
             <label data-i18n-es="Número de opciones">Количество вариантов</label>
-            <select id="am-poll-option-count" oninput="updateAppMessagePreview()">
+            <select id="am-poll-option-count" aria-label="App message poll option count" oninput="updateAppMessagePreview()">
               <option value="2" data-i18n-es="2 opciones">2 варианта</option>
               <option value="3" data-i18n-es="3 opciones">3 варианта</option>
               <option value="4" data-i18n-es="4 opciones">4 варианта</option>
@@ -9215,12 +9229,12 @@
           <div class="hint" data-i18n-es="Completa al menos 2 y como máximo 6 opciones. El usuario podrá elegir una opción y cambiarla después.">Заполни минимум 2 и максимум 6 вариантов. Пользователь сможет выбрать один вариант и потом изменить выбор.</div>
         </div>
         <div class="app-msg-poll-options">
-          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="1"><label data-i18n-es="Opción 1">Вариант 1</label><input id="am-poll-option-1" type="text" placeholder="Короткие уроки" data-i18n-es="Lecciones cortas" oninput="updateAppMessagePreview()"></div>
-          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="2"><label data-i18n-es="Opción 2">Вариант 2</label><input id="am-poll-option-2" type="text" placeholder="Больше квизов" data-i18n-es="Más quizzes" oninput="updateAppMessagePreview()"></div>
-          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="3"><label data-i18n-es="Opción 3">Вариант 3</label><input id="am-poll-option-3" type="text" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
-          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="4"><label data-i18n-es="Opción 4">Вариант 4</label><input id="am-poll-option-4" type="text" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
-          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="5"><label data-i18n-es="Opción 5">Вариант 5</label><input id="am-poll-option-5" type="text" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
-          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="6"><label data-i18n-es="Opción 6">Вариант 6</label><input id="am-poll-option-6" type="text" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="1"><label data-i18n-es="Opción 1">Вариант 1</label><input id="am-poll-option-1" type="text" aria-label="App message poll option 1" placeholder="Короткие уроки" data-i18n-es="Lecciones cortas" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="2"><label data-i18n-es="Opción 2">Вариант 2</label><input id="am-poll-option-2" type="text" aria-label="App message poll option 2" placeholder="Больше квизов" data-i18n-es="Más quizzes" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="3"><label data-i18n-es="Opción 3">Вариант 3</label><input id="am-poll-option-3" type="text" aria-label="App message poll option 3" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="4"><label data-i18n-es="Opción 4">Вариант 4</label><input id="am-poll-option-4" type="text" aria-label="App message poll option 4" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="5"><label data-i18n-es="Opción 5">Вариант 5</label><input id="am-poll-option-5" type="text" aria-label="App message poll option 5" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
+          <div class="app-msg-field app-msg-poll-option-row" data-am-poll-option-row="6"><label data-i18n-es="Opción 6">Вариант 6</label><input id="am-poll-option-6" type="text" aria-label="App message poll option 6" placeholder="Опционально" data-i18n-es="Opcional" oninput="updateAppMessagePreview()"></div>
         </div>
       </div>
       <div class="app-msg-preview">
@@ -9324,6 +9338,29 @@
     <strong>«Убрать из кэша»</strong> удаляет только cached explanation — следующий запрос сгенерирует объяснение заново.
   </p>
   <div id="xr-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
+</div>
+
+<!-- EXPLAIN CACHE TAB (все сгенерённые ИИ-объяснения) -->
+<div id="tab-explain-cache" class="reports-tab">
+  <div class="reports-toolbar">
+    <select id="xc-source" onchange="loadExplainCache()">
+      <option value="choice_explanations">Объяснения вариантов (упражнение «Выбери фразу»)</option>
+      <option value="phrase_explanations">Объяснения фраз («Объясни просто»)</option>
+    </select>
+    <select id="xc-filter-status" onchange="filterExplainCache()">
+      <option value="">Все статусы</option>
+      <option value="ready">ready</option>
+      <option value="pending">pending</option>
+      <option value="rejected">rejected</option>
+    </select>
+    <button onclick="loadExplainCache()" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
+    <span class="reports-count" id="xc-count"></span>
+  </div>
+  <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
+    Все сгенерённые ИИ-объяснения. <strong>«Удалить»</strong> убирает документ из кэша — объяснение
+    сгенерируется заново при следующем ответе пользователя.
+  </p>
+  <div id="xc-list" style="padding:0 24px 32px"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
 </div>
 
 <!-- BAN LIST TAB -->
@@ -9444,17 +9481,15 @@
       <div class="rc-left">
         <div class="pr-title" style="color:#a5b4fc">08.06 — Paywall v2 QA</div>
         <div class="report-context" style="margin-top:8px;line-height:1.7">
-          <strong style="color:#e2e8f0">A/B тест paywall_v2_pct (RC)</strong><br>
-          &nbsp;• Remote Config <code>paywall_v2_pct</code> = 50 → половина пользователей видит v2<br>
+          <strong style="color:#e2e8f0">Архив: paywall_v2_pct (больше не управляет пейволом)</strong><br>
+          &nbsp;• Старый split v1/v2 отключён. Активный путь оплаты теперь только <code>paywall_ab</code> → A/B/C.<br>
           &nbsp;• Детерминировано по хешу userId — для одного UID всегда одна и та же версия<br>
-          &nbsp;• В консоли дев-билда: <code>[paywall] variant=v2</code> или <code>variant=v1</code><br>
+          &nbsp;• В консоли новых экранов: <code>paywall=A</code>, <code>paywall=B</code> или <code>paywall=C</code><br>
           <br>
-          <strong style="color:#e2e8f0">premium_modal_v2 визуальные элементы</strong><br>
-          &nbsp;• Social proof: <em>«N тысяч учеников»</em> — текст виден вверху<br>
-          &nbsp;• Savings badge: <em>«Сэкономь 50%»</em> на годовом тарифе<br>
-          &nbsp;• Urgency / скидочный таймер (если флаг включён)<br>
-          &nbsp;• Персонализированные теги: тема плана / цель / уровень — отображаются под заголовком<br>
-          &nbsp;• Кнопка Trial выделена, не спрятана под Fine Print<br>
+          <strong style="color:#e2e8f0">premium_modal_v2 удалён из активного показа</strong><br>
+          &nbsp;• Прямой заход на <code>/premium_modal_v2</code> больше не показывает старый экран — он сразу переводит в <code>/premium_modal</code>.<br>
+          &nbsp;• <code>/premium_modal</code> больше не рисует старую верстку, а выбирает только новые A/B/C.<br>
+          &nbsp;• Покупка и восстановление живут в общем новом хуке <code>paywall_purchase</code> для A/B/C.<br>
           <br>
           <strong style="color:#e2e8f0">Перцентиль прогресса</strong><br>
           &nbsp;• В пейволе строка: <em>«Ты в топ X% среди учеников»</em> — показывается только если данные загружены<br>
@@ -9832,7 +9867,7 @@
     <button onclick="loadAuditLog()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
     <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">с <input type="date" id="audit-date-from" onchange="filterAuditLog()" class="lc-date-input"></label>
     <label style="font-size:11px;color:#888;display:flex;align-items:center;gap:4px">по <input type="date" id="audit-date-to" onchange="filterAuditLog()" class="lc-date-input"></label>
-    <input type="text" id="audit-search" placeholder="🔍 UID / email / детали" oninput="filterAuditLog()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px;width:200px">
+    <input type="text" id="audit-search" aria-label="Search audit log by UID, email, or details" placeholder="🔍 UID / email / детали" oninput="filterAuditLog()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:6px;color:#cbd5e1;padding:5px 10px;font-size:12px;width:200px">
     <span class="reports-count" id="audit-count"></span>
   </div>
   <div id="audit-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
@@ -9840,31 +9875,31 @@
 </div>
 
 <!-- APP HEALTH TAB -->
-<div id="tab-app-health" class="reports-tab active">
+<div id="tab-app-health" class="reports-tab">
   <div class="reports-toolbar">
-    <select id="ah-period" onchange="loadAppHealth(true)">
+    <select id="ah-period" aria-label="App health period" onchange="loadAppHealth(true)">
       <option value="1">Last 1h</option>
       <option value="6">Last 6h</option>
       <option value="24" selected>Last 24h</option>
       <option value="168">Last 7d</option>
     </select>
-    <select id="ah-severity" onchange="filterAppHealth()">
+    <select id="ah-severity" aria-label="App health severity filter" onchange="filterAppHealth()">
       <option value="" data-i18n-es="Toda severidad">All severity</option>
       <option value="critical">critical</option>
       <option value="warning">warning</option>
       <option value="info">info</option>
     </select>
-    <select id="ah-status-filter" onchange="filterAppHealth()">
+    <select id="ah-status-filter" aria-label="App health status filter" onchange="filterAppHealth()">
       <option value="" data-i18n-es="Todos los estados">All statuses</option>
       <option value="open">Open</option>
       <option value="reviewed">Reviewed</option>
       <option value="fixed">Fixed</option>
       <option value="known">Known issue</option>
     </select>
-    <select id="ah-feature" onchange="filterAppHealth()">
+    <select id="ah-feature" aria-label="App health feature filter" onchange="filterAppHealth()">
       <option value="" data-i18n-es="Todas las funciones">All features</option>
     </select>
-    <input id="ah-search" type="text" placeholder="context / message / uid" oninput="filterAppHealth()" style="width:240px">
+    <input id="ah-search" type="text" aria-label="Search app health events" placeholder="context / message / uid" oninput="filterAppHealth()" style="width:240px">
     <button onclick="loadAppHealth(true)" data-i18n-es="Actualizar">Refresh</button>
     <button onclick="copyAppHealthForAI()" data-i18n-es="Copiar reporte AI">Copy AI report</button>
     <button onclick="copyAppHealthRaw()" data-i18n-es="Copiar JSON crudo">Copy raw JSON</button>
@@ -10001,7 +10036,7 @@
 <div id="tab-arena-ranks" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
     <button type="button" onclick="loadArenaRanksData(true)" data-i18n-es="🔄 Actualizar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
-    <input type="text" id="ar-search" placeholder="🔍 Имя, UID, ранг..." data-i18n-es="🔍 Nombre, UID, rango..." oninput="renderArenaRanksTable()"
+    <input type="text" id="ar-search" aria-label="Search arena ranks by name, UID, or rank" placeholder="🔍 Имя, UID, ранг..." data-i18n-es="🔍 Nombre, UID, rango..." oninput="renderArenaRanksTable()"
       style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:240px;font-size:13px" />
     <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
       <input type="checkbox" id="ar-only-active" onchange="renderArenaRanksTable()" /> <span data-i18n-es="solo con partidas">только с матчами</span>
@@ -10011,7 +10046,7 @@
     </label>
     <button type="button" onclick="cleanupArenaPlaceholders()" data-i18n-es="🧹 Sin partidas" style="background:#2a1a1a;border:1px solid #5c1a1a;color:#fca5a5">🧹 Без матчей</button>
     <button type="button" onclick="resyncArenaNamesFromUsers()" data-i18n-es="🔁 Nombres desde users" style="background:#1a2a3a;border:1px solid #14305c;color:#60a5fa">🔁 Имена из users</button>
-    <button type="button" onclick="purgeAllArenaPlaceholders()" data-i18n-es="🔥 Eliminar TODOS los «Jugador»" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#fca5a5;font-weight:700">🔥 Удалить ВСЕХ «Игрок»</button>
+    <button type="button" onclick="purgeAllArenaPlaceholders()" aria-label="Delete all placeholder arena players" title="Danger: deletes all placeholder arena players" data-i18n-es="🔥 Eliminar TODOS los «Jugador»" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#fca5a5;font-weight:700">🔥 Удалить ВСЕХ «Игрок»</button>
     <span class="reports-count" id="ar-status"></span>
   </div>
   <div id="ar-summary" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
@@ -10276,13 +10311,13 @@
     <div id="push-panel-uid">
       <div style="display:flex;flex-direction:column;gap:12px">
         <label data-i18n-es="User UID" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">User UID</label>
-        <input id="push-uid-input" type="text" placeholder="Enter UID..." data-i18n-es="Enter UID..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;font-family:monospace;width:100%" />
+        <input id="push-uid-input" type="text" aria-label="Push target user UID" placeholder="Enter UID..." data-i18n-es="Enter UID..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;font-family:monospace;width:100%" />
         <label data-i18n-es="Title" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Title</label>
-        <input id="push-uid-title" type="text" placeholder="Notification title..." data-i18n-es="Notification title..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <input id="push-uid-title" type="text" aria-label="Push title for UID mode" placeholder="Notification title..." data-i18n-es="Notification title..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
         <label data-i18n-es="Text" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Text</label>
-        <textarea id="push-uid-body" placeholder="Notification text..." data-i18n-es="Notification text..." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
+        <textarea id="push-uid-body" aria-label="Push message text for UID mode" placeholder="Notification text..." data-i18n-es="Notification text..." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
         <label data-i18n-es="Click action (optional)" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Click action (optional)</label>
-        <input id="push-uid-action" type="text" placeholder="open_lessons, open_arena" data-i18n-es="open_lessons, open_arena" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <input id="push-uid-action" type="text" aria-label="Push click action for UID mode" placeholder="open_lessons, open_arena" data-i18n-es="open_lessons, open_arena" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
         <button type="button" onclick="submitPushJob('uid')" data-i18n-es="Send" style="background:#1a3a2a;border:1px solid #14532d;color:#4ade80;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;align-self:flex-start">Send</button>
       </div>
     </div>
@@ -10293,22 +10328,22 @@
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:180px">
             <label data-i18n-es="Language" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px">Language</label>
-            <select id="push-seg-lang" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px"><option value="" data-i18n-es="Any">Any</option><option value="uk">uk</option><option value="ru">ru</option></select>
+            <select id="push-seg-lang" aria-label="Push segment language" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px"><option value="" data-i18n-es="Any">Any</option><option value="uk">uk</option><option value="ru">ru</option></select>
           </div>
           <div style="flex:1;min-width:180px">
             <label data-i18n-es="Premium" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px">Premium</label>
-            <select id="push-seg-premium" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px"><option value="" data-i18n-es="Any">Any</option><option value="true" data-i18n-es="Premium only">Premium only</option><option value="false" data-i18n-es="Free only">Free only</option></select>
+            <select id="push-seg-premium" aria-label="Push segment premium status" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px"><option value="" data-i18n-es="Any">Any</option><option value="true" data-i18n-es="Premium only">Premium only</option><option value="false" data-i18n-es="Free only">Free only</option></select>
           </div>
           <div style="flex:1;min-width:180px">
             <label data-i18n-es="Streak >=" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px">Streak >=</label>
-            <input id="push-seg-streak" type="number" min="0" placeholder="0" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
+            <input id="push-seg-streak" type="number" min="0" aria-label="Push segment minimum streak" placeholder="0" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
           </div>
         </div>
         <label data-i18n-es="Title" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Title</label>
-        <input id="push-seg-title" type="text" placeholder="Notification title..." data-i18n-es="Notification title..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <input id="push-seg-title" type="text" aria-label="Push title for segment mode" placeholder="Notification title..." data-i18n-es="Notification title..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
         <label data-i18n-es="Text" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Text</label>
-        <textarea id="push-seg-body" placeholder="Notification text..." data-i18n-es="Notification text..." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
-        <input id="push-seg-action" type="text" placeholder="Click action (optional)" data-i18n-es="Click action (optional)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <textarea id="push-seg-body" aria-label="Push message text for segment mode" placeholder="Notification text..." data-i18n-es="Notification text..." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
+        <input id="push-seg-action" type="text" aria-label="Push click action for segment mode" placeholder="Click action (optional)" data-i18n-es="Click action (optional)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
           <button type="button" onclick="previewPushAudience()" style="background:#0e2a3a;border:1px solid #1e5a7a;color:#38bdf8;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer">👁 Сколько получит</button>
           <button type="button" onclick="submitPushJob('segment')" data-i18n-es="Send segment" style="background:#1a3a2a;border:1px solid #14532d;color:#4ade80;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer">Send segment</button>
@@ -10323,18 +10358,18 @@
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:200px">
             <label data-i18n-es="Inactive >= days" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px">Inactive >= days</label>
-            <input id="push-reac-days" type="number" min="1" value="7" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
+            <input id="push-reac-days" type="number" min="1" value="7" aria-label="Push reactivation minimum inactive days" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
           </div>
           <div style="flex:1;min-width:200px">
             <label data-i18n-es="Inactive <= days ago" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px">Inactive <= days ago</label>
-            <input id="push-reac-days-max" type="number" min="1" value="30" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
+            <input id="push-reac-days-max" type="number" min="1" value="30" aria-label="Push reactivation maximum inactive days" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
           </div>
         </div>
         <label data-i18n-es="Title" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Title</label>
-        <input id="push-reac-title" type="text" placeholder="We miss you" data-i18n-es="We miss you" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <input id="push-reac-title" type="text" aria-label="Push title for reactivation mode" placeholder="We miss you" data-i18n-es="We miss you" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
         <label data-i18n-es="Text" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px">Text</label>
-        <textarea id="push-reac-body" placeholder="Come back and continue your streak." data-i18n-es="Come back and continue your streak." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
-        <input id="push-reac-action" type="text" placeholder="Click action (optional)" data-i18n-es="Click action (optional)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <textarea id="push-reac-body" aria-label="Push message text for reactivation mode" placeholder="Come back and continue your streak." data-i18n-es="Come back and continue your streak." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
+        <input id="push-reac-action" type="text" aria-label="Push click action for reactivation mode" placeholder="Click action (optional)" data-i18n-es="Click action (optional)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
         <button type="button" onclick="submitPushJob('reactivate')" data-i18n-es="Send reactivation" style="background:#1a3a2a;border:1px solid #14532d;color:#4ade80;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;align-self:flex-start">Send reactivation</button>
       </div>
     </div>
@@ -10345,11 +10380,11 @@
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <div style="flex:1;min-width:200px">
             <label data-i18n-es="Date and time" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px">Date and time</label>
-            <input id="push-sched-time" type="datetime-local" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
+            <input id="push-sched-time" type="datetime-local" aria-label="Scheduled push date and time" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px" />
           </div>
           <div style="flex:1;min-width:200px">
             <label data-i18n-es="Audience" style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:6px">Audience</label>
-            <select id="push-sched-audience" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px">
+            <select id="push-sched-audience" aria-label="Scheduled push audience" style="width:100%;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:8px 12px;font-size:13px">
               <option value="all" data-i18n-es="All users">All users</option>
               <option value="premium" data-i18n-es="Premium only">Premium only</option>
               <option value="free" data-i18n-es="Free only">Free only</option>
@@ -10357,9 +10392,9 @@
             </select>
           </div>
         </div>
-        <input id="push-sched-title" type="text" placeholder="Notification title..." data-i18n-es="Notification title..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
-        <textarea id="push-sched-body" placeholder="Notification text..." data-i18n-es="Notification text..." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
-        <input id="push-sched-action" type="text" placeholder="Click action (optional)" data-i18n-es="Click action (optional)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <input id="push-sched-title" type="text" aria-label="Scheduled push title" placeholder="Notification title..." data-i18n-es="Notification title..." style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
+        <textarea id="push-sched-body" aria-label="Scheduled push message text" placeholder="Notification text..." data-i18n-es="Notification text..." rows="3" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;resize:vertical;width:100%"></textarea>
+        <input id="push-sched-action" type="text" aria-label="Scheduled push click action" placeholder="Click action (optional)" data-i18n-es="Click action (optional)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e5e7eb;padding:9px 14px;font-size:13px;width:100%" />
         <button type="button" onclick="submitPushJob('scheduled')" data-i18n-es="Schedule" style="background:#1a3a2a;border:1px solid #14532d;color:#4ade80;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;align-self:flex-start">Schedule</button>
       </div>
     </div>
@@ -10370,13 +10405,13 @@
   </div>
 </div>
 
-<!-- CHANGELOG 2026-06-08 TAB — FULL AUDIT -->
+<!-- CHANGELOG 2026-06-08 TAB — ARCHIVED AUDIT -->
 <div id="tab-changelog-0608" class="reports-tab">
   <div style="padding:4px 0 32px;max-width:1140px">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap">
-      <h2 style="margin:0;font-size:22px;font-weight:800;color:#fafafa">📋 Аудит — 8 июня 2026</h2>
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#fafafa">Архив аудита — 8 июня 2026</h2>
       <span style="background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">50+ коммитов за день</span>
-      <span style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Всё нужно проверить глазами и руками</span>
+      <span style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.4);color:#fca5a5;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700">Архивный ручной чеклист</span>
     </div>
     <p style="margin:0 0 8px;font-size:13px;color:#9ca3af;line-height:1.6">
       Полный аудит: фичи, модалки, тосты, edge-cases, пейволы, аналитика — всё что может быть невидимо на главной.
@@ -10651,10 +10686,10 @@
           </div>
         </div>
         <div class="cl-modal-row" style="padding:7px 10px">
-          <span class="cl-modal-tag" style="background:#1e2a1e;color:#4ade80">PAYWALL v2</span>
+          <span class="cl-modal-tag" style="background:#1e2a1e;color:#4ade80">PAYWALL ARCHIVE</span>
           <div class="cl-modal-info">
-            <b style="color:#e5e7eb">premium_modal_v2 — новый дизайн (50% пользователей)</b>
-            <div class="cl-modal-trigger">Social proof FIRST. Annual default + savings badge «−62%». Urgency таймер на карточке. Перцентиль «ты в топ X%» (показывается только если ≥50%). Personalization tags (2 шт из onboarding). CTA: «Начать бесплатно» (trial) или «Открыть полный доступ».</div>
+            <b style="color:#e5e7eb">premium_modal_v2 — удалённый экран, теперь только редирект</b>
+            <div class="cl-modal-trigger">Старый v2 больше не открывается даже прямой ссылкой. Любой заход переводится в активный диспетчер /premium_modal, который выбирает новые A/B/C.</div>
           </div>
         </div>
         <div class="cl-modal-row" style="padding:7px 10px">
@@ -10809,8 +10844,8 @@
         <div class="cl-modal-row" style="padding:7px 10px">
           <span class="cl-modal-tag" style="background:#1a140a;color:#fb923c">NUM</span>
           <div class="cl-modal-info">
-            <b style="color:#e5e7eb">paywall_v2_pct</b> — % пользователей на новом пейволе
-            <div class="cl-modal-trigger">0 → все видят v1. 100 → все видят v2. Детерминировано по userId hash.</div>
+            <b style="color:#e5e7eb">paywall_v2_pct</b> — архивный флаг старого split v1/v2
+            <div class="cl-modal-trigger">Больше не управляет экраном оплаты. Активный пейвол выбирается через вкладку Paywall A/B: A, B или C.</div>
           </div>
         </div>
       </div>
@@ -11119,7 +11154,7 @@
       <div class="detail-name" id="d-name">—</div>
       <div class="uid-small" id="d-uid" style="margin-top:4px"></div>
     </div>
-    <button class="close-btn" onclick="closeDetail()">✕</button>
+    <button type="button" class="close-btn" onclick="closeDetail()" aria-label="Close user detail" title="Close">✕</button>
   </div>
   <div class="detail-body" id="d-body">  </div>
 </div>
@@ -11285,7 +11320,11 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','overview','mod-queue','analytics','openai-budget','app-health','users','testers','reports','website-inbox','user-reports','explain-reports','explain-cache','ban-list','premium','vip','cancel-surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+
+  function isAdminSwitchableTab(tab) {
+    return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
+  }
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -11296,7 +11335,7 @@
   function adminTabFromHash(defaultTab = ADMIN_DEFAULT_TAB) {
     const raw = String(window.location.hash || '').replace(/^#/, '');
     const tab = raw === 'support' ? 'website-inbox' : raw;
-    return ADMIN_TAB_KEYS.includes(tab) ? tab : defaultTab;
+    return isAdminSwitchableTab(tab) ? tab : defaultTab;
   }
 
   let _adminAppStarted = false;
@@ -11311,6 +11350,42 @@
       window.history.replaceState(null, '', '#' + initTab);
     }
     if (!isLocalAdminVisualTestMode()) void updateTabBadges(true);
+  }
+
+  function adminWarmAdminData() {
+    if (window._adminWarmStarted || isLocalAdminVisualTestMode()) return;
+    window._adminWarmStarted = true;
+    const jobs = [
+      () => window.loadUsers?.(),
+      () => window.loadControlPanel?.(),
+      () => window.loadRemoteConfig?.(false),
+      () => window.loadOpenAiDialogModelConfig?.(false),
+      () => window.loadOpenAiDialogQuotaConfig?.(false),
+      () => window.loadControlPanelAiJobs?.(),
+      () => window.loadAppHealth?.(false),
+      () => window.loadReports?.(false),
+      () => window.loadUserReports?.(),
+      () => window.loadExplainReports?.(),
+      () => window.loadWebsiteInbox?.(false),
+      () => window.loadAppMessages?.(false),
+      () => window.loadCancelSurveys?.(false),
+      () => window.loadUgcPurchases?.(false),
+      () => window.loadCardPacks?.(false),
+      () => window.loadDailyPhrases?.(false),
+      () => window.loadArenaLive?.(false),
+      () => window.loadArenaRooms?.(false),
+      () => window.loadPushJobs?.(),
+    ];
+    let index = 0;
+    const next = () => {
+      const job = jobs[index++];
+      if (!job) return;
+      Promise.resolve()
+        .then(job)
+        .catch((e) => console.warn('admin warm load skipped', e))
+        .finally(() => setTimeout(next, 350));
+    };
+    setTimeout(next, 500);
   }
 
   const _googleProvider = new GoogleAuthProvider();
@@ -11382,7 +11457,7 @@
     }
     let tr;
     try {
-      tr = await user.getIdTokenResult(false);
+      tr = await user.getIdTokenResult(true);
     } catch (e) {
       setAdminSignInBusy(false);
       setLoginError('Сессия сохранена, но сейчас не удалось проверить токен: ' + (e?.message || e) + '. Обновите страницу или проверьте сеть.');
@@ -11425,6 +11500,76 @@
   window._users = [];
   window._sortBy = 'xp';
   window._sortDir = 1; /* по XP: сначала больше опыта (как в таблице лидеров) */
+
+  const ADMIN_USERS_SNAPSHOT_KEY = 'pm_admin_users_snapshot_v2';
+
+  function adminUserSnapshotRow(u) {
+    if (!u || !u.uid) return null;
+    return {
+      uid: u.uid,
+      name: u.name || '',
+      xp: toSafeNumber(u.xp, 0),
+      streak: toSafeNumber(u.streak, 0),
+      streakLastDate: u.streakLastDate || null,
+      lang: u.lang || 'ru',
+      premium: u.premium || null,
+      premiumExpiry: toSafeNumber(u.premiumExpiry, 0),
+      theme: u.theme || 'minimalDark',
+      fontSize: u.fontSize || 'medium',
+      haptics: u.haptics,
+      avatar: u.avatar || null,
+      frame: u.frame || null,
+      onboarding: !!u.onboarding,
+      lessons: Array.isArray(u.lessons) ? u.lessons : [],
+      flashcards: toSafeNumber(u.flashcards, 0),
+      settings: u.settings && typeof u.settings === 'object' ? u.settings : {},
+      achievements: u.achievements && typeof u.achievements === 'object' ? u.achievements : {},
+      leagueState: u.leagueState && typeof u.leagueState === 'object' ? u.leagueState : {},
+      dailyTasks: u.dailyTasks || null,
+      placementLevel: u.placementLevel || null,
+      platform: u.platform || null,
+      appVersion: u.appVersion || null,
+      updatedAt: toSafeNumber(u.updatedAt, 0),
+      createdAt: toSafeNumber(u.createdAt, 0),
+      lastActiveAt: toSafeNumber(u.lastActiveAt, 0),
+      shards: toSafeNumber(u.shards, 0),
+      banned: !!u.banned,
+      userStats: u.userStats || null,
+      linkedAuth: u.linkedAuth || null,
+      firebaseAuthUid: u.firebaseAuthUid || null,
+    };
+  }
+
+  function saveAdminUsersSnapshot(users) {
+    try {
+      if (!Array.isArray(users) || !users.length || !window.localStorage) return;
+      const rows = users.map(adminUserSnapshotRow).filter(Boolean);
+      localStorage.setItem(ADMIN_USERS_SNAPSHOT_KEY, JSON.stringify({ savedAt: Date.now(), rows }));
+    } catch (e) {
+      console.warn('admin users snapshot save skipped', e);
+    }
+  }
+
+  function restoreAdminUsersSnapshot() {
+    try {
+      if (Array.isArray(window._users) && window._users.length) return true;
+      const raw = window.localStorage ? localStorage.getItem(ADMIN_USERS_SNAPSHOT_KEY) : '';
+      if (!raw) return false;
+      const parsed = JSON.parse(raw);
+      const rows = Array.isArray(parsed?.rows) ? parsed.rows.map(adminUserSnapshotRow).filter(Boolean) : [];
+      if (!rows.length) return false;
+      window._users = rows;
+      updateStats(rows);
+      if (typeof window.renderTable === 'function') window.renderTable();
+      if (typeof window.renderAnalytics === 'function') window.renderAnalytics(rows);
+      const st = document.getElementById('status-text');
+      if (st) st.textContent = `${rows.length} users - refreshing quietly`;
+      return true;
+    } catch (e) {
+      console.warn('admin users snapshot restore skipped', e);
+      return false;
+    }
+  }
 
   const LESSON_NAMES = [
     'Местоимения и To Be',       // 1
@@ -11735,6 +11880,7 @@
     window.__pmAdminToastSeen[dedupeKey] = now;
     const el = document.createElement('div');
     el.className = `toast ${toastType}`;
+    el.setAttribute('role', toastType === 'err' ? 'alert' : 'status');
     el.textContent = text;
     wrap.appendChild(el);
     setTimeout(() => el.remove(), 3500);
@@ -11776,24 +11922,32 @@
       const btn = document.getElementById('umodal-confirm-btn');
       btn.textContent = confirmLabel;
       btn.className = danger ? 'umodal-danger' : '';
-      document.getElementById('umodal-overlay').classList.add('visible');
-      window._umodalResolve = (val) => {
-        document.getElementById('umodal-overlay').classList.remove('visible');
+      const overlay = document.getElementById('umodal-overlay');
+      overlay.classList.add('visible');
+      let settled = false;
+      let onKey;
+      const finish = (val) => {
+        if (settled) return;
+        settled = true;
+        if (onKey) document.removeEventListener('keydown', onKey);
+        overlay.classList.remove('visible');
         resolve(val);
       };
+      window._umodalResolve = finish;
       window._umodalConfirm = () => {
         const raw = multiline ? ta.value : inp.value;
         const valTrim = raw.trim();
         if (!allowEmpty && !valTrim) {
-          document.getElementById('umodal-overlay').classList.remove('visible');
-          resolve(null);
+          finish(null);
           return;
         }
-        document.getElementById('umodal-overlay').classList.remove('visible');
-        resolve(valTrim);
+        finish(valTrim);
       };
       setTimeout(() => (multiline ? ta : inp).focus(), 50);
-      const onKey = (e) => { if (e.key === 'Escape') { window._umodalResolve(null); document.removeEventListener('keydown', onKey); } if (!multiline && e.key === 'Enter') { window._umodalConfirm(); document.removeEventListener('keydown', onKey); } };
+      onKey = (e) => {
+        if (e.key === 'Escape') finish(null);
+        if (!multiline && e.key === 'Enter') window._umodalConfirm();
+      };
       document.addEventListener('keydown', onKey);
     });
   }
@@ -11806,12 +11960,18 @@
       const btn = document.getElementById('ucmodal-confirm-btn');
       btn.textContent = confirmLabel;
       btn.className = danger ? 'umodal-danger' : '';
-      document.getElementById('ucmodal-overlay').classList.add('visible');
+      const overlay = document.getElementById('ucmodal-overlay');
+      overlay.classList.add('visible');
+      let settled = false;
+      let onKey;
       window._ucmodalResolve = (val) => {
-        document.getElementById('ucmodal-overlay').classList.remove('visible');
+        if (settled) return;
+        settled = true;
+        if (onKey) document.removeEventListener('keydown', onKey);
+        overlay.classList.remove('visible');
         resolve(val);
       };
-      const onKey = (e) => { if (e.key === 'Escape') { window._ucmodalResolve(false); document.removeEventListener('keydown', onKey); } };
+      onKey = (e) => { if (e.key === 'Escape') window._ucmodalResolve(false); };
       document.addEventListener('keydown', onKey);
     });
   }
@@ -13328,36 +13488,7 @@
     }).join('');
   };
 
-  window.openUserFromArenaRanks = function openUserFromArenaRanks(uid) {
-    if (typeof window.openDetail !== 'function') return;
-    if (!window._users || !window._users.length) {
-      showToast('Load Users first, then open the arena profile row again.', 'err');
-      return;
-    }
-    const u = window._users.find(x => x.uid === uid);
-    if (!u) {
-      showToast('User is not in the current Users snapshot. Refresh Users and try again.', 'err');
-      return;
-    }
-    window.openDetail(u.uid);
-  };
-
   window.openUserFromArenaRanksOld = window.openUserFromArenaRanksOld || function noopOpenArenaRankOld() {};
-
-  window.openUserFromArenaRanks = function openUserFromArenaRanks(uid) {
-    // Найти юзера в _users (если загружен) и открыть карточку. Иначе подсказать загрузить.
-    if (typeof window.openDetail !== 'function') return;
-    if (!window._users || !window._users.length) {
-      alert('Сначала откройте вкладку «Пользователи» (👥) — нужно загрузить базу пользователей для подробной карточки.');
-      return;
-    }
-    const u = window._users.find(x => x.uid === uid);
-    if (!u) {
-      alert('Пользователь не найден в снимке текущей страницы. Обновите страницу, чтобы загрузить свежие данные.');
-      return;
-    }
-    window.openDetail(u.uid);
-  };
 
   // Множители (как в app)
   window.openUserFromArenaRanks = function openUserFromArenaRanks(uid) {
@@ -13395,12 +13526,33 @@
   }
 
   window.loadUsers = async function(options = {}) {
-    void options;
-    document.getElementById('loading').style.display='block';
-    document.getElementById('users-table').style.display='none';
-    document.getElementById('error-msg').style.display='none';
-    document.getElementById('stats-bar').style.display='none';
+    const hadSnapshot = restoreAdminUsersSnapshot();
+    const loadingEl = document.getElementById('loading');
+    const tableEl = document.getElementById('users-table');
+    const errEl = document.getElementById('error-msg');
+    const statsEl = document.getElementById('stats-bar');
+    const statusEl = document.getElementById('status-text');
+    const statusBeforeLoad = statusEl ? statusEl.textContent : '';
+    if (loadingEl) loadingEl.style.display = 'none';
+    if (errEl) errEl.style.display = 'none';
+    if (!hadSnapshot) {
+      if (tableEl) tableEl.style.display = 'none';
+      if (statsEl) statsEl.style.display = 'none';
+    } else {
+      if (tableEl) tableEl.style.display = 'table';
+      if (statsEl) statsEl.style.display = 'block';
+    }
+    if (!options.background && statusEl) {
+      statusEl.textContent = hadSnapshot
+        ? `${(window._users || []).length} users - refreshing quietly`
+        : 'Preparing users snapshot...';
+    }
     document.getElementById('status-text').textContent = 'Загрузка пользователей...';
+    if (!options.background && statusEl) {
+      statusEl.textContent = hadSnapshot
+        ? `${(window._users || []).length} users - refreshing quietly`
+        : 'Preparing users snapshot...';
+    }
     try {
       const usersQuery = collection(db, 'users');
       // arena_profiles всегда подгружаем: метрики Арены (ранги, WR) иначе пусты
@@ -13458,14 +13610,20 @@
         });
       });
       window._users = users;
+      saveAdminUsersSnapshot(users);
       updateStats(users);
       renderTable();
       renderAnalytics(users);
     } catch(e) {
       document.getElementById('loading').style.display='none';
       const errEl = document.getElementById('error-msg');
-      errEl.style.display='block';
       const msg = e.message || String(e);
+      if (hadSnapshot && Array.isArray(window._users) && window._users.length) {
+        if (statusEl) statusEl.textContent = `${window._users.length} users - refresh failed`;
+        showToast('Users refresh failed: ' + msg, 'err');
+        return;
+      }
+      errEl.style.display='block';
       if (/permission|insufficient/i.test(msg)) {
         errEl.innerHTML =
           '<div style="max-width:680px;margin:0 auto;line-height:1.45;text-align:left">'
@@ -13822,7 +13980,7 @@
         + '<div style="display:flex;align-items:center;gap:12px">'
         + '<div style="font-size:18px;font-weight:700;color:#c084fc">📧 Email-список</div>'
         + '<div id="email-export-stats" style="flex:1;font-size:12px;color:#888"></div>'
-        + '<button onclick="document.getElementById(\'email-export-modal\').style.display=\'none\'" style="background:transparent;border:none;color:#888;font-size:18px;cursor:pointer">✕</button>'
+        + '<button type="button" aria-label="Close email export" title="Close" onclick="document.getElementById(\'email-export-modal\').style.display=\'none\'" style="background:transparent;border:none;color:#888;font-size:18px;cursor:pointer">✕</button>'
         + '</div>'
         + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
         + '<button id="email-export-copy" style="background:#2a1a3a;border:1px solid #4a2a6a;color:#c084fc;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">📋 Скопировать в буфер</button>'
@@ -14744,7 +14902,11 @@
       tabSearch.value = '';
       applyAdminTabFilter('');
     }
-    if (!ADMIN_TAB_KEYS.includes(tab)) tab = ADMIN_DEFAULT_TAB;
+    if (tab === 'testers') {
+      window.location.href = 'testers.html';
+      return;
+    }
+    if (!isAdminSwitchableTab(tab)) tab = ADMIN_DEFAULT_TAB;
     const nextHash = '#' + (tab === 'website-inbox' ? 'support' : tab);
     if (options.replaceHash && window.history?.replaceState) {
       window.history.replaceState(null, '', nextHash);
@@ -14770,6 +14932,8 @@
     document.getElementById('tab-user-reports').classList.toggle('active',tab==='user-reports');
     const explainRepTab = document.getElementById('tab-explain-reports');
     if (explainRepTab) explainRepTab.classList.toggle('active', tab === 'explain-reports');
+    const explainCacheTab = document.getElementById('tab-explain-cache');
+    if (explainCacheTab) explainCacheTab.classList.toggle('active', tab === 'explain-cache');
     document.getElementById('tab-archive').classList.toggle('active',tab==='archive');
     document.getElementById('tab-audit').classList.toggle('active',tab==='audit');
     document.getElementById('tab-ops-log').classList.toggle('active',tab==='ops-log');
@@ -14847,6 +15011,7 @@
     }
     if(tab==='user-reports' && !window._userReportsLoaded) loadUserReports();
     if(tab==='explain-reports' && !window._explainReportsLoaded) loadExplainReports();
+    if(tab==='explain-cache' && !window._explainCacheLoaded) loadExplainCache();
     if(tab==='archive' && !window._archiveLoaded) loadArchive();
     if(tab==='audit' && !window._auditLoaded) loadAuditLog();
     if(tab==='app-health' && !window._appHealthLoaded) loadAppHealth();
@@ -15094,10 +15259,13 @@
   }
 
   const ADMIN_CLEAN_TAB_LABELS = {
+    'control-panel': 'Control panel',
     overview: 'Overview',
+    'mod-queue': 'Moderation queue',
     users: 'Users',
     testers: 'Testers',
     analytics: 'Analytics',
+    'openai-budget': 'OpenAI budget',
     reports: 'Reports',
     'website-inbox': 'Site support',
     'user-reports': 'User reports',
@@ -15108,7 +15276,12 @@
     'cancel-surveys': 'Cancel surveys',
     'review-promo': 'VIP survey',
     'app-messages': 'Messages',
+    'onboarding-qa': 'Onboarding QA',
+    'remote-config': 'Remote Config',
+    'paywall-ab': 'Paywall A/B',
+    alerts: 'Alerts',
     'ugc-purchases': 'UGC purchases',
+    refunds: 'Refunds',
     archive: 'Archive',
     audit: 'Audit log',
     'ops-log': 'Ops log',
@@ -15124,6 +15297,7 @@
     referrals: 'Referrals',
     'app-health': 'App Health',
     'push-notify': 'Push',
+    'changelog-0608': 'Audit archive',
   };
 
   function adminTabKeyFromElement(tabEl) {
@@ -15144,7 +15318,9 @@
   };
 
   const ADMIN_TAB_GROUPS = {
+    'control-panel': 'core',
     overview: 'core',
+    'mod-queue': 'users',
     analytics: 'core',
     'openai-budget': 'revenue',
     'app-health': 'core',
@@ -15161,7 +15337,9 @@
     'review-promo': 'revenue',
     referrals: 'revenue',
     'app-messages': 'community',
+    'onboarding-qa': 'system',
     'ugc-purchases': 'community',
+    refunds: 'revenue',
     'community-packs': 'community',
     'card-packs': 'community',
     'push-notify': 'community',
@@ -15174,7 +15352,11 @@
     archive: 'system',
     audit: 'system',
     'ops-log': 'system',
+    'remote-config': 'system',
+    'paywall-ab': 'revenue',
+    alerts: 'system',
     'daily-phrases': 'community',
+    'changelog-0608': 'system',
   };
 
   function applyGroupedAdminTabs() {
@@ -15387,19 +15569,87 @@
     if (historyLabel?.classList?.contains('broadcast-muted')) setAdminText(historyLabel, 'Recent sends');
   }
 
+  function adminReadableControlName(value) {
+    return String(value || '')
+      .replace(/^admin-/, '')
+      .replace(/[_-]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function adminUsefulText(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function adminHasAccessibleName(el) {
+    return Boolean(el?.getAttribute?.('aria-label') || el?.getAttribute?.('aria-labelledby'));
+  }
+
+  function adminAssociatedLabelText(el) {
+    const labels = el?.labels ? Array.from(el.labels) : [];
+    const direct = labels.map((label) => adminUsefulText(label.textContent)).filter(Boolean).join(' ');
+    if (direct) return direct;
+    const wrapped = el?.closest?.('label');
+    return wrapped ? adminUsefulText(wrapped.textContent) : '';
+  }
+
+  function adminFallbackControlLabel(el) {
+    return adminUsefulText(
+      el.getAttribute('title') ||
+      el.getAttribute('placeholder') ||
+      adminAssociatedLabelText(el) ||
+      adminReadableControlName(el.id || el.name)
+    );
+  }
+
+  function adminFallbackButtonLabel(btn) {
+    const text = adminUsefulText(btn.textContent);
+    if (/[0-9A-Za-z\u0400-\u04FF]/.test(text)) return '';
+    const onclick = btn.getAttribute('onclick') || '';
+    if (btn.dataset?.grantUid) return 'Grant shards';
+    if (btn.dataset?.xrAction === 'delete') return 'Delete explain report entry';
+    if (/close/i.test(onclick)) return 'Close';
+    if (/delete|remove|purge/i.test(onclick)) return 'Delete';
+    return adminUsefulText(btn.getAttribute('title') || adminReadableControlName(btn.id || btn.name || 'Admin action'));
+  }
+
+  function applyAdminA11yFallbacks(root = document) {
+    const scope = root?.querySelectorAll ? root : document;
+    const controls = [];
+    if (scope.matches?.('input, select, textarea')) controls.push(scope);
+    scope.querySelectorAll?.('input, select, textarea').forEach((el) => controls.push(el));
+    controls.forEach((el) => {
+      if (el.type === 'hidden' || adminHasAccessibleName(el)) return;
+      const label = adminFallbackControlLabel(el);
+      if (label) el.setAttribute('aria-label', label.slice(0, 140));
+    });
+
+    const buttons = [];
+    if (scope.matches?.('button')) buttons.push(scope);
+    scope.querySelectorAll?.('button').forEach((btn) => buttons.push(btn));
+    buttons.forEach((btn) => {
+      if (adminHasAccessibleName(btn)) return;
+      const label = adminFallbackButtonLabel(btn);
+      if (label) btn.setAttribute('aria-label', label.slice(0, 140));
+    });
+  }
+
   function setupAdminTextCleanup() {
     applyCleanAdminTabLabels();
     decodeAdminElementText(document.body);
     normalizeAdminStatusText();
     applyCleanReportsChrome();
     applyCleanAdminTabLabels();
+    applyAdminA11yFallbacks(document.body);
     const observer = new MutationObserver((mutations) => {
       let shouldRelabel = false;
+      const a11yRoots = [];
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
           if (node.nodeType === Node.TEXT_NODE) decodeAdminTextNode(node);
           if (node.nodeType === Node.ELEMENT_NODE) {
             decodeAdminElementText(node);
+            a11yRoots.push(node);
             if (node.matches?.('.tab') || node.querySelector?.('.tab')) shouldRelabel = true;
           }
         });
@@ -15408,6 +15658,7 @@
       if (shouldRelabel) applyCleanAdminTabLabels();
       normalizeAdminStatusText();
       applyCleanReportsChrome();
+      a11yRoots.forEach((node) => applyAdminA11yFallbacks(node));
     });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
   }
@@ -15786,9 +16037,7 @@
   };
   window.leagueChatMuteUser = async function(uid) {
     if (!uid) return;
-    const reason = (typeof showInputModal === 'function')
-      ? await showInputModal({ title: 'Chat mute 24h', desc: `UID: ${uid}`, confirmLabel: 'Mute', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Флуд', 'Неприемлемый контент', 'Ссылки/мошенничество'] })
-      : window.prompt(`Chat mute 24h for ${uid}. Reason:`, '');
+    const reason = await showInputModal({ title: 'Chat mute 24h', desc: `UID: ${uid}`, confirmLabel: 'Mute', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Флуд', 'Неприемлемый контент', 'Ссылки/мошенничество'] });
     if (reason === null || reason === false) return;
     const now = Date.now();
     await setDoc(doc(db, 'league_chat_bans', uid), {
@@ -15800,9 +16049,7 @@
   };
   window.leagueChatBanUser = async function(uid) {
     if (!uid) return;
-    const reason = (typeof showInputModal === 'function')
-      ? await showInputModal({ title: 'Permanent chat-ban', desc: `UID: ${uid}`, confirmLabel: 'Chat-ban', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Мошенничество', 'Повторные нарушения', 'Неприемлемый контент'] })
-      : window.prompt(`Permanent chat-ban for ${uid}. Reason:`, '');
+    const reason = await showInputModal({ title: 'Permanent chat-ban', desc: `UID: ${uid}`, confirmLabel: 'Chat-ban', danger: true, allowEmpty: true, presets: ['Спам/реклама', 'Оскорбления', 'Мошенничество', 'Повторные нарушения', 'Неприемлемый контент'] });
     if (reason === null || reason === false) return;
     const now = Date.now();
     await setDoc(doc(db, 'league_chat_bans', uid), {
@@ -16019,7 +16266,7 @@
     'arena-ranks': '🥇 Arena — Top', 'arena-live': '🔴 Arena — Live', 'arena-bets': '🎲 Arena bets',
     'arena-rooms': '🚪 Rooms', 'archive': '📦 Archive', 'audit': '📜 Audit log',
     'ops-log': '🧾 Ops log', 'remote-config': '🎛️ Remote Config', 'alerts': '🔔 Alerts',
-    'changelog-0608': '📋 Changelog',
+    'changelog-0608': 'Audit archive',
   };
   let _cmdkActiveIndex = 0;
   let _cmdkItems = [];
@@ -17287,7 +17534,7 @@
             <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;justify-content:flex-end">
               <button type="button" class="btn-fixed${isFixed ? ' active' : ''}" data-report-id="${encodeURIComponent(String(r.id))}">${isFixed ? '↩ Открыть' : '✅ Пофикшено'}</button>
               <button type="button" class="btn-delete" data-report-id="${encodeURIComponent(String(r.id))}">🗑 Удалить</button>
-              ${uidRaw && uidRaw !== '—' ? `<button type="button" data-grant-uid="${escapeHtml(String(uidRaw))}" data-grant-name="${escapeHtml(r.userName || '')}" style="background:#1a2a3a;border:1px solid #1e3a5f;color:#60a5fa;border-radius:6px;padding:5px 9px;font-size:11px;cursor:pointer;font-weight:700">💎</button>` : ''}
+              ${uidRaw && uidRaw !== '—' ? `<button type="button" data-grant-uid="${escapeHtml(String(uidRaw))}" data-grant-name="${escapeHtml(r.userName || '')}" aria-label="Grant shards to reporter" title="Grant shards" style="background:#1a2a3a;border:1px solid #1e3a5f;color:#60a5fa;border-radius:6px;padding:5px 9px;font-size:11px;cursor:pointer;font-weight:700">💎</button>` : ''}
             </div>
           </div>
         </div>`;
@@ -19926,7 +20173,7 @@
               <span style="color:#666;font-size:11px;font-family:monospace">uid: ${uidShort}</span>
               <span style="flex:1"></span>
               <button data-xr-entry="${escapeHtml(r.id)}" data-xr-action="${done ? 'reopen' : 'done'}" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80;border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer">${done ? '↩ Вернуть' : '✓ Разобрано'}</button>
-              <button data-xr-entry="${escapeHtml(r.id)}" data-xr-action="delete" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#f87171;border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer">🗑</button>
+              <button data-xr-entry="${escapeHtml(r.id)}" data-xr-action="delete" aria-label="Delete explain report entry" title="Delete" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#f87171;border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer">🗑</button>
             </div>
             ${comment}
           </div>`;
@@ -19968,7 +20215,13 @@
       } else if (action === 'delete' && entryId) {
         await deleteDoc(doc(db, 'explain_report_entries', entryId));
       } else if (action === 'reset' && hash) {
-        if (!confirm('Убрать объяснение этой фразы из кэша? Счётчик жалоб останется, следующий запрос сгенерирует объяснение заново.')) {
+        const ok = await showConfirmModal({
+          title: 'Remove cached explanation?',
+          desc: 'The report counter stays. The next request will generate the explanation again.',
+          confirmLabel: 'Remove cache',
+          danger: true,
+        });
+        if (!ok) {
           btn.disabled = false; btn.textContent = prevText; return;
         }
         await deleteDoc(doc(db, 'phrase_explanations', hash));
@@ -19981,6 +20234,124 @@
     } catch(e) {
       btn.disabled = false;
       btn.textContent = prevText;
+      showToast('❌ Ошибка: ' + (e.message || e), 'err');
+    }
+  }
+
+  // ── EXPLAIN CACHE — все сгенерённые ИИ-объяснения (choice_explanations / phrase_explanations) ─
+  // Удаление дока ⇒ объяснение перегенерируется при следующем ответе (claimPendingLock).
+  window._explainCacheLoaded = false;
+  window._explainCacheDocs = [];
+  window._explainCacheCollection = 'choice_explanations';
+
+  window.loadExplainCache = async function() {
+    window._explainCacheLoaded = true;
+    const coll = document.getElementById('xc-source')?.value || 'choice_explanations';
+    window._explainCacheCollection = coll;
+    const list = document.getElementById('xc-list');
+    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      let snap;
+      try {
+        snap = await getDocs(query(collection(db, coll), orderBy('updatedAtMs', 'desc'), limit(500)));
+      } catch {
+        snap = await getDocs(query(collection(db, coll), limit(500)));
+      }
+      window._explainCacheDocs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      filterExplainCache();
+    } catch(e) {
+      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.filterExplainCache = function() {
+    const status = document.getElementById('xc-filter-status').value;
+    let arr = window._explainCacheDocs;
+    if (status) arr = arr.filter(d => (d.status || '?') === status);
+    renderExplainCache(arr);
+  };
+
+  function xcStatusChip(d) {
+    const st = d.status || '?';
+    if (st === 'ready') return '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a2a1a;color:#4ade80">ready</span>';
+    if (st === 'pending') return '<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">pending</span>';
+    if (st === 'rejected') {
+      const why = escapeHtml(d.reason || 'judge');
+      return `<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#3b0a0a;color:#f87171">rejected: ${why}</span>`;
+    }
+    return `<span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a2a3a;color:#888">${escapeHtml(st)}</span>`;
+  }
+
+  function xcBodyHtml(d) {
+    // choice: confirm + карта distractors. phrase: text.
+    if (d.text) {
+      return `<div style="background:#111827;border:1px solid #273244;border-radius:8px;padding:10px 12px;margin:8px 0 0">
+        <div style="color:#dbeafe;font-size:13px;line-height:1.45;white-space:pre-wrap">${escapeHtml(String(d.text))}</div></div>`;
+    }
+    let html = '';
+    if (d.confirm) {
+      html += `<div style="background:#0f2018;border:1px solid #1f4030;border-radius:8px;padding:8px 12px;margin:8px 0 0">
+        <div style="color:#4ade80;font-size:11px;font-weight:700;margin-bottom:2px">✓ верный ответ</div>
+        <div style="color:#dbeafe;font-size:13px;line-height:1.45">${escapeHtml(String(d.confirm))}</div></div>`;
+    }
+    if (d.distractors && typeof d.distractors === 'object') {
+      for (const [opt, line] of Object.entries(d.distractors)) {
+        html += `<div style="background:#1c1212;border:1px solid #3a2222;border-radius:8px;padding:8px 12px;margin:6px 0 0">
+          <div style="color:#f87171;font-size:12px;font-weight:700;margin-bottom:2px">✗ «${escapeHtml(opt)}»</div>
+          <div style="color:#d8c4c4;font-size:13px;line-height:1.45">${escapeHtml(String(line))}</div></div>`;
+      }
+    }
+    return html;
+  }
+
+  function renderExplainCache(docs) {
+    const list = document.getElementById('xc-list');
+    document.getElementById('xc-count').textContent = `${docs.length} объяснений`;
+    if (!docs.length) { list.innerHTML = '<div class="reports-empty">Пусто.</div>'; return; }
+    list.innerHTML = docs.map((d) => {
+      const phrase = escapeHtml(d.correctEn || d.phraseEn || '(фраза неизвестна)');
+      const lang = escapeHtml(d.lang || '?');
+      const date = d.updatedAtMs ? new Date(d.updatedAtMs).toISOString().slice(0,16).replace('T',' ') : '—';
+      return `
+        <div class="report-card" style="display:block;border-left:3px solid #a78bfa;margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
+            <span style="font-size:16px">💡</span>
+            <span style="color:#fff;font-weight:700;font-size:15px">${phrase}</span>
+            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#1a1a3a;color:#a78bfa">${lang}</span>
+            ${xcStatusChip(d)}
+            <span style="color:#666;font-size:11px">${date}</span>
+            <span style="color:#666;font-size:11px;font-family:monospace">${escapeHtml(String(d.id).slice(0,10))}…</span>
+            <span style="flex:1"></span>
+            <button data-xc-hash="${escapeHtml(String(d.id))}" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#f87171;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🗑 Удалить (регенерация)</button>
+          </div>
+          ${xcBodyHtml(d)}
+        </div>`;
+    }).join('');
+    list.querySelectorAll('button[data-xc-hash]').forEach((btn) => {
+      btn.addEventListener('click', () => xcDelete(btn));
+    });
+  }
+
+  async function xcDelete(btn) {
+    const hash = btn.dataset.xcHash;
+    const coll = window._explainCacheCollection || 'choice_explanations';
+    const ok = await showConfirmModal({
+      title: 'Удалить объяснение из кэша?',
+      desc: 'Документ будет удалён. При следующем ответе пользователя объяснение сгенерируется заново.',
+      confirmLabel: 'Удалить',
+      danger: true,
+    });
+    if (!ok) return;
+    btn.disabled = true;
+    const prev = btn.textContent;
+    btn.textContent = '⏳';
+    try {
+      await deleteDoc(doc(db, coll, hash));
+      showToast('✅ Удалено — сгенерируется заново при следующем ответе', 'ok');
+      loadExplainCache();
+    } catch(e) {
+      btn.disabled = false;
+      btn.textContent = prev;
       showToast('❌ Ошибка: ' + (e.message || e), 'err');
     }
   }
@@ -20348,9 +20719,8 @@
     { key: 'trainer_ab_a_pct', label: 'A/B тренер: группа A %', def: 0, min: 0, max: 100 },
     { key: 'trainer_ab_b_pct', label: 'A/B тренер: группа B %', def: 100, min: 0, max: 100 },
     { key: 'trainer_ab_c_pct', label: 'A/B тренер: группа C %', def: 0, min: 0, max: 100 },
-    { key: 'paywall_v2_pct', label: 'Пейволл: доля v2 %', def: 50, min: 0, max: 100 },
+    { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
-    { key: 'onboarding_green_pct', label: 'Онбординг: доля зелёного A/B %', def: 50, min: 0, max: 100 },
     { key: 'arena_sr_win', label: 'Арена: SR за победу', def: 25, min: 0, max: 999 },
     { key: 'arena_sr_loss', label: 'Арена: SR за поражение', def: 20, min: 0, max: 999 },
     { key: 'arena_sr_bot_win', label: 'Арена: SR за победу над ботом', def: 12, min: 0, max: 999 },
@@ -20800,7 +21170,7 @@
   // Какой пресет соответствует текущим долям (для подсветки карточки).
   function pabDetectPreset(a, b, c) {
     if (a === 0 && b === 0 && c === 0) return 'off';
-    if (a === 10 && b === 10 && c === 10) return 'soft';
+    if (a === 10 && b === 10 && c === 80) return 'soft';
     if (a === 33 && b === 33 && c === 34) return 'even';
     if (a === 0 && b === 0 && c === 100) return 'atrium';
     return 'custom';
@@ -20818,14 +21188,14 @@
     const box = document.getElementById('pab-summary');
     if (!box) return;
     if (sum === 0) {
-      box.innerHTML = '<b style="color:#fbbf24">Сейчас тест выключен.</b> Все пользователи видят текущий экран оплаты.';
+      box.innerHTML = '<b style="color:#fbbf24">Сейчас A/B выключен.</b> Все пользователи видят новый «Атриум». Старый экран не показывается.';
       return;
     }
     const parts = [];
     if (a) parts.push(`<b style="color:#60a5fa">${a}%</b> — Компакт`);
     if (b) parts.push(`<b style="color:#a78bfa">${b}%</b> — Стори`);
     if (c) parts.push(`<b style="color:#fbbf24">${c}%</b> — Атриум`);
-    if (rest) parts.push(`<b style="color:#cbd5e1">${rest}%</b> — текущий`);
+    if (rest) parts.push(`<b style="color:#fbbf24">${rest}%</b> — Атриум fallback`);
     let warn = '';
     if (sum > 100) warn = '<div style="color:#f87171;margin-top:6px">⚠️ Сумма больше 100% — приложение само ужмёт до 100%. Лучше поправь.</div>';
     box.innerHTML = 'Из 100 человек: ' + parts.join(' · ') + '.' + warn;
@@ -20834,13 +21204,13 @@
     const { a, b, c } = pabShares();
     const sum = a + b + c;
     const v1 = document.getElementById('pab-v1');
-    if (v1) v1.value = sum > 100 ? '0 (>100)' : String(Math.max(0, 100 - sum)) + '%';
+    if (v1) v1.value = sum > 100 ? '0 (>100)' : String(Math.max(0, 100 - sum)) + '% → C';
     pabHighlightPreset(pabDetectPreset(a, b, c));
     pabRenderSummary();
   };
   // Нажатие на карточку-пресет.
   window.pabPreset = function(name) {
-    const map = { off:[0,0,0], soft:[10,10,10], even:[33,33,34], atrium:[0,0,100] };
+    const map = { off:[0,0,0], soft:[10,10,80], even:[33,33,34], atrium:[0,0,100] };
     const v = map[name] || [0,0,0];
     const set = (id, x) => { const el = document.getElementById(id); if (el) el.value = String(x); };
     set('pab-a', v[0]); set('pab-b', v[1]); set('pab-c', v[2]);
@@ -20877,7 +21247,7 @@
       set('pab-rating', rx10 > 0 ? (rx10 / 10).toFixed(1) : '');
       set('pab-count', d.ratings_count ?? 0);
       pabRecalc();
-      pabSetStatus(snap.exists() ? ('Загружено · последнее изменение: ' + (d.updatedBy || '—')) : 'Пока ничего не настроено — все видят текущий экран.', '#4ade80');
+      pabSetStatus(snap.exists() ? ('Загружено · последнее изменение: ' + (d.updatedBy || '—')) : 'Пока ничего не настроено — все видят новый «Атриум».', '#4ade80');
       // Период результатов по умолчанию — последняя неделя.
       pabFunnelRange(7, true);
     } catch (e) {
@@ -20972,7 +21342,7 @@
       // лучший вариант по доле покупок (минимум показов, чтобы не выстрелил случайный 1/1)
       let best = null, bestRate = -1;
       VAR.forEach(v => { const x = agg[v]; if (x.shown >= 30) { const rate = x.purchase_completed / x.shown; if (rate > bestRate) { bestRate = rate; best = v; } } });
-      const varName = { A:'Компакт', B:'Стори', C:'Атриум ★', v1:'Текущий' };
+      const varName = { A:'Компакт', B:'Стори', C:'Атриум ★', v1:'Архив v1' };
       const varColor = { A:'#60a5fa', B:'#a78bfa', C:'#fbbf24', v1:'#9ca3af' };
       const rows = VAR.map(v => {
         const x = agg[v];
@@ -21013,7 +21383,7 @@
         <div style="font-size:12px;color:#8b919c;margin-bottom:6px">Откуда люди приходили на экран (число покупок):</div>
         <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12.5px">
           <thead><tr style="border-bottom:1px solid #2a2f40;color:#6b7280;font-size:11px">
-            <th style="padding:6px 10px;text-align:left">Ситуация в приложении</th><th style="padding:6px 10px;text-align:right;color:#60a5fa">Компакт</th><th style="padding:6px 10px;text-align:right;color:#a78bfa">Стори</th><th style="padding:6px 10px;text-align:right;color:#fbbf24">Атриум</th><th style="padding:6px 10px;text-align:right">Текущий</th>
+            <th style="padding:6px 10px;text-align:left">Ситуация в приложении</th><th style="padding:6px 10px;text-align:right;color:#60a5fa">Компакт</th><th style="padding:6px 10px;text-align:right;color:#a78bfa">Стори</th><th style="padding:6px 10px;text-align:right;color:#fbbf24">Атриум</th><th style="padding:6px 10px;text-align:right">Архив v1</th>
           </tr></thead><tbody>${ctxRows}</tbody>
         </table></div>`;
       if (status) status.textContent = '';
@@ -22343,65 +22713,11 @@
   // ── Tab badges: число «нового» после последнего захода на вкладку (localStorage) ─
   var ADMIN_TAB_SEEN_KEY = 'phraseman_admin_tab_seen_v7';
   var ADMIN_TAB_SEEN_BOOT_KEY = 'phraseman_admin_tab_seen_boot_v7';
-  var ADMIN_TAB_KEYS_ALL = ['users','analytics','openai-budget','app-health','reports','website-inbox','user-reports','ban-list','premium','vip','cancel-surveys','review-promo','app-messages','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','daily-phrases','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','referrals','push-notify'];
-  var ADMIN_TAB_BASE_HTML = {
-    users: 'Users',
-    analytics: 'Analytics',
-    'openai-budget': 'OpenAI budget',
-    'app-health': 'App Health',
-    reports: 'Reports',
-    'website-inbox': 'Site support',
-    'user-reports': 'User reports',
-    'ban-list': 'Ban list',
-    premium: 'Premium',
-    vip: 'VIP',
-    'cancel-surveys': 'Cancel surveys',
-    'review-promo': 'VIP survey',
-    'ugc-purchases': 'UGC purchases',
-    archive: 'Archive',
-    audit: 'Audit log',
-    'ops-log': 'Ops log',
-    'community-packs': 'Community',
-    'card-packs': 'Card packs',
-    clubs: 'Clubs',
-    'league-chat': 'League chat',
-    'arena-ranks': 'Arena - Top',
-    'arena-live': 'Arena - Live',
-    'arena-rooms': 'Rooms',
-    referrals: 'Referrals',
-    'push-notify': 'Push',
-  };
-
-  ADMIN_TAB_BASE_HTML = {
-    users: 'Users',
-    analytics: 'Analytics',
-    'openai-budget': 'OpenAI budget',
-    'app-health': 'App Health',
-    reports: 'Reports',
-    'website-inbox': 'Site support',
-    'user-reports': 'User reports',
-    'ban-list': 'Ban list',
-    premium: 'Premium',
-    vip: 'VIP',
-    'cancel-surveys': 'Cancel surveys',
-    'review-promo': 'VIP survey',
-    'app-messages': 'Messages',
-    'ugc-purchases': 'UGC purchases',
-    archive: 'Archive',
-    audit: 'Audit log',
-    'ops-log': 'Ops log',
-    'community-packs': 'Community',
-    'card-packs': 'Card packs',
-    'daily-phrases': 'Daily phrases',
-    clubs: 'Clubs',
-    'league-chat': 'League chat',
-    'arena-ranks': 'Arena - Top',
-    'arena-live': 'Arena - Live',
-    'arena-bets': 'Arena bets',
-    'arena-rooms': 'Rooms',
-    referrals: 'Referrals',
-    'push-notify': 'Push',
-  };
+  var ADMIN_TAB_KEYS_ALL = ADMIN_TAB_KEYS.filter(isAdminSwitchableTab);
+  var ADMIN_TAB_BASE_HTML = ADMIN_TAB_KEYS_ALL.reduce((acc, key) => {
+    acc[key] = ADMIN_CLEAN_TAB_LABELS[key] || key;
+    return acc;
+  }, {});
 
   function adminSeenParseMs(v) {
     if (v == null) return 0;
@@ -25053,7 +25369,7 @@
         <td><span style="background:#052e1c;color:#34d399;border:1px solid #14532d;padding:4px 9px;border-radius:999px;font-weight:900">${Number(r.savedCount) || 0}</span></td>
         <td><span style="background:${statusColor}22;color:${statusColor};padding:3px 8px;border-radius:5px;font-size:11px;font-weight:800">${status}</span></td>
         <td>
-          <button type="button" onclick="openDailyPhraseEditor('${escapeHtml(r.id)}')" style="padding:6px 10px;font-size:11px;background:#1a2a3a;border-color:#14305c;color:#60a5fa">✏️</button>
+          <button type="button" onclick="openDailyPhraseEditor('${escapeHtml(r.id)}')" aria-label="Edit daily phrase" title="Edit" style="padding:6px 10px;font-size:11px;background:#1a2a3a;border-color:#14305c;color:#60a5fa">✏️</button>
           <button type="button" onclick="toggleDailyPhraseActive('${escapeHtml(r.id)}')" style="padding:6px 10px;font-size:11px;margin-left:4px;background:${r.active === false ? '#14532d' : '#3b1a1a'};border-color:${r.active === false ? '#166534' : '#7f1d1d'};color:${r.active === false ? '#86efac' : '#fca5a5'}">${r.active === false ? 'ON' : 'OFF'}</button>
         </td>
       </tr>`;
@@ -27314,36 +27630,6 @@
       }).join('');
     };
 
-    window.arCloseRoom = async function arCloseRoom(code) {
-      if (!confirm(`Закрыть комнату ${code}?\nВсе участники будут деактивированы.`)) return;
-      try {
-        await updateDoc(doc(db, 'arena_rooms_live', code), { status: 'closed', closedAt: Date.now() });
-        const membSnap = await getDocs(query(collection(db, 'arena_room_members'), where('code', '==', code), where('active', '==', true)));
-        if (!membSnap.empty) {
-          const b = writeBatch(db);
-          membSnap.docs.forEach(d => b.update(d.ref, { active: false, ready: false }));
-          await b.commit();
-        }
-        showToast(`Комната ${code} закрыта`, 'success');
-        const room = _arRooms.find(r => r.code === code || r.id === code);
-        if (room) room.status = 'closed';
-        renderArenaRooms();
-      } catch (e) {
-        showToast(`Ошибка: ${e.message}`, 'error');
-      }
-    };
-
-    window.arDeleteRoom = async function arDeleteRoom(id) {
-      if (!confirm(`Удалить комнату ${id} из Firestore?\nЭто необратимо.`)) return;
-      try {
-        await deleteDoc(doc(db, 'arena_rooms_live', id));
-        _arRooms = _arRooms.filter(r => r.id !== id);
-        showToast('Комната удалена', 'success');
-        renderArenaRooms();
-      } catch (e) {
-        showToast(`Ошибка: ${e.message}`, 'error');
-      }
-    };
   }
 
     function applyCleanArenaRoomsChrome() {
@@ -27503,7 +27789,7 @@
   <div onclick="event.stopPropagation()" style="background:#161620;border:1px solid #2a2a3a;border-radius:16px;max-width:760px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,0.6)">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #2a2a3a;position:sticky;top:0;background:#161620;z-index:1">
       <div data-i18n-es="🎯 Umbrales percentiles — leaderboard_stats/global" style="font-size:15px;font-weight:700;color:#4ade80">🎯 Перцентильные пороги — leaderboard_stats/global</div>
-      <button type="button" onclick="closePercentilePreview()" data-i18n-es="✕" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#ccc;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px;line-height:1">✕</button>
+      <button type="button" onclick="closePercentilePreview()" aria-label="Close percentile preview" title="Close" data-i18n-es="✕" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#ccc;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px;line-height:1">✕</button>
     </div>
     <div id="pct-preview-body" style="padding:18px 18px 22px"></div>
   </div>
@@ -27515,7 +27801,7 @@
   <div onclick="event.stopPropagation()" style="background:#161620;border:1px solid #2a2a3a;border-radius:16px;max-width:680px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,0.6)">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #2a2a3a;position:sticky;top:0;background:#161620;z-index:1">
       <div id="ua-title" style="font-size:15px;font-weight:700;color:#e0e0e0"></div>
-      <button type="button" onclick="closeUserAnalytics()" data-i18n-es="✕" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#ccc;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px;line-height:1">✕</button>
+      <button type="button" onclick="closeUserAnalytics()" aria-label="Close user analytics" title="Close" data-i18n-es="✕" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#ccc;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px;line-height:1">✕</button>
     </div>
     <div id="ua-body" style="padding:18px 18px 22px"></div>
   </div>

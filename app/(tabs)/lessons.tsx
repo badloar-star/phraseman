@@ -28,7 +28,7 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import EnergyBar from '../../components/EnergyBar';
 import DialogsTabContent from '../../components/DialogsTabContent';
-import { isAiDialogEnabled } from '../ai_dialog_flags';
+import { isAiDialogEnabled, getFreeDialogsPerDay } from '../ai_dialog_flags';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
@@ -318,6 +318,7 @@ export default function LessonsTab() {
     const { activeIdx, focusTick } = useTabNav();
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
+    const freeDialogsPerDay = getFreeDialogsPerDay();
     const [page, setPage] = useState<'lessons' | 'dialogs'>('lessons');
     const [gateModal, setGateModal] = useState<null | {
         kind: 'exam';
@@ -530,8 +531,8 @@ export default function LessonsTab() {
               fontSize={f.body}
               badge={!isPremium}
               badgeColor={isGoldTheme ? GOLD_RICH.champagne : t.accent}
-              badgeTextColor={isGoldTheme ? (t.textOnGold ?? '#2A2410') : '#fff'}
-              badgeLabel={triLang(lang, { ru: '1 free', uk: '1 free', es: '1 free', 'pt-BR': '1 free', vi: '1 free', id: '1 free', tr: '1 free', pl: '1 free' })}
+              badgeTextColor={isGoldTheme ? (t.textOnGold ?? '#2A2410') : t.correctText}
+              badgeLabel={`${freeDialogsPerDay} free`}
               onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
             />
           </View>
@@ -564,7 +565,7 @@ export default function LessonsTab() {
             const scaleAnim = itemAnims[i];
             // ── CEFR divider ─────────────────────────────────────────────
             if (item.kind === 'header') {
-                const isPremiumLevel = !isPremium && !DEV_MODE && item.label !== 'A1';
+                const isPremiumLevel = !isPremium && !DEV_MODE && !noLimits && item.label !== 'A1';
                 const goldLevel = goldCefrAccent(item.label);
                 const headerAccent = isGoldTheme ? goldLevel.accent : item.color;
                 const headerWash = isGoldTheme

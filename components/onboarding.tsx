@@ -5,6 +5,7 @@ import {
   Animated, BackHandler, Keyboard, Easing,
   Platform,
   StatusBar,
+  ActivityIndicator,
   Image as RNImage,
   type ImageStyle,
   type ImageSourcePropType,
@@ -18,7 +19,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { generateReferralCode } from '../app/referral_system';
 import { hapticTap } from '../hooks/use-haptics';
-import { IS_BETA_TESTER } from '../app/config';
+import { CLOUD_SYNC_ENABLED } from '../app/config';
 // Онбординг закреплён за темой "Графит" (MINIMAL_DARK) — это одна из двух
 // бесплатных тем (вторая — "Скетч"/MINIMAL_LIGHT). Импортируем под алиасом
 // `DARK`, чтобы не править все ~150 ссылок DARK.* по тексту экрана.
@@ -34,8 +35,7 @@ import {
   type TargetLevel,
 } from '../app/types/user_profile';
 import { scheduleDailyReminder } from '../app/notifications';
-import { reserveName } from '../app/firestore_leaderboard';
-import { validateProfileName } from '../app/settings/profile_name_service';
+import { checkNameAvailabilityDetailed, reserveNameDetailed, warmNameAvailabilityAuth } from '../app/firestore_leaderboard';
 import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
 import { useScreen } from '../hooks/use-screen';
 import {
@@ -54,6 +54,8 @@ import {
 } from '../app/personal_plan_activation';
 import { type PersonalPlanId, type PlanMinutesChoice } from '../app/personal_plan_catalog';
 import { resolvePersonalPlanForGoal, type PersonalPlanSetupGoal } from '../app/personal_plan_recommendation';
+import { getOnboardingAbVariant, type OnboardingAbVariant } from '../app/remote_flags';
+import { getStableId } from '../app/stable_id';
 import { usePremium } from './PremiumContext';
 import DuoPressable from './DuoPressable';
 
@@ -97,8 +99,20 @@ interface Props {
 
 
 const TARGET_LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1'] as const;
-const PROGRESS_STEPS = ['welcome', 'name', 'streak', 'auth'] as const;
-type OnboardingStepKey = 'beta' | 'planEntry' | 'planGoal' | 'planLevel' | 'planMinutes' | 'planPhrase' | 'planLoading' | 'planResult' | 'planPaywall' | 'planPicker' | 'planDetails' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
+const PROGRESS_STEPS = ['name', 'streak', 'auth'] as const;
+type OnboardingStepKey = 'beta' | 'planEntry' | 'planGoal' | 'planLevel' | 'planMinutes' | 'planLoading' | 'planResult' | 'planPaywall' | 'planPicker' | 'planDetails' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
+type OnboardingAbEntryStep = 'planEntry';
+type OnboardingAbSimpleStep = 'name' | 'demo2' | 'demo';
+type OnboardingNameAvailabilityStatus = 'idle' | 'checking' | 'available' | 'taken' | 'error';
+type OnboardingNameAvailabilityState = {
+  status: OnboardingNameAvailabilityStatus;
+  value: string;
+  message: string | null;
+};
+type OnboardingNameValidation =
+  | { ok: true; trimmed: string }
+  | { ok: false; message: string };
+const NAME_AVAILABILITY_DEBOUNCE_MS = 700;
 // Тема онбординга = канонические 5 тем планов (один к одному, см. resolvePersonalPlanForGoal).
 type OnboardingPlanGoal = PersonalPlanSetupGoal;
 type OnboardingPlanLevel = 'a0' | 'a1' | 'a2' | 'b1';
@@ -116,13 +130,62 @@ type OnboardingParticleSpec = {
   opacity: number;
 };
 const USE_ELITE_ONBOARDING_WELCOME = true;
+const ONBOARDING_AB_VARIANT_STORAGE_KEY = 'onboarding_ab_variant_v1';
+const ONBOARDING_AB_FALLBACK_ENTRY_STEP: OnboardingAbEntryStep = 'planEntry';
+const ONBOARDING_AB_FALLBACK_SIMPLE_STEP: OnboardingAbSimpleStep = 'name';
+const LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS = new Set<OnboardingStepKey>([
+  'planEntry',
+  'planGoal',
+  'planLevel',
+  'planMinutes',
+  'planLoading',
+  'planResult',
+  'planPaywall',
+  'planPicker',
+  'planDetails',
+]);
 
-// ── Тема онбординга (A/B-цвет) ──────────────────────────────────────────────
-// Онбординг существует в двух неоновых палитрах (синяя/зелёная) — детерминирован-
-// ный 50/50 A/B-тест (см. getOnboardingColorVariant). Палитры взяты один-в-один
-// из макетов docs/design/onboarding_neon_*_2026-06-14.html. Раньше акцент был
-// золотой и одинаковый для всех; теперь акцент-несущие значения резолвятся через
-// OnboardingTheme по obColor, а стили собираются фабрикой makeOnboardingStyles().
+function onboardingSimpleStepForVariant(variant: OnboardingAbVariant): OnboardingAbSimpleStep {
+  if (variant === 'builder') return 'demo2';
+  if (variant === 'quiz') return 'demo';
+  return 'name';
+}
+
+function isKnownOnboardingStep(value: string): value is OnboardingStepKey {
+  return (
+    value === 'beta' ||
+    value === 'planEntry' ||
+    value === 'planGoal' ||
+    value === 'planLevel' ||
+    value === 'planMinutes' ||
+    value === 'planLoading' ||
+    value === 'planResult' ||
+    value === 'planPaywall' ||
+    value === 'planPicker' ||
+    value === 'planDetails' ||
+    value === 'welcome' ||
+    value === 'demo2' ||
+    value === 'demo' ||
+    value === 'name' ||
+    value === 'streak' ||
+    value === 'auth'
+  );
+}
+
+function normalizeRestoredOnboardingStep(
+  saved: string | null,
+  pendingNickname: string | null,
+  entryStep: OnboardingAbEntryStep,
+): OnboardingStepKey {
+  if (!saved) return entryStep;
+  const restored = saved === 'energy' ? 'auth' : saved;
+  if (!isKnownOnboardingStep(restored)) return entryStep;
+  if (restored === 'beta' || LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS.has(restored)) return entryStep;
+  if (restored === 'welcome' || restored === 'demo2' || restored === 'demo') return entryStep;
+  if (restored === 'name' && pendingNickname !== '1') return entryStep;
+  return restored;
+}
+
 export interface OnboardingTheme {
   accent: string;       // основной неон (кнопки, прогресс, бренд)
   accent2: string;      // мягкий вторичный неон (градиенты, иконки-акценты)
@@ -141,54 +204,33 @@ export interface OnboardingTheme {
   heroGradient: [string, string, string]; // заливка hero-CTA/бренд-градиент
 }
 
-const ONBOARDING_THEME_BLUE: OnboardingTheme = {
-  accent: '#2f6bff',
-  accent2: '#6D99FF',
-  accentDeep: '#134BCD',
-  accentIce: '#9cc0ff',
-  accentBg: 'rgba(47,107,255,0.16)',
-  accentBgSoft: 'rgba(47,107,255,0.10)',
-  accentBorder: 'rgba(47,107,255,0.42)',
-  accentBorderSoft: 'rgba(109,153,255,0.30)',
-  textPrimary: '#eaf1ff',
-  textMuted: '#93a6c8',
-  ctaText: '#04122e',
-  bgEdge: '#05080f',
+const ONBOARDING_THEME: OnboardingTheme = {
+  accent: '#F2B84B',
+  accent2: '#FFD472',
+  accentDeep: '#B98522',
+  accentIce: '#FFE8B0',
+  accentBg: 'rgba(242,184,75,0.16)',
+  accentBgSoft: 'rgba(242,184,75,0.10)',
+  accentBorder: 'rgba(242,184,75,0.42)',
+  accentBorderSoft: 'rgba(255,212,114,0.30)',
+  textPrimary: '#FFF8E8',
+  textMuted: '#D8CCB5',
+  ctaText: '#1A1203',
+  bgEdge: '#050505',
   bgTop: '#0B0909',
-  bgBottom: '#091120',
-  heroGradient: ['#6D99FF', '#9cc0ff', '#2f6bff'],
+  bgBottom: '#171106',
+  heroGradient: ['#FFD472', '#FFE8B0', '#F2B84B'],
 };
-
-const ONBOARDING_THEME_GREEN: OnboardingTheme = {
-  accent: '#22c55e',
-  accent2: '#5BE9A6',
-  accentDeep: '#0f7a43',
-  accentIce: '#9ff5cf',
-  accentBg: 'rgba(34,197,94,0.16)',
-  accentBgSoft: 'rgba(34,197,94,0.10)',
-  accentBorder: 'rgba(34,197,94,0.42)',
-  accentBorderSoft: 'rgba(91,233,166,0.30)',
-  textPrimary: '#e9fff4',
-  textMuted: '#8fc7ac',
-  ctaText: '#03130b',
-  bgEdge: '#03100a',
-  bgTop: '#06140d',
-  bgBottom: '#08251a',
-  heroGradient: ['#5BE9A6', '#9ff5cf', '#22c55e'],
-};
-
-function resolveOnboardingTheme(color: 'blue' | 'green'): OnboardingTheme {
-  return color === 'green' ? ONBOARDING_THEME_GREEN : ONBOARDING_THEME_BLUE;
-}
 
 type OnboardingStyles = ReturnType<typeof makeOnboardingStyles>;
-const ONBOARDING_BG_WELCOME = null;
-const ONBOARDING_BG_BETA = null;
-const ONBOARDING_BG_NAME = null;
-const ONBOARDING_BG_BUILDER = null;
-const ONBOARDING_BG_QUIZ = null;
-const ONBOARDING_BG_STREAK = null;
-const ONBOARDING_BG_AUTH = null;
+const ONBOARDING_BG_LIBRARY = require('../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
+const ONBOARDING_BG_WELCOME = ONBOARDING_BG_LIBRARY;
+const ONBOARDING_BG_BETA = ONBOARDING_BG_LIBRARY;
+const ONBOARDING_BG_NAME = ONBOARDING_BG_LIBRARY;
+const ONBOARDING_BG_BUILDER = ONBOARDING_BG_LIBRARY;
+const ONBOARDING_BG_QUIZ = ONBOARDING_BG_LIBRARY;
+const ONBOARDING_BG_STREAK = ONBOARDING_BG_LIBRARY;
+const ONBOARDING_BG_AUTH = ONBOARDING_BG_LIBRARY;
 const ONBOARDING_LINGMAN_ICON = require('../assets/images/onboarding/lingman-icon-transparent.webp');
 const ONBOARDING_AUTH_ICON = require('../assets/images/onboarding/auth-quick-start-icon.webp');
 const ONBOARDING_STREAK_ICONS: Record<StreakMilestoneIconKind, ImageSourcePropType> = {
@@ -224,6 +266,7 @@ const ONBOARDING_PAYWALL_ICONS = {
   frame: require('../assets/images/onboarding/plan-icons/paywall-frame.png'),
 } as const satisfies Record<string, ImageSourcePropType>;
 const ONBOARDING_PRELOADED_ICON_ASSETS = [
+  ONBOARDING_BG_LIBRARY,
   ONBOARDING_LINGMAN_ICON,
   ONBOARDING_AUTH_ICON,
   ...Object.values(ONBOARDING_STREAK_ICONS),
@@ -253,9 +296,6 @@ const PLAN_LOADING_BUILD_ITEMS: Array<{
   { title: 'Учитываем цель и темп', iconAsset: ONBOARDING_PLAN_ICONS.time, delay: 1100 },
   { title: 'Собираем маршрут', iconAsset: ONBOARDING_PLAN_ICONS.path, delay: 1750 },
 ];
-const PLAN_PHRASE_TOKENS = ['need', 'I', 'more', 'time'] as const;
-const PLAN_PHRASE_TARGET = ['I', 'need', 'more', 'time'] as const;
-
 function resolveOnboardingBundledImageSource(source: ImageSourcePropType) {
   const resolver = (RNImage as typeof RNImage & {
     resolveAssetSource?: (source: ImageSourcePropType) => unknown;
@@ -315,19 +355,9 @@ function PlanFlowIcon({
     </View>
   );
 }
-const PLAN_PROGRESS_STEPS: OnboardingStepKey[] = ['planGoal', 'planLevel', 'planMinutes', 'planPhrase', 'planLoading', 'planResult'];
+const PLAN_PROGRESS_STEPS: OnboardingStepKey[] = ['planGoal', 'planLevel', 'planMinutes', 'planLoading', 'planResult'];
 const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
-  planGoal: 'planEntry',
-  planLevel: 'planGoal',
-  planMinutes: 'planLevel',
-  planPhrase: 'planMinutes',
-  planLoading: 'planPhrase',
-  planResult: 'planLoading',
-  planPaywall: 'planResult',
-  planPicker: 'planResult',
-  planDetails: 'planPicker',
-  welcome: 'planEntry',
-  demo2: 'welcome',
+  demo2: 'planEntry',
   demo: 'demo2',
   name: 'planEntry',
   streak: 'name',
@@ -581,11 +611,10 @@ const PLAN_PAYWALL_BENEFITS: Array<{
 function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPlanPaywallStart }: Props) {
   const insets = useSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
-  // A/B-цвет онбординга (blue|green). Дефолт 'blue' до асинхронного резолва на
-  // маунте; theme/styles пересобираются при смене obColor. Объявлено здесь, до
-  // любых style-объектов и фабрики стилей, которые на них ссылаются.
-  const [obColor, setObColor] = useState<'blue' | 'green'>('blue');
-  const theme = React.useMemo(() => resolveOnboardingTheme(obColor), [obColor]);
+  const [onboardingAbVariant, setOnboardingAbVariant] = useState<OnboardingAbVariant>('welcome');
+  // Analytics color bucket for the current one-theme onboarding skin.
+  const obColor = 'main' as const;
+  const theme = ONBOARDING_THEME;
   const styles = React.useMemo(() => makeOnboardingStyles(theme), [theme]);
   const { width: viewportW, height: viewportH, uiScale } = useScreen();
   const progressTopPadding = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
@@ -632,16 +661,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
 
   useEffect(() => {
     warmOnboardingBundledImages();
+    warmNameAvailabilityAuth();
   }, []);
 
+  // Прогреваем Firebase-аутентификацию в фоне при монтировании, чтобы к моменту
+  // нажатия «Продолжить» на шаге имени анон-токен уже был готов и не блокировал UI.
   useEffect(() => {
-    void import('../app/stable_id').then(({ getStableId }) =>
-      getStableId().then((id) => {
-        void import('../app/remote_flags').then(({ getOnboardingColorVariant }) => {
-          setObColor(getOnboardingColorVariant(id));
-        });
-      }),
-    );
+    if (!CLOUD_SYNC_ENABLED) return;
+    void import('../app/cloud_sync').then(({ waitForAnonAuth, ensureAnonUser }) => {
+      void waitForAnonAuth(15_000).then(() => ensureAnonUser()).catch(() => {});
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const streakHeroIconSize = scaleOnboarding(compactOnboarding ? 52 : 76, 44);
   const streakMilestoneIconSize = scaleOnboarding(compactOnboarding ? 38 : 52, 34);
@@ -664,7 +694,10 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   };
 
   type OnboardingStep = OnboardingStepKey;
-  const [step, setStepRaw]    = useState<OnboardingStep>(IS_BETA_TESTER ? 'beta' : 'planEntry');
+  const [onboardingEntryReady, setOnboardingEntryReady] = useState(false);
+  const onboardingEntryStepRef = useRef<OnboardingAbEntryStep>(ONBOARDING_AB_FALLBACK_ENTRY_STEP);
+  const onboardingSimpleStepRef = useRef<OnboardingAbSimpleStep>(ONBOARDING_AB_FALLBACK_SIMPLE_STEP);
+  const [step, setStepRaw]    = useState<OnboardingStep>(ONBOARDING_AB_FALLBACK_ENTRY_STEP);
   const stepRef = useRef(step);
   const setStep = useCallback((next: OnboardingStep) => {
     stepRef.current = next;
@@ -695,12 +728,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   const [name, setName]       = useState('');
   const [nameBusy, setNameBusy] = useState(false);
   const [nameFieldError, setNameFieldError] = useState<string | null>(null);
+  const [nameAvailability, setNameAvailability] = useState<OnboardingNameAvailabilityState>({
+    status: 'idle',
+    value: '',
+    message: null,
+  });
+  const nameAvailabilitySeq = useRef(0);
   const [keyboardPad, setKeyboardPad] = useState(0);
-  const [selectedPlanGoal, setSelectedPlanGoal] = useState<OnboardingPlanGoal>('travel');
-  const [selectedPlanLevel, setSelectedPlanLevel] = useState<OnboardingPlanLevel>('a1');
-  const [selectedPlanMinutes, setSelectedPlanMinutes] = useState<PlanMinutesChoice>(15);
+  const [selectedPlanGoal, setSelectedPlanGoal] = useState<OnboardingPlanGoal | null>(null);
+  const [selectedPlanLevel, setSelectedPlanLevel] = useState<OnboardingPlanLevel | null>(null);
+  const [selectedPlanMinutes, setSelectedPlanMinutes] = useState<PlanMinutesChoice | null>(null);
   const [selectedPlanOverride, setSelectedPlanOverride] = useState<PersonalPlanId | null>(null);
-  const [selectedPlanPhraseTokens, setSelectedPlanPhraseTokens] = useState<string[]>([]);
   const [selectedPlanBilling, setSelectedPlanBilling] = useState<OnboardingBillingChoice>('annual');
   // Реальные цены и наличие триала из RevenueCat — НИКОГДА не хардкодим ($/валюта/триал
   // решает магазин). Пустые строки = ещё грузится; UI тогда не обещает конкретную цену.
@@ -715,14 +753,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   const storePackagesRef = useRef<{ monthly?: unknown; yearly?: unknown }>({});
   const [paywallPurchasing, setPaywallPurchasing] = useState(false);
   const [nicknameMode, setNicknameMode] = useState<OnboardingNicknameMode>('regular');
-  const [planPhraseWasCorrect, setPlanPhraseWasCorrect] = useState(true);
   const [showPlanFreeConfirm, setShowPlanFreeConfirm] = useState(false);
   const [planLoadingCtaReady, setPlanLoadingCtaReady] = useState(false);
   const [animatedPlanDays, setAnimatedPlanDays] = useState(0);
   const planLoadingMeter = useRef(new Animated.Value(0)).current;
   const planLoadingBuildAnims = useRef(PLAN_LOADING_BUILD_ITEMS.map(() => new Animated.Value(0))).current;
   const planLoadingButtonAnim = useRef(new Animated.Value(0)).current;
+  const completedPlanLoadingAnswerKeyRef = useRef<string | null>(null);
   const planDaysProgress = useRef(new Animated.Value(0)).current;
+  const selectedPlanGoalForPlan: OnboardingPlanGoal = selectedPlanGoal ?? 'travel';
+  const selectedPlanLevelForPlan: OnboardingPlanLevel = selectedPlanLevel ?? 'a1';
+  const selectedPlanMinutesForPlan: PlanMinutesChoice = selectedPlanMinutes ?? 15;
   // Профиль берётся из ответов юзера в онбординге — никаких хардкодов.
   const goal: LearningGoal = ((): LearningGoal => {
     // PersonalPlanSetupGoal → LearningGoal
@@ -733,20 +774,20 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       series: 'hobby',
       mind: 'hobby',
     };
-    return map[selectedPlanGoal] ?? 'hobby';
+    return map[selectedPlanGoalForPlan] ?? 'hobby';
   })();
   const minutesPerDay: MinutesPerDay = ((): MinutesPerDay => {
     // PlanMinutesChoice 5|10|15|20 → MinutesPerDay 5|15|30|60
-    if (selectedPlanMinutes <= 5) return 5;
-    if (selectedPlanMinutes <= 15) return 15;
-    if (selectedPlanMinutes <= 20) return 30;
+    if (selectedPlanMinutesForPlan <= 5) return 5;
+    if (selectedPlanMinutesForPlan <= 15) return 15;
+    if (selectedPlanMinutesForPlan <= 20) return 30;
     return 60;
   })();
   const currentLevel: CurrentLevel = ((): CurrentLevel => {
     // OnboardingPlanLevel 'a0'|'a1'|'a2'|'b1' → CurrentLevel 'a1'|'a2'|'b1'|'b2'
-    if (selectedPlanLevel === 'a0') return 'a1';
-    if (selectedPlanLevel === 'a1') return 'a1';
-    if (selectedPlanLevel === 'a2') return 'a2';
+    if (selectedPlanLevelForPlan === 'a0') return 'a1';
+    if (selectedPlanLevelForPlan === 'a1') return 'a1';
+    if (selectedPlanLevelForPlan === 'a2') return 'a2';
     return 'b1';
   })();
   const [notificationTime] = useState<string>('08:00');
@@ -754,10 +795,31 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   const isUK = lang === 'uk';
   const pick = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
+  const pickNameText = useCallback((ru: string, uk: string, es: string) =>
+    lang === 'es' ? es : isUK ? uk : ru, [isUK, lang]);
+  const validateNameDraft = useCallback((raw: string): OnboardingNameValidation => {
+    const trimmed = raw.trim();
+    if (!trimmed) {
+      return { ok: false, message: pickNameText('Введи имя, чтобы продолжить', 'Введіть ім\'я щоб продовжити', 'Escribe tu nombre para continuar') };
+    }
+    if (trimmed.length < 2) {
+      return { ok: false, message: pickNameText('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres') };
+    }
+    if (trimmed.length > 20) {
+      return { ok: false, message: pickNameText('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres') };
+    }
+    return { ok: true, trimmed };
+  }, [pickNameText]);
   const triOb = (ru: string, uk: string, es: string) =>
     lang === 'es' ? es : isUK ? uk : ru;
-  const selectedPlanId = resolveOnboardingPlanId(selectedPlanGoal, selectedPlanOverride);
+  const selectedPlanId = resolveOnboardingPlanId(selectedPlanGoalForPlan, selectedPlanOverride);
   const selectedPlan = PERSONAL_PLAN_ONBOARDING_PLANS[selectedPlanId];
+  const planLoadingAnswerKey = [
+    selectedPlanGoalForPlan,
+    selectedPlanLevelForPlan,
+    selectedPlanMinutesForPlan,
+    selectedPlanId,
+  ].join('|');
 
   // Плавный переход между экранами
   const goToStep = useCallback((next: typeof step) => {
@@ -765,10 +827,107 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     // Fired here (the single nav choke point) so all ~40 step buttons get it.
     hapticTap();
     setShowPlanFreeConfirm(false);
+    const target = next === 'welcome' ? onboardingEntryStepRef.current : next;
     Animated.timing(screenFade, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
-      setStep(next);
+      setStep(target);
     });
   }, [screenFade, setStep]);
+
+  const getOnboardingPrevStep = useCallback((current: OnboardingStep): OnboardingStep | undefined => {
+    const entryStep = onboardingEntryStepRef.current;
+    const simpleStep = onboardingSimpleStepRef.current;
+    if (current === entryStep) return undefined;
+    if (current === 'welcome') return entryStep;
+    if (current === 'demo2') return entryStep;
+    if (current === 'demo') return simpleStep === 'demo' ? entryStep : 'demo2';
+    if (current === 'name') {
+      if (simpleStep === 'name') return entryStep;
+      return 'demo';
+    }
+    return PREV_STEP[current];
+  }, []);
+
+  useEffect(() => {
+    if (step === 'welcome') setStep(onboardingEntryStepRef.current);
+  }, [step, setStep]);
+
+  useEffect(() => {
+    if (step === 'name') warmNameAvailabilityAuth();
+  }, [step]);
+
+  useEffect(() => {
+    const seq = nameAvailabilitySeq.current + 1;
+    nameAvailabilitySeq.current = seq;
+
+    if (step !== 'name') {
+      setNameAvailability({ status: 'idle', value: '', message: null });
+      return;
+    }
+
+    const trimmed = name.trim();
+    if (!trimmed) {
+      setNameAvailability({ status: 'idle', value: '', message: null });
+      return;
+    }
+
+    const validation = validateNameDraft(name);
+    if (!validation.ok) {
+      setNameAvailability({ status: 'error', value: trimmed, message: validation.message });
+      return;
+    }
+
+    const value = validation.trimmed;
+    let cancelled = false;
+    setNameAvailability({ status: 'idle', value: '', message: null });
+    const timer = setTimeout(() => {
+      if (cancelled || nameAvailabilitySeq.current !== seq) return;
+      setNameAvailability({
+        status: 'checking',
+        value,
+        message: pickNameText('Проверяем имя...', 'Перевіряємо ім\'я...', 'Comprobando nombre...'),
+      });
+      void checkNameAvailabilityDetailed(value)
+        .then((result) => {
+          if (cancelled || nameAvailabilitySeq.current !== seq) return;
+          setNameFieldError(null);
+          if (result.status === 'available') {
+            setNameAvailability({
+              status: 'available',
+              value,
+              message: pickNameText('Имя свободно', 'Ім\'я вільне', 'Nombre disponible'),
+            });
+            return;
+          }
+          if (result.status === 'taken') {
+            setNameAvailability({
+              status: 'taken',
+              value,
+              message: pickNameText('Имя уже занято', 'Ім\'я вже зайняте', 'Nombre no disponible'),
+            });
+            return;
+          }
+          setNameAvailability({
+            status: 'idle',
+            value: '',
+            message: null,
+          });
+        })
+        .catch(() => {
+          if (cancelled || nameAvailabilitySeq.current !== seq) return;
+          setNameFieldError(null);
+          setNameAvailability({
+            status: 'idle',
+            value: '',
+            message: null,
+          });
+        });
+    }, NAME_AVAILABILITY_DEBOUNCE_MS);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [name, pickNameText, step, validateNameDraft]);
 
   // Анимация появления кнопки снизу
   const animateBtn = () => {
@@ -783,18 +942,18 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   // Прогресс-бар + кнопка назад
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      const prev = PREV_STEP[step];
+      const prev = getOnboardingPrevStep(step);
       if (prev) { goToStep(prev); return true; }
       return true; // блокируем GO_BACK даже на первом экране
     });
     return () => sub.remove();
-  }, [step, goToStep]);
+  }, [getOnboardingPrevStep, step, goToStep]);
 
   const renderProgressBar = () => {
     const idx = (PROGRESS_STEPS as readonly string[]).indexOf(step);
     if (idx < 0) return null;
     const pct = Math.round(((idx + 1) / PROGRESS_STEPS.length) * 100);
-    const prev = PREV_STEP[step];
+    const prev = getOnboardingPrevStep(step);
     return (
       <View style={[styles.progressWrap, { paddingTop: progressTopPadding }]}>
         <View style={styles.progressRow}>
@@ -814,43 +973,65 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     );
   };
 
-  // Восстанавливаем шаг при повторном монтировании (после Alert на Android и т.п.)
+  // Восстанавливаем шаг при повторном монтировании (после Alert на Android и т.п.).
+  // Сохраненный `name` без pending personal-plan ломает первый экран: после dev reload
+  // онбординг сразу прыгал на имя из старого AsyncStorage.
   useEffect(() => {
-    AsyncStorage.getItem('onboarding_step').then(saved => {
-      if (saved && saved !== stepRef.current) {
-        const restored = saved === 'energy' ? 'auth' : saved as OnboardingStep;
+    let active = true;
+    void (async () => {
+      let entryStep = ONBOARDING_AB_FALLBACK_ENTRY_STEP;
+      let variant: OnboardingAbVariant = 'welcome';
+      let simpleStep = ONBOARDING_AB_FALLBACK_SIMPLE_STEP;
+      try {
+        const [saved, pendingNickname, stableId] = await Promise.all([
+          AsyncStorage.getItem('onboarding_step'),
+          AsyncStorage.getItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY),
+          getStableId().catch(() => ''),
+        ]);
+        if (stableId) {
+          variant = getOnboardingAbVariant(stableId);
+          simpleStep = onboardingSimpleStepForVariant(variant);
+        }
+        const restored = normalizeRestoredOnboardingStep(saved, pendingNickname, entryStep);
+        if (!active) return;
+        setOnboardingAbVariant(variant);
+        onboardingEntryStepRef.current = entryStep;
+        onboardingSimpleStepRef.current = simpleStep;
         setStepRaw(restored);
         stepRef.current = restored;
+        await AsyncStorage.multiSet([
+          [ONBOARDING_AB_VARIANT_STORAGE_KEY, variant],
+          ['onboarding_step', restored],
+        ]).catch(() => {});
+      } catch {
+        if (!active) return;
+        setOnboardingAbVariant(variant);
+        onboardingEntryStepRef.current = entryStep;
+        onboardingSimpleStepRef.current = simpleStep;
+        setStepRaw(entryStep);
+        stepRef.current = entryStep;
+      } finally {
+        if (active) setOnboardingEntryReady(true);
       }
-    }).catch(() => {});
+    })();
+    return () => { active = false; };
   }, []);
 
-  // Единая запись шага воронки пейвола из онбординга в Firestore (paywall_funnel).
-  // Тащит за собой A/B-вариант пейвола + цвет онбординга (obColor) + план — чтобы
-  // дашборд мог сравнить конверсию по цвету. Fire-and-forget, никогда не бросает.
-  //
-  // Цвет резолвим ЗАНОВО внутри (getStableId→getOnboardingColorVariant), а не
-  // берём из state: state дефолтит в 'blue' и до асинхронного резолва на маунте
-  // мог бы записать ложный 'blue' для зелёной группы (однобокий перекос выборки).
-  // Свежий резолв здесь = цвет в воронке всегда настоящий, без гонки.
   const logOnboardingFunnel = useCallback((funnelStep: 'shown' | 'cta_click' | 'trial_started' | 'purchase_completed' | 'close') => {
     void (async () => {
       try {
-        const [{ logPaywallFunnel }, { resolvePaywallAbVariant }, { getStableId }, { getOnboardingColorVariant }] = await Promise.all([
+        const [{ logPaywallFunnel }, { resolvePaywallAbVariant }] = await Promise.all([
           import('../app/paywall_funnel'),
           import('../app/paywall_variant'),
-          import('../app/stable_id'),
-          import('../app/remote_flags'),
         ]);
-        const [{ variant }, stableId] = await Promise.all([resolvePaywallAbVariant(), getStableId()]);
-        const resolvedColor = getOnboardingColorVariant(stableId);
+        const { variant } = await resolvePaywallAbVariant();
         const planForFunnel = selectedPlanBilling === 'annual' ? 'yearly' : 'monthly';
-        logPaywallFunnel(funnelStep, { variant, context: 'onboarding', plan: planForFunnel, obColor: resolvedColor });
+        logPaywallFunnel(funnelStep, { variant, context: 'onboarding', plan: planForFunnel, obColor });
       } catch {
         /* fire-and-forget */
       }
     })();
-  }, [selectedPlanBilling]);
+  }, [selectedPlanBilling, obColor]);
 
   // Fade-in экрана при каждой смене шага
   useEffect(() => {
@@ -861,15 +1042,29 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       void trackEvent('onboarding_step_view', { step, ob_color: obColor });
       if (step === 'planPaywall') {
         void trackEvent('onboarding_plan_paywall_view', { plan: selectedPlanBilling, ob_color: obColor });
+        void import('../app/app_activity').then(({ trackActivity }) =>
+          trackActivity('paywall:view', {
+            feature: 'revenue',
+            screen: 'onboarding',
+            result: 'info',
+            writeToFirestore: true,
+            tags: {
+              context: 'onboarding',
+              source: 'onboarding',
+              plan: selectedPlanBilling,
+              ob_color: obColor,
+            },
+          }),
+        );
         logOnboardingFunnel('shown');
       }
     });
   }, [step, screenFade, selectedPlanBilling, obColor, logOnboardingFunnel]);
 
-  // Реальные цены из RevenueCat для онбординг-пейвола. Грузим при входе на planResult,
-  // чтобы к planPaywall цены и сигнал триала уже были готовы. НЕТ хардкода цен/валюты/триала.
+  // Реальные цены грузит единый A/B paywall. На planResult не трогаем RevenueCat,
+  // чтобы выбор плана не запускал лишнюю сетевую работу до открытия paywall.
   useEffect(() => {
-    if (step !== 'planResult' && step !== 'planPaywall') return;
+    if (step !== 'planPaywall') return;
     if (storePrices.loaded) return;
     let cancelled = false;
     (async () => {
@@ -910,6 +1105,14 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
 
   useEffect(() => {
     if (step !== 'planLoading') return;
+    if (completedPlanLoadingAnswerKeyRef.current === planLoadingAnswerKey) {
+      setPlanLoadingCtaReady(true);
+      planLoadingMeter.setValue(1);
+      planLoadingBuildAnims.forEach((value) => value.setValue(1));
+      planLoadingButtonAnim.setValue(1);
+      return;
+    }
+
     setPlanLoadingCtaReady(false);
     planLoadingMeter.setValue(0);
     planLoadingBuildAnims.forEach((value) => value.setValue(0));
@@ -940,7 +1143,10 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         }),
       ]),
     ];
-    const timeout = setTimeout(() => setPlanLoadingCtaReady(true), PLAN_LOADING_BUTTON_REVEAL.delay);
+    const timeout = setTimeout(() => {
+      completedPlanLoadingAnswerKeyRef.current = planLoadingAnswerKey;
+      setPlanLoadingCtaReady(true);
+    }, PLAN_LOADING_BUTTON_REVEAL.delay);
     Animated.parallel(animations).start();
     return () => {
       clearTimeout(timeout);
@@ -948,13 +1154,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       planLoadingBuildAnims.forEach((value) => value.stopAnimation());
       planLoadingButtonAnim.stopAnimation();
     };
-  }, [planLoadingBuildAnims, planLoadingButtonAnim, planLoadingMeter, step]);
-
-  useEffect(() => {
-    if (step !== 'planPhrase') return;
-    setSelectedPlanPhraseTokens([]);
-    setPlanPhraseWasCorrect(false);
-  }, [step]);
+  }, [planLoadingAnswerKey, planLoadingBuildAnims, planLoadingButtonAnim, planLoadingMeter, step]);
 
   useEffect(() => {
     if (step !== 'planResult' && step !== 'planDetails') return;
@@ -1080,25 +1280,30 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   const handleNameDone = async () => {
     if (nameBusy) return;
     setNameFieldError(null);
-    const trimmed = name.trim();
-    if (!trimmed) {
-      setNameFieldError(pick('Введи имя, чтобы продолжить', 'Введіть ім\'я щоб продовжити', 'Escribe tu nombre para continuar'));
+    const validation = validateNameDraft(name);
+    if (!validation.ok) {
+      const value = name.trim();
+      setNameFieldError(validation.message);
+      setNameAvailability({ status: 'error', value, message: validation.message });
       return;
     }
-    if (trimmed.length < 2) {
-      setNameFieldError(pick('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres'));
+    const trimmed = validation.trimmed;
+    const availabilityMatches = nameAvailability.value.trim().toLowerCase() === trimmed.toLowerCase();
+    if (availabilityMatches && nameAvailability.status === 'taken') {
+      const message = pickNameText(
+        'Это имя уже занято — придумай другой ник.',
+        'Це ім\'я вже зайняте — вигадай інший нік.',
+        'Este nombre ya está en uso; prueba con otro.',
+      );
+      setNameFieldError(message);
+      setNameAvailability({ status: 'taken', value: trimmed, message });
       return;
     }
-    if (trimmed.length > 20) {
-      setNameFieldError(pick('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres'));
-      return;
-    }
-    const prof = validateProfileName(trimmed);
-    if (prof === 'profanity') {
-      setNameFieldError(pick(
-        'Это имя не подходит — выберите другое.',
-        'Це ім\'я не підходить — оберіть інше.',
-        'Este nombre no es adecuado; prueba con otro.',
+    if (availabilityMatches && nameAvailability.status === 'checking') {
+      setNameFieldError(pickNameText(
+        'Подожди секунду — проверяем имя.',
+        'Зачекай секунду — перевіряємо ім\'я.',
+        'Espera un segundo; estamos comprobando el nombre.',
       ));
       return;
     }
@@ -1122,34 +1327,54 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     const reusingOwnName = priorReservedName.length > 0
       && priorReservedName.toLowerCase() === trimmed.toLowerCase();
 
-    let result: Awaited<ReturnType<typeof reserveName>>;
+    let result: Awaited<ReturnType<typeof reserveNameDetailed>>;
     try {
-      result = await reserveName(trimmed, priorReservedName);
+      result = await reserveNameDetailed(trimmed, priorReservedName, { source: 'onboarding' });
     } catch {
-      result = 'error';
+      result = { status: 'error' };
     }
-    if (result === 'taken' && !reusingOwnName) {
+    if (result.status === 'taken' && !reusingOwnName) {
       setNameBusy(false);
-      setNameFieldError(pick(
+      const message = pickNameText(
         'Это имя уже занято — придумай другой ник.',
         'Це ім\'я вже зайняте — вигадай інший нік.',
         'Este nombre ya está en uso; prueba con otro.',
-      ));
+      );
+      setNameFieldError(message);
+      setNameAvailability({ status: 'taken', value: trimmed, message });
       return;
     }
-    if (result !== 'ok' && !reusingOwnName) {
+    if (result.status === 'cooldown' && !reusingOwnName) {
       setNameBusy(false);
-      setNameFieldError(pick(
+      const message = pickNameText(
+        'Имя уже закреплено за этим профилем. Продолжи с ним или попробуй позже.',
+        'Ім\'я вже закріплене за цим профілем. Продовж із ним або спробуй пізніше.',
+        'El nombre ya está fijado para este perfil. Continúa con él o inténtalo más tarde.',
+      );
+      setNameFieldError(message);
+      setNameAvailability({ status: 'error', value: trimmed, message });
+      return;
+    }
+    if (result.status !== 'ok' && !reusingOwnName) {
+      setNameBusy(false);
+      const message = pickNameText(
         'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
         'Не вдалося перевірити ім\'я. Перевір мережу й спробуй ще раз.',
         'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
-      ));
+      );
+      setNameFieldError(message);
+      setNameAvailability({ status: 'error', value: trimmed, message });
       return;
     }
 
     // Бронь подтверждена ('ok') ИЛИ юзер повторно вводит уже зарезервированное им же
     // имя (анти-петля после краша) — применяем имя.
     setName(trimmed);
+    setNameAvailability({
+      status: 'available',
+      value: trimmed,
+      message: pickNameText('Имя свободно', 'Ім\'я вільне', 'Nombre disponible'),
+    });
     nameForProfileRef.current = trimmed;
     try {
       Keyboard.dismiss();
@@ -1244,6 +1469,43 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   // Вызывается при нажатии CTA на inline-пейволе.
   // Если юзер уже Premium (или только что получил intro-доступ) — сразу к имени.
   // Иначе — покупка RevenueCat прямо здесь, без перехода на /premium_modal.
+  const openSelectedPlanAbPaywall = async () => {
+    if (paywallPurchasing) return;
+    setPaywallPurchasing(true);
+    try {
+      const paywallPlan = selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly';
+      void import('../app/analytics').then(({ trackEvent }) =>
+        trackEvent('onboarding_plan_paywall_open', { plan: paywallPlan, ob_color: obColor }),
+      );
+      void logOnboardingFunnel('cta_click');
+
+      await AsyncStorage.multiSet([
+        ['app_lang', lang],
+        ['onboarding_plan_billing', paywallPlan],
+        [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+        ['onboarding_step', 'name'],
+      ]);
+      await queuePendingPersonalPlanActivation({
+        planId: selectedPlanId,
+        minutesPerDay: selectedPlanMinutesForPlan,
+        source: 'onboarding',
+      });
+
+      const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);
+      if (hasPremiumAccess || introFullAccessStarted) {
+        await activatePendingPersonalPlanAfterPremium();
+        setNicknameMode('personal_plan');
+        goToStep('name');
+        return;
+      }
+
+      setNicknameMode('personal_plan');
+      await Promise.resolve(onPersonalPlanPaywallStart?.());
+    } finally {
+      setPaywallPurchasing(false);
+    }
+  };
+
   const handlePaywallPurchase = async () => {
     if (paywallPurchasing) return;
 
@@ -1262,7 +1524,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       ]);
       await queuePendingPersonalPlanActivation({
         planId: selectedPlanId,
-        minutesPerDay: selectedPlanMinutes,
+        minutesPerDay: selectedPlanMinutesForPlan,
         source: 'onboarding',
       });
       await activatePendingPersonalPlanAfterPremium();
@@ -1282,6 +1544,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         { scheduleTrialEndReminder, requestNotificationPermission },
         { emitAppEvent },
         { trackEvent },
+        { trackActivity },
         { hapticTap: hap },
       ] = await Promise.all([
         import('react-native-purchases').then((m) => m.default),
@@ -1291,6 +1554,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         import('../app/notifications'),
         import('../app/events'),
         import('../app/analytics').then((m) => ({ trackEvent: m.trackEvent })),
+        import('../app/app_activity').then((m) => ({ trackActivity: m.trackActivity })),
         import('../hooks/use-haptics'),
       ]);
 
@@ -1327,6 +1591,19 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       if (!finalPkg) return;
 
       void trackEvent('purchase_started', { context: 'onboarding', plan: selectedPlanBilling, product_id: finalPkg.product.identifier, ob_color: obColor });
+      void trackActivity('paywall:cta_click', {
+        feature: 'revenue',
+        screen: 'onboarding',
+        result: 'info',
+        writeToFirestore: true,
+        tags: {
+          context: 'onboarding',
+          source: 'onboarding',
+          plan: selectedPlanBilling,
+          productId: finalPkg.product.identifier,
+          ob_color: obColor,
+        },
+      });
 
       const pkgTrial = getTrialInfo(finalPkg);
       const { customerInfo } = await Purchases.purchasePackage(finalPkg);
@@ -1336,6 +1613,20 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       emitAppEvent('premium_activated');
       hap();
       void trackEvent('purchase_completed', { context: 'onboarding', plan: selectedPlanBilling, with_trial: pkgTrial.hasTrial, ob_color: obColor });
+      void trackActivity('paywall:purchase_success', {
+        feature: 'revenue',
+        screen: 'onboarding',
+        result: 'success',
+        writeToFirestore: true,
+        tags: {
+          context: 'onboarding',
+          source: 'onboarding',
+          plan: selectedPlanBilling,
+          productId: metadata.productId,
+          with_trial: pkgTrial.hasTrial,
+          ob_color: obColor,
+        },
+      });
       logOnboardingFunnel('purchase_completed');
 
       if (pkgTrial.hasTrial) {
@@ -1365,7 +1656,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       ]);
       await queuePendingPersonalPlanActivation({
         planId: selectedPlanId,
-        minutesPerDay: selectedPlanMinutes,
+        minutesPerDay: selectedPlanMinutesForPlan,
         source: 'onboarding',
       });
       await activatePendingPersonalPlanAfterPremium();
@@ -1421,7 +1712,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
           ['onboarding_step', 'name'],
         ]);
-        await queuePendingPersonalPlanActivation({ planId: selectedPlanId, minutesPerDay: selectedPlanMinutes, source: 'onboarding' });
+        await queuePendingPersonalPlanActivation({ planId: selectedPlanId, minutesPerDay: selectedPlanMinutesForPlan, source: 'onboarding' });
         await activatePendingPersonalPlanAfterPremium();
         setNicknameMode('personal_plan');
         goToStep('name');
@@ -1440,7 +1731,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
 
   const renderScreen = (
     testID: string | undefined,
-    _source: ImageSourcePropType | null,
+    source: ImageSourcePropType | null,
     children: React.ReactNode,
     contentStyle?: StyleProp<ViewStyle>,
     hideClose = false,
@@ -1453,6 +1744,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       onClose={handleCloseOnboarding}
       styles={styles}
       theme={theme}
+      source={source}
     >
       {children}
     </OnboardingScreenShell>
@@ -1490,7 +1782,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel="Назад"
-            onPress={() => goToStep(PREV_STEP[step] ?? 'planEntry')}
+            onPress={() => goToStep(getOnboardingPrevStep(step) ?? onboardingEntryStepRef.current)}
             activeOpacity={0.82}
             style={styles.planFlowBack}
           >
@@ -1521,7 +1813,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel="Назад"
-        onPress={() => goToStep(PREV_STEP[step] ?? 'planEntry')}
+        onPress={() => goToStep(getOnboardingPrevStep(step) ?? onboardingEntryStepRef.current)}
         activeOpacity={0.82}
         style={styles.planFlowBack}
       >
@@ -1630,6 +1922,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   );
 
   // ── Шаг 0: Добро пожаловать в бета ─────────────────────────────────────────
+  if (!onboardingEntryReady) {
+    return renderScreen(
+      'onboarding-ab-resolving-screen',
+      ONBOARDING_BG_WELCOME,
+      <View />,
+      styles.eliteWelcomeRoot,
+      true,
+    );
+  }
+
   if (step === 'planEntry') {
     return renderScreen(
       'onboarding-plan-entry-screen',
@@ -1685,7 +1987,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               onPress={async () => {
                 setNicknameMode('regular');
                 await AsyncStorage.removeItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY).catch(() => {});
-                goToStep('name');
+                goToStep(onboardingSimpleStepRef.current);
               }}
               activeOpacity={0.82}
             >
@@ -1787,7 +2089,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 setSelectedPlanOverride(null);
                 void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_plan_minutes_select', { minutes: choice }));
                 scheduleDailyReminder(20, 0, lang, { requestPermission: false }).catch(() => {});
-                goToStep('planPhrase');
+                goToStep('planLoading');
               }}
             >
               <PlanFlowIcon source={ONBOARDING_PLAN_ICONS.time} styles={styles} />
@@ -1806,63 +2108,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             </TouchableOpacity>
           );
         })}
-      </View>,
-    );
-  }
-
-  if (step === 'planPhrase') {
-    const phraseAnswer = selectedPlanPhraseTokens.join(' ');
-    const canContinuePlanPhrase = selectedPlanPhraseTokens.length > 0;
-    const planPhraseHasError = phraseAnswer.length > 0 && phraseAnswer !== PLAN_PHRASE_TARGET.join(' ');
-    return renderPlanFlowScreen(
-      'onboarding-plan-phrase-screen',
-      '',
-      'Соберём первую фразу',
-      '',
-      <View style={styles.planPhraseCard}>
-        <Text style={styles.planPhraseRu}>Мне нужно больше времени.</Text>
-        <View style={[styles.planPhraseLine, planPhraseHasError && styles.planPhraseLineError]}>
-          <Text style={[styles.planPhraseAnswer, !phraseAnswer && styles.planPhraseAnswerEmpty]}>
-            {phraseAnswer || ' '}
-          </Text>
-        </View>
-        <View style={styles.planPhraseTokens}>
-          {PLAN_PHRASE_TOKENS.map((token) => {
-            const selected = selectedPlanPhraseTokens.includes(token);
-            return (
-            <TouchableOpacity
-              key={token}
-              style={[styles.planPhraseToken, selected && styles.planPhraseTokenSelected]}
-              activeOpacity={0.8}
-              onPress={() => {
-                setSelectedPlanPhraseTokens((current) => (
-                  current.includes(token)
-                    ? current.filter((item) => item !== token)
-                    : [...current, token]
-                ));
-              }}
-            >
-              <Text style={styles.planPhraseTokenText}>{token}</Text>
-            </TouchableOpacity>
-            );
-          })}
-        </View>
-        {canContinuePlanPhrase ? (
-        <DuoPressable
-          style={[
-            styles.eliteWelcomeCta,
-            styles.planMockupPrimaryButton,
-          ]}
-          edgeColor={theme.accentDeep}
-          onPress={() => {
-            setPlanPhraseWasCorrect(!planPhraseHasError);
-            void import('../app/analytics').then(({ trackEvent }) => trackEvent('onboarding_plan_phrase_done', { correct: !planPhraseHasError }));
-            goToStep('planLoading');
-          }}
-        >
-          <Text style={styles.planMockupPrimaryButtonText}>Продолжить</Text>
-        </DuoPressable>
-        ) : null}
       </View>,
     );
   }
@@ -1929,7 +2174,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       testID: 'onboarding-plan-result-screen',
       brand: 'Результат',
       plan: selectedPlan,
-      minutes: selectedPlanMinutes,
+      minutes: selectedPlanMinutesForPlan,
       todayIconAsset: selectedPlan.todayIconAsset,
       actions: (
         <>
@@ -1937,7 +2182,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           testID="data-plan-result-cta"
           style={[styles.eliteWelcomeCta, styles.planMockupPrimaryButton]}
           edgeColor={theme.accentDeep}
-          onPress={() => goToStep('planPaywall')}
+          onPress={openSelectedPlanAbPaywall}
         >
           <Text style={styles.planMockupPrimaryButtonText}>Это мой план — вперёд</Text>
         </DuoPressable>
@@ -1956,9 +2201,9 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   }
 
   if (step === 'planPaywall') {
-    const goalLabel = PLAN_GOAL_CHOICES.find((c) => c.id === selectedPlanGoal)?.title ?? selectedPlanGoal;
-    const levelLabel = PLAN_LEVEL_CHOICES.find((c) => c.id === selectedPlanLevel)?.title ?? selectedPlanLevel;
-    const minutesLabel = `${selectedPlanMinutes === 20 ? '20+' : selectedPlanMinutes} мин/день`;
+    const goalLabel = PLAN_GOAL_CHOICES.find((c) => c.id === selectedPlanGoalForPlan)?.title ?? selectedPlanGoalForPlan;
+    const levelLabel = PLAN_LEVEL_CHOICES.find((c) => c.id === selectedPlanLevelForPlan)?.title ?? selectedPlanLevelForPlan;
+    const minutesLabel = `${selectedPlanMinutesForPlan === 20 ? '20+' : selectedPlanMinutesForPlan} мин/день`;
     const userName = (nameForProfileRef.current || name).trim();
     const heroTitle = userName ? `${userName}, твой план готов` : 'Твой план готов';
     const trialDays = storePrices.trialDays;
@@ -2008,7 +2253,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 <PlanFlowIcon source={selectedPlan.iconAsset} small styles={styles} />
                 <View style={styles.planFlowOptionCopy}>
                   <Text style={styles.planFlowOptionTitle}>Неделя 1 — открыта сейчас</Text>
-                  <Text style={styles.planFlowOptionSub}>Старт с уровня {selectedPlan.recommendedLevel}, {selectedPlanMinutes} мин/день</Text>
+                  <Text style={styles.planFlowOptionSub}>Старт с уровня {selectedPlan.recommendedLevel}, {selectedPlanMinutesForPlan} мин/день</Text>
                 </View>
               </View>
               <View style={styles.planPaywallPreviewLocked}>
@@ -2308,8 +2553,18 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     );
   }
 
-  // ── Шаг 0: Welcome — главный оффер ─────────────────────────────────────────
   if (step === 'welcome') {
+    return renderScreen(
+      'onboarding-welcome-disabled-screen',
+      ONBOARDING_BG_WELCOME,
+      <View />,
+      styles.eliteWelcomeRoot,
+      true,
+    );
+  }
+
+  // ── Шаг 0: Welcome — главный оффер ─────────────────────────────────────────
+  if (false && step === 'welcome') {
     if (USE_ELITE_ONBOARDING_WELCOME) {
       const heroY = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
       const heroScale = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [0.98, 1] });
@@ -2751,6 +3006,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           'Tu plan personal está listo. Solo falta nombrar el perfil.',
         )
       : '';
+    const nameAvailabilityMatches = nameAvailability.value.trim().toLowerCase() === name.trim().toLowerCase();
+    const nameAvailabilityStatus: OnboardingNameAvailabilityStatus = nameAvailabilityMatches
+      ? nameAvailability.status
+      : 'idle';
+    const nameAvailabilityMessage = nameAvailabilityMatches ? nameAvailability.message : null;
+    const nameHasBlockingStatus = nameAvailabilityStatus === 'checking' || nameAvailabilityStatus === 'taken';
+    const nameHasErrorStatus = Boolean(nameFieldError) || nameAvailabilityStatus === 'taken' || nameAvailabilityStatus === 'error';
+    const nameLiveStatusMessage = nameFieldError || nameAvailabilityMessage || '';
+    const nameStatusVisible = Boolean(nameLiveStatusMessage);
+    const nameContinueDisabled = nameBusy || nameHasBlockingStatus;
     return renderScreen(
       'onboarding-name-screen',
       ONBOARDING_BG_NAME,
@@ -2764,7 +3029,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel="Назад"
-              onPress={() => goToStep(PREV_STEP[step] ?? 'planEntry')}
+              onPress={() => goToStep(getOnboardingPrevStep(step) ?? onboardingEntryStepRef.current)}
               activeOpacity={0.82}
               style={styles.regularNameBack}
             >
@@ -2810,36 +3075,73 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 {nameBranchSubtitle}
               </Text>
             ) : null}
-            {nameFieldError ? (
-              <Text style={styles.regularNameError} maxFontSizeMultiplier={1.08}>
-                {nameFieldError}
-              </Text>
-            ) : null}
-            <View style={styles.regularNameInputFrame}>
-              <TextInput
-                testID="onboarding-name-input"
-                style={styles.regularNameInput}
-                value={name}
-                onChangeText={(t) => {
-                  setName(t);
-                  if (nameFieldError) setNameFieldError(null);
-                }}
-                placeholder=""
-                placeholderTextColor={theme.accent2}
-                autoFocus={false}
-                maxLength={20}
-                editable={!nameBusy}
-                returnKeyType="done"
-                onSubmitEditing={handleNameDone}
-                maxFontSizeMultiplier={1.08}
-              />
+            <View
+              style={[
+                styles.regularNameInputFrame,
+                nameAvailabilityStatus === 'available' && styles.regularNameInputFrameAvailable,
+                nameHasErrorStatus && styles.regularNameInputFrameError,
+                nameAvailabilityStatus === 'checking' && styles.regularNameInputFrameChecking,
+              ]}
+            >
+              <View style={styles.regularNameInputShell}>
+                <TextInput
+                  testID="onboarding-name-input"
+                  style={[
+                    styles.regularNameInput,
+                    styles.regularNameInputWithStatus,
+                    nameAvailabilityStatus === 'available' && styles.regularNameInputAvailable,
+                    nameHasErrorStatus && styles.regularNameInputError,
+                    nameAvailabilityStatus === 'checking' && styles.regularNameInputChecking,
+                  ]}
+                  value={name}
+                  onChangeText={(t) => {
+                    setName(t);
+                    if (nameFieldError) setNameFieldError(null);
+                  }}
+                  placeholder=""
+                  placeholderTextColor={theme.accent2}
+                  autoFocus={false}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  textContentType="username"
+                  maxLength={20}
+                  editable={!nameBusy}
+                  returnKeyType="done"
+                  onSubmitEditing={handleNameDone}
+                  maxFontSizeMultiplier={1.08}
+                />
+                {nameAvailabilityStatus === 'checking' ? (
+                  <View pointerEvents="none" style={styles.regularNameStatusIcon}>
+                    <ActivityIndicator size="small" color={theme.accent2} />
+                  </View>
+                ) : nameAvailabilityStatus === 'available' ? (
+                  <View pointerEvents="none" style={[styles.regularNameStatusIcon, styles.regularNameStatusIconAvailable]}>
+                    <Ionicons name="checkmark" size={18} color="#06140d" />
+                  </View>
+                ) : nameHasErrorStatus ? (
+                  <View pointerEvents="none" style={[styles.regularNameStatusIcon, styles.regularNameStatusIconError]}>
+                    <Ionicons name="close" size={18} color="#3A0508" />
+                  </View>
+                ) : null}
+              </View>
             </View>
+            <Text
+              style={[
+                styles.regularNameStatusText,
+                !nameStatusVisible && styles.regularNameStatusTextHidden,
+                nameAvailabilityStatus === 'available' && styles.regularNameStatusTextAvailable,
+                nameHasErrorStatus && styles.regularNameStatusTextError,
+              ]}
+              maxFontSizeMultiplier={1.08}
+            >
+              {nameLiveStatusMessage || ' '}
+            </Text>
             <DuoPressable
               testID="onboarding-name-continue"
-              style={[styles.eliteWelcomeCta, styles.regularNameCta, nameBusy && { opacity: 0.75 }]}
+              style={[styles.eliteWelcomeCta, styles.regularNameCta, nameContinueDisabled && { opacity: 0.75 }]}
               edgeColor={theme.accentDeep}
               onPress={handleNameDone}
-              disabled={nameBusy}
+              disabled={nameContinueDisabled}
             >
               <Text style={styles.eliteWelcomeCtaText} maxFontSizeMultiplier={1.05}>
                 {pick('Продолжить', 'Продовжити', 'Continuar')}
@@ -3379,6 +3681,7 @@ function OnboardingScreenShell({
   onClose,
   styles,
   theme,
+  source,
   children,
 }: {
   testID?: string;
@@ -3388,13 +3691,14 @@ function OnboardingScreenShell({
   onClose: () => void | Promise<void>;
   styles: OnboardingStyles;
   theme: OnboardingTheme;
+  source?: ImageSourcePropType | null;
   children: React.ReactNode;
 }) {
   const insets = useSafeAreaInsets();
   const closeTop = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
   return (
     <SafeAreaView edges={[]} style={styles.container} testID={testID}>
-      <OnboardingArtBackground motion="zoomOut" styles={styles} theme={theme} />
+      <OnboardingArtBackground source={source} motion="zoomOut" styles={styles} theme={theme} />
       <Animated.View style={[styles.onboardingContentLayer, contentStyle, { opacity: screenFade }]}>
         {children}
       </Animated.View>
@@ -3477,9 +3781,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     height: 5,
     backgroundColor: t.accent,
     borderRadius: 999,
-    shadowColor: t.accent,
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
   },
   onboardingCloseButton: {
     position: 'absolute',
@@ -3489,7 +3790,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 30,
-    elevation: 30,
   },
   onboardingBg: {
     ...StyleSheet.absoluteFillObject,
@@ -3501,16 +3801,21 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
   onboardingBgDim: {
     ...StyleSheet.absoluteFillObject,
   },
+  onboardingBgImageStack: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 1,
+  },
+  onboardingBgImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
+  },
   onboardingParticleLayer: {
     ...StyleSheet.absoluteFillObject,
   },
   onboardingParticle: {
     position: 'absolute',
     backgroundColor: t.accent,
-    shadowColor: t.accent,
-    shadowOpacity: 0.72,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 0 },
   },
   onboardingGlassCard: {
     flexDirection: 'row',
@@ -3524,10 +3829,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255,244,205,0.18)',
     backgroundColor: 'rgba(20,18,15,0.50)',
-    shadowColor: '#000',
-    shadowOpacity: 0.24,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 8 },
   },
   onboardingGlassCardCompact: {
     minHeight: 68,
@@ -3569,17 +3870,8 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     marginBottom: 6,
   },
   streakIconShadow: {
-    shadowColor: t.accent,
-    shadowOpacity: 0.28,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 4,
   },
   streakHeroIconShadow: {
-    shadowOpacity: 0.42,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 8,
   },
   regularNameRoot: {
     flex: 1,
@@ -3675,7 +3967,24 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     backgroundColor: 'rgba(15,19,27,0.82)',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.20)',
-    marginBottom: 16,
+    marginBottom: 8,
+  },
+  regularNameInputFrameChecking: {
+    borderColor: t.accentBorderSoft,
+  },
+  regularNameInputFrameAvailable: {
+    borderColor: '#22C55E',
+    backgroundColor: 'rgba(34,197,94,0.12)',
+  },
+  regularNameInputFrameError: {
+    borderColor: '#FF6B6B',
+    backgroundColor: 'rgba(255,107,107,0.10)',
+  },
+  regularNameInputShell: {
+    width: '100%',
+    minHeight: 48,
+    justifyContent: 'center',
+    position: 'relative',
   },
   regularNameInput: {
     width: '100%',
@@ -3692,6 +4001,60 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     textAlign: 'center',
     paddingHorizontal: 14,
     paddingVertical: 12,
+  },
+  regularNameInputWithStatus: {
+    paddingLeft: 46,
+    paddingRight: 46,
+  },
+  regularNameInputChecking: {
+    borderColor: t.accentBorderSoft,
+    backgroundColor: 'rgba(255,255,255,0.07)',
+  },
+  regularNameInputAvailable: {
+    borderColor: '#22C55E',
+    backgroundColor: 'rgba(34,197,94,0.16)',
+    color: '#5BE9A6',
+  },
+  regularNameInputError: {
+    borderColor: '#FF6B6B',
+    backgroundColor: 'rgba(255,107,107,0.12)',
+    color: '#FF9A9A',
+  },
+  regularNameStatusIcon: {
+    position: 'absolute',
+    right: 12,
+    top: 10,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  regularNameStatusIconAvailable: {
+    backgroundColor: '#22C55E',
+  },
+  regularNameStatusIconError: {
+    backgroundColor: '#FF6B6B',
+  },
+  regularNameStatusText: {
+    width: '100%',
+    minHeight: 34,
+    color: t.textMuted,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: '800',
+    textAlign: 'center',
+    marginBottom: 14,
+    paddingHorizontal: 8,
+  },
+  regularNameStatusTextHidden: {
+    opacity: 0,
+  },
+  regularNameStatusTextAvailable: {
+    color: '#5BE9A6',
+  },
+  regularNameStatusTextError: {
+    color: '#FF8A8A',
   },
   regularNameCta: {
     minHeight: 56,
@@ -3728,11 +4091,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     alignSelf: 'center',
     marginTop: 18,
     marginBottom: 10,
-    shadowColor: t.accent,
-    shadowOpacity: 0.2,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 6,
   },
   planEntryMarkGlass: {
     borderColor: 'rgba(255,255,255,0.17)',
@@ -3764,7 +4122,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
   planEntryCta: {
     minHeight: 54,
     paddingVertical: 13,
-    shadowOpacity: 0.23,
   },
   planEntryCtaText: {
     fontSize: 16,
@@ -3823,11 +4180,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginBottom: 30,
-    shadowColor: t.accent,
-    shadowOpacity: 0.2,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 6,
   },
   eliteWelcomeMarkGlass: {
     width: '100%',
@@ -3861,10 +4213,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.10)',
     backgroundColor: 'rgba(255,255,255,0.045)',
-    shadowColor: '#D6B85C',
-    shadowOpacity: 0.18,
-    shadowRadius: 24,
-    shadowOffset: { width: 0, height: 12 },
   },
   eliteHeroTopRow: {
     flexDirection: 'row',
@@ -3969,11 +4317,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: 'rgba(255,244,205,0.38)',
-    shadowColor: t.accent,
-    shadowOpacity: 0.36,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 8,
   },
   eliteWelcomeCtaText: {
     color: t.ctaText,
@@ -4030,11 +4373,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'rgba(255,244,205,0.36)',
-    shadowColor: t.accent,
-    shadowOpacity: 0.34,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 8,
   },
   continueBtnText: { color: t.ctaText, fontSize: 18, fontWeight: '900' },
   langHint:        { color: DARK.textGhost, fontSize: 14, fontWeight: '500', letterSpacing: 0.5, marginBottom: 32 },
@@ -4268,11 +4606,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     backgroundColor: 'rgba(12,15,21,0.68)',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.12)',
-    shadowColor: t.accent,
-    shadowOpacity: 0.08,
-    shadowRadius: 22,
-    shadowOffset: { width: 0, height: 0 },
-    elevation: 2,
   },
   planMockupDaysTop: {
     flexDirection: 'row',
@@ -4329,10 +4662,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     height: '100%',
     borderRadius: 999,
     transformOrigin: 'left center',
-    shadowColor: t.accent,
-    shadowOpacity: 0.52,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 0 },
   },
   planFlowBottomStack: {
     width: '100%',
@@ -4843,11 +5172,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     backgroundColor: 'rgba(18,20,25,0.96)',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.18)',
-    shadowColor: '#000',
-    shadowOpacity: 0.55,
-    shadowRadius: 34,
-    shadowOffset: { width: 0, height: 18 },
-    elevation: 18,
   },
   planFreeConfirmTitle: {
     color: t.textPrimary,
@@ -4868,62 +5192,6 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     width: '100%',
     gap: 8,
     marginTop: 16,
-  },
-  planPhraseCard: {
-    width: '100%',
-    gap: 18,
-  },
-  planPhraseRu: {
-    color: t.textPrimary,
-    fontSize: 28,
-    lineHeight: 36,
-    fontWeight: '900',
-    textAlign: 'center',
-    marginTop: 18,
-  },
-  planPhraseLine: {
-    minHeight: 64,
-    borderBottomWidth: 1,
-    borderColor: 'rgba(255,244,205,0.24)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  planPhraseLineError: {
-    borderColor: '#FF5A5F',
-  },
-  planPhraseAnswer: {
-    color: t.accent,
-    fontSize: 24,
-    fontWeight: '900',
-  },
-  planPhraseAnswerEmpty: {
-    opacity: 0,
-  },
-  planPhraseTokens: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-    marginBottom: 10,
-  },
-  planPhraseToken: {
-    flexGrow: 1,
-    minWidth: '45%',
-    minHeight: 54,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-    backgroundColor: 'rgba(255,255,255,0.08)',
-    borderWidth: 1,
-    borderColor: 'rgba(255,244,205,0.16)',
-  },
-  planPhraseTokenSelected: {
-    opacity: 0.42,
-    borderColor: t.accentBorder,
-  },
-  planPhraseTokenText: {
-    color: t.textPrimary,
-    fontSize: 18,
-    fontWeight: '900',
   },
   planProgressRail: {
     width: '100%',
@@ -4982,16 +5250,40 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
 });
 
 function OnboardingArtBackground({
+  source,
   motion = 'zoomOut',
   styles,
   theme,
 }: {
+  source?: ImageSourcePropType | null;
   motion?: 'zoomIn' | 'zoomOut';
   styles: OnboardingStyles;
   theme: OnboardingTheme;
 }) {
-  void motion;
+  const progress = useRef(new Animated.Value(0)).current;
   const particleAnims = useRef(ONBOARDING_BACKGROUND_PARTICLES.map(() => new Animated.Value(0))).current;
+
+  useEffect(() => {
+    progress.setValue(0);
+    const anim = Animated.loop(
+      Animated.sequence([
+        Animated.timing(progress, {
+          toValue: 1,
+          duration: 22_000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(progress, {
+          toValue: 0,
+          duration: 22_000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    anim.start();
+    return () => anim.stop();
+  }, [motion, progress]);
 
   useEffect(() => {
     let active = true;
@@ -5021,23 +5313,63 @@ function OnboardingArtBackground({
     };
   }, [particleAnims]);
 
+  const bgScale = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: motion === 'zoomIn' ? [1.0, 1.085] : [1.085, 1.0],
+  });
+  const bgTranslateY = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: motion === 'zoomIn' ? [10, -10] : [-10, 10],
+  });
+  const bgTranslateX = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-6, 6],
+  });
+  const baseGradientColors: [string, string, string] = source
+    ? ['rgba(22,14,4,0.08)', 'rgba(5,6,7,0.24)', 'rgba(0,0,0,0.72)']
+    : [theme.bgBottom, theme.bgTop, theme.bgEdge];
+  const dimGradientColors: [string, string, string, string, string] = source
+    ? [
+        'rgba(1,2,3,0.04)',
+        'rgba(2,3,5,0.12)',
+        'rgba(3,4,6,0.28)',
+        'rgba(2,2,3,0.58)',
+        'rgba(0,0,0,0.92)',
+      ]
+    : [
+        'rgba(1,2,3,0.58)',
+        'rgba(2,3,5,0.68)',
+        'rgba(3,4,6,0.76)',
+        'rgba(2,2,3,0.90)',
+        'rgba(0,0,0,0.99)',
+      ];
+
   return (
     <>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <View pointerEvents="none" style={styles.onboardingBg}>
+        {source ? (
+          <View pointerEvents="none" style={styles.onboardingBgImageStack}>
+            <Animated.Image
+              source={source}
+              style={[
+                styles.onboardingBgImage,
+                { transform: [{ translateX: bgTranslateX }, { translateY: bgTranslateY }, { scale: bgScale }] },
+              ]}
+              resizeMode="cover"
+              resizeMethod="resize"
+              fadeDuration={0}
+              accessible={false}
+            />
+          </View>
+        ) : null}
         <LinearGradient
-          colors={[theme.bgBottom, theme.bgTop, theme.bgEdge]}
+          colors={baseGradientColors}
           locations={[0, 0.45, 1]}
           style={styles.onboardingBgDim}
         />
         <LinearGradient
-          colors={[
-            'rgba(1,2,3,0.58)',
-            'rgba(2,3,5,0.68)',
-            'rgba(3,4,6,0.76)',
-            'rgba(2,2,3,0.90)',
-            'rgba(0,0,0,0.99)',
-          ]}
+          colors={dimGradientColors}
           locations={[0, 0.32, 0.56, 0.78, 1]}
           style={styles.onboardingBgDim}
         />

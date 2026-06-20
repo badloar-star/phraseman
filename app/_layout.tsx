@@ -64,6 +64,7 @@ import { MatchmakingProvider } from '../contexts/MatchmakingContext';
 import MatchFoundToast from '../components/MatchFoundToast';
 import ActionToast from '../components/ActionToast';
 import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
+import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
 import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
@@ -113,6 +114,7 @@ import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_k
 import { syncWidgetData } from './widget_bridge';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
 import { APP_FONT_ASSETS, APP_FONT_FAMILY } from './typography';
+import { getTodayKey } from './daily_tasks';
 import { installInterFontPatch } from './font_family_patch';
 import {
   getIntroFullAccessState,
@@ -194,6 +196,7 @@ DefaultText.defaultProps = {
 };
 
 const STARTUP_SPLASH_BG = '#101214';
+const DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX = 'daily_tasks_first_visit_modal_seen_v1';
 const FIRST_CONTENT_READY_FALLBACK_MS = 900;
 const USE_ELITE_LEVEL_UP_MODAL = true;
 const POST_ONBOARDING_GOLD_BRIDGE_MS = 3000;
@@ -470,16 +473,14 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
           consecutiveDays: consecutive,
         },
       });
-      if (Math.max(0, Math.round(loginBonusResult.finalDelta || 0)) <= 0) {
-        return;
+      if (Math.max(0, Math.round(loginBonusResult.finalDelta || 0)) > 0) {
+        // Сохранить бонус для отображения на Home
+        await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle: consecutive }));
+        await AsyncStorage.setItem('login_bonus_v1', JSON.stringify({ lastDate: today, consecutiveDays: consecutive }));
+
+        // Ачивки за логин
+        checkAchievements({ type: 'login', consecutiveDays: consecutive }).catch(() => {});
       }
-
-      // Сохранить бонус для отображения на Home
-      await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle: consecutive }));
-      await AsyncStorage.setItem('login_bonus_v1', JSON.stringify({ lastDate: today, consecutiveDays: consecutive }));
-
-      // Ачивки за логин
-      checkAchievements({ type: 'login', consecutiveDays: consecutive }).catch(() => {});
     }
 
     // ── 2. Comeback Bonus ───────────────────────────────────────────────────
@@ -1017,6 +1018,7 @@ function AppContent() {
   const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
+  const [dailyPlanModalDue, setDailyPlanModalDue] = useState(false);
   const { setLang, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { isPremium, isVip } = usePremium();
@@ -1976,6 +1978,33 @@ function AppContent() {
     }
   }, [isBanned, pendingRoute, ready, rootNavigationReady, router, showOnboarding]);
 
+  const dailyPlanModalSeenKey = `${DAILY_TASKS_FIRST_VISIT_MODAL_SEEN_PREFIX}:${studyTarget ?? 'default'}:${getTodayKey()}`;
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!ready || !rootNavigationReady || effectiveShowOnboarding || isBanned || !firstContentReady) {
+      setDailyPlanModalDue(false);
+      return () => {
+        cancelled = true;
+      };
+    }
+    AsyncStorage.getItem(dailyPlanModalSeenKey)
+      .then((seen) => {
+        if (!cancelled) setDailyPlanModalDue(seen !== '1');
+      })
+      .catch(() => {
+        if (!cancelled) setDailyPlanModalDue(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [dailyPlanModalSeenKey, effectiveShowOnboarding, firstContentReady, isBanned, ready, rootNavigationReady]);
+
+  const closeDailyPlanModal = useCallback(() => {
+    setDailyPlanModalDue(false);
+    AsyncStorage.setItem(dailyPlanModalSeenKey, '1').catch(() => {});
+  }, [dailyPlanModalSeenKey]);
+
   useEffect(() => {
     if (!postOnboardingGoldBridgeArmed || !ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
     setPostOnboardingGoldBridgeArmed(false);
@@ -1999,6 +2028,7 @@ function AppContent() {
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const firstLessonSheetVisible = useOverlayVisible('firstLessonSheet', showFirstLessonSheet);
+  const dailyPlanModalVisible = useOverlayVisible('dailyPlan', dailyPlanModalDue);
   useEffect(() => {
     if (!firstLessonSheetVisible) {
       firstLessonSheetAnim.stopAnimation();
@@ -2466,6 +2496,12 @@ function AppContent() {
         </View>
       </Modal>
     )}
+
+    <DailyTasksFirstVisitModal
+      visible={appOverlaysEnabled && dailyPlanModalVisible}
+      studyTarget={studyTarget}
+      onClose={closeDailyPlanModal}
+    />
 
     {ready && effectiveShowOnboarding && (
       <View style={styles.appFullScreenOverlay}>

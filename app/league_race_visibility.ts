@@ -1,9 +1,10 @@
-import { DEV_MODE } from './config';
+import { DEV_CONTENT_UNLOCK } from './config';
 
 export const LEAGUE_RACE_MIN_PARTICIPANTS = 10;
 
 function isDevBuild(): boolean {
-  return DEV_MODE || (typeof __DEV__ !== 'undefined' && __DEV__);
+  // DEV_CONTENT_UNLOCK гасится в стор-сборке → в проде требование «≥10 участников» соблюдается.
+  return DEV_CONTENT_UNLOCK;
 }
 
 export function canPreviewLeagueRaceInDev(userName?: string | null): boolean {

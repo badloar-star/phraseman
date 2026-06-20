@@ -1,6 +1,7 @@
 ﻿import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticTap } from '../../hooks/use-haptics';
+import { useCorrectSound } from '../../hooks/use-correct-sound';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import BouncyScrollView, { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
@@ -8,7 +9,7 @@ import Reanimated from 'react-native-reanimated';
 import TapScale from '../../components/TapScale';
 import CompassDepthSurface from '../../components/CompassDepthSurface';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import { usePremium } from '../../components/PremiumContext';
+import { useFeatureAccess } from '../../components/PremiumContext';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import {
@@ -51,7 +52,7 @@ import { bumpQuizSessionCompleted } from '../lifetime_profile_stats';
 import { logQuizComplete, logQuizLevelSelected, logEnergyLimitHit } from '../firebase';
 import { trackEnergyHit, trackQuizLevel } from '../user_stats';
 import { emitAppEvent } from '../events';
-import { DEV_MODE, STORE_URL } from '../config';
+import { DEV_CONTENT_UNLOCK, STORE_URL } from '../config';
 import { updateMultipleTaskProgress } from '../daily_tasks';
 import { DebugLogger } from '../debug-logger';
 import { useEnergy } from '../../components/EnergyContext';
@@ -81,7 +82,7 @@ import { safeRouterBack } from '../navigation_back';
 import type { PhraseMistakeInput } from '../phrase_analytics';
 import {
   QUIZ_E2E_OPEN_RESULTS_KEY,
-  QUIZ_LEVEL_LOGOS,
+  getQuizLevelLogoSource,
 } from '../quizzes/constants';
 import { getQuizCompletionMedalSource } from '../quizzes/medal_assets';
 import {
@@ -146,7 +147,7 @@ function diffWords(wrong: string, correct: string): { word: string; isWrong: boo
 
 // Используем QuizPhrase из quiz_data.ts
 type Phrase = QuizPhrase;
-type LegacyQuizThemeMode = 'light' | 'ocean' | 'sakura';
+type LegacyQuizThemeMode = 'light' | 'ocean' | 'sakura' | 'forest' | 'neonGreen' | 'neon-green';
 type QuizVisualThemeMode = ThemeMode | LegacyQuizThemeMode;
 
 function quizExplanationIndexForAnswer(phrase: Phrase, chosen: number | null, typedOk: boolean | null): number {
@@ -179,6 +180,9 @@ function XpCounter({ anim, xpNeeded, textStyle }: { anim: Animated.Value; xpNeed
 // Kept for backward compatibility with locked items
 const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondary: string }> = {
   dark:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
+  forest: { primary: '#FFFFFF', secondary: 'rgba(226,255,238,0.7)' },
+  neonGreen: { primary: '#FFFFFF', secondary: 'rgba(230,255,190,0.72)' },
+  'neon-green': { primary: '#FFFFFF', secondary: 'rgba(230,255,190,0.72)' },
   light:  { primary: '#0F172A', secondary: 'rgba(15,23,42,0.6)'   },
   gold:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   coral:  { primary: '#FFFFFF', secondary: '#D8C2C5' },
@@ -406,8 +410,7 @@ function BaseQuizLevelCard({
   const gradB = locked ? t.bgSurface : isLightTheme ? 'rgba(255,255,255,0.92)' : 'rgba(15,23,42,0.88)';
   const visualSelected = isSelected && !locked;
   const compassRadius = 10;
-  const levelLogoMap = QUIZ_LEVEL_LOGOS as Record<string, Record<Level, ImageSourcePropType>>;
-  const levelLogo = levelLogoMap[themeMode]?.[level] ?? levelLogoMap.minimalDark[level];
+  const levelLogo = getQuizLevelLogoSource(themeMode, level);
   const fillTx = fillAnim.interpolate({
     inputRange: [0, 1],
     outputRange: [-startTrackW, 0],
@@ -845,11 +848,13 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   const { studyTarget } = useStudyTarget();
 
   const router = useRouter();
-  const { hasPremiumAccess: isPremium } = usePremium();
+  // «Пульт»: дневной лимит/замки квизов снимаются, когда фича переведена в «Фри».
+  const isPremium = useFeatureAccess('quizzes');
   const insets = useSafeAreaInsets();
   const { energy, bonusEnergy, isUnlimited: energyUnlimited } = useEnergy();
   const [selected, setSelected] = useState<QuizMenuSelection | null>(null);
   const [showLevelNoEnergy, setShowLevelNoEnergy] = useState(false);
+  const [showNoQuestions, setShowNoQuestions] = useState(false);
   const [freeQuizState, setFreeQuizState] = useState<QuizDailyLimitState>({
     date: '',
     count: 0,
@@ -916,7 +921,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
   }, [router]);
 
   const consumeFreeSlotForStart = useCallback(async (selection: QuizMenuSelection): Promise<boolean> => {
-    if (DEV_MODE || isPremium) return true;
+    if (DEV_CONTENT_UNLOCK || isPremium) return true;
 
     const nextState = await consumeFreeDailyQuizStart();
     if (nextState) {
@@ -928,6 +933,34 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     openQuizLimitPaywall();
     return false;
   }, [isPremium, openQuizLimitPaywall]);
+
+  /**
+   * Проверяет, что банк вопросов для выбранного уровня/темы НЕ пустой —
+   * повторяет логику useMemo `phrases` в QuizGame. Нужно ДО списания дневного
+   * слота, чтобы пустой квиз не сжигал попытку.
+   */
+  const hasPhrasesForSelection = useCallback((selection: QuizMenuSelection): boolean => {
+    if (!quizContentAvailableForTarget(studyTarget)) return false;
+    try {
+      if (isLevelSelection(selection)) {
+        const quizLevel: Level = LEVEL_CONFIG[selection] ? selection : 'easy';
+        if (getQuizPhrasesLoaded(quizLevel, 10, lang).length > 0) return true;
+        for (const fallbackLevel of ['easy', 'medium', 'hard'] as const) {
+          if (getQuizPhrasesLoaded(fallbackLevel, 10, lang).length > 0) return true;
+        }
+        return false;
+      }
+      // Тематический квиз.
+      return getThematicQuizPhrases(selection, {
+        sourceLocale: lang,
+        studyTarget,
+        level: 'A1',
+      }).length > 0;
+    } catch (e) {
+      DebugLogger.error('quizzes.tsx:hasPhrasesForSelection', e, 'warning');
+      return false;
+    }
+  }, [lang, studyTarget]);
 
   const runStartFill = useCallback((anim: Animated.Value, onDone: () => void) => {
     let completed = false;
@@ -966,6 +999,11 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       setShowLevelNoEnergy(true);
       return;
     }
+    // Банк вопросов пуст → не списываем дневной слот/энергию, показываем сообщение.
+    if (!hasPhrasesForSelection(level)) {
+      setShowNoQuestions(true);
+      return;
+    }
     startInFlightRef.current = true;
     armStartInFlightWatchdog();
     void (async () => {
@@ -979,7 +1017,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     })().catch(() => {
       releaseStartInFlight();
     });
-  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, onSelect, releaseStartInFlight, runStartFill]);
+  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, onSelect, releaseStartInFlight, runStartFill]);
 
   const handleStartThematic = useCallback((categoryId: ThematicQuizCategoryId, anim: Animated.Value) => {
     if (startInFlightRef.current) return;
@@ -987,6 +1025,11 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
       logEnergyLimitHit('quiz');
       trackEnergyHit().catch(() => {});
       setShowLevelNoEnergy(true);
+      return;
+    }
+    // Банк вопросов пуст → не списываем дневной слот/энергию, показываем сообщение.
+    if (!hasPhrasesForSelection(categoryId)) {
+      setShowNoQuestions(true);
       return;
     }
     startInFlightRef.current = true;
@@ -1000,9 +1043,9 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
     }).catch(() => {
       releaseStartInFlight();
     });
-  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, onSelect, releaseStartInFlight, runStartFill]);
+  }, [armStartInFlightWatchdog, bonusEnergy, consumeFreeSlotForStart, energy, energyUnlimited, hasPhrasesForSelection, onSelect, releaseStartInFlight, runStartFill]);
 
-  const lockedByDailyLimit = !DEV_MODE && !isPremium && freeQuizState.exhausted;
+  const lockedByDailyLimit = !DEV_CONTENT_UNLOCK && !isPremium && freeQuizState.exhausted;
   const isLightEntryTheme = themeMode === 'light';
   const sectionLabelColor = isLightEntryTheme ? 'rgba(31,41,51,0.58)' : 'rgba(226,232,240,0.64)';
   return (
@@ -1023,7 +1066,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
             <Ionicons name="chevron-back" size={24} color={t.textPrimary}/>
           </TapScale>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight:'900' }} adjustsFontSizeToFit numberOfLines={1}>
+            <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight:'900' }} numberOfLines={1}>
               {triLang(lang, {
                 ru: 'Вызовы',
                 uk: 'Квізи',
@@ -1132,7 +1175,7 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
           })}
         </View>
 
-        {!DEV_MODE && !isPremium && (
+        {!DEV_CONTENT_UNLOCK && !isPremium && (
           <View style={{
             marginTop: 2,
             borderRadius: 16,
@@ -1174,6 +1217,43 @@ function LevelSelect({ onSelect }: { onSelect:(selection:QuizMenuSelection)=>voi
         onClose={() => setShowLevelNoEnergy(false)}
         paywallContext="no_energy"
       />
+
+      <Modal transparent animationType="fade" visible={showNoQuestions} onRequestClose={() => setShowNoQuestions(false)}>
+        <Pressable onPress={() => setShowNoQuestions(false)} style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingHorizontal:32 }}>
+          <Pressable onPress={() => {}} style={{ width:'100%', maxWidth:360, backgroundColor:t.bgCard, borderRadius:24, borderWidth:0.5, borderColor:t.border, padding:24, alignItems:'center' }}>
+            <Text style={{ color:t.textPrimary, fontSize:f.body, lineHeight:f.body * 1.35, textAlign:'center', fontWeight:'700' }}>
+              {triLang(lang, {
+  ru: 'Вопросы временно недоступны',
+  uk: 'Питання тимчасово недоступні',
+  es: 'No hay preguntas disponibles por ahora.',
+  "pt-BR": 'As perguntas estão temporariamente indisponíveis.',
+  vi: 'Hiện chưa có câu hỏi.',
+  id: 'Pertanyaan sementara tidak tersedia.',
+  tr: 'Sorular şu anda kullanılamıyor.',
+  pl: 'Pytania są chwilowo niedostępne.',
+})}
+            </Text>
+            <TapScale
+              onPress={() => { hapticTap(); setShowNoQuestions(false); }}
+              withHaptic={false}
+              style={{ marginTop:20, paddingHorizontal:28, paddingVertical:12, borderRadius:22, backgroundColor:t.accent }}
+            >
+              <Text style={{ color:'#fff', fontSize:f.body, fontWeight:'800' }}>
+                {triLang(lang, {
+  ru: 'Понятно',
+  uk: 'Зрозуміло',
+  es: 'Entendido',
+  "pt-BR": 'Entendi',
+  vi: 'Đã hiểu',
+  id: 'Mengerti',
+  tr: 'Anladım',
+  pl: 'Rozumiem',
+})}
+              </Text>
+            </TapScale>
+          </Pressable>
+        </Pressable>
+      </Modal>
     </View>
     </ScreenGradient>
   );
@@ -1211,7 +1291,9 @@ function QuizGame({
 
   const { goHome, activeIdx } = useTabNav();
   const router = useRouter();
-  const { hasPremiumAccess: isPremium } = usePremium();
+  const { playCorrect } = useCorrectSound();
+  // «Пульт»: дневной лимит/замки квизов снимаются, когда фича переведена в «Фри».
+  const isPremium = useFeatureAccess('quizzes');
   const insets = useSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
   const isLightTheme = themeMode === 'light';
@@ -1370,6 +1452,7 @@ function QuizGame({
   const isTabActiveRef = useRef(true);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [showTimeoutAlert, setShowTimeoutAlert] = useState(false);
+  const [showAgainConfirm, setShowAgainConfirm] = useState(false);
   const settingsRef = useRef<Settings>(DEFAULT_SETTINGS);
 
   // ── Имя пользователя загружаем ОДИН РАЗ в ref — нет race condition ──────
@@ -1429,6 +1512,37 @@ function QuizGame({
   const xpAnimStarted = useRef(false);
   const xpTimer1      = useRef<ReturnType<typeof setTimeout> | null>(null);
   const xpTimer2      = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /**
+   * Перезапуск квиза кнопкой «Ещё раз». Для free-юзера списывает дневной слот
+   * (только после подтверждения в showAgainConfirm). Для премиума вызывается напрямую.
+   */
+  const runAgainRestart = useCallback(async () => {
+    // Отменяем все pending таймеры от предыдущей игры
+    if (autoAdvanceTimerRef.current) { clearTimeout(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; }
+    if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
+    if (!DEV_CONTENT_UNLOCK && !isPremium) {
+      const nextState = await consumeFreeDailyQuizStart();
+      if (!nextState) {
+        router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+        return;
+      }
+    }
+    fadeAnim.stopAnimation();
+    fadeAnim.setValue(1);
+    // Перечитываем актуальный XP из storage чтобы не сбрасывать заработанный
+    AsyncStorage.getItem('user_total_xp').then(v => { setTotalXP(parseInt(v || '0') || 0); }).catch(() => {});
+    setIdx(0); setChosen(null); setScore(0); setEarnedXP(0);
+    setStreak(0); streakRef.current = 0;
+    setResults([]); setDone(false); setReviewing(false);
+    setCoachToast(null);
+    wrongMistakesRef.current = [];
+    setTyped(''); setTypedOk(null);
+    xpAnimStarted.current = false;
+    quizCompletedRef.current = false;
+    xpFlyY.setValue(0); xpFlyOpacity.setValue(1);
+    setRetryCount(c => c + 1); // принудительно перезагружает вопросы
+  }, [fadeAnim, isPremium, router, xpFlyOpacity, xpFlyY]);
 
   // Запускаем XP-анимации когда done=true и score уже установлен
   useEffect(() => {
@@ -1617,6 +1731,25 @@ function QuizGame({
   pl: 'Pytania są chwilowo niedostępne.',
 })}
             </Text>
+            <TapScale
+              onPress={() => { hapticTap(); onBack(); }}
+              withHaptic={false}
+              style={{ marginTop:24, flexDirection:'row', alignItems:'center', gap:8, paddingHorizontal:22, paddingVertical:12, borderRadius:24, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border }}
+            >
+              <Ionicons name="chevron-back" size={20} color={onGradPrimary}/>
+              <Text style={{ color:onGradPrimary, fontSize: f.body, fontWeight:'700' }}>
+                {triLang(lang, {
+  ru: 'Назад',
+  uk: 'Назад',
+  es: 'Volver',
+  "pt-BR": 'Voltar',
+  vi: 'Quay lại',
+  id: 'Kembali',
+  tr: 'Geri',
+  pl: 'Wstecz',
+})}
+              </Text>
+            </TapScale>
           </View>
         </ContentWrap>
       </ScreenGradient>
@@ -1628,7 +1761,8 @@ function QuizGame({
       <ScreenGradient forceFullBleed artBackdrop="quizzes">
       <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
-        <Text style={{ color:onGradMuted, fontSize: f.body }}>
+        <View style={{ alignItems:'center', paddingHorizontal:24 }}>
+        <Text style={{ color:onGradMuted, fontSize: f.body, textAlign:'center' }}>
           {triLang(lang, {
   ru: 'Что-то пошло не так',
   uk: 'Щось пішло не так',
@@ -1640,6 +1774,26 @@ function QuizGame({
   pl: 'Coś poszło nie tak',
 })}
         </Text>
+        <TapScale
+          onPress={() => { hapticTap(); onBack(); }}
+          withHaptic={false}
+          style={{ marginTop:24, flexDirection:'row', alignItems:'center', gap:8, paddingHorizontal:22, paddingVertical:12, borderRadius:24, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border }}
+        >
+          <Ionicons name="chevron-back" size={20} color={onGradPrimary}/>
+          <Text style={{ color:onGradPrimary, fontSize: f.body, fontWeight:'700' }}>
+            {triLang(lang, {
+  ru: 'Назад',
+  uk: 'Назад',
+  es: 'Volver',
+  "pt-BR": 'Voltar',
+  vi: 'Quay lại',
+  id: 'Kembali',
+  tr: 'Geri',
+  pl: 'Wstecz',
+})}
+          </Text>
+        </TapScale>
+        </View>
         </ContentWrap>
       </View>
       </ScreenGradient>
@@ -1704,6 +1858,7 @@ function QuizGame({
 
     if (!reviewing) {
       if (isRight) {
+        playCorrect();
         // Используем streakRef.current — всегда актуальное значение
         const currentStreak = streakRef.current;
         const ns  = currentStreak + 1;
@@ -1876,9 +2031,9 @@ function QuizGame({
           <View style={[{ backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : `${rankInfo.color}22`, borderRadius: isCompassTheme ? 9 : 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : `${rankInfo.color}55`, marginBottom:16, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}>
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
           </View>
-          <Text style={{ color:t.textPrimary, fontSize: f.numLg, fontWeight:'700', marginBottom:10 }} adjustsFontSizeToFit numberOfLines={1}>{s.quizzes.done}</Text>
+          <Text style={{ color:t.textPrimary, fontSize: f.numLg, fontWeight:'700', marginBottom:10 }} numberOfLines={1}>{s.quizzes.done}</Text>
           <Text style={{ color:t.textPrimary, fontSize: f.h1, marginBottom:4 }}>{right} / {total}</Text>
-          <Text style={{ color:t.textSecond, fontSize: f.numLg + 8, fontWeight:'700', marginBottom:8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
+          <Text style={{ color:t.textSecond, fontSize: f.numLg + 8, fontWeight:'700', marginBottom:8 }} numberOfLines={1}>{pct}%</Text>
           {/* "+X опыта" — анимированно летит вниз к полоске */}
           <Animated.Text style={{ color:t.correct, fontSize: f.h2, fontWeight:'600', marginBottom: bonusXP > 0 ? 4 : 16, transform:[{translateY: xpFlyY}], opacity: xpFlyOpacity }}>
             +{Math.round(earnedXP || score)} {triLang(lang, {
@@ -1954,32 +2109,15 @@ function QuizGame({
           })()}
           <TouchableOpacity
             style={[{ width:'100%', borderWidth:1.5, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : levelAccent, padding:18, borderRadius: isCompassTheme ? 9 : 14, alignItems:'center', marginBottom:12, backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : t.bgCard, overflow: isCompassTheme ? 'hidden' : 'visible' }, isCompassTheme && compassShadow(1)]}
-            onPress={async () => {
+            onPress={() => {
               hapticTap();
-              // Отменяем все pending таймеры от предыдущей игры
-              if (autoAdvanceTimerRef.current) { clearTimeout(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; }
-              if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
-              if (!DEV_MODE && !isPremium) {
-                const nextState = await consumeFreeDailyQuizStart();
-                if (!nextState) {
-                  router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
-                  return;
-                }
+              // Free-юзер тратит ещё одну попытку из дневного лимита — спрашиваем подтверждение.
+              // Премиум (без лимита) — перезапуск сразу, как раньше.
+              if (!DEV_CONTENT_UNLOCK && !isPremium) {
+                setShowAgainConfirm(true);
+                return;
               }
-              fadeAnim.stopAnimation();
-              fadeAnim.setValue(1);
-              // Перечитываем актуальный XP из storage чтобы не сбрасывать заработанный
-              AsyncStorage.getItem('user_total_xp').then(v => { setTotalXP(parseInt(v || '0') || 0); }).catch(() => {});
-              setIdx(0); setChosen(null); setScore(0); setEarnedXP(0);
-              setStreak(0); streakRef.current = 0;
-              setResults([]); setDone(false); setReviewing(false);
-              setCoachToast(null);
-              wrongMistakesRef.current = [];
-              setTyped(''); setTypedOk(null);
-              xpAnimStarted.current = false;
-              quizCompletedRef.current = false;
-              xpFlyY.setValue(0); xpFlyOpacity.setValue(1);
-              setRetryCount(c => c + 1); // принудительно перезагружает вопросы
+              void runAgainRestart();
             }}
           >
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : levelAccent, fontSize: f.bodyLg, fontWeight:'600' }}>{s.quizzes.again}</Text>
@@ -2150,7 +2288,7 @@ function QuizGame({
           <TapScale onPress={() => onBack()}>
             <Ionicons name="chevron-back" size={28} color={onGradPrimary}/>
           </TapScale>
-          <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : levelAccent, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1} adjustsFontSizeToFit>
+          <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : levelAccent, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1}>
             {reviewing ? s.quizzes.fixErrors : label}
           </Text>
           <View style={{ flexDirection:'row', alignItems:'center', position:'relative', gap:8 }}>
@@ -2233,7 +2371,6 @@ function QuizGame({
           {/* ВОПРОС */}
           <Text
             numberOfLines={planQuizId ? 3 : undefined}
-            adjustsFontSizeToFit={Boolean(planQuizId)}
             style={{ color:onGradPrimary, fontSize: planQuizId ? f.h2 + 2 : f.h2 + 6, fontWeight:'500', marginBottom: planQuizId ? 10 : 12, lineHeight: planQuizId ? 28 : 32 }}
           >
             {triLang(lang, {
@@ -2280,7 +2417,6 @@ function QuizGame({
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Text
                   numberOfLines={planQuizId ? 2 : undefined}
-                  adjustsFontSizeToFit={Boolean(planQuizId)}
                   style={{ color: isLightTheme ? onGradPrimary : displayColor, fontSize: planQuizId ? f.bodyLg : f.h2 + 2, fontWeight: '600', lineHeight: (planQuizId ? f.bodyLg : f.h2 + 2) * 1.35, flex: 1 }}
                 >
                   {shownCorrectEnglish}
@@ -2478,7 +2614,6 @@ function QuizGame({
                     {isCompassTheme && !on ? <CompassDepthSurface radius={9} quiet /> : null}
                     <Text
                       numberOfLines={planQuizId ? 2 : undefined}
-                      adjustsFontSizeToFit={Boolean(planQuizId)}
                       style={{ color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: planQuizId ? f.bodyLg : f.h2 + 2, lineHeight: (planQuizId ? f.bodyLg : f.h2 + 2) * 1.22, fontWeight: on ? '700' : '600' }}
                     >{ch}</Text>
                   </DuoPressable>
@@ -2571,7 +2706,7 @@ function QuizGame({
       >
         <Pressable onPress={e => e.stopPropagation()}>
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 320, width: '90%' }}>
-            <Text style={{ fontSize: 52, marginBottom: 12 }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>⏰</Text>
+            <Text style={{ fontSize: 52, marginBottom: 12 }} numberOfLines={1}>⏰</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
   ru: 'Время вышло!',
@@ -2624,6 +2759,76 @@ function QuizGame({
   id: 'Mengerti',
   tr: 'Anladım',
   pl: 'Rozumiem',
+})}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </Pressable>
+      </Pressable>
+    </Modal>
+
+    {/* Модал: подтверждение «Ещё раз» — для free-юзера повтор тратит попытку из дневного лимита */}
+    <Modal transparent animationType="fade" visible={showAgainConfirm} onRequestClose={() => setShowAgainConfirm(false)}>
+      <Pressable style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', padding:32 }}
+        onPress={() => { hapticTap(); setShowAgainConfirm(false); }}
+      >
+        <Pressable onPress={e => e.stopPropagation()}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 340, width: '90%' }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
+              {triLang(lang, {
+  ru: 'Ещё одна попытка?',
+  uk: 'Ще одна спроба?',
+  es: '¿Otro intento?',
+  "pt-BR": 'Mais uma tentativa?',
+  vi: 'Thêm một lượt nữa?',
+  id: 'Coba lagi sekali?',
+  tr: 'Bir deneme daha?',
+  pl: 'Jeszcze jedna próba?',
+})}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginBottom: 24 }}>
+              {triLang(lang, {
+  ru: 'Повтор потратит ещё одну попытку из твоего дневного лимита.',
+  uk: 'Повтор витратить ще одну спробу з твого денного ліміту.',
+  es: 'Repetir gastará otro intento de tu límite diario.',
+  "pt-BR": 'Repetir vai gastar mais uma tentativa do seu limite diário.',
+  vi: 'Chơi lại sẽ dùng thêm một lượt trong giới hạn hằng ngày của bạn.',
+  id: 'Mengulang akan memakai satu kesempatan lagi dari batas harianmu.',
+  tr: 'Tekrar oynamak günlük limitinden bir hak daha harcar.',
+  pl: 'Powtórka zużyje kolejną próbę z Twojego dziennego limitu.',
+})}
+            </Text>
+            <TouchableOpacity
+              style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 32, width: '100%', alignItems: 'center', marginBottom: 10 }}
+              onPress={() => { hapticTap(); setShowAgainConfirm(false); void runAgainRestart(); }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
+                {triLang(lang, {
+  ru: 'Продолжить',
+  uk: 'Продовжити',
+  es: 'Continuar',
+  "pt-BR": 'Continuar',
+  vi: 'Tiếp tục',
+  id: 'Lanjutkan',
+  tr: 'Devam et',
+  pl: 'Kontynuuj',
+})}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ paddingVertical: 12, paddingHorizontal: 32, width: '100%', alignItems: 'center' }}
+              onPress={() => { hapticTap(); setShowAgainConfirm(false); }}
+            >
+              <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600' }}>
+                {triLang(lang, {
+  ru: 'Отмена',
+  uk: 'Скасувати',
+  es: 'Cancelar',
+  "pt-BR": 'Cancelar',
+  vi: 'Hủy',
+  id: 'Batal',
+  tr: 'İptal',
+  pl: 'Anuluj',
 })}
               </Text>
             </TouchableOpacity>
@@ -2736,7 +2941,8 @@ export default function QuizzesScreen() {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const frenchQuizBlocked = !quizContentAvailableForTarget(studyTarget);
-  const { hasPremiumAccess: isPremium } = usePremium();
+  // «Пульт»: дневной лимит/замки квизов снимаются, когда фича переведена в «Фри».
+  const isPremium = useFeatureAccess('quizzes');
   const { energy, bonusEnergy, isUnlimited } = useEnergy();
   const energySnapRef = useRef({ e: 0, b: 0, u: false });
   energySnapRef.current = { e: energy, b: bonusEnergy, u: isUnlimited };
@@ -2796,7 +3002,7 @@ export default function QuizzesScreen() {
               await AsyncStorage.removeItem(navKey);
               return;
             }
-            if (!DEV_MODE && !isPremium && !(await hasFreeDailyQuizzesLeft())) {
+            if (!DEV_CONTENT_UNLOCK && !isPremium && !(await hasFreeDailyQuizzesLeft())) {
               await AsyncStorage.removeItem(navKey);
               router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
               return;
@@ -2812,7 +3018,7 @@ export default function QuizzesScreen() {
               });
               return;
             }
-            if (!DEV_MODE && !isPremium) {
+            if (!DEV_CONTENT_UNLOCK && !isPremium) {
               const nextState = await consumeFreeDailyQuizStart();
               if (!nextState) {
                 await AsyncStorage.removeItem(navKey);

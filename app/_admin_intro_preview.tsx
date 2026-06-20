@@ -32,7 +32,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { emitAppEvent } from './events';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getLessonIntroScreens } from './lesson_data_all';
-import { DEV_MODE } from './config';
+import { ENABLE_DEV_TOOLS } from './config';
 import { lessonIntroShownKey } from './target_storage_keys';
 import { safeRouterBack } from './navigation_back';
 
@@ -195,7 +195,7 @@ export default function AdminIntroPreview() {
 
   // Защита от deep-link на проде
   useEffect(() => {
-    if (!__DEV__ && !DEV_MODE) {
+    if (!ENABLE_DEV_TOOLS) {
       router.replace('/(tabs)/settings' as any);
     }
   }, [router]);

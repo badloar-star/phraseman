@@ -19,7 +19,7 @@ import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { DEV_MODE } from './config';
+import { ENABLE_DEV_TOOLS } from './config';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -123,7 +123,7 @@ export default function AdminSpeakingLab() {
 
   // Defence-in-depth: hidden from the menu in prod, but block deep links too.
   useEffect(() => {
-    if (!__DEV__ && !DEV_MODE) {
+    if (!ENABLE_DEV_TOOLS) {
       router.replace('/(tabs)/settings' as any);
     }
   }, [router]);

@@ -112,6 +112,21 @@ export const ENABLE_PROFILE_CARD = true;
 export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;
 
 /**
+ * Production-safe замена «голому» DEV_MODE в КОНТЕНТ-гейтах (уроки, квизы, экзамен,
+ * темы оформления, dev-маркет карточек, лидерборды).
+ *
+ * История: эти гейты читали голый `DEV_MODE` (всегда =true в коде) БЕЗ `!IS_STORE_RELEASE`,
+ * поэтому «всё открыто для проверки Google Play» физически уезжало в стор-сборку и
+ * раздавало платный контент бесплатно. Этот флаг гасится в стор-сборке так же, как
+ * FORCE_PREMIUM / DEV_IAP_BYPASS / ENABLE_DEV_TOOLS — что бы ни оставила dev-сессия в
+ * DEV_MODE, в проде (EXPO_PUBLIC_STORE_RELEASE=1) пейволы остаются закрытыми.
+ *
+ * В dev-сборке поведение идентично прежнему DEV_MODE (всё открыто для удобства QA).
+ * Инвариант держит tests/dev_content_unlock_prod_guard.test.ts.
+ */
+export const DEV_CONTENT_UNLOCK = DEV_MODE && !IS_STORE_RELEASE;
+
+/**
  * Анимации переходов между экранами (slide/fade вместо мгновенного появления).
  *
  * ПО УМОЛЧАНИЮ ВЫКЛЮЧЕНО. Причина: native-stack transitions ранее роняли

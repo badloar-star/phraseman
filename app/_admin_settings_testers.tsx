@@ -91,7 +91,7 @@ import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import MedalToast from '../components/MedalToast';
 import type { MedalTier } from './medal_utils';
-import { DEV_MODE, STORE_URL } from './config';
+import { ENABLE_DEV_TOOLS, STORE_URL } from './config';
 import { setPlatformUiPreviewMode, usePlatformUiPreviewMode } from './platform_ui_preview';
 import { QUIZ_E2E_OPEN_RESULTS_KEY } from './quizzes/constants';
 import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
@@ -660,7 +660,7 @@ export default function SettingsTestersFunctions() {
 
   /** У продакшн-збірці пункт у меню прихований; без цього екран лишався доступним через deep link. */
   useEffect(() => {
-    if (!__DEV__ && !DEV_MODE) {
+    if (!ENABLE_DEV_TOOLS) {
       router.replace('/(tabs)/settings' as any);
     }
   }, [router]);

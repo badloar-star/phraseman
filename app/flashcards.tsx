@@ -9,7 +9,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { CLOUD_SYNC_ENABLED, DEV_MODE, IS_BETA_TESTER, IS_EXPO_GO } from './config';
+import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { primeCustomFlashcardsCache } from './flashcards_collection';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -47,7 +47,7 @@ export default function FlashcardsHubScreen() {
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget);
   const communityPacksEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
   const insets = useSafeAreaInsets();
-  const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
+  const isDevMarketEnabled = DEV_CONTENT_UNLOCK || IS_BETA_TESTER;
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const scrollBottomPadding = Math.max(insets.bottom, 16) + 12;
 

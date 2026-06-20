@@ -29,7 +29,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
-import { DEV_MODE, STORE_URL } from './config';
+import { DEV_CONTENT_UNLOCK, STORE_URL } from './config';
 import { shuffle } from './utils_shuffle';
 import { isLingmanExamAvailable } from './lesson_lock_system';
 import LingmanCertificateSvg from '../components/share_cards/LingmanCertificateSvg';
@@ -500,7 +500,7 @@ export default function ExamScreen() {
         return;
       }
       // Экзамен Лингмана: все 32 урока = 5.0 + все зачёты сданы
-      if(!DEV_MODE){
+      if(!DEV_CONTENT_UNLOCK){
         const available = await isLingmanExamAvailable(studyTarget);
         if(!available) setPhase('locked');
       }
@@ -1513,7 +1513,7 @@ export default function ExamScreen() {
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:15,paddingBottom:10}}>
         <Text style={{color:sx.second,fontSize:f.sub,fontWeight:'500'}}>{idx+1} / {questions.length}</Text>
         <View style={{backgroundColor:t.bgCard,borderRadius:10,paddingHorizontal:10,paddingVertical:4,borderWidth:0.5,borderColor:t.border,flex:1,marginHorizontal:8}}>
-          <Text style={{color:t.textSecond,fontSize:f.caption,fontWeight:'600'}} numberOfLines={1} adjustsFontSizeToFit>
+          <Text style={{color:t.textSecond,fontSize:f.caption,fontWeight:'600'}} numberOfLines={1}>
             {t3('Урок', 'Урок', 'Lección', 'Lição', 'Bài học', 'Pelajaran', 'Ders', 'Lekcja')} {q.lessonNum} · {examTopicForLang(q, lang)}
           </Text>
         </View>

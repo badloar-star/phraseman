@@ -34,7 +34,7 @@ import type { NearestAchievementItem } from './achievement_nearest';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticSuccess } from '../hooks/use-haptics';
-import { STORE_URL, DEV_MODE, ENABLE_DEV_TOOLS } from './config';
+import { STORE_URL, DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from './config';
 import { usePremium } from '../components/PremiumContext';
 import { oskolokImageForPackShards } from './oskolok';
 import { buildAchievementShareMessage } from './achievement_share';
@@ -1187,8 +1187,6 @@ const AchievementGridCell = memo(function AchievementGridCell({
           }}
           numberOfLines={1}
           ellipsizeMode="tail"
-          adjustsFontSizeToFit
-          minimumFontScale={0.62}
           maxFontSizeMultiplier={1}
         >
           {achievementNameForLang(a, lang)}
@@ -1506,7 +1504,7 @@ function AchievementModal({
     !unlocked &&
     achievementNeedsPremiumQuiz(achievement.id) &&
     !isPremium &&
-    !DEV_MODE;
+    !DEV_CONTENT_UNLOCK;
   const modalWidth = Math.min(560, Math.max(220, screenW - 32));
   const modalMaxHeight = Math.max(240, screenH - 48);
   const modalPad = screenW < 360 ? 18 : 24;
@@ -1853,7 +1851,7 @@ export default function AchievementsScreen() {
   const { hasPremiumAccess: isPremium }   = usePremium();
   const { width: screenW } = useWindowDimensions();
   const gold            = t.gold;
-  const premiumQuizHintDisabled = isPremium || DEV_MODE;
+  const premiumQuizHintDisabled = isPremium || DEV_CONTENT_UNLOCK;
   const gridMetrics = useMemo(() => getAchievementGridMetrics(screenW), [screenW]);
   const isUK = lang === 'uk';
 
@@ -1949,8 +1947,6 @@ export default function AchievementsScreen() {
           <View style={{ flex: 1, marginLeft: 8, minWidth: 0 }}>
             <Text
               numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.72}
               style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', lineHeight: Math.round(f.h2 * 1.15) }}
             >
               {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', es: 'Logros', 'pt-BR': 'Conquistas', vi: 'Thành tựu', id: 'Pencapaian', tr: 'Başarılar', pl: 'Osiągnięcia' })}

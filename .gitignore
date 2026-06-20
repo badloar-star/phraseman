@@ -286,3 +286,7 @@ functions/scripts/diag_*
 _bounce_test.mp4
 _frames/
 /_*.mp4
+
+# Случайный дамп админ-панели (мусор, не для релиза)
+.codex-tmp-admin-live.html
+/SECURITY_AUDIT_*.md

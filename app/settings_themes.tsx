@@ -11,9 +11,9 @@ import ContentWrap from '../components/ContentWrap';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { usePremium } from '../components/PremiumContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { DEV_MODE, ENABLE_DEV_TOOLS } from './config';
+import { ENABLE_DEV_TOOLS } from './config';
 import { triLang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { safeRouterBack } from './navigation_back';
@@ -37,14 +37,16 @@ type ThemeOption = {
   rewardOnly?: boolean;
 };
 
-const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
+// ENABLE_DEV_TOOLS уже гасится `!IS_STORE_RELEASE` — в стор-сборке премиум/наградные
+// темы остаются закрытыми. Голый DEV_MODE здесь был багом (открывал темы бесплатно в проде).
+const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;
 
 const THEME_OPTIONS: ThemeOption[] = [
-  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF', premiumOnly: true },
+  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF' },
   { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn', bg: '#010101', accent: '#FFA245', text: '#FFFFFF', preview2: '#FF8A2A', preview3: '#FF3D6E', premiumOnly: true },
   { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', bg: '#010201', accent: '#3DE8A6', text: '#FFFFFF', preview2: '#2EE6A0', preview3: '#2E9DFF', premiumOnly: true },
   { mode: 'volt', labelRU: 'Вольт', labelUK: 'Вольт', labelES: 'Volt', labelPtBr: 'Volt', labelVi: 'Volt', labelId: 'Volt', labelTr: 'Volt', labelPl: 'Volt', bg: '#010200', accent: '#D6FF3D', text: '#FFFFFF', preview2: '#B8F222', preview3: '#2EE08C', premiumOnly: true },
-  { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937' },
+  { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937', premiumOnly: true },
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
   { mode: 'coral', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', labelPtBr: 'Coral', labelVi: 'San hô', labelId: 'Koral', labelTr: 'Mercan', labelPl: 'Koral', bg: '#1C1113', accent: '#FF6464', text: '#FFFFFF', preview2: '#FF6464', preview3: '#3A2A2E', premiumOnly: true },
   { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto', bg: '#050504', accent: '#D7AD56', text: '#FFF7E6', preview2: '#F1CC72', preview3: '#18140D', rewardOnly: true },
@@ -114,7 +116,8 @@ export default function SettingsThemes() {
   const router = useRouter();
   const { theme: t, themeMode, setThemeMode, isGoldThemeUnlocked } = useTheme();
   const { lang } = useLang();
-  const { hasPremiumAccess: isPremium } = usePremium();
+  // «Пульт»: замок премиум-тем снимается, когда фича переведена в «Фри».
+  const isPremium = useFeatureAccess('themes');
   const themeRowRadius = 10;
   const themeRowHeight = 58;
 

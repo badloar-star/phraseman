@@ -46,7 +46,7 @@ import {
   getCachedMyArenaRank,
   withOptimisticArenaSelf,
 } from './arena_leaderboard_fetch';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, DEV_MODE } from './config';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, DEV_CONTENT_UNLOCK } from './config';
 import { computeAllPercentiles } from './leaderboard_stats';
 
 const ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY = 'arena_top100_manual_cooldown_until_v1';
@@ -288,10 +288,11 @@ export default function ArenaLeaderboardScreen() {
   }, [displayRows, loading, myArena, myUid]);
 
   useEffect(() => {
-    // В dev-режиме используем mock-xp если реального нет
-    const arenaXp = (myArena?.xp ?? 0) > 0 ? myArena!.xp : (__DEV__ || DEV_MODE) ? 800 : 0;
+    // В dev-режиме используем mock-xp если реального нет.
+    // DEV_CONTENT_UNLOCK гасится в стор-сборке → в проде фейковый 800 XP не подставляется.
+    const arenaXp = (myArena?.xp ?? 0) > 0 ? myArena!.xp : DEV_CONTENT_UNLOCK ? 800 : 0;
     if (arenaXp <= 0) return;
-    if (!(__DEV__ || DEV_MODE) && (myArena?.games ?? 0) < 1) return;
+    if (!DEV_CONTENT_UNLOCK && (myArena?.games ?? 0) < 1) return;
     computeAllPercentiles({ myXp: 0, myStreak: 0, myWeekXp: 0, myDaily7xp: 0, myDaily7timeMs: 0, myArenaXp: arenaXp })
       .then((p) => { if (p.arenaXp !== null && p.arenaXp >= 10) setArenaXpPercentile(p.arenaXp); })
       .catch(() => {});
@@ -574,8 +575,6 @@ export default function ArenaLeaderboardScreen() {
                       </Text>
                       <Text
                         numberOfLines={1}
-                        adjustsFontSizeToFit
-                        minimumFontScale={0.82}
                         style={{
                           width: 74,
                           color: t.textGhost,
@@ -776,7 +775,6 @@ export default function ArenaLeaderboardScreen() {
                       <Text
                         style={{ fontSize: 14, color: t.textMuted, textAlign: 'center', fontWeight: '600' }}
                         numberOfLines={1}
-                        adjustsFontSizeToFit
                       >
                         #{myArenaPlace.toLocaleString()}
                       </Text>

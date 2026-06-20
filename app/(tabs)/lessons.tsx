@@ -19,7 +19,7 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang } from '../../constants/i18n';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldCardGradient, goldCefrAccent, goldShadow } from '../../constants/goldTheme';
 import GoldBevel from '../../components/GoldBevel';
-import { DEV_MODE } from '../config';
+import { DEV_CONTENT_UNLOCK } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { getExamMedalTier, getEarnedDots } from '../medal_utils';
@@ -28,7 +28,7 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import EnergyBar from '../../components/EnergyBar';
 import DialogsTabContent from '../../components/DialogsTabContent';
-import { isAiDialogEnabled, getFreeDialogsPerDay } from '../ai_dialog_flags';
+import { isAiDialogEnabled, getFreeDialogsLifetime } from '../ai_dialog_flags';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson, getCourseLevelIndex, getPreviousCourseLevel, type CourseLevel, } from '../course_levels';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate';
@@ -318,7 +318,7 @@ export default function LessonsTab() {
     const { activeIdx, focusTick } = useTabNav();
     // Две страницы вкладки: список уроков и перенесённые ИИ-диалоги (если фича включена).
     const dialogsEnabled = isAiDialogEnabled();
-    const freeDialogsPerDay = getFreeDialogsPerDay();
+    const freeDialogsLifetime = getFreeDialogsLifetime();
     const [page, setPage] = useState<'lessons' | 'dialogs'>('lessons');
     const [gateModal, setGateModal] = useState<null | {
         kind: 'exam';
@@ -417,7 +417,7 @@ export default function LessonsTab() {
         return idx;
     }, [examResults, passCounts, persistedUnlocked, progCounts, scores]);
     const unlockedLessons = useMemo(() => {
-        if (DEV_MODE || noLimits)
+        if (DEV_CONTENT_UNLOCK || noLimits)
             return new Array(32).fill(true);
         const u = new Array(32).fill(false);
         if (isPremium) {
@@ -485,6 +485,18 @@ export default function LessonsTab() {
         topFadeScroll?.onScroll?.(e);
         onBouncyScroll(e);
     }, [onBouncyScroll, topFadeScroll]);
+    // Премиум-урок: открываем пейвол СРАЗУ, без промежуточного окна «урок входит в премиум».
+    // (Раньше тап показывал ThemedChoiceModal с кнопкой «Получить Premium» — лишний шаг.)
+    const openLessonPaywall = useCallback((lessonNum: number) => {
+        const doneSoFar = scores.filter(score => score > 0).length;
+        router.push({
+            pathname: '/premium_modal',
+            params: {
+                context: lessonPaywallContext(lessonNum),
+                lessons_done: String(doneSoFar),
+            },
+        } as any);
+    }, [router, scores]);
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
@@ -499,7 +511,7 @@ export default function LessonsTab() {
             <Ionicons name="chevron-back" size={20} color={t.textPrimary}/>
           </TapScale>
           <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
-            <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
+            <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={1}>
               {dialogsEnabled
                 ? triLang(lang, { ru: 'Обучение', uk: 'Навчання', es: 'Aprender', 'pt-BR': 'Aprender', vi: 'Học', id: 'Belajar', tr: 'Öğren', pl: 'Nauka' })
                 : s.tabs.lessons}
@@ -532,7 +544,7 @@ export default function LessonsTab() {
               badge={!isPremium}
               badgeColor={isGoldTheme ? GOLD_RICH.champagne : t.accent}
               badgeTextColor={isGoldTheme ? (t.textOnGold ?? '#2A2410') : t.correctText}
-              badgeLabel={`${freeDialogsPerDay} free`}
+              badgeLabel={`${freeDialogsLifetime} free`}
               onPress={() => { if (page !== 'dialogs') { hapticTap(); setPage('dialogs'); } }}
             />
           </View>
@@ -565,7 +577,7 @@ export default function LessonsTab() {
             const scaleAnim = itemAnims[i];
             // ── CEFR divider ─────────────────────────────────────────────
             if (item.kind === 'header') {
-                const isPremiumLevel = !isPremium && !DEV_MODE && !noLimits && item.label !== 'A1';
+                const isPremiumLevel = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && item.label !== 'A1';
                 const goldLevel = goldCefrAccent(item.label);
                 const headerAccent = isGoldTheme ? goldLevel.accent : item.color;
                 const headerWash = isGoldTheme
@@ -626,9 +638,9 @@ export default function LessonsTab() {
                 const examLevel = lvl as CourseLevel;
                 const examLevelIdx = getCourseLevelIndex(examLevel);
                 const premiumExamAvailable = isPremium && examLevelIdx <= premiumReachableLevelIndex;
-                const examPremiumRequired = !isPremium && !DEV_MODE && !noLimits && requiresPremiumForLesson(to);
+                const examPremiumRequired = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && requiresPremiumForLesson(to);
                 const examSourceAvailable = examContentAvailableForTarget(studyTarget);
-                const allDone = examSourceAvailable && !examPremiumRequired && (DEV_MODE || noLimits || premiumExamAvailable || scoreReady);
+                const allDone = examSourceAvailable && !examPremiumRequired && (DEV_CONTENT_UNLOCK || noLimits || premiumExamAvailable || scoreReady);
                 const prevExamLevel = getPreviousCourseLevel(examLevel);
                 const result = examResults[lvl];
                 const isB2 = lvl === 'B2';
@@ -708,7 +720,7 @@ export default function LessonsTab() {
                         hapticTap();
                         const firstLessonByLevel = lvl === 'A1' ? 1 : lvl === 'A2' ? 9 : lvl === 'B1' ? 19 : 29;
                         if (examPremiumRequired) {
-                            setGateModal({ kind: 'premium', lessonNum: requiresPremiumForLesson(firstLessonByLevel) ? firstLessonByLevel : to });
+                            openLessonPaywall(requiresPremiumForLesson(firstLessonByLevel) ? firstLessonByLevel : to);
                         }
                         else if (!examSourceAvailable) {
                             setGateModal({ kind: 'frenchExam', level: lvl });
@@ -818,7 +830,7 @@ export default function LessonsTab() {
                       <Text style={{ color: attestationMuted, fontSize: Math.max(12, f.label), fontWeight: '800', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
                         B2 / CEFR
                       </Text>
-                      <Text style={{ color: attestationText, fontSize: Math.max(27, f.h1), lineHeight: Math.max(32, f.h1 + 4), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
+                      <Text style={{ color: attestationText, fontSize: Math.max(27, f.h1), lineHeight: Math.max(32, f.h1 + 4), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1}>
                         {s.home.attestTile}
                       </Text>
                     </View>
@@ -843,8 +855,12 @@ export default function LessonsTab() {
             const lessonAccent = bg;
             const lessonOnAccentColor = isCoralTheme ? '#FFF8F4' : darkenHex(bg, 0.34);
             const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
-            const levelLockedByExam = isPremium && !isUnlocked && !DEV_MODE && !noLimits;
-            const premiumRequired = !isPremium && !DEV_MODE && !noLimits && requiresPremiumForLesson(num);
+            const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
+            // Плашка «Premium» на премиум-уроках для фри-юзера. НАМЕРЕННО без !DEV_CONTENT_UNLOCK:
+            // DEV_CONTENT_UNLOCK открывает ДОСТУП (для проверки Google Play), но значок Premium
+            // должен оставаться видимым — иначе фри-юзер не понимает, какие уроки платные.
+            // Доступ при этом не трогаем (урок открывается) — гасится только пейвол, не бейдж.
+            const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num);
             const showLessonProgressFill = isUnlocked && progPct > 0;
             const lockedCardHasLightFill = false;
             const cardRadius = isGoldTheme ? 14 : USE_ELITE_LESSONS_MAP ? 18 : 16;
@@ -913,7 +929,7 @@ export default function LessonsTab() {
                         lessonId: num,
                         unlocked: isUnlocked,
                         isPremium,
-                        devMode: DEV_MODE,
+                        devMode: DEV_CONTENT_UNLOCK,
                         noLimits,
                     });
                     if (access === 'available') {
@@ -922,7 +938,7 @@ export default function LessonsTab() {
                         router.push({ pathname: '/lesson_menu', params: { id: num } });
                     }
                     else if (access === 'premium_required') {
-                        setGateModal({ kind: 'premium', lessonNum: num });
+                        openLessonPaywall(num);
                     }
                     else if (levelLockedByExam && prevLessonLevel) {
                         setGateModal({ kind: 'levelGate', level: lessonLevel, prevLevel: prevLessonLevel });

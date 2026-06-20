@@ -23,7 +23,7 @@ import {
 } from './flashcards/marketplace';
 import { logFeatureOpened } from './firebase';
 import { actionToastTri, emitAppEvent } from './events';
-import { DEV_MODE, IS_BETA_TESTER } from './config';
+import { DEV_CONTENT_UNLOCK, IS_BETA_TESTER } from './config';
 import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { FLASHCARDS_MARKET_DEV_ROUTE_NAME } from '../constants/devRoutes';
 import { safeRouterBack } from './navigation_back';
@@ -52,7 +52,7 @@ export default function FlashcardsMarketDevScreen() {
   const [shards, setShards] = useState(0);
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   const [buyingPackId, setBuyingPackId] = useState<string | null>(null);
-  const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
+  const isDevMarketEnabled = DEV_CONTENT_UNLOCK || IS_BETA_TESTER;
   useEffect(() => {
     if (!isDevMarketEnabled) {
       router.replace('/flashcards' as any);

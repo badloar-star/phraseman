@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
-import { DEV_MODE, IS_BETA_TESTER } from '../config';
+import { DEV_CONTENT_UNLOCK, IS_BETA_TESTER } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
@@ -174,7 +174,7 @@ function FlashcardListItemImpl({
   const srcLabel = item.source ? sourceLabels[item.source] : null;
   /** Купленные / официальные наборы: `sourceId` = `DEV:<packId>`, без технич. подписи в UI. */
   const isMarketplaceBundleCard = String(item.sourceId ?? '').startsWith('DEV:');
-  const showDevPackCornerBadge = (DEV_MODE || IS_BETA_TESTER) && isMarketplaceBundleCard;
+  const showDevPackCornerBadge = (DEV_CONTENT_UNLOCK || IS_BETA_TESTER) && isMarketplaceBundleCard;
   const showSourceBadge = !!(srcLabel && !isMarketplaceBundleCard);
   const isModernAbbrevCard = item.sourceId === MODERN_ABBREV_DEV;
   const parsedAbbrevEn = useMemo(
@@ -501,7 +501,7 @@ function FlashcardListItemImpl({
   const detailsToggleLabel = detailsExpanded
     ? FLASHCARD_DETAILS_TOGGLE_LABELS[lang].collapse
     : FLASHCARD_DETAILS_TOGGLE_LABELS[lang].expand;
-  /** Область під шапкою: EN + IPA вміщаються за рахунок adjustsFontSizeToFit, без скролу */
+  /** Область під шапкою: EN + IPA вміщаються в кілька рядків, без скролу */
   const frontTextMaxH = Math.max(92, cardHeight - 74);
   const overlayOpacity = getOverlayAnim(item.id);
   const delAnim = getDeleteAnim(item.id);
@@ -661,8 +661,6 @@ function FlashcardListItemImpl({
                     <Text
                       maxFontSizeMultiplier={1.35}
                       numberOfLines={2}
-                      adjustsFontSizeToFit
-                      minimumFontScale={0.52}
                       style={{
                         color: t.textPrimary,
                         fontSize: f.h1 + 4,
@@ -678,8 +676,6 @@ function FlashcardListItemImpl({
                       <Text
                         maxFontSizeMultiplier={1.35}
                         numberOfLines={3}
-                        adjustsFontSizeToFit
-                        minimumFontScale={0.55}
                         style={{
                           color: t.textMuted,
                           fontSize: f.body,
@@ -698,8 +694,6 @@ function FlashcardListItemImpl({
                     <Text
                       maxFontSizeMultiplier={1.35}
                       numberOfLines={item.transcription?.trim() ? 4 : 6}
-                      adjustsFontSizeToFit
-                      minimumFontScale={item.transcription?.trim() ? 0.47 : 0.45}
                       style={{
                         color: t.textPrimary,
                         fontSize: f.h1 + 2,
@@ -714,8 +708,6 @@ function FlashcardListItemImpl({
                       <Text
                         maxFontSizeMultiplier={1.35}
                         numberOfLines={4}
-                        adjustsFontSizeToFit
-                        minimumFontScale={0.52}
                         style={{
                           color: t.textMuted,
                           fontSize: f.sub,

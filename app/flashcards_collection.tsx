@@ -1,11 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CLOUD_SYNC_ENABLED, DEV_MODE, IS_BETA_TESTER, IS_EXPO_GO } from './config';
+import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
-import { usePremium } from '../components/PremiumContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import { useAudio } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -29,7 +29,6 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -326,7 +325,7 @@ export default function FlashcardsScreen() {
     const peek = Math.max(30, Math.round(cardH * 0.19));
     return { CARD_H: cardH, PEEK: peek };
   }, [screenH, insets.top, insets.bottom, uiScale]);
-  const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
+  const isDevMarketEnabled = DEV_CONTENT_UNLOCK || IS_BETA_TESTER;
   /** На хаб карток (або pop у стеку), а не на головне меню — зручніше при відкритті з підбірки / набору. */
   const leaveCollection = useCallback(() => {
     safeRouterBack(router, '/flashcards' as any);
@@ -378,7 +377,8 @@ export default function FlashcardsScreen() {
   const [accessStableId, setAccessStableId] = useState<string | null>(null);
   /** `loadAll` завершил цикл; до этого нельзя валидировать `?pack=` по пустому `marketCards`. */
   const [collectionDataReady, setCollectionDataReady] = useState(false);
-  const { hasPremiumAccess: isPremium } = usePremium();
+  // «Пульт»: замок коллекции карточек снимается, когда фича переведена в «Фри».
+  const isPremium = useFeatureAccess('flashcards');
   const [index, setIndex]             = useState(0);
   const [, setIsFlipped]              = useState(false);
   const [allFlipped, setAllFlipped]   = useState(false);
@@ -1459,8 +1459,6 @@ export default function FlashcardsScreen() {
           <Text
             style={[st.headerTitle, { color: t.textPrimary, fontSize: collectionHeaderTitleFontSize, flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4 }]}
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.48}
             maxFontSizeMultiplier={1.2}
           >
             {headerTitle}
@@ -1560,8 +1558,6 @@ export default function FlashcardsScreen() {
           <Text
             style={[st.headerTitle, { color: t.textPrimary, fontSize: collectionHeaderTitleFontSize, flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4 }]}
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.48}
             maxFontSizeMultiplier={1.2}
           >
             {headerTitle}
@@ -1690,8 +1686,6 @@ export default function FlashcardsScreen() {
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.82}
                   style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}
                 >
                   {triLang(lang, {
@@ -1756,8 +1750,6 @@ export default function FlashcardsScreen() {
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.82}
                   style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}
                 >
                   {triLang(lang, {
@@ -1987,24 +1979,6 @@ export default function FlashcardsScreen() {
             if (detailsEscortProgrammaticRef.current) return;
             detailsEscortUserDragRef.current = true;
           }}
-          ListFooterComponent={(
-            <View style={{ alignItems: 'center', paddingVertical: 24 }}>
-              <ReportErrorButton
-                screen="flashcards_collection"
-                dataId={`flashcards_${activeCat}`}
-                dataText={triLang(lang, {
-                  ru: `Карточки · ${activeCat}`,
-                  uk: `Картки · ${activeCat}`,
-                  es: `Tarjetas · ${activeCat}`,
-                  'pt-BR': `Cartões · ${activeCat}`,
-                  vi: `Thẻ · ${activeCat}`,
-                  id: `Kartu · ${activeCat}`,
-                  tr: `Kartlar · ${activeCat}`,
-                  pl: `Karty · ${activeCat}`,
-                })}
-              />
-            </View>
-          )}
         />
         </View>
           );

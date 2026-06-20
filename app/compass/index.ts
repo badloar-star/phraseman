@@ -18,3 +18,6 @@ export { compassLessonInviteOn } from './compass_flags';
 export type { CompassDay, CompassTask, CompassDayType, CompassTaskKind } from './compass_brain';
 // Премиум-гейт плана (чинит дыру; работает независимо от флага Компаса).
 export { canActivatePlan, decidePlanAccess } from './compass_access';
+// Крыло «Экономика»: справедливый вес дня + анти-фарм (рекомендации, не начисление).
+export { computeCompassDayWeight, shouldCreditTopic } from './compass_economy';
+export { compassEconomyOn } from './compass_flags';

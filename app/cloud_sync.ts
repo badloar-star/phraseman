@@ -1546,7 +1546,11 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     const stickyPairs: [string, string][] = [];
     for (const key of stickyKeys) {
       const val = cloudData[key];
-      if (val !== null && val !== undefined) stickyPairs.push([key, cloudProgressStorageValue(key, val)]);
+      // Используем premiumValuePresent для premium/vip-ключей: пустая строка '' !== null,
+      // но должна трактоваться как «нет данных» — иначе '' затирает локальный активный план.
+      if (PREMIUM_PROGRESS_KEYS.has(key) ? premiumValuePresent(val) : (val !== null && val !== undefined)) {
+        stickyPairs.push([key, cloudProgressStorageValue(key, val)]);
+      }
     }
     // Локальный XP ≥ облачного, но ник мог остаться только в облаке (другой девайс / сбой записи).
     const localNameRaw = await AsyncStorage.getItem('user_name');

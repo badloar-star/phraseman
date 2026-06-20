@@ -13,7 +13,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
@@ -23,8 +23,10 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
-import { callExplainChoice } from './explain_choice_client';
 import { CompassLessonInvite } from './compass';
+import AiMistakeCard from '../components/AiMistakeCard';
+import MistakeEli5Modal from '../components/MistakeEli5Modal';
+import { useMistakeExplain } from './use_mistake_explain';
 import { useAudio } from '../hooks/use-audio';
 import {
   scorePlanPronunciationTranscript,
@@ -34,9 +36,12 @@ import {
 } from './personal_plan_pronunciation_scoring_client';
 import { loadPlanSpeechModule } from './personal_plan_speech_module';
 import { isSpeakingEnabled } from './remote_flags';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { VoiceEqualizer } from './voice_equalizer';
+import { speakingTargetTokens, speakingMatchedFlags } from './speaking_word_match';
+import SpeakingScoreRing from '../components/SpeakingScoreRing';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
 import type { PersonalPlanId } from './personal_plan_catalog';
@@ -49,6 +54,7 @@ import { getPersonalPlanListenBuildItems, type PersonalPlanListenBuildItem } fro
 import { getPersonalPlanPronunciationRepeatItems } from './personal_plan_pronunciation_repeat_items';
 import { getPersonalPlanPhraseRecallItems, type PersonalPlanPhraseRecallItem } from './personal_plan_phrase_recall_items';
 import { buildPlanListeningPlaybackSource } from './personal_plan_listening_playback_contract';
+import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_audio_asset_modules';
 import {
   buildPlanPronunciationAttemptPayload,
 } from './personal_plan_pronunciation_recording_contract';
@@ -60,6 +66,7 @@ import type { PlanExerciseBlock, PlanExerciseType } from './personal_plan_engine
 import { planExerciseRendererContractForType, type PlanExerciseVisualShell } from './personal_plan_exercise_renderer_contracts';
 import { evaluateRecallAnswer } from './review_evaluator';
 import BouncyScrollView from '../components/BouncyScrollView';
+import TopFadeMask from '../components/TopFadeMask';
 
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] ?? '' : value ?? '';
@@ -95,50 +102,9 @@ function normalizePlanAnswer(value: string): string {
 }
 
 // Одна строка во всех активных языках интерфейса (RU / UK / ES).
-type LocalizedText = { ru: string; uk: string; es: string };
-
-type PlanExerciseExplanation = {
-  title?: LocalizedText;
-  correct: LocalizedText;
-  wrong: LocalizedText;
-};
-
-// Сырой источник — runtime LessonTeachingNote: ru обязателен, uk/es опциональны.
-type RawTeachingNote = {
-  titleRu?: unknown;
-  titleUk?: unknown;
-  titleEs?: unknown;
-  correctRu?: unknown;
-  correctUk?: unknown;
-  correctEs?: unknown;
-  wrongRu?: unknown;
-  wrongUk?: unknown;
-  wrongEs?: unknown;
-};
-
-// Собираем LocalizedText из ru + опциональных uk/es. Если перевода нет — uk/es
-// падают в ru (а не в undefined), чтобы у украино-/испаноязычного пользователя
-// в модалке всегда был текст, а не пустота.
-function localizedFromNote(ru: string, uk: unknown, es: unknown): LocalizedText {
-  return {
-    ru,
-    uk: typeof uk === 'string' && uk ? uk : ru,
-    es: typeof es === 'string' && es ? es : ru,
-  };
-}
-
-function planExerciseExplanation(item: unknown): PlanExerciseExplanation | null {
-  if (!item || typeof item !== 'object' || !('explanation' in item)) return null;
-  const note = (item as { explanation?: RawTeachingNote }).explanation;
-  if (!note || typeof note.correctRu !== 'string' || typeof note.wrongRu !== 'string') return null;
-  return {
-    title: typeof note.titleRu === 'string'
-      ? localizedFromNote(note.titleRu, note.titleUk, note.titleEs)
-      : undefined,
-    correct: localizedFromNote(note.correctRu, note.correctUk, note.correctEs),
-    wrong: localizedFromNote(note.wrongRu, note.wrongUk, note.wrongEs),
-  };
-}
+// Старый авто-разбор «Почему так» (planExerciseExplanation + типы LocalizedText/
+// RawTeachingNote/localizedFromNote) удалён: на неверном ответе теперь ИИ-разбор
+// (AiMistakeCard), на верном — короткое «Верно!». Генерёжка больше не нужна.
 
 type PlanExerciseModeChrome = {
   title: string;
@@ -357,7 +323,8 @@ function PronunciationSpeakButton({
  * On-device pronunciation check. Flow: listen to the target phrase (TTS), then speak it.
  * expo-speech-recognition (speechModule) transcribes locally — no paid service, no server.
  * scorePlanPronunciationTranscript compares the transcript to the target and the learner
- * passes at PLAN_PRONUNCIATION_PASS_THRESHOLD (90% word coverage). We never score accent.
+ * passes at PLAN_PRONUNCIATION_PASS_THRESHOLD (word coverage, fuzzy-matched so
+ * fluent/run-together speech isn't penalized). We never score accent.
  */
 type PronunciationBlock = 'denied' | 'unavailable' | null;
 
@@ -366,6 +333,7 @@ function PlanPronunciationRecorder({
   actionText,
   mutedText,
   targetText,
+  audioUri,
   onScored,
   onScoringChange,
   onBlocked,
@@ -374,12 +342,26 @@ function PlanPronunciationRecorder({
   actionText: string;
   mutedText: string;
   targetText: string;
+  /** Вшитый MP3 фразы (если есть). Озвучиваем им; TTS — только fallback. */
+  audioUri?: string;
   onScored: (result: PlanPronunciationScoringResult) => void;
   onScoringChange: (scoring: boolean) => void;
   /** Speech can't run here (no recognizer / mic denied) → host lets the user advance. */
   onBlocked: (blocked: PronunciationBlock) => void;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const { playCorrect } = useCorrectSound();
+  // Тема нужна, чтобы кольцо результата (SpeakingScoreRing) выглядело ТОЧНО как в
+  // уроках «Устно» (SpeakingPanel): тот же цвет трека/текста/центра и pass/fail-цвета.
+  const { theme: ringTheme } = useTheme();
+  // MP3-плеер целевой фразы (тот же вшитый ассет, что и в «На слух»). Грузим только
+  // если есть uri; resolve через тот же runtime-asset-module map, иначе по строке uri.
+  const targetAudioPlayerSource = useMemo(() => {
+    if (!audioUri) return null;
+    const assetModule = getPersonalPlanRuntimeAudioAssetModule(audioUri);
+    return assetModule ? { assetId: assetModule } : audioUri;
+  }, [audioUri]);
+  const targetAudioPlayer = useAudioPlayer(targetAudioPlayerSource, targetAudioPlayerSource ? { downloadFirst: true, updateInterval: 250 } : undefined);
   const { playRecordStart } = useRecordStartCue();
   // Guarded native module: null on a binary/device without the recognizer, OR
   // when the remote kill-switch turns speaking off app-wide. Resolved once so the
@@ -388,9 +370,13 @@ function PlanPronunciationRecorder({
   const [pronunciationHeardTarget, setPronunciationHeardTarget] = useState(false);
   const [pronunciationSpeakingTarget, setPronunciationSpeakingTarget] = useState(false);
   const [pronunciationListening, setPronunciationListening] = useState(false);
-  // Latest raw `volumechange` sample for the live equalizer (same component the
-  // lesson "Устно" panel uses, so feedback is identical across modes).
-  const [voiceSample, setVoiceSample] = useState(0);
+  // VoiceEqualizer ref: push volume samples imperatively (no setState → no re-render).
+  const equalizerRef = useRef<import('./voice_equalizer').VoiceEqualizerRef>(null);
+  // Live transcript for karaoke-style reveal (как в уроках «Устно»): фраза скрыта
+  // чёрточками, слово открывается когда юзер его правильно произнёс.
+  const [transcript, setTranscript] = useState('');
+  const tokens = useMemo(() => speakingTargetTokens(targetText), [targetText]);
+  const matched = useMemo(() => speakingMatchedFlags(targetText, transcript), [targetText, transcript]);
   const [pronunciationScoringLocal, setPronunciationScoringLocal] = useState(false);
   const [pronunciationScore, setPronunciationScore] = useState<PlanPronunciationScoringResult | null>(null);
   const [blocked, setBlockedLocal] = useState<PronunciationBlock>(null);
@@ -417,6 +403,7 @@ function PlanPronunciationRecorder({
     setPronunciationListening(false);
     setPronunciationScoring(false);
     setPronunciationScore(null);
+    setTranscript('');
     setBlocked(speechModule ? null : 'unavailable');
   }, [targetText, setPronunciationScoring, setBlocked, speechModule]);
 
@@ -424,21 +411,27 @@ function PlanPronunciationRecorder({
   useEffect(() => {
     if (!speechModule) return undefined; // no recognizer: nothing to listen to
 
-    const applyResult = (event: { results?: { transcript?: string; confidence?: number }[] }) => {
+    const applyResult = (event: { results?: { transcript?: string; confidence?: number }[]; isFinal?: boolean }) => {
       const best = event?.results?.[0];
-      const transcript = (best?.transcript ?? '').trim();
+      const heard = (best?.transcript ?? '').trim();
+      // Промежуточные результаты — обновляем транскрипт для пословной подсветки
+      // (слова «загораются» по мере правильного произношения), но НЕ скорим/останавливаем.
+      if (heard) setTranscript(heard);
+      if (event?.isFinal === false) return;
       setPronunciationListening(false);
       setPronunciationScoring(false);
-      if (!transcript) return;
+      if (!heard) return;
       const result = scorePlanPronunciationTranscript({
         targetText: targetTextRef.current,
-        transcript,
+        transcript: heard,
         recognitionConfidence: typeof best?.confidence === 'number' ? best.confidence : undefined,
       });
       setPronunciationScore(result);
       onScored(result);
-      if (result.passed) hapticSuccess();
-      else hapticError();
+      if (result.passed) {
+        hapticSuccess();
+        playCorrect();
+      } else hapticError();
     };
 
     const resultSub = speechModule.addListener('result', applyResult);
@@ -448,17 +441,16 @@ function PlanPronunciationRecorder({
     });
     const endSub = speechModule.addListener('end', () => {
       setPronunciationListening(false);
-      setVoiceSample(0);
+      equalizerRef.current?.setSample(0);
     });
     const errorSub = speechModule.addListener('error', () => {
       setPronunciationListening(false);
       setPronunciationScoring(false);
-      setVoiceSample(0);
+      equalizerRef.current?.setSample(0);
     });
-    // Live volume -> equalizer. The VoiceEqualizer turns the raw sample into
-    // loudness + tone-driven bars itself.
+    // Live volume → equalizer imperatively (no setState → no re-render during recording).
     const volumeSub = speechModule.addListener('volumechange', (event: any) => {
-      setVoiceSample(Number(event?.value));
+      equalizerRef.current?.setSample(Number(event?.value));
     });
 
     return () => {
@@ -478,23 +470,54 @@ function PlanPronunciationRecorder({
   const listenPronunciationTarget = useCallback(() => {
     hapticTap();
     setPronunciationSpeakingTarget(true);
-    speakAudio(targetText, 0.86, {
-      language: 'en-US',
-      onDone: () => {
-        setPronunciationSpeakingTarget(false);
-        setPronunciationHeardTarget(true);
-      },
-      onStopped: () => setPronunciationSpeakingTarget(false),
-      onError: () => {
-        setPronunciationSpeakingTarget(false);
-        setPronunciationHeardTarget(true);
-      },
-    });
-  }, [speakAudio, targetText]);
+
+    // Приоритет — вшитый MP3 (живой голос). TTS-робот только если MP3 нет/не сыграл.
+    const speakWithTts = () => {
+      speakAudio(targetText, 0.86, {
+        language: 'en-US',
+        onDone: () => {
+          setPronunciationSpeakingTarget(false);
+          setPronunciationHeardTarget(true);
+        },
+        onStopped: () => setPronunciationSpeakingTarget(false),
+        onError: () => {
+          setPronunciationSpeakingTarget(false);
+          setPronunciationHeardTarget(true);
+        },
+      });
+    };
+
+    if (targetAudioPlayerSource) {
+      void setAudioModeAsync({
+        playsInSilentMode: true,
+        shouldPlayInBackground: false,
+        interruptionMode: 'mixWithOthers',
+      })
+        .then(async () => {
+          await targetAudioPlayer.seekTo(0);
+          targetAudioPlayer.play();
+          // Снимаем «звучит…» к концу клипа: длительность известна из статуса, иначе
+          // мягкий потолок. Кнопка повтора разблокируется, юзер слышит живой голос.
+          const durationMs = Math.round(((targetAudioPlayer.duration || 0) * 1000)) || 2600;
+          setTimeout(() => {
+            setPronunciationSpeakingTarget(false);
+            setPronunciationHeardTarget(true);
+          }, Math.min(6000, Math.max(900, durationMs + 150)));
+        })
+        .catch(() => {
+          // MP3 не сыграл (повреждён/недоступен) → честный fallback на TTS.
+          speakWithTts();
+        });
+      return;
+    }
+
+    speakWithTts();
+  }, [speakAudio, targetText, targetAudioPlayer, targetAudioPlayerSource]);
 
   const startSpeaking = useCallback(async () => {
     hapticTap();
     stopAudio();
+    if (targetAudioPlayerSource) { try { targetAudioPlayer.pause(); } catch { /* плеер мог быть не готов */ } }
     setPronunciationScore(null);
     if (!speechModule) {
       setBlocked('unavailable');
@@ -510,12 +533,13 @@ function PlanPronunciationRecorder({
         return;
       }
       setBlocked(null);
-      setVoiceSample(0);
+      equalizerRef.current?.setSample(0);
       setPronunciationListening(true);
       setPronunciationScoring(true);
+      setTranscript('');
       speechModule.start({
         lang: 'en-US',
-        interimResults: false,
+        interimResults: true,
         continuous: false,
         // Real-time volume metering feeds the live equalizer (value in
         // `volumechange`, ~ -2..10). ~100ms cadence is smooth enough.
@@ -528,7 +552,7 @@ function PlanPronunciationRecorder({
       setPronunciationListening(false);
       setPronunciationScoring(false);
     }
-  }, [stopAudio, speechModule, setBlocked, playRecordStart]);
+  }, [stopAudio, speechModule, setBlocked, playRecordStart, targetAudioPlayer, targetAudioPlayerSource]);
 
   const stopSpeaking = useCallback(() => {
     try {
@@ -569,13 +593,28 @@ function PlanPronunciationRecorder({
     : 'Сначала послушай фразу, потом повтори.';
 
   const listenDisabled = pronunciationSpeakingTarget || pronunciationListening;
+  const showRing = Boolean(pronunciationScore) && !pronunciationListening && !pronunciationScoring;
   return (
     <View style={styles.recorderStack}>
-      <View style={styles.recorderHintRow}>
-        <Ionicons name="mic-outline" size={16} color={accent} />
-        <Text style={[styles.recorderHintText, { color: mutedText }]}>
-          Послушай фразу, потом скажи её — телефон слушает локально
-        </Text>
+      {/* Фраза СКРЫТА за чёрточками по буквам (как в уроках «Устно») — юзер не видит
+          ответ заранее. Слово «загорается» только когда он его правильно произнёс.
+          На зачёте показываем фразу целиком. */}
+      <View style={styles.recorderPhraseWrap} accessibilityRole="text">
+        {tokens.map((tok, i) => {
+          const reveal = matched[i] || pronunciationScore?.passed;
+          const maskedTok = tok.replace(/[\p{L}\p{N}]/gu, '_');
+          return (
+            <Text
+              key={`plan-spk-tok-${i}`}
+              style={[
+                styles.recorderPhraseWord,
+                { color: reveal ? accent : mutedText, opacity: reveal ? 1 : 0.6, letterSpacing: reveal ? 0 : 2 },
+              ]}
+            >
+              {reveal ? tok : maskedTok}{i < tokens.length - 1 ? ' ' : ''}
+            </Text>
+          );
+        })}
       </View>
 
       <TouchableOpacity
@@ -609,19 +648,31 @@ function PlanPronunciationRecorder({
         />
       )}
 
-      {/* Live equalizer while the mic is recording — reacts to the voice so the
-          user can see they're being heard (loudness + tone). Only mounted while
-          listening to avoid a permanent empty band. */}
-      {pronunciationListening && (
+      {/* Тот же фидбэк, что в уроках: пока слушает — живой эквалайзер; после оценки —
+          кольцо-результат с процентом по центру. */}
+      {showRing ? (
+        <View style={styles.recorderRingWrap}>
+          <SpeakingScoreRing
+            score={pronunciationScore!.score}
+            color={pronunciationScore!.passed ? ringTheme.correct : ringTheme.wrong}
+            trackColor={ringTheme.border}
+            textColor={ringTheme.textPrimary}
+            innerBg={ringTheme.bgCard}
+          />
+          <Text style={[styles.recorderRingTarget, { color: mutedText }]}>
+            нужно {PLAN_PRONUNCIATION_PASS_THRESHOLD}%
+          </Text>
+        </View>
+      ) : pronunciationListening ? (
         <View style={styles.recorderEqualizer}>
           <VoiceEqualizer
+            ref={equalizerRef}
             active={pronunciationListening}
             color={accent}
             idleColor={mutedText}
-            rawSample={voiceSample}
           />
         </View>
-      )}
+      ) : null}
 
       <Text style={[styles.recorderStatus, { color: scoreColor }]}>{statusHint}</Text>
 
@@ -921,6 +972,12 @@ function PlanExerciseFeedbackInline({
 
 export default function PersonalPlanExerciseScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
+  const { playCorrect } = useCorrectSound();
+  const fadeScrollY = useRef(new Animated.Value(0)).current;
+  const handleExerciseScroll = useCallback((e: any) => {
+    fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0);
+  }, [fadeScrollY]);
   const params = useLocalSearchParams();
   const { theme: t, themeMode, f } = useTheme();
   const { studyTarget } = useStudyTarget();
@@ -951,13 +1008,6 @@ export default function PersonalPlanExerciseScreen() {
   // a free in-plan exercise is never a dead end — the user can still advance.
   const [pronunciationBlocked, setPronunciationBlocked] = useState<PronunciationBlock>(null);
   const { flashKey, flash } = useWordFlash();
-  // ИИ-объяснения вариантов (choice). Карта дистрактор→текст + подтверждение для
-  // правильного. Прогревается одним батч-вызовом сразу после ответа; следующий юзер
-  // получит готовый текст из кэша мгновенно. Пока не подгрузилось — показываем
-  // статичный связный текст (wrongSelectedBody), не пустоту.
-  const [aiChoice, setAiChoice] = useState<{ confirm: string; distractors: Record<string, string> } | null>(null);
-  const [aiChoiceLoading, setAiChoiceLoading] = useState(false);
-  const aiChoiceItemRef = useRef<string | null>(null);
   const isMissingWordMode = rendererType === 'plan_missing_word';
   const isChoiceMode = rendererType === 'plan_choose_natural_phrase';
   const isListeningMode = rendererType === 'plan_listen_choose';
@@ -1053,21 +1103,43 @@ export default function PersonalPlanExerciseScreen() {
   const done = completed || (correctIds.length >= targetCorrect && items.length > 0 && !lastResult);
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
   const modeReady = (isMissingWordMode || isChoiceMode || isListeningMode || isListenBuildMode || isPronunciationMode || isRecallMode || isPhraseBuildMode) && Boolean(session) && !listeningBlocked;
-  const explanation = planExerciseExplanation(item);
-  const resultModalTitle = lastResult === 'correct'
-    ? (explanation?.title
-        ? triLang(lang, explanation.title)
-        : triLang(lang, { ru: 'Почему так', uk: 'Чому так', es: 'Por qué es así' }))
-    : isRecallMode
-      ? triLang(lang, { ru: 'Еще один заход', uk: 'Ще одна спроба', es: 'Otro intento' })
-      : isListenBuildMode
-        ? triLang(lang, { ru: 'Еще раз спокойно', uk: 'Ще раз спокійно', es: 'Otra vez con calma' })
-        : triLang(lang, { ru: 'Разберем спокойно', uk: 'Розберемо спокійно', es: 'Vamos a verlo con calma' });
+
+  // ── ИИ-разбор ошибки (как в уроках): инлайн-плашка + «Объяснить проще» ──
+  // Показываем ТОЛЬКО при неверном ответе. Целевой ответ/выбор/промпт берём по
+  // режиму. Заменяет старый авто-текст «Почему так».
+  const mistakeTargetAnswer = (item && 'targetText' in item)
+    ? (item.targetText ?? '')
+    : (currentCorrectAnswer ?? '');
+  const mistakeUserAnswer = (selected ?? '').trim();
+  const mistakePrompt = (item && 'promptRu' in item ? item.promptRu : '') ?? '';
+  const mistakePhraseId = item && 'id' in item ? String(item.id) : '';
+  // CF explainMistake требует lessonId в диапазоне 1..999. Кэш-ключ (mistakeHash)
+  // считается по targetAnswer+userAnswer+lang и от lessonId НЕ зависит, поэтому
+  // берём реальный урок плана, если он валиден, иначе безопасный fallback 1.
+  const parsedPlanLessonId = Number(lessonId);
+  const mistakeLessonId = Number.isInteger(parsedPlanLessonId) && parsedPlanLessonId >= 1 && parsedPlanLessonId <= 999
+    ? parsedPlanLessonId
+    : 1;
+  const mistakeActive = lastResult === 'wrong' && Boolean(mistakeTargetAnswer) && Boolean(mistakeUserAnswer);
+  const mistakeExplain = useMistakeExplain({
+    active: mistakeActive,
+    phraseKey: `${mistakePhraseId}:${lastResult ?? ''}:${mistakeUserAnswer}`,
+    lessonId: mistakeLessonId,
+    phraseId: mistakePhraseId,
+    studyTarget,
+    interfaceLang: lang,
+    prompt: mistakePrompt,
+    userAnswer: mistakeUserAnswer,
+    targetAnswer: mistakeTargetAnswer,
+  });
+  // Заголовок ВЕРНОГО ответа — всегда «Верно!». Старый авто-заголовок «Почему этот
+  // вариант» (explanation.title) убран — генерёжка «Почему так» больше не нужна.
+  const resultModalTitle = useMemo(() => triLang(lang, { ru: 'Верно!', uk: 'Правильно!', es: '¡Correcto!', 'pt-BR': 'Certo!', vi: 'Chính xác!', id: 'Benar!', tr: 'Doğru!', pl: 'Dobrze!' }), [lang]);
   // Для НЕВЕРНОГО ответа объяснение должно относиться к ВЫБРАННОМУ варианту,
   // а не к правильному (иначе «выбрал I'm fine — объясняет I'm good»). Пока ИИ-
   // объяснение конкретного дистрактора не подгрузилось (Stage C), показываем
   // связный текст, который называет и выбор, и правильный ответ.
-  const wrongSelectedBody = (() => {
+  const wrongSelectedBody = useMemo(() => {
     const picked = (selected ?? '').trim();
     const right = (currentCorrectAnswer ?? '').trim();
     if (picked && right) {
@@ -1087,50 +1159,59 @@ export default function PersonalPlanExerciseScreen() {
       uk: 'Спробуй ще раз спокійно: помилка піде в повторення.',
       es: 'Inténtalo de nuevo con calma: el error volverá en el repaso.',
     });
-  })();
-  // ИИ-объяснение конкретного выбора, если уже подгрузилось (иначе статичный текст).
-  const aiChoiceBody = lastResult === 'correct'
-    ? (aiChoice?.confirm || '')
-    : (aiChoice?.distractors?.[(selected ?? '').trim()] || '');
-  const staticBody = lastResult === 'correct'
-    ? (explanation?.correct
-        ? triLang(lang, explanation.correct)
-        : triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', es: 'Así suena natural.' }))
-    : (usesOptionFeedback
-        ? wrongSelectedBody
-        : explanation?.wrong
-          ? triLang(lang, explanation.wrong)
-          : wrongSelectedBody);
-  const resultModalBody = isChoiceMode && aiChoiceBody ? aiChoiceBody : staticBody;
-  // Показ спиннера в плашке, пока ИИ-объяснение ещё генерируется (текст при этом статичный).
-  const choiceFeedbackLoading = isChoiceMode && aiChoiceLoading && !aiChoiceBody;
+  }, [selected, currentCorrectAnswer, lang]);
+  // Текст короткой плашки при ВЕРНОМ ответе — короткое нейтральное подтверждение.
+  // Старый авто-текст «Почему так» (explanation.correct: «важно выбрать не
+  // красивость...») убран. На неверном — ИИ-разбор, не этот текст.
+  const staticBody = useMemo(() => lastResult === 'correct'
+    ? triLang(lang, { ru: 'Так звучит естественно.', uk: 'Так звучить природно.', es: 'Así suena natural.', 'pt-BR': 'Soa natural assim.', vi: 'Nghe tự nhiên như vậy.', id: 'Terdengar alami begitu.', tr: 'Böyle doğal geliyor.', pl: 'Tak brzmi naturalnie.' })
+    : wrongSelectedBody, [lastResult, lang, wrongSelectedBody]);
 
-  // Прогрев + получение ИИ-объяснений вариантов для choice. Один батч-вызов: подтверждение
-  // правильного + «почему не этот» для каждого дистрактора. Текущему юзеру показываем сразу,
-  // как только пришло; параллельно это пишется в общий кэш — следующий получит из кэша.
-  const warmChoiceExplanations = useCallback((
-    correctEn: string,
-    meaning: string,
-    options: string[],
-    itemId: string,
-  ) => {
-    const distractors = options.filter((opt) => opt !== correctEn);
-    if (!correctEn || distractors.length === 0) return;
-    aiChoiceItemRef.current = itemId;
-    setAiChoiceLoading(true);
-    callExplainChoice({ correctEn, phraseMeaning: meaning, distractors, lang })
-      .then((res) => {
-        // Игнорируем, если пользователь уже ушёл на следующий вопрос.
-        if (aiChoiceItemRef.current !== itemId) return;
-        if (res.status === 'ok' && (res.confirm || Object.keys(res.distractors ?? {}).length > 0)) {
-          setAiChoice({ confirm: res.confirm, distractors: res.distractors ?? {} });
-        }
-      })
-      .catch(() => { /* сеть/бюджет — остаётся статичный текст */ })
-      .finally(() => {
-        if (aiChoiceItemRef.current === itemId) setAiChoiceLoading(false);
-      });
-  }, [lang]);
+  // Разбор/объяснение для не-option режимов (вспомни фразу / собери на слух / собери
+  // фразу) — ИНЛАЙН прямо под фразой, БЕЗ всплывающего модала (раньше модал висел в
+  // пустоте по центру). Рендерится внутри скролла под вопросом.
+  const nonOptionInlineFeedback = !usesOptionFeedback && lastResult ? (
+    lastResult === 'correct' ? (
+      <View style={styles.inlineFeedbackHost}>
+        <PlanExerciseFeedbackInline
+          tone="success"
+          title={resultModalTitle}
+          body={staticBody}
+          actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
+          onAction={() => void next()}
+          accent={accent}
+          actionText={actionText}
+          mutedText={t.textMuted}
+          surfaceColor={t.bgCard}
+          textPrimaryColor={t.textPrimary}
+          loading={false}
+        >
+          {isRecallMode && item && 'targetText' in item ? (
+            <Text style={[styles.recallAnswer, { color: accent }]}>{item.targetText}</Text>
+          ) : null}
+        </PlanExerciseFeedbackInline>
+      </View>
+    ) : lastResult === 'wrong' ? (
+      <View style={styles.inlineFeedbackHost}>
+        <AiMistakeCard
+          lang={lang}
+          state={mistakeExplain.aiMistakeState}
+          explanation={mistakeExplain.aiMistakeText}
+          remaining={mistakeExplain.aiMistakeRemaining}
+          onExplain={mistakeExplain.explain}
+        />
+        <TouchableOpacity
+          onPress={() => void next()}
+          activeOpacity={0.85}
+          style={[styles.retryAfterMistake, { borderColor: accent }]}
+        >
+          <Text style={{ color: accent, fontWeight: '700' }}>
+            {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    ) : null
+  ) : null;
 
   const submit = async (answer: string) => {
     if (!item || !session || saving || done) return;
@@ -1139,13 +1220,10 @@ export default function PersonalPlanExerciseScreen() {
     setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
-    if (isCorrect) hapticSuccess();
-    else hapticError();
-
-    if (isChoiceMode && 'options' in item) {
-      setAiChoice(null);
-      warmChoiceExplanations(item.correctAnswer, item.promptRu ?? '', item.options, item.id);
-    }
+    if (isCorrect) {
+      hapticSuccess();
+      playCorrect();
+    } else hapticError();
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -1172,8 +1250,10 @@ export default function PersonalPlanExerciseScreen() {
     setSaving(true);
     setSelected(answer);
     setLastResult(isCorrect ? 'correct' : 'wrong');
-    if (isCorrect) hapticSuccess();
-    else hapticError();
+    if (isCorrect) {
+      hapticSuccess();
+      playCorrect();
+    } else hapticError();
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -1200,8 +1280,10 @@ export default function PersonalPlanExerciseScreen() {
     setSaving(true);
     setSelected(typedAnswer.trim());
     setLastResult(isCorrect ? 'correct' : 'wrong');
-    if (isCorrect) hapticSuccess();
-    else hapticError();
+    if (isCorrect) {
+      hapticSuccess();
+      playCorrect();
+    } else hapticError();
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: isCorrect ? 'correct' : 'wrong',
@@ -1228,8 +1310,6 @@ export default function PersonalPlanExerciseScreen() {
       setTypedAnswer('');
       setBuildWords([]);
       setLastResult(null);
-      setAiChoice(null);
-      aiChoiceItemRef.current = null;
       return;
     }
 
@@ -1240,8 +1320,6 @@ export default function PersonalPlanExerciseScreen() {
     setBuildWords([]);
     setPronunciationScore(null);
     setLastResult(null);
-    setAiChoice(null);
-    aiChoiceItemRef.current = null;
 
     if (nextIndex < items.length && nextCorrectIds.length < targetCorrect) {
       setIndex(nextIndex);
@@ -1276,6 +1354,7 @@ export default function PersonalPlanExerciseScreen() {
     if (!speechBlocked && (!scored || !scored.passed)) return;
     setSaving(true);
     hapticSuccess();
+    if (!speechBlocked) playCorrect();
 
     await submitAndStorePlanExerciseAnswer(session, {
       result: 'completed',
@@ -1328,8 +1407,10 @@ export default function PersonalPlanExerciseScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: t.bgPrimary }]}>
+    <View style={[styles.safe, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}>
       <LinearGradient colors={isGold ? ['#171008', '#090704'] : t.bgGradient} style={styles.fill}>
+        {/* Тот же верхний фейд под safe-area, что на главной/в личном плане. */}
+        <TopFadeMask scrollY={fadeScrollY} zIndex={2} />
         <View style={styles.header}>
           <TouchableOpacity
             activeOpacity={0.78}
@@ -1365,7 +1446,7 @@ export default function PersonalPlanExerciseScreen() {
           trackColor={t.bgSurface2 ?? 'rgba(255,255,255,0.10)'}
         />
 
-        <BouncyScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+        <BouncyScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} onScroll={handleExerciseScroll} scrollEventThrottle={16}>
           {!item || !modeReady ? (
             <PlanExerciseFeedbackSurface
               tone="blocked"
@@ -1525,17 +1606,8 @@ export default function PersonalPlanExerciseScreen() {
           ) : isPronunciationMode && 'targetText' in item && 'completionLabel' in item ? (
             <>
               <View style={styles.questionBlock}>
-                <Text style={[styles.prompt, { color: t.textMuted }]}>{triLang(lang, {
-                  ru: 'Произнеси фразу вслух спокойно и без гонки.',
-                  uk: 'Вимов фразу вголос спокійно й без поспіху.',
-                  es: 'Di la frase en voz alta con calma y sin prisa.',
-                  'pt-BR': 'Diga a frase em voz alta com calma, sem pressa.',
-                  vi: 'Đọc to cụm từ một cách bình tĩnh, không vội.',
-                  id: 'Ucapkan frasa dengan tenang tanpa terburu-buru.',
-                  tr: 'İfadeyi sakince ve acele etmeden yüksek sesle söyle.',
-                  pl: 'Wypowiedz frazę na głos spokojnie, bez pośpiechu.',
-                })}</Text>
-                <Text style={[styles.english, { color: t.textPrimary }]}>{item.targetText}</Text>
+                {/* Английский ответ НЕ показываем — он скрыт чёрточками внутри рекордера
+                    и открывается по словам при правильном произношении (как в уроках). */}
                 <Text style={[styles.panelText, { color: t.textMuted }]}>{item.promptRu}</Text>
               </View>
 
@@ -1544,6 +1616,7 @@ export default function PersonalPlanExerciseScreen() {
                 actionText={actionText}
                 mutedText={t.textMuted}
                 targetText={item.targetText}
+                audioUri={item.audioReady ? item.audioUri : undefined}
                 onScored={handlePronunciationScored}
                 onScoringChange={setPronunciationScoring}
                 onBlocked={setPronunciationBlocked}
@@ -1634,31 +1707,46 @@ export default function PersonalPlanExerciseScreen() {
                 ) : null}
               </View>
 
-              {/* Разбор ответа — ИНЛАЙН прямо здесь, в пустоте между фразой и вариантами
-                  (правило файла: НЕ модалом). Сюда же подставляется ИИ-объяснение, когда
-                  подгрузится. Если делаешь новый режим — рендери разбор так же, не модалом. */}
-              {lastResult && usesOptionFeedback ? (
+              {/* Фидбэк ответа. ВЕРНЫЙ → короткая плашка «Дальше». НЕВЕРНЫЙ → ИИ-разбор
+                  ошибки ИНЛАЙН (как в уроках): AiMistakeCard + «Объяснить проще» (модал
+                  ниже). Старый авто-текст «Почему так» убран. */}
+              {lastResult === 'correct' && usesOptionFeedback ? (
                 <View style={styles.inlineFeedbackHost}>
                   <PlanExerciseFeedbackInline
-                    tone={lastResult === 'correct' ? 'success' : 'error'}
+                    tone="success"
                     title={resultModalTitle}
-                    body={resultModalBody}
-                    actionLabel={lastResult === 'correct'
-                      ? triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })
-                      : triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
+                    body={staticBody}
+                    actionLabel={triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente', 'pt-BR': 'Avançar', vi: 'Tiếp', id: 'Lanjut', tr: 'Devam', pl: 'Dalej' })}
                     onAction={() => void next()}
                     accent={accent}
                     actionText={actionText}
                     mutedText={t.textMuted}
                     surfaceColor={t.bgCard}
                     textPrimaryColor={t.textPrimary}
-                    loading={choiceFeedbackLoading}
+                    loading={false}
                   />
-                  {/* Компас: при неверном ответе — зов в сессию за глубиной. Сам
-                      компонент null-safe (выключенный Компас ничего не рендерит). */}
+                </View>
+              ) : lastResult === 'wrong' && usesOptionFeedback ? (
+                <View style={styles.inlineFeedbackHost}>
+                  <AiMistakeCard
+                    lang={lang}
+                    state={mistakeExplain.aiMistakeState}
+                    explanation={mistakeExplain.aiMistakeText}
+                    remaining={mistakeExplain.aiMistakeRemaining}
+                    onExplain={mistakeExplain.explain}
+                  />
+                  <TouchableOpacity
+                    onPress={() => void next()}
+                    activeOpacity={0.85}
+                    style={[styles.retryAfterMistake, { borderColor: accent }]}
+                  >
+                    <Text style={{ color: accent, fontWeight: '700' }}>
+                      {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj jeszcze raz' })}
+                    </Text>
+                  </TouchableOpacity>
                   <View style={{ marginTop: 12 }}>
                     <CompassLessonInvite
-                      visible={lastResult === 'wrong'}
+                      visible
                       onOpenSession={() => { hapticTap(); router.push('/lessons' as any); }}
                     />
                   </View>
@@ -1722,7 +1810,6 @@ export default function PersonalPlanExerciseScreen() {
                           { color: textColor, fontWeight: on ? '700' : (useGridOptions ? '500' : '600') },
                         ]}
                         numberOfLines={useGridOptions ? 1 : undefined}
-                        adjustsFontSizeToFit={useGridOptions}
                       >
                         {option}
                       </Text>
@@ -1734,40 +1821,13 @@ export default function PersonalPlanExerciseScreen() {
               {lastResult ? <View style={styles.doneSpacer} /> : null}
             </>
           )}
+
+          {/* Инлайн-разбор для не-option режимов — внутри скролла, прямо под фразой
+              (вместо модала в пустоте). Для option-режимов разбор рендерится выше. */}
+          {nonOptionInlineFeedback}
         </BouncyScrollView>
-        <View style={[styles.footer, { borderTopColor: t.border }]}>
-          <TouchableOpacity
-            activeOpacity={0.78}
-            onPress={() => safeRouterBack(router, '/personal_plan')}
-            accessibilityRole="button"
-            accessibilityLabel="Отменить"
-            style={styles.footerButton}
-          >
-            <Ionicons name="arrow-undo" size={26} color={t.textSecond} />
-            <Text style={[styles.footerLabel, { color: t.textMuted, fontSize: f.label }]}>Отменить</Text>
-          </TouchableOpacity>
-        </View>
-        {/* ⚠️ ПРАВИЛО (см. шапку файла): разбор ответа ВЕЗДЕ должен быть ИНЛАЙН (плашка на
-            экране, см. блок выше) — НЕ этим модалом. Модал = «двойной контейнер» поверх
-            экрана. Он гасится для всех режимов с вариантами через `!usesOptionFeedback` и
-            доживает лишь как временный fallback для режимов без места на экране (вспомни
-            фразу / собери на слух). Новый режим — добавляй в usesOptionFeedback, не сюда. */}
-        <PlanExerciseFeedbackModal
-          visible={Boolean(lastResult && explanation) && !usesOptionFeedback}
-          tone={lastResult === 'correct' ? 'success' : 'error'}
-          title={resultModalTitle}
-          body={resultModalBody}
-          actionLabel={lastResult === 'correct' ? 'Дальше' : 'Попробовать ещё раз'}
-          onAction={() => void next()}
-          accent={accent}
-          actionText={actionText}
-          mutedText={t.textMuted}
-          surfaceColor={t.bgCard}
-        >
-          {lastResult === 'correct' && isRecallMode && item && 'targetText' in item ? (
-            <Text style={[styles.recallAnswer, { color: accent }]}>{item.targetText}</Text>
-          ) : null}
-        </PlanExerciseFeedbackModal>
+        {/* Разбор/объяснение не-option режимов теперь рендерится ИНЛАЙН внутри скролла
+            под фразой (nonOptionInlineFeedback), а не модалом/плашкой в подвале экрана. */}
         <PlanExerciseFeedbackModal
           visible={done}
           tone="success"
@@ -1781,7 +1841,7 @@ export default function PersonalPlanExerciseScreen() {
           surfaceColor={t.bgCard}
         />
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -1851,6 +1911,7 @@ type PersonalPlanExerciseStyles = {
   feedbackTitle: TextStyle;
   feedbackBody: TextStyle;
   inlineFeedbackHost: ViewStyle;
+  retryAfterMistake: ViewStyle;
   inlineFeedback: ViewStyle;
   inlineFeedbackHeader: ViewStyle;
   inlineFeedbackTitle: TextStyle;
@@ -1866,6 +1927,10 @@ type PersonalPlanExerciseStyles = {
   recorderButtonText: TextStyle;
   recorderEqualizer: ViewStyle;
   recorderStatus: TextStyle;
+  recorderPhraseWrap: ViewStyle;
+  recorderPhraseWord: TextStyle;
+  recorderRingWrap: ViewStyle;
+  recorderRingTarget: TextStyle;
   recallInput: TextStyle;
   recallAnswer: TextStyle;
   rowActions: ViewStyle;
@@ -2102,6 +2167,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   feedbackTitle: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
   feedbackBody: { fontSize: 15, lineHeight: 22, fontWeight: '700' },
   inlineFeedbackHost: { flex: 1, minHeight: 12, justifyContent: 'center', paddingVertical: 16 },
+  retryAfterMistake: { marginTop: 12, alignSelf: 'center', borderWidth: 1.5, borderRadius: 14, paddingHorizontal: 22, paddingVertical: 11 },
   inlineFeedback: {
     width: '100%',
     borderRadius: 14,
@@ -2146,6 +2212,10 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   recorderButtonText: { fontSize: 16, fontWeight: '800' },
   recorderEqualizer: { alignItems: 'center', justifyContent: 'center', marginTop: 4 },
   recorderStatus: { fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center', paddingHorizontal: 4 },
+  recorderPhraseWrap: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 14 },
+  recorderPhraseWord: { fontSize: 22, lineHeight: 30, fontWeight: '600' },
+  recorderRingWrap: { alignItems: 'center', justifyContent: 'center', marginTop: 4 },
+  recorderRingTarget: { fontSize: 13, fontWeight: '600', marginTop: 8 },
   recallInput: {
     minHeight: 60,
     borderBottomWidth: 1,

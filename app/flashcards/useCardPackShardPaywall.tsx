@@ -83,7 +83,10 @@ export function useCardPackShardPaywall(args: {
           : await purchaseCardPackWithShards(pw.pack, studyTarget);
       if (r === 'ok') {
         /** Не await: `shards_shop` тягне Firestore у `loadCardMarket` — зависший `.get()` вічно тримає «Подождите…». */
-        void Promise.resolve(onAfterPurchase()).catch(() => {});
+        await Promise.race([
+          Promise.resolve(onAfterPurchase()).catch(() => {}),
+          new Promise<void>((resolve) => setTimeout(resolve, 900)),
+        ]);
         // Hearthstone-стайл: показуємо церемонію відкриття лише першого разу
         const alreadyOpened = await isPackCeremoniallyOpened(pw.pack.id, studyTarget);
         if (!alreadyOpened) {
@@ -94,6 +97,11 @@ export function useCardPackShardPaywall(args: {
         } else {
           setPaywall(null);
         }
+      } else if (r === 'insufficient') {
+        // Локальный баланс был завышен (рассинхрон с облаком). spendShards уже
+        // выровнял его — переключаем модалку в режим «не хватает» вместо тихого
+        // отказа, чтобы юзер не жал «Купить» по кругу.
+        setPaywall((prev) => (prev ? { ...prev, mode: 'insufficient' } : prev));
       }
     } finally {
       setPurchasing(false);

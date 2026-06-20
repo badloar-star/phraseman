@@ -251,7 +251,7 @@ const applyShardDeltaToCloud = async (
   type: 'earn' | 'spend',
   reason: string,
   localFallbackBase: number,
-): Promise<{ ok: true; balance: number; balanceBefore: number; updatedAtMs: number } | { ok: false; reason: 'unavailable' | 'insufficient' }> => {
+): Promise<{ ok: true; balance: number; balanceBefore: number; updatedAtMs: number } | { ok: false; reason: 'unavailable' } | { ok: false; reason: 'insufficient'; cloudBalance: number }> => {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { ok: false, reason: 'unavailable' };
     const uid = await getCanonicalUserId();
@@ -259,23 +259,26 @@ const applyShardDeltaToCloud = async (
     const db = firestore();
     const userRef = db.collection('users').doc(uid);
     const updatedAtMs = Date.now();
-    const nextBalance = await db.runTransaction(async (transaction) => {
+    const txResult = await db.runTransaction(async (transaction): Promise<{ next: number } | { insufficientBase: number }> => {
       const snap = await transaction.get(userRef);
       const cloudShards = snap.exists ? parseShardBalance(snap.data()?.shards) : null;
       const base = cloudShards ?? Math.max(0, Math.floor(localFallbackBase));
       const next = base + delta;
-      if (next < 0) return null as number | null;
+      if (next < 0) return { insufficientBase: base };
       transaction.set(userRef, {
         shards: next,
         shards_updated_at_ms: updatedAtMs,
         shards_updated_op: type,
         shards_updated_reason: reason,
       }, { merge: true });
-      return next;
+      return { next };
     });
-    if (nextBalance === null || nextBalance === undefined) {
-      return { ok: false, reason: 'insufficient' };
+    if ('insufficientBase' in txResult) {
+      // Облако — источник истины. Возвращаем фактический облачный баланс, чтобы
+      // вызывающий мог сверить локальный (возможно завышенный) баланс с реальным.
+      return { ok: false, reason: 'insufficient', cloudBalance: txResult.insufficientBase };
     }
+    const nextBalance = txResult.next;
     const balanceBefore = nextBalance - delta;
     return { ok: true, balance: nextBalance, balanceBefore, updatedAtMs };
   } catch {
@@ -559,7 +562,20 @@ export const spendShards = async (
       trackShardsSpentAchievement(spendAmount);
       return true;
     }
-    if (cloudApplied.reason === 'insufficient') return false;
+    if (cloudApplied.reason === 'insufficient') {
+      // Облако авторитетно и его не хватает, хотя локально могло показываться больше
+      // (рассинхрон: начисление не доехало до облака / облако перезаписано).
+      // Чиним локальный баланс под облачный, иначе пользователь видит «фантомные»
+      // осколки и каждая попытка покупки падает «Осколки не списались».
+      const reconciled = Math.max(0, Math.floor(cloudApplied.cloudBalance));
+      if (reconciled !== localBase) {
+        const meta: ShardBalanceMeta = { updatedAtMs: Date.now(), op: 'replace', reason: 'cloud_reconcile' };
+        await persistLocalBalance(reconciled, meta);
+        setShardsBalanceMemory(reconciled);
+        await emitShardsBalanceUpdated(reconciled, meta);
+      }
+      return false;
+    }
 
     const meta = localWriteStamp('spend', reason);
     const newBalance = await withStorageLock(async () => {

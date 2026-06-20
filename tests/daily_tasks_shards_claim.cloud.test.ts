@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, loadShardsFromCloud } from '../app/shards_system';
+import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, spendShards } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/functions', () => ({
@@ -148,6 +148,38 @@ describe('loadShardsFromCloud balance freshness', () => {
 
     expect(mockStorage.shards_balance).toBe('80');
     await expect(getShardAchievementEligibleBalance()).resolves.toBe(0);
+  });
+});
+
+describe('spendShards local-vs-cloud reconciliation', () => {
+  it('reconciles an inflated local balance down to cloud when cloud is insufficient', async () => {
+    // Баг «есть осколки, но не купить карточки»: локально показывалось 30,
+    // на сервере реально 2. Покупка за 10 должна отклониться, а локальный
+    // баланс выровняться под облачный, чтобы UI не показывал фантомные осколки.
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 2;
+
+    mockStorage.shards_balance = '30';
+
+    await expect(spendShards(10, 'card_pack')).resolves.toBe(false);
+    // Облако не тронуто.
+    expect(fs.__testState.userShards).toBe(2);
+    // Локальный баланс выровнен под облачный.
+    expect(mockStorage.shards_balance).toBe('2');
+    await expect(getShardsBalance()).resolves.toBe(2);
+  });
+
+  it('spends against cloud when cloud has enough, ignoring a stale-low local balance', async () => {
+    const fs = firestore as any;
+    fs.__testState.userDocExists = true;
+    fs.__testState.userShards = 50;
+
+    mockStorage.shards_balance = '5';
+
+    await expect(spendShards(10, 'card_pack')).resolves.toBe(true);
+    expect(fs.__testState.userShards).toBe(40);
+    expect(mockStorage.shards_balance).toBe('40');
   });
 });
 

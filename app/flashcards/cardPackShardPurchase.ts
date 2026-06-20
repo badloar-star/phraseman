@@ -47,6 +47,13 @@ export async function purchaseCardPackWithShards(
   if (balance < pack.priceShards) return 'insufficient';
   const ok = await spendShards(pack.priceShards, 'card_pack');
   if (!ok) {
+    // spendShards сверяет локальный баланс с облачным (источник истины). Если после
+    // неудачи баланс реально меньше цены — это «не хватает», а не сбой списания.
+    const balanceAfter = await getShardsBalance();
+    if (balanceAfter < pack.priceShards) {
+      emitAppEvent('shards_balance_updated', { balance: balanceAfter });
+      return 'insufficient';
+    }
     emitAppEvent('action_toast', {
       type: 'error',
       messageRu: 'Осколки не списались. Попробуй ещё раз.',

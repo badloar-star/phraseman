@@ -19,6 +19,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
 import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
+import ProfileCardBadge from '../components/ProfileCardBadge';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
@@ -1727,17 +1728,22 @@ export default function ClubScreen() {
                   </View>
                 </View>
                 <View style={{ flex:1, minWidth: 0 }}>
-                  {hasLeagueCrown ? (
-                    <LeagueCrownName text={p.name} fontSize={f.body} count={displayLeagueCrownCount} />
-                  ) : !!p.isVip ? (
-                    <VipGreenUserName text={p.name} fontSize={f.body} />
-                  ) : !!p.isPremium ? (
-                    <PremiumGoldUserName text={p.name} fontSize={f.body} />
-                  ) : (
-                    <Text numberOfLines={1} style={{ fontSize: f.body, color: isMyRow ? t.textPrimary : t.textSecond, fontWeight: isMyRow ? '800' : '400' }}>
-                      {p.name}
-                    </Text>
-                  )}
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
+                    <View style={{ flexShrink: 1, minWidth: 0 }}>
+                      {hasLeagueCrown ? (
+                        <LeagueCrownName text={p.name} fontSize={f.body} count={displayLeagueCrownCount} />
+                      ) : !!p.isVip ? (
+                        <VipGreenUserName text={p.name} fontSize={f.body} />
+                      ) : !!p.isPremium ? (
+                        <PremiumGoldUserName text={p.name} fontSize={f.body} />
+                      ) : (
+                        <Text numberOfLines={1} style={{ fontSize: f.body, color: isMyRow ? t.textPrimary : t.textSecond, fontWeight: isMyRow ? '800' : '400' }}>
+                          {p.name}
+                        </Text>
+                      )}
+                    </View>
+                    <ProfileCardBadge level={p.profileCardLevel} theme={p.profileCardTheme} />
+                  </View>
                 </View>
                 {isMyRow && (
                   <View style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0.5, borderColor: t.accent + '55' }}>

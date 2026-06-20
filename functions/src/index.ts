@@ -124,6 +124,8 @@ const { collectiblesClaimDrop } = require('./collectibles');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { profileCardUpgrade } = require('./profile_card_upgrade');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
@@ -216,6 +218,7 @@ exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
+exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.leagueFinalizeCron = leagueFinalizeCron;
@@ -391,8 +394,24 @@ function pickIncomingDisplayName(raw: string | null | undefined): string | null 
 
 async function pickArenaQuestions(count: number): Promise<string[]> {
   const db = admin.firestore();
-  const snap = await db.collection('arena_questions').limit(Math.max(count * 3, count)).get();
-  const ids = snap.docs.map((d) => d.id);
+  // Честная случайная выборка из ВСЕГО банка через rand-pivot (как pickQuestions),
+  // а не «первые ~count*3 документа по id» — иначе приватные дуэли/реванш крутят
+  // один и тот же узкий набор вопросов. Уровень тут НЕ фильтруем (приватный матч
+  // с другом — общий банк).
+  const pivot = Math.random();
+  const [snapA, snapB] = await Promise.all([
+    db.collection('arena_questions').where('rand', '>=', pivot).orderBy('rand').limit(count * 4).get(),
+    db.collection('arena_questions').where('rand', '<', pivot).orderBy('rand').limit(count * 4).get(),
+  ]);
+  let ids = [...snapA.docs.map((d) => d.id), ...snapB.docs.map((d) => d.id)];
+
+  // Страховка для документов без поля `rand` (исторически весь A1) — добираем
+  // простым запросом без rand-фильтра, иначе они невидимы для rand-запроса.
+  if (ids.length < count) {
+    const plain = await db.collection('arena_questions').limit(Math.max(count * 4, count)).get();
+    ids = Array.from(new Set([...ids, ...plain.docs.map((d) => d.id)]));
+  }
+
   for (let i = ids.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     [ids[i], ids[j]] = [ids[j], ids[i]];

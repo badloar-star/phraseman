@@ -24,6 +24,7 @@ import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
 import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
+import ProfileCardBadge from '../components/ProfileCardBadge';
 import PlayerProfileModal, { PlayerInfo } from '../components/PlayerProfileModal';
 import ReportUserModal from '../components/ReportUserModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
@@ -182,6 +183,8 @@ export default function ArenaLeaderboardScreen() {
   const [myAvatar, setMyAvatar] = useState('');
   const [myFrame, setMyFrame] = useState('');
   const [myAura, setMyAura] = useState('');
+  const [myProfileCardLevel, setMyProfileCardLevel] = useState(0);
+  const [myProfileCardTheme, setMyProfileCardTheme] = useState('');
   const [myArenaPlace, setMyArenaPlace] = useState<number | null>(null);
   const [arenaXpPercentile, setArenaXpPercentile] = useState<number | null>(null);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
@@ -214,18 +217,22 @@ export default function ArenaLeaderboardScreen() {
     void ensureArenaAuthUid().then(setMyUid);
     void ensureAnonUser().then(setMyStableUid);
     (async () => {
-      const [n, xp, av, fr, aura] = await AsyncStorage.multiGet([
+      const [n, xp, av, fr, aura, cardLevel, cardTheme] = await AsyncStorage.multiGet([
         'user_name',
         'user_total_xp',
         'user_avatar',
         'user_frame',
         USER_AVATAR_AURA_KEY,
+        'profile_card_level',
+        'profile_card_theme',
       ]);
       setMyName((n[1] ?? '').trim());
       setMyTotalXp(parseInt(xp[1] ?? '0', 10) || 0);
       setMyAvatar(av[1] ?? '');
       setMyFrame(fr[1] ?? '');
       setMyAura(aura[1] ?? '');
+      setMyProfileCardLevel(Math.max(0, Math.min(5, parseInt(cardLevel[1] ?? '0', 10) || 0)));
+      setMyProfileCardTheme(cardTheme[1] ?? '');
       const cached = await getCachedMyArenaRank();
       if (cached) setMyArenaPlace(cached);
     })();
@@ -250,8 +257,10 @@ export default function ArenaLeaderboardScreen() {
       aura: myAura,
       avatarEmoji: myAvatar,
       games: myArena?.games ?? 0,
+      profileCardLevel: myProfileCardLevel,
+      profileCardTheme: myProfileCardTheme,
     }),
-    [myArena, myAura, myAvatar, myFrame, myIsPremium, myIsVip, myName, myStableUid, myTotalXp, myUid, rows],
+    [myArena, myAura, myAvatar, myFrame, myIsPremium, myIsVip, myName, myProfileCardLevel, myProfileCardTheme, myStableUid, myTotalXp, myUid, rows],
   );
 
   // Подтягиваем актуальное место игрока в общем рейтинге арены, как только знаем,
@@ -669,24 +678,29 @@ export default function ArenaLeaderboardScreen() {
                         />
                       </PremiumAvatarHalo>
                       <View style={{ flex: 1, minWidth: 0 }}>
-                        {hasLeagueCrown ? (
-                          <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} count={displayLeagueCrownCount} />
-                        ) : rowIsPremium ? (
-                          <PremiumGoldUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
-                        ) : rowIsVip ? (
-                          <VipGreenUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
-                        ) : (
-                          <Text
-                            numberOfLines={1}
-                            style={{
-                              fontSize: isTop3 ? 16 : 15,
-                              color: t.textPrimary,
-                              fontWeight: isMe || isTop3 ? '700' : '600',
-                            }}
-                          >
-                            {item.displayName}
-                          </Text>
-                        )}
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
+                          <View style={{ flexShrink: 1, minWidth: 0 }}>
+                            {hasLeagueCrown ? (
+                              <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} count={displayLeagueCrownCount} />
+                            ) : rowIsPremium ? (
+                              <PremiumGoldUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
+                            ) : rowIsVip ? (
+                              <VipGreenUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
+                            ) : (
+                              <Text
+                                numberOfLines={1}
+                                style={{
+                                  fontSize: isTop3 ? 16 : 15,
+                                  color: t.textPrimary,
+                                  fontWeight: isMe || isTop3 ? '700' : '600',
+                                }}
+                              >
+                                {item.displayName}
+                              </Text>
+                            )}
+                          </View>
+                          <ProfileCardBadge level={item.profileCardLevel} theme={item.profileCardTheme} />
+                        </View>
                         <Text numberOfLines={2} style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
                           {`${triLang(lang, { uk: 'Місце', ru: 'Место', es: 'Puesto', 'pt-BR': 'Posição', vi: 'Vị trí', id: 'Posisi', tr: 'Sıra', pl: 'Miejsce' })} ${item.place} · ${duelLabel} · ${triLang(lang, { uk: 'рів.', ru: 'ур.', es: 'nv.', 'pt-BR': 'nív.', vi: 'cấp', id: 'lvl', tr: 'sv.', pl: 'poz.' })} ${lvl}`}
                         </Text>

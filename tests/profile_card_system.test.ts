@@ -26,6 +26,14 @@ jest.mock('../app/shards_system', () => ({
   getShardsBalance: jest.fn(),
   spendShards: jest.fn(),
 }));
+// Force the offline / cloud-unavailable path so these unit tests exercise the
+// deterministic local shard-spend fallback of upgradeProfileCardLevel(). The
+// server-validated path (profileCardUpgrade callable) is covered separately in
+// functions/src/profile_card_upgrade.test.ts.
+jest.mock('../app/config', () => ({
+  CLOUD_SYNC_ENABLED: false,
+  IS_EXPO_GO: true,
+}));
 
 const mockGetShardsBalance = getShardsBalance as jest.MockedFunction<typeof getShardsBalance>;
 const mockSpendShards = spendShards as jest.MockedFunction<typeof spendShards>;
@@ -90,33 +98,34 @@ describe('profile_card_system', () => {
   });
 
   it('returns needed shards without spending when balance is too low', async () => {
+    // CARD I costs 30 shards; with 20 in balance the player still needs 10.
     mockGetShardsBalance.mockResolvedValue(20);
 
     await expect(upgradeProfileCardLevel()).resolves.toEqual({
       ok: false,
       reason: 'insufficient',
-      need: 30,
+      need: 10,
       balance: 20,
     });
     expect(mockSpendShards).not.toHaveBeenCalled();
   });
 
   it('spends shards and upgrades CARD 0 to CARD I', async () => {
-    mockGetShardsBalance.mockResolvedValueOnce(50).mockResolvedValueOnce(0);
+    mockGetShardsBalance.mockResolvedValueOnce(30).mockResolvedValueOnce(0);
 
     await expect(upgradeProfileCardLevel()).resolves.toEqual({
       ok: true,
       level: 1,
       balance: 0,
     });
-    expect(mockSpendShards).toHaveBeenCalledWith(50, 'profile_card_upgrade');
+    expect(mockSpendShards).toHaveBeenCalledWith(30, 'profile_card_upgrade');
     await expect(AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)).resolves.toBe('1');
     expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
   });
 
   it('unlocks the default gold theme when upgrading to CARD II', async () => {
     await AsyncStorage.setItem(PROFILE_CARD_LEVEL_KEY, '1');
-    mockGetShardsBalance.mockResolvedValueOnce(100).mockResolvedValueOnce(0);
+    mockGetShardsBalance.mockResolvedValueOnce(60).mockResolvedValueOnce(0);
 
     await expect(upgradeProfileCardLevel()).resolves.toMatchObject({ ok: true, level: 2 });
     await expect(AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)).resolves.toBe('2');

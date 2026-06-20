@@ -55,6 +55,7 @@ export const DEV_MODE = true;
  * опираются.
  */
 export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
+export const TESTFLIGHT_DEV_TOOLS = process.env.EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS === '1';
 
 /** true только в реальном dev-рантайме Metro (не preview, не стор). */
 const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;
@@ -88,13 +89,21 @@ export const IS_EXPO_GO = Constants.appOwnership === 'expo';
  * can also opt in through DEV_MODE when Metro's literal __DEV__ is unavailable.
  */
 export const ENABLE_DEV_TOOLS =
-  ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE) && !IS_STORE_RELEASE;
+  ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE || TESTFLIGHT_DEV_TOOLS) && !IS_STORE_RELEASE;
 
 /**
  * Ставка осколками на следующий рейтинг-матч арены (очередь «Найти матч»).
  * Включено во всех сборках, включая стор.
  */
 export const ENABLE_ARENA_RANKED_WAGER = true;
+
+/**
+ * Карточка профиля (прокачка за осколки + кастомизация темы/анимации/публичного акцента).
+ * Раньше весь UI висел за ENABLE_DEV_TOOLS → в сторе никто не мог прокачать карточку, все
+ * оставались на уровне 0, хотя визуал и синк работали. Теперь фича живая во всех сборках;
+ * этот флаг остаётся kill-switch'ем на случай отката без релиза.
+ */
+export const ENABLE_PROFILE_CARD = true;
 
 /**
  * Мгновенный «премиум» / dev-осколки без Google Play (см. premium_modal, shards_shop).
@@ -131,7 +140,7 @@ export const SPANISH_UI_LOCALE_ENABLED = false;
  * В production-бандле `__DEV__ === false` — код не активен. Не синкается в облако.
  */
 export const ENABLE_DEV_STUDY_TARGET_LANG =
-  ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE) && !IS_STORE_RELEASE;
+  ((typeof __DEV__ !== 'undefined' && __DEV__) || DEV_MODE || TESTFLIGHT_DEV_TOOLS) && !IS_STORE_RELEASE;
 
 // ── Store links ───────────────────────────────────────────────────────────────
 export const STORE_URL_IOS     = 'https://apps.apple.com/app/id6764800879';

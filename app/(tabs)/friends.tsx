@@ -21,6 +21,7 @@ import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
 import VipGreenUserName from '../../components/VipGreenUserName';
 import LeagueCrownName from '../../components/LeagueCrownName';
+import ProfileCardBadge from '../../components/ProfileCardBadge';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
@@ -505,14 +506,19 @@ function FriendRow({
         <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={FRIEND_ROW_AVATAR_SIZE} auraId={usesPremiumAura ? undefined : effectiveAura} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
-        {hasLeagueCrown
-          ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
-          : profile.isPremium
-          ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
-          : profile.isVip
-          ? <VipGreenUserName text={profile.name} fontSize={f.body} />
-          : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
-        }
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
+          <View style={{ flexShrink: 1, minWidth: 0 }}>
+            {hasLeagueCrown
+              ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
+              : profile.isPremium
+              ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
+              : profile.isVip
+              ? <VipGreenUserName text={profile.name} fontSize={f.body} />
+              : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
+            }
+          </View>
+          <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} />
+        </View>
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
         {referralStatus && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 3 }}>
@@ -588,14 +594,19 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f, chrome }: {
         <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={usesPremiumAura ? undefined : effectiveAura} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
-        {hasLeagueCrown
-          ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
-          : profile.isPremium
-          ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
-          : profile.isVip
-          ? <VipGreenUserName text={profile.name} fontSize={f.body} />
-          : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
-        }
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 0 }}>
+          <View style={{ flexShrink: 1, minWidth: 0 }}>
+            {hasLeagueCrown
+              ? <LeagueCrownName text={profile.name} fontSize={f.body} count={displayLeagueCrownCount} />
+              : profile.isPremium
+              ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
+              : profile.isVip
+              ? <VipGreenUserName text={profile.name} fontSize={f.body} />
+              : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
+            }
+          </View>
+          <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} />
+        </View>
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
         {profile.streak > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginTop: 2 }}>
@@ -2550,13 +2561,15 @@ export default function FriendsTabScreen() {
           </View>
         )}
 
-        <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-          <ReportErrorButton
-            screen="friends_tab"
-            dataId="friends_tab_main"
-            dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
-          />
-        </View>
+        {activeTab === 'friends' && (
+          <View style={{ alignItems: 'center', paddingVertical: 16 }}>
+            <ReportErrorButton
+              screen="friends_tab"
+              dataId="friends_tab_main"
+              dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
+            />
+          </View>
+        )}
 
       </Animated.ScrollView>
       </BouncyWrap>

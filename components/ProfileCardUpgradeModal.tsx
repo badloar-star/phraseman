@@ -9,7 +9,7 @@ import { useLang } from './LangContext';
 import CompassDepthSurface from './CompassDepthSurface';
 import { emitAppEvent } from '../app/events';
 import { syncToCloud } from '../app/cloud_sync';
-import { ENABLE_DEV_TOOLS } from '../app/config';
+import { ENABLE_PROFILE_CARD } from '../app/config';
 import { getShardsBalance } from '../app/shards_system';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import {
@@ -232,7 +232,7 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
   const [shards, setShards] = useState(0);
   const [busy, setBusy] = useState(false);
   const [currentSnapshot, setCurrentSnapshot] = useState<ProfileCardSnapshot>(() => snapshot ?? { ...FALLBACK_SNAPSHOT, level });
-  const effectiveVisible = ENABLE_DEV_TOOLS && visible;
+  const effectiveVisible = ENABLE_PROFILE_CARD && visible;
 
   const currentLevel = currentSnapshot.level;
   const nextLevel = useMemo(() => getNextProfileCardLevel(currentLevel), [currentLevel]);
@@ -267,7 +267,7 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
   }, []);
 
   const handleUpgrade = useCallback(async () => {
-    if (!ENABLE_DEV_TOOLS || busy || !nextDef) return;
+    if (!ENABLE_PROFILE_CARD || busy || !nextDef) return;
     setBusy(true);
     try {
       const result = await upgradeProfileCardLevel();
@@ -292,6 +292,18 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
         } as any);
         return;
       }
+      if (result.reason === 'cloud_error') {
+        // The server may or may not have applied the upgrade — re-read the real state from
+        // the cloud instead of guessing, and tell the user it didn't go through cleanly.
+        void syncToCloud({ forceNow: true });
+        getShardsBalance().then(setShards).catch(() => {});
+        getProfileCardSnapshot().then((snap) => {
+          setCurrentSnapshot(snap);
+          onChanged?.(snap);
+        }).catch(() => {});
+        notify('error', 'Нет связи с сервером. Проверь соединение и открой карточку снова.');
+        return;
+      }
       notify('error', 'Карточка не улучшилась. Попробуй снова.');
     } finally {
       setBusy(false);
@@ -299,7 +311,7 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
   }, [busy, nextDef, notify, onChanged, onClose, onUpgraded, router, shards]);
 
   const applyTheme = useCallback(async (theme: ProfileCardTheme) => {
-    if (!ENABLE_DEV_TOOLS || busy || !canUseProfileCardTheme(currentLevel, theme) || currentSnapshot.theme === theme) return;
+    if (!ENABLE_PROFILE_CARD || busy || !canUseProfileCardTheme(currentLevel, theme) || currentSnapshot.theme === theme) return;
     setBusy(true);
     try {
       const next = await setProfileCardTheme(theme);
@@ -315,7 +327,7 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
   }, [busy, currentLevel, currentSnapshot.theme, notify, onChanged]);
 
   const applyMotion = useCallback(async (motion: ProfileCardMotion) => {
-    if (!ENABLE_DEV_TOOLS || busy || !canUseProfileCardMotion(currentLevel, motion) || currentSnapshot.motion === motion) return;
+    if (!ENABLE_PROFILE_CARD || busy || !canUseProfileCardMotion(currentLevel, motion) || currentSnapshot.motion === motion) return;
     setBusy(true);
     try {
       const next = await setProfileCardMotion(motion);
@@ -331,7 +343,7 @@ function ProfileCardUpgradeModal({ visible, level, snapshot, onClose, onUpgraded
   }, [busy, currentLevel, currentSnapshot.motion, notify, onChanged]);
 
   const applyPublicFocus = useCallback(async (focus: ProfileCardPublicFocus) => {
-    if (!ENABLE_DEV_TOOLS || busy || !canUseProfileCardPublicFocus(currentLevel, focus) || currentSnapshot.publicFocus === focus) return;
+    if (!ENABLE_PROFILE_CARD || busy || !canUseProfileCardPublicFocus(currentLevel, focus) || currentSnapshot.publicFocus === focus) return;
     setBusy(true);
     try {
       const next = await setProfileCardPublicFocus(focus);

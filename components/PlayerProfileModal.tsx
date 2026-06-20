@@ -41,7 +41,7 @@ import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { arenaTierLabel } from '../app/arena_rating';
 import type { RankTier } from '../app/types/arena';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMultipliersFirestore } from '../app/xp_manager';
-import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from '../app/config';
+import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
 import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
 import { fetchActivityLikeTotal } from '../app/friend_activity_likes';
@@ -248,7 +248,9 @@ function PlayerProfileModalBody({
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [cardUpgradeOpen, setCardUpgradeOpen] = useState(false);
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
-  const showProfileCardDevTools = ENABLE_DEV_TOOLS;
+  // Owner-only upgrade entry + modal. Card visuals (gradient/motion/badge) render
+  // for everyone regardless of this flag; only the "upgrade my card" controls are gated.
+  const showProfileCardControls = ENABLE_PROFILE_CARD;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
   const profileCardLevel = profileCardSnapshot.level;
   const [remoteCrown, setRemoteCrown] = useState<{ expiresAt: number; crownCount: number }>(() => ({ expiresAt: 0, crownCount: 0 }));
@@ -1410,7 +1412,7 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
-        {isMe && showProfileCardDevTools && (
+        {isMe && showProfileCardControls && (
           <TouchableOpacity
             testID="player-profile-card-upgrade-open"
             activeOpacity={0.84}
@@ -1501,7 +1503,7 @@ function PlayerProfileModalBody({
       onCancel={() => setRemoveFriendConfirmOpen(false)}
       onConfirm={handleRemoveFriendConfirm}
     />
-    {showProfileCardDevTools ? (
+    {showProfileCardControls ? (
       <ProfileCardUpgradeModal
         visible={cardUpgradeOpen}
         level={profileCardLevel}

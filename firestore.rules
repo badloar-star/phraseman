@@ -88,6 +88,10 @@ service cloud.firestore {
                 // Collectibles: server-only, always blocked regardless of migration flag.
                 'collectibles_owned_v1',
                 'collectibles_state_v1',
+                // Profile card LEVEL: a public prestige badge bought with shards. Only the
+                // profileCardUpgrade Cloud Function (Admin SDK) may raise it, so a tampered
+                // client can't forge CARD V for free. Theme/motion/focus stay client-chosen.
+                'profile_card_level',
               ])
            && (!isProgressServerAuthoritative()
                 || !request.resource.data.get('progress', {})
@@ -1644,6 +1648,19 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
     match /choice_explain_billing/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    // Разбор ошибки урока: тёплый кэш. Публичное чтение прогретого кэша ($0),
+    // запись только сервер (Admin SDK), удаление — админ (удаление дока ⇒
+    // разбор сгенерится заново). Биллинг — только сервер.
+    match /mistake_explanations/{mistakeHash} {
+      allow read: if true;
+      allow create, update: if false;
+      allow delete: if isAdmin();
+    }
+    match /mistake_explain_billing/{docId} {
       allow read: if false;
       allow write: if false;
     }

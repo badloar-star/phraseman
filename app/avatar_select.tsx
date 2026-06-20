@@ -20,7 +20,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { usePremium } from '../components/PremiumContext';
+import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import {
@@ -62,7 +62,7 @@ import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
-import { ENABLE_DEV_TOOLS } from './config';
+import { ENABLE_PROFILE_CARD } from './config';
 import { getShardsBalance, spendShards } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { emitAppEvent } from './events';
@@ -358,6 +358,10 @@ export default function AvatarSelect() {
   const avatarVipAccent = '#22C55E';
   const { lang } = useLang();
   const { isPremium, isVip } = usePremium();
+  // «Пульт»: премиум-ауры разблокируются для всех, когда фича переведена в «Фри»
+  // (VIP-ауры остаются за VIP-статусом). Используем только в решении «владеет/замок»,
+  // косметический дефолт ауры по-прежнему завязан на сырой isPremium.
+  const premiumAuraAccess = useFeatureAccess('avatar_auras');
   const isUK = lang === 'uk';
   const [level, setLevel] = useState(1);
   const [shards, setShards] = useState(0);
@@ -383,7 +387,7 @@ export default function AvatarSelect() {
   const [profilePreviewOpen, setProfilePreviewOpen] = useState(false);
 
   const activeCustom = useMemo(() => parseCustomAvatarValue(activeAvatar), [activeAvatar]);
-  const showProfileCardSection = ENABLE_DEV_TOOLS;
+  const showProfileCardSection = ENABLE_PROFILE_CARD;
   const showProfileCardDevTools = showProfileCardSection;
   const auraExplicitlyDisabled = activeAuraId === NO_AVATAR_AURA_ID;
   const effectiveAuraId = auraExplicitlyDisabled ? null : activeAuraId || (isPremium ? PREMIUM_AVATAR_AURA_ID : isVip ? VIP_AVATAR_AURA_ID : null);
@@ -661,7 +665,7 @@ export default function AvatarSelect() {
       const isPremiumAura = aura.premiumOnly === true;
       const isVipAura = aura.vipOnly === true;
       const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-      const isOwned = isPremiumAura ? isPremium : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
+      const isOwned = isPremiumAura ? premiumAuraAccess : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
       if (!isOwned) {
         if (isPremiumAura) {
           router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
@@ -1058,7 +1062,7 @@ export default function AvatarSelect() {
               const isPremiumAura = aura.premiumOnly === true;
               const isVipAura = aura.vipOnly === true;
               const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
-              const isOwned = isPremiumAura ? isPremium : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
+              const isOwned = isPremiumAura ? premiumAuraAccess : isVipAura ? isVip : unlockedByLevel || !!ownedAuras[aura.id];
               const isGifted = !isPremiumAura && !isVipAura && !!ownedAuras[aura.id] && giftedAuraId === aura.id;
               const isActive = effectiveAuraId === aura.id;
               return (

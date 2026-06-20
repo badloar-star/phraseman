@@ -44,6 +44,17 @@ import { safeRouterBack } from './navigation_back';
 
 const LOCAL_SCENARIO_GREETING = 'Hi! Let\'s practice. Start with one short English sentence, and I will keep the conversation going.';
 
+/**
+ * Достаёт имя персонажа из persona-строки («Your name is Mia. …» → «Mia»).
+ * Используется как подпись и инициал аватара собеседника в шапке-мессенджере.
+ * Возвращает пустую строку, если имя не задано.
+ */
+function extractPersonaName(persona?: string): string {
+  if (!persona) return '';
+  const match = persona.match(/your name is\s+([^.,]+)/i);
+  return match ? match[1].trim() : '';
+}
+
 function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
   const scenarioId = getLessonDialogScenarioId(lessonId);
   if (!scenarioId) return null;
@@ -102,6 +113,10 @@ export default function AiDialogSession() {
     },
     [params.scenarioId, params.lessonId],
   );
+
+  // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
+  const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
+  const avatarInitial = (personaName || dialogScenarioTitle(scenario, lang) || '?').trim().charAt(0).toUpperCase();
 
   const [messages, setMessages] = useState<UiMessage[]>([]);
   const [input, setInput] = useState('');
@@ -219,25 +234,69 @@ export default function AiDialogSession() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
-        {/* Header — trainer-стиль */}
+        {/* Header — мессенджер-стиль: аватар собеседника + имя + статус «онлайн» */}
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            paddingHorizontal: 16,
-            paddingVertical: 12,
+            paddingHorizontal: 12,
+            paddingVertical: 10,
+            gap: 4,
+            borderBottomWidth: 0.5,
+            borderBottomColor: t.border,
           }}
         >
-          <TouchableOpacity onPress={onBack} style={{ padding: 4 }}>
+          <TouchableOpacity
+            onPress={onBack}
+            style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás' })}
+          >
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text
-            style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flex: 1, textAlign: 'center' }}
-            numberOfLines={1}
+
+          {/* Аватар: иконка сценария на акцентном круге */}
+          <View
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 20,
+              backgroundColor: t.accentBg,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: 10,
+              borderWidth: 1,
+              borderColor: t.accent + '40',
+            }}
           >
-            {dialogScenarioTitle(scenario, lang)}
-          </Text>
+            <Ionicons name={scenario.icon as any} size={20} color={t.accent} />
+            {/* «онлайн»-точка */}
+            <View
+              style={{
+                position: 'absolute',
+                right: -1,
+                bottom: -1,
+                width: 12,
+                height: 12,
+                borderRadius: 6,
+                backgroundColor: t.correct,
+                borderWidth: 2,
+                borderColor: t.bgPrimary,
+              }}
+            />
+          </View>
+
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ fontWeight: '800', color: t.textPrimary, fontSize: f.body }} numberOfLines={1}>
+              {personaName || dialogScenarioTitle(scenario, lang)}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 1 }} numberOfLines={1}>
+              {personaName
+                ? dialogScenarioTitle(scenario, lang)
+                : triLang(lang, { ru: 'на связи', uk: 'на зв’язку', es: 'en línea' })}
+            </Text>
+          </View>
+
           {!ended && userExchanges > 0 ? (
             <TouchableOpacity
               onPress={finishDialog}
@@ -245,23 +304,22 @@ export default function AiDialogSession() {
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, { ru: 'Завершить диалог', uk: 'Завершити діалог', es: 'Terminar diálogo' })}
               style={{
-                minHeight: 44,
-                minWidth: 96,
-                borderRadius: 14,
+                minHeight: 36,
+                borderRadius: 18,
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingHorizontal: 10,
+                paddingHorizontal: 14,
                 backgroundColor: t.bgCard,
                 borderWidth: 0.5,
                 borderColor: t.border,
               }}
             >
-              <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800' }}>
                 {triLang(lang, { ru: 'Завершить', uk: 'Завершити', es: 'Terminar' })}
               </Text>
             </TouchableOpacity>
           ) : (
-            <View style={{ width: 96 }} />
+            <View style={{ width: 8 }} />
           )}
         </View>
 
@@ -299,132 +357,190 @@ export default function AiDialogSession() {
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           keyboardVerticalOffset={8}
         >
-          <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>
+          <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
             {messages.map((m, i) => {
               const isUser = m.role === 'user';
+              const isLast = i === messages.length - 1;
               return (
                 <Animated.View
                   key={i}
                   style={{
-                    opacity: i === messages.length - 1 ? enterAnim : 1,
+                    opacity: isLast ? enterAnim : 1,
                     transform: [
                       {
-                        translateY:
-                          i === messages.length - 1
-                            ? enterAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] })
-                            : 0,
+                        translateY: isLast
+                          ? enterAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] })
+                          : 0,
                       },
                     ],
+                    flexDirection: 'row',
+                    alignItems: 'flex-end',
+                    justifyContent: isUser ? 'flex-end' : 'flex-start',
+                    marginBottom: 12,
                   }}
                 >
-                  <View
-                    style={{
-                      backgroundColor: isUser ? t.bgSurface : t.bgCard,
-                      borderRadius: 16,
-                      padding: 16,
-                      borderWidth: 0.5,
-                      borderColor: t.border,
-                      marginBottom: 10,
-                      alignSelf: isUser ? 'flex-end' : 'stretch',
-                      maxWidth: isUser ? '88%' : '100%',
-                    }}
-                  >
-                    {isUser ? (
+                  {/* Мини-аватар собеседника слева от его пузыря */}
+                  {!isUser && (
+                    <View
+                      style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: 14,
+                        backgroundColor: t.accentBg,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginRight: 8,
+                      }}
+                    >
+                      <Ionicons name={scenario.icon as any} size={15} color={t.accent} />
+                    </View>
+                  )}
+
+                  {isUser ? (
+                    // Пузырь пользователя — цветной, справа, с тенью и «хвостиком».
+                    <View
+                      style={{
+                        backgroundColor: t.accent,
+                        borderRadius: 20,
+                        borderBottomRightRadius: 6,
+                        paddingHorizontal: 16,
+                        paddingVertical: 11,
+                        maxWidth: '82%',
+                        shadowColor: t.shadowDark,
+                        shadowOpacity: 0.25,
+                        shadowRadius: 6,
+                        shadowOffset: { width: 0, height: 2 },
+                        elevation: 2,
+                      }}
+                    >
                       <Text
                         style={{
-                          color: t.textPrimary,
+                          color: t.correctText,
                           fontSize: f.bodyLg,
-                          lineHeight: Math.round(f.bodyLg * 1.45),
+                          fontWeight: '600',
+                          lineHeight: Math.round(f.bodyLg * 1.4),
                         }}
                         maxFontSizeMultiplier={1.2}
                       >
                         {m.text}
                       </Text>
-                    ) : (
-                      <>
-                        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
-                          <Text
-                            style={{
-                              color: t.textPrimary,
-                              fontSize: f.bodyLg,
-                              fontWeight: '700',
-                              flex: 1,
-                              lineHeight: Math.round(f.bodyLg * 1.45),
-                            }}
-                            maxFontSizeMultiplier={1.2}
-                          >
-                            {parseKeyPhrases(m.text).map((seg, si) =>
-                              seg.isKey ? (
-                                // Ключевая фраза: подсвечена акцентом + тап озвучивает ИМЕННО ЕЁ.
-                                <Text
-                                  key={si}
-                                  onPress={() => {
-                                    hapticTap();
-                                    void trackEvent('ai_dialog_phrase_tapped', {
-                                      scenarioId: scenario.id,
-                                      phrase: seg.text.slice(0, 60),
-                                    });
-                                    speak(seg.text, undefined, { language: 'en-US', voice: '' });
-                                  }}
-                                  style={{
-                                    color: t.accent,
-                                    fontWeight: '800',
-                                    textDecorationLine: 'underline',
-                                  }}
-                                >
-                                  {seg.text}
-                                </Text>
-                              ) : (
-                                // Обычный текст: тап озвучивает всю реплику (как раньше).
-                                <Text
-                                  key={si}
-                                  onPress={() => {
-                                    hapticTap();
-                                    void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
-                                    speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
-                                  }}
-                                >
-                                  {seg.text}
-                                </Text>
-                              ),
-                            )}
-                          </Text>
-                          <TouchableOpacity
-                            onPress={() => {
-                              hapticTap();
-                              void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
-                              speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
-                            }}
-                            activeOpacity={0.6}
-                            accessibilityRole="button"
-                            accessibilityLabel={triLang(lang, { ru: 'Озвучить реплику', uk: 'Озвучити репліку', es: 'Reproducir frase' })}
-                            style={{
-                              width: 44,
-                              minHeight: 44,
-                              flexShrink: 0,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              marginTop: -8,
-                              marginRight: -10,
-                            }}
-                          >
-                            <Ionicons name="volume-medium-outline" size={20} color={t.textSecond} />
-                          </TouchableOpacity>
-                        </View>
-                      </>
-                    )}
-                  </View>
+                    </View>
+                  ) : (
+                    // Пузырь собеседника — слева, светлая карточка, «хвостик» снизу-слева.
+                    <View
+                      style={{
+                        backgroundColor: t.bgCard,
+                        borderRadius: 20,
+                        borderBottomLeftRadius: 6,
+                        paddingHorizontal: 16,
+                        paddingVertical: 12,
+                        borderWidth: 0.5,
+                        borderColor: t.border,
+                        maxWidth: '82%',
+                        shadowColor: t.shadowDark,
+                        shadowOpacity: 0.18,
+                        shadowRadius: 6,
+                        shadowOffset: { width: 0, height: 2 },
+                        elevation: 1,
+                      }}
+                    >
+                      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
+                        <Text
+                          style={{
+                            color: t.textPrimary,
+                            fontSize: f.bodyLg,
+                            fontWeight: '600',
+                            flex: 1,
+                            lineHeight: Math.round(f.bodyLg * 1.4),
+                          }}
+                          maxFontSizeMultiplier={1.2}
+                        >
+                          {parseKeyPhrases(m.text).map((seg, si) =>
+                            seg.isKey ? (
+                              // Ключевая фраза: подсвечена акцентом + тап озвучивает ИМЕННО ЕЁ.
+                              <Text
+                                key={si}
+                                onPress={() => {
+                                  hapticTap();
+                                  void trackEvent('ai_dialog_phrase_tapped', {
+                                    scenarioId: scenario.id,
+                                    phrase: seg.text.slice(0, 60),
+                                  });
+                                  speak(seg.text, undefined, { language: 'en-US', voice: '' });
+                                }}
+                                style={{
+                                  color: t.accent,
+                                  fontWeight: '800',
+                                  textDecorationLine: 'underline',
+                                }}
+                              >
+                                {seg.text}
+                              </Text>
+                            ) : (
+                              // Обычный текст: тап озвучивает всю реплику (как раньше).
+                              <Text
+                                key={si}
+                                onPress={() => {
+                                  hapticTap();
+                                  void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
+                                  speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
+                                }}
+                              >
+                                {seg.text}
+                              </Text>
+                            ),
+                          )}
+                        </Text>
+                        <TouchableOpacity
+                          onPress={() => {
+                            hapticTap();
+                            void trackEvent('ai_dialog_tts_used', { scenarioId: scenario.id });
+                            speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
+                          }}
+                          activeOpacity={0.6}
+                          accessibilityRole="button"
+                          accessibilityLabel={triLang(lang, { ru: 'Озвучить реплику', uk: 'Озвучити репліку', es: 'Reproducir frase' })}
+                          style={{
+                            width: 30,
+                            minHeight: 30,
+                            flexShrink: 0,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginTop: -4,
+                            marginRight: -6,
+                          }}
+                        >
+                          <Ionicons name="volume-medium-outline" size={18} color={t.textSecond} />
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  )}
                 </Animated.View>
               );
             })}
 
             {sending && (
-              <AiTypingBubble
-                bubbleColor={t.bgCard}
-                borderColor={t.border}
-                dotColor={t.accent}
-                glowColor={t.accent + '18'}
-              />
+              <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginBottom: 12 }}>
+                <View
+                  style={{
+                    width: 28,
+                    height: 28,
+                    borderRadius: 14,
+                    backgroundColor: t.accentBg,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: 8,
+                  }}
+                >
+                  <Ionicons name={scenario.icon as any} size={15} color={t.accent} />
+                </View>
+                <AiTypingBubble
+                  bubbleColor={t.bgCard}
+                  borderColor={t.border}
+                  dotColor={t.accent}
+                  glowColor={t.accent + '18'}
+                />
+              </View>
             )}
 
             {ended && (
@@ -515,14 +631,14 @@ export default function AiDialogSession() {
             </View>
           )}
 
-          {/* Поле ввода + Отправить */}
+          {/* Поле ввода — пилюля + круглая кнопка отправки */}
           {!ended && (
             <View
               style={{
                 flexDirection: 'row',
-                alignItems: 'center',
-                gap: 10,
-                paddingHorizontal: 16,
+                alignItems: 'flex-end',
+                gap: 8,
+                paddingHorizontal: 12,
                 paddingTop: 8,
                 paddingBottom: 12,
               }}
@@ -534,16 +650,18 @@ export default function AiDialogSession() {
                 placeholderTextColor={t.textMuted}
                 editable={!sending}
                 onSubmitEditing={() => send(input)}
+                multiline
                 style={{
                   flex: 1,
                   backgroundColor: t.bgCard,
-                  borderRadius: 16,
+                  borderRadius: 22,
                   borderWidth: 0.5,
                   borderColor: t.border,
-                  paddingHorizontal: 16,
-                  paddingVertical: 12,
+                  paddingHorizontal: 18,
+                  paddingVertical: Platform.OS === 'ios' ? 12 : 8,
                   color: t.textPrimary,
                   fontSize: f.body,
+                  maxHeight: 120,
                 }}
                 maxFontSizeMultiplier={1.2}
               />
@@ -551,16 +669,28 @@ export default function AiDialogSession() {
                 onPress={() => send(input)}
                 disabled={!input.trim() || sending}
                 activeOpacity={0.82}
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar' })}
                 style={{
-                  borderRadius: 16,
-                  paddingVertical: 12,
-                  paddingHorizontal: 18,
+                  width: 44,
+                  height: 44,
+                  borderRadius: 22,
                   alignItems: 'center',
-                  backgroundColor: input.trim() && !sending ? '#4A9EFF' : t.bgSurface,
+                  justifyContent: 'center',
+                  backgroundColor: input.trim() && !sending ? t.accent : t.bgSurface,
                   opacity: input.trim() && !sending ? 1 : 0.5,
+                  shadowColor: t.shadowDark,
+                  shadowOpacity: input.trim() && !sending ? 0.3 : 0,
+                  shadowRadius: 6,
+                  shadowOffset: { width: 0, height: 2 },
+                  elevation: input.trim() && !sending ? 3 : 0,
                 }}
               >
-                <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.body }}>→</Text>
+                <Ionicons
+                  name="arrow-up"
+                  size={22}
+                  color={input.trim() && !sending ? t.correctText : t.textMuted}
+                />
               </TouchableOpacity>
             </View>
           )}

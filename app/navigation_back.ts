@@ -1,5 +1,4 @@
 export const HOME_BACK_FALLBACK = '/(tabs)/home';
-const BACK_NOOP_FALLBACK_DELAY_MS = 220;
 
 type SafeBackRouter = {
   canGoBack?: () => boolean;
@@ -8,6 +7,7 @@ type SafeBackRouter = {
 };
 
 let rememberedNavigationPath: string | null = null;
+let previousNavigationPath: string | null = null;
 let rememberedNavigationVersion = 0;
 let pendingNoopBackTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -24,6 +24,7 @@ export function rememberNavigationPath(path: string | null | undefined): void {
     return;
   }
 
+  previousNavigationPath = rememberedNavigationPath;
   rememberedNavigationPath = nextPath;
   rememberedNavigationVersion += 1;
   clearPendingNoopBackTimer();
@@ -34,26 +35,16 @@ export function safeRouterBack(
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
   clearPendingNoopBackTimer();
-  const pathBeforeBack = rememberedNavigationPath;
-  const versionBeforeBack = rememberedNavigationVersion;
+  // Native-stack router.back() hard-crashes the app on Android/Fabric during the
+  // Back teardown (see screenOptions note in app/_layout.tsx — the stack already
+  // forces animation:'none' to work around that native fault). Going back through
+  // router.back() re-exposes that crash on the universal "exit from any section"
+  // path. Since the stack has no animation, a deterministic replace to the previous
+  // (or fallback) route is visually identical and never triggers the native crash.
+  const target =
+    previousNavigationPath !== null && previousNavigationPath !== rememberedNavigationPath
+      ? previousNavigationPath
+      : fallback;
 
-  try {
-    if (typeof router.canGoBack === 'function' && router.canGoBack()) {
-      router.back();
-      pendingNoopBackTimer = setTimeout(() => {
-        pendingNoopBackTimer = null;
-        if (
-          rememberedNavigationPath === pathBeforeBack &&
-          rememberedNavigationVersion === versionBeforeBack
-        ) {
-          router.replace(fallback);
-        }
-      }, BACK_NOOP_FALLBACK_DELAY_MS);
-      return;
-    }
-  } catch {
-    // Fall through to the deterministic route below.
-  }
-
-  router.replace(fallback);
+  router.replace(target);
 }

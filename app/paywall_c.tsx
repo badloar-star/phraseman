@@ -33,6 +33,7 @@ import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
+import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { MirrorCard, PercentileCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
 import {
   ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor, doubtersDividerLabel,
@@ -239,6 +240,16 @@ export default function PaywallC() {
                 hideFooter
               />
             </View>
+
+            <PaywallLegalDisclosure
+              lang={lang as Lang}
+              chrome={chrome}
+              priceLabel={price}
+              periodLabel={period}
+              hasTrial={!!p.trialDays}
+              trialDays={p.trialDays}
+              isLifetime={isLifetimeSel}
+            />
             <View style={{ height: Math.max(insets.bottom, 10) + 64 }} />
           </ScrollView>
 

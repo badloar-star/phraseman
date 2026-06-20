@@ -35,6 +35,7 @@ import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
+import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -214,6 +215,16 @@ export default function PaywallA() {
               onRestore={() => { void p.handleRestore(); }}
               restoring={p.restoring}
               onContinueFree={() => p.handleClose('continue_free')}
+            />
+
+            <PaywallLegalDisclosure
+              lang={lang as Lang}
+              chrome={chrome}
+              priceLabel={price}
+              periodLabel={period}
+              hasTrial={!!p.trialDays}
+              trialDays={p.trialDays}
+              isLifetime={isLifetimeSel}
             />
           </ScrollView>
         </Animated.View>

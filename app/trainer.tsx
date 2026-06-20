@@ -521,7 +521,7 @@ function InlineCategoryRow({ stat, lang, t, f, router, resolvedPersonalTrainings
             isWeak ? t.accent + '55' : t.border;
     const inner = (<View style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: rowBg, borderColor: rowBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
       {isCompassTheme ? <CompassTrainerSurface radius={8} quiet={!isWeak} selected={isWeak} physical /> : null}
-      <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>{stat.pct}%</Text>
+      <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1}>{stat.pct}%</Text>
       <View style={{ flex: 1 }}>
         <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '600' }} numberOfLines={1}>{label}</Text>
         <View style={styles.miniProgressBg}>
@@ -899,7 +899,7 @@ export default function TrainerScreen() {
                 {hasAnalyticsMistakes && analyticsTab === 'lessons' && (<View style={{ gap: 6 }}>
                     {shownAnalytics.lessonStats.slice(0, 4).map(stat => (<View key={stat.lessonId} style={[styles.analyticsRow, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerRowBg, borderColor: trainerBorder, borderRadius: isCompassTheme ? 8 : 12 }]}>
                         {isCompassTheme ? <CompassTrainerSurface radius={8} quiet physical /> : null}
-                        <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>{stat.pct}%</Text>
+                        <Text style={[styles.analyticsRowPct, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1}>{stat.pct}%</Text>
                         <View style={{ flex: 1 }}>
                           <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                             {triLang(lang, {

@@ -1392,7 +1392,7 @@ export default function SettingsMain() {
                 onPress={() => { doHaptic(); closeNameModal(); }}
               >
                 {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1} adjustsFontSizeToFit>{L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
+                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.8}
@@ -1412,7 +1412,7 @@ export default function SettingsMain() {
                 onPress={() => { doHaptic(); void saveName(); }}
               >
                 {isCompassTheme ? <CompassDepthSurface radius={8} cream /> : null}
-                <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>{L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}</Text>
+                <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}</Text>
               </TouchableOpacity>
             </View>
             </View>

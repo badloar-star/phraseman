@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman — Предрелизный UX-аудит · 2026-06-20</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0d1117; --surface:#161b22; --surface2:#1c2230; --border:#2a313c;
+    --text:#e6edf3; --muted:#9aa4b2; --hint:#6e7681;
+    --green:#97C459; --greenT:#27500A; --greenBg:#1a2410;
+    --amber:#EF9F27; --amberT:#633806; --amberBg:#2a2008;
+    --red:#E24B4A; --redT:#fbdada; --redBg:#2a1010;
+    --blue:#378ADD; --blueBg:#0d1f33; --blueT:#9cc6f0;
+    --coral:#D85A30; --purple:#7F77DD; --teal:#1D9E75; --gray:#888780;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; padding:0;}
+  .wrap{max-width:1080px; margin:0 auto; padding:32px 20px 64px;}
+  h1{font-size:26px; font-weight:600; margin:0 0 4px;}
+  .sub{color:var(--muted); font-size:14px; margin-bottom:28px;}
+  h2{font-size:19px; font-weight:600; margin:40px 0 14px; display:flex; align-items:center; gap:8px;}
+  h3{font-size:15px; font-weight:600; margin:0 0 10px;}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:12px; margin-bottom:28px;}
+  .card{border-radius:10px; padding:14px 16px;}
+  .card .lbl{font-size:13px; opacity:.85;}
+  .card .num{font-size:26px; font-weight:600; margin-top:2px;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--muted); margin-bottom:14px;}
+  .legend span{display:flex; align-items:center; gap:5px;}
+  .dot{width:11px; height:11px; border-radius:3px; display:inline-block;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; margin-bottom:28px;}
+  .sec{border-radius:10px; padding:13px 14px; border:1px solid;}
+  .sec .t{font-size:14px; font-weight:600;}
+  .sec .m{font-size:12px; margin-top:5px; opacity:.85;}
+  .chartbox{position:relative; width:100%; height:240px; margin-bottom:28px;}
+  table{width:100%; border-collapse:collapse; font-size:14px; margin:6px 0 26px;}
+  th,td{text-align:left; padding:9px 10px; border-bottom:1px solid var(--border); vertical-align:top;}
+  th{color:var(--muted); font-weight:500; font-size:13px;}
+  code{background:var(--surface2); padding:1px 6px; border-radius:5px; font-size:12.5px; color:var(--blueT);
+    font-family:"SF Mono",Menlo,Consolas,monospace;}
+  .pill{font-size:11px; font-weight:600; padding:2px 9px; border-radius:20px; white-space:nowrap;}
+  .pC{background:var(--redBg); color:var(--red);}
+  .pM{background:var(--amberBg); color:var(--amber);}
+  ul{margin:8px 0 22px; padding-left:20px;}
+  li{margin:7px 0;}
+  .barRow{margin-bottom:13px;}
+  .barRow .top{display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px;}
+  .barTrack{height:9px; background:var(--surface2); border-radius:5px; overflow:hidden;}
+  .barFill{height:100%; border-radius:5px;}
+  .panel{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:24px;}
+  .foot{color:var(--hint); font-size:13px; margin-top:40px; border-top:1px solid var(--border); padding-top:16px;}
+  .verdict{display:inline-block; background:var(--amberBg); color:var(--amber); font-weight:600;
+    padding:4px 14px; border-radius:20px; font-size:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Phraseman — предрелизный UX-аудит</h1>
+  <div class="sub">Метод: аудит по коду · Охват: 7 топ-путей пользователя · ~60 экранов · 2026-06-20 · ничего не исправлялось</div>
+
+  <div style="margin-bottom:24px;">Общий вердикт: <span class="verdict">🟡 ЖЁЛТЫЙ — ничего не падает, но перечисленное лучше починить до публикации</span></div>
+
+  <h2>Сводка</h2>
+  <div class="cards">
+    <div class="card" style="background:var(--surface);"><div class="lbl" style="color:var(--muted);">Разделов</div><div class="num">7</div></div>
+    <div class="card" style="background:var(--redBg);"><div class="lbl" style="color:var(--red);">Критичные</div><div class="num" style="color:var(--red);">3</div></div>
+    <div class="card" style="background:var(--amberBg);"><div class="lbl" style="color:var(--amber);">Серьёзные</div><div class="num" style="color:var(--amber);">40</div></div>
+    <div class="card" style="background:var(--blueBg);"><div class="lbl" style="color:var(--blueT);">Средние</div><div class="num" style="color:var(--blueT);">70</div></div>
+    <div class="card" style="background:var(--surface);"><div class="lbl" style="color:var(--muted);">Мелкие</div><div class="num">20</div></div>
+    <div class="card" style="background:var(--greenBg);"><div class="lbl" style="color:var(--green);">Сделано хорошо</div><div class="num" style="color:var(--green);">45</div></div>
+  </div>
+
+  <h2>Карта разделов по готовности</h2>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--green);"></span>Зелёный — готов</span>
+    <span><span class="dot" style="background:var(--amber);"></span>Жёлтый — почти, есть правки</span>
+    <span><span class="dot" style="background:var(--red);"></span>Красный — блокеры</span>
+  </div>
+  <div class="grid" id="secGrid"></div>
+
+  <h2>Серьёзные находки по категориям</h2>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--coral);"></span>Тексты / перевод 18</span>
+    <span><span class="dot" style="background:var(--blue);"></span>Состояния 11</span>
+    <span><span class="dot" style="background:var(--purple);"></span>UX-логика 8</span>
+    <span><span class="dot" style="background:var(--teal);"></span>Расположение 4</span>
+    <span><span class="dot" style="background:var(--gray);"></span>Кнопки 4</span>
+  </div>
+  <div class="chartbox"><canvas id="catChart"></canvas></div>
+
+  <h2>Чеклист-прогресс: что проверено</h2>
+  <div class="panel" id="checklist"></div>
+
+  <h2>🔴 3 критичных блокера</h2>
+  <table>
+    <tr><th>#</th><th>Где</th><th>Проблема</th></tr>
+    <tr><td><span class="pill pC">C1</span></td><td><code>lesson1.tsx:3287</code></td><td>Модалка завершения план-урока («Часть урока готова», кнопки «К плану»/«Продолжить») — только русский, без перевода. Es/pt/vi/id/tr/pl увидят русский в ключевом потоке.</td></tr>
+    <tr><td><span class="pill pC">C2</span></td><td><code>MatchFoundToast.tsx:388</code></td><td>Тост «Соперник найден!» захардкожен на 3 языка — остальным русский текст. Это главный момент принятия PvP-матча.</td></tr>
+    <tr><td><span class="pill pC">C3</span></td><td><code>onboarding.tsx:2451</code></td><td>Юридический дисклеймер пейвола — только русский + английское «Trial» в русском UI. Юр.-риск App Store + смесь языков.</td></tr>
+  </table>
+
+  <h2>🟠 Сквозная тема №1 — дыры в локализации (≈18)</h2>
+  <p style="color:var(--muted); font-size:14px; margin-top:0;">Самая системная проблема релиза: десятки строк переведены только на ru/uk/es, остальным 5 языкам показывается русский.</p>
+  <ul>
+    <li><code>settings_edu.tsx:61</code> — весь экран «Настройки обучения» (тумблеры) на 3 языках</li>
+    <li><code>profile_card_system.ts:45</code> — описания платной карточки профиля</li>
+    <li><code>collectibles_screen.tsx:241</code> — вся «Сокровищница» (заголовки секций, идиомы)</li>
+    <li><code>ai_dialog_scenarios.ts:169</code> — испанские сценарии диалогов падают в русский</li>
+    <li><code>lesson_lock_system.ts:213</code> — модалка «урок заблокирован» на русском для 5 языков</li>
+    <li><code>streak_stats.tsx:2008</code> — шеринг серии шлёт русский текст бразильцам/туркам/полякам</li>
+    <li><b>Мохибейк:</b> <code>daily_tasks_screen.tsx:2306</code> — вьетнамское «Забрать» = крякозябры; <code>settings_notifications.tsx:29</code> — в русском расписании «Четвер» (укр. слово)</li>
+  </ul>
+
+  <h2>🟠 Сквозная тема №2 — обещание ≠ факт (деньги / мотивация)</h2>
+  <ul>
+    <li><code>settings_invite_friend.tsx:191</code> — кнопка «Пригласить друга» шарит ссылку без реф-кода; друг не привяжется → обещанные +7 дней не придут</li>
+    <li><code>shards_shop.tsx:1151</code> — карточка пакета показывает «30 осколков», а начисляется 35. Бонус скрыт → недопродажа</li>
+    <li><code>personal_plan.tsx:164</code> — «серия дней» в шапке плана = просто номер дня (фейк), не совпадает со статистикой</li>
+    <li><code>home.tsx:1663</code> — полоска «почини серию» считает /2, хотя нужен 1 урок → всегда максимум 50%</li>
+  </ul>
+
+  <h2>🟠 Тупики и застревания</h2>
+  <ul>
+    <li><code>quizzes.tsx:1607</code> — пустой квиз = тупик без кнопки выхода, энергия/лимит уже потрачены</li>
+    <li><code>ai_dialog_session.tsx:188</code> — ошибка ИИ показана как реплика собеседника, нет «Повторить»; единственная бесплатная попытка сгорает при сбое сети</li>
+    <li><code>MatchmakingContext.tsx:325</code> — поиск соперника до 10 минут; при выключенных ботах можно зависнуть без «никого не нашли»</li>
+    <li><code>personal_plan.tsx:511</code> — «Назад» на плане фолбэчит на сам себя → можно застрять</li>
+    <li><code>personal_plan_setup.tsx:301</code> — про премиум узнаёшь только в конце 4-шагового мастера (bait-and-switch)</li>
+  </ul>
+
+  <h2>✅ Что сделано хорошо (45)</h2>
+  <p style="color:var(--muted); font-size:14px;">Платёжная логика (ретрай цен, восстановление, защита от двойных тапов), safe-area и таб-бар, состояния ошибок в арене/рейтинге, инлайн-разбор ошибок в уроках/плане, экран «Подарки уровня», диагностика магазина, защита 50/50 от гашения правильной плитки.</p>
+
+  <h2>Полный чеклист ручной проверки (с телефоном)</h2>
+  <div class="panel">
+    <h3>Тексты</h3>
+    <div style="color:var(--muted); font-size:14px;">опечатки · обрезка в «...» · английский в русском UI · мохибейк/кодировка · заглушки-плейсхолдеры · технический жаргон («source gate», «P1») · единый тон · перевод на все 8 языков</div>
+    <h3 style="margin-top:16px;">Кнопки</h3>
+    <div style="color:var(--muted); font-size:14px;">ясность CTA · тач-зона ≥44px · disabled/loading · нет конкурирующих кнопок · busy-индикация · «назад/закрыть» очевидны</div>
+    <h3 style="margin-top:16px;">Расположение</h3>
+    <div style="color:var(--muted); font-size:14px;">ничего не наезжает/режется · safe-area (чёлка + нижний таб-бар) · адаптив под разные экраны · клавиатура не перекрывает ввод</div>
+    <h3 style="margin-top:16px;">Состояния</h3>
+    <div style="color:var(--muted); font-size:14px;">пусто · загрузка (спиннер, не пустой экран) · ошибка · оффлайн · таймаут · лимит исчерпан</div>
+    <h3 style="margin-top:16px;">UX-логика</h3>
+    <div style="color:var(--muted); font-size:14px;">нет тупиков · нет потери прогресса · нет модальных шквалов · честный прогресс · нет тёмных паттернов</div>
+    <h3 style="margin-top:16px;">Edge-cases</h3>
+    <div style="color:var(--muted); font-size:14px;">длинные имена/фразы · нет сети в середине действия · 0 и максимум (друзей/серии) · двойные быстрые тапы · уже-премиум на пейволе</div>
+  </div>
+
+  <div class="foot">Phraseman · предрелизный UX-аудит по коду · 2026-06-20 · 3 крит · 40 серьёзных · 70 средних · 20 мелких · 45 положительных · вердикт: жёлтый.</div>
+
+</div>
+
+<script>
+const sections = [
+  ['Онбординг + Пейвол','1 крит · 5 серьёзн.'],
+  ['Главная + Серия','0 крит · 5 серьёзн.'],
+  ['Уроки','1 крит · 4 серьёзн.'],
+  ['Личный план','0 крит · 8 серьёзн.'],
+  ['Арена + Лиги','1 крит · 4 серьёзн.'],
+  ['ИИ-Диалоги + Квизы','0 крит · 7 серьёзн.'],
+  ['Друзья·Профиль·Магазин·Настройки','0 крит · 9 серьёзн.']
+];
+const sg = document.getElementById('secGrid');
+sections.forEach(([t,m])=>{
+  const d=document.createElement('div');
+  d.className='sec';
+  d.style.background='var(--amberBg)';
+  d.style.borderColor='var(--amber)';
+  d.innerHTML=`<div class="t" style="color:var(--amber);">${t}</div><div class="m" style="color:var(--amber);">${m}</div>`;
+  sg.appendChild(d);
+});
+
+new Chart(document.getElementById('catChart'),{
+  type:'bar',
+  data:{labels:['Тексты/перевод','Состояния','UX-логика','Расположение','Кнопки'],
+    datasets:[{data:[18,11,8,4,4],backgroundColor:['#D85A30','#378ADD','#7F77DD','#1D9E75','#888780'],borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{ticks:{color:'#9aa4b2',autoSkip:false,maxRotation:30,font:{size:11}},grid:{display:false}},
+      y:{beginAtZero:true,ticks:{color:'#9aa4b2',stepSize:5,font:{size:11}},grid:{color:'#2a313c'}}}}
+});
+
+const checks=[
+  ['Тексты, опечатки, обрезка',88],
+  ['Кнопки и тач-зоны (≥44px)',90],
+  ['Расположение и safe-area',92],
+  ['Состояния: пусто/загрузка/ошибка/оффлайн',78],
+  ['UX-логика и тупики',80],
+  ['Edge-cases (длинные имена, нет сети, лимиты)',82],
+  ['Локализация на 8 языков',70]
+];
+const cl=document.getElementById('checklist');
+checks.forEach(([label,pct])=>{
+  const col = pct>=88?'#97C459':pct>=78?'#EF9F27':'#E24B4A';
+  const r=document.createElement('div');
+  r.className='barRow';
+  r.innerHTML=`<div class="top"><span>${label}</span><span style="color:var(--muted);">${pct}%</span></div>
+    <div class="barTrack"><div class="barFill" style="width:${pct}%;background:${col};"></div></div>`;
+  cl.appendChild(r);
+});
+</script>
+</body>
+</html>

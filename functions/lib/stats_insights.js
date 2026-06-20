@@ -41,6 +41,7 @@ const crypto_1 = require("crypto");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const premium_status_1 = require("./premium_status");
+const openai_jobs_config_1 = require("./openai_jobs_config");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 /**
  * Stats insights — per-block AI micro-notes for the stats/Пульс screen.
@@ -208,12 +209,15 @@ async function enforceRateLimit(authUid, stableUid) {
  * Product-wide daily generation breaker. Throws once the day's count would
  * exceed GLOBAL_DAILY_CAP. Mirrors explain/explain_budget.ts.
  */
-async function enforceGlobalBudget(nowMs = Date.now()) {
+async function enforceGlobalBudget(cap = GLOBAL_DAILY_CAP, nowMs = Date.now()) {
+    // cap=0 → глобального дневного капа нет (админ может снять ограничение).
+    if (cap <= 0)
+        return;
     const db = admin.firestore();
     const ref = db.collection(GLOBAL_BUDGET_COLLECTION).doc(utcDayKey(nowMs));
     await db.runTransaction(async (tx) => {
         const genCount = Number((await tx.get(ref)).data()?.genCount ?? 0);
-        if (genCount >= GLOBAL_DAILY_CAP) {
+        if (genCount >= cap) {
             throw new https_1.HttpsError('resource-exhausted', 'stats_insights_global_budget_exceeded');
         }
         tx.set(ref, { genCount: genCount + 1, updatedAtMs: nowMs }, { merge: true });
@@ -344,7 +348,7 @@ function guardLearnerFacingNote(key, note) {
 // ── Callable ──────────────────────────────────────────────────────────────────
 exports.statsInsightsGenerate = (0, https_1.onCall)({
     region: REGION,
-    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
     timeoutSeconds: 30,
     memory: '512MiB',
     maxInstances: 10,
@@ -364,6 +368,9 @@ exports.statsInsightsGenerate = (0, https_1.onCall)({
         throw new https_1.HttpsError('failed-precondition', 'stats_insights_insufficient_data');
     }
     const db = admin.firestore();
+    // Админ-конфиг (модель/глобальный кап/выключатель). Fallback = текущие дефолты.
+    const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'stats');
+    (0, openai_jobs_config_1.assertJobEnabled)(jobCfg, 'stats'); // kill-switch: enabled=false → resource-exhausted
     const authUid = request.auth.uid;
     // uid from auth identity — NEVER from request body (security invariant).
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
@@ -375,7 +382,7 @@ exports.statsInsightsGenerate = (0, https_1.onCall)({
     // the user out for the whole window.
     await enforceRateLimit(authUid, stableUid);
     await assertWindowOpen(authUid, stableUid);
-    await enforceGlobalBudget();
+    await enforceGlobalBudget(jobCfg.globalDailyCap);
     const messages = [
         { role: 'system', content: buildSystemPrompt(briefing.lang) },
         { role: 'user', content: JSON.stringify(briefing) },
@@ -387,7 +394,7 @@ exports.statsInsightsGenerate = (0, https_1.onCall)({
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            model: MODEL_DEFAULT,
+            model: jobCfg.model,
             messages,
             max_tokens: MAX_OUTPUT_TOKENS,
             temperature: 0.7,
@@ -410,7 +417,7 @@ exports.statsInsightsGenerate = (0, https_1.onCall)({
     await db.collection(BILLING_COLLECTION).doc().set({
         uid: stableUid,
         authUid,
-        model: MODEL_DEFAULT,
+        model: jobCfg.model,
         lang: briefing.lang,
         studyTarget: briefing.studyTarget,
         promptTokens: Number(usage.prompt_tokens ?? 0),
@@ -424,7 +431,7 @@ exports.statsInsightsGenerate = (0, https_1.onCall)({
         ok: true,
         notes: result.notes,
         nextAllowedAtMs,
-        model: MODEL_DEFAULT,
+        model: jobCfg.model,
     };
 });
 // Pure functions exposed for unit tests (convention: see weekly_review.ts).

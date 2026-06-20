@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman — Компас</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#141925; --panel2:#1b2233; --line:#26304a;
+    --text:#eaf0ff; --muted:#9fb0d0; --ghost:#6b7a9c;
+    --gold:#e8c878; --gold2:#d6a955;
+    --green:#3fd68c; --red:#ff6e78; --blue:#6aa8ff; --violet:#b08bff; --amber:#ffb454; --cyan:#54d2e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.5;padding:0 0 60px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  header{padding:34px 0 18px;border-bottom:1px solid var(--line);margin-bottom:28px}
+  .kicker{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+  h1{font-size:30px;font-weight:800;margin:6px 0 8px;background:linear-gradient(90deg,var(--gold),#fff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .sub{color:var(--muted);font-size:15px;max-width:780px}
+  .bibleband{margin-top:12px;display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--gold);background:rgba(232,200,120,.1);border:1px solid var(--gold2);padding:5px 12px;border-radius:10px}
+  h2{font-size:21px;font-weight:800;margin:38px 0 6px;display:flex;align-items:center;gap:10px}
+  h2 .dot{width:9px;height:9px;border-radius:50%;background:var(--gold)}
+  .h2sub{color:var(--ghost);font-size:13.5px;margin-bottom:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:880px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px}
+  .muted{color:var(--muted)} .ghost{color:var(--ghost)}
+  .phone{background:linear-gradient(180deg,#0d111a,#0a0d14);border:1px solid var(--line);border-radius:26px;padding:14px;max-width:380px;margin:0 auto;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+  .pnotch{width:120px;height:5px;background:#2a3550;border-radius:3px;margin:2px auto 14px}
+  .brief{background:linear-gradient(160deg,#1a2030,#11161f);border:1px solid #2c3a5a;border-radius:18px;padding:16px}
+  .mentorline{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}
+  .mface{width:38px;height:38px;border-radius:12px;background:radial-gradient(circle at 30% 30%,var(--blue),#3a6fd0);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .mbubble{background:#0e1320;border:1px solid var(--line);border-radius:12px;border-top-left-radius:3px;padding:10px 12px;font-size:13.5px;color:var(--text)}
+  .tasklist{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}
+  .task{display:flex;align-items:center;gap:11px;background:#0e1320;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .task .ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+  .task .tt{font-size:13.5px;font-weight:600;flex:1}
+  .task .mn{font-size:11px;color:var(--ghost)}
+  .task.deep{border-color:var(--gold2);background:linear-gradient(180deg,rgba(232,200,120,.08),rgba(232,200,120,.02))}
+  .task.heal{border-color:rgba(255,110,120,.4);background:linear-gradient(180deg,rgba(255,110,120,.07),transparent)}
+  .cta{margin-top:6px;background:linear-gradient(90deg,var(--blue),#3a6fd0);color:#fff;border:none;border-radius:13px;padding:13px;font-size:15px;font-weight:800;width:100%;cursor:pointer}
+  .badge-cap{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--gold);background:rgba(232,200,120,.12);padding:3px 8px;border-radius:8px}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}
+  .node{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+  .arrow{color:var(--ghost);font-size:16px}
+  .node.brain{border-color:var(--blue);background:linear-gradient(180deg,rgba(106,168,255,.12),transparent);color:var(--blue)}
+  .node.voice{border-color:var(--gold2);background:linear-gradient(180deg,rgba(232,200,120,.1),transparent);color:var(--gold)}
+  .signal{font-size:11px;color:var(--cyan)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--ghost);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  td .em{color:var(--gold);font-weight:700}
+  .mastery{display:flex;flex-direction:column;gap:9px}
+  .mrow{display:grid;grid-template-columns:160px 1fr 70px;gap:10px;align-items:center}
+  .mname{font-size:13px}
+  .mtrack{height:18px;background:#0e1320;border-radius:9px;overflow:hidden;border:1px solid var(--line)}
+  .mfill{height:100%;border-radius:9px}
+  .mpct{font-size:11px;text-align:right;color:var(--muted)}
+  .stat{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:14px}
+  .stat .v{font-size:26px;font-weight:800}
+  .stat .l{font-size:12px;color:var(--ghost);margin-top:2px}
+  .feat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px}
+  .feat .ft{font-weight:700;font-size:14px;display:flex;align-items:center;gap:7px;margin-bottom:4px}
+  .feat .fd{font-size:12.5px;color:var(--muted)}
+  .new{font-size:10px;font-weight:800;color:#fff;background:var(--blue);padding:1px 6px;border-radius:6px;letter-spacing:.5px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:12px}
+  .lg{display:flex;align-items:center;gap:6px}
+  .sw{width:11px;height:11px;border-radius:3px}
+  .day-strip{display:flex;gap:5px;flex-wrap:wrap}
+  .dcell{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+  .adminbar{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-bottom:14px}
+  .atab{padding:9px 14px;font-size:13px;font-weight:700;border-bottom:2px solid transparent;cursor:pointer;color:var(--ghost)}
+  .atab.on{color:var(--blue);border-bottom-color:var(--blue)}
+  .apanel{display:none}
+  .apanel.on{display:block}
+  .miniStat{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:880px){.miniStat{grid-template-columns:1fr 1fr}}
+  .ctrl{display:flex;align-items:center;justify-content:space-between;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 14px;margin-bottom:8px}
+  .ctrl .cl{font-size:13px}
+  .toggle{width:42px;height:24px;border-radius:13px;background:var(--blue);position:relative;flex-shrink:0}
+  .toggle.off{background:#2a3550}
+  .toggle:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;right:3px}
+  .toggle.off:after{right:21px}
+  .phase{display:grid;grid-template-columns:46px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .pnum{width:46px;height:30px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--blue)}
+  .pno-ai{font-size:10px;color:var(--green);background:rgba(63,214,140,.12);padding:1px 6px;border-radius:6px;margin-left:6px}
+  footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--ghost);font-size:12.5px}
+  .tag{font-size:11px;color:var(--muted);background:#0e1320;border:1px solid var(--line);padding:2px 8px;border-radius:7px}
+  code{background:#0e1320;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12px;color:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Phraseman · нервная система приложения</div>
+  <h1>Компас — мозг, что связывает всё</h1>
+  <p class="sub">26 отличных частей приложения сегодня не разговаривают друг с другом. Компас — единый слой, который чувствует весь путь ученика и дирижирует им: что учить, как наградить, когда вернуть, что показать в результатах. Ты сам выбираешь план — Компас ведёт поверх, ничего не ломая.</p>
+  <span class="bibleband">📖 Все тексты — строго по Библии Phraseman (Тренер · «ты» · gain-framing)</span>
+</header>
+
+<!-- БЛОК 1: три закона -->
+<h2><span class="dot"></span>Три закона Компаса</h2>
+<div class="h2sub">Не «ещё одна карточка». Это нервная система над всеми ~26 частями приложения.</div>
+<div class="grid g3">
+  <div class="card">
+    <div class="feat" style="background:transparent;border:none;padding:0">
+      <div class="ft">🧭 Читает и зовёт, не захватывает</div>
+      <div class="fd">Компас читает сигналы всех частей и зовёт в нужную. Прогресс каждой части остаётся её собственным. Компас пишет только свою «карту тем».</div>
+    </div>
+  </div>
+  <div class="card" style="border-color:var(--green)">
+    <div class="feat" style="background:transparent;border:none;padding:0">
+      <div class="ft" style="color:var(--green)">💸 Дёшево по умолчанию</div>
+      <div class="fd">Все решения (что учить, как наградить, когда вернуть) — правила, 0 токенов. ИИ — тонкий слой сверху: тёплый текст, кэш один на весь продукт.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="feat" style="background:transparent;border:none;padding:0">
+      <div class="ft">💬 Говорит как человек</div>
+      <div class="fd">Каждое слово — по Библии Phraseman. Тёплый Тренер, «ты», gain-framing. Без «урок/ошибка/статистика/купить».</div>
+    </div>
+  </div>
+</div>
+
+<!-- БЛОК 1b: архитектура 5 слоёв + 4 крыла -->
+<h2><span class="dot"></span>Архитектура: фундамент → ядро → 4 крыла → оболочка</h2>
+<div class="h2sub">Гибрид: скелет дня считают правила (дёшево), ИИ-голос тонко подкручивает и озвучивает сверху.</div>
+<div class="card">
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="background:var(--panel2);border:1px solid var(--violet);border-radius:11px;padding:11px 14px"><b style="color:var(--violet)">ОБОЛОЧКА</b> <span class="muted" style="font-size:12.5px">· брифинг дня · плашка-зов · блок «Твой Компас» · раздел в админке</span></div>
+    <div class="grid g4">
+      <div style="background:var(--panel2);border:1px solid var(--blue);border-radius:11px;padding:11px"><b style="color:var(--blue);font-size:13px">🎓 Учёба</b><div class="muted" style="font-size:11.5px;margin-top:3px">что делать сегодня</div></div>
+      <div style="background:var(--panel2);border:1px solid var(--gold2);border-radius:11px;padding:11px"><b style="color:var(--gold);font-size:13px">💰 Экономика</b><div class="muted" style="font-size:11.5px;margin-top:3px">как наградить ровно</div></div>
+      <div style="background:var(--panel2);border:1px solid var(--green);border-radius:11px;padding:11px"><b style="color:var(--green);font-size:13px">❤️ Мотивация</b><div class="muted" style="font-size:11.5px;margin-top:3px">когда вернуть тепло</div></div>
+      <div style="background:var(--panel2);border:1px solid var(--cyan);border-radius:11px;padding:11px"><b style="color:var(--cyan);font-size:13px">🧠 Память</b><div class="muted" style="font-size:11.5px;margin-top:3px">карта тем (зеркало)</div></div>
+    </div>
+    <div style="background:var(--panel2);border:1px solid var(--blue);border-radius:11px;padding:11px 14px"><b style="color:var(--blue)">ЯДРО · мозг</b> <span class="muted" style="font-size:12.5px">· собирает «День» правилами (0 токенов) + тонкий ИИ-голос сверху</span></div>
+    <div style="background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 14px"><b>ФУНДАМЕНТ · шина сигналов</b> <span class="muted" style="font-size:12.5px">· единый снимок всех частей + премиум-гейт + живые рычаги</span></div>
+    <div style="text-align:center;color:var(--ghost);font-size:12px;margin-top:2px">↑ читает готовые системы: ошибки · повторения · мастерство · план · серия</div>
+  </div>
+</div>
+
+<!-- БЛОК 2: день юзера -->
+<h2><span class="dot"></span>Как выглядит каждый день для ученика</h2>
+<div class="h2sub">Ученик открывает приложение → одна карточка Компаса вместо сетки из 12 плиток. Тексты — канон Библии.</div>
+<div class="grid g2" style="align-items:start">
+
+  <div class="phone">
+    <div class="pnotch"></div>
+    <div class="brief">
+      <div class="mentorline">
+        <div class="mface">🧭</div>
+        <div class="mbubble"><b>Компас · День 12</b><br>Доброе утро. Сегодня поднимем «Present&nbsp;Perfect» — вчера он почти дался. 8 минут, и он твой.</div>
+      </div>
+      <div class="tasklist">
+        <div class="task deep">
+          <div class="ic" style="background:rgba(232,200,120,.15)">📖</div>
+          <div class="tt">Сессия 9 · Present Perfect<br><span class="mn">глубже · зову тебя сюда</span></div>
+          <span class="badge-cap">глубина</span>
+        </div>
+        <div class="task heal">
+          <div class="ic" style="background:rgba(255,110,120,.15)">🩹</div>
+          <div class="tt">Разбор твоих фраз · 4 штуки<br><span class="mn">что ускользает: артикли</span></div>
+          <div class="mn">3 мин</div>
+        </div>
+        <div class="task">
+          <div class="ic" style="background:rgba(106,168,255,.15)">🎴</div>
+          <div class="tt">Повтори 6 фраз, пока свежо<br><span class="mn">скоро забудутся</span></div>
+          <div class="mn">2 мин</div>
+        </div>
+        <div class="task">
+          <div class="ic" style="background:rgba(176,139,255,.15)">🎤</div>
+          <div class="tt">Скажи фразу вслух<br><span class="mn">закрепим</span></div>
+          <div class="mn">1 мин</div>
+        </div>
+      </div>
+      <button class="cta">Начать день →</button>
+      <div style="text-align:center;margin-top:9px"><span class="ghost" style="font-size:12px">Позже</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="card">
+      <div style="font-weight:700;margin-bottom:8px">Что нового в этом экране</div>
+      <div class="grid" style="gap:9px">
+        <div class="feat"><div class="ft">🧭 Брифинг дня <span class="new">NEW</span></div><div class="fd">Один вход вместо 12 плиток. Голос Компаса говорит, ПОЧЕМУ сегодня именно это. Тон Тренера, gain-framing.</div></div>
+        <div class="feat"><div class="ft">🩹 День из твоего пути <span class="new">NEW</span></div><div class="fd">Задачи не из календаря, а из того, где ты спотыкаешься: разбор фраз, повтор карточек, слабые темы собираются сами.</div></div>
+        <div class="feat"><div class="ft">📖 Сессия в нужный миг <span class="new">NEW</span></div><div class="fd">Рабочая кнопка в сессию (сейчас просто текст). Только в дни новой темы. Бонус, не обязаловка.</div></div>
+        <div class="feat"><div class="ft">🎤🎴 Все части в одном дне <span class="new">NEW</span></div><div class="fd">Карточки, голос, диалоги, арена — Компас вплетает их в день, а не прячет по плиткам.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- БЛОК 3: дёшево / поток -->
+<h2><span class="dot"></span>Как это работает дёшево (поток данных)</h2>
+<div class="h2sub">Мозг (0 токенов) выбирает день из готовых сигналов. ИИ только пишет тёплую фразу — и она кэшируется один раз на всех.</div>
+<div class="card">
+  <div class="muted" style="font-size:13px;margin-bottom:6px">Готовые сигналы → Мозг (без ИИ) → День · и отдельно дешёвый Голос</div>
+  <div class="flow">
+    <div class="node"><span class="signal">●</span> лог фраз-ошибок</div>
+    <div class="node"><span class="signal">●</span> слабые темы</div>
+    <div class="node"><span class="signal">●</span> что пора повторить</div>
+    <div class="node"><span class="signal">●</span> пройденные сессии</div>
+    <div class="node"><span class="signal">●</span> день плана</div>
+    <div class="node"><span class="signal">●</span> серия / энергия</div>
+    <span class="arrow">→</span>
+    <div class="node brain">🧠 Мозг · 0 токенов</div>
+    <span class="arrow">→</span>
+    <div class="node" style="border-color:var(--blue);color:var(--blue)">📋 День из 3-5 задач</div>
+  </div>
+  <div class="flow" style="margin-top:10px">
+    <div class="node brain">🧠 подпись дня</div>
+    <span class="arrow">→</span>
+    <div class="node voice">🗣 ИИ-голос · gpt-4.1-nano</div>
+    <span class="arrow">→</span>
+    <div class="node"><span class="signal">●</span> кэш 1-на-продукт</div>
+    <div class="node"><span class="signal">●</span> бюджет user+global</div>
+    <div class="node"><span class="signal">●</span> выключатель</div>
+    <div class="node" style="border-color:var(--green);color:var(--green)">если ИИ выкл → текст Библии</div>
+  </div>
+  <div class="legend">
+    <div class="lg"><span class="sw" style="background:var(--cyan)"></span> только читает (не пишет назад)</div>
+    <div class="lg"><span class="sw" style="background:var(--green)"></span> работает и без ИИ</div>
+    <div class="lg"><span class="tag">прогресс каждой части остаётся свой</span></div>
+  </div>
+</div>
+
+<!-- БЛОК 4: типы дней -->
+<h2><span class="dot"></span>Четыре типа дня (мозг выбирает сам)</h2>
+<div class="grid g4">
+  <div class="card"><div class="ft" style="font-weight:700">🟢 Лёгкий</div><div class="fd muted" style="font-size:12.5px;margin-top:5px">«Сегодня без спешки. Закрепим вчерашнее.» Карточки + один вызов.</div></div>
+  <div class="card" style="border-color:var(--gold2)"><div class="ft" style="font-weight:700;color:var(--gold)">📖 Погружение</div><div class="fd muted" style="font-size:12.5px;margin-top:5px">«Сегодня новое. Зову тебя в сессию 9 — там понятнее.» Знак «понял глубже».</div></div>
+  <div class="card" style="border-color:rgba(255,110,120,.4)"><div class="ft" style="font-weight:700;color:var(--red)">🩹 Ремонт</div><div class="fd muted" style="font-size:12.5px;margin-top:5px">«Чиним пару фраз, что ускользают. Спокойно.» Разбор + отработка.</div></div>
+  <div class="card"><div class="ft" style="font-weight:700">🔁 Возврат</div><div class="fd muted" style="font-size:12.5px;margin-top:5px">«Ты вернулся. Хорошо. Начнём с трёх фраз.» Мягкий тёплый день.</div></div>
+</div>
+
+<!-- БЛОК 5: глобальность -->
+<h2><span class="dot"></span>Глобальность: Компас над всеми частями</h2>
+<div class="h2sub">Каждая часть остаётся собой. Компас знает о ней и зовёт в нужный момент.</div>
+<table>
+  <thead><tr><th>Часть</th><th>Роль в Компасе</th><th>Какой сигнал читает</th></tr></thead>
+  <tbody>
+    <tr><td><span class="em">Сессии (уроки)</span></td><td>глубина по запросу — день-погружение</td><td>пройденные сессии, ошибки по темам</td></tr>
+    <tr><td><span class="em">Мой план</span></td><td>ритм дня (ты сам выбрал план)</td><td>снимок дня плана</td></tr>
+    <tr><td><span class="em">Разбор фраз</span></td><td>главный инструмент дня-ремонта</td><td>важность ошибок</td></tr>
+    <tr><td><span class="em">Карточки</span></td><td>«повтори, пока свежо»</td><td>очередь повторения</td></tr>
+    <tr><td><span class="em">Голос</span></td><td>«скажи вслух» — финал дня</td><td>фразы дня</td></tr>
+    <tr><td><span class="em">Диалоги</span></td><td>«примени вживую» после темы</td><td>прогресс темы</td></tr>
+    <tr><td><span class="em">Арена</span></td><td>вызов дня для азартных</td><td>серия / энергия</td></tr>
+    <tr><td><span class="em">Серия / энергия</span></td><td>тёплая защита серии</td><td>стрик, энергия</td></tr>
+  </tbody>
+</table>
+
+<!-- БЛОК 5b: что оживляет -->
+<h2><span class="dot"></span>Что Компас реально оживляет (не только «что учить»)</h2>
+<div class="h2sub">Четыре крыла связывают учёбу, награды, удержание и память в одну систему.</div>
+<div class="grid g2">
+  <div class="card" style="border-color:var(--gold2)">
+    <div class="ft" style="font-weight:700;color:var(--gold);margin-bottom:6px">💰 Экономика — чинит перекос наград</div>
+    <div class="fd muted" style="font-size:13px;line-height:1.6">Сейчас: сессия даёт сундук+медали+осколки, а целый день плана — всего пара осколков. Компас вводит единый «вес дня»: закрытый день весит достойно, как сессия. Плюс анти-фарм: одна тема, пройденная и в сессии, и в плане, не задваивает награду.</div>
+  </div>
+  <div class="card" style="border-color:var(--green)">
+    <div class="ft" style="font-weight:700;color:var(--green);margin-bottom:6px">❤️ Мотивация — тёплое удержание</div>
+    <div class="fd muted" style="font-size:13px;line-height:1.6">Вернулся после паузы → «Ты вернулся. Хорошо. Начнём с трёх фраз» — короткий день из почти забытого, а не затык. Компас бережёт серию и шлёт умные пуши по Библии. Без запугивания и фальшивой срочности.</div>
+  </div>
+  <div class="card" style="border-color:var(--cyan)">
+    <div class="ft" style="font-weight:700;color:var(--cyan);margin-bottom:6px">🧠 Память — единая карта тем</div>
+    <div class="fd muted" style="font-size:13px;line-height:1.6">Одна карта тем растёт от ЛЮБОЙ активности любой части. Это и зеркало для ученика, и компас для мозга: «ведём в слабую тему». Единственное, что Компас пишет — прогресс частей не трогает.</div>
+  </div>
+  <div class="card" style="border-color:var(--blue)">
+    <div class="ft" style="font-weight:700;color:var(--blue);margin-bottom:6px">🎓 Учёба — зов в нужную часть</div>
+    <div class="fd muted" style="font-size:13px;line-height:1.6">Мёртвый текст «пройди сессию N» становится рабочей кнопкой и распространяется на все части: ошибся 2× на теме → плашка-зов в нужную сессию. Урок приходит на помощь в момент боли.</div>
+  </div>
+</div>
+
+<!-- БЛОК 6: статистика -->
+<h2><span class="dot"></span>Как участвует статистика</h2>
+<div class="h2sub">Компас опирается на УЖЕ существующую общую статистику и добавляет свой блок «Твой Компас». Второй экран не плодим.</div>
+<div class="grid g2" style="align-items:start">
+  <div class="card">
+    <div style="font-weight:700;margin-bottom:12px">Карта тем (растёт от любой активности)</div>
+    <div class="mastery">
+      <div class="mrow"><div class="mname">Приветствия</div><div class="mtrack"><div class="mfill" style="width:96%;background:var(--green)"></div></div><div class="mpct">уверенно</div></div>
+      <div class="mrow"><div class="mname">Прошедшее время</div><div class="mtrack"><div class="mfill" style="width:74%;background:var(--green)"></div></div><div class="mpct">крепнет</div></div>
+      <div class="mrow"><div class="mname">Артикли a/the</div><div class="mtrack"><div class="mfill" style="width:45%;background:var(--amber)"></div></div><div class="mpct">ведём сюда</div></div>
+      <div class="mrow"><div class="mname">Present Perfect</div><div class="mtrack"><div class="mfill" style="width:22%;background:var(--red)"></div></div><div class="mpct">ведём сюда</div></div>
+      <div class="mrow"><div class="mname">Предлоги</div><div class="mtrack"><div class="mfill" style="width:60%;background:var(--amber)"></div></div><div class="mpct">крепнет</div></div>
+    </div>
+    <div class="legend"><div class="lg"><span class="sw" style="background:var(--green)"></span>уверенно</div><div class="lg"><span class="sw" style="background:var(--amber)"></span>крепнет</div><div class="lg"><span class="sw" style="background:var(--red)"></span>ведём сюда</div></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="card">
+      <div style="font-weight:700;margin-bottom:6px">Блок «Твой Компас» в общий хаб результатов</div>
+      <div class="grid g3" style="margin-top:6px">
+        <div class="stat"><div class="v" style="color:var(--blue)">5🔥</div><div class="l">серия с Компасом</div></div>
+        <div class="stat"><div class="v" style="color:var(--green)">18/28</div><div class="l">дней закрыто</div></div>
+        <div class="stat"><div class="v" style="color:var(--gold)">3</div><div class="l">темы окрепли</div></div>
+      </div>
+      <div class="day-strip" id="strip" style="margin-top:12px"></div>
+      <div class="legend"><div class="lg"><span class="sw" style="background:var(--green)"></span>закрыл</div><div class="lg"><span class="sw" style="background:var(--gold)"></span>погружение 📖</div><div class="lg"><span class="sw" style="background:#26304a"></span>пропуск</div></div>
+    </div>
+    <div class="card"><div class="fd muted" style="font-size:12.5px">Существующая статистика (опыт, серия, мастерство) — это топливо Компаса. Компас читает её для сборки дня и добавляет своё зеркало: «дней закрыто», карту тем. Один хаб на всё.</div></div>
+  </div>
+</div>
+
+<!-- БЛОК 7: админка -->
+<h2><span class="dot"></span>Раздел «Компас» в админке (индекс)</h2>
+<div class="h2sub">Три под-вкладки: Аналитика, Статистика, Управление. Переиспользует инфру «Пульта» и «Explain cache».</div>
+<div class="card">
+  <div class="adminbar">
+    <div class="atab on" data-t="an">Аналитика</div>
+    <div class="atab" data-t="st">Статистика</div>
+    <div class="atab" data-t="up">Управление</div>
+  </div>
+
+  <div class="apanel on" id="ap-an">
+    <div class="miniStat">
+      <div class="stat"><div class="v" style="color:var(--blue)">312</div><div class="l">брифингов сегодня</div></div>
+      <div class="stat"><div class="v" style="color:var(--green)">94%</div><div class="l">кэш-хит (дёшево)</div></div>
+      <div class="stat"><div class="v" style="color:var(--gold)">$0.07</div><div class="l">расход ИИ/день</div></div>
+      <div class="stat"><div class="v" style="color:var(--violet)">18</div><div class="l">уник. подписей дня</div></div>
+    </div>
+    <div class="muted" style="font-size:12.5px;margin-top:12px">Распределение типов дня: 🟢 лёгкий 41% · 📖 погружение 12% · 🩹 ремонт 28% · 🔁 возврат 19%. Топ тем, куда Компас ведёт всех: артикли, Present Perfect, предлоги.</div>
+  </div>
+
+  <div class="apanel" id="ap-st">
+    <div class="miniStat">
+      <div class="stat"><div class="v" style="color:var(--blue)">1 240</div><div class="l">получают Компас</div></div>
+      <div class="stat"><div class="v" style="color:var(--green)">6.3</div><div class="l">ср. серия с Компасом</div></div>
+      <div class="stat"><div class="v" style="color:var(--gold)">71%</div><div class="l">дней закрыто</div></div>
+      <div class="stat"><div class="v" style="color:var(--amber)">9%</div><div class="l">free→Premium через Компас</div></div>
+    </div>
+    <div class="muted" style="font-size:12.5px;margin-top:12px">Продуктовое зеркало: вовлечённость в день Компаса, как запертый Компас конвертит бесплатных в Premium.</div>
+  </div>
+
+  <div class="apanel" id="ap-up">
+    <div class="ctrl"><div class="cl">ИИ-голос Компаса <code>job: compass</code></div><div class="toggle"></div></div>
+    <div class="ctrl"><div class="cl">Модель <code>gpt-4.1-nano</code> · кап user 50 / global 5000</div><span class="tag">сменить без передеплоя</span></div>
+    <div class="ctrl"><div class="cl">Дни-погружения (зов в сессию)</div><div class="toggle"></div></div>
+    <div class="ctrl"><div class="cl">Плашка «сессия в момент ошибки»</div><div class="toggle"></div></div>
+    <div class="ctrl"><div class="cl">Карта тем в результатах</div><div class="toggle"></div></div>
+    <div class="ctrl"><div class="cl">Очистить кэш брифингов → регенерация</div><span class="tag">как Explain cache</span></div>
+    <div class="muted" style="font-size:12px;margin-top:6px">Живые рычаги: выключатель, модель/капы, тумблеры фич, редактор fallback-текстов (слой texts в remote_config).</div>
+  </div>
+</div>
+
+<!-- БЛОК 8: премиум -->
+<h2><span class="dot"></span>Премиум-граница (чинит дыру) — тексты по Библии</h2>
+<div class="grid g2">
+  <div class="card">
+    <div class="ft" style="font-weight:700;color:var(--green);margin-bottom:8px">Бесплатно — «библиотека»</div>
+    <div class="fd muted" style="font-size:13px">Сессии 1–8, базовый разбор фраз, карточки, квизы, арена, один диалог. Ты щупаешь ценность и видишь свою карту тем.</div>
+  </div>
+  <div class="card" style="border-color:var(--blue)">
+    <div class="ft" style="font-weight:700;color:var(--blue);margin-bottom:8px">Premium — «твой Компас»</div>
+    <div class="fd muted" style="font-size:13px">«Он будет вести тебя каждый день — по твоему пути. Открой полный доступ →» Брифинг, дни-погружения, карта тем, старшие сессии. Продаём ведение, а не контент.</div>
+  </div>
+</div>
+
+<!-- БЛОК 9: волны -->
+<h2><span class="dot"></span>Внедрение: 5 волн настоящей системы</h2>
+<div class="h2sub">Не косметика. Каждая волна — самостоятельная ценность. 4 из 5 работают вообще без ИИ.</div>
+<div class="card" id="phases"></div>
+
+<footer>
+  Концепт-дашборд. Компас = нервная система Phraseman: фундамент → ядро → 4 крыла (учёба · экономика · мотивация · память) → оболочка. 5 волн внедрения, 12 крупных блоков, 4 волны без ИИ.<br>
+  Большой план: <code>docs/design/COMPASS_MASTER_PLAN.md</code>. Принцип: читает всё, ведёт мягко, награждает ровно, возвращает тепло — почти не тратя на ИИ. Все тексты — по Библии. Код не менялся.
+</footer>
+
+</div>
+<script>
+  (function(){
+    var strip=document.getElementById('strip');
+    var pat=['g','g','g','d','g','g','x','g','g','d','g','g'];
+    var colors={g:'var(--green)',d:'var(--gold)',x:'#26304a'};
+    for(var i=0;i<12;i++){
+      var c=document.createElement('div');
+      c.className='dcell';
+      c.style.background=colors[pat[i]];
+      c.style.color = pat[i]==='x' ? 'var(--ghost)' : '#10131b';
+      c.textContent = pat[i]==='d' ? '📖' : (pat[i]==='g' ? '✓' : '');
+      strip.appendChild(c);
+    }
+    var tabs=document.querySelectorAll('.atab');
+    tabs.forEach(function(t){
+      t.addEventListener('click',function(){
+        tabs.forEach(function(x){x.classList.remove('on')});
+        t.classList.add('on');
+        document.querySelectorAll('.apanel').forEach(function(p){p.classList.remove('on')});
+        document.getElementById('ap-'+t.dataset.t).classList.add('on');
+      });
+    });
+    var waves=[
+      ['1','Фундамент','Премиум-гейт (чинит течь) · шина сигналов · живые рычаги',1],
+      ['2','Ядро + Учёба','Мозг (типы дня правилами) · брифинг + тексты Библии · плашка-зов во всех частях',1],
+      ['3','Экономика + Мотивация','Единый вес наград · печать дня · умный возврат · защита серии · умные пуши',1],
+      ['4','Память + Статистика','Карта тем (читает всё, пишет только себя) · блок «Твой Компас» в общий хаб',1],
+      ['5','ИИ-голос + Админка','Дешёвый живой голос (кэш+бюджет+выключатель) · раздел Компас в админке',0]
+    ];
+    var box=document.getElementById('phases');
+    waves.forEach(function(p){
+      var row=document.createElement('div');
+      row.className='phase';
+      var noai = p[3] ? '<span class="pno-ai">без ИИ</span>' : '<span class="pno-ai" style="color:var(--gold);background:rgba(232,200,120,.12)">ИИ за выключателем</span>';
+      row.innerHTML='<div class="pnum">В'+p[0]+'</div><div style="align-self:center"><b style="font-size:13.5px">'+p[1]+'</b> '+noai+'<div class="muted" style="font-size:12.5px;margin-top:2px">'+p[2]+'</div></div>';
+      box.appendChild(row);
+    });
+  })();
+</script>
+</body>
+</html>

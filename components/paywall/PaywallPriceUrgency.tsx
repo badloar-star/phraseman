@@ -148,7 +148,7 @@ export default function PaywallPriceUrgency({ lang, chrome, urgency, currentPric
           <Text style={[S.priceCapNow, { color: tc.urgencyCurrentPriceText }]}>
             {triLang(lang, { ru: 'СЕЙЧАС', uk: 'ЗАРАЗ', es: 'AHORA', 'pt-BR': 'AGORA', vi: 'BÂY GIỜ', id: 'SEKARANG', tr: 'ŞİMDİ', pl: 'TERAZ' })}
           </Text>
-          <Text style={[S.priceNow, { color: tc.urgencyCurrentPriceText }]} numberOfLines={1} adjustsFontSizeToFit>
+          <Text style={[S.priceNow, { color: tc.urgencyCurrentPriceText }]} numberOfLines={1}>
             {currentPrice}<Text style={[S.pricePer, { color: textMuted }]}>{period}</Text>
           </Text>
         </View>

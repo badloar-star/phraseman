@@ -56,6 +56,7 @@ const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const explain_cache_1 = require("./explain/explain_cache");
 const explain_budget_1 = require("./explain/explain_budget");
+const openai_jobs_config_1 = require("./openai_jobs_config");
 const explain_gates_1 = require("./explain/explain_gates");
 const explain_prompts_1 = require("./explain/explain_prompts");
 const explain_provider_1 = require("./explain/explain_provider");
@@ -85,7 +86,7 @@ function buildFallback(_phraseMeaning) {
 }
 exports.explainPhrase = (0, https_1.onCall)({
     region: REGION,
-    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
     timeoutSeconds: 30,
     memory: '512MiB',
     maxInstances: 20,
@@ -102,6 +103,8 @@ exports.explainPhrase = (0, https_1.onCall)({
     const phraseMeaning = asText(data.phraseMeaning, 2000);
     const lang = asText(data.lang, 12) || 'ru';
     const db = admin.firestore();
+    // Админ-конфиг (модель/глобальный кап/выключатель). Fallback = текущие дефолты.
+    const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'explain');
     const authUid = request.auth.uid;
     // SECURITY: resolve the stable identity from auth ONLY. Two args — request.data is NOT passed.
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
@@ -125,11 +128,16 @@ exports.explainPhrase = (0, https_1.onCall)({
         // the judge has false positives and must not poison a phrase forever.
         return { ok: true, text: buildFallback(phraseMeaning), status: 'rejected', fromCache: true };
     }
+    // Kill-switch: если explain выключен админом — НЕ генерируем (экономим OpenAI),
+    // отдаём бесплатный fallback (как при exhausted). Кэш выше уже обслужен бесплатно.
+    if (!jobCfg.enabled) {
+        return { ok: true, text: buildFallback(phraseMeaning), status: 'exhausted', fromCache: false };
+    }
     // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
     //    exhausted, degrade gracefully to the fallback — do NOT 500 the user.
     try {
         await (0, explain_budget_1.enforceUserGenLimit)(authUid, stableUid);
-        await (0, explain_budget_1.enforceGlobalBudget)();
+        await (0, explain_budget_1.enforceGlobalBudget)(jobCfg.globalDailyCap);
     }
     catch (err) {
         if (err instanceof https_1.HttpsError && err.code === 'resource-exhausted') {
@@ -146,7 +154,7 @@ exports.explainPhrase = (0, https_1.onCall)({
     // 6. Generate the full explanation (v1: no streaming — see CONTEXT "Streaming: explicit status").
     const gen = await (0, explain_provider_1.openAiChat)({
         apiKey,
-        model: MODEL_DEFAULT,
+        model: jobCfg.model,
         messages: [{ role: 'user', content: (0, explain_prompts_1.buildExplainPrompt)(phraseEn, phraseMeaning, lang) }],
         maxTokens: GEN_MAX_TOKENS,
         temperature: GEN_TEMPERATURE,
@@ -157,7 +165,7 @@ exports.explainPhrase = (0, https_1.onCall)({
     // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
     //    text regardless of verdict — we risk showing raw text to one user, never to all.
     if (verdict.ok) {
-        await (0, explain_cache_1.writeReadyExplanation)(phraseHash, sanitized, { lang, phraseEn, model: MODEL_DEFAULT });
+        await (0, explain_cache_1.writeReadyExplanation)(phraseHash, sanitized, { lang, phraseEn, model: jobCfg.model });
     }
     else {
         await (0, explain_cache_1.writeRejectedExplanation)(phraseHash, verdict.reason);
@@ -168,7 +176,7 @@ exports.explainPhrase = (0, https_1.onCall)({
         authUid,
         phraseHash,
         lang,
-        model: MODEL_DEFAULT,
+        model: jobCfg.model,
         genPromptTokens: gen.promptTokens,
         genCompletionTokens: gen.completionTokens,
         judgePromptTokens: verdict.promptTokens,

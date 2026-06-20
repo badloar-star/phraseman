@@ -12,6 +12,7 @@ import {
   Share,
   StyleSheet,
   InteractionManager,
+  ActivityIndicator,
 } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { Image } from 'expo-image';
@@ -857,7 +858,7 @@ export default function FriendsScreen() {
 
   // ── Full-screen loading ────────────────────────────────────────────────────
 
-  if (false && isLoading) {
+  if (isLoading) {
     return (
       <ScreenGradient>
         <SafeAreaView style={styles.flex1}>
@@ -870,7 +871,7 @@ export default function FriendsScreen() {
             </Text>
           </View>
           <View style={styles.loadingContainer}>
-            <Text style={styles.emptyText} />
+            <ActivityIndicator size="large" color={t.accent} />
           </View>
         </SafeAreaView>
       </ScreenGradient>
@@ -963,7 +964,7 @@ export default function FriendsScreen() {
               >
                 {isAdding ? (
                   <Text style={styles.addButtonText}>
-                    {L('Добавить', 'Додати', 'Añadir', 'Adicionar', 'Thêm', 'Tambah', 'Ekle', 'Dodaj')}
+                    {L('Добавляю…', 'Додаю…', 'Añadiendo…', 'Adicionando…', 'Đang thêm…', 'Menambah…', 'Ekleniyor…', 'Dodaję…')}
                   </Text>
                 ) : (
                   <Text style={styles.addButtonText}>

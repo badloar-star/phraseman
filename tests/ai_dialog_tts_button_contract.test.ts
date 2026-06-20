@@ -7,7 +7,8 @@ describe('ai dialog TTS button contract', () => {
 
   it('keeps speaker controls large enough to tap reliably', () => {
     for (const source of [scenarioSource, companionSource]) {
-      expect(source).toContain('accessibilityLabel="Озвучить реплику"');
+      // Метка озвучки локализована (ru/uk/es) через triLang, а не сырой строкой.
+      expect(source).toContain("ru: 'Озвучить реплику'");
       expect(source).toContain('width: 44');
       expect(source).toContain('minHeight: 44');
       expect(source).toContain('justifyContent: \'center\'');

@@ -97,7 +97,6 @@ function CircularProgress({
       {/* 5. Percentage label — outside clip wrapper so it\'s not cut */}
       <Text
         style={{ color: textColor, fontSize, fontWeight: '700', textAlign: 'center' }}
-        adjustsFontSizeToFit
         numberOfLines={1}
       >
         {Math.round(clamped)}%

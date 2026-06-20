@@ -104,6 +104,45 @@ const EVENT_XP_CAP = {
     plan_task_complete: 1500,
     wager_win: 20000,
 };
+/**
+ * ECON-2: дневной потолок суммарного XP по «гриндабельным» источникам (ответы в уроках/квизах,
+ * тренажёр предлогов, повторение). Множитель сложности урока + стрик + подарки применяются к
+ * КАЖДОМУ ответу на клиенте, и при гринде отдельных вопросов в поздних уроках это даёт сотни тысяч
+ * XP в день. Per-event cap (EVENT_XP_CAP) не ограничивает фарм количеством — нужен суточный потолок
+ * по сумме. Источники, не входящие сюда (lesson_complete, exam_complete, награды), ограничены своими
+ * разовыми/механическими лимитами и сюда не попадают.
+ */
+const EVENT_DAILY_XP_CAP = {
+    lesson_answer: 8000,
+    quiz_answer: 8000,
+    preposition_drill_answer: 2000,
+    review_answer: 4000,
+    // ECON-8: cap lesson_complete XP — 500/event × 3 real lessons/day = 1500 headroom.
+    // Prevents replay-forged events from farming unlimited XP at 500/shot.
+    lesson_complete: 1500,
+};
+/**
+ * ECON-3: суточный лимит попыток экзамена. XP начисляется за каждую попытку, осколок — только за
+ * первую, поэтому без лимита экзамен становится бесплатным бесконечным фармом XP. После лимита
+ * exam_complete принимается (прогресс/проценты пишутся), но XP не начисляется.
+ */
+const EXAM_DAILY_ATTEMPT_LIMIT = 5;
+/**
+ * ECON-11: минимальный процент экзамена, при котором начисляется XP. Ниже порога спам-клик не
+ * вознаграждается (раньше пол Math.max(10, …) давал XP даже за 1%).
+ */
+const EXAM_MIN_XP_PCT = 25;
+/**
+ * Серверный авторитетный пересчёт XP за экзамен (ECON-11). Клиентский examXp игнорируется: сервер
+ * считает по фактическому проценту, без нижнего пола за провал.
+ */
+function serverExamXp(pct, passed) {
+    if (pct < EXAM_MIN_XP_PCT)
+        return 0;
+    if (passed)
+        return 50 + Math.round(pct / 2);
+    return Math.round(pct / 4);
+}
 const MIGRATABLE_NUMERIC_KEYS = [
     'user_total_xp',
     'user_prev_xp',
@@ -301,11 +340,37 @@ function setUnlocked(progress, patch, lessonId, target) {
     merged.add(lessonId);
     patch[key] = JSON.stringify(Array.from(merged).sort((a, b) => a - b));
 }
-function xpFromPayload(event) {
+function xpFromPayload(event, daily) {
     const payload = event.payload;
+    // ECON-3/11: XP за экзамен ограничивает сервер.
+    if (event.type === 'exam_complete') {
+        const level = cleanString(payload.level ?? payload.examLevel, 12).toLowerCase();
+        const isFinalExam = level === 'final';
+        const attemptsSoFar = Math.max(0, daily?.examAttemptsToday ?? 0);
+        // Финальный экзамен даёт золотую награду (10000 XP) и гейтится «первым сертификатом» на клиенте —
+        // его НЕ пересчитываем и не режем суточным лимитом попыток (это разовое событие). ECON-3/11
+        // касаются только уровневых зачётов (a1..c2), которые можно бесконечно пересдавать ради XP.
+        if (isFinalExam) {
+            const requestedFinal = clampInt(payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp, 0, EVENT_XP_CAP.exam_complete);
+            return requestedFinal;
+        }
+        if (attemptsSoFar >= EXAM_DAILY_ATTEMPT_LIMIT)
+            return 0;
+        const pct = clampInt(payload.pct ?? payload.percent ?? payload.scorePct, 0, 100);
+        const passed = boolish(payload.passed) || pct >= 70;
+        const computed = serverExamXp(pct, passed);
+        return Math.max(0, Math.min(EVENT_XP_CAP.exam_complete, computed));
+    }
     const requested = clampInt(payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp, 0, EVENT_XP_CAP[event.type]);
     if (requested <= 0)
         return 0;
+    // ECON-2: суточный потолок по гриндабельным источникам — обрезаем по остатку дневного лимита.
+    const dailyCap = EVENT_DAILY_XP_CAP[event.type];
+    if (dailyCap != null) {
+        const usedToday = Math.max(0, daily?.sourceXpToday?.[event.type] ?? 0);
+        const remaining = Math.max(0, dailyCap - usedToday);
+        return Math.min(requested, remaining);
+    }
     return requested;
 }
 function applyDailyStreak(progress, patch, activeDate) {
@@ -377,13 +442,13 @@ function applyExamFields(progress, patch, event, activeDate) {
         setUnlocked(progress, patch, nextUnlock, target);
     }
 }
-function applyProgressEvent(progress, event, now = new Date()) {
+function applyProgressEvent(progress, event, now = new Date(), daily) {
     const activeDate = resolveClientDateKey(event.clientLocalDate, now);
     const weekKey = getWeekKey(activeDate);
     const weekStart = getWeekStartIso(activeDate);
     const patch = {};
     const previousTotal = Math.max(0, readInt(progress.user_total_xp, 0));
-    const xpDelta = xpFromPayload(event);
+    const xpDelta = xpFromPayload(event, daily);
     const totalXp = previousTotal + xpDelta;
     const level = (0, xp_levels_1.getLevelFromXP)(totalXp);
     const previousWeeklyStart = cleanString(progress.weekly_xp_period_start, 10);
@@ -528,6 +593,7 @@ function buildMigrationPatch(snapshot, existing, now = new Date()) {
     });
     return patch;
 }
+const DAILY_EVENT_LIMIT = 500;
 exports.progressSubmitEvent = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     const authUid = request.auth?.uid;
     if (!authUid)
@@ -540,16 +606,48 @@ exports.progressSubmitEvent = (0, https_1.onCall)(callable_options_1.HOT_CALLABL
     const userRef = db.collection('users').doc(stableUid);
     const ledgerRef = userRef.collection('progress_events').doc(safeDocId(event.eventId));
     const now = new Date();
+    const todayKey = isoDateUtc(now);
+    const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
     return db.runTransaction(async (tx) => {
-        const [userSnap, ledgerSnap] = await Promise.all([tx.get(userRef), tx.get(ledgerRef)]);
+        const [userSnap, ledgerSnap, counterSnap] = await Promise.all([
+            tx.get(userRef),
+            tx.get(ledgerRef),
+            tx.get(dailyCounterRef),
+        ]);
         if (ledgerSnap.exists) {
             const result = ledgerSnap.data()?.result;
             if (result)
                 return { ...result, duplicate: true };
             throw new https_1.HttpsError('aborted', 'progress_event_ledger_corrupt');
         }
+        const counterData = counterSnap.data() ?? {};
+        const dailyCount = counterData.count ?? 0;
+        if (dailyCount >= DAILY_EVENT_LIMIT) {
+            throw new https_1.HttpsError('resource-exhausted', 'daily_progress_event_limit_reached');
+        }
+        // ECON-2/3/11: серверные суточные лимиты. Читаем уже накопленные сегодня значения, считаем XP с
+        // их учётом, затем записываем обновлённые счётчики в той же транзакции (идемпотентно с ledger).
+        const sourceXpToday = counterData.sourceXp ?? {};
+        const examAttemptsToday = counterData.examAttempts ?? 0;
         const progress = getProgress(userSnap.data());
-        const applied = applyProgressEvent(progress, event, now);
+        const applied = applyProgressEvent(progress, event, now, { sourceXpToday, examAttemptsToday });
+        const counterPatch = {
+            count: dailyCount + 1,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        };
+        // Вложенный sourceXp нельзя дописывать через {merge:true} с точечным ключом (создаст литеральное
+        // поле "sourceXp.x"), поэтому собираем объект sourceXp целиком с FieldValue.increment.
+        if (EVENT_DAILY_XP_CAP[event.type] != null && applied.xpDelta > 0) {
+            counterPatch.sourceXp = { [event.type]: admin.firestore.FieldValue.increment(applied.xpDelta) };
+        }
+        // Считаем только попытки уровневых зачётов (a1..c2) — финальный экзамен разовый и под лимит не идёт.
+        if (event.type === 'exam_complete') {
+            const examLevel = cleanString(event.payload.level ?? event.payload.examLevel, 12).toLowerCase();
+            if (examLevel !== 'final') {
+                counterPatch.examAttempts = admin.firestore.FieldValue.increment(1);
+            }
+        }
+        tx.set(dailyCounterRef, counterPatch, { merge: true });
         const result = {
             ok: true,
             stableUid,

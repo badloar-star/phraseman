@@ -732,8 +732,8 @@ export default function DuelResultsScreen() {
     });
   }, [applyTaskProgressOnce, isMockSession, isRankedArenaSession, recordArenaDailyOutcome, recordArenaWinAchievementOnce, sessionId, userId, lang]);
 
-  const saveMatchResult = useCallback(async (uid: string, won: boolean, isLast: boolean, total: number, isDraw: boolean = false) => {
-    if (!isMockSession || isSpecialChallenge) return;
+  const saveMatchResult = useCallback(async (uid: string, won: boolean, isLast: boolean, total: number, isDraw: boolean = false): Promise<{ promoted: boolean }> => {
+    if (!isMockSession || isSpecialChallenge) return { promoted: false };
     const xpDelta = isDraw ? DRAW_XP : (won ? 50 : 15);
     const myScore = players.find(p => p.playerId === uid)?.score ?? 0;
     const oppPlayer = players.find(p => p.playerId !== uid);
@@ -839,6 +839,9 @@ export default function DuelResultsScreen() {
       stars_change: newStars - oldStars,
       xp_gained: result?.xpDelta ?? xpDelta,
     });
+    // Возвращаем флаг повышения, чтобы ежедневное задание «Вверх по рангу»
+    // засчитывалось и в матчах против ботов (раньше передавался только в PvP).
+    return { promoted };
   }, [isMockSession, isSpecialChallenge, lang, players, sessionId]);
 
   useEffect(() => {
@@ -861,10 +864,11 @@ export default function DuelResultsScreen() {
     const isDraw = isDrawAtTop && myScore === topScore;
     const isWin = !isDraw && (isOpponentForfeited || myScore === topScore);
     const isLast = !isDraw && !isOpponentForfeited && myScore === lastScore && myScore !== topScore;
-    saveMatchResult(userId, isWin, isLast, players.length, isDraw);
-    applyTaskProgressOnce(isWin);
-    recordArenaDailyOutcome(isDraw, isWin);
     setResultSaved(true);
+    saveMatchResult(userId, isWin, isLast, players.length, isDraw)
+      .then(({ promoted }) => applyTaskProgressOnce(isWin, { rankPromoted: promoted }))
+      .catch(() => applyTaskProgressOnce(isWin));
+    recordArenaDailyOutcome(isDraw, isWin);
   }, [applyTaskProgressOnce, isForfeited, isMockSession, isOpponentForfeited, isSpecialChallenge, players, recordArenaDailyOutcome, resultSaved, saveMatchResult, userId]);
 
   const sorted = [...players].sort((a, b) => b.score - a.score);
@@ -1450,7 +1454,7 @@ export default function DuelResultsScreen() {
               setResultCardH(e.nativeEvent.layout.height);
             }}
           >
-            <Text style={styles.resultEmoji} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>
+            <Text style={styles.resultEmoji} numberOfLines={1}>
               {isForfeited ? '🏳️' : isDraw ? '🤝' : opponentSurrendered ? '🏆' : isWinner ? '🏆' : myRank === 2 ? '🥈' : '💪'}
             </Text>
             <Text style={[styles.resultTitle, { color: t.textPrimary, fontSize: f.h1 }]}>
@@ -1470,7 +1474,7 @@ export default function DuelResultsScreen() {
                 })}
               </Text>
             )}
-            <Text style={[styles.myScore, { color: t.accent, fontSize: 44 }]} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>
+            <Text style={[styles.myScore, { color: t.accent, fontSize: 44 }]} numberOfLines={1}>
               {me?.score ?? 0}
             </Text>
             <Text style={[styles.myScoreLabel, { color: t.textMuted, fontSize: f.caption }]}>
@@ -2434,7 +2438,7 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
         >
           {step === 'ask' ? (
             <>
-              <Text style={{ fontSize: 48, marginBottom: 12 }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>{variant.emoji}</Text>
+              <Text style={{ fontSize: 48, marginBottom: 12 }} numberOfLines={1}>{variant.emoji}</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
                 {variant.title}
               </Text>
@@ -2462,7 +2466,7 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
             </>
           ) : (
             <>
-              <Text style={{ fontSize: 52, marginBottom: 12 }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>??</Text>
+              <Text style={{ fontSize: 52, marginBottom: 12 }} numberOfLines={1}>??</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
                 {triLang(lang, {
                   ru: 'Спасибо!',

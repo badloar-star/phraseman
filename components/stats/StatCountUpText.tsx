@@ -23,8 +23,6 @@ type StatCountUpTextProps = {
   /** Знаков после запятой (для множителей вида ×1.85). */
   decimals?: number;
   numberOfLines?: number;
-  adjustsFontSizeToFit?: boolean;
-  minimumFontScale?: number;
 };
 
 /**
@@ -41,8 +39,6 @@ export function StatCountUpText({
   suffix = '',
   decimals = 0,
   numberOfLines,
-  adjustsFontSizeToFit,
-  minimumFontScale,
 }: StatCountUpTextProps) {
   const safeValue = Number.isFinite(value) ? value : 0;
   const counter = useSharedValue(0);
@@ -69,9 +65,7 @@ export function StatCountUpText({
   return (
     <Text
       style={style}
-      numberOfLines={numberOfLines}
-      adjustsFontSizeToFit={adjustsFontSizeToFit}
-      minimumFontScale={minimumFontScale}
+      numberOfLines={numberOfLines ?? 1}
     >
       {prefix}{shown}{suffix}
     </Text>

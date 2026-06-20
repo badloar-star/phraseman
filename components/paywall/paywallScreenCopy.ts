@@ -131,10 +131,16 @@ export function stickyStringsFor(
       })
     : triLang(lang, { ru: 'Premium', uk: 'Premium', es: 'Premium' });
   const sub = args.price ? ctaSubLineFor(lang, { price: args.price, period: args.period, hasTrial: !!args.trialDays, isLifetime: args.isLifetime }) : '';
+  // Кнопка sticky-бара повторяет смысл главной CTA, а не безликое «Начать»:
+  // при триале — «Попробовать бесплатно», иначе — «Открыть доступ» (lifetime — «Купить навсегда»).
   const button = args.isLifetime
-    ? triLang(lang, { ru: 'Купить', uk: 'Купити', es: 'Comprar', 'pt-BR': 'Comprar', vi: 'Mua', id: 'Beli', tr: 'Satın al', pl: 'Kup' })
+    ? triLang(lang, { ru: 'Купить навсегда', uk: 'Купити назавжди', es: 'Comprar para siempre', 'pt-BR': 'Comprar para sempre', vi: 'Mua trọn đời', id: 'Beli selamanya', tr: 'Sonsuza dek al', pl: 'Kup na zawsze' })
+    : args.trialDays
+    ? triLang(lang, {
+        ru: 'Попробовать бесплатно', uk: 'Спробувати безкоштовно', es: 'Probar gratis', 'pt-BR': 'Testar grátis', vi: 'Dùng thử miễn phí', id: 'Coba gratis', tr: 'Ücretsiz dene', pl: 'Wypróbuj za darmo',
+      })
     : triLang(lang, {
-        ru: 'Начать', uk: 'Почати', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij',
+        ru: 'Открыть доступ', uk: 'Відкрити доступ', es: 'Desbloquear acceso', 'pt-BR': 'Abrir acesso', vi: 'Mở quyền truy cập', id: 'Buka akses', tr: 'Erişimi aç', pl: 'Odblokuj dostęp',
       });
   return { title, sub, button };
 }

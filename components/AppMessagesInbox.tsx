@@ -1,6 +1,8 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  Dimensions,
+  Easing,
   Modal,
   Pressable,
   ScrollView,
@@ -13,6 +15,7 @@ import {
 import { LinearGradient } from './SafeLinearGradient';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
+import { useMessageReceivedCue } from '../hooks/use-message-received-cue';
 import CompassDepthSurface from './CompassDepthSurface';
 import { useIsFocused } from '@react-navigation/native';
 import { useLang } from './LangContext';
@@ -33,6 +36,8 @@ import {
   setAppMessageReaction,
   setAppMessagePollVote,
   subscribeUserAppMessages,
+  readAnimatedMessageIds,
+  markMessageIdsAnimated,
 } from '../app/app_messages';
 import VipSurveyModal from './VipSurveyModal';
 import VipCelebrationModal from './VipCelebrationModal';
@@ -112,6 +117,74 @@ function AppMessagesInbox() {
   const surveyOpenTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const blurRenderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // ── «Письмо прилетает в иконку» — анимация + звук при новом сообщении ────────
+  const { playMessageReceived } = useMessageReceivedCue();
+  // Прогресс полёта конверта (0 — старт у центра сверху, 1 — влетел в иконку).
+  const flyAnim = useRef(new Animated.Value(0)).current;
+  // Масштаб самой иконки: лёгкий «приём» (подскок) в момент прилёта письма.
+  const iconReceiveScale = useRef(new Animated.Value(1)).current;
+  const [flying, setFlying] = useState(false);
+  // Замер позиции кнопки-иконки в окне, чтобы целиться конвертом точно в неё.
+  const buttonRef = useRef<View>(null);
+  const iconCenterRef = useRef<{ x: number; y: number } | null>(null);
+  // ID сообщений, для которых анимация прилёта УЖЕ показывалась (персистентно, из
+  // AsyncStorage). Письмо «прилетает» один раз на сообщение, а не при каждом заходе.
+  const animatedIdsRef = useRef<Set<string> | null>(null);
+  const flyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Загружаем сохранённые ID один раз при монтировании.
+  useEffect(() => {
+    let cancelled = false;
+    void readAnimatedMessageIds().then((ids) => {
+      if (!cancelled) animatedIdsRef.current = new Set(ids);
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  const measureIcon = useCallback(() => {
+    const node = buttonRef.current;
+    if (!node || typeof node.measureInWindow !== 'function') return;
+    node.measureInWindow((x, y, w, h) => {
+      if (Number.isFinite(x) && Number.isFinite(y)) {
+        iconCenterRef.current = { x: x + (w || 0) / 2, y: y + (h || 0) / 2 };
+      }
+    });
+  }, []);
+
+  // Защита от наложения: пока конверт ЛЕТИТ, повторный вызов игнорируется —
+  // иначе несколько новых сообщений подряд запускали анимацию+звук несколько раз.
+  // ref (а не state `flying`), чтобы проверка была синхронной в момент вызова.
+  const flightInProgressRef = useRef(false);
+
+  const playEnvelopeFlight = useCallback(() => {
+    if (flightInProgressRef.current) return; // уже летит — не дублируем
+    flightInProgressRef.current = true;
+    measureIcon();
+    flyAnim.setValue(0);
+    setFlying(true);
+    Animated.timing(flyAnim, {
+      toValue: 1,
+      duration: 720,
+      easing: Easing.in(Easing.cubic), // ускоряется к иконке — «затягивает» письмо
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished) setFlying(false);
+    });
+    // Иконка «принимает» письмо: подрастает на прилёте и мягко возвращается.
+    if (flyTimer.current) clearTimeout(flyTimer.current);
+    flyTimer.current = setTimeout(() => {
+      flyTimer.current = null;
+      playMessageReceived();
+      Animated.sequence([
+        Animated.spring(iconReceiveScale, { toValue: 1.28, useNativeDriver: true, friction: 4, tension: 160 }),
+        Animated.spring(iconReceiveScale, { toValue: 1, useNativeDriver: true, friction: 6, tension: 120 }),
+      ]).start(() => {
+        // полёт + подскок завершились — снимаем замок, можно показать следующий
+        flightInProgressRef.current = false;
+      });
+    }, 560); // совпадает с моментом, когда конверт почти внутри иконки
+  }, [flyAnim, iconReceiveScale, measureIcon, playMessageReceived]);
+
   useEffect(() => {
     if (blurRenderTimer.current) {
       clearTimeout(blurRenderTimer.current);
@@ -189,6 +262,49 @@ function AppMessagesInbox() {
     loop.start();
     return () => loop.stop();
   }, [badgePulse, unreadCount]);
+
+  // Новое сообщение прилетело: конверт «влетает» в иконку + звук — РОВНО ОДИН раз на
+  // сообщение. Срабатывает для ID, которых ещё нет в сохранённом наборе animatedIds.
+  // На самом первом наборе (свежая установка / уже существующие сообщения) — молча
+  // помечаем их «показанными», без анимации, чтобы не было залпа при первом входе.
+  // Прочитано/непрочитано роли не играет — привязка только к факту «было ли письмо».
+  const didBaselineRef = useRef(false);
+  useEffect(() => {
+    const animated = animatedIdsRef.current;
+    if (!animated) return; // набор ещё не загружен из AsyncStorage
+
+    const knownIds = messages.map((m) => m.id).filter(Boolean);
+    const freshIds = knownIds.filter((id) => !animated.has(id));
+    if (freshIds.length === 0) return;
+
+    const consume = () => {
+      freshIds.forEach((id) => animated.add(id));
+      void markMessageIdsAnimated(freshIds);
+    };
+
+    // Первый снапшот после загрузки — базовая линия: молча помечаем существующие
+    // сообщения «показанными», без анимации (иначе залп при каждом первом входе).
+    if (!didBaselineRef.current) {
+      didBaselineRef.current = true;
+      consume();
+      return;
+    }
+
+    // Если инбокс открыт — пользователь и так видит письмо: помечаем без анимации.
+    // Если экран не в фокусе — НЕ помечаем, чтобы прилёт показался один раз, когда
+    // экран снова станет видимым.
+    if (visible) { consume(); return; }
+    if (!isScreenFocused) return;
+
+    // Реально новое сообщение и экран виден → проигрываем прилёт ровно один раз.
+    consume();
+    playEnvelopeFlight();
+  }, [messages, isScreenFocused, visible, playEnvelopeFlight]);
+
+  useEffect(() => () => {
+    if (flyTimer.current) clearTimeout(flyTimer.current);
+    flightInProgressRef.current = false; // снять замок при размонтировании
+  }, []);
 
   useEffect(() => {
     Animated.parallel([
@@ -639,6 +755,8 @@ function AppMessagesInbox() {
   return (
     <>
       <TouchableOpacity
+        ref={buttonRef}
+        onLayout={measureIcon}
         testID="home-app-messages-button"
         activeOpacity={0.78}
         accessibilityRole="button"
@@ -646,7 +764,9 @@ function AppMessagesInbox() {
         onPress={openInbox}
         style={styles.headerButton}
       >
-        <Image source={headerIcon} style={styles.headerIcon} contentFit="contain" />
+        <Animated.View style={{ transform: [{ scale: iconReceiveScale }] }}>
+          <Image source={headerIcon} style={styles.headerIcon} contentFit="contain" />
+        </Animated.View>
         {unreadCount > 0 && (
           <Animated.View
             style={[styles.badge, { transform: [{ scale: badgePulse }] }]}
@@ -656,6 +776,56 @@ function AppMessagesInbox() {
           </Animated.View>
         )}
       </TouchableOpacity>
+
+      {flying ? (() => {
+        const screen = Dimensions.get('window');
+        const target = iconCenterRef.current ?? { x: screen.width - 44, y: 70 };
+        // Старт: центр экрана, верхняя треть — «письмо появляется» и летит в иконку.
+        const startX = screen.width / 2;
+        const startY = screen.height * 0.34;
+        const ENV_W = 132;
+        const ENV_H = 92;
+        // translate: из стартовой точки (центр конверта) в центр иконки.
+        const translateX = flyAnim.interpolate({ inputRange: [0, 1], outputRange: [startX - ENV_W / 2, target.x - ENV_W / 2] });
+        const translateY = flyAnim.interpolate({ inputRange: [0, 1], outputRange: [startY - ENV_H / 2, target.y - ENV_H / 2] });
+        // Уменьшается и «втягивается» в иконку.
+        const scale = flyAnim.interpolate({ inputRange: [0, 0.7, 1], outputRange: [1, 0.42, 0.08] });
+        // Искажение: лёгкий наклон + скос, усиливающийся к концу полёта.
+        const rotate = flyAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['0deg', '-8deg', '14deg'] });
+        const skewX = flyAnim.interpolate({ inputRange: [0, 0.6, 1], outputRange: ['0deg', '6deg', '-18deg'] });
+        const scaleY = flyAnim.interpolate({ inputRange: [0, 0.65, 1], outputRange: [1, 0.86, 0.5] });
+        // Появляется быстро, гаснет на самом финише (внутри иконки).
+        const opacity = flyAnim.interpolate({ inputRange: [0, 0.08, 0.85, 1], outputRange: [0, 1, 1, 0] });
+        return (
+          <Modal transparent visible animationType="none" pointerEvents="none" onRequestClose={() => {}}>
+            <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+              <Animated.View
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  top: 0,
+                  width: ENV_W,
+                  height: ENV_H,
+                  opacity,
+                  transform: [
+                    { translateX },
+                    { translateY },
+                    { scale },
+                    { scaleY },
+                    { rotate },
+                    { skewX },
+                  ],
+                }}
+              >
+                <View style={styles.envelope}>
+                  <View style={styles.envelopeFlap} />
+                  <View style={styles.envelopeShine} />
+                </View>
+              </Animated.View>
+            </View>
+          </Modal>
+        );
+      })() : null}
 
       <Modal visible={visible} transparent animationType="none" onRequestClose={closeInbox}>
         <Animated.View style={[styles.backdrop, { opacity: fade }]}>
@@ -708,6 +878,44 @@ const styles = StyleSheet.create({
   headerIcon: {
     width: 56,
     height: 40,
+  },
+  // Летящий конверт (оверлей). Рисуем кодом — независимо от темы, без ассета.
+  envelope: {
+    flex: 1,
+    borderRadius: 12,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    borderColor: '#E2C36B',
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 10,
+  },
+  // Треугольный «клапан» конверта — два больших борта сходятся в центре сверху.
+  envelopeFlap: {
+    position: 'absolute',
+    top: -2,
+    left: -2,
+    right: -2,
+    height: 0,
+    borderLeftWidth: 68,
+    borderRightWidth: 68,
+    borderTopWidth: 50,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderTopColor: '#F4D785',
+  },
+  envelopeShine: {
+    position: 'absolute',
+    top: 6,
+    left: 8,
+    width: 26,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255,255,255,0.55)',
+    transform: [{ rotate: '-18deg' }],
   },
   badge: {
     position: 'absolute',

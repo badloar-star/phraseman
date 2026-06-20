@@ -20,16 +20,20 @@ export type LingmanYoutubeSnapshot = {
   error?: string;
 };
 
-const LINGMAN_CHANNEL_ID = 'UCIr8fwZjbDtcUlQ-IKIbndg';
+export const LINGMAN_CHANNEL_ID = 'UCNNVZbMkh4jrW6uluaaJTwA';
 const LINGMAN_FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${LINGMAN_CHANNEL_ID}`;
 const LINGMAN_FEED_TIMEOUT_MS = 10000;
-export const LINGMAN_CHANNEL_URL = 'https://www.youtube.com/@professorlingman/videos';
+export const LINGMAN_CHANNEL_DISPLAY_NAME = 'PHRASEMAN';
+export const LINGMAN_CHANNEL_HANDLE = '@PhrasemanENGLISH';
+export const LINGMAN_CHANNEL_URL = 'https://www.youtube.com/@PhrasemanENGLISH/videos';
 export const LINGMAN_YOUTUBE_EMBED_BASE_URL = 'https://app.phraseman/';
-const STORAGE_LAST_SEEN_ID = 'lingman_youtube_last_seen_video_id_v1';
-const STORAGE_LAST_OPENED_AT = 'lingman_youtube_last_opened_at_ms_v1';
-const STORAGE_LAST_SUCCESSFUL_SNAPSHOT = 'lingman_youtube_last_successful_snapshot_v1';
+const STORAGE_LAST_SEEN_ID = 'lingman_youtube_last_seen_video_id_v2';
+const STORAGE_LAST_OPENED_AT = 'lingman_youtube_last_opened_at_ms_v2';
+const STORAGE_LAST_SUCCESSFUL_SNAPSHOT = 'lingman_youtube_last_successful_snapshot_v2';
+const KNOWN_SHORT_VIDEO_IDS = new Set(['xdISurogEds', 'KHn07unaGHU']);
+const SHORTS_MARKER_RE = /(?:^|\s)#shorts?\b/i;
 
-const FALLBACK_VIDEOS: LingmanYoutubeVideo[] = [
+const LEGACY_PROFESSOR_LINGMAN_FALLBACK_VIDEOS: LingmanYoutubeVideo[] = [
   {
     id: 'X7L3Xg3qITo',
     title: '200 фраз, после которых проще начать отвечать на английском',
@@ -58,6 +62,49 @@ const FALLBACK_VIDEOS: LingmanYoutubeVideo[] = [
     watchUrl: getLingmanYoutubeWatchUrl('uszm81bTNUs'),
   },
 ];
+
+const PHRASEMAN_ENGLISH_FALLBACK_VIDEOS: LingmanYoutubeVideo[] = [
+  {
+    id: '5HRccrAtA00',
+    title: 'Не верь красивым словам: эти фразы спасают реальный разговор',
+    description: 'Phraseman для практики живых английских фраз и разговорного слоя.',
+    thumbnailUrl: 'https://i.ytimg.com/vi/5HRccrAtA00/hqdefault.jpg',
+    publishedAt: '2026-06-19T14:05:20+00:00',
+    updatedAt: '2026-06-19T14:12:17+00:00',
+    watchUrl: getLingmanYoutubeWatchUrl('5HRccrAtA00'),
+  },
+  {
+    id: 'xdISurogEds',
+    title: 'Убийца Duolingo по ссылке в описании профиля. Попробуй не выучить английский с приложением PHRASEMAN',
+    description: 'Короткое видео с канала PHRASEMAN про приложение для английского.',
+    thumbnailUrl: 'https://i.ytimg.com/vi/xdISurogEds/hqdefault.jpg',
+    publishedAt: '2026-06-19T13:31:12+00:00',
+    updatedAt: '2026-06-19T13:48:03+00:00',
+    watchUrl: getLingmanYoutubeWatchUrl('xdISurogEds'),
+  },
+  {
+    id: 'syNj0G3sq-4',
+    title: 'Лёгкий английский на фоне: 200 простых фраз с переводом',
+    description: 'Фоновая тренировка простых английских фраз с переводом.',
+    thumbnailUrl: 'https://i.ytimg.com/vi/syNj0G3sq-4/hqdefault.jpg',
+    publishedAt: '2026-06-19T08:33:00+00:00',
+    updatedAt: '2026-06-19T08:34:11+00:00',
+    watchUrl: getLingmanYoutubeWatchUrl('syNj0G3sq-4'),
+  },
+  {
+    id: 'eXCZoiJRCX4',
+    title: 'Метод цепной ассоциации: Говорим по-английски на автомате!',
+    description: 'Длинный урок PHRASEMAN про метод цепной ассоциации.',
+    thumbnailUrl: 'https://i.ytimg.com/vi/eXCZoiJRCX4/hqdefault.jpg',
+    publishedAt: '2026-06-14T08:00:42+00:00',
+    updatedAt: '2026-06-18T21:06:45+00:00',
+    watchUrl: getLingmanYoutubeWatchUrl('eXCZoiJRCX4'),
+  },
+];
+
+const FALLBACK_VIDEOS = (PHRASEMAN_ENGLISH_FALLBACK_VIDEOS.length
+  ? PHRASEMAN_ENGLISH_FALLBACK_VIDEOS
+  : LEGACY_PROFESSOR_LINGMAN_FALLBACK_VIDEOS).filter(isLingmanLongFormVideo);
 
 function asArray<T>(value: T | T[] | undefined | null): T[] {
   if (!value) return [];
@@ -98,7 +145,7 @@ function parseEntry(entry: Record<string, unknown>): LingmanYoutubeVideo | null 
   const updatedAt = textValue(entry.updated);
   return {
     id,
-    title: textValue(entry.title) || textValue(group?.['media:title']) || 'Professor Lingman',
+    title: textValue(entry.title) || textValue(group?.['media:title']) || LINGMAN_CHANNEL_DISPLAY_NAME,
     description: textValue(group?.['media:description']),
     thumbnailUrl: attrValue(thumbnail, 'url') || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
     publishedAt,
@@ -106,6 +153,11 @@ function parseEntry(entry: Record<string, unknown>): LingmanYoutubeVideo | null 
     watchUrl: getLingmanYoutubeWatchUrl(id),
     viewCount: parseViewCount(entry),
   };
+}
+
+export function isLingmanLongFormVideo(video: Pick<LingmanYoutubeVideo, 'id' | 'title' | 'description'>): boolean {
+  if (KNOWN_SHORT_VIDEO_IDS.has(video.id)) return false;
+  return !SHORTS_MARKER_RE.test(`${video.title}\n${video.description}`);
 }
 
 export function getLingmanYoutubeWatchUrl(videoId: string): string {
@@ -134,7 +186,8 @@ export function parseLingmanYoutubeFeed(xml: string): LingmanYoutubeVideo[] {
   const parsed = parser.parse(xml) as { feed?: { entry?: unknown } };
   return asArray(parsed.feed?.entry)
     .map((entry) => (entry && typeof entry === 'object' ? parseEntry(entry as Record<string, unknown>) : null))
-    .filter((video): video is LingmanYoutubeVideo => Boolean(video));
+    .filter((video): video is LingmanYoutubeVideo => Boolean(video))
+    .filter(isLingmanLongFormVideo);
 }
 
 export function getLingmanYoutubeUnreadCount(videos: Pick<LingmanYoutubeVideo, 'id'>[], lastSeenId: string | null): number {
@@ -150,7 +203,8 @@ async function readCachedVideos(): Promise<LingmanYoutubeVideo[] | null> {
     const raw = await AsyncStorage.getItem(STORAGE_LAST_SUCCESSFUL_SNAPSHOT);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as { videos?: LingmanYoutubeVideo[] };
-    return Array.isArray(parsed.videos) && parsed.videos.length ? parsed.videos : null;
+    const videos = Array.isArray(parsed.videos) ? parsed.videos.filter(isLingmanLongFormVideo) : [];
+    return videos.length ? videos : null;
   } catch {
     return null;
   }
@@ -245,7 +299,7 @@ export function buildLingmanEmbedHtml(videoId: string): string {
   <body>
     <iframe
       src="${embedUrl}"
-      title="Professor Lingman YouTube video"
+      title="Phraseman YouTube video"
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
       referrerpolicy="strict-origin-when-cross-origin"></iframe>

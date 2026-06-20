@@ -1,6 +1,6 @@
 // ════════════════════════════════════════════════════════════════════════════
-// paywall_variant.ts — эксперимент пейволов v3: A («Компакт») / B («Стори») /
-// C («Атриум») против v1 (контроль).
+// paywall_variant.ts — выбор нового пейвола v3: A («Компакт») / B («Стори») /
+// C («Атриум»). Старый v1 больше не является вариантом показа.
 //
 // КОНФИГ: Firestore doc `remote_config/paywall_ab` — НАМЕРЕННО отдельный от
 // `remote_config/app`: вкладка Remote Config в админке сохраняет свой док через
@@ -8,13 +8,13 @@
 //   { a_pct, b_pct, c_pct, salt, rating_x10, ratings_count, updatedAt, updatedBy }
 //
 // НАЗНАЧЕНИЕ ВАРИАНТА: детерминированный djb2-хэш `${stableId}:paywall_ab:${salt}`
-// → доли A/B/C, остаток трафика = v1. Один юзер всегда видит один вариант
+// → доли A/B/C. Один юзер всегда видит один вариант
 // (переустановка не сбивает — stableId переживает), НИКАКОЙ ротации по времени:
 // time-based ротация смешивает когорты (день недели/промо) и портит тест.
 // Смена `salt` в админке = осознанный пересев бакетов (новый эксперимент).
 //
-// ДЕФОЛТ (нет дока / оффлайн / первый запуск): a=b=c=0 → ВСЕ на v1.
-// Это и есть kill-switch: обнулить доли в админке — эксперимент выключен.
+// ДЕФОЛТ (нет дока / оффлайн / первый запуск): ВСЕ на C («Атриум»).
+// Старый экран не показываем даже как fallback.
 //
 // СОЦДОКАЗАТЕЛЬСТВО: rating_x10 (50 → «5.0», 0 → скрыть) и ratings_count —
 // только РЕАЛЬНЫЕ сторовые числа, обновляются из админки. Никаких хардкодов.
@@ -23,9 +23,9 @@ import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getStableId } from './stable_id';
+import { getStableId, peekStableId } from './stable_id';
 
-export type PaywallAbVariant = 'v1' | 'A' | 'B' | 'C';
+export type PaywallAbVariant = 'A' | 'B' | 'C';
 
 export interface PaywallAbConfig {
   aPct: number;
@@ -39,13 +39,14 @@ export interface PaywallAbConfig {
 const CONFIG_DOC_COLLECTION = 'remote_config';
 const CONFIG_DOC_ID = 'paywall_ab';
 const CONFIG_CACHE_KEY = 'paywall_ab_config_cache_v1';
+const CONFIG_AUTH_TIMEOUT_MS = 2500;
 /** Ключ старого A/B v1-vs-v2 (Math.random на устройство) — вычищаем. */
 const LEGACY_VARIANT_KEY = 'paywall_variant';
 
 const DEFAULT_CONFIG: PaywallAbConfig = {
   aPct: 0,
   bPct: 0,
-  cPct: 0,
+  cPct: 100,
   salt: 'v3',
   ratingX10: 0,
   ratingsCount: 0,
@@ -53,6 +54,7 @@ const DEFAULT_CONFIG: PaywallAbConfig = {
 
 let _config: PaywallAbConfig = { ...DEFAULT_CONFIG };
 let _loadedOnce = false;
+let _refreshInFlight: Promise<void> | null = null;
 
 function clampPct(raw: unknown): number {
   const n = typeof raw === 'number' && Number.isFinite(raw) ? raw : 0;
@@ -72,7 +74,7 @@ function sanitizeConfig(raw: unknown): PaywallAbConfig {
         ? Math.floor(r.ratings_count)
         : 0,
   };
-  // Если админ ввёл суммарно >100 — пропорционально ужимаем (v1 получает 0, но не минус).
+  // Если админ ввёл суммарно >100 — пропорционально ужимаем.
   const sum = cfg.aPct + cfg.bPct + cfg.cPct;
   if (sum > 100) {
     cfg.aPct = Math.floor((cfg.aPct * 100) / sum);
@@ -100,6 +102,32 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
   }
 }
 
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error('paywall_config_auth_timeout')), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timeoutId !== undefined) clearTimeout(timeoutId);
+  });
+}
+
+async function ensureFirebaseAuthForConfigRead(): Promise<void> {
+  if (Platform.OS === 'web' || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  try {
+    const mod = await import('@react-native-firebase/auth');
+    const authFactory = mod.default as unknown as () => {
+      currentUser?: unknown;
+      signInAnonymously?: () => Promise<unknown>;
+    };
+    const auth = typeof authFactory === 'function' ? authFactory() : null;
+    if (!auth || auth.currentUser || typeof auth.signInAnonymously !== 'function') return;
+    await withTimeout(auth.signInAnonymously(), CONFIG_AUTH_TIMEOUT_MS);
+  } catch {
+    // If auth is unavailable/offline, the Firestore read below will fall back to cache/new C.
+  }
+}
+
 async function applyCache(): Promise<void> {
   try {
     const raw = await AsyncStorage.getItem(CONFIG_CACHE_KEY);
@@ -109,16 +137,8 @@ async function applyCache(): Promise<void> {
   }
 }
 
-/**
- * Кэш-первый лоад: применяем кэш сразу, затем тихо обновляемся из сети.
- * Безопасно вызывать многократно; сеть дёргается на каждый вызов (док крошечный,
- * пейвол открывается нечасто — зато админ-правки долетают мгновенно).
- */
-export async function loadPaywallAbConfig(): Promise<PaywallAbConfig> {
-  if (!_loadedOnce) {
-    await applyCache();
-    _loadedOnce = true;
-  }
+async function refreshPaywallAbConfigFromNetwork(): Promise<void> {
+  await ensureFirebaseAuthForConfigRead();
   const factory = await getFirestoreModule();
   if (factory) {
     try {
@@ -137,9 +157,33 @@ export async function loadPaywallAbConfig(): Promise<PaywallAbConfig> {
         })).catch(() => {});
       }
     } catch {
-      // оффлайн/нет прав — остаёмся на кэше/дефолте (все на v1)
+      // оффлайн/нет прав — остаёмся на кэше/дефолте (новый C)
     }
   }
+}
+
+export function refreshPaywallAbConfigInBackground(): void {
+  if (_refreshInFlight) return;
+  _refreshInFlight = refreshPaywallAbConfigFromNetwork()
+    .catch(() => {})
+    .finally(() => { _refreshInFlight = null; });
+}
+
+async function loadPaywallAbConfigCacheFirst(): Promise<PaywallAbConfig> {
+  if (!_loadedOnce) {
+    await applyCache();
+    _loadedOnce = true;
+  }
+  return _config;
+}
+
+/**
+ * Fresh load for diagnostics/admin QA. Normal paywall routing uses the fast
+ * cache-first resolver below so the user never waits on Firestore/auth.
+ */
+export async function loadPaywallAbConfig(): Promise<PaywallAbConfig> {
+  await loadPaywallAbConfigCacheFirst();
+  await refreshPaywallAbConfigFromNetwork();
   return _config;
 }
 
@@ -158,21 +202,37 @@ export function hashToUnit(input: string): number {
 
 /** Чистая функция выбора по точке [0,1) — отдельно ради тестируемости. */
 export function pickVariantFromUnit(unit: number, cfg: PaywallAbConfig): PaywallAbVariant {
-  const point = unit * 100;
+  const total = cfg.aPct + cfg.bPct + cfg.cPct;
+  if (total <= 0) return 'C';
+  const point = unit * total;
   if (point < cfg.aPct) return 'A';
   if (point < cfg.aPct + cfg.bPct) return 'B';
-  if (point < cfg.aPct + cfg.bPct + cfg.cPct) return 'C';
-  return 'v1';
+  return 'C';
 }
 
 /**
  * Главная точка входа диспетчера: свежий конфиг (кэш→сеть) + stableId → вариант.
- * Manage-режим подписки сюда не ходит (всегда v1 — там управление подпиской).
+ * Manage-режим подписки сюда не ходит: premium_modal открывает системную страницу подписок.
  */
 export async function resolvePaywallAbVariant(): Promise<{ variant: PaywallAbVariant; stableId: string }> {
-  const [cfg, stableId] = await Promise.all([loadPaywallAbConfig(), getStableId()]);
+  const [cfg, stableId] = await Promise.all([loadPaywallAbConfigCacheFirst(), getStableId()]);
+  refreshPaywallAbConfigInBackground();
   // Подчищаем ключ старого Math.random-эксперимента, чтобы не путал при отладке.
   void AsyncStorage.removeItem(LEGACY_VARIANT_KEY).catch(() => {});
+  const unit = hashToUnit(`${stableId}:paywall_ab:${cfg.salt}`);
+  return { variant: pickVariantFromUnit(unit, cfg), stableId };
+}
+
+/**
+ * Синхронное решение варианта пейвола из кэша в памяти — БЕЗ await, чтобы пейвол открывался
+ * мгновенно (без спиннера-диспетчера). Использует уже загруженный конфиг и закэшированный
+ * stableId. Если stableId ещё не в памяти — берём детерминированный fallback-seed (вариант
+ * всё равно почти всегда C при дефолтном сплите). A/B-конфиг при этом обновляется в фоне.
+ */
+export function resolvePaywallAbVariantSync(): { variant: PaywallAbVariant; stableId: string } {
+  const cfg = _config;
+  refreshPaywallAbConfigInBackground();
+  const stableId = peekStableId() ?? 'pending';
   const unit = hashToUnit(`${stableId}:paywall_ab:${cfg.salt}`);
   return { variant: pickVariantFromUnit(unit, cfg), stableId };
 }

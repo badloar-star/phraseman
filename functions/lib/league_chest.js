@@ -34,6 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.leagueChestClaim = void 0;
+exports.buildRewardProgressPatch = buildRewardProgressPatch;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const REGION = 'us-central1';

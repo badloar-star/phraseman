@@ -33,6 +33,8 @@ import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 import { getCourseLevelIndex, getFirstLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import { usePremium } from '../components/PremiumContext';
 import { lessonPaywallContext } from './monetization_policy';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
@@ -44,6 +46,9 @@ import { registerXP } from './xp_manager';
 
 const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
+
+/** Энергия за ПОПЫТКУ залога уровня (списывается авансом на старте, не за ошибку). */
+const LEVEL_EXAM_ENERGY = 5;
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -546,6 +551,10 @@ export default function LevelExam() {
   const [accessState, setAccessState] = useState<'checking' | 'allowed' | 'blocked'>('checking');
   const [blockedText, setBlockedText] = useState('');
   const [accessBlockKind, setAccessBlockKind] = useState<'premium' | 'level' | 'error'>('level');
+  // Энергия: залог уровня стоит фиксированную сумму ЗА ПОПЫТКУ (аванс), а не за ошибку.
+  // Премиум/тестер обходят списание внутри spendAmount (isUnlimited).
+  const { isUnlimited: energyUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
+  const [noEnergy, setNoEnergy] = useState(false);
 
   const questions = useMemo(() => {
     if (frenchExamBlocked) return [];
@@ -669,17 +678,31 @@ export default function LevelExam() {
   const q = idx < questions.length ? questions[idx] : undefined;
   const chosen = choices[idx] ?? null;
 
-  const startExam = useCallback(() => {
+  const startExam = useCallback(async () => {
     if (frenchExamBlocked) {
       void trackFeatureBlocked('level_exam', 'start', 'french_exam_source_gate', { level: lvl, studyTarget }, 'level_exam');
       return;
+    }
+    // Энергия: списываем фиксированную сумму ЗА ПОПЫТКУ авансом (как exam.tsx / диагностика).
+    if (!energyUnlimited) {
+      if (energy + bonusEnergy < LEVEL_EXAM_ENERGY) {
+        void trackFeatureBlocked('level_exam', 'start', 'no_energy', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
+        setNoEnergy(true);
+        return;
+      }
+      const ok = await spendAmount(LEVEL_EXAM_ENERGY);
+      if (!ok) {
+        void trackFeatureBlocked('level_exam', 'start', 'energy_spend_failed', { level: lvl, energy, bonusEnergy, required: LEVEL_EXAM_ENERGY }, 'level_exam');
+        setNoEnergy(true);
+        return;
+      }
     }
     void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
     setChoices(new Array(questions.length).fill(null));
     setIdx(0);
     setShowAnswer(false);
     setPhase('quiz');
-  }, [frenchExamBlocked, questions.length, lvl, studyTarget]);
+  }, [frenchExamBlocked, questions.length, lvl, studyTarget, energyUnlimited, energy, bonusEnergy, spendAmount]);
 
   const { flashKey, flash } = useWordFlash();
 
@@ -1077,8 +1100,6 @@ export default function LevelExam() {
                         textAlign: 'center',
                       }}
                       numberOfLines={1}
-                      adjustsFontSizeToFit
-                      minimumFontScale={0.62}
                     >
                       {s.cap}
                     </Text>
@@ -1108,7 +1129,7 @@ export default function LevelExam() {
 
               <TouchableOpacity
                 activeOpacity={0.92}
-                onPress={() => { hapticTap(); startExam(); }}
+                onPress={() => { hapticTap(); void startExam(); }}
                 style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4 }}
               >
                 <LinearGradient
@@ -1159,6 +1180,7 @@ export default function LevelExam() {
             </View>
           </BouncyScrollView>
         </ContentWrap>
+        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LEVEL_EXAM_ENERGY} />
       </SafeAreaView>
       </ScreenGradient>
     );
@@ -1378,7 +1400,7 @@ export default function LevelExam() {
 
             {/* Кнопки */}
             <TouchableOpacity
-              onPress={() => { hapticTap(); startExam(); }}
+              onPress={() => { hapticTap(); void startExam(); }}
               style={{
                 borderRadius: 14,
                 borderWidth: 0.5,
@@ -1460,6 +1482,7 @@ export default function LevelExam() {
             </View>
           </BouncyScrollView>
         </ContentWrap>
+        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LEVEL_EXAM_ENERGY} />
       </SafeAreaView>
       </ScreenGradient>
       </>

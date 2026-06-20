@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const revenuecat_shards_1 = require("./revenuecat_shards");
-const { candidateUserIds, isRevenueCatAnonymousId, looksLikePremiumSubscription, premiumPlanFromEvent, prioritizeUserCandidates, stableCandidateUserIds, } = revenuecat_shards_1.__revenueCatWebhookTestHooks;
+const { candidateUserIds, isRevenueCatAnonymousId, looksLikePremiumSubscription, premiumPlanFromEvent, prioritizeUserCandidates, stableCandidateUserIds, transferTargetIds, transferSourceIds, } = revenuecat_shards_1.__revenueCatWebhookTestHooks;
 describe('RevenueCat webhook premium matching', () => {
     it('accepts explicit premium entitlement events', () => {
         expect(looksLikePremiumSubscription({
@@ -82,6 +82,106 @@ describe('RevenueCat webhook premium matching', () => {
         const source = fs_1.default.readFileSync(path_1.default.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
         expect(source).not.toContain('anonymous_only_unmatched');
         expect(source).not.toContain('allowAnonymousOnly: false');
+    });
+});
+// ── TRANSFER: anonymous → stable_id (scenario #13) ────────────────────────────
+describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
+    it('prefers stable recipients and lists donors', () => {
+        const event = {
+            type: 'TRANSFER',
+            transferred_to: ['$RCAnonymousID:zzz', 'stable-real'],
+            transferred_from: ['$RCAnonymousID:aaa'],
+        };
+        expect(transferTargetIds(event)).toEqual(['stable-real']); // anonymous dropped
+        expect(transferSourceIds(event)).toEqual(['$RCAnonymousID:aaa']);
+    });
+    function makeRcDbStub(initialUsers = {}) {
+        const store = {
+            users: { ...initialUsers },
+            revenuecat_premium_events: {},
+        };
+        const snap = (id, data) => ({ id, exists: !!data, data: () => data });
+        const docApi = (coll, id) => ({
+            id,
+            get: async () => snap(id, store[coll]?.[id]),
+            set: async (data) => {
+                store[coll] = store[coll] ?? {};
+                const prev = store[coll][id] ?? {};
+                const mergedProgress = data.progress ? { ...(prev.progress ?? {}), ...data.progress } : prev.progress;
+                store[coll][id] = { ...prev, ...data, ...(mergedProgress ? { progress: mergedProgress } : {}) };
+            },
+        });
+        const db = {
+            collection: (coll) => ({ doc: (id) => docApi(coll, id) }),
+            runTransaction: async (fn) => {
+                const tx = {
+                    get: async (ref) => ref.get(),
+                    set: async (ref, data) => ref.set(data),
+                };
+                return fn(tx);
+            },
+        };
+        return { db, store };
+    }
+    function makeRes() {
+        const r = { statusCode: 0, body: null };
+        r.status = (c) => { r.statusCode = c; return r; };
+        r.json = (b) => { r.body = b; return r; };
+        r.send = (b) => { r.body = b; return r; };
+        return r;
+    }
+    it('moves active premium from the anonymous donor to the stable recipient and deactivates the donor', async () => {
+        const admin = require('firebase-admin');
+        if (!admin.apps.length)
+            admin.initializeApp({ projectId: 'demo-test' });
+        const { db, store } = makeRcDbStub({
+            '$RCAnonymousID:aaa': { progress: { premium_plan: 'yearly', premium_expiry: '0', premium_rc_expiry_ms: String(Date.now() + 1e9) } },
+            'stable-real': { progress: { user_total_xp: '4000' } },
+        });
+        const realFieldValue = admin.firestore.FieldValue;
+        const fsMock = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+        fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+        admin.firestore.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+        try {
+            const event = {
+                id: 'evt_transfer_1',
+                type: 'TRANSFER',
+                transferred_from: ['$RCAnonymousID:aaa'],
+                transferred_to: ['stable-real'],
+            };
+            const res = makeRes();
+            await revenuecat_shards_1.__revenueCatWebhookTestHooks.handleTransferEvent(event, 'TRANSFER', res);
+            expect(res.body).toMatchObject({ ok: true, kind: 'transfer', moved: true, recipientId: 'stable-real' });
+            expect(store.users['stable-real'].progress.premium_plan).toBe('yearly');
+            expect(store.users['$RCAnonymousID:aaa'].progress.premium_plan).toBe(''); // donor deactivated
+        }
+        finally {
+            admin.firestore.mockRestore();
+        }
+    });
+    it('is idempotent — a re-delivered TRANSFER does not move twice', async () => {
+        const admin = require('firebase-admin');
+        if (!admin.apps.length)
+            admin.initializeApp({ projectId: 'demo-test' });
+        const { db, store } = makeRcDbStub({
+            '$RCAnonymousID:bbb': { progress: { premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: String(Date.now() + 1e9) } },
+            'stable-2': { progress: { user_total_xp: '1' } },
+        });
+        store.revenuecat_premium_events['evt_dup'] = { eventId: 'evt_dup' }; // already processed
+        const realFieldValue = admin.firestore.FieldValue;
+        const fsMock = jest.spyOn(admin, 'firestore').mockReturnValue(db);
+        fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+        admin.firestore.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+        try {
+            const event = { id: 'evt_dup', type: 'TRANSFER', transferred_from: ['$RCAnonymousID:bbb'], transferred_to: ['stable-2'] };
+            const res = makeRes();
+            await revenuecat_shards_1.__revenueCatWebhookTestHooks.handleTransferEvent(event, 'TRANSFER', res);
+            expect(res.body).toMatchObject({ ok: true, moved: false, reason: 'duplicate' });
+            expect(store.users['stable-2'].progress.premium_plan).toBeUndefined(); // untouched
+        }
+        finally {
+            admin.firestore.mockRestore();
+        }
     });
 });
 //# sourceMappingURL=revenuecat_shards.test.js.map

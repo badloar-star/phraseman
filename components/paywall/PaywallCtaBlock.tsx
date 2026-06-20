@@ -53,13 +53,13 @@ export default function PaywallCtaBlock({
       >
         {busy
           ? <ActivityIndicator color={tc.ctaText} />
-          : <Text style={[S.ctaText, { color: tc.ctaText }]} adjustsFontSizeToFit numberOfLines={1}>{label}</Text>}
+          : <Text style={[S.ctaText, { color: tc.ctaText }]} numberOfLines={1}>{label}</Text>}
         {!disabled && !busy && ctaSize.w > 0 && (
           <ShineOverlay width={ctaSize.w} height={ctaSize.h} borderRadius={30} />
         )}
       </TouchableOpacity>
 
-      <Text style={[S.subLine, { color: textMuted }]} numberOfLines={2}>{subLine}</Text>
+      <Text style={[S.subLine, { color: textMuted }]} numberOfLines={3}>{subLine}</Text>
 
       {hideFooter ? null : (
       <View style={S.footer}>

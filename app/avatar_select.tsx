@@ -947,7 +947,7 @@ export default function AvatarSelect() {
                   <Text style={{ color: 'rgba(255,255,255,0.54)', fontSize: 10, fontWeight: '900' }} numberOfLines={1}>
                     {item.label}
                   </Text>
-                  <Text style={{ color: '#FFFFFF', fontSize: f.sub, fontWeight: '900', marginTop: 4 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                  <Text style={{ color: '#FFFFFF', fontSize: f.sub, fontWeight: '900', marginTop: 4 }} numberOfLines={1}>
                     {item.value}
                   </Text>
                 </View>
@@ -1021,8 +1021,6 @@ export default function AvatarSelect() {
                     ? (
                       <Text
                         numberOfLines={1}
-                        adjustsFontSizeToFit
-                        minimumFontScale={0.78}
                         style={{ width: '100%', color: isGifted ? t.accent : t.textPrimary, fontSize: 11, fontWeight: '900', textAlign: 'center' }}
                       >
                         {isGifted ? 'Получено' : 'Куплен'}
@@ -1244,8 +1242,6 @@ export default function AvatarSelect() {
                               textAlign: 'center',
                             }}
                             numberOfLines={1}
-                            adjustsFontSizeToFit
-                            minimumFontScale={0.72}
                           >
                             {customAvatarGradientNameForLang(gradient, lang)}
                           </Text>

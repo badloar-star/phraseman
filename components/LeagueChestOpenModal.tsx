@@ -488,8 +488,6 @@ function LeagueChestOpenModal({
                       <Text
                         style={[styles.rewardTitle, { color: t.textPrimary }]}
                         numberOfLines={2}
-                        adjustsFontSizeToFit
-                        minimumFontScale={0.66}
                       >
                         {card.title}
                       </Text>
@@ -497,8 +495,6 @@ function LeagueChestOpenModal({
                         <Text
                           style={[styles.rewardSubtitle, { color: card.accent }]}
                           numberOfLines={1}
-                          adjustsFontSizeToFit
-                          minimumFontScale={0.72}
                         >
                           {card.subtitle}
                         </Text>

@@ -112,9 +112,9 @@ export default function QuizResultView({
               {isGoldTheme && <GoldBevel radius={12} intensity="normal" />}
               <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
             </LinearGradient>
-            <Text style={{ color: sx.primary, fontSize: f.numLg, fontWeight: '700', marginBottom: 10 }} adjustsFontSizeToFit numberOfLines={1}>{sQuiz.quizzes.done}</Text>
+            <Text style={{ color: sx.primary, fontSize: f.numLg, fontWeight: '700', marginBottom: 10 }} numberOfLines={1}>{sQuiz.quizzes.done}</Text>
             <Text style={{ color: sx.primary, fontSize: f.h1, marginBottom: 4 }}>{right} / {total}</Text>
-            <Text style={{ color: sx.second, fontSize: f.numLg + 8, fontWeight: '700', marginBottom: 8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
+            <Text style={{ color: sx.second, fontSize: f.numLg + 8, fontWeight: '700', marginBottom: 8 }} numberOfLines={1}>{pct}%</Text>
             <Animated.Text style={{ color: t.correct, fontSize: f.h2, fontWeight: '600', marginBottom: bonusXP > 0 ? 4 : 16, transform: [{ translateY: xpFlyY }], opacity: xpFlyOpacity }}>
               +{Math.round(score)}{' '}
               {triLang(effectiveLang, {

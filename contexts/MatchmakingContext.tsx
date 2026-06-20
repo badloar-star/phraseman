@@ -18,6 +18,7 @@ import {
   BOT_FALLBACK_ENABLED, BOT_FALLBACK_MAX_MS, BOT_FALLBACK_MIN_MS, IS_EXPO_GO,
 } from '../app/config';
 import { emitAppEvent } from '../app/events';
+import { isArenaBotsEnabled } from '../app/remote_flags';
 import { arenaToasts } from '../constants/arena_i18n';
 
 export type MatchmakingStatus = 'idle' | 'searching' | 'found' | 'timeout' | 'error';
@@ -80,10 +81,16 @@ const MatchmakingCtx = createContext<MatchmakingContextValue>({
   forgetSearchResumeSnapshot: () => {},
 });
 
-/** 10 мин поиска — UI обратного отсчёта и таймаут клиента (сервер чистит stale отдельно). */
-export const ARENA_MATCHMAKING_SEARCH_MS = 10 * 60 * 1000;
+/**
+ * Окно поиска соперника — таймаут клиента (сервер чистит stale отдельно).
+ * Было 10 минут: при отсутствии живых соперников пользователь до 10 минут смотрел
+ * на пустой обратный отсчёт. 75 секунд — разумный компромисс: достаточно времени
+ * найти живого игрока и один раз расширить диапазон рангов, но без «зависшего»
+ * ожидания. По истечении — понятный экран «Соперник не найден», а не тихий тост.
+ */
+export const ARENA_MATCHMAKING_SEARCH_MS = 75 * 1000;
 const SEARCH_TIMEOUT_MS = ARENA_MATCHMAKING_SEARCH_MS;
-const RANGE_EXPAND_MS    =  3 * 60 * 1000; // expand after 3 min
+const RANGE_EXPAND_MS    = 30 * 1000; // расширяем диапазон рангов через 30 c
 const INITIAL_RANGE      = 2;
 const EXPANDED_RANGE     = 4;
 /** 200ms — тише, чем 1s, при лаге JS/Native; `elapsed` пересчитываем от `Date.now()` */
@@ -324,8 +331,10 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       if (statusRef.current === 'searching' && elapsed >= SEARCH_TIMEOUT_MS) {
         cleanup();
         leaveMatchmakingQueue(userIdRef.current).catch(() => {});
+        // Понятный, заметный сигнал «Соперник не найден, попробуй ещё раз» вместо
+        // тихого info-тоста; возвращаем пользователя в idle (лобби показывает старт).
         emitAppEvent('action_toast', {
-          type: 'info',
+          type: 'error',
           ...arenaToasts.searchTimeout,
         });
         setStatus('idle');
@@ -404,7 +413,11 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     };
 
     // «Ещё раз»: ровно humanSearchWindowMs на живого; иначе __DEV__ 3с или случайная задержка prod.
-    const botDelay = hasHumanPriorityWindow
+    // Админ-тумблер «Пульт» (arena_bots_enabled=false) полностью отключает бот-фолбэк
+    // у всех живьём — тогда матчатся только реальные игроки, бот не подставляется.
+    const botDelay = !isArenaBotsEnabled()
+      ? null
+      : hasHumanPriorityWindow
       ? winMs
       : __DEV__
         ? DEV_QUICK_MATCH_MS
@@ -597,7 +610,10 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
           setStatus('found');
         };
 
-        const baseBotDelay = __DEV__
+        // Тот же админ-гейт, что и в основном пути (arena_bots_enabled=false → без ботов).
+        const baseBotDelay = !isArenaBotsEnabled()
+          ? null
+          : __DEV__
           ? DEV_QUICK_MATCH_MS
           : (BOT_FALLBACK_ENABLED ? pickBotFallbackDelayMs() : null);
         if (baseBotDelay !== null) {

@@ -1,26 +1,26 @@
 import fs from 'fs';
 import path from 'path';
 
-const source = fs.readFileSync(path.join(process.cwd(), 'app', 'premium_modal.tsx'), 'utf8');
+const purchase = fs.readFileSync(path.join(process.cwd(), 'app', 'paywall_purchase.ts'), 'utf8');
+const planCards = fs.readFileSync(path.join(process.cwd(), 'components', 'paywall', 'PaywallPlanCards.tsx'), 'utf8');
 
-describe('premium modal yearly monthly equivalent display', () => {
+describe('A/B/C paywall yearly monthly equivalent display', () => {
   it('derives the monthly equivalent from RevenueCat store product pricing', () => {
-    expect(source).toContain('storePricePerMonthTrim');
-    expect(source).toContain('pricePerMonthString');
-    expect(source).toContain('const yearlyMonthlyEquivalent');
+    expect(purchase).toContain('storePricePerMonthTrim');
+    expect(purchase).toContain('pricePerMonthString');
+    expect(purchase).toContain('const yearlyPerMonth');
   });
 
-  it('keeps the annual billed amount primary and shows monthly equivalent as secondary copy', () => {
-    expect(source).toContain('monthlyEquivalentLabel');
-    expect(source).toContain('yearlyBillingNote');
-    expect(source).toContain('selected === \'yearly\' ? yearlyMonthlyEquivalent : \'\'');
-    expect(source.indexOf('{priceStr}')).toBeLessThan(source.indexOf('{monthlyEquivalentLabel}'));
+  it('keeps the annual billed amount available as secondary copy', () => {
+    expect(planCards).toContain('yearlyPerMonth');
+    expect(planCards).toContain('yearlyFull');
+    expect(planCards).toContain('yearSubParts.push');
+    expect(planCards.indexOf('yearlyPerMonth')).toBeLessThan(planCards.indexOf('yearlyFull'));
   });
 
-  it('limits browser preview price injection to dev builds only', () => {
-    expect(source).toContain('allowMockStorePricePreview');
-    expect(source).toContain('__DEV__ && !IS_STORE_RELEASE');
-    expect(source).toContain('params._mock_yearly_price');
-    expect(source).toContain('params._mock_yearly_monthly');
+  it('does not keep dev-only browser price injection in the retired premium_modal route', () => {
+    const dispatcher = fs.readFileSync(path.join(process.cwd(), 'app', 'premium_modal.tsx'), 'utf8');
+    expect(dispatcher).not.toContain('params._mock_yearly_price');
+    expect(dispatcher).not.toContain('params._mock_yearly_monthly');
   });
 });

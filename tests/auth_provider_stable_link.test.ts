@@ -19,10 +19,14 @@ describe('auth provider stable-id linking', () => {
   test('signInWithProvider checks an existing provider link before relinking the local stable id', () => {
     expect(source).toContain('ensureStableAuthLinkForStableId');
     expect(preTransactionSource).toMatch(/const linkedStableId = linkSnap\.exists \? linkSnap\.data\(\)\?\.stable_id : null/);
-    expect(preTransactionSource).toMatch(/ensureStableAuthLinkForStableId\(remoteStableId\)/);
-    expect(preTransactionSource).toMatch(/ensureStableAuthLinkForStableId\(localStableId\)/);
+    // Стадия auth_link теперь идёт через retry-обёртку (ensureStableAuthLinkWithRetry),
+    // которая внутри вызывает ensureStableAuthLinkForStableId — устраняет
+    // «local_stable_link_failed» на холодном старте Android (anon-auth не успела).
+    expect(preTransactionSource).toMatch(/ensureStableAuthLinkWithRetry\(remoteStableId\)/);
+    expect(preTransactionSource).toMatch(/ensureStableAuthLinkWithRetry\(localStableId\)/);
+    expect(preTransactionSource).toMatch(/ensureStableAuthLinkWithRetry[\s\S]{0,300}ensureStableAuthLinkForStableId\(stableId\)/);
     expect(preTransactionSource.indexOf('const linkedStableId = linkSnap.exists')).toBeLessThan(
-      preTransactionSource.indexOf('ensureStableAuthLinkForStableId(localStableId)'),
+      preTransactionSource.indexOf('ensureStableAuthLinkWithRetry(localStableId)'),
     );
   });
 

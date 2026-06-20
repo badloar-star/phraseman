@@ -50,6 +50,7 @@ import {
 } from './review_evaluator';
 import { getLessonData } from './lesson_data_all';
 import { consumeTrainerSessionEntry } from './trainer_session';
+import { isFeatureFreeForEveryone } from './feature_gates';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
 import { buildTrainerFillGapOptions } from './trainer_fill_gap_options';
@@ -430,7 +431,8 @@ export default function TrainerPhrasesSession() {
       try {
         const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session');
         if (cancelled) return;
-        if (!allowed) {
+        // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
+        if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
           logTrainerDirectGateBlocked('/trainer_phrases_session');
           router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
           return;

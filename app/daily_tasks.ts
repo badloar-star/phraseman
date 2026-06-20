@@ -2273,6 +2273,10 @@ export const getDailyTaskAdminPacks = (packSize = 3): DailyTaskAdminPack[] => {
   return packs;
 };
 
+export const getDailyTaskAdminPreviewTasks = (studyTarget?: RuntimeStudyTarget): DailyTask[] => (
+  filterDailyTasksForStudyTarget(ALL_TASKS, studyTarget)
+);
+
 const makeAdminProgressRow = (task: DailyTask, mode: DailyTaskSeedMode): TaskProgress => {
   const done = mode === 'ready' || mode === 'claimed';
   if (task.type === 'arena_plays_wins_combo') {
@@ -2473,6 +2477,10 @@ export type RerollResult =
   | { ok: true; newTaskId: string; cost: number }
   | { ok: false; reason: RerollFailReason };
 
+export type DailyTaskSetRerollResult =
+  | { ok: true; tasks: DailyTask[] }
+  | { ok: false; reason: RerollFailReason };
+
 /**
  * Подобрать кандидата на замену для taskId среди ALL_TASKS:
  * - в той же категории (engage/quiz/...),
@@ -2665,6 +2673,74 @@ export const countClaimedForTaskList = (tasks: DailyTask[], progress: TaskProgre
   if (tasks.length === 0) return 0;
   const ids = new Set(tasks.map(x => x.id));
   return progress.filter(p => p.claimed && ids.has(p.taskId)).length;
+};
+
+export const rerollTodayDailyTaskSet = async (
+  studyTarget?: RuntimeStudyTarget,
+): Promise<DailyTaskSetRerollResult> => {
+  try {
+    const left = await getDailyRerollsLeftToday(studyTarget);
+    if (left <= 0) return { ok: false, reason: 'limit_reached' };
+
+    const [playerLevel, isPremium] = await Promise.all([getUserPlayerLevel(), getUserIsPremium()]);
+    const tasks = await getTodayTasksSafe(studyTarget);
+    if (tasks.length === 0) return { ok: false, reason: 'task_not_found' };
+
+    const progress = await loadTodayProgress(tasks, studyTarget);
+    const hasStartedTask = progress.some((p) => (
+      tasks.some((task) => task.id === p.taskId) && (p.current > 0 || p.completed || p.claimed)
+    ));
+    if (hasStartedTask) return { ok: false, reason: 'task_already_completed' };
+
+    const usedIds = tasks.map((task) => task.id);
+    const replacements: Record<string, string> = {};
+    const replacementTasks: DailyTask[] = [];
+
+    for (const task of tasks) {
+      const candidate = await pickRerollCandidate(task.id, usedIds, playerLevel, isPremium, studyTarget);
+      if (!candidate) return { ok: false, reason: 'no_candidates' };
+      replacements[task.id] = candidate.id;
+      replacementTasks.push(candidate);
+      usedIds.push(candidate.id);
+    }
+
+    await withStorageLock(async () => {
+      const state = await loadRerollStateRaw(studyTarget);
+      await saveRerollState({
+        dayKey: getTodayKey(),
+        replacements: { ...state.replacements, ...replacements },
+      }, studyTarget);
+
+      const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
+      const raw = await AsyncStorage.getItem(key);
+      const arr: TaskProgress[] = raw ? (JSON.parse(raw) as TaskProgress[]) : [];
+      const oldIds = new Set(tasks.map((task) => task.id));
+      const filtered = Array.isArray(arr) ? arr.filter((p) => !oldIds.has(p.taskId)) : [];
+      const seeded = replacementTasks.map((task) => (
+        task.type === 'arena_plays_wins_combo'
+          ? reconcileArenaComboRow(task, undefined)
+          : { taskId: task.id, current: 0, completed: false, claimed: false }
+      ));
+      await AsyncStorage.setItem(key, JSON.stringify([...filtered, ...seeded]));
+    });
+
+    emitAppEvent('daily_tasks_set_rerolled', {
+      oldTaskIds: tasks.map((task) => task.id),
+      newTaskIds: replacementTasks.map((task) => task.id),
+      studyTarget,
+    });
+    return { ok: true, tasks: replacementTasks };
+  } catch {
+    return { ok: false, reason: 'unknown' };
+  }
+};
+
+export const areAllDailyTaskObjectivesDone = (tasks: DailyTask[], progress: TaskProgress[]): boolean => {
+  if (tasks.length === 0) return false;
+  return tasks.every((task) => {
+    const row = progress.find((p) => p.taskId === task.id);
+    return row?.completed === true || row?.claimed === true;
+  });
 };
 
 /**

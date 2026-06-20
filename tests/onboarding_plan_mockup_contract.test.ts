@@ -7,6 +7,57 @@ const onboardingPath = path.join(root, 'components', 'onboarding.tsx');
 const source = fs.readFileSync(onboardingPath, 'utf8');
 
 describe('personal plan onboarding mockup contract', () => {
+  it('keeps the two-choice plan entry as first launch and kills the legacy welcome screen route', () => {
+    [
+      'getOnboardingAbVariant',
+      'getStableId',
+      "type OnboardingAbEntryStep = 'planEntry'",
+      "type OnboardingAbSimpleStep = 'name' | 'demo2' | 'demo'",
+      "const ONBOARDING_AB_FALLBACK_ENTRY_STEP: OnboardingAbEntryStep = 'planEntry'",
+      "const ONBOARDING_AB_FALLBACK_SIMPLE_STEP: OnboardingAbSimpleStep = 'name'",
+      "const ONBOARDING_AB_VARIANT_STORAGE_KEY = 'onboarding_ab_variant_v1'",
+      'const ONBOARDING_BG_LIBRARY = require',
+      "onboarding-bg-welcome-wide.webp",
+      'const ONBOARDING_BG_NAME = ONBOARDING_BG_LIBRARY',
+      'styles.onboardingBgImageStack',
+      '<Animated.Image',
+      'LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS',
+      'onboardingSimpleStepForVariant',
+      'onboardingSimpleStepRef',
+      "return 'demo2'",
+      "return 'demo'",
+      "return 'name'",
+      'normalizeRestoredOnboardingStep(saved, pendingNickname, entryStep)',
+      "restored === 'beta' || LEGACY_PERSONAL_PLAN_ONBOARDING_STEPS.has(restored)",
+      "restored === 'welcome' || restored === 'demo2' || restored === 'demo'",
+      "useState<OnboardingStep>(ONBOARDING_AB_FALLBACK_ENTRY_STEP)",
+      'goToStep(onboardingSimpleStepRef.current)',
+      "next === 'welcome' ? onboardingEntryStepRef.current : next",
+      "if (step === 'welcome') setStep(onboardingEntryStepRef.current)",
+      'onboarding-welcome-disabled-screen',
+      'onboarding-ab-resolving-screen',
+      'getOnboardingPrevStep(step)',
+    ].forEach((text) => {
+      expect(source).toContain(text);
+    });
+
+    [
+      "useState<OnboardingStep>(IS_BETA_TESTER ? 'beta' : 'planEntry')",
+      "type OnboardingAbSimpleStep = 'welcome' | 'demo2' | 'demo'",
+      "const ONBOARDING_AB_FALLBACK_SIMPLE_STEP: OnboardingAbSimpleStep = 'welcome'",
+      "return 'welcome'",
+      "welcome: 'planEntry'",
+      "PREV_STEP[step] ?? 'planEntry'",
+      "onboarding-bg-name-wide.webp",
+      "onboarding-bg-builder-wide.webp",
+      "onboarding-bg-quiz-wide.webp",
+      "onboarding-bg-streak-wide.webp",
+      "onboarding-bg-auth-wide.webp",
+    ].forEach((text) => {
+      expect(source).not.toContain(text);
+    });
+  });
+
   it('keeps the polished plan-flow copy and removes the intermediate app copy', () => {
     [
       'Зачем тебе английский?',
@@ -24,12 +75,13 @@ describe('personal plan onboarding mockup contract', () => {
       'С чего начнём?',
       'Сколько времени удобно?',
       'Выбери ритм, который реально получится держать каждый день.',
-      'Соберём первую фразу',
       'Собираем твой план',
       'План готов',
-      'Попробовать 3 дня бесплатно',
-      'Месячный план',
-      'Годовой план',
+      'const trialDays = storePrices.trialDays',
+      "const ctaLabel = storePrices.hasTrial",
+      "`Попробовать ${trialDays} ${trialDays === 1 ? 'день' : trialDays < 5 ? 'дня' : 'дней'} бесплатно`",
+      'Месячный',
+      'Годовой',
       'Персональный план',
       'Все уроки открыты',
       'Разбор твоих слабых мест',
@@ -61,6 +113,29 @@ describe('personal plan onboarding mockup contract', () => {
     expect(source).toContain('true,');
     expect(source).not.toContain('<Ionicons name={choice.icon}');
     expect(source).not.toContain('planPermission');
+  });
+
+  it('opens the A/B/C paywall (with onboarding bg) from the plan result, gating it behind a premium-already check', () => {
+    const resultStart = source.indexOf("if (step === 'planResult') {");
+    const resultBlock = source.slice(resultStart, source.indexOf("if (step === 'planPaywall') {", resultStart));
+
+    // CTA «Это мой план — вперёд» вызывает guard-обёртку openSelectedPlanAbPaywall.
+    expect(source).toContain('openSelectedPlanAbPaywall');
+    expect(resultBlock).toContain('onPress={openSelectedPlanAbPaywall}');
+
+    // Внутри обёртки: запоминаем выбранный биллинг, проверяем уже-имеющийся доступ,
+    // и если доступа нет — вызываем onPersonalPlanPaywallStart (→ /premium_modal → A/B/C с фоном онбординга).
+    const wrapperStart = source.indexOf('const openSelectedPlanAbPaywall = async () => {');
+    const wrapperEnd = source.indexOf('\n  };', wrapperStart);
+    const wrapperBlock = source.slice(wrapperStart, wrapperEnd);
+    expect(wrapperStart).toBeGreaterThan(-1);
+    expect(wrapperBlock).toContain("'onboarding_plan_billing'");
+    expect(wrapperBlock).toContain('queuePendingPersonalPlanActivation');
+    expect(wrapperBlock).toContain('onPersonalPlanPaywallStart');
+    expect(wrapperBlock).not.toContain("goToStep('planPaywall')");
+
+    // Сам экран planPaywall сохранён (резерв) — но не активируется через openSelectedPlanAbPaywall.
+    expect(source).toContain("if (step === 'planPaywall') {");
   });
 
   it('keeps the start screen geometry matched to the recovered mockup', () => {
@@ -95,8 +170,21 @@ describe('personal plan onboarding mockup contract', () => {
 
     expect(buttonBlock).toContain("setNicknameMode('regular')");
     expect(buttonBlock).toContain('AsyncStorage.removeItem(PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY)');
-    expect(buttonBlock).toContain("goToStep('name')");
+    expect(buttonBlock).toContain('goToStep(onboardingSimpleStepRef.current)');
+    expect(buttonBlock).not.toContain("goToStep('name')");
     expect(buttonBlock).not.toContain("goToStep('welcome')");
+  });
+
+  it('does not restore a stale regular nickname step over the first screen', () => {
+    const restoreStart = source.indexOf("AsyncStorage.getItem('onboarding_step')");
+    const restoreEnd = source.indexOf('const logOnboardingFunnel', restoreStart);
+    const restoreBlock = source.slice(restoreStart, restoreEnd);
+
+    expect(restoreBlock).toContain('PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY');
+    expect(restoreBlock).toContain('getStableId');
+    expect(restoreBlock).toContain('getOnboardingAbVariant');
+    expect(restoreBlock).toContain('normalizeRestoredOnboardingStep(saved, pendingNickname, entryStep)');
+    expect(restoreBlock).toContain("['onboarding_step', restored]");
   });
 
   it('keeps the regular start nickname screen matched to the mockup', () => {
@@ -111,7 +199,7 @@ describe('personal plan onboarding mockup contract', () => {
       'styles.regularNameInput',
       'placeholder=""',
       'autoFocus={false}',
-      "PREV_STEP[step] ?? 'planEntry'",
+      'getOnboardingPrevStep(step) ?? onboardingEntryStepRef.current',
     ].filter((text) => !text.includes('onboarding ') && !text.includes('Ли')).forEach((text) => {
       expect(source).toContain(text);
     });
@@ -124,8 +212,48 @@ describe('personal plan onboarding mockup contract', () => {
     expect(activeNameBlock).not.toContain('testID="onboarding-name-skip"');
     expect(activeNameBlock).not.toContain('REGULAR START');
     expect(activeNameBlock).not.toContain('regularNameBrand');
-    expect(activeNameBlock).not.toContain('regularNameSub');
+    expect(activeNameBlock).toContain('styles.regularNameSub');
     expect(activeNameBlock).not.toContain('placeholder="Alex"');
+  });
+
+  it('checks nickname availability while typing on the active nickname screen', () => {
+    const nameBlockStart = source.indexOf("if (step === 'name') {");
+    const nameBlockEnd = source.indexOf('if (false) {', nameBlockStart);
+    const activeNameBlock = source.slice(nameBlockStart, nameBlockEnd);
+
+    [
+      'checkNameAvailabilityDetailed',
+      'reserveNameDetailed',
+      'warmNameAvailabilityAuth',
+      'NAME_AVAILABILITY_DEBOUNCE_MS = 700',
+      "status: 'checking'",
+      "status: 'available'",
+      "status: 'taken'",
+      "status: 'error'",
+      'nameAvailabilitySeq.current',
+      'regularNameInputAvailable',
+      'regularNameInputError',
+      'regularNameStatusIconAvailable',
+      'regularNameStatusTextAvailable',
+      'regularNameStatusTextHidden',
+      'autoCapitalize="none"',
+      'autoCorrect={false}',
+    ].forEach((text) => {
+      expect(source).toContain(text);
+    });
+
+    expect(activeNameBlock).toContain("nameAvailabilityStatus === 'checking'");
+    expect(activeNameBlock).toContain("nameAvailabilityStatus === 'available'");
+    expect(activeNameBlock).toContain("nameAvailabilityStatus === 'taken'");
+    expect(activeNameBlock).toContain('ActivityIndicator');
+    expect(activeNameBlock).toContain('Ionicons name="checkmark"');
+    expect(activeNameBlock).toContain('Ionicons name="close"');
+    expect(activeNameBlock).toContain('disabled={nameContinueDisabled}');
+    expect(source).toContain("reserveNameDetailed(trimmed, priorReservedName, { source: 'onboarding' })");
+    expect(source).toContain("result.status === 'cooldown'");
+    expect(source).toContain("setNameAvailability({ status: 'idle', value: '', message: null });");
+    expect(source.indexOf("setNameAvailability({ status: 'idle', value: '', message: null });"))
+      .toBeLessThan(source.indexOf("message: pickNameText('Проверяем имя...'"));
   });
 
   it('does not keep Ionicon-backed plan metadata or plan-flow glyphs', () => {
@@ -154,8 +282,8 @@ describe('personal plan onboarding mockup contract', () => {
       'iconAsset: ONBOARDING_PLAN_ICONS.speaking',
       'iconAsset: ONBOARDING_PLAN_ICONS.confidence',
       'todayIconAsset: ONBOARDING_PLAN_ICONS.phrase',
-      '<PlanFlowIcon source={choice.iconAsset} />',
-      '<PlanFlowIcon source={ONBOARDING_PLAN_ICONS.time} />',
+      '<PlanFlowIcon source={choice.iconAsset} styles={styles} />',
+      '<PlanFlowIcon source={ONBOARDING_PLAN_ICONS.time} styles={styles} />',
     ].forEach((text) => {
       expect(source).toContain(text);
     });
@@ -224,8 +352,8 @@ describe('personal plan onboarding mockup contract', () => {
       'delay: 1100',
       'delay: 1750',
       'delay: 3350',
-      "'#63E6D2'",
-      "['#F2B84B', '#63E6D2']",
+      'theme.accent2',
+      'colors={[theme.accent, theme.accent2]}',
       'useNativeDriver: true',
       'transform: [{ scaleX: meterScaleX }]',
       'transform: [{ scaleX: daysFillScale }]',
@@ -240,15 +368,28 @@ describe('personal plan onboarding mockup contract', () => {
     expect(source).not.toContain('setPlanDaysRailWidth');
   });
 
-  it('keeps plan choice cards arrowless and allows phrase mistakes after input', () => {
+  it('does not replay the completed plan-loading animation for the same answers', () => {
     [
-      'PLAN_PHRASE_TOKENS',
-      'PLAN_PHRASE_TARGET',
-      'selectedPlanPhraseTokens',
-      'const canContinuePlanPhrase = selectedPlanPhraseTokens.length > 0',
-      'planPhraseHasError',
-      'planPhraseLineError',
-      '{canContinuePlanPhrase ? (',
+      'const completedPlanLoadingAnswerKeyRef = useRef<string | null>(null)',
+      'const planLoadingAnswerKey = [',
+      'selectedPlanGoalForPlan',
+      'selectedPlanLevelForPlan',
+      'selectedPlanMinutesForPlan',
+      'selectedPlanId',
+      'completedPlanLoadingAnswerKeyRef.current === planLoadingAnswerKey',
+      'setPlanLoadingCtaReady(true)',
+      'planLoadingMeter.setValue(1)',
+      'planLoadingBuildAnims.forEach((value) => value.setValue(1))',
+      'planLoadingButtonAnim.setValue(1)',
+      'completedPlanLoadingAnswerKeyRef.current = planLoadingAnswerKey',
+      '}, [planLoadingAnswerKey, planLoadingBuildAnims, planLoadingButtonAnim, planLoadingMeter, step])',
+    ].forEach((text) => {
+      expect(source).toContain(text);
+    });
+  });
+
+  it('keeps plan choice cards arrowless and skips the removed phrase-builder step', () => {
+    [
       'planFlowShell',
       '<Text style={styles.planEntryBrand}>PHRASEMAN</Text>',
       'selectedPlanBilling',
@@ -258,6 +399,7 @@ describe('personal plan onboarding mockup contract', () => {
       'PLAN_DAYS_COUNT_TICK_MS',
       'let countTimer: ReturnType<typeof setInterval> | null = null',
       'Math.round(total * easedProgress)',
+      "goToStep('planLoading')",
       'Составить план под мою цель',
       'Продолжить без плана',
     ].forEach((text) => {
@@ -265,14 +407,45 @@ describe('personal plan onboarding mockup contract', () => {
     });
 
     expect(source).not.toContain('styles.planFlowChevron');
-    expect(source).not.toContain("const canContinuePlanPhrase = phraseAnswer === PLAN_PHRASE_TARGET.join(' ')");
+    expect(source).not.toContain('planPhrase');
+    expect(source).not.toContain('PLAN_PHRASE');
+    expect(source).not.toContain('selectedPlanPhraseTokens');
+    expect(source).not.toContain('onboarding-plan-phrase-screen');
     expect(source).not.toContain('disabled={!canContinuePlanPhrase}');
     expect(source).not.toContain('planPhraseContinueDisabled');
     expect(source).not.toContain('Вернуться к Premium');
     expect(source).not.toContain('planDaysProgress.addListener');
     expect(source).not.toContain('Math.round(total * value)');
-    expect(source).toContain('planMockupGhostButton]} activeOpacity={0.72} onPress={() => goToStep(\'name\')}');
+    expect(source).toContain('planMockupGhostButton]} activeOpacity={0.72} onPress={() => {');
+    expect(source).toContain("goToStep('name');");
     expect(source).toContain('style={[styles.eliteWelcomeSecondaryCta, styles.planEntrySecondaryCta]}');
+  });
+
+  it('does not visually preselect personal-plan choice cards before the user taps', () => {
+    [
+      "useState<OnboardingPlanGoal | null>(null)",
+      "useState<OnboardingPlanLevel | null>(null)",
+      "useState<PlanMinutesChoice | null>(null)",
+      "const selectedPlanGoalForPlan: OnboardingPlanGoal = selectedPlanGoal ?? 'travel'",
+      "const selectedPlanLevelForPlan: OnboardingPlanLevel = selectedPlanLevel ?? 'a1'",
+      "const selectedPlanMinutesForPlan: PlanMinutesChoice = selectedPlanMinutes ?? 15",
+      "const selected = selectedPlanGoal === choice.id",
+      "const selected = selectedPlanLevel === choice.id",
+      "const selected = selectedPlanMinutes === choice",
+      'resolveOnboardingPlanId(selectedPlanGoalForPlan, selectedPlanOverride)',
+      'minutesPerDay: selectedPlanMinutesForPlan',
+    ].forEach((text) => {
+      expect(source).toContain(text);
+    });
+
+    [
+      "useState<OnboardingPlanGoal>('travel')",
+      "useState<OnboardingPlanLevel>('a1')",
+      'useState<PlanMinutesChoice>(15)',
+      'minutesPerDay: selectedPlanMinutes,',
+    ].forEach((text) => {
+      expect(source).not.toContain(text);
+    });
   });
 });
 

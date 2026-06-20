@@ -1026,6 +1026,16 @@ export default function ShardsShopScreen() {
     const canPurchase = isDevStoreBypass || !!pkg;
     const disabled = busy || anotherBusy || !canPurchase;
     const shardsLabel = shardTerm;
+    const bonusLabel = triLang(lang, {
+      ru: 'бонус',
+      uk: 'бонус',
+      es: 'bono',
+      'pt-BR': 'bônus',
+      vi: 'thưởng',
+      id: 'bonus',
+      tr: 'bonus',
+      pl: 'bonus',
+    });
     const paywallMood = isPaywallAtmosphereMode(themeMode);
     const rowHeight = 54;
     const rowRadius = isCompassTheme ? 8 : 12;
@@ -1136,20 +1146,49 @@ export default function ShardsShopScreen() {
                     contentFit="contain"
                   />
                 </View>
-                <Text
-                  style={{
-                    color: leftColor,
-                    fontSize: f.body,
-                    fontWeight: '900',
-                    flex: 1,
-                    minWidth: 0,
-                  }}
-                  numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.82}
-                >
-                  {pack.shards} {shardsLabel}
-                </Text>
+                <View style={{ flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                  <Text
+                    style={{
+                      color: leftColor,
+                      fontSize: f.body,
+                      fontWeight: '900',
+                      flexShrink: 1,
+                      minWidth: 0,
+                    }}
+                    numberOfLines={1}
+                  >
+                    {totalShards} {shardsLabel}
+                  </Text>
+                  {pack.bonusShards > 0 ? (
+                    <View
+                      style={{
+                        flexShrink: 0,
+                        paddingHorizontal: 7,
+                        paddingVertical: 2,
+                        borderRadius: 8,
+                        backgroundColor: isGoldTheme
+                          ? `${t.gold}26`
+                          : isCompassTheme
+                            ? `${t.accent}22`
+                            : `${t.accent}1f`,
+                        borderWidth: 1,
+                        borderColor: isGoldTheme ? `${t.gold}66` : `${t.accent}55`,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: isGoldTheme ? t.gold : t.accent,
+                          fontSize: Math.max(10, Math.round(f.caption ?? 11)),
+                          fontWeight: '900',
+                          letterSpacing: 0.2,
+                        }}
+                        numberOfLines={1}
+                      >
+                        +{pack.bonusShards} {bonusLabel}
+                      </Text>
+                    </View>
+                  ) : null}
+                </View>
               </View>
               <Text
                 style={{
@@ -1161,8 +1200,6 @@ export default function ShardsShopScreen() {
                   maxWidth: Math.max(96, Math.round(cardW * 0.38)),
                 }}
                 numberOfLines={1}
-                adjustsFontSizeToFit
-                minimumFontScale={0.78}
               >
                 {busy ? '...' : priceLabel}
               </Text>

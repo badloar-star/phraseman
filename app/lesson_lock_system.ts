@@ -211,13 +211,18 @@ export const getLessonLockInfo = async (lessonId: number, studyTarget?: RuntimeS
 };
 
 export const getLockMessageText = (info: Awaited<ReturnType<typeof getLessonLockInfo>>, lang: Lang): string => {
-  if (lang === 'uk') {
-    return `Пройди урок ${info.prevLessonId} з оцінкою >= 2.5 щоб розблокувати цей урок`;
-  }
-  if (lang === 'es') {
-    return `Completa la lección ${info.prevLessonId} con puntuación de al menos 2,5 para desbloquear esta lección`;
-  }
-  return `Пройди урок ${info.prevLessonId} с оценкой >= 2.5 чтобы разблокировать этот урок`;
+  const n = info.prevLessonId;
+  const byLang: Record<string, string> = {
+    ru: `Пройди урок ${n} с оценкой >= 2.5, чтобы разблокировать этот урок`,
+    uk: `Пройди урок ${n} з оцінкою >= 2.5, щоб розблокувати цей урок`,
+    es: `Completa la lección ${n} con una puntuación de al menos 2,5 para desbloquear esta lección`,
+    'pt-BR': `Conclua a lição ${n} com nota de pelo menos 2,5 para desbloquear esta lição`,
+    vi: `Hoàn thành bài ${n} với điểm từ 2,5 trở lên để mở khóa bài này`,
+    id: `Selesaikan pelajaran ${n} dengan nilai minimal 2,5 untuk membuka pelajaran ini`,
+    tr: `Bu dersi açmak için ${n}. dersi en az 2,5 puanla tamamla`,
+    pl: `Ukończ lekcję ${n} z wynikiem co najmniej 2,5, aby odblokować tę lekcję`,
+  };
+  return byLang[lang] ?? byLang.ru;
 };
 
 // ─── Зачёт уровня ─────────────────────────────────────────────────────────────

@@ -18,6 +18,12 @@ describe('premium_status — серверный источник правды п
         it('пустой plan → НЕ премиум', () => {
             expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: '', premium_expiry: '0' }, NOW)).toBe(false);
         });
+        it('lifetime с expiry=0 (навсегда) → премиум', () => {
+            expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: 'lifetime', premium_expiry: '0' }, NOW)).toBe(true);
+        });
+        it('lifetime без поля expiry (по умолчанию бессрочный) → премиум', () => {
+            expect((0, premium_status_1.isPremiumAccessActive)({ premium_plan: 'lifetime' }, NOW)).toBe(true);
+        });
     });
     describe('админский грант', () => {
         it('admin_premium_override=true бессрочно → премиум', () => {

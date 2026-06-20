@@ -1600,7 +1600,8 @@ function buildBatchLocaleCoverageAudit(inventory, locales = STRUCTURED_BATCH_SOU
 function missingTargetSourceItems(inventory, targetLocale) {
   const canonical = normalizeLocale(targetLocale);
   const baseLang = canonical.split('-')[0].toLowerCase();
-  const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== baseLang);
+  const targetLocaleKey = KNOWN_APP_LOCALES.includes(canonical) ? canonical : baseLang;
+  const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== targetLocaleKey);
   const byFileLocale = countItemsByFileAndLocale(inventory.items || []);
   const productionFiles = inventory.files.filter((file) => PRODUCT_SURFACES.has(file.surface));
   const gapFiles = new Set();
@@ -1608,7 +1609,7 @@ function missingTargetSourceItems(inventory, targetLocale) {
   for (const file of productionFiles) {
     const counts = byFileLocale[file.file] || {};
     const sourceItemCount = sourceLocales.reduce((sum, locale) => sum + (counts[locale] || 0), 0);
-    const targetItemCount = counts[baseLang] || 0;
+    const targetItemCount = counts[targetLocaleKey] || 0;
     if (sourceItemCount > 0 && targetItemCount === 0) {
       gapFiles.add(file.file);
     }
@@ -1625,11 +1626,12 @@ function missingTargetSourceItems(inventory, targetLocale) {
 function buildExistingLocaleAudit(inventory, targetLocale) {
   const canonical = normalizeLocale(targetLocale);
   const baseLang = canonical.split('-')[0].toLowerCase();
+  const targetLocaleKey = KNOWN_APP_LOCALES.includes(canonical) ? canonical : baseLang;
   const targetIsKnownAppLocale = KNOWN_APP_LOCALES.includes(canonical) || KNOWN_APP_LOCALES.includes(baseLang);
-  const shouldRunLegacyInlineCoverage = LEGACY_INLINE_APP_LOCALES.includes(baseLang);
-  const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== baseLang);
+  const shouldRunLegacyInlineCoverage = LEGACY_INLINE_APP_LOCALES.includes(targetLocaleKey);
+  const sourceLocales = LEGACY_INLINE_APP_LOCALES.filter((locale) => locale !== targetLocaleKey);
   const fieldMarkerByLocale = { ru: 'ruFields', uk: 'ukFields', es: 'esFields' };
-  const targetFieldMarker = fieldMarkerByLocale[baseLang];
+  const targetFieldMarker = fieldMarkerByLocale[targetLocaleKey];
   const sourceFieldMarkers = sourceLocales.map((locale) => fieldMarkerByLocale[locale]).filter(Boolean);
   const byFileLocale = countItemsByFileAndLocale(inventory.items || []);
   const byFileSourceKind = countItemsByFileAndSourceKind(inventory.items || []);
@@ -1638,7 +1640,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
   const filesByPath = new Map(inventory.files.map((file) => [normalizePath(file.file), file]));
   const sidecarCoverageByFile = new Map(
     productionFiles
-      .map((file) => sidecarCoverageForFile(file, baseLang, byFileLocale, filesByPath))
+      .map((file) => sidecarCoverageForFile(file, targetLocaleKey, byFileLocale, filesByPath))
       .filter(Boolean)
       .map((coverage) => [coverage.file, coverage]),
   );
@@ -1653,7 +1655,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       ({ file, sourceFieldCount, targetFieldCount }) =>
         sourceFieldCount > 0 &&
         targetFieldCount === 0 &&
-        !isExistingLocaleCoverageIsolatedFile(file, baseLang) &&
+        !isExistingLocaleCoverageIsolatedFile(file, targetLocaleKey) &&
         !sidecarCoverageByFile.has(normalizePath(file.file)),
     )
     .sort((a, b) => b.sourceFieldCount - a.sourceFieldCount || a.file.file.localeCompare(b.file.file))
@@ -1665,7 +1667,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
     .map((file) => {
       const counts = byFileLocale[file.file] || {};
       const sourceItemCount = sourceLocales.reduce((sum, locale) => sum + (counts[locale] || 0), 0);
-      const targetItemCount = counts[baseLang] || 0;
+      const targetItemCount = counts[targetLocaleKey] || 0;
       const sourceKindCounts = byFileSourceKind[file.file] || {};
       const htmlSourceItemCount = (sourceKindCounts['html-text'] || 0) + (sourceKindCounts['html-attribute'] || 0);
       const nonHtmlSourceItemCount = Math.max(0, sourceItemCount - htmlSourceItemCount);
@@ -1675,7 +1677,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       ({ file, nonHtmlSourceItemCount, targetItemCount }) =>
         nonHtmlSourceItemCount > 0 &&
         targetItemCount === 0 &&
-        !isExistingLocaleCoverageIsolatedFile(file, baseLang) &&
+        !isExistingLocaleCoverageIsolatedFile(file, targetLocaleKey) &&
         !sidecarCoverageByFile.has(normalizePath(file.file)),
     )
     .sort((a, b) => b.nonHtmlSourceItemCount - a.nonHtmlSourceItemCount || a.file.file.localeCompare(b.file.file))
@@ -1688,7 +1690,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
   const htmlCoverageBacklogFiles = productionFiles
     .map((file) => {
       const counts = byFileLocale[file.file] || {};
-      const targetItemCount = counts[baseLang] || 0;
+      const targetItemCount = counts[targetLocaleKey] || 0;
       const sourceKindCounts = byFileSourceKind[file.file] || {};
       const allHtmlItemCount = (sourceKindCounts['html-text'] || 0) + (sourceKindCounts['html-attribute'] || 0);
       const localeKindCounts = byFileLocaleSourceKind[file.file] || {};
@@ -1723,8 +1725,8 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
         0,
       );
       const targetHtmlItemCount =
-        ((localeKindCounts[baseLang] || {})['html-text'] || 0) +
-        ((localeKindCounts[baseLang] || {})['html-attribute'] || 0);
+        ((localeKindCounts[targetLocaleKey] || {})['html-text'] || 0) +
+        ((localeKindCounts[targetLocaleKey] || {})['html-attribute'] || 0);
       return { file, counts, sourceHtmlItemCount, targetHtmlItemCount };
     })
     .filter(
@@ -1750,7 +1752,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
     .map((file) => summarizeFileRisk(file, 'Report/data screen is explicitly marked Russian-only.'));
 
   const verifiedFallbackFiles = productionFiles
-    .map((file) => verifiedExistingLocaleFallbackForFile(file, baseLang))
+    .map((file) => verifiedExistingLocaleFallbackForFile(file, targetLocaleKey))
     .filter(Boolean)
     .sort((a, b) => a.file.localeCompare(b.file));
 
@@ -1782,7 +1784,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
     }));
   const studyTargetRiskFiles = studyTargetFiles.filter((file) => !isIsolatedSpanishStudyTargetFile(file));
 
-  const targetItemCount = (inventory.totals.byLocale || {})[baseLang] || 0;
+  const targetItemCount = (inventory.totals.byLocale || {})[targetLocaleKey] || 0;
   const allLocalizedItems = inventory.totals.localizedItems || 0;
   const targetItemShare = allLocalizedItems ? Number((targetItemCount / allLocalizedItems).toFixed(4)) : 0;
   const sidecarCoverageFiles = [...sidecarCoverageByFile.values()].sort((a, b) => a.file.localeCompare(b.file));
@@ -1800,7 +1802,7 @@ function buildExistingLocaleAudit(inventory, targetLocale) {
       localizedItemsByLocale: inventory.totals.byLocale,
       targetLocalizedItems: targetItemCount,
       targetLocalizedItemShare: targetItemShare,
-      targetItemsBySurface: countItemsBySurface(inventory.items || [], baseLang),
+      targetItemsBySurface: countItemsBySurface(inventory.items || [], targetLocaleKey),
       fieldCoverageGapFiles: fieldCoverageGaps.length,
       itemCoverageGapFiles: itemCoverageGaps.length,
       htmlCoverageBacklogFiles: htmlCoverageBacklogFiles.length,

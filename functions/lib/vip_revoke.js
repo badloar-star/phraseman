@@ -61,7 +61,7 @@ function vipRevokeProgressFields(nowMs) {
         vip_revoked_at: now,
     };
 }
-exports.vipRevokeMine = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
+exports.vipRevokeMine = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_SENSITIVE }, async (request) => {
     if (!request.auth?.uid) {
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     }

@@ -2,7 +2,7 @@
 // Концепция v2 (утв. 2026-06-10): 30 сетов × 10 + секретная 11-я; залоченные
 // карточки видны, но «чисто серые» (grayscale-арт + замок, НЕ «?»); открытые
 // цветные и тапаются в полноэкранную деталку (как «Фраза дня»). Вход — из
-// Статистики, между «Подарками» и «Достижениями». Выдача — только сервер
+// раздела карточек («Коллекция», рядом с «Тренировать»/«Слушать»). Выдача — только сервер
 // (collectiblesClaimDrop), этот экран лишь читает локальную копию инвентаря.
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -22,7 +22,7 @@ import { onAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import {
   COLLECTIBLE_RARITY_COLORS,
-  COLLECTIBLE_RARITY_LABEL_RU,
+  COLLECTIBLE_RARITY_LABELS,
   COLLECTIBLE_SETS,
   collectiblesTotalCount,
   type CollectibleCardData,
@@ -34,7 +34,6 @@ import {
   markCollectiblesSeen,
   type CollectiblesOwnedMap,
 } from './collectibles/storage';
-import { grayscaleSvg } from './collectibles/svg_gray';
 import { isCollectiblesEnabled } from './remote_flags';
 
 const SECRET_GOLD = '#FBBF24';
@@ -43,25 +42,17 @@ type DetailTarget =
   | { kind: 'card'; set: CollectibleSetData; card: CollectibleCardData }
   | { kind: 'secret'; set: CollectibleSetData; card: CollectibleSecretData };
 
-/* ── ячейка карточки ──────────────────────────────────────── */
+/* ── ячейка карточки (только собранные) ───────────────────── */
 const CardCell = React.memo(function CardCell({
   card,
-  owned,
   onPress,
   textPrimary,
-  textMuted,
 }: {
   card: CollectibleCardData;
-  owned: boolean;
   onPress: () => void;
   textPrimary: string;
-  textMuted: string;
 }) {
   const rarityColor = COLLECTIBLE_RARITY_COLORS[card.rarity];
-  const xml = useMemo(() => {
-    if (!card.svg) return null;
-    return owned ? card.svg : grayscaleSvg(card.id, card.svg);
-  }, [card.id, card.svg, owned]);
 
   return (
     <TouchableOpacity
@@ -73,44 +64,22 @@ const CardCell = React.memo(function CardCell({
         style={{
           aspectRatio: 200 / 160,
           borderRadius: 13,
-          backgroundColor: owned ? `${rarityColor}14` : 'rgba(127,127,127,0.10)',
+          backgroundColor: `${rarityColor}14`,
           borderWidth: 1,
-          borderColor: owned ? `${rarityColor}55` : 'rgba(127,127,127,0.22)',
+          borderColor: `${rarityColor}55`,
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
         }}
       >
-        {xml ? (
-          <View style={{ opacity: owned ? 1 : 0.6, width: '92%', aspectRatio: 200 / 160 }}>
-            <SvgXml
-              xml={xml}
-              width="100%"
-              height="100%"
-              onError={(e) => console.warn('[CollectibleSVG]', card.id, e.message)}
-            />
+        {card.svg ? (
+          <View style={{ width: '92%', aspectRatio: 200 / 160 }}>
+            <SvgXml xml={card.svg} width="100%" height="100%" />
           </View>
         ) : (
-          <Text style={{ color: owned ? rarityColor : textMuted, fontSize: 24, fontWeight: '900' }}>
+          <Text style={{ color: rarityColor, fontSize: 24, fontWeight: '900' }}>
             {card.en.slice(0, 1).toUpperCase()}
           </Text>
-        )}
-        {!owned && (
-          <View
-            style={{
-              position: 'absolute',
-              right: 5,
-              bottom: 5,
-              width: 18,
-              height: 18,
-              borderRadius: 9,
-              backgroundColor: 'rgba(0,0,0,0.45)',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Ionicons name="lock-closed" size={10} color="#E7E7EC" />
-          </View>
         )}
       </View>
       <Text
@@ -120,7 +89,7 @@ const CardCell = React.memo(function CardCell({
           fontSize: 10.5,
           fontWeight: '700',
           textAlign: 'center',
-          color: owned ? textPrimary : textMuted,
+          color: textPrimary,
         }}
       >
         {card.en}
@@ -129,19 +98,15 @@ const CardCell = React.memo(function CardCell({
   );
 });
 
-/* ── ячейка секретки ──────────────────────────────────────── */
+/* ── ячейка секретки (показывается только когда собрана) ───── */
 const SecretCell = React.memo(function SecretCell({
   secret,
-  owned,
   onPress,
   textPrimary,
-  textMuted,
 }: {
   secret: CollectibleSecretData;
-  owned: boolean;
   onPress: () => void;
   textPrimary: string;
-  textMuted: string;
 }) {
   return (
     <TouchableOpacity
@@ -153,25 +118,20 @@ const SecretCell = React.memo(function SecretCell({
         style={{
           aspectRatio: 200 / 160,
           borderRadius: 13,
-          backgroundColor: owned ? `${SECRET_GOLD}16` : 'rgba(127,127,127,0.07)',
+          backgroundColor: `${SECRET_GOLD}16`,
           borderWidth: 1,
-          borderColor: owned ? `${SECRET_GOLD}66` : 'rgba(127,127,127,0.28)',
-          borderStyle: owned ? 'solid' : 'dashed',
+          borderColor: `${SECRET_GOLD}66`,
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
         }}
       >
-        {owned ? (
-          secret.svg ? (
-            <View style={{ width: '92%', aspectRatio: 200 / 160 }}>
-              <SvgXml xml={secret.svg} width="100%" height="100%" />
-            </View>
-          ) : (
-            <Ionicons name="star" size={26} color={SECRET_GOLD} />
-          )
+        {secret.svg ? (
+          <View style={{ width: '92%', aspectRatio: 200 / 160 }}>
+            <SvgXml xml={secret.svg} width="100%" height="100%" />
+          </View>
         ) : (
-          <Text style={{ color: textMuted, fontSize: 18, fontWeight: '900', letterSpacing: 2 }}>???</Text>
+          <Ionicons name="star" size={26} color={SECRET_GOLD} />
         )}
       </View>
       <Text
@@ -181,10 +141,10 @@ const SecretCell = React.memo(function SecretCell({
           fontSize: 10.5,
           fontWeight: '700',
           textAlign: 'center',
-          color: owned ? textPrimary : textMuted,
+          color: textPrimary,
         }}
       >
-        {owned ? secret.en : '···'}
+        {secret.en}
       </Text>
     </TouchableOpacity>
   );
@@ -204,9 +164,13 @@ function SetSection({
   t: ReturnType<typeof useTheme>['theme'];
   f: ReturnType<typeof useTheme>['f'];
 }) {
-  const ownedInSet = set.cards.filter((c) => ownedMap[c.id] != null).length;
+  // Показываем ТОЛЬКО собранные карточки — коллекция, а не чек-лист.
+  const ownedCards = set.cards.filter((c) => ownedMap[c.id] != null);
   const secretOwned = ownedMap[set.secret.id] != null;
-  const totalOwned = ownedInSet + (secretOwned ? 1 : 0);
+  const totalOwned = ownedCards.length + (secretOwned ? 1 : 0);
+  // Сет без единой карточки не рисуем вовсе.
+  if (totalOwned === 0) return null;
+
   const complete = totalOwned >= set.cards.length + 1;
 
   return (
@@ -231,24 +195,22 @@ function SetSection({
           {totalOwned}/{set.cards.length + 1}
         </Text>
       </View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-        {set.cards.map((card) => (
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start', gap: '3.5%' }}>
+        {ownedCards.map((card) => (
           <CardCell
             key={card.id}
             card={card}
-            owned={ownedMap[card.id] != null}
             onPress={() => onOpenCard({ kind: 'card', set, card })}
             textPrimary={t.textPrimary}
-            textMuted={t.textMuted}
           />
         ))}
-        <SecretCell
-          secret={set.secret}
-          owned={secretOwned}
-          onPress={() => onOpenCard({ kind: 'secret', set, card: set.secret })}
-          textPrimary={t.textPrimary}
-          textMuted={t.textMuted}
-        />
+        {secretOwned && (
+          <SecretCell
+            secret={set.secret}
+            onPress={() => onOpenCard({ kind: 'secret', set, card: set.secret })}
+            textPrimary={t.textPrimary}
+          />
+        )}
       </View>
     </View>
   );
@@ -275,8 +237,17 @@ function CardDetailModal({
     ? SECRET_GOLD
     : COLLECTIBLE_RARITY_COLORS[(card as CollectibleCardData).rarity];
   const rarityLabel = isSecret
-    ? 'Секретная'
-    : COLLECTIBLE_RARITY_LABEL_RU[(card as CollectibleCardData).rarity];
+    ? triLang(lang, {
+        ru: 'Секретная',
+        uk: 'Секретна',
+        es: 'Secreta',
+        'pt-BR': 'Secreta',
+        vi: 'Bí mật',
+        id: 'Rahasia',
+        tr: 'Gizli',
+        pl: 'Sekretna',
+      })
+    : triLang(lang, COLLECTIBLE_RARITY_LABELS[(card as CollectibleCardData).rarity]);
 
   // Навигация по сету: только открытые позиции (включая секретку в конце).
   const siblings: DetailTarget[] = [
@@ -371,12 +342,39 @@ function CardDetailModal({
               {card.ru}
             </Text>
 
-            {section('Дословно', card.literalRu)}
-            {section('Что значит', card.meaningRu)}
+            {section(triLang(lang, {
+              ru: 'Дословно',
+              uk: 'Дослівно',
+              es: 'Literalmente',
+              'pt-BR': 'Ao pé da letra',
+              vi: 'Nghĩa đen',
+              id: 'Secara harfiah',
+              tr: 'Kelime kelime',
+              pl: 'Dosłownie',
+            }), card.literalRu)}
+            {section(triLang(lang, {
+              ru: 'Что значит',
+              uk: 'Що означає',
+              es: 'Qué significa',
+              'pt-BR': 'O que significa',
+              vi: 'Ý nghĩa',
+              id: 'Apa artinya',
+              tr: 'Ne anlama gelir',
+              pl: 'Co oznacza',
+            }), card.meaningRu)}
             {!!card.exampleEn && (
               <View style={{ marginTop: 14 }}>
                 <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
-                  Пример
+                  {triLang(lang, {
+                    ru: 'Пример',
+                    uk: 'Приклад',
+                    es: 'Ejemplo',
+                    'pt-BR': 'Exemplo',
+                    vi: 'Ví dụ',
+                    id: 'Contoh',
+                    tr: 'Örnek',
+                    pl: 'Przykład',
+                  })}
                 </Text>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 21, marginTop: 4, fontWeight: '700' }}>
                   {card.exampleEn}
@@ -386,7 +384,16 @@ function CardDetailModal({
                 </Text>
               </View>
             )}
-            {section('История', card.originRu)}
+            {section(triLang(lang, {
+              ru: 'История',
+              uk: 'Історія',
+              es: 'Origen',
+              'pt-BR': 'Origem',
+              vi: 'Nguồn gốc',
+              id: 'Asal usul',
+              tr: 'Kökeni',
+              pl: 'Pochodzenie',
+            }), card.originRu)}
           </ScrollView>
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 22, paddingBottom: 14 }}>
@@ -472,14 +479,14 @@ export default function CollectiblesScreen() {
             </TapScale>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }} numberOfLines={1}>
               {triLang(lang, {
-                ru: 'Сокровищница',
-                uk: 'Скарбниця',
-                es: 'Tesorería',
-                'pt-BR': 'Tesouraria',
-                vi: 'Kho báu',
-                id: 'Perbendaharaan',
-                tr: 'Hazine',
-                pl: 'Skarbiec',
+                ru: 'Коллекция',
+                uk: 'Колекція',
+                es: 'Colección',
+                'pt-BR': 'Coleção',
+                vi: 'Bộ sưu tập',
+                id: 'Koleksi',
+                tr: 'Koleksiyon',
+                pl: 'Kolekcja',
               })}
             </Text>
             <View
@@ -498,19 +505,49 @@ export default function CollectiblesScreen() {
             </View>
           </View>
 
-          <FlatList
-            data={COLLECTIBLE_SETS}
-            keyExtractor={(s) => s.setId}
-            renderItem={({ item }) => (
-              <SetSection set={item} ownedMap={ownedMap} onOpenCard={openDetail} t={t} f={f} />
-            )}
-            contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
-            showsVerticalScrollIndicator={false}
-            initialNumToRender={3}
-            windowSize={7}
-            removeClippedSubviews
-            decelerationRate="normal"
-          />
+          {ownedCount === 0 ? (
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 32 }}>
+              <Ionicons name="sparkles-outline" size={48} color={t.textMuted} />
+              <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', textAlign: 'center', marginTop: 14 }}>
+                {triLang(lang, {
+                  ru: 'Здесь появятся ваши карточки',
+                  uk: 'Тут зʼявляться ваші картки',
+                  es: 'Aquí aparecerán tus cartas',
+                  'pt-BR': 'Suas cartas aparecerão aqui',
+                  vi: 'Thẻ của bạn sẽ xuất hiện ở đây',
+                  id: 'Kartu Anda akan muncul di sini',
+                  tr: 'Kartların burada görünecek',
+                  pl: 'Tu pojawią się Twoje karty',
+                })}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', marginTop: 6 }}>
+                {triLang(lang, {
+                  ru: 'Проходите уроки и побеждайте в арене',
+                  uk: 'Проходьте уроки та перемагайте в арені',
+                  es: 'Completa lecciones y gana en la arena',
+                  'pt-BR': 'Complete lições e vença na arena',
+                  vi: 'Hoàn thành bài học và chiến thắng trong đấu trường',
+                  id: 'Selesaikan pelajaran dan menang di arena',
+                  tr: 'Dersleri tamamla ve arenada kazan',
+                  pl: 'Ukończ lekcje i wygrywaj na arenie',
+                })}
+              </Text>
+            </View>
+          ) : (
+            <FlatList
+              data={COLLECTIBLE_SETS}
+              keyExtractor={(s) => s.setId}
+              renderItem={({ item }) => (
+                <SetSection set={item} ownedMap={ownedMap} onOpenCard={openDetail} t={t} f={f} />
+              )}
+              contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+              showsVerticalScrollIndicator={false}
+              initialNumToRender={3}
+              windowSize={7}
+              removeClippedSubviews
+              decelerationRate="normal"
+            />
+          )}
         </ContentWrap>
       </SafeAreaView>
 

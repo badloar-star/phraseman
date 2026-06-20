@@ -3,6 +3,7 @@
 // AsyncStorage keys: 'user_avatar' (emoji), 'user_frame' (frame id)
 
 import type { Lang } from './i18n';
+import { getLevelAvatarMaterial } from './avatar_level_materials';
 
 export type FrameAnimation =
   | 'plain'
@@ -68,6 +69,8 @@ function _hex(r: number, g: number, b: number): string {
   return '#' + [r, g, b].map(x => Math.max(0, Math.min(255, x)).toString(16).padStart(2, '0')).join('');
 }
 function _tint(level: number): readonly [string, string] {
+  const material = getLevelAvatarMaterial(level);
+  if (material) return [material.colors[0], material.colors[1]];
   const t = (level - 1) / 59; // 0..1
   // цвет A: от холодного графита к тёплому янтарю
   const a = _hex(_lerp(0x6B, 0xC8, t), _lerp(0x7A, 0x9A, t), _lerp(0x8D, 0x3A, t));

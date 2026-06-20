@@ -711,7 +711,7 @@ export default function FlashcardsAudioScreen() {
           <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
         </TapScale>
       </View>
-      <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
+      <Text numberOfLines={1} style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
         {text.title}
       </Text>
       <View style={[styles.headerSide, styles.headerSideRight]}>
@@ -916,8 +916,6 @@ export default function FlashcardsAudioScreen() {
             <Text style={[styles.sideLabel, { color: t.textSecond, fontSize: f.caption }]}>{text.front}</Text>
             <Text
               style={[styles.cardText, { color: t.textPrimary, fontSize: Math.min(31, f.numLg + 1) }]}
-              adjustsFontSizeToFit
-              minimumFontScale={0.58}
               numberOfLines={5}
             >
               {frontText}
@@ -940,8 +938,6 @@ export default function FlashcardsAudioScreen() {
             <Text style={[styles.sideLabel, { color: t.textSecond, fontSize: f.caption }]}>{text.back}</Text>
             <Text
               style={[styles.cardText, { color: t.textPrimary, fontSize: Math.min(30, f.numLg) }]}
-              adjustsFontSizeToFit
-              minimumFontScale={0.55}
               numberOfLines={5}
             >
               {backText}

@@ -3132,8 +3132,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
             <Text
               style={{ color:sx.primary, fontSize:38, fontWeight:'300', textAlign:'center', lineHeight:46, maxWidth:'100%' }}
               numberOfLines={4}
-              adjustsFontSizeToFit
-              minimumFontScale={0.65}
             >
               {current.question}
             </Text>
@@ -3173,7 +3171,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
                   <Ionicons name="close-circle" size={15} color={t.wrong} />
                 </View>
               )}
-              <Text style={{ color: on ? (t.correctText ?? '#fff') : tc, fontSize:f.h2, fontWeight: on ? '700' : '500', textAlign:'center' }} numberOfLines={2} adjustsFontSizeToFit>{opt}</Text>
+              <Text style={{ color: on ? (t.correctText ?? '#fff') : tc, fontSize:f.h2, fontWeight: on ? '700' : '500', textAlign:'center' }} numberOfLines={2}>{opt}</Text>
             </DuoPressable>
           );
         })}
@@ -3431,7 +3429,7 @@ export default function LessonWords() {
         <TapScale testID="lesson-words-header-back" onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TapScale>
-        <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600', flex:1, textAlign:'center', marginHorizontal:8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>{ws.title(lessonId)}</Text>
+        <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600', flex:1, textAlign:'center', marginHorizontal:8 }} numberOfLines={1}>{ws.title(lessonId)}</Text>
         <View style={{ width:28 }} />
       </View>
 

@@ -5,11 +5,13 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, Platform, StyleSheet, TouchableOpacity,
+  View, Text, Platform, StyleSheet, TouchableOpacity, ImageBackground,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
+  type ViewStyle, type StyleProp,
 } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from '../SafeLinearGradient';
 
 import { useTheme } from '../ThemeContext';
 import { getPaywallThemeConfig, type ThemePaywallConfig } from '../paywallThemeConfig';
@@ -52,6 +54,34 @@ export function usePaywallChrome(): PaywallChrome {
     cardBorder: 'rgba(255,255,255,0.08)',
     uncheckedBorder: 'rgba(255,255,255,0.22)',
   }), [themeMode]);
+}
+
+const ONBOARDING_BG = require('../../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
+
+/** Фон пейвола: онбординг-картинка (source=onboarding_plan) или тёмный градиент. */
+export function PaywallBackground({
+  isOnboarding,
+  gradientColors,
+  style,
+  children,
+}: {
+  isOnboarding: boolean;
+  gradientColors: [string, string, string];
+  style?: StyleProp<ViewStyle>;
+  children: React.ReactNode;
+}) {
+  if (isOnboarding) {
+    return (
+      <ImageBackground source={ONBOARDING_BG} style={[{ flex: 1 }, style]} resizeMode="cover">
+        {children}
+      </ImageBackground>
+    );
+  }
+  return (
+    <LinearGradient colors={gradientColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={[{ flex: 1 }, style]}>
+      {children}
+    </LinearGradient>
+  );
 }
 
 // ── глиф контекста (SVG-иконки Ionicons вместо эмодзи-зоопарка) ──────────────

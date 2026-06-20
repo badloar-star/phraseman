@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import { useRouter } from 'expo-router';
+import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -21,7 +22,10 @@ import {
   getClaimableReferralState,
   type ReferralInvite,
 } from './referral_vip';
+import { generateReferralCode, getReferralCode } from './referral_system';
+import { isReferralCloudEnabled } from './referral_cloud';
 import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
+import { safeRouterBack } from './navigation_back';
 
 function makeL(lang: Lang) {
   return (
@@ -73,6 +77,11 @@ export default function ReferralsScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  /** Дубликат реф-кода из /friends — чтобы код можно было найти, когда в Друзьях уже есть люди. */
+  const referralEnabled = isReferralCloudEnabled();
+  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const [codeCopied, setCodeCopied] = useState(false);
+  const copyTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   /** Праздничный модал после успешного начисления (раньше показывался только в QA-лабе). */
   const [activated, setActivated] = useState<{ grantedDays: number; friendsCount: number; untilLabel?: string } | null>(null);
 
@@ -97,6 +106,47 @@ export default function ReferralsScreen() {
     await load().catch(() => {});
     setRefreshing(false);
   }, [load]);
+
+  // Реф-код: тот же серверный код, что в /friends. Тянем с ретраем (холодная гонка auth_links),
+  // пока не появится — как в friends.tsx. Пустой код просто не рисуем (без «дыры» в верстке).
+  useEffect(() => {
+    if (!referralEnabled || referralCode) return;
+    let cancelled = false;
+    let attempt = 0;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = async () => {
+      if (cancelled) return;
+      attempt += 1;
+      try {
+        await generateReferralCode('User');
+        const rc = await getReferralCode();
+        if (!cancelled && rc && rc.trim().length >= 4) {
+          setReferralCode(rc.trim().toUpperCase());
+          return;
+        }
+      } catch { /* ещё не готово — повторим */ }
+      if (!cancelled && attempt < 5) {
+        timer = setTimeout(() => { void tick(); }, 1200 * attempt);
+      }
+    };
+    timer = setTimeout(() => { void tick(); }, 0);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [referralEnabled, referralCode]);
+
+  const copyReferralCode = useCallback(async () => {
+    if (!referralCode) return;
+    hapticTap();
+    try {
+      await Clipboard.setStringAsync(referralCode);
+      setCodeCopied(true);
+      if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+      copyTimerRef.current = setTimeout(() => setCodeCopied(false), 1600);
+    } catch { /* буфер недоступен — код всё равно виден на экране */ }
+  }, [referralCode]);
+
+  useEffect(() => () => {
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+  }, []);
 
   const showNotReady = useCallback(() => {
     hapticTap();
@@ -224,7 +274,7 @@ export default function ReferralsScreen() {
             <TapScale
               accessibilityRole="button"
               accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
-              onPress={() => router.back()}
+              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
               style={{
                 width: 44,
                 height: 44,
@@ -264,6 +314,44 @@ export default function ReferralsScreen() {
               )}
             </Text>
           </View>
+
+          {referralEnabled && referralCode ? (
+            <View
+              testID="referrals-my-code-card"
+              style={{ borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.accent + '40', gap: 12 }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <Ionicons name="gift-outline" size={18} color={t.accent} />
+                <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '900', flex: 1 }} numberOfLines={2}>
+                  {L('Твой код для друзей', 'Твій код для друзів', 'Tu código para amigos', 'Seu código para amigos', 'Mã của bạn cho bạn bè', 'Kode untuk temanmu', 'Arkadaşların için kodun', 'Twój kod dla znajomych')}
+                </Text>
+              </View>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={copyReferralCode}
+                accessibilityRole="button"
+                accessibilityLabel={L('Скопировать код', 'Скопіювати код', 'Copiar código', 'Copiar código', 'Sao chép mã', 'Salin kode', 'Kodu kopyala', 'Skopiuj kod')}
+                style={{ backgroundColor: t.bgSurface, borderRadius: 12, borderWidth: 1, borderColor: t.border, paddingVertical: 14, paddingHorizontal: 16, alignItems: 'center' }}
+              >
+                <Text testID="referrals-my-code-value" style={{ color: t.accent, fontSize: f.h2 ?? 22, fontWeight: '900', letterSpacing: 3 }} maxFontSizeMultiplier={1.2}>
+                  {referralCode}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.84}
+                onPress={copyReferralCode}
+                accessibilityRole="button"
+                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingVertical: 11, borderRadius: 12, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgSurface }}
+              >
+                <Ionicons name={codeCopied ? 'checkmark' : 'copy-outline'} size={16} color={codeCopied ? t.accent : t.textSecond} />
+                <Text style={{ color: codeCopied ? t.accent : t.textPrimary, fontSize: f.sub ?? 13, fontWeight: '800' }}>
+                  {codeCopied
+                    ? L('Скопировано', 'Скопійовано', 'Copiado', 'Copiado', 'Đã sao chép', 'Tersalin', 'Kopyalandı', 'Skopiowano')
+                    : L('Копировать', 'Копіювати', 'Copiar', 'Copiar', 'Sao chép', 'Salin', 'Kopyala', 'Kopiuj')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
 
           {message && (
             <View style={{ borderRadius: 16, padding: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }}>

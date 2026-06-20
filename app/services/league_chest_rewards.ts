@@ -158,7 +158,7 @@ export async function revokeLeagueGoldThemeReward(): Promise<void> {
   try {
     await AsyncStorage.multiRemove([LEAGUE_GOLD_THEME_UNLOCK_KEY, LEAGUE_GOLD_THEME_UNLOCK_AT_KEY]);
     const currentTheme = await AsyncStorage.getItem('app_theme');
-    if (currentTheme === 'gold') await AsyncStorage.setItem('app_theme', 'minimalDark');
+    if (currentTheme === 'gold') await AsyncStorage.setItem('app_theme', 'midnight');
   } catch {
     // ignore local admin reset failures
   }

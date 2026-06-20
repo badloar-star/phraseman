@@ -12,10 +12,21 @@ describe('AI mistake explanation client contract', () => {
     expect(clientSource).toContain('ExplainMistakeResponse');
   });
 
-  it('keeps the smart card inline with a single action and visible quota state', () => {
+  it('supports diff pairs and the eli5 variant for the whole-error breakdown', () => {
+    expect(clientSource).toContain('diffPairs');
+    expect(clientSource).toContain('MistakeExplainVariant');
+    expect(clientSource).toContain("'eli5'");
+  });
+
+  it('keeps the smart card inline and exposes the simple-explain footer action', () => {
     expect(cardSource).toContain('testID="ai-mistake-card"');
-    expect(cardSource).toContain('testID="ai-mistake-explain-button"');
-    expect(cardSource).toContain('remaining');
+    expect(cardSource).toContain('testID="ai-mistake-simple-button"');
+    expect(cardSource).toContain('onOpenSimple');
     expect(cardSource).toContain('AiMistakeCardState');
+  });
+
+  it('no longer shows a daily quota line on the card', () => {
+    expect(cardSource).not.toContain('Осталось сегодня');
+    expect(cardSource).not.toContain('quotaLine');
   });
 });

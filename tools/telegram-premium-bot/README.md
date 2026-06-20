@@ -76,8 +76,8 @@ You can also use environment variables instead of `botToken`:
 ```powershell
 $env:PHRASEMAN_PREMIUM_BOT_TOKEN = "paste-token-here"
 $env:PHRASEMAN_PREMIUM_ADMIN_CHAT_ID = "123456789"
-$env:PHRASEMAN_PREMIUM_MONTHLY_STARS = "300"
-$env:PHRASEMAN_PREMIUM_YEARLY_STARS = "1800"
+$env:PHRASEMAN_PREMIUM_MONTHLY_STARS = "500"
+$env:PHRASEMAN_PREMIUM_YEARLY_STARS = "2500"
 npm run telegram:premium
 ```
 

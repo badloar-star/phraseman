@@ -11,11 +11,11 @@
 // зависимости) не попадает в выходной JS-бандл.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { IS_STORE_RELEASE } from './config';
+import { ENABLE_DEV_TOOLS } from './config';
 import { DeferredRedirect } from '../components/DeferredRedirect';
 
 export default function AdminSpeakingLabGate() {
-  if (__DEV__ && !IS_STORE_RELEASE) {
+  if (ENABLE_DEV_TOOLS) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: lets Metro tree-shake the dev module out of prod bundle
     const Real = require('./_admin_speaking_lab').default;
     return <Real />;

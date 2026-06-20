@@ -19,7 +19,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getCanonicalUserId } from './user_id_policy';
+import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
+import { getAuthUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
 
 /** Поле в users/{stableId}, куда пишется токен. Совпадает с тем, что читает cron. */
@@ -94,13 +95,16 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
     const db = getFirestore();
     if (!db) return false;
 
-    const stableId = await getCanonicalUserId();
+    const stableId = await ensureAnonUser();
     if (!stableId) return false;
+    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    if (!linkOk) return false;
 
     const token = await getExpoPushTokenIfPermitted();
     if (!token) return false;
 
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    const authUid = getAuthUserId();
 
     // Пропускаем запись, если этот же токен уже был записан (тот же юзер, lang, tz).
     const cacheKey = `${stableId}:${token}:${lang}:${timezone}`;
@@ -109,6 +113,7 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 
     await db.collection('users').doc(stableId).set(
       {
+        ...(authUid ? { firebaseAuthUid: authUid } : {}),
         [PUSH_TOKEN_FIELD]: token,
         pushTokenPlatform: Platform.OS,
         pushTokenLang: lang,
@@ -133,8 +138,10 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 export async function clearPushTokenForServerPush(): Promise<void> {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-    const stableId = await getCanonicalUserId();
+    const stableId = await ensureAnonUser();
     if (!stableId) return;
+    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    if (!linkOk) return;
 
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const firestoreModule = require('@react-native-firebase/firestore');

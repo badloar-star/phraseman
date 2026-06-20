@@ -81,9 +81,9 @@ export default function IdeasSubmitScreen() {
       await enqueueThemedBlockingInfoAlert(
         L('Идея отправлена 🚀', 'Ідею надіслано 🚀', 'Idea enviada 🚀'),
         L(
-          'Спасибо! Мы прочитаем твою идею. Если возьмём её в работу — откроем тебе полный доступ на год.',
-          'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі повний доступ на рік.',
-          '¡Gracias! Leeremos tu idea. Si la tomamos, te abriremos acceso completo por un año.',
+          'Спасибо! Мы прочитаем твою идею. Если возьмём её в работу — откроем тебе Premium на год.',
+          'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Premium на рік.',
+          '¡Gracias! Leeremos tu idea. Si la tomamos, te damos Premium por un año.',
         ),
         L('Понятно', 'Зрозуміло', 'Entendido'),
       );
@@ -172,13 +172,13 @@ export default function IdeasSubmitScreen() {
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
         >
-          {/* Hero — Стиль ТРЕНЕР + ИГРА (Библия Phraseman) */}
-          <View style={{ alignItems: 'center', marginTop: 4, marginBottom: 10 }}>
+          {/* Hero — Стиль ИГРА (Библия Phraseman): дружелюбный заголовок + награда-акцент */}
+          <View style={{ alignItems: 'center', marginTop: 4, marginBottom: 6 }}>
             <View
               style={{
                 width: 84,
                 height: 84,
-                borderRadius: 42,
+                borderRadius: 24,
                 backgroundColor: t.correctBg,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -191,7 +191,6 @@ export default function IdeasSubmitScreen() {
             </View>
             <Text
               style={{
-                color: t.textPrimary,
                 fontSize: f.h2,
                 fontWeight: '800',
                 textAlign: 'center',
@@ -199,7 +198,12 @@ export default function IdeasSubmitScreen() {
                 marginBottom: 8,
               }}
             >
-              {L('Твоя идея —\nгод полного доступа', 'Твоя ідея —\nрік повного доступу', 'Tu idea —\nun año de acceso')}
+              <Text style={{ color: t.textPrimary }}>
+                {L('Есть идея? ', 'Є ідея? ', '¿Tienes una idea? ')}
+              </Text>
+              <Text style={{ color: t.correct }}>
+                {L('Получи год Premium', 'Отримай рік Premium', 'Gana un año de Premium')}
+              </Text>
             </Text>
             <Text
               style={{
@@ -207,18 +211,56 @@ export default function IdeasSubmitScreen() {
                 fontSize: f.body,
                 textAlign: 'center',
                 lineHeight: f.body * 1.4,
+                paddingHorizontal: 6,
               }}
             >
               {L(
-                'Придумал, как сделать Phraseman лучше? Опиши идею. Возьмём её в работу — откроем тебе полный доступ на целый год.',
-                'Придумав, як зробити Phraseman кращим? Опиши ідею. Візьмемо її в роботу — відкриємо тобі повний доступ на цілий рік.',
-                '¿Tienes una idea para mejorar Phraseman? Descríbela. Si la tomamos, te abrimos acceso completo por un año.',
+                'Помоги сделать Phraseman лучше. Возьмём идею в работу — откроем тебе всё на год.',
+                'Допоможи зробити Phraseman кращим. Візьмемо ідею в роботу — відкриємо тобі все на рік.',
+                'Ayuda a mejorar Phraseman. Si tomamos tu idea, te abrimos todo por un año.',
               )}
             </Text>
           </View>
 
+          {/* Как это работает — 3 шага (Стиль ИГРА) */}
+          <View style={{ flexDirection: 'row', gap: 8, marginTop: 16, marginBottom: 4 }}>
+            {[
+              { emoji: '✍️', label: L('Опиши\nидею', 'Опиши\nідею', 'Describe\ntu idea'), reward: false },
+              { emoji: '👀', label: L('Мы её\nпрочитаем', 'Ми її\nпрочитаємо', 'La\nleemos'), reward: false },
+              { emoji: '🎁', label: L('Год\nPremium', 'Рік\nPremium', 'Año\nPremium'), reward: true },
+            ].map((step, i) => (
+              <View
+                key={i}
+                style={{
+                  flex: 1,
+                  backgroundColor: step.reward ? t.correctBg : t.bgCard,
+                  borderWidth: 1,
+                  borderColor: step.reward ? t.correct : t.border,
+                  borderRadius: 13,
+                  paddingVertical: 11,
+                  paddingHorizontal: 6,
+                  alignItems: 'center',
+                }}
+              >
+                <Text style={{ fontSize: 22 }}>{step.emoji}</Text>
+                <Text
+                  style={{
+                    color: step.reward ? t.correct : t.textSecond,
+                    fontSize: f.caption,
+                    fontWeight: step.reward ? '700' : '500',
+                    textAlign: 'center',
+                    marginTop: 4,
+                    lineHeight: f.caption * 1.3,
+                  }}
+                >
+                  {step.label}
+                </Text>
+              </View>
+            ))}
+          </View>
+
           {/* Графа 1 — Название */}
-          <Text style={labelStyle}>{L('Название идеи', 'Назва ідеї', 'Título de la idea')} *</Text>
+          <Text style={labelStyle}>📝 {L('Название идеи', 'Назва ідеї', 'Título de la idea')} *</Text>
           <TextInput
             value={title}
             onChangeText={setTitle}
@@ -229,7 +271,7 @@ export default function IdeasSubmitScreen() {
           />
 
           {/* Графа 2 — Что это и как работает */}
-          <Text style={labelStyle}>{L('Что это и как работает', 'Що це і як працює', 'Qué es y cómo funciona')} *</Text>
+          <Text style={labelStyle}>💬 {L('Что это и как работает', 'Що це і як працює', 'Qué es y cómo funciona')} *</Text>
           <TextInput
             value={description}
             onChangeText={setDescription}
@@ -245,7 +287,7 @@ export default function IdeasSubmitScreen() {
           />
 
           {/* Графа 3 — Чем поможет приложению */}
-          <Text style={labelStyle}>{L('Чем это поможет приложению', 'Чим це допоможе застосунку', 'Cómo ayuda a la app')}</Text>
+          <Text style={labelStyle}>🚀 {L('Чем это поможет приложению', 'Чим це допоможе застосунку', 'Cómo ayuda a la app')}</Text>
           <TextInput
             value={benefit}
             onChangeText={setBenefit}
@@ -261,7 +303,7 @@ export default function IdeasSubmitScreen() {
           />
 
           {/* Графа 4 — Категория */}
-          <Text style={labelStyle}>{L('Категория', 'Категорія', 'Categoría')}</Text>
+          <Text style={labelStyle}>🏷️ {L('Категория', 'Категорія', 'Categoría')}</Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
             {CATEGORIES.map((c) => {
               const active = category === c.key;
@@ -269,6 +311,7 @@ export default function IdeasSubmitScreen() {
                 <TouchableOpacity
                   key={c.key}
                   onPress={() => {
+                    Keyboard.dismiss();
                     hapticTap();
                     setCategory(c.key);
                   }}
@@ -304,7 +347,7 @@ export default function IdeasSubmitScreen() {
           </View>
 
           <Text style={hintStyle}>
-            {L('Одна идея в день. Решение придёт прямо в приложение.', 'Одна ідея на день. Рішення прийде прямо в застосунок.', 'Una idea al día. La decisión llega a la app.')}
+            {L('⏳ Одна идея в день — так у каждой больше шансов. Ответ придёт прямо в приложение.', '⏳ Одна ідея на день — так у кожної більше шансів. Відповідь прийде прямо в застосунок.', '⏳ Una idea al día — así cada una tiene más opciones. La respuesta llega a la app.')}
           </Text>
 
           {/* CTA — Стиль ИНВЕСТОР (глагол + ценность) */}
@@ -334,7 +377,7 @@ export default function IdeasSubmitScreen() {
                   fontWeight: '800',
                 }}
               >
-                {L('Отправить идею', 'Надіслати ідею', 'Enviar idea')}
+                {L('🚀 Отправить идею', '🚀 Надіслати ідею', '🚀 Enviar idea')}
               </Text>
             )}
           </TouchableOpacity>

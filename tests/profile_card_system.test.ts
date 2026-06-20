@@ -25,6 +25,7 @@ jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/shards_system', () => ({
   getShardsBalance: jest.fn(),
   spendShards: jest.fn(),
+  forceSyncShardsToCloud: jest.fn(async () => {}),
 }));
 // Force the offline / cloud-unavailable path so these unit tests exercise the
 // deterministic local shard-spend fallback of upgradeProfileCardLevel(). The

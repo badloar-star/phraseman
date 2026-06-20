@@ -8,11 +8,11 @@
 // `if (__DEV__)` физически не попадает в production-бандл.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { IS_STORE_RELEASE } from './config';
+import { ENABLE_DEV_TOOLS } from './config';
 import { DeferredRedirect } from '../components/DeferredRedirect';
 
 export default function AdminIntroPreviewGate() {
-  if (__DEV__ && !IS_STORE_RELEASE) {
+  if (ENABLE_DEV_TOOLS) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: lets Metro tree-shake the dev module out of prod bundle
     const Real = require('./_admin_intro_preview').default;
     return <Real />;

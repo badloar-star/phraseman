@@ -119,6 +119,40 @@ describe('linkStableAuthUid', () => {
         expect(missing.store.leaderboard['stable-2']).toBeUndefined();
     });
 });
+describe('ensureAuthLinkDoc', () => {
+    beforeEach(() => {
+        jest.spyOn(Date, 'now').mockReturnValue(1777000000000);
+    });
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+    it('creates auth_links/{authUid} for an anonymous user that has none (referral fix)', async () => {
+        const { db, store } = makeDbStub();
+        await (0, auth_identity_1.ensureAuthLinkDoc)(db, 'auth-1', 'stable-1');
+        expect(store.auth_links['auth-1']).toEqual({
+            stable_id: 'stable-1',
+            updatedAt: 1777000000000,
+        });
+    });
+    it('rewrites stable_id when the link points to a different stable id', async () => {
+        const { db, store } = makeDbStub({
+            auth_links: { 'auth-1': { stable_id: 'old-stable', updatedAt: 1 } },
+        });
+        await (0, auth_identity_1.ensureAuthLinkDoc)(db, 'auth-1', 'stable-1');
+        expect(store.auth_links['auth-1']).toMatchObject({ stable_id: 'stable-1' });
+    });
+    it('does not write when the link already matches (keeps provider/email via no-op)', async () => {
+        const { db, store } = makeDbStub({
+            auth_links: { 'auth-1': { stable_id: 'stable-1', provider: 'google', email: 'a@b.c' } },
+        });
+        await (0, auth_identity_1.ensureAuthLinkDoc)(db, 'auth-1', 'stable-1');
+        expect(store.auth_links['auth-1']).toEqual({
+            stable_id: 'stable-1',
+            provider: 'google',
+            email: 'a@b.c',
+        });
+    });
+});
 describe('resolveStableUidForAuth', () => {
     beforeEach(() => {
         jest.spyOn(Date, 'now').mockReturnValue(1777000000000);

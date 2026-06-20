@@ -3379,6 +3379,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson12_phrase_18',
     english: 'We made dinner yesterday',
+    alternatives: ['We cooked dinner yesterday'],
     russian: 'Мы приготовили ужин вчера',
     ukrainian: 'Ми приготували вечерю вчора',
     spanish: 'Hicimos la cena ayer.',

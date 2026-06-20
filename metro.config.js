@@ -53,32 +53,43 @@ const ignoredRootFolders = [
   'tools',
 ];
 
+// Старый обход бага expo-dev-client, который НЕ умел парсить multipart-ответ Metro:
+// для .bundle-запросов вырезался `multipart/mixed` из Accept, чтобы Metro отдавал
+// обычный (не multipart) бандл. ПОБОЧКА: `multipart/mixed` — это канал доставки
+// дельт Fast Refresh, поэтому вырезание ГЛУШИТ Fast Refresh (правки не применяются
+// на лету, нужен ручной reload). На expo-dev-client 6.x (SDK 54 / RN 0.81) multipart
+// уже поддерживается, обход не нужен — поэтому по умолчанию он ВЫКЛЮЧЕН.
+// Включить обратно (если на конкретном устройстве multipart всё же ломает бандл):
+// EXPO_METRO_STRIP_MULTIPART=1.
+const stripMultipartForBundles = process.env.EXPO_METRO_STRIP_MULTIPART === '1';
 const defaultEnhanceMiddleware = config.server?.enhanceMiddleware;
-config.server = {
-  ...config.server,
-  enhanceMiddleware: (middleware, server) => {
-    const enhancedMiddleware = defaultEnhanceMiddleware
-      ? defaultEnhanceMiddleware(middleware, server)
-      : middleware;
+if (stripMultipartForBundles) {
+  config.server = {
+    ...config.server,
+    enhanceMiddleware: (middleware, server) => {
+      const enhancedMiddleware = defaultEnhanceMiddleware
+        ? defaultEnhanceMiddleware(middleware, server)
+        : middleware;
 
-    return (req, res, next) => {
-      if (req.url?.includes('.bundle')) {
-        const accept = req.headers.accept;
-        if (typeof accept === 'string' && accept.includes('multipart/mixed')) {
-          const nextAccept = accept
-            .split(',')
-            .map((value) => value.trim())
-            .filter((value) => value !== 'multipart/mixed')
-            .join(', ');
+      return (req, res, next) => {
+        if (req.url?.includes('.bundle')) {
+          const accept = req.headers.accept;
+          if (typeof accept === 'string' && accept.includes('multipart/mixed')) {
+            const nextAccept = accept
+              .split(',')
+              .map((value) => value.trim())
+              .filter((value) => value !== 'multipart/mixed')
+              .join(', ');
 
-          req.headers.accept = nextAccept || '*/*';
+            req.headers.accept = nextAccept || '*/*';
+          }
         }
-      }
 
-      return enhancedMiddleware(req, res, next);
-    };
-  },
-};
+        return enhancedMiddleware(req, res, next);
+      };
+    },
+  };
+}
 
 const defaultResolveRequest = config.resolver.resolveRequest;
 const routerContextPath = path.join(__dirname, 'router.ctx.js');

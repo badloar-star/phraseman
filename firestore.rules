@@ -1184,7 +1184,7 @@ service cloud.firestore {
         && request.resource.data.context is string
         && request.resource.data.context.size() <= 40
         && (request.resource.data.plan == null || request.resource.data.plan in ['monthly', 'yearly'])
-        && (request.resource.data.obColor == null || request.resource.data.obColor in ['blue', 'green'])
+        && (request.resource.data.obColor == null || request.resource.data.obColor in ['blue', 'green', 'main'])
         && request.resource.data.day is string
         && request.resource.data.day.size() == 10
         && (request.resource.data.ts is int || request.resource.data.ts is float)

@@ -1,5 +1,6 @@
 import type { ImageSourcePropType } from 'react-native';
 
+import { quizAssetThemeKey } from './quizzes/constants';
 import { HOME_AND_ROOMS_SKYLER_PACK } from './quiz_thematic_home_and_rooms';
 import { KITCHEN_AND_COOKING_SKYLER_PACK } from './quiz_thematic_kitchen_and_cooking';
 import {
@@ -290,13 +291,11 @@ export function themedQuizAsset<T>(
   assets: Record<string, T>,
   themeMode: string,
 ): T {
-  const alias = themeMode === 'forest'
-    ? 'forest'
-    : themeMode === 'neonGreen' || themeMode === 'neon-green'
-      ? 'neonGreen'
-      : themeMode;
+  const alias = quizAssetThemeKey(themeMode);
   const themedAsset = assets[alias];
   if (themedAsset) return themedAsset;
+  if (alias === 'forest' && assets.dark) return assets.dark;
+  if (alias === 'neonGreen' && assets['neon-green']) return assets['neon-green'];
   return assets.dark
     ?? assets.forest
     ?? assets.neonGreen

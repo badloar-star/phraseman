@@ -54,7 +54,7 @@ export interface PaywallFunnelPayload {
   variant: PaywallAbVariant;
   context: string;
   plan?: 'monthly' | 'yearly' | 'lifetime' | null;
-  obColor?: 'blue' | 'green';
+  obColor?: 'main';
 }
 
 /**
@@ -85,6 +85,15 @@ export function logPaywallFunnel(step: PaywallFunnelStep, payload: PaywallFunnel
         expireAt: new Date(ts + TTL_MS),
       });
     } catch (error) {
+      // permission-denied — ожидаемый сценарий, когда задеплоенные Firestore-правила
+      // отстают от клиента (новый context/obColor ещё не в allow-листе). Воронка
+      // чисто аналитическая и fire-and-forget — не шумим в консоль/дев-оверлей,
+      // чтобы не выглядело как поломка приложения. Прочие ошибки логируем.
+      const code = (error as { code?: string } | null)?.code;
+      const message = error instanceof Error ? error.message : String(error ?? '');
+      if (code === 'firestore/permission-denied' || message.includes('permission-denied')) {
+        return;
+      }
       DebugLogger.error('paywall_funnel:log', error, 'warning');
     }
   })();

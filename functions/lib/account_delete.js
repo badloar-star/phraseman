@@ -48,7 +48,7 @@ const ACCOUNT_DELETE_PROGRESS_LOG_DOCS = 500;
 const MAX_ID_LEN = 180;
 const ACCOUNT_DELETE_OPTIONS = {
     region: REGION,
-    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_SENSITIVE,
     timeoutSeconds: ACCOUNT_DELETE_TIMEOUT_SECONDS,
     memory: '1GiB',
     maxInstances: 20,

@@ -681,16 +681,12 @@ function DailyTaskRewardToast() {
         <View style={styles.copy}>
           <Text
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.82}
             style={[styles.title, { color: themeStyle.titleColor, fontSize: f.body }]}
           >
             {title}
           </Text>
           <Text
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.78}
             style={[styles.task, { color: themeStyle.taskColor, fontSize: f.sub }]}
           >
             {toast.taskTitle}
@@ -721,8 +717,6 @@ function DailyTaskRewardToast() {
           />
           <Text
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.78}
             style={[
               styles.claimText,
               { color: claimFg, fontSize: f.caption },

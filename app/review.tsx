@@ -56,6 +56,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useEnergy } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient } from '../constants/theme';
@@ -666,6 +668,48 @@ export default function ReviewScreen() {
     parseInt(params.requiredPhrases ?? '3', 10) || 3,
   );
 
+  // ── Энергия ────────────────────────────────────────────────────────────────
+  // Повторение (SRS) теперь тратит энергию как обычные уроки:
+  //   • при ошибке (не премиум/не безлимит) — 1 единица (сначала бонусная, см. EnergyContext);
+  //   • если на входе энергии 0 — сразу показываем модал;
+  //   • при попадании в 0 во время сессии — модал с задержкой 800 мс
+  //     (даём отрисовать «Неверно» + правильный ответ);
+  //   • при закрытии модала без пополнения — выходим из сессии.
+  // Премиум/тестер обходят списание внутри spendOne (isUnlimited).
+  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
+  const energyRef = useRef(energy);
+  const energyUnlimitedRef = useRef(energyUnlimited);
+  const bonusEnergyRef = useRef(bonusEnergy);
+  const spendOneRef = useRef(spendOne);
+  useEffect(() => { energyRef.current = energy; }, [energy]);
+  useEffect(() => { energyUnlimitedRef.current = energyUnlimited; }, [energyUnlimited]);
+  useEffect(() => { bonusEnergyRef.current = bonusEnergy; }, [bonusEnergy]);
+  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
+  /** Совпадает с spendOne(): база + подарочная очередь. */
+  const totalPlayEnergy = (): number =>
+    energyUnlimitedRef.current ? Number.POSITIVE_INFINITY : energyRef.current + bonusEnergyRef.current;
+
+  // Открываем модал только после реальной загрузки из AsyncStorage (не placeholder MAX_ENERGY).
+  useEffect(() => {
+    if (!energyReady) return;
+    if (energyUnlimited) return;
+    if (energy + bonusEnergy <= 0) setNoEnergyModalOpen(true);
+  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
+
+  useEffect(() => {
+    if (energyUnlimited || energy + bonusEnergy > 0) setNoEnergyModalOpen(false);
+  }, [energyUnlimited, energy, bonusEnergy]);
+
+  const onCloseEnergyModal = useCallback(() => {
+    setNoEnergyModalOpen(false);
+    // Закрыли модал без пополнения — выходим, иначе остаёмся без права списания.
+    if (!energyUnlimitedRef.current && energyRef.current + bonusEnergyRef.current <= 0) {
+      safeRouterBack(router);
+    }
+  }, [router]);
+
   // Данные сессии
   const [items,   setItems]   = useState<RecallItem[]>([]);
   const [index,   setIndex]   = useState(0);
@@ -918,6 +962,21 @@ export default function ReviewScreen() {
         : undefined;
       logMistake(item.phrase, item.lessonId, 'trainer', 'wrong_pick', tokenMeta, studyTarget);
       wrongPhrasesRef.current.push(tokenMeta ? { phrase: item.phrase, ...tokenMeta } : item.phrase);
+
+      // Энергия: тратим 1 единицу за ошибку (сначала бонусная, см. EnergyContext).
+      // Модал — когда суммарно нечего было тратить (попали в 0), с задержкой,
+      // чтобы успел отрисоваться красный фидбэк + правильный ответ.
+      if (!energyUnlimitedRef.current) {
+        const totalBefore = energyRef.current + bonusEnergyRef.current;
+        spendOneRef.current().then(success => {
+          if (!success) return;
+          updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }]).catch(() => {});
+          setTimeout(() => {
+            const totalAfter = energyRef.current + bonusEnergyRef.current;
+            if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
+          }, 800);
+        }).catch(() => {});
+      }
     }
     markReviewed(item.phrase, ok, tokenMeta, studyTarget).catch(() => {});
 
@@ -962,6 +1021,7 @@ export default function ReviewScreen() {
 
   const onWordBankTap = useCallback((tile: WordBankTile) => {
     if (status !== 'playing' || burning) return;
+    if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) { setNoEnergyModalOpen(true); return; }
     const item = items[index];
     if (!item) return;
     const n = tokenizeRecallPhrase(item.phrase).length;
@@ -981,6 +1041,7 @@ export default function ReviewScreen() {
 
   const onMeaningPick = useCallback((choice: string) => {
     if (status !== 'playing' || burning) return;
+    if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) { setNoEnergyModalOpen(true); return; }
     hapticTap();
     const item = items[index];
     if (!item) return;
@@ -991,6 +1052,7 @@ export default function ReviewScreen() {
 
   const onSubmitTyped = useCallback(() => {
     if (status !== 'playing' || burning || mode !== 'recall_type') return;
+    if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) { setNoEnergyModalOpen(true); return; }
     hapticTap();
     const item = items[index];
     if (!item) return;
@@ -1481,7 +1543,6 @@ export default function ReviewScreen() {
                       </Text>
                       <Text
                         style={{ color: t.textPrimary, fontSize: isPlanPracticeTask ? f.h2 : f.h1, fontWeight: '700', textAlign: 'center', lineHeight: isPlanPracticeTask ? 25 : 30 }}
-                        adjustsFontSizeToFit={isPlanPracticeTask}
                         numberOfLines={isPlanPracticeTask ? 2 : undefined}
                       >
                         {pageMode === 'meaning_match'
@@ -1570,7 +1631,6 @@ export default function ReviewScreen() {
                   >
                     <Text
                       style={{ alignSelf: 'stretch', color: on ? (t.correctText ?? '#fff') : st.color, fontSize: isPlanPracticeTask ? f.caption : f.body, fontWeight: on ? '700' : '600', textAlign: 'left', lineHeight: isPlanPracticeTask ? 18 : 22 }}
-                      adjustsFontSizeToFit={isPlanPracticeTask}
                       numberOfLines={isPlanPracticeTask ? 2 : undefined}
                     >
                       {opt}
@@ -1598,7 +1658,7 @@ export default function ReviewScreen() {
                   pl: "Wpisz odpowiedź…",
                 })}
                 placeholderTextColor={t.textGhost}
-                autoCapitalize="sentences"
+                autoCapitalize="none"
                 autoCorrect={false}
                 returnKeyType="done"
                 onSubmitEditing={onSubmitTyped}
@@ -1781,6 +1841,8 @@ export default function ReviewScreen() {
           </TouchableOpacity>
         </View>
       )}
+
+      <NoEnergyModal visible={noEnergyModalOpen} onClose={onCloseEnergyModal} />
     </SafeAreaView>
     </ScreenGradient>
   );

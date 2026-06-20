@@ -11,6 +11,7 @@ import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { getPublicDialogScenarios } from './ai_dialog_scenarios';
 import { triLang } from '../constants/i18n';
+import { safeRouterBack } from './navigation_back';
 
 /**
  * Standalone-маршрут «Диалоги» (/ai_dialog_home). Используется прямыми переходами
@@ -42,7 +43,7 @@ export default function AiDialogHome() {
                 accessibilityLabel="Назад"
                 onPress={() => {
                   hapticTap();
-                  router.back();
+                  safeRouterBack(router, '/(tabs)/home' as any);
                 }}
                 style={{
                   width: 44,
@@ -62,8 +63,6 @@ export default function AiDialogHome() {
                 <Text
                   style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.8}
                 >
                   {triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos' })}
                 </Text>

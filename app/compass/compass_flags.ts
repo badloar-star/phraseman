@@ -19,7 +19,6 @@ import {
   isCompassEnabled,
   isCompassAiVoiceEnabled,
   isCompassDeepDiveEnabled,
-  isCompassLessonInviteEnabled,
   isCompassEconomyEnabled,
   isCompassRetentionEnabled,
   isCompassTopicMapEnabled,
@@ -28,11 +27,6 @@ import {
 /** Главный рубильник: включён ли Компас вообще. Любое крыло требует этого. */
 export function compassOn(): boolean {
   return isCompassEnabled();
-}
-
-/** Крыло «Учёба»: зов в сессию в момент ошибки (плашка-приглашение). */
-export function compassLessonInviteOn(): boolean {
-  return compassOn() && isCompassLessonInviteEnabled();
 }
 
 /** Крыло «Учёба»: дни-погружения (Компас зовёт в сессию за глубиной). */

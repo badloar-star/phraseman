@@ -35,10 +35,11 @@ describe('personal plan home route card layout', () => {
     expect(source).not.toContain('chevron-forward');
   });
 
-  it('uses plan-specific route art as a premium background, not only an icon watermark', () => {
-    expect(source).toContain("getPersonalPlanTaskVisualAsset('route_phrase', snapshot.planId)");
-    expect(source).toContain('styles.heroImageBackdrop');
-    expect(source).toContain('styles.heroImage');
-    expect(source).not.toContain('styles.heroImagePlate');
+  it('does not place generated route task art inside the compact home card', () => {
+    expect(source).not.toContain('getPersonalPlanTaskVisualAsset');
+    expect(source).not.toContain('styles.heroImageBackdrop');
+    expect(source).not.toContain('styles.heroImage');
+    expect(source).not.toContain('contentFit="contain"');
+    expect(source).not.toContain('contentFit="cover"');
   });
 });

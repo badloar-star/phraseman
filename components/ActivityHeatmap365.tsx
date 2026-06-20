@@ -151,6 +151,26 @@ function formatDay(dateKey: string): string {
   return `${d}.${m}.${y}`;
 }
 
+// Короткие названия дней недели (Пн..Вс) для шапки помесячного календаря.
+function weekdayShorts(lang: ActivityMonthLang): string[] {
+  const ru = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  const uk = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'];
+  const es = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
+  const ptBR = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+  const vi = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+  const id = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+  const tr = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+  const pl = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So', 'Nd'];
+  if (lang === 'uk') return uk;
+  if (lang === 'es') return es;
+  if (lang === 'pt-BR') return ptBR;
+  if (lang === 'vi') return vi;
+  if (lang === 'id') return id;
+  if (lang === 'tr') return tr;
+  if (lang === 'pl') return pl;
+  return ru;
+}
+
 function activeDaysLabel(days: number, lang: Lang): string {
   const n = Math.max(0, Math.floor(days));
   if (lang === 'es') return `${n} ${n === 1 ? 'día activo' : 'días activos'}`;
@@ -576,6 +596,9 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
   const [selectedDay, setSelectedDay] = useState<Activity365Day | null>(null);
   const [reportOpen, setReportOpen] = useState(false);
   const [gridInnerW, setGridInnerW] = useState(0);
+  // Развёрнутый вид карты — помесячно с листанием (крупные ячейки, легко попасть пальцем).
+  // monthOffset: 0 = текущий месяц, отрицательные значения — назад в прошлое.
+  const [monthOffset, setMonthOffset] = useState(0);
   const revealAnim = useRef(new Animated.Value(0)).current;
 
   const heatmapAccent = isGoldTheme ? undefined : statsAccent(themeMode, 'activity');
@@ -586,7 +609,7 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
     return computeYearGrid(w, CELL_GAP);
   }, [gridInnerW, screenW]);
 
-  const { cellSize, height: gridHeight, width: gridWidth } = yearGrid;
+  const { cellSize } = yearGrid;
   const previewCols = 73;
   const previewRows = Math.ceil(WINDOW_DAYS / previewCols);
   const previewGap = 1;
@@ -594,6 +617,53 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
   const previewCell = Math.max(2.5, Math.min(5, (previewWidth - (previewCols - 1) * previewGap) / previewCols));
   const previewHeight = previewRows * previewCell + (previewRows - 1) * previewGap;
   const legendApprox = Math.max(7, Math.min(10, Math.round(cellSize)));
+
+  // ── Помесячная карта (развёрнутый вид): дни сгруппированы по "YYYY-MM" ──
+  const daysByMonth = useMemo(() => {
+    const map = new Map<string, Activity365Day[]>();
+    for (const d of days) {
+      const key = d.date.slice(0, 7); // YYYY-MM
+      const bucket = map.get(key);
+      if (bucket) bucket.push(d); else map.set(key, [d]);
+    }
+    return map;
+  }, [days]);
+
+  // Список месяцев, в которых реально есть дни из окна 365 (по возрастанию), плюс всегда текущий.
+  const monthKeys = useMemo(() => {
+    const keys = Array.from(daysByMonth.keys()).sort();
+    return keys;
+  }, [daysByMonth]);
+
+  // monthOffset=0 — последний (текущий) месяц; чем меньше, тем дальше в прошлое.
+  const activeMonthKey = monthKeys.length
+    ? monthKeys[Math.max(0, Math.min(monthKeys.length - 1, monthKeys.length - 1 + monthOffset))]!
+    : null;
+  const canGoPrevMonth = monthKeys.length > 0 && (monthKeys.length - 1 + monthOffset) > 0;
+  const canGoNextMonth = monthOffset < 0;
+
+  // Сетка выбранного месяца: 7 колонок (Пн–Вс), ведущие пустышки до первого дня.
+  const monthGrid = useMemo(() => {
+    if (!activeMonthKey) return { year: 0, month: 0, cells: [] as ({ day: Activity365Day | null })[] };
+    const [yy, mm] = activeMonthKey.split('-').map((x) => parseInt(x, 10));
+    const monthDays = (daysByMonth.get(activeMonthKey) ?? []).slice().sort((a, b) => a.date.localeCompare(b.date));
+    const byDayNum = new Map<number, Activity365Day>();
+    for (const d of monthDays) byDayNum.set(parseInt(d.date.slice(8, 10), 10), d);
+    const daysInMonth = new Date(yy, mm, 0).getDate(); // последний день месяца
+    // День недели 1-го числа: переводим Вс(0)..Сб(6) → Пн(0)..Вс(6)
+    const jsFirstDow = new Date(yy, mm - 1, 1).getDay();
+    const leadBlanks = (jsFirstDow + 6) % 7;
+    const cells: ({ day: Activity365Day | null })[] = [];
+    for (let i = 0; i < leadBlanks; i++) cells.push({ day: null });
+    for (let dn = 1; dn <= daysInMonth; dn++) cells.push({ day: byDayNum.get(dn) ?? null });
+    return { year: yy, month: mm, cells };
+  }, [activeMonthKey, daysByMonth]);
+
+  // Размер ячейки месяца: вписываем 7 колонок в доступную ширину, крупно (минимум 40px — удобно пальцу).
+  const monthInnerW = gridInnerW > 8 ? gridInnerW : Math.max(220, Math.round(screenW - 64));
+  const MONTH_COLS = 7;
+  const MONTH_CELL_GAP = 6;
+  const monthCell = Math.max(40, Math.floor((monthInnerW - (MONTH_COLS - 1) * MONTH_CELL_GAP) / MONTH_COLS));
 
   const onGridLayout = useCallback((e: LayoutChangeEvent) => {
     const w = Math.max(0, e.nativeEvent.layout.width - 16);
@@ -813,56 +883,127 @@ function ActivityHeatmap365({ hideNextStep = false }: { hideNextStep?: boolean }
         </View>
       ) : null}
 
-      <TouchableOpacity
-        testID={expanded ? 'activity-365-map-expanded' : 'activity-365-map-collapsed'}
-        activeOpacity={expanded ? 1 : 0.92}
-        onPress={() => setExpanded(true)}
-        style={[styles.mapShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: activityHairline }]}
-        onLayout={onGridLayout}
-      >
+      {expanded ? (
         <View
-          style={{
-            width: expanded ? gridWidth : previewCols * previewCell + (previewCols - 1) * previewGap,
-            height: expanded ? gridHeight : previewHeight,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: expanded ? CELL_GAP : previewGap,
-            alignSelf: 'center',
-          }}
+          testID="activity-365-map-expanded"
+          style={[styles.mapShell, styles.monthShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: activityHairline }]}
+          onLayout={onGridLayout}
         >
-          {(() => {
-            const size = expanded ? cellSize : previewCell;
-            const rounded = expanded ? Math.max(2, Math.min(3, size * 0.32)) : Math.max(0.75, size * 0.25);
-            const cellBase = { width: size, height: size, borderRadius: rounded };
-            return days.slice(0, WINDOW_DAYS).map((day, idx) => {
-              const level = expanded ? levelForFilter(days, day, filter) : day.level;
-              const cellStyle = [
-                cellBase,
-                {
-                  backgroundColor: levelColor(level, heatPalette),
-                  borderColor: level <= 0 ? t.border : 'transparent',
-                  borderWidth: expanded && level <= 0 ? StyleSheet.hairlineWidth : 0,
-                },
-              ];
-              if (!expanded) {
-                // Preview mode: plain View — avoids 365 touch responders on the JS thread
-                return <View key={`${day.date}-${idx}`} style={cellStyle} />;
+          {/* Шапка месяца со стрелками переключения */}
+          <View style={styles.monthHeader}>
+            <TouchableOpacity
+              testID="activity-365-month-prev"
+              activeOpacity={0.7}
+              disabled={!canGoPrevMonth}
+              onPress={() => setMonthOffset((o) => o - 1)}
+              style={[styles.monthArrow, { borderColor: activityHairline, opacity: canGoPrevMonth ? 1 : 0.32 }]}
+              hitSlop={8}
+            >
+              <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+            </TouchableOpacity>
+            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+              {monthGrid.month ? `${monthName(monthGrid.month, lang)} ${monthGrid.year}` : '-'}
+            </Text>
+            <TouchableOpacity
+              testID="activity-365-month-next"
+              activeOpacity={0.7}
+              disabled={!canGoNextMonth}
+              onPress={() => setMonthOffset((o) => Math.min(0, o + 1))}
+              style={[styles.monthArrow, { borderColor: activityHairline, opacity: canGoNextMonth ? 1 : 0.32 }]}
+              hitSlop={8}
+            >
+              <Ionicons name="chevron-forward" size={20} color={t.textPrimary} />
+            </TouchableOpacity>
+          </View>
+
+          {/* Шапка дней недели */}
+          <View style={[styles.weekdayRow, { width: MONTH_COLS * monthCell + (MONTH_COLS - 1) * MONTH_CELL_GAP }]}>
+            {weekdayShorts(lang).map((w, i) => (
+              <Text key={`${w}-${i}`} style={{ width: monthCell, textAlign: 'center', color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>
+                {w}
+              </Text>
+            ))}
+          </View>
+
+          {/* Сетка месяца 7 колонок, крупные попадаемые ячейки-дни */}
+          <View
+            style={{
+              width: MONTH_COLS * monthCell + (MONTH_COLS - 1) * MONTH_CELL_GAP,
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: MONTH_CELL_GAP,
+              alignSelf: 'center',
+            }}
+          >
+            {monthGrid.cells.map((cell, idx) => {
+              if (!cell.day) {
+                return <View key={`blank-${idx}`} style={{ width: monthCell, height: monthCell }} />;
               }
+              const day = cell.day;
+              const level = levelForFilter(days, day, filter);
+              const dayNum = parseInt(day.date.slice(8, 10), 10);
+              const isFuture = day.future;
+              const bg = isFuture ? 'transparent' : levelColor(level, heatPalette);
+              const textColor = level >= 3 && !isFuture ? t.correctText : isFuture ? t.textGhost : t.textPrimary;
               return (
                 <TouchableOpacity
                   key={`${day.date}-${idx}`}
                   testID={`activity-365-day-${day.date}`}
                   activeOpacity={0.7}
+                  disabled={isFuture}
                   onPress={() => setSelectedDay(day)}
-                  style={cellStyle}
+                  style={{
+                    width: monthCell,
+                    height: monthCell,
+                    borderRadius: Math.max(8, monthCell * 0.24),
+                    backgroundColor: bg,
+                    borderColor: level <= 0 ? activityHairline : 'transparent',
+                    borderWidth: level <= 0 ? StyleSheet.hairlineWidth : 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
                   accessibilityRole="button"
                   accessibilityLabel={day.date}
-                />
+                >
+                  <Text style={{ color: textColor, fontSize: f.caption, fontWeight: '800' }}>{dayNum}</Text>
+                </TouchableOpacity>
               );
-            });
-          })()}
+            })}
+          </View>
         </View>
-      </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          testID="activity-365-map-collapsed"
+          activeOpacity={0.92}
+          onPress={() => setExpanded(true)}
+          style={[styles.mapShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: activityHairline }]}
+          onLayout={onGridLayout}
+        >
+          <View
+            style={{
+              width: previewCols * previewCell + (previewCols - 1) * previewGap,
+              height: previewHeight,
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: previewGap,
+              alignSelf: 'center',
+            }}
+          >
+            {(() => {
+              const size = previewCell;
+              const rounded = Math.max(0.75, size * 0.25);
+              const cellBase = { width: size, height: size, borderRadius: rounded };
+              return days.slice(0, WINDOW_DAYS).map((day, idx) => (
+                // Preview mode: plain View — avoids 365 touch responders on the JS thread
+                <View
+                  key={`${day.date}-${idx}`}
+                  style={[cellBase, { backgroundColor: levelColor(day.level, heatPalette) }]}
+                />
+              ));
+            })()}
+          </View>
+        </TouchableOpacity>
+      )}
 
       {/* Скрываем подсказку «что дальше», когда её уже показывает карточка
           «Баланс практики» (actionable-вариант), чтобы не дублировать нудж. */}
@@ -1154,6 +1295,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  monthShell: {
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+  },
+  monthHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignSelf: 'stretch',
+    marginBottom: 12,
+    paddingHorizontal: 2,
+  },
+  monthArrow: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    borderWidth: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  weekdayRow: {
+    flexDirection: 'row',
+    gap: 6,
+    alignSelf: 'center',
+    marginBottom: 8,
   },
   nextStepBar: {
     marginTop: 10,

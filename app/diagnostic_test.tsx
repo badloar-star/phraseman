@@ -1385,7 +1385,7 @@ export default function DiagnosticTest() {
             <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
               {s.diagnostic.prevResult}
             </Text>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={2}>
+            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={2}>
               {prevResult.level} — {diagnosticResultTitle(lang, LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 10 }}>
@@ -1479,8 +1479,6 @@ export default function DiagnosticTest() {
           <Text
             style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}
             numberOfLines={2}
-            adjustsFontSizeToFit
-            minimumFontScale={0.85}
           >
             {s.diagnostic.startTest}
           </Text>
@@ -1516,7 +1514,7 @@ export default function DiagnosticTest() {
             {s.diagnostic.currentEnglishLevelTitle}
           </Text>
           {prevResult ? (
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700', marginTop: 12, lineHeight: 26 }} adjustsFontSizeToFit numberOfLines={3}>
+            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700', marginTop: 12, lineHeight: 26 }} numberOfLines={3}>
               {prevResult.level} — {diagnosticResultTitle(lang, LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])}
             </Text>
           ) : (
@@ -1547,7 +1545,7 @@ export default function DiagnosticTest() {
         <Text style={{ color: sx.second, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>
           {s.diagnostic.yourLevel}
         </Text>
-        <Text style={{ color: sx.primary, fontSize: f.numLg + 16, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={1}>{result.level}</Text>
+        <Text style={{ color: sx.primary, fontSize: f.numLg + 16, fontWeight: '700' }} numberOfLines={1}>{result.level}</Text>
         <Text style={{ color: sx.second, fontSize: f.h1, fontWeight: '600', marginTop: 4 }}>
           {diagnosticResultTitle(lang, result)}
         </Text>
@@ -1558,7 +1556,7 @@ export default function DiagnosticTest() {
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 6 }}>
             {s.diagnostic.correct}
           </Text>
-          <Text style={{ color: t.textPrimary, fontSize: f.numLg + 12, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={1}>{score} / {questions.length}</Text>
+          <Text style={{ color: t.textPrimary, fontSize: f.numLg + 12, fontWeight: '700' }} numberOfLines={1}>{score} / {questions.length}</Text>
           {score > 0 && (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 12, backgroundColor: t.correctBg, borderRadius: 8, paddingHorizontal: 14, paddingVertical: 8 }}>
               <Ionicons name="star" size={14} color={t.correct} />

@@ -1,13 +1,23 @@
 import {
   buildLingmanEmbedHtml,
+  LINGMAN_CHANNEL_HANDLE,
+  LINGMAN_CHANNEL_ID,
+  LINGMAN_CHANNEL_URL,
   getLingmanYoutubeUnreadCount,
   getLingmanYoutubeWatchUrl,
   getTrustedLingmanYoutubeUrl,
+  isLingmanLongFormVideo,
   LINGMAN_YOUTUBE_EMBED_BASE_URL,
   parseLingmanYoutubeFeed,
 } from '../app/lingman_youtube';
 
 describe('lingman_youtube', () => {
+  it('points the catalog feed and channel button to the PHRASEMAN English channel', () => {
+    expect(LINGMAN_CHANNEL_ID).toBe('UCNNVZbMkh4jrW6uluaaJTwA');
+    expect(LINGMAN_CHANNEL_HANDLE).toBe('@PhrasemanENGLISH');
+    expect(LINGMAN_CHANNEL_URL).toBe('https://www.youtube.com/@PhrasemanENGLISH/videos');
+  });
+
   it('parses the YouTube RSS feed entries used by the catalog', () => {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
       <feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
@@ -41,6 +51,35 @@ describe('lingman_youtube', () => {
         viewCount: 179,
       },
     ]);
+  });
+
+  it('filters Shorts out of the catalog feed', () => {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+      <feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+        <entry>
+          <yt:videoId>longVideo1</yt:videoId>
+          <title>Long lesson</title>
+          <published>2026-06-19T14:05:20+00:00</published>
+          <updated>2026-06-19T14:12:17+00:00</updated>
+          <media:group>
+            <media:title>Long lesson</media:title>
+            <media:description>Full lesson with examples.</media:description>
+          </media:group>
+        </entry>
+        <entry>
+          <yt:videoId>shortVideo1</yt:videoId>
+          <title>Short clip</title>
+          <published>2026-06-19T13:31:12+00:00</published>
+          <updated>2026-06-19T13:48:03+00:00</updated>
+          <media:group>
+            <media:title>Short clip</media:title>
+            <media:description>Fast clip #short</media:description>
+          </media:group>
+        </entry>
+      </feed>`;
+
+    expect(parseLingmanYoutubeFeed(xml).map((video) => video.id)).toEqual(['longVideo1']);
+    expect(isLingmanLongFormVideo({ id: 'xdISurogEds', title: 'Any title', description: '' })).toBe(false);
   });
 
   it('builds an official YouTube embed without autoplay', () => {
@@ -84,7 +123,7 @@ describe('lingman_youtube', () => {
     expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/watch?v=X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('https://m.youtube.com/watch?v=X7L3Xg3qITo')).toBe('https://m.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('https://youtu.be/X7L3Xg3qITo')).toBe('https://youtu.be/X7L3Xg3qITo');
-    expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/@professorlingman/videos')).toBe('https://www.youtube.com/@professorlingman/videos');
+    expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/@PhrasemanENGLISH/videos')).toBe('https://www.youtube.com/@PhrasemanENGLISH/videos');
     expect(getTrustedLingmanYoutubeUrl('https://evil.example/watch?v=X7L3Xg3qITo', 'X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('javascript:alert(1)', 'X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('https://evil.example/watch?v=X7L3Xg3qITo')).toBeNull();

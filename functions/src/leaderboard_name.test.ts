@@ -202,9 +202,135 @@ describe('nameReserve — atomic uniqueness', () => {
       },
       name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
     });
-    const res: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Nova', oldName: 'Civi' }, 'auth-a');
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'settings' },
+      'auth-a',
+    );
     expect(res.status).toBe('cooldown');
     expect(res.nextChangeAt).toBe(1778209599000);
+  });
+
+  it('allows changing an onboarding draft name before the profile is completed', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+            user_total_xp: '0',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'onboarding' },
+      'auth-a',
+    );
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
+    expect(store.name_index['civi']).toBeUndefined();
+  });
+
+  it('allows changing an onboarding draft name even if progress already synced xp', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+            user_total_xp: '120',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'onboarding' },
+      'auth-a',
+    );
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
+    expect(store.name_index['civi']).toBeUndefined();
+  });
+
+  it('treats an unfinished onboarding reservation as draft even without a source flag', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: '' },
+      'auth-a',
+    );
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
+    expect(store.name_index['civi']).toBeUndefined();
+  });
+
+  it('keeps the 14-day cooldown for settings changes only', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'settings' },
+      'auth-a',
+    );
+    expect(res.status).toBe('cooldown');
+    expect(res.nextChangeAt).toBe(1778209599000);
+  });
+
+  it('still allows onboarding source to replace the profile name after onboarding was relaunched', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: {
+            user_name: 'Civi',
+            user_name_lower: 'civi',
+            nickname_changed_at: '1776999999000',
+            onboarding_done: '1',
+          },
+        },
+      },
+      name_index: { civi: { uid: 'stable-a', name: 'Civi', nameLower: 'civi' } },
+    });
+    const res: any = await callableRun(
+      nameReserve,
+      { stableId: 'stable-a', name: 'Nova', oldName: 'Civi', source: 'onboarding' },
+      'auth-a',
+    );
+    expect(res.status).toBe('ok');
+    expect(store.name_index['nova']).toMatchObject({ uid: 'stable-a', name: 'Nova', nameLower: 'nova' });
+    expect(store.name_index['civi']).toBeUndefined();
   });
 
   it('reclaims a name whose owner account is GONE (no users doc)', async () => {

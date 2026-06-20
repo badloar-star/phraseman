@@ -1,0 +1,158 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Аудит Phraseman — UX и монетизация</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<style>
+:root{--bg:#0f1115;--bg2:#1a1d24;--bg3:#13161c;--tx:#e8e6e0;--tx2:#a0a09a;--tx3:#74746e;--bd:rgba(255,255,255,.09);--bd2:rgba(255,255,255,.16);--info:#85B7EB;--radmd:8px;--radlg:12px}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);margin:0;padding:2rem 1rem;line-height:1.6}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.wrap{max-width:980px;margin:0 auto}
+.hero h1{font-size:26px;font-weight:600;margin:0 0 .5rem}
+.hero p{font-size:15px;color:var(--tx2);line-height:1.7;margin:0}
+.exec{background:var(--bg2);border-left:3px solid #534AB7;border-radius:0;padding:1rem 1.25rem;margin:1.5rem 0;font-size:14px;color:var(--tx);line-height:1.75}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:1.5rem 0}
+.mc{background:var(--bg2);border-radius:var(--radmd);padding:1rem}
+.mc .l{font-size:13px;color:var(--tx2);margin:0 0 4px}
+.mc .v{font-size:26px;font-weight:600;margin:0}
+.sec{margin:2.25rem 0 1rem}
+.sec h2{font-size:19px;font-weight:600;margin:0 0 .25rem}
+.sec p.sub{font-size:13px;color:var(--tx3);margin:0 0 1rem}
+.chart-card{background:var(--bg3);border:.5px solid var(--bd);border-radius:var(--radlg);padding:1rem 1.25rem;margin-bottom:1.25rem}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;font-size:12px;color:var(--tx2)}
+.legend span{display:flex;align-items:center;gap:5px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+.card{background:var(--bg3);border:.5px solid var(--bd);border-radius:var(--radlg);padding:.85rem 1rem;margin-bottom:10px}
+.card-h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.rank{flex:none;width:24px;height:24px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.card-t{font-size:14px;font-weight:600;flex:1}
+.sev{font-size:11px;padding:2px 8px;border-radius:var(--radmd);font-weight:600;white-space:nowrap}
+.why{font-size:13px;color:var(--tx2);line-height:1.6;margin:0 0 6px}
+.fix{font-size:13px;color:var(--info);line-height:1.6;margin:0}
+.lift{font-size:12px;color:#5DCAA5;background:rgba(29,158,117,.14);border-radius:var(--radmd);padding:4px 8px;margin:6px 0 0;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+th{text-align:left;font-weight:600;color:var(--tx2);padding:8px 6px;border-bottom:.5px solid var(--bd2);font-size:12px}
+td{padding:8px 6px;border-bottom:.5px solid var(--bd);vertical-align:top;word-wrap:break-word}
+td.num{font-weight:600;text-align:center}
+td.muted{color:var(--tx2);font-size:12px}
+.cat-tag{font-size:11px;background:var(--bg2);padding:2px 8px;border-radius:var(--radmd);color:var(--tx2)}
+.pill{font-size:11px;padding:2px 8px;border-radius:var(--radmd);font-weight:600}
+.tabs{display:flex;gap:6px;margin:1.5rem 0 1rem;flex-wrap:wrap}
+.tab{font-size:14px;padding:8px 16px;border-radius:var(--radmd);border:.5px solid var(--bd);background:transparent;cursor:pointer;color:var(--tx2)}
+.tab.active{background:var(--bg2);color:var(--tx);border-color:var(--bd2)}
+.panel{display:none}.panel.active{display:block}
+.foot{margin-top:2.5rem;padding-top:1rem;border-top:.5px solid var(--bd);font-size:12px;color:var(--tx3)}
+</style></head><body>
+<div class="wrap">
+<h2 class="sr-only">Аудит Phraseman: дашборд UX и монетизации на основе 100 ситуаций и 100 типов пользователей</h2>
+<div class="hero">
+  <h1>Аудит Phraseman — UX и монетизация</h1>
+  <p>__TOTUX__ проблем UX и __TOTMON__ проблем монетизации найдено в реальном коде по 8 зонам. Промоделировано 100 ситуаций и 100 типов пользователей. Все оценки 0–100, выше = лучше.</p>
+</div>
+<div class="exec" id="exec"></div>
+<div class="metrics">
+  <div class="mc"><p class="l">UX-ситуации (ср.)</p><p class="v">__UXSIT__</p></div>
+  <div class="mc"><p class="l">Монетизация (ср.)</p><p class="v">__MONSIT__</p></div>
+  <div class="mc"><p class="l">Удовлетв. UX</p><p class="v">__SAT__</p></div>
+  <div class="mc"><p class="l">Готовность платить</p><p class="v">__WTP__</p></div>
+  <div class="mc"><p class="l">Риск оттока</p><p class="v" style="color:#F09595">__CHURN__</p></div>
+</div>
+<div class="tabs">
+  <button class="tab active" data-tab="ux">UX / опыт</button>
+  <button class="tab" data-tab="mon">Монетизация</button>
+  <button class="tab" data-tab="users">Типы юзеров</button>
+  <button class="tab" data-tab="fix">Что чинить</button>
+</div>
+
+<div class="panel active" id="panel-ux">
+  <div class="sec"><h2>UX по зонам приложения</h2><p class="sub">Средний UX-балл 100 ситуаций, сгруппированных по разделу. Красное = боль.</p></div>
+  <div class="chart-card"><div style="position:relative;height:340px"><canvas id="uxCat" role="img" aria-label="Средний UX-балл по категориям приложения">UX по категориям</canvas></div></div>
+  <div class="sec"><h2>Серьёзность UX-проблем по зонам</h2><p class="sub">Сколько проблем какого уровня найдено в коде каждой зоны.</p></div>
+  <div class="legend"><span><span class="sw" style="background:#A32D2D"></span>критич.</span><span><span class="sw" style="background:#D85A30"></span>высок.</span><span><span class="sw" style="background:#EF9F27"></span>средн.</span><span><span class="sw" style="background:#639922"></span>низк.</span></div>
+  <div class="chart-card"><div style="position:relative;height:420px"><canvas id="uxSevZone" role="img" aria-label="Количество UX-проблем по серьёзности и зоне">UX-проблемы по зонам</canvas></div></div>
+  <div class="sec"><h2>10 худших ситуаций для пользователя</h2></div>
+  <div class="chart-card" style="padding:.5rem 1rem"><table><colgroup><col style="width:26%"><col style="width:14%"><col style="width:8%"><col style="width:8%"><col style="width:44%"></colgroup><thead><tr><th>Ситуация</th><th>Раздел</th><th>UX</th><th>Мон.</th><th>Главная боль</th></tr></thead><tbody>__WORSTROWS__</tbody></table></div>
+</div>
+
+<div class="panel" id="panel-mon">
+  <div class="sec"><h2>Монетизация по зонам</h2><p class="sub">Средний балл монетизации 100 ситуаций. Где приложение упускает деньги.</p></div>
+  <div class="chart-card"><div style="position:relative;height:340px"><canvas id="monCat" role="img" aria-label="Средний балл монетизации по категориям">Монетизация по категориям</canvas></div></div>
+  <div class="sec"><h2>Готовность платить vs риск оттока</h2><p class="sub">Каждая точка — один из 100 типов пользователей. Правый-нижний угол = золотой сегмент: платят и не уходят.</p></div>
+  <div class="legend"><span><span class="sw" style="background:#1D9E75"></span>низкий отток</span><span><span class="sw" style="background:#EF9F27"></span>средний</span><span><span class="sw" style="background:#A32D2D"></span>высокий отток</span></div>
+  <div class="chart-card"><div style="position:relative;height:380px"><canvas id="scatter" role="img" aria-label="Готовность платить против риска оттока по типам пользователей">WTP vs отток</canvas></div></div>
+  <div class="sec"><h2>Серьёзность проблем монетизации по зонам</h2></div>
+  <div class="legend"><span><span class="sw" style="background:#A32D2D"></span>критич.</span><span><span class="sw" style="background:#D85A30"></span>высок.</span><span><span class="sw" style="background:#EF9F27"></span>средн.</span><span><span class="sw" style="background:#639922"></span>низк.</span></div>
+  <div class="chart-card"><div style="position:relative;height:420px"><canvas id="monSevZone" role="img" aria-label="Количество проблем монетизации по серьёзности и зоне">Проблемы монетизации по зонам</canvas></div></div>
+</div>
+
+<div class="panel" id="panel-users">
+  <div class="sec"><h2>Сегменты пользователей: платёжеспособность</h2><p class="sub">100 типов юзеров сведены в 10 сегментов. Сортировка по готовности платить.</p></div>
+  <div class="legend"><span><span class="sw" style="background:#7F77DD"></span>готовность платить</span><span><span class="sw" style="background:#888780"></span>удовлетворённость</span><span><span class="sw" style="background:#E24B4A"></span>риск оттока</span></div>
+  <div class="chart-card"><div style="position:relative;height:480px"><canvas id="segBars" role="img" aria-label="Сравнение сегментов: готовность платить, удовлетворённость, отток">Сегменты</canvas></div></div>
+  <div class="sec"><h2>Карта сегментов</h2><p class="sub">Доля = сколько из 100 смоделированных юзеров попало в сегмент.</p></div>
+  <div class="chart-card" style="padding:.5rem 1rem"><table><colgroup><col style="width:24%"><col style="width:12%"><col style="width:22%"><col style="width:16%"><col style="width:26%"></colgroup><thead><tr><th>Сегмент</th><th>Доля</th><th>Готовность платить</th><th>Отток</th><th>Удовлетв.</th></tr></thead><tbody id="segTbody"></tbody></table></div>
+</div>
+
+<div class="panel" id="panel-fix">
+  <div class="sec"><h2>Рычаги конверсии: эффект vs усилия</h2><p class="sub">С чего начинать, чтобы поднять конверсию в премиум. Сверху — высокий эффект.</p></div>
+  <div class="chart-card" style="padding:.5rem 1rem"><table><colgroup><col style="width:30%"><col style="width:14%"><col style="width:14%"><col style="width:42%"></colgroup><thead><tr><th>Рычаг</th><th>Эффект</th><th>Усилия</th><th>Детали</th></tr></thead><tbody>__LEVERROWS__</tbody></table></div>
+  <div class="sec"><h2>Топ-__NMON__ проблем монетизации</h2></div>
+  <div class="grid2">__MONROWS__</div>
+  <div class="sec"><h2>Топ-__NUX__ проблем UX</h2></div>
+  <div class="grid2">__UXROWS__</div>
+</div>
+
+<div class="foot">Источник: мульти-агентный аудит реального кода Phraseman + моделирование 100 ситуаций и 100 типов пользователей. Оценки эвристические, для приоритизации.</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const D=__DATA__;
+document.getElementById('exec').textContent=D.execSummary;
+const grid='rgba(255,255,255,.08)',txt='#a0a09a';
+Chart.defaults.color=txt;Chart.defaults.font.family='system-ui,sans-serif';Chart.defaults.font.size=12;
+const baseOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+const scaleX={grid:{color:grid},ticks:{color:txt},min:0,max:100};
+const scaleY={grid:{display:false},ticks:{color:txt}};
+function uxColor(v){return v<55?'#D85A30':v<65?'#EF9F27':'#1D9E75';}
+function monColor(v){return v<48?'#A32D2D':v<58?'#EF9F27':'#7F77DD';}
+
+new Chart(document.getElementById('uxCat'),{type:'bar',data:{labels:D.catData.map(c=>c.cat),datasets:[{label:'UX',data:D.catData.map(c=>c.ux),backgroundColor:D.catData.map(c=>uxColor(c.ux)),borderRadius:4}]},options:{...baseOpts,indexAxis:'y',scales:{x:scaleX,y:scaleY}}});
+
+const monSorted=D.catData.slice().sort((a,b)=>a.mon-b.mon);
+new Chart(document.getElementById('monCat'),{type:'bar',data:{labels:monSorted.map(c=>c.cat),datasets:[{label:'Мон',data:monSorted.map(c=>c.mon),backgroundColor:monSorted.map(c=>monColor(c.mon)),borderRadius:4}]},options:{...baseOpts,indexAxis:'y',scales:{x:scaleX,y:scaleY}}});
+
+function sevStacked(canvasId,key){
+  const zones=D.zoneSev.map(z=>z.zone.split(' ')[0].slice(0,14));
+  const sevs=['critical','high','medium','low'];const cols={critical:'#A32D2D',high:'#D85A30',medium:'#EF9F27',low:'#639922'};
+  const ds=sevs.map(s=>({label:s,data:D.zoneSev.map(z=>z[key][s]),backgroundColor:cols[s],borderRadius:2}));
+  new Chart(document.getElementById(canvasId),{type:'bar',data:{labels:zones,datasets:ds},options:{...baseOpts,indexAxis:'y',scales:{x:{stacked:true,grid:{color:grid},ticks:{color:txt,stepSize:1}},y:{stacked:true,grid:{display:false},ticks:{color:txt}}}}});
+}
+sevStacked('uxSevZone','ux');
+sevStacked('monSevZone','mon');
+
+const scCols=D.scatter.map(p=>p.y<40?'#1D9E75':p.y<60?'#EF9F27':'#A32D2D');
+new Chart(document.getElementById('scatter'),{type:'scatter',data:{datasets:[{data:D.scatter.map(p=>({x:p.x,y:p.y})),backgroundColor:scCols,pointRadius:5,pointHoverRadius:8}]},options:{...baseOpts,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>{const p=D.scatter[c.dataIndex];return p.persona+' ('+p.seg+'): платёж '+p.x+', отток '+p.y;}}}},scales:{x:{...scaleX,title:{display:true,text:'Готовность платить →',color:txt}},y:{...scaleX,title:{display:true,text:'Риск оттока →',color:txt}}}}});
+
+new Chart(document.getElementById('segBars'),{type:'bar',data:{labels:D.segData.map(s=>s.seg),datasets:[
+  {label:'Платить',data:D.segData.map(s=>s.wtp),backgroundColor:'#7F77DD',borderRadius:3},
+  {label:'Удовл.',data:D.segData.map(s=>s.sat),backgroundColor:'#888780',borderRadius:3},
+  {label:'Отток',data:D.segData.map(s=>s.churn),backgroundColor:'#E24B4A',borderRadius:3}
+]},options:{...baseOpts,indexAxis:'y',scales:{x:scaleX,y:scaleY}}});
+
+const tb=document.getElementById('segTbody');
+D.segData.forEach(s=>{
+  const tr=document.createElement('tr');
+  const wc=s.wtp>=60?'#5DCAA5':s.wtp>=40?'#EF9F27':'#F09595';
+  const cc=s.churn>=60?'#F09595':s.churn>=45?'#EF9F27':'#5DCAA5';
+  tr.innerHTML='<td>'+s.seg+'</td><td class="muted">'+s.n+'%</td><td style="font-weight:600;color:'+wc+'">'+s.wtp+'</td><td style="font-weight:600;color:'+cc+'">'+s.churn+'</td><td class="muted">'+s.sat+'</td>';
+  tb.appendChild(tr);
+});
+
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+}));
+</script></body></html>

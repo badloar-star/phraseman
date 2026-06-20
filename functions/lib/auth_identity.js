@@ -33,10 +33,13 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authEnsureStableLink = void 0;
+exports.authStampAnonOwnership = exports.ANON_MERGE_CLAIM_TTL_MS = exports.authEnsureStableLink = void 0;
+exports.describeAppCheckHeader = describeAppCheckHeader;
+exports.ensureAuthLinkDoc = ensureAuthLinkDoc;
 exports.linkStableAuthUid = linkStableAuthUid;
 exports.cleanupLegacyAuthIdentityDuplicates = cleanupLegacyAuthIdentityDuplicates;
 exports.resolveStableUidForAuth = resolveStableUidForAuth;
+exports.readAnonMergeClaim = readAnonMergeClaim;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
@@ -105,13 +108,39 @@ async function assertStableOwner(db, authUid, stableId, options) {
         : '';
     if (linkedAuthUid === authUid)
         return;
-    if (options?.allowProviderRelink === true && !linkedStableId && !linkedAuthUid) {
+    // Переустановка приложения пересоздаёт анонимный Firebase uid, но stable_id
+    // остаётся в Keychain/AsyncStorage. Разрешаем перепривязать анонимный uid к тому
+    // же stable_id, если: (а) аккаунт не имеет provider-привязки (чисто анонимный),
+    // (б) новый uid ещё не занят другим stable_id, (в) явно запрошен allowAnonRelink.
+    if ((options?.allowAnonRelink === true || options?.allowProviderRelink === true) && !linkedStableId && !linkedAuthUid) {
         const existingByAuth = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get().catch(() => null);
         const existingStableId = String(existingByAuth?.docs?.[0]?.id ?? '').trim();
         if (!existingStableId || existingStableId === stableId)
             return;
     }
     throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+}
+/**
+ * Гарантирует auth_links/{authUid}.stable_id === stableId.
+ *
+ * Раньше auth_links писался ТОЛЬКО на провайдер-входе (Google/Apple), поэтому у
+ * анонимного юзера документа не было — а callable, читающие auth_links
+ * (referralEnsureMyCode → assertAuthStableLink, friend_codes, premium_status),
+ * падали с LINK_ACCOUNT_REQUIRED. Из-за этого реф-код не выдавался анонимам.
+ *
+ * НАМЕРЕННО отдельно от linkStableAuthUid: та зовётся внутри account-merge для
+ * КАЖДОГО кандидата ДО выбора победителя, и запись auth_links там отравила бы
+ * проверку владения (assertStableOwner читает auth_links) второго кандидата.
+ * Зовётся только из authEnsureStableLink callable, где authUid изолирован.
+ * merge'ом — чтобы не затирать provider/email существующего провайдерского линка.
+ */
+async function ensureAuthLinkDoc(db, authUid, stableId) {
+    const linkRef = db.collection(AUTH_LINKS).doc(authUid);
+    const linkSnap = await linkRef.get().catch(() => null);
+    const currentLinkStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
+    if (!linkSnap?.exists || currentLinkStableId !== stableId) {
+        await linkRef.set({ stable_id: stableId, updatedAt: Date.now() }, { merge: true });
+    }
 }
 async function linkStableAuthUid(db, stableId, authUid) {
     const now = Date.now();
@@ -496,7 +525,69 @@ exports.authEnsureStableLink = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
     const stableId = normalizeStableId(request.data?.stableId);
     const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
     const allowProviderRelink = signInProvider.length > 0 && signInProvider !== 'anonymous';
-    const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink });
+    const allowAnonRelink = !allowProviderRelink;
+    const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink, allowAnonRelink });
+    // Достраиваем auth_links/{authUid} (см. ensureAuthLinkDoc) — без этого реф-код и
+    // прочие auth_links-зависимые callable падают у анонимного юзера. Best-effort.
+    await ensureAuthLinkDoc(db, authUid, stableUid).catch((e) => {
+        console.warn(JSON.stringify({
+            event: 'auth_link_ensure_failed',
+            authUid,
+            message: String(e?.message ?? e).slice(0, 160),
+        }));
+    });
     return { ok: true, stableUid, authUid };
+});
+// ── Anonymous-ownership claim (closes #11 safely) ────────────────────────────
+// Перед входом через Google/Apple клиент (ещё анонимный) ставит на свой
+// users/{localStableId} короткоживущую метку anon_merge_claim. После входа
+// authMergeStableAccounts (под новым provider uid) поглощает локальный анонимный
+// аккаунт ТОЛЬКО при наличии этой свежей метки — что доказывает «то же устройство,
+// что держало анонимный аккаунт, прямо сейчас делает merge». Атакующий с утёкшим
+// чужим stable_id метку поставить НЕ может (нет анонимного токена жертвы), поэтому
+// чужой аккаунт поглотить нельзя. Метка пишется только владельцем дока.
+exports.ANON_MERGE_CLAIM_TTL_MS = 10 * 60 * 1000;
+function readAnonMergeClaim(userData, now, ttlMs = exports.ANON_MERGE_CLAIM_TTL_MS) {
+    const claim = (userData ?? {}).anon_merge_claim;
+    if (!claim || typeof claim !== 'object')
+        return null;
+    const authUid = String(claim.authUid ?? '').trim();
+    const at = Number(claim.at);
+    if (!authUid || !Number.isFinite(at) || at <= 0)
+        return null;
+    if (now - at > ttlMs)
+        return null; // stale → not a valid proof
+    return { authUid };
+}
+exports.authStampAnonOwnership = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    if (!request.app) {
+        // App Check warm-up (H9): see whether clients attach a valid attestation token
+        // BEFORE enforcing. Не энфорсим здесь — только наблюдаем форму заголовка.
+        console.warn(JSON.stringify({
+            event: 'app_check_header_shape',
+            function: 'authStampAnonOwnership',
+            header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
+        }));
+    }
+    const db = admin.firestore();
+    const authUid = request.auth.uid;
+    const stableId = normalizeStableId(request.data?.stableId);
+    if (!stableId || stableId.length > 160) {
+        throw new https_1.HttpsError('invalid-argument', 'stable_id_required');
+    }
+    // Метку можно ставить ТОЛЬКО на собственный анонимный аккаунт: либо
+    // stableId == authUid (legacy), либо users/{stableId}.firebaseAuthUid == authUid.
+    // Иначе кто угодно мог бы «застолбить» чужой stableId под слияние.
+    const userRef = db.collection(USERS).doc(stableId);
+    const userSnap = await userRef.get().catch(() => null);
+    const ownerAuthUid = String(userSnap?.data()?.firebaseAuthUid ?? '').trim();
+    if (stableId !== authUid && ownerAuthUid && ownerAuthUid !== authUid) {
+        throw new https_1.HttpsError('permission-denied', 'not_owner');
+    }
+    const now = Date.now();
+    await userRef.set({ anon_merge_claim: { authUid, at: now }, updatedAt: now }, { merge: true });
+    return { ok: true };
 });
 //# sourceMappingURL=auth_identity.js.map

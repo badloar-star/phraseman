@@ -35,14 +35,18 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.advanceStuckQuestionSessions = advanceStuckQuestionSessions;
 exports.cleanupStaleArenaSessions = cleanupStaleArenaSessions;
+exports.cleanupExpiredArenaRooms = cleanupExpiredArenaRooms;
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
 /** Нормальный матч короче; после этого порога считаем сессию брошенной. */
 const STALE_ACTIVE_SESSION_MS = 2 * 60 * 60 * 1000;
 /**
  * Запас на acceptance, если expireStaleAcceptanceSessions не отработал (битый дедлайн и т.п.).
+ * ARENA-003: было 30 мин — игрок с обрывом сети на экране принятия молча ждал полчаса, занимая
+ * слот очереди. Снижено до 5 мин (совпадает с частотой matchmakingCron), чтобы окно ущерба совпадало
+ * с обычным watchdog зависших вопросов.
  */
-const STALE_ACCEPTANCE_FALLBACK_MS = 30 * 60 * 1000;
+const STALE_ACCEPTANCE_FALLBACK_MS = 5 * 60 * 1000;
 const ACTIVE_IN_PROGRESS_STATES = ['get_ready', 'countdown', 'question', 'reveal'];
 /**
  * Запас поверх questionTimeoutMs, прежде чем серверный watchdog форсирует таймаут
@@ -171,5 +175,32 @@ async function cleanupStaleArenaSessions() {
         console.error('cleanupStaleArenaSessions: acceptance query failed', e);
     }
     return nAborted;
+}
+/**
+ * Deletes expired arena_rooms_live documents. Rooms get expiresAt=+24h on
+ * creation and are rejected on join once expired, but stale docs accumulate
+ * without a cleanup pass. Runs in matchmakingCron (every 5 min) to bound
+ * collection growth. (ARENA-006)
+ */
+async function cleanupExpiredArenaRooms() {
+    const now = Date.now();
+    let nDeleted = 0;
+    try {
+        const snap = await db
+            .collection('arena_rooms_live')
+            .where('expiresAt', '<', now)
+            .limit(100)
+            .get();
+        const writer = db.bulkWriter();
+        for (const doc of snap.docs) {
+            writer.delete(doc.ref);
+            nDeleted += 1;
+        }
+        await writer.close();
+    }
+    catch (e) {
+        console.error('cleanupExpiredArenaRooms', e);
+    }
+    return nDeleted;
 }
 //# sourceMappingURL=arena_cleanup.js.map

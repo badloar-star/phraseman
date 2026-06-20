@@ -37,6 +37,7 @@ exports.arenaRoomChatSend = exports.arenaRoomClose = exports.arenaRoomKick = exp
 const admin = __importStar(require("firebase-admin"));
 const crypto = __importStar(require("node:crypto"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const ROOM_TTL_MS = 24 * 60 * 60 * 1000;
 const ROOM_IDLE_TTL_MS = 2 * 60 * 60 * 1000; // 2ч без активности → авто-закрытие
@@ -143,7 +144,15 @@ async function fetchRoomQuestions(db) {
         col.where('level', '==', 'A1').where('rand', '>=', pivot).orderBy('rand').limit(QUESTIONS_PER_ROOM * 3).get().catch(() => null),
         col.where('level', '==', 'A1').where('rand', '<', pivot).orderBy('rand').limit(QUESTIONS_PER_ROOM * 3).get().catch(() => null),
     ]);
-    const docs = [...(snapA?.docs ?? []), ...(snapB?.docs ?? [])];
+    let docs = [...(snapA?.docs ?? []), ...(snapB?.docs ?? [])];
+    // Страховка: A1 исторически без поля `rand` → rand-запрос возвращал 0 и комната
+    // падала в FALLBACK_ROOM_QUESTIONS (3 вопроса по кругу). Добираем простым
+    // запросом по level. Backfill rand (scripts/backfill_rand_a1_firestore.mjs) чинит причину.
+    if (docs.length < QUESTIONS_PER_ROOM) {
+        const plain = await col.where('level', '==', 'A1').limit(QUESTIONS_PER_ROOM * 3).get().catch(() => null);
+        const seen = new Set(docs.map((d) => d.id));
+        docs = [...docs, ...((plain?.docs ?? []).filter((d) => !seen.has(d.id)))];
+    }
     const questions = docs
         .map((doc) => normalizeQuestion(doc.data(), doc.id))
         .filter(Boolean)
@@ -151,7 +160,7 @@ async function fetchRoomQuestions(db) {
         .slice(0, QUESTIONS_PER_ROOM);
     return questions.length > 0 ? questions : FALLBACK_ROOM_QUESTIONS;
 }
-exports.arenaRoomCreate = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomCreate = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -189,7 +198,7 @@ exports.arenaRoomCreate = (0, https_1.onCall)({ region: REGION }, async (request
     }
     throw new https_1.HttpsError('resource-exhausted', 'room_code_collision');
 });
-exports.arenaRoomRecordRun = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomRecordRun = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -236,7 +245,7 @@ exports.arenaRoomRecordRun = (0, https_1.onCall)({ region: REGION }, async (requ
         return { ok: true, score };
     });
 });
-exports.arenaPulsePublish = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaPulsePublish = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -276,7 +285,7 @@ async function getRoomOrThrow(db, code) {
     return { ref: snap.ref, room };
 }
 // ─── arenaRoomJoin — войти в комнату ─────────────────────────────────────────
-exports.arenaRoomJoin = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomJoin = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -291,30 +300,38 @@ exports.arenaRoomJoin = (0, https_1.onCall)({ region: REGION }, async (request) 
     const { ref: roomRef, room } = await getRoomOrThrow(db, code);
     const membersRef = db.collection('arena_room_members');
     const memberRef = membersRef.doc(`${code}_${authUid}`);
-    // Проверяем количество участников
-    const countSnap = await membersRef.where('code', '==', code).where('active', '==', true).count().get();
-    const activeMemberCount = countSnap.data().count;
-    if (activeMemberCount >= MAX_ROOM_MEMBERS)
-        throw new https_1.HttpsError('resource-exhausted', 'room_full');
     const now = Date.now();
-    await memberRef.set({
-        code,
-        authUid,
-        stableUid,
-        userName,
-        userAvatar,
-        isHost: room.ownerUid === authUid,
-        ready: false,
-        active: true,
-        joinedAt: now,
-        updatedAt: now,
-    }, { merge: true });
-    // Обновляем updatedAt на комнате (для idle TTL)
-    await roomRef.set({ updatedAt: now, memberCount: admin.firestore.FieldValue.increment(0) }, { merge: true });
+    await db.runTransaction(async (tx) => {
+        // Re-read member doc inside transaction to prevent double-join races.
+        const existingSnap = await tx.get(memberRef);
+        if (existingSnap.exists && existingSnap.data()?.active === true) {
+            // Already active member — idempotent: refresh updatedAt only.
+            tx.set(memberRef, { updatedAt: now }, { merge: true });
+            return;
+        }
+        // Count active members only when we are actually about to add a new one.
+        const countSnap = await membersRef.where('code', '==', code).where('active', '==', true).count().get();
+        if (countSnap.data().count >= MAX_ROOM_MEMBERS) {
+            throw new https_1.HttpsError('resource-exhausted', 'room_full');
+        }
+        tx.set(memberRef, {
+            code,
+            authUid,
+            stableUid,
+            userName,
+            userAvatar,
+            isHost: room.ownerUid === authUid,
+            ready: false,
+            active: true,
+            joinedAt: existingSnap.exists ? (existingSnap.data()?.joinedAt ?? now) : now,
+            updatedAt: now,
+        }, { merge: true });
+        tx.set(roomRef, { updatedAt: now }, { merge: true });
+    });
     return { ok: true };
 });
 // ─── arenaRoomLeave — выйти из комнаты ───────────────────────────────────────
-exports.arenaRoomLeave = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomLeave = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -327,7 +344,7 @@ exports.arenaRoomLeave = (0, https_1.onCall)({ region: REGION }, async (request)
     return { ok: true };
 });
 // ─── arenaRoomSetReady — переключить готовность ──────────────────────────────
-exports.arenaRoomSetReady = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomSetReady = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -345,7 +362,7 @@ exports.arenaRoomSetReady = (0, https_1.onCall)({ region: REGION }, async (reque
     return { ok: true, ready };
 });
 // ─── arenaRoomKick — кикнуть участника (только хост) ────────────────────────
-exports.arenaRoomKick = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomKick = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -364,7 +381,7 @@ exports.arenaRoomKick = (0, https_1.onCall)({ region: REGION }, async (request) 
     return { ok: true };
 });
 // ─── arenaRoomClose — закрыть комнату (только хост) ─────────────────────────
-exports.arenaRoomClose = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomClose = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
@@ -387,7 +404,7 @@ exports.arenaRoomClose = (0, https_1.onCall)({ region: REGION }, async (request)
     return { ok: true };
 });
 // ─── arenaRoomChatSend — отправить сообщение в чат комнаты ──────────────────
-exports.arenaRoomChatSend = (0, https_1.onCall)({ region: REGION }, async (request) => {
+exports.arenaRoomChatSend = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();

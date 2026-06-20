@@ -135,6 +135,34 @@ export function resolvePhraseMistakeToken(
   return undefined;
 }
 
+export interface MistakeDiffPair {
+  expected: string;
+  picked: string;
+}
+
+/**
+ * EVERY mismatched word pair between the correct phrase and the learner's answer —
+ * not just the first. Feeds the AI breakdown so it can explain the WHOLE error.
+ * Pairs are aligned by position; trailing extra/missing words are reported with ∅.
+ */
+export function resolveAllMistakeTokens(
+  expectedPhrase: string,
+  actualPhrase?: string | null,
+): MistakeDiffPair[] {
+  const expectedTokens = splitPhrase(expectedPhrase);
+  const actualTokens = splitPhrase(actualPhrase ?? '');
+  const len = Math.max(expectedTokens.length, actualTokens.length);
+  const pairs: MistakeDiffPair[] = [];
+  for (let i = 0; i < len; i += 1) {
+    const expected = expectedTokens[i] ?? '';
+    const picked = actualTokens[i] ?? '';
+    if (!sameToken(expected, picked)) {
+      pairs.push({ expected, picked });
+    }
+  }
+  return pairs;
+}
+
 export function resolveChoiceMistakeToken(
   expectedPhrase: string,
   actualPhrase?: string | null,

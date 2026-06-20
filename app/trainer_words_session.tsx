@@ -40,6 +40,7 @@ import {
 import { safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
+import { isFeatureFreeForEveryone } from './feature_gates';
 import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -263,7 +264,8 @@ export default function TrainerWordsSession() {
         }
         const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
         if (cancelled) return;
-        if (!allowed) {
+        // «Пульт»: если режимы тренера переведены в «Фри» — дневной лимит снят для всех.
+        if (!allowed && !isFeatureFreeForEveryone('trainer_modes')) {
           logTrainerDirectGateBlocked('/trainer_words_session');
           router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
           return;

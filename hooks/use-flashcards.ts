@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import {
   flashcardsSavedKey,
   storageStudyTarget,
@@ -178,8 +179,11 @@ export const addFlashcard = async (
     const duplicate = cards.some(c => c.en.trim().toLowerCase() === normalizedEn);
     if (duplicate) return 'duplicate';
 
+    // «Пульт»: если карточки переведены в «Фри» — лимит снят, замок не показываем.
     const isPremium = await getVerifiedPremiumStatus();
-    if (!isPremium && cards.length >= FREE_FLASHCARD_LIMIT) return 'limit_reached';
+    if (!isPremium && !isFeatureFreeForEveryone('flashcards') && cards.length >= FREE_FLASHCARD_LIMIT) {
+      return 'limit_reached';
+    }
 
     const id = `${card.source}_${normalizedEn.replace(/\s+/g, '_').slice(0, 40)}_${Date.now()}`;
     const newCard: Flashcard = { ...card, id, addedAt: Date.now(), studyTarget: target };

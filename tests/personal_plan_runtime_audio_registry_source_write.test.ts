@@ -5,8 +5,15 @@ describe('personal plan runtime audio registry source write', () => {
   it('loads approved runtime audio assets from source without test-only registration', () => {
     const assets = getPlanAudioAssetsForRuntime();
 
-    expect(assets).toHaveLength(48);
+    // Every runtime listen-audio asset maps to EXACTLY ONE content unit (1 mp3 = 1
+    // phrase). The previous registry packed many days onto a single mp3 via a
+    // bloated contentUnitIds list, which made the "На слух" exercise play the wrong
+    // sentence on ~98% of days. Guard against that regression returning.
+    expect(assets.length).toBeGreaterThan(2000);
     expect(assets.every((asset) => asset.status === 'approved' && asset.finalAssetReady === true)).toBe(true);
+    expect(assets.every((asset) => asset.contentUnitIds.length === 1)).toBe(true);
+    const contentUnitIds = assets.map((asset) => asset.contentUnitIds[0]);
+    expect(new Set(contentUnitIds).size).toBe(contentUnitIds.length);
 
     const [item] = getPersonalPlanListenChooseItems({
       lessonId: 'voyazh_d001_content_unit',

@@ -118,10 +118,10 @@ describe('personal plan listening playback contract', () => {
 
   it('resolves bundled personal plan runtime mp3 paths to Expo asset modules', () => {
     expect(buildPlanListeningPlaybackSource(item({
-      audioUri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-1.mp3',
+      audioUri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d001-content-unit-phrase-1.mp3',
     }))).toEqual(expect.objectContaining({
       source: 'in_app_audio',
-      uri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-1.mp3',
+      uri: 'assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d001-content-unit-phrase-1.mp3',
       playerSource: { assetId: expect.anything() },
       issues: [],
     }));

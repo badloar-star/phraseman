@@ -489,6 +489,43 @@ describe('heisenberg localization pipeline core', () => {
     expect(report.isolationPolicy.join(' ')).not.toContain('planned/disabled');
   });
 
+  it('keeps regional existing-locale coverage keyed by canonical locale', () => {
+    const inventory = {
+      totals: {
+        filesScanned: 1,
+        localizedItems: 4,
+        byLocale: { ru: 1, uk: 1, es: 1, 'pt-BR': 1 },
+        bySurface: { 'ui-locale': 1 },
+      },
+      files: [
+        {
+          file: 'components/Demo.tsx',
+          surface: 'ui-locale',
+          localizedItems: 4,
+          markers: {
+            ruFields: 1,
+            ukFields: 1,
+            esFields: 1,
+            localeTriples: 0,
+          },
+        },
+      ],
+      items: [
+        { file: 'components/Demo.tsx', surface: 'ui-locale', locale: 'ru', keyPath: 'titleRU' },
+        { file: 'components/Demo.tsx', surface: 'ui-locale', locale: 'uk', keyPath: 'titleUK' },
+        { file: 'components/Demo.tsx', surface: 'ui-locale', locale: 'es', keyPath: 'titleES' },
+        { file: 'components/Demo.tsx', surface: 'ui-locale', locale: 'pt-BR', keyPath: 'sourceLocales.pt-BR.title' },
+      ],
+    };
+
+    const audit = core.buildExistingLocaleAudit(inventory, 'pt-BR');
+    const missingItems = core.missingTargetSourceItems(inventory, 'pt-BR');
+
+    expect(audit.summary.targetLocalizedItems).toBe(1);
+    expect(audit.summary.targetItemsBySurface).toEqual({ 'ui-locale': 1 });
+    expect(missingItems).toEqual([]);
+  });
+
   it('audits an existing UI locale without treating it as a study target', () => {
     const inventory = {
       totals: {

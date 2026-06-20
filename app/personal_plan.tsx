@@ -1037,8 +1037,8 @@ const styles = StyleSheet.create({
   },
   // Обёртка для готовой иконки-плитки: без рамки/фона, только клип по радиусу,
   // чтобы плитка садилась ровно, а не «рамкой в рамке».
-  taskIconImageWrap: { overflow: 'visible', backgroundColor: 'transparent' },
-  taskImage: { width: 44, height: 44 },
+  taskIconImageWrap: { overflow: 'hidden', backgroundColor: 'transparent' },
+  taskImage: { width: 48, height: 48 },
   taskCopy: { flex: 1, minWidth: 0 },
   taskTitle: { fontSize: 16, lineHeight: 21, fontWeight: '900' },
   taskSub: { marginTop: 2, fontSize: 12, lineHeight: 16, fontWeight: '700' },

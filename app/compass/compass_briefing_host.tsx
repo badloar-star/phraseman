@@ -11,12 +11,16 @@
  * Показ «раз в день» хранится локально (AsyncStorage), чтобы не всплывать при
  * каждом возврате на главную.
  */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePremium } from '../../components/PremiumContext';
 import { compassOn } from './compass_flags';
 import { useCompassDay } from './use_compass_day';
+import { compassTaskRoute } from './compass_task_route';
+import { resolvePronunciationRoute } from './compass_pronunciation_route';
 import CompassBriefingModal from './compass_briefing_modal';
+import type { CompassTask } from './compass_brain';
 
 const SEEN_KEY_PREFIX = 'compass_briefing_seen_';
 
@@ -36,7 +40,11 @@ interface CompassBriefingHostProps {
 }
 
 export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefingHostProps) {
-  const now = nowMs ?? Date.now();
+  // ВАЖНО: фиксируем `now`, иначе при отсутствии nowMs `Date.now()` даёт новое
+  // значение на каждом рендере → эффекты с `now` в deps (здесь и в useCompassDay)
+  // зацикливаются на setState → "Maximum update depth exceeded".
+  const now = useMemo(() => nowMs ?? Date.now(), [nowMs]);
+  const router = useRouter();
   const { hasPremiumAccess } = usePremium();
   const { day, loading } = useCompassDay(now);
   const [visible, setVisible] = useState(false);
@@ -78,7 +86,31 @@ export default function CompassBriefingHost({ onStartDay, nowMs }: CompassBriefi
     setVisible(false);
   }, [markSeen]);
 
+  // Тап по конкретной задаче дня: помечаем показ, закрываем и открываем её экран.
+  // Для «повтори вслух» пытаемся открыть задачу произношения текущего дня плана
+  // напрямую (она есть в каждом дне плана); если активного плана нет — fallback.
+  const handleTaskPress = useCallback((task: CompassTask) => {
+    markSeen();
+    setVisible(false);
+    void (async () => {
+      let route = compassTaskRoute(task, day);
+      if (task.kind === 'pronunciation') {
+        const direct = await resolvePronunciationRoute();
+        if (direct) route = direct;
+      }
+      router.push(route.params ? { pathname: route.pathname, params: route.params } as never : route.pathname as never);
+    })();
+  }, [markSeen, router, day]);
+
   if (!compassOn() || !hasPremiumAccess) return null;
 
-  return <CompassBriefingModal visible={visible} day={day} onStart={handleStart} onLater={handleLater} />;
+  return (
+    <CompassBriefingModal
+      visible={visible}
+      day={day}
+      onStart={handleStart}
+      onLater={handleLater}
+      onTaskPress={handleTaskPress}
+    />
+  );
 }

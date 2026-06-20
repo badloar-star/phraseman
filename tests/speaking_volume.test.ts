@@ -20,13 +20,16 @@ describe('speaking_volume', () => {
       expect(normalizeVolume(50)).toBe(1);
     });
 
-    it('maps the midpoint linearly to 0.5', () => {
-      expect(normalizeVolume(5)).toBeCloseTo(0.5, 5);
+    it('lifts a quiet-but-audible voice well above its linear share (gamma)', () => {
+      // raw=2 is 50% of the 0..4 scale; the perceptual curve pushes it to ~66%,
+      // so normal speech visibly moves the bars instead of barely lifting them.
+      expect(normalizeVolume(2)).toBeGreaterThan(0.6);
+      expect(normalizeVolume(2)).toBeLessThan(0.75);
     });
 
     it('is monotonic across the audible range', () => {
-      expect(normalizeVolume(2)).toBeLessThan(normalizeVolume(4));
-      expect(normalizeVolume(4)).toBeLessThan(normalizeVolume(8));
+      expect(normalizeVolume(1)).toBeLessThan(normalizeVolume(2));
+      expect(normalizeVolume(2)).toBeLessThan(normalizeVolume(3.5));
     });
 
     it('treats non-finite input as silence', () => {
@@ -70,8 +73,8 @@ describe('speaking_volume', () => {
 
   describe('nextVolumeLevel', () => {
     it('composes normalize + smooth in one call', () => {
-      // raw=10 -> normalized 1; prev 0, factor 0.4 -> 0.4
-      expect(nextVolumeLevel(0, 10, 0.4)).toBeCloseTo(0.4, 5);
+      // raw=4 (full scale) -> normalized 1; prev 0, factor 0.4 -> 0.4
+      expect(nextVolumeLevel(0, 4, 0.4)).toBeCloseTo(0.4, 5);
     });
 
     it('decays toward silence when the user stops talking', () => {

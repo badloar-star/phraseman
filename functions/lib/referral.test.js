@@ -1,8 +1,84 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const referral_1 = require("./referral");
+describe('referralClaimSlotsLeft — анти-фарм: сколько наград можно выдать (день+месяц кап)', () => {
+    // Защита от фарминга свежими аккаунтами: даже при бесконечных «новых» рефералах
+    // пригласивший выбирает не больше дневного лимита в день и месячного — в месяц.
+    it('ограничено дневным капом, когда месячный ещё далеко', () => {
+        expect((0, referral_1.referralClaimSlotsLeft)(0, 0)).toBe(referral_1.MAX_REFERRER_CLAIMS_PER_DAY);
+        expect((0, referral_1.referralClaimSlotsLeft)(0, 1)).toBe(referral_1.MAX_REFERRER_CLAIMS_PER_DAY - 1);
+    });
+    it('0 когда дневной кап исчерпан', () => {
+        expect((0, referral_1.referralClaimSlotsLeft)(0, referral_1.MAX_REFERRER_CLAIMS_PER_DAY)).toBe(0);
+        expect((0, referral_1.referralClaimSlotsLeft)(5, referral_1.MAX_REFERRER_CLAIMS_PER_DAY + 3)).toBe(0);
+    });
+    it('0 когда месячный кап исчерпан (даже если день свободен)', () => {
+        expect((0, referral_1.referralClaimSlotsLeft)(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH, 0)).toBe(0);
+        expect((0, referral_1.referralClaimSlotsLeft)(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH + 2, 0)).toBe(0);
+    });
+    it('берёт МИНИМУМ из оставшегося дневного и месячного остатка', () => {
+        // месяц почти полон: остался 1 слот, хотя день позволяет больше
+        expect((0, referral_1.referralClaimSlotsLeft)(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH - 1, 0)).toBe(1);
+    });
+    it('не уходит в минус при «грязных» счётчиках', () => {
+        expect((0, referral_1.referralClaimSlotsLeft)(-5, -5)).toBe(referral_1.MAX_REFERRER_CLAIMS_PER_DAY);
+        expect((0, referral_1.referralClaimSlotsLeft)(999, 999)).toBe(0);
+    });
+    it('дневной кап строго меньше месячного (иначе бессмысленно)', () => {
+        expect(referral_1.MAX_REFERRER_CLAIMS_PER_DAY).toBeLessThan(referral_1.MAX_REFERRER_CLAIMS_PER_MONTH);
+    });
+});
+describe('isSnapshotMigrationWrite — миграция снапшота НЕ должна квалифицировать реферал', () => {
+    // Дыра: progressMigrateSnapshot доверяет клиентскому lesson1_pass_count и пишет его серверно
+    // (progress_events.ts buildMigrationPatch) → раньше это срабатывало как «урок пройден» и
+    // выдавало 7 дней без реального прохождения. Отличаем миграцию по полю progressMigratedAt.
+    it('true когда появился/изменился progressMigratedAt (это миграция, не живое событие урока)', () => {
+        expect((0, referral_1.isSnapshotMigrationWrite)(undefined, { progressMigratedAt: 111 })).toBe(true);
+        expect((0, referral_1.isSnapshotMigrationWrite)({ progressMigratedAt: 100 }, { progressMigratedAt: 222 })).toBe(true);
+    });
+    it('false для обычного живого события урока (progressMigratedAt не менялся)', () => {
+        expect((0, referral_1.isSnapshotMigrationWrite)({ progressMigratedAt: 100 }, { progressMigratedAt: 100 })).toBe(false);
+        expect((0, referral_1.isSnapshotMigrationWrite)({ lesson1_pass_count: '0' }, { lesson1_pass_count: '1' })).toBe(false);
+        expect((0, referral_1.isSnapshotMigrationWrite)(undefined, { lesson1_pass_count: '1' })).toBe(false);
+        expect((0, referral_1.isSnapshotMigrationWrite)(undefined, {})).toBe(false);
+    });
+});
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = 1700000000000; // фиксированный «сейчас» для детерминизма
+describe('hasCompletedFirstLesson — квалификация = РЕАЛЬНО пройден урок 1, не «открыт»', () => {
+    it('false для пустого/отсутствующего прогресса', () => {
+        expect((0, referral_1.hasCompletedFirstLesson)(undefined)).toBe(false);
+        expect((0, referral_1.hasCompletedFirstLesson)({})).toBe(false);
+    });
+    // C2: «открыт урок 2» НЕ значит «пройден урок 1». Premium/intro-триал/сдача зачёта
+    // открывают уроки без прохождения — это НЕ должно квалифицировать друга.
+    it('false когда урок 2 лишь ОТКРЫТ, но урок 1 не пройден (premium/intro/exam-unlock)', () => {
+        expect((0, referral_1.hasCompletedFirstLesson)({ unlocked_lessons: '[1,2,3]' })).toBe(false);
+        expect((0, referral_1.hasCompletedFirstLesson)({ unlocked_lessons: JSON.stringify([1, 2]) })).toBe(false);
+        // весь уровень открыт премиумом — но ни одного pass_count
+        const premiumUnlockAll = { unlocked_lessons: JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8]) };
+        expect((0, referral_1.hasCompletedFirstLesson)(premiumUnlockAll)).toBe(false);
+    });
+    it('true когда урок 1 реально пройден (EN: lesson1_pass_count >= 1)', () => {
+        expect((0, referral_1.hasCompletedFirstLesson)({ lesson1_pass_count: '1' })).toBe(true);
+        expect((0, referral_1.hasCompletedFirstLesson)({ lesson1_pass_count: '3', unlocked_lessons: '[1,2]' })).toBe(true);
+    });
+    it('false когда pass_count нулевой/мусорный', () => {
+        expect((0, referral_1.hasCompletedFirstLesson)({ lesson1_pass_count: '0' })).toBe(false);
+        expect((0, referral_1.hasCompletedFirstLesson)({ lesson1_pass_count: 'abc' })).toBe(false);
+    });
+    // C3: французский курс пишет scoped-ключ. Раньше триггер его не видел → fr никогда не квалифицировался.
+    it('true когда урок 1 пройден на ФРАНЦУЗСКОМ (scoped key lesson_progress_v2::fr::lesson1_pass_count)', () => {
+        expect((0, referral_1.hasCompletedFirstLesson)({ 'lesson_progress_v2::fr::lesson1_pass_count': '1' })).toBe(true);
+    });
+    it('false когда на fr урок 2 лишь открыт, но урок 1 не пройден', () => {
+        expect((0, referral_1.hasCompletedFirstLesson)({ 'lesson_progress_v2::fr::unlocked_lessons': '[1,2]' })).toBe(false);
+    });
+    it('поддерживает number и string значения pass_count', () => {
+        expect((0, referral_1.hasCompletedFirstLesson)({ lesson1_pass_count: 1 })).toBe(true);
+        expect((0, referral_1.hasCompletedFirstLesson)({ lesson1_pass_count: 0 })).toBe(false);
+    });
+});
 describe('vipUntilFromProgress', () => {
     it('returns 0 for empty/missing progress', () => {
         expect((0, referral_1.vipUntilFromProgress)(undefined)).toBe(0);

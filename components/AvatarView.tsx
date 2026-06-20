@@ -2,12 +2,14 @@ import React, { memo } from 'react';
 import { View } from 'react-native';
 import { Image } from 'expo-image';
 import LevelBadge from './LevelBadge';
-import { getAvatarByIndex, getAvatarImageByIndex } from '../constants/avatars';
+import { getAvatarByIndex } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import CustomAvatarBadge from './CustomAvatarBadge';
 import { parseCustomAvatarValue } from '../constants/custom_avatars';
 import AvatarAura from './AvatarAura';
-import Svg, { Defs, LinearGradient as SvgLinearGradient, Stop, Polygon } from 'react-native-svg';
+import { getLevelAvatarMaterial } from '../constants/avatar_level_materials';
+import type { LevelAvatarMaterial } from '../constants/avatar_level_materials';
+import LevelAvatarMaterialOverlay from './LevelAvatarMaterialOverlay';
 
 interface Props {
   avatar?: string | null;
@@ -22,12 +24,16 @@ function AvatarImageWithFallback({
   source,
   size,
   fallbackLevel,
+  overlayLevel,
   tint,
+  material,
 }: {
   source: any;
   size: number;
   fallbackLevel: number;
+  overlayLevel: number;
   tint?: readonly [string, string];
+  material?: LevelAvatarMaterial;
 }) {
   const [loaded, setLoaded] = React.useState(false);
 
@@ -49,23 +55,7 @@ function AvatarImageWithFallback({
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(false)}
       />
-      {tint ? (
-        <Svg
-          width={size}
-          height={size}
-          viewBox="0 0 100 100"
-          style={{ position: 'absolute', left: 0, top: 0 }}
-          pointerEvents="none"
-        >
-          <Defs>
-            <SvgLinearGradient id="avatarTint" x1="0" y1="0" x2="1" y2="1">
-              <Stop offset="0" stopColor={tint[0]} stopOpacity="0.5" />
-              <Stop offset="1" stopColor={tint[1]} stopOpacity="0.5" />
-            </SvgLinearGradient>
-          </Defs>
-          <Polygon points="50,3.5 93,26 93,74 50,96.5 7,74 7,26" fill="url(#avatarTint)" />
-        </Svg>
-      ) : null}
+      <LevelAvatarMaterialOverlay size={size} level={overlayLevel} tint={tint} material={material} />
     </View>
   );
 }
@@ -84,11 +74,12 @@ function AvatarView({ avatar, totalXP, level, size = 44, style, auraId }: Props)
   const avatarDef = getAvatarByIndex(avatarIndex);
   const avatarImage = avatarDef?.image;
   const fallbackLevel = avatarImage ? resolvedLevel : avatarIndex;
+  const material = getLevelAvatarMaterial(avatarIndex);
 
   return (
     <AvatarAura auraId={auraId} size={size} style={style}>
       {avatarImage
-        ? <AvatarImageWithFallback source={avatarImage} size={size} fallbackLevel={fallbackLevel} tint={avatarDef?.tint} />
+        ? <AvatarImageWithFallback source={avatarImage} size={size} fallbackLevel={fallbackLevel} overlayLevel={avatarIndex} tint={avatarDef?.tint} material={material} />
         : <LevelBadge level={fallbackLevel} size={size} />
       }
     </AvatarAura>

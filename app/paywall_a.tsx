@@ -13,14 +13,15 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import {
   normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy,
+  applyWinBackCopy, applyWinBackPlannedCopy,
   CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP,
 } from './paywall_copy';
+import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
@@ -29,7 +30,7 @@ import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from '.
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
-  PaywallPriceRetry, PaywallTestimonials,
+  PaywallPriceRetry, PaywallTestimonials, PaywallBackground,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -45,6 +46,7 @@ export default function PaywallA() {
   const params = useLocalSearchParams<{ context?: string; source?: string }>();
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
+  const isOnboarding = source === 'onboarding_plan';
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome();
@@ -94,8 +96,11 @@ export default function PaywallA() {
     ]).start();
   }, [opacity, slideY]);
 
-  const copy = getPaywallCopy(ctx);
-  const planned = getHeroPlannedCopy(ctx, 0);
+  // Вернувшийся юзер (Premium стал фри/истёк) видит win-back заголовок «верни
+  // доступ» вместо неактуального «получить впервые». См. applyWinBackCopy.
+  const hadPremiumEver = getStatsCache().hadPremiumEver;
+  const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
+  const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
   const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
   const benefits = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic).slice(0, 4);
@@ -105,7 +110,7 @@ export default function PaywallA() {
   const isLifetimeSel = p.selected === 'lifetime';
 
   return (
-    <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
+    <PaywallBackground isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
       <SafeAreaView style={S.safe}>
         <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]}>
           <PaywallCloseButton
@@ -123,7 +128,7 @@ export default function PaywallA() {
           >
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
 
-            <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
+            <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
             <Text style={[S.subtitle, { color: chrome.textMuted }]}>{subtitle}</Text>
 
             {/* Личный «болевой» тег (1 шт.) — единый chip-вид (P1-4). */}
@@ -229,7 +234,7 @@ export default function PaywallA() {
           </ScrollView>
         </Animated.View>
       </SafeAreaView>
-    </LinearGradient>
+    </PaywallBackground>
   );
 }
 

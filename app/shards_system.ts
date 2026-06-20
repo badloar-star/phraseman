@@ -820,6 +820,25 @@ const syncShardsToCloud = async (balance: number, meta?: ShardBalanceMeta | null
   }
 };
 
+/**
+ * Принудительно записать текущий ЛОКАЛЬНЫЙ баланс осколков в облако
+ * (users/{uid}.shards) со свежей меткой времени, чтобы серверо-авторитетные проверки
+ * (например Cloud Function profileCardUpgrade) видели реальный баланс, а не отставший.
+ * Нужно перед действиями, где сервер сам сверяет баланс: локальный и облачный «кошельки»
+ * могут разойтись (dev-начисления, начисление, не доехавшее до облака). Best-effort.
+ */
+export const forceSyncShardsToCloud = async (): Promise<void> => {
+  try {
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+    const balance = await getShardsBalance();
+    // Свежая метка времени → обходим last-write-wins guard внутри syncShardsToCloud,
+    // т.е. локальный баланс гарантированно перезапишет облачный.
+    await syncShardsToCloud(balance, localWriteStamp('replace', 'pre_action_reconcile'));
+  } catch (e) {
+    if (__DEV__) console.warn('[shards_system] forceSyncShardsToCloud', e);
+  }
+};
+
 // ── Загрузить осколки из облака (при первом входе / смене устройства) ─────
 export const loadShardsFromCloud = async (): Promise<void> => {
   try {

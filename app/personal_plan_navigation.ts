@@ -9,6 +9,7 @@ import {
   getPersonalPlanPhraseLesson,
   getGeneratedPersonalPlanPhraseLessonContentUnitIds,
 } from './personal_plan_phrase_lessons';
+import { markNextNavigationAsReplace } from './navigation_back';
 
 export function planTaskDestinationLabel(destination: PlanTaskDestination): string {
   const phraseLabel = (count: number): string => {
@@ -62,13 +63,24 @@ export function openPersonalPlanTask(
   day: PlanDay,
   task: PlanDailyTask,
   planInstanceId?: string,
+  // 'replace' — уйти с текущего экрана (напр. «Теория дня» открывает первое
+  // задание и НЕ остаётся в стеке, чтобы «назад» вёл в меню плана, а не в теорию).
+  nav: 'push' | 'replace' = 'push',
 ): void {
   const { destination } = task;
   if (destination.type === 'lesson') {
     return;
   }
+  // replace = свап текущего экрана (напр. «Теория дня» → задание): помечаем для
+  // стека «назад», чтобы заменённый экран не остался в истории и «назад» из
+  // задания вёл в МЕНЮ ПЛАНА, а не в пустую теорию. Помечаем ПОСЛЕ early-return
+  // 'lesson' (там навигации нет) и только при реальном переходе ниже.
+  if (nav === 'replace') {
+    markNextNavigationAsReplace();
+  }
+  const go = nav === 'replace' ? router.replace : router.push;
   if (destination.type === 'plan_phrase_lesson') {
-    router.push({
+    go({
       pathname: '/personal_plan_exercise',
       params: {
         rendererType: 'plan_phrase_build',
@@ -89,7 +101,7 @@ export function openPersonalPlanTask(
     const fallbackContentUnitIds = getGeneratedPersonalPlanPhraseLessonContentUnitIds(lessonId, 4);
     const contentUnitIds = destinationContentUnitIds.length > 0 ? destinationContentUnitIds : fallbackContentUnitIds;
 
-    router.push({
+    go({
       pathname: '/personal_plan_exercise',
       params: {
         rendererType: 'plan_phrase_recall',
@@ -112,7 +124,7 @@ export function openPersonalPlanTask(
       ? scheduledContentUnitIds
       : phraseLessonContentUnitIds(destination.lessonId, destination.requiredPhrases);
 
-    router.push({
+    go({
       pathname: '/personal_plan_exercise',
       params: {
         rendererType: 'plan_phrase_recall',
@@ -128,7 +140,7 @@ export function openPersonalPlanTask(
     return;
   }
   if (destination.type === 'plan_exercise') {
-    router.push({
+    go({
       pathname: '/personal_plan_exercise',
       params: {
         rendererType: destination.exerciseType,
@@ -144,7 +156,7 @@ export function openPersonalPlanTask(
     return;
   }
   if (destination.type === 'quiz') {
-    router.push({
+    go({
       pathname: '/quizzes_screen',
       params: {
         planQuizId: destination.quizId,
@@ -159,7 +171,7 @@ export function openPersonalPlanTask(
     return;
   }
   if (destination.type === 'trainer') {
-    router.push({
+    go({
       pathname: '/trainer_smart_session',
       params: {
         mode: destination.mode,
@@ -174,7 +186,7 @@ export function openPersonalPlanTask(
     return;
   }
   if (destination.type === 'flashcards') {
-    router.push({
+    go({
       pathname: '/flashcards_swipe',
       params: {
         planFlashcardsTask: '1',
@@ -189,7 +201,7 @@ export function openPersonalPlanTask(
     return;
   }
   if (destination.type === 'practice') {
-    router.push({
+    go({
       pathname: '/review',
       params: {
         planPracticeTask: '1',

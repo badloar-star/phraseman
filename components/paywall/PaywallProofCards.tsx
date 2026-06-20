@@ -63,45 +63,67 @@ export function PercentileCard({ lang, chrome, line }: { lang: Lang; chrome: Pay
   );
 }
 
-// ── сравнение Free → Premium (5 строк; копии = реальные лимиты) ───────────────
-type CompareRow = { t: Record<'ru' | 'uk' | 'es', string>; free: Record<'ru' | 'uk' | 'es', string>; prem: Record<'ru' | 'uk' | 'es', string> };
+// ── сравнение Free → Premium (копии = реальные лимиты + самые ценные фичи) ─────
+type CompareCell = Record<Lang, string>;
+type CompareRow = { t: CompareCell; free: CompareCell; prem: CompareCell };
 const COMPARE_ROWS: CompareRow[] = [
+  // Самые ценные фичи — сверху (умный разбор, диалоги, личный план, произношение+озвучка).
   {
-    t: { ru: 'Энергия', uk: 'Енергія', es: 'Energía' },
-    free: { ru: '+1 раз в ~10 мин', uk: '+1 раз на ~10 хв', es: '+1 cada ~10 min' },
-    prem: { ru: 'Не заканчивается', uk: 'Не закінчується', es: 'No se agota' },
+    t: { ru: 'Умный разбор ошибок', uk: 'Розумний розбір помилок', es: 'Análisis de errores', 'pt-BR': 'Análise de erros', vi: 'Phân tích lỗi thông minh', id: 'Analisis kesalahan', tr: 'Akıllı hata analizi', pl: 'Inteligentna analiza błędów' },
+    free: { ru: 'Только ответ', uk: 'Лише відповідь', es: 'Solo la respuesta', 'pt-BR': 'Só a resposta', vi: 'Chỉ đáp án', id: 'Hanya jawaban', tr: 'Sadece cevap', pl: 'Tylko odpowiedź' },
+    prem: { ru: 'Разбор каждой ошибки', uk: 'Розбір кожної помилки', es: 'Explica cada error', 'pt-BR': 'Explica cada erro', vi: 'Giải thích từng lỗi', id: 'Jelaskan tiap kesalahan', tr: 'Her hatayı açıklar', pl: 'Wyjaśnia każdy błąd' },
   },
   {
-    t: { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones' },
-    free: { ru: 'Уроки 1–8', uk: 'Уроки 1–8', es: 'Lecciones 1–8' },
-    prem: { ru: 'Все уроки уровня', uk: 'Усі уроки рівня', es: 'Todas las del nivel' },
+    t: { ru: 'Диалоги с ИИ', uk: 'Діалоги з ШІ', es: 'Diálogos con IA', 'pt-BR': 'Diálogos com IA', vi: 'Hội thoại với AI', id: 'Dialog dengan AI', tr: 'Yapay zekâ ile diyalog', pl: 'Dialogi z AI' },
+    free: { ru: '1 раз попробовать', uk: '1 раз спробувати', es: '1 prueba', 'pt-BR': '1 teste', vi: 'Thử 1 lần', id: 'Coba 1 kali', tr: '1 deneme', pl: '1 próba' },
+    prem: { ru: 'Без ограничений', uk: 'Без обмежень', es: 'Sin límites', 'pt-BR': 'Sem limites', vi: 'Không giới hạn', id: 'Tanpa batas', tr: 'Sınırsız', pl: 'Bez limitów' },
   },
   {
-    t: { ru: 'Квизы', uk: 'Квізи', es: 'Quizzes' },
-    free: { ru: 'Только Easy', uk: 'Лише Easy', es: 'Solo Easy' },
-    prem: { ru: 'Все уровни', uk: 'Усі рівні', es: 'Todos los niveles' },
+    t: { ru: 'Личный план', uk: 'Особистий план', es: 'Plan personal', 'pt-BR': 'Plano pessoal', vi: 'Kế hoạch cá nhân', id: 'Rencana pribadi', tr: 'Kişisel plan', pl: 'Plan osobisty' },
+    free: { ru: 'Недоступен', uk: 'Недоступний', es: 'No disponible', 'pt-BR': 'Indisponível', vi: 'Không có', id: 'Tidak tersedia', tr: 'Yok', pl: 'Niedostępny' },
+    prem: { ru: 'План под твою цель', uk: 'План під твою ціль', es: 'Plan a tu medida', 'pt-BR': 'Plano sob medida', vi: 'Lộ trình riêng', id: 'Sesuai targetmu', tr: 'Hedefine özel plan', pl: 'Plan pod twój cel' },
   },
   {
-    t: { ru: 'Карточки', uk: 'Картки', es: 'Tarjetas' },
-    free: { ru: 'До 20 сохранённых', uk: 'До 20 збережених', es: 'Hasta 20 guardadas' },
-    prem: { ru: 'Без ограничений', uk: 'Без обмежень', es: 'Sin límites' },
+    t: { ru: 'Произношение и озвучка', uk: 'Вимова й озвучення', es: 'Pronunciación y voz', 'pt-BR': 'Pronúncia e voz', vi: 'Phát âm và lồng tiếng', id: 'Pelafalan dan suara', tr: 'Telaffuz ve seslendirme', pl: 'Wymowa i lektor' },
+    free: { ru: 'Ограничено', uk: 'Обмежено', es: 'Limitado', 'pt-BR': 'Limitado', vi: 'Hạn chế', id: 'Terbatas', tr: 'Sınırlı', pl: 'Ograniczone' },
+    prem: { ru: 'Оценка речи + живой голос', uk: 'Оцінка мовлення + живий голос', es: 'Evalúa tu voz + voz real', 'pt-BR': 'Avalia sua fala + voz real', vi: 'Chấm phát âm + giọng thật', id: 'Nilai ucapan + suara asli', tr: 'Konuşma puanı + gerçek ses', pl: 'Ocena mowy + żywy głos' },
   },
   {
-    t: { ru: 'Серия', uk: 'Серія', es: 'Racha' },
-    free: { ru: 'Сгорает за пропуск', uk: 'Згорає за пропуск', es: 'Se pierde al fallar un día' },
-    prem: { ru: 'Заморозка серии', uk: 'Заморозка серії', es: 'Protección de racha' },
+    t: { ru: 'Энергия', uk: 'Енергія', es: 'Energía', 'pt-BR': 'Energia', vi: 'Năng lượng', id: 'Energi', tr: 'Enerji', pl: 'Energia' },
+    free: { ru: '+1 раз в ~10 мин', uk: '+1 раз на ~10 хв', es: '+1 cada ~10 min', 'pt-BR': '+1 a cada ~10 min', vi: '+1 mỗi ~10 phút', id: '+1 tiap ~10 mnt', tr: '~10 dakikada +1', pl: '+1 co ~10 min' },
+    prem: { ru: 'Не заканчивается', uk: 'Не закінчується', es: 'No se agota', 'pt-BR': 'Não acaba', vi: 'Không cạn', id: 'Tak habis', tr: 'Bitmez', pl: 'Nie kończy się' },
+  },
+  {
+    t: { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' },
+    free: { ru: 'Уроки 1–8', uk: 'Уроки 1–8', es: 'Lecciones 1–8', 'pt-BR': 'Lições 1–8', vi: 'Bài 1–8', id: 'Pelajaran 1–8', tr: 'Ders 1–8', pl: 'Lekcje 1–8' },
+    prem: { ru: 'Все уроки уровня', uk: 'Усі уроки рівня', es: 'Todas las del nivel', 'pt-BR': 'Todas do nível', vi: 'Mọi bài của cấp độ', id: 'Semua di level', tr: 'Seviyedeki tüm dersler', pl: 'Wszystkie lekcje poziomu' },
+  },
+  {
+    t: { ru: 'Квизы', uk: 'Квізи', es: 'Quizzes', 'pt-BR': 'Quizzes', vi: 'Quiz', id: 'Kuis', tr: 'Quizler', pl: 'Quizy' },
+    free: { ru: 'Только Easy', uk: 'Лише Easy', es: 'Solo Easy', 'pt-BR': 'Só Easy', vi: 'Chỉ Easy', id: 'Hanya Easy', tr: 'Sadece Easy', pl: 'Tylko Easy' },
+    prem: { ru: 'Все уровни', uk: 'Усі рівні', es: 'Todos los niveles', 'pt-BR': 'Todos os níveis', vi: 'Mọi cấp độ', id: 'Semua level', tr: 'Tüm seviyeler', pl: 'Wszystkie poziomy' },
+  },
+  {
+    t: { ru: 'Карточки', uk: 'Картки', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' },
+    free: { ru: 'До 20 сохранённых', uk: 'До 20 збережених', es: 'Hasta 20 guardadas', 'pt-BR': 'Até 20 salvos', vi: 'Tối đa 20 thẻ', id: 'Maks. 20 tersimpan', tr: 'En çok 20 kayıt', pl: 'Do 20 zapisanych' },
+    prem: { ru: 'Без ограничений', uk: 'Без обмежень', es: 'Sin límites', 'pt-BR': 'Sem limites', vi: 'Không giới hạn', id: 'Tanpa batas', tr: 'Sınırsız', pl: 'Bez limitów' },
+  },
+  {
+    t: { ru: 'Серия', uk: 'Серія', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rentetan', tr: 'Seri', pl: 'Seria' },
+    free: { ru: 'Сгорает за пропуск', uk: 'Згорає за пропуск', es: 'Se pierde al fallar un día', 'pt-BR': 'Some ao faltar um dia', vi: 'Mất khi bỏ lỡ', id: 'Hangus jika bolong', tr: 'Kaçırınca sıfırlanır', pl: 'Znika po przerwie' },
+    prem: { ru: 'Заморозка серии', uk: 'Заморозка серії', es: 'Protección de racha', 'pt-BR': 'Proteção de sequência', vi: 'Đóng băng chuỗi', id: 'Bekukan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' },
   },
 ];
 
 export function CompareCard({ lang, chrome }: { lang: Lang; chrome: PaywallChrome }) {
-  const pick = (d: Record<'ru' | 'uk' | 'es', string>) => triLang(lang, d);
+  const pick = (d: CompareCell) => triLang(lang, d);
   return (
     <ProofCard title={triLang(lang, { ru: 'Что меняется с Premium', uk: 'Що змінюється з Premium', es: 'Qué cambia con Premium' })} chrome={chrome}>
       {COMPARE_ROWS.map((row, i) => (
         <View key={row.t.ru} style={[S.cmpRow, i < COMPARE_ROWS.length - 1 && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: chrome.cardBorder }]}>
           <View style={S.cmpLeft}>
-            <Text style={[S.cmpTitle, { color: chrome.textPrimary }]} numberOfLines={1}>{pick(row.t)}</Text>
-            <Text style={[S.cmpFree, { color: chrome.textMuted }]} numberOfLines={1}>{pick(row.free)}</Text>
+            <Text style={[S.cmpTitle, { color: chrome.textPrimary }]} numberOfLines={2}>{pick(row.t)}</Text>
+            <Text style={[S.cmpFree, { color: chrome.textMuted }]} numberOfLines={2}>{pick(row.free)}</Text>
           </View>
           <Ionicons name="arrow-forward" size={12} color={chrome.textMuted} style={S.cmpArrow} />
           <Text style={[S.cmpPrem, { color: chrome.tc.heroAccent }]} numberOfLines={2}>{pick(row.prem)}</Text>

@@ -138,7 +138,7 @@ export function StatScoreRing({
         />
       </Svg>
       <View style={styles.center}>
-        <Text style={[styles.centerNum, { color: centerColor }, centerTextStyle]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.6}>
+        <Text style={[styles.centerNum, { color: centerColor }, centerTextStyle]} numberOfLines={1}>
           {centerText}
         </Text>
         {centerSubLabel ? (

@@ -777,5 +777,42 @@ export async function setAppMessagePollVote(messageId: string, optionId: string)
   ]);
 }
 
+// ── «Письмо прилетело» — анимация ровно ОДИН раз на сообщение ──────────────────
+// Раньше анимация привязывалась к росту unreadCount в памяти компонента, поэтому
+// при каждом перезаходе в приложение (ref сбрасывался) письмо «прилетало» заново.
+// Теперь храним ID сообщений, для которых анимация УЖЕ проигрывалась, в AsyncStorage:
+// прилёт показывается один раз на сообщение, независимо от перезапусков и от того,
+// прочитал юзер его или нет.
+const ANIMATED_MESSAGE_IDS_KEY = 'app_message_received_anim_ids_v1';
+const ANIMATED_IDS_CAP = 300;
+
+export async function readAnimatedMessageIds(): Promise<string[]> {
+  try {
+    const raw = await AsyncStorage.getItem(ANIMATED_MESSAGE_IDS_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === 'string') : [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Записывает переданные ID как «анимация показана». Возвращает обновлённый список
+ * (новейшие в конце, обрезан до ANIMATED_IDS_CAP). Идемпотентно для уже известных ID.
+ */
+export async function markMessageIdsAnimated(ids: string[]): Promise<void> {
+  if (ids.length === 0) return;
+  try {
+    const existing = await readAnimatedMessageIds();
+    const set = new Set(existing);
+    for (const id of ids) if (id) set.add(id);
+    const next = [...set].slice(-ANIMATED_IDS_CAP);
+    await AsyncStorage.setItem(ANIMATED_MESSAGE_IDS_KEY, JSON.stringify(next));
+  } catch {
+    // Best-effort: при сбое в худшем случае анимация повторится один раз.
+  }
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

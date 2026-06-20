@@ -33,7 +33,10 @@ function hasMeaningfulPlan(plan) {
     return plan !== '' && plan !== 'null' && plan !== 'undefined';
 }
 function isStorePremiumPlan(plan) {
-    return plan === 'monthly' || plan === 'yearly' || plan === 'annual';
+    // 'lifetime' — non-consumable «навсегда»: premium_expiry='0' (бессрочный).
+    // Без этой ветки сервер счёл бы синхронизированный premium_plan='lifetime'
+    // не-store-планом и отрезал бы платящему доступ.
+    return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
 }
 function isTruthyFlag(value) {
     const v = cleanStr(value).toLowerCase();

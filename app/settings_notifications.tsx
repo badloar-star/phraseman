@@ -26,7 +26,7 @@ import {
 import { triLang, type Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 
-const DAYS_RU = ['Понедельник','Вторник','Среда','Четвер','Пятница','Суббота','Воскресенье'];
+const DAYS_RU = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
 const DAYS_UK = ['Понеділок','Вівторок','Середа','Четвер','П\'ятниця','Субота','Неділя'];
 const DAYS_ES = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 const DAYS_PT_BR = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'];

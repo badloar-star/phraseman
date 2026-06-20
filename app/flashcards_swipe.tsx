@@ -2346,8 +2346,6 @@ export default function FlashcardsSwipeScreen() {
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
               <Text
                 style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(22, f.h2 + 2) : Math.min(26, f.h1 + 3) }]}
-                adjustsFontSizeToFit
-                minimumFontScale={0.72}
                 numberOfLines={isPlanFlashcardsTask ? 3 : undefined}
               >
                 {currentPrompt.card.en}
@@ -2365,8 +2363,6 @@ export default function FlashcardsSwipeScreen() {
               </Text>
               <Text
                 style={[styles.translationText, isPlanFlashcardsTask && styles.planTranslationText, { color: t.textSecond, fontSize: isPlanFlashcardsTask ? f.body : f.bodyLg }]}
-                adjustsFontSizeToFit
-                minimumFontScale={0.76}
                 numberOfLines={isPlanFlashcardsTask ? 3 : undefined}
               >
                 {currentPrompt.shownTranslation}

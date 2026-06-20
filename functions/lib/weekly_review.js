@@ -41,6 +41,7 @@ const crypto_1 = require("crypto");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const premium_status_1 = require("./premium_status");
+const openai_jobs_config_1 = require("./openai_jobs_config");
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 /**
  * AI mistake review — turns the learner's ALREADY-COMPUTED mistake analytics into
@@ -299,7 +300,7 @@ function parseAndGuardResult(rawContent, briefing) {
 // ── Callable ──────────────────────────────────────────────────────────────────
 exports.weeklyReviewGenerate = (0, https_1.onCall)({
     region: REGION,
-    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK,
+    enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
     timeoutSeconds: 30,
     memory: '512MiB',
     maxInstances: 10,
@@ -319,6 +320,9 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
         throw new https_1.HttpsError('failed-precondition', 'weekly_review_insufficient_data');
     }
     const db = admin.firestore();
+    // Админ-конфиг (модель/выключатель). Fallback = текущие дефолты.
+    const jobCfg = await (0, openai_jobs_config_1.resolveJobConfig)(db, 'weekly');
+    (0, openai_jobs_config_1.assertJobEnabled)(jobCfg, 'weekly'); // kill-switch: enabled=false → resource-exhausted
     const authUid = request.auth.uid;
     // uid from auth identity — NEVER from request body (security invariant).
     const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid);
@@ -341,7 +345,7 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            model: MODEL_DEFAULT,
+            model: jobCfg.model,
             messages,
             max_tokens: MAX_OUTPUT_TOKENS,
             temperature: 0.7,
@@ -364,7 +368,7 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
     await db.collection(BILLING_COLLECTION).doc().set({
         uid: stableUid,
         authUid,
-        model: MODEL_DEFAULT,
+        model: jobCfg.model,
         lang: briefing.lang,
         studyTarget: briefing.studyTarget,
         windowDays: briefing.windowDays,
@@ -380,7 +384,7 @@ exports.weeklyReviewGenerate = (0, https_1.onCall)({
         ok: true,
         review: result,
         nextAllowedAtMs,
-        model: MODEL_DEFAULT,
+        model: jobCfg.model,
     };
 });
 // Pure functions exposed for unit tests (convention: see account_delete.ts).

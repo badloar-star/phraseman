@@ -3,30 +3,41 @@ node_modules
 
 # Scripts and docs (не выгружать весь scripts/, но гейт для EAS production обязан быть в архиве)
 scripts/*
+!scripts/install-git-hooks.mjs
 !scripts/release_keys_gate.mjs
 !scripts/eas_production_version_gate.mjs
 docs/
 qa-artifacts/
 tmp/
 builds/
+output/
 subscription-recovery/
 functions/
 exports/
 SSIU/
 admin/
+knowly-www/
 graphify-out/
+.firebase/
 .obsidian/
 .hive-mind/
 .claude-flow/
 .claude/
+.codex/
 .expo/
 .codex-tmp/
 .codex-logs/
+.dev-screens/
 .ruflo/
 .agents/
 .planning/
+.idea
+.idea/
+.superpowers
+.superpowers/
 dist/
 maestro-results/
+_frames/
 lingman-montazher/
 lingman-scenarist-pipeline/
 tools/
@@ -65,13 +76,42 @@ service-account.json
 service-account*.json
 
 # Git
+.git
 .git/
 
 # Large files not needed for build
 graphify-out/
 /*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.mp4
+/*.mov
+/*.zip
+/_*
+/__*
+/tmp_*
+/tmp*
+/check_*
+/validate_*
+/draft*.json
+/word_check*
+/analyze_impact.js
+/*.html
+C*
 *.map
 *.log
+**/backups/
+**/dalle_sources/
+**/sources/
+assets/images/cinema_dalle_sources/
+assets/images/arena_actions_sources/
+assets/paywall_preview_v2.html
+assets/*Copy.txt
+assets/images/streak_overlays/*source*
+assets/images/league/*_source.*
+assets/images/quizzes/medals/*sheet.png
+assets/images/personal_plan_tasks/*.png
 
 # Local builds
 android/app/build/

@@ -14,14 +14,22 @@ describe('Onboarding Graphite core chrome assets', () => {
     expect(firstLessonSource).not.toContain('sheet-bg-');
   });
 
-  test('onboarding uses a programmatic gradient instead of bg image assets', () => {
+  test('onboarding keeps the graphite gradient background without full-screen art images', () => {
     const onboardingSource = fs.readFileSync(path.join(ROOT, 'components/onboarding.tsx'), 'utf8');
 
-    expect(onboardingSource).toContain('const ONBOARDING_BG_WELCOME = null');
-    expect(onboardingSource).toContain("colors={['#101319', '#07090D', '#020304']}");
-    expect(onboardingSource).not.toContain('onboarding-bg-');
+    for (const key of ['WELCOME', 'BETA', 'NAME', 'BUILDER', 'QUIZ', 'STREAK', 'AUTH']) {
+      expect(onboardingSource).toContain(`const ONBOARDING_BG_${key} = null;`);
+    }
+    expect(onboardingSource).not.toContain('onboarding-professor-observatory.webp');
+    expect(onboardingSource).not.toContain('onboarding-phrase-archive.webp');
+    expect(onboardingSource).not.toContain('onboarding-sage-council.webp');
+    expect(onboardingSource).toContain("accent: '#F2B84B'");
+    expect(onboardingSource).not.toContain('ONBOARDING_THEME_BLUE');
+    expect(onboardingSource).not.toContain('ONBOARDING_THEME_GREEN');
     expect(onboardingSource).not.toContain('AnimatedImage');
-    expect(onboardingSource).not.toContain('onboardingBgImage');
+    expect(onboardingSource).toContain('onboardingBgImage');
+    expect(onboardingSource).toContain('colors={[theme.bgBottom, theme.bgTop, theme.bgEdge]}');
+    expect(onboardingSource).toContain("'rgba(0,0,0,0.99)'");
   });
 
   test('non-background chrome modules do not reference removed background groups', () => {

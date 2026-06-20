@@ -19,6 +19,7 @@ import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { applyManualReferralCode, type ReferralApplyStatus } from './referral_bootstrap';
+import { safeRouterBack } from './navigation_back';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -204,7 +205,7 @@ export default function ReferralCodeEntryScreen() {
               <TapScale
                 accessibilityRole="button"
                 accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
-                onPress={() => router.back()}
+                onPress={() => safeRouterBack(router, '/referrals' as any)}
                 style={{
                   width: 44,
                   height: 44,

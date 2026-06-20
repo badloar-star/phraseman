@@ -13,7 +13,9 @@ import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { isFeatureFreeForEveryone } from './feature_gates';
 import { logMistake } from './mistake_log';
 import { getDiagnosisTrainingForTarget } from './diagnosis_trainings';
 import {
@@ -55,6 +57,7 @@ export default function ProblemCoach() {
   const [accessChecked, setAccessChecked] = useState(false);
   const [stage, setStage] = useState<Stage>('intro');
   const [state, setState] = useState<DiagnosisTrainingRuntimeState>(() => createDiagnosisTrainingState());
+  const { playCorrect } = useCorrectSound();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
@@ -82,7 +85,8 @@ export default function ProblemCoach() {
         router.replace('/trainer' as any);
         return;
       }
-      if (!hasPremium) {
+      // «Пульт»: если разбор ошибки переведён в «Фри» — замок/лимит сняты для всех.
+      if (!hasPremium && !isFeatureFreeForEveryone('diagnosis_training')) {
         const freeAllowed = await reserveFreeDiagnosisTraining(diagnosisTraining.id, { studyTarget, sourceLocale });
         if (cancelled) return;
         if (!freeAllowed) {
@@ -113,6 +117,7 @@ export default function ProblemCoach() {
     setState(nextState);
     if (correct) {
       hapticSuccess();
+      playCorrect();
       setCorrectCount((value) => value + 1);
     } else {
       setWrongCount((value) => value + 1);

@@ -150,8 +150,6 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
               <>
                 <Text
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.86}
                   style={{
                     color: t.textPrimary,
                     fontSize: f.h3,

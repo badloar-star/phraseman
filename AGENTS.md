@@ -1,5 +1,18 @@
 # Project Rules
 
+## MASON — content scriptwriter pipeline
+
+- If the user mentions **"MASON"**, "мейсон", "подними мейсон", or "пишем новый ролик", load the
+  content pipeline: read `content/MASON.md` FIRST and follow its step-by-step instructions exactly.
+- MASON writes ready-to-voice short-video scripts (RU, Clarkson's-Farm style) about building Phraseman.
+  All its state lives in `content/` (MASON.md, DOSSIER.md, CLARKSON_STYLE.md, scripts/). It is
+  self-contained — any AI in any session continues from those files.
+
+## UI Contrast Rule
+
+- On lime/salad/neon-green filled surfaces such as `t.accent`, `t.correct`, bright green badges, pills, and CTA buttons, use dark/black foreground (`t.correctText`, `#07110A`, or similarly dark text/icons), never white.
+- Future UI generation must preserve this contrast rule across screenshots, badges, CTAs, tabs, paywalls, generated components, and design fixes unless the green surface is deliberately darkened enough for white to pass contrast.
+
 ## Session Performance And Context Budget
 
 - Keep every session lean. Do not bulk-read, summarize, index, or paste large directory trees unless the current user request explicitly needs them.

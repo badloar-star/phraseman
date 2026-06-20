@@ -39,6 +39,12 @@ function readProgressMs(
   return Number.isFinite(value) && value > 0 ? value : 0;
 }
 
+function usesSettingsRenameRules(
+  requestData: FirebaseFirestore.DocumentData | undefined,
+): boolean {
+  return requestData?.source === 'settings';
+}
+
 function assertValidName(name: string): void {
   if (name.length < 2 || name.length > 32) {
     throw new HttpsError('invalid-argument', 'name_length');
@@ -231,18 +237,20 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       const profileRef = db.collection('public_profiles').doc(stableUid);
       const nameSnap = await tx.get(nameRef);
       const userSnap = await tx.get(userRef);
-      const oldRef = oldNameLower && oldNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldNameLower) : null;
-      const oldSnap = oldRef ? await tx.get(oldRef) : null;
       const userData = userSnap.data();
       const currentNameLower =
         readProgressString(userData, 'user_name_lower') ||
         readProgressString(userData, 'user_name').toLowerCase() ||
         oldNameLower;
+      const oldIndexNameLower = oldNameLower || currentNameLower;
+      const oldRef = oldIndexNameLower && oldIndexNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldIndexNameLower) : null;
+      const oldSnap = oldRef ? await tx.get(oldRef) : null;
       const previousChangeAt = readProgressMs(userData, 'nickname_changed_at');
       const isNameChange = Boolean(currentNameLower && currentNameLower !== nameLower);
+      const enforceSettingsCooldown = usesSettingsRenameRules(request.data);
       const nicknameChangedAt = isNameChange || previousChangeAt <= 0 ? now : previousChangeAt;
 
-      if (isNameChange && previousChangeAt > 0) {
+      if (isNameChange && previousChangeAt > 0 && enforceSettingsCooldown) {
         const nextChangeAt = previousChangeAt + NICKNAME_CHANGE_COOLDOWN_MS;
         if (now < nextChangeAt) {
           cooldownUntil = nextChangeAt;

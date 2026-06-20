@@ -1,12 +1,12 @@
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_copy.ts — контекстные копирайты пейвола (26 контекстов × 8 языков)
 //
-// Извлечено из premium_modal.tsx, чтобы все варианты пейвола (v1 / A / B / C)
+// Shared by the active A/B/C paywalls. The legacy premium_modal route is only a dispatcher.
 // читали ОДИН источник правды: заголовки, сабтайтлы, бенефиты и герой-акценты
 // по PremiumContext. При добавлении контекста — обновить ВСЕ карты ниже.
 //
 // ru/uk/es живут в основных полях; pt-BR/vi/id/tr/pl — в *_PLANNED структурах
-// (исторический формат v1). Хелпер makeLP собирает полный словарь для triLang.
+// Planned locales live in the *_PLANNED structures. makeLP builds a full triLang dictionary.
 // ════════════════════════════════════════════════════════════════════════════
 import { triLang, type Lang } from '../constants/i18n';
 import { PREMIUM_CONTEXT_SET, type PremiumContext } from './premium_context';
@@ -210,12 +210,12 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleEs: 'Premium abre sesiones del Entrenador sin límite en todos los modos. Repite las frases cuanto necesites, sin pausas.',
   },
   dialog_limit: {
-    titleRu: 'Говори с Тео без лимита',
-    titleUk: 'Спілкуйся з Тео без ліміту',
-    titleEs: 'Habla con Theo sin límite',
-    subtitleRu: 'Бесплатно — один разговор в день. Premium открывает живую практику английского без ограничений: новые сценарии, разбор каждой реплики, твои слова из карточек.',
-    subtitleUk: 'Безкоштовно — одна розмова на день. Premium відкриває живу практику англійської без обмежень: нові сценарії, розбір кожної репліки, твої слова з карток.',
-    subtitleEs: 'Gratis: una conversación al día. Premium abre práctica real de inglés sin límites: nuevos escenarios, análisis de cada frase y tus palabras de las tarjetas.',
+    titleRu: 'Живая практика в диалогах',
+    titleUk: 'Жива практика в діалогах',
+    titleEs: 'Práctica real en los diálogos',
+    subtitleRu: 'Premium открывает живую практику английского: новые сценарии, разбор каждой реплики, твои слова из карточек.',
+    subtitleUk: 'Premium відкриває живу практику англійської: нові сценарії, розбір кожної репліки, твої слова з карток.',
+    subtitleEs: 'Premium abre práctica real de inglés: nuevos escenarios, análisis de cada frase y tus palabras de las tarjetas.',
   },
   diagnosis_training: {
     // Библия: «ошибка»→«разбор/что подтянуть», ≤10 слов/предложение, gain-framing.
@@ -601,18 +601,18 @@ PAYWALL_PLANNED_COPY.notification_upsell = {
 // языки падали в generic. Закрываем, чтобы каждый контекст был персональным на всех 8.
 PAYWALL_PLANNED_COPY.dialog_limit = {
   title: {
-    'pt-BR': 'Fale com o Theo sem limite',
-    vi: 'Trò chuyện với Theo không giới hạn',
-    id: 'Bicara dengan Theo tanpa batas',
-    tr: 'Theo ile sınırsız konuş',
-    pl: 'Rozmawiaj z Theo bez limitu',
+    'pt-BR': 'Prática real nos diálogos',
+    vi: 'Luyện nói thật trong hội thoại',
+    id: 'Latihan nyata di dialog',
+    tr: 'Diyaloglarda gerçek pratik',
+    pl: 'Prawdziwa praktyka w dialogach',
   },
   subtitle: {
-    'pt-BR': 'Grátis: uma conversa por dia. O Premium abre prática real de inglês sem limites: novos cenários, análise de cada fala e suas palavras dos cartões.',
-    vi: 'Miễn phí: một cuộc trò chuyện mỗi ngày. Premium mở luyện nói tiếng Anh thật không giới hạn: kịch bản mới, phân tích từng câu và từ vựng của bạn từ thẻ.',
-    id: 'Gratis: satu percakapan per hari. Premium membuka latihan bahasa Inggris nyata tanpa batas: skenario baru, analisis tiap ucapan, dan katamu dari kartu.',
-    tr: 'Ücretsiz: günde bir konuşma. Premium sınırsız gerçek İngilizce pratiğini açar: yeni senaryolar, her cümlenin analizi ve kartlarındaki kelimeler.',
-    pl: 'Za darmo: jedna rozmowa dziennie. Premium otwiera prawdziwą praktykę angielskiego bez limitów: nowe scenariusze, analiza każdej wypowiedzi i twoje słowa z fiszek.',
+    'pt-BR': 'O Premium abre prática real de inglês: novos cenários, análise de cada fala e suas palavras dos cartões.',
+    vi: 'Premium mở luyện nói tiếng Anh thật: kịch bản mới, phân tích từng câu và từ vựng của bạn từ thẻ.',
+    id: 'Premium membuka latihan bahasa Inggris nyata: skenario baru, analisis tiap ucapan, dan katamu dari kartu.',
+    tr: 'Premium gerçek İngilizce pratiğini açar: yeni senaryolar, her cümlenin analizi ve kartlarındaki kelimeler.',
+    pl: 'Premium otwiera prawdziwą praktykę angielskiego: nowe scenariusze, analiza każdej wypowiedzi i twoje słowa z fiszek.',
   },
 };
 PAYWALL_PLANNED_COPY.speaking = {
@@ -698,6 +698,69 @@ export function getHeroPlannedCopy(ctx: PremiumContext, savedCards: number): Pre
 export function getPaywallCopy(context?: string): PaywallCopy {
   if (!context) return PAYWALL_COPY.generic;
   return (PAYWALL_COPY as Record<string, PaywallCopy>)[context] ?? PAYWALL_COPY.generic;
+}
+
+// Контексты, чей заголовок УЖЕ сформулирован как возврат/ре-энгейдж. Их win-back
+// подмена не трогает — иначе получится двойной «верни доступ».
+const WIN_BACK_NATIVE_CONTEXTS = new Set<string>([
+  'generic',
+  'premium_expired',
+  'vip_expired',
+  'intro_ended',
+  'notification_upsell',
+]);
+
+// Win-back заголовок: универсальная формулировка «верни доступ», который у юзера
+// УЖЕ был (премиум стал фри/истёк). Перекрывает «получить впервые»-заголовки вроде
+// «Получить персональный план», которые звучат неактуально для вернувшегося юзера.
+const WIN_BACK_TITLE: Pick<PaywallCopy, 'titleRu' | 'titleUk' | 'titleEs'> = {
+  titleRu: 'Верни полный доступ Premium',
+  titleUk: 'Поверни повний доступ Premium',
+  titleEs: 'Recupera tu acceso Premium completo',
+};
+
+// Win-back заголовок для planned-локалей (pt-BR/vi/id/tr/pl), которые берут title
+// из planned-копии, а не из RU/UK/ES.
+const WIN_BACK_PLANNED_TITLE: PremiumPlannedCopy = {
+  'pt-BR': 'Recupere seu acesso Premium completo',
+  vi: 'Lấy lại toàn bộ quyền Premium của bạn',
+  id: 'Pulihkan akses Premium penuh kamu',
+  tr: 'Tüm Premium erişimini geri kazan',
+  pl: 'Odzyskaj pełny dostęp Premium',
+};
+
+function isWinBackContext(context: string | undefined, hadPremiumEver: boolean): boolean {
+  if (!hadPremiumEver) return false;
+  if (context && WIN_BACK_NATIVE_CONTEXTS.has(context)) return false;
+  return true;
+}
+
+/**
+ * Если юзер когда-либо имел Premium/VIP (hadPremiumEver) и сейчас на фиче-пейволе,
+ * заголовок «получить впервые» заменяется на win-back «верни доступ». Субтайтл и
+ * выгоды остаются — они описывают, ЧТО даёт Premium, и валидны для возврата.
+ * Контексты, которые сами уже про возврат, не трогаются.
+ */
+export function applyWinBackCopy(
+  copy: PaywallCopy,
+  context: string | undefined,
+  hadPremiumEver: boolean,
+): PaywallCopy {
+  if (!isWinBackContext(context, hadPremiumEver)) return copy;
+  return { ...copy, ...WIN_BACK_TITLE };
+}
+
+/**
+ * Win-back подмена title для planned-копии (нероссийско-украинско-испанские локали).
+ * Subtitle planned не трогаем по той же причине, что и в applyWinBackCopy.
+ */
+export function applyWinBackPlannedCopy(
+  planned: PremiumPlannedHeroCopy,
+  context: string | undefined,
+  hadPremiumEver: boolean,
+): PremiumPlannedHeroCopy {
+  if (!isWinBackContext(context, hadPremiumEver)) return planned;
+  return { ...planned, title: WIN_BACK_PLANNED_TITLE };
 }
 
 // ── Контексты возврата/ре-энгейджа: заголовки под ситуацию (а не generic) ─────

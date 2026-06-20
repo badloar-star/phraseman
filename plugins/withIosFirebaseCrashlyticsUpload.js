@@ -7,17 +7,40 @@ const { withXcodeProject, createRunOncePlugin, IOSConfig } = require('@expo/conf
 
 const PHASE_COMMENT = '[Firebase] Crashlytics — upload dSYMs';
 
-function hasExistingCrashlyticsPhase(project) {
+function findCrashlyticsPhaseUuids(project) {
   const phases = project.hash?.project?.objects?.PBXShellScriptBuildPhase;
-  if (!phases) return false;
+  if (!phases) return [];
+
+  const result = [];
   for (const key of Object.keys(phases)) {
     if (key.endsWith('_comment')) continue;
     const shell = phases[key]?.shellScript;
     if (typeof shell === 'string' && shell.includes('FirebaseCrashlytics/run')) {
-      return true;
+      result.push(key);
     }
   }
-  return false;
+
+  return result;
+}
+
+function movePhasesToEnd(project, targetUuid, phaseUuids) {
+  const target = project.hash?.project?.objects?.PBXNativeTarget?.[targetUuid];
+  const buildPhases = target?.buildPhases;
+  if (!Array.isArray(buildPhases) || phaseUuids.length === 0) return;
+
+  const phaseSet = new Set(phaseUuids);
+  const crashlyticsPhases = [];
+  const otherPhases = [];
+
+  for (const phase of buildPhases) {
+    if (phaseSet.has(phase.value)) {
+      crashlyticsPhases.push(phase);
+    } else {
+      otherPhases.push(phase);
+    }
+  }
+
+  target.buildPhases = [...otherPhases, ...crashlyticsPhases];
 }
 
 function withIosFirebaseCrashlyticsUpload(config) {
@@ -27,7 +50,9 @@ function withIosFirebaseCrashlyticsUpload(config) {
     const projectName = IOSConfig.XcodeUtils.getProjectName(projectRoot);
     const target = IOSConfig.XcodeUtils.getApplicationNativeTarget({ project, projectName });
 
-    if (hasExistingCrashlyticsPhase(project)) {
+    const existingPhaseUuids = findCrashlyticsPhaseUuids(project);
+    if (existingPhaseUuids.length > 0) {
+      movePhasesToEnd(project, target.uuid, existingPhaseUuids);
       return cfg;
     }
 
@@ -52,6 +77,7 @@ function withIosFirebaseCrashlyticsUpload(config) {
         inputPaths,
       },
     );
+    movePhasesToEnd(project, target.uuid, findCrashlyticsPhaseUuids(project));
 
     return cfg;
   });

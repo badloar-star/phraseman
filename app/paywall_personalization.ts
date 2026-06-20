@@ -6,7 +6,7 @@
 //     - energy_zero_count_v1      (NoEnergyModal.tsx onShow)
 //     - streak_lost_count_v1      (hall_of_fame_utils.ts при streak reset)
 //     - hard_paywall_blocks_v1    legacy quiz-limit attempts counter
-//  2. premium_modal.tsx вызывает pickPaywallTags() → получает top-3 тега по «боли».
+//  2. Active paywall A/B/C screens call pickPaywallTags() and render the strongest tags.
 //  3. UI рендерит pill-карточки над hero-блоком.
 //
 // Принципы:

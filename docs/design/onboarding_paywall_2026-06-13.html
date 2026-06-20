@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman · Пейвол ОНБОРДИНГА «Атриум-План» — макет 2026-06-13</title>
+<style>
+/* ════════ Compass design tokens (constants/compassTheme.ts) ════════ */
+:root{
+  --charcoal:#1B1B1D; --charcoal-raised:#202022; --charcoal-soft:#2E2E30;
+  --cream:#FFE7B6; --cream-soft:#F8D7A3; --champagne:#F2C48D;
+  --copper:#9B643F; --text-dark:#21170E; --text-muted:#D7D2CC;
+  --hairline-q:rgba(248,215,163,.14); --hairline:rgba(248,215,163,.23); --hairline-s:rgba(255,231,182,.36);
+  --wash:rgba(248,215,163,.07); --wash-s:rgba(248,215,163,.12);
+  --page:#070604; --good:#7ED9A7; --lock:rgba(215,210,204,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+html,body{background:var(--page);color:var(--text-muted);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+
+.page{max-width:1280px;margin:0 auto;padding:34px 22px 80px}
+.hd h1{color:#fff;font-size:25px;font-weight:800;letter-spacing:-.7px}
+.hd h1 em{color:var(--cream);font-style:normal}
+.hd p{margin-top:8px;font-size:13.5px;line-height:1.55;color:rgba(215,210,204,.78);max-width:920px}
+.hd .verdict{display:inline-block;margin-top:12px;padding:8px 14px;border:1px solid var(--hairline);
+  border-radius:10px;background:var(--wash);color:var(--cream);font-size:12.5px;font-weight:600;line-height:1.5}
+.controls{margin:18px 0 6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn-ann{cursor:pointer;border:1px solid var(--hairline);background:var(--charcoal-raised);color:var(--cream);
+  font:600 12px Inter,sans-serif;padding:9px 14px;border-radius:9px;transition:.2s}
+.btn-ann.on{background:var(--cream-soft);color:var(--text-dark);border-color:transparent}
+.tokens{display:flex;gap:6px;align-items:center;margin-left:auto;flex-wrap:wrap}
+.chip{width:22px;height:22px;border-radius:6px;border:1px solid rgba(255,255,255,.12)}
+.tokens span{font-size:10.5px;color:rgba(215,210,204,.5);margin-left:2px}
+
+.grid{display:flex;gap:30px;margin-top:24px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;gap:12px}
+.col .tag{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:rgba(215,210,204,.55);text-align:center}
+.col .tag b{color:#fff}
+.badge-rec{display:inline-block;margin-left:8px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:800;
+  letter-spacing:.5px;background:var(--cream-soft);color:var(--text-dark)}
+.col .note{font-size:11px;color:rgba(215,210,204,.5);max-width:360px;text-align:center;line-height:1.55}
+
+.phone{width:378px;height:798px;border-radius:50px;border:9px solid #161617;position:relative;overflow:hidden;
+  background:#0B0904;box-shadow:0 0 0 1px #2a2a2c,0 34px 70px rgba(0,0,0,.75)}
+.phone .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:108px;height:24px;border-radius:14px;background:#161617;z-index:60}
+
+.bg{position:absolute;inset:0;background:linear-gradient(180deg,#0B0904 0%,#141008 46%,#0B0904 100%)}
+.bg::before{content:'';position:absolute;inset:-20% -30% auto;height:46%;
+  background:radial-gradient(60% 90% at 50% 0%,rgba(248,215,163,.16),transparent 70%)}
+.bg::after{content:'';position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.scr{position:relative;z-index:1;height:100%;display:block;padding:0 18px 14px;overflow-y:auto;scrollbar-width:none}
+.scr::-webkit-scrollbar{display:none}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:14px 8px 0;font-size:12px;
+  font-weight:600;color:#fff}
+.sb-ic{display:flex;gap:5px;align-items:center}
+.sb-ic i{display:block;background:rgba(255,255,255,.85)}
+.sb-ic .w{width:14px;height:9px;border-radius:2px 2px 0 0;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.sb-ic .b{width:18px;height:9px;border-radius:2.5px;border:1px solid rgba(255,255,255,.5);background:transparent;position:relative}
+.sb-ic .b::after{content:'';position:absolute;inset:1px 30% 1px 1px;background:#fff;border-radius:1px}
+
+.topbar{display:flex;align-items:center;margin:8px 0 2px;position:sticky;top:6px;z-index:40}
+.back{width:30px;height:30px;border-radius:15px;border:1px solid var(--hairline-q);background:rgba(11,9,4,.7);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;cursor:pointer}
+.back svg{width:9px;height:14px;stroke:rgba(215,210,204,.7);stroke-width:2;fill:none}
+.topProg{flex:1;height:4px;border-radius:3px;background:rgba(248,215,163,.1);margin-left:12px;overflow:hidden}
+.topProg i{display:block;height:100%;width:100%;border-radius:3px;background:linear-gradient(90deg,var(--champagne),var(--cream))}
+
+/* ── hero ── */
+.h1{margin-top:16px;text-align:center;color:#fff;font-size:26px;line-height:1.16;font-weight:800;letter-spacing:-1.1px}
+.h1 .gold{color:var(--cream)}
+.subline{margin-top:11px;display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:20px;border:1px solid var(--hairline-q);
+  background:var(--wash);font-size:11.5px;color:var(--champagne);font-weight:600}
+.pill svg{width:12px;height:12px;stroke:var(--champagne);stroke-width:1.8;fill:none}
+
+/* ── превью плана с замком ── */
+.planPrev{margin-top:16px;border-radius:18px;border:1px solid var(--hairline-q);background:rgba(32,32,34,.6);padding:13px 13px 6px;position:relative;overflow:hidden}
+.planPrev .ph{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.planPrev .ph .icn{width:34px;height:34px;border-radius:10px;background:linear-gradient(160deg,var(--charcoal-raised),#181410);
+  border:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;box-shadow:0 0 22px rgba(248,215,163,.12)}
+.planPrev .ph .icn svg{width:18px;height:18px;stroke:var(--cream);stroke-width:1.6;fill:none}
+.planPrev .ph b{font-size:14px;color:#fff;font-weight:700}
+.planPrev .ph span{display:block;font-size:10.5px;color:rgba(215,210,204,.55);margin-top:1px}
+.wk{display:flex;align-items:center;gap:10px;padding:9px 4px;border-top:1px solid rgba(248,215,163,.07)}
+.wk .num{width:24px;height:24px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+.wk.open .num{background:var(--cream-soft);color:var(--text-dark)}
+.wk.lock .num{border:1px solid var(--hairline-q);color:var(--lock)}
+.wk .wt{flex:1;font-size:12.5px;color:rgba(215,210,204,.85);font-weight:600}
+.wk.lock .wt{color:rgba(215,210,204,.45)}
+.wk .badge{font-size:9.5px;font-weight:800;letter-spacing:.4px;padding:2px 7px;border-radius:6px}
+.wk.open .badge{background:rgba(126,217,167,.16);color:var(--good)}
+.wk .lk{width:13px;height:13px;stroke:var(--lock);stroke-width:1.8;fill:none}
+.fade{position:absolute;left:0;right:0;bottom:0;height:78px;background:linear-gradient(180deg,transparent,rgba(11,9,4,.0) 0%,rgba(32,32,34,.0));pointer-events:none}
+.locked3{filter:blur(2.2px);opacity:.5}
+.planPrev .lockTag{position:absolute;right:13px;bottom:13px;display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:18px;
+  background:rgba(22,20,15,.9);border:1px solid var(--hairline);font-size:10.5px;color:var(--cream);font-weight:700;backdrop-filter:blur(4px)}
+.planPrev .lockTag svg{width:11px;height:11px;stroke:var(--cream);stroke-width:2;fill:none}
+
+/* ── trial timeline ── */
+.timeline{margin-top:15px;padding:13px 14px;border-radius:16px;border:1px solid var(--hairline-q);background:var(--wash)}
+.tl-row{display:flex;gap:11px;align-items:flex-start;position:relative;padding-bottom:13px}
+.tl-row:last-child{padding-bottom:0}
+.tl-row::before{content:'';position:absolute;left:10px;top:22px;bottom:-1px;width:1.5px;background:var(--hairline-q)}
+.tl-row:last-child::before{display:none}
+.tl-dot{width:21px;height:21px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--hairline);background:transparent;z-index:1}
+.tl-row.lit .tl-dot{background:var(--cream-soft);border-color:transparent}
+.tl-dot svg{width:11px;height:11px;stroke:var(--text-dark);stroke-width:2.4;fill:none}
+.tl-row:not(.lit) .tl-dot svg{stroke:rgba(215,210,204,.55);stroke-width:1.8}
+.tl-t{font-size:12.5px;font-weight:700;color:#fff;line-height:1.3}
+.tl-s{font-size:11px;color:rgba(215,210,204,.6);margin-top:1px;line-height:1.4}
+
+/* ── plans ── */
+.plans{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.plan{position:relative;border-radius:16px;border:1.5px solid var(--hairline-q);background:rgba(32,32,34,.72);
+  padding:13px 15px;cursor:pointer;transition:.22s}
+.plan.sel{border-color:rgba(242,196,141,.8);background:linear-gradient(160deg,rgba(248,215,163,.12),rgba(248,215,163,.05));
+  box-shadow:0 6px 26px rgba(155,100,63,.22)}
+.plan .row1{display:flex;align-items:center;gap:10px}
+.radio{width:19px;height:19px;border-radius:10px;border:1.7px solid rgba(215,210,204,.35);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;transition:.2s}
+.plan.sel .radio{background:var(--cream-soft);border-color:transparent}
+.radio svg{width:10px;height:10px;stroke:var(--text-dark);stroke-width:3;fill:none;opacity:0}
+.plan.sel .radio svg{opacity:1}
+.pname{font-size:14.5px;font-weight:700;color:#fff}
+.plan:not(.sel) .pname{color:rgba(215,210,204,.85)}
+.save{margin-left:7px;padding:2.5px 8px;border-radius:7px;font-size:10.5px;font-weight:800;letter-spacing:.3px;
+  background:var(--champagne);color:var(--text-dark)}
+.pright{margin-left:auto;text-align:right}
+.pprice{font-size:16.5px;font-weight:800;color:var(--cream);font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.plan:not(.sel) .pprice{color:rgba(215,210,204,.8)}
+.pper{font-size:10.5px;color:rgba(215,210,204,.5);font-weight:500}
+.psub{margin-top:7px;padding-left:29px;font-size:11px;color:rgba(215,210,204,.55);line-height:1.4}
+.psub b{color:rgba(255,231,182,.85);font-weight:600}
+
+/* ── CTA ── */
+.ctaWrap{margin-top:15px}
+.cta{position:relative;overflow:hidden;width:100%;border:none;cursor:pointer;border-radius:30px;padding:16.5px 10px;
+  background:linear-gradient(135deg,var(--cream) 0%,var(--cream-soft) 55%,var(--champagne) 100%);
+  color:var(--text-dark);font:800 16px/1 Inter,sans-serif;letter-spacing:-.2px;
+  box-shadow:0 10px 32px rgba(155,100,63,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+.cta .shine{position:absolute;top:0;bottom:0;width:46px;transform:skewX(-22deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);left:-80px;animation:shine 3.2s ease-in-out infinite}
+@keyframes shine{0%,64%{left:-80px}88%,100%{left:130%}}
+.ctaSub{margin-top:9px;text-align:center;font-size:11px;line-height:1.45;color:rgba(215,210,204,.6)}
+.ctaSub b{color:rgba(215,210,204,.85);font-weight:600;font-variant-numeric:tabular-nums}
+.foot{margin-top:11px;display:flex;justify-content:center;gap:7px;font-size:10.5px;color:rgba(215,210,204,.42)}
+.foot span{cursor:pointer}
+.ghost{margin-top:9px;text-align:center;font-size:12px;color:rgba(215,210,204,.42);text-decoration:underline;
+  text-underline-offset:3px;cursor:pointer;padding-bottom:2px}
+
+/* ── trust row ── */
+.trust{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap}
+.trust .stars{display:flex;gap:1.5px}
+.trust .stars svg{width:12px;height:12px;fill:var(--champagne)}
+.trust .tx{font-size:11px;color:rgba(215,210,204,.6)}
+.trust .dot{width:3px;height:3px;border-radius:2px;background:rgba(215,210,204,.3)}
+
+/* ── ниже фолда ── */
+.divider{margin:22px auto 4px;display:flex;align-items:center;gap:8px;color:rgba(215,210,204,.4);
+  font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--hairline-q)}
+.card{margin-top:12px;border-radius:16px;border:1px solid var(--hairline-q);background:rgba(32,32,34,.66);padding:14px 15px}
+.card .ct{font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--champagne);margin-bottom:10px}
+.proj{display:flex;gap:11px;align-items:center}
+.proj .pic{width:38px;height:38px;border-radius:11px;background:var(--wash);border:1px solid var(--hairline-q);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.proj .pic svg{width:19px;height:19px;stroke:var(--cream);stroke-width:1.6;fill:none}
+.proj p{font-size:12.5px;line-height:1.5;color:rgba(215,210,204,.82)}
+.proj b{color:var(--cream)}
+.cmp .row{display:flex;align-items:center;padding:8.5px 0;border-bottom:1px solid rgba(248,215,163,.07);gap:8px}
+.cmp .row:last-child{border-bottom:none}
+.cmp .l{flex:1}
+.cmp .lt{font-size:12px;font-weight:700;color:#fff}
+.cmp .lf{font-size:10.5px;color:rgba(215,210,204,.45);margin-top:1px}
+.cmp .arrow{color:rgba(215,210,204,.3);flex-shrink:0;font-size:11px}
+.cmp .r{width:120px;text-align:right;font-size:11px;font-weight:700;color:var(--cream);line-height:1.3}
+.faq .q{border-bottom:1px solid rgba(248,215,163,.07);padding:10px 0;cursor:pointer}
+.faq .q:last-child{border-bottom:none}
+.faq .qh{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#fff}
+.faq .qh svg{margin-left:auto;width:13px;height:13px;stroke:rgba(215,210,204,.55);stroke-width:2;fill:none;transition:transform .25s;flex-shrink:0}
+.faq .q.open .qh svg{transform:rotate(180deg)}
+.faq .qa{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:11.5px;line-height:1.55;color:rgba(215,210,204,.65)}
+.faq .q.open .qa{max-height:160px;padding-top:7px}
+
+/* ── sticky CTA ── */
+.sticky{position:absolute;left:10px;right:10px;bottom:12px;z-index:50;display:flex;align-items:center;gap:10px;
+  border-radius:18px;padding:10px 10px 10px 16px;background:rgba(22,20,15,.86);backdrop-filter:blur(14px);
+  border:1px solid var(--hairline);box-shadow:0 14px 38px rgba(0,0,0,.6);
+  transform:translateY(86px);opacity:0;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .32s;pointer-events:none}
+.sticky.show{transform:translateY(0);opacity:1;pointer-events:auto}
+.sticky .st{flex:1;min-width:0}
+.sticky .st b{display:block;font-size:12px;font-weight:700;color:#fff;white-space:nowrap}
+.sticky .st span{display:block;font-size:10px;color:rgba(215,210,204,.55);font-variant-numeric:tabular-nums}
+.sticky button{border:none;cursor:pointer;border-radius:14px;padding:11px 18px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--cream),var(--champagne));color:var(--text-dark);font:800 12.5px Inter,sans-serif}
+
+/* ── аннотации ── */
+.ann{position:absolute;z-index:55;width:22px;height:22px;border-radius:12px;background:var(--cream);color:var(--text-dark);
+  font:800 11px/22px Inter,sans-serif;text-align:center;cursor:pointer;box-shadow:0 0 0 3px rgba(248,215,163,.25),0 4px 12px rgba(0,0,0,.5);display:none}
+body.showAnn .ann{display:block}
+.ann .tip{position:absolute;top:26px;left:50%;transform:translateX(-50%);width:230px;padding:9px 11px;border-radius:11px;
+  background:#241F15;border:1px solid var(--hairline);color:var(--text-muted);font:400 10.8px/1.5 Inter,sans-serif;
+  text-align:left;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+.ann .tip b{color:var(--cream);font-weight:700}
+.ann:hover .tip,.ann.open .tip{opacity:1;pointer-events:auto}
+.ann.left .tip{left:auto;right:50%;transform:translateX(0)}
+
+.why{margin-top:46px;border:1px solid var(--hairline-q);border-radius:18px;padding:22px 24px;background:rgba(27,27,29,.5)}
+.why h2{color:#fff;font-size:17px;font-weight:800;letter-spacing:-.4px}
+.why h2 em{color:var(--cream);font-style:normal}
+.why ul{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px 26px;list-style:none}
+.why li{font-size:12.5px;line-height:1.55;color:rgba(215,210,204,.78);padding-left:18px;position:relative}
+.why li::before{content:'';position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:4px;background:var(--champagne)}
+.why li b{color:var(--cream)}
+.src{margin-top:22px;font-size:11px;color:rgba(215,210,204,.4);line-height:1.6}
+
+@media (prefers-reduced-motion:reduce){.cta .shine{animation:none}}
+</style>
+</head>
+<body class="showAnn">
+<div class="page">
+  <div class="hd">
+    <h1>Пейвол <em>ОНБОРДИНГА</em> — «Атриум-План» (каркас C, переодет под «открой свой план»)</h1>
+    <p>Это рекомендованная замена текущего инлайн-пейвола онбординга (<b>components/onboarding.tsx</b>, step <b>planPaywall</b>).
+       Цены условные — в проде только из RevenueCat. Тема «Компас» (уголь + шампань). Контекст: юзер только что ответил на вопросы (цель/уровень/минуты) и «собрал план».
+       Золотые точки — обоснования (наведи). Полный аудит: <b>docs/reports/ONBOARDING_AUDIT_2026-06-13.md</b></p>
+    <div class="verdict">Из 3 макетов v3 каркас <b>C «Атриум»</b> — верный, но был под «кончилась энергия». Здесь он переодет под онбординг: герой «{Имя}, твой план готов» → превью плана с замком → таймлайн триала → планы → CTA. Покупка — на этом же экране (без второго premium_modal).</div>
+  </div>
+
+  <div class="controls">
+    <button class="btn-ann on" id="annBtn" onclick="toggleAnn()">Аннотации: вкл</button>
+    <div class="tokens">
+      <div class="chip" style="background:#0B0904"></div>
+      <div class="chip" style="background:#202022"></div>
+      <div class="chip" style="background:#FFE7B6"></div>
+      <div class="chip" style="background:#F2C48D"></div>
+      <div class="chip" style="background:#9B643F"></div>
+      <span>уголь · карточка · cream · champagne · copper</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+  <!-- ════════ ОНБОРДИНГ-ПЕЙВОЛ ════════ -->
+  <div class="col">
+    <div class="tag"><b>Атриум-План</b> — пейвол онбординга<span class="badge-rec">Рекомендуем</span></div>
+    <div class="phone">
+      <div class="notch"></div><div class="bg"></div>
+
+      <div class="ann" style="top:96px;left:14px"><span>1</span>
+        <div class="tip"><b>Имя + ответы юзера в герое.</b> «{Имя}, твой план готов» — вставка имени даёт +17% (Adapty). Строка из его ответов (цель·уровень·минуты) = честный personal-фрейминг, «personalization closes» (RevenueCat — сильнее layout-тестов).</div></div>
+      <div class="ann left" style="top:214px;right:14px"><span>2</span>
+        <div class="tip"><b>Превью плана с замком.</b> Показываем, ЧТО покупаешь (Noom/Fastic): неделя 1 открыта, 2–12 заблюрены с замком. Loss-aversion на со-созданный план: «не бросай то, что уже собрал».</div></div>
+      <div class="ann" style="top:430px;left:14px"><span>3</span>
+        <div class="tip"><b>Таймлайн триала — топ-1 по ROI.</b> Blinkist: +23% стартов триала, −55% жалоб, push opt-in 6→74%. Бьёт страх «забуду отменить» (33% мгновенных отмен). Рендерится только при реальном intro из стора. Toggle-триал Apple банит с янв 2026 — таймлайн легален.</div></div>
+      <div class="ann left" style="top:582px;right:14px"><span>4</span>
+        <div class="tip"><b>Годовой default + якорь месяца + −XX% + ₽/день.</b> +15–20% к выбору года (Mojo/RevenueCat), SAVE-бейдж +64–72%. Education: длинный триал 17–32д = 45.7% оплат vs 26.8% у 3–7д. Процент и цены — только из стора.</div></div>
+      <div class="ann" style="top:690px;left:14px"><span>5</span>
+        <div class="tip"><b>Цена прямо под CTA</b> + Restore/Terms/Privacy. Гигиена App Store 3.1.2 (иначе реджект, кейс Cal AI апр-2026). CTA-глагол без слова «подписка». Длина триала из стора, НЕ хардкод «3 дня».</div></div>
+      <div class="ann left" style="top:744px;right:14px"><span>6</span>
+        <div class="tip"><b>Блок доверия.</b> Реальный рейтинг 4.3 (честнее 5.0 — Airbridge), число учеников, «Отмена в любой момент». +10–15% к конверсии. Первый экран самодостаточен — скроллить НЕ обязательно. Ниже — для сомневающихся. Поскролль!</div></div>
+
+      <div class="scr" id="scr1">
+        <div class="statusbar"><span>9:41</span><div class="sb-ic"><i class="w"></i><i class="b"></i></div></div>
+
+        <div class="topbar">
+          <div class="back"><svg viewBox="0 0 9 14"><path d="M7 1L1 7l6 6"/></svg></div>
+          <div class="topProg"><i></i></div>
+        </div>
+
+        <div class="h1">Анна, <span class="gold">твой план готов</span></div>
+        <div class="subline">
+          <span class="pill"><svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Путешествия</span>
+          <span class="pill"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Уровень A1</span>
+          <span class="pill"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10 мин/день</span>
+        </div>
+
+        <div class="planPrev">
+          <div class="ph">
+            <div class="icn"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h5l-1 9 8-11h-5l1-9z" stroke-linejoin="round"/></svg></div>
+            <div><b>План «Гавань»</b><span>12 недель · 84 фразы в маршруте</span></div>
+          </div>
+          <div class="wk open"><div class="num">1</div><div class="wt">Неделя 1 · Знакомство и аэропорт</div><div class="badge">ОТКРЫТА</div></div>
+          <div class="wk lock"><div class="num">2</div><div class="wt">Неделя 2 · Отель и заселение</div><svg class="lk" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+          <div class="locked3">
+            <div class="wk lock"><div class="num">3</div><div class="wt">Неделя 3 · Кафе и заказ еды</div><svg class="lk" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+            <div class="wk lock"><div class="num">4</div><div class="wt">Неделя 4 · Транспорт и навигация</div><svg class="lk" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+          </div>
+          <div class="lockTag"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Ещё 10 недель</div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row lit">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M7 13l3.5 3.5L17.5 9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="tl-t">Сегодня — весь план открыт</div><div class="tl-s">Все 12 недель, без оплаты прямо сейчас</div></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M12 4a6 6 0 0 1 6 6v3l1.5 2.5H4.5L6 13v-3a6 6 0 0 1 6-6zM10 19a2 2 0 0 0 4 0" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="tl-t">День 2 — напомним</div><div class="tl-s">Пуш за день до конца триала — забыть невозможно</div></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10.5h18"/></svg></div>
+            <div><div class="tl-t">День 3 — начнётся доступ за <span class="tlPrice">2 990 ₽/год</span></div><div class="tl-s">Только если не отменишь. Отмена — в два тапа</div></div>
+          </div>
+        </div>
+
+        <div class="plans">
+          <div class="plan sel" data-plan="year" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Год</span><span class="save">−62%</span>
+              <div class="pright"><div class="pprice">249 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+            <div class="psub">Сначала 3 дня бесплатно · затем 2 990 ₽ раз в год · <b>8 ₽ в день</b></div>
+          </div>
+          <div class="plan" data-plan="month" onclick="pick(this)">
+            <div class="row1">
+              <div class="radio"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.6L10 3.5"/></svg></div>
+              <span class="pname">Месяц</span>
+              <div class="pright"><div class="pprice">649 ₽</div><div class="pper">/ месяц</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctaWrap">
+          <button class="cta" id="cta1">Открыть мой план — 3 дня бесплатно<span class="shine"></span></button>
+          <div class="ctaSub">затем <b class="ctaPrice">2 990 ₽/год</b> · отмена в любой момент</div>
+          <div class="foot"><span>Восстановить</span>·<span>Условия</span>·<span>Конфиденциальность</span></div>
+          <div class="trust">
+            <div class="stars">
+              <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+              <svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+              <svg viewBox="0 0 20 20" style="opacity:.45"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>
+            </div>
+            <span class="tx">4.3 в Google Play</span><span class="dot"></span><span class="tx">отмена в любой момент</span>
+          </div>
+          <div class="ghost">Продолжить без плана</div>
+        </div>
+
+        <div class="divider">если сомневаешься</div>
+
+        <div class="card">
+          <div class="ct">Что у тебя будет через месяц</div>
+          <div class="proj">
+            <div class="pic"><svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <p>По 10 минут в день → через <b>4 недели</b> ты закажешь еду, заселишься в отель и спросишь дорогу в поездке без переводчика.</p>
+          </div>
+        </div>
+
+        <div class="card cmp">
+          <div class="ct">С планом vs без плана</div>
+          <div class="row"><div class="l"><div class="lt">Маршрут под цель</div><div class="lf">Без плана — общие уроки</div></div><div class="arrow">→</div><div class="r">12 недель под путешествия</div></div>
+          <div class="row"><div class="l"><div class="lt">Старт с уровня</div><div class="lf">С нуля</div></div><div class="arrow">→</div><div class="r">Сразу с твоего A1</div></div>
+          <div class="row"><div class="l"><div class="lt">Разбор слабых мест</div><div class="lf">Нет</div></div><div class="arrow">→</div><div class="r">Что подтянуть — и как</div></div>
+          <div class="row"><div class="l"><div class="lt">Все уроки и уровни</div><div class="lf">Первые уроки</div></div><div class="arrow">→</div><div class="r">Открыто всё</div></div>
+        </div>
+
+        <div class="card faq">
+          <div class="ct">Частые вопросы</div>
+          <div class="q open" onclick="faq(this)">
+            <div class="qh">Что будет после 3 дней?<svg viewBox="0 0 14 14"><path d="M2 5l5 5 5-5"/></svg></div>
+            <div class="qa">3 дня весь план открыт бесплатно. За день до конца пришлём пуш. Спишется только если не отменишь — 2 990 ₽ за целый год.</div>
+          </div>
+          <div class="q" onclick="faq(this)">
+            <div class="qh">А если передумаю?<svg viewBox="0 0 14 14"><path d="M2 5l5 5 5-5"/></svg></div>
+            <div class="qa">Отмена в два тапа: Настройки телефона → Подписки → Phraseman. Доступ останется до конца оплаченного срока. Без писем и звонков.</div>
+          </div>
+          <div class="q" onclick="faq(this)">
+            <div class="qh">Можно без плана?<svg viewBox="0 0 14 14"><path d="M2 5l5 5 5-5"/></svg></div>
+            <div class="qa">Да — приложение работает и так. Но персональный маршрут под твою цель, старт с твоего уровня и разбор слабых мест — только с планом.</div>
+          </div>
+        </div>
+
+        <div class="ctaWrap" style="margin-top:18px">
+          <button class="cta">Открыть мой план — 3 дня бесплатно<span class="shine"></span></button>
+          <div class="ctaSub">затем <b class="ctaPrice">2 990 ₽/год</b> · отмена в любой момент</div>
+        </div>
+        <div style="height:12px"></div>
+      </div>
+
+      <div class="sticky" id="st1">
+        <div class="st"><b>3 дня бесплатно</b><span class="ctaPrice">затем 2 990 ₽/год</span></div>
+        <button>Открыть план</button>
+      </div>
+    </div>
+    <div class="note">Первый экран = решение целиком: имя+ответы → план под замком → таймлайн → планы → CTA. Скролл опционален (проекция, сравнение, FAQ). Sticky-CTA не отпускает цену. <b>Покупка на этом же экране</b> — никакого второго пейвола.</div>
+  </div>
+
+  </div><!-- /grid -->
+
+  <div class="why">
+    <h2>Почему именно так (и чем отличается от текущего пейвола онбординга)</h2>
+    <ul>
+      <li><b>Персонализация вместо generic.</b> Текущий: «Получить {plan}» + 11 одинаковых бенефитов. Новый: имя + три ответа юзера + сам план под замком. «Personalization closes» — сильнее любых layout-тестов (RevenueCat); имя = +17% (Adapty).</li>
+      <li><b>Таймлайн триала — которого сейчас нет вообще.</b> Самый подтверждённый элемент: Blinkist +23% стартов / −55% жалоб / push 6→74%. Бьёт страх «забуду отменить» (33% отмен в Day 0).</li>
+      <li><b>Превью плана с замком.</b> Показываем, что покупаешь (Noom/Fastic). Loss-aversion на со-созданный план честнее фейк-таймеров.</li>
+      <li><b>Один пейвол вместо двух.</b> Сейчас инлайн-экран пробрасывает во второй /premium_modal через моргание home — двойной пейвол (риск Apple 5.6, кейс Cal AI апр-2026) + потеря контекста. Покупка должна быть здесь.</li>
+      <li><b>Доверие, которого сейчас нет.</b> Рейтинг 4.3 (честнее 5.0), «отмена в любой момент», Restore/Terms/Privacy. Обязательно по 3.1.2 и +10–15% к конверсии.</li>
+      <li><b>Честность = конверсия.</b> Никакого toggle-триала (Apple банит с янв-2026), фейк-таймеров, выдуманных цифр учеников. Цены/проценты/длина триала — только из стора.</li>
+    </ul>
+    <p class="src">Источники: RevenueCat State of Subscription Apps 2025/2026, Adapty (High-Performing Paywall 2026, toggle-trial реджект, education-бенчмарки), Blinkist/growth.design (таймлайн), Airbridge (onboarding-before-paywall, рейтинг 4.2–4.5), teardowns Noom/Cal AI/BoldVoice/Fastic/Duolingo. Полный аудит и план правок: <b>docs/reports/ONBOARDING_AUDIT_2026-06-13.md</b>. Цены условные; в проде — только RevenueCat.</p>
+  </div>
+</div>
+
+<script>
+function pick(el){
+  const wrap = el.closest('.plans');
+  wrap.querySelectorAll('.plan').forEach(p=>p.classList.remove('sel'));
+  el.classList.add('sel');
+  const phone = el.closest('.phone');
+  const yearly = el.dataset.plan === 'year';
+  phone.querySelectorAll('.ctaPrice').forEach(n=>{ n.textContent = yearly ? 'затем 2 990 ₽/год' : 'затем 649 ₽/мес'; });
+  phone.querySelectorAll('.tlPrice').forEach(n=>{ n.textContent = yearly ? '2 990 ₽/год' : '649 ₽/мес'; });
+}
+document.querySelectorAll('.ctaSub .ctaPrice').forEach(n=>n.textContent='2 990 ₽/год');
+
+function bindSticky(scrollId, ctaId, stickyId){
+  const scr = document.getElementById(scrollId), cta = document.getElementById(ctaId), st = document.getElementById(stickyId);
+  if(!scr||!cta||!st) return;
+  const io = new IntersectionObserver(es=>{
+    es.forEach(e=>st.classList.toggle('show', !e.isIntersecting && scr.scrollTop>40));
+  },{root:scr,threshold:0});
+  io.observe(cta);
+}
+bindSticky('scr1','cta1','st1');
+
+function faq(q){ q.classList.toggle('open'); }
+function toggleAnn(){
+  const on = document.body.classList.toggle('showAnn');
+  const b = document.getElementById('annBtn');
+  b.classList.toggle('on', on);
+  b.textContent = 'Аннотации: ' + (on ? 'вкл' : 'выкл');
+}
+document.querySelectorAll('.ann').forEach(a=>{
+  a.addEventListener('click',e=>{ e.stopPropagation(); document.querySelectorAll('.ann.open').forEach(o=>{if(o!==a)o.classList.remove('open')}); a.classList.toggle('open'); });
+});
+document.addEventListener('click',()=>document.querySelectorAll('.ann.open').forEach(o=>o.classList.remove('open')));
+</script>
+</body>
+</html>

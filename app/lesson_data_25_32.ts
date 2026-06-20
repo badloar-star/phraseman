@@ -1696,6 +1696,7 @@ export const LESSON_26_PHRASES: LessonPhrase[] = [
   {
     id: "lesson26_phrase_22",
     english: "If you do not save it, you will lose it",
+    alternatives: ["If you do not save this, you will lose it"],
     russian: "Если ты это не сохранишь, ты это потеряешь",
     ukrainian: "Якщо ти це не збережеш, ти це втратиш",
     spanish: "Si no lo guardas, lo perderás",
@@ -1715,7 +1716,7 @@ export const LESSON_26_PHRASES: LessonPhrase[] = [
       { text: "do", correct: "do", distractors: ["does", "did", "doing", "am", "is"] },
       { text: "not", correct: "not", distractors: ["no", "none", "never", "already", "still"] },
       { text: "save", correct: "save", distractors: ["will save", "saved", "saving", "protect", "keep"] },
-      { text: "it,", correct: "it,", distractors: ["its,", "itself,", "they,", "I,", "you,"] },
+      { text: "it,", correct: "it,", distractors: ["this,", "its,", "itself,", "they,", "you,"] },
       { text: "you", correct: "you", distractors: ["this", "that", "some", "any", "other"] },
       { text: "will", correct: "will", distractors: ["would", "won't", "shall", "should", "can"] },
       { text: "lose", correct: "lose", distractors: ["lost", "losing", "loses", "this", "that"] },

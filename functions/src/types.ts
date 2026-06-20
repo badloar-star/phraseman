@@ -26,7 +26,10 @@ export const RANK_TO_QUESTION_LEVEL: Record<RankTier, string> = {
   diamond:     'B1',
   master:      'B1',
   grandmaster: 'B2',
-  legend:      'C1',
+  // Банк вопросов сейчас только A1/A2/B1/B2 — C1 не существует. Раньше legend
+  // маппился в 'C1' → pickQuestions бросал «Insufficient arena_questions for
+  // level C1» и матчи топ-игроков падали. Держим B2, пока C1 не заведён в банк.
+  legend:      'B2',
 };
 
 export interface MatchmakingEntry {

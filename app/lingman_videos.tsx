@@ -24,6 +24,8 @@ import { safeRouterBack } from './navigation_back';
 import {
   formatLingmanVideoDate,
   getTrustedLingmanYoutubeUrl,
+  LINGMAN_CHANNEL_DISPLAY_NAME,
+  LINGMAN_CHANNEL_HANDLE,
   LINGMAN_CHANNEL_URL,
   getLingmanYoutubeSnapshot,
   LingmanYoutubeSnapshot,
@@ -31,14 +33,6 @@ import {
   markLingmanYoutubeCatalogSeen,
 } from './lingman_youtube';
 import { getLingmanYoutubeChrome } from './lingman_youtube_chrome';
-
-function compactDescription(description: string): string {
-  return description
-    .replace(/https?:\/\/\S+/g, '')
-    .replace(/#[\p{L}\p{N}_-]+/gu, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 
 function formatViews(count?: number): string {
   if (!Number.isFinite(count)) return '';
@@ -59,24 +53,24 @@ export default function LingmanVideosScreen() {
 
   const copy = useMemo(() => ({
     title: triLang(lang, {
-      ru: 'Видео Lingman',
-      uk: 'Видео Lingman',
-      es: 'Lingman videos',
-      'pt-BR': 'Lingman videos',
-      vi: 'Lingman videos',
-      id: 'Lingman videos',
-      tr: 'Lingman videos',
-      pl: 'Lingman videos',
+      ru: 'Видео PHRASEMAN',
+      uk: 'Видео PHRASEMAN',
+      es: 'PHRASEMAN videos',
+      'pt-BR': 'PHRASEMAN videos',
+      vi: 'PHRASEMAN videos',
+      id: 'PHRASEMAN videos',
+      tr: 'PHRASEMAN videos',
+      pl: 'PHRASEMAN videos',
     }),
     subtitle: triLang(lang, {
-      ru: 'Свежие уроки с YouTube-канала',
-      uk: 'Свежие уроки с YouTube-канала',
-      es: 'Fresh lessons from the YouTube channel',
-      'pt-BR': 'Fresh lessons from the YouTube channel',
-      vi: 'Fresh lessons from the YouTube channel',
-      id: 'Fresh lessons from the YouTube channel',
-      tr: 'Fresh lessons from the YouTube channel',
-      pl: 'Fresh lessons from the YouTube channel',
+      ru: 'Видео тренажёры для практики фраз на слух',
+      uk: 'Видео тренажёры для практики фраз на слух',
+      es: 'Video trainers to practice phrases by ear',
+      'pt-BR': 'Video trainers to practice phrases by ear',
+      vi: 'Video trainers to practice phrases by ear',
+      id: 'Video trainers to practice phrases by ear',
+      tr: 'Video trainers to practice phrases by ear',
+      pl: 'Video trainers to practice phrases by ear',
     }),
     watch: triLang(lang, {
       ru: 'Смотреть',
@@ -213,9 +207,6 @@ export default function LingmanVideosScreen() {
             {formatLingmanVideoDate(item.publishedAt)}
             {views ? `  ·  ${views} ${copy.views}` : ''}
           </Text>
-          <Text style={[styles.videoDescription, { color: t.textSecond }]} numberOfLines={3}>
-            {compactDescription(item.description)}
-          </Text>
           <View style={styles.videoActions}>
             <TouchableOpacity
               testID="lingman-video-watch"
@@ -265,7 +256,7 @@ export default function LingmanVideosScreen() {
             <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h1) }]} numberOfLines={1}>
               {copy.title}
             </Text>
-            <Text style={[styles.subtitle, { color: t.textMuted }]} numberOfLines={1}>
+            <Text style={[styles.subtitle, { color: t.textMuted }]} numberOfLines={2}>
               {copy.subtitle}
             </Text>
           </View>
@@ -281,8 +272,8 @@ export default function LingmanVideosScreen() {
             <Ionicons name="play" size={26} color={chrome.iconOnAccent} />
           </View>
           <View style={styles.channelText}>
-            <Text style={[styles.channelTitle, { color: t.textPrimary }]}>Professor Lingman</Text>
-            <Text style={[styles.channelSub, { color: t.textMuted }]} numberOfLines={1}>@professorlingman</Text>
+            <Text style={[styles.channelTitle, { color: t.textPrimary }]}>{LINGMAN_CHANNEL_DISPLAY_NAME}</Text>
+            <Text style={[styles.channelSub, { color: t.textMuted }]} numberOfLines={1}>{LINGMAN_CHANNEL_HANDLE}</Text>
           </View>
           <TouchableOpacity
             activeOpacity={0.78}
@@ -477,12 +468,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 12,
     fontWeight: '800',
-  },
-  videoDescription: {
-    marginTop: 8,
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '600',
   },
   videoActions: {
     flexDirection: 'row',

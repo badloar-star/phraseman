@@ -33,7 +33,10 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.referralClaimVipReward = exports.referralListMyInvites = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.REFERRAL_REWARD_DAYS = void 0;
+exports.referralClaimVipReward = exports.referralListMyInvites = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.MAX_REFERRER_CLAIMS_PER_DAY = exports.MAX_REFERRER_CLAIMS_PER_MONTH = exports.REFERRAL_REWARD_DAYS = void 0;
+exports.referralClaimSlotsLeft = referralClaimSlotsLeft;
+exports.hasCompletedFirstLesson = hasCompletedFirstLesson;
+exports.isSnapshotMigrationWrite = isSnapshotMigrationWrite;
 exports.vipUntilFromProgress = vipUntilFromProgress;
 exports.stackVipUntilMs = stackVipUntilMs;
 exports.buildReferralVipProgressPatch = buildReferralVipProgressPatch;
@@ -46,9 +49,11 @@ exports.buildReferralVipProgressPatch = buildReferralVipProgressPatch;
  *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
  *   2. referralApply — referee вводит код (deeplink/manual). Идемпотентно, антифрод по возрасту аккаунта.
  *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
- *   3. referee проходит урок 1 (>= бронзы ⇒ unlocked_lessons содержит 2). Его cloud_sync и так
- *      пишет progress.unlocked_lessons; триггер referralOnUserProgressUpdated помечает attribution
- *      status='qualified' и сразу начисляет приглашённому его 7 дней.
+ *   3. referee РЕАЛЬНО проходит урок 1 (>= бронзы ⇒ lesson1_pass_count >= 1, для fr —
+ *      scoped-ключ lesson_progress_v2::fr::lesson1_pass_count). Сервер пишет pass_count только
+ *      при passed; триггер referralOnUserProgressUpdated помечает attribution status='qualified'
+ *      и сразу начисляет приглашённому его 7 дней. НЕ по unlocked_lessons (урок открывается и без
+ *      прохождения — premium/intro/зачёт), иначе ложная квалификация и невидимый fr-курс.
  *   4. referrer в /friends видит qualified-друга и сам жмёт «Открыть» → referralClaimVipReward:
  *      одна транзакция, +7 дней VIP пригласившему (стак vip_until), attribution → 'rewarded'.
  *
@@ -70,9 +75,34 @@ const REFERRER_VIP_DAYS = exports.REFERRAL_REWARD_DAYS;
 const REFEREE_VIP_DAYS = exports.REFERRAL_REWARD_DAYS;
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
-const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
+exports.MAX_REFERRER_CLAIMS_PER_MONTH = 30;
+/**
+ * Анти-фарм: сколько наград можно обналичить за КАЛЕНДАРНЫЙ ДЕНЬ. Главная защита от накрутки
+ * свежими аккаунтами (created_at клиентоперезаписываем, stableId сбрасывается отключением
+ * бэкапа — см. referralApply). created_at правилами до конца не закрыть; дневной throttle
+ * ограничивает СКОРОСТЬ фарма при любом сбросе личности. Награды не теряются: за капом
+ * остаются 'qualified' и обналичиваются на следующий день. Честный юзер редко зовёт >3/день.
+ */
+exports.MAX_REFERRER_CLAIMS_PER_DAY = 3;
+/**
+ * Чистая функция: сколько наград можно выдать прямо сейчас с учётом дневного И месячного капов.
+ * Берёт минимум из остатков, не уходит в минус. Экспортируется для тестов.
+ */
+function referralClaimSlotsLeft(usedThisMonth, usedToday) {
+    const monthLeft = exports.MAX_REFERRER_CLAIMS_PER_MONTH - Math.max(0, Math.floor(usedThisMonth));
+    const dayLeft = exports.MAX_REFERRER_CLAIMS_PER_DAY - Math.max(0, Math.floor(usedToday));
+    return Math.max(0, Math.min(monthLeft, dayLeft));
+}
 /** Сколько qualified-друзей обрабатываем за один claim-вызов (защита от гигантских транзакций). */
 const MAX_CLAIMS_PER_CALL = 20;
+/**
+ * Квалифицировать ли referee СРАЗУ при apply по уже имеющемуся прогрессу.
+ * false (строго): нет — прогресс на момент apply мог быть подсунут миграцией снапшота
+ * (клиентский lesson1_pass_count), что давало бы free-премиум без прохождения. Квалификацию
+ * делает только триггер на ЖИВОМ событии урока (с отсевом миграции). Цена строгого режима:
+ * редкий честный кейс «прошёл урок 1 ДО ввода кода» квалифицируется на следующем событии урока.
+ */
+const REFEREE_QUALIFY_ON_APPLY = false;
 /**
  * Антифрод: код принимаем только от «нового» пользователя — того, у кого, по сути,
  * раньше не было приложения. Точный device-level признак «было/не было приложение»
@@ -94,29 +124,51 @@ const REFERRAL_OWNERS = 'referral_owners';
 const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
-function parseUnlockedLessons(raw) {
-    if (raw == null)
-        return [];
-    if (Array.isArray(raw)) {
-        return raw.map((n) => Number(n)).filter((n) => Number.isFinite(n));
+/**
+ * Ключи «урок 1 реально пройден» (pass_count >= 1), которые сервер пишет ТОЛЬКО при
+ * passed (score >= 2.5) — см. functions/src/progress_events.ts:applyLessonFields.
+ *  - EN/legacy:  lesson1_pass_count
+ *  - FR (scoped): lesson_progress_v2::fr::lesson1_pass_count
+ * НЕ используем unlocked_lessons: урок 2 открывается и без прохождения (premium/intro-триал
+ * открывает весь уровень, сдача зачёта уровня, fallback-открытие) — это давало ложную
+ * квалификацию (C2) и не видело fr-курс (C3).
+ */
+const LESSON1_PASS_KEYS = ['lesson1_pass_count', 'lesson_progress_v2::fr::lesson1_pass_count'];
+/**
+ * Чистая функция: пройден ли РЕАЛЬНО первый урок (любого курса). Экспортируется для тестов.
+ * `progress` — это users/{id}.progress (map строк).
+ */
+function hasCompletedFirstLesson(progress) {
+    if (!progress)
+        return false;
+    for (const key of LESSON1_PASS_KEYS) {
+        const n = Number(progress[key]);
+        if (Number.isFinite(n) && n >= 1)
+            return true;
     }
-    if (typeof raw === 'string') {
-        try {
-            const j = JSON.parse(raw);
-            return Array.isArray(j) ? j.map((n) => Number(n)).filter((n) => Number.isFinite(n)) : [];
-        }
-        catch {
-            return [];
-        }
-    }
-    return [];
+    return false;
 }
 function hasLesson1DoneProgress(root) {
     if (!root)
         return false;
     const p = root?.progress;
-    const u = p?.unlocked_lessons;
-    return parseUnlockedLessons(u).includes(2);
+    return hasCompletedFirstLesson(p);
+}
+/**
+ * Был ли это записью МИГРАЦИИ снапшота прогресса (progressMigrateSnapshot), а не живым
+ * событием урока. Миграция доверяет клиентскому lesson1_pass_count (progress_events.ts:
+ * buildMigrationPatch) и могла бы фиктивно «зачесть» урок 1 → выдать 7 дней без прохождения.
+ * Реальное прохождение приходит через progressSubmitEvent и НЕ трогает progressMigratedAt.
+ * Отличаем по появлению/изменению поля progressMigratedAt в корне users/{id}.
+ * Экспортируется для тестов. `beforeRoot`/`afterRoot` — корневые данные документа.
+ */
+function isSnapshotMigrationWrite(beforeRoot, afterRoot) {
+    const a = afterRoot?.progressMigratedAt;
+    if (a == null)
+        return false;
+    const b = beforeRoot?.progressMigratedAt;
+    // Сравниваем по строковому виду — serverTimestamp материализуется в Timestamp/число.
+    return String(a) !== String(b ?? '');
 }
 /** Текущее VIP-окно referrer'а из users/{id}.progress (ms). Не активные/пустые → 0. */
 function parseVipUntilMs(data) {
@@ -164,6 +216,18 @@ function yyyymmNow() {
     const d = new Date();
     return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
 }
+function yyyymmddNow() {
+    const d = new Date();
+    return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+}
+/** Оставляет только N самых свежих дней (ключи YYYY-MM-DD сортируются лексикографически = хронологически). */
+function pruneDailyCounter(map, keepDays = 10) {
+    const keys = Object.keys(map).sort().reverse().slice(0, keepDays);
+    const out = {};
+    for (const k of keys)
+        out[k] = map[k];
+    return out;
+}
 /**
  * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified'.
  *
@@ -203,7 +267,7 @@ async function markRefereeQualified(db, userId) {
         tx.set(attRef, {
             status: 'qualified',
             qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
-            qualifiedBy: 'unlocked_lesson_2',
+            qualifiedBy: 'lesson1_pass_count',
             refereeVipDays: REFEREE_VIP_DAYS,
             refereeRewardedAtMs: nowMs,
             rewardKind: 'vip_days_both',
@@ -344,7 +408,11 @@ exports.referralApply = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
         });
         return { ok: true, already: false, referrerStableId: ownerStableId, refCode };
     });
-    if (result?.ok) {
+    // НЕ квалифицируем сразу по факту уже существующего прогресса: его мог подсунуть
+    // progressMigrateSnapshot (клиентский lesson1_pass_count) → free-премиум без прохождения.
+    // Квалификацию делает ТОЛЬКО триггер referralOnUserProgressUpdated на ЖИВОМ событии урока
+    // (там же отсев миграции). Это «строгий» режим: см. REFEREE_QUALIFY_ON_APPLY.
+    if (result?.ok && REFEREE_QUALIFY_ON_APPLY) {
         await markRefereeQualified(db, refereeStableId).catch((e) => {
             console.warn('[referral] qualify after apply failed', e);
         });
@@ -352,9 +420,10 @@ exports.referralApply = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
     return result;
 });
 /**
- * Когда в users/{stableId} появляется progress.unlocked_lessons с "2" (урок 1 с бронзой) —
- * помечаем attribution referee как 'qualified' + начисляем referee шарды. referrer'у НИЧЕГО
- * не пишем (pull): он обналичит VIP по кнопке. onDocumentWritten: и create, и update.
+ * Когда referee РЕАЛЬНО проходит урок 1 (lesson1_pass_count >= 1, для fr — scoped-ключ) —
+ * помечаем attribution referee как 'qualified' + начисляем приглашённому его 7 дней VIP.
+ * referrer'у НИЧЕГО не пишем (pull): он обналичит свои 7 дней по кнопке. Отсекаем запись
+ * миграции снапшота (isSnapshotMigrationWrite). onDocumentWritten: и create, и update.
  */
 exports.referralOnUserProgressUpdated = functions.firestore.onDocumentWritten({ document: `${USERS}/{userId}`, region: REGION }, async (event) => {
     const userId = event.params.userId;
@@ -363,9 +432,16 @@ exports.referralOnUserProgressUpdated = functions.firestore.onDocumentWritten({ 
         return;
     const beforeExists = event.data?.before?.exists;
     const before = beforeExists ? event.data?.before.data() : undefined;
+    // Анти-обход: миграция снапшота (progressMigrateSnapshot) доверяет клиентскому
+    // lesson1_pass_count и могла бы зачесть урок 1 без реального прохождения. Реальное
+    // прохождение идёт через progressSubmitEvent и не трогает progressMigratedAt.
+    if (isSnapshotMigrationWrite(before, after))
+        return;
     const pA = after?.progress;
     const pB = before?.progress;
-    if (pA?.unlocked_lessons === pB?.unlocked_lessons)
+    // Дёшево выходим, если сигнал «урок 1 пройден» не изменился (любой из pass-ключей).
+    const unchanged = LESSON1_PASS_KEYS.every((k) => pA?.[k] === pB?.[k]);
+    if (unchanged)
         return;
     if (!hasLesson1DoneProgress(after))
         return;
@@ -430,11 +506,13 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
     }
     const db = admin.firestore();
     await assertAuthStableLink(db, authUid, referrerStableId);
-    // Какие приглашения этого referrer'а готовы к обналичиванию (qualified, ещё не rewarded).
+    // Какие приглашения этого referrer'а готовы к обналичиванию (ещё не rewarded).
+    // Включаем и legacy 'skipped_referrer_cap' — раньше эти строки застревали навсегда (M1);
+    // теперь они тоже claimable (восстановление ранее потерянных наград).
     const qualifiedSnap = await db
         .collection(REFERRAL_ATTRIBUTIONS)
         .where('referrerStableId', '==', referrerStableId)
-        .where('status', '==', 'qualified')
+        .where('status', 'in', ['qualified', 'skipped_referrer_cap'])
         .limit(MAX_CLAIMS_PER_CALL)
         .get();
     if (qualifiedSnap.empty) {
@@ -446,9 +524,11 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
             claimed: [],
             vipUntilMs: parseVipUntilMs(u.data()),
             cappedThisMonth: false,
+            cappedToday: false,
         };
     }
     const ym = yyyymmNow();
+    const ymd = yyyymmddNow();
     const userRef = db.collection(USERS).doc(referrerStableId);
     return db.runTransaction(async (tx) => {
         const userSnap = await tx.get(userRef);
@@ -456,32 +536,40 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
         const attRefs = qualifiedSnap.docs.map((d) => db.collection(REFERRAL_ATTRIBUTIONS).doc(d.id));
         const attSnaps = await Promise.all(attRefs.map((r) => tx.get(r)));
         const userData = userSnap.data() ?? {};
-        const monthly = userData.progress
-            ?.referral_vip_claims_monthly ?? {};
+        const progressData = userData.progress;
+        const monthly = progressData?.referral_vip_claims_monthly ?? {};
+        const daily = progressData?.referral_vip_claims_daily ?? {};
         let usedThisMonth = Math.max(0, Math.floor(Number(monthly[ym] ?? 0)));
+        let usedToday = Math.max(0, Math.floor(Number(daily[ymd] ?? 0)));
         const nowMs = Date.now();
         const nowIso = new Date(nowMs).toISOString();
         let vipUntil = Math.max(parseVipUntilMs(userData), nowMs);
         const claimed = [];
         let cappedThisMonth = false;
+        let cappedToday = false;
         for (let i = 0; i < attSnaps.length; i += 1) {
             const snap = attSnaps[i];
             if (!snap.exists)
                 continue;
             const row = snap.data();
-            if (row?.status !== 'qualified')
-                continue; // уже обналичено в гонке — пропускаем
-            if (usedThisMonth >= MAX_REFERRER_CLAIMS_PER_MONTH) {
-                cappedThisMonth = true;
-                tx.set(attRefs[i], {
-                    status: 'skipped_referrer_cap',
-                    cappedAt: admin.firestore.FieldValue.serverTimestamp(),
-                }, { merge: true });
+            // Принимаем qualified и legacy skipped_referrer_cap; 'rewarded'/прочее — пропуск (гонка).
+            if (row?.status !== 'qualified' && row?.status !== 'skipped_referrer_cap')
                 continue;
+            if (referralClaimSlotsLeft(usedThisMonth, usedToday) <= 0) {
+                // Достигнут кап (день или месяц). НЕ понижаем статус — оставляем 'qualified',
+                // эти 7 дней не теряются: дожмёт «Открыть» позже (на след. день / след. месяц).
+                // Раньше ставили 'skipped_referrer_cap' и они терялись НАВСЕГДА (M1).
+                if (usedThisMonth >= exports.MAX_REFERRER_CLAIMS_PER_MONTH)
+                    cappedThisMonth = true;
+                else
+                    cappedToday = true; // дневной throttle (анти-фарм свежими аккаунтами)
+                tx.set(attRefs[i], { lastCappedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+                break; // остаток qualified-друзей сейчас тоже за капом — выходим.
             }
             // Стак: +7 дней от текущего конца окна (или от now, если окна не было).
             vipUntil = stackVipUntilMs(vipUntil, nowMs, REFERRER_VIP_DAYS);
             usedThisMonth += 1;
+            usedToday += 1;
             claimed.push({ refereeStableId: snap.id, daysGranted: REFERRER_VIP_DAYS });
             tx.set(attRefs[i], {
                 status: 'rewarded',
@@ -498,6 +586,8 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
                 progress: {
                     ...referrerVipPatch,
                     referral_vip_claims_monthly: { ...monthly, [ym]: usedThisMonth },
+                    // Дневной счётчик: чистим старые дни, чтобы map не рос бесконечно (храним ~10 последних).
+                    referral_vip_claims_daily: pruneDailyCounter({ ...daily, [ymd]: usedToday }),
                 },
                 updatedAt: nowMs,
             }, { merge: true });
@@ -519,6 +609,7 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
             claimed,
             vipUntilMs: vipUntil,
             cappedThisMonth,
+            cappedToday,
         };
     });
 });

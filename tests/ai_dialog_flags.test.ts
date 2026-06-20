@@ -1,4 +1,8 @@
-import { FREE_DIALOGS_PER_DAY_DEFAULT, isAiDialogEnabled } from '../app/ai_dialog_flags';
+import {
+  FREE_DIALOGS_LIFETIME_DEFAULT,
+  getFreeDialogsLifetime,
+  isAiDialogEnabled,
+} from '../app/ai_dialog_flags';
 
 describe('ai_dialog_flags', () => {
   const originalValue = process.env.EXPO_PUBLIC_AI_DIALOG_ENABLED;
@@ -19,7 +23,10 @@ describe('ai_dialog_flags', () => {
     expect(isAiDialogEnabled()).toBe(false);
   });
 
-  it('defaults free AI dialogue UX allowance to 10 per day', () => {
-    expect(FREE_DIALOGS_PER_DAY_DEFAULT).toBe(10);
+  it('gives exactly ONE lifetime free dialog (not a per-day reply count)', () => {
+    // Модель (запрос пользователя 2026-06-20): один пробный диалог навсегда,
+    // дальше полный премиум-замок. Сервер держит тот же пожизненный флаг.
+    expect(FREE_DIALOGS_LIFETIME_DEFAULT).toBe(1);
+    expect(getFreeDialogsLifetime()).toBe(1);
   });
 });

@@ -285,7 +285,6 @@ function FlippableCard({
               <Text
                 style={[styles.cardEN, { color: t.textPrimary, fontSize: f.h3 }]}
                 numberOfLines={2}
-                adjustsFontSizeToFit
               >
                 {card.en}
               </Text>

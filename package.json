@@ -1,7 +1,7 @@
 {
   "name": "phraseman",
   "main": "expo-router/entry",
-  "version": "1.5.41",
+  "version": "1.5.43",
   "scripts": {
     "start": "expo start",
     "start:emu": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/dev-android-emulator.ps1",
@@ -11,6 +11,8 @@
     "metro:emu": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/start-metro-emu.ps1",
     "metro:protected": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/protected-metro-emu.ps1",
     "metro:protected:clear": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/protected-metro-emu.ps1 -Clear",
+    "metro:phone": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/protected-metro-phone.ps1 -Port 8085",
+    "metro:phone:clear": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/protected-metro-phone.ps1 -Port 8085 -Clear",
     "android:dev-localhost": "powershell.exe -ExecutionPolicy Bypass -File ./scripts/adb-open-dev-localhost.ps1",
     "dev:metro-link": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/metro-and-link-emulators.ps1",
     "android:dev-emulator": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/adb-open-dev-emulator.ps1",

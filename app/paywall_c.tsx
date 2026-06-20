@@ -11,11 +11,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Animated, Easing, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
-import { normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy, makeLP } from './paywall_copy';
+import { normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy, makeLP, applyWinBackCopy, applyWinBackPlannedCopy } from './paywall_copy';
+import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
 import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
@@ -27,7 +27,7 @@ import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSectionDivider,
   PaywallStickyBar, useStickyCta, PaywallPersonalTags, PaywallCloseButton,
-  PaywallPriceRetry, PaywallTestimonials,
+  PaywallPriceRetry, PaywallTestimonials, PaywallBackground,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -48,6 +48,7 @@ export default function PaywallC() {
   const params = useLocalSearchParams<{ context?: string; source?: string }>();
   const ctx = normalizePremiumContext(params.context);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
+  const isOnboarding = source === 'onboarding_plan';
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome();
@@ -111,8 +112,9 @@ export default function PaywallC() {
     ]).start();
   }, [opacity, slideY]);
 
-  const copy = getPaywallCopy(ctx);
-  const planned = getHeroPlannedCopy(ctx, 0);
+  const hadPremiumEver = getStatsCache().hadPremiumEver;
+  const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
+  const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
 
   const isLifetimeSel = p.selected === 'lifetime';
@@ -124,7 +126,7 @@ export default function PaywallC() {
   const priceLine = price ? `${price}${period}` : '';
 
   return (
-    <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
+    <PaywallBackground isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
       <SafeAreaView style={S.safe}>
         <Animated.View style={[S.wrap, { opacity, transform: [{ translateY: slideY }] }]} onLayout={sticky.onViewportLayout}>
           <ScrollView
@@ -151,7 +153,7 @@ export default function PaywallC() {
             />
 
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
-            <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
+            <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
 
             <Text style={[S.personal, { color: chrome.textMuted }]}>
               {LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle)}
@@ -263,7 +265,7 @@ export default function PaywallC() {
           />
         </Animated.View>
       </SafeAreaView>
-    </LinearGradient>
+    </PaywallBackground>
   );
 }
 

@@ -33,6 +33,7 @@ import { getLevelFromXP } from '../constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/arena';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useCorrectSound } from '../hooks/use-correct-sound';
 import DuoPressable from '../components/DuoPressable';
 import { IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
@@ -69,6 +70,7 @@ export default function DuelGameScreen() {
   }>();
   const fromLobbyFlow = fromLobby === '1';
   const router = useRouter();
+  const { playCorrect } = useCorrectSound();
   const insets = useSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
   const { theme: t, f, themeMode } = useTheme();
@@ -587,6 +589,7 @@ export default function DuelGameScreen() {
     });
 
     if (isCorrect) {
+      playCorrect();
       xpPopupY.setValue(0);
       xpPopupOpacity.setValue(1);
       setXpPopup({ base: SCORE_CONFIG.correctBase, speed: speedBonus, streak: streakBonus, first: firstBonus, outspeed: outspeedBonus, elapsedSec: Math.round(elapsed / 100) / 10 });
@@ -786,8 +789,8 @@ export default function DuelGameScreen() {
                   wrapStyle={{ flex: 1 }}
                   style={[styles.chipAccept, { backgroundColor: t.accent, flex: 0 }]}
                 >
-                  <Ionicons name="checkmark-circle" size={22} color="#fff" />
-                  <Text style={{ color: '#fff', fontWeight: '900', fontSize: f.body }}>
+                  <Ionicons name="checkmark-circle" size={22} color={t.correctText} />
+                  <Text style={{ color: t.correctText, fontWeight: '900', fontSize: f.body }}>
                     {arenaGameStr(lang, 'accept')}
                   </Text>
                 </DuoPressable>
@@ -835,8 +838,6 @@ export default function DuelGameScreen() {
                 styles.premeetH1,
                 { color: t.textPrimary, fontSize: Math.min(44, Math.max(30, winW / 9.2)), fontWeight: '900', textAlign: 'center' },
               ]}
-              adjustsFontSizeToFit
-              minimumFontScale={0.72}
               numberOfLines={1}
             >
               {arenaGameStr(lang, 'premeet')}
@@ -855,7 +856,7 @@ export default function DuelGameScreen() {
           <Text style={[styles.getReady, { color: t.textMuted, fontSize: f.sub }]}>
             {arenaGameStr(lang, 'letsGo')}
           </Text>
-          <Text style={[styles.countdownNum, { color: t.accent, textShadowColor: 'rgba(0,0,0,0.35)' }]} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.5}>
+          <Text style={[styles.countdownNum, { color: t.accent, textShadowColor: 'rgba(0,0,0,0.35)' }]} numberOfLines={1}>
             {countdown}
           </Text>
         </View>
@@ -916,7 +917,16 @@ export default function DuelGameScreen() {
               <View style={styles.playerNameRow}>
                 <AvatarView avatar={p.avatar ?? String(p.avatarLevel ?? 1)} size={22} auraId={p.aura} />
                 <Text style={[styles.playerLabel, { color: isMe ? t.accent : t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
-                  {p.displayName ?? (isMe ? arenaScoreboardYou(lang) : `P${idx + 1}`)}
+                  {p.displayName ?? (isMe ? arenaScoreboardYou(lang) : triLang(lang, {
+                    ru: `Игрок ${idx + 1}`,
+                    uk: `Гравець ${idx + 1}`,
+                    es: `Jugador ${idx + 1}`,
+                    'pt-BR': `Jogador ${idx + 1}`,
+                    vi: `Người chơi ${idx + 1}`,
+                    id: `Pemain ${idx + 1}`,
+                    tr: `Oyuncu ${idx + 1}`,
+                    pl: `Gracz ${idx + 1}`,
+                  }))}
                 </Text>
               </View>
               <Text style={[styles.playerScore, { color: t.textPrimary, fontSize: f.body }]}>

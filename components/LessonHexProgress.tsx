@@ -99,7 +99,6 @@ function LessonHexProgress({
       {/* Score text centered */}
       <Text
         style={{ color: t.textPrimary, fontSize: size * 0.145, fontWeight: '800', textAlign: 'center' }}
-        adjustsFontSizeToFit
         numberOfLines={1}
       >
         {score}

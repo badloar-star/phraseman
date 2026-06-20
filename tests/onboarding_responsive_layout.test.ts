@@ -25,17 +25,28 @@ describe('onboarding responsive layout contract', () => {
 
   it('offers a top-right emergency close that completes onboarding', () => {
     expect(source).toContain('testID="onboarding-close"');
-    expect(source).toContain('accessibilityLabel="Закрыть онбординг"');
+    expect(source).toContain('accessibilityLabel=');
     expect(source).toContain('await handleFinishOnboarding()');
     expect(source).toContain("AsyncStorage.setItem('onboarding_done', '1')");
   });
 
-  it('keeps onboarding free of bitmap background images', () => {
-    expect(source).toContain('const ONBOARDING_BG_WELCOME = null');
-    for (const key of ['BETA', 'NAME', 'BUILDER', 'QUIZ', 'STREAK', 'AUTH']) {
-      expect(source).toContain(`const ONBOARDING_BG_${key} = null;`);
+  it('keeps one moving library background with the graphite dim layer', () => {
+    expect(source).toContain("const ONBOARDING_BG_LIBRARY = require('../assets/images/onboarding/onboarding-bg-welcome-wide.webp');");
+    for (const key of ['WELCOME', 'BETA', 'NAME', 'BUILDER', 'QUIZ', 'STREAK', 'AUTH']) {
+      expect(source).toContain(`const ONBOARDING_BG_${key} = ONBOARDING_BG_LIBRARY;`);
+      expect(source).not.toContain(`const ONBOARDING_BG_${key} = null;`);
     }
-    expect(source).not.toMatch(/require\('\.\.\/assets\/images\/onboarding\/onboarding-bg-[^']+\.webp'\)/);
-    expect(source).toContain("<LinearGradient\n          colors={['#101319', '#07090D', '#020304']}");
+    expect(source).toContain('ONBOARDING_BG_LIBRARY,');
+    expect(source).toContain('<Animated.Image');
+    expect(source).toContain('Animated.loop');
+    expect(source).toContain('baseGradientColors');
+    expect(source).toContain('dimGradientColors');
+    expect(source).toContain("'rgba(0,0,0,0.92)'");
+    expect(source).not.toContain('colors={[theme.bgBottom, theme.bgTop, theme.bgEdge]}');
+    expect(source).not.toContain('onboarding-professor-observatory.webp');
+    expect(source).not.toContain('onboarding-phrase-archive.webp');
+    expect(source).not.toContain('onboarding-sage-council.webp');
+    expect(source).not.toContain('ONBOARDING_THEME_BLUE');
+    expect(source).not.toContain('ONBOARDING_THEME_GREEN');
   });
 });

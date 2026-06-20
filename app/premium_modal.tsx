@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
 
 import {
   refreshPaywallAbConfigInBackground,
-  resolvePaywallAbVariant,
+  resolvePaywallAbVariantSync,
   type PaywallAbVariant,
 } from './paywall_variant';
 import { safeRouterBack } from './navigation_back';
@@ -81,48 +81,53 @@ export default function PremiumModalDispatcher() {
   const router = useRouter();
   const params = useLocalSearchParams<RouteParams>();
 
+  // Готов ли корневой навигатор. При холодном старте прямо на /premium_modal (deep-link,
+  // первый экран) Root Layout ещё НЕ смонтирован — навигация в этот момент бросает
+  // «Attempted to navigate before mounting the Root Layout». Ждём, пока появится key.
+  const rootNavState = useRootNavigationState();
+  const rootNavReady = Boolean(rootNavState?.key);
+  const dispatchedRef = useRef(false);
+
+  // Replace на целевой пейвол — РОВНО ОДИН раз и только после монтирования рут-навигатора.
+  // Вариант решается синхронно из кэша; A/B-конфиг обновляется в фоне. Подложка прозрачная,
+  // поэтому лишний кадр до replace не виден.
+  useEffect(() => {
+    if (!rootNavReady || dispatchedRef.current) return;
+    dispatchedRef.current = true;
+    if (firstParam(params.manage) === '1') {
+      router.replace('/manage_subscription' as any);
+      return;
+    }
+    refreshPaywallAbConfigInBackground();
+    const { variant } = resolvePaywallAbVariantSync();
+    router.replace({
+      pathname: PAYWALL_ROUTES[variant],
+      params: { ...params },
+    } as any);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rootNavReady]);
+
   useEffect(() => {
     let cancelled = false;
-    refreshPaywallAbConfigInBackground();
-
     const run = async () => {
-      if (firstParam(params.manage) === '1') {
-        // Внутренний экран управления подпиской (раньше — прямой переход в стор).
-        if (!cancelled) router.replace('/manage_subscription' as any);
-        return;
-      }
-
-      if (await maybeFinishAlreadyPremiumPersonalPlan(params, router)) return;
-
-      const resolved = await resolvePaywallAbVariant().catch(() => ({
-        variant: 'C' as PaywallAbVariant,
-        stableId: 'fallback',
-      }));
+      if (firstParam(params.manage) === '1') return;
+      // Редкая ветка: для контекста personal_plan, если юзер УЖЕ премиум, доводим активацию
+      // плана и уходим с пейвола. Не блокирует показ — пейвол уже открылся выше.
       if (cancelled) return;
-      router.replace({
-        pathname: PAYWALL_ROUTES[resolved.variant],
-        params: { ...params },
-      } as any);
+      await maybeFinishAlreadyPremiumPersonalPlan(params, router);
     };
-
     void run();
     return () => { cancelled = true; };
-    // This route is a one-shot dispatcher; changing params means opening it again.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <View style={styles.root}>
-      <ActivityIndicator size="large" color="#34d399" />
-    </View>
-  );
+  // Прозрачная подложка на один кадр до replace — без тёмного экрана и спиннера.
+  return <View style={styles.root} />;
 }
 
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#090d11',
+    backgroundColor: 'transparent',
   },
 });

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
-import { getShardsBalance, spendShards } from './shards_system';
+import { forceSyncShardsToCloud, getShardsBalance, spendShards } from './shards_system';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -529,6 +529,18 @@ async function upgradeProfileCardLevelOnCloud(
   }
 }
 
+/**
+ * Pushes the local shard balance to the cloud before the server-validated upgrade, so the
+ * CF reads the real balance (local & cloud wallets can drift). No-op when cloud is off
+ * (the offline path checks the local balance directly). Best-effort — never throws.
+ */
+async function reconcileShardsToCloudBeforeUpgrade(): Promise<void> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  try {
+    await forceSyncShardsToCloud();
+  } catch { /* best-effort; upgrade still validates server-side */ }
+}
+
 /** Emitted after a card level changes. Shards were spent, so notify balance listeners;
  *  xp_changed is kept for existing card-UI listeners that already key on it. */
 function emitProfileCardUpgraded(balance: number): void {
@@ -545,6 +557,14 @@ export async function upgradeProfileCardLevel(): Promise<
   if (next === null) return { ok: false, reason: 'max' };
 
   const def = getProfileCardLevelDef(next);
+
+  // Push the local shard balance to the cloud BEFORE the server validates the spend.
+  // Shards have a local wallet (AsyncStorage) and a cloud wallet (users/{uid}.shards);
+  // the CF reads the cloud wallet. If they drifted (dev grants, an earn that never
+  // reached cloud), the CF would see too few shards and wrongly report "insufficient" →
+  // the UI bounced the player to the shard shop. Reconciling first makes the CF see the
+  // real balance. Best-effort: never block the upgrade if the sync itself fails.
+  await reconcileShardsToCloudBeforeUpgrade();
 
   // Preferred path: server validates the shard spend and owns the authoritative level,
   // so a tampered client can't grant itself a public CARD badge it never paid for.

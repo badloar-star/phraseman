@@ -16,8 +16,8 @@ const MOJIBAKE_NO_ACCESS = 'ÃÂÃÂµÃ‘â€š ÃÂ´ÃÂ¾Ã‘Â
 
 describe('telegram premium bot core', () => {
   const config = {
-    monthlyStars: 300,
-    yearlyStars: 1800,
+    monthlyStars: 500,
+    yearlyStars: 2500,
     adminChatId: 999,
     adminSetupCode: 'owner-code',
   };
@@ -103,8 +103,8 @@ describe('telegram premium bot core', () => {
     expect(state.sessions['456'].appNickname).toBe('Player One');
     expect(calls[0].method).toBe('sendMessage');
     expect(calls[0].args[1]).toContain('Player One');
-    expect(calls[0].args[1]).toContain('300 Stars');
-    expect(calls[0].args[1]).toContain('1800 Stars');
+    expect(calls[0].args[1]).toContain('500 Stars');
+    expect(calls[0].args[1]).toContain('2500 Stars');
     expect(calls[0].args[1]).toContain('Подписку можно отменить в любой момент');
     expect(calls[0].args[1]).not.toContain('5.99');
     expect(calls[0].args[1]).not.toContain('34.99');
@@ -132,11 +132,11 @@ describe('telegram premium bot core', () => {
 
     expect(invoice.currency).toBe('XTR');
     expect(invoice.provider_token).toBe('');
-    expect(invoice.description).toContain('300 Stars');
+    expect(invoice.description).toContain('500 Stars');
     expect(invoice.description).toContain('Подписку можно отменить в любой момент');
     expect(invoice.description).not.toContain('5.99');
     expect(invoice.description).not.toContain('499');
-    expect(invoice.prices).toEqual([{ label: 'Phraseman Premium: месяц', amount: 300 }]);
+    expect(invoice.prices).toEqual([{ label: 'Phraseman Premium: месяц', amount: 500 }]);
     expect(invoice.subscription_period).toBe(2592000);
     expect(invoice).not.toHaveProperty('photo_url');
     expect(invoice).not.toHaveProperty('photo_width');
@@ -159,10 +159,10 @@ describe('telegram premium bot core', () => {
     });
 
     expect(invoice.currency).toBe('XTR');
-    expect(invoice.description).toContain('1800 Stars');
+    expect(invoice.description).toContain('2500 Stars');
     expect(invoice.description).not.toContain('34.99');
     expect(invoice.description).not.toContain('2990');
-    expect(invoice.prices).toEqual([{ label: 'Phraseman Premium: год', amount: 1800 }]);
+    expect(invoice.prices).toEqual([{ label: 'Phraseman Premium: год', amount: 2500 }]);
     expect(invoice).not.toHaveProperty('subscription_period');
     expect(invoice).not.toHaveProperty('photo_url');
     expect(invoice).not.toHaveProperty('photo_width');
@@ -187,7 +187,7 @@ describe('telegram premium bot core', () => {
     expect(linkCall).toBeTruthy();
     expect(linkCall?.args[0]).toEqual(expect.objectContaining({
       currency: 'XTR',
-      prices: [{ label: 'Phraseman Premium: месяц', amount: 300 }],
+      prices: [{ label: 'Phraseman Premium: месяц', amount: 500 }],
       subscription_period: 2592000,
     }));
     const messageCall = calls.find((call) => call.method === 'sendMessage');
@@ -215,7 +215,7 @@ describe('telegram premium bot core', () => {
     expect(invoiceCall?.args[1]).toEqual(expect.objectContaining({
       chat_id: 123,
       currency: 'XTR',
-      prices: [{ label: 'Phraseman Premium: год', amount: 1800 }],
+      prices: [{ label: 'Phraseman Premium: год', amount: 2500 }],
     }));
   });
 
@@ -234,7 +234,7 @@ describe('telegram premium bot core', () => {
         id: 'pre1',
         from: { id: 456 },
         currency: 'XTR',
-        total_amount: 300,
+        total_amount: 500,
         invoice_payload: payload,
       },
     }, { config, state, api, storage });
@@ -244,7 +244,7 @@ describe('telegram premium bot core', () => {
         id: 'pre2',
         from: { id: 456 },
         currency: 'USD',
-        total_amount: 300,
+        total_amount: 500,
         invoice_payload: payload,
       },
     }, { config, state, api, storage });
@@ -275,7 +275,7 @@ describe('telegram premium bot core', () => {
         from: { id: 456, username: 'tg_user' },
         successful_payment: {
           currency: 'XTR',
-          total_amount: 300,
+          total_amount: 500,
           invoice_payload: payload,
           telegram_payment_charge_id: 'charge-1',
         },
@@ -320,7 +320,7 @@ describe('telegram premium bot core', () => {
         from: { id: 456 },
         successful_payment: {
           currency: 'XTR',
-          total_amount: 300,
+          total_amount: 500,
           invoice_payload: payload,
           telegram_payment_charge_id: 'charge-subscription',
           is_recurring: true,
@@ -362,7 +362,7 @@ describe('telegram premium bot core', () => {
       planDuration: '1 месяц',
       appNickname: 'Player One',
       telegramUserId: 456,
-      totalAmount: 300,
+      totalAmount: 500,
       currency: 'XTR',
       telegramPaymentChargeId: 'charge-1',
     });
@@ -377,7 +377,7 @@ describe('telegram premium bot core', () => {
 
     expect(calls[0].args[1]).toContain('Последние оплаты Premium');
     expect(calls[0].args[1]).toContain('Player One');
-    expect(calls[0].args[1]).toContain('300 XTR');
+    expect(calls[0].args[1]).toContain('500 XTR');
     expect(calls[0].args[1]).toContain('456');
     expect(calls[1].args[1]).toContain('Нет доступа');
   });
@@ -392,7 +392,7 @@ describe('telegram premium bot core', () => {
       planDuration: '1 месяц',
       appNickname: 'Setup Owner Order',
       telegramUserId: 456,
-      totalAmount: 300,
+      totalAmount: 500,
       currency: 'XTR',
       telegramPaymentChargeId: 'charge-setup',
     });
@@ -419,7 +419,7 @@ describe('telegram premium bot core', () => {
       planDuration: '1 год',
       appNickname: 'Immediate Button Order',
       telegramUserId: 456,
-      totalAmount: 1800,
+      totalAmount: 2500,
       currency: 'XTR',
       telegramPaymentChargeId: 'charge-button',
     });
@@ -454,7 +454,7 @@ describe('telegram premium bot core', () => {
       planDuration: '1 год',
       appNickname: 'Yearly Player',
       telegramUserId: 456,
-      totalAmount: 1800,
+      totalAmount: 2500,
       currency: 'XTR',
       telegramPaymentChargeId: 'charge-yearly',
     });
@@ -464,7 +464,7 @@ describe('telegram premium bot core', () => {
     }, { config, state, api, storage });
 
     expect(calls[0].args[1]).toContain('Yearly Player');
-    expect(calls[0].args[1]).toContain('1800 XTR');
+    expect(calls[0].args[1]).toContain('2500 XTR');
     expect(calls[0].args[1]).toContain('charge-yearly');
   });
 

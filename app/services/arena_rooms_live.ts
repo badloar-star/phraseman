@@ -159,10 +159,16 @@ export async function fetchArenaRoomQuestions(): Promise<ArenaQuestion[]> {
       col.where('level', '==', 'A1').where('rand', '>=', pivot).orderBy('rand').limit(QUESTIONS_PER_ROOM * 4).get(),
       col.where('level', '==', 'A1').where('rand', '<', pivot).orderBy('rand').limit(QUESTIONS_PER_ROOM * 4).get(),
     ]);
-    const all = [
-      ...snapA.docs.map((d: any) => cleanQuestion({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id || d.id })),
-      ...snapB.docs.map((d: any) => cleanQuestion({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id || d.id })),
-    ];
+    const toQ = (d: any) => cleanQuestion({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id || d.id });
+    let all = [...snapA.docs.map(toQ), ...snapB.docs.map(toQ)];
+    // Страховка: A1 исторически без поля `rand` → rand-запрос возвращал 0 и
+    // комната падала в FALLBACK_ROOM_QUESTIONS (3 вопроса). Добираем простым
+    // запросом. Backfill rand устраняет причину.
+    if (all.length < QUESTIONS_PER_ROOM) {
+      const plain = await col.where('level', '==', 'A1').limit(QUESTIONS_PER_ROOM * 4).get();
+      const seen = new Set(all.map((q) => q.id));
+      all = [...all, ...plain.docs.map(toQ).filter((q: ArenaQuestion) => !seen.has(q.id))];
+    }
     const picked = shuffleArray(all).slice(0, QUESTIONS_PER_ROOM);
     return picked.length > 0 ? picked : FALLBACK_ROOM_QUESTIONS;
   } catch {

@@ -418,10 +418,22 @@ async function pickQuestions(level: string, count: number): Promise<string[]> {
       .get(),
   ]);
 
-  const ids = [
+  let ids = [
     ...snapA.docs.map(d => d.id),
     ...snapB.docs.map(d => d.id),
   ];
+
+  // Страховка: документы БЕЗ поля `rand` Firestore не возвращает в rand-запросе
+  // (исторически так было у всего банка A1 → bronze-матчи падали). Если набралось
+  // меньше нужного — добираем простым запросом по level без rand-фильтра.
+  // Backfill rand (scripts/backfill_rand_a1_firestore.mjs) устраняет саму причину.
+  if (ids.length < count) {
+    const plain = await db.collection('arena_questions')
+      .where('level', '==', level)
+      .limit(count * 4)
+      .get();
+    ids = Array.from(new Set([...ids, ...plain.docs.map(d => d.id)]));
+  }
 
   const out = shuffleArray(ids).slice(0, count);
   if (out.length < count) {

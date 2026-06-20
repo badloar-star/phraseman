@@ -27,31 +27,33 @@ describe('paywall_variant — hashToUnit', () => {
 });
 
 describe('paywall_variant — pickVariantFromUnit', () => {
-  const c = cfg({ aPct: 25, bPct: 25, cPct: 25 }); // v1 = 25
-  it('режет по кумулятивным границам', () => {
-    expect(pickVariantFromUnit(0.10, c)).toBe('A'); // <25
-    expect(pickVariantFromUnit(0.40, c)).toBe('B'); // 25..50
-    expect(pickVariantFromUnit(0.60, c)).toBe('C'); // 50..75
-    expect(pickVariantFromUnit(0.90, c)).toBe('v1'); // >=75
+  const c = cfg({ aPct: 25, bPct: 25, cPct: 25 });
+  it('режет по кумулятивным границам без возврата в старый v1', () => {
+    expect(pickVariantFromUnit(0.10, c)).toBe('A');
+    expect(pickVariantFromUnit(0.40, c)).toBe('B');
+    expect(pickVariantFromUnit(0.60, c)).toBe('B');
+    expect(pickVariantFromUnit(0.80, c)).toBe('C');
+    expect(pickVariantFromUnit(0.90, c)).toBe('C');
   });
-  it('все нули → всегда v1 (kill-switch)', () => {
+  it('все нули → новый C, старый v1 не показываем даже как fallback', () => {
     const z = cfg({});
-    for (const u of [0, 0.3, 0.7, 0.999]) expect(pickVariantFromUnit(u, z)).toBe('v1');
+    for (const u of [0, 0.3, 0.7, 0.999]) expect(pickVariantFromUnit(u, z)).toBe('C');
   });
   it('100% одного варианта → все туда', () => {
     const allB = cfg({ bPct: 100 });
     for (const u of [0, 0.5, 0.99]) expect(pickVariantFromUnit(u, allB)).toBe('B');
   });
-  it('распределение примерно соответствует долям', () => {
-    const c2 = cfg({ aPct: 50, bPct: 30, cPct: 10 }); // v1 = 10
-    const counts = { A: 0, B: 0, C: 0, v1: 0 };
+  it('распределение примерно соответствует активным новым долям', () => {
+    const c2 = cfg({ aPct: 50, bPct: 30, cPct: 10 });
+    const counts = { A: 0, B: 0, C: 0 };
     for (let i = 0; i < 4000; i++) counts[pickVariantFromUnit(hashToUnit(`u${i}:paywall_ab:v3`), c2)]++;
-    // Допуск ±5 п.п. от заданных долей.
-    expect(counts.A / 4000).toBeGreaterThan(0.45);
-    expect(counts.A / 4000).toBeLessThan(0.55);
-    expect(counts.B / 4000).toBeGreaterThan(0.25);
-    expect(counts.B / 4000).toBeLessThan(0.35);
-    expect(counts.v1 / 4000).toBeLessThan(0.16);
+    const total = counts.A + counts.B + counts.C;
+    expect(counts.A / total).toBeGreaterThan(0.50);
+    expect(counts.A / total).toBeLessThan(0.62);
+    expect(counts.B / total).toBeGreaterThan(0.28);
+    expect(counts.B / total).toBeLessThan(0.38);
+    expect(counts.C / total).toBeGreaterThan(0.06);
+    expect(counts.C / total).toBeLessThan(0.15);
   });
 });
 

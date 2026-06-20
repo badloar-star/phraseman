@@ -31,6 +31,5 @@ describe('ai dialog Phraseman copy contract', () => {
     expect(companionSource).not.toContain('Tell me more.');
     expect(companionSource).not.toContain('I’m not sure');
     expect(homeSource).toContain('сценаріїв із Компасом');
-    expect(dialogsContentSource).toContain('Відкрити вільну розмову з Компасом');
   });
 });

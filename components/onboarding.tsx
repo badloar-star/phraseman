@@ -19,7 +19,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { generateReferralCode } from '../app/referral_system';
 import { hapticTap } from '../hooks/use-haptics';
-import { CLOUD_SYNC_ENABLED } from '../app/config';
+import { CLOUD_SYNC_ENABLED, FORCE_PREMIUM } from '../app/config';
 // Онбординг закреплён за темой "Графит" (MINIMAL_DARK) — это одна из двух
 // бесплатных тем (вторая — "Скетч"/MINIMAL_LIGHT). Импортируем под алиасом
 // `DARK`, чтобы не править все ~150 ссылок DARK.* по тексту экрана.
@@ -275,7 +275,6 @@ const ONBOARDING_PRELOADED_ICON_ASSETS = [
 ] as const;
 type PlanIconSource = (typeof ONBOARDING_PLAN_ICONS)[keyof typeof ONBOARDING_PLAN_ICONS];
 type PaywallIconSource = (typeof ONBOARDING_PAYWALL_ICONS)[keyof typeof ONBOARDING_PAYWALL_ICONS];
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 const PLAN_LOADING_METER_KEYFRAMES = {
   inputRange: [0, 0.35, 0.7, 1],
   outputRange: [0.06, 0.42, 0.76, 1],
@@ -777,7 +776,10 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     hasTrial: boolean;
     trialDays: number;
     loaded: boolean;
-  }>({ monthly: '', yearly: '', hasTrial: false, trialDays: 3, loaded: false });
+    failed: boolean;
+  }>({ monthly: '', yearly: '', hasTrial: false, trialDays: 3, loaded: false, failed: false });
+  // Счётчик ручных ретраев цен — меняем, чтобы перезапустить загрузку при тапе «Повторить».
+  const [storePricesRetry, setStorePricesRetry] = useState(0);
   // RC-пакеты для inline-покупки на пейволе (грузятся вместе с ценами).
   const storePackagesRef = useRef<{ monthly?: unknown; yearly?: unknown }>({});
   const [paywallPurchasing, setPaywallPurchasing] = useState(false);
@@ -1107,6 +1109,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     if (step !== 'planPaywall') return;
     if (storePrices.loaded) return;
     let cancelled = false;
+    setStorePrices((p) => ({ ...p, failed: false }));
     (async () => {
       try {
         const [Purchases, { initRevenueCat, resolvePremiumPackages }, { storeProductHasTrialIntro }, { IS_EXPO_GO }] =
@@ -1126,22 +1129,31 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
         const yearlyTrial = getTrialInfo(yearly ?? null);
         const monthlyTrial = getTrialInfo(monthly ?? null);
         const trialInfo = yearlyTrial.hasTrial ? yearlyTrial : monthlyTrial;
+        const resolvedMonthly = monthly?.product?.priceString ?? '';
+        const resolvedYearly = yearly?.product?.priceString ?? '';
+        // Если ни одной цены из стора не пришло — это сбой загрузки, а не «бесплатный» план.
+        // Показываем ретрай вместо молчаливо пустого пейвола.
+        if (!resolvedMonthly && !resolvedYearly) {
+          if (!cancelled) setStorePrices((p) => ({ ...p, loaded: true, failed: true }));
+          return;
+        }
         setStorePrices({
-          monthly: monthly?.product?.priceString ?? '',
-          yearly: yearly?.product?.priceString ?? '',
+          monthly: resolvedMonthly,
+          yearly: resolvedYearly,
           hasTrial:
             storeProductHasTrialIntro(monthly?.product) || storeProductHasTrialIntro(yearly?.product),
           trialDays: trialDaysOrDefault(trialInfo),
           loaded: true,
+          failed: false,
         });
       } catch {
-        if (!cancelled) setStorePrices((p) => ({ ...p, loaded: true }));
+        if (!cancelled) setStorePrices((p) => ({ ...p, loaded: true, failed: true }));
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [step, storePrices.loaded]);
+  }, [step, storePrices.loaded, storePricesRetry]);
 
   useEffect(() => {
     if (step !== 'planLoading') return;
@@ -1506,44 +1518,57 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     }
   };
 
-  // Вызывается при нажатии CTA на inline-пейволе.
-  // Если юзер уже Premium (или только что получил intro-доступ) — сразу к имени.
-  // Иначе — покупка RevenueCat прямо здесь, без перехода на /premium_modal.
+  // Вызывается при нажатии CTA «Это мой план — вперёд» на экране результата плана.
+  // ВСЕГДА показываем ПЕРСОНАЛИЗИРОВАННЫЙ онбординг-пейвол (шаг planPaywall):
+  // имя юзера, его ответы (цель/уровень/минуты), превью «Неделя 1 открыта / 2–12
+  // заблокированы», таймлайн триала и цены из стора. Это ключевой экран монетизации
+  // онбординга — он обязан появляться.
+  //
+  // ВАЖНО: пейвол НЕЛЬЗЯ скрывать из-за intro-доступа («3 подарочных дня»). Раньше
+  // тут вызывался onIntroFullAccessStart(), который ВСЕГДА возвращает true (он просто
+  // стартует подарочные дни) → ветка «доступ уже есть» срабатывала всегда → пейвол
+  // никогда не показывался. Intro-доступ — отдельный механизм, он не отменяет пейвол.
+  // Пейвол пропускаем ТОЛЬКО при реальном Premium (hasPremiumAccess), что у нового
+  // онбординг-юзера ложно.
   const openSelectedPlanAbPaywall = async () => {
     if (paywallPurchasing) return;
     setPaywallPurchasing(true);
     try {
       const paywallPlan = selectedPlanBilling === 'monthly' ? 'monthly' : 'yearly';
-      void import('../app/analytics').then(({ trackEvent }) =>
-        trackEvent('onboarding_plan_paywall_open', { plan: paywallPlan, ob_color: obColor }),
-      );
       void logOnboardingFunnel('cta_click');
 
-      await AsyncStorage.multiSet([
-        ['app_lang', lang],
-        ['onboarding_plan_billing', paywallPlan],
-        [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
-        ['onboarding_step', 'name'],
-      ]);
-      await queuePendingPersonalPlanActivation({
-        planId: selectedPlanId,
-        minutesPerDay: selectedPlanMinutesForPlan,
-        source: 'onboarding',
-      });
+      await AsyncStorage.setItem('onboarding_plan_billing', paywallPlan);
 
-      const introFullAccessStarted = await Promise.resolve(onIntroFullAccessStart?.()).catch(() => false);
-      if (hasPremiumAccess || introFullAccessStarted) {
+      if (hasPremiumAccess && !FORCE_PREMIUM) {
+        // Реальный Premium (не dev-форс) уже есть — платить незачем, активируем план и идём к имени.
+        await AsyncStorage.multiSet([
+          ['app_lang', lang],
+          [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
+          ['onboarding_step', 'name'],
+        ]);
+        await queuePendingPersonalPlanActivation({
+          planId: selectedPlanId,
+          minutesPerDay: selectedPlanMinutesForPlan,
+          source: 'onboarding',
+        });
         await activatePendingPersonalPlanAfterPremium();
         setNicknameMode('personal_plan');
         goToStep('name');
         return;
       }
 
+      // Premium нет — переходим на A/B/C пейвол (с фоном онбординга).
       setNicknameMode('personal_plan');
-      await Promise.resolve(onPersonalPlanPaywallStart?.());
+      await onPersonalPlanPaywallStart?.();
     } finally {
       setPaywallPurchasing(false);
     }
+  };
+
+  // Ручной ретрай загрузки цен после сбоя сети на пейволе.
+  const handleRetryStorePrices = () => {
+    setStorePrices((p) => ({ ...p, loaded: false, failed: false }));
+    setStorePricesRetry((n) => n + 1);
   };
 
   const handlePaywallPurchase = async () => {
@@ -1879,12 +1904,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           </View>
         </View>
         <View style={styles.planMockupDaysTrack}>
-          <AnimatedLinearGradient
-            colors={theme.heroGradient}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
+          <Animated.View
             style={[styles.planMockupDaysFill, { transform: [{ scaleX: daysFillScale }] }]}
-          />
+          >
+            <LinearGradient
+              colors={theme.heroGradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.planMockupDaysFillGradient}
+            />
+          </Animated.View>
         </View>
       </View>
     );
@@ -1996,8 +2025,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <Text
               style={[styles.eliteWelcomeTitle, styles.planEntryTitle]}
               numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.82}
             >
               {triOb('Начнём с твоей цели', 'Почнемо з твоєї мети', '¿Por dónde empezamos?')}
             </Text>
@@ -2162,12 +2189,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
       '',
       <View style={styles.planFlowStack}>
         <View style={styles.planProgressRail}>
-          <AnimatedLinearGradient
-            colors={[theme.accent, theme.accent2]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
+          <Animated.View
             style={[styles.planProgressFill, { transform: [{ scaleX: meterScaleX }] }]}
-          />
+          >
+            <LinearGradient
+              colors={[theme.accent, theme.accent2]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.planProgressFillGradient}
+            />
+          </Animated.View>
         </View>
         {PLAN_LOADING_BUILD_ITEMS.map((item, index) => (
           <Animated.View
@@ -2341,49 +2372,71 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               </View>
             ) : null}
 
-            {/* Выбор плана */}
-            <View style={styles.planPaywallOptions}>
-              <TouchableOpacity
-                style={[styles.planPaywallBuyCard, selectedPlanBilling === 'annual' && styles.planPaywallBuyCardSelected]}
-                activeOpacity={0.84}
-                onPress={() => setSelectedPlanBilling('annual')}
-              >
-                <View style={styles.planPaywallBuyCardInner}>
-                  <Text style={styles.planPaywallBuyTitle}>{triOb('Годовой', 'Річний', 'Anual')}</Text>
-                  <Text style={styles.planPaywallBuyPrice}>
-                    {storePrices.yearly ? storePrices.yearly : triOb('Загружаем…', 'Завантажуємо…', 'Cargando…')}
-                  </Text>
-                </View>
-                <View style={styles.planPaywallBuyBadge}><Text style={styles.planPaywallBuyBadgeText}>{triOb('Лучшая цена', 'Найкраща ціна', 'Mejor precio')}</Text></View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.planPaywallBuyCard, selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected]}
-                activeOpacity={0.84}
-                onPress={() => setSelectedPlanBilling('monthly')}
-              >
-                <Text style={styles.planPaywallBuyTitle}>{triOb('Месячный', 'Місячний', 'Mensual')}</Text>
-                <Text style={styles.planPaywallBuyPrice}>
-                  {storePrices.monthly ? storePrices.monthly : triOb('Загружаем…', 'Завантажуємо…', 'Cargando…')}
+            {/* Сбой загрузки цен из стора — понятное сообщение + ретрай вместо вечного «Загружаем…» */}
+            {storePrices.failed ? (
+              <View style={styles.planPaywallPriceError}>
+                <Ionicons name="cloud-offline-outline" size={20} color={theme.textMuted} />
+                <Text style={styles.planPaywallPriceErrorText}>
+                  {triOb(
+                    'Не удалось загрузить цены из магазина. Проверь интернет и попробуй ещё раз.',
+                    'Не вдалося завантажити ціни з магазину. Перевір інтернет і спробуй ще раз.',
+                    'No se pudieron cargar los precios. Revisa tu conexión e inténtalo de nuevo.',
+                  )}
                 </Text>
-              </TouchableOpacity>
-            </View>
+                <TouchableOpacity
+                  testID="data-plan-paywall-price-retry"
+                  style={styles.planPaywallPriceRetry}
+                  activeOpacity={0.82}
+                  onPress={handleRetryStorePrices}
+                >
+                  <Text style={styles.planPaywallPriceRetryText}>{triOb('Повторить', 'Повторити', 'Reintentar')}</Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <>
+                {/* Выбор плана */}
+                <View style={styles.planPaywallOptions}>
+                  <TouchableOpacity
+                    style={[styles.planPaywallBuyCard, selectedPlanBilling === 'annual' && styles.planPaywallBuyCardSelected]}
+                    activeOpacity={0.84}
+                    onPress={() => setSelectedPlanBilling('annual')}
+                  >
+                    <View style={styles.planPaywallBuyCardInner}>
+                      <Text style={styles.planPaywallBuyTitle}>{triOb('Годовой', 'Річний', 'Anual')}</Text>
+                      <Text style={styles.planPaywallBuyPrice}>
+                        {storePrices.yearly ? storePrices.yearly : triOb('Загружаем…', 'Завантажуємо…', 'Cargando…')}
+                      </Text>
+                    </View>
+                    <View style={styles.planPaywallBuyBadge}><Text style={styles.planPaywallBuyBadgeText}>{triOb('Лучшая цена', 'Найкраща ціна', 'Mejor precio')}</Text></View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.planPaywallBuyCard, selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected]}
+                    activeOpacity={0.84}
+                    onPress={() => setSelectedPlanBilling('monthly')}
+                  >
+                    <Text style={styles.planPaywallBuyTitle}>{triOb('Месячный', 'Місячний', 'Mensual')}</Text>
+                    <Text style={styles.planPaywallBuyPrice}>
+                      {storePrices.monthly ? storePrices.monthly : triOb('Загружаем…', 'Завантажуємо…', 'Cargando…')}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
 
-            {/* CTA */}
-            <DuoPressable
-              testID="data-plan-paywall-trial-cta"
-              style={[styles.eliteWelcomeCta, paywallPurchasing && { opacity: 0.6 }]}
-              edgeColor={theme.accentDeep}
-              onPress={handlePaywallPurchase}
-            >
-              <Text style={styles.eliteWelcomeCtaText}>
-                {paywallPurchasing ? triOb('Оформляем…', 'Оформляємо…', 'Procesando…') : ctaLabel}
-              </Text>
-            </DuoPressable>
+                {/* CTA */}
+                <DuoPressable
+                  testID="data-plan-paywall-trial-cta"
+                  style={[styles.eliteWelcomeCta, paywallPurchasing && { opacity: 0.6 }]}
+                  edgeColor={theme.accentDeep}
+                  onPress={handlePaywallPurchase}
+                >
+                  <Text style={styles.eliteWelcomeCtaText}>
+                    {paywallPurchasing ? triOb('Оформляем…', 'Оформляємо…', 'Procesando…') : ctaLabel}
+                  </Text>
+                </DuoPressable>
+              </>
+            )}
 
-            {/* Доверие */}
+            {/* Доверие (без рейтинга — не показываем оценку, чтобы не рисковать App Store) */}
             <View style={styles.planPaywallTrustRow}>
-              <Text style={styles.planPaywallTrustItem}>★ 4,3</Text>
-              <Text style={styles.planPaywallTrustSep}>·</Text>
               <TouchableOpacity onPress={handlePaywallRestore} activeOpacity={0.7}>
                 <Text style={styles.planPaywallTrustItem}>{triOb('Восстановить', 'Відновити', 'Restaurar')}</Text>
               </TouchableOpacity>
@@ -2399,7 +2452,16 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               <Text style={styles.eliteWelcomeSecondaryCtaText}>{triOb('Продолжить без плана', 'Продовжити без плану', 'Continuar sin plan')}</Text>
             </TouchableOpacity>
             <Text style={styles.legal}>
-              Trial, цена после trial и период подписки берутся из App Store или Google Play. После trial подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления.
+              {({
+                ru: 'Пробный период, цена после него и период подписки берутся из App Store или Google Play. После пробного периода подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления.',
+                uk: 'Пробний період, ціна після нього та період підписки беруться з App Store або Google Play. Після пробного періоду підписка продовжується автоматично. Скасувати можна в налаштуваннях підписок магазину не пізніше ніж за 24 години до продовження.',
+                es: 'El periodo de prueba, el precio posterior y el periodo de suscripción provienen de App Store o Google Play. Tras el periodo de prueba, la suscripción se renueva automáticamente. Puedes cancelarla en los ajustes de suscripciones de la tienda al menos 24 horas antes de la renovación.',
+                'pt-BR': 'O período de teste, o preço após ele e o período da assinatura vêm da App Store ou Google Play. Após o teste, a assinatura é renovada automaticamente. Você pode cancelar nas configurações de assinaturas da loja até 24 horas antes da renovação.',
+                vi: 'Thời gian dùng thử, giá sau đó và chu kỳ đăng ký được lấy từ App Store hoặc Google Play. Sau thời gian dùng thử, gói đăng ký tự động gia hạn. Bạn có thể hủy trong phần cài đặt đăng ký của cửa hàng ít nhất 24 giờ trước khi gia hạn.',
+                id: 'Masa uji coba, harga setelahnya, dan periode langganan diambil dari App Store atau Google Play. Setelah masa uji coba, langganan diperpanjang otomatis. Kamu bisa membatalkannya di pengaturan langganan toko paling lambat 24 jam sebelum perpanjangan.',
+                tr: 'Deneme süresi, sonrasındaki fiyat ve abonelik dönemi App Store veya Google Play’den alınır. Deneme süresinden sonra abonelik otomatik olarak yenilenir. Yenilemeden en az 24 saat önce mağazanın abonelik ayarlarından iptal edebilirsin.',
+                pl: 'Okres próbny, cena po nim i okres subskrypcji pochodzą z App Store lub Google Play. Po okresie próbnym subskrypcja odnawia się automatycznie. Możesz ją anulować w ustawieniach subskrypcji sklepu najpóźniej 24 godziny przed odnowieniem.',
+              } as Record<string, string>)[lang] ?? 'Пробный период, цена после него и период подписки берутся из App Store или Google Play. После пробного периода подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления.'}
             </Text>
           </OnboardingScroll>
 
@@ -3409,8 +3471,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   <Text
                     style={[styles.streakMilestoneTitle, compactOnboarding && styles.streakMilestoneTextCompact]}
                     numberOfLines={2}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.78}
                     maxFontSizeMultiplier={1}
                   >
                     {m.label}
@@ -3418,8 +3478,6 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                   <Text
                     style={[styles.streakMilestoneReward, compactOnboarding && styles.streakMilestoneTextCompact]}
                     numberOfLines={2}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.78}
                     maxFontSizeMultiplier={1}
                   >
                     {m.reward}
@@ -4714,7 +4772,13 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 999,
+    overflow: 'hidden',
     transformOrigin: 'left center',
+  },
+  planMockupDaysFillGradient: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 999,
   },
   planFlowBottomStack: {
     width: '100%',
@@ -5193,6 +5257,36 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     fontSize: 10,
     fontWeight: '700',
   },
+  // Сбой загрузки цен из стора — карточка с сообщением и кнопкой ретрая
+  planPaywallPriceError: {
+    width: '100%',
+    alignItems: 'center',
+    gap: 12,
+    paddingVertical: 22,
+    paddingHorizontal: 18,
+    marginTop: 4,
+    borderRadius: 8,
+    backgroundColor: 'rgba(14,18,25,0.78)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
+  },
+  planPaywallPriceErrorText: {
+    color: t.textMuted,
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  planPaywallPriceRetry: {
+    paddingVertical: 10,
+    paddingHorizontal: 28,
+    borderRadius: 8,
+    backgroundColor: t.accent,
+  },
+  planPaywallPriceRetryText: {
+    color: t.ctaText,
+    fontSize: 15,
+    fontWeight: '800',
+  },
   // Строка доверия под CTA
   planPaywallTrustRow: {
     flexDirection: 'row',
@@ -5260,7 +5354,13 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 999,
+    overflow: 'hidden',
     transformOrigin: 'left center',
+  },
+  planProgressFillGradient: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 999,
   },
   planLoadingBuildIcon: {
     width: 38,

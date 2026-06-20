@@ -28,6 +28,17 @@ describe('personal_plan_stats helpers', () => {
     expect(trailingStreak(['2026-06-01', '2026-06-03', '2026-06-04', '2026-06-05'])).toBe(3);
     expect(trailingStreak(['2026-06-01', '2026-06-03'])).toBe(1);
   });
+
+  it('trailingStreak with todayKey resets when the latest active day is stale', () => {
+    const days = ['2026-06-03', '2026-06-04', '2026-06-05'];
+    // Latest active day IS today → full run of 3.
+    expect(trailingStreak(days, '2026-06-05')).toBe(3);
+    // Latest active day was yesterday → still counts.
+    expect(trailingStreak(days, '2026-06-06')).toBe(3);
+    // Gap of 2+ days since last activity → current streak is broken → 0.
+    expect(trailingStreak(days, '2026-06-08')).toBe(0);
+    expect(trailingStreak(days, '2026-06-20')).toBe(0);
+  });
 });
 
 describe('buildPersonalPlanStats', () => {

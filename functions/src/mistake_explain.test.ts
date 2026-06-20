@@ -100,10 +100,6 @@ jest.mock('./auth_identity', () => ({
   resolveStableUidForAuth: jest.fn(async (_db: unknown, authUid: string) => `stable-${authUid}`),
 }));
 
-jest.mock('./premium_status', () => ({
-  resolvePremiumAccess: jest.fn(async () => false),
-}));
-
 jest.mock('./openai_dialog_model_config', () => ({
   resolveConfiguredDialogModel: jest.fn(async () => 'gpt-4.1-nano'),
 }));
@@ -111,7 +107,7 @@ jest.mock('./openai_dialog_model_config', () => ({
 import { explainMistake as explainMistakeRaw } from './mistake_explain';
 
 type CallableRequest = { auth?: { uid: string }; data: DocData };
-type ExplainMistakeResponse = { ok: true; text: string; remainingQuota: number; model: string };
+type ExplainMistakeResponse = { ok: true; text: string; remainingQuota: number; model: string; fromCache: boolean; variant: string };
 const explainMistake = explainMistakeRaw as unknown as (request: CallableRequest) => Promise<ExplainMistakeResponse>;
 
 const validPayload = {
@@ -125,10 +121,15 @@ const validPayload = {
   phraseMeaning: 'У меня есть бронь.',
   selectedWrongWord: 'has',
   expectedWord: 'have',
+  diffPairs: [{ expected: 'have', picked: 'has' }],
 };
 
 function billingDocs(): DocData[] {
   return collectionDocs('mistake_explain_billing').map((doc) => doc.data);
+}
+
+function cacheDocs(): DocData[] {
+  return collectionDocs('mistake_explanations').map((doc) => doc.data);
 }
 
 function mockOkProvider(text: string) {
@@ -169,39 +170,84 @@ describe('explainMistake', () => {
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
-  it('enforces the free daily limit server-side before the paid provider call', async () => {
+  it('is free for everyone — no daily cap blocks repeated breakdowns', async () => {
     await callExplain(validPayload);
     await callExplain({ ...validPayload, userAnswer: 'I has table' });
     await callExplain({ ...validPayload, userAnswer: 'I has booking' });
+    await callExplain({ ...validPayload, userAnswer: 'I has seat' });
 
-    await expect(callExplain({ ...validPayload, userAnswer: 'I has seat' })).rejects.toMatchObject({
-      code: 'resource-exhausted',
-      message: 'mistake_explain_free_limit',
-    });
-
-    expect(global.fetch).toHaveBeenCalledTimes(3);
-    expect(billingDocs()).toHaveLength(3);
+    // Four DISTINCT mistakes → four generations, none blocked.
+    expect(global.fetch).toHaveBeenCalledTimes(4);
+    expect(billingDocs()).toHaveLength(4);
   });
 
-  it('builds a prompt about the exact mismatch between user answer and target answer', async () => {
+  it('serves the SAME mistake from the warm cache on the second call ($0, no provider hit)', async () => {
+    const first = await callExplain(validPayload);
+    expect(first.fromCache).toBe(false);
+    expect(cacheDocs().some((d) => d.status === 'ready')).toBe(true);
+
+    const second = await callExplain(validPayload, 'auth-2');
+    expect(second.fromCache).toBe(true);
+    expect(second.text).toBe(first.text);
+    // Still only ONE provider call total — the cache absorbed the second reader.
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('builds a prompt that targets the WHOLE error and lists every wrong→right swap', async () => {
     const res = await callExplain(validPayload);
 
-    expect(res).toMatchObject({ ok: true, remainingQuota: 2, model: 'gpt-4.1-nano' });
+    expect(res).toMatchObject({ ok: true, model: 'gpt-4.1-nano', variant: 'full', fromCache: false });
     const body = JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body as string);
     const prompt = JSON.stringify(body.messages);
 
     expect(prompt).toContain('I has a reservation');
     expect(prompt).toContain('I have a reservation.');
-    expect(prompt).toContain('selected wrong part: has');
-    expect(prompt).toContain('expected part: have');
-    expect(prompt).toContain('Do not explain a different error');
+    // The wrong→right swap list is embedded (quotes are JSON-escaped inside the body string).
+    expect(prompt).toContain('has');
+    expect(prompt).toContain('have');
+    expect(prompt).toContain('→');
+    expect(prompt).toContain('EVERY word that differs');
     expect(billingDocs()[0]).toMatchObject({
       uid: 'stable-auth-1',
       authUid: 'auth-1',
       lessonId: 18,
       phraseId: 'lesson18_phrase_31',
+      variant: 'full',
       promptTokens: 44,
       completionTokens: 22,
     });
+  });
+
+  it('generates a separate ELI5 text on the eli5 variant and caches it onto the ready doc', async () => {
+    await callExplain(validPayload); // warm the full breakdown first
+    mockOkProvider('You said "has" but say "have". "Have" is the friend word for "I". Say: I have a reservation.');
+
+    const eli5 = await callExplain({ ...validPayload, variant: 'eli5' });
+    expect(eli5.variant).toBe('eli5');
+    expect(eli5.text).toContain('friend word');
+
+    // Second eli5 read for the same mistake comes from cache ($0).
+    const eli5Again = await callExplain({ ...validPayload, variant: 'eli5' }, 'auth-3');
+    expect(eli5Again.fromCache).toBe(true);
+    expect(eli5Again.text).toBe(eli5.text);
+  });
+
+  it('persists ELI5 even when it is requested BEFORE the full breakdown (no money leak on repeat)', async () => {
+    mockOkProvider('Tiny words: say "have", not "has". "Have" is the buddy of "I".');
+
+    // ELI5 first — no full breakdown cached yet.
+    const first = await callExplain({ ...validPayload, variant: 'eli5' });
+    expect(first.variant).toBe('eli5');
+    expect(first.fromCache).toBe(false);
+
+    // The doc must now be ready WITH an eli5, so a later identical request is free.
+    expect(cacheDocs().some((d) => d.status === 'ready' && d.eli5)).toBe(true);
+
+    const fetchCallsAfterFirst = (global.fetch as jest.Mock).mock.calls.length;
+    const second = await callExplain({ ...validPayload, variant: 'eli5' }, 'auth-9');
+    expect(second.fromCache).toBe(true);
+    expect(second.text).toBe(first.text);
+    // No new provider call for the cached repeat.
+    expect((global.fetch as jest.Mock).mock.calls.length).toBe(fetchCallsAfterFirst);
   });
 });

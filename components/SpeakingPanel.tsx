@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { VoiceWaveform } from '../app/personal_plan_voice_waveform';
+import { VoiceEqualizer } from '../app/voice_equalizer';
 import {
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
   scorePlanPronunciationTranscript,
@@ -20,9 +20,9 @@ import {
   speakingMatchedFlags,
   speakingTargetTokens,
 } from '../app/speaking_word_match';
-import { nextVolumeLevel } from '../app/speaking_volume';
 import SpeakingScoreRing from './SpeakingScoreRing';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { useRecordStartCue } from '../hooks/use-record-start-cue';
 
 /**
  * SpeakingPanel — premium "say it out loud" practice surface.
@@ -103,6 +103,13 @@ export interface SpeakingPanelProps {
   recognitionLocale?: string;
   /** Called when the spoken attempt reaches the pass threshold. */
   onPass?: (result: { score: number; transcript: string }) => void;
+  /**
+   * Called on «Готово» after a passing attempt with the phrase to drop into the
+   * lesson's answer field (so the user can then press «Проверить»). The host
+   * decides what to fill; we pass the canonical target text (clean, guaranteed
+   * to pass the lesson check) rather than the raw transcript.
+   */
+  onFillAnswer?: (text: string) => void;
   /** Called when the user closes the panel. */
   onClose: () => void;
   /**
@@ -145,6 +152,7 @@ export function SpeakingPanel({
   theme,
   recognitionLocale = 'en-US',
   onPass,
+  onFillAnswer,
   onClose,
   previewStatus,
   previewScore,
@@ -153,11 +161,12 @@ export function SpeakingPanel({
   // In preview mode the native speech module is never touched, so permission
   // prompts and recognition stay inert while the visual state is inspected.
   const speech = useMemo(() => (isPreview ? null : loadSpeechModule()), [isPreview]);
+  const { playRecordStart } = useRecordStartCue();
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const [transcript, setTranscript] = useState('');
-  // Live mic level 0..1 for the equalizer. Updated on every `volumechange`.
-  const [voiceLevel, setVoiceLevel] = useState(0);
-  const voiceLevelRef = useRef(0);
+  // Latest raw `volumechange` sample (~ -2..10) for the equalizer; the
+  // VoiceEqualizer turns it into loudness + tone-driven bar heights itself.
+  const [voiceSample, setVoiceSample] = useState(0);
   const [score, setScore] = useState<number | null>(
     isPreview && (previewStatus === 'passed' || previewStatus === 'failed')
       ? previewScore ?? (previewStatus === 'passed' ? 97 : 45)
@@ -182,8 +191,7 @@ export function SpeakingPanel({
       if (!mountedRef.current) return;
       const text = finalTranscript.trim();
       // Attempt finished -> let the equalizer settle to rest before the ring.
-      voiceLevelRef.current = 0;
-      setVoiceLevel(0);
+      setVoiceSample(0);
       setStatus('scoring');
       if (!text) {
         // Nothing recognized -> "didn't catch that", not a 0% failure.
@@ -225,8 +233,7 @@ export function SpeakingPanel({
     hapticTap();
     setTranscript('');
     setScore(null);
-    voiceLevelRef.current = 0;
-    setVoiceLevel(0);
+    setVoiceSample(0);
     setStatus('requesting');
     try {
       const permission = await speech.requestPermissionsAsync();
@@ -242,34 +249,49 @@ export function SpeakingPanel({
 
     cleanupListeners();
     let latest = '';
+    // Лучший (самый ПОЛНЫЙ) распознанный вариант за попытку. При быстрой беглой
+    // речи движок иногда шлёт финальный обрывок ("you") после более полного
+    // interim ("you are late") и рано стреляет `end` → раньше скорилось по
+    // обрывку = 3%. Берём вариант с наибольшим числом слов (а при равенстве —
+    // длиннее), чтобы беглую речь не штрафовать за раннюю остановку движка.
+    let best = '';
+    const wordCount = (s: string) => (s.trim() ? s.trim().split(/\s+/).length : 0);
+    const considerBest = (candidate: string) => {
+      const c = candidate.trim();
+      if (!c) return;
+      if (wordCount(c) > wordCount(best) || (wordCount(c) === wordCount(best) && c.length > best.length)) {
+        best = c;
+      }
+    };
 
     const resultSub = speech.addListener('result', (event: any) => {
-      const best = event?.results?.[0];
-      const next = String(best?.transcript ?? '').trim();
+      const top = event?.results?.[0];
+      const next = String(top?.transcript ?? '').trim();
       if (next) {
         latest = next;
+        considerBest(next);
         if (mountedRef.current) setTranscript(next);
       }
     });
     const endSub = speech.addListener('end', () => {
-      finishAttempt(latest);
+      // Скорим по самому полному варианту, а не по последнему обрывку.
+      finishAttempt(best || latest);
     });
     const errorSub = speech.addListener('error', () => {
       if (mountedRef.current) {
-        if (latest) finishAttempt(latest);
+        const final = best || latest;
+        if (final) finishAttempt(final);
         else setStatus('no_speech');
       }
     });
     const noMatchSub = speech.addListener('nomatch', () => {
       if (mountedRef.current) setStatus('no_speech');
     });
-    // Live volume -> equalizer level. Smoothed so bars glide, not jump.
+    // Live volume -> equalizer. Forward the raw sample; the equalizer derives
+    // loudness + tone-driven bar heights from it.
     const volumeSub = speech.addListener('volumechange', (event: any) => {
       if (!mountedRef.current) return;
-      const raw = Number(event?.value);
-      const next = nextVolumeLevel(voiceLevelRef.current, raw);
-      voiceLevelRef.current = next;
-      setVoiceLevel(next);
+      setVoiceSample(Number(event?.value));
     });
 
     listenersRef.current = [resultSub, endSub, errorSub, noMatchSub, volumeSub].filter(
@@ -287,10 +309,12 @@ export function SpeakingPanel({
         volumeChangeEventOptions: { enabled: true, intervalMillis: 100 },
         ...(Platform.OS === 'ios' ? { recordingOptions: { persist: true } } : {}),
       });
+      // Mic is live now -> canonical "recording started" cue (sound + haptic).
+      playRecordStart();
     } catch {
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [isPreview, speech, recognitionLocale, cleanupListeners, finishAttempt]);
+  }, [isPreview, speech, recognitionLocale, cleanupListeners, finishAttempt, playRecordStart]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -304,6 +328,17 @@ export function SpeakingPanel({
       }
     };
   }, [speech, cleanupListeners]);
+
+  // Автостарт: панель монтируется только когда юзер нажал «Устно», поэтому
+  // сразу начинаем слушать — без второго нажатия на микрофон. В preview-режиме
+  // (QA-лаборатория) микрофон намеренно инертен, так что не трогаем.
+  const autoStartedRef = useRef(false);
+  useEffect(() => {
+    if (isPreview) return;
+    if (autoStartedRef.current) return;
+    autoStartedRef.current = true;
+    void startListening();
+  }, [isPreview, startListening]);
 
   const handleClose = useCallback(() => {
     stopListening();
@@ -325,6 +360,10 @@ export function SpeakingPanel({
   const listening = status === 'listening';
   const showResult = status === 'passed' || status === 'failed';
   const isBlocked = status === 'denied' || status === 'unavailable';
+  // На успехе фраза засчитана — микрофон больше не нужен (иначе юзер «застревает»
+  // на экране с микрофоном и «Сказать ещё раз», не понимая, что уже готово).
+  // Вместо микрофона показываем явную кнопку «Готово», которая закрывает панель.
+  const passed = status === 'passed';
   const passThreshold = PLAN_PRONUNCIATION_PASS_THRESHOLD;
 
   const statusLine = (() => {
@@ -392,23 +431,32 @@ export function SpeakingPanel({
             </Pressable>
           </View>
 
-          {/* Target phrase with per-word highlight */}
+          {/* Целевая фраза СКРЫТА за чёрточками по буквам — юзер не видит ответ
+              заранее (иначе нет смысла учиться). Слово «загорается» (становится
+              читаемым) только когда юзер правильно его произнёс. Заполнение
+              пословно по мере распознавания. На passed показываем фразу целиком. */}
           <View style={styles.phraseWrap} accessibilityRole="text">
-            {tokens.map((tok, i) => (
-              <Text
-                key={`spk-tok-${i}`}
-                style={[
-                  styles.phraseWord,
-                  {
-                    color: matched[i] ? theme.correct : theme.textSecond,
-                    opacity: matched[i] ? 1 : 0.75,
-                  },
-                ]}
-              >
-                {tok}
-                {i < tokens.length - 1 ? ' ' : ''}
-              </Text>
-            ))}
+            {tokens.map((tok, i) => {
+              const reveal = matched[i] || status === 'passed';
+              // Маска по буквам: каждая буква/цифра → «_», пунктуация остаётся.
+              const masked = tok.replace(/[\p{L}\p{N}]/gu, '_');
+              return (
+                <Text
+                  key={`spk-tok-${i}`}
+                  style={[
+                    styles.phraseWord,
+                    {
+                      color: reveal ? theme.correct : theme.textMuted,
+                      opacity: reveal ? 1 : 0.6,
+                      letterSpacing: reveal ? 0 : 2,
+                    },
+                  ]}
+                >
+                  {reveal ? tok : masked}
+                  {i < tokens.length - 1 ? ' ' : ''}
+                </Text>
+              );
+            })}
           </View>
 
           {/* While recording: live equalizer. After scoring: the result ring
@@ -441,11 +489,11 @@ export function SpeakingPanel({
                 </Text>
               </View>
             ) : (
-              <VoiceWaveform
+              <VoiceEqualizer
                 active={listening}
                 color={theme.accent}
                 idleColor={theme.border}
-                {...(isPreview ? {} : { level: voiceLevel })}
+                {...(isPreview ? {} : { rawSample: voiceSample })}
               />
             )}
           </View>
@@ -467,9 +515,10 @@ export function SpeakingPanel({
             {statusLine}
           </Text>
 
-          {/* Mic button — hidden when blocked (denied/unavailable): there the
-              mic can't help, so a clear action button takes its place. */}
-          {!isBlocked && (
+          {/* Mic button — hidden when blocked (denied/unavailable) or already
+              passed: there the mic can't help / isn't needed, so a clear action
+              button takes its place. */}
+          {!isBlocked && !passed && (
             <Pressable
               onPress={listening ? stopListening : startListening}
               disabled={micDisabled}
@@ -493,6 +542,27 @@ export function SpeakingPanel({
               ) : (
                 <Ionicons name={listening ? 'stop' : 'mic'} size={28} color="#fff" />
               )}
+            </Pressable>
+          )}
+
+          {/* Passed -> прямой выход: фраза засчитана, явная кнопка «Готово»
+              закрывает панель (раньше юзер застревал на микрофоне). «Сказать
+              ещё раз» остаётся тихой вторичной ссылкой ниже. */}
+          {passed && (
+            <Pressable
+              onPress={() => {
+                // Кладём фразу в поле ответа урока, затем закрываем панель —
+                // чтобы юзер сразу мог нажать «Проверить».
+                onFillAnswer?.(targetText);
+                handleClose();
+              }}
+              accessibilityRole="button"
+              accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+              style={[styles.actionBtn, { backgroundColor: theme.correct }]}
+            >
+              <Text style={styles.actionBtnText}>
+                {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+              </Text>
             </Pressable>
           )}
 

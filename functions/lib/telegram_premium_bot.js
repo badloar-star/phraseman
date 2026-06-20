@@ -45,8 +45,8 @@ const PHRASEMAN_PREMIUM_BOT_TOKEN = (0, params_1.defineSecret)('PHRASEMAN_PREMIU
 const PHRASEMAN_PREMIUM_ADMIN_SETUP_CODE = (0, params_1.defineSecret)('PHRASEMAN_PREMIUM_ADMIN_SETUP_CODE');
 const PHRASEMAN_PREMIUM_WEBHOOK_SECRET = (0, params_1.defineSecret)('PHRASEMAN_PREMIUM_WEBHOOK_SECRET');
 const MONTHLY_SUBSCRIPTION_PERIOD_SECONDS = 2592000;
-const MONTHLY_PRICE_RU_LABEL = '300 Stars';
-const YEARLY_PRICE_RU_LABEL = '1800 Stars';
+const MONTHLY_PRICE_RU_LABEL = '500 Stars';
+const YEARLY_PRICE_RU_LABEL = '2500 Stars';
 const CANCEL_SUBSCRIPTION_MESSAGE_RU = 'Подписку можно отменить в любой момент.';
 const SHORT_NICKNAME_PROMPT_RU = 'Напишите Ваш ник ниже';
 const PLANS = {
@@ -89,12 +89,12 @@ function userActivatedMessageRu(order) {
     ].filter(Boolean).join('\n');
 }
 function monthlyStars() {
-    const value = Number(process.env.PHRASEMAN_PREMIUM_MONTHLY_STARS || 300);
-    return Number.isSafeInteger(value) && value > 0 ? value : 300;
+    const value = Number(process.env.PHRASEMAN_PREMIUM_MONTHLY_STARS || 500);
+    return Number.isSafeInteger(value) && value > 0 ? value : 500;
 }
 function yearlyStars() {
-    const value = Number(process.env.PHRASEMAN_PREMIUM_YEARLY_STARS || 1800);
-    return Number.isSafeInteger(value) && value > 0 ? value : 1800;
+    const value = Number(process.env.PHRASEMAN_PREMIUM_YEARLY_STARS || 2500);
+    return Number.isSafeInteger(value) && value > 0 ? value : 2500;
 }
 function starsForPlan(plan) {
     return plan === 'yearly' ? yearlyStars() : monthlyStars();

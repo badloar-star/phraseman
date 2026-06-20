@@ -33,14 +33,14 @@ function LingmanVideosButton() {
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
 
   const label = triLang(lang, {
-    ru: 'Видео Professor Lingman',
-    uk: 'Видео Professor Lingman',
-    es: 'Professor Lingman videos',
-    'pt-BR': 'Professor Lingman videos',
-    vi: 'Professor Lingman videos',
-    id: 'Professor Lingman videos',
-    tr: 'Professor Lingman videos',
-    pl: 'Professor Lingman videos',
+    ru: 'Видео PHRASEMAN',
+    uk: 'Видео PHRASEMAN',
+    es: 'PHRASEMAN videos',
+    'pt-BR': 'PHRASEMAN videos',
+    vi: 'PHRASEMAN videos',
+    id: 'PHRASEMAN videos',
+    tr: 'PHRASEMAN videos',
+    pl: 'PHRASEMAN videos',
   });
 
   const refresh = useCallback(() => {

@@ -5,14 +5,14 @@
  * параллельной сессией; при слиянии можно переехать в него без смены сигнатур.
  */
 
-export const FREE_DIALOGS_PER_DAY_DEFAULT = 10;
-
-function numFromEnv(name: string): number | undefined {
-  const raw = name === 'EXPO_PUBLIC_FREE_DIALOGS' ? process.env.EXPO_PUBLIC_FREE_DIALOGS : undefined;
-  if (raw == null || raw === '') return undefined;
-  const n = Number(raw);
-  return Number.isFinite(n) ? n : undefined;
-}
+/**
+ * Сколько ПОЛНЫХ бесплатных диалогов получает не-premium за ВСЮ жизнь аккаунта.
+ * Модель (запрос пользователя 2026-06-20): ровно ОДИН пробный диалог без лимита
+ * реплик внутри, дальше полный премиум-замок. Это число держим синхронным с
+ * сервером (functions/src/openai_dialog_model_config.ts → DIALOG_FREE_LIFETIME_*).
+ * Меняешь тут — меняй и на сервере, иначе клиент и сервер разойдутся.
+ */
+export const FREE_DIALOGS_LIFETIME_DEFAULT = 1;
 
 function boolFromEnv(name: string): boolean | undefined {
   const raw = name === 'EXPO_PUBLIC_AI_DIALOG_ENABLED' ? process.env.EXPO_PUBLIC_AI_DIALOG_ENABLED : undefined;
@@ -20,10 +20,9 @@ function boolFromEnv(name: string): boolean | undefined {
   return raw === 'true' || raw === '1';
 }
 
-/** Сколько бесплатных диалогов в день для не-premium. */
-export function getFreeDialogsPerDay(): number {
-  const v = numFromEnv('EXPO_PUBLIC_FREE_DIALOGS');
-  return v != null && v >= 0 ? Math.floor(v) : FREE_DIALOGS_PER_DAY_DEFAULT;
+/** Сколько бесплатных диалогов за всю жизнь аккаунта (не в день) для не-premium. */
+export function getFreeDialogsLifetime(): number {
+  return FREE_DIALOGS_LIFETIME_DEFAULT;
 }
 
 /** Включена ли фича (когортный rollout). Дефолт true; env может выключить вход. */

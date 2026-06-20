@@ -56,7 +56,7 @@ import {
     usePersistentBackgroundLayers,
 } from '../components/backgroundTransition';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
-import { getTodayArenaHillTop, subscribeTodayArenaHillThrone, type ArenaHillThrone, type ArenaHillTopEntry } from './services/arena_hill';
+import { getTodayArenaHillTop, peekLastKnownArenaHillTop, subscribeTodayArenaHillThrone, type ArenaHillThrone, type ArenaHillTopEntry } from './services/arena_hill';
 import { subscribeArenaFeatureFlags, type ArenaFeatureFlags, } from './services/arena_feature_flags';
 import { safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
@@ -363,6 +363,9 @@ export default function DuelLobbyScreen({ isTab = false }: {
     }, [bonusEnergy, defaultPlayerName, energy, isUnlimited, myRank.isHydrated, myRank.level, myRank.rankIndex, myRank.tier, size, startSearching, updateQueueWithPushToken, userId]);
     useEffect(() => subscribeTodayArenaHillThrone(setHillThrone), []);
     useEffect(() => subscribeArenaFeatureFlags(setArenaFeatureFlags), []);
+    // Предзагрузка «Трона дня» в фоне при входе в лобби — кладёт ответ в кэш,
+    // чтобы ПЕРВОЕ открытие модала тоже было мгновенным (best-effort, тихо).
+    useEffect(() => { void getTodayArenaHillTop().catch(() => {}); }, []);
     useFocusEffect(useCallback(() => {
         let cancelled = false;
         (async () => {
@@ -429,14 +432,22 @@ export default function DuelLobbyScreen({ isTab = false }: {
     const openThroneTop = useCallback(async () => {
         hapticTap();
         setThroneTopVisible(true);
-        setThroneTopLoading(true);
+        // Мгновенный показ: сначала кэш прошлого ответа (за сегодня), иначе —
+        // локальный чемпион из подписки (имя + победы уже есть). Спиннер крутим
+        // только если показать совсем нечего, чтобы экран не висел пустым.
+        const cached = peekLastKnownArenaHillTop();
+        const instantEntries = cached && cached.entries.length > 0 ? cached.entries : fallbackThroneTop();
+        if (cached) setThroneRewardShards(cached.rewardShards || 10);
+        if (instantEntries.length > 0) setThroneTopEntries(instantEntries);
+        setThroneTopLoading(instantEntries.length === 0);
         try {
             const top = await getTodayArenaHillTop();
             setThroneRewardShards(top.rewardShards || 10);
             setThroneTopEntries(top.entries.length > 0 ? top.entries : fallbackThroneTop());
         }
         catch {
-            setThroneTopEntries(fallbackThroneTop());
+            // Сеть упала — оставляем уже показанные мгновенные данные (или фоллбэк).
+            if (instantEntries.length === 0) setThroneTopEntries(fallbackThroneTop());
         }
         finally {
             setThroneTopLoading(false);
@@ -1663,7 +1674,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
           <Ionicons name="chevron-back" size={20} color={t.textPrimary}/>
         </TapScale>
         <View style={styles.titleWrap}>
-          <Text testID="screen-arena-lobby" accessibilityLabel="qa-screen-arena-lobby" style={[styles.titleText, { color: screenTitleColor, fontSize: f.h2 + 5 }]} adjustsFontSizeToFit minimumFontScale={0.75}>
+          <Text testID="screen-arena-lobby" accessibilityLabel="qa-screen-arena-lobby" style={[styles.titleText, { color: screenTitleColor, fontSize: f.h2 + 5 }]} numberOfLines={2}>
             {triLang(lang, {
             ru: 'Арена',
             uk: 'Арена',
@@ -1806,7 +1817,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
                 pl: "Szukamy rywala",
             })}
                 </Text>
-                <Text style={[styles.queueCountdown, { color: t.accent }]} adjustsFontSizeToFit minimumFontScale={0.7}>
+                <Text style={[styles.queueCountdown, { color: t.accent }]} numberOfLines={1}>
                   {formatRemainSearch(remainSearchMs)}
                 </Text>
                 <Text style={[styles.searchingLabel, { color: screenMuted, fontSize: f.sub, marginTop: 4 }]}>

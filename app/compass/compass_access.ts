@@ -15,6 +15,8 @@
  * (из usePremium → hasPremiumAccess), модуль сам в контекст не лезет.
  */
 
+import { isFeatureFreeForEveryone } from '../feature_gates';
+
 export interface PlanAccessInput {
   /** Итоговый доступ: реальный premium ИЛИ vip ИЛИ intro-доступ (usePremium). */
   hasPremiumAccess: boolean;
@@ -31,6 +33,8 @@ export type PlanAccessDecision =
  */
 export function decidePlanAccess(input: PlanAccessInput): PlanAccessDecision {
   if (input.hasPremiumAccess) return { allowed: true };
+  // «Пульт»: если админ перевёл персональный план в «Фри» — замок снят для всех.
+  if (isFeatureFreeForEveryone('personal_plan')) return { allowed: true };
   return { allowed: false, reason: 'premium_required' };
 }
 

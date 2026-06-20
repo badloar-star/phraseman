@@ -45,7 +45,7 @@ function LingmanCertificateTextPanel({
       <Text style={{ color: '#FFFFFF', fontSize: compact ? 22 : 30, fontWeight: '900', textAlign: 'center' }}>
         Certificate
       </Text>
-      <Text style={{ color: '#D4A017', fontSize: compact ? 19 : 26, fontWeight: '900', textAlign: 'center' }} numberOfLines={2} adjustsFontSizeToFit>
+      <Text style={{ color: '#D4A017', fontSize: compact ? 19 : 26, fontWeight: '900', textAlign: 'center' }} numberOfLines={2}>
         {safeName}
       </Text>
       <View style={{ height: 1, backgroundColor: 'rgba(212,160,23,0.45)', marginVertical: compact ? 2 : 6 }} />
@@ -55,7 +55,7 @@ function LingmanCertificateTextPanel({
       <Text style={{ color: '#9CA3AF', fontSize: compact ? 11 : 13, textAlign: 'center' }}>
         Completed: {formatCertDate(completedAt, lang)}
       </Text>
-      <Text style={{ color: '#6B7280', fontSize: compact ? 9 : 11, textAlign: 'center' }} numberOfLines={1} adjustsFontSizeToFit>
+      <Text style={{ color: '#6B7280', fontSize: compact ? 9 : 11, textAlign: 'center' }} numberOfLines={1}>
         ID: {certId}
       </Text>
     </View>

@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dailyPhraseSetSaved = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const DAILY_PHRASES = 'daily_phrases';
 const DAILY_PHRASE_SAVES = 'daily_phrase_saves';
@@ -57,7 +58,7 @@ async function resolveStableUid(authUid) {
         return byAuth.docs[0].id;
     return authUid;
 }
-exports.dailyPhraseSetSaved = (0, https_1.onCall)({ region: REGION, enforceAppCheck: false }, async (request) => {
+exports.dailyPhraseSetSaved = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     const authUid = request.auth?.uid;
     if (!authUid)
         throw new https_1.HttpsError('unauthenticated', 'Auth required');

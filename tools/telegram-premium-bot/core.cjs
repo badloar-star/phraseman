@@ -5,8 +5,8 @@ const DEFAULT_DATA_DIR = path.join(process.cwd(), '.codex-tmp', 'telegram-premiu
 const DEFAULT_CONFIG_PATH = path.join(DEFAULT_DATA_DIR, 'config.json');
 const DEFAULT_STATE_PATH = path.join(DEFAULT_DATA_DIR, 'state.json');
 const DEFAULT_ORDERS_PATH = path.join(DEFAULT_DATA_DIR, 'orders.jsonl');
-const MONTHLY_PRICE_RU_LABEL = '300 Stars';
-const YEARLY_PRICE_RU_LABEL = '1800 Stars';
+const MONTHLY_PRICE_RU_LABEL = '500 Stars';
+const YEARLY_PRICE_RU_LABEL = '2500 Stars';
 const CANCEL_SUBSCRIPTION_MESSAGE_RU = 'Подписку можно отменить в любой момент.';
 
 const PLANS = {
@@ -86,8 +86,8 @@ function loadConfig(configPath = DEFAULT_CONFIG_PATH) {
     botToken: process.env.PHRASEMAN_PREMIUM_BOT_TOKEN || fileConfig.botToken || '',
     adminChatId: normalizeId(process.env.PHRASEMAN_PREMIUM_ADMIN_CHAT_ID || fileConfig.adminChatId),
     adminSetupCode: process.env.PHRASEMAN_PREMIUM_ADMIN_SETUP_CODE || fileConfig.adminSetupCode || '',
-    monthlyStars: positiveInteger(process.env.PHRASEMAN_PREMIUM_MONTHLY_STARS || fileConfig.monthlyStars, 300),
-    yearlyStars: positiveInteger(process.env.PHRASEMAN_PREMIUM_YEARLY_STARS || fileConfig.yearlyStars, 1800),
+    monthlyStars: positiveInteger(process.env.PHRASEMAN_PREMIUM_MONTHLY_STARS || fileConfig.monthlyStars, 500),
+    yearlyStars: positiveInteger(process.env.PHRASEMAN_PREMIUM_YEARLY_STARS || fileConfig.yearlyStars, 2500),
     heroImageUrl: process.env.PHRASEMAN_PREMIUM_HERO_IMAGE_URL || fileConfig.heroImageUrl || DEFAULT_HERO_IMAGE_URL,
     pollTimeoutSeconds: positiveInteger(process.env.PHRASEMAN_PREMIUM_POLL_TIMEOUT_SECONDS || fileConfig.pollTimeoutSeconds, 20),
     statePath: fileConfig.statePath || DEFAULT_STATE_PATH,

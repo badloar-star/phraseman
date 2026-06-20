@@ -2259,8 +2259,6 @@ export default function FriendsTabScreen() {
               <Text
                 style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', includeFontPadding: false }}
                 numberOfLines={1}
-                adjustsFontSizeToFit
-                minimumFontScale={0.78}
               >
                 {L('Рефералы', 'Реферали', 'Referidos', 'Indicados', 'Giới thiệu', 'Referal', 'Davetler', 'Polecenia')}
               </Text>
@@ -2458,8 +2456,8 @@ export default function FriendsTabScreen() {
                         'Otrzymasz 7 dni pełnego Premium za znajomego, który zainstaluje aplikację i wpisze twój kod',
                       )}
                       {referralCode ? (
-                        <Text testID="friends-empty-invite-code" style={{ color: t.accent, fontWeight: '900', letterSpacing: 0.8 }}>
-                          {` ${referralCode}`}
+                        <Text testID="friends-referral-code-inline" style={{ color: t.accent, fontWeight: '900', letterSpacing: 1 }}>
+                          {' '}{referralCode}
                         </Text>
                       ) : null}
                       {L(
@@ -2482,7 +2480,7 @@ export default function FriendsTabScreen() {
                         style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
                       >
                         <Ionicons name="share-social" size={20} color={t.correctText} />
-                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
                           {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
                         </Text>
                       </DuoPressable>
@@ -2493,7 +2491,7 @@ export default function FriendsTabScreen() {
                       >
                         <View style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
                           <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
-                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
                             {L('Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod')}
                           </Text>
                         </View>
@@ -2523,7 +2521,7 @@ export default function FriendsTabScreen() {
                         style={{ height: 58, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 0 }}
                       >
                         <Ionicons name="person-add" size={20} color={t.correctText} />
-                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.78}>
+                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
                           {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
                         </Text>
                       </DuoPressable>

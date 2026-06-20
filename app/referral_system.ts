@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { getCanonicalUserId } from './user_id_policy';
+import { ensureStableAuthLinkForStableId } from './cloud_sync';
 import { callReferralEnsureMyCode, isReferralCloudEnabled } from './referral_cloud';
 
 const REFERRAL_KEY = 'user_referral_code';
@@ -24,6 +25,12 @@ export async function generateReferralCode(name: string): Promise<string> {
     if (isReferralCloudEnabled()) {
       const sid = await getCanonicalUserId();
       if (sid) {
+        // Серверная referralEnsureMyCode требует auth_links/{authUid} (assertAuthStableLink).
+        // У анонимного юзера на свежей установке линка ещё нет — без этого вызова CF падает
+        // с LINK_ACCOUNT_REQUIRED, код возвращается пустым и в /friends зияет дыра в тексте.
+        // Все остальные серверные пути (друзья/лидерборд/подарки/пуши) линкуются ТАК ЖЕ перед
+        // вызовом — referral был единственным, кто это пропускал.
+        await ensureStableAuthLinkForStableId(sid).catch(() => false);
         try {
           const { code } = await callReferralEnsureMyCode(sid);
           if (code) {
@@ -31,7 +38,7 @@ export async function generateReferralCode(name: string): Promise<string> {
             return code;
           }
         } catch {
-          /* нет auth_links */
+          /* линк ещё не готов (медленная сеть) — добьём ретраем в friends.tsx useEffect */
         }
       }
       return '';

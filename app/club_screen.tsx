@@ -1395,7 +1395,7 @@ export default function ClubScreen() {
                 opacity: groupBoostBuying ? 0.7 : 1,
               }}
             >
-              <Text adjustsFontSizeToFit numberOfLines={1} style={{ color:activeGroupBoost ? t.textMuted : t.correctText, fontSize:f.caption, fontWeight:'900' }}>
+              <Text numberOfLines={1} style={{ color:activeGroupBoost ? t.textMuted : t.correctText, fontSize:f.caption, fontWeight:'900' }}>
                 {activeGroupBoost
                   ? triLang(lang, { ru: 'Активен', uk: 'Активний', es: 'Activo' })
                   : (groupBoostBuying

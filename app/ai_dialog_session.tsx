@@ -27,22 +27,21 @@ import {
   type DialogScenario,
 } from './ai_dialog_scenarios';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
-import { triLang } from '../constants/i18n';
+import { buildScenarioGreeting } from './ai_dialog_greeting';
+import { triLang, type Lang } from '../constants/i18n';
 import { getLessonData } from './lesson_data_all';
 import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
 import {
   callPremiumDialogSend,
-  getPremiumDialogErrorMessage,
   type DialogChatTurn,
 } from './ai_dialog_client';
 import {
   hasFreeDialogLeft,
   markFreeDialogUsed,
 } from './dialogs_limit_session';
+import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { safeRouterBack } from './navigation_back';
-
-const LOCAL_SCENARIO_GREETING = 'Hi! Let\'s practice. Start with one short English sentence, and I will keep the conversation going.';
 
 /**
  * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
@@ -96,6 +95,34 @@ interface UiMessage {
   text: string;
 }
 
+// Полностью локализованный (8 языков) текст системной плашки ошибки диалога.
+function dialogErrorText(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Не удалось получить ответ. Проверь интернет.',
+    uk: 'Не вдалося отримати відповідь. Перевір інтернет.',
+    es: 'No se pudo obtener la respuesta. Revisa tu conexión.',
+    'pt-BR': 'Não foi possível obter a resposta. Verifique sua internet.',
+    vi: 'Không nhận được phản hồi. Hãy kiểm tra kết nối mạng.',
+    id: 'Gagal mendapatkan balasan. Periksa koneksi internetmu.',
+    tr: 'Yanıt alınamadı. İnternet bağlantını kontrol et.',
+    pl: 'Nie udało się uzyskać odpowiedzi. Sprawdź internet.',
+  });
+}
+
+// Полностью локализованная (8 языков) подпись кнопки «Повторить».
+function dialogRetryLabel(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Повторить',
+    uk: 'Повторити',
+    es: 'Reintentar',
+    'pt-BR': 'Tentar de novo',
+    vi: 'Thử lại',
+    id: 'Coba lagi',
+    tr: 'Tekrar dene',
+    pl: 'Spróbuj ponownie',
+  });
+}
+
 export default function AiDialogSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -121,10 +148,21 @@ export default function AiDialogSession() {
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
   const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
 
-  const [messages, setMessages] = useState<UiMessage[]>([]);
+  // Первая реплика собеседника (приветствие) присутствует СРАЗУ, с первого кадра —
+  // через ленивый инициализатор, а не через эффект (раньше эффект мог не сработать
+  // при гонке/двойном маунте → «первой реплики нет»). Приветствие УНИКАЛЬНОЕ для
+  // каждого сценария (имя персонажа + место + роль), а не одинаковое для всех.
+  const [messages, setMessages] = useState<UiMessage[]>(() => [
+    { role: 'assistant', text: buildScenarioGreeting(scenario) },
+  ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [ended, setEnded] = useState(false);
+  // Ошибка ИИ (сеть/таймаут) показывается НЕ как реплика персонажа, а отдельной
+  // системной плашкой с кнопкой «Повторить». Храним текст последней отправки,
+  // чтобы повтор переслал именно её.
+  const [lastError, setLastError] = useState(false);
+  const lastSentTextRef = useRef('');
   const scrollRef = useRef<ScrollView>(null);
 
   const userExchanges = messages.filter((m) => m.role === 'user').length;
@@ -150,6 +188,11 @@ export default function AiDialogSession() {
       if (!trimmed || sending || ended) return;
       hapticTap();
 
+      // Является ли этот ход тем самым первым ходом, что тратит единственный
+      // пожизненный бесплатный диалог. Списание — ТОЛЬКО после успешного ответа
+      // (см. ниже), чтобы сбой сети не сжигал бесплатную попытку.
+      let consumesFreeDialog = false;
+
       // Первый ход не-premium: тратит ЕДИНСТВЕННЫЙ пожизненный бесплатный диалог.
       // Если он уже потрачен — полный замок (никаких «реплик в день»).
       if (userExchanges === 0 && !dialogAccess) {
@@ -159,15 +202,15 @@ export default function AiDialogSession() {
           router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
           return;
         }
-        // Потрачен на ПЕРВОЙ реплике (не при открытии экрана). Сервер ставит тот
-        // же пожизненный флаг — это лишь мгновенный локальный UX-замок.
-        void markFreeDialogUsed();
+        consumesFreeDialog = true;
       }
 
       const exchangeIndex = userExchanges + 1;
       void trackEvent('ai_dialog_message_sent', { scenarioId: scenario.id, exchangeIndex });
 
       const history = buildHistory();
+      lastSentTextRef.current = trimmed;
+      setLastError(false);
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
       setInput('');
       setSending(true);
@@ -185,37 +228,90 @@ export default function AiDialogSession() {
           isPremium: hasPremiumAccess,
         });
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+        // Бесплатный диалог списываем ТОЛЬКО здесь — после успешного ответа ИИ.
+        // Сервер ставит тот же пожизненный флаг; это мгновенный локальный UX-замок.
+        if (consumesFreeDialog) void markFreeDialogUsed();
       } catch (error) {
-        setMessages((prev) => [
-          ...prev,
-          { role: 'assistant', text: getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }) },
-        ]);
+        // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
+        // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
+        void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
+        setLastError(true);
       } finally {
         setSending(false);
       }
     },
-    [sending, ended, hasPremiumAccess, dialogAccess, userExchanges, buildHistory, scenario, router, lang],
+    [sending, ended, hasPremiumAccess, dialogAccess, userExchanges, buildHistory, scenario, router],
   );
 
-  // Локальное приветствие: OpenAI зовём только после первой реплики пользователя.
+  // Повтор последней отправки после ошибки сети. Реплика пользователя уже в чате,
+  // поэтому НЕ пушим её заново — только заново зовём ИИ с той же историей.
+  const retryLastSend = useCallback(async () => {
+    if (sending || ended) return;
+    const trimmed = lastSentTextRef.current.trim();
+    if (!trimmed) return;
+    hapticTap();
+    void trackEvent('ai_dialog_retry', { scenarioId: scenario.id });
+
+    // История БЕЗ последней реплики пользователя (она уже в messages, передаём как userText).
+    const priorMessages = messages.slice(0, -1);
+    const history: DialogChatTurn[] = priorMessages.map((m) => ({ role: m.role, content: m.text }));
+
+    // Списываем бесплатный диалог только при успехе первого хода (как в send).
+    const consumesFreeDialog =
+      !dialogAccess && messages.filter((m) => m.role === 'user').length === 1;
+
+    setLastError(false);
+    setSending(true);
+    try {
+      const res = await callPremiumDialogSend({
+        mode: 'scenario',
+        userText: trimmed,
+        cefr: scenario.cefr,
+        history,
+        role: scenario.role,
+        setting: scenario.setting,
+        goalEn: scenario.goalEn,
+        persona: scenario.persona,
+        scenarioId: scenario.id,
+        isPremium: hasPremiumAccess,
+      });
+      setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+      if (consumesFreeDialog) void markFreeDialogUsed();
+    } catch (error) {
+      void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
+      setLastError(true);
+    } finally {
+      setSending(false);
+    }
+  }, [sending, ended, hasPremiumAccess, dialogAccess, messages, scenario]);
+
+  // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
+  // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
   useEffect(() => {
-    let cancelled = false;
-    void (async () => {
-      if (messages.length > 0) return;
-      void trackEvent('ai_dialog_started', { scenarioId: scenario.id, cefr: scenario.cefr });
-      if (!cancelled) setMessages([{ role: 'assistant', text: LOCAL_SCENARIO_GREETING }]);
-    })();
-    return () => {
-      cancelled = true;
-    };
+    void trackEvent('ai_dialog_started', { scenarioId: scenario.id, cefr: scenario.cefr });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Параметры маршрута могут «доехать» после первого кадра (expo-router) — тогда
+  // ленивый сид взял дефолтный сценарий. Пока пользователь НИЧЕГО не написал (в чате
+  // только приветствие), обновляем приветствие под реально открытый сценарий.
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length !== 1 || prev[0].role !== 'assistant') return prev;
+      const fresh = buildScenarioGreeting(scenario);
+      if (prev[0].text === fresh) return prev;
+      return [{ role: 'assistant', text: fresh }];
+    });
+  }, [scenario]);
 
   const finishDialog = useCallback(() => {
     if (ended || userExchanges <= 0) return;
     hapticTap();
     setEnded(true);
     void trackEvent('ai_dialog_completed', { scenarioId: scenario.id, exchanges: userExchanges });
+    // Локально помечаем сценарий пройденным — список диалогов покажет «Пройдено»
+    // и сдвинет блок «Продолжить» на следующий сценарий. Идемпотентно + best-effort.
+    void markDialogCompleted(scenario.id);
     // Бесплатный диалог уже отмечен использованным на первой реплике — здесь не дублируем.
   }, [ended, scenario.id, userExchanges]);
 
@@ -326,7 +422,7 @@ export default function AiDialogSession() {
           )}
         </View>
 
-        {/* Пробный бесплатный диалог — честно говорим, что он один и без лимита реплик. */}
+        {/* Пробный бесплатный диалог — короткая плашка-«подарок». */}
         {!hasPremiumAccess && (
           <View
             style={{
@@ -347,9 +443,9 @@ export default function AiDialogSession() {
             <Ionicons name="gift-outline" size={13} color={t.accent} />
             <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
               {triLang(lang, {
-                ru: 'Пробный диалог — бесплатно, без лимита реплик',
-                uk: 'Пробний діалог — безкоштовно, без ліміту реплік',
-                es: 'Diálogo de prueba — gratis, sin límite de respuestas',
+                ru: 'Пробный диалог — бесплатно',
+                uk: 'Пробний діалог — безкоштовно',
+                es: 'Diálogo de prueba — gratis',
               })}
             </Text>
           </View>
@@ -363,7 +459,10 @@ export default function AiDialogSession() {
           <ScrollView ref={scrollRef} style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}>
             {messages.map((m, i) => {
               const isUser = m.role === 'user';
-              const isLast = i === messages.length - 1;
+              // Анимируем появление ТОЛЬКО для приходящих позже реплик. Самое первое
+              // приветствие (i === 0) всегда видно сразу — никакого fade из opacity:0,
+              // чтобы «первая реплика» гарантированно отображалась.
+              const isLast = i === messages.length - 1 && i > 0;
               return (
                 <Animated.View
                   key={i}
@@ -440,6 +539,7 @@ export default function AiDialogSession() {
                         borderWidth: 0.5,
                         borderColor: t.border,
                         maxWidth: '82%',
+                        flexShrink: 1,
                         shadowColor: t.shadowDark,
                         shadowOpacity: 0.18,
                         shadowRadius: 6,
@@ -447,13 +547,17 @@ export default function AiDialogSession() {
                         elevation: 1,
                       }}
                     >
-                      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8, flexShrink: 1 }}>
                         <Text
                           style={{
                             color: t.textPrimary,
                             fontSize: f.bodyLg,
                             fontWeight: '600',
-                            flex: 1,
+                            // flexShrink (не flex:1): на Android `flex:1` внутри row-обёртки,
+                            // вложенной в пузырь с maxWidth без базовой ширины, схлопывал
+                            // текст в нулевую ширину — реплика была невидимой, но звук/тап
+                            // работали. flexShrink даёт тексту ширину по контенту с переносом.
+                            flexShrink: 1,
                             lineHeight: Math.round(f.bodyLg * 1.4),
                           }}
                           maxFontSizeMultiplier={1.2}
@@ -546,6 +650,56 @@ export default function AiDialogSession() {
               </View>
             )}
 
+            {/* Системная плашка ошибки ИИ — НЕ реплика персонажа (без аватара/озвучки),
+                по центру, с кнопкой «Повторить» (повторяет последнюю отправку). */}
+            {lastError && !sending && (
+              <View
+                style={{
+                  alignSelf: 'center',
+                  maxWidth: '90%',
+                  alignItems: 'center',
+                  backgroundColor: t.bgSurface,
+                  borderRadius: 14,
+                  borderWidth: 0.5,
+                  borderColor: t.border,
+                  paddingHorizontal: 16,
+                  paddingVertical: 12,
+                  marginBottom: 12,
+                }}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
+                  <Ionicons name="cloud-offline-outline" size={16} color={t.textMuted} />
+                  <Text
+                    style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {dialogErrorText(lang)}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => void retryLastSend()}
+                  activeOpacity={0.82}
+                  accessibilityRole="button"
+                  accessibilityLabel={dialogRetryLabel(lang)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 6,
+                    marginTop: 10,
+                    borderRadius: 16,
+                    paddingHorizontal: 16,
+                    paddingVertical: 8,
+                    backgroundColor: t.accent,
+                  }}
+                >
+                  <Ionicons name="refresh" size={16} color={t.correctText} />
+                  <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.label }}>
+                    {dialogRetryLabel(lang)}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+
             {ended && (
               <View
                 style={{
@@ -597,8 +751,11 @@ export default function AiDialogSession() {
             )}
           </ScrollView>
 
-          {/* Подсказка направления: не готовый ответ, а помощь сформулировать свою реплику. */}
-          {!ended && lastIsAssistant && !sending && (
+          {/* Подсказка «Что сделать дальше» — ТОЛЬКО до первой реплики пользователя
+              (userExchanges === 0): помогает начать разговор. После первого ответа
+              собеседник уже реагирует на сказанное, и общая подсказка не нужна —
+              дальше отталкиваемся от его реплик. */}
+          {!ended && lastIsAssistant && !sending && userExchanges === 0 && (
             <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
               <View
                 style={{
@@ -648,7 +805,10 @@ export default function AiDialogSession() {
             >
               <TextInput
                 value={input}
-                onChangeText={setInput}
+                onChangeText={(v) => {
+                  setInput(v);
+                  if (lastError) setLastError(false);
+                }}
                 placeholder={triLang(lang, { ru: 'Напиши ответ…', uk: 'Напиши відповідь…', es: 'Escribe tu respuesta…' })}
                 placeholderTextColor={t.textMuted}
                 editable={!sending}

@@ -210,7 +210,8 @@ function buildFullMessages(payload: ExplainMistakePayload): Array<{ role: 'syste
         (allDiffs ? `All wrong→right word swaps: ${allDiffs}\n` : '') +
         'Walk through every wrong word in the learner\'s answer: name it, give the correct word, and the ' +
         'short rule for why. Then explain in one sentence WHY this kind of mistake happens (e.g. word-for-word ' +
-        'from the native language). Finish with the full corrected sentence. Max 4 short sentences total.',
+        'from the native language). Finish with the full corrected sentence. Max 4 short sentences total. ' +
+        writeIn,
     },
   ];
 }

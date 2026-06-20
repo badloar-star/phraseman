@@ -48,15 +48,10 @@ interface Props extends PassthroughPressableProps {
 /**
  * Duolingo-style 3D-кнопка: при нажатии «вдавливается» в свою цветную кромку.
  *
- * Отличие от PressableScale (просто scale): здесь верхняя поверхность съезжает
- * вниз по translateY на высоту кромки, а сама кромка сжимается — даёт ощущение
- * физической глубины, как кнопка проверки ответа в Duolingo.
- *
  * Кромку рисуем отдельным View ПОД поверхностью; передавай фон/радиус/паддинги
- * кнопки через `style` (как у обычной кнопки). edgeColor по умолчанию темнее фона.
- *
- * На Reanimated — анимация на UI-потоке. Для иконок используй TapScale,
- * для простых full-width без 3D — PressableScale.
+ * кнопки через `style` (как у обычной кнопки). Если в style приходит opacity,
+ * переносим её на wrapper, чтобы тёмная кромка не просвечивала прямоугольником
+ * внутри полупрозрачной поверхности.
  */
 function DuoPressable({
   onPress,
@@ -92,6 +87,15 @@ function DuoPressable({
     held.value = withSpring(pressedExternally ? 1 : 0, MOTION_SPRING.micro);
   }, [pressedExternally, held]);
 
+  const flattenedSurfaceStyle = useMemo(() => StyleSheet.flatten(style) as ViewStyle | undefined, [style]);
+  const surfaceOpacity = typeof flattenedSurfaceStyle?.opacity === 'number' ? flattenedSurfaceStyle.opacity : undefined;
+  const surfaceOpacityStyle = surfaceOpacity === undefined ? null : { opacity: surfaceOpacity };
+  const surfaceBaseStyle = useMemo<StyleProp<ViewStyle>>(() => {
+    if (surfaceOpacity === undefined || !flattenedSurfaceStyle) return style;
+    const { opacity: _opacity, ...restStyle } = flattenedSurfaceStyle as ViewStyle & { opacity?: number };
+    return restStyle;
+  }, [flattenedSurfaceStyle, style, surfaceOpacity]);
+
   // Лицо опускается вниз на высоту кромки при нажатии — «оседает» на кромку.
   // Кромка НЕ двигается (это нижний слой), лицо её накрывает. Тени сверху нет.
   // Глубина = max(реальный press, внешнее удержание) — depressed остаётся на
@@ -101,11 +105,6 @@ function DuoPressable({
     return { transform: [{ translateY: interpolate(depth, [0, 1], [0, edgeHeight]) }] };
   });
 
-  // Кромка должна повторять скругление ЛИЦА, иначе цветная кромка снизу торчит
-  // с другим радиусом углов и объём читается «сломанным» (углы кромки острее
-  // углов кнопки). Копируем ВСЕ заданные радиусы лица (uniform + по-угловые,
-  // число или строка-процент), а не только числовой borderRadius — иначе кнопки
-  // с pill/по-угловым скруглением остаются с дефолтной кромкой 16.
   const edgeRadiusStyle = useMemo<ViewStyle | null>(() => {
     const flat = StyleSheet.flatten(style) as ViewStyle | undefined;
     if (!flat) return null;
@@ -140,7 +139,7 @@ function DuoPressable({
       onPressOut={pressOut}
       disabled={disabled}
       accessibilityState={mergeAccessibilityDisabled(rest.accessibilityState, disabled)}
-      style={[styles.wrap, { paddingBottom: edgeHeight }, wrapStyle]}
+      style={[styles.wrap, { paddingBottom: edgeHeight }, surfaceOpacityStyle, wrapStyle]}
     >
       {/* Кромка — нижний слой, стоит на месте. Видна полоской снизу (top сдвинут
           на edgeHeight, так что верх кромки совпадает с верхом лица в покое). */}
@@ -154,7 +153,7 @@ function DuoPressable({
         ]}
       />
       {/* Лицо — обычный поток, при нажатии съезжает вниз на edgeHeight. */}
-      <Reanimated.View style={[styles.surface, style, gradientColors ? styles.surfaceClip : null, surfaceStyle]}>
+      <Reanimated.View style={[styles.surface, surfaceBaseStyle, gradientColors ? styles.surfaceClip : null, surfaceStyle]}>
         {gradientColors ? (
           <LinearGradient
             colors={gradientColors as unknown as readonly [string, string, ...string[]]}

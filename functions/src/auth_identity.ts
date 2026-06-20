@@ -95,6 +95,33 @@ async function assertStableOwner(
   throw new HttpsError('permission-denied', 'stable_id_mismatch');
 }
 
+/**
+ * Гарантирует auth_links/{authUid}.stable_id === stableId.
+ *
+ * Раньше auth_links писался ТОЛЬКО на провайдер-входе (Google/Apple), поэтому у
+ * анонимного юзера документа не было — а callable, читающие auth_links
+ * (referralEnsureMyCode → assertAuthStableLink, friend_codes, premium_status),
+ * падали с LINK_ACCOUNT_REQUIRED. Из-за этого реф-код не выдавался анонимам.
+ *
+ * НАМЕРЕННО отдельно от linkStableAuthUid: та зовётся внутри account-merge для
+ * КАЖДОГО кандидата ДО выбора победителя, и запись auth_links там отравила бы
+ * проверку владения (assertStableOwner читает auth_links) второго кандидата.
+ * Зовётся только из authEnsureStableLink callable, где authUid изолирован.
+ * merge'ом — чтобы не затирать provider/email существующего провайдерского линка.
+ */
+export async function ensureAuthLinkDoc(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  stableId: string,
+): Promise<void> {
+  const linkRef = db.collection(AUTH_LINKS).doc(authUid);
+  const linkSnap = await linkRef.get().catch(() => null);
+  const currentLinkStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
+  if (!linkSnap?.exists || currentLinkStableId !== stableId) {
+    await linkRef.set({ stable_id: stableId, updatedAt: Date.now() }, { merge: true });
+  }
+}
+
 export async function linkStableAuthUid(
   db: admin.firestore.Firestore,
   stableId: string,
@@ -552,6 +579,17 @@ export const authEnsureStableLink = onCall(HOT_CALLABLE_OPTIONS, async (request)
   const allowProviderRelink = signInProvider.length > 0 && signInProvider !== 'anonymous';
   const allowAnonRelink = !allowProviderRelink;
   const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink, allowAnonRelink });
+
+  // Достраиваем auth_links/{authUid} (см. ensureAuthLinkDoc) — без этого реф-код и
+  // прочие auth_links-зависимые callable падают у анонимного юзера. Best-effort.
+  await ensureAuthLinkDoc(db, authUid, stableUid).catch((e) => {
+    console.warn(JSON.stringify({
+      event: 'auth_link_ensure_failed',
+      authUid,
+      message: String((e as { message?: unknown })?.message ?? e).slice(0, 160),
+    }));
+  });
+
   return { ok: true, stableUid, authUid };
 });
 

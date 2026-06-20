@@ -33,12 +33,14 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
+exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.openAiBudgetDashboard = exports.adminGrantReward = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
 const xp_levels_1 = require("./xp_levels");
 const arena_rank_progression_1 = require("./arena_rank_progression");
+const arena_season_1 = require("./arena_season");
+const arena_season_config_1 = require("./arena_season_config");
 admin.initializeApp();
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -58,7 +60,7 @@ const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { authEnsureStableLink } = require('./auth_identity');
+const { authEnsureStableLink, authStampAnonOwnership } = require('./auth_identity');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authMergeStableAccounts } = require('./auth_merge');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -71,6 +73,12 @@ const { leagueChestClaim } = require('./league_chest');
 const { arenaClubWarContribute } = require('./arena_club_wars');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaHillRecordAttempt, arenaHillGetDailyTop } = require('./arena_hill');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaBotMatchRecord } = require('./arena_bot_match');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaSeasonRolloverCron } = require('./arena_season_cron');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaSeasonGetTop, arenaSeasonClaimReward } = require('./arena_season_rewards');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaHillDailyRewardCron } = require('./arena_hill_daily_reward');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -93,8 +101,8 @@ const { submitVipSurvey, recordVipSurveyReviewClick } = require('./vip_survey');
 const { submitClientReport } = require('./client_reports');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { telegramPremiumWebhook, telegramPremiumActivationNotifier } = require('./telegram_premium_bot');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { scorePronunciationAttempt } = require('./pronunciation_scoring');
+// Legacy paid pronunciation-scoring callable удалён: 0 клиентских вызовов, OpenAI-эндпоинт
+// без App Check был доступен любому. Оценка произношения теперь on-device. (B1 audit)
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated, referralClaimVipReward, referralListMyInvites, } = require('./referral');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -105,6 +113,8 @@ const { weeklyReviewGenerate } = require('./weekly_review');
 const { statsInsightsGenerate } = require('./stats_insights');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
+const { explainChoice } = require('./explain_choice');
+const { compassGenerate } = require('./compass');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -113,6 +123,14 @@ const { submitExplainReport } = require('./explain/explain_reports');
 const { vipRevokeMine } = require('./vip_revoke');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { collectiblesClaimDrop } = require('./collectibles');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { dailyTasksAllShardsClaim } = require('./daily_tasks_shards');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { profileCardUpgrade } = require('./profile_card_upgrade');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { submitUserIdea, adminDecideUserIdea } = require('./user_ideas');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -125,6 +143,7 @@ exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
 exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
+exports.authStampAnonOwnership = authStampAnonOwnership;
 exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
@@ -135,6 +154,10 @@ exports.leagueChestClaim = leagueChestClaim;
 exports.arenaClubWarContribute = arenaClubWarContribute;
 exports.arenaHillRecordAttempt = arenaHillRecordAttempt;
 exports.arenaHillGetDailyTop = arenaHillGetDailyTop;
+exports.arenaBotMatchRecord = arenaBotMatchRecord;
+exports.arenaSeasonRolloverCron = arenaSeasonRolloverCron;
+exports.arenaSeasonGetTop = arenaSeasonGetTop;
+exports.arenaSeasonClaimReward = arenaSeasonClaimReward;
 exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
@@ -161,7 +184,6 @@ exports.recordVipSurveyReviewClick = recordVipSurveyReviewClick;
 exports.submitClientReport = submitClientReport;
 exports.telegramPremiumWebhook = telegramPremiumWebhook;
 exports.telegramPremiumActivationNotifier = telegramPremiumActivationNotifier;
-exports.scorePronunciationAttempt = scorePronunciationAttempt;
 exports.referralEnsureMyCode = referralEnsureMyCode;
 exports.referralApply = referralApply;
 exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
@@ -171,9 +193,13 @@ exports.premiumDialogSend = premiumDialogSend;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
+exports.explainChoice = explainChoice;
+exports.compassGenerate = compassGenerate;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
+// Сокровищница (collectibles): фича в проде. CF в deploy:safe whitelist,
+// клиент защищён kill-switch'ом collectibles_enabled (Remote Config, default true).
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
@@ -184,6 +210,11 @@ exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
 exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
+exports.dailyTasksAllShardsClaim = dailyTasksAllShardsClaim;
+exports.profileCardUpgrade = profileCardUpgrade;
+exports.submitUserIdea = submitUserIdea;
+exports.adminDecideUserIdea = adminDecideUserIdea;
+exports.leagueFinalizeCron = leagueFinalizeCron;
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;
@@ -334,8 +365,22 @@ function pickIncomingDisplayName(raw) {
 }
 async function pickArenaQuestions(count) {
     const db = admin.firestore();
-    const snap = await db.collection('arena_questions').limit(Math.max(count * 3, count)).get();
-    const ids = snap.docs.map((d) => d.id);
+    // Честная случайная выборка из ВСЕГО банка через rand-pivot (как pickQuestions),
+    // а не «первые ~count*3 документа по id» — иначе приватные дуэли/реванш крутят
+    // один и тот же узкий набор вопросов. Уровень тут НЕ фильтруем (приватный матч
+    // с другом — общий банк).
+    const pivot = Math.random();
+    const [snapA, snapB] = await Promise.all([
+        db.collection('arena_questions').where('rand', '>=', pivot).orderBy('rand').limit(count * 4).get(),
+        db.collection('arena_questions').where('rand', '<', pivot).orderBy('rand').limit(count * 4).get(),
+    ]);
+    let ids = [...snapA.docs.map((d) => d.id), ...snapB.docs.map((d) => d.id)];
+    // Страховка для документов без поля `rand` (исторически весь A1) — добираем
+    // простым запросом без rand-фильтра, иначе они невидимы для rand-запроса.
+    if (ids.length < count) {
+        const plain = await db.collection('arena_questions').limit(Math.max(count * 4, count)).get();
+        ids = Array.from(new Set([...ids, ...plain.docs.map((d) => d.id)]));
+    }
     for (let i = ids.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));
         [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -623,6 +668,8 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
     // Исходы для push после commit (won/draw на игрока). Дружеские матчи не пушим
     // как «ранговый результат» — там нет звёзд.
     const outcomes = [];
+    // Тюнинг SR из Firestore (fallback = дефолты). Один раз до транзакции.
+    const seasonCfg = await (0, arena_season_config_1.resolveArenaSeasonConfig)(db);
     await db.runTransaction(async (tx) => {
         const freshSession = await tx.get(sessionRef);
         const freshData = freshSession.data();
@@ -716,6 +763,8 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
             let newLevel = 'I';
             let rankChanged = false;
             let promoted = false;
+            let resultSr;
+            let resultAtCeiling = false;
             if (!profileSnap.exists) {
                 newStars = (!isFriendDuel && won) ? 1 : 0;
                 // При создании профиля кладём pickIncomingDisplayName, иначе fallback на первое
@@ -761,14 +810,28 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                     });
                 }
                 else {
+                    // SR живёт ТОЛЬКО на потолке (Легенда III). Ниже потолка — обычные звёзды.
+                    const wasCeiling = oldTier === 'legend' && oldLevel === 'III';
+                    const nowSeasonId = (0, arena_season_1.seasonIdForDate)(new Date());
+                    const outcome = isDraw ? 'draw' : won ? 'win' : isLast ? 'loss' : 'neutral';
                     // Ничья — звёзды и ранг не меняются. Иначе: +1 за победу, -1 за последнее место.
+                    // На потолке звёзды НЕ трогаем (starDelta=0) — там работает SR.
                     const starDelta = isDraw ? 0 : (won ? 1 : isLast ? -1 : 0);
-                    const progressed = (0, arena_rank_progression_1.applyStarDelta)({ tier: oldTier, level: oldLevel, stars: oldStars }, starDelta);
+                    const progressed = (0, arena_rank_progression_1.applyStarDelta)({ tier: oldTier, level: oldLevel, stars: oldStars }, wasCeiling ? 0 : starDelta);
                     newTier = progressed.tier;
                     newLevel = progressed.level;
                     newStars = progressed.stars;
                     rankChanged = newTier !== oldTier || newLevel !== oldLevel;
                     promoted = rankChanged && (0, arena_rank_progression_1.isPromotion)({ tier: oldTier, level: oldLevel }, { tier: newTier, level: newLevel });
+                    // SR: лениво сбрасываем при новом сезоне; начисляем только если был на потолке.
+                    const staleSeason = data.seasonId !== nowSeasonId;
+                    const curSr = staleSeason ? 0 : (data.sr ?? 0);
+                    const curPeak = staleSeason ? 0 : (data.peakSR ?? 0);
+                    const curPeakRankIdx = staleSeason ? 0 : (data.seasonPeakRankIndex ?? 0);
+                    const srResult = wasCeiling
+                        ? (0, arena_season_1.applySeasonRatingDelta)(curSr, curPeak, outcome, false, seasonCfg)
+                        : { sr: curSr, peakSR: curPeak };
+                    const newPeakRankIdx = Math.max(curPeakRankIdx, (0, arena_season_1.rankIndex)(newTier, newLevel));
                     // Ничья сохраняет победную серию (не удлиняет её). Поражение — обнуляет.
                     const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
                     const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
@@ -784,6 +847,10 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                         'rank.tier': newTier,
                         'rank.level': newLevel,
                         'rank.stars': newStars,
+                        sr: srResult.sr,
+                        peakSR: srResult.peakSR,
+                        seasonId: nowSeasonId,
+                        seasonPeakRankIndex: newPeakRankIdx,
                         xp: (data.xp ?? 0) + xpDelta,
                         'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
                         'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
@@ -794,6 +861,20 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                         ...(rankUpStreakShardAwarded ? { lastStreakShardAt: Date.now() } : {}),
                         updatedAt: Date.now(),
                     });
+                    // Сезонный лидерборд (топ-100): пишем строку только когда игрок на потолке.
+                    if (wasCeiling) {
+                        resultAtCeiling = true;
+                        resultSr = srResult.sr;
+                        const seasonLbRef = db
+                            .collection('arena_season_leaderboard').doc(nowSeasonId)
+                            .collection('entries').doc(uid);
+                        tx.set(seasonLbRef, {
+                            uid,
+                            sr: srResult.sr,
+                            peakSR: srResult.peakSR,
+                            updatedAt: Date.now(),
+                        }, { merge: true });
+                    }
                 }
             }
             if (!isFriendDuel) {
@@ -838,6 +919,7 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                     const streakShardReady = Date.now() - lastStreakShardAt > STREAK_SHARD_COOLDOWN_MS;
                     return promoted && newStreak >= 3 && streakShardReady;
                 })(),
+                ...(resultAtCeiling ? { sr: resultSr, atCeiling: true } : {}),
                 updatedAt: Date.now(),
             }, { merge: true });
         }
@@ -1074,6 +1156,8 @@ Object.defineProperty(exports, "openAiBudgetDashboard", { enumerable: true, get:
 var openai_dialog_model_config_1 = require("./openai_dialog_model_config");
 Object.defineProperty(exports, "openAiDialogModelConfig", { enumerable: true, get: function () { return openai_dialog_model_config_1.openAiDialogModelConfig; } });
 Object.defineProperty(exports, "openAiDialogQuotaConfig", { enumerable: true, get: function () { return openai_dialog_model_config_1.openAiDialogQuotaConfig; } });
+var openai_jobs_config_1 = require("./openai_jobs_config");
+Object.defineProperty(exports, "openAiJobsConfig", { enumerable: true, get: function () { return openai_jobs_config_1.openAiJobsConfig; } });
 var daily_phrases_1 = require("./daily_phrases");
 Object.defineProperty(exports, "dailyPhraseSetSaved", { enumerable: true, get: function () { return daily_phrases_1.dailyPhraseSetSaved; } });
 var website_contact_1 = require("./website_contact");

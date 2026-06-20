@@ -81,8 +81,8 @@ type InvoicePayload = {
 };
 
 const MONTHLY_SUBSCRIPTION_PERIOD_SECONDS = 2592000;
-const MONTHLY_PRICE_RU_LABEL = '300 Stars';
-const YEARLY_PRICE_RU_LABEL = '1800 Stars';
+const MONTHLY_PRICE_RU_LABEL = '500 Stars';
+const YEARLY_PRICE_RU_LABEL = '2500 Stars';
 const CANCEL_SUBSCRIPTION_MESSAGE_RU = 'Подписку можно отменить в любой момент.';
 const SHORT_NICKNAME_PROMPT_RU = 'Напишите Ваш ник ниже';
 
@@ -130,13 +130,13 @@ function userActivatedMessageRu(order: FirebaseFirestore.DocumentData): string {
 }
 
 function monthlyStars(): number {
-  const value = Number(process.env.PHRASEMAN_PREMIUM_MONTHLY_STARS || 300);
-  return Number.isSafeInteger(value) && value > 0 ? value : 300;
+  const value = Number(process.env.PHRASEMAN_PREMIUM_MONTHLY_STARS || 500);
+  return Number.isSafeInteger(value) && value > 0 ? value : 500;
 }
 
 function yearlyStars(): number {
-  const value = Number(process.env.PHRASEMAN_PREMIUM_YEARLY_STARS || 1800);
-  return Number.isSafeInteger(value) && value > 0 ? value : 1800;
+  const value = Number(process.env.PHRASEMAN_PREMIUM_YEARLY_STARS || 2500);
+  return Number.isSafeInteger(value) && value > 0 ? value : 2500;
 }
 
 function starsForPlan(plan: PremiumPlan): number {

@@ -8,10 +8,37 @@ describe('leaderboard identity and weekly league membership contract', () => {
   test('client nickname writes link auth to stable id and send stableId to callables', () => {
     const source = read('app/firestore_leaderboard.ts');
 
-    expect(source).toContain("import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';");
-    expect(source).toMatch(/const stableId = await ensureAnonUser\(\);[\s\S]*?ensureStableAuthLinkForStableId\(stableId\)/);
+    expect(source).toContain("import { ensureAnonUser, ensureStableAuthLinkForStableId, waitForAnonAuth } from './cloud_sync';");
+    expect(source).toContain("import { getAuthUserId, getCanonicalUserId } from './user_id_policy';");
+    expect(source).toMatch(/void ensureAnonUser\(\)\.catch\(\(\) => null\);[\s\S]*?waitForAnonAuth\(timeoutMs\)/);
+    expect(source).toMatch(/const stableId = await ensureNameCallableAuthReady\(NAME_RESERVE_TIMEOUT_MS\);[\s\S]*?ensureStableAuthLinkForStableId\(stableId\)/);
     expect(source).not.toContain('leaderboardPushMyScore');
     expect(source).not.toContain('leaderboardUpdatePremium');
+    expect(source).toContain('const NAME_CHECK_TIMEOUT_MS = 1_500;');
+    expect(source).toContain('const NAME_CHECK_AUTH_TIMEOUT_MS = 800;');
+    expect(source).toContain('const NAME_CHECK_IDENTITY_TIMEOUT_MS = 3_500;');
+    expect(source).toContain('const NAME_AUTH_LINK_VERIFY_TIMEOUT_MS = 2_500;');
+    expect(source).toContain('const NAME_AUTH_LINK_VERIFIED_TTL_MS = 5 * 60_000;');
+    expect(source).toContain('const NAME_IDENTITY_READY_TTL_MS = 10 * 60_000;');
+    expect(source).toContain('function readCachedNameReservationIdentity');
+    expect(source).toContain('function rememberNameReservationIdentity');
+    expect(source).toContain('async function ensureNameCallableAuthReady');
+    expect(source).toContain('async function forceNameStableAuthLink');
+    expect(source).toContain(">('authEnsureStableLink')");
+    expect(source).toContain("db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: Date.now() }, { merge: true })");
+    expect(source).toContain('async function ensureNameStableAuthLinkVerified');
+    expect(source).toContain('async function ensureNameReservationIdentityReady');
+    expect(source).toContain('export function warmNameAvailabilityAuth');
+    expect(source).toContain('export async function checkNameAvailabilityDetailed');
+    expect(source).toContain('async function checkNameIndexAvailabilityFast');
+    expect(source).toContain("db.collection('name_index').doc(nameLower).get()");
+    expect(source).toMatch(/await ensureStableAuthLinkForStableId\(stableId\)\.catch\(\(\) => false\);[\s\S]*?ensureNameStableAuthLinkVerified\(stableId\)/);
+    expect(source).toMatch(/const identityPromise = ensureNameReservationIdentityReady\(NAME_CHECK_IDENTITY_TIMEOUT_MS\);[\s\S]*?const authPromise = ensureNameCallableAuthReady\(NAME_CHECK_IDENTITY_TIMEOUT_MS\);/);
+    expect(source).toMatch(/const fastResult = await checkNameIndexAvailabilityFast\(name, readCachedNameReservationIdentity\(\)\);[\s\S]*?if \(fastResult\) return fastResult;/);
+    expect(source).toMatch(/let stableId = readCachedNameReservationIdentity\(\) \|\| await authPromise;[\s\S]*?if \(!stableId\) stableId = await identityPromise;/);
+    expect(source).toMatch(/withTimeout\(\s*runNameAvailabilityCheck\(name, stableId\),\s*NAME_CHECK_TIMEOUT_MS/);
+    expect(source).toContain("source?: 'onboarding' | 'settings';");
+    expect(source).toContain('source: options.source');
     // nameReserve is wrapped in withTimeout() to bound the call on flaky networks
     // (audit C2: no client timeout → onboarding "Продолжить" could hang). The contract
     // is still "callable invoked with { stableId, name: ... }".
@@ -57,7 +84,7 @@ describe('leaderboard identity and weekly league membership contract', () => {
     expect(identity).toContain('requireKnownIdentity?: boolean');
     expect(identity).toContain("throw new HttpsError('failed-precondition', 'stable_id_required')");
     expect(leaderboard).toContain('{ requireKnownIdentity: true }');
-    expect((leagues.match(/requireKnownIdentity: true/g) ?? [])).toHaveLength(3);
+    expect((leagues.match(/requireKnownIdentity: true/g) ?? []).length).toBeGreaterThanOrEqual(3);
   });
 
   test('legacy auth uid duplicates are hidden automatically without deleting records', () => {

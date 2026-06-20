@@ -35,6 +35,7 @@ import {
 } from './trainer_store';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { isFeatureFreeForEveryone } from './feature_gates';
 import { type WordCategory } from './pos_taxonomy';
 import {
   buildPosDrillPlan,
@@ -558,7 +559,9 @@ export default function TrainerSmartSession() {
     setLoadError(false);
     setLoading(true);
     try {
+      // «Пульт»: если админ перевёл умный микс в «Фри» — замок снят для всех.
       const premiumAllowed = params.preview === 'report' || params.preview === 'mistake'
+        || isFeatureFreeForEveryone('smart_trainer')
         ? true
         : await getVerifiedPremiumStatus();
       if (!premiumAllowed) {
@@ -1018,7 +1021,6 @@ export default function TrainerSmartSession() {
               )}
               <Text
                 style={{ color: t.textPrimary, fontSize: isPlanTrainerTask ? f.bodyLg : f.h2, fontWeight: '900', textAlign: 'center', lineHeight: (isPlanTrainerTask ? f.bodyLg : f.h2) * 1.18 }}
-                adjustsFontSizeToFit={isPlanTrainerTask}
                 numberOfLines={isPlanTrainerTask ? 3 : undefined}
               >
                 {current.prompt}
@@ -1063,7 +1065,6 @@ export default function TrainerSmartSession() {
                     {isCompassTheme ? <CompassSmartSurface radius={9} selected={selected} quiet={!selected} physical /> : null}
                     <Text
                       style={{ color, fontSize: isPlanTrainerTask ? f.caption : f.body, fontWeight: '800', lineHeight: (isPlanTrainerTask ? f.caption : f.body) * 1.25 }}
-                      adjustsFontSizeToFit={isPlanTrainerTask}
                       numberOfLines={isPlanTrainerTask ? 2 : undefined}
                     >
                       {option}

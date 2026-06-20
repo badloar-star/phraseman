@@ -2,7 +2,7 @@
 // premium_celebration_state.ts — pending/seen маркеры для celebration модалки
 //
 // Поток:
-//  1. Юзер купил Premium через RevenueCat → premium_modal.tsx → markCelebrationPending()
+//  1. Юзер купил Premium через RevenueCat → A/B/C paywall purchase hook → markCelebrationPending()
 //  2. Legacy only: старые admin_grant-маркеры больше не должны поднимать
 //     Premium-модалку; новая админская выдача живет в vip_celebration_state.ts.
 //  3. На следующем mount home.tsx (useFocusEffect) → isCelebrationPending() === true
@@ -57,7 +57,7 @@ export async function getPendingCelebrationMarker(): Promise<string | null> {
 
 /**
  * Выставить pending. Вызывается из:
- *  - premium_modal.tsx после успешной IAP-покупки,
+ *  - A/B/C paywall purchase hook after a successful IAP purchase,
  *  - legacy callers only; admin/index.html now issues VIP, not Premium.
  */
 export async function markCelebrationPending(marker?: string | null): Promise<void> {

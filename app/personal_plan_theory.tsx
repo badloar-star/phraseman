@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTheme } from '../components/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,6 +10,8 @@ import LessonIntroScreens from './lesson_intro_screens';
 import { getAuthoredPlanContentDay } from './plan_content_registry';
 import { contentDayToLessonIntroScreens } from './plan_content_runtime_adapter';
 import ReportErrorButton from '../components/ReportErrorButton';
+import { getPlanById, type PersonalPlanId } from './personal_plan_catalog';
+import { openPersonalPlanTask } from './personal_plan_navigation';
 
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] : (value ?? '');
@@ -23,9 +26,12 @@ export default function PersonalPlanTheoryScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { theme: t } = useTheme();
+  const insets = useSafeAreaInsets();
 
   const planId = firstParam(params.planId);
   const dayIndex = Number(firstParam(params.dayIndex) || '1');
+  const startTaskId = firstParam(params.startTaskId);
+  const planInstanceId = firstParam(params.planInstanceId);
 
   const introScreens = useMemo(() => {
     const day = getAuthoredPlanContentDay(planId, dayIndex);
@@ -34,14 +40,35 @@ export default function PersonalPlanTheoryScreen() {
 
   const goBack = () => safeRouterBack(router, '/personal_plan');
 
+  // Кнопка в конце теории запускает первое задание дня (startTaskId) С ПЕРВОГО
+  // упражнения через replace (теория уходит из стека, «назад» ведёт в меню плана).
+  // Если задания не передано/не найдено — старое поведение: возврат в меню.
+  const onCompleteTheory = () => {
+    if (!startTaskId) return goBack();
+    try {
+      const plan = getPlanById(planId as PersonalPlanId);
+      const day = plan.days.find((d) => d.dayIndex === dayIndex);
+      const task = day?.tasks.find((tk) => tk.id === startTaskId);
+      // destination 'lesson' в openPersonalPlanTask — пустой return (никуда не ведёт),
+      // поэтому такие задания не запускаем из теории, чтобы экран не завис → goBack.
+      if (day && task && task.destination.type !== 'lesson') {
+        openPersonalPlanTask(router, plan, day, task, planInstanceId || undefined, 'replace');
+        return;
+      }
+    } catch {
+      // нет такого плана/дня/задания — мягко возвращаемся в меню
+    }
+    goBack();
+  };
+
   if (introScreens.length === 0) {
     return (
-      <SafeAreaView style={[styles.safe, { backgroundColor: t.bgPrimary }]}>
+      <View style={[styles.safe, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}>
         <View style={styles.center}>
           <Ionicons name="book-outline" size={40} color={t.textMuted} />
           <Text style={[styles.emptyText, { color: t.textMuted }]}>Теория для этого дня скоро появится</Text>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 
@@ -50,7 +77,7 @@ export default function PersonalPlanTheoryScreen() {
       <LessonIntroScreens
         introScreens={introScreens}
         lessonId={dayIndex}
-        onComplete={goBack}
+        onComplete={onCompleteTheory}
         onBack={goBack}
       />
       <View style={styles.reportFloat} pointerEvents="box-none">

@@ -1,7 +1,7 @@
 [
   {
     "heading": "Terms of Use - Phraseman by Knowly",
-    "body": "Last updated: May 22, 2026\n\nThese Terms of Use (\"Terms\") govern your access to and use of Phraseman (the \"App\") and related services provided by Knowly (\"Knowly\", \"we\", \"us\", or \"our\"). By downloading, installing, accessing, or using the App, you agree to these Terms and to the Privacy Policy. If you do not agree, do not use the App.\n\nIf you use the App on behalf of another person, including a child or minor, you confirm that you have authority to accept these Terms for that person and are responsible for that person's use."
+    "body": "Last updated: June 19, 2026\n\nThese Terms of Use (\"Terms\") govern your access to and use of Phraseman (the \"App\") and related services provided by Knowly (\"Knowly\", \"we\", \"us\", or \"our\"). By downloading, installing, accessing, or using the App, you agree to these Terms and to the Privacy Policy. If you do not agree, do not use the App.\n\nIf you use the App on behalf of another person, including a child or minor, you confirm that you have authority to accept these Terms for that person and are responsible for that person's use."
   },
   {
     "heading": "1. Eligibility and minors",
@@ -21,7 +21,7 @@
   },
   {
     "heading": "5. User content, Community Packs, chat, and moderation",
-    "body": "The App may let you submit content, including Community Packs, flashcard text, translations, chat messages, reports, nicknames, survey responses, poll votes, reactions, and other user-generated content (\"User Content\").\n\nYou keep ownership of User Content you own. You grant Knowly a worldwide, non-exclusive, royalty-free, sublicensable, transferable license to host, store, reproduce, display, distribute within the App, perform, moderate, edit for formatting/safety, translate, de-identify, remove, analyze, and otherwise use User Content as needed to operate, improve, protect, support, and promote the App and its community features.\n\nYou represent that you have all rights needed to submit your User Content and that it does not violate law, third-party rights, privacy rights, publicity rights, intellectual property rights, or these Terms. Knowly may reject, remove, unpublish, restrict, edit metadata, block, report, retain, or disclose User Content when needed for moderation, safety, legal compliance, abuse prevention, fraud prevention, support, or dispute handling.\n\nCommunity Packs may be published in an in-app catalog. Other users may access them by spending Shards. Knowly does not guarantee publication, ranking, sales, visibility, revenue, availability, compatibility, or continued access to any Community Pack."
+    "body": "The App may let you submit content, including Community Packs, flashcard text, translations, chat messages, reports, nicknames, survey responses, poll votes, reactions, and other user-generated content (\"User Content\").\n\nYou keep ownership of User Content you own. You grant Knowly a worldwide, non-exclusive, royalty-free, sublicensable, transferable license to host, store, reproduce, display, distribute within the App, perform, moderate, edit for formatting/safety, translate, de-identify, remove, analyze, and otherwise use User Content as needed to operate, improve, protect, support, and promote the App and its community features.\n\nYou represent that you have all rights needed to submit your User Content and that it does not violate law, third-party rights, privacy rights, publicity rights, intellectual property rights, or these Terms. Knowly may reject, remove, unpublish, restrict, edit metadata, block, report, retain, or disclose User Content when needed for moderation, safety, legal compliance, abuse prevention, fraud prevention, support, or dispute handling.\n\nIf you believe content in the App infringes your copyright, trademark, privacy, publicity, or other rights, contact support.phraseman@gmail.com with enough information to identify the content and your rights claim. Knowly may remove or restrict allegedly infringing content and may suspend or terminate repeat infringers where appropriate. Do not submit Community Packs, chat messages, flashcards, translations, images, text, or other content unless you have the rights needed to do so.\n\nCommunity Packs may be published in an in-app catalog. Other users may access them by spending Shards. Knowly does not guarantee publication, ranking, sales, visibility, revenue, availability, compatibility, or continued access to any Community Pack."
   },
   {
     "heading": "6. Prohibited conduct",
@@ -52,55 +52,59 @@
     "body": "The App is provided for educational and entertainment purposes. We do not guarantee any learning outcome, certification result, language proficiency level, employment result, immigration result, exam result, professional suitability, uninterrupted streak, leaderboard result, or competitive outcome.\n\nThe App may use device text-to-speech for pronunciation. Pronunciation, translations, examples, exercises, explanations, quizzes, and feedback may contain errors, may be incomplete, or may not fit every dialect, context, country, or use case. You are responsible for independently verifying important language, legal, professional, travel, medical, financial, or safety-related communications."
   },
   {
-    "heading": "13. Intellectual property",
+    "heading": "13. AI-generated features and feedback",
+    "body": "The App may include AI-generated dialogue, explanations, mistake feedback, summaries, recommendations, weekly reviews, stats insights, voice-dialogue transcripts or replies, and other learning content. AI features are automated. AI characters or companions are not humans and are not a substitute for teachers, therapists, emergency services, or professional advice.\n\nAI output may be inaccurate, incomplete, offensive, unsafe, unavailable, or unsuitable for your context. We do not guarantee that AI feedback will be correct, that it will improve your results, or that it will identify every mistake. You are responsible for independently checking important communications and decisions.\n\nYou must not submit sensitive personal data, confidential information, passwords, payment details, medical, legal, financial, immigration, employment, emergency, safety-critical, unlawful, infringing, or third-party private information to AI features. We may limit, log, cache, moderate, reject, or disable AI features for safety, abuse prevention, cost control, legal compliance, model-provider requirements, or service reliability."
+  },
+  {
+    "heading": "14. Intellectual property",
     "body": "The App, lessons, explanations, exercises, designs, graphics, art, animations, systems, software, code, databases, trademarks, service marks, logos, copy, and other non-user content are owned by Knowly or its licensors and are protected by intellectual property and other laws.\n\nExcept for the limited license in these Terms and rights you retain in your User Content, no rights are granted to you. You may not reproduce, redistribute, sell, scrape, publish, train models on, or commercially exploit App content without our written permission except where applicable law gives you rights that cannot be waived."
   },
   {
-    "heading": "14. Privacy",
+    "heading": "15. Privacy",
     "body": "The Privacy Policy explains how Knowly collects, uses, discloses, stores, and deletes information. By using the App, you acknowledge that information may be processed as described in the Privacy Policy, app store disclosures, and applicable consent notices."
   },
   {
-    "heading": "15. Third-party services",
-    "body": "The App uses third-party services such as Google Firebase, Google Sign-In, Apple Sign In, Apple App Store, Google Play, RevenueCat, Expo, platform push notification services, and email/support providers. Your use of those services may be subject to their own terms, privacy policies, and technical rules.\n\nKnowly is not responsible for third-party services, app stores, payment processors, platform outages, sign-in providers, device operating systems, networks, or third-party policies except where applicable law says otherwise."
+    "heading": "16. Third-party services",
+    "body": "The App uses third-party services such as Google Firebase, Google Sign-In, Apple Sign In, Apple App Store, Google Play, RevenueCat, Expo, platform push notification services, OpenAI or other AI model providers for AI features, PostHog for product analytics where enabled, and email/support providers. Your use of those services may be subject to their own terms, privacy policies, and technical rules.\n\nKnowly is not responsible for third-party services, app stores, payment processors, platform outages, sign-in providers, device operating systems, networks, or third-party policies except where applicable law says otherwise."
   },
   {
-    "heading": "16. Service changes, availability, and data integrity",
+    "heading": "17. Service changes, availability, and data integrity",
     "body": "We may modify, suspend, remove, replace, limit, or discontinue features, content, rewards, prices, experiments, stores, social features, cloud features, or access to the App at any time where permitted by law. We may also apply updates, migrations, maintenance, abuse controls, or technical corrections.\n\nWe do not guarantee that the App, cloud sync, purchases, leaderboards, rewards, chat, community packs, notifications, matchmaking, or other features will be uninterrupted, error-free, secure, available in every country, or free from data loss. We may restore, correct, or reconcile data where we believe a bug, abuse, refund, chargeback, fraud, or technical issue affected an account or system."
   },
   {
-    "heading": "17. Suspension and termination",
+    "heading": "18. Suspension and termination",
     "body": "Knowly may suspend, restrict, remove, or terminate access to the App or features if we believe you violated these Terms, created risk, abused the service, infringed rights, manipulated purchases/rewards, harmed users, violated law, or used the App in a way that threatens service integrity.\n\nAfter termination, account deletion, or uninstall, your license ends. Some provisions survive, including intellectual property, User Content licenses for retained content, payment/refund effects, Shards and virtual item rules, disclaimers, limitations of liability, indemnity, dispute provisions, moderation rights, and retention rights described in the Privacy Policy."
   },
   {
-    "heading": "18. Disclaimer of warranties",
+    "heading": "19. Disclaimer of warranties",
     "body": "To the fullest extent permitted by law, the App and related services are provided \"as is\" and \"as available\" without warranties of any kind, express, implied, or statutory, including warranties of merchantability, fitness for a particular purpose, title, non-infringement, availability, accuracy, security, compatibility, uninterrupted operation, or error-free operation.\n\nSome jurisdictions do not allow certain disclaimers, so parts of this section may not apply to you. Mandatory consumer rights remain unaffected."
   },
   {
-    "heading": "19. Limitation of liability",
+    "heading": "20. Limitation of liability",
     "body": "To the fullest extent permitted by law, Knowly and its officers, employees, contractors, partners, licensors, and service providers will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, including lost profits, lost data, loss of goodwill, service interruption, device issues, account issues, lost rewards, lost Shards, lost progress, or lost business opportunities.\n\nTo the fullest extent permitted by law, Knowly's total liability for claims relating to the App or these Terms will not exceed the greater of: (a) the amount you paid to Knowly through the App in the 12 months before the claim, or (b) USD 100. The limitations apply to all legal theories, whether based on contract, tort, negligence, strict liability, statute, or otherwise, and even if a remedy fails its essential purpose. Mandatory consumer rights remain unaffected."
   },
   {
-    "heading": "20. Indemnity",
+    "heading": "21. Indemnity",
     "body": "To the extent permitted by law, you agree to defend, indemnify, and hold harmless Knowly and its officers, employees, contractors, partners, licensors, and service providers from claims, damages, liabilities, losses, costs, and expenses, including reasonable legal fees, arising from or related to your use of the App, User Content, violation of these Terms, violation of law, infringement of rights, misuse of purchases, Shards, referrals, rewards, social features, community features, or account credentials."
   },
   {
-    "heading": "21. Governing law, disputes, and individual claims",
+    "heading": "22. Governing law, disputes, and individual claims",
     "body": "These Terms are governed by the laws of Ukraine, except that mandatory consumer protection laws of your country of residence may also apply.\n\nBefore filing a legal claim, contact support.phraseman@gmail.com and try to resolve the issue informally for at least 30 days. Unresolved disputes shall be submitted to the competent courts of Ukraine unless mandatory consumer law gives you the right to bring proceedings elsewhere.\n\nTo the extent permitted by law, you and Knowly agree to bring claims only on an individual basis and not as a plaintiff, claimant, or class member in a class, collective, representative, consolidated, or private attorney general action. Mandatory rights to seek public injunctive relief or use small-claims procedures, where applicable, remain unaffected.\n\nThe EU Online Dispute Resolution platform has been discontinued, so these Terms do not rely on that platform."
   },
   {
-    "heading": "22. Apple App Store and Google Play terms",
+    "heading": "23. Apple App Store and Google Play terms",
     "body": "If you downloaded the App from Apple's App Store, these Terms are between you and Knowly, not Apple. Apple is not responsible for the App or its content, has no obligation to provide maintenance or support, and is not responsible for claims relating to the App, including product liability, legal compliance, consumer protection, intellectual property, or user claims, except where Apple's terms or applicable law say otherwise. Apple and its subsidiaries are third-party beneficiaries of these Terms where required by Apple's terms and may enforce these Terms against you as third-party beneficiaries.\n\nIf you downloaded the App from Google Play, your purchase, download, refund, subscription, and use may also be governed by Google Play terms and policies. Google is not responsible for the App except where Google Play terms or applicable law say otherwise."
   },
   {
-    "heading": "23. Export, sanctions, and legal compliance",
+    "heading": "24. Export, sanctions, and legal compliance",
     "body": "You may not use, export, re-export, or transfer the App except as authorized by applicable law, sanctions rules, export controls, and app store rules. You represent that you are not prohibited from using the App under applicable sanctions, export controls, or similar legal restrictions."
   },
   {
-    "heading": "24. Changes to these Terms",
+    "heading": "25. Changes to these Terms",
     "body": "We may update these Terms from time to time. Material changes will be reflected in the \"Last updated\" date and may include in-app notice, website updates, or store disclosure updates where practicable or required. Continued use of the App after changes means you accept the updated Terms where permitted by law."
   },
   {
-    "heading": "25. Contact",
+    "heading": "26. Contact",
     "body": "Knowly - Phraseman\nEmail: support.phraseman@gmail.com\n\nUse this contact for support, legal notices, privacy requests, account deletion, and questions about these Terms."
   }
 ]

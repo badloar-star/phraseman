@@ -459,7 +459,10 @@ export function rankToQuestionLevel(tier: RankTier): string {
     diamond: 'B1',
     master: 'B1',
     grandmaster: 'B2',
-    legend: 'C1',
+    // Банк вопросов — только A1/A2/B1/B2 (C1 не существует). Держим B2, иначе
+    // запрос вопросов уровня C1 ничего не вернёт. Синхронно с серверным
+    // RANK_TO_QUESTION_LEVEL в functions/src/types.ts.
+    legend: 'B2',
   };
   return map[tier];
 }

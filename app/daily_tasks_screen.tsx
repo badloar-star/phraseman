@@ -20,7 +20,7 @@ import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
-import { claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
+import { areAllDailyTaskObjectivesDone, claimTaskWithReward, countClaimedForTaskList, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
 import { LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsReward, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
@@ -1637,7 +1637,18 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             tone: '#94A3B8',
         },
     };
-    return byType[type];
+    // Safe fallback: a task whose `type` isn't in the map (a legacy/removed type still
+    // sitting in saved progress, or a newly added type) must NOT return undefined —
+    // downstream render reads meta.tone/.label and would red-screen the whole list.
+    return byType[type] ?? {
+        stage: '',
+        label: triLang(lang, { ru: 'Задание', uk: 'Завдання', es: 'Tarea', 'pt-BR': 'Tarefa', vi: 'Nhiệm vụ', id: 'Tugas', tr: 'Görev', pl: 'Zadanie' }),
+        reason: '',
+        cta: triLang(lang, { ru: 'Открыть', uk: 'Відкрити', es: 'Abrir', 'pt-BR': 'Abrir', vi: 'Mở', id: 'Buka', tr: 'Aç', pl: 'Otwórz' }),
+        minutes: '1 мин',
+        icon: 'ellipse',
+        tone: '#94A3B8',
+    };
 };
 export default function DailyTasksScreen() {
     const router = useRouter();
@@ -1955,10 +1966,7 @@ export default function DailyTasksScreen() {
     const handleClaimTrioShards = useCallback(async () => {
         if (tasks.length === 0)
             return;
-        const done = tasks.every((task) => {
-            const p = progress.find((pr) => pr.taskId === task.id);
-            return p?.completed === true;
-        });
+        const done = areAllDailyTaskObjectivesDone(tasks, progress);
         if (!done || trioShardsClaimed)
             return;
         try {
@@ -1990,17 +1998,23 @@ export default function DailyTasksScreen() {
         }
     }, [tasks, progress, trioShardsClaimed, refreshTasksAndProgress]);
     const claimedCount = countClaimedForTaskList(tasks, progress);
-    const allTasksObjectivesDone = tasks.length > 0 &&
-        tasks.every((task) => {
-            const p = progress.find((pr) => pr.taskId === task.id);
-            return p?.completed === true;
-        });
+    const allTasksObjectivesDone = areAllDailyTaskObjectivesDone(tasks, progress);
     const trioRewardCount = SHARD_REWARDS.daily_tasks_all;
     const trioClaimButtonEnabled = allTasksObjectivesDone && !trioShardsClaimed;
     const bonusAccent = isGoldTheme
         ? (trioClaimButtonEnabled ? GOLD_RICH.champagne : GOLD_RICH.paleGold)
         :
             trioShardsClaimed ? '#9CA3AF' : '#63D98F';
+    // Фон кнопки «Забрать бонус за день»: ЗЕЛЁНЫЙ (активный) только когда все задания
+    // выполнены и бонус ещё не забран. Иначе серый/приглушённый — раньше кнопка была
+    // зелёной всегда (rewardActionBg = t.correct, без учёта доступности), из-за чего
+    // выглядела активной при невыполненных заданиях и молча не срабатывала.
+    const trioActionBg = trioClaimButtonEnabled
+        ? rewardActionBg
+        : (isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.10)');
+    const trioActionText = trioClaimButtonEnabled
+        ? rewardActionText
+        : (isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.45)');
     const taskProgressById = new Map(progress.map((row) => [row.taskId, row]));
     const objectivesDoneCount = tasks.filter((task) => taskProgressById.get(task.id)?.completed).length;
     const handleTaskNav = async (task: DailyTask) => {
@@ -2249,8 +2263,11 @@ export default function DailyTasksScreen() {
       <BouncyWrap>
       <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" style={{ flex: 1 }} contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 28 }} showsVerticalScrollIndicator keyboardShouldPersistTaps="handled" onScroll={onBouncyScroll} scrollEventThrottle={16}>
 
-        {/* Прогресс */}
-        {(trioClaimButtonEnabled || trioShardsClaimed) && (<View style={[
+        {/* Бонус за день: показываем ВСЕГДА (пока есть задания) — с прогресс-баром и
+            тремя состояниями (в процессе / готово забрать / забрано). Раньше плашка
+            висела только при trioClaimButtonEnabled||trioShardsClaimed, из-за чего в
+            обычном «в процессе» состоянии она вообще пропадала. */}
+        {tasks.length > 0 && (<View style={[
             dailyTaskStyles.taskCard,
             dailyTaskStyles.bonusCard,
             {
@@ -2286,7 +2303,7 @@ export default function DailyTasksScreen() {
             pl: "Bonus dnia",
         })}
               </Text>
-              <Text numberOfLines={1} style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.62)', fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
+              <Text numberOfLines={2} style={{ color: isGoldTheme ? t.textMuted : 'rgba(255,255,255,0.62)', fontSize: f.caption, lineHeight: f.caption * 1.35 }}>
                 {triLang(lang, {
             ru: `Выполни все задания и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
             uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}.`,
@@ -2303,19 +2320,40 @@ export default function DailyTasksScreen() {
             <View style={dailyTaskStyles.taskRightColumn}>
               {trioShardsClaimed ? (<View style={[dailyTaskStyles.compactIconButton, { borderColor: isGoldTheme ? goldHairline : 'rgba(255,255,255,0.12)', backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.06)' }]}>
                 <Ionicons name="checkmark-circle" size={18} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.5)'}/>
-              </View>) : (<TouchableOpacity onPress={handleClaimTrioShards} activeOpacity={0.85} style={[dailyTaskStyles.compactClaimButton, { backgroundColor: rewardActionBg }]}>
-                <Text numberOfLines={1} adjustsFontSizeToFit style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800' }}>
+              </View>) : (<TouchableOpacity
+                onPress={handleClaimTrioShards}
+                disabled={!trioClaimButtonEnabled}
+                activeOpacity={0.85}
+                accessibilityRole="button"
+                accessibilityState={{ disabled: !trioClaimButtonEnabled }}
+                accessibilityLabel={triLang(lang, {
+                    ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}`,
+                    uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}`,
+                    es: `Reclamar bono del día: ${trioRewardCount} fragmentos`,
+                    'pt-BR': `Coletar bônus do dia: ${trioRewardCount} fragmentos`,
+                    vi: `Nhận thưởng trong ngày: ${trioRewardCount} mảnh`,
+                    id: `Klaim bonus harian: ${trioRewardCount} fragmen`,
+                    tr: `Günlük bonusu al: ${trioRewardCount} parça`,
+                    pl: `Odbierz bonus dnia: ${trioRewardCount} odłamków`,
+                })}
+                style={[dailyTaskStyles.bonusClaimButton, { backgroundColor: trioActionBg }]}
+              >
+                <Text numberOfLines={1} style={{ color: trioActionText, fontSize: f.sub, fontWeight: '900' }}>
                   {triLang(lang, {
                     ru: 'Забрать',
                     uk: 'Забрати',
                     es: 'Reclamar',
                     'pt-BR': "Coletar",
-                    vi: "Nháº­n",
+                    vi: "Nhận",
                     id: "Klaim",
                     tr: "Al",
                     pl: "Odbierz",
                   })}
                 </Text>
+                <Text numberOfLines={1} style={{ color: trioActionText, fontSize: f.sub, fontWeight: '900' }}>
+                  {trioRewardCount}
+                </Text>
+                <Image source={oskolokImageForPackShards(trioRewardCount)} style={{ width: 16, height: 16, opacity: trioClaimButtonEnabled ? 1 : 0.5 }} contentFit="contain"/>
               </TouchableOpacity>)}
             </View>
           </View>
@@ -2462,20 +2500,20 @@ export default function DailyTasksScreen() {
                     <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain"/>
                   </View>
                   <View style={dailyTaskStyles.taskCapsuleTextBlock}>
-                    <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.86} style={[dailyTaskStyles.taskCapsuleTitle, { color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.h2 }]}>
+                    <Text numberOfLines={2} style={[dailyTaskStyles.taskCapsuleTitle, { color: isGoldTheme ? t.textPrimary : '#FFFFFF', fontSize: f.body + 2 }]}>
                       {taskTitle}
                     </Text>
                   </View>
 
                   <View style={dailyTaskStyles.taskCapsuleRight}>
                     {completed && !claimed ? (<TouchableOpacity onPress={() => { void handleClaim(task.id, task.xp); }} disabled={claimBusyId === task.id} activeOpacity={0.85} style={[dailyTaskStyles.compactClaimButton, { backgroundColor: rewardActionBg }]}>
-                      <Text numberOfLines={1} adjustsFontSizeToFit style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800' }}>
+                      <Text numberOfLines={1} style={{ color: rewardActionText, fontSize: f.caption, fontWeight: '800', flexShrink: 0 }}>
                         {triLang(lang, {
                           ru: 'Забрать',
                           uk: 'Забрати',
                           es: 'Reclamar',
                           'pt-BR': "Coletar",
-                          vi: "Nháº­n",
+                          vi: "Nhận",
                           id: "Klaim",
                           tr: "Al",
                           pl: "Odbierz",
@@ -2487,7 +2525,7 @@ export default function DailyTasksScreen() {
                           backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.24)' : 'rgba(255,255,255,0.085)',
                           borderColor: isGoldTheme ? goldHairline : `${taskAccent}34`,
                       }]}>
-                      <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.86} style={{ color: isGoldTheme ? t.textPrimary : 'rgba(255,255,255,0.78)', fontSize: f.body, fontWeight: '900' }}>{progressLabel}</Text>
+                      <Text numberOfLines={1} style={{ color: isGoldTheme ? t.textPrimary : 'rgba(255,255,255,0.78)', fontSize: f.body, fontWeight: '900' }}>{progressLabel}</Text>
                     </View>)}
                     {!completed && !claimed && rerollsLeft > 0 && (<TouchableOpacity onPress={(e) => {
                         e.stopPropagation();
@@ -2501,7 +2539,7 @@ export default function DailyTasksScreen() {
                         vi: "Đổi nhiệm vụ bằng mảnh",
                         id: "Ganti tugas dengan fragmen",
                         tr: "Görevi parçalarla değiştir",
-                        pl: "ZamieÅ„ zadanie za odÅ‚amki",
+                        pl: "Zamień zadanie za odłamki",
                     })} style={[dailyTaskStyles.compactIconButton, dailyTaskStyles.taskCapsuleRefreshButton, { backgroundColor: isGoldTheme ? goldSoftBg : 'rgba(255,255,255,0.07)', borderColor: isGoldTheme ? goldHairline : `${taskAccent}32` }]}>
                       <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'}/>
                     </TouchableOpacity>)}
@@ -2853,7 +2891,6 @@ const dailyTaskStyles = StyleSheet.create({
     },
     taskCapsuleTitle: {
         fontWeight: '900',
-        lineHeight: 30,
         letterSpacing: 0,
     },
     taskCapsuleIconPlate: {
@@ -2871,7 +2908,7 @@ const dailyTaskStyles = StyleSheet.create({
         flexShrink: 0,
     },
     taskCapsuleRight: {
-        minWidth: 118,
+        minWidth: 100,
         minHeight: 48,
         flexDirection: 'row',
         alignItems: 'center',
@@ -2971,9 +3008,9 @@ const dailyTaskStyles = StyleSheet.create({
         flexShrink: 0,
     },
     taskRightColumn: {
-        width: 58,
+        minWidth: 58,
         minHeight: 40,
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'center',
         gap: 4,
         flexShrink: 0,
@@ -2985,6 +3022,18 @@ const dailyTaskStyles = StyleSheet.create({
         paddingHorizontal: 6,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    // Кнопка «Забрать бонус за день» — крупнее compactClaimButton: вмещает текст с
+    // количеством награды («Забрать N») + иконку осколка, тап-таргет ≥44px по высоте.
+    bonusClaimButton: {
+        minHeight: 44,
+        minWidth: 104,
+        borderRadius: 14,
+        paddingHorizontal: 14,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 6,
     },
     compactIconButton: {
         width: 30,

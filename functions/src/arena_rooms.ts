@@ -117,7 +117,15 @@ async function fetchRoomQuestions(db: FirebaseFirestore.Firestore) {
     col.where('level', '==', 'A1').where('rand', '>=', pivot).orderBy('rand').limit(QUESTIONS_PER_ROOM * 3).get().catch(() => null),
     col.where('level', '==', 'A1').where('rand', '<', pivot).orderBy('rand').limit(QUESTIONS_PER_ROOM * 3).get().catch(() => null),
   ]);
-  const docs = [...(snapA?.docs ?? []), ...(snapB?.docs ?? [])];
+  let docs = [...(snapA?.docs ?? []), ...(snapB?.docs ?? [])];
+  // Страховка: A1 исторически без поля `rand` → rand-запрос возвращал 0 и комната
+  // падала в FALLBACK_ROOM_QUESTIONS (3 вопроса по кругу). Добираем простым
+  // запросом по level. Backfill rand (scripts/backfill_rand_a1_firestore.mjs) чинит причину.
+  if (docs.length < QUESTIONS_PER_ROOM) {
+    const plain = await col.where('level', '==', 'A1').limit(QUESTIONS_PER_ROOM * 3).get().catch(() => null);
+    const seen = new Set(docs.map((d) => d.id));
+    docs = [...docs, ...((plain?.docs ?? []).filter((d) => !seen.has(d.id)))];
+  }
   const questions = docs
     .map((doc) => normalizeQuestion(doc.data(), doc.id))
     .filter(Boolean)

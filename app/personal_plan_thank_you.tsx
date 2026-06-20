@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import BounceView from '../components/BounceView';
 import { useTheme } from '../components/ThemeContext';
@@ -14,6 +14,7 @@ export default function PersonalPlanThankYouScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const insets = useSafeAreaInsets();
   const [authVisible, setAuthVisible] = useState(false);
 
   const goToPlan = () => {
@@ -23,7 +24,7 @@ export default function PersonalPlanThankYouScreen() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={styles.safe}>
+      <View style={[styles.safe, { paddingTop: insets.top }]}>
         <BounceView style={styles.safe}>
         <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
           <View style={[styles.iconWrap, { backgroundColor: t.correctBg, borderColor: t.border }]}>
@@ -87,7 +88,7 @@ export default function PersonalPlanThankYouScreen() {
           </TouchableOpacity>
         </View>
         </BounceView>
-      </SafeAreaView>
+      </View>
 
       <RegistrationPromptModal
         visible={authVisible}

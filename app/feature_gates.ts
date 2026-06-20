@@ -1,0 +1,87 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// feature_gates.ts — единая точка «фича за премиумом / фича бесплатна».
+//
+// Админ из «Пульта управления» (раздел «Премиум/Фри») для каждой фичи выбирает:
+//   • Премиум  → флаг gate_<feature>_premium = true  (замок на месте, как сейчас)
+//   • Фри      → флаг gate_<feature>_premium = false (замок снимается у ВСЕХ живьём)
+//
+// Изменение прилетает через remote_config/app.bools → onSnapshot за секунды, без
+// релиза/OTA. Дефолт каждого флага = true, поэтому без вмешательства админа
+// поведение приложения не меняется.
+//
+// Гейт-сайты в приложении больше НЕ проверяют `isPremium` напрямую для решения
+// «показать пейвол?»: они спрашивают isFeaturePremiumGated(feature). Если фича
+// переведена в «Фри», функция вернёт false → пейвол не показывается, фича
+// доступна бесплатно. Числовые лимиты (диалоги/квизы/тренер) при этом продолжают
+// действовать — их значения настраиваются отдельно (Remote Config numbers).
+// ═══════════════════════════════════════════════════════════════════════════
+
+import { getRemoteBool, type RemoteBoolKey } from './remote_flags';
+
+/** Каноничные имена фич, у которых есть премиум-замок. */
+export type FeatureGate =
+  | 'lessons'
+  | 'speaking'
+  | 'ai_dialog'
+  | 'smart_trainer'
+  | 'trainer_modes'
+  | 'diagnosis_training'
+  | 'personal_plan'
+  | 'stats'
+  | 'flashcards'
+  | 'themes'
+  | 'avatar_auras'
+  | 'mastery'
+  | 'quizzes'
+  | 'arena'
+  | 'energy';
+
+/** Соответствие фича → булев флаг remote_config. Держать в синхроне с RemoteBoolKey. */
+const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
+  lessons: 'gate_lessons_premium',
+  speaking: 'gate_speaking_premium',
+  ai_dialog: 'gate_ai_dialog_premium',
+  smart_trainer: 'gate_smart_trainer_premium',
+  trainer_modes: 'gate_trainer_modes_premium',
+  diagnosis_training: 'gate_diagnosis_training_premium',
+  personal_plan: 'gate_personal_plan_premium',
+  stats: 'gate_stats_premium',
+  flashcards: 'gate_flashcards_premium',
+  themes: 'gate_themes_premium',
+  avatar_auras: 'gate_avatar_auras_premium',
+  mastery: 'gate_mastery_premium',
+  quizzes: 'gate_quizzes_premium',
+  arena: 'gate_arena_premium',
+  energy: 'gate_energy_premium',
+};
+
+/** Полный список фич — для итерации в админке/тестах. */
+export const FEATURE_GATE_KEYS = Object.keys(FEATURE_FLAG) as FeatureGate[];
+
+/**
+ * true → фича по-прежнему за премиум-замком (нужно проверять премиум/показывать
+ * пейвол). false → админ перевёл фичу в «Фри», замок снят для всех.
+ */
+export function isFeaturePremiumGated(feature: FeatureGate): boolean {
+  return getRemoteBool(FEATURE_FLAG[feature]);
+}
+
+/** Удобный инверс: true → фича бесплатна для всех (замок снят админом). */
+export function isFeatureFreeForEveryone(feature: FeatureGate): boolean {
+  return !isFeaturePremiumGated(feature);
+}
+
+/**
+ * Главный хелпер для гейт-сайтов. Заменяет паттерн «if (!isPremium) показать пейвол».
+ * Блокировать (показывать пейвол) нужно, только когда фича всё ещё за премиумом
+ * И у пользователя нет премиума.
+ *
+ *   shouldGateFeature('speaking', hasPremiumAccess)  // true → показать пейвол
+ */
+export function shouldGateFeature(feature: FeatureGate, hasPremiumAccess: boolean): boolean {
+  if (hasPremiumAccess) return false;
+  return isFeaturePremiumGated(feature);
+}
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

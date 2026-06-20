@@ -17,11 +17,11 @@
 //   зависимости, заведённые только ради админки) в выходной бандл.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { DEV_MODE, IS_STORE_RELEASE } from './config';
+import { ENABLE_DEV_TOOLS } from './config';
 import { DeferredRedirect } from '../components/DeferredRedirect';
 
 export default function SettingsTestersGate() {
-  if ((__DEV__ || DEV_MODE) && !IS_STORE_RELEASE) {
+  if (ENABLE_DEV_TOOLS) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: lets Metro tree-shake the dev module out of prod bundle
     const Real = require('./_admin_settings_testers').default;
     return <Real />;

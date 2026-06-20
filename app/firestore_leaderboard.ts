@@ -11,7 +11,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId, waitForAnonAuth } from './cloud_sync';
-import { getCanonicalUserId } from './user_id_policy';
+import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { normalizeAvatarAuraId } from '../constants/avatar_auras';
 import {
   normalizeProfileCardLevel,
@@ -90,7 +90,14 @@ function callable<TReq, TRes>(name: string) {
 // таймаута, поэтому на плохой сети «Продолжить» висит до серверного дефолта (~70с).
 // Гонка с таймаутом → reserveName отдаёт 'error' за разумное время, а онбординг
 // уже показывает «проверь интернет» и снимает busy.
-const NAME_RESERVE_TIMEOUT_MS = 15_000;
+const NAME_RESERVE_TIMEOUT_MS = 6_000;
+const NAME_RESERVE_RETRY_TIMEOUT_MS = 4_000;
+const NAME_CHECK_TIMEOUT_MS = 1_500;
+const NAME_CHECK_AUTH_TIMEOUT_MS = 800;
+const NAME_CHECK_IDENTITY_TIMEOUT_MS = 3_500;
+const NAME_AUTH_LINK_VERIFY_TIMEOUT_MS = 2_500;
+const NAME_AUTH_LINK_VERIFIED_TTL_MS = 5 * 60_000;
+const NAME_IDENTITY_READY_TTL_MS = 10 * 60_000;
 
 function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
   return Promise.race([
@@ -101,12 +108,114 @@ function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise
   ]);
 }
 
+let nameAuthLinkVerifiedKey = '';
+let nameAuthLinkVerifiedAt = 0;
+let nameIdentityReadyStableId = '';
+let nameIdentityReadyAuthUid = '';
+let nameIdentityReadyAt = 0;
+let nameIdentityReadyPromise: Promise<string | null> | null = null;
+
+function readCachedNameReservationIdentity(): string | null {
+  const authUid = getAuthUserId();
+  if (!authUid || !nameIdentityReadyStableId || nameIdentityReadyAuthUid !== authUid) return null;
+  if (Date.now() - nameIdentityReadyAt > NAME_IDENTITY_READY_TTL_MS) return null;
+  return nameIdentityReadyStableId;
+}
+
+function rememberNameReservationIdentity(stableId: string): void {
+  const authUid = getAuthUserId();
+  if (!stableId || !authUid) return;
+  nameIdentityReadyStableId = stableId;
+  nameIdentityReadyAuthUid = authUid;
+  nameIdentityReadyAt = Date.now();
+}
+
+async function ensureNameCallableAuthReady(timeoutMs: number): Promise<string | null> {
+  const stableId = await getCanonicalUserId();
+  if (!stableId) return null;
+  if (getAuthUserId()) return stableId;
+  void ensureAnonUser().catch(() => null);
+  const authReady = await waitForAnonAuth(timeoutMs);
+  return authReady ? stableId : null;
+}
+
+async function forceNameStableAuthLink(stableId: string): Promise<boolean> {
+  const authUid = getAuthUserId();
+  if (!authUid) return false;
+  try {
+    const fn = callable<{ stableId: string }, { ok: boolean; stableUid: string; authUid: string }>('authEnsureStableLink');
+    await withTimeout(fn({ stableId }), NAME_AUTH_LINK_VERIFY_TIMEOUT_MS, 'name_auth_link_callable');
+    return true;
+  } catch {
+    const db = getFirestore();
+    if (!db) return false;
+    try {
+      await withTimeout(
+        db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: Date.now() }, { merge: true }),
+        NAME_AUTH_LINK_VERIFY_TIMEOUT_MS,
+        'name_auth_link_firestore',
+      );
+      return true;
+    } catch {
+      return false;
+    }
+  }
+}
+
+async function ensureNameStableAuthLinkVerified(stableId: string): Promise<boolean> {
+  const authUid = getAuthUserId();
+  if (!authUid) return false;
+  const key = `${stableId}:${authUid}`;
+  if (nameAuthLinkVerifiedKey === key && Date.now() - nameAuthLinkVerifiedAt < NAME_AUTH_LINK_VERIFIED_TTL_MS) {
+    return true;
+  }
+  const linked = await forceNameStableAuthLink(stableId);
+  if (linked) {
+    nameAuthLinkVerifiedKey = key;
+    nameAuthLinkVerifiedAt = Date.now();
+    rememberNameReservationIdentity(stableId);
+  }
+  return linked;
+}
+
+async function resolveNameReservationIdentity(): Promise<string | null> {
+  const cached = readCachedNameReservationIdentity();
+  if (cached) return cached;
+  const stableId = await ensureNameCallableAuthReady(NAME_RESERVE_TIMEOUT_MS);
+  if (!stableId) return null;
+  const linkedFromSharedCache = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  const linked = linkedFromSharedCache || await ensureNameStableAuthLinkVerified(stableId);
+  if (!linked) return null;
+  rememberNameReservationIdentity(stableId);
+  return stableId;
+}
+
+async function ensureNameReservationIdentityReady(timeoutMs: number): Promise<string | null> {
+  const cached = readCachedNameReservationIdentity();
+  if (cached) return cached;
+  if (!nameIdentityReadyPromise) {
+    nameIdentityReadyPromise = resolveNameReservationIdentity().finally(() => {
+      nameIdentityReadyPromise = null;
+    });
+  }
+  const stableId = await withTimeout(nameIdentityReadyPromise, timeoutMs, 'name_identity_ready').catch(() => null);
+  if (stableId) rememberNameReservationIdentity(stableId);
+  return stableId;
+}
+
 const COL = 'leaderboard';
 
 export type ReserveNameStatus = 'ok' | 'taken' | 'cooldown' | 'error';
 export type ReserveNameResult = {
   status: ReserveNameStatus;
   nextChangeAt?: number;
+};
+export type ReserveNameOptions = {
+  source?: 'onboarding' | 'settings';
+};
+export type NameAvailabilityStatus = 'available' | 'taken' | 'error';
+export type NameAvailabilityResult = {
+  status: NameAvailabilityStatus;
 };
 
 // ── Атомарно зарезервировать ник через транзакцию ───────────────────────────
@@ -115,18 +224,28 @@ export type ReserveNameResult = {
 export async function reserveNameDetailed(
   name: string,
   oldName: string,
+  options: ReserveNameOptions = {},
 ): Promise<ReserveNameResult> {
   if (!CLOUD_SYNC_ENABLED) return { status: 'ok' };
   // На холодном старте signInAnonymously может занять >8с (GMS init, slow network).
   // Ждём токен явно перед вызовом CF — иначе callable уходит без auth → 401 →
   // юзер видит ложное «проверь интернет». Таймаут не даёт зависнуть навсегда.
-  await waitForAnonAuth(NAME_RESERVE_TIMEOUT_MS);
+  let stableId = readCachedNameReservationIdentity() || await ensureNameReservationIdentityReady(NAME_RESERVE_TIMEOUT_MS);
+  if (!stableId) {
+    const authReady = await waitForAnonAuth(NAME_RESERVE_RETRY_TIMEOUT_MS);
+    stableId = authReady
+      ? readCachedNameReservationIdentity() || await ensureNameReservationIdentityReady(NAME_RESERVE_RETRY_TIMEOUT_MS)
+      : null;
+  }
+  if (!stableId) return { status: 'error' };
   try {
-    const stableId = await ensureAnonUser();
-    if (!stableId) return { status: 'error' };
-    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
-    const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
-    const { data } = await withTimeout(fn({ stableId, name: name.trim(), oldName: oldName.trim() }), NAME_RESERVE_TIMEOUT_MS, 'name_reserve');
+    const fn = callable<{ stableId?: string; name: string; oldName: string; source?: ReserveNameOptions['source'] }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
+    const { data } = await withTimeout(
+      fn({ stableId, name: name.trim(), oldName: oldName.trim(), source: options.source }),
+      NAME_RESERVE_TIMEOUT_MS,
+      'name_reserve',
+    );
+    rememberNameReservationIdentity(stableId);
     if (data.status === 'taken') return { status: 'taken' };
     if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
     return { status: 'ok', nextChangeAt: data.nextChangeAt };
@@ -139,15 +258,19 @@ export async function reserveNameDetailed(
     // doesn't exist yet (first install, ensureStableAuthLinkForStableId was still in flight).
     const isIdentityError = errCode.includes('failed-precondition') || errMsg.includes('stable_id_required');
     if (isAuthError || isIdentityError) {
-      const authReady = await waitForAnonAuth(15_000);
+      const authReady = await waitForAnonAuth(NAME_RESERVE_RETRY_TIMEOUT_MS);
       if (!authReady) return { status: 'error' };
       try {
-        const stableId = await ensureAnonUser();
+        const stableId = await ensureNameReservationIdentityReady(NAME_RESERVE_RETRY_TIMEOUT_MS);
         if (!stableId) return { status: 'error' };
-        // Force the identity link before retrying — this creates users/{stableId} if missing.
-        await ensureStableAuthLinkForStableId(stableId).catch(() => false);
-        const fn = callable<{ stableId?: string; name: string; oldName: string }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
-        const { data } = await withTimeout(fn({ stableId, name: name.trim(), oldName: oldName.trim() }), NAME_RESERVE_TIMEOUT_MS, 'name_reserve');
+        // stableId is returned only after the auth link is ready.
+        const fn = callable<{ stableId?: string; name: string; oldName: string; source?: ReserveNameOptions['source'] }, { ok: boolean; status: ReserveNameStatus; nextChangeAt?: number }>('nameReserve');
+        const { data } = await withTimeout(
+          fn({ stableId, name: name.trim(), oldName: oldName.trim(), source: options.source }),
+          NAME_RESERVE_RETRY_TIMEOUT_MS,
+          'name_reserve',
+        );
+        rememberNameReservationIdentity(stableId);
         if (data.status === 'taken') return { status: 'taken' };
         if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
         return { status: 'ok', nextChangeAt: data.nextChangeAt };
@@ -162,24 +285,76 @@ export async function reserveNameDetailed(
 export async function reserveName(
   name: string,
   oldName: string,
+  options?: ReserveNameOptions,
 ): Promise<ReserveNameStatus> {
-  return (await reserveNameDetailed(name, oldName)).status;
+  return (await reserveNameDetailed(name, oldName, options)).status;
+}
+
+export function warmNameAvailabilityAuth(): void {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
+  void ensureNameReservationIdentityReady(NAME_RESERVE_TIMEOUT_MS).catch(() => null);
+}
+
+async function runNameAvailabilityCheck(name: string, readyStableId?: string): Promise<NameAvailabilityResult> {
+  const stableId = readyStableId || readCachedNameReservationIdentity() || await ensureNameCallableAuthReady(NAME_CHECK_IDENTITY_TIMEOUT_MS);
+  if (!stableId) return { status: 'error' };
+  const fn = callable<{ stableId?: string; name: string }, { ok: boolean; available: boolean }>('nameCheckAvailability');
+  const { data } = await fn({ stableId, name: name.trim() });
+  rememberNameReservationIdentity(stableId);
+  return { status: data.available === false ? 'taken' : 'available' };
+}
+
+async function checkNameIndexAvailabilityFast(name: string, readyStableId?: string | null): Promise<NameAvailabilityResult | null> {
+  const db = getFirestore();
+  if (!db) return null;
+  const nameLower = name.trim().toLowerCase();
+  if (!nameLower) return { status: 'available' };
+  const authReady = await waitForAnonAuth(NAME_CHECK_AUTH_TIMEOUT_MS);
+  if (!authReady) return null;
+  try {
+    const snap = await withTimeout(
+      db.collection('name_index').doc(nameLower).get(),
+      NAME_CHECK_TIMEOUT_MS,
+      'name_index_check',
+    );
+    if (!snap.exists) return { status: 'available' };
+    const data = snap.data?.() ?? {};
+    if (data.identityHidden === true) return { status: 'available' };
+    const ownerUid = String(data.uid ?? '').trim();
+    if (ownerUid && !readyStableId) return null;
+    return ownerUid && ownerUid === readyStableId ? { status: 'available' } : { status: 'taken' };
+  } catch {
+    return null;
+  }
+}
+
+export async function checkNameAvailabilityDetailed(name: string): Promise<NameAvailabilityResult> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return { status: 'available' };
+  const identityPromise = ensureNameReservationIdentityReady(NAME_CHECK_IDENTITY_TIMEOUT_MS);
+  const authPromise = ensureNameCallableAuthReady(NAME_CHECK_IDENTITY_TIMEOUT_MS);
+  const fastResult = await checkNameIndexAvailabilityFast(name, readCachedNameReservationIdentity());
+  if (fastResult) return fastResult;
+  let stableId = readCachedNameReservationIdentity() || await authPromise;
+  if (!stableId) stableId = await identityPromise;
+  if (!stableId) return { status: 'error' };
+  try {
+    return await withTimeout(
+      runNameAvailabilityCheck(name, stableId),
+      NAME_CHECK_TIMEOUT_MS,
+      'name_check',
+    );
+  } catch (e: any) {
+    if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) {
+      return { status: 'taken' };
+    }
+    return { status: 'error' };
+  }
 }
 
 // ── Проверить уникальность ника (без резервации, только read-only) ───────────
 // Используется для валидации перед показом ошибки. Основная блокировка — reserveName.
 export async function isNameAvailable(name: string): Promise<boolean> {
-  if (!CLOUD_SYNC_ENABLED) return true;
-  try {
-    const stableId = await ensureAnonUser();
-    if (!stableId) return true;
-    await ensureStableAuthLinkForStableId(stableId).catch(() => false);
-    const fn = callable<{ stableId?: string; name: string }, { ok: boolean; available: boolean }>('nameCheckAvailability');
-    const { data } = await fn({ stableId, name: name.trim() });
-    return data.available !== false;
-  } catch {
-    return true; // при ошибке не блокируем
-  }
+  return (await checkNameAvailabilityDetailed(name)).status !== 'taken';
 }
 
 // ── Загрузить топ-100 глобального рейтинга (кэш 15 минут) ───────────────────

@@ -406,7 +406,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                 {title}
               </Text>
             </View>
-            <Text style={[homeAdditional ? styles.homeAdditionalPhrase : styles.plaquePhrase, { color: chrome.phrase, fontSize: homeAdditional ? Math.max(25, f.h2) : f.body }]} numberOfLines={homeAdditional ? 1 : 2} adjustsFontSizeToFit={homeAdditional} minimumFontScale={0.82}>
+            <Text style={[homeAdditional ? styles.homeAdditionalPhrase : styles.plaquePhrase, { color: chrome.phrase, fontSize: homeAdditional ? Math.max(25, f.h2) : f.body }]} numberOfLines={homeAdditional ? 1 : 2}>
               {phrase.english}
             </Text>
             {homeAdditional && (

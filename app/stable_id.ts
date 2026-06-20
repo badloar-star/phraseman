@@ -69,6 +69,15 @@ function getSecureStoreOpts(SS: SecureStoreModule): import('expo-secure-store').
   };
 }
 
+/**
+ * Синхронный доступ к уже загруженному stable_id (без await). Возвращает null, если ID
+ * ещё не закэширован в памяти (обычно он загружается на старте приложения, поэтому к моменту
+ * открытия пейвола уже есть). Нужен для мгновенного решения A/B-варианта пейвола без спиннера.
+ */
+export function peekStableId(): string | null {
+  return cachedId;
+}
+
 export async function getStableId(): Promise<string> {
   if (cachedId) return cachedId;
 

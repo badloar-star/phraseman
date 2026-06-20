@@ -250,7 +250,7 @@ export default function PersonalPlanDevScreen() {
           <View style={styles.tasks}>
             {selectedTasks.map((task, index) => {
               const completed = Boolean(completedTasks[planTaskCompletionKey(activePlanInstanceId, task.id)]);
-              const visual = getPersonalPlanTaskVisual(task, selectedPlan.id);
+              const visual = getPersonalPlanTaskVisual(task, selectedPlan.id, themeMode);
               const isLast = index === selectedTasks.length - 1;
               return (
                 <View key={task.id} style={styles.taskTimelineRow}>
@@ -292,7 +292,7 @@ export default function PersonalPlanDevScreen() {
                         testID={`dev-task-art-${visual.artStyle}`}
                         style={[styles.taskArtPanel, { borderColor: selectedPlan.accent + '88', backgroundColor: selectedPlan.accent + '10', shadowColor: selectedPlan.accent }]}
                       >
-                        <Image source={visual.asset} style={styles.taskArtImage} contentFit="cover" transition={120} />
+                        <Image source={visual.asset} style={styles.taskArtImage} contentFit="contain" transition={120} />
                         <LinearGradient
                           pointerEvents="none"
                           colors={['rgba(255,255,255,0.30)', 'rgba(255,255,255,0.03)', 'rgba(255,255,255,0.00)']}
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 14,
   },
-  taskArtImage: { width: '100%', height: '100%' },
+  taskArtImage: { width: 104, height: 104 },
   artGlassSheen: {
     position: 'absolute',
     left: 0,

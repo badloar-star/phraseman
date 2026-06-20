@@ -3,7 +3,7 @@ import { Pressable, Text, View, type StyleProp, type ViewStyle } from 'react-nat
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
-import { usePremium } from './PremiumContext';
+import { useFeatureAccess } from './PremiumContext';
 import SpeakingPanel, { buildSpeakingPanelTheme } from './SpeakingPanel';
 import { useTheme } from './ThemeContext';
 import { isSpeakingEnabled } from '../app/remote_flags';
@@ -56,7 +56,7 @@ export function SpeakingButton({
 }: SpeakingButtonProps) {
   const router = useRouter();
   const { theme: t } = useTheme();
-  const { hasPremiumAccess: isPremium } = usePremium();
+  const isPremium = useFeatureAccess('speaking');
   const [open, setOpen] = useState(false);
 
   const cleaned = (targetText ?? '').trim();

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -165,6 +165,10 @@ export default function DuelJoinScreen() {
             <Text style={{ fontSize: 64 }}>⚔️</Text>
             <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
               {triLang(lang, { ru: `Арена с ${hostName}`, uk: `Арена з ${hostName}`, es: `Duelo con ${hostName}`, 'pt-BR': `Duelo com ${hostName}`, vi: `Đấu với ${hostName}`, id: `Duel dengan ${hostName}`, tr: `${hostName} ile arena`, pl: `Pojedynek z ${hostName}` })}
+            </Text>
+            <ActivityIndicator size="large" color={t.accent} style={{ marginTop: 16 }} />
+            <Text style={[{ color: t.textMuted, fontSize: f.body, marginTop: 12 }]}>
+              {triLang(lang, { ru: 'Подключаемся…', uk: 'Підключаємось…', es: 'Conectando…', 'pt-BR': 'Conectando…', vi: 'Đang kết nối…', id: 'Menghubungkan…', tr: 'Bağlanılıyor…', pl: 'Łączenie…' })}
             </Text>
           </>
         )}

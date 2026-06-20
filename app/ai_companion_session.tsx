@@ -26,7 +26,7 @@ import {
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
-import { usePremium } from '../components/PremiumContext';
+import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -42,7 +42,8 @@ import {
 } from './ai_dialog_client';
 import { buildCompanionMemory } from './ai_companion_memory';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
-import { getFreeDialogsLeftToday, markFreeDialogUsed } from './dialogs_limit_session';
+import { hasFreeDialogLeft, markFreeDialogUsed } from './dialogs_limit_session';
+import { safeRouterBack } from './navigation_back';
 import { trackEvent } from './analytics';
 import { triLang } from '../constants/i18n';
 
@@ -57,12 +58,18 @@ interface UiMessage {
 export default function AiCompanionSession() {
   const { theme: t, f } = useTheme();
   const { hasPremiumAccess } = usePremium();
+  // Доступ к «ИИ-диалогам» с учётом «Пульта» (см. ai_dialog_session.tsx).
+  const dialogAccess = useFeatureAccess('ai_dialog');
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
   const router = useRouter();
   const { speak } = useAudio();
 
-  const [messages, setMessages] = useState<UiMessage[]>([]);
+  // Приветствие собеседника присутствует с первого кадра (ленивый инициализатор),
+  // а не ставится эффектом — иначе при гонке/двойном маунте первой реплики нет.
+  const [messages, setMessages] = useState<UiMessage[]>(() => [
+    { role: 'assistant', text: LOCAL_COMPANION_GREETING },
+  ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const scrollRef = useRef<ScrollView>(null);
@@ -104,15 +111,17 @@ export default function AiCompanionSession() {
       if (!trimmed || sending) return;
       hapticTap();
 
-      // Лимит free — на первом ходу.
-      if (messages.length <= 1 && !hasPremiumAccess) {
-        const left = await getFreeDialogsLeftToday();
-        if (left <= 0) {
+      // Первый ход не-premium: тратит ЕДИНСТВЕННЫЙ пожизненный бесплатный диалог
+      // (общий со сценариями и ситуациями). Потрачен — полный замок.
+      if (messages.length <= 1 && !dialogAccess) {
+        if (!(await hasFreeDialogLeft())) {
           void trackEvent('ai_dialog_limit_hit', { scenarioId: 'companion' });
           void trackEvent('paywall_shown', { context: 'dialog_limit' });
           router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
           return;
         }
+        // Списываем на первой реплике (не при открытии). Сервер ставит тот же флаг.
+        void markFreeDialogUsed();
       }
 
       const exchangeIndex = userTurns + 1;
@@ -125,7 +134,6 @@ export default function AiCompanionSession() {
       try {
         const res = await sendToTheo(trimmed, history);
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
-        if (!hasPremiumAccess && exchangeIndex === 1) void markFreeDialogUsed();
       } catch (error) {
         setMessages((prev) => [
           ...prev,
@@ -135,20 +143,12 @@ export default function AiCompanionSession() {
         setSending(false);
       }
     },
-    [sending, messages.length, hasPremiumAccess, userTurns, buildHistory, sendToTheo, router, lang],
+    [sending, messages.length, hasPremiumAccess, dialogAccess, userTurns, buildHistory, sendToTheo, router, lang],
   );
 
-  // Локальное приветствие: OpenAI зовём только после первой реплики пользователя.
+  // Приветствие уже в начальном состоянии. Здесь — только телеметрия старта (раз).
   useEffect(() => {
-    let cancelled = false;
-    void (async () => {
-      if (messages.length > 0) return;
-      void trackEvent('ai_dialog_started', { scenarioId: 'companion', cefr: DEFAULT_CEFR });
-      if (!cancelled) setMessages([{ role: 'assistant', text: LOCAL_COMPANION_GREETING }]);
-    })();
-    return () => {
-      cancelled = true;
-    };
+    void trackEvent('ai_dialog_started', { scenarioId: 'companion', cefr: DEFAULT_CEFR });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -160,7 +160,7 @@ export default function AiCompanionSession() {
   const onBack = useCallback(() => {
     hapticTap();
     if (userTurns > 0) void trackEvent('ai_dialog_abandoned', { scenarioId: 'companion', atExchange: userTurns });
-    router.back();
+    safeRouterBack(router, '/ai_dialog_home' as any);
   }, [router, userTurns]);
 
   const lastIsAssistant = messages.length > 0 && messages[messages.length - 1].role === 'assistant';
@@ -182,10 +182,37 @@ export default function AiCompanionSession() {
           <TouchableOpacity onPress={onBack} style={{ padding: 4 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body }} numberOfLines={1}>
+          <Text style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flex: 1, textAlign: 'center' }} numberOfLines={1}>
             {triLang(lang, { ru: 'Свободный разговор', uk: 'Вільна розмова', es: 'Conversación libre' })}
           </Text>
-          <View style={{ width: 32 }} />
+          {/* Пробный бесплатный диалог — без счётчика реплик, он один. */}
+          {!hasPremiumAccess ? (
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 4,
+                minHeight: 28,
+                backgroundColor: t.bgCard,
+                borderWidth: 0.5,
+                borderColor: t.border,
+                borderRadius: 11,
+                paddingHorizontal: 9,
+              }}
+              accessibilityLabel={triLang(lang, {
+                ru: 'Пробный бесплатный диалог',
+                uk: 'Пробний безкоштовний діалог',
+                es: 'Diálogo de prueba gratis',
+              })}
+            >
+              <Ionicons name="gift-outline" size={13} color={t.accent} />
+              <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '800' }}>
+                {triLang(lang, { ru: 'проба', uk: 'проба', es: 'prueba' })}
+              </Text>
+            </View>
+          ) : (
+            <View style={{ width: 32 }} />
+          )}
         </View>
 
         <KeyboardAvoidingView

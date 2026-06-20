@@ -1,6 +1,7 @@
 import type { PersonalPlanId, PlanDailyTask } from './personal_plan_catalog';
 import type { PlanArtIconName } from './personal_plan_art';
 import type { ImageSourcePropType } from 'react-native';
+import type { ThemeMode } from '../constants/theme';
 
 export type PersonalPlanTaskVisualSource =
   | 'core_lesson'
@@ -39,58 +40,200 @@ export type PersonalPlanTaskVisual = {
   artStyle: 'bookGlow' | 'routeKey' | 'memoryLoop' | 'quizPulse' | 'practiceGrid' | 'coachSignal' | 'cardStack';
 };
 
-const TASK_ASSETS = {
-  coreLesson: require('../assets/images/personal_plan_tasks/core_lesson.png'),
-  routePhraseGavan: require('../assets/images/personal_plan_tasks/route_phrase.png'),
-  routePhraseVoyazh: require('../assets/images/personal_plan_tasks/voyazh_route.png'),
-  routePhraseMitap: require('../assets/images/personal_plan_tasks/mitap_route.png'),
-  routePhraseImpuls: require('../assets/images/personal_plan_tasks/impuls_route.png'),
-  routePhraseEcho: require('../assets/images/personal_plan_tasks/echo_route.png'),
-  recall: require('../assets/images/personal_plan_tasks/recall.png'),
-  quiz: require('../assets/images/personal_plan_tasks/quiz.png'),
-  practice: require('../assets/images/personal_plan_tasks/practice.png'),
-  trainer: require('../assets/images/personal_plan_tasks/trainer.png'),
-  flashcards: require('../assets/images/personal_plan_tasks/flashcards.png'),
+export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
+  'midnight',
+  'minimalDark',
+  'ember',
+  'aurora',
+  'volt',
+  'dark',
+  'coral',
+  'gold',
+];
+
+const DEFAULT_VISUAL_THEME: ThemeMode = 'midnight';
+
+const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource, ImageSourcePropType>> = {
+  midnight: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/midnight/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/midnight/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/midnight/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/midnight/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/midnight/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/midnight/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/midnight/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/midnight/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/midnight/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/midnight/flashcards.webp'),
+  },
+  minimalDark: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/minimalDark/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/minimalDark/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/minimalDark/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/minimalDark/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/minimalDark/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/minimalDark/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/minimalDark/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/minimalDark/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/minimalDark/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/minimalDark/flashcards.webp'),
+  },
+  ember: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/ember/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/ember/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/ember/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/ember/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/ember/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/ember/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/ember/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/ember/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/ember/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/ember/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/ember/flashcards.webp'),
+  },
+  aurora: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/aurora/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/aurora/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/aurora/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/aurora/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/aurora/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/aurora/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/aurora/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/aurora/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/aurora/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/aurora/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/aurora/flashcards.webp'),
+  },
+  volt: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/volt/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/volt/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/volt/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/volt/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/volt/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/volt/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/volt/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/volt/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/volt/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/volt/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/volt/flashcards.webp'),
+  },
+  dark: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/dark/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/dark/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/dark/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/dark/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/dark/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/dark/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/dark/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/dark/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/dark/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/dark/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/dark/flashcards.webp'),
+  },
+  coral: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/coral/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/coral/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/coral/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/coral/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/coral/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/coral/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/coral/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/coral/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/coral/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/coral/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/coral/flashcards.webp'),
+  },
+  gold: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/gold/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/gold/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/gold/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/gold/quiz.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/gold/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/gold/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/gold/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/gold/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/gold/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/gold/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/gold/flashcards.webp'),
+  },
 };
 
-const ROUTE_ASSETS: Record<PersonalPlanId, ImageSourcePropType> = {
-  gavan: TASK_ASSETS.routePhraseGavan,
-  voyazh: TASK_ASSETS.routePhraseVoyazh,
-  mitap: TASK_ASSETS.routePhraseMitap,
-  impuls: TASK_ASSETS.routePhraseImpuls,
-  echo: TASK_ASSETS.routePhraseEcho,
+const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourcePropType>> = {
+  midnight: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/midnight/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/midnight/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/midnight/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/midnight/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/midnight/route_echo.webp'),
+  },
+  minimalDark: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/minimalDark/route_echo.webp'),
+  },
+  ember: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/ember/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/ember/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/ember/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/ember/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/ember/route_echo.webp'),
+  },
+  aurora: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/aurora/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/aurora/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/aurora/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/aurora/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/aurora/route_echo.webp'),
+  },
+  volt: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/volt/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/volt/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/volt/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/volt/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/volt/route_echo.webp'),
+  },
+  dark: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/dark/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/dark/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/dark/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/dark/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/dark/route_echo.webp'),
+  },
+  coral: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/coral/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/coral/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/coral/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/coral/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/coral/route_echo.webp'),
+  },
+  gold: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/gold/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/gold/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/gold/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/gold/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/gold/route_echo.webp'),
+  },
 };
+
+function normalizeTaskVisualTheme(themeMode?: ThemeMode): ThemeMode {
+  return themeMode && THEMED_TASK_ASSETS[themeMode] ? themeMode : DEFAULT_VISUAL_THEME;
+}
 
 export function getPersonalPlanTaskVisualAsset(
   source: PersonalPlanTaskVisualSource,
   planId?: PersonalPlanId,
+  themeMode?: ThemeMode,
 ): ImageSourcePropType {
-  switch (source) {
-    case 'core_lesson':
-      return TASK_ASSETS.coreLesson;
-    case 'route_phrase':
-      return planId ? ROUTE_ASSETS[planId] : TASK_ASSETS.routePhraseGavan;
-    case 'recall':
-      return TASK_ASSETS.recall;
-    case 'quiz':
-      return TASK_ASSETS.quiz;
-    case 'practice':
-      return TASK_ASSETS.practice;
-    case 'choice':
-      return TASK_ASSETS.flashcards;
-    case 'listening':
-      return TASK_ASSETS.trainer;
-    case 'sentence_build':
-      return TASK_ASSETS.routePhraseGavan;
-    case 'speaking':
-      return TASK_ASSETS.recall;
-    case 'trainer':
-      return TASK_ASSETS.trainer;
-    case 'flashcards':
-      return TASK_ASSETS.flashcards;
-    default:
-      return TASK_ASSETS.routePhraseGavan;
+  const visualTheme = normalizeTaskVisualTheme(themeMode);
+  if (source === 'route_phrase') {
+    const routeAssets = THEMED_ROUTE_ASSETS[visualTheme] ?? THEMED_ROUTE_ASSETS[DEFAULT_VISUAL_THEME];
+    return planId ? routeAssets[planId] : routeAssets.gavan;
   }
+  return THEMED_TASK_ASSETS[visualTheme][source] ?? THEMED_TASK_ASSETS[DEFAULT_VISUAL_THEME][source];
 }
 
 function getPersonalPlanTaskVisualAssetKey(source: PersonalPlanTaskVisualSource, planId?: PersonalPlanId): string {
@@ -98,7 +241,11 @@ function getPersonalPlanTaskVisualAssetKey(source: PersonalPlanTaskVisualSource,
   return source;
 }
 
-export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: PersonalPlanId): PersonalPlanTaskVisual {
+export function getPersonalPlanTaskVisual(
+  task: PlanDailyTask,
+  planId?: PersonalPlanId,
+  themeMode?: ThemeMode,
+): PersonalPlanTaskVisual {
   switch (task.destination.type) {
     case 'lesson':
       return {
@@ -107,7 +254,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'База перед фразами дня',
         icon: 'book-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('core_lesson', planId),
-        asset: getPersonalPlanTaskVisualAsset('core_lesson', planId),
+        asset: getPersonalPlanTaskVisualAsset('core_lesson', planId, themeMode),
         artStyle: 'bookGlow',
       };
     case 'plan_phrase_lesson':
@@ -117,7 +264,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'Живые фразы для сегодняшней ситуации',
         icon: 'key-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('route_phrase', planId),
-        asset: getPersonalPlanTaskVisualAsset('route_phrase', planId),
+        asset: getPersonalPlanTaskVisualAsset('route_phrase', planId, themeMode),
         artStyle: 'routeKey',
       };
     case 'plan_phrase_recall':
@@ -128,7 +275,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'Проверим, что вспоминается без подсказок',
         icon: 'refresh-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('recall', planId),
-        asset: getPersonalPlanTaskVisualAsset('recall', planId),
+        asset: getPersonalPlanTaskVisualAsset('recall', planId, themeMode),
         artStyle: 'memoryLoop',
       };
     case 'plan_exercise':
@@ -139,7 +286,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
           intent: 'Вставляем одно нужное слово и сразу понимаем почему',
           icon: 'text-outline',
           assetKey: getPersonalPlanTaskVisualAssetKey('practice', planId),
-          asset: getPersonalPlanTaskVisualAsset('practice', planId),
+          asset: getPersonalPlanTaskVisualAsset('practice', planId, themeMode),
           artStyle: 'practiceGrid',
         };
       }
@@ -150,7 +297,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
           intent: 'Выбери самый естественный короткий ответ',
           icon: 'checkmark-circle-outline',
           assetKey: getPersonalPlanTaskVisualAssetKey('choice', planId),
-          asset: getPersonalPlanTaskVisualAsset('choice', planId),
+          asset: getPersonalPlanTaskVisualAsset('choice', planId, themeMode),
           artStyle: 'cardStack',
         };
       }
@@ -161,7 +308,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
           intent: 'Слушаем фразу и выбираем смысл без спешки',
           icon: 'volume-high-outline',
           assetKey: getPersonalPlanTaskVisualAssetKey('listening', planId),
-          asset: getPersonalPlanTaskVisualAsset('listening', planId),
+          asset: getPersonalPlanTaskVisualAsset('listening', planId, themeMode),
           artStyle: 'coachSignal',
         };
       }
@@ -172,7 +319,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
           intent: 'Послушай и собери короткую фразу',
           icon: 'reorder-four-outline',
           assetKey: getPersonalPlanTaskVisualAssetKey('sentence_build', planId),
-          asset: getPersonalPlanTaskVisualAsset('sentence_build', planId),
+          asset: getPersonalPlanTaskVisualAsset('sentence_build', planId, themeMode),
           artStyle: 'routeKey',
         };
       }
@@ -183,7 +330,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
           intent: 'Повтори без финальной оценки',
           icon: 'mic-outline',
           assetKey: getPersonalPlanTaskVisualAssetKey('speaking', planId),
-          asset: getPersonalPlanTaskVisualAsset('speaking', planId),
+          asset: getPersonalPlanTaskVisualAsset('speaking', planId, themeMode),
           artStyle: 'memoryLoop',
         };
       }
@@ -193,7 +340,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'Короткое упражнение по фразам дня',
         icon: 'sparkles-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('route_phrase', planId),
-        asset: getPersonalPlanTaskVisualAsset('route_phrase', planId),
+        asset: getPersonalPlanTaskVisualAsset('route_phrase', planId, themeMode),
         artStyle: 'routeKey',
       };
     case 'quiz':
@@ -203,7 +350,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: '10 коротких проверок по фразам дня',
         icon: 'help-circle-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('quiz', planId),
-        asset: getPersonalPlanTaskVisualAsset('quiz', planId),
+        asset: getPersonalPlanTaskVisualAsset('quiz', planId, themeMode),
         artStyle: 'quizPulse',
       };
     case 'practice':
@@ -213,7 +360,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'Берём то, что уже просится на повтор',
         icon: 'fitness-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('practice', planId),
-        asset: getPersonalPlanTaskVisualAsset('practice', planId),
+        asset: getPersonalPlanTaskVisualAsset('practice', planId, themeMode),
         artStyle: 'practiceGrid',
       };
     case 'trainer':
@@ -223,7 +370,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'Разберём слабое место без суеты',
         icon: 'sparkles-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('trainer', planId),
-        asset: getPersonalPlanTaskVisualAsset('trainer', planId),
+        asset: getPersonalPlanTaskVisualAsset('trainer', planId, themeMode),
         artStyle: 'coachSignal',
       };
     case 'flashcards':
@@ -233,7 +380,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'Быстро освежим нужные слова',
         icon: 'albums-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('flashcards', planId),
-        asset: getPersonalPlanTaskVisualAsset('flashcards', planId),
+        asset: getPersonalPlanTaskVisualAsset('flashcards', planId, themeMode),
         artStyle: 'cardStack',
       };
     default:
@@ -243,7 +390,7 @@ export function getPersonalPlanTaskVisual(task: PlanDailyTask, planId?: Personal
         intent: 'Один понятный шаг на сегодня',
         icon: 'checkmark-circle-outline',
         assetKey: getPersonalPlanTaskVisualAssetKey('route_phrase', planId),
-        asset: getPersonalPlanTaskVisualAsset('route_phrase', planId),
+        asset: getPersonalPlanTaskVisualAsset('route_phrase', planId, themeMode),
         artStyle: 'routeKey',
       };
   }

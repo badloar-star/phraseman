@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.friendLikeActivity = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
 function cleanId(value) {
@@ -57,7 +58,7 @@ function parseCount(value) {
 function cleanDisplayName(value) {
     return String(value ?? '').trim().replace(/\s+/g, ' ').slice(0, 80);
 }
-exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppCheck: false }, async (request) => {
+exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.uid) {
         throw new https_1.HttpsError('unauthenticated', 'Auth required');
     }

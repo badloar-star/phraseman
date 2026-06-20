@@ -45,7 +45,7 @@ import {
 import { invalidatePremiumCache } from './premium_guard';
 import { loadShardsFromCloud } from './shards_system';
 import { logEvent, recordError } from './firebase';
-import { logAppCritical } from './app_health';
+import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
 import { unlockedLessonsKey } from './target_storage_keys';
 
@@ -650,12 +650,22 @@ async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { ca
 }
 
 /** Crashlytics: прод-диагностика sign-in без logcat */
+// Внешние/ожидаемые сбои входа — НЕ баги кода: нет сети, юзер закрыл окно
+// Google/Apple, проблема Google Play Services, таймаут сервера, выключенный
+// cloud-sync. Их шлём как 'warning' (остаются в Crashlytics, но НЕ как Critical-
+// алерт в App Health/Telegram). Реальные баги логики (auth_link/transaction/swap)
+// остаются 'critical'.
+const EXPECTED_AUTH_FAILURE_STAGES = new Set(['native', 'firebase', 'config']);
+
 function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detail: string): void {
   try {
     const d = detail.replace(/\s+/g, ' ').slice(0, 280);
     recordError(new Error(`auth_signin:${provider}:${stage}:${d}`), 'auth_signin');
-    void logAppCritical('auth:signin_failure', new Error(d), {
+    const severity = EXPECTED_AUTH_FAILURE_STAGES.has(stage) ? 'warning' : 'critical';
+    void logAppError('auth:signin_failure', new Error(d), {
       feature: 'auth',
+      severity,
+      writeToFirestore: severity === 'critical',
       tags: { provider, stage },
     });
   } catch {
@@ -777,12 +787,27 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
 
   let outcome: Outcome;
 
+  // Стадия auth_link часто падала «local_stable_link_failed» на ХОЛОДНОМ старте
+  // Android: anon-auth/сеть/App Check ещё не поднялись, waitForFirebaseAuthUid
+  // (≈1.4с) истекает → ensureStableAuthLinkForStableId возвращает false → весь
+  // вход прерывался с Critical-алертом. Операция идемпотентна и самолечится —
+  // не сдаёмся с первой попытки, ретраим с нарастающей паузой.
+  const ensureStableAuthLinkWithRetry = async (stableId: string): Promise<boolean> => {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      if (await ensureStableAuthLinkForStableId(stableId)) return true;
+      if (attempt < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 800 * (attempt + 1)));
+      }
+    }
+    return false;
+  };
+
   if (remoteStableId) {
     // Provider is already linked to another stable_id. This is the normal
     // returning-user/new-device path. Do not try to relink the local anonymous
     // stable_id first: authEnsureStableLink correctly rejects that as
     // stable_id_mismatch because auth_links/{providerUid} points to remoteStableId.
-    const remoteAuthLinked = await ensureStableAuthLinkForStableId(remoteStableId);
+    const remoteAuthLinked = await ensureStableAuthLinkWithRetry(remoteStableId);
     if (!remoteAuthLinked) {
       captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed');
       return { result: 'error', error: 'auth_link_failed' };
@@ -793,7 +818,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       mergedFromStableId: localStableId,
     };
   } else {
-    const localAuthLinked = await ensureStableAuthLinkForStableId(localStableId);
+    const localAuthLinked = await ensureStableAuthLinkWithRetry(localStableId);
     if (!localAuthLinked) {
       captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_failed');
       return { result: 'error', error: 'auth_link_failed' };
@@ -896,6 +921,17 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           return { kind: 'created_new' as const };
         }
 
+        // Владеем ли мы remote-доком? Правила Firestore (stableUserMatchesAuth)
+        // разрешают запись в users/{remoteStableId} ТОЛЬКО если его firebaseAuthUid
+        // == текущему auth.uid (firebaseProviderUid). Если remote-док чужой/осиротевший
+        // (другой firebaseAuthUid, или поля нет вовсе после старого delete-account),
+        // tx.set в него = update → permission-denied → ВЕСЬ вход падал (Critical auth).
+        // Не лезем в чужой док: идём по ветке "local wins" — пишем в СВОЙ
+        // users/{localStableId}, на который права есть всегда.
+        const remoteFirebaseAuthUid = remoteUserSnap.data()?.firebaseAuthUid;
+        const remoteOwnedByThisAuth =
+          typeof remoteFirebaseAuthUid === 'string' && remoteFirebaseAuthUid === firebaseProviderUid;
+
         const localXP = parseInt(localUserSnap.data()?.progress?.user_total_xp ?? '0', 10) || 0;
         const remoteXP = parseInt(remoteUserSnap.data()?.progress?.user_total_xp ?? '0', 10) || 0;
 
@@ -910,8 +946,10 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           devicePlatform,
         };
 
-        if (remoteXP >= localXP) {
-          // Remote (existing) wins — клиент после транзакции свапнет stable_id
+        if (remoteOwnedByThisAuth && remoteXP >= localXP) {
+          // Remote (existing) wins — клиент после транзакции свапнет stable_id.
+          // ТОЛЬКО если remote-док реально наш (remoteOwnedByThisAuth): иначе свап
+          // на чужой stable_id запрещён правилами и не имеет смысла.
           tx.update(linkRef, {
             email: firebaseEmail,
             displayName: providerDisplayName,

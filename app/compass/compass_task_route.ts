@@ -1,0 +1,57 @@
+/**
+ * Компас — маршрутизация задач брифинга. Волна 2.3 (доводка).
+ *
+ * Раньше задачи в модале брифинга были некликабельны, а кнопка «Начать день»
+ * жёстко вела в /personal_plan. Этот модуль превращает тип задачи (CompassTaskKind)
+ * в реальный экран приложения, чтобы каждая задача из брифинга открывала своё дело.
+ *
+ * Все маршруты — РЕАЛЬНО существующие роуты expo-router, подтверждённые живыми
+ * вызовами router.push в приложении (см. комментарии у каждого case). Чистая
+ * функция без побочных эффектов: на вход — задача и день, на выход — описание
+ * перехода. Навигацию выполняет вызывающий слой (host), чтобы модуль оставался
+ * тестируемым и не тянул expo-router.
+ *
+ * ИЗОЛЯЦИЯ: модуль не читает сигналы и не зависит от состояния — только маппинг.
+ */
+import type { CompassDay, CompassTask } from './compass_brain';
+
+export interface CompassRoute {
+  pathname: string;
+  params?: Record<string, string>;
+}
+
+/**
+ * Куда ведёт конкретная задача дня.
+ *
+ * Соответствия (с доказательством, что роут+параметры реальны):
+ *  - lesson_dive       → /lesson_menu?id=<focus>   (lessons.tsx:922)
+ *  - mistake_repair    → /trainer_smart_session?mode=weak  (personal_plan_navigation.ts:161)
+ *  - flashcards_review → /flashcards_swipe          (flashcards.tsx:186)
+ *  - plan_continue     → /personal_plan             (home.tsx:2384)
+ *  - pronunciation     → /personal_plan (fallback). «Повтори вслух» есть в каждом
+ *      дне плана (plan_pronunciation_repeat), но требует план-scoped параметров,
+ *      которых нет в самой задаче Компаса. Прямой переход на задачу произношения
+ *      текущего дня делает host через resolvePronunciationRoute() (async-чтение
+ *      активного плана); сюда попадаем только когда плана нет → ведём в /personal_plan.
+ */
+export function compassTaskRoute(task: CompassTask, _day: CompassDay | null): CompassRoute {
+  switch (task.kind) {
+    case 'lesson_dive':
+      // focus = id рекомендованного урока (строка). Без id — общий список уроков.
+      return task.focus
+        ? { pathname: '/lesson_menu', params: { id: task.focus } }
+        : { pathname: '/(tabs)/lessons' };
+    case 'mistake_repair':
+      return { pathname: '/trainer_smart_session', params: { mode: 'weak' } };
+    case 'flashcards_review':
+      return { pathname: '/flashcards_swipe' };
+    case 'plan_continue':
+      return { pathname: '/personal_plan' };
+    case 'pronunciation':
+      // Нет отдельного прод-экрана произношения — честный fallback в личный план.
+      return { pathname: '/personal_plan' };
+    default:
+      // Неизвестный тип (на будущее) — безопасный общий вход.
+      return { pathname: '/personal_plan' };
+  }
+}

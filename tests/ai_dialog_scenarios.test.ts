@@ -4,19 +4,30 @@ import {
   getScenarioById,
   getPublicDialogScenarios,
   getScenariosByCategory,
+  getCourseDialogScenarios,
+  getChallengeDialogScenarios,
 } from '../app/ai_dialog_scenarios';
 
 const MOJIBAKE_PATTERN = /[ÐÑ]|â[€”™€œ]/;
 
 describe('ai_dialog_scenarios', () => {
-  it('ships the first 20 active dialogue scenarios', () => {
-    expect(getPublicDialogScenarios()).toHaveLength(20);
-    expect(getPublicDialogScenarios().every((scenario) => scenario.active)).toBe(true);
+  it('exposes only active, non-hidden scenarios publicly', () => {
+    const pub = getPublicDialogScenarios();
+    expect(pub.length).toBeGreaterThanOrEqual(20);
+    expect(pub.every((scenario) => scenario.active)).toBe(true);
+    expect(pub.every((scenario) => !scenario.hiddenFromHome)).toBe(true);
   });
 
-  it('keeps the public catalogue at 20 scenarios', () => {
-    expect(getPublicDialogScenarios()).toHaveLength(20);
-    expect(getPublicDialogScenarios().every((scenario) => !scenario.hiddenFromHome)).toBe(true);
+  it('splits the public catalogue into the two Dialogs tabs (course + situations)', () => {
+    // Вкладка «Уроки» = course-сценарии (по уровню CEFR), вкладка «Ситуации» =
+    // challenge-сценарии (по уровню аккаунта). Вместе они и есть публичный набор.
+    const course = getCourseDialogScenarios();
+    const challenge = getChallengeDialogScenarios();
+    expect(course.length).toBeGreaterThan(0);
+    expect(challenge.length).toBeGreaterThan(0);
+    expect(course.length + challenge.length).toBe(getPublicDialogScenarios().length);
+    expect(course.every((s) => (s.collection ?? 'course') === 'course')).toBe(true);
+    expect(challenge.every((s) => s.collection === 'challenge')).toBe(true);
   });
 
   it('keeps scenario ids unique and routeable', () => {

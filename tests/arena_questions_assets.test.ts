@@ -89,7 +89,10 @@ describe('arena_questions_a1.json', () => {
     expect(raw.some((q) => q.type === 'quiz_logic')).toBe(false);
   });
 
-  it('every card is valid', () => validateDeck(raw, 'A1', false));
+  // requireRand=true: A1 теперь обязан иметь поле `rand` (как a2/b1/b2). Без него
+  // Firestore-запросы `.where('rand'...).orderBy('rand')` не возвращают A1-доки →
+  // комнаты падали в FALLBACK, рейтинг bronze ломался. См. scripts/add_rand_to_a1.mjs.
+  it('every card is valid', () => validateDeck(raw, 'A1', true));
 
   it('fill_blank / complete_phrasal have gap marker', () => gapMarkersOk(raw));
 });

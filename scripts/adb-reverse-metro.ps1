@@ -1,4 +1,4 @@
-# Legacy localhost fallback: map 127.0.0.1:8081 inside each Android device to
+﻿# Legacy localhost fallback: map 127.0.0.1:8081 inside each Android device to
 # Metro on the host. Missing adb is not fatal because Metro can still start.
 $ErrorActionPreference = "Continue"
 

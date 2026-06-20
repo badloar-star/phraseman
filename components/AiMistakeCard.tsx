@@ -1,10 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
 import { triLang, type Lang } from '../constants/i18n';
-import { compassIconSource } from '../constants/weeklyCompassIcons';
 import { useTheme } from './ThemeContext';
+import BilingualMistakeText from './BilingualMistakeText';
 
 export type AiMistakeCardState = 'idle' | 'loading' | 'ready' | 'error' | 'limit';
 
@@ -12,64 +11,50 @@ type AiMistakeCardProps = {
   lang: Lang;
   state: AiMistakeCardState;
   explanation?: string | null;
+  /** Kept for back-compat; no longer rendered (no daily cap). */
   remaining?: number | null;
   onExplain: () => void;
 };
-
-function quotaLine(lang: Lang, remaining: number | null | undefined): string {
-  if (remaining == null) {
-    return triLang(lang, {
-      ru: '3 объяснения ошибки в день',
-      uk: '3 пояснення помилки на день',
-      es: '3 explicaciones de error al día',
-      'pt-BR': '3 explicações de erro por dia',
-      vi: '3 lượt giải thích lỗi mỗi ngày',
-      id: '3 penjelasan kesalahan per hari',
-      tr: 'Günde 3 hata açıklaması',
-      pl: '3 wyjaśnienia błędów dziennie',
-    });
-  }
-  return triLang(lang, {
-    ru: `Осталось сегодня: ${remaining}`,
-    uk: `Залишилось сьогодні: ${remaining}`,
-    es: `Quedan hoy: ${remaining}`,
-    'pt-BR': `Restam hoje: ${remaining}`,
-    vi: `Còn hôm nay: ${remaining}`,
-    id: `Sisa hari ini: ${remaining}`,
-    tr: `Bugün kalan: ${remaining}`,
-    pl: `Zostało dziś: ${remaining}`,
-  });
-}
 
 export default function AiMistakeCard({
   lang,
   state,
   explanation,
-  remaining,
   onExplain,
 }: AiMistakeCardProps) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const isBusy = state === 'loading';
-  const isBlocked = state === 'limit';
-  const canPress = !isBusy && !isBlocked;
-  const aiCompassIcon = compassIconSource(themeMode);
 
   const title = triLang(lang, {
-    ru: 'Разобрать ошибку',
-    uk: 'Розібрати помилку',
-    es: 'Revisar el error',
-    'pt-BR': 'Revisar o erro',
-    vi: 'Xem lỗi sai',
-    id: 'Bahas kesalahan',
-    tr: 'Hatayı incele',
-    pl: 'Omów błąd',
+    ru: 'Разбор ошибки',
+    uk: 'Розбір помилки',
+    es: 'Análisis del error',
+    'pt-BR': 'Análise do erro',
+    vi: 'Phân tích lỗi',
+    id: 'Analisis kesalahan',
+    tr: 'Hata analizi',
+    pl: 'Analiza błędu',
   });
+
+  const subtitle = triLang(lang, {
+    ru: 'Где сбилось и как правильно',
+    uk: 'Де збилося і як правильно',
+    es: 'Qué falló y cómo decirlo bien',
+    'pt-BR': 'O que errou e como dizer certo',
+    vi: 'Sai ở đâu và nói sao cho đúng',
+    id: 'Bagian yang salah dan cara benar',
+    tr: 'Nerede hata var ve doğrusu',
+    pl: 'Co poszło źle i jak poprawnie',
+  });
+
+  const isReadyExplanation = state === 'ready' && Boolean(explanation);
+
   const body = (() => {
     if (state === 'ready' && explanation) return explanation;
     if (state === 'error') {
       return triLang(lang, {
-        ru: 'Не получилось получить умное объяснение. Попробуй ещё раз позже.',
-        uk: 'Не вдалося отримати розумне пояснення. Спробуй ще раз пізніше.',
+        ru: 'Не получилось получить объяснение. Попробуй ещё раз позже.',
+        uk: 'Не вдалося отримати пояснення. Спробуй ще раз пізніше.',
         es: 'No se pudo obtener la explicación. Inténtalo más tarde.',
         'pt-BR': 'Não foi possível obter a explicação. Tente de novo mais tarde.',
         vi: 'Chưa lấy được giải thích. Thử lại sau nhé.',
@@ -78,27 +63,15 @@ export default function AiMistakeCard({
         pl: 'Nie udało się pobrać wyjaśnienia. Spróbuj później.',
       });
     }
-    if (state === 'limit') {
-      return triLang(lang, {
-        ru: 'Лимит AI-объяснений на сегодня закончился.',
-        uk: 'Ліміт AI-пояснень на сьогодні закінчився.',
-        es: 'Se acabó el límite de explicaciones AI por hoy.',
-        'pt-BR': 'O limite de explicações de IA acabou por hoje.',
-        vi: 'Hôm nay đã hết lượt giải thích AI.',
-        id: 'Batas penjelasan AI hari ini sudah habis.',
-        tr: 'Bugünkü AI açıklama hakkı bitti.',
-        pl: 'Dzisiejszy limit wyjaśnień AI został wykorzystany.',
-      });
-    }
     return triLang(lang, {
-      ru: 'ИИ объяснит именно твой ответ: где сбилось и как сказать правильно.',
-      uk: 'AI пояснить саме твою відповідь: де збилося і як сказати правильно.',
-      es: 'La IA explica tu respuesta exacta: qué falló y cómo decirlo bien.',
-      'pt-BR': 'A IA explica sua resposta exata: onde errou e como dizer certo.',
-      vi: 'AI giải thích đúng câu trả lời của bạn: sai ở đâu và nói sao cho đúng.',
-      id: 'AI menjelaskan jawabanmu: bagian yang salah dan cara yang benar.',
-      tr: 'AI tam cevabını açıklar: nerede hata var ve doğru nasıl söylenir.',
-      pl: 'AI wyjaśni dokładnie Twoją odpowiedź: co poszło źle i jak powiedzieć poprawnie.',
+      ru: 'Разбираю именно твой ответ: где сбилось и как сказать правильно.',
+      uk: 'Розбираю саме твою відповідь: де збилося і як сказати правильно.',
+      es: 'Analizo tu respuesta exacta: qué falló y cómo decirlo bien.',
+      'pt-BR': 'Analiso sua resposta exata: onde errou e como dizer certo.',
+      vi: 'Phân tích đúng câu trả lời của bạn: sai ở đâu và nói sao cho đúng.',
+      id: 'Menganalisis jawabanmu: bagian yang salah dan cara yang benar.',
+      tr: 'Tam cevabını inceliyorum: nerede hata var ve doğrusu nasıl.',
+      pl: 'Analizuję dokładnie Twoją odpowiedź: co poszło źle i jak poprawnie.',
     });
   })();
 
@@ -109,43 +82,56 @@ export default function AiMistakeCard({
     >
       <View style={styles.header}>
         <View style={[styles.icon, { backgroundColor: t.accent + '18' }]}>
-          <Image source={aiCompassIcon} style={styles.iconImage} contentFit="contain" />
+          <Ionicons name="bulb-outline" size={20} color={t.accent} />
         </View>
         <View style={styles.headerText}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
             {title}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }} numberOfLines={1}>
-            {quotaLine(lang, remaining)}
+            {subtitle}
           </Text>
         </View>
       </View>
-      <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20 }}>
-        {body}
-      </Text>
-      {state !== 'ready' ? (
+
+      {isBusy ? (
+        <View style={styles.busyRow}>
+          <ActivityIndicator size="small" color={t.accent} />
+        </View>
+      ) : isReadyExplanation ? (
+        // Английский (ключевой язык) — акцентным цветом, перевод — обычным, чтобы
+        // языки не сливались в один цвет.
+        <BilingualMistakeText
+          text={body}
+          englishColor={t.accent}
+          nativeColor={t.textSecond}
+          style={{ fontSize: f.body, lineHeight: 20 }}
+        />
+      ) : (
+        <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20 }}>
+          {body}
+        </Text>
+      )}
+
+
+      {state === 'error' ? (
         <Pressable
           testID="ai-mistake-explain-button"
           accessibilityRole="button"
-          disabled={!canPress}
           onPress={onExplain}
-          style={[styles.button, { backgroundColor: canPress ? t.accent : t.textMuted, opacity: canPress ? 1 : 0.45 }]}
+          style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
         >
-          {isBusy ? (
-            <ActivityIndicator size="small" color={t.correctText} />
-          ) : (
-            <Ionicons name={isBlocked ? 'lock-closed-outline' : 'bulb-outline'} size={16} color={t.correctText} />
-          )}
-          <Text style={{ color: t.correctText, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
+          <Ionicons name="refresh" size={16} color={t.accent} />
+          <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }} numberOfLines={1}>
             {triLang(lang, {
-              ru: isBlocked ? 'Лимит' : 'Объяснить',
-              uk: isBlocked ? 'Ліміт' : 'Пояснити',
-              es: isBlocked ? 'Límite' : 'Explicar',
-              'pt-BR': isBlocked ? 'Limite' : 'Explicar',
-              vi: isBlocked ? 'Hết lượt' : 'Giải thích',
-              id: isBlocked ? 'Batas' : 'Jelaskan',
-              tr: isBlocked ? 'Limit' : 'Açıkla',
-              pl: isBlocked ? 'Limit' : 'Wyjaśnij',
+              ru: 'Попробовать снова',
+              uk: 'Спробувати знову',
+              es: 'Reintentar',
+              'pt-BR': 'Tentar de novo',
+              vi: 'Thử lại',
+              id: 'Coba lagi',
+              tr: 'Tekrar dene',
+              pl: 'Spróbuj ponownie',
             })}
           </Text>
         </Pressable>
@@ -177,14 +163,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 34,
   },
-  iconImage: {
-    height: 30,
-    width: 30,
+  busyRow: {
+    alignItems: 'flex-start',
+    paddingVertical: 4,
   },
-  button: {
+  simpleButton: {
     alignItems: 'center',
     alignSelf: 'flex-start',
     borderRadius: 8,
+    borderWidth: 1,
     flexDirection: 'row',
     gap: 6,
     minHeight: 34,

@@ -3,13 +3,13 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.5.42",
+    "version": "1.5.43",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "runtimeVersion": "1.5.42",
+    "runtimeVersion": "1.5.43",
     "updates": {
       "enabled": true,
       "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
@@ -66,7 +66,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 82,
+      "versionCode": 84,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -116,7 +116,7 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "82",
+      "buildNumber": "84",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [
@@ -194,7 +194,6 @@
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
-      "./plugins/withIosFirebaseCrashlyticsUpload",
       [
         "expo-build-properties",
         {

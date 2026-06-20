@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 import { View } from 'react-native';
 import { Image } from 'expo-image';
 import Svg, { Defs, LinearGradient, Stop, Text as SvgText } from 'react-native-svg';
+import { getLevelAvatarMaterial } from '../constants/avatar_level_materials';
+import LevelAvatarMaterialOverlay from './LevelAvatarMaterialOverlay';
 
 // Static require map — Metro bundler needs literal paths
 const GIFS: Record<number, any> = {
@@ -87,6 +89,7 @@ function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true
   const numberFontSize = size * (clamped < 10 ? 0.42 : 0.37);
   const numberLineHeight = size * 0.42;
   const numberGradientId = `levelBadgeNumber_${clamped}_${Math.round(size)}_${Math.round(badgeHeight)}`;
+  const material = getLevelAvatarMaterial(clamped);
   const image = (
     <Image
       source={fallbackSource}
@@ -95,12 +98,20 @@ function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true
       autoplay={autoplayEnabled}
     />
   );
+  const materialImage = (
+    <View style={{ width: size, height: badgeHeight, alignItems: 'center', justifyContent: 'center' }}>
+      {image}
+      {badgeHeight === size ? (
+        <LevelAvatarMaterialOverlay size={size} level={clamped} material={material} />
+      ) : null}
+    </View>
+  );
 
-  if (!centeredNumber) return image;
+  if (!centeredNumber) return materialImage;
 
   return (
     <View style={{ width: size, height: badgeHeight, alignItems: 'center', justifyContent: 'center' }}>
-      {image}
+      {materialImage}
       <Svg
         pointerEvents="none"
         width={size}

@@ -283,21 +283,19 @@ function makeDbStub(initial: Store = {}) {
       where: (field: unknown, op: string, value: unknown) => queryApi(name, field, op, value),
     }),
     batch: () => {
-      const ops: Array<() => void> = [];
+      const ops: Array<() => Promise<void>> = [];
       return {
-        set: (ref: { id: string }, data: DocData) => {
-          // ref carries only id in this stub; find its collection by scanning.
-          ops.push(() => {
-            for (const coll of Object.keys(store)) {
-              if (store[coll] && Object.prototype.hasOwnProperty.call(store[coll], ref.id)) {
-                store[coll][ref.id] = { ...(store[coll][ref.id] ?? {}), ...data };
-                return;
-              }
-            }
-          });
+        // ref (from docApi/snapFor.ref) carries its own collection via closure — write
+        // through it directly. Раньше стаб сканировал коллекции по ref.id и писал в ПЕРВУЮ
+        // совпавшую — это ломалось, как только один и тот же id жил в двух коллекциях
+        // (напр. auth_links/{authUid} + users/{authUid}). Пишем по настоящей ссылке.
+        set: (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => {
+          ops.push(() => ref.set(data));
         },
-        delete: () => {},
-        commit: async () => ops.forEach((fn) => fn()),
+        delete: (ref: { delete: () => Promise<void> }) => {
+          ops.push(() => ref.delete());
+        },
+        commit: async () => { for (const fn of ops) await fn(); },
       };
     },
     runTransaction: async (fn: (tx: any) => Promise<unknown>) => {

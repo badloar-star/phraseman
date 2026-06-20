@@ -34,9 +34,11 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authMergeStableAccounts = void 0;
+exports.chooseSurvivingAttribution = chooseSurvivingAttribution;
 exports.mergeUserProgress = mergeUserProgress;
 exports.mergeShards = mergeShards;
 exports.mergeStableAccounts = mergeStableAccounts;
+exports.repointReferralOnMerge = repointReferralOnMerge;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
@@ -88,6 +90,67 @@ const VIP_KEYS = [
     'vip_revoked_at',
 ];
 const PREMIUM_AND_VIP_KEYS = new Set([...PREMIUM_KEYS, ...VIP_KEYS, 'had_premium_ever']);
+/**
+ * Реферальные счётчики наград — вложенные map {период: число} в progress. Их НЕЛЬЗЯ
+ * брать «целиком от победителя» (generic-логика так и делает для объектов) — иначе мерж
+ * СБРАСЫВАЛ БЫ анти-фарм кап (лузерский счёт терялся). Суммируем по периодам.
+ */
+const REFERRAL_CLAIM_COUNTER_KEYS = ['referral_vip_claims_monthly', 'referral_vip_claims_daily'];
+/** Парсит вложенный счётчик {период: число} из значения progress (объект или JSON-строка). */
+function asClaimCounter(value) {
+    let obj = value;
+    if (typeof value === 'string') {
+        try {
+            obj = JSON.parse(value);
+        }
+        catch {
+            return {};
+        }
+    }
+    if (!obj || typeof obj !== 'object')
+        return {};
+    const out = {};
+    for (const [k, v] of Object.entries(obj)) {
+        const n = Number(v);
+        if (Number.isFinite(n) && n > 0)
+            out[k] = Math.floor(n);
+    }
+    return out;
+}
+/** Сумма двух реферальных счётчиков по периодам (объединение ключей, сложение значений). */
+function mergeClaimCounters(a, b) {
+    const ca = asClaimCounter(a);
+    const cb = asClaimCounter(b);
+    const keys = new Set([...Object.keys(ca), ...Object.keys(cb)]);
+    if (keys.size === 0)
+        return undefined;
+    const out = {};
+    for (const k of keys)
+        out[k] = (ca[k] ?? 0) + (cb[k] ?? 0);
+    return out;
+}
+/**
+ * Выбирает, какой referee-attribution оставить при коллизии на merge (у winner уже есть свой).
+ * Порядок «дальше прошёл»: rewarded > qualified/skipped > pending. Ничья → существующий (a).
+ * Это НЕ выдаёт награду повторно (refereeRewardedAtMs/статус сохраняются) и НЕ теряет её.
+ * Экспортируется для тестов.
+ */
+function chooseSurvivingAttribution(a, b) {
+    if (!a)
+        return b;
+    if (!b)
+        return a;
+    const rank = (s) => {
+        if (s === 'rewarded' || s === 'revoked')
+            return 3;
+        if (s === 'qualified' || s === 'skipped_referrer_cap')
+            return 2;
+        if (s === 'pending')
+            return 1;
+        return 0;
+    };
+    return rank(b.status) > rank(a.status) ? b : a;
+}
 function cleanStr(value) {
     return String(value ?? '').trim();
 }
@@ -208,6 +271,8 @@ function mergeUserProgress(winner, loser, now = Date.now()) {
     for (const key of allKeys) {
         if (PREMIUM_AND_VIP_KEYS.has(key))
             continue; // handled as whole blocks below
+        if (REFERRAL_CLAIM_COUNTER_KEYS.includes(key))
+            continue; // summed below
         const wv = w[key];
         const lv = l[key];
         // Only loser has it → take loser's (out already has it from spread of l).
@@ -263,6 +328,14 @@ function mergeUserProgress(winner, loser, now = Date.now()) {
     else if (l.had_premium_ever !== undefined) {
         out.had_premium_ever = l.had_premium_ever;
     }
+    // ── Реферальные счётчики наград: СУММИРУЕМ по периодам (не сбрасываем кап мержем). ──
+    for (const key of REFERRAL_CLAIM_COUNTER_KEYS) {
+        const merged = mergeClaimCounters(w[key], l[key]);
+        if (merged)
+            out[key] = merged;
+        else
+            delete out[key];
+    }
     return out;
 }
 /** Shards balance lives at users/{uid}.shards (top-level). Merge = max (no dup farming). */
@@ -311,31 +384,62 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
         await (0, auth_identity_1.linkStableAuthUid)(db, canonA, authUid);
         return { canonicalStableId: canonA, mergedFromStableId: null, alreadyMerged: true };
     }
-    // Ownership: caller must own BOTH (provider just signed in → allowProviderRelink).
-    // assertStableOwner is invoked indirectly via resolveStableUidForAuth, which also
-    // self-heals firebaseAuthUid. Reject (permission-denied) if either is not ownable.
+    // Ownership: the SURVIVING (winner) account must be owned by the caller. The
+    // loser may be a device-held anonymous account the caller doesn't formally own
+    // yet (scenario #11), but ONLY if it carries a fresh anon_merge_claim it stamped
+    // itself moments ago while still anonymous (see authStampAnonOwnership). That
+    // proves the same device held it — an attacker with a leaked stable_id has no
+    // anonymous token to stamp with, so cannot absorb a stranger's account.
+    // resolveStableUidForAuth self-heals firebaseAuthUid; here we tolerate a mismatch
+    // and defer the decision until the XP winner is known.
     const opts = { allowProviderRelink: true };
-    const ownedA = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, canonA, opts);
-    const ownedB = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, canonB, opts);
-    const liveA = (await db.collection(USERS).doc(ownedA).get()).data() ?? {};
-    const liveB = (await db.collection(USERS).doc(ownedB).get()).data() ?? {};
+    const resolveOwnershipSafe = async (id) => {
+        try {
+            return { owned: true, id: await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, id, opts) };
+        }
+        catch {
+            return { owned: false, id };
+        }
+    };
+    const resA = await resolveOwnershipSafe(canonA);
+    const resB = await resolveOwnershipSafe(canonB);
+    const liveA = (await db.collection(USERS).doc(resA.id).get()).data() ?? {};
+    const liveB = (await db.collection(USERS).doc(resB.id).get()).data() ?? {};
     const xpA = asCleanInt(liveA.progress?.user_total_xp) ?? 0;
     const xpB = asCleanInt(liveB.progress?.user_total_xp) ?? 0;
-    // Winner = higher XP. Tie → keep the one already linked to this auth uid if any,
-    // else A.
-    let winnerId = ownedA;
-    let loserId = ownedB;
+    // Winner = higher XP. Tie → A.
+    let winnerId = resA.id;
+    let loserId = resB.id;
     let winnerData = liveA;
     let loserData = liveB;
+    let winnerOwned = resA.owned;
+    let loserOwned = resB.owned;
     if (xpB > xpA) {
-        winnerId = ownedB;
-        loserId = ownedA;
+        winnerId = resB.id;
+        loserId = resA.id;
         winnerData = liveB;
         loserData = liveA;
+        winnerOwned = resB.owned;
+        loserOwned = resA.owned;
     }
     if (winnerId === loserId) {
         await (0, auth_identity_1.linkStableAuthUid)(db, winnerId, authUid);
         return { canonicalStableId: winnerId, mergedFromStableId: null, alreadyMerged: true };
+    }
+    // The surviving account MUST be owned — never let an unowned account become the
+    // canonical survivor, and never overwrite an owned account with an unowned one.
+    if (!winnerOwned) {
+        throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+    }
+    // The loser, if not owned, is only absorbable with a fresh self-stamped anon
+    // claim whose authUid matches the loser doc's own firebaseAuthUid (the anon uid
+    // that held it). No claim / stale / mismatched → reject.
+    if (!loserOwned) {
+        const claim = (0, auth_identity_1.readAnonMergeClaim)(loserData, now);
+        const loserAuthUid = cleanStr(loserData.firebaseAuthUid);
+        if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
+            throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+        }
     }
     const mergedProgress = mergeUserProgress(winnerData.progress, loserData.progress, now);
     const mergedShards = mergeShards(winnerData.shards, loserData.shards);
@@ -347,6 +451,8 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
             firebaseAuthUid: authUid,
             updatedAt: now,
             identityMergedAt: now,
+            // Consume any claim on the survivor so it can't be replayed.
+            anon_merge_claim: admin.firestore.FieldValue.delete(),
         };
         if (mergedShards !== undefined)
             update.shards = mergedShards;
@@ -357,6 +463,7 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
             duplicateOfStableId: winnerId,
             identityMergedAt: now,
             updatedAt: now,
+            anon_merge_claim: admin.firestore.FieldValue.delete(),
         }, { merge: true });
     });
     // Canonicalize leaderboard / league_groups / name_index for both the loser id
@@ -371,6 +478,17 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
             message: String(e?.message ?? e).slice(0, 160),
         }));
     });
+    // Re-point referral data (attributions as referee/referrer + owned code) from loser to
+    // winner — иначе приглашённые друзья и незабранные награды «терялись» после входа на
+    // новом телефоне. Best-effort: сбой не валит merge (как и cleanup выше).
+    await repointReferralOnMerge(db, winnerId, loserId).catch((e) => {
+        console.warn(JSON.stringify({
+            event: 'account_merge_referral_repoint_failed',
+            winnerId,
+            loserId,
+            message: String(e?.message ?? e).slice(0, 160),
+        }));
+    });
     console.log(JSON.stringify({
         event: 'account_merged',
         winner: winnerId.slice(0, 8),
@@ -380,9 +498,85 @@ async function mergeStableAccounts(db, authUid, stableIdA, stableIdB, now = Date
     }));
     return { canonicalStableId: winnerId, mergedFromStableId: loserId, alreadyMerged: false };
 }
+const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
+const REFERRAL_CODES = 'referral_codes';
+const REFERRAL_OWNERS = 'referral_owners';
+/**
+ * Переносит реферальные данные с loser-аккаунта на winner после merge.
+ * Документы attribution заведены по REFEREE id (doc id) и хранят REFERRER id в поле.
+ * Переносим обе роли + владение кодом. Идемпотентно, защищено от self-referral и
+ * двойной выдачи (статус/refereeRewardedAtMs не пересчитываем). Best-effort, без транзакции
+ * на весь объём (могут быть сотни строк) — каждый кусок атомарен сам по себе.
+ */
+async function repointReferralOnMerge(db, winnerId, loserId) {
+    if (!winnerId || !loserId || winnerId === loserId)
+        return;
+    // (1) Роль REFEREE: referral_attributions/{loserId} → /{winnerId} (rename = copy+delete).
+    const loserAttrRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(loserId);
+    const loserAttrSnap = await loserAttrRef.get();
+    if (loserAttrSnap.exists) {
+        const loserAttr = loserAttrSnap.data();
+        // Self-referral после слияния (winner пригласил loser или наоборот) — такая запись бессмысленна.
+        if (String(loserAttr?.referrerStableId ?? '') === winnerId) {
+            await loserAttrRef.delete().catch(() => { });
+        }
+        else {
+            const winnerAttrRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(winnerId);
+            const winnerAttrSnap = await winnerAttrRef.get();
+            const survivor = chooseSurvivingAttribution(winnerAttrSnap.exists ? winnerAttrSnap.data() : undefined, loserAttr);
+            await winnerAttrRef.set(survivor, { merge: true });
+            await loserAttrRef.delete().catch(() => { });
+        }
+    }
+    // (2) Роль REFERRER: все attribution, где referrerStableId == loserId → winnerId.
+    // Доки, ставшие self-referral (referee doc id == winnerId), удаляем.
+    const asReferrer = await db
+        .collection(REFERRAL_ATTRIBUTIONS)
+        .where('referrerStableId', '==', loserId)
+        .limit(500)
+        .get();
+    for (const d of asReferrer.docs) {
+        if (d.id === winnerId) {
+            await d.ref.delete().catch(() => { });
+        }
+        else {
+            await d.ref.set({ referrerStableId: winnerId }, { merge: true }).catch(() => { });
+        }
+    }
+    // (3) Владение КОДОМ: referral_codes где ownerStableId == loserId → winnerId.
+    const ownedCodes = await db
+        .collection(REFERRAL_CODES)
+        .where('ownerStableId', '==', loserId)
+        .limit(50)
+        .get();
+    for (const d of ownedCodes.docs) {
+        await d.ref.set({ ownerStableId: winnerId }, { merge: true }).catch(() => { });
+    }
+    // (4) referral_owners/{loserId}: если у winner ещё нет своего кода — переносим, иначе
+    // лузерский owner-док убираем (его referral_codes уже перенаправлены на winner в (3)).
+    const loserOwnerRef = db.collection(REFERRAL_OWNERS).doc(loserId);
+    const loserOwnerSnap = await loserOwnerRef.get();
+    if (loserOwnerSnap.exists) {
+        const winnerOwnerRef = db.collection(REFERRAL_OWNERS).doc(winnerId);
+        const winnerOwnerSnap = await winnerOwnerRef.get();
+        if (!winnerOwnerSnap.exists) {
+            const data = loserOwnerSnap.data();
+            await winnerOwnerRef.set({ ...data, ownerStableId: winnerId }, { merge: true }).catch(() => { });
+        }
+        await loserOwnerRef.delete().catch(() => { });
+    }
+}
 exports.authMergeStableAccounts = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    if (!request.app) {
+        // App Check warm-up (H9): observe attestation token presence before enforcing.
+        console.warn(JSON.stringify({
+            event: 'app_check_header_shape',
+            function: 'authMergeStableAccounts',
+            header: (0, auth_identity_1.describeAppCheckHeader)(request.rawRequest.headers['x-firebase-appcheck']),
+        }));
+    }
     const db = admin.firestore();
     const authUid = request.auth.uid;
     const stableIdA = cleanStr(request.data?.stableIdA);

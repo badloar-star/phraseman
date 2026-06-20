@@ -116,7 +116,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
             >
               <Ionicons name="albums-outline" size={16} color={t.textSecond} />
               <Text style={[styles.collectionBtnText, { color: t.textSecond, fontSize: f.sub }]}>
-                {triLang(lang, { ru: 'В Сокровищницу', uk: 'До Скарбниці', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' })}
+                {triLang(lang, { ru: 'В коллекцию', uk: 'До колекції', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' })}
               </Text>
             </TouchableOpacity>
           )}

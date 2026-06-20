@@ -253,6 +253,10 @@ exports.submitClientReport = (0, https_1.onCall)({
             updatedAtMs: now,
         }, { merge: true });
         tx.create(reportRef, doc);
+        // Осколок за баг-репорт начисляет АДМИН вручную при подтверждении («пофикшено»)
+        // в admin/index.html → applyReportStatusFix (shards += 1, reason 'bug_fixed',
+        // helpful_error_reports_confirmed_v1). Автоначисления при отправке НЕТ намеренно —
+        // награда только за подтверждённую/полезную жалобу.
         return { ok: true, id: reportRef.id, collection: config.collection };
     });
 });

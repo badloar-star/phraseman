@@ -6,6 +6,7 @@ export type OverlayKey =
   | 'leagueBonusAvailable'
   | 'notifNudge'
   | 'firstLessonSheet'
+  | 'dailyPlan'
   | 'levelUp'
   | 'themedAlert'
   | 'premiumCelebration'
@@ -34,6 +35,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'leagueBonusAvailable',
   'notifNudge',
   'firstLessonSheet',
+  'dailyPlan',
   'levelUp',
   'themedAlert',
   'premiumCelebration',
@@ -61,6 +63,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   leagueBonusAvailable: false,
   notifNudge: false,
   firstLessonSheet: false,
+  dailyPlan: false,
   levelUp: false,
   themedAlert: false,
   premiumCelebration: false,

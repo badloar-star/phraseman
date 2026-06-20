@@ -1,9 +1,7 @@
 import Slider from '@react-native-community/slider';
 import { Ionicons } from '@expo/vector-icons';
-import * as Speech from 'expo-speech';
-import type { Voice } from 'expo-speech';
 import { useRouter, useFocusEffect } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -38,39 +36,6 @@ export {
 
 type RowKey = Exclude<keyof UserSettings, 'speechRate' | 'speechVoiceId'>;
 
-const ACCENT_LABELS: Record<string, string> = {
-  'en-au': 'Australian',
-  'en-gb': 'British',
-  'en-us': 'American',
-  'en-in': 'Indian',
-  'en-nz': 'New Zealand',
-  'en-za': 'South African',
-  'en-ie': 'Irish',
-  'en-ca': 'Canadian',
-};
-
-function formatVoiceLabel(voice: Voice): string {
-  const lang = (voice.language ?? '').toLowerCase();
-  const accent = ACCENT_LABELS[lang] ?? ACCENT_LABELS[lang.slice(0, 5)] ?? 'English';
-
-  // identifier like "en-au-x-aua-local" → extract variant letter (aua→A, aub→B, auc→C)
-  const id = (voice.identifier ?? '').toLowerCase();
-  const variantMatch = /x-([a-z]{2,4})-(local|network)/.exec(id);
-  const type = id.includes('network') ? 'Online' : 'Local';
-
-  if (variantMatch) {
-    const variantCode = variantMatch[1]; // e.g. "aua", "aub", "gba"
-    const letter = variantCode.slice(-1).toUpperCase(); // A, B, C…
-    return `${accent} ${letter} · ${type}`;
-  }
-
-  // fallback: use name as-is if it's already human-readable
-  const name = voice.name ?? '';
-  if (name && !/^en-/i.test(name)) return `${name} · ${accent}`;
-
-  return `${accent} · ${type}`;
-}
-
 export default function SettingsEdu() {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
@@ -78,8 +43,6 @@ export default function SettingsEdu() {
   const { lang, s: loc } = useLang();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [s, setS] = useState<UserSettings>(() => getUserSettingsSnapshot());
-  const [voices, setVoices] = useState<Voice[]>([]);
-  const [voicePickerOpen, setVoicePickerOpen] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -95,76 +58,125 @@ export default function SettingsEdu() {
     });
   };
 
-  const updateVoice = (voiceId: string) => {
-    setS(prev => {
-      const next = { ...prev, speechVoiceId: voiceId };
-      applyUserSettingsNow(next);
-      return next;
-    });
-    stopAudio();
-    speakAudio('I speak English every day', s.speechRate, { language: 'en-US', voice: voiceId });
-  };
-
-  const L = (ru: string, uk: string, es: string) => (
-    lang === 'uk' ? uk : lang === 'es' ? es : ru
-  );
+  const L = (m: Record<string, string>): string => m[lang] ?? m.ru;
 
   const rows: { key: RowKey; label: string; sub: string }[] = [
     {
       key: 'autoCheck',
-      label: L('Автопроверка', 'Автоперевірка', 'Comprobación automática'),
-      sub: L('Проверять при наборе последнего слова', 'Перевіряти при наборі останнього слова', 'Comprobar al escribir la última palabra'),
+      label: L({
+        ru: 'Автопроверка',
+        uk: 'Автоперевірка',
+        es: 'Comprobación automática',
+        'pt-BR': 'Verificação automática',
+        vi: 'Tự động kiểm tra',
+        id: 'Periksa otomatis',
+        tr: 'Otomatik kontrol',
+        pl: 'Automatyczne sprawdzanie',
+      }),
+      sub: L({
+        ru: 'Проверять при наборе последнего слова',
+        uk: 'Перевіряти при наборі останнього слова',
+        es: 'Comprobar al escribir la última palabra',
+        'pt-BR': 'Verificar ao digitar a última palavra',
+        vi: 'Kiểm tra khi nhập từ cuối cùng',
+        id: 'Periksa saat mengetik kata terakhir',
+        tr: 'Son kelimeyi yazınca kontrol et',
+        pl: 'Sprawdzaj po wpisaniu ostatniego słowa',
+      }),
     },
     {
       key: 'voiceOut',
-      label: L('Озвучить ответ', 'Озвучити відповідь', 'Leer la respuesta'),
-      sub: L('Произносить фразу после ответа', 'Вимовляти фразу після відповіді', 'Leer la frase después de responder'),
+      label: L({
+        ru: 'Озвучить ответ',
+        uk: 'Озвучити відповідь',
+        es: 'Leer la respuesta',
+        'pt-BR': 'Ler a resposta em voz alta',
+        vi: 'Đọc to câu trả lời',
+        id: 'Bacakan jawaban',
+        tr: 'Cevabı seslendir',
+        pl: 'Przeczytaj odpowiedź na głos',
+      }),
+      sub: L({
+        ru: 'Произносить фразу после ответа',
+        uk: 'Вимовляти фразу після відповіді',
+        es: 'Leer la frase después de responder',
+        'pt-BR': 'Falar a frase depois de responder',
+        vi: 'Phát âm câu sau khi trả lời',
+        id: 'Ucapkan frasa setelah menjawab',
+        tr: 'Cevaptan sonra cümleyi seslendir',
+        pl: 'Wymawiaj frazę po odpowiedzi',
+      }),
     },
     {
       key: 'autoAdvance',
-      label: L('Автопереход после ответа', 'Автоперехід після відповіді', 'Siguiente automático'),
-      sub: L('Переходить к следующему заданию при правильном ответе', 'Переходити до наступного завдання при правильній відповіді', 'Pasar a la siguiente pregunta cuando aciertas'),
+      label: L({
+        ru: 'Автопереход после ответа',
+        uk: 'Автоперехід після відповіді',
+        es: 'Siguiente automático',
+        'pt-BR': 'Avançar automaticamente',
+        vi: 'Tự động chuyển tiếp',
+        id: 'Lanjut otomatis',
+        tr: 'Otomatik ilerleme',
+        pl: 'Automatyczne przejście dalej',
+      }),
+      sub: L({
+        ru: 'Переходить к следующему заданию при правильном ответе',
+        uk: 'Переходити до наступного завдання при правильній відповіді',
+        es: 'Pasar a la siguiente pregunta cuando aciertas',
+        'pt-BR': 'Ir para a próxima tarefa quando acertar',
+        vi: 'Chuyển sang câu tiếp theo khi trả lời đúng',
+        id: 'Lanjut ke soal berikutnya saat jawaban benar',
+        tr: 'Doğru cevapta sonraki göreve geç',
+        pl: 'Przechodź do następnego zadania przy poprawnej odpowiedzi',
+      }),
     },
     {
       key: 'hardMode',
-      label: L('Ввод с клавиатуры', 'Введення з клавіатури', 'Escribir con el teclado'),
-      sub: L('Вводить ответ вручную вместо выбора слов', 'Вводити відповідь вручну замість вибору слів', 'Escribir la respuesta completa con el teclado'),
+      label: L({
+        ru: 'Ввод с клавиатуры',
+        uk: 'Введення з клавіатури',
+        es: 'Escribir con el teclado',
+        'pt-BR': 'Digitar no teclado',
+        vi: 'Nhập bằng bàn phím',
+        id: 'Ketik dengan keyboard',
+        tr: 'Klavyeyle yazma',
+        pl: 'Wpisywanie z klawiatury',
+      }),
+      sub: L({
+        ru: 'Вводить ответ вручную вместо выбора слов',
+        uk: 'Вводити відповідь вручну замість вибору слів',
+        es: 'Escribir la respuesta completa con el teclado',
+        'pt-BR': 'Digitar a resposta em vez de escolher palavras',
+        vi: 'Tự gõ câu trả lời thay vì chọn từ',
+        id: 'Ketik jawaban sendiri alih-alih memilih kata',
+        tr: 'Kelime seçmek yerine cevabı elle yaz',
+        pl: 'Wpisuj odpowiedź ręcznie zamiast wybierać słowa',
+      }),
     },
     {
       key: 'haptics',
-      label: L('Вибрация при ошибке', 'Вібрація при помилці', 'Vibración al fallar'),
-      sub: L('Тактильный сигнал при неправильном ответе', 'Тактильний сигнал при неправильній відповіді', 'Pequeño aviso háptico si la respuesta es incorrecta'),
+      label: L({
+        ru: 'Вибрация при ошибке',
+        uk: 'Вібрація при помилці',
+        es: 'Vibración al fallar',
+        'pt-BR': 'Vibração ao errar',
+        vi: 'Rung khi sai',
+        id: 'Getar saat salah',
+        tr: 'Hatada titreşim',
+        pl: 'Wibracja przy błędzie',
+      }),
+      sub: L({
+        ru: 'Тактильный сигнал при неправильном ответе',
+        uk: 'Тактильний сигнал при неправильній відповіді',
+        es: 'Pequeño aviso háptico si la respuesta es incorrecta',
+        'pt-BR': 'Aviso tátil quando a resposta estiver errada',
+        vi: 'Phản hồi rung khi trả lời sai',
+        id: 'Umpan getar saat jawaban salah',
+        tr: 'Yanlış cevapta dokunsal uyarı',
+        pl: 'Sygnał dotykowy przy błędnej odpowiedzi',
+      }),
     },
   ];
-
-  useEffect(() => {
-    let cancelled = false;
-    Speech.getAvailableVoicesAsync()
-      .then(list => {
-        if (!cancelled) setVoices(list);
-      })
-      .catch(() => {
-        if (!cancelled) setVoices([]);
-      });
-    return () => { cancelled = true; };
-  }, []);
-
-  const englishVoices = useMemo(() => {
-    const unique = new Map<string, Voice>();
-    for (const voice of voices) {
-      if (voice.identifier && voice.language?.toLowerCase().startsWith('en')) {
-        unique.set(voice.identifier, voice);
-      }
-    }
-    return Array.from(unique.values()).sort((a, b) => {
-      const langCompare = String(a.language).localeCompare(String(b.language));
-      return langCompare || String(a.name).localeCompare(String(b.name));
-    });
-  }, [voices]);
-
-  const currentVoiceName = s.speechVoiceId
-    ? englishVoices.find(v => v.identifier === s.speechVoiceId)?.name ?? L('Выбранный голос', 'Вибраний голос', 'Selected voice')
-    : L('Системный голос', 'Системний голос', 'System voice');
 
   return (
     <ScreenGradient>
@@ -283,124 +295,16 @@ export default function SettingsEdu() {
                     const rate = normalizeSpeechRate(v);
                     update('speechRate', rate);
                     stopAudio();
-                    speakAudio('I speak English every day', rate, { language: 'en-US' });
+                    // Preview the real OpenAI "fable" clip (this exact phrase has
+                    // one in PHRASE_AUDIO_URL_MAP) so the user hears the actual
+                    // app voice and its true loudness, not the robotic expo-speech
+                    // fallback. Falls back to TTS automatically if the clip misses.
+                    speakAudio('a dark horse', rate, { language: 'en-US' });
                   }}
                   minimumTrackTintColor={t.textSecond}
                   maximumTrackTintColor={t.border}
                   thumbTintColor={t.textSecond}
                 />
-
-                <View style={{ marginTop: 12 }}>
-                  {/* Row: label + current voice + change button */}
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-                      {L('Голос', 'Голос', 'Voice')}
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => { hapticTap(); setVoicePickerOpen(v => !v); }}
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 4,
-                        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgCard,
-                        borderWidth: 1,
-                        borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
-                        borderRadius: isCompassTheme ? 8 : 10,
-                        paddingHorizontal: 12,
-                        paddingVertical: 7,
-                        overflow: 'hidden',
-                        ...(isCompassTheme ? compassShadow(1) : {}),
-                      }}
-                    >
-                      {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-                      <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
-                        {currentVoiceName}
-                      </Text>
-                      <Ionicons name={voicePickerOpen ? 'chevron-up' : 'chevron-down'} size={14} color={t.accent} />
-                    </TouchableOpacity>
-                  </View>
-
-                  {/* Expandable voice list */}
-                  {voicePickerOpen ? (
-                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
-                      <TouchableOpacity
-                        onPress={() => { updateVoice(''); setVoicePickerOpen(false); }}
-                        style={{
-                          borderWidth: 1,
-                          borderColor: isCompassTheme ? (!s.speechVoiceId ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : !s.speechVoiceId ? t.accent : t.border,
-                          backgroundColor: isCompassTheme ? (!s.speechVoiceId ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised) : !s.speechVoiceId ? `${t.accent}22` : t.bgCard,
-                          borderRadius: isCompassTheme ? 8 : 10,
-                          paddingHorizontal: 12,
-                          paddingVertical: 9,
-                          overflow: 'hidden',
-                          ...(isCompassTheme && !s.speechVoiceId ? compassShadow(1) : {}),
-                        }}
-                      >
-                        {isCompassTheme ? <CompassDepthSurface radius={8} quiet={!!s.speechVoiceId} cream={!s.speechVoiceId} /> : null}
-                        <Text style={{ color: isCompassTheme ? (!s.speechVoiceId ? COMPASS_RICH.textDark : t.textPrimary) : !s.speechVoiceId ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }}>
-                          {L('Системный', 'Системний', 'System')}
-                        </Text>
-                      </TouchableOpacity>
-                      {englishVoices.map(voice => {
-                        const selected = s.speechVoiceId === voice.identifier;
-                        return (
-                          <TouchableOpacity
-                            key={voice.identifier}
-                            onPress={() => { updateVoice(voice.identifier); setVoicePickerOpen(false); }}
-                            style={{
-                              borderWidth: 1,
-                              borderColor: isCompassTheme ? (selected ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet) : selected ? t.accent : t.border,
-                              backgroundColor: isCompassTheme ? (selected ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised) : selected ? `${t.accent}22` : t.bgCard,
-                              borderRadius: isCompassTheme ? 8 : 10,
-                              paddingHorizontal: 12,
-                              paddingVertical: 9,
-                              overflow: 'hidden',
-                              ...(isCompassTheme && selected ? compassShadow(1) : {}),
-                            }}
-                          >
-                            {isCompassTheme ? <CompassDepthSurface radius={8} quiet={!selected} cream={selected} /> : null}
-                            <Text style={{ color: isCompassTheme ? (selected ? COMPASS_RICH.textDark : t.textPrimary) : selected ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
-                              {formatVoiceLabel(voice)}
-                            </Text>
-                          </TouchableOpacity>
-                        );
-                      })}
-                      {englishVoices.length === 0 ? (
-                        <Text style={{ color: t.textMuted, fontSize: 12 }}>
-                          {L('Голосов не найдено. Попробуй скачать английский язык в настройках телефона.', 'Голосів не знайдено. Спробуйте завантажити англійську мову в налаштуваннях телефону.', 'No voices found. Try downloading English in your phone settings.')}
-                        </Text>
-                      ) : null}
-                    </View>
-                  ) : null}
-
-                  {/* Fun disclaimer */}
-                  <View
-                    style={[
-                      {
-                        marginTop: 4,
-                        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : `${t.accent}12`,
-                        borderRadius: isCompassTheme ? 8 : 12,
-                        padding: 14,
-                        borderWidth: isCompassTheme ? 0.5 : 0,
-                        borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
-                        overflow: 'hidden',
-                      },
-                      isCompassTheme && compassShadow(1),
-                    ]}
-                  >
-                    {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-                    <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700', marginBottom: 6 }}>
-                      {L('🎙️ Почему голос звучит странно?', '🎙️ Чому голос звучить дивно?', '🎙️ Why does the voice sound odd?')}
-                    </Text>
-                    <Text style={{ color: t.textSecond, fontSize: 13, lineHeight: 20 }}>
-                      {L(
-                        'У нас нет записанной озвучки — фразы произносит встроенный голосовой помощник вашего телефона (Android или iOS). Именно он отвечает за качество произношения.\n\nМы бы рады нанять настоящего британца с безупречным акцентом, но спонсора пока нет. Так что если ударение не там — спасибо телефону. 😅',
-                        'У нас немає записаного озвучення — фрази вимовляє вбудований голосовий помічник вашого телефону (Android або iOS). Саме він відповідає за якість вимови.\n\nМи б раді найняти справжнього британця з бездоганним акцентом, але спонсора поки немає. Тож якщо наголос не там — дякуємо телефону. 😅',
-                        'We have no recorded voice — phrases are spoken by your phone\'s built-in voice assistant (Android or iOS). It\'s fully responsible for pronunciation quality.\n\nWe\'d love to hire a real British actor with a flawless accent, but no sponsor yet. So if the stress sounds off — thank your phone. 😅',
-                      )}
-                    </Text>
-                  </View>
-                </View>
               </View>
             ) : null}
           </BouncyScrollView>

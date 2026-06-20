@@ -95,11 +95,26 @@ export function longestStreak(sortedDayKeys: string[]): number {
 }
 
 /**
- * Streak ending at the most recent active day (relative to that latest day,
- * not "today" — avoids Date.now() and stays deterministic for tests).
+ * Current "days in a row" streak.
+ *
+ * When `todayKey` (YYYY-MM-DD) is given, the streak only counts if the most recent
+ * active day is today or yesterday — otherwise the run is considered broken and we
+ * return 0. This makes "дней подряд" honest: a week of inactivity resets it to 0
+ * instead of showing a stale run. `todayKey` is passed in (not read via Date.now())
+ * so the function stays pure and deterministic for tests.
+ *
+ * Without `todayKey` it keeps the legacy behaviour (run ending at the latest active day).
  */
-export function trailingStreak(sortedDayKeys: string[]): number {
+export function trailingStreak(sortedDayKeys: string[], todayKey?: string): number {
   if (sortedDayKeys.length === 0) return 0;
+
+  if (todayKey) {
+    const today = dayKeyToOrdinal(todayKey);
+    const latest = dayKeyToOrdinal(sortedDayKeys[sortedDayKeys.length - 1]);
+    // Active day must be today or yesterday, else the current streak is broken.
+    if (today - latest > 1) return 0;
+  }
+
   let run = 1;
   for (let i = sortedDayKeys.length - 1; i > 0; i -= 1) {
     const curr = dayKeyToOrdinal(sortedDayKeys[i]);
@@ -116,12 +131,14 @@ export type BuildPersonalPlanStatsInput = {
   currentDayIndex: number;
   minutesPerDay: PlanMinutesChoice;
   completedTasks: Record<string, CompletedRecord>;
+  /** Today as YYYY-MM-DD. Makes the current-streak honest (resets after a gap). */
+  todayKey?: string;
 };
 
 export function buildPersonalPlanStats(
   input: BuildPersonalPlanStatsInput,
 ): PersonalPlanStatsSummary {
-  const { plan, planInstanceId, currentDayIndex, minutesPerDay, completedTasks } = input;
+  const { plan, planInstanceId, currentDayIndex, minutesPerDay, completedTasks, todayKey } = input;
 
   const weekMap = new Map<number, PersonalPlanWeekStat>();
   let completedTasksTotal = 0;
@@ -187,7 +204,7 @@ export function buildPersonalPlanStats(
     completedTasksTotal,
     totalTasksTotal,
     activeDaysCount: daysWithAnyProgress.size,
-    currentStreakDays: trailingStreak(dayKeys),
+    currentStreakDays: trailingStreak(dayKeys, todayKey),
     longestStreakDays: longestStreak(dayKeys),
     minutesPerDay,
     estimatedMinutesInvested: Math.round(completedTasksTotal * avgMinutesPerTask),

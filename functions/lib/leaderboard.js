@@ -62,6 +62,9 @@ function readProgressMs(data, key) {
     const value = typeof raw === 'string' ? Number(raw) : Number(raw ?? 0);
     return Number.isFinite(value) && value > 0 ? value : 0;
 }
+function usesSettingsRenameRules(requestData) {
+    return requestData?.source === 'settings';
+}
 function assertValidName(name) {
     if (name.length < 2 || name.length > 32) {
         throw new https_1.HttpsError('invalid-argument', 'name_length');
@@ -231,16 +234,18 @@ exports.nameReserve = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTION
             const profileRef = db.collection('public_profiles').doc(stableUid);
             const nameSnap = await tx.get(nameRef);
             const userSnap = await tx.get(userRef);
-            const oldRef = oldNameLower && oldNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldNameLower) : null;
-            const oldSnap = oldRef ? await tx.get(oldRef) : null;
             const userData = userSnap.data();
             const currentNameLower = readProgressString(userData, 'user_name_lower') ||
                 readProgressString(userData, 'user_name').toLowerCase() ||
                 oldNameLower;
+            const oldIndexNameLower = oldNameLower || currentNameLower;
+            const oldRef = oldIndexNameLower && oldIndexNameLower !== nameLower ? db.collection(NAME_INDEX).doc(oldIndexNameLower) : null;
+            const oldSnap = oldRef ? await tx.get(oldRef) : null;
             const previousChangeAt = readProgressMs(userData, 'nickname_changed_at');
             const isNameChange = Boolean(currentNameLower && currentNameLower !== nameLower);
+            const enforceSettingsCooldown = usesSettingsRenameRules(request.data);
             const nicknameChangedAt = isNameChange || previousChangeAt <= 0 ? now : previousChangeAt;
-            if (isNameChange && previousChangeAt > 0) {
+            if (isNameChange && previousChangeAt > 0 && enforceSettingsCooldown) {
                 const nextChangeAt = previousChangeAt + NICKNAME_CHANGE_COOLDOWN_MS;
                 if (now < nextChangeAt) {
                     cooldownUntil = nextChangeAt;

@@ -1,6 +1,7 @@
 import type { LessonTeachingNote } from './lesson_data_types';
 import { getPersonalPlanPhraseLesson } from './personal_plan_phrase_lessons';
 import { validatePlanPronunciationClaim } from './personal_plan_pronunciation_attempt';
+import { resolveApprovedPlanPhraseAudio } from './personal_plan_phrase_audio_resolver';
 
 export type PersonalPlanPronunciationRepeatItem = {
   id: string;
@@ -12,6 +13,10 @@ export type PersonalPlanPronunciationRepeatItem = {
   grammarTags: string[];
   vocabularyTags: string[];
   explanation: LessonTeachingNote;
+  /** Вшитая approved-озвучка фразы (если есть). «Вслух» играет её, TTS — fallback. */
+  audioReady: boolean;
+  audioAssetId?: string;
+  audioUri?: string;
 };
 
 export type GetPersonalPlanPronunciationRepeatItemsInput = {
@@ -129,6 +134,7 @@ export function getPersonalPlanPronunciationRepeatItems(
     .filter((phrase) => requestedIds.has(String(phrase.id)))
     .map((phrase) => {
       const meaningNote = [...phrase.words].reverse().find((word) => word.teachingNote)?.teachingNote;
+      const audio = resolveApprovedPlanPhraseAudio(String(phrase.id));
 
       return {
         id: String(phrase.id),
@@ -140,6 +146,9 @@ export function getPersonalPlanPronunciationRepeatItems(
         grammarTags: phrase.words.map((word) => word.category).filter(Boolean) as string[],
         vocabularyTags: [],
         explanation: explanationForPhrase(phrase.english, meaningNote),
+        audioReady: audio.audioReady,
+        audioAssetId: audio.audioAssetId,
+        audioUri: audio.audioUri,
       };
     });
 }

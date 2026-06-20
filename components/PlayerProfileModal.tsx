@@ -986,8 +986,6 @@ function PlayerProfileModalBody({
             <Text
               style={{ fontSize: f.numMd, fontWeight: '700', color: t.gold, maxWidth: '100%' }}
               numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.52}
             >
               {xp.toLocaleString()}
             </Text>
@@ -1154,8 +1152,6 @@ function PlayerProfileModalBody({
                 <Text
                   style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 1 }}
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.72}
                 >
                   {profileFocusConfig.value}
                 </Text>
@@ -1185,8 +1181,6 @@ function PlayerProfileModalBody({
                   <Text
                     style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', marginTop: 2 }}
                     numberOfLines={1}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.62}
                   >
                     {fact.value}
                   </Text>

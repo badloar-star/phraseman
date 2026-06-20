@@ -47,7 +47,6 @@ describe('app art backdrop registry', () => {
   it('uses the cinema bloom background system for every theme mode', () => {
     const screenGradient = fs.readFileSync(path.join(__dirname, '..', 'components', 'ScreenGradient.tsx'), 'utf8');
     const screenBackground = fs.readFileSync(path.join(__dirname, '..', 'constants', 'screenBackground.ts'), 'utf8');
-    const premiumV2 = fs.readFileSync(path.join(__dirname, '..', 'app', 'premium_modal_v2.tsx'), 'utf8');
     const paywallShared = fs.readFileSync(path.join(__dirname, '..', 'components', 'paywall', 'paywallShared.tsx'), 'utf8');
     const modes = ['dark', 'gold', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt'];
     const bloomRenderIndex = screenGradient.indexOf('<CinemaBloom mode={layer.bloomMode} reduceMotion={reduceMotion} />');
@@ -68,8 +67,6 @@ describe('app art backdrop registry', () => {
       expect(screenBackground).toMatch(new RegExp(`${mode}: \\[`));
     }
 
-    expect(premiumV2).toContain('BG_GRADIENTS as SCREEN_BG_GRADIENTS');
-    expect(premiumV2).not.toContain('const BG_GRADIENTS: Record<string, [string, string, string]>');
     expect(paywallShared).toContain('BG_GRADIENTS as SCREEN_BG_GRADIENTS');
     expect(paywallShared).not.toContain('const BG_GRADIENTS: Record<string, [string, string, string]>');
   });

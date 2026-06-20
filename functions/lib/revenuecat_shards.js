@@ -34,6 +34,8 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.__revenueCatWebhookTestHooks = exports.revenueCatShardsWebhook = void 0;
+exports.transferTargetIds = transferTargetIds;
+exports.transferSourceIds = transferSourceIds;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const logger = __importStar(require("firebase-functions/logger"));
@@ -350,6 +352,141 @@ async function handleShardPurchaseEvent(event, eventType, productId, pack, res) 
         res.status(500).send('Internal error');
     }
 }
+// ── TRANSFER: anonymous → stable_id entitlement move (closes the "premium written
+//    to an anonymous RC id" gap, scenario #13). When a purchase happened before
+//    Purchases.logIn(stable_id), premium landed on users/{$RCAnonymousID}. After
+//    login RevenueCat fires TRANSFER with transferred_from (anon ids) → transferred_to
+//    (the stable_id). We move any premium block to the recipient and deactivate the
+//    donor, so the paying user sees premium on their real account. ────────────────
+const PREMIUM_PROGRESS_KEYS = [
+    'premium_plan',
+    'premium_expiry',
+    'premium_rc_product_id',
+    'premium_rc_period_type',
+    'premium_rc_store',
+    'premium_rc_environment',
+    'premium_rc_event_type',
+    'premium_rc_updated_at',
+    'premium_rc_expiry_ms',
+    'premium_rc_purchased_at_ms',
+    'premium_rc_cancelled_at',
+    'had_premium_ever',
+];
+function idList(raw) {
+    const out = new Set();
+    for (const v of Array.isArray(raw) ? raw : []) {
+        const id = cleanId(v);
+        if (id)
+            out.add(id);
+    }
+    return [...out];
+}
+/** Recipients of a transfer: prefer stable (non-anonymous) ids. */
+function transferTargetIds(event) {
+    return stableCandidateUserIds(idList(event.transferred_to));
+}
+/** Donors of a transfer (the ids losing the entitlement). */
+function transferSourceIds(event) {
+    return idList(event.transferred_from);
+}
+/** Reads the active store-premium block from a donor doc, if any. */
+function readDonorPremiumBlock(progress, now) {
+    const plan = cleanId(progress.premium_plan).toLowerCase();
+    const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual';
+    if (!isStorePlan)
+        return null;
+    const expiryMs = eventMs(progress.premium_expiry);
+    const rcExpiryMs = eventMs(progress.premium_rc_expiry_ms);
+    // Active = open-ended (expiry<=0 with rc tracking) or a future expiry.
+    const active = (expiryMs == null || expiryMs <= 0 || expiryMs > now) || (rcExpiryMs != null && rcExpiryMs > now);
+    if (!active)
+        return null;
+    const block = {};
+    for (const key of PREMIUM_PROGRESS_KEYS) {
+        const v = cleanId(progress[key]);
+        if (v)
+            block[key] = v;
+    }
+    block.premium_plan = plan === 'annual' ? 'yearly' : plan;
+    block.had_premium_ever = '1';
+    return block;
+}
+async function handleTransferEvent(event, eventType, res) {
+    const targets = transferTargetIds(event);
+    const sources = transferSourceIds(event);
+    if (targets.length === 0 || sources.length === 0) {
+        res.status(200).json({ ok: true, kind: 'transfer', ignored: 'missing_transfer_ids' });
+        return;
+    }
+    const db = admin.firestore();
+    const now = Date.now();
+    const eventId = cleanId(event.id) || `TRANSFER_${event.event_timestamp_ms || now}_${targets[0]}`;
+    const processedRef = db.collection('revenuecat_premium_events').doc(eventId);
+    try {
+        const out = await db.runTransaction(async (tx) => {
+            const processedSnap = await tx.get(processedRef);
+            if (processedSnap.exists)
+                return { moved: false, reason: 'duplicate' };
+            // Find a donor doc that actually holds active store premium.
+            let premiumBlock = null;
+            let donorId = '';
+            for (const src of sources) {
+                const snap = await tx.get(db.collection('users').doc(src));
+                if (!snap.exists)
+                    continue;
+                const progress = (snap.data()?.progress ?? {});
+                const block = readDonorPremiumBlock(progress, now);
+                if (block) {
+                    premiumBlock = block;
+                    donorId = src;
+                    break;
+                }
+            }
+            // Recipient = first stable target that already has a user doc (the real account).
+            let recipientId = '';
+            for (const t of targets) {
+                const snap = await tx.get(db.collection('users').doc(t));
+                if (snap.exists) {
+                    recipientId = t;
+                    break;
+                }
+            }
+            if (!recipientId)
+                recipientId = targets[0];
+            tx.set(processedRef, {
+                eventId,
+                eventType,
+                transferredFrom: sources,
+                transferredTo: targets,
+                donorId,
+                recipientId,
+                movedPremium: !!premiumBlock,
+                createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            });
+            if (!premiumBlock)
+                return { moved: false, reason: 'no_active_donor_premium', recipientId };
+            // Move premium to the recipient.
+            tx.set(db.collection('users').doc(recipientId), {
+                progress: { ...premiumBlock, premium_rc_event_type: 'TRANSFER', premium_rc_updated_at: String(now) },
+                updatedAt: now,
+                last_active_at: now,
+            }, { merge: true });
+            // Deactivate the donor (no dup premium across two docs).
+            if (donorId && donorId !== recipientId) {
+                tx.set(db.collection('users').doc(donorId), {
+                    progress: { premium_plan: '', premium_expiry: String(now), premium_rc_event_type: 'TRANSFER_OUT', premium_rc_updated_at: String(now) },
+                    updatedAt: now,
+                }, { merge: true });
+            }
+            return { moved: true, recipientId, donorId };
+        });
+        res.status(200).json({ ok: true, kind: 'transfer', ...out });
+    }
+    catch (error) {
+        logger.error('revenuecat_transfer_webhook_failed', error);
+        res.status(500).send('Internal error');
+    }
+}
 exports.revenueCatShardsWebhook = (0, https_1.onRequest)({ region: REGION, secrets: [REVENUECAT_WEBHOOK_AUTH] }, async (req, res) => {
     if (req.method !== 'POST') {
         res.status(405).send('Method not allowed');
@@ -366,6 +503,12 @@ exports.revenueCatShardsWebhook = (0, https_1.onRequest)({ region: REGION, secre
     const expectedAuth = REVENUECAT_WEBHOOK_AUTH.value().trim();
     if (!expectedAuth || !authMatches(req.headers.authorization, expectedAuth)) {
         res.status(401).send('Unauthorized');
+        return;
+    }
+    // TRANSFER moves entitlements between app_user_ids (anonymous → stable_id after
+    // login). It carries no product_id, so handle it before the premium/shard routing.
+    if (eventType === 'TRANSFER') {
+        await handleTransferEvent(event, eventType, res);
         return;
     }
     const pack = SHARD_PACKS_BY_PRODUCT_ID[productId];
@@ -387,5 +530,8 @@ exports.__revenueCatWebhookTestHooks = {
     premiumPlanFromEvent,
     prioritizeUserCandidates,
     stableCandidateUserIds,
+    transferTargetIds,
+    transferSourceIds,
+    handleTransferEvent,
 };
 //# sourceMappingURL=revenuecat_shards.js.map

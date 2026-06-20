@@ -200,11 +200,11 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   aurora: AURORA,
   volt: VOLT,
 };
-const CYCLE: ThemeMode[] = ['minimalDark', 'midnight', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
-/** Premium themes. Free theme: `minimalDark`. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'midnight', 'ember', 'aurora', 'volt'];
+const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'dark', 'coral', 'gold'];
+/** Premium themes. Free theme: `midnight`; `gold` is unlocked only by reward. */
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
-const DEFAULT_THEME_MODE: ThemeMode = 'minimalDark';
+const DEFAULT_THEME_MODE: ThemeMode = 'midnight';
 const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass']);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
@@ -245,8 +245,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
       }
       if (themeStr === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS) {
-        migrated = 'coral';
-        void AsyncStorage.setItem('app_theme', 'coral');
+        migrated = DEFAULT_THEME_MODE;
+        void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
       }
       const valid =
         false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false || migrated === 'minimalDark' || false ||

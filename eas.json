@@ -20,10 +20,26 @@
         "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
         "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
       }
+    },
+    "testflight-dev": {
+      "environment": "production",
+      "channel": "testflight-dev",
+      "autoIncrement": false,
+      "env": {
+        "EXPO_PUBLIC_STORE_RELEASE": "0",
+        "EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS": "1",
+        "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
+        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
+      }
     }
   },
   "submit": {
     "production": {
+      "ios": {
+        "ascAppId": "6764800879"
+      }
+    },
+    "testflight-dev": {
       "ios": {
         "ascAppId": "6764800879"
       }

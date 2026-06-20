@@ -62,3 +62,50 @@ export const COLLECTIBLE_RARITY_LABEL_RU: Record<CollectibleRarity, string> = {
   epic: 'Эпическая',
   legendary: 'Легендарная',
 };
+
+/** Подписи редкости на все языки интерфейса. Ключи — коды Lang. */
+export const COLLECTIBLE_RARITY_LABELS: Record<
+  CollectibleRarity,
+  { ru: string; uk: string; es: string } & Record<string, string>
+> = {
+  common: {
+    ru: 'Обычная',
+    uk: 'Звичайна',
+    es: 'Común',
+    'pt-BR': 'Comum',
+    vi: 'Thông thường',
+    id: 'Biasa',
+    tr: 'Sıradan',
+    pl: 'Zwykła',
+  },
+  rare: {
+    ru: 'Редкая',
+    uk: 'Рідкісна',
+    es: 'Rara',
+    'pt-BR': 'Rara',
+    vi: 'Hiếm',
+    id: 'Langka',
+    tr: 'Nadir',
+    pl: 'Rzadka',
+  },
+  epic: {
+    ru: 'Эпическая',
+    uk: 'Епічна',
+    es: 'Épica',
+    'pt-BR': 'Épica',
+    vi: 'Sử thi',
+    id: 'Epik',
+    tr: 'Destansı',
+    pl: 'Epicka',
+  },
+  legendary: {
+    ru: 'Легендарная',
+    uk: 'Легендарна',
+    es: 'Legendaria',
+    'pt-BR': 'Lendária',
+    vi: 'Huyền thoại',
+    id: 'Legendaris',
+    tr: 'Efsanevi',
+    pl: 'Legendarna',
+  },
+};

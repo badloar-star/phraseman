@@ -196,6 +196,16 @@ describe('daily_tasks claim + completion events', () => {
     expect(DailyTasks.countClaimedForTaskList(tasks, progress)).toBe(0);
   });
 
+  it('treats already claimed daily tasks as done for the final shard reward', () => {
+    const progress = [
+      { taskId: 'da1', current: 0, completed: false, claimed: true },
+      { taskId: 'ta9', current: 100, completed: true, claimed: false },
+      { taskId: 'cs6', current: 7, completed: true, claimed: true },
+    ];
+
+    expect(DailyTasks.areAllDailyTaskObjectivesDone(stubTasks, progress)).toBe(true);
+  });
+
   it('loadTodayProgress realigns storage when task ids no longer match (stale rows dropped)', async () => {
     const key = `daily_tasks_${FIXED_DAY}`;
     mockStorage[key] = JSON.stringify([

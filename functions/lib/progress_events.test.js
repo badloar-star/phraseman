@@ -266,5 +266,68 @@ describe('progress_events engine', () => {
         expect(source).toContain('progress: patch');
         expect(source).not.toContain('`progress.${key}`');
     });
+    // ECON-2: суточный потолок XP с гриндабельных источников (lesson_answer и т.п.).
+    describe('daily per-source XP cap (ECON-2)', () => {
+        const answerEvent = (xpDelta, id) => (0, progress_events_1.normalizeProgressEvent)({
+            eventId: `lesson:1:answer:${id}`,
+            type: 'lesson_answer',
+            clientLocalDate: '2026-06-13',
+            payload: { xpDelta },
+        });
+        it('awards full XP while under the daily lesson_answer cap', () => {
+            const result = (0, progress_events_1.applyProgressEvent)({}, answerEvent(80, 'a'), now, {
+                sourceXpToday: { lesson_answer: 1000 },
+            });
+            expect(result.xpDelta).toBe(80);
+        });
+        it('clamps XP to the remaining daily budget near the cap', () => {
+            const result = (0, progress_events_1.applyProgressEvent)({}, answerEvent(100, 'b'), now, {
+                sourceXpToday: { lesson_answer: 7950 },
+            });
+            expect(result.xpDelta).toBe(50); // 8000 - 7950
+        });
+        it('awards zero once the daily cap is exhausted', () => {
+            const result = (0, progress_events_1.applyProgressEvent)({}, answerEvent(100, 'c'), now, {
+                sourceXpToday: { lesson_answer: 8000 },
+            });
+            expect(result.xpDelta).toBe(0);
+        });
+    });
+    // ECON-3/11: уровневый зачёт — серверный пересчёт XP + суточный лимит попыток.
+    describe('level exam XP guards (ECON-3, ECON-11)', () => {
+        const levelExam = (pct, passed, xpDelta, id = '1') => (0, progress_events_1.normalizeProgressEvent)({
+            eventId: `exam:en:a1:${id}:complete`,
+            type: 'exam_complete',
+            clientLocalDate: '2026-06-13',
+            payload: { level: 'a1', pct, passed, xpDelta },
+        });
+        it('recomputes pass XP from pct, ignoring inflated client xpDelta', () => {
+            const result = (0, progress_events_1.applyProgressEvent)({}, levelExam(80, true, 9999), now, { examAttemptsToday: 0 });
+            expect(result.xpDelta).toBe(90); // 50 + round(80/2)
+        });
+        it('gives no XP for spam-click low-percentage attempts', () => {
+            const result = (0, progress_events_1.applyProgressEvent)({}, levelExam(5, false, 9999), now, { examAttemptsToday: 0 });
+            expect(result.xpDelta).toBe(0);
+        });
+        it('blocks XP once the daily attempt limit is reached', () => {
+            const result = (0, progress_events_1.applyProgressEvent)({}, levelExam(95, true, 100), now, { examAttemptsToday: 5 });
+            expect(result.xpDelta).toBe(0);
+        });
+        it('still records exam progress (pct/passed) even when XP is blocked', () => {
+            const result = (0, progress_events_1.applyProgressEvent)({}, levelExam(95, true, 100), now, { examAttemptsToday: 5 });
+            expect(result.progressPatch.level_exam_A1_best_pct).toBe('95');
+            expect(result.progressPatch.level_exam_A1_passed).toBe('true');
+        });
+        it('preserves the gold-scale reward for the final exam (not a level exam)', () => {
+            const finalEvent = (0, progress_events_1.normalizeProgressEvent)({
+                eventId: 'exam:final:en:attempt-1:complete',
+                type: 'exam_complete',
+                clientLocalDate: '2026-06-13',
+                payload: { level: 'final', pct: 95, passed: true, xpDelta: 10000 },
+            });
+            const result = (0, progress_events_1.applyProgressEvent)({}, finalEvent, now, { examAttemptsToday: 5 });
+            expect(result.xpDelta).toBe(10000);
+        });
+    });
 });
 //# sourceMappingURL=progress_events.test.js.map

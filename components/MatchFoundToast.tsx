@@ -1,11 +1,12 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated, Dimensions, Easing, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Animated, Dimensions, Easing, PanResponder, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from './SafeLinearGradient';
 import { router, usePathname } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { useLang } from './LangContext';
+import { triLang } from '../constants/i18n';
 import { hapticSoftImpact, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { ARENA_LOBBY_ACCEPT_MS, CLOUD_SYNC_ENABLED } from '../app/config';
@@ -13,50 +14,16 @@ import { setSessionLobbyChoice } from '../app/services/arena_db';
 import { reserveArenaGameEntry } from '../app/arena_access_gate';
 import { useOverlayVisible } from './OverlayArbiter';
 import {
+  isMatchFoundToastPathAllowed,
+  type MatchFoundToastHost,
+} from './matchFoundToastPaths';
+import {
   cancelScheduledAnimatedStateUpdates,
   scheduleTrackedAnimatedStateUpdate,
   type ScheduledAnimatedStateUpdate,
 } from './animationScheduling';
 
 const { width: SCREEN_W } = Dimensions.get('window');
-
-type MatchFoundToastHost = 'root' | 'screen';
-
-/** Не показывать тост поверх «боевого» флоу арены; на остальных экранах — можно (табы, уроки, друзья, …). */
-const MATCH_FOUND_TOAST_PATH_BLOCKLIST = [
-  'arena_lobby',
-  'arena_game',
-  'arena_join',
-  'arena_results',
-  'arena_rating',
-] as const;
-
-const MATCH_FOUND_TOAST_SCREEN_HOST_PATHS = [
-  'premium_modal',
-] as const;
-
-function pathHasFragment(
-  pathname: string,
-  fragments: readonly string[],
-): boolean {
-  const lower = pathname.toLowerCase();
-  for (const frag of fragments) {
-    if (lower.includes(frag)) return true;
-  }
-  return false;
-}
-
-function isMatchFoundToastPathAllowed(
-  pathname: string | null | undefined,
-  host: MatchFoundToastHost,
-): boolean {
-  if (typeof pathname !== 'string' || pathname.length === 0) return false;
-  if (host === 'screen') {
-    return pathHasFragment(pathname, MATCH_FOUND_TOAST_SCREEN_HOST_PATHS);
-  }
-  if (pathHasFragment(pathname, MATCH_FOUND_TOAST_SCREEN_HOST_PATHS)) return false;
-  return !pathHasFragment(pathname, MATCH_FOUND_TOAST_PATH_BLOCKLIST);
-}
 
 function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
   const { status, sessionId, userId, isMatchHandled, isLobbyActive, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort } = useMatchmakingContext();
@@ -67,6 +34,9 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
 
   const [visible, setVisible] = useState(false);
   const translateY = useRef(new Animated.Value(-160)).current;
+  /** Смещения от свайпа (пользователь может смахнуть тост вверх/вбок). */
+  const swipeY = useRef(new Animated.Value(0)).current;
+  const swipeX = useRef(new Animated.Value(0)).current;
   const dotPulse   = useRef(new Animated.Value(0)).current;
   const swordTilt  = useRef(new Animated.Value(0)).current;
   const sheen      = useRef(new Animated.Value(0)).current;
@@ -93,6 +63,8 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
     toastActiveRef.current = true;
     setVisible(true);
+    swipeY.setValue(0);
+    swipeX.setValue(0);
     hapticSoftImpact();
 
     if (slideInRafRef.current != null) cancelAnimationFrame(slideInRafRef.current);
@@ -169,6 +141,29 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
     loopsRef.current = [];
   };
 
+  /** Отклонить матч (по таймауту ИЛИ по свайпу): тихо помечаем handled,
+   *  отменяем поиск и шлём decline на сервер (если это реальный матч). */
+  const declineMatch = useCallback(() => {
+    void (async () => {
+      const sid = sessionId;
+      const uid = userId;
+      if (
+        sid && uid && CLOUD_SYNC_ENABLED
+        && !sid.startsWith('bot_')
+        && !sid.startsWith('preview_match_')
+        && !sid.startsWith('dev_test')
+      ) {
+        await setSessionLobbyChoice(sid, uid, 'decline').catch(() => {});
+      }
+      markMatchHandled();
+      clearAcceptSchedule();
+      slideOut();
+      await cancelSearching();
+      await resumeSearchAfterLobbyAbort();
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionId, userId, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort]);
+
   const slideOut = (cb?: () => void) => {
     clearAcceptSchedule();
     if (slideInRafRef.current != null) {
@@ -191,6 +186,47 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
       toValue: -160, duration: MOTION_DURATION.slow, useNativeDriver: true,
     }).start(() => done());
   };
+
+  /** Свайп-смахивание тоста: вверх или вбок → отклонить матч.
+   *  Реагируем только на ощутимое движение, чтобы не перехватывать обычный тап. */
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: (_e, g) =>
+        Math.abs(g.dy) > 6 || Math.abs(g.dx) > 6,
+      onPanResponderMove: (_e, g) => {
+        // Вверх — свободно; вниз — с сопротивлением (тост «прилип» сверху).
+        swipeY.setValue(g.dy < 0 ? g.dy : g.dy * 0.25);
+        swipeX.setValue(g.dx);
+      },
+      onPanResponderRelease: (_e, g) => {
+        const dismissUp = g.dy < -40 || g.vy < -0.5;
+        const dismissSide = Math.abs(g.dx) > 80 || Math.abs(g.vx) > 0.6;
+        if (dismissUp || dismissSide) {
+          hapticTap();
+          const toX = dismissSide ? (g.dx < 0 ? -SCREEN_W : SCREEN_W) : 0;
+          const toY = dismissSide ? g.dy : -220;
+          Animated.parallel([
+            Animated.timing(swipeX, { toValue: toX, duration: 180, useNativeDriver: true }),
+            Animated.timing(swipeY, { toValue: toY, duration: 180, useNativeDriver: true }),
+          ]).start(() => {
+            declineMatch();
+          });
+          return;
+        }
+        // Недотянул — возвращаем на место.
+        Animated.parallel([
+          Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, friction: 7 }),
+          Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, friction: 7 }),
+        ]).start();
+      },
+      onPanResponderTerminate: () => {
+        Animated.parallel([
+          Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, friction: 7 }),
+          Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, friction: 7 }),
+        ]).start();
+      },
+    }),
+  ).current;
 
   useEffect(() => () => {
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
@@ -215,23 +251,7 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
       });
       acceptExpireTimerRef.current = setTimeout(() => {
         acceptExpireTimerRef.current = null;
-        void (async () => {
-          const sid = sessionId;
-          const uid = userId;
-          if (
-            sid && uid && CLOUD_SYNC_ENABLED
-            && !sid.startsWith('bot_')
-            && !sid.startsWith('preview_match_')
-            && !sid.startsWith('dev_test')
-          ) {
-            await setSessionLobbyChoice(sid, uid, 'decline').catch(() => {});
-          }
-          markMatchHandled();
-          clearAcceptSchedule();
-          slideOut();
-          await cancelSearching();
-          await resumeSearchAfterLobbyAbort();
-        })();
+        declineMatch();
       }, ARENA_LOBBY_ACCEPT_MS);
     } else if (toastActiveRef.current) {
       slideOut();
@@ -244,7 +264,7 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
       }
       stopLoops();
     };
-  }, [wantsToast, overlayVisible, sessionId, userId, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort]);
+  }, [wantsToast, overlayVisible, declineMatch]);
 
   const handlePress = () => {
     if (!sessionId || !userId) return;
@@ -268,8 +288,18 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
 
   return (
     <Animated.View
-      style={[styles.container, { top: insets.top + 8, transform: [{ translateY }] }]}
+      style={[
+        styles.container,
+        {
+          top: insets.top + 8,
+          transform: [
+            { translateY: Animated.add(translateY, swipeY) },
+            { translateX: swipeX },
+          ],
+        },
+      ]}
       pointerEvents="box-none"
+      {...panResponder.panHandlers}
     >
       <TouchableOpacity
         activeOpacity={0.92}
@@ -357,18 +387,10 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
 
         <View style={styles.textWrap}>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.body }]}>
-            {lang === 'uk'
-              ? 'Суперника знайдено!'
-              : lang === 'es'
-                ? '¡Rival encontrado!'
-                : 'Соперник найден!'}
+            {triLang(lang, { ru: 'Соперник найден!', uk: 'Суперника знайдено!', es: '¡Rival encontrado!', 'pt-BR': 'Oponente encontrado!', vi: 'Đã tìm thấy đối thủ!', id: 'Lawan ditemukan!', tr: 'Rakip bulundu!', pl: 'Znaleziono rywala!' })}
           </Text>
           <Text style={[styles.sub, { color: t.textMuted, fontSize: f.caption }]}>
-            {lang === 'uk'
-              ? 'Натисни, щоб увійти в гру'
-              : lang === 'es'
-                ? 'Toca para entrar en la partida'
-                : 'Нажми чтобы войти в игру'}
+            {triLang(lang, { ru: 'Нажми чтобы войти в игру', uk: 'Натисни, щоб увійти в гру', es: 'Toca para entrar en la partida', 'pt-BR': 'Toque para entrar na partida', vi: 'Nhấn để vào trận', id: 'Ketuk untuk masuk ke permainan', tr: 'Oyuna girmek için dokun', pl: 'Naciśnij, aby wejść do gry' })}
           </Text>
         </View>
 
@@ -405,7 +427,8 @@ function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
 export default memo(MatchFoundToast);
 
 const styles = StyleSheet.create({
-  container: { position: 'absolute', left: 16, right: 16, zIndex: 9999 },
+  // Ниже MaintenanceGate (баннер 9998 / блок 9999) — техработы всегда сверху.
+  container: { position: 'absolute', left: 16, right: 16, zIndex: 9990, elevation: 10 },
   toast: {
     flexDirection: 'row', alignItems: 'center', gap: 12,
     borderRadius: 18, borderWidth: 1.5,

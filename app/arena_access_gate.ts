@@ -5,6 +5,7 @@ import {
 } from './arena_daily_limit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { logEvent } from './firebase';
+import { isFeatureFreeForEveryone } from './feature_gates';
 
 export type ArenaAccessMode = 'ranked' | 'hill' | 'friend';
 export type ArenaGameEntrySource =
@@ -34,7 +35,9 @@ export async function canStartArenaMatch(params: {
   countDaily: boolean;
 }): Promise<ArenaAccessCheckResult> {
   const { isUnlimited, availableEnergy, countDaily } = params;
-  if (!isUnlimited && countDaily) {
+  // «Пульт»: если арена переведена в «Фри» — дневной лимит матчей снят для всех
+  // (пейвол arena больше не показываем). Энергия — отдельная фича, её не трогаем.
+  if (!isUnlimited && countDaily && !isFeatureFreeForEveryone('arena')) {
     const left = await getDailyArenaPlaysLeft();
     if (left <= 0) return { ok: false, reason: 'daily_limit' };
   }

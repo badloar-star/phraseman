@@ -7,6 +7,7 @@ import { useLang } from '../../LangContext';
 import InGameToast from '../../InGameToast';
 import RankChangeBanner from '../../RankChangeBanner';
 import SaveProgressBanner from '../../SaveProgressBanner';
+import EnvelopeFlightDemo from '../../EnvelopeFlightDemo';
 import {
   AccordionSection, AdminHint, ButtonRow,
   ADMIN_SURFACE_MUTED, ADMIN_TEXT_MUTED, ACCENT_BORDER_SOFT,
@@ -21,13 +22,15 @@ export default function BannersToastsExtraSection({ open, onToggle }: Props) {
   const { lang } = useLang();
   const [inGameToast, setInGameToast] = useState<{ message: string; type: 'error' | 'info' } | null>(null);
   const [rankDelta, setRankDelta] = useState<{ delta: number; passedName?: string; lostToName?: string } | null>(null);
+  // счётчик нажатий: каждое нажатие меняет число → демо проигрывает анимацию заново
+  const [envelopeTrigger, setEnvelopeTrigger] = useState(0);
 
   return (
     <AccordionSection
       id="banners_toasts_extra"
       icon="reorder-three-outline"
       title="Баннеры и инлайн-тосты (остальные)"
-      badge={4}
+      badge={5}
       open={open}
       onToggle={onToggle}
     >
@@ -63,6 +66,16 @@ export default function BannersToastsExtraSection({ open, onToggle }: Props) {
         sub="Понижение позиции"
         onPress={() => setRankDelta({ delta: -1, lostToName: 'Diana' })}
       />
+      <ButtonRow
+        testID="admin-extra-envelope-flight"
+        icon="mail-outline"
+        label="Письмо прилетает в иконку"
+        sub="Имитация анимации нового сообщения (полёт конверта + звук). Один раз за нажатие."
+        onPress={() => setEnvelopeTrigger((n) => n + 1)}
+      />
+
+      {/* Имитация анимации «прилёт письма» — автономная превью-зона */}
+      <EnvelopeFlightDemo trigger={envelopeTrigger} />
 
       {/* Превью-зона для инлайн-элементов */}
       <View

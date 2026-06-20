@@ -161,6 +161,9 @@ describe('reported content regressions', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');
 
     expect(source).toContain('Anyone/anybody чаще звучит как нейтральный вопрос');
+    expect(source).toContain('Someone и somebody — это не разные грамматические правила');
+    expect(source).toContain('Someone звучит нейтральнее');
+    expect(source).toContain('somebody чуть разговорнее');
     expect(source).toContain('Someone/somebody можно использовать, когда ситуация подсказывает');
     expect(source).toContain('Did someone take my phone? = говорящий видит ситуацию и подозревает');
   });
@@ -170,5 +173,12 @@ describe('reported content regressions', () => {
     const trueWord = phrase?.wordsEn?.find((word) => word.correct === 'true');
 
     expect(trueWord?.distractors).toContain('truth');
+  });
+
+  it('uses meaningful direct speech in lesson 27 reported speech theory', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');
+
+    expect(source).toContain("['I will call you', 'He said that he would call me']");
+    expect(source).not.toContain("['I will call me', 'He said that he would call me']");
   });
 });

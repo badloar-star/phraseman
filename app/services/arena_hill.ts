@@ -135,12 +135,27 @@ export async function recordArenaHillAttempt(params: {
   return data;
 }
 
+// In-memory кэш последнего ответа «Трон дня», чтобы при повторном открытии
+// показывать результат МГНОВЕННО (как peekLastKnownShardsBalance для осколков),
+// а сеть лишь обновляет в фоне. Валиден только в пределах текущего dayKey.
+let lastArenaHillTopCache: ArenaHillDailyTopResult | null = null;
+
+/** Мгновенно отдать закэшированный «Трон дня», если он за сегодняшний день. */
+export function peekLastKnownArenaHillTop(): ArenaHillDailyTopResult | null {
+  if (lastArenaHillTopCache && lastArenaHillTopCache.dayKey === arenaHillDayKey()) {
+    return lastArenaHillTopCache;
+  }
+  return null;
+}
+
 export async function getTodayArenaHillTop(): Promise<ArenaHillDailyTopResult> {
   const fn = callable<Record<string, never>, ArenaHillDailyTopResult>('arenaHillGetDailyTop');
   const { data } = await fn({});
-  return {
+  const result: ArenaHillDailyTopResult = {
     dayKey: String(data?.dayKey ?? arenaHillDayKey()),
     rewardShards: Math.max(0, Math.trunc(Number(data?.rewardShards) || 0)),
     entries: Array.isArray(data?.entries) ? data.entries.slice(0, 1) : [],
   };
+  lastArenaHillTopCache = result;
+  return result;
 }

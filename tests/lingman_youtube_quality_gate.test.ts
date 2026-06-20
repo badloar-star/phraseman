@@ -57,6 +57,25 @@ describe('lingman YouTube quality gate', () => {
     expect(player).toContain('testID="lingman-player-error"');
   });
 
+  it('connects the catalog to the PHRASEMAN English YouTube channel', () => {
+    const combined = [catalogSource(), buttonSource(), dataSource()].join('\n');
+
+    expect(dataSource()).toContain("LINGMAN_CHANNEL_ID = 'UCNNVZbMkh4jrW6uluaaJTwA'");
+    expect(dataSource()).toContain("LINGMAN_CHANNEL_HANDLE = '@PhrasemanENGLISH'");
+    expect(dataSource()).toContain('https://www.youtube.com/@PhrasemanENGLISH/videos');
+    expect(combined).toContain('LINGMAN_CHANNEL_DISPLAY_NAME');
+    expect(combined).not.toContain('@professorlingman');
+  });
+
+  it('filters Shorts out and keeps the YouTube tab for long videos only', () => {
+    const data = dataSource();
+
+    expect(data).toContain('isLingmanLongFormVideo');
+    expect(data).toContain('KNOWN_SHORT_VIDEO_IDS');
+    expect(data).toContain('SHORTS_MARKER_RE');
+    expect(data).toContain('.filter(isLingmanLongFormVideo)');
+  });
+
   it('exposes stable catalog test IDs and empty/fallback states', () => {
     const catalog = catalogSource();
 

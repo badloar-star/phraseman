@@ -1,55 +1,41 @@
-// Утилиты дневного лимита ИИ-диалогов (по образцу trainer_session.ts).
-// Клиентский гейт — UX-слой; источник правды по квоте — сервер (premium_dialog CF).
+// Гейт бесплатных ИИ-диалогов. Модель (запрос пользователя 2026-06-20):
+// бесплатно ПОЖИЗНЕННО доступен РОВНО ОДИН полный диалог (без лимита реплик
+// внутри него), общий на все режимы (сценарий / ситуация / свободный разговор).
+// После него — полный премиум-замок, без «3 реплики в день».
+//
+// Клиентский флаг — UX-слой (мгновенно прячет ввод и ведёт на пейвол). Источник
+// правды — сервер (premium_dialog CF), который держит тот же пожизненный флаг по
+// stable_id, поэтому переустановка/второе устройство попытку не возвращает.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getFreeDialogsPerDay } from './ai_dialog_flags';
 
-export const DAILY_FREE_DIALOG_KEY = 'dialogs_free_session_v1';
+// v2: переезд с дневного счётчика реплик (v1) на пожизненный «один диалог».
+// Старый ключ намеренно не читаем — у кого он был, тот получает свежую попытку
+// (разовая щедрость при миграции, не баг).
+export const FREE_DIALOG_USED_KEY = 'dialogs_free_lifetime_used_v2';
 
-interface DailyDialogState {
-  date: string;
-  count: number;
-}
-
-const todayKey = (): string => new Date().toISOString().split('T')[0];
-
-function parseState(raw: string | null): DailyDialogState | null {
-  if (!raw) return null;
+/** Потрачен ли единственный бесплатный диалог (пожизненно). */
+export async function hasUsedFreeDialog(): Promise<boolean> {
   try {
-    const data = JSON.parse(raw) as DailyDialogState;
-    if (typeof data?.date === 'string' && typeof data?.count === 'number') return data;
-    return null;
-  } catch {
-    return null;
-  }
-}
-
-export async function hasUsedFreeDialogToday(): Promise<boolean> {
-  try {
-    const data = parseState(await AsyncStorage.getItem(DAILY_FREE_DIALOG_KEY));
-    if (!data || data.date !== todayKey()) return false;
-    return data.count >= getFreeDialogsPerDay();
+    return (await AsyncStorage.getItem(FREE_DIALOG_USED_KEY)) === '1';
   } catch {
     return false;
   }
 }
 
+/**
+ * Отметить бесплатный диалог как использованный. Идемпотентно — повторный вызов
+ * ничего не меняет. Зовётся на ПЕРВОЙ реплике пользователя (не при открытии
+ * экрана), чтобы случайный вход-выход не сжигал попытку.
+ */
 export async function markFreeDialogUsed(): Promise<void> {
   try {
-    const existing = parseState(await AsyncStorage.getItem(DAILY_FREE_DIALOG_KEY));
-    const data: DailyDialogState =
-      existing && existing.date === todayKey() ? existing : { date: todayKey(), count: 0 };
-    const next: DailyDialogState = { date: data.date, count: data.count + 1 };
-    await AsyncStorage.setItem(DAILY_FREE_DIALOG_KEY, JSON.stringify(next));
-  } catch {}
+    await AsyncStorage.setItem(FREE_DIALOG_USED_KEY, '1');
+  } catch {
+    // запись в локальное хранилище — best-effort; сервер всё равно источник правды
+  }
 }
 
-export async function getFreeDialogsLeftToday(): Promise<number> {
-  const cap = getFreeDialogsPerDay();
-  try {
-    const data = parseState(await AsyncStorage.getItem(DAILY_FREE_DIALOG_KEY));
-    if (!data || data.date !== todayKey()) return cap;
-    return Math.max(0, cap - data.count);
-  } catch {
-    return cap;
-  }
+/** Остался ли у не-premium бесплатный диалог. true = можно начать. */
+export async function hasFreeDialogLeft(): Promise<boolean> {
+  return !(await hasUsedFreeDialog());
 }

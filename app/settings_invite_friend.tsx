@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useState } from 'react';
@@ -17,6 +18,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import { STORE_URL } from './config';
+import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { Lang } from '../constants/i18n';
@@ -294,9 +296,26 @@ export default function SettingsInviteFriend() {
     hapticTap();
     setBusy(true);
     try {
-      const pool = OFFLINE_SHARE_BODIES_BY_LANG[copyLang] ?? OFFLINE_SHARE_BODIES_BY_LANG.ru;
-      const msg = pool[Math.floor(Math.random() * pool.length)];
-      const r = await Share.share({ message: msg });
+      // Главное: шарим персональную инвайт-ссылку с реф-кодом — на Android она несёт код через
+      // Install Referrer (друг попадает в рефералы автоматически), на iOS друг вводит код вручную.
+      // Тот же билдер, что и на экране «Друзья» (buildCloudReferralInviteShare).
+      let name = 'User';
+      try {
+        name = (await AsyncStorage.getItem('profile_name'))?.trim() || 'User';
+      } catch { /* имя — только сид для кода, не критично */ }
+      const cloud = await buildCloudReferralInviteShare({ lang: copyLang, userName: name }).catch(() => null);
+
+      let r: { action?: string } | undefined;
+      if (cloud?.message) {
+        r = await Share.share({ message: cloud.message, url: cloud.url });
+      } else {
+        // Фолбэк — только если кода нет (не вошёл через Google/Apple или нет сети):
+        // обычная ссылка на стор без атрибуции, чтобы кнопка хоть что-то делала.
+        const pool = OFFLINE_SHARE_BODIES_BY_LANG[copyLang] ?? OFFLINE_SHARE_BODIES_BY_LANG.ru;
+        const msg = pool[Math.floor(Math.random() * pool.length)];
+        r = await Share.share({ message: msg });
+      }
+
       if (shouldCountInviteShare(r)) {
         void updateMultipleTaskProgress(
           [{ type: 'invite_friend', increment: 1 }],

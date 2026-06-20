@@ -320,7 +320,7 @@ function AchievementToast() {
             {
               backgroundColor: t.bgCard,
               borderColor: t.textSecond,
-              shadowColor: t.textSecond,
+              shadowColor: '#000',
             },
           ]}
         >
@@ -456,9 +456,9 @@ const s = StyleSheet.create({
     paddingHorizontal: 14,
     gap:            12,
     shadowOffset:   { width: 0, height: 4 },
-    shadowOpacity:  0.25,
-    shadowRadius:   12,
-    elevation:      10,
+    shadowOpacity:  0.18,
+    shadowRadius:   8,
+    elevation:      6,
   },
   iconWrap: {
     width:         TOAST_ICON_SLOT_SIZE,

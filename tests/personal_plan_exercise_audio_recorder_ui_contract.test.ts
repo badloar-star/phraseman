@@ -18,8 +18,15 @@ describe('personal plan exercise audio and recorder UI contract', () => {
   // recognition flow (listen to the phrase, speak it, score the transcript, pass at
   // PLAN_PRONUNCIATION_PASS_THRESHOLD). These assertions track the current honest flow.
   it('drives pronunciation through real on-device recognition, not a fake recording', () => {
-    expect(SOURCE).toContain('recorderHintPill');
+    expect(SOURCE).toContain('recorderHintRow');
     expect(SOURCE).toContain('recorderStack: {');
+
+    // Recording is confirmed to the learner: a canonical start cue + a live
+    // equalizer that reacts to the voice (so it's never ambiguous whether the
+    // mic is listening). Shared with the lesson "Устно" panel.
+    expect(SOURCE).toContain('playRecordStart');
+    expect(SOURCE).toContain('volumeChangeEventOptions: { enabled: true');
+    expect(SOURCE).toContain('<VoiceEqualizer');
 
     // Real on-device recognition + local scoring (no paid service, no server).
     expect(SOURCE).toContain('speechModule.start({');

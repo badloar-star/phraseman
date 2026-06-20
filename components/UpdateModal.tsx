@@ -290,8 +290,6 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
                 { color: palette.title, fontSize: Math.min(34, Math.max(28, f.h1 + 7)) },
               ]}
               numberOfLines={2}
-              adjustsFontSizeToFit
-              minimumFontScale={0.78}
             >
               {tx.title}
             </Text>
@@ -338,8 +336,6 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
                   <Text
                     style={[styles.updateBtnText, { color: palette.primaryText, fontSize: Math.max(19, f.bodyLg + 1) }]}
                     numberOfLines={2}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.78}
                   >
                     {tx.update}
                   </Text>
@@ -363,8 +359,6 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
                 <Text
                   style={[styles.closeBtnText, { color: palette.secondaryText, fontSize: Math.max(15, f.body) }]}
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.86}
                 >
                   {tx.close}
                 </Text>

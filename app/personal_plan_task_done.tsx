@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
@@ -27,6 +27,7 @@ export default function PersonalPlanTaskDoneScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { theme: t, themeMode } = useTheme();
+  const insets = useSafeAreaInsets();
 
   const taskTitle = firstParam(params.taskTitle);
   const dayProgress = Number(firstParam(params.dayProgress) || '0');
@@ -70,7 +71,7 @@ export default function PersonalPlanTaskDoneScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: bg }]}>
+    <View style={[styles.safe, { backgroundColor: bg, paddingTop: insets.top }]}>
       <LinearGradient colors={t.bgGradient} style={styles.fill}>
         <BounceView style={styles.fill}>
         <View style={styles.topBar}>
@@ -161,7 +162,7 @@ export default function PersonalPlanTaskDoneScreen() {
               ) : null}
               <View style={[styles.statBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
                 <Text style={[styles.statValue, { color: t.textPrimary }]}>{dayIndex}</Text>
-                <Text style={[styles.statLabel, { color: t.textMuted }]}>день</Text>
+                <Text style={[styles.statLabel, { color: t.textMuted }]}>номер дня</Text>
               </View>
             </View>
           ) : null}
@@ -186,7 +187,7 @@ export default function PersonalPlanTaskDoneScreen() {
         </Animated.View>
         </BounceView>
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   );
 }
 

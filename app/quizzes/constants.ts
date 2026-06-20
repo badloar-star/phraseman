@@ -4,6 +4,20 @@ import type { ThemeMode } from '../../constants/theme';
 export type Level = 'easy' | 'medium' | 'hard';
 type LegacyQuizThemeMode = 'light' | 'ocean' | 'sakura';
 type QuizVisualThemeMode = ThemeMode | LegacyQuizThemeMode;
+export type QuizLevelLogoThemeMode = ThemeMode | 'forest' | 'neonGreen';
+
+const QUIZ_LEVEL_LOGO_THEME_KEYS: readonly QuizLevelLogoThemeMode[] = [
+  'dark',
+  'forest',
+  'neonGreen',
+  'gold',
+  'coral',
+  'minimalDark',
+  'midnight',
+  'ember',
+  'aurora',
+  'volt',
+];
 
 export const LEVEL_IMAGES: Record<string, number> = {
   easy: require('../../assets/images/levels/easy.webp'),
@@ -55,11 +69,21 @@ export const QUIZ_LEVEL_CARD_BACKGROUNDS: Record<ThemeMode, Record<Level, number
   },
 };
 
-export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
+export const QUIZ_LEVEL_LOGOS: Record<QuizLevelLogoThemeMode, Record<Level, number>> = {
   dark: {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-dark.webp'),
     medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-dark.webp'),
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-dark.webp'),
+  },
+  forest: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-forest.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-forest.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-forest.webp'),
+  },
+  neonGreen: {
+    easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-neon-green.webp'),
+    medium: require('../../assets/images/quizzes/level_logos/quiz-logo-medium-neon-green.webp'),
+    hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-neon-green.webp'),
   },
   gold: {
     easy: require('../../assets/images/quizzes/level_logos/quiz-logo-easy-gold.webp'),
@@ -97,6 +121,28 @@ export const QUIZ_LEVEL_LOGOS: Record<ThemeMode, Record<Level, number>> = {
     hard: require('../../assets/images/quizzes/level_logos/quiz-logo-hard-volt.webp'),
   },
 };
+
+export function quizAssetThemeKey(themeMode: string): QuizLevelLogoThemeMode {
+  switch (themeMode) {
+    case 'dark':
+    case 'forest':
+      return 'forest';
+    case 'neonGreen':
+    case 'neon-green':
+      return 'neonGreen';
+    case 'minimal-dark':
+      return 'minimalDark';
+    default:
+      return QUIZ_LEVEL_LOGO_THEME_KEYS.includes(themeMode as QuizLevelLogoThemeMode)
+        ? (themeMode as QuizLevelLogoThemeMode)
+        : 'minimalDark';
+  }
+}
+
+export function getQuizLevelLogoSource(themeMode: string, level: Level): number {
+  const assetKey = quizAssetThemeKey(themeMode);
+  return QUIZ_LEVEL_LOGOS[assetKey]?.[level] ?? QUIZ_LEVEL_LOGOS.minimalDark[level];
+}
 
 // Card palette by theme and level.
 export const THEME_PALETTES: Record<QuizVisualThemeMode, Record<Level, { gradA: string; gradB: string; accent: string }>> = {

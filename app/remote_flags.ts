@@ -54,7 +54,33 @@ export type RemoteBoolKey =
   | 'compass_retention_enabled'
   | 'compass_topic_map_enabled'
   | 'maintenance_banner'
-  | 'maintenance_block';
+  | 'maintenance_block'
+  // Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт TRUE =
+  // kill-switch: боты работают как сейчас, админ может выключить их в «Пульте»
+  // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
+  // очереди соперник не подставляется. Включение возвращает ботов обратно.
+  | 'arena_bots_enabled'
+  // ── Премиум-гейты фич (управляются из «Пульта» → раздел «Премиум/Фри») ──────
+  // Семантика: true = фича за ПРЕМИУМ-замком (как сейчас), false = фича БЕСПЛАТНА
+  // для всех (замок снимается живьём, без релиза). Дефолт TRUE у каждого, чтобы
+  // поведение по умолчанию не менялось — пейволы остаются ровно там, где были.
+  // Списки фич держим в синхроне с FEATURE_GATE_KEYS (app/feature_gates.ts) и
+  // с разделом «Премиум/Фри» в admin/index.html.
+  | 'gate_lessons_premium'
+  | 'gate_speaking_premium'
+  | 'gate_ai_dialog_premium'
+  | 'gate_smart_trainer_premium'
+  | 'gate_trainer_modes_premium'
+  | 'gate_diagnosis_training_premium'
+  | 'gate_personal_plan_premium'
+  | 'gate_stats_premium'
+  | 'gate_flashcards_premium'
+  | 'gate_themes_premium'
+  | 'gate_avatar_auras_premium'
+  | 'gate_mastery_premium'
+  | 'gate_quizzes_premium'
+  | 'gate_arena_premium'
+  | 'gate_energy_premium';
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
@@ -65,7 +91,13 @@ export type RemoteTextKey =
   // выключен или бюджет исчёрпан). Пусто = берётся встроенный текст по Библии.
   | 'compass_voice_fallback_ru'
   | 'compass_voice_fallback_uk'
-  | 'compass_voice_fallback_es';
+  | 'compass_voice_fallback_es'
+  // Поурочные исключения поверх порога free_lesson_limit (управляются из «Пульта»).
+  // JSON-массивы id уроков (1..32). free_lessons_extra — уроки, открытые БЕСПЛАТНО
+  // сверх порога; premium_lessons_extra — уроки, ЗАКРЫТЫЕ под премиум, даже если они
+  // ниже порога. Пусто/невалидно = только порог. premium_* имеет приоритет над free_*.
+  | 'free_lessons_extra'
+  | 'premium_lessons_extra';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -143,6 +175,27 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // блок-экран. Включается у всех живьём (onSnapshot), без релиза.
   maintenance_banner: false,
   maintenance_block: false,
+  // Боты в Арене: дефолт TRUE = kill-switch (боты включены как сейчас). Админ
+  // ставит false в «Пульте» → бот-фолбэк отключается у всех живьём (onSnapshot),
+  // остаётся только реальный матчмейкинг; true возвращает ботов.
+  arena_bots_enabled: true,
+  // Премиум-гейты: дефолт TRUE = фича за премиум-замком (текущее поведение).
+  // Админ ставит false в «Пульте» → фича становится бесплатной у всех живьём.
+  gate_lessons_premium: true,
+  gate_speaking_premium: true,
+  gate_ai_dialog_premium: true,
+  gate_smart_trainer_premium: true,
+  gate_trainer_modes_premium: true,
+  gate_diagnosis_training_premium: true,
+  gate_personal_plan_premium: true,
+  gate_stats_premium: true,
+  gate_flashcards_premium: true,
+  gate_themes_premium: true,
+  gate_avatar_auras_premium: true,
+  gate_mastery_premium: true,
+  gate_quizzes_premium: true,
+  gate_arena_premium: true,
+  gate_energy_premium: true,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
@@ -152,6 +205,8 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   compass_voice_fallback_ru: '',
   compass_voice_fallback_uk: '',
   compass_voice_fallback_es: '',
+  free_lessons_extra: '',
+  premium_lessons_extra: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -300,6 +355,8 @@ export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_r
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
+/** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
+export const isArenaBotsEnabled = () => getRemoteBool('arena_bots_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 /** Кнопка «Навсегда» (lifetime) показывается на пейволах. Дефолт false. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
@@ -320,6 +377,52 @@ export const isCompassTopicMapEnabled = () => getRemoteBool('compass_topic_map_e
 /** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
 export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
 export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');
+
+// ── Премиум-гейты фич ───────────────────────────────────────────────────────
+// true = фича за премиум-замком (дефолт), false = бесплатна для всех. Используются
+// через app/feature_gates.ts (isFeatureFreeForEveryone). Прямые геттеры на случай
+// точечной проверки.
+export const isLessonsPremiumGated = () => getRemoteBool('gate_lessons_premium');
+export const isSpeakingPremiumGated = () => getRemoteBool('gate_speaking_premium');
+export const isAiDialogPremiumGated = () => getRemoteBool('gate_ai_dialog_premium');
+export const isSmartTrainerPremiumGated = () => getRemoteBool('gate_smart_trainer_premium');
+export const isTrainerModesPremiumGated = () => getRemoteBool('gate_trainer_modes_premium');
+export const isDiagnosisTrainingPremiumGated = () => getRemoteBool('gate_diagnosis_training_premium');
+export const isPersonalPlanPremiumGated = () => getRemoteBool('gate_personal_plan_premium');
+export const isStatsPremiumGated = () => getRemoteBool('gate_stats_premium');
+export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_premium');
+export const isThemesPremiumGated = () => getRemoteBool('gate_themes_premium');
+export const isAvatarAurasPremiumGated = () => getRemoteBool('gate_avatar_auras_premium');
+export const isMasteryPremiumGated = () => getRemoteBool('gate_mastery_premium');
+export const isQuizzesPremiumGated = () => getRemoteBool('gate_quizzes_premium');
+export const isArenaPremiumGated = () => getRemoteBool('gate_arena_premium');
+export const isEnergyPremiumGated = () => getRemoteBool('gate_energy_premium');
+
+/** Поурочные исключения: набор id уроков, открытых бесплатно сверх порога. */
+export const getFreeLessonsExtra = () => parseLessonIdList(getRemoteText('free_lessons_extra'));
+/** Поурочные исключения: набор id уроков, закрытых под премиум вопреки порогу. */
+export const getPremiumLessonsExtra = () => parseLessonIdList(getRemoteText('premium_lessons_extra'));
+
+/**
+ * Парсит JSON-строку вида "[3,5,9]" в Set валидных id уроков (1..32). Любой мусор
+ * (не-массив, не-числа, вне диапазона, дубли) тихо отбрасывается — конфиг от админа
+ * не должен ронять приложение.
+ */
+function parseLessonIdList(raw: string): ReadonlySet<number> {
+  const out = new Set<number>();
+  if (!raw) return out;
+  try {
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return out;
+    for (const v of arr) {
+      const n = Math.trunc(Number(v));
+      if (Number.isFinite(n) && n >= 1 && n <= 32) out.add(n);
+    }
+  } catch {
+    // невалидный JSON — порог без исключений
+  }
+  return out;
+}
 /** Локализованный текст режима обслуживания (ru/uk/es; пусто = дефолт компонента). */
 export function getMaintenanceText(lang: string): string {
   const l = String(lang || '').toLowerCase();

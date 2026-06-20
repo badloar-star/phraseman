@@ -54,7 +54,11 @@ async function ensureAudioMode(): Promise<void> {
     await setAudioModeAsync({
       playsInSilentMode: true,
       shouldPlayInBackground: false,
-      interruptionMode: 'mixWithOthers',
+      // 'duckOthers' keeps our voice at full playback volume while only briefly
+      // lowering other apps' audio. 'mixWithOthers' put iOS in an ambient/mix
+      // session that plays our clip noticeably quieter than the old expo-speech
+      // path — which is why phrases sounded ~half as loud after the switch.
+      interruptionMode: 'duckOthers',
     });
     audioModeReady = true;
   } catch {
@@ -135,6 +139,14 @@ export async function playPhraseByText(
   try {
     const player = createAudioPlayer(source);
     currentPlayer = player;
+    // Play the clip at full volume. Without this the player can default below
+    // the level the old expo-speech path used (which always passed volume: 1),
+    // making phrases sound quieter than before the OpenAI-clip switch.
+    try {
+      player.volume = 1;
+    } catch {
+      // ignore on runtimes without a settable volume
+    }
     // Honor the user's speed slider on the pre-generated clip, with pitch
     // correction so a slowed-down voice stays natural (not deep/garbled).
     try {

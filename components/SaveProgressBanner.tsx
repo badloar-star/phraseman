@@ -22,8 +22,8 @@
 //   • После успешного логина (event 'auth_provider_linked') — мгновенно скрывается.
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, DeviceEventEmitter } from 'react-native';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Animated, DeviceEventEmitter, Easing, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { CLOUD_SYNC_ENABLED } from '../app/config';
@@ -32,6 +32,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import { LinearGradient } from './SafeLinearGradient';
 import PremiumCard from './PremiumCard';
 import RegistrationPromptModal from './RegistrationPromptModal';
 
@@ -70,6 +71,7 @@ function SaveProgressBanner() {
 
   const [visible, setVisible] = useState(false);
   const [authModalVisible, setAuthModalVisible] = useState(false);
+  const enterAnim = useRef(new Animated.Value(0)).current;
 
   const recheck = useCallback(async () => {
     const ok = await shouldShow();
@@ -94,6 +96,20 @@ function SaveProgressBanner() {
     };
   }, [recheck]);
 
+  useEffect(() => {
+    if (!visible) {
+      enterAnim.setValue(0);
+      return;
+    }
+
+    Animated.timing(enterAnim, {
+      toValue: 1,
+      duration: 520,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [enterAnim, visible]);
+
   const handleDismiss = useCallback(async () => {
     hapticTap();
     setVisible(false);
@@ -113,18 +129,44 @@ function SaveProgressBanner() {
     return null;
   }
 
+  const bannerTranslateY = enterAnim.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
+  const bannerScale = enterAnim.interpolate({ inputRange: [0, 1], outputRange: [0.965, 1] });
+  const iconScale = enterAnim.interpolate({ inputRange: [0, 0.72, 1], outputRange: [0.82, 1.08, 1] });
+  const iconGlowOpacity = enterAnim.interpolate({ inputRange: [0, 1], outputRange: [0, 0.62] });
+
   return (
     <>
-      <PremiumCard
-        testID="save-progress-banner"
-        level={1}
-        innerStyle={{
-          paddingHorizontal: 14,
-          paddingVertical: 12,
-          flexDirection: 'column',
-          gap: 10,
+      <Animated.View
+        style={{
+          opacity: enterAnim,
+          transform: [{ translateY: bannerTranslateY }, { scale: bannerScale }],
         }}
       >
+      <PremiumCard
+        testID="save-progress-banner"
+        level={2}
+        borderRadius={22}
+        innerStyle={{
+          paddingHorizontal: 18,
+          paddingTop: 16,
+          paddingBottom: 17,
+          overflow: 'hidden',
+        }}
+      >
+        <LinearGradient
+          pointerEvents="none"
+          colors={[t.correct + '22', 'transparent']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{
+            position: 'absolute',
+            left: -34,
+            top: -42,
+            width: 170,
+            height: 132,
+            borderRadius: 66,
+          }}
+        />
         <View
           style={{
             flexDirection: 'row',
@@ -132,28 +174,54 @@ function SaveProgressBanner() {
             gap: 12,
           }}
         >
-          <View
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: 20,
-              backgroundColor: t.correct + '22',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
+          <Animated.View
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              transform: [{ scale: iconScale }],
             }}
           >
-            <Ionicons name="cloud-upload-outline" size={22} color={t.correct} />
-          </View>
+            <Animated.View
+              pointerEvents="none"
+              style={{
+                position: 'absolute',
+                width: 58,
+                height: 58,
+                borderRadius: 29,
+                backgroundColor: t.correct,
+                opacity: iconGlowOpacity,
+              }}
+            />
+            <LinearGradient
+              colors={[t.correct + '33', t.correct + '10']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 1,
+                borderColor: t.correct + '55',
+              }}
+            >
+              <Ionicons name="cloud-upload-outline" size={24} color={t.correct} />
+            </LinearGradient>
+          </Animated.View>
 
-          <View style={{ flex: 1, minWidth: 0 }}>
+          <View style={{ flex: 1, minWidth: 0, paddingTop: 1 }}>
             <Text
               style={{
                 color: t.textPrimary,
                 fontSize: f.h3,
-                fontWeight: '800',
-                letterSpacing: -0.2,
-                paddingTop: 2,
+                fontWeight: '900',
+                letterSpacing: 0,
+                lineHeight: Math.round(f.h3 * 1.12),
               }}
             >
               {triLang(lang, {
@@ -170,28 +238,43 @@ function SaveProgressBanner() {
           </View>
 
           <TouchableOpacity
-            activeOpacity={0.8}
+            activeOpacity={0.86}
             onPress={handleSignInPress}
             style={{
-              paddingHorizontal: 12,
-              paddingVertical: 8,
-              borderRadius: 10,
-              backgroundColor: t.correct,
+              borderRadius: 15,
               flexShrink: 0,
+              shadowColor: t.correct,
+              shadowOpacity: 0.34,
+              shadowRadius: 12,
+              shadowOffset: { width: 0, height: 6 },
+              elevation: 5,
             }}
           >
-            <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '800' }}>
-              {triLang(lang, {
-                ru: 'Привязать',
-                uk: 'Прив\'язати',
-                es: 'Vincular',
-                'pt-BR': 'Vincular',
-                vi: 'Liên kết',
-                id: 'Tautkan',
-                tr: 'Bağla',
-                pl: 'Połącz',
-              })}
-            </Text>
+            <LinearGradient
+              colors={[t.correct, '#5F9DFF']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{
+                paddingHorizontal: 14,
+                paddingVertical: 10,
+                borderRadius: 15,
+                borderWidth: 1,
+                borderColor: t.correctText + '33',
+              }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>
+                {triLang(lang, {
+                  ru: 'Привязать',
+                  uk: 'Прив\'язати',
+                  es: 'Vincular',
+                  'pt-BR': 'Vincular',
+                  vi: 'Liên kết',
+                  id: 'Tautkan',
+                  tr: 'Bağla',
+                  pl: 'Połącz',
+                })}
+              </Text>
+            </LinearGradient>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -199,20 +282,28 @@ function SaveProgressBanner() {
             activeOpacity={0.7}
             onPress={handleDismiss}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ marginLeft: -4, padding: 4, flexShrink: 0 }}
+            style={{ marginLeft: -5, padding: 5, flexShrink: 0 }}
           >
-            <Ionicons name="close" size={18} color={t.textMuted} />
+            <Ionicons name="close" size={19} color={t.textMuted} />
           </TouchableOpacity>
         </View>
 
-        <Text
+        <View
           style={{
-            color: t.textMuted,
-            fontSize: f.sub,
-            lineHeight: Math.round(f.sub * 1.35),
-            fontWeight: '600',
+            marginTop: 14,
+            paddingTop: 13,
+            borderTopWidth: 1,
+            borderTopColor: 'rgba(255,255,255,0.08)',
           }}
         >
+          <Text
+            style={{
+              color: t.textMuted,
+              fontSize: f.sub,
+              lineHeight: Math.round(f.sub * 1.34),
+              fontWeight: '600',
+            }}
+          >
           {triLang(lang, {
             ru:
               'Привяжи аккаунт — и твои уроки, XP, серия и достижения останутся в безопасности. Даже если телефон внезапно решит уйти в отпуск.',
@@ -231,8 +322,11 @@ function SaveProgressBanner() {
             pl:
               'Połącz konto, a lekcje, XP, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
           })}
-        </Text>
+          </Text>
+        </View>
+
       </PremiumCard>
+      </Animated.View>
 
       <RegistrationPromptModal
         visible={authModalVisible}

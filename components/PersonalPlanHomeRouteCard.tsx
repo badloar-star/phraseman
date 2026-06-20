@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, type ImageStyle, type TextStyle, type ViewStyle } from 'react-native';
-import { Image } from 'expo-image';
+import { View, Text, TouchableOpacity, StyleSheet, type TextStyle, type ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
@@ -9,11 +8,13 @@ import CircularProgress from './CircularProgress';
 import { hapticTap } from '../hooks/use-haptics';
 import type { PersonalPlanHomeSnapshot } from '../app/personal_plan_state';
 import { getPersonalPlanArt } from '../app/personal_plan_art';
-import { getPersonalPlanTaskVisualAsset } from '../app/personal_plan_task_visuals';
 
 type Props = {
   compactMargin?: boolean;
   snapshot: PersonalPlanHomeSnapshot;
+  // Если передан — используется вместо прямого перехода в план (для премиум-гейта:
+  // фри-юзер без доступа уходит на пейвол, а не в уже созданный план).
+  onPress?: () => void;
 };
 
 function cardCopy(snapshot: PersonalPlanHomeSnapshot): {
@@ -43,7 +44,7 @@ function withAlpha(color: string, alphaHex: string): string {
   return 'rgba(255,255,255,0.10)';
 }
 
-function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
+function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot, onPress }: Props) {
   const router = useRouter();
   const { theme: t, themeMode } = useTheme();
   const isGold = themeMode === 'gold';
@@ -51,7 +52,6 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
   const isPaperHomeTheme = false;
   const copy = cardCopy(snapshot);
   const art = getPersonalPlanArt(snapshot.planId);
-  const heroAsset = getPersonalPlanTaskVisualAsset('route_phrase', snapshot.planId);
   const actionAccent = isGold ? '#FFE8A8' : isCompass ? '#F2C48D' : t.accent;
   const cardGradient = isGold ? ['#211808', '#0A0702'] as const : isCompass ? ['#1F1F21', '#171719'] as const : isPaperHomeTheme ? ['rgba(255,253,246,0.98)', 'rgba(237,227,210,0.94)'] as const : t.cardGradient;
   const cardBorder = isGold ? 'rgba(255,232,168,0.34)' : isCompass ? 'rgba(242,196,141,0.20)' : isPaperHomeTheme ? 'rgba(52,45,35,0.28)' : t.border;
@@ -61,11 +61,12 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
   const progressBg = isCompass ? '#2F2F31' : isPaperHomeTheme ? 'rgba(56,52,44,0.18)' : t.bgSurface2;
   const progressInnerBg = isGold ? '#120E08' : isCompass ? '#171719' : isPaperHomeTheme ? 'rgba(255,252,246,0.94)' : t.bgSurface;
   const ambientAccent = withAlpha(actionAccent, '16');
-  const imageScrimColors = isPaperHomeTheme
-    ? ['rgba(255,253,246,0.68)', 'rgba(255,253,246,0.24)', 'rgba(64,56,43,0.16)'] as const
-    : ['rgba(0,0,0,0.56)', 'rgba(0,0,0,0.16)', 'rgba(0,0,0,0.72)'] as const;
 
   const openPlan = () => {
+    if (onPress) {
+      onPress();
+      return;
+    }
     hapticTap();
     router.push('/personal_plan' as any);
   };
@@ -96,17 +97,6 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
         style={[styles.card, { borderColor: cardBorder, borderRadius: cardRadius }]}
       >
         <View style={[styles.ambient, { backgroundColor: ambientAccent }]} />
-        <View style={styles.heroImageBackdrop}>
-          <Image source={heroAsset} style={styles.heroImage} contentFit="cover" transition={120} />
-          <LinearGradient
-            pointerEvents="none"
-            colors={imageScrimColors}
-            locations={[0, 0.44, 1]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={StyleSheet.absoluteFill}
-          />
-        </View>
         <Ionicons name={art.heroIcon} size={118} color={actionAccent} style={styles.artWatermark} />
         <View style={styles.mainRow}>
           <View style={styles.progressWrap}>
@@ -126,7 +116,7 @@ function PersonalPlanHomeRouteCard({ compactMargin = true, snapshot }: Props) {
             <Text style={[styles.title, { color: cardText }]}>
               {snapshot.planName}{'\n'}день {snapshot.dayIndex}
             </Text>
-            <Text style={[styles.subtitle, { color: cardMuted }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
+            <Text style={[styles.subtitle, { color: cardMuted }]} numberOfLines={1}>
               {copy.subtitle}
             </Text>
             {__DEV__ ? (
@@ -164,8 +154,6 @@ const styles = StyleSheet.create<{
   devChip: ViewStyle;
   devText: TextStyle;
   ambient: ViewStyle;
-  heroImageBackdrop: ViewStyle;
-  heroImage: ImageStyle;
   artWatermark: TextStyle;
 }>({
   wrap: {
@@ -240,19 +228,6 @@ const styles = StyleSheet.create<{
     borderRadius: 86,
     right: -58,
     top: -62,
-  },
-  heroImageBackdrop: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    opacity: 0.24,
-  },
-  heroImage: {
-    width: '100%',
-    height: '100%',
-    opacity: 0.44,
   },
   artWatermark: {
     position: 'absolute',

@@ -16,7 +16,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
 import { compassOn } from './compass_flags';
-import type { CompassDay, CompassTaskKind } from './compass_brain';
+import type { CompassDay, CompassTask, CompassTaskKind } from './compass_brain';
 import { useCompassVoice } from './use_compass_voice';
 import {
   COMPASS_BRIEFING_TITLE,
@@ -38,9 +38,14 @@ interface CompassBriefingModalProps {
   day: CompassDay | null;
   onStart: () => void;
   onLater: () => void;
+  /**
+   * Тап по конкретной задаче дня (открыть её экран). Необязателен: если не задан —
+   * строки задач остаются некликабельными (поведение «только просмотр»).
+   */
+  onTaskPress?: (task: CompassTask) => void;
 }
 
-export default function CompassBriefingModal({ visible, day, onStart, onLater }: CompassBriefingModalProps) {
+export default function CompassBriefingModal({ visible, day, onStart, onLater, onTaskPress }: CompassBriefingModalProps) {
   const { theme: t } = useTheme();
   const { lang } = useLang();
   // Гибрид-голос: текст Библии сразу, живой ИИ-текст подменяет когда придёт.
@@ -69,7 +74,13 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater }:
 
           <View style={styles.tasks}>
             {day.tasks.map((task, i) => (
-              <View key={`${task.kind}-${i}`} style={[styles.task, { borderColor: t.border }]}>
+              <TouchableOpacity
+                key={`${task.kind}-${i}`}
+                style={[styles.task, { borderColor: t.border }]}
+                activeOpacity={onTaskPress ? 0.7 : 1}
+                disabled={!onTaskPress}
+                onPress={onTaskPress ? () => onTaskPress(task) : undefined}
+              >
                 <View style={[styles.taskIcon, { backgroundColor: t.accent + '14' }]}>
                   <Ionicons name={TASK_ICON[task.kind]} size={16} color={t.accent} />
                 </View>
@@ -77,7 +88,10 @@ export default function CompassBriefingModal({ visible, day, onStart, onLater }:
                   {triLang(lang, COMPASS_TASK_TITLE[task.kind])}
                 </Text>
                 <Text style={[styles.taskMin, { color: t.textMuted }]}>{task.minutes} мин</Text>
-              </View>
+                {onTaskPress && (
+                  <Ionicons name="chevron-forward" size={15} color={t.textMuted} style={{ marginLeft: 6 }} />
+                )}
+              </TouchableOpacity>
             ))}
           </View>
 

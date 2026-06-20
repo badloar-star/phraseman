@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { isFeatureFreeForEveryone } from './feature_gates';
 import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
 import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
 
@@ -106,6 +107,10 @@ export async function checkAndRecover(): Promise<EnergyState> {
  */
 export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<boolean> {
   try {
+    // «Пульт»: если энергия переведена в «Фри» — лимит снят для всех (безлимит,
+    // как у премиума), пейвол no_energy не показываем.
+    if (isFeatureFreeForEveryone('energy')) return true;
+
     // Премиум: энергия не тратится (единая верифицированная проверка)
     const isPremium = await getVerifiedPremiumStatus();
     if (isPremium) return true;

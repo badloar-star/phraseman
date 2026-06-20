@@ -613,14 +613,14 @@ export default function LessonMenu() {
         : (isStarted ? s.lessonMenu.continue : s.lessonMenu.start),
       sub: frenchLessonSourceGated
         ? triLang(lang, {
-  ru: 'French откроется после source gate. English фразы не подставляются.',
-  uk: 'French відкриється після source gate. English фрази не підставляються.',
-  es: 'French se abrirá después del source gate.',
-  "pt-BR": 'French será aberto após o source gate.',
-  vi: 'French sẽ mở sau source gate.',
-  id: 'French akan dibuka setelah source gate.',
-  tr: 'French source gate sonrası açılacak.',
-  pl: 'French otworzy się po source gate.',
+  ru: 'Этот урок пока готовится. Скоро откроется.',
+  uk: 'Цей урок ще готується. Скоро відкриється.',
+  es: 'Esta lección se está preparando. Pronto estará disponible.',
+  "pt-BR": 'Esta lição está sendo preparada. Em breve estará disponível.',
+  vi: 'Bài học này đang được chuẩn bị. Sắp ra mắt.',
+  id: 'Pelajaran ini sedang disiapkan. Segera tersedia.',
+  tr: 'Bu ders hazırlanıyor. Yakında açılacak.',
+  pl: 'Ta lekcja jest w przygotowaniu. Wkrótce będzie dostępna.',
 })
         : showReplayCta
         ? `${progress} / 50  ★ ${score.toFixed(1)}`
@@ -816,24 +816,24 @@ export default function LessonMenu() {
         ? triLang(lang, {
             ru: 'Теория на проверке',
             uk: 'Теорія на перевірці',
-            es: 'Theory under review',
-            "pt-BR": 'Theory under review',
-            vi: 'Theory under review',
-            id: 'Theory under review',
-            tr: 'Theory under review',
-            pl: 'Theory under review',
+            es: 'Teoría en revisión',
+            "pt-BR": 'Teoria em revisão',
+            vi: 'Lý thuyết đang được duyệt',
+            id: 'Teori sedang ditinjau',
+            tr: 'Teori inceleniyor',
+            pl: 'Teoria w trakcie weryfikacji',
           })
         : s.lessonMenu.theory,
       sub: frenchTheorySourceGated
         ? triLang(lang, {
-            ru: 'French theory откроется после source gate. English theory не подставляется.',
-            uk: 'French theory відкриється після source gate. English theory не підставляється.',
-            es: 'French theory opens after source gate.',
-            "pt-BR": 'French theory opens after source gate.',
-            vi: 'French theory opens after source gate.',
-            id: 'French theory opens after source gate.',
-            tr: 'French theory opens after source gate.',
-            pl: 'French theory opens after source gate.',
+            ru: 'Теория этого урока пока готовится. Скоро откроется.',
+            uk: 'Теорія цього уроку ще готується. Скоро відкриється.',
+            es: 'La teoría de esta lección se está preparando. Pronto estará disponible.',
+            "pt-BR": 'A teoria desta lição está sendo preparada. Em breve estará disponível.',
+            vi: 'Lý thuyết của bài học này đang được chuẩn bị. Sắp ra mắt.',
+            id: 'Teori pelajaran ini sedang disiapkan. Segera tersedia.',
+            tr: 'Bu dersin teorisi hazırlanıyor. Yakında açılacak.',
+            pl: 'Teoria tej lekcji jest w przygotowaniu. Wkrótce będzie dostępna.',
           })
         : triLang(lang, {
   ru: 'Правила и пояснения',
@@ -1050,7 +1050,7 @@ export default function LessonMenu() {
               size={20}
               color={t.textPrimary}
             />
-            <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+            <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}} numberOfLines={1}>
               {lockedButtonLabel}
             </Text>
           </PremiumCard>
@@ -1387,25 +1387,25 @@ export default function LessonMenu() {
         message={
           soonOpen === 'frenchLesson'
             ? triLang(lang, {
-  ru: 'Французский урок ещё закрыт source gate. Мы не будем открывать английские фразы, интро или прогресс как замену French.',
-  uk: 'Французький урок ще закритий source gate. Ми не відкриватимемо англійські фрази, інтро або прогрес як заміну French.',
-  es: 'La lección de French sigue bloqueada por source gate.',
-  "pt-BR": 'A lição de French ainda está bloqueada pelo source gate.',
-  vi: 'Bài French vẫn bị khóa bởi source gate.',
-  id: 'Pelajaran French masih dikunci oleh source gate.',
-  tr: 'French dersi source gate tarafından hâlâ kapalı.',
-  pl: 'Lekcja French jest nadal zablokowana przez source gate.',
+  ru: 'Этот урок пока готовится. Мы откроем его, когда материал будет полностью готов.',
+  uk: 'Цей урок ще готується. Ми відкриємо його, коли матеріал буде повністю готовий.',
+  es: 'Esta lección se está preparando. La abriremos cuando el material esté listo.',
+  "pt-BR": 'Esta lição está sendo preparada. Vamos abri-la quando o material estiver pronto.',
+  vi: 'Bài học này đang được chuẩn bị. Chúng tôi sẽ mở khi nội dung sẵn sàng.',
+  id: 'Pelajaran ini sedang disiapkan. Akan kami buka saat materinya siap.',
+  tr: 'Bu ders hazırlanıyor. Materyal tamamen hazır olunca açacağız.',
+  pl: 'Ta lekcja jest w przygotowaniu. Otworzymy ją, gdy materiał będzie gotowy.',
 })
             : soonOpen === 'frenchTheory'
               ? triLang(lang, {
-  ru: 'Французская теория ещё закрыта source gate. Мы не будем открывать английскую теорию, интро или примеры как замену French.',
-  uk: 'Французька теорія ще закрита source gate. Ми не відкриватимемо англійську теорію, інтро або приклади як заміну French.',
-  es: 'French theory is still blocked by source gate.',
-  "pt-BR": 'French theory is still blocked by source gate.',
-  vi: 'French theory is still blocked by source gate.',
-  id: 'French theory is still blocked by source gate.',
-  tr: 'French theory is still blocked by source gate.',
-  pl: 'French theory is still blocked by source gate.',
+  ru: 'Теория этого урока пока готовится. Мы откроем её, когда материал будет полностью готов.',
+  uk: 'Теорія цього уроку ще готується. Ми відкриємо її, коли матеріал буде повністю готовий.',
+  es: 'La teoría de esta lección se está preparando. La abriremos cuando el material esté listo.',
+  "pt-BR": 'A teoria desta lição está sendo preparada. Vamos abri-la quando o material estiver pronto.',
+  vi: 'Lý thuyết của bài học này đang được chuẩn bị. Chúng tôi sẽ mở khi nội dung sẵn sàng.',
+  id: 'Teori pelajaran ini sedang disiapkan. Akan kami buka saat materinya siap.',
+  tr: 'Bu dersin teorisi hazırlanıyor. Materyal tamamen hazır olunca açacağız.',
+  pl: 'Teoria tej lekcji jest w przygotowaniu. Otworzymy ją, gdy materiał będzie gotowy.',
 })
             : soonOpen === 'vocab'
             ? triLang(lang, {

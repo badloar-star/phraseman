@@ -59,12 +59,13 @@ describe('friends tab locale runtime', () => {
     expect(source).toContain(
       'Получите 7 дней полного Premium-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
     );
-    // На карточке показываем РЕФЕРАЛЬНЫЙ код (referral_codes), не friend-код — иначе друг
+    // Показываем РЕФЕРАЛЬНЫЙ код (referral_codes), не friend-код — иначе друг
     // ввёл бы friend-код, которого нет в referral_codes, и наград не было бы (C1).
     expect(source).toContain('const [referralCode, setReferralCode]');
-    expect(source).toContain('testID="friends-empty-invite-code"');
-    expect(source).toContain('{` ${referralCode}`}');
-    expect(source).toContain("style={{ color: t.accent, fontWeight: '900', letterSpacing: 0.8 }}");
+    // Код живёт ИНЛАЙНОМ в тексте empty-state (как и было задумано), а не в отдельной
+    // карточке. Отдельная карточка убрана, чтобы код был ровно в ОДНОМ месте в Друзьях.
+    expect(source).toContain('testID="friends-referral-code-inline"');
+    expect(source).not.toContain('testID="friends-referral-code-card"');
     expect(source).toContain(' і повністю пройде один урок.');
     expect(source).not.toContain('testID="friends-referral-seven-plus-seven-note"');
     // «Запросити» делится реферальной ссылкой через handleReferralInvite (не friend-кодом).

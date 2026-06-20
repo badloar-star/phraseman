@@ -4,6 +4,46 @@ const auth_merge_1 = require("./auth_merge");
 const NOW = 1777000000000;
 const FUTURE = NOW + 30 * 24 * 60 * 60 * 1000; // +30d
 const PAST = NOW - 30 * 24 * 60 * 60 * 1000; // -30d
+// ── Referral repoint on merge ───────────────────────────────────────────────────
+describe('mergeUserProgress — referral claim counters (анти-сброс капа через мерж)', () => {
+    it('СУММИРУЕТ месячные счётчики наград по месяцам (не теряет счёт лузера)', () => {
+        const out = (0, auth_merge_1.mergeUserProgress)({ referral_vip_claims_monthly: { '2026-06': 20 } }, { referral_vip_claims_monthly: { '2026-06': 15, '2026-05': 7 } }, NOW);
+        const m = out.referral_vip_claims_monthly;
+        expect(m['2026-06']).toBe(35); // 20 + 15 — иначе мерж сбрасывал бы кап
+        expect(m['2026-05']).toBe(7);
+    });
+    it('суммирует дневные счётчики по дням', () => {
+        const out = (0, auth_merge_1.mergeUserProgress)({ referral_vip_claims_daily: { '2026-06-14': 3 } }, { referral_vip_claims_daily: { '2026-06-14': 2, '2026-06-13': 1 } }, NOW);
+        const d = out.referral_vip_claims_daily;
+        expect(d['2026-06-14']).toBe(5);
+        expect(d['2026-06-13']).toBe(1);
+    });
+    it('берёт сторону, где есть данные, если у другой пусто', () => {
+        const out = (0, auth_merge_1.mergeUserProgress)({}, { referral_vip_claims_monthly: { '2026-06': 9 } }, NOW);
+        expect(out.referral_vip_claims_monthly['2026-06']).toBe(9);
+    });
+});
+describe('chooseSurvivingAttribution — какой referee-attribution оставить при коллизии', () => {
+    // На новый id (winner) переезжает attribution лузера; если у winner уже есть свой —
+    // оставляем «дальше прошедший» по статусу, чтобы НЕ потерять награду и НЕ выдать дважды.
+    const att = (status, extra = {}) => ({ status, ...extra });
+    it('rewarded побеждает qualified и pending', () => {
+        expect((0, auth_merge_1.chooseSurvivingAttribution)(att('rewarded'), att('qualified')).status).toBe('rewarded');
+        expect((0, auth_merge_1.chooseSurvivingAttribution)(att('pending'), att('rewarded')).status).toBe('rewarded');
+    });
+    it('qualified побеждает pending', () => {
+        expect((0, auth_merge_1.chooseSurvivingAttribution)(att('qualified'), att('pending')).status).toBe('qualified');
+    });
+    it('при равном статусе берёт существующий у winner (a)', () => {
+        const a = att('qualified', { refCode: 'AAA' });
+        const b = att('qualified', { refCode: 'BBB' });
+        expect((0, auth_merge_1.chooseSurvivingAttribution)(a, b).refCode).toBe('AAA');
+    });
+    it('если одна сторона отсутствует — берёт имеющуюся', () => {
+        expect((0, auth_merge_1.chooseSurvivingAttribution)(undefined, att('pending')).status).toBe('pending');
+        expect((0, auth_merge_1.chooseSurvivingAttribution)(att('qualified'), undefined).status).toBe('qualified');
+    });
+});
 // ── Pure merge math ───────────────────────────────────────────────────────────
 describe('mergeUserProgress — numeric accumulation', () => {
     it('takes the max of integer-string fields', () => {
@@ -139,15 +179,9 @@ function makeDbStub(initial = {}) {
         name_index: { ...(initial.name_index ?? {}) },
         identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
     };
-    const snapFor = (id, data) => ({
-        id,
-        ref: { id },
-        exists: !!data,
-        data: () => data,
-    });
     const docApi = (name, id) => ({
         id,
-        get: async () => snapFor(id, store[name]?.[id]),
+        get: async () => snapFor(name, id, store[name]?.[id]),
         set: async (data) => {
             store[name] = store[name] ?? {};
             store[name][id] = { ...(store[name][id] ?? {}), ...data };
@@ -156,6 +190,13 @@ function makeDbStub(initial = {}) {
             if (store[name])
                 delete store[name][id];
         },
+    });
+    // ref carries a functional handle (set/delete) so query-result .ref works in repoint logic.
+    const snapFor = (name, id, data) => ({
+        id,
+        ref: docApi(name, id),
+        exists: !!data,
+        data: () => data,
     });
     const matches = (data, field, op, value) => {
         if (!data || op !== '==')
@@ -168,7 +209,7 @@ function makeDbStub(initial = {}) {
         get: async () => {
             const docs = Object.entries(store[name] ?? {})
                 .filter(([, data]) => matches(data, field, op, value))
-                .map(([id, data]) => snapFor(id, data));
+                .map(([id, data]) => snapFor(name, id, data));
             return { empty: docs.length === 0, docs, size: docs.length };
         },
     });
@@ -180,19 +221,18 @@ function makeDbStub(initial = {}) {
         batch: () => {
             const ops = [];
             return {
+                // ref (from docApi/snapFor.ref) carries its own collection via closure — write
+                // through it directly. Раньше стаб сканировал коллекции по ref.id и писал в ПЕРВУЮ
+                // совпавшую — это ломалось, как только один и тот же id жил в двух коллекциях
+                // (напр. auth_links/{authUid} + users/{authUid}). Пишем по настоящей ссылке.
                 set: (ref, data) => {
-                    // ref carries only id in this stub; find its collection by scanning.
-                    ops.push(() => {
-                        for (const coll of Object.keys(store)) {
-                            if (store[coll] && Object.prototype.hasOwnProperty.call(store[coll], ref.id)) {
-                                store[coll][ref.id] = { ...(store[coll][ref.id] ?? {}), ...data };
-                                return;
-                            }
-                        }
-                    });
+                    ops.push(() => ref.set(data));
                 },
-                delete: () => { },
-                commit: async () => ops.forEach((fn) => fn()),
+                delete: (ref) => {
+                    ops.push(() => ref.delete());
+                },
+                commit: async () => { for (const fn of ops)
+                    await fn(); },
             };
         },
         runTransaction: async (fn) => {
@@ -299,6 +339,139 @@ describe('mergeStableAccounts', () => {
             },
         });
         await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-5', 'stable-mine', 'stable-someone-else', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+    // ── #11: absorb a device-held anonymous account via a fresh self-stamped claim ──
+    it('absorbs an unowned anonymous LOSER that carries a fresh anon_merge_claim', async () => {
+        // 2nd device played anonymously as anon-uid-2; it stamped anon_merge_claim
+        // while still anonymous, then signed into the existing account (owned by
+        // google-11, higher XP). The anon progress must merge in, not orphan.
+        const { db, store } = makeDbStub({
+            users: {
+                'stable-mine': { firebaseAuthUid: 'google-11', progress: { user_total_xp: '5000' }, shards: 100 },
+                'stable-anon': {
+                    firebaseAuthUid: 'anon-uid-2',
+                    anon_merge_claim: { authUid: 'anon-uid-2', at: NOW - 60000 }, // 1 min ago = fresh
+                    progress: { user_total_xp: '300', streak_count: '7' },
+                    shards: 40,
+                },
+            },
+        });
+        const res = await (0, auth_merge_1.mergeStableAccounts)(db, 'google-11', 'stable-anon', 'stable-mine', NOW);
+        expect(res.canonicalStableId).toBe('stable-mine'); // owned + higher XP wins
+        expect(res.mergedFromStableId).toBe('stable-anon');
+        const winner = store.users['stable-mine'];
+        expect(winner.progress.streak_count).toBe('7'); // absorbed from anon
+        expect(winner.shards).toBe(100); // max(100,40)
+        expect(store.users['stable-anon'].identityHidden).toBe(true);
+    });
+    it('rejects absorbing an unowned account with NO claim', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-mine': { firebaseAuthUid: 'google-12', progress: { user_total_xp: '5000' } },
+                'stable-anon': { firebaseAuthUid: 'anon-x', progress: { user_total_xp: '300' } }, // no claim
+            },
+        });
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-12', 'stable-anon', 'stable-mine', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+    it('rejects a STALE anon_merge_claim (older than the TTL)', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-mine': { firebaseAuthUid: 'google-13', progress: { user_total_xp: '5000' } },
+                'stable-anon': {
+                    firebaseAuthUid: 'anon-y',
+                    anon_merge_claim: { authUid: 'anon-y', at: NOW - 60 * 60 * 1000 }, // 1h ago = stale
+                    progress: { user_total_xp: '300' },
+                },
+            },
+        });
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-13', 'stable-anon', 'stable-mine', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+    it('rejects a claim whose authUid does NOT match the loser doc owner', async () => {
+        // An attacker who learned a stable_id could try to forge a claim, but the
+        // claim.authUid must equal the loser doc's firebaseAuthUid (the anon uid that
+        // truly held it). A mismatch is rejected.
+        const { db } = makeDbStub({
+            users: {
+                'stable-mine': { firebaseAuthUid: 'google-14', progress: { user_total_xp: '5000' } },
+                'stable-anon': {
+                    firebaseAuthUid: 'anon-real-owner',
+                    anon_merge_claim: { authUid: 'attacker-uid', at: NOW - 1000 }, // mismatched
+                    progress: { user_total_xp: '300' },
+                },
+            },
+        });
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-14', 'stable-anon', 'stable-mine', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+    it('still rejects when the unowned side would WIN even with a claim (never overwrite owned)', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-mine': { firebaseAuthUid: 'google-15', progress: { user_total_xp: '10' } },
+                'stable-anon-rich': {
+                    firebaseAuthUid: 'anon-z',
+                    anon_merge_claim: { authUid: 'anon-z', at: NOW - 1000 },
+                    progress: { user_total_xp: '99999' }, // higher XP → would be winner
+                },
+            },
+        });
+        await expect((0, auth_merge_1.mergeStableAccounts)(db, 'google-15', 'stable-anon-rich', 'stable-mine', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+});
+// ── Integration: repointReferralOnMerge ──────────────────────────────────────
+describe('repointReferralOnMerge — перенос реферальных данных loser → winner', () => {
+    it('переносит attribution-роль REFEREE (doc loser → winner) и удаляет лузерский', async () => {
+        const { db, store } = makeDbStub();
+        store.referral_attributions = {
+            loser: { referrerStableId: 'someoneElse', status: 'qualified', refCode: 'ABC123' },
+        };
+        await (0, auth_merge_1.repointReferralOnMerge)(db, 'winner', 'loser');
+        expect(store.referral_attributions.loser).toBeUndefined();
+        expect(store.referral_attributions.winner).toMatchObject({ referrerStableId: 'someoneElse', status: 'qualified' });
+    });
+    it('переносит роль REFERRER (referrerStableId loser → winner) на всех приглашённых', async () => {
+        const { db, store } = makeDbStub();
+        store.referral_attributions = {
+            friendA: { referrerStableId: 'loser', status: 'qualified' },
+            friendB: { referrerStableId: 'loser', status: 'pending' },
+            other: { referrerStableId: 'unrelated', status: 'qualified' },
+        };
+        await (0, auth_merge_1.repointReferralOnMerge)(db, 'winner', 'loser');
+        expect(store.referral_attributions.friendA?.referrerStableId).toBe('winner');
+        expect(store.referral_attributions.friendB?.referrerStableId).toBe('winner');
+        expect(store.referral_attributions.other?.referrerStableId).toBe('unrelated');
+    });
+    it('НЕ создаёт self-referral: удаляет запись, где referrer стал бы == referee', async () => {
+        const { db, store } = makeDbStub();
+        store.referral_attributions = {
+            // loser пригласил winner → после слияния это сам себя пригласил
+            winner: { referrerStableId: 'loser', status: 'pending' },
+        };
+        await (0, auth_merge_1.repointReferralOnMerge)(db, 'winner', 'loser');
+        expect(store.referral_attributions.winner).toBeUndefined();
+    });
+    it('при коллизии referee-доков оставляет дальше прошедший статус (rewarded > pending)', async () => {
+        const { db, store } = makeDbStub();
+        store.referral_attributions = {
+            winner: { referrerStableId: 'refX', status: 'pending' },
+            loser: { referrerStableId: 'refY', status: 'rewarded' },
+        };
+        await (0, auth_merge_1.repointReferralOnMerge)(db, 'winner', 'loser');
+        expect(store.referral_attributions.loser).toBeUndefined();
+        expect(store.referral_attributions.winner?.status).toBe('rewarded');
+    });
+    it('переносит владение кодом (referral_codes.ownerStableId + referral_owners)', async () => {
+        const { db, store } = makeDbStub();
+        store.referral_codes = { ZZZ999: { ownerStableId: 'loser', normalized: 'ZZZ999' } };
+        store.referral_owners = { loser: { code: 'ZZZ999', ownerStableId: 'loser' } };
+        await (0, auth_merge_1.repointReferralOnMerge)(db, 'winner', 'loser');
+        expect(store.referral_codes.ZZZ999?.ownerStableId).toBe('winner');
+        expect(store.referral_owners.loser).toBeUndefined();
+        expect(store.referral_owners.winner).toMatchObject({ ownerStableId: 'winner', code: 'ZZZ999' });
+    });
+    it('no-op при winner === loser', async () => {
+        const { db, store } = makeDbStub();
+        store.referral_attributions = { x: { referrerStableId: 'x', status: 'pending' } };
+        await (0, auth_merge_1.repointReferralOnMerge)(db, 'same', 'same');
+        expect(store.referral_attributions.x).toBeDefined();
     });
 });
 //# sourceMappingURL=auth_merge.test.js.map

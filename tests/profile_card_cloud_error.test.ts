@@ -13,6 +13,7 @@ const getShardsBalance = jest.fn();
 jest.mock('../app/shards_system', () => ({
   getShardsBalance: (...a: unknown[]) => getShardsBalance(...a),
   spendShards: (...a: unknown[]) => spendShards(...a),
+  forceSyncShardsToCloud: jest.fn(async () => {}),
 }));
 
 // Firebase callable — overridable per test.
@@ -64,6 +65,10 @@ describe('upgradeProfileCardLevel — cloud error must not double-charge', () =>
     await expect(AsyncStorage.getItem('profile_card_level')).resolves.toBe('1');
     // Must forward the client's stableId so the CF reads the same shard doc.
     expect(callCf).toHaveBeenCalledWith(expect.objectContaining({ stableId: 'stable-test' }));
+    // Must push local shards to cloud first, so the server sees the real balance
+    // (fixes "shop opens despite having shards" when wallets drifted).
+    const { forceSyncShardsToCloud } = require('../app/shards_system');
+    expect(forceSyncShardsToCloud).toHaveBeenCalled();
   });
 
   it('surfaces server insufficient without spending locally', async () => {

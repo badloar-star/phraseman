@@ -1,4 +1,4 @@
-# Metro for Android emulators. The Android dev build is configured for
+﻿# Metro for Android emulators. The Android dev build is configured for
 # http://127.0.0.1:8081, so refresh adb reverse before starting Metro.
 $ErrorActionPreference = "Continue"
 $env:CI = "false"

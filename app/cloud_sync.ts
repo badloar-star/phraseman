@@ -10,7 +10,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
+import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
 import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaAuthUid } from './user_id_policy';
 import { processVipGrantForCelebration } from './vip_celebration_state';
@@ -1516,6 +1516,24 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     cloudVipActive ? cloudVipState?.grantAt : null,
   );
 
+  // Тестер «Снять премиум» (tester_no_premium) в dev/preview: НЕ воскрешать из
+  // облака премиум/VIP/admin-grant ключи. Иначе после strip'а restoreFromCloud
+  // тянет старый admin-grant обратно, VIP пересчитывается активным и доступ
+  // «возвращается» сразу. В стор-сборке флаг недоступен — облако главный
+  // источник истины. Серверный грант не трогаем: убрать флаг / «Без лимитов»
+  // вернёт всё как было.
+  const stripPremiumActive =
+    !IS_STORE_RELEASE &&
+    (await AsyncStorage.getItem('tester_no_premium').catch(() => null)) === 'true';
+  const STRIP_SKIP_RESTORE_KEYS = new Set<string>([
+    'premium_active', 'premium_plan', 'premium_expiry',
+    'premium_rc_product_id', 'premium_rc_period_type', 'premium_rc_store',
+    'premium_rc_expiry_ms', 'premium_rc_purchased_at_ms', 'premium_rc_updated_at',
+    'premium_admin_grant_at', 'admin_premium_override',
+    'vip_active', 'vip_plan', 'vip_from', 'vip_until', 'vip_expiry',
+    'vip_admin_override', 'vip_admin_grant_at', 'vip_grant_at',
+  ]);
+
   const localXPRaw = await AsyncStorage.getItem('user_total_xp');
   const localStreakRaw = await AsyncStorage.getItem('streak_count');
   const localXP = parseProgressInt(localXPRaw);
@@ -1631,7 +1649,8 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       }
     }
     stickyPairs.push(...await buildGiftEntitlementStickyPairs(cloudData));
-    if (cloudVipActive !== null) {
+    // tester «Снять премиум»: не восстанавливаем VIP-доступ из облака (см. выше).
+    if (cloudVipActive !== null && !stripPremiumActive) {
       stickyPairs.push(
         ['vip_active', cloudVipActive ? 'true' : 'false'],
         ['vip_plan', cloudVipActive ? (cloudVipState?.plan ?? 'admin_vip') : ''],
@@ -1666,6 +1685,8 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     ) {
       continue;
     }
+    // tester «Снять премиум»: не воскрешаем премиум/VIP/admin-grant из облака.
+    if (stripPremiumActive && STRIP_SKIP_RESTORE_KEYS.has(key)) continue;
     const val = cloudData[key];
     if (val !== null && val !== undefined) {
       if (key === 'league_result_pending') {

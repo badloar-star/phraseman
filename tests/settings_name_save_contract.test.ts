@@ -7,14 +7,14 @@ describe('settings nickname save contract', () => {
   it('reserves the nickname on the server BEFORE applying it locally (hard uniqueness)', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'settings.tsx'), 'utf8');
     const saveNameStart = source.indexOf('const saveName = async () => {');
-    const rowStart = source.indexOf('const Row =', saveNameStart);
+    const rowStart = source.indexOf('  return (', saveNameStart);
     const saveName = source.slice(saveNameStart, rowStart);
 
     expect(saveNameStart).toBeGreaterThanOrEqual(0);
     expect(rowStart).toBeGreaterThan(saveNameStart);
 
-    const reserve = saveName.indexOf('reserveName(trimmed, oldName)');
-    const takenGate = saveName.indexOf("if (reservation === 'taken')");
+    const reserve = saveName.indexOf("reserveNameDetailed(trimmed, oldName, { source: 'settings' })");
+    const takenGate = saveName.indexOf("if (reservation.status === 'taken')");
     const localWrite = saveName.indexOf("AsyncStorage.setItem('user_name', trimmed)");
     const localState = saveName.indexOf('setUserName(trimmed)');
     const modalClose = saveName.indexOf('closeNameModal()', localState);
@@ -31,8 +31,8 @@ describe('settings nickname save contract', () => {
     expect(earlyWrite).toBe(-1);
 
     // Both failure branches handled; dead isNameAvailable path stays out.
-    expect(saveName).toContain("if (reservation === 'taken')");
-    expect(saveName).toContain("if (reservation !== 'ok')");
+    expect(saveName).toContain("if (reservation.status === 'taken')");
+    expect(saveName).toContain("if (reservation.status !== 'ok')");
     expect(saveName).not.toContain('isNameAvailable');
   });
 });

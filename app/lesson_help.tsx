@@ -10470,6 +10470,16 @@ const THEORY: Record<number, TheoryContent> = {
 
     <Section key="s2" t={t} f={f} title={isUK ? '2. Someone / somebody = хтось' : '2. Someone / somebody = кто-то'} />,
 
+    <Tip
+      key="tip2"
+      t={t}
+      f={f}
+      text={isUK
+        ? 'Someone і somebody — це не різні граматичні правила, а майже взаємозамінні слова. У вправах можна ставити і someone, і somebody: значення однакове. Someone звучить нейтральніше і трохи звичніше в письмі; somebody трохи розмовніше і живіше. Якщо немає особливої підказки, обирай someone, але somebody теж правильний варіант у цьому уроці.'
+        : 'Someone и somebody — это не разные грамматические правила, а почти взаимозаменяемые слова. В упражнениях можно ставить и someone, и somebody: значение одно и то же. Someone звучит нейтральнее и чуть привычнее в письменной речи; somebody чуть разговорнее и живее. Если нет особой подсказки, выбирай someone, но somebody тоже правильный вариант в этом уроке.'
+      }
+    />,
+
     <Body
       key="b2a"
       t={t}
@@ -14729,7 +14739,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['I am busy', 'She said that she was busy'],
         ['We are ready', 'They said that they were ready'],
         ['I need help', 'I said that I needed help'],
-        ['I will call me', 'He said that he would call me'],
+        ['I will call you', 'He said that he would call me'],
       ]}
     />,
 

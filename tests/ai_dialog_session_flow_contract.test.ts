@@ -13,7 +13,9 @@ describe('ai dialog session flow contract', () => {
   });
 
   it('shows a Russian next-step recommendation instead of tappable canned answers', () => {
-    expect(source).toContain('scenario.nextStepHintRu');
+    // Подсказка идёт через локализованный помощник (ru/uk/es), не из сырого
+    // scenario.nextStepHintRu — иначе не-русские интерфейсы видели бы русский текст.
+    expect(source).toContain('dialogScenarioNextStepHint(scenario, lang)');
     expect(source).toContain('Что сделать дальше');
     expect(source).not.toContain('scenario.suggestedReplies.map');
     expect(source).not.toContain('Можно тапнуть готовый ответ');

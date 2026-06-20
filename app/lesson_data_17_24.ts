@@ -6202,6 +6202,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_1',
     english: "Someone called me",
+    alternatives: ["Somebody called me"],
     russian: "Кто-то позвонил мне",
     ukrainian: "Хтось подзвонив мені",
     spanish: "Alguien me llamó.",
@@ -6259,6 +6260,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_4',
     english: "Nobody came yesterday",
+    alternatives: ["No one came yesterday"],
     russian: "Никто не пришел вчера",
     ukrainian: "Ніхто не прийшов учора",
     spanish: "Nadie vino ayer.",
@@ -6276,6 +6278,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_5',
     english: "Everyone is ready",
+    alternatives: ["Everybody is ready"],
     russian: "Все готовы",
     ukrainian: "Всі готові",
     spanish: "Todos están listos.",
@@ -6293,6 +6296,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_6',
     english: "Everybody understands me",
+    alternatives: ["Everyone understands me"],
     russian: "Все понимают меня",
     ukrainian: "Всі розуміють мене",
     spanish: "Todos me entienden.",
@@ -6446,6 +6450,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_15',
     english: "We saw someone outside",
+    alternatives: ["We saw somebody outside"],
     russian: "Мы увидели кого-то снаружи",
     ukrainian: "Ми побачили когось зовні",
     spanish: "Vimos a alguien afuera.",
@@ -6465,6 +6470,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_16',
     english: "We saw nobody outside",
+    alternatives: ["We saw no one outside"],
     russian: "Мы никого не увидели снаружи",
     ukrainian: "Ми нікого не побачили зовні",
     spanish: "No vimos a nadie afuera.",
@@ -6485,6 +6491,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_17',
     english: "Someone left a message",
+    alternatives: ["Somebody left a message"],
     russian: "Кто-то оставил сообщение",
     ukrainian: "Хтось залишив повідомлення",
     spanish: "Alguien dejó un mensaje.",
@@ -6504,6 +6511,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_18',
     english: "Nobody left a message",
+    alternatives: ["No one left a message"],
     russian: "Никто не оставил сообщение",
     ukrainian: "Ніхто не залишив повідомлення",
     spanish: "Nadie dejó un mensaje.",
@@ -6523,6 +6531,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_19',
     english: "Everyone needs help",
+    alternatives: ["Everybody needs help"],
     russian: "Всем нужна помощь",
     ukrainian: "Усім потрібна допомога",
     spanish: "Todos necesitan ayuda.",
@@ -6644,6 +6653,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_26',
     english: "Nobody is here",
+    alternatives: ["No one is here"],
     russian: "Здесь никого нет",
     ukrainian: "Тут нікого немає",
     spanish: "No hay nadie aquí.",
@@ -6662,6 +6672,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_27',
     english: "Someone is outside",
+    alternatives: ["Somebody is outside"],
     russian: "Кто-то снаружи",
     ukrainian: "Хтось надворі",
     spanish: "Alguien está afuera.",
@@ -6679,6 +6690,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_28',
     english: "No one is outside",
+    alternatives: ["Nobody is outside"],
     russian: "Снаружи никого нет",
     ukrainian: "Надворі нікого немає",
     spanish: "No hay nadie afuera.",
@@ -6718,6 +6730,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_30',
     english: "Nobody took your phone",
+    alternatives: ["No one took your phone"],
     russian: "Никто не взял твой телефон",
     ukrainian: "Ніхто не взяв твій телефон",
     spanish: "Nadie tomó tu teléfono.",
@@ -6757,7 +6770,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_32',
     english: "Someone found your keys",
-    alternatives: ["Somebody found your keys", "Someone found your keys"],
+    alternatives: ["Somebody found your keys"],
     russian: "Кто-то нашел твои ключи",
     ukrainian: "Хтось знайшов твої ключі",
     spanish: "Alguien encontró tus llaves.",
@@ -6853,6 +6866,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_37',
     english: "Everyone helped us",
+    alternatives: ["Everybody helped us"],
     russian: "Все помогли нам",
     ukrainian: "Всі допомогли нам",
     spanish: "Todos nos ayudaron.",
@@ -6870,6 +6884,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_38',
     english: "Nobody helped them",
+    alternatives: ["No one helped them"],
     russian: "Никто не помог им",
     ukrainian: "Ніхто не допоміг їм",
     spanish: "Nadie los ayudó.",
@@ -6966,6 +6981,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_43',
     english: "Nobody brought documents",
+    alternatives: ["No one brought documents"],
     russian: "Никто не принес документы",
     ukrainian: "Ніхто не приніс документи",
     spanish: "Nadie trajo documentos.",
@@ -7017,6 +7033,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_46',
     english: "Someone forgot a ticket",
+    alternatives: ["Somebody forgot a ticket"],
     russian: "Кто-то забыл билет",
     ukrainian: "Хтось забув квиток",
     spanish: "Alguien olvidó un boleto.",
@@ -7036,6 +7053,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_47',
     english: "Nobody forgot tickets",
+    alternatives: ["No one forgot tickets"],
     russian: "Никто не забыл билеты",
     ukrainian: "Ніхто не забув квитки",
     spanish: "Nadie olvidó los boletos.",
@@ -7074,6 +7092,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_49',
     english: "Someone saw your bag",
+    alternatives: ["Somebody saw your bag"],
     russian: "Кто-то видел твою сумку",
     ukrainian: "Хтось бачив твою сумку",
     spanish: "Alguien vio tu bolsa.",
@@ -7093,6 +7112,7 @@ export const LESSON_21_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson21_phrase_50',
     english: "Nobody saw my bag",
+    alternatives: ["No one saw my bag"],
     russian: "Никто не видел мою сумку",
     ukrainian: "Ніхто не бачив мою сумку",
     spanish: "Nadie vio mi bolsa.",

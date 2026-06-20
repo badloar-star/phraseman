@@ -47,6 +47,7 @@ import { getEffectivePlatformOS } from '../platform_ui_preview';
 import { hapticTap } from '../../hooks/use-haptics';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { frenchFlashcardsGateCopy } from '../flashcards_target_gate';
+import { isCollectiblesEnabled } from '../remote_flags';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -570,8 +571,6 @@ export default function FlashcardsCategoryHub({
       >
         <Text
           numberOfLines={1}
-          adjustsFontSizeToFit
-          minimumFontScale={0.78}
           style={{
             color: active ? tabOnText : tabOffText,
             fontWeight: '800',
@@ -921,6 +920,58 @@ export default function FlashcardsCategoryHub({
     );
   };
 
+  const renderCollectionTile = () => {
+    const i = tileAnimIndex++;
+    const label = triLang(lang, {
+      ru: 'Коллекция',
+      uk: 'Колекція',
+      es: 'Colección',
+      'pt-BR': 'Coleção',
+      vi: 'Bộ sưu tập',
+      id: 'Koleksi',
+      tr: 'Koleksiyon',
+      pl: 'Kolekcja',
+    });
+
+    return (
+      <Reanimated.View
+        key="collection"
+        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
+        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
+      >
+        <HubTileShell
+          testID="flashcards-hub-tile-collection"
+          a11y="qa-flashcards-hub-tile-collection"
+          width={tileW}
+          reduceMotion={reduceMotion}
+          onPress={() => router.push('/collectibles_screen' as any)}
+        >
+          <View
+            style={[
+              {
+                width: tileW,
+                height: tileW,
+                borderRadius: TILE_RADIUS,
+                borderWidth: 1,
+                borderColor: t.border,
+                backgroundColor: t.bgSurface,
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+              },
+              shadowForTile(t, 'base'),
+            ]}
+          >
+            <Ionicons name="albums-outline" size={iconSize} color={t.textPrimary} />
+          </View>
+        </HubTileShell>
+        <Text style={labelStyle(true)} numberOfLines={2}>
+          {label}
+        </Text>
+      </Reanimated.View>
+    );
+  };
+
   const hubSegmentTabs = cloudCommunityEnabled ? (
     <View
       style={{
@@ -954,6 +1005,7 @@ export default function FlashcardsCategoryHub({
             {renderHubCategoryTiles()}
             {renderTrainingTile()}
             {renderAudioTile()}
+            {isCollectiblesEnabled() && renderCollectionTile()}
             {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
           </View>
         ) : hubPackSegment === 'showcase' ? (
@@ -1060,6 +1112,7 @@ export default function FlashcardsCategoryHub({
           {renderHubCategoryTiles()}
           {renderTrainingTile()}
           {renderAudioTile()}
+          {isCollectiblesEnabled() && renderCollectionTile()}
           {renderPackTiles(marketPacks, (p) => ownedPackIds.includes(p.id), false)}
         </View>
       )}

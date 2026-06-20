@@ -355,6 +355,35 @@ function PlanFlowIcon({
     </View>
   );
 }
+
+// Анимированная полоска прогресса плана. Раньше сегменты были обычными <View>, у
+// которых при смене шага мгновенно менялся background — на телефоне это читалось
+// как «анимации полосок не работают». Теперь активная заливка плавно проявляется
+// поверх неактивного трека (opacity, нативный драйвер — плавно даже под нагрузкой).
+function OnboardingProgressSegment({
+  active,
+  styles,
+}: {
+  active: boolean;
+  styles: OnboardingStyles;
+}) {
+  const fill = useRef(new Animated.Value(active ? 1 : 0)).current;
+  useEffect(() => {
+    Animated.timing(fill, {
+      toValue: active ? 1 : 0,
+      duration: 320,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [active, fill]);
+  return (
+    <View style={styles.planFlowProgressSegment}>
+      <Animated.View
+        style={[styles.planFlowProgressSegmentActive, styles.planFlowProgressSegmentFill, { opacity: fill }]}
+      />
+    </View>
+  );
+}
 const PLAN_PROGRESS_STEPS: OnboardingStepKey[] = ['planGoal', 'planLevel', 'planMinutes', 'planLoading', 'planResult'];
 const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
   demo2: 'planEntry',
@@ -840,6 +869,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     if (current === 'welcome') return entryStep;
     if (current === 'demo2') return entryStep;
     if (current === 'demo') return simpleStep === 'demo' ? entryStep : 'demo2';
+    // Линейная цепочка шагов плана: planEntry → planGoal → planLevel → planMinutes
+    // → planLoading → planResult. Раньше для этих шагов prev был undefined, и кнопка
+    // «назад» проваливалась на onboardingEntryStepRef (первый экран) — отсюда баг
+    // «назад кидает на начальный экран». Возвращаем реальный предыдущий шаг цепочки.
+    const planIdx = PLAN_PROGRESS_STEPS.indexOf(current);
+    if (planIdx === 0) return entryStep;            // planGoal → planEntry
+    if (planIdx > 0) return PLAN_PROGRESS_STEPS[planIdx - 1];
+    // Пейволы/пикеры плана возвращают на результат плана.
+    if (current === 'planPaywall' || current === 'planPicker' || current === 'planDetails') {
+      return 'planResult';
+    }
     if (current === 'name') {
       if (simpleStep === 'name') return entryStep;
       return 'demo';
@@ -1755,12 +1795,10 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
     return (
       <View style={styles.planFlowProgressSegments} pointerEvents="none">
         {PLAN_PROGRESS_STEPS.map((progressStep, index) => (
-          <View
+          <OnboardingProgressSegment
             key={progressStep}
-            style={[
-              styles.planFlowProgressSegment,
-              index <= activeIndex && styles.planFlowProgressSegmentActive,
-            ]}
+            active={index <= activeIndex}
+            styles={styles}
           />
         ))}
       </View>
@@ -4546,9 +4584,14 @@ const makeOnboardingStyles = (t: OnboardingTheme) => StyleSheet.create({
     maxWidth: 34,
     borderRadius: 999,
     backgroundColor: 'rgba(255,248,232,0.18)',
+    overflow: 'hidden',
   },
   planFlowProgressSegmentActive: {
     backgroundColor: t.accent,
+  },
+  planFlowProgressSegmentFill: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 999,
   },
   planFlowQuestionBlock: {
     width: '100%',

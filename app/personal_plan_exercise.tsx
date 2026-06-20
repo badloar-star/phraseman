@@ -316,24 +316,23 @@ function PronunciationSpeakButton({
       disabled={!enabled}
       onPress={onPress}
       style={[
-        styles.primaryButton,
+        styles.recorderButton,
         {
-          borderColor: listening ? '#FF6E7866' : accent + '55',
-          opacity: enabled ? 1 : 0.55,
-          shadowColor: listening ? '#FF6E78' : accent,
+          backgroundColor: listening ? '#FF4A55' : accent,
+          borderColor: listening ? '#FF4A55' : accent,
+          opacity: enabled ? 1 : 0.5,
         },
       ]}
     >
-      <LinearGradient
-        colors={listening ? ['#FF6E78', '#FF4A55'] : [accent, accent + 'BB']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.primaryButtonGradient}
-      >
-        <Text style={[styles.primaryButtonText, { color: listening ? '#130406' : actionText }]}>
-          {listening ? 'Слушаю — говори' : 'Сказать фразу'}
-        </Text>
-      </LinearGradient>
+      <Ionicons
+        name={listening ? 'stop-circle-outline' : 'mic-outline'}
+        size={18}
+        color={listening ? '#130406' : actionText}
+        style={{ marginRight: 8 }}
+      />
+      <Text style={[styles.recorderButtonText, { color: listening ? '#130406' : actionText }]}>
+        {listening ? 'Слушаю — говори' : 'Сказать фразу'}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -533,38 +532,35 @@ function PlanPronunciationRecorder({
     ? 'Теперь скажи фразу вслух.'
     : 'Сначала послушай фразу, потом повтори.';
 
+  const listenDisabled = pronunciationSpeakingTarget || pronunciationListening;
   return (
-    <View style={[styles.recorderStack, { borderColor: accent + '44', shadowColor: accent }]}>
-      <View style={[styles.recorderHintPill, { backgroundColor: accent + '16', borderColor: accent + '55' }]}>
+    <View style={styles.recorderStack}>
+      <View style={styles.recorderHintRow}>
         <Ionicons name="mic-outline" size={16} color={accent} />
-        <Text style={[styles.panelText, { color: mutedText }]}>Послушай фразу, потом скажи её — телефон слушает локально</Text>
+        <Text style={[styles.recorderHintText, { color: mutedText }]}>
+          Послушай фразу, потом скажи её — телефон слушает локально
+        </Text>
       </View>
 
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel="Послушать фразу"
         activeOpacity={0.84}
-        disabled={pronunciationSpeakingTarget || pronunciationListening}
+        disabled={listenDisabled}
         onPress={() => listenPronunciationTarget()}
         style={[
-          styles.primaryButton,
+          styles.recorderButton,
           {
-            borderColor: accent + '33',
-            opacity: pronunciationSpeakingTarget || pronunciationListening ? 0.6 : 1,
-            shadowColor: accent,
+            backgroundColor: accent + '1A',
+            borderColor: accent + '55',
+            opacity: listenDisabled ? 0.6 : 1,
           },
         ]}
       >
-        <LinearGradient
-          colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.primaryButtonGradient}
-        >
-          <Text style={[styles.primaryButtonText, { color: accent }]}>
-            {pronunciationSpeakingTarget ? 'Звучит фраза…' : 'Послушать фразу'}
-          </Text>
-        </LinearGradient>
+        <Ionicons name="volume-high-outline" size={18} color={accent} style={{ marginRight: 8 }} />
+        <Text style={[styles.recorderButtonText, { color: accent }]}>
+          {pronunciationSpeakingTarget ? 'Звучит фраза…' : 'Послушать фразу'}
+        </Text>
       </TouchableOpacity>
 
       {blocked !== 'unavailable' && (
@@ -577,7 +573,7 @@ function PlanPronunciationRecorder({
         />
       )}
 
-      <Text style={[styles.panelText, { color: scoreColor, fontWeight: '800' }]}>{statusHint}</Text>
+      <Text style={[styles.recorderStatus, { color: scoreColor }]}>{statusHint}</Text>
 
       {blocked === 'denied' && (
         <TouchableOpacity
@@ -585,16 +581,9 @@ function PlanPronunciationRecorder({
           accessibilityLabel="Открыть настройки"
           activeOpacity={0.84}
           onPress={openMicSettings}
-          style={[styles.primaryButton, { borderColor: accent + '55', shadowColor: accent, marginTop: 10 }]}
+          style={[styles.recorderButton, { backgroundColor: accent + '1A', borderColor: accent + '55', marginTop: 4 }]}
         >
-          <LinearGradient
-            colors={['rgba(255,255,255,0.08)', 'rgba(255,255,255,0.04)']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.primaryButtonGradient}
-          >
-            <Text style={[styles.primaryButtonText, { color: accent }]}>Открыть настройки</Text>
-          </LinearGradient>
+          <Text style={[styles.recorderButtonText, { color: accent }]}>Открыть настройки</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -1672,7 +1661,11 @@ type PersonalPlanExerciseStyles = {
   inlineFeedbackButtonText: TextStyle;
   doneSpacer: ViewStyle;
   recorderStack: ViewStyle;
-  recorderHintPill: ViewStyle;
+  recorderHintRow: ViewStyle;
+  recorderHintText: TextStyle;
+  recorderButton: ViewStyle;
+  recorderButtonText: TextStyle;
+  recorderStatus: TextStyle;
   recallInput: TextStyle;
   recallAnswer: TextStyle;
   rowActions: ViewStyle;
@@ -1921,26 +1914,26 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   doneSpacer: { minHeight: 18 },
   recorderStack: {
     marginTop: 18,
-    gap: 10,
-    borderRadius: 26,
-    padding: 16,
-    borderWidth: 1.5,
-    backgroundColor: 'rgba(255,255,255,0.055)',
-    elevation: 8,
-    shadowOffset: { width: 0, height: 14 },
-    shadowOpacity: 0.22,
-    shadowRadius: 24,
+    gap: 12,
   },
-  recorderHintPill: {
-    alignSelf: 'flex-start',
-    minHeight: 38,
-    borderRadius: 14,
-    borderWidth: 1,
-    paddingHorizontal: 12,
+  recorderHintRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    paddingHorizontal: 2,
   },
+  recorderHintText: { flex: 1, fontSize: 13, lineHeight: 18, fontWeight: '600' },
+  recorderButton: {
+    minHeight: 56,
+    borderRadius: 16,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 18,
+  },
+  recorderButtonText: { fontSize: 16, fontWeight: '800' },
+  recorderStatus: { fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center', paddingHorizontal: 4 },
   recallInput: {
     minHeight: 60,
     borderBottomWidth: 1,

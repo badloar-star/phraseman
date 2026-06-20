@@ -277,3 +277,83 @@ export const COMPASS_PUSH_STREAK_KEEP: CompassText = {
   tr: '{days} günlük serin bugün seni bekliyor.',
   pl: 'Seria {days} dni czeka na ciebie dziś.',
 };
+
+// ── Крыло «Память» / статистика: блок «Твой Компас» (Библия: «твой путь», не «статистика») ──
+
+/** Заголовок блока в общем хабе результатов. */
+export const COMPASS_STATS_TITLE: CompassText = {
+  ru: 'Твой путь с Компасом',
+  uk: 'Твій шлях з Компасом',
+  es: 'Tu camino con la Brújula',
+  'pt-BR': 'Seu caminho com a Bússola',
+  vi: 'Hành trình của bạn với La bàn',
+  id: 'Perjalananmu bersama Kompas',
+  tr: 'Pusula ile yolculuğun',
+  pl: 'Twoja droga z Kompasem',
+};
+
+/** Подпись «серия с Компасом» (Игра). */
+export const COMPASS_STATS_STREAK: CompassText = {
+  ru: 'Серия с Компасом',
+  uk: 'Серія з Компасом',
+  es: 'Racha con la Brújula',
+  'pt-BR': 'Sequência com a Bússola',
+  vi: 'Chuỗi với La bàn',
+  id: 'Rangkaian dengan Kompas',
+  tr: 'Pusula serisi',
+  pl: 'Seria z Kompasem',
+};
+
+/** Подпись «дней закрыто». */
+export const COMPASS_STATS_DAYS: CompassText = {
+  ru: 'Дней закрыто',
+  uk: 'Днів закрито',
+  es: 'Días completados',
+  'pt-BR': 'Dias concluídos',
+  vi: 'Số ngày hoàn thành',
+  id: 'Hari diselesaikan',
+  tr: 'Tamamlanan gün',
+  pl: 'Dni ukończone',
+};
+
+/** Подпись «темы окрепли». */
+export const COMPASS_STATS_TOPICS: CompassText = {
+  ru: 'Темы окрепли',
+  uk: 'Теми зміцніли',
+  es: 'Temas reforzados',
+  'pt-BR': 'Temas reforçados',
+  vi: 'Chủ đề vững hơn',
+  id: 'Topik menguat',
+  tr: 'Güçlenen konular',
+  pl: 'Tematy okrzepły',
+};
+
+/** Подписи статусов темы (Библия: «ведём сюда» вместо «слабая»). */
+export const COMPASS_TOPIC_STATUS: Record<'confident' | 'growing' | 'guided', CompassText> = {
+  confident: {
+    ru: 'уверенно', uk: 'упевнено', es: 'con seguridad', 'pt-BR': 'com firmeza',
+    vi: 'vững vàng', id: 'percaya diri', tr: 'sağlam', pl: 'pewnie',
+  },
+  growing: {
+    ru: 'крепнет', uk: 'міцніє', es: 'creciendo', 'pt-BR': 'crescendo',
+    vi: 'đang vững', id: 'menguat', tr: 'gelişiyor', pl: 'krzepnie',
+  },
+  guided: {
+    ru: 'ведём сюда', uk: 'ведемо сюди', es: 'vamos aquí', 'pt-BR': 'vamos por aqui',
+    vi: 'dẫn vào đây', id: 'menuju ke sini', tr: 'buraya yönlendiriyoruz', pl: 'tu prowadzimy',
+  },
+};
+
+/** Человеческие подписи грамматических тем (POS) по Библии. Ключ = WordCategory. */
+export const COMPASS_TOPIC_LABEL: Record<string, CompassText> = {
+  verb: { ru: 'Глаголы', uk: 'Дієслова', es: 'Verbos', 'pt-BR': 'Verbos', vi: 'Động từ', id: 'Kata kerja', tr: 'Fiiller', pl: 'Czasowniki' },
+  noun: { ru: 'Существительные', uk: 'Іменники', es: 'Sustantivos', 'pt-BR': 'Substantivos', vi: 'Danh từ', id: 'Kata benda', tr: 'İsimler', pl: 'Rzeczowniki' },
+  pronoun: { ru: 'Местоимения', uk: 'Займенники', es: 'Pronombres', 'pt-BR': 'Pronomes', vi: 'Đại từ', id: 'Kata ganti', tr: 'Zamirler', pl: 'Zaimki' },
+  adjective: { ru: 'Прилагательные', uk: 'Прикметники', es: 'Adjetivos', 'pt-BR': 'Adjetivos', vi: 'Tính từ', id: 'Kata sifat', tr: 'Sıfatlar', pl: 'Przymiotniki' },
+  adverb: { ru: 'Наречия', uk: 'Прислівники', es: 'Adverbios', 'pt-BR': 'Advérbios', vi: 'Trạng từ', id: 'Kata keterangan', tr: 'Zarflar', pl: 'Przysłówki' },
+  preposition: { ru: 'Предлоги', uk: 'Прийменники', es: 'Preposiciones', 'pt-BR': 'Preposições', vi: 'Giới từ', id: 'Kata depan', tr: 'Edatlar', pl: 'Przyimki' },
+  article: { ru: 'Артикли a/the', uk: 'Артиклі a/the', es: 'Artículos a/the', 'pt-BR': 'Artigos a/the', vi: 'Mạo từ a/the', id: 'Artikel a/the', tr: 'Artikeller a/the', pl: 'Przedimki a/the' },
+  modal: { ru: 'Модальные', uk: 'Модальні', es: 'Modales', 'pt-BR': 'Modais', vi: 'Động từ khuyết thiếu', id: 'Modal', tr: 'Kipler', pl: 'Modalne' },
+  conjunction: { ru: 'Союзы', uk: 'Сполучники', es: 'Conjunciones', 'pt-BR': 'Conjunções', vi: 'Liên từ', id: 'Konjungsi', tr: 'Bağlaçlar', pl: 'Spójniki' },
+  syntax: { ru: 'Порядок слов', uk: 'Порядок слів', es: 'Orden de palabras', 'pt-BR': 'Ordem das palavras', vi: 'Trật tự từ', id: 'Urutan kata', tr: 'Kelime sırası', pl: 'Szyk zdania' },
+};

@@ -29,3 +29,4 @@ export { compassRetentionOn } from './compass_flags';
 export { buildTopicMap, summarizeTopicMap } from './compass_memory';
 export type { TopicCard, TopicStatus, TopicMapSummary } from './compass_memory';
 export { compassTopicMapOn } from './compass_flags';
+export { default as CompassStatsBlock } from './compass_stats_block';

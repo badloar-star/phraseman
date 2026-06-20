@@ -1175,7 +1175,8 @@ const applyEnergyBonusN = async (
 ): Promise<ApplyGiftResult> => {
   const existing = await readBonusEnergy();
   const energyBoostAlreadyActive = existing !== null && (existing.amount ?? 0) > 0;
-  const bonus: BonusEnergyState = { amount: n, expiresAt: getTomorrowMidnightMs() };
+  const accumulatedAmount = (existing?.amount ?? 0) + n;
+  const bonus: BonusEnergyState = { amount: accumulatedAmount, expiresAt: getTomorrowMidnightMs() };
   await AsyncStorage.setItem(BONUS_ENERGY_KEY, JSON.stringify(bonus));
   await setEnergy(currentEnergy);
   return { success: true, energyBoostAlreadyActive };

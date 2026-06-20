@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Reanimated from 'react-native-reanimated';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import TapScale from '../components/TapScale';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import TopFadeMask from '../components/TopFadeMask';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
@@ -91,7 +92,7 @@ function WeekBar({
   return (
     <View style={styles.weekRow}>
       <Text style={[styles.weekLabel, { color: week.isCurrent ? chrome.accent : chrome.muted }]}>
-        Н{week.weekIndex}
+        Нед. {week.weekIndex}
       </Text>
       <View style={[styles.weekTrack, { backgroundColor: chrome.surface }]}>
         <Animated.View
@@ -113,6 +114,7 @@ function WeekBar({
 
 export default function PersonalPlanStatsScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
   const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(null);
   const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(null);
@@ -121,6 +123,7 @@ export default function PersonalPlanStatsScreen() {
   const isGold = themeMode === 'gold';
   const screenBg = isGold ? '#090704' : t.bgPrimary;
 
+  const fadeScrollY = useRef(new Animated.Value(0)).current;
   const fade = useRef(new Animated.Value(0)).current;
   const slide = useRef(new Animated.Value(20)).current;
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
@@ -140,6 +143,8 @@ export default function PersonalPlanStatsScreen() {
       currentDayIndex: state.currentDayIndex,
       minutesPerDay: state.minutesPerDay,
       completedTasks,
+      // UTC date, to match completedAt (new Date().toISOString()) used for active-day keys.
+      todayKey: new Date().toISOString().slice(0, 10),
     }));
     setWeakSpots(await readPlanWeakSpotView(state.planInstanceId).catch(() => null));
     setXpLedger(await readPlanXpLedger(state.planInstanceId).catch(() => null));
@@ -162,22 +167,26 @@ export default function PersonalPlanStatsScreen() {
 
   if (!stats) {
     return (
-      <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
+      <View style={[styles.safe, { backgroundColor: screenBg }]}>
         <LinearGradient colors={chrome.bg} style={styles.fill}>
-          <View style={styles.center}>
+          <TopFadeMask zIndex={2} />
+          <View style={[styles.center, { paddingTop: insets.top }]}>
             <Ionicons name="stats-chart-outline" size={40} color={chrome.muted} />
             <Text style={[styles.emptyText, { color: chrome.muted }]}>Нет данных о плане</Text>
           </View>
         </LinearGradient>
-      </SafeAreaView>
+      </View>
     );
   }
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
+    <View style={[styles.safe, { backgroundColor: screenBg }]}>
       <LinearGradient colors={chrome.bg} style={styles.fill}>
+        {/* TopFadeMask — position:absolute от top:0 экрана (корень без paddingTop),
+            поэтому фейд перекрывает safe-area плавно, как на главной. */}
+        <TopFadeMask scrollY={fadeScrollY} zIndex={2} />
         <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
-        <View style={styles.header}>
+        <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
           <TapScale
             onPress={() => safeRouterBack(router, '/personal_plan')}
             accessibilityRole="button"
@@ -188,7 +197,7 @@ export default function PersonalPlanStatsScreen() {
           </TapScale>
           <View style={styles.headerCopy}>
             <Text style={[styles.kicker, { color: chrome.accent }]}>Статистика</Text>
-            <Text style={[styles.title, { color: chrome.text }]} numberOfLines={1}>{stats.planName}</Text>
+            <Text style={[styles.title, { color: chrome.text }]} numberOfLines={2}>{stats.planName}</Text>
           </View>
         </View>
 
@@ -201,7 +210,7 @@ export default function PersonalPlanStatsScreen() {
           overScrollMode="always"
           contentContainerStyle={styles.scroll}
           style={{ opacity: fade, transform: [{ translateY: slide }] }}
-          onScroll={(e: any) => { onBouncyScroll(e); }}
+          onScroll={(e: any) => { onBouncyScroll(e); fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0); }}
           scrollEventThrottle={16}
         >
           {/* Overall progress hero */}
@@ -228,10 +237,6 @@ export default function PersonalPlanStatsScreen() {
           <View style={styles.grid}>
             <StatCard icon="checkmark-done-outline" value={`${stats.completedTasksTotal}`} label="задач выполнено" chrome={chrome} />
             <StatCard icon="calendar-outline" value={`${stats.activeDaysCount}`} label="активных дней" chrome={chrome} />
-          </View>
-          <View style={styles.grid}>
-            <StatCard icon="time-outline" value={`${stats.estimatedMinutesInvested}`} label="минут практики" chrome={chrome} />
-            <StatCard icon="library-outline" value={`${stats.totalTasksTotal}`} label="всего задач" chrome={chrome} />
           </View>
           {xpLedger && (xpLedger.xp > 0 || xpLedger.phrases > 0) ? (
             <View style={styles.grid}>
@@ -269,7 +274,7 @@ export default function PersonalPlanStatsScreen() {
                       color={chrome.accent}
                     />
                   </View>
-                  <Text style={[styles.weakLabel, { color: chrome.text }]} numberOfLines={1}>{row.label}</Text>
+                  <Text style={[styles.weakLabel, { color: chrome.text }]} numberOfLines={2}>{row.label}</Text>
                   <Text style={[styles.weakCount, { color: chrome.muted }]}>{row.wrongCount} {row.wrongCount === 1 ? 'промах' : 'промаха'}</Text>
                 </View>
               ))}
@@ -279,7 +284,7 @@ export default function PersonalPlanStatsScreen() {
         </BouncyWrap>
         </Reanimated.View>
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -289,7 +294,7 @@ const styles = StyleSheet.create({
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12 },
   emptyText: { fontSize: 15, fontWeight: '800' },
   header: {
-    paddingHorizontal: 12, paddingTop: 10, paddingBottom: 10,
+    paddingHorizontal: 12, paddingBottom: 10,
     flexDirection: 'row', alignItems: 'center', gap: 12,
   },
   back: {
@@ -331,7 +336,7 @@ const styles = StyleSheet.create({
   weakLabel: { flex: 1, fontSize: 15, lineHeight: 20, fontWeight: '800', minWidth: 0 },
   weakCount: { fontSize: 13, lineHeight: 18, fontWeight: '700' },
   weekRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  weekLabel: { width: 34, fontSize: 13, lineHeight: 16, fontWeight: '900' },
+  weekLabel: { width: 58, fontSize: 13, lineHeight: 16, fontWeight: '900' },
   weekTrack: { flex: 1, height: 14, borderRadius: 7, overflow: 'hidden' },
   weekFill: { height: '100%', borderRadius: 7 },
   weekPct: { width: 42, textAlign: 'right', fontSize: 13, lineHeight: 16, fontWeight: '900' },

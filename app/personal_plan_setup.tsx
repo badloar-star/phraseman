@@ -1,15 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
+import TopFadeMask from '../components/TopFadeMask';
 import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { getPlanById, type PersonalPlanId, type PlanMinutesChoice } from './personal_plan_catalog';
-import { activatePersonalPlan } from './personal_plan_state';
+import { activatePersonalPlan, readPersonalPlanState } from './personal_plan_state';
 import { getPersonalPlanArt } from './personal_plan_art';
 import { safeRouterBack } from './navigation_back';
 import { usePremium } from '../components/PremiumContext';
@@ -258,9 +259,30 @@ function PlanCard({
 // ─── Main screen ───────────────────────────────────────────────────────────
 export default function PersonalPlanSetupScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ directToPlans?: string }>();
+  // Смена плана с экрана активного плана: НЕ показываем опрос (goal/level/minutes),
+  // открываем сразу список планов на выбор (юзер уже всё это проходил).
+  const directToPlans = (Array.isArray(params.directToPlans) ? params.directToPlans[0] : params.directToPlans) === '1';
+  const insets = useSafeAreaInsets();
   const { hasPremiumAccess } = usePremium();
   const { theme: t } = useTheme();
-  const [step, setStep] = useState<Step>('goal');
+  // Верхний фейд-маск под safe-area при скролле — как на главной и в личном плане.
+  const fadeScrollY = useRef(new Animated.Value(0)).current;
+  const handleSetupScroll = (e: any) => {
+    fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0);
+  };
+  const [step, setStep] = useState<Step>(directToPlans ? 'all' : 'goal');
+
+  // При смене плана сохраняем выбранную ранее дневную нагрузку (минуты), чтобы
+  // новый план шёл с тем же темпом, а не сбрасывался на дефолт.
+  useEffect(() => {
+    if (!directToPlans) return;
+    let alive = true;
+    void readPersonalPlanState().then((state) => {
+      if (alive && state?.minutesPerDay) setSelectedMinutes(state.minutesPerDay);
+    }).catch(() => {});
+    return () => { alive = false; };
+  }, [directToPlans]);
   const [goal, setGoal] = useState<PersonalPlanSetupGoal>('words');
   const [level, setLevel] = useState<PersonalPlanSetupLevel>('a1');
   const [selectedMinutes, setSelectedMinutes] = useState<PlanMinutesChoice>(15);
@@ -315,6 +337,11 @@ export default function PersonalPlanSetupScreen() {
     router.replace('/personal_plan' as any);
   };
 
+  // Премиум-метка показывается РАНЬШЕ — на финальной кнопке/карточке результата,
+  // чтобы юзер видел замок до тапа, а не узнавал о пейволе только после нажатия.
+  // Логику перехода на /premium_modal (в activate) это НЕ меняет.
+  const planIsLocked = !canActivatePlan({ hasPremiumAccess });
+
   const renderQuestion = (
     title: string,
     subtitle: string,
@@ -322,7 +349,12 @@ export default function PersonalPlanSetupScreen() {
   ) => (
     <Animated.View style={{ opacity: slideFade, transform: [{ translateX: slideX }] }}>
       <Text style={[styles.stepKicker, { color: accent }]}>Шаг {stepIndex(step)} из {TOTAL_STEPS}</Text>
-      <Text style={[styles.stepTitle, { color: text }]}>{title}</Text>
+      <Text
+        style={[styles.stepTitle, { color: text }]}
+        numberOfLines={2}
+      >
+        {title}
+      </Text>
       <Text style={[styles.stepSubtitle, { color: muted }]}>{subtitle}</Text>
       <View style={styles.stack}>{body}</View>
     </Animated.View>
@@ -421,16 +453,23 @@ export default function PersonalPlanSetupScreen() {
       return (
         <Animated.View style={{ opacity: slideFade, transform: [{ translateX: slideX }] }}>
           <Text style={[styles.stepKicker, { color: accent }]}>Все маршруты</Text>
-          <Text style={[styles.stepTitle, { color: text }]}>Выбери свой план</Text>
+          <Text
+            style={[styles.stepTitle, { color: text }]}
+            numberOfLines={2}
+          >
+            Выбери свой план
+          </Text>
           <Text style={[styles.stepSubtitle, { color: muted }]}>
-            Рекомендуется {PLAN_IDS.indexOf(recommendedPlanId) + 1}-й вариант, но можно выбрать любой.
+            {directToPlans
+              ? 'Выбери план — он начнётся с первого дня.'
+              : `Рекомендуется ${PLAN_IDS.indexOf(recommendedPlanId) + 1}-й вариант, но можно выбрать любой.`}
           </Text>
           <View style={styles.stack}>
             {PLAN_IDS.map((planId) => (
               <PlanCard
                 key={planId}
                 planId={planId}
-                recommended={planId === recommendedPlanId}
+                recommended={!directToPlans && planId === recommendedPlanId}
                 accent={accent}
                 softBg={softBg}
                 cardBg={cardBg}
@@ -441,7 +480,13 @@ export default function PersonalPlanSetupScreen() {
                 onPress={() => {
                   hapticTap();
                   setSelectedPlanId(planId);
-                  setStep('minutes');
+                  // Смена плана: сразу активируем выбранный (минуты по умолчанию),
+                  // без шага «минуты» — юзер хотел просто выбрать из списка.
+                  if (directToPlans) {
+                    void activate(planId);
+                  } else {
+                    setStep('minutes');
+                  }
                 }}
               />
             ))}
@@ -454,7 +499,12 @@ export default function PersonalPlanSetupScreen() {
     return (
       <Animated.View style={{ opacity: slideFade, transform: [{ translateX: slideX }] }}>
         <Text style={[styles.stepKicker, { color: accent }]}>Для тебя подходит</Text>
-        <Text style={[styles.stepTitle, { color: text }]}>Твой план</Text>
+        <Text
+          style={[styles.stepTitle, { color: text }]}
+          numberOfLines={2}
+        >
+          Твой план
+        </Text>
 
         <LinearGradient
           colors={t.cardGradient}
@@ -466,7 +516,12 @@ export default function PersonalPlanSetupScreen() {
           <View style={[styles.resultTagPill, { backgroundColor: accent + '14', borderColor: accent + '33' }]}>
             <Text style={[styles.resultTagText, { color: accent }]}>{planTagline(visiblePlanId)}</Text>
           </View>
-          <Text style={[styles.resultName, { color: text }]}>{visiblePlan.name}</Text>
+          <Text
+            style={[styles.resultName, { color: text }]}
+            numberOfLines={2}
+          >
+            {visiblePlan.name}
+          </Text>
           <Text style={[styles.resultReason, { color: muted }]}>{planReason(visiblePlanId)}</Text>
 
           <View style={styles.resultFacts}>
@@ -491,9 +546,19 @@ export default function PersonalPlanSetupScreen() {
           onPress={() => void activate(visiblePlanId)}
           style={[styles.primaryBtn, { backgroundColor: accent }]}
         >
+          {planIsLocked ? (
+            <Ionicons name="lock-closed" size={18} color={onAccent} />
+          ) : null}
           <Text style={[styles.primaryBtnText, { color: onAccent }]}>Начать этот план</Text>
           <Ionicons name="arrow-forward" size={20} color={onAccent} />
         </TouchableOpacity>
+
+        {planIsLocked ? (
+          <View style={styles.premiumHintRow}>
+            <Ionicons name="diamond-outline" size={13} color={muted} />
+            <Text style={[styles.premiumHintText, { color: muted }]}>Доступно в Premium</Text>
+          </View>
+        ) : null}
 
         <TouchableOpacity
           testID="personal-plan-setup-view-all"
@@ -510,9 +575,12 @@ export default function PersonalPlanSetupScreen() {
     );
   })();
 
-  const canGoBack = step !== 'goal';
+  // В режиме смены плана опрос пропущен → «назад» из списка уходит на экран плана,
+  // а не на несуществующий шаг result.
+  const canGoBack = step !== 'goal' && !directToPlans;
   const handleBack = () => {
     hapticTap();
+    if (directToPlans) { safeRouterBack(router, '/personal_plan'); return; }
     animateStep(() => {
       if (step === 'level') setStep('goal');
       else if (step === 'minutes') setStep('level');
@@ -523,10 +591,12 @@ export default function PersonalPlanSetupScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: screenBg }]}>
+    <View style={[styles.safe, { backgroundColor: screenBg }]}>
       <LinearGradient colors={t.bgGradient} style={styles.safe}>
+        {/* TopFadeMask — position:absolute от top:0 экрана, плавный фейд как на главной. */}
+        <TopFadeMask scrollY={fadeScrollY} zIndex={2} />
         {/* Top bar */}
-        <View style={styles.topBar}>
+        <View style={[styles.topBar, { paddingTop: insets.top + 10 }]}>
           <TapScale
             onPress={canGoBack ? handleBack : () => safeRouterBack(router, '/personal_plan')}
             style={[styles.topBarBtn, { backgroundColor: t.bgCard, borderColor: border }]}
@@ -534,23 +604,28 @@ export default function PersonalPlanSetupScreen() {
             <Ionicons name="chevron-back" size={22} color={accent} />
           </TapScale>
 
-          <StepProgress
-            current={stepIndex(step)}
-            total={TOTAL_STEPS}
-            accent={accent}
-            trackBg={inactiveProgressBg}
-          />
+          {/* В режиме смены плана опрос пропущен — прогресс-бар шагов не показываем. */}
+          {directToPlans ? <View style={{ flex: 1 }} /> : (
+            <>
+              <StepProgress
+                current={stepIndex(step)}
+                total={TOTAL_STEPS}
+                accent={accent}
+                trackBg={inactiveProgressBg}
+              />
 
-          <View style={[styles.topBarStepPill, { backgroundColor: t.accentBg, borderColor: border }]}>
-            <Text style={[styles.topBarStepText, { color: accent }]}>{stepIndex(step)}/{TOTAL_STEPS}</Text>
-          </View>
+              <View style={[styles.topBarStepPill, { backgroundColor: t.accentBg, borderColor: border }]}>
+                <Text style={[styles.topBarStepText, { color: accent }]}>{stepIndex(step)}/{TOTAL_STEPS}</Text>
+              </View>
+            </>
+          )}
         </View>
 
-        <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+        <BouncyScrollView decelerationRate="normal" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleSetupScroll}>
           {content}
         </BouncyScrollView>
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -558,7 +633,6 @@ const styles = StyleSheet.create({
   safe: { flex: 1 },
   topBar: {
     paddingHorizontal: 14,
-    paddingTop: 10,
     paddingBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
@@ -644,6 +718,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row', gap: 10,
   },
   primaryBtnText: { fontSize: 18, fontWeight: '900' },
+  premiumHintRow: {
+    marginTop: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+  },
+  premiumHintText: { fontSize: 13, fontWeight: '800' },
   secondaryBtn: {
     minHeight: 56, marginTop: 12, borderRadius: 18, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',

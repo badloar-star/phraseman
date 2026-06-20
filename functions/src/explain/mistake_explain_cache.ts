@@ -29,8 +29,12 @@ export const MISTAKE_LOCK_TTL_MS = 35_000;
 
 /** Bump to invalidate stale cached mistake explanations on read.
  *  v1 (2026-06-20): full breakdown + lazy ELI5 variant.
- *  v2 (2026-06-20): fix — explanations were generated in English; prompts now enforce interfaceLang. */
-export const MISTAKE_SCHEMA_VERSION = 2;
+ *  v2 (2026-06-20): fix — explanations were generated in English; prompts now enforce interfaceLang.
+ *  v3 (2026-06-20): prompts re-aimed to teach the SINGLE governing distinction behind each wrong
+ *  word (e.g. "that" vs "it") with a minimal pair + a runnable test, on the strong model tier,
+ *  instead of generic "short rule, max 4 sentences" filler — old breakdowns AND old ELI5 text are
+ *  watered-down and must be regenerated. */
+export const MISTAKE_SCHEMA_VERSION = 3;
 
 /** How long a judge-rejected breakdown serves nothing before one request may retry generation. */
 export const MISTAKE_REJECTED_RETRY_TTL_MS = 10 * 60_000;

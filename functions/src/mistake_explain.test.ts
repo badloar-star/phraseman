@@ -101,7 +101,9 @@ jest.mock('./auth_identity', () => ({
 }));
 
 jest.mock('./openai_dialog_model_config', () => ({
-  resolveConfiguredDialogModel: jest.fn(async () => 'gpt-4.1-nano'),
+  // The mistake breakdown runs on the strong tier (gpt-4.1) so the ONE governing distinction
+  // (e.g. "that" vs "it") is taught with a minimal pair, not watered down to generic filler.
+  resolveConfiguredDialogModel: jest.fn(async () => 'gpt-4.1'),
 }));
 
 import { explainMistake as explainMistakeRaw } from './mistake_explain';
@@ -196,7 +198,7 @@ describe('explainMistake', () => {
   it('builds a prompt that targets the WHOLE error and lists every wrong→right swap', async () => {
     const res = await callExplain(validPayload);
 
-    expect(res).toMatchObject({ ok: true, model: 'gpt-4.1-nano', variant: 'full', fromCache: false });
+    expect(res).toMatchObject({ ok: true, model: 'gpt-4.1', variant: 'full', fromCache: false });
     const body = JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body as string);
     const prompt = JSON.stringify(body.messages);
 

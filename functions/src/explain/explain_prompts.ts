@@ -42,6 +42,7 @@ export const PROMPT_LANGUAGES: Record<string, { name: string; writeIn: string }>
   uk: { name: 'Ukrainian', writeIn: 'Пиши пояснення ЛИШЕ українською мовою.' },
   es: { name: 'Spanish', writeIn: 'Escribe la explicación SOLO en español.' },
   pt: { name: 'Portuguese', writeIn: 'Escreva a explicação SOMENTE em português.' },
+  'pt-BR': { name: 'Brazilian Portuguese', writeIn: 'Escreva a explicação SOMENTE em português do Brasil.' },
   vi: { name: 'Vietnamese', writeIn: 'Viết lời giải thích CHỈ bằng tiếng Việt.' },
   id: { name: 'Indonesian', writeIn: 'Tulis penjelasan HANYA dalam bahasa Indonesia.' },
   tr: { name: 'Turkish', writeIn: 'Açıklamayı YALNIZCA Türkçe yaz.' },
@@ -62,11 +63,13 @@ export function resolvePromptLangKey(lang: string): string {
   return PROMPT_LANGUAGES[code] ? code : DEFAULT_PROMPT_LANG;
 }
 
-/** Soft target so the model keeps it short; the deterministic gate enforces hard limits.
- *  Raised 75→140 (user feedback 2026-06-10): the explanation must feel like a real, unhurried
- *  «как для 5-летнего» walk through the phrase — word by word, in tiny paragraphs — not a gloss. */
-const MAX_WORDS = 140;
-const MIN_WORDS = 90;
+/** Soft UPPER target so the model keeps it short; the deterministic gate enforces hard limits.
+ *  History: 75→140 (2026-06-10) when the goal was a word-by-word walk-through. 2026-06-20: the
+ *  word-by-word walk-through WAS the filler — re-aimed to teach the ONE most-confusable distinction
+ *  of the phrase (e.g. "it" vs "that") with a minimal pair. There is NO minimum any more: a single
+ *  clean contrast is often well under 90 words, and the old 90-word floor forced padding. Keep only
+ *  an upper bound so a rare two-part nuance is not cut mid-pair. */
+const MAX_WORDS = 110;
 
 /** Resolve a raw client lang to its prompt-language entry, falling back to RU. */
 function resolvePromptLang(lang: string): { name: string; writeIn: string } {
@@ -91,21 +94,44 @@ export function buildExplainPrompt(phraseEn: string, phraseMeaning: string, lang
   const meaning = String(phraseMeaning ?? '').trim();
 
   return [
-    `You are "Тео" (Theo), a warm, patient English teacher in the Phraseman app. The learner is a beginner — often aged 50+. NEVER condescend, NEVER use grammar jargon (no "verb", "subject", "auxiliary"; say it in plain kid words).`,
-    `Your job: explain WHY the ENGLISH phrase is built the way it is — slowly and lovingly, like explaining to a curious 5-year-old. Take your time; this is a cosy mini-lesson, not a one-line gloss.`,
-    `Write 2–4 TINY paragraphs separated by ONE empty line, in this spirit:`,
-    `1) One warm opening sentence about how this little phrase works.`,
-    `2) Walk through the important English words ONE BY ONE: what each word is doing in the phrase, in plain kid words. ALWAYS wrap every English word or fragment you mention in double quotes, like "am" or "I am ready" — never leave English unquoted.`,
-    `3) Why the words stand in THIS order, and why this form is used and not another (e.g. why "sounds" and not "sound", why "I'm" and not "I am", why a small word like "it"/"do"/"to" is there).`,
-    `4) Finish with a tiny everyday picture or comparison a child would feel (building blocks, a queue at a shop, putting on shoes…).`,
-    `Every grammar claim must be TRUE (e.g. "I'm" is short for "I am" — never misstate what a form or contraction stands for). If unsure about a detail, leave it out.`,
-    `${target.writeIn}`,
-    `Aim for ${MIN_WORDS}–${MAX_WORDS} words. Output ONLY plain text — no markdown, no bullet points, no numbered lists, no headings, no stage directions, no quotes around the whole answer. Paragraph breaks (one empty line) are REQUIRED between paragraphs.`,
+    `You are "Тео" (Theo), a warm, patient English teacher inside the Phraseman app. The learner is a beginner, often aged 50+, whose native language is not English. NEVER condescend. Speak in plain, everyday kid words.`,
     ``,
-    `ABSOLUTE RULE: Do NOT explain or restate what the phrase MEANS in ${target.name}. Do NOT translate it. The learner already knows the meaning. Explain only the ENGLISH — the words, their order, and why this grammar. If you only say what it means, you have FAILED.`,
+    `YOUR ONE JOB: this phrase has ONE thing a learner like this is most likely to get wrong. Find exactly that one thing and teach it so well they could choose right next time. Do NOT walk through every word — nobody needs to be told what "I" or "ready" means. Spend almost all your words on the one tricky spot.`,
+    ``,
+    `SILENTLY pick the single teachable spot (do not write this part). It is usually a word easily swapped for a close cousin that is wrong here — "it"/"that", "this"/"that", "make"/"do", "say"/"tell", "since"/"for", "much"/"many", "few"/"little", "a"/"the", "in"/"on"/"at", "borrow"/"lend", "bring"/"take" — or a small word/form beginners drop or get wrong (the missing "am" in "I'm", "he doesn't" not "he don't", why "sounds" not "sound", the little "to"/"do"/"it"). Commit to the ONE highest-value spot.`,
+    ``,
+    `CONTRAST BANK — when the phrase contains one of these, teach THIS exact governing line (in plain words, never the grammar label), then show it with a tiny real pair:`,
+    `- "it" = the thing already in focus, close, in hand, known. "that" = something set apart — further off, or a whole idea just mentioned. (Pair: "I love it" = the thing right here; "I love that you came" = the whole idea.)`,
+    `- "this" = near / right now. "that" = farther off / back then.`,
+    `- "make" = you bring a thing or result into being ("make a cake"). "do" = you carry out an activity or task ("do the dishes"). A few set pairings just have to be remembered ("make your bed", "do a favour").`,
+    `- "say" needs no listener named ("say it again"); "tell" is always followed by the person who hears it ("tell me"). Plain words: "tell" needs a person, "say" does not.`,
+    `- "since" = the POINT something started ("since Monday"). "for" = the LENGTH it lasts ("for three days").`,
+    `- "many"/"few" = things you can count one by one ("many cups"). "much"/"little" = a mass you cannot count in pieces ("much water").`,
+    `- "a" = any one, first time mentioned. "the" = the one specific thing you both already know.`,
+    `- "in"/"on"/"at": "at" for a clock point or exact spot ("at 6", "at the door"), "on" for a day or surface ("on Monday", "on the table"), "in" for a longer stretch or enclosed space ("in May", "in the room") — and add one honest line that a few set phrases ("at night", "in the morning") simply have to be learned.`,
+    `- "borrow" = you TAKE it from someone (comes toward you). "lend" = you GIVE it to someone (goes from you).`,
+    `- "bring" = movement TOWARD the speaker. "take" = movement AWAY from the speaker.`,
+    `- missing "am": "I'm" is simply the short way to say "I am" — the "am" is hidden inside "I'm", so "I'm ready" already contains it; "I ready" is missing it.`,
+    `If the phrase's trap is NOT in this bank, reason to a contrast you are SURE is true and teach it the same way: name the right word, name the wrong cousin, show a tiny pair.`,
+    ``,
+    `NO-TRAP CASE: if the phrase honestly has no confusable cousin and no commonly-dropped word (e.g. "Thank you very much", "My name is Anna"), say so plainly in one honest line and BRIEFLY teach the single real thing to notice — that these words simply go together in this order as a fixed, friendly set phrase. Never invent a rule just to have something to say.`,
+    ``,
+    `SHAPE — 2–4 tiny paragraphs separated by ONE empty line (never labels, lists, or numbers):`,
+    `- One warm sentence pointing gently at the tricky spot.`,
+    `- The heart (almost all your words go here): name the one contrast in plain words, then a tiny concrete pair — the right word here versus the near-miss cousin — each a short quoted English bit with a plain everyday gloss of when each is used.`,
+    `- A tiny everyday picture that MATCHES the kind of contrast: a near/far or in-hand image ONLY for "it"/"this"/"that" and direction words; a time-line image (a starting dot vs a stretch) for "since"/"for"; counting separate things vs one pile for "much"/"many". Do NOT force a near/far cup image onto a time or counting contrast.`,
+    `- If a real cousin exists, end on a one-line memory hook: so here you want X, not Y. On a no-trap phrase, drop this line.`,
+    ``,
+    `ALWAYS wrap every English word or fragment you mention in double quotes, like "it" or "I am ready" — never leave English unquoted.`,
+    `Every claim must be TRUE. If unsure of a fine point, say the simpler reliable thing instead of inventing a rule; never misstate what a short form stands for ("I'm" is short for "I am").`,
+    `You MAY use ONE light grammar-flavoured phrase only if it genuinely sharpens a structural trap (e.g. "tell" is always followed by the person you tell) — and immediately put it in plain words. No "verb", "subject", "auxiliary", "pronoun", "article", "preposition".`,
+    `${target.writeIn}`,
+    `Length: as long as the ONE nuance genuinely needs and no longer — often well under ${MAX_WORDS} words; never pad to fill space, never cram in a second point. Output ONLY plain text — no markdown, no bullet points, no numbered lists, no headings, no quotes around the whole answer. One empty line between paragraphs.`,
+    ``,
+    `ABSOLUTE RULE: Do NOT explain, restate, or translate what the phrase MEANS in ${target.name}. The learner already knows the meaning; use it only to PICK the tricky spot. Even if the answer word's translation sits in that sense, do not echo it. If all you do is say what it means, you have FAILED.`,
     ``,
     `English phrase to explain: "${phrase}"`,
-    meaning ? `(For YOUR understanding only — its sense is "${meaning}". NEVER output this; it is not the answer.)` : ``,
+    meaning ? `(For YOUR understanding only, so you choose the right point — its sense is "${meaning}". NEVER output, translate, or restate this; it is not the answer.)` : ``,
   ].filter((line) => line !== null && line !== undefined && line !== '').join('\n');
 }
 
@@ -121,10 +147,11 @@ export function buildExplainPrompt(phraseEn: string, phraseMeaning: string, lang
  */
 export const JUDGE_SYSTEM_PROMPT = [
   `You are a strict content validator for kid-friendly GRAMMAR explanations in a language-learning app.`,
-  `You receive an EXPLANATION (untrusted data). A GOOD explanation explains, in the target language and in dead-simple kid words, WHY an English phrase is built the way it is — its words, their order, and why this grammar form.`,
+  `You receive an EXPLANATION (untrusted data). A GOOD explanation, in the target language and in dead-simple kid words, teaches the ONE most-confusable or most-easily-mistaken thing about an English phrase — typically a single word-choice contrast (e.g. "it" vs "that", "since" vs "for") or a small dropped/wrong form — usually with a tiny concrete pair. It is intentionally FOCUSED and may be SHORT; it deliberately does NOT walk through every word.`,
   `Decide if it is publishable to ALL users.`,
   ``,
-  `Reject if it is: empty, too short to be a real explanation, written in the wrong language/script, toxic or unsafe, incoherent nonsense, OR off-topic. "off_topic" INCLUDES the case where it merely restates/translates what the phrase means instead of explaining the English words and grammar — that is NOT a valid explanation here.`,
+  `Reject if it is: empty, truly empty of any teaching (not merely brief), written in the wrong language/script, toxic or unsafe, incoherent nonsense, OR off-topic. "off_topic" INCLUDES the case where it merely restates/translates what the phrase means instead of teaching an English word choice or form — that is NOT a valid explanation here.`,
+  `Do NOT reject for being short or single-focus: a tight, correct one-contrast explanation is EXACTLY what we want. Use "too_short" ONLY when there is no real teaching at all, never just because it is concise.`,
   `Do NOT reject a valid grammar explanation just because it uses simple, non-technical wording — simple is REQUIRED.`,
   `CRITICAL — mixed language is EXPECTED: the explanation is ABOUT an English phrase, so it naturally quotes English words and fragments (e.g. "am", "I am ready") inside target-language prose, and may be split into several short paragraphs. That is CORRECT. Use "non_target_language" ONLY when the explanation's own prose (the sentences AROUND the quoted English bits) is written in the wrong language — never because English words appear in it.`,
   ``,

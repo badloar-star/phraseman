@@ -34,6 +34,7 @@ import {
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
+import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -157,7 +158,7 @@ export default function PaywallA() {
                 monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
                 savingsPct={p.savingsPct}
                 perDayLabel={p.perDayLabel}
-                trialDays={p.trialDays}
+                trialDays={null /* триал объяснён таймлайном ниже — без дубля */}
                 loading={p.loading}
                 disabled={p.purchasing}
                 lifetimePrice={p.lifetimePrice}
@@ -175,8 +176,17 @@ export default function PaywallA() {
               compact
             />
 
-            {/* На «Компакт» триал объяснён прямо в карточке плана (trialDays выше) —
-                полный таймлайн НЕ дублируем, чтобы экран помещался без скролла (P0-4). */}
+            {/* Полный таймлайн триала «сегодня→напомним→списание» теперь и на «Компакт»:
+                показывается только при реальной бесплатной intro-фазе из стора. */}
+            {p.trialDays && (
+              <PaywallTrialTimeline
+                lang={lang as Lang}
+                chrome={chrome}
+                days={p.trialDays}
+                priceLabel={price || '…'}
+                periodLabel={period}
+              />
+            )}
 
             <View style={S.benefits}>
               {benefits.map((b, i) => (

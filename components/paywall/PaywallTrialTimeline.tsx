@@ -72,6 +72,22 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
 
   return (
     <View style={[S.wrap, { borderColor: cardBorder, backgroundColor: `${tc.heroAccent}0D` }]}>
+      {/* Золотая лента «бесплатно N дней» — возвращена во все варианты (была убрана). */}
+      <View style={[S.ribbon, { backgroundColor: `${tc.heroAccent}1A`, borderColor: `${tc.heroAccent}40` }]}>
+        <Ionicons name="gift" size={13} color={tc.heroAccent} style={{ marginRight: 6 }} />
+        <Text style={[S.ribbonText, { color: tc.heroAccent }]}>
+          {triLang(lang, {
+            ru: `${days} дня бесплатно, потом ${priceLabel}${periodLabel}`,
+            uk: `${days} дні безкоштовно, потім ${priceLabel}${periodLabel}`,
+            es: `${days} días gratis, luego ${priceLabel}${periodLabel}`,
+            'pt-BR': `${days} dias grátis, depois ${priceLabel}${periodLabel}`,
+            vi: `${days} ngày miễn phí, sau đó ${priceLabel}${periodLabel}`,
+            id: `${days} hari gratis, lalu ${priceLabel}${periodLabel}`,
+            tr: `${days} gün ücretsiz, sonra ${priceLabel}${periodLabel}`,
+            pl: `${days} dni za darmo, potem ${priceLabel}${periodLabel}`,
+          })}
+        </Text>
+      </View>
       {rows.map((row, i) => (
         <View key={row.icon} style={[S.row, i < rows.length - 1 && S.rowGap]}>
           <View style={S.railCol}>
@@ -97,6 +113,11 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
 
 const S = StyleSheet.create({
   wrap: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 14, paddingVertical: 12, marginTop: 14 },
+  ribbon: {
+    flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start',
+    paddingHorizontal: 10, paddingVertical: 5, borderRadius: 10, borderWidth: 1, marginBottom: 12,
+  },
+  ribbonText: { fontSize: 11.5, fontWeight: '800' },
   row: { flexDirection: 'row', gap: 11 },
   rowGap: { paddingBottom: 12 },
   railCol: { alignItems: 'center', width: 22 },

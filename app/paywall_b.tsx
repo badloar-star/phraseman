@@ -13,7 +13,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useLocalSearchParams } from 'expo-router';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
-import { triLang, type Lang } from '../constants/i18n';
+import { type Lang } from '../constants/i18n';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy, makeLP } from './paywall_copy';
 import { usePaywallPurchase } from './paywall_purchase';
@@ -25,6 +25,7 @@ import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
   PaywallStickyBar, useStickyCta, PaywallPersonalTags, PaywallCloseButton,
+  PaywallPriceRetry, PaywallTestimonials,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -132,19 +133,7 @@ export default function PaywallB() {
             {mirror && <MirrorCard lang={lang as Lang} chrome={chrome} mirror={mirror} />}
             <CompareCard lang={lang as Lang} chrome={chrome} />
 
-            {testimonials.length > 0 && (
-              <View style={[S.testimonialCard, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
-                <Text style={[S.testimonialTitle, { color: chrome.tc.heroAccent }]}>
-                  {triLang(lang as Lang, { ru: 'ЧТО ГОВОРЯТ УЧЕНИКИ', uk: 'ЩО КАЖУТЬ УЧНІ', es: 'LO QUE DICEN LOS ALUMNOS' })}
-                </Text>
-                {testimonials.map((tm, i) => (
-                  <View key={i} style={i > 0 ? { marginTop: 10 } : undefined}>
-                    <Text style={[S.testimonialText, { color: chrome.textPrimary }]}>{tm.text}</Text>
-                    <Text style={[S.testimonialAuthor, { color: chrome.textMuted }]}>— {tm.author}</Text>
-                  </View>
-                ))}
-              </View>
-            )}
+            <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
 
             {p.trialDays && (
               <PaywallTrialTimeline
@@ -156,6 +145,9 @@ export default function PaywallB() {
               />
             )}
 
+            {p.offeringsFailed ? (
+              <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
+            ) : (
             <PaywallPlanCards
               lang={lang as Lang}
               chrome={chrome}
@@ -172,6 +164,7 @@ export default function PaywallB() {
               lifetimePrice={p.lifetimePrice}
               lifetimeAvailable={p.lifetimeAvailable}
             />
+            )}
 
             <PaywallPriceUrgency
               lang={lang as Lang}
@@ -223,9 +216,5 @@ const S = StyleSheet.create({
     lineHeight: 32, textAlign: 'center', marginTop: 14,
   },
   subtitle: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
-  testimonialCard: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 15, paddingVertical: 13, marginTop: 12 },
-  testimonialTitle: { fontSize: 10.5, fontWeight: '800', letterSpacing: 1.2, marginBottom: 9 },
-  testimonialText: { fontSize: 12.5, lineHeight: 18, fontStyle: 'italic' },
-  testimonialAuthor: { fontSize: 10.5, marginTop: 4 },
   ctaWrap: { marginTop: 16 },
 });

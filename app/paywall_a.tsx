@@ -26,8 +26,10 @@ import { logPaywallFunnel } from './paywall_funnel';
 import { trackEvent } from './analytics';
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
+import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallPersonalTags, PaywallCloseButton,
+  PaywallPriceRetry, PaywallTestimonials,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -49,6 +51,7 @@ export default function PaywallA() {
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
     void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT });
@@ -71,8 +74,13 @@ export default function PaywallA() {
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
       } catch { /* некритично */ }
     })();
+    // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
+    try {
+      const dayHash = Math.floor(Date.now() / 86_400_000);
+      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 1, false));
+    } catch { /* некритично */ }
     return () => { dead = true; };
-  }, [source]);
+  }, [source, ctx, lang]);
 
   // вход — как у v2: мягкое появление
   const opacity = useRef(new Animated.Value(0)).current;
@@ -114,7 +122,7 @@ export default function PaywallA() {
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
 
             <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
-            <Text style={[S.subtitle, { color: chrome.textMuted }]} numberOfLines={2}>{subtitle}</Text>
+            <Text style={[S.subtitle, { color: chrome.textMuted }]}>{subtitle}</Text>
 
             {/* Личный «болевой» тег (1 шт.) — единый chip-вид (P1-4). */}
             {personalTag && (
@@ -136,22 +144,26 @@ export default function PaywallA() {
               </Text>
             )}
 
-            <PaywallPlanCards
-              lang={lang as Lang}
-              chrome={chrome}
-              selected={p.selected}
-              onSelect={p.selectPlan}
-              yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
-              yearlyFull={p.yearlyPrice}
-              monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
-              savingsPct={p.savingsPct}
-              perDayLabel={p.perDayLabel}
-              trialDays={p.trialDays}
-              loading={p.loading}
-              disabled={p.purchasing}
-              lifetimePrice={p.lifetimePrice}
-              lifetimeAvailable={p.lifetimeAvailable}
-            />
+            {p.offeringsFailed ? (
+              <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
+            ) : (
+              <PaywallPlanCards
+                lang={lang as Lang}
+                chrome={chrome}
+                selected={p.selected}
+                onSelect={p.selectPlan}
+                yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
+                yearlyFull={p.yearlyPrice}
+                monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
+                savingsPct={p.savingsPct}
+                perDayLabel={p.perDayLabel}
+                trialDays={p.trialDays}
+                loading={p.loading}
+                disabled={p.purchasing}
+                lifetimePrice={p.lifetimePrice}
+                lifetimeAvailable={p.lifetimeAvailable}
+              />
+            )}
 
             <PaywallPriceUrgency
               lang={lang as Lang}
@@ -170,12 +182,14 @@ export default function PaywallA() {
               {benefits.map((b, i) => (
                 <View key={i} style={S.benefitRow}>
                   <Ionicons name="checkmark-circle" size={17} color={chrome.textMuted} />
-                  <Text style={[S.benefitText, { color: chrome.textMuted }]} numberOfLines={2}>
+                  <Text style={[S.benefitText, { color: chrome.textMuted }]}>
                     {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
                   </Text>
                 </View>
               ))}
             </View>
+
+            <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
 
             <View style={S.spacer} />
 
@@ -210,7 +224,7 @@ const S = StyleSheet.create({
   subtitle: { fontSize: 13, lineHeight: 18.5, textAlign: 'center', marginTop: 8 },
   mirrorLine: { fontSize: 11.5, textAlign: 'center', marginTop: 10 },
   benefits: { gap: 8, marginTop: 14 },
-  benefitRow: { flexDirection: 'row', alignItems: 'center', gap: 9 },
+  benefitRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 9 },
   benefitText: { flex: 1, fontSize: 12.5, lineHeight: 17 },
   spacer: { flex: 1, minHeight: 8 },
 });

@@ -20,7 +20,7 @@ import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackg
 import type { ThemeMode } from '../../constants/theme';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
 
-// ── фоновые градиенты (как в premium_modal_v2; незнакомая тема → dark) ───────
+// ── фоновые градиенты активных A/B/C paywall-экранов; незнакомая тема → dark ──
 function screenBgTuple(themeMode: string): [string, string, string] {
   const stops = SCREEN_BG_GRADIENTS[themeMode as keyof typeof SCREEN_BG_GRADIENTS] ?? SCREEN_BG_GRADIENTS.dark;
   return [stops[0], stops[1] ?? stops[0], stops[2] ?? stops[1] ?? stops[0]];
@@ -144,6 +144,40 @@ export function PaywallSectionDivider({ label, chrome }: { label: string; chrome
   );
 }
 
+/**
+ * Баннер «не удалось загрузить цены» с кнопкой ретрая. Показывается, когда
+ * офферинги RevenueCat не загрузились — иначе кнопки (включая «Навсегда») молча
+ * пропадают, и пользователь думает, что приложение сломано.
+ */
+export function PaywallPriceRetry({ lang, chrome, onRetry }: {
+  lang: Lang;
+  chrome: PaywallChrome;
+  onRetry: () => void;
+}) {
+  return (
+    <View style={[S.priceRetryBox, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
+      <Ionicons name="cloud-offline-outline" size={20} color={chrome.textMuted} />
+      <Text style={[S.priceRetryText, { color: chrome.textMuted }]}>
+        {triLang(lang, {
+          ru: 'Не удалось загрузить цены из магазина. Проверь интернет и попробуй ещё раз.',
+          uk: 'Не вдалося завантажити ціни з магазину. Перевір інтернет і спробуй ще раз.',
+          es: 'No se pudieron cargar los precios. Revisa tu conexión e inténtalo de nuevo.',
+        })}
+      </Text>
+      <TouchableOpacity
+        testID="data-paywall-price-retry"
+        onPress={onRetry}
+        style={[S.priceRetryBtn, { backgroundColor: chrome.tc.ctaBg }]}
+        activeOpacity={0.82}
+      >
+        <Text style={[S.priceRetryBtnText, { color: chrome.tc.ctaText }]}>
+          {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar' })}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
 /** Кнопка закрытия пейвола — единый вид на A/B/C. */
 export function PaywallCloseButton({ onPress, chrome, style }: {
   onPress: () => void;
@@ -236,11 +270,43 @@ export function PaywallStickyBar({
     }]}>
       <View style={S.stickyTextWrap}>
         <Text style={[S.stickyTitle, { color: chrome.textPrimary }]} numberOfLines={1}>{title}</Text>
-        <Text style={[S.stickySub, { color: chrome.textMuted }]} numberOfLines={1}>{sub}</Text>
+        <Text style={[S.stickySub, { color: chrome.textMuted }]} numberOfLines={2}>{sub}</Text>
       </View>
       <TouchableOpacity activeOpacity={0.84} onPress={onPress} style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}>
         <Text style={[S.stickyBtnText, { color: tc.ctaText }]}>{button}</Text>
       </TouchableOpacity>
+    </View>
+  );
+}
+
+// ── отзывы учеников: единый вид во всех вариантах A/B/C ──────────────────────
+// Раньше блок жил только в B. Теперь общий компонент: A/C тоже показывают
+// verified-отзывы. Анти-фейк гард — в pickTestimonials (прод отдаёт только
+// verified). Принимает уже подобранные отзывы; нет отзывов → null.
+export function PaywallTestimonials({
+  items, lang, chrome,
+}: {
+  items: { text: string; author: string }[];
+  lang: Lang;
+  chrome: PaywallChrome;
+}) {
+  if (!items.length) return null;
+  const { tc, cardBg, cardBorder, textPrimary, textMuted } = chrome;
+  return (
+    <View style={[S.testimonialCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
+      <Text style={[S.testimonialTitle, { color: tc.heroAccent }]}>
+        {triLang(lang, {
+          ru: 'ЧТО ГОВОРЯТ УЧЕНИКИ', uk: 'ЩО КАЖУТЬ УЧНІ', es: 'LO QUE DICEN LOS ALUMNOS',
+          'pt-BR': 'O QUE DIZEM OS ALUNOS', vi: 'HỌC VIÊN NÓI GÌ', id: 'KATA PARA MURID',
+          tr: 'ÖĞRENCİLER NE DİYOR', pl: 'CO MÓWIĄ UCZNIOWIE',
+        })}
+      </Text>
+      {items.map((tm, i) => (
+        <View key={i} style={i > 0 ? { marginTop: 10 } : undefined}>
+          <Text style={[S.testimonialText, { color: textPrimary }]}>{tm.text}</Text>
+          <Text style={[S.testimonialAuthor, { color: textMuted }]}>— {tm.author}</Text>
+        </View>
+      ))}
     </View>
   );
 }
@@ -269,12 +335,24 @@ const S = StyleSheet.create({
     width: 28, height: 28, borderRadius: 14, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
   },
+  priceRetryBox: {
+    alignSelf: 'stretch', alignItems: 'center', gap: 12,
+    paddingVertical: 20, paddingHorizontal: 18, marginTop: 8,
+    borderRadius: 14, borderWidth: 1,
+  },
+  priceRetryText: { fontSize: 14, lineHeight: 20, textAlign: 'center' },
+  priceRetryBtn: { paddingVertical: 10, paddingHorizontal: 28, borderRadius: 12 },
+  priceRetryBtnText: { fontSize: 15, fontWeight: '800' },
   tagWrap: { gap: 7, marginTop: 12, alignSelf: 'stretch' },
   tagChip: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'center',
     maxWidth: '100%', paddingHorizontal: 11, paddingVertical: 6, borderRadius: 16, borderWidth: 1,
   },
   tagText: { flexShrink: 1, fontSize: 11.5, fontWeight: '600' },
+  testimonialCard: { borderRadius: 16, borderWidth: 1, paddingHorizontal: 15, paddingVertical: 13, marginTop: 12 },
+  testimonialTitle: { fontSize: 10.5, fontWeight: '800', letterSpacing: 1.2, marginBottom: 9 },
+  testimonialText: { fontSize: 12.5, lineHeight: 18, fontStyle: 'italic' },
+  testimonialAuthor: { fontSize: 10.5, marginTop: 4 },
   glyphCap: {
     alignSelf: 'center', width: 60, height: 60, borderRadius: 30, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',

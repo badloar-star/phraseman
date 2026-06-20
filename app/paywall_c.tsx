@@ -23,9 +23,11 @@ import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type Perso
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import { pickPercentileLine } from './paywall_percentile_line';
 import { loadPercentileData } from './daily_analytics_sync';
+import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import {
   usePaywallChrome, PaywallGlyphCapsule, PaywallSectionDivider,
   PaywallStickyBar, useStickyCta, PaywallPersonalTags, PaywallCloseButton,
+  PaywallPriceRetry, PaywallTestimonials,
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
@@ -55,6 +57,7 @@ export default function PaywallC() {
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
   const [percentileLine, setPercentileLine] = useState<string | null>(null);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const scrollDepthSent = useRef(new Set<number>());
 
   useEffect(() => {
@@ -78,8 +81,13 @@ export default function PaywallC() {
         if (!dead && isMirrorWorthShowing(m)) setMirror(m);
       } catch { /* некритично */ }
     })();
+    // Анти-фейк гард: в прод уходят только verified-отзывы; нет verified — секции нет.
+    try {
+      const dayHash = Math.floor(Date.now() / 86_400_000);
+      setTestimonials(pickTestimonials(lang as Lang, ctx, dayHash, 2, false));
+    } catch { /* некритично */ }
     return () => { dead = true; };
-  }, []);
+  }, [ctx, lang]);
 
   useEffect(() => {
     let dead = false;
@@ -144,7 +152,7 @@ export default function PaywallC() {
             <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             <Text style={[S.title, { color: chrome.textPrimary }]} adjustsFontSizeToFit numberOfLines={2}>{title}</Text>
 
-            <Text style={[S.personal, { color: chrome.textMuted }]} numberOfLines={2}>
+            <Text style={[S.personal, { color: chrome.textMuted }]}>
               {LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle)}
             </Text>
 
@@ -163,22 +171,26 @@ export default function PaywallC() {
               />
             )}
 
-            <PaywallPlanCards
-              lang={lang as Lang}
-              chrome={chrome}
-              selected={p.selected}
-              onSelect={p.selectPlan}
-              yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
-              yearlyFull={p.yearlyPrice}
-              monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
-              savingsPct={p.savingsPct}
-              perDayLabel={p.perDayLabel}
-              trialDays={null /* триал уже объяснён таймлайном — без дубля */}
-              loading={p.loading}
-              disabled={p.purchasing}
-              lifetimePrice={p.lifetimePrice}
-              lifetimeAvailable={p.lifetimeAvailable}
-            />
+            {p.offeringsFailed ? (
+              <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
+            ) : (
+              <PaywallPlanCards
+                lang={lang as Lang}
+                chrome={chrome}
+                selected={p.selected}
+                onSelect={p.selectPlan}
+                yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
+                yearlyFull={p.yearlyPrice}
+                monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
+                savingsPct={p.savingsPct}
+                perDayLabel={p.perDayLabel}
+                trialDays={null /* триал уже объяснён таймлайном — без дубля */}
+                loading={p.loading}
+                disabled={p.purchasing}
+                lifetimePrice={p.lifetimePrice}
+                lifetimeAvailable={p.lifetimeAvailable}
+              />
+            )}
 
             <PaywallPriceUrgency
               lang={lang as Lang}
@@ -210,6 +222,7 @@ export default function PaywallC() {
             {mirror && <MirrorCard lang={lang as Lang} chrome={chrome} mirror={mirror} />}
             {percentileLine && <PercentileCard lang={lang as Lang} chrome={chrome} line={percentileLine} />}
             <CompareCard lang={lang as Lang} chrome={chrome} />
+            <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
             <FaqCard lang={lang as Lang} chrome={chrome} trialDays={p.trialDays} priceLine={priceLine} />
 
             <View style={S.repeatCta}>

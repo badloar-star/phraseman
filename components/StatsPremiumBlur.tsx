@@ -72,14 +72,14 @@ const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
     pl: 'Mapa twoich słabych punktów',
   },
   percentiles: {
-    ru: 'Где ты среди всех игроков',
-    uk: 'Де ти серед усіх гравців',
-    es: 'Tu posición entre todos',
-    'pt-BR': 'Sua posição entre todos',
-    vi: 'Vị trí của bạn giữa mọi người',
-    id: 'Posisimu di antara semua pemain',
-    tr: 'Tüm oyuncular arasındaki yerin',
-    pl: 'Twoje miejsce wśród wszystkich graczy',
+    ru: 'Где ты среди всех учеников',
+    uk: 'Де ти серед усіх учнів',
+    es: 'Tu posición entre todos los alumnos',
+    'pt-BR': 'Sua posição entre todos os alunos',
+    vi: 'Vị trí của bạn giữa các học viên',
+    id: 'Posisimu di antara semua siswa',
+    tr: 'Tüm öğrenciler arasındaki yerin',
+    pl: 'Twoje miejsce wśród wszystkich uczniów',
   },
 };
 

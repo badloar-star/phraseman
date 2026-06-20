@@ -886,9 +886,11 @@ function AppContent() {
   const [showOnboarding, setShow]   = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
-  // Подарок лояльности: 'offer' = модал обновления с кнопкой «Получить 3 дня»,
-  // 'ended' = переиспользуем intro-модал «3 дня позади» (ведёт на пейвол).
-  const [loyaltyGiftModal, setLoyaltyGiftModal] = useState<'offer' | null>(null);
+  // Подарок лояльности:
+  //   'offer'    = free-юзер: текст обновления + блок подарка + кнопка «Получить 3 дня».
+  //   'announce' = премиум/VIP: ТОЛЬКО текст обновления, без подарка и кнопки получения.
+  //   'ended'-модал «3 дня позади» переиспользуется из intro (ведёт на пейвол).
+  const [loyaltyGiftModal, setLoyaltyGiftModal] = useState<'offer' | 'announce' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
@@ -1786,6 +1788,12 @@ function AppContent() {
     setLoyaltyGiftModal(null);
   }, []);
 
+  // Премиум/VIP закрыл анонс обновления (там нет подарка) — просто помечаем показанным.
+  const closeLoyaltyAnnounce = useCallback(async () => {
+    await markLoyaltyGiftOfferSeen().catch(() => {});
+    setLoyaltyGiftModal(null);
+  }, []);
+
   // Финальный модал после истечения подарка лояльности — переиспользуем intro-модал
   // 'ended' (та же логика: ведёт на пейвол / «продолжить бесплатно»). Закрытие обрабатывает
   // closeLoyaltyEndedModal, который помечает loyalty_gift_ended_seen.
@@ -1810,10 +1818,16 @@ function AppContent() {
 
   const checkLoyaltyGiftFlow = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
-    // Платным/VIP подарок не нужен — выходим (и гасим возможный «хвост» истечения).
+    // Премиум/VIP: подарок не выдаём, но текст обновления показываем — один раз,
+    // без блока подарка и без кнопки получения (variant 'announce').
     if (await hasVerifiedRealPremiumOrVip()) {
       const st = await getLoyaltyGiftState().catch(() => null);
       if (st?.expiredUnseen) await markLoyaltyGiftEndedSeen().catch(() => {});
+      const onboardingDone = (await AsyncStorage.getItem('onboarding_done').catch(() => null)) === '1';
+      const announceSeen = await isLoyaltyGiftOfferSeen().catch(() => false);
+      if (onboardingDone && !announceSeen && introFullAccessModal === null && loyaltyGiftModal === null) {
+        setLoyaltyGiftModal('announce');
+      }
       return;
     }
 
@@ -1838,7 +1852,7 @@ function AppContent() {
     const introState = await getIntroFullAccessState().catch(() => null);
     if (introState?.active) return; // у новичка ещё идёт его подарок — не дублируем
     setLoyaltyGiftModal('offer');
-  }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, introFullAccessModal, isBanned, ready]);
+  }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, introFullAccessModal, loyaltyGiftModal, isBanned, ready]);
 
   useEffect(() => {
     void checkLoyaltyGiftFlow();
@@ -2312,8 +2326,13 @@ function AppContent() {
     />
 
     <LoyaltyGiftModal
-      visible={appOverlaysEnabled && loyaltyGiftModal === 'offer'}
-      onPrimaryPress={() => { void claimLoyaltyGift(); }}
+      visible={appOverlaysEnabled && loyaltyGiftModal !== null}
+      variant={loyaltyGiftModal === 'announce' ? 'announce' : 'gift'}
+      onPrimaryPress={() => {
+        // free → выдаём подарок; премиум/VIP → просто закрываем анонс.
+        if (loyaltyGiftModal === 'announce') { void closeLoyaltyAnnounce(); }
+        else { void claimLoyaltyGift(); }
+      }}
       onSecondaryPress={() => { void dismissLoyaltyGiftOffer(); }}
     />
 

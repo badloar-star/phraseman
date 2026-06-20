@@ -16,8 +16,13 @@ import {
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
 
+// 'gift'     — существующий free-юзер: текст обновления + блок подарка + кнопка «Получить 3 дня».
+// 'announce' — премиум/VIP-юзер: ТОЛЬКО текст обновления, без подарка и без кнопки получения.
+export type LoyaltyGiftModalVariant = 'gift' | 'announce';
+
 type Props = {
   visible: boolean;
+  variant?: LoyaltyGiftModalVariant;
   onPrimaryPress: () => void;
   onSecondaryPress?: () => void;
 };
@@ -37,6 +42,9 @@ type ModalCopy = {
   primaryCta: string;
   secondaryCta: string;
   footer: string;
+  // Тексты для премиум/VIP (без подарка) — благодарим и закрываем.
+  announcePrimaryCta: string;
+  announceFooter: string;
 };
 
 // Текст обновления + подарок за лояльность. Намеренно «мощный»: сначала вау-фичи,
@@ -63,6 +71,8 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
     primaryCta: 'Получить 3 дня премиум',
     secondaryCta: 'Может позже',
     footer: 'Это подарок. Подписка не включается автоматически.',
+    announcePrimaryCta: 'Отлично, посмотреть',
+    announceFooter: 'Спасибо, что ты с нами. Всё новое уже доступно в твоём Premium.',
   },
   uk: {
     eyebrow: 'Велике оновлення',
@@ -85,6 +95,8 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
     primaryCta: 'Отримати 3 дні преміум',
     secondaryCta: 'Можливо пізніше',
     footer: 'Це подарунок. Підписка не вмикається автоматично.',
+    announcePrimaryCta: 'Чудово, подивитися',
+    announceFooter: 'Дякуємо, що ти з нами. Усе нове вже доступне у твоєму Premium.',
   },
   es: {
     eyebrow: 'Gran actualización',
@@ -107,19 +119,25 @@ const COPY: Record<'ru' | 'uk' | 'es', ModalCopy> = {
     primaryCta: 'Recibir 3 días premium',
     secondaryCta: 'Quizá luego',
     footer: 'Es un regalo. La suscripción no se activa automáticamente.',
+    announcePrimaryCta: 'Genial, ver novedades',
+    announceFooter: 'Gracias por estar con nosotros. Todo lo nuevo ya está en tu Premium.',
   },
 };
 
-function LoyaltyGiftModal({ visible, onPrimaryPress, onSecondaryPress }: Props) {
+function LoyaltyGiftModal({ visible, variant = 'gift', onPrimaryPress, onSecondaryPress }: Props) {
   const { lang } = useLang();
   const { theme, themeMode } = useTheme();
   const copy = lang === 'uk' ? COPY.uk : lang === 'es' ? COPY.es : COPY.ru;
+  // Премиум/VIP видят ТОЛЬКО текст обновления: без блока подарка и без кнопки получения.
+  const isGift = variant === 'gift';
 
-  // Воронка: показ модала-предложения и его CTA — отдельные события, чтобы видеть конверсию подарка.
+  // Воронка: показ модала — разные события для подарка и для анонса (премиум/VIP).
   useEffect(() => {
     if (!visible) return;
-    void import('../app/analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_offer_shown', {}));
-  }, [visible]);
+    void import('../app/analytics').then(({ trackEvent }) =>
+      trackEvent(isGift ? 'loyalty_gift_offer_shown' : 'loyalty_update_announce_shown', {}),
+    );
+  }, [visible, isGift]);
 
   const accent = rewardModalAccentColor(themeMode, theme);
   const border = rewardModalPanelBorder(themeMode, theme);
@@ -174,27 +192,31 @@ function LoyaltyGiftModal({ visible, onPrimaryPress, onSecondaryPress }: Props) 
                 ))}
               </View>
 
-              <View style={[styles.giftCard, { borderColor: accent, backgroundColor: softSurface }]}>
-                <Text style={[styles.giftEyebrow, { color: accent }]}>{copy.giftEyebrow}</Text>
-                <Text style={[styles.giftTitle, { color: textPrimary }]}>{copy.giftTitle}</Text>
-                <Text style={[styles.giftBody, { color: textSecondary }]}>{copy.giftBody}</Text>
-                <View style={styles.chips}>
-                  {copy.giftChips.map((label) => (
-                    <View key={label} style={[styles.chip, { backgroundColor: softSurface, borderColor: border }]}>
-                      <Ionicons name="lock-open-outline" size={15} color={accent} />
-                      <Text style={[styles.chipText, { color: textPrimary }]}>{label}</Text>
-                    </View>
-                  ))}
+              {isGift ? (
+                <View style={[styles.giftCard, { borderColor: accent, backgroundColor: softSurface }]}>
+                  <Text style={[styles.giftEyebrow, { color: accent }]}>{copy.giftEyebrow}</Text>
+                  <Text style={[styles.giftTitle, { color: textPrimary }]}>{copy.giftTitle}</Text>
+                  <Text style={[styles.giftBody, { color: textSecondary }]}>{copy.giftBody}</Text>
+                  <View style={styles.chips}>
+                    {copy.giftChips.map((label) => (
+                      <View key={label} style={[styles.chip, { backgroundColor: softSurface, borderColor: border }]}>
+                        <Ionicons name="lock-open-outline" size={15} color={accent} />
+                        <Text style={[styles.chipText, { color: textPrimary }]}>{label}</Text>
+                      </View>
+                    ))}
+                  </View>
                 </View>
-              </View>
+              ) : null}
             </ScrollView>
 
             <View style={[styles.footerBar, { borderTopColor: border }]}>
               <Pressable
-                testID="loyalty-gift-primary"
+                testID={isGift ? 'loyalty-gift-primary' : 'loyalty-announce-primary'}
                 accessibilityRole="button"
                 onPress={() => {
-                  void import('../app/analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_offer_cta', {}));
+                  void import('../app/analytics').then(({ trackEvent }) =>
+                    trackEvent(isGift ? 'loyalty_gift_offer_cta' : 'loyalty_update_announce_cta', {}),
+                  );
                   onPrimaryPress();
                 }}
                 style={styles.primaryButton}
@@ -205,24 +227,32 @@ function LoyaltyGiftModal({ visible, onPrimaryPress, onSecondaryPress }: Props) 
                   end={{ x: 1, y: 1 }}
                   style={styles.primaryGradient}
                 >
-                  <Ionicons name="gift" size={19} color={rewardModalPrimaryButtonText(themeMode)} />
+                  <Ionicons
+                    name={isGift ? 'gift' : 'sparkles'}
+                    size={19}
+                    color={rewardModalPrimaryButtonText(themeMode)}
+                  />
                   <Text style={[styles.primaryText, { color: rewardModalPrimaryButtonText(themeMode) }]}>
-                    {copy.primaryCta}
+                    {isGift ? copy.primaryCta : copy.announcePrimaryCta}
                   </Text>
                 </LinearGradient>
               </Pressable>
-              <Pressable
-                testID="loyalty-gift-secondary"
-                accessibilityRole="button"
-                onPress={() => {
-                  void import('../app/analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_offer_dismiss', {}));
-                  onSecondaryPress?.();
-                }}
-                style={styles.secondaryButton}
-              >
-                <Text style={[styles.secondaryText, { color: textSecondary }]}>{copy.secondaryCta}</Text>
-              </Pressable>
-              <Text style={[styles.footer, { color: textTertiary }]}>{copy.footer}</Text>
+              {isGift ? (
+                <Pressable
+                  testID="loyalty-gift-secondary"
+                  accessibilityRole="button"
+                  onPress={() => {
+                    void import('../app/analytics').then(({ trackEvent }) => trackEvent('loyalty_gift_offer_dismiss', {}));
+                    onSecondaryPress?.();
+                  }}
+                  style={styles.secondaryButton}
+                >
+                  <Text style={[styles.secondaryText, { color: textSecondary }]}>{copy.secondaryCta}</Text>
+                </Pressable>
+              ) : null}
+              <Text style={[styles.footer, { color: textTertiary }]}>
+                {isGift ? copy.footer : copy.announceFooter}
+              </Text>
             </View>
           </View>
         </SafeAreaView>

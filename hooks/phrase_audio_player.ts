@@ -19,6 +19,13 @@ type PlayCallbacks = {
   onError?: (e: Error) => void;
 };
 
+// expo-audio playbackRate range is [0, 32] on iOS / [0, 16] on Android; keep it
+// in the sane TTS range the speed slider exposes.
+function clampPlaybackRate(rate: number | undefined): number {
+  if (typeof rate !== 'number' || !isFinite(rate)) return 1;
+  return Math.min(2.5, Math.max(0.5, rate));
+}
+
 let currentPlayer: AudioPlayer | null = null;
 let audioModeReady = false;
 const inFlightDownloads = new Map<string, Promise<string | null>>();
@@ -100,7 +107,11 @@ export function stopPhraseAudio(): void {
  * playback was started (download may still be in progress on first use); returns
  * false if there is no clip for this text — the caller should fall back to TTS.
  */
-export async function playPhraseByText(text: string, cb?: PlayCallbacks): Promise<boolean> {
+export async function playPhraseByText(
+  text: string,
+  cb?: PlayCallbacks,
+  rate?: number,
+): Promise<boolean> {
   const url = getPhraseAudioUrl(text);
   if (!url) return false;
 
@@ -121,6 +132,14 @@ export async function playPhraseByText(text: string, cb?: PlayCallbacks): Promis
   try {
     const player = createAudioPlayer(source);
     currentPlayer = player;
+    // Honor the user's speed slider on the pre-generated clip, with pitch
+    // correction so a slowed-down voice stays natural (not deep/garbled).
+    try {
+      player.shouldCorrectPitch = true;
+      player.setPlaybackRate(clampPlaybackRate(rate), 'high');
+    } catch {
+      // older/edge runtimes: ignore, play at natural rate
+    }
     cb?.onStart?.();
     let finished = false;
     const sub = player.addListener('playbackStatusUpdate', (status) => {

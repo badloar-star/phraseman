@@ -133,11 +133,15 @@ export function useAudio() {
         fellBack = true;
         speakWithSystemTts();
       };
-      playPhraseByText(normalized, {
-        onStart: opts?.onStart,
-        onDone: opts?.onDone,
-        onError: fallbackOnce,
-      })
+      playPhraseByText(
+        normalized,
+        {
+          onStart: opts?.onStart,
+          onDone: opts?.onDone,
+          onError: fallbackOnce,
+        },
+        safeRate,
+      )
         .then((played) => {
           if (!played) fallbackOnce();
         })

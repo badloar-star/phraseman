@@ -509,13 +509,18 @@ async function upgradeProfileCardLevelOnCloud(
 ): Promise<ProfileCardUpgradeCloudResult | 'cloud_disabled' | 'cloud_error'> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return 'cloud_disabled';
   try {
+    // Send the SAME id the client stores shards under (getCanonicalUserId === stableId),
+    // so the CF reads the matching users/{stableId} doc. Otherwise it sees a different/empty
+    // doc, reports balance 0 → false "insufficient" → the UI bounces to the shard shop.
+    const { getCanonicalUserId } = require('./user_id_policy');
+    const stableId = await getCanonicalUserId();
     const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
     const { getApp } = require('@react-native-firebase/app');
     const callCf = httpsCallable(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'profileCardUpgrade',
-    ) as (data: { expectedLevel: number }) => Promise<{ data: ProfileCardUpgradeCloudResult }>;
-    const res = await callCf({ expectedLevel });
+    ) as (data: { expectedLevel: number; stableId?: string }) => Promise<{ data: ProfileCardUpgradeCloudResult }>;
+    const res = await callCf({ expectedLevel, ...(stableId ? { stableId } : {}) });
     // No payload = we can't prove what the server did → treat as uncertain, not as offline.
     if (!res?.data) return 'cloud_error';
     return res.data;

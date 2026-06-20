@@ -22,6 +22,8 @@ jest.mock('@react-native-firebase/functions', () => ({
   httpsCallable: () => callCf,
 }));
 jest.mock('@react-native-firebase/app', () => ({ getApp: () => ({}) }));
+// Deterministic stableId so the CF call payload is predictable.
+jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => 'stable-test') }));
 
 import { upgradeProfileCardLevel } from '../app/profile_card_system';
 
@@ -60,6 +62,8 @@ describe('upgradeProfileCardLevel — cloud error must not double-charge', () =>
     expect(res).toEqual({ ok: true, level: 1, balance: 970 });
     expect(spendShards).not.toHaveBeenCalled();
     await expect(AsyncStorage.getItem('profile_card_level')).resolves.toBe('1');
+    // Must forward the client's stableId so the CF reads the same shard doc.
+    expect(callCf).toHaveBeenCalledWith(expect.objectContaining({ stableId: 'stable-test' }));
   });
 
   it('surfaces server insufficient without spending locally', async () => {

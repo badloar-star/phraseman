@@ -61,7 +61,11 @@ type UpgradeResult =
 export const profileCardUpgrade = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Not authenticated');
   const db = admin.firestore();
-  const uid = await resolveStableUidForAuth(db, request.auth.uid);
+  // Forward the client's stableId so we read/write the SAME users/{stableId} doc the
+  // client stores shards in. Without it we'd fall back to the auth uid (or an auth-link
+  // lookup that may not be stamped yet) → a different/empty doc → balance 0 → the upgrade
+  // wrongly reports "insufficient" and the UI sends the player to the shard shop.
+  const uid = await resolveStableUidForAuth(db, request.auth.uid, request.data?.stableId);
 
   const expectedLevelRaw = request.data?.expectedLevel;
   const expectedLevel =

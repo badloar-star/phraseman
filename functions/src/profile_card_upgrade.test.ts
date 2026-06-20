@@ -101,8 +101,12 @@ jest.mock('firebase-functions/v2/https', () => ({
 jest.mock('./callable_options', () => ({ HOT_CALLABLE_OPTIONS: {} }));
 
 jest.mock('./auth_identity', () => ({
-  // The test seeds the user doc under the auth uid directly, so identity is a passthrough.
-  resolveStableUidForAuth: jest.fn(async (_db: unknown, uid: string) => uid),
+  // Mirror the real resolver's key behaviour: when a stableId is passed it wins (the doc
+  // the client stores shards under); otherwise fall back to the auth uid.
+  resolveStableUidForAuth: jest.fn(
+    async (_db: unknown, authUid: string, requestedStableId?: unknown) =>
+      typeof requestedStableId === 'string' && requestedStableId ? requestedStableId : authUid,
+  ),
 }));
 
 jest.mock('firebase-admin', () => {
@@ -140,6 +144,19 @@ describe('profileCardUpgrade', () => {
     // The badge reads progress.profile_card_level (sync_leaderboard.ts), so the CF must
     // write THERE — not a dead root field that nothing renders from.
     expect(u.progress.profile_card_level).toBe(1);
+  });
+
+  it('reads the doc under the client stableId, not the auth uid (the shop-bug fix)', async () => {
+    // Shards live under the stableId doc; the auth-uid doc is empty (or absent). Before the
+    // fix the CF resolved to the auth uid → balance 0 → false "insufficient" → shard shop.
+    docs.set('users/stable-1', { shards: 100, progress: { profile_card_level: 0 } });
+    // (no users/auth-1 doc on purpose)
+
+    const res = await callUpgrade({ expectedLevel: 0, stableId: 'stable-1' }, 'auth-1');
+
+    expect(res).toMatchObject({ ok: true, level: 1, spent: 30, balance: 70 });
+    expect((docs.get('users/stable-1') as Record<string, any>).progress.profile_card_level).toBe(1);
+    expect(docs.get('users/auth-1')).toBeUndefined();
   });
 
   it('preserves sibling progress keys when upgrading', async () => {

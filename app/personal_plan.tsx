@@ -660,10 +660,28 @@ export default function PersonalPlanScreen() {
               </View>
             </View>
 
-            {/* CTA button */}
+            {/* CTA button — если день ещё не начат и есть теория, сначала теория */}
             <TouchableOpacity
               activeOpacity={0.88}
-              onPress={() => nextTask ? openTask(nextTask) : undefined}
+              onPress={() => {
+                if (!nextTask) return;
+                const hasTheory = authoredPlanIntroCount(loaded.plan.id, day.dayIndex) > 0;
+                const dayFresh = snapshot.dayProgressPct === 0;
+                if (hasTheory && dayFresh) {
+                  hapticTap();
+                  router.push({
+                    pathname: '/personal_plan_theory',
+                    params: {
+                      planId: loaded.plan.id,
+                      dayIndex: String(day.dayIndex),
+                      startTaskId: nextTask.id,
+                      ...(loaded.state.planInstanceId ? { planInstanceId: loaded.state.planInstanceId } : {}),
+                    },
+                  } as any);
+                } else {
+                  openTask(nextTask);
+                }
+              }}
               accessibilityRole="button"
               style={styles.heroButtonWrap}
             >
@@ -675,41 +693,6 @@ export default function PersonalPlanScreen() {
               </LinearGradient>
             </TouchableOpacity>
           </LinearGradient>
-
-          {/* ── Day theory card (day-specific, authored by the content pipeline) ── */}
-          {authoredPlanIntroCount(loaded.plan.id, day.dayIndex) > 0 ? (
-            <TouchableOpacity
-              activeOpacity={0.85}
-              onPress={() => {
-                hapticTap();
-                // Передаём первое незавершённое задание дня (nextTask) и planInstanceId,
-                // чтобы кнопка в конце теории запускала задание с первого упражнения,
-                // а не возвращала в меню плана.
-                router.push({
-                  pathname: '/personal_plan_theory',
-                  params: {
-                    planId: loaded.plan.id,
-                    dayIndex: String(day.dayIndex),
-                    ...(nextTask ? { startTaskId: nextTask.id } : {}),
-                    ...(loaded.state.planInstanceId ? { planInstanceId: loaded.state.planInstanceId } : {}),
-                  },
-                } as any);
-              }}
-              accessibilityRole="button"
-              style={[styles.recommendBanner, { borderColor: chrome.border, backgroundColor: chrome.accentSoft }]}
-            >
-              <View style={[styles.recommendIconWrap, { backgroundColor: chrome.accent + '18', borderColor: chrome.accent + '33' }]}>
-                <Ionicons name="book-outline" size={22} color={chrome.accent} />
-              </View>
-              <View style={styles.recommendCopy}>
-                <Text style={[styles.recommendTitle, { color: chrome.text }]}>Теория дня</Text>
-                <Text style={[styles.recommendText, { color: chrome.muted }]} numberOfLines={2}>
-                  Короткий разбор: зачем эти фразы и как они работают.
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color={chrome.muted} />
-            </TouchableOpacity>
-          ) : null}
 
           {/* ── Recommended lessons banner (tappable → opens the first lesson) ── */}
           {lessonRecommendation && lessonRecommendation.recommendedLessonIds.length > 0 ? (

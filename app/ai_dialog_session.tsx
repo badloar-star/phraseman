@@ -45,13 +45,17 @@ import { safeRouterBack } from './navigation_back';
 const LOCAL_SCENARIO_GREETING = 'Hi! Let\'s practice. Start with one short English sentence, and I will keep the conversation going.';
 
 /**
- * Достаёт имя персонажа из persona-строки («Your name is Mia. …» → «Mia»).
- * Используется как подпись и инициал аватара собеседника в шапке-мессенджере.
+ * Достаёт имя персонажа из persona-строки для подписи в шапке-мессенджере:
+ * «Your name is Mia. …» → «Mia», «Your name is Mr. Patel. …» → «Mr. Patel».
+ * Имя — это всё после «your name is» до конца предложения (точка/запятая +
+ * пробел + заглавная буква), поэтому точка в титуле (Mr./Dr.) не обрывает имя.
  * Возвращает пустую строку, если имя не задано.
  */
 function extractPersonaName(persona?: string): string {
   if (!persona) return '';
-  const match = persona.match(/your name is\s+([^.,]+)/i);
+  // Опциональный титул (Mr./Dr./…) + само имя до точки/запятой. Титул со своей
+  // точкой не обрывает имя: «Mr. Patel» извлекается целиком, «Mia» — как есть.
+  const match = persona.match(/your name is\s+((?:(?:Mr|Mrs|Ms|Dr|Prof)\.\s+)?[^.,]+)/i);
   return match ? match[1].trim() : '';
 }
 
@@ -116,7 +120,6 @@ export default function AiDialogSession() {
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
   const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
-  const avatarInitial = (personaName || dialogScenarioTitle(scenario, lang) || '?').trim().charAt(0).toUpperCase();
 
   const [messages, setMessages] = useState<UiMessage[]>([]);
   const [input, setInput] = useState('');
@@ -649,8 +652,13 @@ export default function AiDialogSession() {
                 placeholder={triLang(lang, { ru: 'Напиши ответ…', uk: 'Напиши відповідь…', es: 'Escribe tu respuesta…' })}
                 placeholderTextColor={t.textMuted}
                 editable={!sending}
-                onSubmitEditing={() => send(input)}
                 multiline
+                // iOS: Enter = «Отправить» (returnKeyType), blurOnSubmit=false держит
+                // клавиатуру открытой после отправки. Android multiline трактует Enter
+                // как перенос строки (поведение мессенджера) — там отправка кнопкой-стрелкой.
+                returnKeyType="send"
+                blurOnSubmit={false}
+                onSubmitEditing={() => send(input)}
                 style={{
                   flex: 1,
                   backgroundColor: t.bgCard,

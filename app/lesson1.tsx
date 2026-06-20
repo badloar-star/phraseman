@@ -5,6 +5,7 @@ import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  ActivityIndicator,
   BackHandler,
   Easing,
   InteractionManager,
@@ -48,7 +49,7 @@ import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import TapScale from '../components/TapScale';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import { isSpeakingEnabled } from './remote_flags';
-import { usePremium } from '../components/PremiumContext';
+import { usePremium, useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -101,7 +102,8 @@ import { getBonusHintsToday } from './level_gift_system';
 import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ExplainSheet from '../components/ExplainSheet';
-import AiMistakeCard, { type AiMistakeCardState } from '../components/AiMistakeCard';
+import AiMistakeCard from '../components/AiMistakeCard';
+import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
@@ -109,8 +111,7 @@ import { MOTION_DURATION } from '../constants/motion';
 import { lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
-import { callExplainMistake } from './ai_mistake_explain_client';
-import { getAiMistakeExplainsLeftToday, markAiMistakeExplainUsed } from './ai_mistake_explain_limit_session';
+import { useMistakeExplain } from './use_mistake_explain';
 
 const GRAMMAR_HINTS = [
   {
@@ -468,6 +469,7 @@ interface LessonContentProps {
   handleBgTap: () => void;
   handleWordPress: (word: string) => void;
   undoLastWord: () => void;
+  onSpeakingFillAnswer: (text: string) => void;
   goNext: () => void;
   handleTypedSubmit: () => void;
   typedText: string;
@@ -548,6 +550,7 @@ const LessonContent = React.memo(function LessonContent({
   handleBgTap,
   handleWordPress,
   undoLastWord,
+  onSpeakingFillAnswer,
   goNext,
   handleTypedSubmit,
   typedText,
@@ -624,7 +627,8 @@ const LessonContent = React.memo(function LessonContent({
   // premium users get the SpeakingPanel (mic + waveform + 90% scoring).
   // Remote kill-switch (default ON): ops can disable speaking app-wide without a
   // release if the on-device recognizer misbehaves in production.
-  const { hasPremiumAccess: speakingIsPremium } = usePremium();
+  // «Устно»: учитываем «Пульт» — если фича переведена в «Фри», замок снят у всех.
+  const speakingIsPremium = useFeatureAccess('speaking');
   const speakingFeatureEnabled = isSpeakingEnabled();
   const [speakingOpen, setSpeakingOpen] = useState(false);
   const openSpeaking = useCallback(() => {
@@ -642,9 +646,15 @@ const LessonContent = React.memo(function LessonContent({
   // оставалась одна яркая, что = показ правильного ответа. Настоящее 50/50 убирает
   // лишь половину неверных, оставляя правильный среди ещё нескольких бликующих.
   const [fiftyFiftyDimmed, setFiftyFiftyDimmed] = useState<Set<number>>(() => new Set());
+  // Сбрасываем 50/50 при КАЖДОЙ смене банка плиток: переход к следующему слову
+  // (phraseWordIdx), вход/выход из ветки сокращений (contrExpanded), пересборка
+  // плиток (shuffled, в т.ч. новая фраза). КРИТИЧНО: fiftyFiftyDimmed — это набор
+  // ИНДЕКСОВ плиток; без сброса при смене банка старые индексы падают на новые
+  // плитки и гасят в т.ч. ПРАВИЛЬНУЮ. Раньше зависело только от status → баг.
   useEffect(() => {
-    if (status === 'playing') { setFiftyFiftyActive(false); setFiftyFiftyDimmed(new Set()); }
-  }, [status]);
+    setFiftyFiftyActive(false);
+    setFiftyFiftyDimmed(new Set());
+  }, [status, phraseWordIdx, contrExpanded, shuffled]);
   // [EXPLAIN] «Объясни проще» — только ПОСЛЕ ответа. Тот же дневной лимит (fifty_fifty_* счётчик).
   const [explainOpen, setExplainOpen] = useState(false);
   const explainHintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
@@ -660,11 +670,6 @@ const LessonContent = React.memo(function LessonContent({
     },
     [onConsumeExplainCredit],
   );
-  const [aiMistakeState, setAiMistakeState] = useState<AiMistakeCardState>('idle');
-  const [aiMistakeText, setAiMistakeText] = useState<string | null>(null);
-  const [aiMistakeRemaining, setAiMistakeRemaining] = useState<number | null>(null);
-
-
   // [ARROW] Анимированная стрелка над прогресс-баром
   const arrowAnim  = useRef(new Animated.Value(0)).current;
   const [barWidth, setBarWidth] = useState(0);
@@ -690,6 +695,10 @@ const LessonContent = React.memo(function LessonContent({
   useEffect(() => () => { if (wordDispatchTimerRef.current) clearTimeout(wordDispatchTimerRef.current); }, []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
+  // Mirror of phraseEnterKey, read inside async callbacks to drop stale AI-explain responses
+  // that resolve after the user has already moved to another phrase.
+  const phraseEnterKeyRef = useRef(phraseEnterKey);
+  phraseEnterKeyRef.current = phraseEnterKey;
   const phraseTokens = phrase ? getPhraseTokens(phrase, studyTarget) : [];
   const selectedAnswer = selectedWords.join(' ');
   const reportUserAnswer = (settings.hardMode ? typedText : selectedAnswer).trim();
@@ -707,8 +716,15 @@ const LessonContent = React.memo(function LessonContent({
     return shuffled.map((word, i) => {
       const strippedRaw = stripMarkers(word);
       const stripped = strippedRaw.toLowerCase();
+      // ВАЖНО: подлинно правильное слово (currentCorrectWord) считаем верным в ЛЮБОМ
+      // режиме. Раньше при contrExpanded!==null проверялся ТОЛЬКО expansionCorrect, и если
+      // contrExpanded оставался «протухшим» от прошлой фразы с сокращением (рассинхрон со
+      // shuffled), правильная плитка НЕ помечалась → 50/50 её гасил. Доп. ветка currentCorrectWord
+      // в expansion-режиме ничего лишнего не подсвечивает: там shuffled = makeExpansionOptions(...),
+      // а текущее слово (само сокращение, напр. "don't") среди них отсутствует.
       const isCorrectOption = contrExpanded !== null
-        ? expansionCorrect != null && stripped === expansionCorrect.toLowerCase()
+        ? (expansionCorrect != null && stripped === expansionCorrect.toLowerCase())
+          || (currentCorrectWord != null && stripped === currentCorrectWord.toLowerCase())
         : currentCorrectWord != null && (
           stripped === currentCorrectWord.toLowerCase() ||
           (currentValidContraction != null && stripped === currentValidContraction.toLowerCase())
@@ -843,78 +859,26 @@ const LessonContent = React.memo(function LessonContent({
   const aiMistakeAnswerLine = reportUserAnswer || acceptedUserAnswerLine;
   const aiMistakeTargetLine = phrase ? phraseCanonicalAnswer(phrase, studyTarget) : '';
 
-  useEffect(() => {
-    let cancelled = false;
-    setAiMistakeState('idle');
-    setAiMistakeText(null);
-    setAiMistakeRemaining(null);
-    if (status !== 'result' || !wasWrong) return () => { cancelled = true; };
-    getAiMistakeExplainsLeftToday()
-      .then((left) => {
-        if (cancelled) return;
-        setAiMistakeRemaining(left);
-        if (left <= 0) setAiMistakeState('limit');
-      })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, [phraseEnterKey, status, wasWrong]);
-
-  const explainCurrentMistake = useCallback(async (withHaptic = true) => {
-    if (!phrase || status !== 'result' || !wasWrong || aiMistakeState === 'loading') return;
-    if (withHaptic) hapticTap();
-    const left = await getAiMistakeExplainsLeftToday().catch(() => 0);
-    setAiMistakeRemaining(left);
-    if (left <= 0) {
-      setAiMistakeState('limit');
-      return;
-    }
-    const mismatch = resolvePhraseMistakeToken(aiMistakeTargetLine, aiMistakeAnswerLine);
-    setAiMistakeState('loading');
-    setAiMistakeText(null);
-    try {
-      const res = await callExplainMistake({
-        lessonId,
-        phraseId: String(phrase.id ?? lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)),
-        studyTarget,
-        interfaceLang: lang,
-        prompt: sourcePromptLine,
-        userAnswer: aiMistakeAnswerLine,
-        targetAnswer: aiMistakeTargetLine,
-        phraseMeaning: sourcePromptLine,
-        selectedWrongWord: mismatch?.picked,
-        expectedWord: mismatch?.expected,
-      });
-      await markAiMistakeExplainUsed();
-      setAiMistakeText(res.text);
-      setAiMistakeRemaining(Math.max(0, Number(res.remainingQuota ?? left - 1)));
-      setAiMistakeState('ready');
-    } catch (error) {
-      const code = String((error as any)?.code ?? (error as any)?.message ?? '');
-      if (code.includes('resource-exhausted') || code.includes('mistake_explain_free_limit')) {
-        setAiMistakeRemaining(0);
-        setAiMistakeState('limit');
-        return;
-      }
-      setAiMistakeState('error');
-    }
-  }, [
-    phrase,
-    status,
-    wasWrong,
-    aiMistakeState,
-    aiMistakeTargetLine,
-    aiMistakeAnswerLine,
+  // ИИ-разбор ошибки + «Объяснить проще» — общая механика (та же в планах).
+  const mistakeExplain = useMistakeExplain({
+    active: Boolean(phrase) && status === 'result' && wasWrong,
+    phraseKey: phraseEnterKey,
     lessonId,
-    realPhraseIdx,
+    phraseId: phrase ? String(phrase.id ?? lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)) : '',
     studyTarget,
-    lang,
-    sourcePromptLine,
-  ]);
-
-  useEffect(() => {
-    if (!phrase || status !== 'result' || !wasWrong || aiMistakeState !== 'idle') return;
-    void explainCurrentMistake(false);
-  }, [phrase, phraseEnterKey, status, wasWrong, aiMistakeState, explainCurrentMistake]);
+    interfaceLang: lang,
+    prompt: sourcePromptLine,
+    userAnswer: aiMistakeAnswerLine,
+    targetAnswer: aiMistakeTargetLine,
+  });
+  const aiMistakeState = mistakeExplain.aiMistakeState;
+  const aiMistakeText = mistakeExplain.aiMistakeText;
+  const aiMistakeRemaining = mistakeExplain.aiMistakeRemaining;
+  const explainCurrentMistake = mistakeExplain.explain;
+  const openEli5Modal = mistakeExplain.eli5.onOpen;
+  const eli5ModalOpen = mistakeExplain.eli5.open;
+  const eli5State = mistakeExplain.eli5.state;
+  const eli5Text = mistakeExplain.eli5.text;
 
   if (!introGateReady) {
     return <View style={{ flex: 1 }} />;
@@ -936,7 +900,10 @@ const LessonContent = React.memo(function LessonContent({
   if (!phrase) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: t.textPrimary }} />
+        <ActivityIndicator size="large" color={t.accent} />
+        <Text style={{ color: t.textMuted, marginTop: 12, fontSize: f.body }}>
+          {triLang(lang, { ru: 'Загрузка…', uk: 'Завантаження…', es: 'Cargando…', 'pt-BR': 'Carregando…', vi: 'Đang tải…', id: 'Memuat…', tr: 'Yükleniyor…', pl: 'Ładowanie…' })}
+        </Text>
       </View>
     );
   }
@@ -1068,7 +1035,6 @@ const LessonContent = React.memo(function LessonContent({
               textAlign: 'center',
               flexShrink: 1,
             }}
-            adjustsFontSizeToFit={linkedSliceCompact}
             numberOfLines={linkedSliceCompact ? 2 : undefined}
             maxFontSizeMultiplier={1.2}
           >{(() => {
@@ -1105,7 +1071,6 @@ const LessonContent = React.memo(function LessonContent({
             ) : (
               <Text
                 style={{ color: sx.second, fontSize: linkedSliceAnswerFont, width: '100%', textAlign: 'center' }}
-                adjustsFontSizeToFit={linkedSliceCompact}
                 numberOfLines={linkedSliceCompact ? 2 : undefined}
               >
                 {selectedWords.length > 0
@@ -1169,7 +1134,6 @@ const LessonContent = React.memo(function LessonContent({
               <View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Text
                   style={{ color: t.correct, fontSize: linkedSliceAnswerFont, flex: 1, textAlign: 'left' }}
-                  adjustsFontSizeToFit={linkedSliceCompact}
                   numberOfLines={linkedSliceCompact ? 2 : undefined}
                 >
                   {resultCorrectLine}
@@ -1190,6 +1154,7 @@ const LessonContent = React.memo(function LessonContent({
                     explanation={aiMistakeText}
                     remaining={aiMistakeRemaining}
                     onExplain={explainCurrentMistake}
+                    onOpenSimple={openEli5Modal}
                   />
                 </View>
               )}
@@ -1326,7 +1291,7 @@ const LessonContent = React.memo(function LessonContent({
                         requestAnimationFrame(() => { void hapticTap(); });
                       }}
                     >
-                      <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
+                      <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} numberOfLines={1}>{displayText}</Text>
                     </DuoPressable>
                       );
                     })()}
@@ -1380,8 +1345,10 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* ФУТЕР */}
         <View style={{ flexDirection: 'row', paddingVertical: linkedSliceCompact ? 8 : 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
-          {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик). */}
-          {!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && (
+          {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик).
+              Прячем, когда плиток-вариантов уже нет (ответ собран, ждём «Проверить») — гасить
+              нечего, кнопка висела бесполезно. */}
+          {!settings.hardMode && !isPlanPhraseRecallTask && status === 'playing' && shuffled.length > 0 && (
             (() => {
               const canUse50 = explainHintsLeft > 0 && !fiftyFiftyActive;
               return (
@@ -1397,6 +1364,11 @@ const LessonContent = React.memo(function LessonContent({
                     // Настоящее 50/50: затемняем ровно половину НЕВЕРНЫХ плиток (округление
                     // вверх), правильная всегда остаётся видимой среди других бликующих.
                     const wrongIdx = wordOptionItems.filter(o => !o.isCorrectOption).map(o => o.index);
+                    // Страховка: если НИ одна плитка не помечена правильной (рассинхрон состояния),
+                    // 50/50 затемнил бы и правильный ответ. В таком случае подсказку не применяем,
+                    // чтобы никогда не спрятать верный вариант. Кредит при этом не тратим.
+                    const hasCorrectTile = wordOptionItems.some(o => o.isCorrectOption);
+                    if (!hasCorrectTile) return;
                     const dimCount = Math.ceil(wrongIdx.length / 2);
                     const shuffledWrong = [...wrongIdx];
                     for (let k = shuffledWrong.length - 1; k > 0; k -= 1) {
@@ -1582,6 +1554,7 @@ const LessonContent = React.memo(function LessonContent({
             onPass={({ score }) => {
               void trackFeatureSuccess('speaking', 'attempt', { lessonId, score }, 'lesson1');
             }}
+            onFillAnswer={onSpeakingFillAnswer}
             onClose={() => setSpeakingOpen(false)}
           />
         )}
@@ -1597,6 +1570,16 @@ const LessonContent = React.memo(function LessonContent({
             lang={lang}
           />
         )}
+
+        {/* «Объяснить» из футера разбора ошибки → простое объяснение «как для пятилетнего». */}
+        <MistakeEli5Modal
+          visible={eli5ModalOpen}
+          onClose={mistakeExplain.eli5.onClose}
+          lang={lang}
+          state={eli5State}
+          text={eli5Text}
+          onRetry={mistakeExplain.eli5.onRetry}
+        />
 
     </KeyboardAvoidingView>
 
@@ -2494,16 +2477,15 @@ export default function LessonScreen() {
         // Правильный ответ в режиме replay → убираем из очереди, ячейка зеленеет
         errorQueueRef.current = errorQueueRef.current.filter(c => c !== overridePhraseCell);
         setReplaySolvedCorrectly(true); // стрелка зеленеет пока показывается экран результата
+      } else if (errorQueueRef.current.includes(progressCell)) {
+        // Правильный ответ в обычном режиме, но ячейка ещё в очереди ошибок (дошли по кругу).
+        // Считаем это исправлением — убираем из очереди и засчитываем как правильно.
+        // Без этого: визуально "правильно" но score падает (золото слетает).
+        errorQueueRef.current = errorQueueRef.current.filter(c => c !== progressCell);
       }
-      // Если ячейка всё ещё в очереди ошибок (обычный режим дошёл до неё по кругу) — не зеленим,
-      // она должна оставаться красной до исправления через replay
-      const stillPendingReplay = overridePhraseCell === null && errorQueueRef.current.includes(progressCell);
-      np[progressCell] = stillPendingReplay ? 'wrong'
-        : (isReplayRef.current ? 'replay_correct' : 'correct');
-      if (!stillPendingReplay) {
-        const wasLearned = prevPhraseCellState === 'correct' || prevPhraseCellState === 'replay_correct';
-        if (!wasLearned) void bumpStatsDaily('phrases_learned', 1);
-      }
+      np[progressCell] = isReplayRef.current ? 'replay_correct' : 'correct';
+      const wasLearned = prevPhraseCellState === 'correct' || prevPhraseCellState === 'replay_correct';
+      if (!wasLearned) void bumpStatsDaily('phrases_learned', 1);
     } else {
       // Ошибка всегда перезаписывает ячейку красной (даже если была зелёной)
       np[progressCell] = 'wrong';
@@ -3033,6 +3015,25 @@ export default function LessonScreen() {
     }
   }, [status, settings.hardMode, typedText, selectedWords, contrExpanded, phrase, phraseWordIdx]);
 
+  // «Устно» → после «Готово» кладём произнесённую (= эталонную) фразу в поле
+  // ответа и сдвигаем указатель в конец, чтобы кнопка «Проверить» стала активной
+  // (canManuallyCheckAnswer требует phraseWordIdx >= phraseTokens.length). Юзер
+  // дальше сам жмёт «Проверить». В hardMode заполняем текстовое поле.
+  const handleSpeakingFillAnswer = useCallback((text: string) => {
+    if (!phrase || status !== 'playing') return;
+    const clean = (text ?? '').trim();
+    if (!clean) return;
+    if (settings.hardMode) {
+      setTypedText(clean);
+      return;
+    }
+    const phraseWords = getPhraseTokens(phrase, studyTargetRef.current);
+    setContrExpanded(null);
+    setShuffled([]);
+    setSelectedWords(phraseWords);
+    setPhraseWordIdx(phraseWords.length);
+  }, [phrase, status, settings.hardMode]);
+
 
   const correctCount = useMemo(() => progress.filter(p => p === 'correct' || p === 'replay_correct').length, [progress]);
   const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
@@ -3196,6 +3197,7 @@ export default function LessonScreen() {
             handleBgTap={handleBgTap}
             handleWordPress={handleWordPress}
             undoLastWord={undoLastWord}
+            onSpeakingFillAnswer={handleSpeakingFillAnswer}
             goNext={goNext}
             handleTypedSubmit={handleTypedSubmit}
             typedText={typedText}
@@ -3282,17 +3284,19 @@ export default function LessonScreen() {
         <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center' }}>
           <View style={{ borderRadius: 30, borderWidth: 1.5, borderColor: t.border, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, elevation: 12 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, lineHeight: f.h2 + 5, fontWeight: '900' }}>
-              {isLinkedLessonSliceTask ? 'Часть урока готова' : 'Фразы дня готовы'}
+              {isLinkedLessonSliceTask
+                ? triLang(lang, { ru: 'Часть урока готова', uk: 'Частина уроку готова', es: 'Parte de la lección lista', 'pt-BR': 'Parte da lição pronta', vi: 'Phần bài học đã xong', id: 'Bagian pelajaran selesai', tr: 'Dersin bölümü hazır', pl: 'Część lekcji gotowa' })
+                : triLang(lang, { ru: 'Фразы дня готовы', uk: 'Фрази дня готові', es: 'Frases del día listas', 'pt-BR': 'Frases do dia prontas', vi: 'Cụm từ trong ngày đã xong', id: 'Frasa hari ini selesai', tr: 'Günün ifadeleri hazır', pl: 'Frazy dnia gotowe' })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body + 6, fontWeight: '700', marginTop: 8 }}>
               {isLinkedLessonSliceTask
-                ? 'Нужные фразы засчитаны. Можно вернуться к плану или продолжить урок для закрепления.'
-                : 'Фразы дня засчитаны. Можно вернуться к плану или потренироваться дальше, если есть силы.'}
+                ? triLang(lang, { ru: 'Нужные фразы засчитаны. Можно вернуться к плану или продолжить урок для закрепления.', uk: 'Потрібні фрази зараховано. Можна повернутися до плану або продовжити урок для закріплення.', es: 'Las frases necesarias están contabilizadas. Puedes volver al plan o seguir la lección para reforzar.', 'pt-BR': 'As frases necessárias foram contabilizadas. Você pode voltar ao plano ou continuar a lição para fixar.', vi: 'Các cụm từ cần thiết đã được tính. Bạn có thể quay lại kế hoạch hoặc tiếp tục bài học để củng cố.', id: 'Frasa yang diperlukan sudah dihitung. Kamu bisa kembali ke rencana atau lanjut pelajaran untuk memperkuat.', tr: 'Gerekli ifadeler sayıldı. Plana dönebilir veya pekiştirmek için derse devam edebilirsin.', pl: 'Potrzebne frazy zostały zaliczone. Możesz wrócić do planu lub kontynuować lekcję dla utrwalenia.' })
+                : triLang(lang, { ru: 'Фразы дня засчитаны. Можно вернуться к плану или потренироваться дальше, если есть силы.', uk: 'Фрази дня зараховано. Можна повернутися до плану або потренуватися далі, якщо є сили.', es: 'Las frases del día están contabilizadas. Puedes volver al plan o seguir practicando si te quedan fuerzas.', 'pt-BR': 'As frases do dia foram contabilizadas. Você pode voltar ao plano ou continuar praticando se tiver energia.', vi: 'Cụm từ trong ngày đã được tính. Bạn có thể quay lại kế hoạch hoặc luyện tập tiếp nếu còn sức.', id: 'Frasa hari ini sudah dihitung. Kamu bisa kembali ke rencana atau lanjut berlatih jika masih ada tenaga.', tr: 'Günün ifadeleri sayıldı. Plana dönebilir veya gücün varsa pratiğe devam edebilirsin.', pl: 'Frazy dnia zostały zaliczone. Możesz wrócić do planu lub ćwiczyć dalej, jeśli masz siły.' })}
             </Text>
             <View style={{ flexDirection: 'row', gap: 12, marginTop: 18 }}>
               <TapScale
                 accessibilityRole="button"
-                accessibilityLabel="Вернуться к плану"
+                accessibilityLabel={triLang(lang, { ru: 'Вернуться к плану', uk: 'Повернутися до плану', es: 'Volver al plan', 'pt-BR': 'Voltar ao plano', vi: 'Quay lại kế hoạch', id: 'Kembali ke rencana', tr: 'Plana dön', pl: 'Wróć do planu' })}
                 onPress={() => {
                   setPlanLessonDoneVisible(false);
                   router.push('/personal_plan' as any);
@@ -3300,16 +3304,16 @@ export default function LessonScreen() {
                 scaleTo={0.96}
                 style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct, shadowColor: t.correct, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 }, elevation: 8 }}
               >
-                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>К плану</Text>
+                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'К плану', uk: 'До плану', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Tới kế hoạch', id: 'Ke rencana', tr: 'Plana', pl: 'Do planu' })}</Text>
               </TapScale>
               <TapScale
                 accessibilityRole="button"
-                accessibilityLabel="Продолжить урок"
+                accessibilityLabel={triLang(lang, { ru: 'Продолжить урок', uk: 'Продовжити урок', es: 'Continuar la lección', 'pt-BR': 'Continuar a lição', vi: 'Tiếp tục bài học', id: 'Lanjut pelajaran', tr: 'Derse devam et', pl: 'Kontynuuj lekcję' })}
                 onPress={() => setPlanLessonDoneVisible(false)}
                 scaleTo={0.96}
                 style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, borderWidth: 1, borderColor: t.border, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 6 }}
               >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>Продолжить</Text>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam et', pl: 'Kontynuuj' })}</Text>
               </TapScale>
             </View>
           </View>

@@ -21262,7 +21262,7 @@
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),
   // но пишутся тем же saveControlPanelBool в remote_config/app.bools.
   const COMPASS_TOGGLES = [
-    { key: 'compass_enabled',               label: 'Компас (главный выключатель)', def: false, hint: 'Выкл → весь Компас исчезает, приложение не страдает.' },
+    { key: 'compass_enabled',               label: 'Компас (главный выключатель)', def: true,  hint: 'Вкл по умолчанию. Выкл → весь Компас исчезает, приложение не страдает.' },
     { key: 'compass_ai_voice_enabled',      label: 'ИИ-голос дня',                 def: true,  hint: 'Тёплый ИИ-комментарий (job compass). Выкл → текст по Библии.' },
     { key: 'compass_deep_dive_enabled',     label: 'Дни-погружения',               def: true,  hint: 'Зов в сессию за глубиной.' },
     { key: 'compass_lesson_invite_enabled', label: 'Плашка-зов в сессию',          def: true,  hint: 'Зов в сессию в момент ошибки.' },

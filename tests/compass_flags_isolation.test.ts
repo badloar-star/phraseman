@@ -24,9 +24,9 @@ describe('compass_flags — isolation / kill-switch', () => {
     __resetRemoteFlagsForTest();
   });
 
-  it('по умолчанию весь Компас выключен (sell-switch)', () => {
+  it('по умолчанию Компас ВКЛЮЧЁН (kill-switch, дефолт ON)', () => {
     for (const gate of ALL_GATES) {
-      expect(gate()).toBe(false);
+      expect(gate()).toBe(true);
     }
   });
 

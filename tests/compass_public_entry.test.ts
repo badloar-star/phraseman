@@ -9,9 +9,9 @@ describe('compass public entry — контракт изоляции', () => {
     __resetRemoteFlagsForTest();
   });
 
-  it('compassOn по умолчанию false (Компас выключен)', () => {
+  it('compassOn по умолчанию true (Компас включён из коробки)', () => {
     expect(typeof compassOn).toBe('function');
-    expect(compassOn()).toBe(false);
+    expect(compassOn()).toBe(true);
   });
 
   it('включается только явным флагом из админ-конфига', () => {

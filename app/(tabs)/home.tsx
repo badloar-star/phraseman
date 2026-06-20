@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
@@ -28,6 +28,7 @@ import { consumeCelebration, getPendingCelebrationMarker, isCelebrationPending, 
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
+import { CompassBriefingHost } from '../compass';
 import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
@@ -70,7 +71,6 @@ import { oskolokImageForPackShards } from '../oskolok';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration } from '../home_screen_hydration';
 import AppMessagesInbox from '../../components/AppMessagesInbox';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
-import HomeTheoAdvisorCard from '../../components/HomeTheoAdvisorCard';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
@@ -96,7 +96,6 @@ import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../cons
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
-import { getHomeTheoAdvice, type HomeTheoAction } from '../home_theo_advisor';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -1518,104 +1517,6 @@ export default function HomeScreen() {
         perfNavStart(screenName);
         router.push(path as any);
     };
-    const handleHomeTheoAction = useCallback((action: HomeTheoAction) => {
-        if (action === 'none') return;
-        hapticTap();
-        switch (action) {
-            case 'lesson':
-                if (lastLesson?.id) {
-                    router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
-                }
-                else {
-                    goToTab(1);
-                }
-                break;
-            case 'lessons':
-                goToTab(1);
-                break;
-            case 'trainer':
-                router.push('/trainer' as any);
-                break;
-            case 'dailyTasks':
-                router.push('/daily_tasks_screen' as any);
-                break;
-            case 'personalPlan':
-                router.push('/personal_plan' as any);
-                break;
-            case 'personalPlanSetup':
-                router.push('/personal_plan_setup' as any);
-                break;
-            case 'stats':
-                router.push('/streak_stats' as any);
-                break;
-            case 'flashcards':
-                router.push('/flashcards' as any);
-                break;
-        }
-    }, [goToTab, lastLesson?.id, router]);
-    const homeTheoAdvice = useMemo(() => getHomeTheoAdvice({
-        lang,
-        totalXP,
-        level,
-        streak: displayStreak,
-        weekPoints,
-        lessonsCompleted,
-        lastLessonId: lastLesson?.id ?? null,
-        lastLessonProgress: lastLesson?.progress ?? 0,
-        tasksCompleted,
-        dailyTaskBarCount,
-        dueCount,
-        energyCount,
-        energyMax,
-        hasPremiumAccess,
-        isPremium,
-        isVip,
-        onboardingPlanBilling,
-        hadPremiumEver,
-        freezeActive,
-        streakAtRisk,
-        showRepairCard,
-        repairProgress,
-        hasActivePersonalPlan: hasActivePersonalPlanState,
-        personalPlanSnapshot,
-        homeXpPercentile,
-        homeLeagueRaceVisible,
-        medalTotal: medalCounts.bronze + medalCounts.silver + medalCounts.gold,
-        weekDone,
-        totalXPMulti,
-    }), [
-        lang,
-        totalXP,
-        level,
-        displayStreak,
-        weekPoints,
-        lessonsCompleted,
-        lastLesson?.id,
-        lastLesson?.progress,
-        tasksCompleted,
-        dailyTaskBarCount,
-        dueCount,
-        energyCount,
-        energyMax,
-        hasPremiumAccess,
-        isPremium,
-        isVip,
-        onboardingPlanBilling,
-        hadPremiumEver,
-        freezeActive,
-        streakAtRisk,
-        showRepairCard,
-        repairProgress,
-        hasActivePersonalPlanState,
-        personalPlanSnapshot,
-        homeXpPercentile,
-        homeLeagueRaceVisible,
-        medalCounts.bronze,
-        medalCounts.silver,
-        medalCounts.gold,
-        weekDone,
-        totalXPMulti,
-    ]);
     const markerForWeekDay = (index: number): StreakWeekDayMarkerKind | null => weekMarkers[index] ?? null;
     const isWeekDayMarked = (index: number): boolean => weekDone[index] || markerForWeekDay(index) !== null;
     const weekDotTheme = themedWeekDot(themeMode, t);
@@ -2040,7 +1941,7 @@ export default function HomeScreen() {
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
-        return (<BouncyScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -Math.max(0, insets.top - 8) }}>
+        return (<BouncyScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
           {/* ХЕДЕР */}
           <Animated.View style={sectionStyle(0)}>
@@ -2384,7 +2285,6 @@ export default function HomeScreen() {
               </>)}
             </LinearGradient>
           </TouchableOpacity>
-          <HomeTheoAdvisorCard advice={homeTheoAdvice} onAction={handleHomeTheoAction}/>
           </Animated.View>
 
           {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
@@ -3726,5 +3626,8 @@ export default function HomeScreen() {
                 // Очистку AsyncStorage делаем фоном — её результат на UI не влияет.
                 void clearPendingResult();
             }}/>)}
+      {/* Компас: брифинг дня при входе (заменяет модалку заданий дня). Сам null-safe —
+          выключенный Компас (флаг compass_enabled) и не-премиум ничего не рендерят. */}
+      <CompassBriefingHost onStartDay={() => { router.push('/personal_plan' as any); }} />
     </View>);
 }

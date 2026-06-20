@@ -28,6 +28,7 @@ describe('compass signal_bus — isolation + aggregation', () => {
   });
 
   it('Компас выключен → null и НИ ОДНОГО чтения источников', async () => {
+    applyRemoteConfigSnapshot({ bools: { compass_enabled: false } });
     const snap = await collectCompassSnapshot('en', 1000);
     expect(snap).toBeNull();
     expect(getTopMistakePhraseDetails).not.toHaveBeenCalled();

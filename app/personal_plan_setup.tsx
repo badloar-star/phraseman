@@ -11,6 +11,9 @@ import { hapticTap } from '../hooks/use-haptics';
 import { getPlanById, type PersonalPlanId, type PlanMinutesChoice } from './personal_plan_catalog';
 import { activatePersonalPlan } from './personal_plan_state';
 import { getPersonalPlanArt } from './personal_plan_art';
+import { safeRouterBack } from './navigation_back';
+import { usePremium } from '../components/PremiumContext';
+import { canActivatePlan } from './compass/compass_access';
 import {
   PERSONAL_PLAN_SETUP_GOALS,
   PERSONAL_PLAN_SETUP_LEVELS,
@@ -255,6 +258,7 @@ function PlanCard({
 // ─── Main screen ───────────────────────────────────────────────────────────
 export default function PersonalPlanSetupScreen() {
   const router = useRouter();
+  const { hasPremiumAccess } = usePremium();
   const { theme: t } = useTheme();
   const [step, setStep] = useState<Step>('goal');
   const [goal, setGoal] = useState<PersonalPlanSetupGoal>('words');
@@ -296,6 +300,13 @@ export default function PersonalPlanSetupScreen() {
 
   const activate = async (planId: PersonalPlanId) => {
     hapticTap();
+    // Премиум-гейт (чинит дыру): план — Premium-фича. Без доступа ведём на пейвол,
+    // а не активируем план бесплатно. Раньше прямой вход с главной активировал
+    // план без оплаты — гейт был только в онбординге.
+    if (!canActivatePlan({ hasPremiumAccess })) {
+      router.push({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
+      return;
+    }
     await activatePersonalPlan({
       planId,
       minutesPerDay: selectedMinutes,
@@ -507,7 +518,7 @@ export default function PersonalPlanSetupScreen() {
       else if (step === 'minutes') setStep('level');
       else if (step === 'result') setStep('minutes');
       else if (step === 'all') setStep('result');
-      else if (router.canGoBack()) router.back(); else router.replace('/personal_plan');
+      else safeRouterBack(router, '/personal_plan');
     });
   };
 
@@ -517,7 +528,7 @@ export default function PersonalPlanSetupScreen() {
         {/* Top bar */}
         <View style={styles.topBar}>
           <TapScale
-            onPress={canGoBack ? handleBack : () => { if (router.canGoBack()) router.back(); else router.replace('/personal_plan'); }}
+            onPress={canGoBack ? handleBack : () => safeRouterBack(router, '/personal_plan')}
             style={[styles.topBarBtn, { backgroundColor: t.bgCard, borderColor: border }]}
           >
             <Ionicons name="chevron-back" size={22} color={accent} />

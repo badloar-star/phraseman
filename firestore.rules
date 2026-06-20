@@ -1648,6 +1648,19 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Компас: кэш тёплого комментария дня. Та же модель — публичное чтение
+    // прогретого кэша ($0), запись только сервер (Admin SDK), удаление — админ
+    // (удаление дока ⇒ комментарий сгенерится заново). Биллинг — только сервер.
+    match /compass_briefings/{hash} {
+      allow read: if true;
+      allow create, update: if false;
+      allow delete: if isAdmin();
+    }
+    match /compass_billing/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
     // Внутренние CF-only коллекции фичи: бюджет/лимиты/биллинг. Всё пишет и читает только
     // сервер (Admin SDK). НЕ через isAdmin(): эти коллекции НЕ открыты admin-панели
     // (в отличие от referral_owners), поэтому read И write = false.

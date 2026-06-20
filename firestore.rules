@@ -966,6 +966,13 @@ service cloud.firestore {
         allow create: if userDocOwnerMatchesAuth(userId) && request.resource.data.qa == true;
         allow delete: if false;
       }
+
+      match /league_week_results/{weekId} {
+        // Пишет только leagueFinalizeCron (Admin SDK, в обход rules).
+        // Клиент читает чтобы показать честный итог недели вместо локального пересчёта.
+        allow read:   if userDocOwnerMatchesAuth(userId);
+        allow write:  if false;
+      }
     }
 
     // â”€â”€ Arena profiles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

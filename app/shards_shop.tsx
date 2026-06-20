@@ -986,14 +986,14 @@ export default function ShardsShopScreen() {
         if (e?.userCancelled) return;
         emitAppEvent('action_toast', {
           type: 'error',
-          messageRu: e?.message || 'Ошибка покупки. Попробуй ещё раз.',
-          messageUk: e?.message || 'Помилка покупки. Спробуйте ще раз.',
-          messageEs: e?.message || 'Error en la compra. Inténtalo de nuevo.',
-          messagePtBr: e?.message || 'Erro na compra. Tente novamente.',
-          messageVi: e?.message || 'Lỗi khi mua. Hãy thử lại.',
-          messageId: e?.message || 'Terjadi kesalahan pembelian. Coba lagi.',
-          messageTr: e?.message || 'Satın alma hatası. Tekrar dene.',
-          messagePl: e?.message || 'Błąd zakupu. Spróbuj ponownie.',
+          messageRu: 'Ошибка покупки. Попробуй ещё раз.',
+          messageUk: 'Помилка покупки. Спробуйте ще раз.',
+          messageEs: 'Error en la compra. Inténtalo de nuevo.',
+          messagePtBr: 'Erro na compra. Tente novamente.',
+          messageVi: 'Lỗi khi mua. Hãy thử lại.',
+          messageId: 'Terjadi kesalahan pembelian. Coba lagi.',
+          messageTr: 'Satın alma hatası. Tekrar dene.',
+          messagePl: 'Błąd zakupu. Spróbuj ponownie.',
         });
       } finally {
         setProcessingPackId(null);

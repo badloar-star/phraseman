@@ -85,6 +85,9 @@ service cloud.firestore {
                 'vip_admin_override',
                 'vip_admin_grant_at',
                 'vip_migrated_from_admin_grant_at',
+                // Collectibles: server-only, always blocked regardless of migration flag.
+                'collectibles_owned_v1',
+                'collectibles_state_v1',
               ])
            && (!isProgressServerAuthoritative()
                 || !request.resource.data.get('progress', {})
@@ -100,8 +103,6 @@ service cloud.firestore {
                 'streak_count',
                 'last_active_date',
                 'streak_last_date',
-                'collectibles_owned_v1',
-                'collectibles_state_v1',
                 'unlocked_lessons',
                 'lesson_progress_v2::fr::unlocked_lessons',
                 // Server-authoritative lessons: English legacy keys and French scoped keys.
@@ -1483,7 +1484,8 @@ service cloud.firestore {
     }
 
     match /community_pack_purchases/{purchaseId} {
-      allow read, write: if false;
+      allow read, update: if isAdmin();
+      allow create, delete: if false;
     }
 
     match /community_pack_ratings/{ratingId} {
@@ -1654,6 +1656,7 @@ service cloud.firestore {
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /{document=**} {
+      allow read, write: if isAdmin();
       allow read, write: if false;
     }
   }

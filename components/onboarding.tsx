@@ -1910,7 +1910,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           {renderPlanDaysProgressBlock(plan.days)}
           <View style={styles.planMockupResultHero}>
             <Text style={styles.planMockupBigNum}>{plan.horizon}</Text>
-            <Text style={styles.planMockupHeroSub}>ориентир до заметного прогресса при {minutes === 20 ? '20' : minutes} минутах в день</Text>
+            <Text style={styles.planMockupHeroSub}>{triOb(`ориентир до заметного прогресса при ${minutes === 20 ? '20' : minutes} минутах в день`, `орієнтир до помітного прогресу за ${minutes === 20 ? '20' : minutes} хвилин на день`, `objetivo para progreso notable con ${minutes === 20 ? '20' : minutes} min/día`)}</Text>
           </View>
           {renderPlanRows(plan, todayIconAsset)}
           <View style={styles.planMockupCtaStack}>{actions}</View>
@@ -2203,13 +2203,19 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
   if (step === 'planPaywall') {
     const goalLabel = PLAN_GOAL_CHOICES.find((c) => c.id === selectedPlanGoalForPlan)?.title ?? selectedPlanGoalForPlan;
     const levelLabel = PLAN_LEVEL_CHOICES.find((c) => c.id === selectedPlanLevelForPlan)?.title ?? selectedPlanLevelForPlan;
-    const minutesLabel = `${selectedPlanMinutesForPlan === 20 ? '20+' : selectedPlanMinutesForPlan} мин/день`;
+    const minutesLabel = `${selectedPlanMinutesForPlan === 20 ? '20+' : selectedPlanMinutesForPlan} ${triOb('мин/день', 'хв/день', 'min/día')}`;
     const userName = (nameForProfileRef.current || name).trim();
-    const heroTitle = userName ? `${userName}, твой план готов` : 'Твой план готов';
+    const heroTitle = userName
+      ? triOb(`${userName}, твой план готов`, `${userName}, твій план готовий`, `${userName}, tu plan está listo`)
+      : triOb('Твой план готов', 'Твій план готовий', 'Tu plan está listo');
     const trialDays = storePrices.trialDays;
     const ctaLabel = storePrices.hasTrial
-      ? `Попробовать ${trialDays} ${trialDays === 1 ? 'день' : trialDays < 5 ? 'дня' : 'дней'} бесплатно`
-      : 'Открыть полный доступ';
+      ? triOb(
+          `Попробовать ${trialDays} ${trialDays === 1 ? 'день' : trialDays < 5 ? 'дня' : 'дней'} бесплатно`,
+          `Спробувати ${trialDays} ${trialDays === 1 ? 'день' : trialDays < 5 ? 'дні' : 'днів'} безкоштовно`,
+          `Probar ${trialDays} ${trialDays === 1 ? 'día' : 'días'} gratis`,
+        )
+      : triOb('Открыть полный доступ', 'Відкрити повний доступ', 'Obtener acceso completo');
 
     return renderScreen(
       'onboarding-plan-paywall-screen',
@@ -2227,7 +2233,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
             <View style={styles.planPaywallTop}>
               <TouchableOpacity
                 accessibilityRole="button"
-                accessibilityLabel="Назад"
+                accessibilityLabel={triOb('Назад', 'Назад', 'Atrás')}
                 style={styles.planFlowBack}
                 onPress={() => goToStep('planResult')}
                 activeOpacity={0.76}
@@ -2252,13 +2258,13 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               <View style={styles.planPaywallPreviewWeek}>
                 <PlanFlowIcon source={selectedPlan.iconAsset} small styles={styles} />
                 <View style={styles.planFlowOptionCopy}>
-                  <Text style={styles.planFlowOptionTitle}>Неделя 1 — открыта сейчас</Text>
-                  <Text style={styles.planFlowOptionSub}>Старт с уровня {selectedPlan.recommendedLevel}, {selectedPlanMinutesForPlan} мин/день</Text>
+                  <Text style={styles.planFlowOptionTitle}>{triOb('Неделя 1 — открыта сейчас', 'Тиждень 1 — відкрито зараз', 'Semana 1 — abierta ahora')}</Text>
+                  <Text style={styles.planFlowOptionSub}>{triOb(`Старт с уровня ${selectedPlan.recommendedLevel}, ${selectedPlanMinutesForPlan} мин/день`, `Старт з рівня ${selectedPlan.recommendedLevel}, ${selectedPlanMinutesForPlan} хв/день`, `Inicio nivel ${selectedPlan.recommendedLevel}, ${selectedPlanMinutesForPlan} min/día`)}</Text>
                 </View>
               </View>
               <View style={styles.planPaywallPreviewLocked}>
                 <Ionicons name="lock-closed" size={14} color={theme.textMuted} />
-                <Text style={styles.planPaywallPreviewLockedText}>Недели 2–12 откроются после подписки</Text>
+                <Text style={styles.planPaywallPreviewLockedText}>{triOb('Недели 2–12 откроются после подписки', 'Тижні 2–12 відкриються після підписки', 'Semanas 2–12 se abren con suscripción')}</Text>
               </View>
             </View>
 
@@ -2268,29 +2274,29 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 <View style={styles.planPaywallTimelineRow}>
                   <View style={[styles.planPaywallTimelineDot, styles.planPaywallTimelineDotActive]} />
                   <View style={styles.planPaywallTimelineCopy}>
-                    <Text style={styles.planPaywallTimelineTitle}>Сегодня — полный доступ</Text>
-                    <Text style={styles.planPaywallTimelineSub}>Карта не списывается</Text>
+                    <Text style={styles.planPaywallTimelineTitle}>{triOb('Сегодня — полный доступ', 'Сьогодні — повний доступ', 'Hoy — acceso completo')}</Text>
+                    <Text style={styles.planPaywallTimelineSub}>{triOb('Карта не списывается', 'Картка не списується', 'Sin cobro al iniciar')}</Text>
                   </View>
                 </View>
                 <View style={styles.planPaywallTimelineLine} />
                 <View style={styles.planPaywallTimelineRow}>
                   <View style={styles.planPaywallTimelineDot} />
                   <View style={styles.planPaywallTimelineCopy}>
-                    <Text style={styles.planPaywallTimelineTitle}>День {Math.max(trialDays - 1, 1)} — напомним</Text>
-                    <Text style={styles.planPaywallTimelineSub}>Пуш за день до конца триала</Text>
+                    <Text style={styles.planPaywallTimelineTitle}>{triOb(`День ${Math.max(trialDays - 1, 1)} — напомним`, `День ${Math.max(trialDays - 1, 1)} — нагадаємо`, `Día ${Math.max(trialDays - 1, 1)} — te avisamos`)}</Text>
+                    <Text style={styles.planPaywallTimelineSub}>{triOb('Пуш за день до конца триала', 'Пуш за день до кінця триалу', 'Aviso un día antes del cobro')}</Text>
                   </View>
                 </View>
                 <View style={styles.planPaywallTimelineLine} />
                 <View style={styles.planPaywallTimelineRow}>
                   <View style={styles.planPaywallTimelineDot} />
                   <View style={styles.planPaywallTimelineCopy}>
-                    <Text style={styles.planPaywallTimelineTitle}>День {trialDays} — начало подписки</Text>
+                    <Text style={styles.planPaywallTimelineTitle}>{triOb(`День ${trialDays} — начало подписки`, `День ${trialDays} — початок підписки`, `Día ${trialDays} — inicio de suscripción`)}</Text>
                     <Text style={styles.planPaywallTimelineSub}>
                       {storePrices.yearly && selectedPlanBilling === 'annual'
-                        ? `${storePrices.yearly} / год · отменить можно в любой момент`
+                        ? triOb(`${storePrices.yearly} / год · отменить можно в любой момент`, `${storePrices.yearly} / рік · скасувати можна будь-коли`, `${storePrices.yearly} / año · cancela cuando quieras`)
                         : storePrices.monthly
-                          ? `${storePrices.monthly} / месяц · отменить можно в любой момент`
-                          : 'Отменить можно в любой момент'}
+                          ? triOb(`${storePrices.monthly} / месяц · отменить можно в любой момент`, `${storePrices.monthly} / місяць · скасувати можна будь-коли`, `${storePrices.monthly} / mes · cancela cuando quieras`)
+                          : triOb('Отменить можно в любой момент', 'Скасувати можна будь-коли', 'Cancela cuando quieras')}
                     </Text>
                   </View>
                 </View>
@@ -2305,21 +2311,21 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                 onPress={() => setSelectedPlanBilling('annual')}
               >
                 <View style={styles.planPaywallBuyCardInner}>
-                  <Text style={styles.planPaywallBuyTitle}>Годовой</Text>
+                  <Text style={styles.planPaywallBuyTitle}>{triOb('Годовой', 'Річний', 'Anual')}</Text>
                   <Text style={styles.planPaywallBuyPrice}>
-                    {storePrices.yearly ? storePrices.yearly : 'Загружаем…'}
+                    {storePrices.yearly ? storePrices.yearly : triOb('Загружаем…', 'Завантажуємо…', 'Cargando…')}
                   </Text>
                 </View>
-                <View style={styles.planPaywallBuyBadge}><Text style={styles.planPaywallBuyBadgeText}>Лучшая цена</Text></View>
+                <View style={styles.planPaywallBuyBadge}><Text style={styles.planPaywallBuyBadgeText}>{triOb('Лучшая цена', 'Найкраща ціна', 'Mejor precio')}</Text></View>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.planPaywallBuyCard, selectedPlanBilling === 'monthly' && styles.planPaywallBuyCardSelected]}
                 activeOpacity={0.84}
                 onPress={() => setSelectedPlanBilling('monthly')}
               >
-                <Text style={styles.planPaywallBuyTitle}>Месячный</Text>
+                <Text style={styles.planPaywallBuyTitle}>{triOb('Месячный', 'Місячний', 'Mensual')}</Text>
                 <Text style={styles.planPaywallBuyPrice}>
-                  {storePrices.monthly ? storePrices.monthly : 'Загружаем…'}
+                  {storePrices.monthly ? storePrices.monthly : triOb('Загружаем…', 'Завантажуємо…', 'Cargando…')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -2332,7 +2338,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               onPress={handlePaywallPurchase}
             >
               <Text style={styles.eliteWelcomeCtaText}>
-                {paywallPurchasing ? 'Оформляем…' : ctaLabel}
+                {paywallPurchasing ? triOb('Оформляем…', 'Оформляємо…', 'Procesando…') : ctaLabel}
               </Text>
             </DuoPressable>
 
@@ -2341,10 +2347,10 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               <Text style={styles.planPaywallTrustItem}>★ 4,3</Text>
               <Text style={styles.planPaywallTrustSep}>·</Text>
               <TouchableOpacity onPress={handlePaywallRestore} activeOpacity={0.7}>
-                <Text style={styles.planPaywallTrustItem}>Восстановить</Text>
+                <Text style={styles.planPaywallTrustItem}>{triOb('Восстановить', 'Відновити', 'Restaurar')}</Text>
               </TouchableOpacity>
               <Text style={styles.planPaywallTrustSep}>·</Text>
-              <Text style={styles.planPaywallTrustItem}>Отменить всегда</Text>
+              <Text style={styles.planPaywallTrustItem}>{triOb('Отменить всегда', 'Скасувати завжди', 'Cancela siempre')}</Text>
             </View>
 
             <TouchableOpacity
@@ -2352,7 +2358,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
               activeOpacity={0.82}
               onPress={() => setShowPlanFreeConfirm(true)}
             >
-              <Text style={styles.eliteWelcomeSecondaryCtaText}>Продолжить без плана</Text>
+              <Text style={styles.eliteWelcomeSecondaryCtaText}>{triOb('Продолжить без плана', 'Продовжити без плану', 'Continuar sin plan')}</Text>
             </TouchableOpacity>
             <Text style={styles.legal}>
               Trial, цена после trial и период подписки берутся из App Store или Google Play. После trial подписка продлевается автоматически. Отменить можно в настройках подписок магазина не позднее чем за 24 часа до продления.
@@ -2362,13 +2368,17 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
           {showPlanFreeConfirm ? (
             <View style={styles.planFreeConfirmOverlay}>
               <View style={styles.planFreeConfirmBox}>
-                <Text style={styles.planFreeConfirmTitle}>Точно без плана?</Text>
+                <Text style={styles.planFreeConfirmTitle}>{triOb('Точно без плана?', 'Точно без плану?', '¿Sin plan?')}</Text>
                 <Text style={styles.planFreeConfirmText}>
-                  Персональный план открыт в Premium. Остальное работает в полном доступе. Разбор слабых мест и маршрут под цель — с планом.
+                  {triOb(
+                    'Персональный план открыт в Premium. Остальное работает в полном доступе. Разбор слабых мест и маршрут под цель — с планом.',
+                    'Персональний план відкрито в Premium. Решта працює у повному доступі. Аналіз слабких місць і маршрут під ціль — з планом.',
+                    'El plan personal está en Premium. Todo lo demás funciona gratis. Análisis de puntos débiles y ruta a tu objetivo — con el plan.',
+                  )}
                 </Text>
                 <View style={styles.planFreeConfirmActions}>
                   <DuoPressable style={styles.eliteWelcomeCta} edgeColor={theme.accentDeep} onPress={() => setShowPlanFreeConfirm(false)}>
-                    <Text style={styles.eliteWelcomeCtaText}>Оставить план</Text>
+                    <Text style={styles.eliteWelcomeCtaText}>{triOb('Оставить план', 'Залишити план', 'Mantener el plan')}</Text>
                   </DuoPressable>
                   <TouchableOpacity
                     style={styles.eliteWelcomeSecondaryCta}
@@ -2379,7 +2389,7 @@ function Onboarding({ onDone, onLangSelect, onIntroFullAccessStart, onPersonalPl
                       goToStep('name');
                     }}
                   >
-                    <Text style={styles.eliteWelcomeSecondaryCtaText}>Продолжить без плана</Text>
+                    <Text style={styles.eliteWelcomeSecondaryCtaText}>{triOb('Продолжить без плана', 'Продовжити без плану', 'Continuar sin plan')}</Text>
                   </TouchableOpacity>
                 </View>
               </View>

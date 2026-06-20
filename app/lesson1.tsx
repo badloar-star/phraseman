@@ -108,6 +108,7 @@ import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_
 import { MOTION_DURATION } from '../constants/motion';
 import { lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
+import { safeRouterBack } from './navigation_back';
 import { callExplainMistake } from './ai_mistake_explain_client';
 import { getAiMistakeExplainsLeftToday, markAiMistakeExplainUsed } from './ai_mistake_explain_limit_session';
 
@@ -362,20 +363,46 @@ function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onCl
 
   if (!visible) return null;
 
-  const isUK = lang === 'uk';
-  const isES = spanishLessonUiStringsActive(lang, studyTarget);
-  const title = isES ? '🎉 ¡Has cerrado todo el ciclo!' : isUK ? '🎉 Ти пройшов увесь урок!' : '🎉 Ты прошёл весь урок!';
-  const subtitle = isES
-    ? 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.'
-    : isUK
-      ? 'Можеш продовжувати скільки завгодно разів — кожне нове коло покращує твій результат.'
-      : 'Можешь проходить сколько угодно раз — каждый новый круг улучшает твой результат.';
-  const errorText = isES
-    ? 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.'
-    : isUK
-      ? 'У тебе були помилки — пройди ще раз, щоб виправити їх і закріпити знання.'
-      : 'У тебя были ошибки — пройди ещё раз, чтобы исправить их и закрепить знания.';
-  const btnLabel = isES ? 'Continuar' : isUK ? 'Продовжити' : 'Продолжить';
+  const title = triLang(lang, {
+    ru: '🎉 Ты прошёл весь урок!',
+    uk: '🎉 Ти пройшов увесь урок!',
+    es: '🎉 ¡Has cerrado todo el ciclo!',
+    'pt-BR': '🎉 Você concluiu toda a lição!',
+    vi: '🎉 Bạn đã hoàn thành toàn bộ bài học!',
+    id: '🎉 Kamu telah menyelesaikan semua pelajaran!',
+    tr: '🎉 Tüm dersi tamamladın!',
+    pl: '🎉 Ukończyłeś całą lekcję!',
+  });
+  const subtitle = triLang(lang, {
+    ru: 'Можешь проходить сколько угодно раз — каждый новый круг улучшает твой результат.',
+    uk: 'Можеш продовжувати скільки завгодно разів — кожне нове коло покращує твій результат.',
+    es: 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.',
+    'pt-BR': 'Você pode repetir quantas vezes quiser — cada nova rodada melhora seu resultado.',
+    vi: 'Bạn có thể luyện tập bao nhiêu lần tùy thích — mỗi vòng mới đều cải thiện kết quả.',
+    id: 'Kamu bisa mengulang sebanyak yang kamu mau — setiap putaran baru meningkatkan hasilmu.',
+    tr: 'İstediğin kadar tekrar edebilirsin — her yeni tur sonucunu iyileştirir.',
+    pl: 'Możesz powtarzać ile chcesz — każda nowa runda poprawia twój wynik.',
+  });
+  const errorText = triLang(lang, {
+    ru: 'У тебя были ошибки — пройди ещё раз, чтобы исправить их и закрепить знания.',
+    uk: 'У тебе були помилки — пройди ще раз, щоб виправити їх і закріпити знання.',
+    es: 'Hubo errores: repásalo otra vez para corregirlos y fijar lo aprendido.',
+    'pt-BR': 'Você teve erros — repita para corrigi-los e fixar o aprendizado.',
+    vi: 'Bạn có lỗi — hãy làm lại để sửa và củng cố kiến thức.',
+    id: 'Kamu punya kesalahan — ulangi untuk memperbaikinya dan memperkuat pemahaman.',
+    tr: 'Hatalar yaptın — düzeltmek ve öğrendiklerini pekiştirmek için tekrar et.',
+    pl: 'Miałeś błędy — powtórz, żeby je poprawić i utrwalić wiedzę.',
+  });
+  const btnLabel = triLang(lang, {
+    ru: 'Продолжить',
+    uk: 'Продовжити',
+    es: 'Continuar',
+    'pt-BR': 'Continuar',
+    vi: 'Tiếp tục',
+    id: 'Lanjutkan',
+    tr: 'Devam et',
+    pl: 'Kontynuuj',
+  });
 
   return (
     <Modal transparent visible={visible} animationType="none" onRequestClose={onClose}>
@@ -682,6 +709,9 @@ const LessonContent = React.memo(function LessonContent({
         );
       const displayText = (() => {
         if (strippedRaw === '') return s.lesson.noArticle;
+        // Preserve acronyms / multi-capital tokens verbatim (e.g. "TV", "PM"),
+        // otherwise they get mangled to "Tv"/"tv".
+        if (/[A-Z]/.test(strippedRaw.slice(1))) return strippedRaw;
         const cap = currentCorrectWord !== null && /^[A-Z]/.test(currentCorrectWord);
         if (cap) return strippedRaw.charAt(0).toUpperCase() + strippedRaw.slice(1);
         return strippedRaw === 'I' ? 'I' : strippedRaw.toLowerCase();
@@ -1076,16 +1106,14 @@ const LessonContent = React.memo(function LessonContent({
                   ? (() => {
                       const cleaned = selectedWords.map(w => stripMarkers(w)).filter(w => w.length > 0);
                       if (cleaned.length === 0) return '';
-                      const first = cleaned[0].charAt(0).toUpperCase() + cleaned[0].slice(1).toLowerCase();
-                      const rest = cleaned.slice(1).map((w, j) => {
-                        const wordIdx = j + 1;
-                        const rowsLive = phrase ? phraseWordRowsForStudyTarget(phrase, studyTarget) : [];
-                        const canonical = rowsLive[wordIdx]?.correct as string | undefined;
+                      // Capitalize only the sentence-start letter; keep the rest of the
+                      // word verbatim so acronyms ("TV"), proper nouns ("Tuesday"), etc.
+                      // are not corrupted into "Tv"/"tuesday". Each tile already carries
+                      // its own correct casing from the canonical/source token.
+                      const first = cleaned[0].charAt(0).toUpperCase() + cleaned[0].slice(1);
+                      const rest = cleaned.slice(1).map(w => {
                         if (w.toLowerCase() === 'i') return 'I';
-                        if (canonical && /^[A-ZÁÉÍÓÚÑ]/.test(canonical)) {
-                          return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
-                        }
-                        return w.toLowerCase();
+                        return w;
                       }).join(' ');
                       return first + (rest ? ' ' + rest : '');
                     })()
@@ -2043,7 +2071,7 @@ export default function LessonScreen() {
           return;
         }
         if (router.canGoBack()) {
-          router.back();
+          safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
           return;
         }
         router.dismissTo({ pathname: '/lesson_menu', params: { id: String(lessonId) } });
@@ -2055,12 +2083,12 @@ export default function LessonScreen() {
       return;
     }
     if (router.canGoBack()) {
-      router.back();
+      safeRouterBack(router, '/(tabs)/home' as any);
     } else {
       // Стек пуст (например, deeplink или router.replace без истории) — возвращаемся на главную,
       // а не на /lesson_menu: иначе lesson_menu тоже окажется без истории, и его «назад»
       // не сработает (юзер застрянет после онбординга).
-      router.replace('/(tabs)/home' as any);
+      safeRouterBack(router, '/(tabs)/home' as any);
     }
   }, [router, from, lessonId]);
 

@@ -12,6 +12,9 @@ jest.mock('../app/remote_flags', () => ({
   getFreeLessonLimit: () => mockFreeLessonLimit,
   getFreeLessonsExtra: () => mockFreeExtra,
   getPremiumLessonsExtra: () => mockPremiumExtra,
+  // shouldGateFeature → isFeatureGrantedByWeeklyBoon → boon_engine читает конфиг бонусов.
+  // Без этого стаба тест падал TypeError: getWeeklyBoonsConfigRaw is not a function.
+  getWeeklyBoonsConfigRaw: () => '',
 }));
 
 import {

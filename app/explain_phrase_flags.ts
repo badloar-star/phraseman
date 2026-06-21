@@ -28,7 +28,7 @@ function boolFromEnv(name: string): boolean | undefined {
   return raw === 'true' || raw === '1';
 }
 
-/** Включена ли фича (когортный rollout). Дефолт false.
+/** Включена ли фича (когортный rollout). Дефолт true (kill-switch, см. EXPLAIN_ENABLED_DEFAULT).
  *  Источники (любой включает): Remote Config (admin «Пульт») ИЛИ env QA-флаг. */
 export function isExplainEnabled(): boolean {
   // Remote Config имеет приоритет: если админ включил — фича включена.

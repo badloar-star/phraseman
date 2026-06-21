@@ -700,6 +700,12 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   'streak_last_date',
   'collectibles_owned_v1',
   'collectibles_state_v1',
+  // profile_card_level — публичный престиж-бейдж, поднимает только CF profileCardUpgrade
+  // (Admin SDK). В blocklist firestore.rules (стр.94). Без исключения здесь клиент слал бы
+  // его в исходящий patch после апгрейда → rules отклонят весь set (PERMISSION_DENIED) →
+  // ломается синк XP/streak/прогресса. profile_card_theme/motion/public_focus НЕ сюда —
+  // они клиент-выбираемые и синкаются штатно.
+  'profile_card_level',
 ]);
 
 export const isServerOwnedProgressKey = (key: string): boolean => {

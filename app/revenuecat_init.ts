@@ -219,7 +219,12 @@ async function applyPushedCustomerInfo(info: unknown): Promise<void> {
     const isActive = entitlementsActive || (Array.isArray(subs) && subs.length > 0);
     if (isActive) {
       const metadata = revenueCatPremiumMetadata(info as any);
-      const plan = inferPremiumPlanFromProductId(metadata.productId ?? subs?.[0], 'monthly');
+      // Не понижаем уже сохранённый lifetime до monthly при пуш-апдейте без productId:
+      // lifetime (non-consumable) RC может прислать без productId в активных подписках,
+      // а inferPremiumPlanFromProductId без сигнала вернёт дефолт 'monthly'.
+      const existingPlan = String(await AsyncStorage.getItem('premium_plan').catch(() => '') ?? '').trim().toLowerCase();
+      const inferred = inferPremiumPlanFromProductId(metadata.productId ?? subs?.[0], 'monthly');
+      const plan = existingPlan === 'lifetime' && inferred === 'monthly' ? 'lifetime' : inferred;
       await persistStorePremiumLocally(plan, metadata); // внутри invalidatePremiumCache + RC_LAST_SEEN
     } else {
       invalidatePremiumCache();
@@ -319,7 +324,7 @@ async function _doInit(): Promise<void> {
             ]);
           }
           const existingStorePlan =
-            !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly')
+            !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly' || existingPlan === 'lifetime')
               ? existingPlan as PremiumStorePlan
               : null;
           const plan = existingStorePlan ?? inferPremiumPlanFromProductId(

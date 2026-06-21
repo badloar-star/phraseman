@@ -76,7 +76,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   const rcExpiry = parseInt(pairs.find(p => p[0] === 'premium_rc_expiry_ms')?.[1] || '0');
   const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
   const normalizedPlan = String(plan ?? '').trim().toLowerCase();
-  const storePlan = normalizedPlan === 'monthly' || normalizedPlan === 'yearly' || normalizedPlan === 'annual';
+  const storePlan = normalizedPlan === 'monthly' || normalizedPlan === 'yearly' || normalizedPlan === 'annual' || normalizedPlan === 'lifetime';
   const legacyAdminGrant =
     adminOverride === 'true' ||
     normalizedPlan === 'admin_grant';

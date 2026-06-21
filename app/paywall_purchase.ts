@@ -384,10 +384,15 @@ export function usePaywallPurchase({ variant, context, source, lang }: PaywallPu
       // как запасной (RC иногда задерживает entitlement при первом restore).
       if (hasActiveEntitlement || activeSubscriptions.length > 0) {
         const metadata = revenueCatPremiumMetadata(info);
-        const plan = inferPremiumPlanFromProductId(
-          metadata.productId,
-          activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly',
-        );
+        // Дефолт-эвристика на случай пустого productId: lifetime (non-consumable) живёт
+        // в entitlements.active с productIdentifier, поэтому обычно productId заполнен и
+        // ловится regex'ом. Но подстрахуемся — если среди активных есть lifetime-сигнал,
+        // не деградируем в monthly/yearly.
+        const restoreDefault: 'monthly' | 'yearly' | 'lifetime' =
+          activeSubscriptions.some(s => /lifetime|forever|one.?time|onetime|perpetual/i.test(s)) ? 'lifetime'
+          : activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly'
+          : 'monthly';
+        const plan = inferPremiumPlanFromProductId(metadata.productId, restoreDefault);
         await persistStorePremiumLocally(plan, metadata);
         if (context !== 'personal_plan') {
           emitAppEvent('premium_activated');

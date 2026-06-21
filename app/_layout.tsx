@@ -141,6 +141,7 @@ import {
   markLoyaltyGiftOfferSeen,
   startLoyaltyGift,
 } from './loyalty_gift';
+import { RaysHalo, FloatingShards, BreathHalo } from '../components/modal_fx/ModalFx';
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
 // Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
@@ -762,6 +763,22 @@ function GlobalLevelUpHandler() {
               }}>
               {USE_ELITE_LEVEL_UP_MODAL && <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && <GoldBevel radius={32} intensity="strong" />}
+              {/* Праздничный слой повышения уровня: лучи + парящие осколки + дыхание ореола (без конфетти). */}
+              {USE_ELITE_LEVEL_UP_MODAL && showLevelUp && (
+                <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 230, alignItems: 'center', justifyContent: 'flex-start', overflow: 'hidden' }}>
+                  <View style={{ position: 'absolute', top: 78, alignItems: 'center', justifyContent: 'center' }}>
+                    <RaysHalo color="rgba(246,200,95,0.34)" size={260} rays={4} />
+                    <BreathHalo color="rgba(246,200,95,0.4)" size={150} />
+                  </View>
+                  <FloatingShards
+                    colors={['#FFE7A6', '#F6C85F', '#FFF2C9', '#E0A124']}
+                    count={9}
+                    reach={200}
+                    rise={150}
+                    bottomOffset={20}
+                  />
+                </View>
+              )}
               {USE_ELITE_LEVEL_UP_MODAL && (
                 <>
                   <Animated.View
@@ -793,7 +810,18 @@ function GlobalLevelUpHandler() {
                 </>
               )}
               {/* Static first frame: animated webp inside a global Modal was a freeze risk on Android. */}
-              <LevelBadge level={currentLevel} size={USE_ELITE_LEVEL_UP_MODAL ? 108 : 100} autoplay={false} />
+              <Animated.View style={{ alignItems: 'center', justifyContent: 'center', transform: [{ scale: levelUpModalScale }] }}>
+                {USE_ELITE_LEVEL_UP_MODAL && (
+                  <LinearGradient
+                    pointerEvents="none"
+                    colors={[`${levelUpAccent}33`, 'transparent']}
+                    start={{ x: 0.5, y: 0.5 }}
+                    end={{ x: 1, y: 1 }}
+                    style={{ position: 'absolute', width: 150, height: 150, borderRadius: 75 }}
+                  />
+                )}
+                <LevelBadge level={currentLevel} size={USE_ELITE_LEVEL_UP_MODAL ? 108 : 100} autoplay={false} />
+              </Animated.View>
               <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_UP_MODAL ? f.numLg + 2 : f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 10 }}>
                 {lang === 'uk' ? `РІВЕНЬ ${currentLevel}!` : lang === 'es' ? `¡NIVEL ${currentLevel}!` : `УРОВЕНЬ ${currentLevel}!`}
               </Text>
@@ -805,9 +833,12 @@ function GlobalLevelUpHandler() {
               </Text>
               {isNewTitle && (
                 <View style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 12 : 10, alignItems: 'center', gap: 2, width: '100%', borderWidth: 1, borderColor: titleColor + (USE_ELITE_LEVEL_UP_MODAL ? '44' : '55') }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: USE_ELITE_LEVEL_UP_MODAL ? '800' : '700', textTransform: 'uppercase', letterSpacing: 0.7 }}>
-                    {lang === 'uk' ? '🎖️ Новий титул' : lang === 'es' ? '🎖️ Nuevo título' : '🎖️ Новый титул'}
-                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                    <Ionicons name="ribbon" size={12} color={titleColor} />
+                    <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: USE_ELITE_LEVEL_UP_MODAL ? '800' : '700', textTransform: 'uppercase', letterSpacing: 0.7 }}>
+                      {lang === 'uk' ? 'Новий титул' : lang === 'es' ? 'Nuevo título' : 'Новый титул'}
+                    </Text>
+                  </View>
                   <Text style={{ color: titleColor, fontSize: f.bodyLg, fontWeight: '800', marginTop: 2 }}>
                     {newTitleDef.titleEN}
                   </Text>
@@ -825,13 +856,14 @@ function GlobalLevelUpHandler() {
               </View>
 
               {[10, 20, 30, 40, 50].includes(currentLevel) && (
-                <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : '#1A3A2A', borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: 10, marginTop: 10, width: '100%', alignItems: 'center', borderWidth: 1, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : '#34D399' }}>
-                  <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.textSecond : '#34D399', fontWeight: '800', fontSize: f.body }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : '#1A3A2A', borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: 10, marginTop: 10, width: '100%', borderWidth: 1, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : '#34D399' }}>
+                  <Ionicons name="flash" size={15} color={USE_ELITE_LEVEL_UP_MODAL ? '#F6C85F' : '#34D399'} />
+                  <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.textSecond : '#34D399', fontWeight: '800', fontSize: f.body, textAlign: 'center', flexShrink: 1 }}>
                     {lang === 'uk'
-                      ? `⚡ Тепер у тебе ${getMaxEnergyForLevel(currentLevel)} енергії на день!`
+                      ? `Тепер у тебе ${getMaxEnergyForLevel(currentLevel)} енергії на день!`
                       : lang === 'es'
-                        ? `⚡ ¡Tu energía diaria máxima es ${getMaxEnergyForLevel(currentLevel)}!`
-                        : `⚡ Теперь у тебя ${getMaxEnergyForLevel(currentLevel)} энергии в день!`}
+                        ? `¡Tu energía diaria máxima es ${getMaxEnergyForLevel(currentLevel)}!`
+                        : `Теперь у тебя ${getMaxEnergyForLevel(currentLevel)} энергии в день!`}
                   </Text>
                 </View>
               )}

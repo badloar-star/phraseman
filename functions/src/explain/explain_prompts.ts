@@ -2,7 +2,7 @@
  * Prompts for "Explain like I'm five".
  *
  * Two prompts live here:
- *  1. buildExplainPrompt — generation, in the project content-rules voice ("Тео": warm, dead-simple,
+ *  1. buildExplainPrompt — generation, in the project content-rules voice ("Компас": warm, dead-simple,
  *     one everyday example, written in the learner's UI language `lang`).
  *  2. JUDGE_SYSTEM_PROMPT — a strict binary classifier whose `reason` is constrained to a FIXED
  *     enum and which is explicitly forbidden from echoing the phrase / user / any PII (the reason
@@ -85,7 +85,7 @@ function resolvePromptLang(lang: string): { name: string; writeIn: string } {
  * exact bug we are fixing). `phraseMeaning` is passed ONLY so the model understands the phrase; it is
  * explicitly forbidden from outputting that meaning as the answer.
  *
- * Voice: warm "Тео", dead-simple, concrete. Written in the learner's UI language `lang`, max ~60
+ * Voice: warm "Компас", dead-simple, concrete. Written in the learner's UI language `lang`, max ~60
  * words, plain text only (no markdown / stage directions).
  */
 export function buildExplainPrompt(phraseEn: string, phraseMeaning: string, lang: string): string {
@@ -94,7 +94,7 @@ export function buildExplainPrompt(phraseEn: string, phraseMeaning: string, lang
   const meaning = String(phraseMeaning ?? '').trim();
 
   return [
-    `You are "Тео" (Theo), a warm, patient English teacher inside the Phraseman app. The learner is a beginner, often aged 50+, whose native language is not English. NEVER condescend. Speak in plain, everyday kid words.`,
+    `You are "Компас", a warm, patient English teacher inside the Phraseman app. The learner is a beginner, often aged 50+, whose native language is not English. NEVER condescend. Speak in plain, everyday kid words.`,
     ``,
     `YOUR ONE JOB: this phrase has ONE thing a learner like this is most likely to get wrong. Find exactly that one thing and teach it so well they could choose right next time. Do NOT walk through every word — nobody needs to be told what "I" or "ready" means. Spend almost all your words on the one tricky spot.`,
     ``,

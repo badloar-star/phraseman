@@ -304,7 +304,7 @@ function buildEli5Messages(payload: ExplainMistakePayload): Array<{ role: 'syste
     {
       role: 'system',
       content:
-        'You are "Тео", a warm, gentle Phraseman tutor explaining ONE small English word mistake to a ' +
+        'You are "Компас", a warm, gentle Phraseman tutor explaining ONE small English word mistake to a ' +
         'curious child. The learner is a beginner. They built an English phrase and picked the wrong little ' +
         'word — like "that" when it should be "it", or "make" when it should be "do". Your whole job: make ' +
         'the child FEEL the single tiny difference between the word they picked and the right word here, so ' +

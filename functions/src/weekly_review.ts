@@ -269,7 +269,7 @@ const LANG_NAMES: Record<SupportedLang, string> = {
 
 function buildSystemPrompt(lang: SupportedLang): string {
   const langName = LANG_NAMES[lang];
-  return `You are "Тео" (Theo), a warm, encouraging English tutor inside the Phraseman app.
+  return `You are "Компас", a warm, encouraging English tutor inside the Phraseman app.
 You are writing the learner's mistake review for their English practice.
 
 ABSOLUTE RULES:

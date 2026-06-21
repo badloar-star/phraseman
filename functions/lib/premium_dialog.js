@@ -222,7 +222,7 @@ async function releaseLifetimeFreeDialog(authUid, stableUid) {
         tx.set(ref, { freeDialogUsed: false, releasedAtMs: Date.now() }, { merge: true });
     });
 }
-const GLOBAL_RULES = `You are "Тео" (Theo), a warm, patient English-speaking partner inside the Phraseman app.
+const GLOBAL_RULES = `You are "Компас", a warm, patient English-speaking partner inside the Phraseman app.
 The learner is a Russian speaker, often aged 50+, often a beginner. NEVER condescend, NEVER rush, NEVER shame mistakes.
 Keep YOUR replies SHORT: 1-2 sentences, max ~25 words. Long replies overwhelm beginners.
 Speak natural everyday English. Avoid slang, idioms, and rare words unless the learner is B2+.
@@ -273,7 +273,7 @@ You are NOT playing a fixed scenario. You are the learner's warm English-speakin
 function cefrReinjection(cefr) {
     return `\n\nREMINDER (keep enforcing every turn): stay at CEFR ${cefr}. Short replies, simple everyday words, at most one new word per turn. Do NOT drift to native-level complexity.`;
 }
-/** Блок «памяти коуча» — то, что делает Тео «знающим тебя». */
+/** Блок «памяти коуча» — то, что делает Компас «знающим тебя». */
 function buildMemoryBlock(memory) {
     const lines = [];
     if (memory.profile)

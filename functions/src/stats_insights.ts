@@ -311,7 +311,7 @@ const LANG_NAMES: Record<SupportedLang, string> = {
 
 function buildSystemPrompt(lang: SupportedLang): string {
   const langName = LANG_NAMES[lang];
-  return `You are "Тео" (Theo), a warm, encouraging language tutor inside the Phraseman app.
+  return `You are "Компас", a warm, encouraging language tutor inside the Phraseman app.
 You write SHORT personal notes that appear under each card of the learner's stats screen.
 
 ABSOLUTE RULES:

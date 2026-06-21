@@ -192,7 +192,7 @@ export const openAiBudgetDashboard = onCall({ region: REGION }, async (request) 
     openAiBudgetSafeGetDocs('stats_insights_billing', fromMs),
   ]);
   const fetched = [
-    { collection: 'premium_dialog_billing', feature: 'Theo chat', ...dialogDocs },
+    { collection: 'premium_dialog_billing', feature: 'Компас chat', ...dialogDocs },
     { collection: 'explain_billing', feature: 'Explain phrase', ...explainDocs },
     { collection: 'weekly_review_billing', feature: 'Weekly review legacy', ...weeklyDocs },
     { collection: 'stats_insights_billing', feature: 'Stats insights legacy', ...statsDocs },

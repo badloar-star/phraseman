@@ -1,3 +1,17 @@
+// ============================================================================
+// ⛔ STRICT POLICY — Telegram premium bot. ОБЯЗАТЕЛЬНО К СОБЛЮДЕНИЮ ВО ВСЕХ СЕССИЯХ.
+// ----------------------------------------------------------------------------
+// 1. ВЫДАЧА ПРЕМИУМА/VIP ПО TELEGRAM-ОПЛАТЕ — ТОЛЬКО ВРУЧНУЮ (через admin/testers.html).
+//    НЕ автоматизировать активацию по successful_payment. Бот пишет ТОЛЬКО заявку
+//    (telegram_premium_orders, status='paid_pending_manual_activation') и уведомляет
+//    админов. Реальную выдачу делает человек. Это осознанное требование владельца.
+// 2. В КЛИЕНТСКОМ ПРИЛОЖЕНИИ (app/, components/) — НИКАКИХ упоминаний оплаты в
+//    Telegram: ни кнопок, ни текста, ни ссылок, ни «оплатить в Telegram». App Store /
+//    Google Play БАНЯТ за внешние способы оплаты. Любой код/текст про Telegram-оплату
+//    в приложении = риск бана. Telegram-оплата существует ТОЛЬКО здесь, на сервере/в боте.
+// 3. Деньги не должны теряться: при сбое записи заявки апдейт уходит в dead-letter
+//    (telegram_premium_dead_letter) и webhook возвращает 500, чтобы Telegram повторил.
+// ============================================================================
 import * as admin from 'firebase-admin';
 import { defineSecret } from 'firebase-functions/params';
 import { onDocumentUpdated } from 'firebase-functions/v2/firestore';
@@ -333,6 +347,33 @@ async function sendMonthlyInvoiceLink(token: string, chatId: number | string, in
 
 const db = admin.firestore();
 
+// Dead-letter: сырой апдейт Telegram, который не удалось обработать (особенно
+// successful_payment, где Stars уже списаны). Пишем ДО проброса ошибки, чтобы факт
+// оплаты не пропал, даже если основная запись заявки упала. Best-effort: если и
+// сюда не записалось — ошибка всё равно пробросится и webhook вернёт 500 → Telegram
+// повторит апдейт. См. STRICT POLICY п.3 в шапке файла.
+async function writeDeadLetter(
+  reason: string,
+  update: TelegramUpdate,
+  error: unknown,
+): Promise<void> {
+  try {
+    const charge = update.message?.successful_payment?.telegram_payment_charge_id;
+    const id = charge ? `charge-${charge}` : `dl-${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
+    await db.collection('telegram_premium_dead_letter').doc(id).set({
+      reason,
+      hasSuccessfulPayment: Boolean(update.message?.successful_payment),
+      rawUpdate: update,
+      errorMessage: String((error as { message?: unknown })?.message ?? error).slice(0, 500),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAtIso: new Date().toISOString(),
+      resolved: false,
+    }, { merge: true });
+  } catch (dlError) {
+    console.error('telegramPremium writeDeadLetter failed', dlError);
+  }
+}
+
 function sessionRef(userId: number | string) {
   return db.collection('telegram_premium_bot_sessions').doc(String(userId));
 }
@@ -546,7 +587,18 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
         ? new Date(payment.subscription_expiration_date * 1000).toISOString()
         : null,
     };
-    await db.collection('telegram_premium_orders').doc(chargeId).set(order, { merge: true });
+    // КРИТИЧНО: запись заявки = единственный след оплаты (Stars уже списаны). Если
+    // упадёт — пробрасываем ошибку, чтобы webhook вернул 500 и Telegram повторил
+    // доставку (выдача всё равно ручная — см. STRICT POLICY п.1/п.3 в шапке файла).
+    try {
+      await db.collection('telegram_premium_orders').doc(chargeId).set(order, { merge: true });
+    } catch (orderError) {
+      console.error('telegramPremium order write failed', orderError);
+      throw orderError;
+    }
+    // Сообщение юзеру и админам — best-effort: заявка уже записана, сбой уведомления
+    // не должен ронять webhook в 500 (иначе Telegram повторит апдейт и создаст дубль
+    // обработки на уже записанной заявке).
     await sendMessage(token, chatId, [
       MANUAL_ACTIVATION_MESSAGE_RU,
       '',
@@ -559,8 +611,8 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
       reply_markup: {
         inline_keyboard: [[{ text: SUPPORT_BUTTON_TEXT_RU, callback_data: SUPPORT_CALLBACK_START }]],
       },
-    });
-    await notifyAdmins(token, order);
+    }).catch((e) => console.error('telegramPremium user notify failed', e));
+    await notifyAdmins(token, order).catch((e) => console.error('telegramPremium admin notify failed', e));
     return;
   }
 
@@ -739,12 +791,22 @@ export const telegramPremiumWebhook = onRequest({
     res.status(401).send('Unauthorized');
     return;
   }
+  const update = (req.body || {}) as TelegramUpdate;
   try {
-    await handleUpdate(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), req.body as TelegramUpdate);
+    await handleUpdate(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), update);
     res.status(200).send('ok');
   } catch (error) {
     console.error('telegramPremiumWebhook failed', error);
-    res.status(200).send('ok');
+    // Сохраняем сырой апдейт, чтобы факт оплаты не пропал (см. STRICT POLICY п.3).
+    await writeDeadLetter('webhook_handler_failed', update, error);
+    // Если в апдейте была успешная оплата — отвечаем 500, чтобы Telegram ПОВТОРИЛ
+    // доставку (Stars списаны, заявку нужно записать). Для прочих апдейтов — 200,
+    // чтобы не зацикливать неплатёжные ошибки бесконечными ретраями.
+    if (update.message?.successful_payment) {
+      res.status(500).send('payment update retry requested');
+    } else {
+      res.status(200).send('ok');
+    }
   }
 });
 

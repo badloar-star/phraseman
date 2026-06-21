@@ -1539,6 +1539,13 @@ service cloud.firestore {
       allow create, delete: if false;
     }
 
+    // Dead-letter необработанных Telegram-апдейтов (в т.ч. оплат). Пишет ТОЛЬКО
+    // Cloud Function через Admin SDK. Клиент сюда не лезет; админ может читать/чистить.
+    match /telegram_premium_dead_letter/{docId} {
+      allow read, update: if isAdmin();
+      allow create, delete: if false;
+    }
+
     match /telegram_premium_bot/{docId} {
       allow read: if isAdmin();
       allow create, update, delete: if false;

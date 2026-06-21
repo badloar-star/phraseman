@@ -30,10 +30,12 @@ const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_CODE_ATTEMPTS = 12;
 
+// ── Тюнинг реферальной программы (крутится из «Пульта» без релиза) ───────────
+// Дефолты = прежние хардкоды. Читаются из remote_config/app.numbers тем же
+// async-резолвером, что у арены/карточек (см. resolveReferralConfig). Денежная
+// математика: при отсутствии/мусоре → дефолт по полю, поведение не меняется.
 /** Referral reward: 7 days for the invited friend and 7 days for the referrer. */
 export const REFERRAL_REWARD_DAYS = 7;
-const REFERRER_VIP_DAYS = REFERRAL_REWARD_DAYS;
-const REFEREE_VIP_DAYS = REFERRAL_REWARD_DAYS;
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
 export const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
@@ -46,13 +48,71 @@ export const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
  */
 export const MAX_REFERRER_CLAIMS_PER_DAY = 3;
 
+export interface ReferralConfig {
+  /** Дней VIP за одного друга (и referrer'у, и referee — это два разных человека). */
+  rewardDays: number;
+  /** Антифрод-кап обналичиваний/календарный месяц. */
+  maxClaimsPerMonth: number;
+  /** Анти-фарм throttle: обналичиваний/календарный день. */
+  maxClaimsPerDay: number;
+}
+
+export const REFERRAL_DEFAULTS: ReferralConfig = {
+  rewardDays: REFERRAL_REWARD_DAYS,
+  maxClaimsPerMonth: MAX_REFERRER_CLAIMS_PER_MONTH,
+  maxClaimsPerDay: MAX_REFERRER_CLAIMS_PER_DAY,
+};
+
+function referralClampInt(value: unknown, min: number, max: number, fallback: number): number {
+  const n = Math.trunc(Number(value));
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+}
+
+/**
+ * Чистый парсер конфига рефералов из remote_config/app.numbers. Отсутствие/мусор/
+ * вне границ → дефолт по полю. НИКОГДА не бросает. Экспортируется для тестов.
+ */
+export function referralConfigFromData(numbers: Record<string, unknown> | undefined): ReferralConfig {
+  const n = numbers ?? {};
+  const d = REFERRAL_DEFAULTS;
+  return {
+    rewardDays: referralClampInt(n.referral_reward_days, 0, 3650, d.rewardDays),
+    maxClaimsPerMonth: referralClampInt(n.referral_max_claims_month, 0, 100000, d.maxClaimsPerMonth),
+    maxClaimsPerDay: referralClampInt(n.referral_max_claims_day, 0, 100000, d.maxClaimsPerDay),
+  };
+}
+
+/**
+ * Читает конфиг рефералов из remote_config/app.numbers. НИКОГДА не бросает:
+ * при ошибке/отсутствии → дефолты (поведение как до фичи).
+ */
+export async function resolveReferralConfig(
+  db: admin.firestore.Firestore,
+): Promise<ReferralConfig> {
+  try {
+    const snap = await db.collection('remote_config').doc('app').get();
+    const data = snap.data() as { numbers?: Record<string, unknown> } | undefined;
+    return referralConfigFromData(data?.numbers);
+  } catch (e) {
+    console.warn('resolveReferralConfig failed, using defaults', e);
+    return { ...REFERRAL_DEFAULTS };
+  }
+}
+
 /**
  * Чистая функция: сколько наград можно выдать прямо сейчас с учётом дневного И месячного капов.
- * Берёт минимум из остатков, не уходит в минус. Экспортируется для тестов.
+ * Берёт минимум из остатков, не уходит в минус. Капы по умолчанию = дефолтные (обратная
+ * совместимость и тесты); вызовы из callable передают значения из «Пульта». Экспортируется.
  */
-export function referralClaimSlotsLeft(usedThisMonth: number, usedToday: number): number {
-  const monthLeft = MAX_REFERRER_CLAIMS_PER_MONTH - Math.max(0, Math.floor(usedThisMonth));
-  const dayLeft = MAX_REFERRER_CLAIMS_PER_DAY - Math.max(0, Math.floor(usedToday));
+export function referralClaimSlotsLeft(
+  usedThisMonth: number,
+  usedToday: number,
+  maxPerMonth: number = MAX_REFERRER_CLAIMS_PER_MONTH,
+  maxPerDay: number = MAX_REFERRER_CLAIMS_PER_DAY,
+): number {
+  const monthLeft = maxPerMonth - Math.max(0, Math.floor(usedThisMonth));
+  const dayLeft = maxPerDay - Math.max(0, Math.floor(usedToday));
   return Math.max(0, Math.min(monthLeft, dayLeft));
 }
 /** Сколько qualified-друзей обрабатываем за один claim-вызов (защита от гигантских транзакций). */
@@ -244,6 +304,8 @@ async function markRefereeQualified(
   const referrerId = String(att0.referrerStableId ?? '').trim();
   if (!referrerId) return;
 
+  // Тюнинг из «Пульта» (дней награды). Читаем ДО транзакции (отдельный документ).
+  const cfg = await resolveReferralConfig(db);
   const uref = (uid: string) => db.collection(USERS).doc(uid);
 
   await db.runTransaction(async (tx) => {
@@ -260,7 +322,7 @@ async function markRefereeQualified(
     const refereeVipPatch = buildReferralVipProgressPatch(
       refereeProgress,
       nowMs,
-      REFEREE_VIP_DAYS,
+      cfg.rewardDays,
       'referee',
     );
 
@@ -272,7 +334,7 @@ async function markRefereeQualified(
         status: 'qualified' as AttributionStatus,
         qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
         qualifiedBy: 'lesson1_pass_count',
-        refereeVipDays: REFEREE_VIP_DAYS,
+        refereeVipDays: cfg.rewardDays,
         refereeRewardedAtMs: nowMs,
         rewardKind: 'vip_days_both',
       },
@@ -524,11 +586,12 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
   });
 
   const qualifiedCount = invites.filter((i) => i.status === 'qualified').length;
+  const cfg = await resolveReferralConfig(db);
   return {
     ok: true,
     invites,
     qualifiedCount,
-    claimableVipDays: qualifiedCount * REFERRER_VIP_DAYS,
+    claimableVipDays: qualifiedCount * cfg.rewardDays,
   };
 });
 
@@ -556,6 +619,9 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
 
   const db = admin.firestore();
   await assertAuthStableLink(db, authUid, referrerStableId);
+
+  // Тюнинг из «Пульта» (дней награды + капы). Читаем ДО транзакции (отд. документ).
+  const cfg = await resolveReferralConfig(db);
 
   // Какие приглашения этого referrer'а готовы к обналичиванию (ещё не rewarded).
   // Включаем и legacy 'skipped_referrer_cap' — раньше эти строки застревали навсегда (M1);
@@ -616,11 +682,11 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
       // Принимаем qualified и legacy skipped_referrer_cap; 'rewarded'/прочее — пропуск (гонка).
       if (row?.status !== 'qualified' && row?.status !== 'skipped_referrer_cap') continue;
 
-      if (referralClaimSlotsLeft(usedThisMonth, usedToday) <= 0) {
+      if (referralClaimSlotsLeft(usedThisMonth, usedToday, cfg.maxClaimsPerMonth, cfg.maxClaimsPerDay) <= 0) {
         // Достигнут кап (день или месяц). НЕ понижаем статус — оставляем 'qualified',
         // эти 7 дней не теряются: дожмёт «Открыть» позже (на след. день / след. месяц).
         // Раньше ставили 'skipped_referrer_cap' и они терялись НАВСЕГДА (M1).
-        if (usedThisMonth >= MAX_REFERRER_CLAIMS_PER_MONTH) cappedThisMonth = true;
+        if (usedThisMonth >= cfg.maxClaimsPerMonth) cappedThisMonth = true;
         else cappedToday = true; // дневной throttle (анти-фарм свежими аккаунтами)
         tx.set(
           attRefs[i],
@@ -630,18 +696,18 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
         break; // остаток qualified-друзей сейчас тоже за капом — выходим.
       }
 
-      // Стак: +7 дней от текущего конца окна (или от now, если окна не было).
-      vipUntil = stackVipUntilMs(vipUntil, nowMs, REFERRER_VIP_DAYS);
+      // Стак: +N дней от текущего конца окна (или от now, если окна не было).
+      vipUntil = stackVipUntilMs(vipUntil, nowMs, cfg.rewardDays);
       usedThisMonth += 1;
       usedToday += 1;
-      claimed.push({ refereeStableId: snap.id, daysGranted: REFERRER_VIP_DAYS });
+      claimed.push({ refereeStableId: snap.id, daysGranted: cfg.rewardDays });
 
       tx.set(
         attRefs[i],
         {
           status: 'rewarded' as AttributionStatus,
           rewardedAt: admin.firestore.FieldValue.serverTimestamp(),
-          referrerVipDays: REFERRER_VIP_DAYS,
+          referrerVipDays: cfg.rewardDays,
           rewardKind: 'vip_days_both',
         },
         { merge: true },
@@ -654,7 +720,7 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
       const referrerVipPatch = buildReferralVipProgressPatch(
         (userData as { progress?: Record<string, unknown> }).progress,
         nowMs,
-        claimed.length * REFERRER_VIP_DAYS,
+        claimed.length * cfg.rewardDays,
         'referrer',
       );
       tx.set(
@@ -677,16 +743,16 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
         reason: 'referral_referrer_vip',
         rewardType: 'vip_days',
         amount: 0,
-        days: claimed.length * REFERRER_VIP_DAYS,
+        days: claimed.length * cfg.rewardDays,
         friends: claimed.length,
-        label: `💎 +${claimed.length * REFERRER_VIP_DAYS} дней VIP`,
+        label: `💎 +${claimed.length * cfg.rewardDays} дней VIP`,
         seen: false,
       });
     }
 
     return {
       ok: true,
-      granted: claimed.length * REFERRER_VIP_DAYS,
+      granted: claimed.length * cfg.rewardDays,
       claimed,
       vipUntilMs: vipUntil,
       cappedThisMonth,

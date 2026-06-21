@@ -43,14 +43,19 @@ describe('referral 7 plus 7 screen contract', () => {
     expect(layout).toContain('<Stack.Screen name="referrals"');
   });
 
-  it('keeps cloud reward logic as two separate 7-day rewards', () => {
+  it('keeps cloud reward logic as two separate rewards (default 7 days, tunable)', () => {
     const source = read('functions/src/referral.ts');
 
+    // Дефолт 7 дней сохранён; сами дни теперь крутятся из «Пульта» (cfg.rewardDays),
+    // но инвариант «две отдельные награды двум людям, не 14 одному» не меняется.
     expect(source).toContain('export const REFERRAL_REWARD_DAYS = 7');
-    expect(source).toContain('const REFERRER_VIP_DAYS = REFERRAL_REWARD_DAYS');
-    expect(source).toContain('const REFEREE_VIP_DAYS = REFERRAL_REWARD_DAYS');
+    expect(source).toContain('rewardDays: REFERRAL_REWARD_DAYS'); // дефолт конфига = 7
+    expect(source).toContain('referralConfigFromData'); // парсер тюнинга из Пульта
     expect(source).toContain("referral_vip_last_source: source");
-    expect(source).toContain('refereeVipDays: REFEREE_VIP_DAYS');
+    // referee получает свои дни отдельной выдачей (buildReferralVipProgressPatch ... 'referee')
+    expect(source).toContain('refereeVipDays: cfg.rewardDays');
+    expect(source).toContain("'referee'");
+    expect(source).toContain("'referrer'");
     expect(source).toContain("rewardKind: 'vip_days_both'");
   });
 

@@ -2,6 +2,8 @@ import {
   MAX_REFERRER_CLAIMS_PER_DAY,
   MAX_REFERRER_CLAIMS_PER_MONTH,
   REFERRAL_REWARD_DAYS,
+  REFERRAL_DEFAULTS,
+  referralConfigFromData,
   buildReferralVipProgressPatch,
   hasCompletedFirstLesson,
   isSnapshotMigrationWrite,
@@ -40,6 +42,42 @@ describe('referralClaimSlotsLeft — анти-фарм: сколько нагр�
 
   it('дневной кап строго меньше месячного (иначе бессмысленно)', () => {
     expect(MAX_REFERRER_CLAIMS_PER_DAY).toBeLessThan(MAX_REFERRER_CLAIMS_PER_MONTH);
+  });
+
+  it('принимает капы из «Пульта» параметрами (override дефолтов)', () => {
+    // день=1, месяц=10 → минимум остатка = 1
+    expect(referralClaimSlotsLeft(0, 0, 10, 1)).toBe(1);
+    // месяц исчерпан (5/5) при свободном дне
+    expect(referralClaimSlotsLeft(5, 0, 5, 3)).toBe(0);
+  });
+});
+
+describe('referralConfigFromData — тюнинг рефералов из remote_config/app.numbers', () => {
+  it('пусто/undefined → дефолты (7 дней, 3/день, 30/мес)', () => {
+    expect(referralConfigFromData(undefined)).toEqual(REFERRAL_DEFAULTS);
+    expect(referralConfigFromData({})).toEqual(REFERRAL_DEFAULTS);
+    expect(REFERRAL_DEFAULTS.rewardDays).toBe(REFERRAL_REWARD_DAYS);
+  });
+
+  it('читает заданные значения', () => {
+    const cfg = referralConfigFromData({
+      referral_reward_days: 14,
+      referral_max_claims_month: 50,
+      referral_max_claims_day: 5,
+    });
+    expect(cfg).toEqual({ rewardDays: 14, maxClaimsPerMonth: 50, maxClaimsPerDay: 5 });
+  });
+
+  it('мусор/нечисло → дефолт по полю (не роняет)', () => {
+    const cfg = referralConfigFromData({ referral_reward_days: 'seven', referral_max_claims_day: NaN });
+    expect(cfg.rewardDays).toBe(REFERRAL_DEFAULTS.rewardDays);
+    expect(cfg.maxClaimsPerDay).toBe(REFERRAL_DEFAULTS.maxClaimsPerDay);
+  });
+
+  it('отрицательные клампятся к 0 (а не уходят в минус)', () => {
+    const cfg = referralConfigFromData({ referral_reward_days: -10, referral_max_claims_day: -3 });
+    expect(cfg.rewardDays).toBe(0);
+    expect(cfg.maxClaimsPerDay).toBe(0);
   });
 });
 

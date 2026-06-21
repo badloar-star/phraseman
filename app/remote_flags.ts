@@ -36,7 +36,10 @@ export type RemoteNumberKey =
   | 'arena_sr_win'
   | 'arena_sr_loss'
   | 'arena_sr_bot_win'
-  | 'arena_season_rollback_steps';
+  | 'arena_season_rollback_steps'
+  // Экономика (вынесено из хардкодов для крутки баланса без релиза):
+  // стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10 в home.tsx).
+  | 'streak_freeze_cost_shards';
 
 export type RemoteBoolKey =
   | 'referral_enabled'
@@ -145,6 +148,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   arena_sr_loss: 20,
   arena_sr_bot_win: 12,
   arena_season_rollback_steps: 3,
+  streak_freeze_cost_shards: 10,
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
@@ -259,6 +263,7 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   arena_sr_loss: { min: 0, max: 999 },
   arena_sr_bot_win: { min: 0, max: 999 },
   arena_season_rollback_steps: { min: 0, max: 23 },
+  streak_freeze_cost_shards: { min: 0, max: 9999 },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
@@ -380,6 +385,8 @@ export const getArenaSrWin = () => getRemoteNumber('arena_sr_win');
 export const getArenaSrLoss = () => getRemoteNumber('arena_sr_loss');
 export const getArenaSrBotWin = () => getRemoteNumber('arena_sr_bot_win');
 export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_rollback_steps');
+/** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
+export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');

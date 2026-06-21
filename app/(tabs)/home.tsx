@@ -1,6 +1,7 @@
 ﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { tabSwipeLock } from '../tabSwipeLock';
+import { getStreakFreezeCostShards } from '../remote_flags';
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -113,7 +114,7 @@ const HOME_ANIMATION_USE_NATIVE_DRIVER = false;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
 const FREE_HOME_PLAN_CTA_MODE_KEY = 'free_home_plan_cta_mode_v1';
 type FreeHomePlanCtaMode = 'choosePlan' | 'continueLesson';
-const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.png');
+const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.webp');
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
 const GREETINGS_RU = [
@@ -1486,7 +1487,7 @@ export default function HomeScreen() {
             }
         }
     };
-    const FREEZE_COST_SHARDS = 10;
+    const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const handleFreezeStreak = async () => {
         hapticTap();
         const today = new Date().toISOString().split('T')[0];
@@ -1939,7 +1940,7 @@ export default function HomeScreen() {
                   <Animated.Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 34 : 42, fontWeight: '900', lineHeight: eliteStatsCompact ? 38 : 46, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }} numberOfLines={1}>
                     {displayStreak}
                   </Animated.Text>
-                  <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={1}>
+                  <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={2}>
                     {homeStreakDaysLabel}
                   </Text>
                 </TouchableOpacity>
@@ -2139,7 +2140,7 @@ export default function HomeScreen() {
                           <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStreakIconSize}/>
                         </View>
                       </View>
-                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={1}>
+                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={2}>
                         {homeStreakDaysLabel}
                       </Text>
                     </View>
@@ -2279,7 +2280,7 @@ export default function HomeScreen() {
                       <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeLargeStreakIconSize}/>
                     </View>
                   </View>
-                  <Text style={{ color: t.textSecond, fontSize: 13 }} numberOfLines={1}>{homeStreakDaysLabel}</Text>
+                  <Text style={{ color: t.textSecond, fontSize: 13, textAlign: 'right' }} numberOfLines={2}>{homeStreakDaysLabel}</Text>
                 </View>
               </View>
 

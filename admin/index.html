@@ -8353,9 +8353,328 @@
       <input type="text" id="uid-lookup" placeholder="UID or name" data-i18n-es="UID o nombre" autocomplete="off" aria-label="Lookup user by UID or name" style="width:200px;font-size:12px;padding:5px 10px" title="UID, name, or part of name" data-i18n-es-title="UID, nombre o parte del nombre" />
       <div id="uid-lookup-dropdown" style="display:none;position:absolute;top:100%;left:0;width:320px;background:#1a1a2e;border:1px solid #3a3a5a;border-radius:8px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.7);max-height:280px;overflow-y:auto;margin-top:4px"></div>
     </div>
+    <button type="button" onclick="document.getElementById('help-modal-overlay').style.display='flex'" title="Справка — что делает каждая кнопка" style="background:rgba(108,71,255,0.18);border:1px solid rgba(108,71,255,0.4);color:#c4b5fd;font-weight:800;font-size:15px;padding:5px 13px;line-height:1">❓</button>
     <button type="button" onclick="adminSignOut()" style="background:#2a2a3a;color:#888" data-i18n-es="Salir">Sign out</button>
   </div>
 </header>
+
+<!-- HELP MODAL -->
+<div id="help-modal-overlay" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:9999;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto">
+  <div onclick="event.stopPropagation()" style="background:#111118;border:1px solid #2a2a3a;border-radius:16px;max-width:820px;width:100%;padding:28px 28px 32px;position:relative;box-shadow:0 24px 64px rgba(0,0,0,0.8)">
+    <button onclick="document.getElementById('help-modal-overlay').style.display='none'" style="position:absolute;top:14px;right:14px;background:#2a2a3a;border:none;color:#aaa;border-radius:8px;padding:4px 10px;font-size:18px;cursor:pointer;line-height:1">✕</button>
+    <div style="font-size:22px;font-weight:900;color:#fbbf24;margin-bottom:4px">❓ Справка по админке</div>
+    <div style="font-size:13px;color:#6b7280;margin-bottom:22px">Здесь описано, что делает каждый раздел и каждая кнопка. Прокрути вниз, чтобы найти нужный раздел.</div>
+    <style>
+      .h-sec{margin-bottom:22px}.h-sec-title{font-size:15px;font-weight:800;color:#e5e7eb;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #2a2a3a;display:flex;align-items:center;gap:8px}.h-sec-badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:#1f2937;color:#9ca3af;letter-spacing:.4px}.h-btn-list{display:flex;flex-direction:column;gap:6px}.h-btn{display:grid;grid-template-columns:auto 1fr;gap:10px 12px;background:#17171f;border:1px solid #23232f;border-radius:9px;padding:9px 12px}.h-btn-name{font-size:13px;font-weight:800;color:#c4b5fd;white-space:nowrap;padding-top:1px}.h-btn-desc{font-size:12.5px;color:#9ca3af;line-height:1.45}.h-note{font-size:12px;color:#ef4444;font-weight:700;margin-top:3px;background:#2a1515;border-radius:6px;padding:4px 8px;display:inline-block}
+    </style>
+    <div style="font-size:11px;font-weight:700;color:#6c47ff;text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px">ВКЛАДКИ (полоска сверху)</div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">🎛 Пульт управления <span class="h-sec-badge">ГЛАВНАЯ</span></div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Самая важная вкладка. Управляешь приложением у всех пользователей сразу — без обновления в сторе. Изменения применяются за секунды.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Рубильники фич</div><div class="h-btn-desc">Переключатели ON/OFF для крупных функций. Выключил — функция пропадает у всех пользователей прямо сейчас. Включил — появляется обратно. Покупки и доступы при этом не отзываются.</div></div>
+        <div class="h-btn"><div class="h-btn-name">💎 Премиум / Фри</div><div class="h-btn-desc">Решаешь, какие функции платные, а какие бесплатные. Здесь же — сколько раз бесплатный пользователь может воспользоваться платной функцией до пейвола. Изменения живые, без релиза.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Все бесплатно / Сбросить к порогу / Все премиум</div><div class="h-btn-desc">Быстро переключают ВСЕ уроки: открыть всё бесплатно, вернуть по умолчанию (первые N уроков бесплатно), или закрыть ВСЕ уроки за пейволом. После нажатия обязательно жми «💾 Сохранить всё».</div></div>
+        <div class="h-btn"><div class="h-btn-name">💾 Сохранить всё</div><div class="h-btn-desc">Записывает ВСЕ изменения блока «Премиум/Фри» в базу. Пока не нажал — изменения нигде не сохранены.</div></div>
+        <div class="h-btn"><div class="h-btn-name">🔄 Перечитать</div><div class="h-btn-desc">Загружает текущие настройки заново из базы. Используй чтобы убедиться что сохранилось, или если кто-то ещё мог изменить настройки.</div></div>
+        <div class="h-btn"><div class="h-btn-name">🤖 Управление ИИ — Модель диалога</div><div class="h-btn-desc">Выбираешь, какая модель ChatGPT отвечает в ИИ-диалоге (Theo). Nano/mini — дешевле и быстрее. GPT-4.1 — умнее, но дороже. Здесь же — сколько ответов в день получает бесплатный и платный пользователь.</div></div>
+        <div class="h-btn"><div class="h-btn-name">📊 Бюджет OpenAI →</div><div class="h-btn-desc">Открывает вкладку с расходами на ChatGPT — сколько потрачено сегодня, за неделю, на что именно.</div></div>
+        <div class="h-btn"><div class="h-btn-name">💾 Сохранить функции</div><div class="h-btn-desc">Сохраняет настройки фоновых ИИ-функций (еженедельный обзор, статистика, объяснялка, диалог Theo). Обязательно жать после изменений.</div></div>
+        <div class="h-btn"><div class="h-btn-name">🚨 Мягкий баннер (режим обслуживания)</div><div class="h-btn-desc">У пользователей появляется плашка сверху «идут технические работы», но приложение продолжает работать.</div></div>
+        <div class="h-btn"><div class="h-btn-name">🚨 Жёсткий блок (режим обслуживания)</div><div class="h-btn-desc">Приложение показывает экран «недоступно» — никто ничего не может делать.<br><span class="h-note">⚠️ Блокирует приложение для ВСЕХ. Не забудь выключить после работ!</span></div></div>
+        <div class="h-btn"><div class="h-btn-name">💾 Сохранить текст (обслуживание)</div><div class="h-btn-desc">Сохраняет текст сообщения об обслуживании на трёх языках (русский, украинский, испанский).</div></div>
+        <div class="h-btn"><div class="h-btn-name">Открыть → (карточки Remote Config / Paywall A/B / Messages / Alerts / Push)</div><div class="h-btn-desc">Быстрые ярлыки к другим инструментам управления — нажми и сразу перейдёшь в нужную вкладку.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Overview</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Сводная страница — общий статус приложения одним взглядом: сколько пользователей, состояние выручки, очередей модерации, доставки контента.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Find user / Revenue / Reports / Push composer</div><div class="h-btn-desc">Быстрые ярлыки — нажми и сразу перейдёшь в нужную вкладку, не надо листать шапку.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">🛡 Очередь</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Все жалобы и вещи на проверке — в одном месте, отсортированы по важности (ИИ расставляет приоритеты).</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">🔄 Собрать очередь</div><div class="h-btn-desc">Загружает все открытые обращения: жалобы на контент, жалобы на пользователей, пользовательские паки на проверке, сообщения в чате лиг. Нажимай каждый раз, когда заходишь в этот раздел.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Фильтр источника</div><div class="h-btn-desc">Показывает только один тип: контент-репорты / жалобы на пользователей / UGC-паки / чат лиг. По умолчанию — все сразу.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">💡 Идеи</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Пользователи присылают идеи для приложения. Одобренная идея даёт автору год премиума. Включается/выключается рубильником «Раздел Идеи» в Пульте управления.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Users</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Список всех пользователей приложения. Нажми на строку — откроется карточка пользователя с деталями и кнопками действий (выдать премиум, забанить, начислить осколки и т.д.).</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Поле поиска (Search name or UID)</div><div class="h-btn-desc">Введи имя или ID пользователя — таблица сразу отфильтруется. Работает по любому фрагменту.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Фильтры (Sort by, язык, план, тема, платформа, аккаунт, версия)</div><div class="h-btn-desc">Уточни список: только iOS / только Premium / только русскоязычные — можно комбинировать сколько угодно фильтров.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Hide duplicates</div><div class="h-btn-desc">Скрывает пользователей с одинаковым именем — удобно для уникального списка.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Duplicates</div><div class="h-btn-desc">Показывает людей с одинаковыми именами, но разными ID — помогает найти двойников одного человека.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Email list</div><div class="h-btn-desc">Копирует или скачивает список email-адресов всех пользователей (для рассылок).</div></div>
+        <div class="h-btn"><div class="h-btn-name">CSV</div><div class="h-btn-desc">Скачивает всю таблицу пользователей файлом Excel/CSV.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Grant shards (появляется при выборе)</div><div class="h-btn-desc">Выдаёт осколки (внутриигровая валюта) сразу нескольким выбранным пользователям. Сначала отметь нужных людей галочками в таблице.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Grant VIP (появляется при выборе)</div><div class="h-btn-desc">Выдаёт VIP-статус нескольким выбранным пользователям сразу.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Ban users (появляется при выборе)</div><div class="h-btn-desc">Банит нескольких выбранных пользователей сразу.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Clear selection</div><div class="h-btn-desc">Снимает все галочки.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Previous / Next</div><div class="h-btn-desc">Переключает страницы таблицы пользователей.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Testers</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Отдельная страница со списком тестировщиков. Открывается в новом файле (testers.html).</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Analytics</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Статистика и аналитика: откуда приходят пользователи, сколько покупают, воронка, удержание и прочее.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">OpenAI budget</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Расходы на ChatGPT: сколько потрачено сегодня / за неделю / за месяц, разбивка по функциям — диалог с Theo, объяснялка, статистика, еженедельный обзор.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Reports</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Жалобы пользователей на контент: ошибки в уроках, неверные переводы, проблемы с аудио и т.д.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Фильтры (экран, категория, статус, сортировка)</div><div class="h-btn-desc">Отфильтруй: только открытые жалобы / только на аудио / только на уроки и т.д.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Пофиксили / Закрыть (у каждой жалобы)</div><div class="h-btn-desc">Помечают жалобу как исправленную или закрытую без исправления.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Support (site)</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Обращения из формы поддержки на сайте (не из приложения). Читаешь письма, можешь ответить.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">User reports</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Жалобы пользователей друг на друга (в арене, чате лиг). Рассматриваешь и выдаёшь бан или снимаешь жалобу.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Explain reports</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Жалобы на «плохое объяснение» от ИИ — пользователь нажал «объяснение неверное» и это попало сюда. Можно сбросить кэш для конкретного ответа.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Explain cache</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Кэш сохранённых ответов ИИ-объяснялки. Если ИИ объяснил что-то неправильно — найди и удали этот ответ, чтобы следующий пользователь получил свежий от нейросети.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Поиск по кэшу</div><div class="h-btn-desc">Введи слово/фразу — найдёт все сохранённые объяснения, содержащие его.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Удалить (корзина рядом с записью)</div><div class="h-btn-desc">Удаляет этот кэшированный ответ. ИИ сгенерирует новый при следующем запросе от любого пользователя.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">🧭 Компас</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Управление разделом «Компас» в приложении: советы дня, темы, расписание показа. Здесь редактируешь что увидят пользователи в Компасе.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Ban list</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Список заблокированных пользователей с причиной и датой.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Unban (у каждого пользователя)</div><div class="h-btn-desc">Снимает блокировку — пользователь снова получает доступ к приложению.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Premium</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Список пользователей с активным премиумом: когда купили, до какого числа, какой тип подписки.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Grant premium</div><div class="h-btn-desc">Выдаёт премиум конкретному пользователю вручную — для тестировщиков, победителей конкурсов и т.д.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">VIP</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Список VIP-пользователей (выданных вручную, не через стор — например, по Telegram-оплате или за победы).</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Grant VIP</div><div class="h-btn-desc">Выдаёт VIP-статус вручную. Откроется форма — укажи срок действия.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Revoke</div><div class="h-btn-desc">Забирает VIP у пользователя досрочно.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Cancel surveys</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Анкеты от пользователей, отменивших подписку. Помогает понять, почему уходят.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">VIP survey</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Опросы пользователей о VIP-тарифе. Инструмент для сбора отзывов о ценообразовании.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Messages</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Сообщения внутри приложения (баннеры, попапы, опросы). Создаёшь здесь — появляются у пользователей в приложении. Можно включать и выключать не удаляя.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Создать сообщение</div><div class="h-btn-desc">Заполни заголовок, текст, выбери тип (баннер/попап/опрос) и нажми «Создать». Сообщение появится у пользователей.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Вкл / Выкл (у каждой карточки)</div><div class="h-btn-desc">Включает или выключает конкретное сообщение. Выключенное пользователи не видят — удалять не нужно.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Удалить (у каждой карточки)</div><div class="h-btn-desc">Удаляет сообщение навсегда.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Onboarding QA</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Инструмент для тестирования онбординга — можно пройти разные сценарии первого запуска и проверить как они выглядят.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Remote Config</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Низкоуровневые параметры приложения: лимиты бесплатного тарифа, экономика (XP за урок), настройки энергии, A/B-флаги. Меняются без обновления приложения.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">💾 Сохранить</div><div class="h-btn-desc">Применяет изменённые параметры. До нажатия ничего не сохраняется.</div></div>
+        <div class="h-btn"><div class="h-btn-name">🔄 Сбросить</div><div class="h-btn-desc">Отменяет несохранённые изменения, возвращает текущие значения из базы.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">🧪 Paywall A/B</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">A/B-тест экрана оплаты. Выбираешь, какой процент пользователей видит вариант A, B или C экрана подписки. Меняется без релиза.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">🔔 Alerts</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Настройка уведомлений тебе в Telegram: при новой покупке, жалобе, ошибке — бот сообщит. Включаешь/выключаешь нужные события.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">UGC purchases</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Покупки пользовательских пакетов (контент, сделанный самими пользователями). Список транзакций, можно делать возвраты.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">↩️ Refunds</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Запросы на возврат денег: список, статусы. Можно одобрить или отклонить.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Approve / Decline</div><div class="h-btn-desc">Одобрить возврат — деньги вернутся пользователю. Отклонить — запрос закрывается без возврата.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Archive</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Архив — старые или закрытые записи. Используется для хранения истории без засорения активных разделов.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Audit log</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Журнал действий администраторов: кто, что и когда изменил в админке. Только просмотр — редактировать нельзя.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Ops log</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Технический журнал операций сервера: ошибки деплоя, фоновые задачи, системные события. Используй для диагностики, когда что-то пошло не так.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Community</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Пользовательские паки с фразами (UGC). Нужно одобрить или отклонить пак перед публикацией другим пользователям.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Approve</div><div class="h-btn-desc">Одобряет пак — он появится у всех пользователей.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Reject</div><div class="h-btn-desc">Отклоняет пак — автор получит уведомление.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Card packs</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Официальные паки карточек (не пользовательские). Можно редактировать и добавлять новые паки.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Daily phrases</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Фраза дня — то, что пользователи видят каждый день на главном экране. Можно планировать на конкретные даты.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">+ Добавить / редактировать фразу</div><div class="h-btn-desc">Открывает форму — введи фразу, перевод, аудио, назначь дату показа.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Сохранить / Отмена</div><div class="h-btn-desc">Сохраняет или отменяет редактирование фразы дня.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Clubs (Лиги)</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Управление лигами: список всех лиг, кто в какой лиге, можно переместить пользователя в другую лигу.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">League chat</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Модерация чата лиг: сообщения на проверке, жалобы, автоматически заблокированные сообщения, список ограниченных пользователей.</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">↻ Обновить</div><div class="h-btn-desc">Перезагружает список сообщений.</div></div>
+        <div class="h-btn"><div class="h-btn-name">На проверке / Жалобы / Все комнаты / Сообщения / Архив / Автоблок / Ограничения</div><div class="h-btn-desc">Режимы просмотра чата. Переключают, что именно показывается: сообщения на одобрении, жалобы, все комнаты лиг, история сообщений, архив, автоматически заблокированное, пользователи с ограничениями.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Arena - Top</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Топ-рейтинг игроков арены — таблица лидеров по победам и очкам.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Arena - Live</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Активные матчи арены прямо сейчас. Видно кто играет, на каком вопросе, счёт.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Arena bets</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Ставки в арене — кто на кого поставил, результаты, выплаты осколков.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Rooms</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Игровые комнаты арены: история комнат, участники, итоги матчей.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Referrals</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Реферальная программа: кто кого пригласил, сколько бонусов начислено, статистика по цепочкам приглашений.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">App Health</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Состояние приложения: ошибки сервера, работоспособность Firebase-функций, задержки. Используй, если что-то сломалось и нужно понять где.</div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Push</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:10px">Отправка push-уведомлений пользователям. Можно разослать всем или по фильтру (язык, платформа, тип подписки).</div>
+      <div class="h-btn-list">
+        <div class="h-btn"><div class="h-btn-name">Отправить / Send</div><div class="h-btn-desc">Отправляет пуш-уведомление. Убедись что правильно заполнены заголовок и текст — отправленное уже не вернуть.<br><span class="h-note">⚠️ Уведомление получат ВСЕ пользователи (или отфильтрованная группа) — проверяй текст дважды!</span></div></div>
+        <div class="h-btn"><div class="h-btn-name">История / History</div><div class="h-btn-desc">Список ранее отправленных пушей: что, кому, когда и сколько было доставлено.</div></div>
+      </div>
+    </div>
+
+    <div class="h-sec">
+      <div class="h-sec-title">Audit archive</div>
+      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Архивный чеклист аудита от 8 июня 2026. Историческая запись — не для текущей работы.</div>
+    </div>
+
+    <div style="background:#0f1f0f;border:1px solid #1a3a1a;border-radius:10px;padding:14px 16px;margin-top:8px">
+      <div style="font-size:13px;font-weight:800;color:#4ade80;margin-bottom:8px">💡 Полезные подсказки</div>
+      <div style="font-size:12.5px;color:#9ca3af;line-height:1.8">
+        • <b style="color:#e5e7eb">Поиск по разделам</b> — поле «Search sections» в левой части полоски вкладок. Начни вводить — нужная вкладка подсветится.<br>
+        • <b style="color:#e5e7eb">Поиск пользователя</b> — поле «UID or name» в правом углу шапки. Найдёт по любому фрагменту имени или ID.<br>
+        • <b style="color:#e5e7eb">Все изменения — сразу у пользователей</b>. Не нужен релиз, не нужен OTA-апдейт. Изменения применяются за секунды.<br>
+        • <b style="color:#e5e7eb">После любого изменения нажимай «💾 Сохранить»</b> — пока не нажал, ничего не сохранилось.<br>
+        • <b style="color:#ef4444">Жёсткий блок</b> отключает приложение для ВСЕХ. Не забудь выключить после работ!<br>
+        • <b style="color:#e5e7eb">Sign out</b> — кнопка выхода из админки, в правом углу шапки.
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:18px">
+      <button onclick="document.getElementById('help-modal-overlay').style.display='none'" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:10px 28px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer">Понятно, закрыть</button>
+    </div>
+  </div>
+</div>
 
 <div class="tabs">
   <div class="admin-tab-search-wrap">
@@ -21371,6 +21690,14 @@
     { key: 'arena_sr_loss', label: 'Арена: SR за поражение', def: 20, min: 0, max: 999 },
     { key: 'arena_sr_bot_win', label: 'Арена: SR за победу над ботом', def: 12, min: 0, max: 999 },
     { key: 'arena_season_rollback_steps', label: 'Арена: откат рангов за сезон', def: 3, min: 0, max: 23 },
+    { key: 'streak_freeze_cost_shards', label: 'Серия: цена заморозки (осколки)', def: 10, min: 0, max: 9999 },
+    { key: 'collectibles_drop_chance_pct', label: 'Карточки: шанс дропа, % (0–100)', def: 15, min: 0, max: 100 },
+    { key: 'collectibles_daily_cap_free', label: 'Карточки: дневной кап (free)', def: 3, min: 0, max: 999 },
+    { key: 'collectibles_daily_cap_premium', label: 'Карточки: дневной кап (premium)', def: 4, min: 0, max: 999 },
+    { key: 'collectibles_attempt_cap', label: 'Карточки: лимит попыток/день', def: 24, min: 1, max: 9999 },
+    { key: 'collectibles_pity_epic_at', label: 'Карточки: гарантия epic+ через N дропов', def: 15, min: 1, max: 9999 },
+    { key: 'collectibles_pity_legendary_at', label: 'Карточки: гарантия legendary через N', def: 35, min: 1, max: 9999 },
+    { key: 'collectibles_set_bonus_shards', label: 'Карточки: осколков за сбор сета', def: 15, min: 0, max: 9999 },
   ];
   const RC_BOOL_FIELDS = [
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: false },

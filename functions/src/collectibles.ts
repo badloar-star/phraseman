@@ -8,7 +8,8 @@
 //     reroll-абьюз невозможен;
 //   - без дублей: пул вычерпывается, дубликат не выпадает никогда;
 //   - pity: epic гарантирован каждые ≤15 дропов, legendary — ≤35;
-//   - кап 3 дропа/день (premium 4), первый дроп дня гарантирован;
+//   - кап 3 дропа/день (premium 4); первая карточка за всё время гарантирована
+//     (100%, один раз), дальше единый шанс 15%;
 //   - идемпотентность: леджер users/{uid}/collectible_claims/{eventId} —
 //     повторный вызов с тем же eventId возвращает тот же результат;
 //   - сет собран (10/10) → в той же транзакции секретная 11-я карточка
@@ -34,32 +35,96 @@ import {
 export const COLLECTIBLES_OWNED_KEY = 'collectibles_owned_v1';
 export const COLLECTIBLES_STATE_KEY = 'collectibles_state_v1';
 
-// Шанс дропа зависит от типа активности (kind = префикс eventId до ':').
-// 0 — активность дроп не даёт. Тяжёлые/ценные = выше, фармибельные = ниже.
-const DROP_CHANCE_BY_KIND: Record<string, number> = {
-  lesson: 0.28,     // урок — базовый
-  arena: 0.10,      // победа в арене — навык + соревнование, но частит
-  plan: 0.10,       // день персонального плана
-  quiz: 0.18,       // квиз — быстрый, легко фармить
-  exam: 0.40,       // экзамен уровня — редкое, тяжёлое событие
-  pronounce: 0,     // произношение — дроп не даёт
-  dialog: 0,        // диалог с Компасом — дроп не даёт
-};
-const DROP_CHANCE_DEFAULT = 0.28;
+// ── Тюнинг дропа карточек (крутится из «Пульта» без релиза) ─────────────────
+// Раньше всё было хардкод-константами; теперь это конфиг с дефолтами, читаемый
+// из remote_config/app.numbers (тот же документ, что и арена) — см.
+// resolveCollectiblesDropConfig ниже. rollCollectibleDrop по умолчанию берёт
+// дефолты (обратная совместимость + тривиальные юнит-тесты).
+export interface CollectiblesDropConfig {
+  /** Общий шанс дропа для «качественных» активностей (0..1). */
+  flatDropChance: number;
+  /** Дневной кап дропов для free-аккаунта. */
+  dailyDropCapFree: number;
+  /** Дневной кап дропов для premium. */
+  dailyDropCapPremium: number;
+  /** Потолок попыток/день — отсекает перебор eventId. */
+  dailyAttemptCap: number;
+  /** Не больше N дропов без epic+ (pity). */
+  pityEpicAt: number;
+  /** Не больше N дропов без legendary (pity). */
+  pityLegendaryAt: number;
+  /** Осколки за сбор сета (секретка). */
+  setBonusShards: number;
+}
 
-const DAILY_DROP_CAP_FREE = 3;
-const DAILY_DROP_CAP_PREMIUM = 4;
-const DAILY_ATTEMPT_CAP = 24;        // потолок попыток/день — отсекает перебор eventId
-const PITY_EPIC_AT = 15;             // не больше 15 дропов без epic+
-const PITY_LEGENDARY_AT = 35;        // не больше 35 дропов без legendary
-const SET_BONUS_SHARDS = 15;
+export const COLLECTIBLES_DROP_DEFAULTS: CollectiblesDropConfig = {
+  flatDropChance: 0.15,
+  dailyDropCapFree: 3,
+  dailyDropCapPremium: 4,
+  dailyAttemptCap: 24,
+  pityEpicAt: 15,
+  pityLegendaryAt: 35,
+  setBonusShards: 15,
+};
+
+// Активности без дропа вовсе (произношение / диалог с Компасом): шанс = 0.
+const NO_DROP_KINDS: ReadonlySet<string> = new Set(['pronounce', 'dialog']);
 
 // Качественные активности; kind = префикс eventId до первого ':'.
 const EVENT_ID_RE = /^(lesson|plan|quiz|arena|exam|pronounce|dialog):[A-Za-z0-9_.:-]{1,80}$/;
 
-/** Шанс дропа для типа активности. Первый дроп дня всё равно гарантирован отдельно. */
-function dropChanceForKind(kind: string): number {
-  return DROP_CHANCE_BY_KIND[kind] ?? DROP_CHANCE_DEFAULT;
+/**
+ * Шанс дропа для типа активности с учётом конфига. pronounce/dialog → 0,
+ * остальные «качественные» → flatDropChance. Первая карточка за всё время
+ * гарантирована отдельно (см. rollCollectibleDrop).
+ */
+function dropChanceForKind(kind: string, config: CollectiblesDropConfig): number {
+  if (NO_DROP_KINDS.has(kind)) return 0;
+  return config.flatDropChance;
+}
+
+function clampNum(value: unknown, min: number, max: number, fallback: number): number {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, n));
+}
+
+/**
+ * Чистый парсер конфига дропа из remote_config/app.numbers. Любое отсутствие/
+ * мусор → дефолт по полю. НИКОГДА не бросает (денежная математика).
+ */
+export function collectiblesDropConfigFromData(
+  numbers: Record<string, unknown> | undefined,
+): CollectiblesDropConfig {
+  const n = numbers ?? {};
+  const d = COLLECTIBLES_DROP_DEFAULTS;
+  return {
+    flatDropChance: clampNum(n.collectibles_drop_chance_pct, 0, 100, d.flatDropChance * 100) / 100,
+    dailyDropCapFree: Math.trunc(clampNum(n.collectibles_daily_cap_free, 0, 999, d.dailyDropCapFree)),
+    dailyDropCapPremium: Math.trunc(clampNum(n.collectibles_daily_cap_premium, 0, 999, d.dailyDropCapPremium)),
+    dailyAttemptCap: Math.trunc(clampNum(n.collectibles_attempt_cap, 1, 9999, d.dailyAttemptCap)),
+    pityEpicAt: Math.trunc(clampNum(n.collectibles_pity_epic_at, 1, 9999, d.pityEpicAt)),
+    pityLegendaryAt: Math.trunc(clampNum(n.collectibles_pity_legendary_at, 1, 9999, d.pityLegendaryAt)),
+    setBonusShards: Math.trunc(clampNum(n.collectibles_set_bonus_shards, 0, 9999, d.setBonusShards)),
+  };
+}
+
+/**
+ * Читает тюнинг дропа из remote_config/app.numbers (тот же документ, что и арена).
+ * НИКОГДА не бросает: при ошибке/отсутствии → дефолты (поведение как до фичи).
+ * Один get на вызов callable — дёшево.
+ */
+export async function resolveCollectiblesDropConfig(
+  db: FirebaseFirestore.Firestore,
+): Promise<CollectiblesDropConfig> {
+  try {
+    const snap = await db.collection('remote_config').doc('app').get();
+    const data = snap.data() as { numbers?: Record<string, unknown> } | undefined;
+    return collectiblesDropConfigFromData(data?.numbers);
+  } catch (e) {
+    console.warn('resolveCollectiblesDropConfig failed, using defaults', e);
+    return { ...COLLECTIBLES_DROP_DEFAULTS };
+  }
 }
 
 /* ── детерминированный ролл (FNV-1a, как в league_chest) ──── */
@@ -173,15 +238,16 @@ function resolveRarity(params: {
   seed: string;
   state: CollectiblesDropState;
   unowned: CollectiblePoolCard[];
+  config: CollectiblesDropConfig;
 }): CollectibleRarity | null {
-  const { seed, state, unowned } = params;
+  const { seed, state, unowned, config } = params;
   const available = new Set(unowned.map((c) => c.rarity));
   if (available.size === 0) return null;
 
   let target: CollectibleRarity;
-  if (state.sinceLegendary >= PITY_LEGENDARY_AT - 1 && available.has('legendary')) {
+  if (state.sinceLegendary >= config.pityLegendaryAt - 1 && available.has('legendary')) {
     target = 'legendary';
-  } else if (state.sinceEpic >= PITY_EPIC_AT - 1 && (available.has('epic') || available.has('legendary'))) {
+  } else if (state.sinceEpic >= config.pityEpicAt - 1 && (available.has('epic') || available.has('legendary'))) {
     target = available.has('epic') ? 'epic' : 'legendary';
   } else {
     target = rollRarity(seed);
@@ -209,28 +275,31 @@ export function rollCollectibleDrop(params: {
   state: CollectiblesDropState;
   isPremium: boolean;
   pool?: CollectiblePoolCard[];
+  config?: CollectiblesDropConfig;
 }): DropDecision {
   const { seedBase, kind, owned, state, isPremium } = params;
   const pool = params.pool ?? COLLECTIBLE_POOL;
+  const config = params.config ?? COLLECTIBLES_DROP_DEFAULTS;
 
-  const dropChance = dropChanceForKind(kind);
+  const dropChance = dropChanceForKind(kind, config);
   // Активность типа pronounce/dialog дроп не даёт вовсе (шанс 0).
   if (dropChance <= 0) return { dropped: false, reason: 'no_luck' };
 
-  if (state.attempts >= DAILY_ATTEMPT_CAP) return { dropped: false, reason: 'attempt_cap' };
-  const cap = isPremium ? DAILY_DROP_CAP_PREMIUM : DAILY_DROP_CAP_FREE;
+  if (state.attempts >= config.dailyAttemptCap) return { dropped: false, reason: 'attempt_cap' };
+  const cap = isPremium ? config.dailyDropCapPremium : config.dailyDropCapFree;
   if (state.drops >= cap) return { dropped: false, reason: 'daily_cap' };
 
   const unowned = pool.filter((c) => owned[c.id] == null);
   if (unowned.length === 0) return { dropped: false, reason: 'pool_exhausted' };
 
-  // Первый дроп дня гарантирован, дальше — шанс по типу активности.
-  const guaranteed = state.drops === 0;
+  // Самая первая карточка за всё время гарантирована (100%, ровно один раз),
+  // дальше — общий шанс 15%. Дневной «первый дроп» больше НЕ гарантируется.
+  const guaranteed = state.total === 0;
   if (!guaranteed && rollUnit(`${seedBase}:chance`) >= dropChance) {
     return { dropped: false, reason: 'no_luck' };
   }
 
-  const rarity = resolveRarity({ seed: `${seedBase}:rarity`, state, unowned });
+  const rarity = resolveRarity({ seed: `${seedBase}:rarity`, state, unowned, config });
   if (!rarity) return { dropped: false, reason: 'pool_exhausted' };
   const candidates = unowned.filter((c) => c.rarity === rarity);
   const card = pickOne(`${seedBase}:pick`, candidates);
@@ -254,7 +323,7 @@ export function rollCollectibleDrop(params: {
     card,
     setCompleted,
     secretCardId: grantSecret ? secretId : null,
-    bonusShards: grantSecret ? SET_BONUS_SHARDS : 0,
+    bonusShards: grantSecret ? config.setBonusShards : 0,
     nextState,
   };
 }
@@ -283,6 +352,10 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
   // stableId НИКОГДА не берём из тела запроса (см. phraseman security audit).
   const stableUid = await resolveStableUidForAuth(db, authUid);
   await assertNotBanned(db, stableUid);
+
+  // Тюнинг дропа из «Пульта» (remote_config/app.numbers). Читаем ДО транзакции:
+  // это отдельный документ, не входит в read-set юзер-транзакции. Fallback на дефолты.
+  const dropConfig = await resolveCollectiblesDropConfig(db);
 
   const now = Date.now();
   const today = todayStrUtc();
@@ -320,6 +393,7 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
       owned,
       state,
       isPremium,
+      config: dropConfig,
     });
 
     if (!decision.dropped) {
@@ -396,7 +470,7 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
       shardsBalance: decision.bonusShards > 0 ? afterShards : null,
       ownedCount: Object.keys(newOwned).length,
       dropsToday: nextState.drops,
-      dropsCapToday: isPremium ? DAILY_DROP_CAP_PREMIUM : DAILY_DROP_CAP_FREE,
+      dropsCapToday: isPremium ? dropConfig.dailyDropCapPremium : dropConfig.dailyDropCapFree,
     };
   });
 });

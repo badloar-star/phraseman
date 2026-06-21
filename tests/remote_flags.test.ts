@@ -15,6 +15,7 @@ import {
   isMaintenanceBlock,
   getMaintenanceText,
   isPaywallTimersEnabled,
+  getStreakFreezeCostShards,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -38,6 +39,7 @@ describe('remote_flags', () => {
       expect(getRemoteBool('speaking_enabled')).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
       expect(isPaywallTimersEnabled()).toBe(true);
+      expect(getStreakFreezeCostShards()).toBe(10);
     });
   });
 
@@ -53,6 +55,13 @@ describe('remote_flags', () => {
       applyRemoteConfigSnapshot({ bools: { referral_enabled: true, league_xp_promotion_enabled: true } });
       expect(isReferralEnabled()).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(true);
+    });
+
+    it('streak_freeze_cost_shards override применяется и клампится', () => {
+      applyRemoteConfigSnapshot({ numbers: { streak_freeze_cost_shards: 25 } });
+      expect(getStreakFreezeCostShards()).toBe(25);
+      applyRemoteConfigSnapshot({ numbers: { streak_freeze_cost_shards: 99999 } });
+      expect(getStreakFreezeCostShards()).toBe(9999); // max bound
     });
 
     it('clamps out-of-range values to bounds', () => {

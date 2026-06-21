@@ -14,6 +14,8 @@ export interface DialogObjective {
   id: string;
   labelRu: string;
   labelEs?: string;
+  /** Английское описание под-цели — уходит на сервер для промпта (не показывается юзеру). */
+  en?: string;
 }
 
 /**
@@ -1718,6 +1720,7 @@ export function scenarioObjectives(scenario: DialogScenario): DialogObjective[] 
   return enParts.map((en, i) => ({
     id: objectiveSlug(en, i),
     labelRu: capitalize(ruAligned ? ruParts[i] : en),
+    en,
   }));
 }
 

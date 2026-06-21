@@ -35,9 +35,17 @@ export interface PremiumDialogRequest {
   /** Характер персонажа (имя, манера речи, настроение) — задаёт живой голос. */
   persona?: string;
   scenarioId?: string;
+  /** UI/native-help language. Dialogue replies stay English; server uses this for brief meta-help. */
+  interfaceLang?: Lang;
   /** companion-режим */
   memory?: DialogMemory;
   isPremium?: boolean;
+  /**
+   * «Диалог как игра» (scenario): под-цели [{id, en}] и темперамент собеседника.
+   * Если переданы — сервер включает игровой режим (mood/исход в ответе).
+   */
+  objectives?: { id: string; en: string }[];
+  temperament?: { patience: 'high' | 'medium' | 'low'; warmth: 'warm' | 'neutral' | 'cold' };
 }
 
 export interface PremiumDialogResponse {
@@ -45,6 +53,8 @@ export interface PremiumDialogResponse {
   assistantMessage: string;
   remainingQuota: number;
   model: string;
+  /** Игровое состояние хода (null/undefined вне игрового режима). Разбирается parseTurnState. */
+  turnState?: unknown;
 }
 
 export type PremiumDialogErrorKind =
@@ -181,6 +191,39 @@ export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<
   const fn = httpsCallable<PremiumDialogRequest, PremiumDialogResponse>(
     getFunctions(getApp(), FUNCTIONS_REGION),
     'premiumDialogSend',
+  );
+  const res = await fn(req);
+  return res.data;
+}
+
+/** Запрос на перевод одной реплики собеседника на язык интерфейса. */
+export interface PremiumDialogTranslateRequest {
+  /** Чистый текст реплики (БЕЗ маркеров [[...]]) — их режет клиент перед отправкой. */
+  text: string;
+  /** Код языка интерфейса (Lang): 'ru' | 'uk' | 'es' | … */
+  targetLang: Lang;
+  scenarioId?: string;
+}
+
+export interface PremiumDialogTranslateResponse {
+  ok: boolean;
+  translation: string;
+  /** true — перевод пришёл из серверного кэша (без вызова OpenAI). */
+  cached?: boolean;
+}
+
+/**
+ * Переводит реплику собеседника на язык интерфейса (ленивый перевод по нажатию
+ * кнопки «Показать перевод»). Лимит «3 на диалог» держит вызывающий экран —
+ * сервер только переводит и кэширует.
+ */
+export async function callPremiumDialogTranslate(
+  req: PremiumDialogTranslateRequest,
+): Promise<PremiumDialogTranslateResponse> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = httpsCallable<PremiumDialogTranslateRequest, PremiumDialogTranslateResponse>(
+    getFunctions(getApp(), FUNCTIONS_REGION),
+    'premiumDialogTranslate',
   );
   const res = await fn(req);
   return res.data;

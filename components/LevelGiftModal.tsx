@@ -1,9 +1,12 @@
 /**
  * LevelGiftModal — модальное окно подарка за повышение уровня.
- * Показывает покачивающийся ящик → тап → раскрытие → результат.
- * Цвет карточки зависит от редкости: common=нейтрал, rare=синий, epic=золотой.
+ * Объёмный парящий сундук → тап → крышка отлетает, награда выплывает → результат.
+ * Анимация раскрытия зависит от редкости (БЕЗ конфетти):
+ *   common → энергия и осколки (холодный голубой)
+ *   rare   → свечение и лучи (фиолетовый)
+ *   epic   → золото и шёлковый блик
  *
- * Кнопка «Не забирать» сохраняет подарок как непринятый — его можно забрать
+ * Кнопка «Забрать позже» сохраняет подарок как непринятый — его можно забрать
  * позже в разделе подарков.
  */
 
@@ -25,16 +28,13 @@ import { useTheme } from './ThemeContext';
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
-import LevelGiftArt from './LevelGiftArt';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import {
   RewardModalPanelBackdrop,
-  rewardModalAccentColor,
   rewardModalPanelBorder,
   rewardModalPanelColors,
-  rewardModalPrimaryButtonColors,
   rewardModalSoftSurface,
 } from './RewardModalBackdrop';
 import {
@@ -75,21 +75,69 @@ interface Props {
 
 type Phase = 'box' | 'opening' | 'reveal';
 
-const RARITY_BORDER: Record<string, string> = {
-  common: '#44444488',
-  rare:   '#2563EB88',
-  epic:   '#B8860B88',
-};
-const RARITY_BG: Record<string, string> = {
-  common: 'transparent',
-  rare:   'rgba(37, 99, 235, 0.10)',
-  epic:   'rgba(245, 158, 11, 0.12)',
+/** Регистр анимации/палитры по редкости подарка. */
+type GiftRegister = 'energy' | 'glow' | 'gold';
+const registerForRarity = (r: string): GiftRegister =>
+  r === 'epic' ? 'gold' : r === 'rare' ? 'glow' : 'energy';
+
+/** Палитра по регистру — единый источник всех цветов модала по редкости. */
+interface RegisterPalette {
+  accent: string;          // основной цвет редкости (плашка, рамка, кнопка)
+  accentSoft: string;      // полупрозрачный акцент (тинт, верхняя линия)
+  panelTop: string;        // верх декоративного градиента панели
+  panelBottom: string;     // низ декоративного градиента панели
+  boxBase: [string, string];
+  boxLid: [string, string];
+  ribbon: string;
+  orb: [string, string];
+  orbInk: string;          // цвет иконки внутри орба
+  button: [string, string];
+  buttonInk: string;
+}
+const PALETTES: Record<GiftRegister, RegisterPalette> = {
+  energy: {
+    accent: '#7DD3FC',
+    accentSoft: 'rgba(56,189,248,0.14)',
+    panelTop: '#0F1D2E',
+    panelBottom: '#0A1320',
+    boxBase: ['#2C6E9E', '#16466E'],
+    boxLid: ['#5BB6E6', '#2C6E9E'],
+    ribbon: '#D7F2FF',
+    orb: ['#BFE9FF', '#38BDF8'],
+    orbInk: '#0A3550',
+    button: ['#BFE9FF', '#38BDF8'],
+    buttonInk: '#0A3550',
+  },
+  glow: {
+    accent: '#C4B5FD',
+    accentSoft: 'rgba(124,58,237,0.14)',
+    panelTop: '#1B1533',
+    panelBottom: '#120E22',
+    boxBase: ['#7C6BD6', '#4A3C9E'],
+    boxLid: ['#9B8BE8', '#6A57C4'],
+    ribbon: '#EDE7FF',
+    orb: ['#C4B5FD', '#7C3AED'],
+    orbInk: '#FFFFFF',
+    button: ['#C4B5FD', '#7C3AED'],
+    buttonInk: '#FFFFFF',
+  },
+  gold: {
+    accent: '#FBD46A',
+    accentSoft: 'rgba(224,161,36,0.16)',
+    panelTop: '#261C0D',
+    panelBottom: '#171008',
+    boxBase: ['#C99A35', '#8A5E12'],
+    boxLid: ['#F0CD6B', '#C99A35'],
+    ribbon: '#FFF1CC',
+    orb: ['#FFE7A6', '#E0A124'],
+    orbInk: '#5A3C06',
+    button: ['#FFE7A6', '#E0A124'],
+    buttonInk: '#3A2606',
+  },
 };
 
-const USE_ELITE_LEVEL_GIFT_MODAL = true;
 const LEVEL_GIFT_OPEN_SAFETY_MS = 520;
-const LEVEL_GIFT_CHEST_IMAGE_SIZE = USE_ELITE_LEVEL_GIFT_MODAL ? 114 : 100;
-const LEVEL_GIFT_CHEST_STAGE_SIZE = USE_ELITE_LEVEL_GIFT_MODAL ? 136 : 118;
+const LEVEL_GIFT_STAGE_SIZE = 150;
 
 const isCosmeticGiftId = (id?: string): boolean =>
   id === 'cosmetic_avatar_common' ||
@@ -131,6 +179,165 @@ function CosmeticGiftPreview({ result, level }: { result: ApplyGiftResult | null
   return null;
 }
 
+/**
+ * Объёмный 3D-сундук. Слои-вьюхи (низ, лента, крышка, бант) образуют коробку с
+ * глубиной — без растрового ассета. В фазе box парит и покачивается; при открытии
+ * крышка отлетает с поворотом, низ оседает (через переданные Animated-значения).
+ */
+function GiftBox3D({
+  palette,
+  size,
+  phase,
+  floatY,
+  rock,
+  scale,
+  shakeX,
+  lidLift,
+}: {
+  palette: RegisterPalette;
+  size: number;
+  phase: Phase;
+  floatY: Animated.Value;
+  rock: Animated.AnimatedInterpolation<string>;
+  scale: Animated.Value;
+  shakeX: Animated.Value;
+  lidLift: Animated.Value;
+}) {
+  const opening = phase === 'opening' || phase === 'reveal';
+  const baseW = size * 0.62;
+  const baseH = size * 0.46;
+  const lidH = size * 0.26;
+  const lidW = size * 0.72;
+
+  const lidTranslate = lidLift.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.42] });
+  const lidRotate = lidLift.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '24deg'] });
+  const lidOpacity = lidLift.interpolate({ inputRange: [0, 0.7, 1], outputRange: [1, 1, 0] });
+  const ribbonOpacity = lidLift.interpolate({ inputRange: [0, 0.4, 1], outputRange: [1, 0.3, 0] });
+  const baseSink = lidLift.interpolate({ inputRange: [0, 1], outputRange: [0, size * 0.06] });
+
+  return (
+    <Animated.View
+      style={{
+        width: size,
+        height: size,
+        alignItems: 'center',
+        justifyContent: 'center',
+        transform: [
+          { translateY: phase === 'box' ? floatY : 0 },
+          { rotateZ: phase === 'box' ? rock : '0deg' },
+          { scale },
+          { translateX: shakeX },
+        ],
+      }}
+    >
+      {/* Падающая тень под сундуком */}
+      <View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          bottom: size * 0.12,
+          width: baseW * 0.92,
+          height: 14,
+          borderRadius: 8,
+          backgroundColor: 'rgba(0,0,0,0.45)',
+          opacity: 0.5,
+        }}
+      />
+
+      {/* Низ коробки */}
+      <Animated.View
+        style={{
+          position: 'absolute',
+          bottom: size * 0.2,
+          width: baseW,
+          height: baseH,
+          borderRadius: 12,
+          overflow: 'hidden',
+          transform: [{ translateY: baseSink }],
+          shadowColor: '#000',
+          shadowOpacity: 0.3,
+          shadowRadius: 8,
+          shadowOffset: { width: 0, height: 4 },
+        }}
+      >
+        <LinearGradient colors={palette.boxBase} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
+        {/* вертикальная лента на низе */}
+        <View style={{ position: 'absolute', left: '50%', marginLeft: -7, top: 0, bottom: 0, width: 14, backgroundColor: palette.ribbon, opacity: 0.9 }} />
+        {/* внутренняя тень верхнего края */}
+        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 8, backgroundColor: 'rgba(0,0,0,0.25)' }} />
+      </Animated.View>
+
+      {/* Крышка */}
+      <Animated.View
+        style={{
+          position: 'absolute',
+          bottom: size * 0.2 + baseH - lidH * 0.5,
+          width: lidW,
+          height: lidH,
+          borderRadius: 11,
+          overflow: 'hidden',
+          opacity: lidOpacity,
+          transform: [{ translateY: lidTranslate }, { rotateZ: lidRotate }],
+          shadowColor: '#000',
+          shadowOpacity: 0.3,
+          shadowRadius: 8,
+          shadowOffset: { width: 0, height: 4 },
+        }}
+      >
+        <LinearGradient colors={palette.boxLid} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
+        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 6, backgroundColor: 'rgba(255,255,255,0.28)' }} />
+      </Animated.View>
+
+      {/* Лента+бант поверх крышки */}
+      <Animated.View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          bottom: size * 0.2 + baseH - lidH * 0.5,
+          width: 14,
+          height: lidH,
+          backgroundColor: palette.ribbon,
+          opacity: ribbonOpacity,
+          transform: [{ translateY: lidTranslate }, { rotateZ: lidRotate }],
+        }}
+      />
+      <Animated.View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          bottom: size * 0.2 + baseH + lidH * 0.3,
+          width: size * 0.26,
+          height: size * 0.16,
+          borderRadius: size * 0.13,
+          backgroundColor: palette.ribbon,
+          opacity: ribbonOpacity,
+          transform: [{ translateY: lidTranslate }],
+          shadowColor: '#000',
+          shadowOpacity: 0.2,
+          shadowRadius: 4,
+          shadowOffset: { width: 0, height: 2 },
+        }}
+      />
+
+      {/* мягкое свечение из щели при открытии */}
+      {opening && (
+        <Animated.View
+          pointerEvents="none"
+          style={{
+            position: 'absolute',
+            bottom: size * 0.2 + baseH - 6,
+            width: baseW * 0.7,
+            height: 18,
+            borderRadius: 12,
+            backgroundColor: palette.accent,
+            opacity: lidLift.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, 0.7, 0.2] }),
+          }}
+        />
+      )}
+    </Animated.View>
+  );
+}
+
 function LevelGiftModal({
   visible,
   level,
@@ -161,10 +368,13 @@ function LevelGiftModal({
   const scaleAnim  = useRef(new Animated.Value(1)).current;
   const fadeReveal = useRef(new Animated.Value(0)).current;
   const shakeAnim  = useRef(new Animated.Value(0)).current;
+  const lidLift    = useRef(new Animated.Value(0)).current;
+  const orbRise    = useRef(new Animated.Value(0)).current;
   const modalEntrance = useRef(new Animated.Value(0)).current;
   const modalGlow = useRef(new Animated.Value(0)).current;
   const idleLoop   = useRef<Animated.CompositeAnimation | null>(null);
   const glowLoop   = useRef<Animated.CompositeAnimation | null>(null);
+  const orbHoverLoop = useRef<Animated.CompositeAnimation | null>(null);
   const isVisibleRef = useRef(false);
 
   // Roll (or use pre-rolled) gift when the modal becomes visible; премиум — отдельный пул
@@ -189,29 +399,30 @@ function LevelGiftModal({
       shakeAnim.setValue(0);
       floatAnim.setValue(0);
       rockAnim.setValue(0);
+      lidLift.setValue(0);
+      orbRise.setValue(0);
       modalEntrance.setValue(0);
       modalGlow.setValue(0);
-      if (USE_ELITE_LEVEL_GIFT_MODAL) {
-        Animated.spring(modalEntrance, {
-          toValue: 1,
-          useNativeDriver: true,
-          tension: 115,
-          friction: 12,
-        }).start();
-        glowLoop.current?.stop();
-        glowLoop.current = Animated.loop(
-          Animated.sequence([
-            Animated.timing(modalGlow, { toValue: 1, duration: 1450, useNativeDriver: true }),
-            Animated.timing(modalGlow, { toValue: 0, duration: 1450, useNativeDriver: true }),
-          ])
-        );
-        glowLoop.current.start();
-      }
+      Animated.spring(modalEntrance, {
+        toValue: 1,
+        useNativeDriver: true,
+        tension: 115,
+        friction: 12,
+      }).start();
+      glowLoop.current?.stop();
+      glowLoop.current = Animated.loop(
+        Animated.sequence([
+          Animated.timing(modalGlow, { toValue: 1, duration: 1450, useNativeDriver: true }),
+          Animated.timing(modalGlow, { toValue: 0, duration: 1450, useNativeDriver: true }),
+        ])
+      );
+      glowLoop.current.start();
     } else {
       idleLoop.current?.stop();
       glowLoop.current?.stop();
+      orbHoverLoop.current?.stop();
     }
-  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, modalEntrance, modalGlow, studyTarget]);
+  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, modalEntrance, modalGlow, studyTarget]);
 
   useEffect(() => {
     if (!visible || !gift) {
@@ -220,15 +431,14 @@ function LevelGiftModal({
     }
     const floatLoop = Animated.loop(
       Animated.sequence([
-        Animated.timing(floatAnim, { toValue: -6, duration: 450, useNativeDriver: true }),
-        Animated.timing(floatAnim, { toValue: 0,  duration: 450, useNativeDriver: true }),
+        Animated.timing(floatAnim, { toValue: -7, duration: 1700, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+        Animated.timing(floatAnim, { toValue: 2,  duration: 1700, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
       ])
     );
     const rockLoop = Animated.loop(
       Animated.sequence([
-        Animated.timing(rockAnim, { toValue: -5, duration: 380, useNativeDriver: true }),
-        Animated.timing(rockAnim, { toValue:  5, duration: 380, useNativeDriver: true }),
-        Animated.timing(rockAnim, { toValue:  0, duration: 320, useNativeDriver: true }),
+        Animated.timing(rockAnim, { toValue: -5, duration: 1700, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+        Animated.timing(rockAnim, { toValue:  5, duration: 1700, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
       ])
     );
     idleLoop.current = Animated.parallel([floatLoop, rockLoop]);
@@ -298,24 +508,38 @@ function LevelGiftModal({
       setAppliedResult({ success: true });
       setPhase('reveal');
       fadeReveal.setValue(0);
-      Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }).start();
+      orbRise.setValue(0);
+      Animated.parallel([
+        Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }),
+        Animated.spring(orbRise, { toValue: 1, useNativeDriver: true, tension: 120, friction: 9 }),
+      ]).start(() => {
+        // мягкое «дыхание» награды после появления
+        orbHoverLoop.current?.stop();
+        orbHoverLoop.current = Animated.loop(
+          Animated.sequence([
+            Animated.timing(orbRise, { toValue: 1.12, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbRise, { toValue: 1, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+          ])
+        );
+        orbHoverLoop.current.start();
+      });
       updateAppliedMeta();
     };
     safetyTimer = setTimeout(finalize, LEVEL_GIFT_OPEN_SAFETY_MS);
 
+    // Короткая дрожь → крышка отлетает (lidLift) → finalize раскрывает награду.
     Animated.sequence([
       Animated.parallel([
-        Animated.timing(shakeAnim, { toValue: 10, duration: 34, useNativeDriver: true }),
-        Animated.timing(scaleAnim, { toValue: 0.94, duration: 66, useNativeDriver: true }),
+        Animated.timing(shakeAnim, { toValue: 9, duration: 34, useNativeDriver: true }),
+        Animated.timing(scaleAnim, { toValue: 0.96, duration: 66, useNativeDriver: true }),
       ]),
-      Animated.timing(shakeAnim, { toValue: -12, duration: 34, useNativeDriver: true }),
-      Animated.timing(shakeAnim, { toValue: 10, duration: 30, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: -11, duration: 34, useNativeDriver: true }),
+      Animated.timing(shakeAnim, { toValue: 8, duration: 30, useNativeDriver: true }),
       Animated.timing(shakeAnim, { toValue: 0, duration: 24, useNativeDriver: true }),
     ]).start(() => {
-      Animated.sequence([
-        Animated.spring(scaleAnim, { toValue: 1.18, tension: 240, friction: 7, useNativeDriver: true }),
-        Animated.timing(scaleAnim, { toValue: 1.42, duration: 96, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(scaleAnim, { toValue: 0, duration: 76, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
+      Animated.parallel([
+        Animated.spring(scaleAnim, { toValue: 1.06, tension: 200, friction: 8, useNativeDriver: true }),
+        Animated.timing(lidLift, { toValue: 1, duration: 360, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
       ]).start(() => { finalize(); });
     });
   };
@@ -373,89 +597,73 @@ function LevelGiftModal({
   if (!visible || !gift) return null;
 
   const rarity      = gift.rarity;
-  const modalAccent = rewardModalAccentColor(themeMode, t);
-  const giftAccent = (r: string) => r === 'epic' ? '#FFD700' : r === 'rare' ? '#60A5FA' : modalAccent;
-  const giftBorder = (r: string) => (RARITY_BORDER[r] ?? RARITY_BORDER.common);
-  const giftBg = (r: string) => (RARITY_BG[r] ?? RARITY_BG.common);
-  const borderColor = giftBorder(rarity);
-  const bgTint      = giftBg(rarity);
+  const register    = registerForRarity(rarity);
+  const palette     = PALETTES[register];
+  const accent      = palette.accent;
   const rarityLabel = giftRarityUiLabel(rarity, lang);
   const cosmeticLabel = cosmeticLabelForLang(appliedResult, lang);
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
-  const glowOpacity = modalGlow.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.42] });
+  const glowOpacity = modalGlow.interpolate({ inputRange: [0, 1], outputRange: [0.3, 0.7] });
   const revealY = fadeReveal.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
-  const claimButtonColors: [string, string] = rarity === 'epic'
-    ? ['#FFD700', '#B8860B']
-    : rarity === 'rare'
-      ? ['#93C5FD', '#2563EB']
-      : rewardModalPrimaryButtonColors(themeMode);
+  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [16, 0, -7] });
+  const orbScale = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [0.2, 1, 1] });
+  // Непрозрачный фон панели — обязателен (modal_opaque_surfaces_contract).
+  const solidPanel = rewardModalPanelColors(themeMode, t)[1];
   const canCloseWithIcon = phase !== 'opening' && !choiceBusy;
-  const screenDim = USE_ELITE_LEVEL_GIFT_MODAL
-    ? (false ? 'rgba(24,18,10,0.30)' : 'rgba(0,0,0,0.46)')
-    : 'rgba(0,0,0,0.75)';
+  const screenDim = 'rgba(0,0,0,0.52)';
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={handleSkip}>
       <View style={{ flex: 1, backgroundColor: screenDim, justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
         <Animated.View testID="level-gift-modal" style={{
-          backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? rewardModalPanelColors(themeMode, t)[1] : t.bgCard,
-          borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 30 : 28,
-          padding: USE_ELITE_LEVEL_GIFT_MODAL ? 26 : 32,
-          width: USE_ELITE_LEVEL_GIFT_MODAL ? 326 : 300,
+          backgroundColor: solidPanel,
+          borderRadius: 30,
+          paddingTop: 24,
+          paddingBottom: 22,
+          paddingHorizontal: 22,
+          width: 326,
           alignItems: 'center',
           overflow: 'hidden',
-          borderWidth: USE_ELITE_LEVEL_GIFT_MODAL ? 1 : 1.5,
-          borderColor: USE_ELITE_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t, rarity === 'common' ? undefined : borderColor) : borderColor,
-          shadowColor: rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#000000',
-          shadowOpacity: gift ? (USE_ELITE_LEVEL_GIFT_MODAL ? 0.42 : 0.3) : 0,
-          shadowRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 34 : 24,
+          borderWidth: 1,
+          borderColor: rewardModalPanelBorder(themeMode, t, `${accent}55`),
+          shadowColor: accent,
+          shadowOpacity: 0.42,
+          shadowRadius: 34,
           shadowOffset: { width: 0, height: 0 },
           elevation: 24,
-          transform: USE_ELITE_LEVEL_GIFT_MODAL ? [{ scale: modalScale }, { translateY: modalY }] : [],
+          transform: [{ scale: modalScale }, { translateY: modalY }],
         }}>
-          {USE_ELITE_LEVEL_GIFT_MODAL && (
-            <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />
-          )}
-          {USE_ELITE_LEVEL_GIFT_MODAL && (
-            <>
-              <Animated.View
-                pointerEvents="none"
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 28,
-                  right: 28,
-                  height: 1,
-                  backgroundColor: giftAccent(rarity),
-                  opacity: glowOpacity,
-                }}
-              />
-              <View
-                pointerEvents="none"
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 74,
-                  backgroundColor: rarity === 'epic'
-                      ? 'rgba(245,158,11,0.08)'
-                      : rarity === 'rare'
-                        ? 'rgba(96,165,250,0.08)'
-                        : rewardModalSoftSurface(themeMode, t),
-                }}
-              />
-            </>
-          )}
-          {/* Tint overlay for rare/epic */}
-          {bgTint !== 'transparent' && (
-            <View style={{
-              ...{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: 28 },
-              backgroundColor: bgTint,
-              pointerEvents: 'none',
-            }} />
-          )}
+          {/* Базовый материал reward-панели (непрозрачная подложка уже задана выше) */}
+          <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" />
+
+          {/* Декоративный градиент по редкости — поверх непрозрачной подложки */}
+          <LinearGradient
+            pointerEvents="none"
+            colors={[palette.panelTop, palette.panelBottom]}
+            start={{ x: 0.5, y: 0 }}
+            end={{ x: 0.5, y: 1 }}
+            style={[StyleSheet.absoluteFill, { opacity: 0.92 }]}
+          />
+
+          {/* Верхняя линия-свечение */}
+          <Animated.View
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 30,
+              right: 30,
+              height: 1.5,
+              backgroundColor: accent,
+              opacity: glowOpacity,
+            }}
+          />
+          {/* мягкая верхняя зона редкости */}
+          <View
+            pointerEvents="none"
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 80, backgroundColor: palette.accentSoft }}
+          />
 
           {canCloseWithIcon && (
             <TouchableOpacity
@@ -466,61 +674,50 @@ function LevelGiftModal({
               onPress={() => { void handleSkip(); }}
               style={{
                 position: 'absolute',
-                top: 10,
-                right: 10,
+                top: 12,
+                right: 12,
                 zIndex: 5,
-                width: 34,
-                height: 34,
-                borderRadius: 17,
+                width: 32,
+                height: 32,
+                borderRadius: 16,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.42)' : 'rgba(0,0,0,0.16)',
+                backgroundColor: 'rgba(3,5,10,0.42)',
                 borderWidth: 1,
-                borderColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border,
+                borderColor: 'rgba(255,255,255,0.18)',
               }}
             >
-              <Text style={{ color: t.textPrimary, fontSize: 24, lineHeight: 28, fontWeight: '800' }}>×</Text>
+              <Text style={{ color: '#CFC8EE', fontSize: 22, lineHeight: 26, fontWeight: '800' }}>×</Text>
             </TouchableOpacity>
           )}
 
           {/* Header */}
-          <Text style={{ color: giftAccent(rarity), fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: USE_ELITE_LEVEL_GIFT_MODAL ? 1.2 : 1.5, marginBottom: USE_ELITE_LEVEL_GIFT_MODAL ? 7 : 6 }}>
+          <Text style={{ color: accent, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.4, marginBottom: 5 }}>
             {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
           </Text>
-          <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_GIFT_MODAL ? f.numMd + 4 : f.numMd, fontWeight: '900', marginBottom: 24, textAlign: 'center' }}>
-            {triLang(lang, { ru: '🎁 Подарок за уровень!', uk: '🎁 Твій подарунок!', es: '🎁 ¡Tu regalo!', 'pt-BR': '🎁 Seu presente!', vi: '🎁 Quà của bạn!', id: '🎁 Hadiahmu!', tr: '🎁 Hediyen!', pl: '🎁 Twój prezent!' })}
+          <Text style={{ color: '#FFFFFF', fontSize: f.numMd + 2, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
+            {triLang(lang, { ru: 'Подарок за уровень', uk: 'Твій подарунок', es: 'Tu regalo', 'pt-BR': 'Seu presente', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyen', pl: 'Twój prezent' })}
           </Text>
-
-          {USE_ELITE_LEVEL_GIFT_MODAL && (
-            <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginTop: -16, marginBottom: 24 }}>
-              {triLang(lang, { ru: 'Подарок за прогресс', uk: 'Подарунок за прогрес', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
-            </Text>
-          )}
+          <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
+            {triLang(lang, { ru: 'Награда за прогресс', uk: 'Нагорода за прогрес', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
+          </Text>
 
           {phase !== 'reveal' ? (
             <>
-              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.8} onPress={handleTap} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center', paddingTop: USE_ELITE_LEVEL_GIFT_MODAL ? 2 : 0 }}>
-                <Animated.View style={{
-                  width: LEVEL_GIFT_CHEST_STAGE_SIZE,
-                  height: LEVEL_GIFT_CHEST_STAGE_SIZE,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transform: [
-                    { translateY: phase === 'box' ? floatAnim : 0 },
-                    { rotateZ:   phase === 'box' ? rock : '0deg' },
-                    { scale: scaleAnim },
-                    { translateX: shakeAnim },
-                  ],
-                }}>
-                  <LevelGiftArt
-                    themeMode={themeMode}
-                    variant={gift?.rarity ?? 'common'}
-                    size={LEVEL_GIFT_CHEST_IMAGE_SIZE}
-                  />
-                </Animated.View>
+              <TouchableOpacity testID="level-gift-box-open" activeOpacity={0.85} onPress={handleTap} disabled={phase === 'opening' || !gift} style={{ alignItems: 'center' }}>
+                <GiftBox3D
+                  palette={palette}
+                  size={LEVEL_GIFT_STAGE_SIZE}
+                  phase={phase}
+                  floatY={floatAnim}
+                  rock={rock}
+                  scale={scaleAnim}
+                  shakeX={shakeAnim}
+                  lidLift={lidLift}
+                />
 
                 {phase === 'box' && (
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 20, textAlign: 'center' }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8, textAlign: 'center' }}>
                     {triLang(lang, {
                         ru: 'Нажми, чтобы открыть',
                         uk: 'Натисни, щоб відкрити',
@@ -542,13 +739,13 @@ function LevelGiftModal({
                   activeOpacity={0.7}
                   onPress={handleSkip}
                   style={{
-                    marginTop: USE_ELITE_LEVEL_GIFT_MODAL ? 22 : 24,
-                    paddingVertical: USE_ELITE_LEVEL_GIFT_MODAL ? 11 : 10,
-                    paddingHorizontal: USE_ELITE_LEVEL_GIFT_MODAL ? 22 : 18,
-                    borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 16 : 14,
+                    marginTop: 18,
+                    paddingVertical: 11,
+                    paddingHorizontal: 22,
+                    borderRadius: 16,
                     borderWidth: 1,
-                    borderColor: USE_ELITE_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : t.border,
-                    backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface2,
+                    borderColor: rewardModalPanelBorder(themeMode, t),
+                    backgroundColor: rewardModalSoftSurface(themeMode, t),
                     alignItems: 'center',
                   }}
                 >
@@ -559,7 +756,7 @@ function LevelGiftModal({
               )}
             </>
           ) : (
-            <Animated.View style={{ opacity: fadeReveal, alignItems: 'center', transform: USE_ELITE_LEVEL_GIFT_MODAL ? [{ translateY: revealY }] : [] }}>
+            <Animated.View style={{ opacity: fadeReveal, alignItems: 'center', transform: [{ translateY: revealY }] }}>
               {gift?.choices?.length ? (
                 <>
                   <Image
@@ -635,39 +832,47 @@ function LevelGiftModal({
                 </>
               ) : (
               <>
-              <View style={{ width: 132, height: 118, alignItems: 'center', justifyContent: 'center', marginBottom: 2 }}>
-                {gift && <GiftOpenBurst key={`${gift.id}-${rarity}-single`} tier={animTierF2p(rarity)} size={132} />}
+              {/* Награда: объёмные эффекты по редкости + парящая иконка-«орб» */}
+              <View style={{ width: LEVEL_GIFT_STAGE_SIZE, height: LEVEL_GIFT_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>
+                {gift && <GiftOpenBurst key={`${gift.id}-${rarity}-single`} tier={animTierF2p(rarity)} size={LEVEL_GIFT_STAGE_SIZE} />}
                 {gift && (
-                  <Image
-                    source={getLevelGiftRewardIcon(gift.id, themeMode)}
-                    style={{ width: 106, height: 106, zIndex: 2 }}
-                    contentFit="contain"
-                  />
+                  <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbScale }], zIndex: 2 }}>
+                    <Image
+                      source={getLevelGiftRewardIcon(gift.id, themeMode)}
+                      style={{ width: 108, height: 108 }}
+                      contentFit="contain"
+                    />
+                  </Animated.View>
                 )}
               </View>
 
-              {/* Rarity badge */}
-              <Text style={{
-                color: rarity === 'common' ? t.textMuted : giftAccent(rarity),
-                fontSize: USE_ELITE_LEVEL_GIFT_MODAL ? f.caption : f.sub,
-                fontWeight: '800',
-                letterSpacing: USE_ELITE_LEVEL_GIFT_MODAL ? 1.2 : 1,
-                textTransform: 'uppercase',
-                marginBottom: USE_ELITE_LEVEL_GIFT_MODAL ? 8 : 6,
-                borderWidth: USE_ELITE_LEVEL_GIFT_MODAL ? 1 : 0,
-                borderColor: rarity === 'epic' ? '#FFD70055' : rarity === 'rare' ? '#60A5FA55' : t.border,
-                borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 999 : 0,
-                paddingVertical: USE_ELITE_LEVEL_GIFT_MODAL ? 5 : 0,
-                paddingHorizontal: USE_ELITE_LEVEL_GIFT_MODAL ? 10 : 0,
-                backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.045)' : 'transparent',
+              {/* Rarity badge (капсула) */}
+              <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                borderWidth: 1,
+                borderColor: `${accent}55`,
+                borderRadius: 999,
+                paddingVertical: 5,
+                paddingHorizontal: 12,
+                backgroundColor: palette.accentSoft,
+                marginBottom: 8,
               }}>
-                {rarityLabel}
-              </Text>
+                <Text style={{
+                  color: rarity === 'common' ? t.textSecond : accent,
+                  fontSize: f.caption,
+                  fontWeight: '800',
+                  letterSpacing: 1.2,
+                  textTransform: 'uppercase',
+                }}>
+                  {rarityLabel}
+                </Text>
+              </View>
 
-              <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_GIFT_MODAL ? f.h2 + 4 : f.h2 + 6, fontWeight: '900', marginBottom: 6, textAlign: 'center' }}>
+              <Text style={{ color: '#FFFFFF', fontSize: f.h2 + 4, fontWeight: '900', marginBottom: 6, textAlign: 'center' }}>
                 {gift ? giftDisplayTitleForLang(gift, lang) : ''}
               </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: USE_ELITE_LEVEL_GIFT_MODAL ? f.body + 6 : undefined, textAlign: 'center', marginBottom: storesOnly ? 10 : (gift?.id && isEnergyBonusGiftId(gift.id)) || xpBoostAlreadyActive ? 12 : 28 }}>
+              <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body + 6, textAlign: 'center', marginBottom: storesOnly ? 10 : (gift?.id && isEnergyBonusGiftId(gift.id)) || xpBoostAlreadyActive ? 12 : 24 }}>
                 {gift ? giftDisplayDescForLang(gift, lang) : ''}
               </Text>
               {storesOnly && (
@@ -830,50 +1035,33 @@ function LevelGiftModal({
                   onClose(!storesOnly);
                 }}
                 style={{
-                  backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL
-                      ? 'transparent'
-                      : (rarity === 'epic' ? '#B8860B' : rarity === 'rare' ? '#1D4ED8' : t.bgSurface2),
-                  borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 18 : 14,
-                  paddingVertical: USE_ELITE_LEVEL_GIFT_MODAL ? 15 : 14,
-                  paddingHorizontal: USE_ELITE_LEVEL_GIFT_MODAL ? 44 : 40,
-                  borderWidth: USE_ELITE_LEVEL_GIFT_MODAL ? 1 : 1.5,
-                  borderColor: rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : USE_ELITE_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border,
-                  shadowColor: rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#FFFFFF',
-                  shadowOpacity: USE_ELITE_LEVEL_GIFT_MODAL ? 0.22 : 0,
-                  shadowRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 14 : 0,
+                  alignSelf: 'stretch',
+                  borderRadius: 18,
+                  paddingVertical: 15,
+                  alignItems: 'center',
+                  borderWidth: 1,
+                  borderColor: `${accent}66`,
+                  shadowColor: accent,
+                  shadowOpacity: 0.28,
+                  shadowRadius: 16,
                   shadowOffset: { width: 0, height: 0 },
                   overflow: 'hidden',
                 }}
               >
-                {USE_ELITE_LEVEL_GIFT_MODAL && (
-                  <LinearGradient
-                    pointerEvents="none"
-                    colors={claimButtonColors}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={StyleSheet.absoluteFill}
-                  />
-                )}
-                {USE_ELITE_LEVEL_GIFT_MODAL && (
-                  <Text style={{
-                    color: rarity === 'common' ? t.bgPrimary : '#FFFFFF',
-                    fontSize: f.bodyLg,
-                    fontWeight: '900',
-                  }}>
-                    {triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
-                  </Text>
-                )}
-                {!USE_ELITE_LEVEL_GIFT_MODAL && (
-                  <Text style={{
-                    color: rarity !== 'common' ? '#FFFFFF' : t.textPrimary,
-                    fontSize: f.bodyLg,
-                    fontWeight: '900',
-                  }}>
-                    {storesOnly
-                      ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
-                      : triLang(lang, { ru: 'Забрать!', uk: 'Забрати!', es: '¡Reclamar!', 'pt-BR': 'Receber!', vi: 'Nhận!', id: 'Klaim!', tr: 'Al!', pl: 'Odbierz!' })}
-                  </Text>
-                )}
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={palette.button}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={StyleSheet.absoluteFill}
+                />
+                {/* верхний блик на кнопке */}
+                <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', backgroundColor: 'rgba(255,255,255,0.22)' }} />
+                <Text style={{ color: palette.buttonInk, fontSize: f.bodyLg, fontWeight: '900' }}>
+                  {storesOnly
+                    ? triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
+                    : triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
+                </Text>
               </TouchableOpacity>
               </>
               )}

@@ -65,6 +65,39 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'actionToast',
 ];
 
+// Транзиентный «тост-ярус»: оверлеи, которые сами по себе автозакрываются по таймеру
+// и могут по ошибке «залипнуть» (ownState застрял true, слот не освобождён). ТОЛЬКО их
+// сторож (H-ARBITER) имеет право принудительно выселять и карантинить.
+//
+// КРУПНЫЕ модалки (update/releaseNotes/broadcast/levelUp/подарки/праздники/intro/loyalty/
+// dailyPlan/celebration/leagueResult/streakRevive/… — всё, чего здесь НЕТ) закрывает
+// ПОЛЬЗОВАТЕЛЬ. Их НЕЛЬЗЯ выселять по таймеру: иначе если юзер просто читает окно >15с,
+// а за ним ждёт мелкий тост, окно (и его награда, напр. сундук level-up) пропадёт на всю
+// сессию. Это и был баг: сторож карантинил живую модалку как «зависшую».
+// ВАЖНО: сюда входят ТОЛЬКО оверлеи, которые сами автозакрываются по таймеру и потому
+// могут «залипнуть» при сбое. lessonCompleteNotif и arenaRoomConfirm СЮДА НЕ входят — их
+// закрывает юзер тапом (их выселение по таймеру = та же болезнь, что и с level-up).
+// arenaInvite оставлен: у него есть собственный авто-decline по таймеру, он транзиентен.
+export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
+  'shardsEarned',
+  'matchFoundToastScreen',
+  'matchFoundToast',
+  'arenaInvite',
+  'achievementToast',
+  'dailyTaskRewardToast',
+  'coachToast',
+  'actionToast',
+]);
+
+/**
+ * Можно ли сторожу (H-ARBITER) принудительно отобрать слот у этого владельца.
+ * true — только для транзиентных тостов/уведомлений (см. FORCE_EVICTABLE_KEYS);
+ * для всех крупных пользовательских модалок — false (их закрывает юзер, не таймер).
+ */
+export function isForceEvictable(key: OverlayKey | null): boolean {
+  return key != null && FORCE_EVICTABLE_KEYS.has(key);
+}
+
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
   update: false,
   releaseNotes: false,

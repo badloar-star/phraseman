@@ -1,6 +1,8 @@
 import {
   decideWantsWrite,
+  FORCE_EVICTABLE_KEYS,
   hasOtherWaiters,
+  isForceEvictable,
   resolveNextOverlay,
   resolveNextOverlayExcluding,
   type OverlayKey,
@@ -106,5 +108,51 @@ describe('OverlayArbiter forcibly-released quarantine (anti ping-pong)', () => {
     const original = new Set<OverlayKey>(['update']);
     decideWantsWrite('update', false, original);
     expect(original.has('update')).toBe(true); // вход не изменён
+  });
+});
+
+describe('OverlayArbiter watchdog scope (anti — выселение живой модалки)', () => {
+  // Регрессия: сторож 15с НАВСЕГДА карантинил крупную модалку (level-up + сундук, праздники,
+  // intro/loyalty, celebration…), если за ней ждал мелкий тост, а юзер читал окно >15с →
+  // окно и его награда пропадали на всю сессию. Фикс: выселять можно ТОЛЬКО транзиентные тосты.
+
+  it('крупные пользовательские модалки НЕ подлежат принудительному выселению', () => {
+    const protectedKeys: OverlayKey[] = [
+      'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
+      'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
+      'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
+      'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',
+      'perfectWeekReward', 'compassBriefing', 'lessonCompleteNotif', 'arenaRoomConfirm',
+    ];
+    for (const k of protectedKeys) {
+      expect(isForceEvictable(k)).toBe(false);
+    }
+  });
+
+  it('транзиентные тосты/уведомления подлежат выселению (защита нижних от залипшего тоста)', () => {
+    const evictable: OverlayKey[] = [
+      'shardsEarned', 'matchFoundToastScreen', 'matchFoundToast', 'arenaInvite',
+      'achievementToast', 'dailyTaskRewardToast', 'coachToast', 'actionToast',
+    ];
+    for (const k of evictable) {
+      expect(isForceEvictable(k)).toBe(true);
+    }
+  });
+
+  it('lessonCompleteNotif (закрывает юзер тапом) НЕ выселяется', () => {
+    // это user-dismissed уведомление, не авто-тост — выселять нельзя
+    expect(isForceEvictable('lessonCompleteNotif')).toBe(false);
+    expect(FORCE_EVICTABLE_KEYS.has('lessonCompleteNotif')).toBe(false);
+  });
+
+  it('isForceEvictable(null) === false (нет активного владельца — нечего выселять)', () => {
+    expect(isForceEvictable(null)).toBe(false);
+  });
+
+  it('сценарий бага: levelUp держит слот, actionToast ждёт — сторож НЕ трогает levelUp', () => {
+    // Симуляция предусловия сторожа: есть владелец и есть waiter.
+    expect(hasOtherWaiters('levelUp', wants('levelUp', 'actionToast'))).toBe(true);
+    // …но т.к. levelUp НЕ force-evictable, сторож не запускается → модалка остаётся.
+    expect(isForceEvictable('levelUp')).toBe(false);
   });
 });

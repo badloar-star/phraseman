@@ -32,6 +32,7 @@ import {
   decideWantsWrite,
   EMPTY_OVERLAY_WANTS,
   hasOtherWaiters,
+  isForceEvictable,
   resolveNextOverlay,
   resolveNextOverlayExcluding,
   type OverlayKey,
@@ -92,8 +93,15 @@ export function OverlayArbiterProvider({ children }: { children: React.ReactNode
   // слот следующему по приоритету — иначе тосты/алерты ниже навсегда заморожены.
   // Важно: зависшего владельца кладём в карантин (forciblyReleased) И обнуляем его wants,
   // чтобы слот не вернулся к нему через 15с (без этого был пинг-понг каждые 15с).
+  //
+  // КРИТИЧНО: сторож выселяет ТОЛЬКО транзиентные тосты/уведомления (isForceEvictable).
+  // Крупные пользовательские модалки (level-up + сундук, праздники, intro/loyalty, celebration…)
+  // закрывает ЮЗЕР — их выселять по таймеру НЕЛЬЗЯ: иначе если юзер просто читает окно >15с,
+  // а за ним ждёт мелкий тост, сторож карантинил живую модалку как «зависшую» и окно (вместе с
+  // наградой, напр. сундуком level-up) пропадало на всю сессию. Для таких модалок просто ждём,
+  // пока юзер их закроет.
   useEffect(() => {
-    if (!active || !hasOtherWaiters(active, wantsMap)) return;
+    if (!active || !isForceEvictable(active) || !hasOtherWaiters(active, wantsMap)) return;
     const t = setTimeout(() => {
       setActive((prev) => {
         if (!prev) return prev;

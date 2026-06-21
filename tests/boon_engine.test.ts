@@ -1,0 +1,106 @@
+// Weekly Boons — движок резолва «бонус дня». Чистые функции, тестируем без Remote Config.
+import {
+  resolveTodaysBoons,
+  utcWeekdayFromTodayKey,
+  utcWeekNumberFromTodayKey,
+} from '../app/boons/boon_engine';
+import type { WeeklyBoonsConfig } from '../app/boons/boon_types';
+
+// Известные ключи дней (UTC). 2026-06-21 — воскресенье (getUTCDay()===0).
+const SUN = '2026-06-21'; // вс
+const MON = '2026-06-22'; // пн
+const SAT_A = '2026-06-20'; // сб (одна неделя)
+const SAT_B = '2026-06-27'; // сб (следующая неделя)
+
+function cfg(partial: Partial<WeeklyBoonsConfig>): WeeklyBoonsConfig {
+  return { schedule: {}, enabled: {}, modifiersEnabled: {}, ...partial };
+}
+
+describe('utcWeekdayFromTodayKey', () => {
+  it('maps known UTC dates to weekday (0=вс..6=сб)', () => {
+    expect(utcWeekdayFromTodayKey(SUN)).toBe(0);
+    expect(utcWeekdayFromTodayKey(MON)).toBe(1);
+    expect(utcWeekdayFromTodayKey(SAT_A)).toBe(6);
+  });
+});
+
+describe('resolveTodaysBoons — single fixed boon per day', () => {
+  it('returns the scheduled boon on its weekday', () => {
+    const c = cfg({ schedule: { 0: 'streak_saver', 1: 'mystery_monday' } });
+    expect(resolveTodaysBoons(c, SUN).primary).toBe('streak_saver');
+    expect(resolveTodaysBoons(c, MON).primary).toBe('mystery_monday');
+  });
+
+  it('returns null when no boon is scheduled for the day', () => {
+    const c = cfg({ schedule: { 1: 'mystery_monday' } });
+    expect(resolveTodaysBoons(c, SUN).primary).toBeNull();
+  });
+
+  it('hides a boon when globally disabled', () => {
+    const c = cfg({ schedule: { 0: 'streak_saver' }, enabled: { streak_saver: false } });
+    expect(resolveTodaysBoons(c, SUN).primary).toBeNull();
+  });
+});
+
+describe('resolveTodaysBoons — weekly rotation (alternating Saturday)', () => {
+  const c = cfg({ schedule: { 6: ['arena_saturday', 'speaking_saturday'] } });
+
+  it('alternates the boon between consecutive Saturdays', () => {
+    const first = resolveTodaysBoons(c, SAT_A).primary;
+    const second = resolveTodaysBoons(c, SAT_B).primary;
+    expect(first).not.toBeNull();
+    expect(second).not.toBeNull();
+    expect(first).not.toBe(second); // ровно чередуется неделя через неделю
+    expect([first, second].sort()).toEqual(['arena_saturday', 'speaking_saturday']);
+  });
+
+  it('always returns exactly ONE primary even with a rotation slot', () => {
+    expect(typeof resolveTodaysBoons(c, SAT_A).primary).toBe('string');
+  });
+
+  it('skips a disabled element in a rotation and falls back to the enabled one', () => {
+    const disabled = cfg({
+      schedule: { 6: ['arena_saturday', 'speaking_saturday'] },
+      enabled: { arena_saturday: false },
+    });
+    // Обе субботы должны отдать speaking, т.к. arena выключена.
+    expect(resolveTodaysBoons(disabled, SAT_A).primary).toBe('speaking_saturday');
+    expect(resolveTodaysBoons(disabled, SAT_B).primary).toBe('speaking_saturday');
+  });
+
+  it('returns null when every element of a rotation is disabled', () => {
+    const allOff = cfg({
+      schedule: { 6: ['arena_saturday', 'speaking_saturday'] },
+      enabled: { arena_saturday: false, speaking_saturday: false },
+    });
+    expect(resolveTodaysBoons(allOff, SAT_A).primary).toBeNull();
+  });
+});
+
+describe('resolveTodaysBoons — always-on modifiers', () => {
+  it('includes all modifiers by default (no enabled flags)', () => {
+    const c = cfg({});
+    const r = resolveTodaysBoons(c, SUN);
+    expect(r.modifiers).toEqual(expect.arrayContaining(['early_bird', 'perfect_week']));
+  });
+
+  it('drops a modifier when explicitly disabled', () => {
+    const c = cfg({ modifiersEnabled: { early_bird: false } });
+    const r = resolveTodaysBoons(c, SUN);
+    expect(r.modifiers).not.toContain('early_bird');
+    expect(r.modifiers).toContain('perfect_week');
+  });
+
+  it('modifiers are independent of the day primary', () => {
+    const c = cfg({ schedule: {}, modifiersEnabled: { perfect_week: false } });
+    const r = resolveTodaysBoons(c, SUN);
+    expect(r.primary).toBeNull(); // нет primary в этот день
+    expect(r.modifiers).toEqual(['early_bird']); // но модификатор всё равно резолвится
+  });
+});
+
+describe('week number monotonicity', () => {
+  it('advances by exactly 1 between consecutive Saturdays', () => {
+    expect(utcWeekNumberFromTodayKey(SAT_B) - utcWeekNumberFromTodayKey(SAT_A)).toBe(1);
+  });
+});

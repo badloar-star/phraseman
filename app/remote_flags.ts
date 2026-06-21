@@ -103,7 +103,12 @@ export type RemoteTextKey =
   // сверх порога; premium_lessons_extra — уроки, ЗАКРЫТЫЕ под премиум, даже если они
   // ниже порога. Пусто/невалидно = только порог. premium_* имеет приоритет над free_*.
   | 'free_lessons_extra'
-  | 'premium_lessons_extra';
+  | 'premium_lessons_extra'
+  // Weekly Boons: расписание «бонусов дня недели» и их вкл/выкл. JSON-объект
+  // { schedule: {weekday: BoonId | BoonId[]}, enabled: {...}, modifiersEnabled: {...} }.
+  // Пусто/невалидно = встроенный дефолт (см. boons/boon_config.ts). Парсится
+  // защищённо: мусор тихо отбрасывается, приложение не падает.
+  | 'weekly_boons_config';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -217,6 +222,7 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   compass_voice_fallback_es: '',
   free_lessons_extra: '',
   premium_lessons_extra: '',
+  weekly_boons_config: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -418,6 +424,9 @@ export const isEnergyPremiumGated = () => getRemoteBool('gate_energy_premium');
 export const getFreeLessonsExtra = () => parseLessonIdList(getRemoteText('free_lessons_extra'));
 /** Поурочные исключения: набор id уроков, закрытых под премиум вопреки порогу. */
 export const getPremiumLessonsExtra = () => parseLessonIdList(getRemoteText('premium_lessons_extra'));
+
+/** Сырой JSON-конфиг недельных бонусов из «Пульта» (парсится в boons/boon_config.ts). */
+export const getWeeklyBoonsConfigRaw = (): string => getRemoteText('weekly_boons_config');
 
 /**
  * Парсит JSON-строку вида "[3,5,9]" в Set валидных id уроков (1..32). Любой мусор

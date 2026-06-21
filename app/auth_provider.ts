@@ -1111,6 +1111,38 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   }
 
   if (outcome.kind === 'merged_keep_local') {
+    // Local выиграл по XP/владению. РАНЬШЕ тут НЕ звался серверный merge (только в
+    // merged_swap_to_remote) → premium/VIP/admin-grant/intro из REMOTE-аккаунта молча
+    // терялись: store-премиум спасал RC restore, но VIP-реферал/админ-грант (живут
+    // только в Firestore progress) пропадали (аудит платёжки 2026-06-21, P1).
+    // Зовём серверный merge (remote → local): Admin SDK сольёт прогресс best-of-field
+    // и перенесёт премиум/VIP-блок от «сильной» стороны в canonical. Если remote чужой
+    // (нет свежего anon_merge_claim) — сервер вернёт null, деградируем к прежнему
+    // поведению (просто local), вход не рвём.
+    try {
+      const localStableId = await getStableId();
+      const merge = await mergeStableAccountsViaServer(outcome.mergedFromStableId, localStableId);
+      const canonicalStableId = merge?.ok && merge.canonicalStableId ? merge.canonicalStableId : localStableId;
+      if (merge?.ok && canonicalStableId !== localStableId) {
+        // Сервер выбрал canonical ≠ local (remote оказался сильнее и принадлежит нам):
+        // подменяем stable_id и тянем слитый прогресс, как в swap-ветке.
+        await setStableId(canonicalStableId);
+        invalidatePremiumCache();
+        await wipeLocalAccountData();
+        await ensureAnonUser();
+        await syncRevenueCatAfterAuthLink();
+        await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'keeplocal_restore');
+        await loadShardsFromCloud().catch(() => {});
+      } else if (merge?.ok) {
+        // canonical == local: премиум/VIP-блок remote слит в наш local-док сервером.
+        // Инвалидируем кэш и тянем слитое состояние в AsyncStorage (иначе VIP не виден).
+        invalidatePremiumCache();
+        await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'keeplocal_restore_same').catch(() => {});
+      }
+    } catch (e) {
+      if (__DEV__) console.warn('[auth_provider] merged_keep_local server-merge failed', e);
+      // Не валим вход — деградируем к прежнему поведению ниже.
+    }
     // Local выиграл → попробуем подставить человеческий ник из Google если локальный — автоген,
     // ПОТОМ синкаем (чтобы новый ник тоже ушёл в облако одним пакетом).
     await markOnboardedAfterSignIn();

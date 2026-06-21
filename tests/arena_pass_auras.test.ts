@@ -8,10 +8,10 @@ import { AURA_MILESTONE_LEVELS, buildBattlePassLadder } from '../app/arena_battl
 
 // Эффекты, у которых ЕСТЬ реальный рендер в components/AvatarAura.tsx.
 // Если добавляешь новый эффект — сначала дай ему рендер, потом сюда.
-const RENDERED_EFFECTS: AvatarAuraEffect[] = ['flame', 'storm', 'frost', 'stardust', 'ether'];
+const RENDERED_EFFECTS: AvatarAuraEffect[] = ['flame', 'storm', 'starvortex', 'voidamethyst'];
 
 describe('Ауры Боевого пропуска Арены', () => {
-  it('все 4 id пропуска есть в каталоге AVATAR_AURAS', () => {
+  it('все id пропуска есть в каталоге AVATAR_AURAS', () => {
     for (const id of ARENA_PASS_AURA_IDS) {
       expect(getAvatarAuraById(id)).toBeDefined();
     }

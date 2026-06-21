@@ -55,12 +55,10 @@ export function bpForMatch(won: boolean): number {
  * Уровни-вехи, на которых премиум-трек выдаёт ЭКСКЛЮЗИВНУЮ АУРУ (а не осколки).
  * Привязаны к реальным id аур ARENA_PASS_AURA_IDS по порядку.
  */
-export const AURA_MILESTONE_LEVELS = [8, 15, 23, 30] as const;
+export const AURA_MILESTONE_LEVELS = [23, 30] as const;
 const AURA_BY_MILESTONE: Record<number, string> = {
-  8: 'aura-arena-frost',
-  15: 'aura-arena-storm',
-  23: 'aura-arena-stardust',
-  30: 'aura-arena-ether',
+  23: 'aura-arena-starvortex',
+  30: 'aura-arena-voidamethyst',
 };
 
 export function buildBattlePassLadder(): BattlePassTier[] {

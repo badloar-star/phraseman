@@ -9,11 +9,11 @@ export const VIP_AVATAR_AURA_ID = 'aura-vip';
 export type AvatarAuraEffect =
   | 'flame'
   | 'storm'
-  | 'frost'
+  | 'starvortex'
+  | 'voidamethyst'
   | 'lava'
   | 'typhoon'
   | 'gravity'
-  | 'stardust'
   | 'plasma'
   | 'ether'
   | 'absolute';
@@ -50,22 +50,20 @@ export const AVATAR_AURAS: AvatarAuraDef[] = [
   { id: 'aura-violet', nameRu: 'Виолет', nameUk: 'Віолет', nameEs: 'Violeta', namePtBr: 'Violeta', nameVi: 'Tím', nameId: 'Violet', nameTr: 'Mor', namePl: 'Fiolet', color: '#A78BFA', softColor: 'rgba(167,139,250,0.22)' },
   { id: 'aura-coral', nameRu: 'Коралл', nameUk: 'Корал', nameEs: 'Coral', namePtBr: 'Coral', nameVi: 'San hô', nameId: 'Koral', nameTr: 'Mercan', namePl: 'Koral', color: '#F97316', softColor: 'rgba(249,115,22,0.22)' },
   { id: 'aura-flame-51', nameRu: 'Пламя', nameUk: 'Полумʼя', nameEs: 'Llama', namePtBr: 'Chama', nameVi: 'Ngọn lửa', nameId: 'Api', nameTr: 'Alev', namePl: 'Płomień', color: '#F97316', color2: '#FACC15', color3: '#FDBA74', softColor: 'rgba(249,115,22,0.23)', unlockLevel: 51, effect: 'flame' },
-  { id: 'aura-season', nameRu: 'Сезонная', nameUk: 'Сезонна', nameEs: 'De temporada', namePtBr: 'Da temporada', nameVi: 'Theo mùa', nameId: 'Musiman', nameTr: 'Sezonluk', namePl: 'Sezonowa', color: '#FFD24A', color2: '#FFAE00', color3: '#FDE68A', softColor: 'rgba(255,210,74,0.28)', effect: 'ether' },
-  { id: 'aura-season-champion', nameRu: 'Чемпион сезона', nameUk: 'Чемпіон сезону', nameEs: 'Campeón de temporada', namePtBr: 'Campeão da temporada', nameVi: 'Quán quân mùa', nameId: 'Juara musim', nameTr: 'Sezon şampiyonu', namePl: 'Mistrz sezonu', color: '#F59E0B', color2: '#FBBF24', color3: '#FEF3C7', softColor: 'rgba(245,158,11,0.32)', effect: 'stardust' },
+  { id: 'aura-season', nameRu: 'Сезонная', nameUk: 'Сезонна', nameEs: 'De temporada', namePtBr: 'Da temporada', nameVi: 'Theo mùa', nameId: 'Musiman', nameTr: 'Sezonluk', namePl: 'Sezonowa', color: '#FFD24A', color2: '#FFAE00', color3: '#FDE68A', softColor: 'rgba(255,210,74,0.28)', effect: 'starvortex' },
+  { id: 'aura-season-champion', nameRu: 'Чемпион сезона', nameUk: 'Чемпіон сезону', nameEs: 'Campeón de temporada', namePtBr: 'Campeão da temporada', nameVi: 'Quán quân mùa', nameId: 'Juara musim', nameTr: 'Sezon şampiyonu', namePl: 'Mistrz sezonu', color: '#F59E0B', color2: '#FBBF24', color3: '#FEF3C7', softColor: 'rgba(245,158,11,0.32)', effect: 'voidamethyst' },
 
-  // ── Ауры Боевого пропуска Арены (выдаются на вехах премиум-трека) ──
-  { id: 'aura-arena-frost', nameRu: 'Мороз арены', nameUk: 'Мороз арени', nameEs: 'Escarcha de arena', namePtBr: 'Gelo da arena', nameVi: 'Băng đấu trường', nameId: 'Beku arena', nameTr: 'Arena ayazı', namePl: 'Szron areny', color: '#38BDF8', color2: '#E0F2FE', color3: '#BAE6FD', softColor: 'rgba(56,189,248,0.26)', effect: 'frost' },
-  { id: 'aura-arena-storm', nameRu: 'Гроза арены', nameUk: 'Гроза арени', nameEs: 'Tormenta de arena', namePtBr: 'Tempestade da arena', nameVi: 'Bão đấu trường', nameId: 'Badai arena', nameTr: 'Arena fırtınası', namePl: 'Burza areny', color: '#60A5FA', color2: '#BFDBFE', color3: '#E0F2FE', softColor: 'rgba(96,165,250,0.26)', effect: 'storm' },
-  { id: 'aura-arena-stardust', nameRu: 'Звёздная пыль', nameUk: 'Зоряний пил', nameEs: 'Polvo estelar', namePtBr: 'Pó estelar', nameVi: 'Bụi sao', nameId: 'Debu bintang', nameTr: 'Yıldız tozu', namePl: 'Gwiezdny pył', color: '#C4B5FD', color2: '#FDE68A', color3: '#A78BFA', softColor: 'rgba(196,181,253,0.28)', effect: 'stardust' },
-  { id: 'aura-arena-ether', nameRu: 'Эфир арены', nameUk: 'Ефір арени', nameEs: 'Éter de arena', namePtBr: 'Éter da arena', nameVi: 'Ê-te đấu trường', nameId: 'Eter arena', nameTr: 'Arena eteri', namePl: 'Eter areny', color: '#818CF8', color2: '#E0E7FF', color3: '#A5B4FC', softColor: 'rgba(129,140,248,0.28)', effect: 'ether' },
+  // ── Ауры Боевого пропуска Арены (2 эксклюзивные, на финальных вехах премиум-трека) ──
+  // D · Звёздный вихрь — космос: 3 орбиты + созвездие.
+  { id: 'aura-arena-starvortex', nameRu: 'Звёздный вихрь', nameUk: 'Зоряний вихор', nameEs: 'Vórtice estelar', namePtBr: 'Vórtice estelar', nameVi: 'Xoáy sao', nameId: 'Pusaran bintang', nameTr: 'Yıldız girdabı', namePl: 'Gwiezdny wir', color: '#C084FC', color2: '#F5D0FE', color3: '#FEF9C3', softColor: 'rgba(192,132,252,0.30)', effect: 'starvortex' },
+  // E · Аметистовая бездна — вуаль + неоновые орбы (фиолет+бирюза).
+  { id: 'aura-arena-voidamethyst', nameRu: 'Аметистовая бездна', nameUk: 'Аметистова безодня', nameEs: 'Abismo de amatista', namePtBr: 'Abismo de ametista', nameVi: 'Vực thẳm thạch anh tím', nameId: 'Jurang ametis', nameTr: 'Ametist uçurumu', namePl: 'Ametystowa otchłań', color: '#8B5CF6', color2: '#67E8F9', color3: '#C4B5FD', softColor: 'rgba(139,92,246,0.30)', effect: 'voidamethyst' },
 ];
 
-/** id аур, которые выдаёт Боевой пропуск Арены (по порядку вех). */
+/** id аур, которые выдаёт Боевой пропуск Арены (по порядку финальных вех). */
 export const ARENA_PASS_AURA_IDS = [
-  'aura-arena-frost',
-  'aura-arena-storm',
-  'aura-arena-stardust',
-  'aura-arena-ether',
+  'aura-arena-starvortex',
+  'aura-arena-voidamethyst',
 ] as const;
 
 export function getAvatarAuraById(id?: string | null): AvatarAuraDef | undefined {

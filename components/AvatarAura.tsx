@@ -18,10 +18,9 @@ function AvatarAura({ auraId, size, children, style }: Props) {
   const isVipAura = aura?.id === VIP_AVATAR_AURA_ID;
   const isFlameAura = aura?.effect === 'flame';
   const isStormAura = aura?.effect === 'storm';
-  const isFrostAura = aura?.effect === 'frost';
-  const isStardustAura = aura?.effect === 'stardust';
-  const isEtherAura = aura?.effect === 'ether';
-  const isRichEffect = isFlameAura || isStormAura || isFrostAura || isStardustAura || isEtherAura;
+  const isStarVortexAura = aura?.effect === 'starvortex';
+  const isVoidAmethystAura = aura?.effect === 'voidamethyst';
+  const isRichEffect = isFlameAura || isStormAura || isStarVortexAura || isVoidAmethystAura;
   const shouldAnimate = ((isPremiumAura || isVipAura) && size >= 52) || (isRichEffect && size >= 42);
 
   useEffect(() => {
@@ -48,14 +47,14 @@ function AvatarAura({ auraId, size, children, style }: Props) {
       ]))
       : Animated.loop(Animated.timing(auraPhase, {
         toValue: 1,
-        duration: isStormAura ? 3200 : isStardustAura ? 4200 : isEtherAura ? 3600 : isFrostAura ? 3000 : 2600,
+        duration: isStormAura ? 3200 : isStarVortexAura ? 4600 : isVoidAmethystAura ? 4000 : 2600,
         easing: Easing.inOut(Easing.sin),
         useNativeDriver: true,
       }));
 
     loop.start();
     return () => loop.stop();
-  }, [auraPhase, isPremiumAura, isStormAura, isStardustAura, isEtherAura, isFrostAura, isVipAura, shouldAnimate]);
+  }, [auraPhase, isPremiumAura, isStormAura, isStarVortexAura, isVoidAmethystAura, isVipAura, shouldAnimate]);
 
   if (!aura || size < 36) {
     return (
@@ -555,106 +554,30 @@ function AvatarAura({ auraId, size, children, style }: Props) {
     );
   }
 
-  // ── FROST: морозный кристаллический ореол + дрейфующие снежинки-искры ──
-  if (isFrostAura) {
-    const outer = Math.round(size * 1.4);
-    const ring = Math.max(2, Math.round(size * 0.045));
-    const main = aura.color;          // основной лёд (напр. #7DD3FC)
-    const bright = aura.color2 ?? '#E0F2FE';
-    const deep = aura.color3 ?? '#BAE6FD';
-    const haloScale = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.97, 1.06, 0.97] });
-    const haloOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.28, 0.6, 0.28] });
-    const rimOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.7, 1, 0.7] });
-    const crystalRot = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '120deg'] });
-    const crystalCounter = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '-90deg'] });
-    const shimmerOpacity = auraPhase.interpolate({ inputRange: [0, 0.3, 0.6, 1], outputRange: [0.2, 0.85, 0.4, 0.2] });
-    const flakeDrift = auraPhase.interpolate({ inputRange: [0, 1], outputRange: [-outer * 0.06, outer * 0.1] });
-    const flakeFade = auraPhase.interpolate({ inputRange: [0, 0.2, 0.7, 1], outputRange: [0.1, 0.9, 0.7, 0.1] });
-
-    return (
-      <View style={[{ width: outer, height: outer, alignItems: 'center', justifyContent: 'center' }, style]}>
-        <Animated.View
-          pointerEvents="none"
-          style={{
-            position: 'absolute', width: outer, height: outer, borderRadius: outer / 2,
-            backgroundColor: aura.softColor, opacity: haloOpacity, transform: [{ scale: haloScale }],
-          }}
-        />
-        <Animated.View
-          pointerEvents="none"
-          style={{
-            position: 'absolute', width: Math.round(outer * 0.98), height: Math.round(outer * 0.98),
-            borderRadius: Math.round(outer * 0.49), borderWidth: ring, borderColor: main,
-            opacity: rimOpacity, shadowColor: main, shadowOpacity: 0.5, shadowRadius: 14, elevation: 7,
-          }}
-        />
-        {/* кристаллическая снежинка-каркас, медленно вращается */}
-        <Animated.View
-          pointerEvents="none"
-          style={{ position: 'absolute', width: Math.round(outer * 0.92), height: Math.round(outer * 0.92), opacity: shimmerOpacity, transform: [{ rotate: crystalRot }] }}
-        >
-          <Svg width="100%" height="100%" viewBox="0 0 100 100">
-            <Polyline points="50,8 50,92" fill="none" stroke={bright} strokeWidth="1.4" strokeLinecap="round" />
-            <Polyline points="14,29 86,71" fill="none" stroke={bright} strokeWidth="1.4" strokeLinecap="round" />
-            <Polyline points="86,29 14,71" fill="none" stroke={bright} strokeWidth="1.4" strokeLinecap="round" />
-            <Circle cx="50" cy="50" r="44" fill="none" stroke={deep} strokeWidth="0.8" strokeDasharray="3 9" opacity="0.7" />
-          </Svg>
-        </Animated.View>
-        <Animated.View
-          pointerEvents="none"
-          style={{ position: 'absolute', width: Math.round(outer * 0.7), height: Math.round(outer * 0.7), opacity: rimOpacity, transform: [{ rotate: crystalCounter }] }}
-        >
-          <Svg width="100%" height="100%" viewBox="0 0 100 100">
-            <Circle cx="50" cy="50" r="46" fill="none" stroke={main} strokeWidth="1" strokeDasharray="10 14" strokeLinecap="round" opacity="0.8" />
-          </Svg>
-        </Animated.View>
-        {[0.2, 0.42, 0.6, 0.8].map((left, index) => {
-          const flakeSize = Math.max(2, Math.round(size * (index % 2 === 0 ? 0.05 : 0.035)));
-          return (
-            <Animated.View
-              key={`frost-flake-${index}`}
-              pointerEvents="none"
-              style={{
-                position: 'absolute', left: outer * left, top: outer * (0.28 + (index % 2) * 0.4),
-                width: flakeSize, height: flakeSize, borderRadius: flakeSize / 2,
-                backgroundColor: index === 1 ? deep : bright, opacity: flakeFade,
-                shadowColor: main, shadowOpacity: 0.8, shadowRadius: 6,
-                transform: [{ translateY: flakeDrift }],
-              }}
-            />
-          );
-        })}
-        <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-          {children}
-        </View>
-      </View>
-    );
-  }
-
-  // ── STARDUST: орбитальные звёздочки + мягкое мерцание ──
-  if (isStardustAura) {
-    const outer = Math.round(size * 1.46);
-    const main = aura.color;          // напр. #C4B5FD
-    const bright = aura.color2 ?? '#FDE68A';
-    const deep = aura.color3 ?? '#A78BFA';
-    const haloScale = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.96, 1.05, 0.96] });
-    const haloOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.26, 0.5, 0.26] });
-    const orbitRot = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] });
-    const orbitCounter = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['360deg', '0deg'] });
-    const rimOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.6, 0.92, 0.6] });
-    // 6 звёзд по орбите — мерцают со сдвигом фазы
-    const stars = [0, 1, 2, 3, 4, 5].map((i) => {
-      const angle = (i / 6) * Math.PI * 2;
-      const r = outer * (i % 2 === 0 ? 0.42 : 0.34);
+  // ── STARVORTEX «Звёздный вихрь»: 3 наклонные орбиты + созвездие звёзд + мерцание ──
+  if (isStarVortexAura) {
+    const outer = Math.round(size * 1.5);
+    const main = aura.color;            // напр. #C084FC
+    const bright = aura.color2 ?? '#F5D0FE';
+    const spark = aura.color3 ?? '#FEF9C3';
+    const haloScale = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.95, 1.07, 0.95] });
+    const haloOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.24, 0.5, 0.24] });
+    const spin = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] });
+    const spinSlow = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '200deg'] });
+    const rimOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.55, 0.9, 0.55] });
+    // 3 эллиптические орбиты под разными углами — вращаются как единое созвездие
+    const orbitTilts = ['0deg', '60deg', '120deg'];
+    // 5 звёзд-вершин созвездия, мерцают со сдвигом фазы
+    const stars = [0, 1, 2, 3, 4].map((i) => {
+      const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
+      const r = outer * (i % 2 === 0 ? 0.4 : 0.3);
       const cx = outer / 2 + Math.cos(angle) * r;
       const cy = outer / 2 + Math.sin(angle) * r;
-      const phase = (i % 3) / 3;
-      const twinkle = auraPhase.interpolate({
-        inputRange: [0, 0.25, 0.5, 0.75, 1].map((v) => (v + phase) % 1).sort((a, b) => a - b),
-        outputRange: [0.3, 0.95, 0.4, 0.9, 0.3],
-      });
-      const dotSize = Math.max(2, Math.round(size * (i % 2 === 0 ? 0.06 : 0.04)));
-      return { cx, cy, twinkle, dotSize, color: i % 2 === 0 ? bright : main };
+      const ph = (i % 3) / 3;
+      const seq = [0, 0.25, 0.5, 0.75, 1].map((v) => (v + ph) % 1).sort((a, b) => a - b);
+      const twinkle = auraPhase.interpolate({ inputRange: seq, outputRange: [0.35, 0.95, 0.45, 0.9, 0.35] });
+      const dot = Math.max(2, Math.round(size * (i % 2 === 0 ? 0.07 : 0.045)));
+      return { cx, cy, twinkle, dot, color: i % 2 === 0 ? bright : main };
     });
 
     return (
@@ -666,34 +589,61 @@ function AvatarAura({ auraId, size, children, style }: Props) {
             backgroundColor: aura.softColor, opacity: haloOpacity, transform: [{ scale: haloScale }],
           }}
         />
+        {/* 3 наклонные эллиптические орбиты — вращаются вместе */}
         <Animated.View
           pointerEvents="none"
-          style={{
-            position: 'absolute', width: Math.round(outer * 0.9), height: Math.round(outer * 0.9),
-            borderRadius: Math.round(outer * 0.45), borderWidth: 1, borderColor: deep,
-            opacity: rimOpacity, transform: [{ rotate: orbitRot }], borderStyle: 'dashed',
-          }}
-        />
+          style={{ position: 'absolute', width: outer, height: outer, opacity: rimOpacity, transform: [{ rotate: spin }] }}
+        >
+          {orbitTilts.map((tilt, idx) => (
+            <View
+              key={`orbit-${idx}`}
+              style={{
+                position: 'absolute', left: outer * 0.06, top: outer * 0.3,
+                width: outer * 0.88, height: outer * 0.4, borderRadius: outer * 0.44,
+                borderWidth: 1.3, borderColor: idx === 1 ? bright : main,
+                opacity: 0.7, transform: [{ rotate: tilt }],
+              }}
+            />
+          ))}
+        </Animated.View>
+        {/* внутреннее кольцо-вихрь, крутится медленнее в ту же сторону */}
         <Animated.View
           pointerEvents="none"
-          style={{
-            position: 'absolute', width: Math.round(outer * 0.66), height: Math.round(outer * 0.66),
-            borderRadius: Math.round(outer * 0.33), borderWidth: 1, borderColor: main,
-            opacity: rimOpacity, transform: [{ rotate: orbitCounter }], borderStyle: 'dashed',
-          }}
-        />
+          style={{ position: 'absolute', width: Math.round(outer * 0.6), height: Math.round(outer * 0.6), opacity: rimOpacity, transform: [{ rotate: spinSlow }] }}
+        >
+          <Svg width="100%" height="100%" viewBox="0 0 100 100">
+            <Circle cx="50" cy="50" r="46" fill="none" stroke={main} strokeWidth="1.4" strokeDasharray="6 12" strokeLinecap="round" opacity="0.85" />
+          </Svg>
+        </Animated.View>
+        {/* звёзды-вершины созвездия */}
         {stars.map((s, i) => (
           <Animated.View
-            key={`star-${i}`}
+            key={`sv-star-${i}`}
             pointerEvents="none"
             style={{
-              position: 'absolute', left: s.cx - s.dotSize / 2, top: s.cy - s.dotSize / 2,
-              width: s.dotSize, height: s.dotSize, borderRadius: s.dotSize / 2,
+              position: 'absolute', left: s.cx - s.dot / 2, top: s.cy - s.dot / 2,
+              width: s.dot, height: s.dot, borderRadius: s.dot / 2,
               backgroundColor: s.color, opacity: s.twinkle,
-              shadowColor: s.color, shadowOpacity: 0.9, shadowRadius: 7,
+              shadowColor: s.color, shadowOpacity: 0.95, shadowRadius: 8,
             }}
           />
         ))}
+        {/* мелкая звёздная пыль */}
+        {[0.3, 0.66, 0.5].map((left, idx) => {
+          const d = Math.max(2, Math.round(size * 0.03));
+          const fade = auraPhase.interpolate({ inputRange: [0, 0.3, 0.6, 1], outputRange: idx === 1 ? [0.2, 0.9, 0.4, 0.2] : [0.5, 0.2, 0.85, 0.5] });
+          return (
+            <Animated.View
+              key={`sv-dust-${idx}`}
+              pointerEvents="none"
+              style={{
+                position: 'absolute', left: outer * left, top: outer * (0.24 + idx * 0.22),
+                width: d, height: d, borderRadius: d / 2, backgroundColor: spark, opacity: fade,
+                shadowColor: spark, shadowOpacity: 0.9, shadowRadius: 5,
+              }}
+            />
+          );
+        })}
         <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
           {children}
         </View>
@@ -701,63 +651,90 @@ function AvatarAura({ auraId, size, children, style }: Props) {
     );
   }
 
-  // ── ETHER: эфирная пульсирующая вуаль-градиент + мягкие орбы ──
-  if (isEtherAura) {
-    const outer = Math.round(size * 1.44);
-    const main = aura.color;          // напр. #818CF8
-    const bright = aura.color2 ?? '#E0E7FF';
+  // ── VOIDAMETHYST «Аметистовая бездна»: вращающаяся вуаль + встречные орбиты + неоновые орбы ──
+  if (isVoidAmethystAura) {
+    const outer = Math.round(size * 1.5);
+    const main = aura.color;            // напр. #8B5CF6
+    const bright = aura.color2 ?? '#67E8F9';    // неоновая бирюза (контраст)
+    const deep = aura.color3 ?? '#C4B5FD';
     const veilRot = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] });
-    const veilOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.3, 0.66, 0.3] });
-    const breathScale = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.95, 1.08, 0.95] });
+    const veilCounter = auraPhase.interpolate({ inputRange: [0, 1], outputRange: ['360deg', '0deg'] });
+    const veilOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.32, 0.7, 0.32] });
+    const breath = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.94, 1.09, 0.94] });
     const rimOpacity = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.55, 0.95, 0.55] });
     const orbDrift = auraPhase.interpolate({ inputRange: [0, 0.5, 1], outputRange: [-outer * 0.05, outer * 0.06, -outer * 0.05] });
-    const orbFade = auraPhase.interpolate({ inputRange: [0, 0.4, 0.8, 1], outputRange: [0.2, 0.7, 0.45, 0.2] });
+    const orbFade = auraPhase.interpolate({ inputRange: [0, 0.4, 0.8, 1], outputRange: [0.25, 0.85, 0.5, 0.25] });
+    const orbs = [
+      { left: 0.24, top: 0.26, size: 0.07, color: bright },
+      { left: 0.7, top: 0.42, size: 0.05, color: deep },
+      { left: 0.46, top: 0.7, size: 0.09, color: main },
+      { left: 0.32, top: 0.58, size: 0.045, color: bright },
+    ];
 
     return (
       <View style={[{ width: outer, height: outer, alignItems: 'center', justifyContent: 'center' }, style]}>
+        {/* вращающаяся вуаль-градиент */}
         <Animated.View
           pointerEvents="none"
           style={{
             position: 'absolute', width: outer, height: outer, borderRadius: outer / 2,
-            opacity: veilOpacity, transform: [{ rotate: veilRot }, { scale: breathScale }], overflow: 'hidden',
+            opacity: veilOpacity, transform: [{ rotate: veilRot }, { scale: breath }], overflow: 'hidden',
           }}
         >
           <ExpoLinearGradient
-            colors={['rgba(0,0,0,0)', aura.softColor, bright + '33', 'rgba(0,0,0,0)']}
-            locations={[0, 0.36, 0.6, 1]}
-            start={{ x: 0.1, y: 0 }}
-            end={{ x: 0.9, y: 1 }}
+            colors={['rgba(0,0,0,0)', aura.softColor, bright + '2E', main + '40', 'rgba(0,0,0,0)']}
+            locations={[0, 0.3, 0.52, 0.72, 1]}
+            start={{ x: 0.1, y: 0.1 }}
+            end={{ x: 0.9, y: 0.9 }}
             style={{ width: '100%', height: '100%', borderRadius: outer / 2 }}
           />
         </Animated.View>
+        {/* встречная вуаль для глубины */}
         <Animated.View
           pointerEvents="none"
           style={{
-            position: 'absolute', width: Math.round(outer * 0.94), height: Math.round(outer * 0.94),
-            borderRadius: Math.round(outer * 0.47), borderWidth: 1.5, borderColor: main,
-            opacity: rimOpacity, shadowColor: main, shadowOpacity: 0.5, shadowRadius: 16, elevation: 7,
-            transform: [{ scale: breathScale }],
+            position: 'absolute', width: Math.round(outer * 0.86), height: Math.round(outer * 0.86),
+            borderRadius: outer / 2, opacity: veilOpacity, transform: [{ rotate: veilCounter }], overflow: 'hidden',
           }}
-        />
+        >
+          <ExpoLinearGradient
+            colors={['rgba(0,0,0,0)', bright + '22', 'rgba(0,0,0,0)']}
+            locations={[0, 0.5, 1]}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={{ width: '100%', height: '100%', borderRadius: outer / 2 }}
+          />
+        </Animated.View>
+        {/* дышащее главное кольцо со свечением */}
         <Animated.View
           pointerEvents="none"
           style={{
-            position: 'absolute', width: Math.round(outer * 0.7), height: Math.round(outer * 0.7),
-            borderRadius: Math.round(outer * 0.35), borderWidth: 1, borderColor: bright,
-            opacity: veilOpacity, transform: [{ rotate: veilRot }],
+            position: 'absolute', width: Math.round(outer * 0.92), height: Math.round(outer * 0.92),
+            borderRadius: Math.round(outer * 0.46), borderWidth: 2, borderColor: main,
+            opacity: rimOpacity, shadowColor: main, shadowOpacity: 0.6, shadowRadius: 18, elevation: 8,
+            transform: [{ scale: breath }],
           }}
         />
-        {[0.26, 0.7, 0.5].map((left, index) => {
-          const orbSize = Math.max(3, Math.round(size * (index === 2 ? 0.09 : 0.06)));
+        {/* тонкое неоновое внутреннее кольцо */}
+        <Animated.View
+          pointerEvents="none"
+          style={{
+            position: 'absolute', width: Math.round(outer * 0.66), height: Math.round(outer * 0.66),
+            borderRadius: Math.round(outer * 0.33), borderWidth: 1, borderColor: bright,
+            opacity: rimOpacity, transform: [{ rotate: veilRot }], borderStyle: 'dashed',
+          }}
+        />
+        {/* парящие неоновые орбы */}
+        {orbs.map((o, idx) => {
+          const d = Math.max(3, Math.round(size * o.size));
           return (
             <Animated.View
-              key={`ether-orb-${index}`}
+              key={`va-orb-${idx}`}
               pointerEvents="none"
               style={{
-                position: 'absolute', left: outer * left, top: outer * (0.3 + index * 0.18),
-                width: orbSize, height: orbSize, borderRadius: orbSize / 2,
-                backgroundColor: index === 2 ? bright : main, opacity: orbFade,
-                shadowColor: main, shadowOpacity: 0.9, shadowRadius: 9,
+                position: 'absolute', left: outer * o.left, top: outer * o.top,
+                width: d, height: d, borderRadius: d / 2, backgroundColor: o.color, opacity: orbFade,
+                shadowColor: o.color, shadowOpacity: 0.95, shadowRadius: 10,
                 transform: [{ translateY: orbDrift }],
               }}
             />

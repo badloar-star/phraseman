@@ -17,29 +17,29 @@ beforeEach(() => {
 
 describe('grantArenaAura', () => {
   it('записывает владение аурой в avatar_aura_owned_v1', async () => {
-    const ok = await grantArenaAura('aura-arena-frost', false);
+    const ok = await grantArenaAura('aura-arena-starvortex', false);
     expect(ok).toBe(true);
     const owned = JSON.parse(store['avatar_aura_owned_v1']);
-    expect(owned['aura-arena-frost']).toBe(true);
+    expect(owned['aura-arena-starvortex']).toBe(true);
   });
 
   it('с equip=true делает ауру активной (user_avatar_aura)', async () => {
-    await grantArenaAura('aura-arena-storm', true);
-    expect(store['user_avatar_aura']).toBe('aura-arena-storm');
+    await grantArenaAura('aura-arena-voidamethyst', true);
+    expect(store['user_avatar_aura']).toBe('aura-arena-voidamethyst');
   });
 
   it('с equip=false НЕ трогает активную ауру', async () => {
     store['user_avatar_aura'] = 'aura-aurora';
-    await grantArenaAura('aura-arena-ether', false);
+    await grantArenaAura('aura-arena-voidamethyst', false);
     expect(store['user_avatar_aura']).toBe('aura-aurora');
   });
 
   it('не теряет ранее владеемые ауры', async () => {
     store['avatar_aura_owned_v1'] = JSON.stringify({ 'aura-mint': true });
-    await grantArenaAura('aura-arena-stardust', false);
+    await grantArenaAura('aura-arena-starvortex', false);
     const owned = JSON.parse(store['avatar_aura_owned_v1']);
     expect(owned['aura-mint']).toBe(true);
-    expect(owned['aura-arena-stardust']).toBe(true);
+    expect(owned['aura-arena-starvortex']).toBe(true);
   });
 
   it('пустой id → false', async () => {

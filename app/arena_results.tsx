@@ -15,6 +15,8 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
 import ArenaConfettiBurst from '../components/ArenaConfettiBurst';
+import { addBattlePassPoints } from './arena_battle_pass_store';
+import { bpForMatch } from './arena_battle_pass';
 import { subscribeSessionPlayers, subscribeSession, createRematchOffer, setRematchStatus } from './services/arena_db';
 import { ArenaSession, RematchOffer, REMATCH_TTL_MS, SessionPlayer, type RankTier } from './types/arena';
 import { updateMultipleTaskProgress } from './daily_tasks';
@@ -331,10 +333,15 @@ export default function DuelResultsScreen() {
   const recordArenaDailyOutcome = useCallback((isDraw: boolean, won: boolean) => {
     if (arenaDailyOutcomeRecordedRef.current) return;
     arenaDailyOutcomeRecordedRef.current = true;
+    // Очки боевого пропуска — за любой неприятельский матч (победа даёт больше).
+    // Дружеские матчи в пропуск не идут (как и в задания/рейтинг).
+    if (!isFriendMatch) {
+      void addBattlePassPoints(bpForMatch(won));
+    }
     if (isDraw) return;
     if (won) void bumpStatsDaily('arena_wins', 1);
     else void bumpStatsDaily('arena_losses', 1);
-  }, []);
+  }, [isFriendMatch]);
 
   const applyTaskProgressOnce = useCallback((won: boolean, opts?: { rankPromoted?: boolean }) => {
     if (taskProgressHandledRef.current) return;

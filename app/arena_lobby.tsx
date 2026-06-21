@@ -62,6 +62,10 @@ import { safeRouterBack } from './navigation_back';
 import DuoPressable from '../components/DuoPressable';
 import { USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import SeasonResultModal from '../components/SeasonResultModal';
+import ArenaRankProgressBar from '../components/ArenaRankProgressBar';
+import { buildBattlePassLadder, computeClaimables, countClaimable } from './arena_battle_pass';
+import { getBattlePassPoints, getClaimedFreeLevels, getClaimedPremiumLevels } from './arena_battle_pass_store';
+import { useFeatureAccess } from '../components/PremiumContext';
 import { detectSeasonChange, markSeasonSeen, claimSeasonReward, getMySeasonState } from './services/arena_season_client';
 import { quarterEndMs } from './arena_season_math';
 import {
@@ -177,6 +181,7 @@ export default function DuelLobbyScreen({ isTab = false }: {
         pl: "Gracz",
     }), [lang]);
     const { spendOne, isUnlimited, energy, bonusEnergy } = useEnergy();
+    const hasPremiumArena = useFeatureAccess('arena');
     const size: SessionSize = 2;
     const [userId, setUserId] = useState<string>('');
     const [stableUserId, setStableUserId] = useState<string>('');
@@ -193,6 +198,8 @@ export default function DuelLobbyScreen({ isTab = false }: {
     /** non-null = открыт inline-блок вызова другу. */
     const [friendRoomId, setFriendRoomId] = useState<string | null>(null);
     const [friendRoomReady, setFriendRoomReady] = useState(false);
+    /** Сколько наград боевого пропуска можно забрать сейчас (бейдж на строке пропуска). */
+    const [battlePassClaimable, setBattlePassClaimable] = useState(0);
     /** Скільки в пошуку зараз (агрегат app_meta, оновлює Cloud Function; не скануємо matchmaking_queue). */
     const [rawSearchingTotal, setRawSearchingTotal] = useState(0);
     /** Підказка «скільки шукають матч» у idle: день 1–7, ніч 20:00–08:00 — 1–2; не частіше ніж раз на хвилину. */
@@ -366,6 +373,24 @@ export default function DuelLobbyScreen({ isTab = false }: {
     // Предзагрузка «Трона дня» в фоне при входе в лобби — кладёт ответ в кэш,
     // чтобы ПЕРВОЕ открытие модала тоже было мгновенным (best-effort, тихо).
     useEffect(() => { void getTodayArenaHillTop().catch(() => {}); }, []);
+    // Сколько наград боевого пропуска готово к получению — для бейджа на строке пропуска.
+    useFocusEffect(useCallback(() => {
+        let cancelled = false;
+        (async () => {
+            try {
+                const [pts, cf, cp] = await Promise.all([
+                    getBattlePassPoints(),
+                    getClaimedFreeLevels(),
+                    getClaimedPremiumLevels(),
+                ]);
+                if (cancelled) return;
+                const states = computeClaimables(buildBattlePassLadder(), pts, cf, cp, hasPremiumArena);
+                setBattlePassClaimable(countClaimable(states));
+            } catch { /* best-effort */ }
+        })();
+        return () => { cancelled = true; };
+    }, [hasPremiumArena]));
+
     useFocusEffect(useCallback(() => {
         let cancelled = false;
         (async () => {
@@ -2018,6 +2043,17 @@ export default function DuelLobbyScreen({ isTab = false }: {
                   </Text>
                 </View>
 
+                {myRank.isHydrated ? (
+                  <ArenaRankProgressBar
+                    rankIndex={myRank.rankIndex}
+                    stars={myRank.stars}
+                    lang={lang}
+                    accent={t.accent}
+                    muted={screenMuted}
+                    trackColor={arenaGlass.innerBgSoft}
+                  />
+                ) : null}
+
                 <DuoPressable
                   testID="arena-find-match"
                   accessibilityLabel="qa-arena-find-match"
@@ -2317,6 +2353,73 @@ export default function DuelLobbyScreen({ isTab = false }: {
                           </Text>
                         </View>)}
                     </View>)}
+
+                  <DuoPressable
+                    testID="arena-battle-pass"
+                    accessible
+                    accessibilityRole="button"
+                    accessibilityLabel={triLang(lang, {
+                      ru: 'Боевой пропуск Арены',
+                      uk: 'Бойова перепустка Арени',
+                      es: 'Pase de batalla de Arena',
+                      'pt-BR': 'Passe de batalha da Arena',
+                      vi: 'Vé chiến đấu Đấu trường',
+                      id: 'Tiket pertempuran Arena',
+                      tr: 'Arena savaş bileti',
+                      pl: 'Karnet bojowy Areny',
+                    })}
+                    onPress={() => { hapticTap(); router.push('/arena_pass' as any); }}
+                    edgeColor={arenaGlass.commandEdge}
+                    style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}
+                  >
+                    <View style={[styles.arenaCommandIcon, { backgroundColor: 'transparent', borderColor: 'transparent' }]}>
+                      <Ionicons name="trophy" size={22} color={t.gold} />
+                    </View>
+                    <View style={styles.arenaCommandCopy}>
+                      <Text style={[styles.arenaCommandTitle, { color: screenTitleColor, fontSize: f.sub }]}>
+                        {triLang(lang, {
+                          ru: 'Боевой пропуск',
+                          uk: 'Бойова перепустка',
+                          es: 'Pase de batalla',
+                          'pt-BR': 'Passe de batalha',
+                          vi: 'Vé chiến đấu',
+                          id: 'Tiket pertempuran',
+                          tr: 'Savaş bileti',
+                          pl: 'Karnet bojowy',
+                        })}
+                      </Text>
+                      <Text style={[styles.arenaCommandSub, { color: screenMuted, fontSize: f.caption }]}>
+                        {battlePassClaimable > 0
+                          ? triLang(lang, {
+                              ru: `Готово наград: ${battlePassClaimable}`,
+                              uk: `Готово нагород: ${battlePassClaimable}`,
+                              es: `Recompensas listas: ${battlePassClaimable}`,
+                              'pt-BR': `Recompensas prontas: ${battlePassClaimable}`,
+                              vi: `Phần thưởng sẵn: ${battlePassClaimable}`,
+                              id: `Hadiah siap: ${battlePassClaimable}`,
+                              tr: `Hazır ödül: ${battlePassClaimable}`,
+                              pl: `Gotowe nagrody: ${battlePassClaimable}`,
+                            })
+                          : triLang(lang, {
+                              ru: 'Сезонные награды за матчи',
+                              uk: 'Сезонні нагороди за матчі',
+                              es: 'Recompensas de temporada por partidas',
+                              'pt-BR': 'Recompensas da temporada por partidas',
+                              vi: 'Phần thưởng mùa giải qua trận đấu',
+                              id: 'Hadiah musim dari pertandingan',
+                              tr: 'Maçlardan sezon ödülleri',
+                              pl: 'Sezonowe nagrody za mecze',
+                            })}
+                      </Text>
+                    </View>
+                    {battlePassClaimable > 0 ? (
+                      <View style={[styles.bpBadge, { backgroundColor: t.gold }]}>
+                        <Text style={styles.bpBadgeText}>{battlePassClaimable}</Text>
+                      </View>
+                    ) : (
+                      <Ionicons name="chevron-forward" size={18} color={screenMuted} />
+                    )}
+                  </DuoPressable>
 
                   <DuoPressable testID="arena-throne-info" accessible accessibilityRole="button" accessibilityLabel={triLang(lang, {
                 ru: 'Трон дня. Открыть топ игроков за день',
@@ -2846,6 +2949,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 12,
     },
+    bpBadge: {
+        minWidth: 24, height: 24, borderRadius: 12, paddingHorizontal: 7,
+        alignItems: 'center', justifyContent: 'center',
+    },
+    bpBadgeText: { color: '#1A1206', fontWeight: '900', fontSize: 13 },
     arenaCommandActionText: { fontWeight: '900', flexShrink: 0 },
     arenaFriendsPanel: {
         borderRadius: 20,

@@ -14,6 +14,7 @@ export type OverlayKey =
   | 'leagueResult'
   | 'streakRevive'
   | 'entitlementExpired'
+  | 'referralWelcome'
   | 'compassBriefing'
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
@@ -44,6 +45,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'leagueResult',
   'streakRevive',
   'entitlementExpired',
+  'referralWelcome',
   'compassBriefing',
   'lessonCompleteNotif',
   'arenaRoomConfirm',
@@ -73,6 +75,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   leagueResult: false,
   streakRevive: false,
   entitlementExpired: false,
+  referralWelcome: false,
   compassBriefing: false,
   lessonCompleteNotif: false,
   arenaRoomConfirm: false,

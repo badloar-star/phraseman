@@ -73,6 +73,7 @@ import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
+import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
@@ -2482,6 +2483,7 @@ export default function RootLayout() {
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
+                    <ReferralWelcomeHost />
                     <GlobalFriendGiftHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />

@@ -104,7 +104,7 @@ const {
   referralListMyInvites,
 } = require('./referral');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { premiumDialogSend } = require('./premium_dialog');
+const { premiumDialogSend, premiumDialogTranslate } = require('./premium_dialog');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { weeklyReviewGenerate } = require('./weekly_review');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -112,6 +112,8 @@ const { statsInsightsGenerate } = require('./stats_insights');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require('./explain_phrase');
 const { explainChoice } = require('./explain_choice');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { explainQuiz } = require('./explain_quiz');
 const { compassGenerate } = require('./compass');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
@@ -197,10 +199,12 @@ exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
+exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.weeklyReviewGenerate = weeklyReviewGenerate;
 exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
+exports.explainQuiz = explainQuiz;
 exports.compassGenerate = compassGenerate;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
@@ -1315,6 +1319,9 @@ export { friendSendGift } from './friend_gifts';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
+
+// ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
+export { promoCodeRedeem, promoCodeUpsert } from './promo_codes';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
 export { openAiJobsConfig } from './openai_jobs_config';

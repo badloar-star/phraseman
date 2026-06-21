@@ -20,6 +20,9 @@ import {
   shouldForceUpdate,
   isForceUpdateEnabled,
   getMinAppVersion,
+  parsePromoUntilMs,
+  shouldShowPromoBanner,
+  isPromoBannerEnabled,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -267,6 +270,48 @@ describe('remote_flags', () => {
       });
       expect(isForceUpdateEnabled()).toBe(true);
       expect(getMinAppVersion()).toBe('2.0.0');
+    });
+  });
+
+  describe('промо-баннер', () => {
+    it('флаг по умолчанию выключен', () => {
+      expect(isPromoBannerEnabled()).toBe(false);
+    });
+
+    describe('parsePromoUntilMs', () => {
+      it('ISO-дата → ms', () => {
+        expect(parsePromoUntilMs('2026-07-01')).toBe(Date.parse('2026-07-01'));
+      });
+      it('числовой ms-таймстамп', () => {
+        expect(parsePromoUntilMs('1800000000000')).toBe(1800000000000);
+      });
+      it('пусто/мусор → null (бессрочно)', () => {
+        expect(parsePromoUntilMs('')).toBeNull();
+        expect(parsePromoUntilMs('завтра')).toBeNull();
+      });
+    });
+
+    describe('shouldShowPromoBanner', () => {
+      it('выключенный флаг → не показывать', () => {
+        expect(shouldShowPromoBanner({ enabled: false, untilRaw: '', nowMs: 1000 })).toBe(false);
+      });
+      it('включён + срок не задан → показывать (бессрочно)', () => {
+        expect(shouldShowPromoBanner({ enabled: true, untilRaw: '', nowMs: 1000 })).toBe(true);
+      });
+      it('включён + срок ещё не истёк → показывать', () => {
+        expect(shouldShowPromoBanner({ enabled: true, untilRaw: '5000', nowMs: 1000 })).toBe(true);
+      });
+      it('включён + срок истёк → не показывать', () => {
+        expect(shouldShowPromoBanner({ enabled: true, untilRaw: '1000', nowMs: 5000 })).toBe(false);
+      });
+    });
+
+    it('снапшот включает баннер и задаёт текст', () => {
+      applyRemoteConfigSnapshot({
+        bools: { promo_banner_enabled: true },
+        texts: { promo_banner_text_ru: 'Скидка!', promo_banner_url: 'https://x', promo_banner_until: '' },
+      });
+      expect(isPromoBannerEnabled()).toBe(true);
     });
   });
 });

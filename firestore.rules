@@ -1006,6 +1006,14 @@ service cloud.firestore {
         allow update, delete: if false;
       }
 
+      // Маркеры активации промокодов. Пишет ТОЛЬКО сервер (promoCodeRedeem, Admin SDK).
+      // Владелец может прочитать (приложение видит, что код уже активирован), но не
+      // создавать/менять — иначе обход «один код на юзера» и самовыдача премиума.
+      match /promo_redemptions/{code} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
+      }
+
       match /app_message_states/{messageId} {
         allow read, create, update, delete: if userDocOwnerMatchesAuth(userId);
       }
@@ -1807,6 +1815,14 @@ service cloud.firestore {
     match /explain_report_entries/{docId} {
       allow read, update, delete: if isAdmin();
       allow create: if false;
+    }
+
+    // Промокоды-награды: админ создаёт/правит из «Пульта», читает статистику.
+    // Активация идёт через CF promoCodeRedeem (Admin SDK) — клиентам прямой доступ
+    // не нужен и запрещён (нельзя подсмотреть/подменить rewardDays/usedCount).
+    match /promo_codes/{code} {
+      allow read, write: if isAdmin();
+      allow read, write: if false;
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

@@ -8849,6 +8849,65 @@
     </div>
   </div>
 
+  <!-- 🎟 ПРОМОКОДЫ-НАГРАДЫ: код → дни премиума (создаёт админ, активирует юзер) -->
+  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:15px;font-weight:800;color:#a78bfa">🎟 Промокоды-награды</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      Создай код (напр. <code style="color:#a78bfa">WELCOME7</code>) — юзер вводит его в приложении и получает
+      <b>дни премиума</b>. Это НЕ скидка на цену подписки (её задают сторы), а выдача доступа за код.
+      Кап и срок — необязательны (0/пусто = без лимита/бессрочно). Правка существующего кода не сбрасывает счётчик активаций.
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Код (3–32: A-Z 0-9 _ -)
+        <input type="text" id="cp-promo-code" placeholder="WELCOME7" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;text-transform:uppercase"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Дней премиума (1–3650)
+        <input type="number" id="cp-promo-days" min="1" max="3650" placeholder="7" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Лимит активаций (0 = ∞)
+        <input type="number" id="cp-promo-max" min="0" placeholder="0" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Действует до (пусто = ∞)
+        <input type="date" id="cp-promo-until" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap">
+      <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#cbd5e1;cursor:pointer"><input type="checkbox" id="cp-promo-enabled" checked style="width:16px;height:16px"/> Включён сразу</label>
+      <input type="text" id="cp-promo-note" placeholder="Заметка (необязательно)" style="flex:1;min-width:160px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+      <button type="button" onclick="savePromoCode()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Создать / обновить код</button>
+      <button type="button" onclick="loadPromoCodes()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить список</button>
+      <span id="cp-promo-status" style="font-size:12px;color:#6b7280"></span>
+    </div>
+    <div id="cp-promo-list" style="margin-top:12px;display:flex;flex-direction:column;gap:6px"></div>
+  </div>
+
+  <!-- 🎉 ПРОМО-БАННЕР (акция): управляемая плашка в приложении -->
+  <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
+    <div style="font-size:15px;font-weight:800;color:#a78bfa">🎉 Промо-баннер (акция)</div>
+    <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
+      Плашка-акция вверху приложения. Текст по языкам, необязательная ссылка по тапу и срок окончания
+      (пусто = бессрочно). Сама скидка настраивается в сторах отдельно — баннер только зовёт.
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:12px 0 4px;margin-top:6px;border-top:1px solid #23232f">
+      <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Промо-баннер включён</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл = баннер скрыт у всех.</div></div>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-promo_banner_enabled" onchange="saveControlPanelBool('promo_banner_enabled', this.checked)" disabled style="width:42px;height:24px;cursor:pointer"/><span id="cp-bool-label-promo_banner_enabled" style="font-size:12px;font-weight:700;color:#9ca3af;min-width:34px">…</span></label>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">🇷🇺 Текст (RU)
+        <input type="text" id="cp-promo-banner-ru" placeholder="🎉 Специальное предложение — успей!" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">🇺🇦 Текст (UK)
+        <input type="text" id="cp-promo-banner-uk" placeholder="(пусто = RU как фолбэк)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">🇪🇸 Текст (ES)
+        <input type="text" id="cp-promo-banner-es" placeholder="(пусто = RU как фолбэк)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Ссылка по тапу (необязательно)
+        <input type="text" id="cp-promo-banner-url" placeholder="https://… (пусто = баннер некликабельный)" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Действует до (пусто = ∞)
+        <input type="date" id="cp-promo-banner-until" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/></label>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+      <button type="button" onclick="savePromoBanner()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить баннер</button>
+      <span id="cp-promo-banner-status" style="font-size:12px;color:#6b7280"></span>
+    </div>
+  </div>
+
   <!-- 💎 ПРЕМИУМ / ФРИ: единый контроль платных фич, лимитов и поурочной разблокировки -->
   <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
     <div style="font-size:15px;font-weight:800;color:#fbbf24">💎 Премиум / Фри — что платно, а что бесплатно</div>
@@ -21940,6 +21999,8 @@
     if (typeof window.loadControlPanelBoons === 'function') void window.loadControlPanelBoons();
     if (typeof window.loadWeeklyBoons === 'function') void window.loadWeeklyBoons();
     if (typeof window.loadControlPanelForceUpdate === 'function') void window.loadControlPanelForceUpdate();
+    if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
+    if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя
@@ -22125,6 +22186,107 @@
       cpForceStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
     } catch (e) {
       cpForceStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+
+  // ── Промокоды-награды (callable promoCodeUpsert + список promo_codes) ───────
+  function cpPromoStatus(msg, color) {
+    const el = document.getElementById('cp-promo-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  let _fnPromoUpsert = null;
+  window.savePromoCode = async function() {
+    const get = (id) => { const el = document.getElementById(id); return el ? String(el.value || '').trim() : ''; };
+    const code = get('cp-promo-code').toUpperCase();
+    if (!/^[A-Z0-9_-]{3,32}$/.test(code)) { cpPromoStatus('❌ Код 3–32 символа: A-Z, 0-9, _ или -.', '#f87171'); return; }
+    const days = parseInt(get('cp-promo-days') || '0', 10);
+    if (!(days >= 1 && days <= 3650)) { cpPromoStatus('❌ Дней премиума: 1–3650.', '#f87171'); return; }
+    const maxRedemptions = Math.max(0, parseInt(get('cp-promo-max') || '0', 10) || 0);
+    const untilStr = get('cp-promo-until');
+    let expiresAtMs = 0;
+    if (untilStr) { const t = Date.parse(untilStr + 'T23:59:59'); if (Number.isFinite(t)) expiresAtMs = t; }
+    const enabledEl = document.getElementById('cp-promo-enabled');
+    const enabled = !enabledEl || enabledEl.checked;
+    const note = get('cp-promo-note').slice(0, 200);
+    cpPromoStatus('Сохранение…');
+    try {
+      if (!_fnPromoUpsert) _fnPromoUpsert = httpsCallable(functionsUs, 'promoCodeUpsert');
+      await _fnPromoUpsert({ code, rewardDays: days, maxRedemptions, expiresAtMs, enabled, note });
+      cpPromoStatus('✅ Код «' + code + '» сохранён.', '#4ade80');
+      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
+    } catch (e) {
+      cpPromoStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+  window.loadPromoCodes = async function() {
+    const box = document.getElementById('cp-promo-list');
+    if (!box) return;
+    try {
+      const snap = await getDocs(query(collection(db, 'promo_codes'), orderBy('updatedAtMs', 'desc'), limit(50)));
+      if (snap.empty) { box.innerHTML = '<div style="font-size:12px;color:#6b7280">Кодов пока нет — создай первый выше.</div>'; return; }
+      box.innerHTML = snap.docs.map((d) => {
+        const r = d.data() || {};
+        const used = Number(r.usedCount || 0);
+        const max = Number(r.maxRedemptions || 0);
+        const on = r.enabled === true;
+        const exp = Number(r.expiresAtMs || 0);
+        const expStr = exp > 0 ? new Date(exp).toISOString().slice(0, 10) : '∞';
+        const limStr = max > 0 ? (used + '/' + max) : (used + '/∞');
+        return '<div style="display:flex;align-items:center;gap:10px;background:#13131c;border:1px solid #23232f;border-radius:8px;padding:9px 12px;flex-wrap:wrap">'
+          + '<span style="font-family:ui-monospace,monospace;font-weight:800;color:#e9d5ff">' + escapeHtml(String(d.id)) + '</span>'
+          + '<span style="font-size:11px;padding:2px 7px;border-radius:4px;background:' + (on ? '#14321f' : '#3a1414') + ';color:' + (on ? '#4ade80' : '#f87171') + ';font-weight:700">' + (on ? 'вкл' : 'выкл') + '</span>'
+          + '<span style="font-size:12px;color:#cbd5e1">' + Number(r.rewardDays || 0) + ' дн.</span>'
+          + '<span style="font-size:12px;color:#9ca3af">актив.: ' + escapeHtml(limStr) + '</span>'
+          + '<span style="font-size:12px;color:#9ca3af">до: ' + escapeHtml(expStr) + '</span>'
+          + (r.note ? '<span style="font-size:11px;color:#6b7280">' + escapeHtml(String(r.note)) + '</span>' : '')
+          + '</div>';
+      }).join('');
+    } catch (e) {
+      box.innerHTML = '<div style="font-size:12px;color:#f87171">Ошибка списка: ' + escapeHtml(e && e.message ? e.message : String(e)) + '</div>';
+    }
+  };
+
+  // ── Промо-баннер (флаг promo_banner_enabled + тексты promo_banner_*) ────────
+  function cpPromoBannerStatus(msg, color) {
+    const el = document.getElementById('cp-promo-banner-status');
+    if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
+  }
+  window.loadControlPanelPromoBanner = async function() {
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      const bools = (data && data.bools && typeof data.bools === 'object') ? data.bools : {};
+      const texts = (data && data.texts && typeof data.texts === 'object') ? data.texts : {};
+      const on = bools.promo_banner_enabled === true;
+      const cb = document.getElementById('cp-bool-promo_banner_enabled');
+      const lbl = document.getElementById('cp-bool-label-promo_banner_enabled');
+      if (cb) { cb.checked = on; cb.disabled = false; }
+      if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.style.color = on ? '#4ade80' : '#9ca3af'; }
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+      set('cp-promo-banner-ru', texts.promo_banner_text_ru);
+      set('cp-promo-banner-uk', texts.promo_banner_text_uk);
+      set('cp-promo-banner-es', texts.promo_banner_text_es);
+      set('cp-promo-banner-url', texts.promo_banner_url);
+      // until хранится ISO/ms; в поле date кладём YYYY-MM-DD если распознаём.
+      const until = String(texts.promo_banner_until || '');
+      const dEl = document.getElementById('cp-promo-banner-until');
+      if (dEl) dEl.value = /^\d{4}-\d{2}-\d{2}/.test(until) ? until.slice(0, 10) : '';
+    } catch (_) { /* некритично */ }
+  };
+  window.savePromoBanner = async function() {
+    const get = (id) => { const el = document.getElementById(id); return el ? String(el.value || '').trim() : ''; };
+    cpPromoBannerStatus('Сохранение…');
+    try {
+      await window.saveControlPanelTexts({
+        promo_banner_text_ru: get('cp-promo-banner-ru'),
+        promo_banner_text_uk: get('cp-promo-banner-uk'),
+        promo_banner_text_es: get('cp-promo-banner-es'),
+        promo_banner_url: get('cp-promo-banner-url'),
+        promo_banner_until: get('cp-promo-banner-until'),
+      });
+      cpPromoBannerStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
+    } catch (e) {
+      cpPromoBannerStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
   };
 

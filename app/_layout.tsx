@@ -35,6 +35,7 @@ import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import MaintenanceGate from '../components/MaintenanceGate';
 import ForceUpdateGate from '../components/ForceUpdateGate';
+import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import { getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
@@ -2228,6 +2229,7 @@ function AppContent() {
       <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
       <Stack.Screen name="referral_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="referrals" options={{ headerShown: false, animation: 'slide_from_right' }} />
+      <Stack.Screen name="promo_code_entry" options={{ headerShown: false, animation: 'slide_from_right' }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_audio" />
@@ -2446,6 +2448,9 @@ function AppContent() {
 
     {/* Force-update — поверх обслуживания: если версия устарела, ничего не доступно. */}
     <ForceUpdateGate />
+
+    {/* Промо-баннер акции (под блокирующими гейтами) — управляется из «Пульта». */}
+    <PromoBanner />
 
     </View>
   );

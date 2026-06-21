@@ -81,6 +81,10 @@ export type RemoteBoolKey =
   // — ForceUpdateGate показывает полноэкранный блок «обнови приложение». Версия и
   // ссылки на сторы — в текстовых ключах ниже. Управляется из «Пульта» живьём.
   | 'force_update_enabled'
+  // Промо-баннер (акция). Дефолт FALSE. true → в приложении показывается
+  // управляемый из «Пульта» баннер акции (текст/ссылка/срок в текстовых ключах).
+  // Сама скидка на подписку настраивается в сторах отдельно — баннер только зовёт.
+  | 'promo_banner_enabled'
   // ── Премиум-гейты фич (управляются из «Пульта» → раздел «Премиум/Фри») ──────
   // Семантика: true = фича за ПРЕМИУМ-замком (как сейчас), false = фича БЕСПЛАТНА
   // для всех (замок снимается живьём, без релиза). Дефолт TRUE у каждого, чтобы
@@ -130,7 +134,15 @@ export type RemoteTextKey =
   | 'min_app_version'
   // Ссылки на сторы для кнопки «Обновить» в блоке force-update (по платформе).
   | 'store_url_ios'
-  | 'store_url_android';
+  | 'store_url_android'
+  // Промо-баннер (акция): локализованный текст (ru/uk/es), необяз. ссылка по тапу
+  // и срок окончания (ISO-дата "2026-07-01" или ms). Пусто = текст по умолчанию /
+  // без ссылки / бессрочно. Баннер виден только при promo_banner_enabled=true.
+  | 'promo_banner_text_ru'
+  | 'promo_banner_text_uk'
+  | 'promo_banner_text_es'
+  | 'promo_banner_url'
+  | 'promo_banner_until';
 
 /**
  * Default free trainer sessions per day. Exported for call sites that need the
@@ -221,6 +233,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
   force_update_enabled: false,
+  // Промо-баннер (акция): дефолт FALSE. Включается из «Пульта» на время акции.
+  promo_banner_enabled: false,
   // Первый экран онбординга «только план»: дефолт FALSE = старый экран с двумя
   // кнопками. true → одна кнопка «Составить мой план» + иной текст (см. описание
   // ключа выше). Меняется у всех живьём из «Пульта».
@@ -257,6 +271,11 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   min_app_version: '',
   store_url_ios: '',
   store_url_android: '',
+  promo_banner_text_ru: '',
+  promo_banner_text_uk: '',
+  promo_banner_text_es: '',
+  promo_banner_url: '',
+  promo_banner_until: '',
 };
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
@@ -475,6 +494,53 @@ export function shouldForceUpdate(params: {
   if (!enabled) return false;
   if (!String(minVersion || '').trim()) return false;
   return isVersionBelow(currentVersion, minVersion);
+}
+
+// ── Промо-баннер (акция) ─────────────────────────────────────────────────────
+/** Включён ли промо-баннер. Дефолт false. */
+export const isPromoBannerEnabled = () => getRemoteBool('promo_banner_enabled');
+/** Ссылка по тапу на баннер (необяз.). */
+export const getPromoBannerUrl = () => getRemoteText('promo_banner_url');
+/** Срок окончания акции: ISO-дата "2026-07-01" или ms-таймстамп. Пусто = бессрочно. */
+export const getPromoBannerUntil = () => getRemoteText('promo_banner_until');
+/** Локализованный текст баннера (ru/uk/es; для прочих языков — ru как фолбэк). */
+export function getPromoBannerText(lang: string): string {
+  const l = String(lang || '').toLowerCase();
+  if (l.startsWith('uk')) return getRemoteText('promo_banner_text_uk');
+  if (l.startsWith('es')) return getRemoteText('promo_banner_text_es');
+  return getRemoteText('promo_banner_text_ru');
+}
+
+/**
+ * Парсит срок акции в ms. Поддерживает ISO-дату ("2026-07-01") и числовой ms.
+ * Пусто/мусор → null (бессрочно). Чистая, экспортируется для тестов.
+ */
+export function parsePromoUntilMs(raw: string): number | null {
+  const s = String(raw || '').trim();
+  if (!s) return null;
+  if (/^\d{10,}$/.test(s)) {
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  const t = Date.parse(s);
+  return Number.isFinite(t) ? t : null;
+}
+
+/**
+ * Решение: показывать ли промо-баннер. Чистая функция (флаг/срок/now явно — для
+ * тестов без Firestore). Показываем при включённом флаге И если срок не задан
+ * либо ещё не истёк. Пустой срок = бессрочная акция.
+ */
+export function shouldShowPromoBanner(params: {
+  enabled: boolean;
+  untilRaw: string;
+  nowMs: number;
+}): boolean {
+  const { enabled, untilRaw, nowMs } = params;
+  if (!enabled) return false;
+  const until = parsePromoUntilMs(untilRaw);
+  if (until == null) return true; // бессрочно
+  return nowMs < until;
 }
 
 /**

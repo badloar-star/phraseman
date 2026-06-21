@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -45,6 +46,38 @@ const getDb = () => {
     return require('@react-native-firebase/firestore').default();
   } catch { return null; }
 };
+
+const getCurrentAuthUid = (): string | null => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('@react-native-firebase/auth').default().currentUser?.uid ?? null;
+  } catch { return null; }
+};
+
+/**
+ * Self-registers users/{ownerStableId}/friend_auth_edges/{myAuthUid} so the my_events
+ * read rule can verify the requester is a friend (rules can't map authUid -> stableId).
+ * The create-gate in firestore.rules re-checks the owner->me friendship edge + identity,
+ * so writing this is harmless if not actually friends (it would be rejected). Idempotent:
+ * a 'merge: true' set on an existing edge is cheap; failures are swallowed (read still tries).
+ */
+async function ensureFriendAuthEdge(
+  db: ReturnType<typeof getDb>,
+  ownerStableId: string,
+  myStableId: string,
+  myAuthUid: string,
+): Promise<void> {
+  if (!db) return;
+  try {
+    await db
+      .collection('users')
+      .doc(ownerStableId)
+      .collection('friend_auth_edges')
+      .doc(myAuthUid)
+      .set({ readerStableId: myStableId, createdAt: Date.now() }, { merge: true });
+  } catch { /* not friends / transient — read will simply yield nothing for this owner */ }
+}
 
 // ── Write my own event ────────────────────────────────────────────────────────
 
@@ -96,6 +129,18 @@ export async function fetchFriendsActivityFeed(
   // 2. Фетч из Firestore
   const db = getDb();
   if (!db) return cached?.events ?? [];
+
+  // Перед чтением чужого my_events регистрируем reverse-edge friend_auth_edges, иначе
+  // правило (rules не умеют authUid -> stableId) отвергнет чтение и лента будет пустой.
+  // Нужны мой stableId + authUid + записанный firebaseAuthUid (forward-проверка правила).
+  const myStableId = await ensureAnonUser().catch(() => null);
+  const myAuthUid = getCurrentAuthUid();
+  if (myStableId && myAuthUid) {
+    await ensureStableAuthLink().catch(() => false);
+    await Promise.all(
+      friendUids.map(uid => ensureFriendAuthEdge(db, uid, myStableId, myAuthUid)),
+    );
+  }
 
   try {
     const perFriendSnaps = await Promise.all(

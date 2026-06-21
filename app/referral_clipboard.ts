@@ -20,8 +20,27 @@ import { captureReferralCodeIfNew, tryApplyPendingReferral } from './referral_bo
 import { isReferralCloudEnabled } from './referral_flags';
 
 const CLIPBOARD_CHECKED_KEY = 'referral_clipboard_checked_v1';
+const CLIPBOARD_ATTEMPTS_KEY = 'referral_clipboard_attempts_v1';
 const PENDING_REF_KEY = 'pending_referral_code';
 const MAX_CLIPBOARD_TEXT_LEN = 2048;
+/**
+ * Сколько РЕАЛЬНЫХ чтений буфера (с iOS-промптом) допускаем за установку, прежде чем
+ * окончательно сдаться. Раньше была ровно 1 попытка, и если на первом старте в буфере
+ * лежал чужой текст (не инвайт) — флаг «проверено» ставился навсегда и настоящую ссылку,
+ * скопированную позже, мы уже не ловили. Несколько попыток на разных стартах резко
+ * поднимают долю пойманных iOS-рефералов, оставаясь бережными к промпту вставки.
+ */
+const MAX_CLIPBOARD_ATTEMPTS = 3;
+
+async function readAttempts(): Promise<number> {
+  try {
+    const raw = await AsyncStorage.getItem(CLIPBOARD_ATTEMPTS_KEY);
+    const n = Math.floor(Number(raw ?? 0));
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  } catch {
+    return 0;
+  }
+}
 
 /**
  * Чистая функция: достаёт ref-код из текста буфера. Принимаем ТОЛЬКО ссылку
@@ -44,24 +63,39 @@ export async function checkClipboardForReferralOnce(): Promise<void> {
   try {
     if (Platform.OS !== 'ios') return;
     if (!isReferralCloudEnabled()) return; // RC мог не подтянуться — попробуем в следующий старт
+    // CHECKED_KEY ставится ТОЛЬКО при успехе (нашли код) или исчерпании попыток — навсегда.
     if (await AsyncStorage.getItem(CLIPBOARD_CHECKED_KEY)) return;
     // Код уже ждёт применения (deeplink успел) — буфер не нужен, промпт не показываем.
     if (await AsyncStorage.getItem(PENDING_REF_KEY)) {
       await AsyncStorage.setItem(CLIPBOARD_CHECKED_KEY, '1');
       return;
     }
-    // Без промпта: пустой буфер не сжигает единственную попытку чтения.
+    // Без промпта: пустой буфер НЕ тратит попытку — просто выходим до следующего старта.
     const hasText = await Clipboard.hasStringAsync();
     if (!hasText) return;
 
-    const text = await Clipboard.getStringAsync(); // ← здесь iOS покажет промпт
-    await AsyncStorage.setItem(CLIPBOARD_CHECKED_KEY, '1');
+    // Есть какой-то текст → тратим одну попытку чтения (именно тут iOS покажет промпт).
+    const attempts = (await readAttempts()) + 1;
+    await AsyncStorage.setItem(CLIPBOARD_ATTEMPTS_KEY, String(attempts));
 
+    const text = await Clipboard.getStringAsync(); // ← здесь iOS покажет промпт
     const code = extractRefFromClipboardText(text);
-    if (!code) return;
-    logEvent('referral_clipboard_found', { ref_len: code.length });
-    await captureReferralCodeIfNew(code, 'clipboard');
-    await tryApplyPendingReferral().catch(() => {});
+
+    if (code) {
+      // Успех: код найден — больше не читаем буфер никогда.
+      await AsyncStorage.setItem(CLIPBOARD_CHECKED_KEY, '1');
+      logEvent('referral_clipboard_found', { ref_len: code.length, attempt: attempts });
+      await captureReferralCodeIfNew(code, 'clipboard');
+      await tryApplyPendingReferral().catch(() => {});
+      return;
+    }
+
+    // Кода нет (чужой текст). Сдаёмся НАВСЕГДА только когда исчерпали попытки — иначе
+    // даём шанс поймать настоящую ссылку, скопированную позже, на следующих стартах.
+    if (attempts >= MAX_CLIPBOARD_ATTEMPTS) {
+      await AsyncStorage.setItem(CLIPBOARD_CHECKED_KEY, '1');
+      logEvent('referral_clipboard_exhausted', { attempts });
+    }
   } catch {
     /* буфер недоступен/пользователь запретил вставку — молча пропускаем */
   }

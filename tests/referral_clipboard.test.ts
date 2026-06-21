@@ -112,13 +112,41 @@ describe('checkClipboardForReferralOnce — бережём промпт вста
     expect(mockStorage.referral_clipboard_checked_v1).toBeUndefined();
   });
 
-  it('мусор в буфере: флаг ставится, capture не зовётся', async () => {
+  it('мусор в буфере (1 раз): попытка тратится, но финальный флаг НЕ ставится — даём ещё шанс', async () => {
     (Clipboard.hasStringAsync as jest.Mock).mockResolvedValue(true);
     (Clipboard.getStringAsync as jest.Mock).mockResolvedValue('случайный текст');
 
     await checkClipboardForReferralOnce();
 
     expect(captureReferralCodeIfNew).not.toHaveBeenCalled();
+    // Раньше флаг ставился навсегда с первого мусора и убивал поздно скопированную ссылку.
+    expect(mockStorage.referral_clipboard_checked_v1).toBeUndefined();
+    expect(mockStorage.referral_clipboard_attempts_v1).toBe('1');
+  });
+
+  it('мусор в буфере 3 раза подряд: после исчерпания попыток флаг ставится навсегда', async () => {
+    (Clipboard.hasStringAsync as jest.Mock).mockResolvedValue(true);
+    (Clipboard.getStringAsync as jest.Mock).mockResolvedValue('случайный текст');
+
+    await checkClipboardForReferralOnce();
+    await checkClipboardForReferralOnce();
+    await checkClipboardForReferralOnce();
+
+    expect(captureReferralCodeIfNew).not.toHaveBeenCalled();
+    expect(mockStorage.referral_clipboard_attempts_v1).toBe('3');
+    expect(mockStorage.referral_clipboard_checked_v1).toBe('1');
+  });
+
+  it('мусор, затем настоящая ссылка на следующем старте: код ловится (поздняя вставка)', async () => {
+    (Clipboard.hasStringAsync as jest.Mock).mockResolvedValue(true);
+    (Clipboard.getStringAsync as jest.Mock).mockResolvedValueOnce('случайный текст');
+    await checkClipboardForReferralOnce();
+    expect(captureReferralCodeIfNew).not.toHaveBeenCalled();
+
+    (Clipboard.getStringAsync as jest.Mock).mockResolvedValueOnce('phraseman://invite?ref=AAAA11');
+    await checkClipboardForReferralOnce();
+
+    expect(captureReferralCodeIfNew).toHaveBeenCalledWith('AAAA11', 'clipboard');
     expect(mockStorage.referral_clipboard_checked_v1).toBe('1');
   });
 

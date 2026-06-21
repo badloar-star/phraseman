@@ -34,6 +34,17 @@ const getFirestore = () => {
   }
 };
 
+/** Текущий firebase auth uid (для удаления своего friend_auth_edges при разрыве дружбы). */
+function getCurrentAuthUidForFriends(): string | null {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('@react-native-firebase/auth').default().currentUser?.uid ?? null;
+  } catch {
+    return null;
+  }
+}
+
 function logFriendsHealth(
   context: string,
   error: unknown,
@@ -294,6 +305,14 @@ export async function deleteFriend(friendUid: string): Promise<void> {
 
   batch.delete(db.collection('users').doc(myUid).collection('friends').doc(friendUid));
   batch.delete(db.collection('users').doc(friendUid).collection('friends').doc(myUid));
+  // Снимаем мой reverse-edge на стороне экс-друга, чтобы он больше не мог читать мою ленту
+  // активности (friend_auth_edges keyed by МОЙ authUid; rule разрешает delete своего же edge).
+  const myAuthUid = getCurrentAuthUidForFriends();
+  if (myAuthUid) {
+    batch.delete(
+      db.collection('users').doc(friendUid).collection('friend_auth_edges').doc(myAuthUid),
+    );
+  }
   // Only delete own request doc — security rules forbid deleting the other user\'s subcollection.
   // Stale request on their side is handled by sendFriendRequest on next add attempt.
   batch.delete(db.collection('users').doc(myUid).collection('friend_requests').doc(friendUid));

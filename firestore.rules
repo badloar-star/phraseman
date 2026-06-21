@@ -1407,9 +1407,35 @@ service cloud.firestore {
       allow delete: if canonicalUserMatchesAuth(ownerUid) || canonicalUserMatchesAuth(friendUid);
     }
 
+    // Reverse auth-edge so a friend can be addressed inside rules by their AUTH uid.
+    // Firestore rules cannot map request.auth.uid -> the requester's stableId (no reverse
+    // index), so a friend reading users/{owner}/my_events cannot be verified directly.
+    // Fix: the READER self-registers users/{ownerUid}/friend_auth_edges/{readerAuthUid}
+    // before reading the feed. The create-gate proves all three of:
+    //   (a) request.auth.uid == readerAuthUid        — you can only register yourself;
+    //   (b) the reader truly owns the claimed stableId (forward firebaseAuthUid check);
+    //   (c) the owner->reader friendship edge exists  — they really are friends
+    //       (that edge can only have been created via the validated accept flow above).
+    // readerStableId is supplied in the doc body so the rule can name the friendship edge.
+    match /users/{ownerUid}/friend_auth_edges/{readerAuthUid} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.auth.uid == readerAuthUid
+        && request.resource.data.readerStableId is string
+        && exists(/databases/$(database)/documents/users/$(request.resource.data.readerStableId))
+        && get(/databases/$(database)/documents/users/$(request.resource.data.readerStableId)).data.firebaseAuthUid == request.auth.uid
+        && exists(/databases/$(database)/documents/users/$(ownerUid)/friends/$(request.resource.data.readerStableId));
+      allow update: if false;
+      allow delete: if request.auth != null && request.auth.uid == readerAuthUid;
+    }
+
     // Friend activity feed: users/{stableUid}/my_events/{eventId}.
+    // Readable by: the owner, an admin, or a confirmed friend (via friend_auth_edges above).
     match /users/{userId}/my_events/{eventId} {
-      allow read: if canonicalUserMatchesAuth(userId) || isAdmin();
+      allow read: if canonicalUserMatchesAuth(userId)
+        || isAdmin()
+        || (request.auth != null
+            && exists(/databases/$(database)/documents/users/$(userId)/friend_auth_edges/$(request.auth.uid)));
       allow create, update, delete: if isAdmin();
     }
 

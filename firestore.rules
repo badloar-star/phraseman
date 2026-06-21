@@ -49,6 +49,26 @@ service cloud.firestore {
         ]);
     }
 
+    // Create-вариант shard-гарда. На create нет resource (старого документа), поэтому
+    // diff невозможен — проверяем НАЛИЧИЕ топ-уровневых shard-полей в самом новом
+    // документе. Закрывает дыру: allow create не звал hasNoShardWrites, и кастомный
+    // клиент мог при ПЕРВОМ создании users/{id} вписать shards:99999 себе.
+    // Баланс осколков пишет ТОЛЬКО Admin SDK (CF) в обход rules; легальный клиент
+    // НИКОГДА не шлёт топ-уровневое поле shards в cloud_sync (не в исходящем patch).
+    // Perk-поля (gift_xp_multiplier/chain_shield/arena_extra_plays_today) сюда НЕ
+    // включены намеренно: они клиент-владеемые, синкаются легально из AsyncStorage
+    // (см. cloud_sync.ts SYNC_KEYS) — блокировка сломала бы первый легальный синк.
+    function newDocHasNoShardWrites() {
+      return isAdmin()
+        || !request.resource.data.keys().hasAny([
+          'shards',
+          'shards_updated_at_ms',
+          'shards_updated_op',
+          'shards_updated_reason',
+          'shards_admin_override_at',
+        ]);
+    }
+
     // Ключи внутри progress, которые клиент не имеет права записывать.
     // Пишутся только Admin SDK (RevenueCat webhook, Telegram активация, admin grant)
     // ИЛИ админом через admin-панель (custom claim admin==true).
@@ -960,7 +980,7 @@ service cloud.firestore {
       // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
       // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
       allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites() && hasNoShardWrites();
-      allow create: if newUserDocOwnerMatchesAuth(userId) && newDocHasNoPremiumWrites();
+      allow create: if newUserDocOwnerMatchesAuth(userId) && newDocHasNoPremiumWrites() && newDocHasNoShardWrites();
 
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;
@@ -1713,6 +1733,19 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
     match /mistake_explain_billing/{docId} {
+      allow read: if false;
+      allow write: if false;
+    }
+
+    // ИИ-разбор тематических квизов (explainQuiz). Та же модель, что у choice/mistake:
+    // публичное чтение прогретого кэша ($0), запись только сервер (Admin SDK), удаление —
+    // только админ (удаление дока ⇒ следующий ответ сгенерирует разбор заново). Биллинг — сервер.
+    match /quiz_explanations/{quizHash} {
+      allow read: if true;
+      allow create, update: if false;
+      allow delete: if isAdmin();
+    }
+    match /quiz_explain_billing/{docId} {
       allow read: if false;
       allow write: if false;
     }

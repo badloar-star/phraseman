@@ -169,7 +169,7 @@ function hasMeaningfulPlan(plan: string): boolean {
 }
 
 function isStorePremiumPlan(plan: string): boolean {
-  return plan === 'monthly' || plan === 'yearly' || plan === 'annual';
+  return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
 }
 
 // ── Premium/VIP "strength" scoring (mirrors app/premium_progress.ts semantics) ──

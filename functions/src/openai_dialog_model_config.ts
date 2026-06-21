@@ -5,7 +5,11 @@ const REGION = 'us-central1';
 const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_dialog_model';
 const QUOTA_CONFIG_DOC = 'openai_dialog_quota';
-const MODEL_DEFAULT = 'gpt-4.1-nano';
+// Дефолт диалога = gpt-4o-mini: поддерживает response_format json_object, нужный
+// «диалогу как игре» (gpt-4.1-nano его НЕ поддерживает → игра бы не включилась;
+// аудит C1). Цена 4o-mini сопоставима с nano, остальные json-функции проекта
+// (stats_insights/weekly_review/explain_choice) тоже на 4o-mini.
+const MODEL_DEFAULT = 'gpt-4o-mini';
 export const DIALOG_FREE_DAILY_REPLIES_DEFAULT = 3;
 export const DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 100;
 const DIALOG_DAILY_REPLIES_MAX = 10000;

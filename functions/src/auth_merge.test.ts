@@ -178,6 +178,23 @@ describe('mergeUserProgress — premium carries over (must never drop a paid use
     const out = mergeUserProgress({ had_premium_ever: 'false' }, { had_premium_ever: 'true' }, NOW);
     expect(out.had_premium_ever).toBe('true');
   });
+
+  it('lifetime (plan=lifetime, expiry=0) wins over an active subscription', () => {
+    const a = { premium_plan: 'yearly', premium_expiry: String(FUTURE), premium_rc_store: 'APP_STORE' };
+    const b = { premium_plan: 'lifetime', premium_expiry: '0', premium_rc_store: 'APP_STORE' };
+    const out = mergeUserProgress(a, b, NOW);
+    // lifetime expiry=0 → MAX_SAFE_INTEGER strength → wins
+    expect(out.premium_plan).toBe('lifetime');
+    expect(out.premium_expiry).toBe('0');
+  });
+
+  it('lifetime from loser side carries over to winner with no premium', () => {
+    const winner = { user_total_xp: '9999', premium_plan: '' };
+    const loser = { user_total_xp: '5', premium_plan: 'lifetime', premium_expiry: '0' };
+    const out = mergeUserProgress(winner, loser, NOW);
+    expect(out.premium_plan).toBe('lifetime');
+    expect(out.premium_expiry).toBe('0');
+  });
 });
 
 describe('mergeUserProgress — VIP carries over', () => {

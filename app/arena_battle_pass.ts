@@ -8,14 +8,17 @@
 // Модуль ЧИСТЫЙ: расчёт уровня, прогресса, какие награды доступны/забраны. Без React/сети/стораджа.
 // Персист (BP-очки и забранные уровни) — отдельным тонким модулем поверх AsyncStorage.
 
-export type BattlePassRewardKind = 'shards' | 'aura' | 'frame' | 'title' | 'xp';
+// Только реально работающие награды: осколки (валюта), XP (через registerXP),
+// аура (реальная косметика — владеется и надевается). Рамки/звания исключены:
+// в приложении они визуально отключены/не надеваются (см. аудит наград пропуска).
+export type BattlePassRewardKind = 'shards' | 'aura' | 'xp';
 
 export interface BattlePassReward {
   kind: BattlePassRewardKind;
-  /** Количество (для shards/xp) либо 1 для косметики. */
+  /** Количество (для shards/xp) либо 1 для ауры. */
   amount: number;
-  /** Идентификатор косметики (ауры/рамки/звания), если применимо. */
-  cosmeticId?: string;
+  /** Реальный id ауры из AVATAR_AURAS (только для kind==='aura'). */
+  auraId?: string;
   /** Человекочитаемая подпись-ключ (локализуется в UI). */
   labelKey: string;
 }
@@ -48,6 +51,18 @@ export function bpForMatch(won: boolean): number {
  * Лестница наград сезона. Детерминированная (одна и та же для всех в сезоне),
  * чтобы UI и логика совпадали. Премиум-награды — на «круглых» уровнях.
  */
+/**
+ * Уровни-вехи, на которых премиум-трек выдаёт ЭКСКЛЮЗИВНУЮ АУРУ (а не осколки).
+ * Привязаны к реальным id аур ARENA_PASS_AURA_IDS по порядку.
+ */
+export const AURA_MILESTONE_LEVELS = [8, 15, 23, 30] as const;
+const AURA_BY_MILESTONE: Record<number, string> = {
+  8: 'aura-arena-frost',
+  15: 'aura-arena-storm',
+  23: 'aura-arena-stardust',
+  30: 'aura-arena-ether',
+};
+
 export function buildBattlePassLadder(): BattlePassTier[] {
   const tiers: BattlePassTier[] = [];
   for (let level = 1; level <= BATTLE_PASS_LEVELS; level += 1) {
@@ -60,14 +75,16 @@ export function buildBattlePassLadder(): BattlePassTier[] {
           ? { kind: 'shards', amount: 1, labelKey: 'bpFreeShards1' }
           : { kind: 'xp', amount: 50, labelKey: 'bpFreeXp50' };
 
-    // Премиум-трек: косметика-статус + крупные осколки на вехах.
-    let premium: BattlePassReward | undefined;
-    if (level % 10 === 0) {
-      premium = { kind: 'title', amount: 1, cosmeticId: `arena_title_s_${level}`, labelKey: 'bpPremiumTitle' };
+    // Премиум-трек: на вехах — реальная эксклюзивная аура; на круглых уровнях — крупные осколки;
+    // иначе — небольшой бонус осколков. Никаких нерабочих рамок/званий.
+    let premium: BattlePassReward;
+    const auraId = AURA_BY_MILESTONE[level];
+    if (auraId) {
+      premium = { kind: 'aura', amount: 1, auraId, labelKey: 'bpPremiumAura' };
+    } else if (level % 10 === 0) {
+      premium = { kind: 'shards', amount: 5, labelKey: 'bpPremiumShards5' };
     } else if (level % 5 === 0) {
-      premium = { kind: 'aura', amount: 1, cosmeticId: `arena_aura_s_${level}`, labelKey: 'bpPremiumAura' };
-    } else if (level % 3 === 0) {
-      premium = { kind: 'frame', amount: 1, cosmeticId: `arena_frame_s_${level}`, labelKey: 'bpPremiumFrame' };
+      premium = { kind: 'shards', amount: 3, labelKey: 'bpPremiumShards3' };
     } else {
       premium = { kind: 'shards', amount: 2, labelKey: 'bpPremiumShards2' };
     }

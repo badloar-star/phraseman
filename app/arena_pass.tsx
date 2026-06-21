@@ -31,11 +31,29 @@ import {
   getClaimedPremiumLevels,
   markFreeClaimed,
   markPremiumClaimed,
-  unlockCosmetic,
+  grantArenaAura,
   currentSeasonId,
 } from './arena_battle_pass_store';
 import { seasonNumberFromId } from './arena_season_math';
 import { addShardsRaw } from './shards_system';
+import { registerXP } from './xp_manager';
+import { getAvatarAuraById } from '../constants/avatar_auras';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+function auraNameForLang(auraId: string, lang: Lang): string {
+  const aura = getAvatarAuraById(auraId);
+  if (!aura) return 'Aura';
+  switch (lang) {
+    case 'uk': return aura.nameUk;
+    case 'es': return aura.nameEs;
+    case 'pt-BR': return aura.namePtBr;
+    case 'vi': return aura.nameVi;
+    case 'id': return aura.nameId;
+    case 'tr': return aura.nameTr;
+    case 'pl': return aura.namePl;
+    default: return aura.nameRu;
+  }
+}
 
 function rewardLabel(r: BattlePassReward, lang: Lang): string {
   switch (r.kind) {
@@ -47,18 +65,13 @@ function rewardLabel(r: BattlePassReward, lang: Lang): string {
       });
     case 'xp':
       return `+${r.amount} XP`;
-    case 'aura':
-      return triLang(lang, {
+    case 'aura': {
+      const name = r.auraId ? auraNameForLang(r.auraId, lang) : 'Aura';
+      const prefix = triLang(lang, {
         ru: 'Аура', uk: 'Аура', es: 'Aura', 'pt-BR': 'Aura', vi: 'Hào quang', id: 'Aura', tr: 'Aura', pl: 'Aura',
       });
-    case 'frame':
-      return triLang(lang, {
-        ru: 'Рамка', uk: 'Рамка', es: 'Marco', 'pt-BR': 'Moldura', vi: 'Khung', id: 'Bingkai', tr: 'Çerçeve', pl: 'Ramka',
-      });
-    case 'title':
-      return triLang(lang, {
-        ru: 'Звание', uk: 'Звання', es: 'Título', 'pt-BR': 'Título', vi: 'Danh hiệu', id: 'Gelar', tr: 'Unvan', pl: 'Tytuł',
-      });
+      return `${prefix}: ${name}`;
+    }
     default:
       return '';
   }
@@ -69,8 +82,6 @@ function rewardIcon(r: BattlePassReward): keyof typeof Ionicons.glyphMap {
     case 'shards': return 'diamond';
     case 'xp': return 'flash';
     case 'aura': return 'sparkles';
-    case 'frame': return 'square-outline';
-    case 'title': return 'ribbon';
     default: return 'gift';
   }
 }
@@ -114,20 +125,27 @@ export default function ArenaBattlePassScreen() {
   }, [headerFill, progress.ratio]);
   const headerFillStyle = useAnimatedStyle(() => ({ width: `${headerFill.value * 100}%` }));
 
-  const grantReward = useCallback(async (r: BattlePassReward) => {
+  const grantReward = useCallback(async (r: BattlePassReward, track: 'free' | 'premium', level: number) => {
     if (r.kind === 'shards') {
       await addShardsRaw(r.amount, 'arena_battle_pass', { skipServerAwait: true, showEarnModal: true, earnModalKey: 'arena_battle_pass' });
-    } else if (r.cosmeticId) {
-      await unlockCosmetic(r.cosmeticId, seasonId);
+    } else if (r.kind === 'aura' && r.auraId) {
+      // Реальная выдача ауры: владение + надеть + синк (видна в лидерборде/профиле).
+      await grantArenaAura(r.auraId, true);
+    } else if (r.kind === 'xp') {
+      // Настоящее начисление XP через registerXP с детерминированным eventId (без дублей).
+      const eventId = `arena_pass:${seasonId}:${track}:lvl${level}:xp`;
+      try {
+        const name = (await AsyncStorage.getItem('user_name'))?.trim() || 'Player';
+        await registerXP(r.amount, 'achievement_reward', name, lang, undefined, { eventId, payload: { surface: 'arena_battle_pass', level } });
+      } catch { /* XP не критичен — награда всё равно помечается забранной */ }
     }
-    // XP-награды пропуска пока символические (показываем как «получено»); реальная XP идёт за матчи.
-  }, [seasonId]);
+  }, [seasonId, lang]);
 
   const claimFree = useCallback(async (level: number) => {
     const tier = ladder.find((x) => x.level === level);
     if (!tier) return;
     await hapticSuccess();
-    await grantReward(tier.free);
+    await grantReward(tier.free, 'free', level);
     const next = await markFreeClaimed(level, seasonId);
     setClaimedFree(new Set(next));
   }, [ladder, grantReward, seasonId]);
@@ -136,7 +154,7 @@ export default function ArenaBattlePassScreen() {
     const tier = ladder.find((x) => x.level === level);
     if (!tier?.premium) return;
     await hapticSuccess();
-    await grantReward(tier.premium);
+    await grantReward(tier.premium, 'premium', level);
     const next = await markPremiumClaimed(level, seasonId);
     setClaimedPremium(new Set(next));
   }, [ladder, grantReward, seasonId]);

@@ -7,6 +7,7 @@ import {
   BATTLE_PASS_LEVELS,
   BP_PER_LEVEL,
 } from '../app/arena_battle_pass';
+import { getAvatarAuraById } from '../constants/avatar_auras';
 
 describe('bpForMatch', () => {
   it('победа даёт больше очков, чем участие', () => {
@@ -28,8 +29,28 @@ describe('buildBattlePassLadder', () => {
   it('у каждого уровня есть бесплатная награда', () => {
     expect(ladder.every((t) => !!t.free)).toBe(true);
   });
-  it('на 10-м уровне премиум-награда — звание', () => {
-    expect(ladder[9].premium?.kind).toBe('title');
+  it('на вехах премиум-награда — реальная аура с auraId', () => {
+    for (const lvl of [8, 15, 23, 30]) {
+      const tier = ladder[lvl - 1];
+      expect(tier.premium?.kind).toBe('aura');
+      expect(typeof tier.premium?.auraId).toBe('string');
+      expect(tier.premium?.auraId).toMatch(/^aura-arena-/);
+    }
+  });
+  it('премиум-трек не содержит нерабочих рамок/званий', () => {
+    for (const tier of ladder) {
+      expect(['shards', 'aura', 'xp']).toContain(tier.premium?.kind);
+    }
+  });
+  it('4 вехи дают 4 разные ауры', () => {
+    const auraIds = [8, 15, 23, 30].map((lvl) => ladder[lvl - 1].premium?.auraId);
+    expect(new Set(auraIds).size).toBe(4);
+  });
+  it('КРИТИЧНО: каждая аура-награда реально существует в каталоге AVATAR_AURAS', () => {
+    for (const lvl of [8, 15, 23, 30]) {
+      const id = ladder[lvl - 1].premium?.auraId as string;
+      expect(getAvatarAuraById(id)).toBeDefined();
+    }
   });
 });
 

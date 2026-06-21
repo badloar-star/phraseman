@@ -145,5 +145,58 @@ export async function unlockCosmetic(
   }
 }
 
+const AURA_OWNED_KEY = 'avatar_aura_owned_v1';
+const ACTIVE_AURA_KEY = 'user_avatar_aura';
+// Кэши лидербордов/профилей, которые надо сбросить, чтобы новая аура показалась сразу.
+const AURA_DEPENDENT_CACHE_KEYS = [
+  'global_lb_cache_v4',
+  'leaderboard_cache_v1',
+  'arena_top100_snapshot_v8',
+  'arena_top100_remote_at_v1',
+  'arena_rating_screen_cache_v1',
+  'friend_profiles_cache_v1',
+];
+
+/**
+ * Выдать игроку ауру как награду пропуска: записать ВЛАДЕНИЕ (avatar_aura_owned_v1)
+ * и сделать её АКТИВНОЙ (user_avatar_aura), сбросить кэши лидербордов и синкнуть в облако,
+ * чтобы аура сразу появилась у аватара и в лидерборде арены.
+ *
+ * @returns true если владение записано (или уже было), false при ошибке хранилища.
+ */
+export async function grantArenaAura(auraId: string, equip: boolean = true): Promise<boolean> {
+  if (!auraId) return false;
+  try {
+    const raw = await AsyncStorage.getItem(AURA_OWNED_KEY);
+    let owned: Record<string, boolean> = {};
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object') owned = parsed as Record<string, boolean>;
+      } catch {
+        owned = {};
+      }
+    }
+    if (!owned[auraId]) {
+      owned = { ...owned, [auraId]: true };
+      await AsyncStorage.setItem(AURA_OWNED_KEY, JSON.stringify(owned));
+    }
+    if (equip) {
+      await AsyncStorage.setItem(ACTIVE_AURA_KEY, auraId);
+      await AsyncStorage.multiRemove(AURA_DEPENDENT_CACHE_KEYS);
+      // Лениво синкнем владение/активную ауру в облако (ключи в SYNC_KEYS).
+      try {
+        const { syncToCloud } = await import('./cloud_sync');
+        void syncToCloud({ forceNow: true });
+      } catch {
+        // синк не критичен для владения
+      }
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

@@ -186,7 +186,9 @@ const S = StyleSheet.create({
   compactWrap: { flexDirection: 'row', alignItems: 'center', borderRadius: 14, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 9, marginTop: 14 },
   compactTimer: { fontSize: 13, fontWeight: '800', letterSpacing: 0.8, fontVariant: ['tabular-nums'] },
   compactMid: { flex: 1, fontSize: 11.5, flexShrink: 1 },
-  compactStrike: { textDecorationLine: 'line-through' },
+  // Будущую цену НЕ зачёркиваем: зачёркивание имитирует фантомную «старую» цену
+  // (Apple 2.3.1 / EU Omnibus / FTC). Это анонс «скоро будет ~2X», а не «было».
+  compactStrike: {},
   compactText: { flex: 1, fontSize: 11.5 },
   timerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
   timerLabel: { fontSize: 11.5, flex: 1 },
@@ -199,7 +201,7 @@ const S = StyleSheet.create({
   priceCapNow: { fontSize: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 2 },
   priceCapFuture: { fontSize: 9.5, fontWeight: '600', letterSpacing: 0.3, marginBottom: 2 },
   priceNow: { fontSize: 16, fontWeight: '900', letterSpacing: -0.3 },
-  priceFuture: { fontSize: 12.5, fontWeight: '600', textDecorationLine: 'line-through' },
+  priceFuture: { fontSize: 12.5, fontWeight: '600' },
   pricePer: { fontSize: 10, fontWeight: '500' },
   lockNote: { fontSize: 11.5, lineHeight: 16, marginTop: 10 },
   graceText: { flex: 1, fontSize: 11.5, lineHeight: 16 },

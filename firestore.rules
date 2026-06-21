@@ -105,6 +105,10 @@ service cloud.firestore {
         'vip_admin_override',
         'vip_admin_grant_at',
         'vip_migrated_from_admin_grant_at',
+        // Маркеры источника VIP-выдачи (пишет только сервер — реферал/промокод).
+        // Клиенту незачем их трогать; блокируем, чтобы аналитика не подделывалась.
+        'referral_vip_last_source',
+        'promo_vip_last_code',
         // Collectibles: server-only, always blocked regardless of migration flag.
         'collectibles_owned_v1',
         'collectibles_state_v1',
@@ -1821,8 +1825,8 @@ service cloud.firestore {
     // Активация идёт через CF promoCodeRedeem (Admin SDK) — клиентам прямой доступ
     // не нужен и запрещён (нельзя подсмотреть/подменить rewardDays/usedCount).
     match /promo_codes/{code} {
+      // Только админ. Не-админ запрещён дефолтным deny (и общим catch-all ниже).
       allow read, write: if isAdmin();
-      allow read, write: if false;
     }
 
     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

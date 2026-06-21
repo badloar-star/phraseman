@@ -23,6 +23,7 @@ import {
   parsePromoUntilMs,
   shouldShowPromoBanner,
   isPromoBannerEnabled,
+  getPromoBannerText,
   __resetRemoteFlagsForTest,
 } from '../app/remote_flags';
 
@@ -312,6 +313,24 @@ describe('remote_flags', () => {
         texts: { promo_banner_text_ru: 'Скидка!', promo_banner_url: 'https://x', promo_banner_until: '' },
       });
       expect(isPromoBannerEnabled()).toBe(true);
+    });
+
+    describe('getPromoBannerText — локализация (фикс: не-ru языки НЕ получают русский)', () => {
+      beforeEach(() => {
+        applyRemoteConfigSnapshot({
+          texts: { promo_banner_text_ru: 'Скидка', promo_banner_text_uk: 'Знижка', promo_banner_text_es: 'Oferta' },
+        });
+      });
+      it('ru/uk/es → свой текст', () => {
+        expect(getPromoBannerText('ru')).toBe('Скидка');
+        expect(getPromoBannerText('uk')).toBe('Знижка');
+        expect(getPromoBannerText('es')).toBe('Oferta');
+      });
+      it('pt-BR/vi/id/tr/pl → пусто (компонент покажет локализованный дефолт, не кириллицу)', () => {
+        for (const l of ['pt-BR', 'vi', 'id', 'tr', 'pl']) {
+          expect(getPromoBannerText(l)).toBe('');
+        }
+      });
     });
   });
 });

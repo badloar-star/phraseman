@@ -503,12 +503,18 @@ export const isPromoBannerEnabled = () => getRemoteBool('promo_banner_enabled');
 export const getPromoBannerUrl = () => getRemoteText('promo_banner_url');
 /** Срок окончания акции: ISO-дата "2026-07-01" или ms-таймстамп. Пусто = бессрочно. */
 export const getPromoBannerUntil = () => getRemoteText('promo_banner_until');
-/** Локализованный текст баннера (ru/uk/es; для прочих языков — ru как фолбэк). */
+/**
+ * Кастомный текст баннера для языка. Поля задаются только для ru/uk/es. Для прочих
+ * языков (pt-BR/vi/id/tr/pl) возвращаем '' — НЕ русский: тогда PromoBanner покажет
+ * свой локализованный defaultText на нужном языке, а не кириллицу. Для ru/uk/es
+ * пустое поле тоже даёт '' → тот же локализованный дефолт.
+ */
 export function getPromoBannerText(lang: string): string {
   const l = String(lang || '').toLowerCase();
   if (l.startsWith('uk')) return getRemoteText('promo_banner_text_uk');
   if (l.startsWith('es')) return getRemoteText('promo_banner_text_es');
-  return getRemoteText('promo_banner_text_ru');
+  if (l.startsWith('ru')) return getRemoteText('promo_banner_text_ru');
+  return ''; // прочие языки → локализованный defaultText в компоненте
 }
 
 /**

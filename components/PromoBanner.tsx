@@ -52,10 +52,15 @@ export default function PromoBanner() {
   useEffect(() => {
     setState(readState(lang, Date.now()));
     const sub = onAppEvent('remote_config_changed', () => setState(readState(lang, Date.now())));
-    return () => sub.remove();
+    // Срок акции может истечь, пока экран открыт → периодически перечитываем
+    // видимость со свежим Date.now(), чтобы баннер сам пропал по окончании.
+    const iv = setInterval(() => setState(readState(lang, Date.now())), 60_000);
+    return () => { sub.remove(); clearInterval(iv); };
   }, [lang]);
 
   if (!state.visible) return null;
+
+  const hasUrl = !!(state.url && state.url.trim());
 
   const defaultText = triLang(lang as Lang, {
     ru: '🎉 Специальное предложение — успей!', uk: '🎉 Спеціальна пропозиція — встигни!',
@@ -66,30 +71,35 @@ export default function PromoBanner() {
   const message = state.text && state.text.trim() ? state.text.trim() : defaultText;
 
   const onPress = () => {
-    if (state.url && state.url.trim()) {
+    if (hasUrl) {
       void Linking.openURL(state.url.trim()).catch(() => { /* кривая ссылка — игнор */ });
     }
   };
+
+  const barStyle = {
+    marginTop: insets.top,
+    backgroundColor: '#3b1d6e',
+    borderBottomWidth: 1, borderBottomColor: '#5b21b6',
+    paddingHorizontal: 16, paddingVertical: 10,
+  } as const;
+  const label = (
+    <Text style={{ color: '#e9d5ff', fontSize: 13, fontWeight: '700', textAlign: 'center' }}>
+      {message}
+    </Text>
+  );
 
   return (
     <View
       pointerEvents="box-none"
       style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 9997, elevation: 9997 }}
     >
-      <Pressable
-        onPress={onPress}
-        disabled={!state.url.trim()}
-        style={{
-          marginTop: insets.top,
-          backgroundColor: '#3b1d6e',
-          borderBottomWidth: 1, borderBottomColor: '#5b21b6',
-          paddingHorizontal: 16, paddingVertical: 10,
-        }}
-      >
-        <Text style={{ color: '#e9d5ff', fontSize: 13, fontWeight: '700', textAlign: 'center' }}>
-          {message}
-        </Text>
-      </Pressable>
+      {hasUrl ? (
+        // Кликабельный баннер (есть ссылка).
+        <Pressable onPress={onPress} style={barStyle}>{label}</Pressable>
+      ) : (
+        // Без ссылки — НЕ перехватываем касания, чтобы не блокировать шапку под баннером.
+        <View pointerEvents="none" style={barStyle}>{label}</View>
+      )}
     </View>
   );
 }

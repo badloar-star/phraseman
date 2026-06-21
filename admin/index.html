@@ -8802,22 +8802,20 @@
     </div>
   </div>
 
-  <!-- 🗓 НЕДЕЛЬНЫЕ БОНУСЫ (Weekly Boons): расписание бонуса по дню недели -->
+  <!-- 🗓 НЕДЕЛЬНЫЕ БОНУСЫ (Weekly Boons) — RAW JSON (только просмотр). Основной
+       редактор — структурный виджет выше; здесь только сырое значение для сверки,
+       чтобы два редактора не затирали правки друг друга (last-save-wins). -->
   <div style="background:#14141f;border:1px solid #2a2a3a;border-radius:14px;padding:18px;margin-bottom:16px">
-    <div style="font-size:15px;font-weight:800;color:#fbbf24">🗓 Недельные бонусы — расписание по дням</div>
+    <div style="font-size:15px;font-weight:800;color:#fbbf24">🗓 Недельные бонусы — RAW JSON (просмотр)</div>
     <div style="font-size:12.5px;color:#9ca3af;margin-top:6px;line-height:1.5">
-      JSON-конфиг расписания «бонуса дня». Пусто = встроенный дефолт. Битый JSON и неизвестные id
-      тихо игнорируются (приложение не падает). Ключ дня: <code style="color:#a78bfa">0</code>=вс …
-      <code style="color:#a78bfa">6</code>=сб. Значение — id бонуса или массив (чередование по неделям).
-      <br/>Допустимые id: <code style="color:#86efac">streak_saver, energy_free_window, arena_saturday, mystery_monday, double_xp, flashcard_friday, speaking_saturday, turbo_regen</code>.
-      Always-on модификаторы (modifiersEnabled): <code style="color:#86efac">early_bird, perfect_week</code>.
-      Поле <code style="color:#a78bfa">enabled</code> — точечно выключить бонус (<code>{"double_xp": false}</code>).
+      Сырое значение <code style="color:#a78bfa">weekly_boons_config</code> для сверки/отладки.
+      Редактируй расписание <b>структурным виджетом выше</b> — он основной. Это поле только показывает,
+      что реально сохранено (пусто = встроенный дефолт).
     </div>
-    <textarea id="cp-boons-json" rows="9" placeholder='(пусто = встроенный дефолт)' spellcheck="false"
-      style="width:100%;margin-top:12px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:10px;border-radius:8px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px;box-sizing:border-box"></textarea>
+    <textarea id="cp-boons-json" rows="8" readonly spellcheck="false"
+      style="width:100%;margin-top:12px;background:#121219;border:1px solid #2a2a3a;color:#9ca3af;padding:10px;border-radius:8px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px;box-sizing:border-box"></textarea>
     <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
-      <button type="button" onclick="saveControlPanelBoons()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Сохранить расписание</button>
-      <button type="button" onclick="insertDefaultBoonsJson()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">↩ Вставить дефолт</button>
+      <button type="button" onclick="loadControlPanelBoons()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать сырое значение</button>
       <span id="cp-boons-status" style="font-size:12px;color:#6b7280"></span>
     </div>
   </div>
@@ -21897,7 +21895,10 @@
       // (maintenance_* bools, texts, и любые будущие поля Пульта). Иначе merge:false
       // затёр бы их при сохранении на вкладке Remote Config.
       let prev = {};
-      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      // НЕ глушим ошибку чтения: merge:false ниже = полная замена, поэтому при
+      // сбое getDoc писать с пустым prev нельзя (обнулило бы весь remote_config).
+      // Ошибка пробрасывается во внешний catch → сохранение прерывается со статусом.
+      { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; }
       const numbers = Object.assign({}, (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {});
       for (const f of RC_NUMBER_FIELDS) {
         const el = document.getElementById('rc-num-' + f.key);
@@ -22011,7 +22012,10 @@
     cpSetStatus('Сохранение…');
     try {
       let prev = {};
-      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      // НЕ глушим ошибку чтения: merge:false ниже = полная замена, поэтому при
+      // сбое getDoc писать с пустым prev нельзя (обнулило бы весь remote_config).
+      // Ошибка пробрасывается во внешний catch → сохранение прерывается со статусом.
+      { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; }
       const numbers = (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {};
       const bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
       const texts = (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {};
@@ -22046,8 +22050,12 @@
   // texts (merge:false с ручным слиянием, как у saveControlPanelBool/Maintenance).
   // Возвращает список реальных изменений (для истории), либо бросает ошибку.
   window.saveControlPanelTexts = async function(patch) {
+    // КРИТИЧНО: читаем prev БЕЗ глушилки. merge:false = полная замена документа,
+    // поэтому при сбое чтения нельзя писать с пустым prev — это обнулило бы ВСЕ
+    // numbers/bools/прочие texts у всех живьём. Сбой чтения → прерываем сохранение.
     let prev = {};
-    try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+    const ps = await getDoc(doc(db, 'remote_config', 'app'));
+    if (ps.exists()) prev = ps.data() || {};
     const numbers = (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {};
     const bools = (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {};
     const texts = Object.assign({}, (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {});
@@ -22099,21 +22107,13 @@
   };
 
   // ── Недельные бонусы (weekly_boons_config, JSON-текст) ─────────────────────
-  // Встроенный дефолт — зеркало app/boons/boon_config.ts DEFAULT_WEEKLY_BOONS_CONFIG.
-  const CP_BOONS_DEFAULT_JSON = JSON.stringify({
-    schedule: { 0: 'streak_saver', 1: 'mystery_monday', 2: 'turbo_regen', 3: 'energy_free_window', 4: 'double_xp', 5: 'flashcard_friday', 6: ['arena_saturday', 'speaking_saturday'] },
-    enabled: {},
-    modifiersEnabled: {},
-  }, null, 2);
-
+  // Сырой просмотр weekly_boons_config (основной редактор — структурный виджет выше;
+  // saveWeeklyBoons из той же секции пишет это поле). Здесь только read-only зеркало,
+  // чтобы два редактора не затирали правки друг друга.
   function cpBoonsStatus(msg, color) {
     const el = document.getElementById('cp-boons-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#6b7280'; }
   }
-  window.insertDefaultBoonsJson = function() {
-    const ta = document.getElementById('cp-boons-json');
-    if (ta) { ta.value = CP_BOONS_DEFAULT_JSON; cpBoonsStatus('Вставлен дефолт — не забудь «Сохранить».', '#93c5fd'); }
-  };
   window.loadControlPanelBoons = async function() {
     try {
       const snap = await getDoc(doc(db, 'remote_config', 'app'));
@@ -22121,28 +22121,8 @@
       const texts = (data && data.texts && typeof data.texts === 'object') ? data.texts : {};
       const ta = document.getElementById('cp-boons-json');
       if (ta) ta.value = texts.weekly_boons_config || '';
+      cpBoonsStatus('', '#6b7280');
     } catch (_) { /* некритично */ }
-  };
-  window.saveControlPanelBoons = async function() {
-    const ta = document.getElementById('cp-boons-json');
-    const raw = ta ? String(ta.value || '').trim() : '';
-    // Пусто = сброс к дефолту (валидно). Иначе обязан быть валидный JSON-объект.
-    if (raw) {
-      let parsed;
-      try { parsed = JSON.parse(raw); }
-      catch (e) { cpBoonsStatus('❌ Невалидный JSON: ' + (e && e.message ? e.message : e), '#f87171'); return; }
-      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
-        cpBoonsStatus('❌ Ожидается JSON-объект { schedule, enabled, modifiersEnabled }.', '#f87171');
-        return;
-      }
-    }
-    cpBoonsStatus('Сохранение…');
-    try {
-      await window.saveControlPanelTexts({ weekly_boons_config: raw });
-      cpBoonsStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
-    } catch (e) {
-      cpBoonsStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
-    }
   };
 
   // ── Force-update (флаг + min_app_version + ссылки на сторы) ─────────────────
@@ -22267,22 +22247,34 @@
       set('cp-promo-banner-uk', texts.promo_banner_text_uk);
       set('cp-promo-banner-es', texts.promo_banner_text_es);
       set('cp-promo-banner-url', texts.promo_banner_url);
-      // until хранится ISO/ms; в поле date кладём YYYY-MM-DD если распознаём.
+      // until хранится как ms (или ISO); в поле date кладём YYYY-MM-DD.
       const until = String(texts.promo_banner_until || '');
       const dEl = document.getElementById('cp-promo-banner-until');
-      if (dEl) dEl.value = /^\d{4}-\d{2}-\d{2}/.test(until) ? until.slice(0, 10) : '';
+      if (dEl) {
+        if (/^\d{10,}$/.test(until)) {
+          const d = new Date(Number(until));
+          dEl.value = Number.isFinite(d.getTime()) ? d.toISOString().slice(0, 10) : '';
+        } else {
+          dEl.value = /^\d{4}-\d{2}-\d{2}/.test(until) ? until.slice(0, 10) : '';
+        }
+      }
     } catch (_) { /* некритично */ }
   };
   window.savePromoBanner = async function() {
     const get = (id) => { const el = document.getElementById(id); return el ? String(el.value || '').trim() : ''; };
     cpPromoBannerStatus('Сохранение…');
     try {
+      // Срок «до» (YYYY-MM-DD) храним как ms КОНЦА дня (как у промокодов), чтобы
+      // акция жила весь указанный день, а не гасла в UTC-полночь его начала.
+      const untilStr = get('cp-promo-banner-until');
+      let untilMs = '';
+      if (untilStr) { const t = Date.parse(untilStr + 'T23:59:59'); if (Number.isFinite(t)) untilMs = String(t); }
       await window.saveControlPanelTexts({
         promo_banner_text_ru: get('cp-promo-banner-ru'),
         promo_banner_text_uk: get('cp-promo-banner-uk'),
         promo_banner_text_es: get('cp-promo-banner-es'),
         promo_banner_url: get('cp-promo-banner-url'),
-        promo_banner_until: get('cp-promo-banner-until'),
+        promo_banner_until: untilMs,
       });
       cpPromoBannerStatus('✅ Сохранено. Клиенты подхватят за секунды.', '#4ade80');
     } catch (e) {
@@ -22499,7 +22491,10 @@
     cpPremSetStatus('Сохранение…');
     try {
       let prev = {};
-      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      // НЕ глушим ошибку чтения: merge:false ниже = полная замена, поэтому при
+      // сбое getDoc писать с пустым prev нельзя (обнулило бы весь remote_config).
+      // Ошибка пробрасывается во внешний catch → сохранение прерывается со статусом.
+      { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; }
       const numbers = Object.assign({}, (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {});
       const bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
       const texts = Object.assign({}, (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {});
@@ -22846,7 +22841,10 @@
     cpMaintSetStatus('Сохранение…');
     try {
       let prev = {};
-      try { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
+      // НЕ глушим ошибку чтения: merge:false ниже = полная замена, поэтому при
+      // сбое getDoc писать с пустым prev нельзя (обнулило бы весь remote_config).
+      // Ошибка пробрасывается во внешний catch → сохранение прерывается со статусом.
+      { const ps = await getDoc(doc(db, 'remote_config', 'app')); if (ps.exists()) prev = ps.data() || {}; }
       const numbers = (prev && prev.numbers && typeof prev.numbers === 'object') ? prev.numbers : {};
       const bools = Object.assign({}, (prev && prev.bools && typeof prev.bools === 'object') ? prev.bools : {});
       const texts = Object.assign({}, (prev && prev.texts && typeof prev.texts === 'object') ? prev.texts : {});

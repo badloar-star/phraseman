@@ -99,9 +99,9 @@ describe('referralConfigFromData — тюнинг рефералов из remote
     expect(cfg.maxClaimsPerDay).toBe(REFERRAL_DEFAULTS.maxClaimsPerDay);
   });
 
-  it('отрицательные клампятся к 0 (а не уходят в минус)', () => {
+  it('отрицательные клампятся: rewardDays к минимуму 1, капы к 0 (не уходят в минус)', () => {
     const cfg = referralConfigFromData({ referral_reward_days: -10, referral_max_claims_day: -3 });
-    expect(cfg.rewardDays).toBe(0);
+    expect(cfg.rewardDays).toBe(1); // min=1: 0 дней = бессмысленная награда
     expect(cfg.maxClaimsPerDay).toBe(0);
   });
 });

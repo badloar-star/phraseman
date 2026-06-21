@@ -18,7 +18,7 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { redeemPromoCode, type PromoRedeemStatus } from './promo_code_client';
+import { redeemPromoCode, normalizePromoCodeInput, type PromoRedeemStatus } from './promo_code_client';
 import { safeRouterBack } from './navigation_back';
 import { invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
@@ -111,7 +111,9 @@ export default function PromoCodeEntryScreen() {
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
 
-  const canSubmit = code.trim().length >= 3 && !busy;
+  // Кнопка активна только для кода валидного формата (зеркало серверного CODE_RE
+  // 3..32 [A-Z0-9_-]) — чтобы не слать заведомо плохой код.
+  const canSubmit = /^[A-Z0-9_-]{3,32}$/.test(normalizePromoCodeInput(code)) && !busy;
 
   const submit = useCallback(async () => {
     if (!canSubmit) return;

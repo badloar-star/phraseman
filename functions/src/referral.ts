@@ -77,7 +77,9 @@ export function referralConfigFromData(numbers: Record<string, unknown> | undefi
   const n = numbers ?? {};
   const d = REFERRAL_DEFAULTS;
   return {
-    rewardDays: referralClampInt(n.referral_reward_days, 0, 3650, d.rewardDays),
+    // rewardDays min=1: 0 дней = бессмысленная награда, которая всё равно сожгла бы
+    // слот капа и пометила реферал 'rewarded' без эффекта. Минимум — 1 день.
+    rewardDays: referralClampInt(n.referral_reward_days, 1, 3650, d.rewardDays),
     maxClaimsPerMonth: referralClampInt(n.referral_max_claims_month, 0, 100000, d.maxClaimsPerMonth),
     maxClaimsPerDay: referralClampInt(n.referral_max_claims_day, 0, 100000, d.maxClaimsPerDay),
   };

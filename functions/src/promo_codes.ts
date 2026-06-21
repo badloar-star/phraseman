@@ -190,23 +190,24 @@ export const promoCodeUpsert = onCall({ region: REGION }, async (request) => {
   const db = admin.firestore();
   const codeRef = db.collection(PROMO_CODES).doc(code);
   const adminEmail = String(request.auth?.token?.email ?? '');
+  const now = Date.now();
 
-  // merge:true — правка существующего НЕ сбрасывает usedCount.
-  await codeRef.set({
-    rewardDays,
-    enabled,
-    maxRedemptions,
-    expiresAtMs,
-    note,
-    updatedAtMs: Date.now(),
-    updatedBy: adminEmail,
-  }, { merge: true });
-
-  // usedCount инициализируем только если кода ещё не было (не затираем при правке).
-  const after = await codeRef.get();
-  if (typeof after.data()?.usedCount !== 'number') {
-    await codeRef.set({ usedCount: 0, createdAtMs: Date.now(), createdBy: adminEmail }, { merge: true });
-  }
+  // Атомарно: правка НЕ трогает usedCount; инициализация usedCount=0 только если
+  // кода ещё не было. Одна транзакция вместо set→get→set исключает гонку с redeem,
+  // который параллельно инкрементит usedCount (нельзя обнулить денежный счётчик).
+  await db.runTransaction(async (tx) => {
+    const snap = await tx.get(codeRef);
+    const patch: Record<string, unknown> = {
+      rewardDays, enabled, maxRedemptions, expiresAtMs, note,
+      updatedAtMs: now, updatedBy: adminEmail,
+    };
+    if (typeof snap.data()?.usedCount !== 'number') {
+      patch.usedCount = 0;
+      patch.createdAtMs = now;
+      patch.createdBy = adminEmail;
+    }
+    tx.set(codeRef, patch, { merge: true });
+  });
 
   return { ok: true, code };
 });

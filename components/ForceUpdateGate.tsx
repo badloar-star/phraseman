@@ -33,7 +33,16 @@ function currentAppVersion(): string {
   );
 }
 
+/** Ссылка стора для текущей платформы. */
+function storeUrlForPlatform(): string {
+  return String((Platform.OS === 'ios' ? getStoreUrlIos() : getStoreUrlAndroid()) || '').trim();
+}
+
 function readShouldBlock(): boolean {
+  // Защита от наглухо-блока: если для текущей платформы НЕ задана ссылка на стор,
+  // блокирующий экран был бы без кнопки выхода (нечем обновиться) → не блокируем.
+  // Это страхует от ошибки админа (включил force-update, но забыл ссылку).
+  if (!storeUrlForPlatform()) return false;
   return shouldForceUpdate({
     enabled: isForceUpdateEnabled(),
     currentVersion: currentAppVersion(),

@@ -142,48 +142,53 @@ export function ReferralAccessActivatedModal({
   );
 
   // Подзаголовок зависит от количества друзей
+  // Кол-во дней награды берём из grantedDays (admin-tunable referral_reward_days),
+  // НЕ хардкодим 7 — иначе при изменении срока в «Пульте» текст соврёт пользователю.
+  const D = grantedDays;
   const subtitleRu =
     friendsCount === 1
-      ? 'Друг выполнил условие: установил приложение, ввёл ваш код и прошёл один урок полностью. Вы получили свои 7 дней.'
+      ? `Друг выполнил условие: установил приложение, ввёл ваш код и прошёл один урок полностью. Вы получили свои ${D} ${pluralDaysRu(D)}.`
       : `${friendsCount} ${pluralFriendsRu(friendsCount)} выполнили условие. Вы получили свои дни полного доступа.`;
   const subtitleEs =
     friendsCount === 1
-      ? 'Tu amigo cumplió la condición: instaló la app, introdujo tu código y completó una lección. Recibiste tus 7 días.'
+      ? `Tu amigo cumplió la condición: instaló la app, introdujo tu código y completó una lección. Recibiste tus ${D} días.`
       : `${friendsCount} amigos cumplieron la condición. Recibiste tus días de acceso completo.`;
 
   const subtitle = L(
     subtitleRu,
     friendsCount === 1
-      ? 'Друг виконав умову: встановив застосунок, ввів ваш код і повністю пройшов один урок. Ви отримали свої 7 днів.'
+      ? `Друг виконав умову: встановив застосунок, ввів ваш код і повністю пройшов один урок. Ви отримали свої ${D} ${pluralDaysRu(D)}.`
       : `${friendsCount} друзів виконали умову. Ви отримали свої дні повного доступу.`,
     subtitleEs,
     friendsCount === 1
-      ? 'Seu amigo cumpriu a condição: instalou o app, inseriu seu código e concluiu uma lição. Você recebeu seus 7 dias.'
+      ? `Seu amigo cumpriu a condição: instalou o app, inseriu seu código e concluiu uma lição. Você recebeu seus ${D} dias.`
       : `${friendsCount} amigos cumpriram a condição. Você recebeu seus dias de acesso completo.`,
     friendsCount === 1
-      ? 'Bạn của bạn đã hoàn thành điều kiện: cài ứng dụng, nhập mã và hoàn thành một bài học. Bạn đã nhận 7 ngày.'
+      ? `Bạn của bạn đã hoàn thành điều kiện: cài ứng dụng, nhập mã và hoàn thành một bài học. Bạn đã nhận ${D} ngày.`
       : `${friendsCount} người bạn đã hoàn thành điều kiện. Bạn đã nhận ngày truy cập đầy đủ.`,
     friendsCount === 1
-      ? 'Temanmu memenuhi syarat: memasang aplikasi, memasukkan kodemu, dan menyelesaikan satu pelajaran. Kamu mendapat 7 hari.'
+      ? `Temanmu memenuhi syarat: memasang aplikasi, memasukkan kodemu, dan menyelesaikan satu pelajaran. Kamu mendapat ${D} hari.`
       : `${friendsCount} teman memenuhi syarat. Kamu mendapat hari akses penuh.`,
     friendsCount === 1
-      ? 'Arkadaşın şartı tamamladı: uygulamayı kurdu, kodunu girdi ve bir dersi bitirdi. 7 gününü aldın.'
+      ? `Arkadaşın şartı tamamladı: uygulamayı kurdu, kodunu girdi ve bir dersi bitirdi. ${D} gününü aldın.`
       : `${friendsCount} arkadaşın şartı tamamladı. Tam erişim günlerini aldın.`,
     friendsCount === 1
-      ? 'Znajomy spełnił warunek: zainstalował aplikację, wpisał twój kod i ukończył jedną lekcję. Masz swoje 7 dni.'
+      ? `Znajomy spełnił warunek: zainstalował aplikację, wpisał twój kod i ukończył jedną lekcję. Masz swoje ${D} dni.`
       : `${friendsCount} znajomych spełniło warunek. Masz swoje dni pełnego dostępu.`,
   );
 
-  const splitRewardNoteEs = '7+7 no son 14: tu amigo recibió sus 7 días por separado.';
+  // «X+X не равно 2X»: две отдельные награды двум людям, не одна двойная.
+  const D2 = D * 2;
+  const splitRewardNoteEs = `${D}+${D} no son ${D2}: tu amigo recibió sus ${D} días por separado.`;
   const splitRewardNote = L(
-    '7+7 не равно 14: друг получил свои 7 дней отдельно.',
-    '7+7 не дорівнює 14: друг отримав свої 7 днів окремо.',
+    `${D}+${D} не равно ${D2}: друг получил свои ${D} ${pluralDaysRu(D)} отдельно.`,
+    `${D}+${D} не дорівнює ${D2}: друг отримав свої ${D} ${pluralDaysRu(D)} окремо.`,
     splitRewardNoteEs,
-    '7+7 não vira 14: o amigo recebeu os 7 dias separadamente.',
-    '7+7 không phải 14: bạn của bạn đã nhận 7 ngày riêng.',
-    '7+7 bukan 14: temanmu mendapat 7 harinya secara terpisah.',
-    '7+7, 14 değildir: arkadaşın kendi 7 gününü ayrı aldı.',
-    '7+7 to nie 14: znajomy dostał swoje 7 dni osobno.',
+    `${D}+${D} não vira ${D2}: o amigo recebeu os ${D} dias separadamente.`,
+    `${D}+${D} không phải ${D2}: bạn của bạn đã nhận ${D} ngày riêng.`,
+    `${D}+${D} bukan ${D2}: temanmu mendapat ${D} harinya secara terpisah.`,
+    `${D}+${D}, ${D2} değildir: arkadaşın kendi ${D} gününü ayrı aldı.`,
+    `${D}+${D} to nie ${D2}: znajomy dostał swoje ${D} dni osobno.`,
   );
 
   // Строка срока действия (опционально)

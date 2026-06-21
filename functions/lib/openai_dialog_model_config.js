@@ -34,6 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.ALLOWED_DIALOG_MODELS = exports.DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = exports.DIALOG_FREE_DAILY_REPLIES_DEFAULT = void 0;
+exports.modelSupportsJsonObject = modelSupportsJsonObject;
 exports.resolveConfiguredDialogModel = resolveConfiguredDialogModel;
 exports.resolveConfiguredDialogQuota = resolveConfiguredDialogQuota;
 const admin = __importStar(require("firebase-admin"));
@@ -52,6 +53,26 @@ exports.ALLOWED_DIALOG_MODELS = [
     'gpt-4.1',
     'gpt-4o-mini',
 ];
+/**
+ * Какие диалоговые модели надёжно поддерживают `response_format: json_object`.
+ * Нужно для «диалога как игры»: он просит модель вернуть строгий JSON-конверт.
+ * Дефолтная `gpt-4.1-nano` — самая урезанная, JSON mode на ней ненадёжен →
+ * НЕ включаем для неё игровой режим (упал бы HTTP 400, см. аудит C1). Для таких
+ * моделей диалог идёт обычным текстом без игровой механики (мягкая деградация).
+ *
+ * Источник истины: остальные json_object-функции проекта (stats_insights,
+ * weekly_review, explain_choice) намеренно работают на gpt-4o-mini.
+ */
+const JSON_OBJECT_SUPPORTED_MODELS = {
+    'gpt-4o-mini': true,
+    'gpt-4.1': true,
+    'gpt-4.1-mini': true,
+    'gpt-4.1-nano': false,
+};
+/** true — модель надёжно поддерживает response_format json_object. */
+function modelSupportsJsonObject(model) {
+    return JSON_OBJECT_SUPPORTED_MODELS[model] === true;
+}
 function text(value, max = 120) {
     return String(value ?? '').trim().slice(0, max);
 }

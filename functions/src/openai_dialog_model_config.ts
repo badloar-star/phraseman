@@ -19,6 +19,28 @@ export const ALLOWED_DIALOG_MODELS = [
 
 type DialogModel = typeof ALLOWED_DIALOG_MODELS[number];
 
+/**
+ * Какие диалоговые модели надёжно поддерживают `response_format: json_object`.
+ * Нужно для «диалога как игры»: он просит модель вернуть строгий JSON-конверт.
+ * Дефолтная `gpt-4.1-nano` — самая урезанная, JSON mode на ней ненадёжен →
+ * НЕ включаем для неё игровой режим (упал бы HTTP 400, см. аудит C1). Для таких
+ * моделей диалог идёт обычным текстом без игровой механики (мягкая деградация).
+ *
+ * Источник истины: остальные json_object-функции проекта (stats_insights,
+ * weekly_review, explain_choice) намеренно работают на gpt-4o-mini.
+ */
+const JSON_OBJECT_SUPPORTED_MODELS: Readonly<Record<DialogModel, boolean>> = {
+  'gpt-4o-mini': true,
+  'gpt-4.1': true,
+  'gpt-4.1-mini': true,
+  'gpt-4.1-nano': false,
+};
+
+/** true — модель надёжно поддерживает response_format json_object. */
+export function modelSupportsJsonObject(model: string): boolean {
+  return JSON_OBJECT_SUPPORTED_MODELS[model as DialogModel] === true;
+}
+
 export interface DialogQuotaConfig {
   freeDailyReplies: number;
   premiumDailyReplies: number;

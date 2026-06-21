@@ -5,7 +5,7 @@ import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
-import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota } from './openai_dialog_model_config';
+import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, resolveAiOutputLang } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -28,6 +28,10 @@ const TRANSLATION_CACHE_COLLECTION = 'premium_dialog_translations';
 const MAX_USER_TEXT = 2000;
 const MAX_HISTORY_TURNS = 8;
 const MAX_OUTPUT_TOKENS = 200;
+// Игровой режим: reply (до ~1500 знаков) + mood + objectivesMet + outcome +
+// characterReaction (до 400) + coachTips (до 3×200). 600 токенов с запасом,
+// чтобы JSON не обрезался по бюджету (аудит M2).
+const GAME_OUTPUT_TOKENS = 600;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
 
@@ -333,13 +337,23 @@ interface GameObjective {
   en: string;
 }
 
+/**
+ * Чистим строку под-цели от переносов строк и управляющих символов перед
+ * вставкой в промпт (аудит H10: en приходит от клиента по сети, скомпрометированный
+ * клиент мог бы пропихнуть многострочный prompt-injection). Оставляем обычный текст.
+ */
+function sanitizeObjectiveText(value: unknown, max: number): string {
+  // eslint-disable-next-line no-control-regex
+  return text(value, max).replace(/[\u0000-\u001F]+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function sanitizeObjectives(value: unknown): GameObjective[] {
   if (!Array.isArray(value)) return [];
   const out: GameObjective[] = [];
   for (const raw of value.slice(0, 6)) {
     const item = (raw ?? {}) as Record<string, unknown>;
-    const id = text(item.id, 64);
-    const en = text(item.en, 120);
+    const id = sanitizeObjectiveText(item.id, 64);
+    const en = sanitizeObjectiveText(item.en, 120);
     if (id && en) out.push({ id, en });
   }
   return out;
@@ -350,8 +364,20 @@ function sanitizePatience(value: unknown): 'high' | 'medium' | 'low' {
   return v === 'high' || v === 'low' ? v : 'medium';
 }
 
-function startMoodForPatience(patience: 'high' | 'medium' | 'low'): number {
-  return patience === 'high' ? 85 : patience === 'low' ? 55 : 70;
+function sanitizeWarmth(value: unknown): 'warm' | 'neutral' | 'cold' {
+  const v = text(value, 8);
+  return v === 'warm' || v === 'cold' ? v : 'neutral';
+}
+
+/**
+ * Стартовое настроение по темпераменту. Учитывает И patience, И warmth — должно
+ * совпадать с клиентским temperamentStartMood (аудит H7): иначе первый смайл
+ * расходится с серверным сидом.
+ */
+function startMood(patience: 'high' | 'medium' | 'low', warmth: 'warm' | 'neutral' | 'cold'): number {
+  const base = patience === 'high' ? 85 : patience === 'low' ? 55 : 70;
+  const warmthAdj = warmth === 'warm' ? 5 : warmth === 'cold' ? -5 : 0;
+  return Math.max(0, Math.min(100, base + warmthAdj));
 }
 
 /** true — клиент прислал под-цели, значит активируем игровой конверт. */
@@ -368,8 +394,8 @@ function gameBlock(data: PremiumDialogRequest): string {
   if (objectives.length === 0) return '';
   const temp = (data.temperament ?? {}) as Record<string, unknown>;
   const patience = sanitizePatience(temp.patience);
-  const warmth = text(temp.warmth, 8) || 'neutral';
-  const startMood = startMoodForPatience(patience);
+  const warmth = sanitizeWarmth(temp.warmth);
+  const seedMood = startMood(patience, warmth);
   const objLines = objectives.map((o) => `  - ${o.id}: ${o.en}`).join('\n');
 
   return `
@@ -377,7 +403,7 @@ function gameBlock(data: PremiumDialogRequest): string {
 GAME STATE (you secretly track this and report it as JSON — the learner never sees the raw numbers):
 - Sub-goals for this scene (mark each done when the learner accomplishes it):
 ${objLines}
-- Your patience level is ${patience} and your warmth is ${warmth}. Start your inner "mood" at about ${startMood} (0..100).
+- Your patience level is ${patience} and your warmth is ${warmth}. Start your inner "mood" at about ${seedMood} (0..100).
 - RAISE mood when the learner is polite and moves toward a sub-goal. LOWER mood for rudeness, off-topic talk, or endless repetition. If your patience is "low", also lower it for stalling and waffling.
 - LANGUAGE MISTAKES NEVER lower mood — this is a learner. Keep soft-correcting kindly; only bad ROLE behaviour lowers mood.
 - Decide the outcome each turn:
@@ -392,26 +418,92 @@ OUTPUT FORMAT: respond with a single JSON object and nothing else:
 The "reply" field must contain ONLY your spoken line (the learner sees just this). Keep all the character, brevity and CEFR rules above.`;
 }
 
-/** Разбор игрового JSON-конверта. Возвращает reply + сырой turnState (или null). */
-export function parseGameEnvelope(content: string): { reply: string; turnState: unknown } | null {
+/** Кламп mood в 0..100 на границе сервера (аудит L1: модель может вернуть вне диапазона). */
+function clampServerMood(value: unknown): number | undefined {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return undefined;
+  return Math.max(0, Math.min(100, Math.round(n)));
+}
+
+/**
+ * Best-effort извлечение поля reply из ОБРЕЗАННОГО/битого JSON (аудит H1).
+ * Если модель обрезалась по токенам, JSON.parse падает — но текст reply обычно
+ * уже есть в начале. Достаём его regex'ом, чтобы НЕ показать юзеру сырой JSON.
+ * Возвращает '' если reply не найден (тогда вызывающий покажет дружелюбную ошибку).
+ */
+function extractReplyBestEffort(raw: string): string {
+  const m = raw.match(/"reply"\s*:\s*"((?:[^"\\]|\\.)*)"?/);
+  if (!m) return '';
+  // Раскодируем экранирование JSON-строки (\n, \", \\) без полного парса.
+  const decoded = m[1]
+    .replace(/\\n/g, '\n')
+    .replace(/\\t/g, '\t')
+    .replace(/\\"/g, '"')
+    .replace(/\\\\/g, '\\');
+  return text(decoded, 1500);
+}
+
+/**
+ * Разбор игрового JSON-конверта. Возвращает reply + сырой turnState.
+ * `truncated:true` — JSON битый, но reply удалось вытащить best-effort (без
+ * turnState). null — даже reply не нашёлся (вызывающий покажет ошибку, НЕ сырой JSON).
+ * `objectives` (опц.) — для понижения success→stalled, если выполнены НЕ все цели (аудит H4).
+ */
+export function parseGameEnvelope(
+  content: string,
+  objectiveIds?: string[],
+): { reply: string; turnState: unknown; truncated?: boolean } | null {
   const trimmed = content.trim();
   // Снимаем возможные ```json … ``` ограждения.
   const unfenced = trimmed.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
-  let parsed: Record<string, unknown>;
+  let parsed: Record<string, unknown> | null = null;
   try {
     parsed = JSON.parse(unfenced) as Record<string, unknown>;
   } catch {
-    return null;
+    parsed = null;
   }
-  if (!parsed || typeof parsed !== 'object') return null;
+
+  // Битый/обрезанный JSON → best-effort reply, без игрового состояния.
+  if (!parsed || typeof parsed !== 'object') {
+    const reply = extractReplyBestEffort(unfenced);
+    if (!reply) return null;
+    return { reply, turnState: null, truncated: true };
+  }
+
   const reply = text(parsed.reply, 1500);
-  if (!reply) return null;
+  if (!reply) {
+    const best = extractReplyBestEffort(unfenced);
+    if (!best) return null;
+    return { reply: best, turnState: null, truncated: true };
+  }
+
+  // success требует ВСЕ под-цели (аудит H4): если модель объявила success, но
+  // objectivesMet неполный — понижаем до stalled, чтобы модал не врал «Получилось».
+  let outcome = parsed.outcome;
+  if (
+    outcome === 'success' &&
+    Array.isArray(objectiveIds) &&
+    objectiveIds.length > 0
+  ) {
+    const met = Array.isArray(parsed.objectivesMet)
+      ? new Set(parsed.objectivesMet.map((x) => String(x)))
+      : new Set<string>();
+    const allMet = objectiveIds.every((id) => met.has(id));
+    if (!allMet) {
+      console.warn('premium_dialog success downgraded — not all objectives met', {
+        objectiveCount: objectiveIds.length,
+        metCount: met.size,
+      });
+      outcome = 'stalled';
+    }
+  }
+
   return {
     reply,
     turnState: {
-      mood: parsed.mood,
+      mood: clampServerMood(parsed.mood),
       objectivesMet: parsed.objectivesMet,
-      outcome: parsed.outcome,
+      outcome,
       characterReaction: parsed.characterReaction,
       coachTips: parsed.coachTips,
     },
@@ -534,8 +626,18 @@ export const premiumDialogSend = onCall({
   ];
 
   // Игровой режим (есть под-цели): просим JSON-конверт и разбираем его. Конверт
-  // длиннее обычной реплики → больше токенов на вывод.
-  const gameMode = mode === 'scenario' && isGameMode(data);
+  // длиннее обычной реплики → больше токенов на вывод. ВКЛЮЧАЕМ только если
+  // модель надёжно поддерживает response_format json_object — иначе запрос упал
+  // бы HTTP 400 (дефолтная gpt-4.1-nano его не поддерживает; аудит C1). Для
+  // неподдерживающих моделей диалог идёт обычным текстом без игровой механики.
+  const gameMode =
+    mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
+  if (mode === 'scenario' && isGameMode(data) && !gameMode) {
+    console.warn('premium_dialog game mode disabled — model lacks json_object support', {
+      dialogModel,
+      scenarioId: text(data.scenarioId, 80) || null,
+    });
+  }
 
   let json: OpenAIChatResponse;
   let assistantMessage: string;
@@ -549,8 +651,10 @@ export const premiumDialogSend = onCall({
       },
       body: JSON.stringify({
         model: dialogModel,
+        // Игровой конверт (reply + 4 поля + coachTips) длиннее обычной реплики —
+        // даём вдвое больше токенов, чтобы JSON не обрезался по бюджету (аудит M2).
+        max_tokens: gameMode ? GAME_OUTPUT_TOKENS : MAX_OUTPUT_TOKENS,
         messages,
-        max_tokens: gameMode ? MAX_OUTPUT_TOKENS + 220 : MAX_OUTPUT_TOKENS,
         temperature: 0.8,
         ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
       }),
@@ -571,17 +675,24 @@ export const premiumDialogSend = onCall({
     json = (await response.json()) as OpenAIChatResponse;
     const rawContent = text(json.choices?.[0]?.message?.content, 1800);
     if (gameMode) {
-      // Парсим конверт. Если JSON битый — фолбэк: весь текст = реплика, без
-      // игрового состояния (диалог идёт как обычный чат, фича «молчит» этот ход).
-      const env = parseGameEnvelope(rawContent);
-      if (env) {
+      // Парсим конверт. parseGameEnvelope сам достаёт reply даже из обрезанного
+      // JSON (best-effort, аудит H1) и понижает success без всех целей (H4).
+      const env = parseGameEnvelope(rawContent, sanitizeObjectives(data.objectives).map((o) => o.id));
+      if (env && env.reply) {
         assistantMessage = env.reply;
         turnState = env.turnState;
+        if (env.truncated) {
+          console.warn('premium_dialog game envelope truncated — reply recovered, turnState dropped', {
+            scenarioId: text(data.scenarioId, 80) || null,
+          });
+        }
       } else {
-        console.warn('premium_dialog game envelope parse failed — falling back to plain reply', {
+        // Даже best-effort reply не нашёлся → НЕ показываем юзеру сырой JSON,
+        // а бросаем «пустой ответ» (обработается как сбой провайдера, аудит H1).
+        console.error('premium_dialog game envelope unrecoverable — no reply extractable', {
           scenarioId: text(data.scenarioId, 80) || null,
         });
-        assistantMessage = rawContent;
+        assistantMessage = '';
       }
     } else {
       assistantMessage = rawContent;

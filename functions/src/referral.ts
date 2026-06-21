@@ -276,12 +276,22 @@ function yyyymmddNow(): string {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
 }
 
-/** Оставляет только N самых свежих дней (ключи YYYY-MM-DD сортируются лексикографически = хронологически). */
-function pruneDailyCounter(map: Record<string, number>, keepDays = 10): Record<string, number> {
-  const keys = Object.keys(map).sort().reverse().slice(0, keepDays);
+/**
+ * Оставляет только N самых свежих периодов. Ключи дат (YYYY-MM-DD или YYYY-MM)
+ * сортируются лексикографически = хронологически. Используется и для дневного
+ * (keepDays=10), и для месячного (keepMonths=3) счётчика — иначе map растёт в
+ * progress-документе бесконечно (M1).
+ */
+export function prunePeriodCounter(map: Record<string, number>, keep: number): Record<string, number> {
+  const keys = Object.keys(map).sort().reverse().slice(0, keep);
   const out: Record<string, number> = {};
   for (const k of keys) out[k] = map[k];
   return out;
+}
+
+/** @deprecated имя оставлено для совместимости тестов — делегирует prunePeriodCounter. */
+function pruneDailyCounter(map: Record<string, number>, keepDays = 10): Record<string, number> {
+  return prunePeriodCounter(map, keepDays);
 }
 
 /**
@@ -728,9 +738,11 @@ export const referralClaimVipReward = onCall(CALLABLE_BASE, async (request) => {
         {
           progress: {
             ...referrerVipPatch,
-            referral_vip_claims_monthly: { ...monthly, [ym]: usedThisMonth },
+            // Месячный счётчик: чистим старые месяцы (храним ~3 последних), иначе
+            // map рос бесконечно в progress-документе (M1, аудит 2026-06-21).
+            referral_vip_claims_monthly: prunePeriodCounter({ ...monthly, [ym]: usedThisMonth }, 3),
             // Дневной счётчик: чистим старые дни, чтобы map не рос бесконечно (храним ~10 последних).
-            referral_vip_claims_daily: pruneDailyCounter({ ...daily, [ymd]: usedToday }),
+            referral_vip_claims_daily: prunePeriodCounter({ ...daily, [ymd]: usedToday }, 10),
           },
           updatedAt: nowMs,
         },

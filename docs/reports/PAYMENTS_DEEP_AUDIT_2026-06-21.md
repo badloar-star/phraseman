@@ -114,3 +114,26 @@ VIP/admin-grant/intro/loyalty из remote-аккаунта (живут толь�
 ## Уже пофикшено в этой сессии (для контекста)
 1. revenuecat_shards.ts: NON_RENEWING_PURCHASE + premiumPlanFromEvent→lifetime (commit a541c751)
 2. auth_merge.ts + app/premium_progress.ts: isStorePremiumPlan += lifetime (commit 3398298a)
+3. P0 profile_card_level → SERVER_OWNED_PROGRESS_KEYS; P0 premium_guard lifetime;
+   P1/P2 revenuecat_init/restore lifetime (commit 76ff17e5)
+4. P0 premium_status.ts rc_expiry leak + grace 72ч (commit 8447b2df)
+5. P0 firestore.rules newDocHasNoShardWrites (commit 9ee76120)
+
+## ВТОРАЯ ВОЛНА ФИКСОВ (P1) — этот заход
+6. **P1 merged_keep_local не звал серверный merge** (auth_provider.ts:1113): VIP/admin-grant/
+   intro из remote-аккаунта терялись когда local выигрывал. Теперь зовём
+   mergeStableAccountsViaServer(remote, local) — сервер сольёт премиум/VIP-блок в canonical;
+   при чужом remote → null, деградируем к прежнему (вход не рвём).
+7. **P1 ИИ-диалоги «Фри» рассинхрон** (premium_dialog.ts + новый remote_gates.ts): сервер
+   теперь читает gate_ai_dialog_premium из remote_config/app.bools. Если фича в «Фри» —
+   не-премиум получает дневной free-кап (freeDailyReplies) вместо пожизненного 1-диалога,
+   согласованно с клиентом. Дефолт true = прежнее поведение.
+8. **P1 referral_vip_claims_monthly без prune** (referral.ts): добавлен prunePeriodCounter
+   (храним 3 месяца / 10 дней), иначе map рос бесконечно в progress.
+
+ОСТАЛОСЬ (P1/P2, требуют отдельного решения владельца, НЕ автофикс):
+- referee-VIP без кап-лимита: нужна продуктовая логика (сколько приглашений на аккаунт).
+  Квалификация уже строгая (реальный урок1 через progressSubmitEvent, не миграция).
+- daily_tasks_shards произвольный dayKey: ограничить ≈ сегодня/вчера UTC (P2, мягкая валюта).
+- Telegram ручная выдача (idemпотентность активации, nick→canonical) — известная зона,
+  STRICT POLICY (выдача только вручную человеком).

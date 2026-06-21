@@ -10,7 +10,32 @@ import {
   referralClaimSlotsLeft,
   stackVipUntilMs,
   vipUntilFromProgress,
+  prunePeriodCounter,
 } from './referral';
+
+describe('prunePeriodCounter — анти-рост счётчиков в progress (M1)', () => {
+  it('оставляет N самых свежих периодов (дни)', () => {
+    const map = { '2026-06-01': 1, '2026-06-02': 2, '2026-06-03': 3, '2026-06-04': 4 };
+    const out = prunePeriodCounter(map, 2);
+    expect(Object.keys(out).sort()).toEqual(['2026-06-03', '2026-06-04']);
+  });
+
+  it('оставляет N самых свежих месяцев (YYYY-MM сортируется хронологически)', () => {
+    const map = { '2026-01': 5, '2026-02': 3, '2026-03': 7, '2026-04': 1 };
+    const out = prunePeriodCounter(map, 3);
+    expect(Object.keys(out).sort()).toEqual(['2026-02', '2026-03', '2026-04']);
+    expect(out['2026-01']).toBeUndefined();
+  });
+
+  it('меньше периодов чем keep → возвращает всё', () => {
+    const map = { '2026-06': 2 };
+    expect(prunePeriodCounter(map, 3)).toEqual({ '2026-06': 2 });
+  });
+
+  it('пустая карта → пустая карта', () => {
+    expect(prunePeriodCounter({}, 3)).toEqual({});
+  });
+});
 
 describe('referralClaimSlotsLeft — анти-фарм: сколько наград можно выдать (день+месяц кап)', () => {
   // Защита от фарминга свежими аккаунтами: даже при бесконечных «новых» рефералах

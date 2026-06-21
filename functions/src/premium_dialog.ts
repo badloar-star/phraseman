@@ -6,6 +6,7 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
+import { resolveRemoteBool } from './remote_gates';
 import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, resolveAiOutputLang } from './ai_language_contract';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -600,12 +601,24 @@ export const premiumDialogSend = onCall({
   // Limits BEFORE the paid API call.
   await enforceRateLimit(authUid, stableUid);
 
-  // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри).
+  // Согласование клиент↔сервер: если админ перевёл ИИ-диалоги в «Фри» через Пульт
+  // (gate_ai_dialog_premium=false), клиент открывает доступ всем — сервер тогда НЕ
+  // должен резать не-премиума пожизненным «1 диалог», иначе рассинхрон (клиент даёт,
+  // сервер режет после первого). В режиме «Фри» применяем дневной free-кап реплик
+  // (защита бюджета OpenAI), как и для премиума, но со своим лимитом.
+  // Дефолт true = фича за премиумом (как хардкод клиента) → прежнее поведение.
+  const aiDialogGatedByPremium = await resolveRemoteBool(db, 'gate_ai_dialog_premium', true);
+
+  // Free: пожизненно ОДИН бесплатный диалог (без лимита реплик внутри) — когда фича
+  //   за премиум-замком. Если фича в «Фри» — дневной кап реплик (как премиум).
   // Premium: дневной кап реплик (защита бюджета OpenAI от абьюза).
   let remaining: number;
   let freeMarkedNow = false;
   if (isPremium) {
     remaining = await enforceDailyQuota(authUid, stableUid, true, dialogQuota.premiumDailyReplies);
+  } else if (!aiDialogGatedByPremium) {
+    // Фича переведена в «Фри»: безлимит по диалогам, но дневной кап реплик от абьюза.
+    remaining = await enforceDailyQuota(authUid, stableUid, false, dialogQuota.freeDailyReplies);
   } else {
     const gate = await enforceLifetimeFreeDialog(authUid, stableUid, isNewDialog);
     freeMarkedNow = gate.markedNow;

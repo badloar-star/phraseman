@@ -21,6 +21,7 @@ import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
 import { isRepairEligible, getRepairProgress } from '../streak_repair';
+import { applyTodaysBoonsOnAppOpen } from '../boons/boon_bootstrap';
 import { getReviveOffer, type StreakReviveOffer } from '../streak_revive';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import StreakReviveModal from '../../components/StreakReviveModal';
@@ -1388,6 +1389,9 @@ export default function HomeScreen() {
                 const progress = await getRepairProgress();
                 setRepairProgress(progress.lessons);
             }
+            // [WEEKLY BOONS] Применяем write-эффект бонуса дня (заморозка/арена/триал/
+            // турбо-энергия). Идемпотентно за сутки, не роняет открытие при сбое.
+            void applyTodaysBoonsOnAppOpen(studyTarget);
             // [STREAK PAYWALL / FREEZE] Проверяем угрозу цепочке для всех пользователей.
             // Для не-премиум — показываем paywall (один раз в день).
             // Для премиум — показываем кнопку заморозки.

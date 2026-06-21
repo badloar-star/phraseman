@@ -4,6 +4,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { isFeatureFreeForEveryone } from './feature_gates';
 import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
 import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
+import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
 
 export interface EnergyState {
   current: number;
@@ -28,8 +29,16 @@ export function getRecoveryIntervalMs(_streakDays: number = 0): number {
 
 async function getCurrentRecoveryIntervalMs(): Promise<number> {
   try {
-    const leagueChestMs = await readLeagueChestEnergyOverrideMs();
-    if (leagueChestMs) return leagueChestMs;
+    // Активные override-ы интервала: league-chest и weekly-boon (turbo_regen).
+    // Берём наименьший (быстрейшее восстановление), чтобы один не перетирал другой.
+    const [leagueChestMs, boonMs] = await Promise.all([
+      readLeagueChestEnergyOverrideMs(),
+      readBoonEnergyOverrideMs(),
+    ]);
+    const overrides = [leagueChestMs, boonMs].filter(
+      (v): v is number => typeof v === 'number' && v > 0,
+    );
+    if (overrides.length > 0) return Math.min(...overrides);
     return getRecoveryIntervalMs();
   } catch {
     return getEnergyRecoveryIntervalMs();
@@ -110,6 +119,10 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
     // «Пульт»: если энергия переведена в «Фри» — лимит снят для всех (безлимит,
     // как у премиума), пейвол no_energy не показываем.
     if (isFeatureFreeForEveryone('energy')) return true;
+
+    // Weekly Boon «окно без энергии»: в активный вечерний час буднего дня
+    // энергия не тратится у всех (как безлимит, но только на окно).
+    if (isEnergyFreeWindowActive()) return true;
 
     // Премиум: энергия не тратится (единая верифицированная проверка)
     const isPremium = await getVerifiedPremiumStatus();

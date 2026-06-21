@@ -22,6 +22,7 @@ import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
 import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { applyTodaysBoonsOnAppOpen } from '../boons/boon_bootstrap';
+import TodaysBoonStrip from '../../components/TodaysBoonStrip';
 import { getReviveOffer, type StreakReviveOffer } from '../streak_revive';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import StreakReviveModal from '../../components/StreakReviveModal';
@@ -1981,6 +1982,8 @@ export default function HomeScreen() {
                 }}>
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
+              {/* [WEEKLY BOONS] Плашка «бонус сегодня» под полосой дней недели. */}
+              <TodaysBoonStrip />
             </Animated.View>);
         return (<BouncyScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="normal" onScroll={topFadeScroll?.onScroll} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>
 
@@ -2224,6 +2227,8 @@ export default function HomeScreen() {
                     }}>
                       {s.home.statsPulseHint}
                     </Animated.Text>)}
+                  {/* [WEEKLY BOONS] Плашка «бонус сегодня». */}
+                  <TodaysBoonStrip />
                 </Animated.View>)) : (<>
               {/* Верхняя строка: Уровень + Цепочка */}
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
@@ -2341,6 +2346,8 @@ export default function HomeScreen() {
                     }}>
                   {s.home.statsPulseHint}
                 </Animated.Text>)}
+              {/* [WEEKLY BOONS] Плашка «бонус сегодня». */}
+              <TodaysBoonStrip />
               </>)}
             </LinearGradient>
           </TouchableOpacity>

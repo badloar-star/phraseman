@@ -8,6 +8,12 @@
 //
 // Идемпотентность: users/{uid}/reward_claims/daily_tasks_all_{dayKey}.
 // Повторный вызов с тем же dayKey возвращает уже записанный баланс.
+//
+// Анти-фарм (аудит платёжки 2026-06-21): dayKey ограничен окном «сегодня/вчера»
+// по UTC. Раньше принимался ЛЮБОЙ валидный YYYY-MM-DD → клиент мог запросить по
+// осколку за каждую прошлую/будущую дату (2020-01-01, 2020-01-02, …) и нафармить
+// мягкую валюту. Окно в 2 дня покрывает легальный поздне-ночной кейс, когда юзер
+// домучивает задания около полуночи UTC и заявка уходит уже в новом UTC-дне.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
@@ -18,10 +24,26 @@ import { resolveStableUidForAuth } from './auth_identity';
 const DAY_KEY_RE = /^\d{4}-\d{2}-\d{2}$/;
 const DAILY_TASKS_SHARD_AMOUNT = 1;
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
+const DAY_MS = 24 * 60 * 60 * 1000;
 
 function readShardBalance(value: unknown): number {
   const n = Math.trunc(Number(value));
   return Number.isFinite(n) && n >= 0 ? n : 0;
+}
+
+/** Ключ UTC-дня (YYYY-MM-DD) для произвольного момента времени. */
+export function utcDayKey(ms: number): string {
+  const d = new Date(ms);
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+}
+
+/**
+ * Допустим ли dayKey: формат YYYY-MM-DD И входит в окно {сегодня, вчера} по UTC
+ * относительно nowMs. Чистая функция — экспортируется для тестов.
+ */
+export function isAcceptableDayKey(dayKey: unknown, nowMs: number): boolean {
+  if (typeof dayKey !== 'string' || !DAY_KEY_RE.test(dayKey)) return false;
+  return dayKey === utcDayKey(nowMs) || dayKey === utcDayKey(nowMs - DAY_MS);
 }
 
 /**
@@ -38,6 +60,11 @@ export const dailyTasksAllShardsClaim = onCall(HOT_CALLABLE_OPTIONS, async (requ
   const dayKey = request.data?.dayKey;
   if (typeof dayKey !== 'string' || !DAY_KEY_RE.test(dayKey)) {
     throw new HttpsError('invalid-argument', 'dayKey must be YYYY-MM-DD');
+  }
+  // Анти-фарм: принимаем только сегодня/вчера по UTC. Произвольная дата (прошлое/
+  // будущее) дала бы по осколку за каждую несуществующую дату.
+  if (!isAcceptableDayKey(dayKey, Date.now())) {
+    throw new HttpsError('failed-precondition', 'dayKey must be today or yesterday (UTC)');
   }
   const userRef = db.collection('users').doc(uid);
   const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`daily_tasks_all_${dayKey}`);

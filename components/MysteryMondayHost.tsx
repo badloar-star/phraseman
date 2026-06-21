@@ -99,29 +99,29 @@ export default function MysteryMondayHost() {
   const textSecond = (t as { textSecond?: string }).textSecond ?? 'rgba(255,255,255,0.7)';
 
   const title = L(
-    'Загадочный понедельник', 'Загадковий понеділок', 'Lunes misterioso', 'Segunda misteriosa',
-    'Thứ Hai bí ẩn', 'Senin misteri', 'Gizemli Pazartesi', 'Tajemniczy poniedziałek',
+    'Сундук недели', 'Скриня тижня', 'Cofre de la semana', 'Baú da semana',
+    'Rương của tuần', 'Peti minggu ini', 'Haftanın sandığı', 'Skrzynia tygodnia',
   );
   const sub = opened
     ? L(
-        `Внутри ${reward.shards} осколков — забирай!`,
-        `Усередині ${reward.shards} осколків — забирай!`,
-        `¡Dentro hay ${reward.shards} fragmentos!`,
-        `Tem ${reward.shards} fragmentos dentro!`,
-        `Bên trong có ${reward.shards} mảnh — nhận đi!`,
-        `Ada ${reward.shards} serpihan di dalam!`,
-        `İçinde ${reward.shards} parça var — al!`,
-        `W środku ${reward.shards} odłamków — bierz!`,
+        `${reward.shards} осколков — теперь твои.`,
+        `${reward.shards} осколків — тепер твої.`,
+        `${reward.shards} fragmentos: ahora son tuyos.`,
+        `${reward.shards} fragmentos: agora são seus.`,
+        `${reward.shards} mảnh — giờ là của bạn.`,
+        `${reward.shards} serpihan — kini milikmu.`,
+        `${reward.shards} parça — artık senin.`,
+        `${reward.shards} odłamków — teraz twoje.`,
       )
     : L(
-        'Открой сундук недели — внутри что-то приятное.',
-        'Відкрий скриню тижня — всередині щось приємне.',
-        'Abre el cofre de la semana: hay algo bueno.',
-        'Abra o baú da semana: tem algo bom.',
-        'Mở rương tuần — bên trong có điều bất ngờ.',
-        'Buka peti minggu ini — ada kejutan.',
-        'Haftanın sandığını aç — güzel bir şey var.',
-        'Otwórz skrzynię tygodnia — coś miłego w środku.',
+        'Внутри награда. Открой и забери своё.',
+        'Усередині нагорода. Відкрий і забери своє.',
+        'Dentro hay una recompensa. Ábrelo, es tuyo.',
+        'Dentro tem recompensa. Abra, é seu.',
+        'Bên trong có phần thưởng. Mở và nhận.',
+        'Ada hadiah di dalam. Buka dan ambil.',
+        'İçinde ödül var. Aç ve seninki olsun.',
+        'W środku nagroda. Otwórz i bierz swoje.',
       );
   const cta = opened
     ? L('Забрать', 'Забрати', 'Recoger', 'Pegar', 'Nhận', 'Ambil', 'Al', 'Odbierz')

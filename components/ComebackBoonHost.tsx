@@ -84,21 +84,21 @@ export default function ComebackBoonHost() {
   const textSecond = (t as { textSecond?: string }).textSecond ?? 'rgba(255,255,255,0.7)';
 
   const title = L(
-    'С возвращением!', 'З поверненням!', '¡Bienvenido de vuelta!', 'Bem-vindo de volta!',
-    'Chào mừng trở lại!', 'Selamat datang kembali!', 'Tekrar hoş geldin!', 'Witaj z powrotem!',
+    'Ты вернулся. Хорошо.', 'Ти повернувся. Добре.', 'Volviste. Bien.', 'Você voltou. Que bom.',
+    'Bạn quay lại rồi. Tốt.', 'Kamu kembali. Bagus.', 'Geri döndün. Güzel.', 'Wróciłeś. Dobrze.',
   );
   const body = L(
-    `Мы скучали. Держи подарок: серия под защитой на сегодня и ${COMEBACK_REWARD.shards} осколков.`,
-    `Ми сумували. Тримай подарунок: серія під захистом сьогодні і ${COMEBACK_REWARD.shards} осколків.`,
-    `Te extrañamos. Toma un regalo: racha protegida hoy y ${COMEBACK_REWARD.shards} fragmentos.`,
-    `Sentimos sua falta. Um presente: sequência protegida hoje e ${COMEBACK_REWARD.shards} fragmentos.`,
-    `Nhớ bạn lắm. Quà đây: chuỗi được bảo vệ hôm nay và ${COMEBACK_REWARD.shards} mảnh.`,
-    `Kami merindukanmu. Hadiah: streak aman hari ini dan ${COMEBACK_REWARD.shards} serpihan.`,
-    `Seni özledik. Hediye: bugün serin korumada ve ${COMEBACK_REWARD.shards} parça.`,
-    `Tęskniliśmy. Prezent: seria chroniona dziś i ${COMEBACK_REWARD.shards} odłamków.`,
+    `Серия под защитой и ${COMEBACK_REWARD.shards} осколков твои. Продолжим?`,
+    `Серія під захистом і ${COMEBACK_REWARD.shards} осколків твої. Продовжимо?`,
+    `Racha protegida y ${COMEBACK_REWARD.shards} fragmentos son tuyos. ¿Seguimos?`,
+    `Sequência protegida e ${COMEBACK_REWARD.shards} fragmentos são seus. Vamos?`,
+    `Chuỗi được bảo vệ và ${COMEBACK_REWARD.shards} mảnh là của bạn. Tiếp nhé?`,
+    `Streak aman dan ${COMEBACK_REWARD.shards} serpihan jadi milikmu. Lanjut?`,
+    `Serin korumada ve ${COMEBACK_REWARD.shards} parça senin. Devam mı?`,
+    `Seria chroniona i ${COMEBACK_REWARD.shards} odłamków są twoje. Działamy?`,
   );
-  const cta = L('Забрать и продолжить', 'Забрати й продовжити', 'Recoger y seguir', 'Pegar e continuar',
-    'Nhận và tiếp tục', 'Ambil dan lanjut', 'Al ve devam et', 'Odbierz i kontynuuj');
+  const cta = L('Продолжить', 'Продовжити', 'Continuar', 'Continuar',
+    'Tiếp tục', 'Lanjut', 'Devam et', 'Kontynuuj');
 
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={close}>

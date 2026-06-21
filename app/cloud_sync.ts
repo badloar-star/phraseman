@@ -509,6 +509,17 @@ export const SYNC_KEYS = [
   LOYALTY_GIFT_STARTED_AT_KEY,
   LOYALTY_GIFT_ENDS_AT_KEY,
   LOYALTY_GIFT_CLAIMED_KEY,
+  // ── Claim-маркеры модальных бонусов (Mystery Monday / Comeback / Perfect Week).
+  //    Зеркалим в облако, чтобы переустановка / смена устройства не давала повторно
+  //    забрать недельную/разовую награду (анти-фарм переустановкой, аудит P2 #12).
+  //    Это лёгкий вариант: маркер «уже забрано» переживает реинсталл. Полную серверную
+  //    идемпотентность (CF reward_claims/{periodId}) делать отдельно — как в daily_tasks.
+  'boon_mystery_monday_claimed_v1',
+  'boon_comeback_granted_v1',
+  'boon_perfect_week_claimed_v1',
+  // Day-guard бесплатного streak-saver: чтобы переустановка не давала повторную
+  // бесплатную заморозку серии в тот же день (аудит P2 #14).
+  'boon_granted_streak_saver_v1',
 ] as const;
 
 export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): string[] {

@@ -46,12 +46,24 @@ async function markGrantedToday(boon: string, todayKey: string): Promise<void> {
  * Streak-Saver: бесплатная заморозка серии на сегодня (без траты осколков).
  * НЕ перетираем уже активную заморозку (платную/премиум) — если на сегодня
  * заморозка уже есть, делать нечего. Так бонус не «съедает» купленную заморозку.
+ *
+ * Date-guard (как у остальных бонусов): помечаем выдачу за UTC-день и больше за этот
+ * день не выдаём — даже если заморозка уже потрачена. Иначе после расхода заморозки в
+ * тот же день бонус выдавал бы её повторно (мелкий фарм). Ключ зеркалится в облако
+ * (cloud_sync), поэтому переустановка не сбрасывает гард (аудит P2 #14).
  */
 async function applyStreakSaver(todayKey: string): Promise<void> {
   try {
+    if (!(await notGrantedToday('streak_saver', todayKey))) return; // уже выдавали сегодня
     const existing = parseStreakFreeze(await AsyncStorage.getItem('streak_freeze'));
-    if (isStreakFreezeActiveToday(existing, todayKey)) return; // уже защищён сегодня — не трогаем
+    if (isStreakFreezeActiveToday(existing, todayKey)) {
+      // Уже защищён сегодня (платная/премиум заморозка) — не трогаем, но фиксируем день,
+      // чтобы бонус не пытался выдать после расхода этой заморозки в тот же день.
+      await markGrantedToday('streak_saver', todayKey);
+      return;
+    }
     await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: todayKey }));
+    await markGrantedToday('streak_saver', todayKey);
     emitAppEvent('streak_freeze_updated', { active: true });
   } catch {
     // best-effort

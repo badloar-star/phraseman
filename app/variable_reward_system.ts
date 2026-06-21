@@ -54,6 +54,11 @@ export function calculateRandomBonus(): number {
 
 /**
  * Информация о тиере бонуса для отображения.
+ *
+ * ВНИМАНИЕ: поле `bonusInfo` сейчас в UI НЕ показывается (мёртвые метаданные) — оставлено
+ * под возможный будущий показ «шанс выпадения». Проценты соответствуют calculateRandomBonus:
+ * small (≤5) = 27%+60% = 87%, medium (10–20) = 10%, large (>20) = 3%. XP начисляется верно
+ * и идемпотентно независимо от этого поля. Если решишь показывать — сверь проценты ещё раз.
  */
 function getBonusTierInfo(bonusXP: number): XPRewardResult['bonusInfo'] {
   if (bonusXP === 0) return undefined;
@@ -61,7 +66,7 @@ function getBonusTierInfo(bonusXP: number): XPRewardResult['bonusInfo'] {
   if (bonusXP <= 5) {
     return {
       tier: 'small',
-      percentage: 87, // small + базовый минимум
+      percentage: 87, // small (1–5, 60%) + базовый минимум (1–3, 27%) = 87%
       range: '1-5',
     };
   }

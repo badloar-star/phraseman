@@ -757,14 +757,20 @@ const weightedPick = (pool: GiftDef[], level: number): GiftDef => {
     else if (rr < 0.9) target = 'rare';
     else target = 'epic';
   }
+  // Если в выбранном тире редкости пусто (напр. удалили последний подарок тира) — берём
+  // полный пул, иначе sub[...] = undefined, а `!` маскировал бы это → краш на g.id у вызова.
   const sub = pool.filter(g => g.rarity === target);
-  const totalWeight = sub.reduce((s, g) => s + g.weight, 0);
+  const effective = sub.length > 0 ? sub : pool;
+  if (effective.length === 0) {
+    throw new Error('weightedPick: пустой пул подарков level-gift');
+  }
+  const totalWeight = effective.reduce((s, g) => s + g.weight, 0);
   let r = Math.random() * totalWeight;
-  for (const g of sub) {
+  for (const g of effective) {
     r -= g.weight;
     if (r <= 0) return g;
   }
-  return sub[sub.length - 1]!;
+  return effective[effective.length - 1];
 };
 
 async function getRecentGiftIds(): Promise<string[]> {

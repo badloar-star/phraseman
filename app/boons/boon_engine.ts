@@ -95,14 +95,28 @@ export function resolveTodaysBoons(
   return { primary, modifiers, utcWeekday, weekNumber };
 }
 
+// Мемоизация по (raw-config, todayKey): getTodaysBoons зовётся в hot-path (xp_manager
+// на каждое начисление XP, EnergyContext), а parseWeeklyBoonsConfig делает JSON.parse.
+// Кэш инвалидируется сам, когда меняется сырой конфиг (админка) или день (todayKey).
+let _cachedRaw: string | null = null;
+let _cachedKey: string | null = null;
+let _cachedBoons: TodaysBoons | null = null;
+
 /**
  * Удобная обёртка: читает «живой» конфиг из Remote Config и резолвит сегодняшние
- * бонусы. getRemoteText/getWeeklyBoonsConfigRaw синхронны (override-кэш в памяти),
- * поэтому вызов дешёвый и безопасен даже в hot-path (XP, энергия).
+ * бонусы. Мемоизировано по (сырой конфиг + день) — дёшево даже в hot-path (XP, энергия).
  */
 export function getTodaysBoons(todayKey: string = getTodayKey()): TodaysBoons {
-  const cfg = parseWeeklyBoonsConfig(getWeeklyBoonsConfigRaw());
-  return resolveTodaysBoons(cfg, todayKey);
+  const raw = getWeeklyBoonsConfigRaw();
+  if (_cachedBoons && _cachedRaw === raw && _cachedKey === todayKey) {
+    return _cachedBoons;
+  }
+  const cfg = parseWeeklyBoonsConfig(raw);
+  const resolved = resolveTodaysBoons(cfg, todayKey);
+  _cachedRaw = raw;
+  _cachedKey = todayKey;
+  _cachedBoons = resolved;
+  return resolved;
 }
 
 /** Активен ли сейчас конкретный primary-бонус (синхронно, по живому конфигу). */

@@ -58,41 +58,48 @@ service cloud.firestore {
     // (userDocOwnerMatchesAuth → isAdmin), поэтому исключение не ослабляет защиту —
     // оно лишь сохраняет существующее поведение. От обычных юзеров premium-поля
     // по-прежнему закрыты.
+    // Единый список premium/VIP/server-only ключей в progress, которые клиент писать не вправе.
+    // Вынесен в функцию, чтобы update- и create-гарды (progressHasNoPremiumWrites /
+    // newDocHasNoPremiumWrites) проверяли РОВНО один и тот же набор и не рассинхронились.
+    function blockedPremiumProgressKeys() {
+      return [
+        // Premium/VIP entitlement: only Admin SDK/admin panel may write.
+        'premium_plan',
+        'premium_expiry',
+        'premium_rc_product_id',
+        'premium_rc_period_type',
+        'premium_rc_store',
+        'premium_rc_environment',
+        'premium_rc_event_type',
+        'premium_rc_updated_at',
+        'premium_rc_expiry_ms',
+        'premium_rc_purchased_at_ms',
+        'premium_rc_cancelled_at',
+        'admin_premium_override',
+        'premium_admin_grant_at',
+        'had_premium_ever',
+        'vip_active',
+        'vip_plan',
+        'vip_from',
+        'vip_until',
+        'vip_admin_override',
+        'vip_admin_grant_at',
+        'vip_migrated_from_admin_grant_at',
+        // Collectibles: server-only, always blocked regardless of migration flag.
+        'collectibles_owned_v1',
+        'collectibles_state_v1',
+        // Profile card LEVEL: a public prestige badge bought with shards. Only the
+        // profileCardUpgrade Cloud Function (Admin SDK) may raise it, so a tampered
+        // client can't forge CARD V for free. Theme/motion/focus stay client-chosen.
+        'profile_card_level',
+      ];
+    }
+
     function progressHasNoPremiumWrites() {
       return isAdmin()
         || !request.resource.data.get('progress', {})
               .diff(resource.data.get('progress', {}))
-              .affectedKeys().hasAny([
-                // Premium/VIP entitlement: only Admin SDK/admin panel may write.
-                'premium_plan',
-                'premium_expiry',
-                'premium_rc_product_id',
-                'premium_rc_period_type',
-                'premium_rc_store',
-                'premium_rc_environment',
-                'premium_rc_event_type',
-                'premium_rc_updated_at',
-                'premium_rc_expiry_ms',
-                'premium_rc_purchased_at_ms',
-                'premium_rc_cancelled_at',
-                'admin_premium_override',
-                'premium_admin_grant_at',
-                'had_premium_ever',
-                'vip_active',
-                'vip_plan',
-                'vip_from',
-                'vip_until',
-                'vip_admin_override',
-                'vip_admin_grant_at',
-                'vip_migrated_from_admin_grant_at',
-                // Collectibles: server-only, always blocked regardless of migration flag.
-                'collectibles_owned_v1',
-                'collectibles_state_v1',
-                // Profile card LEVEL: a public prestige badge bought with shards. Only the
-                // profileCardUpgrade Cloud Function (Admin SDK) may raise it, so a tampered
-                // client can't forge CARD V for free. Theme/motion/focus stay client-chosen.
-                'profile_card_level',
-              ])
+              .affectedKeys().hasAny(blockedPremiumProgressKeys())
            && (!isProgressServerAuthoritative()
                 || !request.resource.data.get('progress', {})
                       .diff(resource.data.get('progress', {}))
@@ -915,6 +922,18 @@ service cloud.firestore {
         );
     }
 
+    // Create-вариант premium-гарда. На create нет resource (старого документа), поэтому
+    // diff невозможен — проверяем НАЛИЧИЕ запрещённых ключей в самом новом progress.
+    // Закрывает дыру: раньше allow create не звал premium-гард, и кастомный клиент мог
+    // при ПЕРВОМ создании users/{id} сразу вписать vip_until/premium_plan и выдать себе
+    // доступ (легальный клиент эти поля в progress не пишет — cloud_sync.ts вырезает
+    // PREMIUM_PROGRESS_KEYS из исходящего патча, см. строку ~1379).
+    function newDocHasNoPremiumWrites() {
+      return isAdmin()
+        || !request.resource.data.get('progress', {})
+              .keys().hasAny(blockedPremiumProgressKeys());
+    }
+
     // â”€â”€ Referral: Ð·Ð°Ð¿Ð¸ÑÑŒ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ CF; Ñ‡Ñ‚ÐµÐ½Ð¸Ðµ â€” Ð¿Ð°Ð½ÐµÐ»ÑŒ admin (custom claim admin) â”€
     match /referral_codes/{code} {
       allow read: if request.auth != null;
@@ -941,7 +960,7 @@ service cloud.firestore {
       // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
       // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
       allow update: if userDocOwnerMatchesAuth(userId) && progressHasNoPremiumWrites() && hasNoShardWrites();
-      allow create: if newUserDocOwnerMatchesAuth(userId);
+      allow create: if newUserDocOwnerMatchesAuth(userId) && newDocHasNoPremiumWrites();
 
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;

@@ -26,7 +26,19 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toMatch(
       /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?progressHasNoPremiumWrites\(\)/,
     );
-    expect(rules).toContain('allow create: if newUserDocOwnerMatchesAuth(userId);');
+    // Create is owner/admin AND must not pre-populate premium/VIP fields in the brand-new
+    // doc. Firestore evaluates a set() on a non-existent doc against `allow create`, so
+    // without a premium guard here a tampered client could self-grant VIP on its very first
+    // write (resource is null on create → diff impossible → guard checks key presence).
+    expect(rules).toMatch(
+      /allow create:\s*if\s+newUserDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?newDocHasNoPremiumWrites\(\)/,
+    );
+    expect(rules).toContain('function newDocHasNoPremiumWrites() {');
+    // The create guard must inspect the NEW progress map's keys (not a diff — there is no
+    // prior resource on create) and reject any blocked premium key.
+    expect(rules).toMatch(
+      /function newDocHasNoPremiumWrites\(\) \{[\s\S]*?\.get\('progress', \{\}\)[\s\S]*?\.keys\(\)\.hasAny\(blockedPremiumProgressKeys\(\)\)/,
+    );
   });
 
   // ── Paywall-bypass guard (premium/VIP self-grant) ────────────────────────
@@ -111,27 +123,50 @@ describe('firestore.rules security baseline', () => {
     );
   });
 
-  test('progressHasNoPremiumWrites() blocks every premium/VIP entitlement key', () => {
+  test('blockedPremiumProgressKeys() lists every premium/VIP entitlement key', () => {
+    // The denied-keys list was extracted into blockedPremiumProgressKeys() so that BOTH
+    // the update guard (progressHasNoPremiumWrites) and the create guard
+    // (newDocHasNoPremiumWrites) check the exact same set. Pin the list in that function.
     const guardBlock = rules.match(
-      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\n    \}/,
+      /function blockedPremiumProgressKeys\(\) \{[\s\S]*?\n    \}/,
     );
     expect(guardBlock).not.toBeNull();
     for (const key of PREMIUM_PROGRESS_KEYS) {
-      // Each entitlement key must appear inside the denied-keys list so a
-      // client diff touching it is rejected.
+      // Each entitlement key must appear inside the blocked-keys list so a
+      // client diff (update) or key-presence check (create) touching it is rejected.
       expect(guardBlock![0]).toContain(`'${key}'`);
     }
   });
 
-  test('progressHasNoPremiumWrites() blocks every server-owned progress key', () => {
-    const guardBlock = rules.match(
+  test('both update and create premium guards consume blockedPremiumProgressKeys()', () => {
+    // If either guard stops sharing the list, the two can silently drift (a key added to
+    // one but not the other reopens the bypass on that path).
+    expect(rules).toMatch(
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\.hasAny\(blockedPremiumProgressKeys\(\)\)/,
+    );
+    expect(rules).toMatch(
+      /function newDocHasNoPremiumWrites\(\) \{[\s\S]*?\.hasAny\(blockedPremiumProgressKeys\(\)\)/,
+    );
+  });
+
+  test('premium guards block every server-owned progress key', () => {
+    // The blocked keys now live in two functions: server-authoritative XP/streak/lesson
+    // keys stay inside progressHasNoPremiumWrites(), while always-blocked keys (e.g.
+    // collectibles) were lifted into blockedPremiumProgressKeys() so create+update share
+    // them. A key is safe if it appears in EITHER block. Check the union.
+    const updateGuard = rules.match(
       /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\n    \}/,
     );
-    expect(guardBlock).not.toBeNull();
+    const sharedList = rules.match(
+      /function blockedPremiumProgressKeys\(\) \{[\s\S]*?\n    \}/,
+    );
+    expect(updateGuard).not.toBeNull();
+    expect(sharedList).not.toBeNull();
+    const blockedAnywhere = updateGuard![0] + sharedList![0];
     for (const key of SERVER_OWNED_PROGRESS_KEYS) {
       // During server-authoritative progress cutover, clients must not be able
       // to overwrite XP, streaks, lessons, exams, or collectibles directly.
-      expect(guardBlock![0]).toContain(`'${key}'`);
+      expect(blockedAnywhere).toContain(`'${key}'`);
     }
   });
 

@@ -30,7 +30,7 @@ import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './G
 import AvatarAura from './AvatarAura';
 import AvatarView from './AvatarView';
 import CustomAvatarBadge from './CustomAvatarBadge';
-import LevelGiftArt from './LevelGiftArt';
+import { GiftBox3D, paletteForRarity, GIFT_PALETTES } from './level_gift_box';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelGiftRewardIcon } from '../constants/levelGiftRewardIcons';
 import {
@@ -201,11 +201,13 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const fRock  = useRef(new Animated.Value(0)).current;
   const fScale = useRef(new Animated.Value(1)).current;
   const fShake = useRef(new Animated.Value(0)).current;
+  const fLid   = useRef(new Animated.Value(0)).current;
   // Правый
   const pFloat = useRef(new Animated.Value(0)).current;
   const pRock  = useRef(new Animated.Value(0)).current;
   const pScale = useRef(new Animated.Value(1)).current;
   const pShake = useRef(new Animated.Value(0)).current;
+  const pLid   = useRef(new Animated.Value(0)).current;
 
   const fadeReveal = useRef(new Animated.Value(0)).current;
   const detailScale = useRef(new Animated.Value(0.96)).current;
@@ -221,14 +223,14 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const wasVisibleRef = useRef(false);
 
   const resetAnims = useCallback(() => {
-    fFloat.setValue(0); fRock.setValue(0); fScale.setValue(1); fShake.setValue(0);
-    pFloat.setValue(0); pRock.setValue(0); pScale.setValue(1); pShake.setValue(0);
+    fFloat.setValue(0); fRock.setValue(0); fScale.setValue(1); fShake.setValue(0); fLid.setValue(0);
+    pFloat.setValue(0); pRock.setValue(0); pScale.setValue(1); pShake.setValue(0); pLid.setValue(0);
     fadeReveal.setValue(0);
     detailScale.setValue(0.96);
     ctaShine.setValue(0);
     modalEntrance.setValue(0);
     modalGlow.setValue(0);
-  }, [fFloat, fRock, fScale, fShake, pFloat, pRock, pScale, pShake, fadeReveal, detailScale, ctaShine, modalEntrance, modalGlow]);
+  }, [fFloat, fRock, fScale, fShake, fLid, pFloat, pRock, pScale, pShake, pLid, fadeReveal, detailScale, ctaShine, modalEntrance, modalGlow]);
 
   useEffect(() => {
     if (!visible) {
@@ -385,6 +387,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     const scaleA = which === 'f2p' ? fScale : pScale;
     const floatA = which === 'f2p' ? fFloat : pFloat;
     const rockA  = which === 'f2p' ? fRock  : pRock;
+    const lidA   = which === 'f2p' ? fLid   : pLid;
 
     idleAll.current?.stop();
     idleLeft.current?.stop();
@@ -393,16 +396,16 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     Animated.sequence([
       Animated.parallel([
         Animated.timing(shakeA, { toValue:  9,  duration: 34,  useNativeDriver: true }),
-        Animated.timing(scaleA, { toValue: 0.94, duration: 66, useNativeDriver: true }),
+        Animated.timing(scaleA, { toValue: 0.96, duration: 66, useNativeDriver: true }),
       ]),
-      Animated.timing(shakeA, { toValue: -12, duration: 34, useNativeDriver: true }),
-      Animated.timing(shakeA, { toValue:  10, duration: 30, useNativeDriver: true }),
+      Animated.timing(shakeA, { toValue: -11, duration: 34, useNativeDriver: true }),
+      Animated.timing(shakeA, { toValue:   8, duration: 30, useNativeDriver: true }),
       Animated.timing(shakeA, { toValue:   0, duration: 24, useNativeDriver: true }),
     ]).start(() => {
-      Animated.sequence([
-        Animated.spring(scaleA, { toValue: 1.18, tension: 240, friction: 7, useNativeDriver: true }),
-        Animated.timing(scaleA, { toValue: 1.42, duration: 96, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(scaleA, { toValue: 0, duration: 76, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
+      // Крышка отлетает (lidLift 0→1) + лёгкий «вдох» масштаба — затем мини-награда.
+      Animated.parallel([
+        Animated.spring(scaleA, { toValue: 1.06, tension: 200, friction: 8, useNativeDriver: true }),
+        Animated.timing(lidA, { toValue: 1, duration: 340, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
       ]).start(() => {
         floatA.setValue(0);
         rockA.setValue(0);
@@ -622,8 +625,11 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
               pl: `Premium: poziom ${level}`,
             })}
           </Text>
-          <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? f.h2 + 1 : f.bodyLg, fontWeight: '900', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 12, textAlign: 'center' }}>
-            {triLang(lang, { ru: '🎁 Два подарка', uk: '🎁 Два подарунки', es: '🎁 Dos regalos', 'pt-BR': '🎁 Dois presentes', vi: '🎁 Hai phần quà', id: '🎁 Dua hadiah', tr: '🎁 İki hediye', pl: '🎁 Dwa prezenty' })}
+          <Text style={{ color: '#FFFFFF', fontSize: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? f.h2 + 1 : f.bodyLg, fontWeight: '900', marginBottom: 3, textAlign: 'center' }}>
+            {triLang(lang, { ru: 'Два подарка', uk: 'Два подарунки', es: 'Dos regalos', 'pt-BR': 'Dois presentes', vi: 'Hai phần quà', id: 'Dua hadiah', tr: 'İki hediye', pl: 'Dwa prezenty' })}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 12 }}>
+            {triLang(lang, { ru: 'Награда за прогресс', uk: 'Нагорода за прогрес', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
           </Text>
 
           {phase === 'pair' && (
@@ -648,25 +654,17 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       onPress={onTapF2p}
                       style={{ alignItems: 'center' }}
                     >
-                      <Animated.View style={{
-                        width: DUAL_CHEST_STAGE_SIZE,
-                        height: DUAL_CHEST_STAGE_SIZE,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transform: [
-                          { translateY: !opened.has('f2p') && opening !== 'f2p' ? fFloat : 0 },
-                          { rotateZ: !opened.has('f2p') && opening !== 'f2p' ? fRockI : '0deg' },
-                          { scale: fScale },
-                          { translateX: fShake },
-                        ],
-                      }}>
-                        <LevelGiftArt
-                          themeMode={themeMode}
-                          variant={f2pGift?.rarity ?? 'common'}
-                          size={DUAL_CHEST_IMAGE_SIZE}
-                          opacity={opening === 'f2p' ? 0.72 : 1}
-                        />
-                      </Animated.View>
+                      <GiftBox3D
+                        palette={paletteForRarity(f2pGift?.rarity ?? 'common')}
+                        size={DUAL_CHEST_STAGE_SIZE}
+                        idle={!opened.has('f2p') && opening !== 'f2p'}
+                        opening={opening === 'f2p'}
+                        floatY={fFloat}
+                        rock={fRockI}
+                        scale={fScale}
+                        shakeX={fShake}
+                        lidLift={fLid}
+                      />
                     </TouchableOpacity>
                   )}
                   <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '700' : '400', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
@@ -692,25 +690,17 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       onPress={onTapPrem}
                       style={{ alignItems: 'center' }}
                     >
-                      <Animated.View style={{
-                        width: DUAL_CHEST_STAGE_SIZE,
-                        height: DUAL_CHEST_STAGE_SIZE,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transform: [
-                          { translateY: !opened.has('prem') && opening !== 'prem' ? pFloat : 0 },
-                          { rotateZ: !opened.has('prem') && opening !== 'prem' ? pRockI : '0deg' },
-                          { scale: pScale },
-                          { translateX: pShake },
-                        ],
-                      }}>
-                        <LevelGiftArt
-                          themeMode={themeMode}
-                          variant="premium"
-                          size={DUAL_CHEST_IMAGE_SIZE}
-                          opacity={opening === 'prem' ? 0.72 : 1}
-                        />
-                      </Animated.View>
+                      <GiftBox3D
+                        palette={GIFT_PALETTES.gold}
+                        size={DUAL_CHEST_STAGE_SIZE}
+                        idle={!opened.has('prem') && opening !== 'prem'}
+                        opening={opening === 'prem'}
+                        floatY={pFloat}
+                        rock={pRockI}
+                        scale={pScale}
+                        shakeX={pShake}
+                        lidLift={pLid}
+                      />
                     </TouchableOpacity>
                   )}
                   <Text style={{ color: PREM_LABEL_COLOR, fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
